@@ -1,123 +1,124 @@
-# M64 — matière retirée et parois des logements d’échappement
+# M64 — removed material and exhaust pocket walls
 
-Le diagnostic natif a mesuré la matière retirée, sans nouvelle découpe de la
-culasse. Il constate surtout **une réduction des surfaces cylindriques associées
-aux deux logements de guides d’échappement**. Ce changement appelle un contrôle
-des contacts avec les vrais guides ; il ne prouve, à lui seul, ni perte de
-rétention ni tenue suffisante.
+The native diagnostic measured the removed material, without any new cut of
+the cylinder head. Above all, it finds **a reduction of the cylindrical
+surfaces associated with the two exhaust guide pockets**. This change calls
+for a check of the contacts with the real guides; on its own, it proves
+neither a loss of retention nor sufficient holding.
 
-Le candidat sauvegardé `21c9c40b…` reste inchangé. Les refus et les deux alertes
-C0 de l’[audit précédent](M64_EXHAUST_NATIVE_AUDIT_20260908.md) sont conservés.
-Ces deux nouvelles étapes sont liées dans une
-[capsule distincte](../../twins/m64-cylinder-head/evidence/exhaust-material-controls-20260908.json) ;
-elles ne réécrivent aucun reçu antérieur et n’autorisent ni CFD ni fabrication.
+The saved candidate `21c9c40b…` remains unchanged. The rejections and the two
+C0 alerts of the [previous audit](M64_EXHAUST_NATIVE_AUDIT_20260908.md) are
+kept. These two new steps are linked in a
+[separate capsule](../../twins/m64-cylinder-head/evidence/exhaust-material-controls-20260908.json);
+they rewrite no earlier receipt and authorize neither CFD nor manufacturing.
 
-## Les logements : changement mesuré, contact réel encore à contrôler
+## The pockets: measured change, real contact still to be checked
 
-Huit surfaces cylindriques sont associées aux quatre sièges et quatre guides,
-avant et après la coupe sauvegardée. Les axes enregistrés sont déjà dans le
-repère final ; aucune transformation supplémentaire n’est appliquée aux corps
-ou aux axes. Les surfaces complètes sont mesurées, **pas leur seule partie en
-contact avec l’insert**.
+Eight cylindrical surfaces are associated with the four seats and four guides,
+before and after the saved cut. The recorded axes are already in the final
+frame; no additional transformation is applied to the bodies or the axes. The
+full surfaces are measured, **not only their part in contact with the insert**.
 
-| Surface associée au guide | Aire avant → après, unités scan² | Aire perdue | Étendue axiale de la boîte avant → après, unités scan |
+| Surface associated with the guide | Area before → after, scan units² | Area lost | Axial extent of the box before → after, scan units |
 |---|---:|---:|---:|
-| Échappement 1 | 2 549,528606 → 1 673,989540 | 875,539066 | 74,549353 → 51,012425 |
-| Échappement 2 | 2 272,879397 → 1 397,089473 | 875,789924 | 74,549353 → 51,003675 |
+| Exhaust 1 | 2,549.528606 → 1,673.989540 | 875.539066 | 74.549353 → 51.012425 |
+| Exhaust 2 | 2,272.879397 → 1,397.089473 | 875.789924 | 74.549353 → 51.003675 |
 
-L’étendue angulaire de chaque boîte reste `6,28318530718 rad` avant/après.
-**Une boîte couvrant environ 2π ne prouve pas une surface de contact continue
-sur 360°** : elle peut encadrer une face découpée. De même, les étendues axiales
-ci-dessus ne sont pas les longueurs effectivement insérées des guides, dont
-la longueur nominale V2 est 35 unités sous l’hypothèse d’échelle existante.
-Aucune portée de rétention n’est calculée par ce nouvel inventaire.
+The angular extent of each box remains `6.28318530718 rad` before/after.
+**A box covering about 2π does not prove a continuous contact surface over
+360°**: it can enclose a trimmed face. Likewise, the axial extents above are
+not the actually inserted lengths of the guides, whose nominal V2 length is
+35 units under the existing scale assumption. No retention engagement is
+computed by this new inventory.
 
-Les aires des quatre surfaces de siège et des deux surfaces de guide admission
-ne changent pas dans ce calcul. Les empreintes sérialisées complètes des huit
-faces diffèrent pourtant avant/après : **ni identité des faces déduite des
-aires, ni déformation déduite d’une empreinte différente**. La portée admission
-historique 23/35 n’est ni améliorée ni requalifiée par cette observation.
+The areas of the four seat surfaces and of the two intake guide surfaces do
+not change in this computation. The full serialized digests of the eight faces
+nevertheless differ before/after: **neither face identity inferred from the
+areas, nor deformation inferred from a different digest**. The historical
+intake engagement of 23/35 is neither improved nor requalified by this
+observation.
 
-## Matière retirée : un Common distinct, pas une nouvelle coupe
+## Removed material: a separate Common, not a new cut
 
-Le calcul effectue uniquement l’intersection `Common(corps avant, outil
-échappement)`, en mode non destructif, fuzzy nul. Le corps avant `33375e12…`,
-l’outil `9e1ab8b3…` et le candidat sauvegardé `21c9c40b…` sont lus sans STEP,
-recalage, réparation ou modification de tolérance demandée.
+The computation performs only the intersection `Common(body before, exhaust
+tool)`, in non-destructive mode, with zero fuzzy value. The body before
+`33375e12…`, the tool `9e1ab8b3…` and the saved candidate `21c9c40b…` are read
+without STEP, re-registration, repair or requested tolerance change.
 
-La matière obtenue est un solide, une coque, 258 faces, 563 arêtes et 308
-sommets. BRepCheck exact est valide avant et après sa relecture native.
-Son volume est **89 589,078029635 unités scan³** ; le BRep privé est lié à
-l’empreinte `08b32607…`. Le volume du corps avant est 1 244 303,585578462 et
-celui du candidat sauvegardé 1 154 714,507690458 unités scan³.
+The material obtained is one solid, one shell, 258 faces, 563 edges and 308
+vertices. Exact BRepCheck is valid before and after its native rereading. Its
+volume is **89,589.078029635 scan units³**; the private BRep is bound to the
+digest `08b32607…`. The volume of the body before is 1,244,303.585578462 and
+that of the saved candidate 1,154,714.507690458 scan units³.
 
-Le même appel d’intégration adaptative est utilisé avec une consigne `Eps=1e−9`.
-Les estimations relatives **retournées**, qui ne sont pas des bornes certifiées,
-sont environ `3,15807e−8` pour le corps avant, `3,04024e−8` pour le candidat et
-`1,05805e−9` pour la matière retirée. Elles ne permettent pas d’annoncer une
-convergence atteinte à `1e−9`.
+The same adaptive integration call is used with a setpoint `Eps=1e−9`. The
+**returned** relative estimates, which are not certified bounds, are about
+`3.15807e−8` for the body before, `3.04024e−8` for the candidate and
+`1.05805e−9` for the removed material. They do not allow claiming a
+convergence reached at `1e−9`.
 
-Le résidu `Vavant − Vcandidat − VCommon` vaut `−0,000141630750` unité scan³,
-soit `1,13823e−10` du volume initial. C’est une observation de cohérence
-numérique, **pas une borne d’erreur indépendante ni une preuve d’équivalence
-géométrique de la différence**. Le BOP complet antérieur n’est pas relancé.
+The residual `Vbefore − Vcandidate − VCommon` is `−0.000141630750` scan unit³,
+that is `1.13823e−10` of the initial volume. This is an observation of
+numerical consistency, **not an independent error bound nor a proof of
+geometric equivalence of the difference**. The earlier full BOP is not rerun.
 
-Sur la seule relecture du nouveau Common, 89 tolérances de sommets changent
-exactement comme `float(format(avant, '.15g'))`, avec un écart maximal
-`4,235164736271502e−21` unité scan. Les tolérances d’arêtes et de faces sont
-bit à bit identiques. Cette observation séparée ne remplace pas le garde
-historique refusé de `21c9`, ni une preuve complète de conservation géométrique.
+On the rereading of the new Common alone, 89 vertex tolerances change exactly
+as `float(format(before, '.15g'))`, with a maximum gap of
+`4.235164736271502e−21` scan unit. The edge and face tolerances are
+bit-for-bit identical. This separate observation replaces neither the
+historical rejected guard of `21c9`, nor a full proof of geometric
+preservation.
 
-## Essai de courbes C1 : méthode refusée, aucun BRep corrigé
+## C1 curve trial: method rejected, no corrected BRep
 
-Une tentative distincte de reparamétrage synchronisé et de réduction de
-multiplicité est réellement exécutée sur des copies de courbes, avec le budget
-natif `5e−6` inchangé. OCP refuse la première réduction de multiplicité de la
-courbe 3D de l’arête 1603, à la tolérance d’appel `2,0000000000000004e−7`.
-L’essai s’arrête immédiatement : **la courbe 3D 1606 et les quatre p-curves ne
-sont pas testées**. Aucune surface ni aucun BRep n’est écrit ou modifié.
+A separate attempt at synchronized reparameterization and multiplicity
+reduction is actually executed on copies of curves, with the native budget
+`5e−6` unchanged. OCP rejects the first multiplicity reduction of the 3D curve
+of edge 1603, at the call tolerance `2.0000000000000004e−7`. The trial stops
+immediately: **the 3D curve 1606 and the four p-curves are not tested**. No
+surface and no BRep is written or modified.
 
-Ce résultat refuse cette méthode bornée ; ce n’est ni une impossibilité générale
-de construction CAO, ni une preuve de fissure. Les deux alertes C0 restent
-localisées et non corrigées. Une première tentative locale, arrêtée avant OCP
-par l’installation impossible de la limite mémoire macOS, reste un échec runtime
-distinct, pas un refus géométrique supplémentaire.
+This result rejects this bounded method; it is neither a general
+impossibility of CAD construction nor evidence of a crack. The two C0 alerts
+remain localized and uncorrected. A first local attempt, stopped before OCP
+because the macOS memory limit could not be set, remains a separate runtime
+failure, not an additional geometric rejection.
 
 ```mermaid
 flowchart TD
-    A["Candidat sauvegardé 21c9 : refus historiques conservés"] --> B["Essai C1 sur courbes : première réduction refusée"]
-    A --> C["Inventaire des huit surfaces cylindriques"]
-    C --> D["Deux parois de logements échappement réduites"]
-    C --> E["Common natif : matière retirée mesurée"]
-    D --> F["À faire : contacts réels guides et sièges"]
+    A["Saved candidate 21c9: historical rejections kept"] --> B["C1 trial on curves: first reduction rejected"]
+    A --> C["Inventory of the eight cylindrical surfaces"]
+    C --> D["Two exhaust pocket walls reduced"]
+    C --> E["Native Common: removed material measured"]
+    D --> F["To do: real guide and seat contacts"]
     E --> F
-    F --> G["Gaz complet, interfaces et parois : contrôles distincts"]
-    B --> H["Aucune correction C1 du BRep revendiquée"]
-    G --> I["CFD, résistance et fabrication non autorisées"]
+    F --> G["Full gas, interfaces and walls: separate checks"]
+    B --> H["No C1 correction of the BRep claimed"]
+    G --> I["CFD, strength and manufacturing not authorized"]
 ```
 
-## Limites, exécution et suite
+## Limits, execution and next steps
 
-Les contrôles fonctionnels 6–12 ne passent pas : les 7–8 disposent seulement
-d’un inventaire de surfaces de logement ; continuité du gaz complet, contacts
-réels des inserts, séparation des conduits, ouvertures autorisées, bandes
-protégées et épaisseurs finales restent à contrôler. Le prochain travail utile
-est la mesure des contacts réels des guides d’échappement sur `21c9`, avec leurs
-étendues axiales et angulaires, puis les communications gorges–chambre.
+Functional checks 6–12 do not pass: 7–8 only have an inventory of pocket
+surfaces; continuity of the full gas, real contacts of the inserts, separation
+of the ports, authorized openings, protected bands and final thicknesses
+remain to be checked. The next useful work is measuring the real contacts of
+the exhaust guides on `21c9`, with their axial and angular extents, then the
+throat–chamber communications.
 
-L’essai C1 termine avec code natif/wrapper 2 en 0,521 s / 0,921 s nettoyage
-compris. Le diagnostic de matière termine avec code 0 en 10,585 s / 11,058 s.
-Ce code 0 signifie diagnostic exécuté, pas pièce validée. Les 15 tests de
-préparation C1 et les 14 tests du contrôle matière passent ; ils ne constituent
-pas une qualification physique.
+The C1 trial ends with native/wrapper code 2 in 0.521 s / 0.921 s including
+cleanup. The material diagnostic ends with code 0 in 10.585 s / 11.058 s. This
+code 0 means the diagnostic ran, not that the part is validated. The 15 C1
+preparation tests and the 14 tests of the material check pass; they do not
+constitute a physical qualification.
 
-Les deux passages utilisent l’image existante OCP 7.9.3.1, sans réseau,
-avec entrées/sources RO : C1 borné à 60 s, 2 CPU, 2 Gio mémoire+swap total ;
-Common à 300 s, 2 CPU, 4 Gio mémoire+swap total. Aucun OOM ni timeout. Les
-conteneurs exacts sont supprimés, leur absence vérifiée indépendamment. Les
-limites sont établies par les commandes gelées ; aucune capture HostConfig
-en direct de ces courts passages n’est revendiquée.
+Both runs use the existing OCP 7.9.3.1 image, without network, with read-only
+inputs/sources: C1 capped at 60 s, 2 CPUs, 2 GiB memory+swap total; Common at
+300 s, 2 CPUs, 4 GiB memory+swap total. No OOM and no timeout. The exact
+containers are deleted, their absence verified independently. The limits are
+established by the frozen commands; no live HostConfig capture of these short
+runs is claimed.
 
-Fichiers, formes d’entrée et tolérances restent inchangés. Géométrie, coordonnées,
-axes, bornes absolues et fichiers CAD restent privés. Les mesures utilisent les
-unités du scan ; ni l’échelle absolue ni les interfaces M64 ne sont certifiées.
+Files, input shapes and tolerances remain unchanged. Geometry, coordinates,
+axes, absolute bounds and CAD files remain private. The measurements use scan
+units; neither the absolute scale nor the M64 interfaces are certified.

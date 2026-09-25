@@ -1,32 +1,32 @@
-# Accès Hugging Face pour Flash Next
+# Hugging Face access for Flash Next
 
-## État confirmé le 12 septembre 2026
+## State confirmed on September 12, 2026
 
-**L'accès en lecture au dépôt Flash Next est opérationnel.** Le contrôle a été
-réexécuté depuis le wrapper fourni/configuré par l'utilisateur, puis après
-réinstallation du même wrapper. Aucun poids n'a été téléchargé et aucune
-machine Vast n'a été louée pendant ces vérifications.
+**Read access to the Flash Next repository is operational.** The check was
+re-run from the wrapper supplied/configured by the user, then again after
+reinstalling the same wrapper. No weights were downloaded and no Vast machine
+was rented during these checks.
 
-Le projet source est `/Users/maxime/projects/openbao-huggingface-wrapper`.
-Sa source installée a été comparée à `src/openbao_huggingface.py` : les
-fichiers étaient identiques. Ce dossier local n'était pas un dépôt Git lors
-du contrôle ; il n'est pas présenté ici comme un logiciel publié par le dépôt Porsche.
+The source project is `/Users/maxime/projects/openbao-huggingface-wrapper`. Its
+installed source was compared with `src/openbao_huggingface.py`: the files were
+identical. This local folder was not a Git repository at the time of the check;
+it is not presented here as software published by the Porsche repository.
 
-| Élément vérifié | Résultat |
+| Item checked | Result |
 | --- | --- |
-| Lanceur | `/Users/maxime/.local/bin/openbao-huggingface` |
-| Version du wrapper | `0.1.1` |
-| Bibliothèque | `huggingface-hub 1.31.0` |
-| Secret KV v2 autorisé | `secrets/data/huggingface`, champ `HF_TOKEN` |
-| Version du secret utilisée | `1` |
-| Dépôt | `orcarouter/Qwen3.8-Flash-Next-Uncensored-NVFP4` |
-| Droit confirmé | Lecture |
+| Launcher | `/Users/maxime/.local/bin/openbao-huggingface` |
+| Wrapper version | `0.1.1` |
+| Library | `huggingface-hub 1.31.0` |
+| Authorized KV v2 secret | `secrets/data/huggingface`, field `HF_TOKEN` |
+| Secret version used | `1` |
+| Repository | `orcarouter/Qwen3.8-Flash-Next-Uncensored-NVFP4` |
+| Confirmed right | Read |
 
-Ces noms sont des métadonnées : aucune valeur secrète n'est publiée.
-L'indication utilisateur « la clé s'appelle vast » n'a pas servi à substituer
-une clé API Vast.ai : le wrapper relu utilise le champ HF ci-dessus.
+These names are metadata: no secret value is published. The user's hint "la
+clé s'appelle vast" ("the key is called vast") was not used to substitute a
+Vast.ai API key: the reviewed wrapper uses the HF field above.
 
-## Commandes vérifiées
+## Verified commands
 
 ```sh
 cd /Users/maxime/projects/openbao-huggingface-wrapper
@@ -35,8 +35,8 @@ cd /Users/maxime/projects/openbao-huggingface-wrapper
 ./scripts/deploy.sh auth-check model orcarouter/Qwen3.8-Flash-Next-Uncensored-NVFP4
 ```
 
-L'installation a réussi, avec les dépendances déjà présentes.
-`verify` a retourné `ok: true` et `bootstrap: valid`. Le test d'accès a retourné :
+Installation succeeded, with the dependencies already present. `verify`
+returned `ok: true` and `bootstrap: valid`. The access test returned:
 
 ```json
 {
@@ -49,49 +49,50 @@ L'installation a réussi, avec les dépendances déjà présentes.
 }
 ```
 
-L'utilisateur a aussi demandé `./scripts/deploy.sh provision`. Cette commande
-a été exécutée et a retourné le refus prévu :
-`bootstrap already exists; refusing to create an orphaned SecretID`.
-Elle n'a pas recréé l'AppRole ni remplacé les identifiants existants. Le contrôle
-d'accès a réussi après ce refus. **Ne pas supprimer le bootstrap ni forcer
-son remplacement pour faire passer cette étape** : elle sert à la première
-initialisation, pas au contrôle courant.
+The user also asked for `./scripts/deploy.sh provision`. This command was run
+and returned the expected refusal:
+`bootstrap already exists; refusing to create an orphaned SecretID`. It did not
+recreate the AppRole or replace the existing credentials. The access check
+succeeded after this refusal. **Do not delete the bootstrap or force its
+replacement to get past this step**: it serves the first initialization, not the
+routine check.
 
-## Circuit d'accès actuel
+## Current access circuit
 
 ```mermaid
 flowchart LR
-    A[Identité AppRole locale dédiée] --> B[Lecture HF_TOKEN dans Bao]
-    B --> C[Révocation de la session Bao]
-    C --> D[Test lecture du dépôt Hugging Face]
-    D --> E[Résultat JSON sans valeur secrète]
+    A[Dedicated local AppRole identity] --> B[Read HF_TOKEN from Bao]
+    B --> C{Bao session<br/>revoked?}
+    C -- no --> X[Hugging Face call prevented]:::stop
+    C -- yes --> D[Read test on the Hugging Face repository]
+    D --> E[JSON result with no secret value]:::ok
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
 ```
 
-Le token HF passe explicitement en mémoire à la bibliothèque. Le wrapper ne
-l'exporte pas dans l'environnement et ne réalise pas de `hf auth login`.
-La session Bao est révoquée avant l'appel Hugging Face ; un échec de révocation
-empêche cet appel. Installation et provisioning sont inutiles pour un simple
-contrôle d'accès.
+The HF token is passed explicitly in memory to the library. The wrapper does not
+export it into the environment and does not run `hf auth login`. The Bao session
+is revoked before the Hugging Face call; a revocation failure prevents that
+call. Installation and provisioning are unnecessary for a simple access check.
 
-## Ancien prototype de ce dépôt
+## Former prototype in this repository
 
-`deploy/openbao/openbao-huggingface` et `huggingface-flashnext-read.hcl`
-restent l'historique du prototype initial, avec son ancien chemin
-`secrets/data/huggingface-flashnext` et ses 28 tests hors ligne.
-**Ne pas installer ce prototype par-dessus le lanceur actuel**, et ne pas
-appliquer sa politique à l'identité désormais opérationnelle.
-Le blocage « identité absente » décrit précédemment est dépassé. Les tests du
-prototype ne constituent pas une qualification du nouveau wrapper.
+`deploy/openbao/openbao-huggingface` and `huggingface-flashnext-read.hcl`
+remain the history of the initial prototype, with its former path
+`secrets/data/huggingface-flashnext` and its 28 offline tests. **Do not install
+this prototype over the current launcher**, and do not apply its policy to the
+identity that is now operational. The "missing identity" blocker described
+earlier is resolved. The prototype's tests do not qualify the new wrapper.
 
-## Limites et suite
+## Limits and next steps
 
-Le succès de l'[API officielle `auth_check`](https://huggingface.co/docs/huggingface_hub/package_reference/hf_api#huggingface_hub.HfApi.auth_check)
-prouve l'accès en lecture au dépôt, pas un téléchargement complet, une révision
-précise, un chargement vLLM, une cadence d'inférence ou une validation physique
-de la culasse.
+Success of the [official `auth_check` API](https://huggingface.co/docs/huggingface_hub/package_reference/hf_api#huggingface_hub.HfApi.auth_check)
+proves read access to the repository, not a complete download, a specific
+revision, a vLLM load, an inference rate or a physical validation of the
+cylinder head.
 
-Avant toute location : vérifier le crédit courant, le digest linux/amd64 de
-l'image Flash Next existante, la révision des poids et la paire SSH, puis
-préparer le transfert sécurisé ou le préchargement des poids pour l'instance
-exacte. Un accès HF local fonctionnel ne vaut pas injection de credentials
-sur Vast. Le serveur vLLM devra rester sur loopback, accessible par tunnel SSH.
+Before any rental: check the current credit, the linux/amd64 digest of the
+existing Flash Next image, the weights revision and the SSH key pair, then
+prepare the secure transfer or preloading of the weights for the exact instance.
+Working local HF access does not amount to injecting credentials on Vast. The
+vLLM server will have to stay on loopback, reachable through an SSH tunnel.

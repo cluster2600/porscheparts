@@ -76,8 +76,8 @@ class ChainCaseTests(unittest.TestCase):
 
     def test_the_aluminium_answer_is_recorded_not_lost(self) -> None:
         doc = DOC.read_text(encoding="utf-8")
-        self.assertIn("en aluminium", doc)
-        self.assertIn("aluminium", load(PART)["manufacturing"]["material"]["family"])
+        self.assertIn("in aluminum", doc)
+        self.assertIn("aluminum", load(PART)["manufacturing"]["material"]["family"])
 
     def test_a_condition_without_a_declared_mitigation_blocks(self) -> None:
         screen = load(SCREEN)
@@ -93,7 +93,7 @@ class ChainCaseTests(unittest.TestCase):
             if unresolved:
                 with self.subTest(part=part_id, conditions=unresolved):
                     self.assertFalse(ranking[part_id]["eligible"])
-        self.assertIn("non traité", GRID.read_text(encoding="utf-8"))
+        self.assertIn("Untreated sliding contact", GRID.read_text(encoding="utf-8"))
 
     def test_a_declared_mitigation_becomes_a_carried_requirement(self) -> None:
         entry = next(

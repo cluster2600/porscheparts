@@ -1,66 +1,67 @@
-# 0006 — La bague sera tournée en 6063 T6
+# 0006 — The ring will be turned from 6063 T6
 
-Date : 2026-09-11
+Date: 2026-09-11
 
-Suite directe de [0005](0005-alsi10mg-nest-pas-un-choix.md), qui constatait que
-l'AlSi10Mg de la bague n'avait jamais été choisi.
+Direct follow-up to [0005](0005-alsi10mg-nest-pas-un-choix.md), which found that
+the ring's AlSi10Mg had never been chosen.
 
-## Décision
+## Decision
 
-Fabriquer `993-INT-SWITCH-TRIM-RING-F1-0001` par **tournage de barre en
-EN AW-6063 T6**, finition anodisation brillante incolore. `preferred_process`
-passe de `undecided` à `CNC`. Le LPBF reste au catalogue comme candidat screené —
-les étapes 02, 03 et 04 gardent leur valeur documentaire — mais il n'est plus la
-voie retenue.
+Manufacture `993-INT-SWITCH-TRIM-RING-F1-0001` by **turning from EN AW-6063 T6
+bar stock**, with a clear bright-anodized finish. `preferred_process` changes
+from `undecided` to `CNC`. LPBF stays in the catalogue as a screened candidate —
+steps 02, 03 and 04 keep their documentary value — but it is no longer the
+chosen route.
 
-## L'arbitrage réel
+## The real trade-off
 
-Le critère qui gouverne cette pièce est l'aspect. Sur ce critère, les deux
-nuances candidates tirent en sens inverse.
+The criterion that governs this part is appearance. On that criterion, the two
+candidate grades pull in opposite directions.
 
 | | 6063 T6 | 6061 T6 |
 |---|---|---|
-| anodisation brillante | **nuance de référence**, faible teneur en fer, surface uniforme | correcte, sans la qualité architecturale |
-| tournage | tendre et collant, copeaux longs et filants | nettement plus agréable, copeaux courts |
-| résistance | suffisante — la pièce ne porte rien | supérieure, sans utilité ici |
+| bright anodizing | **reference grade**, low iron content, uniform surface | adequate, without the architectural quality |
+| turning | soft and gummy, long stringy chips | noticeably more pleasant, short chips |
+| strength | sufficient — the part carries nothing | higher, of no use here |
 
-Le 6063 gagne parce que la seule exigence réelle est celle sur laquelle il est le
-meilleur, et que son défaut — l'usinabilité — est une contrainte de paramètres,
-pas une impossibilité : outil carbure non revêtu, arête vive et polie, grande
-vitesse de coupe. Cette instruction est transmise au tourneur, qui peut la
-contredire ; le devis demande explicitement le 6061 T6 chiffré en regard.
+6063 wins because the only real requirement is the one where it is best, and
+because its weakness — machinability — is a parameter constraint, not an
+impossibility: uncoated carbide tool, sharp polished edge, high cutting speed.
+This instruction is passed on to the turner, who may contradict it; the quote
+explicitly asks for 6061 T6 priced alongside.
 
-Le 6262 T6511, développé pour l'usinabilité par ajout de bismuth et de plomb, est
-écarté : le plomb relève de la directive véhicules hors d'usage et de ses
-exemptions, question que ce dépôt n'a pas instruite.
+6262 T6511, developed for machinability through added bismuth and lead, is set
+aside: lead falls under the end-of-life vehicles directive and its exemptions, a
+question this repository has not investigated.
 
-## Ce que changer de procédé n'a pas résolu
+## What changing the process did not solve
 
-C'est le point important. La route tournage compte **cinq portes fermées** contre
-sept pour le LPBF, mais les deux qui comptent sont les mêmes qu'avant :
+This is the important point. The turning route has **five closed gates** versus
+seven for LPBF, but the two that matter are the same as before:
 
-- **la cote d'ajustement n'est pas tolérancée** — le Ø30,5 mm vient d'une page de
-  vente d'une bague adaptable, pas d'une mesure du logement ;
-- **les arêtes ne sont pas définies** — le maître est à arêtes vives, et une bague
-  décorative se juge d'abord sur son arête avant.
+- **the fit dimension is not toleranced** — the Ø30.5 mm comes from a sales page
+  for an aftermarket ring, not from a measurement of the housing;
+- **the edges are not defined** — the master has sharp edges, and a decorative
+  ring is judged first on its front edge.
 
-S'y ajoutent la prise de pièce sur une paroi de 1,25 mm, soit 4,1 % du diamètre
-extérieur, et la croissance d'anodisation de 5 à 15 µm, du même ordre que le jeu
-recherché.
+Added to these are workholding on a 1.25 mm wall, i.e. 4.1% of the outside
+diameter, and anodizing growth of 5 to 15 µm, of the same order as the
+clearance sought.
 
-## La sortie proposée pour la cote d'ajustement
+## The proposed way out for the fit dimension
 
-Sur une pièce tournée, la deuxième et la troisième coûtent une fraction de la
-première. Le devis demande donc **trois bagues nues, non anodisées, à Ø30,40,
-Ø30,50 et Ø30,60 mm**. On essaie, on garde, on n'anodise que la bonne en
-retranchant alors la couche.
+On a turned part, the second and third pieces cost a fraction of the first. The
+quote therefore asks for **three bare, non-anodized rings, at Ø30.40, Ø30.50 and
+Ø30.60 mm**. They are tried, the right one is kept, and only that one is
+anodized, subtracting the coating thickness at that point.
 
-Cela ne remplace pas la mesure du logement, qui reste à faire. Cela permet
-d'avancer sans métrologie du véhicule, ce qui est différent.
+This does not replace the measurement of the housing, which remains to be done.
+It makes it possible to move forward without vehicle metrology, which is
+different.
 
-## Limite acceptée
+## Accepted limitation
 
-La nuance d'origine de la bague reste inconnue. Le 6063 T6 est un choix du
-dépôt appuyé sur le critère d'aspect, pas une identification de la pièce
-commerciale. Rien de ce qui sortira de ce devis n'est conforme à l'origine, et
-rien n'est autorisé au montage.
+The ring's original grade remains unknown. 6063 T6 is the repository's choice,
+based on the appearance criterion, not an identification of the commercial part.
+Nothing that comes out of this quote conforms to the original, and nothing is
+authorized for fitting.

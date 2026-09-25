@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "twin_id": "TWIN-993-WHEEL-HUB-INTERFACES-0001",
-  "name": "Interfaces nominales roues Fuchs et moyeux de Porsche 993",
+  "name": "Nominal interfaces between Fuchs wheels and hubs of the Porsche 993",
   "vehicle": {
     "generation": "993",
     "variants": ["993", "993 Carrera", "993 Turbo hors GT2", "993 Turbo Look"],
@@ -14,8 +14,8 @@
   "fidelity": "F1_envelope",
   "coordinate_system": {
     "frame": "local",
-    "origin": "centre theorique de la face d'appui de chaque moyeu",
-    "axes": "X axe de roue vers l'exterieur, Y vers l'avant du vehicule, Z vers le haut",
+    "origin": "theoretical center of the mounting face of each hub",
+    "axes": "X wheel axis outboard, Y toward the front of the vehicle, Z up",
     "units": "mm",
     "vehicle_transform": null
   },
@@ -69,7 +69,7 @@
       "kind": "fastener",
       "components": ["FRONT_HUB_DATUM", "FUCHS_17_FRONT"],
       "required_measurements": ["HUB_PCD", "HUB_CENTERING_DIAMETER", "HUB_BOLT_SEAT_GEOMETRY", "HUB_CONTACT_FACE", "BRAKE_CLEARANCE_ENVELOPE"],
-      "acceptance_rule": "PCD, centrage et sieges compatibles et enveloppe de frein sans intersection avec marge d'incertitude positive",
+      "acceptance_rule": "PCD, centering and seats compatible, and brake envelope free of intersection with a positive uncertainty margin",
       "status": "missing_data"
     },
     {
@@ -77,7 +77,7 @@
       "kind": "fastener",
       "components": ["REAR_HUB_DATUM", "FUCHS_17_REAR"],
       "required_measurements": ["HUB_PCD", "HUB_CENTERING_DIAMETER", "HUB_BOLT_SEAT_GEOMETRY", "HUB_CONTACT_FACE", "BRAKE_CLEARANCE_ENVELOPE"],
-      "acceptance_rule": "PCD, centrage et sieges compatibles et enveloppe de frein sans intersection avec marge d'incertitude positive",
+      "acceptance_rule": "PCD, centering and seats compatible, and brake envelope free of intersection with a positive uncertainty margin",
       "status": "missing_data"
     },
     {
@@ -85,7 +85,7 @@
       "kind": "fastener",
       "components": ["FRONT_HUB_DATUM", "FUCHS_18_FRONT"],
       "required_measurements": ["HUB_PCD", "HUB_CENTERING_DIAMETER", "HUB_BOLT_SEAT_GEOMETRY", "HUB_CONTACT_FACE", "BRAKE_CLEARANCE_ENVELOPE"],
-      "acceptance_rule": "PCD, centrage et sieges compatibles et enveloppe de frein sans intersection avec marge d'incertitude positive",
+      "acceptance_rule": "PCD, centering and seats compatible, and brake envelope free of intersection with a positive uncertainty margin",
       "status": "missing_data"
     },
     {
@@ -93,7 +93,7 @@
       "kind": "fastener",
       "components": ["REAR_HUB_DATUM", "FUCHS_18_REAR"],
       "required_measurements": ["HUB_PCD", "HUB_CENTERING_DIAMETER", "HUB_BOLT_SEAT_GEOMETRY", "HUB_CONTACT_FACE", "BRAKE_CLEARANCE_ENVELOPE"],
-      "acceptance_rule": "PCD, centrage et sieges compatibles et enveloppe de frein sans intersection avec marge d'incertitude positive",
+      "acceptance_rule": "PCD, centering and seats compatible, and brake envelope free of intersection with a positive uncertainty margin",
       "status": "missing_data"
     }
   ],
@@ -118,10 +118,10 @@
       "catalog/assemblies/asm-993-fuchs-18-wheel-set.json"
     ],
     "known_limits": [
-      "Les solides STEP sont des cylindres nominaux avec alesage central, pas la geometrie complete des roues.",
-      "Les moyeux, freins, sieges de fixation et transformations dans le repere vehicule ne sont pas encore modelises.",
-      "Les tolerances et l'exactitude des geometries sont inconnues ; aucun controle spatial ne peut encore etre declare.",
-      "Les entretoises requises pour certaines variantes Turbo et Turbo Look ne sont pas encore des composants geometrises."
+      "The STEP solids are nominal cylinders with a center bore, not the complete wheel geometry.",
+      "The hubs, brakes, fastener seats and transforms into the vehicle frame are not modeled yet.",
+      "The tolerances and the accuracy of the geometries are unknown; no spatial check can be declared yet.",
+      "The spacers required for some Turbo and Turbo Look variants are not yet geometric components."
     ]
   }
 }

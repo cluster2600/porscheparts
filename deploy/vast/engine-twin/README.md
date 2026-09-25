@@ -1,68 +1,92 @@
-# Session GPU du 2026-09-15 : jumeau moteur M64 par agents
+# GPU session of 2026-09-15: agent-driven M64 engine twin
 
-Deux instances Vast.ai, pilotées depuis le Mac, bornées à **60 USD et 6 h**.
-Manifeste : [`twins/m64-engine-twin/session-20260915.json`](../../../twins/m64-engine-twin/session-20260915.json).
-Rien de ce qui sort ce soir n'est une géométrie maître ni une pièce fabricable :
-tout composant accepté l'est au statut `accepted_unreviewed`.
+Two Vast.ai instances, driven from the Mac, capped at **60 USD and 6 h**.
+Manifest: [`twins/m64-engine-twin/session-20260915.json`](../../../twins/m64-engine-twin/session-20260915.json).
+Nothing that comes out tonight is master geometry or a manufacturable part:
+every accepted component is accepted at the status `accepted_unreviewed`.
 
 ## Architecture
 
-| noeud | rôle | matériel | plafond |
+| node | role | hardware | cap |
 |---|---|---|---|
-| LLM | vLLM, `Qwen3-Coder-30B-A3B-Instruct-FP8` à révision épinglée, 64 séquences simultanées | 1 × H100 80 GB (ou RTX PRO 6000) | 2,60 USD/h |
-| calcul | orchestrateur, 32 agents, exécution CadQuery sans réseau, CFD/FEA GPU, USD | ≥ 64 cœurs, ≥ 256 GB RAM, 1 GPU ≥ 48 GB, 500 GB | 2,60 USD/h |
+| LLM | vLLM, `Qwen3-Coder-30B-A3B-Instruct-FP8` at a pinned revision, 64 concurrent sequences | 1 × H100 80 GB (or RTX PRO 6000) | 2.60 USD/h |
+| compute | orchestrator, 32 agents, network-less CadQuery execution, GPU CFD/FEA, USD | ≥ 64 cores, ≥ 256 GB RAM, 1 GPU ≥ 48 GB, 500 GB | 2.60 USD/h |
 
-Budget au pire : (2,60 + 2,60) × 6 h + 5 USD de réserve = 36,20 USD, sous le plafond.
+Worst-case budget: (2.60 + 2.60) × 6 h + 5 USD reserve = 36.20 USD, under the cap.
 
-Le modèle est celui déjà qualifié par le profil `research-qwen-v1`. Un 30B MoE
-(3B actifs) sert plusieurs dizaines d'agents sur une seule carte ; un modèle plus
-gros exigerait 4 à 8 GPU et ferait sortir du budget.
+The model is the one already qualified by the `research-qwen-v1` profile. A 30B
+MoE (3B active) serves several dozen agents on a single card; a bigger model
+would require 4 to 8 GPUs and would break the budget.
 
-L'API vLLM n'écoute que sur `127.0.0.1`. Le noeud calcul l'atteint par tunnel SSH
-avec une clé de session éphémère, autorisée seulement sur le noeud LLM et
-détruite avec les instances.
+The vLLM API listens only on `127.0.0.1`. The compute node reaches it through an
+SSH tunnel with an ephemeral session key, authorized only on the LLM node and
+destroyed with the instances.
 
-## Boucle d'un agent
+```mermaid
+flowchart LR
+  Mac["Mac<br/>openbao-vastai"] -->|"launch + guard"| LLM["LLM node<br/>vLLM on 127.0.0.1:8000"]
+  Mac -->|"launch + guard"| CMP["compute node<br/>orchestrator, 32 agents"]
+  CMP -->|"SSH tunnel,<br/>ephemeral session key"| LLM
+  CMP --> H["cad_harness.py<br/>docker run --network none"]
+  H --> OUT["/workspace/out<br/>collected, then instances destroyed"]
+```
 
-1. Fiche composant (brief, enveloppe, rapports des dépendances acceptées) et
-   paramètres résolus de G1 (`parameters-resolved.json`).
-2. Le LLM renvoie un module `build(p)` CadQuery. Filtre statique : pas d'`os`,
-   `subprocess`, réseau, `open`, `eval`.
-3. `cad_harness.py` l'exécute dans `docker run --network none --memory 6g`.
-   Contrôles : BRep valide, solide fermé, volume > 0, boîte englobante dans
-   l'enveloppe, export STEP.
-4. En cas d'échec, l'erreur revient à l'agent (6 itérations au plus), sinon
-   `failed_closed`. Les dépendants d'un composant échoué passent en
+## An agent's loop
+
+1. Component record (brief, envelope, reports of accepted dependencies) and G1
+   resolved parameters (`parameters-resolved.json`).
+2. The LLM returns a CadQuery `build(p)` module. Static filter: no `os`,
+   `subprocess`, network, `open`, `eval`.
+3. `cad_harness.py` runs it in `docker run --network none --memory 6g`.
+   Checks: valid BRep, closed solid, volume > 0, bounding box inside the
+   envelope, STEP export.
+4. On failure, the error goes back to the agent (6 iterations at most),
+   otherwise `failed_closed`. The dependents of a failed component go to
    `blocked_dependency`.
-5. Aucun nouveau travail dans la dernière heure : elle sert à l'assemblage, à la
-   collecte et à la destruction.
+5. No new work in the last hour: it is kept for assembly, collection and
+   destruction.
 
-## Déjà vérifié le 2026-09-15
+```mermaid
+flowchart TD
+  A["component record +<br/>parameters-resolved.json"] --> B["LLM returns build(p)"]
+  B --> C{"static filter passes?"}
+  C -- yes --> D{"cad_harness.py checks:<br/>BRep, closed, volume, envelope, STEP"}
+  C -- no --> E{"fewer than 6<br/>iterations?"}
+  D -- no --> E
+  E -- "yes: error back to the agent" --> B
+  E -- no --> F["failed_closed"]:::stop
+  F --> G["dependents: blocked_dependency"]:::stop
+  D -- yes --> H["accepted_unreviewed"]:::open
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
 
-- `tests/test_m64_engine_twin_session.py` : budget, digests, ordre topologique,
-  filtre, enveloppe, reprise sur erreur, blocage des dépendants, échéance.
-- `cad_harness.py` dans `3dprinting993-cadsim:dev` sans réseau : cylindre valide,
-  STEP exporté.
-- `cad-author-f28` et `mesh-cfd` **n'ont pas CadQuery** ; l'image CAO retenue
-  est `simready-local-ai`, qui l'installe dans `/opt/venv`.
+## Already verified on 2026-09-15
 
-## FEA (CPU, image `cadsim`)
+- `tests/test_m64_engine_twin_session.py`: budget, digests, topological order,
+  filter, envelope, error recovery, blocking of dependents, deadline.
+- `cad_harness.py` in `3dprinting993-cadsim:dev` without network: valid
+  cylinder, STEP exported.
+- `cad-author-f28` and `mesh-cfd` **do not have CadQuery**; the chosen CAD image
+  is `simready-local-ai`, which installs it in `/opt/venv`.
 
-`twins/m64-engine-twin/source/fea_screens.py` : maillage Gmsh C3D10, CalculiX,
-deux tailles de maille et écart de convergence, sortie `screen_unreviewed`.
+## FEA (CPU, `cadsim` image)
 
-- `--kind modal` : modes élastiques libre-libre. Des ressorts de sol à 0,5 Hz
-  isolent les six modes rigides ; le script refuse le résultat s'il n'en trouve
-  pas exactement six sous 5 Hz. Le libre-libre pur rendait des parasites
-  (valeurs quasi nulles en surnombre, 0,6 Hz et 18 Hz).
-- `--kind static` : encastrement d'une tranche, force totale sur une autre ;
-  la force est une hypothèse déclarée.
-- Auto-contrôle (`--self-check`), poutre acier L 400 r 10 :
-  f1 = 571,8 Hz contre 575,5 Hz analytique (0,65 %) ; flèche 1,2917 mm contre
-  1,2934 mm (0,14 %). Preuve : `twins/m64-engine-twin/evidence/fea-self-check-20260915.json`.
+`twins/m64-engine-twin/source/fea_screens.py`: Gmsh C3D10 mesh, CalculiX, two
+mesh sizes and a convergence gap, output `screen_unreviewed`.
 
-`ccx` est absent de `simready-local-ai` : les FEA tournent sur les STEP
-collectés, dans `cadsim`, une pièce à la fois avec mémoire plafonnée.
+- `--kind modal`: free-free elastic modes. Ground springs at 0.5 Hz isolate the
+  six rigid modes; the script refuses the result if it does not find exactly six
+  below 5 Hz. Pure free-free produced spurious results (surplus near-zero
+  values, 0.6 Hz and 18 Hz).
+- `--kind static`: one slice clamped, a total force on another; the force is a
+  declared assumption.
+- Self-check (`--self-check`), steel beam L 400 r 10: f1 = 571.8 Hz against
+  575.5 Hz analytical (0.65 %); deflection 1.2917 mm against 1.2934 mm (0.14 %).
+  Evidence: `twins/m64-engine-twin/evidence/fea-self-check-20260915.json`.
+
+`ccx` is missing from `simready-local-ai`: the FEA runs on the collected STEP
+files, in `cadsim`, one part at a time with capped memory.
 
 ```sh
 docker run --rm --network none --memory 10g -v "$PWD:/repo:ro" -v "$OUT:/out" \
@@ -71,71 +95,89 @@ docker run --rm --network none --memory 10g -v "$PWD:/repo:ro" -v "$OUT:/out" \
   --step /out/agents/crankshaft/iter-NN/out/part.step --out /out/fea/crankshaft --mesh-sizes 8 5
 ```
 
-## Profil `engine-twin-v1` du wrapper
+## The wrapper's `engine-twin-v1` profile
 
-Deux locations **appariées mais indépendantes**, une par rôle, chacune avec son
-manifeste, son label, sa tentative payante unique et **sa propre garde** :
+Two **paired but independent** rentals, one per role, each with its own
+manifest, its label, its single paid attempt and **its own guard**:
 
 | | llm | compute |
 |---|---|---|
-| label | `3dprinting993-engine-twin-llm-<hex20>` | `3dprinting993-engine-twin-compute-<hex20>` (même hex) |
+| label | `3dprinting993-engine-twin-llm-<hex20>` | `3dprinting993-engine-twin-compute-<hex20>` (same hex) |
 | image | `vllm/vllm-openai@sha256:7a0f0f…` | `simready-local-ai@sha256:5a69a6…` |
-| matériel | 1 GPU ≥ 80 GB, 16 cœurs, 64 GB, 150 GB | 1 GPU ≥ 48 GB, 64 cœurs, 256 GB, 500 GB |
-| onstart | vLLM `127.0.0.1:8000`, `timeout` relatif | `sleep` borné ; jobs par SSH |
+| hardware | 1 GPU ≥ 80 GB, 16 cores, 64 GB, 150 GB | 1 GPU ≥ 48 GB, 64 cores, 256 GB, 500 GB |
+| onstart | vLLM `127.0.0.1:8000`, relative `timeout` | bounded `sleep`; jobs over SSH |
 
-Plafonds communs : 2,60 USD/h, 6 h, 30 USD par rôle (donc 60 USD pour la paire),
-transferts ≤ 0,01 USD/GB, fiabilité ≥ 0,99, machine vérifiée.
+Common caps: 2.60 USD/h, 6 h, 30 USD per role (hence 60 USD for the pair),
+transfers ≤ 0.01 USD/GB, reliability ≥ 0.99, verified machine.
 
-Le contrôle d'unicité tolère **uniquement le label sœur exact** de la même
-session ; toute autre location sur le compte bloque le lancement. La garde
-`deploy/vast/engine-twin/deadline_guard.py` (SHA épinglé dans le wrapper) est une
-politique au-dessus du moteur PicoGK inchangé : elle masque la sœur exacte dans
-sa vue d'inventaire, pour que les deux gardes ne se détruisent pas mutuellement,
-et reste sensible à tout le reste.
+The uniqueness check tolerates **only the exact sibling label** of the same
+session; any other rental on the account blocks the launch. The guard
+`deploy/vast/engine-twin/deadline_guard.py` (SHA pinned in the wrapper) is a
+policy on top of the unchanged PicoGK engine: it hides the exact sibling in its
+inventory view, so that the two guards do not destroy each other, and stays
+sensitive to everything else.
 
-Tests : `tests/test_openbao_vastai_engine_twin.py` ; non-régression wrapper,
-recherche et gardes (205 tests) au vert.
+Tests: `tests/test_openbao_vastai_engine_twin.py`; wrapper, research and guard
+non-regression (205 tests) green.
 
-## Reste à faire avant de louer
+## Still to do before renting
 
-1. **Réinstaller le wrapper sur le Mac** (`install -m 0755 …`) puis
-   `openbao-vastai --check` : l'empreinte change, aucune garde d'une autre
-   session ne doit être armée à ce moment.
-2. **Qualifications** `llm-qualification.json` et `compute-qualification.json` :
-   digest relu anonymement, tailles d'image et de poids mesurées.
-3. **Exécution réelle de `cad_harness.py` dans `simready-local-ai`** sur le
-   noeud calcul, avant de lancer les agents (`--executor local`).
+1. **Reinstall the wrapper on the Mac** (`install -m 0755 …`) then
+   `openbao-vastai --check`: the digest changes, and no guard from another
+   session may be armed at that moment.
+2. **Qualifications** `llm-qualification.json` and `compute-qualification.json`:
+   digest reread anonymously, image and weight sizes measured.
+3. **Real execution of `cad_harness.py` in `simready-local-ai`** on the compute
+   node, before launching the agents (`--executor local`).
 
-## Déroulé du soir
+## The evening's run
+
+```mermaid
+sequenceDiagram
+  participant M as Mac (openbao-vastai)
+  participant G as deadline_guard.py (per role)
+  participant L as LLM node
+  participant C as compute node
+  M->>M: --auth-check, account-balance, engine-twin-offers
+  M->>G: arm the guard (manifest 0600) BEFORE the rental
+  M->>L: launch-engine-twin LLM_OFFER
+  M->>G: arm the compute guard
+  M->>C: launch-engine-twin COMPUTE_OFFER
+  L-->>L: llm-onstart.sh, /workspace/READY
+  C->>L: compute-run.sh through the SSH tunnel
+  C-->>M: collect /workspace/out
+  M->>L: destroy, verify absence
+  M->>C: destroy, verify absence
+```
 
 ```sh
-# Mac, avant tout appel payant
+# Mac, before any paid call
 openbao-vastai --auth-check
 openbao-vastai account-balance
 openbao-vastai engine-twin-offers llm
 openbao-vastai engine-twin-offers compute
 
-# une fois par role : manifeste 0600, puis garde armee AVANT la location
+# once per role: manifest 0600, then guard armed BEFORE the rental
 python3 deploy/vast/engine-twin/deadline_guard.py /abs/engine-twin-llm-20260915.json &
 openbao-vastai launch-engine-twin LLM_OFFER /abs/engine-twin-llm-20260915.json
 python3 deploy/vast/engine-twin/deadline_guard.py /abs/engine-twin-compute-20260915.json &
 openbao-vastai launch-engine-twin COMPUTE_OFFER /abs/engine-twin-compute-20260915.json
-# en cas d'echec incertain : openbao-vastai reconcile-engine-twin /abs/<manifeste>.json
+# on an uncertain failure: openbao-vastai reconcile-engine-twin /abs/<manifest>.json
 
-# noeud LLM : onstart = deploy/vast/engine-twin/llm-onstart.sh ; attendre /workspace/READY
+# LLM node: onstart = deploy/vast/engine-twin/llm-onstart.sh; wait for /workspace/READY
 
-# noeud calcul : répétition du harnais, puis agents
+# compute node: harness rehearsal, then agents
 python3 twins/m64-engine-twin/source/orchestrate_agents.py --help
 deploy/vast/engine-twin/compute-run.sh root@LLM_HOST:LLM_PORT DEADLINE_EPOCH
 
-# en parallèle sur le GPU du noeud calcul, jobs existants
+# in parallel on the compute node's GPU, existing jobs
 make turbo-cold-side
 twins/m64-cylinder-head/run_cht_runtime_smoke.sh
 
-# fin : collecte de /workspace/out, puis destruction et vérification d'absence
+# end: collect /workspace/out, then destroy and verify absence
 ```
 
-Répétition locale sans GPU, avec l'image `cadsim` :
+Local rehearsal without GPU, with the `cadsim` image:
 
 ```sh
 python3 twins/m64-engine-twin/source/orchestrate_agents.py \

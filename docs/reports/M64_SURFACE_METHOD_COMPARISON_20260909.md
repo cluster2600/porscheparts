@@ -1,118 +1,122 @@
-# M64 — comparaison Delaunay / MeshAdapt sur le conduit
+# M64 — Delaunay / MeshAdapt comparison on the port
 
-**MeshAdapt améliore fortement le pire triangle, mais ne rend pas le maillage
-admissible : 22 triangles restent sous le repère retenu, contre 17 avec
-Delaunay.** Les deux essais conservent exactement les raccordements hors
-cible et la même CAO. Aucun candidat n'est promu dans le maillage volumique.
+**MeshAdapt greatly improves the worst triangle, but does not make the mesh
+admissible: 22 triangles remain below the chosen benchmark, against 17 with
+Delaunay.** Both trials keep the off-target junctions and the same CAD exactly.
+No candidate is promoted into the volume mesh.
 
-![Comparaison des indicateurs de maillage, pas de performances moteur](../M64_SURFACE_METHOD_COMPARISON_20260909.png)
+![Comparison of mesh indicators, not engine performance](../M64_SURFACE_METHOD_COMPARISON_20260909.png)
 
-Ce lot poursuit le [pilote de surface isolé](M64_GEOMETRY_CHECKPOINT_20260908.md).
-Il porte sur la face gaz native 37, pas sur la culasse métallique complète.
-Échelle absolue et interfaces M64 restent non certifiées. Les valeurs et
-empreintes sont dans le [registre de preuves](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json),
-entrée `gas_surface_method_comparison`.
+*Mesh quality indicators of the two trials on native face 37; they say nothing about engine performance.*
 
-## Ce que la localisation a établi
+This batch continues the [isolated surface pilot](M64_GEOMETRY_CHECKPOINT_20260908.md).
+It concerns native gas face 37, not the complete metal cylinder head.
+Absolute scale and M64 interfaces remain uncertified. The values and digests
+are in the [evidence register](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json),
+entry `gas_surface_method_comparison`.
 
-Le fichier Delaunay `81bac4db…` contient 17 triangles dont la borne maximale
-SICN, pour un tétraèdre positif partageant ce triangle, est sous 0,1.
-La sélection utilise le test rationnel exact `S² > 841 D²`, sur les
-coordonnées binary64 sauvegardées. Ce n'est ni un seuil CFD universel ni
-la qualité mesurée d'un nouveau tétraèdre : aucun volume n'est généré.
+## What the localization established
 
-Les 17 touchent une vraie arête de frontière : incidence triangulaire unique,
-paire de nœuds identique à un segment MSH 1D et occurrence dans une wire CAO.
-Quinze ont trois sommets classés 0D/1D ; deux ont un sommet intérieur 2D.
-Une composante de 14 comprend 13 triangles incidents au nœud 1020, plus
-une oreille sans ce nœud. Les diagonales de cet éventail ne sont pas des
-segments 1D protégés. Des sommets fixes n'impliquent donc pas une
-triangulation unique ou l'impossibilité d'insérer un sommet intérieur.
+The Delaunay file `81bac4db…` contains 17 triangles whose maximum SICN bound,
+for a positive tetrahedron sharing that triangle, is below 0.1.
+The selection uses the exact rational test `S² > 841 D²`, on the saved
+binary64 coordinates. This is neither a universal CFD threshold nor the
+measured quality of a new tetrahedron: no volume is generated.
 
-Les arêtes actuelles 98/99 sont partagées par les faces 36 (`walls_seat`)
-et 37 (`walls_port`). Les 104/105 sont partagées par 37 et 41 ; la couture
-répétée de 37 porte ici le numéro 101. Les numéros d'anciens B-Rep ne sont
-pas transférables sans liaison vérifiée. Les faces 36, 37 et 41 ne font pas
-partie des 72 faces quadrangulaires structurées.
+All 17 touch a real boundary edge: single triangle incidence, node pair
+identical to a 1D MSH segment and occurrence in a CAD wire.
+Fifteen have three vertices classified 0D/1D; two have one 2D interior vertex.
+One component of 14 comprises 13 triangles incident to node 1020, plus one ear
+without that node. The diagonals of this fan are not protected 1D segments.
+Fixed vertices therefore do not imply a unique triangulation or the
+impossibility of inserting an interior vertex.
 
-Le plancher de taille `0,005` est supérieur à certains petits segments, mais
-cela **ne suffit pas à expliquer le défaut**. La lecture de Gmsh 4.15.2
-montre que Delaunay et MeshAdapt utilisent aussi les longueurs des segments
-1D incidents pour définir leurs tailles locales. Une baisse aveugle du
-plancher n'est donc pas retenue comme correction démontrée.
+The current edges 98/99 are shared by faces 36 (`walls_seat`) and 37
+(`walls_port`). Edges 104/105 are shared by 37 and 41; the repeated seam of 37
+carries number 101 here. Numbers from old B-Reps are not transferable without
+a verified link. Faces 36, 37 and 41 are not among the 72 structured
+quadrangular faces.
 
-## Essai réellement exécuté
+The size floor of `0.005` is larger than some small segments, but this **is not
+enough to explain the defect**. Reading Gmsh 4.15.2 shows that Delaunay and
+MeshAdapt also use the lengths of the incident 1D segments to define their
+local sizes. A blind lowering of the floor is therefore not retained as a
+demonstrated fix.
 
-Un seul changement numérique : `setAlgorithm(2, target, 5)` devient
-`setAlgorithm(2, target, 1)`. Les autres changements du travailleur sont
-des libellés et noms de sorties. Entrées, paramètres de taille, tolérances,
-visibilité temporaire, restauration exacte des identifiants et gardes
-restent inchangés. Une seule génération 2D, aucun repli automatique,
-aucune opération CAO de réparation ni appel explicite à un optimiseur.
+## Trial actually run
 
-| Indicateur, face 37 seulement | Référence, algorithme 6 | Delaunay 5 | MeshAdapt 1 |
+A single numerical change: `setAlgorithm(2, target, 5)` becomes
+`setAlgorithm(2, target, 1)`. The other changes to the worker are labels and
+output names. Inputs, size parameters, tolerances, temporary visibility, exact
+restoration of identifiers and guards remain unchanged. A single 2D
+generation, no automatic fallback, no CAD repair operation or explicit call to
+an optimizer.
+
+| Indicator, face 37 only | Reference, algorithm 6 | Delaunay 5 | MeshAdapt 1 |
 |---|---:|---:|---:|
-| Triangles | 2 289 | 2 471 | 2 299 |
-| Triangles avec borne SICN < 0,1 | 18 | 17 | 22 |
-| Minimum de cette borne | 0,00002223 | 0,00003157 | 0,00322689 |
-| Plus petit angle, degrés | 0,000490 | 0,000696 | 0,085767 |
-| Plus grand rapport côté / hauteur | 116 886 | 82 303 | 1 065 |
+| Triangles | 2,289 | 2,471 | 2,299 |
+| Triangles with SICN bound < 0.1 | 18 | 17 | 22 |
+| Minimum of this bound | 0.00002223 | 0.00003157 | 0.00322689 |
+| Smallest angle, degrees | 0.000490 | 0.000696 | 0.085767 |
+| Largest side / height ratio | 116,886 | 82,303 | 1,065 |
 
-Le minimum de borne est environ 102 fois supérieur à celui de Delaunay,
-mais le nombre sous le repère augmente. Ces métriques ne démontrent aucun
-gain de débit, de température, de résistance ou de puissance moteur.
+The minimum bound is about 102 times higher than Delaunay's, but the count
+below the benchmark increases. These metrics demonstrate no gain in flow,
+temperature, strength or engine power.
 
-Le candidat MeshAdapt `7af7f207…` compte 85 300 nœuds, 31 896 triangles et
-71 152 quadrilatères. Les neuf gardes natives et les quinze contrôles de
-contrelecture passent. Les 155 segments orientés de frontière, trois cycles,
-une composante et Euler −1 sont conservés. Tous les éléments hors cible
-gardent leurs identifiants, connectivités, classes et coordonnées exactes.
-Les deux avertissements concernant les entités 364/face 28 et 368/face 29
-restent enregistrés. Ni couverture CAO continue ni absence globale
-d'intersections ne sont prouvées par ces contrôles.
+The MeshAdapt candidate `7af7f207…` has 85,300 nodes, 31,896 triangles and
+71,152 quadrilaterals. The nine native guards and the fifteen read-back checks
+pass. The 155 oriented boundary segments, three cycles, one component and
+Euler −1 are preserved. All off-target elements keep their identifiers,
+connectivities, classes and exact coordinates.
+The two warnings concerning entities 364/face 28 and 368/face 29 remain
+recorded. Neither continuous CAD coverage nor global absence of intersections
+is proven by these checks.
 
-## Où agir ensuite
+## Where to act next
 
-La seconde localisation recalcule les 22 cas MeshAdapt : 17 ont un sommet
-intérieur 2D, quatre en ont deux et un n'en a aucun. Dix-huit touchent une
-frontière, quatre sont intérieurs. Une composante contient 21 cas ; le cas
-isolé conserve le triangle reliant les arêtes 82 et 93. Ces arêtes touchent
-respectivement la face 30 et la face 36 en plus de 37 : les redécouper
-exigerait de reprendre aussi les voisins concernés, pas seulement 36/37.
+The second localization recomputes the 22 MeshAdapt cases: 17 have one 2D
+interior vertex, four have two and one has none. Eighteen touch a boundary,
+four are interior. One component contains 21 cases; the isolated case keeps
+the triangle linking edges 82 and 93. These edges also touch face 30 and face
+36 respectively, in addition to 37: re-splitting them would require reworking
+the affected neighbors too, not just 36/37.
 
-Une piste distincte est le déplacement des sommets intérieurs, sans changer
-les connexions. **Ne pas lancer `optimize("Relocate2D", dimTags=[(2,37)])`
-sur le modèle complet** : dans Gmsh 4.15.2, `dimTags` est ignoré et la boucle
-visite toutes les faces. La visibilité et `force=False` n'isolent pas cet
-appel. Il faut d'abord une représentation où seule la cible porte des
-éléments 2D, puis une réintégration exactement contrôlée. L'objectif de cet
-optimiseur est différent de notre compteur ; son nom ne garantit pas une
-non-régression. Cet essai n'a pas été exécuté dans ce lot.
+A separate avenue is moving the interior vertices, without changing the
+connections. **Do not run `optimize("Relocate2D", dimTags=[(2,37)])` on the
+complete model**: in Gmsh 4.15.2, `dimTags` is ignored and the loop visits all
+faces. Visibility and `force=False` do not isolate this call. It first
+requires a representation where only the target carries 2D elements, then an
+exactly controlled reintegration. The objective of this optimizer differs from
+our counter; its name does not guarantee non-regression. This trial was not
+run in this batch.
 
 ```mermaid
 flowchart LR
-    A[CAO et raccordements figés] --> B[Delaunay : 17 obstructions]
-    B --> C[Localisation : diagonales intérieures modifiables]
-    A --> D[MeshAdapt : pire borne améliorée, 22 obstructions]
+    A[Frozen CAD and junctions] --> B[Delaunay: 17 obstructions]
+    B --> C[Localization: modifiable interior diagonals]
+    A --> D[MeshAdapt: worst bound improved, 22 obstructions]
     C --> D
-    D --> E[Conservation exacte et contrelecture réussies]
-    E --> F[21 cas avec sommets intérieurs libres]
-    F --> G[Isoler réellement un essai de déplacement]
-    E --> H[Aucune admission CFD ou fabrication]
+    D --> E[Exact preservation and read-back passed]
+    E --> F[21 cases with free interior vertices]
+    F --> G[Truly isolate a relocation trial]
+    E --> H[No CFD or manufacturing admission]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    class H stop;
 ```
 
-## Ressources et preuves
+## Resources and evidence
 
-Kali x86, image immuable Gmsh 4.15.2 : quatre CPU, 4 Gio, réseau coupé,
-entrées et CAO en lecture seule. Limite totale 300 s, dont 30 s pour le
-nettoyage. MeshAdapt prend 16,16 s de travailleur, 16,86 s nettoyage inclus ;
-contrelecture pure 1,70 s. Conteneur exact supprimé et absence revérifiée,
-sans OOM ni timeout. Aucun nouveau coût Vast ; la liste d'instances relue
-est vide. `make check` termine avec le code 0. Les tests de localisation et
-de variante sont logiciels, distincts des calculs physiques à réaliser.
+Kali x86, immutable Gmsh 4.15.2 image: four CPUs, 4 GiB, network off, inputs
+and CAD read-only. Total limit 300 s, including 30 s for cleanup. MeshAdapt
+takes 16.16 s of worker time, 16.86 s including cleanup; pure read-back
+1.70 s. Exact container deleted and absence rechecked, with no OOM or timeout.
+No new Vast cost; the instance list read back is empty. `make check` finishes
+with exit code 0. The localization and variant tests are software tests,
+separate from the physical calculations still to be done.
 
-Le graphique est généré uniquement à partir des deux rapports natifs
-épinglés et de leur référence commune, sans image de synthèse de la pièce.
-Il n'expose ni scan, ni coordonnées privées. Sa création suit les règles de
-visualisation : échelles logarithmiques annoncées, même référence et
-limites de portée inscrites dans l'image.
+The chart is generated solely from the two pinned native reports and their
+common reference, with no synthetic image of the part. It exposes neither scan
+nor private coordinates. Its creation follows the visualization rules:
+announced logarithmic scales, same reference and scope limits written in the
+image.

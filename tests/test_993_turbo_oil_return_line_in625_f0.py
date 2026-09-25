@@ -106,7 +106,7 @@ class TurboOilReturnLineIN625F0Tests(unittest.TestCase):
             ["993 107 125 53", "993 107 126 53", "993 107 338 53", "993 107 339 53"],
         )
         self.assertIn(
-            "attribution reste à faire",
+            "attribution remains to be done",
             " ".join(record["validation"]["known_limits"]),
         )
         self.assertFalse(record["titanium"]["applicable"])

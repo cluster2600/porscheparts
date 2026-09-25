@@ -1,73 +1,73 @@
-# Neural Concept : application au M64 turbo
+# Neural Concept: application to the turbo M64
 
-Recherche vérifiée le 12 septembre 2026. Quatre publications consultées ;
-aucun entraînement M64 ni gain de performance moteur démontré.
+Research verified on September 12, 2026. Four publications consulted;
+no M64 training and no engine performance gain demonstrated.
 
-## Publications et décision
+## Publications and decision
 
-| Source primaire | Apport et limite pour notre projet |
+| Primary source | Contribution and limit for our project |
 |---|---|
-| [Baqué et al., Geodesic Convolutional Shape Optimization, ICML 2018](https://proceedings.mlr.press/v80/baque18a.html), §3 et §4.1–4.3 | Prédicteur appris sur simulations, optimisation, nouvelle simulation lorsque la forme sort du domaine appris. Expérience 3D sur 2 000 formes synthétiques : pas un minimum prescrit pour M64. Aucun dépôt officiel réutilisable identifié dans cette recherche. |
-| [Remelli et al., MeshSDF, NeurIPS 2020](https://arxiv.org/html/2006.03997v2), §3.2, §4.3 et supplément §8.7 | Gradients vers une représentation implicite. L'expérience automobile utilise 1 400 voitures et OpenFOAM, pas des photos seules. Aucune licence de code identifiée dans le [dépôt officiel](https://github.com/cvlab-epfl/MeshSDF) lors du contrôle : clarification nécessaire avant intégration. |
-| [Durasov et al., Enabling Uncertainty Estimation in Iterative Neural Networks, ICML 2024](https://proceedings.mlr.press/v235/durasov24a.html), §3.2, §4.2 et §5.1 | Dispersion entre itérations comme indicateur d'incertitude pour sélectionner de nouvelles simulations. Pas une borne universelle d'erreur physique. [Code MIT](https://github.com/cvlab-epfl/iter_unc/blob/main/LICENSE) ; reproduction complète du corpus CFD non documentée dans le README consulté. |
-| [Talabot et al., PartSDF, TMLR 2025, version du 20 octobre](https://arxiv.org/html/2502.12985v3), §4.4, §5 et annexe D | Représentation par composants, avec exemple de carrosserie optimisée autour de roues fixes. Labels de parties requis ; difficultés sur structures minces et fragments parasites. [Code MIT](https://github.com/cvlab-epfl/PartSDF/blob/main/LICENSE), [données/checkpoints CC BY 4.0](https://zenodo.org/records/17466765). Ces données ne qualifient pas une culasse. |
+| [Baqué et al., Geodesic Convolutional Shape Optimization, ICML 2018](https://proceedings.mlr.press/v80/baque18a.html), §3 and §4.1–4.3 | Predictor trained on simulations, optimization, new simulation when the shape leaves the learned domain. 3D experiment on 2,000 synthetic shapes: not a prescribed minimum for the M64. No reusable official repository identified in this search. |
+| [Remelli et al., MeshSDF, NeurIPS 2020](https://arxiv.org/html/2006.03997v2), §3.2, §4.3 and supplement §8.7 | Gradients toward an implicit representation. The automotive experiment uses 1,400 cars and OpenFOAM, not photos alone. No code license identified in the [official repository](https://github.com/cvlab-epfl/MeshSDF) at the time of the check: clarification needed before integration. |
+| [Durasov et al., Enabling Uncertainty Estimation in Iterative Neural Networks, ICML 2024](https://proceedings.mlr.press/v235/durasov24a.html), §3.2, §4.2 and §5.1 | Spread across iterations as an uncertainty indicator for selecting new simulations. Not a universal bound on physical error. [MIT code](https://github.com/cvlab-epfl/iter_unc/blob/main/LICENSE); full reproduction of the CFD corpus not documented in the README consulted. |
+| [Talabot et al., PartSDF, TMLR 2025, version of October 20](https://arxiv.org/html/2502.12985v3), §4.4, §5 and appendix D | Component-based representation, with an example of a car body optimized around fixed wheels. Part labels required; difficulties on thin structures and spurious fragments. [MIT code](https://github.com/cvlab-epfl/PartSDF/blob/main/LICENSE), [data/checkpoints CC BY 4.0](https://zenodo.org/records/17466765). These data do not qualify a cylinder head. |
 
-Le [benchmark commercial Neural Concept du 10 septembre 2025](https://www.neuralconcept.com/post/from-dataset-to-design-impact-how-neural-concept-set-a-new-benchmark-on-mits-drivaernet)
-annonce quatre A100 et 24 heures d'entraînement sur DrivAerNet++. C'est une
-publication d'entreprise, pas une reproduction indépendante, un devis M64
-ou une mise à disposition libre de son produit.
+The [Neural Concept commercial benchmark of September 10, 2025](https://www.neuralconcept.com/post/from-dataset-to-design-impact-how-neural-concept-set-a-new-benchmark-on-mits-drivaernet)
+announces four A100s and 24 hours of training on DrivAerNet++. It is a
+company publication, not an independent reproduction, an M64 quote
+or a free release of its product.
 
-## Transposition proposée, pas résultat acquis
+## Proposed transposition, not an achieved result
 
-Retenir d'abord **l'apprentissage actif**, sans remplacer la CAO par une forme
-librement générée. Le contour maître reste conservé : aucune enveloppe ovale.
-Figer les interfaces et zones non autorisées à évoluer ; un composant latent
-« fixe » ne remplace pas un contrôle dimensionnel de la géométrie exportée.
+Adopt **active learning** first, without replacing the CAD with a freely
+generated shape. The master outline is kept: no oval envelope.
+Freeze the interfaces and the zones not allowed to change; a "fixed" latent
+component does not replace a dimensional check of the exported geometry.
 
 ```mermaid
 flowchart LR
-    A["Paramètres bornés PicoGK/CAO<br/>Interfaces fixes"] --> B["Maillage et CFD/FEA"]
-    B --> C{"Qualité, convergence<br/>et bilans admissibles ?"}
-    C -->|non| D["Diagnostic ; pas de label physique valide"]
-    C -->|oui| E["Corpus versionné ; familles train/test séparées"]
-    E --> F["Modèle réduit PhysicsNeMo + erreur évaluée"]
-    F --> G["Candidats prometteurs ou incertains"]
+    A["Bounded PicoGK/CAD parameters<br/>Fixed interfaces"] --> B["Mesh and CFD/FEA"]
+    B --> C{"Quality, convergence<br/>and balances acceptable?"}
+    C -->|no| D["Diagnosis; no valid physical label"]
+    C -->|yes| E["Versioned corpus; separate train/test families"]
+    E --> F["PhysicsNeMo reduced model + evaluated error"]
+    F --> G["Promising or uncertain candidates"]
     G --> B
-    F --> H["Finalistes : nouveau calcul CFD/FEA"]
-    H --> I["Corrélation physique et revue industrielle"]
+    F --> H["Finalists: new CFD/FEA computation"]
+    H --> I["Physical correlation and industrial review"]
 ```
 
-Premier sous-problème proposé : conduit d'admission à levées imposées,
-débit et perte de charge. Thermique, résistance et dynamique de distribution
-exigent leurs propres données ; un banc de flux stationnaire ne simule pas
-le cycle moteur. Commencer par un prédicteur simple de KPI sur paramètres,
-puis envisager [DoMINO/PhysicsNeMo](https://docs.nvidia.com/physicsnemo/latest/physicsnemo/api/models/operators.html)
-pour les champs de surface/volume si les données justifient cette complexité.
-PartSDF vient ensuite si la paramétrisation devient insuffisante. PicoGK
-n'est pas supposé différentiable : optimisation bornée sans dérivées, ou
-chemin différentiable séparé explicitement vérifié.
+Proposed first sub-problem: intake port at imposed lifts, flow rate and
+pressure loss. Thermal, strength and valvetrain dynamics require their own
+data; a steady-flow bench does not simulate the engine cycle. Start with a
+simple KPI predictor on parameters, then consider
+[DoMINO/PhysicsNeMo](https://docs.nvidia.com/physicsnemo/latest/physicsnemo/api/models/operators.html)
+for surface/volume fields if the data justify that complexity.
+PartSDF comes next if the parametrization becomes insufficient. PicoGK
+is not assumed to be differentiable: bounded derivative-free optimization, or
+a separate, explicitly verified differentiable path.
 
-Chaque échantillon doit lier géométrie/parent, paramètres, unités, matériau,
-conditions aux limites, versions/réglages solveur, qualité de maillage,
-convergence, bilans, champs et KPI. Séparer entraînement, calibration et test
-par famille géométrique et régime, pas par instantanés quasi identiques.
-Mesurer les erreurs locales aux sièges et ponts thermiques, pas seulement
-une moyenne globale. Les scores d'incertitude et cas hors domaine demandent
-de nouveaux calculs : ils ne garantissent pas la sûreté.
+Each sample must link geometry/parent, parameters, units, material,
+boundary conditions, solver versions/settings, mesh quality,
+convergence, balances, fields and KPIs. Separate training, calibration and test
+by geometric family and operating regime, not by near-identical snapshots.
+Measure local errors at the seats and thermal bridges, not just
+a global average. Uncertainty scores and out-of-domain cases call for
+new computations: they do not guarantee safety.
 
-Les résultats limités artificiellement à 3 300 K ne deviennent pas des vérités
-physiques par entraînement. Ne pas mélanger coupon LPBF et fonctionnement
-moteur. Les interfaces M64 manquantes ne viennent ni des photos ni de poids
-préentraînés automobiles.
+Results artificially clipped at 3,300 K do not become physical truths
+through training. Do not mix an LPBF coupon with engine operation.
+The missing M64 interfaces come neither from photos nor from pretrained
+automotive weights.
 
-## Tokens et coût total
+## Tokens and total cost
 
-Scripts pour génération, exécution, extraction et sélection ; le LLM reçoit
-des reçus compacts et propose des analyses ou du code à tester. Aucun LLM à
-chaque pas du solveur, aucune décision autonome de fabrication. Comptabiliser
-les tokens réellement traités par le LLM hébergé séparément d'une économie
-OpenAI, qui reste un contrefactuel non mesuré.
+Scripts for generation, execution, extraction and selection; the LLM receives
+compact receipts and proposes analyses or code to be tested. No LLM at
+each solver step, no autonomous manufacturing decision. Count the tokens
+actually processed by the hosted LLM separately from an OpenAI saving,
+which remains an unmeasured counterfactual.
 
-Comparer « données CAE + entraînement + nouvelles simulations + recalcul final »
-à une optimisation CAE directe. L'inférence rapide ne suffit pas à prouver
-l'amortissement. Aucun gain de tokens ou de rendement moteur n'est mesuré ici.
+Compare "CAE data + training + new simulations + final recomputation"
+against a direct CAE optimization. Fast inference is not enough to prove
+payback. No token saving or engine efficiency gain is measured here.

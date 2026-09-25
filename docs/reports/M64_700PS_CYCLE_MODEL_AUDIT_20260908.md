@@ -1,36 +1,36 @@
-# M64 700 PS — contre-calcul thermodynamique et limites des modèles hérités
+# M64 700 PS — thermodynamic cross-check and limits of the inherited models
 
-Le contre-calcul vérifie des équations et leur intégration, **pas une charge moteur validée**. Il ne démontre ni un gain du 4V, ni une tenue thermique ou mécanique, ni une aptitude à fabriquer la culasse. Le bilan 700 PS reste inchangé.
+The cross-check verifies equations and their integration, **not a validated engine load**. It demonstrates neither a 4V gain, nor thermal or mechanical integrity, nor the manufacturability of the cylinder head. The 700 PS balance is unchanged.
 
-## Ce que les anciens modèles ne démontrent pas
+## What the old models do not demonstrate
 
-- [F33](../../twins/reference-917-engine/source/run_integrated_virtual_validation_f33.py) impose au 4V un coefficient de remplissage multiplié par `1.035` et un facteur de durée de combustion distinct. Ces avantages sont des entrées du modèle, pas des améliorations établies par les conduits ou les soupapes.
-- [F46](../../twins/reference-917-engine/source/run_cantera_2v_4v_crank_cycle_f46.py) concerne un autre moteur : 90 × 70,4 mm, 12 cylindres, 9 000 tr/min et rapport volumétrique 9,5. Sa branche cinétique utilise du n-dodécane et une auto-inflammation, pas une essence 98 RON à allumage commandé qualifiée.
-- Dans F46, la capture de masse à la fermeture d'admission reste codée à `230°`. Modifier uniquement le contrat de distribution ne suffit donc pas pour une adaptation M64 correcte.
-- Son échange thermique global, dit « Woschni-like », est un coefficient de présélection non calibré. La surface additionne deux surfaces de piston et la chemise exposée : ce n'est pas le flux local de la culasse.
+- [F33](../../twins/reference-917-engine/source/run_integrated_virtual_validation_f33.py) imposes on the 4V a volumetric efficiency multiplied by `1.035` and a distinct combustion duration factor. These advantages are model inputs, not improvements established by the ports or the valves.
+- [F46](../../twins/reference-917-engine/source/run_cantera_2v_4v_crank_cycle_f46.py) concerns another engine: 90 × 70.4 mm, 12 cylinders, 9,000 rpm and compression ratio 9.5. Its kinetic branch uses n-dodecane and autoignition, not a qualified spark-ignited 98 RON gasoline.
+- In F46, mass capture at intake closing remains hard-coded at `230°`. Changing only the valve timing contract is therefore not enough for a correct M64 adaptation.
+- Its global heat transfer, called "Woschni-like", is an uncalibrated screening coefficient. The area adds two piston areas and the exposed liner: it is not the local cylinder head flux.
 
-L'[exemple moteur officiel Cantera](https://cantera.org/3.2/examples/python/reactors/ic_engine.html) est lui-même une illustration diesel simplifiée. Sa disponibilité ne valide pas son transfert à notre moteur.
+The [official Cantera engine example](https://cantera.org/3.2/examples/python/reactors/ic_engine.html) is itself a simplified diesel illustration. Its availability does not validate its transfer to our engine.
 
-## Données reprises et hypothèses déclarées
+## Data taken over and declared assumptions
 
-Le [bilan figé](../../twins/m64-cylinder-head/targets/700ps-balance-20260907.json) décrit un scénario, pas un relevé au banc :
+The [frozen balance](../../twins/m64-cylinder-head/targets/700ps-balance-20260907.json) describes a scenario, not a dyno measurement:
 
-| Grandeur | Valeur et portée |
+| Quantity | Value and scope |
 |---|---|
-| Objectif moteur | 700 PS métriques au vilebrequin, 514,849 kW ; 6 cylindres, 6 500 tr/min, 3,6 L nominaux |
-| Consommation et carburant | BSFC 0,34 kg/kWh, PCI 43 MJ/kg, AFR stœchiométrique 14,7 : hypothèses de bilan |
-| Richesse | λ = 0,82 ; φ = 1/λ = 1,219512 ; la composition chimique reste à définir |
-| Masse par combustion et par cylindre | Air 1,803450 g ; carburant 0,149614 g, issus du bilan à 325 événements/s |
-| Référence géométrique documentaire | 100 × 76,4 mm et rapport volumétrique 8:1 pour la 993 Turbo S ; pas une certification des interfaces ou de la chambre 4V |
-| Hypothèses propres au témoin | Bielle/manivelle 3,5 ; fermeture admission −130°, ouverture échappement +140°, zéro résidu ; angles référencés au PMH combustion |
+| Engine target | 700 metric PS at the crankshaft, 514.849 kW; 6 cylinders, 6,500 rpm, 3.6 L nominal |
+| Consumption and fuel | BSFC 0.34 kg/kWh, LHV 43 MJ/kg, stoichiometric AFR 14.7: balance assumptions |
+| Mixture | λ = 0.82; φ = 1/λ = 1.219512; the chemical composition remains to be defined |
+| Mass per combustion event and per cylinder | Air 1.803450 g; fuel 0.149614 g, derived from the balance at 325 events/s |
+| Documentary geometric reference | 100 × 76.4 mm and compression ratio 8:1 for the 993 Turbo S; not a certification of the interfaces or of the 4V chamber |
+| Assumptions specific to the control case | Rod/crank ratio 3.5; intake closing −130°, exhaust opening +140°, zero residuals; angles referenced to combustion TDC |
 
-La géométrie documentaire provient de [Porsche](https://newsroom.porsche.com/en/history/porsche-history-white-giants-991-turbo-964-turbo-3-6-993-turbo-s-13863.html). Elle donne 3,600265 L calculés, distincts de l'arrondi nominal à 3,6 L utilisé dans le bilan.
+The documentary geometry comes from [Porsche](https://newsroom.porsche.com/en/history/porsche-history-white-giants-991-turbo-964-turbo-3-6-993-turbo-s-13863.html). It gives a computed 3.600265 L, distinct from the nominal 3.6 L rounding used in the balance.
 
-## Contre-calcul réellement exécuté
+## Cross-check actually executed
 
-Un script local autonome a intégré uniquement la course fermée, sans nouvelle CAO, location ou installation de Cantera. Le fluide est un **gaz parfait à propriétés constantes** (`R = 287,05 J/kg/K`, `γ = 1,35`), sans conversion d'espèces. La masse air + carburant est supposée piégée ; `T_IVC = 333,15 K` et `p_IVC = mRT/V`, sans imposer cette pression égale à celle du collecteur.
+A standalone local script integrated only the closed stroke, with no new CAD, rental or Cantera installation. The fluid is a **constant-property ideal gas** (`R = 287.05 J/kg/K`, `γ = 1.35`), with no species conversion. The air + fuel mass is assumed trapped; `T_IVC = 333.15 K` and `p_IVC = mRT/V`, without forcing this pressure to equal the manifold pressure.
 
-Le dégagement de chaleur prescrit est une loi de Wiebe normalisée :
+The prescribed heat release is a normalized Wiebe law:
 
 ```text
 x_b = [1 − exp(−a z^(m+1))] / [1 − exp(−a)],  z = (θ − θ0)/Δθ, limité à [0,1]
@@ -38,33 +38,35 @@ Q_prescrit = η_comb × m_carburant × PCI
 dU/dθ = dQ_prescrit/dθ − p dV/dθ − dQ_parois/dθ
 ```
 
-Hypothèses : `a = 6,908`, `m = 2`, `Δθ = 65°`, `CA50 = +12°`, `η_comb = 0,94`. Deux branches ont été exécutées : adiabatique et coefficient thermique global hérité de F46 avec paroi à 475 K. Chacune emploie les pas 1°, 0,5° et 0,25° ; ce ne sont ni deux physiques indépendantes ni deux architectures de culasse.
+(`limité à [0,1]` = clamped to [0,1]; `Q_prescrit` = prescribed heat; `m_carburant` = fuel mass; `PCI` = LHV; `Q_parois` = wall heat.)
 
-Six assertions sont passées. Sur le témoin entraîné adiabatique à 0,25°, l'écart relatif maximal à l'invariant analytique `pV^γ` est `2,92544 × 10⁻¹²` ; le travail net de la course symétrique vaut `7,66 × 10⁻¹² J`. Le résidu du premier principe contrôle la comptabilité de l'intégrateur, distincte de ce témoin analytique.
+Assumptions: `a = 6.908`, `m = 2`, `Δθ = 65°`, `CA50 = +12°`, `η_comb = 0.94`. Two branches were executed: adiabatic, and the global heat transfer coefficient inherited from F46 with a wall at 475 K. Each uses steps of 1°, 0.5° and 0.25°; these are neither two independent physics nor two cylinder head architectures.
 
-Cela ne prouve pas une convergence physique : l'intégrale de chaleur prescrite varie non monotonement avec le pas, notamment à la fin de combustion non alignée sur la grille. Les événements devront être alignés, ou leurs incréments intégrés exactement, avant de conclure sur un ordre de convergence. Aucune pression calculée ici n'est transférée comme charge FEA/CHT.
+Six assertions passed. On the adiabatic motored control case at 0.25°, the maximum relative deviation from the analytic invariant `pV^γ` is `2.92544 × 10⁻¹²`; the net work of the symmetric stroke is `7.66 × 10⁻¹² J`. The first-law residual checks the integrator's bookkeeping, separate from this analytic control case.
 
-## Prochain contrat scientifique, non encore exécuté
+This does not prove physical convergence: the prescribed heat integral varies non-monotonically with the step, notably at the end of combustion, which is not aligned with the grid. Events will have to be aligned, or their increments integrated exactly, before concluding on an order of convergence. No pressure computed here is transferred as an FEA/CHT load.
 
-Le prochain calcul doit employer des propriétés thermodynamiques variables et une composition explicitement choisie, avec les mêmes hypothèses de combustion pour 2V et 4V. Aucun supplément de remplissage ou de vitesse de combustion ne doit être attribué au seul nombre de soupapes.
+## Next scientific contract, not yet executed
 
-Les [équations du réacteur Cantera](https://www.cantera.org/3.2/reference/reactors/ideal-gas-reactor.html) permettent `U = m ΣY_k u_k(T)`. Le premier principe doit inclure les enthalpies entrantes et sortantes lorsque les soupapes sont ouvertes ; une course fermée ne clôt ni le pompage, ni le frottement, ni la puissance au vilebrequin.
+The next computation must use variable thermodynamic properties and an explicitly chosen composition, with the same combustion assumptions for 2V and 4V. No filling or burn-rate bonus may be attributed to the number of valves alone.
+
+The [Cantera reactor equations](https://www.cantera.org/3.2/reference/reactors/ideal-gas-reactor.html) allow `U = m ΣY_k u_k(T)`. The first law must include incoming and outgoing enthalpies when the valves are open; a closed stroke covers neither pumping, nor friction, nor crankshaft power.
 
 ```mermaid
 flowchart LR
-    A["Données moteur et hypothèses déclarées"] --> B["Thermodynamique variable — à exécuter"]
-    B --> C["Comparaison 2V / 4V sans bonus imposé"]
-    C --> D["Contrôle énergie, événements et sensibilité au pas"]
-    D --> E["Charges locales seulement après justification spatiale"]
+    A["Engine data and declared assumptions"] --> B["Variable thermodynamics — to be executed"]
+    B --> C["2V / 4V comparison with no imposed bonus"]
+    C --> D["Energy, event and step-sensitivity checks"]
+    D --> E["Local loads only after spatial justification"]
 ```
 
-L'[échange de paroi Cantera](https://www.cantera.org/stable/reference/reactors/interactions.html) prescrit notamment un transfert `hA(T_g − T_w)` ; il ne résout pas la conduction dans notre culasse. Répartir le flux sur des surfaces natives, qualifier les coefficients et construire les interfaces solides restent nécessaires avant une comparaison CHT. La différence puissance carburant − puissance au vilebrequin n'est pas la chaleur de la culasse.
+The [Cantera wall exchange](https://www.cantera.org/stable/reference/reactors/interactions.html) prescribes, among others, a transfer `hA(T_g − T_w)`; it does not solve conduction in our cylinder head. Distributing the flux over native surfaces, qualifying the coefficients and building the solid interfaces remain necessary before a CHT comparison. The difference fuel power − crankshaft power is not the cylinder head heat.
 
-## Traçabilité et statut
+## Traceability and status
 
-- Bilan figé, SHA-256 : `db181428b99fdf23dea0cd7725e9b6ff3fa37dd6ec752eb2db9fd0f68c3a67ac` ; entrée vérifiée inchangée.
-- Script autonome, SHA-256 : `c5b78586e52f2ed8d7efbf46dfe31279a52c93b288c394f7bd9808d27553585c`.
-- Rapport privé conservé, SHA-256 : `597d6542433cd7ae34a9e6dc032b67a1922525af7180e947157ea246a2797e06`.
-- F46 inspecté, SHA-256 : `29f5cf4984e7cba754c3427f1f6ff974a5677673d27110f8b7a17f9bd4a81045`.
+- Frozen balance, SHA-256: `db181428b99fdf23dea0cd7725e9b6ff3fa37dd6ec752eb2db9fd0f68c3a67ac`; input verified unchanged.
+- Standalone script, SHA-256: `c5b78586e52f2ed8d7efbf46dfe31279a52c93b288c394f7bd9808d27553585c`.
+- Private report kept, SHA-256: `597d6542433cd7ae34a9e6dc032b67a1922525af7180e947157ea246a2797e06`.
+- F46 inspected, SHA-256: `29f5cf4984e7cba754c3427f1f6ff974a5677673d27110f8b7a17f9bd4a81045`.
 
-Statut : contre-calcul numérique local terminé ; comparaison de performance 2V/4V non réalisée ; transfert FEA/CHT non autorisé ; validation physique et fabrication non autorisées.
+Status: local numerical cross-check complete; 2V/4V performance comparison not performed; FEA/CHT transfer not authorized; physical validation and manufacturing not authorized.

@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "part_id": "993-BODY-FRONT-IMPACT-SUPPORT-ALSI10MG-F0-0001",
-  "name": "Support d'impact avant 993, concept AlSi10Mg à cœur gradué F0",
-  "description": "Concept indépendant de support avant à coque elliptique et cœur cruciforme ouvert gradué pour cribler l'intérêt du LPBF AlSi10Mg. PorscheFanatics recoupe le support allégé FVD à 145 g ; FVD publie une enveloppe de 139 x 100 x 53 mm et indique seulement aluminium, sans alliage ni géométrie d'interface.",
+  "name": "993 front impact support, AlSi10Mg graded-core concept F0",
+  "description": "Independent front support concept with an elliptical shell and a graded open cruciform core, used to screen the value of LPBF AlSi10Mg. PorscheFanatics corroborates the lightweight FVD support at 145 g; FVD publishes a 139 x 100 x 53 mm envelope and states only aluminum, with no alloy and no interface geometry.",
   "vehicle": {
     "generation": "993",
     "variants": ["993_Carrera", "993_Turbo", "993_GT2"],
@@ -12,7 +12,7 @@
   "classification": {
     "category": "front_bumper_impact_support",
     "safety_class": "prohibited_pending_engineering",
-    "intended_use": "Criblage CAO, masse, stabilité, énergie et DfAM uniquement ; fabrication, montage, roulage et essai d'impact interdits sans programme crash approuvé"
+    "intended_use": "CAD, mass, stability, energy and DfAM screening only; manufacture, fitting, driving and impact testing prohibited without an approved crash program"
   },
   "geometry": {
     "source_type": "mixed",
@@ -23,23 +23,23 @@
     "derived_files": ["parts/993-body-front-impact-support-alsi10mg-f0-0001/derived/front_impact_support_alsi10mg_f0.step"]
   },
   "provenance": {
-    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, marque, illustration ou géométrie commerciale redistribuée",
+    "record_license": "MIT for the concept, the script and the calculations; no photograph, trademark, illustration or commercial geometry redistributed",
     "sources": [
       {
-        "title": "PorscheFanatics - support de pare-chocs avant allégé 993",
+        "title": "PorscheFanatics - lightweight 993 front bumper support",
         "url": "https://porschefanatics.com/993/",
         "source_type": "community",
         "license": "site-content-reference-only",
         "accessed_on": "2026-09-08",
-        "notes": "Recoupe le nom du produit FVD, sa position avant gauche/droite et 0,145 kg ; aucune géométrie ni validation crash. Voir SRC-PORSCHEFANATICS-993-LIGHTWEIGHT-BUMPER-SUPPORT."
+        "notes": "Corroborates the FVD product name, its front left/right position and 0.145 kg; no geometry and no crash validation. See SRC-PORSCHEFANATICS-993-LIGHTWEIGHT-BUMPER-SUPPORT."
       },
       {
-        "title": "FVD - support d'impact avant aluminium 993",
+        "title": "FVD - 993 aluminum front impact support",
         "url": "https://www.fvd.net/de-ch/shop/prallrohr-993-vorne-alu-1stk-ca-145-gr-fvd50501700~p237473",
         "source_type": "manufacturer",
         "license": "commercial-product-page-copyright-reference-only",
         "accessed_on": "2026-09-08",
-        "notes": "Déclarations commerciales 139 x 100 x 53 mm, environ 145 g et aluminium ; accès direct bloqué lors de la collecte, sans plan ni protocole. Voir SRC-FVD-993-FRONT-IMPACT-TUBE-DIMENSIONS."
+        "notes": "Commercial claims of 139 x 100 x 53 mm, about 145 g and aluminum; direct access blocked during collection, no drawing and no protocol. See SRC-FVD-993-FRONT-IMPACT-TUBE-DIMENSIONS."
       },
       {
         "title": "EOS Aluminium AlSi10Mg material page",
@@ -47,7 +47,7 @@
         "source_type": "manufacturer",
         "license": "manufacturer-copyright-reference-only",
         "accessed_on": "2026-09-08",
-        "notes": "Référence de procédé et de famille matière, pas une carte crash admissible ni la preuve de l'alliage FVD. Voir SRC-EOS-ALSI10MG-CURRENT-PAGE."
+        "notes": "Process and material-family reference, not a crash allowables card and not evidence of the FVD alloy. See SRC-EOS-ALSI10MG-CURRENT-PAGE."
       }
     ]
   },
@@ -55,26 +55,26 @@
     "candidate_processes": ["LPBF", "DMLS", "CNC", "sheet_metal"],
     "preferred_process": "undecided",
     "material": {
-      "family": "alliage aluminium LPBF candidat",
-      "grade": "AlSi10Mg générique de criblage ; alliage et état du produit FVD inconnus",
-      "standard": "ASTM F3318 et spécification crash propre au programme à contractualiser si le LPBF est retenu"
+      "family": "candidate LPBF aluminum alloy",
+      "grade": "generic screening AlSi10Mg; alloy and temper of the FVD product unknown",
+      "standard": "ASTM F3318 and a program-specific crash specification to be contracted if LPBF is retained"
     },
     "post_processing": [
-      "évacuation complète de la poudre par les quatre canaux ouverts",
-      "détensionnement et traitement thermique qualifiés sur coupons représentatifs",
-      "découpe du plateau sans amorcer les parois d'écrasement",
-      "usinage des interfaces uniquement après mesure et ajout de surépaisseurs",
-      "ébavurage sans supprimer les amorces de pliage définies par le futur calcul",
-      "protection galvanique et anticorrosion à définir avec le pare-chocs et la caisse"
+      "complete powder removal through the four open channels",
+      "stress relief and heat treatment qualified on representative coupons",
+      "build plate cut-off without initiating cracks in the crush walls",
+      "interface machining only after measurement and addition of machining stock",
+      "deburring without removing the folding triggers defined by the future calculation",
+      "galvanic and corrosion protection to be defined with the bumper and the body shell"
     ],
     "supplier_requirements": [
-      "poudre, machine, paramètres, orientation, lot et recyclage traçables",
-      "capabilité démontrée sur coque 1,2 mm et cœur gradué jusqu'à 0,8 mm",
-      "coupons dans les orientations pièce avec traction quasi-statique et dynamique",
-      "simulation de distorsion, stratégie de supports et contrôle recoater avant lancement",
-      "CT de la coque et du cœur, métrologie complète et ressuage après finition",
-      "courbes force-course quasi-statiques et dynamiques sur lots représentatifs",
-      "validation sous-système puis véhicule par un ingénieur crash qualifié"
+      "traceable powder, machine, parameters, orientation, batch and recycling",
+      "capability demonstrated on a 1.2 mm shell and a core graded down to 0.8 mm",
+      "coupons in the part orientations with quasi-static and dynamic tensile tests",
+      "distortion simulation, support strategy and recoater check before launch",
+      "CT of the shell and the core, full metrology and dye-penetrant inspection after finishing",
+      "quasi-static and dynamic force-displacement curves on representative batches",
+      "subsystem then vehicle validation by a qualified crash engineer"
     ]
   },
   "titanium": {
@@ -84,7 +84,7 @@
     "hip_required": "not_applicable",
     "machined_surfaces": [],
     "inspection": [],
-    "galvanic_isolation": "Compatibilité galvanique de l'AlSi10Mg avec la caisse, le pare-chocs, les fixations et les revêtements à qualifier."
+    "galvanic_isolation": "Galvanic compatibility of AlSi10Mg with the body shell, the bumper, the fasteners and the coatings to be qualified."
   },
   "validation": {
     "status": "concept",
@@ -98,12 +98,12 @@
     "reviewed_by": "",
     "reviewed_on": null,
     "known_limits": [
-      "Seules l'enveloppe 139 x 100 x 53 mm, la masse 145 g et la famille aluminium sont publiées ; toute topologie F0 est hypothétique.",
-      "Aucun trou ou bossage n'est modélisé car aucune interface de caisse ou de pare-chocs n'est mesurée.",
-      "Les 144,65 g du STEP proches des 145 g commerciaux sont un contrôle scalaire conçu, pas une validation géométrique.",
-      "Le cas 15 kN sur 80 mm et son équivalent 6,55 km/h sont synthétiques et ne correspondent à aucune procédure réglementaire.",
-      "Les calculs élastiques et de plaques ne prédisent ni pliage progressif, rupture, impulsion, intrusion ou protection des occupants.",
-      "Le STEP prouve seulement un BREP calculable ; toute fabrication, installation ou utilisation routière est interdite à ce stade."
+      "Only the 139 x 100 x 53 mm envelope, the 145 g mass and the aluminum family are published; any F0 topology is hypothetical.",
+      "No hole or boss is modeled because no body shell or bumper interface has been measured.",
+      "The 144.65 g of the STEP, close to the commercial 145 g, is a designed scalar check, not a geometric validation.",
+      "The 15 kN over 80 mm load case and its 6.55 km/h equivalent are synthetic and match no regulatory procedure.",
+      "The elastic and plate calculations predict neither progressive folding, fracture, impulse, intrusion nor occupant protection.",
+      "The STEP proves only a computable BREP; any manufacture, installation or road use is prohibited at this stage."
     ]
   }
 }

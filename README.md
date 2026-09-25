@@ -1,345 +1,464 @@
 <div align="center">
 
-![Cellule complete 964 en rotation, coloree par la contrainte de von Mises sous couple de torsion](docs/media/diagrams/964-hero.gif)
+![Full 964 cell rotating, colored by von Mises stress under a torsion load](docs/media/diagrams/964-hero.gif)
 
-**Rétroconception ouverte pour Porsche 911 964 et 993**
-*Données sourcées, calculs réfutables, aucune pièce fabriquée.*
+# porscheparts
+
+**Open reverse engineering for the Porsche 911 964 and 993**<br>
+*Sourced data, falsifiable calculations, no part manufactured.*
 
 [![Validate catalogue](https://github.com/cluster2600/porscheparts/actions/workflows/validate.yml/badge.svg)](https://github.com/cluster2600/porscheparts/actions/workflows/validate.yml)
-[![Licence MIT](https://img.shields.io/badge/licence-MIT-informational)](LICENSE)
+[![MIT license](https://img.shields.io/badge/license-MIT-informational)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/)
-[![Phase active](https://img.shields.io/badge/phase%20active-ne%20fabrique%20rien-critical)](SAFETY.md)
+[![Active phase](https://img.shields.io/badge/active%20phase-manufactures%20nothing-critical)](SAFETY.md)
+[![Docs](https://img.shields.io/badge/docs-English-brightgreen)](docs/TRANSLATION.md)
+
+[**Browse the parts**](#2-993-parts-for-additive-manufacturing) ·
+[**See the structural results**](#1-structural-analysis-of-the-964-body-shell) ·
+[**Run the checks**](#quick-start) ·
+[**Gallery**](docs/GALLERY.md) ·
+[**Contribute**](CONTRIBUTING.md) ·
+[**Safety first**](SAFETY.md)
 
 </div>
 
 ---
 
-Ce dépôt ne publie pas une bibliothèque de fichiers à imprimer. Il publie des
-**données sourcées** et des **calculs réfutables** : chaque affirmation de
-compatibilité, de masse ou de raideur est reliée à une mesure, à une source
-vérifiable ou à un calcul qu'on peut rejouer — et **retirée quand elle ne tient
-plus**. Le dépôt en compte plusieurs, listées ici même, plus bas.
+This repository does not publish a library of files to print. It publishes
+**sourced data** and **falsifiable calculations**: every claim of fit, mass or
+stiffness is tied to a measurement, to a verifiable source or to a calculation
+anyone can rerun — and **withdrawn when it no longer holds**. The repository has
+withdrawn several, listed [further down this page](#what-the-repository-withdrew-from-its-own-results).
 
 > [!IMPORTANT]
-> **La phase active ne fabrique rien.** Aucune pièce n'est déclarée imprimable
-> ni validée. Les 31 fiches sont au statut `concept`, dont 17 en
-> `prohibited_pending_engineering`. Lire [SAFETY.md](SAFETY.md).
+> **The active phase manufactures nothing.** No part is declared printable or
+> validated. All 34 part records are at status `concept`, 18 of them
+> `prohibited_pending_engineering`. Read [SAFETY.md](SAFETY.md).
 
-| | |
+> [!NOTE]
+> The project was written in French. Its documentation is now in English; code
+> comments and a few command-line messages are next. Pinned evidence files stay
+> in their original language on purpose — see [docs/TRANSLATION.md](docs/TRANSLATION.md).
+
+<table>
+<tr>
+<td align="center"><h3>401</h3>qualified source records</td>
+<td align="center"><h3>34</h3>part records<br><sub>18 prohibited as they stand</sub></td>
+<td align="center"><h3>24</h3>993 design dossiers<br><sub>for additive manufacturing</sub></td>
+</tr>
+<tr>
+<td align="center"><h3>9</h3>digital twins<br><sub>none at <code>F2_interface</code></sub></td>
+<td align="center"><h3>3,000</h3>CalculiX cases<br><sub>on the 964 body shell</sub></td>
+<td align="center"><h3>2,800+</h3>tests run by<br><code>make check</code></td>
+</tr>
+</table>
+
+## How the repository works
+
+Every artifact climbs the same ladder, and every rung is checked by `make check`.
+Nothing leaves the last rung: manufacturing is suspended by design.
+
+```mermaid
+flowchart LR
+    S["Sources<br/><sub>catalog/sources/</sub>"] --> R["Part records<br/><sub>catalog/parts/</sub>"]
+    R --> D["Design dossiers<br/><sub>docs/993/</sub>"]
+    D --> T["Digital twins<br/><sub>twins/</sub>"]
+    T --> C["FEA · CFD · print simulation<br/><sub>CalculiX · OpenFOAM · LPBF</sub>"]
+    C --> G{"Quality gates<br/><sub>docs/QUALITY_GATES.md</sub>"}
+    G -- "claim fails" --> W["Withdrawn, and said so"]
+    G -- "claim holds" --> E["Evidence<br/><sub>pinned by SHA-256</sub>"]
+    E -. "suspended in the active phase" .-> M["Manufacturing"]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    class M,W stop
+    class E ok
+```
+
+### Where to start
+
+| I want to… | go to |
 |---|---|
-| **383** fiches de sources qualifiées | **31** fiches de pièces, dont 17 interdites en l'état |
-| **23** dossiers de conception 993 en fabrication additive | **9** jumeaux numériques, aucun au niveau `F2_interface` |
-| **3 000** cas CalculiX sur la caisse 964 | **2 194** tests exécutés par `make check` |
+| see which 993 parts exist and their status | [the parts table](#2-993-parts-for-additive-manufacturing) → one page per part in [`docs/pieces/`](docs/pieces/) |
+| understand the 964 structural model and its results | [section 1](#1-structural-analysis-of-the-964-body-shell) → [`twins/964-chassis/fea/`](twins/964-chassis/fea/) |
+| know what may and may not be built | [SAFETY.md](SAFETY.md) · [docs/QUALITY_GATES.md](docs/QUALITY_GATES.md) |
+| add a part or a source | [CONTRIBUTING.md](CONTRIBUTING.md) · [docs/WORKFLOW.md](docs/WORKFLOW.md) · [docs/SOURCE_POLICY.md](docs/SOURCE_POLICY.md) |
+| find any document | [the documentation index](docs/README.md) |
+| see the figures, renders and print screens | [the gallery](docs/GALLERY.md) |
+| browse the digital twins | [twins/README.md](twins/README.md) |
+| read what was run, day by day | [the dated reports index](docs/reports/README.md) |
+| run the checks locally | [Quick start](#quick-start) |
 
-### Sommaire
+### Contents
 
-1. [Calcul de structure sur la caisse 964](#1-calcul-de-structure-sur-la-caisse-964)
-2. [Pièces 993 en fabrication additive](#2-pièces-993-en-fabrication-additive)
-3. [Carrosserie et habitacle](#3-carrosserie-et-habitacle)
-4. [Le catalogue et son contrat de données](#4-le-catalogue-et-son-contrat-de-données)
-5. [Les règles](#les-règles) · [Ce que le dépôt a retiré](#ce-que-le-dépôt-a-retiré-de-ses-propres-résultats) · [Ce qu'il ne prétend pas](#ce-que-le-projet-ne-prétend-pas)
-6. [Démarrage rapide](#démarrage-rapide) · [Organisation](#organisation) · [État](#état)
+1. [Structural analysis of the 964 body shell](#1-structural-analysis-of-the-964-body-shell)
+2. [993 parts for additive manufacturing](#2-993-parts-for-additive-manufacturing)
+3. [Body and interior](#3-body-and-interior)
+4. [The catalogue and its data contract](#4-the-catalogue-and-its-data-contract)
+5. [The rules](#the-rules) · [What the repository withdrew](#what-the-repository-withdrew-from-its-own-results) · [What it does not claim](#what-the-project-does-not-claim)
+6. [Quick start](#quick-start) · [Layout](#repository-layout) · [Status](#status)
 
 ---
 
-## 1. Calcul de structure sur la caisse 964
+## 1. Structural analysis of the 964 body shell
 
-Le chantier principal. Un modèle coque de plancher, de caisson et de cellule
-complète, en éléments finis, sert à répondre à des questions **relatives** :
-entre changer de matériau et fermer la caisse, lequel rapporte le plus ? Que
-vaut un élément de superstructure au kilo ? Où passe l'effort en torsion ?
+The main workstream. A finite-element shell model of the floor pan, the box
+section and the full cell answers **relative** questions: between changing the
+material and closing the body shell, which pays off more? What is a
+superstructure member worth per kilogram? Where does the load go in torsion?
 
-![Le modele coque, plancher nu et cellule complete](docs/media/diagrams/964-modele-coque.svg)
+![The shell model, bare floor pan and full cell](docs/media/diagrams/964-modele-coque.svg)
 
-**Résultats qui tiennent** — voir [`twins/964-chassis/fea/`](twins/964-chassis/fea/) :
+**Results that hold** — see [`twins/964-chassis/fea/`](twins/964-chassis/fea/):
 
-- le **longeron** porte la torsion, pas le plancher, ce qui converge avec la
-  planche 50-013 du manuel qui y place l'acier haute résistance ;
-- **fermer un anneau ne fait pas qu'ajouter de la raideur, cela change le
-  mécanisme qui la porte** — flexion sur le plancher nu, cisaillement sur la
-  cellule fermée ;
-- du plancher nu à la cellule fermée, **K × 3,77 pour une masse × 2,3** ;
-- pavillon et cadre de baie ensemble valent **1,63 fois** la somme de leurs
-  apports séparés : le pavillon ne travaille qu'une fois l'anneau fermé.
+- the **side rail** carries torsion, not the floor pan, which agrees with plate
+  50-013 of the workshop manual that places high-strength steel there;
+- **closing a ring does not just add stiffness, it changes the mechanism that
+  carries it** — bending on the bare floor pan, shear on the closed cell;
+- from bare floor pan to closed cell, **K × 3.77 for mass × 2.3**;
+- roof and windshield frame together are worth **1.63 times** the sum of their
+  separate contributions: the roof only works once the ring is closed.
 
-![Contrainte de von Mises sur le plancher nu](docs/media/diagrams/964-chemin-effort.svg)
+![von Mises stress on the bare floor pan](docs/media/diagrams/964-chemin-effort.svg)
 
-![Part du cisaillement dans la raideur, par architecture](docs/media/diagrams/964-mecanisme-architecture.svg)
+![Share of shear in stiffness, by architecture](docs/media/diagrams/964-mecanisme-architecture.svg)
 
-Un **corpus de 3 000 cas** CalculiX, en coques quadratiques, est constitué pour
-entraîner plus tard un substitut de conception, avec son lot de validation gelé
-avant qu'aucun modèle n'existe. Chaîne et état :
+A **corpus of 3,000 CalculiX cases**, in quadratic shells, is being built to
+train a design surrogate model later, with its validation set frozen before any
+model exists. Chain and status:
 [docs/MONOCOQUE_964_993_CHAINE_CALCUL.md](docs/MONOCOQUE_964_993_CHAINE_CALCUL.md).
 
-Le [programme monocoque](docs/MONOCOQUE_964_993_PROGRAMME.md) définit ce qu'il
-faudrait établir pour concurrencer une offre existante sur le seul axe où elle
-est nue : la donnée publiée. Il **contredit le périmètre écrit** de
-[ROADMAP.md](ROADMAP.md), et le dit.
+The [monocoque program](docs/MONOCOQUE_964_993_PROGRAMME.md) defines what would
+have to be established to compete with an existing offer on the one axis where
+it is bare: published data. It **contradicts the written scope** of
+[ROADMAP.md](ROADMAP.md), and says so.
 
-## 2. Pièces 993 en fabrication additive
+## 2. 993 parts for additive manufacturing
 
-La ligne la plus fournie du dépôt : **23 dossiers de conception** `993_*_F0` et
-`_F1`, et **31 fiches de pièces**, du guide de ressort de phare à la roue de
-turbine K16 en Inconel 718, en passant par la bielle Ti-6Al-4V, la roue de
-compresseur en AlSi10Mg et le collecteur d'échappement en IN625.
+The richest line of the repository: **24 design dossiers** `993_*_F0` and
+`_F1`, and **34 part records**, from the headlamp spring hook to the K16 turbine
+wheel in Inconel 718, by way of the Ti-6Al-4V connecting rod, the AlSi10Mg
+compressor wheel and the IN625 exhaust manifold.
 
-Chaque dossier part de cotes **publiées par un fournisseur**, sépare ce qui est
-sourcé de ce qui est supposé, et dit ce qu'il ne contient pas. Rien n'est
-libéré : les 31 fiches sont **toutes au statut `concept`**. Le pipeline
-[impression métal et Omniverse](docs/AM_VALIDATION_PIPELINE.md) est obligatoire
-avant toute fabrication.
+Each dossier starts from dimensions **published by a supplier**, separates what
+is sourced from what is assumed, and states what it does not contain. Nothing is
+released: every record is **at status `concept`**. The
+[metal printing and Omniverse pipeline](docs/AM_VALIDATION_PIPELINE.md) is
+mandatory before any manufacturing.
 
-Le tableau ci-dessous est engendré depuis `catalog/parts/` à chaque `make check`.
-La colonne « statut » est celle de la fiche, pas une intention : une pièce
-**interdite en l'état** le reste tant qu'aucune revue d'ingénierie ne l'a levée.
+The table below is generated from `catalog/parts/` on every `make check`. The
+"status" column is the record's, not an intention: a part **prohibited pending
+engineering** stays so until an engineering review lifts it.
 
-<!-- pieces:debut - engendre par scripts/render_parts_table.py -->
+<!-- parts:start - generated by scripts/render_parts_table.py -->
 
-**Moteur, admission et refroidissement**
+```mermaid
+pie showData title 34 part records by safety class
+    "prohibited pending engineering" : 18
+    "safety-critical" : 1
+    "functional" : 12
+    "non-critical" : 3
+```
 
-| pièce | matière candidate | procédé | statut |
+```mermaid
+flowchart LR
+    L0["concept<br/><b>34</b> records"]
+    L1["dimensionally_reviewed<br/><b>0</b> records"]
+    L2["prototype_fitted<br/><b>0</b> records"]
+    L3["functionally_tested<br/><b>0</b> records"]
+    L4["engineering_reviewed<br/><b>0</b> records"]
+    L5["released<br/><b>0</b> records"]
+    L0 --> L1 --> L2 --> L3 --> L4 --> L5
+    classDef here fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+    classDef empty fill:#f4f4f4,stroke:#9e9e9e,color:#6b6b6b;
+    class L0 here
+    class L1 empty
+    class L2 empty
+    class L3 empty
+    class L4 empty
+    class L5 empty
+```
+
+*The validation ladder of `catalog/schemas/part.schema.json`, with the number of records whose `validation.status` names each step. Both charts are computed from the records.*
+
+**Engine, intake and cooling**
+
+| part | candidate material | process | status |
 |---|---|---|---|
-| [Berceau moteur Turbo (Motortraeger)](docs/pieces/993-eng-carrier-0001.md) | nuance inconnue | CNC | **critique pour la sécurité** |
-| [Carter de chaîne de distribution 993 et ses c…](docs/pieces/993-eng-chain-case-0001.md) | non identifié | à décider | **interdit en l'état** |
-| [Couvercle gauche de carter de chaîne 964 105…](docs/pieces/993-eng-chain-case-lid-ti-f0-0001.md) | Ti-6Al-4V Grade 5, plaque — choix assumé | CNC | fonctionnel |
-| [Bielle 993/993 Turbo](docs/pieces/993-eng-connecting-rod-ti64-f0-0001.md) | Ti-6Al-4V Grade 5 LPBF de criblage | LPBF | **interdit en l'état** |
-| [Turbine de refroidissement moteur](docs/pieces/993-eng-cooling-impeller-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 de comparaison | à décider | **interdit en l'état** |
-| [Collecteur d'échappement trois-en-un 993 Turbo](docs/pieces/993-eng-exhaust-manifold-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625 de c… | à décider | **interdit en l'état** |
-| [Soupapes d'echappement 993 - proxies F1](docs/pieces/993-eng-exhaust-valve-f1-0001.md) | INCONEL 751 / UNS N07751 candidate | CNC | **interdit en l'état** |
-| [Carter fixe de ventilateur moteur](docs/pieces/993-eng-fan-housing-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 de comparaison | à décider | **interdit en l'état** |
-| [Soupape d'admission 993 - proxy F1 et variant…](docs/pieces/993-eng-intake-valve-f1-0001.md) | Ti-6Al-4V Grade 5 | DMLS | **interdit en l'état** |
-| [Soupape d'admission 993 creuse Ti64](docs/pieces/993-eng-intake-valve-ti64-hollow-f0-0001.md) | Ti-6Al-4V Grade 5 LPBF de criblage | LPBF | **interdit en l'état** |
-| [Support d'intercooler 993 Turbo/GT2](docs/pieces/993-eng-intercooler-bracket-ti-f0-0001.md) | Ti-6Al-4V Grade 5 de criblage | CNC | fonctionnel |
-| [End-tank d'intercooler 993 Turbo](docs/pieces/993-eng-intercooler-end-tank-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg de criblage | LPBF | **interdit en l'état** |
-| [Roue de compresseur K16](docs/pieces/993-eng-k16-compressor-wheel-al2139-f1-0001.md) | EOS Aluminium Al2139 AM, M290 60 µm, ét… | LPBF | **interdit en l'état** |
-| [Roue de compresseur K16 993](docs/pieces/993-eng-k16-compressor-wheel-alsi10mg-f0-0001.md) | EOS AlSi10Mg de criblage | LPBF | **interdit en l'état** |
-| [Roue de turbine K16](docs/pieces/993-eng-k16-turbine-wheel-in718-f0-0001.md) | EOS NickelAlloy IN718 API, M290 40 µm… | à décider | **interdit en l'état** |
-| [Console de filtre à huile moteur à galeries i…](docs/pieces/993-eng-oil-filter-console-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 de comparaison | à décider | **interdit en l'état** |
-| [Piston M64/60 à galerie de refroidissement](docs/pieces/993-eng-piston-cp1-gallery-f0-0001.md) | Constellium Aheadd CP1, route Velo3D Sa… | LPBF | **interdit en l'état** |
-| [Collecteur d'admission trois conduits 993](docs/pieces/993-eng-three-runner-intake-alsi10mg-f0-0001.md) | AlSi10Mg générique de criblage | à décider | fonctionnel |
-| [Couvercle thermique gauche de turbo 993](docs/pieces/993-eng-turbo-heat-shield-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625 de c… | à décider | fonctionnel |
-| [Conduite de retour d'huile turbo](docs/pieces/993-eng-turbo-oil-return-line-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625 de c… | à décider | **interdit en l'état** |
-| [Couvre-culasse supérieur avec tours COP](docs/pieces/993-eng-upper-valve-cover-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 de comparaison | à décider | **interdit en l'état** |
+| [Turbo engine carrier (Motortraeger)](docs/pieces/993-eng-carrier-0001.md) | unknown grade | CNC | **safety-critical** |
+| [993 timing chain case and its lids](docs/pieces/993-eng-chain-case-0001.md) | unidentified | undecided | **prohibited pending engineering** |
+| [Left chain case lid 964 105 107 01](docs/pieces/993-eng-chain-case-lid-ti-f0-0001.md) | Ti-6Al-4V Grade 5, plate — deliberate c… | CNC | functional |
+| [993/993 Turbo connecting rod](docs/pieces/993-eng-connecting-rod-ti64-f0-0001.md) | Ti-6Al-4V Grade 5 LPBF for screening | LPBF | **prohibited pending engineering** |
+| [Engine cooling fan impeller](docs/pieces/993-eng-cooling-impeller-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 for comparison | undecided | **prohibited pending engineering** |
+| [993 Turbo three-into-one exhaust manifold](docs/pieces/993-eng-exhaust-manifold-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625 for… | undecided | **prohibited pending engineering** |
+| [993 exhaust valves - F1 proxies](docs/pieces/993-eng-exhaust-valve-f1-0001.md) | INCONEL 751 / UNS N07751 candidate | CNC | **prohibited pending engineering** |
+| [Stationary engine fan housing](docs/pieces/993-eng-fan-housing-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 for comparison | undecided | **prohibited pending engineering** |
+| [993 intake valve - F1 proxy and titanium vari…](docs/pieces/993-eng-intake-valve-f1-0001.md) | Ti-6Al-4V Grade 5 | DMLS | **prohibited pending engineering** |
+| [993 hollow Ti64 intake valve](docs/pieces/993-eng-intake-valve-ti64-hollow-f0-0001.md) | Ti-6Al-4V Grade 5 LPBF, screening | LPBF | **prohibited pending engineering** |
+| [993 Turbo/GT2 intercooler bracket](docs/pieces/993-eng-intercooler-bracket-ti-f0-0001.md) | Ti-6Al-4V Grade 5 for screening | CNC | functional |
+| [993 Turbo intercooler end tank](docs/pieces/993-eng-intercooler-end-tank-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg for screening | LPBF | **prohibited pending engineering** |
+| [K16 compressor wheel](docs/pieces/993-eng-k16-compressor-wheel-al2139-f1-0001.md) | EOS Aluminium Al2139 AM, M290 60 µm, he… | LPBF | **prohibited pending engineering** |
+| [993 K16 compressor wheel](docs/pieces/993-eng-k16-compressor-wheel-alsi10mg-f0-0001.md) | EOS AlSi10Mg, screening | LPBF | **prohibited pending engineering** |
+| [K16 turbine wheel](docs/pieces/993-eng-k16-turbine-wheel-in718-f0-0001.md) | EOS NickelAlloy IN718 API, M290 40 µm… | undecided | **prohibited pending engineering** |
+| [Engine oil filter console with integrated gal…](docs/pieces/993-eng-oil-filter-console-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 for comparison | undecided | **prohibited pending engineering** |
+| [M64/60 piston with cooling gallery](docs/pieces/993-eng-piston-cp1-gallery-f0-0001.md) | Constellium Aheadd CP1, Velo3D Sapphire… | LPBF | **prohibited pending engineering** |
+| [993 three-runner intake manifold](docs/pieces/993-eng-three-runner-intake-alsi10mg-f0-0001.md) | generic AlSi10Mg for screening | undecided | functional |
+| [993 left turbo heat shield cover](docs/pieces/993-eng-turbo-heat-shield-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625, scr… | undecided | functional |
+| [Turbo oil return line](docs/pieces/993-eng-turbo-oil-return-line-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625 for… | undecided | **prohibited pending engineering** |
+| [Upper valve cover with COP towers](docs/pieces/993-eng-upper-valve-cover-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6, for comparis… | undecided | **prohibited pending engineering** |
 
-**Turbocompresseur**
+**Turbocharger**
 
-| pièce | matière candidate | procédé | statut |
+| part | candidate material | process | status |
 |---|---|---|---|
-| [Paire de turbocompresseurs K16 de 993 Turbo](docs/pieces/993-turbocharger-k16-pair-0001.md) | non determine | à décider | **interdit en l'état** |
+| [Pair of K16 turbochargers of the 993 Turbo](docs/pieces/993-turbocharger-k16-pair-0001.md) | undetermined | undecided | **prohibited pending engineering** |
 
-**Échappement**
+**Exhaust**
 
-| pièce | matière candidate | procédé | statut |
+| part | candidate material | process | status |
 |---|---|---|---|
-| [Embout d'échappement ovale 993](docs/pieces/993-exh-oval-tip-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625 de c… | à décider | fonctionnel |
-| [Embout d'échappement ovale](docs/pieces/993-exh-oval-tip-ti-f1-0001.md) | Ti-6Al-4V si la température réelle le p… | LPBF | fonctionnel |
+| [993 oval exhaust tip](docs/pieces/993-exh-oval-tip-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625 for… | undecided | functional |
+| [Embout d'échappement ovale](docs/pieces/993-exh-oval-tip-ti-f1-0001.md) | Ti-6Al-4V if the actual temperature all… | LPBF | functional |
 
-**Carrosserie**
+**Body**
 
-| pièce | matière candidate | procédé | statut |
+| part | candidate material | process | status |
 |---|---|---|---|
-| [Support d'impact avant 993](docs/pieces/993-body-front-impact-support-alsi10mg-f0-0001.md) | AlSi10Mg générique de criblage | à décider | **interdit en l'état** |
-| [Capot avant](docs/pieces/993-body-front-lid-0001.md) | fibre et resine a determiner | à décider | fonctionnel |
+| [993 front impact support](docs/pieces/993-body-front-impact-support-alsi10mg-f0-0001.md) | generic screening AlSi10Mg | undecided | **prohibited pending engineering** |
+| [Front lid](docs/pieces/993-body-front-lid-0001.md) | fiber and resin to be determined | undecided | functional |
 
-**Habitacle**
+**Interior**
 
-| pièce | matière candidate | procédé | statut |
+| part | candidate material | process | status |
 |---|---|---|---|
-| [Habillage de planche de bord](docs/pieces/993-int-dashboard-trim-0001.md) | fibre et resine a determiner | à décider | fonctionnel |
-| [Levier intérieur d'ouverture de porte 993](docs/pieces/993-int-door-opener-lever-f0-0001.md) | AlSi10Mg de criblage | LPBF | fonctionnel |
-| [Poignee de tirage de porte interieure](docs/pieces/993-int-door-pull-0001.md) | a_determiner_apres_essai_de_charge | à décider | fonctionnel |
-| [Cache de glissiere de siege](docs/pieces/993-int-seat-rail-cover-0001.md) | a_determiner_apres_essai_de_montage | FFF | non critique |
-| [Cache d'emplacement d'interrupteur](docs/pieces/993-int-switch-blank-0001.md) | a_determiner_apres_essai_de_montage | FFF | non critique |
-| [Bague aluminium de finition de commutateur](docs/pieces/993-int-switch-trim-ring-f1-0001.md) | EN AW-6063 T6 retenu pour l'anodisation… | CNC | non critique |
+| [Dashboard trim](docs/pieces/993-int-dashboard-trim-0001.md) | fiber and resin to be determined | undecided | functional |
+| [Levier intérieur d'ouverture de porte 993](docs/pieces/993-int-door-opener-lever-f0-0001.md) | AlSi10Mg, screening | LPBF | functional |
+| [Interior door pull handle](docs/pieces/993-int-door-pull-0001.md) | to_be_determined_after_load_test | undecided | functional |
+| [Seat rail cover](docs/pieces/993-int-seat-rail-cover-0001.md) | to_be_determined_after_fit_test | FFF | non-critical |
+| [Switch blank](docs/pieces/993-int-switch-blank-0001.md) | to_be_determined_after_fit_test | FFF | non-critical |
+| [Bague aluminium de finition de commutateur](docs/pieces/993-int-switch-trim-ring-f1-0001.md) | EN AW-6063 T6 retained for bright anodi… | CNC | non-critical |
 
-**Éclairage**
+**Lighting**
 
-| pièce | matière candidate | procédé | statut |
+| part | candidate material | process | status |
 |---|---|---|---|
-| [Crochet de réparation du ressort de lampe](docs/pieces/993-elec-headlamp-spring-hook-f0-0001.md) | EOS Aluminium AlSi10Mg / AlSi10Mg_FlexM… | LPBF | fonctionnel |
+| [Crochet de réparation du ressort de lampe](docs/pieces/993-elec-headlamp-spring-hook-f0-0001.md) | EOS Aluminium AlSi10Mg / AlSi10Mg_FlexM… | LPBF | functional |
 
-**Roues**
+**Wheels**
 
-| pièce | matière candidate | procédé | statut |
+| part | candidate material | process | status |
 |---|---|---|---|
-| [Cache-moyeu 993](docs/pieces/993-whl-center-cap-alsi10mg-f0-0001.md) | AlSi10Mg de criblage | à décider | fonctionnel |
+| [993 center cap](docs/pieces/993-whl-center-cap-alsi10mg-f0-0001.md) | AlSi10Mg for screening | undecided | functional |
 
-*34 fiches, dont 18 interdites en l'état et aucune libérée. Chaque lien ouvre la page de description de la pièce dans [`docs/pieces/`](docs/pieces/), engendrée depuis sa fiche `catalog/parts/*.json` ; les dossiers de conception sont dans [`docs/993/`](docs/993/). Tableau engendré par `scripts/render_parts_table.py`, vérifié par `make check`.*
+*34 records, 18 of them prohibited pending engineering, none released. Each link opens the part's description page in [`docs/pieces/`](docs/pieces/), generated from its `catalog/parts/*.json` record; the design dossiers are in [`docs/993/`](docs/993/). Table generated by `scripts/render_parts_table.py`, checked by `make check`.*
 
-<!-- pieces:fin -->
+<!-- parts:end -->
 
-## 3. Carrosserie et habitacle
+## 3. Body and interior
 
-Les panneaux **boulonnés** — ailes, capots, becquet, portes — sont un objectif
-légitime ; la structure autoportante ne l'est pas. Le catalogue d'usine trace la
-frontière en numéros de pièce :
+**Bolt-on** panels — fenders, lids, spoiler, doors — are a legitimate target;
+the load-bearing structure is not. The factory catalogue draws the line in part
+numbers:
 [docs/research/993-964-panneaux-carbone.md](docs/research/993-964-panneaux-carbone.md).
 
-Mais ces panneaux se commandent déjà chez plusieurs préparateurs. La pièce
-retenue est donc celle que personne ne vend : l'**habillage de planche de bord**,
-`993-INT-DASHBOARD-TRIM-0001`, restreint aux véhicules **sans airbag passager**
-— sur les autres, il porte le volet de déploiement, donc une pièce de retenue des
-occupants. Son [plan de mesure](parts/993-int-dashboard-trim-0001/evidence/measurement-plan.md)
-commence par une porte d'entrée qui peut arrêter le projet.
+But those panels can already be ordered from several tuners. The part chosen is
+therefore the one nobody sells: the **dashboard trim**,
+`993-INT-DASHBOARD-TRIM-0001`, restricted to vehicles **without a passenger
+airbag** — on the others it carries the deployment flap, which makes it an
+occupant-restraint part. Its
+[measurement plan](parts/993-int-dashboard-trim-0001/evidence/measurement-plan.md)
+opens with an entry gate that can stop the project.
 
-Trois pilotes d'habitacle plus simples restent en attente d'une séance de mesure
-physique : [docs/MEASUREMENT_CAMPAIGN.md](docs/MEASUREMENT_CAMPAIGN.md).
+Three simpler interior pilots are waiting for a physical measurement session:
+[docs/MEASUREMENT_CAMPAIGN.md](docs/MEASUREMENT_CAMPAIGN.md).
 
-## 4. Le catalogue et son contrat de données
+## 4. The catalogue and its data contract
 
-**383 fiches de sources** qualifiées par provenance, droits et niveau de preuve ;
-31 fiches de pièces, 9 jumeaux, 4 composants, 2 assemblages. Tout est validé par
-un schéma JSON et par la suite de tests :
+**401 source records** qualified by provenance, rights and level of evidence;
+34 part records, 9 twins, 4 components, 2 assemblies. Everything is validated by
+a JSON schema and by the test suite:
 
 ```bash
 make check
 ```
 
-Une fiche enregistre séparément l'accès technique, la méthode de lecture et le
-droit de réutilisation. Une page accessible n'est pas redistribuable ; une page
-lue dans un navigateur n'est ni un téléchargement autorisé ni une validation de
-précision.
+A record keeps technical access, reading method and reuse rights separate. An
+accessible page is not redistributable; a page read in a browser is neither an
+authorized download nor a validation of accuracy.
+
+```mermaid
+flowchart TB
+    subgraph catalog["catalog/ — source of truth, JSON-schema validated"]
+      direction LR
+      src["sources/<br/>401 records"] --- prt["parts/<br/>34 records"]
+      prt --- tw["twins/<br/>9 records"]
+      prt --- cmp["components/ · assemblies/"]
+      prt --- mea["measurements/<br/>3 manual transcriptions"]
+    end
+    prt -- "render_part_pages.py" --> pages["docs/pieces/<br/>one page per part"]
+    prt -- "render_parts_table.py" --> table["README parts table"]
+    tw --> twins["twins/&lt;zone&gt;/<br/>CAD · analysis · evidence"]
+```
 
 ---
 
-## Les règles
+## The rules
 
-| règle | ce qu'elle impose |
+| rule | what it requires |
 |---|---|
-| **Source avant STL** | FreeCAD, OpenSCAD, build123d ou STEP restent les formats maîtres |
-| **Preuve avant publication** | toute affirmation de compatibilité ou de précision est reliée à une mesure ou à une source |
-| **Numérique avant prototype** | la phase active ne fabrique rien |
-| **Interface avant apparence** | une zone mesurée permettant un contrôle de jeu vaut mieux qu'un scan complet sans précision connue |
-| **Sécurité explicite** | en cas de doute, la pièce est abaissée à `prohibited_pending_engineering` — voir [SAFETY.md](SAFETY.md) |
-| **Pas de moissonnage de vendeurs** | un site fermé aux robots n'est pas interrogé — voir [la décision 0003](docs/decisions/0003-no-vendor-harvesting.md) |
-| **Outils accessibles** | chaîne locale gratuite et open source |
+| **Source before STL** | FreeCAD, OpenSCAD, build123d or STEP remain the master formats |
+| **Evidence before publication** | every claim of fit or accuracy is tied to a measurement or a source |
+| **Digital before prototype** | the active phase manufactures nothing |
+| **Interface before appearance** | a measured zone that allows a clearance check beats a full scan of unknown accuracy |
+| **Explicit safety** | when in doubt, the part is lowered to `prohibited_pending_engineering` — see [SAFETY.md](SAFETY.md) |
+| **No vendor harvesting** | a site closed to robots is not queried — see [decision 0003](docs/decisions/0003-no-vendor-harvesting.md) |
+| **Accessible tools** | a free, open-source, local toolchain |
 
-## Ce que le dépôt a retiré de ses propres résultats
+## What the repository withdrew from its own results
 
-C'est la partie la plus utile de son historique, et elle est publique.
+This is the most useful part of its history, and it is public.
 
-![Raideur par architecture en coques lineaires et quadratiques](docs/media/diagrams/964-echelle-architectures.svg)
+![Stiffness by architecture in linear and quadratic shells](docs/media/diagrams/964-echelle-architectures.svg)
 
-Ci-dessus, la correction la plus lourde : l'échelle des architectures avait été
-publiée en éléments linéaires. Les quatre figures de cette page se régénèrent
-avec `twins/964-chassis/fea/figures.py`, la bannière animée avec
-`twins/964-chassis/fea/hero.py` — les deux graphiques depuis des valeurs figées
-dans `figures-data.json` qui portent chacune l'origine de son calcul, les vues du
-modèle et la bannière depuis un instantané de maillage et de résultat conservé
-dans `figures-mesh/`. Aucune n'est un rendu : ce sont les données du calcul.
+Above, the heaviest correction: the architecture ladder had been published with
+linear elements. The four figures on this page are regenerated with
+`twins/964-chassis/fea/figures.py`, the animated banner with
+`twins/964-chassis/fea/hero.py` — the two charts from values frozen in
+`figures-data.json`, each carrying the origin of its calculation, the model
+views and the banner from a mesh and result snapshot kept in `figures-mesh/`.
+None of them is a rendering: they are the calculation's data.
 
-| affirmation retirée | ce qui l'a défaite |
+| withdrawn claim | what defeated it |
 |---|---|
-| « la structure travaille en cisaillement de membrane » | un essai découplant `E` et `G` : le plancher nu travaille en flexion quasi pure |
-| « la raideur suit l'épaisseur exactement linéairement » | l'exposant vaut 1,00 en éléments linéaires et **1,10** en quadratiques : l'exactitude était celle de l'élément |
-| « le cadre de pare-brise a le meilleur rendement au kilo » | en coques quadratiques, c'est le tunnel central |
-| une traverse comptée dans la masse du modèle | un contrôle de connexité : elle n'était rattachée à rien |
-| onze cas de calcul perdus, lus comme un système quasi singulier | un défaut du partitionneur du solveur, dont le message partait sur `stderr` |
+| "the structure works in membrane shear" | a test decoupling `E` and `G`: the bare floor pan works in almost pure bending |
+| "stiffness follows thickness exactly linearly" | the exponent is 1.00 with linear elements and **1.10** with quadratic ones: the exactness belonged to the element |
+| "the windshield frame has the best return per kilogram" | in quadratic shells, it is the center tunnel |
+| a cross member counted in the model's mass | a connectivity check: it was attached to nothing |
+| eleven lost analysis cases, read as a near-singular system | a defect in the solver's partitioner, whose message went to `stderr` |
 
-Trois calculs faux de cette campagne venaient d'un **partage de ressource** —
-fichiers de travail laissés en place, maillage commun à deux campagnes, machine
-partagée. Aucun n'avait laissé de trace dans une sortie d'erreur.
+Three wrong calculations in that campaign came from **resource sharing** — work
+files left in place, a mesh shared by two campaigns, a shared machine. None had
+left a trace in an error output.
 
-## Ce que le projet ne prétend pas
+## What the project does not claim
 
-- **Aucune valeur absolue de raideur n'est une raideur de 964.** Les sections du
-  modèle sont `ASSUMED`, le maillage n'est pas convergé ; seuls les rapports et
-  les classements sont exploitables.
-- **Aucune pièce n'est déclarée imprimable ni validée.** Les 31 fiches sont au
-  statut `concept`, dont 17 en `prohibited_pending_engineering`. Aucun jumeau
-  n'atteint le niveau `F2_interface`.
-- **Aucune mesure physique n'est encore enregistrée.** Les trois fiches de
-  `catalog/measurements/` sont des relevés du manuel d'atelier, pas des mesures
-  instrumentées : le dépôt n'a accès ni à une 993, ni à une pièce déposée, ni à
-  un instrument.
-- **Un rendu n'est pas une preuve.** Ni Omniverse, ni une image, ni une photo ne
-  démontrent un comportement physique.
+- **No absolute stiffness value is a 964 stiffness.** The model's sections are
+  `ASSUMED` and the mesh is not converged; only ratios and rankings are usable.
+- **No part is declared printable or validated.** All 34 records are at status
+  `concept`, 18 of them `prohibited_pending_engineering`. No twin reaches the
+  `F2_interface` level.
+- **No physical measurement is recorded yet.** The three records in
+  `catalog/measurements/` are transcriptions from the workshop manual, not
+  instrumented measurements: the repository has access to neither a 993, nor a
+  removed part, nor an instrument.
+- **A rendering is not evidence.** Neither Omniverse, nor an image, nor a photo
+  demonstrates physical behavior.
 
-## Ce qui est archivé
+## What is archived
 
-Le dossier de **culasse 917** — 891 fichiers, itérations F1 à F50 — est retiré
-comme produit et conservé comme régression numérique, avec le scan de culasse
-935. Il n'a pas été déplacé dans un dossier d'archive, et
-[ARCHIVE.md](ARCHIVE.md) explique pourquoi : il porte 2 014 empreintes SHA-256
-que le déplacement invaliderait. Une preuve vaut mieux qu'un rangement.
+The **917 cylinder head** dossier — 891 files, iterations F1 to F50 — is retired
+as a product and kept as a numerical regression, along with the 935 cylinder
+head scan. It was not moved into an archive folder, and
+[ARCHIVE.md](ARCHIVE.md) explains why: it carries 2,014 SHA-256 digests that
+moving it would invalidate. Evidence beats tidiness.
 
-Y sont listés ce qu'on peut encore en faire — rejouer les calculs, réutiliser les
-cas d'essai — et ce qu'on ne peut pas : une pièce.
+That page lists what can still be done with it — rerun the calculations, reuse
+the test cases — and what cannot: a part.
 
 ---
 
-## Démarrage rapide
+## Quick start
 
-Prérequis : Python 3.11 ou plus récent et `make`.
+Requirements: Python 3.11 or newer and `make`. Clone onto a native Linux file
+system (on WSL, not under `/mnt/c` — see [AGENTS.md](AGENTS.md)).
 
 ```bash
-make check
+git clone https://github.com/cluster2600/porscheparts.git
+cd porscheparts
+make help                 # active targets, grouped by theme
+make check                # schemas, tests, generators and digests
+make translation-status   # which pages are still in French
+```
+
+To add a part:
+
+```bash
 cp catalog/templates/part-record.json catalog/parts/993-xxx-0001.json
+# fill in the record, add licensed CAD files under parts/<part_id>/
+make part-pages parts-table   # regenerate its page and the README table
+make check
 ```
 
-Compléter la fiche, ajouter les fichiers CAO autorisés dans `parts/<part_id>/`,
-relancer `make check`. Détail des conventions : [CONTRIBUTING.md](CONTRIBUTING.md).
+Conventions in detail: [CONTRIBUTING.md](CONTRIBUTING.md). The 162 `917-*`
+targets are not listed by `make help`: they drive the archived line, and
+`make help-917` lists them separately. Tests that need `numpy`, `matplotlib` or
+CAD kernels are skipped or fail without them; the compute images in
+[`containers/`](containers/) carry the full stack.
 
-`make help` liste les cibles actives par thème. Les 162 cibles `917-*` n'y
-figurent pas : elles pilotent la ligne archivée, et `make help-917` les liste
-à part.
-
-## Organisation
+## Repository layout
 
 ```text
-catalog/            fiches : sources, pièces, mesures, jumeaux, composants
-  schemas/            contrat de données du catalogue
-  templates/          modèles de fiche, mesure et demande de fabrication
-parts/              géométries, plans de mesure et livrables par pièce
-components/         géométries des composants ; assemblies/ leurs preuves
-twins/964-chassis/  jumeau de châssis 964 : datums, CAO, calculs, corpus
-twins/993-*/        zones fonctionnelles 993
-docs/               plans, critères qualité, chaîne logicielle
-  993/                les 23 dossiers de conception des pièces 993
-  decisions/          décisions d'architecture numérotées
-  reports/            comptes rendus datés d'exécution et d'audit
-  research/           recherche de sources par sujet
-  media/              schémas et projets vidéo
-simulation/         cas de calcul du circuit de suralimentation
-archive/917/docs/   les 112 dossiers écrits de la culasse 917
-outils/benchmarks/  cas de vérification de solveur
-scripts/  tests/    contrôles automatiques et garde-fous
-containers/ deploy/ images de calcul reproductibles et déploiement
+catalog/            records: sources, parts, measurements, twins, components
+  schemas/            the catalogue's data contract
+  templates/          record, measurement and manufacturing-request templates
+parts/              geometry, measurement plans and deliverables per part
+components/         component geometry; assemblies/ holds their evidence
+twins/              digital twins, one folder per zone — see twins/README.md
+  964-chassis/        964 chassis twin: datums, CAD, analysis, corpus
+  993-*/              993 functional zones
+  m64-*/              M64 engine and cylinder head twins
+docs/               plans, quality criteria, software chain — see docs/README.md
+  993/                the 24 design dossiers of the 993 parts
+  pieces/             one generated page per part record
+  decisions/          numbered architecture decisions
+  reports/            dated execution and audit reports, indexed by day
+  research/           source research by topic
+  media/              diagrams and video projects
+  GALLERY.md          every figure and render on one page
+simulation/         forced-induction circuit analysis cases
+archive/917/docs/   the 112 written dossiers of the 917 cylinder head
+outils/benchmarks/  solver verification cases
+scripts/  tests/    automatic checks and guardrails
+containers/ deploy/ reproducible compute images and deployment
 ```
 
-## État
+## Status
 
-Phase 0 terminée. Phase 1 au-delà de son seuil quantitatif, la qualification
-croisée et les mesures directes restant ouvertes. Phase 2 menée en mode
-numérique, l'impression volontairement suspendue. Détail et critères de sortie :
-[ROADMAP.md](ROADMAP.md) · [docs/PROJECT_CHARTER.md](docs/PROJECT_CHARTER.md) ·
+| phase | state |
+|---|---|
+| 0 — foundation | ✅ done |
+| 1 — source inventory | 🟡 past its quantitative threshold; cross-qualification and direct measurements still open |
+| 2 — physical inventory and twin assembly | 🟡 run in digital mode; physical prototypes deliberately suspended |
+| 3 — titanium engineering twin, no manufacturing | ⬜ open: candidate `993-ENG-CARRIER-0001` under study |
+| 4 — public catalog | ⬜ open: only parts that clear their quality gates will be published |
+
+Details and exit criteria: [ROADMAP.md](ROADMAP.md) ·
+[docs/PROJECT_CHARTER.md](docs/PROJECT_CHARTER.md) ·
 [docs/DIGITAL_TWIN.md](docs/DIGITAL_TWIN.md) ·
 [docs/QUALITY_GATES.md](docs/QUALITY_GATES.md).
 
-Le premier sous-ensemble moteur composé, le
-[carter-turbine de refroidissement F0](docs/993/993_ENGINE_COOLING_FAN_SYSTEM_F0.md),
-convertit en OpenUSD mais échoue son test de jeu sur une collision BRep
-explicite : il reste un jumeau de recherche non fabricable.
+The first composite engine subassembly, the
+[F0 cooling fan housing and impeller](docs/993/993_ENGINE_COOLING_FAN_SYSTEM_F0.md),
+converts to OpenUSD but fails its clearance test on an explicit BRep collision:
+it remains a research twin that cannot be manufactured.
 
-![État sourcé du jumeau numérique 993](docs/media/diagrams/digital-twin-993-etat.svg)
+![Sourced state of the 993 digital twin](docs/media/diagrams/digital-twin-993-etat.svg)
 
-Ce schéma représente les relations logiques sourcées, pas la position réelle des
-composants dans la voiture.
+This diagram shows the sourced logical relationships, not the actual position
+of the components in the car.
 
 ---
 
-## Avertissement
+## Disclaimer
 
-Ce dépôt fournit des données de recherche et de fabrication sans garantie.
-L'impression, le montage et l'utilisation sur route restent sous la
-responsabilité de la personne qui fabrique et installe la pièce. Lire
-[SAFETY.md](SAFETY.md) avant toute fabrication.
+This repository provides research and manufacturing data without warranty.
+Printing, fitting and road use remain the responsibility of whoever makes and
+installs the part. Read [SAFETY.md](SAFETY.md) before any manufacturing.
 
-Porsche et 911 sont des marques de leurs détenteurs respectifs. Ce projet est
-indépendant et non affilié à Porsche AG.
+Porsche and 911 are trademarks of their respective owners. This project is
+independent and not affiliated with Porsche AG.
 
-## Licence
+## License
 
-Les contributions originales du dépôt sont sous licence MIT sauf indication
-contraire dans la fiche d'une pièce. Les sources et modèles tiers conservent leur
-propre licence. Voir [LICENSES.md](LICENSES.md).
+The repository's original contributions are under the MIT license unless a
+part's record says otherwise. Third-party sources and models keep their own
+license. See [LICENSES.md](LICENSES.md).

@@ -1,316 +1,326 @@
-# M64 — périmètre de simulation multiphysique
+# M64 — multiphysics simulation scope
 
-Préparation du 12 septembre : [revue scientifique, refroidissement air/huile,
-matériaux, essais et 24 missions de recherche](M64_RESEARCH_EXECUTION_20260912.md).
-La nouvelle formulation « 700hp » est conservée comme ambiguïté d'unité ;
-elle ne remplace pas silencieusement la référence historique 700 PS ci-dessous.
+Preparation of September 12: [scientific review, air/oil cooling,
+materials, tests and 24 research missions](M64_RESEARCH_EXECUTION_20260912.md).
+The new "700hp" wording is kept as a unit ambiguity; it does not silently
+replace the historical 700 PS reference below.
 
-État détaillé du dernier lot : [PicoGK et Vast](M64_PICOGK_EXECUTION.md).
-Reprise du 8 septembre : [chambre candidate, assemblage et préparation du
-banc d'admission](M64_ADMISSION_CHAMBRE_20260908.md), avec
-[comparaison PicoGK locale](M64_PICOGK_LOCAL_JUNCTION_WITNESS_20260908.md).
-Suite du lot : [volume gazeux, correction CAO et témoin OpenFOAM exécuté](M64_DOMAINE_GAZ_OPENFOAM_20260908.md).
-Contrôles complémentaires du 8 septembre : [corps natif chambre/admission](M64_CORPS_ADMISSION_MAILLAGE_20260908.md),
-[approximation des petites arêtes](M64_NATIVE_EDGE_APPROXIMATION_20260908.md) et
-[raffinement spatial du coupon AdditiveFOAM](M64_F58_SPATIAL_REFINEMENT_20260908.md).
-Essai suivant : [remaillage des deux petites arêtes, non retenu après contrôle OpenFOAM](M64_SHORT_EDGE_REMESH_20260908.md).
-Localisation suivante : [défauts des bandes guide–tige et transitions siège–conduit](M64_ANNULAR_MESH_LOCALISATION_20260908.md).
-Procédé : [témoins natifs et essai d'écoulement du coupon F58](M64_F58_COUPLED_FLOW_20260908.md).
-Diagnostic suivant : [contrat du prédicteur Marangoni, témoin natif passé](M64_F58_PREDICTOR_CONTRACT_20260908.md).
-Essai corrigé : [coupon avec écoulement, arrêté à 109,55 µs sur 120 µs](M64_F58_CORRECTED_COUPON_20260908.md).
-CAO : [copie avec échappement et audit natif, qualification refusée](M64_EXHAUST_NATIVE_AUDIT_20260908.md).
-Contrôle suivant : [matière retirée et parois des logements de guides d'échappement](M64_EXHAUST_MATERIAL_CONTROLS_20260908.md), contacts réels encore à vérifier.
-Point suivant : [contacts nominaux des quatre guides mesurés, supports de courbes vérifiés et partition gazeuse refusée](M64_GEOMETRY_CHECKPOINT_20260908.md), sans modification du corps ni qualification physique.
-Dimensionnement cible : [M64 biturbo 700 PS](M64_700CH_ENGINE_RESEARCH.md).
-Cycle moteur : [thermodynamique variable Cantera et contre-calcul énergétique](M64_700PS_VARIABLE_THERMO_20260908.md), sans validation de puissance ni charges locales.
-Campagne parallèle : [matériaux, refroidissement et LPBF](M64_700CH_MATERIAL_COOLING_LPBF.md).
-Les cartes Mermaid et l'inventaire ci-dessous couvrent la pile demandée ;
-ils ne déclarent pas toute la chaîne exécutée sur le corps actuel.
+Detailed state of the latest batch: [PicoGK and Vast](M64_PICOGK_EXECUTION.md).
+Resumption of September 8: [candidate chamber, assembly and preparation of the
+intake bench](M64_ADMISSION_CHAMBRE_20260908.md), with
+[local PicoGK comparison](M64_PICOGK_LOCAL_JUNCTION_WITNESS_20260908.md).
+Continuation of the batch: [gas volume, CAD correction and executed OpenFOAM witness](M64_DOMAINE_GAZ_OPENFOAM_20260908.md).
+Complementary checks of September 8: [native chamber/intake body](M64_CORPS_ADMISSION_MAILLAGE_20260908.md),
+[approximation of the short edges](M64_NATIVE_EDGE_APPROXIMATION_20260908.md) and
+[spatial refinement of the AdditiveFOAM coupon](M64_F58_SPATIAL_REFINEMENT_20260908.md).
+Next trial: [remesh of the two short edges, not adopted after the OpenFOAM check](M64_SHORT_EDGE_REMESH_20260908.md).
+Next localization: [defects in the guide–stem bands and seat–port transitions](M64_ANNULAR_MESH_LOCALISATION_20260908.md).
+Process: [native witnesses and flow trial of the F58 coupon](M64_F58_COUPLED_FLOW_20260908.md).
+Next diagnostic: [contract of the Marangoni predictor, native witness passed](M64_F58_PREDICTOR_CONTRACT_20260908.md).
+Corrected trial: [coupon with flow, stopped at 109.55 µs out of 120 µs](M64_F58_CORRECTED_COUPON_20260908.md).
+CAD: [copy with exhaust and native audit, qualification refused](M64_EXHAUST_NATIVE_AUDIT_20260908.md).
+Next check: [material removed and walls of the exhaust guide bores](M64_EXHAUST_MATERIAL_CONTROLS_20260908.md), real contacts still to be verified.
+Next checkpoint: [nominal contacts of the four guides measured, curve supports verified and gas partition refused](M64_GEOMETRY_CHECKPOINT_20260908.md), with no modification of the body and no physical qualification.
+Target sizing: [twin-turbo M64 700 PS](M64_700CH_ENGINE_RESEARCH.md).
+Engine cycle: [Cantera variable thermodynamics and energy cross-computation](M64_700PS_VARIABLE_THERMO_20260908.md), with no validation of power or local loads.
+Parallel campaign: [materials, cooling and LPBF](M64_700CH_MATERIAL_COOLING_LPBF.md).
+The Mermaid maps and the inventory below cover the requested stack; they do
+not declare the whole chain executed on the current body.
 
-## Décision utilisateur
+## User decision
 
-Base M64 964/993, objectif turbo, quatre soupapes par cylindre et comparaison
-deux soupapes. La cible de calcul est 700 ch métriques au vilebrequin ; elle
-n'est pas une puissance obtenue. La variante précise reste ouverte. Conserver la silhouette
-Porsche issue des références pertinentes : aucune enveloppe ovale de substitution.
-Les anciens modèles 917/935 ne sont pas des interfaces M64 validées.
+M64 964/993 base, turbo objective, four valves per cylinder and a two-valve
+comparison. The computation target is 700 metric horsepower at the
+crankshaft; it is not a power obtained. The precise variant remains open.
+Keep the Porsche silhouette derived from the relevant references: no
+substitute oval envelope.
+The old 917/935 models are not validated M64 interfaces.
 
-## Ordre d'exécution et preuves attendues
+## Execution order and expected evidence
 
-1. **Interfaces** : établir un tableau sourcé des goujons, registres de cylindre,
-   plans de joint, distribution, admission/échappement et lubrification. Séparer
-   cotes publiées, déductions et inconnues ; conserver variantes et tolérances.
-2. **CAO d'assemblage** : reconstruire les surfaces fonctionnelles, sièges,
-   guides, distribution, fixations et surépaisseurs d'usinage. Corriger les
-   défauts de parois et de maillage. Vérifier les jeux à froid avant simulation.
-3. **Charges turbo** : définir régime, charge, carburant, suralimentation,
-   pression cylindre et états thermiques comme scénarios traçables. Employer
-   Cantera pour les études thermochimiques appropriées ; aucun mécanisme ni
-   résultat zéro dimension ne constitue une validation CFD tridimensionnelle.
-4. **Thermique complète** : CFD/CHT OpenFOAM sur gaz, solide et air de
-   refroidissement ; comparer air seul et assistance huile. Inclure pertes de
-   charge et puissance auxiliaire. Contrôler conservation d'énergie, convergence
-   temporelle et spatiale sur trois niveaux, puis contre-calcul indépendant.
-5. **Résistance complète** : éléments finis avec propriétés à chaud, pression
-   cylindre, précharges, contacts siège/guide et champs thermiques transférés.
-   Évaluer déplacements, étanchéité, plastification et fatigue thermomécanique
-   selon les données disponibles. Contrôler convergence et équilibre des efforts.
-6. **Distribution** : jeux piston/soupapes et soupapes/soupapes sur le cycle,
-   dilatation, ressorts, contacts et dynamique selon loi de came documentée.
-   Une animation prescrite n'établit ni absence d'affolement ni durée de vie.
-7. **Fabrication LPBF** : matériau-machine-recette identifiés, orientation,
-   supports accessibles, dépoudrage, surépaisseurs, distorsions, traitement
-   thermique et usinage. AdditiveFOAM local ne remplace pas un calcul complet
-   de déformation de construction ; corriger les échecs numériques existants.
-8. **Omniverse** : inspecter l'assemblage, les mouvements et les interférences ;
-   afficher les champs calculés avec unités, légendes, cas et provenance.
-   Distinguer résultats importés, animation et dynamique réellement résolue.
+1. **Interfaces**: build a sourced table of the studs, cylinder registers,
+   gasket planes, valvetrain, intake/exhaust and lubrication. Separate
+   published dimensions, deductions and unknowns; keep variants and
+   tolerances.
+2. **Assembly CAD**: rebuild the functional surfaces, seats, guides,
+   valvetrain, fasteners and machining allowances. Correct the wall and mesh
+   defects. Verify cold clearances before simulation.
+3. **Turbo loads**: define speed, load, fuel, forced induction, cylinder
+   pressure and thermal states as traceable scenarios. Use Cantera for the
+   appropriate thermochemical studies; no mechanism or zero-dimensional
+   result constitutes a three-dimensional CFD validation.
+4. **Full thermal**: OpenFOAM CFD/CHT on gas, solid and cooling air; compare
+   air only against oil assistance. Include pressure losses and auxiliary
+   power. Check energy conservation, temporal and spatial convergence on
+   three levels, then an independent cross-computation.
+5. **Full strength**: finite elements with hot properties, cylinder pressure,
+   preloads, seat/guide contacts and transferred thermal fields. Evaluate
+   displacements, sealing, plastic yielding and thermomechanical fatigue
+   according to the available data. Check convergence and force equilibrium.
+6. **Valvetrain**: piston/valve and valve/valve clearances over the cycle,
+   expansion, springs, contacts and dynamics following a documented cam law.
+   A prescribed animation establishes neither the absence of valve float nor
+   service life.
+7. **LPBF manufacturing**: identified material-machine-recipe, orientation,
+   accessible supports, depowdering, allowances, distortions, heat treatment
+   and machining. Local AdditiveFOAM does not replace a full build
+   distortion computation; correct the existing numerical failures.
+8. **Omniverse**: inspect the assembly, the motions and the interferences;
+   display the computed fields with units, legends, cases and provenance.
+   Distinguish imported results, animation and actually resolved dynamics.
 
-## Contrôle initial du 6 septembre 2026, avant les tentatives Vast
+## Initial check of September 6, 2026, before the Vast attempts
 
-- Kali 192.168.2.3 répond en SSH ; architecture x86_64 et Docker accessibles.
-- Le prévol local du skill `omniverse-cad-to-simready` a échoué : OpenUSD et
-  Asset Validator absents du runtime interrogé, checkouts requis absents et
-  services OVRTX/Material/Physics non prêts. Aucun calcul Omniverse exécuté.
-- Rapport local : `/private/tmp/m64-omniverse-preflight-20260906/report.json`.
-- Aucune location Vast effectuée lors de ce contrôle initial. Deux tentatives
-  ultérieures et leur suppression sont consignées dans
-  `M64_VAST_EXECUTION_20260906.md` ; aucune instance ne reste active après celles-ci.
-- Le workflow du skill est arrêté au prévol ; ce blocage logiciel ne suspend
-  pas la recherche documentaire des interfaces M64.
+- Kali 192.168.2.3 responds over SSH; x86_64 architecture and Docker
+  accessible.
+- The local preflight of the `omniverse-cad-to-simready` skill failed:
+  OpenUSD and Asset Validator absent from the queried runtime, required
+  checkouts absent and OVRTX/Material/Physics services not ready. No
+  Omniverse computation run.
+- Local report: `/private/tmp/m64-omniverse-preflight-20260906/report.json`.
+- No Vast rental made during this initial check. Two later attempts and
+  their deletion are recorded in `M64_VAST_EXECUTION_20260906.md`; no
+  instance remains active after them.
+- The skill's workflow is stopped at preflight; this software blocker does
+  not suspend the documentary research on the M64 interfaces.
 
-## Critère de livraison
+## Delivery criterion
 
-Publier les preuves et les échecs pour chaque cas, sans transférer les anciens
-résultats 917 à M64. La comparaison deux/quatre soupapes utilise les mêmes
-conditions imposées et tient compte des incertitudes. Aucun résultat virtuel
-ne remplace la qualification matière/procédé, l'inspection de la pièce et la
-corrélation au banc ; aucune autorisation de fabrication moteur n'est acquise.
+Publish the evidence and the failures for each case, without transferring
+the old 917 results to M64. The two/four-valve comparison uses the same
+imposed conditions and accounts for uncertainties. No virtual result replaces
+material/process qualification, inspection of the part and bench
+correlation; no engine manufacturing authorization is established.
 
-## Intégration de la pile demandée dans les photos
+## Integrating the stack requested in the photos
 
-Les logiciels ne sont pas interchangeables ni tous des solveurs. La sélection
-suivante définit leur rôle, pas une déclaration d'installation ou de réussite.
+The software packages are neither interchangeable nor all solvers. The
+following selection defines their role, not a declaration of installation or
+success.
 
-| Fonction | Briques demandées et rôle |
+| Function | Requested building blocks and role |
 | --- | --- |
-| Interfaces exactes et CAO | OCCT/OCP avec build123d, CadQuery ou FreeCAD ; conserver un maître fonctionnel éditable |
-| Géométrie de refroidissement | PicoGK/ShapeKernel ; HelixHeatX comme exemple de construction, pas modèle thermique de culasse |
-| Scan et maillage | Open3D/Trimesh/PyMeshLab/MeshFix selon défaut, Gmsh/meshio ; chaque réparation comparée à la source |
-| Gaz moteur et chaleur | OpenFOAM/ICengines et Cantera ; loi Wiebe explicitement distincte d'une combustion CFD résolue |
-| Contre-calcul | FluidX3D seulement sur un problème physique effectivement couvert et comparable ; licence d'usage à vérifier avant usage commercial |
-| Thermomécanique | CalculiX ; Code_Aster ou Elmer comme candidat indépendant selon contacts et lois matière nécessaires |
-| Fabrication | AdditiveFOAM pour le procédé local, complété par un modèle de distorsion de construction entière |
-| Inspection et rendu | OpenUSD, Omniverse/SimReady/OVRTX, ParaView/PyVista/Blender ; aucun rendu n'est une preuve de résistance |
-| Modèles réduits | PhysicsNeMo/PyTorch après obtention d'un jeu de calculs éligibles ; Qwen/vLLM n'est pas un solveur ni une autorité de validation |
-| Exécution | Docker/CI/GHCR, Kali et Vast via le wrapper OpenBao autorisé |
+| Exact interfaces and CAD | OCCT/OCP with build123d, CadQuery or FreeCAD; keep an editable functional master |
+| Cooling geometry | PicoGK/ShapeKernel; HelixHeatX as a construction example, not a thermal model of a cylinder head |
+| Scan and meshing | Open3D/Trimesh/PyMeshLab/MeshFix according to the defect, Gmsh/meshio; each repair compared with the source |
+| Engine gas and heat | OpenFOAM/ICengines and Cantera; Wiebe law explicitly distinct from a resolved CFD combustion |
+| Cross-computation | FluidX3D only on a physical problem it actually covers and that is comparable; usage license to check before commercial use |
+| Thermomechanics | CalculiX; Code_Aster or Elmer as an independent candidate depending on the contacts and material laws needed |
+| Manufacturing | AdditiveFOAM for the local process, complemented by a full-build distortion model |
+| Inspection and rendering | OpenUSD, Omniverse/SimReady/OVRTX, ParaView/PyVista/Blender; no render is evidence of strength |
+| Reduced-order models | PhysicsNeMo/PyTorch after obtaining a set of eligible computations; Qwen/vLLM is neither a solver nor a validation authority |
+| Execution | Docker/CI/GHCR, Kali and Vast through the authorized OpenBao wrapper |
 
-### Complément des deux photos : fabrication, moteur et télémétrie
+### Supplement from the two photos: manufacturing, engine and telemetry
 
-Références vérifiées le 8 septembre 2026. Les tableaux photographiés sont
-des suggestions d'architecture, pas des preuves d'intégration ou de validation.
-Leur examen ne change ni le contour conservé, ni le matériau encore à qualifier,
-ni les critères d'acceptation des calculs.
+References verified on September 8, 2026. The photographed tables are
+architecture suggestions, not evidence of integration or validation.
+Examining them changes neither the kept contour, nor the material still to
+be qualified, nor the acceptance criteria of the computations.
 
-| Brique photographiée | Rôle retenu et limite |
+| Photographed building block | Role kept and limit |
 |---|---|
-| OpenFOAM avec extensions AM | [AdditiveFOAM d'ORNL](https://github.com/ORNL/AdditiveFOAM) couvre le transport thermique et l'écoulement du procédé local. Il reste distinct de la CFD du moteur. Le [coupon actuel](M64_F58_CORRECTED_COUPON_20260908.md) est incomplet et atteint encore le limiteur de température. |
-| MOOSE | Candidat pour la distorsion globale de fabrication : [mécanique couplée au transfert thermique et aux contacts](https://mooseframework.inl.gov/modules/solid_mechanics/index.html), avec [activation d'éléments](https://mooseframework.inl.gov/source/meshmodifiers/ElementSubdomainModifier.html). Cela exige un modèle configuré : couches, supports, bridage, lois à chaud, refroidissement et retrait du plateau. Aucun cas MOOSE de culasse exécuté n'est établi ici. |
-| « PRISMA-Plasticity » | Le projet identifié est [PRISMS-Plasticity](https://github.com/prisms-center/plasticity), solveur éléments finis de plasticité continue et cristalline. C'est une correspondance probable du nom, pas certaine. Pas de nouveau solveur de microstructure retenu sans données permettant de le paramétrer. |
-| Elmer Multiphysics | [Elmer](https://github.com/ElmerCSC/elmerfem) dispose de modèles de transfert thermique et de mécanique. Il reste candidat au contre-calcul, avec mêmes charges, interfaces et lois matériau. Sa présence dans la liste n'établit pas un calcul exécuté. |
-| NVIDIA Modulus / PhysicsNeMo | [Modulus a été renommé PhysicsNeMo](https://github.com/NVIDIA/physicsnemo). Une seule famille de modèles réduits, pas deux validations indépendantes. Dans ce projet, entraîner et vérifier sur des calculs éligibles avec des cas de test séparés ; ne pas apprendre le limiteur thermique comme s'il était un phénomène réel. |
-| Eclipse Ditto et Mosquitto | [Ditto](https://eclipse.dev/ditto/intro-overview.html) gère l'état numérique des équipements ; [Mosquitto](https://mosquitto.org/) transporte les messages MQTT. À raccorder aux mesures d'un futur banc avec unités, horodatage et étalonnage. Ni solveurs physiques ni préalables à la correction CAO ; aucun capteur ni service nouvellement connecté. |
-| Marlin / Klipper et Node-RED | [Marlin](https://marlinfw.org/docs/gcode/M003.html) peut commander un laser ; [Klipper](https://www.klipper3d.org/Installation.html) est un firmware d'imprimante. Cela ne prouve aucune compatibilité avec le contrôleur d'une machine LPBF industrielle. Une intégration de télémétrie éventuelle dépendra de l'interface réellement fournie par le fabricant, pas d'un G-code présumé. |
+| OpenFOAM with AM extensions | [ORNL's AdditiveFOAM](https://github.com/ORNL/AdditiveFOAM) covers heat transport and flow of the local process. It remains distinct from the engine CFD. The [current coupon](M64_F58_CORRECTED_COUPON_20260908.md) is incomplete and still hits the temperature limiter. |
+| MOOSE | Candidate for global manufacturing distortion: [mechanics coupled to heat transfer and contacts](https://mooseframework.inl.gov/modules/solid_mechanics/index.html), with [element activation](https://mooseframework.inl.gov/source/meshmodifiers/ElementSubdomainModifier.html). This requires a configured model: layers, supports, clamping, hot laws, cooling and removal from the build plate. No executed MOOSE cylinder head case is established here. |
+| "PRISMA-Plasticity" | The identified project is [PRISMS-Plasticity](https://github.com/prisms-center/plasticity), a finite element solver for continuum and crystal plasticity. It is a probable match for the name, not a certain one. No new microstructure solver adopted without data to parameterize it. |
+| Elmer Multiphysics | [Elmer](https://github.com/ElmerCSC/elmerfem) has heat transfer and mechanics models. It remains a candidate for cross-computation, with the same loads, interfaces and material laws. Its presence in the list does not establish an executed computation. |
+| NVIDIA Modulus / PhysicsNeMo | [Modulus was renamed PhysicsNeMo](https://github.com/NVIDIA/physicsnemo). A single family of reduced-order models, not two independent validations. In this project, train and verify on eligible computations with separate test cases; do not learn the thermal limiter as if it were a real phenomenon. |
+| Eclipse Ditto and Mosquitto | [Ditto](https://eclipse.dev/ditto/intro-overview.html) manages the digital state of equipment; [Mosquitto](https://mosquitto.org/) carries MQTT messages. To be connected to the measurements of a future bench with units, timestamps and calibration. Neither physical solvers nor prerequisites for the CAD correction; no sensor or service newly connected. |
+| Marlin / Klipper and Node-RED | [Marlin](https://marlinfw.org/docs/gcode/M003.html) can drive a laser; [Klipper](https://www.klipper3d.org/Installation.html) is printer firmware. This proves no compatibility with the controller of an industrial LPBF machine. Any telemetry integration will depend on the interface actually provided by the manufacturer, not on presumed G-code. |
 
-Priorité d'exécution inchangée : géométrie et contacts contrôlés, maillages
-acceptables, calculs thermiques et mécaniques, puis procédé et comparaison.
-L'ajout d'un middleware ou d'un modèle IA ne ferme aucun de ces critères.
-Les schémas Mermaid ci-dessous décrivent la chaîne cible ; ces nouvelles pistes
-ne sont pas présentées comme des modules déjà déployés.
+Execution priority unchanged: checked geometry and contacts, acceptable
+meshes, thermal and mechanical computations, then process and comparison.
+Adding a middleware or an AI model closes none of these criteria.
+The Mermaid diagrams below describe the target chain; these new leads are
+not presented as modules already deployed.
 
-### Précision du 9 septembre : calcul, IA et banc séparés
+<a id="précision-du-9-septembre--calcul-ia-et-banc-séparés"></a>
 
-La nouvelle photo confirme les mêmes cinq briques ; elle n'impose pas une
-installation supplémentaire. Sources officielles revérifiées :
+### Clarification of September 9: computation, AI and bench kept separate
+
+The new photo confirms the same five building blocks; it does not require an
+additional installation. Official sources re-verified:
 [OpenFOAM](https://cfd.direct/openfoam/features/),
 [Elmer / CSC](https://research.csc.fi/eosc-services/elmer-3/),
 [PhysicsNeMo](https://docs.nvidia.com/physicsnemo/latest/overview.html),
-[Ditto](https://eclipse.dev/ditto/intro-overview.html) et
+[Ditto](https://eclipse.dev/ditto/intro-overview.html) and
 [Mosquitto](https://mosquitto.org/).
 
-Pour ce projet, le transfert OpenFOAM vers les éléments finis devra contrôler
-repères, unités, régions et instants : températures du solide et pressions
-appliquées, avec conservation des charges lors du changement de maillage.
-Elmer reste un contre-calcul candidat, pas un couplage déjà opérationnel.
-PhysicsNeMo pourra accélérer l'exploration après évaluation sur des cas
-indépendants ; ses prédictions resteront distinctes des résultats de référence.
+For this project, the transfer from OpenFOAM to finite elements will have to
+check frames, units, regions and time instants: solid temperatures and
+applied pressures, with conservation of loads across the change of mesh.
+Elmer remains a candidate cross-computation, not a coupling already in
+operation. PhysicsNeMo may speed up exploration after evaluation on
+independent cases; its predictions will remain distinct from the reference
+results.
 
-Ditto et Mosquitto ne sont pas sur le chemin critique de la correction CAO.
-La future acquisition devra conserver provenance, étalonnage, unités,
-horodatage et qualité des mesures ; un message rejoué ou simulé ne sera jamais
-étiqueté comme mesure de banc. Aucune connexion ni location n'est créée pour
-ces services dans ce lot. Le [point de géométrie actualisé](M64_GEOMETRY_CHECKPOINT_20260908.md)
-trace les essais et leurs limites, sans changement du contour.
+Ditto and Mosquitto are not on the critical path of the CAD correction.
+The future acquisition will have to keep provenance, calibration, units,
+timestamps and measurement quality; a replayed or simulated message will
+never be labeled as a bench measurement. No connection or rental is created
+for these services in this batch. The [updated geometry checkpoint](M64_GEOMETRY_CHECKPOINT_20260908.md)
+traces the trials and their limits, with no change of the contour.
 
 ```mermaid
 flowchart LR
-    A["CAO et maillages contrôlés"] --> B["OpenFOAM : écoulement et CHT"]
-    B -->|"Charges transférées et contrôlées"| C["Éléments finis : résistance"]
-    B --> D["Résultats de référence admissibles"]
+    A["Checked CAD and meshes"] --> B["OpenFOAM: flow and CHT"]
+    B -->|"Transferred and checked loads"| C["Finite elements: strength"]
+    B --> D["Admissible reference results"]
     C --> D
-    D --> E["PhysicsNeMo : modèle à entraîner et évaluer"]
-    F["Futur banc et acquisition qualifiée"] --> G["Mosquitto : messages MQTT"]
-    G --> H["Ditto : état de l'équipement"]
-    H --> I["Comparaison mesures / calculs"]
+    D --> E["PhysicsNeMo: model to train and evaluate"]
+    F["Future bench and qualified acquisition"] --> G["Mosquitto: MQTT messages"]
+    G --> H["Ditto: equipment state"]
+    H --> I["Measurement / computation comparison"]
     D --> I
 ```
 
-Avancement de cette reprise : voir `M64_INTERFACE_SOURCE_REGISTER.md`,
-`M64_LEAP71_STACK.md`, `M64_CHT_RUNTIME_SMOKE.md` et
-`M64_VAST_EXECUTION_20260906.md`. Les preuves de l'ancien projet 917 restent
-historiques ; elles ne sont pas renommées en preuves M64.
+Progress of this resumption: see `M64_INTERFACE_SOURCE_REGISTER.md`,
+`M64_LEAP71_STACK.md`, `M64_CHT_RUNTIME_SMOKE.md` and
+`M64_VAST_EXECUTION_20260906.md`. The evidence of the old 917 project remains
+historical; it is not renamed as M64 evidence.
 
-Vérifications de cette reprise : `make check` complet réussi, puis sept tests
-ciblés du contrat M64 réussis après ajout des pistes du manuel. Le test natif
-PicoGK linux/amd64 a été répété indépendamment sur Kali. Ces contrôles de
-logiciel et de dossier ne constituent pas une validation de la pièce.
+Checks of this resumption: full `make check` passed, then seven targeted
+tests of the M64 contract passed after adding the manual's leads. The native
+PicoGK linux/amd64 test was repeated independently on Kali. These software
+and dossier checks do not constitute a validation of the part.
 
-## Carte de la chaîne cible
+## Map of the target chain
 
-Ce schéma décrit le travail à couvrir, **pas une chaîne entièrement exécutée
-sur la culasse actuelle**. Les flèches transportent des géométries, conditions
-limites ou résultats identifiés par leur empreinte. Les bibliothèques CAO qui
-partagent Open CASCADE ne constituent pas des contre-calculs indépendants.
+This diagram describes the work to be covered, **not a chain fully executed
+on the current cylinder head**. The arrows carry geometries, boundary
+conditions or results identified by their digest. CAD libraries that share
+Open CASCADE are not independent cross-computations.
 
 ```mermaid
 graph TD
-    A["Scan, photos et dimensions sourcées"] --> B["Open3D, Trimesh<br/>PyMeshLab, MeshFix"]
-    B --> C["B-Rep et interfaces<br/>OCP, build123d, CadQuery, FreeCAD"]
-    C --> D["Variantes locales<br/>PicoGK, ShapeKernel"]
-    D --> E["Maillages et transferts<br/>Gmsh, meshio"]
-    E --> F["Écoulements et CHT<br/>OpenFOAM, ICengines, engineFoam<br/>FluidX3D sur cas comparable"]
-    E --> G["Thermique et résistance<br/>CalculiX + Code_Aster ou Elmer"]
-    E --> H["Procédé LPBF et distorsion<br/>AdditiveFOAM + modèle global"]
+    A["Scan, photos and sourced dimensions"] --> B["Open3D, Trimesh<br/>PyMeshLab, MeshFix"]
+    B --> C["B-Rep and interfaces<br/>OCP, build123d, CadQuery, FreeCAD"]
+    C --> D["Local variants<br/>PicoGK, ShapeKernel"]
+    D --> E["Meshes and transfers<br/>Gmsh, meshio"]
+    E --> F["Flow and CHT<br/>OpenFOAM, ICengines, engineFoam<br/>FluidX3D on a comparable case"]
+    E --> G["Thermal and strength<br/>CalculiX + Code_Aster or Elmer"]
+    E --> H["LPBF process and distortion<br/>AdditiveFOAM + global model"]
     I["Combustion<br/>Cantera + Wiebe"] --> F
     F --> G
-    F --> J["Résultats et incertitudes<br/>ParaView, PyVista, Blender"]
+    F --> J["Results and uncertainties<br/>ParaView, PyVista, Blender"]
     G --> J
     H --> J
-    J --> K["Modèles d'exploration<br/>PhysicsNeMo, PyTorch"]
-    K -. "propositions à recalculer" .-> D
-    J --> L["Assemblage et restitution<br/>OpenUSD, Omniverse, SimReady, OVRTX<br/>Material et Physics Agents à qualifier"]
-    M["Exécution et traçabilité<br/>Docker, CI, GHCR, Vast, OpenBao<br/>Qwen et vLLM : assistance"] -. "orchestration" .-> D
+    J --> K["Exploration models<br/>PhysicsNeMo, PyTorch"]
+    K -. "proposals to recompute" .-> D
+    J --> L["Assembly and presentation<br/>OpenUSD, Omniverse, SimReady, OVRTX<br/>Material and Physics Agents to qualify"]
+    M["Execution and traceability<br/>Docker, CI, GHCR, Vast, OpenBao<br/>Qwen and vLLM: assistance"] -. "orchestration" .-> D
     M -. "orchestration" .-> F
     M -. "orchestration" .-> H
 ```
 
-[Source Mermaid](../media/diagrams/m64-stack.mmd) ·
+[Mermaid source](../media/diagrams/m64-stack.mmd) ·
 [SVG](../media/diagrams/m64-stack.svg) · [PNG](../media/diagrams/m64-stack.png) ·
-[Scène éditable](../media/diagrams/m64-stack.excalidraw).
+[Editable scene](../media/diagrams/m64-stack.excalidraw).
 
-### Inventaire des preuves au 7 septembre 2026
+### Evidence inventory as of September 7, 2026
 
-Cet inventaire historique n'est pas le statut des nouveaux candidats du
-8 septembre : leurs empreintes et résultats distincts sont liés en tête de page.
+This historical inventory is not the status of the new candidates of
+September 8: their distinct digests and results are linked at the top of the
+page.
 
-Lecture du code, des contrats et des reçus conservés, sans nouvelle installation.
-« Intégré » ne veut pas dire « exécuté », et une exécution ne vaut pas validation.
-La géométrie actuelle est celle liée au STL `e006e148…` dans le
-[reçu PicoGK](../../twins/m64-cylinder-head/evidence/picogk-roundtrips-20260907.json).
+Reading of the code, contracts and kept receipts, with no new installation.
+"Integrated" does not mean "executed", and an execution is not a validation.
+The current geometry is the one tied to STL `e006e148…` in the
+[PicoGK receipt](../../twins/m64-cylinder-head/evidence/picogk-roundtrips-20260907.json).
 
-| Briques | État constaté et preuve | Prochaine utilisation vérifiable |
+| Building blocks | Observed state and evidence | Next verifiable use |
 |---|---|---|
-| build123d, Open CASCADE/OCP, CadQuery, FreeCAD | OCP exécuté sur le maître actuel ; autres constructeurs ou dépendances présents, sans preuve récente d'utilisation de chacun sur ce corps. [Audit CAO](M64_FOUR_SEAT_BODY_CAD_AUDIT.md). | Achever les fonctions et l'assemblage ; contrôler le STEP éditable et les reprises d'usinage. |
-| Open3D, Trimesh, PyMeshLab, MeshFix | Trimesh utilisé sur les sorties actuelles ; autres réparateurs disponibles ou utilisés historiquement. [Audit des domaines](../../twins/m64-cylinder-head/evidence/picogk-cooling-domain-mesh-audit-20260907.json). | Employer chaque réparation seulement sur un défaut identifié ; conserver le brut et les écarts. |
-| PicoGK, ShapeKernel, HelixHeatX | Trois résolutions auditées, défauts conservés et connectivité grossière exécutée ; HelixHeatX reste un exemple, pas un échangeur greffé. [Exécution réelle](M64_PICOGK_EXECUTION.md). | Traiter les micro-coques avec preuve de leur origine, affiner les fonctions des vides et générer uniquement les variantes locales admissibles. |
-| Gmsh, meshio | Générateurs/conversions intégrés ; deux maillages solides audités mais non qualifiés pour la CAE actuelle. [Audit solide](M64_SOLID_MESH_AUDIT_20260907.md). | Mailler le bon SHA avec régions et groupes physiques, puis vérifier qualité et convergence. |
-| OpenFOAM, AATE/ICengines, engineFoam | Exécutions OpenFOAM historiques, utilitaires AATE testés ; aucun cycle complet attesté sur ce corps. [F49](../../archive/917/docs/917_F49_CFD_CHT.md), [F37](../../archive/917/docs/917_F37_ICE_ENGINE_FOAM.md). | Fixer version, exécutable réellement disponible et cas moteur mobile ; ne pas créer un alias prétendant être un solveur absent. |
-| Cantera et modèle Wiebe | Cas zéro dimension historiques, pas combustion 3D de la géométrie actuelle. [Autorité des modèles](../../twins/reference-917-engine/engine-solver-authority-f46.json). | Scénarios turbo/carburant/lois de levée documentés ; comparer les modèles et transmettre les charges avec leur incertitude. |
-| FluidX3D | LBM déjà exécutée sur F36, pas sur ce corps ; désaccords anciens non résolus. [Contre-calcul historique](../../twins/reference-917-engine/evidence/f36-final-cfd-thermal/cross-solver-report.json). | Cas d'écoulement comparable, avec domaine de validité et licence compatibles. |
-| CalculiX ; Code_Aster ou Elmer | CalculiX exécuté sur d'anciens modèles ; aucune exécution Code_Aster/Elmer retrouvée. | Choisir et qualifier le second solveur sur témoins, puis comparer contacts, transferts thermiques et contraintes du même cas. |
-| AdditiveFOAM et distorsion globale | Coupon F58, témoin laser nul et trois pas temporels exécutés ; le cas actif reste plafonné. Ce n'est pas une impression de culasse. [Derniers contrôles](M64_700CH_MATERIAL_COOLING_LPBF.md). | Corriger le plafonnement artificiel, qualifier la recette, puis calculer supports, distorsion, retrait du plateau et usinage. |
-| OpenUSD, Omniverse/SimReady, OVRTX, Material/Physics Agents | Conversion du module V2 de 12 composants réussie, **sans corps** ; Material a échoué, suite physique non exécutée. [État NVIDIA](M64_AVANCEMENT_20260907.md). | Assembler corps et distribution ; résoudre les échecs de services, vérifier unités/instances et superposer les vrais champs CAE. |
-| PhysicsNeMo, PyTorch, Qwen, vLLM | Runtimes préparés/testés, pas de modèle de culasse entraîné et évalué. [Contrat IA](../../twins/reference-917-engine/physicsnemo-readiness-f52.json). | Constituer des cas admissibles ; séparer apprentissage/test, mesurer l'erreur et recalculer les variantes retenues. Qwen/vLLM assistent, sans autorité de validation. |
-| ParaView, PyVista, Blender | Rendus et coupes PyVista/VTK actuels ; code Blender et exports ParaView présents, sans reçu récent pour chaque application. | Montrer mêmes unités, géométrie, cas et échelles de couleur ; conserver des vues de coupe et animations explicitement étiquetées. |
-| Docker, CI, GHCR, Vast, OpenBao | Image Python/PicoGK publiée, calculs réels collectés ; location de reprise arrêtée et absence vérifiée. [Dernier reçu](../../twins/m64-cylinder-head/evidence/picogk-roundtrip-checkpoint-audit-20260907.json). | Un job borné par reçu, digest, budget et garde d'arrêt ; jamais de secret ni de scan propriétaire dans l'image publique. |
+| build123d, Open CASCADE/OCP, CadQuery, FreeCAD | OCP executed on the current master; other builders or dependencies present, with no recent evidence of each being used on this body. [CAD audit](M64_FOUR_SEAT_BODY_CAD_AUDIT.md). | Complete the features and the assembly; check the editable STEP and the machining operations. |
+| Open3D, Trimesh, PyMeshLab, MeshFix | Trimesh used on the current outputs; other repairers available or used historically. [Domain audit](../../twins/m64-cylinder-head/evidence/picogk-cooling-domain-mesh-audit-20260907.json). | Use each repair only on an identified defect; keep the raw data and the deviations. |
+| PicoGK, ShapeKernel, HelixHeatX | Three resolutions audited, defects kept and coarse connectivity executed; HelixHeatX remains an example, not a grafted heat exchanger. [Actual execution](M64_PICOGK_EXECUTION.md). | Treat the micro-shells with evidence of their origin, refine the void functions and generate only the admissible local variants. |
+| Gmsh, meshio | Generators/conversions integrated; two solid meshes audited but not qualified for the current CAE. [Solid audit](M64_SOLID_MESH_AUDIT_20260907.md). | Mesh the right SHA with regions and physical groups, then verify quality and convergence. |
+| OpenFOAM, AATE/ICengines, engineFoam | Historical OpenFOAM runs, AATE utilities tested; no complete cycle attested on this body. [F49](../../archive/917/docs/917_F49_CFD_CHT.md), [F37](../../archive/917/docs/917_F37_ICE_ENGINE_FOAM.md). | Fix the version, the executable actually available and the moving engine case; do not create an alias pretending to be an absent solver. |
+| Cantera and Wiebe model | Historical zero-dimensional cases, not 3D combustion of the current geometry. [Model authority](../../twins/reference-917-engine/engine-solver-authority-f46.json). | Documented turbo/fuel/lift-law scenarios; compare the models and pass on the loads with their uncertainty. |
+| FluidX3D | LBM already executed on F36, not on this body; old disagreements unresolved. [Historical cross-computation](../../twins/reference-917-engine/evidence/f36-final-cfd-thermal/cross-solver-report.json). | Comparable flow case, with compatible validity domain and license. |
+| CalculiX; Code_Aster or Elmer | CalculiX executed on old models; no Code_Aster/Elmer execution found. | Choose and qualify the second solver on witnesses, then compare contacts, heat transfers and stresses of the same case. |
+| AdditiveFOAM and global distortion | F58 coupon, zero-laser witness and three time steps executed; the active case remains capped. This is not a print of a cylinder head. [Latest checks](M64_700CH_MATERIAL_COOLING_LPBF.md). | Correct the artificial capping, qualify the recipe, then compute supports, distortion, plate removal and machining. |
+| OpenUSD, Omniverse/SimReady, OVRTX, Material/Physics Agents | Conversion of the 12-component V2 module succeeded, **without the body**; Material failed, physics suite not executed. [NVIDIA status](M64_AVANCEMENT_20260907.md). | Assemble body and valvetrain; resolve the service failures, verify units/instances and overlay the real CAE fields. |
+| PhysicsNeMo, PyTorch, Qwen, vLLM | Runtimes prepared/tested, no cylinder head model trained and evaluated. [AI contract](../../twins/reference-917-engine/physicsnemo-readiness-f52.json). | Build admissible cases; separate training/test, measure the error and recompute the variants kept. Qwen/vLLM assist, with no validation authority. |
+| ParaView, PyVista, Blender | Current PyVista/VTK renders and sections; Blender code and ParaView exports present, with no recent receipt for each application. | Show the same units, geometry, cases and color scales; keep explicitly labeled section views and animations. |
+| Docker, CI, GHCR, Vast, OpenBao | Python/PicoGK image published, real computations collected; resumption rental stopped and absence verified. [Latest receipt](../../twins/m64-cylinder-head/evidence/picogk-roundtrip-checkpoint-audit-20260907.json). | One job bounded by receipt, digest, budget and stop guard; never a secret or a proprietary scan in the public image. |
 
-Tous les noms de la photo sont suivis. Faire fonctionner plusieurs interfaces
-du même noyau ou plusieurs réparateurs sans besoin identifié ne crée pas une
-preuve supplémentaire de qualité de pièce. Les logiciels alternatifs sont
-qualifiés par un cas témoin avant de choisir le rôle de production ou de
-contre-calcul. Une exclusion doit être motivée dans le dossier, pas cachée.
+All the names in the photo are tracked. Running several interfaces to the
+same kernel, or several repairers with no identified need, does not create
+additional evidence of part quality. Alternative software is qualified on a
+witness case before choosing its production or cross-computation role. An
+exclusion must be justified in the dossier, not hidden.
 
-### Trois limites techniques à respecter
+### Three technical limits to respect
 
-- **FluidX3D** : la documentation amont limite le modèle à `Mach < 0,3` et
-  n'offre pas de réactions chimiques. Le contre-calcul visé porte donc sur un
-  écoulement couvert, pas une seconde combustion turbo complète. L'usage
-  commercial est interdit par la licence publique actuelle ; il ne sera pas
-  engagé dans ce cadre sans droits adaptés.
-  [Documentation et licence amont](https://github.com/ProjectPhysX/FluidX3D).
-- **PhysicsNeMo** : framework de modèles physiques à construire/adapter et
-  évaluer, pas modèle spécialisé qui déduit une culasse fonctionnelle de
-  photos. Le choix de modèles reste conditionné aux données et aux équations
-  du cas. [Documentation NVIDIA](https://docs.nvidia.com/physicsnemo/latest/overview.html).
-- **Omniverse et AdditiveFOAM** : l'assemblage et les champs restitués ne
-  remplacent pas la résistance/fatigue ; un calcul local de procédé ne ferme
-  pas à lui seul la distorsion de construction, la matière ni l'inspection.
-  [AdditiveFOAM, source ORNL](https://github.com/ORNL/AdditiveFOAM).
+- **FluidX3D**: the upstream documentation limits the model to `Mach < 0.3`
+  and offers no chemical reactions. The intended cross-computation therefore
+  concerns a covered flow, not a second full turbo combustion. Commercial use
+  is prohibited by the current public license; it will not be undertaken in
+  this framework without appropriate rights.
+  [Upstream documentation and license](https://github.com/ProjectPhysX/FluidX3D).
+- **PhysicsNeMo**: a framework of physical models to build/adapt and
+  evaluate, not a specialized model that deduces a working cylinder head from
+  photos. The choice of models remains conditional on the data and the
+  equations of the case. [NVIDIA documentation](https://docs.nvidia.com/physicsnemo/latest/overview.html).
+- **Omniverse and AdditiveFOAM**: the assembly and the rendered fields do not
+  replace strength/fatigue; a local process computation does not on its own
+  close build distortion, material or inspection.
+  [AdditiveFOAM, ORNL source](https://github.com/ORNL/AdditiveFOAM).
 
-## Parcours de validation et boucles de correction
+## Validation path and correction loops
 
-Les seuils d'acceptation doivent être fixés **avant** la comparaison. Même
-géométrie d'interface, mêmes scénarios et unités, mêmes conditions limites,
-bilan énergétique/efforts et incertitudes suivies pour les deux solveurs et
-les versions deux/quatre soupapes. Un accord de deux codes ne constitue pas
-une corrélation physique si les mêmes données erronées les alimentent.
+The acceptance thresholds must be fixed **before** the comparison. Same
+interface geometry, same scenarios and units, same boundary conditions,
+energy/force balance and uncertainties tracked for both solvers and for the
+two/four-valve versions. Agreement between two codes does not constitute a
+physical correlation if the same erroneous data feeds them.
 
 ```mermaid
 graph TD
-    A["1. Contrat M64 turbo<br/>interfaces, objectifs et incertitudes"] --> B["2. CAO et assemblage<br/>contour Porsche préservé"]
-    B --> C{"3. Contrôles numériques<br/>persistés et acceptés ?"}
-    C -- "non" --> B
-    C -- "oui" --> D["4. CFD et thermique couplée<br/>bilans et convergence"]
-    D --> E["5. Tenue mécanique<br/>contacts, fatigue et dilatations"]
-    E --> F["6. Procédé d'impression<br/>supports, distorsion et usinage"]
-    F --> G{"7. Dossier revu par<br/>fabricant et ingénieur ?"}
+    A["1. M64 turbo contract<br/>interfaces, objectives and uncertainties"] --> B["2. CAD and assembly<br/>Porsche contour preserved"]
+    B --> C{"3. Numerical checks<br/>persisted and accepted?"}
+    C -- "no" --> B
+    C -- "yes" --> D["4. CFD and coupled thermal<br/>balances and convergence"]
+    D --> E["5. Mechanical strength<br/>contacts, fatigue and expansion"]
+    E --> F["6. Printing process<br/>supports, distortion and machining"]
+    F --> G{"7. Dossier reviewed by<br/>manufacturer and engineer?"}
     G -- "corrections" --> B
-    G -- "prototype autorisé" --> H["8. Coupons et prototype physique<br/>matière à chaud, contrôles et métrologie"]
-    H --> I["9. Bancs et corrélation<br/>débit, température, moteur, endurance"]
-    I --> J{"10. Critères démontrés<br/>dans le domaine prévu ?"}
-    J -- "non" --> B
-    J -- "oui" --> K["Décision de mise en service<br/>documentée et limitée au domaine validé"]
+    G -- "prototype authorized" --> H["8. Coupons and physical prototype<br/>hot material, inspection and metrology"]
+    H --> I["9. Benches and correlation<br/>flow, temperature, engine, endurance"]
+    I --> J{"10. Criteria demonstrated<br/>in the intended domain?"}
+    J -- "no" --> B
+    J -- "yes" --> K["Commissioning decision<br/>documented and limited to the validated domain"]
 ```
 
-[Source Mermaid](../media/diagrams/m64-validation.mmd) ·
+[Mermaid source](../media/diagrams/m64-validation.mmd) ·
 [SVG](../media/diagrams/m64-validation.svg) · [PNG](../media/diagrams/m64-validation.png) ·
-[Scène éditable](../media/diagrams/m64-validation.excalidraw).
+[Editable scene](../media/diagrams/m64-validation.excalidraw).
 
-Le scan demeure la référence disponible : les cotes absentes ne deviennent
-pas mesurées par multiplication des photos ou des simulations. On peut
-poursuivre une conception sous hypothèses et étudier leur sensibilité ; une
-interface critique non démontrée reste explicitement non certifiée. Les
-coupons, le prototype et les bancs de la carte sont des étapes physiques à
-réaliser, pas des événements prétendument simulés avec succès.
+The scan remains the available reference: missing dimensions do not become
+measured by multiplying photos or simulations. A design can be pursued under
+assumptions and their sensitivity studied; an undemonstrated critical
+interface remains explicitly not certified. The coupons, the prototype and
+the benches on the map are physical steps to be carried out, not events
+claimed to have been simulated successfully.
 
-Avant de modifier le refroidissement : protéger les interfaces, séparer air
-extérieur et passages internes, puis comparer air seul et éventuelle assistance
-huile avec un budget de débit, pression, chaleur et puissance auxiliaire.
-Le bénéfice doit dépasser les incertitudes et rester compatible avec fatigue,
-nettoyage, dépoudrage et usinage. La forme extérieure Porsche n'est pas une
-variable libre.
+Before modifying the cooling: protect the interfaces, separate outside air
+and internal passages, then compare air only against possible oil assistance
+with a budget for flow, pressure, heat and auxiliary power.
+The benefit must exceed the uncertainties and remain compatible with
+fatigue, cleaning, depowdering and machining. The Porsche exterior shape is
+not a free variable.
 
-## Registre à conserver pour chaque exécution
+## Register to keep for each execution
 
-Chaque cas publie le rôle du logiciel, version/commit, digest d'image, empreinte
-de géométrie, unités et repère, paramètres et leur provenance, matériau et
-conditions limites, maillage, solveur, critères fixés, résultats, convergence,
-échec éventuel, durée/coût et décision. Les gros fichiers ou sources non
-redistribuables restent privés et sont liés par leur empreinte.
+Each case publishes the software's role, version/commit, image digest,
+geometry digest, units and frame, parameters and their provenance, material
+and boundary conditions, mesh, solver, fixed criteria, results, convergence,
+any failure, duration/cost and decision. Large files or non-redistributable
+sources remain private and are linked by their digest.
 
-Les statuts doivent rester distincts :
+The statuses must remain distinct:
 `planned`, `integrated`, `executed`, `numerically_verified`,
 `physically_correlated`, `manufacturing_authorized`.
-Un statut tardif ne découle jamais automatiquement du précédent.
-Les diagrammes décrivent l'architecture et les décisions ; les reçus datés
-restent l'autorité sur ce qui a réellement été exécuté.
+A later status never follows automatically from the previous one.
+The diagrams describe the architecture and the decisions; the dated receipts
+remain the authority on what was actually executed.

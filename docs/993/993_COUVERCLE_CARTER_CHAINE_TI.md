@@ -1,281 +1,299 @@
-# Couvercle de carter de chaîne `964 105 107 01` en Ti-6Al-4V
+# Chain case lid `964 105 107 01` in Ti-6Al-4V
 
-> **Correction majeure du 11 septembre 2026.** Tout ce document a d'abord comparé
-> le titane à de l'**aluminium**. C'était faux : **la pièce d'origine est en
-> magnésium coulé**, et c'est sa corrosion qui fait vivre tout le marché du
-> couvercle billet. La section « Contre la vraie matière d'origine » ci-dessous
-> refait les comptes, et elle renverse la conclusion sur la masse tout en donnant
-> au titane un argument bien plus fort que celui qu'on lui prêtait.
+> **Major correction of September 11, 2026.** This whole document first compared
+> titanium to **aluminum**. That was wrong: **the original part is cast
+> magnesium**, and it is its corrosion that keeps the whole billet-lid market
+> alive. The section "Against the real original material" below redoes the
+> numbers, and it reverses the conclusion on mass while giving titanium a much
+> stronger argument than the one it was credited with.
 
-Demande explicite. Ce document dit ce qui se calcule sans la pièce, ce qui se
-mesure en une heure, et ce qu'il faut envoyer au fraiseur.
+An explicit request. This document says what can be computed without the part,
+what can be measured in an hour, and what has to be sent to the machinist.
 
-## Identité
+```mermaid
+flowchart TD
+  L["Lid 964 105 107 01<br/>plate 103-05, position 15<br/>bolted, oil-tight"] --> P{"Process"}
+  L --> M{"Material vs the original<br/>cast magnesium"}
+  L --> E{"Differential expansion"}
+  P -->|"no additive family"| MI["Milling from plate,<br/>not a part to print"]
+  M -->|"mass"| H["Heavier than the original,<br/>whatever the thickness"]
+  M -->|"corrosion"| C["Titanium does not pit:<br/>the real argument"]
+  M -->|"Mg crankcase opposite"| G["Galvanic couple:<br/>unresolved, blocking"]
+  E -->|"0.072 mm offset"| X["Passes: 24 % of the<br/>M6 clearance, worst case 72 %"]
+  G --> S["Status functional<br/>no fitting before a recorded specimen,<br/>leak test and inner clearance"]
+  class MI,C,X ok
+  class H open
+  class G,S stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
 
-Planche d'usine `103-05 Chain case`, **position 15**, désignation `lid`.
-Trois couvercles cohabitent sur cette planche : `993 105 022 01` en position 11,
-**`964 105 107 01` en position 15**, `964 105 108 01` en position 19. Celui-ci est
-apparié au joint `964 105 181 01`, position 16 — le couvercle et son joint se
-suivent dans la nomenclature.
+*Diagram: the separate judgments of this page, restated from the text below. The missing dimensions `D03`, `D08` and `D13` still decide; the diagram adds no result and proves nothing about the physical lid.*
 
-C'est donc un couvercle boulonné **étanche à l'huile**.
+## Identity
 
-## Deux réserves, dites une fois
+Factory plate `103-05 Chain case`, **position 15**, designation `lid`. Three
+lids share this plate: `993 105 022 01` at position 11, **`964 105 107 01` at
+position 15**, `964 105 108 01` at position 19. This one is paired with the
+gasket `964 105 181 01`, position 16 — the lid and its gasket follow each other
+in the parts list.
 
-**Le titane alourdit la pièce — à géométrie égale.** 4,43 contre 2,70 g/cm³. Sur
-les hypothèses du criblage, 122 g en aluminium deviendraient 199 g en titane,
-+64 %. Mais l'épaisseur n'a aucune raison de rester égale, et c'est traité en
-détail plus bas : le couvercle **peut** être plus mince. De combien, et si cela
-suffit à le rendre plus léger, dépend entièrement de ce qui dimensionne
-l'épaisseur d'origine.
+It is therefore a bolted, **oil-tight** lid.
 
-**Ce n'est pas une pièce à imprimer.** Couvercle plan boulonné : ni passage
-interne, ni sous-ensemble à consolider, ni noyau impossible. Aucune des trois
-familles où l'additif gagne. Le **fraisage dans une plaque** est plus rapide,
-moins cher, et surtout plus précis là où ça compte, sur le plan de joint.
+## Two caveats, stated once
 
-Bonne nouvelle : cela rend la pièce accessible tout de suite, chez n'importe quel
-atelier titane.
+**Titanium makes the part heavier — at equal geometry.** 4.43 against
+2.70 g/cm³. On the screening's hypotheses, 122 g in aluminum would become 199 g
+in titanium, +64 %. But the thickness has no reason to stay equal, and that is
+treated in detail below: the lid **can** be thinner. By how much, and whether
+that is enough to make it lighter, depends entirely on what sizes the original
+thickness.
 
-## Peut-on le faire plus mince ? Oui. Assez pour gagner du poids ? Ça dépend.
+**This is not a part to print.** A flat bolted lid: no internal passage, no
+subassembly to consolidate, no impossible core. None of the three families where
+additive wins. **Milling from plate** is faster, cheaper, and above all more
+precise where it matters, on the joint face.
 
-Trois critères possibles, trois réponses différentes. Pour une épaisseur
-d'origine de 5 mm prise en hypothèse :
+Good news: that makes the part accessible right away, at any titanium shop.
 
-| critère retenu | épaisseur titane | masse vs aluminium |
+## Can it be made thinner? Yes. Enough to save weight? It depends.
+
+Three possible criteria, three different answers. For an original thickness of
+5 mm taken as a hypothesis:
+
+| criterion used | titanium thickness | mass vs aluminum |
 |---|---|---|
-| **raideur en flexion égale** — `t_ti/t_al = (E_al/E_ti)^⅓` | 85,0 % → 4,25 mm | **×1,39**, plus lourd |
-| **résistance en flexion égale** — `t_ti/t_al = √(σ_al/σ_ti)` | 46,6 % → 2,33 mm | **×0,76**, 24 % plus léger |
-| **masse égale** — `t_ti/t_al = ρ_al/ρ_ti` | 60,9 % → 3,05 mm | il ne reste que **37 %** de la raideur |
+| **equal bending stiffness** — `t_ti/t_al = (E_al/E_ti)^⅓` | 85.0 % → 4.25 mm | **×1.39**, heavier |
+| **equal bending strength** — `t_ti/t_al = √(σ_al/σ_ti)` | 46.6 % → 2.33 mm | **×0.76**, 24 % lighter |
+| **equal mass** — `t_ti/t_al = ρ_al/ρ_ti` | 60.9 % → 3.05 mm | only **37 %** of the stiffness is left |
 
-### Pourquoi ça bascule : les deux indices
+### Why it tips over: the two indices
 
-« Le titane est plus résistant, donc moins épais, donc plus léger » est **exact —
-à condition que ce soit la résistance qui dimensionne.** Pour une plaque de
-contour imposé dont on ajuste l'épaisseur, les deux cas ont chacun leur indice :
+"Titanium is stronger, so thinner, so lighter" is **correct — provided strength
+is what sizes the part.** For a plate of imposed outline whose thickness is
+adjusted, each case has its own index:
 
-| ce qui dimensionne | indice à maximiser | aluminium | titane | Ti/Al |
+| what sizes the part | index to maximize | aluminum | titanium | Ti/Al |
 |---|---|---:|---:|---:|
-| **raideur** imposée | `E^⅓ / ρ` | 1,526 | 1,095 | **0,72 — l'alu gagne** |
-| **résistance** imposée | `σ_y^½ / ρ` | 4,969 | 6,503 | **1,31 — le titane gagne** |
+| imposed **stiffness** | `E^⅓ / ρ` | 1.526 | 1.095 | **0.72 — aluminum wins** |
+| imposed **strength** | `σ_y^½ / ρ` | 4.969 | 6.503 | **1.31 — titanium wins** |
 
-La raideur d'une plaque varie en `t³`, la résistance en `t²`. Un matériau plus
-rigide se rattrape donc à la puissance ⅓, un matériau plus résistant à la
-puissance ½. Le titane n'est que **1,63×** plus rigide que l'aluminium mais
-**≈ 4,6×** plus résistant : il perd le premier arbitrage et gagne largement le
-second.
+A plate's stiffness varies as `t³`, its strength as `t²`. A stiffer material
+therefore catches up at the power ⅓, a stronger material at the power ½.
+Titanium is only **1.63×** stiffer than aluminum but **≈ 4.6×** stronger: it
+loses the first trade-off and wins the second by a wide margin.
 
-Détail qui surprend : en traction pure, `E/ρ` vaut 25,9 pour l'aluminium et 25,7
-pour le titane — ils sont **équivalents**. Ce n'est qu'en flexion de plaque, où
-l'exposant tombe à ⅓, que l'aluminium prend l'avantage.
+A surprising detail: in pure tension, `E/ρ` is 25.9 for aluminum and 25.7 for
+titanium — they are **equivalent**. Only in plate bending, where the exponent
+drops to ⅓, does aluminum take the advantage.
 
-### Et pour ce couvercle-ci, quatre indices convergent
+### And for this particular lid, four clues converge
 
-| observation | ce qu'elle dit |
+| observation | what it says |
 |---|---|
-| serrage **9,7 Nm** | faible effort de serrage → faible réaction de joint → faible demande de flexion |
-| visserie **M6** | petites vis, donc probablement nombreuses et rapprochées ; la flèche varie en `L⁴` sur l'entraxe, et des spans courts l'annulent |
-| pression interne de carter | quelques centaines de millibars : négligeable |
-| pièce de **fonderie** | épaisseur portée par la paroi minimale coulable et la dépouille |
+| tightening torque **9.7 Nm** | low clamping force → low gasket reaction → low bending demand |
+| **M6** fasteners | small bolts, so probably many and closely spaced; deflection varies as `L⁴` over the spacing, and short spans cancel it |
+| internal crankcase pressure | a few hundred millibar: negligible |
+| **cast** part | thickness driven by the minimum castable wall and the draft |
 
-Conclusion honnête : il est **probable que ni la raideur ni la résistance ne
-dimensionnent ce couvercle** — c'est la fonderie qui le fait. Dans ce cas la
-contrainte disparaît, un couvercle titane fraisé peut simplement être fait mince,
-et il sera plus léger.
+Honest conclusion: it is **likely that neither stiffness nor strength sizes this
+lid** — the foundry does. In that case the constraint disappears, a milled
+titanium lid can simply be made thin, and it will be lighter.
 
-Ce n'est pas démontré. Il manque `D03` (l'épaisseur d'origine) et `D08`
-(l'entraxe, qui pilote la flèche en puissance 4). Mais les quatre indices pointent
-dans le même sens, et aucun ne pointe dans l'autre.
+This is not demonstrated. `D03` (the original thickness) and `D08` (the bolt
+spacing, which drives deflection to the 4th power) are missing. But the four
+clues point the same way, and none points the other way.
 
-**Et il existe un troisième cas, le plus probable ici.** L'épaisseur d'une pièce
-de fonderie n'est souvent dictée ni par la raideur ni par la résistance, mais par
-la fonderie elle-même : paroi minimale coulable, dépouille, remplissage. Une
-pièce fraisée n'a aucune de ces contraintes. Dans ce cas le titane peut être plus
-mince que la fonte **et** rester plus raide qu'il ne faut.
+**And there is a third case, the most likely one here.** The thickness of a cast
+part is often dictated neither by stiffness nor by strength, but by the foundry
+itself: minimum castable wall, draft, filling. A milled part has none of these
+constraints. In that case titanium can be thinner than the casting **and** stay
+stiffer than required.
 
-### Contre la vraie matière d'origine : le magnésium
+### Against the real original material: magnesium
 
-| indice | magnésium (origine) | aluminium billet (rechange) | titane |
+| index | magnesium (original) | billet aluminum (replacement) | titanium |
 |---|---:|---:|---:|
-| raideur imposée `E^⅓/ρ` | **1,965** | 1,526 | 1,095 |
-| résistance imposée `σ_y^½/ρ` | **6,988** | 4,969 | 6,503 |
+| imposed stiffness `E^⅓/ρ` | **1.965** | 1.526 | 1.095 |
+| imposed strength `σ_y^½/ρ` | **6.988** | 4.969 | 6.503 |
 
-Le titane est **2,45× plus dense** que le magnésium. Il perd l'arbitrage de
-raideur très largement — et il perd **aussi** celui de résistance, de peu.
+Titanium is **2.45× denser** than magnesium. It loses the stiffness trade-off by
+a very wide margin — and it **also** loses the strength one, narrowly.
 
-Donc : « plus résistant donc moins épais donc plus léger » est exact contre
-l'aluminium, et **faux contre le magnésium**. Sa densité est trop basse pour être
-rattrapée, même par un matériau 5× plus résistant. Un couvercle titane sera plus
-lourd que l'origine, quelle que soit l'épaisseur retenue.
+So: "stronger so thinner so lighter" is correct against aluminum, and **wrong
+against magnesium**. Its density is too low to be caught up, even by a material
+5× stronger. A titanium lid will be heavier than the original, whatever
+thickness is chosen.
 
-### Mais le titane gagne ailleurs, et c'est plus fort
+### But titanium wins elsewhere, and that is stronger
 
-Le mode de défaillance de la pièce d'origine est la **corrosion** : le magnésium
-se pique sur ses portées d'étanchéité, et aucun joint n'étanche contre une portée
-piquée. C'est exactement le deuxième critère de `TITANIUM.md` — « corrosion
-problématique **avec la matière d'origine** » — et il est ici au cœur du sujet.
+The failure mode of the original part is **corrosion**: magnesium pits on its
+sealing faces, and no gasket seals against a pitted face. That is exactly the
+second criterion of `TITANIUM.md` — "problematic corrosion **with the original
+material**" — and here it is at the heart of the matter.
 
-Un couvercle titane ne se pique pas. Jamais. C'est le seul vrai argument, et il
-vaut mieux que celui de la masse qu'on lui prêtait.
+A titanium lid does not pit. Ever. That is the only real argument, and it is
+worth more than the mass argument it was credited with.
 
-### L'obstacle qui reste, et il est sérieux
+### The obstacle that remains, and it is serious
 
-Le couvercle se boulonne sur un carter **lui aussi en magnésium**. Le magnésium
-est le plus anodique des métaux de structure, le titane l'un des plus
-cathodiques : c'est **le couple le plus défavorable de la grille**, et
-`TITANIUM.md` nomme explicitement le magnésium.
+The lid bolts onto a crankcase **that is also magnesium**. Magnesium is the most
+anodic of the structural metals, titanium one of the most cathodic: it is **the
+least favorable couple in the grid**, and `TITANIUM.md` explicitly names
+magnesium.
 
-Le joint isole les portées. Il n'isole ni la visserie, ni les chemins d'humidité.
-Un couvercle titane pourrait donc protéger sa propre portée **tout en aggravant
-l'attaque du carter en face** — c'est-à-dire déplacer le problème sur la pièce
-qu'on ne peut pas remplacer.
+The gasket insulates the faces. It insulates neither the fasteners nor the
+moisture paths. A titanium lid could therefore protect its own face **while
+worsening the attack on the crankcase opposite** — that is, move the problem
+onto the part that cannot be replaced.
 
-C'est non résolu, et le criblage le compte comme bloquant.
+This is unresolved, and the screening counts it as blocking.
 
-**C'est aussi pourquoi le marché vend de l'aluminium anodisé** : assez résistant à
-la corrosion pour régler le problème, assez proche du magnésium pour que le
-couple reste doux, et plus léger que le titane.
+**It is also why the market sells anodized aluminum**: corrosion-resistant
+enough to solve the problem, close enough to magnesium for the couple to stay
+mild, and lighter than titanium.
 
-### Le seuil décidable
+### The decidable threshold
 
-On peut aller plus loin qu'« ça dépend ». Le titane usiné **à la raideur
-strictement nécessaire** est plus léger que la fonte dès que celle-ci porte
+One can go further than "it depends". Titanium machined **to the strictly
+necessary stiffness** is lighter than the casting as soon as the casting carries
 
-> **≈ 39 % d'épaisseur de plus que sa propre exigence de raideur.**
+> **≈ 39 % more thickness than its own stiffness requirement.**
 
-Formellement : titane gagnant ⟺ `t_requis / t_coulé < ρ_al / (ρ_ti · 0,851) = 0,717`.
+Formally: titanium wins ⟺ `t_required / t_cast < ρ_al / (ρ_ti · 0.851) = 0.717`.
 
-Sur une pièce de fonderie — paroi minimale coulable, dépouille, remplissage —
-39 % de gras n'est pas une hypothèse extravagante. C'est le cas courant.
+On a cast part — minimum castable wall, draft, filling — 39 % of excess is not
+an extravagant hypothesis. It is the common case.
 
-**Et ça se teste pour presque rien.** LN Engineering usine ce même couvercle dans
-du 6061 massif, *sans aucune contrainte de fonderie*. Son épaisseur, comparée à
-celle de la pièce d'origine, mesure directement le gras. Deux cotes, et la
-question est tranchée.
+**And it can be tested for almost nothing.** LN Engineering machines this same
+lid from solid 6061, *without any casting constraint*. Its thickness, compared
+with that of the original part, directly measures the excess. Two dimensions,
+and the question is settled.
 
-### Ce que le couple de serrage ajoute
+### What the tightening torque adds
 
-Le manuel serre ce couvercle à **9,7 Nm sur du M6**. C'est peu. Un faible couple
-veut dire un faible effort de serrage, donc une faible réaction de joint, donc
-une faible demande de flexion sur le couvercle. Ajouté à une pression interne de
-carter qui se compte en centaines de millibars, cela dit que **la pièce ne
-travaille quasiment pas**.
+The manual tightens this lid to **9.7 Nm on M6**. That is little. A low torque
+means a low clamping force, hence a low gasket reaction, hence a low bending
+demand on the lid. Added to an internal crankcase pressure counted in hundreds
+of millibar, it says that **the part does almost no work**.
 
-Ce n'est pas une preuve, mais cela pointe dans la même direction : l'épaisseur
-d'origine n'est probablement dictée ni par la raideur ni par la résistance, mais
-par la fonderie. Et c'est le cas où le titane gagne.
+This is not a proof, but it points in the same direction: the original thickness
+is probably dictated neither by stiffness nor by strength, but by the foundry.
+And that is the case where titanium wins.
 
-C'est la mesure et l'œil qui trancheront : une épaisseur uniforme généreuse avec
-de larges congés trahit la fonderie ; des zones minces et des nervures trahissent
-un dimensionnement. `D03` reste la cote qui décide du poids final.
+Measurement and the eye will decide: a generous uniform thickness with wide
+fillets betrays the foundry; thin zones and ribs betray a sizing. `D03` remains
+the dimension that decides the final weight.
 
-Une réserve tient, en revanche : amincir réduit la raideur entre vis, donc la
-tenue du plan de joint. Sur un couvercle étanche à l'huile, c'est la contrainte
-qui borne l'exercice, et elle se vérifie après relevé des entraxes.
+One caveat does hold, however: thinning reduces stiffness between bolts, and
+therefore the integrity of the joint face. On an oil-tight lid, that is the
+constraint that bounds the exercise, and it is checked once the bolt spacings
+have been recorded.
 
-## Ce que le calcul tranche déjà, sans la pièce
+## What the calculation already settles, without the part
 
-C'est le point qui distingue ce couvercle du carter entier, où le titane avait
-été refusé.
+This is the point that sets this lid apart from the whole case, where titanium
+had been refused.
 
-**La dilatation différentielle tient, et largement.** Ce calcul a été refait le
-11 septembre 2026 : la première version comparait la dilatation d'une portée
-entière à un jeu radial, ce qui surestimait le problème d'un facteur deux, et
-supposait de la visserie M8 alors que le manuel serre ce couvercle à 9,7 Nm,
-c'est-à-dire du M6.
+**Differential expansion holds, and by a wide margin.** This calculation was
+redone on September 11, 2026: the first version compared the expansion of an
+entire face to a radial clearance, which overstated the problem by a factor of
+two, and assumed M8 fasteners whereas the manual tightens this lid to 9.7 Nm,
+that is, M6.
 
-Ce qui doit tenir dans le jeu n'est pas la dilatation des pièces, c'est leur
-**écart au perçage le plus éloigné du point fixe** : `δ = r · (α_al − α_ti) · ΔT`.
+What must fit within the clearance is not the expansion of the parts, it is
+their **offset at the hole farthest from the fixed point**:
+`δ = r · (α_al − α_ti) · ΔT`.
 
-| grandeur | valeur |
+| quantity | value |
 |---|---|
-| portée extrême supposée | 100 mm |
-| point fixe | centre du semis de vis → `r` = 50 mm |
-| écart de température supposé | 100 K |
-| **écart relatif au pire perçage** | **0,072 mm** |
-| jeu radial, M6 dans perçage Ø6,6 | 0,300 mm |
-| **marge** | **+0,228 mm — le jeu n'est utilisé qu'à 24 %** |
+| assumed extreme span | 100 mm |
+| fixed point | center of the bolt pattern → `r` = 50 mm |
+| assumed temperature difference | 100 K |
+| **relative offset at the worst hole** | **0.072 mm** |
+| radial clearance, M6 in a Ø6.6 hole | 0.300 mm |
+| **margin** | **+0.228 mm — only 24 % of the clearance is used** |
 
-Et la sensibilité, parce qu'une marge sans sensibilité ne vaut rien :
+And the sensitivity, because a margin without sensitivity is worthless:
 
-| point fixe | Ø6,4 | Ø6,6 | Ø7,0 |
+| fixed point | Ø6.4 | Ø6.6 | Ø7.0 |
 |---|---|---|---|
-| centre du semis | 36 % | **24 %** | 14 % |
-| douille de centrage en bord | 72 % | 48 % | 29 % |
+| center of the pattern | 36 % | **24 %** | 14 % |
+| locating dowel at the edge | 72 % | 48 % | 29 % |
 
-Ça passe dans les six cas. Le pire — centrage par douille et perçage fin — utilise
-72 % du jeu, et c'est celui à surveiller : la planche 103-05 porte justement une
-douille de centrage, `993 105 175 00`. Si elle tient ce couvercle, le point fixe
-n'est plus le centre du semis et le rayon défavorable double.
+It passes in all six cases. The worst — dowel location and a tight hole — uses
+72 % of the clearance, and it is the one to watch: plate 103-05 does carry a
+locating dowel, `993 105 175 00`. If it holds this lid, the fixed point is no
+longer the center of the pattern and the unfavorable radius doubles.
 
-**Une réserve de méthode.** Tout ceci suppose les vis centrées dans leurs
-perçages au montage à froid. Une vis déjà en appui du mauvais côté n'aurait aucun
-jeu : la moitié de la marge affichée est une tolérance de montage, pas une
-réserve de calcul.
+**A caveat of method.** All of this assumes the bolts centered in their holes at
+cold assembly. A bolt already bearing on the wrong side would have no clearance:
+half of the displayed margin is an assembly tolerance, not a calculation reserve.
 
-C'est exactement pourquoi le carter entier, lui, est refusé : sur une portée de
-500 mm centrée par une douille, l'écart atteint 0,72 mm et aucun perçage courant
-ne l'absorbe.
+This is exactly why the whole case, for its part, is refused: over a 500 mm span
+located by a dowel, the offset reaches 0.72 mm and no common hole absorbs it.
 
-**Le couple galvanique est déjà traité par la nomenclature.** Le joint
-`964 105 181 01` sépare les deux métaux sur tout le plan de joint. L'isolation
-principale existe donc déjà. Restent deux chemins : la visserie, si elle touche
-les deux pièces, et la face extérieure exposée à l'humidité. Rondelles ou
-douilles isolantes, pâte anti-grippage, anodisation du couvercle.
+**The galvanic couple is already handled by the parts list.** The gasket
+`964 105 181 01` separates the two metals over the whole joint face. The main
+insulation therefore already exists. Two paths remain: the fasteners, if they
+touch both parts, and the outer face exposed to moisture. Insulating washers or
+sleeves, anti-seize paste, anodizing of the lid.
 
-## Ce qu'il faut mesurer — une heure, un pied à coulisse
+## What to measure — one hour, one caliper
 
-Le couvercle déposé, à plat sur un marbre ou une vitre. Repère : le coin ou le
-perçage le plus éloigné, à déclarer une fois et à garder pour toutes les cotes.
+The lid removed, flat on a surface plate or a pane of glass. Datum: the farthest
+corner or hole, declared once and kept for all dimensions.
 
-| id | cote | comment |
+| id | dimension | how |
 |---|---|---|
-| D01 | contour, longueur | au pied à coulisse, deux fois, dans l'axe long |
-| D02 | contour, largeur | idem, perpendiculaire |
-| D03 | épaisseur au plan de joint | trois points répartis |
-| D04 | épaisseur hors tout si le couvercle est bombé | au sommet |
-| D05 | décalage du bombé par rapport au plan de joint | réglet + cale |
-| D06 | diamètre des perçages de fixation | trois perçages différents |
-| D07 | nombre de perçages | comptage |
-| D08 | entraxes perçage à perçage | **tous**, de proche en proche, plus les deux diagonales extrêmes |
-| D09 | largeur de la portée de joint | pied à coulisse |
-| D10 | épaisseur du joint neuf, non comprimé | sur le joint `964 105 181 01` |
-| D11 | centrage : diamètre et position de tout goujon, pion ou épaulement | |
-| D12 | rayons d'arête | jeu de rayons ou empreinte |
-| D13 | jeu intérieur au couvercle vis-à-vis de la chaîne et du tendeur | **critique** : le couvercle ne doit rien toucher |
+| D01 | outline, length | with the caliper, twice, along the long axis |
+| D02 | outline, width | same, perpendicular |
+| D03 | thickness at the joint face | three spread-out points |
+| D04 | overall thickness if the lid is domed | at the top |
+| D05 | offset of the dome from the joint face | rule + shim |
+| D06 | diameter of the fixing holes | three different holes |
+| D07 | number of holes | count |
+| D08 | hole-to-hole spacings | **all of them**, one after the other, plus the two extreme diagonals |
+| D09 | width of the gasket face | caliper |
+| D10 | thickness of the new, uncompressed gasket | on the gasket `964 105 181 01` |
+| D11 | location: diameter and position of any stud, dowel or shoulder | |
+| D12 | edge radii | radius gauge set or impression |
+| D13 | inner clearance of the lid to the chain and tensioner | **critical**: the lid must touch nothing |
 
-D08 et D13 sont les deux qui décident. D08 valide ou invalide la marge de
-dilatation calculée plus haut. D13 est la seule qui ne se rattrape pas.
+D08 and D13 are the two that decide. D08 validates or invalidates the expansion
+margin computed above. D13 is the only one that cannot be recovered.
 
-Le dépôt a l'outil de capture :
+The repository has the capture tool:
 
 ```bash
 python3 scripts/capture_caliper.py \
   --record catalog/measurements/meas-993-chain-case-lid.json \
-  --dimension D08 --description "Entraxe percage 1 vers percage 2" \
+  --dimension D08 --description "Center distance hole 1 to hole 2" \
   --manual --values 62.10,62.08,62.11
 ```
 
-## Ce qui part chez le fraiseur
+## What goes to the machinist
 
-- plaque **Ti-6Al-4V Grade 5**, ASTM B265, certificat matière ;
-- fraisage du contour, des perçages et du plan de joint ;
-- **planéité tenue sur le plan de joint** — c'est la cote fonctionnelle, à fixer
-  après relevé ;
-- cassage d'arêtes ;
-- finition : microbillage, ou anodisation titane si la couleur est recherchée —
-  l'anodisation du titane est interférentielle, sans épaisseur notable, donc
-  sans effet sur l'ajustement ;
-- contrôle dimensionnel du contour, des entraxes et des perçages.
+- **Ti-6Al-4V Grade 5** plate, ASTM B265, material certificate;
+- milling of the outline, the holes and the joint face;
+- **flatness held on the joint face** — this is the functional dimension, to be
+  set after the dimensions are recorded;
+- edge breaking;
+- finish: bead blasting, or titanium anodizing if the color is wanted —
+  titanium anodizing is interferential, with no significant thickness, so no
+  effect on the fit;
+- dimensional inspection of the outline, the spacings and the holes.
 
-Garder la visserie d'origine en acier, avec pâte anti-grippage. Le titane grippe
-sur lui-même ; contre de l'acier avec pâte, c'est maîtrisé.
+Keep the original steel fasteners, with anti-seize paste. Titanium galls on
+itself; against steel with paste, it is under control.
 
-## Statut
+## Status
 
-`functional`, pas `non_critical` : la pièce retient de l'huile, et sur un moteur
-refroidi par air une fuite a des voisins chauds. Rien n'est autorisé au montage
-avant relevé d'un exemplaire, essai d'étanchéité et contrôle du jeu intérieur.
+`functional`, not `non_critical`: the part retains oil, and on an air-cooled
+engine a leak has hot neighbors. Nothing is authorized for fitting before a
+specimen has been recorded, a leak test performed and the inner clearance
+checked.
 
 ## Reproduction
 
@@ -284,70 +302,69 @@ python3 parts/993-eng-chain-case-lid-ti-f0-0001/source/chain_case_lid_screen.py 
   --report parts/993-eng-chain-case-lid-ti-f0-0001/evidence/parametric-screen.json
 ```
 
-Une fois les cotes relevées, le même script les prend en arguments et le rapport
-cesse d'être une hypothèse :
+Once the dimensions are recorded, the same script takes them as arguments and
+the report stops being a hypothesis:
 
 ```bash
 python3 parts/993-eng-chain-case-lid-ti-f0-0001/source/chain_case_lid_screen.py \
   --bolt-circle-mm <D08 max> --plan-area-cm2 <D01xD02> --thickness-mm <D03> \
-  --bolt-diameter-mm <vis> --clearance-hole-mm <D06> --measured \
+  --bolt-diameter-mm <bolt> --clearance-hole-mm <D06> --measured \
   --report parts/993-eng-chain-case-lid-ti-f0-0001/evidence/parametric-screen.json
 ```
 
-## Sans accès à la pièce — 11 septembre 2026
+## Without access to the part — September 11, 2026
 
-Le plan de mesure ci-dessus suppose le couvercle en main. Sans accès aux pièces,
-la question devient : **les cotes sont-elles trouvables en ligne ?**
+The measurement plan above assumes the lid in hand. Without access to the parts,
+the question becomes: **can the dimensions be found online?**
 
-Réponse : **non**, et la recherche a quand même rapporté plus que des cotes.
+Answer: **no**, and the search still brought back more than dimensions.
 
-### Ce que le marché établit
+### What the market establishes
 
-Deux reproducteurs indépendants fabriquent ce couvercle.
+Two independent reproducers make this lid.
 
-**LN Engineering** usine des couvercles billet en **aluminium 6061**, donnés
-comme remplacement direct de `96410510801` (droite) et **`96410510701`
-(gauche)**, conçus pour reprendre la visserie et le joint d'origine
-`96410518101`. **Auto-Service Schefter** usine un jeu gauche et droite en CNC,
-585 € le jeu.
+**LN Engineering** machines billet lids in **6061 aluminum**, given as a direct
+replacement for `96410510801` (right) and **`96410510701` (left)**, designed to
+reuse the original fasteners and gasket `96410518101`. **Auto-Service Schefter**
+CNC-machines a left and right set, €585 per set.
 
-Trois choses en découlent, et aucune n'est mince :
+Three things follow, and none is slight:
 
-1. `964 105 107 01` est bien le couvercle **gauche**, apparié au joint
-   `964 105 181 01` — confirmé par une source indépendante du catalogue ;
-2. la pièce **se reproduit par usinage dans la masse**. Ce n'était jusqu'ici
-   qu'un raisonnement de ma part ; c'est maintenant ce que fait le marché ;
-3. les deux reproducteurs ont choisi **l'aluminium**. Le titane est donc un
-   écart assumé par rapport à ce que deux professionnels ont jugé juste.
+1. `964 105 107 01` is indeed the **left** lid, paired with the gasket
+   `964 105 181 01` — confirmed by a source independent of the catalogue;
+2. the part **is reproduced by machining from solid**. Until now this was only
+   reasoning on my part; it is now what the market does;
+3. both reproducers chose **aluminum**. Titanium is therefore a deliberate
+   departure from what two professionals judged right.
 
-Ce qu'aucun des deux ne publie : **la moindre cote**. Ni épaisseur, ni contour,
-ni entraxe, ni nombre de vis.
+What neither of them publishes: **a single dimension**. No thickness, no
+outline, no spacing, no bolt count.
 
-Le manuel d'atelier apporte en revanche une donnée réelle : **« Chain housing
-cover : 9,7 Nm »**. Un tel couple situe la visserie en **M6**, pas en M8. La
-marge de dilatation calculée plus haut, qui supposait du M8 dans un perçage
-Ø8,4, est donc à refaire une fois le perçage connu.
+The workshop manual, on the other hand, provides one real data point: **"Chain
+housing cover: 9.7 Nm"**. Such a torque puts the fasteners at **M6**, not M8.
+The expansion margin computed above, which assumed M8 in a Ø8.4 hole, therefore
+has to be redone once the hole is known.
 
-### Ce qui débloque réellement, et ça ne demande pas la voiture
+### What really unblocks it, and it does not need the car
 
-La bonne question n'est pas « où trouver les cotes » mais **« quel est l'objet le
-moins cher qui les porte »**.
+The right question is not "where to find the dimensions" but **"what is the
+cheapest object that carries them"**.
 
-| objet | ce qu'il donne | ordre de prix |
+| object | what it gives | price range |
 |---|---|---|
-| **le joint `964 105 181 01`** | contour d'étanchéité, entraxes, nombre et diamètre des perçages, largeur de portée | **~13 $** (Victor Reinz 70-29108-00, Elring 471.200) |
-| **un couvercle d'occasion** | tout, épaisseur et dégagement intérieur compris | quelques dizaines d'euros chez un casseur de pièces 964 |
+| **the gasket `964 105 181 01`** | sealing outline, spacings, number and diameter of holes, face width | **~$13** (Victor Reinz 70-29108-00, Elring 471.200) |
+| **a used lid** | everything, including thickness and inner clearance | a few tens of euros from a 964 parts breaker |
 
-Le joint arrive dans une enveloppe et donne à lui seul les deux cotes qui
-décidaient, `D08` les entraxes et le contour. Un couvercle d'occasion donne en
-plus `D03` l'épaisseur — celle qui dira si l'on peut amincir et donc gagner du
-poids — et `D13` le dégagement intérieur, la seule cote qui ne se rattrape pas.
+The gasket arrives in an envelope and on its own gives the two dimensions that
+decided, `D08` the spacings, and the outline. A used lid additionally gives
+`D03` the thickness — the one that will say whether it can be thinned and so
+save weight — and `D13` the inner clearance, the only dimension that cannot be
+recovered.
 
-**Aucun des deux ne demande d'accéder à une voiture.** C'est du courrier.
+**Neither requires access to a car.** It is mail.
 
-### Ce qu'il ne faut pas faire
+### What must not be done
 
-Reconstruire les cotes depuis des photos de vente. `SOURCE_POLICY.md` est
-explicite : une capture sans échelle n'est pas une mesure. Une pièce étanche à
-l'huile dont le plan de joint viendrait d'une photo redimensionnée ne fuirait pas
-un peu, elle fuirait.
+Rebuild the dimensions from sales photos. `SOURCE_POLICY.md` is explicit: a
+screenshot without scale is not a measurement. An oil-tight part whose joint
+face came from a rescaled photo would not leak a little, it would leak.

@@ -1,285 +1,284 @@
-# Programme monocoque carbone 964/993 — definition
+# 964/993 carbon monocoque programme — definition
 
-Statut : **definition de programme**. Ce document ne contient aucune geometrie et
-n'en autorise aucune. Il dit ce qu'il faut etablir, dans quel ordre, et ce qui
-bloque aujourd'hui.
+Status: **programme definition**. This document contains no geometry and
+authorizes none. It states what has to be established, in what order, and what
+is blocking today.
 
-Objectif vise : un monocoque carbone de remplacement pour restomod 964 et 993,
-alternative a l'offre `SRC-ZESAD-CARBON-MONOCOQUE-964-993`, industrialise en
-Chine.
+Target: a replacement carbon monocoque for 964 and 993 restomods, an
+alternative to the `SRC-ZESAD-CARBON-MONOCOQUE-964-993` offering, industrialized
+in China.
 
-Cet objectif **contredit le perimetre ecrit** de `ROADMAP.md`, qui classe le
-remplacement de la structure autoportante en « hors perimetre initial ». Le
-perimetre est une decision du proprietaire du projet, pas une conclusion
-technique ; il doit etre modifie explicitement si ce programme est retenu, et non
-contourne en silence. Les portes de `SAFETY.md` et `QUALITY_GATES.md`, elles, ne
-sont pas des choix de perimetre : voir la section « Portes de securite ».
+This target **contradicts the written scope** of `ROADMAP.md`, which classifies
+replacing the unibody structure as "initially out of scope". Scope is a
+decision of the project owner, not a technical conclusion; it must be changed
+explicitly if this programme is adopted, not bypassed silently. The gates in
+`SAFETY.md` and `QUALITY_GATES.md`, on the other hand, are not scope choices:
+see the "Safety gates" section.
 
-## 1. L'axe de differenciation est documentaire, pas materiel
+## 1. The axis of differentiation is documentary, not material
 
-La fiche ZESAD annonce un monocoque carbone preimpregne cuit en autoclave, en
-deux configurations, de 129 990 a 219 990 EUR. Elle **ne publie ni masse, ni
-raideur en torsion, ni essai de choc, ni homologation, ni partenaire
-d'ingenierie, ni sequence de drapage, ni materiau d'ame**. Le site de la societe
-non plus.
+The ZESAD record advertises an autoclave-cured prepreg carbon monocoque, in two
+configurations, from 129,990 to 219,990 EUR. It **publishes no mass, no
+torsional stiffness, no crash test, no homologation, no engineering partner, no
+layup sequence and no core material**. Neither does the company's website.
 
-C'est la faiblesse exploitable, et elle est structurelle : pour une piece qui
-porte la retenue des occupants, l'absence de donnee publiee **est** le defaut du
-produit. Un concurrent qui publie masse, raideur mesuree, protocole, essais et
-voie d'homologation se differencie sur le seul axe ou l'offre en place est nue,
-et le fait sans avoir a etre moins cher.
+That is the exploitable weakness, and it is structural: for a part that carries
+occupant restraint, the absence of published data **is** the product's defect.
+A competitor that publishes mass, measured stiffness, protocol, tests and
+homologation route differentiates itself on the one axis where the incumbent
+offering is bare, and does so without having to be cheaper.
 
-Ce depot est deja outille pour exactement cela : fiches sourcees, niveaux de
-preuve, portes qualite, refus documente d'affirmer au-dela des preuves. **La
-methode du depot est le produit.** C'est un avantage reel et il ne se copie pas
-vite.
+This repository is already equipped for exactly that: sourced records, evidence
+levels, quality gates, a documented refusal to claim beyond the evidence. **The
+repository's method is the product.** That is a real advantage and it is not
+copied quickly.
 
-Consequence de conception : tout ce qui suit est organise pour produire des
-preuves publiables, pas seulement une piece.
+Design consequence: everything that follows is organized to produce publishable
+evidence, not just a part.
 
-## 2. Ce que le depot a deja etabli, et qui porte sur le produit
+## 2. What the repository has already established that bears on the product
 
-Trois resultats acquis (voir `twins/964-chassis/fea/README.md`) commandent
-l'architecture. Ils sont **relatifs**, donc valides malgre des sections `ASSUMED`.
+Three established results (see `twins/964-chassis/fea/README.md`) drive the
+architecture. They are **relative**, and therefore valid despite `ASSUMED`
+sections.
 
-**Le carbone est le levier faible.** A masse egale, passer au carbone quasi-
-isotrope vaut x 1,25 en raideur specifique. Fermer le caisson vaut x 1,51. Les
-deux se multiplient. Un monocoque ne gagne pas parce qu'il est en carbone : il
-gagne parce qu'il obtient les fermetures **par construction**, en une piece, sans
-les compromis d'assemblage d'une caisse en tole soudee.
+**Carbon is the weak lever.** At equal mass, switching to quasi-isotropic carbon
+is worth x 1.25 in specific stiffness. Closing the box section is worth x 1.51.
+The two multiply. A monocoque does not win because it is carbon: it wins because
+it gets the closures **by construction**, in one piece, without the assembly
+compromises of a welded sheet-steel body shell.
 
-**La fermeture des anneaux domine tout.** Du plancher nu a une cellule fermee,
-K x 3,7. Le classement ne suit pas la masse : le cadre de pare-brise, 1,1 kg,
-rapporte 172 a 191 fois plus au kilo que le pavillon, 10,5 kg. Les pieds milieu
-et brancards, ajoutes seuls sans rien pour fermer a l'avant, rapportent zero pour
-7,5 kg. Verifie a trois finesses de maillage.
+**Ring closure dominates everything.** From the bare floor pan to a closed cell,
+K x 3.7. The ranking does not follow mass: the windshield frame, 1.1 kg,
+returns 172 to 191 times more per kilogram than the roof, 10.5 kg. The
+B-pillars and sills, added alone with nothing to close the front, return zero
+for 7.5 kg. Verified at three mesh densities.
 
-**Corollaire produit, et lecture de l'offre concurrente.** ZESAD vend une
-configuration « monocoque avec cadre de baie en acier ». Notre propre calcul dit
-que le cadre de baie est l'element le plus rentable de toute la caisse. Mettre de
-l'acier precisement la est donc defendable, et probablement pas un compromis
-esthetique : c'est l'anneau le plus charge, celui ou un composite stratifie tient
-le moins bien les efforts concentres et le collage du vitrage. **Hypothese, a
-verifier** — la fiche ne dit pas pourquoi cette option existe.
+**Product corollary, and a reading of the competing offering.** ZESAD sells a
+"monocoque with steel windshield frame" configuration. Our own calculation says
+the windshield frame is the most cost-effective element of the whole body
+shell. Putting steel precisely there is therefore defensible, and probably not
+an aesthetic compromise: it is the most loaded ring, the one where a laminated
+composite handles concentrated loads and glass bonding least well.
+**Hypothesis, to be verified** — the record does not say why this option
+exists.
 
-**Le critere materiau est `G/rho`, pas `E/rho`.** Le caisson travaille en
-cisaillement de membrane. Une ame de sandwich n'y change rien la ou la peau
-travaille en cisaillement plan. Cela pilote le drapage : il faut des plis a
-+/-45 degres orientes sur les chemins de cisaillement, pas un quasi-isotrope
-uniforme par facilite.
+**The material criterion is `G/rho`, not `E/rho`.** The box section works in
+membrane shear. A sandwich core changes nothing there where the skin works in
+in-plane shear. This drives the layup: it needs +/-45 degree plies oriented
+along the shear paths, not a uniform quasi-isotropic layup chosen for
+convenience.
 
-## 3. Le verrou qui commande le programme : le repere
+## 3. The lock that drives the programme: the reference frame
 
-**Aucune geometrie de monocoque n'est concevable aujourd'hui.** Non par principe
-de securite, mais par impossibilite metrologique.
+**No monocoque geometry can be designed today.** Not on safety principle, but
+because it is metrologically impossible.
 
-Un monocoque remplace la caisse. Il doit donc porter, dans un repere unique et a
-mieux que sa tolerance, au minimum :
+A monocoque replaces the body shell. It must therefore carry, in a single
+reference frame and to better than its tolerance, at minimum:
 
-| interface | tolerance exigee | etat dans le depot |
+| interface | required tolerance | state in the repository |
 |---|---|---|
-| berceau et points de suspension avant | ~ +/- 1 mm | X non cale |
-| fixations de bras arriere | ~ +/- 1 mm | X non cale |
-| supports moteur et boite | ~ +/- 1 mm | X non cale, P21 invalide |
-| ancrages de ceinture et de siege | reglementaire | non etabli |
-| charnieres, gaches, baie de pare-brise | ~ +/- 1 mm | non etabli |
+| front subframe and suspension points | ~ +/- 1 mm | X not registered |
+| rear trailing-arm mounts | ~ +/- 1 mm | X not registered |
+| engine and gearbox mounts | ~ +/- 1 mm | X not registered, P21 invalid |
+| seat belt and seat anchorages | regulatory | not established |
+| hinges, strikers, windshield aperture | ~ +/- 1 mm | not established |
 
-Or `twins/964-chassis/README.md` etablit que **le calage longitudinal du reseau
-de datums n'est pas resolu**. Le repere est sain lateralement et en lacet ; la
-chaine en X ne l'est pas. Le point P21, palier moteur, tombe a X = -3112 mm,
-dans le pare-chocs arriere. La recherche du point 17 sur le scan est un resultat
-negatif solide : le scan ne resout pas les percages.
+Yet `twins/964-chassis/README.md` establishes that **the longitudinal
+registration of the datum network is not resolved**. The frame is sound
+laterally and in yaw; the X chain is not. Point P21, the engine mount, lands at
+X = -3112 mm, inside the rear bumper. The search for point 17 on the scan is a
+solid negative result: the scan does not resolve the holes.
 
-**Ce verrou etait un travail de documentation. Il devient le chemin critique du
-produit.** Tant qu'il tient, il n'y a pas de monocoque : il y a un objet qui
-ressemble a une caisse et qui ne se monte pas.
+**This lock used to be a documentation task. It becomes the product's critical
+path.** As long as it holds, there is no monocoque: there is an object that
+looks like a body shell and does not bolt up.
 
-Il n'est pas ouvert par du calcul. Il s'ouvre par une donnee, et les pistes sont
-deja triees dans `docs/research/964-combler-le-gap-de-donnees.md` : releve de
-marbre (Autorobot, Car-O-Data, Celette), tableau de points 993 de Rennlist, scan
-de carrosserie de serie. **Le releve de marbre passe de « souhaitable » a
-« bloquant ».** C'est le premier budget a engager.
+It is not opened by calculation. It is opened by data, and the leads are
+already sorted in `docs/research/964-combler-le-gap-de-donnees.md`: a jig bench
+survey (Autorobot, Car-O-Data, Celette), the Rennlist 993 point table, a scan
+of a production body. **The jig bench survey goes from "desirable" to
+"blocking".** It is the first budget to commit.
 
-## 4. Le denominateur manquant se mesure, il ne se cherche plus
+## 4. The missing denominator is measured, no longer searched for
 
-Verrou B — aucune raideur en torsion de 964 publiee — a ete traite comme un
-probleme de recherche bibliographique. Deux campagnes, dont une germanophone,
-n'ont rien donne de citable.
+Lock B — no published 964 torsional stiffness — was treated as a
+literature-search problem. Two campaigns, one of them in German, produced
+nothing citable.
 
-**C'est un probleme de mesure, pas de bibliographie.** Un essai de torsion de
-caisse en blanc est un essai d'atelier : bridage sur les points de suspension
-arriere, couple applique aux tours d'amortisseur avant, mesure de la rotation au
-comparateur sur plusieurs stations. Il ne demande ni laboratoire, ni budget
-d'homologation.
+**It is a measurement problem, not a bibliography problem.** A body-in-white
+torsion test is a workshop test: clamping on the rear suspension points, torque
+applied at the front strut towers, rotation measured with dial gauges at
+several stations. It needs neither a laboratory nor a homologation budget.
 
-Mesurer une caisse 964 donneur en torsion donne d'un coup :
+Measuring a donor 964 body shell in torsion delivers at once:
 
-- le denominateur que personne ne publie, ZESAD compris ;
-- la validation du modele coque, dont toutes les valeurs absolues sont
-  aujourd'hui invalidees par des sections `ASSUMED` et une non-convergence de
-  maillage ;
-- l'argument commercial : « x fois la caisse d'origine, protocole publie ».
+- the denominator nobody publishes, ZESAD included;
+- validation of the shell model, whose absolute values are all currently
+  invalidated by `ASSUMED` sections and non-convergence of the mesh;
+- the commercial argument: "x times the original body shell, protocol
+  published".
 
-**C'est la recommandation la plus rentable de ce document.** Elle est sous notre
-controle, elle ne depend d'aucun tiers, et elle transforme tout le travail FEA
-existant de qualitatif en quantitatif.
+**It is the most cost-effective recommendation in this document.** It is under
+our control, depends on no third party, and turns all the existing FEA work
+from qualitative into quantitative.
 
-## 5. Specification cible — a remplir, methode fixee
+## 5. Target specification — to be filled, method fixed
 
-Aucune valeur n'est inscrite ici tant que le paragraphe 4 n'est pas fait.
-Inscrire un chiffre maintenant serait exactement ce que ce depot refuse.
+No value is entered here until section 4 is done. Entering a number now would
+be exactly what this repository refuses to do.
 
-| exigence | unite | methode d'etablissement |
+| requirement | unit | method of establishment |
 |---|---|---|
-| raideur en torsion caisse nue | N.m/deg | multiple de la 964 mesuree ; a fixer apres essai |
-| masse caisse nue | kg | pesee ; comparer a la 964 mesuree, pas a une valeur de forum |
-| frequence propre de torsion | Hz | essai modal, decoule de K et de l'inertie |
-| positions d'interface | mm | reseau de datums cale, tolerance +/- 1 mm |
-| ancrages ceinture | — | exigence reglementaire du marche vise |
-| tenue au choc | — | voir section 7 |
-| tolerance de fabrication | mm | capabilite du procede retenu |
+| bare body-shell torsional stiffness | N.m/deg | multiple of the measured 964; to be set after the test |
+| bare body-shell mass | kg | weighing; compare with the measured 964, not with a forum value |
+| torsional natural frequency | Hz | modal test, follows from K and inertia |
+| interface positions | mm | registered datum network, tolerance +/- 1 mm |
+| seat belt anchorages | — | regulatory requirement of the target market |
+| crashworthiness | — | see section 7 |
+| manufacturing tolerance | mm | capability of the chosen process |
 
-Regle : **chaque ligne publiee porte son protocole et son incertitude**, ou n'est
-pas publiee. C'est le produit.
+Rule: **every published line carries its protocol and its uncertainty**, or is
+not published. That is the product.
 
-## 6. Fabrication en Chine — la capacite n'est pas la contrainte
+## 6. Manufacturing in China — capacity is not the constraint
 
-**Il faut dire les choses dans le bon sens : sur la fabrication, la Chine ne se
-contente pas d'egaler ZESAD, elle le depasse.** ZESAD est un atelier allemand
-fonde en 2013, developpeur de pieces de competition. L'industrie composite
-chinoise de rang aeronautique — infrastructure d'autoclaves batie autour des
-programmes civils domestiques, premiere capacite mondiale de fibre de carbone —
-travaille a un niveau superieur, sur des pieces plus grandes et sous des systemes
-qualite plus exigeants.
+**Things must be said the right way round: on manufacturing, China does not
+merely match ZESAD, it surpasses it.** ZESAD is a German workshop founded in
+2013, a developer of competition parts. The aerospace-grade Chinese composites
+industry — autoclave infrastructure built around the domestic civil aircraft
+programmes, the world's largest carbon fiber capacity — works at a higher
+level, on larger parts and under more demanding quality systems.
 
-La question n'est donc pas « saura-t-on faire aussi bien ». Elle est
-« saura-t-on **choisir** le bon atelier », ce qui est un probleme different et
-plus facile.
+The question is therefore not "will we manage to do as well". It is "will we
+manage to **choose** the right shop", which is a different and easier problem.
 
-**Correction d'une erreur d'analyse.** Une version precedente de ce document
-ecartait l'autoclave au motif que son amortissement serait brutal a bas volume.
-C'est faux des lors qu'on **sous-traite** : on loue du temps d'autoclave a qui en
-possede deja, on n'amortit pas la cuve. La route exacte de ZESAD — preimpregne
-cuit en autoclave — est donc pleinement accessible, et c'est en Chine qu'elle
-l'est le plus. Reste le cout d'outillage, reel, mais sans commune mesure avec un
-outillage europeen.
+**Correction of an analysis error.** A previous version of this document ruled
+out the autoclave on the grounds that amortizing it would be brutal at low
+volume. That is wrong as soon as the work is **subcontracted**: autoclave time
+is rented from someone who already owns one; the vessel is not amortized by us.
+ZESAD's exact route — autoclave-cured prepreg — is therefore fully accessible,
+and it is in China that it is most accessible. Tooling cost remains, and it is
+real, but it bears no comparison with European tooling.
 
-| route | fraction volumique | outillage | remarque |
+| route | fiber volume fraction | tooling | remark |
 |---|---|---|---|
-| preimpregne autoclave | la plus haute, la plus reguliere | cher | route ZESAD, accessible en sous-traitance ; **reference a viser** |
-| preimpregne hors autoclave (OOA), etuve | proche autoclave | moyen | alternative credible si l'autoclave n'apporte rien de mesurable |
-| infusion sous vide (VARTM) | plus basse, plus dispersee | le moins cher | a ne retenir que si la dispersion est prouvee maitrisee |
-| RTM / C-RTM | haute, tres reguliere | tres cher, presse | seulement si le volume monte |
+| autoclave prepreg | highest, most consistent | expensive | ZESAD route, accessible through subcontracting; **the reference to aim for** |
+| out-of-autoclave (OOA) prepreg, oven | close to autoclave | medium | credible alternative if the autoclave brings nothing measurable |
+| vacuum infusion (VARTM) | lower, more scattered | cheapest | to be adopted only if the scatter is proven under control |
+| RTM / C-RTM | high, very consistent | very expensive, press | only if volume rises |
 
-Le choix se tranche sur la **dispersion mesuree** de la fraction volumique et des
-proprietes coupons, pas sur une preference ni sur le prix affiche.
+The choice is decided on the **measured scatter** of fiber volume fraction and
+coupon properties, not on a preference or on the listed price.
 
-**Le vrai piege du sourcing chinois n'est pas la capacite, c'est le tri.**
-L'industrie chinoise du carbone automobile est enorme mais tres majoritairement
-**cosmetique** : panneaux, aero, habillage, souvent en drapage humide, optimises
-pour l'aspect du sergé et non pour une propriete structurale. Une piece de
-securite ne se commande pas dans ce vivier-la. Les ateliers pertinents sont ceux
-de rang aeronautique ou competition, qui existent et sont nombreux, mais qui
-constituent une population distincte. Confondre les deux est le seul vrai risque
-de ce volet, et il se traite par les exigences ci-dessous.
+**The real trap in Chinese sourcing is not capacity, it is sorting.** The
+Chinese automotive carbon industry is huge but overwhelmingly **cosmetic**:
+panels, aero, trim, often wet layup, optimized for the look of the twill weave
+and not for a structural property. A safety part is not ordered from that pool.
+The relevant shops are the aerospace- or motorsport-grade ones, which exist and
+are numerous, but which are a distinct population. Confusing the two is the only
+real risk in this part of the programme, and it is handled by the requirements
+below.
 
-**Fibre.** La Chine produit en propre de la fibre de classe T700/T800 — candidats
-a verifier : Weihai Guangwei, Zhongfu Shenying, Hengshen, Jilin. C'est un
-avantage reel et pas seulement de cout : la fibre a haut module et haute
-resistance releve des regimes de controle des biens a double usage, et une chaine
-domestique evite ces frictions d'importation. **A verifier fiche technique en
-main** : les equivalences annoncees a T700/T800 demandent une qualification par
-coupons, pas une lecture de catalogue.
+**Fiber.** China produces its own T700/T800-class fiber — candidates to be
+verified: Weihai Guangwei, Zhongfu Shenying, Hengshen, Jilin. That is a real
+advantage and not only a cost one: high-modulus, high-strength fiber falls
+under dual-use export-control regimes, and a domestic supply chain avoids those
+import frictions. **To be verified with the datasheet in hand**: advertised
+T700/T800 equivalences require coupon qualification, not a catalogue reading.
 
-**Ce qu'il faut exiger d'un sous-traitant, et qui trie vite :**
+**What to require from a subcontractor, and what sorts them quickly:**
 
-- systeme qualite : AS9100 est plus significatif qu'IATF 16949 pour du composite
-  structurel ; l'absence des deux n'est pas redhibitoire mais impose un plan de
-  controle ecrit par nous ;
-- tracabilite lot de preimpregne, avec relevé de duree de vie hors congelateur ;
-- enregistrement de cycle de cuisson par piece, thermocouples dans l'outil ;
-- **coupons temoins cuits avec chaque piece**, et essais mecaniques dessus : sans
-  cela il n'y a aucune preuve que la piece livree vaut la piece calculee ;
-- controle non destructif : ultrasons par transmission ou multi-elements sur les
-  zones critiques, avec critere d'acceptation ecrit ;
-- propriete de l'outillage et du livre de drapage contractuellement a nous.
+- quality system: AS9100 is more meaningful than IATF 16949 for structural
+  composites; having neither is not disqualifying but requires a control plan
+  written by us;
+- prepreg batch traceability, with a log of out-of-freezer life;
+- cure-cycle recording for each part, with thermocouples in the tool;
+- **witness coupons cured with every part**, and mechanical tests on them:
+  without that there is no evidence that the delivered part is worth the
+  calculated part;
+- non-destructive testing: through-transmission or phased-array ultrasound on
+  the critical zones, with a written acceptance criterion;
+- ownership of the tooling and of the ply book contractually ours.
 
-**Le risque principal n'est ni le prix ni la capacite, c'est la dispersion.** Un
-monocoque dont la raideur varie de 20 % d'un exemplaire a l'autre n'est pas un
-produit publiable selon la methode retenue en section 1. Le plan de coupons est
-donc une exigence de conception, pas une clause de qualite.
+**The main risk is neither price nor capacity, it is scatter.** A monocoque
+whose stiffness varies by 20 % from one unit to the next is not a publishable
+product under the method adopted in section 1. The coupon plan is therefore a
+design requirement, not a quality clause.
 
-**Et ce qui ne se sous-traite pas, nulle part.** Un excellent atelier fabrique ce
-qu'on lui donne : il ne fournit ni l'autorite de conception, ni le drapage, ni la
-validation, ni le dossier d'homologation. C'est precisement ce que ZESAD ne
-publie pas, donc precisement la ou se joue la difference. Si la fabrication n'est
-pas la contrainte — et elle ne l'est pas — alors **la totalite de la valeur et du
-risque se concentre sur les sections 3, 4 et 7 de ce document**.
+**And what cannot be subcontracted, anywhere.** An excellent shop manufactures
+what it is given: it provides neither design authority, nor layup, nor
+validation, nor the homologation dossier. That is precisely what ZESAD does not
+publish, so precisely where the difference is made. If manufacturing is not the
+constraint — and it is not — then **all of the value and all of the risk are
+concentrated in sections 3, 4 and 7 of this document**.
 
-## 7. Identite du vehicule et homologation
+## 7. Vehicle identity and homologation
 
-C'est la contrainte commerciale reelle, et elle prime sur la technique.
+This is the real commercial constraint, and it takes precedence over the
+technical side.
 
-La caisse porte le numero de chassis. Remplacer la structure autoportante pose,
-selon le marche, la question de savoir si le vehicule reste le meme vehicule ou
-devient un vehicule nouveau — avec, dans le second cas, un dossier de reception
-sans commune mesure avec un restomod.
+The body shell carries the chassis number. Replacing the unibody structure
+raises, depending on the market, the question of whether the vehicle remains
+the same vehicle or becomes a new one — with, in the second case, a type
+approval dossier out of all proportion to a restomod.
 
-Ce document ne tranche pas cette question : elle est juridique, elle depend du
-pays d'immatriculation, et elle doit etre instruite marche par marche **avant**
-tout engagement d'outillage. Une hypothese a verifier : la configuration ZESAD
-« avec cadre de baie acier » pourrait servir a conserver un element d'origine
-porteur de l'identite, autant qu'a repondre au besoin structurel identifie en
-section 2.
+This document does not settle that question: it is legal, it depends on the
+country of registration, and it must be investigated market by market
+**before** any tooling commitment. A hypothesis to be verified: the ZESAD
+configuration "with steel windshield frame" could serve to retain an original
+element carrying the identity, as much as to meet the structural need
+identified in section 2.
 
-**Point d'ordonnancement :** l'etude d'homologation est peu couteuse et peut tuer
-le programme. Elle passe donc avant la conception detaillee, pas apres.
+**Sequencing point:** the homologation study is cheap and can kill the
+programme. It therefore comes before detailed design, not after.
 
-## 8. Portes de securite — ce qui reste ferme
+## 8. Safety gates — what stays closed
 
-`SAFETY.md` presume critiques la retenue des occupants, la suspension, les points
-de levage et les fixations principales. Un monocoque les porte toutes. Il est
-donc `prohibited_pending_engineering` : **jamais publie comme piece liberee** en
-l'etat.
+`SAFETY.md` presumes occupant restraint, suspension, jacking points and primary
+fasteners to be critical. A monocoque carries all of them. It is therefore
+`prohibited_pending_engineering`: **never published as a released part** in its
+current state.
 
-Cette classe n'interdit ni d'etudier, ni de calculer, ni de specifier, ni de
-mesurer. Elle interdit de **liberer de la geometrie** sans revue d'ingenierie
-formelle et plan de validation approuve. Rien dans ce programme ne demande de
-lever cette porte, et les sections 3 a 6 sont precisement le travail qui permet
-un jour de l'instruire serieusement.
+This class prohibits neither studying, nor calculating, nor specifying, nor
+measuring. It prohibits **releasing geometry** without a formal engineering
+review and an approved validation plan. Nothing in this programme asks to lift
+that gate, and sections 3 to 6 are precisely the work that will one day allow
+it to be examined seriously.
 
-Un point non negociable, et qui n'est pas une question de perimetre : la tenue au
-choc d'une structure composite **ne se calcule pas de maniere credible sans
-essais physiques**. Un critere de rupture composite n'est pas une contrainte de
-von Mises ; la ruine se fait par delaminage, decollement et flambement local,
-mecanismes que le modele coque actuel ne represente pas du tout. Aucune
-affirmation de securite ne sortira de ce depot sans essais.
+One non-negotiable point, and it is not a question of scope: the
+crashworthiness of a composite structure **cannot be calculated credibly
+without physical tests**. A composite failure criterion is not a von Mises
+stress; failure happens by delamination, debonding and local buckling,
+mechanisms the current shell model does not represent at all. No safety claim
+will come out of this repository without tests.
 
-## 9. Phases et criteres de sortie
+## 9. Phases and exit criteria
 
-| phase | contenu | critere de sortie | dependance |
+| phase | content | exit criterion | dependency |
 |---|---|---|---|
-| M0 | etude d'identite et d'homologation, marche par marche | voie identifiee ou programme arrete | juriste |
-| M1 | releve de marbre, calage du reseau de datums | 964 en `F2_interface`, interfaces a +/- 1 mm | **tiers, bloquant** |
-| M2 | essai de torsion sur caisse 964 donneur | denominateur mesure, protocole publie | caisse donneur |
-| M3 | recalage du modele coque sur M2 | ecart modele/mesure connu et documente | M1, M2 |
-| M4 | specification cible remplie | tableau section 5 complet | M2, M3 |
-| M5 | concept d'architecture et drapage | anneaux fermes, chemins de cisaillement definis | M4 |
-| M6 | qualification procede et sous-traitant | plan de coupons valide, dispersion mesuree | M5 |
-| M7 | revue d'ingenierie et plan d'essais physiques | revue signee au sens de `SAFETY.md` | M6 |
+| M0 | identity and homologation study, market by market | route identified or programme stopped | lawyer |
+| M1 | jig bench survey, registration of the datum network | 964 at `F2_interface`, interfaces at +/- 1 mm | **third party, blocking** |
+| M2 | torsion test on a donor 964 body shell | denominator measured, protocol published | donor body shell |
+| M3 | recalibration of the shell model against M2 | model/measurement gap known and documented | M1, M2 |
+| M4 | target specification filled | section 5 table complete | M2, M3 |
+| M5 | architecture concept and layup | rings closed, shear paths defined | M4 |
+| M6 | process and subcontractor qualification | coupon plan validated, scatter measured | M5 |
+| M7 | engineering review and physical test plan | review signed in the sense of `SAFETY.md` | M6 |
 
-M0, M1 et M2 sont paralleles et sont les seuls a engager maintenant. **M1 et M2
-sont les deux qui commandent tout le reste**, et M2 est le seul entierement sous
-notre controle.
+M0, M1 and M2 run in parallel and are the only ones to commit now. **M1 and M2
+are the two that drive everything else**, and M2 is the only one entirely under
+our control.
 
-## 10. Ce que ce document n'est pas
+## 10. What this document is not
 
-- Ce n'est pas une conception. Aucune cote, aucun drapage, aucune geometrie.
-- Ce n'est pas une autorisation. La classe `prohibited_pending_engineering` est
-  inchangee.
-- Ce n'est pas une etude de marche, ni un plan d'affaires, ni une evaluation du
-  produit ZESAD, dont rien de structurel n'est publie et donc rien n'est
-  confrontable.
-- Les noms de producteurs de fibre cites sont des candidats a verifier, non des
-  fournisseurs qualifies. Aucun n'a ete contacte.
-- Le perimetre de `ROADMAP.md` n'est pas modifie par ce document.
+- It is not a design. No dimension, no layup, no geometry.
+- It is not an authorization. The `prohibited_pending_engineering` class is
+  unchanged.
+- It is not a market study, nor a business plan, nor an evaluation of the ZESAD
+  product, of which nothing structural is published and therefore nothing can
+  be checked against.
+- The fiber producers named are candidates to be verified, not qualified
+  suppliers. None has been contacted.
+- The scope of `ROADMAP.md` is not changed by this document.

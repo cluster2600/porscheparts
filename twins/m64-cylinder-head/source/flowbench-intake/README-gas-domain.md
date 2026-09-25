@@ -1,86 +1,96 @@
-# Domaine gaz du pilote d’admission à 6 mm
+# Gas domain of the 6 mm intake pilot
 
-`build_gas_domain.py` assemble uniquement un **candidat de banc à froid** :
-négatif d’admission natif 06, chambre à deux pans déjà construite, intérieurs
-réels des sièges V2, soupapes d’admission levées de 6 mm, échappements fermés,
-guides et récepteur de banc Ø100 × 100. Ces deux dimensions et l’équivalence
-1 unité de scan = 1 mm restent des hypothèses explicites, pas des cotes M64
-certifiées. Le récepteur n’est ni un piston ni une mesure de compression.
+`build_gas_domain.py` assembles only a **cold flow-bench candidate**: the native
+06 intake negative, the already-built two-facet chamber, the real interiors of
+the V2 seats, intake valves lifted by 6 mm, exhausts closed, guides, and a
+Ø100 × 100 bench receiver. These two dimensions and the equivalence
+1 scan unit = 1 mm remain explicit assumptions, not certified M64 dimensions.
+The receiver is neither a piston nor a compression measurement.
 
-Les jeux tige-guide d’admission sont représentés sur leur longueur réelle du
-module, de 20 à 55. Seules leurs deux faces annulaires supérieures peuvent
-recevoir le rôle `fixture_stem_seals` : ce sont des joints de banc idéalisés
-autorisés pour ce pilote, pas des joints mécaniques conçus ou qualifiés.
-Les faces inférieures de ces annules sont des connexions internes, jamais des
-parois ou des sorties artificielles.
+The intake stem-guide clearances are represented over their real length in the
+module, from 20 to 55. Only their two upper annular faces can receive the
+`fixture_stem_seals` role: these are idealized bench seals authorized for this
+pilot, not designed or qualified mechanical seals. The lower faces of these
+annuli are internal connections, never walls or artificial outlets.
 
-## État constaté
+## Observed state
 
-Les passes séquentielles 02/03 et la soustraction simultanée 04 ont terminé
-avec un rejet BRep, conservé dans leurs reçus privés. Le volume fusionné avant
-soustraction est connexe et BRep-valide ; cela **n’autorise pas son maillage**
-comme gaz puisqu’il contient encore les volumes des pièces mobiles et guides.
-Le diagnostic séparé de 28 intersections constituant/siège, exécuté avant
-toute fusion, retourne 0 solide et volume 0 pour chaque paire. Les très petits
-solides d’intersection observés après fusion ne sont donc pas une preuve de
-pénétration matérielle préalable. L’audit natif indépendant localise une
-micro-coque partageant trois faces avec la coque principale, avec l’unique
-défaut `InvalidImbricationOfShells`. Aucune coque n’a été supprimée à la main.
+The sequential passes 02/03 and the simultaneous subtraction 04 ended with a
+BRep rejection, kept in their private receipts. The merged volume before
+subtraction is connected and BRep-valid; this **does not authorize meshing it**
+as gas, since it still contains the volumes of the moving parts and guides.
+The separate diagnostic of 28 constituent/seat intersections, run before any
+merge, returns 0 solids and volume 0 for each pair. The very small intersection
+solids observed after the merge are therefore not proof of a prior material
+penetration. The independent native audit locates a micro-shell sharing three
+faces with the main shell, with the single defect
+`InvalidImbricationOfShells`. No shell was deleted by hand.
 
-La passe 05 applique les **mêmes 12 outils** à chacun des constituants avant
-fusion, selon `(union Ai) moins B = union(Ai moins B)`. Elle a réellement
-terminé en 45,81 s avec un solide BRep-valide, également valide après relecture
-native et STEP, sans changement de dimension ou de tolérance. Son volume de
-995 964,587 unités³ comprend les conduits et le récepteur de banc : ce n’est
-pas le volume de la chambre de combustion. Le reçu public est
+Pass 05 applies the **same 12 tools** to each constituent before the merge,
+according to `(union Ai) minus B = union(Ai minus B)`. It actually finished in
+45.81 s with a BRep-valid solid, also valid after native and STEP rereading,
+with no change of dimension or tolerance. Its volume of 995,964.587 units³
+includes the ports and the bench receiver: it is not the volume of the
+combustion chamber. The public receipt is
 [gas-domain-construction-20260908.json](../../evidence/gas-domain-construction-20260908.json).
 
-L’alerte native `BOPAlgo_GeomAbs_C0`, également rencontrée sur le col local
-de l’admission 2, a été localisée indépendamment sur l’arête B-spline 97,
-entre les faces 36 (`walls_seat`) et 37 (`walls_port`). Ses trois nœuds internes
-ont un saut de position numérique nul, mais de **vraies ruptures de tangente**
-(environ 0,62°, 6,96° et 16,76°). Ce n’est ni une brèche ni simplement un angle
-entre deux faces. La géométrie et les tolérances ne sont pas modifiées.
+The native `BOPAlgo_GeomAbs_C0` warning, also encountered on the local throat of
+intake 2, was located independently on B-spline edge 97, between faces 36
+(`walls_seat`) and 37 (`walls_port`). Its three internal knots have a zero
+numerical position jump, but **real tangent breaks** (about 0.62°, 6.96° and
+16.76°). This is neither a gap nor simply an angle between two faces. The
+geometry and tolerances are not modified.
 
-La revue indépendante autorise **une tentative diagnostique de maillage**
-du BRep natif exact, à condition de conserver ces nœuds et de vérifier la
-conformité de frontière, la topologie et la qualité des éléments obtenus.
-`bop_no_faults` demeure **false** ; cette exception bornée n’est pas un
-« BOP sans défaut », ni un maillage accepté, ni une autorisation de solveur.
-Le STEP possède en plus 31 alertes `InvalidCurveOnSurface` : **STEP non qualifié
-pour le maillage**, malgré sa validité BRep. L’empreinte du rapport indépendant
-et les conditions exactes de cette tentative sont liées dans le reçu public.
-La preuve indépendante détaillée et assainie est conservée dans
+The independent review authorizes **one diagnostic meshing attempt** of the
+exact native BRep, on condition that these knots are kept and that the boundary
+conformity, the topology and the quality of the resulting elements are checked.
+`bop_no_faults` remains **false**; this bounded exception is not a
+"fault-free BOP", nor an accepted mesh, nor a solver authorization. The STEP
+additionally has 31 `InvalidCurveOnSurface` warnings: **STEP not qualified for
+meshing**, despite its BRep validity. The digest of the independent report and
+the exact conditions of this attempt are bound in the public receipt. The
+detailed, sanitized independent evidence is kept in
 [native-gas-domain-independent-diagnostics-20260908.json](../../evidence/native-gas-domain-independent-diagnostics-20260908.json).
 
-L’enrichissement de classement v2 conserve les empreintes de la géométrie et
-les rapports d’origine. Les quatre faces planes recouvertes entièrement par
-un vrai siège et l’outil négatif de chambre sont affectées à `walls_seat`,
-avec les deux appariements et la règle de propriété enregistrés. Le négatif
-constructeur ne constitue pas un second matériau. Les 88 faces sont ainsi
-classifiées, sans face inconnue ou ambiguë, avec une entrée, une sortie et
-deux joints annulaires de banc. Les contrôles BOP et col local non satisfaits
-n’ont pas été changés par cette opération de classement.
+```mermaid
+flowchart TD
+    A["Passes 02/03 sequential<br/>and 04 simultaneous"] --> R["BRep rejection<br/>kept in private receipts"]:::stop
+    B["Pass 05: same 12 tools<br/>per constituent before merge"] --> C["BRep-valid solid<br/>after native and STEP reread"]:::ok
+    C --> D["bop_no_faults = false<br/>31 InvalidCurveOnSurface"]:::stop
+    C --> E["One diagnostic meshing attempt<br/>of the exact native BRep"]:::open
+    E -. "is not" .-> F["an accepted mesh or<br/>a solver authorization"]:::stop
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
 
-Le contrôle de passage doit être **local à chaque siège** : un seul volume
-valide, une section positive côté chambre et côté gorge, exclusion du tronc
-commun et de l’autre siège. La simple connexité globale ne suffit pas.
-Les frontières persistées sont ensuite appariées aux faces natives de leurs
-sources, par type, support et recouvrement surfacique ; tout rôle absent ou
-ambigu rejette le candidat. Un contrôle BOP est distinct d’un contrôle BRep.
+The v2 classification enrichment keeps the geometry digests and the original
+reports. The four planar faces fully covered by a real seat and the chamber
+negative tool are assigned to `walls_seat`, with the two pairings and the
+ownership rule recorded. The constructor negative does not constitute a second
+material. The 88 faces are thus classified, with no unknown or ambiguous face,
+with one inlet, one outlet and two annular bench seals. The unsatisfied BOP and
+local-throat checks were not changed by this classification operation.
 
-Le maître de culasse n’est pas modifié par ce lot, les conduits ne sont pas
-encore soustraits du corps et aucun calcul CFD, débit, Cd, essai thermique,
-qualification moteur ou autorisation de fabrication n’est établi ici.
-Les BRep/STEP, coordonnées et rapports détaillés restent privés ; seuls le
-code, les tests et des agrégats avec empreintes sont publiables.
+The passage check must be **local to each seat**: a single valid volume, a
+positive section on the chamber side and on the throat side, excluding the
+common trunk and the other seat. Mere global connectedness is not enough. The
+persisted boundaries are then matched to the native faces of their sources, by
+type, support and surface overlap; any missing or ambiguous role rejects the
+candidate. A BOP check is distinct from a BRep check.
 
-Tests sans noyau CAO :
+The cylinder head master is not modified by this batch, the ports are not yet
+subtracted from the body, and no CFD calculation, flow rate, Cd, thermal test,
+engine qualification or manufacturing authorization is established here. The
+BReps/STEPs, coordinates and detailed reports remain private; only the code, the
+tests and aggregates with digests are publishable.
+
+Tests without a CAD kernel:
 
 ```sh
 python3 -m unittest discover -s tests -p test_m64_flowbench_gas_domain.py -v
 ```
 
-L’option `--diagnose-pieces` réalise exclusivement les intersections
-constituant/siège sans fusion et sans produire de domaine gaz. Un succès de
-cette commande ne constitue pas un succès du constructeur complet.
+The `--diagnose-pieces` option performs only the constituent/seat intersections,
+without merging and without producing a gas domain. Success of this command does
+not constitute success of the complete builder.

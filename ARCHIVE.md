@@ -1,129 +1,125 @@
-# Ce qui est archivé
+# What is archived
 
-Un dépôt qui garde tout finit par ne plus dire ce qu'il fait. Ce document sépare
-ce qui est **actif** de ce qui est **conservé sans être poursuivi**, pour que la
-distinction ne dépende pas de la mémoire de qui l'a écrit.
+A repository that keeps everything ends up no longer saying what it does. This
+document separates what is **active** from what is **kept without being
+pursued**, so that the distinction does not depend on the memory of whoever
+wrote it.
 
-Rien ici n'est supprimé. Un travail retiré comme produit reste utile comme
-régression numérique, comme cas d'essai et comme trace de ce qui n'a pas marché.
+Nothing here is deleted. Work retired as a product remains useful as a numerical
+regression, as a test case and as a record of what did not work.
 
-## Archivé — culasse 917 et scan 935
+## Archived — 917 cylinder head and 935 scan
 
-| dossier | fichiers | ce que c'est |
+| directory | files | what it is |
 |---|---:|---|
-| `twins/reference-917-engine/` | 891 | culasse 917 refroidie par air, itérations F1 à F50 |
-| `twins/reference-935-cylinder-head/` | 13 | scan de culasse 935, morphologie de référence |
-| `archive/917/docs/` | 112 | les dossiers écrits de ces itérations |
-| `docs/media/videos/` | 48 | deux projets de rendu, F38 et F39 |
-| `containers/917-*` | ~40 | images de calcul dédiées |
+| `twins/reference-917-engine/` | 891 | air-cooled 917 cylinder head, iterations F1 to F50 |
+| `twins/reference-935-cylinder-head/` | 13 | 935 cylinder head scan, reference morphology |
+| `archive/917/docs/` | 112 | the written dossiers for these iterations |
+| `docs/media/videos/` | 48 | two rendering projects, F38 and F39 |
+| `containers/917-*` | ~40 | dedicated compute images |
 
-**Statut.** Retiré comme produit, conservé comme régression numérique. La
-géométrie rectangulaire F34 réunit CAO paramétrique, OpenFOAM/FluidX3D, CalculiX
-et Cantera **sans preuve transférable à une vraie culasse**. F36 conserve la
-morphologie du scan 935. F37 ajoute les STEP fonctionnels et leurs preuves
-SHA-256, **impression métal et démarrage restant interdits**. L'audit Omniverse
-conserve l'avertissement topologique NVIDIA comme blocage.
+**Status.** Retired as a product, kept as a numerical regression. The
+rectangular F34 geometry combines parametric CAD, OpenFOAM/FluidX3D, CalculiX
+and Cantera **without evidence transferable to a real cylinder head**. F36 keeps
+the morphology of the 935 scan. F37 adds the functional STEP files and their
+SHA-256 evidence, **metal printing and engine start remaining prohibited**. The
+Omniverse audit keeps the NVIDIA topology warning as a blocker.
 
-**Ce qu'on peut en faire** : rejouer les calculs, réutiliser les cas d'essai,
-lire ce qui a été tenté. **Ce qu'on ne peut pas en faire** : une pièce.
+**What it can be used for**: replaying the calculations, reusing the test cases,
+reading what was attempted. **What it cannot be used for**: a part.
 
-## Pourquoi ces dossiers n'ont pas été déplacés
+## Why these directories were not moved
 
-La question s'est posée le 2026-09-09, et la réponse est mesurée, pas
-esthétique.
+The question came up on 2026-09-09, and the answer is measured, not aesthetic.
 
-Le dossier 917 porte **2 014 empreintes SHA-256 enregistrées dans 275 fichiers**,
-vérifiées par 139 fichiers de test. Le déplacer oblige à réécrire les chemins
-qu'il contient ; or ces chemins vivent dans des fichiers qui sont eux-mêmes
-hachés. L'essai a été fait : **142 tests tombent, dont 40 assertions d'empreinte
-dans 31 fichiers**.
+The 917 directory carries **2,014 SHA-256 digests recorded in 275 files**,
+verified by 139 test files. Moving it forces a rewrite of the paths it contains;
+but those paths live in files that are themselves hashed. The attempt was made:
+**142 tests fail, including 40 digest assertions in 31 files**.
 
-Trois issues, et aucune n'est bonne :
+Three outcomes, and none of them is good:
 
-- déplacer sans réécrire laisse ~2 260 références mortes et le dossier n'est plus
-  exécutable ;
-- déplacer et recalculer les empreintes revient à refaire soi-même les preuves
-  après avoir modifié les pièces — une empreinte qu'on recalcule après coup ne
-  prouve plus rien ;
-- ne pas déplacer laisse un rangement imparfait.
+- moving without rewriting leaves ~2,260 dead references and the directory is no
+  longer executable;
+- moving and recomputing the digests amounts to redoing the evidence yourself
+  after modifying the parts — a digest recomputed after the fact no longer
+  proves anything;
+- not moving leaves an imperfect layout.
 
-**La troisième a été retenue.** Une preuve vaut mieux qu'un dossier bien rangé.
-Ce fichier existe pour que le rangement imparfait cesse d'être trompeur.
+**The third was chosen.** Evidence is worth more than a tidy directory. This
+file exists so that the imperfect layout stops being misleading.
 
-Ce qui a été déplacé, parce que c'était sans effet sur les preuves : les 112
-documents 917, sortis de `docs/` où ils représentaient 60 % des fichiers.
+What was moved, because it had no effect on the evidence: the 112 917
+documents, taken out of `docs/`, where they made up 60% of the files.
 
-## Ce qui peut être déplacé, et ce qui ne le peut pas
+## What can be moved, and what cannot
 
-La règle vaut au-delà du dossier 917, et elle a été établie en essayant.
+The rule applies beyond the 917 directory, and it was established by trying.
 
-**Ce dépôt lie les chemins aux empreintes.** Des manifestes enregistrent un
-chemin et le SHA-256 du fichier qui s'y trouve ; des verrous de conteneur
-enregistrent le chemin et l'empreinte des scripts embarqués ; des contrats
-enregistrent l'empreinte de leur parent. Déplacer un dossier oblige à réécrire
-les chemins **à l'intérieur** de ces fichiers, ce qui change leur empreinte et
-casse la chaîne.
+**This repository binds paths to digests.** Manifests record a path and the
+SHA-256 of the file found there; container locks record the path and digest of
+embedded scripts; contracts record the digest of their parent. Moving a
+directory forces a rewrite of the paths **inside** those files, which changes
+their digest and breaks the chain.
 
-Quatre essais, quatre mesures :
+Four attempts, four measurements:
 
-| déplacement tenté | résultat |
+| attempted move | result |
 |---|---|
-| `twins/reference-917-engine/` | 142 tests tombent, 40 assertions d'empreinte |
-| `containers/` | 11 assertions d'empreinte, verrous d'image invalidés |
-| `scripts/` | `parent_sha_mismatch`, contrats F34 invalidés |
-| `catalog/` | les 917 y renvoient par `catalog_path` ; l'exclure du remplacement casse la résolution des sources |
-| `deploy/` | conforme en apparence, **puis rattrapé** : le rapport de préparation F46 lie l'empreinte des scripts déplacés |
-| `outils/benchmarks/` | **conforme**, aucun test perdu |
+| `twins/reference-917-engine/` | 142 tests fail, 40 digest assertions |
+| `containers/` | 11 digest assertions, image locks invalidated |
+| `scripts/` | `parent_sha_mismatch`, F34 contracts invalidated |
+| `catalog/` | the 917 files point to it through `catalog_path`; excluding it from the replacement breaks source resolution |
+| `deploy/` | apparently compliant, **then caught**: the F46 readiness report binds the digest of the moved scripts |
+| `outils/benchmarks/` | **compliant**, no test lost |
 
-Seul le dernier a pu bouger, parce qu'aucun fichier haché ne le nomme.
+Only the last one could move, because no hashed file names it.
 
-**Le cas de `deploy/` mérite d'être lu**, parce qu'il a failli passer inaperçu.
-Les tests étaient conformes après le déplacement — mais `make check` s'arrêtait
-alors à la cible `test` et n'atteignait jamais les 37 cibles suivantes. C'est en
-rendant la suite verte que la casse est apparue, trois cibles plus loin. Une
-suite rouge ne cache pas seulement ses propres échecs : elle cache tout ce qui
-vient après elle.
+**The `deploy/` case is worth reading**, because it nearly went unnoticed. The
+tests were compliant after the move — but `make check` then stopped at the
+`test` target and never reached the 37 targets after it. It was when the suite
+was made green that the breakage appeared, three targets further on. A red suite
+does not only hide its own failures: it hides everything that comes after it.
 
-**La règle pratique** : un dossier n'est déplaçable que si son nom n'apparaît
-dans aucun fichier dont l'empreinte est enregistrée. Sinon, le rangement se
-paierait en preuves, et les preuves valent plus.
+**The practical rule**: a directory can be moved only if its name appears in no
+file whose digest is recorded. Otherwise the tidying would be paid for in
+evidence, and evidence is worth more.
 
-Deux pièges accompagnent tout déplacement, qu'une simple recherche de chaînes ne
-voit pas : les chemins construits par segments — `ROOT / "deploy" / ...`,
-`joinpath("catalog", "sources")` — et les profondeurs `parents[N]`, qui supposent
-le nombre de niveaux au-dessus du fichier et désignent silencieusement le mauvais
-répertoire dès qu'on le niche d'un cran.
+Two traps come with any move, which a plain string search does not see: paths
+built from segments — `ROOT / "deploy" / ...`, `joinpath("catalog", "sources")`
+— and `parents[N]` depths, which assume the number of levels above the file and
+silently point to the wrong directory as soon as it is nested one level deeper.
 
-## Doublons de dossiers résorbés
+## Duplicate dossiers resolved
 
-Deux pièces portaient deux dossiers F0 chacune, écrits à des dates différentes :
-un premier jet sans nuance au nom, puis le dossier de jumeau suffixé par la
-route matière. Les seconds sont les seuls référencés par
-`docs/AM_VALIDATION_PIPELINE.md` et les seuls à porter les résultats exécutés,
-les empreintes et le refus de libération.
+Two parts each carried two F0 dossiers, written on different dates: a first
+draft with no grade in the name, then the twin dossier suffixed with the
+material route. The latter are the only ones referenced by
+`docs/AM_VALIDATION_PIPELINE.md` and the only ones carrying the executed
+results, the digests and the release refusal.
 
-| retiré | conservé |
+| removed | kept |
 |---|---|
 | `docs/993_DOOR_OPENER_LEVER_F0.md` | `docs/993/993_DOOR_OPENER_LEVER_ALSI10MG_F0.md` |
 | `docs/993_HEADLAMP_SPRING_HOOK_F0.md` | `docs/993/993_HEADLAMP_SPRING_HOOK_ALSI10MG_F0.md` |
 
-Rien n'a été perdu : les premiers jets étaient inclus dans les seconds, à
-l'exception des gates ordonnés du levier, repris dans le dossier conservé. Aucun
-fichier haché ne nommait les retirés, et l'historique git les garde lisibles.
+Nothing was lost: the first drafts were contained in the later dossiers, except
+for the lever's ordered gates, which were carried over into the kept dossier. No
+hashed file named the removed ones, and git history keeps them readable.
 
-## Actif
+## Active
 
-| dossier | ce que c'est |
+| directory | what it is |
 |---|---|
-| `twins/964-chassis/` | calcul de structure sur la caisse 964, corpus de plan d'expériences |
-| `twins/993-*` | zones fonctionnelles 993 : refroidissement, support d'intercooler, planche de bord |
-| `catalog/` | 383 fiches de sources, 31 fiches de pièces, mesures et schémas |
-| `parts/` | géométries, plans de mesure et livrables par pièce |
-| `docs/993/` | dossiers de conception des pièces fabriquées en fabrication additive |
-| `simulation/` | cas de calcul du circuit de suralimentation |
+| `twins/964-chassis/` | structural calculation on the 964 body shell, design-of-experiments corpus |
+| `twins/993-*` | 993 functional zones: cooling, intercooler bracket, dashboard |
+| `catalog/` | 383 source records, 31 part records, measurements and schemas |
+| `parts/` | geometries, measurement plans and deliverables per part |
+| `docs/993/` | design dossiers for the parts made by additive manufacturing |
+| `simulation/` | calculation cases for the forced-induction circuit |
 
-## La règle qui vaut pour les deux
+## The rule that applies to both
 
-Aucune pièce de ce dépôt n'est déclarée imprimable ni validée. Les 31 fiches sont
-toutes au statut `concept`, dont 17 en `prohibited_pending_engineering`. Un rendu
-n'est pas une preuve, ni dans l'archive, ni dans l'actif.
+No part in this repository is declared printable or validated. The 31 records
+are all at status `concept`, 17 of them `prohibited_pending_engineering`. A
+render is not evidence, neither in the archive nor in the active tree.

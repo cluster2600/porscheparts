@@ -1,100 +1,114 @@
-# Origine des faibles épaisseurs — référence scan 935, 7 septembre 2026
+# Origin of the thin walls — scan 935 reference, September 7, 2026
 
-## Résultat obtenu
+```mermaid
+flowchart LR
+    A["F54 probes"] --> B["28: path already in<br/>the F43 envelope"]
+    A --> C["9: at least one end created<br/>by a candidate cut"]
+    A --> D["5: unresolved"]
+    B --> E["5 weak non-adjacent paths:<br/>all inherited"]
+    E --> F{"Concave filter<br/>on the fillet edges"}
+    F -->|no edge passes| G["Fillet refused<br/>before construction"]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+    class G stop
+    class D open
+```
 
-L'audit natif OCCT compare **les mêmes rayons** sur la 4V F53 et sur
-l'enveloppe F43 avant les découpes internes. Il ne compare pas deux
-échantillonnages différents. Les entrées sont contrôlées par SHA-256 ; chaque
-intervalle F53 est d'abord reproduit avec une tolérance de `1e-5` unité du
-scan. L'héritage exige ensuite que les deux extrémités correspondent à celles
-de l'enveloppe à `1e-4` près et que le segment soit classé dans le solide.
+## Result obtained
 
-| Origine des sondes F54 | Nombre |
+The native OCCT audit compares **the same rays** on the 4V F53 and on
+the F43 envelope before the internal cuts. It does not compare two
+different samplings. Inputs are checked by SHA-256; each F53 interval
+is first reproduced with a tolerance of `1e-5` scan units. Inheritance
+then requires both end points to match those of the envelope to within
+`1e-4` and the segment to be classified inside the solid.
+
+| Origin of the F54 probes | Count |
 |---|---:|
-| Trajet déjà présent dans l'enveloppe F43 | 28 |
-| Au moins une extrémité créée par une découpe du candidat | 9 |
-| Non résolu dans l'audit précédent ; toujours non résolu | 5 |
+| Path already present in the F43 envelope | 28 |
+| At least one end point created by a cut of the candidate | 9 |
+| Unresolved in the previous audit; still unresolved | 5 |
 
-Les **cinq trajets faibles entre faces non adjacentes**, répartis sur quatre
-paires de B-Splines, sont tous hérités de l'enveloppe. Ils se situent dans
-trois bandes de transition entre profils `core` et `fin`, et non simplement
-entre les deux plans nominaux d'une ailette. Modifier les diamètres des
-conduits ne corrigerait donc pas ces quatre zones.
+The **five weak paths between non-adjacent faces**, spread over four
+B-Spline pairs, are all inherited from the envelope. They lie in
+three transition bands between `core` and `fin` profiles, and not simply
+between the two nominal planes of a fin. Changing the port diameters
+would therefore not correct these four zones.
 
-Cela ne démontre pas que le scan brut a ces défauts : F43 est déjà une
-reconstruction par sections du stock scan-dérivé, avec réparations antérieures.
-Le résultat identifie l'étape où le défaut existe, pas sa cause physique
-sur une culasse Porsche originale.
+This does not show that the raw scan has these defects: F43 is already a
+section-based reconstruction of the scan-derived stock, with earlier repairs.
+The result identifies the stage at which the defect exists, not its physical
+cause on an original Porsche cylinder head.
 
-## Localisation et essai de correction
+## Localization and correction attempt
 
-`localize_wall_repair_patches.py` produit un dossier privé pour les quatre
-paires : indices des faces liés au STEP exact, coordonnées des intersections,
-aires, boîtes, voisinage et proposition d'opération CAO. Aucun indice n'est
-réutilisé après modification sans refaire la correspondance.
+`localize_wall_repair_patches.py` produces a private folder for the four
+pairs: face indices tied to the exact STEP, intersection coordinates,
+areas, boxes, neighborhood and proposed CAD operation. No index is
+reused after a modification without redoing the matching.
 
-Un deuxième programme, `trial_local_transition_fillet.py`, examine la paire
-la plus faible et les deux arêtes qui la relient à son voisin commun. Le
-principe est d'ajouter un congé **uniquement sur un raccord concave**, ce qui
-peut épaissir localement côté passage d'air, sans offset global. L'essai est
-borné à deux CPU, 4 Gio d'espace d'adressage et 300 secondes.
+A second program, `trial_local_transition_fillet.py`, examines the weakest pair
+and the two edges that connect it to their common neighbor. The
+principle is to add a fillet **only on a concave junction**, which
+can locally thicken the wall on the air-passage side, without a global offset.
+The trial is bounded to two CPUs, 4 GiB of address space and 300 seconds.
 
-Sur 36 directions autour de chaque arête, à deux rayons de sondage, les
-fractions intérieures sont respectivement 0,472/0,472 et 0,417/0,389. Aucune
-arête ne satisfait le filtre concave. **L'opération de congé est donc refusée
-avant construction** : pas de STEP corrigé et aucun épaississement revendiqué.
-Ce test discret est un filtre de prudence, pas une preuve analytique de la
-concavité complète des arêtes.
+Over 36 directions around each edge, at two probing radii, the
+inner fractions are 0.472/0.472 and 0.417/0.389 respectively. No
+edge satisfies the concave filter. **The fillet operation is therefore refused
+before construction**: no corrected STEP and no thickening claimed.
+This discrete test is a precautionary filter, not an analytical proof of the
+full concavity of the edges.
 
-La prochaine opération proposée est une reconstruction locale de la bande
-de transition : identifier les courbes d'ancrage du scan à conserver, les
-raccords côté passage d'air ajustables, puis construire le patch contraint
-avec `BRepFill_Filling`, remplacer/coudre les faces et refaire les contrôles
-d'intégrité, déviation, épaisseur et section de passage. Cette proposition
-n'est pas encore un opérateur vérifié. Les courbes autorisées à bouger ne
-sont pas encore identifiées ; une modification aveugle n'est pas effectuée.
+The next proposed operation is a local reconstruction of the transition
+band: identify the scan anchor curves to keep and the adjustable
+junctions on the air-passage side, then build the constrained patch
+with `BRepFill_Filling`, replace/sew the faces and redo the integrity,
+deviation, thickness and flow-section checks. This proposal
+is not yet a verified operator. The curves allowed to move have not
+yet been identified; no blind modification is made.
 
-Conserver exactement les deux surfaces limitantes conserve aussi la longueur
-du trajet mesuré. Ajouter de la matière déjà à l'intérieur du solide ne peut
-pas augmenter cette longueur. Une correction devra donc déplacer **une
-frontière locale**, en conserver le contour maître global et mesurer ce
-déplacement explicitement. Son effet sur le refroidissement restera à calculer.
+Keeping the two bounding surfaces exactly also keeps the length
+of the measured path. Adding material already inside the solid cannot
+increase that length. A correction will therefore have to move **a
+local boundary**, keep the global master outline and measure that
+displacement explicitly. Its effect on cooling remains to be computed.
 
-## Image et traçabilité
+## Image and traceability
 
-`render_wall_origin.py` produit une vue de la tessellation du STEP F53 et une
-coupe superposant les deux géométries. Les 160 856 triangles du candidat sont
-affichés sans décimation. La coupe est tessellée avec une déflexion de 0,15
-unité du scan ; le segment rouge de **0,753** vient de l'intersection OCCT
-exacte, pas de la figure. Ce n'est ni un rendu Omniverse, ni un champ thermique.
+`render_wall_origin.py` produces a view of the F53 STEP tessellation and a
+section overlaying the two geometries. The candidate's 160,856 triangles are
+displayed without decimation. The section is tessellated with a deflection of 0.15
+scan units; the red segment of **0.753** comes from the exact OCCT
+intersection, not from the figure. It is neither an Omniverse render nor a thermal field.
 
-Artefacts privés sur Kali, sous `/tmp/917-f50/out/` :
+Private artifacts on Kali, under `/tmp/917-f50/out/`:
 
-- `m64-wall-origin-20260907.json` : audit ponctuel complet.
-- `m64-wall-repair-patches-20260907.json` : paquet d'intervention local.
-- `m64-local-transition-fillet-20260907/report.json` : rejet du filtre concave.
-- `m64-wall-origin-render-20260907/935-reference-wall-origin-diagnostic.png` : image.
+- `m64-wall-origin-20260907.json`: full point audit.
+- `m64-wall-repair-patches-20260907.json`: local intervention package.
+- `m64-local-transition-fillet-20260907/report.json`: rejection by the concave filter.
+- `m64-wall-origin-render-20260907/935-reference-wall-origin-diagnostic.png`: image.
 
-Empreintes :
+Digests:
 
-- STEP F53 : `700baea66bc72cdb6aee529e21b167270ebde11db94b06f8e1e55ee08bdd9bf2`.
-- Enveloppe F43 : `00c26d32820b23b3589beb7b26d34bc3eb176a89000b9374ffdbe334278b41ef`.
-- Audit d'origine : `b89fece8c3a5ee49d8ae6641054dc3cb17d7fddb47da1a99096b588c3c7bbec9`.
-- Paquet local : `64f7efd3dc581644dfafec615617ec06963267871f4d5c925504418773ee5e57`.
-- Image : `d63d4f86923d3b27449c421dd2f3d56ec86801e51acd87195fb0466605518fd3`.
+- F53 STEP: `700baea66bc72cdb6aee529e21b167270ebde11db94b06f8e1e55ee08bdd9bf2`.
+- F43 envelope: `00c26d32820b23b3589beb7b26d34bc3eb176a89000b9374ffdbe334278b41ef`.
+- Origin audit: `b89fece8c3a5ee49d8ae6641054dc3cb17d7fddb47da1a99096b588c3c7bbec9`.
+- Local package: `64f7efd3dc581644dfafec615617ec06963267871f4d5c925504418773ee5e57`.
+- Image: `d63d4f86923d3b27449c421dd2f3d56ec86801e51acd87195fb0466605518fd3`.
 
-Cinq tests unitaires de classification passent. Ils testent la décision
-d'héritage, les découpes, les cas ambigus et les intervalles invalides ; ils
-ne prouvent aucune performance mécanique. Les programmes se compilent en
-Python et l'audit/visualisation ont réellement tourné avec OCCT sur Kali.
-Une seconde exécution de l'audit retrouve les mêmes 28/9/5 classifications
-et les cinq trajets non adjacents hérités. Les classificateurs OCCT sont
-réutilisés entre sondes pour éviter de recharger le solide à chaque test.
+Five classification unit tests pass. They test the inheritance decision,
+the cuts, the ambiguous cases and invalid intervals; they
+prove no mechanical performance. The programs compile in
+Python and the audit/visualization actually ran with OCCT on Kali.
+A second run of the audit finds the same 28/9/5 classifications
+and the five inherited non-adjacent paths. The OCCT classifiers are
+reused between probes to avoid reloading the solid for each test.
 
-## Périmètre inchangé
+## Unchanged scope
 
-Cette géométrie est une **référence de recherche 935 scan-dérivée**, pas une
-culasse M64 aux interfaces validées. Échelle absolue non certifiée, contrôle
-d'épaisseur non exhaustif, thermique/résistance et LPBF complets non validés.
-Aucune fabrication, installation ou mise en route n'est autorisée. Aucun
-scan, STEP, STL ni coordonnées privées n'est ajouté au dépôt.
+This geometry is a **scan-derived 935 research reference**, not an
+M64 cylinder head with validated interfaces. Absolute scale not certified, thickness
+check not exhaustive, thermal/strength and full LPBF not validated.
+No manufacturing, installation or start-up is authorized. No
+scan, STEP, STL or private coordinates are added to the repository.

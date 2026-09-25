@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "part_id": "993-ENG-INTERCOOLER-BRACKET-TI-F0-0001",
-  "name": "Support d'intercooler 993 Turbo/GT2, concept titane F0",
-  "description": "Concept indépendant de support ouvert à deux rails pour cribler l'intérêt d'une refabrication LPBF en Ti-6Al-4V. PorscheFanatics et le PET établissent les références du circuit ; FVD publie l'enveloppe et la masse d'un support renforcé aftermarket, sans géométrie d'interface exploitable.",
+  "name": "993 Turbo/GT2 intercooler bracket, titanium F0 concept",
+  "description": "Independent open two-rail bracket concept to screen the value of an LPBF remanufacture in Ti-6Al-4V. PorscheFanatics and the PET establish the circuit part numbers; FVD publishes the envelope and mass of a reinforced aftermarket bracket, without usable interface geometry.",
   "vehicle": {
     "generation": "993",
     "variants": [
@@ -21,7 +21,7 @@
   "classification": {
     "category": "charge_air_support",
     "safety_class": "functional",
-    "intended_use": "Criblage CAO, DfAM, masse et mécanique d'un support d'intercooler ; aucun montage véhicule autorisé"
+    "intended_use": "CAD, DfAM, mass and mechanical screening of an intercooler bracket; no vehicle fitting authorized"
   },
   "geometry": {
     "source_type": "mixed",
@@ -34,23 +34,23 @@
     ]
   },
   "provenance": {
-    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, illustration PET ou géométrie commerciale redistribuée",
+    "record_license": "MIT for the concept, the script and the calculations; no photograph, PET illustration or commercial geometry redistributed",
     "sources": [
       {
-        "title": "PorscheFanatics - relevé PET des groupes Turbo 993",
+        "title": "PorscheFanatics - PET transcription of the 993 Turbo groups",
         "url": "https://porschefanatics.com/oem/993/202-16/",
         "source_type": "community",
         "license": "site-owner-confirmed-reference-only",
         "accessed_on": "2026-09-07",
-        "notes": "Le catalogue localise le circuit de suralimentation et ses supports. Il fournit identité et contexte, mais aucune cote, tolérance ou surface CAO. Voir SRC-PORSCHEFANATICS-993-TURBO-PET."
+        "notes": "The catalogue locates the forced induction circuit and its brackets. It provides identity and context, but no dimension, tolerance or CAD surface. See SRC-PORSCHEFANATICS-993-TURBO-PET."
       },
       {
-        "title": "FVD - support renforcé d'intercooler FVD11011050",
+        "title": "FVD - reinforced intercooler bracket FVD11011050",
         "url": "https://www.fvd.net/de/shop/traeger-ladeluftkuehler-993-turbo-gt2-verstaerkt-fvd11011050~p265005",
         "source_type": "manufacturer",
         "license": "vendor-site-copyright-reference-only",
         "accessed_on": "2026-09-07",
-        "notes": "FVD déclare 255 x 80 x 23 mm, 0,2 kg et une application 993 Turbo/GT2. L'enveloppe est conservée ; rails, perçages et plot central du F0 sont indépendants. Voir SRC-FVD-993-INTERCOOLER-BRACKET-DIMENSIONS."
+        "notes": "FVD declares 255 x 80 x 23 mm, 0.2 kg and a 993 Turbo/GT2 application. The envelope is kept; the rails, holes and central boss of the F0 are independent. See SRC-FVD-993-INTERCOOLER-BRACKET-DIMENSIONS."
       },
       {
         "title": "EOS Titanium Ti64 Grade 5 material data sheet",
@@ -58,7 +58,7 @@
         "source_type": "manufacturer",
         "license": "manufacturer-copyright-reference-only",
         "accessed_on": "2026-09-07",
-        "notes": "Référence procédé LPBF/DMLS : anisotropie, paramètres machine et traitement thermique doivent être qualifiés. Voir SRC-EOS-TI64-GRADE5."
+        "notes": "LPBF/DMLS process reference: anisotropy, machine parameters and heat treatment must be qualified. See SRC-EOS-TI64-GRADE5."
       },
       {
         "title": "TIMETAL 6-4 physical properties",
@@ -66,7 +66,7 @@
         "source_type": "manufacturer",
         "license": "manufacturer-copyright-reference-only",
         "accessed_on": "2026-09-07",
-        "notes": "Densité, module, dilatation et limite minimale de tôle corroyée servent uniquement au criblage ; ils ne sont pas des valeurs admissibles LPBF. Voir SRC-TIMET-TI64-PHYSICAL-PROPERTIES."
+        "notes": "Density, modulus, expansion and minimum yield of wrought sheet are used for screening only; they are not LPBF allowables. See SRC-TIMET-TI64-PHYSICAL-PROPERTIES."
       }
     ]
   },
@@ -78,45 +78,45 @@
     ],
     "preferred_process": "CNC",
     "material": {
-      "family": "titane LPBF candidat",
-      "grade": "Ti-6Al-4V Grade 5 de criblage ; matériau OEM et produit FVD inconnus",
-      "standard": "ASTM F2924 ou spécification fournisseur équivalente à contractualiser"
+      "family": "candidate LPBF titanium",
+      "grade": "Ti-6Al-4V Grade 5 for screening; OEM material and FVD product unknown",
+      "standard": "ASTM F2924 or equivalent supplier specification to be contracted"
     },
     "post_processing": [
-      "retrait des supports avec accès conservé aux deux évidements ouverts",
-      "traitement thermique qualifié pour la machine, les paramètres et l'orientation",
-      "HIP à décider après analyse fatigue et population de défauts",
-      "usinage des alésages d'extrémité et de l'interface centrale après définition des jeux",
-      "ébavurage, rayonnage et finition des chemins de charge",
-      "passivation et isolation galvanique après contrôle dimensionnel"
+      "support removal keeping access to the two open recesses",
+      "heat treatment qualified for the machine, parameters and orientation",
+      "HIP to be decided after fatigue analysis and defect population",
+      "machining of the end bores and central interface after clearances are defined",
+      "deburring, radiusing and finishing of load paths",
+      "passivation and galvanic isolation after dimensional inspection"
     ],
     "supplier_requirements": [
-      "poudre, machine, paramètres, orientation, lot et recyclage de poudre traçables",
-      "coupons témoins en orientations critiques avec traction et fatigue représentatives",
-      "contrôle dimensionnel des datums, entraxes, alésages et enveloppe",
-      "CT des noeuds et bossages, puis ressuage après usinage",
-      "rugosité, porosité, couche alpha et contraintes résiduelles contractualisées",
-      "essais statiques, vibratoires et thermiques instrumentés avant tout montage"
+      "traceable powder, machine, parameters, orientation, lot and powder recycling",
+      "witness coupons in critical orientations with representative tensile and fatigue",
+      "dimensional inspection of datums, center distances, bores and envelope",
+      "CT of nodes and bosses, then dye penetrant inspection after machining",
+      "contracted roughness, porosity, alpha case and residual stresses",
+      "instrumented static, vibration and thermal tests before any fitting"
     ]
   },
   "titanium": {
     "applicable": true,
-    "alloy": "Ti-6Al-4V Grade 5 candidat uniquement",
-    "heat_treatment": "Cycle EOS indicatif à confirmer pour la machine et les paramètres retenus ; aucune recette n'est gelée",
+    "alloy": "Ti-6Al-4V Grade 5 candidate only",
+    "heat_treatment": "Indicative EOS cycle to be confirmed for the selected machine and parameters; no recipe is frozen",
     "hip_required": "to_be_determined",
     "machined_surfaces": [
-      "deux alésages d'extrémité",
-      "alésage et datum du plot central",
-      "portées de fixation à définir sur pièce mesurée"
+      "two end bores",
+      "central boss bore and datum",
+      "mounting seats to be defined on a measured part"
     ],
     "inspection": [
-      "CT des bossages et jonctions de rails",
-      "contrôle dimensionnel des interfaces usinées",
-      "ressuage après usinage",
-      "rugosité et porosité",
-      "coupons de traction et fatigue représentatifs de l'orientation"
+      "CT of bosses and rail junctions",
+      "dimensional inspection of machined interfaces",
+      "dye penetrant inspection after machining",
+      "roughness and porosity",
+      "tensile and fatigue coupons representative of the orientation"
     ],
-    "galvanic_isolation": "Séparer électriquement le titane de l'intercooler aluminium et des fixations acier par bagues, rondelles, revêtement et étanchéité qualifiés après identification des matériaux réels."
+    "galvanic_isolation": "Electrically separate the titanium from the aluminum intercooler and the steel fasteners with bushings, washers, coating and sealing qualified after the actual materials are identified."
   },
   "validation": {
     "status": "concept",
@@ -133,14 +133,14 @@
     "reviewed_by": "",
     "reviewed_on": null,
     "known_limits": [
-      "Seule l'enveloppe 255 x 80 x 23 mm vient de la fiche commerciale ; les rails, perçages et le plot central sont des hypothèses F0.",
-      "La masse publiée de 0,2 kg concerne le produit FVD dont la matière et la topologie exactes sont inconnues ; elle ne valide pas le concept.",
-      "Le cas central de 400 N, la portée de 220 mm et +120 K sont synthétiques ; aucune charge 993 n'a été mesurée.",
-      "Le calcul de poutre ignore courbure, concentrations, contact, précharge, vibration, fatigue, défauts LPBF et contraintes thermiques.",
-      "La limite de comparaison 828 MPa vient d'une référence corroyée TIMET et n'est pas une valeur admissible LPBF.",
-      "L'écran CalculiX C3D10 converge à moins de 10 % sur le p95 et la flèche, mais conserve des appuis, une charge et une carte élastique synthétiques ; le maximum local augmente encore avec le raffinement.",
-      "Le USD dérivé passe le contrôle structurel minimum seulement ; il ne porte aucune attribution physique SimReady qualifiée.",
-      "Le STEP prouve seulement un BREP calculable dans l'enveloppe ; il ne doit être ni fabriqué pour montage ni installé."
+      "Only the 255 x 80 x 23 mm envelope comes from the commercial record; the rails, holes and central boss are F0 assumptions.",
+      "The published 0.2 kg mass concerns the FVD product whose exact material and topology are unknown; it does not validate the concept.",
+      "The 400 N central case, the 220 mm span and +120 K are synthetic; no 993 load has been measured.",
+      "The beam calculation ignores curvature, stress concentrations, contact, preload, vibration, fatigue, LPBF defects and thermal stresses.",
+      "The 828 MPa comparison limit comes from a wrought TIMET reference and is not an LPBF allowable.",
+      "The CalculiX C3D10 screen converges to within 10% on p95 and deflection, but keeps synthetic supports, load and elastic card; the local maximum still rises with refinement.",
+      "The derived USD passes the minimum structural check only; it carries no qualified SimReady physical attribution.",
+      "The STEP proves only a computable BREP within the envelope; it must be neither manufactured for fitting nor installed."
     ]
   }
 }

@@ -1,67 +1,83 @@
-# Roue de compresseur K16 993 — concept AlSi10Mg LPBF F0
+# 993 K16 compressor wheel — AlSi10Mg LPBF F0 concept
 
-Une fiche fournisseur du K16 droit `53169886735` déclare pour la roue
-`53241232006` un inducer de `40,6 mm`, un exducer de `60,5 mm` et `6 + 6`
-pales. Elle ne donne ni profil, ni hauteur, ni moyeu, ni alésage, ni tolérance,
-ni matière. PorscheFanatics situe les deux turbocompresseurs dans la chaîne
-d'admission du 993 et recense des roues d'upgrade, mais aucune roue K16
-fabriquée additivement.
+A supplier listing for the right-hand K16 `53169886735` declares for the wheel
+`53241232006` an inducer of `40.6 mm`, an exducer of `60.5 mm` and `6 + 6`
+blades. It gives no profile, no height, no hub, no bore, no tolerance and no
+material. PorscheFanatics places the two turbochargers in the 993 intake chain
+and lists upgrade wheels, but no additively manufactured K16 wheel.
 
-Le F0 conserve donc uniquement les deux diamètres et le compte de pales. Son
-disque de `3 mm`, sa hauteur de `18 mm`, son alésage de `6 mm`, son moyeu et ses
-pales droites de `1,2 mm` sont des hypothèses indépendantes.
+The F0 therefore keeps only the two diameters and the blade count. Its `3 mm`
+disc, its `18 mm` height, its `6 mm` bore, its hub and its straight `1.2 mm`
+blades are independent assumptions.
 
-## Pourquoi étudier l'additif
+```mermaid
+flowchart LR
+  S["Published: wheel 53241232006<br/>inducer 40.6 mm, exducer 60.5 mm,<br/>6 + 6 blades"] --> H["Assumptions: 3 mm disc,<br/>18 mm height, straight 1.2 mm blades"]
+  H --> G["F0 BREP valid<br/>32.70 g"]
+  G --> A["Synthetic aerodynamic point<br/>not a K16 map"]
+  G --> M["Blade at overspeed 390.9 MPa<br/>ratio 0.627: F0 rejected"]
+  G --> P["LPBF print screen<br/>roll_y_45, 30 µm"]
+  M --> V["Not authorized for manufacturing,<br/>rotation, turbo or engine"]
+  P --> V
+  class S ok
+  class H,A,P open
+  class M,V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
 
-Douze pales, leurs congés et le moyeu peuvent être produits et itérés sans
-outillage de fonderie. Le LPBF n'est cependant pertinent que si une géométrie
-optimisée ou des fonctions internes apportent un gain que l'usinage cinq axes
-ne donne pas. La rugosité, les défauts, la distorsion et la tenue HCF peuvent au
-contraire rendre le LPBF inférieur.
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
 
-La comparaison obligatoire reste :
+## Why study additive
 
-1. roue aluminium moulée et qualifiée ;
-2. roue taillée cinq axes dans un lopin ;
-3. roue AlSi10Mg LPBF, usinée, équilibrée et qualifiée en sur-vitesse/éclatement.
+Twelve blades, their fillets and the hub can be produced and iterated without
+foundry tooling. LPBF is, however, only relevant if an optimized geometry or
+internal features bring a gain that five-axis machining does not. Roughness,
+defects, distortion and HCF strength may on the contrary make LPBF inferior.
 
-## Géométrie obtenue
+The mandatory comparison remains:
 
-Le STEP relu contient un solide BREP valide de `60,5 × 60,5 × 18 mm`, six pales
-principales, six séparatrices et un alésage traversant. Son volume vaut
-`12 248,31 mm³` et sa masse théorique `32,70 g`. Un cylindre enveloppe plein
-pèserait `138,16 g`, soit un rapport de brut théorique de `4,22`. Ce cylindre
-n'est pas un brut industriel ni une preuve économique.
+1. cast and qualified aluminum wheel;
+2. wheel cut on five axes from a billet;
+3. AlSi10Mg LPBF wheel, machined, balanced and qualified in overspeed/burst.
 
-## Point aérodynamique synthétique
+## Geometry obtained
 
-À `330 K`, Mach périphérique `0,9` donne `327,75 m/s` et une vitesse dérivée de
-`103 464 tr/min`. Pour un banc d'un moteur `3,6 l` à `5 750 tr/min`, remplissage
-`0,95`, le débit géométrique vaut `0,08194 m³/s`. Avec un moyeu inducer supposé
-de `12 mm`, la vitesse axiale vaut `69,35 m/s`, Mach `0,190`, Reynolds `281 588`
-et le coefficient de débit `0,212`.
+The re-read STEP contains a valid BREP solid of `60.5 × 60.5 × 18 mm`, six main
+blades, six splitters and a through bore. Its volume is `12,248.31 mm³` and its
+theoretical mass `32.70 g`. A solid envelope cylinder would weigh `138.16 g`,
+i.e. a theoretical stock ratio of `4.22`. This cylinder is neither an
+industrial stock size nor an economic proof.
 
-À rapport de pression `1,8` et rendement synthétique `0,72`, la température de
-sortie calculée vaut `413,8 K`, le travail `84,23 kJ/kg`, la puissance par banc
-`13,11 kW` et le couple `1,21 N·m`. Ce point n'est pas une carte K16 et ne traite
-ni surge, ni choke, ni incidence, ni rendement réel.
+## Synthetic aerodynamic point
 
-## Criblage mécanique — F0 rejeté
+At `330 K`, tip Mach `0.9` gives `327.75 m/s` and a derived speed of
+`103,464 rpm`. For one bank of a `3.6 l` engine at `5,750 rpm`, volumetric
+efficiency `0.95`, the geometric flow is `0.08194 m³/s`. With an assumed
+inducer hub of `12 mm`, the axial velocity is `69.35 m/s`, Mach `0.190`,
+Reynolds `281,588` and the flow coefficient `0.212`.
 
-Le disque tournant idéalisé atteint `119,4 MPa`, puis `171,9 MPa` à une
-sur-vitesse de `1,2×`. La pale principale droite atteint `271,5 MPa` au point
-nominal et `390,9 MPa` à la sur-vitesse. Face à la comparaison ambiante EOS de
-`245 MPa`, le rapport n'est que `0,627` : **la topologie F0 échoue** et ne doit
-pas passer en CFD/FEA détaillée sans redimensionnement.
+At pressure ratio `1.8` and synthetic efficiency `0.72`, the calculated outlet
+temperature is `413.8 K`, the work `84.23 kJ/kg`, the power per bank
+`13.11 kW` and the torque `1.21 N·m`. This point is not a K16 map and deals
+with neither surge, nor choke, nor incidence, nor real efficiency.
 
-La croissance élastique et thermique additionnée vaut `0,147 mm`, alors que le
-jeu réel est inconnu. La borne thermique totalement contrainte vaut
-`220,5 MPa`. Dix mg·mm de balourd produisent déjà `1,17 N`. L'énergie de rotation
-approximative vaut `878 J` et le décompte atteint `620,8 millions` de tours en
-`100 h`. Aucun de ces résultats ne prouve la tenue, l'équilibrage ou le
-confinement.
+## Mechanical screening — F0 rejected
 
-## Reproduction logicielle
+The idealized rotating disc reaches `119.4 MPa`, then `171.9 MPa` at `1.2×`
+overspeed. The straight main blade reaches `271.5 MPa` at the nominal point and
+`390.9 MPa` at overspeed. Against the EOS room-temperature comparison value of
+`245 MPa`, the ratio is only `0.627`: **the F0 topology fails** and must not go
+on to detailed CFD/FEA without resizing.
+
+The combined elastic and thermal growth is `0.147 mm`, whereas the actual
+clearance is unknown. The fully constrained thermal bound is `220.5 MPa`. Ten
+mg·mm of imbalance already produce `1.17 N`. The approximate rotational energy
+is `878 J` and the count reaches `620.8 million` revolutions in `100 h`. None of
+these results proves strength, balance or containment.
+
+## Software reproduction
 
 ```bash
 docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
@@ -71,42 +87,44 @@ docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
   --report parts/993-eng-k16-compressor-wheel-alsi10mg-f0-0001/evidence/engineering-screen.json
 ```
 
-## Gates suivants
+## Next gates
 
-1. Scanner/CT la roue droite et gauche, puis mesurer profils, moyeu, alésage,
-   écrou, arbre, backplate, diffuseur, carter, jeux et datums d'équilibrage.
-2. Obtenir cartes compresseur, vitesses, pression/température, accélérations,
-   surge/choke, balourd et cycle de service.
-3. Reconstruire les pales avec surfaces aérodynamiques, congés, surépaisseurs,
-   tolérances et interfaces réelles.
-4. Faire CFD tournante avec convergence, puis FSI/FEA centrifuge-thermique,
-   contact, rotor dynamique, Campbell, HCF et éclatement probabiliste.
-5. Qualifier AlSi10Mg, orientation, supports, distorsion, traitement, HIP,
-   finition de pales, CT, métrologie, équilibrage et spin proof.
-6. Tester sur spin rig confiné, turbo au banc puis moteur, sous revue d'un
-   spécialiste turbomachines.
+1. Scan/CT the right-hand and left-hand wheels, then measure profiles, hub,
+   bore, nut, shaft, backplate, diffuser, housing, clearances and balancing
+   datums.
+2. Obtain compressor maps, speeds, pressure/temperature, accelerations,
+   surge/choke, imbalance and duty cycle.
+3. Rebuild the blades with aerodynamic surfaces, fillets, machining
+   allowances, tolerances and real interfaces.
+4. Run converged rotating CFD, then FSI/centrifugal-thermal FEA, contact,
+   rotordynamics, Campbell, HCF and probabilistic burst.
+5. Qualify AlSi10Mg, orientation, supports, distortion, heat treatment, HIP,
+   blade finishing, CT, metrology, balancing and spin proof.
+6. Test on a contained spin rig, then turbo on the bench, then engine, under
+   review by a turbomachinery specialist.
 
-PhysicsNeMo attend des cas CFD-structure-rotordynamique corrélés avec train,
-holdout et hors-distribution. SimReady attend l'assemblage mesuré. Ce STEP F0
-n'est autorisé ni pour fabrication, ni pour rotation, ni pour turbo ou moteur.
+PhysicsNeMo awaits correlated CFD-structure-rotordynamics cases with train,
+holdout and out-of-distribution sets. SimReady awaits the measured assembly.
+This F0 STEP is authorized neither for manufacturing, nor for rotation, nor for
+turbo or engine use.
 
 <!-- print-screen:begin -->
 
-## Simulation d'impression LPBF
+## LPBF print simulation
 
-Le STEP a ete tessele puis tranche sur toute sa hauteur a `30 µm`, route EOS M 290 de la matiere candidate. Orientation retenue par la regle automatique : `roll_y_45`.
+The STEP was tessellated, then sliced over its full height at `30 µm`, on the EOS M 290 route of the candidate material. Orientation chosen by the automatic rule: `roll_y_45`.
 
-| grandeur | valeur |
+| quantity | value |
 |---|---:|
-| couches | 1 745 |
-| hauteur de construction | 52,33 mm |
-| couches avec region non soutenue | 6 |
-| proxy de supports | 0,16 mm³ |
-| epaisseur locale p01 | 0,270 mm |
-| poudre piegee a 1,00 mm | 0,00 mm³ |
+| layers | 1,745 |
+| build height | 52.33 mm |
+| layers with an unsupported region | 6 |
+| support proxy | 0.16 mm³ |
+| local thickness p01 | 0.270 mm |
+| trapped powder at 1.00 mm | 0.00 mm³ |
 
-![Simulation d'impression LPBF](../../parts/993-eng-k16-compressor-wheel-alsi10mg-f0-0001/evidence/lpbf-f0/993-eng-k16-compressor-wheel-alsi10mg-f0-0001-lpbf-geometry-screen.png)
+![LPBF print simulation](../../parts/993-eng-k16-compressor-wheel-alsi10mg-f0-0001/evidence/lpbf-f0/993-eng-k16-compressor-wheel-alsi10mg-f0-0001-lpbf-geometry-screen.png)
 
-Ce criblage n'est ni un projet EOSPRINT, ni un calcul de distorsion, ni un controle du recoater. **L'impression reste interdite.**
+This screening is neither an EOSPRINT project, nor a distortion calculation, nor a recoater check. **Printing remains prohibited.**
 
 <!-- print-screen:end -->

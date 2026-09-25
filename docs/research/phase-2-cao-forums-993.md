@@ -1,115 +1,111 @@
-# Phase 2 — Fichiers CAO et 3D du 993 trouvés dans les communautés
+# Phase 2 — 993 CAD and 3D files found in the communities
 
-Date de consultation : 29 août 2026. Requêtes menées en allemand, anglais et
-français autour de `993 CAD`, `CAO`, `STEP`, `STL`, `3D scan`, `SolidWorks`,
-`FreeCAD`, `Rennlist`, `PFF`, `GrabCAD`, `Thingiverse` et `Printables`.
+Date consulted: August 29, 2026. Queries run in German, English and French
+around `993 CAD`, `CAO`, `STEP`, `STL`, `3D scan`, `SolidWorks`, `FreeCAD`,
+`Rennlist`, `PFF`, `GrabCAD`, `Thingiverse` and `Printables`.
 
 ## Conclusion
 
-Des propriétaires ont bien travaillé sur des fichiers 3D fonctionnels du 993.
-Le corpus public porte surtout sur des petites pièces, accessoires, gabarits
-d'atelier et maillages visuels. Aucun assemblage CAO paramétrique complet et
-métrologique de la voiture n'a été trouvé.
+Owners have indeed worked on functional 3D files for the 993. The public corpus
+covers mostly small parts, accessories, shop jigs and visual meshes. No
+complete, parametric, metrological CAD assembly of the car was found.
 
-Les quatre pistes nouvelles les plus utiles au jumeau sont :
+The four new leads most useful to the twin are:
 
-1. trois gabarits CAO de profondeur de pose du pare-brise, issus de gabarits
-   physiques puis repris dans SolidWorks ;
-2. un scan de Carrera complet annoncé à l'échelle réelle et à 2 mm de précision.
-3. un second scan, cette fois d'une Turbo 1996, vendu en OBJ et annoncé à
-   1,76 mm de précision extérieure ;
-4. une étude de cas industrielle portant sur le scan métrologique et la
-   rétro-ingénierie d'une 993 Coupé 1995 chez Juliá Automobile.
+1. three CAD jigs for windshield setting depth, derived from physical jigs and
+   then redrawn in SolidWorks;
+2. a scan of a complete Carrera advertised at full scale with 2 mm accuracy.
+3. a second scan, this time of a 1996 Turbo, sold as OBJ and advertised at
+   1.76 mm exterior accuracy;
+4. an industrial case study covering the metrological scan and reverse
+   engineering of a 1995 993 Coupé at Juliá Automobile.
 
-Les gabarits peuvent documenter une interface caisse-vitrage ; les deux scans
-commerciaux peuvent fournir des enveloppes de carrosserie ; l'étude de cas
-identifie un détenteur de données professionnelles. Aucun ne doit être présenté
-comme géométrie certifiée avant contrôle des fichiers, de l'échelle, de la
-variante et des droits.
+The jigs can document a body shell–glazing interface; the two commercial scans
+can provide body envelopes; the case study identifies a holder of professional
+data. None may be presented as certified geometry before the files, the scale,
+the variant and the rights have been checked.
 
-## Deuxième vague de recherche
+## Second wave of research
 
-La recherche a été étendue aux dépôts GitHub et GitLab, à Carpokes, Pelican
-Parts, PFF, Cults, Thingiverse, 3D Warehouse, aux prestataires de scan et aux
-ateliers de restauration. Aucun dépôt Git public identifiable ne contient à ce
-jour un assemblage ou une pièce 993 sous un nom explicite en STEP, FreeCAD,
-OpenSCAD ou STL. Les résultats réellement exploitables sont dispersés sur les
-forums et places de marché.
+The search was extended to GitHub and GitLab repositories, Carpokes, Pelican
+Parts, PFF, Cults, Thingiverse, 3D Warehouse, scanning service providers and
+restoration shops. To date, no identifiable public Git repository contains a
+993 assembly or part under an explicit name in STEP, FreeCAD, OpenSCAD or STL.
+The results that are actually usable are scattered across forums and
+marketplaces.
 
-| Source nouvelle | Géométrie ou information | Intérêt pour le jumeau | Statut et garde-fou |
+| New source | Geometry or information | Value for the twin | Status and safeguard |
 |---|---|---|---|
-| Wolfe Classics | scan extérieur OBJ d'une Turbo 1996, précision annoncée 1,76 mm | seconde enveloppe complète, utile pour comparaison croisée | achat requis ; ligne de toit signalée faible ; licence et métrologie à demander |
-| SHINING 3D / Juliá Automobile | scan et rétro-ingénierie d'une Coupé 1995 | détenteur identifié d'une géométrie professionnelle de caisse et carrosserie | fichiers privés ; 0,02 mm décrit le scanner, pas l'incertitude du modèle complet |
-| Cults / formfactorperformance | cabochon de roue `993361303.11` en STEP et STL | première petite pièce trouvée avec un format CAO éditable | licence privée, aucune preuve de rétention ni de montage |
-| Cults / ITMonkey | renforts gauche/droite de vide-poche non-HiFi en STL | géométrie locale avec enveloppe déclarée et fonction claire | payant, usage privé, aucune cote d'interface publiée |
-| Carpokes | insert de réparation de bouton de climatisation 944/964/993 | communauté spécialisée et fil ancien avec retours | URL du fichier et licence à relever en session authentifiée |
-| PFF / 1.AVM | composants de toit ouvrant 993 reconstruits en polymère renforcé | preuve d'une CAO fonctionnelle existante en Allemagne | aucun fichier, cote ou référence publique ; contact à établir |
-| Denk3D | kits de réparation des attaches de platines d'interrupteurs 964/993 | deux familles de petites interfaces intérieures candidates | produit commercial, CAO fermée ; mesurer une pièce réelle |
-| Thingiverse / LimeyBoy | bague d'avertisseur Momo RS : 52 mm intérieur, 59 mm extérieur, saillie 3 mm | petite géométrie bornée par trois dimensions déclarées | licence exacte et fonctionnement électrique à vérifier |
-| Pelican Parts / gmorat | inserts de suppression de bumperettes, plusieurs itérations | révèle la variabilité réelle de la découpe du bouclier | pas de fichier ; concevoir paramétrique et mesurer chaque voiture |
+| Wolfe Classics | OBJ exterior scan of a 1996 Turbo, advertised accuracy 1.76 mm | second complete envelope, useful for cross-comparison | purchase required; roofline flagged as weak; license and metrology to be requested |
+| SHINING 3D / Juliá Automobile | scan and reverse engineering of a 1995 Coupé | identified holder of professional body shell and body geometry | private files; 0.02 mm describes the scanner, not the uncertainty of the complete model |
+| Cults / formfactorperformance | wheel center cap `993361303.11` in STEP and STL | first small part found in an editable CAD format | private license, no evidence of retention or fit |
+| Cults / ITMonkey | left/right reinforcements for the non-HiFi door pocket in STL | local geometry with a declared envelope and a clear function | paid, private use, no interface dimension published |
+| Carpokes | repair insert for the 944/964/993 climate control knob | specialist community and an old thread with feedback | file URL and license to be recorded in an authenticated session |
+| PFF / 1.AVM | 993 sunroof components rebuilt in reinforced polymer | evidence that functional CAD exists in Germany | no public file, dimension or reference; contact to be established |
+| Denk3D | repair kits for the 964/993 switch-panel clips | two families of candidate small interior interfaces | commercial product, closed CAD; measure a real part |
+| Thingiverse / LimeyBoy | Momo RS horn ring: 52 mm inside, 59 mm outside, 3 mm protrusion | small geometry bounded by three declared dimensions | exact license and electrical operation to be checked |
+| Pelican Parts / gmorat | bumperette delete inserts, several iterations | reveals the real variability of the bumper cutout | no file; design parametrically and measure each car |
 
-Cette vague ajoute donc surtout deux détenteurs de scans complets, six familles
-de petites pièces et une contrainte de conception importante. Elle ne change
-pas la conclusion centrale : aucun fichier public ne constitue encore un
-jumeau numérique métrique assemblé et réutilisable.
+This wave therefore mainly adds two holders of complete scans, six families of
+small parts and one important design constraint. It does not change the
+central conclusion: no public file yet constitutes an assembled, reusable,
+metric digital twin.
 
-## Résultats classés
+## Ranked results
 
-| Priorité | Élément | Format ou procédé annoncé | Preuve disponible | Limite actuelle |
+| Priority | Item | Advertised format or process | Evidence available | Current limit |
 |---|---|---|---|---|
-| haute | gabarits de pose du pare-brise | SolidWorks puis 3 fichiers imprimables, haut/bas/côté | fil de conception, corrections d'échelle, lien Printables et retours d'usage | licence, fichiers maîtres, cotes et incertitude à vérifier |
-| haute | scan complet d'une Carrera « barn find » | maillage de scan, 1,6 M triangles | taille réelle et précision 2 mm déclarées par le vendeur | payant, variante et rapport de calibration absents, redistribution interdite |
-| haute | scan extérieur d'une Turbo 1996 | OBJ, précision extérieure 1,76 mm déclarée | fiche du prestataire et défaut de toit explicitement signalé | payant, procédé, carte d'écart et licence non publiés |
-| haute | rétro-ingénierie Juliá Automobile | système de scan métrologique et CAO professionnelle | étude de cas allemande, voiture et millésime identifiés | données privées ; précision instrumentale différente de l'incertitude globale |
-| moyenne | cabochon de roue `993361303.11` | STEP et STL | référence OEM et formats maîtres déclarés | licence privée, aucune preuve de montage ou de rétention |
-| moyenne | renforts de vide-poche non-HiFi | deux STL gauche/droite | enveloppe publiée et fonction documentée | payant, licence privée, tolérances et essai absents |
-| moyenne | bague arrière de réglage de siège | STL dans une archive ZIP | auteur et utilisateur décrivent la fabrication et le montage | licence, dimensions, matière, masse et variante inconnues |
-| moyenne | barre de grille arrière divisée | STL Thingiverse, CAO communautaire | journal de conception, photos de finition et montage | pièce custom, pas une reproduction OEM ; licence exacte à reconfirmer |
-| moyenne | cadres de haut-parleurs, porte-gobelets, support téléphone, patte de purge | STL sur Thingiverse/Printables ou archive Renn3D | fichiers et quelques photos de montage | échelle, matière, masse, licence et ajustement encore incomplets selon la pièce |
-| basse | carrosseries CGTrader/GrabCAD/3DModels.org | Blender, FBX, OBJ, STL ou conversion STEP | visuels détaillés, parfois dimensions globales annoncées | géométrie de rendu ou miniature, aucune métrologie locale démontrée |
-| basse | scan GT2 par vidéogrammétrie | maillage Sketchfab CC BY | maillage libre et provenance décrite | aucune échelle ni précision, images vidéo tierces |
+| high | windshield setting jigs | SolidWorks, then 3 printable files, top/bottom/side | design thread, scale corrections, Printables link and usage feedback | license, master files, dimensions and uncertainty to be checked |
+| high | complete scan of a "barn find" Carrera | scan mesh, 1.6 M triangles | full size and 2 mm accuracy declared by the seller | paid, variant and calibration report missing, redistribution prohibited |
+| high | exterior scan of a 1996 Turbo | OBJ, 1.76 mm exterior accuracy declared | service provider's listing and roof defect explicitly flagged | paid, process, deviation map and license not published |
+| high | Juliá Automobile reverse engineering | metrological scanning system and professional CAD | German case study, car and model year identified | private data; instrument accuracy differs from overall uncertainty |
+| medium | wheel center cap `993361303.11` | STEP and STL | OEM reference and master formats declared | private license, no evidence of fit or retention |
+| medium | non-HiFi door pocket reinforcements | two STL, left/right | published envelope and documented function | paid, private license, tolerances and test missing |
+| medium | rear seat adjustment bushing | STL in a ZIP archive | author and a user describe fabrication and fitting | license, dimensions, material, mass and variant unknown |
+| medium | split rear grille bar | Thingiverse STL, community CAD | design log, finishing and fitting photos | custom part, not an OEM reproduction; exact license to be reconfirmed |
+| medium | speaker frames, cup holders, phone mount, bleed tab | STL on Thingiverse/Printables or Renn3D archive | files and a few fitting photos | scale, material, mass, license and fit still incomplete depending on the part |
+| low | CGTrader/GrabCAD/3DModels.org bodies | Blender, FBX, OBJ, STL or STEP conversion | detailed visuals, sometimes advertised overall dimensions | render or miniature geometry, no local metrology demonstrated |
+| low | GT2 scan by videogrammetry | Sketchfab mesh, CC BY | free mesh and described provenance | no scale or accuracy, third-party video frames |
 
-## Fils particulièrement utiles
+## Particularly useful threads
 
-- [index Rennlist des pièces 3D du 993](https://rennlist.com/forums/993-forum/1451330-thread-of-993-3d-printed-diy-bits.html) :
-  haut-parleurs, gabarits de pare-brise, porte-gobelets, console et bagues de
-  siège ;
-- [développement des gabarits de pare-brise](https://rennlist.com/forums/993-forum/1401664-windshield-replacement-diy.html) :
-  trois fichiers CAO pour régler la profondeur du vitrage ;
-- [historique de numérisation des gabarits](https://rennlist.com/forums/993-forum/937323-f-s-993-windshield-back-glass-templates-5.html) :
-  passage d'un tracé physique à SolidWorks et résolution de problèmes d'échelle ;
-- [bague de glissière de siège](https://rennlist.com/forums/993-forum/958995-993-passenger-and-driver-side-seat-rail-replacement-alternative-2.html) :
-  STL joint au forum et retour d'utilisation ;
-- [barre de grille divisée](https://rennlist.com/forums/993-forum/1189086-993-custom-split-grill-3.html) :
-  fichier Thingiverse `4349486` et journal de montage ;
-- [demande de plans châssis et suspension](https://rennlist.com/forums/993-forum/1285117-993-chassis-and-suspension-blueprints-3d-models.html) :
-  la réponse publique fournit un PDF de dimensions de caisse, pas un modèle 3D.
-- [scan extérieur d'une 993 Turbo 1996](https://www.wolfeclassics.com/shop/p/1996-porsche-911-turbo-3d-scan) :
-  OBJ annoncé à 1,76 mm, avec une limite connue au niveau du toit ;
-- [étude de cas allemande SHINING 3D / Juliá Automobile](https://www.shining3d.com/de/juli%C3%A1-automobile-shining-3d-when-passion-meets-3d-scanning-technology-classic-porsche-rebor) :
-  scan professionnel d'une 993 Coupé 1995 pour reconstruction ;
-- [bibliothèque CAO Carpokes](https://www.carpokes.com/viewforum.php?f=20) :
-  fil dédié à un insert de réparation de bouton de climatisation 993/964/944 ;
-- [reconstruction allemande de pièces de toit ouvrant](https://www.pff.de/thread/2821329-3d-druck-mit-kohlefaser-cnc-fraesen-und-drehen-ersatzteile-besser-als-original/) :
-  comparaison photographique entre pièces d'origine et reproductions ;
-- [développement CAO d'inserts de bumperettes](https://forums.pelicanparts.com/porsche-964-993-technical-forum/905860-bumperette-delete-modification-ive-been-working.html) :
-  documente les variations de découpe entre voitures.
+- [Rennlist index of 993 3D parts](https://rennlist.com/forums/993-forum/1451330-thread-of-993-3d-printed-diy-bits.html):
+  speakers, windshield jigs, cup holders, console and seat bushings;
+- [development of the windshield jigs](https://rennlist.com/forums/993-forum/1401664-windshield-replacement-diy.html):
+  three CAD files to set the glazing depth;
+- [history of digitizing the jigs](https://rennlist.com/forums/993-forum/937323-f-s-993-windshield-back-glass-templates-5.html):
+  move from a physical tracing to SolidWorks and resolution of scale problems;
+- [seat rail bushing](https://rennlist.com/forums/993-forum/958995-993-passenger-and-driver-side-seat-rail-replacement-alternative-2.html):
+  STL attached to the forum and usage feedback;
+- [split grille bar](https://rennlist.com/forums/993-forum/1189086-993-custom-split-grill-3.html):
+  Thingiverse file `4349486` and fitting log;
+- [request for chassis and suspension plans](https://rennlist.com/forums/993-forum/1285117-993-chassis-and-suspension-blueprints-3d-models.html):
+  the public reply provides a PDF of body shell dimensions, not a 3D model.
+- [exterior scan of a 1996 993 Turbo](https://www.wolfeclassics.com/shop/p/1996-porsche-911-turbo-3d-scan):
+  OBJ advertised at 1.76 mm, with a known limit at the roof;
+- [German SHINING 3D / Juliá Automobile case study](https://www.shining3d.com/de/juli%C3%A1-automobile-shining-3d-when-passion-meets-3d-scanning-technology-classic-porsche-rebor):
+  professional scan of a 1995 993 Coupé for reconstruction;
+- [Carpokes CAD library](https://www.carpokes.com/viewforum.php?f=20):
+  thread dedicated to a repair insert for the 993/964/944 climate control knob;
+- [German reconstruction of sunroof parts](https://www.pff.de/thread/2821329-3d-druck-mit-kohlefaser-cnc-fraesen-und-drehen-ersatzteile-besser-als-original/):
+  photographic comparison between original parts and reproductions;
+- [CAD development of bumperette inserts](https://forums.pelicanparts.com/porsche-964-993-technical-forum/905860-bumperette-delete-modification-ive-been-working.html):
+  documents the cutout variations between cars.
 
-Les recherches sur PFF, les forums FreeCAD et Autodesk n'ont pas produit de
-fichier CAO 993 partageable et mieux documenté. Les résultats GrabCAD trouvés
-concernent surtout des carrosseries RWB, des miniatures ou des maillages de
-rendu.
+Searches on PFF and the FreeCAD and Autodesk forums produced no shareable,
+better-documented 993 CAD file. The GrabCAD results found concern mostly RWB
+bodies, miniatures or render meshes.
 
-## Prochaine action de qualification
+## Next qualification action
 
-1. demander à Wolfe Classics et 21 Design un échantillon, le repère, la méthode
-   de mise à l'échelle, une carte d'écart et leurs conditions de licence ;
-2. contacter Juliá Automobile pour savoir si des coupes, interfaces ou mesures
-   ciblées peuvent être partagées sans divulguer leur modèle complet ;
-3. ouvrir les pages Carpokes et Thingiverse dans une session authentifiée pour
-   relever licence, auteur, formats et sommes de contrôle ;
-4. demander aux auteurs des gabarits le fichier maître SolidWorks ou un STEP,
-   les dimensions de référence et la variante de caisse testée ;
-5. n'importer dans le dépôt qu'un fichier dont la licence autorise réellement la
-   redistribution ; sinon conserver URL, métadonnées et empreinte locale sans le
-   maillage.
+1. ask Wolfe Classics and 21 Design for a sample, the reference frame, the
+   scaling method, a deviation map and their license terms;
+2. contact Juliá Automobile to find out whether sections, interfaces or
+   targeted measurements can be shared without disclosing their complete model;
+3. open the Carpokes and Thingiverse pages in an authenticated session to
+   record license, author, formats and checksums;
+4. ask the jig authors for the SolidWorks master file or a STEP, the reference
+   dimensions and the body shell variant tested;
+5. import into the repository only a file whose license actually allows
+   redistribution; otherwise keep the URL, metadata and local digest without
+   the mesh.

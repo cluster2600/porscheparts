@@ -1,123 +1,146 @@
-# Ligne directrice titane
+# Titanium guideline
 
-## Position du projet
+## Project position
 
-Le matériau de référence pour LPBF est **Ti-6Al-4V Grade 5**. Le Grade 23 ELI est
-réservé aux cas où ductilité ou ténacité justifient son coût. Le choix final doit
-correspondre au procédé qualifié du fabricant, pas seulement à une désignation
-commerciale de poudre.
+The reference material for LPBF is **Ti-6Al-4V Grade 5**. Grade 23 ELI is
+reserved for cases where ductility or toughness justify its cost. The final
+choice must match the manufacturer's qualified process, not merely a commercial
+powder designation.
 
-## Quand le titane est pertinent
+## When titanium is relevant
 
-- Réduction de masse sur une pièce métallique complexe
-- Corrosion problématique avec la matière d’origine
-- Consolidation de plusieurs composants
-- Conduits ou formes internes impossibles à usiner
-- Petite série où l’outillage traditionnel domine le coût
+- Mass reduction on a complex metal part
+- Problematic corrosion with the original material
+- Consolidation of several components
+- Ducts or internal shapes impossible to machine
+- Small series where traditional tooling dominates the cost
 
-## Quand il ne l’est pas
+## When it is not
 
-- Plaque, axe, entretoise ou bride simple facilement usinable
-- Besoin important de conductivité thermique
-- Pièce dont la flexion doit rester identique à une pièce acier
-- Contact glissant non traité ou filetage répété exposé au grippage
-- Environnement créant un couple galvanique non maîtrisé avec aluminium ou magnésium
+- Simple plate, shaft, spacer or bracket that is easy to machine
+- Significant need for thermal conductivity
+- Part whose bending must stay identical to that of a steel part
+- Untreated sliding contact or repeated threading exposed to galling
+- Environment creating an uncontrolled galvanic couple with aluminum or magnesium
 
-## Le critère vaut au-delà du titane
+The two lists and the release gate below, as one decision:
 
-La même grille décide de l'emploi de la fabrication additive en général. Elle
-gagne sur trois familles de cas :
+```mermaid
+flowchart TD
+    C["Candidate metal part"] --> N{"A when it is not<br/>case applies?"}
+    NL["Simple plate, shaft, spacer or bracket<br/>Thermal conductivity need<br/>Bending identical to a steel part<br/>Untreated sliding contact or repeated threading<br/>Uncontrolled galvanic couple with Al or Mg"] -.- N
+    N -- yes --> X["Titanium not relevant"]:::stop
+    N -- no --> R{"A when it is relevant<br/>case applies?"}
+    RL["Mass reduction on a complex metal part<br/>Problematic corrosion of the original material<br/>Consolidation · internal ducts<br/>Small series dominated by tooling cost"] -.- R
+    R -- no --> X
+    R -- yes --> G["Release gate, 8 conditions:<br/>fitted prototype · titanium justification · DfAM review ·<br/>traceability · dimensional inspection ·<br/>risk-suited inspection · documented test · usage limits"]:::open
+    G --> REL["released"]:::ok
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
 
-- **les passages internes inusinables** — le piston LPBF développé par Porsche
-  avec MAHLE et TRUMPF porte un conduit de refroidissement fermé qu'aucune
-  fonderie classique ne noyaute ;
-- **les fonderies impossibles à noyauter autrement**, désormais accessibles par
-  noyaux imprimés en sable, qui est de l'additif appliqué à l'outillage et non
-  à la pièce ;
-- **la consolidation**, quand un sous-ensemble de dizaines de pièces devient une
-  seule.
+## The criterion applies beyond titanium
 
-Une pièce qui ne relève d'aucune de ces trois familles n'a rien à gagner à être
-imprimée, quelle que soit sa matière. Le berceau moteur du 993 en est
-l'illustration : lame monobloc, sans canal interne, sans sous-ensemble à
-consolider — voir `parts/993-eng-carrier-0001/evidence/load-cases.md`.
+The same grid decides the use of additive manufacturing in general. It wins in
+three families of cases:
 
-Les noyaux imprimés méritent en revanche d'être gardés en tête pour ce projet :
-ils ouvrent la petite série fondue sans modèle ni outillage, ce qui est le verrou
-habituel de la reproduction de pièces classiques. La presse technique les décrit
-d'ailleurs comme décisifs pour les « moteurs anciens dont les modèles de fonderie
-n'existent plus ».
+- **internal passages that cannot be machined** — the LPBF piston Porsche
+  developed with MAHLE and TRUMPF carries a closed cooling duct that no
+  conventional foundry can core;
+- **castings that cannot be cored any other way**, now accessible through
+  sand-printed cores, which is additive manufacturing applied to the tooling,
+  not to the part;
+- **consolidation**, when a subassembly of dozens of parts becomes a single one.
 
-## Le coût réel d'une pièce métallique imprimée
+A part that belongs to none of these three families has nothing to gain from
+being printed, whatever its material. The 993 engine carrier illustrates this:
+a one-piece blade, with no internal channel and no subassembly to consolidate —
+see `parts/993-eng-carrier-0001/evidence/load-cases.md`.
 
-Une pièce LPBF n'est pas finie quand elle sort de la machine. La chaîne
-couramment décrite est : traitement thermique, **compression isostatique à chaud
-pour refermer la porosité**, finition de surface, grenaillage et lissage
-chimique — parce que la rugosité brute **dégrade la tenue en fatigue** — puis
-**usinage des surfaces fonctionnelles** aux tolérances. Le contrôle ajoute
-tomographie, essai de pression et scan laser après usinage.
+Printed cores, on the other hand, deserve to be kept in mind for this project:
+they open up small cast series with no pattern and no tooling, which is the
+usual bottleneck in reproducing classic parts. The technical press in fact
+describes them as decisive for « moteurs anciens dont les modèles de fonderie
+n'existent plus » ("old engines whose foundry patterns no longer exist").
 
-Autrement dit, une pièce imprimée destinée à durer est aussi une pièce usinée.
-Ce n'est pas un argument contre l'additif : c'est ce qui doit entrer dans la
-comparaison de coût, et ce qui explique qu'une géométrie simple soit rarement
-rentable à imprimer.
+## The real cost of a printed metal part
 
-## Progression recommandée
+An LPBF part is not finished when it comes out of the machine. The commonly
+described chain is: heat treatment, **hot isostatic pressing to close the
+porosity**, surface finishing, shot peening and chemical smoothing — because the
+as-built roughness **degrades fatigue strength** — then **machining of the
+functional surfaces** to tolerance. Inspection adds CT scanning, a pressure test
+and a laser scan after machining.
 
-Commencer par le polymère, pour les gabarits et les vérifications d'interface.
-Passer ensuite aux noyaux de fonderie imprimés, qui restent dans un procédé
-connu. N'aborder le métal qu'ensuite, chez un prestataire fournissant
-documentation complète, tomographies et certificats de post-traitement.
+In other words, a printed part meant to last is also a machined part. This is
+not an argument against additive manufacturing: it is what must go into the cost
+comparison, and it explains why a simple geometry is rarely worth printing.
 
-C'est exactement l'ordre des phases 2 et 3 de ce projet.
+## Recommended progression
 
-## Dossier minimal du fabricant
+Start with polymer, for jigs and interface checks. Then move to printed foundry
+cores, which stay within a known process. Only then tackle metal, with a service
+provider supplying complete documentation, CT scans and post-processing
+certificates.
 
-- `STEP` maître et plan PDF avec révision
-- Ti-6Al-4V et standard demandé
-- Procédé LPBF et machine qualifiée
-- Orientation proposée et stratégie de supports
-- Surépaisseurs d’usinage
-- Détensionnement et traitement thermique sous atmosphère maîtrisée
-- HIP requis, optionnel ou non pertinent avec justification
-- Zones à polir ou grenailler
-- Filetages et alésages usinés
-- Contrôle dimensionnel et non destructif
-- Certificat matière, identification du lot et traçabilité du job
+This is exactly the order of phases 2 and 3 of this project.
 
-## Risques spécifiques
+```mermaid
+flowchart LR
+    A["Polymer<br/>jigs, interface checks"] --> B["Printed foundry cores<br/>known process"] --> C["Metal<br/>provider with full documentation,<br/>CT scans, post-processing certificates"]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
+
+## Minimum manufacturer dossier
+
+- Master `STEP` and PDF drawing with revision
+- Ti-6Al-4V and the requested standard
+- LPBF process and qualified machine
+- Proposed orientation and support strategy
+- Machining allowances
+- Stress relief and heat treatment under controlled atmosphere
+- HIP required, optional or not relevant, with justification
+- Areas to polish or shot-peen
+- Machined threads and bores
+- Dimensional and non-destructive inspection
+- Material certificate, lot identification and job traceability
+
+## Specific risks
 
 ### Fatigue
 
-Rugosité, pores, orientation et concentration de contraintes dominent souvent la
-durée de vie. Une résistance statique élevée ne suffit pas. Pour une pièce cyclée,
-prévoir surfaces critiques finies, rayons, HIP si pertinent et essais représentatifs.
+Roughness, pores, orientation and stress concentration often dominate service
+life. High static strength is not enough. For a cycled part, plan finished
+critical surfaces, radii, HIP if relevant and representative tests.
 
-### Déformation et anisotropie
+### Distortion and anisotropy
 
-Le modèle doit intégrer orientation, supports, détensionnement et usinage. Les
-propriétés d’une éprouvette générique ne remplacent pas celles du couple
-machine-poudre-paramètres utilisé.
+The model must account for orientation, supports, stress relief and machining.
+The properties of a generic test specimen do not replace those of the
+machine-powder-parameters combination actually used.
 
-### Grippage
+### Galling
 
-Éviter les filetages titane-titane sollicités fréquemment. Prévoir inserts,
-revêtements, lubrifiant compatible ou couple de matériaux adapté.
+Avoid frequently loaded titanium-on-titanium threads. Plan inserts, coatings, a
+compatible lubricant or a suitable material pairing.
 
-### Corrosion galvanique
+### Galvanic corrosion
 
-Documenter rondelles isolantes, revêtement, mastic ou drainage lorsque le titane
-est assemblé à l’aluminium ou au magnésium.
+Document insulating washers, coating, sealant or drainage when titanium is
+assembled with aluminum or magnesium.
 
-## Porte de libération
+## Release gate
 
-Une pièce titane ne peut atteindre `released` sans :
+A titanium part cannot reach `released` without:
 
-1. prototype ajusté ;
-2. justification du choix titane ;
-3. revue DfAM ;
-4. traçabilité de fabrication ;
-5. contrôle dimensionnel ;
-6. inspection adaptée au risque ;
-7. essai documenté ;
-8. limites d’utilisation publiées.
+1. a fitted prototype;
+2. a justification for choosing titanium;
+3. a DfAM review;
+4. manufacturing traceability;
+5. dimensional inspection;
+6. inspection suited to the risk;
+7. a documented test;
+8. published usage limits.

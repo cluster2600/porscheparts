@@ -1,148 +1,150 @@
-# M64 — pilote CAO avec agents Qwen sur Vast
+# M64 — CAD pilot with Qwen agents on Vast
 
-## Résultat et portée
+## Result and scope
 
-**24 missions exécutées sur Qwen/Vast en 80,134 s**, avec quatre requêtes
-simultanées au maximum. Elles proposent uniquement un rayon et un mode de
-construction existant, ou s'abstiennent. Elles ne corrigent pas directement la
-culasse et ne produisent ni certification ni nouvelles mesures.
+**24 missions run on Qwen/Vast in 80.134 s**, with at most four simultaneous
+requests. They only propose a radius and an existing construction
+mode, or abstain. They do not correct the cylinder head directly
+and produce neither certification nor new measurements.
 
-Le lot précédent effectuait des lectures documentaires. Ce pilote raccorde
-l'inférence à un schéma de propositions CAO contrôlables ; l'exécution native
-reste indépendante. Les essais concernent un **raccord local du négatif
-d'admission**, pas la reconstruction ou l'optimisation complète de la culasse.
+The previous batch performed documentary reads. This pilot connects
+inference to a schema of checkable CAD proposals; native execution
+remains independent. The trials concern a **local blend of the intake
+negative**, not the complete reconstruction or optimization of the cylinder head.
 
-## Machine, accès et budget
+## Machine, access and budget
 
-- Autorisation utilisateur : **5 USD maximum pour ce lot**, pas par agent.
-- Une L40S, 32 CPU effectifs, **193 475 MB de RAM attribuée selon l'offre**,
-  100 GB de disque ; offre slovène 29679192, instance 50796709.
-- Le GPU expose 46 068 MiB. Le champ RAM ultérieur de l'instance décrit l'hôte
-  entier ; il n'est pas utilisé comme allocation disponible.
-- Prix relu : **0,827778 USD/h**, stockage inclus. Plafond de tentative 2,50 USD,
-  coût prévisionnel avec transferts et réserve : **2,321094 USD**.
-- Échéance globale : 90 minutes, chargement et nettoyage inclus ; la machine
-  a été détruite dès que les réponses et le journal avaient été collectés.
-- Image vLLM 0.19.0 publique, manifeste linux/amd64
+- User authorization: **5 USD maximum for this batch**, not per agent.
+- One L40S, 32 effective CPUs, **193,475 MB of RAM allocated according to the offer**,
+  100 GB of disk; Slovenian offer 29679192, instance 50796709.
+- The GPU exposes 46,068 MiB. The later RAM field of the instance describes the whole
+  host; it is not used as the available allocation.
+- Price reread: **0.827778 USD/h**, storage included. Attempt ceiling 2.50 USD,
+  forecast cost with transfers and reserve: **2.321094 USD**.
+- Overall deadline: 90 minutes, loading and cleanup included; the machine
+  was destroyed as soon as the responses and the log had been collected.
+- Public vLLM 0.19.0 image, linux/amd64 manifest
   `sha256:7a0f0fdd2771464b6976625c2b2d5dd46f566aa00fbc53eceab86ef50883da90`.
-- Modèle `Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8`, révision
-  `dcaee4d4dfc5ee71ad501f01f530e5652438fde0`, contexte 16 384 tokens.
-- Paire SSH vérifiée cryptographiquement, association à l'instance vérifiée,
-  connexion BatchMode réelle. API uniquement sur 127.0.0.1:8000, tunnel local.
-- Aucun secret Hugging Face/GitHub transmis ; aucun scan ou BRep envoyé au LLM.
-  Les entrées sont trois extraits du code autorisé et un résumé des essais.
+- Model `Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8`, revision
+  `dcaee4d4dfc5ee71ad501f01f530e5652438fde0`, context 16,384 tokens.
+- SSH key pair cryptographically verified, association with the instance verified,
+  real BatchMode connection. API only on 127.0.0.1:8000, local tunnel.
+- No Hugging Face/GitHub secret transmitted; no scan or BRep sent to the LLM.
+  The inputs are three excerpts of the authorized code and a summary of the trials.
 
-L'arrêt est confirmé par le wrapper, la garde externe et un inventaire vide.
-Le tunnel est fermé. Crédit avant : 37,996967 USD ; au relevé de 20:41:05 UTC :
-37,914869 USD, soit **0,082099 USD de baisse observée**. La facture finale reste
-non confirmée ; le débit peut être différé. Les garde-fous ne sont pas une limite bancaire :
-une panne fournisseur ou une perte durable du contrôleur peut retarder la
-suppression. Le [reçu public](../../twins/m64-cylinder-head/evidence/cad-proposal-pilot-20260912.json)
-conserve budgets, versions, empreintes et statuts.
+Shutdown is confirmed by the wrapper, the external guard and an empty inventory.
+The tunnel is closed. Credit before: 37.996967 USD; at the 20:41:05 UTC reading:
+37.914869 USD, i.e. **0.082099 USD of observed decrease**. The final invoice remains
+unconfirmed; the charge may be deferred. The safeguards are not a bank limit:
+a provider outage or a lasting loss of the controller can delay
+deletion. The [public receipt](../../twins/m64-cylinder-head/evidence/cad-proposal-pilot-20260912.json)
+keeps budgets, versions, digests and statuses.
 
-## Travail délégué et contrôle
+## Delegated work and control
 
 ```mermaid
 flowchart LR
-    S[Code figé et historique des refus] --> L[24 missions Qwen / 4 simultanées]
-    L --> J{JSON borné ou abstention}
-    J --> R[Revue et déduplication]
-    R --> C[OCP sur Kali / copies privées]
-    D[Petit témoin déterministe] --> C
-    C --> V{Contrôles géométriques}
-    V -->|refus| E[Rapport / aucune promotion]
-    V -->|admission locale| F[Contrôles restants explicités]
+    S[Frozen code and rejection history] --> L[24 Qwen missions / 4 simultaneous]
+    L --> J{Bounded JSON or abstention}
+    J --> R[Review and deduplication]
+    R --> C[OCP on Kali / private copies]
+    D[Small deterministic control] --> C
+    C --> V{Geometric checks}
+    V -->|rejection| E[Report / no promotion]
+    V -->|local admission| F[Remaining checks made explicit]
+    class E stop
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
 ```
 
-Le [répartiteur](../../twins/m64-cylinder-head/source/run_cad_proposal_agents.py)
-ne possède ni outils, ni droit d'exécuter du code LLM, ni accès aux secrets.
-Maximum 900 tokens par réponse, 120 s par requête, 1 200 s pour le lot, sans
-nouvelle tentative automatique. L'identité du modèle et le contexte sont
-contrôlés ; le client seul ne peut pas attester les poids distants, d'où la
-vérification séparée du serveur et de sa révision.
+The [dispatcher](../../twins/m64-cylinder-head/source/run_cad_proposal_agents.py)
+has no tools, no right to execute LLM code and no access to secrets.
+Maximum 900 tokens per response, 120 s per request, 1,200 s for the batch, with no
+automatic retry. The model identity and the context are
+checked; the client alone cannot attest the remote weights, hence the
+separate verification of the server and its revision.
 
-SHA du contexte privé :
+SHA of the private context:
 `5e1309cca6bc96106b9b141d5b8ec4b5fc88bdc36fff87b18855d87390da87f3`.
-Chaque requête et réponse est conservée avec empreinte, durée et consommation.
-Les rapports bruts restent privés et non approuvés.
+Each request and response is kept with digest, duration and consumption.
+The raw reports remain private and unapproved.
 
-| Proposition | Nombre | Traitement |
+| Proposal | Count | Handling |
 |---|---:|---|
-| R0,1 / default | 14 | Paramètre retenu pour un essai diagnostique, pas bénéfice établi |
-| R0,25 / default | 6 | Déjà essayé ; non rejoué comme nouvelle conception |
-| R0,25 / strict | 2 | Non retenu dans ce petit lot |
-| Abstention | 2 | Conservée ; incohérence de volume à traiter |
+| R0.1 / default | 14 | Parameter retained for a diagnostic trial, no benefit established |
+| R0.25 / default | 6 | Already tried; not replayed as a new design |
+| R0.25 / strict | 2 | Not retained in this small batch |
+| Abstention | 2 | Kept; volume inconsistency to be addressed |
 
-Les rayons sont en **unités du scan**, pas en millimètres certifiés.
-Les 24 réponses respectent le schéma, mais cela ne vérifie pas leur contenu.
-Plusieurs textes inventent des essais antérieurs sous R0,25 ou promettent une
-conservation géométrique non calculée : ces affirmations sont rejetées.
-Le nombre de propositions identiques ne constitue pas une preuve indépendante.
+The radii are in **scan units**, not certified millimeters.
+The 24 responses conform to the schema, but that does not verify their content.
+Several texts invent earlier trials under R0.25 or promise
+geometric conservation that was not computed: these claims are rejected.
+The number of identical proposals does not constitute independent evidence.
 
-Consommation : **100 847 tokens d'entrée + 6 827 de sortie = 107 674 tokens
-traités sur Vast**. Aucun pourcentage d'économie OpenAI n'est déduit :
-la préparation et la revue ont aussi consommé des tokens, et il n'existe pas
-de comparaison de bout en bout à qualité égale.
+Consumption: **100,847 input tokens + 6,827 output = 107,674 tokens
+processed on Vast**. No OpenAI savings percentage is inferred:
+preparation and review also consumed tokens, and there is no
+end-to-end comparison at equal quality.
 
-## Essais natifs
+## Native trials
 
-Le témoin synthétique existant passe sur Kali : **5 tests, aucun ignoré**,
-OCP 7.9.3.1, Python 3.12.3, image locale épinglée
+The existing synthetic control passes on Kali: **5 tests, none skipped**,
+OCP 7.9.3.1, Python 3.12.3, pinned local image
 `sha256:49979f46f421459dae4bf21aaa898e2253b07301c3e5b2cabaa6eaf06f54d696`.
-Deux CPU, 4 GiB, réseau coupé, sources en lecture seule, délai externe 300 s.
-Le conteneur a été supprimé et son absence vérifiée. Aucun fichier de culasse
-réelle n'était utilisé dans ce témoin.
+Two CPUs, 4 GiB, network disabled, sources read-only, external timeout 300 s.
+The container was removed and its absence verified. No real cylinder-head
+file was used in this control.
 
-SHA de son reçu de processus :
+SHA of its process receipt:
 `0bd891fa9179725f30329b960ca660bb449ec8e94eb438a9e6d517164c4346fa`.
 
-Le premier transport a été refusé avant création de conteneur à cause de
-métadonnées AppleDouble ajoutées par tar sur macOS. Le paquet exact a été
-recréé sans ces métadonnées ; les sources et leurs empreintes sont inchangées.
+The first transfer was rejected before container creation because of
+AppleDouble metadata added by tar on macOS. The exact package was
+recreated without this metadata; the sources and their digests are unchanged.
 
-**Trois essais réels exécutés sur copies** du négatif d'admission :
+**Three real trials run on copies** of the intake negative:
 
-| Rayon / mode | Temps supervisé | Résultat observé |
+| Radius / mode | Supervised time | Observed result |
 |---|---:|---|
-| R0,1 / default — proposition Qwen | 5,589 s | Un solide BRep valide, contrôles BOP sans défaut avant/après relecture ; rejet v1 pour augmentation des tolérances |
-| R0,1 / strict — croisement choisi par le contrôleur | 300,278 s | Limite 300 s atteinte, sortie 137, sans OOM ; BRep écrit, contrôle final incomplet |
-| R0,125 / default — témoin déterministe | 5,445 s | Un solide BRep valide, contrôles BOP sans défaut avant/après relecture ; même motif de rejet v1 |
-| R0,125 / strict | Non lancé | Arrêt de cette branche après le dépassement du premier cas strict |
+| R0.1 / default — Qwen proposal | 5.589 s | One valid BRep solid, BOP checks without defect before/after reread; v1 rejection for increased tolerances |
+| R0.1 / strict — crossing chosen by the controller | 300.278 s | 300 s limit reached, exit 137, no OOM; BRep written, final check incomplete |
+| R0.125 / default — deterministic control | 5.445 s | One valid BRep solid, BOP checks without defect before/after reread; same v1 rejection reason |
+| R0.125 / strict | Not launched | This branch stopped after the first strict case overran |
 
-Le LLM n'a pas proposé littéralement R0,1/strict : le contrôleur a croisé son
-rayon avec le mode existant. Les reçus bruts conservent les étapes d'exécution ;
-cette distinction évite d'attribuer toute la grille au LLM.
+The LLM did not literally propose R0.1/strict: the controller crossed its
+radius with the existing mode. The raw receipts keep the execution steps;
+this distinction avoids attributing the whole grid to the LLM.
 
-Pour les deux modes standard, les angles maximaux de tangence **échantillonnés**
-sont 0,00026177° et 0,00017517°. Les tolérances des sommets montent respectivement
-à 1e-4 et 1,00353e-4 unité de scan, contre 5,100001e-6 au maximum sur la source.
-Ce sont des paramètres/précisions du noyau, pas des tolérances physiques
-d'usinage. Une boîte englobante inchangée ne prouve pas, seule, l'identité du
-contour extérieur ; aucun contrôle global G1 n'est revendiqué.
+For the two standard modes, the maximum **sampled** tangency angles
+are 0.00026177° and 0.00017517°. Vertex tolerances rise respectively
+to 1e-4 and 1.00353e-4 scan unit, against at most 5.100001e-6 on the source.
+These are kernel parameters/precisions, not physical machining
+tolerances. An unchanged bounding box does not by itself prove the identity of the
+outer contour; no global G1 check is claimed.
 
-Les audits complets v2 de ROI, fil extérieur et réconciliation de volume n'ont
-pas été exécutés sur ces nouveaux candidats. Aucun STEP n'a été demandé :
-les sorties sont des BRep diagnostiques privés, dont un incomplet. **Aucun
-candidat n'est promu.** Tous les conteneurs ont été supprimés, les sources et
-entrées sont inchangées par empreintes ; aucune relaxation des seuils.
+The complete v2 audits of ROI, outer wire and volume reconciliation were
+not run on these new candidates. No STEP was requested:
+the outputs are private diagnostic BReps, one of them incomplete. **No
+candidate is promoted.** All containers were removed, sources and
+inputs are unchanged by digest; no threshold relaxation.
 
-Ce pilote ne démontre aucun avantage de qualité du rayon proposé par Qwen sur
-la petite grille déterministe, ni aucune accélération GPU des opérations OCP.
-Il démontre l'inférence distante bornée et le filtrage natif des propositions.
-Le prochain travail doit traiter la réconciliation volumique et localiser la
-phase lente du contrôle strict, avant une nouvelle recherche de rayons.
+This pilot demonstrates no quality advantage of the radius proposed by Qwen over
+the small deterministic grid, nor any GPU acceleration of OCP operations.
+It demonstrates bounded remote inference and native filtering of proposals.
+The next work must address volume reconciliation and locate the
+slow phase of the strict check, before a new radius search.
 
-## Vérification logicielle et reproduction
+## Software verification and reproduction
 
-**52 tests logiciels ciblés passent** : 11 nouveaux tests de propositions,
-12 du transport/lecteur réutilisé et 29 du profil Vast. Ils sont distincts des
-cinq tests géométriques natifs. `git diff --check` passe.
+**52 targeted software tests pass**: 11 new proposal tests,
+12 of the reused transport/reader and 29 of the Vast profile. They are distinct from the
+five native geometric tests. `git diff --check` passes.
 
 ```sh
 python3 -m unittest discover -s tests -p 'test_*research*.py' -q
 python3 -m unittest discover -s tests -p 'test_m64_cad_proposal_agents.py' -q
 
-# Seulement après vérification du serveur, du tunnel et du contexte privé :
+# Only after verifying the server, the tunnel and the private context:
 python3 twins/m64-cylinder-head/source/run_cad_proposal_agents.py \
   --context /chemin/prive/context.json \
   --endpoint http://127.0.0.1:18000/v1 \
@@ -151,8 +153,8 @@ python3 twins/m64-cylinder-head/source/run_cad_proposal_agents.py \
   --limit 24 --concurrency 4
 ```
 
-Aucune fusion proposée. Le contrôle global historique F46 reste à distinguer
-de ces tests ciblés ; ses anciennes preuves n'ont pas été régénérées.
-Voir le [plan d'exécution](M64_RESEARCH_EXECUTION_20260912.md), les
-[lecteurs Vast](../../deploy/vast/research/README.md) et le
-[point géométrique](M64_GEOMETRY_CHECKPOINT_20260908.md).
+No merge proposed. The historical global check F46 remains to be distinguished
+from these targeted tests; its old evidence was not regenerated.
+See the [execution plan](M64_RESEARCH_EXECUTION_20260912.md), the
+[Vast readers](../../deploy/vast/research/README.md) and the
+[geometry checkpoint](M64_GEOMETRY_CHECKPOINT_20260908.md).

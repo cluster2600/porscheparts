@@ -1,220 +1,223 @@
-# M64 — activation contrôlée de l'écoulement du coupon F58
+# M64 — controlled activation of flow in the F58 coupon
 
-**Le premier coupon couplé est refusé après 473 pas complets, à 11,825 µs.**
-Le pas suivant échoue dans `adjustPhi` sur un défaut de continuité : les
-120 µs visées ne sont pas atteintes. Les deux témoins natifs préalables
-passent, mais ne prévoyaient pas ce refus du couplage. Aucun de ces essais
-n'est un essai de culasse ou une qualification d'impression.
+**The first coupled coupon is rejected after 473 complete steps, at 11.825 µs.**
+The next step fails in `adjustPhi` on a continuity defect: the targeted
+120 µs are not reached. The two preliminary native control cases pass, but did
+not predict this rejection of the coupling. None of these runs is a cylinder
+head test or a print qualification.
 
-Suite séparée : [diagnostic du prédicteur et correctif testé sur un cas
-natif de 32 cellules](M64_F58_PREDICTOR_CONTRACT_20260908.md). Ce témoin
-ne remplace pas le coupon interrompu décrit ici.
+Separate follow-up: [predictor diagnosis and fix tested on a 32-cell native
+case](M64_F58_PREDICTOR_CONTRACT_20260908.md). That control case does not
+replace the interrupted coupon described here.
 
-Le [raffinement spatial précédent](M64_F58_SPATIAL_REFINEMENT_20260908.md)
-laisse subsister le plafond de 3 300 K. La suite porte sur une physique
-absente de ce témoin thermique, pas sur un nouveau raffinement ni sur un
-relèvement du plafond. [Capsule et empreintes](../../twins/m64-cylinder-head/evidence/f58-coupled-flow-20260908.json).
-
-## Une seule modification physique testée
-
-Dans la copie du coupon grossier à 25 ns, `nOuterCorrectors` passe de `0` à
-`1`. `momentumPredictor no`, les corrections de pression, la matière, la
-source Kelly/SuperGaussian, les conditions limites et le limiteur restent
-inchangés. Aucun coefficient n'est ajusté pour obtenir un verdict favorable.
-
-Le [contrôle du solveur ORNL](https://ornl.github.io/AdditiveFOAM/docs/solver-controls/)
-identifie `nOuterCorrectors=0` comme mode thermique seul. Le
-[témoin Marangoni amont, lignes 47–49](https://github.com/ORNL/AdditiveFOAM/blob/9c05c5eb54db03faa342b14b0806efe740de8c44/test/marangoni/system/fvSolution#L47)
-utilise un correcteur extérieur et le prédicteur désactivé. Le
-[code de correction pression, lignes 49–54](https://github.com/ORNL/AdditiveFOAM/blob/9c05c5eb54db03faa342b14b0806efe740de8c44/applications/solvers/additiveFoam/pU/pEqn.H#L49)
-met alors à jour `phi`, `U` et ses frontières. L'absence d'un solveur linéaire
-`U/UFinal` n'est pas compensée par un changement implicite du prédicteur.
-
-## Témoin natif de Marangoni : exécuté
-
-Les fichiers `.C/.H` de la condition limite ORNL sont copiés bit-à-bit et
-compilés dans un exécutable témoin sur l'image OpenFOAM 14 épinglée. Cette
-condition est normalement compilée dans le solveur ; elle n'est pas supposée
-présente dans une bibliothèque qui ne la contiendrait pas.
-
-Sur 32 hexaèdres manufacturés et 16 faces supérieures, trois gradients de
-température contrôlent la traction tangentielle, son inversion et le cas
-normal sans cisaillement. L'oracle vérifie `mu P dU/dn = (dSigma/dT) P grad(T)`
-et `U·n = 0`, avec `P = I − n⊗n`. Il utilise les valeurs nominales existantes
-`mu=0,0013 Pa·s` et `dSigma/dT=−0,0003 N/(m·K)`. La
-[condition amont](https://github.com/ORNL/AdditiveFOAM/blob/9c05c5eb54db03faa342b14b0806efe740de8c44/applications/solvers/additiveFoam/derivedFvPatchFields/marangoni/marangoniFvPatchVectorField.C)
-est exécutée réellement, pas remplacée par l'oracle Python.
-
-| Contrôle natif | Résultat observé | Seuil du témoin |
-|---|---:|---:|
-| Erreur maximale de traction | 5,1062×10⁻¹² Pa | 10⁻⁹ Pa |
-| Vitesse normale maximale | 9,8608×10⁻³² m/s | 10⁻¹⁴ m/s |
-| Durée murale / sortie | 8,923 s / 0 | 180 s |
-
-Ces seuils vérifient l'implémentation en virgule flottante, pas la justesse
-de la carte matière. Aucun transport PDE ni laser n'est exécuté. Une première
-tentative avait échoué à compiler le **driver** (`boundaryMesh()` et
-`Info.precision` incompatibles avec cette API). Son refus, sa sortie 2 et
-son journal sont conservés ; seuls ces appels et la présentation du fichier
-`Make/options` sont corrigés dans une nouvelle tentative. Le backend reste
-inchangé.
-
-## Témoin natif des capteurs : exécuté
-
-La configuration `flowDiagnostics` testée est bit-à-bit celle de la préparation.
-Elle emploie `CourantNo`, `div(phi)`, `volFieldValue/maxMag` et
-`surfaceFieldValue/sumMag` sur les trois patches `top/bottom/sides`.
-
-Un second exécutable C++ impose `U=s·(1000x,2000y,3000z)` et le flux de cette
-vitesse aux centres des faces. Il utilise la boucle native `Time::run`, avec
-trois états successifs `s=1,2,−1`, sans résoudre de PDE. L'état nul initial
-et **chacun des trois pas terminés**, dernier compris, sont comparés à un
-oracle algébrique séparé.
-
-| Grandeur | s=1 | s=2 | s=−1 |
-|---|---:|---:|---:|
-| Maximum de la norme de U, m/s | 0,298171511 | 0,596343022 | 0,298171511 |
-| Courant maximal | 0,000375 | 0,000750 | 0,000375 |
-| Maximum de `abs(div(phi))`, s⁻¹ | 6 000 | 12 000 | 6 000 |
-| Somme des flux frontières absolus, m³/s | 6×10⁻⁹ | 1,2×10⁻⁸ | 6×10⁻⁹ |
-
-Les sorties concordent à la tolérance relative `2×10⁻¹²` et absolue `10⁻¹⁸`
-du témoin. Sortie 0 en 4,922 s, sans OOM ni timeout. Ce flux artificiel non nul
-est volontaire : il teste la sensibilité du capteur, pas une frontière
-imperméable. L'ordre producteur/réducteur et l'absence de retard d'un pas sont
-vérifiés par les fichiers réellement écrits. Les mécanismes natifs sont
-documentés dans [Time.C, lignes 856–897](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/OpenFOAM/db/Time/Time.C#L856)
-et [functionObjectList.C, lignes 376–390](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/OpenFOAM/db/functionObjects/functionObjectList/functionObjectList.C#L376).
-
-## Coupon préparé et critères avant lecture du résultat
-
-Les 29 fichiers d'entrée grossiers épinglés sont d'abord copiés exactement.
-Après préparation, seuls `fvSolution` et l'inclusion des capteurs dans
-`controlDict` changent ; `system/flowDiagnostics` est ajouté. Le maillage
-57 600 cellules et la distribution initiale de poudre ne sont pas régénérés.
-
-Le calcul conserve 380 W, 25 ns et 3 300 K, avec 120 µs visées : 4 800 bilans
-énergétiques et 4 801 instants de capteurs étaient attendus. Le lanceur limite
-l'exécution à 900 s, 4 CPU, 4 Gio **mémoire et swap combinés**, sans réseau,
-avec backend et fichiers `system` en lecture seule. Un `Mesh OK` explicite
-est nécessaire avant le laser ; un simple code retour de `checkMesh` ne suffit pas.
-
-Il arrête le diagnostic sur NaN/Inf/FATAL, Courant >0,5, résidu final de
-pression >10⁻⁶ ou échec de la borne conservative
-`0,0508764045 + Co_max + 0,5 dt max(abs(div(phi))) < 1`.
-Cette dernière borne concerne le transport explicite sur la grille et les
-propriétés épinglées, pas une preuve globale de convergence multiphysique.
-Un arrêt ou un timeout reste un résultat incomplet ; aucune relance automatique.
-
-Les six termes à contre-lire séparément sont sensible, latent, apport net
-par les frontières, laser absorbé, advection et limiteur artificiel. Les
-dimensions des isothermes 850/870 K demandent aussi une lecture indépendante.
-Deux parseurs ne sont pas deux physiques indépendantes. Une intégrale
-d'advection faible ou nulle ne prouve pas l'absence de circulation interne.
-Précisément, le terme `A = Σ rho Cp div(phi,T) V` est l'opérateur discret
-instrumenté, **pas un flux net physique d'enthalpie à la frontière quand Cp
-varie**. Le bilan comptable est `S + L − D − Q + A + limiteur` ; sa fermeture
-ne transforme pas cet opérateur en un modèle d'enthalpie validé.
-
-Le contrat d'intégrité est fixé **avant** le calcul : tous les fichiers
-préexistants doivent rester identiques. Seuls `0/f58_Co` et `0/f58_divPhi`
-sont admis comme nouveaux champs initiaux produits par les capteurs, comportement
-démontré par le témoin natif. Les refus historiques F58 ne sont pas réécrits.
-
-## Résultat réel : refus du couplage, lecture partielle seulement
-
-Le 8 septembre 2026, le conteneur démarre à 11:09:10 UTC et termine à
-11:09:42 UTC : **33,001 s murales, sortie native et client 1**, sans OOM
-ni timeout. `checkMesh` donne `Mesh OK`. Le conteneur est supprimé et son
-absence vérifiée. Le solveur résout effectivement 442 corrections de pression
-et produit un écoulement non nul avant le refus.
-
-Au pas 474, à 11,85 µs, `adjustPhi` indique qu'il ne peut pas éliminer le
-défaut de continuité en ajustant la sortie. Ce pas n'a **aucun bilan terminé**.
-Les statistiques suivantes portent donc sur les **473 pas précédents** :
-vitesse maximale 0,684980 m/s, Courant maximal 0,000477983, borne de transport
-maximale 0,0513544 et résidu final de pression maximal 9,92578×10⁻⁷.
-Ces valeurs ne lèvent pas le refus de continuité du pas suivant.
-
-Un parseur indépendant, utilisant `Decimal` à 60 chiffres et aucun import
-du lanceur ou de l'ancien évaluateur, reconstitue les six intégrales.
-La référence thermique complète est **tronquée à la même fenêtre** ; aucune
-intégrale partielle n'est comparée aux 120 µs de la campagne précédente.
-
-| Sur 473 pas, soit 11,825 µs | Thermique seul | Couplage interrompu |
-|---|---:|---:|
-| Stockage sensible S, mJ | 3,035286 | 3,035648 |
-| Stockage latent L, mJ | 0,235353 | 0,235891 |
-| Apport net frontières D, mJ | 1,388299 | 1,388299 |
-| Laser absorbé Q, mJ | 1,895941 | 1,895621 |
-| Opérateur discret A, mJ | 0 | 0,0000372153 |
-| Limiteur artificiel, mJ | 0,0136008 | 0,0123445 |
-| Limiteur / laser absorbé | 0,71736 % | 0,65121 % |
-| Intégrale du résidu absolu / Q | 2,09024×10⁻⁷ | 1,84189×10⁻⁷ |
-| Pas atteignant le plafond à 10⁻⁶ K près | 54 | 51 |
-
-Le plafond subsiste dans les deux cas. L'énergie incidente sur cette seule
-fenêtre vaut 4,4935 mJ ; aucun pas complet ne dépasse 380 W absorbés. La
-variation du limiteur ne prouve ni une correction physique suffisante ni une
-amélioration de culasse. Le bilan reste celui du modèle artificiellement plafonné.
-
-Les fichiers d'isothermes 850/870 K et les capteurs contiennent **474 instants**,
-de l'état initial au pas 473. À 870 K, les dimensions finales calculées sont :
-
-| Dimension à 11,825 µs, µm | Thermique seul | Couplage interrompu |
-|---|---:|---:|
-| Longueur | 96,902884 | 96,959544 |
-| Largeur | 108,483210 | 109,049600 |
-| Profondeur | 52,066613 | 51,994773 |
-
-Ce sont des sorties du même modèle, pas des mesures du bain. Les fichiers
-capteurs arrondis à la précision d'écriture héritée sont recoupés avec le
-journal à 16 chiffres, en tenant compte de cet arrondi. Le maximum du flux
-absolu aux frontières sur les pas achevés est 1,33321×10⁻²⁶ m³/s ; cela ne
-décrit pas le flux provisoire qui provoque le refus au pas suivant.
-
-Les **30 entrées préparées** (29 fichiers initiaux, dont deux modifiés par
-préparation, plus le dictionnaire des capteurs) sont rehashées intactes.
-Seuls les deux champs initiaux préannoncés sont ajoutés. Le contrat prévu
-d'intégrité passe ; le refus numérique du solveur reste intégralement conservé.
-La localisation du message fatal est établie ; ce parseur ne démontre pas
-la cause algorithmique du flux provisoire. Aucun second coupon couplé n'est
-relancé dans ce sous-lot.
+The [previous spatial refinement](M64_F58_SPATIAL_REFINEMENT_20260908.md)
+leaves the 3,300 K cap in place. The follow-up concerns physics that is
+absent from this thermal control case, not a new refinement nor a raising of
+the cap. [Capsule and digests](../../twins/m64-cylinder-head/evidence/f58-coupled-flow-20260908.json).
 
 ```mermaid
 flowchart TD
-    A["BC Marangoni native : témoin passé"] --> C["Copie grossière : un correcteur extérieur"]
-    B["Capteurs natifs : sensibilité et ordre vérifiés"] --> C
-    C --> D["Autorisation liée aux empreintes et Mesh OK"]
-    D --> E["Coupon refusé dans adjustPhi au pas 474"]
-    E --> F["473 bilans et 474 instants relus sur fenêtre commune"]
-    F --> G["Qualification physique et fabrication : non acquises"]
+    A["Native Marangoni BC:<br/>control case passed"] --> C["Coarse copy:<br/>one outer corrector"]
+    B["Native sensors:<br/>sensitivity and ordering verified"] --> C
+    C --> D["Authorization tied to<br/>digests and Mesh OK"]
+    D --> E["Coupon rejected in adjustPhi<br/>at step 474"]
+    E --> F["473 balances and 474 instants<br/>re-read on a common window"]
+    F --> G["Physical qualification and<br/>manufacturing: not achieved"]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    class A,B ok;
+    class E,G stop;
 ```
 
-## Limites et état de livraison
+## A single physical change tested
 
-La carte AlSi10Mg fournit des coefficients nominaux de viscosité, dilatation,
-tension superficielle et propriétés thermiques. Elle ne fournit pas ici une
-calibration du lot de poudre, sa conductivité effective mesurée, ni une
-absorption laser indépendante. La poudre et le solide ont actuellement les
-mêmes lois `k/Cp`. Les lois thermiques sont évaluées dans leurs plages
-bornées ; leur présence n'établit pas leur validité à 3 300 K.
+In the copy of the coarse 25 ns coupon, `nOuterCorrectors` goes from `0` to
+`1`. `momentumPredictor no`, the pressure corrections, the material, the
+Kelly/SuperGaussian source, the boundary conditions and the limiter are
+unchanged. No coefficient is tuned to obtain a favorable verdict.
 
-L'activation testée ajoute l'écoulement du bain dans le modèle existant.
-Elle ne crée ni surface libre/keyhole, ni évaporation, ni perte de masse :
-le terme de limitation n'est pas une chaleur latente de vaporisation.
-Une recette physique défendable exige encore les propriétés manquantes et
-des mesures de référence. Voir la [campagne matériau/procédé](M64_700CH_MATERIAL_COOLING_LPBF.md).
+The [ORNL solver controls](https://ornl.github.io/AdditiveFOAM/docs/solver-controls/)
+identify `nOuterCorrectors=0` as thermal-only mode. The
+[upstream Marangoni control case, lines 47–49](https://github.com/ORNL/AdditiveFOAM/blob/9c05c5eb54db03faa342b14b0806efe740de8c44/test/marangoni/system/fvSolution#L47)
+uses one outer corrector with the predictor disabled. The
+[pressure correction code, lines 49–54](https://github.com/ORNL/AdditiveFOAM/blob/9c05c5eb54db03faa342b14b0806efe740de8c44/applications/solvers/additiveFoam/pU/pEqn.H#L49)
+then updates `phi`, `U` and its boundaries. The absence of a `U/UFinal` linear
+solver is not compensated by an implicit change to the predictor.
 
-Les deux témoins sont exécutés sur Kali existant, avec 2 CPU, 2 Gio de mémoire,
-120 s CPU cumulés surveillés et 180 s murales maximum ; leurs conteneurs sont
-supprimés et leur absence vérifiée. Les entrées restent inchangées. Les tests
-privés sont **8 PASS pour le préparateur et 24 PASS pour le lanceur** après
-renforcement du contrôle des grilles temporelles ; l'oracle des capteurs a
-**6 tests PASS**, dont les refus de décalage, dernier pas absent et données non finies.
-Le contre-parseur partiel ajoute **7 tests PASS**, notamment l'exclusion du
-pas fatal sans bilan et le rejet des grilles temporelles décalées/dupliquées.
-Ces résultats ne remplacent pas `make check` du checkpoint de publication.
-Le Mermaid est fourni en source ; aucun rendu exécuté n'est revendiqué ici.
-Aucune location Vast dans ce sous-lot, aucune géométrie CAO privée publiée,
-aucune autorisation d'impression ou de démarrage moteur.
+## Native Marangoni control case: executed
+
+The `.C/.H` files of the ORNL boundary condition are copied bit for bit and
+compiled into a control executable on the pinned OpenFOAM 14 image. This
+condition is normally compiled into the solver; it is not assumed to be
+present in a library that would not contain it.
+
+On 32 manufactured hexahedra and 16 top faces, three temperature gradients
+check the tangential traction, its reversal and the normal case with no
+shear. The oracle checks `mu P dU/dn = (dSigma/dT) P grad(T)`
+and `U·n = 0`, with `P = I − n⊗n`. It uses the existing nominal values
+`mu=0.0013 Pa·s` and `dSigma/dT=−0.0003 N/(m·K)`. The
+[upstream condition](https://github.com/ORNL/AdditiveFOAM/blob/9c05c5eb54db03faa342b14b0806efe740de8c44/applications/solvers/additiveFoam/derivedFvPatchFields/marangoni/marangoniFvPatchVectorField.C)
+is actually executed, not replaced by the Python oracle.
+
+| Native check | Observed result | Control threshold |
+|---|---:|---:|
+| Maximum traction error | 5.1062×10⁻¹² Pa | 10⁻⁹ Pa |
+| Maximum normal velocity | 9.8608×10⁻³² m/s | 10⁻¹⁴ m/s |
+| Wall time / exit | 8.923 s / 0 | 180 s |
+
+These thresholds check the floating-point implementation, not the correctness
+of the material card. No PDE transport and no laser are executed. A first
+attempt had failed to compile the **driver** (`boundaryMesh()` and
+`Info.precision` incompatible with this API). Its rejection, its exit 2 and
+its log are kept; only those calls and the layout of the `Make/options` file
+are corrected in a new attempt. The backend is unchanged.
+
+## Native sensor control case: executed
+
+The `flowDiagnostics` configuration tested is bit for bit the one from the
+preparation. It uses `CourantNo`, `div(phi)`, `volFieldValue/maxMag` and
+`surfaceFieldValue/sumMag` on the three patches `top/bottom/sides`.
+
+A second C++ executable imposes `U=s·(1000x,2000y,3000z)` and the flux of that
+velocity at the face centers. It uses the native `Time::run` loop, with
+three successive states `s=1,2,−1`, without solving any PDE. The initial zero
+state and **each of the three completed steps**, the last one included, are
+compared with a separate algebraic oracle.
+
+| Quantity | s=1 | s=2 | s=−1 |
+|---|---:|---:|---:|
+| Maximum of the norm of U, m/s | 0.298171511 | 0.596343022 | 0.298171511 |
+| Maximum Courant | 0.000375 | 0.000750 | 0.000375 |
+| Maximum of `abs(div(phi))`, s⁻¹ | 6,000 | 12,000 | 6,000 |
+| Sum of absolute boundary fluxes, m³/s | 6×10⁻⁹ | 1.2×10⁻⁸ | 6×10⁻⁹ |
+
+The outputs agree within the control case's relative tolerance `2×10⁻¹²` and
+absolute tolerance `10⁻¹⁸`. Exit 0 in 4.922 s, with no OOM and no timeout. This
+nonzero artificial flux is deliberate: it tests the sensitivity of the sensor,
+not an impermeable boundary. The producer/reducer order and the absence of a
+one-step lag are verified from the files actually written. The native mechanisms
+are documented in [Time.C, lines 856–897](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/OpenFOAM/db/Time/Time.C#L856)
+and [functionObjectList.C, lines 376–390](https://github.com/OpenFOAM/OpenFOAM-14/blob/7b05503f98a85be88af930df48623b4d152bfc35/src/OpenFOAM/db/functionObjects/functionObjectList/functionObjectList.C#L376).
+
+## Prepared coupon and criteria fixed before reading the result
+
+The 29 pinned coarse input files are first copied exactly.
+After preparation, only `fvSolution` and the sensor include in
+`controlDict` change; `system/flowDiagnostics` is added. The
+57,600-cell mesh and the initial powder distribution are not regenerated.
+
+The run keeps 380 W, 25 ns and 3,300 K, with 120 µs targeted: 4,800 energy
+balances and 4,801 sensor instants were expected. The launcher limits
+execution to 900 s, 4 CPUs, 4 GiB **memory and swap combined**, no network,
+with the backend and `system` files read-only. An explicit `Mesh OK`
+is required before the laser; a mere return code from `checkMesh` is not enough.
+
+It stops the diagnostic on NaN/Inf/FATAL, Courant >0.5, final pressure residual
+>10⁻⁶ or failure of the conservative bound
+`0.0508764045 + Co_max + 0.5 dt max(abs(div(phi))) < 1`.
+That last bound concerns explicit transport on the grid and the pinned
+properties, not a global proof of multiphysics convergence.
+A stop or a timeout remains an incomplete result; there is no automatic restart.
+
+The six terms to be cross-read separately are sensible, latent, net
+boundary input, absorbed laser, advection and artificial limiter. The
+dimensions of the 850/870 K isotherms also require an independent reading.
+Two parsers are not two independent physics. A small or zero advection
+integral does not prove the absence of internal circulation.
+Precisely, the term `A = Σ rho Cp div(phi,T) V` is the instrumented discrete
+operator, **not a physical net enthalpy flux at the boundary when Cp
+varies**. The accounting balance is `S + L − D − Q + A + limiter`; closing it
+does not turn this operator into a validated enthalpy model.
+
+The integrity contract is fixed **before** the run: all pre-existing files
+must remain identical. Only `0/f58_Co` and `0/f58_divPhi`
+are admitted as new initial fields produced by the sensors, a behavior
+demonstrated by the native control case. Historical F58 rejections are not rewritten.
+
+## Actual result: coupling rejected, partial reading only
+
+On September 8, 2026, the container starts at 11:09:10 UTC and finishes at
+11:09:42 UTC: **33.001 s wall time, native and client exit 1**, with no OOM
+and no timeout. `checkMesh` gives `Mesh OK`. The container is removed and its
+absence verified. The solver actually solves 442 pressure corrections
+and produces a nonzero flow before the rejection.
+
+At step 474, at 11.85 µs, `adjustPhi` reports that it cannot remove the
+continuity defect by adjusting the outlet. This step has **no completed balance**.
+The following statistics therefore cover the **473 preceding steps**:
+maximum velocity 0.684980 m/s, maximum Courant 0.000477983, maximum transport
+bound 0.0513544 and maximum final pressure residual 9.92578×10⁻⁷.
+These values do not lift the continuity rejection of the next step.
+
+An independent parser, using 60-digit `Decimal` and no import
+from the launcher or the old evaluator, reconstructs the six integrals.
+The full thermal reference is **truncated to the same window**; no
+partial integral is compared with the 120 µs of the previous campaign.
+
+| Over 473 steps, i.e. 11.825 µs | Thermal only | Interrupted coupling |
+|---|---:|---:|
+| Sensible storage S, mJ | 3.035286 | 3.035648 |
+| Latent storage L, mJ | 0.235353 | 0.235891 |
+| Net boundary input D, mJ | 1.388299 | 1.388299 |
+| Absorbed laser Q, mJ | 1.895941 | 1.895621 |
+| Discrete operator A, mJ | 0 | 0.0000372153 |
+| Artificial limiter, mJ | 0.0136008 | 0.0123445 |
+| Limiter / absorbed laser | 0.71736 % | 0.65121 % |
+| Integral of absolute residual / Q | 2.09024×10⁻⁷ | 1.84189×10⁻⁷ |
+| Steps reaching the cap within 10⁻⁶ K | 54 | 51 |
+
+The cap remains in both cases. The incident energy over this window alone
+is 4.4935 mJ; no complete step exceeds 380 W absorbed. The change in the
+limiter proves neither a sufficient physical correction nor a cylinder head
+improvement. The balance remains that of the artificially capped model.
+
+The 850/870 K isotherm files and the sensors contain **474 instants**,
+from the initial state to step 473. At 870 K, the computed final dimensions are:
+
+| Dimension at 11.825 µs, µm | Thermal only | Interrupted coupling |
+|---|---:|---:|
+| Length | 96.902884 | 96.959544 |
+| Width | 108.483210 | 109.049600 |
+| Depth | 52.066613 | 51.994773 |
+
+These are outputs of the same model, not measurements of the melt pool. The sensor
+files, rounded to the inherited write precision, are cross-checked against the
+16-digit log, taking that rounding into account. The maximum absolute
+boundary flux over the completed steps is 1.33321×10⁻²⁶ m³/s; this does not
+describe the provisional flux that causes the rejection at the next step.
+
+The **30 prepared inputs** (29 initial files, two of which were modified by
+preparation, plus the sensor dictionary) are rehashed intact.
+Only the two pre-announced initial fields are added. The planned integrity
+contract passes; the solver's numerical rejection is kept in full.
+The location of the fatal message is established; this parser does not demonstrate
+the algorithmic cause of the provisional flux. No second coupled coupon is
+restarted in this sub-batch.
+
+## Limitations and delivery state
+
+The AlSi10Mg card provides nominal coefficients for viscosity, expansion,
+surface tension and thermal properties. It does not provide here a
+calibration of the powder lot, its measured effective conductivity, or an
+independent laser absorptivity. Powder and solid currently have the
+same `k/Cp` laws. The thermal laws are evaluated within their bounded
+ranges; their presence does not establish their validity at 3,300 K.
+
+The activation tested adds melt-pool flow to the existing model.
+It creates neither a free surface/keyhole, nor evaporation, nor mass loss:
+the limiting term is not a latent heat of vaporization.
+A defensible physical recipe still requires the missing properties and
+reference measurements. See the [material/process campaign](M64_700CH_MATERIAL_COOLING_LPBF.md).
+
+Both control cases are run on the existing Kali host, with 2 CPUs, 2 GiB of memory,
+120 s of cumulative CPU monitored and 180 s wall time maximum; their containers are
+removed and their absence verified. The inputs remain unchanged. The private tests
+are **8 PASS for the preparer and 24 PASS for the launcher** after
+tightening of the time-grid check; the sensor oracle has
+**6 PASS tests**, including rejections for offset, missing last step and non-finite data.
+The partial cross-parser adds **7 PASS tests**, notably exclusion of the
+fatal step without a balance and rejection of offset/duplicated time grids.
+These results do not replace `make check` for the publication checkpoint.
+The Mermaid is provided as source; no executed rendering is claimed here.
+No Vast rental in this sub-batch, no private CAD geometry published,
+no authorization to print or to start an engine.

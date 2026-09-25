@@ -1,69 +1,86 @@
-# Couvre-culasse supérieur 993 avec tours COP — AlSi10Mg F0
+# 993 upper valve cover with COP towers — AlSi10Mg F0
 
-Ce candidat met à profit la fabrication additive pour consolider une coque
-ouverte, six ailettes et trois supports de bobines coil-on-plug. PorscheFanatics
-identifie précisément l'intégration COP comme l'intérêt du kit BBi et catalogue
-plusieurs caches aluminium usinés.
+This candidate uses additive manufacturing to consolidate an open shell, six
+fins and three coil-on-plug coil mounts. PorscheFanatics specifically
+identifies COP integration as the benefit of the BBi kit and catalogues
+several machined aluminum covers.
 
-FVD publie un kit complet de quatre caches, joints et visserie en aluminium
-billet, avec une enveloppe commerciale `400 × 150 × 200 mm` et une masse
-`3,32 kg`. Protomotive confirme une paire supérieure 993 Carrera/Turbo usinée
-dans du `6061-T6`. Aucun de ces chiffres ne définit une pièce individuelle.
+FVD publishes a complete kit of four covers, gaskets and fasteners in billet
+aluminum, with a commercial envelope of `400 × 150 × 200 mm` and a mass of
+`3.32 kg`. Protomotive confirms an upper pair for the 993 Carrera/Turbo
+machined from `6061-T6`. None of these figures defines an individual part.
 
-## Géométrie F0
+```mermaid
+flowchart LR
+  S["Published: FVD kit of four<br/>3.32 kg; 6061-T6 upper pair"] --> G["Own F0 master<br/>shell, six fins, three COP towers<br/>483.65 g"]
+  G --> Pr["Roof pressure<br/>ratio 72.59: passes"]
+  G --> T["Three thermal screens<br/>0.926, 0.047, 0.524: fail"]
+  G --> P["LPBF print screen<br/>build_x, 30 µm"]
+  T --> V["Process undecided<br/>prohibited from manufacturing,<br/>sealing, installation, engine"]
+  P --> V
+  class S ok
+  class Pr,P open
+  class T,V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
 
-Le maître build123d est donc entièrement propre : un cache supérieur ouvert de
-`220 × 95 × 25 mm`, toit `3 mm`, bride latérale `6 mm`, dix perçages
-synthétiques, six ailettes et trois tours COP. L'enveloppe totale atteint
-`220 × 95 × 45 mm`.
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
 
-Le STEP relu contient un solide BREP valide, une face huile ouverte, dix
-perçages, trois passages COP et six ailettes. Son volume vaut
-`181 143,43 mm³` et sa masse AlSi10Mg théorique `483,65 g`. Un parallélépipède
-billet enveloppe pèserait `2 511,14 g`, soit un rapport théorique `5,19`.
+## F0 geometry
 
-Projeter quatre F0 donne `1,935 kg`, mais cette valeur ne peut pas être comparée
-directement aux `3,32 kg` FVD : le kit réel contient des caches différents,
-des joints et de la visserie.
+The build123d master is therefore entirely our own: an open upper cover of
+`220 × 95 × 25 mm`, `3 mm` roof, `6 mm` side flange, ten synthetic holes, six
+fins and three COP towers. The overall envelope reaches `220 × 95 × 45 mm`.
 
-## Pression et serrage
+The re-read STEP contains a valid BREP solid, an open oil face, ten holes,
+three COP passages and six fins. Its volume is `181,143.43 mm³` and its
+theoretical AlSi10Mg mass `483.65 g`. An envelope billet block would weigh
+`2,511.14 g`, i.e. a theoretical ratio of `5.19`.
 
-Le toit est criblé comme une bande simplement appuyée sous `20 kPa` :
+Projecting four F0s gives `1.935 kg`, but this value cannot be compared
+directly with FVD's `3.32 kg`: the real kit contains different covers,
+gaskets and fasteners.
 
-`σ = 0,75 × p × a² / t²`
+## Pressure and clamping
 
-Pour `a = 45 mm` et `t = 3 mm`, la contrainte vaut `3,375 MPa`, soit un rapport
-à la limite AlSi10Mg de `72,59`. Cet écran passe.
+The roof is screened as a simply supported strip under `20 kPa`:
 
-PorscheFanatics transcrit `9,7 Nm` pour un cache M6, mais la valeur OCR reste
-non vérifiée. Avec le modèle provisoire `F = T/(Kd)` et `K = 0,20`, chaque
-fixation donnerait `8,08 kN`. La pression moyenne de bande vaut `22,23 MPa` et
-le pied de bride synthétique `134,72 MPa`, soit un rapport `1,819`. Ces calculs
-ne constituent ni couple de montage ni preuve d'étanchéité.
+`σ = 0.75 × p × a² / t²`
 
-## Trois échecs thermiques
+For `a = 45 mm` and `t = 3 mm`, the stress is `3.375 MPa`, i.e. a ratio to the
+AlSi10Mg limit of `72.59`. This screen passes.
 
-À `200 °C` depuis `20 °C`, la croissance libre sur `220 mm` vaut `0,832 mm`.
-Totalement contrainte, `σ = EαΔT` atteint `264,6 MPa` face à `245 MPa`, rapport
-`0,926` : **échec**.
+PorscheFanatics transcribes `9.7 Nm` for an M6 cover, but the OCR value stays
+unverified. With the provisional model `F = T/(Kd)` and `K = 0.20`, each
+fastener would give `8.08 kN`. The mean strip pressure is `22.23 MPa` and the
+synthetic flange root `134.72 MPa`, i.e. a ratio of `1.819`. These
+calculations constitute neither an installation torque nor proof of sealing.
 
-Un gradient synthétique de `50 K` à travers le toit donne :
+## Three thermal failures
 
-`κ = αΔT/t`, puis `w = κL²/8`
+At `200 °C` from `20 °C`, the free growth over `220 mm` is `0.832 mm`. Fully
+constrained, `σ = EαΔT` reaches `264.6 MPa` against `245 MPa`, ratio
+`0.926`: **fail**.
 
-Le voile estimé vaut `2,117 mm`, contre une cible de joint `0,10 mm`, rapport
-`0,047` : **échec**. Ce modèle volontairement sévère montre que nervures,
-séquence d'usinage et compensation de traitement sont indispensables.
+A synthetic `50 K` gradient across the roof gives:
 
-Enfin, avec `h = 30 W/m²K`, les surfaces simplifiées rejettent `157,2 W` face à
-une cible synthétique `300 W`, rapport `0,524` : **échec**. Il manque la
-conduction vers la culasse, l'huile, le rayonnement et le débit d'air réel.
+`κ = αΔT/t`, then `w = κL²/8`
 
-## Décision F0
+The estimated warp is `2.117 mm`, against a gasket target of `0.10 mm`, ratio
+`0.047`: **fail**. This deliberately severe model shows that ribs, machining
+sequence and heat treatment compensation are indispensable.
 
-La consolidation COP et la réduction de brut rendent l'AM intéressante, mais
-le F0 ne tient pas ses écrans thermiques et aucune interface n'est mesurée. Le
-procédé reste indécis entre injection d'origine, fonderie, billet 6061-T6 et
+Finally, with `h = 30 W/m²K`, the simplified surfaces reject `157.2 W` against
+a synthetic target of `300 W`, ratio `0.524`: **fail**. Conduction to the
+cylinder head, oil, radiation and the real airflow are missing.
+
+## F0 decision
+
+COP consolidation and the reduction of stock make AM interesting, but the F0
+does not hold its thermal screens and no interface is measured. The process
+stays undecided between original die casting, casting, 6061-T6 billet and
 LPBF AlSi10Mg.
 
 ## Reproduction
@@ -76,37 +93,37 @@ docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
   --report parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/evidence/engineering-screen.json
 ```
 
-## Gates suivants
+## Next gates
 
-1. Scanner les quatre caches, joints, faces de culasse, bobines et faisceau.
-2. Vérifier le couple primaire, la séquence et la loi réelle du joint.
-3. Mesurer pression carter, températures, flux, huile, air et vibration.
-4. Redessiner bride, nervures, évents et tours COP sur interfaces mesurées.
-5. Exécuter CHT, contact joint non linéaire, modal, fatigue et relaxation.
-6. Qualifier orientation, supports, T6, trempe, HIP, usinage et anodisation.
-7. Passer CT, FPI, planéité, pression, fuite, cycle thermique et endurance.
+1. Scan the four covers, gaskets, cylinder head faces, coils and harness.
+2. Verify the primary torque, the sequence and the real gasket law.
+3. Measure crankcase pressure, temperatures, fluxes, oil, air and vibration.
+4. Redesign flange, ribs, vents and COP towers on measured interfaces.
+5. Run CHT, nonlinear gasket contact, modal, fatigue and relaxation.
+6. Qualify orientation, supports, T6, quench, HIP, machining and anodizing.
+7. Pass CT, FPI, flatness, pressure, leak, thermal cycle and endurance tests.
 
-PhysicsNeMo reste différé jusqu'à l'existence de séries CHT/structure/joint
-corrélées, séparées en entraînement, validation, holdout et hors distribution.
-Le F0 est interdit de fabrication, étanchéité, montage et moteur.
+PhysicsNeMo stays deferred until correlated CHT/structure/gasket series exist,
+split into training, validation, holdout and out-of-distribution. The F0 is
+prohibited from manufacturing, sealing, installation and engine use.
 
 <!-- print-screen:begin -->
 
-## Simulation d'impression LPBF
+## LPBF print simulation
 
-Le STEP a ete tessele puis tranche sur toute sa hauteur a `30 µm`, route EOS M 290 de la matiere candidate. Orientation retenue par la regle automatique : `build_x`.
+The STEP was tessellated, then sliced over its full height at `30 µm`, on the EOS M 290 route of the candidate material. Orientation chosen by the automatic rule: `build_x`.
 
-| grandeur | valeur |
+| quantity | value |
 |---|---:|
-| couches | 7 334 |
-| hauteur de construction | 220,00 mm |
-| couches avec region non soutenue | 983 |
-| proxy de supports | 417 144,05 mm³ |
-| epaisseur locale p01 | 1,667 mm |
-| poudre piegee a 1,00 mm | 0,00 mm³ |
+| layers | 7,334 |
+| build height | 220.00 mm |
+| layers with an unsupported region | 983 |
+| support proxy | 417,144.05 mm³ |
+| local thickness p01 | 1.667 mm |
+| trapped powder at 1.00 mm | 0.00 mm³ |
 
-![Simulation d'impression LPBF](../../parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/evidence/lpbf-f0/993-eng-upper-valve-cover-alsi10mg-f0-0001-lpbf-geometry-screen.png)
+![LPBF print simulation](../../parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/evidence/lpbf-f0/993-eng-upper-valve-cover-alsi10mg-f0-0001-lpbf-geometry-screen.png)
 
-Ce criblage n'est ni un projet EOSPRINT, ni un calcul de distorsion, ni un controle du recoater. **L'impression reste interdite.**
+This screening is neither an EOSPRINT project, nor a distortion calculation, nor a recoater check. **Printing remains prohibited.**
 
 <!-- print-screen:end -->

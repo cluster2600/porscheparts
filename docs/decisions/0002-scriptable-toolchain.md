@@ -1,52 +1,52 @@
-# 0002 — Chaîne pilotable par script
+# 0002 — Script-driven toolchain
 
-Date : 28 août 2026
+Date: August 28, 2026
 
-Révise partiellement [0001](0001-open-toolchain.md).
+Partially revises [0001](0001-open-toolchain.md).
 
-## Contexte
+## Context
 
-La décision 0001 a retenu des logiciels libres, mais en les nommant par leur
-interface graphique. Or presque tout le travail répétitif du projet —
-reconstruction, nettoyage de maillage, export STEP, maillage EF, calcul, découpe
-— doit pouvoir tourner sans opérateur devant l’écran, sur une machine louée à
-l’heure, et être relancé à l’identique après correction.
+Decision 0001 chose free software, but named each tool by its graphical
+interface. Yet almost all of the project's repetitive work — reconstruction,
+mesh cleanup, STEP export, FE meshing, analysis, slicing — must be able to run
+with no operator in front of the screen, on a machine rented by the hour, and be
+rerun identically after a correction.
 
-Un outil dont l’usage normal passe par des clics n’est pas reproductible : ni un
-script, ni un agent, ni une intégration continue ne peuvent le rejouer.
+A tool whose normal use goes through clicks is not reproducible: no script, no
+agent and no continuous integration can replay it.
 
-## Décision
+## Decision
 
-Pour chaque besoin, l’outil retenu est celui qui possède une **interface en ligne
-de commande ou une API Python complète**, à qualité et licence équivalentes.
+For each need, the tool chosen is the one that has a **command-line interface or
+a complete Python API**, at equivalent quality and license.
 
-| Besoin | 0001 | Retenu | Raison du changement |
+| Need | 0001 | Chosen | Reason for the change |
 |---|---|---|---|
-| Structure from motion | Meshroom (GUI) | COLMAP + GLOMAP | CLI complète, base de données inspectable, GLOMAP réduit fortement le temps de pose |
-| Reconstruction dense | Meshroom | COLMAP dense (CUDA) | Même chaîne, même format, pas de second écosystème |
-| Nettoyage de maillage | MeshLab (GUI) | pymeshlab | Mêmes filtres, appelés depuis Python ; `meshlabserver` n’existe plus |
-| Nuages de points | CloudCompare (GUI) | Open3D | API Python, recalage et sous-échantillonnage scriptables |
-| CAO paramétrique | FreeCAD (GUI) | build123d et CadQuery | Même noyau OCCT, mais géométrie écrite en Python, relisible en revue et exportable en STEP |
-| Maillage EF | Gmsh (GUI) | Gmsh API Python | Maillage piloté par le script qui construit la pièce |
-| Calcul | CalculiX | CalculiX | Déjà en ligne de commande, jeu de données texte |
-| CFD | OpenFOAM | OpenFOAM + foamlib | Cas pilotés depuis Python plutôt que par édition manuelle de dictionnaires |
-| Découpe | PrusaSlicer | PrusaSlicer CLI | Découpe en lot, sans ouvrir l’interface |
+| Structure from motion | Meshroom (GUI) | COLMAP + GLOMAP | Complete CLI, inspectable database, GLOMAP sharply reduces pose-estimation time |
+| Dense reconstruction | Meshroom | COLMAP dense (CUDA) | Same chain, same format, no second ecosystem |
+| Mesh cleanup | MeshLab (GUI) | pymeshlab | Same filters, called from Python; `meshlabserver` no longer exists |
+| Point clouds | CloudCompare (GUI) | Open3D | Python API, scriptable registration and downsampling |
+| Parametric CAD | FreeCAD (GUI) | build123d and CadQuery | Same OCCT kernel, but geometry written in Python, readable in review and exportable to STEP |
+| FE meshing | Gmsh (GUI) | Gmsh Python API | Meshing driven by the script that builds the part |
+| Analysis | CalculiX | CalculiX | Already command-line, text input deck |
+| CFD | OpenFOAM | OpenFOAM + foamlib | Cases driven from Python rather than by hand-editing dictionaries |
+| Slicing | PrusaSlicer | PrusaSlicer CLI | Batch slicing, without opening the interface |
 
-## Ce qui ne change pas
+## What does not change
 
-- FreeCAD reste un outil légitime de revue humaine, d’inspection STEP et
-  d’atelier FEM interactif. Il cesse seulement d’être la source maîtresse.
-- OpenSCAD reste valide : c’est déjà du code.
-- Blender reste retenu, en mode `--background --python`, pour les opérations de
-  maillage lourdes et les rendus de documentation.
-- Meshroom reste utilisable comme second avis sur une reconstruction difficile,
-  installé à la demande sur la machine louée et non dans l’image.
+- FreeCAD remains a legitimate tool for human review, STEP inspection and the
+  interactive FEM workbench. It only stops being the master source.
+- OpenSCAD remains valid: it is already code.
+- Blender is still used, in `--background --python` mode, for heavy mesh
+  operations and documentation renderings.
+- Meshroom remains usable as a second opinion on a difficult reconstruction,
+  installed on demand on the rented machine and not in the image.
 
-## Conséquences
+## Consequences
 
-- La géométrie maîtresse d’une pièce peut être un fichier Python versionné,
-  produisant un STEP reproductible, à côté des formats `.FCStd` et `.scad`.
-- Chaque étape devient rejouable : mêmes entrées, même commande, même sortie.
-- Les images conteneurs de `containers/` matérialisent cette chaîne.
-- Coût : les auteurs habitués au dessin interactif doivent lire du code CAO. La
-  contrepartie est une revue possible en diff, ce qu’un fichier binaire interdit.
+- A part's master geometry can be a versioned Python file producing a
+  reproducible STEP, alongside the `.FCStd` and `.scad` formats.
+- Every step becomes replayable: same inputs, same command, same output.
+- The container images in `containers/` materialize this chain.
+- Cost: authors used to interactive drawing must read CAD code. The trade-off is
+  that review by diff becomes possible, which a binary file rules out.

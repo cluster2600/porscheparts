@@ -1,175 +1,178 @@
-# M64 — admission, chambre et prochain calcul utile
+# M64 — intake, chamber and next useful computation
 
-## Résultat géométrique de cette reprise
+## Geometric result of this follow-up
 
-Un **prototype de chambre à deux pans a été construit**, à partir des lèvres
-des quatre sièges du module actuel, sans réinventer son enveloppe extérieure.
-Ce n'est ni une géométrie OEM, ni un rapport volumétrique choisi, ni une
-chambre assemblée et validée. Le maître antérieur reste intact.
-Le [reçu d'exécution](../../twins/m64-cylinder-head/evidence/intake-chamber-candidate-20260908.json)
-lie les scripts, les entrées, les exports privés et les images réelles de CAO
-par leurs empreintes. Les vues ne sont pas des photos d'une pièce fabriquée.
+A **two-facet chamber prototype was built**, starting from the lips of the four
+seats of the current module, without reinventing its external envelope.
+It is neither an OEM geometry, nor a chosen volumetric ratio, nor an assembled
+and validated chamber. The earlier master remains intact.
+The [execution receipt](../../twins/m64-cylinder-head/evidence/intake-chamber-candidate-20260908.json)
+links the scripts, the inputs, the private exports and the real CAD images by
+their digests. The views are not photos of a manufactured part.
 
-L'outil de coupe est un solide connecté de 27 001,825 unités³. Il retire
-9 578,631 unités³ de matière du maître. Ces deux volumes sont distincts du
-volume fermé de combustion, qui nécessite encore les soupapes, les portées
-et la position du piston. Les huit inserts (sièges et guides) ne sont pas
-recoupés en volume. Le candidat reste un solide B-Rep valide avant et après
-relecture STEP ; cela ne constitue pas un contrôle BOP complet du corps.
+The cutting tool is a connected solid of 27,001.825 units³. It removes
+9,578.631 units³ of material from the master. These two volumes are distinct
+from the closed combustion volume, which still requires the valves, the seats
+and the piston position. The eight inserts (seats and guides) are not recut in
+volume. The candidate remains a valid B-Rep solid before and after STEP
+re-read; this is not a complete BOP check of the body.
 
-La surface de fond hors du cylindre documentaire Ø100 n'est pas amputée
-dans le contrôle booléen. La boîte englobante varie seulement de
-2,2e−14 unité. La relecture du STEP du seul volume retiré change son volume
-de 0,01158 unité³ ; cet écart est conservé, pas présenté comme une métrologie
-exacte. Aucun perçage de bougie ni circuit d'huile n'est inventé.
+The bottom surface outside the documentary Ø100 cylinder is not cut away in
+the boolean check. The bounding box varies by only 2.2e−14 unit. Re-reading
+the STEP of the removed volume alone changes its volume by 0.01158 unit³; this
+gap is kept, not presented as exact metrology. No spark plug bore or oil
+circuit is invented.
 
-## Inspection initiale, avant construction de cette chambre
+## Initial inspection, before building this chamber
 
-L'inspection porte sur le **maître quatre logements avant évidement des
-conduits**, le négatif natif d'admission 06 et les composants du module V2.
-Ce ne sont pas encore les frontières d'un même domaine gazeux complet.
-L'hypothèse `1 unité de scan = 1 mm` n'est pas une métrologie M64.
+The inspection concerns the **four-pocket master before the ports are
+hollowed out**, the native intake negative 06 and the components of the V2
+module. These are not yet the boundaries of a single complete gas domain.
+The hypothesis `1 scan unit = 1 mm` is not M64 metrology.
 
-- Les deux colliers de gorge Ø35,6, entre les positions axiales 5,99 et 6,00,
-  sont recouverts par le conduit dans la précision d'intégration enregistrée.
-  Ce test local n'établit pas à lui seul l'étanchéité du montage.
-- Le négatif brut recoupe encore chaque soupape d'admission ouverte à 6
-  (735,415 unités³) et chaque guide (797,705 unités³). Ces pièces doivent être
-  soustraites du gaz, pas ignorées dans une CFD.
-- Le centre du maître est plein aux points axiaux testés entre Z=0,001 et 10.
-  Ce maître initial ne contenait pas de toit de chambre conçu pour ce M64
-  quatre soupapes ; le prototype décrit plus haut est une opération distincte.
-- La couverture de la face inférieure sous le disque documentaire Ø100 vaut
-  2 870,071 sur 7 853,982 unités². Le complément **n'est pas un taux de fuite** :
-  sièges, soupapes fermées et autres frontières doivent être assemblés et
-  classifiés avant cette interprétation.
+- The two Ø35.6 throat collars, between axial positions 5.99 and 6.00, are
+  covered by the port within the recorded integration precision.
+  This local test does not on its own establish the sealing of the assembly.
+- The raw negative still intersects each intake valve open at 6
+  (735.415 units³) and each guide (797.705 units³). These parts must be
+  subtracted from the gas, not ignored in a CFD.
+- The center of the master is solid at the axial points tested between
+  Z=0.001 and 10. This initial master did not contain a chamber roof designed
+  for this four-valve M64; the prototype described above is a separate
+  operation.
+- The coverage of the bottom face under the documentary Ø100 disk is
+  2,870.071 out of 7,853.982 units². The complement **is not a leak rate**:
+  seats, closed valves and other boundaries must be assembled and classified
+  before this interpretation.
 
-Inspection native OCP 7.9.3.1 : 11,294 s, sortie 0, 2 CPU/4 Gio, réseau
-désactivé, conteneur supprimé. L'image locale est identifiée par
+Native OCP 7.9.3.1 inspection: 11.294 s, exit 0, 2 CPUs/4 GiB, network
+disabled, container deleted. The local image is identified by
 `sha256:49979f46f421459dae4bf21aaa898e2253b07301c3e5b2cabaa6eaf06f54d696`.
-Le reçu d'inspection privé a pour SHA-256
+The private inspection receipt has SHA-256
 `e435eb2cd991e55401dc37c27c1baa00765552cd8df2cb677e8e85d66b9e4cec`.
-Les empreintes exactes des cinq entrées sont liées au
-[contrôleur d'inspection](../../twins/m64-cylinder-head/source/flowbench-intake/inspect_pilot.py).
-Les gros fichiers et les géométries privées ne sont pas redistribués ici.
+The exact digests of the five inputs are linked to the
+[inspection controller](../../twins/m64-cylinder-head/source/flowbench-intake/inspect_pilot.py).
+The large files and the private geometries are not redistributed here.
 
-## Raccord d'admission : distinguer budget CAO et précision physique
+## Intake junction: distinguishing CAD budget and physical precision
 
-La préparation du vrai conduit révèle que les rayons 1 et 0,5 ne tiennent
-pas intégralement dans le masque de calcul protégeant le contour extérieur.
-Le rayon 0,25 tient dans la borne conservatrice de cette région ; cela ne
-prouve ni un bénéfice de débit ni une résolution voxel suffisante.
+Preparing the real port reveals that radii 1 and 0.5 do not fit entirely in
+the computation mask protecting the external contour.
+Radius 0.25 fits within the conservative bound of this region; this proves
+neither a flow benefit nor a sufficient voxel resolution.
 
-Un congé natif R0,25 a été construit et relu. Son **rejet v1 est conservé** :
-la règle historique exigeait qu'aucune tolérance topologique maximale
-n'augmente, même sur des surfaces nouvellement approchées. Cette règle ne
-permet pas à elle seule de conclure à un défaut mécanique.
+A native R0.25 fillet was built and re-read. Its **v1 rejection is kept**:
+the historical rule required that no maximum topological tolerance increase,
+even on newly approximated surfaces. This rule alone does not allow concluding
+that there is a mechanical defect.
 
-Le [contre-audit v2 explicite](../../twins/m64-cylinder-head/evidence/local-junction-cad-budget-20260908.json)
-ne modifie aucune tolérance produite par le noyau et ne remplace pas v1.
-Il distingue les entités inchangées des entités nouvelles/localement modifiées,
-avec un budget **numérique** de 1e−4 unité pour ces dernières, lié aux paramètres
-du [constructeur OCCT 7.9.3](https://raw.githubusercontent.com/Open-Cascade-SAS/OCCT/V7_9_3/src/ChFi3d/ChFi3d_Builder_1.cxx).
-Ce n'est pas une tolérance d'ajustement moteur ni une précision mesurée du scan.
+The [explicit v2 counter-audit](../../twins/m64-cylinder-head/evidence/local-junction-cad-budget-20260908.json)
+modifies no tolerance produced by the kernel and does not replace v1.
+It distinguishes unchanged entities from new/locally modified entities, with a
+**numerical** budget of 1e−4 unit for the latter, tied to the parameters of the
+[OCCT 7.9.3 builder](https://raw.githubusercontent.com/Open-Cascade-SAS/OCCT/V7_9_3/src/ChFi3d/ChFi3d_Builder_1.cxx).
+This is not an engine fit tolerance or a measured precision of the scan.
 
-Le candidat rejoué possède la même empreinte que celui de v1. Les 70 contrôles
-courbe 3D/p-curve, les 66 contrôles sommet/courbe, les quatre arêtes extérieures
-protégées, les neuf sections examinées hors région autorisée et le BOP après
-relecture passent les contrôles déclarés. Les modifications de section **dans**
-la zone du raccord sont quantifiées : exiger leur absence contredirait le
-changement de forme recherché.
+The replayed candidate has the same digest as the v1 one. The 70 3D curve/
+p-curve checks, the 66 vertex/curve checks, the four protected external edges,
+the nine sections examined outside the authorized region and the BOP after
+re-read pass the declared checks. The section changes **within** the junction
+zone are quantified: requiring their absence would contradict the intended
+shape change.
 
-La qualification locale n'est pourtant pas close : le gain de volume par
-différence avant/après vaut 1,784650 unité³, contre 1,777202 par différences
-booléennes, soit un résidu de 0,007448. Il dépasse les estimations de quadrature
-cumulées de 0,001628 unité³. Les estimations relatives OCCT ont été converties
-en volume ; elles ne constituent pas des bornes rigoureuses d'erreur géométrique.
-Le désaccord reste publié. Aucun raccord n'est encore intégré au maître et
-aucune épaisseur de paroi finale n'est déduite d'une distance à l'ancien corps.
+Local qualification is nevertheless not closed: the volume gain by
+before/after difference is 1.784650 unit³, against 1.777202 by boolean
+differences, i.e. a residual of 0.007448. It exceeds the cumulative quadrature
+estimates of 0.001628 unit³. The OCCT relative estimates were converted to
+volume; they are not rigorous bounds of geometric error.
+The disagreement remains published. No junction is yet integrated into the
+master and no final wall thickness is deduced from a distance to the old body.
 
-## Banc virtuel préenregistré, pas encore exécuté
+## Preregistered virtual flow bench, not yet run
 
-Le [contrat du pilote](../../twins/m64-cylinder-head/targets/intake-flowbench-pilot.json)
-fixe un écoulement d'air froid, admission ouverte à 6, échappement fermé,
-avec récepteur d'alésage documentaire 100. Les levées 2 et 11,5 seront des
-cas suivants, pas des résultats interpolés sans calcul.
+The [pilot contract](../../twins/m64-cylinder-head/targets/intake-flowbench-pilot.json)
+sets a cold air flow, intake open at 6, exhaust closed, with a documentary
+bore-100 receiver. Lifts 2 and 11.5 will be subsequent cases, not results
+interpolated without computation.
 
-Le protocole impose même montage, étanchéité, rayon d'entrée et conditions
-pour comparer les variantes. La condition retenue de **28 pouces d'eau
-conventionnels = 6 974,48948 Pa** est une dépression de banc ; ce n'est pas
-une suralimentation ni une pression cylindre. Cette préparation s'appuie sur
-les [consignes SuperFlow](https://superflow.com/tech-corner/understanding-and-working-with-superflow-flowbenches/).
+The protocol imposes the same fixture, sealing, inlet radius and conditions to
+compare the variants. The chosen condition of **28 conventional inches of
+water = 6,974.48948 Pa** is a bench depression; it is not forced induction or
+a cylinder pressure. This preparation relies on the
+[SuperFlow guidelines](https://superflow.com/tech-corner/understanding-and-working-with-superflow-flowbenches/).
 
-Les conditions choisies sont `p0 entrée = 101 325 Pa`, `T0 entrée = 293,15 K`
-et `p statique sortie = 94 350,51052 Pa`. Ce sont des hypothèses de laboratoire,
-pas des mesures moteur. Le flux idéal isentropique de référence vaut
-124,730079 kg/(m²·s), avec Mach idéal 0,320820 : la compressibilité ne sera
-donc pas exclue sans vérification. **Ce n'est pas le débit de la culasse.**
-La [formulation NASA](https://www.grc.nasa.gov/www/k-12/airplane/mflchk.html)
-fournit la normalisation et la limite sonique du gaz parfait.
+The chosen conditions are `p0 inlet = 101,325 Pa`, `T0 inlet = 293.15 K` and
+`static p outlet = 94,350.51052 Pa`. These are laboratory hypotheses, not
+engine measurements. The reference ideal isentropic flux is
+124.730079 kg/(m²·s), with an ideal Mach of 0.320820: compressibility will
+therefore not be excluded without verification. **This is not the cylinder
+head's flow rate.**
+The [NASA formulation](https://www.grc.nasa.gov/www/k-12/airplane/mflchk.html)
+provides the normalization and the sonic limit of the ideal gas.
 
-Le [calcul analytique reproductible](../../twins/m64-cylinder-head/targets/flowbench_reference.py)
-laisse explicitement le débit réel et le coefficient de débit à `null`.
-Après une CFD admissible, `CdA = débit massique / flux idéal`, puis
-`Cd = CdA / aire totale des deux gorges`. Cette aire est une référence
-déclarée, pas une prétendue mesure de la section minimale de passage à chaque
-levée. Aucun coefficient n'est converti directement en chevaux moteur.
+The [reproducible analytic calculation](../../twins/m64-cylinder-head/targets/flowbench_reference.py)
+explicitly leaves the real flow rate and the discharge coefficient at `null`.
+After an admissible CFD, `CdA = mass flow rate / ideal flux`, then
+`Cd = CdA / total area of the two throats`. This area is a declared reference,
+not a purported measurement of the minimum passage section at each lift. No
+coefficient is converted directly into engine horsepower.
 
 ```mermaid
 flowchart TD
-    A["Conduit natif 06 + sièges + guides + soupapes"] --> B["Inspection effectuée : raccords locaux présents"]
-    B --> C["Prototype de chambre construit ; assemblage et frontières à fermer"]
-    C --> D["Gaz = conduits + chambre + récepteur moins composants solides"]
-    D --> E{"Un seul domaine, ouvertures classifiées et contrôles CAO acceptés ?"}
-    E -- non --> C
-    E -- oui --> F["Maillage et pilote OpenFOAM compressible à froid"]
-    F --> G["Bilans, stabilité et trois niveaux de maillage"]
-    G --> H["Débit, CdA et comparaison des variantes"]
-    H -. "ne démontre ni 700 PS ni fatigue" .-> I["Cycle moteur, CHT, résistance, procédé et essais physiques à suivre"]
+    A["Native port 06 + seats + guides + valves"] --> B["Inspection done: local junctions present"]
+    B --> C["Chamber prototype built; assembly and boundaries to close"]
+    C --> D["Gas = ports + chamber + receiver minus solid components"]
+    D --> E{"Single domain, openings classified and CAD checks accepted?"}
+    E -- no --> C
+    E -- yes --> F["Mesh and cold compressible OpenFOAM pilot"]
+    F --> G["Balances, stability and three mesh levels"]
+    G --> H["Flow rate, CdA and comparison of variants"]
+    H -. "demonstrates neither 700 PS nor fatigue" .-> I["Engine cycle, CHT, strength, process and physical tests to follow"]
 ```
 
-Gardes exploratoires fixés avant le pilote : déséquilibre massique relatif
-≤0,1 %, variation du débit moyen entre deux fenêtres finales ≤0,5 %, au moins
-trois niveaux spatiaux et écart moyen/fin ≤2 %. La taille des fenêtres et
-le traitement de la turbulence doivent être fixés dans le manifeste du cas
-maillé avant exécution. Une séparation instationnaire invalide l'hypothèse
-stationnaire ; elle exige un calcul transitoire et des statistiques adaptées.
-Ces seuils ne sont pas une norme de certification ni une corrélation au banc.
+Exploratory guards set before the pilot: relative mass imbalance ≤0.1%,
+variation of the mean flow rate between two final windows ≤0.5%, at least
+three spatial levels and medium/fine gap ≤2%. The size of the windows and the
+treatment of turbulence must be set in the meshed case's manifest before
+execution. An unsteady separation invalidates the steady hypothesis; it
+requires a transient computation and suitable statistics.
+These thresholds are not a certification standard or a bench correlation.
 
-## Ressources réellement vérifiées
+## Resources actually verified
 
-OpenFOAM 14, `foamRun`, `checkMesh`, `snappyHexMesh`, le module compressible
-`fluid` et Cantera 3.2.0 sont accessibles sur Kali. Ce prévol est une lecture
-du runtime existant, **pas un calcul de cette culasse**. Image locale exacte :
+OpenFOAM 14, `foamRun`, `checkMesh`, `snappyHexMesh`, the compressible `fluid`
+module and Cantera 3.2.0 are available on Kali. This preflight is a reading of
+the existing runtime, **not a computation of this cylinder head**. Exact local
+image:
 `sha256:a233511bef9b4fbf0653ca94258061d61b3fccbd6b4e3ef6d71c669d70de1c17`.
-Elle n'a pas de digest de registre dans cette vérification : ne pas la
-confondre avec une image déjà qualifiée pour une nouvelle location Vast.
+It has no registry digest in this check: do not confuse it with an image
+already qualified for a new Vast rental.
 
-Le plafond utilisateur est de 44 USD, sans recharge automatique. Aucun
-nouveau serveur n'a été loué pour cette inspection et cette préparation.
-Avant une location : job concret, image amd64 par digest, paire SSH vérifiée,
-association de clé à l'instance, plafond du lot et garde externe de suppression.
-La disponibilité d'un logiciel ou d'un budget ne rend pas une géométrie prête.
+The user ceiling is 44 USD, with no automatic top-up. No new server was rented
+for this inspection and this preparation.
+Before a rental: concrete job, amd64 image by digest, verified SSH pair, key
+association with the instance, batch ceiling and external deletion guard.
+The availability of software or of a budget does not make a geometry ready.
 
-## Limites de livraison
+## Delivery limits
 
-Ni le toit proposé, ni un futur pilote d'admission ne ferment les interfaces
-du donneur, les conditions de pression/flux thermique, les cartes matière à
-chaud, les précharges, les circuits d'huile, la distribution ou le procédé
-LPBF. La puissance de 700 PS reste une cible. Le parcours complet demeure
-celui du [plan multiphysique](M64_MULTIPHYSICS_EXECUTION.md).
+Neither the proposed roof nor a future intake pilot closes the donor
+interfaces, the pressure/heat flux conditions, the hot material maps, the
+preloads, the oil circuits, the valvetrain or the LPBF process. The power of
+700 PS remains a target. The complete path remains that of the
+[multiphysics plan](M64_MULTIPHYSICS_EXECUTION.md).
 
-## Vérification logicielle du lot
+## Software verification of the batch
 
-Après gel des sources, `make check` s'est terminé avec un code de sortie 0.
-La suite principale a exécuté 2 211 tests en 174,406 s, dont 92 ignorés ;
-les cibles supplémentaires se sont également terminées, avec un autre test
-OCP ignoré. Ce résultat ne signifie donc pas que tous les runtimes optionnels
-ont été exercés par cette commande.
+After freezing the sources, `make check` finished with exit code 0.
+The main suite ran 2,211 tests in 174.406 s, of which 92 were skipped;
+the additional targets also finished, with one more OCP test skipped. This
+result therefore does not mean that all optional runtimes were exercised by
+this command.
 
-Les 44 tests ciblés de ce lot ont été exécutés séparément dans les runtimes
-CAO natif et QA disposant des dépendances nécessaires : tous réussis, aucun
-ignoré. Le journal global privé porte l'empreinte SHA-256
+The 44 targeted tests of this batch were run separately in the native CAD and
+QA runtimes that have the necessary dependencies: all passed, none skipped.
+The private global log has SHA-256
 `0c80a7b5fc15658695a52508b642e7bb35fbef88b3ac88d3b8e73748eab383be`.
-Ces tests vérifient les scripts et les garde-fous déclarés, pas une culasse
-physiquement éprouvée, un matériau qualifié ou un procédé d'impression validé.
+These tests check the scripts and the declared safeguards, not a physically
+tested cylinder head, a qualified material or a validated printing process.

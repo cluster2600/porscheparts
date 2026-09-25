@@ -21,49 +21,52 @@ parts for additive and conventional manufacturing.
   treatment, machining, inspection, fatigue assumptions, and galvanic isolation.
 - Keep changes surgical and run `make check` before proposing a merge.
 
-## Emplacement du depot
+## Repository location
 
-Le depot doit vivre sur un **systeme de fichiers Linux natif**, par exemple
-`/home/<user>/porscheparts`, et **non sur un montage DrvFs de WSL** du type
+The repository must live on a **native Linux file system**, for example
+`/home/<user>/porscheparts`, and **not on a WSL DrvFs mount** such as
 `/mnt/c/...`.
 
-Ce n'est pas une preference. `tests/test_917_parametric_layout_master_f30.py`
-echoue systematiquement depuis `/mnt/c` sur
-`test_authoring_publishes_only_wireframe_contract_with_completion_marker`, avec
-un statut `failed_closed_no_output` et une erreur interne `authoring_failed:OSError`.
-La cause est que l'authoring publie sa sortie par des operations POSIX relatives
-a un descripteur de repertoire — creation d'un repertoire de transit puis
-renommage atomique — que DrvFs ne sert pas correctement. Le script echoue donc
-fermé, ce qui est le comportement voulu, mais pour une raison d'environnement et
-non de donnee.
+This is not a preference. `tests/test_917_parametric_layout_master_f30.py`
+fails systematically from `/mnt/c` on
+`test_authoring_publishes_only_wireframe_contract_with_completion_marker`, with
+status `failed_closed_no_output` and an internal error `authoring_failed:OSError`.
+The cause is that authoring publishes its output through POSIX operations
+relative to a directory descriptor — creating a staging directory, then an
+atomic rename — which DrvFs does not serve correctly. The script therefore fails
+closed, which is the intended behavior, but for an environment reason rather
+than a data one.
 
-Verifie : le meme commit passe sur ext4 et echoue sur `/mnt/c`, y compris sur des
-commits anterieurs a toute modification. Sur ext4 la suite complete donne
-**915 tests OK**, 30 ignores, en 31 secondes contre 190 secondes sur DrvFs.
+Verified: the same commit passes on ext4 and fails on `/mnt/c`, including on
+commits older than any change. On ext4 the full suite gave **915 tests OK**,
+30 skipped, in 31 seconds versus 190 seconds on DrvFs.
 
-## Le nom `3dprinting993` subsiste, et ce n'est pas un oubli
+## The name `3dprinting993` survives, and it is not an oversight
 
-Le depot s'appelle desormais `porscheparts`. Quatre familles d'occurrences de
-l'ancien nom ont ete **volontairement conservees**, parce qu'elles ne designent
-pas le depot :
+The repository is now called `porscheparts`. Four families of occurrences of the
+old name were **deliberately kept**, because they do not designate the
+repository:
 
-| occurrence | pourquoi elle ne change pas |
+| occurrence | why it does not change |
 |---|---|
-| `ghcr.io/cluster2600/3dprinting993-*` et tags docker locaux | GHCR est un espace de noms distinct de GitHub : renommer le depot ne renomme aucun package. Les images sont epinglees par digest SHA-256 et verifiees par des tests de lock. |
-| cles USD `3dprinting993:*` en `customData` | gravees dans les stages USD deja produits. Les renommer imposerait de tout regenerer et de rompre la comparaison avec les stages existants. |
-| chemins `/opt/3dprinting993/...` | chemins **internes aux images**, partie du contrat d'image et assertes par les tests d'image. |
-| URL de run GitHub Actions dans les fichiers de preuve | ce sont des **attestations historiques** : ce run a bien eu lieu sous l'ancien nom. Reecrire l'histoire falsifierait la provenance. |
+| `ghcr.io/cluster2600/3dprinting993-*` and local docker tags | GHCR is a namespace separate from GitHub: renaming the repository renames no package. Images are pinned by SHA-256 digest and checked by lock tests. |
+| USD keys `3dprinting993:*` in `customData` | engraved in USD stages already produced. Renaming them would force regenerating everything and break comparison with existing stages. |
+| paths `/opt/3dprinting993/...` | paths **internal to the images**, part of the image contract and asserted by the image tests. |
+| GitHub Actions run URLs in evidence files | these are **historical attestations**: that run did take place under the old name. Rewriting history would falsify provenance. |
 
-Regle generale qui s'en deduit, et qui vaut au-dela du renommage :
+The general rule that follows, and that holds beyond the rename:
 
-**Ne jamais editer un fichier dont le SHA-256 est epingle par un lock ou un
-contrat de preuve.** Sont concernes les `containers/*.lock.json`, leurs entrees
-de recette — Dockerfiles, `.github/workflows/containers.yml`, requirements — et
-tout `evidence/**`. Un simple renommage de chaine y casse la chaine de provenance,
-et `make check` le detecte : c'est ce qui s'est produit le 2026-09-04, sur dix
-fichiers.
+**Never edit a file whose SHA-256 is pinned by a lock or an evidence contract.**
+This covers `containers/*.lock.json`, their recipe inputs — Dockerfiles,
+`.github/workflows/containers.yml`, requirements — and all of `evidence/**`. A
+mere string rename there breaks the provenance chain, and `make check` detects
+it: that is what happened on 2026-09-04, on ten files.
 
 ## Repository language
 
-Project documentation is written in French. Stable identifiers, schema field
-names, filenames, and command-line messages remain in English.
+The project was written in French and is being translated to English, in
+phases: [docs/TRANSLATION.md](docs/TRANSLATION.md) holds the scope, the
+glossary and the files that must never be translated in place (`evidence/**`,
+`archive/**`, locks). New documentation, record prose and command-line messages
+are written in English. Stable identifiers, schema field names and filenames
+remain unchanged until a dedicated rename phase.

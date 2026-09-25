@@ -1,97 +1,103 @@
-# M64 G3 — portées concordantes et détection des fuites latérales
+# M64 G3 — concordant seats and detection of lateral leaks
 
-Suite : [G4 — fonds de ressorts et débouchés corrigés](M64_G4_SPRING_LAYOUT_20260925.md).
-Le contrôle G4 du disque de fond complet invalide le seul contrôle de centre utilisé ici ;
-les résultats G3 restent des observations historiques, pas un verdict actuel de fabricabilité.
+Follow-up: [G4 — spring pockets and outlets corrected](M64_G4_SPRING_LAYOUT_20260925.md).
+The G4 check of the full pocket-floor disk invalidates the center-only check used here;
+the G3 results remain historical observations, not a current manufacturability verdict.
 
-La [PR #72](https://github.com/cluster2600/porscheparts/pull/72) a été fusionnée le 25 septembre,
-commit `7fe668b`. Cette suite remplace, en option, les contacts siège/soupape par des faces coniques
-concordantes. **Gabarit et corps de culasse G2 inchangés ; aucune autorisation de fabrication.**
+[PR #72](https://github.com/cluster2600/porscheparts/pull/72) was merged on September 25,
+commit `7fe668b`. This follow-up optionally replaces the seat/valve contacts with concordant conical
+faces. **G2 fixture and cylinder head body unchanged; no manufacturing authorization.**
 
-## Ce qui a été corrigé
+## What was corrected
 
-Les anciens solides se pénétraient de 210,595 mm³ par admission et 155,878 mm³ par échappement.
-Ils fermaient numériquement la chambre, mais ne définissaient pas une portée mécanique.
-Les nouvelles soupapes ont une tranche périphérique, une portée conique et un raccord au col.
-Le siège reprend la même portée, avec un dégagement côté chambre et un raccord à la gorge.
+The old solids interpenetrated by 210.595 mm³ per intake and 155.878 mm³ per exhaust.
+They closed the chamber numerically, but did not define a mechanical seat.
+The new valves have a peripheral margin, a conical seat face and a fillet to the neck.
+The seat takes the same seat face, with a chamber-side relief and a fillet to the throat.
 
-| Contrôle | Admission, par soupape | Échappement, par soupape |
+| Check | Intake, per valve | Exhaust, per valve |
 |---|---:|---:|
-| Pénétration soupape/siège | 0 mm³ | 0 mm³ |
-| Aire commune mesurée sur les faces CAO | 173,272435 mm² | 183,091206 mm² |
-| Aire par formule de tronc de cône | 173,272435 mm² | 183,091206 mm² |
-| Distance minimale globale à 0,1 mm de levée | 0,019612 mm | 0,019612 mm |
-| Distance minimale globale à 1 mm de levée | 0,196116 mm | 0,196116 mm |
+| Valve/seat penetration | 0 mm³ | 0 mm³ |
+| Common area measured on the CAD faces | 173.272435 mm² | 183.091206 mm² |
+| Area from the conical frustum formula | 173.272435 mm² | 183.091206 mm² |
+| Overall minimum distance at 0.1 mm lift | 0.019612 mm | 0.019612 mm |
+| Overall minimum distance at 1 mm lift | 0.196116 mm | 0.196116 mm |
 
-La formule indépendante est `A = π (r0 + r1) √((r0 − r1)² + (z1 − z0)²)`.
-Les quatre couples sont valides, sans pénétration avec le corps de culasse ; les deux méthodes
-d'aire concordent à 10⁻⁶ mm². Les essais incluent 0,1 mm, 1 mm et la pleine levée respective.
-Le petit passage à faible levée résulte du dégagement d'entrée : **ce n'est pas un débit validé**,
-et ce profil n'est pas présenté comme optimal. Il faudra étudier ce dégagement en CFD.
+The independent formula is `A = π (r0 + r1) √((r0 − r1)² + (z1 − z0)²)`.
+The four pairs are valid, with no penetration into the cylinder head body; the two area
+methods agree to 10⁻⁶ mm². The runs include 0.1 mm, 1 mm and the respective full lift.
+The small passage at low lift results from the entry relief: **this is not a validated flow**,
+and this profile is not presented as optimal. This relief will have to be studied in CFD.
 
-Les [paramètres optionnels](../../twins/m64-cylinder-head/source/fourvalve/params-seats/seat_contact.json)
-restent des hypothèses : angle de face 45°, tranche 1 mm, largeur **radiale** de portée
-1 mm à l'admission et 1,3 mm à l'échappement, dégagement radial 0,2 mm.
-Ce ne sont pas des cotes Porsche ni une référence de siège commercial sélectionnée.
+The [optional parameters](../../twins/m64-cylinder-head/source/fourvalve/params-seats/seat_contact.json)
+remain assumptions: face angle 45°, margin 1 mm, **radial** seat width
+1 mm at intake and 1.3 mm at exhaust, radial relief 0.2 mm.
+These are not Porsche dimensions nor a selected commercial seat reference.
 
-## Le test qui a trouvé un autre défaut de mesure
+## The test that found another measurement defect
 
-Avec une admission volontairement ouverte de 1 mm, l'ancienne sonde cylindrique annonçait encore
-un taux de 4,903. Elle coupait les conduits à la frontière de l'alésage : cette limite latérale
-agissait comme un bouchon artificiel. Le test de non-régression a d'abord échoué sur ce cas.
+With an intake deliberately opened by 1 mm, the old cylindrical probe still reported
+a ratio of 4.903. It cut the ports at the bore boundary: this lateral limit
+acted as an artificial plug. The non-regression test first failed on this case.
 
-La sonde suit désormais l'alésage seulement **dans la chemise**, puis englobe le corps entier
-et ses brides avec une marge extérieure. Une fuite par un conduit rejoint ainsi l'extérieur,
-puis la limite supérieure : elle est rejetée. Admission ouverte et échappement ouvert sont
-testés séparément ; les deux donnent `blocked_unsealed_chamber`, sans taux utilisable.
+The probe now follows the bore only **inside the liner**, then encloses the whole body
+and its flanges with an outer margin. A leak through a port thus reaches the outside,
+then the upper limit: it is rejected. Open intake and open exhaust are
+tested separately; both give `blocked_unsealed_chamber`, with no usable ratio.
 
-Sur la configuration fermée avec les nouvelles portées :
+On the closed configuration with the new seats:
 
-- volume connecté **94,437926 cm³** et taux géométrique conditionnel **7,353848:1** ;
-- mêmes résultats pour 2, 5 et 10 mm de marge extérieure ;
-- l'ancien modèle avec bougies, mais sans les nouvelles portées, donne désormais 7,356946:1
-  au lieu de 7,357440:1 : la boîte inclut de petites cavités auparavant tronquées latéralement.
+- connected volume **94.437926 cm³** and conditional geometric ratio **7.353848:1**;
+- same results for 2, 5 and 10 mm of outer margin;
+- the old model with spark plugs, but without the new seats, now gives 7.356946:1
+  instead of 7.357440:1: the box includes small cavities previously truncated laterally.
 
-Il s'agit du taux **géométrique avec soupapes fermées au PMH**, pas d'une compression dynamique,
-d'une simulation de combustion ou d'une capacité démontrée à produire 700 hp.
-Le volume sous les segments, les crevasses de bougie et les jeux réels restent exclus.
+This is the **geometric ratio with valves closed at TDC**, not a dynamic compression,
+a combustion simulation or a demonstrated capability to produce 700 hp.
+The volume under the rings, the spark plug crevices and the real clearances remain excluded.
 
-## Réduction de chambre : variantes refusées
+## Chamber reduction: variants rejected
 
-Six configurations ont été examinées. Les deux angles sont multipliés par le facteur indiqué,
-et le toit est recalculé pour conserver la hauteur minimale au bord des têtes. Les positions
-latérales, goujons, diamètres et autres paramètres restent fixes. Balayage cinématique : 0,5°.
+Six configurations were examined. Both angles are multiplied by the indicated factor,
+and the roof is recomputed to keep the minimum height at the edge of the heads. The lateral
+positions, studs, diameters and other parameters stay fixed. Kinematic sweep: 0.5°.
 
-| Facteur d'angles | Taux proxy non calibré, pas un résultat BRep | Paroi conservative goujon/logement de ressort |
+| Angle factor | Uncalibrated proxy ratio, not a BRep result | Conservative stud/spring-pocket wall |
 |---:|---:|---:|
-| 1,00 | 7,352 | 3,080 mm |
-| 0,95 | 7,620 | 2,367 mm |
-| 0,90 | 7,911 | 1,740 mm |
-| 0,85 | 8,229 | 1,210 mm |
-| 0,80 | 8,578 | 0,787 mm |
-| 0,75 | 8,962 | 0,482 mm |
+| 1.00 | 7.352 | 3.080 mm |
+| 0.95 | 7.620 | 2.367 mm |
+| 0.90 | 7.911 | 1.740 mm |
+| 0.85 | 8.229 | 1.210 mm |
+| 0.80 | 8.578 | 0.787 mm |
+| 0.75 | 8.962 | 0.482 mm |
 
-Le seuil de conception est **3 mm**, sans tolérances ni calcul à chaud. Toutes les variantes
-abaissant les angles échouent à ce critère ; aucune n'est retenue, ni annoncée avec un taux BRep
-de 8–9. Cela ne prouve pas l'impossibilité d'une autre implantation. La base elle-même ne garde
-que 0,08 mm de marge sur ce seuil : ce n'est pas une réserve de fabrication acceptable démontrée.
+The design threshold is **3 mm**, without tolerances or hot calculation. All variants
+lowering the angles fail this criterion; none is retained, nor announced with a BRep ratio
+of 8–9. This does not prove that another layout is impossible. The baseline itself keeps
+only 0.08 mm of margin over this threshold: this is not a demonstrated acceptable manufacturing reserve.
 
 ```mermaid
 flowchart LR
-    A[Portee commune et sans penetration] --> B[Volume ferme dans une boite exterieure]
-    B --> C[Temoins admission et echappement ouverts]
-    C --> D[Balayage des angles]
-    D --> E[Variantes refusees - paroi ressort goujon]
-    E --> F[Replacer ressorts et porte-arbres sans deplacer les goujons]
+    A[Common seat, no penetration] --> B[Closed volume in an outer box]
+    B --> C[Open intake and exhaust witnesses]
+    C --> D[Angle sweep]
+    D --> E[Variants rejected - spring/stud wall]
+    E --> F[Relocate springs and camshaft carriers without moving the studs]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+    class E stop
+    class F open
 ```
 
-## Preuves et reproduction
+## Evidence and reproduction
 
-[Audit complet et empreintes](../../twins/m64-cylinder-head/evidence/g3-seat-contact-20260925/audit.json) ·
-[STEP des quatre soupapes et sièges](../../twins/m64-cylinder-head/evidence/g3-seat-contact-20260925/four-valves-and-seats.step).
-La coupe ci-dessous est un **zoom CAO local de la portée d'admission**, pas une vue de toute la culasse.
+[Full audit and digests](../../twins/m64-cylinder-head/evidence/g3-seat-contact-20260925/audit.json) ·
+[STEP of the four valves and seats](../../twins/m64-cylinder-head/evidence/g3-seat-contact-20260925/four-valves-and-seats.step).
+The section below is a **local CAD zoom of the intake seat**, not a view of the whole cylinder head.
 
-![Coupe locale de la portée candidate](../../twins/m64-cylinder-head/evidence/g3-seat-contact-20260925/seat-contact-section.svg)
+![Local section of the candidate seat](../../twins/m64-cylinder-head/evidence/g3-seat-contact-20260925/seat-contact-section.svg)
+
+*Local CAD section of the candidate intake seat; it does not prove sealing, contact pressure or manufacturability.*
 
 ```sh
 uv run --python 3.12 --no-project --with cadquery==2.6.1 python \
@@ -102,16 +108,16 @@ uv run --python 3.12 --no-project --with cadquery==2.6.1 python tests/test_m64_g
 make check
 ```
 
-Les preuves antérieures ne sont pas réécrites. Les témoins d'ouverture empêchent une future
-régression du calcul ; la validité CAO ne remplace pas l'étanchéité physique.
+Earlier evidence is not rewritten. The opening witnesses prevent a future
+regression of the computation; CAD validity does not replace physical sealing.
 
-Vérification : **39 tests ciblés passent sous CadQuery 2.6.1**, sans tests CAO ignorés
-(21 G1, 15 G2, 3 G3). Les empreintes, les quatre contacts, les trois fenêtres, les deux témoins
-d'ouverture et les cinq variantes refusées ont été contrôlés. `make check` passe 3 035 tests
-(122 ignorés dans son environnement par défaut), puis échoue sur le même rapport F46 périmé
-qu'avant la fusion. Ce défaut est conservé visible et les preuves F46 ne sont pas modifiées.
+Verification: **39 targeted tests pass under CadQuery 2.6.1**, with no CAD tests skipped
+(21 G1, 15 G2, 3 G3). The digests, the four contacts, the three windows, the two opening
+witnesses and the five rejected variants were checked. `make check` passes 3,035 tests
+(122 skipped in its default environment), then fails on the same stale F46 report
+as before the merge. This defect is kept visible and the F46 evidence is not modified.
 
-Il manque encore le serrage siège/culasse, les tolérances, les arrondis, la pression de contact,
-les matériaux à chaud, les échanges thermiques, la fatigue et la qualification d'impression.
-**Suite prioritaire : implantation couplée ressorts/porte-arbres et chambre, en conservant les
-goujons et en respectant les parois ; puis seulement qualification du contact et CFD/CHT.**
+Still missing: seat/cylinder head interference fit, tolerances, fillets, contact pressure,
+hot materials, heat transfer, fatigue and print qualification.
+**Priority next step: coupled layout of springs/camshaft carriers and chamber, keeping the
+studs and respecting the walls; only then contact qualification and CFD/CHT.**

@@ -1,548 +1,563 @@
-# M64 — contacts de guides et préparation géométrique
+# M64 — guide contacts and geometric preparation
 
-**Dernier essai gaz : 533 groupes mixtes fusionnés sur copie, dont les 34
-antérieurs préservés et 499 supplémentaires. Par rapport au lot 34 : faibles
-déterminants 1 955 → 1 886, faces non orthogonales 3 411 → 2 910. La
-comparaison indépendante du 12 septembre confirme zéro nouveau défaut dans
-les neuf ensembles contrôlés. Cinq familles qualité restent refusées ;
-aucune admission CFD ni fabrication. Voir les
-[résultats, contrôles et limites](M64_MIXED_CELL_CORRECTION_20260909.md#extension--533-groupes-contre-vérifiés-le-12-septembre).**
+**Latest gas trial: 533 mixed groups merged on a copy, including the 34
+earlier ones preserved and 499 additional ones. Compared with batch 34: low
+determinants 1,955 → 1,886, non-orthogonal faces 3,411 → 2,910. The
+independent comparison of September 12 confirms zero new defects in
+the nine checked sets. Five quality families remain refused;
+no CFD admission and no manufacturing. See the
+[results, checks and limits](M64_MIXED_CELL_CORRECTION_20260909.md#extension-533-groups-cross-checked-on-september-12).**
 
-Suite pilotée par scripts : [campagne économe en tokens, budget Vast de
-38 USD et points de revue](M64_LOW_TOKEN_CAMPAIGN_20260912.md).
+```mermaid
+flowchart LR
+    A["Master CAD 21c9c40b…<br/>unchanged"] --> B["BRep candidate 450ba081…<br/>5 BOP modes pass"]
+    B --> C["No promotion"]
+    A --> D["V5 solid mesh<br/>283 tetrahedra below minSICN 0.1"]
+    D --> E["Quality not admitted"]
+    A --> F["Gas: 533 mixed groups<br/>merged on a copy"]
+    F --> G["Five quality families refused"]
+    G --> H["No CFD admission,<br/>no manufacturing"]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+    class C,E,G,H stop
+    class B,D,F open
+```
 
-Essai précédent : la conversion duale globale est exécutée puis rejetée.
-Dix contrôles qualité échouent contre cinq sur la source, avec une cellule
-de volume négatif et 120 190 cellules concaves. La source et la CAO maîtresse
-sont conservées, sans admission CFD ni fabrication. Voir le
-[rejet documenté et ses preuves](M64_GLOBAL_DUAL_REJECTION_20260909.md).
+Script-driven continuation: [token-efficient campaign, Vast budget of
+38 USD and review points](M64_LOW_TOKEN_CAMPAIGN_20260912.md).
 
-Résultat précédent : une très petite arête contractée sur copie,
-après témoins natifs et contre-vérification. Rapport d'allongement maximal :
-54 610 → 15 882 ; cinq familles qualité toujours refusées. La CAO maîtresse
-reste intacte, mais la frontière discrète est légèrement modifiée avec une
-borne contrôlée, sans conformité CAO acquise. Voir la
-[correction locale et ses limites](M64_SHORT_EDGE_CORRECTION_20260909.md).
+Previous trial: the global dual conversion is executed, then rejected.
+Ten quality checks fail against five on the source, with one cell
+of negative volume and 120,190 concave cells. The source and the master CAD
+are kept, with no CFD admission and no manufacturing. See the
+[documented rejection and its evidence](M64_GLOBAL_DUAL_REJECTION_20260909.md).
 
-Essai précédent : 57 groupes supplémentaires de trois/quatre tétraèdres
-fusionnés nativement. Faible déterminant : 2 021 → 1 963 ; faible poids :
-1 235 → 1 230 ; non-orthogonalité > 70° : 3 450 → 3 448.
-Aucun nouveau défaut dans les neuf ensembles comparés, points et frontière
-conservés. Les cinq familles restent refusées, sans admission CFD.
-Voir le [complément contrôlé](M64_HYBRID_PAIR_CORRECTION_20260909.md#complément--57-groupes-de-troisquatre-tétraèdres).
+Previous result: one very short edge collapsed on a copy,
+after native witnesses and cross-check. Maximum aspect ratio:
+54,610 → 15,882; five quality families still refused. The master CAD
+remains intact, but the discrete boundary is slightly modified within a
+controlled bound, with no CAD conformity established. See the
+[local correction and its limits](M64_SHORT_EDGE_CORRECTION_20260909.md).
 
-Essai précédent : 252 paires de tétraèdres fusionnées nativement,
-259 cellules à faible déterminant, 67 défauts de poids et 29 faces trop
-non orthogonales en moins. Aucun nouveau défaut dans les ensembles comparés
-après correspondance des identifiants ; tous les points et la frontière sont
-conservés exactement. Cinq familles restent refusées, sans admission CFD.
-Voir le [bilan contrôlé des fusions](M64_HYBRID_PAIR_CORRECTION_20260909.md).
+Previous trial: 57 additional groups of three/four tetrahedra
+merged natively. Low determinant: 2,021 → 1,963; low weight:
+1,235 → 1,230; non-orthogonality > 70°: 3,450 → 3,448.
+No new defect in the nine compared sets, points and boundary
+preserved. The five families remain refused, with no CFD admission.
+See the [controlled supplement](M64_HYBRID_PAIR_CORRECTION_20260909.md#complément--57-groupes-de-troisquatre-tétraèdres).
 
-Essai précédent : 189 transitions corrigées, 25 cellules à faible
-déterminant et 66 faces trop non orthogonales en moins, sans nouveaux IDs
-défectueux dans les ensembles comparés. Correction de points internes uniquement,
-contour et CAO inchangés ; cinq familles restent refusées. Voir la
-[correction effectivement contrôlée](M64_APEX_TRANSITIONS_20260909.md).
+Previous trial: 252 tetrahedron pairs merged natively,
+259 fewer low-determinant cells, 67 fewer weight defects and 29 fewer
+excessively non-orthogonal faces. No new defect in the compared sets
+after identifier matching; all points and the boundary are
+preserved exactly. Five families remain refused, with no CFD admission.
+See the [controlled merge summary](M64_HYBRID_PAIR_CORRECTION_20260909.md).
 
-Essai précédent : les défauts OpenFOAM sont exportés et attribués aux cellules
-sources ; voir la [localisation réelle](M64_DEFECT_LOCALISATION_20260909.md).
+Previous trial: 189 transitions corrected, 25 fewer low-determinant
+cells and 66 fewer excessively non-orthogonal faces, with no new defective
+IDs in the compared sets. Correction of interior points only,
+boundary and CAD unchanged; five families remain refused. See the
+[correction as actually checked](M64_APEX_TRANSITIONS_20260909.md).
 
-Essai précédent : le domaine hybride de 785 883 cellules est assemblé et
-contre-vérifié. OpenFOAM retrouve un domaine connecté et trois patches, mais
-refuse cinq contrôles qualité. Aucun solveur exécuté ni gain crédité ; voir le
-[diagnostic OpenFOAM](M64_HYBRID_OPENFOAM_20260909.md).
+Previous trial: the OpenFOAM defects are exported and attributed to the source
+cells; see the [actual localization](M64_DEFECT_LOCALISATION_20260909.md).
 
-Essai précédent : les champs de taille natifs atteignent la génération 2D,
-mais la face 37 déclenche des reprises répétées. Arrêt code 137 après
-250,146 s, sans candidat ; entrées inchangées et nettoyage vérifié.
-Aucun gain ni admission CFD. Voir l'[essai natif](M64_NATIVE_SIZE_TRIAL_20260909.md).
+Previous trial: the hybrid domain of 785,883 cells is assembled and
+cross-checked. OpenFOAM finds a connected domain and three patches, but
+refuses five quality checks. No solver run and no gain credited; see the
+[OpenFOAM diagnosis](M64_HYBRID_OPENFOAM_20260909.md).
 
-Essai précédent : le champ de taille locale s'arrête avec le code 152,
-compatible avec la limite CPU, sans maillage candidat ni rapport final.
-Réinjection exacte et nettoyage vérifiés ; aucun gain ni admission CFD.
-Voir l'[essai local incomplet](M64_LOCAL_SIZE_TRIAL_20260909.md).
+Previous trial: the native size fields reach 2D generation,
+but face 37 triggers repeated retries. Stop with code 137 after
+250.146 s, with no candidate; inputs unchanged and cleanup verified.
+No gain and no CFD admission. See the [native trial](M64_NATIVE_SIZE_TRIAL_20260909.md).
 
-Essai précédent : la redistribution de l'arête 82 et le remaillage
-conjoint des faces 30/37 sont exécutés sur Kali. Le défaut du coin 93
-disparaît sans nouveau contact non conforme avec la face 36, mais la qualité se dégrade
-ailleurs : candidat refusé, contour et maître inchangés. Voir
-l'[essai natif et son contre-calcul](M64_EDGE82_JOINT_REMESH_20260909.md).
+Previous trial: the local size field stops with code 152,
+consistent with the CPU limit, with no candidate mesh and no final report.
+Exact reinjection and cleanup verified; no gain and no CFD admission.
+See the [incomplete local trial](M64_LOCAL_SIZE_TRIAL_20260909.md).
 
-Essai précédent : la bascule proposée introduit deux intersections
-avec la face voisine 36. Les 27 diagonales intérieures voisines des 22 triangles
-obstructifs sont ensuite testées : aucune bascule unique ne donne de gain
-strict en conservant tous les critères. Aucun candidat appliqué ; voir
-l'[audit des diagonales et des contacts](M64_SURFACE_DIAGONAL_AUDIT_20260909.md).
+Previous trial: the redistribution of edge 82 and the joint remeshing
+of faces 30/37 are executed on Kali. The defect at corner 93
+disappears with no new non-conforming contact with face 36, but quality degrades
+elsewhere: candidate refused, boundary and master unchanged. See
+the [native trial and its counter-calculation](M64_EDGE82_JOINT_REMESH_20260909.md).
 
-Essai précédent : une passe de déplacement réellement isolée sur la
-face 37 réduit les obstructions de 22 à 16, mais dégrade le minimum de borne
-et le plus petit angle. Quatorze triangles échouent au contrôle local des
-normales avant/après. Le candidat est refusé ; CAO et raccordements hors
-cible restent inchangés. Une sélection monotone pure écarte les déplacements
-hors critère, mais retrouve les 22 obstructions et les extrema initiaux ;
-elle n'est pas appliquée. Voir l'[essai natif et la contrelecture](M64_SURFACE_RELOCATION_20260909.md)
-et la [comparaison précédente](M64_SURFACE_METHOD_COMPARISON_20260909.md).
-Le cœur diagnostique
-de référence reste inchangé, avec 3 281 tétraèdres sous `minSICN = 0,1`.
-Il n'y a toujours pas d'admission à OpenFOAM. Les essais et refus restent
-documentés séparément.
-Pour le solide, le déplacement intérieur réduit de 309 à 283 les tétraèdres
-sous `minSICN = 0,1`, sans améliorer le minimum de 0,000792. Le fichier CAO
-et la frontière du maillage restent inchangés ; la distance
-échantillonnée à la CAO reste non qualifiée. Ces diagnostics ne démontrent
-ni amélioration de résistance ni aptitude à la fabrication.
+Previous trial: the proposed flip introduces two intersections
+with the neighboring face 36. The 27 interior diagonals adjacent to the 22
+obstructing triangles are then tested: no single flip gives a strict
+gain while keeping all criteria. No candidate applied; see
+the [audit of diagonals and contacts](M64_SURFACE_DIAGONAL_AUDIT_20260909.md).
 
-**Le candidat BRep sauvegardé passe les cinq modes BOP sélectionnés ;
-les 136 contrôles de non-recouvrement du gaz passent également.** Le nouveau
-diagnostic complet des frontières termine 104 soustractions : 102 passent,
-deux restent averties sur le même groupe de trois faces. Les différences de
-resérialisation sont maintenant attribuées sur Linux comme sur macOS, sans
-preuve d'équivalence globale des solides ni levée du refus historique.
-Le maître `21c9c40b…` reste inchangé, sans promotion du candidat `450ba081…`.
-Les contacts nominaux des guides sont mesurés, sans qualification à chaud.
-La partition du gaz a été historiquement refusée sur la couverture des
-frontières et le bilan de volumes. Le nouveau
-[contrôle composé](M64_HYBRID_PAIR_CORRECTION_20260909.md#couverture-géométrique-composée--portée-distincte)
-vérifie désormais la couverture numérique sous critère natif déclaré,
-sans borne Hausdorff/volume garantie ni transfert d'admission au maillage
-ou à la physique. Les anciens refus restent conservés.
-Un contrôle du 8 septembre attribue les huit
-faces des deux groupes mixtes aux rôles source. Leur rattachement aux preuves
-antérieures permet un registre des **124 faces externes**, sans revalidation
-physique des étiquettes. Un premier maillage du **solide V5**, distinct du gaz,
-est obtenu puis rejeté : **4 871 éléments sur 271 001 sous le seuil de qualité**.
+Previous trial: a truly isolated relocation pass on
+face 37 reduces the obstructions from 22 to 16, but degrades the bound minimum
+and the smallest angle. Fourteen triangles fail the local before/after
+normals check. The candidate is refused; CAD and off-target
+junctions remain unchanged. A pure monotone selection discards the relocations
+that fail the criterion, but returns to the 22 obstructions and the initial extrema;
+it is not applied. See the [native trial and the counter-reading](M64_SURFACE_RELOCATION_20260909.md)
+and the [previous comparison](M64_SURFACE_METHOD_COMPARISON_20260909.md).
+The reference diagnostic core
+remains unchanged, with 3,281 tetrahedra below `minSICN = 0.1`.
+There is still no admission to OpenFOAM. The trials and refusals remain
+documented separately.
+For the solid, the interior relocation reduces from 309 to 283 the tetrahedra
+below `minSICN = 0.1`, without improving the minimum of 0.000792. The CAD file
+and the mesh boundary remain unchanged; the sampled distance
+to the CAD remains unqualified. These diagnostics demonstrate
+neither a strength improvement nor fitness for manufacturing.
 
-Ce point suit les [contrôles de matière et de logements](M64_EXHAUST_MATERIAL_CONTROLS_20260908.md)
-et la [localisation des défauts du maillage](M64_ANNULAR_MESH_LOCALISATION_20260908.md).
-Les [empreintes des reçus](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json)
-séparent les opérations successives et conservent les échecs. Les unités restent
-celles du scan, sans certification de l'échelle ou des interfaces M64.
+**The saved BRep candidate passes the five selected BOP modes;
+the 136 gas non-overlap checks also pass.** The new
+full boundary diagnostic completes 104 subtractions: 102 pass,
+two remain warned on the same group of three faces. The
+reserialization differences are now attributed on Linux as on macOS, with no
+proof of global equivalence of the solids and no lifting of the historical refusal.
+The master `21c9c40b…` remains unchanged, with no promotion of candidate `450ba081…`.
+The nominal guide contacts are measured, with no hot qualification.
+The gas partition was historically refused on boundary coverage
+and on the volume balance. The new
+[composite check](M64_HYBRID_PAIR_CORRECTION_20260909.md#couverture-géométrique-composée--portée-distincte)
+now verifies the numerical coverage under a declared native criterion,
+with no guaranteed Hausdorff/volume bound and no transfer of admission to the mesh
+or to the physics. The earlier refusals remain on record.
+A check of September 8 attributes the eight
+faces of the two mixed groups to source roles. Linking them to the earlier
+evidence allows a register of the **124 external faces**, with no physical
+revalidation of the labels. A first mesh of the **V5 solid**, separate from the gas,
+is obtained, then rejected: **4,871 elements out of 271,001 below the quality threshold**.
 
-## Appui des inserts : mesure sur la géométrie, pas sur une pièce fabriquée
+This checkpoint follows the [material and seat checks](M64_EXHAUST_MATERIAL_CONTROLS_20260908.md)
+and the [localization of mesh defects](M64_ANNULAR_MESH_LOCALISATION_20260908.md).
+The [receipt digests](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json)
+separate the successive operations and keep the failures. The units remain
+those of the scan, with no certification of the scale or of the M64 interfaces.
 
-Les quatre guides du STEP V2 sont identifiés parmi ses douze solides par leurs
-surfaces cylindriques, axes, longueurs et volumes, puis recoupés avec les
-identifiants enregistrés. Leur transformation de repère est appliquée une fois.
-Les modèles d'inserts ne sont pas remplacés par les boîtes des logements.
+## Insert seating: measured on the geometry, not on a manufactured part
 
-Pour chaque guide, `Common(face extérieure du guide, corps)` fournit un patch
-exporté en privé. Son aire est rapportée à la surface latérale extérieure du
-guide de longueur nominale 35 unités. Soixante-quatre sections natives,
-strictement intérieures et régulièrement espacées, mesurent ensuite les arcs
-d'appui. L'union des arcs évite de compter deux fois les superpositions.
+The four guides of STEP V2 are identified among its twelve solids by their
+cylindrical surfaces, axes, lengths and volumes, then cross-checked against the
+recorded identifiers. Their frame transformation is applied once.
+The insert models are not replaced by the seat boxes.
 
-| Guide CAO | Aire du patch, unités scan² | Fraction de la surface extérieure | Sections sans / partielles / complètes |
+For each guide, `Common(face extérieure du guide, corps)` yields a patch
+exported privately. Its area is compared with the outer lateral surface of the
+guide of nominal length 35 units. Sixty-four native sections,
+strictly interior and evenly spaced, then measure the bearing
+arcs. The union of the arcs avoids counting overlaps twice.
+
+| CAD guide | Patch area, scan units² | Fraction of the outer surface | Sections none / partial / full |
 |---|---:|---:|---:|
-| Échappement 1 | 817,779374 | 67,6123 % | 17 / 5 / 42 |
-| Échappement 2 | 817,528516 | 67,5915 % | 17 / 5 / 42 |
-| Admission 1 | 794,822941 | 65,7143 % | 22 / 0 / 42 |
-| Admission 2 | 794,822941 | 65,7143 % | 22 / 0 / 42 |
+| Exhaust 1 | 817.779374 | 67.6123 % | 17 / 5 / 42 |
+| Exhaust 2 | 817.528516 | 67.5915 % | 17 / 5 / 42 |
+| Intake 1 | 794.822941 | 65.7143 % | 22 / 0 / 42 |
+| Intake 2 | 794.822941 | 65.7143 % | 22 / 0 / 42 |
 
-Les 256 sections sont des **échantillons**, pas une preuve de couverture
-continue entre les plans. La moyenne des sections diffère légèrement du
-rapport d'aires ; elle ne le remplace pas. Les deux admissions concordent avec
-le diagnostic historique 23/35 ; cette concordance ne qualifie pas leur tenue.
+The 256 sections are **samples**, not proof of continuous coverage
+between the planes. The mean of the sections differs slightly from the
+area ratio; it does not replace it. The two intakes agree with
+the historical 23/35 diagnosis; this agreement does not qualify their retention.
 
-Les quatre intersections `Common(guide solide, corps)` ont un volume
-numériquement nul. Ce n'est ni une preuve de jeu strictement nul à toute
-échelle, ni une prescription de serrage. Les opérations utilisent les
-tolérances natives d'OCCT. Pression de contact, conductance thermique,
-dilatation différentielle et rétention restent à déterminer. Une fraction
-d'appui inférieure à 100 % ne suffit, à elle seule, à conclure à un défaut.
+The four intersections `Common(guide solide, corps)` have a
+numerically zero volume. This is neither proof of a strictly zero clearance at every
+scale nor an interference-fit prescription. The operations use the
+native OCCT tolerances. Contact pressure, thermal conductance,
+differential expansion and retention remain to be determined. A bearing
+fraction below 100 % is not, on its own, enough to conclude a defect.
 
-Le premier témoin échoue avant tout cas pour une collision de noms lors de
-l'import Python d'OCP. Après correction limitée à cet import, quatre témoins
-natifs passent : appui entier, demi-longueur, demi-circonférence et aucun
-contact, avec 32 sections conformes. Le contrôle des quatre guides suit avec
-code natif/wrapper 0, en 7,761 s / 8,196 s nettoyage compris. Aucun corps modifié.
+The first witness fails before any case because of a name collision during
+the Python import of OCP. After a correction limited to that import, four native
+witnesses pass: full bearing, half-length, half-circumference and no
+contact, with 32 conforming sections. The check of the four guides follows with
+native/wrapper code 0, in 7.761 s / 8.196 s including cleanup. No body modified.
 
-## Courbes : restriction exacte et candidat segmenté, acceptation non acquise
+## Curves: exact restriction and segmented candidate, acceptance not established
 
-Les six supports existants des deux arêtes signalées C0 sont divisés en quinze
-supports : cinq courbes 3D et dix p-curves. Pour ces B-splines non rationnelles,
-les identités polynomiales sont contrôlées en arithmétique rationnelle sur
-chaque intervalle ; les coefficients sont réassemblés exactement. Les quinze
-supports construits dans OCP sont au moins C1 à l'intérieur de leur domaine.
-Les 495 comparaisons supplémentaires de points natifs donnent un écart nul ;
-cet échantillonnage n'est pas, à lui seul, la preuve globale.
+The six existing supports of the two edges flagged C0 are split into fifteen
+supports: five 3D curves and ten p-curves. For these non-rational B-splines,
+the polynomial identities are checked in rational arithmetic on
+each interval; the coefficients are reassembled exactly. The fifteen
+supports built in OCP are at least C1 inside their domain.
+The 495 additional comparisons of native points give a zero deviation;
+this sampling is not, on its own, the global proof.
 
-Les discontinuités de tangente initiales restent aux jonctions. Il ne s'agit
-pas d'un lissage. Aucun corps BRep n'est lu ou écrit pendant cet essai de
-supports de 0,613 s. À ce stade, leur réintégration dans une copie topologique
-et le contrôle du corps complet restent à faire, sans changer les surfaces.
-L'ancien refus de réduction de multiplicité reste distinct et conservé.
+The initial tangent discontinuities remain at the junctions. This is
+not smoothing. No BRep body is read or written during this supports
+trial of 0.613 s. At this stage, their reintegration into a topological copy
+and the check of the full body remain to be done, without changing the surfaces.
+The earlier refusal of multiplicity reduction remains distinct and on record.
 
-### Réintégration : trois arrêts logiciels avant remplacement des arêtes
+### Reintegration: three software stops before edge replacement
 
-| Essai natif | Durée native | Premier arrêt | Travail réellement atteint |
+| Native trial | Native duration | First stop | Work actually reached |
 |---|---:|---|---|
-| V2 | 2,135 s | `topological_occurrence_location_not_identity` | Lecture et contrôles du corps source ; copie non créée. |
-| V3 | 2,542 s | `copy_placement` | Copie créée en mémoire ; correspondance des entités non terminée. |
-| V4 | 2,897 s | `Standard_NoSuchObject` | Bijections des entités copiées contrôlées ; revue racine/hiérarchie non terminée. |
+| V2 | 2.135 s | `topological_occurrence_location_not_identity` | Reading and checks of the source body; copy not created. |
+| V3 | 2.542 s | `copy_placement` | Copy created in memory; entity matching not completed. |
+| V4 | 2.897 s | `Standard_NoSuchObject` | Bijections of the copied entities checked; root/hierarchy review not completed. |
 
-Les deux premiers gardes confondaient représentation interne d'une
-localisation et transformation effective. V4 autorise seulement, pour les
-sommets copiés, un changement de représentation si les deux matrices sont
-exactement identitaires et si coordonnées brutes, coordonnées effectives et
-tolérances sont identiques. Les autres localisations restent comparées sans
-cette exception. Les 4 938 changements de représentation observés en V4 ne
-sont donc pas 4 938 déplacements de sommets.
+The first two guards confused the internal representation of a
+location with the effective transformation. V4 allows only, for the
+copied vertices, a change of representation if both matrices are
+exactly identity and if raw coordinates, effective coordinates and
+tolerances are identical. The other locations remain compared without
+this exception. The 4,938 representation changes observed in V4 are
+therefore not 4,938 vertex displacements.
 
-L'exception V4 ne démontre pas un défaut de la pièce : le reçu la situe après
-la bijection, mais ne contient pas de traceback permettant d'identifier
-l'appel précis. Aucun de ces trois essais ne reconstruit les arêtes,
-n'exporte de BRep, ne relit un candidat ou n'exécute BOP. Les champs de modes
-BOP décrivent le calcul prévu ; `stage=complete` signifie fin du programme,
-pas réussite géométrique. Les entrées et le programme restent inchangés durant
-chaque essai, sorties 2 sans OOM ni timeout. Aucun ancien refus n'est effacé.
+The V4 exception does not demonstrate a defect of the part: the receipt places it after
+the bijection, but contains no traceback identifying
+the exact call. None of these three trials rebuilds the edges,
+exports a BRep, rereads a candidate or runs BOP. The BOP mode fields
+describe the planned computation; `stage=complete` means end of the program,
+not geometric success. The inputs and the program remain unchanged during
+each trial, exits 2 with no OOM and no timeout. No earlier refusal is erased.
 
-Un diagnostic local séparé reproduit une recherche de sous-forme absente avec
-les localisations non cumulées. En cumulant les localisations, comme le fait
-[OCCT lors de la copie](https://github.com/Open-Cascade-SAS/OCCT/blob/V7_9_3/src/BRepTools/BRepTools_Modifier.cxx),
-le parcours complet effectue 75 186 recherches sans erreur, sur 25 069 formes.
-Ce diagnostic ne reconstruit rien et ne modifie pas le corps, en mémoire ou
-sur disque. Il identifie une correction du programme à tester, pas une
-correction du corps déjà acquise.
+A separate local diagnostic reproduces a lookup of a missing subshape with
+non-cumulated locations. By cumulating the locations, as
+[OCCT does during the copy](https://github.com/Open-Cascade-SAS/OCCT/blob/V7_9_3/src/BRepTools/BRepTools_Modifier.cxx),
+the full traversal performs 75,186 lookups without error, over 25,069 shapes.
+This diagnostic rebuilds nothing and does not modify the body, in memory or
+on disk. It identifies a program correction to be tested, not an
+already established correction of the body.
 
-### V5 : candidat sauvegardé et relu, resérialisation différente
+### V5: candidate saved and reread, different reserialization
 
-La correction limitée des deux parcours de hiérarchie est exécutée sur Kali.
-Elle produit un candidat binaire privé : un solide, une coque, 4 900 faces,
-10 078 arêtes et 5 179 sommets. Cela ajoute trois arêtes et trois sommets,
-sans changer les supports des surfaces ni leurs localisations/tolérances
-dans la copie en mémoire. Les occurrences orientées des contours correspondent
-aux remplacements prévus. Il ne s'agit pas d'un lissage du contour Porsche.
+The limited correction of the two hierarchy traversals is executed on Kali.
+It produces a private binary candidate: one solid, one shell, 4,900 faces,
+10,078 edges and 5,179 vertices. This adds three edges and three vertices,
+without changing the surface supports or their locations/tolerances
+in the in-memory copy. The oriented occurrences of the wires match
+the planned replacements. This is not a smoothing of the Porsche contour.
 
-Après sauvegarde/relecture, les nombres d'entités restent identiques,
-`BRepCheck` exact passe, les tolérances des sommets/arêtes/faces sont conservées
-et les coefficients des quinze supports segmentés correspondent exactement.
-Le corps source reste inchangé en mémoire et sur disque.
+After save/reread, the entity counts remain identical,
+exact `BRepCheck` passes, the vertex/edge/face tolerances are preserved
+and the coefficients of the fifteen segmented supports match exactly.
+The source body remains unchanged in memory and on disk.
 
-Le garde suivant refuse pourtant le candidat : son empreinte de sérialisation
-binaire en mémoire diffère après relecture (`reread_serialized_representation_equal=false`).
-Les contrôles précédents n'identifient pas encore la différence ; elle ne doit
-être ni assimilée sans diagnostic à une déformation, ni écartée comme anodine.
-Les quadratures comparatives et les cinq modes BOP prévus ne sont pas atteints.
-Aucun critère n'est dispensé et le candidat n'est pas promu comme maître.
-Durées 8,307 s natives / 8,905 s nettoyage compris, sorties 2, sans OOM ni timeout.
-Pour V5, les plafonds demandés sont enregistrés, mais la sonde de ressources a
-échoué avant inspection : aucune mesure effective CPU/RAM n'est revendiquée.
-Suppression et absence du conteneur sont vérifiées séparément.
+The next guard nevertheless refuses the candidate: its in-memory binary
+serialization digest differs after reread (`reread_serialized_representation_equal=false`).
+The previous checks do not yet identify the difference; it must
+neither be equated with a deformation without diagnosis, nor dismissed as harmless.
+The comparative quadratures and the five planned BOP modes are not reached.
+No criterion is waived and the candidate is not promoted as master.
+Durations 8.307 s native / 8.905 s including cleanup, exits 2, with no OOM and no timeout.
+For V5, the requested caps are recorded, but the resource probe
+failed before inspection: no effective CPU/RAM measurement is claimed.
+Removal and absence of the container are verified separately.
 
-### BOP indépendant du candidat sauvegardé : cinq modes réussis
+### Independent BOP of the saved candidate: five modes passed
 
-Un contrôle distinct relit directement le binaire `450ba081…` sur Kali/OCP
-7.9.3.1, sans reconstruire ni exporter le corps. `SelfInterMode`,
-`SmallEdgeMode`, `RebuildFaceMode`, `ContinuityMode` et `CurveOnSurfaceMode`
-sont tous activés et terminés : **zéro défaut, erreur ou avertissement**.
-Les quatre autres modes restent désactivés et sont consignés dans le reçu.
-Ce résultat concerne ces cinq modes, pas tous les critères possibles d'OCCT.
+A separate check directly rereads the binary `450ba081…` on Kali/OCP
+7.9.3.1, without rebuilding or exporting the body. `SelfInterMode`,
+`SmallEdgeMode`, `RebuildFaceMode`, `ContinuityMode` and `CurveOnSurfaceMode`
+are all enabled and completed: **zero defects, errors or warnings**.
+The four other modes remain disabled and are recorded in the receipt.
+This result concerns these five modes, not every possible OCCT criterion.
 
-`BRepCheck` exact passe avant et après. Les tolérances brutes/effectives et les
-empreintes binaires du même objet chargé restent identiques durant le contrôle.
-Le fichier source est inchangé ; l'ancien refus de resérialisation n'est pas
-effacé. Durées : 173,501 s pour BOP, 178,128 s pour le worker et 178,849 s
-nettoyage compris. Sorties 0, sans OOM ni expiration. Les plafonds effectifs
-2 CPU/4 Gio, le système de fichiers racine en lecture seule et l'absence de
-réseau sont vérifiés. Conteneur supprimé, absence revérifiée séparément.
+Exact `BRepCheck` passes before and after. The raw/effective tolerances and the
+binary digests of the same loaded object remain identical during the check.
+The source file is unchanged; the earlier reserialization refusal is not
+erased. Durations: 173.501 s for BOP, 178.128 s for the worker and 178.849 s
+including cleanup. Exits 0, with no OOM and no timeout. The effective caps
+2 CPU/4 GiB, the read-only root file system and the absence of
+network are verified. Container removed, absence rechecked separately.
 
-### Sérialisation : les 1 114 octets différents sont localisés sur macOS
+### Serialization: the 1,114 differing bytes are localized on macOS
 
-Une lecture par chemin suivie de deux écritures **en mémoire** reproduit une
-différence de 1 114 octets sur 5 205 080, sans changement de longueur. Les deux
-écritures successives du même objet sont identiques. Un lecteur du format OCCT
-V3 attribue ensuite toutes les différences ; il vérifie les limites des tables,
-les références topologiques, les orientations, les drapeaux et la fin du fichier.
+A read by path followed by two writes **in memory** reproduces a
+difference of 1,114 bytes out of 5,205,080, with no change of length. The two
+successive writes of the same object are identical. A reader of the OCCT
+V3 format then attributes all the differences; it checks the table bounds,
+the topological references, the orientations, the flags and the end of file.
 
-| Champs modifiés après lecture/écriture | Octets différents | Écart maximal par composante |
+| Fields changed after read/write | Differing bytes | Maximum deviation per component |
 |---|---:|---:|
-| Directions des courbes 2D | 90 | `1,11023e−16` |
-| Directions des courbes 3D | 366 | `2,22045e−16` |
-| Directions des repères de surfaces planes/cylindriques | 374 | `2,22045e−16` |
-| Caches des extrémités UV de 101 arêtes | 284 | `4,26326e−14` en coordonnées UV |
+| Directions of 2D curves | 90 | `1.11023e−16` |
+| Directions of 3D curves | 366 | `2.22045e−16` |
+| Directions of plane/cylinder surface frames | 374 | `2.22045e−16` |
+| UV endpoint caches of 101 edges | 284 | `4.26326e−14` in UV coordinates |
 
-Aucun octet différent ne reste non attribué. Les localisations, points,
-coefficients des B-splines, rayons, intervalles, tolérances, références et
-drapeaux topologiques sérialisés ne changent pas dans cette comparaison.
-Les directions sont sans dimension ; un écart UV **n'est pas** une distance 3D.
-Les 32 correspondances exactes à une normalisation simple parmi 45 groupes de
-directions 2D modifiés ne justifient pas d'attribuer tous les écarts à cette seule
-opération. Le format reconstruit des directions/repères et recalcule des caches
-UV lors de la lecture ; ce sont des mécanismes à distinguer.
-[Lecture des directions](https://github.com/Open-Cascade-SAS/OCCT/blob/V7_9_3/src/BinTools/BinTools_Curve2dSet.cxx),
-[lecture et écriture des arêtes](https://github.com/Open-Cascade-SAS/OCCT/blob/V7_9_3/src/BinTools/BinTools_ShapeSet.cxx).
+No differing byte remains unattributed. The locations, points,
+B-spline coefficients, radii, intervals, tolerances, references and
+serialized topological flags do not change in this comparison.
+The directions are dimensionless; a UV deviation **is not** a 3D distance.
+The 32 exact matches to a simple normalization among 45 changed groups of
+2D directions do not justify attributing all the deviations to that single
+operation. The format rebuilds directions/frames and recomputes UV
+caches on reading; these are mechanisms to be distinguished.
+[Reading of directions](https://github.com/Open-Cascade-SAS/OCCT/blob/V7_9_3/src/BinTools/BinTools_Curve2dSet.cxx),
+[reading and writing of edges](https://github.com/Open-Cascade-SAS/OCCT/blob/V7_9_3/src/BinTools/BinTools_ShapeSet.cxx).
 
-Ces diagnostics de 0,756 s, 1,343 s et 1,683 s utilisent **macOS arm64**, pas le
-conteneur Linux. L'empreinte après lecture y est `7f3cc7e4…`, contre `37eda433…`
-dans l'audit BOP Linux, avec le même format V3. L'attribution macOS ne prouve
-donc pas celle de Linux. Les empreintes avant/après chaque audit ne sont
-comparées qu'au sein de la même exécution. Aucun BRep n'est exporté, aucune
-tolérance augmentée et aucun candidat promu. Une première sonde atteint son
-plafond CPU sans checkpoint ; deux essais du lecteur s'arrêtent sur des erreurs
-de séparateurs avant correction d'après le format source. Leurs reçus privés
-sont conservés ; ils ne sont pas des échecs physiques de la pièce.
+These diagnostics of 0.756 s, 1.343 s and 1.683 s use **macOS arm64**, not the
+Linux container. The digest after reading there is `7f3cc7e4…`, against `37eda433…`
+in the Linux BOP audit, with the same V3 format. The macOS attribution therefore
+does not prove the Linux one. The before/after digests of each audit are
+compared only within the same execution. No BRep is exported, no
+tolerance increased and no candidate promoted. A first probe reaches its
+CPU cap without a checkpoint; two reader trials stop on separator
+errors before correction based on the source format. Their private receipts
+are kept; they are not physical failures of the part.
 
-### Linux : empreinte BOP reproduite et 175 octets attribués
+### Linux: BOP digest reproduced and 175 bytes attributed
 
-Un lot distinct utilise la même image OCP 7.9.3.1 linux/amd64 que l'audit BOP.
-La lecture du fichier puis l'écriture V3 en mémoire reproduisent exactement
-son empreinte `37eda433…`. Deux écritures du même objet chargé concordent.
-Le corps comporte toujours 5 205 080 octets : 175 diffèrent du fichier source,
-contre 1 114 sur macOS. Aucun nouveau BOP ni export CAO n'est exécuté.
+A separate batch uses the same OCP 7.9.3.1 linux/amd64 image as the BOP audit.
+Reading the file then writing V3 in memory reproduces exactly
+its digest `37eda433…`. Two writes of the same loaded object agree.
+The body still has 5,205,080 bytes: 175 differ from the source file,
+against 1,114 on macOS. No new BOP and no CAD export is executed.
 
-| Champs Linux modifiés | Octets différents | Entités concernées |
+| Changed Linux fields | Differing bytes | Entities concerned |
 |---|---:|---:|
-| Directions de lignes 2D | 64 | 32 courbes |
-| Directions de coniques 3D | 40 | 15 courbes |
-| Repères de plans et cylindres | 58 | 23 surfaces |
-| Caches d'extrémités UV | 13 | 10 arêtes de la table TShapes |
+| Directions of 2D lines | 64 | 32 curves |
+| Directions of 3D conics | 40 | 15 curves |
+| Frames of planes and cylinders | 58 | 23 surfaces |
+| UV endpoint caches | 13 | 10 edges of the TShapes table |
 
-Tous les octets différents sont attribués. Points, coefficients des B-splines,
-rayons, intervalles, tolérances, localisations, références et drapeaux
-topologiques sérialisés restent inchangés dans cette comparaison. Les 32
-directions 2D modifiées correspondent à la formule de normalisation simple
-testée ; ce constat ne décrit pas tous les mécanismes de reconstruction des
-repères 3D. L'écart maximal des caches reste une grandeur UV (`1,42109e−14`),
-pas une distance spatiale. Le résultat Linux n'efface pas le résultat macOS.
+All differing bytes are attributed. Points, B-spline coefficients,
+radii, intervals, tolerances, locations, references and serialized topological
+flags remain unchanged in this comparison. The 32
+changed 2D directions match the simple normalization formula
+tested; this finding does not describe every reconstruction mechanism of the
+3D frames. The maximum deviation of the caches remains a UV quantity (`1.42109e−14`),
+not a spatial distance. The Linux result does not erase the macOS result.
 
-Durées : 1,360 s natives / 1,955 s nettoyage compris, sorties 0, pas d'OOM ni
-expiration. Plafonds effectifs 2 CPU/4 Gio, racine en lecture seule et réseau
-absent contrôlés ; conteneur supprimé et absence revérifiée. Le fichier source,
-les décodeurs et les entrées restent intacts. Le candidat n'est pas promu.
+Durations: 1.360 s native / 1.955 s including cleanup, exits 0, no OOM and no
+timeout. Effective caps 2 CPU/4 GiB, read-only root and absent network
+checked; container removed and absence rechecked. The source file,
+the decoders and the inputs remain intact. The candidate is not promoted.
 
-### Borne des représentations Linux : portée locale explicite
+### Bound on the Linux representations: explicit local scope
 
-Un calcul séparé, sans appel OCP, traite les valeurs binary64 comme des
-rationnels exacts et arrondit les majorants vers l'extérieur. Il encadre les
-32 lignes 2D sur leurs intervalles complets, les 15 coniques 3D et les 23
-repères de surfaces modifiés. Pour les plans, les contours définissent une
-enveloppe UV finie ; les B-splines utilisées sont non périodiques, à extrémités
-bloquées et poids positifs. Leur enveloppe de pôles fournit un encadrement.
+A separate computation, with no OCP call, treats the binary64 values as exact
+rationals and rounds the upper bounds outward. It encloses the
+32 2D lines over their full intervals, the 15 3D conics and the 23
+changed surface frames. For the planes, the wires define a finite UV
+envelope; the B-splines used are non-periodic, clamped at their ends
+and with positive weights. Their pole envelope provides an enclosure.
 
-Le maximum des bornes par composante spatiale vaut
-**`1,0854592454916939e−14` unité scan**, sur une ellipse 3D. Par exemple, la
-variation d'une ligne est bornée par `max|t| × |Δdirection|` ; celle d'une
-conique par `rayon1 × |Δaxe1| + rayon2 × |Δaxe2|`. Les repères et changements
-de paramètres sont pris en compte pour les contours projetés sur les plans.
+The maximum of the bounds per spatial component is
+**`1.0854592454916939e−14` scan unit**, on a 3D ellipse. For example, the
+variation of a line is bounded by `max|t| × |Δdirection|`; that of a
+conic by `rayon1 × |Δaxe1| + rayon2 × |Δaxe2|`. The frames and changes
+of parameters are taken into account for the wires projected onto the planes.
 
-Une revue indépendante reproduit les 72 bornes spatiales et 32 bornes UV,
-vérifie les offsets et les deux décodeurs importés. Ces derniers ne sont pas
-directement épinglés dans le script de bornes : leurs hashes ont été contrôlés
-séparément, comme ceux du corps et du rapport Linux. Durée du calcul initial :
-1,241 s ; aucun natif ni fichier CAO créé.
+An independent review reproduces the 72 spatial bounds and 32 UV bounds,
+checks the offsets and the two imported decoders. The latter are not
+directly pinned in the bounds script: their hashes were checked
+separately, like those of the body and of the Linux report. Duration of the initial computation:
+1.241 s; no native run and no CAD file created.
 
-Cette borne porte sur les **représentations analytiques et contours décrits**,
-pas sur la distance de Hausdorff entre solides, les erreurs d'évaluation
-flottante d'OCCT ou les caches UV d'extrémités. Le budget de représentation
-provisoire `1e−9` unité scan, fixé avant le calcul, n'est ni une tolérance
-d'usinage ni une levée automatique du refus historique. Aucune précision
-physique, équivalence globale ou autorisation de fabrication n'en est déduite.
+This bound covers the **analytic representations and wires described**,
+not the Hausdorff distance between solids, OCCT floating-point evaluation
+errors or the UV endpoint caches. The provisional representation budget
+`1e−9` scan unit, set before the computation, is neither a machining
+tolerance nor an automatic lifting of the historical refusal. No physical
+precision, global equivalence or manufacturing authorization is inferred from it.
 
-## Partition du gaz : refus conservé
+## Gas partition: refusal kept
 
-Sur le domaine d'admission `fab1338a…`, le calcul natif obtient en mémoire
-seize blocs annulaires à six faces, douze arêtes et huit sommets, plus un cœur.
-Les contrôles d'ascendance des frontières et d'interfaces partagées précèdent
-le refus `native_partition_volume_sum_failed`. Le seuil relatif `1e−9` n'est
-pas modifié. Aucun export BRep de cette partition ni `gmsh.generate` exécuté.
+On the intake domain `fab1338a…`, the native computation obtains in memory
+sixteen annular blocks with six faces, twelve edges and eight vertices, plus a core.
+The boundary ancestry and shared-interface checks come before
+the refusal `native_partition_volume_sum_failed`. The relative threshold `1e−9` is
+not changed. No BRep export of this partition and no `gmsh.generate` was run.
 
-La somme des dix-sept volumes enregistrés lors de ce premier essai vaut
-`995961.7204052373` unités scan³. Le volume initial de **cet appel** n'ayant
-pas été consigné avant le refus, l'écart exact du garde n'est pas reconstructible.
-Il faut instrumenter les deux intégrales et leurs estimations de quadrature
-avant de conclure à une erreur de partition ou d'intégration. Les valeurs
-d'anciens reçus ne remplacent pas la valeur manquante.
+The sum of the seventeen volumes recorded in this first attempt is
+`995961.7204052373` scan units³. Since the initial volume of **this call** was
+not logged before the refusal, the guard's exact deviation cannot be reconstructed.
+Both integrals and their quadrature estimates must be instrumented
+before concluding to a partition or integration error. Values
+from older receipts do not replace the missing value.
 
-### Deuxième essai : intégration instrumentée, sans changer la partition
+### Second attempt: instrumented integration, without changing the partition
 
-Un nouvel appel consigne désormais le volume initial, les dix-sept volumes et
-leur somme avant la décision. Il retrouve le refus : `995961.70449802` contre
-`995961.7204052373` unités scan³, soit un écart relatif `1.59717e−8`, supérieur
-au seuil inchangé `1e−9`. Le premier reçu n'est ni corrigé ni remplacé.
+A new call now logs the initial volume, the seventeen volumes and
+their sum before the decision. It finds the refusal again: `995961.70449802` versus
+`995961.7204052373` scan units³, a relative deviation of `1.59717e−8`, above
+the unchanged threshold `1e−9`. The first receipt is neither corrected nor replaced.
 
-Les mêmes formes en mémoire sont ensuite intégrées à trois précisions
-adaptatives, avec la surcharge `Eps` explicite d'OCCT :
+The same in-memory shapes are then integrated at three adaptive
+precisions, with OCCT's explicit `Eps` overload:
 
-| Eps demandé | Volume du domaine, unités scan³ | Somme des 17 volumes, unités scan³ | Écart relatif |
+| Requested Eps | Domain volume, scan units³ | Sum of the 17 volumes, scan units³ | Relative deviation |
 |---:|---:|---:|---:|
-| `1e−7` | 995964,5780437368 | 995964,5779154756 | `1,28781e−10` |
-| `1e−9` | 995964,5870689296 | 995964,5870742635 | `5,35549e−12` |
-| `1e−11` | 995964,5869731805 | 995964,5869750070 | `1,83387e−12` |
+| `1e−7` | 995964.5780437368 | 995964.5779154756 | `1.28781e−10` |
+| `1e−9` | 995964.5870689296 | 995964.5870742635 | `5.35549e−12` |
+| `1e−11` | 995964.5869731805 | 995964.5869750070 | `1.83387e−12` |
 
-Cet accord est un indice de sensibilité à la quadrature, **pas une preuve de
-conservation géométrique** : l'estimation retournée pour le domaine reste
-proche de `1,054e−7`, malgré les précisions plus strictes demandées. Les
-estimations OCCT ne sont pas des bornes garanties ; accord somme/domaine et
-convergence absolue sont deux contrôles différents.
-[API OCCT 7.9.3](https://github.com/Open-Cascade-SAS/OCCT/blob/V7_9_3/src/BRepGProp/BRepGProp.hxx)
+This agreement is a sign of sensitivity to quadrature, **not evidence of
+geometric conservation**: the estimate returned for the domain stays
+close to `1.054e−7`, despite the stricter precisions requested. OCCT
+estimates are not guaranteed bounds; sum/domain agreement and
+absolute convergence are two different checks.
+[OCCT 7.9.3 API](https://github.com/Open-Cascade-SAS/OCCT/blob/V7_9_3/src/BRepGProp/BRepGProp.hxx)
 
-Le deuxième essai dure 5,099 s natifs, 5,654 s nettoyage compris ; sortie 2,
-sans OOM ni timeout. Un BRep **diagnostic privé** est exporté avant la décision,
-avec cinq checkpoints. À l'issue de cet essai, sa relecture indépendante et le
-non-recouvrement restent à contrôler. Aucun maillage ni solveur lancé ; le refus
-non adaptatif reste actif. Sources et entrées inchangées, conteneur exact
-supprimé et absence revérifiée hors du lanceur.
+The second attempt takes 5.099 s native, 5.654 s including cleanup; exit 2,
+no OOM or timeout. A **private diagnostic** BRep is exported before the decision,
+with five checkpoints. At the end of this attempt, its independent reread and
+non-overlap remain to be checked. No mesh or solver launched; the
+non-adaptive refusal stays active. Sources and inputs unchanged, exact container
+removed and its absence rechecked outside the launcher.
 
-### Relecture indépendante : validité réussie, audit incomplet
+### Independent reread: validity passed, audit incomplete
 
-Un auditeur distinct relit le domaine source et le BRep diagnostic sauvegardé.
-Les 19 contrôles `BRepCheck` exacts passent : domaine, composé et 17 solides.
-Aucune arête non dégénérée ne manque du drapeau `SameParameter`. Les incidences
-retrouvent 16 blocs annulaires et un cœur, avec huit interfaces cœur/blocs.
+A separate auditor rereads the source domain and the saved diagnostic BRep.
+The 19 exact `BRepCheck` checks pass: domain, compound and 17 solids.
+No non-degenerate edge lacks the `SameParameter` flag. The incidences
+recover 16 annular blocks and one core, with eight core/block interfaces.
 
-L'intégration alternative Gauss–Kronrod sur le domaine et les 17 solides
-donne `995964.5863888268` contre `995964.5863979517` unités scan³, soit
-`9.16178e−12` d'écart relatif. Ce calcul utilise `IsUseSpan=True` et `Eps=1e−9` ;
-il ne remplace pas le refus historique ni ne transforme une estimation en
-borne garantie.
+The alternative Gauss–Kronrod integration over the domain and the 17 solids
+gives `995964.5863888268` versus `995964.5863979517` scan units³, i.e.
+`9.16178e−12` relative deviation. This computation uses `IsUseSpan=True` and `Eps=1e−9`;
+it does not replace the historical refusal nor turn an estimate into a
+guaranteed bound.
 
-Les ensembles de signatures de supports et d'orientations des frontières
-concordent. Le premier groupe passe les deux soustractions sans résidu de face
-ou d'arête. L'auditeur s'arrête ensuite sur
-`support_group_has_ambiguous_physical_roles` : son regroupement par support
-rencontre plusieurs rôles physiques. Cela ne prouve pas une différence de
-géométrie. La couverture des frontières est **partielle**, les 136
-intersections entre solides ne sont **pas exécutées**, et la comparaison
-finale des instantanés mémoire n'est **pas atteinte**.
+The sets of support and orientation signatures of the boundaries
+agree. The first group passes both subtractions with no face or edge
+residue. The auditor then stops on
+`support_group_has_ambiguous_physical_roles`: its grouping by support
+meets several physical roles. This does not prove a difference in
+geometry. Boundary coverage is **partial**, the 136
+solid-to-solid intersections are **not run**, and the final comparison
+of memory snapshots is **not reached**.
 
-Sorties natives/lanceur 2, en 1,082 s / 1,647 s, sans OOM ni timeout ; fichiers
-d'entrée et programmes inchangés. Le candidat n'est pas admis au maillage.
+Native/launcher exits 2, in 1.082 s / 1.647 s, no OOM or timeout; input
+files and programs unchanged. The candidate is not admitted to meshing.
 
-### Séparation des rôles : 16 groupes contrôlés, puis arrêt booléen
+### Role separation: 16 groups checked, then a Boolean stop
 
-La version suivante distingue couverture géométrique et attribution des rôles.
-Elle enregistre deux groupes plans mêlant `walls_chamber` et `walls_seat`, sans
-les traiter comme un défaut géométrique ni les déclarer correctement classés.
-Les opérations booléennes et leurs critères restent inchangés.
+The next version separates geometric coverage from role assignment.
+It records two planar groups mixing `walls_chamber` and `walls_seat`, without
+treating them as a geometric defect or declaring them correctly classified.
+The Boolean operations and their criteria remain unchanged.
 
-Cette fois, 16 groupes passent, soit 32 soustractions réussies documentées,
-sans résidu de face ni d'arête. Une opération du groupe suivant déclenche
-`native_boolean_error_or_warning` ; son sens exact et le total des soustractions
-réussies ne sont pas enregistrés. Le reçu ne
-distingue pas erreur et avertissement, et ne consigne pas le type de message :
-aucune cause géométrique précise ne peut en être déduite. Les 19 contrôles de
-validité et les 18 intégrations GK sont répétés avec les mêmes résultats.
-Les 136 intersections entre solides et le contrôle mémoire final ne sont
-toujours pas exécutés. Les deux versions refusées restent disponibles.
+This time, 16 groups pass, i.e. 32 documented successful subtractions,
+with no face or edge residue. One operation of the next group triggers
+`native_boolean_error_or_warning`; its exact direction and the total of successful
+subtractions are not recorded. The receipt does not
+distinguish error from warning, and does not log the message type:
+no precise geometric cause can be inferred from it. The 19 validity checks
+and the 18 GK integrations are repeated with the same results.
+The 136 solid-to-solid intersections and the final memory check are
+still not run. Both refused versions remain available.
 
-Durées 1,375 s natives / 1,934 s nettoyage compris ; sorties 2, sans OOM ni
-timeout, sources et entrées inchangées, absence du conteneur vérifiée hors
-lanceur. La suite doit enregistrer le groupe, le sens et les messages natifs
-de chaque opération ; le non-recouvrement peut faire l'objet d'un lot distinct,
-sans prétendre que la couverture des frontières est acquise.
+Durations 1.375 s native / 1.934 s including cleanup; exits 2, no OOM or
+timeout, sources and inputs unchanged, container absence checked outside the
+launcher. The next step must record the group, the direction and the native messages
+of each operation; non-overlap can be the subject of a separate batch,
+without claiming that boundary coverage is established.
 
-### Lot indépendant : les 136 intersections entre solides sont terminées
+### Independent batch: the 136 solid-to-solid intersections are complete
 
-Les mêmes quatre entrées gelées sont relues, sans nouvelle partition, sans
-soustraction de frontières et sans quadrature. Les 19 contrôles `BRepCheck`
-exacts passent de nouveau. Les `17 × 16 / 2 = 136` paires font chacune l'objet
-d'un `Common` non destructif et d'un journal avant/après l'opération.
+The same four frozen inputs are reread, with no new partition, no
+boundary subtraction and no quadrature. The 19 exact `BRepCheck` checks
+pass again. The `17 × 16 / 2 = 136` pairs each get
+a non-destructive `Common` and a before/after log of the operation.
 
-**136 résultats valides, zéro solide d'intersection, zéro erreur, avertissement
-ou résultat inconnu.** Les fichiers d'entrée et les instantanés mémoire
-texte/tolérances sont inchangés ; l'empreinte texte n'est pas une preuve complète
-de tous les coefficients binaires. Le non-recouvrement est contrôlé dans le
-cadre des tolérances natives. Ce lot ne contrôle ni l'auto-intersection interne
-de chaque solide ni la couverture totale du domaine.
+**136 valid results, zero intersection solids, zero errors, warnings
+or unknown results.** The input files and the text/tolerance memory
+snapshots are unchanged; the text digest is not complete evidence
+of all binary coefficients. Non-overlap is checked within
+native tolerances. This batch checks neither the internal self-intersection of
+each solid nor the total coverage of the domain.
 
-Durées : 5,256 s natives / 5,796 s nettoyage compris ; pas d'OOM ni expiration,
-plafonds effectifs 2 CPU/4 Gio et conteneur absent après suppression. Le code
-retour 2 est prévu même si les 136 paires passent : les refus antérieurs sur
-frontières, rôles physiques et volumes restent en vigueur. Aucun maillage lancé.
+Durations: 5.256 s native / 5.796 s including cleanup; no OOM or timeout,
+effective caps 2 CPU/4 GiB and container absent after removal. Exit
+code 2 is expected even if the 136 pairs pass: the earlier refusals on
+boundaries, physical roles and volumes remain in force. No mesh launched.
 
-### Diagnostic complet des frontières : un seul groupe reste averti
+### Full boundary diagnostic: only one group still warned
 
-Les 52 groupes de supports orientés sont tous examinés dans les deux sens,
-soit 104 `CUT` terminés. **102 résultats sont valides, sans face ni arête
-résiduelle et sans message natif.** Les deux autres opérations, sur le groupe
-17 des faces source/candidat 28, 29 et 35 (`walls_port`), retournent chacune
-quatre `BOPAlgo_AlertFaceBuilderUnusedEdges`, sans erreur. Leurs résultats ne
-sont pas examinés après l'avertissement : aucun résidu nul n'est supposé.
+The 52 oriented support groups are all examined in both directions,
+i.e. 104 completed `CUT`. **102 results are valid, with no residual face or edge
+and no native message.** The two other operations, on group
+17 of source/candidate faces 28, 29 and 35 (`walls_port`), each return
+four `BOPAlgo_AlertFaceBuilderUnusedEdges`, with no error. Their results are
+not examined after the warning: no zero residue is assumed.
 
-Le diagnostic conserve les paramètres booléens et critères précédents. Il
-vérifie 19 formes BRep, les incidences et les instantanés mémoire avant/après.
-Un contrôle distinct recompte les 86 faces source, toutes les faces externes
-candidates, 208 événements de journal et les empreintes de 312 sorties natives.
-Cela prouve l'exécution exhaustive du diagnostic, pas la couverture géométrique
-des deux opérations averties. À ce stade du diagnostic, les deux groupes plans
-aux rôles physiques mélangés restent sans attribution résolue ; le nouveau
-contrôle du 8 septembre présenté ci-dessous les traite séparément.
+The diagnostic keeps the previous Boolean parameters and criteria. It
+checks 19 BRep shapes, the incidences and the before/after memory snapshots.
+A separate check recounts the 86 source faces, all candidate external
+faces, 208 log events and the digests of 312 native outputs.
+This proves the exhaustive execution of the diagnostic, not the geometric coverage
+of the two warned operations. At this stage of the diagnostic, the two planar groups
+with mixed physical roles remain without a resolved assignment; the new
+check of September 8 presented below treats them separately.
 
-Durées : 1,984 s natives / 2,550 s nettoyage compris ; sortie 2 intentionnelle,
-pas d'OOM ni expiration. Aucun nouveau `Common`, GK, BRep ou maillage.
-Les plafonds 2 CPU/4 Gio sont vérifiés après la fin du processus, sans mesure
-de mémoire de pointe. Sources/entrées inchangées, conteneur retiré, absence
-revérifiée indépendamment. La capture native complète a réussi ; une limite
-du programme est conservée dans le reçu : la résolution de `GetReport().Dump`
-précède son bloc de capture d'exception. Aucun échec de capture n'est observé.
+Durations: 1.984 s native / 2.550 s including cleanup; intentional exit 2,
+no OOM or timeout. No new `Common`, GK, BRep or mesh.
+The 2 CPU/4 GiB caps are checked after the process ends, with no peak
+memory measurement. Sources/inputs unchanged, container removed, absence
+rechecked independently. The full native capture succeeded; a program
+limitation is kept in the receipt: the resolution of `GetReport().Dump`
+comes before its exception-capture block. No capture failure is observed.
 
-### Identité complémentaire des trois faces : test strict refusé
+### Complementary identity of the three faces: strict test refused
 
-Un contrôle séparé sérialise chaque face entière, contours compris, en V3
-binaire en mémoire. Les six contrôles BRep passent et les placements racines
-et orientations correspondants concordent. Cependant, les faces 28 et 29 ont
-des représentations différentes, malgré des longueurs respectivement égales
-à 21 237 et 21 605 octets. La bijection exacte des trois faces est donc refusée.
+A separate check serializes each whole face, contours included, as binary
+V3 in memory. The six BRep checks pass and the matching root placements
+and orientations agree. However, faces 28 and 29 have
+different representations, despite lengths respectively equal
+to 21,237 and 21,605 bytes. The exact bijection of the three faces is therefore refused.
 
-La face 35 a le même SHA enregistré, mais la fonction de comparaison des
-octets s'arrête au premier non-appariement : aucun succès global ni test
-distinct complet de la face 35 n'est inventé. Cette différence binaire ne
-prouve pas, à elle seule, une différence de forme. Il faut en identifier les
-champs avant de décider d'une comparaison géométrique pertinente.
+Face 35 has the same recorded SHA, but the byte comparison function
+stops at the first mismatch: no global success and no complete
+separate test of face 35 is invented. This binary difference does not,
+on its own, prove a difference in shape. Its fields must be identified
+before deciding on a relevant geometric comparison.
 
-Durées : 0,461 s natives / 1,034 s nettoyage compris ; sorties 2, aucune
-normalisation demandée, aucun lissage, `CUT`, BOP ou export. Entrées et objets
-chargés inchangés, plafonds 2 CPU/4 Gio vérifiés, absence du conteneur confirmée.
-Les deux soustractions averties ne sont pas renommées en réussites.
+Durations: 0.461 s native / 1.034 s including cleanup; exits 2, no
+normalization requested, no smoothing, `CUT`, BOP or export. Inputs and loaded
+objects unchanged, 2 CPU/4 GiB caps checked, container absence confirmed.
+The two warned subtractions are not renamed as successes.
 
-### Différences des faces 28/29 : données auxiliaires, géométrie définissante inchangée
+### Differences in faces 28/29: auxiliary data, defining geometry unchanged
 
-Le décodeur complet localise ensuite **deux octets par face**, quatre au total.
-Seules les directions X/Y d'un plan auxiliaire changent, avec un écart maximal
-par composante de `1,23260e−32`, sans dimension. Aucun autre champ sérialisé
-ne diffère. Les empreintes des quatre faces source/candidates reproduisent
-celles du test précédent ; les décodeurs restent inchangés.
+The full decoder then locates **two bytes per face**, four in total.
+Only the X/Y directions of an auxiliary plane change, with a maximum
+per-component deviation of `1.23260e−32`, dimensionless. No other serialized field
+differs. The digests of the four source/candidate faces reproduce
+those of the previous test; the decoders remain unchanged.
 
-Le parcours de toutes les références montre que ces plans sont utilisés
-**exclusivement par des représentations d'arête de type 4, « Regularity »**.
-Ils ne sont référencés ni par les faces, ni par leurs p-curves ou sommets.
-Chaque face possède un support B-spline principal inchangé. Ce lien est
-établi par les références du fichier, pas supposé à partir des numéros de
-surfaces. [Lecture du type 4 et du support de face dans OCCT](https://github.com/Open-Cascade-SAS/OCCT/blob/V7_9_3/src/BinTools/BinTools_ShapeSet.cxx#L976-L1054).
+Walking all references shows that these planes are used
+**exclusively by type 4 edge representations, "Regularity"**.
+They are referenced neither by the faces, nor by their p-curves or vertices.
+Each face has an unchanged main B-spline support. This link is
+established by the file's references, not assumed from the surface
+numbers. [Reading of type 4 and of the face support in OCCT](https://github.com/Open-Cascade-SAS/OCCT/blob/V7_9_3/src/BinTools/BinTools_ShapeSet.cxx#L976-L1054).
 
-Le sous-graphe sérialisé définissant les deux faces est donc identique dans
-cette relecture Linux/OCP : support principal, courbes 3D, p-curves et plages,
-contours orientés, sommets, localisations et tolérances. Une revue pure des
-dépendances, reproduite indépendamment, rejette aussi deux témoins altérés :
-plan modifié utilisé par une p-curve et modification d'un champ de sommet.
+The serialized subgraph defining the two faces is therefore identical in
+this Linux/OCP reread: main support, 3D curves, p-curves and ranges,
+oriented contours, vertices, locations and tolerances. A pure review of
+dependencies, reproduced independently, also rejects two altered controls:
+a modified plane used by a p-curve and a modification of a vertex field.
 
-Ce résultat explique **pourquoi le test d'identité binaire stricte refusait
-ces deux faces**. Il ne démontre pas la cause des avertissements `CUT`, ne
-modifie aucun octet de CAO et ne qualifie pas toute la partition. Les caches
-ou champs non sérialisés, une autre architecture et la précision physique ne
-font pas partie de cette preuve. Les refus historiques sont conservés.
+This result explains **why the strict binary identity test refused
+these two faces**. It does not demonstrate the cause of the `CUT` warnings, does
+not modify any CAD byte and does not qualify the whole partition. Caches
+or non-serialized fields, another architecture and physical precision are
+not part of this evidence. The historical refusals are kept.
 
-Durées : 0,450 s natives / 0,995 s nettoyage compris, sorties 2 ; revue du
-graphe sans nouvel appel natif. Entrées inchangées, conteneur exact supprimé,
-absence revérifiée. Aucun nouveau `CUT`, maillage ou solveur physique lancé.
+Durations: 0.450 s native / 0.995 s including cleanup, exits 2; graph
+review with no new native call. Inputs unchanged, exact container removed,
+absence rechecked. No new `CUT`, mesh or physics solver launched.
 
-### Nouveau résultat du 8 septembre : huit faces, deux groupes de rôles résolus
+### New result of September 8: eight faces, two role groups resolved
 
-Le domaine `fab1338a…`, la partition `c9eceb77…` et leur manifeste gelé sont
-relus sans nouvelle opération géométrique. Les deux groupes plans mixtes sont
-retrouvés dans les inventaires natifs, puis chaque face candidate est comparée
-à **toutes** les faces source de son groupe : `5² + 3² = 34` comparaisons.
-Huit appariements uniques réussissent et **26 appariements croisés sont
-refusés** ; ces derniers ne sont pas des défauts de la partition.
+The domain `fab1338a…`, the partition `c9eceb77…` and their frozen manifest are
+reread with no new geometric operation. The two mixed planar groups are
+found in the native inventories, then each candidate face is compared
+with **all** the source faces of its group: `5² + 3² = 34` comparisons.
+Eight unique matches succeed and **26 cross matches are
+refused**; the latter are not defects of the partition.
 
-Les huit réussites portent sur les **octets complets de chaque face chargée,
-BinTools VERSION_3**, contours et tolérances compris, avec contrôle séparé du
-placement racine exact, de l'orientation et de l'empreinte du support.
-**Aucune exclusion de donnée auxiliaire n'est nécessaire ici.** Un même plan,
-une aire, un centre ou un numéro identique ne suffit pas à l'appariement.
-L'égalité des numéros ci-dessous est un résultat, pas une hypothèse.
+The eight successes are on the **complete bytes of each loaded face,
+BinTools VERSION_3**, contours and tolerances included, with a separate check of
+the exact root placement, the orientation and the support digest.
+**No exclusion of auxiliary data is needed here.** The same plane,
+an identical area, center or number is not enough for a match.
+The equality of the numbers below is a result, not an assumption.
 
-| Groupe | Face candidate | Face source | Rôle source transféré |
+| Group | Candidate face | Source face | Transferred source role |
 | --- | ---: | ---: | --- |
 | 2 | 2 | 2 | `walls_chamber` |
 | 2 | 3 | 3 | `walls_seat` |
@@ -553,1101 +568,1075 @@ L'égalité des numéros ci-dessous est un résultat, pas une hypothèse.
 | 3 | 6 | 6 | `walls_seat` |
 | 3 | 14 | 14 | `walls_seat` |
 
-Une contre-lecture vérifie l'unicité et l'exhaustivité des lignes et des
-comparaisons, ainsi que les rôles dans le manifeste relu et rehaché séparément.
-Cette vérification couvre une limite connue du superviseur : sa conversion
-en dictionnaires/ensembles ne rejetterait pas à elle seule des doublons
-fabriqués dans un reçu. Aucun doublon n'existe dans le reçu natif obtenu ;
-le programme exécuté reste gelé, sans correction rétroactive.
+A cross-reading checks the uniqueness and completeness of the rows and
+comparisons, as well as the roles in the manifest, reread and rehashed separately.
+This check covers a known limitation of the supervisor: its conversion
+into dictionaries/sets would not by itself reject duplicates
+fabricated in a receipt. No duplicate exists in the native receipt obtained;
+the program run stays frozen, with no retroactive correction.
 
-Durées : **0,614 s natives / 1,214 s nettoyage compris**, sorties 2 prévues
-pour conserver les autres refus. Plafonds effectifs 2 CPU/4 Gio, budget total
-120 s dont 30 s réservées au nettoyage ; sans OOM ni expiration, sans mesure
-de mémoire de pointe. Entrées, sources et objets chargés inchangés ; conteneur
-supprimé, absence vérifiée indépendamment. Les **11 tests ciblés passent**.
-Le contrôle logiciel global `make check` termine aussi avec le code 0 ;
-ses tests natifs optionnels ignorés ne constituent pas une validation de pièce.
-Les empreintes complètes des huit paires, du rapport `625be76c…`, du processus
-`50b3d0e6…` et de la contre-lecture `d1e997de…` figurent dans la
-[capsule de preuves](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json).
+Durations: **0.614 s native / 1.214 s including cleanup**, exits 2 expected
+to keep the other refusals. Effective caps 2 CPU/4 GiB, total budget
+120 s of which 30 s reserved for cleanup; no OOM or timeout, no peak
+memory measurement. Inputs, sources and loaded objects unchanged; container
+removed, absence checked independently. The **11 targeted tests pass**.
+The global software check `make check` also ends with code 0;
+its skipped optional native tests do not constitute a part validation.
+The full digests of the eight pairs, of the report `625be76c…`, of the process
+`50b3d0e6…` and of the cross-reading `d1e997de…` are in the
+[evidence capsule](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json).
 
-Ce résultat transfère des étiquettes source existantes, sans nouvelle
-validation physique. Les huit correspondances sont des faces entières :
-aucune preuve générale de couverture de faces subdivisées n'est extrapolée.
-Les `CUT` avertis et le refus volumique restent enregistrés et inchangés.
-Aucun `CUT`, `Common`, GK, BRep, maillage ou solveur supplémentaire n'est produit.
+This result transfers existing source labels, with no new
+physical validation. The eight matches are whole faces:
+no general evidence of coverage of subdivided faces is extrapolated.
+The warned `CUT` and the volume refusal remain recorded and unchanged.
+No additional `CUT`, `Common`, GK, BRep, mesh or solver is produced.
 
-Les lots booléens Kali enregistrent une valeur `FuzzyValue()` effective
-de `1e−7` unité scan, pour une demande à zéro. OCCT impose un plancher dans
+The Kali Boolean batches record an effective `FuzzyValue()`
+of `1e−7` scan unit, for a request of zero. OCCT imposes a floor in
 [`SetFuzzyValue`](https://github.com/Open-Cascade-SAS/OCCT/blob/V7_9_3/src/BOPAlgo/BOPAlgo_Options.cxx).
-Ils ne sont donc pas décrits comme des opérations booléennes en arithmétique
-exacte ou à tolérance effective nulle. Cela ne modifie pas les tolérances
-stockées dans les entrées.
+They are therefore not described as Boolean operations in exact arithmetic
+or with zero effective tolerance. This does not change the tolerances
+stored in the inputs.
 
-### Registre dérivé des 124 rôles extérieurs du gaz
+### Derived register of the 124 external gas roles
 
-Un traitement JSON sans nouvel appel natif relie les reçus précédents :
-113 faces par couverture bidirectionnelle de groupes mono-rôle, huit par
-identité complète, deux par identité du sous-graphe définissant les faces
-28/29 et une par empreinte entière et placement exact de la face 35.
-Le registre `ebd58991…` couvre une fois chacune des 124 faces externes des
-52 groupes, avec un seul propriétaire ; les 32 faces internes en sont exclues.
-La racine a réexécuté ce traitement et retrouvé exactement le même registre.
-Les rôles proposés antérieurement pour la source sont transférés, pas validés
-physiquement. Ni les avertissements du groupe 17 ni le refus volumique ne sont
-réécrits. Aucun nouveau calcul de couverture ou de volume n'est lancé.
+A JSON processing step with no new native call links the previous receipts:
+113 faces by bidirectional coverage of single-role groups, eight by
+complete identity, two by identity of the subgraph defining faces
+28/29 and one by whole digest and exact placement of face 35.
+The register `ebd58991…` covers each of the 124 external faces of the
+52 groups exactly once, with a single owner; the 32 internal faces are excluded from it.
+The root reran this processing and found exactly the same register.
+The roles previously proposed for the source are transferred, not validated
+physically. Neither the group 17 warnings nor the volume refusal are
+rewritten. No new coverage or volume computation is launched.
 
-### Premier maillage diagnostic du solide V5
+### First diagnostic mesh of the V5 solid
 
-Le fichier `450ba081…` est relu dans OCP 7.9.3.1 puis transmis à Gmsh 4.15.2
-par un BRep ASCII V3 privé. L'empreinte de la racine est contrôlée **avant**
-extraction de son unique solide ; les deux empreintes restent distinctes.
-Le pont relu est BRep valide : un solide, une coque, 4 900 faces.
-La conversion attribue 118 octets différents dans le pont ASCII et 101 dans
-la relecture de l'export Gmsh, notamment des repères, sommets, intervalles et
-caches UV. Ces comptes ne sont pas une distance géométrique.
+The file `450ba081…` is reread in OCP 7.9.3.1 then passed to Gmsh 4.15.2
+through a private ASCII V3 BRep. The root's digest is checked **before**
+extraction of its single solid; the two digests remain distinct.
+The reread bridge is a valid BRep: one solid, one shell, 4,900 faces.
+The conversion attributes 118 differing bytes in the ASCII bridge and 101 in
+the reread of the Gmsh export, notably frames, vertices, intervals and
+UV caches. These counts are not a geometric distance.
 
-L'essai est explicitement autorisé comme **diagnostic d'import non qualifié** :
-comparaison géométrique globale `false`, borne spatiale cumulée `null`, aucune
-autorisation CAE ou fabrication. Cela ne réduit pas le budget géométrique
-`1e−9` et ne le déclare pas respecté. Avant génération, la réimportation
-reproduit exactement le BRep exporté et l'inventaire Gmsh examinés. Le fichier
-V5 original reste intact ; aucune réparation intentionnelle, décimation ou
-réutilisation d'anciens groupes anatomiques n'est appliquée.
+The attempt is explicitly authorized as an **unqualified import diagnostic**:
+global geometric comparison `false`, cumulative spatial bound `null`, no
+CAE or manufacturing authorization. This does not reduce the geometric budget
+`1e−9` and does not declare it met. Before generation, the reimport
+exactly reproduces the exported BRep and the Gmsh inventory examined. The original
+V5 file stays intact; no intentional repair, decimation or
+reuse of old anatomical groups is applied.
 
-| Contrôle du maillage `763a2ad9…` | Résultat |
+| Check of mesh `763a2ad9…` | Result |
 | --- | --- |
-| Éléments / nœuds / triangles frontières | 271 001 / 65 735 / 91 300 |
-| Connexité et frontière | Une composante, frontière complète, aucune face CAO sans triangles |
-| Jacobiennes et volumes signés | Tous strictement positifs |
-| Qualité `minSICN ≥ 0,1` | **Refus : 4 871 éléments (1,7974 %), minimum 0,0000406853** |
-| Écart de volume au BRep importé | 0,24615 %, sous le seuil grossier de 1 % |
-| Relecture MSH | Tags et connectivité conservés ; qualité toujours refusée |
+| Elements / nodes / boundary triangles | 271,001 / 65,735 / 91,300 |
+| Connectivity and boundary | One component, complete boundary, no CAD face without triangles |
+| Jacobians and signed volumes | All strictly positive |
+| Quality `minSICN ≥ 0.1` | **Refused: 4,871 elements (1.7974 %), minimum 0.0000406853** |
+| Volume deviation from the imported BRep | 0.24615 %, under the coarse 1 % threshold |
+| MSH reread | Tags and connectivity kept; quality still refused |
 
-Le contrôle composite `mesh_export_roundtrip=false` inclut le critère de
-qualité : ce n'est pas une corruption du fichier. L'écart maximal de coordonnées
-après relecture est `5,7396e−14` unité scan. Les 4 871 éléments trop déformés
-comprennent 2 916 éléments adjacents à une face frontière et 1 955 sans face
-frontière ; leur localisation privée ne leur attribue pas un rôle anatomique.
+The composite check `mesh_export_roundtrip=false` includes the quality
+criterion: this is not file corruption. The maximum coordinate deviation
+after reread is `5.7396e−14` scan unit. The 4,871 overly distorted elements
+comprise 2,916 elements adjacent to a boundary face and 1,955 with no boundary
+face; their private localization does not assign them an anatomical role.
 
-Une projection de 46 583 centroïdes de triangles sur leurs supports Gmsh
-donne un maximum de **0,38760 unité scan**. C'est un diagnostic échantillonné,
-pas une borne sur toutes les facettes, une preuve d'appartenance aux contours
-de découpe ou une tolérance d'usinage. Le contrôle du helper après maillage
-porte sur entités, volume et descripteurs, pas sur une identité BRep complète.
+A projection of 46,583 triangle centroids onto their Gmsh supports
+gives a maximum of **0.38760 scan unit**. This is a sampled diagnostic,
+not a bound over all facets, evidence of membership in the trimming
+contours or a machining tolerance. The helper's post-meshing check
+covers entities, volume and descriptors, not a complete BRep identity.
 
-Un seul essai : 9,333 s pour les trois stades d'import et 27,440 s pour le
-maillage, nettoyage compris, soit 36,773 s cumulées. Plafond 4 CPU/4 Gio sans
-swap supplémentaire, 1 200 s cumulées dont 60 s de réserve, stade maillage
-limité à 600 s. Le producteur configure deux threads de maillage ; quatre CPU
-sont une limite du conteneur, pas une mesure d'utilisation. Sorties d'import 0,
-maillage 2 attendu, sans OOM ; les quatre conteneurs ont été supprimés et leur
-absence revérifiée. Huit tests purs du wrapper et 21 du producteur passent.
-Aucune nouvelle dépense Vast, charge moteur, simulation thermique ou mécanique.
+A single attempt: 9.333 s for the three import stages and 27.440 s for
+meshing, cleanup included, i.e. 36.773 s cumulative. Cap 4 CPU/4 GiB with no
+additional swap, 1,200 s cumulative of which 60 s reserve, meshing stage
+limited to 600 s. The producer configures two meshing threads; four CPUs
+are a container limit, not a usage measurement. Import exits 0,
+meshing 2 expected, no OOM; the four containers were removed and their
+absence rechecked. Eight pure tests of the wrapper and 21 of the producer pass.
+No new Vast spend, engine load, thermal or mechanical simulation.
 
-### Optimisation intérieure du solide V5, frontière gelée
+### Interior optimization of the V5 solid, frozen boundary
 
-Deux tentatives partent chacune d'une copie du **même MSH initial** `763a2ad9…`.
-Elles ne chargent aucune CAO et ne génèrent pas de nouveau maillage depuis la
-géométrie. L'optimiseur natif par défaut de Gmsh modifie la connectivité et des
-nœuds intérieurs ; les éléments et nœuds des entités de dimension 0/1/2 doivent
-rester strictement identiques. La vraie frontière des tétraèdres est également
-comparée aux triangles stockés, et les nœuds de frontière ne doivent pas être
-classés comme nœuds volumiques mobiles.
+Two attempts each start from a copy of the **same initial MSH** `763a2ad9…`.
+They load no CAD and generate no new mesh from the geometry. Gmsh's default
+native optimizer changes the connectivity and interior nodes; the elements and
+nodes of dimension 0/1/2 entities must remain strictly identical. The true
+boundary of the tetrahedra is also compared with the stored triangles, and the
+boundary nodes must not be classified as movable volume nodes.
 
-La première tentative exécute l'optimiseur mais échoue ensuite avec
-`Unknown element 396236` pendant le calcul des qualités. Aucun MSH optimisé
-n'est exporté et aucune amélioration n'est créditée à ce reçu `67c8fb6b…`.
-L'ancien cache d'éléments n'était pas invalidé après les échanges, avec
-`Mesh.Renumber=0`. La seconde version ajoute uniquement
+The first attempt runs the optimizer but then fails with
+`Unknown element 396236` during the quality computation. No optimized MSH is
+exported and no improvement is credited to this receipt `67c8fb6b…`. The old
+element cache was not invalidated after the swaps, with `Mesh.Renumber=0`. The
+second version adds only
 [`rebuildElementCache(onlyIfNecessary=False)`](https://gmsh.info/doc/texinfo/gmsh.html#index-gmsh_002fmodel_002fmesh_002frebuildElementCache)
-après l'optimisation et sa trace dans le rapport. Cette opération reconstruit
-l'index tags→éléments, pas la géométrie ; renumérotation, frontière, métrique et
-seuils restent inchangés. Le reçu initial et les deux versions sont conservés.
+after the optimization, and its trace in the report. This operation rebuilds
+the tags→elements index, not the geometry; renumbering, boundary, metric and
+thresholds are unchanged. The initial receipt and both versions are kept.
 
-| Contrôle | Avant | Après, export binaire relu |
+| Check | Before | After, binary export read back |
 | --- | ---: | ---: |
-| Tétraèdres | 271 001 | 260 107 |
-| Tétraèdres sous `minSICN = 0,1` | 4 871 | **1 722** |
-| Fraction en nombre sous le seuil | 1,7974 % | 0,6620 % |
-| Fraction du volume absolu dans ces éléments | 0,1676 % | 0,1149 % |
-| Minimum `minSICN` | 0,0000406853 | 0,0000406853 |
-| Nœuds / nœuds frontières / triangles frontières | 65 735 / 45 636 / 91 300 | Identiques |
+| Tetrahedra | 271,001 | 260,107 |
+| Tetrahedra below `minSICN = 0.1` | 4,871 | **1,722** |
+| Fraction by count below the threshold | 1.7974 % | 0.6620 % |
+| Fraction of absolute volume in these elements | 0.1676 % | 0.1149 % |
+| Minimum `minSICN` | 0.0000406853 | 0.0000406853 |
+| Nodes / boundary nodes / boundary triangles | 65,735 / 45,636 / 91,300 | Identical |
 
-Le MSH dérivé `a6871a23…` contient **64,6479 % de tétraèdres insuffisants en
-moins**, sans amélioration du minimum. La somme des volumes signés reste
-`1 157 574,359375028` unités scan³ ; aucune Jacobienne ni aucun volume nul ou
-négatif, une seule composante, aucune frontière manquante, surnuméraire ou
-non-manifold. Les entités de frontière, tags, orientations, connectivités et
-coordonnées binary64 sont exactement conservés. L'ensemble du maillage après
-optimisation est identique après export/relecture MSH 4.1 binaire.
+The derived MSH `a6871a23…` contains **64.6479 % fewer insufficient
+tetrahedra**, with no improvement of the minimum. The sum of signed volumes
+remains `1,157,574.359375028` scan units³; no zero or negative Jacobian or
+volume, a single component, no missing, extra or non-manifold boundary. The
+boundary entities, tags, orientations, connectivities and binary64 coordinates
+are preserved exactly. The whole post-optimization mesh is identical after
+binary MSH 4.1 export/read-back.
 
-L'optimiseur utilise en interne `gamma = 3 r_inscrit / R_circonscrit`, pas
-`minSICN`. Ses annonces de tétraèdres « ill-shaped » ne remplacent pas notre
-recalcul du seuil `0,1`. Un seul appel API par tentative, `force=True` pour le
-volume discret, `OptimizeThreshold=0,3`, sans Netgen ni périodicité. Dans cette
-méthode, `niter=1` ne borne pas la boucle interne et `dimTags` ne restreint pas
-le modèle : l'isolation à un seul volume et le watchdog externe bornent l'essai.
+The optimizer internally uses `gamma = 3 r_inscribed / R_circumscribed`, not
+`minSICN`. Its reports of "ill-shaped" tetrahedra do not replace our
+recomputation of the `0.1` threshold. A single API call per attempt,
+`force=True` for the discrete volume, `OptimizeThreshold=0.3`, without Netgen
+or periodicity. In this method, `niter=1` does not bound the inner loop and
+`dimTags` does not restrict the model: isolation to a single volume and the
+external watchdog bound the run.
 
-Les durées, nettoyage compris, sont 6,601 s pour l'échec initial puis 13,800 s
-pour la version corrigée ; sorties 2 puis 0. Ce dernier code indique seulement
-la fin du diagnostic, **pas l'acceptation de la qualité**. Chaque essai est
-plafonné à 120 s, dont 20 s réservées au nettoyage, 2 CPU/2 Gio sans swap
-supplémentaire, un thread de maillage configuré, sans réseau. Les deux
-conteneurs exacts sont supprimés ; leur absence est revérifiée par la racine.
-Pas d'OOM, entrées et programmes gelés inchangés. Les huit tests purs corrigés
-passent également lors de leur réexécution par la racine. Aucun nouveau coût
-Vast, aucune nouvelle charge thermique, mécanique ou moteur.
-Le contrôle logiciel `make check` termine avec le code 0 : sa découverte
-unitaire compte 2 431 tests, dont 108 ignorés selon les dépendances disponibles,
-puis les contrôles complémentaires passent. Cela ne signifie pas que tous les
-solveurs natifs ont été exercés ni que la pièce est physiquement validée.
+Durations, cleanup included, are 6.601 s for the initial failure, then 13.800 s
+for the corrected version; exit codes 2 then 0. The latter code only indicates
+that the diagnostic finished, **not that quality is accepted**. Each run is
+capped at 120 s, of which 20 s are reserved for cleanup, 2 CPU/2 GiB with no
+extra swap, one configured meshing thread, no network. Both exact containers
+are removed; their absence is re-checked by root. No OOM, frozen inputs and
+programs unchanged. The eight corrected pure tests also pass when re-run by
+root. No new Vast cost, no new thermal, mechanical or engine load.
+The software check `make check` finishes with code 0: its unit discovery
+counts 2,431 tests, of which 108 are skipped depending on available
+dependencies, then the complementary checks pass. This does not mean that all
+native solvers were exercised, nor that the part is physically validated.
 
-La lecture du diagnostic de surface initial, conservé par cette optimisation,
-retrouve **856 triangles sous `minSICN = 0,1` sur 146 faces**, avec un minimum
-2D de `0,0018031574`. Cette valeur 2D n'est pas assimilée à une borne de qualité
-3D. Elle désigne un travail distinct : reprendre la discrétisation de surface
-sur les supports CAO existants puis contrôler à nouveau conformité, frontière
-et qualité volumique. Aucun changement de silhouette n'est justifié par ces
-seuls défauts de maillage. Le rattachement anatomique des faces n'est pas inféré
-de leurs numéros Gmsh. Les limites d'import et de conformité CAO précédentes
-restent entières ; la répétabilité de plusieurs optimisations complètes n'est
-pas démontrée.
+Reading the initial surface diagnostic, preserved by this optimization, finds
+**856 triangles below `minSICN = 0.1` on 146 faces**, with a 2D minimum of
+`0.0018031574`. This 2D value is not treated as a 3D quality bound. It points
+to a separate piece of work: redo the surface discretization on the existing
+CAD supports, then check conformity, boundary and volume quality again. No
+silhouette change is justified by these mesh defects alone. The anatomical
+assignment of the faces is not inferred from their Gmsh numbers. The earlier
+CAD import and conformity limits remain in full; the repeatability of several
+complete optimizations is not demonstrated.
 
-### Essai MeshAdapt : 433 tétraèdres insuffisants, pas d'admission
+### MeshAdapt run: 433 insufficient tetrahedra, no admission
 
-L'essai `8a7a499f…` repart du même BRep d'import gelé. Il reproduit exactement
-son empreinte et son inventaire avant de mailler ; le maître et le V5 restent
-inchangés. Sur les 146 faces précédemment signalées, l'algorithme demandé
-devient MeshAdapt (`1`), avec Frontal-Delaunay (`6`) demandé ailleurs. Les logs
-retrouvent aussi 40 bascules automatiques de Frontal-Delaunay vers MeshAdapt,
-soit 186 faces effectivement traitées par MeshAdapt. Le générateur
-recrée cependant **tout le maillage** : il ne garantit pas que seules ces
-146 triangulations changent. Le mécanisme de bascule en cas d'échec reste
-activé et tracé. Aucun nouveau lissage, réparation ou changement de silhouette
-CAO n'est demandé par ce changement de méthode de maillage ; les limites de
-l'import Gmsh déjà documentées restent applicables.
+Run `8a7a499f…` starts again from the same frozen import BRep. It reproduces
+its digest and inventory exactly before meshing; the master and V5 remain
+unchanged. On the 146 previously flagged faces, the requested algorithm
+becomes MeshAdapt (`1`), with Frontal-Delaunay (`6`) requested elsewhere. The
+logs also show 40 automatic fallbacks from Frontal-Delaunay to MeshAdapt,
+i.e. 186 faces actually processed by MeshAdapt. The generator, however,
+recreates **the whole mesh**: it does not guarantee that only these 146
+triangulations change. The fallback-on-failure mechanism remains enabled and
+traced. No new smoothing, repair or CAD silhouette change is requested by this
+change of meshing method; the already documented limits of the Gmsh import
+still apply.
 
-| Indicateur | Optimisation précédente | Nouvel essai, après optimisation |
+| Indicator | Previous optimization | New run, after optimization |
 | --- | ---: | ---: |
-| Tétraèdres | 260 107 | 273 576 |
-| Sous `minSICN = 0,1` | 1 722 | **433 (0,15827 %)** |
-| Fraction du volume absolu dans ces éléments | 0,11490 % | 0,00771 % |
-| Minimum `minSICN` | 0,0000406853 | 0,0000406853 |
-| Triangles de surface sous le seuil / faces concernées | 856 / 146 | 51 / 23 |
-| Minimum `minSICN` des triangles | 0,00180316 | 0,01592716 |
-
-La baisse en nombre est de 74,8548 % par rapport au dernier essai optimisé,
-et de 91,1107 % par rapport aux 4 871 défauts initiaux. Ces pourcentages
-concernent des maillages différents, pas une amélioration matérielle ou moteur.
-Avant l'unique optimisation intérieure, le nouveau maillage compte 284 333
-tétraèdres dont 3 226 sous le seuil ; après, 433 subsistent, dont 367 adjacents
-à une face frontière et 66 sans face frontière. Les 67 931 nœuds, 45 751
-nœuds frontières et 91 530 triangles restent identiques **pendant cette
-optimisation**, pas par rapport au maillage précédent.
-
-Les empreintes orientées de huit surfaces changent entre génération 2D et 3D.
-Les signatures géométriques exactes non orientées et les comptes de triangles
-restent identiques sur les 4 900 faces : aucune subdivision ou déformation
-de peau n'est détectée entre ces deux stades. La conformité est mesurée à
-nouveau sur la peau finale : 46 698 centroïdes projetés, maximum observé
-**0,45258 unité scan**, contre 0,38760 au premier maillage. Les échantillons
-ne sont pas identiques ; la sélection dépend notamment de l'ordre des triangles.
-Cette hausse n'est donc pas une preuve de régression géométrique et cette
-mesure n'est toujours ni une borne continue,
-ni une preuve d'appartenance aux contours découpés. On conserve cette hausse
-défavorable plutôt que de sélectionner seulement les indicateurs améliorés.
-L'écart volumique au BRep importé passe de 0,24615 % à 0,25589 % ; il ne
-prouve pas une équivalence géométrique. L'admission d'import reste non qualifiée.
-
-L'export MSH 4.1 binaire `5727c17e…` est relu : types, connectivités tétra/surface,
-tags tétra/nœuds et coordonnées sont conservés, écart de coordonnées nul.
-Une composante, frontière complète, aucun volume ni Jacobien non positif.
-La limite de qualité échoue encore après relecture. L'avertissement Gmsh
-sur 49 tétraèdres utilise sa propre métrique : il ne remplace pas les **433**
-défauts recalculés avec `minSICN`.
-
-Un seul essai natif, 49,793 s / 50,619 s nettoyage compris ; plafond 300 s
-dont 30 s de nettoyage, 4 CPU/4 Gio, deux threads configurés, aucun réseau.
-Le wrapper termine à 0 pour le diagnostic, le helper à 2 pour le refus de
-qualité. Pas d'OOM ; conteneur exact supprimé, absence revérifiée par la racine,
-sources et programmes inchangés. Six tests purs de sélection et de portée
-passent, avec revue indépendante des hooks avant exécution. Aucun coût Vast,
-aucune nouvelle simulation de charge moteur, de thermique ou de résistance.
-
-### Essai ciblé supplémentaire : face 4839, minimum 3D amélioré
-
-La revue du pire tétraèdre précédent trouve deux triangles frontières sur
-la même face B-spline 4839 : ses quatre sommets sont sur la frontière gelée.
-Il est presque coplanaire, avec une hauteur d'environ `8,49e−5` unité scan,
-malgré des arêtes de 1,203 à 5,101. Ses triangles de surface sont acceptables
-en 2D (`minSICN ≥ 0,2304`) ; cette face n'était donc pas dans les 146 premières.
-C'est une hypothèse de triangulation contraignante, pas un défaut CAO démontré.
-
-Un second essai ajoute **seulement cette face** aux affectations MeshAdapt
-demandées, mêmes données, tailles, options et seuils. Le test porte donc sur
-147 affectations ; 41 bascules automatiques supplémentaires sont tracées.
-L'optimisation intérieure passe de 285 772 tétraèdres, dont 3 202 insuffisants,
-à **274 680, dont 346 insuffisants (0,12596 %)**. Le minimum final est
-**0,00300248**, soit 73,8 fois le minimum du premier essai ; la limite 0,1
-reste refusée. Le nombre insuffisant baisse de 20,09 % par rapport aux 433,
-et de 79,91 % par rapport aux 1 722 du lot précédent.
-
-Un parseur indépendant en Python lit les deux MSH binaires complets, pas
-seulement les 100 pires éléments : l'ancien quadruplet de sommets est retrouvé
-une fois dans le premier et zéro fois dans le second. La face 4839 passe de
-23 à 25 triangles et n'a plus de tétraèdre insuffisant portant un triangle
-frontière sur elle. Le reçu `9900dca7…` conserve cette preuve et ses limites.
-Le recalcul global change les signatures de 267 surfaces entre essais :
-on n'attribue pas chaque gain global à la seule face 4839. Sa projection locale
-échantillonnée passe de `3,21e−5` à `7,03e−5` unité scan sur 12 puis 13 points,
-sans preuve de conformité continue. Le parseur termine à 0 en 2,679 s, sans
-module natif, sans nouvelle génération et sans modification de CAO.
-
-Les 68 139 nœuds, 45 757 nœuds frontières et 91 542 triangles sont conservés
-pendant l'optimisation. Les signatures non orientées des 4 900 surfaces
-restent exactes entre 2D et 3D ; neuf signatures orientées changent. Une
-composante, frontière complète, Jacobiennes et volumes signés positifs.
-Après relecture binaire du MSH `362c3e75…`, connectivités, tags contrôlés et
-coordonnées sont conservés exactement, qualité toujours refusée. Parmi les
-346 éléments insuffisants, 302 sont adjacents à une face frontière et 44 non.
-Il reste 50 triangles insuffisants sur 23 faces. Le maximum projeté sur les
-46 704 centroïdes échantillonnés reste `0,45258` unité scan : aucune nouvelle
-preuve de conformité continue ou d'équivalence géométrique globale.
-
-Cet unique essai supplémentaire termine en 51,801 s / 52,656 s nettoyage
-compris, avec le même plafond 300 s/4 CPU/4 Gio, sans OOM ni coût Vast.
-Conteneur exact supprimé et absence revérifiée ; CAO, entrées et programmes
-gelés inchangés. Sept tests purs passent. `make check` termine également à 0
-sur les modifications documentaires et le dépôt existant ; ce contrôle
-logiciel n'est pas une validation native de tous les solveurs ni de la pièce.
-
-### Essai solide : lot ciblé de 45 faces supplémentaires
-
-Une analyse des 100 pires éléments du résultat précédent retrouve 51
-tétraèdres ayant deux triangles frontière sur une même face et leurs quatre
-sommets sur la frontière. Ils concernent 45 faces encore en Frontal-Delaunay,
-sans bascule automatique. Leur qualité triangulaire minimale dépasse 0,1 :
-le filtre 2D ne détectait pas ce défaut volumique. Au total, 92 des 100 pires
-ont quatre sommets frontières ; ces proportions ne sont pas extrapolées
-aux 346 éléments insuffisants.
-
-Un seul essai ajoute ces 45 faces aux 147 affectations précédentes, soit
-192 faces sélectionnées, sans changer la CAO, les tailles ou les seuils.
-Après une optimisation intérieure, il reste **309 éléments insuffisants sur
-276 262**, contre 346 auparavant. Cependant, le minimum SICN se dégrade de
-0,00300248 à **0,00079205** : ce résultat n'est pas une amélioration sur tous
-les critères et reste refusé. La comparaison indépendante des MSH complets
-retrouve chacun des 51 quadruplets ciblés une fois dans l'ancien maillage,
-et aucun dans le nouveau. Cette absence exacte ne démontre ni l'absence de
-défauts voisins ni celle d'autres tétraèdres aplatis.
-Les 41 bascules automatiques restent tracées, soit 233 faces effectivement
-maillées par MeshAdapt. Entre les deux essais, 395 empreintes de faces
-changent : aucun gain causal global exclusif n'est attribué aux 45 ajouts.
-Le nouveau pire élément porte un seul triangle frontière sur la face 2868
-et un sommet intérieur presque coplanaire ; la triangulation de cette face
-est pourtant exactement identique à celle du résultat précédent.
-
-Les 68 422 nœuds, 45 830 nœuds frontières et 91 688 triangles sont conservés
-pendant l'optimisation. Le maillage a une composante, une frontière complète,
-des Jacobiennes et volumes signés positifs ; sa relecture binaire conserve
-les connectivités et coordonnées contrôlées exactement.
-Les signatures non orientées des 4 900 surfaces sont conservées entre 2D et
-3D ; sept signatures orientées changent. Il reste 47 triangles
-insuffisants sur 22 faces. Le maximum projeté sur 46 777 centroïdes est toujours
-0,45258 unité scan, sans preuve continue ni tolérance physique définie.
-Le programme termine en 50,829 s, 51,663 s nettoyage compris ; plafond
-300 s/4 CPU/4 Gio, sans OOM. Conteneur exact supprimé et absence revérifiée.
-Les fichiers et programmes gelés restent inchangés. Aucun coût Vast ni
-résultat thermique ou mécanique crédité.
-
-### Solide : déplacement intérieur Relocate3D
-
-Le MSH du lot 192 est relu directement, sans import CAO ni régénération du
-maillage. Un appel `Relocate3D`, `force=False`, `niter=1` effectue trois
-passages internes dans Gmsh 4.15.2. Cette méthode optimise le gamma local des
-tétraèdres incidents, pas le SICN ; aucune monotonie de tous les indicateurs
-n'est présumée. Le cache de recherche d'éléments est reconstruit avant leur
-réévaluation.
-
-Les **276 262 tétraèdres et leurs connexions restent identiques**. Le nombre
-sous SICN 0,1 passe de **309 à 283**, mais le minimum reste exactement
-0,00079205104. Le minimum gamma reste également inchangé ; son maximum
-diminue. Le pire défaut n'est donc pas résolu. Les 45 830 nœuds de frontière,
-les 91 688 triangles, tous leurs tags et leurs coordonnées binary64 sont
-conservés, ainsi que la classification des nœuds. Les volumes signés et
-Jacobiens restent positifs ; une seule composante, aucun trou ou défaut
-non-manifold détecté par ces contrôles. La relecture binaire conserve
-exactement le maillage exporté et les métriques.
-
-Le reçu `8f732823…` et le MSH privé `eac017b3…` conservent cette amélioration
-partielle et le refus du seuil. Durée native 17,737 s, nettoyage compris
-18,433 s ; plafond 120 s dont 20 s de nettoyage, 2 CPU/2 Gio, sans réseau,
-OOM ni timeout. Les 19 tests purs du worker et du superviseur passent,
-notamment la suppression du seul conteneur déjà identifié lorsque son
-inspection finale échoue. Le conteneur réel a été supprimé et son absence
-revérifiée par la racine. Sources et entrées inchangées, aucune dépense Vast
-et aucune admission CAE ou fabrication.
-
-### Piste gaz : préparation initiale du pilote
-
-La partition existante comprend un cœur et 16 blocs annulaires à six faces.
-Le pilote proposé conserve cette CAO : deux couches radiales, 24 éléments
-par quart de circonférence et 60/115 éléments sur les deux tronçons axiaux,
-soit **67 200 hexas et 384 quadrangles vers le cœur attendus**, non produits.
-Le cœur demanderait des tétraèdres et des pyramides de transition. Le plan
-prévoit les 124 faces externes et conserve les 32 interfaces internes sans les
-transformer en parois. Le contrôle du jeu portera sur les facettes réellement
-générées, pas sur la seule estimation géométrique nominale.
-
-Cette préparation initiale privée n'était **pas un programme exécutable** : il manquait
-l'inventaire ciblé des extrémités/cycles natifs et l'adaptateur de maillage mixte
-avec liaison native→Gmsh sans égalité supposée des tags. Aucun nouveau découpage,
-calcul de volumes ou maillage du gaz n'a été lancé. Le plan gelé `e329ac39…`
-prévoit MSH 4.1 binaire/SaveAll, une limite de 300 s et 4 CPU/4 Gio sur l'image
-existante ; l'admission CFD reste distincte et refusée.
-
-### Inventaire natif du gaz : contraintes intérieures identifiées
-
-Une lecture OCP bornée extrait 162 sommets, 291 arêtes, 156 faces et 17 volumes,
-dont les 16 blocs annulaires et leurs 72 faces transfinies proposées. Elle
-termine à 2 sur un contrôle de provenance trop spécifique : il confondait les
-groupes source mono-rôle avec des ancêtres de fragments individuels. Une revue
-des JSON sauvegardés corrige cette interprétation, sans nouvel appel natif ni
-ancêtre inventé : les 32 faces cylindriques sélectionnées par blocs, supports
-et extrémités portent 16 rôles guide et 16 rôles tige. Le refus initial et son
-empreinte mémoire finale non achevée sont conservés ; aucune admission globale.
-
-Deux parcours de contours apparaissaient vides sur les faces 28 et 29. Une
-seconde lecture, limitée à leur stockage TopoDS, observe respectivement les
-arêtes 73 et 77 avec orientation `INTERNAL`, omises par les explorateurs de
-boucles. Ce ne sont pas des cycles fermés manquants à fabriquer ou à supprimer.
-L'adaptateur natif→Gmsh doit représenter et conserver ces contraintes intérieures
-séparément des boucles de frontière avant de lancer le maillage mixte.
-
-Les deux lectures prennent 0,433 s / 1,044 s et 0,419 s / 1,002 s, durée native
-puis nettoyage compris. Plafond de chacune : 60 s dont 15 s de nettoyage,
-2 CPU/2 Gio, lecture seule, sans réseau ni export CAO. Les fichiers restent
-inchangés ; la lecture ciblée confirme aussi l'empreinte mémoire avant/après.
-Les deux conteneurs sont supprimés et leur absence revérifiée par la racine.
-Aucun CUT/Common/GK, aucune nouvelle partition, aucun maillage gaz et aucun
-coût Vast. Le programme de maillage mixte reste à intégrer et à revoir avec
-ces deux contraintes ; les valeurs d'hexas annoncées restent des prévisions.
-
-### Premier pilote gaz : import lié et surface sauvegardée
-
-L'adaptateur privé est maintenant exécuté dans l'image Gmsh 4.15.2 existante.
-La bijection des 162 sommets, 291 arêtes, 156 faces et 17 volumes est obtenue,
-y compris les arêtes internes 73 et 77 observées dans les faces correspondantes.
-Après génération 1D, les 162 ancres ont un écart de coordonnées nul ; les
-104 chaînes annulaires et les deux chaînes intérieures passent leurs contrôles.
-Cela ne résout pas les réserves d'identité géométrique continue de l'import.
-
-La génération 2D produit **88 721 nœuds, 31 462 triangles et 74 822 quadrangles**.
-Le MSH binaire `4756aa0d…` est sauvegardé avant le contrôle suivant, qui refuse
-les types d'éléments ou entités de surface attendus. Aucun volume n'est généré,
-le jeu sur les quadrangles n'est pas encore contrôlé et aucun calcul CFD n'est
-lancé. Le refus est conservé dans le reçu `790d9ec1…`, sans modifier la CAO
-ni assouplir le critère. La surface sauvegardée permet d'en localiser la cause.
-
-Un parseur indépendant lit ensuite le MSH complet en Python standard, sans
-nouvel appel Gmsh : les 156 faces sont présentes. Seules les interfaces 61–68
-ont un mélange inattendu de dix triangles et 24 quadrangles chacune. Huit
-courbes partagées, demandées à 24 segments et vérifiées après la 1D, en portent
-32 après la 2D. Les journaux confirment que les côtés opposés n'ont alors plus
-le même nombre de segments. Huit autres faces cylindriques abandonnent aussi
-le maillage structuré, mais leur recombinaison masque ce défaut au seul
-contrôle du type d'élément. Le reçu `893db1a2…` conserve les comptes et les
-avertissements. La suite doit donc vérifier à nouveau les chaînes après 2D,
-avant de créditer la conformité du maillage structuré.
-
-Durée native : 1,951 s ; nettoyage compris : 2,611 s. Plafond 300 s dont
-30 s réservées au nettoyage, 4 CPU/4 Gio RAM+swap total, réseau absent,
-sources et entrées en lecture seule. Pas de timeout ni d'OOM ; les fichiers
-restent inchangés. Le conteneur exact est supprimé et son absence revérifiée
-par la racine. Les 70 tests purs des modules et les 10 du superviseur passent ;
-ils ne remplacent pas ce résultat natif incomplet. Aucun coût Vast.
-`make check` termine à 0 sur le dépôt modifié ; ce succès logiciel ne change
-aucun verdict de maillage ou de qualification physique.
-
-### Pilote gaz V2 : volume obtenu, défauts topologiques encore refusés
-
-Une seule modification de discrétisation est appliquée : 25 nœuds sur chacun
-des huit arcs extérieurs 128–135. Les 104 demandes antérieures, les 72 faces
-transfinies, les 17 volumes et le BRep sont conservés. Les 162 ancres et les
-114 chaînes suivies — 104 anciennes, huit ajoutées et deux contraintes
-intérieures — restent exactement identiques après 2D puis après 3D, y compris
-leurs tags, connexions orientées et coordonnées binary64.
-
-Avant 2D, les deux paires de polylignes réelles comportent chacune 96 segments
-par contour. La séparation radiale calculée sur les segments entiers vaut au
-minimum 0,00588171564 unité scan. Les 72 faces structurées ont ensuite leurs
-comptes exacts de quadrangles : le défaut de subdivision constaté dans le
-premier pilote n'est plus présent dans cet essai. La surface sauvegardée
-compte 31 888 triangles et 71 152 quadrangles. Le contrôle local du jeu entre
-les facettes guide/tige passe avant et après 3D, avec une borne restante
-minimale de 0,01177949 unité scan. Ces calculs flottants sur les facettes ne
-certifient ni la géométrie continue ni un jeu mécanique à chaud.
-
-Le MSH `61c4ee9d…` contient **173 222 tétraèdres, 67 200 hexaèdres et 384
-pyramides**, soit 240 806 cellules. Tous les Jacobiens et volumes évalués
-sont positifs ; la relecture binaire conserve exactement le maillage et les
-métriques. Ce succès partiel ne suffit pas : le contrôle topologique signale
-trois cellules dupliquées, six faces non-manifold et 126 incompatibilités
-d'orientation interne. Les nœuds de surface sont conservés, mais pas la
-photographie exacte de leurs éléments. Ces défauts doivent être localisés
-dans les fichiers sauvegardés avant tout nouvel essai ou conversion CFD.
-
-Le minimum SICN des tétraèdres est 0,00001418, avec 2 918 sous 0,1. Les hexas
-minces ont un SICN proche de 0,08 ; le seuil 0,1 est ici **diagnostique**, pas
-un critère universel d'admission CFD. L'angle entre directions de référence
-Gmsh ne remplace pas la non-orthogonalité volumes-finis d'OpenFOAM.
-
-Durée native : 33,420 s ; nettoyage compris : 34,192 s. Les 62 tests purs
-passent avant exécution. Le plafond reste 300 s/4 CPU/4 Gio, sans réseau,
-sans OOM ni timeout. Les entrées, sources et la CAO sont inchangées. Le
-conteneur exact est supprimé et son absence revérifiée par la racine.
-Aucun coût Vast, calcul moteur, thermique, mécanique ou entraînement IA
-n'est crédité. Le reçu `ed79eef5…` conserve le refus, les contrôles réussis
-et les deux fichiers de maillage privés.
-
-Une contre-lecture Python standard des deux MSH distingue ensuite les causes
-du refus. Les **103 040 facettes des 156 surfaces, interfaces comprises**, ont
-les mêmes coordonnées, classifications et connexions orientées ; seuls
-**31 343 identifiants d'éléments sont renommés**. Le refus de la photographie
-exacte est donc expliqué sans constater de déformation de ces facettes et
-sans effacer le critère historique. Ce constat discret n'est pas une preuve
-d'identité continue à la CAO.
-
-En revanche, les trois doublons et six faces non-manifold sont confirmés.
-Les 126 faces à orientations incompatibles correspondent à **123 paires
-distinctes de tétraèdres qui se recouvrent localement**. Pour ces paires, les
-deux sommets opposés sont strictement du même côté du triangle commun,
-vérification par déterminants rationnels exacts sur les coordonnées binary64
-enregistrées. Les 166 tétraèdres impliqués ont pourtant chacun un déterminant
-positif : une cellule individuellement positive ne garantit pas un maillage
-sans recouvrement. Tous appartiennent au cœur, sans hexa ou pyramide
-directement impliqué. Les adjacences localisent les défauts notamment près
-des faces natives 51/52 et 69/70. Ce n'est pas une recherche exhaustive de
-toutes les intersections possibles.
-
-Le reçu agrégé `c48c4e5e…` lie les fichiers, douze tests purs réussis et les
-signes exacts. Le diagnostic prend 5,942 s sans appel natif ni modification.
-Les 31 composantes de défauts ne montrent pas le motif complet de deux
-tessellations 2↔3 superposées ; aucune causalité de permutation n'est établie.
-La variante suivante proposée est de désactiver **uniquement la passe finale
-`Mesh.Optimize`**, en conservant `OptimizeNetgen=0` et tous les autres
-paramètres. Elle n'est pas exécutée dans ce lot et son succès n'est pas présumé.
-La [source Gmsh 4.15.2](https://gitlab.onelab.info/gmsh/gmsh/-/blob/gmsh_4_15_2/src/mesh/Generator.cpp#L1522)
-sépare cette passe de la récupération de frontière et de la création des
-pyramides, qui ne seraient pas supprimées par ce changement.
-
-### Pilote gaz V3 : désactiver l'optimisation finale ne suffit pas
-
-Le contre-essai est maintenant exécuté. Les reçus V2 et V3 confirment que
-**seule l'option effective `Mesh.Optimize` passe de 1 à 0** ; Netgen reste
-désactivé. Le BRep, les cinq entrées, la liaison native→Gmsh et les contraintes
-sont identiques. Les 162 ancres et les 114 chaînes sont conservées après
-2D et 3D. La source distingue ce changement de l'héritage des huit arcs V2.
-Les 65 tests purs passent, dont la restauration exacte du programme V2 hors
-différence déclarée ; une revue indépendante précède le lancement natif.
-
-Le fichier `4f41153f…` contient **175 753 tétraèdres, 67 200 hexaèdres et
-384 pyramides**. Les contrôles évaluent des volumes et Jacobiens positifs,
-aucun doublon, aucune face non-manifold, mais **132 faces internes à
-orientations incompatibles**. Le minimum SICN des tétraèdres reste voisin de
-0,00001418 ; 3 351 sont sous 0,1, contre 2 918 dans V2. Le refus est conservé,
-sans conversion en CFD ni assouplissement du seuil. Les jeux locaux sur
-facettes passent ; le MSH et les métriques se relisent exactement.
-
-La surface avant 3D n'est cependant **pas identique entre les deux essais** :
-85 295 nœuds et 31 886 triangles dans V3, contre 85 296 et 31 888 dans V2 ;
-les quadrangles sont au nombre de 71 152 dans les deux cas. Malgré les mêmes
-entrées, ce n'est donc pas une comparaison appariée sur le même maillage
-initial. La disparition des doublons ne peut pas être attribuée à la seule
-passe supprimée. Le journal V3 conserve le lissage propre aux pyramides,
-distinct de l'optimisation finale supprimée.
-
-Le contre-calcul pur `a06e14e6…` confirme **132 paires distinctes de
-tétraèdres qui se recouvrent localement**, impliquant 163 tétraèdres du cœur,
-tous de déterminant signé positif. Les sommets opposés sont du même côté du
-triangle partagé en arithmétique rationnelle exacte. Le contrôle de surface
-V3 retrouve les mêmes 103 038 facettes orientées, coordonnées et étiquettes
-avant/après 3D ; seuls 31 282 tags d'éléments changent. Il ne s'agit donc
-pas d'un défaut limité au renommage de surface. Ce contrôle ne recherche pas
-exhaustivement toutes les intersections et ne prouve pas l'identité CAO continue.
-
-La comparaison pré-3D précise la différence entre V2 et V3 : la face native
-8 passe de 66 à 64 triangles ; les faces 24, 35 et 69 gardent leur compte mais
-changent de coordonnées et de facettes orientées. Les 152 autres maillages
-de face sont identiques modulo identifiants et rotations cycliques. Douze
-tests purs passent, répétés par la racine ; aucune géométrie n'est modifiée.
-Le contre-diagnostic prend 5,862 s et la comparaison pré-3D 2,586 s.
-
-Le reçu `0f3b63f6…` conserve le résultat natif en 33,610 s, 34,404 s nettoyage
-compris. Plafond 300 s/4 CPU/4 Gio RAM+swap total, sans réseau, OOM ni timeout.
-Le conteneur exact est supprimé et son absence revérifiée par la racine ;
-sources et entrées inchangées. Aucune dépense Vast, aucune qualification
-thermique, mécanique ou fabrication.
-
-Le contrôle logiciel `make check` termine à 0 pour ce lot. Sa découverte
-principale porte sur 2 431 cas, dont 108 ignorés pour dépendances optionnelles ;
-les contrôles supplémentaires du Makefile terminent également sans erreur.
-Ce résultat vérifie le logiciel et le dossier, pas la qualité physique de
-la culasse ni l'acceptation des maillages ci-dessus.
-
-### Solide : le pire tétraèdre est réellement inchangé après Relocate3D
-
-Une contre-lecture complète des MSH avant/après, sans nouvel appel natif,
-confirme que le tétraèdre 1776107 conserve ses quatre coordonnées binary64,
-sa connectivité et son triangle de frontière sur la face 2868. Le nœud
-118057 est réellement intérieur, classé `(3,1)` ; il n'est donc pas gelé
-par la garde de frontière. Son étoile reste composée de 34 tétraèdres et
-19 voisins, dont six voisins intérieurs ont bougé.
-
-Sur chacun des deux états sauvegardés, la direction vers la moyenne des
-136 occurrences de sommets utilisée par la méthode est localement
-défavorable : le tétraèdre ciblé s'aplatit dès une fraction du déplacement
-`xi ≈ 0,01555` avant et `0,01327` après. Ces racines sont calculées par
-déterminants rationnels exacts sur les coordonnées binary64. Elles ne
-reconstituent ni l'ordre des sommes flottantes ni la recherche exécutée
-pendant les trois passes natives. Le seuil 0,01 du code est une largeur
-d'intervalle de recherche, pas un déplacement minimal.
-
-Le reçu privé `614f1767…` conserve les signatures et les limites de ce
-diagnostic de 2,584 s ; cinq tests purs passent également en contre-vérification
-racine. La cause exacte du non-déplacement final n'est pas établie, mais
-répéter le même lissage n'est pas justifié par une simple baisse du nombre
-global de mauvais éléments. La qualité volumique et la conformité à la CAO
-restent à traiter ; aucune modification de contour ni tolérance physique
-n'est introduite par cette analyse.
-
-### Essai local du solide : aucun déplacement retenu
-
-Un optimiseur SLSQP distinct du lissage Gmsh a été exécuté une seule fois
-sur le nœud intérieur 118057. L'objectif était d'augmenter la plus petite
-qualité « mean ratio » de ses 34 tétraèdres, sans dégrader aucune des 34
-qualités individuelles, sans déplacer les 19 voisins et en conservant les
-volumes positifs. Cette mesure n'est ni `minSICN` ni une contrainte mécanique.
-Le rayon numérique autorisé était un quart de la plus courte arête incidente ;
-il ne constitue pas une tolérance de fabrication.
-
-Après correction d'un environnement SciPy défectueux dans un environnement
-privé séparé, le témoin SLSQP et sept tests purs passent. Le calcul réel
-SciPy 1.17.1/NumPy 2.4.6 termine en 1,429 s, après une itération, au point
-initial exact : déplacement nul, minimum mean ratio inchangé à 0,0069819001.
-Le reçu `5ea09065…` conserve les 34 contrôles rationnels et les empreintes ;
-les tests sont répétés par la racine. Aucun fichier de maillage n'est modifié.
-Le résultat ne fournit donc aucun candidat à vérifier nativement et ne prouve
-pas l'infaisabilité d'un autre déplacement ou d'un remaillage.
-
-### Cœur gazeux : frontière triangulaire extraite sans modifier les transitions
-
-HXT ne peut pas recevoir directement les faces quadrangulaires du maillage
-mixte. Un extracteur pur a donc isolé la frontière du seul cœur tétraédrique,
-sans trianguler les interfaces quadrangulaires ni modifier les 67 200
-hexaèdres et les 384 pyramides existants. La coque comporte 33 422 triangles :
-31 886 facettes externes et 1 536 faces latérales des pyramides.
-
-Les 15 gardes topologiques passent : une composante, 16 711 nœuds, aucune
-arête ouverte, aucun doublon, aucune aire exactement nulle et aucune
-incohérence d'orientation. Les voisinages de sommets sont des cycles simples.
-Les orientations côté pyramides sont opposées à celles du cœur. Le reçu
-`8163b885…` et la coque privée `073539bc…` lient ces contrôles aux entrées
-inchangées ; sept tests purs passent aussi en contre-vérification racine.
-
-Cette extraction de 6,638 s rend la coque admissible à un **essai de
-remaillage**, pas le volume à la CFD. Les 132 conflits internes du maillage
-source restent refusés. Aucune absence d'intersection globale ni conformité
-à la CAO continue n'est inférée de la fermeture topologique.
-
-### HXT exécuté sur le cœur : candidat sauvegardé, contrôle de qualité refusé
-
-La route discrète a été vérifiée sur le code Gmsh 4.15.2 : l'appel
-`createGeometry([(3, 1)])` ne vise que le volume. Les surfaces ne sont ni
-paramétrées ni reconstruites ; leurs instantanés avant/après restent exacts.
-Un petit tétraèdre fermé suit d'abord la même route, avec génération HXT,
-contrôles de qualité, frontière et relecture binaire réussis. Le cœur réel
-est ensuite généré une seule fois ; les marqueurs du journal confirment le
-backend HXT dans les deux cas.
-
-Le candidat privé `1740a425…` a été sauvegardé avant l'audit. Les 33 422
-triangles de frontière et leurs coordonnées binary64 restent identiques
-après génération ; 16 581 identifiants de nœuds changent, avec bijection
-enregistrée. Ce changement d'identifiants ne constitue pas un déplacement
-des surfaces. Le contrôle suivant refuse le tableau natif `minSJ`
-(`finite_complete_minSJ`, garde de taille et de finitude). Le reçu ne
-conserve pas ce tableau ; il ne distingue donc pas encore un compte
-incorrect de valeurs non finies. L'audit complet du cœur et sa relecture ne sont
-donc **pas achevés**. Le nombre HXT interne de 818 513 tétraèdres n'est pas
-assimilé au nombre d'éléments physiques exportés.
-
-Le reçu natif `0931b9d7…` conserve cet échec : 6,846 s pour le worker,
-7,408 s nettoyage compris, sans OOM ni timeout. Onze tests purs du worker
-et sept du runner passent, répétés par la racine ; ces derniers incluent
-la suppression du conteneur possédé après timeout et échec d'inspection.
-Le conteneur exact a été supprimé et son absence revérifiée. Aucun
-réassemblage hexa/pyramides, aucune modification du maître, aucune admission
-CFD ni nouvelle dépense Vast. La contre-lecture du fichier sauvegardé doit
-distinguer dégénérescence réelle et problème d'évaluation de la métrique
-avant tout nouvel essai.
-
-La contre-lecture pure du fichier sauvegardé est maintenant terminée
-(`28a0521c…`) : 733 762 tétraèdres et 122 354 nœuds. Elle ne retrouve
-aucun doublon, nœud répété, défaut manifold ni conflit d'orientation entre
-cellules voisines ; les tétraèdres forment une composante et leur frontière
-orientée correspond exactement aux 33 422 facettes enregistrées.
-Les déterminants calculés en flottants sont tous positifs, mais le plus
-petit est très faible : `det6 ≈ 3,4174e−16` en unités scan au cube.
-Les 53 tétraèdres sélectionnés par le détecteur de déterminants faibles
-sont recalculés en rationnels et restent strictement positifs ; les
-733 709 autres ne bénéficient pas de ce recalcul exact. Quatre tests purs
-passent, répétés par la racine.
-
-Cette contre-lecture ne retrouve donc pas les conflits locaux observés
-dans le maillage source. Elle n'autorise pas à effacer le refus natif ni
-à déclarer le nouveau maillage convergé ou apte à la CFD. L'étape suivante
-est la lecture native du **même MSH sauvegardé**, avec conservation des
-tableaux de qualité et identification des éléments concernés, sans nouvelle
-génération. Les intersections globales et le réassemblage restent à contrôler.
-
-### Relecture native du même cœur : anomalies attribuées, sans mutation
-
-L'audit Gmsh 4.15.2 lit le fichier `1740a425…` sans génération, optimisation,
-accès CAO ni export de maillage. Il conserve les quatre tableaux complets de
-733 762 valeurs, avec les identifiants d'éléments dans l'ordre de l'API.
-Les tableaux de Jacobiennes directes sont également conservés : neuf
-composantes, un déterminant et trois coordonnées d'évaluation par tétraèdre,
-au point de référence `(0,25 ; 0,25 ; 0,25)`. Les `NaN` ne sont ni supprimés
-ni remplacés par zéro. Aucun tableau n'est tronqué ou complété artificiellement.
-
-| Mesure native | Anomalie observée | Portée |
+| Tetrahedra | 260,107 | 273,576 |
+| Below `minSICN = 0.1` | 1,722 | **433 (0.15827 %)** |
+| Fraction of absolute volume in these elements | 0.11490 % | 0.00771 % |
+| Minimum `minSICN` | 0.0000406853 | 0.0000406853 |
+| Surface triangles below the threshold / faces affected | 856 / 146 | 51 / 23 |
+| Minimum `minSICN` of the triangles | 0.00180316 | 0.01592716 |
+
+The drop in count is 74.8548 % relative to the last optimized run, and
+91.1107 % relative to the 4,871 initial defects. These percentages concern
+different meshes, not a material or engine improvement. Before the single
+interior optimization, the new mesh has 284,333 tetrahedra, of which 3,226
+are below the threshold; afterward, 433 remain, of which 367 are adjacent to
+a boundary face and 66 have no boundary face. The 67,931 nodes, 45,751
+boundary nodes and 91,530 triangles remain identical **during this
+optimization**, not relative to the previous mesh.
+
+The oriented digests of eight surfaces change between 2D and 3D generation.
+The exact unoriented geometric signatures and the triangle counts remain
+identical on the 4,900 faces: no subdivision or deformation of the skin is
+detected between these two stages. Conformity is measured again on the final
+skin: 46,698 projected centroids, observed maximum **0.45258 scan unit**,
+versus 0.38760 on the first mesh. The samples are not identical; the
+selection depends in particular on the order of the triangles. This increase
+is therefore not evidence of a geometric regression, and this measurement is
+still neither a continuous bound nor evidence of membership in the trimmed
+contours. This unfavorable increase is kept rather than selecting only the
+improved indicators. The volume deviation from the imported BRep goes from
+0.24615 % to 0.25589 %; it does not prove geometric equivalence. Import
+admission remains unqualified.
+
+The binary MSH 4.1 export `5727c17e…` is read back: types, tetra/surface
+connectivities, tetra/node tags and coordinates are preserved, zero
+coordinate deviation. One component, complete boundary, no non-positive
+volume or Jacobian. The quality limit still fails after read-back. The Gmsh
+warning about 49 tetrahedra uses its own metric: it does not replace the
+**433** defects recomputed with `minSICN`.
+
+A single native run, 49.793 s / 50.619 s cleanup included; cap 300 s, of which
+30 s for cleanup, 4 CPU/4 GiB, two configured threads, no network. The wrapper
+exits 0 for the diagnostic, the helper 2 for the quality refusal. No OOM;
+exact container removed, absence re-checked by root, sources and programs
+unchanged. Six pure selection and scope tests pass, with an independent review
+of the hooks before execution. No Vast cost, no new simulation of engine
+load, thermal behavior or strength.
+
+### Additional targeted run: face 4839, 3D minimum improved
+
+The review of the previous worst tetrahedron finds two boundary triangles on
+the same B-spline face 4839: its four vertices are on the frozen boundary. It
+is nearly coplanar, with a height of about `8.49e−5` scan unit, despite edges
+from 1.203 to 5.101. Its surface triangles are acceptable in 2D
+(`minSICN ≥ 0.2304`); this face was therefore not among the first 146. This
+is a hypothesis of a constraining triangulation, not a demonstrated CAD
+defect.
+
+A second run adds **only this face** to the requested MeshAdapt assignments,
+same data, sizes, options and thresholds. The test therefore covers 147
+assignments; 41 additional automatic fallbacks are traced. The interior
+optimization goes from 285,772 tetrahedra, of which 3,202 are insufficient,
+to **274,680, of which 346 are insufficient (0.12596 %)**. The final minimum
+is **0.00300248**, i.e. 73.8 times the minimum of the first run; the 0.1
+limit is still refused. The insufficient count drops by 20.09 % relative to
+the 433, and by 79.91 % relative to the 1,722 of the previous batch.
+
+An independent Python parser reads both complete binary MSH files, not only
+the 100 worst elements: the old vertex quadruplet is found once in the first
+and zero times in the second. Face 4839 goes from 23 to 25 triangles and no
+longer has an insufficient tetrahedron carrying a boundary triangle on it.
+Receipt `9900dca7…` preserves this evidence and its limits. The global
+recomputation changes the signatures of 267 surfaces between runs: each
+global gain is not attributed to face 4839 alone. Its sampled local
+projection goes from `3.21e−5` to `7.03e−5` scan unit on 12 then 13 points,
+without evidence of continuous conformity. The parser exits 0 in 2.679 s,
+with no native module, no new generation and no CAD change.
+
+The 68,139 nodes, 45,757 boundary nodes and 91,542 triangles are preserved
+during the optimization. The unoriented signatures of the 4,900 surfaces
+remain exact between 2D and 3D; nine oriented signatures change. One
+component, complete boundary, positive Jacobians and signed volumes. After
+binary read-back of MSH `362c3e75…`, connectivities, checked tags and
+coordinates are preserved exactly, quality still refused. Of the 346
+insufficient elements, 302 are adjacent to a boundary face and 44 are not.
+50 insufficient triangles remain on 23 faces. The projected maximum over the
+46,704 sampled centroids remains `0.45258` scan unit: no new evidence of
+continuous conformity or of global geometric equivalence.
+
+This single additional run finishes in 51.801 s / 52.656 s cleanup included,
+with the same 300 s/4 CPU/4 GiB cap, no OOM and no Vast cost. Exact container
+removed and absence re-checked; CAD, frozen inputs and programs unchanged.
+Seven pure tests pass. `make check` also finishes at 0 on the documentation
+changes and the existing repository; this software check is not a native
+validation of all solvers or of the part.
+
+### Solid run: targeted batch of 45 additional faces
+
+An analysis of the 100 worst elements of the previous result finds 51
+tetrahedra having two boundary triangles on the same face and their four
+vertices on the boundary. They concern 45 faces still in Frontal-Delaunay,
+with no automatic fallback. Their minimum triangle quality exceeds 0.1: the
+2D filter did not detect this volume defect. In total, 92 of the 100 worst
+have four boundary vertices; these proportions are not extrapolated to the
+346 insufficient elements.
+
+A single run adds these 45 faces to the 147 previous assignments, i.e. 192
+selected faces, without changing the CAD, sizes or thresholds. After one
+interior optimization, **309 insufficient elements out of 276,262** remain,
+versus 346 before. However, the minimum SICN degrades from 0.00300248 to
+**0.00079205**: this result is not an improvement on all criteria and
+remains refused. The independent comparison of the complete MSH files finds
+each of the 51 targeted quadruplets once in the old mesh, and none in the
+new one. This exact absence demonstrates neither the absence of neighboring
+defects nor that of other flattened tetrahedra.
+The 41 automatic fallbacks remain traced, i.e. 233 faces actually meshed by
+MeshAdapt. Between the two runs, 395 face digests change: no exclusive global
+causal gain is attributed to the 45 additions. The new worst element carries
+a single boundary triangle on face 2868 and a nearly coplanar interior
+vertex; the triangulation of this face is nonetheless exactly identical to
+that of the previous result.
+
+The 68,422 nodes, 45,830 boundary nodes and 91,688 triangles are preserved
+during the optimization. The mesh has one component, a complete boundary,
+positive Jacobians and signed volumes; its binary read-back preserves the
+checked connectivities and coordinates exactly.
+The unoriented signatures of the 4,900 surfaces are preserved between 2D and
+3D; seven oriented signatures change. 47 insufficient triangles remain on 22
+faces. The projected maximum over 46,777 centroids is still 0.45258 scan unit,
+with no continuous evidence and no defined physical tolerance.
+The program finishes in 50.829 s, 51.663 s cleanup included; cap
+300 s/4 CPU/4 GiB, no OOM. Exact container removed and absence re-checked.
+The frozen files and programs remain unchanged. No Vast cost and no thermal
+or mechanical result credited.
+
+### Solid: Relocate3D interior displacement
+
+The MSH of batch 192 is read back directly, without CAD import or mesh
+regeneration. A `Relocate3D` call, `force=False`, `niter=1`, performs three
+internal passes in Gmsh 4.15.2. This method optimizes the local gamma of the
+incident tetrahedra, not the SICN; no monotonicity of all indicators is
+assumed. The element search cache is rebuilt before they are re-evaluated.
+
+The **276,262 tetrahedra and their connections remain identical**. The count
+below SICN 0.1 goes from **309 to 283**, but the minimum remains exactly
+0.00079205104. The minimum gamma also remains unchanged; its maximum
+decreases. The worst defect is therefore not resolved. The 45,830 boundary
+nodes, the 91,688 triangles, all their tags and their binary64 coordinates
+are preserved, as is the node classification. The signed volumes and
+Jacobians remain positive; a single component, no hole or non-manifold defect
+detected by these checks. The binary read-back preserves the exported mesh
+and the metrics exactly.
+
+Receipt `8f732823…` and private MSH `eac017b3…` preserve this partial
+improvement and the refusal of the threshold. Native duration 17.737 s,
+18.433 s cleanup included; cap 120 s, of which 20 s for cleanup,
+2 CPU/2 GiB, no network, OOM or timeout. The 19 pure tests of the worker and
+the supervisor pass, notably the removal of the only already identified
+container when its final inspection fails. The real container was removed
+and its absence re-checked by root. Sources and inputs unchanged, no Vast
+spending and no CAE or manufacturing admission.
+
+### Gas track: initial pilot preparation
+
+The existing partition comprises a core and 16 six-faced annular blocks. The
+proposed pilot keeps this CAD: two radial layers, 24 elements per quarter
+circumference and 60/115 elements on the two axial sections, i.e. **67,200
+hexes and 384 quadrangles toward the core expected**, not produced. The core
+would require tetrahedra and transition pyramids. The plan provides for the
+124 external faces and keeps the 32 internal interfaces without turning them
+into walls. The clearance check will be done on the facets actually
+generated, not on the nominal geometric estimate alone.
+
+This private initial preparation was **not an executable program**: it
+lacked the targeted inventory of native endpoints/cycles and the mixed-mesh
+adapter with native→Gmsh binding, without assuming equal tags. No new split,
+volume computation or gas mesh was launched. The frozen plan `e329ac39…`
+provides for binary MSH 4.1/SaveAll, a 300 s limit and 4 CPU/4 GiB on the
+existing image; CFD admission remains separate and refused.
+
+### Native gas inventory: interior constraints identified
+
+A bounded OCP read extracts 162 vertices, 291 edges, 156 faces and 17
+volumes, including the 16 annular blocks and their 72 proposed transfinite
+faces. It exits 2 on an overly specific provenance check: it confused the
+single-role source groups with ancestors of individual fragments. A review
+of the saved JSON files corrects this interpretation, with no new native call
+and no invented ancestor: the 32 cylindrical faces selected by blocks,
+supports and endpoints carry 16 guide roles and 16 stem roles. The initial
+refusal and its unfinished final memory footprint are kept; no global
+admission.
+
+Two contour traversals appeared empty on faces 28 and 29. A second read,
+limited to their TopoDS storage, observes edges 73 and 77 respectively with
+`INTERNAL` orientation, omitted by the loop explorers. These are not missing
+closed cycles to be manufactured or deleted. The native→Gmsh adapter must
+represent and preserve these interior constraints separately from the
+boundary loops before launching the mixed mesh.
+
+The two reads take 0.433 s / 1.044 s and 0.419 s / 1.002 s, native duration
+then cleanup included. Cap for each: 60 s, of which 15 s for cleanup,
+2 CPU/2 GiB, read-only, no network and no CAD export. The files remain
+unchanged; the targeted read also confirms the memory footprint before/after.
+Both containers are removed and their absence re-checked by root. No
+CUT/Common/GK, no new partition, no gas mesh and no Vast cost. The mixed-mesh
+program still has to be integrated and reviewed with these two constraints;
+the announced hex figures remain forecasts.
+
+### First gas pilot: bound import and saved surface
+
+The private adapter is now executed in the existing Gmsh 4.15.2 image. The
+bijection of the 162 vertices, 291 edges, 156 faces and 17 volumes is
+obtained, including the internal edges 73 and 77 observed in the
+corresponding faces. After 1D generation, the 162 anchors have zero
+coordinate deviation; the 104 annular chains and the two interior chains pass
+their checks. This does not resolve the reservations about the continuous
+geometric identity of the import.
+
+2D generation produces **88,721 nodes, 31,462 triangles and 74,822
+quadrangles**. Binary MSH `4756aa0d…` is saved before the next check, which
+refuses the expected element types or surface entities. No volume is
+generated, the clearance on the quadrangles is not yet checked and no CFD
+computation is launched. The refusal is preserved in receipt `790d9ec1…`,
+without modifying the CAD or relaxing the criterion. The saved surface makes
+it possible to locate the cause.
+
+An independent parser then reads the complete MSH in standard Python, with no
+new Gmsh call: the 156 faces are present. Only interfaces 61–68 have an
+unexpected mix of ten triangles and 24 quadrangles each. Eight shared curves,
+requested at 24 segments and verified after 1D, carry 32 after 2D. The logs
+confirm that opposite sides then no longer have the same number of segments.
+Eight other cylindrical faces also abandon the structured mesh, but their
+recombination hides this defect from the element-type check alone. Receipt
+`893db1a2…` preserves the counts and warnings. The next step must therefore
+verify the chains again after 2D, before crediting the conformity of the
+structured mesh.
+
+Native duration: 1.951 s; cleanup included: 2.611 s. Cap 300 s, of which 30 s
+reserved for cleanup, 4 CPU/4 GiB total RAM+swap, no network, sources and
+inputs read-only. No timeout or OOM; the files remain unchanged. The exact
+container is removed and its absence re-checked by root. The 70 pure module
+tests and the 10 supervisor tests pass; they do not replace this incomplete
+native result. No Vast cost. `make check` finishes at 0 on the modified
+repository; this software success changes no meshing or physical
+qualification verdict.
+
+### Gas pilot V2: volume obtained, topological defects still refused
+
+A single discretization change is applied: 25 nodes on each of the eight
+outer arcs 128–135. The 104 earlier requests, the 72 transfinite faces, the
+17 volumes and the BRep are kept. The 162 anchors and the 114 tracked chains
+— 104 old, eight added and two interior constraints — remain exactly
+identical after 2D and then after 3D, including their tags, oriented
+connections and binary64 coordinates.
+
+Before 2D, the two pairs of actual polylines each have 96 segments per
+contour. The radial separation computed on the whole segments is at least
+0.00588171564 scan unit. The 72 structured faces then have their exact
+quadrangle counts: the subdivision defect seen in the first pilot is no
+longer present in this run. The saved surface has 31,888 triangles and
+71,152 quadrangles. The local clearance check between the guide/stem facets
+passes before and after 3D, with a minimum remaining bound of 0.01177949 scan
+unit. These floating-point computations on the facets certify neither the
+continuous geometry nor a hot mechanical clearance.
+
+MSH `61c4ee9d…` contains **173,222 tetrahedra, 67,200 hexahedra and 384
+pyramids**, i.e. 240,806 cells. All evaluated Jacobians and volumes are
+positive; the binary read-back preserves the mesh and the metrics exactly.
+This partial success is not enough: the topological check flags three
+duplicated cells, six non-manifold faces and 126 internal orientation
+mismatches. The surface nodes are preserved, but not the exact snapshot of
+their elements. These defects must be located in the saved files before any
+new run or CFD conversion.
+
+The minimum SICN of the tetrahedra is 0.00001418, with 2,918 below 0.1. The
+thin hexes have a SICN close to 0.08; the 0.1 threshold is **diagnostic**
+here, not a universal CFD admission criterion. The angle between Gmsh
+reference directions does not replace OpenFOAM's finite-volume
+non-orthogonality.
+
+Native duration: 33.420 s; cleanup included: 34.192 s. The 62 pure tests pass
+before execution. The cap remains 300 s/4 CPU/4 GiB, no network, no OOM or
+timeout. The inputs, sources and CAD are unchanged. The exact container is
+removed and its absence re-checked by root. No Vast cost, engine, thermal,
+mechanical computation or AI training is credited. Receipt `ed79eef5…`
+preserves the refusal, the successful checks and the two private mesh files.
+
+A standard-Python cross-read of the two MSH files then separates the causes
+of the refusal. The **103,040 facets of the 156 surfaces, interfaces
+included**, have the same coordinates, classifications and oriented
+connections; only **31,343 element identifiers are renamed**. The refusal of
+the exact snapshot is therefore explained without observing any deformation
+of these facets and without erasing the historical criterion. This discrete
+finding is not evidence of continuous identity with the CAD.
+
+On the other hand, the three duplicates and six non-manifold faces are
+confirmed. The 126 faces with mismatched orientations correspond to **123
+distinct pairs of tetrahedra that locally overlap**. For these pairs, the two
+opposite vertices are strictly on the same side of the shared triangle,
+verified by exact rational determinants on the recorded binary64
+coordinates. The 166 tetrahedra involved nonetheless each have a positive
+determinant: an individually positive cell does not guarantee a mesh without
+overlap. All belong to the core, with no hex or pyramid directly involved.
+The adjacencies locate the defects notably near native faces 51/52 and
+69/70. This is not an exhaustive search of all possible intersections.
+
+The aggregate receipt `c48c4e5e…` binds the files, twelve successful pure
+tests and the exact signs. The diagnostic takes 5.942 s with no native call
+and no modification. The 31 defect components do not show the complete
+pattern of two superposed 2↔3 tessellations; no permutation causality is
+established. The proposed next variant is to disable **only the final
+`Mesh.Optimize` pass**, keeping `OptimizeNetgen=0` and all other parameters.
+It is not executed in this batch and its success is not assumed.
+The [Gmsh 4.15.2 source](https://gitlab.onelab.info/gmsh/gmsh/-/blob/gmsh_4_15_2/src/mesh/Generator.cpp#L1522)
+separates this pass from boundary recovery and pyramid creation, which would
+not be removed by this change.
+
+### Gas pilot V3: disabling the final optimization is not enough
+
+The counter-run is now executed. The V2 and V3 receipts confirm that **only
+the effective option `Mesh.Optimize` goes from 1 to 0**; Netgen remains
+disabled. The BRep, the five inputs, the native→Gmsh binding and the
+constraints are identical. The 162 anchors and the 114 chains are preserved
+after 2D and 3D. The source distinguishes this change from the inheritance of
+the eight V2 arcs. The 65 pure tests pass, including the exact restoration of
+the V2 program outside the declared difference; an independent review
+precedes the native launch.
+
+File `4f41153f…` contains **175,753 tetrahedra, 67,200 hexahedra and 384
+pyramids**. The checks evaluate positive volumes and Jacobians, no duplicate,
+no non-manifold face, but **132 internal faces with mismatched
+orientations**. The minimum SICN of the tetrahedra remains close to
+0.00001418; 3,351 are below 0.1, versus 2,918 in V2. The refusal is kept,
+with no conversion to CFD and no relaxation of the threshold. The local
+clearances on facets pass; the MSH and the metrics read back exactly.
+
+The pre-3D surface is, however, **not identical between the two runs**:
+85,295 nodes and 31,886 triangles in V3, versus 85,296 and 31,888 in V2; the
+quadrangles number 71,152 in both cases. Despite the same inputs, this is
+therefore not a paired comparison on the same initial mesh. The disappearance
+of the duplicates cannot be attributed to the removed pass alone. The V3 log
+keeps the smoothing specific to the pyramids, distinct from the removed final
+optimization.
+
+The pure counter-computation `a06e14e6…` confirms **132 distinct pairs of
+tetrahedra that locally overlap**, involving 163 core tetrahedra, all with a
+positive signed determinant. The opposite vertices are on the same side of
+the shared triangle in exact rational arithmetic. The V3 surface check finds
+the same 103,038 oriented facets, coordinates and labels before/after 3D;
+only 31,282 element tags change. This is therefore not a defect limited to
+surface renaming. This check does not exhaustively search all intersections
+and does not prove continuous CAD identity.
+
+The pre-3D comparison pins down the difference between V2 and V3: native face
+8 goes from 66 to 64 triangles; faces 24, 35 and 69 keep their count but
+change coordinates and oriented facets. The other 152 face meshes are
+identical modulo identifiers and cyclic rotations. Twelve pure tests pass,
+repeated by root; no geometry is modified. The counter-diagnostic takes
+5.862 s and the pre-3D comparison 2.586 s.
+
+Receipt `0f3b63f6…` preserves the native result in 33.610 s, 34.404 s cleanup
+included. Cap 300 s/4 CPU/4 GiB total RAM+swap, no network, OOM or timeout.
+The exact container is removed and its absence re-checked by root; sources
+and inputs unchanged. No Vast spending, no thermal, mechanical or
+manufacturing qualification.
+
+The software check `make check` finishes at 0 for this batch. Its main
+discovery covers 2,431 cases, of which 108 are skipped for optional
+dependencies; the additional Makefile checks also finish without error. This
+result verifies the software and the dossier, not the physical quality of
+the cylinder head nor the acceptance of the meshes above.
+
+### Solid: the worst tetrahedron is really unchanged after Relocate3D
+
+A complete cross-read of the before/after MSH files, with no new native call,
+confirms that tetrahedron 1776107 keeps its four binary64 coordinates, its
+connectivity and its boundary triangle on face 2868. Node 118057 is really
+interior, classified `(3,1)`; it is therefore not frozen by the boundary
+guard. Its star remains made of 34 tetrahedra and 19 neighbors, of which six
+interior neighbors have moved.
+
+On each of the two saved states, the direction toward the mean of the 136
+vertex occurrences used by the method is locally unfavorable: the targeted
+tetrahedron flattens from a fraction of the displacement `xi ≈ 0.01555`
+before and `0.01327` after. These roots are computed by exact rational
+determinants on the binary64 coordinates. They reconstruct neither the order
+of the floating-point sums nor the search executed during the three native
+passes. The 0.01 threshold in the code is a search interval width, not a
+minimum displacement.
+
+Private receipt `614f1767…` preserves the signatures and limits of this
+2.584 s diagnostic; five pure tests also pass in root cross-verification. The
+exact cause of the final non-displacement is not established, but repeating
+the same smoothing is not justified by a mere drop in the global count of bad
+elements. Volume quality and conformity to the CAD remain to be addressed; no
+contour change or physical tolerance is introduced by this analysis.
+
+### Local solid run: no displacement retained
+
+An SLSQP optimizer separate from the Gmsh smoothing was executed once on
+interior node 118057. The goal was to increase the smallest "mean ratio"
+quality of its 34 tetrahedra, without degrading any of the 34 individual
+qualities, without moving the 19 neighbors and keeping the volumes positive.
+This measure is neither `minSICN` nor a mechanical stress. The allowed
+numerical radius was a quarter of the shortest incident edge; it is not a
+manufacturing tolerance.
+
+After fixing a defective SciPy environment in a separate private
+environment, the SLSQP control case and seven pure tests pass. The real
+computation with SciPy 1.17.1/NumPy 2.4.6 finishes in 1.429 s, after one
+iteration, at the exact initial point: zero displacement, minimum mean ratio
+unchanged at 0.0069819001. Receipt `5ea09065…` preserves the 34 rational
+checks and the digests; the tests are repeated by root. No mesh file is
+modified. The result therefore provides no candidate to verify natively and
+does not prove that another displacement or a remeshing is infeasible.
+
+### Gas core: triangular boundary extracted without modifying the transitions
+
+HXT cannot take the quadrilateral faces of the mixed mesh directly. A pure
+extractor therefore isolated the boundary of the tetrahedral core alone,
+without triangulating the quadrilateral interfaces and without modifying the
+existing 67,200 hexahedra and 384 pyramids. The shell has 33,422 triangles:
+31,886 external facets and 1,536 lateral faces of the pyramids.
+
+The 15 topological guards pass: one component, 16,711 nodes, no open edge, no
+duplicate, no area exactly zero and no orientation inconsistency. Vertex
+neighborhoods are simple cycles. Orientations on the pyramid side are opposite
+to those of the core. Receipt `8163b885…` and the private shell `073539bc…`
+bind these checks to the unchanged inputs; seven pure tests also pass in root
+cross-verification.
+
+This 6.638 s extraction makes the shell admissible for a **remeshing trial**,
+not the volume for CFD. The 132 internal conflicts of the source mesh remain
+refused. Neither an absence of global intersection nor conformity to the
+continuous CAD is inferred from topological closure.
+
+### HXT run on the core: candidate saved, quality check refused
+
+The discrete route was checked against the Gmsh 4.15.2 code: the call
+`createGeometry([(3, 1)])` targets only the volume. The surfaces are neither
+parameterized nor reconstructed; their before/after snapshots remain exact.
+A small closed tetrahedron first follows the same route, with HXT generation,
+quality checks, boundary and binary reread all successful. The real core is
+then generated once only; the log markers confirm the HXT backend in both
+cases.
+
+The private candidate `1740a425…` was saved before the audit. The 33,422
+boundary triangles and their binary64 coordinates remain identical after
+generation; 16,581 node identifiers change, with the bijection recorded. This
+change of identifiers is not a displacement of the surfaces. The next check
+refuses the native `minSJ` array (`finite_complete_minSJ`, size and finiteness
+guard). The receipt does not keep this array; it therefore does not yet
+distinguish an incorrect count from non-finite values. The full audit of the
+core and its reread are therefore **not completed**. The internal HXT count of
+818,513 tetrahedra is not equated with the number of physical elements
+exported.
+
+Native receipt `0931b9d7…` keeps this failure: 6.846 s for the worker,
+7.408 s including cleanup, with no OOM and no timeout. Eleven pure tests of the
+worker and seven of the runner pass, repeated by root; the latter include
+removal of the owned container after timeout and inspection failure. The exact
+container was removed and its absence rechecked. No hexa/pyramid reassembly,
+no modification of the master, no CFD admission and no new Vast spending. The
+cross-reading of the saved file must distinguish real degeneracy from a metric
+evaluation problem before any new trial.
+
+The pure cross-reading of the saved file is now complete (`28a0521c…`):
+733,762 tetrahedra and 122,354 nodes. It finds no duplicate, repeated node,
+manifold defect or orientation conflict between neighboring cells; the
+tetrahedra form one component and their oriented boundary matches exactly the
+33,422 recorded facets. The determinants computed in floating point are all
+positive, but the smallest is very small: `det6 ≈ 3.4174e−16` in cubed scan
+units. The 53 tetrahedra selected by the small-determinant detector are
+recomputed in rationals and remain strictly positive; the other 733,709 do not
+benefit from this exact recomputation. Four pure tests pass, repeated by root.
+
+This cross-reading therefore does not find the local conflicts observed in the
+source mesh. It does not authorize clearing the native refusal, nor declaring
+the new mesh converged or fit for CFD. The next step is the native reading of
+the **same saved MSH**, keeping the quality arrays and identifying the elements
+concerned, without new generation. Global intersections and reassembly remain
+to be checked.
+
+### Native reread of the same core: anomalies attributed, without mutation
+
+The Gmsh 4.15.2 audit reads the file `1740a425…` without generation,
+optimization, CAD access or mesh export. It keeps the four complete arrays of
+733,762 values, with the element identifiers in API order. The direct Jacobian
+arrays are also kept: nine components, one determinant and three evaluation
+coordinates per tetrahedron, at the reference point `(0.25; 0.25; 0.25)`.
+`NaN`s are neither removed nor replaced by zero. No array is truncated or
+artificially padded.
+
+| Native measure | Anomaly observed | Scope |
 |---|---|---|
-| `minDetJac` | Deux zéros, éléments 45583 et 87069 | Tous les autres déterminants retournés sont positifs. |
-| `minSJ` | Deux `NaN`, mêmes éléments | Les 733 760 autres valeurs sont finies ; aucun problème de compte. |
-| `minSICN` | Neuf valeurs négatives ; 5 858 sous 0,1 | Minimum `−2,14113e−15` ; le seuil 0,1 est un compteur diagnostique. |
-| `gamma` | 28 valeurs nulles | Mesure de forme, distincte du déterminant dimensionné. |
-| Déterminants directs | Un zéro, élément 45583 | Matrices et coordonnées d'évaluation intégralement finies. |
+| `minDetJac` | Two zeros, elements 45583 and 87069 | All other returned determinants are positive. |
+| `minSJ` | Two `NaN`, same elements | The other 733,760 values are finite; no count problem. |
+| `minSICN` | Nine negative values; 5,858 below 0.1 | Minimum `−2.14113e−15`; the 0.1 threshold is a diagnostic counter. |
+| `gamma` | 28 zero values | Shape measure, distinct from the dimensioned determinant. |
+| Direct determinants | One zero, element 45583 | Matrices and evaluation coordinates entirely finite. |
 
-L'union des éléments signalés non positifs ou non finis contient 28
-tétraèdres. L'évaluation native et les déterminants rationnels du précédent
-contre-calcul ne doivent pas être confondus : l'audit ne démontre pas que ces
-tétraèdres sont exactement coplanaires. Les mauvaises qualités sans dimension
-justifient de traiter leur forme ; un faible déterminant dimensionné, seul,
-ne le justifierait pas.
+The union of elements flagged non-positive or non-finite contains 28
+tetrahedra. The native evaluation and the rational determinants of the previous
+cross-computation must not be confused: the audit does not demonstrate that
+these tetrahedra are exactly coplanar. The poor dimensionless qualities justify
+treating their shape; a small dimensioned determinant, alone, would not justify
+it.
 
-Une contre-lecture indépendante (`09310c14…`, sans Gmsh) vérifie les sept
-tableaux complets, leurs empreintes, ordres, extrema et cellules concernées.
-Les 28 éléments anormaux sont tous inclus dans les 53 déterminants recalculés
-en rationnels, tous strictement positifs sur les coordonnées binary64 du MSH.
-Pour 45583 et 87069, `det6` exact vaut environ `1,71343e−16` et
-`1,62699e−16` unité scan³. Cela n'efface pas l'échec de leur évaluation native.
-Le rapport indépendant `det6 / longueur_arête_max³` situe la forme des
-28 cellules entre `2,08e−18` et `2,37e−15`, indépendamment d'un changement
-uniforme d'échelle. Huit tests purs passent, répétés par la racine ; analyse
-de 13,463 s sans écriture du maillage.
+An independent cross-reading (`09310c14…`, without Gmsh) checks the seven
+complete arrays, their digests, orders, extrema and the cells concerned. The
+28 anomalous elements are all included in the 53 determinants recomputed in
+rationals, all strictly positive on the binary64 coordinates of the MSH. For
+45583 and 87069, exact `det6` is about `1.71343e−16` and `1.62699e−16` scan
+unit³. This does not erase the failure of their native evaluation. The
+independent ratio `det6 / max_edge_length³` places the shape of the 28 cells
+between `2.08e−18` and `2.37e−15`, independent of a uniform change of scale.
+Eight pure tests pass, repeated by root; analysis of 13.463 s without writing
+the mesh.
 
-Les instantanés de toutes les coordonnées binary64, connectivités, facettes
-et groupes physiques restent identiques avant/après. Le reçu `39da7133…`
-enregistre une **collecte complète avec refus de qualité**, et non un calcul
-physique réussi : 24,021 s natives, 24,661 s nettoyage compris, sortie 2.
-Aucune erreur ou alerte native, aucun OOM ni timeout ; plafonds effectifs
-4 CPU/4 Gio et réseau absent contrôlés. Le conteneur exact est supprimé et
-son absence revérifiée. Quinze tests purs de l'auditeur et sept du runner
-passent aussi en contre-vérification racine. Aucune nouvelle dépense Vast,
-aucun réassemblage, aucune admission CFD ou fabrication.
+The snapshots of all binary64 coordinates, connectivities, facets and physical
+groups remain identical before/after. Receipt `39da7133…` records a **complete
+collection with quality refusal**, not a successful physical computation:
+24.021 s native, 24.661 s including cleanup, exit 2. No native error or
+warning, no OOM and no timeout; effective ceilings of 4 CPU/4 GiB and absent
+network checked. The exact container is removed and its absence rechecked.
+Fifteen pure tests of the auditor and seven of the runner also pass in root
+cross-verification. No new Vast spending, no reassembly, no CFD or
+manufacturing admission.
 
-### 9 septembre : une optimisation intérieure exécutée et relue
+### September 9: one interior optimization run and reread
 
-Un unique `optimize("", force=True)` Gmsh 4.15.2 travaille sur une copie
-du cœur `1740a425…`, sans génération ni accès à la CAO. L'entrée réparatrice
-est distincte de l'acceptation CFD : tous les tableaux sont complets ; les
-deux `minSJ` indéfinis et les zéros initiaux restent consignés. Les autres
-tableaux sont finis et toutes les cellules anormales
-sont couvertes par les déterminants exacts positifs du contre-reçu épinglé.
-Le code natif traite explicitement les `gamma = 0` et les sélectionne pour
-tentative de correction. `Mesh.OptimizeThreshold = 0,3` concerne `gamma`,
-pas `minSICN`. Le paramètre `niter=1` ne borne pas les boucles de cette route ;
-le lanceur impose une limite externe de 600 s, dont 30 s de nettoyage.
+A single Gmsh 4.15.2 `optimize("", force=True)` works on a copy of the core
+`1740a425…`, without generation or CAD access. The repair entry is distinct
+from CFD acceptance: all arrays are complete; the two undefined `minSJ` and the
+initial zeros remain recorded. The other arrays are finite and all anomalous
+cells are covered by the positive exact determinants of the pinned
+counter-receipt. The native code explicitly handles `gamma = 0` and selects
+those elements for a correction attempt. `Mesh.OptimizeThreshold = 0.3` applies
+to `gamma`, not `minSICN`. The parameter `niter=1` does not bound the loops of
+this route; the launcher imposes an external limit of 600 s, including 30 s of
+cleanup.
 
-Le candidat `69552099…` est sauvegardé avant les contrôles postérieurs.
-Les 33 422 triangles, les coordonnées binary64 des 16 711 nœuds de frontière,
-leurs classifications et les groupes physiques restent identiques. Seules
-la connectivité et des positions intérieures peuvent changer. La relecture
-binaire reproduit le maillage et les sept tableaux de métriques/Jacobiennes,
-comparés par identifiant d'élément, sans effacer les non-finis de l'état initial.
+Candidate `69552099…` is saved before the subsequent checks. The 33,422
+triangles, the binary64 coordinates of the 16,711 boundary nodes, their
+classifications and the physical groups remain identical. Only the
+connectivity and interior positions may change. The binary reread reproduces
+the mesh and the seven metric/Jacobian arrays, compared by element identifier,
+without erasing the non-finite values of the initial state.
 
-| Mesure du cœur | Avant | Après et après relecture |
+| Core measure | Before | After and after reread |
 |---|---:|---:|
-| Tétraèdres | 733 762 | 718 294 |
-| `minSJ` non fini | 2 | 0 |
-| `minDetJac` non positif | 2 | 0 |
-| `gamma` nul | 28 | 0 |
-| Tétraèdres sous `minSICN = 0,1` | 5 858 | 3 282 |
-| Minimum `minSICN` | `−2,14113e−15` | `2,18219e−12` |
+| Tetrahedra | 733,762 | 718,294 |
+| Non-finite `minSJ` | 2 | 0 |
+| Non-positive `minDetJac` | 2 | 0 |
+| Zero `gamma` | 28 | 0 |
+| Tetrahedra below `minSICN = 0.1` | 5,858 | 3,282 |
+| Minimum `minSICN` | `−2.14113e−15` | `2.18219e−12` |
 
-La baisse d'environ 44 % du nombre sous le seuil diagnostique ne signifie
-pas que la qualité minimale est suffisante. Le minimum `gamma` reste à
-`1,52209e−23` et le journal signale encore **75 tétraèdres mal formés**.
-Les contrôles de tableaux complets, finis et strictement positifs passent
-après correction ; ils ne remplacent ni l'admission de qualité, ni la
-convergence, ni la recherche d'intersections et le réassemblage hexa/pyramides.
+The roughly 44% drop in the count below the diagnostic threshold does not mean
+that the minimum quality is sufficient. The minimum `gamma` remains at
+`1.52209e−23` and the log still reports **75 ill-shaped tetrahedra**. The
+checks for complete, finite and strictly positive arrays pass after
+correction; they replace neither quality admission, nor convergence, nor the
+intersection search and the hexa/pyramid reassembly.
 
-Le reçu `cd9d965e…` conserve 140,609 s pour l'ensemble copie/optimisation/
-audits/relecture, 141,271 s nettoyage compris. Le journal attribue 0,939 s
-à l'optimisation proprement dite. Sorties 0, aucun OOM, timeout ou erreur
-native ; l'avertissement de forme ci-dessus est conservé. Les plafonds
-effectifs 4 CPU/4 Gio sont contrôlés ; conteneur supprimé et absence
-revérifiée. Huit tests purs du worker et huit du runner passent, répétés par
-la racine, dont le refus de prétendre une absence certaine après création
-Docker incertaine. Aucune nouvelle dépense Vast et aucune modification du
-maître. La suite porte sur les cellules résiduelles et les contrôles
-indépendants du nouveau volume, pas sur une répétition identique de l'essai.
+Receipt `cd9d965e…` keeps 140.609 s for the whole copy/optimization/
+audits/reread, 141.271 s including cleanup. The log attributes 0.939 s to the
+optimization proper. Exit codes 0, no OOM, timeout or native error; the shape
+warning above is kept. The effective ceilings of 4 CPU/4 GiB are checked;
+container removed and absence rechecked. Eight pure tests of the worker and
+eight of the runner pass, repeated by root, including the refusal to claim a
+certain absence after an uncertain Docker creation. No new Vast spending and no
+modification of the master. The next step addresses the residual cells and the
+independent checks of the new volume, not an identical repetition of the
+trial.
 
-La contre-lecture pure du candidat (`94c1a588…`, 12,880 s) ne détecte
-aucun doublon, sommet répété, défaut manifold ou conflit d'orientation
-entre cellules voisines. Les 718 294 tétraèdres forment une composante et
-leur frontière orientée correspond exactement au cœur HXT précédent et à
-la coque extraite initialement. Aucun identifiant de frontière ne change
-par rapport au MSH précédent. Tous les déterminants flottants sont positifs ;
-le seul élément sélectionné par le même détecteur de faibles déterminants
-est également positif en rationnels. Les autres ne sont pas tous recalculés
-en arithmétique exacte. Quatre tests purs de l'analyseur réutilisé passent,
-répétés par la racine. Ce contrôle topologique n'est pas une recherche
-exhaustive d'intersections et ne lève pas le refus de qualité de forme.
+The pure cross-reading of the candidate (`94c1a588…`, 12.880 s) detects no
+duplicate, repeated vertex, manifold defect or orientation conflict between
+neighboring cells. The 718,294 tetrahedra form one component and their oriented
+boundary matches exactly the previous HXT core and the initially extracted
+shell. No boundary identifier changes relative to the previous MSH. All
+floating-point determinants are positive; the only element selected by the same
+small-determinant detector is also positive in rationals. The others are not
+all recomputed in exact arithmetic. Four pure tests of the reused analyzer
+pass, repeated by root. This topological check is not an exhaustive
+intersection search and does not lift the shape-quality refusal.
 
-La localisation indépendante (`f3ba307a…`, 4,321 s) sélectionne **tous les
-148 éléments dont le `gamma` sauvegardé est inférieur à 0,001**, sans les
-assimiler aux 75 annoncés par le journal. Tous touchent la frontière :
-37 ont quatre sommets frontière, 96 en ont trois, 11 en ont deux et 4 un seul.
-112 partagent au moins une facette frontière ; les 133 incidences sont
-correctement orientées. Aucun ne touche une interface pyramidale, même par
-un sommet. Les coordonnées et provenances restent reliées exactement à la
-coque initiale. Les 148 signes rationnels sont positifs ; ce n'est pas un
-critère suffisant de qualité.
+The independent localization (`f3ba307a…`, 4.321 s) selects **all 148 elements
+whose saved `gamma` is below 0.001**, without equating them with the 75
+announced by the log. All touch the boundary: 37 have four boundary vertices,
+96 have three, 11 have two and 4 only one. 112 share at least one boundary
+facet; the 133 incidences are correctly oriented. None touches a pyramid
+interface, not even by a vertex. Coordinates and provenances remain linked
+exactly to the initial shell. The 148 rational signs are positive; this is not
+a sufficient quality criterion.
 
-Le minimum, élément 49443, a quatre sommets fixes et deux facettes frontière
-de provenance siège/chambre. Ses arêtes sont comparables, mais son rapport
-hauteur minimale/arête maximale vaut environ `1,02e−12` : c'est une cellule
-presque plate. À connectivité inchangée, déplacer uniquement les sommets
-intérieurs ne peut la corriger. La prochaine recherche porte donc sur la
-connectivité locale, sans modifier le contour ni les facettes imposées.
-Trois tests synthétiques de la géométrie passent, répétés par la racine ;
-la sélection complète depuis le tableau compressé et les empreintes des
-entrées sont également revérifiées. Aucun nouveau calcul natif ni maillage
-écrit pour cette localisation.
+The minimum, element 49443, has four fixed vertices and two boundary facets of
+seat/chamber provenance. Its edges are comparable, but its minimum height/max
+edge ratio is about `1.02e−12`: it is an almost flat cell. With connectivity
+unchanged, moving only interior vertices cannot correct it. The next search
+therefore addresses local connectivity, without modifying the contour or the
+imposed facets. Three synthetic geometry tests pass, repeated by root; the full
+selection from the compressed array and the input digests are also rechecked.
+No new native computation and no mesh written for this localization.
 
-Deux remplacements locaux de deux tétraèdres par trois sont ensuite évalués
-en rationnels (reçu c7730c12…, 2,484 s), avec chacun des deux voisins intérieurs
-de 49443. Les frontières orientées et volumes signés des cavités restent
-identiques, mais chaque proposition contient un déterminant négatif et sa
-nouvelle diagonale traverse le plan hors du triangle partagé. **Les deux
-propositions sont rejetées**, sans réorienter artificiellement les cellules
-ni écrire de maillage. Cinq tests synthétiques passent, répétés par la racine.
-Cela ferme ces deux essais, pas toute possibilité de correction dans un
-voisinage plus large.
+Two local replacements of two tetrahedra by three are then evaluated in
+rationals (receipt c7730c12…, 2.484 s), each with one of the two interior
+neighbors of 49443. The oriented boundaries and signed volumes of the cavities
+remain identical, but each proposal contains a negative determinant and its new
+diagonal crosses the plane outside the shared triangle. **Both proposals are
+rejected**, without artificially reorienting the cells and without writing a
+mesh. Five synthetic tests pass, repeated by root. This closes these two
+trials, not every possibility of correction in a wider neighborhood.
 
-### Reprise locale : un nouveau point intérieur, frontière inchangée
+### Local rework: one new interior point, boundary unchanged
 
-L'étoile complète de l'arête intérieure opposée à la jonction siège/chambre
-contient cinq tétraèdres. Les cinq triangulations du lien pentagonal ont
-été calculées en rationnels : chacune introduit au moins une inversion et
-est refusée (reçu 238e43f9…). Ce résultat motive un changement de méthode,
-pas une nouvelle répétition des mêmes échanges d'arêtes.
+The full star of the interior edge opposite the seat/chamber junction contains
+five tetrahedra. The five triangulations of the pentagonal link were computed
+in rationals: each introduces at least one inversion and is refused (receipt
+238e43f9…). This result motivates a change of method, not a further repetition
+of the same edge swaps.
 
-Trois cavités de 5, 12 et 26 tétraèdres sont ensuite étudiées. Un programme
-linéaire propose, pour chacune, un point maximisant la distance minimale
-aux plans de frontière. Ses tolérances numériques ne valent pas admission :
-les coordonnées finales binary64 sont reconverties en rationnels pour
-vérifier tous les déterminants, la frontière orientée et le volume.
-Les trois propositions passent ces contrôles locaux. La plus petite est
-retenue pour la suite : **5 tétraèdres remplacés par 10, un nouveau nœud
-intérieur**, sans déplacement d'un nœud existant. Son minimum hauteur/arête
-passe de `1,02e−12` à `0,137866` (reçu 9ec56ff5…). Il s'agit d'un indicateur
-géométrique, pas d'une tolérance dimensionnelle ou d'un gain moteur.
+Three cavities of 5, 12 and 26 tetrahedra are then studied. A linear program
+proposes, for each, a point maximizing the minimum distance to the boundary
+planes. Its numerical tolerances are not admission: the final binary64
+coordinates are converted back to rationals to check all determinants, the
+oriented boundary and the volume. The three proposals pass these local checks.
+The smallest is kept for what follows: **5 tetrahedra replaced by 10, one new
+interior node**, without moving any existing node. Its minimum height/edge goes
+from `1.02e−12` to `0.137866` (receipt 9ec56ff5…). This is a geometric
+indicator, not a dimensional tolerance or an engine gain.
 
-Le contrôle indépendant des contacts (b9e02335…) examine toutes les paires
-impliquant les dix nouveaux éléments. Sur 7 182 890 paires potentielles
-avec les cellules extérieures à la cavité, 7 182 425 sont strictement
-séparées par leurs boîtes englobantes ; les 465 restantes sont calculées
-en rationnels, ainsi que les 45 paires internes. Aucun chevauchement ni
-contact hors du simplexe commun déclaré n'est détecté, y compris lorsque
-le volume d'intersection est nul. Ce n'est pas un audit des paires de
-cellules laissées intactes. Neuf tests du contrôleur de contacts passent,
-dont deux témoins indépendants de contacts coplanaires.
+The independent contact check (b9e02335…) examines all pairs involving the ten
+new elements. Of 7,182,890 potential pairs with cells outside the cavity,
+7,182,425 are strictly separated by their bounding boxes; the remaining 465 are
+computed in rationals, as are the 45 internal pairs. No overlap and no contact
+outside the declared common simplex is detected, including when the
+intersection volume is zero. This is not an audit of the pairs of cells left
+intact. Nine tests of the contact checker pass, including two independent
+witnesses of coplanar contacts.
 
-La proposition privée c40959ba… a ensuite été appliquée **une seule fois sur
-une copie**, dans Gmsh 4.15.2 sur Kali : 4 CPU, 4 Gio, plafond de 600 secondes.
-Le processus s'est terminé en 95,49 secondes, nettoyage compris, sans
-dépassement ni manque de mémoire. L'absence du conteneur a été contrôlée
-indépendamment. Douze tests du programme de correction et dix du lanceur
-passent, relus et répétés par la racine avant cette exécution.
+The private proposal c40959ba… was then applied **once only, on a copy**, in
+Gmsh 4.15.2 on Kali: 4 CPU, 4 GiB, 600-second ceiling. The process finished in
+95.49 seconds, cleanup included, with no overrun and no out-of-memory. The
+absence of the container was checked independently. Twelve tests of the
+correction program and ten of the launcher pass, reviewed and repeated by root
+before this run.
 
-Le fichier e873b8ae… contient désormais 718 299 tétraèdres et 122 355 nœuds.
-Les anciens nœuds, leurs classes, les éléments extérieurs à la cavité et
-les 33 422 triangles de frontière sont conservés. Les sept tableaux natifs
-sont complets, finis, positifs là où requis, et identiques par identifiant
-après sauvegarde puis relecture. Aucun avertissement ni erreur Gmsh.
-Reçus : calcul 6aff1c46…, processus 219fd71b… ; la CAO et le maillage maître
-n'ont pas été modifiés. Aucune dépense Vast supplémentaire.
+The file e873b8ae… now contains 718,299 tetrahedra and 122,355 nodes. The old
+nodes, their classes, the elements outside the cavity and the 33,422 boundary
+triangles are kept. The seven native arrays are complete, finite, positive
+where required, and identical by identifier after save and reread. No Gmsh
+warning or error. Receipts: computation 6aff1c46…, process 219fd71b…; the CAD
+and the master mesh were not modified. No additional Vast spending.
 
-Le minimum global minSICN passe de `2,182e−12` à `1,632e−5` ; parmi les
-dix nouveaux éléments, il vaut au minimum `0,28809`. Les valeurs minSICN et
-gamma des 718 289 cellules laissées intactes restent identiques. Les comptes
-diagnostiques passent de 3 282 à **3 281 minSICN sous 0,1**, et de 148 à
-**147 gamma sous 0,001**. Ces seuils de suivi ne sont pas des critères
-suffisants d'admission CFD : la correction est réelle mais locale.
-Le contre-contrôle du fichier sauvegardé **sans Gmsh** passe ensuite en
-13,48 secondes (ab8ed9a4…). Le parseur MSH 4.1 vérifie le delta exact,
-les classes et paramètres des nœuds, groupes et triangles. La topologie
-reste une composante, sans doublon, face non-manifold ni conflit
-d'orientation. Les 718 299 déterminants flottants sont positifs ; aucun
-ne déclenche la règle globale de recomputation exacte. Les preuves
-rationnelles locales restent distinctes de ce contrôle flottant global.
-Quatre tests de cette contrelecture passent et ont été répétés par la racine.
-Cette copie devient le prochain point de départ **diagnostique**, sans
-admission CFD ni modification du contour.
+The global minimum minSICN goes from `2.182e−12` to `1.632e−5`; among the ten
+new elements, it is at least `0.28809`. The minSICN and gamma values of the
+718,289 cells left intact remain identical. The diagnostic counts go from 3,282
+to **3,281 minSICN below 0.1**, and from 148 to **147 gamma below 0.001**.
+These tracking thresholds are not sufficient CFD admission criteria: the
+correction is real but local. The cross-check of the saved file **without
+Gmsh** then passes in 13.48 seconds (ab8ed9a4…). The MSH 4.1 parser checks the
+exact delta, the classes and parameters of the nodes, groups and triangles.
+The topology remains one component, with no duplicate, non-manifold face or
+orientation conflict. The 718,299 floating-point determinants are positive;
+none triggers the global exact-recomputation rule. The local rational proofs
+remain distinct from this global floating-point check. Four tests of this
+cross-reading pass and were repeated by root. This copy becomes the next
+**diagnostic** starting point, with no CFD admission and no modification of
+the contour.
 
-Suite proposée : regrouper les défauts restants et préparer un premier lot
-d'au plus huit cavités indépendantes, puis contrôler aussi les contacts
-entre remplacements. Même conservation exacte, une application bornée
-sur copie, aucune régression de qualité et baisse du nombre de cellules
-faibles exigées. Réévaluer le gain et le coût après ce premier lot ; il
-n'est pas exécuté dans le présent reçu.
+Proposed next step: group the remaining defects and prepare a first batch of
+at most eight independent cavities, then also check contacts between
+replacements. Same exact preservation, one bounded application on a copy, no
+quality regression, and a drop in the number of weak cells required.
+Re-evaluate gain and cost after this first batch; it is not run in the present
+receipt.
 
-## Lot intérieur refusé et borne sur les faces fixes — 9 septembre
+## Interior batch refused and bound on the fixed faces — September 9
 
-Le lot proposé ci-dessus a été recherché, **mais aucune application n'a eu
-lieu**. La recherche bornée tente 96 solutions de programmation linéaire en
-8,16 secondes sur le cœur e873b8ae… : zéro cavité retenue. Elle exige des
-déterminants et un bilan de volume exacts, une frontière identique, un gain
-de forme local et une baisse du nombre de cellules sous le seuil minSICN
-de suivi. Parmi ces 96 propositions, 94 échouent à ce dernier critère ;
-les motifs de refus se recouvrent. Ce résultat concerne cette recherche
-bornée, pas toutes les réparations possibles. Rapport privé : 6086ff75… ;
-huit tests du proposeur passent. Les outils de contrôle des contacts,
-d'application native et de relecture par lot sont préparés, mais **aucun
-contrôle de contacts ni calcul natif par lot n'a été exécuté**. Le maillage
-diagnostique de départ reste inchangé.
+The batch proposed above was searched for, **but no application took place**.
+The bounded search attempts 96 linear-programming solutions in 8.16 seconds on
+core e873b8ae…: zero cavities kept. It requires exact determinants and volume
+balance, an identical boundary, a local shape gain and a drop in the number of
+cells below the tracking minSICN threshold. Of these 96 proposals, 94 fail the
+last criterion; the refusal reasons overlap. This result concerns this bounded
+search, not all possible repairs. Private report: 6086ff75…; eight tests of the
+proposer pass. The tools for contact checking, native application and batch
+reread are prepared, but **no contact check and no native batch computation
+was run**. The starting diagnostic mesh remains unchanged.
 
-Une vérification différente établit ensuite une obstruction pour certaines
-facettes fixes. Pour une face triangulaire non dégénérée, poser
-`S = (2/3) × somme des trois longueurs d'arête au carré` et
-`D² = (16/3) × aire²`. Pour tout tétraèdre linéaire positivement orienté
-construit sur cette même face, la métrique SICN idéale vérifie :
+A different verification then establishes an obstruction for certain fixed
+facets. For a non-degenerate triangular face, let
+`S = (2/3) × sum of the three squared edge lengths` and
+`D² = (16/3) × area²`. For any positively oriented linear tetrahedron built on
+that same face, the ideal SICN metric satisfies:
 
 `SICN ≤ 3D / (S + D)`.
 
-La borne est atteinte par un sommet projeté au centroïde, à une hauteur
-physique `H² = 2D/3`. Dans le Jacobien idéal, avec `x` égal au carré de la
-hauteur idéale, l'identité
-`(S+x)(D²+Sx) − x(S+D)² = S(x−D)² ≥ 0` donne le maximum ; une composante
-parallèle à la face ne fait qu'augmenter les normes du dénominateur.
-La condition stricte `S² > 841D²` prouve donc `SICN_max < 1/10`.
-Elle est évaluée en rationnels exacts à partir des coordonnées binary64
-sauvegardées, et ne dépend pas de l'ordre des sommets de la face.
-La métrique est rattachée à Gmsh 4.15.2, `CondNumBasis.cpp` et
-`JacobianBasis.cpp` ; empreinte de l'archive source dans le reçu JSON.
-La preuve a été relue indépendamment.
+The bound is attained by a vertex projected onto the centroid, at a physical
+height `H² = 2D/3`. In the ideal Jacobian, with `x` equal to the square of the
+ideal height, the identity
+`(S+x)(D²+Sx) − x(S+D)² = S(x−D)² ≥ 0` gives the maximum; a component parallel
+to the face only increases the norms in the denominator. The strict condition
+`S² > 841D²` therefore proves `SICN_max < 1/10`. It is evaluated in exact
+rationals from the saved binary64 coordinates, and does not depend on the order
+of the face's vertices. The metric is tied to Gmsh 4.15.2, `CondNumBasis.cpp`
+and `JacobianBasis.cpp`; digest of the source archive in the JSON receipt. The
+proof was reviewed independently.
 
-L'audit examine les **33 422 triangles** en 5,24 secondes et trouve
-**661 faces obstructives**, incidentes à **643 tétraèdres actuels distincts** :
+The audit examines the **33,422 triangles** in 5.24 seconds and finds **661
+obstructive faces**, incident to **643 distinct current tetrahedra**:
 
-| Rôle source du domaine gazeux | Faces dont la borne est sous 0,1 |
+| Source role in the gas domain | Faces whose bound is below 0.1 |
 |---|---:|
-| Parois de guides | 384 |
-| Parois de soupapes | 128 |
-| Parois de conduits | 114 |
-| Parois de sièges | 33 |
-| Chambre | 2 |
-| Interfaces latérales des pyramides | 0 sur 1 536 |
+| Guide walls | 384 |
+| Valve walls | 128 |
+| Port walls | 114 |
+| Seat walls | 33 |
+| Chamber | 2 |
+| Pyramid lateral interfaces | 0 of 1,536 |
 
-Aucune égalité exacte au seuil. La pire borne vaut environ `2,223e−5`
-sur la face source 37 d'un conduit. Les indices du fichier source et du
-cœur ayant été renumérotés, leur correspondance est reconstruite par une
-bijection de coordonnées binary64 exactes et l'égalité des triangles
-remappés, sans recherche de proximité. La première tentative d'audit,
-qui supposait à tort les mêmes identifiants, a été arrêtée par ce contrôle
-avant tout résultat ; le raccordement corrigé est celui du reçu final.
-Six tests couvrent notamment permutations, changement d'échelle, face
-dégénérée et sommets d'essai, dont celui atteignant la borne. Rapport :
-eb761769… ; programme : 7e05f4ca… . Aucune écriture de maillage ou de CAO.
+No exact equality at the threshold. The worst bound is about `2.223e−5` on
+source face 37 of a port. Since the indices of the source file and of the core
+were renumbered, their correspondence is rebuilt by a bijection of exact
+binary64 coordinates and equality of the remapped triangles, without any
+proximity search. The first audit attempt, which wrongly assumed the same
+identifiers, was stopped by this check before any result; the corrected
+matching is the one in the final receipt. Six tests cover in particular
+permutations, change of scale, a degenerate face and trial vertices, including
+the one attaining the bound. Report: eb761769…; program: 7e05f4ca…. No mesh or
+CAD write.
 
-**Conséquence :** déplacer uniquement les sommets intérieurs ne peut pas
-supprimer tous les tétraèdres sous 0,1 tant que ces 661 triangles restent
-identiques. La borne de comptage conservatrice est au moins 166 tétraèdres
-insuffisants dans tout remaillage conservant exactement ces facettes ;
-elle ne s'applique pas après leur subdivision ou retriangulation.
-Cela ne prouve ni l'origine de chacun des 96 refus, ni l'impossibilité de
-fabriquer la pièce. Le seuil est un diagnostic numérique, pas une
-autorisation CFD. Les autres défauts restent à traiter.
+**Consequence:** moving only the interior vertices cannot remove all
+tetrahedra below 0.1 as long as these 661 triangles remain identical. The
+conservative counting bound is at least 166 insufficient tetrahedra in any
+remeshing that keeps exactly these facets; it does not apply after their
+subdivision or retriangulation. This proves neither the origin of each of the
+96 refusals, nor the impossibility of manufacturing the part. The threshold is
+a numerical diagnostic, not a CFD authorization. The other defects remain to be
+addressed.
 
-Prochaine correction : reprendre la **tessellation sur les mêmes surfaces
-CAO**, en commençant par un pilote ciblé, avec contrôle des arêtes,
-interfaces, écarts à la CAO et contacts après réassemblage. Ne pas changer
-le contour de la culasse pour améliorer cet indicateur. Aucun nouveau
-solveur physique ni aucune location Vast n'a été lancé pour ces audits.
+Next correction: redo the **tessellation on the same CAD surfaces**, starting
+with a targeted pilot, with checks of edges, interfaces, deviations from the
+CAD and contacts after reassembly. Do not change the cylinder head contour to
+improve this indicator. No new physical solver and no Vast rental was launched
+for these audits.
 
-## Pilote de retessellation : isolation contrôlée, qualité encore insuffisante
+## Retessellation pilot: controlled isolation, quality still insufficient
 
-La face de conduit 37 est retriangulée avec Delaunay, sur la même surface
-OCC, après réinjection du maillage de surface mixte. Les coordonnées et
-classifications de **85 295 nœuds**, les éléments 0D/1D/2D et les groupes
-physiques sont d'abord reconstruits puis réécrits : le fichier de départ
-est reproduit **octet pour octet** (`25905293…`). Aucun volume de maillage
-n'est chargé ; les 67 200 hexaèdres et 384 pyramides de la chaîne précédente
-ne sont donc pas recalculés dans ce pilote.
+Port face 37 is retriangulated with Delaunay, on the same OCC surface, after
+reinjection of the mixed surface mesh. The coordinates and classifications of
+**85,295 nodes**, the 0D/1D/2D elements and the physical groups are first
+rebuilt and then rewritten: the starting file is reproduced **byte for byte**
+(`25905293…`). No mesh volume is loaded; the 67,200 hexahedra and 384 pyramids
+of the previous chain are therefore not recomputed in this pilot.
 
-Le MSH ne contient pas de paramètres de courbe/surface. Les paramètres des
-85 133 nœuds non 0D sont reconstruits et contrôlés par évaluation
-directe aux tolérances natives, sans déplacement XYZ. Les deux premiers
-arrêts identifient un paramètre d'extrémité inférieur d'environ `4e−15` à
-sa borne ; son rattachement utilise ensuite l'identité du sommet et le sens
-de l'arête, sans tolérance ajoutée. Le troisième arrêt révèle les cercles
-fermés : 31 alias de sommet sont traités explicitement avec contrôle des
-deux bornes et du cycle 1D. Cette convention 0D n'est pas injectée comme
-un paramètre de nœud 1D. Les intérieurs de courbe et les UV restent soumis
-aux mêmes gardes.
+The MSH does not contain curve/surface parameters. The parameters of the
+85,133 non-0D nodes are rebuilt and checked by direct evaluation at native
+tolerances, without XYZ displacement. The first two stops identify an endpoint
+parameter about `4e−15` below its bound; its attachment then uses the vertex
+identity and the edge direction, with no added tolerance. The third stop
+reveals the closed circles: 31 vertex aliases are handled explicitly, with a
+check of both bounds and of the 1D cycle. This 0D convention is not injected as
+a 1D node parameter. Curve interiors and UVs remain subject to the same guards.
 
-Le quatrième essai génère et sauvegarde un candidat, puis le refuse : les
-71 152 quadrilatères hors cible ont été remplacés par des triangles. La
-lecture de Gmsh 4.15.2 attribue le détour au calcul du statut du maillage
-réinjecté (`GModel.cpp`, `getMeshStatus(false)`) : les statuts internes
-non terminés déclenchent la passe 1D, qui efface les faces avant le filtre
-`MeshOnlyEmpty`. Ce filtre compte bien les quadrilatères ; il n'est pas
-réservé aux triangles.
+The fourth trial generates and saves a candidate, then refuses it: the 71,152
+off-target quadrilaterals were replaced by triangles. The reading of Gmsh
+4.15.2 attributes the detour to the computation of the reinjected mesh status
+(`GModel.cpp`, `getMeshStatus(false)`): the unfinished internal statuses
+trigger the 1D pass, which erases the faces before the `MeshOnlyEmpty` filter.
+That filter does count quadrilaterals; it is not reserved for triangles.
 
-Le cinquième essai masque temporairement les courbes et les surfaces hors
-cible avec `MeshOnlyVisible`, sans récursion, puis restaure les visibilités
-avant export. Une seule génération 2D est appelée, sans optimisation ni
-repli automatique d'algorithme. Le journal confirme que seule la surface 37
-est maillée. Le candidat `dfecbc5e…` contient **85 386 nœuds, 32 068 triangles
-et les 71 152 quadrilatères conservés**. La contrelecture indépendante
-confirme tous les XYZ/classes hors cible, les groupes, les incidences et les
-bornes d'entités. Elle refuse cependant les enregistrements d'éléments hors
-cible, car leurs identifiants ont changé. Une contrelecture indépendante,
-en deux étapes, établit une bijection exacte des **107 348 éléments hors cible** :
-107 186 sont seulement renumérotés, sans aucune rotation, permutation ou
-inversion des nœuds. La lecture de `Generator.cpp` et `HighOrder.cpp`
-identifie la cause : l'appel préalable à `SetOrder1` recrée les lignes,
-triangles et quadrilatères, même déjà linéaires, avec de nouveaux tags.
-`Mesh.Renumber = 0` ne désactive pas cette opération.
+The fifth trial temporarily hides the off-target curves and surfaces with
+`MeshOnlyVisible`, without recursion, then restores visibilities before
+export. A single 2D generation is called, with no optimization and no automatic
+algorithm fallback. The log confirms that only surface 37 is meshed. Candidate
+`dfecbc5e…` contains **85,386 nodes, 32,068 triangles and the 71,152
+quadrilaterals kept**. The independent cross-reading confirms all off-target
+XYZ/classes, the groups, the incidences and the entity bounds. It nevertheless
+refuses the off-target element records, because their identifiers changed. An
+independent two-step cross-reading establishes an exact bijection of the
+**107,348 off-target elements**: 107,186 are only renumbered, with no rotation,
+permutation or inversion of nodes. Reading `Generator.cpp` and `HighOrder.cpp`
+identifies the cause: the prior call to `SetOrder1` recreates the lines,
+triangles and quadrilaterals, even when already linear, with new tags.
+`Mesh.Renumber = 0` does not disable this operation.
 
-Le **sixième essai** sauvegarde le brut séparément, identique octet pour
-octet au cinquième candidat. Une bijection totale explicite rétablit les
-identifiants source hors cible et attribue des identifiants neufs aux
-2 471 triangles de la cible, avec un seul appel `renumberElements`.
-Les correspondances exigent le même type, la même entité et les mêmes nœuds
-dans le même ordre ; doublons, permutations, changements XYZ ou de classe
-sont refusés. Le fichier final `81bac4db…` est sauvegardé, parsé puis relu
-par Gmsh. **Les gardes natives et les 15 contrôles de contrelecture passent**,
-y compris tous les identifiants et connectivités hors cible. La table de
-correspondance reste archivée en privé avec son empreinte ; aucun maillage
-volumique de référence n'est remplacé. Deux avertissements Gmsh restent
-enregistrés, concernant les entités 364/face 28 et 368/face 29. Les contrôles
-réussis ne valent pas preuve de conformité continue à la CAO.
+The **sixth trial** saves the raw output separately, byte-for-byte identical to
+the fifth candidate. An explicit total bijection restores the off-target source
+identifiers and assigns fresh identifiers to the 2,471 triangles of the
+target, with a single `renumberElements` call. The correspondences require the
+same type, the same entity and the same nodes in the same order; duplicates,
+permutations, XYZ or class changes are refused. The final file `81bac4db…` is
+saved, parsed and then reread by Gmsh. **The native guards and the 15
+cross-reading checks pass**, including all off-target identifiers and
+connectivities. The correspondence table remains archived privately with its
+digest; no reference volume mesh is replaced. Two Gmsh warnings remain
+recorded, concerning entities 364/face 28 and 368/face 29. Successful checks
+are not proof of continuous conformity to the CAD.
 
-Sur la cible : **2 289 → 2 471 triangles**, **18 → 17** bornes SICN sous 0,1,
-minimum de borne **`2,223e−5 → 3,157e−5`**. C'est une diminution limitée
-d'une obstruction de discrétisation, pas un gain de rendement ou de tenue.
-Les 155 segments de frontière orientés sont identiques. Le maillage possède
-trois cycles de frontière, une composante et une caractéristique d'Euler −1,
-avant comme après ; les deux wires CAO ne doivent pas être confondus avec
-ces trois cycles. Aucun triangle nul, doublon ou défaut combinatoire de
-variété n'est relevé sur cette surface ; cela ne contrôle pas ses
-auto-intersections géométriques ni sa conformité continue à la CAO.
+On the target: **2,289 → 2,471 triangles**, **18 → 17** SICN bounds below 0.1,
+minimum bound **`2.223e−5 → 3.157e−5`**. This is a limited reduction of a
+discretization obstruction, not a gain in efficiency or strength. The 155
+oriented boundary segments are identical. The mesh has three boundary cycles,
+one component and an Euler characteristic of −1, before as after; the two CAD
+wires must not be confused with these three cycles. No zero triangle,
+duplicate or combinatorial manifold defect is found on this surface; this does
+not check its geometric self-intersections or its continuous conformity to the
+CAD.
 
-Les six essais Kali sont bornés à 300 s, dont 30 s réservées au nettoyage,
-avec quatre CPU et 4 Gio sans swap supplémentaire. Les trois premiers
-s'arrêtent avant génération ; les deux suivants sauvegardent des candidats
-refusés et le dernier passe les contrôles bornés de conservation. Ce dernier
-prend 14,62 s de travailleur, 15,31 s avec nettoyage ; sa contrelecture pure
-prend 1,67 s. Les conteneurs exacts sont supprimés et leur absence revérifiée.
-54 tests ciblés passent ; `make check` passe intégralement. Aucun calcul
-thermique, mécanique, LPBF ou CFD n'est ajouté par ce lot, et aucune dépense
-Vast n'est engagée. Reçus et empreintes :
-[registre de preuve](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json).
+The six Kali trials are bounded to 300 s, including 30 s reserved for cleanup,
+with four CPUs and 4 GiB with no extra swap. The first three stop before
+generation; the next two save refused candidates and the last passes the
+bounded preservation checks. The latter takes 14.62 s of worker time, 15.31 s
+with cleanup; its pure cross-reading takes 1.67 s. The exact containers are
+removed and their absence rechecked. 54 targeted tests pass; `make check`
+passes in full. No thermal, mechanical, LPBF or CFD computation is added by
+this batch, and no Vast spending is committed. Receipts and digests:
+[evidence register](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json).
 
-## Suite et périmètre d'exécution
+## Next steps and execution scope
 
-Priorités : établir la décision d'admission à partir des preuves distinctes
-de représentation, de frontières et du registre des 124 rôles ; conclure la
-couverture et le bilan de volumes avant admission du domaine gazeux.
-La localisation des 17 obstructions Delaunay est terminée ; elle a conduit
-au contre-essai MeshAdapt, puis à la localisation de ses 22 cas. L'isolation
-réelle par retrait temporaire des éléments hors cible a permis une passe
-Relocate2D ; elle est refusée pour dégradation des minima et écart des normales.
-La sélection monotone des propositions ne procure aucun gain ciblé et n'est
-pas appliquée. Évaluer maintenant les connectivités et le découpage 1D avec
-les voisins concernés, sans retoucher les courbes CAO. Ne pas promouvoir ces
-pilotes dans le cœur volumique sans contrôle des raccordements et de la qualité.
-Pour le solide, les résultats 147 puis 192 et Relocate3D montrent une baisse
-du nombre insuffisant à 283, mais le minimum dégradé n'est pas corrigé.
-Traiter le mécanisme volumique
-et les 22 faces de surface signalées, tout en traitant la conformité CAO dont
-le maximum échantillonné a augmenté. Ne pas retoucher la silhouette pour masquer ces
-défauts numériques. L'attribution des
-quatre octets auxiliaires est terminée : elle n'appelle ni nouvelle correction
-de ces faces ni répétition de leur test binaire strict.
-Le BOP du candidat et le lot des 136 paires n'ont pas à être relancés sur les
-mêmes entrées inchangées. Les contacts de
-sièges, l'assemblage complet, les parois, la thermique, la résistance et le
-procédé LPBF restent des contrôles distincts. Aucune puissance de 700 ch ni
-aucune aptitude à la fabrication ne sont démontrées par ces diagnostics.
+Priorities: establish the admission decision from the separate evidence on
+representation, boundaries and the register of 124 roles; conclude the coverage
+and the volume balance before admitting the gas domain. The localization of the
+17 Delaunay obstructions is complete; it led to the MeshAdapt counter-trial,
+then to the localization of its 22 cases. Real isolation by temporary removal
+of the off-target elements allowed a Relocate2D pass; it is refused for
+degradation of the minima and deviation of the normals. The monotone selection
+of proposals yields no targeted gain and is not applied. Now evaluate the
+connectivities and the 1D splitting with the neighbors concerned, without
+touching the CAD curves. Do not promote these pilots into the volume core
+without checking the junctions and the quality. For the solid, the results 147
+then 192 and Relocate3D show a drop of the insufficient count to 283, but the
+degraded minimum is not corrected. Address the volume mechanism and the 22
+flagged surface faces, while addressing CAD conformity, whose sampled maximum
+increased. Do not touch the silhouette to mask these numerical defects. The
+attribution of the four auxiliary bytes is complete: it calls for neither a new
+correction of these faces nor a repetition of their strict binary test. The
+candidate's BOP and the batch of 136 pairs do not need to be rerun on the same
+unchanged inputs. Seat contacts, full assembly, walls, thermal, strength and
+the LPBF process remain separate checks. Neither 700 hp nor manufacturability
+is demonstrated by these diagnostics.
 
 ```mermaid
 flowchart LR
-    A[Corps V5 sauvegardé] --> B[5 modes BOP réussis]
-    A --> C[Écarts attribués sur Linux et Mac]
-    C --> D[Borne locale calculée<br/>Équivalence globale à conclure]
-    A --> J[Maillage solide diagnostic<br/>271 001 tétraèdres]
-    J --> K[Qualité refusée<br/>4 871 éléments à traiter]
-    K --> L[Optimisation intérieure<br/>Frontière exactement conservée]
-    L --> M[1 722 éléments encore insuffisants<br/>Reprise de la discrétisation de surface]
-    M --> O[Essai MeshAdapt puis optimisation<br/>433 éléments encore insuffisants]
-    O --> P[Ajout ciblé de la face 4839<br/>346 insuffisants, minimum amélioré]
-    P --> S[Lot ciblé de 45 faces ajouté<br/>309 insuffisants, minimum dégradé]
-    S --> Y[Relocate3D intérieur, frontière conservée<br/>283 insuffisants, minimum inchangé]
-    Y --> Q[Qualité et conformité non admises<br/>Aucun résultat physique crédité]
-    E[Partition du gaz] --> F[136 paires sans recouvrement détecté]
-    E --> N[Pilote hexa-tétra préparé<br/>Adaptateur à implémenter, non exécuté]
-    N --> R[Inventaire natif obtenu<br/>2 contraintes internes à préserver]
-    R --> T[Import lié, contraintes 1D vérifiées<br/>Surface mixte sauvegardée]
-    T --> U[Premier pilote : types de surface refusés<br/>Pas de génération volumique]
-    U --> V[Huit arcs corrigés sans modifier la CAO<br/>72 faces structurées conformes]
-    V --> W[240 806 cellules mixtes générées<br/>Jeu local conservé]
-    W --> X[Recouvrements locaux du cœur confirmés<br/>Facettes inchangées, tags renommés]
-    X --> Z[Contre-essai sans optimisation finale<br/>243 337 cellules, 132 recouvrements locaux]
-    Y --> AA[Pire tétraèdre inchangé confirmé<br/>Direction de lissage localement défavorable]
-    AA --> AB[Optimisation locale distincte exécutée<br/>Gain nul, aucune modification retenue]
-    Z --> AC[Coque triangulaire du cœur extraite<br/>Transitions hexa-pyramides conservées]
-    AC --> AD[Témoin HXT réussi puis cœur sauvegardé<br/>Frontière conservée, contrôle minSJ refusé]
-    AD --> AE[Relecture native complète sans mutation<br/>2 minSJ non finis, 5 858 minSICN sous 0,1]
-    AE --> AF[Optimisation intérieure sur copie<br/>0 non-fini, 3 282 minSICN sous 0,1]
-    AF --> AG[Frontière et relecture conservées<br/>Cellules très aplaties encore à traiter]
-    AG --> AH[148 gamma sous 0,001 localisés sur la frontière<br/>Connectivité locale à corriger, contour conservé]
-    AH --> AI[5 échanges pentagonaux refusés<br/>3 cavités coniques proposées]
-    AI --> AJ[Plus petite cavité 5 vers 10 appliquée<br/>Frontière et relecture exactes, 3 281 minSICN sous 0,1]
-    AJ --> AK[Lot intérieur : 96 propositions refusées<br/>Aucune application native]
-    AK --> AL[Borne exacte : 661 faces obstructives<br/>Retessellation sur les mêmes surfaces CAO]
-    AL --> AM[Surface 37 retriangulée<br/>18 vers 17 obstructions de face]
-    AM --> AN[Tags source rétablis par bijection exacte<br/>XYZ et connectivités hors cible conservés]
-    AN --> AO[Contrelecture bornée réussie<br/>17 obstructions restantes, aucune admission CFD]
-    AO --> AP[MeshAdapt : pire borne améliorée<br/>22 obstructions, raccordements exacts]
-    AP --> AQ[Localisation : 21 cas avec sommets libres<br/>Isolation réelle du prochain essai à préparer]
-    AQ --> AR[Relocate2D isolé : 16 obstructions<br/>Minima dégradés et 14 normales hors critère : refus]
-    AR --> AS[Sélection monotone pure : 990 mouvements admissibles<br/>Toujours 22 obstructions, aucun export]
-    E --> G[102 CUT réussis sur 104<br/>Preuves complémentaires liées<br/>124 rôles source tracés]
-    G --> H[Admission globale encore refusée<br/>Couverture et volumes à conclure]
-    H --> I[Maillage puis calculs physiques]
+    A[V5 body saved] --> B[5 BOP modes successful]
+    A --> C[Differences attributed on Linux and Mac]
+    C --> D[Local bound computed<br/>Global equivalence to conclude]
+    A --> J[Diagnostic solid mesh<br/>271,001 tetrahedra]
+    J --> K[Quality refused<br/>4,871 elements to address]
+    K --> L[Interior optimization<br/>Boundary exactly preserved]
+    L --> M[1,722 elements still insufficient<br/>Surface discretization rework]
+    M --> O[MeshAdapt trial then optimization<br/>433 elements still insufficient]
+    O --> P[Targeted addition of face 4839<br/>346 insufficient, minimum improved]
+    P --> S[Targeted batch of 45 faces added<br/>309 insufficient, minimum degraded]
+    S --> Y[Interior Relocate3D, boundary preserved<br/>283 insufficient, minimum unchanged]
+    Y --> Q[Quality and conformity not admitted<br/>No physical result credited]
+    E[Gas partition] --> F[136 pairs with no overlap detected]
+    E --> N[Hexa-tetra pilot prepared<br/>Adapter to implement, not run]
+    N --> R[Native inventory obtained<br/>2 internal constraints to preserve]
+    R --> T[Linked import, 1D constraints checked<br/>Mixed surface saved]
+    T --> U[First pilot: surface types refused<br/>No volume generation]
+    U --> V[Eight arcs corrected without modifying the CAD<br/>72 structured faces conforming]
+    V --> W[240,806 mixed cells generated<br/>Local clearance preserved]
+    W --> X[Local overlaps of the core confirmed<br/>Facets unchanged, tags renamed]
+    X --> Z[Counter-trial without final optimization<br/>243,337 cells, 132 local overlaps]
+    Y --> AA[Worst tetrahedron confirmed unchanged<br/>Smoothing direction locally unfavorable]
+    AA --> AB[Separate local optimization run<br/>Zero gain, no modification kept]
+    Z --> AC[Triangular shell of the core extracted<br/>Hexa-pyramid transitions preserved]
+    AC --> AD[HXT witness successful then core saved<br/>Boundary preserved, minSJ check refused]
+    AD --> AE[Full native reread without mutation<br/>2 non-finite minSJ, 5,858 minSICN below 0.1]
+    AE --> AF[Interior optimization on a copy<br/>0 non-finite, 3,282 minSICN below 0.1]
+    AF --> AG[Boundary and reread preserved<br/>Very flat cells still to address]
+    AG --> AH[148 gamma below 0.001 located on the boundary<br/>Local connectivity to correct, contour preserved]
+    AH --> AI[5 pentagonal swaps refused<br/>3 conical cavities proposed]
+    AI --> AJ[Smallest cavity 5 to 10 applied<br/>Exact boundary and reread, 3,281 minSICN below 0.1]
+    AJ --> AK[Interior batch: 96 proposals refused<br/>No native application]
+    AK --> AL[Exact bound: 661 obstructive faces<br/>Retessellation on the same CAD surfaces]
+    AL --> AM[Surface 37 retriangulated<br/>18 to 17 face obstructions]
+    AM --> AN[Source tags restored by exact bijection<br/>Off-target XYZ and connectivities preserved]
+    AN --> AO[Bounded cross-reading successful<br/>17 obstructions remaining, no CFD admission]
+    AO --> AP[MeshAdapt: worst bound improved<br/>22 obstructions, exact junctions]
+    AP --> AQ[Localization: 21 cases with free vertices<br/>Real isolation of the next trial to prepare]
+    AQ --> AR[Isolated Relocate2D: 16 obstructions<br/>Degraded minima and 14 normals out of criterion: refused]
+    AR --> AS[Pure monotone selection: 990 admissible moves<br/>Still 22 obstructions, no export]
+    E --> G[102 CUT successful out of 104<br/>Complementary evidence linked<br/>124 source roles traced]
+    G --> H[Global admission still refused<br/>Coverage and volumes to conclude]
+    H --> I[Meshing then physical computations]
 ```
 
-Les essais utilisent Kali et l'image OCP existants, sans réseau dans les
-conteneurs et avec sources/entrées en lecture seule. Les budgets sont
-respectivement 90 s/2 Gio pour les supports, 60 s/2 Gio pour chaque témoin,
-300 s/4 Gio pour les guides et 90 s/4 Gio pour la partition, avec deux CPU et
-le même plafond pour RAM et RAM+swap. Les réintégrations sont bornées à
-300 s/4 Gio, les audits du gaz à 150 s/4 Gio et le BOP indépendant à
-240 s au total/4 Gio, toujours deux CPU.
-Aucun OOM ni timeout pour ces essais Kali ; conteneurs exacts
-supprimés et absence vérifiée. Aucune nouvelle dépense Vast pour ce lot.
+The trials use the existing Kali and OCP image, with no network in the
+containers and with sources/inputs read-only. The budgets are respectively
+90 s/2 GiB for the supports, 60 s/2 GiB for each witness, 300 s/4 GiB for the
+guides and 90 s/4 GiB for the partition, with two CPUs and the same ceiling for
+RAM and RAM+swap. The reintegrations are bounded to 300 s/4 GiB, the gas audits
+to 150 s/4 GiB and the independent BOP to 240 s in total/4 GiB, always two
+CPUs. No OOM and no timeout for these Kali trials; exact containers removed and
+absence checked. No new Vast spending for this batch.

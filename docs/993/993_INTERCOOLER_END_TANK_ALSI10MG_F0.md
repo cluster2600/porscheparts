@@ -1,56 +1,73 @@
-# End-tank d'intercooler 993 Turbo — concept AlSi10Mg F0
+# 993 Turbo intercooler end tank — AlSi10Mg F0 concept
 
-TA Technix publie pour son intercooler aftermarket 993 Turbo deux noyaux de
-`260 × 260 × 100 mm`, des raccords extérieurs de `66 mm`, un raccord intérieur
-de `68 mm`, une largeur maximale de `860 mm`, une hauteur de `240 mm` et un
-entraxe de montage de `690 mm`. Albert Motorsport recoupe les deux noyaux et
-déclare un ensemble aluminium soudé. Ces fiches ne donnent aucun plan d'end-tank,
-aucune orientation des trois dimensions ni aucune nuance d'aluminium.
+TA Technix publishes, for its 993 Turbo aftermarket intercooler, two cores of
+`260 × 260 × 100 mm`, outer connections of `66 mm`, an inner connection of
+`68 mm`, a maximum width of `860 mm`, a height of `240 mm` and a mounting
+center distance of `690 mm`. Albert Motorsport cross-checks the two cores and
+declares a welded aluminum assembly. These listings give no end-tank drawing,
+no orientation of the three dimensions and no aluminum grade.
 
-PorscheFanatics situe le refroidissement de suralimentation air-air du 993
-Turbo et ses charge coolers, mais n'apporte aucune cote. Le F0 interprète donc
-`260 × 100 mm` comme une face de noyau et `66 mm` comme le diamètre extérieur
-d'un raccord. Le raccord central de `68 mm`, le second noyau, les fixations et
-la géométrie gauche/droite ne sont pas modélisés.
+PorscheFanatics places the air-to-air charge cooling of the 993 Turbo and its
+charge coolers, but provides no dimension. The F0 therefore interprets
+`260 × 100 mm` as a core face and `66 mm` as the outer diameter of a
+connection. The central `68 mm` connection, the second core, the fasteners
+and the left/right geometry are not modeled.
 
-## Pourquoi l'additif a du sens ici
+```mermaid
+flowchart LR
+  S["Published: TA Technix cores<br/>260 × 260 × 100 mm, 66/68 mm<br/>connections; no end-tank drawing"] --> H["F0 interpretation<br/>260 × 100 mm core face,<br/>66 mm connection"]
+  H --> G["F0 BREP valid<br/>605.92 g, three open guides"]
+  G --> F["Flow and pressure screens<br/>not CFD, real core absent"]
+  G --> P["LPBF print screen<br/>build_y, 30 µm"]
+  F --> V["Not authorized for manufacturing,<br/>installation or engine start-up"]
+  P --> V
+  class S ok
+  class H,F,P open
+  class V stop
+  classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+  classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+  classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+```
 
-Le LPBF permet une transition continue ronde-vers-rectangle, trois guides de
-flux intégrés et une bride dans une seule pièce ouverte et dépoudrable. Il faut
-encore démontrer que ce bénéfice bat un end-tank en tôle aluminium soudée TIG ou
-une pièce moulée sur débit, uniformité, masse, coût, inspection, réparabilité et
-fatigue.
+*Diagram: the dossier's own path, restated from the text below. It adds no number or result, and it proves nothing about the physical part.*
 
-Le F0 possède une transition synthétique de `120 mm`, une paroi de `2,2 mm`,
-trois guides ouverts de `1,5 mm`, une bride de noyau et un collet rond. La
-matière candidate est l'AlSi10Mg LPBF ; l'alliage de l'intercooler commercial
-reste inconnu.
+## Why additive makes sense here
 
-Le STEP relu contient un solide BREP valide et un volume fluide connecté entre
-la face rectangulaire et le port rond. Son enveloppe vaut
-`134 × 274 × 114 mm`, son volume matière `226 936,46 mm³` et sa masse théorique
-`605,92 g` à `2,67 g/cm³`. Ce n'est ni une géométrie OEM ni une pièce compatible.
+LPBF allows a continuous round-to-rectangle transition, three integrated flow
+guides and a flange in a single open, depowderable part. It must still be
+shown that this benefit beats a TIG-welded aluminum sheet end tank or a cast
+part on flow, uniformity, mass, cost, inspection, repairability and fatigue.
 
-## Criblages exécutés
+The F0 has a synthetic `120 mm` transition, a `2.2 mm` wall, three open
+`1.5 mm` guides, a core flange and a round collar. The candidate material is
+LPBF AlSi10Mg; the alloy of the commercial intercooler remains unknown.
 
-Le cas synthétique prend `3,6 l`, `5 750 tr/min`, un rendement volumétrique de
-`0,95`, `1,8 bar` absolu, `330 K`, une aire ouverte de noyau de `65 %`, une
-pression relative de `0,8 bar`, `+100 K` et `100 h`.
+The re-read STEP contains a valid BREP solid and a connected fluid volume
+between the rectangular face and the round port. Its envelope is
+`134 × 274 × 114 mm`, its material volume `226,936.46 mm³` and its theoretical
+mass `605.92 g` at `2.67 g/cm³`. It is neither an OEM geometry nor a
+compatible part.
 
-Les équations quatre-temps et gaz parfait donnent `0,08194 m³/s` et
-`0,1557 kg/s` par banc. La vitesse passe de `27,49 m/s` au raccord à
-`4,85 m/s` sur l'aire ouverte du noyau, pour Reynolds `169 408`. L'écran
-d'expansion brusque donne `487 Pa` et `39,9 W` perdus, avec une récupération
-cinétique idéale de `696 Pa`. Ce n'est pas une CFD et le noyau réel est absent.
+## Screenings run
 
-À `0,8 bar`, l'effort sur la face vaut `2,08 kN`, la membrane du raccord
-`1,2 MPa` et le panneau guidé idéalisé `3,18 MPa`. La dilatation libre de la
-bride vaut `0,575 mm`. La borne totalement contrainte atteint `147 MPa`, soit un
-rapport de `1,67` face à la comparaison ambiante de `245 MPa`. Les
-`51,75 millions` de pulsations calculées sur `100 h` ne donnent aucune durée de
-vie faute de carte fatigue qualifiée.
+The synthetic case takes `3.6 l`, `5,750 rpm`, a volumetric efficiency of
+`0.95`, `1.8 bar` absolute, `330 K`, a core open area of `65 %`, a gauge
+pressure of `0.8 bar`, `+100 K` and `100 h`.
 
-## Reproduction logicielle
+The four-stroke and ideal-gas equations give `0.08194 m³/s` and
+`0.1557 kg/s` per bank. The velocity goes from `27.49 m/s` at the connection to
+`4.85 m/s` over the core open area, for Reynolds `169,408`. The
+sudden-expansion screen gives `487 Pa` and `39.9 W` lost, with an ideal kinetic
+recovery of `696 Pa`. This is not a CFD and the real core is absent.
+
+At `0.8 bar`, the force on the face is `2.08 kN`, the connection membrane
+`1.2 MPa` and the idealized guided panel `3.18 MPa`. The free expansion of the
+flange is `0.575 mm`. The fully constrained bound reaches `147 MPa`, i.e. a
+ratio of `1.67` against the room-temperature comparison value of `245 MPa`.
+The `51.75 million` pulsations calculated over `100 h` give no life for lack
+of a qualified fatigue map.
+
+## Software reproduction
 
 ```bash
 docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
@@ -60,42 +77,43 @@ docker run --rm --platform linux/amd64 -v "$PWD:/work" -w /work \
   --report parts/993-eng-intercooler-end-tank-alsi10mg-f0-0001/evidence/engineering-screen.json
 ```
 
-## Gates suivants
+## Next gates
 
-1. Scanner l'ensemble gauche/droit et mesurer noyaux, ports, brides,
-   soudures/brasages, fixations, flexibles, conduit de capot et jeux installés.
-2. Mesurer débit, pression, température, uniformité, perte du noyau, transitoires,
-   mouvement moteur, vibrations et cycles d'usage.
-3. Reconstruire les deux end-tanks avec datums, tolérances, hose beads,
-   surépaisseurs et interfaces d'assemblage réelles.
-4. Comparer sans guides/avec guides par CFD RANS puis transitoire, CHT et FEA
-   pression-température/modal/fatigue avec convergence.
-5. Qualifier AlSi10Mg, orientation, supports, distorsion, traitement, usinage,
-   soudure/brasage, CT, rugosité, fuite, épreuve et éclatement.
-6. Corréler sur banc débit-pression-température, cycles et shaker avant dyno et
-   véhicule sous revue d'ingénierie.
+1. Scan the left/right assembly and measure cores, ports, flanges,
+   welds/brazes, fasteners, hoses, engine lid duct and installed clearances.
+2. Measure flow, pressure, temperature, uniformity, core loss, transients,
+   engine movement, vibration and duty cycles.
+3. Rebuild both end tanks with datums, tolerances, hose beads, machining
+   allowances and real assembly interfaces.
+4. Compare without/with guides by RANS then transient CFD, CHT and
+   pressure-temperature/modal/fatigue FEA, with convergence.
+5. Qualify AlSi10Mg, orientation, supports, distortion, heat treatment,
+   machining, welding/brazing, CT, roughness, leak, proof and burst.
+6. Correlate on a flow-pressure-temperature bench, cycles and shaker before
+   dyno and vehicle, under engineering review.
 
-PhysicsNeMo attend un dataset CFD/CHT/structure corrélé avec train, holdout et
-hors-distribution. SimReady attend l'assemblage mesuré. Ce STEP F0 n'est
-autorisé ni pour fabrication, ni pour montage, ni pour mise en route moteur.
+PhysicsNeMo awaits a correlated CFD/CHT/structure dataset with train, holdout
+and out-of-distribution sets. SimReady awaits the measured assembly. This F0
+STEP is authorized neither for manufacturing, nor for installation, nor for
+engine start-up.
 
 <!-- print-screen:begin -->
 
-## Simulation d'impression LPBF
+## LPBF print simulation
 
-Le STEP a ete tessele puis tranche sur toute sa hauteur a `30 µm`, route EOS M 290 de la matiere candidate. Orientation retenue par la regle automatique : `build_y`.
+The STEP was tessellated, then sliced over its full height at `30 µm`, on the EOS M 290 route of the candidate material. Orientation chosen by the automatic rule: `build_y`.
 
-| grandeur | valeur |
+| quantity | value |
 |---|---:|
-| couches | 9 134 |
-| hauteur de construction | 274,00 mm |
-| couches avec region non soutenue | 7215 |
-| proxy de supports | 1 779 507,45 mm³ |
-| epaisseur locale p01 | 1,044 mm |
-| poudre piegee a 1,00 mm | 0,00 mm³ |
+| layers | 9,134 |
+| build height | 274.00 mm |
+| layers with an unsupported region | 7215 |
+| support proxy | 1,779,507.45 mm³ |
+| local thickness p01 | 1.044 mm |
+| trapped powder at 1.00 mm | 0.00 mm³ |
 
-![Simulation d'impression LPBF](../../parts/993-eng-intercooler-end-tank-alsi10mg-f0-0001/evidence/lpbf-f0/993-eng-intercooler-end-tank-alsi10mg-f0-0001-lpbf-geometry-screen.png)
+![LPBF print simulation](../../parts/993-eng-intercooler-end-tank-alsi10mg-f0-0001/evidence/lpbf-f0/993-eng-intercooler-end-tank-alsi10mg-f0-0001-lpbf-geometry-screen.png)
 
-Ce criblage n'est ni un projet EOSPRINT, ni un calcul de distorsion, ni un controle du recoater. **L'impression reste interdite.**
+This screening is neither an EOSPRINT project, nor a distortion calculation, nor a recoater check. **Printing remains prohibited.**
 
 <!-- print-screen:end -->

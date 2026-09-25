@@ -1,106 +1,112 @@
-# M64 — redistribution d'arête et remaillage conjoint
+# M64 — edge redistribution and joint remeshing
 
-**Le défaut ciblé au coin 93 est corrigé sur la copie, mais le candidat reste
-refusé : la qualité du maillage se dégrade ailleurs.** Aucun changement de
-contour Porsche ni promotion du maillage volumique de référence.
+**The targeted defect at corner 93 is fixed on the copy, but the candidate stays
+rejected: mesh quality degrades elsewhere.** No change to the Porsche contour
+and no promotion of the reference volume mesh.
 
-Ce lot suit l'[audit des diagonales](M64_SURFACE_DIAGONAL_AUDIT_20260909.md).
-Il utilise la surface MeshAdapt `7af7f207…`, pas un nouveau dessin de culasse.
-L'échelle physique et les interfaces M64 restent non qualifiées.
+This batch follows the [diagonal audit](M64_SURFACE_DIAGONAL_AUDIT_20260909.md).
+It uses the MeshAdapt surface `7af7f207…`, not a new cylinder-head design.
+The physical scale and the M64 interfaces remain unqualified.
 
-## Essai réellement exécuté
+## Trial actually run
 
-Un conteneur Linux x86 sur Kali exécute une génération 1D temporaire de
-l'arête 82 : 64 nœuds au lieu de 13, progression demandée `1/1,1` vers le
-sommet natif 51. Le maillage temporaire est vidé avant la réinjection exacte
-de la référence. Seules l'arête 82 et les faces 30/37 sont ensuite remaillées.
-La CAO est montée en lecture seule ; aucun volume 3D n'est généré.
+A Linux x86 container on Kali runs a temporary 1D generation of
+edge 82: 64 nodes instead of 13, requested progression `1/1.1` toward
+native vertex 51. The temporary mesh is cleared before the exact reinjection
+of the reference. Only edge 82 and faces 30/37 are then remeshed.
+The CAD is mounted read-only; no 3D volume is generated.
 
-Les rapports mesurent une progression réelle des cordes de 0,909090 à
-0,909355. Le dernier segment vaut 0,96736 fois le segment voisin de l'arête 93,
-sous la limite d'essai de 2. Ce rapport est un critère de gradation numérique,
-pas une cote ni une tolérance de fabrication.
+The reports measure an actual chord progression from 0.909090 to
+0.909355. The last segment is 0.96736 times the neighboring segment of edge 93,
+below the trial limit of 2. This ratio is a numerical grading criterion,
+not a dimension nor a manufacturing tolerance.
 
-Les neuf contrôles natifs de conservation passent. Le contre-calcul retrouve
-les classes, coordonnées et éléments ordonnés hors cible inchangés, y compris
-les 72 faces portant 71 152 quadrilatères. Les frontières communes 82 et 93
-restent conformes. Les paramètres natifs de la nouvelle arête 82 sont conservés
-pendant la génération 2D ; le MSH final ne sérialise pas ces paramètres.
+The nine native preservation checks pass. The counter-computation finds
+the classes, coordinates and ordered elements outside the target unchanged, including
+the 72 faces carrying 71,152 quadrilaterals. The shared boundaries 82 and 93
+remain conforming. The native parameters of the new edge 82 are kept
+during 2D generation; the final MSH does not serialize these parameters.
 
-## Résultat quantifié : amélioration locale, refus global du candidat
+## Quantified result: local improvement, global rejection of the candidate
 
-| Indicateur | Source | Candidat refusé |
+| Indicator | Source | Rejected candidate |
 |---|---:|---:|
 | Triangles face 30 | 107 | 268 |
-| Triangles face 37 | 2 299 | 2 478 |
+| Triangles face 37 | 2,299 | 2,478 |
 | Obstructions face 30 | 0 | 1 |
 | Obstructions face 37 | 22 | 20 |
-| Obstructions des deux faces | 22 | 21 |
-| Borne minimale des deux faces | 0,0032268884 | 0,0010824348 |
-| Angle minimal des deux faces, degrés | 0,085767353 | 0,023879723 |
+| Obstructions, both faces | 22 | 21 |
+| Minimum bound, both faces | 0.0032268884 | 0.0010824348 |
+| Minimum angle, both faces, degrees | 0.085767353 | 0.023879723 |
 
-Une obstruction désigne ici le repère mathématique de borne de qualité
-inférieur à 0,1 pour un tétraèdre partageant la facette. Ce n'est ni le SICN
-d'un volume effectivement généré, ni un seuil universel d'admission CFD.
-Les comparaisons indépendantes utilisent des fractions exactes des coordonnées
-binary64 ; les décimales du tableau sont des affichages arrondis.
+An obstruction here means the mathematical quality-bound marker
+below 0.1 for a tetrahedron sharing the facet. It is neither the SICN
+of an actually generated volume nor a universal CFD admission threshold.
+The independent comparisons use exact fractions of the binary64
+coordinates; the decimals in the table are rounded displays.
 
-La facette au coin 93 ne présente plus cette obstruction. En revanche,
-la face 30 gagne un triangle problématique et la face 37 voit ses extrema
-se dégrader. La baisse du compteur total ne suffit donc pas à retenir le
-candidat. Le maillage candidat sauvegardé porte l'empreinte `2de5fd52…`.
+The facet at corner 93 no longer shows this obstruction. However,
+face 30 gains a problematic triangle and face 37 sees its extrema
+degrade. The drop in the total count is therefore not enough to keep the
+candidate. The saved candidate mesh carries the digest `2de5fd52…`.
 
-Le contrôle exact des contacts avec la face 36 traite **503 paires avant et
-550 après** : aucun contact non conforme dans les deux cas. Il ne couvre pas
-toutes les paires du modèle ni la couverture continue de la CAO.
+The exact contact check with face 36 processes **503 pairs before and
+550 after**: no non-conforming contact in either case. It does not cover
+all pairs of the model nor the continuous coverage of the CAD.
 
-## Conséquence pour le prochain essai
+## Consequence for the next trial
 
-Le triangle dégradé de la face 30 est attaché au dernier segment de 82, près
-du sommet 51. Les deux pires triangles de 37 s'appuient sur de très petits
-segments de l'arête 99, distincte de 82. La prochaine piste est donc un champ
-de taille 2D local autour de ces deux zones, avec contrôle des faces voisines,
-plutôt qu'un autre coefficient de progression 82 seul. Ce champ n'est pas
-encore appliqué ; ce diagnostic ne prouve pas à lui seul la cause interne
-du comportement du mailleur. Les courbes CAO restent fixes.
+The degraded triangle of face 30 is attached to the last segment of 82, near
+vertex 51. The two worst triangles of 37 rest on very small
+segments of edge 99, which is distinct from 82. The next lead is therefore a local
+2D size field around these two zones, with a check of the neighboring faces,
+rather than another progression coefficient on 82 alone. This field is not
+applied yet; this diagnosis alone does not prove the internal cause
+of the mesher's behavior. The CAD curves stay fixed.
 
-La lecture du code Gmsh 4.15.2 précise le prochain essai :
-`src/mesh/BackgroundMeshTools.cpp`, lignes 244–268, consulte le callback
-de taille puis applique `Mesh.MeshSizeMin`. Le plancher actuel de 0,005
-peut donc relever une petite taille demandée. Ce n'est pas une borne absolue
-sur tous les éléments existants : `src/mesh/meshGFaceBDS.cpp`, lignes 603–624,
-initialise aussi les tailles à partir des segments 1D incidents. Le prochain
-cas doit tester ensemble le plancher et le champ local, en comptant les
-appels par face ; un callback ajouté seul n'est pas une correction démontrée.
-Cette inspection du code n'exécute pas le prochain cas.
+Reading the Gmsh 4.15.2 code clarifies the next trial:
+`src/mesh/BackgroundMeshTools.cpp`, lines 244–268, queries the size
+callback then applies `Mesh.MeshSizeMin`. The current floor of 0.005
+can therefore raise a small requested size. It is not an absolute bound
+on all existing elements: `src/mesh/meshGFaceBDS.cpp`, lines 603–624,
+also initializes sizes from the incident 1D segments. The next
+case must test the floor and the local field together, counting the
+calls per face; a callback added on its own is not a demonstrated fix.
+This code inspection does not run the next case.
 
-## Exécution, preuves et limites
+## Execution, evidence and limits
 
-- Calcul natif : 16,344 s ; 17,014 s avec le nettoyage.
-- Contre-calcul indépendant : 5,933 s.
-- Plafonds : quatre CPU, 4 Gio, cinq minutes avec réserve de nettoyage.
-- 38 tests logiciels ciblés passent : 15 worker, 10 lanceur, 13 contre-calcul.
-- `make check` termine avec le code 0 ; des tests optionnels sont ignorés
-  selon les dépendances disponibles. Ce contrôle du dépôt ne valide pas la pièce.
-- Processus terminé avec le code 2 de refus de qualité, sans erreur de
-  génération, dépassement de temps ni manque de mémoire signalé.
-- Conteneur supprimé et absence revérifiée ; fichiers d'entrée inchangés.
-- Aucune nouvelle dépense Vast, aucune qualification CFD, thermique,
-  mécanique, LPBF ou puissance moteur.
+- Native computation: 16.344 s; 17.014 s with cleanup.
+- Independent counter-computation: 5.933 s.
+- Caps: four CPUs, 4 GiB, five minutes with a cleanup reserve.
+- 38 targeted software tests pass: 15 worker, 10 launcher, 13 counter-computation.
+- `make check` ends with code 0; optional tests are skipped
+  depending on the available dependencies. This repository check does not validate the part.
+- Process ended with quality-refusal code 2, with no generation error,
+  timeout or out-of-memory reported.
+- Container deleted and its absence re-verified; input files unchanged.
+- No new Vast spending, no CFD, thermal, mechanical, LPBF or engine-power
+  qualification.
 
-Le booléen historique du lanceur `process_completed_and_cleaned` reste faux
-car il exige aussi un code 0 : il ne signifie pas ici un conteneur laissé actif.
-Le brut, le candidat et les reçus sont conservés en privé ; leurs empreintes
-figurent dans le [registre de preuves](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json),
-entrée `gas_curve82_joint_remesh`. Aucune autorisation de fabrication n'est ouverte.
+The launcher's historical boolean `process_completed_and_cleaned` stays false
+because it also requires code 0: here it does not mean a container left running.
+The raw output, the candidate and the receipts are kept private; their digests
+appear in the [evidence register](../../twins/m64-cylinder-head/evidence/geometry-checkpoint-20260908.json),
+entry `gas_curve82_joint_remesh`. No manufacturing authorization is opened.
 
 ```mermaid
 flowchart LR
-    A["CAO inchangée et surface source"] --> B["64 nœuds sur 82"]
-    B --> C["Remaillage conjoint 30 et 37"]
-    C --> D["Coin 93 corrigé ; contacts locaux conformes"]
-    C --> E["Qualité dégradée ailleurs"]
-    D --> F["Candidat non promu"]
+    A["Unchanged CAD and source surface"] --> B["64 nodes on 82"]
+    B --> C["Joint remesh of 30 and 37"]
+    C --> D["Corner 93 fixed;<br/>local contacts conforming"]
+    C --> E["Quality degraded elsewhere"]
+    D --> F["Candidate not promoted"]
     E --> F
-    F --> G["Prochain essai : tailles 2D locales autour de 51 et 99"]
+    F --> G["Next trial: local 2D sizes<br/>around 51 and 99"]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
+    class D ok;
+    class E,F stop;
+    class G open;
 ```
