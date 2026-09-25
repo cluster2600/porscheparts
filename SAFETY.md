@@ -1,137 +1,138 @@
-# Politique de sécurité des pièces
+# Part safety policy
 
-Ce document décide **ce que le dépôt a le droit de publier**, et sous quelles
-conditions. Il prime sur l'intérêt technique d'une pièce, sur la qualité d'un
-calcul et sur l'envie de fabriquer.
+This document decides **what the repository is allowed to publish**, and under
+what conditions. It overrides the technical interest of a part, the quality of a
+calculation and the urge to manufacture.
 
-Une seule phrase le résume : **un calcul n'autorise jamais une fabrication.**
+One sentence sums it up: **a calculation never authorizes manufacturing.**
 
 ## 1. Classes
 
-| Classe | Définition | Publication autorisée |
+| Class | Definition | Publication allowed |
 |---|---|---|
-| `non_critical` | Habillage ou pièce dont la rupture ne crée pas de danger immédiat | Après validation dimensionnelle et montage |
-| `functional` | Pièce sollicitée dont la rupture peut immobiliser ou endommager le véhicule | Après essais fonctionnels documentés |
-| `safety_critical` | Rupture susceptible de provoquer perte de contrôle, incendie ou blessure | Seulement après revue d'ingénierie formelle |
-| `prohibited_pending_engineering` | Risque ou données insuffisantes | Jamais comme pièce libérée |
+| `non_critical` | Trim, or a part whose failure creates no immediate hazard | After dimensional and fit validation |
+| `functional` | Loaded part whose failure can immobilize or damage the vehicle | After documented functional testing |
+| `safety_critical` | Failure could cause loss of control, fire or injury | Only after formal engineering review |
+| `prohibited_pending_engineering` | Risk, or insufficient data | Never as a released part |
 
-Ces quatre valeurs sont celles du schéma de fiche. Elles ne se paraphrasent pas.
+These four values are the ones in the record schema. They are not paraphrased.
 
-### Domaines présumés critiques
+### Presumed-critical domains
 
-Sont présumés critiques : freinage, direction, suspension, roues, retenue des
-occupants, circuit de carburant, points de levage, fixations principales du
-groupe motopropulseur et composants internes moteur fortement chargés.
+The following are presumed critical: braking, steering, suspension, wheels,
+occupant restraint, fuel system, lifting points, main powertrain mounts and
+highly loaded internal engine components.
 
-« Présumé » veut dire que la charge de la preuve est inversée : ce n'est pas au
-document de démontrer le danger, c'est à la fiche de démontrer l'innocuité. La
-même liste est appliquée automatiquement par `scripts/select_candidates.py` et
-par les criblages titane ; elle doit rester identique des deux côtés.
+"Presumed" means the burden of proof is reversed: it is not up to the document
+to demonstrate the hazard, it is up to the record to demonstrate that the part
+is harmless. The same list is applied automatically by
+`scripts/select_candidates.py` and by the titanium screenings; it must stay
+identical on both sides.
 
-### Le mode de rupture prime sur le domaine
+### Failure mode overrides domain
 
-Une pièce peut n'appartenir à aucun domaine de la liste et rester
-`safety_critical` par son mode de rupture. **L'incendie en est le cas le plus
-courant et le plus oublié** : une conduite d'huile de turbocompresseur n'est ni
-un frein ni un organe de direction, mais sa rupture dépose de l'huile sur un
-carter de turbine largement au-dessus du point d'auto-inflammation. Elle est
-critique, et aucune finesse de dessin ne l'en sort — voir
+A part can belong to no domain on the list and still be `safety_critical`
+because of its failure mode. **Fire is the most common and most overlooked
+case**: a turbocharger oil line is neither a brake nor a steering component, but
+its failure drops oil onto a turbine housing far above the autoignition point.
+It is critical, and no refinement of the design takes it out of that class — see
 [`docs/993/993_CIRCUIT_HUILE_TURBO_202-16.md`](docs/993/993_CIRCUIT_HUILE_TURBO_202-16.md).
 
-La question à poser n'est donc pas « à quel groupe la pièce appartient-elle »,
-mais **« que se passe-t-il quand elle casse »**.
+So the question to ask is not "which group does the part belong to", but
+**"what happens when it breaks"**.
 
-## 2. Une validation de montage ne prouve pas la sécurité
+## 2. A fit validation does not prove safety
 
-Une pièce qui entre dans son logement peut encore échouer par fatigue, fluage,
-température, vibrations, corrosion, mauvais serrage ou défaut de fabrication.
-Les statuts du catalogue ne doivent jamais être déduits d'une photographie seule.
+A part that fits its location can still fail through fatigue, creep,
+temperature, vibration, corrosion, incorrect tightening or a manufacturing
+defect. Catalog statuses must never be inferred from a photograph alone.
 
-De la même façon, **un criblage numérique n'est pas une preuve**. Le dépôt
-produit des criblages géométriques, thermiques et de route ; ils servent à
-écarter, pas à autoriser. Un rapport dont toutes les portes seraient vertes ne
-libère toujours aucune pièce : seule la revue d'ingénierie signée le fait, au
-terme du [pipeline de fabrication additive](docs/AM_VALIDATION_PIPELINE.md) dont
-les onze étapes doivent toutes être `passed`.
+Likewise, **a digital screening is not evidence**. The repository produces
+geometric, thermal and route screenings; they serve to rule out, not to
+authorize. A report whose gates were all green would still release no part:
+only the signed engineering review does that, at the end of the
+[additive manufacturing pipeline](docs/AM_VALIDATION_PIPELINE.md), whose eleven
+stages must all be `passed`.
 
-## 3. Exigences minimales pour le métal
+## 3. Minimum requirements for metal
 
-- Matière et lot traçables
-- Procédé et paramètres qualifiés par le fabricant
-- Orientation et supports documentés
-- Traitement thermique documenté
-- HIP justifié pour les sollicitations cycliques critiques
-- Surfaces fonctionnelles usinées lorsque nécessaire
-- Contrôle dimensionnel et contrôle non destructif adaptés
-- Prévention du grippage et de la corrosion galvanique
-- Plan de charge, calcul et essais conservés comme preuves
+- Traceable material and lot
+- Process and parameters qualified by the manufacturer
+- Documented orientation and supports
+- Documented heat treatment
+- HIP justified for critical cyclic loading
+- Functional surfaces machined where necessary
+- Appropriate dimensional inspection and non-destructive testing
+- Prevention of galling and galvanic corrosion
+- Load plan, calculations and tests kept as evidence
 
-À quoi s'ajoutent deux vérifications que ce dépôt a appris à faire
-explicitement, parce qu'elles se manquent facilement.
+To which this repository adds two checks it has learned to make explicitly,
+because they are easy to miss.
 
-### La température de service contre le plafond de l'alliage
+### Service temperature against the alloy ceiling
 
-Un alliage a un plafond, et une pièce a une température. Les deux doivent être
-écrits, et confrontés. Le Ti-6Al-4V est limité par le fluage vers 400 °C ; une
-pièce déclarée à 427 °C ne passe pas, même si tout le reste de la route est
-irréprochable. Cette confrontation est une porte de l'étape 04 et doit rester
-fermée tant que la température réelle n'est pas mesurée.
+An alloy has a ceiling, and a part has a temperature. Both must be written down
+and compared. Ti-6Al-4V is creep-limited around 400 °C; a part declared at
+427 °C does not pass, even if everything else about the route is flawless. This
+comparison is a gate in stage 04 and must stay closed until the actual
+temperature is measured.
 
-**Une température synthétique n'est pas une température.** Quand un criblage
-fixe une valeur pour pouvoir calculer, cela doit être dit, et la décision qui en
-dépend reste suspendue à une mesure.
+**A synthetic temperature is not a temperature.** When a screening fixes a value
+so that it can compute, that must be stated, and the decision that depends on it
+stays suspended pending a measurement.
 
-### Le démontage fait partie de la vie de la pièce
+### Disassembly is part of the part's life
 
-Une pièce qu'on démonte à l'entretien subit des serrages répétés. Le titane
-grippe, contre lui-même comme contre l'acier, sans traitement de surface. Un
-raccord démonté à chaque vidange, un filetage repris, un contact glissant non
-traité : ce sont des motifs de refus, pas des détails de finition.
+A part that is removed during maintenance undergoes repeated tightening.
+Titanium galls, against itself as well as against steel, without a surface
+treatment. A fitting removed at every oil change, a rethreaded thread, an
+untreated sliding contact: these are grounds for rejection, not finishing
+details.
 
-## 4. Le procédé et la matière sont deux questions
+## 4. Process and material are two questions
 
-Une pièce peut être un excellent candidat à la fabrication additive et un
-mauvais candidat au titane. Les deux jugements sont indépendants et doivent être
-rendus séparément.
+A part can be an excellent candidate for additive manufacturing and a poor
+candidate for titanium. The two judgments are independent and must be rendered
+separately.
 
-Le circuit d'huile de turbo en est l'exemple : onze pièces à consolider, des
-passages internes, une petite série — et un refus du titane sur le grippage,
-indépendamment du risque d'incendie. Inversement, une bague de finition
-axisymétrique n'a aucune raison d'être frittée, quelle que soit sa matière.
+The turbo oil circuit is the example: eleven parts to consolidate, internal
+passages, a small series — and a rejection of titanium on galling, independently
+of the fire risk. Conversely, an axisymmetric trim ring has no reason to be
+sintered, whatever its material.
 
-Choisir une pièce parce qu'elle est la moins risquée **n'est pas la choisir**.
-Le dépôt l'a fait une fois et l'a corrigé : voir
+Choosing a part because it is the least risky **is not choosing it**. The
+repository did this once and corrected it: see
 [`docs/decisions/0005-alsi10mg-nest-pas-un-choix.md`](docs/decisions/0005-alsi10mg-nest-pas-un-choix.md).
-La sélection se fait sur la fonction, contre une grille écrite, et le résultat
-doit rester réfutable ligne à ligne.
+Selection is made on function, against a written grid, and the result must stay
+falsifiable line by line.
 
-## 5. Déclassement et reclassement
+## 5. Downgrading and upgrading
 
-**Abaisser** une classe ne demande aucune preuve : le doute suffit, et il suffit
-toujours. En cas d'incertitude, la pièce descend à
-`prohibited_pending_engineering` jusqu'à clarification.
+**Lowering** a class requires no evidence: doubt is enough, and it is always
+enough. When in doubt, the part drops to `prohibited_pending_engineering` until
+clarified.
 
-**Relever** une classe demande, dans cet ordre : l'identité de la pièce établie
-par une source de niveau A, la mesure d'un exemplaire, un cas de charge réel et
-non synthétique, une carte matière qualifiée du procédé retenu, les essais
-correspondant à la classe visée, et — pour `safety_critical` — une revue
-d'ingénierie signée portant sur une révision précise et explicitement bornée.
+**Raising** a class requires, in this order: the part's identity established by
+a level-A source, the measurement of a physical specimen, a real, non-synthetic
+load case, a qualified material card for the chosen process, the tests
+corresponding to the target class, and — for `safety_critical` — a signed
+engineering review covering a specific, explicitly bounded revision.
 
-Aucune de ces étapes ne se déduit d'une autre. Un changement de classe se
-justifie dans la fiche, pas dans un message de commit.
+None of these steps can be inferred from another. A class change is justified in
+the record, not in a commit message.
 
-## 6. Ce que le dépôt ne fera pas
+## 6. What the repository will not do
 
-- publier une pièce `prohibited_pending_engineering` comme libérée, quelle que
-  soit la qualité de son dossier ;
-- présenter un criblage comme une autorisation ;
-- déduire une matière d'origine d'une déclaration de revendeur ;
-- remplacer une mesure manquante par une hypothèse commode ;
-- fabriquer ou faire fabriquer une pièce de structure autoportante ou de
-  sécurité passive — voir le hors-périmètre de [ROADMAP.md](ROADMAP.md).
+- publish a `prohibited_pending_engineering` part as released, however good its
+  dossier;
+- present a screening as an authorization;
+- infer an original material from a reseller's claim;
+- replace a missing measurement with a convenient assumption;
+- manufacture, or have manufactured, a load-bearing structural part or a
+  passive safety part — see the out-of-scope section of [ROADMAP.md](ROADMAP.md).
 
-## 7. Signalement
+## 7. Reporting
 
-Ouvrir une issue avec le préfixe `[SAFETY]` sans publier de donnée personnelle ni
-de document propriétaire. En cas de doute, le statut de la pièce doit être abaissé
-à `prohibited_pending_engineering` jusqu'à clarification.
+Open an issue with the `[SAFETY]` prefix, without publishing personal data or
+proprietary documents. When in doubt, the part's status must be lowered to
+`prohibited_pending_engineering` until clarified.

@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "part_id": "993-ENG-CONNECTING-ROD-TI64-F0-0001",
-  "name": "Bielle 993/993 Turbo, concept topologique Ti64 F0",
-  "description": "Concept indépendant à deux membrures ouvertes pour cribler une bielle Ti-6Al-4V LPBF. Les cotes clés viennent d'une fiche PAUTER/TZR ; les diamètres extérieurs, membrures, séparation du chapeau et passages de vis restent des hypothèses F0 sans reprise de surface commerciale.",
+  "name": "993/993 Turbo connecting rod, Ti64 F0 topology concept",
+  "description": "Independent two-open-flange concept to screen an LPBF Ti-6Al-4V connecting rod. The key dimensions come from a PAUTER/TZR record; outer diameters, flanges, cap split and bolt passages remain F0 assumptions with no commercial surface reused.",
   "vehicle": {
     "generation": "993",
     "variants": ["993", "993_Turbo", "M64_60_research"],
@@ -12,7 +12,7 @@
   "classification": {
     "category": "connecting_rod",
     "safety_class": "prohibited_pending_engineering",
-    "intended_use": "Criblage CAO, DfAM, masse, charges synthétiques, contraintes nominales et flambement ; aucune fabrication, installation ou mise en route moteur autorisée"
+    "intended_use": "CAD, DfAM, mass, synthetic loads, nominal stresses and buckling screening only; no manufacturing, installation or engine start-up authorized"
   },
   "geometry": {
     "source_type": "mixed",
@@ -23,23 +23,23 @@
     "derived_files": ["parts/993-eng-connecting-rod-ti64-f0-0001/derived/connecting_rod_ti64_f0.step"]
   },
   "provenance": {
-    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, surface PAUTER/Porsche ou géométrie commerciale redistribuée",
+    "record_license": "MIT for the concept, the script and the calculations; no photograph, PAUTER/Porsche surface or commercial geometry redistributed",
     "sources": [
       {
-        "title": "TZR Motorsport - cotes fabricant de bielle PAUTER 993/993 Turbo",
+        "title": "TZR Motorsport - manufacturer dimensions of the PAUTER 993/993 Turbo connecting rod",
         "url": "https://www.tzr-motorsport.de/993-230-580-1270F",
         "source_type": "manufacturer",
         "license": "commercial-product-page-site-terms",
         "accessed_on": "2026-09-08",
-        "notes": "Publie entraxe 127,00 mm, axe 23,01 mm, logement 58,01 +/- 0,003 mm, largeurs 18,75/19,58 mm, masse acier 535 g, acier 4340, vis ARP 2000 et option titane annoncée à -33 %. Aucune surface ni nuance titane. Voir SRC-TZR-PAUTER-993-CONNECTING-ROD-DIMENSIONS."
+        "notes": "Publishes 127.00 mm center distance, 23.01 mm pin, 58.01 +/- 0.003 mm bore, 18.75/19.58 mm widths, 535 g steel mass, 4340 steel, ARP 2000 bolts and a titanium option advertised at -33%. No surface and no titanium grade. See SRC-TZR-PAUTER-993-CONNECTING-ROD-DIMENSIONS."
       },
       {
-        "title": "PorscheFanatics - bielles titane pour moteur 993",
+        "title": "PorscheFanatics - titanium connecting rods for the 993 engine",
         "url": "https://porschefanatics.com/engine/993/",
         "source_type": "community",
         "license": "site-content-reference-only",
         "accessed_on": "2026-09-08",
-        "notes": "Précédent de choix matière et de candidat seulement ; aucune géométrie ni spécification de fabrication. Voir SRC-PORSCHEFANATICS-993-TITANIUM-CONNECTING-RODS."
+        "notes": "Precedent for material choice and candidate only; no geometry and no manufacturing specification. See SRC-PORSCHEFANATICS-993-TITANIUM-CONNECTING-RODS."
       },
       {
         "title": "EOS Titanium Ti64 Grade 5 material data sheet",
@@ -47,7 +47,7 @@
         "source_type": "manufacturer",
         "license": "manufacturer-copyright-reference-only",
         "accessed_on": "2026-09-08",
-        "notes": "Fournit des valeurs typiques LPBF de comparaison, dépendantes de la machine, de l'orientation et du traitement. Ce ne sont pas des admissibles fatigue de bielle. Voir SRC-EOS-TI64-GRADE5."
+        "notes": "Provides typical LPBF comparison values that depend on machine, orientation and treatment. They are not connecting-rod fatigue allowables. See SRC-EOS-TI64-GRADE5."
       },
       {
         "title": "TIMETAL 6-4 physical properties",
@@ -55,15 +55,15 @@
         "source_type": "manufacturer",
         "license": "manufacturer-copyright-reference-only",
         "accessed_on": "2026-09-08",
-        "notes": "Densité, module, dilatation et chaleur spécifique corroyés servent uniquement au criblage physique ; ils ne constituent pas une carte matériau LPBF. Voir SRC-TIMET-TI64-PHYSICAL-PROPERTIES."
+        "notes": "Wrought density, modulus, expansion and specific heat are used for physical screening only; they do not constitute an LPBF material card. See SRC-TIMET-TI64-PHYSICAL-PROPERTIES."
       },
       {
-        "title": "elferclassic - données techniques du 993 Turbo",
+        "title": "elferclassic - 993 Turbo technical data",
         "url": "https://www.elferclassic.de/technik/techdaten/993-turbo-95-98-techdat.php",
         "source_type": "community",
         "license": "site-copyright-redistribution-unclear",
         "accessed_on": "2026-09-08",
-        "notes": "Documente alésage 100 mm, course 76,4 mm et limiteur 6 720 tr/min ; la pression cylindre, les masses mobiles et le cycle de 100 h restent synthétiques. Voir SRC-ELFERCLASSIC-993-TURBO-TECHNICAL-DATA."
+        "notes": "Documents 100 mm bore, 76.4 mm stroke and 6,720 rpm limiter; cylinder pressure, reciprocating masses and the 100 h cycle remain synthetic. See SRC-ELFERCLASSIC-993-TURBO-TECHNICAL-DATA."
       }
     ]
   },
@@ -71,47 +71,47 @@
     "candidate_processes": ["LPBF", "DMLS", "CNC"],
     "preferred_process": "LPBF",
     "material": {
-      "family": "titane candidat",
-      "grade": "Ti-6Al-4V Grade 5 LPBF de criblage ; alliage PAUTER titane inconnu",
-      "standard": "ASTM F2924 et spécification bielle propre au programme à contractualiser"
+      "family": "candidate titanium",
+      "grade": "Ti-6Al-4V Grade 5 LPBF for screening; PAUTER titanium alloy unknown",
+      "standard": "ASTM F2924 and program-specific connecting rod specification to be contracted"
     },
     "post_processing": [
-      "évacuation de poudre par topologie entièrement ouverte",
-      "détensionnement et traitement thermique qualifiés pour machine, paramètres et orientation",
-      "HIP à décider sur population de défauts et essais de fatigue représentatifs",
-      "séparation et usinage du chapeau, du plan de joint, des logements de vis et des portées",
-      "usinage et finition des deux alésages avec bague de pied et coussinets définis",
-      "rayonnage, polissage des chemins de charge, équilibrage bout à bout et par jeu"
+      "powder removal through a fully open topology",
+      "stress relief and heat treatment qualified for machine, parameters and orientation",
+      "HIP to be decided on defect population and representative fatigue tests",
+      "separation and machining of the cap, joint face, bolt bores and seats",
+      "machining and finishing of both bores with defined small-end bushing and bearing shells",
+      "radiusing, polishing of load paths, end-to-end and set balancing"
     ],
     "supplier_requirements": [
-      "poudre, machine, paramètres, orientation, lot et recyclage de poudre traçables",
-      "coupons orientés avec traction, ténacité, fatigue et défauts représentatifs après tous post-traitements",
-      "analyse dimensionnelle complète du plan de joint, entraxe, alésages, équerrage et parallélisme",
-      "CT du corps et du chapeau, ressuage après usinage et contrôle de rugosité",
-      "preuve de capabilité sur précharge, friction, serrage et durée de vie des vis retenues",
-      "essais de preuve puis fatigue grandeur réelle avec enveloppe moteur approuvée avant tout dyno"
+      "traceable powder, machine, parameters, orientation, lot and powder recycling",
+      "oriented coupons with tensile, toughness, fatigue and representative defects after all post-processing",
+      "full dimensional analysis of the joint face, center distance, bores, squareness and parallelism",
+      "CT of the body and cap, dye penetrant inspection after machining and roughness check",
+      "capability evidence on preload, friction, tightening and service life of the selected bolts",
+      "proof tests then full-scale fatigue with an approved engine envelope before any dyno run"
     ]
   },
   "titanium": {
     "applicable": true,
-    "alloy": "Ti-6Al-4V Grade 5 candidat uniquement ; l'alliage de l'option PAUTER n'est pas publié",
-    "heat_treatment": "Traitement de détente et de ductilité EOS à qualifier ; aucune recette n'est gelée sans fournisseur, orientation et coupons",
+    "alloy": "Ti-6Al-4V Grade 5 candidate only; the alloy of the PAUTER option is not published",
+    "heat_treatment": "EOS stress relief and ductility treatment to be qualified; no recipe is frozen without supplier, orientation and coupons",
     "hip_required": "to_be_determined",
     "machined_surfaces": [
-      "alésage de tête et portées de coussinets",
-      "alésage de pied et portée de bague",
-      "plan de joint et datums du chapeau",
-      "logements, portées et faces des vis",
-      "faces latérales et jeux au vilebrequin"
+      "big-end bore and bearing shell seats",
+      "small-end bore and bushing seat",
+      "joint face and cap datums",
+      "bolt bores, seats and faces",
+      "side faces and crankshaft clearances"
     ],
     "inspection": [
-      "CT du corps, du chapeau, des congés et des transitions de membrures",
-      "métrologie complète des alésages, entraxe, plan de joint, parallélisme et équerrage",
-      "ressuage après usinage et finition",
-      "rugosité, porosité, couche alpha, contraintes résiduelles et équilibrage",
-      "essais de preuve et fatigue grandeur réelle avec vis, coussinets et axes représentatifs"
+      "CT of the body, cap, fillets and flange transitions",
+      "full metrology of bores, center distance, joint face, parallelism and squareness",
+      "dye penetrant inspection after machining and finishing",
+      "roughness, porosity, alpha case, residual stresses and balancing",
+      "proof tests and full-scale fatigue with representative bolts, bearing shells and pins"
     ],
-    "galvanic_isolation": "Qualifier couples titane-acier des vis, coussinets et axe, fretting, grippage, revêtements, lubrification, dilatations et contamination galvanique dans l'huile moteur."
+    "galvanic_isolation": "Qualify titanium-steel couples with bolts, bearing shells and pin, fretting, galling, coatings, lubrication, expansion and galvanic contamination in engine oil."
   },
   "validation": {
     "status": "concept",
@@ -128,15 +128,15 @@
     "reviewed_by": "",
     "reviewed_on": null,
     "known_limits": [
-      "Seuls l'entraxe, les deux diamètres fonctionnels, les deux largeurs, la masse acier et l'annonce de gain titane viennent de la fiche PAUTER/TZR.",
-      "Les diamètres extérieurs 78/40 mm, les deux membrures 10 x 14 mm, le chapeau et les passages de vis sont des hypothèses F0.",
-      "La masse CAO de 341,02 g dépend d'une forme synthétique et d'une densité nominale ; elle ne valide ni le gain PAUTER ni l'équilibrage.",
-      "Le cas de charge emploie une pression cylindre de 12 MPa, 600 g piston/axe, un tiers de masse de bielle et 100 h entièrement synthétiques.",
-      "LPBF est le procédé préféré uniquement pour étudier la topologie F0 ; le choix de production reste conditionné par la comparaison avec acier forgé/usiné et titane conventionnel.",
-      "Les contraintes sur section, le facteur Kt=1,5 et Euler ne remplacent ni contact 3D, ni précharge de vis, ni coussinets, ni fatigue multiaxiale.",
-      "Les valeurs EOS/TIMET sont des comparaisons ambiantes et physiques, pas des admissibles LPBF à chaud et en fatigue.",
-      "L'étude Cecchel grandeur réelle rapporte une fatigue inférieure à la référence conventionnelle et impose une qualification dédiée.",
-      "Le STEP prouve seulement deux solides BREP relisibles ; il n'est autorisé ni pour fabrication, ni pour installation, ni pour moteur."
+      "Only the center distance, the two functional diameters, the two widths, the steel mass and the advertised titanium gain come from the PAUTER/TZR record.",
+      "The 78/40 mm outer diameters, the two 10 x 14 mm flanges, the cap and the bolt passages are F0 assumptions.",
+      "The CAD mass of 341.02 g depends on a synthetic shape and a nominal density; it validates neither the PAUTER gain nor the balancing.",
+      "The load case uses a cylinder pressure of 12 MPa, 600 g piston/pin, one third of the rod mass and 100 h, all entirely synthetic.",
+      "LPBF is the preferred process only to study the F0 topology; the production choice remains conditional on comparison with forged/machined steel and conventional titanium.",
+      "Section stresses, the Kt=1.5 factor and Euler replace neither 3D contact, nor bolt preload, nor bearing shells, nor multiaxial fatigue.",
+      "The EOS/TIMET values are ambient and physical comparisons, not hot or fatigue LPBF allowables.",
+      "The full-scale Cecchel study reports fatigue below the conventional reference and requires dedicated qualification.",
+      "The STEP proves only two re-readable BREP solids; it is authorized neither for manufacturing, nor for installation, nor for an engine."
     ]
   }
 }

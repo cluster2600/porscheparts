@@ -1,87 +1,88 @@
-# Charte du projet
+# Project charter
 
 ## Vision
 
-Rendre reproductibles des pièces de Porsche 993 devenues rares, fragiles ou
-inadaptées, en les développant dans un jumeau numérique fonctionnel construit
-par zones. Les sources CAO, interfaces, mesures, incertitudes et niveaux réels
-de validation restent publiés et modifiables.
+Make Porsche 993 parts that have become rare, fragile or unfit for use
+reproducible, by developing them in a functional digital twin built zone by
+zone. The CAD sources, interfaces, measurements, uncertainties and actual
+validation levels stay published and editable.
 
-L’accent titane signifie que le projet maîtrise le chemin allant d’une mesure ou
-d’un scan jusqu’à une demande de fabrication Ti-6Al-4V contrôlable. Il ne signifie
-pas que toutes les pièces doivent être imprimées en titane.
+The titanium focus means the project controls the path from a measurement or a
+scan to an auditable Ti-6Al-4V manufacturing request. It does not mean that
+every part must be printed in titanium.
 
-## Utilisateurs
+## Users
 
-- Propriétaires et restaurateurs de Porsche 993
-- Ateliers indépendants
-- Concepteurs CAO et spécialistes de rétroconception
-- Prestataires d’impression polymère et métal
-- Ingénieurs capables de revoir calculs, procédés et essais
+- Porsche 993 owners and restorers
+- Independent workshops
+- CAD designers and reverse-engineering specialists
+- Polymer and metal printing service providers
+- Engineers able to review calculations, processes and tests
 
-## Livrables
+## Deliverables
 
-Pour chaque pièce publiée :
+For every published part:
 
-1. une fiche structurée et sourcée ;
-2. un modèle paramétrique ou STEP ;
-3. un plan de mesure ;
-4. un fichier de prototype ;
-5. les instructions de fabrication pertinentes ;
-6. les preuves de montage et d’essai ;
-7. une licence explicite ;
-8. une version et un historique des changements.
+1. a structured, sourced record;
+2. a parametric or STEP model;
+3. a measurement plan;
+4. a prototype file;
+5. the relevant manufacturing instructions;
+6. the fit and test evidence;
+7. an explicit license;
+8. a version and a change history.
 
-Pour chaque zone du jumeau : géométrie hôte, repère, composants, interfaces,
-règles d'acceptation, précision, rapport numérique et corrélation physique.
+For every zone of the twin: host geometry, reference frame, components,
+interfaces, acceptance rules, accuracy, numerical report and physical
+correlation.
 
-## Mesures de réussite
+## Success metrics
 
-- Pourcentage de pièces avec licence et provenance complètes
-- Pourcentage de pièces disposant d’un fichier source modifiable
-- Nombre de prototypes dont le montage est documenté
-- Nombre de sous-jumeaux au niveau `F2_interface` ou supérieur
-- Écart entre les marges numériques prévues et les contrôles physiques
-- Nombre de pièces testées sur plusieurs véhicules ou variantes
-- Taux de défauts ou de corrections après publication
-- Nombre de pièces titane avec traçabilité matière et rapport de contrôle
+- Percentage of parts with complete license and provenance
+- Percentage of parts with an editable source file
+- Number of prototypes with a documented fit
+- Number of sub-twins at level `F2_interface` or higher
+- Gap between predicted numerical margins and physical checks
+- Number of parts tested on several vehicles or variants
+- Rate of defects or corrections after publication
+- Number of titanium parts with material traceability and an inspection report
 
-## Gouvernance des décisions
+## Decision governance
 
-- Une issue porte la discussion initiale.
-- Une décision durable est résumée dans `docs/decisions/`.
-- Une pull request modifie la fiche et les fichiers concernés.
-- La validation automatique vérifie la structure, pas la sécurité mécanique.
-- Une pièce peut être rétrogradée immédiatement si une preuve nouvelle contredit
-  son statut.
+- An issue carries the initial discussion.
+- A lasting decision is summarized in `docs/decisions/`.
+- A pull request changes the record and the affected files.
+- Automated validation checks structure, not mechanical safety.
+- A part can be downgraded immediately if new evidence contradicts its status.
 
-## Définition de « terminé »
+## Definition of "done"
 
-Une pièce n’est terminée que lorsque le statut de sa fiche correspond aux preuves
-présentes dans le dépôt. `released` signifie prête à être reproduite dans les
-limites documentées, pas homologuée pour la route ni garantie universellement.
+A part is done only when its record's status matches the evidence present in
+the repository. `released` means ready to be reproduced within the documented
+limits, not type-approved for road use nor universally guaranteed.
 
-## Contrainte d'exploitation : aucun accès physique
+## Operating constraint: no physical access
 
-Le mainteneur de ce dépôt n'a accès ni à une 993, ni à une pièce détachée, ni à
-un instrument de mesure. Rien n'y sera pesé, mesuré, imprimé, monté ni essayé en
-interne.
+The maintainer of this repository has access to no 993, no spare part and no
+measuring instrument. Nothing will be weighed, measured, printed, fitted or
+tested in-house.
 
-Ce n'est pas une lacune à combler, c'est le cadre de travail. Il en découle trois
-conséquences, qui valent règles :
+This is not a gap to fill; it is the working frame. It has three consequences,
+which act as rules:
 
-1. **Une fiche produite ici plafonne au statut `concept`.**
-   `dimensionally_reviewed` exige des mesures et `prototype_fitted` un montage :
-   ni l'un ni l'autre n'est atteignable sans contributeur extérieur.
-2. **Les critères de sortie des phases 2 et 3 dépendent d'un tiers.** Ils ne
-   sont pas abandonnés, ils sont conditionnés. Le dépôt prépare tout ce qui peut
-   l'être — plans de mesure, formats d'enregistrement, outils de capture et de
-   validation — pour qu'une contribution soit exploitable dès qu'elle arrive.
-3. **Les outils de capture servent à valider ce que d'autres transmettent.**
-   `scripts/capture_caliper.py` et `scripts/capture_photoset.py` existent pour
-   qu'un chiffre venu de l'extérieur porte son instrument, son incertitude et sa
-   méthode, au lieu d'être un nombre sur un forum.
+1. **A record produced here caps at status `concept`.**
+   `dimensionally_reviewed` requires measurements and `prototype_fitted` a fit:
+   neither is reachable without an outside contributor.
+2. **The exit criteria of phases 2 and 3 depend on a third party.** They are not
+   abandoned; they are conditional. The repository prepares everything that can
+   be prepared — measurement plans, record formats, capture and validation
+   tools — so that a contribution is usable as soon as it arrives.
+3. **The capture tools exist to validate what others send in.**
+   `scripts/capture_caliper.py` and `scripts/capture_photoset.py` exist so that
+   a figure from outside carries its instrument, its uncertainty and its method,
+   instead of being a number on a forum.
 
-Ce que le dépôt peut livrer seul reste substantiel : registre de sources
-vérifiées, sélection de candidats dans un catalogue d'usine, arbitrages matière
-et procédé chiffrés, calculs, et environnement de calcul reproductible.
+What the repository can deliver on its own is still substantial: a register of
+verified sources, candidate selection from a factory catalogue, quantified
+material and process trade-offs, calculations, and a reproducible computing
+environment.

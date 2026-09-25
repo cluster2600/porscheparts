@@ -1,16 +1,16 @@
-"""La banniere animee de la page d'accueil, tiree du meme calcul que les figures.
+"""The animated home-page banner, drawn from the same computation as the figures.
 
-Ce n'est pas un rendu et ce n'est pas une voiture. La cellule tourne pour qu'on
-voie ce que le modele contient reellement — des coques minces, un longeron, un
-tunnel, un pavillon — et elle est coloree par la contrainte de von Mises du cas
-de torsion, lue dans le meme instantane que `figures.py`. Aucune image n'entre
-dans ce depot sans que la donnee qui la produit y soit deja.
+It is not a rendering and it is not a car. The cell rotates so that one can see
+what the model actually contains (thin shells, a side rail, a tunnel, a roof),
+and it is colored by the von Mises stress of the torsion load case, read from
+the same snapshot as `figures.py`. No image enters this repository unless the
+data that produces it is already here.
 
-Les sections sont ASSUMED et le maillage n'est pas converge : la couleur montre
-ou passe l'effort, elle ne donne aucune contrainte de 964.
+The sections are ASSUMED and the mesh is not converged: the color shows where
+the load goes; it gives no stress value for a 964.
 
-    pymesh hero.py            # ecrit docs/media/diagrams/964-hero.gif
-    pymesh hero.py --frames 24   # brouillon rapide
+    pymesh hero.py               # writes docs/media/diagrams/964-hero.gif
+    pymesh hero.py --frames 24   # quick draft
 """
 import argparse, io, pathlib
 
@@ -24,15 +24,15 @@ HERE = pathlib.Path(__file__).parent
 ROOT = HERE.parents[2]
 OUT = ROOT / "docs" / "media" / "diagrams" / "964-hero.gif"
 
-# Meme fond clair explicite que les autres figures : GitHub rend le fichier tel
-# quel sous ses deux themes, un fond transparent rendrait le texte illisible.
+# Same explicit light background as the other figures: GitHub renders the file
+# as-is under both themes, and a transparent background would make text unreadable.
 BG, FG, MUTED = "#ffffff", "#1a1a1a", "#666666"
 
 LARGEUR, HAUTEUR, DPI, SS = 12.8, 5.0, 100, 2
 
 
 def charge(nom="fbtaprw"):
-    """Sommets, faces et von Mises nodal de l'instantane conserve."""
+    """Vertices, faces and nodal von Mises stress from the stored snapshot."""
     d = np.load(HERE / "figures-mesh" / f"snap_{nom}.npz")
     xyz, tri = d["xyz"], d["tri"]
     idx = {int(n): j for j, n in enumerate(d["nid"])}
@@ -46,11 +46,11 @@ def charge(nom="fbtaprw"):
 
 
 def frame(xyz, faces, par_tri, K, azim, clim):
-    """Une image : le texte a gauche, la cellule qui tourne a droite."""
+    """One frame: text on the left, the rotating cell on the right."""
     from mpl_toolkits.mplot3d.art3d import Poly3DCollection
     fig = plt.figure(figsize=(LARGEUR, HAUTEUR), facecolor=BG, dpi=DPI)
-    # Axes places a la main : tight_layout et subplots_adjust se battent avec
-    # une vue 3D, et la banniere doit garder sa colonne de texte a gauche.
+    # Axes placed by hand: tight_layout and subplots_adjust fight with a 3D
+    # view, and the banner must keep its text column on the left.
     ax = fig.add_axes((0.42, 0.02, 0.57, 0.96), projection="3d")
     pc = Poly3DCollection(xyz[faces], cmap="magma_r", linewidth=0)
     pc.set_array(par_tri)
@@ -61,8 +61,8 @@ def frame(xyz, faces, par_tri, K, azim, clim):
     ax.set_xlim(lo[0], hi[0])
     ax.set_ylim(lo[1], hi[1])
     ax.set_zlim(lo[2], hi[2])
-    # Proportions reelles conservees ; le cadre est rempli, sinon la caisse se
-    # perd au milieu d'un cube commun aux trois axes.
+    # True proportions are kept; the frame is filled, otherwise the body shell
+    # gets lost in the middle of a cube shared by the three axes.
     ax.set_box_aspect(hi - lo, zoom=1.05)
     ax.view_init(elev=16, azim=azim)
     ax.set_axis_off()
@@ -70,25 +70,25 @@ def frame(xyz, faces, par_tri, K, azim, clim):
 
     fig.text(0.045, 0.80, "porscheparts", color=FG, fontsize=26,
              fontweight="bold", ha="left", va="top")
-    fig.text(0.045, 0.645, "Retroconception ouverte\nPorsche 911 964 et 993",
+    fig.text(0.045, 0.645, "Open reverse engineering\nPorsche 911 964 and 993",
              color=FG, fontsize=13, ha="left", va="top", linespacing=1.5)
-    fig.text(0.045, 0.46, f"Cellule complete 964, von Mises\n"
-             f"sous couple de torsion\nK = {K:.0f} N.m/deg, coques S6",
+    fig.text(0.045, 0.46, f"Full 964 cell, von Mises\n"
+             f"under torsional torque\nK = {K:.0f} N.m/deg, S6 shells",
              color=MUTED, fontsize=10.5, ha="left", va="top", linespacing=1.6)
-    # Barre de couleur horizontale dans la colonne de texte : sans echelle,
-    # une carte de contrainte n'est qu'une image coloree.
+    # Horizontal color bar in the text column: without a scale, a stress map
+    # is just a colored picture.
     cax = fig.add_axes((0.045, 0.235, 0.17, 0.026))
     cb = fig.colorbar(pc, cax=cax, orientation="horizontal")
     cb.set_label("von Mises (MPa)", color=MUTED, fontsize=8.5, labelpad=3)
     cb.ax.tick_params(colors=MUTED, labelsize=7.5, length=2)
     cb.outline.set_visible(False)
 
-    fig.text(0.045, 0.055, "Ni une 964, ni un rendu : l'instantane du calcul.\n"
-             "Sections ASSUMED, seuls les rapports sont exploitables.",
+    fig.text(0.045, 0.055, "Not a 964, not a rendering: a snapshot of the computation.\n"
+             "Sections ASSUMED; only the ratios are usable.",
              color=MUTED, fontsize=8.8, ha="left", va="bottom", linespacing=1.5)
 
-    # Rendu au double puis reduction : les coques de 12 972 triangles moirent
-    # violemment a la taille finale, le sur-echantillonnage les lisse.
+    # Render at double size then downscale: the 12,972-triangle shells show
+    # heavy moire at the final size, and supersampling smooths it out.
     buf = io.BytesIO()
     fig.savefig(buf, format="png", facecolor=BG, dpi=DPI * SS)
     plt.close(fig)
@@ -104,7 +104,7 @@ def main():
     a = ap.parse_args()
 
     xyz, faces, par_tri, K = charge()
-    # Le 99e centile evite qu'une singularite d'encastrement mange l'echelle.
+    # A high percentile keeps a clamping singularity from eating the scale.
     clim = (0.0, float(np.percentile(par_tri, 98)))
     azims = np.linspace(-180, 180, a.frames, endpoint=False)
     images = [frame(xyz, faces, par_tri, K, az, clim) for az in azims]
@@ -114,7 +114,7 @@ def main():
     OUT.parent.mkdir(parents=True, exist_ok=True)
     images[0].save(OUT, save_all=True, append_images=images[1:],
                    duration=90, loop=0, optimize=True)
-    print(f"{OUT}  {OUT.stat().st_size / 1e6:.2f} Mo  {a.frames} images")
+    print(f"{OUT}  {OUT.stat().st_size / 1e6:.2f} MB  {a.frames} frames")
 
 
 if __name__ == "__main__":

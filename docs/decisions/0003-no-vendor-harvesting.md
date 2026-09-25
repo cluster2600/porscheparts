@@ -1,18 +1,18 @@
-# 0003 — Pas de moisson automatisée chez les revendeurs
+# 0003 — No automated harvesting from resellers
 
-Date : 28 août 2026
+Date: August 28, 2026
 
-## Contexte
+## Context
 
-Le jumeau numérique se remplit référence par référence, et une seule source
-publiait une masse par pièce tout en répondant aux requêtes automatisées : le
-catalogue de Rose Passion, structuré par illustrations PET comme le squelette
-d'assemblage. Un outil de récupération ciblée a donc été étudié.
+The digital twin fills up part number by part number, and only one source
+published a per-part mass while also answering automated requests: the Rose
+Passion catalogue, structured by PET illustrations just like the assembly
+skeleton. A targeted retrieval tool was therefore studied.
 
-## Ce que la vérification a établi
+## What the check established
 
-`https://www.rosepassion.com/robots.txt`, relevé le 28 août 2026, s'ouvre sur
-ces quatre lignes :
+`https://www.rosepassion.com/robots.txt`, retrieved on August 28, 2026, opens
+with these four lines:
 
 ```
 User-agent: ClaudeBot
@@ -21,36 +21,35 @@ User-agent: Claude-Web
 Disallow: /
 ```
 
-Le site ferme l'intégralité de ses pages à ces agents, en les nommant en
-premier. Aucune directive `Crawl-delay` n'existe : il n'y a pas de fréquence
-tolérée, la réponse à « à quel rythme » est « pas du tout ».
+The site closes all of its pages to these agents, naming them first. There is
+no `Crawl-delay` directive: there is no tolerated rate; the answer to "at what
+pace" is "not at all".
 
-Les conditions de vente sont, elles, interdites à **tous** les robots. Elles
-n'ont donc pas été lues, et la question de la réutilisation des données produit
-reste **sans réponse** — pas répondue favorablement.
+The terms of sale, for their part, are closed to **all** robots. They were
+therefore not read, and the question of reusing the product data remains
+**unanswered** — not answered favorably.
 
-## Décision
+## Decision
 
-**Aucun outil de ce dépôt n'interrogera automatiquement ce catalogue.** Le
-script étudié a été écrit puis supprimé sans être versé.
+**No tool in this repository will query this catalogue automatically.** The
+script that was studied was written, then deleted without being committed.
 
-Le contournement évident est nommé ici pour être exclu : envoyer un
-`User-Agent` maison ferait correspondre le client au groupe permissif `*`, où
-les fiches produit sont autorisées. C'est précisément ce que l'implémentation
-avait fait, et c'est du contournement — se renommer pour passer un refus qui
-vous nomme n'est pas obtenir une permission.
+The obvious workaround is named here so that it is excluded: sending a custom
+`User-Agent` would match the client to the permissive `*` group, where product
+pages are allowed. That is precisely what the implementation had done, and it is
+circumvention — renaming yourself to get past a refusal that names you is not
+obtaining permission.
 
-## Ce qui reste ouvert
+## What remains open
 
-- **Une lecture humaine dans un navigateur.** `robots.txt` régit les robots, pas
-  une personne. La réutilisation des données reste soumise aux conditions, qui
-  restent à lire.
-- **Une autorisation écrite du vendeur**, ou un extrait de données fourni par
-  lui, qui règlerait aussi la question de la réutilisation.
+- **A human reading in a browser.** `robots.txt` governs robots, not a person.
+  Reuse of the data remains subject to the terms, which are still to be read.
+- **Written authorization from the seller**, or a data extract supplied by
+  them, which would also settle the reuse question.
 
-## Correction associée
+## Associated correction
 
-La fiche `SRC-ROSEPASSION-993-PARTS` et `catalog/reference/README.md`
-affirmaient que ce revendeur « répond à la récupération automatisée ». C'était
-une confusion entre « le serveur renvoie une page » et « l'exploitant autorise
-l'accès automatisé ». Les deux textes sont corrigés.
+The record `SRC-ROSEPASSION-993-PARTS` and `catalog/reference/README.md` stated
+that this reseller "responds to automated retrieval". That confused "the server
+returns a page" with "the operator authorizes automated access". Both texts are
+corrected.

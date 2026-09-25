@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "part_id": "993-ENG-THREE-RUNNER-INTAKE-ALSI10MG-F0-0001",
-  "name": "Collecteur d'admission trois conduits 993, concept AlSi10Mg F0",
-  "description": "Concept indépendant de collecteur à trois conduits coniques décalés et deux brides communes pour cribler le LPBF AlSi10Mg. PorscheFanatics et Patrick Motorsports recoupent le kit PMO FUE PMO 9150, annoncé 46 x 42 x 100 mm, trois boulons, deux pièces et finition aluminium brute ; aucune géométrie d'interface n'est publiée.",
+  "name": "993 three-runner intake manifold, AlSi10Mg F0 concept",
+  "description": "Independent concept of a manifold with three offset conical runners and two common flanges to screen AlSi10Mg LPBF. PorscheFanatics and Patrick Motorsports cross-check the PMO FUE PMO 9150 kit, stated as 46 x 42 x 100 mm, three bolts, two parts and a raw aluminum finish; no interface geometry is published.",
   "vehicle": {
     "generation": "993",
     "variants": ["993_3.6L_conversion", "993_3.8L_conversion", "964_shared_engine_conversion"],
@@ -12,7 +12,7 @@
   "classification": {
     "category": "three_runner_intake_manifold",
     "safety_class": "functional",
-    "intended_use": "Criblage CAO, DfAM, débit, acoustique, pression et thermique ; aucune fabrication, installation ou mise en route moteur autorisée"
+    "intended_use": "CAD, DfAM, flow, acoustic, pressure and thermal screening; no manufacturing, installation or engine start authorized"
   },
   "geometry": {
     "source_type": "mixed",
@@ -23,15 +23,15 @@
     "derived_files": ["parts/993-eng-three-runner-intake-alsi10mg-f0-0001/derived/three_runner_intake_alsi10mg_f0.step"]
   },
   "provenance": {
-    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, marque, illustration ou géométrie PMO/Porsche redistribuée",
+    "record_license": "MIT for the concept, the script and the calculations; no photograph, trademark, illustration or PMO/Porsche geometry redistributed",
     "sources": [
       {
-        "title": "PorscheFanatics - collecteur PMO 46 mm pour moteur 964/993",
+        "title": "PorscheFanatics - PMO 46 mm manifold for 964/993 engine",
         "url": "https://porschefanatics.com/parts/g/964/",
         "source_type": "community",
         "license": "site-content-reference-only",
         "accessed_on": "2026-09-08",
-        "notes": "Recoupe la désignation 46 x 42 x 100 mm, trois boulons, l'aluminium brut et le fitment moteur 964/993. Voir SRC-PORSCHEFANATICS-PMO-964-993-46MM-INTAKE-MANIFOLD."
+        "notes": "Cross-checks the 46 x 42 x 100 mm designation, three bolts, raw aluminum and the 964/993 engine fitment. See SRC-PORSCHEFANATICS-PMO-964-993-46MM-INTAKE-MANIFOLD."
       },
       {
         "title": "Patrick Motorsports - PMO FUE PMO 9150",
@@ -39,7 +39,7 @@
         "source_type": "manufacturer",
         "license": "commercial-product-page-copyright-reference-only",
         "accessed_on": "2026-09-08",
-        "notes": "Déclare le jeu de deux collecteurs, 46 x 42 x 100 mm, trois boulons, finition aluminium brute et conversions Motronic 964/993 3,6-3,8 L, sans dessin ni alliage. Voir SRC-PATRICK-PMO-964-993-46MM-INTAKE-MANIFOLD."
+        "notes": "States the set of two manifolds, 46 x 42 x 100 mm, three bolts, raw aluminum finish and 964/993 3.6-3.8 L Motronic conversions, without drawing or alloy. See SRC-PATRICK-PMO-964-993-46MM-INTAKE-MANIFOLD."
       },
       {
         "title": "EOS Aluminium AlSi10Mg material page",
@@ -47,7 +47,7 @@
         "source_type": "manufacturer",
         "license": "manufacturer-copyright-reference-only",
         "accessed_on": "2026-09-08",
-        "notes": "Référence de famille et de procédé LPBF, pas la preuve de l'alliage PMO ni une carte admissible moteur. Voir SRC-EOS-ALSI10MG-CURRENT-PAGE."
+        "notes": "LPBF family and process reference, not proof of the PMO alloy nor an engine allowables map. See SRC-EOS-ALSI10MG-CURRENT-PAGE."
       }
     ]
   },
@@ -55,25 +55,25 @@
     "candidate_processes": ["LPBF", "DMLS", "CNC", "casting"],
     "preferred_process": "undecided",
     "material": {
-      "family": "alliage aluminium LPBF candidat",
-      "grade": "AlSi10Mg générique de criblage ; alliage et état du produit PMO inconnus",
-      "standard": "ASTM F3318 et spécification moteur propre au programme à contractualiser si le LPBF est retenu"
+      "family": "candidate LPBF aluminum alloy",
+      "grade": "generic AlSi10Mg for screening; alloy and temper of the PMO product unknown",
+      "standard": "ASTM F3318 and a program-specific engine specification to be contracted if LPBF is retained"
     },
     "post_processing": [
-      "évacuation complète de la poudre par les trois conduits ouverts",
-      "détensionnement et traitement thermique qualifiés sur coupons représentatifs",
-      "découpe du plateau avec contrôle de planéité des brides",
-      "usinage des deux brides, ports et perçages après ajout de surépaisseurs mesurées",
-      "ébavurage, polissage ou finition abrasive du chemin de gaz avec rugosité vérifiée",
-      "nettoyage particulaire et épreuve de fuite avant tout essai de débit"
+      "complete powder removal through the three open runners",
+      "stress relief and heat treatment qualified on representative coupons",
+      "build plate cut-off with flange flatness check",
+      "machining of both flanges, ports and holes after adding measured machining allowances",
+      "deburring, polishing or abrasive finishing of the gas path with verified roughness",
+      "particulate cleaning and leak test before any flow test"
     ],
     "supplier_requirements": [
-      "poudre, machine, paramètres, orientation, lot et recyclage traçables",
-      "capabilité sur parois de 2 mm, conduits inclinés et brides de 6 mm",
-      "simulation de supports, recoater et distorsion avant lancement",
-      "CT des conduits et métrologie des ports, brides et futures fixations",
-      "porosité, rugosité, planéité, étanchéité et propreté contractualisées",
-      "essais de débit, pression, vibration, cycles thermiques et banc moteur avant véhicule"
+      "traceable powder, machine, parameters, orientation, lot and recycling",
+      "capability on 2 mm walls, inclined runners and 6 mm flanges",
+      "support, recoater and distortion simulation before build",
+      "CT of the runners and metrology of ports, flanges and future fastenings",
+      "porosity, roughness, flatness, leak-tightness and cleanliness contracted",
+      "flow, pressure, vibration, thermal cycling and engine dyno tests before vehicle"
     ]
   },
   "titanium": {
@@ -83,7 +83,7 @@
     "hip_required": "not_applicable",
     "machined_surfaces": [],
     "inspection": [],
-    "galvanic_isolation": "Compatibilité galvanique de l'AlSi10Mg avec culasses, goujons, papillons, joints et revêtements à qualifier."
+    "galvanic_isolation": "Galvanic compatibility of AlSi10Mg with cylinder heads, studs, throttles, gaskets and coatings to be qualified."
   },
   "validation": {
     "status": "concept",
@@ -97,12 +97,12 @@
     "reviewed_by": "",
     "reviewed_on": null,
     "known_limits": [
-      "La chaîne 46 x 42 x 100 mm n'est pas définie par un dessin ; son interprétation en diamètres et hauteur reste hypothétique.",
-      "Les entraxes, décalages, brides, épaisseurs et l'absence de perçages du F0 ne reproduisent pas PMO ou Porsche.",
-      "Les 461,03 g par banc et 922,07 g la paire ne peuvent être comparés à aucune masse commerciale publiée.",
-      "Le débit à 6 800 tr/min, le rendement volumétrique 0,95 et le coefficient de perte 0,05 sont synthétiques.",
-      "Le calcul 1D ignore pulsations, interactions, rugosité, plénum, injection, conduction de culasse, fatigue et retour de flamme.",
-      "Le STEP prouve seulement un BREP calculable et ne doit pas être fabriqué pour un moteur."
+      "The 46 x 42 x 100 mm string is not defined by a drawing; its interpretation as diameters and height remains hypothetical.",
+      "The F0 spacings, offsets, flanges, thicknesses and absence of holes do not reproduce PMO or Porsche.",
+      "The 461.03 g per bank and 922.07 g per pair cannot be compared with any published commercial mass.",
+      "The flow at 6,800 rpm, the volumetric efficiency of 0.95 and the loss coefficient of 0.05 are synthetic.",
+      "The 1D calculation ignores pulsations, interactions, roughness, plenum, injection, cylinder head conduction, fatigue and backfire.",
+      "The STEP proves only a computable BREP and must not be manufactured for an engine."
     ]
   }
 }

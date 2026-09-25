@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "part_id": "993-EXH-OVAL-TIP-IN625-F0-0001",
-  "name": "Embout d'échappement ovale 993, concept double paroi IN625 F0",
-  "description": "Concept indépendant rond-vers-ovale à double paroi ventilée et huit attaches intégrées pour cribler une fabrication LPBF en IN625. FVD publie uniquement une enveloppe de sortie de 120 x 85 mm pour son embout inox FVD11199300 ; PorscheFanatics documente séparément un précédent IN625 sur des échappements 993 Turbo.",
+  "name": "993 oval exhaust tip, IN625 double-wall F0 concept",
+  "description": "Independent round-to-oval concept with a ventilated double wall and eight integrated attachments to screen LPBF manufacture in IN625. FVD publishes only a 120 x 85 mm outlet envelope for its FVD11199300 stainless tip; PorscheFanatics separately documents an IN625 precedent on 993 Turbo exhausts.",
   "vehicle": {
     "generation": "993",
     "variants": ["993_C2", "993_C4", "993_RS_narrow_body"],
@@ -12,7 +12,7 @@
   "classification": {
     "category": "exhaust_tip",
     "safety_class": "functional",
-    "intended_use": "Criblage CAO, DfAM, débit, thermique, pression et modal ; aucune fabrication pour montage ni installation véhicule autorisée"
+    "intended_use": "CAD, DfAM, flow, thermal, pressure and modal screening; no manufacturing for fitting and no vehicle installation authorized"
   },
   "geometry": {
     "source_type": "mixed",
@@ -23,23 +23,23 @@
     "derived_files": ["parts/993-exh-oval-tip-in625-f0-0001/derived/oval_exhaust_tip_in625_f0.step"]
   },
   "provenance": {
-    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, marque, illustration PET ou géométrie commerciale redistribuée",
+    "record_license": "MIT for the concept, the script and the calculations; no photograph, trademark, PET illustration or commercial geometry redistributed",
     "sources": [
       {
-        "title": "FVD - embouts inox ovales 993 étroites",
+        "title": "FVD - 993 narrow-body oval stainless tips",
         "url": "https://www.fvd.net/de-de/FVD11199300/endrohrsatz-edelstahl-poliert-oval-schraeg-993-120x85mm.html",
         "source_type": "manufacturer",
         "license": "commercial-product-content-rights-not-verified-reference-only",
         "accessed_on": "2026-09-07",
-        "notes": "FVD déclare 120 mm au plus large, 85 mm au plus haut, une construction inox et les applications C2/C4/RS. Aucun diamètre d'entrée, longueur, angle, épaisseur ou datum. Voir SRC-FVD-993-EXHAUST-TIPS-DIMENSIONS."
+        "notes": "FVD declares 120 mm at the widest, 85 mm at the tallest, stainless construction and C2/C4/RS applications. No inlet diameter, length, angle, thickness or datum. See SRC-FVD-993-EXHAUST-TIPS-DIMENSIONS."
       },
       {
-        "title": "PorscheFanatics - registre des matériaux déclarés",
+        "title": "PorscheFanatics - register of declared materials",
         "url": "https://porschefanatics.com/materials/",
         "source_type": "community",
         "license": "site-content-reference-only",
         "accessed_on": "2026-09-07",
-        "notes": "Documente des offres d'échappement 993 Turbo déclarées en IN625 ; précédent matière uniquement, sans géométrie ni transfert de fitment. Voir SRC-PORSCHEFANATICS-993-IN625-EXHAUST-REGISTER."
+        "notes": "Documents 993 Turbo exhaust offerings declared in IN625; material precedent only, with no geometry and no fitment transfer. See SRC-PORSCHEFANATICS-993-IN625-EXHAUST-REGISTER."
       },
       {
         "title": "EOS NickelAlloy IN625 material data sheet",
@@ -47,7 +47,7 @@
         "source_type": "manufacturer",
         "license": "manufacturer-copyright-reference-only",
         "accessed_on": "2026-09-07",
-        "notes": "Valeurs M 290 40 µm de criblage, dépendantes de l'orientation et du post-traitement. Voir SRC-EOS-IN625-MATERIAL-DATA."
+        "notes": "M 290 40 µm screening values, dependent on orientation and post-processing. See SRC-EOS-IN625-MATERIAL-DATA."
       },
       {
         "title": "Special Metals - INCONEL alloy 625",
@@ -55,7 +55,7 @@
         "source_type": "manufacturer",
         "license": "manufacturer-copyright-reference-only",
         "accessed_on": "2026-09-07",
-        "notes": "Propriétés thermiques corroyées de référence, jamais une carte admissible LPBF. Voir SRC-SPECIAL-METALS-INCONEL-625."
+        "notes": "Reference wrought thermal properties, never an LPBF allowables card. See SRC-SPECIAL-METALS-INCONEL-625."
       }
     ]
   },
@@ -63,25 +63,25 @@
     "candidate_processes": ["LPBF", "DMLS", "sheet_metal"],
     "preferred_process": "undecided",
     "material": {
-      "family": "superalliage nickel LPBF candidat",
-      "grade": "EOS NickelAlloy IN625 / UNS N06625 de criblage ; produit FVD déclaré en inox",
-      "standard": "ASTM F3055, AMS 7000 ou AMS 7001 à contractualiser si la voie LPBF est retenue"
+      "family": "candidate LPBF nickel superalloy",
+      "grade": "EOS NickelAlloy IN625 / UNS N06625 for screening; FVD product declared stainless",
+      "standard": "ASTM F3055, AMS 7000 or AMS 7001 to be contracted if the LPBF route is selected"
     },
     "post_processing": [
-      "évacuation complète de la poudre par les deux extrémités de la double paroi",
-      "détensionnement qualifié pour la machine et les paramètres",
-      "découpe du plateau avec contrôle de l'ovalisation",
-      "usinage de l'emmanchement et de la portée de serrage après ajout de surépaisseurs",
-      "ébavurage et polissage du chemin de gaz",
-      "passivation ou finition de surface à définir après essais"
+      "complete powder removal through both ends of the double wall",
+      "stress relief qualified for the machine and parameters",
+      "build plate cut-off with ovality control",
+      "machining of the slip fit and clamping seat after adding machining stock",
+      "deburring and polishing of the gas path",
+      "passivation or surface finish to be defined after testing"
     ],
     "supplier_requirements": [
-      "poudre, machine, paramètres, orientation, lot et recyclage traçables",
-      "capabilité démontrée sur doubles parois de 0,8 mm et entrefer ouvert de 2,7 mm",
-      "stratégie de supports et simulation de distorsion avant lancement",
-      "contrôle dimensionnel du raccord, de l'ovale, de l'angle et des jeux",
-      "CT ou radiographie de la double paroi et ressuage après finition",
-      "essais de fuite, vibration, cycles thermiques et température de jupe arrière avant véhicule"
+      "traceable powder, machine, parameters, orientation, lot and recycling",
+      "demonstrated capability on 0.8 mm double walls and a 2.7 mm open air gap",
+      "support strategy and distortion simulation before launch",
+      "dimensional inspection of the connection, oval, angle and clearances",
+      "CT or radiography of the double wall and dye penetrant inspection after finishing",
+      "leak, vibration, thermal cycling and rear valance temperature tests before vehicle use"
     ]
   },
   "titanium": {
@@ -91,7 +91,7 @@
     "hip_required": "not_applicable",
     "machined_surfaces": [],
     "inspection": [],
-    "galvanic_isolation": "Compatibilité galvanique du IN625 avec collier, tube et fixations à définir après identification des matériaux réels."
+    "galvanic_isolation": "Galvanic compatibility of IN625 with clamp, tube and fasteners to be defined after the actual materials are identified."
   },
   "validation": {
     "status": "concept",
@@ -111,17 +111,17 @@
     "reviewed_by": "",
     "reviewed_on": null,
     "known_limits": [
-      "Seule la sortie 120 x 85 mm vient de FVD ; longueur, entrée, doubles parois et attaches sont hypothétiques.",
-      "Le volume STEP donne 406,38 g en IN625 ; aucune masse commerciale comparable n'est publiée.",
-      "Le criblage de perte Borda-Carnot est une borne d'expansion brusque, pas la prédiction du diffuseur progressif.",
-      "Le mode de bande à 44,12 Hz n'est pas un mode de coque et ne peut pas être comparé à un spectre véhicule absent.",
-      "Les températures, débits, pressions, rendement volumétrique et conditions d'appui sont synthétiques.",
-      "Le calcul ignore pulses, courbures amont, joints, convection, CHT, ovalisation, rugosité, oxydation et fatigue thermique.",
-      "La CFD RANS stationnaire atteint ses seuils de résidus mais la perte de pression varie encore de 11,17 % entre les deux maillages les plus fins et les contrôles étendus conservent des cellules à faible déterminant.",
-      "Le tranchage pleine pièce et la scène EOS M 290 ne contiennent ni supports fournisseur, ni trajectoires laser, ni simulation thermomécanique ou recoater corrélée.",
-      "Le profil SimReady passe uniquement pour un prop isolé ; les propriétés physiques inventées par les agents ont été supprimées et aucun assemblage échappement-jupe n'est disponible.",
-      "PhysicsNeMo a seulement exécuté un smoke test CUDA ; aucun surrogate n'est entraîné avant convergence et corrélation des cas physiques.",
-      "Le STEP prouve seulement un BREP calculable dans l'enveloppe et ne doit pas être fabriqué pour montage."
+      "Only the 120 x 85 mm outlet comes from FVD; length, inlet, double walls and attachments are hypothetical.",
+      "The STEP volume gives 406.38 g in IN625; no comparable commercial mass is published.",
+      "The Borda-Carnot loss screening is a sudden-expansion bound, not a prediction for the gradual diffuser.",
+      "The 44.12 Hz strip mode is not a shell mode and cannot be compared with an absent vehicle spectrum.",
+      "Temperatures, flow rates, pressures, volumetric efficiency and support conditions are synthetic.",
+      "The calculation ignores pulses, upstream bends, joints, convection, CHT, ovalization, roughness, oxidation and thermal fatigue.",
+      "The steady RANS CFD reaches its residual thresholds but the pressure loss still varies by 11.17% between the two finest meshes and the extended checks keep low-determinant cells.",
+      "The full-part slicing and the EOS M 290 scene contain no supplier supports, no laser paths, and no correlated thermomechanical or recoater simulation.",
+      "The SimReady profile passes only for an isolated prop; the physical properties invented by the agents were removed and no exhaust-valance assembly is available.",
+      "PhysicsNeMo has only run a CUDA smoke test; no surrogate model is trained before the physical cases converge and are correlated.",
+      "The STEP proves only a computable BREP within the envelope and must not be manufactured for fitting."
     ]
   }
 }

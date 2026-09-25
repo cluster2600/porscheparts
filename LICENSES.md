@@ -1,33 +1,33 @@
-# Politique de licences et de provenance
+# Licensing and provenance policy
 
-## Contenu original
+## Original content
 
-Les scripts, documents, schémas et modèles créés spécifiquement pour ce projet
-sont sous licence MIT, sauf mention explicite différente dans le fichier ou la
-fiche de pièce.
+Scripts, documents, schemas and models created specifically for this project
+are under the MIT license, unless the file or the part record explicitly states
+otherwise.
 
-## Contenu tiers
+## Third-party content
 
-Un contenu visible ou téléchargeable sur Internet n’est pas nécessairement libre.
-Avant d’ajouter une géométrie, une photographie ou un jeu de données :
+Content that can be viewed or downloaded on the Internet is not necessarily
+free. Before adding a geometry, a photograph or a dataset:
 
-1. identifier l’auteur et l’URL d’origine ;
-2. enregistrer la licence exacte et la date d’accès ;
-3. vérifier que modification et redistribution sont permises ;
-4. conserver l’attribution demandée ;
-5. ne pas importer le fichier si la licence est inconnue.
+1. identify the author and the original URL;
+2. record the exact license and the access date;
+3. check that modification and redistribution are permitted;
+4. keep the required attribution;
+5. do not import the file if the license is unknown.
 
-Les sources à licence restrictive peuvent servir de référence documentaire locale,
-mais leur contenu ne doit pas être commité. Une fiche peut enregistrer leur URL
-avec `license: unknown-reference-only`.
+Sources under a restrictive license may serve as a local documentary reference,
+but their content must not be committed. A record may store their URL with
+`license: unknown-reference-only`.
 
-## Modèles générés depuis plusieurs sources
+## Models generated from multiple sources
 
-Une reconstruction nouvelle doit citer toutes ses sources. Reprendre le maillage,
-les textures ou une proportion substantielle d’un modèle tiers n’en fait pas une
-création indépendante.
+A new reconstruction must cite all of its sources. Reusing the mesh, the
+textures or a substantial proportion of a third-party model does not make it an
+independent creation.
 
-## Marques
+## Trademarks
 
-Les noms Porsche, 911 et 993 servent uniquement à identifier la compatibilité des
-pièces. Aucun logo ni écusson ne doit être intégré à une géométrie sans autorisation.
+The names Porsche, 911 and 993 are used solely to identify part compatibility.
+No logo or badge may be integrated into a geometry without authorization.

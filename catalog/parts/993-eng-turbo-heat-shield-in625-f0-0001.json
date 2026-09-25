@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "part_id": "993-ENG-TURBO-HEAT-SHIELD-IN625-F0-0001",
-  "name": "Couvercle thermique gauche de turbo 993, concept IN625 F0",
-  "description": "Concept indépendant de coque ouverte avec bossages intégrés pour cribler une refabrication LPBF en IN625. PorscheFanatics confirme l'identité PET ; FVD publie seulement l'enveloppe et la masse du couvercle gauche 993 123 113 51.",
+  "name": "993 left turbo heat shield cover, F0 IN625 concept",
+  "description": "Independent concept of an open shell with integrated bosses for screening an LPBF remanufacture in IN625. PorscheFanatics confirms the PET identity; FVD publishes only the envelope and mass of the left-hand cover 993 123 113 51.",
   "vehicle": {
     "generation": "993",
     "variants": ["993_Turbo", "993_GT2"],
@@ -12,7 +12,7 @@
   "classification": {
     "category": "turbocharger_heat_protection",
     "safety_class": "functional",
-    "intended_use": "Criblage CAO, thermique, mécanique et DfAM ; aucune fabrication pour montage ni installation véhicule autorisée"
+    "intended_use": "CAD, thermal, mechanical and DfAM screening; no manufacturing for fitment and no vehicle installation authorized"
   },
   "geometry": {
     "source_type": "mixed",
@@ -23,23 +23,23 @@
     "derived_files": ["parts/993-eng-turbo-heat-shield-in625-f0-0001/derived/turbo_heat_shield_in625_f0.step"]
   },
   "provenance": {
-    "record_license": "MIT pour le concept, le script et les calculs ; aucune photographie, illustration PET ou géométrie commerciale redistribuée",
+    "record_license": "MIT for the concept, the script and the calculations; no photograph, PET illustration or commercial geometry redistributed",
     "sources": [
       {
-        "title": "PorscheFanatics - relevé PET des groupes Turbo 993",
+        "title": "PorscheFanatics - PET transcription of the 993 Turbo groups",
         "url": "https://porschefanatics.com/oem/993/202-16/",
         "source_type": "community",
         "license": "site-owner-confirmed-reference-only",
         "accessed_on": "2026-09-07",
-        "notes": "Confirme 993 123 113 51 dans le groupe turbo 202-16, sans cote ni surface CAO. Voir SRC-PORSCHEFANATICS-993-TURBO-PET."
+        "notes": "Confirms 993 123 113 51 in turbo group 202-16, with no dimension and no CAD surface. See SRC-PORSCHEFANATICS-993-TURBO-PET."
       },
       {
-        "title": "FVD - couvercle thermique gauche 99312311351",
+        "title": "FVD - left heat shield cover 99312311351",
         "url": "https://www.fvd.net/en-ch/shop/cover-heat-protection-turbo-loader-left-99312311351~p248974",
         "source_type": "manufacturer",
         "license": "vendor-site-copyright-reference-only",
         "accessed_on": "2026-09-07",
-        "notes": "FVD déclare 160 x 110 x 105 mm, 0,23 kg et les applications 993 Turbo/GT2. La topologie et les interfaces F0 sont indépendantes. Voir SRC-FVD-993-TURBO-HEAT-SHIELD-DIMENSIONS."
+        "notes": "FVD declares 160 x 110 x 105 mm, 0.23 kg and the 993 Turbo/GT2 applications. The F0 topology and interfaces are independent. See SRC-FVD-993-TURBO-HEAT-SHIELD-DIMENSIONS."
       },
       {
         "title": "EOS NickelAlloy IN625 material data sheet",
@@ -47,7 +47,7 @@
         "source_type": "manufacturer",
         "license": "manufacturer-copyright-reference-only",
         "accessed_on": "2026-09-07",
-        "notes": "Valeurs M 290 40 µm de criblage, dépendantes de l'orientation et du post-traitement. Voir SRC-EOS-IN625-MATERIAL-DATA."
+        "notes": "M 290 40 µm screening values, dependent on orientation and post-processing. See SRC-EOS-IN625-MATERIAL-DATA."
       },
       {
         "title": "Special Metals - INCONEL alloy 625",
@@ -55,7 +55,7 @@
         "source_type": "manufacturer",
         "license": "manufacturer-copyright-reference-only",
         "accessed_on": "2026-09-07",
-        "notes": "Propriétés thermiques corroyées utilisées comme références, jamais comme carte LPBF admissible. Voir SRC-SPECIAL-METALS-INCONEL-625."
+        "notes": "Wrought thermal properties used as references, never as an LPBF allowables map. See SRC-SPECIAL-METALS-INCONEL-625."
       }
     ]
   },
@@ -63,25 +63,25 @@
     "candidate_processes": ["LPBF", "DMLS", "sheet_metal"],
     "preferred_process": "undecided",
     "material": {
-      "family": "superalliage nickel LPBF candidat",
-      "grade": "EOS NickelAlloy IN625 / UNS N06625 de criblage ; matière OEM inconnue",
-      "standard": "ASTM F3055, AMS 7000 ou AMS 7001 à contractualiser selon le procédé retenu"
+      "family": "candidate LPBF nickel superalloy",
+      "grade": "EOS NickelAlloy IN625 / UNS N06625, screening; OEM material unknown",
+      "standard": "ASTM F3055, AMS 7000 or AMS 7001 to be contracted according to the selected process"
     },
     "post_processing": [
-      "retrait des supports avec ouverture complète de la coque",
-      "détensionnement qualifié pour la machine et les paramètres",
-      "découpe du plateau et redressage contrôlé de la paroi mince",
-      "usinage ou alésage des interfaces après ajout des surépaisseurs",
-      "ébavurage et finition des bords",
-      "revêtement thermique à décider après essais"
+      "support removal with full opening of the shell",
+      "stress relief qualified for the machine and parameters",
+      "removal from the build plate and controlled straightening of the thin wall",
+      "machining or boring of the interfaces after adding machining allowances",
+      "deburring and edge finishing",
+      "thermal coating to be decided after testing"
     ],
     "supplier_requirements": [
-      "poudre, machine, paramètres, orientation, lot et recyclage traçables",
-      "capabilité démontrée sur paroi 0,8 mm et coupons représentatifs",
-      "contrôle dimensionnel de l'enveloppe, des bords et interfaces",
-      "CT ou radiographie des bossages et ressuage après finition",
-      "rugosité, porosité, contraintes résiduelles et distorsion contractualisées",
-      "essais thermiques, vibratoires et cycliques avant montage"
+      "traceable powder, machine, parameters, orientation, lot and recycling",
+      "demonstrated capability on a 0.8 mm wall and representative coupons",
+      "dimensional inspection of the envelope, edges and interfaces",
+      "CT or radiography of the bosses and penetrant testing after finishing",
+      "roughness, porosity, residual stresses and distortion specified by contract",
+      "thermal, vibration and cyclic tests before fitment"
     ]
   },
   "titanium": {
@@ -91,7 +91,7 @@
     "hip_required": "not_applicable",
     "machined_surfaces": [],
     "inspection": [],
-    "galvanic_isolation": "Compatibilité galvanique du IN625 avec fixations et supports OEM à définir après identification des matériaux réels."
+    "galvanic_isolation": "Galvanic compatibility of IN625 with OEM fasteners and brackets to be defined after identification of the real materials."
   },
   "validation": {
     "status": "concept",
@@ -106,11 +106,11 @@
     "reviewed_by": "",
     "reviewed_on": null,
     "known_limits": [
-      "Seule l'enveloppe 160 x 110 x 105 mm vient de FVD ; profil, paroi, bossages et perçages sont hypothétiques.",
-      "La masse F0 de 325,58 g dépasse de 41,6 % les 230 g publiés ; la matière commerciale est inconnue et aucune validation par masse n'est possible.",
-      "Les températures, l'émissivité, le facteur de vue, la force et les conditions d'appui sont synthétiques.",
-      "Le calcul ignore convection, géométrie réelle du turbo, courbure de coque, contact, vibration, fatigue thermique, oxydation et fluage.",
-      "Le STEP prouve seulement un BREP calculable dans l'enveloppe et ne doit pas être fabriqué pour montage."
+      "Only the 160 x 110 x 105 mm envelope comes from FVD; profile, wall, bosses and holes are hypothetical.",
+      "The F0 mass of 325.58 g exceeds the published 230 g by 41.6%; the commercial material is unknown and no validation by mass is possible.",
+      "The temperatures, emissivity, view factor, force and support conditions are synthetic.",
+      "The calculation ignores convection, real turbo geometry, shell curvature, contact, vibration, thermal fatigue, oxidation and creep.",
+      "The STEP proves only a computable BREP within the envelope and must not be manufactured for fitment."
     ]
   }
 }
