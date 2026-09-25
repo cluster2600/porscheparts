@@ -59,6 +59,12 @@ def main() -> int:
     a = ap.parse_args()
     files = subprocess.run(["git", "ls-files", "*.md"], cwd=ROOT, check=True,
                            capture_output=True, text=True).stdout.split()
+    # Resolve against what git tracks, not what happens to be on disk: an
+    # untracked local folder must not hide a link that is broken on GitHub.
+    tracked = subprocess.run(["git", "ls-files"], cwd=ROOT, check=True,
+                             capture_output=True, text=True).stdout.split("\n")
+    known = {ROOT / f for f in tracked if f}
+    known |= {d for f in list(known) for d in f.parents if ROOT in d.parents or d == ROOT}
     cache: dict[Path, set[str]] = {}
     broken = []
     for f in files:
@@ -73,7 +79,7 @@ def main() -> int:
                 continue
             path_part, _, frag = target.partition("#")
             dest = (src.parent / unquote(path_part)).resolve() if path_part else src
-            if path_part and not dest.exists():
+            if path_part and dest not in known:
                 broken.append((f, target, "missing file"))
                 continue
             if frag and dest.suffix == ".md" and dest.is_file():

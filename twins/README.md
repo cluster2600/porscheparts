@@ -21,7 +21,6 @@ are in [docs/DIGITAL_TWIN.md](../docs/DIGITAL_TWIN.md).
 | [`993-m64-60-piston-gallery-f0/`](993-m64-60-piston-gallery-f0/) | M64/60 CP1 piston with closed oil gallery; `F1_envelope` | `TWIN-993-M64-60-PISTON-GALLERY-F0` |
 | [`993-oval-exhaust-tip-in625-f0/`](993-oval-exhaust-tip-in625-f0/) | 993 oval exhaust tip in IN625; `F1_envelope` | `TWIN-993-OVAL-EXHAUST-TIP-IN625-F0` |
 | [`993-reference-envelope/`](993-reference-envelope/README.md) | parametric bounding cage of the 993 USA profile from seven manual dimensions; not the body | README |
-| [`993-switch-trim-ring-alsi10mg-f1/`](993-switch-trim-ring-alsi10mg-f1/) | LPBF F1 geometry screen of the switch trim ring; print release blocked | part record `993-INT-SWITCH-TRIM-RING-F1-0001` |
 | [`993-switch-trim-ring-f1/`](993-switch-trim-ring-f1/) | switch trim ring F1 reconstruction: LPBF screen, supplier and turning routes; the route concluded it must be turned, not sintered | part record `993-INT-SWITCH-TRIM-RING-F1-0001` |
 | [`engine-simulation-contracts/`](engine-simulation-contracts/README.md) | F1 register of engine components, interfaces, candidate materials and load cases; every simulation case blocked | README |
 | [`m64-cylinder-head/`](m64-cylinder-head/README.md) | M64 cylinder head work: code, records and receipts; no validated cylinder head | README |
@@ -47,7 +46,7 @@ flowchart LR
   subgraph INT["Interior"]
     DASH["993-cabin-dashboard-switch-0001"]
     DOOR["993-door-opener-lever-alsi10mg-f0"]
-    RING["993-switch-trim-ring-f1<br/>993-switch-trim-ring-alsi10mg-f1"]
+    RING["993-switch-trim-ring-f1"]
   end
   subgraph LIGHT["Lighting"]
     HOOK["993-headlamp-spring-hook-alsi10mg-f0"]
