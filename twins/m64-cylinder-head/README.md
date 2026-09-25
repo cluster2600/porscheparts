@@ -9,9 +9,10 @@ Files under [`evidence/`](evidence/) are pinned by SHA-256 digest and are never
 edited. The B-Reps, STEPs, scans and detailed coordinates stay private; only
 code, tests and aggregates with digests are published.
 
-Latest design experiment: [G6 carrier, hot-load screens and virtual build preparation](../../docs/reports/M64_G6_CARRIER_THERMAL_AM_20260925.md).
-The carrier geometry is audited, but heat rejection and shaft-support screens
-reject the candidate. This is not a manufacturing release.
+Latest design experiment: [G7 local supports and finite-air cooling](../../docs/reports/M64_G7_LOCAL_SUPPORTS_COOLING_20260925.md).
+Shaft-only bending improves, but journal clearance, carrier compliance, heat
+rejection and AM gates remain open or failed. This is not a manufacturing release.
+The [G6 baseline](../../docs/reports/M64_G6_CARRIER_THERMAL_AM_20260925.md) is retained unchanged.
 
 ## Sub-pages
 
