@@ -77,6 +77,8 @@ def grille(fiches: list, par_ligne: int = 6) -> list[str]:
         dossier = f"parts/{d['part_id'].lower()}"
         if (ROOT / dossier / "media" / "preview.png").exists():
             libelle = court(nom(d).split(",")[0], 34)
+            if (ROOT / dossier / "print" / "print.json").exists():
+                libelle = "🖨️ " + libelle
             tuiles.append(f'<td align="center" width="16%"><a href="{dossier}/">'
                           f'<img src="{dossier}/media/preview.png" alt="{libelle}" width="130"><br>'
                           f"<sub>{libelle}</sub></a></td>")
@@ -87,15 +89,22 @@ def grille(fiches: list, par_ligne: int = 6) -> list[str]:
     etat = (f"{len(fiches)} of {len(fiches)} records are at `concept`" if niveaux == {"concept"}
             else "see each record's validation status")
     etat += f", and {mesurees} of {len(fiches)} have measured geometry"
+    prets = [nom(d).split(",")[0] for _, d in fiches
+             if (ROOT / "parts" / d["part_id"].lower() / "print" / "print.json").exists()]
+    imprimables = (f"Printable as designed, fit unchecked: {', '.join(prets)} "
+                   "(see its `print/` folder)." if prets else "None is a print file.")
     out = ["> [!CAUTION]",
-           "> These are concept models for studying parts in software. None is ready to print.",
+           "> These are concept models for studying parts in software, not validated parts."
+           + (" One of them, marked 🖨️, is published as a printable file." if any(
+               (ROOT / "parts" / d["part_id"].lower() / "print" / "print.json").exists() for _, d in fiches)
+              else " None is ready to print."),
            "", "<table>"]
     for i in range(0, len(tuiles), par_ligne):
         out += ["<tr>"] + tuiles[i:i + par_ligne] + ["</tr>"]
     out += ["</table>", "",
             "*Concept CAD blocks rendered from each part's own CAD by "
             "`scripts/render_part_previews.py`. **None of these is the original part, and none "
-            f"is a print file**: {etat}. Click a part to see it next to the original.*", ""]
+            f"is validated**: {etat}. {imprimables} Click a part to see it next to the original.*", ""]
     return out
 
 
