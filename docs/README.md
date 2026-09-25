@@ -76,6 +76,6 @@ flowchart LR
 
 | document | what it answers |
 |---|---|
-| [decisions/](decisions/) | numbered architecture decisions (ADR 0001–0009) |
+| [decisions/](decisions/) | numbered architecture decisions (ADR 0001–0010) |
 | [reports/](reports/README.md) | dated execution and audit reports, indexed by day |
 | [media/](media/) | diagrams and video projects |
