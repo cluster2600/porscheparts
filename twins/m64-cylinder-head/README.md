@@ -1,5 +1,53 @@
 # M64 cylinder head twin
 
+## Product target — complete finned four-valve head
+
+The user's reference, reaffirmed on 27 September 2026, is the individual,
+finned FVD 993 GT2 Evo 3.8 L twin-ignition head shown in their screenshots
+(reference **99310401188BF**). The requested product is a **four-valve M64
+head: two intake and two exhaust valves**, not an isolated distribution support.
+
+Preserve the reference exterior and engine interfaces unless a documented
+thermal, mechanical or mass benefit justifies a change. Do not introduce an
+oval replacement envelope. The scan remains the geometry reference; these
+photographs are not dimensional measurements. Retaining twin ignition is a
+packaging/combustion requirement to evaluate, not proof that four valves and
+two plugs already fit. The engine target remains the requested 700 hp turbo
+study, not a demonstrated output.
+
+The full assembly must include the chamber, ports, fins, seats, guides,
+valves, springs, actuation and lubrication. Internal oil cooling is a candidate
+to evaluate for heat rejection, pressure loss and manufacturability, not an
+already qualified solution. The reference photographs remain private because
+no republication licence is recorded.
+
+**The G14 pictures below show only distribution supports. They are not a
+render or a completed version of this full cylinder-head target.**
+
+Current priority: [complete-head integration](../../docs/reports/M64_COMPLETE_HEAD_INTEGRATION_20260927.md).
+The retained scan-derived four-pocket body and V2 valve module are distinct
+from the synthetic G7 head and its distribution: their included valve angles
+are 16° and 56.9294°. Those assemblies cannot be combined by repositioning.
+The next work uses explicitly identified whole-body inputs; there is no
+fallback to the G7 block or an oval substitute.
+The latest retained whole-body diagnostic is the exhaust-equipped V5, not
+the earlier intake-only body. Its
+[geometry checkpoint](../../docs/reports/M64_GEOMETRY_CHECKPOINT_20260908.md)
+already records five passed BOP modes, attributed serialization differences
+and unresolved mesh/assembly/physical gates. These earlier passes must not
+be reported as new work or as fabrication approval.
+
+New on September 27: a native **13-solid integration checkpoint** combines
+that V5 body with the exact four valves, four seats and four guides. Its
+save/readback and component identities were checked, and full/cutaway views
+were rendered. This is not yet the complete head: actuation, springs, plugs
+and oil circuits remain to be integrated. See the
+[actual outputs and their fingerprints](../../docs/reports/M64_COMPLETE_HEAD_INTEGRATION_20260927.md#new-native-assembly-and-actual-views).
+Geometry and rendered derivatives remain private under the scan source policy;
+the producer, tests and evidence summary are published.
+
+## Evidence and current work
+
 This directory holds the code, records and receipts of the M64 cylinder head
 work. This page is only an index of its README pages. Each page states its own
 limits; none of them establishes a validated cylinder head, an engine
