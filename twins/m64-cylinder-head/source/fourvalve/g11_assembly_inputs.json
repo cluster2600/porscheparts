@@ -1,0 +1,29 @@
+{
+  "classification": "assembly_calculation_preparation_not_a_solved_assembly",
+  "units": "mm_N_MPa",
+  "selection": "Lowest-volume G11 support satisfying every journal displacement and mesh screen; no automatic promotion when none passes.",
+  "required_components": ["head", "central_diaphragm", "carrier_base_p", "carrier_base_m", "cam_caps", "rocker_shafts", "camshafts", "carrier_fasteners", "head_fasteners"],
+  "datum": "Relative journal-centre translation and axis rotation to the cylinder/head seating datum; report rigid-body registration separately.",
+  "preserve": ["original external head envelope", "journal axes and diameters", "oil galleries", "nominal gaps", "load provenance"],
+  "required_inputs_not_qualified": [
+    "engine-side head restraints and head fastener preload",
+    "carrier and cap screw grades, engagement, preload and tightening scatter",
+    "shaft retention and bearing/contact definitions including the 0.040 mm nominal radial gap",
+    "contact pairs, friction and separation behaviour",
+    "alloy and process-specific elastic and thermal properties versus temperature",
+    "correlated temperature field and operating load cycle"
+  ],
+  "optimistic_linked_case_policy": "May be separately labelled only after explicit mating-face and load-transfer definitions. Never bridge the nominal shaft gap by enlarging solids or report linked-interface motion as contact validation.",
+  "outputs_required": ["translation_relative_to_head_mm", "axis_rotation_relative_to_head_rad", "shaft_bending_mm", "contact_status", "force_and_moment_balance", "mesh_sensitivity", "input_provenance"],
+  "omniverse_handoff": {
+    "intent": "conversion_and_review_only_no_automatic_material_or_physics_assignment",
+    "source": "selected native assembly STEP only when a selected assembly exists",
+    "stages": ["pinned preflight with content agents skipped", "installed convert-to-usd reference", "minimum USD validation"],
+    "annotate": ["geometry SHA-256", "millimetres-to-stage-unit transform", "component identities", "actual CAE load-case identity", "undeformed and scaled-deformation display labels"],
+    "structural_validation": false
+  },
+  "assembled_stiffness_qualified": false,
+  "hot_material_qualified": false,
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false
+}
