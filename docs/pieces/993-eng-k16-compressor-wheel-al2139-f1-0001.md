@@ -133,6 +133,7 @@ Catalogue record: [`catalog/parts/993-eng-k16-compressor-wheel-al2139-f1-0001.js
 ## Design dossiers
 
 - [993_K16_COMPRESSOR_WHEEL_AL2139_F1](../../docs/993/993_K16_COMPRESSOR_WHEEL_AL2139_F1.md)
+- [993_K16_ROD_IMPROVEMENT_PROGRAMME](../../docs/993/993_K16_ROD_IMPROVEMENT_PROGRAMME.md)
 
 ---
 
