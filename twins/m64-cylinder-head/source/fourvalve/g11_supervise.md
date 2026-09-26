@@ -1,8 +1,10 @@
 # G11/G12 durable collection supervisor
 
-Prepared and tested locally; **not installed, started, or demonstrated on a live
-Vast job**. No rental or destruction operation exists in this supervisor.
-The frozen G11 numerical sources, GPU job and collector remain unchanged.
+Demonstrated on the [live G12 campaign](../../../../docs/reports/M64_G12_FEA_20260926.md):
+incremental snapshots, producer binding and a 133-file verified archive were
+recovered before worker deletion. No rental or destruction operation exists in
+this supervisor. The frozen G11 numerical sources, GPU job and collector remain
+unchanged. Collection success is not a mechanical pass.
 
 ## G12 transport reuse
 
@@ -60,7 +62,7 @@ packing.
   reserve is 1,800 seconds; raise it for slow transfer/compression. No deadline
   or billing guard is renewed automatically.
 
-## Future remote launcher (do not run without the preconditions)
+## Remote launcher pattern (requires the preconditions)
 
 Substitute verified instance ID, uploaded manifest and absolute compute deadline.
 Start once in a fresh `/workspace/m64-g11`; existing markers are not overwritten.
@@ -94,7 +96,7 @@ markers, or identity mismatches retain snapshots but **do not** permit automatic
 packing: the numerical workers use detached groups, so launcher-group absence
 alone would not prove quiescence following SIGKILL/OOM.
 
-## Future local service (commands prepared, not executed)
+## Local service pattern
 
 Use absolute paths and a new private output directory. Submit the guard under
 its own unique launchd label before rental; verify its readiness receipt before
@@ -104,6 +106,7 @@ replaces that guard. After obtaining the producer start receipt:
 ```sh
 launchctl submit -l com.cluster2600.m64-g11-supervisor-JOB \
   -o /ABS/PRIVATE/launchd.stdout -e /ABS/PRIVATE/launchd.stderr -- \
+  /usr/bin/env -i PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/homebrew/bin \
   /usr/bin/caffeinate -ims /ABS/PYTHON \
   /ABS/REPO/twins/m64-cylinder-head/source/fourvalve/g11_supervise.py \
   --manifest /ABS/PRIVATE/owned-manifest.json --ssh-config /ABS/PRIVATE/ssh.conf \
@@ -112,7 +115,9 @@ launchctl submit -l com.cluster2600.m64-g11-supervisor-JOB \
   --output /ABS/PRIVATE/supervisor --log /ABS/PRIVATE/supervisor/events.jsonl
 ```
 
-Check only the exact row from `launchctl list`, filtered by the service label,
+Start both services with an explicit minimal environment, as above; do not
+inherit unrelated application credentials. Check only the exact row from
+`launchctl list`, filtered by the service label,
 and the persistent event log. Do not print the full service configuration: it
 can expose unrelated inherited environment secrets. Remove these exact temporary
 service labels after verified collection and provider cleanup; submitted jobs

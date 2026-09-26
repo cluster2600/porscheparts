@@ -1,0 +1,86 @@
+{
+  "classification": "G12_owned_rental_and_verified_collection_not_manufacturing_release",
+  "instance_id": 52763908,
+  "ownership_label": "3dprinting993-picogk-m64-a0479d73668442a3b8a0",
+  "manifest_sha256": "5000a03553bb2ded6a6d1b9ebe4d785de572badddb6d0782a00ab113d1ac2aaf",
+  "image_ref": "ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:7c7048431256c455d1396c2e71e38be15b6d0d5d035f41fdde03de47a9025ccd",
+  "resources": {
+    "cpu": "AMD Ryzen 9 5950X",
+    "logical_cpus": 32,
+    "provider_ram_MB": 128727,
+    "gpu": "NVIDIA RTX PRO 4000 Blackwell",
+    "gpu_memory_MiB": 24467,
+    "driver": "580.159.04",
+    "disk_GB": 100
+  },
+  "budget": {
+    "attempt_cap_USD": 4,
+    "approved_plan_cap_USD": 15,
+    "prior_conservative_reservations_USD": 8.66,
+    "total_reserved_with_attempt_cap_USD": 12.66,
+    "shared_balance_difference_used": false,
+    "dph_total_USD": 0.3171111111111111,
+    "ingress_USD_per_GB": 0.0026041666666666665,
+    "egress_USD_per_GB": 0.00390625,
+    "manifest_created_epoch": 1790433681,
+    "manifest_deadline_epoch": 1790444481,
+    "manifest_image_input_output_GB": [
+      4,
+      2,
+      2
+    ],
+    "calculation_until_verified_absence_USD": 0.22825622331296955,
+    "maximum_allocated_transfer_charge_USD": 0.0234375,
+    "rounded_conservative_charge_bound_USD": 0.26,
+    "extra_safety_reserve_USD": 1,
+    "charge_plus_reserve_bound_USD": 1.26,
+    "invoice_verified": false,
+    "basis": "Conservative manifest-created to provider-verified absence at the owned hourly rate, plus full declared transfer allocations. Not an invoice or a shared-account balance delta. Deadline and USD 4 cap unchanged for the 300-second supplemental diagnostic."
+  },
+  "archives": [
+    {
+      "purpose": "original G12 campaign",
+      "bytes": 319028560,
+      "sha256": "fe62eee7cbd3bc65cd30fd2acfea5d63b3468290d2a26f234e865a2513ee2df6",
+      "retained_files_verified": 133,
+      "omitted_matrix_files": 6
+    },
+    {
+      "purpose": "bounded failed-field equation diagnostic",
+      "bytes": 46151244,
+      "sha256": "e9d7b0ceaa4d9a74156c09be2bd6d6ed4facdc15cc0240666441abd3c5acdd93",
+      "retained_files_verified": 16,
+      "omitted_matrix_files": 2
+    }
+  ],
+  "combined_archive_bytes": 365179804,
+  "archive_byte_cap": 1990000000,
+  "collection_verified_before_delete": true,
+  "original_case_artifact_hashes_match_inventory": true,
+  "diagnostic_reference_hashes_checked": 24,
+  "delete_requested_epoch": 1790436261.2498891,
+  "verified_absent_epoch": 1790436272.275976,
+  "proof": {
+    "destroyed": true,
+    "instance_id": 52763908,
+    "verified_absent": true
+  },
+  "independent_guard_absence_proof": {
+    "delete_acknowledgement_may_have_been_lost": false,
+    "destroyed": true,
+    "instance_id": 52763908,
+    "label": "3dprinting993-picogk-m64-a0479d73668442a3b8a0",
+    "reason": "already_destroyed",
+    "verified_absent": true
+  },
+  "post_cleanup_guard_restart_warning_count": 3,
+  "service_cleanup": {
+    "supervisor_removed": true,
+    "guard_removed": true,
+    "exact_labels_absent": true,
+    "provider_inventory_after_cleanup": []
+  },
+  "restart_note": "launchctl submit restarted completed one-shot services; subsequent guard rearming failed closed. The successful absence proof and final empty provider inventory are retained; exact temporary services were removed. No further rental occurred.",
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false
+}

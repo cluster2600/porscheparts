@@ -1,0 +1,651 @@
+{
+  "classification": "G12_independent_receipt_arithmetic_after_verified_collection",
+  "campaign_complete": false,
+  "planned_case_count": 6,
+  "completed_receipt_count": 3,
+  "summary_sha256": "16dd9fb89174be56bb4dd385061eb256468fa93c654e962999660bfb76718a6f",
+  "summary_records": [
+    {
+      "id": "centre_w11_local24_foot24_h40",
+      "size_mm": 2.0,
+      "status": "completed",
+      "returncode": 0,
+      "wall_seconds": 51.505732088931836,
+      "path": "centre_w11_local24_foot24_h40-2-attempt1/result.json",
+      "sha256": "2ce8efec9f5b8dcb31a2412b645d560d36b464ec76be636cfdd05eb1d954650c"
+    },
+    {
+      "id": "centre_w11_local28_foot30_h50",
+      "size_mm": 2.0,
+      "status": "completed",
+      "returncode": 0,
+      "wall_seconds": 60.727328867069446,
+      "path": "centre_w11_local28_foot30_h50-2-attempt1/result.json",
+      "sha256": "fbefb6277a9b2d492b6feef7a65c13cf2024412834f4f1998d8a34d2eb9f9591"
+    },
+    {
+      "id": "centre_w11_local24_foot24_h40",
+      "size_mm": 1.5,
+      "status": "completed",
+      "returncode": 0,
+      "wall_seconds": 167.7736439500004,
+      "path": "centre_w11_local24_foot24_h40-1.5-attempt1/result.json",
+      "sha256": "71ff901ab1f69a0a09f662b5fa31fedc2f2b6504cb2bc4ff4f5363561ab8353f"
+    },
+    {
+      "id": "centre_w11_local28_foot30_h50",
+      "size_mm": 1.5,
+      "status": "failed",
+      "returncode": 1,
+      "wall_seconds": 150.9985638889484
+    },
+    {
+      "id": "centre_w11_local24_foot24_h40",
+      "size_mm": 1.0,
+      "status": "failed",
+      "returncode": 1,
+      "wall_seconds": 1161.630516560981
+    }
+  ],
+  "independently_resolved_physics": false,
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false,
+  "assembled_stiffness_qualified": false,
+  "archive_sha256": "fe62eee7cbd3bc65cd30fd2acfea5d63b3468290d2a26f234e865a2513ee2df6",
+  "instance_id": 52763908,
+  "source_sha256": "eecb8ae350f1a0d441b2ca4038d75c8c0c1cea3bdbae2f16fc1233c51f30ef59",
+  "baseline_summary_sha256": "612a3c2804e8fa65df2f6302efd05548cbefe9db88ff04403611c9f8e8a573c4",
+  "cad_receipt_sha256": "1038c9a40bd005f8390b7ce806c51ad65323d6706c35c12844d01489e1fd4d83",
+  "campaign_source_sha256": "e2e446e24f5471bbe52fdd785c59dbf84a0d943537db8d6407528f5efade039e",
+  "unchanged_journal_forces_N": {
+    "intake": 6881.35243458258,
+    "exhaust": 6702.484411298031
+  },
+  "original_result_and_case_artifact_hashes_match_inventory": true,
+  "receipts": {
+    "results/centre_w11_local24_foot24_h40-2-attempt1/result.json": "2ce8efec9f5b8dcb31a2412b645d560d36b464ec76be636cfdd05eb1d954650c",
+    "results/centre_w11_local24_foot24_h40-1.5-attempt1/result.json": "71ff901ab1f69a0a09f662b5fa31fedc2f2b6504cb2bc4ff4f5363561ab8353f",
+    "results/centre_w11_local28_foot30_h50-2-attempt1/result.json": "fbefb6277a9b2d492b6feef7a65c13cf2024412834f4f1998d8a34d2eb9f9591"
+  },
+  "limitation": "Independent stdlib arithmetic on solver receipts, not a new solve. G11 is retained coarse summary only. Enlarged feet are perfectly fixed in XYZ; gain mixes geometry with idealized support area. Omitted matrices prevent a fresh residual audit from this archive alone.",
+  "variants": {
+    "centre_w11_local24_foot24_h40": {
+      "planned_cases": {
+        "2": {
+          "status": "completed",
+          "reason": "verified_completed_solver_receipt",
+          "qualified_for_comparison": true
+        },
+        "1.5": {
+          "status": "completed",
+          "reason": "verified_completed_solver_receipt",
+          "qualified_for_comparison": true
+        },
+        "1": {
+          "status": "failed",
+          "reason": "worker_failed",
+          "returncode": 1,
+          "qualified_for_comparison": false
+        }
+      },
+      "observations": {
+        "2": {
+          "x": {
+            "journal_vectors_mm": {
+              "intake": [
+                0.05816429028697309,
+                1.2860068750627101e-05,
+                0.01976478080969835
+              ],
+              "exhaust": [
+                0.05366242763024469,
+                6.521353325700267e-06,
+                -0.01766221557018221
+              ]
+            },
+            "journal_norms_mm": {
+              "intake": 0.06143070397141857,
+              "exhaust": 0.056494336358141994
+            },
+            "maximum_journal_motion_mm": 0.06143070397141857,
+            "stress_p95_MPa": 42.32262736590297,
+            "numerical_crosscheck_passed": true,
+            "equilibrium_passed": true,
+            "relative_residual": 9.904707334648973e-11,
+            "direct_nodal_relative_difference": 8.892102645745169e-08
+          },
+          "minus_z": {
+            "journal_vectors_mm": {
+              "intake": [
+                -0.009157936035965545,
+                2.6608390986242126e-06,
+                -0.023182809084491336
+              ],
+              "exhaust": [
+                0.006772307704481984,
+                -1.510520661329848e-06,
+                -0.020090167428000193
+              ]
+            },
+            "journal_norms_mm": {
+              "intake": 0.024926099505676275,
+              "exhaust": 0.021200919348248522
+            },
+            "maximum_journal_motion_mm": 0.024926099505676275,
+            "stress_p95_MPa": 31.912810195440844,
+            "numerical_crosscheck_passed": true,
+            "equilibrium_passed": true,
+            "relative_residual": 9.779813924301639e-11,
+            "direct_nodal_relative_difference": 1.6954601856359911e-07
+          }
+        },
+        "1.5": {
+          "x": {
+            "journal_vectors_mm": {
+              "intake": [
+                0.058471416008338536,
+                -1.1316422337096924e-06,
+                0.01988328244171144
+              ],
+              "exhaust": [
+                0.05388583756250663,
+                5.016145457603748e-07,
+                -0.017720606260699216
+              ]
+            },
+            "journal_norms_mm": {
+              "intake": 0.061759626067178164,
+              "exhaust": 0.056724803889579026
+            },
+            "maximum_journal_motion_mm": 0.061759626067178164,
+            "stress_p95_MPa": 41.621702379252675,
+            "numerical_crosscheck_passed": true,
+            "equilibrium_passed": true,
+            "relative_residual": 1.0506270575439734e-10,
+            "direct_nodal_relative_difference": 8.826089767088592e-08
+          },
+          "minus_z": {
+            "journal_vectors_mm": {
+              "intake": [
+                -0.009284886312779926,
+                1.6173443119035727e-06,
+                -0.023334195023233754
+              ],
+              "exhaust": [
+                0.006839372449771448,
+                -2.6220610510707926e-06,
+                -0.02017057761637062
+              ]
+            },
+            "journal_norms_mm": {
+              "intake": 0.025113617298974624,
+              "exhaust": 0.02129857327991545
+            },
+            "maximum_journal_motion_mm": 0.025113617298974624,
+            "stress_p95_MPa": 31.251628017688695,
+            "numerical_crosscheck_passed": true,
+            "equilibrium_passed": true,
+            "relative_residual": 1.001257499813658e-10,
+            "direct_nodal_relative_difference": 1.6654406419456668e-07
+          }
+        }
+      },
+      "refinement": {
+        "2_to_1.5_mm": {
+          "evaluated": true,
+          "reason": "both_meshes_qualified",
+          "directions": {
+            "x": {
+              "journals": {
+                "intake": {
+                  "left_vector_mm": [
+                    0.05816429028697309,
+                    1.2860068750627101e-05,
+                    0.01976478080969835
+                  ],
+                  "right_vector_mm": [
+                    0.058471416008338536,
+                    -1.1316422337096924e-06,
+                    0.01988328244171144
+                  ],
+                  "right_minus_left_mm": [
+                    0.0003071257213654449,
+                    -1.3991710984336794e-05,
+                    0.00011850163201309119
+                  ],
+                  "left_norm_mm": 0.06143070397141857,
+                  "right_norm_mm": 0.061759626067178164,
+                  "norm_reduction_fraction_from_left": -0.005354359863963598,
+                  "vector_difference_norm_mm": 0.00032949144676346336,
+                  "vector_relative_change": 0.005335062203988471,
+                  "scalar_norm_relative_change": 0.00532584338191777
+                },
+                "exhaust": {
+                  "left_vector_mm": [
+                    0.05366242763024469,
+                    6.521353325700267e-06,
+                    -0.01766221557018221
+                  ],
+                  "right_vector_mm": [
+                    0.05388583756250663,
+                    5.016145457603748e-07,
+                    -0.017720606260699216
+                  ],
+                  "right_minus_left_mm": [
+                    0.00022340993226194206,
+                    -6.019738779939892e-06,
+                    -5.83906905170066e-05
+                  ],
+                  "left_norm_mm": 0.056494336358141994,
+                  "right_norm_mm": 0.056724803889579026,
+                  "norm_reduction_fraction_from_left": -0.00407948028588212,
+                  "vector_difference_norm_mm": 0.00023099287397518802,
+                  "vector_relative_change": 0.0040721669910898355,
+                  "scalar_norm_relative_change": 0.004062905742004175
+                }
+              },
+              "maximum_vector_relative_change": 0.005335062203988471,
+              "vector_stabilized_1pct": true,
+              "left_stress_p95_MPa": 42.32262736590297,
+              "right_stress_p95_MPa": 41.621702379252675,
+              "stress_p95_relative_change": 0.01684037284836493,
+              "stress_stabilized_5pct": true
+            },
+            "minus_z": {
+              "journals": {
+                "intake": {
+                  "left_vector_mm": [
+                    -0.009157936035965545,
+                    2.6608390986242126e-06,
+                    -0.023182809084491336
+                  ],
+                  "right_vector_mm": [
+                    -0.009284886312779926,
+                    1.6173443119035727e-06,
+                    -0.023334195023233754
+                  ],
+                  "right_minus_left_mm": [
+                    -0.00012695027681438112,
+                    -1.04349478672064e-06,
+                    -0.00015138593874241754
+                  ],
+                  "left_norm_mm": 0.024926099505676275,
+                  "right_norm_mm": 0.025113617298974624,
+                  "norm_reduction_fraction_from_left": -0.007522949720057293,
+                  "vector_difference_norm_mm": 0.00019757318672719966,
+                  "vector_relative_change": 0.00786717358854021,
+                  "scalar_norm_relative_change": 0.007466777528142273
+                },
+                "exhaust": {
+                  "left_vector_mm": [
+                    0.006772307704481984,
+                    -1.510520661329848e-06,
+                    -0.020090167428000193
+                  ],
+                  "right_vector_mm": [
+                    0.006839372449771448,
+                    -2.6220610510707926e-06,
+                    -0.02017057761637062
+                  ],
+                  "right_minus_left_mm": [
+                    6.706474528946418e-05,
+                    -1.1115403897409446e-06,
+                    -8.04101883704264e-05
+                  ],
+                  "left_norm_mm": 0.021200919348248522,
+                  "right_norm_mm": 0.02129857327991545,
+                  "norm_reduction_fraction_from_left": -0.00460611778493436,
+                  "vector_difference_norm_mm": 0.00010471253017927793,
+                  "vector_relative_change": 0.004916410540889226,
+                  "scalar_norm_relative_change": 0.004584998740690997
+                }
+              },
+              "maximum_vector_relative_change": 0.00786717358854021,
+              "vector_stabilized_1pct": true,
+              "left_stress_p95_MPa": 31.912810195440844,
+              "right_stress_p95_MPa": 31.251628017688695,
+              "stress_p95_relative_change": 0.021156727495217666,
+              "stress_stabilized_5pct": true
+            }
+          }
+        },
+        "1.5_to_1_mm": {
+          "evaluated": false,
+          "reason": "missing_or_unqualified_mesh",
+          "directions": {}
+        }
+      },
+      "comparison_to_G11_centre_w11_same_2mm": {
+        "x": {
+          "journals": {
+            "intake": {
+              "left_vector_mm": [
+                0.06485896571219862,
+                1.3647076958786965e-05,
+                0.021276253137179336
+              ],
+              "right_vector_mm": [
+                0.05816429028697309,
+                1.2860068750627101e-05,
+                0.01976478080969835
+              ],
+              "right_minus_left_mm": [
+                -0.0066946754252255325,
+                -7.870082081598643e-07,
+                -0.0015114723274809866
+              ],
+              "left_norm_mm": 0.06825953828628055,
+              "right_norm_mm": 0.06143070397141857,
+              "norm_reduction_fraction_from_left": 0.10004219902897449,
+              "vector_difference_norm_mm": 0.006863179166045527,
+              "vector_relative_change": 0.11172229394015588,
+              "scalar_norm_relative_change": 0.11116321112060162
+            },
+            "exhaust": {
+              "left_vector_mm": [
+                0.060288578126329484,
+                1.1010066753551225e-05,
+                -0.0191629050654957
+              ],
+              "right_vector_mm": [
+                0.05366242763024469,
+                6.521353325700267e-06,
+                -0.01766221557018221
+              ],
+              "right_minus_left_mm": [
+                -0.0066261504960847956,
+                -4.4887134278509585e-06,
+                0.001500689495313491
+              ],
+              "left_norm_mm": 0.06326080701560252,
+              "right_norm_mm": 0.056494336358141994,
+              "norm_reduction_fraction_from_left": 0.10696149759505369,
+              "vector_difference_norm_mm": 0.006793964932692638,
+              "vector_relative_change": 0.12025922190894961,
+              "scalar_norm_relative_change": 0.1197725487837391
+            }
+          },
+          "maximum_vector_relative_change": 0.12025922190894961,
+          "vector_stabilized_1pct": false,
+          "left_stress_p95_MPa": 49.57786660416815,
+          "right_stress_p95_MPa": 42.32262736590297,
+          "stress_p95_relative_change": 0.1714269573941984,
+          "stress_stabilized_5pct": false
+        },
+        "minus_z": {
+          "journals": {
+            "intake": {
+              "left_vector_mm": [
+                -0.00906269434281227,
+                3.128603327917487e-06,
+                -0.024561984744088876
+              ],
+              "right_vector_mm": [
+                -0.009157936035965545,
+                2.6608390986242126e-06,
+                -0.023182809084491336
+              ],
+              "right_minus_left_mm": [
+                -9.524169315327548e-05,
+                -4.677642292932743e-07,
+                0.0013791756595975396
+              ],
+              "left_norm_mm": 0.026180594590426227,
+              "right_norm_mm": 0.024926099505676275,
+              "norm_reduction_fraction_from_left": 0.04791698219140894,
+              "vector_difference_norm_mm": 0.0013824603787973041,
+              "vector_relative_change": 0.05546236299355559,
+              "scalar_norm_relative_change": 0.05032857565477794
+            },
+            "exhaust": {
+              "left_vector_mm": [
+                0.006623405606563071,
+                -1.1128800862328211e-06,
+                -0.02143247719557478
+              ],
+              "right_vector_mm": [
+                0.006772307704481984,
+                -1.510520661329848e-06,
+                -0.020090167428000193
+              ],
+              "right_minus_left_mm": [
+                0.0001489020979189128,
+                -3.976405750970269e-07,
+                0.001342309767574587
+              ],
+              "left_norm_mm": 0.022432578581304163,
+              "right_norm_mm": 0.021200919348248522,
+              "norm_reduction_fraction_from_left": 0.054904933402624256,
+              "vector_difference_norm_mm": 0.0013505434110049268,
+              "vector_relative_change": 0.06370211540456143,
+              "scalar_norm_relative_change": 0.058094614333665286
+            }
+          },
+          "maximum_vector_relative_change": 0.06370211540456143,
+          "vector_stabilized_1pct": false,
+          "left_stress_p95_MPa": 33.99248915181497,
+          "right_stress_p95_MPa": 31.912810195440844,
+          "stress_p95_relative_change": 0.06516752813800261,
+          "stress_stabilized_5pct": false
+        }
+      },
+      "volume_mm3": 86382.74368894573,
+      "added_volume_vs_G11_mm3": 12479.989345114096,
+      "numerical_and_equilibrium_checks_passed": false,
+      "final_mesh_vector_stabilized_1pct": null,
+      "final_mesh_p95_stabilized_5pct": null,
+      "maximum_fine_journal_motion_mm": null,
+      "working_motion_screen_passed": null,
+      "design_margin_0p035_passed": null,
+      "accepted_isolated_cold_screen": false
+    },
+    "centre_w11_local28_foot30_h50": {
+      "planned_cases": {
+        "2": {
+          "status": "completed",
+          "reason": "verified_completed_solver_receipt",
+          "qualified_for_comparison": true
+        },
+        "1.5": {
+          "status": "failed",
+          "reason": "worker_failed",
+          "returncode": 1,
+          "qualified_for_comparison": false
+        },
+        "1": {
+          "status": "not_run",
+          "reason": "prior_mesh_not_completed",
+          "qualified_for_comparison": false,
+          "reason_origin": "inferred_from_verified_summary_and_frozen_controller_order"
+        }
+      },
+      "observations": {
+        "2": {
+          "x": {
+            "journal_vectors_mm": {
+              "intake": [
+                0.05301835551762027,
+                1.863585357779122e-05,
+                0.01843031934250457
+              ],
+              "exhaust": [
+                0.04854872180654265,
+                8.950222060453495e-06,
+                -0.0163125370427384
+              ]
+            },
+            "journal_norms_mm": {
+              "intake": 0.056130411010026575,
+              "exhaust": 0.05121598709315537
+            },
+            "maximum_journal_motion_mm": 0.056130411010026575,
+            "stress_p95_MPa": 37.924319447943866,
+            "numerical_crosscheck_passed": true,
+            "equilibrium_passed": true,
+            "relative_residual": 1.0018987319530156e-10,
+            "direct_nodal_relative_difference": 9.556344821286481e-08
+          },
+          "minus_z": {
+            "journal_vectors_mm": {
+              "intake": [
+                -0.009221311617325765,
+                3.364711682068669e-07,
+                -0.02197872496154156
+              ],
+              "exhaust": [
+                0.006857770253714607,
+                8.666032035124727e-07,
+                -0.018899837384024024
+              ]
+            },
+            "journal_norms_mm": {
+              "intake": 0.023834784223737582,
+              "exhaust": 0.020105543184561963
+            },
+            "maximum_journal_motion_mm": 0.023834784223737582,
+            "stress_p95_MPa": 30.67516302814606,
+            "numerical_crosscheck_passed": true,
+            "equilibrium_passed": true,
+            "relative_residual": 9.837372653993351e-11,
+            "direct_nodal_relative_difference": 1.7474393352633533e-07
+          }
+        }
+      },
+      "refinement": {
+        "2_to_1.5_mm": {
+          "evaluated": false,
+          "reason": "missing_or_unqualified_mesh",
+          "directions": {}
+        },
+        "1.5_to_1_mm": {
+          "evaluated": false,
+          "reason": "missing_or_unqualified_mesh",
+          "directions": {}
+        }
+      },
+      "comparison_to_G11_centre_w11_same_2mm": {
+        "x": {
+          "journals": {
+            "intake": {
+              "left_vector_mm": [
+                0.06485896571219862,
+                1.3647076958786965e-05,
+                0.021276253137179336
+              ],
+              "right_vector_mm": [
+                0.05301835551762027,
+                1.863585357779122e-05,
+                0.01843031934250457
+              ],
+              "right_minus_left_mm": [
+                -0.011840610194578355,
+                4.988776619004254e-06,
+                -0.0028459337946747654
+              ],
+              "left_norm_mm": 0.06825953828628055,
+              "right_norm_mm": 0.056130411010026575,
+              "norm_reduction_fraction_from_left": 0.17769131729816878,
+              "vector_difference_norm_mm": 0.01217782467567656,
+              "vector_relative_change": 0.21695591492286126,
+              "scalar_norm_relative_change": 0.21608833888793988
+            },
+            "exhaust": {
+              "left_vector_mm": [
+                0.060288578126329484,
+                1.1010066753551225e-05,
+                -0.0191629050654957
+              ],
+              "right_vector_mm": [
+                0.04854872180654265,
+                8.950222060453495e-06,
+                -0.0163125370427384
+              ],
+              "right_minus_left_mm": [
+                -0.011739856319786836,
+                -2.0598446930977302e-06,
+                0.0028503680227572985
+              ],
+              "left_norm_mm": 0.06326080701560252,
+              "right_norm_mm": 0.05121598709315537,
+              "norm_reduction_fraction_from_left": 0.19039940352762874,
+              "vector_difference_norm_mm": 0.012080928297004185,
+              "vector_relative_change": 0.2358819771457399,
+              "scalar_norm_relative_change": 0.2351769555966803
+            }
+          },
+          "maximum_vector_relative_change": 0.2358819771457399,
+          "vector_stabilized_1pct": false,
+          "left_stress_p95_MPa": 49.57786660416815,
+          "right_stress_p95_MPa": 37.924319447943866,
+          "stress_p95_relative_change": 0.30728427894982574,
+          "stress_stabilized_5pct": false
+        },
+        "minus_z": {
+          "journals": {
+            "intake": {
+              "left_vector_mm": [
+                -0.00906269434281227,
+                3.128603327917487e-06,
+                -0.024561984744088876
+              ],
+              "right_vector_mm": [
+                -0.009221311617325765,
+                3.364711682068669e-07,
+                -0.02197872496154156
+              ],
+              "right_minus_left_mm": [
+                -0.00015861727451349505,
+                -2.79213215971062e-06,
+                0.002583259782547316
+              ],
+              "left_norm_mm": 0.026180594590426227,
+              "right_norm_mm": 0.023834784223737582,
+              "norm_reduction_fraction_from_left": 0.08960111118127412,
+              "vector_difference_norm_mm": 0.002588126414977154,
+              "vector_relative_change": 0.10858610636800237,
+              "scalar_norm_relative_change": 0.09841961834722218
+            },
+            "exhaust": {
+              "left_vector_mm": [
+                0.006623405606563071,
+                -1.1128800862328211e-06,
+                -0.02143247719557478
+              ],
+              "right_vector_mm": [
+                0.006857770253714607,
+                8.666032035124727e-07,
+                -0.018899837384024024
+              ],
+              "right_minus_left_mm": [
+                0.0002343646471515354,
+                1.979483289745294e-06,
+                0.002532639811550757
+              ],
+              "left_norm_mm": 0.022432578581304163,
+              "right_norm_mm": 0.020105543184561963,
+              "norm_reduction_fraction_from_left": 0.10373463702838004,
+              "vector_difference_norm_mm": 0.002543461248228565,
+              "vector_relative_change": 0.1265054728877736,
+              "scalar_norm_relative_change": 0.11574098622359098
+            }
+          },
+          "maximum_vector_relative_change": 0.1265054728877736,
+          "vector_stabilized_1pct": false,
+          "left_stress_p95_MPa": 33.99248915181497,
+          "right_stress_p95_MPa": 30.67516302814606,
+          "stress_p95_relative_change": 0.10814371615971832,
+          "stress_stabilized_5pct": false
+        }
+      },
+      "volume_mm3": 100502.74471761515,
+      "added_volume_vs_G11_mm3": 26599.990373783512,
+      "numerical_and_equilibrium_checks_passed": false,
+      "final_mesh_vector_stabilized_1pct": null,
+      "final_mesh_p95_stabilized_5pct": null,
+      "maximum_fine_journal_motion_mm": null,
+      "working_motion_screen_passed": null,
+      "design_margin_0p035_passed": null,
+      "accepted_isolated_cold_screen": false
+    }
+  }
+}

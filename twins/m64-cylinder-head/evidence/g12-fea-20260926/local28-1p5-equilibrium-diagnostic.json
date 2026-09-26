@@ -1,0 +1,76 @@
+{
+  "classification": "read_only_failed_case_diagnostic_not_scientific_acceptance",
+  "instance_id": 52763908,
+  "remote_case": "/workspace/m64-g11/results/centre_w11_local28_foot30_h50-1.5-attempt1",
+  "method": "Existing DAT parsed with frozen g8.vectors/parse_dat; existing INP parsed with frozen g9.deck. No solve, source change, threshold change or remote file write.",
+  "limitations": [
+    "Moment recomputation uses the INP coordinates printed to 12 significant digits, rather than original in-memory mesh coordinates.",
+    "This identifies the failed acceptance guards, not the underlying cause within the numerical solve.",
+    "No matrix/CUDA audit is available for this failed mesh pair; it failed before that stage."
+  ],
+  "source_sha256": {
+    "g8_pilot.py": "f6f3d1fe77c0a701bb1f75926cd4ac8cba3ee6cc9c3337967740d30ad85fee92",
+    "g9_reference_campaign.py": "ed6a2b21d89030ba39fc393f8a218bbbf328eceda49ce6bed361273bd2d8170b"
+  },
+  "common": {
+    "node_count": 196914,
+    "support_count": 5321,
+    "stress_samples_per_case": 510804,
+    "displacement_samples_per_case": 196914,
+    "same_nodes_coordinates": true,
+    "same_support": true,
+    "same_load_nodes_and_magnitudes": true,
+    "force_and_moment_threshold": 0.0001,
+    "moment_normalization": "norm(applied_force_N) * 100 mm",
+    "both_displacement_sets_complete": true,
+    "both_reaction_sets_complete": true,
+    "both_logs_job_finished": true,
+    "solver": "CalculiX 2.21 / symmetric SPOOLES / 4 threads"
+  },
+  "cases": {
+    "x": {
+      "files_sha256": {
+        "dat": "b44e5f0916dec97181ba6d1e0f799757ec67b0a418693b1ee731a2afd823e520",
+        "inp": "d51f1343152d49bafef796cd257210c82dd6dc891df7d29e898528a0c9b94c84",
+        "log": "02ff2d555547df76fb5b7e3357707f11be2401296d7467dcb6d72fed3d094e15"
+      },
+      "nonfinite_stress_count": 0,
+      "nonfinite_displacement_count": 0,
+      "applied_N": [13583.836845880493, 0.0, 0.0],
+      "reaction_N": [-13583.836878905233, 0.0000015671129771632764, -0.00001110287882066796],
+      "force_residual_N": [-0.00003302474033262115, 0.0000015671129771632764, -0.00001110287882066796],
+      "force_balance_relative_error": 2.567492513153507e-9,
+      "moment_residual_Nmm": [0.000004082123545856575, -0.003345680423080921, -0.0011993498693172455],
+      "moment_balance_F_times_100mm_error": 2.616460549290982e-9,
+      "guard_passed": true,
+      "solver_seconds_logged": 72.104597
+    },
+    "minus_z": {
+      "files_sha256": {
+        "dat": "88cedaec685532ed97aa50e697f4f3987635251c5970f32b1edc6bf19fabe703",
+        "inp": "d5e2d625ec1f65f56e9a0f8896a43505ccec1a474f887dfd2400dc96bb09dc08",
+        "log": "98df07c167920b3fe681a941bc3a63baca04eaab3153a6a3bce2cd3de9601927"
+      },
+      "nonfinite_stress_count": 0,
+      "nonfinite_displacement_count": 0,
+      "applied_N": [0.0, 0.0, -13583.836845880493],
+      "reaction_N": [-2.567108860611045, 1.916209042057194, 13562.33668224026],
+      "force_residual_N": [-2.567108860611045, 1.916209042057194, -21.50016364023213],
+      "force_balance_relative_error": 0.0016002474896181964,
+      "applied_moment_Nmm": [0.13045762525178617, -8250.514043785, 0.0],
+      "reaction_moment_Nmm": [-295.37610153181345, 8643.42440491033, 74.9578979597562],
+      "moment_residual_Nmm": [-295.24564390656167, 392.9103611253304, 74.9578979597562],
+      "moment_balance_F_times_100mm_error": 0.00036599317545593,
+      "force_guard_passed": false,
+      "moment_guard_passed": false,
+      "guard_passed": false,
+      "reaction_one_printed_unit_sum_bound_N": [0.0006337500409999534, 0.0013252014829999812, 0.004022846381000213],
+      "roundoff_check": "The 21.50 N z imbalance exceeds by over 5300x the sum of one last-printed-unit per RF z entry; ordinary DAT formatting roundoff does not explain it.",
+      "solver_seconds_logged": 72.327574,
+      "sta_increment_count": 1,
+      "cvg_numeric_rows": 0,
+      "spooles_log": "Using 4 threads twice; no diagnostic error text"
+    }
+  },
+  "conclusion": "The -z solve produced finite complete outputs but violates both existing equilibrium gates. +x passes. The failed pair must remain rejected; Job finished is insufficient evidence of numerical validity. The originating solver/assembly mechanism is not established by these read-only checks."
+}

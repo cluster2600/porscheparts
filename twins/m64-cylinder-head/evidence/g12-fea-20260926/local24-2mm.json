@@ -1,0 +1,203 @@
+{
+  "id": "centre_w11_local24_foot24_h40",
+  "component": "central_diaphragm",
+  "mesh": {
+    "size_mm": 2.0,
+    "nodes": 81341,
+    "elements": 49832,
+    "fixed_nodes": 2699,
+    "surface_area_mm2": {
+      "intake": 431.5516440354466,
+      "exhaust": 431.5302037812201
+    },
+    "journal_axial_interval_mm": {
+      "intake": [
+        -5.5,
+        5.5
+      ],
+      "exhaust": [
+        -5.5,
+        5.5
+      ]
+    },
+    "nominal_journal_width_mm": 11.0,
+    "minimum_Gauss4_Jacobian_mm3": 0.3224952408378884,
+    "gmsh_version": "4.12.1"
+  },
+  "backend": "cuda",
+  "cad_receipt_sha256": "1038c9a40bd005f8390b7ce806c51ad65323d6706c35c12844d01489e1fd4d83",
+  "step_sha256": "26521b10e2fb668eb746489fee5c00f9a1e59f4c66ebd76113c2b11fc10328a1",
+  "source_sha256": {
+    "g11_campaign.py": "ede1d5b247f9a518d29e6f0ad34b8863ebf2cc64125fef76828d17fab58bcb0d",
+    "g8_pilot.py": "f6f3d1fe77c0a701bb1f75926cd4ac8cba3ee6cc9c3337967740d30ad85fee92",
+    "g9_reference_campaign.py": "ed6a2b21d89030ba39fc393f8a218bbbf328eceda49ce6bed361273bd2d8170b",
+    "g8_matrix_benchmark.py": "4a98a110df2c4698b3ac0a74fb0dd1cb200c946fd9fa9a8748f6bd0e10c981cd"
+  },
+  "campaign_source_sha256": "e2e446e24f5471bbe52fdd785c59dbf84a0d943537db8d6407528f5efade039e",
+  "volume_mm3": 86382.74368894573,
+  "journal_forces_N": {
+    "intake": 6881.35243458258,
+    "exhaust": 6702.484411298031
+  },
+  "cases": [
+    {
+      "case": "centre_w11_local24_foot24_h40-2-attempt1",
+      "direction": "x",
+      "nodes": 81341,
+      "free_dofs": 235926,
+      "matrix_nnz": 18027368,
+      "numerical_crosscheck_passed": true,
+      "export_seconds": 7.677314933971502,
+      "relative_residual": 9.904707334648973e-11,
+      "solver": {
+        "backend": "cuda",
+        "versions": {
+          "cupy": "13.6.0",
+          "cuda_runtime": 12090,
+          "gpu": "NVIDIA RTX PRO 4000 Blackwell",
+          "gpu_total_memory_bytes": 25148653568
+        },
+        "iterations": 3311,
+        "info": 0,
+        "setup_seconds": 1.5081377199385315,
+        "solve_seconds": 1.9591482490068302,
+        "setup_and_solve_seconds": 3.4672859689453617,
+        "dtype": "float64"
+      },
+      "fresh_direct": {
+        "max_nodal_difference_over_max_reference_U": 8.892102645745169e-08,
+        "printed_dat_relative_residual": 0.0007259574212401145,
+        "printed_dat_rounding_residual_bound": 0.02318027694537017
+      },
+      "historical_comparison": null,
+      "mechanics": {
+        "force_balance_relative_error": 8.201094251468614e-09,
+        "moment_balance_F_times_100mm_error": 5.5091080670472755e-09,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.07934171648819136,
+        "von_Mises_p95_MPa": 42.32262736590297,
+        "von_Mises_max_MPa": 152.35996013316827,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            0.05816429028697309,
+            1.2860068750627101e-05,
+            0.01976478080969835
+          ],
+          "exhaust": [
+            0.05366242763024469,
+            6.521353325700267e-06,
+            -0.01766221557018221
+          ]
+        }
+      },
+      "hashes": {
+        "x.inp": "88b01e285a6b05eb615641de1320f76e4c9746db4e2ca6a5c60bc2786ab8e217",
+        "x.dat": "e5b9bf93a7586c3d612119b082560ed4c474aecdb22787939498a3e391b46d90",
+        "matrix.inp": "0729fbc82202397ef3c5721c1d793c8a7461fa594faa180dd29f09514430a708",
+        "matrix.sti": "81df20181a6cbc2fbdb7fa6e1ed5e1c63619ba6504efa05024c844ca03c8ac4b",
+        "matrix.dof": "5b705d368668ebfcaa0dd31bf5cbf35cea1db88fdbef84669a03e0c829554a08"
+      }
+    },
+    {
+      "case": "centre_w11_local24_foot24_h40-2-attempt1",
+      "direction": "minus_z",
+      "nodes": 81341,
+      "free_dofs": 235926,
+      "matrix_nnz": 18027368,
+      "numerical_crosscheck_passed": true,
+      "export_seconds": 7.677314933971502,
+      "relative_residual": 9.779813924301639e-11,
+      "solver": {
+        "backend": "cuda",
+        "versions": {
+          "cupy": "13.6.0",
+          "cuda_runtime": 12090,
+          "gpu": "NVIDIA RTX PRO 4000 Blackwell",
+          "gpu_total_memory_bytes": 25148653568
+        },
+        "iterations": 3344,
+        "info": 0,
+        "setup_seconds": 0.018231210997328162,
+        "solve_seconds": 1.976032397011295,
+        "setup_and_solve_seconds": 1.9942636080086231,
+        "dtype": "float64"
+      },
+      "fresh_direct": {
+        "max_nodal_difference_over_max_reference_U": 1.6954601856359911e-07,
+        "printed_dat_relative_residual": 0.0003130946647083793,
+        "printed_dat_rounding_residual_bound": 0.006498845863131511
+      },
+      "historical_comparison": null,
+      "mechanics": {
+        "force_balance_relative_error": 1.3916548174196328e-09,
+        "moment_balance_F_times_100mm_error": 2.9463068594716566e-09,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.04116128268695112,
+        "von_Mises_p95_MPa": 31.912810195440844,
+        "von_Mises_max_MPa": 208.14766046129176,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            -0.009157936035965545,
+            2.6608390986242126e-06,
+            -0.023182809084491336
+          ],
+          "exhaust": [
+            0.006772307704481984,
+            -1.510520661329848e-06,
+            -0.020090167428000193
+          ]
+        }
+      },
+      "hashes": {
+        "minus_z.inp": "3b8163c18d84c5cf79988fc95bbf1c047be2dad2ce0fc0a6d18c4eca3f12c8db",
+        "minus_z.dat": "c0bcf5f700795a398dc93957bd058dec4bd7702f7cc7d55b821a153b538ef239",
+        "matrix.inp": "0729fbc82202397ef3c5721c1d793c8a7461fa594faa180dd29f09514430a708",
+        "matrix.sti": "81df20181a6cbc2fbdb7fa6e1ed5e1c63619ba6504efa05024c844ca03c8ac4b",
+        "matrix.dof": "5b705d368668ebfcaa0dd31bf5cbf35cea1db88fdbef84669a03e0c829554a08"
+      }
+    }
+  ],
+  "projected_land": {
+    "slice_thickness_mm": 0.05,
+    "projected_foot_area_mm2": 1696.185118189918,
+    "area_over_existing_head_solid_mm2": 1695.5603024554318,
+    "unsupported_projected_area_mm2": 0.6248159126232202,
+    "structural_contact_qualified": false
+  },
+  "boundary_hypothesis": "Entire widened bottom foot fixed in XYZ, including any unsupported projected area; not head contact or preload validation.",
+  "artifact_bytes": 723162654,
+  "worker_peak_RSS_MiB": 1636.3671875,
+  "maximum_child_RSS_MiB_not_sum": 2876.796875,
+  "complete": true,
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false,
+  "assembled_stiffness_qualified": false,
+  "hashes": {
+    "matrix.12d": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "matrix.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+    "matrix.dat": "4bd4aa4c36f2c99804f4bed8bccbcd295445ff0dd3548383b9dfbe6d716d1aa6",
+    "matrix.dof": "5b705d368668ebfcaa0dd31bf5cbf35cea1db88fdbef84669a03e0c829554a08",
+    "matrix.frd": "3483428ffdb84cdf5ab74bdaa2b09048fd092e468755288c0c80a50caf9f0c0b",
+    "matrix.inp": "0729fbc82202397ef3c5721c1d793c8a7461fa594faa180dd29f09514430a708",
+    "matrix.log": "b1d01ed13c9641b81050047eb93cf3ec21a6270179543ac25265f361752b5e17",
+    "matrix.mas": "c16ddc44df0157f6e1e7d99395a9fec873fae3e81eaaefd5a02b1788fc16ef3e",
+    "matrix.sta": "20946efba93047e4092386fb9fedd29e43961806698459a19066356660f2e1a9",
+    "matrix.sti": "81df20181a6cbc2fbdb7fa6e1ed5e1c63619ba6504efa05024c844ca03c8ac4b",
+    "mesh.msh": "aa87015b4cebc1fdd8580b3944aaee93268a7d8f21f7301bcbe0d9b963c291f3",
+    "minus_z.12d": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "minus_z.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+    "minus_z.dat": "c0bcf5f700795a398dc93957bd058dec4bd7702f7cc7d55b821a153b538ef239",
+    "minus_z.frd": "679c27ea1090d24abe08ffe464086aad880368328db85f725b321ed4cb002e1d",
+    "minus_z.inp": "3b8163c18d84c5cf79988fc95bbf1c047be2dad2ce0fc0a6d18c4eca3f12c8db",
+    "minus_z.log": "71662a968c0bc5bced1d8aab89b16fca91c7ecaec609c4c668712d0f1a9de721",
+    "minus_z.sta": "01e324ec0ea28f4d1fd7f5e2da1277af53812b873e218be1604c17a4c8e4990d",
+    "spooles.out": "b272ec438fc895f13c5cc243867186cdfaf9f6bbb0e6dd13683f9ce835024b60",
+    "x.12d": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "x.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+    "x.dat": "e5b9bf93a7586c3d612119b082560ed4c474aecdb22787939498a3e391b46d90",
+    "x.frd": "a03b68c03dda0e5a939a7f001effcafc08ee50be9d4dcc89028e7a3e67be924c",
+    "x.inp": "88b01e285a6b05eb615641de1320f76e4c9746db4e2ca6a5c60bc2786ab8e217",
+    "x.log": "9e90b667df2681f3b075d4b30075f8306475b861a09e6607240d5bc3c7f0db72",
+    "x.sta": "01e324ec0ea28f4d1fd7f5e2da1277af53812b873e218be1604c17a4c8e4990d"
+  }
+}
