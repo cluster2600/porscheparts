@@ -103,6 +103,13 @@ was no paid retry. A separate narrowly scoped watcher continues through the
 manifest deadline plus five minutes, using the existing exact-ownership cleanup
 helper if the late contract appears. It cannot rent or release the reservation.
 
+The [later watcher read-back](../../twins/m64-cylinder-head/evidence/g13-support-reference-20260926/vast-late-watch-ended.json)
+records no matching contract through 19:00:09 UTC, a successful watcher exit and
+an empty subsequent wrapper inventory. Its exact inactive launchd service was
+unloaded; logs and configuration were retained. This ends that local watcher,
+not the unresolved provider-request/billing question. The USD 4 reservation is
+**not released** and no paid retry was made.
+
 Local software verification passed `make check`: 3,106 tests, 136 optional skips,
 followed by the repository's other catalogue/document checks. The focused
 numerical tests (five reference, six campaign) and two native CAD tests also
