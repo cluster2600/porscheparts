@@ -19,10 +19,12 @@ class G14Evidence(unittest.TestCase):
                                 ('cad-central-caps-v1.json', 'g14_central_caps_private.py'),
                                 ('cad-outer-root-v1.json', 'g14_outer_root_private.py'),
                                 ('cad-outer-upper-caps-v1.json', 'g14_outer_upper_caps_private.py'),
+                                ('cad-outer-inner-bands-v1.json', 'g14_outer_inner_bands_private.py'),
                                 ('combined-candidate-clearance-v1.json', 'check_combined_candidates.py'),
                                 ('combined-caps-extended-clearance-v1.json', 'check_caps_extended_candidates.py'),
                                 ('combined-caps-outer-root-clearance-v1.json', 'check_caps_outer_root_candidates.py'),
-                                ('combined-caps-outer-upper-clearance-v1.json', 'check_caps_outer_upper_candidates.py')):
+                                ('combined-caps-outer-upper-clearance-v1.json', 'check_caps_outer_upper_candidates.py'),
+                                ('combined-caps-outer-inner-bands-clearance-v1.json', 'check_caps_outer_inner_bands_candidates.py')):
             data = json.loads((EVIDENCE/receipt).read_text())
             digest = hashlib.sha256((EVIDENCE/'native-replay'/source).read_bytes()).hexdigest()
             self.assertEqual(data['source_sha256'], digest)
@@ -126,7 +128,8 @@ class G14Evidence(unittest.TestCase):
     def test_retained_energy_diagnostic_is_balanced_not_a_new_solve(self):
         for name, source in (
                 ('outer-extended-minus-z-energy-v2.json', 'outer_energy_diagnostic.py'),
-                ('outer-root2-minus-z-energy-v1.json', 'outer_root_energy_diagnostic.py')):
+                ('outer-root2-minus-z-energy-v1.json', 'outer_root_energy_diagnostic.py'),
+                ('outer-upper-caps-minus-z-energy-v2.json', 'outer_upper_caps_energy_diagnostic.py')):
             data = json.loads((EVIDENCE/name).read_text())
             self.assertEqual(data['source_sha256'], hashlib.sha256(
                 (EVIDENCE/'native-replay/fea'/source).read_bytes()).hexdigest())
@@ -136,6 +139,26 @@ class G14Evidence(unittest.TestCase):
             self.assertTrue(data['balance']['passed'])
             self.assertLessEqual(data['balance']['relative_difference'], 1e-4)
             self.assertAlmostEqual(sum(r['energy_fraction'] for r in data['regions']), 1.)
+
+    def test_rebuilt_reference_is_two_load_numerical_proof_not_medium_acceptance(self):
+        data = json.loads((EVIDENCE/'hashfixed-reference.json').read_text())
+        self.assertEqual(data['proof']['source_sha256'], hashlib.sha256(
+            (EVIDENCE/'native-replay/fea/hashfix_reference.py').read_bytes()).hexdigest())
+        self.assertTrue(data['complete'])
+        self.assertTrue(data['all_numerical_checks_passed'])
+        self.assertIsNone(data['error'])
+        self.assertTrue(data['runtime_verified_after'])
+        self.assertFalse(data['matrix_reexported'])
+        self.assertTrue(data['fresh_CPU_CG'])
+        self.assertFalse(data['manufacturing_authorized'])
+        self.assertFalse(data['engine_start_authorized'])
+        self.assertEqual({r['direction'] for r in data['rows']}, {'x', 'minus_z'})
+        for row in data['rows']:
+            self.assertTrue(row['passed'])
+            self.assertEqual(row['direct']['native_returncode'], 0)
+            self.assertTrue(row['mechanics']['equilibrium_passed'])
+            self.assertLessEqual(row['relative_residual'], 1e-8)
+            self.assertLessEqual(row['agreement']['max_nodal_difference_over_max_reference_U'], 1e-4)
 
 
 if __name__ == '__main__':

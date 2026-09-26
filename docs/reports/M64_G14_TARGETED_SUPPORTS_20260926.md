@@ -52,6 +52,7 @@ flowchart TD
 | Outer high cheeks + haunches extended to z137 | 231,816 | Passed, 144 poses; 2 mm stiffness target fails |
 | Outer extended haunches, root transition 2 mm | 239,022 | Passed, 144 poses; 2 mm stiffness target fails |
 | Outer root2 + upper caps | 241,503 | Passed, 144 poses; 2 mm stiffness target fails |
+| Outer upper caps + lower inner bands | 242,604 | Passed, 144 poses; FEA pending |
 
 All outer designs were independently constructed and checked on the negative
 side too. Their whole-body reflected Boolean differences are zero at the
@@ -246,7 +247,19 @@ took 1,003 s; all 45 retained artifact fingerprints were checked. The observed
 outer process-group peak was 8.697 GiB, not a fine-mesh memory requirement.
 This candidate is not promoted to refinement.
 
-Repository checkpoint: `make check` passed (3,111 main-suite tests, 136 optional
+The [retained upper-cap energy integration](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/outer-upper-caps-minus-z-energy-v2.json)
+gives 88.889582 N·mm, matching `0.5 F·U` within 4.73e-9 relative. Of that energy,
+41.35% remains between the top of the 2 mm root transition and z108. The next
+[bounded inner-band hypothesis](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/cad-outer-inner-bands-v1.json)
+adds 1,100 mm³ (0.456%) per support, keeping the existing bounding box, fixed
+land, first millimetre, journals, cam interfaces and named oil/tool reservations.
+Both sides pass 144 sampled poses and the [three support-pair checks](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/combined-caps-outer-inner-bands-clearance-v1.json).
+The two strips stay outside the nominal spring envelopes. A full connecting
+web is not presumed acceptable: the inclined spark-plug removal path would
+cross it even though the installed plug itself ends below the support.
+These CAD observations do not predict a 0.040 mm pass or qualify hot clearance.
+
+Repository checkpoint: `make check` passed (3,112 main-suite tests, 136 optional
 skips, plus the separate repository checks); 519 Markdown files have no broken
 local links. These are software/provenance checks, not physical validation.
 
@@ -298,6 +311,21 @@ corrected combined-sanitizer pass. Raw debug reports remain private.
 This is a solver-reliability repair, not a cylinder-head result. Rebuilt-solver
 reference checks and a separate exact-deck retry are required before any
 medium result can be used; the original runtime and failed attempt are retained.
+
+The [rebuilt native reference requalification](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/hashfixed-reference.json)
+has since passed both exact G13 load cases. The existing qualified stiffness
+matrix is retained and rehashed, with **two fresh FP64 CPU-CG solves**: residuals
+1.003e-10/1.041e-10, full-field disagreements 1.723e-7/9.463e-8. Both direct
+return codes are zero, force/moment equilibrium passes, all 24 artifacts match,
+and runtime fingerprints agree before/after. The requalification took 631 s.
+Only `I2Ohash_util.o` changed in the isolated SPOOLES archive; the CCX objects,
+ARPACK and six non-system dynamic libraries were retained. The separate cube
+witness passed the analytic displacement, reaction and matrix checks.
+This establishes the replacement solver reference, not the fine-mesh target.
+The separately bounded medium retry reuses the failed attempt's exact mesh and
+`x.inp`; only nodal load direction/sign is transformed to create −z. Six focused
+tests cover the transformation and execution handling. No remeshing or change
+to E, nu, supports, load magnitudes or numerical acceptance limits is allowed.
 
 A [retained-matrix PyAMG experiment](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/amg-benchmark.json)
 compares fixed symmetric V-cycle preconditioning with the existing Jacobi CG
