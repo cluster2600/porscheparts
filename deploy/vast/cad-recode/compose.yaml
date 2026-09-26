@@ -1,0 +1,59 @@
+# Linux VM only. No Docker socket or host credentials exposed to the agent.
+services:
+  nemotron:
+    image: vllm/vllm-openai:v0.12.0@sha256:6766ce0c459e24b76f3e9ba14ffc0442131ef4248c904efdcbf0d89e38be01fe
+    network_mode: host
+    gpus: all
+    shm_size: 4gb
+    volumes:
+      - ${CAD_MODELS:?Set absolute model directory}:/models:ro
+    command:
+      - /models/nemotron
+      - --trust-remote-code
+      - --served-model-name=nemotron-cad
+      - --host=127.0.0.1
+      - --port=8002
+      - --max-model-len=32768
+      - --max-num-seqs=1
+      - --gpu-memory-utilization=0.50
+      - --enable-auto-tool-choice
+      - --tool-call-parser=qwen3_coder
+      - --reasoning-parser-plugin=/models/nemotron/nano_v3_reasoning_parser.py
+      - --reasoning-parser=nano_v3
+    environment:
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+  vlm:
+    profiles: [omniverse]
+    image: vllm/vllm-openai:v0.12.0@sha256:6766ce0c459e24b76f3e9ba14ffc0442131ef4248c904efdcbf0d89e38be01fe
+    network_mode: host
+    gpus: all
+    shm_size: 4gb
+    volumes:
+      - ${CAD_MODELS:?Set absolute model directory}/vlm:/models:ro
+    command:
+      - /models
+      - --served-model-name=cad-vlm
+      - --host=127.0.0.1
+      - --port=8003
+      - --max-model-len=8192
+      - --max-num-seqs=1
+      - --gpu-memory-utilization=0.23
+      - --enforce-eager
+    environment:
+      HF_HUB_OFFLINE: "1"
+      TRANSFORMERS_OFFLINE: "1"
+  openclaw:
+    build:
+      context: ../../..
+      dockerfile: containers/cad-recode-openclaw.Dockerfile
+    network_mode: host
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs: [/tmp]
+    volumes:
+      - ${CAD_AGENT_STATE:?Set dedicated OpenClaw state directory}:/state
+      - ${CAD_AGENT_WORKSPACE:?Set agent workspace directory}:/workspace
+      - ${CAD_RUN:?Set run directory}:/workspace/results:ro
+    depends_on: [nemotron]
