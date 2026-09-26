@@ -130,6 +130,7 @@ Catalogue record: [`catalog/parts/993-eng-k16-turbine-wheel-in718-f0-0001.json`]
 
 ## Design dossiers
 
+- [993_K16_ROD_IMPROVEMENT_PROGRAMME](../../docs/993/993_K16_ROD_IMPROVEMENT_PROGRAMME.md)
 - [993_K16_TURBINE_WHEEL_IN718_F0](../../docs/993/993_K16_TURBINE_WHEEL_IN718_F0.md)
 
 ---
