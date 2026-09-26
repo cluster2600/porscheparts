@@ -135,6 +135,10 @@ Catalogue record: [`catalog/parts/993-eng-connecting-rod-ti64-f0-0001.json`](../
 - [`catalog/sources/src-elferclassic-993-turbo-technical-data.json`](../../catalog/sources/src-elferclassic-993-turbo-technical-data.json)
 - [`parts/993-eng-connecting-rod-ti64-f0-0001/evidence/engineering-screen.json`](../../parts/993-eng-connecting-rod-ti64-f0-0001/evidence/engineering-screen.json)
 
+## Design dossiers
+
+- [993_K16_ROD_IMPROVEMENT_PROGRAMME](../../docs/993/993_K16_ROD_IMPROVEMENT_PROGRAMME.md)
+
 ---
 
 *Page generated from the catalogue record by `scripts/render_part_pages.py`, checked by `make check`. Corrections go in the record, not here.*
