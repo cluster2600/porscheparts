@@ -1,0 +1,137 @@
+{
+  "id": "outer_root2_upper_caps_p",
+  "status": "completed",
+  "wall_seconds": 1003.4628889589949,
+  "summary_sha256": "f8c00af2baeba4d2b198456634ef2b016c72105754894b550964a41817b8629b",
+  "case_sha256": "7af35bc35fc81db587878f2a801800f4abefb7186640e3aef47936b6d0535add",
+  "verified_artifact_count": 45,
+  "numerically_qualified": true,
+  "maximum_journal_motion_mm": 0.04484792465967797,
+  "mesh_convergence_qualified": false,
+  "below_0_040mm_coarse_screen": false,
+  "mesh": {
+    "size_mm": 2.0,
+    "nodes": 208904,
+    "elements": 133901,
+    "fixed_nodes": 4511,
+    "surface_area_mm2": {
+      "intake": 313.28364460300594,
+      "exhaust": 313.2548027292324
+    },
+    "journal_axial_interval_mm": {
+      "intake": [
+        34.59375,
+        42.59375
+      ],
+      "exhaust": [
+        31.09375,
+        39.09375
+      ]
+    },
+    "nominal_journal_width_mm": 8,
+    "minimum_Gauss4_Jacobian_mm3": 0.016429399400093494,
+    "gmsh_version": "4.12.1"
+  },
+  "resource_guard": {
+    "limits": {
+      "own_RSS_bytes": 12884901888,
+      "combined_RSS_bytes": 34359738368,
+      "minimum_free_bytes": 12884901888,
+      "peer_process_group": 16077,
+      "sample_interval_seconds": 1
+    },
+    "samples": 967,
+    "peak_own_RSS_bytes": 9338322944,
+    "peak_peer_RSS_bytes": 18155094016,
+    "peak_combined_RSS_bytes": 20480950272,
+    "minimum_free_bytes": 35067052032,
+    "scope": "One-second process-group RSS samples, not an OS-enforced memory limit; only outer group may be killed"
+  },
+  "worker_group_absent_after_collection": true,
+  "cases": [
+    {
+      "direction": "x",
+      "residual": 1.0650921496236789e-10,
+      "solver": {
+        "backend": "cpu",
+        "versions": {
+          "numpy": "2.2.6",
+          "scipy": "1.14.1"
+        },
+        "iterations": 7877,
+        "info": 0,
+        "setup_seconds": 0.07784745800017845,
+        "solve_seconds": 313.2584017919871,
+        "setup_and_solve_seconds": 313.3362492499873,
+        "dtype": "float64"
+      },
+      "agreement": {
+        "max_nodal_difference_over_max_reference_U": 1.4078964096146103e-07,
+        "printed_dat_relative_residual": 0.001499002519126243,
+        "printed_dat_rounding_residual_bound": 0.035163687863838874
+      },
+      "mechanics": {
+        "force_balance_relative_error": 7.375391334785718e-09,
+        "moment_balance_F_times_100mm_error": 8.278799992085614e-09,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.05006750137176746,
+        "von_Mises_p95_MPa": 17.165838428753446,
+        "von_Mises_max_MPa": 186.05052287996713,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            0.03543236299316177,
+            -0.0004207156574778225,
+            -0.009422687443957757
+          ],
+          "exhaust": [
+            0.028597525538287545,
+            0.000692274098796438,
+            0.008182503182448746
+          ]
+        }
+      }
+    },
+    {
+      "direction": "minus_z",
+      "residual": 1.125471471502052e-10,
+      "solver": {
+        "backend": "cpu",
+        "versions": {
+          "numpy": "2.2.6",
+          "scipy": "1.14.1"
+        },
+        "iterations": 7827,
+        "info": 0,
+        "setup_seconds": 0.07315512500645127,
+        "solve_seconds": 310.9975931659865,
+        "setup_and_solve_seconds": 311.0707482909929,
+        "dtype": "float64"
+      },
+      "agreement": {
+        "max_nodal_difference_over_max_reference_U": 1.367796381936592e-07,
+        "printed_dat_relative_residual": 0.0017821615640829524,
+        "printed_dat_rounding_residual_bound": 0.05055544167755743
+      },
+      "mechanics": {
+        "force_balance_relative_error": 1.9561671008081814e-08,
+        "moment_balance_F_times_100mm_error": 1.2239586734491683e-08,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.062329164067522196,
+        "von_Mises_p95_MPa": 14.75382898215066,
+        "von_Mises_max_MPa": 160.71978232601296,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            0.009422638728203135,
+            -0.0370782107176288,
+            -0.023404198675815297
+          ],
+          "exhaust": [
+            -0.008182443438846236,
+            -0.030029479683820803,
+            -0.021165153382711042
+          ]
+        }
+      }
+    }
+  ]
+}

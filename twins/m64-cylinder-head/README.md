@@ -11,7 +11,7 @@ code, tests and aggregates with digests are published.
 
 Latest support experiment: [G14 targeted stiffening](../../docs/reports/M64_G14_TARGETED_SUPPORTS_20260926.md).
 The cold isolated central support reaches 0.03822 mm on the coarse mesh;
-the outer support remains at 0.04683 mm. Both pass numerical cross-checks,
+the outer support remains at 0.04485 mm. Both pass numerical cross-checks,
 but 1.5→1 mm convergence and the overall 0.040 mm gate remain open.
 The [G7 cooling study](../../docs/reports/M64_G7_LOCAL_SUPPORTS_COOLING_20260925.md)
 is unchanged. Journal clearance, heat rejection and AM gates remain open or

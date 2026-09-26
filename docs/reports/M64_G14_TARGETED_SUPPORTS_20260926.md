@@ -51,7 +51,7 @@ flowchart TD
 | Outer high cheeks + lower haunches, positive side | 212,906 | Passed, 144 poses |
 | Outer high cheeks + haunches extended to z137 | 231,816 | Passed, 144 poses; 2 mm stiffness target fails |
 | Outer extended haunches, root transition 2 mm | 239,022 | Passed, 144 poses; 2 mm stiffness target fails |
-| Outer root2 + upper caps | 241,503 | Passed, 144 poses; FEA pending |
+| Outer root2 + upper caps | 241,503 | Passed, 144 poses; 2 mm stiffness target fails |
 
 All outer designs were independently constructed and checked on the negative
 side too. Their whole-body reflected Boolean differences are zero at the
@@ -127,7 +127,7 @@ The SVG exports are fingerprinted in the CAD receipts; PNGs were rendered with
 
 ![Central support with upper journal caps, isolated CAD view](../assets/m64-g14/central-caps.png)
 
-![Outer support with upper caps, isolated CAD view, stiffness not yet established](../assets/m64-g14/outer-upper-caps.png)
+![Outer support with upper caps, isolated CAD view, coarse stiffness target fails](../assets/m64-g14/outer-upper-caps.png)
 
 ## Central 68 mm: completed coarse calculation
 
@@ -233,12 +233,20 @@ screens. Explicit cam-bore and cap-split masks are unchanged; new material has
 zero overlap with declared shaft/lobe/cap-lift and socket reservations.
 Conservative reservations already overlap the baseline: these tests establish
 **non-aggravation**, not a validated removal sequence or tool fit. The retained
-baseline is neither pocketed nor erased to make a test pass. The FE gain remains
-unmeasured at this checkpoint.
+baseline is neither pocketed nor erased to make a test pass.
 The [three stationary pairs with the central caps](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/combined-caps-outer-upper-clearance-v1.json)
 have zero Boolean intersection, with unchanged source/input fingerprints.
 
-Repository checkpoint: `make check` passed (3,110 main-suite tests, 136 optional
+The [completed coarse calculation](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/outer-upper-caps-coarse.json)
+now confirms **0.04484792 mm** under −z and 0.03666628 mm under +x. The limiting
+motion falls 4.23% from root2, but remains **12.12% above 0.040 mm**. Both
+equilibrium and direct/CG checks pass; CG residuals are 1.065e-10/1.125e-10,
+field disagreements 1.408e-7/1.368e-7. This 208,904-node/133,901-tetrahedron run
+took 1,003 s; all 45 retained artifact fingerprints were checked. The observed
+outer process-group peak was 8.697 GiB, not a fine-mesh memory requirement.
+This candidate is not promoted to refinement.
+
+Repository checkpoint: `make check` passed (3,111 main-suite tests, 136 optional
 skips, plus the separate repository checks); 519 Markdown files have no broken
 local links. These are software/provenance checks, not physical validation.
 
@@ -257,6 +265,39 @@ are **meshing measurements, not direct-solver RAM requirements or convergence
 results**. The 2 mm caps direct solves already took approximately 320/316 s;
 the former 600 s timeout is not presumed adequate for refinement. New bounded
 execution recipes must retain the same decks, material and numerical gates.
+
+### First actual 1.5 mm solve: failed, retained
+
+The [bounded medium attempt](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/central-caps-medium-failure.json)
+failed after 1,684 s before producing any displacement result. Its newly
+generated mesh has 380,799 nodes and 261,006 tetrahedra; it is not the mesh-only
+preflight above. The +x DAT is empty; −z, matrix export and CG were not executed.
+The observed group peak was 16.91 GiB, below its 28 GiB guard, and minimum free
+disk was 32.67 GiB. Neither the 1,800 s direct limit nor the resource guard
+caused this termination. All 13 retained artifact fingerprints were checked.
+
+A [separate sanitized OS diagnostic](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/central-caps-medium-crash-diagnostic.json)
+records `SIGSEGV` in `I2Ohash_insert`, inside SPOOLES factor post-processing.
+The original wrapper omitted the native return code, which remains unknown;
+worker/controller exit 2 must not be substituted for it. The raw OS report is
+private. This is a software execution failure, not evidence that the support
+physically fails. No medium displacement or convergence claim is made.
+
+The subsequent [isolated numerical-library witness](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/spooles-hash-unit-qualification.json)
+identifies the exact cause: keys 46,340/46,340 and table size 49,777 produce
+46,341², overflowing a signed 32-bit product. The resulting bucket −49,458
+matches the crash register; the correct wide-product bucket is 8,947.
+The [three-line correction](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/native-replay/spooles-hash-three-line.patch)
+widens that multiplication in insertion, lookup and removal; it changes no
+FE equation, material, mesh or load. The [small API regression witness](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/native-replay/spooles-hash-reproducer.c)
+exposes the original arithmetic failure in all three operations and passes
+the corrected round-trips, boundary and collision cases. The first witness's
+overstrict ASan-only expectation remains a recorded failure; the separate
+qualification explicitly uses the observed arithmetic failure plus the
+corrected combined-sanitizer pass. Raw debug reports remain private.
+This is a solver-reliability repair, not a cylinder-head result. Rebuilt-solver
+reference checks and a separate exact-deck retry are required before any
+medium result can be used; the original runtime and failed attempt are retained.
 
 A [retained-matrix PyAMG experiment](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/amg-benchmark.json)
 compares fixed symmetric V-cycle preconditioning with the existing Jacobi CG
