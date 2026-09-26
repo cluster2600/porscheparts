@@ -1,0 +1,51 @@
+{
+  "classification": "verified_retained_matrix_CPU_retry_not_new_geometry_or_direct_FEA",
+  "checked_utc": "2026-09-26T17:55:51Z",
+  "recipe": "G14-outer2mm-CPU-CG-900-v1",
+  "script_sha256": "00c015b198ecfd3f2d983e1e5eb5d21922f6cc7e465c1ebcca59edbcd77310bd",
+  "summary_sha256": "b2b3f0b7e54f86029fc111b731bb50b9cfb537b71dea22b85031551f23bacbe6",
+  "case_sha256": "2070a1b8e4bfb82231a8fdbbb00b62bb4de122f0cc4d5e09e1964e987fdc27da",
+  "original_failed_summary_sha256": "96eed3e18e3529b8f30d674c3413b6d9101a85abaa942d800ebc039042a1e14e",
+  "original_failed_execution_unchanged": true,
+  "verified_retry_artifact_count": 8,
+  "verified_original_artifact_count": 36,
+  "status": "completed",
+  "returncode": 0,
+  "wall_seconds": 662.2512752500043,
+  "worker_process_group": 97852,
+  "worker_process_group_absent_after_completion": true,
+  "CCX_rerun": false,
+  "meshing_rerun": false,
+  "CUDA_executed": false,
+  "numerically_qualified": true,
+  "maximum_journal_motion_mm": 0.05898154319025541,
+  "below_0_040mm_coarse_screen": false,
+  "mesh_convergence_qualified": false,
+  "cases": [
+    {
+      "direction": "x",
+      "numerical_crosscheck_passed": true,
+      "CG_iterations": 8880,
+      "CG_solve_seconds": 321.6225517499988,
+      "relative_residual": 1.107037218878881e-10,
+      "max_nodal_difference_over_max_reference_U": 1.2713603601140147e-7,
+      "force_balance_relative_error": 5.352526869572279e-9,
+      "moment_balance_F_times_100mm_error": 3.602517866886105e-9,
+      "journal_norms_mm": {"intake": 0.045617685722690995, "exhaust": 0.04075529655042187}
+    },
+    {
+      "direction": "minus_z",
+      "numerical_crosscheck_passed": true,
+      "CG_iterations": 8923,
+      "CG_solve_seconds": 324.16287733399076,
+      "relative_residual": 1.1851042092535927e-10,
+      "max_nodal_difference_over_max_reference_U": 1.0998724541107185e-7,
+      "force_balance_relative_error": 1.254877315965288e-8,
+      "moment_balance_F_times_100mm_error": 1.0928989165020236e-8,
+      "journal_norms_mm": {"intake": 0.05898154319025541, "exhaust": 0.051271897810410215}
+    }
+  ],
+  "scope": "Fresh CPU FP64 CG on the exact retained K and two RHS, compared against retained native direct DAT with the unchanged numerical gates. This is not independent physical validation or an assembled/hot-material result. The original 300-second timeout remains a separate failed execution.",
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false
+}
