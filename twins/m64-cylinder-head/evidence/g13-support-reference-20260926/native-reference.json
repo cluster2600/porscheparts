@@ -1,0 +1,399 @@
+{
+  "classification": "native_arm64_macOS_CPU_reference_pilot_not_G13_Linux_GPU_qualification",
+  "native_binary_sha256": "9cd22c961a0ead334739802e369345745746aafd51a01cff5d2309274cf1548a",
+  "build_receipt_sha256": "44011ff1e9197d6110df6d4a375c5f2daa0c2b0030ae25a3664d37455f2aaca3",
+  "build_inventory_sha256": "82a729772dc14b1c5e80e31fc4038a95448a68ad1a19941f4684e7d75412923c",
+  "helper_sha256": "30eab2794ca04260ab4b4ba5f3d78de5c3f8dce9536ca9ecb2ec5c69740c8cbf",
+  "source_sha256": {
+    "twins/m64-cylinder-head/source/fourvalve/g8_pilot.py": "f6f3d1fe77c0a701bb1f75926cd4ac8cba3ee6cc9c3337967740d30ad85fee92",
+    "twins/m64-cylinder-head/source/fourvalve/g9_reference_campaign.py": "ed6a2b21d89030ba39fc393f8a218bbbf328eceda49ce6bed361273bd2d8170b",
+    "twins/m64-cylinder-head/source/fourvalve/g8_matrix_benchmark.py": "4a98a110df2c4698b3ac0a74fb0dd1cb200c946fd9fa9a8748f6bd0e10c981cd",
+    "twins/m64-cylinder-head/source/fourvalve/g8_iterative_retry.py": "8600f234e60036668dc3a8f7f005c570638ea4cfc7a60c1327b86a534fa01963",
+    "twins/reference-917-engine/source/run_f37_carrier_calculix.py": "54e3478e219875872092cacb281dd12e640126cbed9273e8d82cd46d36fa2b13"
+  },
+  "original_sha256": {
+    "x.inp": "d51f1343152d49bafef796cd257210c82dd6dc891df7d29e898528a0c9b94c84",
+    "x.dat": "b44e5f0916dec97181ba6d1e0f799757ec67b0a418693b1ee731a2afd823e520",
+    "minus_z.inp": "d5e2d625ec1f65f56e9a0f8896a43505ccec1a474f887dfd2400dc96bb09dc08",
+    "minus_z.dat": "88cedaec685532ed97aa50e697f4f3987635251c5970f32b1edc6bf19fabe703"
+  },
+  "script_sha256": "85d175ed6c0b7d7736b75ac29550e31ab272c11f47199a2f03aefc908656e667",
+  "software": {
+    "python": "3.12.11",
+    "numpy": "2.2.6",
+    "scipy": "1.14.1"
+  },
+  "CCX_timeout_seconds": 1200,
+  "CPU_CG_timeout_seconds": 900,
+  "whole_pilot_limit_seconds": 2700,
+  "threads": 1,
+  "dynamic_libraries_verified_before": true,
+  "dynamic_libraries_verified_after": true,
+  "linked_library_sha256": [
+    {
+      "name": "libgfortran.5.dylib",
+      "sha256": "2728bd679d23103938db06de2fb70d8070d8e3fa2b91b725aafdba27f73d3f30"
+    },
+    {
+      "name": "libgomp.1.dylib",
+      "sha256": "3946b9604ed3229a076473f27c03ee76066a366d404f6b9e09ad88755637a040"
+    },
+    {
+      "name": "libquadmath.0.dylib",
+      "sha256": "cbf6a45b57b443c37ea189eac3db1a62de9f515ac7b63a507cb98c87668e4760"
+    },
+    {
+      "name": "libgcc_s.1.1.dylib",
+      "sha256": "deaa80d7e2b551dbe2b2efe02c7f3d5165d8148b0c0fa41675ce04ce840376ef"
+    },
+    {
+      "name": "libopenblas.0.dylib",
+      "sha256": "aeb5f40d3b5cc0fca84e05e90b8e7da6921cea2c33ca701062b0ccd7b4caf117"
+    },
+    {
+      "name": "libomp.dylib",
+      "sha256": "cb679440b0af57131274b6c0bcc11b8c18ef7ad45e2a6625ef57e90379fc2ae4"
+    }
+  ],
+  "rows": [
+    {
+      "id": "serial-z-r1",
+      "direction": "minus_z",
+      "threads": 1,
+      "direct": {
+        "seconds": 157.81364462499914,
+        "threads": 1,
+        "thread_environment": {
+          "OMP_NUM_THREADS": "1",
+          "CCX_NPROC_EQUATION_SOLVER": "1",
+          "CCX_NPROC_STIFFNESS": "1",
+          "CCX_NPROC_RESULTS": "1",
+          "NUMBER_OF_CPUS": "1"
+        },
+        "observed_cpu_counts": [
+          1
+        ],
+        "exit_code": 0
+      },
+      "compared": true,
+      "passed": true,
+      "mechanics": {
+        "force_balance_relative_error": 1.409528008388879e-9,
+        "moment_balance_F_times_100mm_error": 6.728808542147992e-10,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.04069776961448015,
+        "von_Mises_p95_MPa": 29.733613941476584,
+        "von_Mises_max_MPa": 214.31823083387266,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            -0.009339731625234259,
+            2.4677854588524896e-7,
+            -0.022117004102288722
+          ],
+          "exhaust": [
+            0.006925959207017055,
+            -0.0000020949259240953302,
+            -0.018977588044834258
+          ]
+        }
+      },
+      "agreement": {
+        "max_nodal_difference_over_max_reference_U": 1.7226488210197412e-7,
+        "printed_dat_relative_residual": 0.0004272755219195357,
+        "printed_dat_rounding_residual_bound": 0.009446822135635162
+      },
+      "hashes": {
+        "minus_z.inp": "d5e2d625ec1f65f56e9a0f8896a43505ccec1a474f887dfd2400dc96bb09dc08",
+        "minus_z.dat": "3b8bfca02722fe046b6b6dc37cabf155b0f81ac3789948999fa001a4af40ac37",
+        "minus_z.frd": "b79379fcdfe7081cd9cd6034d69ee82d2353105bcc95de31c7df2a8d9a1ee854",
+        "minus_z.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+        "spooles.out": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "minus_z.log": "5c1e65e8f3716c9d43edafcb47d2a4a484a62cd77ba7fef39beb79ffe715a521",
+        "minus_z.12d": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "minus_z.sta": "01e324ec0ea28f4d1fd7f5e2da1277af53812b873e218be1604c17a4c8e4990d"
+      }
+    },
+    {
+      "id": "serial-z-r2",
+      "direction": "minus_z",
+      "threads": 1,
+      "direct": {
+        "seconds": 157.40002562500013,
+        "threads": 1,
+        "thread_environment": {
+          "OMP_NUM_THREADS": "1",
+          "CCX_NPROC_EQUATION_SOLVER": "1",
+          "CCX_NPROC_STIFFNESS": "1",
+          "CCX_NPROC_RESULTS": "1",
+          "NUMBER_OF_CPUS": "1"
+        },
+        "observed_cpu_counts": [
+          1
+        ],
+        "exit_code": 0
+      },
+      "compared": true,
+      "passed": true,
+      "mechanics": {
+        "force_balance_relative_error": 1.409528008388879e-9,
+        "moment_balance_F_times_100mm_error": 6.728808542147992e-10,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.04069776961448015,
+        "von_Mises_p95_MPa": 29.733613941476584,
+        "von_Mises_max_MPa": 214.31823083387266,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            -0.009339731625234259,
+            2.4677854588524896e-7,
+            -0.022117004102288722
+          ],
+          "exhaust": [
+            0.006925959207017055,
+            -0.0000020949259240953302,
+            -0.018977588044834258
+          ]
+        }
+      },
+      "agreement": {
+        "max_nodal_difference_over_max_reference_U": 1.7226488210197412e-7,
+        "printed_dat_relative_residual": 0.0004272755219195357,
+        "printed_dat_rounding_residual_bound": 0.009446822135635162
+      },
+      "hashes": {
+        "minus_z.inp": "d5e2d625ec1f65f56e9a0f8896a43505ccec1a474f887dfd2400dc96bb09dc08",
+        "minus_z.dat": "3b8bfca02722fe046b6b6dc37cabf155b0f81ac3789948999fa001a4af40ac37",
+        "minus_z.frd": "7ba2a1e45b9adffa4ab96b44aa0f6a27deda7e78fa1a8d8d139867562de29fdc",
+        "minus_z.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+        "spooles.out": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "minus_z.log": "5e39014fbed1f5d53509a7a23e7ce21acb735b1408d4779bb0e869416d683b18",
+        "minus_z.12d": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "minus_z.sta": "01e324ec0ea28f4d1fd7f5e2da1277af53812b873e218be1604c17a4c8e4990d"
+      }
+    },
+    {
+      "id": "serial-x-control",
+      "direction": "x",
+      "threads": 1,
+      "direct": {
+        "seconds": 157.96435100000235,
+        "threads": 1,
+        "thread_environment": {
+          "OMP_NUM_THREADS": "1",
+          "CCX_NPROC_EQUATION_SOLVER": "1",
+          "CCX_NPROC_STIFFNESS": "1",
+          "CCX_NPROC_RESULTS": "1",
+          "NUMBER_OF_CPUS": "1"
+        },
+        "observed_cpu_counts": [
+          1
+        ],
+        "exit_code": 0
+      },
+      "compared": true,
+      "passed": true,
+      "mechanics": {
+        "force_balance_relative_error": 2.5674925164440273e-9,
+        "moment_balance_F_times_100mm_error": 2.61646055125059e-9,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.07449483257141548,
+        "von_Mises_p95_MPa": 37.19750996925843,
+        "von_Mises_max_MPa": 153.47147301400582,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            0.053283457029725124,
+            4.5329798754891014e-8,
+            0.01853991585746487
+          ],
+          "exhaust": [
+            0.04874308029675124,
+            -4.823677183373941e-7,
+            -0.01637166681783767
+          ]
+        }
+      },
+      "agreement": {
+        "max_nodal_difference_over_max_reference_U": 9.46306462464476e-8,
+        "printed_dat_relative_residual": 0.0011019594896313043,
+        "printed_dat_rounding_residual_bound": 0.031901788577525
+      },
+      "hashes": {
+        "x.dat": "85c69d362b6c86bdddc6c3c41ccb0bcf9288457f0763c160da265b59b2c53247",
+        "x.inp": "d51f1343152d49bafef796cd257210c82dd6dc891df7d29e898528a0c9b94c84",
+        "spooles.out": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "x.12d": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "x.sta": "01e324ec0ea28f4d1fd7f5e2da1277af53812b873e218be1604c17a4c8e4990d",
+        "x.frd": "07c604c78290df2ab0b8bbd7fae6f3351e41454710c2d47cb5f13657849d2a97",
+        "x.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+        "x.log": "9d192b339e9b8061d9702262f49d66325ed554b77841bf4c30665a192847096f"
+      }
+    }
+  ],
+  "references": {
+    "x": {
+      "direction": "x",
+      "solver": {
+        "backend": "cpu",
+        "versions": {
+          "numpy": "2.2.6",
+          "scipy": "1.14.1"
+        },
+        "iterations": 4055,
+        "info": 0,
+        "setup_seconds": 0.07927595799264964,
+        "solve_seconds": 153.5258787920029,
+        "setup_and_solve_seconds": 153.60515474999556,
+        "dtype": "float64"
+      },
+      "relative_residual": 1.0413787855801205e-10,
+      "passed": true,
+      "matrix_sha256": {
+        "matrix.inp": "3403fa07778ec4f93f698e31f051239e6d42db39942180698470720bb24c663d",
+        "matrix.mas": "d93a9ef469278cf1161f7c32b2c7cfb6c2b2fb7801f6997782c3dfa445f8b780",
+        "matrix.dof": "76022341a6219437a01c290c833faf3a8802e636b37bc93ace2c2e23dc5f98ee",
+        "matrix.dat": "4bd4aa4c36f2c99804f4bed8bccbcd295445ff0dd3548383b9dfbe6d716d1aa6",
+        "matrix.frd": "3483428ffdb84cdf5ab74bdaa2b09048fd092e468755288c0c80a50caf9f0c0b",
+        "matrix.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+        "matrix.log": "080061325de9117e094aaba023b2d2b06b4c85a57efc3d72a267687ca1165c2f",
+        "matrix.12d": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matrix.sti": "f2fc4f6b166809061e85aa09face06586d792c3cf49d8af8b7e6596a9dadced1",
+        "matrix.sta": "20946efba93047e4092386fb9fedd29e43961806698459a19066356660f2e1a9"
+      },
+      "matrix_export": {
+        "seconds": 22.65274445900286,
+        "threads": 1,
+        "thread_environment": {
+          "OMP_NUM_THREADS": "1",
+          "CCX_NPROC_EQUATION_SOLVER": "1",
+          "CCX_NPROC_STIFFNESS": "1",
+          "CCX_NPROC_RESULTS": "1",
+          "NUMBER_OF_CPUS": "1"
+        },
+        "observed_cpu_counts": [
+          1
+        ],
+        "exit_code": 0
+      },
+      "original_rejected_comparison": {
+        "compared": true,
+        "passed": true,
+        "mechanics": {
+          "force_balance_relative_error": 2.567492513153507e-9,
+          "moment_balance_F_times_100mm_error": 2.616460549290982e-9,
+          "equilibrium_passed": true,
+          "maximum_displacement_mm": 0.07449483257141548,
+          "von_Mises_p95_MPa": 37.19750996925843,
+          "von_Mises_max_MPa": 153.47147301400582,
+          "journal_weighted_displacement_mm": {
+            "intake": [
+              0.053283457029725124,
+              4.5329798754891014e-8,
+              0.01853991585746487
+            ],
+            "exhaust": [
+              0.04874308029675124,
+              -4.823677183513559e-7,
+              -0.01637166681783767
+            ]
+          }
+        },
+        "agreement": {
+          "max_nodal_difference_over_max_reference_U": 9.46306462464476e-8,
+          "printed_dat_relative_residual": 0.001101959500581686,
+          "printed_dat_rounding_residual_bound": 0.031901788577524674
+        }
+      }
+    },
+    "minus_z": {
+      "direction": "minus_z",
+      "solver": {
+        "backend": "cpu",
+        "versions": {
+          "numpy": "2.2.6",
+          "scipy": "1.14.1"
+        },
+        "iterations": 4034,
+        "info": 0,
+        "setup_seconds": 0.06834962499851827,
+        "solve_seconds": 153.37870254099835,
+        "setup_and_solve_seconds": 153.44705216599687,
+        "dtype": "float64"
+      },
+      "relative_residual": 1.0027813787099855e-10,
+      "passed": true,
+      "matrix_sha256": {
+        "matrix.inp": "3403fa07778ec4f93f698e31f051239e6d42db39942180698470720bb24c663d",
+        "matrix.mas": "d93a9ef469278cf1161f7c32b2c7cfb6c2b2fb7801f6997782c3dfa445f8b780",
+        "matrix.dof": "76022341a6219437a01c290c833faf3a8802e636b37bc93ace2c2e23dc5f98ee",
+        "matrix.dat": "4bd4aa4c36f2c99804f4bed8bccbcd295445ff0dd3548383b9dfbe6d716d1aa6",
+        "matrix.frd": "3483428ffdb84cdf5ab74bdaa2b09048fd092e468755288c0c80a50caf9f0c0b",
+        "matrix.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+        "matrix.log": "080061325de9117e094aaba023b2d2b06b4c85a57efc3d72a267687ca1165c2f",
+        "matrix.12d": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "matrix.sti": "f2fc4f6b166809061e85aa09face06586d792c3cf49d8af8b7e6596a9dadced1",
+        "matrix.sta": "20946efba93047e4092386fb9fedd29e43961806698459a19066356660f2e1a9"
+      },
+      "matrix_export": {
+        "seconds": 22.65274445900286,
+        "threads": 1,
+        "thread_environment": {
+          "OMP_NUM_THREADS": "1",
+          "CCX_NPROC_EQUATION_SOLVER": "1",
+          "CCX_NPROC_STIFFNESS": "1",
+          "CCX_NPROC_RESULTS": "1",
+          "NUMBER_OF_CPUS": "1"
+        },
+        "observed_cpu_counts": [
+          1
+        ],
+        "exit_code": 0
+      },
+      "original_rejected_comparison": {
+        "compared": true,
+        "passed": false,
+        "mechanics": {
+          "force_balance_relative_error": 0.0016002474896181964,
+          "moment_balance_F_times_100mm_error": 0.00036599317545593,
+          "equilibrium_passed": false,
+          "maximum_displacement_mm": 0.04070210964926359,
+          "von_Mises_p95_MPa": 29.73365700307141,
+          "von_Mises_max_MPa": 214.31937701104448,
+          "journal_weighted_displacement_mm": {
+            "intake": [
+              -0.009344495494180404,
+              -0.0000025453142149581197,
+              -0.022118593834230003
+            ],
+            "exhaust": [
+              0.006919783235936098,
+              -0.0000633123149287508,
+              -0.018963640738274674
+            ]
+          }
+        },
+        "agreement": {
+          "max_nodal_difference_over_max_reference_U": 0.0020572046128742275,
+          "printed_dat_relative_residual": 0.021948668058276943,
+          "printed_dat_rounding_residual_bound": 0.009444660710773569
+        }
+      }
+    }
+  },
+  "complete": true,
+  "error": null,
+  "all_native_CPU_comparisons_passed": true,
+  "original_failure_preserved": true,
+  "CUDA_executed": false,
+  "G13_Linux_reference_promoted": false,
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false,
+  "finished_epoch": 1790441045.27492,
+  "controller_peak_RSS_MiB": 2768.671875,
+  "maximum_child_RSS_MiB_not_sum": 8924.234375,
+  "derivation": {
+    "original_summary_sha256": "8f4cfa8a0713d58689c0068a3e792a0c178cc5b948d2ab2a7d3617f4276d6ab9",
+    "omitted": "Private library paths and host metadata; raw FE geometry/fields are not published."
+  },
+  "maximum_force_weighted_journal_motion_mm": 0.056416799563981795,
+  "target_0_040_mm_achieved": false,
+  "mesh_convergence_qualified": false
+}
