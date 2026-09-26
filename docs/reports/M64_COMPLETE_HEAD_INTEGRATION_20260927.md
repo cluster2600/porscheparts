@@ -169,6 +169,179 @@ Geometry and images remain private under the
 [scan source policy](../../catalog/sources/src-wolfe-classics-935-billet-cylinder-head-scan.json).
 The user can inspect the local images; they are not silently republished on GitHub.
 
+### Spring packaging — actual whole-body interference check
+
+The next integration test uses the **same V5 body**, not G7. The
+[Supertech 2026 catalogue](https://www.supertechperformance.com/dl-400298/2026-Catalog_WEB-sprd.pdf),
+PDF sheet 22, gives nominal SPR-H1021D dimensions of 30 mm outer diameter,
+15.5 mm minimum inner diameter, 40.4 mm installed height and 22.70 mm coil-bind
+height. These define an **annular required-space envelope**, not actual spring
+wire. Supplier tolerances, radial growth, seats, retainers, locks and seals
+are excluded. The associated Honda hardware is not qualified for the plain
+6 mm V2 stems. GSC5092 remains a separate force/height candidate with unpublished
+radial dimensions; the 30 mm envelope is not attributed to GSC.
+
+Using the retained V2 tip position 82 and a provisional 5-unit tip-to-retainer
+allowance puts the spring seat at `82 − 5 − 40.4 = 36.6`. At full lift the
+nominal compressed heights are 28.9/30.8 and bind reserves 6.2/8.1 for
+intake/exhaust. These arithmetic margins do **not** establish that the spring
+can be installed in the body. They use the uncalibrated 1 scan-unit/mm hypothesis.
+
+| Required-space envelope | Body intersection, scan-unit³ (rounded) | Occupied fraction |
+|---|---:|---:|
+| Intake 1 | 14,016 | 67.0% |
+| Intake 2 | 18,269 | 87.3% |
+| Exhaust 1 | 19,937 | 95.2% |
+| Exhaust 2 | 16,291 | 77.8% |
+
+All four fail the nominal free-space check. A separate native read of the
+13-solid assembly confirmed the actual stem/guide cylinder dimensions; an
+independent adaptive volume integration agrees to within 0.04 scan-unit³.
+These are independent implementations using **the same OCCT kernel**, not
+independent physical validation. Interior-point witnesses also confirm body
+material inside all four envelopes. The envelope includes air between coils:
+its intersection is not a computed wire-on-body collision fraction.
+
+The [reproducible audit](../../twins/m64-cylinder-head/source/wholebody/spring_packaging.py)
+checks the five exact input hashes, native validity, analytic envelope volume,
+four intersections/distances and native save/readback. Boolean and section
+operations are explicitly non-destructive. Requested fuzzy tolerance is zero;
+OCCT's recorded effective floor is `1e-7`, not exact arithmetic. Actual native
+section curves produce the private two-panel drawing; 41-point display sampling
+per curve is not a metrology export. The successful final run took 14.063 s.
+No spring was fitted, and no original body or valve was changed by this audit.
+
+| Final private output / public source | SHA-256 |
+|---|---|
+| Audit receipt, final run 03 | `c65dc108c258d598e474b6267e0ac6a5c048fe5c1e321e1fbbcfe655ae9b489a` |
+| Public audit source | `04836203e87bd0538179906cf487b73aebb16d121d3ef7602e31a67858facc8b` |
+| Public focused tests | `3d0a58003fb9932a69a81d80d605a1df8bb894610b25339f2baa2e4933222489` |
+| Native-section PNG, rendered from SVG with macOS `sips` | `39de26335637c925e58d8917049e3a53804ae2c45d4d56a1cc03244533633023` |
+
+#### Why simply drilling deeper is rejected
+
+A separate probe tested annular pockets of OD 32 / ID 14, with the lower
+plane 1.5 units below the proposed spring seat. The retained inner column,
+washer allowance and radial clearances are new design hypotheses. All four
+low pockets intersect their corresponding exact port negatives: about
+3,606/3,594 scan-unit³ at intake and 759/762 at exhaust. No body was cut for
+this rejected layout. Opposite-bank intersections are empty.
+
+The port negatives are the exact trial-06 native shapes in the existing
+registration: intake `72e0a786a601b96250380d16296004de9e6746caa3888ee470b6cd218f2d0251`
+and exhaust `9e1ab8b34bcc19457c74ff1e96928f05790d85e975dc78b57ade25d53a988cc9`.
+The probe receipt is `7dbd370d6997b04af59db7c2f5826af3626a08679fa45c12d427991a610a429e`;
+its source and results are retained alongside the spring audit. Higher floors are evaluated before any
+candidate cut. A positive distance to a port is **not** proof that a continuous
+material wall or spring seating land exists between them.
+
+#### Higher pocket floor: geometric route, unresolved support
+
+The discrete 45.1 / 55.1 / 65.1 floor probe rejects the first for intake
+breakthrough and the second for intake separation below an exploratory
+3-unit criterion. A follow-up at **58.1**, common to both banks, has empty
+intersections and passes that criterion against both native port negatives
+at all four locations. The minimum native separation is **4.009649942**.
+This is not a justified hot-wall thickness, machining tolerance, global
+optimum or proof of material continuity. The criterion is an explicit new
+screening hypothesis, not a supplier or Porsche allowable.
+
+The proposed stack becomes `58.1 + 1.5 + 40.4 + 5 = 105`, requiring **23
+additional axial units** beyond the retained V2 stem tip. The existing 82-unit
+valves cannot be presented as fitting this higher spring stack. Guides,
+actuation, keeper grooves, tip stiffness and bonnet clearance require a
+coherent redesign; none is qualified by the port-distance result.
+
+Native planar intersections of the proposed OD32 / ID14 spring-seat footprint
+with the original body reveal another unresolved requirement:
+
+| Position | Material coverage of nominal 650.310-unit² footprint |
+|---|---:|
+| Intake 1 / 2 | 100% within numerical integration precision |
+| Exhaust 1 | 96.0576% |
+| Exhaust 2 | 95.3001% |
+
+The deficits persist 0.001 unit below the floor. Missing sectors must be
+located and their support/washer bending designed; neither full contact nor
+load capacity can be claimed. These are CAD intersection areas, not a loaded
+contact solution. The final floor/support receipt is
+`ab006f33ac18e76b6c0891961881e930dff58b2725c8e9e28f3b77fadf8f4017`
+(20.71 s on the Mac, no rental). Original geometry and sources stayed unchanged.
+
+#### Actual body-pocket prototype built
+
+The [bounded builder](../../twins/m64-cylinder-head/source/wholebody/build_spring_pockets.py)
+then executed four annular pocket cuts on a **copy** of V5 at that higher
+floor. All eight port gates ran before cutting. The new body has **one solid,
+one shell and 4,917 faces**, remains exact BRepCheck-valid after native
+save/readback, and removes approximately 43,070.19 scan-unit³. A separate
+read-only check confirmed these counts and the artifact/source fingerprints.
+The retained original body's before/after native serializations are identical;
+its input file and historical masters are unchanged. This is a separate
+diagnostic candidate, not a promoted replacement.
+
+Four nominal closed-height spring-envelope checks on the saved new body have
+zero common solids/volume and minimum distances approximately **0.75 unit**.
+This is envelope separation only, not qualified cold/hot running clearance.
+The reported full-lift positions are stack arithmetic, **not** moving-part
+collision simulations. Longer valves, retainers, locks and seats were not
+generated or fitted. The incomplete exhaust seating support remains unresolved.
+**The new candidate has no BOP audit, mesh, thermal, strength, fatigue or
+manufacturing qualification.** Prior V5 BOP passes do not transfer to it.
+
+The [before/after view producer](../../twins/m64-cylinder-head/source/wholebody/render_spring_pocket_sections.py)
+uses the same native section plane through two of the four valve axes. It
+shows the actual body change, without smoothing or invented internals. SVG
+display curves are sampled, then rasterized by macOS `sips`; this is not a
+render of a complete assembled head. The native cut run took **25.276 s**
+locally; no new Vast rental or expense was incurred in this continuation.
+
+| Private artifact / public source | SHA-256 |
+|---|---|
+| New body, 5,375,510 bytes | `2969035f9a802d08652c295e310591788f851d2ace2935c484c0e90c36c9a9af` |
+| Native build receipt | `e1f56194ccb91fb0571cdc3531dabe8081effe8d9897882a5064c3acf851ae1a` |
+| Public builder | `cd7e05f0882466cd90686f273a544064d64b3ae9db6d418acf25820940e32442` |
+| Public before/after view producer | `c037b7216928bcfc6939626c191d862e668b17c8416a4d6c72c16a03aa5c5720` |
+| Before/after view receipt | `af8a338a9fe5522260b1c90de0b0468c4aa2c3153eecf572657a068f38a96982` |
+| Before/after PNG | `4ac77c471841081efe49f0925a47b3c1c54ba8b6de3d00c3d71d7750faed8655` |
+
+Five focused tests across the audit and
+[builder checks](../../tests/test_m64_v5_spring_pockets.py) pass. They reject
+nonfinite inputs, occupied port intersections, insufficient nominal separation
+and inconsistent stack dimensions. These software tests are not physical
+engineering approval. The next body-integration work is to resolve the missing
+exhaust spring-seat support, then design the longer valve/keeper/actuator stack
+and check its actual motion before accepting this candidate.
+
+The repository-wide `make check` also completed successfully: 3,132 main-suite
+tests (136 skipped), followed by the auxiliary checks; no broken links in
+522 Markdown files. Its retained log SHA-256 is
+`5742cbbd45eadbd80f46ac05499b974736afa420bb099cb8b1d6916e14815586`.
+The four prior V5/V2 renderer tests passed separately. These checks validate
+software/contracts, not the cylinder head's physical performance.
+
+```mermaid
+flowchart LR
+    A["V5 + V2 retained"] --> B["Spring envelopes intersect body"]
+    B --> C["Low pockets intersect ports: rejected"]
+    C --> D["Higher pockets: native body prototype"]
+    D --> E["Exhaust seating support + longer valve stack"]
+    E --> F["New topology, motion, mesh and physical gates"]
+```
+
+The 2026 catalogue lists 13.90 lbf/mm for this Honda SPR-H1021D row, rather
+than the 13.2 in the older supplier record. The present geometric study does
+not use either rate and does not rerank the historical dynamic spring study.
+Only retainers, not springs, were described as titanium in the consulted kit
+data. Historical records remain unchanged.
+
+Verification scope: the
+[two focused tests](../../tests/test_m64_v5_spring_packaging.py) cover axial
+arithmetic, changed allowance labels, invalid dimensions and contact/nonfinite
+clearance rejection; the native run covers all four placements without a
+symmetry assumption. Keeper geometry, spring dynamics, hot clearances,
+structural strength and physical validation remain untested here.
+
 ### Solver and translator controls
 
 The rented Linux host passed the native CCX build, analytical cube and three
