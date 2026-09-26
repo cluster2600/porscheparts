@@ -1,0 +1,5 @@
+Rapport brut OpenClaw — conclusions à contrôler.
+
+- fait avec URL : le site Wolfe Classics décrit un « Porsche Billet Cylinder head 3D Scan » pour une Porsche 935 race car, livrable en fichier .obj, accessible à https://www.wolfeclassics.com/shop/p/p-car-billet-cylinder-head-scan.  
+- applicabilité au scan : le fichier .obj peut être utilisé dans un outil CAO, mais aucune source ne permet d’identifier de façon précise la variante (Baby, K3, K4 ou Moby Dick) ni de confirmer que la culasse corresponde à l’une de ces versions.  
+- information manquante : le matériau de la culasse reste inconnu, aucune source n’indique qu’il s’agit d’une pièce Lost Wax casting RR350 aluminium HIP, et l’extraction du site Xtreme Cylinder Heads ne contenait pas ce détail ; aucune dimension, aucune cote d’atelier et aucune correspondance exacte avec une variante connue ne peuvent être fournies.
