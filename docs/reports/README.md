@@ -2,14 +2,14 @@
 
 # Execution and audit reports
 
-104 reports of runs, audits and checkpoints, newest first (14 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../../SAFETY.md).
+105 reports of runs, audits and checkpoints, newest first (14 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../../SAFETY.md).
 
 ```mermaid
 xychart-beta
     title "Reports written per day, 2026"
     x-axis ["09-01", "09-06", "09-07", "09-08", "09-09", "09-12", "09-14", "09-16", "09-24", "09-25", "09-26"]
     y-axis "reports" 0 --> 25
-    bar [1, 1, 20, 24, 13, 9, 7, 1, 2, 8, 4]
+    bar [1, 1, 20, 24, 13, 9, 7, 1, 2, 8, 5]
 ```
 
 ## September 26, 2026
@@ -20,6 +20,7 @@ xychart-beta
 | M64 G11 — bounded support redesign toward 0.040 mm | [`M64_G11_SUPPORT_STIFFNESS_20260926.md`](M64_G11_SUPPORT_STIFFNESS_20260926.md) |
 | M64 G12 — central-support FEA and rejected refinements | [`M64_G12_FEA_20260926.md`](M64_G12_FEA_20260926.md) |
 | M64 G12 — localized central-foot reinforcement | [`M64_G12_LOCAL_BUTTRESSES_20260926.md`](M64_G12_LOCAL_BUTTRESSES_20260926.md) |
+| M64 G13 — reference repair and unchanged-foot upper spines | [`M64_G13_SUPPORT_REFERENCE_20260926.md`](M64_G13_SUPPORT_REFERENCE_20260926.md) |
 
 ## September 25, 2026
 
