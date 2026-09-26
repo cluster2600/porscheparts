@@ -20,11 +20,13 @@ class G14Evidence(unittest.TestCase):
                                 ('cad-outer-root-v1.json', 'g14_outer_root_private.py'),
                                 ('cad-outer-upper-caps-v1.json', 'g14_outer_upper_caps_private.py'),
                                 ('cad-outer-inner-bands-v1.json', 'g14_outer_inner_bands_private.py'),
+                                ('cad-outer-intake-web-v1.json', 'g14_outer_intake_web_private.py'),
                                 ('combined-candidate-clearance-v1.json', 'check_combined_candidates.py'),
                                 ('combined-caps-extended-clearance-v1.json', 'check_caps_extended_candidates.py'),
                                 ('combined-caps-outer-root-clearance-v1.json', 'check_caps_outer_root_candidates.py'),
                                 ('combined-caps-outer-upper-clearance-v1.json', 'check_caps_outer_upper_candidates.py'),
-                                ('combined-caps-outer-inner-bands-clearance-v1.json', 'check_caps_outer_inner_bands_candidates.py')):
+                                ('combined-caps-outer-inner-bands-clearance-v1.json', 'check_caps_outer_inner_bands_candidates.py'),
+                                ('combined-caps-outer-intake-web-clearance-v1.json', 'check_caps_outer_intake_web_candidates.py')):
             data = json.loads((EVIDENCE/receipt).read_text())
             digest = hashlib.sha256((EVIDENCE/'native-replay'/source).read_bytes()).hexdigest()
             self.assertEqual(data['source_sha256'], digest)
@@ -39,7 +41,7 @@ class G14Evidence(unittest.TestCase):
         for name in ('central68-coarse.json', 'central-local-coarse.json', 'central40-coarse.json',
                      'central-root2-coarse.json', 'outer-extended-coarse.json',
                      'central-caps-coarse.json', 'outer-root2-coarse.json',
-                     'outer-upper-caps-coarse.json'):
+                     'outer-upper-caps-coarse.json', 'outer-inner-bands-coarse.json'):
             result = json.loads((EVIDENCE/name).read_text())
             self.assertEqual(result['status'], 'completed')
             self.assertTrue(result['numerically_qualified'])
@@ -72,6 +74,49 @@ class G14Evidence(unittest.TestCase):
         self.assertGreater(retry['maximum_journal_motion_mm'], .040)
         self.assertFalse(retry['below_0_040mm_coarse_screen'])
         self.assertFalse(retry['mesh_convergence_qualified'])
+
+    def test_medium_result_and_plug_nonaggravation_are_not_final_acceptance(self):
+        medium = json.loads((EVIDENCE/'central-caps-medium-hashfix.json').read_text())
+        coarse = json.loads((EVIDENCE/'central-caps-coarse.json').read_text())
+        self.assertEqual(medium['status'], 'completed')
+        self.assertTrue(medium['numerically_qualified'])
+        self.assertTrue(medium['artifact_hashes_match'])
+        self.assertEqual(medium['verified_artifact_count'], 37)
+        self.assertEqual(medium['mesh']['size_mm'], 1.5)
+        comparison = medium['coarse_to_medium']
+        self.assertEqual(comparison['coarse_case_sha256'], coarse['case_sha256'])
+        norms = []
+        for row in medium['cases']:
+            self.assertEqual(row['solver']['info'], 0)
+            self.assertTrue(row['mechanics']['equilibrium_passed'])
+            self.assertLessEqual(row['residual'], 1e-8)
+            self.assertLessEqual(row['agreement']['max_nodal_difference_over_max_reference_U'], 1e-4)
+            old = next(r for r in coarse['cases'] if r['direction'] == row['direction'])
+            a, b = old['mechanics'], row['mechanics']
+            change = next(r for r in comparison['comparisons'] if r['direction'] == row['direction'])
+            raw_change = max(math.dist(a['journal_weighted_displacement_mm'][s],
+                                      b['journal_weighted_displacement_mm'][s]) /
+                             math.hypot(*b['journal_weighted_displacement_mm'][s])
+                             for s in ('intake', 'exhaust'))
+            stress_change = abs(a['von_Mises_p95_MPa'] - b['von_Mises_p95_MPa']) / b['von_Mises_p95_MPa']
+            self.assertAlmostEqual(raw_change, change['journal_vector_relative_change'])
+            self.assertAlmostEqual(stress_change, change['stress_p95_relative_change'])
+            self.assertLessEqual(raw_change, .01)
+            self.assertLessEqual(stress_change, .05)
+            norms.extend(math.hypot(*v) for v in b['journal_weighted_displacement_mm'].values())
+        self.assertAlmostEqual(max(norms), medium['maximum_journal_motion_mm'])
+        self.assertLessEqual(max(norms), .040)
+        for key in ('mesh_convergence_qualified', 'assembled_stiffness_qualified',
+                    'hot_material_qualified', 'manufacturing_authorized', 'engine_start_authorized'):
+            self.assertFalse(medium[key])
+        cad = json.loads((EVIDENCE/'cad-outer-intake-web-v1.json').read_text())
+        for row in cad['variants']:
+            self.assertTrue(row['cad_accepted'])
+            self.assertFalse(row['service_removal_qualified'])
+            self.assertEqual(set(row['plug_removal_checks']), {'1', '2'})
+            checks = row['plug_removal_checks'].values()
+            self.assertTrue(all(v['new_material_overlap_mm3'] == 0 for v in checks))
+            self.assertGreater(max(v['baseline_overlap_mm3'] for v in checks), 1756)
 
     def test_mesh_preflight_and_preconditioner_are_not_acceptance(self):
         for name, source in (
