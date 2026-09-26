@@ -16,6 +16,31 @@ import test_m64_g11_collect as fixtures
 
 
 class SupervisorChecks(unittest.TestCase):
+    def test_only_the_two_g12_candidate_ids_extend_the_metadata_allowlist(self):
+        for name in ('centre_w11_local24_foot24_h40', 'centre_w11_local28_foot30_h50'):
+            for size in ('2', '1.5', '1'):
+                self.assertIsNotNone(supervisor.SAFE_JSON.fullmatch(f'results/{name}-{size}-attempt1/result.json'))
+        for name in ('centre_w11_foot24_h40', 'centre_w11_foot30_h50',
+                     'centre_w11_local24_foot30_h50', 'centre_w11_local28_foot24_h40',
+                     '../centre_w11_local24_foot24_h40', 'centre_w11_local30_foot30_h50'):
+            self.assertIsNone(supervisor.SAFE_JSON.fullmatch(f'results/{name}-2-attempt1/result.json'))
+        self.assertIsNotNone(supervisor.SAFE_JSON.fullmatch('results/centre_w11-2-attempt1/result.json'))
+
+    def test_g12_launcher_keeps_bootstrap_and_retains_source_after_empty_output_start(self):
+        folder = Path(supervisor.__file__).parent
+        previous = (folder/'g11_gpu_job.sh').read_text()
+        path = folder/'g12_gpu_job.sh'
+        current = path.read_text()
+        bootstrap = lambda text: text[text.index('set -euo pipefail'):text.index('venv/bin/python -m unittest')]
+        self.assertEqual(bootstrap(current), bootstrap(previous))
+        self.assertIn('test_m64_g12_campaign.py', current)
+        self.assertIn('--cad work/m64-g12/cad-v2/receipt.json', current)
+        self.assertIn('--case-timeout 1800', current)
+        self.assertIn('wait "$telemetry_pid"', current)
+        self.assertLess(current.index('g12_campaign.py'), current.index('mkdir results/provenance'))
+        self.assertIn('cp -- "${BASH_SOURCE[0]}" results/provenance/g12_gpu_job.sh', current)
+        self.assertEqual(supervisor.subprocess.run(['bash', '-n', str(path)], capture_output=True).returncode, 0)
+
     def fixture(self, root):
         root = root.resolve()
         now = int(time.time())
