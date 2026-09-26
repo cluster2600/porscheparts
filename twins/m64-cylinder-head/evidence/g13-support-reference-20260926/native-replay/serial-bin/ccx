@@ -1,0 +1,7 @@
+#!/bin/sh
+# Native G13 only. Override four-thread defaults in unchanged frozen helpers.
+set -eu
+export OMP_NUM_THREADS=1 CCX_NPROC_EQUATION_SOLVER=1 CCX_NPROC_STIFFNESS=1 CCX_NPROC_RESULTS=1 NUMBER_OF_CPUS=1
+export OPENBLAS_NUM_THREADS=1 MKL_NUM_THREADS=1
+runtime_dir=$(CDPATH= cd -- "$(dirname -- "$0")/../../native-ccx/CalculiX/ccx_2.21/src" && pwd)
+exec "$runtime_dir/ccx_2.21" "$@"

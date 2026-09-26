@@ -11,8 +11,9 @@ Three native central-support candidates add a 60 mm-wide inner spine with
 18, 24 or 30 mm axial thickness. The journal bands remain 11 mm. The first
 1 mm of the foot retains the G11 geometry; a 9 mm transition introduces the
 upper spine without enlarging the ideal fixed land. This is a deliberate
-comparison with G11, not with the widened G12 feet. The transition's stress
-and compliance still require FEA.
+comparison with G11, not with the widened G12 feet. Only the 30 mm spine has
+undergone the coarse native CPU FEA recorded below; the 18/24 mm spines remain
+CAD-only candidates.
 
 All three candidates passed the native solid, oil-path, enclosed-void,
 assembly-envelope and interference screens, including 144 sampled positions
@@ -56,13 +57,13 @@ substituted for the Linux campaign and contain no displacement solution.
 
 ```mermaid
 flowchart TD
-  A[Original failed G12 B 1.5 mm deck and DAT, unchanged] --> B[Repeated direct solves: four and one thread]
-  B --> C[One fresh stiffness export and two CUDA FP64 solves]
-  C --> D{Every serial repeat passes equilibrium and equation checks?}
-  D -->|No| E[Retain failures; no design qualification]
-  D -->|Yes| F[Four coarse screens: three central spines and outer d30/w30]
-  F --> G[Refine only qualifying candidates: 1.5 then 1 mm]
-  G --> H[Journal vector and stress convergence; 12 support observations]
+  A[Original G12 B 1.5 mm inputs retained] --> B[Native Mac: three serial direct solves and fresh CPU FP64 CG]
+  B --> C[Reference passes unchanged numerical gates]
+  C --> D[Central 30 mm and outer d30/w30: coarse 2 mm screens]
+  D --> E[Both numerically coherent, both above 0.040 mm]
+  E --> F[Revise geometry before refinement]
+  F --> G[Future qualifying design: 1.5 then 1 mm convergence]
+  A -.-> H[Prepared Linux/CUDA job: not executed]
 ```
 
 The reference replay preserves every outcome. A successful serial repeat is
@@ -149,7 +150,38 @@ The original rejected −z field remains rejected, with relative field error
 thread-race explanation nor a qualification of the different Linux/GPU runtime
 is inferred from this native CPU success.
 
-No completed G13 FEA or 0.040 mm achievement is claimed by this preparation
-record. The [G12 results and rejected reference fields](M64_G12_FEA_20260926.md)
-remain the preceding measured numerical evidence. Engine start, manufacturing,
-hot resistance, fatigue and complete assembled stiffness remain unauthorized.
+The separately reviewed [native candidate runner](../../twins/m64-cylinder-head/evidence/g13-support-reference-20260926/native-replay/candidate.py),
+[two trust-boundary tests](../../twins/m64-cylinder-head/evidence/g13-support-reference-20260926/native-replay/test_candidate.py)
+and [serial wrapper](../../twins/m64-cylinder-head/evidence/g13-support-reference-20260926/native-replay/serial-bin/ccx)
+reuse the frozen CAD, meshing, direct-solve and matrix-audit helpers. Copy these
+snapshots into the same private `native-fea/` directory, preserving the
+`serial-bin/ccx` executable bit. The runner requires the successful native
+reference and its retained artifacts; it does not accept a summary flag alone.
+Each candidate has its own 1,800-second process-group deadline. A completed
+process is not a numerical pass, and a single mesh cannot establish convergence.
+
+## Completed native coarse screens
+
+| Isolated support | Worst journal under +x, mm | Worst journal under −z, mm | Algebra/equilibrium | 0.040 mm screen |
+|---|---:|---:|---|---|
+| [Central spine 30](../../twins/m64-cylinder-head/evidence/g13-support-reference-20260926/central-t30-coarse.json) | 0.0472381 | 0.0224998 | Passed, both loads | Failed |
+| [Outer d30/w30](../../twins/m64-cylinder-head/evidence/g13-support-reference-20260926/outer-d30-w30-coarse.json) | 0.0714206 | 0.0765097 | Passed, both loads | Failed |
+
+These two independent case directories retain 64 checked artifacts. Both
+direct solves per case agree with their separately solved fresh stiffness
+matrix; CPU CG residuals are below 1.3e−10. Central and outer executions took
+444 and 709 seconds respectively, running concurrently. The sampled aggregate
+Python/CCX RSS peaked at 11.38 GiB (20-second samples, not a continuous peak).
+All owned calculation process groups were absent after completion.
+
+The outer −z load produces substantial transverse y displacement. Its intake
+journal vector is [0.007504, −0.065878, −0.038177] mm, so inspecting +x alone
+would miss the limiting response. Node-band observations suggest both upper
+rib/frame linkage and out-of-plane compliance need attention; they are not an
+energy decomposition or a causal proof. These failed coarse designs were not
+promoted to a costly fine-mesh qualification. No G13 design reaches the target,
+and no 1.5→1 mm convergence result is claimed.
+
+The [original G12 results and rejected fields](M64_G12_FEA_20260926.md) remain
+unchanged. Engine start, manufacturing, hot resistance, fatigue and complete
+assembled stiffness remain unauthorized.
