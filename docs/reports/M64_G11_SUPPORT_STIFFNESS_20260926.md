@@ -3,8 +3,38 @@
 This is a cold, generic-material, fixed-foot component study. It is not an
 assembled engine, a hot-strength calculation or an additive-manufacturing release.
 
-Execution checkpoint: native geometry and baseline replay are complete; the
-bounded GPU campaign is running. No final mechanical selection is declared yet.
+Execution checkpoint, 2026-09-26 13:43 UTC: native geometry and the compact
+baseline replay are retained, but **the numerical campaign is incomplete as an
+evidence delivery**. The owned worker is absent and its final archive was not
+retrieved. The finest-mesh outcomes are unknown. **0.040 mm is not demonstrated**;
+no mechanical selection is declared.
+
+## Delivery incident and retained results
+
+The [incident receipt](../../twins/m64-cylinder-head/evidence/g11-support-stiffness-20260926/delivery-incident.json)
+records the provider observation and retained evidence hashes. The collector was
+available but not integrated into autonomous retrieval. On resumption the
+interactive job and guard sessions were gone; no full G11 DAT fields, meshes or
+result archive had been saved locally. Current provider absence does not prove
+the deletion time, cause or guard completion. Actual cost remains unknown;
+shared account activity makes balance-difference attribution invalid.
+
+The durable 2 mm numerical summary gives central-wall motions of
+**0.076660 / 0.068260 / 0.061630 mm** for widths 10 / 11 / 12 mm, respectively.
+None meets 0.040 mm. These compact records remain useful, but their missing full
+fields prevent a fresh field audit. Live terminal output additionally showed all
+12 coarse cases complete, two outer 1.5 mm timeouts and two central 1.5 mm
+completions. Those observations do not replace the uncollected solver receipts.
+The 1 mm final outcomes must remain **unknown**, not inferred from the schedule.
+
+The new [collection supervisor](../../twins/m64-cylinder-head/source/fourvalve/g11_supervise.md)
+has passed local tests for incremental metadata retention, interrupted/repeated
+collection, identity, deadlines, byte caps and archive integrity. A detached
+local producer exercises its completion marker; provider and network operations
+are mocked. The launchd/remote-launch commands are prepared, **not installed or
+demonstrated on a live Vast job**. Before a paid rerun, establish this autonomous
+collection path and the independent billing guard. Do not relax a mechanical
+threshold or reclassify an uncollected case as passing.
 
 ## Native geometry result
 
@@ -68,6 +98,9 @@ mobile-to-mobile clearance audit of the whole valvetrain.
 
 The numerical campaign preserves G9's E=70,000 MPa, ν=0.33, fixed-foot restraint
 and frozen forces. These are study hypotheses, not selected hot-alloy properties.
+The reactions come from G7's idealized support model, not a measured or
+phase-correlated 700 hp turbo cycle. The +x and -z directions are separate load
+cases; they do not qualify the complete operating load envelope.
 The mesher checks each declared journal's actual axial interval and area instead
 of reusing the old hardcoded 10 mm central width.
 
@@ -121,11 +154,14 @@ preserves the mesh, input decks, full DAT fields, DOF maps, result receipts and
 logs. Only `matrix.sti` and `matrix.mas` are omitted, with their original sizes
 and hashes inventoried. Lossless compression groups like file types and the
 finished archive must fit **1.990 GB**, reserving 10 MB of the profile's 2 GB
-outbound allowance for diagnostic traffic. Every retained file is hash-verified
-from the downloaded archive without duplicating the uncompressed data locally.
+outbound allowance for diagnostic traffic. The verification command checks every
+retained file from a downloaded archive without duplicating the uncompressed data
+locally. **This campaign's archive was never retrieved or verified.**
 The archive is **not directly checkpoint-resumable**: omitted matrices must be
 regenerated and their original hashes checked before checkpoint reuse or a fresh
 CUDA-residual audit. Original result fingerprints are never rewritten.
+See the [collection commands](../../twins/m64-cylinder-head/source/fourvalve/g11_collect.md)
+for the cumulative transfer cap and verification procedure.
 
 ## Assembly and Omniverse handoff
 
@@ -141,6 +177,20 @@ official conversion reference, then minimum USD validation. This preparation is
 not an executed Omniverse simulation or an automatically assigned material card.
 No selected combined assembly is declared until both component gates pass and
 combined geometry is checked.
+
+If the bounded grid fails, increasing central width beyond 12 mm is not an
+accepted fallback: the nominal exhaust axial gap is already only 0.09375 mm.
+The next geometry hypotheses are a flared foot with local buttresses connecting
+the journal regions to the existing mounts, then a closed frame linking the
+central wall to the end traverses. Neither has been generated or solved by G11.
+Each must preserve the journal bands and axes and recheck the moving envelopes,
+oil paths, fastener access, assembly sequence and real load-bearing interfaces.
+The subsequent [local G12 CAD pilot](M64_G12_LOCAL_BUTTRESSES_20260926.md) now
+retains two localized buttresses after rejecting two full-width feet. It is a
+separate geometry-only iteration, not a recovered G11 result or a stiffness pass.
+The full shaft/contact/preload model must then test redistribution of G7's
+idealized reactions; artificial bonded contact across a nominal clearance is
+not a valid way to pass the displacement gate.
 
 ```mermaid
 flowchart LR

@@ -1,0 +1,45 @@
+{
+  "classification": "G11_delivery_incident_unrecovered_solver_artifacts",
+  "recorded_utc": "2026-09-26T13:43:40Z",
+  "instance_id": 52716621,
+  "provider_observation": {
+    "operation": "approved_openbao_vastai_instances",
+    "observed_utc": "2026-09-26T13:43:40Z",
+    "sanitized_inventory": [],
+    "owned_instance_absent": true,
+    "guard_completion_receipt_available": false,
+    "actual_deletion_time_and_cause": null
+  },
+  "final_compute_status": "unknown",
+  "collection_archive_retrieved": false,
+  "complete_solver_fields_retained": false,
+  "finest_mesh_acceptance_demonstrated": false,
+  "target_0p040_mm_demonstrated": false,
+  "actual_cost_USD": null,
+  "attempt_budget_cap_USD": 4,
+  "actual_cost_note": "Shared account activity prevents attribution from account balance differences; no final invoice or deletion receipt retained.",
+  "retained_evidence": [
+    {
+      "path": "cad.json",
+      "sha256": "97f7a13c4c7ff4da8de0e3a1e1e15a49bb23236fa9cc3e02e80ab3d1e62f30fd",
+      "scope": "12 native CAD variants, 144 sampled support-to-moving-component poses each; no mechanical or functional-clearance qualification"
+    },
+    {
+      "path": "baseline-replay-comparison.json",
+      "sha256": "612a3c2804e8fa65df2f6302efd05548cbefe9db88ff04403611c9f8e8a573c4",
+      "scope": "Durable independent 2 mm numerical summary for centre_w10, centre_w11, centre_w12 and the outer control; not full fields"
+    }
+  ],
+  "additional_stdout_observations": {
+    "provenance": "Live command output seen during the campaign; corresponding raw result files were not collected. These observations are not reconstructed solver receipts.",
+    "coarse_cases_observed_complete": 12,
+    "coarse_cases_observed_below_0p040_mm": 0,
+    "outer_1p5_mm_timeouts_observed": ["outer_d30_w30", "outer_d24_w30"],
+    "central_1p5_mm_completions_observed": ["centre_w12", "centre_w11"],
+    "one_mm_final_outcomes": null
+  },
+  "delivery_gap": "The collector existed but no autonomous retrieval was integrated; the interactive sessions no longer existed on resumption. Archive collection and verification were not executed.",
+  "recovery_requirement": "Persist metadata during computation and supervise bounded archive retrieval and verification independently of the interactive session, before the independent billing guard deadline.",
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false
+}
