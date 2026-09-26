@@ -36,7 +36,8 @@ class G14Evidence(unittest.TestCase):
             self.assertFalse(data['engine_start_authorized'])
         for name in ('central68-coarse.json', 'central-local-coarse.json', 'central40-coarse.json',
                      'central-root2-coarse.json', 'outer-extended-coarse.json',
-                     'central-caps-coarse.json', 'outer-root2-coarse.json'):
+                     'central-caps-coarse.json', 'outer-root2-coarse.json',
+                     'outer-upper-caps-coarse.json'):
             result = json.loads((EVIDENCE/name).read_text())
             self.assertEqual(result['status'], 'completed')
             self.assertTrue(result['numerically_qualified'])
@@ -94,6 +95,33 @@ class G14Evidence(unittest.TestCase):
                                  {(d, m) for d in ('x', 'minus_z') for m in ('jacobi', 'amg')})
                 self.assertTrue(all(r['passed'] and r['relative_residual'] <= 1e-8
                                     for r in data['cases']))
+
+    def test_failed_medium_solve_is_not_a_target_or_resource_failure(self):
+        failed = json.loads((EVIDENCE/'central-caps-medium-failure.json').read_text())
+        crash = json.loads((EVIDENCE/'central-caps-medium-crash-diagnostic.json').read_text())
+        for key, filename in (('source_sha256', 'caps_medium_candidate.py'),
+                              ('test_sha256', 'test_caps_medium_candidate.py')):
+            self.assertEqual(failed[key], hashlib.sha256(
+                (EVIDENCE/'native-replay/fea'/filename).read_bytes()).hexdigest())
+        self.assertEqual(crash['attempt_summary_sha256'], failed['summary_sha256'])
+        self.assertEqual(crash['attempt_case_sha256'], failed['case_sha256'])
+        self.assertEqual(crash['termination_signal_number'], 11)
+        self.assertEqual(crash['faulting_frames'][0]['symbol'], 'I2Ohash_insert')
+        self.assertIsNone(failed['native_CCX_returncode'])
+        self.assertEqual(failed['x_DAT_bytes'], 0)
+        self.assertFalse(failed['resource_guard_triggered'])
+        for key in ('complete', 'numerically_qualified', 'minus_z_executed',
+                    'matrix_export_executed', 'CG_executed', 'mesh_convergence_qualified',
+                    'manufacturing_authorized', 'engine_start_authorized'):
+            self.assertFalse(failed[key])
+        witness = json.loads((EVIDENCE/'spooles-hash-unit-qualification.json').read_text())
+        self.assertTrue(witness['unit_fix_qualified'])
+        self.assertFalse(witness['primary_original_passed_flag'])
+        self.assertFalse(witness['FEA_executed'])
+        for key, filename in (('reproducer_sha256', 'spooles-hash-reproducer.c'),
+                              ('three_line_patch_sha256', 'spooles-hash-three-line.patch')):
+            self.assertEqual(witness[key], hashlib.sha256(
+                (EVIDENCE/'native-replay'/filename).read_bytes()).hexdigest())
 
     def test_retained_energy_diagnostic_is_balanced_not_a_new_solve(self):
         for name, source in (
