@@ -13,12 +13,19 @@ class G14Evidence(unittest.TestCase):
     def test_native_sources_and_rejected_coarse_result(self):
         for receipt, source in (('cad-v1.json', 'g14_cad_private.py'),
                                 ('cad-lower-v1.json', 'g14_lower_cheeks_private.py'),
-                                ('cad-central-v2.json', 'g14_central_followup_private.py')):
+                                ('cad-central-v2.json', 'g14_central_followup_private.py'),
+                                ('cad-central-root-v1.json', 'g14_central_root_private.py'),
+                                ('cad-extended-v1.json', 'g14_extended_haunch_private.py'),
+                                ('combined-candidate-clearance-v1.json', 'check_combined_candidates.py')):
             data = json.loads((EVIDENCE/receipt).read_text())
             digest = hashlib.sha256((EVIDENCE/'native-replay'/source).read_bytes()).hexdigest()
             self.assertEqual(data['source_sha256'], digest)
-            self.assertTrue(data['complete'])
-            self.assertIsNone(data['error'])
+            if receipt != 'combined-candidate-clearance-v1.json':
+                self.assertTrue(data['complete'])
+                self.assertIsNone(data['error'])
+            else:
+                self.assertEqual(len(data['pairs']), 3)
+                self.assertTrue(all(p['intersection_volume_mm3'] == 0 for p in data['pairs']))
             self.assertFalse(data['manufacturing_authorized'])
             self.assertFalse(data['engine_start_authorized'])
         result = json.loads((EVIDENCE/'central68-coarse.json').read_text())
