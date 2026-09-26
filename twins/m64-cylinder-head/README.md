@@ -46,6 +46,17 @@ and oil circuits remain to be integrated. See the
 Geometry and rendered derivatives remain private under the scan source policy;
 the producer, tests and evidence summary are published.
 
+The [next spring-packaging audit](../../docs/reports/M64_COMPLETE_HEAD_INTEGRATION_20260927.md#spring-packaging--actual-whole-body-interference-check)
+finds that 67–95% of the nominal spring envelopes overlap the existing body.
+Low spring-pocket cuts would break into the ports. A higher layout clears
+the port-distance screen but requires longer stems and unresolved exhaust
+spring-seat support. It is not a fitted spring kit or manufacturing approval.
+A [new body-only prototype](../../docs/reports/M64_COMPLETE_HEAD_INTEGRATION_20260927.md#actual-body-pocket-prototype-built)
+now has those four higher pockets: one native valid solid after readback and
+no intersection with the four nominal spring envelopes. The master remains
+unchanged. Longer valves and the full actuator assembly are not yet modeled;
+the previous V5 BOP result does not validate this newly cut body.
+
 ## Evidence and current work
 
 This directory holds the code, records and receipts of the M64 cylinder head
