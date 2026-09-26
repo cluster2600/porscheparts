@@ -1,0 +1,141 @@
+{
+  "classification": "failed_G12_DAT_vs_fresh_K_CUDA_diagnostic_not_replacement",
+  "original_failure_preserved": true,
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false,
+  "diagnostic_rows_complete": true,
+  "original_input_sha256": {
+    "x.inp": "d51f1343152d49bafef796cd257210c82dd6dc891df7d29e898528a0c9b94c84",
+    "x.dat": "b44e5f0916dec97181ba6d1e0f799757ec67b0a418693b1ee731a2afd823e520",
+    "minus_z.inp": "d5e2d625ec1f65f56e9a0f8896a43505ccec1a474f887dfd2400dc96bb09dc08",
+    "minus_z.dat": "88cedaec685532ed97aa50e697f4f3987635251c5970f32b1edc6bf19fabe703"
+  },
+  "source_sha256": {
+    "twins/m64-cylinder-head/source/fourvalve/g8_pilot.py": "f6f3d1fe77c0a701bb1f75926cd4ac8cba3ee6cc9c3337967740d30ad85fee92",
+    "twins/m64-cylinder-head/source/fourvalve/g9_reference_campaign.py": "ed6a2b21d89030ba39fc393f8a218bbbf328eceda49ce6bed361273bd2d8170b",
+    "twins/m64-cylinder-head/source/fourvalve/g8_matrix_benchmark.py": "4a98a110df2c4698b3ac0a74fb0dd1cb200c946fd9fa9a8748f6bd0e10c981cd",
+    "twins/m64-cylinder-head/source/fourvalve/g8_iterative_retry.py": "8600f234e60036668dc3a8f7f005c570638ea4cfc7a60c1327b86a534fa01963",
+    "twins/reference-917-engine/source/run_f37_carrier_calculix.py": "54e3478e219875872092cacb281dd12e640126cbed9273e8d82cd46d36fa2b13"
+  },
+  "started_epoch": 1790436047.5328095,
+  "rows": [
+    {
+      "case": "centre_w11_local28_foot30_h50-1.5-diagnostic",
+      "direction": "x",
+      "nodes": 196914,
+      "free_dofs": 574779,
+      "matrix_nnz": 45428403,
+      "numerical_crosscheck_passed": true,
+      "export_seconds": 18.9973982720403,
+      "relative_residual": 1.0460428185923332e-10,
+      "solver": {
+        "backend": "cuda",
+        "versions": {
+          "cupy": "13.6.0",
+          "cuda_runtime": 12090,
+          "gpu": "NVIDIA RTX PRO 4000 Blackwell",
+          "gpu_total_memory_bytes": 25148653568
+        },
+        "iterations": 4051,
+        "info": 0,
+        "setup_seconds": 0.7935563010396436,
+        "solve_seconds": 4.790247280034237,
+        "setup_and_solve_seconds": 5.58380358107388,
+        "dtype": "float64"
+      },
+      "fresh_direct": {
+        "max_nodal_difference_over_max_reference_U": 9.463078594849373e-08,
+        "printed_dat_relative_residual": 0.0011019595006724354,
+        "printed_dat_rounding_residual_bound": 0.031901788577524695
+      },
+      "historical_comparison": null,
+      "mechanics": {
+        "force_balance_relative_error": 2.567492513153507e-09,
+        "moment_balance_F_times_100mm_error": 2.616460549290982e-09,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.07449483257141548,
+        "von_Mises_p95_MPa": 37.19750996925843,
+        "von_Mises_max_MPa": 153.47147301400582,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            0.053283457029725124,
+            4.5329798754891014e-08,
+            0.01853991585746487
+          ],
+          "exhaust": [
+            0.04874308029675124,
+            -4.823677183513559e-07,
+            -0.01637166681783767
+          ]
+        }
+      },
+      "hashes": {
+        "x.inp": "d51f1343152d49bafef796cd257210c82dd6dc891df7d29e898528a0c9b94c84",
+        "x.dat": "b44e5f0916dec97181ba6d1e0f799757ec67b0a418693b1ee731a2afd823e520",
+        "matrix.inp": "3403fa07778ec4f93f698e31f051239e6d42db39942180698470720bb24c663d",
+        "matrix.sti": "89281fff54b64ba5a707b66e3968a75a96039c4e68b3927e240c434c1f7fd2dc",
+        "matrix.dof": "76022341a6219437a01c290c833faf3a8802e636b37bc93ace2c2e23dc5f98ee"
+      }
+    },
+    {
+      "case": "centre_w11_local28_foot30_h50-1.5-diagnostic",
+      "direction": "minus_z",
+      "nodes": 196914,
+      "free_dofs": 574779,
+      "matrix_nnz": 45428403,
+      "numerical_crosscheck_passed": false,
+      "export_seconds": 18.9973982720403,
+      "relative_residual": 9.993131170310709e-11,
+      "solver": {
+        "backend": "cuda",
+        "versions": {
+          "cupy": "13.6.0",
+          "cuda_runtime": 12090,
+          "gpu": "NVIDIA RTX PRO 4000 Blackwell",
+          "gpu_total_memory_bytes": 25148653568
+        },
+        "iterations": 4031,
+        "info": 0,
+        "setup_seconds": 0.04070227988995612,
+        "solve_seconds": 4.790511760045774,
+        "setup_and_solve_seconds": 4.83121403993573,
+        "dtype": "float64"
+      },
+      "fresh_direct": {
+        "max_nodal_difference_over_max_reference_U": 0.0020572046118339732,
+        "printed_dat_relative_residual": 0.021948668058234262,
+        "printed_dat_rounding_residual_bound": 0.009444660710773562
+      },
+      "historical_comparison": null,
+      "mechanics": {
+        "force_balance_relative_error": 0.0016002474896181964,
+        "moment_balance_F_times_100mm_error": 0.00036599317545593,
+        "equilibrium_passed": false,
+        "maximum_displacement_mm": 0.04070210964926359,
+        "von_Mises_p95_MPa": 29.73365700307141,
+        "von_Mises_max_MPa": 214.31937701104448,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            -0.009344495494180404,
+            -2.5453142149581197e-06,
+            -0.022118593834230003
+          ],
+          "exhaust": [
+            0.006919783235936098,
+            -6.33123149287508e-05,
+            -0.018963640738274674
+          ]
+        }
+      },
+      "hashes": {
+        "minus_z.inp": "d5e2d625ec1f65f56e9a0f8896a43505ccec1a474f887dfd2400dc96bb09dc08",
+        "minus_z.dat": "88cedaec685532ed97aa50e697f4f3987635251c5970f32b1edc6bf19fabe703",
+        "matrix.inp": "3403fa07778ec4f93f698e31f051239e6d42db39942180698470720bb24c663d",
+        "matrix.sti": "89281fff54b64ba5a707b66e3968a75a96039c4e68b3927e240c434c1f7fd2dc",
+        "matrix.dof": "76022341a6219437a01c290c833faf3a8802e636b37bc93ace2c2e23dc5f98ee"
+      }
+    }
+  ],
+  "error": null,
+  "finished_epoch": 1790436087.9214392
+}

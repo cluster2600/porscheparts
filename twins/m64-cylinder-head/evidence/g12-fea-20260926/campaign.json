@@ -1,0 +1,84 @@
+{
+  "classification": "G12_generic_cold_isolated_central_support_FEA",
+  "cad_receipt_sha256": "1038c9a40bd005f8390b7ce806c51ad65323d6706c35c12844d01489e1fd4d83",
+  "campaign_source_sha256": "e2e446e24f5471bbe52fdd785c59dbf84a0d943537db8d6407528f5efade039e",
+  "reused_source_sha256": {
+    "g11_campaign.py": "ede1d5b247f9a518d29e6f0ad34b8863ebf2cc64125fef76828d17fab58bcb0d",
+    "g8_pilot.py": "f6f3d1fe77c0a701bb1f75926cd4ac8cba3ee6cc9c3337967740d30ad85fee92",
+    "g9_reference_campaign.py": "ed6a2b21d89030ba39fc393f8a218bbbf328eceda49ce6bed361273bd2d8170b",
+    "g8_matrix_benchmark.py": "4a98a110df2c4698b3ac0a74fb0dd1cb200c946fd9fa9a8748f6bd0e10c981cd"
+  },
+  "backend": "cuda",
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false,
+  "assembled_stiffness_qualified": false,
+  "hot_material_qualified": false,
+  "outer_supports_recomputed": false,
+  "generic_material": {
+    "E_MPa": 70000.0,
+    "nu": 0.33
+  },
+  "records": [
+    {
+      "id": "centre_w11_local24_foot24_h40",
+      "size_mm": 2.0,
+      "status": "completed",
+      "returncode": 0,
+      "wall_seconds": 51.505732088931836,
+      "path": "centre_w11_local24_foot24_h40-2-attempt1/result.json",
+      "sha256": "2ce8efec9f5b8dcb31a2412b645d560d36b464ec76be636cfdd05eb1d954650c"
+    },
+    {
+      "id": "centre_w11_local28_foot30_h50",
+      "size_mm": 2.0,
+      "status": "completed",
+      "returncode": 0,
+      "wall_seconds": 60.727328867069446,
+      "path": "centre_w11_local28_foot30_h50-2-attempt1/result.json",
+      "sha256": "fbefb6277a9b2d492b6feef7a65c13cf2024412834f4f1998d8a34d2eb9f9591"
+    },
+    {
+      "id": "centre_w11_local24_foot24_h40",
+      "size_mm": 1.5,
+      "status": "completed",
+      "returncode": 0,
+      "wall_seconds": 167.7736439500004,
+      "path": "centre_w11_local24_foot24_h40-1.5-attempt1/result.json",
+      "sha256": "71ff901ab1f69a0a09f662b5fa31fedc2f2b6504cb2bc4ff4f5363561ab8353f"
+    },
+    {
+      "id": "centre_w11_local28_foot30_h50",
+      "size_mm": 1.5,
+      "status": "failed",
+      "returncode": 1,
+      "wall_seconds": 150.9985638889484
+    },
+    {
+      "id": "centre_w11_local24_foot24_h40",
+      "size_mm": 1.0,
+      "status": "failed",
+      "returncode": 1,
+      "wall_seconds": 1161.630516560981
+    }
+  ],
+  "assessments": {},
+  "selected_variant": null,
+  "complete": false,
+  "boundary_hypothesis": "Entire widened foot fixed in XYZ; enlarged clamp area is not validated assembled head contact.",
+  "projected_lands": {
+    "centre_w11_local24_foot24_h40": {
+      "slice_thickness_mm": 0.05,
+      "projected_foot_area_mm2": 1696.185118189918,
+      "area_over_existing_head_solid_mm2": 1695.5603024554318,
+      "unsupported_projected_area_mm2": 0.6248159126232202,
+      "structural_contact_qualified": false
+    },
+    "centre_w11_local28_foot30_h50": {
+      "slice_thickness_mm": 0.05,
+      "projected_foot_area_mm2": 2136.0431181898975,
+      "area_over_existing_head_solid_mm2": 2135.4183027678446,
+      "unsupported_projected_area_mm2": 0.624815868991268,
+      "structural_contact_qualified": false
+    }
+  }
+}

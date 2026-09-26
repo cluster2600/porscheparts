@@ -1,9 +1,9 @@
 # M64 G12 — localized central-foot reinforcement
 
-**Two localized candidates pass the declared native geometry checks; no G12
-stiffness calculation has been run.** The unchanged G7 head is not released for
-printing or engine operation. This iteration uses local CAD only, without a new
-Vast rental.
+**Two localized candidates pass the declared native geometry checks.** This
+report preserves the CAD-only stage; the subsequent paid mechanical campaign is
+documented separately in the [G12 FEA report](M64_G12_FEA_20260926.md).
+The unchanged G7 head is not released for printing or engine operation.
 
 ## Tested geometry
 
@@ -57,11 +57,11 @@ thermal, fatigue, LPBF or Omniverse result is claimed. **0.040 mm remains
 undemonstrated**, and the G11 finest-mesh results remain unavailable as documented
 in the [delivery incident](M64_G11_SUPPORT_STIFFNESS_20260926.md).
 
-Next: compare these two accepted STEP solids using the unchanged G9 forces,
-material and displacement definition, then perform the required mesh checks.
-They need an explicitly G12-bound job: the frozen G11 input gate correctly rejects
-new variant identifiers. Use the independent collection supervisor before any
-paid rerun. Full contact/preload/hot assembly modelling remains a separate gate.
+The subsequent FEA compares these two accepted STEP solids using the unchanged
+G9 forces, material and displacement definition. Its explicitly G12-bound job
+and independent collection supervisor are described in the linked report; the
+frozen G11 input gate still correctly rejects new variant identifiers.
+Full contact/preload/hot assembly modelling remains a separate gate.
 
 ```mermaid
 flowchart LR
@@ -69,7 +69,7 @@ flowchart LR
     C --> K[Static, oil, cavity and 144-pose checks]
     K --> R[Two full-width controls rejected]
     K --> A[Two localized candidates retained for FEA]
-    A --> F[Reference mechanics and mesh checks: not yet run]
+    A --> F[Reference mechanics and mesh checks: separate G12 FEA report]
     F --> H[Contact, preload and hot assembly: not yet qualified]
 ```
 

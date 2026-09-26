@@ -1,0 +1,71 @@
+{
+  "classification": "read_only_failed_case_diagnostic_not_scientific_acceptance",
+  "instance_id": 52763908,
+  "remote_case": "/workspace/m64-g11/results/centre_w11_local24_foot24_h40-1-attempt1",
+  "method": "Read-only existing DAT parsing with frozen g8.vectors/parse_dat and INP parsing with frozen g9.deck. No solve, source change, threshold change or remote file write.",
+  "limitations": [
+    "Moment recomputation uses the INP coordinates printed to 12 significant digits rather than original in-memory mesh coordinates.",
+    "This identifies which acceptance guard failed, not the underlying solver/assembly cause.",
+    "The G12 worker failed before its matrix/CUDA crosscheck stage; +x passing these two guards alone does not qualify the failed mesh pair."
+  ],
+  "source_sha256": {
+    "g8_pilot.py": "f6f3d1fe77c0a701bb1f75926cd4ac8cba3ee6cc9c3337967740d30ad85fee92",
+    "g9_reference_campaign.py": "ed6a2b21d89030ba39fc393f8a218bbbf328eceda49ce6bed361273bd2d8170b"
+  },
+  "common": {
+    "node_count": 529357,
+    "support_count": 8939,
+    "stress_samples_per_case": 1429988,
+    "displacement_samples_per_case": 529357,
+    "force_and_moment_threshold": 0.0001,
+    "moment_normalization": "norm(applied_force_N) * 100 mm",
+    "both_displacement_sets_complete": true,
+    "both_reaction_sets_complete": true,
+    "both_logs_job_finished": true,
+    "both_logs_contain_error_marker": false
+  },
+  "cases": {
+    "x": {
+      "files_sha256": {
+        "dat": "cdf8ed4e542006440619c798593f01d381ddd8f93eb5231d5e8aa6f4a6637a10",
+        "inp": "ff7b2a1faff0ef4cea34307a571628dc71ae90c3abe870df092368c04049e420",
+        "log": "f2da5b8c0996e7df03a93f565c5a256877893559929900ed1e5df7902f181f79"
+      },
+      "nonfinite_stress_count": 0,
+      "nonfinite_displacement_count": 0,
+      "applied_N": [13583.8368458807, 0.0, 0.0],
+      "reaction_N": [-13583.836855818625, 0.000003926735016299143, -0.000027339160872941193],
+      "force_residual_N": [-0.000009937924914993346, 0.000003926735016299143, -0.000027339160872941193],
+      "force_balance_relative_error": 2.160892890302392e-9,
+      "moment_residual_Nmm": [-0.00014648587399790358, -0.002499302616342902, 0.0003245965488107849],
+      "moment_balance_F_times_100mm_error": 1.858492886154406e-9,
+      "force_guard_passed": true,
+      "moment_guard_passed": true,
+      "guard_passed": true,
+      "solver_seconds_logged": 568.664833
+    },
+    "minus_z": {
+      "files_sha256": {
+        "dat": "ef0f0865adba0a56ef533e905838df20210e8c181dd3ef5644d1d05cc91b72d6",
+        "inp": "fa962fafdbb6e01d5f2b5d9f22bde3e46efd26489d51601b08854aabd659f1ee",
+        "log": "fe542cc28ded90c2dfb28035e8f008fde61dc0878c93427fcfa75822af0e71d5"
+      },
+      "nonfinite_stress_count": 0,
+      "nonfinite_displacement_count": 0,
+      "applied_N": [0.0, 0.0, -13583.8368458807],
+      "reaction_N": [-1.7443714885114374, 0.058069307806959264, 13579.168813515358],
+      "force_residual_N": [-1.7443714885114374, 0.058069307806959264, -4.668032365341787],
+      "force_balance_relative_error": 0.00036688060390533723,
+      "moment_residual_Nmm": [-4.33448925862842, -78.0447826984473, 3.7647245975234878],
+      "moment_balance_F_times_100mm_error": 0.000057609396792836113,
+      "force_guard_passed": false,
+      "moment_guard_passed": true,
+      "guard_passed": false,
+      "reaction_one_printed_unit_sum_bound_N": [0.0007015571830999132, 0.0007907395429998876, 0.006663909845000573],
+      "roundoff_check": "The 4.668 N z imbalance exceeds by about 700x the sum of one last-printed-unit per RF z entry; ordinary DAT formatting roundoff does not explain it.",
+      "solver_seconds_logged": 574.980369
+    }
+  },
+  "comparison_to_local28_1p5": "The failing direction is again -z, while +x passes the force/moment guards. Here only the force guard fails; local28 at 1.5 mm failed both force and moment. This repeated direction pattern does not establish a shared originating cause.",
+  "conclusion": "Finite complete -z outputs fail the unchanged force-equilibrium gate despite normal CalculiX completion. Preserve the failed case and do not promote this mesh pair to qualified. Underlying numerical/assembly cause remains undetermined."
+}
