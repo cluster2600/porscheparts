@@ -51,6 +51,7 @@ flowchart TD
 | Outer high cheeks + lower haunches, positive side | 212,906 | Passed, 144 poses |
 | Outer high cheeks + haunches extended to z137 | 231,816 | Passed, 144 poses; 2 mm stiffness target fails |
 | Outer extended haunches, root transition 2 mm | 239,022 | Passed, 144 poses; 2 mm stiffness target fails |
+| Outer root2 + upper caps | 241,503 | Passed, 144 poses; FEA pending |
 
 All outer designs were independently constructed and checked on the negative
 side too. Their whole-body reflected Boolean differences are zero at the
@@ -125,6 +126,8 @@ The SVG exports are fingerprinted in the CAD receipts; PNGs were rendered with
 ![Central local-link support, cut at x=0](../assets/m64-g14/central-local-section.png)
 
 ![Central support with upper journal caps, isolated CAD view](../assets/m64-g14/central-caps.png)
+
+![Outer support with upper caps, isolated CAD view, stiffness not yet established](../assets/m64-g14/outer-upper-caps.png)
 
 ## Central 68 mm: completed coarse calculation
 
@@ -207,7 +210,35 @@ it is not promoted to refinement. The 206,787-node/132,568-element run took
 313.6/313.4 seconds, with residuals 1.072e-10/1.145e-10 and direct-field
 disagreement 1.261e-7/1.341e-7. Loads and acceptance gates remain unchanged.
 
-Repository checkpoint: `make check` passed (3,109 main-suite tests, 136 optional
+## Energy-guided outer upper-cap hypothesis
+
+Read-only integration of the retained −z fields gives **102.780536 N·mm** for
+the [extended haunch](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/outer-extended-minus-z-energy-v2.json)
+and **95.939031 N·mm** for [root2](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/outer-root2-minus-z-energy-v1.json).
+For each affine C3D10, the four-point stress energy uses the unchanged isotropic
+material and actual element volume. Agreement with `0.5 F·U` is 7.02e-10 and
+4.79e-9 relative, below the predeclared 1e-4 limit; no renormalization is used.
+Three analytic/parser checks and an independent source review pass.
+
+Root2 reduces total energy by 6.66%, almost entirely in the frame. The local
+upper region (`y < 45 mm`, `z >= 138 mm`) retains 19.004 N·mm: 19.81% of the
+total energy in 3.78% of quadrature-assigned volume. These regions are classified
+at Gauss points, not exact clipped-volume integrals. Energy/compliance under −z
+does **not** give the exact sensitivity of the limiting journal displacement.
+
+The resulting [single upper-cap CAD hypothesis](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/cad-outer-upper-caps-v1.json)
+adds 2,482 mm³ (1.04%) per outer support. The two 6 mm upper caps pass the native
+one-solid, void, mirror, first-millimetre, fixed-land, journal, oil and 144-pose
+screens. Explicit cam-bore and cap-split masks are unchanged; new material has
+zero overlap with declared shaft/lobe/cap-lift and socket reservations.
+Conservative reservations already overlap the baseline: these tests establish
+**non-aggravation**, not a validated removal sequence or tool fit. The retained
+baseline is neither pocketed nor erased to make a test pass. The FE gain remains
+unmeasured at this checkpoint.
+The [three stationary pairs with the central caps](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/combined-caps-outer-upper-clearance-v1.json)
+have zero Boolean intersection, with unchanged source/input fingerprints.
+
+Repository checkpoint: `make check` passed (3,110 main-suite tests, 136 optional
 skips, plus the separate repository checks); 519 Markdown files have no broken
 local links. These are software/provenance checks, not physical validation.
 

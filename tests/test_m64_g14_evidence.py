@@ -18,9 +18,11 @@ class G14Evidence(unittest.TestCase):
                                 ('cad-extended-v1.json', 'g14_extended_haunch_private.py'),
                                 ('cad-central-caps-v1.json', 'g14_central_caps_private.py'),
                                 ('cad-outer-root-v1.json', 'g14_outer_root_private.py'),
+                                ('cad-outer-upper-caps-v1.json', 'g14_outer_upper_caps_private.py'),
                                 ('combined-candidate-clearance-v1.json', 'check_combined_candidates.py'),
                                 ('combined-caps-extended-clearance-v1.json', 'check_caps_extended_candidates.py'),
-                                ('combined-caps-outer-root-clearance-v1.json', 'check_caps_outer_root_candidates.py')):
+                                ('combined-caps-outer-root-clearance-v1.json', 'check_caps_outer_root_candidates.py'),
+                                ('combined-caps-outer-upper-clearance-v1.json', 'check_caps_outer_upper_candidates.py')):
             data = json.loads((EVIDENCE/receipt).read_text())
             digest = hashlib.sha256((EVIDENCE/'native-replay'/source).read_bytes()).hexdigest()
             self.assertEqual(data['source_sha256'], digest)
@@ -92,6 +94,20 @@ class G14Evidence(unittest.TestCase):
                                  {(d, m) for d in ('x', 'minus_z') for m in ('jacobi', 'amg')})
                 self.assertTrue(all(r['passed'] and r['relative_residual'] <= 1e-8
                                     for r in data['cases']))
+
+    def test_retained_energy_diagnostic_is_balanced_not_a_new_solve(self):
+        for name, source in (
+                ('outer-extended-minus-z-energy-v2.json', 'outer_energy_diagnostic.py'),
+                ('outer-root2-minus-z-energy-v1.json', 'outer_root_energy_diagnostic.py')):
+            data = json.loads((EVIDENCE/name).read_text())
+            self.assertEqual(data['source_sha256'], hashlib.sha256(
+                (EVIDENCE/'native-replay/fea'/source).read_bytes()).hexdigest())
+            self.assertEqual(data['input_hashes_before'], data['input_hashes_after'])
+            self.assertFalse(data['new_solve_executed'])
+            self.assertFalse(data['manufacturing_authorized'])
+            self.assertTrue(data['balance']['passed'])
+            self.assertLessEqual(data['balance']['relative_difference'], 1e-4)
+            self.assertAlmostEqual(sum(r['energy_fraction'] for r in data['regions']), 1.)
 
 
 if __name__ == '__main__':
