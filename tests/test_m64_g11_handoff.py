@@ -7,6 +7,20 @@ import unittest
 
 
 class G11HandoffChecks(unittest.TestCase):
+    def test_delivery_incident_preserves_unknown_outcomes_and_evidence(self):
+        evidence = Path(__file__).resolve().parents[1] / 'twins/m64-cylinder-head/evidence/g11-support-stiffness-20260926'
+        incident = json.loads((evidence / 'delivery-incident.json').read_text())
+        for name in ('collection_archive_retrieved', 'complete_solver_fields_retained',
+                     'finest_mesh_acceptance_demonstrated', 'target_0p040_mm_demonstrated',
+                     'manufacturing_authorized', 'engine_start_authorized'):
+            self.assertIs(incident[name], False)
+        self.assertEqual(incident['final_compute_status'], 'unknown')
+        self.assertIsNone(incident['actual_cost_USD'])
+        self.assertIsNone(incident['provider_observation']['actual_deletion_time_and_cause'])
+        self.assertIsNone(incident['additional_stdout_observations']['one_mm_final_outcomes'])
+        for item in incident['retained_evidence']:
+            self.assertEqual(hashlib.sha256((evidence / item['path']).read_bytes()).hexdigest(), item['sha256'])
+
     def test_published_cad_checks_do_not_release_the_part(self):
         root = Path(__file__).resolve().parents[1]
         source = root / 'twins/m64-cylinder-head/source/fourvalve/g11_cad.py'
