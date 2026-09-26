@@ -52,7 +52,8 @@ flowchart TD
 | Outer high cheeks + haunches extended to z137 | 231,816 | Passed, 144 poses; 2 mm stiffness target fails |
 | Outer extended haunches, root transition 2 mm | 239,022 | Passed, 144 poses; 2 mm stiffness target fails |
 | Outer root2 + upper caps | 241,503 | Passed, 144 poses; 2 mm stiffness target fails |
-| Outer upper caps + lower inner bands | 242,604 | Passed, 144 poses; FEA pending |
+| Outer upper caps + lower inner bands | 242,604 | Passed, 144 poses; 2 mm stiffness target fails |
+| Outer inner bands + intake inboard web | 247,509 | Passed, 144 poses; FEA pending |
 
 All outer designs were independently constructed and checked on the negative
 side too. Their whole-body reflected Boolean differences are zero at the
@@ -129,6 +130,13 @@ The SVG exports are fingerprinted in the CAD receipts; PNGs were rendered with
 ![Central support with upper journal caps, isolated CAD view](../assets/m64-g14/central-caps.png)
 
 ![Outer support with upper caps, isolated CAD view, coarse stiffness target fails](../assets/m64-g14/outer-upper-caps.png)
+
+![Intake inboard-web candidate, isolated native support, stiffness not yet established](../assets/m64-g14/outer-intake-web.png)
+
+![Intake inboard-web candidate, cut at x=0, not a complete cylinder head](../assets/m64-g14/outer-intake-web-section.png)
+
+The last two PNG fingerprints are respectively `cdc90b63efb8a65b945d1702a77a8d1b2b85cf8fcedc2d7272aefbddea5ffc3a`
+and `3ae91ca5ff4e456bb1c6fbaaad31298adabedcb292b0ef633003caf3240787c7`.
 
 ## Central 68 mm: completed coarse calculation
 
@@ -259,7 +267,29 @@ web is not presumed acceptable: the inclined spark-plug removal path would
 cross it even though the installed plug itself ends below the support.
 These CAD observations do not predict a 0.040 mm pass or qualify hot clearance.
 
-Repository checkpoint: `make check` passed (3,112 main-suite tests, 136 optional
+The [completed inner-band coarse calculation](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/outer-inner-bands-coarse.json)
+passes both numerical cross-checks but reaches **0.04486064 mm** under −z:
+slightly worse than upper caps (0.04484792 mm). The extra strips therefore
+provide no demonstrated gain on the limiting metric and are not refined.
+All 45 retained artifact fingerprints match; the calculation took 929 s.
+
+The next [single intake inboard-web hypothesis](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/cad-outer-intake-web-v1.json)
+adds 4,905 mm³ (2.02%) per support within the same outer bounding box. Its
+first millimetre, fixed land, journal/cam masks and oil paths are unchanged;
+both sides pass 144 sampled poses, and the [three support-pair intersections](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/combined-caps-outer-intake-web-clearance-v1.json)
+are zero. The new native test also rejects a full cross-web that obstructs the
+nominal plug withdrawal reservation. No stiffness benefit is inferred from CAD.
+The bounded two-load 2 mm CPU calculation is now running. Ten focused runner
+tests and its real input check pass; solver algorithms, force magnitudes and
+acceptance thresholds are unchanged. Its result remains pending.
+
+The newly checked axial continuation of the nominal Ø22 mm plug socket exposes
+an **inherited baseline obstruction of approximately 1,756 mm³** on each side.
+The intake web adds zero overlap, but this proves only non-aggravation, not
+plug removal or maintenance access. Supplier tooling and the removal sequence
+remain unresolved; the baseline has not been silently cut to remove this issue.
+
+Repository checkpoint: `make check` passed (3,113 main-suite tests, 136 optional
 skips, plus the separate repository checks); 519 Markdown files have no broken
 local links. These are software/provenance checks, not physical validation.
 
@@ -327,6 +357,30 @@ The separately bounded medium retry reuses the failed attempt's exact mesh and
 tests cover the transformation and execution handling. No remeshing or change
 to E, nu, supports, load magnitudes or numerical acceptance limits is allowed.
 
+### Exact 1.5 mm retry: completed numerical checks
+
+The [verified exact-deck retry](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/central-caps-medium-hashfix.json)
+now passes both native direct solves, fresh FP64 CG checks and force/moment
+equilibrium. Maximum force-weighted journal motion is **0.03837624 mm**;
+the +x global nodal maximum is 0.05069639 mm and is not the target observable.
+CG true residuals are 1.068e-10 and 9.879e-11; full-field disagreements are
+1.386e-7 and 2.416e-7. All 37 retained artifact fingerprints match. The run took
+4,285 s, with an observed process-group peak of 24.32 GiB and minimum free disk
+26.68 GiB. Native direct return codes are recorded as zero.
+
+| 2 → 1.5 mm comparison | +x | −z |
+|---|---:|---:|
+| Maximum raw journal-vector relative change | 0.4071% | 0.5336% |
+| Integration-point p95 stress relative change | 1.1654% | 2.7214% |
+
+The unchanged comparison formula divides vector differences by the finer
+vector norm, without deleting transverse components. These intermediate
+changes meet the 1%/5% stability thresholds but **do not substitute for the
+required 1.5 → 1 mm comparison**. The original failed medium run is preserved.
+No hot material, contact/preload, assembled or manufacturing claim follows.
+The measured medium memory peak is not a bound for the 3.60-million-DOF fine
+problem; no fine direct solve is silently launched against the Mac's 64 GiB.
+
 A [retained-matrix PyAMG experiment](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/amg-benchmark.json)
 compares fixed symmetric V-cycle preconditioning with the existing Jacobi CG
 on the same qualified outer-extended stiffness and two RHS, all FP64 CPU.
@@ -342,7 +396,8 @@ from this benchmark. Sources and self-checks are archived under `native-replay/f
 ## Remaining gates
 
 G14 overall target stiffness and 1.5→1 mm convergence are not established;
-only the central upper-cap candidate passes the 2 mm cold isolated screen.
+the central upper-cap candidate passes the 2 and 1.5 mm cold isolated screens,
+while the outer candidates above still fail the 2 mm stiffness target.
 The fixed-land model remains idealized; generic E=70 GPa and nu=0.33 are not a
 qualified hot material card. Thermal response, fatigue, contact/preload,
 machining allowances, printing qualification and engine correlation remain
