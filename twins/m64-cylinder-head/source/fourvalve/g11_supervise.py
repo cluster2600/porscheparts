@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Collect an already-started G11 job; no rental, producer stop or destruction.
+"""Collect an already-started G11/G12 job; no rental, stop or destruction.
 
 Run under launchd/caffeinate, not a Codex-owned terminal. The Mac must stay awake
 and online. Upload unchanged g11_collect.py at its canonical source path first.
@@ -30,7 +30,10 @@ guard = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(guard)
 ARCHIVE = '/workspace/m64-g11/supervised-collection.tar.xz'
 META_LIMIT, RESPONSE_LIMIT = 2_000_000, 65536  # Remaining 8 MB are reserved for SSH transport overhead.
-SAFE_JSON = re.compile(r'results/(?:identity\.json|checkpoint-\d{4}\.json|summary-\d{4}\.json|(?:centre_w(?:10|11|12)|outer_d(?:18|24|30)_w(?:18|24|30))-(?:2|1\.5|1)-attempt\d+/result\.json)')
+SAFE_JSON = re.compile(
+    r'results/(?:identity\.json|checkpoint-\d{4}\.json|summary-\d{4}\.json|'
+    r'(?:centre_w(?:10|11|12)|outer_d(?:18|24|30)_w(?:18|24|30)|'
+    r'centre_w11_local(?:24_foot24_h40|28_foot30_h50))-(?:2|1\.5|1)-attempt\d+/result\.json)')
 
 REMOTE = r'''
 import base64,hashlib,importlib.util,json,os,pathlib,sys
