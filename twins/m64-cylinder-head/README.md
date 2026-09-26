@@ -9,9 +9,13 @@ Files under [`evidence/`](evidence/) are pinned by SHA-256 digest and are never
 edited. The B-Reps, STEPs, scans and detailed coordinates stay private; only
 code, tests and aggregates with digests are published.
 
-Latest design experiment: [G7 local supports and finite-air cooling](../../docs/reports/M64_G7_LOCAL_SUPPORTS_COOLING_20260925.md).
-Shaft-only bending improves, but journal clearance, carrier compliance, heat
-rejection and AM gates remain open or failed. This is not a manufacturing release.
+Latest support experiment: [G14 targeted stiffening](../../docs/reports/M64_G14_TARGETED_SUPPORTS_20260926.md).
+The cold isolated central support reaches 0.03822 mm on the coarse mesh;
+the outer support remains at 0.04683 mm. Both pass numerical cross-checks,
+but 1.5→1 mm convergence and the overall 0.040 mm gate remain open.
+The [G7 cooling study](../../docs/reports/M64_G7_LOCAL_SUPPORTS_COOLING_20260925.md)
+is unchanged. Journal clearance, heat rejection and AM gates remain open or
+failed. This is not a manufacturing release.
 The [G6 baseline](../../docs/reports/M64_G6_CARRIER_THERMAL_AM_20260925.md) is retained unchanged.
 
 ## Sub-pages

@@ -45,10 +45,12 @@ flowchart TD
 | Central 70 mm with upper shoulder | 158,518 | Passed, 144 poses |
 | Central 68 mm + local under-journal links | 166,581 | Passed, 144 poses; 2 mm stiffness target fails |
 | Central 68 mm, spine width 40 mm | 203,991 | Passed, 144 poses; 2 mm stiffness target fails |
-| Central width 40 mm, root transition 2 mm | 210,893 | Passed, 144 poses; FEA pending |
+| Central width 40 mm, root transition 2 mm | 210,893 | Passed, 144 poses; 2 mm stiffness target fails |
+| Central root2 + upper journal caps | 214,972 | Passed, 144 poses; 2 mm stiffness screen passes, convergence pending |
 | Outer high cheeks, positive side | 204,787 | Passed, 144 poses |
 | Outer high cheeks + lower haunches, positive side | 212,906 | Passed, 144 poses |
-| Outer high cheeks + haunches extended to z137 | 231,816 | Passed, 144 poses; FEA pending |
+| Outer high cheeks + haunches extended to z137 | 231,816 | Passed, 144 poses; 2 mm stiffness target fails |
+| Outer extended haunches, root transition 2 mm | 239,022 | Passed, 144 poses; 2 mm stiffness target fails |
 
 All outer designs were independently constructed and checked on the negative
 side too. Their whole-body reflected Boolean differences are zero at the
@@ -91,6 +93,21 @@ are zero. Identical individual 144-pose screens cover the unchanged moving
 parts; the new check covers the three stationary support pairs. This is not a
 minimum-clearance measurement, deformable/hot clearance or assembled FEA.
 
+The next [central upper-cap hypothesis](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/cad-central-caps-v1.json)
+adds 4,079 mm³ (1.93%) above the protected journal regions to address the
+observed upper-ear/spine displacement difference. Its native test, unchanged
+interfaces and 144 sampled poses pass. [Coexistence with the extended outer supports](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/combined-caps-extended-clearance-v1.json)
+also passes the three Boolean intersection checks, with before/after hashes.
+
+The next [outer root-transition hypothesis](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/cad-outer-root-v1.json)
+shortens the lower haunch ramp to 2 mm and adds 7,205 mm³ (3.11%) per support.
+Both independently constructed sides pass their native test and 144 poses,
+preserving the first millimetre, fixed land, journals and oil/tool reservations.
+These CAD passes do not establish any stiffness gain.
+[Coexistence of upper caps and outer root2](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/combined-caps-outer-root-clearance-v1.json)
+also passes all three stationary Boolean pairs, without claiming assembled
+stiffness or deformed clearance.
+
 ## Actual CAD views — isolated supports only
 
 These are native CAD line views, not generated product concepts or stress maps.
@@ -106,6 +123,8 @@ The SVG exports are fingerprinted in the CAD receipts; PNGs were rendered with
 ![Central support with local under-journal links](../assets/m64-g14/central-local.png)
 
 ![Central local-link support, cut at x=0](../assets/m64-g14/central-local-section.png)
+
+![Central support with upper journal caps, isolated CAD view](../assets/m64-g14/central-caps.png)
 
 ## Central 68 mm: completed coarse calculation
 
@@ -126,11 +145,17 @@ The existing [G13 native runtime qualification](M64_G13_SUPPORT_REFERENCE_202609
 is reused; no CUDA execution or material qualification is implied.
 
 The combined outer 2 mm run [stopped at the 300-second CG limit](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/outer-combined-cg-timeout.json).
-Both direct load cases were executed and equilibrated, but their maximum
-0.0589815 mm is **provisional**, not a numerically qualified result. All 36
-retained artifact fingerprints match; the worker group is absent. The original
-failure remains immutable. A separate retained-matrix audit with a 900-second
-limit per RHS has started, keeping all numerical tolerances unchanged.
+Both direct load cases were executed and equilibrated, but the original run did
+not finish its numerical audit. All 36 retained artifact fingerprints match;
+the original failure remains immutable.
+
+The [separate 900-second retained-matrix audit](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/outer-combined-cg-retry.json)
+has now passed both unchanged numerical checks, without rerunning CCX or
+meshing. It confirms **0.0589815 mm** under −z and 0.0456177 mm under +x:
+the stiffness target still fails. The two CG solves took 321.6 and 324.2 seconds
+(8,880/8,923 iterations), with true residuals 1.11e-10/1.19e-10. All eight new
+artifacts and 36 original artifacts were rehashed; the process group is absent.
+The 300-second failure is not rewritten as a completed execution.
 
 The [local under-journal links](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/central-local-coarse.json)
 also completed both numerical cross-checks: maximum motion **0.0433335 mm**,
@@ -141,20 +166,83 @@ also passes both equation checks, but its **0.0412720 mm** maximum still exceeds
 the target by 3.18%. Its 37 artifact fingerprints match; the run took 813 seconds.
 No failed coarse candidate is promoted to convergence.
 
-The next two candidates use a separately fingerprinted coarse-only CPU recipe:
+The [2 mm root-transition candidate](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/central-root2-coarse.json)
+is also numerically consistent in both directions, but its maximum is
+**0.0410793 mm**: only 0.47% below width40, for 3.38% added volume.
+The 164,661-node/110,176-element calculation took 727 seconds; all 40 artifacts
+were rehashed. The small gain does not support further root filling as the
+next priority. The unchanged target still fails.
+
+The [extended outer haunches](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/outer-extended-coarse.json)
+pass both numerical cross-checks. Under +x the largest journal motion falls
+to **0.0395699 mm**, but under −z it remains **0.0511259 mm**. The overall target
+therefore fails, despite a 13.32% reduction from the shorter haunches for 8.88%
+added volume. The 200,339-node/128,555-element run took 1,040 seconds; all
+40 artifacts were verified. The −z intake journal vector is
+[0.0094700, −0.0423662, −0.0270052] mm: transverse motion still dominates.
+
+These last two candidates used a separately fingerprinted coarse-only CPU recipe:
 900 seconds per CG RHS and a 3,600-second process-group deadline. Direct CCX
 and matrix-export limits stay at 600 and 900 seconds. Loads, supports,
 constitutive parameters, solver algorithm and acceptance tolerances are
-unchanged. Four focused recipe tests and both real input checks pass; none of
-these preparation checks is a candidate stiffness result.
+unchanged. Four focused recipe tests and both real input checks pass; the
+completed calculations above are separate from these preparation checks.
 
-Repository checkpoint: `make check` passed (3,107 main-suite tests, 136 optional
+The [central upper caps](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/central-caps-coarse.json)
+complete both numerical cross-checks and reach **0.03822224 mm** at the worst
+journal under +x; under −z the maximum is 0.01755186 mm. This is a **coarse
+screen pass**, not converged acceptance. The +x global nodal maximum remains
+0.05026383 mm: the agreed target is the force-weighted journal norm, not every
+node. The caps reduce that journal metric by 6.95% from root2 for 1.93% added
+volume. The 169,825-node/112,966-element run took 940 seconds; all 41 artifacts
+were rehashed. CG residuals are 1.004e-10/9.966e-11 and direct-field disagreement
+is 1.398e-7/2.403e-7. The 1.5→1 mm comparison is still required.
+
+The [outer root2 calculation](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/outer-root2-coarse.json)
+also passes both numerical audits, but its maximum remains **0.04682910 mm**
+under −z, **17.07% above the target**. Under +x it reaches 0.03883437 mm.
+The change reduces the limiting motion by 8.40% from the extended haunches;
+it is not promoted to refinement. The 206,787-node/132,568-element run took
+1,016 seconds; all 42 artifacts were verified. The independent CG solves took
+313.6/313.4 seconds, with residuals 1.072e-10/1.145e-10 and direct-field
+disagreement 1.261e-7/1.341e-7. Loads and acceptance gates remain unchanged.
+
+Repository checkpoint: `make check` passed (3,109 main-suite tests, 136 optional
 skips, plus the separate repository checks); 519 Markdown files have no broken
 local links. These are software/provenance checks, not physical validation.
 
+## Refinement resources and algebra benchmark
+
+The unchanged uniform Gmsh mesher has actually generated both finer central
+caps meshes, without running an FE solve:
+
+| Mesh | Nodes | C3D10 elements | Kinematic free DOFs | Meshing peak process RSS | Mesh job artifacts |
+|---|---:|---:|---:|---:|---:|
+| [1.5 mm](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/central-caps-mesh-1p5.json) | 380,408 | 260,776 | 1,133,403 | 1.135 GiB | 43.4 MB |
+| [1 mm](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/central-caps-mesh-1.json) | 1,204,049 | 853,716 | 3,595,662 | 3.247 GiB | 143.6 MB |
+
+Both retain the 11 mm journal bands and positive four-point Jacobians. These
+are **meshing measurements, not direct-solver RAM requirements or convergence
+results**. The 2 mm caps direct solves already took approximately 320/316 s;
+the former 600 s timeout is not presumed adequate for refinement. New bounded
+execution recipes must retain the same decks, material and numerical gates.
+
+A [retained-matrix PyAMG experiment](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/amg-benchmark.json)
+compares fixed symmetric V-cycle preconditioning with the existing Jacobi CG
+on the same qualified outer-extended stiffness and two RHS, all FP64 CPU.
+All four algebra comparisons pass. Jacobi takes 694.78 s for its two setup/solve
+phases; AMG takes 445.25 s plus 6.55 s preparation/hierarchy setup: **1.54× for
+those phases**, not for complete FEA. Charging all 19.41 s unallocated worker
+overhead to AMG gives 1.47×. Concurrent host work limits benchmark generality.
+The [controller](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/amg-benchmark-controller.json)
+exits successfully and reaps its group within 1,174 s. No new mesh, CCX solve,
+CUDA execution, production-recipe promotion or mechanical acceptance results
+from this benchmark. Sources and self-checks are archived under `native-replay/fea/`.
+
 ## Remaining gates
 
-G14 target stiffness and 1.5→1 mm convergence are not established.
+G14 overall target stiffness and 1.5→1 mm convergence are not established;
+only the central upper-cap candidate passes the 2 mm cold isolated screen.
 The fixed-land model remains idealized; generic E=70 GPa and nu=0.33 are not a
 qualified hot material card. Thermal response, fatigue, contact/preload,
 machining allowances, printing qualification and engine correlation remain

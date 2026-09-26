@@ -1,0 +1,121 @@
+{
+  "id": "outer_high_cheeks_extended_root2_p",
+  "status": "completed",
+  "wall_seconds": 1015.9861215830024,
+  "summary_sha256": "6d717fac6cbce6ced07f321aab7ee32665749a5d0f10d37056077ad9a5e4a189",
+  "case_sha256": "b87a9d83c78d2ae9e86118efa003bfbffbe1ca6be3f7a5765eb88564d9697616",
+  "verified_artifact_count": 42,
+  "numerically_qualified": true,
+  "maximum_journal_motion_mm": 0.04682909583498773,
+  "mesh_convergence_qualified": false,
+  "below_0_040mm_coarse_screen": false,
+  "mesh": {
+    "size_mm": 2.0,
+    "nodes": 206787,
+    "elements": 132568,
+    "fixed_nodes": 4511,
+    "surface_area_mm2": {
+      "intake": 313.28364460300594,
+      "exhaust": 313.2548027292324
+    },
+    "journal_axial_interval_mm": {
+      "intake": [
+        34.59375,
+        42.59375
+      ],
+      "exhaust": [
+        31.09375,
+        39.09375
+      ]
+    },
+    "nominal_journal_width_mm": 8,
+    "minimum_Gauss4_Jacobian_mm3": 0.016429399416755266,
+    "gmsh_version": "4.12.1"
+  },
+  "cases": [
+    {
+      "direction": "x",
+      "residual": 1.0719610472244383e-10,
+      "solver": {
+        "backend": "cpu",
+        "versions": {
+          "numpy": "2.2.6",
+          "scipy": "1.14.1"
+        },
+        "iterations": 7910,
+        "info": 0,
+        "setup_seconds": 0.07219062499643769,
+        "solve_seconds": 313.56215016701026,
+        "setup_and_solve_seconds": 313.6343407920067,
+        "dtype": "float64"
+      },
+      "agreement": {
+        "max_nodal_difference_over_max_reference_U": 1.2614888978240703e-07,
+        "printed_dat_relative_residual": 0.0014783885252297826,
+        "printed_dat_rounding_residual_bound": 0.034012674834044514
+      },
+      "mechanics": {
+        "force_balance_relative_error": 8.126746901363507e-09,
+        "moment_balance_F_times_100mm_error": 7.304210679606622e-09,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.05596147222311101,
+        "von_Mises_p95_MPa": 18.118307676974393,
+        "von_Mises_max_MPa": 188.18890271641095,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            0.037649771424848676,
+            -0.00037237119292088524,
+            -0.009511266989189535
+          ],
+          "exhaust": [
+            0.030824865814079044,
+            0.0008148924094948546,
+            0.008374555114731298
+          ]
+        }
+      }
+    },
+    {
+      "direction": "minus_z",
+      "residual": 1.1445650929599952e-10,
+      "solver": {
+        "backend": "cpu",
+        "versions": {
+          "numpy": "2.2.6",
+          "scipy": "1.14.1"
+        },
+        "iterations": 7922,
+        "info": 0,
+        "setup_seconds": 0.07166008399508428,
+        "solve_seconds": 313.38238020800054,
+        "setup_and_solve_seconds": 313.4540402919956,
+        "dtype": "float64"
+      },
+      "agreement": {
+        "max_nodal_difference_over_max_reference_U": 1.3410579100434486e-07,
+        "printed_dat_relative_residual": 0.0017355920627088535,
+        "printed_dat_rounding_residual_bound": 0.048620708558377086
+      },
+      "mechanics": {
+        "force_balance_relative_error": 1.9566536558176217e-08,
+        "moment_balance_F_times_100mm_error": 1.2696711869354519e-08,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.06258938790996042,
+        "von_Mises_p95_MPa": 15.581582090528556,
+        "von_Mises_max_MPa": 161.3687974546635,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            0.009511218629877449,
+            -0.03820074913166167,
+            -0.025361460972842007
+          ],
+          "exhaust": [
+            -0.008374495477381342,
+            -0.030933375069889683,
+            -0.022719701062419786
+          ]
+        }
+      }
+    }
+  ]
+}
