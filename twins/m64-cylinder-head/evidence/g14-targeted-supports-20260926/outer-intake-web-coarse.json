@@ -1,0 +1,164 @@
+{
+  "id": "outer_intake_inboard_web_p",
+  "status": "completed",
+  "wall_seconds": 842.5214530420053,
+  "summary_sha256": "65d2889b28bcb1ebada026d212ac99d994693dfde893d06f173c902c01460c72",
+  "case_sha256": "a7b42c7caf59392f1ef30e8d3ffd71df0676438269515e3eff26ca77dcbea031",
+  "verified_artifact_count": 46,
+  "verified_case_artifact_count": 28,
+  "artifact_hashes_match": true,
+  "numerically_qualified": true,
+  "maximum_journal_motion_mm": 0.037627822035263284,
+  "mesh_convergence_qualified": false,
+  "mesh": {
+    "size_mm": 2.0,
+    "nodes": 215612,
+    "elements": 137905,
+    "fixed_nodes": 4511,
+    "surface_area_mm2": {
+      "intake": 313.28364460300594,
+      "exhaust": 313.2548027292324
+    },
+    "journal_axial_interval_mm": {
+      "intake": [
+        34.59375,
+        42.59375
+      ],
+      "exhaust": [
+        31.09375,
+        39.09375
+      ]
+    },
+    "nominal_journal_width_mm": 8,
+    "minimum_Gauss4_Jacobian_mm3": 0.00022735700181972295,
+    "gmsh_version": "4.12.1"
+  },
+  "cases": [
+    {
+      "direction": "x",
+      "residual": 9.959348296654835e-11,
+      "solver": {
+        "backend": "cpu",
+        "versions": {
+          "numpy": "2.2.6",
+          "scipy": "1.14.1"
+        },
+        "iterations": 5568,
+        "info": 0,
+        "setup_seconds": 0.07654137499048375,
+        "solve_seconds": 229.30984866600193,
+        "setup_and_solve_seconds": 229.3863900409924,
+        "dtype": "float64"
+      },
+      "agreement": {
+        "max_nodal_difference_over_max_reference_U": 1.9569067271995654e-07,
+        "printed_dat_relative_residual": 0.0013356586332939257,
+        "printed_dat_rounding_residual_bound": 0.030657184757786643
+      },
+      "mechanics": {
+        "force_balance_relative_error": 9.670701001173741e-09,
+        "moment_balance_F_times_100mm_error": 7.395623376609571e-09,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.04352693894513453,
+        "von_Mises_p95_MPa": 16.033554334072388,
+        "von_Mises_max_MPa": 151.99751858338956,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            0.028960787303790907,
+            0.007359125074014244,
+            -0.003121528352559589
+          ],
+          "exhaust": [
+            0.028596212615677574,
+            0.0006820831756788824,
+            0.008175582118437061
+          ]
+        }
+      }
+    },
+    {
+      "direction": "minus_z",
+      "residual": 1.0578323330800473e-10,
+      "solver": {
+        "backend": "cpu",
+        "versions": {
+          "numpy": "2.2.6",
+          "scipy": "1.14.1"
+        },
+        "iterations": 5504,
+        "info": 0,
+        "setup_seconds": 0.07457491700188257,
+        "solve_seconds": 225.65345199999865,
+        "setup_and_solve_seconds": 225.72802691700053,
+        "dtype": "float64"
+      },
+      "agreement": {
+        "max_nodal_difference_over_max_reference_U": 1.6277525518621355e-07,
+        "printed_dat_relative_residual": 0.0016127845459720828,
+        "printed_dat_rounding_residual_bound": 0.04171416096910561
+      },
+      "mechanics": {
+        "force_balance_relative_error": 3.0332733104881737e-09,
+        "moment_balance_F_times_100mm_error": 7.76089746574036e-09,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.05092464507847379,
+        "von_Mises_p95_MPa": 13.43683332926033,
+        "von_Mises_max_MPa": 123.76372791295918,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            0.0031215526940689443,
+            -0.026619203042425772,
+            -0.016190395170348624
+          ],
+          "exhaust": [
+            -0.008175611953710043,
+            -0.03002069871877697,
+            -0.02116057675811842
+          ]
+        }
+      }
+    }
+  ],
+  "verification": {
+    "retained_direct_decks_and_DAT_reparsed": true,
+    "direct_mechanics_exact_match": true,
+    "retained_CG_crosschecks_match_case": true,
+    "numerical_thresholds_rechecked": true,
+    "new_solve_executed": false,
+    "CG_residual_independently_recomputed": false,
+    "serial_CCX_completion_logs_rechecked": true,
+    "worker_returncode": 0,
+    "individual_native_returncodes_separately_retained": false,
+    "thresholds": {
+      "relative_residual": 1e-08,
+      "max_nodal_difference_over_max_reference_U": 0.0001,
+      "force_balance_relative_error": 0.0001,
+      "moment_balance_F_times_100mm_error": 0.0001
+    },
+    "note": "Direct equilibrium, journal vectors, displacements and stresses were reparsed from retained INP/DAT using g9.mechanics. CG residuals and direct/CG differences are retained execution evidence checked against existing thresholds; the CG solve was not rerun. Printed DAT residuals pass their rounding bounds; they are not algebraic CG residuals. Individual CCX returncodes are not retained separately: worker returncode0, the pinned helpers rejecting nonzero native exits, the exec wrapper and three serial completion logs establish successful execution."
+  },
+  "assembled_stiffness_qualified": false,
+  "hot_material_qualified": false,
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false,
+  "below_0_040mm_coarse_screen": true,
+  "recipe": "G14-native-coarse-CPU-CG900-worker3600-v1",
+  "timeout_seconds": 3600,
+  "CG_RHS_limit_seconds": 900,
+  "resource_guard": {
+    "limits": {
+      "own_RSS_bytes": 12884901888,
+      "combined_RSS_bytes": 34359738368,
+      "minimum_free_bytes": 12884901888,
+      "peer_process_group": 0,
+      "sample_interval_seconds": 1
+    },
+    "samples": 810,
+    "peak_own_RSS_bytes": 10486906880,
+    "peak_peer_RSS_bytes": 0,
+    "peak_combined_RSS_bytes": 10486906880,
+    "minimum_free_bytes": 25779904512,
+    "scope": "One-second process-group RSS samples, not an OS-enforced memory limit; only outer group may be killed"
+  },
+  "note": "The 2.0 mm candidate is below the 0.040 mm working motion screen. Numerical consistency and this coarse result do not establish mesh convergence, assembled stiffness or physical validation."
+}

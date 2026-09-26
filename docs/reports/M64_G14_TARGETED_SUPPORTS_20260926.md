@@ -4,6 +4,14 @@ The unchanged target is **0.040 mm force-weighted journal displacement** for
 the isolated, generic cold-load screen. It is not a dimensional tolerance or
 an authorization to print, assemble or start an engine.
 
+Current checkpoint: the central upper-cap support reaches **0.03837624 mm at
+1.5 mm**, and the outer intake-web support reaches **0.03762782 mm at 2 mm**.
+Both numerical cross-checks pass. These are isolated cold-support results on
+different mesh levels: **the required 1.5 → 1 mm convergence is still open**.
+The actual central 1 mm decks and a Linux reference-qualification job are
+prepared, not solved. [Current CAD views and cuts](#actual-cad-views--isolated-supports-only)
+show the actual retained geometry.
+
 ## Why change the G13 design
 
 The [verified G13 coarse calculations](M64_G13_SUPPORT_REFERENCE_20260926.md)
@@ -53,7 +61,7 @@ flowchart TD
 | Outer extended haunches, root transition 2 mm | 239,022 | Passed, 144 poses; 2 mm stiffness target fails |
 | Outer root2 + upper caps | 241,503 | Passed, 144 poses; 2 mm stiffness target fails |
 | Outer upper caps + lower inner bands | 242,604 | Passed, 144 poses; 2 mm stiffness target fails |
-| Outer inner bands + intake inboard web | 247,509 | Passed, 144 poses; FEA pending |
+| Outer inner bands + intake inboard web | 247,509 | Passed, 144 poses; 2 mm stiffness screen passes, convergence pending |
 
 All outer designs were independently constructed and checked on the negative
 side too. Their whole-body reflected Boolean differences are zero at the
@@ -131,12 +139,22 @@ The SVG exports are fingerprinted in the CAD receipts; PNGs were rendered with
 
 ![Outer support with upper caps, isolated CAD view, coarse stiffness target fails](../assets/m64-g14/outer-upper-caps.png)
 
-![Intake inboard-web candidate, isolated native support, stiffness not yet established](../assets/m64-g14/outer-intake-web.png)
+![Intake inboard-web candidate, isolated native support, coarse screen passes but convergence pending](../assets/m64-g14/outer-intake-web.png)
 
 ![Intake inboard-web candidate, cut at x=0, not a complete cylinder head](../assets/m64-g14/outer-intake-web-section.png)
 
 The last two PNG fingerprints are respectively `cdc90b63efb8a65b945d1702a77a8d1b2b85cf8fcedc2d7272aefbddea5ffc3a`
 and `3ae91ca5ff4e456bb1c6fbaaad31298adabedcb292b0ef633003caf3240787c7`.
+
+The [additional native cut](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/section-intake-web-xminus30.json)
+passes through the actual intake web at **x = −30 mm**, retaining x ≤ −30 mm.
+The exact STEP is imported without reconstruction and has the same fingerprint
+before and after export. The original x = 0 cut above misses this web. These
+are views of the same candidate, not a new design or simulated deformation.
+
+![Actual intake-web cut at x=-30 mm, isometric view of retained support portion](../assets/m64-g14/outer-intake-web-section-xminus30-isometric.png)
+
+![Actual intake-web cut at x=-30 mm, viewed along the x axis](../assets/m64-g14/outer-intake-web-section-xminus30.png)
 
 ## Central 68 mm: completed coarse calculation
 
@@ -279,9 +297,22 @@ first millimetre, fixed land, journal/cam masks and oil paths are unchanged;
 both sides pass 144 sampled poses, and the [three support-pair intersections](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/combined-caps-outer-intake-web-clearance-v1.json)
 are zero. The new native test also rejects a full cross-web that obstructs the
 nominal plug withdrawal reservation. No stiffness benefit is inferred from CAD.
-The bounded two-load 2 mm CPU calculation is now running. Ten focused runner
-tests and its real input check pass; solver algorithms, force magnitudes and
-acceptance thresholds are unchanged. Its result remains pending.
+The [completed two-load 2 mm CPU calculation](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/outer-intake-web-coarse.json)
+reaches **0.03762782 mm** at the exhaust journal under −z, a 16.12% reduction
+of the limiting metric from the inner-band trial. Under +x the maximum is
+0.03004377 mm. Both direct/CPU-CG and equilibrium checks pass; CG residuals
+are 9.959e-11/1.058e-10 and field disagreements 1.957e-7/1.628e-7. The limiting
+−z journal moved from intake to exhaust; no component was removed from the norm.
+The mesh contains 215,612 nodes and 137,905 C3D10 elements. This is not the
+173,743 total Gmsh element count, which includes boundary entities.
+The run took 843 s, with 9.767 GiB observed process-group RSS. All 46 summary
+artifacts and 28 case artifacts were rehashed, and INP/DAT mechanics were
+independently reparsed. Individual native exit-code fields were not retained;
+the zero worker exit, pinned helpers rejecting nonzero native exits and three
+serial completion logs establish execution. No native exit record is invented.
+Ten focused runner tests and the real input check pass; solver algorithms,
+force magnitudes and acceptance thresholds are unchanged. This is a coarse
+screen pass only: outer 1.5 and 1 mm calculations remain necessary.
 
 The newly checked axial continuation of the nominal Ø22 mm plug socket exposes
 an **inherited baseline obstruction of approximately 1,756 mm³** on each side.
@@ -289,9 +320,11 @@ The intake web adds zero overlap, but this proves only non-aggravation, not
 plug removal or maintenance access. Supplier tooling and the removal sequence
 remain unresolved; the baseline has not been silently cut to remove this issue.
 
-Repository checkpoint: `make check` passed (3,113 main-suite tests, 136 optional
-skips, plus the separate repository checks); 519 Markdown files have no broken
-local links. These are software/provenance checks, not physical validation.
+This repository checkpoint passed `make check` (3,115 main-suite tests,
+136 optional skips, plus the separate repository checks); 520 Markdown files
+have no broken local links. These are software/provenance checks, not physical
+validation. The nine G14 evidence checks also bind the new CAD cuts and
+prepared Linux/fine-deck sources to their retained fingerprints.
 
 ## Refinement resources and algebra benchmark
 
@@ -381,6 +414,31 @@ No hot material, contact/preload, assembled or manufacturing claim follows.
 The measured medium memory peak is not a bound for the 3.60-million-DOF fine
 problem; no fine direct solve is silently launched against the Mac's 64 GiB.
 
+The [actual portable 1 mm decks](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/central-fine-decks-prepared.json)
+are now prepared and reparsed: **1,203,710 nodes, 853,436 C3D10 elements and
+3,594,681 free DOFs**. This is a new mesh from the unchanged mesher, not the
+earlier mesh-only preflight. Both decks have the same geometry/material prefix,
+5,483 fixed bottom-land nodes and unchanged 11 mm journal bands. Reparsed load
+magnitudes match G7: 6,881.3524 N intake and 6,702.4844 N exhaust, along +x or −z.
+Each private deck is about 134 MB; neither decks nor raw mesh are published.
+The [bounded preparation controller](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/central-fine-decks-controller.json)
+completed in 32.15 s with 3.24 GiB observed group RSS; all eight artifact
+fingerprints match. Three focused preparation checks pass. **No CCX or CG solve
+was executed**, and no qualified Linux runtime or operational remote job is
+claimed. Source and test snapshots retain the exact preparation recipe.
+
+The [Linux x86_64 build/reference job](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/native-replay/linux512/README.md)
+is also prepared: retained CCX/SPOOLES/ARPACK source archives, the same three-line
+integer correction, analytical cube, then a freshly exported Linux matrix and
+two −z repeats plus a +x direct/CPU-CG comparison. Three offline checks and all
+19 input fingerprints pass. **No Linux build, reference solve or fine solve
+has run for this job.** The rented host, compiler and libraries still require
+actual verification; the Mac qualification is not transferred by assumption.
+This preparation has no rental side effects and is not a billing watchdog.
+Restore its archived directory under `work/m64-g14/linux512/`; private pinned
+inputs remain necessary. The 1 mm decks are a separate package, not executed
+by this reference-only job.
+
 A [retained-matrix PyAMG experiment](../../twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926/amg-benchmark.json)
 compares fixed symmetric V-cycle preconditioning with the existing Jacobi CG
 on the same qualified outer-extended stiffness and two RHS, all FP64 CPU.
@@ -397,7 +455,8 @@ from this benchmark. Sources and self-checks are archived under `native-replay/f
 
 G14 overall target stiffness and 1.5→1 mm convergence are not established;
 the central upper-cap candidate passes the 2 and 1.5 mm cold isolated screens,
-while the outer candidates above still fail the 2 mm stiffness target.
+and the outer intake-web candidate passes the 2 mm screen. Earlier failed
+outer candidates remain rejected; no final fine-mesh acceptance is claimed.
 The fixed-land model remains idealized; generic E=70 GPa and nu=0.33 are not a
 qualified hot material card. Thermal response, fatigue, contact/preload,
 machining allowances, printing qualification and engine correlation remain

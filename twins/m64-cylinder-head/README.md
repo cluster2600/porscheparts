@@ -11,13 +11,21 @@ code, tests and aggregates with digests are published.
 
 Latest support experiment: [G14 targeted stiffening](../../docs/reports/M64_G14_TARGETED_SUPPORTS_20260926.md).
 The cold isolated central support reaches 0.03838 mm at 1.5 mm mesh size;
-the latest outer inner-band trial remains at 0.04486 mm on the coarse mesh.
+the latest outer intake-web trial reaches 0.03763 mm on the 2 mm coarse mesh.
 Both pass numerical cross-checks,
 but 1.5→1 mm convergence and the overall 0.040 mm gate remain open.
 The [G7 cooling study](../../docs/reports/M64_G7_LOCAL_SUPPORTS_COOLING_20260925.md)
 is unchanged. Journal clearance, heat rejection and AM gates remain open or
 failed. This is not a manufacturing release.
 The [G6 baseline](../../docs/reports/M64_G6_CARRIER_THERMAL_AM_20260925.md) is retained unchanged.
+
+Current native CAD views: isolated outer support and a cut through its intake
+web, **not the complete cylinder head**. Export provenance and checks are in
+the [G14 report](../../docs/reports/M64_G14_TARGETED_SUPPORTS_20260926.md#actual-cad-views--isolated-supports-only).
+
+| Actual support | Cut at x = −30 mm |
+|---|---|
+| ![Current outer support, native CAD](../../docs/assets/m64-g14/outer-intake-web.png) | ![Native cut through the intake web](../../docs/assets/m64-g14/outer-intake-web-section-xminus30-isometric.png) |
 
 ## Sub-pages
 

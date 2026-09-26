@@ -10,6 +10,31 @@ EVIDENCE = ROOT/'twins/m64-cylinder-head/evidence/g14-targeted-supports-20260926
 
 
 class G14Evidence(unittest.TestCase):
+    def test_current_cad_views_and_prepared_linux_recipe_are_pinned(self):
+        pins = {
+            ROOT/'docs/assets/m64-g14/outer-intake-web.png': 'cdc90b63efb8a65b945d1702a77a8d1b2b85cf8fcedc2d7272aefbddea5ffc3a',
+            ROOT/'docs/assets/m64-g14/outer-intake-web-section.png': '3ae91ca5ff4e456bb1c6fbaaad31298adabedcb292b0ef633003caf3240787c7',
+            EVIDENCE/'native-replay/linux512/linux_job.py': 'cbfc999a6627991b71d0e139aa6403203c5fea5494053ccf685928915771f08e',
+            EVIDENCE/'native-replay/linux512/test_linux_job.py': 'ca425da7543b4e264ad5d94facfc2fc2e08f51a22de73263355dafbc55827f2f',
+            EVIDENCE/'native-replay/linux512/inputs.json': '3e8dcfa8c3e41dc289d64099263de68e61475aa7e896260df7a07ab437d3849d',
+        }
+        for path, expected in pins.items():
+            self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), expected)
+        inputs = json.loads((EVIDENCE/'native-replay/linux512/inputs.json').read_text())
+        for key in ('build_executed', 'qualification_executed', 'fine_solve_executed'):
+            self.assertFalse(inputs[key])
+        section = json.loads((EVIDENCE/'section-intake-web-xminus30.json').read_text())
+        self.assertEqual(section['source_sha256'], hashlib.sha256(
+            (EVIDENCE/'native-replay/section_intake_web.py').read_bytes()).hexdigest())
+        self.assertTrue(section['input_unchanged'])
+        self.assertTrue(section['section_valid_nonempty'])
+        self.assertEqual(section['section_plane_x_mm'], -30)
+        for key in ('geometry_redesigned', 'FEA_executed', 'manufacturing_authorized', 'engine_start_authorized'):
+            self.assertFalse(section[key])
+        for name in ('section-xminus30.png', 'section-xminus30-isometric.png'):
+            png = ROOT/'docs/assets/m64-g14'/('outer-intake-web-'+name)
+            self.assertEqual(hashlib.sha256(png.read_bytes()).hexdigest(), section['views_sha256'][name])
+
     def test_native_sources_and_coarse_results(self):
         for receipt, source in (('cad-v1.json', 'g14_cad_private.py'),
                                 ('cad-lower-v1.json', 'g14_lower_cheeks_private.py'),
@@ -41,7 +66,8 @@ class G14Evidence(unittest.TestCase):
         for name in ('central68-coarse.json', 'central-local-coarse.json', 'central40-coarse.json',
                      'central-root2-coarse.json', 'outer-extended-coarse.json',
                      'central-caps-coarse.json', 'outer-root2-coarse.json',
-                     'outer-upper-caps-coarse.json', 'outer-inner-bands-coarse.json'):
+                     'outer-upper-caps-coarse.json', 'outer-inner-bands-coarse.json',
+                     'outer-intake-web-coarse.json'):
             result = json.loads((EVIDENCE/name).read_text())
             self.assertEqual(result['status'], 'completed')
             self.assertTrue(result['numerically_qualified'])
@@ -57,7 +83,7 @@ class G14Evidence(unittest.TestCase):
                     self.assertTrue(all(math.isfinite(v) for v in vector))
                     norms.append(math.hypot(*vector))
             self.assertAlmostEqual(max(norms), result['maximum_journal_motion_mm'], places=14)
-            passed = name == 'central-caps-coarse.json'
+            passed = name in ('central-caps-coarse.json', 'outer-intake-web-coarse.json')
             self.assertEqual(max(norms) <= .040, passed)
             self.assertEqual(result['below_0_040mm_coarse_screen'], passed)
             self.assertFalse(result['mesh_convergence_qualified'])
@@ -204,6 +230,34 @@ class G14Evidence(unittest.TestCase):
             self.assertTrue(row['mechanics']['equilibrium_passed'])
             self.assertLessEqual(row['relative_residual'], 1e-8)
             self.assertLessEqual(row['agreement']['max_nodal_difference_over_max_reference_U'], 1e-4)
+
+    def test_prepared_fine_decks_are_not_fine_solve_evidence(self):
+        receipt_path = EVIDENCE/'central-fine-decks-prepared.json'
+        data = json.loads(receipt_path.read_text())
+        controller = json.loads((EVIDENCE/'central-fine-decks-controller.json').read_text())
+        self.assertEqual(controller['receipt_sha256'], hashlib.sha256(receipt_path.read_bytes()).hexdigest())
+        self.assertEqual(data['proof'], controller['proof'])
+        for key, name in (('source_sha256', 'fine_deck_prepare.py'),
+                          ('test_sha256', 'test_fine_deck_prepare.py')):
+            self.assertEqual(data['proof'][key], hashlib.sha256((EVIDENCE/'native-replay/fea'/name).read_bytes()).hexdigest())
+        for value in (data, controller):
+            self.assertTrue(value['complete'])
+            self.assertIsNone(value['error'])
+            for key in ('FEA_executed', 'CCX_executed', 'CG_executed', 'CUDA_executed',
+                        'mesh_convergence_qualified', 'remote_Linux_job_operational',
+                        'manufacturing_authorized', 'engine_start_authorized'):
+                self.assertFalse(value[key])
+        mesh = data['mesh']
+        self.assertEqual(mesh['size_mm'], 1.)
+        self.assertEqual(mesh['nominal_journal_width_mm'], 11)
+        self.assertGreater(mesh['minimum_Gauss4_Jacobian_mm3'], 0)
+        self.assertEqual(data['kinematic_free_dofs'], 3*(mesh['nodes']-mesh['fixed_nodes']))
+        self.assertEqual({r['direction'] for r in data['deck_checks']['cases']}, {'x', 'minus_z'})
+        for row in data['deck_checks']['cases']:
+            self.assertTrue(row['full_bottom_land_fixed_XYZ'])
+            self.assertTrue(row['load_sign_and_axis_passed'])
+            for side, force in row['journal_force_magnitudes_N'].items():
+                self.assertAlmostEqual(force, row['expected_journal_forces_N'][side], places=8)
 
 
 if __name__ == '__main__':
