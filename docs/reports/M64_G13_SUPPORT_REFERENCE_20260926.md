@@ -93,6 +93,62 @@ An independent ownership-checked guard must be running before rental.
 Collection must finish and verify its archive before deletion; stopping a
 container alone is not accepted as proof that billing ended.
 
+At 16:16 UTC the [first Vast attempt remained unresolved](../../twins/m64-cylinder-head/evidence/g13-support-reference-20260926/vast-attempt-snapshot-1616.json).
+The wrapper returned no contract ID and both launch and reconciliation failed
+closed. Repeated inventories found no instance; that does not establish a
+terminal rejection of the provider's creation request. No workload was uploaded
+and no Vast calculation started. The USD 4 reservation remains intact; there
+was no paid retry. A separate narrowly scoped watcher continues through the
+manifest deadline plus five minutes, using the existing exact-ownership cleanup
+helper if the late contract appears. It cannot rent or release the reservation.
+
+Local software verification passed `make check`: 3,106 tests, 136 optional skips,
+followed by the repository's other catalogue/document checks. The focused
+numerical tests (five reference, six campaign) and two native CAD tests also
+passed. Unit tests exercise control logic and do not manufacture FEA evidence.
+
+A [bounded local x86-emulated fallback](../../twins/m64-cylinder-head/evidence/g13-support-reference-20260926/local-emulation-timeout.json)
+then tried the 18 mm spine at 2 mm mesh size on the Mac. Its +x solve reached
+the 480-second limit with an empty DAT; −z and the independent matrix check
+were not started. The owned container was killed, waited for and removed;
+`OOMKilled=false`. No displacement or strength result can be inferred from
+that failed attempt, and Docker's memory settings were not changed.
+
+A separate native macOS arm64 CalculiX 2.21 build passed a
+[small analytical CPU witness](../../twins/m64-cylinder-head/evidence/g13-support-reference-20260926/native-smoke.json).
+Its direct displacement error is approximately 3e−7 relative to the analytic
+answer; the independent CPU CG residual is 1.14e−16. ARPACK's six tests passed.
+This different binary and its libraries require their own project-reference
+replay; neither this tiny nu=0 witness nor the successful compilation qualifies
+the nu=0.33 support model or the prepared Linux/CUDA campaign. No system
+dependency was installed or upgraded, and no frozen solver source was edited.
+
+The exact [native replay source snapshot](../../twins/m64-cylinder-head/evidence/g13-support-reference-20260926/native-replay/reference.py)
+and its [three guard tests](../../twins/m64-cylinder-head/evidence/g13-support-reference-20260926/native-replay/test_reference.py)
+are retained without changing the executed source. To replay, copy both to
+`work/m64-g13/native-fea/`; they depend on the separately fingerprinted private
+input decks and native build inventory. This is an auditable evidence package,
+not a self-contained public reproduction. The CPU runtime uses the same
+numerical acceptance thresholds, with separately declared time limits; it
+does not impersonate the frozen Linux/CUDA recipe.
+
+The [native project-reference replay](../../twins/m64-cylinder-head/evidence/g13-support-reference-20260926/native-reference.json)
+then completed in 822 seconds: both repeated −z solves and the +x control pass
+the unchanged equilibrium, direct/CG agreement and DAT-rounding gates. The two
+−z DAT files have identical hashes. Maximum relative force/moment imbalance
+is 2.62e−9; direct/CG field disagreement is at most 1.73e−7. The two fresh CPU
+CG residuals are approximately 1e−10. All six non-system dynamic libraries and
+the executed binary were checked again after the run. Peak child RSS was
+8.72 GiB; the separate controller peak was 2.70 GiB, not a simultaneous sum.
+
+The **unchanged G12 B1.5 geometry still fails the displacement target**:
+maximum force-weighted journal motion is 0.0564168 mm under +x, compared with
+0.0240082 mm under −z. This replay repairs numerical trust, not the design.
+The original rejected −z field remains rejected, with relative field error
+0.0020572; the cause of that earlier failure is not established. Neither a
+thread-race explanation nor a qualification of the different Linux/GPU runtime
+is inferred from this native CPU success.
+
 No completed G13 FEA or 0.040 mm achievement is claimed by this preparation
 record. The [G12 results and rejected reference fields](M64_G12_FEA_20260926.md)
 remain the preceding measured numerical evidence. Engine start, manufacturing,
