@@ -1,0 +1,61 @@
+diff --git a/openbao-github b/openbao-github
+index d29460e..e3c9873 100755
+--- a/openbao-github
++++ b/openbao-github
+@@ -263,7 +263,7 @@ def current_branch_contract() -> str:
+     return branch
+ 
+ 
+-def push_current(token: str) -> None:
++def push_current(token: str, *, fetch: bool = False) -> None:
+     branch = current_branch_contract()
+     basic = base64.b64encode(f"x-access-token:{token}".encode("utf-8")).decode("ascii")
+     environment = {
+@@ -275,8 +275,12 @@ def push_current(token: str) -> None:
+         "GIT_CONFIG_KEY_1": "http.https://github.com/.extraheader",
+         "GIT_CONFIG_VALUE_1": f"Authorization: Basic {basic}",
+     }
++    arguments = (["git", "fetch", "--no-tags", "origin",
++                  "refs/heads/main:refs/remotes/origin/main",
++                  f"refs/heads/{branch}:refs/remotes/origin/{branch}"] if fetch else
++                 ["git", "push", "--porcelain", "origin", f"HEAD:refs/heads/{branch}"])
+     completed = subprocess.run(
+-        ["git", "push", "--porcelain", "origin", f"HEAD:refs/heads/{branch}"],
++        arguments,
+         check=False,
+         capture_output=True,
+         text=True,
+@@ -285,10 +289,10 @@ def push_current(token: str) -> None:
+     # Defensive redaction even though Git never receives a credential-bearing URL.
+     combined = f"{completed.stdout}\n{completed.stderr}".replace(token, "[REDACTED]").replace(basic, "[REDACTED]")
+     if completed.returncode != 0:
+-        raise SafeError("GitHub push failed; diagnostics withheld")
++        raise SafeError("GitHub transfer failed; diagnostics withheld")
+     if "[rejected]" in combined or "error:" in combined.lower():
+         raise SafeError("GitHub did not accept the fixed branch update")
+-    print(f"GitHub push OK: {REPOSITORY} {branch}")
++    print(f"GitHub {'fetch' if fetch else 'push'} OK: {REPOSITORY} {branch}")
+ 
+ 
+ def validate_workflow(value: str) -> str:
+@@ -434,7 +438,7 @@ def list_workflow_runs(token: str, workflow: str, ref: str) -> None:
+ def usage() -> str:
+     workflows = "|".join(sorted(ALLOWED_WORKFLOWS))
+     return (
+-        "usage: openbao-github --check|--auth-check|push-current|"
++        "usage: openbao-github --check|--auth-check|push-current|fetch-current|"
+         f"dispatch <{workflows}> <codex/ref>|"
+         "publish-simready-image <simready|simready-workflow|simready-local-ai> <codex/ref>|"
+         "publish-simready-local-ai <codex/ref>|"
+@@ -458,9 +462,9 @@ def main() -> int:
+                 repository_auth_check(token)
+                 print(f"GitHub push access OK for {REPOSITORY}")
+                 return 0
+-            if operation == ["push-current"]:
++            if operation in (["push-current"], ["fetch-current"]):
+                 repository_auth_check(token)
+-                push_current(token)
++                push_current(token, fetch=operation == ["fetch-current"])
+                 return 0
+             if len(operation) == 3 and operation[0] == "dispatch":
+                 repository_auth_check(token)

@@ -30,7 +30,7 @@ from the synthetic G7 head and its distribution: their included valve angles
 are 16° and 56.9294°. Those assemblies cannot be combined by repositioning.
 The next work uses explicitly identified whole-body inputs; there is no
 fallback to the G7 block or an oval substitute.
-The latest retained whole-body diagnostic is the exhaust-equipped V5, not
+The retained source for these whole-body iterations is the exhaust-equipped V5, not
 the earlier intake-only body. Its
 [geometry checkpoint](../../docs/reports/M64_GEOMETRY_CHECKPOINT_20260908.md)
 already records five passed BOP modes, attributed serialization differences
@@ -54,8 +54,20 @@ spring-seat support. It is not a fitted spring kit or manufacturing approval.
 A [new body-only prototype](../../docs/reports/M64_COMPLETE_HEAD_INTEGRATION_20260927.md#actual-body-pocket-prototype-built)
 now has those four higher pockets: one native valid solid after readback and
 no intersection with the four nominal spring envelopes. The master remains
-unchanged. Longer valves and the full actuator assembly are not yet modeled;
-the previous V5 BOP result does not validate this newly cut body.
+unchanged. At that checkpoint, longer valves and the full actuator assembly
+were not modeled; the previous V5 BOP result did not validate that newly cut body.
+
+Latest whole-body advance: [two local exhaust spring-seat pads](../../docs/reports/M64_WHOLEBODY_SUPPORT_GPU_20260927.md)
+complete all four nominal washer footprints on the saved body. They add about
+135.07 scan units³ and change the local fin contour for this functional reason,
+without changing the overall bounding box. Native BRep validity is not a hot
+strength or cooling qualification. The same report records the bounded Vast
+whole-body BOP, mesh and PhysicsNeMo diagnostics and the PorscheFanatics page.
+The next saved 13-solid assembly now includes four +23-unit valve-stem
+extensions and eight clear body-intersection checks at closed/full-lift
+positions. The padded body passes its own new BOP audit, but all three volume
+meshes and the strict PhysicsNeMo area comparison remain rejected. Actuation,
+continuous motion, hot strength, cooling and print qualification remain open.
 
 ## Evidence and current work
 
