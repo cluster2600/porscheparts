@@ -1,0 +1,5 @@
+Rapport brut OpenClaw — conclusions à contrôler.
+
+- fait avec URL: Le site Wolfe Classics indique que le «Porsche Billet Cylinder head 3D Scan» est un fichier .obj vendu 30 $ et conçu pour une Porsche 935, compatible avec d’autres modèles 911 des années 70‑80 (https://www.wolfeclassics.com/shop/p/p-car-billet-cylinder-head-scan).  
+- applicabilité au scan: ce scan, bien que destiné à la 935, est déclaré compatible avec d’autres châssis 911 des années 70‑80, ce qui suggère une compatibilité partielle avec la cible 935‑xtreme‑cylinder‑head.obj après ajustement d’échelle.  
+- information manquante: l’échelle physique, les dimensions précises et la variante exacte du moteur ne sont pas identifiées; aucune source consultée (notamment https://www.xtremecylinderheads.com/programs n’a pas été consultée) ne confirme qu’il s’agit d’une Xtreme du programme, et le matériau du scan reste inconnu.
