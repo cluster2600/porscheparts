@@ -1,0 +1,38 @@
+#usda 1.0
+(
+    customLayerData = {
+        bool completeHead = 0
+        bool physicsValidated = 0
+        bool surfaceOnly = 1
+        string unitsStatus = "display_only_physical_scale_unknown"
+    }
+    defaultPrim = "RecoveredSurfaces"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "RecoveredSurfaces" (
+    prepend apiSchemas = ["MaterialBindingAPI"]
+    prepend references = @usd-surfaces-repaired/planar-faces.usd@
+)
+{
+    rel material:binding = </DisplayMaterial> (
+        bindMaterialAs = "strongerThanDescendants"
+    )
+    float3 xformOp:scale = (0.001, 0.001, 0.001)
+    uniform token[] xformOpOrder = ["xformOp:scale"]
+}
+
+def Material "DisplayMaterial"
+{
+    token outputs:surface.connect = </DisplayMaterial/Shader.outputs:surface>
+
+    def Shader "Shader"
+    {
+        uniform token info:id = "UsdPreviewSurface"
+        color3f inputs:diffuseColor = (0.04, 0.28, 0.55)
+        float inputs:roughness = 0.6
+        token outputs:surface
+    }
+}
+

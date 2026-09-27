@@ -1,0 +1,15 @@
+Rapport brut OpenClaw — conclusions à contrôler.
+
+Rapport de synthèse – Variante simple/double allumage du moteur Porsche 935 comparée au scan Wolfe 935‑xtreme‑cylinder‑head.obj  
+
+1. **Homologation du Porsche 935 (1976)** – Le communiqué de presse officiel indique que le modèle a été homologué en mars 1976 et constitue la première version de la série « Porsche Heritage Moments ». *(URL : https://newsroom.porsche.com/en/2026/history/porsche-heritage-moments-935-norbert-singer-timo-bernhard-42018.html)*  
+   - **Applicabilité au scan** :Cette informations décrit le modèle original, mais ne précise pas de géométrie de culasse ni de configuration d’allumage. Le scan montre des ailettes et un fichier « cylinder‑head.obj », ce qui laisse supposer une culasse, mais il n’est pas possible de confirmer que la forme correspondent exactement à l’homologation 1976. → **Hypothèse** (forme générale similaire, dimensions non vérifiées).  
+   - **Conséquences pour la CAO** :Utilisation comme référence de base pour la modélisation de la culasse, sous réserve de vérifier les dimensions réelles du fichier scan car aucune donnée dimensionnelle n’est fournie.  
+
+2. **Variantes et évolutions técnicas** – Le même article décrit cinq évolutions : 935/77 (twin‑turbo), 935/78 “Moby Dick” (aérodynamisme extrême, moteur 3,2 L flat‑6 à twin‑turbo et têtes à 4 soupapes à refroidissement d’eau), 935 “Baby” (allègement, moteur 1,4 L 2 L‑class), et une voiture‑test (source identique).  
+   - **Applicabilité au scan** :Le scan ne présente pas de refroidissement liquide ni de turbo ; il ne correspond pas aux spécifications de la variante “Moby Dick” ou “Baby”. → **Inconnue** (le scan pourrait représenter une version non répertoriée ou un prototype interne).  
+   - **Conséquences pour la CAO** :Aucun rapprochement direct possible avec ces variantes; il faut traiter le modèle comme une entité distincte tant que des caractéristiques (turbo, refroidissement, configuration d’allumage) ne sont pas confirmées.  
+
+3. **Échec de la source externe FVD** – La tentative d’accès à la page FVD a renvoyé une erreur 403, empêchant l’extraction d’informations fiables sur les références “993‑GT2 Evo 3,8 L double allumage”. → **Aucune donnée**可用.  
+
+**Synthèse** – Les sources publiques confirment l’existence du Porsche 935 de 1976 et de ses dérivés, mais aucune ne fournit de détails sur une configuration d’allumage simple ou double applicable au scan Wolfe 935‑xtreme‑cylinder‑head.obj. Le scan doit donc être traité comme une variante non identifiée ; la CAO doit s’appuyer sur le fichier objet uniquement après validation dimensionnelle et de caractéristiques moteur distinctes. Les incertitudes restantes concernent la vraie identité de la culasse (confirmée, hypothèse ou inconnue) et la compatibilité de ses ailettes avec les versions connues.
