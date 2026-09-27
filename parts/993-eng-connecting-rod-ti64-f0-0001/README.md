@@ -113,6 +113,7 @@ flowchart LR
 
 - **Full description page**, with sources and evidence: [docs/pieces/993-eng-connecting-rod-ti64-f0-0001.md](../../docs/pieces/993-eng-connecting-rod-ti64-f0-0001.md)
 - **Catalogue record** (source of truth): [`catalog/parts/993-eng-connecting-rod-ti64-f0-0001.json`](../../catalog/parts/993-eng-connecting-rod-ti64-f0-0001.json)
+- **Design dossier**: [993_K16_ROD_IMPROVEMENT_PROGRAMME](../../docs/993/993_K16_ROD_IMPROVEMENT_PROGRAMME.md)
 - **Safety rules**: [SAFETY.md](../../SAFETY.md)
 
 ---

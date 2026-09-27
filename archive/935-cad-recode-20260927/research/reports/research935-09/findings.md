@@ -1,0 +1,5 @@
+Rapport brut OpenClaw — conclusions à contrôler.
+
+- Fait: Le scan montre une culasse à ailettes caractéristique d’une Porsche 935, mais les pages Porsche (https://www.porsche.com/stories/culture/8-porsche-race-c…made-le-mans-history/) ne précisent pas la variante exacte (Baby, K3, K4, Moby Dick) ; elles décrivent toutefois une culasse à moteur flat‑6 à double turbina de 3,0 L et ≈800 PS (source : même URL).  
+- Applicabilité au scan: les ailettes suggèrent des points d’ancrage possibles pour le montage de la culasse dans un châssis prototype, mais l’absence d’échelle et de cotes réelles empêche une modélisation dimensionnelle précise en CAO.  
+- Information manquante: l’extraction ne comporte pas la mention de la méthode Lost Wax casting, de l’aluminium RR350 et du traitement HIP décrite sur https://www.xtremecylinderheads.com/programs, ce qui limite la confirmation que la pièce provient de ce programme; de plus, l’échelle physique et le matériau du scan restent inconnus, aucune cote n’étant disponible.
