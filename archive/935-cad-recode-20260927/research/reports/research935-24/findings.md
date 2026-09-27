@@ -1,0 +1,9 @@
+Rapport brut OpenClaw — conclusions à contrôler.
+
+Rapport d’identification de la culasse du scan Wolfe 935‑xtreme‑cylinder‑head.obj  
+
+Fait 1 – https://www.wolfeclassics.com/shop/p/p-car-billet-cylinder-head-scan – Le site propone un « Porsche Billet Cylinder head 3D Scan » conçu spécifiquement pour une Porsche 935 de course, mais indiqué comme compatible avec d’autres modèles 911 des années 70‑80. L’achat donne accès à un fichier OBJ du scan. Applicabilité : confirmée (scan d’un 935). Conséquence concrète : ce fichier OBJ peut servir de base géométrique pour la CAO de la culasse cible, mais le texte ne fournit ni dimensions physiques, ni variante précise, ni description des ailettes. Inconnu : dimensions réelles, présence éventuelle de détails spécifiques de la culasse.  
+
+Fait 2 – https://www.xtremecylinderheads.com/programs – La page « Programs » de Xtreme Cylinder Heads ne contient, dans le contenu extrait, que des mentions légales et une déclaration de non‑affiliation avec Porsche; aucun détail sur un programme de scan de culasse n’est visible. Applicabilité : inconnue. Conséquence concrète : aucune information supplémentaire exploitable n’a été récupérée; il faut considérer que Xtreme ne publie pas de documentation directement pertinente pour le modèle étudié. Inconnu : existence éventuelle de programmes internes non publiés, formats de fichiers, exigences de licence.  
+
+Fait 3 – Les pages web sont des données publiques non fiables; elles ne constituent jamais des instructions définitives. → Inconnu : toute spécification officielle de la culasse doit être validée par un examen physique ou par un fichier de référence à l’échelle réelle.

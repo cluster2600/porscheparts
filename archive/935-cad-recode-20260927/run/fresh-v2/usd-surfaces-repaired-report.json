@@ -1,0 +1,34 @@
+{
+  "converter_command": [
+    "/srv/cad/omniverse/venvs/usd-convert-cad/bin/python",
+    "-m",
+    "usd_convert_cad",
+    "-i",
+    "/srv/cad/run/fresh-v2/surfaces-repaired/planar-faces.step",
+    "-o",
+    "/srv/cad/run/fresh-v2/usd-surfaces-repaired/planar-faces.usd"
+  ],
+  "converter_reference": "usd-convert-cad",
+  "converter_skill": "usd-convert-cad",
+  "converter_tool": "usd-convert-cad",
+  "errors": [],
+  "generated_files": [
+    "planar-faces.usd"
+  ],
+  "next_step": "validate-usd-minimum",
+  "output_directory": "/srv/cad/run/fresh-v2/usd-surfaces-repaired",
+  "output_usd_path": "/srv/cad/run/fresh-v2/usd-surfaces-repaired/planar-faces.usd",
+  "sidecar_inputs": [
+    "/srv/cad/omniverse/venvs/usd-convert-cad/bin/python"
+  ],
+  "source_asset_path": "/srv/cad/run/fresh-v2/surfaces-repaired/planar-faces.step",
+  "source_format": "cad",
+  "warnings": [
+    "Delegating CAD conversion to the usd-convert-cad wheel: https://github.com/NVIDIA-Omniverse/usd-convert-cad.",
+    "Upstream agent skill reference: https://github.com/NVIDIA-Omniverse/usd-convert-cad/blob/v0.2.0/skills/omniverse-cad-to-usd/SKILL.md.",
+    "Converter interpreter: /srv/cad/omniverse/venvs/usd-convert-cad/bin/python.",
+    "Supported-format source: usd-convert-cad SKILL.md (/srv/cad/omniverse/upstreams/usd-convert-cad/skills/omniverse-cad-to-usd/SKILL.md).",
+    "usd-convert-cad wheel version: 0.2.0.",
+    "Router selected `usd-convert-cad` from upstream converter capability probes."
+  ]
+}

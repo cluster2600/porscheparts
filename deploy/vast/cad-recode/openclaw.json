@@ -1,0 +1,21 @@
+{
+  "gateway": {"mode": "local", "bind": "loopback", "auth": {"mode": "none"}},
+  "agents": {"defaults": {
+    "workspace": "/workspace",
+    "model": {"primary": "local/nemotron-cad"},
+    "maxConcurrent": 1
+  }},
+  "models": {"mode": "replace", "providers": {"local": {
+    "baseUrl": "http://127.0.0.1:8002/v1", "apiKey": "local-unused",
+    "api": "openai-completions", "models": [{
+      "id": "nemotron-cad", "name": "Nemotron CAD coordinator", "reasoning": true,
+      "input": ["text"], "contextWindow": 32768, "maxTokens": 4096,
+      "cost": {"input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0}
+    }]
+  }}},
+  "tools": {
+    "allow": ["read", "write", "edit"],
+    "deny": ["exec", "process", "browser", "sessions_spawn", "gateway", "cron"],
+    "fs": {"workspaceOnly": true}, "elevated": {"enabled": false}
+  }
+}
