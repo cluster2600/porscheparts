@@ -27,10 +27,27 @@ debits qui y sont calcules sont des bornes de sensibilite et non des mesures.
 | Echangeur de remplacement `993 110 330 53` | AKS DASIS 177020T : faisceau 260 x 270 x 60 mm ; 7,06 kg | Noyau de remplacement, pas encombrement complet OEM |
 | Echangeur Motorsport FVD110330 | FVD : 870 x 410 x 190 mm ; 10,1 kg | Upgrade avec modifications d'installation ; borne de packaging/thermique |
 | Ecran thermique gauche `993 123 113 51` | FVD : 160 x 110 x 105 mm ; 0,23 kg | Encombrement produit ; epaisseur et fixations inconnues |
+| Planche PET `202-16` lubrification/commande turbo | 71 occurrences, 40 références OEM uniques, recoupées entre les deux sources PET | Identité et nomenclature seulement ; connexions, côtés, cotes et matières inconnus |
 | Geometrie 3D et tolerances | Absente | Bloquante |
 | Cartes debit/pression/rendement | Absentes | Bloquante pour CFD calibree |
 | Materiaux et traitements | Absents par sous-ensemble | Bloquante pour FEA thermique/fatigue |
 | Jeux, vitesse rotor, equilibrage | Absents | Bloquante pour rotordynamique |
+
+L'écran thermique possède maintenant un guide F1 et un contrat mathématique
+dans `twins/catalogue-parts/turbo-heat-shield-readiness-f1.json`. Sept équations
+symboliques couvrent les échanges radiatifs, convectifs et conductifs, le bilan
+transitoire, la dilatation et une borne de contrainte conditionnelle. Aucun point
+thermique n'est calculé : les surfaces, épaisseurs, jeux, températures, facteurs
+de vue, propriétés matière et critères d'acceptation restent inconnus.
+
+La planche `202-16` possède aussi un contrat F1 de topologie non spatiale dans
+`twins/catalogue-parts/turbo-lubrication-control-topology-readiness-f1.json`.
+Il relie ses 40 maîtres PET à 11 nœuds et 13 arêtes hypothétiques pour
+l'alimentation d'huile, les retours, la ventilation et la commande. Dix
+équations symboliques décrivent les bilans hydrauliques, thermiques et de
+commande ; six cas restent bloqués par 36 paramètres inconnus. Le stage OpenUSD
+associé est un diagramme, pas la géométrie des conduites ni une preuve de
+fonctionnement.
 
 Les donnees publiques Porsche confirment que les deux turbocompresseurs
 fonctionnent en parallele, alimentent chacun un banc et comportent une wastegate
