@@ -1,0 +1,60 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+application     simpleFoam;
+startFrom       latestTime;
+startTime       0;
+stopAt          endTime;
+endTime         200;
+deltaT          1;
+writeControl    timeStep;
+writeInterval   100;
+purgeWrite      0;
+writeFormat     ascii;
+writePrecision  8;
+writeCompression off;
+timeFormat      general;
+runTimeModifiable yes;
+functions
+{
+    outFlow
+    {
+        type            surfaceFieldValue;
+        libs            ("libfieldFunctionObjects.so");
+        writeControl    writeTime;
+        writeFields     no;
+        log             yes;
+        regionType      patch;
+        name            outlet;
+        operation       average;
+        fields          (U);
+    }
+    pIn
+    {
+        type            surfaceFieldValue;
+        libs            ("libfieldFunctionObjects.so");
+        writeControl    writeTime;
+        writeFields     no;
+        log             yes;
+        regionType      patch;
+        name            inlet;
+        operation       average;
+        fields          (p);
+    }
+    pOut
+    {
+        type            surfaceFieldValue;
+        libs            ("libfieldFunctionObjects.so");
+        writeControl    writeTime;
+        writeFields     no;
+        log             yes;
+        regionType      patch;
+        name            outlet;
+        operation       average;
+        fields          (p);
+    }
+}
