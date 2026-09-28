@@ -5,6 +5,10 @@ conditions, instruments/étalonnage, données, critère défini **avant** essai 
 du responsable. Les seuils physiques ci-dessous restent à fixer avec le spécialiste
 et le laboratoire ; une case vide est un blocage, jamais un « conforme » implicite.
 
+Le [protocole de mise au point E0-01 à E0-07](electronics/coupon.md) précise les
+premiers contrôles de banc, les hypothèses chiffrées d'arrêt et la limite connue
+en cas de MCU bloqué. Aucun de ces essais physiques n'a encore été réalisé.
+
 | ID / porte | Essai | Responsable / preuve | Critère avant passage |
 |---|---|---|---|
 | V01 / G0 | Inventaire réglementaire original | porteur + laboratoire ; référence, marquages, photos | toutes fonctions et marchés identifiés ; avis écrit sur voie possible |

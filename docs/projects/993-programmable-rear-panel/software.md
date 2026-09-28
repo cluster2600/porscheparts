@@ -7,6 +7,11 @@ Le contexte `connect(authenticated=True)` est injecté par le test : **aucun
 appairage, chiffrement, stockage de clés ou boot sécurisé n'est implémenté**.
 Il ne faut jamais relier ce booléen à une commande reçue du téléphone.
 
+Pour le coupon E0, [coupon_driver.py](software/coupon_driver.py) encode les trames
+mono8 en données pour six TLC5947, sans accès matériel. Le [contrat E0](electronics/coupon.md)
+définit câblage, ordre des bits et séquence BLANK/XLAT à vérifier sur cible.
+Cette brique ne fournit pas le firmware, le transport SPI réel ou la sécurité BLE.
+
 ## Périmètre logiciel
 
 Première version : texte rasterisé sur téléphone, dessin, animations simples et

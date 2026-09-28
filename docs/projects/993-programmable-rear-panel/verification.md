@@ -3,6 +3,36 @@
 Dossier préparé le 27 septembre 2026. Aucun essai matériel, montage, métrologie,
 qualification radio/routière ou certification d'origine n'est obtenu.
 
+## Complément électronique E0 — 28 septembre 2026
+
+Ajout du [circuit de principe E0](electronics/coupon.md), des BOM/connexions CSV,
+de l'encodeur TLC5947 et du calcul de puissance. La fiche LED exacte remplace
+la fiche d'exemple d'une autre référence. Sources S01 et S31–S34 relues.
+
+| Contrôle | Résultat observé sur ce complément |
+|---|---|
+| `python3 -m unittest discover -s tests -p 'test_993_rear_panel*.py' -v` | **16 tests réussis** sur macOS/Python 3.10.11, dont 6 nouveaux : chaîne SPI simulée indépendamment sur chacun des 128 pixels, plafond/valeurs invalides, noir après défaut, coordonnées/broches, calculs et génération sans écrasement |
+| `coupon_driver.py --output-dir /tmp/993-coupon-e0-20260928` et variante `--pitch-mm 4` | Deux cartes de 128 connexions, deux trames de 216 octets par variante, calculs JSON ; 2,46 mA nominal/canal et allocation coupon ≈2,114 W sous hypothèses, pas mesure |
+| CSV et documentation | 19 lignes BOM, 34 lignes de connexions, colonnes cohérentes ; `make docs-links-check reports-index-check` réussi, 0 lien cassé sur 556 fichiers Markdown ; `git diff --check` réussi |
+| `make check` sous Linux natif dans conteneur local | **3 062 tests, OK, 142 ignorés**, puis tests F32/F34/F37 franchis ; arrêt sur `917-manufacturing-f37-lpbf-audit-check`, `/bin/sh: 1: docker: not found`, code make 2. Les cibles suivantes restent non exécutées |
+
+Même image locale que décrite ci-dessous, Python 3.11, NumPy 2.4.6, Pillow 12.3.0,
+copie sur le système Linux du conteneur, UID/GID 1000, umask 022. Réseau déconnecté
+avant l'exécution du dépôt ; aucun socket Docker hôte ni secret monté. Les tests
+de fournisseurs cloud utilisent leurs simulations : aucune machine payante lancée.
+Première copie rejetée par `validate_catalog.py` à cause de fichiers AppleDouble
+`._*` ajoutés par l'archivage macOS (UnicodeDecodeError). L'archive a été recréée
+avec `COPYFILE_DISABLE=1` et sans attributs étendus, puis la commande relancée ;
+aucun fichier catalogue ni garde de validation modifié pour la faire passer.
+
+`kicad-cli` n'est pas disponible dans cet environnement : aucun ERC/DRC exécuté,
+et aucun fichier EDA natif ou export de fabrication annoncé. Les tests valident
+uniquement les données et calculs hôtes. Revue électronique, schéma natif, routage,
+alimentation automobile, watchdog matériel, mesures optiques/thermiques et portage
+MCU/BLE restent ouverts. Le coupon E0 nécessite une surveillance humaine au banc.
+
+Les résultats ci-dessous concernent la livraison initiale du 27 septembre.
+
 ## Révision et périmètre
 
 Base distante : `967f40c`. Branche : `codex/993-programmable-rear-panel`.

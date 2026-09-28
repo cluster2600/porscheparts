@@ -19,7 +19,7 @@ sont fixées. L'alimentation devra elle aussi être réversible : aucun perçage
 Le porteur du projet assure toute la CAO mécanique et l'assemblage final des
 premières séries. Un spécialiste externe accompagne l'électronique. Un renfort
 étudiant EPFL est une possibilité future, sans accord institutionnel ni recrutement
-engagé. Les noms et coordonnées personnels restent hors de ce dépôt public.
+engagé. Les noms et coordonnées personnels restent hors de ce dépôt.
 
 La pièce repérée sur Anibis à **180 CHF** est une information fournie par le
 porteur ; achat, disponibilité, référence, état et droits de scan restent à
@@ -30,7 +30,8 @@ confirmer. Elle n'est ni acquise ni mesurée. Une pièce déformée ne suffit pa
 
 1. [Feuille de route et backlog](roadmap.md) : dépendances, responsables et portes de décision.
 2. [Mécanique, scan et optique](mechanical-optical.md) et [fiche de mesures](measurements.csv).
-3. [Architecture électronique et prototype](electronics.md), [BOM préliminaire](bom.csv).
+3. [Architecture électronique et prototype](electronics.md), [BOM préliminaire](bom.csv),
+   [coupon E0 : circuit, câblage, BOM et mise au point](electronics/coupon.md).
 4. [Logiciel et BLE](software.md), [simulateur](software/panel_simulator.py).
 5. [Budget](budget.md), [coûts modifiables](budget.csv), [registre Swissness](swissness.csv).
 6. [Prestataires](suppliers.md), [demandes de devis non envoyées](rfqs.md).
@@ -45,7 +46,7 @@ Depuis la racine du dépôt, Python 3.10+ ; aucune dépendance pour les deux pre
 ```sh
 python3 docs/projects/993-programmable-rear-panel/software/panel_simulator.py
 python3 docs/projects/993-programmable-rear-panel/software/cost_model.py
-python3 -m unittest discover -s tests -p 'test_993_rear_panel.py' -v
+python3 -m unittest discover -s tests -p 'test_993_rear_panel*.py' -v
 ```
 
 Le simulateur affiche deux trames ASCII d'un **coupon virtuel 16 × 8 pixels**.
@@ -54,6 +55,10 @@ L'import GIF optionnel utilise Pillow, seulement s'il est déjà installé ; voi
 [le contrat logiciel](software.md). Le modèle de coûts est lisible dans un
 terminal et ses CSV s'ouvrent dans un tableur. Aucune configuration matérielle,
 connexion radio ou mise à jour d'un appareil n'est effectuée.
+
+Le [travail électronique E0](electronics/coupon.md) ajoute un encodeur de référence
+TLC5947, une carte des 128 canaux et un calcul de puissance à hypothèses explicites.
+Il s'exécute sans matériel ; les résultats ne valident pas un circuit physique.
 
 ## Ce qui est réutilisé / ce qui manque
 

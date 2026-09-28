@@ -4,6 +4,12 @@
 conception. Aucun schéma électrique routable, PCB, Gerber ou fichier pick-and-place
 n'est libéré. Le coupon précède le dessin de la carte pleine largeur.
 
+**Avancement du 28 septembre :** [coupon E0 détaillé](electronics/coupon.md),
+[BOM de banc](electronics/coupon-bom.csv), [connexions broche/net](electronics/coupon-wiring.csv)
+et [encodeur SPI testable sur ordinateur](software/coupon_driver.py). Proposition
+16 × 8 rouge, six TLC5947, alimentation de banc 3,3 V ; aucune carte fabriquée.
+L'étage automobile ci-dessous reste une étude séparée, non dimensionnée.
+
 ```mermaid
 flowchart LR
   A[Alimentation réversible à qualifier] --> B[Fusible près de la source]

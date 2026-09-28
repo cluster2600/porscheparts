@@ -1,6 +1,6 @@
 # Registre de sources
 
-**Consultation : 27 septembre 2026 pour toutes les entrées.** Les pages fournisseur
+**Consultation : 27 septembre 2026, sauf S01 et S31–S34 relus le 28 septembre 2026.** Les pages fournisseur
 attestent une offre publiée, pas un engagement, un stock ou une aptitude automobile.
 Les documents sont liés, pas copiés dans le dépôt. Les hypothèses d'ingénierie et
 les enveloppes financières de ce dossier sont nos propositions, non des données
@@ -8,7 +8,7 @@ extraites de ces sources.
 
 | ID | Source primaire / lien | Élément étayé et limites |
 |---|---|---|
-| S01 | [Kingbright — LED basse consommation 0402](https://www.kingbrightusa.com/category.asp?catalog_name=LED&category_name=KCLow+Current-1.0X0.5MM+%280402%29&page=1) ; [fiche exemple APG1005](https://www.kingbrightusa.com/images/catalog/SPEC/APG1005SEC-T.pdf) | Boîtier rouge 1,0×0,5 mm ; catalogue APHHS1005LSECK/J3-PF à 2 mA. Ne prouve pas le pas du PCB ni la tenue auto. Les deux références sont distinctes |
+| S01 | [Kingbright — LED basse consommation 0402](https://www.kingbrightusa.com/category.asp?catalog_name=LED&category_name=KCLow+Current-1.0X0.5MM+%280402%29&page=1) ; [fiche exacte APHHS1005LSECK/J3-PF](https://www.kingbrightusa.com/images/catalog/spec/aphhs1005lseck-j3-pf.pdf) | V.6A, 4 pages : composant rouge 1,0×0,5 mm, Vf typique 1,8 V / max 2,1 V à 2 mA et 25 °C, courant absolu max 30 mA sous conditions. Ne prouve pas le pas, une intensité derrière façade ni la tenue auto. La fiche APG1005 citée initialement était une autre référence, remplacée ici par la fiche exacte |
 | S02 | [Waveshare — RGB-Matrix-P2.5-64x32](https://www.waveshare.com/rgb-matrix-p2.5-64x32.htm) | 64×32, pas 2,5 mm, HUB75, alimentation 5 V/2,5 A, puissance ≤12 W annoncée. Prix affichés 17,99–21,99 USD selon variante ; sélection/taxes/port à confirmer |
 | S03 | [Waveshare — gamme P2/P2,5 64×64](https://www.waveshare.com/product/rgb-matrix-p2.5-64x64.htm) | Tableau de variantes incluant P2 64×64 ; pas une garantie de disponibilité ni de tenue extérieure |
 | S04 | [Newhaven — NHD-1.5-128128G, fiche](https://newhavendisplay.com/content/specs/NHD-1.5-128128G.pdf) | Exemple OLED petit format 128×128 ; vie/température à considérer selon conditions spécifiées. Aucun OLED pleine largeur qualifié |
@@ -38,6 +38,18 @@ extraites de ces sources.
 | S28 | [Bluetooth SIG — qualification](https://www.bluetooth.com/develop-with-bluetooth/qualify/) | Qualification avant vente/distribution ; frais et voie exacte non chiffrés ici |
 | S29 | [IPI — critères produits industriels](https://www.ige.ch/en/protecting-your-ip/indications-of-source/indications-of-source-basics/criteria-for-determining-origin/industrial-products) | Seuil 60 %, activité essentielle et étape physique suisse, calculateur officiel |
 | S30 | [IPI — FAQ Swissness](https://www.ige.ch/fr/droit-et-politique/evolutions-nationales/indications-de-provenance/indications-de-provenance-suisses/questions-frequentes-swissness) | Coûts inclus/exclus et exceptions ; page relue directement, emballage et SAV exclus notamment |
+
+## Complément électronique — consultation du 28 septembre 2026
+
+| ID | Source primaire / lien | Élément étayé et limites |
+|---|---|---|
+| S31 | [TI — TLC5947, fiche SBVS114B](https://www.ti.com/lit/ds/symlink/tlc5947.pdf) | Rev. B, broches DAP §5 ; VCC 3–5,5 V, courant recommandé 2–30 mA, seuils logiques §6.3 ; alimentation logique §6.6 ; courant idéal `41 × 1,20 / R` ; BLANK haut nécessaire au démarrage et registre initial indéfini §8.3 ; chaîne de 288 bits, poids fort en premier et latch §8.4. Protection thermique avec reprise automatique. Marges à faible courant non validées pour notre coupon |
+| S32 | [TI — SN74LVC125A, fiche SCAS290T](https://www.ti.com/lit/ds/symlink/sn74lvc125a.pdf) | Rev. T : brochage PW 14, buffer 3 états, alimentation 1,65–3,6 V ; seuil haut 2 V dans la plage 2,7–3,6 V. Ne pas confondre avec une isolation ni autoriser le branchement à chaud sans étude des rails |
+| S33 | [TI — SN74LVC1G04, fiche SCES214AF](https://www.ti.com/lit/ds/symlink/sn74lvc1g04.pdf) | Rev. AF : inverseur, brochage DBV 5, seuil haut 2 V à 3,3 V, protection Ioff ; ne remplace ni watchdog ni superviseur de tension |
+| S34 | [Nordic — alimentation du nRF52840 DK](https://docs.nordicsemi.com/r/bundle/ug_nrf52840_dk/page/ug/dk/hw_power_supply.html) ; [sélection de source](https://docs.nordicsemi.com/r/bundle/ug_nrf52840_dk/page/ug/dk/power_source.html) ; [guide v1.4.1 §8.3](https://infocenter.nordicsemi.com/pdf/nRF52840_DK_User_Guide_v1.4.1.pdf) | Modes d'alimentation et régulateur 3 V en mode VDD ; n'autorise pas à tirer la puissance des LED depuis le DK. Révision de carte et GPIO à identifier avant câblage |
+
+Les prix, stocks et délais de ces quatre composants n'ont pas été vérifiés.
+Les fichiers fabricants sont uniquement liés ; aucun PDF propriétaire recopié.
 
 ## Références à faire confirmer, non présentées comme lues intégralement
 
