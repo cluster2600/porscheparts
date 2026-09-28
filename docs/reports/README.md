@@ -2,14 +2,14 @@
 
 # Execution and audit reports
 
-123 reports of runs, audits and checkpoints, newest first (14 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../../SAFETY.md).
+124 reports of runs, audits and checkpoints, newest first (14 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../../SAFETY.md).
 
 ```mermaid
 xychart-beta
     title "Reports written per day, 2026"
     x-axis ["09-01", "09-06", "09-07", "09-08", "09-09", "09-12", "09-14", "09-16", "09-24", "09-25", "09-26", "09-27", "09-28"]
     y-axis "reports" 0 --> 25
-    bar [1, 1, 20, 24, 13, 9, 7, 1, 2, 8, 6, 3, 14]
+    bar [1, 1, 20, 24, 13, 9, 7, 1, 2, 8, 6, 3, 15]
 ```
 
 ## September 28, 2026
@@ -22,6 +22,7 @@ xychart-beta
 | M64 — fixed-boundary seam experiment and Swindon benchmark, 28 September 2026 | [`M64_FIXED_BOUNDARY_SEAM_20260928.md`](M64_FIXED_BOUNDARY_SEAM_20260928.md) |
 | M64 — fixed-skin optimisation: 47 to 32 poor tetrahedra, 28 September 2026 | [`M64_FIXED_SKIN_PROGRESS_20260928.md`](M64_FIXED_SKIN_PROGRESS_20260928.md) |
 | M64 — local junction and additive-manufacturing screening, 28 September 2026 | [`M64_JUNCTION_AM_SCREEN_20260928.md`](M64_JUNCTION_AM_SCREEN_20260928.md) |
+| M64 — local native reconstruction, 28–29 September 2026 | [`M64_LOCAL_RECONSTRUCTION_20260928.md`](M64_LOCAL_RECONSTRUCTION_20260928.md) |
 | M64 — area precision and targeted meshing, 28 September 2026 | [`M64_MESH_PRECISION_RECOVERY_20260928.md`](M64_MESH_PRECISION_RECOVERY_20260928.md) |
 | M64 — 2026 mesh tools and volume-control recovery, 28 September 2026 | [`M64_MESH_VOLUME_TOOLCHAIN_20260928.md`](M64_MESH_VOLUME_TOOLCHAIN_20260928.md) |
 | M64 — native junction recovery, 28 September 2026 | [`M64_NATIVE_JUNCTION_RECOVERY_20260928.md`](M64_NATIVE_JUNCTION_RECOVERY_20260928.md) |

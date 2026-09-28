@@ -2,6 +2,10 @@
 
 ## Retained result
 
+Follow-up: the [local native reconstruction](M64_LOCAL_RECONSTRUCTION_20260928.md)
+passes six-face locality and BOP checks, but its surface quality is worse;
+the retained 32-tetrahedron result is unchanged.
+
 **Zero rejected tetrahedra has not been demonstrated on the head.** The retained
 volume mesh still has **32 elements below minSICN 0.1, out of 1,341,461**.
 This continuation implements the [research-backed experiments](M64_ZERO_DEFECT_RESEARCH_20260928.md)
