@@ -71,10 +71,10 @@ def build(source, output):
     assert Usd.Stage.Open(str(output/'reference.usdz'))
     report['openusd_validator_findings'] = []
     fig = plt.figure(figsize=(15,12), facecolor='#eef1f5')
-    views = [('Face — 11 pales / 12 ouvertures',-90,-90,False,False),
-             ('Arrière — cuvette et nervures',65,-70,False,False),
-             ('Coupe de contrôle — demi-maillage ouvert',15,-90,True,False),
-             ('Éclaté rotor / moyeu — déplacement illustratif',-35,-55,False,True)]
+    views = [('Front — 11 blades / 12 openings',-90,-90,False,False),
+             ('Rear — cup and ribs',65,-70,False,False),
+             ('Inspection section — open half-mesh',15,-90,True,False),
+             ('Rotor / hub exploded view — illustrative offset',-35,-55,False,True)]
     for index,(title,elev,azim,section,explode) in enumerate(views,1):
         ax = fig.add_subplot(2,2,index,projection='3d')
         for name,geometry in meshes.items():
@@ -90,8 +90,8 @@ def build(source, output):
         if index == 1: ax.set_zticks([]); ax.set_zlabel('')
         ax.set_box_aspect((260,260,205 if explode else 140))
         ax.view_init(elev=elev,azim=azim); ax.set_title(title,fontsize=11)
-    fig.suptitle('Reconstruction de référence Turbo — dimensions partielles, pas une pièce validée',fontsize=17)
-    fig.text(.5,.025,'Vues techniques issues des maillages PicoGK • aucune CFD associée • carter et PMB non reconstruits',ha='center',fontsize=11)
+    fig.suptitle('Turbo reference reconstruction — partial dimensions, not a validated part',fontsize=17)
+    fig.text(.5,.025,'Technical views from PicoGK meshes • no associated CFD • housing and PMB not reconstructed',ha='center',fontsize=11)
     fig.savefig(output/'reference-review.png',dpi=140,bbox_inches='tight'); plt.close(fig)
     (output/'validation.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report,indent=2))
