@@ -1,6 +1,64 @@
-# Jumeau numérique du ventilateur — OpenUSD / Omniverse
+# Démonstrateur de calcul — géométrie du ventilateur rejetée
+> **Correction du 28 septembre 2026 : ce modèle ne constitue pas une représentation
+> fidèle du ventilateur 964/993.** La revue des quatre références photographiques
+> fournies par l’utilisateur invalide son emploi comme base de conception ou
+> d’optimisation du ventilateur réel. Les images et calculs ci-dessous sont
+> conservés pour tracer ce qui a été exécuté sur cette géométrie simplifiée.
+> Les contrôles des solveurs ne valident pas la géométrie. Aucune nouvelle
+> géométrie corrigée n’est encore livrée dans cette version.
 
-[Télécharger le jumeau USDZ](results/omniverse/fan-twin.usdz) · [Résultats numériques](results/omniverse/)
+## Écarts à corriger avant de poursuivre les calculs
+
+| Élément | Modèle publié | Ce que montrent les références et correction requise |
+|---|---|---|
+| Moyeu du rotor | Fond annulaire plat, plein, percé d’un seul alésage | Moyeu embouti/en cuvette, ouvertures de ventilation, bossage et interface de poulie à distinguer |
+| Pales | Profils paramétriques choisis sans reconstruction du rotor de référence | Reconstituer d’abord le nombre, la corde, le vrillage, la courbure et le raccordement de la variante identifiée |
+| Carter fixe | Absent du rendu de l’assemblage ; les quatre bras ne terminent sur aucun carter | Carter annulaire avec entrée, supports/aubes fixes et logement d’alternateur distincts du rotor |
+| Alternateur | Cylindre plein de substitution avec arbre fusionné aux pièces fixes | Corps ventilé, fixations et arbre séparés ; ne pas attribuer les cotes AS-PL au PMB 240 A |
+| Montage axial | Poulies, entretoises, roulement et cône arrière non modélisés | Reconstituer l’empilage et ses portées avant d’affirmer l’intégration |
+
+Le volume cylindrique plein ferme aussi des passages d’air : les anciens
+résultats CFD ne permettent donc pas de conclure au refroidissement de
+l’alternateur réel. Le calcul d’impression porte également sur une pièce
+qui ne reproduit pas encore le rotor attendu.
+
+### Lecture des quatre références
+
+1. **Photo 1, éclaté Design911** : renseigne la séparation des composants et
+   leur ordre de montage ; ce n’est pas un plan coté.
+2. **Photo 2, assemblage Classic Retrofit** : référence utile pour la morphologie
+   carter/alternateur/rotor. Son titre indique **175 A** ; notre cible reste
+   le **240 A** demandé, dont les cotes ne doivent pas être déduites de cette image.
+3. **Photo 3, fiche A0534S** : le titre visible mentionne **997** et le tableau
+   **150 A**. Cette fiche ne constitue pas une source de cotes du PMB 240 A
+   ni une identification du montage 993. [Fiche AS-PL](https://as-pl.com/en/p/A0534S).
+4. **Photo 4, rotor seul** : montre les ouvertures, nervures et raccordements
+   absents du modèle ; son identification exacte reste à établir avant de
+   copier un nombre de pales ou des proportions.
+
+La [notice Classic Retrofit 993](https://classic-retrofit.com/forum/index.php?/topic/2521-993-alternator-install/)
+confirme l’importance de l’entretoise compensant le roulement en retrait,
+des entretoises d’ajustement et du cône arrière répartissant les efforts.
+La [fiche 240 A](https://www.classicretrofit.com/en-us/products/porsche-964-993-240a-high-output-alternator)
+recommande une courroie multigorge avec tendeur. Ces composants doivent faire
+partie de la définition de référence, pas seulement de la liste des limites.
+Les photographies reçues ne sont pas republiées : elles servent de références
+visuelles, sans licence de redistribution établie.
+
+### Critère de reprise
+
+Construire un assemblage de référence identifiable, avec vues de face,
+arrière, coupe et éclaté, pièces fixes/mobiles séparées et chaque cote
+rattachée à sa source ou explicitement laissée inconnue. Comparer ces vues
+aux références avant de modifier les pales. Les essais de débit et
+l’optimisation ne pourront qualifier le ventilateur réel qu’après cette
+correction de la géométrie et la définition du circuit d’air.
+
+---
+
+## Archive du démonstrateur initial
+
+[Télécharger le démonstrateur USDZ rejeté comme référence géométrique](results/omniverse/fan-twin.usdz) · [Résultats numériques](results/omniverse/)
 
 Publication de recherche : géométrie et calculs exploratoires, sans autorisation de fabrication.
 Les chemins `work/` ci-dessous désignent les archives locales de calcul, non publiées.
