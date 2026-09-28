@@ -1,0 +1,117 @@
+{
+  "picogk": {
+    "source_generation": {
+      "status": "visual_reference_reconstruction",
+      "parameters": {
+        "status": "visual_hypotheses_except_explicit_sources",
+        "voxel_mm": 0.65,
+        "rotor_diameter_mm": 245,
+        "blade_count": 11,
+        "vent_count": 12,
+        "cup_radius_mm": 82.5,
+        "cup_front_z_mm": -26,
+        "cup_rear_z_mm": 30,
+        "wall_mm": 4,
+        "web_mm": 5,
+        "bore_radius_mm": 17,
+        "vent_radius_mm": 56,
+        "vent_radial_halfwidth_mm": 11,
+        "vent_tangential_halfwidth_mm": 7,
+        "blade_root_chord_mm": 57,
+        "blade_tip_chord_mm": 70,
+        "blade_pitch_deg": 48,
+        "blade_thickness_mm": 3.6,
+        "hub_radius_mm": 32,
+        "hub_length_mm": 35,
+        "hub_bore_radius_mm": 8.5,
+        "bolt_circle_radius_mm": 25,
+        "bolt_hole_radius_mm": 3.4,
+        "parameter_evidence": {
+          "rotor_diameter_mm": "inferred from FVD 245 \u00d7 245 product envelope, no OEM tolerance",
+          "blade_count": "11 counted in FVD reference images; consistent with Porsche ORIGINALE Turbo image",
+          "vent_count": "12 counted in FVD front/back photographs",
+          "hub_radius_mm": "FVD 64 \u00d7 64 commercial envelope / 2",
+          "hub_length_mm": "FVD commercial 35 mm",
+          "all_other_numeric_shape_parameters": "visual_reconstruction_hypothesis_not_measured",
+          "voxel_mm": "numerical_resolution_not_part_dimension"
+        }
+      },
+      "parts": [
+        {
+          "part": "rotor",
+          "volume_mm3": 284686.38,
+          "triangles": 985828
+        },
+        {
+          "part": "bearing-hub",
+          "volume_mm3": 39164.94,
+          "triangles": 68556
+        }
+      ],
+      "dimensionally_validated": false,
+      "flow_validated": false,
+      "manufacturing_authorized": false
+    },
+    "source_stl_sha256": "ba1ebd6b4414d5411afc8af067d08eaf3a00823b399d17d9b1f360e1e8c5b741",
+    "input_parameters": {
+      "outer_diameter_mm": 245,
+      "housing_diameter_mm": 248,
+      "depth_mm": 60.0
+    },
+    "rig": "Cylindrical test duct; assumed 1.5 mm nominal radial clearance",
+    "rotation": "Negative about +Z; geometric pumping direction, not verified vehicle drive",
+    "pmb_represented": false,
+    "manufacturing_authorized": false
+  },
+  "surface_audit": {
+    "status": "surface_audit_passed",
+    "source_sha256": "06d1ad5a0b8bf8bb8008b4d6c5623b636bfd04f7123527a78e46809cdaf87cea",
+    "metres_surface_sha256": "3d940cbf4def8c681b9e620795f2244507c9c8fd6235444675e26658c4809fdd",
+    "metres_export_matches_mm": true,
+    "picogk_report_sha256": "bd0a0bc953e7e4c889a25d54671a6381c4b651eff6657f6d03300d4734faab18",
+    "physicsnemo_version": "2.2.2",
+    "torch_version": "2.14.0",
+    "device": "cpu",
+    "vertices": 492884,
+    "triangles": 985828,
+    "watertight": true,
+    "winding_consistent": true,
+    "connected_bodies": 1,
+    "volume_mm3": 283914.75985565735,
+    "bounds_mm": [
+      [
+        -121.97029876708984,
+        -122.49913024902344,
+        -28.1359920501709
+      ],
+      [
+        122.49913024902344,
+        122.49913024902344,
+        30.0
+      ]
+    ],
+    "physicsnemo_surface_area_mm2": 148948.87393281359,
+    "area_matches_independent_trimesh": true,
+    "airflow_m3_s": null,
+    "aerodynamic_optimization_completed": false,
+    "manufacturing_authorized": false
+  },
+  "rpm": -3000,
+  "speed_rpm": 3000,
+  "base_cells": 24,
+  "surface_level": 3,
+  "boundary_condition": "inlet_total_pressure_zero_outlet_static_pressure_zero",
+  "model_scope": "isolated_rotor_without_alternator",
+  "alternator_envelope_included": false,
+  "alternator_shaft_wall_model": null,
+  "stationary_surface_audit": null,
+  "missing_components": [
+    "alternator",
+    "alternator_supports",
+    "shaft",
+    "installed_shroud"
+  ],
+  "installed_assembly_represented": false,
+  "study_iteration_budget": 500,
+  "termination_policy": "Stop at 500 iterations or earlier only if strict flow and torque windows pass; no convergence claim at budget exhaustion"
+}
