@@ -5,7 +5,11 @@ using PicoGK;
 if (args.Length != 2) throw new ArgumentException("Usage: Reference reference.json new-output-directory");
 var data = JsonDocument.Parse(File.ReadAllText(args[0])).RootElement;
 float Read(string name) {
-    float x = data.GetProperty(name).GetSingle();
+    if (!data.TryGetProperty(name, out var value)) {
+        if (new[] { "organic", "sweep_mm", "tip_twist_deg", "camber_mm", "root_blend_mm" }.Contains(name)) return 0;
+        throw new ArgumentException("Missing required parameter: " + name);
+    }
+    float x = value.GetSingle();
     if (!float.IsFinite(x)) throw new ArgumentException(name);
     return x;
 }
@@ -34,7 +38,7 @@ foreach (string part in new[] { "rotor", "bearing-hub" }) {
     Console.WriteLine($"GENERATED {part} triangles={mesh.nTriangleCount()}");
 }
 File.WriteAllText(Path.Combine(output,"generation.json"),JsonSerializer.Serialize(new {
-    status="visual_reference_reconstruction",parameters=data,parts=reports,
+    status=Read("organic") > 0 ? "organic_candidate_unvalidated" : "visual_reference_reconstruction",parameters=data,parts=reports,
     dimensionally_validated=false,flow_validated=false,manufacturing_authorized=false
 },new JsonSerializerOptions{WriteIndented=true}));
 
@@ -44,7 +48,9 @@ sealed class ReferenceRotor(Func<string,float> get) : IImplicit {
         ventR=get("vent_radius_mm"), ventW=get("vent_radial_halfwidth_mm"), ventT=get("vent_tangential_halfwidth_mm"),
         rootChord=get("blade_root_chord_mm"),tipChord=get("blade_tip_chord_mm"),pitch=get("blade_pitch_deg")*MathF.PI/180,
         thickness=get("blade_thickness_mm"), blades=get("blade_count"),vents=get("vent_count"),
-        boltR=get("bolt_circle_radius_mm"), boltHole=get("bolt_hole_radius_mm");
+        boltR=get("bolt_circle_radius_mm"), boltHole=get("bolt_hole_radius_mm"),
+        organic=get("organic"), sweep=get("sweep_mm"), twist=get("tip_twist_deg")*MathF.PI/180,
+        camberHeight=get("camber_mm"), blend=get("root_blend_mm");
     static float Fold(float angle,float count) {
         float period=2*MathF.PI/count; return angle-period*MathF.Round(angle/period);
     }
@@ -67,15 +73,28 @@ sealed class ReferenceRotor(Func<string,float> get) : IImplicit {
         float bolt=MathF.Sqrt(MathF.Pow(r*MathF.Cos(boltTheta)-boltR,2)+MathF.Pow(r*MathF.Sin(boltTheta),2))-boltHole;
         body=MathF.Max(body,-bolt);
         float span=Math.Clamp((r-cup)/(radius-cup),0,1),chord=rootChord+(tipChord-rootChord)*span;
-        float tangential=r*MathF.Sin(Fold(theta,blades));
-        float u=tangential*MathF.Cos(pitch)+p.Z*MathF.Sin(pitch);
-        float v=-tangential*MathF.Sin(pitch)+p.Z*MathF.Cos(pitch);
+        float localPitch=pitch+twist*span, sweepOffset=sweep*span*span;
+        float tangential=r*MathF.Sin(Fold(theta-sweepOffset/MathF.Max(r,1),blades));
+        float u=tangential*MathF.Cos(localPitch)+p.Z*MathF.Sin(localPitch);
+        float v=-tangential*MathF.Sin(localPitch)+p.Z*MathF.Cos(localPitch);
         float camber=2*(1-MathF.Pow(Math.Clamp(2*u/chord,-1,1),2));
         float blade=MathF.Max(MathF.Abs(v-camber)-thickness/2,
             MathF.Max(MathF.Abs(u)-chord/2,MathF.Max(cup-wall-r,r-radius)));
+        if(organic > 0) {
+            float x=Math.Clamp(2*u/chord,-1,1);
+            camber=camberHeight*(1-x*x)*(1-0.2f*x);
+            // Rounded chord ends, spanwise twist and swept stacking line.
+            float halfT=thickness/2*(0.65f+0.35f*MathF.Sqrt(MathF.Max(0,1-x*x)));
+            float qu=MathF.Abs(u)-(chord/2-1.2f), qv=MathF.Abs(v-camber)-(halfT-1.2f);
+            float section=MathF.Min(MathF.Max(qu,qv),0)+MathF.Sqrt(MathF.Pow(MathF.Max(qu,0),2)+MathF.Pow(MathF.Max(qv,0),2))-1.2f;
+            blade=MathF.Max(section,MathF.Max(cup-wall-r,r-radius));
+            float h=MathF.Max(blend-MathF.Abs(body-blade),0)/blend;
+            return MathF.Min(body,blade)-h*h*blend*0.25f;
+        }
         return MathF.Min(body,blade);
     }
     public void Check() {
+        if(organic>0 && (blend<=0 || thickness<4 || MathF.Abs(twist)>0.6f || MathF.Abs(sweep)>20)) throw new ArgumentException("Invalid organic blade parameters");
         if(blades!=11 || vents!=12 || radius<=cup || cup<=ventR+ventW || bore>=ventR-ventW)
             throw new ArgumentException("Invalid reference topology");
         if(fSignedDistance(new Vector3(0,0,front))<=0) throw new Exception("Bore closed");
@@ -86,8 +105,8 @@ sealed class ReferenceRotor(Func<string,float> get) : IImplicit {
         }
         if(fSignedDistance(new Vector3(cup-wall/2,0,10))>=0) throw new Exception("Cup missing");
         for(int i=0;i<11;i++) {
-            float a=2*MathF.PI*i/11,r=(cup+radius)/2;
-            if(fSignedDistance(new Vector3(r*MathF.Cos(a),r*MathF.Sin(a),2/MathF.Cos(pitch)))>=0) throw new Exception("Blade missing");
+            float r=(cup+radius)/2, a=2*MathF.PI*i/11+sweep*0.25f/r;
+            if(fSignedDistance(new Vector3(r*MathF.Cos(a),r*MathF.Sin(a),(organic>0 ? camberHeight : 2)/MathF.Cos(pitch+twist/2)))>=0) throw new Exception("Blade missing");
         }
     }
 }

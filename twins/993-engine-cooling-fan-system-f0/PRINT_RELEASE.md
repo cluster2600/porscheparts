@@ -78,6 +78,11 @@ the engineering review and intended test envelope.
 
 ## New rotor: completed geometric print screen
 
+The subsequent [organic blade study](ORGANIC_BLADE_STUDY.md) adds five PicoGK
+candidates, geometric printing screens, centrifugal calculations and bounded
+CFD/thermal trials. It records failed stress-convergence and extended-mesh
+checks. These trials do not close the release gates above.
+
 [Raw screen and layer metrics](results/print-release/manifest.json) ·
 [Inclined report](results/print-release/993-turbo-fan-reference-lpbf-geometry-report.json) ·
 [Flat comparison](results/print-release/flat-slicing.json).

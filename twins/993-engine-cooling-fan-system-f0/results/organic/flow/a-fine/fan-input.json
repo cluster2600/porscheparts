@@ -1,0 +1,124 @@
+{
+  "picogk": {
+    "source_generation": {
+      "status": "organic_candidate_unvalidated",
+      "parameters": {
+        "status": "unvalidated_organic_design_candidate",
+        "voxel_mm": 0.65,
+        "rotor_diameter_mm": 245,
+        "blade_count": 11,
+        "vent_count": 12,
+        "cup_radius_mm": 82.5,
+        "cup_front_z_mm": -26,
+        "cup_rear_z_mm": 30,
+        "wall_mm": 4,
+        "web_mm": 5,
+        "bore_radius_mm": 17,
+        "vent_radius_mm": 56,
+        "vent_radial_halfwidth_mm": 11,
+        "vent_tangential_halfwidth_mm": 7,
+        "blade_root_chord_mm": 57,
+        "blade_tip_chord_mm": 62,
+        "blade_pitch_deg": 52,
+        "blade_thickness_mm": 4.4,
+        "hub_radius_mm": 32,
+        "hub_length_mm": 35,
+        "hub_bore_radius_mm": 8.5,
+        "bolt_circle_radius_mm": 25,
+        "bolt_hole_radius_mm": 3.4,
+        "parameter_evidence": {
+          "rotor_diameter_mm": "inferred from FVD 245 \u00d7 245 product envelope, no OEM tolerance",
+          "blade_count": "11 counted in FVD reference images; consistent with Porsche ORIGINALE Turbo image",
+          "vent_count": "12 counted in FVD front/back photographs",
+          "hub_radius_mm": "FVD 64 \u00d7 64 commercial envelope / 2",
+          "hub_length_mm": "FVD commercial 35 mm",
+          "all_other_numeric_shape_parameters": "visual_reconstruction_hypothesis_not_measured",
+          "voxel_mm": "numerical_resolution_not_part_dimension",
+          "organic_blade_parameters": "Design experiment, not OEM measurements; no performance claim"
+        },
+        "tip_twist_deg": -14,
+        "sweep_mm": 8,
+        "camber_mm": 3.5,
+        "organic": 1,
+        "root_blend_mm": 3
+      },
+      "parts": [
+        {
+          "part": "rotor",
+          "volume_mm3": 295079.62,
+          "triangles": 945688
+        },
+        {
+          "part": "bearing-hub",
+          "volume_mm3": 39164.94,
+          "triangles": 68556
+        }
+      ],
+      "dimensionally_validated": false,
+      "flow_validated": false,
+      "manufacturing_authorized": false
+    },
+    "source_stl_sha256": "6aa686f2c18757611c582ece3df08b898967fcb175a5f4167ad5f7779a8d4a83",
+    "input_parameters": {
+      "outer_diameter_mm": 245,
+      "housing_diameter_mm": 248,
+      "depth_mm": 60.0
+    },
+    "rig": "248 mm cylindrical test duct; assumed 1.5 mm nominal radial clearance",
+    "pmb_represented": false,
+    "manufacturing_authorized": false
+  },
+  "surface_audit": {
+    "status": "surface_audit_passed",
+    "source_sha256": "c4e88c7b2b272d67a6b50319a65c731151c24a86fc51f69da45c7ee6a830edf4",
+    "metres_surface_sha256": "93440e0cd318635eab0e482252c4573feed229cb0fafdcf0f89f2921e229ac45",
+    "metres_export_matches_mm": true,
+    "picogk_report_sha256": "c7814792ee7421764e9235619ba34a690b2a6879f48d9592f0d6d1b3d951855c",
+    "physicsnemo_version": "2.2.2",
+    "torch_version": "2.14.0",
+    "device": "cpu",
+    "vertices": 472814,
+    "triangles": 945688,
+    "watertight": true,
+    "winding_consistent": true,
+    "connected_bodies": 1,
+    "volume_mm3": 294563.8748661846,
+    "bounds_mm": [
+      [
+        -122.46463775634766,
+        -122.49913024902344,
+        -28.1359920501709
+      ],
+      [
+        122.49913024902344,
+        122.49568176269531,
+        30.0
+      ]
+    ],
+    "physicsnemo_surface_area_mm2": 143987.94877016876,
+    "area_matches_independent_trimesh": true,
+    "airflow_m3_s": null,
+    "aerodynamic_optimization_completed": false,
+    "manufacturing_authorized": false
+  },
+  "rpm": -3000,
+  "base_cells": 24,
+  "surface_level": 4,
+  "boundary_condition": "inlet_total_pressure_zero_outlet_static_pressure_zero",
+  "model_scope": "isolated_rotor_without_alternator",
+  "alternator_envelope_included": false,
+  "alternator_shaft_wall_model": null,
+  "stationary_surface_audit": null,
+  "missing_components": [
+    "alternator",
+    "alternator_supports",
+    "shaft",
+    "installed_shroud"
+  ],
+  "installed_assembly_represented": false,
+  "speed_rpm": 3000,
+  "rotation_convention": "negative about +Z to pump towards +Z for positive blade pitch; actual drive direction unverified",
+  "study_iteration_budget": 500,
+  "termination_policy": "Stop at 500 iterations or earlier only if strict flow and torque windows pass; no convergence claim at budget exhaustion",
+  "termination_reason": "Exploratory pilot stopped after more than 300 iterations: extended mesh checks fail and flow/torque windows remain unsettled. Repair mesh and physical boundary data before a quantitative ranking."
+}

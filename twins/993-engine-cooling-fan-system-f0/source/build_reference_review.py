@@ -17,7 +17,9 @@ from pxr import Gf, Sdf, Usd, UsdGeom, UsdUtils, UsdValidation
 HELPERS = runpy.run_path(str(Path(__file__).with_name('build_fan_digital_twin.py')))
 
 
-def build(source, output):
+def build(source, output, rotor_faces=80000):
+    if not 10000 <= rotor_faces <= 300000:
+        raise ValueError("Review face count must be 10000..300000")
     output.mkdir(parents=True, exist_ok=False)
     report = {'status': 'visual_reconstruction_only', 'geometry_checks': {},
               'pmb_fit_verified': False, 'cfd_run': False, 'gpu_render_run': False,
@@ -29,7 +31,7 @@ def build(source, output):
         raw = trimesh.load_mesh(path, process=True)
         assert raw.is_watertight and raw.is_winding_consistent and raw.volume > 0, name
         assert len(raw.split(only_watertight=False)) == 1, name
-        reduced = raw.simplify_quadric_decimation(face_count=80000 if name == 'rotor' else 20000)
+        reduced = raw.simplify_quadric_decimation(face_count=rotor_faces if name == 'rotor' else 20000)
         assert reduced.is_watertight and reduced.is_winding_consistent
         assert abs(reduced.volume / raw.volume - 1) < .005
         meshes[name] = reduced
@@ -54,7 +56,7 @@ def build(source, output):
         prim = HELPERS['mesh'](stage, path, geometry.vertices*.001, geometry.faces,
                                [[.64,.68,.73]] if name == 'rotor' else [[.8,.57,.24]])
         prim.GetPrim().SetCustomData({'dimensionalStatus': 'hypotheses_see_reference_json',
-            'partNumber': '96410601522' if name == 'rotor' else '96410605131',
+            'referencePartNumber': '96410601522' if name == 'rotor' else '96410605131',
             'rotationGroup': 'fan', 'bearingInternalGeometryResolved': False})
     for name, part in [('Housing','99310666750'),('Alternator','PMB_Classic_Retrofit_240A'),
                        ('RearCone','93060304101'),('AuxiliaryImpeller','92860304501'),
@@ -90,8 +92,8 @@ def build(source, output):
         if index == 1: ax.set_zticks([]); ax.set_zlabel('')
         ax.set_box_aspect((260,260,205 if explode else 140))
         ax.view_init(elev=elev,azim=azim); ax.set_title(title,fontsize=11)
-    fig.suptitle('Turbo reference reconstruction — partial dimensions, not a validated part',fontsize=17)
-    fig.text(.5,.025,'Technical views from PicoGK meshes • no associated CFD • housing and PMB not reconstructed',ha='center',fontsize=11)
+    fig.suptitle(('Organic Turbo blade candidate' if parameters.get('organic') else 'Turbo reference reconstruction') + ' — not a validated part',fontsize=17)
+    fig.text(.5,.025,'Geometry review from PicoGK meshes • dimensions unverified • housing and PMB not reconstructed',ha='center',fontsize=11)
     fig.savefig(output/'reference-review.png',dpi=140,bbox_inches='tight'); plt.close(fig)
     (output/'validation.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report,indent=2))
@@ -101,4 +103,5 @@ if __name__ == '__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source',required=True,type=Path)
     parser.add_argument('--output',required=True,type=Path)
-    args=parser.parse_args(); build(args.source,args.output)
+    parser.add_argument("--rotor-faces", type=int, default=80000)
+    args=parser.parse_args(); build(args.source,args.output,args.rotor_faces)

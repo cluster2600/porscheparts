@@ -312,9 +312,9 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
         reprise = "../../twins/993-engine-cooling-fan-system-f0"
         out += ["## The project has been rebuilt", "",
                 "**The F0 model below is archived.** The new study targets the Turbo M64.60 assembly and PMB 240 A alternator; it does not turn this Carrera record into a validated Turbo part.", "",
-                f"[Project presentation on PorscheFanatics](https://porschefanatics.com/projects/993-turbo-fan/) · [Reconstruction dossier (French)]({reprise}/REFERENCE_REBUILD.md) · [OpenUSD model]({reprise}/results/reference/reference.usdz) · [Prototype print release dossier]({reprise}/PRINT_RELEASE.md)", "",
-                f"![New Turbo reconstruction: front, rear, section and exploded views]({reprise}/results/reference/reference-review.png)", "",
-                "*New PicoGK geometry: 11 blades, 12 openings, a ribbed cup and separate hub. Meshes checked; dimensions partial, hub compatibility disputed, housing and PMB still to be reconstructed. No validated airflow or engine fitment.*", "",
+                f"[Project presentation on PorscheFanatics](https://porschefanatics.com/projects/993-turbo-fan/) · [Organic blade trials]({reprise}/ORGANIC_BLADE_STUDY.md) · [OpenUSD candidate E]({reprise}/results/organic/e/review/reference.usdz) · [Prototype print release dossier]({reprise}/PRINT_RELEASE.md)", "",
+                f"![Organic candidate E: front, rear, section and exploded views]({reprise}/results/organic/e/review/reference-review.png)", "",
+                "*Five PicoGK organic blade candidates: sweep, twist, curved camber and blended roots. Numerical airflow, centrifugal and LPBF screens are documented, including failed checks. No validated airflow or engine fitment; no qualified material or functional print authorization. Dimensions remain partial; hub compatibility, housing and PMB interfaces remain unresolved.*", "",
                 "## Archived Carrera F0 concept", ""]
 
     # The first thing a reader sees is what this is NOT, from the record's own fields.

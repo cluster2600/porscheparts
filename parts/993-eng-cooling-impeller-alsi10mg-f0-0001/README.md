@@ -14,11 +14,11 @@
 
 **The F0 model below is archived.** The new study targets the Turbo M64.60 assembly and PMB 240 A alternator; it does not turn this Carrera record into a validated Turbo part.
 
-[Project presentation on PorscheFanatics](https://porschefanatics.com/projects/993-turbo-fan/) · [Reconstruction dossier (French)](../../twins/993-engine-cooling-fan-system-f0/REFERENCE_REBUILD.md) · [OpenUSD model](../../twins/993-engine-cooling-fan-system-f0/results/reference/reference.usdz) · [Prototype print release dossier](../../twins/993-engine-cooling-fan-system-f0/PRINT_RELEASE.md)
+[Project presentation on PorscheFanatics](https://porschefanatics.com/projects/993-turbo-fan/) · [Organic blade trials](../../twins/993-engine-cooling-fan-system-f0/ORGANIC_BLADE_STUDY.md) · [OpenUSD candidate E](../../twins/993-engine-cooling-fan-system-f0/results/organic/e/review/reference.usdz) · [Prototype print release dossier](../../twins/993-engine-cooling-fan-system-f0/PRINT_RELEASE.md)
 
-![New Turbo reconstruction: front, rear, section and exploded views](../../twins/993-engine-cooling-fan-system-f0/results/reference/reference-review.png)
+![Organic candidate E: front, rear, section and exploded views](../../twins/993-engine-cooling-fan-system-f0/results/organic/e/review/reference-review.png)
 
-*New PicoGK geometry: 11 blades, 12 openings, a ribbed cup and separate hub. Meshes checked; dimensions partial, hub compatibility disputed, housing and PMB still to be reconstructed. No validated airflow or engine fitment.*
+*Five PicoGK organic blade candidates: sweep, twist, curved camber and blended roots. Numerical airflow, centrifugal and LPBF screens are documented, including failed checks. No validated airflow or engine fitment; no qualified material or functional print authorization. Dimensions remain partial; hub compatibility, housing and PMB interfaces remain unresolved.*
 
 ## Archived Carrera F0 concept
 
