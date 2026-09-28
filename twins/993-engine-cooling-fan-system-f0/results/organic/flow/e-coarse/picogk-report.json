@@ -1,0 +1,70 @@
+{
+  "source_generation": {
+    "status": "organic_candidate_unvalidated",
+    "parameters": {
+      "status": "unvalidated_organic_design_candidate",
+      "voxel_mm": 0.65,
+      "rotor_diameter_mm": 245,
+      "blade_count": 11,
+      "vent_count": 12,
+      "cup_radius_mm": 82.5,
+      "cup_front_z_mm": -26,
+      "cup_rear_z_mm": 30,
+      "wall_mm": 4,
+      "web_mm": 5,
+      "bore_radius_mm": 17,
+      "vent_radius_mm": 56,
+      "vent_radial_halfwidth_mm": 11,
+      "vent_tangential_halfwidth_mm": 7,
+      "blade_root_chord_mm": 57,
+      "blade_tip_chord_mm": 70,
+      "blade_pitch_deg": 36,
+      "blade_thickness_mm": 4.4,
+      "hub_radius_mm": 32,
+      "hub_length_mm": 35,
+      "hub_bore_radius_mm": 8.5,
+      "bolt_circle_radius_mm": 25,
+      "bolt_hole_radius_mm": 3.4,
+      "parameter_evidence": {
+        "rotor_diameter_mm": "inferred from FVD 245 \u00d7 245 product envelope, no OEM tolerance",
+        "blade_count": "11 counted in FVD reference images; consistent with Porsche ORIGINALE Turbo image",
+        "vent_count": "12 counted in FVD front/back photographs",
+        "hub_radius_mm": "FVD 64 \u00d7 64 commercial envelope / 2",
+        "hub_length_mm": "FVD commercial 35 mm",
+        "all_other_numeric_shape_parameters": "visual_reconstruction_hypothesis_not_measured",
+        "voxel_mm": "numerical_resolution_not_part_dimension",
+        "organic_blade_parameters": "Controlled camber-sign experiment against D for negative rotation about +Z; no validated airflow or fitment"
+      },
+      "tip_twist_deg": -10,
+      "sweep_mm": 8,
+      "camber_mm": -3.5,
+      "organic": 1,
+      "root_blend_mm": 3
+    },
+    "parts": [
+      {
+        "part": "rotor",
+        "volume_mm3": 302270.5,
+        "triangles": 949756
+      },
+      {
+        "part": "bearing-hub",
+        "volume_mm3": 39164.94,
+        "triangles": 68556
+      }
+    ],
+    "dimensionally_validated": false,
+    "flow_validated": false,
+    "manufacturing_authorized": false
+  },
+  "source_stl_sha256": "465aa58f3f3cd003d89ba94f77936e8620c761f2ce7252ea141702504d5233a5",
+  "input_parameters": {
+    "outer_diameter_mm": 245,
+    "housing_diameter_mm": 248,
+    "depth_mm": 60.0
+  },
+  "rig": "Cylindrical test duct; assumed 1.5 mm nominal radial clearance",
+  "rotation": "Negative about +Z; geometric pumping direction, not verified vehicle drive",
+  "pmb_represented": false,
+  "manufacturing_authorized": false
+}
