@@ -100,6 +100,11 @@ RUN /opt/geometry-qa/bin/pip install --no-cache-dir 'usd-core==25.11' 'shapely==
     && /opt/geometry-qa/bin/pip check \
     && /opt/geometry-qa/bin/pip freeze > /opt/provenance/geometry-resolved.txt \
     && useradd --uid 10002 --create-home --shell /bin/bash station-worker \
+    && OVRTX_BIN=/opt/ovrtx-runtime/lib/python3.12/site-packages/ovrtx/bin \
+    && mkdir -p "${OVRTX_BIN}/cache" "${OVRTX_BIN}/mdl/omniverse_exts" \
+    && chown -R station-worker:station-worker "${OVRTX_BIN}/cache" "${OVRTX_BIN}/mdl/omniverse_exts" \
+    && runuser -u station-worker -- test -w "${OVRTX_BIN}/cache" \
+    && runuser -u station-worker -- test -w "${OVRTX_BIN}/mdl/omniverse_exts" \
     && install -d -o station-worker -g station-worker /workspace/jobs
 COPY twins/picogk-station-demo/StationDemo.csproj twins/picogk-station-demo/Program.cs /opt/station-repo/twins/picogk-station-demo/
 COPY scripts/run_picogk_station_demo.py scripts/run_metal_am_geometry_screen.py scripts/build_process_route_card.py /opt/station-repo/scripts/
@@ -116,6 +121,7 @@ FROM station-demo AS station
 COPY --from=kit-ready /opt/station-kit-runtime/ /opt/station-kit-runtime/
 COPY --from=kit-ready /usr/local/bin/station-kit /usr/local/bin/station-kit
 COPY --from=client-build /build/client/dist/ /opt/station-client/
+COPY --chmod=0755 deploy/vast/station/media-relay.py /usr/local/bin/station-media-relay
 COPY containers/picogk-station/cad-coupon.py /opt/station/cad-coupon.py
 RUN printf '%s\n' 'This software contains source code provided by NVIDIA Corporation.' \
     'https://docs.omniverse.nvidia.com/avp/latest/common/NVIDIA_Omniverse_License_Agreement.html' \

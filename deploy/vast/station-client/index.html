@@ -24,13 +24,13 @@
 <header>
   <h1>Station PicoGK · Omniverse</h1>
   <form id="connection">
-    <label>IP publique Vast <input id="media-host" required placeholder="203.0.113.10" autocomplete="off"></label>
-    <label>Port UDP externe <input id="media-port" required type="number" min="1" max="65535" placeholder="47998"></label>
+    <label>Adresse IP média <input id="media-host" required placeholder="127.0.0.1" autocomplete="off"></label>
+    <label>Port UDP média <input id="media-port" required type="number" min="1" max="65535" placeholder="47998"></label>
     <button id="connect">Connecter</button>
     <button id="disconnect" type="button" disabled>Déconnecter</button>
     <button id="evidence" type="button">Exporter le diagnostic</button>
   </form>
-  <div id="status" role="status" aria-live="polite">Ouvrir le tunnel SSH local vers le port de signalisation 49100, puis connecter.</div>
+  <div id="status" role="status" aria-live="polite">Ouvrir le tunnel SSH de signalisation. Avec le relais média SSH : 127.0.0.1, port 47998. En accès direct : IP publique et port UDP Vast.</div>
 </header>
 <main aria-label="Éditeur Omniverse diffusé depuis la station">
   <video id="remote-video" autoplay playsinline muted tabindex="0" aria-label="Éditeur Omniverse distant"></video>

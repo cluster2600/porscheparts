@@ -75,7 +75,7 @@ def run(output):
     commands = {
         'vulkan': ['vulkaninfo', '--summary'],
         'nvenc_gpu2': ['ffmpeg', '-hide_banner', '-loglevel', 'error', '-f', 'lavfi', '-i',
-                       'color=c=black:s=128x128:r=30', '-frames:v', '30', '-c:v', 'h264_nvenc',
+                       'color=c=black:s=1920x1080:r=30', '-frames:v', '30', '-c:v', 'h264_nvenc',
                        '-gpu', '2', '-f', 'null', '-'],
     }
     for name, command in commands.items():

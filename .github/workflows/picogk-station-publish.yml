@@ -24,8 +24,8 @@ jobs:
     runs-on: [picogk-station-publish-20260928-r8kj70sz]
     timeout-minutes: 60
     env:
-      STATION_IMAGE: ghcr.io/cluster2600/3dprinting993-picogk-m64:station-20260928-ef4b546991d6
-      STATION_IMAGE_ID: sha256:4893cbb406c8b88ec9dcaec201ebfbe42f68902e1987c5d65a2f556ee390a603
+      STATION_IMAGE: ghcr.io/cluster2600/3dprinting993-picogk-m64:station-20260928-persistent-4f58a4e28ab7
+      STATION_IMAGE_ID: sha256:4f58a4e28ab7706e7735b2185123c2d8fd6eb94a3d1842a9e352950ce503bdfb
     steps:
       - name: Verify the prebuilt local image before authentication
         shell: bash

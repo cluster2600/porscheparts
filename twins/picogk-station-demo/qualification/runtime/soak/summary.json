@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "attempt": 3,
+  "instance_id": 53246885,
+  "start_utc": "2026-09-28T21:25:42.526678+00:00",
+  "end_utc": "2026-09-28T21:55:42.702302+00:00",
+  "duration_seconds": 1800.1756284979638,
+  "requests": 120,
+  "latency_seconds": {
+    "min": 4.329597709933296,
+    "median": 5.42544146347791,
+    "p95_nearest_rank": 11.013391854939982,
+    "max": 19.50748244090937
+  },
+  "mean_request_completion_tps": 20.30489039628383,
+  "completion_tokens_per_total_wall_second": 8.532500805388707,
+  "pipeline_count": 53,
+  "pipeline_duration_mean": 31.604602332178608,
+  "span_mm_counts": {
+    "20": 18,
+    "30": 18,
+    "40": 17
+  },
+  "max_sample_gap_seconds": 15.411580194951966,
+  "gpu_max": {
+    "0": 0.919917864476386,
+    "1": 0.9128484885633434,
+    "2": 0.05475701574264202,
+    "3": 0.03951495091278719
+  },
+  "checks": {
+    "full_1800_seconds": true,
+    "thirty_four_request_batches": true,
+    "repeated_geometry_and_renders": true,
+    "sample_gap_at_most_30_seconds": true,
+    "stable_service_pids": true,
+    "no_new_oom": true,
+    "ram_available_above_2_percent": true,
+    "gpu_memory_below_98_percent": true
+  },
+  "resource_samples": 121,
+  "service_pids": {
+    "qwen": 15153,
+    "kit": 8261
+  },
+  "oom_counters_unchanged": true,
+  "minimum_ram_available_bytes": 793403830272,
+  "completion_tokens": 15360,
+  "verified_pipeline_artifacts": 1113,
+  "verified_pipeline_receipts": 53,
+  "verified_png_renders": 53,
+  "kali2_verified_job_files": 1219,
+  "artifact_verification": "artifact-verification.json",
+  "persistent_sync_verification": "kali2-sync-verification.json",
+  "report": "report.json",
+  "events": "events.jsonl",
+  "qualification_controller_sha256": "95a1a368ab8483a0de9a4079a905d922e917ed997cbd131e899b415db765f400",
+  "runtime_qwen_gpu_memory_utilization": 0.9,
+  "user_workload_may_share_station": true,
+  "inference_counts_include_only_test_requests": true,
+  "resource_samples_include_all_station_workloads": true,
+  "full_262144_token_requests_tested": false,
+  "manufacturing_validated": false,
+  "automatic_instance_shutdown_performed": false
+}

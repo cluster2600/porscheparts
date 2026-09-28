@@ -1,4 +1,4 @@
-# Location bornée de la station PicoGK
+# Station PicoGK sur Vast
 
 Le profil ajoute cinq opérations au wrapper OpenBao existant, par deux hooks
 dans sa fonction `run`. Il conserve son authentification, ses variantes, son
@@ -10,18 +10,52 @@ Le wrapper installé n'est jamais remplacé par la copie historique du dépôt.
 Le tableau de bord OpenClaw répond sur **http://127.0.0.1:18789/** sur Kali2
 (HTTP 200 observé le 28 septembre 2026). Depuis un autre poste, transférer ce
 port par la connexion SSH approuvée vers Kali2, puis ouvrir la même adresse
-locale. Cette réponse confirme l'accès au tableau de bord ; le backend Qwen
-de cette station et Kit ne sont **pas encore déployés**. Aucune instance Vast
-n'a été louée à ce stade. La publication réutilise le jeton éphémère GitHub
+locale. La station **53246885** a été déployée le 28 septembre 2026. Une réponse
+Qwen et une génération PicoGK commandée par `m64-coordinator`, avec récupération
+et vérification des fichiers, sont prouvées dans le
+[rapport de qualification](../../../twins/picogk-station-demo/qualification/README.md).
+Ce rapport distingue chaque essai, les corrections runtime et l'endurance.
+La publication réutilise le jeton éphémère GitHub
 Actions, doté de `packages: write`, sur un runner Kali2 limité à un seul job.
 
-Après déploiement et ouverture des tunnels, le client Omniverse sera accessible
-sur **http://127.0.0.1:8088/**. La signalisation **TCP 49100** restera privée,
-transférée par SSH ; seul le média UDP utilisera le port externe attribué par
-Vast. L'adresse de l'interface seule ne prouve ni le rendu GPU ni la connexion
-WebRTC : suivre le [protocole Kit](../../../containers/picogk-station-kit/README.md).
+Le client Omniverse est accessible sur **http://127.0.0.1:8088/** par le tunnel.
+La signalisation **TCP 49100** reste privée. Le passage UDP public de cette
+location n'a pas reçu les sondes émises depuis notre réseau ; un relais média
+local, transporté par SSH, fournit le flux vidéo.
+Utiliser `127.0.0.1` et le port média `47998` avec ce relais. TCP 49100 et 47999
+ne sont pas publiés sur Vast. Suivre les commandes et limites du
+[protocole Kit](../../../containers/picogk-station-kit/README.md).
 
-## Profil de location
+Sur Kali2, les commandes de travail sont :
+
+```sh
+~/.local/bin/station-task status
+~/.local/bin/station-task demo coupon-001 --span-mm 30 --voxel-mm 0.25
+~/.local/bin/station-task status
+~/.local/bin/station-task render coupon-001
+~/.local/bin/station-task collect coupon-001
+```
+
+Attendre l'état `complete` avant le rendu et utiliser un nouvel identifiant
+pour chaque pièce. Les résultats sont récupérés dans `~/stations/coupon-001/`.
+Le 28 septembre à 21 h 36 UTC, l'utilisateur a demandé de conserver la location
+après ajout de crédit. La garde de suppression a été désactivée et retirée,
+sans appeler la destruction. **La station reste en marche sans coupure
+automatique**, à environ **6,24 USD/h**, soit **149,69 USD/jour hors transferts**.
+Le manifeste initial est conservé comme historique ; ne pas réarmer sa garde
+ni appeler `reconcile-station` sur cette location en cours. La surveillance
+OpenClaw contrôle les erreurs et l'avancement sans interrompre les tâches.
+
+La synchronisation vers `~/stations/qualification-53246885/` fonctionne toutes
+les 60 secondes via le service utilisateur `station-results-sync.service` de
+Kali2. Chaque transfert reste limité à 180 secondes, sans suppression des
+fichiers déjà collectés. Le service persiste après déconnexion SSH.
+
+## Profil borné pour une nouvelle qualification
+
+Les commandes ci-dessous décrivent la procédure initiale pour une nouvelle
+location. Elles ne doivent pas être rejouées sur la station active dont la
+coupure a été révoquée.
 
 La qualification privée contient `image_ref` avec digest dans le namespace
 `ghcr.io/cluster2600/3dprinting993-picogk-m64`, `platform: linux/amd64`,
@@ -37,9 +71,9 @@ python3 deploy/vast/station/prepare.py render \
   --session-directory /absolute/private/session \
   --output /absolute/private/openbao-vastai-candidate
 # Revoir le diff du candidat, puis l'installer sur le wrapper courant.
-python3 deploy/vast/station/prepare.py manifest --offer-id 48926609
+python3 deploy/vast/station/prepare.py manifest --offer-id 49181720
 python3 deploy/vast/station/prepare.py arm /absolute/private/session/station-ID.json
-openbao-vastai launch-station 48926609 /absolute/private/session/station-ID.json
+openbao-vastai launch-station 49181720 /absolute/private/session/station-ID.json
 openbao-vastai station-show /absolute/private/session/station-ID.json
 openbao-vastai reconcile-station /absolute/private/session/station-ID.json
 ```
@@ -49,6 +83,8 @@ de six heures et son budget cumulé de 50 USD. La durée est raccourcie selon le
 tarif comprenant 1 To, 500 Go entrants, 100 Go sortants et 2 USD de marge pour
 le nettoyage. Chaque tentative payante réserve son coût complet, même après
 échec : aucune nouvelle tentative ne récupère un montant non facturé supposé.
+Le budget du manifeste couvre seulement sa tentative, arrondi au cent supérieur
+et borné par le budget de session restant, tandis que le plafond cumulé reste 50 USD.
 
 La garde LaunchAgent reste extérieure à Vast, maintient le Mac éveillé avec
 `caffeinate` et détruit uniquement l'identité exacte. Elle vérifie les compteurs
@@ -129,8 +165,10 @@ sur Kali2 est un tmpfs de 7,7 Go et ne convient pas à cette exportation.
 8. Qualifier le [client WebRTC](../../../containers/picogk-station-kit/README.md), sélectionner et
    déplacer une pièce dans Kit, sauvegarder puis reconnecter. Mesurer trente
    minutes de fonctionnement simultané avec générations, requêtes et rendus.
-9. Récupérer les sorties et journaux sur Kali2, comparer leurs empreintes puis
-   détruire par `reconcile-station`. Vérifier l'absence dans l'inventaire Vast.
+9. Récupérer régulièrement les sorties et journaux sur Kali2 et comparer leurs
+   empreintes. Dans le profil borné, la garde détruit la location à son échéance ; pour une fin
+   anticipée, utiliser `reconcile-station`. Une destruction n'est confirmée
+   qu'après vérification de l'absence dans l'inventaire Vast.
 
 La machine documentaire est l'EOS M 290, laser 400 W, enveloppe nominale
 250 × 250 × 325 mm, avec la carte AlSi10Mg à 30 µm déjà présente au dépôt.
@@ -139,7 +177,7 @@ supports et de dépoudrage. Ils ne constituent ni une simulation thermique
 calibrée, ni une qualification d'impression, ni une autorisation de fabrication.
 
 La persistance OpenClaw utilise le service systemd utilisateur de Kali2 et
-`loginctl enable-linger lolman`. La garde Mac survit à la fermeture du terminal
+`loginctl enable-linger lolman`. Dans le profil borné, la garde Mac survit à la fermeture du terminal
 et maintient la machine éveillée, mais nécessite que le Mac reste allumé et sa
 session ouverte. La limite fournisseur est vérifiée par suppression effective,
 jamais déduite d'un simple arrêt de processus.

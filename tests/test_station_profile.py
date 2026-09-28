@@ -2,6 +2,7 @@
 import hashlib
 import importlib.machinery
 import importlib.util
+import io
 import json
 from pathlib import Path
 import tempfile
@@ -101,6 +102,39 @@ class StationProfileTests(unittest.TestCase):
         policy.write_json(self.directory / "station-third.paid-attempt.json", {"paid_outcome": "unknown"})
         with self.assertRaises(self.wrapper.SafeError):
             policy.reserved_cost(self.w, self.directory)
+
+    def test_manifest_reserves_rounded_attempt_cost_within_remaining_session_budget(self):
+        self.wrapper.STATION_PINS = self.pins
+        offer = {"dph_total": 6.2468025, "inet_up_cost_usd_per_gb": 0,
+                 "inet_down_cost_usd_per_gb": 0}
+        for reserved, suffix in ((0, "c" * 20), (25.12349, "d" * 20)):
+            with self.subTest(reserved=reserved):
+                if reserved:
+                    policy.write_json(self.directory / "station-earlier.paid-attempt.json",
+                                      {"cost_ceiling_usd": reserved})
+                output = io.StringIO()
+                with mock.patch.object(prepare, "load", return_value=self.wrapper), \
+                        mock.patch.object(prepare.sys, "argv", ["prepare.py", "manifest", "--offer-id", "49181720", "--hours", "4"]), \
+                        mock.patch.object(prepare.subprocess, "run", return_value=mock.Mock(stdout=json.dumps([offer]))) as run, \
+                        mock.patch.object(prepare.time, "time", return_value=self.now), \
+                        mock.patch.object(prepare.secrets, "token_hex", return_value=suffix), \
+                        mock.patch.object(prepare.sys, "stdout", output):
+                    prepare.main()
+                summary = json.loads(output.getvalue())
+                manifest = json.loads(Path(summary["manifest"]).read_text())
+                cost = policy.budget_cost(self.w, manifest, offer["dph_total"], 0, 0)
+                self.assertEqual(summary["budget_usd"], manifest["budget_usd"])
+                self.assertLessEqual(cost, manifest["budget_usd"])
+                self.assertLess(manifest["budget_usd"] - cost, .01)
+                self.assertLessEqual(manifest["budget_usd"], 50 - reserved)
+                self.assertEqual(json.loads((self.directory / "session.json").read_text())["budget_usd"], 50)
+                self.assertEqual(run.call_args.args[0][1:], ["station-offers", "49181720"])
+                if not reserved:
+                    self.assertEqual(manifest["deadline_epoch"] - manifest["created_epoch"], 4 * 3600)
+                    self.assertEqual(manifest["budget_usd"], 26.99)
+                else:
+                    self.assertLess(manifest["deadline_epoch"] - manifest["created_epoch"], 4 * 3600)
+                    self.assertEqual(manifest["budget_usd"], 50 - reserved)
 
     def test_station_reuses_hardware_filter_with_four_gpus_and_no_vm_requirement(self):
         policy.install_policy(self.w, {"proof": self.proof})

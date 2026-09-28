@@ -1,28 +1,72 @@
-# Validation logicielle préliminaire — 28 septembre 2026
+# Qualification de la station — 28 septembre 2026
 
-Les contrôles logiciels décrits ici passent. **La qualification GPU et Vast reste
-à effectuer** : ce dossier ne prouve ni une station opérationnelle, ni la
-fabricabilité ou la qualification physique d'une pièce.
+L'image est **publiée et vérifiée anonymement** ; l'instance Vast **53246885**
+est louée. Le préflight GPU, les témoins CPU, la réponse Qwen, l'appel d'outil
+OpenClaw, le rendu OVRTX sur GPU 3 et l'édition/sauvegarde/reconnexion
+Omniverse via le relais SSH passent. La vidéo est également reçue sur Kali2. Le premier essai simultané a échoué sur le seuil de mémoire
+GPU ; l'API Qwen est de nouveau vérifiée après fixation explicite de sa limite
+à 0,90 ; un nouvel appel d’outil OpenClaw passe également. Le deuxième essai
+a été interrompu pour diagnostiquer l’absence de réponse dans le dashboard
+utilisateur, qui a confirmé la reprise des réponses. Le [troisième essai de trente minutes](runtime/soak/README.md)
+**passe**, de 21:25:42 à 21:55:42 UTC : 120 requêtes Qwen, 53 chaînes complètes,
+aucun OOM ni redémarrage. Les 1 219 fichiers attendus sont identiques entre
+Vast et la copie persistante de Kali2. Ces résultats ne prouvent aucune
+qualification physique de pièce.
 
-Le [statut du déploiement](deployment-status.json) consigne l'échec constaté :
-l'image finale est construite sur Kali2, mais les deux essais de publication
-GHCR ont été refusés au stade `PUSH`. Le lecteur OpenBao GHCR a été utilisé pour
-une écriture alors que sa portée observée ne la permet pas. La voie historique
-de publication utilise GitHub Actions, qui fournit au job son `GITHUB_TOKEN`
-éphémère avec la permission `packages: write`.
+Le [statut du déploiement](deployment-status.json), la
+[preuve de publication](publication.json) et les
+[preuves d'exécution sur Vast](runtime/README.md) précisent chaque état observé.
+Le manifeste publié est :
 
-La publication de l'image existante, sans reconstruction, est en préparation
-avec un workflow distinct et un runner éphémère sur Kali2, pilotés par le wrapper
-GitHub OpenBao déjà approuvé. Cette voie ne suppose pas un nouveau jeton GHCR ;
-son enregistrement, son exécution et le digest publié restent à vérifier.
-L'inventaire Vast est vide, aucune location ni dépense de qualification n'a
-été engagée. Le digest de configuration local ne doit pas être présenté comme
-un digest de manifeste publié. La vérification anonyme du registre reste
-obligatoire avant toute location.
+```text
+ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:540d9d4af34a73f91114f2d3dd4f4ad847eee42037c26efaf1caadb5b155e871
+```
 
-L'[image construite et les témoins CPU](build/README.md) sont documentés à part,
-avec les sources C#, le document FreeCAD éditable, les STEP/STL, l'assemblage USD
-et les journaux d'exécution extraits de l'image.
+La publication a réutilisé l'image construite, sans reconstruction, via GitHub
+Actions et un runner JIT sur Kali2. Le run `36471929525` a réussi ; le runner
+correspondant a été automatiquement retiré. Les refus antérieurs de publication
+directe et le refus budgétaire antérieur à toute création restent conservés dans
+le statut comme historique ; ils ne décrivent plus l'état actuel.
+
+La location porte sur l'offre **49181720**, machine **44690**. Le manifeste
+initial réservait **26,99 USD** et fixait une échéance au 29 septembre à
+00:12:16 UTC. À **21:36:31 UTC**, l'utilisateur a explicitement demandé de
+conserver Vast allumée après ajout de crédit : la [garde destructive a été retirée](runtime/keep-running.json),
+le manifeste historique est conservé et aucune destruction n'a été appelée.
+La station fonctionne désormais **sans échéance automatique**, au tarif observé
+de **6,237037 USD/h**, soit environ **149,69 USD/jour hors transferts**.
+La facture réelle reste inconnue. La [synchronisation permanente vers Kali2](runtime/sync-persistent.json)
+est active, sans suppression ni suivi de liens ; sa dernière copie relevée
+réussit à 21:42:55 UTC.
+
+Le rendu OVRTX a nécessité un correctif explicite des permissions du cache
+sur l'instance. La [couche finale persistante](runtime/image-hotfix-persistent/final-image.json)
+le reprend avec les correctifs Qwen/client/relais et passe le témoin CPU en
+4,157 s ; sa publication reste à effectuer. Le digest initial ci-dessus ne contient pas
+encore ces correctifs. Les échecs UDP observés depuis Mac et Kali2 ne
+permettent pas d'attribuer la cause au fournisseur, car les deux machines
+peuvent partager le même accès Internet.
+
+Kali1 est également disponible pour du [calcul PicoGK CPU borné](runtime/kali1-cpu/summary.json).
+Le lancement depuis Kali2 et la collecte automatique sont prouvés avec
+`kali1-picogk` : deux CPU, 2 Gio, priorité réduite et cinq minutes maximum,
+sans installation système ni redémarrage du gateway. La liaison passe par le
+tunnel du contrôleur Mac, qui doit rester disponible.
+
+L'[image construite et les témoins CPU initiaux](build/README.md) sont documentés
+à part, avec les sources C#, le document FreeCAD éditable, les STEP/STL,
+l'assemblage USD et les journaux extraits de l'image.
+
+Le [dernier reçu `make check`](runtime/make-check-delivery.json) consigne le code
+**0** sur le contrôleur macOS : **3 230 tests principaux**, 148 ignorés et
+**572 documents Markdown sans lien cassé**. Les cinq tests du correctif Git 2.53
+ajouté pendant ce contrôle ont ensuite été relancés avec succès ; les nouvelles
+preuves documentaires sont contrôlées séparément. La [preuve GitHub sur Kali2](runtime/github-access/proof.json)
+confirme lecture native et `push --dry-run` sur les deux dépôts autorisés, sans
+modification distante. L’historique ci-dessous conserve le premier contrôle
+complet et ses conditions d’exécution.
+
+## Historique du premier contrôle logiciel
 
 `make check` s'est terminé avec le code **0** sur Kali2, dans une copie isolée de
 3 898 fichiers du worktree, du 28 septembre 2026 à 18:49:46 UTC jusqu'à
@@ -64,9 +108,10 @@ rejet des empreintes divergentes, ports supplémentaires et tailles invalides.
 la qualification de 30 minutes. Ces ajouts sont postérieurs à la copie Linux
 ci-dessus et ne sont donc pas couverts par son résultat `make check`.
 
-À joindre après la qualification réelle : digest de l'image et accès anonyme
-observé, ressources attribuées et préflight Vulkan/NVENC, témoin PicoGK natif,
-réponse Qwen et outil OpenClaw depuis Kali2, manipulation et sauvegarde USD puis
-reconnexion WebRTC, rapport des 30 minutes simultanées, compteurs de transfert
-et reçus de la garde de coût. La simulation thermomécanique calibrée et la
-qualification physique restent hors du périmètre de cette première installation.
+Les preuves de publication, préflight GPU, témoins CPU, réponse Qwen, outil
+OpenClaw, rendu OVRTX, manipulation/sauvegarde USD et reconnexion WebRTC
+sur Vast et le rapport des trente minutes simultanées sont désormais liés
+ci-dessus. La facture réelle et le bilan final des transferts restent inconnus ;
+la garde destructive a été retirée à la demande de l’utilisateur. La simulation
+thermomécanique calibrée et la qualification physique restent hors du périmètre
+de cette première installation.

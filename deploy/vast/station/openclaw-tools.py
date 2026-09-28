@@ -69,7 +69,7 @@ if action == 'status':
                         raise FileNotFoundError()
                 except (KeyError, FileNotFoundError):
                     record['status'] = 'interrupted_or_unknown'
-            states.append(dict(job=work.name, **record))
+            states.append(dict(record, job=work.name))
     print(json.dumps({'jobs': states, 'manufacturing_validated': False}))
     sys.exit(0)
 if action not in {'demo', 'render'} or not re.fullmatch(r'[a-z][a-z0-9-]{0,47}', job):

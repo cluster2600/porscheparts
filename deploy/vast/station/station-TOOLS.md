@@ -57,3 +57,35 @@ L’impression n’est jamais autorisée par ces résultats numériques. Ne pas
 présenter la pièce comme ajustée, imprimée, testée physiquement ou homologuée.
 Le CLI ne loue, ne prolonge et ne détruit aucune instance Vast ; les limites de
 coût et la garde externe restent contrôlées séparément.
+
+## Calcul CPU sur Kali1
+
+Kali1 dispose d'un runtime PicoGK extrait et vérifié depuis l'image station,
+avec les sources C# conservées. Depuis Kali2, utiliser le lanceur natif :
+
+```sh
+kali1-picogk coupon-kali1-001 --span-mm 50 --voxel-mm 0.25
+```
+
+Le calcul bloque jusqu'à son résultat : témoin volume/offset/aller-retour STL,
+puis témoin paramétrique et deux coupons. Il utilise au maximum **deux CPU,
+2 Gio, zéro swap et 300 secondes**, avec priorité `nice 10`. Un verrou refuse
+un deuxième calcul simultané sur Kali1 ; il n'y a pas de nouvelle file.
+Chaque identifiant doit être neuf, avec les mêmes caractères autorisés que
+`station-task`. Les paramètres restent bornés à 20–80 mm et 0,1–0,5 mm.
+
+La commande utilise exclusivement SSH via `127.0.0.1:2221` sur Kali2,
+`HostKeyAlias=kali1-cpu`, une identité dédiée utilisée par OpenSSH et aucun
+transfert d'agent. Ce port est relié à Kali1 par le contrôleur Mac : le
+contrôleur et son tunnel doivent rester disponibles. La liaison IP directe
+Kali2 → Kali1 a expiré avant authentification ; ne pas désactiver la vérification
+d'hôte ou rechercher un autre secret pour contourner un échec du tunnel.
+
+Après le calcul, `rsync` copie seulement le job dans
+`~/stations/kali1/JOB/` sur Kali2, sans liens, fichiers spéciaux ni suppression.
+Le lanceur vérifie les huit empreintes du reçu `execution.json`. Les sources
+et les trois premiers essais sont également conservés dans
+`~/stations/kali1-compute-20260928-r8kj70sz/`.
+Cette voie exécute la géométrie PicoGK CPU ; les contrôles métal, la CAO et USD
+restent disponibles via la chaîne complète `station-task` sur Vast.
+Ne pas redémarrer le gateway OpenClaw pour lancer ou collecter un calcul Kali1.

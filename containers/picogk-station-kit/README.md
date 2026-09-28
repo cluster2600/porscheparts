@@ -63,13 +63,94 @@ les ports 8088 et 49100 vers la machine du navigateur par SSH. Ouvrir
 externe. Le client officiel `@nvidia/ov-web-rtc` **6.7.0** et son intégrité sont
 fixés dans `package-lock.json`. Aucun CDN n’est utilisé à l’exécution.
 
-La qualification exige une image non vide, le déplacement d’une pièce
+La qualification exige une image non vide, le déplacement d'une pièce
 sélectionnée, une sauvegarde du USD de travail, puis une reconnexion. Le bouton
 « Exporter le diagnostic » enregistre les événements du client et les images
 décodées. Compléter avec des captures visuelles, la preuve du transform avant /
 après et les journaux Kit. Une signalisation réussie seule ne valide pas le
 chemin média UDP. La validation GPU et WebRTC distante reste à exécuter tant
 que ces preuves ne sont pas présentes.
+
+## Repli média par SSH
+
+La qualification du 28 septembre a constaté un mapping UDP public présent dans
+l’API Vast, mais aucun des six datagrammes de test Mac/Kali2 n’a atteint le
+serveur lié à `0.0.0.0:47998`. La sonde loopback a réussi. Le passage UDP public
+reste donc **en échec sur cette instance**. Le repli ci-dessous a fourni de vraies images Kit
+en 1920 × 1080, une sélection, un déplacement de 10 mm et une sauvegarde USD.
+Une reconnexion a réussi après une reprise du client d’environ 34 secondes.
+Un navigateur Chromium isolé exécuté sur Kali2 a ensuite reçu 132 images en
+1920 × 1080 avec les fichiers du client final. Les services sont restés actifs
+après fermeture de SSH et le relais s’est reconnecté automatiquement après
+redémarrage du seul tunnel média.
+Le fichier sauvegardé a également été rouvert par `File > Open`, après sélection
+de `My Computer /` ; le transform X = 10 mm reste visible après rechargement.
+
+`deploy/vast/station/media-relay.py` transporte les datagrammes opaques dans un
+flux TCP à travers SSH. Il utilise uniquement la bibliothèque standard Python,
+des cibles loopback fixes et un choix explicite de durée : `--deadline` dans les
+six heures suivantes, ou `--persistent` après autorisation de maintien actif.
+Il conserve les limites des datagrammes, gère les lectures partielles
+et EOF, borne la file mémoire, le nombre de pairs et l’inactivité des fragments.
+Il n’enregistre ni contenu média, ni SDP, ni paramètres d’authentification ICE.
+
+Sur Vast, utiliser le deadline Unix du manifeste de la location courante :
+
+```sh
+station-media-relay server --deadline "$STATION_DEADLINE_EPOCH"
+```
+
+Cette commande écoute **TCP 127.0.0.1:47999** et ne peut transmettre qu’à
+**UDP 127.0.0.1:47998**. Ajouter au tunnel SSH approuvé du poste client :
+
+```sh
+-L 127.0.0.1:47999:127.0.0.1:47999
+```
+
+Puis, sur le poste qui exécute le navigateur :
+
+```sh
+python3 ~/bin/station-media-relay client --deadline "$STATION_DEADLINE_EPOCH"
+```
+
+Ouvrir `http://127.0.0.1:8088/` et saisir **127.0.0.1**, port **47998** dans
+les champs média. La signalisation reste dans le tunnel TCP 49100. Un seul
+poste média doit être connecté à la fois ; déconnecter le navigateur précédent
+avant de changer de poste.
+
+Sur Kali2, les unités `picogk-station-media-tunnel.service` et
+`picogk-station-media-relay.service` sont distinctes de
+`qwen-vast-tunnel.service`. Elles utilisent `Restart=always`, une
+`ExecCondition` comparant l’horloge au deadline du manifeste et un
+`RuntimeMaxSec` borné. Ainsi, une fermeture TCP prématurée relance le client ;
+l’échéance et un arrêt manuel empêchent une boucle de relance. Le programme
+du tunnel recalcule aussi le temps restant avant chaque lancement de SSH sous
+`timeout`, pour ne pas prolonger l’échéance lors d’une reprise. Le programme
+Vast `media-relay` est ajouté seul au superviseur, sans redémarrer Kit ou Qwen.
+Les fragments exacts propres à la location sont conservés dans ses preuves ;
+aucun deadline de location n’est gravé dans l’image réutilisable.
+
+L’utilisateur a ensuite demandé de conserver la station active, sans coupure.
+Dans ce mode autorisé, les commandes deviennent `station-media-relay server
+--persistent` sur Vast et `python3 ~/bin/station-media-relay client --persistent`
+sur Kali2. Les unités média conservent `Restart=always`, mais n’ont plus
+`ExecCondition`, `RuntimeMaxSec` ni enveloppe `timeout` ; le tunnel lance SSH
+directement. Le service Qwen reste indépendant. Cette option ne modifie aucune
+garde de location : le contrôleur doit enregistrer séparément l’autorisation
+de prolongation et adapter sa politique de coût.
+
+```sh
+systemctl --user status picogk-station-media-tunnel picogk-station-media-relay
+systemctl --user stop picogk-station-media-relay picogk-station-media-tunnel
+```
+
+Le transport TCP peut augmenter la latence et bloquer momentanément les images
+lors d’une retransmission. Il permet le travail interactif observé, mais ne
+valide pas le réseau UDP direct Vast et ne garantit pas une latence maximale.
+Lors de la réouverture USD depuis le Mac, la file a atteint sa limite de 8 MiB
+et le relais a fermé cette connexion. La reconnexion a rétabli l’image et le
+transform sauvegardé, sans redémarrer Kit ni Qwen. Un chargement volumineux peut
+donc nécessiter une reconnexion ; la limite mémoire reste active.
 
 ## Protocole de qualification native
 
@@ -110,8 +191,9 @@ Conserver Qwen arrêté durant cette vérification initiale du GPU.
    Une image doit montrer l'éditeur natif et l'assemblage ; capturer cet état.
 4. Dans le panneau Stage de Kit, sélectionner **`/World/bracket_witness`**,
    son Xform parent. Capturer la sélection et son transform initial `(0,0,0)`.
-   Dans les propriétés natives, régler Translate X à **10 mm**, conserver
-   Y et Z à zéro, puis constater le déplacement dans la vue et capturer.
+   Dans les propriétés natives, double-cliquer la valeur Translate X et saisir
+   **10 mm**, conserver Y et Z à zéro, puis quitter le champ pour valider.
+   Constater le déplacement dans la vue et capturer.
 5. Enregistrer `working.usda` depuis File → Save. Sur la station, relire le
    fichier avec USD pour vérifier `xformOp:translate == (10,0,0)` :
 

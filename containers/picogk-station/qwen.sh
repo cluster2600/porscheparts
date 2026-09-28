@@ -14,5 +14,6 @@ if [ -e "$token_file" ] || [ -L "$token_file" ]; then
 fi
 export CUDA_VISIBLE_DEVICES=0,1
 export MAX_MODEL_LEN=262144 MAX_NUM_SEQS=4 TENSOR_PARALLEL_SIZE=2 DATA_PARALLEL_SIZE=1
+export GPU_MEMORY_UTILIZATION=0.90
 export MODEL_REVISION=c1209bda15a6bbc4c68b585e93d40c0d85f50306
 exec /opt/qwen/start.sh

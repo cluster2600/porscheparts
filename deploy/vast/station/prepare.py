@@ -9,6 +9,7 @@ import hashlib
 import importlib.machinery
 import importlib.util
 import json
+import math
 import os
 from pathlib import Path
 import plistlib
@@ -123,13 +124,14 @@ def main():
                       int((remaining - transfers) / offer["dph_total"] * 3600))
         if seconds < 1800:
             raise ValueError("remaining session budget or time cannot cover startup and cleanup")
+        attempt_budget = min(remaining, math.ceil((offer["dph_total"] * seconds / 3600 + transfers) * 100) / 100)
         suffix = secrets.token_hex(10)
         job = "station-" + suffix
         proof, _ = policy.read_json(vars(wrapper), pins["qualification_path"])
         manifest = {"schema_version": "1.0.0", "profile": policy.PROFILE, "role": "llm", "variant": policy.PROFILE,
                     "job_id": job, "attempt_label": "3dprinting993-picogk-station-" + suffix, "sibling_label": "",
                     "image_ref": proof["image_ref"], "model": policy.MODEL, "model_revision": policy.REVISION,
-                    "created_epoch": now, "deadline_epoch": now + seconds, "budget_usd": remaining,
+                    "created_epoch": now, "deadline_epoch": now + seconds, "budget_usd": attempt_budget,
                     "download_budget_gb": 500, "upload_budget_gb": 100,
                     **{key: pins[key] for key in ("qualification_path", "qualification_sha256", "guard_path", "guard_sha256")},
                     "guard_ready_path": str(directory / (job + ".guard-ready.json")),
@@ -137,7 +139,7 @@ def main():
         path = directory / (job + ".json")
         policy.write_json(path, manifest)
         policy.prepare(vars(wrapper), ["launch-station", str(args.offer_id), str(path)], pins)
-        print(json.dumps({"manifest": str(path), "deadline_epoch": manifest["deadline_epoch"], "budget_usd": remaining}))
+        print(json.dumps({"manifest": str(path), "deadline_epoch": manifest["deadline_epoch"], "budget_usd": attempt_budget}))
         return
     manifest, _ = policy.read_json(vars(wrapper), args.manifest)
     policy.prepare(vars(wrapper), ["reconcile-station", str(args.manifest)], pins)

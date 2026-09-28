@@ -52,6 +52,18 @@ class StationToolsTest(unittest.TestCase):
                 self.assertEqual(state['status'], 'complete' if code == 0 else 'failed')
                 self.assertFalse((work / (action + '.tmp')).exists())
 
+    def test_status_uses_validated_directory_when_soak_record_already_has_job(self):
+        with tempfile.TemporaryDirectory() as directory:
+            work = Path(directory) / 'soak-witness'
+            work.mkdir()
+            record = {'job': 'different-job', 'action': 'demo', 'status': 'complete', 'returncode': 0}
+            (work / 'demo.json').write_text(json.dumps(record))
+            remote = tools.REMOTE.replace("root = Path('/workspace/jobs')", f'root = Path({directory!r})')
+            result = subprocess.run([sys.executable, '-c', remote, json.dumps(['status', None, None, None])],
+                                    capture_output=True, text=True, timeout=10, check=True)
+            self.assertEqual(json.loads(result.stdout)['jobs'], [{**record, 'job': 'soak-witness'}])
+            self.assertEqual(json.loads((work / 'demo.json').read_text()), record)
+
 
 if __name__ == '__main__':
     unittest.main()
