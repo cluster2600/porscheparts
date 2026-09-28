@@ -14,7 +14,7 @@
 
 **The F0 model below is archived.** The new study targets the Turbo M64.60 assembly and PMB 240 A alternator; it does not turn this Carrera record into a validated Turbo part.
 
-[Project presentation on PorscheFanatics](https://porschefanatics.com/projects/993-turbo-fan/) · [Reconstruction dossier (French)](../../twins/993-engine-cooling-fan-system-f0/REFERENCE_REBUILD.md) · [OpenUSD model](../../twins/993-engine-cooling-fan-system-f0/results/reference/reference.usdz)
+[Project presentation on PorscheFanatics](https://porschefanatics.com/projects/993-turbo-fan/) · [Reconstruction dossier (French)](../../twins/993-engine-cooling-fan-system-f0/REFERENCE_REBUILD.md) · [OpenUSD model](../../twins/993-engine-cooling-fan-system-f0/results/reference/reference.usdz) · [Prototype print release dossier](../../twins/993-engine-cooling-fan-system-f0/PRINT_RELEASE.md)
 
 ![New Turbo reconstruction: front, rear, section and exploded views](../../twins/993-engine-cooling-fan-system-f0/results/reference/reference-review.png)
 
