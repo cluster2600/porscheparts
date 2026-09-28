@@ -13,6 +13,7 @@ p.add_argument('geometry', type=Path)
 p.add_argument('output', type=Path)
 p.add_argument('--level', type=int, default=4, choices=[3, 4, 5])
 p.add_argument('--iterations', type=int, default=500, choices=[300, 500])
+p.add_argument('--device', default='cpu')
 a = p.parse_args()
 a.output.mkdir(parents=True, exist_ok=False)
 original = a.geometry / 'rotor-mm.stl'
@@ -32,7 +33,7 @@ report = {'source_generation': generation,
           'pmb_represented':False, 'manufacturing_authorized':False}
 (a.output / 'picogk-report.json').write_text(json.dumps(report,indent=2)+'\n')
 runpy.run_path(str(HERE/'audit_fan_physicsnemo.py'))['audit'](
-    a.output/'rotor-mm.stl', a.output/'physicsnemo-surface-audit.json')
+    a.output/'rotor-mm.stl', a.output/'physicsnemo-surface-audit.json', a.device)
 runpy.run_path(str(HERE/'build_fan_cfd.py'))['generate'](
     a.output/'case', a.output/'rotor-metres.stl', 3000, 24, a.level, rotor_only=True, rotation_sign=-1)
 control = a.output/'case/system/controlDict'
