@@ -40,6 +40,22 @@ envelope **0.005 provisional units**, target edge 3, AMIPS stop 8, 80 passes,
 coincidence checks; a polygon envelope is not continuous native-CAD conformity
 or certified physical millimetres.
 
+**Actual outcome: interrupted, no final mesh recovered.** The last observed
+iteration was pass 18, about 40 minutes after starting the mesher. These
+intermediate counts/energies are not exported-mesh quality results. The
+pre-armed budget guard then reported `inventory_read_failed` and destroyed
+instance `53156456`, with `verified_absent=true`. Independent inventory reads
+returned an empty list; the SSH process exited 255 on connection reset.
+
+This is an infrastructure interruption, **not** a demonstrated convergence
+failure or success of the tighter envelope. The temporary remote iteration
+state and full remote log were not recovered before destruction. Local
+source/input bundles, prior completed meshes, original CAD and all local
+thermal/valve results remain intact. No replacement rental is launched by
+this continuation. A repeat needs result/checkpoint retrieval coordinated
+with cleanup; weakening the spending guard or silently repeating this same
+uncheckpointed attempt is not the next engineering step.
+
 ## Valve comparison: original and extended profiles, 24 cases
 
 The [comparison script](../../twins/m64-cylinder-head/source/valvetrain/screen_valve_variants.py)
@@ -270,6 +286,7 @@ aggregate figures and fingerprints are published.
 | Coincident-link diagnostic source | `abbf7c851fd55f72329b1f5bc140b8bf9c4ddd2b2aab1791c70ea893bde43b3f` |
 | Coincident-link report, run 02 | `14e6d154a84c1170b11b72fb63e2b1c3454fe706455391c5cee8fc726b9a41cf` |
 | Valve comparison private report, run 03 | `fe1b47eca7f259412b648138371f897d6d3545e6764624a2ffed6b0d08c3426f` |
+| Original-profile rerun with the final producer, run 04 | `74c1b0311ec382388b9523f1f67f9f92b53d9b3993bf8a921bf3e3c52fceacda` |
 | Extended-profile private report | `10dd648e63bcfce7787cb630663084442fb69ab8bb8d0ca34be0b43dc625bb5e` |
 | Thermal comparison report | `e209a2a05d8afaa148806f420d28238a20782fa6dbc4c6c924fd2afc0b764df5` |
 | New AdditiveFOAM executable | `549d6359b68a17ed6036ed30443bc8091380a0f1180b9150dc22dcefb96a3391` |
@@ -294,7 +311,26 @@ during solving, bounded memory/CPU/time, and only their case directory writable.
 `blockMesh` and `checkMesh -allTopology -allGeometry` precede `additiveFoam`.
 Build and calculation logs are retained separately from failed attempts.
 
+The bounded Vast attempt used 72 effective CPU cores, approximately 258 GB
+advertised RAM and an RTX 2080 Ti; the mesher is CPU work, not a claimed GPU
+simulation. Advertised rate was **$0.354074/h**, reserved disk 100 GB, hard
+budget $2.50 with a three-hour guard. The credit readback changed from
+**$35.775680 to $35.504361**, approximately **$0.2713 observed debit**; this is
+an account snapshot difference, not an itemized invoice. No recharge was
+requested. The instance is verified absent and the guard has exited. The
+five local task containers are also removed after their logs and states
+were retained; source, binaries and computed fields remain on local disk.
+
+Rental manifest SHA-256:
+`0491e1c40adcb606d0cc61bff320c1e3138c02ebca4a3825100b3bb7394cf014`.
+Local container state capture SHA-256:
+`7c8c25cc223f3934e5cfdb8eaa3d82f1019d2d7ed87c9bfc84afdccb3bc84bc7`.
+
 Repository verification: `make check` passes, including **3,183 tests,
 147 explicitly skipped**, native container checks and zero broken Markdown
 links. The four new targeted tests also pass in the actual local numerical
 environment. This verifies software behavior, not physical qualification.
+The original-profile study was rerun with the final extended-capable producer;
+all numerical case results exactly match run 03. Both original and extended
+studies are now reproducible from source SHA-256
+`cd1dc34d3af2edcd6110e98dc241fec0c455d0ae4b07718690116d3b2dbd18ca`.
