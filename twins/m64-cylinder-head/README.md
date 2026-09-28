@@ -69,6 +69,12 @@ positions. The padded body passes its own new BOP audit, but all three volume
 meshes and the strict PhysicsNeMo area comparison remain rejected. Actuation,
 continuous motion, hot strength, cooling and print qualification remain open.
 
+September 28 [precision and local remeshing continuation](../../docs/reports/M64_MESH_PRECISION_RECOVERY_20260928.md):
+the cross-product area method passes a new 80/120-digit CPU audit on the current
+surface. A 155-face MeshAdapt trial reduces inadequate tetrahedra from 1,314 to
+160 against a same-Mac control. Geometry is unchanged, the volume-mesh gate
+still fails, and the previous GPU refusal is not rewritten as a pass.
+
 ## Evidence and current work
 
 This directory holds the code, records and receipts of the M64 cylinder head
