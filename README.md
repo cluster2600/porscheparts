@@ -182,7 +182,7 @@ engineering** stays so until an engineering review lifts it.
 <td align="center" width="16%"><a href="parts/993-eng-connecting-rod-ti64-f0-0001/"><img src="parts/993-eng-connecting-rod-ti64-f0-0001/media/preview.png" alt="🧩 993/993 Turbo connecting rod" width="130"><br><sub>🧩 993/993 Turbo connecting rod</sub></a></td>
 </tr>
 <tr>
-<td align="center" width="16%"><a href="parts/993-eng-cooling-impeller-alsi10mg-f0-0001/"><img src="parts/993-eng-cooling-impeller-alsi10mg-f0-0001/media/preview.png" alt="Engine cooling fan impeller" width="130"><br><sub>Engine cooling fan impeller</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-eng-cooling-impeller-alsi10mg-f0-0001/"><img src="parts/993-eng-cooling-impeller-alsi10mg-f0-0001/media/preview.png" alt="Ventilateur moteur 993 — archive…" width="130"><br><sub>Ventilateur moteur 993 — archive…</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-exhaust-manifold-in625-f0-0001/"><img src="parts/993-eng-exhaust-manifold-in625-f0-0001/media/preview.png" alt="993 Turbo three-into-one exhaust…" width="130"><br><sub>993 Turbo three-into-one exhaust…</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-exhaust-valve-f1-0001/"><img src="parts/993-eng-exhaust-valve-f1-0001/media/preview.png" alt="993 exhaust valves - F1 proxies" width="130"><br><sub>993 exhaust valves - F1 proxies</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-fan-housing-alsi10mg-f0-0001/"><img src="parts/993-eng-fan-housing-alsi10mg-f0-0001/media/preview.png" alt="Stationary engine fan housing" width="130"><br><sub>Stationary engine fan housing</sub></a></td>
@@ -259,7 +259,7 @@ flowchart LR
 | [993 timing chain case and its lids](docs/pieces/993-eng-chain-case-0001.md) | unidentified | undecided | **prohibited pending engineering** |
 | [Left chain case lid 964 105 107 01](docs/pieces/993-eng-chain-case-lid-ti-f0-0001.md) | Ti-6Al-4V Grade 5, plate — deliberate c… | CNC | functional |
 | [993/993 Turbo connecting rod](docs/pieces/993-eng-connecting-rod-ti64-f0-0001.md) | Ti-6Al-4V Grade 5 LPBF for screening | LPBF | **prohibited pending engineering** |
-| [Engine cooling fan impeller](docs/pieces/993-eng-cooling-impeller-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 for comparison | undecided | **prohibited pending engineering** |
+| [Ventilateur moteur 993 — archive du concept C…](docs/pieces/993-eng-cooling-impeller-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 for comparison | undecided | **prohibited pending engineering** |
 | [993 Turbo three-into-one exhaust manifold](docs/pieces/993-eng-exhaust-manifold-in625-f0-0001.md) | EOS NickelAlloy IN625 / UNS N06625 for… | undecided | **prohibited pending engineering** |
 | [993 exhaust valves - F1 proxies](docs/pieces/993-eng-exhaust-valve-f1-0001.md) | INCONEL 751 / UNS N07751 candidate | CNC | **prohibited pending engineering** |
 | [Stationary engine fan housing](docs/pieces/993-eng-fan-housing-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 for comparison | undecided | **prohibited pending engineering** |
