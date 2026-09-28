@@ -99,6 +99,17 @@ roundtrip: six surface components and directional sampled maxima 0.112/0.069,
 above the 0.040 provisional-unit screen. The tighter fTetWild repeat times out
 without a final mesh. No rejected output replaces the native head.
 
+The [junction and AM continuation](../../docs/reports/M64_JUNCTION_AM_SCREEN_20260928.md)
+locates the rejected island at a native knife-edge and produces an actual CAD
+section. Spatial refinement reduces poor tetrahedra to 122 without modifying
+the body, but still fails the quality gate. The subsequent fTetWild trial has
+1,121,049 tetrahedra, one connected region and no element below minSICN 0.1.
+Its independent audit still finds 14 coincident vertex records; native-CAD
+deviation and junction topology remain unqualified. Full-height geometric slicing is
+completed at two layer increments, including 3,426 layers for the finer run.
+Sparse thickness and two-resolution powder-connectivity screens retain their
+alerts; neither is a thermal/distortion simulation or permission to print.
+
 ## Evidence and current work
 
 This directory holds the code, records and receipts of the M64 cylinder head
