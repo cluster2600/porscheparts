@@ -1,6 +1,6 @@
 {
-  "observed_at_utc": "2026-09-28T21:59:25.497946+00:00",
-  "state": "cpu_gpu_qwen_openclaw_ovrtx_ui_soak_pass",
+  "observed_at_utc": "2026-09-28T22:12:17.283505+00:00",
+  "state": "qualified_running_user_retained_final_image_published",
   "rental_started": true,
   "vast_inventory": [
     {
@@ -108,7 +108,7 @@
     "soak_verified_job_files": 1219,
     "soak_verification_evidence": "runtime/soak/kali2-sync-verification.json"
   },
-  "make_check_evidence": "runtime/make-check-delivery.json",
+  "make_check_evidence": "runtime/make-check-final-release.json",
   "qwen_api": "pass",
   "ovrtx_gpu3": "pass",
   "ovrtx_evidence": "runtime/ovrtx-gpu3/summary.json",
@@ -196,5 +196,36 @@
   "soak_evidence": "runtime/soak/summary.json",
   "soak_kali2_sync_evidence": "runtime/soak/kali2-sync-verification.json",
   "make_check_previous_evidence": "runtime/make-check.json",
-  "github_access_evidence": "runtime/github-access/proof.json"
+  "github_access_evidence": "runtime/github-access/proof.json",
+  "final_publication_evidence": "publication-final.json",
+  "delivered_image_ref": "ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:6548a22795a01bf6b4a1d79a4bf9415d839ef5f445773d19d3df81bec2bef154",
+  "final_image_config_digest": "sha256:4f58a4e28ab7706e7735b2185123c2d8fd6eb94a3d1842a9e352950ce503bdfb",
+  "final_image_fresh_gpu_boot_verified": false,
+  "live_instance_image_scope": "initial published image with verified runtime corrections; existing user work preserved",
+  "image_hotfix_persistent": {
+    "published": true,
+    "evidence": "runtime/image-hotfix-persistent/final-image.json",
+    "publication_evidence": "publication-final.json",
+    "image_ref": "ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:6548a22795a01bf6b4a1d79a4bf9415d839ef5f445773d19d3df81bec2bef154"
+  },
+  "engine_work_monitoring": {
+    "active": true,
+    "interval_minutes": 30,
+    "target": "Porsche 911 993 engine reconstruction in existing M64/60 program",
+    "automatic_rental_shutdown": false,
+    "token_rotation_requested": false,
+    "user_requested_token_retention": true
+  },
+  "github_access": {
+    "repositories": [
+      "cluster2600/porscheparts",
+      "cluster2600/porschefanatics.com"
+    ],
+    "native_reads_verified": true,
+    "push_dry_run_verified": true,
+    "remote_refs_created_by_verification": false,
+    "api_authentication_metadata_filtered": true,
+    "evidence": "runtime/github-access/proof.json"
+  },
+  "make_check_delivery_evidence": "runtime/make-check-delivery.json"
 }

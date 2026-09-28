@@ -74,6 +74,14 @@ coupons ont été vérifiés visuellement.
 
 ![Rendu OVRTX du témoin et des deux coupons](ovrtx-gpu3/render.png)
 
+Le [nouveau rendu après édition](ovrtx-after-edit/execution.json) reprend le
+fichier USD sauvegardé après la translation native de 10 mm : son empreinte
+reste inchangée pendant le rendu. Les 64 étapes passent en **10,753 s** sur
+le GPU 3, confirmé par les observations du nouveau processus. Le
+[PNG de 1280 × 720](ovrtx-after-edit/render-after.png) et le
+[journal](ovrtx-after-edit/render.log) complètent la preuve d’édition/rendu.
+
+
 Le premier essai avait été arrêté après 79,139 s à cause des droits d'écriture
 du cache. La [correction runtime](ovrtx-gpu3/runtime-permissions-fix.json)
 accorde au worker les seuls répertoires `cache` et `mdl/omniverse_exts`. La
@@ -140,7 +148,7 @@ utilisateur éventuellement présente. Le [deuxième rapport brut](soak-attempt-
 et ses événements conservent l’interruption opérateur séparément. Quatre
 requêtes courtes simultanées ne valident pas quatre contextes pleins de 262 144 tokens.
 
-La [couche finale construite](image-hotfix/final-image.json) conserve les 74
+La [couche corrective intermédiaire](image-hotfix/final-image.json) conserve les 74
 couches du digest initial et en ajoute quatre, soit 924 103 689 octets non
 compressés. Elle embarque le client final, le relais média corrigé, la limite
 Qwen explicite et les permissions OVRTX. Le [témoin CPU/configuration/worker](image-hotfix/cpu-config-smoke.log)
@@ -154,6 +162,14 @@ a ensuite été construite : image `4f58a4e28ab7…`, témoin CPU/configuration
 PASS en 4,157 s et 74 couches initiales inchangées. Elle conserve les bornes de
 transport et permet le mode explicite `--persistent`. Les [services relevés après fermeture SSH](omniverse-ui/persistent-services-after-ssh.json)
 n'ont plus de condition d'échéance. Le tunnel Qwen garde son PID.
+
+La [publication finale](../publication-final.json) a réussi : le digest livré est
+`sha256:6548a22795a01bf6b4a1d79a4bf9415d839ef5f445773d19d3df81bec2bef154`.
+La configuration publiée correspond à l’image persistante construite ; les
+métadonnées du registre ont été vérifiées anonymement. Les preuves GPU portent
+sur l’instance initiale corrigée en fonctionnement. Un nouveau démarrage GPU
+depuis ce digest final n’a pas été testé, pour préserver les travaux actifs.
+
 La [politique active](keep-running.json) remplace la limite initiale par un
 maintien en fonctionnement sans destruction automatique ; le prix observé
 est de 6,237037 USD/h, environ 149,69 USD/jour hors transferts, et la facture
@@ -200,5 +216,24 @@ deux dépôts autorisés la lecture du README, `git ls-remote` et `git push --dr
 avec code 0. Aucune référence distante ni aucun commit n’a été publié par ces
 vérifications. Le transport utilise le wrapper OpenBao existant par la liaison
 SSH du contrôleur ; aucun redémarrage du gateway n’a été nécessaire.
+
+Le [tour final OpenClaw](github-access/openclaw-tool-call.json), dans une session
+isolée, prouve ensuite deux appels réels à `openclaw-github check` avec code 0
+en **11,626 s** au total. Les résultats d’outil confirment les identifiants
+**1349420480** (`cluster2600/porscheparts`) et **1336775701**
+(`cluster2600/porschefanatics.com`), avec `pull=true` pour chacun. Le
+[filtre de sortie](github-access/output-filter-proof.json) a été vérifié avant
+ce tour ; seuls les champs nécessaires à la preuve sont conservés. Le gateway
+n’a pas été redémarré. Les 22 943 tokens d’entrée et 192 de sortie sont cumulés
+sur le tour, pas dans une seule requête. Le [relevé natif des demandes de secret](github-access/pending-secret-requests.json)
+indiquait **zéro demande en attente à 22:02:28 UTC**, sans lecture de secret ni
+d’historique et sans modification de demande.
+
+Le [contrôle final sur code figé](make-check-final-release.json) passe avec
+**3231 tests principaux**, 148 ignorés, 3508 invocations sur
+32 suites et **574 documents Markdown sans lien cassé**. Il inclut les
+régressions Git 2.53 et le filtre de métadonnées sensibles. Son
+[journal réduit](make-check-final-release-summary.log) conserve les bilans ; seuls
+les reçus et leur documentation ont été ajoutés après ce contrôle.
 
 Les fichiers de ce dossier sont indexés dans [SHA256SUMS](SHA256SUMS).

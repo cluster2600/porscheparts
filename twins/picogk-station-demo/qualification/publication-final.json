@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "observed_at_utc": "2026-09-28T22:10:17Z",
+  "status": "published_and_anonymously_qualified",
+  "publication_tag": "ghcr.io/cluster2600/3dprinting993-picogk-m64:station-20260928-persistent-4f58a4e28ab7",
+  "image": {
+    "image_ref": "ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:6548a22795a01bf6b4a1d79a4bf9415d839ef5f445773d19d3df81bec2bef154",
+    "config_digest": "sha256:4f58a4e28ab7706e7735b2185123c2d8fd6eb94a3d1842a9e352950ce503bdfb",
+    "platform": "linux/amd64",
+    "anonymous_registry_verified": true,
+    "published_ports": [
+      "22/tcp",
+      "47998/udp"
+    ],
+    "image_download_bytes": 17244068340,
+    "layer_count": 78,
+    "observed_epoch": 1790633357,
+    "observed_at_utc": "2026-09-28T22:09:17Z"
+  },
+  "anonymous_qualification": {
+    "script": "deploy/vast/station/qualify_image.py",
+    "script_sha256": "30c1a67c01db10a1dfe89a2c8bb7d7f76cb7ab547de7ab1aa83b5bc30820245a",
+    "source_receipt_sha256": "d82eed4c17204193a39d90dba04aee6ddded04c2b39b6126679645f1418a8f26",
+    "metadata_only": true,
+    "full_image_pull_on_new_host_verified": false,
+    "local_configuration_matches_published": true,
+    "cpu_build_evidence": "runtime/image-hotfix-persistent/final-image.json"
+  },
+  "github_actions": {
+    "repository": "cluster2600/porscheparts",
+    "workflow_path": ".github/workflows/picogk-station-publish.yml",
+    "run_id": 36490231264,
+    "url": "https://github.com/cluster2600/porscheparts/actions/runs/36490231264",
+    "head_sha": "db2749846a926d0b778fa3dfa182ba26d3ccf01b",
+    "status": "completed",
+    "conclusion": "success",
+    "api_observed_at_utc": "2026-09-28T22:09:24Z",
+    "verification_source": "approved station-publisher-status wrapper; matching runner-name filter",
+    "source_receipt_sha256": "198076012cc363321a678aafbe548e45dc073b29f566b15a7829a8df9292b58e"
+  },
+  "runner": {
+    "host": "Kali2",
+    "id": 23,
+    "name": "picogk-station-publisher-20260928-r8kj70sz",
+    "just_in_time": true,
+    "single_job": true,
+    "automatically_deregistered": true,
+    "matching_station_runners_remaining_after_job": 0,
+    "other_repository_runners_not_inspected": true
+  },
+  "existing_image_published_without_rebuild": true,
+  "parent_latest_tag_modified": false,
+  "runtime_evidence_scope": "Publication metadata only; live component and endurance evidence are recorded separately under runtime/.",
+  "manufacturing_validated": false
+}

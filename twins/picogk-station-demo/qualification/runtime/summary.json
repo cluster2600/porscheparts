@@ -9,7 +9,7 @@
   "native_mesh": "native-witness/sphere-radius5mm-voxel0.5mm.stl",
   "native_mesh_sha256": "dea88bea10b8d8a996896a3455e8b6f6e421199aa448f2205399cfbab3465ab7",
   "control_plane": "control-plane.json",
-  "make_check": "make-check-delivery.json",
+  "make_check": "make-check-final-release.json",
   "completed_checks": [
     "native_picogk_volume_offset_stl_roundtrip",
     "python_geometry_smoke",
@@ -33,7 +33,10 @@
     "thirty_minute_qwen_picogk_omniverse_soak",
     "soak_artifacts_hash_verified_on_vast_and_kali2",
     "github_native_read_and_push_dry_run_two_repositories",
-    "make_check_delivery"
+    "make_check_delivery",
+    "openclaw_gateway_github_checks_two_repositories_with_filtered_results",
+    "ovrtx_gpu3_render_after_native_usd_edit",
+    "make_check_final_release_with_frozen_code"
   ],
   "llm_response_verified": true,
   "openclaw_tool_call_verified": true,
@@ -82,5 +85,15 @@
   },
   "make_check_previous": "make-check.json",
   "github_access": "github-access/proof.json",
-  "github_native_read_and_push_transport_verified": true
+  "github_native_read_and_push_transport_verified": true,
+  "github_openclaw_api_access_verified": true,
+  "github_openclaw_tool_evidence": "github-access/openclaw-tool-call.json",
+  "github_output_filter_evidence": "github-access/output-filter-proof.json",
+  "github_pending_secret_requests_evidence": "github-access/pending-secret-requests.json",
+  "ovrtx_after_interactive_edit": "ovrtx-after-edit/execution.json",
+  "ovrtx_after_interactive_edit_verified": true,
+  "final_publication": "../publication-final.json",
+  "final_image_ref": "ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:6548a22795a01bf6b4a1d79a4bf9415d839ef5f445773d19d3df81bec2bef154",
+  "final_image_fresh_gpu_boot_verified": false,
+  "make_check_delivery": "make-check-delivery.json"
 }

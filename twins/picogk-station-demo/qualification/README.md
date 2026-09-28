@@ -14,17 +14,20 @@ Vast et la copie persistante de Kali2. Ces résultats ne prouvent aucune
 qualification physique de pièce.
 
 Le [statut du déploiement](deployment-status.json), la
-[preuve de publication](publication.json) et les
+[preuve de publication finale](publication-final.json) et les
 [preuves d'exécution sur Vast](runtime/README.md) précisent chaque état observé.
 Le manifeste publié est :
 
 ```text
-ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:540d9d4af34a73f91114f2d3dd4f4ad847eee42037c26efaf1caadb5b155e871
+ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:6548a22795a01bf6b4a1d79a4bf9415d839ef5f445773d19d3df81bec2bef154
 ```
 
 La publication a réutilisé l'image construite, sans reconstruction, via GitHub
-Actions et un runner JIT sur Kali2. Le run `36471929525` a réussi ; le runner
-correspondant a été automatiquement retiré. Les refus antérieurs de publication
+Actions et un runner JIT sur Kali2. Le run final `36490231264` a réussi ; le
+runner 23 a été automatiquement retiré. Les 78 couches, la configuration
+`4f58a4e28ab7…`, la plateforme et les seuls ports `22/tcp`, `47998/udp` sont
+vérifiés anonymement. La [publication initiale](publication.json) reste conservée.
+Les refus antérieurs de publication
 directe et le refus budgétaire antérieur à toute création restent conservés dans
 le statut comme historique ; ils ne décrivent plus l'état actuel.
 
@@ -42,8 +45,11 @@ réussit à 21:42:55 UTC.
 Le rendu OVRTX a nécessité un correctif explicite des permissions du cache
 sur l'instance. La [couche finale persistante](runtime/image-hotfix-persistent/final-image.json)
 le reprend avec les correctifs Qwen/client/relais et passe le témoin CPU en
-4,157 s ; sa publication reste à effectuer. Le digest initial ci-dessus ne contient pas
-encore ces correctifs. Les échecs UDP observés depuis Mac et Kali2 ne
+4,157 s ; elle est publiée au digest ci-dessus. La preuve GPU et l'endurance
+concernent l'instance initiale avec ces correctifs appliqués en fonctionnement.
+Une nouvelle instance démarrée depuis le digest final n'a pas été testée ;
+les travaux actifs sont préservés sur la location existante.
+Les échecs UDP observés depuis Mac et Kali2 ne
 permettent pas d'attribuer la cause au fournisseur, car les deux machines
 peuvent partager le même accès Internet.
 
@@ -53,15 +59,21 @@ Le lancement depuis Kali2 et la collecte automatique sont prouvés avec
 sans installation système ni redémarrage du gateway. La liaison passe par le
 tunnel du contrôleur Mac, qui doit rester disponible.
 
+La surveillance OpenClaw est programmée toutes les **30 minutes** : elle suit
+l'avancement réel du moteur 911 993, les sources et résultats, ainsi que les
+services. Le témoin générique de cette qualification ne représente pas une
+pièce de ce moteur. Le jeton GitHub est conservé à la demande de l'utilisateur ;
+les réponses API filtrent les métadonnées temporaires d'authentification.
+
 L'[image construite et les témoins CPU initiaux](build/README.md) sont documentés
 à part, avec les sources C#, le document FreeCAD éditable, les STEP/STL,
 l'assemblage USD et les journaux extraits de l'image.
 
-Le [dernier reçu `make check`](runtime/make-check-delivery.json) consigne le code
-**0** sur le contrôleur macOS : **3 230 tests principaux**, 148 ignorés et
-**572 documents Markdown sans lien cassé**. Les cinq tests du correctif Git 2.53
-ajouté pendant ce contrôle ont ensuite été relancés avec succès ; les nouvelles
-preuves documentaires sont contrôlées séparément. La [preuve GitHub sur Kali2](runtime/github-access/proof.json)
+Le [dernier reçu `make check`](runtime/make-check-final-release.json) consigne le code
+**0** sur le contrôleur macOS : **3 231 tests principaux**, 148 ignorés et
+**574 documents Markdown sans lien cassé**. Le code est resté figé pendant ce
+contrôle, qui inclut les régressions Git 2.53 et le filtrage des métadonnées
+sensibles. Les reçus documentaires ajoutés ensuite sont contrôlés séparément. La [preuve GitHub sur Kali2](runtime/github-access/proof.json)
 confirme lecture native et `push --dry-run` sur les deux dépôts autorisés, sans
 modification distante. L’historique ci-dessous conserve le premier contrôle
 complet et ses conditions d’exécution.

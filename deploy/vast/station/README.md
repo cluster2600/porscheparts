@@ -132,7 +132,9 @@ couches. Il compare l'ensemble de la configuration avant/après. Publier ensuite
 le tag qualifié avec le [workflow de publication](../../../.github/workflows/picogk-station-publish.yml).
 Le hook GitHub de [station_credentials.py](../../openbao/station_credentials.py)
 enregistre un runner JIT sur Kali2 via l'identité OpenBao existante ; il ne
-reconstruit pas l'image. Le tag `station-20260928-ef4b546991d6` utilise le dépôt
+reconstruit pas l'image. L'image finale qualifiée est
+`ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:6548a22795a01bf6b4a1d79a4bf9415d839ef5f445773d19d3df81bec2bef154`.
+Le tag `station-20260928-persistent-4f58a4e28ab7` utilise le dépôt
 PicoGK déjà public sans modifier ses anciens tags ni ses digests de base. Le job utilise son propre jeton de publication, dans
 un dossier Docker temporaire supprimé à sa fin. Vérifier ensuite
 anonymement le digest, sa plateforme et ses ports. Aucun poids ni secret n'entre
