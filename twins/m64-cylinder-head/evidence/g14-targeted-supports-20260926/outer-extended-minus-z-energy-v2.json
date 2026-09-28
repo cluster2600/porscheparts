@@ -1,0 +1,304 @@
+{
+  "classification": "retained_linear_isotropic_C3D10_energy_diagnostic_not_optimization",
+  "source_sha256": "d901486a5fdd14d09286fb8e15597b44870cdb7cc4a1e819d43bad53ff653958",
+  "input_hashes_before": {
+    "work/m64-g14/fea/candidate-outer-extended-2/native-mac-g14-outer_high_cheeks_extended_haunch_p-2/minus_z.inp": "8b5b25a00d93bd67b939879dace65fd4cb435d8194041042a91458bf00e81e16",
+    "work/m64-g14/fea/candidate-outer-extended-2/native-mac-g14-outer_high_cheeks_extended_haunch_p-2/minus_z.dat": "dfcca0435dbea2474b4f284c66ae334693742a840fc7f3f32b2ff42761f326fb",
+    "work/m64-g14/fea/candidate-outer-extended-2/native-mac-g14-outer_high_cheeks_extended_haunch_p-2/case.json": "caab4c4ab964ff221f2efc5851d49bee16ecc0082a4ccd45aa0a787e8c3bf977",
+    "work/m64-g14/fea/candidate-outer-extended-2/summary.json": "d749e308289f2232333e0a2b3b70d1df2605d58609ad6a9f0386d6155a307396",
+    "twins/m64-cylinder-head/evidence/g7-local-supports-cooling-20260925/native-audit.json": "7e93be79ce379f2c4ccf26a6c129a70a093be368a2ff1f168884acc03764842e",
+    "twins/m64-cylinder-head/source/fourvalve/g8_pilot.py": "f6f3d1fe77c0a701bb1f75926cd4ac8cba3ee6cc9c3337967740d30ad85fee92",
+    "twins/m64-cylinder-head/source/fourvalve/g9_reference_campaign.py": "ed6a2b21d89030ba39fc393f8a218bbbf328eceda49ce6bed361273bd2d8170b",
+    "twins/reference-917-engine/source/run_f37_carrier_calculix.py": "54e3478e219875872092cacb281dd12e640126cbed9273e8d82cd46d36fa2b13",
+    "work/m64-g13/native-ccx/CalculiX/ccx_2.21/src/gauss.f": "aed2d48b6a63e30894e747a531f6edc32e3cd921338e370902dfb62d8e304df2",
+    "work/m64-g13/native-ccx/CalculiX/ccx_2.21/src/shape10tet.f": "04b93f4f9cede954cc82fdfead173c84316471bfd7ffd01b6336c1647cc6644c"
+  },
+  "input_hashes_after": {
+    "work/m64-g14/fea/candidate-outer-extended-2/native-mac-g14-outer_high_cheeks_extended_haunch_p-2/minus_z.inp": "8b5b25a00d93bd67b939879dace65fd4cb435d8194041042a91458bf00e81e16",
+    "work/m64-g14/fea/candidate-outer-extended-2/native-mac-g14-outer_high_cheeks_extended_haunch_p-2/minus_z.dat": "dfcca0435dbea2474b4f284c66ae334693742a840fc7f3f32b2ff42761f326fb",
+    "work/m64-g14/fea/candidate-outer-extended-2/native-mac-g14-outer_high_cheeks_extended_haunch_p-2/case.json": "caab4c4ab964ff221f2efc5851d49bee16ecc0082a4ccd45aa0a787e8c3bf977",
+    "work/m64-g14/fea/candidate-outer-extended-2/summary.json": "d749e308289f2232333e0a2b3b70d1df2605d58609ad6a9f0386d6155a307396",
+    "twins/m64-cylinder-head/evidence/g7-local-supports-cooling-20260925/native-audit.json": "7e93be79ce379f2c4ccf26a6c129a70a093be368a2ff1f168884acc03764842e",
+    "twins/m64-cylinder-head/source/fourvalve/g8_pilot.py": "f6f3d1fe77c0a701bb1f75926cd4ac8cba3ee6cc9c3337967740d30ad85fee92",
+    "twins/m64-cylinder-head/source/fourvalve/g9_reference_campaign.py": "ed6a2b21d89030ba39fc393f8a218bbbf328eceda49ce6bed361273bd2d8170b",
+    "twins/reference-917-engine/source/run_f37_carrier_calculix.py": "54e3478e219875872092cacb281dd12e640126cbed9273e8d82cd46d36fa2b13",
+    "work/m64-g13/native-ccx/CalculiX/ccx_2.21/src/gauss.f": "aed2d48b6a63e30894e747a531f6edc32e3cd921338e370902dfb62d8e304df2",
+    "work/m64-g13/native-ccx/CalculiX/ccx_2.21/src/shape10tet.f": "04b93f4f9cede954cc82fdfead173c84316471bfd7ffd01b6336c1647cc6644c"
+  },
+  "inputs_unchanged": true,
+  "material": {
+    "E_MPa": 70000.0,
+    "nu": 0.33
+  },
+  "elements": 128555,
+  "Gauss_points": 514220,
+  "maximum_mid_edge_error_mm": 7.035612860721694e-10,
+  "mesh_volume_mm3": 232331.2452424689,
+  "CAD_volume_mm3": 231816.39794770506,
+  "balance": {
+    "integrated_stress_energy_Nmm": 102.78053643472276,
+    "half_F_dot_U_Nmm": 102.78053636258035,
+    "relative_difference": 7.019073404901289e-10,
+    "relative_limit": 0.0001,
+    "passed": true
+  },
+  "region_interpretation_permitted": true,
+  "regions": [
+    {
+      "z_band": "first_1mm",
+      "side": "intake_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 0.0,
+      "energy_fraction": 0.0,
+      "quadrature_volume_mm3": 0.0,
+      "volume_fraction": 0.0,
+      "Gauss_points": 0
+    },
+    {
+      "z_band": "first_1mm",
+      "side": "intake_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 1.4241164346773931,
+      "energy_fraction": 0.013855896107157095,
+      "quadrature_volume_mm3": 1726.9303456491025,
+      "volume_fraction": 0.007433052510207219,
+      "Gauss_points": 5658
+    },
+    {
+      "z_band": "first_1mm",
+      "side": "exhaust_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 0.0,
+      "energy_fraction": 0.0,
+      "quadrature_volume_mm3": 0.0,
+      "volume_fraction": 0.0,
+      "Gauss_points": 0
+    },
+    {
+      "z_band": "first_1mm",
+      "side": "exhaust_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 1.2968597210597086,
+      "energy_fraction": 0.012617755910267708,
+      "quadrature_volume_mm3": 1768.2920893408814,
+      "volume_fraction": 0.007611081701453589,
+      "Gauss_points": 5770
+    },
+    {
+      "z_band": "root_1_to_3mm",
+      "side": "intake_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 0.16862374853985904,
+      "energy_fraction": 0.0016406194634618796,
+      "quadrature_volume_mm3": 28.143861610950285,
+      "volume_fraction": 0.00012113679148742298,
+      "Gauss_points": 98
+    },
+    {
+      "z_band": "root_1_to_3mm",
+      "side": "intake_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 2.5727453824443764,
+      "energy_fraction": 0.025031445365907,
+      "quadrature_volume_mm3": 3188.3575824805966,
+      "volume_fraction": 0.013723326706027494,
+      "Gauss_points": 7302
+    },
+    {
+      "z_band": "root_1_to_3mm",
+      "side": "exhaust_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 0.26666005813116167,
+      "energy_fraction": 0.002594460657446762,
+      "quadrature_volume_mm3": 46.662232911465594,
+      "volume_fraction": 0.00020084355362003626,
+      "Gauss_points": 161
+    },
+    {
+      "z_band": "root_1_to_3mm",
+      "side": "exhaust_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 2.29833218275332,
+      "energy_fraction": 0.02236155076124768,
+      "quadrature_volume_mm3": 3342.7769709580393,
+      "volume_fraction": 0.014387978541024055,
+      "Gauss_points": 7612
+    },
+    {
+      "z_band": "lower_to_z108",
+      "side": "intake_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 5.392265779537135,
+      "energy_fraction": 0.05246388048345936,
+      "quadrature_volume_mm3": 3248.927522261422,
+      "volume_fraction": 0.013984031802828454,
+      "Gauss_points": 7830
+    },
+    {
+      "z_band": "lower_to_z108",
+      "side": "intake_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 18.4603358124034,
+      "energy_fraction": 0.1796092572850872,
+      "quadrature_volume_mm3": 24148.404585283763,
+      "volume_fraction": 0.10393954786443664,
+      "Gauss_points": 51257
+    },
+    {
+      "z_band": "lower_to_z108",
+      "side": "exhaust_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 5.120398634123866,
+      "energy_fraction": 0.0498187576339018,
+      "quadrature_volume_mm3": 4763.05203997404,
+      "volume_fraction": 0.02050112560195317,
+      "Gauss_points": 11082
+    },
+    {
+      "z_band": "lower_to_z108",
+      "side": "exhaust_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 13.791367399332312,
+      "energy_fraction": 0.1341826758035203,
+      "quadrature_volume_mm3": 24300.332333510432,
+      "volume_fraction": 0.10459347518302917,
+      "Gauss_points": 51233
+    },
+    {
+      "z_band": "z108_to123",
+      "side": "intake_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 4.199639504257936,
+      "energy_fraction": 0.04086026060902281,
+      "quadrature_volume_mm3": 8649.653837879641,
+      "volume_fraction": 0.03722983462191047,
+      "Gauss_points": 18730
+    },
+    {
+      "z_band": "z108_to123",
+      "side": "intake_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 5.6758706751228996,
+      "energy_fraction": 0.05522320540453413,
+      "quadrature_volume_mm3": 19107.72915036406,
+      "volume_fraction": 0.08224347582014883,
+      "Gauss_points": 38644
+    },
+    {
+      "z_band": "z108_to123",
+      "side": "exhaust_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 3.314036083488799,
+      "energy_fraction": 0.0322438099512507,
+      "quadrature_volume_mm3": 12084.940974691362,
+      "volume_fraction": 0.05201599536075788,
+      "Gauss_points": 25121
+    },
+    {
+      "z_band": "z108_to123",
+      "side": "exhaust_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 3.709656837650014,
+      "energy_fraction": 0.0360929896489309,
+      "quadrature_volume_mm3": 19035.8300766368,
+      "volume_fraction": 0.08193400787212393,
+      "Gauss_points": 38425
+    },
+    {
+      "z_band": "z123_to138",
+      "side": "intake_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 5.287744449608326,
+      "energy_fraction": 0.051446943487852295,
+      "quadrature_volume_mm3": 8347.008790656377,
+      "volume_fraction": 0.03592718999954204,
+      "Gauss_points": 18473
+    },
+    {
+      "z_band": "z123_to138",
+      "side": "intake_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 2.435759424376327,
+      "energy_fraction": 0.02369864479081902,
+      "quadrature_volume_mm3": 18362.796179922603,
+      "volume_fraction": 0.07903713579617135,
+      "Gauss_points": 39367
+    },
+    {
+      "z_band": "z123_to138",
+      "side": "exhaust_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 4.292252637799149,
+      "energy_fraction": 0.041761337182018056,
+      "quadrature_volume_mm3": 11646.718044561865,
+      "volume_fraction": 0.05012979649985067,
+      "Gauss_points": 25664
+    },
+    {
+      "z_band": "z123_to138",
+      "side": "exhaust_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 1.4224718373163863,
+      "energy_fraction": 0.013839895048804464,
+      "quadrature_volume_mm3": 18271.84471227646,
+      "volume_fraction": 0.0786456625461949,
+      "Gauss_points": 39889
+    },
+    {
+      "z_band": "z138_up",
+      "side": "intake_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 11.652987384547213,
+      "energy_fraction": 0.11337737463501346,
+      "quadrature_volume_mm3": 4371.563050169028,
+      "volume_fraction": 0.01881607893766813,
+      "Gauss_points": 11693
+    },
+    {
+      "z_band": "z138_up",
+      "side": "intake_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 1.7419868315835452,
+      "energy_fraction": 0.016948606146747477,
+      "quadrature_volume_mm3": 21284.318778845794,
+      "volume_fraction": 0.09161195153339254,
+      "Gauss_points": 50343
+    },
+    {
+      "z_band": "z138_up",
+      "side": "exhaust_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 7.358950062817584,
+      "energy_fraction": 0.07159867342676643,
+      "quadrature_volume_mm3": 4660.311343493435,
+      "volume_fraction": 0.020058909160624406,
+      "Gauss_points": 12417
+    },
+    {
+      "z_band": "z138_up",
+      "side": "exhaust_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 0.8974755531520533,
+      "energy_fraction": 0.008731960196783479,
+      "quadrature_volume_mm3": 19946.65073899074,
+      "volume_fraction": 0.08585436159554745,
+      "Gauss_points": 47451
+    }
+  ],
+  "region_definition": {
+    "z_boundaries_mm": [
+      86.461,
+      87.461,
+      89.461,
+      108,
+      123,
+      138
+    ],
+    "frame_y_min_mm": 45,
+    "side_split_x_mm": 0
+  },
+  "scope": "Energy/compliance for retained minus-z load only; GP-based region allocation, no exact clipped-volume integration, no exact sensitivity of journal norm, no causal gain prediction, no hot/material/assembly validation.",
+  "new_solve_executed": false,
+  "new_CAD_executed": false,
+  "manufacturing_authorized": false
+}

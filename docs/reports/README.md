@@ -2,21 +2,46 @@
 
 # Execution and audit reports
 
-98 reports of runs, audits and checkpoints, newest first (14 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../../SAFETY.md).
+116 reports of runs, audits and checkpoints, newest first (14 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../../SAFETY.md).
 
 ```mermaid
 xychart-beta
     title "Reports written per day, 2026"
-    x-axis ["09-01", "09-06", "09-07", "09-08", "09-09", "09-12", "09-14", "09-16", "09-24", "09-25", "09-27"]
+    x-axis ["09-01", "09-06", "09-07", "09-08", "09-09", "09-12", "09-14", "09-16", "09-24", "09-25", "09-26", "09-27", "09-28"]
     y-axis "reports" 0 --> 25
-    bar [1, 1, 20, 24, 13, 9, 7, 1, 2, 5, 1]
+    bar [1, 1, 20, 24, 13, 9, 7, 1, 2, 8, 6, 3, 7]
 ```
+
+## September 28, 2026
+
+| report | file |
+|---|---|
+| M64 — CAD-constrained mesh and partition trials, 28 September 2026 | [`M64_CAD_CONSTRAINED_MESH_20260928.md`](M64_CAD_CONSTRAINED_MESH_20260928.md) |
+| M64 — local junction and additive-manufacturing screening, 28 September 2026 | [`M64_JUNCTION_AM_SCREEN_20260928.md`](M64_JUNCTION_AM_SCREEN_20260928.md) |
+| M64 — area precision and targeted meshing, 28 September 2026 | [`M64_MESH_PRECISION_RECOVERY_20260928.md`](M64_MESH_PRECISION_RECOVERY_20260928.md) |
+| M64 — 2026 mesh tools and volume-control recovery, 28 September 2026 | [`M64_MESH_VOLUME_TOOLCHAIN_20260928.md`](M64_MESH_VOLUME_TOOLCHAIN_20260928.md) |
+| M64 — native junction recovery, 28 September 2026 | [`M64_NATIVE_JUNCTION_RECOVERY_20260928.md`](M64_NATIVE_JUNCTION_RECOVERY_20260928.md) |
+| M64 — actual PhysicsNeMo and PicoGK continuation, 28 September 2026 | [`M64_NEMO_PICOGK_CONTINUATION_20260928.md`](M64_NEMO_PICOGK_CONTINUATION_20260928.md) |
+| M64 — junction, printing and valve comparisons, 28 September 2026 | [`M64_PHYSICS_AM_CONTINUATION_20260928.md`](M64_PHYSICS_AM_CONTINUATION_20260928.md) |
 
 ## September 27, 2026
 
 | report | file |
 |---|---|
+| M64 — complete-head integration gate, 27 September 2026 | [`M64_COMPLETE_HEAD_INTEGRATION_20260927.md`](M64_COMPLETE_HEAD_INTEGRATION_20260927.md) |
+| M64 — whole-body spring support and GPU audit, 27 September 2026 | [`M64_WHOLEBODY_SUPPORT_GPU_20260927.md`](M64_WHOLEBODY_SUPPORT_GPU_20260927.md) |
 | Software stack review, September 27, 2026 | [`SOFTWARE_STACK_REVIEW_20260927.md`](SOFTWARE_STACK_REVIEW_20260927.md) |
+
+## September 26, 2026
+
+| report | file |
+|---|---|
+| M64 G10 — PhysicsNeMo field trial and the 0.040 mm stiffness target | [`M64_G10_PHYSICSNEMO_20260926.md`](M64_G10_PHYSICSNEMO_20260926.md) |
+| M64 G11 — bounded support redesign toward 0.040 mm | [`M64_G11_SUPPORT_STIFFNESS_20260926.md`](M64_G11_SUPPORT_STIFFNESS_20260926.md) |
+| M64 G12 — central-support FEA and rejected refinements | [`M64_G12_FEA_20260926.md`](M64_G12_FEA_20260926.md) |
+| M64 G12 — localized central-foot reinforcement | [`M64_G12_LOCAL_BUTTRESSES_20260926.md`](M64_G12_LOCAL_BUTTRESSES_20260926.md) |
+| M64 G13 — reference repair and unchanged-foot upper spines | [`M64_G13_SUPPORT_REFERENCE_20260926.md`](M64_G13_SUPPORT_REFERENCE_20260926.md) |
+| M64 G14 — targeted support stiffening | [`M64_G14_TARGETED_SUPPORTS_20260926.md`](M64_G14_TARGETED_SUPPORTS_20260926.md) |
 
 ## September 25, 2026
 
@@ -27,6 +52,9 @@ xychart-beta
 | M64 G5 — articulated rockers and cams conjugate to their motion | [`M64_G5_ARTICULATED_ROCKERS_20260925.md`](M64_G5_ARTICULATED_ROCKERS_20260925.md) |
 | M64 G6 — supported CAD, hot-load screens and virtual build preparation | [`M64_G6_CARRIER_THERMAL_AM_20260925.md`](M64_G6_CARRIER_THERMAL_AM_20260925.md) |
 | M64 G7 — local supports and finite-air cooling | [`M64_G7_LOCAL_SUPPORTS_COOLING_20260925.md`](M64_G7_LOCAL_SUPPORTS_COOLING_20260925.md) |
+| M64 G8 — isolated carrier compliance and resource pilot | [`M64_G8_CARRIER_FEA_PILOT_20260925.md`](M64_G8_CARRIER_FEA_PILOT_20260925.md) |
+| M64 G8 — CPU/GPU matrix benchmark and reference audit | [`M64_G8_CPU_GPU_MATRIX_BENCHMARK_20260925.md`](M64_G8_CPU_GPU_MATRIX_BENCHMARK_20260925.md) |
+| M64 G9 — reference replay and finer carrier meshes | [`M64_G9_REFERENCE_REQUALIFICATION_20260925.md`](M64_G9_REFERENCE_REQUALIFICATION_20260925.md) |
 
 ## September 24, 2026
 

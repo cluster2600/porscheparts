@@ -1,0 +1,66 @@
+{
+  "schema": "m64-amb2018-thermal-comparison/v1",
+  "status": "completed_diagnostics_only",
+  "source_sha256": "923eb480bf1ed1b2bd008db0e57694a6a383e60ced37f21740a3a76b50dc2d75",
+  "base": {
+    "steps": 499,
+    "peak_temperature_K": 2685.42431,
+    "minimum_temperature_K": 300.0,
+    "final_maximum_temperature_K": 642.951877,
+    "absorbed_energy_J": 0.14783999810235565,
+    "nominal_absorbed_energy_J": 0.14784,
+    "relative_input_energy_difference": 1.2835797758015133e-08,
+    "max_final_phase_fraction_residual": 3.2751579e-15,
+    "steps_above_thermo_tolerance": 0,
+    "log_sha256": "501b1ff778449c94223a29f4222a6cf7640896bae0979dcb9f4224dea35ac286",
+    "series_sha256": {
+      "temperatureMaximum": "d6ea52a3e448428980cd67f8672494ac2d82a00322ccc383afe54746ce5998ea",
+      "temperatureMinimum": "adca13b1e07872fc42b0afc2dbc2d8f78ce8f17ec9af105c708008d42990a74f",
+      "laserPower": "43e8c2de7890b4f058159794da8b2b6e5ac4d1bfc2c9018225fc1c5cdfb9b265"
+    }
+  },
+  "refined": {
+    "steps": 985,
+    "peak_temperature_K": 2670.65668,
+    "minimum_temperature_K": 300.0,
+    "final_maximum_temperature_K": 643.07793,
+    "absorbed_energy_J": 0.14784000000000008,
+    "nominal_absorbed_energy_J": 0.14784,
+    "relative_input_energy_difference": 6.661338147750939e-16,
+    "max_final_phase_fraction_residual": 3.2751579e-15,
+    "steps_above_thermo_tolerance": 0,
+    "log_sha256": "3b1ae40e348364036cdb5733850a43f341e3e9cf5c9c66ff3c19219229ee567c",
+    "series_sha256": {
+      "temperatureMaximum": "5fae4779a165c3aea6291ba91341b027e9b5273914c7b7f95199d69d0619ff9c",
+      "temperatureMinimum": "069e9af7e0e1d4ba330dd291668f8ea3c411f69032b84826c5c6bb70c396571f",
+      "laserPower": "c79cb115666a3800ffe7ea265af18cb38c447590d29e150e4d823c6c9a72f986"
+    }
+  },
+  "unchanged_inputs_sha256": {
+    "system/blockMeshDict": "a0467739c03f5e7baaacdcc55ae37541ded0274de77b969d41ead511c525d59d",
+    "system/fvSolution": "fe1e9a7312559a35a93845b5df8c90722246916b851c5545e5c155bfdaedd7d2",
+    "system/fvSchemes": "9b9d1f34192f909f2688f6909b1e42e1b4ec3960da824d990f2850c2fc306d3e",
+    "constant/scanPath": "625685d676b370774457d2b5eda598c874120e8dd642361532db12714519a412",
+    "constant/transportProperties": "796277322c390bc1f464af6d5880ac7a6e3a22053e99e42052cb57a9a0a570d8",
+    "constant/heatSourceDict": "49ad162da50da99185d4f9c24b81a616152c659e572b9a04183f36e36dbd30ec",
+    "0/T": "0f324257b10cb81016101166a580c386cbaefd74b10d91e555969d17f883f2c8",
+    "0/U": "c4bc13f1165c1190f92b6911f98a93f134afa9a16f05eeaf7d8012c470c22af0",
+    "0/p_rgh": "7e268fdff8b6615e3219c419c571ec3e85c9f159cbaef144b8634166d2cb3ca5"
+  },
+  "control_sha256": [
+    "650f4dde6256de77137cf231b466611f03563b08a49917ae0574eb7422637524",
+    "3df5d9ce263ffd41a9eb190054da1c7ae51bccbe0183ec987244f10e043b9cf9"
+  ],
+  "temperature_field_2ms_sha256": [
+    "53ea296e4660e1e86d5d86d52ef6e35c8c4143b851965f19dcf11fb6d7b108f0",
+    "0ef7cf38e088bab7864460bff1d85da3fe172223849da9099294c488bb640923"
+  ],
+  "peak_temperature_relative_difference": 0.005529587576940109,
+  "field_2ms_temperature_rise_relative_L2": 0.0066126246707005655,
+  "field_2ms_maximum_absolute_difference_K": 55.43029999999999,
+  "spatial_convergence_demonstrated": false,
+  "full_energy_balance_checked": false,
+  "melt_flow_solved": false,
+  "head_print_simulated": false,
+  "manufacturing_authorized": false
+}

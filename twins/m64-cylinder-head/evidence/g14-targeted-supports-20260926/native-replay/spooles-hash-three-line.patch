@@ -1,0 +1,29 @@
+--- I2Ohash/src/util.c.original
++++ I2Ohash/src/util.c.corrected
+@@ -39,7 +39,7 @@
+ */
+ loc1 = (key1 + 1) % hashtable->nlist ;
+ loc2 = (key2 + 1) % hashtable->nlist ;
+-loc  = (loc1*loc2) % hashtable->nlist ;
++loc  = (int) (((long long) loc1*loc2) % hashtable->nlist) ;
+ #if MYDEBUG > 0
+ fprintf(stdout, "\n loc1 = %d, loc2 = %d, loc3 = %d", loc1, loc2, loc) ;
+ fflush(stdout) ;
+@@ -158,7 +158,7 @@
+ #endif
+ loc1 = (key1 + 1) % hashtable->nlist ;
+ loc2 = (key2 + 1) % hashtable->nlist ;
+-loc  = (loc1*loc2) % hashtable->nlist ;
++loc  = (int) (((long long) loc1*loc2) % hashtable->nlist) ;
+ #if MYDEBUG > 0
+ fprintf(stdout, "\n loc1 = %d, loc2 = %d, loc3 = %d", loc1, loc2, loc) ;
+ fflush(stdout) ;
+@@ -229,7 +229,7 @@
+ }
+ loc1 = (key1 + 1) % hashtable->nlist ;
+ loc2 = (key2 + 1) % hashtable->nlist ;
+-loc  = (loc1*loc2) % hashtable->nlist ;
++loc  = (int) (((long long) loc1*loc2) % hashtable->nlist) ;
+ /*
+    ---------------------------------------------------
+    find the location of the first (key1,key2,*) triple

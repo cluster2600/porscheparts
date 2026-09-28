@@ -1,0 +1,217 @@
+{
+  "id": "centre_spine68_t40_root2_upper_caps",
+  "status": "completed",
+  "wall_seconds": 4284.680628500006,
+  "summary_sha256": "ce43a396cbbe9b02ae731a9c374c121b628935da15d1587b016eb1ead6b9c00d",
+  "case_sha256": "b720929212869abe1386c9b31169a63a46c815347173508676757de56b0cda60",
+  "verified_artifact_count": 37,
+  "verified_case_artifact_count": 33,
+  "artifact_hashes_match": true,
+  "numerically_qualified": true,
+  "maximum_journal_motion_mm": 0.03837623858001207,
+  "mesh_convergence_qualified": false,
+  "mesh": {
+    "size_mm": 1.5,
+    "nodes": 380799,
+    "elements": 261006,
+    "fixed_nodes": 2619,
+    "surface_area_mm2": {
+      "intake": 431.68158604681327,
+      "exhaust": 431.6836819133409
+    },
+    "journal_axial_interval_mm": {
+      "intake": [
+        -5.5,
+        5.5
+      ],
+      "exhaust": [
+        -5.5,
+        5.5
+      ]
+    },
+    "nominal_journal_width_mm": 11,
+    "minimum_Gauss4_Jacobian_mm3": 0.4055367112689573,
+    "gmsh_version": "4.12.1"
+  },
+  "cases": [
+    {
+      "direction": "x",
+      "residual": 1.0683431194477921e-10,
+      "solver": {
+        "backend": "cpu",
+        "versions": {
+          "numpy": "2.2.6",
+          "scipy": "1.14.1"
+        },
+        "iterations": 4844,
+        "info": 0,
+        "setup_seconds": 0.1464339999947697,
+        "solve_seconds": 387.7160056249995,
+        "setup_and_solve_seconds": 387.8624396249943,
+        "dtype": "float64"
+      },
+      "agreement": {
+        "max_nodal_difference_over_max_reference_U": 1.3859336048525531e-7,
+        "printed_dat_relative_residual": 0.0016446968012665908,
+        "printed_dat_rounding_residual_bound": 0.038317114210759465
+      },
+      "mechanics": {
+        "force_balance_relative_error": 4.526023297855791e-9,
+        "moment_balance_F_times_100mm_error": 2.442037643501541e-9,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.050696386765938746,
+        "von_Mises_p95_MPa": 25.733772896341126,
+        "von_Mises_max_MPa": 145.67552445956298,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            0.035512431793690395,
+            -0.000007983602735772144,
+            0.014546573889084046
+          ],
+          "exhaust": [
+            0.03339218736658748,
+            -0.00001033936431308607,
+            -0.013417782690001424
+          ]
+        }
+      }
+    },
+    {
+      "direction": "minus_z",
+      "residual": 9.879377069455592e-11,
+      "solver": {
+        "backend": "cpu",
+        "versions": {
+          "numpy": "2.2.6",
+          "scipy": "1.14.1"
+        },
+        "iterations": 4822,
+        "info": 0,
+        "setup_seconds": 0.14264658399042673,
+        "solve_seconds": 398.53936200001044,
+        "setup_and_solve_seconds": 398.68200858400087,
+        "dtype": "float64"
+      },
+      "agreement": {
+        "max_nodal_difference_over_max_reference_U": 2.4156229293060726e-7,
+        "printed_dat_relative_residual": 0.0004175186560178194,
+        "printed_dat_rounding_residual_bound": 0.009869110012491824
+      },
+      "mechanics": {
+        "force_balance_relative_error": 6.806475677199272e-10,
+        "moment_balance_F_times_100mm_error": 3.4883962894117347e-10,
+        "equilibrium_passed": true,
+        "maximum_displacement_mm": 0.028121826841005865,
+        "von_Mises_p95_MPa": 18.530548262134765,
+        "von_Mises_max_MPa": 158.14537926571833,
+        "journal_weighted_displacement_mm": {
+          "intake": [
+            -0.004837024101331348,
+            0.0000036430129417913612,
+            -0.016963111040023605
+          ],
+          "exhaust": [
+            0.0034491157208438854,
+            0.000004633273822840464,
+            -0.015464019208530425
+          ]
+        }
+      }
+    }
+  ],
+  "verification": {
+    "retained_direct_decks_and_DAT_reparsed": true,
+    "direct_mechanics_exact_match": true,
+    "retained_CG_crosschecks_match_case": true,
+    "numerical_thresholds_rechecked": true,
+    "new_solve_executed": false,
+    "CG_residual_independently_recomputed": false,
+    "thresholds": {
+      "relative_residual": 1e-8,
+      "max_nodal_difference_over_max_reference_U": 0.0001,
+      "force_balance_relative_error": 0.0001,
+      "moment_balance_F_times_100mm_error": 0.0001
+    },
+    "note": "Direct equilibrium, journal vectors, displacements and stresses were reparsed from retained INP/DAT using g9.mechanics. CG residuals and direct/CG differences are retained execution evidence checked against existing thresholds; the CG solve was not rerun. Printed DAT residuals pass their rounding bounds; they are not algebraic CG residuals."
+  },
+  "assembled_stiffness_qualified": false,
+  "hot_material_qualified": false,
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false,
+  "below_0_040mm_medium_screen": true,
+  "below_0_035mm_design_margin_target": false,
+  "recipe": "G14-caps-exact-medium-hashfix-retry-v1",
+  "limits": {
+    "direct_seconds": 1800,
+    "export_seconds": 1200,
+    "CG_RHS_seconds": 1200,
+    "total_seconds": 7200,
+    "group_RSS_bytes": 30064771072,
+    "minimum_free_disk_bytes": 12884901888
+  },
+  "observed_group_RSS_peak_bytes": 26112294912,
+  "lowest_observed_free_disk_bytes": 28643852288,
+  "hashfixed_reference_sha256": "344d945639a418f6cfd2188e17b0c76e5ff60cd3e6dfa2d22851aee8c8f90ba0",
+  "coarse_to_medium": {
+    "accepted": true,
+    "selected_observables_stabilized": true,
+    "working_motion_screen_passed": true,
+    "design_margin_target_passed": false,
+    "maximum_journal_motion_mm": 0.03837623858001207,
+    "comparisons": [
+      {
+        "direction": "minus_z",
+        "journal_vector_relative_change": 0.005335770951572841,
+        "stress_p95_relative_change": 0.027213964527340335
+      },
+      {
+        "direction": "x",
+        "journal_vector_relative_change": 0.004071306378087071,
+        "stress_p95_relative_change": 0.011654393801165347
+      }
+    ],
+    "coarse_mesh_size_mm": 2,
+    "medium_mesh_size_mm": 1.5,
+    "coarse_summary_sha256": "d9bf5d969b74ccca1bbfa575d4c761f0ceb955348008f56276a19d8cef9ec77b",
+    "coarse_case_sha256": "b690b2c77f32c5e172029ae5ea2acf02c469f300f68f121b77fbaad2946a041b",
+    "coarse_verified_artifact_count": 41,
+    "coarse_verified_case_artifact_count": 28,
+    "formula_source": "twins/m64-cylinder-head/source/fourvalve/g11_campaign.py:assessment",
+    "formula_source_sha256": "ede1d5b247f9a518d29e6f0ad34b8863ebf2cc64125fef76828d17fab58bcb0d",
+    "journal_vector_formula": "max_side(norm(u_2mm - u_1p5mm) / norm(u_1p5mm))",
+    "stress_p95_formula": "abs(p95_2mm - p95_1p5mm) / p95_1p5mm",
+    "journal_vector_relative_change_limit": 0.01,
+    "stress_p95_relative_change_limit": 0.05,
+    "note": "The existing assessment accepts the selected 2.0 to 1.5 mm observables only. This is not a 1.0 mm fine-mesh convergence qualification, assembly validation or engine qualification.",
+    "journal_norms_mm": [
+      {
+        "direction": "x",
+        "side": "intake",
+        "coarse": 0.03822223596825055,
+        "medium": 0.03837623858001207,
+        "raw_vector_relative_change": 0.004071306378087072
+      },
+      {
+        "direction": "x",
+        "side": "exhaust",
+        "coarse": 0.035864087282329045,
+        "medium": 0.03598715293467713,
+        "raw_vector_relative_change": 0.0034580592391627698
+      },
+      {
+        "direction": "minus_z",
+        "side": "intake",
+        "coarse": 0.01755185548665361,
+        "medium": 0.017639272989116484,
+        "raw_vector_relative_change": 0.00533577095157284
+      },
+      {
+        "direction": "minus_z",
+        "side": "exhaust",
+        "coarse": 0.01577248649455434,
+        "medium": 0.015843999204897628,
+        "raw_vector_relative_change": 0.004711539886489359
+      }
+    ]
+  }
+}

@@ -1,0 +1,526 @@
+{
+  "classification": "G8_isolated_component_linear_compliance_resource_pilot",
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false,
+  "assembled_stiffness_qualified": false,
+  "material_selected": false,
+  "generic_material": {
+    "E_MPa": 70000.0,
+    "nu": 0.33,
+    "temperature_C": null,
+    "strength_allowable_MPa": null
+  },
+  "expected_image_id": "sha256:22e5ea95954ede922b9666b74e0db1c7fdc34667abc2254ab37002ed4d90996b",
+  "image_registry_publication_verified": false,
+  "ccx_sha256": "6adaabf5bf0382fc2bfd692b984320ed375dba777f7dc8297562f818043faa1b",
+  "ccx_version": "This is Version 2.21",
+  "ccx_version_query_exit_code": 201,
+  "baseline_sha256": "7e93be79ce379f2c4ccf26a6c129a70a093be368a2ff1f168884acc03764842e",
+  "pilot_source_sha256": "f6f3d1fe77c0a701bb1f75926cd4ac8cba3ee6cc9c3337967740d30ad85fee92",
+  "helper_sha256": "54e3478e219875872092cacb281dd12e640126cbed9273e8d82cd46d36fa2b13",
+  "cases": [
+    {
+      "component": "witness",
+      "mesh": {
+        "size_mm": 2.0,
+        "nodes": 4387,
+        "elements": 2407,
+        "fixed_nodes": 153,
+        "surface_area_mm2": {
+          "tip": 100.0
+        },
+        "minimum_Gauss4_Jacobian_mm3": 3.4750168724595607,
+        "gmsh_version": "4.12.1"
+      },
+      "meshing_seconds": 0.1328692608512938,
+      "journal_forces_N": {
+        "tip": 1000.0
+      },
+      "solutions": {
+        "x": {
+          "solver_seconds": 0.39348324574530125,
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "applied_N": [
+            1000.0,
+            0.0,
+            0.0
+          ],
+          "reaction_N": [
+            -999.9999770210002,
+            -1.8460000019260292e-05,
+            -0.00010890000001495537
+          ],
+          "force_balance_relative_error": 1.1281850928297034e-07,
+          "moment_balance_F_times_100mm_error": 1.1964502805730059e-08,
+          "maximum_displacement_mm": 0.3818051057771668,
+          "von_Mises_p95_MPa": 177.66590802586688,
+          "von_Mises_max_MPa": 251.34348336845682,
+          "journal_weighted_displacement_mm": {
+            "tip": [
+              0.37526391336991105,
+              1.892307015430832e-05,
+              -1.0219487716841853e-08
+            ]
+          }
+        }
+      },
+      "beam_plus_shear_reference_mm": 0.3839542857142857,
+      "reference_relative_error": 0.02263387248877191,
+      "files_sha256": {
+        "mesh.msh": "a76e3330315b3d9955e24c8d60a9fd2202ccc45426893f0b75ee91ee433db0b0",
+        "spooles.out": "3cf2b1b67ca3bd69ab784131b506aa8d07d7ac0b4cd2f12090a6bc8b194871e1",
+        "x.12d": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "x.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+        "x.dat": "a86d362fc3133b08d4ebd2fa50ba1e9ea5f02c6c2be4562cbc8af20236cc143b",
+        "x.frd": "96533654711c96c8433faa78289871b5c9fd7bed67d00a74d0b691fe7af7690d",
+        "x.inp": "abc6b250a9b968926ae04eba32fc48382afc63f7f86b31c95f3492f33bfad6bd",
+        "x.log": "58aa6751eb4565ec291f593ec3651e69b296c672434c70756a400e0eb8a7769f",
+        "x.sta": "01e324ec0ea28f4d1fd7f5e2da1277af53812b873e218be1604c17a4c8e4990d"
+      }
+    },
+    {
+      "component": "central_diaphragm",
+      "mesh": {
+        "size_mm": 3.0,
+        "nodes": 24246,
+        "elements": 13504,
+        "fixed_nodes": 679,
+        "surface_area_mm2": {
+          "intake": 391.14442012075506,
+          "exhaust": 391.13783660941505
+        },
+        "minimum_Gauss4_Jacobian_mm3": 0.26417768477247955,
+        "gmsh_version": "4.12.1"
+      },
+      "meshing_seconds": 0.34504298213869333,
+      "journal_forces_N": {
+        "intake": 6881.35243458258,
+        "exhaust": 6702.484411298031
+      },
+      "solutions": {
+        "x": {
+          "solver_seconds": 2.833008984103799,
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "applied_N": [
+            13583.83684588061,
+            0.0,
+            0.0
+          ],
+          "reaction_N": [
+            -13583.836868748502,
+            7.062900033716346e-06,
+            0.0002909269991135943
+          ],
+          "force_balance_relative_error": 2.148949701561745e-08,
+          "moment_balance_F_times_100mm_error": 1.4582714420334115e-08,
+          "maximum_displacement_mm": 0.09492074744714497,
+          "von_Mises_p95_MPa": 61.56435038303706,
+          "von_Mises_max_MPa": 167.59158675967004,
+          "journal_weighted_displacement_mm": {
+            "intake": [
+              0.07186019352229148,
+              0.0001620035648338546,
+              0.023334483641211264
+            ],
+            "exhaust": [
+              0.06683738113321866,
+              -0.00017459905109899057,
+              -0.02102558368560779
+            ]
+          }
+        },
+        "minus_z": {
+          "solver_seconds": 2.831407453864813,
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "applied_N": [
+            0.0,
+            0.0,
+            -13583.83684588061
+          ],
+          "reaction_N": [
+            -3.789100034623516e-06,
+            9.254999810970332e-06,
+            13583.836829350008
+          ],
+          "force_balance_relative_error": 1.4222990088550713e-09,
+          "moment_balance_F_times_100mm_error": 1.3698646795218532e-09,
+          "maximum_displacement_mm": 0.04624037751354468,
+          "von_Mises_p95_MPa": 40.74430277593763,
+          "von_Mises_max_MPa": 221.90608206652087,
+          "journal_weighted_displacement_mm": {
+            "intake": [
+              -0.009920206224815372,
+              6.22452454233518e-05,
+              -0.026997606783506982
+            ],
+            "exhaust": [
+              0.0072533221175532835,
+              4.6170064880170714e-05,
+              -0.02359129449721418
+            ]
+          }
+        }
+      },
+      "files_sha256": {
+        "mesh.msh": "3519e4ee272827e79314d9d311f8f3fcc6692dca5dedf588e830504d6e634880",
+        "minus_z.12d": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "minus_z.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+        "minus_z.dat": "9b03b24069d23180391b9b046ad2b55e60929c923ffc44529d6e716565b8bc18",
+        "minus_z.frd": "3ebfeb201ceadaf768a0a575d3259333e5d970a2a79d05dc25c0d6d22acb3048",
+        "minus_z.inp": "262fc27ff16356eb3bb0323066d1ba0a8b94bb67d7f481bab69c13e813f41296",
+        "minus_z.log": "5dd04f2309006b28222fc75f7afc1703b171434eec154e5a79105d3bd6f49c0a",
+        "minus_z.sta": "01e324ec0ea28f4d1fd7f5e2da1277af53812b873e218be1604c17a4c8e4990d",
+        "spooles.out": "b272ec438fc895f13c5cc243867186cdfaf9f6bbb0e6dd13683f9ce835024b60",
+        "x.12d": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "x.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+        "x.dat": "5f78ef526114acb208501413d2c7630777a54435957c2477141ce168baab9b08",
+        "x.frd": "8fdb047e67020adb9ce014c13ee2bbcf4f8c125c097c98750091e5ff1353195f",
+        "x.inp": "7ed1dac271d5a69eb8b2e6644bc3a68f6ab9bfb80f8c76a873dbbb809c762fe8",
+        "x.log": "dff21a497238f2faaa4c7fdc832d24dce15b8425175d49940017f90f9820330a",
+        "x.sta": "01e324ec0ea28f4d1fd7f5e2da1277af53812b873e218be1604c17a4c8e4990d"
+      }
+    },
+    {
+      "component": "central_diaphragm",
+      "mesh": {
+        "size_mm": 2.0,
+        "nodes": 65054,
+        "elements": 39058,
+        "fixed_nodes": 1371,
+        "surface_area_mm2": {
+          "intake": 392.130517020968,
+          "exhaust": 392.1380073086959
+        },
+        "minimum_Gauss4_Jacobian_mm3": 0.3258804473449082,
+        "gmsh_version": "4.12.1"
+      },
+      "meshing_seconds": 0.769869961310178,
+      "journal_forces_N": {
+        "intake": 6881.35243458258,
+        "exhaust": 6702.484411298031
+      },
+      "solutions": {
+        "x": {
+          "solver_seconds": 13.556165854912251,
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "applied_N": [
+            13583.83684588061,
+            0.0,
+            0.0
+          ],
+          "reaction_N": [
+            -13583.836965088918,
+            1.4699999988099233e-06,
+            2.3313399886149e-05
+          ],
+          "force_balance_relative_error": 8.942649784850025e-09,
+          "moment_balance_F_times_100mm_error": 9.234648844839368e-09,
+          "maximum_displacement_mm": 0.09670466538470664,
+          "von_Mises_p95_MPa": 58.751278350054946,
+          "von_Mises_max_MPa": 172.80024363622934,
+          "journal_weighted_displacement_mm": {
+            "intake": [
+              0.07295151826713454,
+              2.764143100306777e-05,
+              0.023545484643490093
+            ],
+            "exhaust": [
+              0.0677695899366767,
+              2.350400593124674e-05,
+              -0.021188452934836576
+            ]
+          }
+        },
+        "minus_z": {
+          "solver_seconds": 20.244213914964348,
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "applied_N": [
+            0.0,
+            0.0,
+            -13583.83684588061
+          ],
+          "reaction_N": [
+            -1.0147700041818197e-05,
+            -9.515100021006972e-06,
+            13583.836878450198
+          ],
+          "force_balance_relative_error": 2.6072140643559153e-09,
+          "moment_balance_F_times_100mm_error": 1.1216213065204436e-09,
+          "maximum_displacement_mm": 0.047197425245843534,
+          "von_Mises_p95_MPa": 37.814594785582855,
+          "von_Mises_max_MPa": 237.98594117688674,
+          "journal_weighted_displacement_mm": {
+            "intake": [
+              -0.010147336245335365,
+              2.005120901113317e-05,
+              -0.027286887868866284
+            ],
+            "exhaust": [
+              0.007432750609754607,
+              -1.1551850108343605e-05,
+              -0.02382417801677965
+            ]
+          }
+        }
+      },
+      "files_sha256": {
+        "mesh.msh": "9a955fc34cd5a8030b48c54e43cf53620a2251b961666aebbe0e2ec7efa38d45",
+        "minus_z.12d": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "minus_z.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+        "minus_z.dat": "7fb50c6037c2ec9163f25f322e36676c5b8d51fe6b0e54e928bd0decd082a3a2",
+        "minus_z.frd": "1a67d069f1a0098c3aab203aeb8773b6e1e73fb7cdc0580d3b7a1cc283e5f401",
+        "minus_z.inp": "12cca888d1db241b241592a7f33266a2de4e899c4d634e3e1f98296321b9bd55",
+        "minus_z.log": "a5117b4f924b689b50420f8ddc08ee2e68b27f08e9233cc3b015ded1f2f8796c",
+        "minus_z.sta": "01e324ec0ea28f4d1fd7f5e2da1277af53812b873e218be1604c17a4c8e4990d",
+        "spooles.out": "b272ec438fc895f13c5cc243867186cdfaf9f6bbb0e6dd13683f9ce835024b60",
+        "x.12d": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "x.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+        "x.dat": "665687b9b30ef70b48d9f30cb7bbac4c01ca1053983f77de3e7a14fc080573bf",
+        "x.frd": "5884ca3a31d5cab6e5862fc022b26917528bbbe6aba5dd3c64b57ffb7412be7b",
+        "x.inp": "9b50a62d2867bb6ea827a5394b10b311fdbd725bd0eaec71c77a613847c94b24",
+        "x.log": "1e3349fb6243e46bc43f1e626db0a23aa941e5d174f067abb2df242bae6688bb",
+        "x.sta": "01e324ec0ea28f4d1fd7f5e2da1277af53812b873e218be1604c17a4c8e4990d"
+      }
+    },
+    {
+      "component": "central_diaphragm",
+      "mesh": {
+        "size_mm": 1.5,
+        "nodes": 137975,
+        "elements": 86486,
+        "fixed_nodes": 2365,
+        "surface_area_mm2": {
+          "intake": 392.23318565345875,
+          "exhaust": 392.21122240536494
+        },
+        "minimum_Gauss4_Jacobian_mm3": 0.38504757209400137,
+        "gmsh_version": "4.12.1"
+      },
+      "meshing_seconds": 2.9998119408264756,
+      "journal_forces_N": {
+        "intake": 6881.35243458258,
+        "exhaust": 6702.484411298031
+      },
+      "solutions": {
+        "x": {
+          "solver_seconds": 113.16354744229466,
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "applied_N": [
+            13583.83684588061,
+            0.0,
+            0.0
+          ],
+          "reaction_N": [
+            -13583.836902779158,
+            1.2528299964956885e-05,
+            -1.2658568951273708e-05
+          ],
+          "force_balance_relative_error": 4.389100210348739e-09,
+          "moment_balance_F_times_100mm_error": 5.330469838910767e-09,
+          "maximum_displacement_mm": 0.097577861612087,
+          "von_Mises_p95_MPa": 57.65288483587165,
+          "von_Mises_max_MPa": 172.58717946609596,
+          "journal_weighted_displacement_mm": {
+            "intake": [
+              0.07339628187427748,
+              -4.523290672241451e-06,
+              0.023675405266076432
+            ],
+            "exhaust": [
+              0.06814341064458718,
+              -9.517692976250592e-07,
+              -0.021258456309622697
+            ]
+          }
+        },
+        "minus_z": {
+          "solver_seconds": 112.44975748704746,
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "applied_N": [
+            0.0,
+            0.0,
+            -13583.83684588061
+          ],
+          "reaction_N": [
+            -1.3039099868716875e-05,
+            2.9910998671223155e-06,
+            13583.836867496419
+          ],
+          "force_balance_relative_error": 1.871387359298502e-09,
+          "moment_balance_F_times_100mm_error": 5.894047239207623e-09,
+          "maximum_displacement_mm": 0.04791759843225748,
+          "von_Mises_p95_MPa": 36.87999899613367,
+          "von_Mises_max_MPa": 241.40409211852216,
+          "journal_weighted_displacement_mm": {
+            "intake": [
+              -0.01028426534700736,
+              7.570129913009031e-06,
+              -0.027462949428247337
+            ],
+            "exhaust": [
+              0.007509949401391991,
+              2.917326083766614e-06,
+              -0.02393085042603515
+            ]
+          }
+        }
+      },
+      "files_sha256": {
+        "mesh.msh": "cbf5bb46d68dd1bc31239c8f43ee22c443e72e684f6df8b7b7f4df40aeeb2ed7",
+        "minus_z.12d": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "minus_z.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+        "minus_z.dat": "afb322c1e6eb80573a5b4e17f495bfa258be0dd98b619c73faf3711cd07ef077",
+        "minus_z.frd": "8546617efdecfdd946fadf551e706d247fb2f8b21d47087e9af5eaf10b8d1416",
+        "minus_z.inp": "c65d6159697c5a7c241029a7d4634e2e28c56eece8abedd81361859b7fcbf837",
+        "minus_z.log": "7ece6760b176fb85437fb0b080027e39e94aa81273fc0f0c9f6bf1b059f6fb1d",
+        "minus_z.sta": "01e324ec0ea28f4d1fd7f5e2da1277af53812b873e218be1604c17a4c8e4990d",
+        "spooles.out": "b272ec438fc895f13c5cc243867186cdfaf9f6bbb0e6dd13683f9ce835024b60",
+        "x.12d": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "x.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+        "x.dat": "86b30da556fc3a96ed83d397062de6af63a8a2d61deaae57253febb132e07645",
+        "x.frd": "4482eef2ad91da447f962d95b7a2dc413a146697b6e2a894ce43c5758909bf88",
+        "x.inp": "f7100581adb8247a527ccf51c9927f92b0d7a24d8d4b4d81dae9d3622f179479",
+        "x.log": "bbf77386b8e53bc165e5d446ae833228595935a2e84ce488068f3ee4572e1c94",
+        "x.sta": "01e324ec0ea28f4d1fd7f5e2da1277af53812b873e218be1604c17a4c8e4990d"
+      }
+    },
+    {
+      "component": "carrier_base_p",
+      "mesh": {
+        "size_mm": 3.0,
+        "nodes": 59333,
+        "elements": 34657,
+        "fixed_nodes": 2126,
+        "surface_area_mm2": {
+          "intake": 312.62860993581967,
+          "exhaust": 312.6286099358157
+        },
+        "minimum_Gauss4_Jacobian_mm3": 0.0870624623037944,
+        "gmsh_version": "4.12.1"
+      },
+      "meshing_seconds": 1.8221878567710519,
+      "journal_forces_N": {
+        "intake": 4370.417768654929,
+        "exhaust": 3566.8552152036395
+      },
+      "solutions": {
+        "x": {
+          "solver_seconds": 18.499981578905135,
+          "direction": [
+            1,
+            0,
+            0
+          ],
+          "applied_N": [
+            7937.272983858569,
+            0.0,
+            0.0
+          ],
+          "reaction_N": [
+            -7937.273049678035,
+            6.09973671128472e-06,
+            -3.270369970920228e-05
+          ],
+          "force_balance_relative_error": 9.291500412378752e-09,
+          "moment_balance_F_times_100mm_error": 1.3238967362502941e-08,
+          "maximum_displacement_mm": 0.25964791811424653,
+          "von_Mises_p95_MPa": 48.77501710420911,
+          "von_Mises_max_MPa": 518.0825697093044,
+          "journal_weighted_displacement_mm": {
+            "intake": [
+              0.1595304192554124,
+              0.01106375264535538,
+              -0.005886301065164676
+            ],
+            "exhaust": [
+              0.1391222861366385,
+              -0.012602140023462148,
+              0.0034552026608694257
+            ]
+          }
+        },
+        "minus_z": {
+          "solver_seconds": 19.10094869090244,
+          "direction": [
+            0,
+            0,
+            -1
+          ],
+          "applied_N": [
+            0.0,
+            0.0,
+            -7937.272983858569
+          ],
+          "reaction_N": [
+            -1.4072700369460733e-06,
+            -8.503625169353768e-05,
+            7937.27295192685
+          ],
+          "force_balance_relative_error": 1.1445342583744277e-08,
+          "moment_balance_F_times_100mm_error": 7.43225840635634e-09,
+          "maximum_displacement_mm": 0.13204988009526936,
+          "von_Mises_p95_MPa": 28.202626829943792,
+          "von_Mises_max_MPa": 133.62419127687377,
+          "journal_weighted_displacement_mm": {
+            "intake": [
+              0.005976831567429928,
+              -0.08149020340739288,
+              -0.05345961050048257
+            ],
+            "exhaust": [
+              -0.0034551432183423936,
+              -0.07858356099244052,
+              -0.05743856297353822
+            ]
+          }
+        }
+      },
+      "files_sha256": {
+        "mesh.msh": "2164e15bc10438b5929e2989abc2f3949d88e229a6941f5e74f122e37a8cc9f5",
+        "minus_z.12d": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "minus_z.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+        "minus_z.dat": "0a548531e1fb4615f1d5e5f2f4a61e5558fe61288daef18433e09dc23b917880",
+        "minus_z.frd": "dd4fce9f9e0f58b14b593526771a17e538f6b5fa422f7ce5dcc47c6fcf9e9ce2",
+        "minus_z.inp": "ef2c94072faed0d2620c352486435c14777cca98351a9476ce8ded091db8d069",
+        "minus_z.log": "b82d31deb11d51e89e0058b1f305e06cdf0e0e475d0109ed09d6c50406c96e7e",
+        "minus_z.sta": "01e324ec0ea28f4d1fd7f5e2da1277af53812b873e218be1604c17a4c8e4990d",
+        "spooles.out": "b272ec438fc895f13c5cc243867186cdfaf9f6bbb0e6dd13683f9ce835024b60",
+        "x.12d": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "x.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+        "x.dat": "573a058f123a99c0eb9e295037897276499ff19c8f590250a9c480b67e8bb465",
+        "x.frd": "b8d702672920123de1c0beb0faf0d12a8624ecf7dde17c1072db0e6bc0dbe38b",
+        "x.inp": "243fca70ded19bfde255e3b579b8ce03884bf1cce3348ad9cdaab752bfa519de",
+        "x.log": "a9059a0d7b9fd374ed83c7fcd37a53539c2207bb076b192370bcb39dce0f0167",
+        "x.sta": "01e324ec0ea28f4d1fd7f5e2da1277af53812b873e218be1604c17a4c8e4990d"
+      }
+    }
+  ]
+}

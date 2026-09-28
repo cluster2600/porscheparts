@@ -1,0 +1,485 @@
+{
+  "classification": "retained_linear_isotropic_C3D10_energy_diagnostic_not_optimization",
+  "source_sha256": "ce47552c795108e4d7a3d8bac069ad200de5b55b7d76ae0afc92e836972304c9",
+  "input_hashes_before": {
+    "work/m64-g14/fea/outer_root_energy_diagnostic.py": "17b23de8ca2dd72e5c5dcba2964cb16e895d8406ce6444eac680c6ec855756b4",
+    "work/m64-g14/fea/outer-root2-minus-z-energy-v1.json": "059f36776705f03290fdf71e41ab807ae1268253d3370c1040a9089cad172f58",
+    "work/m64-g14/fea/outer_energy_diagnostic.py": "d901486a5fdd14d09286fb8e15597b44870cdb7cc4a1e819d43bad53ff653958",
+    "work/m64-g14/fea/candidate-outer-upper-caps-2/native-mac-g14-outer_root2_upper_caps_p-2/minus_z.inp": "a2cb032e4efbf0288491d88792b536b1ef150561d3680f3f28b42afd8d392e4a",
+    "work/m64-g14/fea/candidate-outer-upper-caps-2/native-mac-g14-outer_root2_upper_caps_p-2/minus_z.dat": "0bc6d0de77bf4e84c81f8c61ad141c9dec70a51b540eabbdf0f569fab1ec88e7",
+    "work/m64-g14/fea/candidate-outer-upper-caps-2/native-mac-g14-outer_root2_upper_caps_p-2/case.json": "7af35bc35fc81db587878f2a801800f4abefb7186640e3aef47936b6d0535add",
+    "work/m64-g14/fea/candidate-outer-upper-caps-2/summary.json": "f8c00af2baeba4d2b198456634ef2b016c72105754894b550964a41817b8629b",
+    "twins/m64-cylinder-head/evidence/g7-local-supports-cooling-20260925/native-audit.json": "7e93be79ce379f2c4ccf26a6c129a70a093be368a2ff1f168884acc03764842e",
+    "twins/m64-cylinder-head/source/fourvalve/g8_pilot.py": "f6f3d1fe77c0a701bb1f75926cd4ac8cba3ee6cc9c3337967740d30ad85fee92",
+    "twins/m64-cylinder-head/source/fourvalve/g9_reference_campaign.py": "ed6a2b21d89030ba39fc393f8a218bbbf328eceda49ce6bed361273bd2d8170b",
+    "twins/reference-917-engine/source/run_f37_carrier_calculix.py": "54e3478e219875872092cacb281dd12e640126cbed9273e8d82cd46d36fa2b13",
+    "work/m64-g13/native-ccx/CalculiX/ccx_2.21/src/gauss.f": "aed2d48b6a63e30894e747a531f6edc32e3cd921338e370902dfb62d8e304df2",
+    "work/m64-g13/native-ccx/CalculiX/ccx_2.21/src/shape10tet.f": "04b93f4f9cede954cc82fdfead173c84316471bfd7ffd01b6336c1647cc6644c"
+  },
+  "input_hashes_after": {
+    "work/m64-g14/fea/outer_root_energy_diagnostic.py": "17b23de8ca2dd72e5c5dcba2964cb16e895d8406ce6444eac680c6ec855756b4",
+    "work/m64-g14/fea/outer-root2-minus-z-energy-v1.json": "059f36776705f03290fdf71e41ab807ae1268253d3370c1040a9089cad172f58",
+    "work/m64-g14/fea/outer_energy_diagnostic.py": "d901486a5fdd14d09286fb8e15597b44870cdb7cc4a1e819d43bad53ff653958",
+    "work/m64-g14/fea/candidate-outer-upper-caps-2/native-mac-g14-outer_root2_upper_caps_p-2/minus_z.inp": "a2cb032e4efbf0288491d88792b536b1ef150561d3680f3f28b42afd8d392e4a",
+    "work/m64-g14/fea/candidate-outer-upper-caps-2/native-mac-g14-outer_root2_upper_caps_p-2/minus_z.dat": "0bc6d0de77bf4e84c81f8c61ad141c9dec70a51b540eabbdf0f569fab1ec88e7",
+    "work/m64-g14/fea/candidate-outer-upper-caps-2/native-mac-g14-outer_root2_upper_caps_p-2/case.json": "7af35bc35fc81db587878f2a801800f4abefb7186640e3aef47936b6d0535add",
+    "work/m64-g14/fea/candidate-outer-upper-caps-2/summary.json": "f8c00af2baeba4d2b198456634ef2b016c72105754894b550964a41817b8629b",
+    "twins/m64-cylinder-head/evidence/g7-local-supports-cooling-20260925/native-audit.json": "7e93be79ce379f2c4ccf26a6c129a70a093be368a2ff1f168884acc03764842e",
+    "twins/m64-cylinder-head/source/fourvalve/g8_pilot.py": "f6f3d1fe77c0a701bb1f75926cd4ac8cba3ee6cc9c3337967740d30ad85fee92",
+    "twins/m64-cylinder-head/source/fourvalve/g9_reference_campaign.py": "ed6a2b21d89030ba39fc393f8a218bbbf328eceda49ce6bed361273bd2d8170b",
+    "twins/reference-917-engine/source/run_f37_carrier_calculix.py": "54e3478e219875872092cacb281dd12e640126cbed9273e8d82cd46d36fa2b13",
+    "work/m64-g13/native-ccx/CalculiX/ccx_2.21/src/gauss.f": "aed2d48b6a63e30894e747a531f6edc32e3cd921338e370902dfb62d8e304df2",
+    "work/m64-g13/native-ccx/CalculiX/ccx_2.21/src/shape10tet.f": "04b93f4f9cede954cc82fdfead173c84316471bfd7ffd01b6336c1647cc6644c"
+  },
+  "inputs_unchanged": true,
+  "material": {
+    "E_MPa": 70000.0,
+    "nu": 0.33
+  },
+  "elements": 133901,
+  "Gauss_points": 535604,
+  "maximum_mid_edge_error_mm": 7.516711438056155e-10,
+  "mesh_volume_mm3": 242030.51857003025,
+  "CAD_volume_mm3": 241503.42529587366,
+  "balance": {
+    "integrated_stress_energy_Nmm": 88.88958215883325,
+    "half_F_dot_U_Nmm": 88.88958173880148,
+    "relative_difference": 4.725320553580526e-09,
+    "relative_limit": 0.0001,
+    "passed": true
+  },
+  "region_interpretation_permitted": true,
+  "regions": [
+    {
+      "z_band": "first_1mm",
+      "side": "intake_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 0.0,
+      "energy_fraction": 0.0,
+      "quadrature_volume_mm3": 0.0,
+      "volume_fraction": 0.0,
+      "Gauss_points": 0
+    },
+    {
+      "z_band": "first_1mm",
+      "side": "intake_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 1.5897336198663252,
+      "energy_fraction": 0.017884363738212804,
+      "quadrature_volume_mm3": 1721.2759910511227,
+      "volume_fraction": 0.007111813837448275,
+      "Gauss_points": 5716
+    },
+    {
+      "z_band": "first_1mm",
+      "side": "exhaust_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 0.0,
+      "energy_fraction": 0.0,
+      "quadrature_volume_mm3": 0.0,
+      "volume_fraction": 0.0,
+      "Gauss_points": 0
+    },
+    {
+      "z_band": "first_1mm",
+      "side": "exhaust_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 1.475435418630823,
+      "energy_fraction": 0.016598519002985368,
+      "quadrature_volume_mm3": 1775.8544973680603,
+      "volume_fraction": 0.00733731641720309,
+      "Gauss_points": 5807
+    },
+    {
+      "z_band": "root_1_to_3mm",
+      "side": "intake_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 0.5998828560312909,
+      "energy_fraction": 0.006748629495854578,
+      "quadrature_volume_mm3": 303.71188613102885,
+      "volume_fraction": 0.0012548495451128467,
+      "Gauss_points": 973
+    },
+    {
+      "z_band": "root_1_to_3mm",
+      "side": "intake_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 2.2651038204207423,
+      "energy_fraction": 0.025482219236595337,
+      "quadrature_volume_mm3": 3225.275013901828,
+      "volume_fraction": 0.013325902175301963,
+      "Gauss_points": 7541
+    },
+    {
+      "z_band": "root_1_to_3mm",
+      "side": "exhaust_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 0.6587319843111469,
+      "energy_fraction": 0.0074106770255043496,
+      "quadrature_volume_mm3": 435.42133668283583,
+      "volume_fraction": 0.0017990348459169581,
+      "Gauss_points": 1389
+    },
+    {
+      "z_band": "root_1_to_3mm",
+      "side": "exhaust_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 2.0808419851345903,
+      "energy_fraction": 0.023409289756997808,
+      "quadrature_volume_mm3": 3333.6917775190004,
+      "volume_fraction": 0.013773848840283397,
+      "Gauss_points": 7576
+    },
+    {
+      "z_band": "lower_to_z108",
+      "side": "intake_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 5.065449072407151,
+      "energy_fraction": 0.056985857615529135,
+      "quadrature_volume_mm3": 5792.381615025931,
+      "volume_fraction": 0.02393244310365734,
+      "Gauss_points": 13478
+    },
+    {
+      "z_band": "lower_to_z108",
+      "side": "intake_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 15.479503442791643,
+      "energy_fraction": 0.1741430555397587,
+      "quadrature_volume_mm3": 24110.457489477398,
+      "volume_fraction": 0.09961742689280387,
+      "Gauss_points": 50947
+    },
+    {
+      "z_band": "lower_to_z108",
+      "side": "exhaust_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 4.4764963100419575,
+      "energy_fraction": 0.05036019071439761,
+      "quadrature_volume_mm3": 8778.776229065552,
+      "volume_fraction": 0.036271360657046475,
+      "Gauss_points": 20348
+    },
+    {
+      "z_band": "lower_to_z108",
+      "side": "exhaust_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 11.735326227364927,
+      "energy_fraction": 0.1320213903851583,
+      "quadrature_volume_mm3": 24277.184766256472,
+      "volume_fraction": 0.10030629570886944,
+      "Gauss_points": 51958
+    },
+    {
+      "z_band": "z108_to123",
+      "side": "intake_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 4.370494067501528,
+      "energy_fraction": 0.0491676747865916,
+      "quadrature_volume_mm3": 8660.75593056858,
+      "volume_fraction": 0.03578373496754971,
+      "Gauss_points": 18588
+    },
+    {
+      "z_band": "z108_to123",
+      "side": "intake_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 4.985899433104409,
+      "energy_fraction": 0.05609093115316151,
+      "quadrature_volume_mm3": 19098.777266642774,
+      "volume_fraction": 0.07891061581606554,
+      "Gauss_points": 38680
+    },
+    {
+      "z_band": "z108_to123",
+      "side": "exhaust_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 3.26354981028088,
+      "energy_fraction": 0.03671464901757973,
+      "quadrature_volume_mm3": 12100.83783499397,
+      "volume_fraction": 0.04999715699692912,
+      "Gauss_points": 25135
+    },
+    {
+      "z_band": "z108_to123",
+      "side": "exhaust_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 3.0397426639268765,
+      "energy_fraction": 0.0341968382582256,
+      "quadrature_volume_mm3": 19046.605901712534,
+      "volume_fraction": 0.07869505884730606,
+      "Gauss_points": 38278
+    },
+    {
+      "z_band": "z123_to138",
+      "side": "intake_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 5.032558166595708,
+      "energy_fraction": 0.05661583781104101,
+      "quadrature_volume_mm3": 8351.073464188954,
+      "volume_fraction": 0.03450421671419348,
+      "Gauss_points": 18326
+    },
+    {
+      "z_band": "z123_to138",
+      "side": "intake_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 2.4075171762948395,
+      "energy_fraction": 0.027084356994646945,
+      "quadrature_volume_mm3": 18382.754325335725,
+      "volume_fraction": 0.07595221641446334,
+      "Gauss_points": 38995
+    },
+    {
+      "z_band": "z123_to138",
+      "side": "exhaust_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 3.980327626019663,
+      "energy_fraction": 0.044778336553628686,
+      "quadrature_volume_mm3": 11630.065176920749,
+      "volume_fraction": 0.04805206073033162,
+      "Gauss_points": 25462
+    },
+    {
+      "z_band": "z123_to138",
+      "side": "exhaust_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 1.3265250281024308,
+      "energy_fraction": 0.014923290175131165,
+      "quadrature_volume_mm3": 18265.597490329616,
+      "volume_fraction": 0.07546815830601364,
+      "Gauss_points": 39107
+    },
+    {
+      "z_band": "z138_up",
+      "side": "intake_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 7.141326213201129,
+      "energy_fraction": 0.08033929330931693,
+      "quadrature_volume_mm3": 5419.348008084835,
+      "volume_fraction": 0.022391176286790358,
+      "Gauss_points": 14657
+    },
+    {
+      "z_band": "z138_up",
+      "side": "intake_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 2.2055923711344203,
+      "energy_fraction": 0.024812720653735725,
+      "quadrature_volume_mm3": 21274.30021370221,
+      "volume_fraction": 0.08789924650575255,
+      "Gauss_points": 50006
+    },
+    {
+      "z_band": "z138_up",
+      "side": "exhaust_half",
+      "zone": "local_y_below45",
+      "energy_Nmm": 4.632170751498855,
+      "energy_fraction": 0.052111514521710915,
+      "quadrature_volume_mm3": 6100.485543365196,
+      "volume_fraction": 0.02520543929504515,
+      "Gauss_points": 16060
+    },
+    {
+      "z_band": "z138_up",
+      "side": "exhaust_half",
+      "zone": "frame_y_atleast45",
+      "energy_Nmm": 1.0773741141718847,
+      "energy_fraction": 0.012120364254235865,
+      "quadrature_volume_mm3": 19945.886811705874,
+      "volume_fraction": 0.08241062709591575,
+      "Gauss_points": 46577
+    }
+  ],
+  "region_definition": {
+    "z_boundaries_mm": [
+      86.461,
+      87.461,
+      89.461,
+      108,
+      123,
+      138
+    ],
+    "frame_y_min_mm": 45,
+    "side_split_x_mm": 0
+  },
+  "scope": "Energy/compliance for retained minus-z load only; GP-based region allocation, no exact clipped-volume integration, no exact sensitivity of journal norm, no causal gain prediction, no hot/material/assembly validation.",
+  "new_solve_executed": false,
+  "new_CAD_executed": false,
+  "manufacturing_authorized": false,
+  "comparison_to_root2": {
+    "energy_receipt_sha256": "059f36776705f03290fdf71e41ab807ae1268253d3370c1040a9089cad172f58",
+    "permitted": true,
+    "global_energy_change_fraction": -0.07347842917728176,
+    "regions": [
+      {
+        "z_band": "first_1mm",
+        "side": "intake_half",
+        "zone": "local_y_below45",
+        "energy_change_Nmm": 0.0,
+        "energy_fraction_change": 0.0
+      },
+      {
+        "z_band": "first_1mm",
+        "side": "intake_half",
+        "zone": "frame_y_atleast45",
+        "energy_change_Nmm": -0.022726209422637922,
+        "energy_fraction_change": 0.0010772331652305726
+      },
+      {
+        "z_band": "first_1mm",
+        "side": "exhaust_half",
+        "zone": "local_y_below45",
+        "energy_change_Nmm": 0.0,
+        "energy_fraction_change": 0.0
+      },
+      {
+        "z_band": "first_1mm",
+        "side": "exhaust_half",
+        "zone": "frame_y_atleast45",
+        "energy_change_Nmm": -0.011941646958252061,
+        "energy_fraction_change": 0.0010951618969431056
+      },
+      {
+        "z_band": "root_1_to_3mm",
+        "side": "intake_half",
+        "zone": "local_y_below45",
+        "energy_change_Nmm": 0.033607334839133585,
+        "energy_fraction_change": 0.0008461775698695344
+      },
+      {
+        "z_band": "root_1_to_3mm",
+        "side": "intake_half",
+        "zone": "frame_y_atleast45",
+        "energy_change_Nmm": 0.005216814118987667,
+        "energy_fraction_change": 0.0019267697889968176
+      },
+      {
+        "z_band": "root_1_to_3mm",
+        "side": "exhaust_half",
+        "zone": "local_y_below45",
+        "energy_change_Nmm": -0.008324589140865757,
+        "energy_fraction_change": 0.00045775533038350247
+      },
+      {
+        "z_band": "root_1_to_3mm",
+        "side": "exhaust_half",
+        "zone": "frame_y_atleast45",
+        "energy_change_Nmm": 0.05979760244815857,
+        "energy_fraction_change": 0.002343365374508369
+      },
+      {
+        "z_band": "lower_to_z108",
+        "side": "intake_half",
+        "zone": "local_y_below45",
+        "energy_change_Nmm": 0.016565237160111934,
+        "energy_fraction_change": 0.004359895513741281
+      },
+      {
+        "z_band": "lower_to_z108",
+        "side": "intake_half",
+        "zone": "frame_y_atleast45",
+        "energy_change_Nmm": -0.051728035667062855,
+        "energy_fraction_change": 0.01225658204368743
+      },
+      {
+        "z_band": "lower_to_z108",
+        "side": "exhaust_half",
+        "zone": "local_y_below45",
+        "energy_change_Nmm": -0.019982501188557933,
+        "energy_fraction_change": 0.0034921043743340943
+      },
+      {
+        "z_band": "lower_to_z108",
+        "side": "exhaust_half",
+        "zone": "frame_y_atleast45",
+        "energy_change_Nmm": -0.04137375620375572,
+        "energy_fraction_change": 0.009269473873875236
+      },
+      {
+        "z_band": "z108_to123",
+        "side": "intake_half",
+        "zone": "local_y_below45",
+        "energy_change_Nmm": -0.012829028336704518,
+        "energy_fraction_change": 0.0034790428733189535
+      },
+      {
+        "z_band": "z108_to123",
+        "side": "intake_half",
+        "zone": "frame_y_atleast45",
+        "energy_change_Nmm": -0.01966710766289026,
+        "energy_fraction_change": 0.003916477616836854
+      },
+      {
+        "z_band": "z108_to123",
+        "side": "exhaust_half",
+        "zone": "local_y_below45",
+        "energy_change_Nmm": -0.02219602244405161,
+        "energy_fraction_change": 0.0024663792392300016
+      },
+      {
+        "z_band": "z108_to123",
+        "side": "exhaust_half",
+        "zone": "frame_y_atleast45",
+        "energy_change_Nmm": 0.006979017378944352,
+        "energy_fraction_change": 0.0025854742548186566
+      },
+      {
+        "z_band": "z123_to138",
+        "side": "intake_half",
+        "zone": "local_y_below45",
+        "energy_change_Nmm": -0.2638973042711559,
+        "energy_fraction_change": 0.0014093656522280312
+      },
+      {
+        "z_band": "z123_to138",
+        "side": "intake_half",
+        "zone": "frame_y_atleast45",
+        "energy_change_Nmm": 0.05497851007042609,
+        "energy_fraction_change": 0.002563172762318721
+      },
+      {
+        "z_band": "z123_to138",
+        "side": "exhaust_half",
+        "zone": "local_y_below45",
+        "energy_change_Nmm": -0.2861880094808238,
+        "energy_fraction_change": 0.00030722225049125557
+      },
+      {
+        "z_band": "z123_to138",
+        "side": "exhaust_half",
+        "zone": "frame_y_atleast45",
+        "energy_change_Nmm": 0.03596454268834748,
+        "energy_fraction_change": 0.0014714086481038453
+      },
+      {
+        "z_band": "z138_up",
+        "side": "intake_half",
+        "zone": "local_y_below45",
+        "energy_change_Nmm": -4.5139568245699735,
+        "energy_fraction_change": -0.041147059604829894
+      },
+      {
+        "z_band": "z138_up",
+        "side": "intake_half",
+        "zone": "frame_y_atleast45",
+        "energy_change_Nmm": 0.4974098456645899,
+        "energy_fraction_change": 0.007007845005628628
+      },
+      {
+        "z_band": "z138_up",
+        "side": "exhaust_half",
+        "zone": "local_y_below45",
+        "energy_change_Nmm": -2.716351298110487,
+        "energy_fraction_change": -0.024484235253144325
+      },
+      {
+        "z_band": "z138_up",
+        "side": "exhaust_half",
+        "zone": "frame_y_atleast45",
+        "energy_change_Nmm": 0.2311940984525177,
+        "energy_fraction_change": 0.0033003876234289527
+      }
+    ]
+  }
+}

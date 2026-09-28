@@ -1,0 +1,370 @@
+{
+  "schema": "m64-g8-cpu-gpu-linear-benchmark/v1",
+  "classification": "hardware_trial_not_head_validation",
+  "original_G8_reference_gate_passed": false,
+  "fresh_direct_comparisons_and_equation_residuals_passed": true,
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false,
+  "median_cpu_solve_seconds": 28.638627894004458,
+  "median_cuda_solve_seconds": 1.4540335850033443,
+  "median_cpu_setup_and_solve_seconds": 28.658567467005923,
+  "median_cuda_setup_and_solve_seconds": 1.8225180279987399,
+  "trials": [
+    {
+      "trial": 1,
+      "backend": "cpu",
+      "versions": {
+        "numpy": "2.2.6",
+        "scipy": "1.14.1"
+      },
+      "iterations": 4664,
+      "info": 0,
+      "setup_seconds": 0.01993581699207425,
+      "solve_seconds": 28.63000859999738,
+      "setup_and_solve_seconds": 28.649944416989456,
+      "dtype": "float64",
+      "classification": "G8_reduced_stiffness_linear_solver_benchmark_only",
+      "accepted": false,
+      "manufacturing_authorized": false,
+      "engine_start_authorized": false,
+      "reactions_and_stresses_recomputed": false,
+      "nodes": 59333,
+      "free_dofs": 171621,
+      "matrix_nnz": 12744767,
+      "relative_residual": 1.032808436944323e-10,
+      "max_nodal_difference_over_max_reference_U": 0.0428931346771594,
+      "host": "x86_64",
+      "original_reference": {
+        "max_nodal_difference_over_max_reference_U": 0.0428931346771594,
+        "printed_dat_relative_residual": 30.68626667849724,
+        "printed_dat_rounding_residual_bound": 0.033055935929303594
+      },
+      "additional_comparisons": [
+        {
+          "file": "kali-one.dat",
+          "sha256": "2f5400f3e78251325c9948c490d4f656e9db20d48488c11be1577afe02b98172",
+          "max_nodal_difference_over_max_reference_U": 1.9266603150834345e-7,
+          "printed_dat_relative_residual": 0.0014203200576744426,
+          "printed_dat_rounding_residual_bound": 0.03319634135916034
+        },
+        {
+          "file": "x.dat",
+          "sha256": "5b12265c625c29ed15d9f247d7751dadbeb9c52a0f8b20647f63c917e206b884",
+          "max_nodal_difference_over_max_reference_U": 1.9266603150834345e-7,
+          "printed_dat_relative_residual": 0.0014203200576744426,
+          "printed_dat_rounding_residual_bound": 0.03319634135916034
+        }
+      ],
+      "thresholds": {
+        "relative_residual": 1e-8,
+        "max_nodal_difference_over_max_reference_U": 0.0001
+      },
+      "hashes": {
+        "source": "4a98a110df2c4698b3ac0a74fb0dd1cb200c946fd9fa9a8748f6bd0e10c981cd",
+        "deck": "243fca70ded19bfde255e3b579b8ce03884bf1cce3348ad9cdaab752bfa519de",
+        "reference_dat": "573a058f123a99c0eb9e295037897276499ff19c8f590250a9c480b67e8bb465",
+        "matrix_deck": "6c44700bbb93b7d0d86c89d97c1070345fbda91ad2ae508d1b6b8a74578bc3f5",
+        "stiffness": "b7bad69101ea5cb9572b03cc3bf176f62d856358ad2abcd5d21b50854f878581",
+        "dof_map": "43346f9ec7275c590ee042429b4909843f34e1bdb39aaae9dac8ea6adea6e775"
+      }
+    },
+    {
+      "trial": 2,
+      "backend": "cpu",
+      "versions": {
+        "numpy": "2.2.6",
+        "scipy": "1.14.1"
+      },
+      "iterations": 4664,
+      "info": 0,
+      "setup_seconds": 0.019579008003347553,
+      "solve_seconds": 28.690596373999142,
+      "setup_and_solve_seconds": 28.71017538200249,
+      "dtype": "float64",
+      "classification": "G8_reduced_stiffness_linear_solver_benchmark_only",
+      "accepted": false,
+      "manufacturing_authorized": false,
+      "engine_start_authorized": false,
+      "reactions_and_stresses_recomputed": false,
+      "nodes": 59333,
+      "free_dofs": 171621,
+      "matrix_nnz": 12744767,
+      "relative_residual": 1.032808436944323e-10,
+      "max_nodal_difference_over_max_reference_U": 0.0428931346771594,
+      "host": "x86_64",
+      "original_reference": {
+        "max_nodal_difference_over_max_reference_U": 0.0428931346771594,
+        "printed_dat_relative_residual": 30.68626667849724,
+        "printed_dat_rounding_residual_bound": 0.033055935929303594
+      },
+      "additional_comparisons": [
+        {
+          "file": "kali-one.dat",
+          "sha256": "2f5400f3e78251325c9948c490d4f656e9db20d48488c11be1577afe02b98172",
+          "max_nodal_difference_over_max_reference_U": 1.9266603150834345e-7,
+          "printed_dat_relative_residual": 0.0014203200576744426,
+          "printed_dat_rounding_residual_bound": 0.03319634135916034
+        },
+        {
+          "file": "x.dat",
+          "sha256": "5b12265c625c29ed15d9f247d7751dadbeb9c52a0f8b20647f63c917e206b884",
+          "max_nodal_difference_over_max_reference_U": 1.9266603150834345e-7,
+          "printed_dat_relative_residual": 0.0014203200576744426,
+          "printed_dat_rounding_residual_bound": 0.03319634135916034
+        }
+      ],
+      "thresholds": {
+        "relative_residual": 1e-8,
+        "max_nodal_difference_over_max_reference_U": 0.0001
+      },
+      "hashes": {
+        "source": "4a98a110df2c4698b3ac0a74fb0dd1cb200c946fd9fa9a8748f6bd0e10c981cd",
+        "deck": "243fca70ded19bfde255e3b579b8ce03884bf1cce3348ad9cdaab752bfa519de",
+        "reference_dat": "573a058f123a99c0eb9e295037897276499ff19c8f590250a9c480b67e8bb465",
+        "matrix_deck": "6c44700bbb93b7d0d86c89d97c1070345fbda91ad2ae508d1b6b8a74578bc3f5",
+        "stiffness": "b7bad69101ea5cb9572b03cc3bf176f62d856358ad2abcd5d21b50854f878581",
+        "dof_map": "43346f9ec7275c590ee042429b4909843f34e1bdb39aaae9dac8ea6adea6e775"
+      }
+    },
+    {
+      "trial": 3,
+      "backend": "cpu",
+      "versions": {
+        "numpy": "2.2.6",
+        "scipy": "1.14.1"
+      },
+      "iterations": 4664,
+      "info": 0,
+      "setup_seconds": 0.01993957300146576,
+      "solve_seconds": 28.638627894004458,
+      "setup_and_solve_seconds": 28.658567467005923,
+      "dtype": "float64",
+      "classification": "G8_reduced_stiffness_linear_solver_benchmark_only",
+      "accepted": false,
+      "manufacturing_authorized": false,
+      "engine_start_authorized": false,
+      "reactions_and_stresses_recomputed": false,
+      "nodes": 59333,
+      "free_dofs": 171621,
+      "matrix_nnz": 12744767,
+      "relative_residual": 1.032808436944323e-10,
+      "max_nodal_difference_over_max_reference_U": 0.0428931346771594,
+      "host": "x86_64",
+      "original_reference": {
+        "max_nodal_difference_over_max_reference_U": 0.0428931346771594,
+        "printed_dat_relative_residual": 30.68626667849724,
+        "printed_dat_rounding_residual_bound": 0.033055935929303594
+      },
+      "additional_comparisons": [
+        {
+          "file": "kali-one.dat",
+          "sha256": "2f5400f3e78251325c9948c490d4f656e9db20d48488c11be1577afe02b98172",
+          "max_nodal_difference_over_max_reference_U": 1.9266603150834345e-7,
+          "printed_dat_relative_residual": 0.0014203200576744426,
+          "printed_dat_rounding_residual_bound": 0.03319634135916034
+        },
+        {
+          "file": "x.dat",
+          "sha256": "5b12265c625c29ed15d9f247d7751dadbeb9c52a0f8b20647f63c917e206b884",
+          "max_nodal_difference_over_max_reference_U": 1.9266603150834345e-7,
+          "printed_dat_relative_residual": 0.0014203200576744426,
+          "printed_dat_rounding_residual_bound": 0.03319634135916034
+        }
+      ],
+      "thresholds": {
+        "relative_residual": 1e-8,
+        "max_nodal_difference_over_max_reference_U": 0.0001
+      },
+      "hashes": {
+        "source": "4a98a110df2c4698b3ac0a74fb0dd1cb200c946fd9fa9a8748f6bd0e10c981cd",
+        "deck": "243fca70ded19bfde255e3b579b8ce03884bf1cce3348ad9cdaab752bfa519de",
+        "reference_dat": "573a058f123a99c0eb9e295037897276499ff19c8f590250a9c480b67e8bb465",
+        "matrix_deck": "6c44700bbb93b7d0d86c89d97c1070345fbda91ad2ae508d1b6b8a74578bc3f5",
+        "stiffness": "b7bad69101ea5cb9572b03cc3bf176f62d856358ad2abcd5d21b50854f878581",
+        "dof_map": "43346f9ec7275c590ee042429b4909843f34e1bdb39aaae9dac8ea6adea6e775"
+      }
+    },
+    {
+      "trial": 1,
+      "backend": "cuda",
+      "versions": {
+        "cupy": "13.6.0",
+        "cuda_runtime": 12090,
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "gpu_total_memory_bytes": 25252724736
+      },
+      "iterations": 4666,
+      "info": 0,
+      "setup_seconds": 0.9682809910009382,
+      "solve_seconds": 1.7786586650036043,
+      "setup_and_solve_seconds": 2.7469396560045425,
+      "dtype": "float64",
+      "classification": "G8_reduced_stiffness_linear_solver_benchmark_only",
+      "accepted": false,
+      "manufacturing_authorized": false,
+      "engine_start_authorized": false,
+      "reactions_and_stresses_recomputed": false,
+      "nodes": 59333,
+      "free_dofs": 171621,
+      "matrix_nnz": 12744767,
+      "relative_residual": 9.97424090470054e-11,
+      "max_nodal_difference_over_max_reference_U": 0.04289313467714962,
+      "host": "x86_64",
+      "original_reference": {
+        "max_nodal_difference_over_max_reference_U": 0.04289313467714962,
+        "printed_dat_relative_residual": 30.68626667849724,
+        "printed_dat_rounding_residual_bound": 0.033055935929303594
+      },
+      "additional_comparisons": [
+        {
+          "file": "kali-one.dat",
+          "sha256": "2f5400f3e78251325c9948c490d4f656e9db20d48488c11be1577afe02b98172",
+          "max_nodal_difference_over_max_reference_U": 1.9266602347802232e-7,
+          "printed_dat_relative_residual": 0.0014203200576744426,
+          "printed_dat_rounding_residual_bound": 0.03319634135916034
+        },
+        {
+          "file": "x.dat",
+          "sha256": "5b12265c625c29ed15d9f247d7751dadbeb9c52a0f8b20647f63c917e206b884",
+          "max_nodal_difference_over_max_reference_U": 1.9266602347802232e-7,
+          "printed_dat_relative_residual": 0.0014203200576744426,
+          "printed_dat_rounding_residual_bound": 0.03319634135916034
+        }
+      ],
+      "thresholds": {
+        "relative_residual": 1e-8,
+        "max_nodal_difference_over_max_reference_U": 0.0001
+      },
+      "hashes": {
+        "source": "4a98a110df2c4698b3ac0a74fb0dd1cb200c946fd9fa9a8748f6bd0e10c981cd",
+        "deck": "243fca70ded19bfde255e3b579b8ce03884bf1cce3348ad9cdaab752bfa519de",
+        "reference_dat": "573a058f123a99c0eb9e295037897276499ff19c8f590250a9c480b67e8bb465",
+        "matrix_deck": "6c44700bbb93b7d0d86c89d97c1070345fbda91ad2ae508d1b6b8a74578bc3f5",
+        "stiffness": "b7bad69101ea5cb9572b03cc3bf176f62d856358ad2abcd5d21b50854f878581",
+        "dof_map": "43346f9ec7275c590ee042429b4909843f34e1bdb39aaae9dac8ea6adea6e775"
+      }
+    },
+    {
+      "trial": 2,
+      "backend": "cuda",
+      "versions": {
+        "cupy": "13.6.0",
+        "cuda_runtime": 12090,
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "gpu_total_memory_bytes": 25252724736
+      },
+      "iterations": 4662,
+      "info": 0,
+      "setup_seconds": 0.3684844429953955,
+      "solve_seconds": 1.4540335850033443,
+      "setup_and_solve_seconds": 1.8225180279987399,
+      "dtype": "float64",
+      "classification": "G8_reduced_stiffness_linear_solver_benchmark_only",
+      "accepted": false,
+      "manufacturing_authorized": false,
+      "engine_start_authorized": false,
+      "reactions_and_stresses_recomputed": false,
+      "nodes": 59333,
+      "free_dofs": 171621,
+      "matrix_nnz": 12744767,
+      "relative_residual": 1.0034780792833291e-10,
+      "max_nodal_difference_over_max_reference_U": 0.042893134677158946,
+      "host": "x86_64",
+      "original_reference": {
+        "max_nodal_difference_over_max_reference_U": 0.042893134677158946,
+        "printed_dat_relative_residual": 30.68626667849724,
+        "printed_dat_rounding_residual_bound": 0.033055935929303594
+      },
+      "additional_comparisons": [
+        {
+          "file": "kali-one.dat",
+          "sha256": "2f5400f3e78251325c9948c490d4f656e9db20d48488c11be1577afe02b98172",
+          "max_nodal_difference_over_max_reference_U": 1.926660179706706e-7,
+          "printed_dat_relative_residual": 0.0014203200576744426,
+          "printed_dat_rounding_residual_bound": 0.03319634135916034
+        },
+        {
+          "file": "x.dat",
+          "sha256": "5b12265c625c29ed15d9f247d7751dadbeb9c52a0f8b20647f63c917e206b884",
+          "max_nodal_difference_over_max_reference_U": 1.926660179706706e-7,
+          "printed_dat_relative_residual": 0.0014203200576744426,
+          "printed_dat_rounding_residual_bound": 0.03319634135916034
+        }
+      ],
+      "thresholds": {
+        "relative_residual": 1e-8,
+        "max_nodal_difference_over_max_reference_U": 0.0001
+      },
+      "hashes": {
+        "source": "4a98a110df2c4698b3ac0a74fb0dd1cb200c946fd9fa9a8748f6bd0e10c981cd",
+        "deck": "243fca70ded19bfde255e3b579b8ce03884bf1cce3348ad9cdaab752bfa519de",
+        "reference_dat": "573a058f123a99c0eb9e295037897276499ff19c8f590250a9c480b67e8bb465",
+        "matrix_deck": "6c44700bbb93b7d0d86c89d97c1070345fbda91ad2ae508d1b6b8a74578bc3f5",
+        "stiffness": "b7bad69101ea5cb9572b03cc3bf176f62d856358ad2abcd5d21b50854f878581",
+        "dof_map": "43346f9ec7275c590ee042429b4909843f34e1bdb39aaae9dac8ea6adea6e775"
+      }
+    },
+    {
+      "trial": 3,
+      "backend": "cuda",
+      "versions": {
+        "cupy": "13.6.0",
+        "cuda_runtime": 12090,
+        "gpu": "NVIDIA GeForce RTX 4090",
+        "gpu_total_memory_bytes": 25252724736
+      },
+      "iterations": 4661,
+      "info": 0,
+      "setup_seconds": 0.36757476000639144,
+      "solve_seconds": 1.4470058330043685,
+      "setup_and_solve_seconds": 1.81458059301076,
+      "dtype": "float64",
+      "classification": "G8_reduced_stiffness_linear_solver_benchmark_only",
+      "accepted": false,
+      "manufacturing_authorized": false,
+      "engine_start_authorized": false,
+      "reactions_and_stresses_recomputed": false,
+      "nodes": 59333,
+      "free_dofs": 171621,
+      "matrix_nnz": 12744767,
+      "relative_residual": 1.0141159987982342e-10,
+      "max_nodal_difference_over_max_reference_U": 0.042893134677161236,
+      "host": "x86_64",
+      "original_reference": {
+        "max_nodal_difference_over_max_reference_U": 0.042893134677161236,
+        "printed_dat_relative_residual": 30.68626667849724,
+        "printed_dat_rounding_residual_bound": 0.033055935929303594
+      },
+      "additional_comparisons": [
+        {
+          "file": "kali-one.dat",
+          "sha256": "2f5400f3e78251325c9948c490d4f656e9db20d48488c11be1577afe02b98172",
+          "max_nodal_difference_over_max_reference_U": 1.926660279842743e-7,
+          "printed_dat_relative_residual": 0.0014203200576744426,
+          "printed_dat_rounding_residual_bound": 0.03319634135916034
+        },
+        {
+          "file": "x.dat",
+          "sha256": "5b12265c625c29ed15d9f247d7751dadbeb9c52a0f8b20647f63c917e206b884",
+          "max_nodal_difference_over_max_reference_U": 1.926660279842743e-7,
+          "printed_dat_relative_residual": 0.0014203200576744426,
+          "printed_dat_rounding_residual_bound": 0.03319634135916034
+        }
+      ],
+      "thresholds": {
+        "relative_residual": 1e-8,
+        "max_nodal_difference_over_max_reference_U": 0.0001
+      },
+      "hashes": {
+        "source": "4a98a110df2c4698b3ac0a74fb0dd1cb200c946fd9fa9a8748f6bd0e10c981cd",
+        "deck": "243fca70ded19bfde255e3b579b8ce03884bf1cce3348ad9cdaab752bfa519de",
+        "reference_dat": "573a058f123a99c0eb9e295037897276499ff19c8f590250a9c480b67e8bb465",
+        "matrix_deck": "6c44700bbb93b7d0d86c89d97c1070345fbda91ad2ae508d1b6b8a74578bc3f5",
+        "stiffness": "b7bad69101ea5cb9572b03cc3bf176f62d856358ad2abcd5d21b50854f878581",
+        "dof_map": "43346f9ec7275c590ee042429b4909843f34e1bdb39aaae9dac8ea6adea6e775"
+      }
+    }
+  ],
+  "solve_only_ratio": 19.69598789833908,
+  "setup_and_solve_ratio": 15.724710003815522
+}
