@@ -2,20 +2,21 @@
 
 # Execution and audit reports
 
-119 reports of runs, audits and checkpoints, newest first (14 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../../SAFETY.md).
+120 reports of runs, audits and checkpoints, newest first (14 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../../SAFETY.md).
 
 ```mermaid
 xychart-beta
     title "Reports written per day, 2026"
     x-axis ["09-01", "09-06", "09-07", "09-08", "09-09", "09-12", "09-14", "09-16", "09-24", "09-25", "09-26", "09-27", "09-28"]
     y-axis "reports" 0 --> 25
-    bar [1, 1, 20, 24, 13, 9, 7, 1, 2, 8, 6, 3, 10]
+    bar [1, 1, 20, 24, 13, 9, 7, 1, 2, 8, 6, 3, 11]
 ```
 
 ## September 28, 2026
 
 | report | file |
 |---|---|
+| M64 — adaptive meshing and acute-face diagnosis, 28 September 2026 | [`M64_ADAPTIVE_MESH_AND_ACUTE_FACES_20260928.md`](M64_ADAPTIVE_MESH_AND_ACUTE_FACES_20260928.md) |
 | M64 — CAD-constrained mesh and partition trials, 28 September 2026 | [`M64_CAD_CONSTRAINED_MESH_20260928.md`](M64_CAD_CONSTRAINED_MESH_20260928.md) |
 | M64 — fixed-boundary seam experiment and Swindon benchmark, 28 September 2026 | [`M64_FIXED_BOUNDARY_SEAM_20260928.md`](M64_FIXED_BOUNDARY_SEAM_20260928.md) |
 | M64 — local junction and additive-manufacturing screening, 28 September 2026 | [`M64_JUNCTION_AM_SCREEN_20260928.md`](M64_JUNCTION_AM_SCREEN_20260928.md) |
