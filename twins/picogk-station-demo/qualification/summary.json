@@ -1,0 +1,33 @@
+{
+  "index_manifest_sha256": "bdd86ead53c7a0bc8f1773ddd81670b289233c6895171b5d38fafd7fac6ebfab",
+  "tracked_file_count": 3898,
+  "changed_snapshot_files": [],
+  "python": "3.14.7",
+  "exit_code": 0,
+  "started_at": 1790621386.7815504,
+  "finished_at": 1790621859.362637,
+  "host": "Kali2 (192.168.50.139)",
+  "snapshot": "/home/lolman/station-checks-r8kj70sz",
+  "environment": {
+    "umask": "022",
+    "PYTHONNOUSERSITE": "1",
+    "TMPDIR": "/home/lolman/station-checks-r8kj70sz-tmp",
+    "virtualenv": "/home/lolman/station-checks-r8kj70sz-venv (system-site-packages)"
+  },
+  "suite_main_tests": 3213,
+  "suite_main_skips": 140,
+  "all_test_invocations": 3490,
+  "suite_count": 32,
+  "all_invocation_skips": 141,
+  "markdown_files_checked": 567,
+  "broken_doc_links": 0,
+  "log_sha256": "5db7a308778d76816b8a6787acb2dd0f263f0645c3ac634b3e0538977dfa4d51",
+  "global_packages_installed": false,
+  "notes": [
+    "Initial host run was invalidated by user-site OCP import errors and umask 002.",
+    "Second run under umask 077 failed a pre-existing fixture expecting mkdir(0755); umask 022 passed the focused 17-test GHCR suite then full make check.",
+    "Optional CAD/USD/mesh runtimes and local evidence produce explicit skips; these are not native station qualification.",
+    "Existing pinned mesh-cfd Docker image was downloaded and its native LPBF tests ran network-disabled.",
+    "No project code was changed on Kali2, no commits or pushes."
+  ]
+}
