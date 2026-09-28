@@ -312,7 +312,7 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
         reprise = "../../twins/993-engine-cooling-fan-system-f0"
         out += ["## The project has been rebuilt", "",
                 "**The F0 model below is archived.** The new study targets the Turbo M64.60 assembly and PMB 240 A alternator; it does not turn this Carrera record into a validated Turbo part.", "",
-                f"[Project presentation on PorscheFanatics](https://porschefanatics.com/projects/993-turbo-fan/) · [Reconstruction dossier (French)]({reprise}/REFERENCE_REBUILD.md) · [OpenUSD model]({reprise}/results/reference/reference.usdz)", "",
+                f"[Project presentation on PorscheFanatics](https://porschefanatics.com/projects/993-turbo-fan/) · [Reconstruction dossier (French)]({reprise}/REFERENCE_REBUILD.md) · [OpenUSD model]({reprise}/results/reference/reference.usdz) · [Prototype print release dossier]({reprise}/PRINT_RELEASE.md)", "",
                 f"![New Turbo reconstruction: front, rear, section and exploded views]({reprise}/results/reference/reference-review.png)", "",
                 "*New PicoGK geometry: 11 blades, 12 openings, a ribbed cup and separate hub. Meshes checked; dimensions partial, hub compatibility disputed, housing and PMB still to be reconstructed. No validated airflow or engine fitment.*", "",
                 "## Archived Carrera F0 concept", ""]
