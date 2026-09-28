@@ -46,6 +46,36 @@ class ReferenceValidationTests(unittest.TestCase):
 
         self.assertTrue(any("expected a positive number" in error for error in errors))
 
+    def test_additional_declared_dimensions_require_positive_values(self) -> None:
+        payload = deepcopy(self.payload)
+        entry = next(
+            item
+            for item in payload["entries"]
+            if item["entry_id"] == "993-INTERCOOLER-PRESSURE-HOSE-KIT-FVD"
+        )
+        entry["additional_declared_dimensions"]["connection_length_mm"] = -1
+
+        errors = validate_file(payload, self.sources)
+
+        self.assertTrue(
+            any("connection_length_mm" in error and "positive" in error for error in errors)
+        )
+
+    def test_non_physical_diameter_pair_must_be_quarantined(self) -> None:
+        payload = deepcopy(self.payload)
+        entry = next(
+            item
+            for item in payload["entries"]
+            if item["entry_id"] == "993-INTERCOOLER-TA-TECHNIX-CORE-MODULE"
+        )
+        entry["additional_declared_dimensions"]["status"] = "accepted"
+
+        errors = validate_file(payload, self.sources)
+
+        self.assertTrue(
+            any("must be quarantined" in error for error in errors)
+        )
+
     def test_parts_that_delete_safety_carry_a_caveat(self) -> None:
         """Doors, roof, seat, steering wheel and ventilation must warn the reader."""
         flagged = {"993-DOOR-COMPLETE", "993-ROOF-SKIN", "993-VENTILATION-SET", "993-SEAT", "993-STEERING-WHEEL"}
