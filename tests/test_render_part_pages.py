@@ -18,8 +18,8 @@ class PartPageTests(unittest.TestCase):
         record = ROOT / "catalog/parts/993-eng-cooling-impeller-alsi10mg-f0-0001.json"
         result = pages.presentation(json.loads(record.read_text()), record)
         self.assertLess(result.index("reference-review.png"), result.index("media/preview.png"))
-        self.assertIn("ne transforme pas cette fiche Carrera", result)
-        self.assertIn("Aucun débit ni montage moteur validé", result)
+        self.assertIn("does not turn this Carrera record", result)
+        self.assertIn("No validated airflow or engine fitment", result)
         self.assertIn("porschefanatics.com/projects/993-turbo-fan/", result)
 
     def test_one_page_per_catalogue_record(self):
