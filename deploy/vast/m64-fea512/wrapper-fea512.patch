@@ -1,0 +1,256 @@
+diff --git a/deploy/openbao/openbao-vastai b/deploy/openbao/openbao-vastai
+index 9840786..bca7454 100755
+--- a/deploy/openbao/openbao-vastai
++++ b/deploy/openbao/openbao-vastai
+@@ -164,6 +164,11 @@ PICOGK_MIN_RAM_MB = 64000
+ PICOGK_DISK_GB = 100
+ PICOGK_MAX_TRANSFER_RATE = 0.01
+ PICOGK_CLEANUP_RESERVE_USD = 1.0
++FEA512_PROFILE = "m64-fea512-v1"
++FEA512_LABEL = "3dprinting993-m64-fea512"
++FEA512_GUARD_SHA256 = "1e38c798ac2ebb01f94b9fb364084d25d59d2c60ae56de0e0b4f1f783fa68aba"
++FEA512_BACKGROUND = {"id": 52810563, "label": "3dprinting993-cad-recode-vm-20260926",
++                     "image": "docker.io/vastai/kvm:cuda-12.9.1-auto"}
+ RESEARCH_PROFILE = "research-qwen-v1"
+ RESEARCH_LABEL = "3dprinting993-research-qwen"
+ RESEARCH_IMAGE = "vllm/vllm-openai@sha256:7a0f0fdd2771464b6976625c2b2d5dd46f566aa00fbc53eceab86ef50883da90"
+@@ -4945,9 +4950,20 @@ def picogk_account_balance(api_key: str) -> dict:
+             "automatic_recharge_requested": False}
+ 
+ 
+-def picogk_offer_eligible(offer: dict) -> bool:
++def picogk_policy(manifest: dict | None = None) -> dict:
++    """One fixed FEA variant; all pre-existing profiles retain PicoGK limits."""
++    if manifest is not None and manifest.get("profile") == FEA512_PROFILE:
++        return {"max_dph": 1.0, "budget": 5.0, "ram": 512000, "disk": 500,
++                "label": FEA512_LABEL, "job_prefix": "m64-fea512"}
++    return {"max_dph": PICOGK_MAX_DPH, "budget": PICOGK_MAX_BUDGET_USD,
++            "ram": PICOGK_MIN_RAM_MB, "disk": PICOGK_DISK_GB,
++            "label": PICOGK_LABEL, "job_prefix": "picogk-m64"}
++
++
++def picogk_offer_eligible(offer: dict, manifest: dict | None = None) -> bool:
++    policy = picogk_policy(manifest)
+     floors = (("cpu_cores_effective", PICOGK_MIN_CPU),
+-              ("cpu_ram", PICOGK_MIN_RAM_MB), ("disk_space", PICOGK_DISK_GB))
++              ("cpu_ram", policy["ram"]), ("disk_space", policy["disk"]))
+     return (
+         type(offer.get("id")) is int and offer["id"] > 0
+         and finite_number(offer.get("num_gpus")) == 1
+@@ -4955,7 +4971,7 @@ def picogk_offer_eligible(offer: dict) -> bool:
+         and all((value := finite_number(offer.get(key))) is not None and value >= floor
+                 for key, floor in floors)
+         and (price := finite_number(offer.get("dph_total"))) is not None
+-        and 0 < price <= PICOGK_MAX_DPH
++        and 0 < price <= policy["max_dph"]
+         and (reliability := finite_number(offer.get("reliability", offer.get("reliability2")))) is not None
+         and reliability >= 0.99
+         and (offer.get("verified") is True or offer.get("verification") == "verified")
+@@ -4968,11 +4984,12 @@ def picogk_offer_eligible(offer: dict) -> bool:
+     )
+ 
+ 
+-def get_picogk_offers(api_key: str, offer_id: int | None = None) -> list[dict]:
+-    query = {"allocated_storage": PICOGK_DISK_GB, "num_gpus": {"eq": 1},
++def get_picogk_offers(api_key: str, offer_id: int | None = None, manifest: dict | None = None) -> list[dict]:
++    policy = picogk_policy(manifest)
++    query = {"allocated_storage": policy["disk"], "num_gpus": {"eq": 1},
+              "gpu_frac": {"eq": 1}, "cpu_cores_effective": {"gte": PICOGK_MIN_CPU},
+-             "cpu_ram": {"gte": PICOGK_MIN_RAM_MB}, "disk_space": {"gte": PICOGK_DISK_GB},
+-             "dph_total": {"lte": PICOGK_MAX_DPH}, "reliability": {"gte": 0.99},
++             "cpu_ram": {"gte": policy["ram"]}, "disk_space": {"gte": policy["disk"]},
++             "dph_total": {"lte": policy["max_dph"]}, "reliability": {"gte": 0.99},
+              "verified": {"eq": True}, "rentable": {"eq": True}, "rented": {"eq": False},
+              "type": "on-demand", "order": [["dph_total", "asc"]], "limit": 100}
+     if offer_id is not None:
+@@ -4986,7 +5003,7 @@ def get_picogk_offers(api_key: str, offer_id: int | None = None) -> list[dict]:
+     if not isinstance(offers, list):
+         raise SafeError("Vast.ai PicoGK offer response is invalid")
+     return sorted((offer for offer in offers if isinstance(offer, dict)
+-                   and picogk_offer_eligible(offer)
++                   and picogk_offer_eligible(offer, manifest)
+                    and (offer_id is None or offer.get("id") == offer_id)),
+                   key=lambda offer: offer["dph_total"])
+ 
+@@ -5001,13 +5018,17 @@ def picogk_load_manifest(path: Path, *, require_active: bool = True) -> tuple[di
+               "created_epoch", "deadline_epoch", "budget_usd", "image_download_gb",
+               "max_input_gb", "max_output_gb", "qualification_path", "qualification_sha256",
+               "guard_ready_path"}
++    fea512 = isinstance(manifest, dict) and manifest.get("profile") == FEA512_PROFILE
++    if fea512:
++        fields |= {"background_instance", "guard_path", "guard_sha256"}
+     if not isinstance(manifest, dict) or set(manifest) != fields:
+         raise SafeError("PicoGK manifest fields differ from the fixed contract")
+-    if (manifest["schema_version"] != "1.0.0" or manifest["profile"] != PICOGK_PROFILE
++    policy = picogk_policy(manifest)
++    if (manifest["schema_version"] != "1.0.0" or manifest["profile"] not in (PICOGK_PROFILE, FEA512_PROFILE)
+         or not isinstance(manifest["job_id"], str)
+-        or not re.fullmatch(r"picogk-m64-[a-z0-9][a-z0-9-]{0,63}", manifest["job_id"])
++        or not re.fullmatch(re.escape(policy["job_prefix"]) + r"-[a-z0-9][a-z0-9-]{0,63}", manifest["job_id"])
+         or not isinstance(manifest["attempt_label"], str)
+-        or not re.fullmatch(re.escape(PICOGK_LABEL) + r"-[0-9a-f]{20}", manifest["attempt_label"])
++        or not re.fullmatch(re.escape(policy["label"]) + r"-[0-9a-f]{20}", manifest["attempt_label"])
+         or not isinstance(manifest["image_ref"], str)
+         or PICOGK_IMAGE_RE.fullmatch(manifest["image_ref"]) is None):
+         raise SafeError("PicoGK manifest identity or immutable image is invalid")
+@@ -5017,8 +5038,16 @@ def picogk_load_manifest(path: Path, *, require_active: bool = True) -> tuple[di
+         or not 60 <= deadline - created <= PICOGK_MAX_SECONDS):
+         raise SafeError("PicoGK deadline is expired or exceeds three hours")
+     budget = finite_number(manifest["budget_usd"])
+-    if budget is None or not PICOGK_CLEANUP_RESERVE_USD < budget <= PICOGK_MAX_BUDGET_USD:
+-        raise SafeError("PicoGK budget must exceed reserve and cannot exceed four USD")
++    if budget is None or not PICOGK_CLEANUP_RESERVE_USD < budget <= policy["budget"]:
++        raise SafeError("PicoGK budget must exceed reserve and cannot exceed its fixed profile cap")
++    if fea512:
++        if (manifest["background_instance"] != FEA512_BACKGROUND
++            or type(manifest["background_instance"].get("id")) is not int):
++            raise SafeError("FEA512 background identity differs from its fixed read-only exception")
++        if (not isinstance(manifest["guard_path"], str) or not Path(manifest["guard_path"]).is_absolute()
++            or manifest["guard_sha256"] != FEA512_GUARD_SHA256
++            or hashlib.sha256(m64_read_file(Path(manifest["guard_path"]), 65536)).hexdigest() != FEA512_GUARD_SHA256):
++            raise SafeError("FEA512 guard source fingerprint differs from its approved helper")
+     for field, maximum in (("image_download_gb", 20), ("max_input_gb", 2), ("max_output_gb", 2)):
+         value = finite_number(manifest[field])
+         if value is None or not 0 <= value <= maximum:
+@@ -5055,7 +5084,7 @@ def picogk_budget_cost(manifest: dict, price: object, up: object, down: object)
+     if any(item is None for item in values):
+         raise SafeError("PicoGK instance cost metadata is missing")
+     price, up, down = values
+-    if not 0 < price <= PICOGK_MAX_DPH or not all(0 <= rate <= PICOGK_MAX_TRANSFER_RATE for rate in (up, down)):
++    if not 0 < price <= picogk_policy(manifest)["max_dph"] or not all(0 <= rate <= PICOGK_MAX_TRANSFER_RATE for rate in (up, down)):
+         raise SafeError("PicoGK price or transfer tariff exceeds its fixed cap")
+     hours = (manifest["deadline_epoch"] - manifest["created_epoch"]) / 3600
+     cost = hours * price + (manifest["image_download_gb"] + manifest["max_input_gb"]) * down
+@@ -5068,6 +5097,16 @@ def picogk_budget_cost(manifest: dict, price: object, up: object, down: object)
+ def picogk_singleton(api_key: str, instance_id: int | None, manifest: dict) -> None:
+     # The small budget is account-wide: do not overlap any existing rental.
+     inventory = strict_instance_inventory(api_key)
++    if manifest.get("profile") == FEA512_PROFILE:
++        # FEA512's separately approved $5 budget excludes only this exact VM.
++        # No background instance is ever passed to cleanup or lifecycle calls.
++        background = [item for item in inventory if item.get("id") == FEA512_BACKGROUND["id"]]
++        if any({key: picogk_safe_instance(item).get(key) for key in FEA512_BACKGROUND} != FEA512_BACKGROUND
++               for item in background) or len(background) > 1:
++            raise SafeError("FEA512 background instance identity changed")
++        if instance_id is None and len(background) != 1:
++            raise SafeError("FEA512 must freshly verify its exact background VM before launch")
++        inventory = [item for item in inventory if item.get("id") != FEA512_BACKGROUND["id"]]
+     if instance_id is None:
+         if inventory:
+             raise SafeError("PicoGK rental requires an empty Vast instance inventory")
+@@ -5097,6 +5136,8 @@ def picogk_safe_instance(raw: dict) -> dict:
+ 
+ def picogk_or_legacy_safe_instance(raw: dict) -> dict:
+     label = raw.get("label")
++    if isinstance(label, str) and re.fullmatch(re.escape(FEA512_LABEL) + r"-[0-9a-f]{20}", label):
++        return picogk_safe_instance(raw)
+     if isinstance(label, str) and re.fullmatch(re.escape(PICOGK_LABEL) + r"-[0-9a-f]{20}", label):
+         return picogk_safe_instance(raw)
+     if isinstance(label, str) and re.fullmatch(re.escape(RESEARCH_LABEL) + r"-[0-9a-f]{20}", label):
+@@ -5116,6 +5157,7 @@ def picogk_startup_pending(raw: dict) -> bool:
+ 
+ 
+ def picogk_contract_findings(raw: dict, instance_id: int, manifest: dict, offer: dict | None = None) -> tuple:
++    policy = picogk_policy(manifest)
+     instance = picogk_safe_instance(raw)
+     required = ("id", "label", "image", "status", "machine_verification", "gpu", "num_gpus",
+                 "gpu_fraction", "cpu_cores_effective", "cpu_ram_mb", "disk_space_gb", "dph_total",
+@@ -5133,12 +5175,12 @@ def picogk_contract_findings(raw: dict, instance_id: int, manifest: dict, offer:
+     for field in ("num_gpus", "gpu_fraction"):
+         if field not in missing and finite_number(instance[field]) != 1:
+             errors.append(field)
+-    for key, floor in (("cpu_cores_effective", PICOGK_MIN_CPU), ("cpu_ram_mb", PICOGK_MIN_RAM_MB),
+-                       ("disk_space_gb", PICOGK_DISK_GB)):
++    for key, floor in (("cpu_cores_effective", PICOGK_MIN_CPU), ("cpu_ram_mb", policy["ram"]),
++                       ("disk_space_gb", policy["disk"])):
+         value = finite_number(instance[key])
+         if key not in missing and (value is None or value < floor):
+             errors.append(key)
+-    for field, maximum in (("dph_total", PICOGK_MAX_DPH),
++    for field, maximum in (("dph_total", policy["max_dph"]),
+                            ("inet_up_cost_usd_per_gb", PICOGK_MAX_TRANSFER_RATE),
+                            ("inet_down_cost_usd_per_gb", PICOGK_MAX_TRANSFER_RATE)):
+         value = finite_number(instance[field])
+@@ -5353,7 +5395,9 @@ def launch_picogk_m64(api_key: str, offer_id: int, manifest: dict, manifest_sha2
+         if funds["conservative_available_usd"] < manifest["budget_usd"] + 1:
+             raise SafeError("PicoGK available credit does not cover the run and account reserve")
+         ensure_local_ssh_registered(api_key)
+-        offers = [item for item in get_picogk_offers(api_key, offer_id) if item["id"] == offer_id]
++        candidates = (get_picogk_offers(api_key, offer_id, manifest) if manifest.get("profile") == FEA512_PROFILE
++                      else get_picogk_offers(api_key, offer_id))
++        offers = [item for item in candidates if item["id"] == offer_id]
+         if len(offers) != 1:
+             raise SafeError("PicoGK offer is unavailable or outside the fixed resource and price limits")
+         offer = offers[0]
+@@ -5370,7 +5414,7 @@ def launch_picogk_m64(api_key: str, offer_id: int, manifest: dict, manifest_sha2
+         try:
+             result = vast_request(api_key, f"/api/v0/asks/{offer_id}/", method="PUT", payload={
+                 "image": manifest["image_ref"], "label": manifest["attempt_label"],
+-                "disk": PICOGK_DISK_GB, "runtype": "ssh_direct", "env": {},
++                "disk": picogk_policy(manifest)["disk"], "runtype": "ssh_direct", "env": {},
+                 "onstart": "picogk-vast-onstart --deadline-epoch " + str(manifest["deadline_epoch"]),
+                 "cancel_unavail": True})
+             returned = result.get("new_contract")
+@@ -5391,7 +5435,7 @@ def launch_picogk_m64(api_key: str, offer_id: int, manifest: dict, manifest_sha2
+                 print("OPENBAO_VASTAI_PICOGK_BILLING_RISK " + manifest["attempt_label"], file=sys.stderr, flush=True)
+                 raise
+             raise
+-        print_json({"profile": PICOGK_PROFILE, "instance_id": instance_id,
++        print_json({"profile": manifest["profile"], "instance_id": instance_id,
+                     "label": manifest["attempt_label"], "image_ref": manifest["image_ref"],
+                     "manifest_sha256": manifest_sha256, "deadline_epoch": manifest["deadline_epoch"],
+                     "budget_usd": manifest["budget_usd"], "planned_cost_with_reserve_usd": ceiling,
+@@ -5442,6 +5486,17 @@ def picogk_verify_armed_guard(manifest: dict, manifest_sha256: str) -> None:
+         os.kill(ready["pid"], 0)
+     except OSError:
+         raise SafeError("PicoGK external destruction guard is not alive") from None
++    if manifest.get("profile") == FEA512_PROFILE:
++        result = subprocess.run(["/bin/ps", "-ww", "-p", str(ready["pid"]), "-o", "command="],
++                                stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
++                                text=True, timeout=5, check=False)
++        try:
++            argv = shlex.split(result.stdout.strip())
++        except ValueError:
++            raise SafeError("FEA512 guard process identity is invalid") from None
++        if (result.returncode or len(argv) < 3
++            or argv[-2:] != [manifest["guard_path"], manifest["_manifest_path"]]):
++            raise SafeError("FEA512 guard PID is not executing this exact helper and manifest")
+ 
+ 
+ def research_execution_mode(manifest: dict) -> str:
+@@ -6252,6 +6307,11 @@ def launch_engine_twin(api_key: str, offer_id: int, manifest: dict, manifest_sha
+ 
+ 
+ def run(operation: list[str]) -> int:
++    if operation and operation[0] == "fea512-offers":
++        if len(operation) not in (1, 2):
++            raise SafeError("fea512-offers accepts only an optional exact offer id")
++        if len(operation) == 2:
++            positive_id(operation[1], "FEA512 offer id")
+     engine_twin_bundle = None
+     if operation and operation[0] in {"launch-engine-twin", "reconcile-engine-twin"}:
+         if len(operation) != (3 if operation[0] == "launch-engine-twin" else 2):
+@@ -6329,9 +6389,15 @@ def run(operation: list[str]) -> int:
+         if operation == ["picogk-offers"]:
+             print_json([safe_offer(item) for item in get_picogk_offers(api_key)[:20]])
+             return 0
++        if operation and operation[0] == "fea512-offers":
++            offer_id = int(operation[1]) if len(operation) == 2 else None
++            print_json([safe_offer(item) for item in get_picogk_offers(api_key, offer_id, {"profile": FEA512_PROFILE})[:20]])
++            return 0
+         if picogk_bundle is not None:
+             manifest, manifest_sha256 = picogk_bundle
+             if operation[0] == "launch-picogk-m64":
++                if manifest.get("profile") == FEA512_PROFILE:
++                    manifest = {**manifest, "_manifest_path": operation[-1]}
+                 return launch_picogk_m64(api_key, int(operation[1]), manifest, manifest_sha256)
+             instance_id = picogk_reconcile(api_key, manifest)
+             print_json({"instance_id": instance_id, "verified_absent": True,
+@@ -6703,6 +6769,7 @@ def run(operation: list[str]) -> int:
+             return 0
+         raise SafeError(
+             "usage: openbao-vastai --check|--auth-check|account-balance|picogk-offers|"
++            "fea512-offers [offer_id]|"
+             "research-offers|cad-specialist-offers [offer_id]|launch-research <offer_id> <absolute-manifest>|reconcile-research <absolute-manifest>|"
+             "engine-twin-offers <llm|compute|llm+qwen38-flash-next> [offer_id]|launch-engine-twin <offer_id> <absolute-manifest>|reconcile-engine-twin <absolute-manifest>|"
+             "launch-picogk-m64 <offer_id> <absolute-manifest>|reconcile-picogk-m64 <absolute-manifest>|"

@@ -1,0 +1,63 @@
+{
+  "classification": "G9_mesh_observable_comparison_not_discretization_error_bound",
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false,
+  "thresholds": {
+    "relative_journal_vector_change": 0.01,
+    "relative_stress_p95_change": 0.05,
+    "G7_working_journal_motion_mm": 0.04
+  },
+  "maximum_stress_convergence_qualified": false,
+  "groups": [
+    {
+      "component": "central_diaphragm",
+      "direction": "x",
+      "medium_to_fine_max_journal_vector_change": 0.006022616588301401,
+      "medium_to_fine_stress_change": {
+        "von_Mises_p95_MPa": 0.019051839596756347,
+        "von_Mises_max_MPa": 0.0012345306922130574
+      },
+      "selected_observables_stabilized": true,
+      "fine_max_journal_motion_mm": 0.07712028934036441,
+      "G7_working_motion_screen_passed": false
+    },
+    {
+      "component": "central_diaphragm",
+      "direction": "minus_z",
+      "medium_to_fine_max_journal_vector_change": 0.007617620582050443,
+      "medium_to_fine_stress_change": {
+        "von_Mises_p95_MPa": 0.025341535110864885,
+        "von_Mises_max_MPa": 0.014159457329982658
+      },
+      "selected_observables_stabilized": true,
+      "fine_max_journal_motion_mm": 0.02932541154584173,
+      "G7_working_motion_screen_passed": true
+    },
+    {
+      "component": "carrier_base_p",
+      "direction": "x",
+      "medium_to_fine_max_journal_vector_change": 0.014408940110129562,
+      "medium_to_fine_stress_change": {
+        "von_Mises_p95_MPa": 0.025853082112568884,
+        "von_Mises_max_MPa": 0.10558079636408146
+      },
+      "selected_observables_stabilized": false,
+      "fine_max_journal_motion_mm": 0.16807314132197412,
+      "G7_working_motion_screen_passed": false
+    },
+    {
+      "component": "carrier_base_p",
+      "direction": "minus_z",
+      "medium_to_fine_max_journal_vector_change": 0.006029323930612389,
+      "medium_to_fine_stress_change": {
+        "von_Mises_p95_MPa": 0.008286579907984757,
+        "von_Mises_max_MPa": 0.02477861991152376
+      },
+      "selected_observables_stabilized": true,
+      "fine_max_journal_motion_mm": 0.09911758729927334,
+      "G7_working_motion_screen_passed": false
+    }
+  ],
+  "campaign_sha256": "3a731c1706524f1ce684a4274907beb3781968084de75b832beeaef31c8ac0e7",
+  "source_sha256": "299757b15530e5516ddcaf625ebb940de6ff4591058989038a61d98d48bd062c"
+}

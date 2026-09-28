@@ -1,0 +1,31 @@
+{
+  "classification": "SPOOLES_hash_fix_unit_qualification_not_CCX_or_FEA_qualification",
+  "unit_fix_qualified": true,
+  "qualification_policy": "Original insert, locate and remove must each expose the exact signed overflow with UBSan; corrected true API round-trips must pass combined UBSan and ASan. ASan-only original failure is not required for every operation because the large negative index may land in another addressable allocation.",
+  "primary_receipt": "results-v1/receipt.json",
+  "primary_receipt_sha256": "91dea16112e5f65031e748d9d5a01d0d37bfdb449b8a6b8b5153c6e64dce5e94",
+  "primary_original_passed_flag": false,
+  "original_receipt_preserved": true,
+  "original_UBSan_expected_failures": ["insert", "locate", "remove"],
+  "original_ASan_observations": {"insert_returncode": 0, "locate_returncode": -6, "remove_returncode": 0},
+  "corrected_combined_sanitizers_returncode": 0,
+  "corrected_checks": ["46339/46339", "46340/46340", "46339/46340", "46340/46339", "asymmetric same-bucket pairs", "nlist boundary", "insert/locate/remove round-trip", "missing keys", "equal-key first-match behaviour"],
+  "original_sources_archive_and_CCX_unchanged": true,
+  "original_util_sha256": "1121b2d3650fc103f6009188db5fe31ef7f579ab12682d306082a99469ed3a01",
+  "corrected_util_sha256": "7f0cd7472afa3a2b411a36721aa79120d88234ac33241795c4706c532185b2f2",
+  "reproducer_sha256": "e76d0deaaa9b23dc1a88af0cb6b2c3a7eeaa79d73a9aa80e21a6a6c271bac967",
+  "witness_runner_sha256": "e4ed1619f69142829863f00768658767a407c823e19a3ba9a7637b57a24dea4b",
+  "three_line_patch_sha256": "071f3b99ea709ab08e98ca766b91f17b2788b7f84d51f61ba44850b27ab6da33",
+  "supplementary_guarded_witness": {
+    "receipt": "results-v2/receipt.json",
+    "sha256": "dd78fd5f506e2dfabb7d07b30ef55d95ba1ca6c2a882b2fb5f3bace9faa814dc",
+    "passed": true,
+    "required_for_this_qualification": false,
+    "scope": "Completed before the instruction to stop further sentinel work arrived. ASan-only original failures become deterministic with a poisoned prefix in the witness allocation; no production source is altered. Kept as supplementary evidence, not as the primary gate."
+  },
+  "corrected_CCX_built": false,
+  "production_runtime_promoted": false,
+  "FEA_executed": false,
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false
+}

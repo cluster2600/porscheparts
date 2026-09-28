@@ -1,0 +1,555 @@
+{
+  "classification": "G11 independent same-2mm baseline replay and central sweep audit",
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false,
+  "compared_to_finer_historical_mesh": false,
+  "sources": {
+    "g9_campaign": {
+      "path": "twins/m64-cylinder-head/evidence/g9-reference-requalification-20260925/campaign.json",
+      "sha256": "3a731c1706524f1ce684a4274907beb3781968084de75b832beeaef31c8ac0e7"
+    },
+    "g8_partial": {
+      "path": "twins/m64-cylinder-head/evidence/g8-carrier-pilot-20260925/direct.partial.json",
+      "sha256": "6829c64d8cf358e0258c462e048805866c090cdba58580beaacc5967a3dfc190"
+    },
+    "cad_receipt": {
+      "path": "work/m64-g11/cad-v2/receipt.json",
+      "sha256": "97f7a13c4c7ff4da8de0e3a1e1e15a49bb23236fa9cc3e02e80ab3d1e62f30fd"
+    },
+    "brep_comparison": {
+      "path": "work/m64-g11/baseline-brep-comparison.json",
+      "sha256": "2eb526b44ec84e74cc9c19485fd17db7cf93a4a7a2ce0b6ba02ce68adadd5d2d"
+    },
+    "analysis_source": {
+      "path": "private:review_baselines.py",
+      "sha256": "bf46664430b374dbca3875dcccb49c86e27d63a89b388a4b78b22a91c65b6922"
+    }
+  },
+  "central_screen": [
+    {
+      "id": "centre_w10",
+      "result_sha256": "542e1394f5f3b346b5af46b3ee2218da665aee41286032ee11d62cf7bf652052",
+      "mesh": {
+        "size_mm": 2,
+        "nodes": 65002,
+        "elements": 39033,
+        "fixed_nodes": 1367,
+        "surface_area_mm2": {
+          "intake": 392.1305170209682,
+          "exhaust": 392.1380073086955
+        },
+        "journal_axial_interval_mm": {
+          "intake": [
+            -5,
+            5
+          ],
+          "exhaust": [
+            -5,
+            5
+          ]
+        },
+        "nominal_journal_width_mm": 10,
+        "minimum_Gauss4_Jacobian_mm3": 0.3279099780844961,
+        "gmsh_version": "4.12.1"
+      },
+      "volume_mm3": 66738.20545342109,
+      "journal_forces_N": {
+        "intake": 6881.35243458258,
+        "exhaust": 6702.484411298031
+      },
+      "directions": [
+        {
+          "direction": "x",
+          "journal_vectors_mm": {
+            "intake": [
+              0.0729533026618028,
+              1.7424689827295185e-05,
+              0.02354847237732675
+            ],
+            "exhaust": [
+              0.06776659405524915,
+              2.732213913204053e-05,
+              -0.02118714475427304
+            ]
+          },
+          "maximum_journal_motion_mm": 0.07665973665614917,
+          "stress_p95_MPa": 58.74740884299414,
+          "numerical_crosscheck_passed": true
+        },
+        {
+          "direction": "minus_z",
+          "journal_vectors_mm": {
+            "intake": [
+              -0.010150398850168338,
+              2.34333891351515e-05,
+              -0.027288887228898308
+            ],
+            "exhaust": [
+              0.007431519002491074,
+              -9.57825015473749e-06,
+              -0.023822623996825002
+            ]
+          },
+          "maximum_journal_motion_mm": 0.029115537297682733,
+          "stress_p95_MPa": 37.66125037689027,
+          "numerical_crosscheck_passed": true
+        }
+      ]
+    },
+    {
+      "id": "centre_w11",
+      "result_sha256": "455c37a4845176815d8ccfcaf5de40aa930d448ce9f7e0a93b7b9b45d0c82e5c",
+      "mesh": {
+        "size_mm": 2,
+        "nodes": 69738,
+        "elements": 42349,
+        "fixed_nodes": 1561,
+        "surface_area_mm2": {
+          "intake": 431.5516440354466,
+          "exhaust": 431.5302037812201
+        },
+        "journal_axial_interval_mm": {
+          "intake": [
+            -5.5,
+            5.5
+          ],
+          "exhaust": [
+            -5.5,
+            5.5
+          ]
+        },
+        "nominal_journal_width_mm": 11,
+        "minimum_Gauss4_Jacobian_mm3": 0.32249524083788556,
+        "gmsh_version": "4.12.1"
+      },
+      "volume_mm3": 73902.75434383164,
+      "journal_forces_N": {
+        "intake": 6881.35243458258,
+        "exhaust": 6702.484411298031
+      },
+      "directions": [
+        {
+          "direction": "x",
+          "journal_vectors_mm": {
+            "intake": [
+              0.06485896571219862,
+              1.3647076958786965e-05,
+              0.021276253137179336
+            ],
+            "exhaust": [
+              0.060288578126329484,
+              1.1010066753551225e-05,
+              -0.0191629050654957
+            ]
+          },
+          "maximum_journal_motion_mm": 0.06825953828628055,
+          "stress_p95_MPa": 49.57786660416815,
+          "numerical_crosscheck_passed": true
+        },
+        {
+          "direction": "minus_z",
+          "journal_vectors_mm": {
+            "intake": [
+              -0.00906269434281227,
+              3.128603327917487e-06,
+              -0.024561984744088876
+            ],
+            "exhaust": [
+              0.006623405606563071,
+              -1.1128800862328211e-06,
+              -0.02143247719557478
+            ]
+          },
+          "maximum_journal_motion_mm": 0.026180594590426227,
+          "stress_p95_MPa": 33.99248915181497,
+          "numerical_crosscheck_passed": true
+        }
+      ]
+    },
+    {
+      "id": "centre_w12",
+      "result_sha256": "1d9537a3da6a111b84e2a577cadaaec84347ffa9c29465304fdc7622411183fb",
+      "mesh": {
+        "size_mm": 2,
+        "nodes": 74144,
+        "elements": 45487,
+        "fixed_nodes": 1641,
+        "surface_area_mm2": {
+          "intake": 470.9401839231797,
+          "exhaust": 470.9135497804701
+        },
+        "journal_axial_interval_mm": {
+          "intake": [
+            -6,
+            6
+          ],
+          "exhaust": [
+            -6,
+            6
+          ]
+        },
+        "nominal_journal_width_mm": 12,
+        "minimum_Gauss4_Jacobian_mm3": 0.2748028269167937,
+        "gmsh_version": "4.12.1"
+      },
+      "volume_mm3": 81067.30323424214,
+      "journal_forces_N": {
+        "intake": 6881.35243458258,
+        "exhaust": 6702.484411298031
+      },
+      "directions": [
+        {
+          "direction": "x",
+          "journal_vectors_mm": {
+            "intake": [
+              0.05849555778470983,
+              -1.6195947319722415e-05,
+              0.019404918680786313
+            ],
+            "exhaust": [
+              0.05437769912336873,
+              -3.7851432097092486e-06,
+              -0.017478852976011067
+            ]
+          },
+          "maximum_journal_motion_mm": 0.06163019886274071,
+          "stress_p95_MPa": 42.92890322693239,
+          "numerical_crosscheck_passed": true
+        },
+        {
+          "direction": "minus_z",
+          "journal_vectors_mm": {
+            "intake": [
+              -0.008196162482385048,
+              -1.2535858971210256e-05,
+              -0.022346153946802956
+            ],
+            "exhaust": [
+              0.005970970677912853,
+              1.0434025636660794e-05,
+              -0.01948236972011998
+            ]
+          },
+          "maximum_journal_motion_mm": 0.02380184515535789,
+          "stress_p95_MPa": 30.91877205430836,
+          "numerical_crosscheck_passed": true
+        }
+      ]
+    }
+  ],
+  "baseline_comparisons": [
+    {
+      "id": "centre_w10",
+      "g11_result_sha256": "542e1394f5f3b346b5af46b3ee2218da665aee41286032ee11d62cf7bf652052",
+      "g9_case": "central_diaphragm-2.0",
+      "original_deck_path": "work/m64-g8-pilot/native/central_diaphragm-2.0/x.inp",
+      "original_deck_sha256": "9b50a62d2867bb6ea827a5394b10b311fdbd725bd0eaec71c77a613847c94b24",
+      "boundary_and_material": {
+        "g9": {
+          "fixed_xyz": true,
+          "elastic_card": "70000.0,0.33",
+          "static_steps": 1,
+          "support_z_min_mm": 86.461,
+          "support_z_max_mm": 86.461,
+          "actual_x_forces_N": {
+            "intake": 6881.352434584023,
+            "exhaust": 6702.484411298102
+          }
+        },
+        "g11": {
+          "fixed_xyz": true,
+          "elastic_card": "70000.0,0.33",
+          "static_steps": 1,
+          "support_z_min_mm": 86.461,
+          "support_z_max_mm": 86.461,
+          "actual_x_forces_N": {
+            "intake": 6881.352434584023,
+            "exhaust": 6702.484411298102
+          }
+        },
+        "exact_equal_except_force_roundoff": true
+      },
+      "mesh": {
+        "g11": {
+          "size_mm": 2,
+          "nodes": 65002,
+          "elements": 39033,
+          "fixed_nodes": 1367,
+          "surface_area_mm2": {
+            "intake": 392.1305170209682,
+            "exhaust": 392.1380073086955
+          },
+          "journal_axial_interval_mm": {
+            "intake": [
+              -5,
+              5
+            ],
+            "exhaust": [
+              -5,
+              5
+            ]
+          },
+          "nominal_journal_width_mm": 10,
+          "minimum_Gauss4_Jacobian_mm3": 0.3279099780844961,
+          "gmsh_version": "4.12.1"
+        },
+        "g9_nodes": 65054,
+        "g9_fixed_nodes": 1371,
+        "g9_mesh_provenance_g8_receipt": {
+          "size_mm": 2,
+          "nodes": 65054,
+          "elements": 39058,
+          "fixed_nodes": 1371,
+          "surface_area_mm2": {
+            "intake": 392.130517020968,
+            "exhaust": 392.1380073086959
+          },
+          "minimum_Gauss4_Jacobian_mm3": 0.3258804473449082,
+          "gmsh_version": "4.12.1"
+        },
+        "surface_area_relative_changes": {
+          "intake": 6.661338147750939e-16,
+          "exhaust": 9.992007221626409e-16
+        }
+      },
+      "directions": [
+        {
+          "direction": "x",
+          "journals": {
+            "intake": {
+              "g9_vector_mm": [
+                0.07295151826713588,
+                2.764143100310131e-05,
+                0.02354548464349077
+              ],
+              "g11_vector_mm": [
+                0.0729533026618028,
+                1.7424689827295185e-05,
+                0.02354847237732675
+              ],
+              "vector_difference_mm": 1.0793165339947408e-05,
+              "vector_difference_over_g9_norm": 0.00014079794291154982
+            },
+            "exhaust": {
+              "g9_vector_mm": [
+                0.06776958993667605,
+                2.350400593115701e-05,
+                -0.02118845293483633
+              ],
+              "g11_vector_mm": [
+                0.06776659405524915,
+                2.732213913204053e-05,
+                -0.02118714475427304
+              ],
+              "vector_difference_mm": 5.026408563763186e-06,
+              "vector_difference_over_g9_norm": 7.078979378979404e-05
+            }
+          },
+          "g9_stress_p95_MPa": 58.751278350054946,
+          "g11_stress_p95_MPa": 58.74740884299414,
+          "stress_p95_relative_change": 6.586251685880562e-05,
+          "g9_deck_sha256": "9b50a62d2867bb6ea827a5394b10b311fdbd725bd0eaec71c77a613847c94b24",
+          "g11_deck_sha256": "63519513ba6f46195be837640de7261b700276405142de80928f97f18442cb15"
+        },
+        {
+          "direction": "minus_z",
+          "journals": {
+            "intake": {
+              "g9_vector_mm": [
+                -0.01014733624533604,
+                2.0051209011131866e-05,
+                -0.02728688786886717
+              ],
+              "g11_vector_mm": [
+                -0.010150398850168338,
+                2.34333891351515e-05,
+                -0.027288887228898308
+              ],
+              "vector_difference_mm": 4.981579195822382e-06,
+              "vector_difference_over_g9_norm": 0.00017111423763257512
+            },
+            "exhaust": {
+              "g9_vector_mm": [
+                0.007432750609754376,
+                -1.1551850108394613e-05,
+                -0.023824178016779236
+              ],
+              "g11_vector_mm": [
+                0.007431519002491074,
+                -9.57825015473749e-06,
+                -0.023822623996825002
+              ],
+              "vector_difference_mm": 2.7976653206285814e-06,
+              "vector_difference_over_g9_norm": 0.00011210072651296393
+            }
+          },
+          "g9_stress_p95_MPa": 37.814594785582855,
+          "g11_stress_p95_MPa": 37.66125037689027,
+          "stress_p95_relative_change": 0.00405516466755973,
+          "g9_deck_sha256": "12cca888d1db241b241592a7f33266a2de4e899c4d634e3e1f98296321b9bd55",
+          "g11_deck_sha256": "9594ab025bb86451a15fdc31f92f270448bd7c63225effed1a2d8dbecacc7d0b"
+        }
+      ]
+    },
+    {
+      "id": "outer_d18_w18",
+      "g11_result_sha256": "8aa72d8b799b693ce3166f50444d05cf134106b2c8dce0f51f694c64eeaa5eb9",
+      "g9_case": "carrier_base_p-2.0",
+      "original_deck_path": "work/m64-g8-pilot/native/carrier_base_p-2.0/x.inp",
+      "original_deck_sha256": "863b5a52ae73a5e5d53d3d0bd207016438aaa5043496cd56993aa35ae25d8cbb",
+      "boundary_and_material": {
+        "g9": {
+          "fixed_xyz": true,
+          "elastic_card": "70000.0,0.33",
+          "static_steps": 1,
+          "support_z_min_mm": 86.461,
+          "support_z_max_mm": 86.461,
+          "actual_x_forces_N": {
+            "intake": 4370.417768654777,
+            "exhaust": 3566.85521520356
+          }
+        },
+        "g11": {
+          "fixed_xyz": true,
+          "elastic_card": "70000.0,0.33",
+          "static_steps": 1,
+          "support_z_min_mm": 86.461,
+          "support_z_max_mm": 86.461,
+          "actual_x_forces_N": {
+            "intake": 4370.417768654777,
+            "exhaust": 3566.85521520356
+          }
+        },
+        "exact_equal_except_force_roundoff": true
+      },
+      "mesh": {
+        "g11": {
+          "size_mm": 2,
+          "nodes": 162302,
+          "elements": 102130,
+          "fixed_nodes": 4511,
+          "surface_area_mm2": {
+            "intake": 313.28364460300634,
+            "exhaust": 313.27216922551895
+          },
+          "journal_axial_interval_mm": {
+            "intake": [
+              34.59375,
+              42.59375
+            ],
+            "exhaust": [
+              31.09375,
+              39.09375
+            ]
+          },
+          "nominal_journal_width_mm": 8,
+          "minimum_Gauss4_Jacobian_mm3": 0.06520887458482741,
+          "gmsh_version": "4.12.1"
+        },
+        "g9_nodes": 162415,
+        "g9_fixed_nodes": 4511,
+        "g9_original_surface_area_mm2": {
+          "intake": 313.28364460272996,
+          "exhaust": 313.27216922605066
+        },
+        "original_mesh_path": "work/m64-g8-pilot/native/carrier_base_p-2.0/mesh.msh",
+        "original_mesh_sha256": "521bb220ee643bbda6f817bd01ffde47cabec50110074852ef2a22ba46f729f1",
+        "normalized_load_weight_max_abs_check": {
+          "intake": 1.241223703679628e-12,
+          "exhaust": 1.4809074105892606e-12
+        },
+        "original_mesh_historical_hash_attestation_available": false,
+        "area_method": "Sum geometric areas of original quadratic boundary-triangle corner facets grouped by surface in the exact journal band. Not inferred from normalized weights; traction weights independently checked against SHA-verified G9 deck, allowing its 12-digit coordinate rounding.",
+        "surface_area_relative_changes": {
+          "intake": 8.821832153671494e-13,
+          "exhaust": 1.6973089600469393e-12
+        }
+      },
+      "directions": [
+        {
+          "direction": "x",
+          "journals": {
+            "intake": {
+              "g9_vector_mm": [
+                0.16515145262713032,
+                0.011364949396783603,
+                -0.006085726436866558
+              ],
+              "g11_vector_mm": [
+                0.16520111291487655,
+                0.011478958675559016,
+                -0.006073806462948241
+              ],
+              "vector_difference_mm": 0.00012492536013212336,
+              "vector_difference_over_g9_norm": 0.0007541349302161061
+            },
+            "exhaust": {
+              "g9_vector_mm": [
+                0.14308374151595596,
+                -0.012621762495712952,
+                0.0035334228769871236
+              ],
+              "g11_vector_mm": [
+                0.1430901147920761,
+                -0.012579014078527047,
+                0.003531521535362574
+              ],
+              "vector_difference_mm": 4.326269663782869e-05,
+              "vector_difference_over_g9_norm": 0.0003010986172934827
+            }
+          },
+          "g9_stress_p95_MPa": 41.14374610140814,
+          "g11_stress_p95_MPa": 41.5160043410108,
+          "stress_p95_relative_change": 0.009047747832322983,
+          "g9_deck_sha256": "863b5a52ae73a5e5d53d3d0bd207016438aaa5043496cd56993aa35ae25d8cbb",
+          "g11_deck_sha256": "adc40b9ad1b7e9d9c0e7784192abe44c1579fcc050b1ba08eef96ad6cc6282d7"
+        },
+        {
+          "direction": "minus_z",
+          "journals": {
+            "intake": {
+              "g9_vector_mm": [
+                0.006085687180320878,
+                -0.08208649477669033,
+                -0.05419967652363304
+              ],
+              "g11_vector_mm": [
+                0.0060737676741727765,
+                -0.08211423817331649,
+                -0.054220103308452845
+              ],
+              "vector_difference_mm": 3.64557844689367e-05,
+              "vector_difference_over_g9_norm": 0.00036990779552389285
+            },
+            "exhaust": {
+              "g9_vector_mm": [
+                -0.0035333750887316033,
+                -0.07922856063405322,
+                -0.05822906247093289
+              ],
+              "g11_vector_mm": [
+                -0.0035314738017141155,
+                -0.07920967060154009,
+                -0.058228243284422776
+              ],
+              "vector_difference_mm": 1.9003138877778215e-05,
+              "vector_difference_over_g9_norm": 0.0001931441387702622
+            }
+          },
+          "g9_stress_p95_MPa": 26.74178281098607,
+          "g11_stress_p95_MPa": 26.770621853352896,
+          "stress_p95_relative_change": 0.0010784263177463504,
+          "g9_deck_sha256": "c7732de63e4533aaafe8d1009cf2fffd4228ca3df5afcd9aafadb78c37eb6447",
+          "g11_deck_sha256": "c79744f29a646d74cb7c52d31bec9d859fdde0c4e9a135523540ad80adf7f9b6"
+        }
+      ]
+    }
+  ],
+  "maximum_baseline_vector_relative_difference": 0.0007541349302161061,
+  "maximum_baseline_stress_p95_relative_difference": 0.009047747832322983,
+  "interpretation": "At 2 mm all three central designs fail the unchanged 0.040 mm +x screen. The best central design is about 0.06163 mm, so this bounded grid currently has no full-component winner. Refinement remains necessary to quantify discretization; neither replay agreement nor a later outer pass validates assembly or material strength.",
+  "publication": {
+    "raw_private_report_sha256": "8798cdb616776ce01fce226a18e03bd18a9a218098717b1fd3fc0657410c968e",
+    "change": "Absolute local analysis-script path replaced with a private basename; numerical values unchanged."
+  }
+}

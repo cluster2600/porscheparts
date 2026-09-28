@@ -1,0 +1,1260 @@
+{
+  "classification": "G14_outer_lower_inner_bands_CAD_hypothesis_not_FEA",
+  "source_sha256": "09ae9359d7b72092c0dd192a8b77a9bf4a1a1a61d984a7a74dabdafa36493f7b",
+  "prior_CAD_receipt_sha256": "bc8456643e511f15ac059ab9a5ba7f8461dfb7b029f8809f9163f0f2a0f0898c",
+  "field_probe_sha256": "762ccc0077dc69ae4c8e28c1f66aa8107449931b6f3ff6f0a425d99a66b88165",
+  "field_probe_source_sha256": "ce47552c795108e4d7a3d8bac069ad200de5b55b7d76ae0afc92e836972304c9",
+  "started_epoch": 1790452294.5744991,
+  "complete": true,
+  "error": null,
+  "variants": [
+    {
+      "id": "outer_inner_lower_bands_p",
+      "component": "carrier_base_p",
+      "step": "outer_inner_lower_bands_p/carrier_base_p.step",
+      "step_sha256": "20601c4be7db23ef42aa73dd48bcb5bf35210ed8820a68c7de345974402e4ca4",
+      "baseline_step_sha256": "09fc5f1712c4a1c5f94be8493c6c0352f25ec9bee785dd6f5f816e67cfae216a",
+      "parameters": {
+        "bands": {
+          "intake": {
+            "x_mm": [
+              -40,
+              -32
+            ],
+            "profile_yz_mm": [
+              [
+                45,
+                87.461
+              ],
+              [
+                45,
+                108
+              ],
+              [
+                31.09375,
+                108
+              ],
+              [
+                31.09375,
+                89.461
+              ]
+            ]
+          },
+          "exhaust": {
+            "x_mm": [
+              32,
+              42
+            ],
+            "profile_yz_mm": [
+              [
+                45,
+                87.461
+              ],
+              [
+                45,
+                108
+              ],
+              [
+                31.09375,
+                108
+              ],
+              [
+                31.09375,
+                89.461
+              ]
+            ]
+          }
+        },
+        "first_unchanged_height_mm": 1,
+        "transition_height_mm": 2,
+        "top_z_mm": 108,
+        "unchanged_first_1mm": true
+      },
+      "journal_width_mm": 8,
+      "journal_diameter_mm": 12.58,
+      "volume_mm3": 242603.74959712353,
+      "added_to_upper_caps_volume_mm3": 1100.3243012535386,
+      "added_fraction": 0.004556143665066085,
+      "baseline_removed_volume_mm3": 0.0,
+      "BRep_valid": true,
+      "solid_count": 1,
+      "bounds_mm": {
+        "xmin": -93.63170439650999,
+        "ymin": 31.0937499,
+        "zmin": 86.461,
+        "xmax": 93.34974639830399,
+        "ymax": 65.0000001,
+        "zmax": 168.58420901696
+      },
+      "baseline_bounds_mm": {
+        "xmin": -93.63170439650999,
+        "ymin": 31.0937499,
+        "zmin": 86.461,
+        "xmax": 93.34974639830399,
+        "ymax": 65.0000001,
+        "zmax": 168.58420901696
+      },
+      "support_bounds_unchanged": true,
+      "closed_void_check": {
+        "method": "BRep_complement_connected_solids_not_voxel_fill",
+        "enclosed_void_volumes_mm3": [],
+        "no_enclosed_void_detected": true,
+        "powder_transport_or_support_removal_validated": false
+      },
+      "oil_paths": {
+        "intake": {
+          "residual_solid_mm3": 0.0,
+          "tool_connected_solids": 1
+        },
+        "exhaust": {
+          "residual_solid_mm3": 0.0,
+          "tool_connected_solids": 1
+        },
+        "return": {
+          "residual_solid_mm3": 0.0,
+          "tool_connected_solids": 1
+        }
+      },
+      "first_1mm_difference_mm3": {
+        "added_volume_mm3": 0.0,
+        "removed_volume_mm3": 0.0
+      },
+      "cam_bore_and_split_difference": {
+        "intake_bore": {
+          "added_volume_mm3": 0.0,
+          "removed_volume_mm3": 0.0
+        },
+        "intake_split": {
+          "added_volume_mm3": 0.0,
+          "removed_volume_mm3": 0.0
+        },
+        "exhaust_bore": {
+          "added_volume_mm3": 0.0,
+          "removed_volume_mm3": 0.0
+        },
+        "exhaust_split": {
+          "added_volume_mm3": 0.0,
+          "removed_volume_mm3": 0.0
+        }
+      },
+      "service_reservation_definitions": {
+        "intake_shaft_vertical_lift": {
+          "bounds_mm": {
+            "x_mm": [
+              -82.67170429651759,
+              -64.59170429651758
+            ],
+            "y_mm": [
+              -70,
+              70
+            ],
+            "z_mm": [
+              145.544209016961,
+              174.58420901696098
+            ]
+          },
+          "hypothesis": "Conservative vertical lift prism for the nominal shaft plus0.04mm; not an assembled removal sequence."
+        },
+        "intake_cap_joint_and_lift": {
+          "bounds_mm": {
+            "x_mm": [
+              -94.13170429651758,
+              -53.13170429651758
+            ],
+            "y_mm": [
+              44.5,
+              65.5
+            ],
+            "z_mm": [
+              154.574209016961,
+              174.58420901696098
+            ]
+          },
+          "hypothesis": "Actual removable cap xcam+-20,y45..65 plus0.5mm lateral reserve; no added material in split or upward path."
+        },
+        "intake_lobe_vertical_lift_-1": {
+          "bounds_mm": {
+            "x_mm": [
+              -94.83092931922799,
+              -52.432479273807175
+            ],
+            "y_mm": [
+              -28.59375,
+              -14.59375
+            ],
+            "z_mm": [
+              133.38498399425058,
+              174.58420901696098
+            ]
+          },
+          "hypothesis": "Circumscribed radius of actual rocker_train profile, all rotations; prescribed vertical withdrawal, no drive/timing qualification."
+        },
+        "intake_lobe_vertical_lift_1": {
+          "bounds_mm": {
+            "x_mm": [
+              -94.83092931922799,
+              -52.432479273807175
+            ],
+            "y_mm": [
+              14.59375,
+              28.59375
+            ],
+            "z_mm": [
+              133.38498399425058,
+              174.58420901696098
+            ]
+          },
+          "hypothesis": "Circumscribed radius of actual rocker_train profile, all rotations; prescribed vertical withdrawal, no drive/timing qualification."
+        },
+        "intake_cap_bolt_tool_-15": {
+          "axis_start_mm": [
+            -88.63170429651758,
+            55.0,
+            142.58420901696098
+          ],
+          "axis_end_mm": [
+            -88.63170429651758,
+            55.0,
+            174.58420901696098
+          ],
+          "radius_mm": 6.25,
+          "hypothesis": "Hypothetical socket radius: existing4.25mm bolt head plus2mm; supplier tool/tolerances and full maintenance not qualified."
+        },
+        "intake_cap_bolt_tool_15": {
+          "axis_start_mm": [
+            -58.63170429651758,
+            55.0,
+            142.58420901696098
+          ],
+          "axis_end_mm": [
+            -58.63170429651758,
+            55.0,
+            174.58420901696098
+          ],
+          "radius_mm": 6.25,
+          "hypothesis": "Hypothetical socket radius: existing4.25mm bolt head plus2mm; supplier tool/tolerances and full maintenance not qualified."
+        },
+        "exhaust_shaft_vertical_lift": {
+          "bounds_mm": {
+            "x_mm": [
+              64.30974629830405,
+              82.38974629830406
+            ],
+            "y_mm": [
+              -70,
+              70
+            ],
+            "z_mm": [
+              144.58230211810124,
+              174.58420901696098
+            ]
+          },
+          "hypothesis": "Conservative vertical lift prism for the nominal shaft plus0.04mm; not an assembled removal sequence."
+        },
+        "exhaust_cap_joint_and_lift": {
+          "bounds_mm": {
+            "x_mm": [
+              52.849746298304055,
+              93.84974629830405
+            ],
+            "y_mm": [
+              44.5,
+              65.5
+            ],
+            "z_mm": [
+              153.61230211810124,
+              174.58420901696098
+            ]
+          },
+          "hypothesis": "Actual removable cap xcam+-20,y45..65 plus0.5mm lateral reserve; no added material in split or upward path."
+        },
+        "exhaust_lobe_vertical_lift_-1": {
+          "bounds_mm": {
+            "x_mm": [
+              53.14332616864964,
+              93.55616642795847
+            ],
+            "y_mm": [
+              -25.09375,
+              -11.09375
+            ],
+            "z_mm": [
+              133.4158819884468,
+              174.58420901696098
+            ]
+          },
+          "hypothesis": "Circumscribed radius of actual rocker_train profile, all rotations; prescribed vertical withdrawal, no drive/timing qualification."
+        },
+        "exhaust_lobe_vertical_lift_1": {
+          "bounds_mm": {
+            "x_mm": [
+              53.14332616864964,
+              93.55616642795847
+            ],
+            "y_mm": [
+              11.09375,
+              25.09375
+            ],
+            "z_mm": [
+              133.4158819884468,
+              174.58420901696098
+            ]
+          },
+          "hypothesis": "Circumscribed radius of actual rocker_train profile, all rotations; prescribed vertical withdrawal, no drive/timing qualification."
+        },
+        "exhaust_cap_bolt_tool_-15": {
+          "axis_start_mm": [
+            58.349746298304055,
+            55.0,
+            141.62230211810123
+          ],
+          "axis_end_mm": [
+            58.349746298304055,
+            55.0,
+            174.58420901696098
+          ],
+          "radius_mm": 6.25,
+          "hypothesis": "Hypothetical socket radius: existing4.25mm bolt head plus2mm; supplier tool/tolerances and full maintenance not qualified."
+        },
+        "exhaust_cap_bolt_tool_15": {
+          "axis_start_mm": [
+            88.34974629830405,
+            55.0,
+            141.62230211810123
+          ],
+          "axis_end_mm": [
+            88.34974629830405,
+            55.0,
+            174.58420901696098
+          ],
+          "radius_mm": 6.25,
+          "hypothesis": "Hypothetical socket radius: existing4.25mm bolt head plus2mm; supplier tool/tolerances and full maintenance not qualified."
+        }
+      },
+      "new_material_service_checks": {
+        "intake_shaft_vertical_lift": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 700.8050519069074
+        },
+        "intake_cap_joint_and_lift": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 144.09130165302153
+        },
+        "intake_lobe_vertical_lift_-1": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 0.0
+        },
+        "intake_lobe_vertical_lift_1": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 0.0
+        },
+        "intake_cap_bolt_tool_-15": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 1159.3777041534793
+        },
+        "intake_cap_bolt_tool_15": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 1325.433500364545
+        },
+        "exhaust_shaft_vertical_lift": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 700.8050519068083
+        },
+        "exhaust_cap_joint_and_lift": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 144.09130165520742
+        },
+        "exhaust_lobe_vertical_lift_-1": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 0.0
+        },
+        "exhaust_lobe_vertical_lift_1": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 0.0
+        },
+        "exhaust_cap_bolt_tool_-15": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 1325.4334468107452
+        },
+        "exhaust_cap_bolt_tool_15": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 1159.3776973504887
+        }
+      },
+      "service_removal_qualified": false,
+      "existing_functional_tool_checks": {
+        "stud_nut_access_-1": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 0.0,
+          "total_overlap_mm3": 0.0
+        },
+        "mount_tool_access_-1": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 562.1191733879042,
+          "total_overlap_mm3": 562.1191733879042
+        },
+        "stud_nut_access_1": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 0.0,
+          "total_overlap_mm3": 0.0
+        },
+        "mount_tool_access_1": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 578.7108332207151,
+          "total_overlap_mm3": 578.7108332207151
+        }
+      },
+      "tool_scope": "Original finite tool definitions preserved; inherited baseline obstructions, full tool approach and maintenance sequence remain unqualified",
+      "bottom_land_difference": {
+        "added_volume_mm3": 0.0,
+        "removed_volume_mm3": 0.0
+      },
+      "support_land": {
+        "z_mm": 86.461,
+        "bottom_planar_area_mm2": 3308.9096562057243,
+        "bottom_faces": [
+          {
+            "area_mm2": 3308.9096562057243,
+            "bounds_mm": {
+              "xmin": -93.63170429651,
+              "ymin": 45.0,
+              "zmin": 86.461,
+              "xmax": 93.349746298304,
+              "ymax": 65.0,
+              "zmax": 86.461
+            }
+          }
+        ],
+        "selection": "All bottom-plane faces at carrier_face_height; inherited whole-land XYZ clamp is not physical contact validation"
+      },
+      "journal_neighbourhood_difference": {
+        "intake": {
+          "added_volume_mm3": 0.0,
+          "removed_volume_mm3": 0.0
+        },
+        "exhaust": {
+          "added_volume_mm3": 0.0,
+          "removed_volume_mm3": 0.0
+        }
+      },
+      "static_interferences": [],
+      "sampled_motion_interferences": [],
+      "motion_samples_checked": 144,
+      "rejections": [],
+      "cad_accepted": true,
+      "native_views": {
+        "preview.svg": "df2600da193923b6966d636211df24773b5cb6b9f58864199000dd061757549e",
+        "section-x0.svg": "b18073314a7099acb4bb8fdf84e676f931eda308e93437f880aff24e169841f2"
+      },
+      "view_scope": "Isolated support and section, no full head or stress field"
+    },
+    {
+      "id": "outer_inner_lower_bands_m",
+      "component": "carrier_base_m",
+      "step": "outer_inner_lower_bands_m/carrier_base_m.step",
+      "step_sha256": "0edcabb4fae79e92d0162902c12d57641a1b3ef9e69b836199c5099e72e06abf",
+      "baseline_step_sha256": "56f1b129f51799cc66edc5e71ad9db0c07544672dacb582ac838f35d72c45164",
+      "parameters": {
+        "bands": {
+          "intake": {
+            "x_mm": [
+              -40,
+              -32
+            ],
+            "profile_yz_mm": [
+              [
+                -45,
+                87.461
+              ],
+              [
+                -45,
+                108
+              ],
+              [
+                -31.09375,
+                108
+              ],
+              [
+                -31.09375,
+                89.461
+              ]
+            ]
+          },
+          "exhaust": {
+            "x_mm": [
+              32,
+              42
+            ],
+            "profile_yz_mm": [
+              [
+                -45,
+                87.461
+              ],
+              [
+                -45,
+                108
+              ],
+              [
+                -31.09375,
+                108
+              ],
+              [
+                -31.09375,
+                89.461
+              ]
+            ]
+          }
+        },
+        "first_unchanged_height_mm": 1,
+        "transition_height_mm": 2,
+        "top_z_mm": 108,
+        "unchanged_first_1mm": true
+      },
+      "journal_width_mm": 8,
+      "journal_diameter_mm": 12.58,
+      "volume_mm3": 242603.75027865203,
+      "added_to_upper_caps_volume_mm3": 1100.3243658961728,
+      "added_fraction": 0.004556143921095636,
+      "baseline_removed_volume_mm3": 0.0,
+      "BRep_valid": true,
+      "solid_count": 1,
+      "bounds_mm": {
+        "xmin": -93.63170439650999,
+        "ymin": -65.0000001,
+        "zmin": 86.461,
+        "xmax": 93.34974639830399,
+        "ymax": -31.0937499,
+        "zmax": 168.58420901696
+      },
+      "baseline_bounds_mm": {
+        "xmin": -93.63170439650999,
+        "ymin": -65.0000001,
+        "zmin": 86.461,
+        "xmax": 93.34974639830399,
+        "ymax": -31.0937499,
+        "zmax": 168.58420901696
+      },
+      "support_bounds_unchanged": true,
+      "closed_void_check": {
+        "method": "BRep_complement_connected_solids_not_voxel_fill",
+        "enclosed_void_volumes_mm3": [],
+        "no_enclosed_void_detected": true,
+        "powder_transport_or_support_removal_validated": false
+      },
+      "oil_paths": {
+        "intake": {
+          "residual_solid_mm3": 0.0,
+          "tool_connected_solids": 1
+        },
+        "exhaust": {
+          "residual_solid_mm3": 0.0,
+          "tool_connected_solids": 1
+        },
+        "return": {
+          "residual_solid_mm3": 0.0,
+          "tool_connected_solids": 1
+        }
+      },
+      "first_1mm_difference_mm3": {
+        "added_volume_mm3": 0.0,
+        "removed_volume_mm3": 0.0
+      },
+      "cam_bore_and_split_difference": {
+        "intake_bore": {
+          "added_volume_mm3": 0.0,
+          "removed_volume_mm3": 0.0
+        },
+        "intake_split": {
+          "added_volume_mm3": 0.0,
+          "removed_volume_mm3": 0.0
+        },
+        "exhaust_bore": {
+          "added_volume_mm3": 0.0,
+          "removed_volume_mm3": 0.0
+        },
+        "exhaust_split": {
+          "added_volume_mm3": 0.0,
+          "removed_volume_mm3": 0.0
+        }
+      },
+      "service_reservation_definitions": {
+        "intake_shaft_vertical_lift": {
+          "bounds_mm": {
+            "x_mm": [
+              -82.67170429651759,
+              -64.59170429651758
+            ],
+            "y_mm": [
+              -70,
+              70
+            ],
+            "z_mm": [
+              145.544209016961,
+              174.58420901696098
+            ]
+          },
+          "hypothesis": "Conservative vertical lift prism for the nominal shaft plus0.04mm; not an assembled removal sequence."
+        },
+        "intake_cap_joint_and_lift": {
+          "bounds_mm": {
+            "x_mm": [
+              -94.13170429651758,
+              -53.13170429651758
+            ],
+            "y_mm": [
+              -65.5,
+              -44.5
+            ],
+            "z_mm": [
+              154.574209016961,
+              174.58420901696098
+            ]
+          },
+          "hypothesis": "Actual removable cap xcam+-20,y45..65 plus0.5mm lateral reserve; no added material in split or upward path."
+        },
+        "intake_lobe_vertical_lift_-1": {
+          "bounds_mm": {
+            "x_mm": [
+              -94.83092931922799,
+              -52.432479273807175
+            ],
+            "y_mm": [
+              -28.59375,
+              -14.59375
+            ],
+            "z_mm": [
+              133.38498399425058,
+              174.58420901696098
+            ]
+          },
+          "hypothesis": "Circumscribed radius of actual rocker_train profile, all rotations; prescribed vertical withdrawal, no drive/timing qualification."
+        },
+        "intake_lobe_vertical_lift_1": {
+          "bounds_mm": {
+            "x_mm": [
+              -94.83092931922799,
+              -52.432479273807175
+            ],
+            "y_mm": [
+              14.59375,
+              28.59375
+            ],
+            "z_mm": [
+              133.38498399425058,
+              174.58420901696098
+            ]
+          },
+          "hypothesis": "Circumscribed radius of actual rocker_train profile, all rotations; prescribed vertical withdrawal, no drive/timing qualification."
+        },
+        "intake_cap_bolt_tool_-15": {
+          "axis_start_mm": [
+            -88.63170429651758,
+            -55.0,
+            142.58420901696098
+          ],
+          "axis_end_mm": [
+            -88.63170429651758,
+            -55.0,
+            174.58420901696098
+          ],
+          "radius_mm": 6.25,
+          "hypothesis": "Hypothetical socket radius: existing4.25mm bolt head plus2mm; supplier tool/tolerances and full maintenance not qualified."
+        },
+        "intake_cap_bolt_tool_15": {
+          "axis_start_mm": [
+            -58.63170429651758,
+            -55.0,
+            142.58420901696098
+          ],
+          "axis_end_mm": [
+            -58.63170429651758,
+            -55.0,
+            174.58420901696098
+          ],
+          "radius_mm": 6.25,
+          "hypothesis": "Hypothetical socket radius: existing4.25mm bolt head plus2mm; supplier tool/tolerances and full maintenance not qualified."
+        },
+        "exhaust_shaft_vertical_lift": {
+          "bounds_mm": {
+            "x_mm": [
+              64.30974629830405,
+              82.38974629830406
+            ],
+            "y_mm": [
+              -70,
+              70
+            ],
+            "z_mm": [
+              144.58230211810124,
+              174.58420901696098
+            ]
+          },
+          "hypothesis": "Conservative vertical lift prism for the nominal shaft plus0.04mm; not an assembled removal sequence."
+        },
+        "exhaust_cap_joint_and_lift": {
+          "bounds_mm": {
+            "x_mm": [
+              52.849746298304055,
+              93.84974629830405
+            ],
+            "y_mm": [
+              -65.5,
+              -44.5
+            ],
+            "z_mm": [
+              153.61230211810124,
+              174.58420901696098
+            ]
+          },
+          "hypothesis": "Actual removable cap xcam+-20,y45..65 plus0.5mm lateral reserve; no added material in split or upward path."
+        },
+        "exhaust_lobe_vertical_lift_-1": {
+          "bounds_mm": {
+            "x_mm": [
+              53.14332616864964,
+              93.55616642795847
+            ],
+            "y_mm": [
+              -25.09375,
+              -11.09375
+            ],
+            "z_mm": [
+              133.4158819884468,
+              174.58420901696098
+            ]
+          },
+          "hypothesis": "Circumscribed radius of actual rocker_train profile, all rotations; prescribed vertical withdrawal, no drive/timing qualification."
+        },
+        "exhaust_lobe_vertical_lift_1": {
+          "bounds_mm": {
+            "x_mm": [
+              53.14332616864964,
+              93.55616642795847
+            ],
+            "y_mm": [
+              11.09375,
+              25.09375
+            ],
+            "z_mm": [
+              133.4158819884468,
+              174.58420901696098
+            ]
+          },
+          "hypothesis": "Circumscribed radius of actual rocker_train profile, all rotations; prescribed vertical withdrawal, no drive/timing qualification."
+        },
+        "exhaust_cap_bolt_tool_-15": {
+          "axis_start_mm": [
+            58.349746298304055,
+            -55.0,
+            141.62230211810123
+          ],
+          "axis_end_mm": [
+            58.349746298304055,
+            -55.0,
+            174.58420901696098
+          ],
+          "radius_mm": 6.25,
+          "hypothesis": "Hypothetical socket radius: existing4.25mm bolt head plus2mm; supplier tool/tolerances and full maintenance not qualified."
+        },
+        "exhaust_cap_bolt_tool_15": {
+          "axis_start_mm": [
+            88.34974629830405,
+            -55.0,
+            141.62230211810123
+          ],
+          "axis_end_mm": [
+            88.34974629830405,
+            -55.0,
+            174.58420901696098
+          ],
+          "radius_mm": 6.25,
+          "hypothesis": "Hypothetical socket radius: existing4.25mm bolt head plus2mm; supplier tool/tolerances and full maintenance not qualified."
+        }
+      },
+      "new_material_service_checks": {
+        "intake_shaft_vertical_lift": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 700.8050519068535
+        },
+        "intake_cap_joint_and_lift": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 144.0913016530214
+        },
+        "intake_lobe_vertical_lift_-1": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 0.0
+        },
+        "intake_lobe_vertical_lift_1": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 0.0
+        },
+        "intake_cap_bolt_tool_-15": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 1159.377704153479
+        },
+        "intake_cap_bolt_tool_15": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 1325.433500364545
+        },
+        "exhaust_shaft_vertical_lift": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 700.8050519067466
+        },
+        "exhaust_cap_joint_and_lift": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 144.09130165520742
+        },
+        "exhaust_lobe_vertical_lift_-1": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 0.0
+        },
+        "exhaust_lobe_vertical_lift_1": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 0.0
+        },
+        "exhaust_cap_bolt_tool_-15": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 1325.4334468107452
+        },
+        "exhaust_cap_bolt_tool_15": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 1159.377697350489
+        }
+      },
+      "service_removal_qualified": false,
+      "existing_functional_tool_checks": {
+        "stud_nut_access_-1": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 0.0,
+          "total_overlap_mm3": 0.0
+        },
+        "mount_tool_access_-1": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 562.1191733879651,
+          "total_overlap_mm3": 562.1191733879651
+        },
+        "stud_nut_access_1": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 0.0,
+          "total_overlap_mm3": 0.0
+        },
+        "mount_tool_access_1": {
+          "new_material_overlap_mm3": 0.0,
+          "baseline_overlap_mm3": 578.7108332207707,
+          "total_overlap_mm3": 578.7108332207707
+        }
+      },
+      "tool_scope": "Original finite tool definitions preserved; inherited baseline obstructions, full tool approach and maintenance sequence remain unqualified",
+      "bottom_land_difference": {
+        "added_volume_mm3": 0.0,
+        "removed_volume_mm3": 0.0
+      },
+      "support_land": {
+        "z_mm": 86.461,
+        "bottom_planar_area_mm2": 3308.9096562057234,
+        "bottom_faces": [
+          {
+            "area_mm2": 3308.9096562057234,
+            "bounds_mm": {
+              "xmin": -93.63170429651,
+              "ymin": -65.0,
+              "zmin": 86.461,
+              "xmax": 93.349746298304,
+              "ymax": -45.0,
+              "zmax": 86.461
+            }
+          }
+        ],
+        "selection": "All bottom-plane faces at carrier_face_height; inherited whole-land XYZ clamp is not physical contact validation"
+      },
+      "journal_neighbourhood_difference": {
+        "intake": {
+          "added_volume_mm3": 0.0,
+          "removed_volume_mm3": 0.0
+        },
+        "exhaust": {
+          "added_volume_mm3": 0.0,
+          "removed_volume_mm3": 0.0
+        }
+      },
+      "static_interferences": [],
+      "sampled_motion_interferences": [],
+      "motion_samples_checked": 144,
+      "rejections": [],
+      "cad_accepted": true,
+      "native_views": {
+        "preview.svg": "96db8df6a8448e6987690ebde8414fd057b587cb9a3848f03a02c0570686ca65",
+        "section-x0.svg": "be582d8a8747b52236371649d538b84b428c614bbfa61c7fe5aca0de32ee254f"
+      },
+      "view_scope": "Isolated support and section, no full head or stress field"
+    }
+  ],
+  "FEA_executed": false,
+  "material_or_boundary_conditions_changed": false,
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false,
+  "rationale": "Qualified retained upper-caps energy remains concentrated below z108. Add one bounded pair of inner lower strips outside conservative spring x envelopes, preserving first1mm, two-mm root transition, oil and named tool reservations. No journal-displacement sensitivity or predicted 0.040mm pass.",
+  "crank_samples_deg": [
+    0,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50,
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90,
+    95,
+    100,
+    105,
+    110,
+    115,
+    120,
+    125,
+    130,
+    135,
+    140,
+    145,
+    150,
+    155,
+    160,
+    165,
+    170,
+    175,
+    180,
+    185,
+    190,
+    195,
+    200,
+    205,
+    210,
+    215,
+    220,
+    225,
+    230,
+    235,
+    240,
+    245,
+    250,
+    255,
+    260,
+    265,
+    270,
+    275,
+    280,
+    285,
+    290,
+    295,
+    300,
+    305,
+    310,
+    315,
+    320,
+    325,
+    330,
+    335,
+    340,
+    345,
+    350,
+    355,
+    360,
+    365,
+    370,
+    375,
+    380,
+    385,
+    390,
+    395,
+    400,
+    405,
+    410,
+    415,
+    420,
+    425,
+    430,
+    435,
+    440,
+    445,
+    450,
+    455,
+    460,
+    465,
+    470,
+    475,
+    480,
+    485,
+    490,
+    495,
+    500,
+    505,
+    510,
+    515,
+    520,
+    525,
+    530,
+    535,
+    540,
+    545,
+    550,
+    555,
+    560,
+    565,
+    570,
+    575,
+    580,
+    585,
+    590,
+    595,
+    600,
+    605,
+    610,
+    615,
+    620,
+    625,
+    630,
+    635,
+    640,
+    645,
+    650,
+    655,
+    660,
+    665,
+    670,
+    675,
+    680,
+    685,
+    690,
+    695,
+    700,
+    705,
+    710,
+    715
+  ],
+  "motion_scope": "144 sampled rigid poses only; no continuous or deformable clearance qualification",
+  "combined_modified_supports_clearance_qualified": false,
+  "values": {
+    "intake_cam_advance": -10.0,
+    "exhaust_cam_advance": 0.7262,
+    "cam_base_circle_radius": 15.0,
+    "follower_stack_axial": 22.0,
+    "cam_lobe_width": 14.0,
+    "bucket_contact_margin": 1.0,
+    "min_ligament": 3.0,
+    "min_bore_edge_margin": 1.0,
+    "min_valve_clearance": 1.0,
+    "min_wall": 3.0,
+    "min_roof_edge_height": 1.0,
+    "intake_piston_clearance": 1.5,
+    "exhaust_piston_clearance": 2.0,
+    "coil_bind_min_reserve": 1.0,
+    "bore_diameter": 100.0,
+    "crank_stroke": 76.4,
+    "conrod_length": 127.0,
+    "liner_min_spigot_wall": 4.0,
+    "liner_spigot_radial_clearance": 0.1,
+    "liner_length": 90.0,
+    "gasket_thickness": 0.5,
+    "gasket_radial_width": 3.0,
+    "stud_span_x": 85.824,
+    "stud_span_y": 86.581,
+    "stud_hole_diameter": 10.879,
+    "stud_rod_diameter": 10.0,
+    "guide_head_bore_diameter": 13.0,
+    "guide_outer_diameter": 13.06,
+    "guide_bore_diameter": 8.0,
+    "guide_protrusion": 16.5,
+    "intake_guide_length": 55.4,
+    "exhaust_guide_length": 56.4,
+    "seat_insert_radial_wall": 2.0,
+    "seat_insert_height": 7.0,
+    "retainer_diameter": 26.0,
+    "retainer_thickness": 5.0,
+    "register_diameter": 113.423,
+    "register_depth": 2.21,
+    "carrier_face_height": 86.461,
+    "scan_valve_1_axis_angle": 26.576,
+    "scan_valve_2_axis_angle": 29.162,
+    "exhaust_flange_x": 82.5325,
+    "exhaust_port_z": 35.544,
+    "exhaust_flange_port_diameter": 39.993,
+    "intake_flange_x": -107.217,
+    "intake_port_z": 47.5255,
+    "plug_1_px": 2.8784,
+    "plug_1_py": 38.2372,
+    "plug_1_angle_to_plane": 61.684,
+    "plug_1_scan_ux": -0.2042,
+    "plug_1_scan_uy": 0.4282,
+    "plug_1_scan_uz": -0.8803,
+    "plug_2_px": 2.8784,
+    "plug_2_py": -38.2372,
+    "plug_2_angle_to_plane": 60.263,
+    "plug_2_scan_ux": -0.1982,
+    "plug_2_scan_uy": 0.4547,
+    "plug_2_scan_uz": 0.8683,
+    "head_block_width_y": 130.0,
+    "spark_plug_bore_diameter": 14.0,
+    "throat_ratio": 0.85,
+    "throat_axial_offset": 8.0,
+    "valve_y_extra": 0.1875,
+    "intake_axis_angle": 29.3758,
+    "exhaust_axis_angle": 27.5536,
+    "intake_valve_y": 21.59375,
+    "exhaust_valve_y": 18.09375,
+    "intake_valve_x": -18.0421,
+    "exhaust_valve_x": 22.7754,
+    "roof_ridge_height": 23.176878057400874,
+    "intake_throat_diameter": 34.0,
+    "exhaust_throat_diameter": 28.05,
+    "plug_1_tilt": 6.8853,
+    "plug_1_azimuth": 30.0723,
+    "plug_2_tilt": 6.8853,
+    "plug_2_azimuth": -30.0723,
+    "deck_clearance": 1.0,
+    "piston_pocket_depth": 0.0,
+    "piston_pocket_radial_clearance": 1.5,
+    "piston_max_pocket_depth": 5.0,
+    "piston_ring_land_margin": 3.0,
+    "piston_bowl_diameter": 50.0,
+    "piston_bowl_depth": 1.0,
+    "piston_compression_height": 38.0,
+    "spring_installed_height": 40.0,
+    "spring_max_lift_published": 14.25,
+    "spring_coil_bind_length": 24.18,
+    "spring_outer_diameter": 30.0,
+    "spring_pocket_radial_clearance": 1.0,
+    "spring_pocket_diameter": 32.0,
+    "intake_valve_head_diameter": 40.0,
+    "exhaust_valve_head_diameter": 33.0,
+    "intake_max_lift": 11.5,
+    "exhaust_max_lift": 9.6,
+    "intake_valve_length_993": 110.1,
+    "exhaust_valve_length_993": 109.0,
+    "valve_seat_face_angle": 45.0,
+    "valve_head_thickness": 6.0,
+    "valve_length_delta": 14.4301,
+    "valve_tip_allowance": 10.0,
+    "intake_spring_seat_axial": 74.53009999999999,
+    "exhaust_spring_seat_axial": 73.4301,
+    "port_bezier_segments": 10.0,
+    "port_flange_y_offset": 0.0,
+    "intake_port_start_tangent": 4.0,
+    "intake_port_end_tangent": 15.0,
+    "exhaust_port_start_tangent": 8.0,
+    "exhaust_port_end_tangent": 25.0,
+    "oil_gallery_diameter": 8.0,
+    "oil_gallery_x": -18.0,
+    "oil_gallery_z": 66.0,
+    "fin_count": 17,
+    "fin_pitch": 3.8,
+    "fin_thickness": 2.0,
+    "fin_depth": 14.0,
+    "fin_z_start": 22.0,
+    "fin_x_margin": 0.0,
+    "compression_ratio_min": 8.0,
+    "compression_ratio_max": 9.0,
+    "chamber_proxy_calibration": 1.0,
+    "compression_proxy_band_tolerance": 0.0,
+    "compression_score_weight": 1.0,
+    "plug_thread_reach": 19,
+    "plug_hex_across_flats": 16,
+    "plug_seal_diameter": 20,
+    "plug_seal_height": 1.5,
+    "plug_hex_height": 8,
+    "plug_insulator_diameter": 11,
+    "plug_insulator_height": 30,
+    "plug_tip_diameter": 6,
+    "plug_tip_projection": 3,
+    "plug_socket_diameter": 22,
+    "seat_face_angle": 45,
+    "valve_margin_height": 1,
+    "intake_seat_contact_radial_width": 1,
+    "exhaust_seat_contact_radial_width": 1.3,
+    "seat_entry_radial_relief": 0.2,
+    "rocker_valve_arm": 45.0,
+    "rocker_cam_arm": 24.0,
+    "rocker_pad_radius": 6.0,
+    "rocker_roller_radius": 5.0,
+    "rocker_roller_width": 16.0,
+    "rocker_width": 24.0,
+    "rocker_plate_thickness": 3.0,
+    "rocker_plate_height": 8.0,
+    "rocker_pivot_radius": 6.25,
+    "rocker_boss_radius": 8.0,
+    "rocker_pin_radius": 2.0,
+    "rocker_radial_clearance": 0.05,
+    "rocker_tip_edge_margin": 1.0,
+    "rocker_pressure_angle_limit": 35.0,
+    "carrier_wall_thickness": 20.0,
+    "carrier_end_y": 55.0,
+    "carrier_foot_height": 10.0,
+    "carrier_centre_window_halfwidth": 32.0,
+    "carrier_journal_radial_clearance": 0.04,
+    "carrier_oil_radius": 2.0,
+    "carrier_return_radius": 4.0,
+    "carrier_mount_x": 25.0,
+    "carrier_mount_depth": 12.0
+  },
+  "G7_receipt_sha256": "7e93be79ce379f2c4ccf26a6c129a70a093be368a2ff1f168884acc03764842e",
+  "frozen_sources_sha256": {
+    "twins/m64-cylinder-head/source/fourvalve/audit_compression.py": "a461a46806696730edd14cff1afb4067886ac37cb5fdc5e99cb35905399a6694",
+    "twins/m64-cylinder-head/source/fourvalve/run.py": "e9c65c67a2fb81823b111413ad75bea6e0adf4a6ea8bd0176ae70f89b38a48e1",
+    "twins/m64-cylinder-head/source/fourvalve/audit_spring_layout.py": "9f48cf0963fcf3ffb166d43c28cb078bda2b725932ff91f34e29a8580894aaf7",
+    "twins/m64-cylinder-head/source/fourvalve/kinematics.py": "b7e45b0a9d72f4da3b07201429df20bdd7dabc524bb9b6a8ac2a0474d7a969a1",
+    "twins/m64-cylinder-head/source/fourvalve/iterate.py": "45509b3f68fae4d0ff038eb8fdbf64b9cdb7fcef51b0bf91464c87f6b79095a0",
+    "twins/m64-cylinder-head/source/fourvalve/audit_g6.py": "6ff7cbf3a6108584ed9e8501bb6c5fb335f2788eb5f980195f3ebca6b3ad7b67",
+    "twins/m64-cylinder-head/source/fourvalve/layout.py": "c2ff3afe910b338cce4c888942285e0da3b09a96eb75457939faf092e577d549",
+    "twins/m64-cylinder-head/source/fourvalve/checks.py": "77863621f73c9c3d3b6f195fce73f453956918a9283579a36156483ab3bcc72f",
+    "twins/m64-cylinder-head/source/fourvalve/audit_spark_plugs.py": "e8ac7e2945429173430369e275f494f1ec495537a2a4926cae3e22c117355159",
+    "twins/m64-cylinder-head/source/fourvalve/features.py": "4ea0d516544e9fd70c2016b668376747a8f085f7754ec8766a43ec32ad956a6f",
+    "twins/m64-cylinder-head/source/fourvalve/screen_g6_am.py": "395b3170afdd1075ffca25e4734df573a592016ec4b4a8e4ec3c7a238a7e2d87",
+    "twins/m64-cylinder-head/source/fourvalve/g6_screen.py": "20b58b14943d40e3ea8552a0cdd034f80eb1020d662945ec86f7aba56f904561",
+    "twins/m64-cylinder-head/source/fourvalve/tune_compression.py": "33ee3c7eedcd7a82f8be55efca1c117340173d8f9cf37645d1e0991ea4a4e2bc",
+    "twins/m64-cylinder-head/source/fourvalve/audit_rocker_train.py": "04ea8c0ef7c25033f83b7df4d1cfb0d6502320aef1469c7ba39cdc28a1613306",
+    "twins/m64-cylinder-head/source/fourvalve/provenance.py": "39bf0f1c90688a4f0a9c48ec3637d35685579f783aaca6d896d86c0fc6093e64",
+    "twins/m64-cylinder-head/source/fourvalve/g7.py": "40530d6391b8e18ea15dea5113b6e77bcf22f684013b04557e092ce9f83fdbde",
+    "twins/m64-cylinder-head/source/fourvalve/rocker_geometry.py": "33d059bbc12bae0fed98b436d634b1f6f176e32bab4e53988205640b53ef63e6",
+    "twins/m64-cylinder-head/source/fourvalve/audit_seat_contact.py": "e045667040ef167ebf9ee6e9fc542017c3862507d69d3f6adc711534ed027b72",
+    "twins/m64-cylinder-head/source/fourvalve/bore_sweep.py": "66a687ae8fefe7a159737c978b0d85fa073ab7317d580e91b906cbb50ddf9a6d",
+    "twins/m64-cylinder-head/source/fourvalve/cad/piston.py": "449745ab20bac15fc1ae2cebee4ea1b56f2592ad2bf12e6055a8f935e1adc04b",
+    "twins/m64-cylinder-head/source/fourvalve/cad/cadcommon.py": "eb8b3f9ecd6a14d022501100e4132da634369078b91fb5c09afdc1285c6267aa",
+    "twins/m64-cylinder-head/source/fourvalve/cad/rocker_train.py": "9db98e4c9e2a158d0be5dd4693cb17b161d6ca5b78358f0ab1e1e645871b295e",
+    "twins/m64-cylinder-head/source/fourvalve/cad/spark_plug.py": "2632868bb63504ae06e8fa3a2ebd8b098594351c9ec62e4d0c0a8ab73d9e072e",
+    "twins/m64-cylinder-head/source/fourvalve/cad/gasket.py": "ef73fead4753060006aa1262fb1cb619e131dc0999cbc0d5710a83dac2cafb36",
+    "twins/m64-cylinder-head/source/fourvalve/cad/carrier.py": "e6f9f360f2061713a2a27cb6df17ccf857500ebb6a3217931b6bbf870099dc7d",
+    "twins/m64-cylinder-head/source/fourvalve/cad/assembly.py": "298dc2d4a72497e71eac564da4ffb81ab2ce2596634dc6580ec14c5ba1a66344",
+    "twins/m64-cylinder-head/source/fourvalve/cad/spring.py": "17d6ac41d29ae2a220e685edc36d7bcf409d0c26e7cc48e5d736821f58ccfc93",
+    "twins/m64-cylinder-head/source/fourvalve/cad/head.py": "012b078966fbf24e851718336f4a531c35cb0df71fff39b45f86df664bcde802",
+    "twins/m64-cylinder-head/source/fourvalve/cad/liner.py": "c25e5c6ee0ab4772c9e14fe3536d693c3bf00459f0e6579d3b9999a306322e34",
+    "twins/m64-cylinder-head/source/fourvalve/cad/studs.py": "0a1b44739fca525328fd18364d3051dfc810c3dc18bc328a70c047da9314e6ef",
+    "twins/m64-cylinder-head/source/fourvalve/cad/components.py": "f5bac34b721d3a219aa5c8e4ce455ae0859a7f450272cd8cfe583fe98269233b",
+    "twins/m64-cylinder-head/source/fourvalve/cad/valve.py": "99e7ec759a4b886d253cb8aec18696d551944b96277b3a08442805f111d4282c",
+    "twins/m64-cylinder-head/source/fourvalve/cad/camshaft.py": "31d86c9bc3378c87a5deb0cdd2f6bb0cc04fb831b83e8ee7833059d29a8e981b",
+    "twins/reference-917-engine/source/run_f39_cooling_optimization.py": "4295e5ad613d0f283aab380df2d83f62ba40fc5e09d087084dc3f9b587a16375",
+    "twins/m64-cylinder-head/evidence/g6-carrier-thermal-am-20260925/native-audit.json": "2ff4d8c16cbcf1604df17a6c2882340ecf418edb10a79300b38234d6a401c981",
+    "twins/m64-cylinder-head/source/fourvalve/g6-inputs.json": "d9a4059d14de1308cce1af3de95ea608d526dd3c7bd5afa52b4fb2593130c609",
+    "twins/m64-cylinder-head/source/fourvalve/g11_cad.py": "29532cfe148e252dc31cd2c50cf7eeeb78445186c7f3c4e3946d0cd6090ebf42",
+    "twins/m64-cylinder-head/source/fourvalve/g13_cad.py": "c53dbfbe630dc1391d0a9bdc8e07990c7fad41c2f4a9632046644d6657340f7e"
+  },
+  "private_helper_sha256": {
+    "g14_outer_upper_caps_private.py": "0baac7258912922a0337318e9a1999bca5215e39a41bb5111ee658f9b2a883bb",
+    "g14_outer_root_private.py": "0f8821f7e3b25506d39caa01d9ba977abed439d1512505ba9d8abaaaccd5f4a9",
+    "g14_extended_haunch_private.py": "f97eb345ec66a5d6de36db078dbfdf0df2ce8401f803dc272b5716037886dded",
+    "g14_lower_cheeks_private.py": "67cd80f4ad3ff6d813d058fcee10793244146f08c8a5c3dda31af77497435317",
+    "g14_cad_private.py": "612c412f2875d4302d2b88d533dd46abe1183ebffd74c30472ae011dc76c4f0f"
+  },
+  "outer_independent_mirror_difference_mm3": {
+    "added_volume_mm3": 0.0,
+    "removed_volume_mm3": 0.0
+  },
+  "finished_epoch": 1790452442.817255
+}
