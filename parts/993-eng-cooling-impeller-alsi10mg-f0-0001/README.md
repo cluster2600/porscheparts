@@ -2,7 +2,7 @@
 
 <div align="center">
 
-# Ventilateur moteur 993 — archive du concept Carrera F0
+# 993 engine cooling fan — archived Carrera F0 concept
 
 **`993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001`** · Porsche 993 · 1994–1998
 
@@ -10,17 +10,17 @@
 
 </div>
 
-## Le projet a été repris
+## The project has been rebuilt
 
-**Le modèle F0 ci-dessous est archivé.** La nouvelle étude porte sur le montage Turbo M64.60 et l’alternateur PMB 240 A ; elle ne transforme pas cette fiche Carrera en pièce Turbo validée.
+**The F0 model below is archived.** The new study targets the Turbo M64.60 assembly and PMB 240 A alternator; it does not turn this Carrera record into a validated Turbo part.
 
-[Présentation du projet sur PorscheFanatics](https://porschefanatics.com/projects/993-turbo-fan/) · [Dossier de reconstruction](../../twins/993-engine-cooling-fan-system-f0/REFERENCE_REBUILD.md) · [Modèle OpenUSD](../../twins/993-engine-cooling-fan-system-f0/results/reference/reference.usdz)
+[Project presentation on PorscheFanatics](https://porschefanatics.com/projects/993-turbo-fan/) · [Reconstruction dossier (French)](../../twins/993-engine-cooling-fan-system-f0/REFERENCE_REBUILD.md) · [OpenUSD model](../../twins/993-engine-cooling-fan-system-f0/results/reference/reference.usdz)
 
-![Nouvelle reconstruction Turbo : face, arrière, coupe et éclaté](../../twins/993-engine-cooling-fan-system-f0/results/reference/reference-review.png)
+![New Turbo reconstruction: front, rear, section and exploded views](../../twins/993-engine-cooling-fan-system-f0/results/reference/reference-review.png)
 
-*Nouvelle géométrie PicoGK : 11 pales, 12 ouvertures, cuvette nervurée et moyeu séparé. Maillages contrôlés ; cotes partielles, compatibilité du moyeu contestée, carter et PMB à reconstruire. Aucun débit ni montage moteur validé.*
+*New PicoGK geometry: 11 blades, 12 openings, a ribbed cup and separate hub. Meshes checked; dimensions partial, hub compatibility disputed, housing and PMB still to be reconstructed. No validated airflow or engine fitment.*
 
-## Archive du concept Carrera F0
+## Archived Carrera F0 concept
 
 > [!CAUTION]
 > **Not ready to print, and not a copy of the original part.** The model shown here is a
@@ -41,7 +41,7 @@ The original part is documented — pictures, catalogue entries or published dat
 </td>
 <td width="50%" valign="top" align="center">
 <b>This repository's concept model</b><br><br>
-<img src="media/preview.png" alt="Concept CAD block for Ventilateur moteur 993 — archive du concept Carrera F0" width="340"><br>
+<img src="media/preview.png" alt="Concept CAD block for 993 engine cooling fan — archived Carrera F0 concept" width="340"><br>
 <sub>Concept CAD block, 280.0 × 280.0 × 30.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
 </td>
 </tr></table>
@@ -51,7 +51,7 @@ The original part is documented — pictures, catalogue entries or published dat
 
 ## What it is
 
-Ce dossier conserve le concept exploratoire Carrera F0 : douze pales balayées, moyeu simplifié et anneau périphérique. Sa géométrie synthétique de 280 mm ne reproduit pas le rotor Porsche et son intégration au carter F0 échoue. Il ne constitue plus la base de la conception actuelle. La reprise du 28 septembre 2026 étudie séparément la 993 Turbo M64.60 : rotor 96410601522 à onze pales, cuvette ventilée, nervures et moyeu distinct, avec intégration visée du PMB / Classic Retrofit 240 A. Cette nouvelle reconstruction reste partielle et ses interfaces, débit, matière et tenue mécanique ne sont pas validés.
+This folder preserves the exploratory Carrera F0 concept: twelve swept blades, a simplified hub and a peripheral ring. Its synthetic 280 mm geometry does not reproduce the Porsche rotor, and integration with the F0 housing fails. It is no longer the baseline for the current design. The separate reconstruction dated 28 September 2026 studies the 993 Turbo M64.60: an eleven-blade 96410601522 rotor, ventilated cup, ribs and separate hub, targeting a PMB / Classic Retrofit 240 A alternator. This reconstruction remains partial: its interfaces, airflow, material and mechanical integrity are not validated.
 
 ## What it does on the car
 
