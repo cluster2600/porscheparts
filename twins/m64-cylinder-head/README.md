@@ -88,6 +88,17 @@ quality is worse: no new mesh is adopted. A separate 4,917-face BRep candidate
 passes exact native readback and its own BOP audit, but fails numerical integral qualification and
 does not replace the reference body or valve assembly.
 
+The [2026 mesh-tool and volume-control investigation](../../docs/reports/M64_MESH_VOLUME_TOOLCHAIN_20260928.md)
+then localizes the quadrature discrepancy to five B-spline patches. An independent,
+knot-split flux integration brings the reconciled relative spread to 1.55e-11.
+Native Netgen and conforming DelMesher trials are rejected. fTetWild produces
+1,157,489 tetrahedra with no element below minSICN 0.1, but two disconnected
+regions remain: it is not yet an accepted head mesh or a manufacturing release.
+The subsequent 17.2-million-triangle PicoGK audit also rejects the global
+roundtrip: six surface components and directional sampled maxima 0.112/0.069,
+above the 0.040 provisional-unit screen. The tighter fTetWild repeat times out
+without a final mesh. No rejected output replaces the native head.
+
 ## Evidence and current work
 
 This directory holds the code, records and receipts of the M64 cylinder head

@@ -1,0 +1,11 @@
+diff --git a/src/delaunay.hpp b/src/delaunay.hpp
+--- a/src/delaunay.hpp
++++ b/src/delaunay.hpp
+@@ -94,6 +94,7 @@
+ bool TetMesh::saveTET(const char* filename, bool inner_only) const
+ {
+     ofstream f(filename);
++    f << std::setprecision(std::numeric_limits<double>::max_digits10);
+
+     if (!f) {
+         std::cerr << "\nTetMesh::saveTET: Can't open file for writing.\n";
