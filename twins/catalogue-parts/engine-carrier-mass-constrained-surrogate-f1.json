@@ -1,0 +1,140 @@
+{
+  "$comment": "Surrogate F1 contraint par enveloppe et masse. La section creuse uniforme est un temoin mathematique, pas la geometrie OEM du berceau.",
+  "schema_version": "1.0.0",
+  "generated_by": "parts/993-eng-carrier-0001/source/build_mass_constrained_surrogate.py",
+  "status": "F1_mass_constrained_structural_surrogate_no_component_credit",
+  "subject": {
+    "part_id": "993-ENG-CARRIER-0001",
+    "oem_reference": "993 115 021 53",
+    "part_master_twin_id": "TWIN-PET-993-PART-F77CBF8A0C10743C3178",
+    "variant": "993-turbo",
+    "safety_class": "safety_critical"
+  },
+  "source_boundary": {
+    "files": [
+      {
+        "path": "catalog/reference/993-declared-part-data.json",
+        "sha256": "987b4912525eac39fec630b0252f7e76777b5a36c6aec0647629034c1273667e",
+        "role": "declared_bounding_envelope_and_mass"
+      },
+      {
+        "path": "twins/catalogue-parts/engine-carrier-material-screening-f1.json",
+        "sha256": "e9efef04fce3c1472217a8bd87a919bee4787c420d3b2d5d06df773f6718bd92",
+        "role": "generic_unqualified_steel_properties"
+      },
+      {
+        "path": "parts/993-eng-carrier-0001/evidence/load-cases.md",
+        "sha256": "0ed2653415cb3ed12cb871f9858a0ae932fca2aab63b7979acfb188678d687a8",
+        "role": "documentary_powertrain_mass_candidate"
+      }
+    ],
+    "photogrammetry_or_scan_used": false,
+    "interface_measurements_used": false,
+    "llm_generated_dimensions_used": false
+  },
+  "input_constraints": {
+    "declared_envelope_mm": [
+      600.0,
+      50.0,
+      50.0
+    ],
+    "declared_mass_kg": 1.96,
+    "material_family_observation": "acier",
+    "generic_density_kg_m3": 7850.0,
+    "generic_elastic_modulus_MPa": 210000.0,
+    "material_properties_qualified": false
+  },
+  "derived_section": {
+    "model": "uniform_square_hollow_tube_using_full_declared_envelope",
+    "equation": "A=m/(rho*L)=b^2-(b-2t)^2",
+    "target_area_mm2": 416.135881104,
+    "equivalent_wall_mm": 2.175319724,
+    "inner_square_mm": 45.649360553,
+    "fill_fraction": 0.166454352,
+    "second_moment_mm4": 158959.194498162,
+    "reconstructed_mass_kg": 1.96,
+    "mass_error_kg": 0.0,
+    "mass_constraint_closed": true,
+    "actual_section_known": false
+  },
+  "interface_search_domains": [
+    {
+      "interface_id": "IF-993-EC-CARRIER-BRACKET",
+      "x_mm": [
+        -300.0,
+        300.0
+      ],
+      "y_mm": [
+        -25.0,
+        25.0
+      ],
+      "z_mm": [
+        0.0,
+        50.0
+      ],
+      "selected_point_count": 0
+    },
+    {
+      "interface_id": "IF-993-EC-CARRIER-MOUNTS",
+      "quantity_candidate": 2,
+      "x_mm": [
+        -300.0,
+        300.0
+      ],
+      "y_mm": [
+        -25.0,
+        25.0
+      ],
+      "z_mm": [
+        0.0,
+        50.0
+      ],
+      "symmetry_assumed": false,
+      "selected_point_count": 0
+    }
+  ],
+  "analytic_bookends": {
+    "status": "sensitivity_bounds_not_reference_CAE_or_component_result",
+    "documentary_force_upper_N": 1912.29675,
+    "force_assumption": "195 kg documentary engine candidate, alpha_carrier=1, static gravity",
+    "simply_supported_central_point_load": {
+      "max_bending_stress_MPa": 45.112916149,
+      "max_deflection_mm": 0.257788092,
+      "boundary_condition_validated": false
+    },
+    "cantilever_tip_load": {
+      "max_bending_stress_MPa": 180.451664596,
+      "max_deflection_mm": 4.124609476,
+      "boundary_condition_validated": false
+    },
+    "strength_or_life_conclusion": null,
+    "acceptance_criteria_present": false
+  },
+  "assets": {
+    "editable_scad": "twins/catalogue-parts/engineering/993-engine-carrier-mass-constrained-surrogate-f1.scad",
+    "editable_scad_sha256": "39f1a5b7a93c03816eb5ed905ee75a1f601f355d9a6afc514f1cb3b8a82c032b",
+    "openusd_guide": "twins/catalogue-parts/engineering/993-engine-carrier-mass-constrained-surrogate-f1.usda",
+    "openusd_guide_sha256": "1a1c44691c8ebe26c7cdd61a68d231748ff9949ad44373389ecf064f4da10e0b",
+    "openusd_geometry_prim_count": 4,
+    "openusd_physics_schema_count": 0,
+    "openusd_material_binding_count": 0
+  },
+  "model_roles": {
+    "llm": "hypothesis_and_audit_only_no_dimensions_generated",
+    "reference_solver": "not_run_analytic_bookends_only",
+    "physicsnemo": "ineligible_no_reference_CAE_dataset",
+    "omniverse": "OpenUSD_guide_authored_not_SimReady"
+  },
+  "claim_boundary": {
+    "is_oem_geometry": false,
+    "is_F2_interface_geometry": false,
+    "is_dimensionally_accurate": false,
+    "is_fitment_validated": false,
+    "is_qualified_material_selection": false,
+    "is_reference_CAE_result": false,
+    "is_physicsnemo_result": false,
+    "is_simready_validated": false,
+    "is_manufacturing_release": false
+  },
+  "next_gate": "infer_independent_interface_coordinate_candidates_from_licensed_multiview_evidence_with_scale_uncertainty_then_reject_candidates_that_do_not_fit_the_mass_constrained_search_domain"
+}

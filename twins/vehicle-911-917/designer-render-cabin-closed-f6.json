@@ -1,0 +1,41 @@
+{
+  "$comment": "Provenance de la variante F6. Deux retouches successives ferment visuellement l'habitacle dans la vue trois-quarts sans conserver le brouillon intermediaire.",
+  "schema_version": "1.0.0",
+  "asset_id": "911-917-MID-ENGINE-CABIN-CLOSED-F6",
+  "base_asset": "twins/vehicle-911-917/designer-render-intakes-firewall-f5.json",
+  "tool": "OpenAI imagegen",
+  "tool_mode": "two_successive_precise_object_edits",
+  "model": "not_exposed_by_tool",
+  "edit_target": {
+    "path": "work/911-917-packaging-f1/911-917-mid-engine-intakes-firewall-f5.png",
+    "sha256": "a92b647dae2b02b6d827440390deb876883f13b4d864fa512faeaff205750814"
+  },
+  "intermediate_asset": {
+    "sha256": "b69818cb5486fd0dc48a0097b77022dcf7f3737318e7abc168fef1be2acfb425",
+    "retained_in_workspace": false
+  },
+  "output_asset": {
+    "path": "work/911-917-packaging-f1/911-917-mid-engine-cabin-closed-f6.png",
+    "sha256": "8ffbe956d0683d8ec839c934c8572f47987bc13366564ca8a8c3bb8af1042659",
+    "width_px": 1536,
+    "height_px": 1024,
+    "tracked_in_git": false
+  },
+  "design_requirement": {
+    "seat_count": 2,
+    "seat_location": "ahead_of_full_height_firewall",
+    "rear_compartment_visibility_in_three_quarter_view": "fully_blocked_by_opaque_firewall",
+    "rear_quarter_intake_visibility": "opaque_no_cabin_sightline",
+    "status": "visual_consistency_only_not_safety_validation"
+  },
+  "initial_prompt": "Use case: precise-object-edit\nAsset type: automotive engineering concept presentation\nInput image: Image 1 is the edit target.\nPrimary request: correct only the cabin/rear-compartment visibility in the UPPER three-quarter rear rendering so it is fully consistent with the lower cutaway.\nUpper-view correction: remove every seat, seat silhouette, headrest, cabin reflection or habitable-space cue located behind the B-pillar or behind the two front bucket seats. There are exactly two front seats, both entirely ahead of the firewall. The visible rear-quarter intake panel must be opaque and deep black between its guide vanes, with no view through it into the cabin. Behind the two front seats, show the cabin-facing surface of the full-height firewall as an opaque dark metallic bulkhead closing the passenger compartment; it may be subtly visible through the door glass and rear windshield, but no engine bay or rear seat may be visible through it. Preserve normal visibility of the two front bucket seats through the front door glass and windscreen.\nLower cutaway: preserve it exactly, including the existing full-height firewall, two front seats, quarter-intake ducts, flat-12, transaxle, heat exchanger and spoiler.\nInvariants: preserve the +450 mm stretched body, long rear quarter, wheel and axle positions, widened raised 930-inspired fixed whale-tail, integrated heat exchanger, side-intake external shape, body surfaces, doors, roof, glazing outlines, camera angles, two-panel composition, colors, lighting, paper background, datum line and every existing label.\nConstraints: exactly two seats total; no rear seat; no third headrest; no transparent firewall; no open cabin-to-engine path; no additional text; no logos or watermark; change nothing outside the visibility correction.",
+  "final_prompt": "Use case: precise-object-edit\nAsset type: automotive engineering concept presentation\nInput image: Image 1 is the edit target.\nPrimary request: change only the UPPER three-quarter view inside the sloping rear-windshield area behind the B-pillar. Remove every remaining visible seat back, headrest, seat outline, reflection shaped like a seat, or suggestion of rear cabin space from behind the two-seat cockpit. Replace what is seen through the rear windshield with the continuous opaque dark-metal cabin-facing surface of the full-height firewall immediately behind the two front seats. The firewall should block all sight lines into the engine bay and make the cabin clearly end at the B-pillar. Keep the rear windshield glass outline and subtle glass reflections over the opaque bulkhead.\nInvariants: preserve the front door glass exactly as it is, preserve the rear-quarter intake, stretched body, wheels, raised wide 930-inspired spoiler, heat exchanger, lower cutaway, labels, datum line, lighting, colors and every other pixel-level design feature as closely as possible.\nConstraints: exactly two seats total and both are ahead of the firewall; no seat or headrest visible through the rear windshield; no transparent firewall; no additional text; no logo or watermark; change nothing outside the specified rear-windshield interior area.",
+  "release_gates": {
+    "firewall_geometry_dimensioned": false,
+    "firewall_fire_resistance_verified": false,
+    "firewall_fume_sealing_verified": false,
+    "rear_visibility_reviewed": false,
+    "manufacturing_authorized": false,
+    "road_or_track_use_authorized": false
+  }
+}

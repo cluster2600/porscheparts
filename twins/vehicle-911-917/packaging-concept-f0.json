@@ -1,0 +1,151 @@
+{
+  "$comment": "Premier dessin d'encombrement de la 911-917. Les dimensions Porsche 993 sont documentaires; le scan moteur est exploite avec une echelle 1:1 explicitement non calibree; les volumes de boite et de moteur complet sont des reserves de conception non fabricables.",
+  "schema_version": "1.0.0",
+  "concept_id": "911-917-VEHICLE-PACKAGING-F0",
+  "status": "screening_only_scan_scale_and_gearbox_dimensions_unverified",
+  "coordinate_system": {
+    "origin": "centre de l'axe avant",
+    "x": "avant vers arriere",
+    "y": "gauche vers droite",
+    "z": "haut depuis le plan de sol de visualisation",
+    "units": "mm"
+  },
+  "inputs": {
+    "vehicle_reference": "twin/993/reference-envelope.json",
+    "vehicle_packaging_hypotheses": "twins/993-carbon-safety-cell/design-space.json",
+    "engine_scan": "raw-scans/917-engine/original/917-engine-case-with-cylinders.obj",
+    "engine_scan_sha256_contract": "twins/reference-917-engine/scan-scale-orientation-acquisition-f21.json",
+    "engine_scan_interface_report": "work/917-engine/scan-metrology-f13-report.json"
+  },
+  "engine_screening": {
+    "obj_unit_to_mm": 1.0,
+    "scale_status": "screening_assumption_not_traceably_calibrated",
+    "orientation_method": "axis derived from the twelve detected exterior openings; handedness and vehicle orientation remain provisional",
+    "scan_scope": "external crankcase and cylinders only",
+    "full_engine_service_envelope_mm": {
+      "length": 1250.0,
+      "width": 1200.0,
+      "height": 800.0,
+      "status": "design_reservation_not_measured",
+      "includes_allowance_for": [
+        "complete_heads",
+        "cooling_fan",
+        "intake",
+        "exhaust",
+        "two_turbochargers",
+        "heat_shields"
+      ]
+    }
+  },
+  "occupant_and_body_screening_mm": {
+    "front_occupant_rear_limit_x": 1365.0,
+    "front_occupant_rear_limit_status": "hypothesis_from_existing_vehicle_screening_model_not_measured",
+    "rear_seat_delete_start_x": 1365.0,
+    "rear_seat_delete_end_x": 1840.0,
+    "powertrain_firewall_x": 1510.0,
+    "powertrain_floor_z": 180.0,
+    "preferred_rear_tail_extension": 450.0,
+    "all_values_status": "screening_hypotheses_pending_body_scan_and_CMM"
+  },
+  "gearbox_research": {
+    "preferred_architecture": "front_of_engine_rear_transaxle_like_911",
+    "screening_reservation_mm": {
+      "front_extent_from_differential_plane": 550.0,
+      "rear_extent_from_differential_plane_to_engine_mating_plane": 100.0,
+      "width": 500.0,
+      "height": 460.0,
+      "status": "reserved_volume_not_manufacturer_dimensions"
+    },
+    "candidates": [
+      {
+        "candidate_id": "porsche_type_920_reference",
+        "manufacturer": "Porsche",
+        "configuration": "four-speed longitudinal transaxle used by the 917/30",
+        "maximum_input_torque_nm": null,
+        "mass_kg": null,
+        "public_overall_dimensions_mm": null,
+        "source_url": "https://newsroom.porsche.com/en_AU/2019/history/porsche-goodwood-members-meeting-andrew-frankel-917-19271.html",
+        "screening_decision": "historical_architecture_reference_only"
+      },
+      {
+        "candidate_id": "dma_1071_w_2wd",
+        "manufacturer": "D.M.A. Racing Gears",
+        "configuration": "five or six-speed sequential 2WD transaxle for front, mid or rear engines",
+        "maximum_input_torque_nm": {
+          "five_speed": 1200.0,
+          "six_speed": 900.0
+        },
+        "mass_kg": null,
+        "public_overall_dimensions_mm": null,
+        "source_url": "https://dmaracinggears.com/2wd-transaxle-sequential-1071-w-2wd/",
+        "screening_decision": "rear_engine_layout_candidate_requires_GA_and_torque_duty_cycle"
+      },
+      {
+        "candidate_id": "dma_s1098",
+        "manufacturer": "D.M.A. Racing Gears",
+        "configuration": "six-speed longitudinal sequential transaxle, cluster forward of differential",
+        "maximum_input_torque_nm": {
+          "endurance": 900.0,
+          "sprint_hillclimb": 1300.0
+        },
+        "mass_kg": 76.0,
+        "public_overall_dimensions_mm": null,
+        "source_url": "https://dmaracinggears.com/2wd-transaxle-sequential-s1098/",
+        "screening_decision": "high_torque_candidate_but_layout_and_1600_hp_margin_unresolved"
+      },
+      {
+        "candidate_id": "hewland_lws_200",
+        "manufacturer": "Hewland",
+        "configuration": "six-speed rear transaxle, longitudinal cluster behind final drive",
+        "maximum_input_torque_nm": 935.0,
+        "mass_kg": {
+          "aluminium": 69.0,
+          "magnesium": 63.0
+        },
+        "public_overall_dimensions_mm": null,
+        "source_url": "https://motorsport.hewland.com/browse-products/?singleproduct=725",
+        "screening_decision": "useful_packaging_topology_but_insufficient_published_torque"
+      }
+    ]
+  },
+  "power_screening": {
+    "target_power_hp": 1600.0,
+    "speed_range_rpm": [
+      8000.0,
+      8500.0,
+      9000.0
+    ],
+    "status": "mathematical_power_to_torque_screen_only_not_engine_curve"
+  },
+  "layout_trials": [
+    {
+      "layout_id": "911_FRONT_GEARBOX_STOCK_BODY",
+      "gearbox_position": "ahead_of_engine",
+      "rear_tail_extension_mm": 0.0
+    },
+    {
+      "layout_id": "911_FRONT_GEARBOX_LONG_TAIL_450",
+      "gearbox_position": "ahead_of_engine",
+      "rear_tail_extension_mm": 450.0
+    },
+    {
+      "layout_id": "917_MID_ENGINE_REAR_GEARBOX_STOCK_BODY",
+      "gearbox_position": "behind_engine",
+      "rear_tail_extension_mm": 0.0
+    }
+  ],
+  "release_gates": {
+    "scan_scale_verified": false,
+    "scan_orientation_verified": false,
+    "complete_engine_envelope_measured": false,
+    "gearbox_GA_received": false,
+    "gearbox_torque_duty_cycle_accepted": false,
+    "body_datums_measured": false,
+    "occupant_clearance_verified": false,
+    "driveline_angles_verified": false,
+    "cooling_and_fire_separation_verified": false,
+    "structural_load_paths_verified": false,
+    "manufacturing_authorized": false,
+    "road_or_track_use_authorized": false
+  }
+}

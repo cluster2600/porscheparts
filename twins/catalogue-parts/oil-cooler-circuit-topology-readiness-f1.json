@@ -1,0 +1,2281 @@
+{
+  "$comment": "Contrat F1 de topologie documentaire de la planche PET 104-05. Le graphe est non spatial et ne constitue ni geometrie de piece ni preuve thermique.",
+  "schema_version": "1.0.0",
+  "generated_by": "scripts/generate_pet_993_oil_cooler_circuit.py",
+  "status": "F1_104_05_oil_cooler_circuit_topology_complete_reference_solution_blocked",
+  "source_boundary": {
+    "files": [
+      {
+        "path": "twins/pet-993/index-f0.json",
+        "sha256": "1c62dcd1b307b351ebb77bbc676471f723b3f8f87922c52131952c468a4706d3",
+        "role": "PET_occurrence_and_part_master_manifest"
+      },
+      {
+        "path": "work/pet-993/twins/1xx.jsonl",
+        "sha256": "3660682940e3963df440399855931f7403033c8dd93364bea62e41ab1a5defe6",
+        "role": "PET_104_05_occurrence_records"
+      },
+      {
+        "path": "work/pet-993/part-masters/0.jsonl",
+        "sha256": "1d9d7095c949baa8ba8b4776b24c1d83b2a03fd3046632c8e1c927acb918d3ea",
+        "role": "PET_part_master_shard"
+      },
+      {
+        "path": "work/pet-993/part-masters/1.jsonl",
+        "sha256": "3a6c67299ff5db001329394d5cb421f439ecd23e8c165a7aa0640890ddaba94f",
+        "role": "PET_part_master_shard"
+      },
+      {
+        "path": "work/pet-993/part-masters/2.jsonl",
+        "sha256": "5588aa8ace1e8700351a93f52e3321bae3163f8ef45c2abc6cdfa2f4a9e7e6ec",
+        "role": "PET_part_master_shard"
+      },
+      {
+        "path": "work/pet-993/part-masters/3.jsonl",
+        "sha256": "9a27faeff33ebddac735167b39995c5011d8ca5d5c1bf13e52e1a041e8242937",
+        "role": "PET_part_master_shard"
+      },
+      {
+        "path": "work/pet-993/part-masters/4.jsonl",
+        "sha256": "e21138bca2b63e9d2e071392e006c8768020d12695985d446c2e8927ec200b8b",
+        "role": "PET_part_master_shard"
+      },
+      {
+        "path": "work/pet-993/part-masters/5.jsonl",
+        "sha256": "2355989e8ff4b474620c5f9cf1115798d639e13a599e24ce49dae24c8c8185fa",
+        "role": "PET_part_master_shard"
+      },
+      {
+        "path": "work/pet-993/part-masters/6.jsonl",
+        "sha256": "a5d84fc8af690f0ac096455be0ba960e464d6e55e2fd9ce577f48a789ec0c39e",
+        "role": "PET_part_master_shard"
+      },
+      {
+        "path": "work/pet-993/part-masters/7.jsonl",
+        "sha256": "6ccb697df61071d9fcd33af9535c7f76481e6ecaa920d1b33ac8084812f6eff1",
+        "role": "PET_part_master_shard"
+      },
+      {
+        "path": "work/pet-993/part-masters/8.jsonl",
+        "sha256": "e39e75bfba72fa99648f9b0bf4ea92bfd3137d783c37210b82984aca56eff38f",
+        "role": "PET_part_master_shard"
+      },
+      {
+        "path": "work/pet-993/part-masters/9.jsonl",
+        "sha256": "bb21cdc397092e6aa3d869b473a660daf15245e7debca4ec69dc7ca2ebcd4bfe",
+        "role": "PET_part_master_shard"
+      },
+      {
+        "path": "work/pet-993/part-masters/a.jsonl",
+        "sha256": "2e178082aa44102c0828aecdf28932300ce0a5c0f97542c55be6cccd2f65af12",
+        "role": "PET_part_master_shard"
+      },
+      {
+        "path": "work/pet-993/part-masters/b.jsonl",
+        "sha256": "ea930626bb3c49fa71b032915e122de61c9daac3930e4a21db40fed15c6e0d92",
+        "role": "PET_part_master_shard"
+      },
+      {
+        "path": "work/pet-993/part-masters/c.jsonl",
+        "sha256": "f29ad6e570d333ff0a72b705d34d85e47efb4e256f5a48a44af53e783d711743",
+        "role": "PET_part_master_shard"
+      },
+      {
+        "path": "work/pet-993/part-masters/d.jsonl",
+        "sha256": "9b783f10420c9f187b085f2a7cfb46bd94a59ecbc7f8219ba0890538b1f0baa6",
+        "role": "PET_part_master_shard"
+      },
+      {
+        "path": "work/pet-993/part-masters/e.jsonl",
+        "sha256": "19b55d088d04f599299011f3f9fdd97367bd0e9f5535cafa0bdc016fb81171f3",
+        "role": "PET_part_master_shard"
+      },
+      {
+        "path": "work/pet-993/part-masters/f.jsonl",
+        "sha256": "1e6825c881bf87501fc7b79eac241d8df0b9557293495112de03986baa6876d9",
+        "role": "PET_part_master_shard"
+      },
+      {
+        "path": "catalog/sources/src-porschefanatics-993-oil-cooler-pet.json",
+        "sha256": "5f08dead38aac7ef9bfec7a588a6cff7224eba4656a357eb6651d1f8032f04a7",
+        "role": "PorscheFanatics_identity_and_system_context_only"
+      },
+      {
+        "path": "twins/catalogue-parts/oil-tank-circuit-topology-readiness-f1.json",
+        "sha256": "549f4192e6aad0b955be9656a25144c565c29c6872fabb36432b8fe3f078fcdc",
+        "role": "adjacent_104_01_topology_without_interface_transfer"
+      },
+      {
+        "path": "twins/vehicle-993/program-definition.json",
+        "sha256": "668cc79a63ce87671f635d47d1c9203622acfcd725577e02624a491cf6086c5d",
+        "role": "PhysicsNeMo_and_Omniverse_policy"
+      },
+      {
+        "path": "twins/vehicle-993/functional-flow-simready-preflight-f0.json",
+        "sha256": "401674e1282db739a500d1ad7a8e2cb0da89663d414da8b9d6bfe3badcc573c2",
+        "role": "blocked_Omniverse_preflight"
+      }
+    ],
+    "pet_illustration": "104-05",
+    "porschefanatics_used_for_identity_and_system_context_only": true,
+    "porschefanatics_catalogue_page": "https://porschefanatics.com/oem/993/104-05/",
+    "porschefanatics_live_http_status_observed_during_authoring": 200,
+    "llm_generated_dimensions_used": false,
+    "adjacent_topology_connections_transferred_as_fact": false,
+    "independent_metrology_used": false,
+    "third_party_geometry_redistributed": false
+  },
+  "summary": {
+    "pet_104_05_occurrences": 80,
+    "pet_104_05_unique_part_masters": 43,
+    "pet_part_masters_seen_in_both_sources": 37,
+    "source_occurrence_counts": {
+      "pet-993-pdf-rsworkshop": 37,
+      "pet-classic-993": 43
+    },
+    "role_hypothesis_counts": {
+      "blower_series_resistor": 1,
+      "compliant_mount_buffer_or_edge_protection": 5,
+      "cooling_air_blower": 1,
+      "cooling_air_guide_or_baffle": 4,
+      "fastener_or_retainer": 16,
+      "fluid_union_identity_unresolved": 1,
+      "oil_to_air_heat_exchanger_core": 1,
+      "oil_transport_pipe": 4,
+      "sealing_element": 3,
+      "support_or_retention": 6,
+      "temperature_sensor": 1
+    },
+    "topology_nodes": 12,
+    "topology_edges": 13,
+    "symbolic_equation_contracts": 14,
+    "blocked_reference_load_cases": 8,
+    "unknown_engineering_parameters": 44,
+    "known_interface_coordinates": 0,
+    "qualified_material_decisions": 0,
+    "reference_solver_results": 0,
+    "physicsnemo_results": 0,
+    "simready_assets": 0,
+    "manufacturing_releases": 0
+  },
+  "part_roster": [
+    {
+      "normalized_oem_reference": "90007537402",
+      "display_references": [
+        "900 075 374 02"
+      ],
+      "descriptions": [
+        "Combination screw",
+        "combination screw"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-12A877CF63DF03DED745",
+      "pet_positions": [
+        20
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-234ABDEBDE619E01933F",
+        "TWIN-PET-993-66FD3B33132CD973BADD"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "fastener_or_retainer",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "90007601002",
+      "display_references": [
+        "900 076 010 02"
+      ],
+      "descriptions": [
+        "hexagon nut",
+        "Nut"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-BC76D084E54FE9DC36E2",
+      "pet_positions": [
+        22
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-4181771D4CE136C41AEA",
+        "TWIN-PET-993-A6C3CCF4FDBDD9EAF05F"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "fastener_or_retainer",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "90012300730",
+      "display_references": [
+        "900 123 007 30"
+      ],
+      "descriptions": [
+        "Sealing ring",
+        "sealing ring"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-07A64D2998DDAF76FAA2",
+      "pet_positions": [
+        17
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-C9653F48C83A6FDE2DB4",
+        "TWIN-PET-993-EB2622369E1E074E8E87"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "sealing_element",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "90012311830",
+      "display_references": [
+        "900 123 118 30"
+      ],
+      "descriptions": [
+        "Sealing ring",
+        "sealing ring"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-6E699B9C23244A1DD4C8",
+      "pet_positions": [
+        36
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-767CA69E358FF4307806",
+        "TWIN-PET-993-ECE64AEED784DE4C9209"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "sealing_element",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "90015100302",
+      "display_references": [
+        "900 151 003 02"
+      ],
+      "descriptions": [
+        "Washer",
+        "washer"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-E65C6469C75004F3F653",
+      "pet_positions": [
+        21
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-20189602F8C583E098AB",
+        "TWIN-PET-993-9BAD34D1F094ED778CF7"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "fastener_or_retainer",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "90015100603",
+      "display_references": [
+        "900 151 006 03"
+      ],
+      "descriptions": [
+        "Washer"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-1F40A71274B789057963",
+      "pet_positions": [
+        21
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-FD50C8BE5CEE14DD98FF"
+      ],
+      "pet_source_ids": [
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "fastener_or_retainer",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "90015102602",
+      "display_references": [
+        "900 151 026 02"
+      ],
+      "descriptions": [
+        "Washer",
+        "washer"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-F5F9F8CFED1458ED4ABE",
+      "pet_positions": [
+        37
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-DE6A634B4862451A7BAB",
+        "TWIN-PET-993-E697EB22CB53CABE19FE"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "fastener_or_retainer",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "90015105001",
+      "display_references": [
+        "900 151 050 01"
+      ],
+      "descriptions": [
+        "Washer"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-32A16DD8BB42C74FC5BF",
+      "pet_positions": [
+        37
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-4DC573E7E114900FBD25"
+      ],
+      "pet_source_ids": [
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "fastener_or_retainer",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "90018711802",
+      "display_references": [
+        "900 187 118 02"
+      ],
+      "descriptions": [
+        "Combination screw",
+        "combination screw"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-FA0C5107F254B3683DBE",
+      "pet_positions": [
+        5
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-74C7D83748416D3D656A",
+        "TWIN-PET-993-CBB8FB637D6329C28D53"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "fastener_or_retainer",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "90018713202",
+      "display_references": [
+        "900 187 132 02"
+      ],
+      "descriptions": [
+        "Combination screw",
+        "combination screw"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-AEBD767F8A2E00366620",
+      "pet_positions": [
+        14
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-397A99FB3CCFE7D0375C",
+        "TWIN-PET-993-BAC6C0D9B3E54B1C8BDC"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "fastener_or_retainer",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "90037803009",
+      "display_references": [
+        "900 378 030 09"
+      ],
+      "descriptions": [
+        "Hexagon-head bolt",
+        "hexagon-head bolt"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-EBDB0A6C08B272329D67",
+      "pet_positions": [
+        26
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-79C1529D8FFD29774A06",
+        "TWIN-PET-993-926F714F56826840ACF5"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "fastener_or_retainer",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "96420712100",
+      "display_references": [
+        "964 207 121 00"
+      ],
+      "descriptions": [
+        "Hose clamp",
+        "hose clamp"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-36EF033326A082C8C645",
+      "pet_positions": [
+        10
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-0AAE2E370C4B746AAA4E",
+        "TWIN-PET-993-5A12A3EE7E325D7E0DCE"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "support_or_retention",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "96420722002",
+      "display_references": [
+        "964 207 220 02"
+      ],
+      "descriptions": [
+        "Oil cooler",
+        "oil cooler"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-8F3B4B191CA80170E28C",
+      "pet_positions": [
+        11
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-38D82001794650CD5887",
+        "TWIN-PET-993-D5D505C840C1B20E40CB"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "oil_to_air_heat_exchanger_core",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "96420722301",
+      "display_references": [
+        "964 207 223 01"
+      ],
+      "descriptions": [
+        "Air baffle plate",
+        "air baffle plate"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-A402796B6F089952CCA3",
+      "pet_positions": [
+        13
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-9BA0EAB8C0512362F428",
+        "TWIN-PET-993-AFC465FC84DF5C2D917F"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "cooling_air_guide_or_baffle",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "96420741301",
+      "display_references": [
+        "964 207 413 01"
+      ],
+      "descriptions": [
+        "Buffer",
+        "buffer"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-B8D161D89F472741ED46",
+      "pet_positions": [
+        12
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-591FD19A4D5A01F2822B",
+        "TWIN-PET-993-D317C7B62B2F366F4ED6"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "compliant_mount_buffer_or_edge_protection",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "96462403500",
+      "display_references": [
+        "964 624 035 00"
+      ],
+      "descriptions": [
+        "Blower",
+        "blower"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-3D468D39FD0DF26FD37A",
+      "pet_positions": [
+        28
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-5856AE77EA705ECE6A42",
+        "TWIN-PET-993-FE437ABB3B8A8799925C"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "cooling_air_blower",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "96462411000",
+      "display_references": [
+        "964 624 110 00"
+      ],
+      "descriptions": [
+        "Temperature sensor",
+        "temperature sensor"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-9C4A9F8AC13D5E832E50",
+      "pet_positions": [
+        16
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-962977E111F4D2811911",
+        "TWIN-PET-993-96E32093CEAD82762E4D"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "temperature_sensor",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99320713303",
+      "display_references": [
+        "993 207 133 03"
+      ],
+      "descriptions": [
+        "Oil pipe",
+        "oil pipe"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-8D31976730FEEF1A719A",
+      "pet_positions": [
+        1
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-2A4660A8590B9D763592",
+        "TWIN-PET-993-87187C7CBAA05A62D278"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "oil_transport_pipe",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99320713304",
+      "display_references": [
+        "993 207 133 04"
+      ],
+      "descriptions": [
+        "Oil pipe"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-A9C476DA5B8C50F25025",
+      "pet_positions": [
+        1
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-A31E5AF9A8BBBC17E43B"
+      ],
+      "pet_source_ids": [
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "oil_transport_pipe",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99320713503",
+      "display_references": [
+        "993 207 135 03"
+      ],
+      "descriptions": [
+        "Oil pipe",
+        "oil pipe"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-1D6EBF2CA3DA4D8D2F50",
+      "pet_positions": [
+        2
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-04EC9D38766FE900962D",
+        "TWIN-PET-993-F343FFC89DC138816C65"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "oil_transport_pipe",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99320713505",
+      "display_references": [
+        "993 207 135 05"
+      ],
+      "descriptions": [
+        "Oil pipe"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-D949401788F8F9951A1A",
+      "pet_positions": [
+        2
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-7551B7C153DF33C956B4"
+      ],
+      "pet_source_ids": [
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "oil_transport_pipe",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99320726501",
+      "display_references": [
+        "993 207 265 01"
+      ],
+      "descriptions": [
+        "Rubber mounting",
+        "rubber mounting"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-9A67DCFC3F09C0C7E356",
+      "pet_positions": [
+        7
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-429C3B7975FE1EAC28BF",
+        "TWIN-PET-993-4A0B7CBEDCAE6CE69D3C"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "compliant_mount_buffer_or_edge_protection",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99320730300",
+      "display_references": [
+        "993 207 303 00"
+      ],
+      "descriptions": [
+        "Clamp",
+        "clamp"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-17B774DAC75ACEC065A4",
+      "pet_positions": [
+        4
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-CFCD85A42BDCEDAA46E6",
+        "TWIN-PET-993-DFC2441721A137478D9D"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "support_or_retention",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99320730501",
+      "display_references": [
+        "993 207 305 01"
+      ],
+      "descriptions": [
+        "Rubber mounting",
+        "rubber mounting"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-712E361252984285852B",
+      "pet_positions": [
+        3
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-824172362DEAE5C1AE80",
+        "TWIN-PET-993-9477D391FB213E6E46F9"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "compliant_mount_buffer_or_edge_protection",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99320741500",
+      "display_references": [
+        "993 207 415 00"
+      ],
+      "descriptions": [
+        "Bracket",
+        "bracket"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-A790526E6694A6BF5E46",
+      "pet_positions": [
+        18
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-5B10BC1E8F841C31F56D",
+        "TWIN-PET-993-8C2E619A250D3CDE1CEE"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "support_or_retention",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99357552200",
+      "display_references": [
+        "993 575 522 00"
+      ],
+      "descriptions": [
+        "air duct",
+        "Air guide"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-E85484690C2BBEF25A0E",
+      "pet_positions": [
+        30
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-5475FB66C0AB79073936",
+        "TWIN-PET-993-9D804EEA5DBFE52E10D9"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "cooling_air_guide_or_baffle",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99357552201",
+      "display_references": [
+        "993 575 522 01"
+      ],
+      "descriptions": [
+        "air duct",
+        "Air guide"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-792EE4565D74A61E33BF",
+      "pet_positions": [
+        30
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-2D219D77533FA807E2A3",
+        "TWIN-PET-993-E38844D81BCCFF0EE42B"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "cooling_air_guide_or_baffle",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99361280700",
+      "display_references": [
+        "993 612 807 00"
+      ],
+      "descriptions": [
+        "Cable holder",
+        "cable holder"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-33BF5BA39B6FB06E36E2",
+      "pet_positions": [
+        25
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-978DBE2363571BFFF9E8",
+        "TWIN-PET-993-DA635B6D85EE9C8F1066"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "support_or_retention",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99361652101",
+      "display_references": [
+        "993 616 521 01"
+      ],
+      "descriptions": [
+        "Series resistor",
+        "series resistor"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-7A80E7FA661C61167D82",
+      "pet_positions": [
+        27
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-473741D125E11374DC5B",
+        "TWIN-PET-993-C2FA0301EC7215E39D52"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "blower_series_resistor",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99362404100",
+      "display_references": [
+        "993 624 041 00"
+      ],
+      "descriptions": [
+        "Air-guide cowl",
+        "air-guide cowl"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-CCA34BDDA1C5DA45447E",
+      "pet_positions": [
+        23
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-82D0748D33F201950B75",
+        "TWIN-PET-993-DC930B02D5BE1DBF5F56"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "cooling_air_guide_or_baffle",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99908409402",
+      "display_references": [
+        "999 084 094 02"
+      ],
+      "descriptions": [
+        "Lock nut",
+        "lock nut"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-07D43F001B11BD2FB2C5",
+      "pet_positions": [
+        9
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-28D804AC832522E39C4E",
+        "TWIN-PET-993-96EA3B16AE5E81A45337"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "fastener_or_retainer",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99913604509",
+      "display_references": [
+        "999 136 045 09"
+      ],
+      "descriptions": [
+        "Union",
+        "union"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-83759D10BAC35076F81D",
+      "pet_positions": [
+        35
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-1A29192313D84B4B5ED5",
+        "TWIN-PET-993-68723C5752096C326253"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "fluid_union_identity_unresolved",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99951116202",
+      "display_references": [
+        "999 511 162 02"
+      ],
+      "descriptions": [
+        "Pipe clamp",
+        "pipe clamp"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-3348581A0A5C08F9E7C1",
+      "pet_positions": [
+        8
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-D8DFFA194E73392F472D",
+        "TWIN-PET-993-E43360353DFD7455A02A"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "support_or_retention",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99959171302",
+      "display_references": [
+        "999 591 713 02"
+      ],
+      "descriptions": [
+        "Speed nut",
+        "speed nut"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-375613AE455A92787D41",
+      "pet_positions": [
+        15
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-7F00F0A39E8B616DB383",
+        "TWIN-PET-993-FC6CD0C0C048EBC545AD"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "fastener_or_retainer",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99959171303",
+      "display_references": [
+        "999 591 713 03"
+      ],
+      "descriptions": [
+        "Speed nut"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-1BEAD72E63CBA4EA20A7",
+      "pet_positions": [
+        15
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-383D9585DB0BB1980C05"
+      ],
+      "pet_source_ids": [
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "fastener_or_retainer",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99959183940",
+      "display_references": [
+        "999 591 839 40"
+      ],
+      "descriptions": [
+        "hexagon nut",
+        "Plastic nut"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-5CD9AB8A50FB4FD03842",
+      "pet_positions": [
+        31
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-056DB3E0A3A4C5635500",
+        "TWIN-PET-993-ACC7BC82E9019414D69D"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "fastener_or_retainer",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99959189501",
+      "display_references": [
+        "999 591 895 01"
+      ],
+      "descriptions": [
+        "Retaining clip"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-8DB63C19A329C994CEA8",
+      "pet_positions": [
+        33
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-D27E9250F798E9F2B0FE"
+      ],
+      "pet_source_ids": [
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "fastener_or_retainer",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99959189502",
+      "display_references": [
+        "999 591 895 02"
+      ],
+      "descriptions": [
+        "Retaining clip",
+        "retaining clip"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-534F386C7ECF10E41AB5",
+      "pet_positions": [
+        33
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-0E581950CEC75D4373A2",
+        "TWIN-PET-993-3FCCEC58BB8914C047E1"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "fastener_or_retainer",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99959191102",
+      "display_references": [
+        "999 591 911 02"
+      ],
+      "descriptions": [
+        "Bolt",
+        "bolt"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-7296C86D9F1C27E56C34",
+      "pet_positions": [
+        29
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-25DD0BEDFFD46416443D",
+        "TWIN-PET-993-99300A9B0F32C9FF7FBE"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "fastener_or_retainer",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99965120340",
+      "display_references": [
+        "999 651 203 40"
+      ],
+      "descriptions": [
+        "Cable holder",
+        "cable holder"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-C5E74B95B8732D37B296",
+      "pet_positions": [
+        34
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-29ECA870CF03CF3CF285",
+        "TWIN-PET-993-B91C3448D5188E788559"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "support_or_retention",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99970332300",
+      "display_references": [
+        "999 703 323 00"
+      ],
+      "descriptions": [
+        "Bonded rubber buffer",
+        "bonded rubber buffer"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-A06E4464F87B33ECF9B6",
+      "pet_positions": [
+        19
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-2705D272419E321E3816",
+        "TWIN-PET-993-7EF7D16EAF9B6B2DD1CA"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "compliant_mount_buffer_or_edge_protection",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99970725540",
+      "display_references": [
+        "999 707 255 40"
+      ],
+      "descriptions": [
+        "O-ring",
+        "o-ring"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-CA04B9053BFA92D01072",
+      "pet_positions": [
+        6
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-454DEB9A912D47F64D1C",
+        "TWIN-PET-993-B579E6574B47CAD56F2A"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "sealing_element",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    },
+    {
+      "normalized_oem_reference": "99991139840",
+      "display_references": [
+        "999 911 398 40"
+      ],
+      "descriptions": [
+        "Edge protection",
+        "edge protection"
+      ],
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-F9577C409E48367CF28B",
+      "pet_positions": [
+        32
+      ],
+      "pet_occurrence_twin_ids": [
+        "TWIN-PET-993-AB3FECDC42054D7DCE2E",
+        "TWIN-PET-993-CBE793B476A8876B44E3"
+      ],
+      "pet_source_ids": [
+        "pet-993-pdf-rsworkshop",
+        "pet-classic-993"
+      ],
+      "role_hypothesis": "compliant_mount_buffer_or_edge_protection",
+      "role_status": "identity_based_candidate_not_interface_proof",
+      "interface_geometry": null,
+      "material": null,
+      "vehicle_transform": null
+    }
+  ],
+  "topology_hypothesis": {
+    "status": "LLM_assisted_nonspatial_hypothesis_requires_engineering_review",
+    "nodes": [
+      {
+        "id": "UpstreamOilBoundary",
+        "semantics": "unresolved_upstream_oil_boundary",
+        "vehicle_coordinate": null
+      },
+      {
+        "id": "OilCoolerCore",
+        "semantics": "oil_to_air_heat_exchanger_core",
+        "vehicle_coordinate": null
+      },
+      {
+        "id": "DownstreamOilBoundary",
+        "semantics": "unresolved_downstream_oil_boundary",
+        "vehicle_coordinate": null
+      },
+      {
+        "id": "CoolingAirInlet",
+        "semantics": "vehicle_cooling_air_inlet_boundary",
+        "vehicle_coordinate": null
+      },
+      {
+        "id": "AirGuideCowl",
+        "semantics": "air_guide_cowl_boundary",
+        "vehicle_coordinate": null
+      },
+      {
+        "id": "CoolingBlower",
+        "semantics": "electrically_driven_blower_boundary",
+        "vehicle_coordinate": null
+      },
+      {
+        "id": "CoolingAirOutlet",
+        "semantics": "vehicle_cooling_air_outlet_boundary",
+        "vehicle_coordinate": null
+      },
+      {
+        "id": "TemperatureSensor",
+        "semantics": "temperature_sensor_boundary",
+        "vehicle_coordinate": null
+      },
+      {
+        "id": "ElectricalPowerBoundary",
+        "semantics": "vehicle_electrical_power_boundary",
+        "vehicle_coordinate": null
+      },
+      {
+        "id": "ThermalControlBoundary",
+        "semantics": "unresolved_fan_control_boundary",
+        "vehicle_coordinate": null
+      },
+      {
+        "id": "VehicleMountBoundary",
+        "semantics": "vehicle_mount_and_vibration_boundary",
+        "vehicle_coordinate": null
+      },
+      {
+        "id": "AmbientThermalBoundary",
+        "semantics": "ambient_thermal_boundary",
+        "vehicle_coordinate": null
+      }
+    ],
+    "edges": [
+      {
+        "id": "OilSupply",
+        "from": "UpstreamOilBoundary",
+        "to": "OilCoolerCore",
+        "semantics": "oil_supply_hypothesis",
+        "connected_pet_references": null
+      },
+      {
+        "id": "OilReturn",
+        "from": "OilCoolerCore",
+        "to": "DownstreamOilBoundary",
+        "semantics": "oil_return_hypothesis",
+        "connected_pet_references": null
+      },
+      {
+        "id": "AirInletToGuide",
+        "from": "CoolingAirInlet",
+        "to": "AirGuideCowl",
+        "semantics": "cooling_air_path_hypothesis",
+        "connected_pet_references": null
+      },
+      {
+        "id": "GuideToCore",
+        "from": "AirGuideCowl",
+        "to": "OilCoolerCore",
+        "semantics": "guided_air_path_hypothesis",
+        "connected_pet_references": null
+      },
+      {
+        "id": "BlowerToGuide",
+        "from": "CoolingBlower",
+        "to": "AirGuideCowl",
+        "semantics": "forced_air_path_hypothesis",
+        "connected_pet_references": null
+      },
+      {
+        "id": "CoreToAirOutlet",
+        "from": "OilCoolerCore",
+        "to": "CoolingAirOutlet",
+        "semantics": "heated_air_path_hypothesis",
+        "connected_pet_references": null
+      },
+      {
+        "id": "SensorThermalSample",
+        "from": "OilCoolerCore",
+        "to": "TemperatureSensor",
+        "semantics": "thermal_observation_hypothesis",
+        "connected_pet_references": null
+      },
+      {
+        "id": "SensorSignal",
+        "from": "TemperatureSensor",
+        "to": "ThermalControlBoundary",
+        "semantics": "sensor_signal_hypothesis",
+        "connected_pet_references": null
+      },
+      {
+        "id": "ControlToBlower",
+        "from": "ThermalControlBoundary",
+        "to": "CoolingBlower",
+        "semantics": "blower_control_hypothesis",
+        "connected_pet_references": null
+      },
+      {
+        "id": "PowerToControl",
+        "from": "ElectricalPowerBoundary",
+        "to": "ThermalControlBoundary",
+        "semantics": "electrical_power_hypothesis",
+        "connected_pet_references": null
+      },
+      {
+        "id": "PowerToBlower",
+        "from": "ElectricalPowerBoundary",
+        "to": "CoolingBlower",
+        "semantics": "electrical_power_hypothesis",
+        "connected_pet_references": null
+      },
+      {
+        "id": "CoreToMount",
+        "from": "OilCoolerCore",
+        "to": "VehicleMountBoundary",
+        "semantics": "mechanical_support_hypothesis",
+        "connected_pet_references": null
+      },
+      {
+        "id": "CoreToAmbient",
+        "from": "OilCoolerCore",
+        "to": "AmbientThermalBoundary",
+        "semantics": "ambient_heat_transfer_hypothesis",
+        "connected_pet_references": null
+      }
+    ],
+    "ports_and_connections_are_proven": false,
+    "oil_tank_or_engine_boundary_coupling_is_proven": false,
+    "fan_control_logic_is_proven": false,
+    "diagram_coordinates_are_vehicle_coordinates": false
+  },
+  "parameter_registry": [
+    {
+      "id": "OCC-GEO-001",
+      "quantity": "cooler_oil_internal_volume",
+      "value": null,
+      "unit": "m3",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "oil_mass_balance"
+      ]
+    },
+    {
+      "id": "OCC-GEO-002",
+      "quantity": "cooler_air_internal_volume",
+      "value": null,
+      "unit": "m3",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "air_mass_balance"
+      ]
+    },
+    {
+      "id": "OCC-GEO-003",
+      "quantity": "oil_port_coordinates_sections_and_threads",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "F2_interfaces"
+      ]
+    },
+    {
+      "id": "OCC-GEO-004",
+      "quantity": "air_guide_and_cowl_geometry",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "airflow_CFD"
+      ]
+    },
+    {
+      "id": "OCC-GEO-005",
+      "quantity": "oil_pipe_internal_diameters",
+      "value": null,
+      "unit": "m",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "oil_hydraulics"
+      ]
+    },
+    {
+      "id": "OCC-GEO-006",
+      "quantity": "oil_pipe_lengths",
+      "value": null,
+      "unit": "m",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "oil_hydraulics"
+      ]
+    },
+    {
+      "id": "OCC-GEO-007",
+      "quantity": "oil_pipe_roughness",
+      "value": null,
+      "unit": "m",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "oil_hydraulics"
+      ]
+    },
+    {
+      "id": "OCC-GEO-008",
+      "quantity": "fitting_minor_loss_coefficients",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "oil_hydraulics"
+      ]
+    },
+    {
+      "id": "OCC-GEO-009",
+      "quantity": "core_tube_fin_and_surface_geometry",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "CHT"
+      ]
+    },
+    {
+      "id": "OCC-GEO-010",
+      "quantity": "wall_and_fin_thicknesses",
+      "value": null,
+      "unit": "m",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "CHT",
+        "structural"
+      ]
+    },
+    {
+      "id": "OCC-GEO-011",
+      "quantity": "blower_geometry_and_characteristic_curve",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "airflow"
+      ]
+    },
+    {
+      "id": "OCC-GEO-012",
+      "quantity": "mount_coordinates_and_stiffness",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "vibration"
+      ]
+    },
+    {
+      "id": "OCC-BC-001",
+      "quantity": "oil_mass_flow_map",
+      "value": null,
+      "unit": "kg_s",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "oil_hydraulics",
+        "thermal"
+      ]
+    },
+    {
+      "id": "OCC-BC-002",
+      "quantity": "oil_inlet_temperature_map",
+      "value": null,
+      "unit": "K",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "thermal"
+      ]
+    },
+    {
+      "id": "OCC-BC-003",
+      "quantity": "oil_inlet_pressure_map",
+      "value": null,
+      "unit": "Pa",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "oil_hydraulics"
+      ]
+    },
+    {
+      "id": "OCC-BC-004",
+      "quantity": "air_mass_flow_map",
+      "value": null,
+      "unit": "kg_s",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "airflow",
+        "thermal"
+      ]
+    },
+    {
+      "id": "OCC-BC-005",
+      "quantity": "air_inlet_temperature_map",
+      "value": null,
+      "unit": "K",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "thermal"
+      ]
+    },
+    {
+      "id": "OCC-BC-006",
+      "quantity": "ambient_pressure_map",
+      "value": null,
+      "unit": "Pa",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "airflow"
+      ]
+    },
+    {
+      "id": "OCC-BC-007",
+      "quantity": "vehicle_speed_and_yaw_history",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "airflow"
+      ]
+    },
+    {
+      "id": "OCC-BC-008",
+      "quantity": "blower_voltage_current_and_duty_cycle",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "electrical"
+      ]
+    },
+    {
+      "id": "OCC-BC-009",
+      "quantity": "engine_speed_and_load_history",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "transient"
+      ]
+    },
+    {
+      "id": "OCC-BC-010",
+      "quantity": "vehicle_vibration_and_acceleration_history",
+      "value": null,
+      "unit": "m_s2",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "durability"
+      ]
+    },
+    {
+      "id": "OCC-FLD-001",
+      "quantity": "oil_density_vs_temperature",
+      "value": null,
+      "unit": "kg_m3",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "hydraulics",
+        "thermal"
+      ]
+    },
+    {
+      "id": "OCC-FLD-002",
+      "quantity": "oil_dynamic_viscosity_vs_temperature",
+      "value": null,
+      "unit": "Pa_s",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "hydraulics"
+      ]
+    },
+    {
+      "id": "OCC-FLD-003",
+      "quantity": "oil_specific_heat_vs_temperature",
+      "value": null,
+      "unit": "J_kgK",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "thermal"
+      ]
+    },
+    {
+      "id": "OCC-FLD-004",
+      "quantity": "oil_thermal_conductivity_vs_temperature",
+      "value": null,
+      "unit": "W_mK",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "CHT"
+      ]
+    },
+    {
+      "id": "OCC-FLD-005",
+      "quantity": "air_density_vs_temperature",
+      "value": null,
+      "unit": "kg_m3",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "airflow"
+      ]
+    },
+    {
+      "id": "OCC-FLD-006",
+      "quantity": "air_dynamic_viscosity_vs_temperature",
+      "value": null,
+      "unit": "Pa_s",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "airflow"
+      ]
+    },
+    {
+      "id": "OCC-FLD-007",
+      "quantity": "air_specific_heat_vs_temperature",
+      "value": null,
+      "unit": "J_kgK",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "thermal"
+      ]
+    },
+    {
+      "id": "OCC-FLD-008",
+      "quantity": "air_thermal_conductivity_vs_temperature",
+      "value": null,
+      "unit": "W_mK",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "CHT"
+      ]
+    },
+    {
+      "id": "OCC-THM-001",
+      "quantity": "oil_side_heat_transfer_coefficient",
+      "value": null,
+      "unit": "W_m2K",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "CHT"
+      ]
+    },
+    {
+      "id": "OCC-THM-002",
+      "quantity": "air_side_heat_transfer_coefficient",
+      "value": null,
+      "unit": "W_m2K",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "CHT"
+      ]
+    },
+    {
+      "id": "OCC-THM-003",
+      "quantity": "thermal_contact_resistances",
+      "value": null,
+      "unit": "m2K_W",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "CHT"
+      ]
+    },
+    {
+      "id": "OCC-THM-004",
+      "quantity": "surface_emissivities",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "radiation"
+      ]
+    },
+    {
+      "id": "OCC-THM-005",
+      "quantity": "oil_and_air_fouling_factors",
+      "value": null,
+      "unit": "m2K_W",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "thermal"
+      ]
+    },
+    {
+      "id": "OCC-THM-006",
+      "quantity": "core_thermal_mass",
+      "value": null,
+      "unit": "J_K",
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "transient"
+      ]
+    },
+    {
+      "id": "OCC-MAT-001",
+      "quantity": "core_alloy_temperature_dependent_properties",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "thermal",
+        "structural"
+      ]
+    },
+    {
+      "id": "OCC-MAT-002",
+      "quantity": "oil_pipe_material_properties",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "pressure",
+        "fatigue"
+      ]
+    },
+    {
+      "id": "OCC-MAT-003",
+      "quantity": "air_guide_material_properties",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "thermal",
+        "vibration"
+      ]
+    },
+    {
+      "id": "OCC-MAT-004",
+      "quantity": "mount_elastomer_properties",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "vibration"
+      ]
+    },
+    {
+      "id": "OCC-MAT-005",
+      "quantity": "fastener_coating_and_corrosion_system",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "durability"
+      ]
+    },
+    {
+      "id": "OCC-MAT-006",
+      "quantity": "seal_oil_temperature_compatibility",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "leak_tightness"
+      ]
+    },
+    {
+      "id": "OCC-CTL-001",
+      "quantity": "temperature_sensor_transfer_function",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "control"
+      ]
+    },
+    {
+      "id": "OCC-CTL-002",
+      "quantity": "blower_switching_and_hysteresis_logic",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_source_or_measurement_required",
+      "required_by": [
+        "control"
+      ]
+    }
+  ],
+  "mathematical_model": {
+    "status": "symbolic_contracts_only_no_operating_point_evaluated",
+    "equations": [
+      {
+        "id": "oil_mass_balance",
+        "equation": "dm_oil_cv/dt=sum(mdot_oil_in)-sum(mdot_oil_out)",
+        "missing_parameter_families": [
+          "oil_volume",
+          "oil_flow_map"
+        ]
+      },
+      {
+        "id": "air_mass_balance",
+        "equation": "dm_air_cv/dt=sum(mdot_air_in)-sum(mdot_air_out)",
+        "missing_parameter_families": [
+          "air_volume",
+          "air_flow_map"
+        ]
+      },
+      {
+        "id": "oil_pressure_drop",
+        "equation": "delta_p_oil=f*(L/D)*(rho*v^2/2)+sum(K_i)*(rho*v^2/2)",
+        "missing_parameter_families": [
+          "pipe_geometry",
+          "oil_properties",
+          "fittings"
+        ]
+      },
+      {
+        "id": "air_pressure_drop",
+        "equation": "delta_p_air=sum(K_j)*(rho_air*v_air^2/2)+delta_p_core",
+        "missing_parameter_families": [
+          "air_geometry",
+          "core_pressure_loss",
+          "air_properties"
+        ]
+      },
+      {
+        "id": "oil_heat_rate",
+        "equation": "Qdot_oil=mdot_oil*cp_oil*(T_oil_in-T_oil_out)",
+        "missing_parameter_families": [
+          "oil_flow",
+          "oil_specific_heat",
+          "oil_temperatures"
+        ]
+      },
+      {
+        "id": "air_heat_rate",
+        "equation": "Qdot_air=mdot_air*cp_air*(T_air_out-T_air_in)",
+        "missing_parameter_families": [
+          "air_flow",
+          "air_specific_heat",
+          "air_temperatures"
+        ]
+      },
+      {
+        "id": "heat_exchanger_balance",
+        "equation": "Qdot_oil=Qdot_air+Qdot_loss+dE_core/dt",
+        "missing_parameter_families": [
+          "thermal_losses",
+          "core_thermal_mass"
+        ]
+      },
+      {
+        "id": "ntu",
+        "equation": "NTU=UA/C_min",
+        "missing_parameter_families": [
+          "UA",
+          "heat_capacity_rates"
+        ]
+      },
+      {
+        "id": "effectiveness",
+        "equation": "epsilon=Qdot/(C_min*(T_oil_in-T_air_in))",
+        "missing_parameter_families": [
+          "heat_rate",
+          "capacity_rate",
+          "inlet_temperatures"
+        ]
+      },
+      {
+        "id": "overall_conductance",
+        "equation": "1/UA=1/(h_oil*A_oil)+R_wall+R_contact+1/(h_air*A_air)+R_fouling",
+        "missing_parameter_families": [
+          "core_geometry",
+          "heat_transfer_coefficients",
+          "materials"
+        ]
+      },
+      {
+        "id": "core_transient_energy",
+        "equation": "C_core*dT_core/dt=Qdot_oil_to_core-Qdot_core_to_air-Qdot_ambient",
+        "missing_parameter_families": [
+          "core_thermal_mass",
+          "boundary_histories"
+        ]
+      },
+      {
+        "id": "fan_system_operating_point",
+        "equation": "delta_p_fan(Q,n)=delta_p_system(Q)",
+        "missing_parameter_families": [
+          "fan_curve",
+          "system_curve",
+          "speed"
+        ]
+      },
+      {
+        "id": "blower_electrical_power",
+        "equation": "P_electric=V*I; P_air=delta_p_air*Q_air=eta_fan*P_electric",
+        "missing_parameter_families": [
+          "voltage",
+          "current",
+          "fan_efficiency"
+        ]
+      },
+      {
+        "id": "thermal_control",
+        "equation": "u_fan=H(T_sensor-T_on)-H(T_off-T_sensor)",
+        "missing_parameter_families": [
+          "sensor_transfer",
+          "switch_thresholds",
+          "hysteresis"
+        ]
+      }
+    ],
+    "reference_solver_credit": false,
+    "network_solution_credit": false,
+    "required_first_reference_methods": [
+      "configuration_resolved_lumped_oil_and_air_network_with_balance_checks",
+      "oil_side_and_air_side_pressure_drop_characterization",
+      "conjugate_heat_transfer_after_F3_core_pipe_and_air_domains",
+      "fan_curve_and_control_hardware_in_the_loop_or_bench_validation",
+      "mount_vibration_and_pressure_fatigue_analysis_after_F3_geometry"
+    ]
+  },
+  "load_cases": [
+    {
+      "id": "LC-993-OCC-COLD-START",
+      "kind": "cold_start_high_oil_viscosity",
+      "status": "blocked"
+    },
+    {
+      "id": "LC-993-OCC-HOT-IDLE",
+      "kind": "hot_idle_low_ram_air_forced_blower",
+      "status": "blocked"
+    },
+    {
+      "id": "LC-993-OCC-RATED",
+      "kind": "rated_engine_load_and_vehicle_speed",
+      "status": "blocked"
+    },
+    {
+      "id": "LC-993-OCC-HEAT-SOAK",
+      "kind": "shutdown_heat_soak",
+      "status": "blocked"
+    },
+    {
+      "id": "LC-993-OCC-FAN-OFF",
+      "kind": "blower_open_circuit_or_control_failure",
+      "status": "blocked"
+    },
+    {
+      "id": "LC-993-OCC-BLOCKAGE",
+      "kind": "partial_air_or_oil_path_blockage",
+      "status": "blocked"
+    },
+    {
+      "id": "LC-993-OCC-LEAK",
+      "kind": "seal_or_pipe_leak_fault",
+      "status": "blocked"
+    },
+    {
+      "id": "LC-993-OCC-VIBRATION",
+      "kind": "road_and_powertrain_vibration_durability",
+      "status": "blocked"
+    }
+  ],
+  "material_and_manufacturing_route": {
+    "status": "role_based_screening_hypotheses_only_no_selection",
+    "candidate_matrix": [
+      {
+        "role": "heat_exchanger_core",
+        "candidate_family": "thermally_conductive_corrosion_and_oil_compatible_metal",
+        "candidate_process": "qualified_heat_exchanger_manufacturing_brazing_or_welding_and_leak_test",
+        "status": "unsourced_unselected"
+      },
+      {
+        "role": "oil_pipe_or_union",
+        "candidate_family": "oil_temperature_pressure_and_fatigue_compatible_tube_or_fitting_metal",
+        "candidate_process": "tube_forming_joining_machining_and_pressure_test",
+        "status": "unsourced_unselected"
+      },
+      {
+        "role": "air_guide_or_cowl",
+        "candidate_family": "temperature_and_vibration_compatible_polymer_or_sheet_material",
+        "candidate_process": "moulding_sheet_forming_or_nonfunctional_additive_mockup",
+        "status": "unsourced_unselected"
+      },
+      {
+        "role": "seal_or_compliant_mount",
+        "candidate_family": "oil_temperature_ozone_and_compression_set_compatible_elastomer",
+        "candidate_process": "qualified_commercial_or_tooled_process",
+        "status": "unsourced_unselected"
+      },
+      {
+        "role": "blower_and_electrical_control",
+        "candidate_family": "qualified_automotive_electromechanical_assembly",
+        "candidate_process": "commercial_component_validation_not_replication_by_default",
+        "status": "unsourced_unselected"
+      },
+      {
+        "role": "fit_and_routing_mockup_only",
+        "candidate_family": "polymer_additive_manufacturing",
+        "candidate_process": "FDM_SLS_or_MJF",
+        "status": "unsourced_unselected_nonfunctional_only"
+      }
+    ],
+    "selected_material_count": 0,
+    "selected_functional_manufacturing_route_count": 0,
+    "functional_additive_manufacturing_disposition": "prohibited_without_F2_F3_fluid_thermal_vibration_material_leak_electrical_and_professional_review",
+    "prototype_disposition": "nonfunctional_fit_and_routing_mockups_only_after_scale_and_interface_evidence"
+  },
+  "physicsnemo_discovery": {
+    "canonical_repository": "https://github.com/NVIDIA/physicsnemo",
+    "commit": "4fbfcfd62bf050b48ceec6b438da409b9f4644b3",
+    "paths_verified_live_during_authoring": true,
+    "problem_shape": "future_unstructured_oil_air_CFD_CHT_fields_plus_low_order_network_features",
+    "model_menu": [
+      {
+        "model": "MeshGraphNet",
+        "role": "candidate_mesh_graph pressure_velocity_temperature surrogate after reference dataset",
+        "selected": false
+      },
+      {
+        "model": "DoMINO",
+        "role": "candidate surface_volume transient CFD_CHT surrogate after F3 dataset",
+        "selected": false
+      },
+      {
+        "model": "GeoTransolver",
+        "role": "candidate geometry_aware unstructured field surrogate after F3 dataset",
+        "selected": false
+      },
+      {
+        "model": "Transolver",
+        "role": "candidate structured_or_unstructured PDE field surrogate after reference dataset",
+        "selected": false
+      }
+    ],
+    "datapipe_menu": [
+      {
+        "datapipe": "VTKReader",
+        "role": "future VTK reference-solver field ingestion"
+      },
+      {
+        "datapipe": "DoMINODataPipe",
+        "role": "future surface_volume CAE preprocessing"
+      },
+      {
+        "datapipe": "TransolverDataPipe",
+        "role": "future unstructured mesh field preprocessing"
+      }
+    ],
+    "reference_examples": [
+      {
+        "example": "cfd/stokes_mgn",
+        "role": "mesh graph velocity and pressure field learning reference, not oil-cooler validation"
+      },
+      {
+        "example": "cfd/transient_conjugate_heat_transfer_tank_fill",
+        "role": "transient surface_volume CHT reference, not oil-cooler validation"
+      }
+    ],
+    "execution_enabled": false,
+    "eligibility_gate": "F3_domains_converged_reference_solver_dataset_held_out_geometries_and_loads_and_out_of_domain_rejection"
+  },
+  "omniverse_handoff": {
+    "openusd_source_authoring": "completed_as_nonspatial_topology_guide",
+    "property_assignment_intent": "run",
+    "preflight_report": "twins/vehicle-993/functional-flow-simready-preflight-f0.json",
+    "preflight_status": "blocked",
+    "preflight_blockers": [
+      "asset_validator_unavailable",
+      "content_agents_services_unhealthy_and_deployment_not_requested",
+      "openusd_python_apis_unavailable",
+      "simready_foundation_checkout_missing",
+      "material_service_unhealthy",
+      "ovrtx_service_unhealthy",
+      "physics_service_unhealthy"
+    ],
+    "material_and_physics_assignment": "not_run_preflight_blocked",
+    "nvidia_asset_validator": "not_run_preflight_blocked",
+    "simready_foundation": "not_run_preflight_blocked",
+    "simready_validated": false
+  },
+  "assets": {
+    "editable_topology_source": "scripts/generate_pet_993_oil_cooler_circuit.py",
+    "openusd_guide": "twins/catalogue-parts/engineering/993-oil-cooler-circuit-topology-f1.usda",
+    "openusd_guide_sha256": "b606436a135e8bd8772a12ffd32f8b499c97adc1b760b4130435f12626b8611f",
+    "openusd_part_roster_scope_count": 43,
+    "openusd_topology_node_guide_count": 12,
+    "openusd_topology_edge_guide_count": 13,
+    "openusd_guide_primitive_count": 25,
+    "openusd_physics_schema_count": 0,
+    "openusd_material_binding_count": 0
+  },
+  "claim_boundary": {
+    "is_complete_OEM_geometry": false,
+    "is_F2_interface_geometry": false,
+    "is_F3_analysis_geometry": false,
+    "is_spatial_vehicle_topology": false,
+    "is_vehicle_positioned_or_fitment_validated": false,
+    "is_qualified_material_selection": false,
+    "is_evaluated_operating_point": false,
+    "is_reference_solver_result": false,
+    "is_physicsnemo_result": false,
+    "is_simready_validated": false,
+    "is_manufacturing_or_vehicle_release": false
+  },
+  "next_gate": "resolve_104_05_configuration_topology_F2_interfaces_oil_air_properties_and_fan_control"
+}

@@ -1,0 +1,416 @@
+{
+  "$comment": "Contrats F0 pour contraintes PET sans configuration de synthese. Chaque occurrence est tracee, mais aucune exception ne devient une configuration ou un BOM.",
+  "schema_version": "1.0.0",
+  "generated_by": "scripts/generate_993_configuration_exceptions.py",
+  "source_boundary": {
+    "pet_source_id": "pet-classic-993",
+    "pet_text_expected_path": "/tmp/kat517-993.txt",
+    "pet_text_sha256": "f47aeecad76540fb892c6149355ad6435129835e40fc5c9238ad71ed1dd7b11a",
+    "raw_pet_text_copied": false,
+    "source_vehicles_path": "../porschefanatics.com/data/vehicles.json",
+    "source_vehicles_sha256": "ae2be59f7d2acc027341ba0910762c359615b7e97bb38633f0f8b9cca57e7484",
+    "applicability_evidence": "twins/pet-993/applicability-evidence-f0.json",
+    "applicability_evidence_sha256": "d518ab639f58969f92de15904e974c2c2580b641d736d5809ee1feed2a54abae",
+    "configuration_roster": "twins/vehicle-993/configuration-roster-f0.json",
+    "configuration_roster_sha256": "3b222342ad8ec754e5aa4b6e89e84cfe69729d0c67f4047118a748de9854d192",
+    "configuration_part_links": "twins/vehicle-993/configuration-part-links-f0.json",
+    "configuration_part_links_sha256": "e334d6bb941ad793ae4562a74d02511e8a8e78b884d2e500989a65c76662c7a0"
+  },
+  "scope": {
+    "exception_contract_count": 4,
+    "variant_exception_contract_count": 3,
+    "transmission_exception_contract_count": 1,
+    "input_unresolved_constraint_occurrences": 12,
+    "mapped_exception_occurrences": 12,
+    "unmapped_exception_occurrences": 0,
+    "fully_resolved_configuration_exceptions": 0,
+    "promoted_vehicle_configurations": 0,
+    "promoted_vehicle_bom_entries": 0,
+    "complete_vehicle_boms": 0
+  },
+  "coverage": {
+    "mapped_occurrences_by_contract": {
+      "CONFIG-EXCEPTION-993-A50-07": 1,
+      "CONFIG-EXCEPTION-993-CARRERA-4S": 2,
+      "CONFIG-EXCEPTION-993-CARRERA-S": 8,
+      "CONFIG-EXCEPTION-993-TURBO-S": 1
+    }
+  },
+  "exception_contracts": [
+    {
+      "contract_id": "CONFIG-EXCEPTION-993-A50-07",
+      "exception_kind": "part_model_token_absent_from_pet_transmission_summary_type_codes",
+      "constraint_value": "A50.07",
+      "status": "tracked_exception_not_transmission_equivalence",
+      "exact_part_constraint_occurrence_count": 1,
+      "exact_part_constraint_occurrence_ids": [
+        "TWIN-PET-993-C10DE7A9E0EE3963F056"
+      ],
+      "part_annotation_evidence": {
+        "oem_reference": "943 300 010 07",
+        "part_master_twin_id": "TWIN-PET-993-PART-35B7CC7E14E66B2EB228",
+        "pet_illustration": "320-00",
+        "candidate_quantity_per_car": 1,
+        "model_token": "A50.07",
+        "logical_text_line_numbers": [
+          7281
+        ]
+      },
+      "pet_summary_relation_hypothesis": {
+        "summary_transmission_type_code": "A50.05",
+        "summary_transmission_number_prefix": "A5007",
+        "summary_model_years": [
+          1997,
+          1998
+        ],
+        "logical_text_line_numbers": [
+          414,
+          436
+        ],
+        "relation_status": "unresolved_do_not_equate_a50_07_with_a50_05_or_a5007",
+        "equivalence_claim": false
+      },
+      "configuration_candidate_count": 0,
+      "human_reviewed": false,
+      "promoted_to_vehicle_configuration": false,
+      "complete_vehicle_bom": false,
+      "missing_gates": [
+        "review_pet_illustration_320_00_context_and_footnotes",
+        "resolve_type_code_part_number_and_transmission_number_semantics",
+        "prove_model_year_market_and_supersession_rules",
+        "do_not_promote_until_a50_07_identity_is_unambiguous"
+      ]
+    },
+    {
+      "contract_id": "CONFIG-EXCEPTION-993-CARRERA-4S",
+      "exception_kind": "variant_absent_from_pet_summary_types",
+      "vehicle_id": "993-carrera-4s",
+      "constraint_value": "993-carrera-4s",
+      "status": "tracked_exception_not_configuration_candidate",
+      "catalogue_vehicle_metadata": {
+        "manufacturer": "Porsche",
+        "model": "911",
+        "generationId": "993",
+        "variant": "Carrera 4S",
+        "bodyStyle": "Coupé",
+        "yearStart": 1996,
+        "yearEnd": 1998,
+        "engineCode": "M64.21",
+        "transmissionCodes": [
+          "G64.21"
+        ],
+        "drivetrain": "AWD",
+        "optionCodes": [
+          "M491",
+          "M495"
+        ]
+      },
+      "catalogue_vehicle_metadata_authority": "documentary_source_record_not_independent_fitment_validation",
+      "engine_code_status": "source_vehicle_metadata_not_pet_summary_verified",
+      "pet_presence_evidence": {
+        "kind": "pet_order_information",
+        "pet_source_id": "pet-classic-993",
+        "logical_text_line_numbers": [
+          13
+        ]
+      },
+      "exact_part_constraint_occurrence_count": 2,
+      "exact_part_constraint_occurrence_ids": [
+        "TWIN-PET-993-13971328764EF64CD208",
+        "TWIN-PET-993-71F6C28AB8932CB687A9"
+      ],
+      "pet_summary_type_record_count": 0,
+      "configuration_candidate_count": 0,
+      "human_reviewed": false,
+      "promoted_to_vehicle_configuration": false,
+      "complete_vehicle_bom": false,
+      "missing_gates": [
+        "find_or_review_direct_variant_type_vin_evidence",
+        "resolve_engine_transmission_market_and_model_year_intersections",
+        "review_all_variant_specific_part_constraints",
+        "author_mounted_geometry_interfaces_materials_and_load_cases"
+      ]
+    },
+    {
+      "contract_id": "CONFIG-EXCEPTION-993-CARRERA-S",
+      "exception_kind": "variant_absent_from_pet_summary_types",
+      "vehicle_id": "993-carrera-s",
+      "constraint_value": "993-carrera-s",
+      "status": "tracked_exception_not_configuration_candidate",
+      "catalogue_vehicle_metadata": {
+        "manufacturer": "Porsche",
+        "model": "911",
+        "generationId": "993",
+        "variant": "Carrera S",
+        "bodyStyle": "Coupé",
+        "yearStart": 1997,
+        "yearEnd": 1998,
+        "engineCode": "M64.21",
+        "transmissionCodes": [
+          "G50.21"
+        ],
+        "drivetrain": "RWD"
+      },
+      "catalogue_vehicle_metadata_authority": "documentary_source_record_not_independent_fitment_validation",
+      "engine_code_status": "source_vehicle_metadata_not_pet_summary_verified",
+      "pet_presence_evidence": {
+        "kind": "pet_order_information",
+        "pet_source_id": "pet-classic-993",
+        "logical_text_line_numbers": [
+          11
+        ]
+      },
+      "exact_part_constraint_occurrence_count": 8,
+      "exact_part_constraint_occurrence_ids": [
+        "TWIN-PET-993-1AAEF2AAFCF9048C76AA",
+        "TWIN-PET-993-1AE69CD90611D7B021C2",
+        "TWIN-PET-993-1B464BB049BC8C12CE45",
+        "TWIN-PET-993-5863C1756D3EC948DF08",
+        "TWIN-PET-993-6C9BF157573AFA173CCC",
+        "TWIN-PET-993-90F5DA2C4212E3991DED",
+        "TWIN-PET-993-9DA51D2266126B846A7E",
+        "TWIN-PET-993-A0F91472760CA63BD0D2"
+      ],
+      "pet_summary_type_record_count": 0,
+      "configuration_candidate_count": 0,
+      "human_reviewed": false,
+      "promoted_to_vehicle_configuration": false,
+      "complete_vehicle_bom": false,
+      "missing_gates": [
+        "find_or_review_direct_variant_type_vin_evidence",
+        "resolve_engine_transmission_market_and_model_year_intersections",
+        "review_all_variant_specific_part_constraints",
+        "author_mounted_geometry_interfaces_materials_and_load_cases"
+      ]
+    },
+    {
+      "contract_id": "CONFIG-EXCEPTION-993-TURBO-S",
+      "exception_kind": "variant_absent_from_pet_summary_types",
+      "vehicle_id": "993-turbo-s",
+      "constraint_value": "993-turbo-s",
+      "status": "tracked_exception_not_configuration_candidate",
+      "catalogue_vehicle_metadata": {
+        "manufacturer": "Porsche",
+        "model": "911",
+        "generationId": "993",
+        "variant": "Turbo S",
+        "bodyStyle": "Coupé",
+        "yearStart": 1997,
+        "yearEnd": 1998,
+        "engineCode": "M64.60S",
+        "transmissionCodes": [
+          "G64.51",
+          "G64.52"
+        ],
+        "drivetrain": "AWD",
+        "notes": "Engine code suffix needs PET confirmation; recorded as unverified."
+      },
+      "catalogue_vehicle_metadata_authority": "documentary_source_record_not_independent_fitment_validation",
+      "engine_code_status": "explicitly_unverified_in_source_vehicle_note",
+      "pet_presence_evidence": {
+        "kind": "pet_option_legend",
+        "pet_source_id": "pet-classic-993",
+        "logical_text_line_numbers": [
+          678
+        ]
+      },
+      "exact_part_constraint_occurrence_count": 1,
+      "exact_part_constraint_occurrence_ids": [
+        "TWIN-PET-993-AB4C9A8ED1B3EF2005D8"
+      ],
+      "pet_summary_type_record_count": 0,
+      "configuration_candidate_count": 0,
+      "human_reviewed": false,
+      "promoted_to_vehicle_configuration": false,
+      "complete_vehicle_bom": false,
+      "missing_gates": [
+        "find_or_review_direct_variant_type_vin_evidence",
+        "resolve_engine_transmission_market_and_model_year_intersections",
+        "review_all_variant_specific_part_constraints",
+        "author_mounted_geometry_interfaces_materials_and_load_cases"
+      ]
+    }
+  ],
+  "exception_occurrence_mappings": [
+    {
+      "exception_mapping_id": "CONFIG-EXCEPTION-MAP-993-1BE33DE7BF5F4FAF789D",
+      "constraint_link_id": "CONFIG-PART-LINK-993-93049BA1A100DCDAF9A7",
+      "occurrence_twin_id": "TWIN-PET-993-5863C1756D3EC948DF08",
+      "part_master_twin_id": "TWIN-PET-993-PART-0003AA1FCAD87E99A976",
+      "oem_reference": "993 512 777 00",
+      "candidate_quantity_per_car": 1,
+      "constraint_value": "993-carrera-s",
+      "exception_contract_id": "CONFIG-EXCEPTION-993-CARRERA-S",
+      "mapping_status": "tracked_by_exception_contract_not_configuration_resolved",
+      "promoted_to_vehicle_bom": false
+    },
+    {
+      "exception_mapping_id": "CONFIG-EXCEPTION-MAP-993-1C19CA32CECC8368CDC5",
+      "constraint_link_id": "CONFIG-PART-LINK-993-60D262C2AC858BD7C82D",
+      "occurrence_twin_id": "TWIN-PET-993-C10DE7A9E0EE3963F056",
+      "part_master_twin_id": "TWIN-PET-993-PART-35B7CC7E14E66B2EB228",
+      "oem_reference": "943 300 010 07",
+      "candidate_quantity_per_car": 1,
+      "constraint_value": "A50.07",
+      "exception_contract_id": "CONFIG-EXCEPTION-993-A50-07",
+      "mapping_status": "tracked_by_exception_contract_not_configuration_resolved",
+      "promoted_to_vehicle_bom": false
+    },
+    {
+      "exception_mapping_id": "CONFIG-EXCEPTION-MAP-993-1E280C45E78DAA5DF090",
+      "constraint_link_id": "CONFIG-PART-LINK-993-46B35D3E1BB86F7C1D65",
+      "occurrence_twin_id": "TWIN-PET-993-1B464BB049BC8C12CE45",
+      "part_master_twin_id": "TWIN-PET-993-PART-D29488B7D22A2DDB811B",
+      "oem_reference": "993 512 123 00",
+      "candidate_quantity_per_car": 1,
+      "constraint_value": "993-carrera-s",
+      "exception_contract_id": "CONFIG-EXCEPTION-993-CARRERA-S",
+      "mapping_status": "tracked_by_exception_contract_not_configuration_resolved",
+      "promoted_to_vehicle_bom": false
+    },
+    {
+      "exception_mapping_id": "CONFIG-EXCEPTION-MAP-993-3E5F660F07C4EFAD2691",
+      "constraint_link_id": "CONFIG-PART-LINK-993-0A06682080140DD1B339",
+      "occurrence_twin_id": "TWIN-PET-993-A0F91472760CA63BD0D2",
+      "part_master_twin_id": "TWIN-PET-993-PART-010C40DCD2577E2A9586",
+      "oem_reference": "993 701 287 29",
+      "candidate_quantity_per_car": 1,
+      "constraint_value": "993-carrera-s",
+      "exception_contract_id": "CONFIG-EXCEPTION-993-CARRERA-S",
+      "mapping_status": "tracked_by_exception_contract_not_configuration_resolved",
+      "promoted_to_vehicle_bom": false
+    },
+    {
+      "exception_mapping_id": "CONFIG-EXCEPTION-MAP-993-85FE55663902F279BC2D",
+      "constraint_link_id": "CONFIG-PART-LINK-993-B1995A6219DDCA2E08B7",
+      "occurrence_twin_id": "TWIN-PET-993-71F6C28AB8932CB687A9",
+      "part_master_twin_id": "TWIN-PET-993-PART-98EF4BF4C2F3394BD27D",
+      "oem_reference": "993 701 287 17",
+      "candidate_quantity_per_car": 1,
+      "constraint_value": "993-carrera-4s",
+      "exception_contract_id": "CONFIG-EXCEPTION-993-CARRERA-4S",
+      "mapping_status": "tracked_by_exception_contract_not_configuration_resolved",
+      "promoted_to_vehicle_bom": false
+    },
+    {
+      "exception_mapping_id": "CONFIG-EXCEPTION-MAP-993-99AF88DDB959517FC409",
+      "constraint_link_id": "CONFIG-PART-LINK-993-B87ED391C736F65E764A",
+      "occurrence_twin_id": "TWIN-PET-993-13971328764EF64CD208",
+      "part_master_twin_id": "TWIN-PET-993-PART-3B4FB3124EED58E00475",
+      "oem_reference": "993 701 287 24",
+      "candidate_quantity_per_car": 1,
+      "constraint_value": "993-carrera-4s",
+      "exception_contract_id": "CONFIG-EXCEPTION-993-CARRERA-4S",
+      "mapping_status": "tracked_by_exception_contract_not_configuration_resolved",
+      "promoted_to_vehicle_bom": false
+    },
+    {
+      "exception_mapping_id": "CONFIG-EXCEPTION-MAP-993-A0ED2564D4AE163E2CD3",
+      "constraint_link_id": "CONFIG-PART-LINK-993-5DF4B65E13CFB366A718",
+      "occurrence_twin_id": "TWIN-PET-993-9DA51D2266126B846A7E",
+      "part_master_twin_id": "TWIN-PET-993-PART-32A61FA97E6DD3B8DA4B",
+      "oem_reference": "993 555 032 19",
+      "candidate_quantity_per_car": 1,
+      "constraint_value": "993-carrera-s",
+      "exception_contract_id": "CONFIG-EXCEPTION-993-CARRERA-S",
+      "mapping_status": "tracked_by_exception_contract_not_configuration_resolved",
+      "promoted_to_vehicle_bom": false
+    },
+    {
+      "exception_mapping_id": "CONFIG-EXCEPTION-MAP-993-A8E1E361E1EF17741DAB",
+      "constraint_link_id": "CONFIG-PART-LINK-993-35F4D35B691549ACD7DE",
+      "occurrence_twin_id": "TWIN-PET-993-6C9BF157573AFA173CCC",
+      "part_master_twin_id": "TWIN-PET-993-PART-015B447F846A69EE3311",
+      "oem_reference": "993 512 591 00",
+      "candidate_quantity_per_car": 1,
+      "constraint_value": "993-carrera-s",
+      "exception_contract_id": "CONFIG-EXCEPTION-993-CARRERA-S",
+      "mapping_status": "tracked_by_exception_contract_not_configuration_resolved",
+      "promoted_to_vehicle_bom": false
+    },
+    {
+      "exception_mapping_id": "CONFIG-EXCEPTION-MAP-993-CC8802EEEDBF36CE742F",
+      "constraint_link_id": "CONFIG-PART-LINK-993-90106366175A0C6F9395",
+      "occurrence_twin_id": "TWIN-PET-993-90F5DA2C4212E3991DED",
+      "part_master_twin_id": "TWIN-PET-993-PART-630A9C6381017437DAD9",
+      "oem_reference": "999 591 390 02",
+      "candidate_quantity_per_car": 14,
+      "constraint_value": "993-carrera-s",
+      "exception_contract_id": "CONFIG-EXCEPTION-993-CARRERA-S",
+      "mapping_status": "tracked_by_exception_contract_not_configuration_resolved",
+      "promoted_to_vehicle_bom": false
+    },
+    {
+      "exception_mapping_id": "CONFIG-EXCEPTION-MAP-993-CFF87495258B1CF47A96",
+      "constraint_link_id": "CONFIG-PART-LINK-993-912C1BCD73FFC9E938F6",
+      "occurrence_twin_id": "TWIN-PET-993-1AAEF2AAFCF9048C76AA",
+      "part_master_twin_id": "TWIN-PET-993-PART-54F6F9EBDC0EEFFE788C",
+      "oem_reference": "993 512 592 00",
+      "candidate_quantity_per_car": 1,
+      "constraint_value": "993-carrera-s",
+      "exception_contract_id": "CONFIG-EXCEPTION-993-CARRERA-S",
+      "mapping_status": "tracked_by_exception_contract_not_configuration_resolved",
+      "promoted_to_vehicle_bom": false
+    },
+    {
+      "exception_mapping_id": "CONFIG-EXCEPTION-MAP-993-E055CA74B2CC0BF7A146",
+      "constraint_link_id": "CONFIG-PART-LINK-993-3F6972BB6A587CCDE940",
+      "occurrence_twin_id": "TWIN-PET-993-AB4C9A8ED1B3EF2005D8",
+      "part_master_twin_id": "TWIN-PET-993-PART-6DBE6E88421B4233772B",
+      "oem_reference": "993 361 980 00",
+      "candidate_quantity_per_car": 4,
+      "constraint_value": "993-turbo-s",
+      "exception_contract_id": "CONFIG-EXCEPTION-993-TURBO-S",
+      "mapping_status": "tracked_by_exception_contract_not_configuration_resolved",
+      "promoted_to_vehicle_bom": false
+    },
+    {
+      "exception_mapping_id": "CONFIG-EXCEPTION-MAP-993-E8627459C05ABAF5035B",
+      "constraint_link_id": "CONFIG-PART-LINK-993-FC37C2E9A54D460D8133",
+      "occurrence_twin_id": "TWIN-PET-993-1AE69CD90611D7B021C2",
+      "part_master_twin_id": "TWIN-PET-993-PART-97A844F5C4EBEE09248A",
+      "oem_reference": "993 555 031 20",
+      "candidate_quantity_per_car": 1,
+      "constraint_value": "993-carrera-s",
+      "exception_contract_id": "CONFIG-EXCEPTION-993-CARRERA-S",
+      "mapping_status": "tracked_by_exception_contract_not_configuration_resolved",
+      "promoted_to_vehicle_bom": false
+    }
+  ],
+  "review_queue": {
+    "status": "not_started",
+    "entries": [
+      {
+        "contract_id": "CONFIG-EXCEPTION-993-A50-07",
+        "priority": "P0",
+        "review_status": "not_started",
+        "promoted": false
+      },
+      {
+        "contract_id": "CONFIG-EXCEPTION-993-CARRERA-4S",
+        "priority": "P1",
+        "review_status": "not_started",
+        "promoted": false
+      },
+      {
+        "contract_id": "CONFIG-EXCEPTION-993-CARRERA-S",
+        "priority": "P1",
+        "review_status": "not_started",
+        "promoted": false
+      },
+      {
+        "contract_id": "CONFIG-EXCEPTION-993-TURBO-S",
+        "priority": "P1",
+        "review_status": "not_started",
+        "promoted": false
+      }
+    ]
+  },
+  "prohibited_claims": [
+    "tracked_exception_is_resolved_configuration",
+    "source_vehicle_metadata_is_independent_pet_fitment_proof",
+    "a50_07_equals_a50_05_or_a5007",
+    "variant_specific_part_annotation_is_complete_variant_bom",
+    "exception_mapping_authorizes_geometry_manufacturing_or_road_use"
+  ]
+}

@@ -1,0 +1,271 @@
+{
+  "$comment": "Index agrege des jumeaux documentaires PET 993. Les records complets restent sous work/; cet index ne contient ni PDF, ni illustration, ni CAO, ni resultat de simulation.",
+  "schema_version": "1.0.0",
+  "generated_by": "scripts/generate_pet_993_twins.py",
+  "source_boundary": {
+    "repository_role": "PorscheFanatics_external_catalogue_source",
+    "expected_relative_location": "../porschefanatics.com",
+    "raw_pet_pdf_copied": false,
+    "pet_illustrations_copied": false,
+    "oem_listed_path": "data/oem-listed.json",
+    "oem_listed_sha256": "1be46beb55b495c0fd9cc3f02e607fb03f391d8874c149743bf4de4402cd213c",
+    "oem_parts_path": "data/oem-parts.json",
+    "oem_parts_sha256": "dcbb439642e3ca072e689073a37c1b17d15d9d1d450bb16eb9d085eafd9561a1",
+    "declared_part_data_path": "catalog/reference/993-declared-part-data.json",
+    "declared_part_data_sha256": "f5056f1a754923db31fe944a4603d4bf9dd51aadca49473be5ac3924c0e15767",
+    "pet_sources": [
+      {
+        "pet_source_id": "pet-993-pdf-rsworkshop",
+        "title": "Porsche PET — 911 1994–1998 Type 993",
+        "url": "https://rsworkshop.ch/downloaded/pet-porsche/993_1994-98_KATALOG.pdf",
+        "catalogue_revision": "KAT 17",
+        "verified_on": "2026-08-17",
+        "method": "Full text extracted locally and searched; each reference read in the context of its illustration group.",
+        "rights": {
+          "illustrations_published": true,
+          "basis": "Site owner confirmed rights to use the Porsche parts catalogue (2026-08-17).",
+          "documentation_status": "unknown"
+        }
+      },
+      {
+        "pet_source_id": "pet-classic-993",
+        "title": "Porsche Classic Genuine Parts Catalogue — 911 993, 1994–1998",
+        "url": "https://a.storyblok.com/f/332100/7be45d4171/kat517-usa-911-98-katalog.pdf",
+        "catalogue_revision": "unknown",
+        "verified_on": "2026-08-20",
+        "method": "Published by Porsche on its own Classic parts pages and downloaded from there. Parts tables transcribed in full; no entry read in context yet.",
+        "rights": {
+          "illustrations_published": true,
+          "basis": "Site owner confirmed rights to use the Porsche parts catalogue (2026-08-17).",
+          "documentation_status": "unknown"
+        }
+      }
+    ]
+  },
+  "scope": {
+    "generation": "993",
+    "fidelity": "F0_reference",
+    "listed_documentary_twins": 12864,
+    "read_documentary_twins": 15,
+    "total_documentary_twins": 12879,
+    "unique_oem_references": 6013,
+    "part_master_twins": 6013,
+    "reference_occurrences_reused_across_illustrations": 6866,
+    "system_count": 10,
+    "illustration_count": 239,
+    "configured_vehicle_bom_count": 0
+  },
+  "quality": {
+    "duplicate_source_keys": 0,
+    "twin_id_collisions": 0,
+    "orphan_illustrations": 0,
+    "missing_oem_reference": 0,
+    "missing_description": 0,
+    "missing_position": 253,
+    "records_with_proven_variants": 13,
+    "records_without_proven_variants": 12866,
+    "applicability_status_counts": {
+      "read_in_context_but_variant_not_proven": 2,
+      "unresolved_catalogue_appearance_only": 12864,
+      "verified_in_context_for_named_variants": 13
+    },
+    "source_record_counts": {
+      "pet-993-pdf-rsworkshop": 6255,
+      "pet-classic-993": 6624
+    },
+    "part_master_evidence_coverage": {
+      "masters_with_declared_bounding_box": 9,
+      "masters_with_non_placeholder_declared_material": 1,
+      "masters_with_declared_bounding_box_and_non_placeholder_material": 1,
+      "qualified_material_decisions": 0
+    }
+  },
+  "engineering_readiness": {
+    "editable_geometry": 0,
+    "F2_interfaces": 0,
+    "qualified_material_decisions": 0,
+    "reference_solver_results": 0,
+    "physicsnemo_results": 0,
+    "simready_assets": 0,
+    "physical_correlations": 0,
+    "functional_manufacturing_releases": 0,
+    "functioning_vehicle_claim": false
+  },
+  "output": {
+    "format": "canonical_JSONL_one_record_per_twin",
+    "root": "work/pet-993",
+    "shards": [
+      {
+        "system_id": "0xx",
+        "path": "work/pet-993/twins/0xx.jsonl",
+        "record_count": 171,
+        "sha256": "ed32b7a2662250509650abc10035eec8352674fef31481b540a07ec340d87889"
+      },
+      {
+        "system_id": "1xx",
+        "path": "work/pet-993/twins/1xx.jsonl",
+        "record_count": 2403,
+        "sha256": "3660682940e3963df440399855931f7403033c8dd93364bea62e41ab1a5defe6"
+      },
+      {
+        "system_id": "2xx",
+        "path": "work/pet-993/twins/2xx.jsonl",
+        "record_count": 611,
+        "sha256": "69b1642054b6cd43fe12eeaa389b442882bc8279ac65c8a3fce9bdb15d082f19"
+      },
+      {
+        "system_id": "3xx",
+        "path": "work/pet-993/twins/3xx.jsonl",
+        "record_count": 1371,
+        "sha256": "b556dd85b9a526b22568b479bea857cd83a4e5d0a32ac6222bcbc137aecc6421"
+      },
+      {
+        "system_id": "4xx",
+        "path": "work/pet-993/twins/4xx.jsonl",
+        "record_count": 624,
+        "sha256": "b4698ce7e2300dc566bd95027757ec14d84bb35331993f96d82b2bf670fbe7fc"
+      },
+      {
+        "system_id": "5xx",
+        "path": "work/pet-993/twins/5xx.jsonl",
+        "record_count": 326,
+        "sha256": "ef8b33cfc6631af46a9fe38fb63bc76f8db555426ad7e6eee5904210c3a7de10"
+      },
+      {
+        "system_id": "6xx",
+        "path": "work/pet-993/twins/6xx.jsonl",
+        "record_count": 820,
+        "sha256": "f710f9868e286049f40c5e638a17425a41be1e23c78c7d8025224ed2a2925239"
+      },
+      {
+        "system_id": "7xx",
+        "path": "work/pet-993/twins/7xx.jsonl",
+        "record_count": 494,
+        "sha256": "79f978ab3c68b43a2cbd622fd34b8cb6af70b4eb3aaa96dd80e5f15268b45697"
+      },
+      {
+        "system_id": "8xx",
+        "path": "work/pet-993/twins/8xx.jsonl",
+        "record_count": 4560,
+        "sha256": "ea60a45455cf13fdc2ca695a088ce8de52a9f12f1ca48969d984b97ee5f177f6"
+      },
+      {
+        "system_id": "9xx",
+        "path": "work/pet-993/twins/9xx.jsonl",
+        "record_count": 1499,
+        "sha256": "508b5e88307ec5792136f5955233bb583b2f50f5a6a29a667fc53c6577cef0b8"
+      }
+    ],
+    "part_master_shards": [
+      {
+        "shard_id": "0",
+        "path": "work/pet-993/part-masters/0.jsonl",
+        "record_count": 430,
+        "sha256": "1d9d7095c949baa8ba8b4776b24c1d83b2a03fd3046632c8e1c927acb918d3ea"
+      },
+      {
+        "shard_id": "1",
+        "path": "work/pet-993/part-masters/1.jsonl",
+        "record_count": 359,
+        "sha256": "3a6c67299ff5db001329394d5cb421f439ecd23e8c165a7aa0640890ddaba94f"
+      },
+      {
+        "shard_id": "2",
+        "path": "work/pet-993/part-masters/2.jsonl",
+        "record_count": 357,
+        "sha256": "5588aa8ace1e8700351a93f52e3321bae3163f8ef45c2abc6cdfa2f4a9e7e6ec"
+      },
+      {
+        "shard_id": "3",
+        "path": "work/pet-993/part-masters/3.jsonl",
+        "record_count": 392,
+        "sha256": "9a27faeff33ebddac735167b39995c5011d8ca5d5c1bf13e52e1a041e8242937"
+      },
+      {
+        "shard_id": "4",
+        "path": "work/pet-993/part-masters/4.jsonl",
+        "record_count": 339,
+        "sha256": "e21138bca2b63e9d2e071392e006c8768020d12695985d446c2e8927ec200b8b"
+      },
+      {
+        "shard_id": "5",
+        "path": "work/pet-993/part-masters/5.jsonl",
+        "record_count": 345,
+        "sha256": "2355989e8ff4b474620c5f9cf1115798d639e13a599e24ce49dae24c8c8185fa"
+      },
+      {
+        "shard_id": "6",
+        "path": "work/pet-993/part-masters/6.jsonl",
+        "record_count": 391,
+        "sha256": "a5d84fc8af690f0ac096455be0ba960e464d6e55e2fd9ce577f48a789ec0c39e"
+      },
+      {
+        "shard_id": "7",
+        "path": "work/pet-993/part-masters/7.jsonl",
+        "record_count": 389,
+        "sha256": "6ccb697df61071d9fcd33af9535c7f76481e6ecaa920d1b33ac8084812f6eff1"
+      },
+      {
+        "shard_id": "8",
+        "path": "work/pet-993/part-masters/8.jsonl",
+        "record_count": 397,
+        "sha256": "e39e75bfba72fa99648f9b0bf4ea92bfd3137d783c37210b82984aca56eff38f"
+      },
+      {
+        "shard_id": "9",
+        "path": "work/pet-993/part-masters/9.jsonl",
+        "record_count": 391,
+        "sha256": "bb21cdc397092e6aa3d869b473a660daf15245e7debca4ec69dc7ca2ebcd4bfe"
+      },
+      {
+        "shard_id": "a",
+        "path": "work/pet-993/part-masters/a.jsonl",
+        "record_count": 366,
+        "sha256": "2e178082aa44102c0828aecdf28932300ce0a5c0f97542c55be6cccd2f65af12"
+      },
+      {
+        "shard_id": "b",
+        "path": "work/pet-993/part-masters/b.jsonl",
+        "record_count": 386,
+        "sha256": "ea930626bb3c49fa71b032915e122de61c9daac3930e4a21db40fed15c6e0d92"
+      },
+      {
+        "shard_id": "c",
+        "path": "work/pet-993/part-masters/c.jsonl",
+        "record_count": 346,
+        "sha256": "f29ad6e570d333ff0a72b705d34d85e47efb4e256f5a48a44af53e783d711743"
+      },
+      {
+        "shard_id": "d",
+        "path": "work/pet-993/part-masters/d.jsonl",
+        "record_count": 374,
+        "sha256": "9b783f10420c9f187b085f2a7cfb46bd94a59ecbc7f8219ba0890538b1f0baa6"
+      },
+      {
+        "shard_id": "e",
+        "path": "work/pet-993/part-masters/e.jsonl",
+        "record_count": 383,
+        "sha256": "19b55d088d04f599299011f3f9fdd97367bd0e9f5535cafa0bdc016fb81171f3"
+      },
+      {
+        "shard_id": "f",
+        "path": "work/pet-993/part-masters/f.jsonl",
+        "record_count": 368,
+        "sha256": "1e6825c881bf87501fc7b79eac241d8df0b9557293495112de03986baa6876d9"
+      }
+    ],
+    "catalog_crosswalk": {
+      "path": "twins/pet-993/catalog-crosswalk-f0.json",
+      "sha256": "cc360aac9861b37c739db4df1a3a48bd82a75a4a82d0ddd9295acf8dd743be9d",
+      "catalog_part_records": 9,
+      "pet_occurrence_links": 13
+    }
+  },
+  "prohibited_claims": [
+    "12879_records_are_12879_parts_mounted_on_one_car",
+    "catalogue_appearance_proves_variant_fitment",
+    "documentary_twin_is_geometry_or_simulation",
+    "documentary_twin_is_SimReady",
+    "documentary_twin_authorizes_manufacturing_or_road_use"
+  ]
+}

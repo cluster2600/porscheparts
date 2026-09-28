@@ -1,0 +1,78 @@
+#usda 1.0
+(
+    defaultPrim = "EngineCarrierMassConstrainedSurrogateF1"
+    metersPerUnit = 0.001
+    upAxis = "Z"
+)
+
+def Xform "EngineCarrierMassConstrainedSurrogateF1" (
+    kind = "component"
+)
+{
+    custom string fidelity = "F1_mass_constrained_structural_surrogate"
+    custom string geometryStatus = "mathematical_witness_not_OEM_geometry"
+    custom bool massConstraintMatched = true
+    custom bool interfaceGeometryPresent = false
+    custom bool componentCredit = false
+    custom bool physicsAssigned = false
+    custom bool simReadyValidated = false
+
+    def Scope "SurrogateWalls"
+    {
+        def Xform "BottomWall"
+        {
+            custom bool isInterfaceGeometry = false
+            double3 xformOp:translate = (0.000000000, 0.000000000, 1.087659862)
+            double3 xformOp:scale = (600.000000000, 50.000000000, 2.175319724)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            def Cube "Guide"
+            {
+                double size = 1
+                uniform token purpose = "guide"
+            }
+        }
+        def Xform "TopWall"
+        {
+            custom bool isInterfaceGeometry = false
+            double3 xformOp:translate = (0.000000000, 0.000000000, 48.912340138)
+            double3 xformOp:scale = (600.000000000, 50.000000000, 2.175319724)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            def Cube "Guide"
+            {
+                double size = 1
+                uniform token purpose = "guide"
+            }
+        }
+        def Xform "LeftWall"
+        {
+            custom bool isInterfaceGeometry = false
+            double3 xformOp:translate = (0.000000000, -23.912340138, 25.000000000)
+            double3 xformOp:scale = (600.000000000, 2.175319724, 45.649360553)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            def Cube "Guide"
+            {
+                double size = 1
+                uniform token purpose = "guide"
+            }
+        }
+        def Xform "RightWall"
+        {
+            custom bool isInterfaceGeometry = false
+            double3 xformOp:translate = (0.000000000, 23.912340138, 25.000000000)
+            double3 xformOp:scale = (600.000000000, 2.175319724, 45.649360553)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            def Cube "Guide"
+            {
+                double size = 1
+                uniform token purpose = "guide"
+            }
+        }
+    }
+
+    def Scope "InterfaceSearchDomains"
+    {
+        custom string domain = "full_declared_envelope_only"
+        custom bool interfacePointsSelected = false
+        custom bool symmetryAssumed = false
+    }
+}

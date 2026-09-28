@@ -1,0 +1,177 @@
+#usda 1.0
+(
+    defaultPrim = "ChargeAirChainGuidesF1"
+    metersPerUnit = 0.001
+    upAxis = "Z"
+)
+
+def Xform "ChargeAirChainGuidesF1" (
+    kind = "assembly"
+)
+{
+    custom string status = "F1_envelopes_not_F2_F3_CFD_CHT_sensor_or_SimReady"
+    custom bool componentTransformsAreVehicleCoordinates = false
+    custom bool physicsAssigned = false
+    custom bool materialAssigned = false
+    custom bool simReadyValidated = false
+    def Xform "Guide993IntercoolerReplacementAks" (
+        kind = "component"
+    )
+    {
+        custom string componentId = "993-INTERCOOLER-REPLACEMENT-AKS"
+        custom string fidelity = "F1_supplier_envelope_guide_unvalidated"
+        custom string oemReference = "99311033053"
+        custom string petPartMasterTwinId = "TWIN-PET-993-PART-810FCC3464576E93CEC1"
+        custom string dimensionalEvidence = "aftermarket_core_only_not_complete_OEM_intercooler_envelope"
+        custom double supplierDeclaredMassKg = 7.060000
+        custom bool interfaceGeometryPresent = false
+        custom bool analysisGeometryAvailable = false
+        custom bool materialAssigned = false
+        custom bool simReadyValidated = false
+        double3 xformOp:translate = (-520.000000, 0.000000, 0.000000)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Cube "BoundingEnvelopeGuide"
+        {
+            double size = 1
+            uniform token purpose = "guide"
+            double3 xformOp:scale = (260.000000, 270.000000, 60.000000)
+            uniform token[] xformOpOrder = ["xformOp:scale"]
+        }
+    }
+
+    def Xform "Guide993IntercoolerAirDuct" (
+        kind = "component"
+    )
+    {
+        custom string componentId = "993-INTERCOOLER-AIR-DUCT"
+        custom string fidelity = "F1_supplier_envelope_guide_unvalidated"
+        custom string oemReference = "99311034054"
+        custom string petPartMasterTwinId = "TWIN-PET-993-PART-A3E2B5D9713C1FA2DB3F"
+        custom string dimensionalEvidence = "supplier_replacement_product_bounding_box_not_OEM_surface"
+        custom double supplierDeclaredMassKg = 0.900000
+        custom bool interfaceGeometryPresent = false
+        custom bool analysisGeometryAvailable = false
+        custom bool materialAssigned = false
+        custom bool simReadyValidated = false
+        double3 xformOp:translate = (520.000000, 0.000000, 0.000000)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Cube "BoundingEnvelopeGuide"
+        {
+            double size = 1
+            uniform token purpose = "guide"
+            double3 xformOp:scale = (600.000000, 280.000000, 50.000000)
+            uniform token[] xformOpOrder = ["xformOp:scale"]
+        }
+    }
+
+    def Xform "Guide993IntercoolerPressureHoseRight" (
+        kind = "component"
+    )
+    {
+        custom string componentId = "993-INTERCOOLER-PRESSURE-HOSE-RIGHT"
+        custom string fidelity = "F1_supplier_envelope_guide_unvalidated"
+        custom string oemReference = "99311063256"
+        custom string petPartMasterTwinId = "TWIN-PET-993-PART-1B4C5EBD6D8FDF52DEE4"
+        custom string dimensionalEvidence = "supplier_replacement_product_bounding_box_not_OEM_surface"
+        custom double supplierDeclaredMassKg = 0.420000
+        custom bool interfaceGeometryPresent = false
+        custom bool analysisGeometryAvailable = false
+        custom bool materialAssigned = false
+        custom bool simReadyValidated = false
+        double3 xformOp:translate = (0.000000, 360.000000, 0.000000)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Cube "BoundingEnvelopeGuide"
+        {
+            double size = 1
+            uniform token purpose = "guide"
+            double3 xformOp:scale = (430.000000, 70.000000, 90.000000)
+            uniform token[] xformOpOrder = ["xformOp:scale"]
+        }
+    }
+
+    def Xform "Guide993IntercoolerPressureHoseLeft" (
+        kind = "component"
+    )
+    {
+        custom string componentId = "993-INTERCOOLER-PRESSURE-HOSE-LEFT"
+        custom string fidelity = "F1_supplier_envelope_guide_unvalidated"
+        custom string oemReference = "99311063356"
+        custom string petPartMasterTwinId = "TWIN-PET-993-PART-9AA4F35891AB3F628F55"
+        custom string dimensionalEvidence = "supplier_replacement_product_bounding_box_not_OEM_surface"
+        custom double supplierDeclaredMassKg = 0.420000
+        custom bool interfaceGeometryPresent = false
+        custom bool analysisGeometryAvailable = false
+        custom bool materialAssigned = false
+        custom bool simReadyValidated = false
+        double3 xformOp:translate = (0.000000, -360.000000, 0.000000)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Cube "BoundingEnvelopeGuide"
+        {
+            double size = 1
+            uniform token purpose = "guide"
+            double3 xformOp:scale = (430.000000, 70.000000, 115.000000)
+            uniform token[] xformOpOrder = ["xformOp:scale"]
+        }
+    }
+
+    def Xform "Guide993IntercoolerTemperatureSensor" (
+        kind = "component"
+    )
+    {
+        custom string componentId = "993-INTERCOOLER-TEMPERATURE-SENSOR"
+        custom string fidelity = "F1_supplier_envelope_guide_unvalidated"
+        custom string oemReference = "99360611400"
+        custom string petPartMasterTwinId = "TWIN-PET-993-PART-0A8E53F8AC017024F60B"
+        custom string dimensionalEvidence = "supplier_product_bounding_box_not_thread_or_probe_geometry"
+        custom double supplierDeclaredMassKg = 0.020000
+        custom bool interfaceGeometryPresent = false
+        custom bool analysisGeometryAvailable = false
+        custom bool materialAssigned = false
+        custom bool simReadyValidated = false
+        double3 xformOp:translate = (0.000000, 0.000000, 180.000000)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Cube "BoundingEnvelopeGuide"
+        {
+            double size = 1
+            uniform token purpose = "guide"
+            double3 xformOp:scale = (75.000000, 35.000000, 20.000000)
+            uniform token[] xformOpOrder = ["xformOp:scale"]
+        }
+    }
+
+    def Xform "UnpositionedAftermarketDiameterCoupons"
+    {
+        custom string placementStatus = "display_layout_only_not_OEM_endpoints"
+        double3 xformOp:translate = (0, -720.000000, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Cylinder "AftermarketDiameter43Coupon"
+        {
+            custom string dimensionalEvidence = "aftermarket_hose_kit_not_OEM_interface"
+            custom bool assignedToEndpoint = false
+            uniform token axis = "Z"
+            double height = 2.000000
+            double radius = 21.500000
+            uniform token purpose = "guide"
+            double3 xformOp:translate = (-60.000000, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+
+        def Cylinder "AftermarketDiameter57Coupon"
+        {
+            custom string dimensionalEvidence = "aftermarket_hose_kit_not_OEM_interface"
+            custom bool assignedToEndpoint = false
+            uniform token axis = "Z"
+            double height = 2.000000
+            double radius = 28.500000
+            uniform token purpose = "guide"
+            double3 xformOp:translate = (60.000000, 0, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+    }
+}

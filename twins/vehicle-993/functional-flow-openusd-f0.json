@@ -1,0 +1,45 @@
+{
+  "$comment": "Scene OpenUSD F0 de topologie fonctionnelle. Elle rend les systemes et flux inspectables sans representer la geometrie, la physique ou le fonctionnement du vehicule.",
+  "schema_version": "1.0.0",
+  "generated_by": "scripts/generate_993_functional_flow_usd.py",
+  "source_boundary": {
+    "functional_flow_graph": "twins/vehicle-993/functional-flow-graph-f0.json",
+    "functional_flow_graph_sha256": "4d281ebd0e17e21e642f9e17c42894af6d92cb2ca09ebfa3a7d73813fd60641d"
+  },
+  "stage": {
+    "path": "twins/vehicle-993/usd/993-functional-flow-f0.usda",
+    "sha256": "658af40d0ec9f5a2aa89060b4c5eee1c2c292e93dea0bce481429cd3e343c097",
+    "format": "OpenUSD_ASCII",
+    "meters_per_unit": 1,
+    "up_axis": "Z",
+    "fidelity": "F0_functional_topology",
+    "system_marker_count": 10,
+    "flow_curve_count": 29,
+    "part_geometry_count": 0,
+    "quantified_port_count": 0,
+    "physics_schema_count": 0,
+    "material_assignment_count": 0
+  },
+  "validation": {
+    "deterministic_ascii_contract": "passed",
+    "openusd_python_api": "not_run_requires_preflight",
+    "asset_validator": "not_run_requires_preflight",
+    "simready_foundation": "not_run_requires_preflight",
+    "content_agents_material_physics": "not_run_requires_preflight",
+    "property_assignment_intent": "run_for_end_to_end_request",
+    "current_status": "authored_pending_cad_to_simready_preflight"
+  },
+  "claim_boundary": {
+    "is_vehicle_geometry": false,
+    "is_component_geometry": false,
+    "is_physics_assigned": false,
+    "is_material_assigned": false,
+    "is_simready_validated": false,
+    "is_virtual_mission_pass": false,
+    "is_functioning_vehicle": false
+  },
+  "next_gate": {
+    "required": "cad_to_simready_preflight_then_minimum_usd_validation",
+    "after_preflight": "assigner les proprietes uniquement aux futures geometries F2/F3 qualifiees; ne pas conformer ce diagramme comme une voiture"
+  }
+}

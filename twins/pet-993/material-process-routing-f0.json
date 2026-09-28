@@ -1,0 +1,1203 @@
+{
+  "$comment": "Routage F0 matiere-procede-modele de reference pour chaque maitre PET. Les familles et routes sont des candidats de triage non selectionnes; aucune piece, simulation, fabrication ou aptitude vehicule n'est validee.",
+  "schema_version": "1.0.0",
+  "generated_by": "scripts/generate_pet_993_material_process_routing.py",
+  "source_boundary": {
+    "engineering_readiness_index": "twins/pet-993/engineering-readiness-f0.json",
+    "engineering_readiness_index_sha256": "554be7f55a341090db1c3ee9ee7e0be3d540d61bf4d82e8bfa290b5817133385",
+    "program_definition": "twins/vehicle-993/program-definition.json",
+    "program_definition_sha256": "668cc79a63ce87671f635d47d1c9203622acfcd725577e02624a491cf6086c5d",
+    "porschefanatics_crosswalk": "twins/pet-993/porschefanatics-crosswalk-f0.json",
+    "porschefanatics_crosswalk_sha256": "a899fe945e070c4ddc725acac1b70c2c7388ac54785b8dc6872468dd0ea7ad88",
+    "archetype_routes_are_human_reviewed": false
+  },
+  "scope": {
+    "part_master_routing_tasks": 6013,
+    "archetype_profiles": 42,
+    "profile_groups": 15,
+    "tasks_with_material_family_candidates": 6013,
+    "tasks_with_manufacturing_route_candidates": 5738,
+    "tasks_with_additive_route_candidate": 5405,
+    "tasks_with_titanium_family_candidate": 450,
+    "tasks_with_exact_commercial_alternative_evidence": 2,
+    "exact_commercial_alternative_links": 6,
+    "commercial_alternative_links_with_qualified_material_basis": 0,
+    "selected_materials": 0,
+    "selected_manufacturing_routes": 0,
+    "passed_reference_simulations": 0,
+    "trained_or_validated_physicsnemo_models": 0,
+    "omniverse_material_or_physics_validations": 0,
+    "manufacturing_releases": 0
+  },
+  "coverage": {
+    "tasks_by_engineering_archetype": {
+      "bearing_or_bushing": 181,
+      "body_panel_or_external_structure": 192,
+      "brake_hydraulic_friction_component": 112,
+      "cover_cap_or_trim": 409,
+      "elastomer_mount_buffer_or_grommet": 136,
+      "fastener_or_retainer": 1095,
+      "filter_screen_or_flow_conditioner": 32,
+      "fluid_hose_pipe_or_duct": 383,
+      "fuel_exhaust_or_emissions_component": 33,
+      "generic_rigid_interface_piece": 148,
+      "generic_system_0xx_service_or_documentation": 34,
+      "generic_system_1xx_engine_component": 83,
+      "generic_system_2xx_fuel_exhaust_component": 29,
+      "generic_system_3xx_transmission_component": 46,
+      "generic_system_4xx_front_axle_steering_component": 16,
+      "generic_system_5xx_rear_axle_driveline_component": 2,
+      "generic_system_6xx_brake_hydraulic_component": 40,
+      "generic_system_7xx_controls_pedals_clutch_component": 28,
+      "generic_system_8xx_body_cabin_electrical_component": 255,
+      "generic_system_9xx_option_accessory_component": 100,
+      "glazing_mirror_or_optical_component": 41,
+      "guide_rail_slide_or_hinge": 110,
+      "heat_exchanger_or_cooler": 15,
+      "housing_case_or_manifold": 75,
+      "hvac_or_cabin_thermal_component": 12,
+      "instrument_gauge_or_display_component": 57,
+      "insulation_absorber_or_heat_shield": 74,
+      "joint_coupling_or_flange": 26,
+      "label_decal_film_or_trim_item": 174,
+      "linkage_lever_cable_or_control": 135,
+      "load_bearing_bracket_carrier_or_mount": 285,
+      "pump_valve_or_injector": 91,
+      "rotating_powertrain_component": 233,
+      "seal_gasket_or_boot": 274,
+      "seat_restraint_or_occupant_structure": 9,
+      "sensor_actuator_or_electrical_component": 451,
+      "service_material_chemical_or_kit": 67,
+      "shim_spacer_or_alignment_component": 152,
+      "spring_belt_or_compliant_mechanism": 119,
+      "structural_reinforcement_member_or_plate": 60,
+      "turbocharger_rotating_hot_flow_assembly": 4,
+      "wheel_suspension_or_steering_component": 195
+    },
+    "tasks_by_profile_group": {
+      "bearing_tribology": 181,
+      "body_structure": 261,
+      "brake_safety": 152,
+      "elastomer_sealing": 410,
+      "electrical_control": 508,
+      "fluid_thermal": 595,
+      "generic_mixed": 660,
+      "glazing_optical": 41,
+      "insulation_trim": 74,
+      "label_service": 275,
+      "polymer_trim": 409,
+      "rigid_mechanical": 1878,
+      "rotating_hot": 237,
+      "spring_compliant": 119,
+      "suspension_steering": 213
+    },
+    "tasks_by_disposition": {
+      "additive_prototype_candidate_production_route_requires_process_specific_qualification": 409,
+      "candidate_manufacture_after_cycle_load_and_relaxation_definition": 119,
+      "candidate_part_manufacture_after_F3_and_tribology_definition": 181,
+      "candidate_part_manufacture_after_F3_reference_analysis": 1878,
+      "classification_or_decomposition_required_before_route_selection": 660,
+      "high_energy_rotating_or_hot_part_requires_F3_reference_analysis_and_professional_review": 237,
+      "material_specific_molding_or_supplier_route_required_additive_prototype_only": 410,
+      "mixed_manufacture_candidates_after_body_F3_and_crash_model": 261,
+      "mixed_manufacture_or_supplier_candidates_after_cabin_fire_and_temperature_definition": 74,
+      "mixed_manufacture_or_supplier_candidates_after_pressure_temperature_and_media_definition": 595,
+      "qualified_supplier_first_additive_route_limited_to_fit_or_tooling_proxy": 41,
+      "qualified_supplier_first_additive_route_limited_to_nonfunctional_housing_prototype": 508,
+      "safety_critical_manufacture_after_F3_fatigue_vehicle_dynamics_and_professional_review": 213,
+      "safety_critical_manufacture_or_procurement_after_F3_and_professional_review": 152,
+      "specification_or_qualified_supplier_item_not_part_geometry": 275
+    }
+  },
+  "profile_registry": {
+    "bearing_or_bushing": {
+      "profile_group": "bearing_tribology",
+      "materials": [
+        "oem_material_to_identify",
+        "bearing_steel_family_candidate",
+        "copper_alloy_family_candidate",
+        "engineering_polymer_family_candidate"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "fonderie_ou_forge"
+      ],
+      "disposition": "candidate_part_manufacture_after_F3_and_tribology_definition",
+      "properties": [
+        "elasticity_and_yield",
+        "contact_fatigue",
+        "friction_and_wear",
+        "lubricant_compatibility",
+        "thermal_expansion"
+      ]
+    },
+    "body_panel_or_external_structure": {
+      "profile_group": "body_structure",
+      "materials": [
+        "oem_material_to_identify",
+        "steel_sheet_family_candidate",
+        "aluminum_sheet_family_candidate",
+        "fiber_composite_family_candidate"
+      ],
+      "routes": [
+        "tolerie_et_soudage",
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "mixed_manufacture_candidates_after_body_F3_and_crash_model",
+      "properties": [
+        "orthotropic_or_isotropic_constitutive_model",
+        "yield_failure_and_damage",
+        "fatigue",
+        "joining_and_heat_affected_zone",
+        "corrosion_and_galvanic_compatibility"
+      ]
+    },
+    "brake_hydraulic_friction_component": {
+      "profile_group": "brake_safety",
+      "materials": [
+        "oem_material_to_identify",
+        "cast_iron_or_steel_family_candidate",
+        "aluminum_housing_family_candidate",
+        "friction_material_system_to_identify"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "fonderie_ou_forge"
+      ],
+      "disposition": "safety_critical_manufacture_or_procurement_after_F3_and_professional_review",
+      "properties": [
+        "temperature_dependent_friction",
+        "thermal_capacity_and_conductivity",
+        "elasticity_and_yield",
+        "fatigue_and_thermal_shock",
+        "fluid_compatibility"
+      ]
+    },
+    "cover_cap_or_trim": {
+      "profile_group": "polymer_trim",
+      "materials": [
+        "oem_polymer_to_identify",
+        "engineering_thermoplastic_family_candidate",
+        "thermoset_family_candidate",
+        "fiber_reinforced_polymer_family_candidate"
+      ],
+      "routes": [
+        "fabrication_additive_polymere"
+      ],
+      "disposition": "additive_prototype_candidate_production_route_requires_process_specific_qualification",
+      "properties": [
+        "anisotropic_process_dependent_stiffness",
+        "creep_and_snap_fit_fatigue",
+        "heat_deflection_temperature",
+        "flammability_uv_and_chemical_aging",
+        "surface_finish_and_dimensional_stability"
+      ]
+    },
+    "elastomer_mount_buffer_or_grommet": {
+      "profile_group": "elastomer_sealing",
+      "materials": [
+        "oem_elastomer_to_identify",
+        "elastomer_family_candidate",
+        "thermoplastic_elastomer_family_candidate",
+        "fluoropolymer_family_candidate"
+      ],
+      "routes": [
+        "fabrication_additive_polymere"
+      ],
+      "disposition": "material_specific_molding_or_supplier_route_required_additive_prototype_only",
+      "properties": [
+        "hyperelasticity_and_viscoelasticity",
+        "compression_set",
+        "fatigue_and_tear",
+        "temperature_range",
+        "fluid_permeation_and_chemical_compatibility"
+      ]
+    },
+    "fastener_or_retainer": {
+      "profile_group": "rigid_mechanical",
+      "materials": [
+        "oem_material_to_identify",
+        "steel_family_candidate",
+        "aluminum_alloy_family_candidate",
+        "engineering_polymer_family_candidate"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "tolerie_et_soudage",
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "candidate_part_manufacture_after_F3_reference_analysis",
+      "properties": [
+        "density_elasticity_and_poisson_ratio",
+        "yield_and_ultimate_strength",
+        "fatigue_and_notch_sensitivity",
+        "thermal_expansion",
+        "corrosion_wear_and_galvanic_compatibility"
+      ]
+    },
+    "filter_screen_or_flow_conditioner": {
+      "profile_group": "fluid_thermal",
+      "materials": [
+        "oem_material_to_identify",
+        "fluid_compatible_elastomer_family_candidate",
+        "engineering_polymer_family_candidate",
+        "aluminum_or_steel_family_candidate"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "mixed_manufacture_or_supplier_candidates_after_pressure_temperature_and_media_definition",
+      "properties": [
+        "pressure_temperature_envelope",
+        "thermal_conductivity_and_expansion",
+        "roughness_and_flow_loss",
+        "creep_fatigue_and_burst",
+        "fluid_compatibility_and_permeation"
+      ]
+    },
+    "fluid_hose_pipe_or_duct": {
+      "profile_group": "fluid_thermal",
+      "materials": [
+        "oem_material_to_identify",
+        "fluid_compatible_elastomer_family_candidate",
+        "engineering_polymer_family_candidate",
+        "aluminum_or_steel_family_candidate"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "mixed_manufacture_or_supplier_candidates_after_pressure_temperature_and_media_definition",
+      "properties": [
+        "pressure_temperature_envelope",
+        "thermal_conductivity_and_expansion",
+        "roughness_and_flow_loss",
+        "creep_fatigue_and_burst",
+        "fluid_compatibility_and_permeation"
+      ]
+    },
+    "fuel_exhaust_or_emissions_component": {
+      "profile_group": "fluid_thermal",
+      "materials": [
+        "oem_material_to_identify",
+        "fluid_compatible_elastomer_family_candidate",
+        "engineering_polymer_family_candidate",
+        "aluminum_or_steel_family_candidate"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "mixed_manufacture_or_supplier_candidates_after_pressure_temperature_and_media_definition",
+      "properties": [
+        "pressure_temperature_envelope",
+        "thermal_conductivity_and_expansion",
+        "roughness_and_flow_loss",
+        "creep_fatigue_and_burst",
+        "fluid_compatibility_and_permeation"
+      ]
+    },
+    "generic_rigid_interface_piece": {
+      "profile_group": "generic_mixed",
+      "materials": [
+        "oem_material_to_identify",
+        "steel_family_candidate",
+        "aluminum_family_candidate",
+        "engineering_polymer_family_candidate"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "tolerie_et_soudage",
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "classification_or_decomposition_required_before_route_selection",
+      "properties": [
+        "density",
+        "elasticity_and_strength",
+        "temperature_range",
+        "fatigue_creep_or_wear_by_failure_mode",
+        "environmental_compatibility"
+      ]
+    },
+    "generic_system_0xx_service_or_documentation": {
+      "profile_group": "label_service",
+      "materials": [
+        "exact_oem_or_service_specification_to_identify"
+      ],
+      "routes": [],
+      "disposition": "specification_or_qualified_supplier_item_not_part_geometry",
+      "properties": [
+        "identity_and_specification",
+        "temperature_and_chemical_compatibility",
+        "aging_and_legibility",
+        "application_or_service_procedure"
+      ]
+    },
+    "generic_system_1xx_engine_component": {
+      "profile_group": "generic_mixed",
+      "materials": [
+        "oem_material_to_identify",
+        "steel_family_candidate",
+        "aluminum_family_candidate",
+        "engineering_polymer_family_candidate"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "tolerie_et_soudage",
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "classification_or_decomposition_required_before_route_selection",
+      "properties": [
+        "density",
+        "elasticity_and_strength",
+        "temperature_range",
+        "fatigue_creep_or_wear_by_failure_mode",
+        "environmental_compatibility"
+      ]
+    },
+    "generic_system_2xx_fuel_exhaust_component": {
+      "profile_group": "fluid_thermal",
+      "materials": [
+        "oem_material_to_identify",
+        "fluid_compatible_elastomer_family_candidate",
+        "engineering_polymer_family_candidate",
+        "aluminum_or_steel_family_candidate"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "mixed_manufacture_or_supplier_candidates_after_pressure_temperature_and_media_definition",
+      "properties": [
+        "pressure_temperature_envelope",
+        "thermal_conductivity_and_expansion",
+        "roughness_and_flow_loss",
+        "creep_fatigue_and_burst",
+        "fluid_compatibility_and_permeation"
+      ]
+    },
+    "generic_system_3xx_transmission_component": {
+      "profile_group": "generic_mixed",
+      "materials": [
+        "oem_material_to_identify",
+        "steel_family_candidate",
+        "aluminum_family_candidate",
+        "engineering_polymer_family_candidate"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "tolerie_et_soudage",
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "classification_or_decomposition_required_before_route_selection",
+      "properties": [
+        "density",
+        "elasticity_and_strength",
+        "temperature_range",
+        "fatigue_creep_or_wear_by_failure_mode",
+        "environmental_compatibility"
+      ]
+    },
+    "generic_system_4xx_front_axle_steering_component": {
+      "profile_group": "suspension_steering",
+      "materials": [
+        "oem_material_to_identify",
+        "high_strength_steel_family_candidate",
+        "aluminum_alloy_family_candidate",
+        "titanium_family_candidate_with_extra_controls"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "fonderie_ou_forge",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "safety_critical_manufacture_after_F3_fatigue_vehicle_dynamics_and_professional_review",
+      "properties": [
+        "yield_ultimate_and_buckling",
+        "variable_amplitude_fatigue",
+        "joint_contact_and_bearing",
+        "fracture_and_defect_tolerance",
+        "corrosion_and_galvanic_compatibility"
+      ]
+    },
+    "generic_system_5xx_rear_axle_driveline_component": {
+      "profile_group": "suspension_steering",
+      "materials": [
+        "oem_material_to_identify",
+        "high_strength_steel_family_candidate",
+        "aluminum_alloy_family_candidate",
+        "titanium_family_candidate_with_extra_controls"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "fonderie_ou_forge",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "safety_critical_manufacture_after_F3_fatigue_vehicle_dynamics_and_professional_review",
+      "properties": [
+        "yield_ultimate_and_buckling",
+        "variable_amplitude_fatigue",
+        "joint_contact_and_bearing",
+        "fracture_and_defect_tolerance",
+        "corrosion_and_galvanic_compatibility"
+      ]
+    },
+    "generic_system_6xx_brake_hydraulic_component": {
+      "profile_group": "brake_safety",
+      "materials": [
+        "oem_material_to_identify",
+        "cast_iron_or_steel_family_candidate",
+        "aluminum_housing_family_candidate",
+        "friction_material_system_to_identify"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "fonderie_ou_forge"
+      ],
+      "disposition": "safety_critical_manufacture_or_procurement_after_F3_and_professional_review",
+      "properties": [
+        "temperature_dependent_friction",
+        "thermal_capacity_and_conductivity",
+        "elasticity_and_yield",
+        "fatigue_and_thermal_shock",
+        "fluid_compatibility"
+      ]
+    },
+    "generic_system_7xx_controls_pedals_clutch_component": {
+      "profile_group": "generic_mixed",
+      "materials": [
+        "oem_material_to_identify",
+        "steel_family_candidate",
+        "aluminum_family_candidate",
+        "engineering_polymer_family_candidate"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "tolerie_et_soudage",
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "classification_or_decomposition_required_before_route_selection",
+      "properties": [
+        "density",
+        "elasticity_and_strength",
+        "temperature_range",
+        "fatigue_creep_or_wear_by_failure_mode",
+        "environmental_compatibility"
+      ]
+    },
+    "generic_system_8xx_body_cabin_electrical_component": {
+      "profile_group": "generic_mixed",
+      "materials": [
+        "oem_material_to_identify",
+        "steel_family_candidate",
+        "aluminum_family_candidate",
+        "engineering_polymer_family_candidate"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "tolerie_et_soudage",
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "classification_or_decomposition_required_before_route_selection",
+      "properties": [
+        "density",
+        "elasticity_and_strength",
+        "temperature_range",
+        "fatigue_creep_or_wear_by_failure_mode",
+        "environmental_compatibility"
+      ]
+    },
+    "generic_system_9xx_option_accessory_component": {
+      "profile_group": "generic_mixed",
+      "materials": [
+        "oem_material_to_identify",
+        "steel_family_candidate",
+        "aluminum_family_candidate",
+        "engineering_polymer_family_candidate"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "tolerie_et_soudage",
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "classification_or_decomposition_required_before_route_selection",
+      "properties": [
+        "density",
+        "elasticity_and_strength",
+        "temperature_range",
+        "fatigue_creep_or_wear_by_failure_mode",
+        "environmental_compatibility"
+      ]
+    },
+    "glazing_mirror_or_optical_component": {
+      "profile_group": "glazing_optical",
+      "materials": [
+        "oem_glazing_specification_to_identify",
+        "automotive_glass_family_candidate",
+        "optical_polycarbonate_family_candidate"
+      ],
+      "routes": [
+        "fabrication_additive_polymere"
+      ],
+      "disposition": "qualified_supplier_first_additive_route_limited_to_fit_or_tooling_proxy",
+      "properties": [
+        "optical_transmission_and_distortion",
+        "impact_and_fragmentation_behavior",
+        "scratch_and_uv_resistance",
+        "thermal_expansion",
+        "regulatory_glazing_requirements"
+      ]
+    },
+    "guide_rail_slide_or_hinge": {
+      "profile_group": "rigid_mechanical",
+      "materials": [
+        "oem_material_to_identify",
+        "steel_family_candidate",
+        "aluminum_alloy_family_candidate",
+        "engineering_polymer_family_candidate"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "tolerie_et_soudage",
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "candidate_part_manufacture_after_F3_reference_analysis",
+      "properties": [
+        "density_elasticity_and_poisson_ratio",
+        "yield_and_ultimate_strength",
+        "fatigue_and_notch_sensitivity",
+        "thermal_expansion",
+        "corrosion_wear_and_galvanic_compatibility"
+      ]
+    },
+    "heat_exchanger_or_cooler": {
+      "profile_group": "fluid_thermal",
+      "materials": [
+        "oem_material_to_identify",
+        "fluid_compatible_elastomer_family_candidate",
+        "engineering_polymer_family_candidate",
+        "aluminum_or_steel_family_candidate"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "mixed_manufacture_or_supplier_candidates_after_pressure_temperature_and_media_definition",
+      "properties": [
+        "pressure_temperature_envelope",
+        "thermal_conductivity_and_expansion",
+        "roughness_and_flow_loss",
+        "creep_fatigue_and_burst",
+        "fluid_compatibility_and_permeation"
+      ]
+    },
+    "housing_case_or_manifold": {
+      "profile_group": "rigid_mechanical",
+      "materials": [
+        "oem_material_to_identify",
+        "steel_family_candidate",
+        "aluminum_alloy_family_candidate",
+        "engineering_polymer_family_candidate"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "tolerie_et_soudage",
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "candidate_part_manufacture_after_F3_reference_analysis",
+      "properties": [
+        "density_elasticity_and_poisson_ratio",
+        "yield_and_ultimate_strength",
+        "fatigue_and_notch_sensitivity",
+        "thermal_expansion",
+        "corrosion_wear_and_galvanic_compatibility"
+      ]
+    },
+    "hvac_or_cabin_thermal_component": {
+      "profile_group": "fluid_thermal",
+      "materials": [
+        "oem_material_to_identify",
+        "fluid_compatible_elastomer_family_candidate",
+        "engineering_polymer_family_candidate",
+        "aluminum_or_steel_family_candidate"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "mixed_manufacture_or_supplier_candidates_after_pressure_temperature_and_media_definition",
+      "properties": [
+        "pressure_temperature_envelope",
+        "thermal_conductivity_and_expansion",
+        "roughness_and_flow_loss",
+        "creep_fatigue_and_burst",
+        "fluid_compatibility_and_permeation"
+      ]
+    },
+    "instrument_gauge_or_display_component": {
+      "profile_group": "electrical_control",
+      "materials": [
+        "oem_component_material_stack_to_identify",
+        "copper_conductor_family_candidate",
+        "electrical_grade_polymer_family_candidate"
+      ],
+      "routes": [
+        "fabrication_additive_polymere"
+      ],
+      "disposition": "qualified_supplier_first_additive_route_limited_to_nonfunctional_housing_prototype",
+      "properties": [
+        "electrical_resistivity_and_insulation",
+        "temperature_rating",
+        "flammability_and_smoke",
+        "connector_contact_and_sealing",
+        "emc_and_control_logic"
+      ]
+    },
+    "insulation_absorber_or_heat_shield": {
+      "profile_group": "insulation_trim",
+      "materials": [
+        "oem_material_to_identify",
+        "thermoplastic_or_thermoset_family_candidate",
+        "fiber_or_foam_insulation_family_candidate",
+        "thin_metal_heat_shield_family_candidate"
+      ],
+      "routes": [
+        "tolerie_et_soudage",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "mixed_manufacture_or_supplier_candidates_after_cabin_fire_and_temperature_definition",
+      "properties": [
+        "thermal_and_acoustic_response",
+        "flammability_and_smoke",
+        "creep_and_uv_aging",
+        "moisture_and_chemical_resistance",
+        "surface_and_attachment_behavior"
+      ]
+    },
+    "joint_coupling_or_flange": {
+      "profile_group": "rigid_mechanical",
+      "materials": [
+        "oem_material_to_identify",
+        "steel_family_candidate",
+        "aluminum_alloy_family_candidate",
+        "engineering_polymer_family_candidate"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "tolerie_et_soudage",
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "candidate_part_manufacture_after_F3_reference_analysis",
+      "properties": [
+        "density_elasticity_and_poisson_ratio",
+        "yield_and_ultimate_strength",
+        "fatigue_and_notch_sensitivity",
+        "thermal_expansion",
+        "corrosion_wear_and_galvanic_compatibility"
+      ]
+    },
+    "label_decal_film_or_trim_item": {
+      "profile_group": "label_service",
+      "materials": [
+        "exact_oem_or_service_specification_to_identify"
+      ],
+      "routes": [],
+      "disposition": "specification_or_qualified_supplier_item_not_part_geometry",
+      "properties": [
+        "identity_and_specification",
+        "temperature_and_chemical_compatibility",
+        "aging_and_legibility",
+        "application_or_service_procedure"
+      ]
+    },
+    "linkage_lever_cable_or_control": {
+      "profile_group": "rigid_mechanical",
+      "materials": [
+        "oem_material_to_identify",
+        "steel_family_candidate",
+        "aluminum_alloy_family_candidate",
+        "engineering_polymer_family_candidate"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "tolerie_et_soudage",
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "candidate_part_manufacture_after_F3_reference_analysis",
+      "properties": [
+        "density_elasticity_and_poisson_ratio",
+        "yield_and_ultimate_strength",
+        "fatigue_and_notch_sensitivity",
+        "thermal_expansion",
+        "corrosion_wear_and_galvanic_compatibility"
+      ]
+    },
+    "load_bearing_bracket_carrier_or_mount": {
+      "profile_group": "rigid_mechanical",
+      "materials": [
+        "oem_material_to_identify",
+        "steel_family_candidate",
+        "aluminum_alloy_family_candidate",
+        "engineering_polymer_family_candidate"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "tolerie_et_soudage",
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "candidate_part_manufacture_after_F3_reference_analysis",
+      "properties": [
+        "density_elasticity_and_poisson_ratio",
+        "yield_and_ultimate_strength",
+        "fatigue_and_notch_sensitivity",
+        "thermal_expansion",
+        "corrosion_wear_and_galvanic_compatibility"
+      ]
+    },
+    "pump_valve_or_injector": {
+      "profile_group": "fluid_thermal",
+      "materials": [
+        "oem_material_to_identify",
+        "fluid_compatible_elastomer_family_candidate",
+        "engineering_polymer_family_candidate",
+        "aluminum_or_steel_family_candidate"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "mixed_manufacture_or_supplier_candidates_after_pressure_temperature_and_media_definition",
+      "properties": [
+        "pressure_temperature_envelope",
+        "thermal_conductivity_and_expansion",
+        "roughness_and_flow_loss",
+        "creep_fatigue_and_burst",
+        "fluid_compatibility_and_permeation"
+      ]
+    },
+    "rotating_powertrain_component": {
+      "profile_group": "rotating_hot",
+      "materials": [
+        "oem_material_to_identify",
+        "heat_resistant_steel_family_candidate",
+        "nickel_superalloy_family_candidate",
+        "titanium_family_candidate_with_extra_controls"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "fonderie_ou_forge",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "high_energy_rotating_or_hot_part_requires_F3_reference_analysis_and_professional_review",
+      "properties": [
+        "temperature_dependent_strength",
+        "low_and_high_cycle_fatigue",
+        "creep_and_oxidation",
+        "fracture_and_defect_tolerance",
+        "rotordynamic_mass_balance_and_thermal_growth"
+      ]
+    },
+    "seal_gasket_or_boot": {
+      "profile_group": "elastomer_sealing",
+      "materials": [
+        "oem_elastomer_to_identify",
+        "elastomer_family_candidate",
+        "thermoplastic_elastomer_family_candidate",
+        "fluoropolymer_family_candidate"
+      ],
+      "routes": [
+        "fabrication_additive_polymere"
+      ],
+      "disposition": "material_specific_molding_or_supplier_route_required_additive_prototype_only",
+      "properties": [
+        "hyperelasticity_and_viscoelasticity",
+        "compression_set",
+        "fatigue_and_tear",
+        "temperature_range",
+        "fluid_permeation_and_chemical_compatibility"
+      ]
+    },
+    "seat_restraint_or_occupant_structure": {
+      "profile_group": "body_structure",
+      "materials": [
+        "oem_material_to_identify",
+        "steel_sheet_family_candidate",
+        "aluminum_sheet_family_candidate",
+        "fiber_composite_family_candidate"
+      ],
+      "routes": [
+        "tolerie_et_soudage",
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "mixed_manufacture_candidates_after_body_F3_and_crash_model",
+      "properties": [
+        "orthotropic_or_isotropic_constitutive_model",
+        "yield_failure_and_damage",
+        "fatigue",
+        "joining_and_heat_affected_zone",
+        "corrosion_and_galvanic_compatibility"
+      ]
+    },
+    "sensor_actuator_or_electrical_component": {
+      "profile_group": "electrical_control",
+      "materials": [
+        "oem_component_material_stack_to_identify",
+        "copper_conductor_family_candidate",
+        "electrical_grade_polymer_family_candidate"
+      ],
+      "routes": [
+        "fabrication_additive_polymere"
+      ],
+      "disposition": "qualified_supplier_first_additive_route_limited_to_nonfunctional_housing_prototype",
+      "properties": [
+        "electrical_resistivity_and_insulation",
+        "temperature_rating",
+        "flammability_and_smoke",
+        "connector_contact_and_sealing",
+        "emc_and_control_logic"
+      ]
+    },
+    "service_material_chemical_or_kit": {
+      "profile_group": "label_service",
+      "materials": [
+        "exact_oem_or_service_specification_to_identify"
+      ],
+      "routes": [],
+      "disposition": "specification_or_qualified_supplier_item_not_part_geometry",
+      "properties": [
+        "identity_and_specification",
+        "temperature_and_chemical_compatibility",
+        "aging_and_legibility",
+        "application_or_service_procedure"
+      ]
+    },
+    "shim_spacer_or_alignment_component": {
+      "profile_group": "rigid_mechanical",
+      "materials": [
+        "oem_material_to_identify",
+        "steel_family_candidate",
+        "aluminum_alloy_family_candidate",
+        "engineering_polymer_family_candidate"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "tolerie_et_soudage",
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "candidate_part_manufacture_after_F3_reference_analysis",
+      "properties": [
+        "density_elasticity_and_poisson_ratio",
+        "yield_and_ultimate_strength",
+        "fatigue_and_notch_sensitivity",
+        "thermal_expansion",
+        "corrosion_wear_and_galvanic_compatibility"
+      ]
+    },
+    "spring_belt_or_compliant_mechanism": {
+      "profile_group": "spring_compliant",
+      "materials": [
+        "oem_material_to_identify",
+        "spring_steel_family_candidate",
+        "elastomer_family_candidate",
+        "fiber_composite_spring_family_candidate"
+      ],
+      "routes": [
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "candidate_manufacture_after_cycle_load_and_relaxation_definition",
+      "properties": [
+        "cyclic_stress_strain",
+        "fatigue_and_relaxation",
+        "temperature_dependent_stiffness",
+        "surface_and_residual_stress",
+        "environmental_aging"
+      ]
+    },
+    "structural_reinforcement_member_or_plate": {
+      "profile_group": "body_structure",
+      "materials": [
+        "oem_material_to_identify",
+        "steel_sheet_family_candidate",
+        "aluminum_sheet_family_candidate",
+        "fiber_composite_family_candidate"
+      ],
+      "routes": [
+        "tolerie_et_soudage",
+        "fonderie_ou_forge",
+        "fabrication_additive_polymere",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "mixed_manufacture_candidates_after_body_F3_and_crash_model",
+      "properties": [
+        "orthotropic_or_isotropic_constitutive_model",
+        "yield_failure_and_damage",
+        "fatigue",
+        "joining_and_heat_affected_zone",
+        "corrosion_and_galvanic_compatibility"
+      ]
+    },
+    "turbocharger_rotating_hot_flow_assembly": {
+      "profile_group": "rotating_hot",
+      "materials": [
+        "oem_material_to_identify",
+        "heat_resistant_steel_family_candidate",
+        "nickel_superalloy_family_candidate",
+        "titanium_family_candidate_with_extra_controls"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "fonderie_ou_forge",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "high_energy_rotating_or_hot_part_requires_F3_reference_analysis_and_professional_review",
+      "properties": [
+        "temperature_dependent_strength",
+        "low_and_high_cycle_fatigue",
+        "creep_and_oxidation",
+        "fracture_and_defect_tolerance",
+        "rotordynamic_mass_balance_and_thermal_growth"
+      ]
+    },
+    "wheel_suspension_or_steering_component": {
+      "profile_group": "suspension_steering",
+      "materials": [
+        "oem_material_to_identify",
+        "high_strength_steel_family_candidate",
+        "aluminum_alloy_family_candidate",
+        "titanium_family_candidate_with_extra_controls"
+      ],
+      "routes": [
+        "usinage_CNC",
+        "fonderie_ou_forge",
+        "fabrication_additive_metal"
+      ],
+      "disposition": "safety_critical_manufacture_after_F3_fatigue_vehicle_dynamics_and_professional_review",
+      "properties": [
+        "yield_ultimate_and_buckling",
+        "variable_amplitude_fatigue",
+        "joint_contact_and_bearing",
+        "fracture_and_defect_tolerance",
+        "corrosion_and_galvanic_compatibility"
+      ]
+    }
+  },
+  "selection_policy": {
+    "method": "analyse_multicritere_puis_sensibilite_sur_intervalles_de_proprietes",
+    "required_inputs": [
+      "fonction_et_modes_de_defaillance",
+      "matiere_OEM_sourcee_ou_identifiee",
+      "temperature_et_environnement",
+      "charges_et_duree_de_vie",
+      "geometrie_et_tolerances",
+      "procede_orientation_et_post_traitements",
+      "proprietes_matiere_dependantes_du_procede",
+      "corrosion_usure_fatigue_et_compatibilite_galvanique",
+      "criteres_d_acceptation"
+    ],
+    "titanium_extra_requirements": [
+      "alliage",
+      "procede_de_fabrication",
+      "orientation",
+      "traitement_thermique",
+      "usinage_de_finition",
+      "inspection",
+      "hypotheses_de_fatigue",
+      "isolation_galvanique"
+    ],
+    "candidate_family_is_selected_grade": false,
+    "candidate_route_is_selected_process": false,
+    "system_fallback_archetype_is_part_classification": false,
+    "reference_solver_precedes_physicsnemo": true,
+    "physical_validation_unavailable_by_program_constraint": true
+  },
+  "physicsnemo_boundary": {
+    "canonical_repository": "https://github.com/NVIDIA/physicsnemo",
+    "discovered_commit": "4fbfcfd62bf050b48ceec6b438da409b9f4644b3",
+    "verified_model_families": [
+      "GeoTransolver",
+      "Transolver",
+      "MeshGraphNet",
+      "FIGConvUNet",
+      "DoMINO"
+    ],
+    "verified_data_interfaces": [
+      "VTKReader",
+      "MeshReader",
+      "DomainMeshReader",
+      "DoMINODataPipe",
+      "TransolverDataPipe"
+    ],
+    "role": "surrogate_only_after_converged_reference_solver_dataset",
+    "model_and_datapipe_are_independent_axes": true,
+    "execution_enabled": false
+  },
+  "commercial_alternative_boundary": {
+    "link_method": "exact_normalized_replacesOem",
+    "general_993_fitment_creates_part_master_link": false,
+    "commercial_material_is_oem_material": false,
+    "commercial_process_is_selected_manufacturing_route": false,
+    "replacement_claim_proves_functional_equivalence": false
+  },
+  "output": {
+    "tracked": false,
+    "work_root": "work/pet-993/material-process-routing",
+    "shards": [
+      {
+        "shard_id": "0",
+        "path": "work/pet-993/material-process-routing/0.jsonl",
+        "record_count": 430,
+        "sha256": "6cb4a8041c76b45e1c7fce2eda717c0894b4e40c5f1b4f3609690e1bf4011335"
+      },
+      {
+        "shard_id": "1",
+        "path": "work/pet-993/material-process-routing/1.jsonl",
+        "record_count": 359,
+        "sha256": "c21c08af705531efa4bd1b1694e5156535a2ea5912d144780357a3806e28e1e9"
+      },
+      {
+        "shard_id": "2",
+        "path": "work/pet-993/material-process-routing/2.jsonl",
+        "record_count": 357,
+        "sha256": "8827d3e49e7075ce6115bb6fe70018eed6f1e388c27d2097c01b14f5942b25ed"
+      },
+      {
+        "shard_id": "3",
+        "path": "work/pet-993/material-process-routing/3.jsonl",
+        "record_count": 392,
+        "sha256": "31f46d516571f421cf0c57b58786f86c6cb313d9e124cfc2fd1db0aaf443dd3d"
+      },
+      {
+        "shard_id": "4",
+        "path": "work/pet-993/material-process-routing/4.jsonl",
+        "record_count": 339,
+        "sha256": "572b1df03d83d78ac9e9b7d0852b5edbbd9657c103edbd776865ecbf81e69af6"
+      },
+      {
+        "shard_id": "5",
+        "path": "work/pet-993/material-process-routing/5.jsonl",
+        "record_count": 345,
+        "sha256": "fc80c117f77191e71d9d38e60c84c7ce87a85493bf92b7c33a1431360f657bd4"
+      },
+      {
+        "shard_id": "6",
+        "path": "work/pet-993/material-process-routing/6.jsonl",
+        "record_count": 391,
+        "sha256": "b077246b032ad9e91a6b66591f76258c4ffd585e3a5de00c6063e6d5c7df2240"
+      },
+      {
+        "shard_id": "7",
+        "path": "work/pet-993/material-process-routing/7.jsonl",
+        "record_count": 389,
+        "sha256": "8803e0bcad7ef82f16c5ea1af759896bbc729b8688e871440ccd4a4403ad710d"
+      },
+      {
+        "shard_id": "8",
+        "path": "work/pet-993/material-process-routing/8.jsonl",
+        "record_count": 397,
+        "sha256": "b8574a8e12a914326bcfc49579b586ebaed93bd1d617970fa6b6e5c168cadaf9"
+      },
+      {
+        "shard_id": "9",
+        "path": "work/pet-993/material-process-routing/9.jsonl",
+        "record_count": 391,
+        "sha256": "eba19266bb888ba9b20293567419d2bf815344b5387b9e5c4e999d1ad2284fd6"
+      },
+      {
+        "shard_id": "a",
+        "path": "work/pet-993/material-process-routing/a.jsonl",
+        "record_count": 366,
+        "sha256": "86585cff20fe045e70a5903b5549d45886387623ae9a9a266b2a6576a4234189"
+      },
+      {
+        "shard_id": "b",
+        "path": "work/pet-993/material-process-routing/b.jsonl",
+        "record_count": 386,
+        "sha256": "1f842a7e75e7b7ca9d6f6a5c515a2906713fa50b1a4d97501e9595fda95dd647"
+      },
+      {
+        "shard_id": "c",
+        "path": "work/pet-993/material-process-routing/c.jsonl",
+        "record_count": 346,
+        "sha256": "1b67ae5e5e54386260f55977f5b3ceced7630ab0efa7dc64798b84f4234171c1"
+      },
+      {
+        "shard_id": "d",
+        "path": "work/pet-993/material-process-routing/d.jsonl",
+        "record_count": 374,
+        "sha256": "3aef22609b8f03df0d328b9f066ad2f0b8411b2e9ec3ddea11ceb95dc1d99976"
+      },
+      {
+        "shard_id": "e",
+        "path": "work/pet-993/material-process-routing/e.jsonl",
+        "record_count": 383,
+        "sha256": "389cb75102f2690b31487839c49fdc5a4743c3a783bd8751041808855f4eeda3"
+      },
+      {
+        "shard_id": "f",
+        "path": "work/pet-993/material-process-routing/f.jsonl",
+        "record_count": 368,
+        "sha256": "9863c95f49e716df196a87e5d6028054de2304630e633dabf28d0b2bbd92e975"
+      }
+    ]
+  },
+  "claim_boundary": {
+    "archetype_is_verified_part_identity": false,
+    "material_candidate_is_material_selection": false,
+    "route_candidate_is_process_selection": false,
+    "reference_model_route_is_solver_result": false,
+    "physicsnemo_execution_enabled": false,
+    "omniverse_material_or_physics_validated": false,
+    "part_is_dimensionally_accurate": false,
+    "part_is_manufacturing_released": false,
+    "vehicle_is_functioning": false
+  },
+  "next_gate": "resolve_configuration_then_author_F2_or_F3_geometry_interfaces_loads_environment_and_process_dependent_material_properties_before_selection"
+}

@@ -1,0 +1,31 @@
+#usda 1.0
+(
+    defaultPrim = "TurboHeatShieldLeftGuideF1"
+    metersPerUnit = 0.001
+    upAxis = "Z"
+)
+
+def Xform "TurboHeatShieldLeftGuideF1" (
+    kind = "component"
+)
+{
+    custom string status = "F1_supplier_envelope_thermal_readiness_not_OEM_surface_or_SimReady"
+    custom string oemReference = "99312311351"
+    custom string petPartMasterTwinId = "TWIN-PET-993-PART-B6629ABCA63D241CEDCC"
+    custom string dimensionalEvidence = "supplier_product_bounding_box_not_surface_thickness_mounts_or_hot_side"
+    custom double supplierDeclaredMassKg = 0.230000
+    custom bool componentTransformIsVehicleCoordinate = false
+    custom bool interfaceGeometryPresent = false
+    custom bool analysisGeometryAvailable = false
+    custom bool materialAssigned = false
+    custom bool physicsAssigned = false
+    custom bool simReadyValidated = false
+
+    def Cube "BoundingEnvelopeGuide"
+    {
+        double size = 1
+        uniform token purpose = "guide"
+        double3 xformOp:scale = (160.000000, 110.000000, 105.000000)
+        uniform token[] xformOpOrder = ["xformOp:scale"]
+    }
+}

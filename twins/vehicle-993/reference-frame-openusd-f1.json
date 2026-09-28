@@ -1,0 +1,113 @@
+{
+  "$comment": "Repere OpenUSD F1 derive de sept dimensions documentees. La cage n'est ni une carrosserie, ni un assemblage positionne, ni un actif SimReady.",
+  "schema_version": "1.0.0",
+  "generated_by": "scripts/generate_993_reference_frame_usd.py",
+  "source_boundary": {
+    "reference_envelope": "twin/993/reference-envelope.json",
+    "reference_envelope_sha256": "f55c3cba7c108e7115f2cd0ba0c8b0d9834b37a14881e2dda693f26340f4670c",
+    "measurement_registry": "catalog/measurements/MEAS-MANUAL-993-ALL.json",
+    "measurement_registry_sha256": "77c770a19fdeed18aa39aebe89ac6ab93e3374354cfe108940dcfa0cddeeddae",
+    "simready_preflight": "twins/vehicle-993/functional-flow-simready-preflight-f0.json",
+    "simready_preflight_sha256": "401674e1282db739a500d1ad7a8e2cb0da89663d414da8b9d6bfe3badcc573c2",
+    "simready_preflight_status": "blocked"
+  },
+  "scope": {
+    "fidelity": "F1_documented_reference_envelope",
+    "variant_scope": "USA",
+    "sourced_dimensions": 7,
+    "sourced_mass_constraints": 4,
+    "reference_curve_prims": 5,
+    "positioned_vehicle_parts": 0,
+    "body_surface_count": 0,
+    "interface_geometry_count": 0,
+    "mass_property_count": 0,
+    "physics_schema_count": 0,
+    "material_assignment_count": 0
+  },
+  "mathematical_sanity_checks": {
+    "wheelbase_inside_overall_length": true,
+    "front_track_inside_overall_width": true,
+    "rear_track_inside_overall_width": true,
+    "ground_clearance_inside_overall_height": true,
+    "wheelbase_to_length_ratio": 0.533333333,
+    "front_track_to_width_ratio": 0.809798271,
+    "rear_track_to_width_ratio": 0.832276657,
+    "curb_mass_below_gross_vehicle_mass": true,
+    "combined_axle_capacity_not_below_gross_vehicle_mass": true,
+    "declared_payload_difference_kg": 320.0,
+    "combined_axle_capacity_margin_kg": 95.0
+  },
+  "documented_mass_constraints": {
+    "curb_mass_kg": {
+      "value_kg": 1370.0,
+      "source_measurement_id": "MNL-TECH-0037",
+      "pdf_page": 19,
+      "value_text": "1370",
+      "extraction_status": "structured_derived",
+      "is_mass_distribution_measurement": false,
+      "is_usd_mass_property": false
+    },
+    "gross_vehicle_mass_kg": {
+      "value_kg": 1690.0,
+      "source_measurement_id": "MNL-TECH-0039",
+      "pdf_page": 19,
+      "value_text": "1690",
+      "extraction_status": "structured_derived",
+      "is_mass_distribution_measurement": false,
+      "is_usd_mass_property": false
+    },
+    "max_front_axle_load_kg": {
+      "value_kg": 720.0,
+      "source_measurement_id": "MNL-TECH-0040",
+      "pdf_page": 19,
+      "value_text": "720",
+      "extraction_status": "structured_derived",
+      "is_mass_distribution_measurement": false,
+      "is_usd_mass_property": false
+    },
+    "max_rear_axle_load_kg": {
+      "value_kg": 1065.0,
+      "source_measurement_id": "MNL-TECH-0041",
+      "pdf_page": 19,
+      "value_text": "1065",
+      "extraction_status": "structured_derived",
+      "is_mass_distribution_measurement": false,
+      "is_usd_mass_property": false
+    }
+  },
+  "stage": {
+    "path": "twins/vehicle-993/usd/993-reference-frame-f1.usda",
+    "format": "OpenUSD_ASCII",
+    "sha256": "08df07cf9d74577801dd2bed9ecf5795a86966ef2b8e08bbb4427c8b6aaf038e",
+    "meters_per_unit": 1,
+    "up_axis": "Z"
+  },
+  "uncertainty_boundary": {
+    "dimensional_tolerance_mm": null,
+    "body_surface_unknown": true,
+    "body_to_axle_longitudinal_transform": null,
+    "axle_longitudinal_positions_in_stage": "display_centered_assumption",
+    "part_transforms_known": 0
+  },
+  "validation": {
+    "deterministic_ascii_contract": "passed",
+    "minimum_usd_validation": "not_run_preflight_blocked",
+    "content_agents_material_physics": "not_run_preflight_blocked",
+    "asset_validator": "not_run_preflight_blocked",
+    "simready_foundation": "not_run_preflight_blocked",
+    "property_assignment_intent": "run_for_end_to_end_request",
+    "current_status": "authored_pending_ready_cad_to_simready_preflight"
+  },
+  "claim_boundary": {
+    "is_vehicle_body_geometry": false,
+    "is_part_geometry": false,
+    "is_fitted_assembly": false,
+    "is_material_assigned": false,
+    "is_physics_assigned": false,
+    "is_simready_validated": false,
+    "is_virtual_mission_pass": false,
+    "is_functioning_vehicle": false,
+    "is_manufacturing_release": false
+  },
+  "next_gate": "source_variant_specific_body_to_axle_datums_tolerances_and_F2_interfaces_then_rerun_ready_CAD_to_SimReady_preflight_before_property_assignment"
+}

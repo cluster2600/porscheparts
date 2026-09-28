@@ -1,0 +1,39 @@
+{
+  "$comment": "Provenance de la variante F2 avec aileron fixe type 930 et echangeur d'air de suralimentation integre. Le rendu ne valide ni les debits ni le rejet thermique.",
+  "schema_version": "1.0.0",
+  "asset_id": "911-917-MID-ENGINE-930-TAIL-F2",
+  "base_asset": "twins/vehicle-911-917/designer-render-f1.json",
+  "tool": "OpenAI imagegen",
+  "tool_mode": "precise_object_edit_with_referenced_image_path",
+  "model": "not_exposed_by_tool",
+  "edit_target": {
+    "path": "work/911-917-packaging-f1/911-917-mid-engine-designer-f1.png",
+    "sha256": "70b5fcc298b98f5fd6ecd1f664cf20709c6090b149f6ded813bbcfe3c21899d1"
+  },
+  "output_asset": {
+    "path": "work/911-917-packaging-f1/911-917-mid-engine-930-tail-f2.png",
+    "sha256": "3e77d112e92a892f8d989df32c490630c1f45c59e0f6495d76008003a158580f",
+    "width_px": 1536,
+    "height_px": 1024,
+    "tracked_in_git": false
+  },
+  "design_requirement": {
+    "spoiler_type": "fixed_930_turbo_inspired_whale_tail",
+    "heat_exchanger_type": "horizontal_twin_turbo_charge_air_heat_exchanger",
+    "airflow_intent": "top_grille_inlet_and_ducted_rear_exit",
+    "cooling_capacity_kw": null,
+    "pressure_drop_pa": null,
+    "status": "visual_intent_only_not_dimensioned"
+  },
+  "prompt": "Use case: precise-object-edit\nAsset type: automotive engineering concept presentation\nInput image: Image 1 is the edit target.\nPrimary request: replace the plain rear deck with a fixed Porsche 930 Turbo-inspired whale-tail / tea-tray decklid spoiler, integrated into the rear body. This must be a broad, low, fixed deck spoiler with a raised black perimeter lip and a large horizontal cooling grille, not a separate race wing.\nHeat exchanger: package a large rectangular horizontal twin-turbo charge-air heat exchanger directly inside the fixed spoiler/decklid volume. In the upper three-quarter view, the exterior should show the authentic integrated whale-tail form and open cooling grille. In the lower transparent cutaway, clearly reveal the metallic finned heat-exchanger core under the grille, with short plausible ducts connecting toward the twin-turbo intake system and a defined hot-air exit path. The exchanger must not occupy the transmission volume or move the engine.\nInvariants: change only the rear decklid, integrated fixed spoiler, heat exchanger and its short ducts. Preserve the exact car body ahead of the rear deck, stretched wheelbase, wheels, camera angles, two-panel composition, transparent cutaway, two-seat cabin, flat-12 engine entirely ahead of the rear axle, transmission behind the axle, colors, lighting, paper background, existing datum line and existing labels.\nConstraints: no tall pylon wing, no detached aerofoil, no GT3-style wing, no active or retractable spoiler, no logos, no watermark, no additional text, no front wing, no roof wing, no long-tail conversion. Keep the 930-inspired spoiler visually fixed and structurally integrated. Concept art only; do not imply validated cooling capacity.",
+  "release_gates": {
+    "heat_rejection_defined": false,
+    "charge_air_mass_flow_defined": false,
+    "pressure_drop_verified": false,
+    "cooling_airflow_verified": false,
+    "rear_lift_verified": false,
+    "ducting_packaged": false,
+    "manufacturing_authorized": false,
+    "road_or_track_use_authorized": false
+  }
+}

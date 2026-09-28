@@ -1,0 +1,205 @@
+{
+  "$comment": "F30 definit l'auteur du premier layout CAO mesure. Le formulaire suivi ne contient aucune mesure ni geometrie et tous les gates physiques, solveurs, PhysicsNeMo, Omniverse et fabrication restent fermes.",
+  "authoring_policy": {
+    "allowed_output_root": "work/917-engine/cad/f30",
+    "atomic_no_overwrite_output_required": true,
+    "construction_witness_conventions_mm": {
+      "engine_frame_axis_length": 25.0,
+      "main_bearing_marker_half_length": 5.0
+    },
+    "documentary_candidates_applied": false,
+    "face_count": 0,
+    "normalized_geometry_signature_required": true,
+    "occt_roundtrip_required": true,
+    "output_kind": "wireframe_construction_layout_only",
+    "publication_complete_marker_required": true,
+    "solid_count": 0,
+    "step_digest_reproducibility_claim": false
+  },
+  "authorized_layout_entities": [
+    "engine_coordinate_frame",
+    "crankshaft_axis",
+    "crankcase_split_plane",
+    "bank_deck_planes",
+    "twelve_cylinder_axes",
+    "physically_confirmed_main_bearing_stations"
+  ],
+  "cad_runtime": {
+    "authoring_library": "build123d 0.11.1",
+    "gpu_required": false,
+    "immutable_image": "ghcr.io/cluster2600/3dprinting993-cad-author-f28@sha256:18dbfa559306a31c909480695acf0e89a9bc904c83d280065c1d9d29036fec57",
+    "kernel": "OCCT 7.9.3",
+    "network_required": false,
+    "platform": "linux/amd64",
+    "runtime_user": "9178:9178"
+  },
+  "local_input_contract": {
+    "binding_decision": {
+      "authorized_scope": [
+        "engine_coordinate_frame",
+        "crankshaft_axis",
+        "crankcase_split_plane",
+        "bank_deck_planes",
+        "twelve_cylinder_axes",
+        "physically_confirmed_main_bearing_stations"
+      ],
+      "decision": "accepted_for_parametric_layout_only",
+      "required_bindings": [
+        "campaign_id",
+        "f27_final_review_envelope_sha256",
+        "f27_scan_to_engine_transform_sha256",
+        "scan_sha256",
+        "f27_variant_id",
+        "f28_variant_id",
+        "layout_parameters_sha256",
+        "review_report_sha256",
+        "reviewer_public_key_sha256"
+      ],
+      "reviewer_must_be_distinct_from_f27_reviewers": true
+    },
+    "binding_detached_signature": "Ed25519 signature over the exact canonical binding JSON; never tracked",
+    "binding_review_report": "separate human review report under work, bound by SHA-256; never tracked",
+    "f27_evidence_root": "sealed evidence directory under work; never tracked",
+    "f27_observations": "filled CSV under work; never tracked",
+    "f27_record": "filled JSON under work; never tracked",
+    "layout_evidence_root": "F30 measurement and fit evidence under work, verified by index; never tracked",
+    "layout_parameters": {
+      "canonical_crankshaft_axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "canonical_split_plane_normal": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "cylinder_axis_count": 12,
+      "documentary_candidates_applied": false,
+      "handedness_token": "bank_positive_on_positive_engine_y",
+      "right_handed": true,
+      "units": "mm",
+      "variant_mapping": {
+        "917_5_0_na": "type_912_5_0_na"
+      }
+    },
+    "reviewer_public_key": "public key under work whose SHA-256 must match the tracked trust anchor; never tracked",
+    "working_scan": "exact canonical OBJ under work; never tracked"
+  },
+  "local_outputs": [
+    "layout-parameters.json",
+    "engine-layout.step",
+    "geometry-report.json",
+    "provenance-manifest.json",
+    "publication-complete.json"
+  ],
+  "phase": "F30",
+  "prohibited_outputs": [
+    "solid CAD",
+    "STL or 3MF",
+    "USD or SimReady asset",
+    "solver deck or result",
+    "PhysicsNeMo sample or model weight",
+    "manufacturing drawing or release"
+  ],
+  "release_gates": {
+    "classical_solver_authorized": false,
+    "engine_start_authorized": false,
+    "functional_component_cad_authorized": false,
+    "manufacturing_authorized": false,
+    "metal_print_authorized": false,
+    "omniverse_simready_authorized": false,
+    "physicsnemo_dataset_authorized": false,
+    "physicsnemo_training_authorized": false,
+    "polymer_print_authorized": false,
+    "solid_geometry_authorized": false
+  },
+  "required_authority_chain": [
+    "F27 campaign structurally ready for independent binding review",
+    "two F27 independent reviews accepted",
+    "separate F30 CAD binding decision authenticated by a distinct reviewer",
+    "reviewer public key SHA-256 matches the tracked trust anchor",
+    "detached Ed25519 signature verifies the exact canonical binding JSON",
+    "layout parameters bound by SHA-256 to the decision",
+    "all parameters carry unit, uncertainty, datum and evidence reference"
+  ],
+  "required_counts": {
+    "bank_deck_planes": 2,
+    "crankcase_split_planes": 1,
+    "crankshaft_axes": 1,
+    "cylinder_axes": 12,
+    "engine_coordinate_frames": 1,
+    "main_bearing_station_count": "physically_confirmed_value_only"
+  },
+  "reviewer_authentication": {
+    "authoring_blocked_until_trust_anchor_configured": true,
+    "private_key_tracked_or_transferred": false,
+    "signature_algorithm": "ed25519-openssl-pkeyutl",
+    "signature_scope": "exact_canonical_binding_json_bytes",
+    "trusted_reviewer_public_key_sha256": null
+  },
+  "schema_version": "1.0.0",
+  "source_binding": {
+    "canonical_scan_sha256": "428c4143d073f8330022f2fecbd1ac1ee7784d4f1565f1160020448dbdffa0ae",
+    "closest_documentary_variant_may_select_identity": false,
+    "documentary_dimensions_may_drive_layout": false,
+    "f27_917_30_turbo_5374_target": "blocked_generic_f27_identity_does_not_distinguish_f28_1973_branch",
+    "f27_to_f28_variant_target_map": {
+      "917_5_0_na": "type_912_5_0_na"
+    },
+    "f27_type_912_4_5_na_target": "blocked_no_f28_authoring_branch",
+    "filled_f27_packet_must_remain_under_work": true,
+    "raw_scan_or_derivative_tracked": false
+  },
+  "status": "layout_authoring_contract_ready_no_measurements_no_geometry",
+  "upstream_manifest": [
+    {
+      "id": "f21_scale_orientation",
+      "path": "twins/reference-917-engine/scan-scale-orientation-acquisition-f21.json",
+      "role": "scale_orientation_acquisition_contract_only",
+      "sha256": "e958bc9188fb05dbe02e131cdc12f3e466eaa93aa2772e930bf91f733f2d924b"
+    },
+    {
+      "id": "f22_parametric_assembly",
+      "path": "twins/reference-917-engine/parametric-cad-assembly-contract-f22.json",
+      "role": "null_parameter_and_interface_registry_only",
+      "sha256": "87529899d643dd437f357c79fa4dd4fa5ac5ed95929c4fdf82c4985222fd6baa"
+    },
+    {
+      "id": "f24_dual_variant_readiness",
+      "path": "twins/reference-917-engine/dual-variant-functional-readiness-f24.json",
+      "role": "variant_and_solver_input_boundaries_only",
+      "sha256": "87a2a22a79146d590d99ab1d3277a2c2c92d069c8275e580b675a5b5dcf23630"
+    },
+    {
+      "id": "f27_physical_metrology_template",
+      "path": "twins/reference-917-engine/physical-metrology-campaign-f27.template.json",
+      "role": "blank_campaign_schema_only",
+      "sha256": "73aa225c2b8baa3f74aa288f5ee570bafda8a6099c44fc2a4b8dde528eb12ee4"
+    },
+    {
+      "id": "f27_observation_template",
+      "path": "twins/reference-917-engine/physical-metrology-observations-f27.template.csv",
+      "role": "blank_observation_schema_only",
+      "sha256": "af1ab7c3a171ac69c7c25073c32007bb6902d064aa49e6dfbee2d3d1d5700ba2"
+    },
+    {
+      "id": "f27_validator",
+      "path": "twins/reference-917-engine/source/validate_physical_metrology_campaign_f27.py",
+      "role": "executed_fail_closed_validator",
+      "sha256": "7eda0cd1f6b7470b16b582c994a0c98b1f64b49a75c131500fe612da5333f1d4"
+    },
+    {
+      "id": "f28_dual_variant_cad_contract",
+      "path": "twins/reference-917-engine/dual-variant-parametric-cad-contract-f28.json",
+      "role": "component_family_and_branch_semantics_only",
+      "sha256": "920b8c022676a9941c8764fb1f0f178da47220798dd6fa7e96ba6d410aee5abb"
+    },
+    {
+      "id": "f28_cad_author_image_lock",
+      "path": "containers/cad-author-f28.lock.json",
+      "role": "immutable_cpu_cad_toolchain_only",
+      "sha256": "d221f6b6a2bd88361051809f2e06fa22dbe53948636fd18387f78c8111d50d8d"
+    }
+  ]
+}

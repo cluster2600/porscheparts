@@ -1,0 +1,119 @@
+#usda 1.0
+(
+    defaultPrim = "K16EnvelopeDiameterGuidesF1"
+    metersPerUnit = 0.001
+    upAxis = "Z"
+)
+
+def Xform "K16EnvelopeDiameterGuidesF1" (
+    kind = "assembly"
+)
+{
+    custom string status = "F1_guides_not_F2_F3_CFD_rotordynamics_or_SimReady"
+    custom bool physicsAssigned = false
+    custom bool materialAssigned = false
+    custom bool simReadyValidated = false
+    def Xform "K16LeftF1" (
+        kind = "component"
+    )
+    {
+        custom string fidelity = "F1_complete_unit_envelope_guide_unvalidated"
+        custom string side = "left"
+        custom string oemReferences = "99312301351,99312301352"
+        custom string petPartMasterTwinIds = "TWIN-PET-993-PART-62DA237715E2C0D682AE,TWIN-PET-993-PART-735A418DC9A79D381968"
+        custom double declaredCompleteUnitMassKg = 5.760000
+        custom bool internalGeometryPresent = false
+        custom bool interfaceGeometryPresent = false
+        custom bool analysisGeometryAvailable = false
+        custom bool materialAssigned = false
+        custom bool simReadyValidated = false
+        double3 xformOp:translate = (-180.000000, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Cube "CompleteUnitEnvelopeGuide"
+        {
+            custom string dimensionalEvidence = "supplier_declared_complete_unit_envelope"
+            double size = 1
+            uniform token purpose = "guide"
+            double3 xformOp:scale = (280.000000, 190.000000, 210.000000)
+            uniform token[] xformOpOrder = ["xformOp:scale"]
+        }
+    }
+
+    def Xform "K16RightF1" (
+        kind = "component"
+    )
+    {
+        custom string fidelity = "F1_complete_unit_envelope_guide_unvalidated"
+        custom string side = "right"
+        custom string oemReferences = "99312301451,99312301452"
+        custom string petPartMasterTwinIds = "TWIN-PET-993-PART-814D6E2DE71ADB280A99,TWIN-PET-993-PART-C0D8139928F041588F9B"
+        custom double declaredCompleteUnitMassKg = 5.600000
+        custom bool internalGeometryPresent = false
+        custom bool interfaceGeometryPresent = false
+        custom bool analysisGeometryAvailable = false
+        custom bool materialAssigned = false
+        custom bool simReadyValidated = false
+        double3 xformOp:translate = (180.000000, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Cube "CompleteUnitEnvelopeGuide"
+        {
+            custom string dimensionalEvidence = "supplier_declared_complete_unit_envelope"
+            double size = 1
+            uniform token purpose = "guide"
+            double3 xformOp:scale = (280.000000, 190.000000, 210.000000)
+            uniform token[] xformOpOrder = ["xformOp:scale"]
+        }
+
+        def Xform "UnpositionedRightWheelDiameterCoupons"
+        {
+            custom string placementStatus = "display_layout_only_not_internal_coordinates"
+            double3 xformOp:translate = (0, -250.000000, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+            def Cylinder "CompressorExducerGauge"
+            {
+                custom string dimensionalEvidence = "right_turbo_supplier_catalogue_only"
+                uniform token axis = "Z"
+                double height = 2.000000
+                double radius = 30.250000
+                uniform token purpose = "guide"
+                double3 xformOp:translate = (-90.000000, 0, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Cylinder "CompressorInducerGauge"
+            {
+                custom string dimensionalEvidence = "right_turbo_supplier_catalogue_only"
+                uniform token axis = "Z"
+                double height = 2.000000
+                double radius = 20.300000
+                uniform token purpose = "guide"
+                double3 xformOp:translate = (-30.000000, 0, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Cylinder "TurbineExducerGauge"
+            {
+                custom string dimensionalEvidence = "right_turbo_supplier_catalogue_only"
+                uniform token axis = "Z"
+                double height = 2.000000
+                double radius = 24.485000
+                uniform token purpose = "guide"
+                double3 xformOp:translate = (30.000000, 0, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Cylinder "TurbineInducerGauge"
+            {
+                custom string dimensionalEvidence = "right_turbo_supplier_catalogue_only"
+                uniform token axis = "Z"
+                double height = 2.000000
+                double radius = 27.480000
+                uniform token purpose = "guide"
+                double3 xformOp:translate = (90.000000, 0, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+    }
+}

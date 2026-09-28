@@ -1,0 +1,1175 @@
+{
+  "$comment": "Premiere tranche de jumeaux documentaires pour les pieces et produits disposant d'un encombrement declare. Les USD sont des proxys F1, pas des geometries de fabrication.",
+  "schema_version": "1.0.0",
+  "generated_by": "scripts/generate_catalogue_part_twins.py",
+  "eligibility_policy": {
+    "components": "complete_physical_record avec taille, masse, matiere et procede sources",
+    "declared_references": "enveloppe XYZ positive ; toute matiere absente reste unresolved et une matiere inferee reste signalee"
+  },
+  "porschefanatics": {
+    "evidence_file": "twins/catalogue-parts/evidence/porschefanatics-993-oem-context.json",
+    "source_repository_commit": "70a8cc3d546934afe0ed4a3a7096b5bef3e31029",
+    "catalogue_observations": {
+      "part_records_with_993_fitment": 29400,
+      "part_records_with_993_fitment_and_material_ids": 4077,
+      "part_records_with_993_fitment_and_top_level_dimensions": 0,
+      "note": "Le catalogue de produits aide à identifier matière et compatibilité, mais ne contient pas de champ dimensionnel de premier niveau exploitable comme CAO."
+    },
+    "role": "confirmation d'identite, de groupe PET, de position et d'application ; aucune cote CAO deduite"
+  },
+  "summary": {
+    "generated_twins": 18,
+    "component_twins": 4,
+    "declared_reference_twins": 14,
+    "editable_proxy_sources": 18,
+    "dimensioned_reference_entries": 14,
+    "unresolved_material_entries": 13,
+    "excluded_for_placeholder_material": 0
+  },
+  "twins": [
+    {
+      "twin_id": "TWIN-993-ENGINE-CARRIER-TURBO",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-ENGINE-CARRIER-TURBO",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": "catalog/parts/993-eng-carrier-0001.json",
+        "part_id": "993-ENG-CARRIER-0001",
+        "oem_reference": "993 115 021 53",
+        "name": "Berceau moteur, Turbo"
+      },
+      "fidelity": "F1_envelope",
+      "representation": "declared_bounding_envelope",
+      "geometry": {
+        "file": "twins/catalogue-parts/usd/993-engine-carrier-turbo.usda",
+        "editable_proxy_file": "twins/catalogue-parts/cad/993-engine-carrier-turbo.scad",
+        "units": "mm",
+        "parameters": {
+          "bounding_box_mm": [
+            600.0,
+            50.0,
+            50.0
+          ]
+        },
+        "accuracy_mm": null,
+        "source_master": null
+      },
+      "physical": {
+        "mass": {
+          "value_kg": 1.96,
+          "basis": "third_party_declared",
+          "source_id": "SRC-FVD-993-ENGINE-CARRIER"
+        },
+        "material": {
+          "family": "acier",
+          "grade": null,
+          "process": null,
+          "declared_label": "acier",
+          "source_id": "SRC-FVD-993-ENGINE-CARRIER"
+        },
+        "material_status": "inferred_not_measured"
+      },
+      "provenance": {
+        "source_ids": [
+          "SRC-FVD-993-ENGINE-CARRIER"
+        ],
+        "porschefanatics_context": {
+          "id": "993-115-021-53",
+          "oem_reference": "993 115 021 53",
+          "english_name": "Engine carrier",
+          "german_name": "Motorträger",
+          "french_name": "Support moteur",
+          "subsystem": "engine-suspension",
+          "pet_group": "Engine suspension Turbo",
+          "pet_position": 17,
+          "quantity_per_car": 1,
+          "fits_vehicles": [
+            "993-turbo"
+          ],
+          "pet_evidence": "Engine suspension Turbo · 17 · 993 115 021 53 · Engine carrier · 1",
+          "pet_verified": true,
+          "structural": true,
+          "safety_level": 7,
+          "oem_material": "unknown",
+          "oem_weight_kg": "unknown",
+          "pet_illustration": "109-00",
+          "pet_illustration_page": 115,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "generation_id": "993",
+          "depth": "read"
+        }
+      },
+      "validation": {
+        "status": "geometry_generated_unvalidated",
+        "catalogue_application_documented": true,
+        "geometry_fit_validated": false,
+        "physics_assignment": "intentionally_absent",
+        "simready_status": "not_evaluated",
+        "safety_disposition": "safety_critical_blocked_from_release_pending_professional_engineering",
+        "known_limits": [
+          "L'enveloppe 600 x 50 x 50 mm est une declaration vendeur arrondie, pas une metrologie de la piece.",
+          "L'acier est infere par recoupement de masse, volume apparent et photographies ; la nuance reste inconnue.",
+          "Le parallelepipede ne represente ni la lame incurvee, ni les bossages, ni les interfaces de fixation.",
+          "Aucune fabrication, simulation structurelle ou validation de montage n'est autorisee par ce proxy."
+        ]
+      }
+    },
+    {
+      "twin_id": "TWIN-993-INTERCOOLER-AIR-DUCT",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-INTERCOOLER-AIR-DUCT",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": null,
+        "part_id": null,
+        "oem_reference": "993 110 340 54",
+        "name": "Conduit d'air d'echangeur"
+      },
+      "fidelity": "F1_envelope",
+      "representation": "declared_bounding_envelope",
+      "geometry": {
+        "file": "twins/catalogue-parts/usd/993-intercooler-air-duct.usda",
+        "editable_proxy_file": "twins/catalogue-parts/cad/993-intercooler-air-duct.scad",
+        "units": "mm",
+        "parameters": {
+          "bounding_box_mm": [
+            600.0,
+            280.0,
+            50.0
+          ]
+        },
+        "accuracy_mm": null,
+        "source_master": null
+      },
+      "physical": {
+        "mass": {
+          "value_kg": 0.9,
+          "basis": "third_party_declared",
+          "source_id": "SRC-FVD-993-INTERCOOLER-AIR-DUCT-DIMENSIONS"
+        },
+        "material": {
+          "family": null,
+          "grade": null,
+          "process": null,
+          "declared_label": "a_determiner",
+          "source_id": "SRC-FVD-993-INTERCOOLER-AIR-DUCT-DIMENSIONS"
+        },
+        "material_status": "unresolved"
+      },
+      "provenance": {
+        "source_ids": [
+          "SRC-FVD-993-INTERCOOLER-AIR-DUCT-DIMENSIONS"
+        ],
+        "porschefanatics_context": null
+      },
+      "validation": {
+        "status": "geometry_generated_unvalidated",
+        "catalogue_application_documented": false,
+        "geometry_fit_validated": false,
+        "physics_assignment": "intentionally_absent",
+        "simready_status": "not_evaluated",
+        "safety_disposition": "not_assessed",
+        "known_limits": [
+          "L'enveloppe est une declaration fournisseur de packaging ou de produit, pas une metrologie de surface.",
+          "Le parallelepipede ne represente ni la forme, ni les interfaces, ni les epaisseurs de la piece.",
+          "La matiere et le procede restent non resolus lorsqu'ils ne sont pas explicitement sources.",
+          "Aucune fabrication, simulation fonctionnelle ou validation de montage n'est autorisee par ce proxy."
+        ]
+      }
+    },
+    {
+      "twin_id": "TWIN-993-INTERCOOLER-BRACKET-REINFORCED",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-INTERCOOLER-BRACKET-REINFORCED",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": null,
+        "part_id": null,
+        "oem_reference": null,
+        "name": "Support renforce d'echangeur"
+      },
+      "fidelity": "F1_envelope",
+      "representation": "declared_bounding_envelope",
+      "geometry": {
+        "file": "twins/catalogue-parts/usd/993-intercooler-bracket-reinforced.usda",
+        "editable_proxy_file": "twins/catalogue-parts/cad/993-intercooler-bracket-reinforced.scad",
+        "units": "mm",
+        "parameters": {
+          "bounding_box_mm": [
+            255.0,
+            80.0,
+            23.0
+          ]
+        },
+        "accuracy_mm": null,
+        "source_master": null
+      },
+      "physical": {
+        "mass": {
+          "value_kg": 0.2,
+          "basis": "third_party_declared",
+          "source_id": "SRC-FVD-993-INTERCOOLER-BRACKET-DIMENSIONS"
+        },
+        "material": {
+          "family": null,
+          "grade": null,
+          "process": null,
+          "declared_label": "a_determiner",
+          "source_id": "SRC-FVD-993-INTERCOOLER-BRACKET-DIMENSIONS"
+        },
+        "material_status": "unresolved"
+      },
+      "provenance": {
+        "source_ids": [
+          "SRC-FVD-993-INTERCOOLER-BRACKET-DIMENSIONS"
+        ],
+        "porschefanatics_context": null
+      },
+      "validation": {
+        "status": "geometry_generated_unvalidated",
+        "catalogue_application_documented": false,
+        "geometry_fit_validated": false,
+        "physics_assignment": "intentionally_absent",
+        "simready_status": "not_evaluated",
+        "safety_disposition": "not_assessed",
+        "known_limits": [
+          "L'enveloppe est une declaration fournisseur de packaging ou de produit, pas une metrologie de surface.",
+          "Le parallelepipede ne represente ni la forme, ni les interfaces, ni les epaisseurs de la piece.",
+          "La matiere et le procede restent non resolus lorsqu'ils ne sont pas explicitement sources.",
+          "Aucune fabrication, simulation fonctionnelle ou validation de montage n'est autorisee par ce proxy."
+        ]
+      }
+    },
+    {
+      "twin_id": "TWIN-993-INTERCOOLER-MOTORSPORT-FVD",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-INTERCOOLER-MOTORSPORT-FVD",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": null,
+        "part_id": null,
+        "oem_reference": null,
+        "name": "Echangeur Motorsport FVD 993 Turbo GT2"
+      },
+      "fidelity": "F1_envelope",
+      "representation": "declared_bounding_envelope",
+      "geometry": {
+        "file": "twins/catalogue-parts/usd/993-intercooler-motorsport-fvd.usda",
+        "editable_proxy_file": "twins/catalogue-parts/cad/993-intercooler-motorsport-fvd.scad",
+        "units": "mm",
+        "parameters": {
+          "bounding_box_mm": [
+            870.0,
+            410.0,
+            190.0
+          ]
+        },
+        "accuracy_mm": null,
+        "source_master": null
+      },
+      "physical": {
+        "mass": {
+          "value_kg": 10.1,
+          "basis": "third_party_declared",
+          "source_id": "SRC-FVD-993-MOTORSPORT-INTERCOOLER-DIMENSIONS"
+        },
+        "material": {
+          "family": null,
+          "grade": null,
+          "process": null,
+          "declared_label": "a_determiner",
+          "source_id": "SRC-FVD-993-MOTORSPORT-INTERCOOLER-DIMENSIONS"
+        },
+        "material_status": "unresolved"
+      },
+      "provenance": {
+        "source_ids": [
+          "SRC-FVD-993-MOTORSPORT-INTERCOOLER-DIMENSIONS"
+        ],
+        "porschefanatics_context": null
+      },
+      "validation": {
+        "status": "geometry_generated_unvalidated",
+        "catalogue_application_documented": false,
+        "geometry_fit_validated": false,
+        "physics_assignment": "intentionally_absent",
+        "simready_status": "not_evaluated",
+        "safety_disposition": "not_assessed",
+        "known_limits": [
+          "L'enveloppe est une declaration fournisseur de packaging ou de produit, pas une metrologie de surface.",
+          "Le parallelepipede ne represente ni la forme, ni les interfaces, ni les epaisseurs de la piece.",
+          "La matiere et le procede restent non resolus lorsqu'ils ne sont pas explicitement sources.",
+          "Aucune fabrication, simulation fonctionnelle ou validation de montage n'est autorisee par ce proxy."
+        ]
+      }
+    },
+    {
+      "twin_id": "TWIN-993-INTERCOOLER-PRESSURE-HOSE-KIT-FVD",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-INTERCOOLER-PRESSURE-HOSE-KIT-FVD",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": null,
+        "part_id": null,
+        "oem_reference": null,
+        "name": "Kit de durites de pression renforcees FVD 993"
+      },
+      "fidelity": "F1_envelope",
+      "representation": "declared_bounding_envelope",
+      "geometry": {
+        "file": "twins/catalogue-parts/usd/993-intercooler-pressure-hose-kit-fvd.usda",
+        "editable_proxy_file": "twins/catalogue-parts/cad/993-intercooler-pressure-hose-kit-fvd.scad",
+        "units": "mm",
+        "parameters": {
+          "bounding_box_mm": [
+            440.0,
+            160.0,
+            100.0
+          ]
+        },
+        "accuracy_mm": null,
+        "source_master": null
+      },
+      "physical": {
+        "mass": {
+          "value_kg": 1.08,
+          "basis": "third_party_declared",
+          "source_id": "SRC-FVD-993-REINFORCED-INTERCOOLER-HOSE-KIT-DIMENSIONS"
+        },
+        "material": {
+          "family": null,
+          "grade": null,
+          "process": null,
+          "declared_label": "a_determiner",
+          "source_id": "SRC-FVD-993-REINFORCED-INTERCOOLER-HOSE-KIT-DIMENSIONS"
+        },
+        "material_status": "unresolved"
+      },
+      "provenance": {
+        "source_ids": [
+          "SRC-FVD-993-REINFORCED-INTERCOOLER-HOSE-KIT-DIMENSIONS"
+        ],
+        "porschefanatics_context": null
+      },
+      "validation": {
+        "status": "geometry_generated_unvalidated",
+        "catalogue_application_documented": false,
+        "geometry_fit_validated": false,
+        "physics_assignment": "intentionally_absent",
+        "simready_status": "not_evaluated",
+        "safety_disposition": "not_assessed",
+        "known_limits": [
+          "L'enveloppe est une declaration fournisseur de packaging ou de produit, pas une metrologie de surface.",
+          "Le parallelepipede ne represente ni la forme, ni les interfaces, ni les epaisseurs de la piece.",
+          "La matiere et le procede restent non resolus lorsqu'ils ne sont pas explicitement sources.",
+          "Aucune fabrication, simulation fonctionnelle ou validation de montage n'est autorisee par ce proxy."
+        ]
+      }
+    },
+    {
+      "twin_id": "TWIN-993-INTERCOOLER-PRESSURE-HOSE-LEFT",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-INTERCOOLER-PRESSURE-HOSE-LEFT",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": null,
+        "part_id": null,
+        "oem_reference": "993 110 633 56",
+        "name": "Durite de pression turbo-echangeur gauche"
+      },
+      "fidelity": "F1_envelope",
+      "representation": "declared_bounding_envelope",
+      "geometry": {
+        "file": "twins/catalogue-parts/usd/993-intercooler-pressure-hose-left.usda",
+        "editable_proxy_file": "twins/catalogue-parts/cad/993-intercooler-pressure-hose-left.scad",
+        "units": "mm",
+        "parameters": {
+          "bounding_box_mm": [
+            430.0,
+            70.0,
+            115.0
+          ]
+        },
+        "accuracy_mm": null,
+        "source_master": null
+      },
+      "physical": {
+        "mass": {
+          "value_kg": 0.42,
+          "basis": "third_party_declared",
+          "source_id": "SRC-FVD-993-INTERCOOLER-HOSE-LEFT-DIMENSIONS"
+        },
+        "material": {
+          "family": null,
+          "grade": null,
+          "process": null,
+          "declared_label": "a_determiner",
+          "source_id": "SRC-FVD-993-INTERCOOLER-HOSE-LEFT-DIMENSIONS"
+        },
+        "material_status": "unresolved"
+      },
+      "provenance": {
+        "source_ids": [
+          "SRC-FVD-993-INTERCOOLER-HOSE-LEFT-DIMENSIONS"
+        ],
+        "porschefanatics_context": null
+      },
+      "validation": {
+        "status": "geometry_generated_unvalidated",
+        "catalogue_application_documented": false,
+        "geometry_fit_validated": false,
+        "physics_assignment": "intentionally_absent",
+        "simready_status": "not_evaluated",
+        "safety_disposition": "not_assessed",
+        "known_limits": [
+          "L'enveloppe est une declaration fournisseur de packaging ou de produit, pas une metrologie de surface.",
+          "Le parallelepipede ne represente ni la forme, ni les interfaces, ni les epaisseurs de la piece.",
+          "La matiere et le procede restent non resolus lorsqu'ils ne sont pas explicitement sources.",
+          "Aucune fabrication, simulation fonctionnelle ou validation de montage n'est autorisee par ce proxy."
+        ]
+      }
+    },
+    {
+      "twin_id": "TWIN-993-INTERCOOLER-PRESSURE-HOSE-RIGHT",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-INTERCOOLER-PRESSURE-HOSE-RIGHT",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": null,
+        "part_id": null,
+        "oem_reference": "993 110 632 56",
+        "name": "Durite de pression turbo-echangeur droite"
+      },
+      "fidelity": "F1_envelope",
+      "representation": "declared_bounding_envelope",
+      "geometry": {
+        "file": "twins/catalogue-parts/usd/993-intercooler-pressure-hose-right.usda",
+        "editable_proxy_file": "twins/catalogue-parts/cad/993-intercooler-pressure-hose-right.scad",
+        "units": "mm",
+        "parameters": {
+          "bounding_box_mm": [
+            430.0,
+            70.0,
+            90.0
+          ]
+        },
+        "accuracy_mm": null,
+        "source_master": null
+      },
+      "physical": {
+        "mass": {
+          "value_kg": 0.42,
+          "basis": "third_party_declared",
+          "source_id": "SRC-FVD-993-INTERCOOLER-HOSE-RIGHT-DIMENSIONS"
+        },
+        "material": {
+          "family": null,
+          "grade": null,
+          "process": null,
+          "declared_label": "a_determiner",
+          "source_id": "SRC-FVD-993-INTERCOOLER-HOSE-RIGHT-DIMENSIONS"
+        },
+        "material_status": "unresolved"
+      },
+      "provenance": {
+        "source_ids": [
+          "SRC-FVD-993-INTERCOOLER-HOSE-RIGHT-DIMENSIONS"
+        ],
+        "porschefanatics_context": null
+      },
+      "validation": {
+        "status": "geometry_generated_unvalidated",
+        "catalogue_application_documented": false,
+        "geometry_fit_validated": false,
+        "physics_assignment": "intentionally_absent",
+        "simready_status": "not_evaluated",
+        "safety_disposition": "not_assessed",
+        "known_limits": [
+          "L'enveloppe est une declaration fournisseur de packaging ou de produit, pas une metrologie de surface.",
+          "Le parallelepipede ne represente ni la forme, ni les interfaces, ni les epaisseurs de la piece.",
+          "La matiere et le procede restent non resolus lorsqu'ils ne sont pas explicitement sources.",
+          "Aucune fabrication, simulation fonctionnelle ou validation de montage n'est autorisee par ce proxy."
+        ]
+      }
+    },
+    {
+      "twin_id": "TWIN-993-INTERCOOLER-REPLACEMENT-AKS",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-INTERCOOLER-REPLACEMENT-AKS",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": null,
+        "part_id": null,
+        "oem_reference": "993 110 330 53",
+        "name": "Echangeur de remplacement AKS DASIS 177020T"
+      },
+      "fidelity": "F1_envelope",
+      "representation": "declared_bounding_envelope",
+      "geometry": {
+        "file": "twins/catalogue-parts/usd/993-intercooler-replacement-aks.usda",
+        "editable_proxy_file": "twins/catalogue-parts/cad/993-intercooler-replacement-aks.scad",
+        "units": "mm",
+        "parameters": {
+          "bounding_box_mm": [
+            260.0,
+            270.0,
+            60.0
+          ]
+        },
+        "accuracy_mm": null,
+        "source_master": null
+      },
+      "physical": {
+        "mass": {
+          "value_kg": 7.06,
+          "basis": "third_party_declared",
+          "source_id": "SRC-AKS-DASIS-993-INTERCOOLER-DIMENSIONS"
+        },
+        "material": {
+          "family": null,
+          "grade": null,
+          "process": null,
+          "declared_label": "a_determiner",
+          "source_id": "SRC-AKS-DASIS-993-INTERCOOLER-DIMENSIONS"
+        },
+        "material_status": "unresolved"
+      },
+      "provenance": {
+        "source_ids": [
+          "SRC-AKS-DASIS-993-INTERCOOLER-DIMENSIONS"
+        ],
+        "porschefanatics_context": null
+      },
+      "validation": {
+        "status": "geometry_generated_unvalidated",
+        "catalogue_application_documented": false,
+        "geometry_fit_validated": false,
+        "physics_assignment": "intentionally_absent",
+        "simready_status": "not_evaluated",
+        "safety_disposition": "not_assessed",
+        "known_limits": [
+          "L'enveloppe est une declaration fournisseur de packaging ou de produit, pas une metrologie de surface.",
+          "Le parallelepipede ne represente ni la forme, ni les interfaces, ni les epaisseurs de la piece.",
+          "La matiere et le procede restent non resolus lorsqu'ils ne sont pas explicitement sources.",
+          "Aucune fabrication, simulation fonctionnelle ou validation de montage n'est autorisee par ce proxy."
+        ]
+      }
+    },
+    {
+      "twin_id": "TWIN-993-INTERCOOLER-TA-TECHNIX-CORE-MODULE",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-INTERCOOLER-TA-TECHNIX-CORE-MODULE",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": null,
+        "part_id": null,
+        "oem_reference": null,
+        "name": "Module de faisceau d'echangeur TA Technix 993"
+      },
+      "fidelity": "F1_envelope",
+      "representation": "declared_bounding_envelope",
+      "geometry": {
+        "file": "twins/catalogue-parts/usd/993-intercooler-ta-technix-core-module.usda",
+        "editable_proxy_file": "twins/catalogue-parts/cad/993-intercooler-ta-technix-core-module.scad",
+        "units": "mm",
+        "parameters": {
+          "bounding_box_mm": [
+            260.0,
+            260.0,
+            100.0
+          ]
+        },
+        "accuracy_mm": null,
+        "source_master": null
+      },
+      "physical": {
+        "mass": {
+          "value_kg": null,
+          "basis": "third_party_declared",
+          "source_id": "SRC-TA-TECHNIX-993-INTERCOOLER-DIMENSIONS"
+        },
+        "material": {
+          "family": null,
+          "grade": null,
+          "process": null,
+          "declared_label": "a_determiner",
+          "source_id": "SRC-TA-TECHNIX-993-INTERCOOLER-DIMENSIONS"
+        },
+        "material_status": "unresolved"
+      },
+      "provenance": {
+        "source_ids": [
+          "SRC-TA-TECHNIX-993-INTERCOOLER-DIMENSIONS"
+        ],
+        "porschefanatics_context": null
+      },
+      "validation": {
+        "status": "geometry_generated_unvalidated",
+        "catalogue_application_documented": false,
+        "geometry_fit_validated": false,
+        "physics_assignment": "intentionally_absent",
+        "simready_status": "not_evaluated",
+        "safety_disposition": "not_assessed",
+        "known_limits": [
+          "L'enveloppe est une declaration fournisseur de packaging ou de produit, pas une metrologie de surface.",
+          "Le parallelepipede ne represente ni la forme, ni les interfaces, ni les epaisseurs de la piece.",
+          "La matiere et le procede restent non resolus lorsqu'ils ne sont pas explicitement sources.",
+          "Aucune fabrication, simulation fonctionnelle ou validation de montage n'est autorisee par ce proxy."
+        ]
+      }
+    },
+    {
+      "twin_id": "TWIN-993-INTERCOOLER-TEMPERATURE-SENSOR",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-INTERCOOLER-TEMPERATURE-SENSOR",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": null,
+        "part_id": null,
+        "oem_reference": "993 606 114 00",
+        "name": "Sonde de temperature d'air de suralimentation"
+      },
+      "fidelity": "F1_envelope",
+      "representation": "declared_bounding_envelope",
+      "geometry": {
+        "file": "twins/catalogue-parts/usd/993-intercooler-temperature-sensor.usda",
+        "editable_proxy_file": "twins/catalogue-parts/cad/993-intercooler-temperature-sensor.scad",
+        "units": "mm",
+        "parameters": {
+          "bounding_box_mm": [
+            75.0,
+            35.0,
+            20.0
+          ]
+        },
+        "accuracy_mm": null,
+        "source_master": null
+      },
+      "physical": {
+        "mass": {
+          "value_kg": 0.02,
+          "basis": "third_party_declared",
+          "source_id": "SRC-FVD-993-CHARGE-AIR-TEMPERATURE-SENSOR-DIMENSIONS"
+        },
+        "material": {
+          "family": null,
+          "grade": null,
+          "process": null,
+          "declared_label": "a_determiner",
+          "source_id": "SRC-FVD-993-CHARGE-AIR-TEMPERATURE-SENSOR-DIMENSIONS"
+        },
+        "material_status": "unresolved"
+      },
+      "provenance": {
+        "source_ids": [
+          "SRC-FVD-993-CHARGE-AIR-TEMPERATURE-SENSOR-DIMENSIONS"
+        ],
+        "porschefanatics_context": null
+      },
+      "validation": {
+        "status": "geometry_generated_unvalidated",
+        "catalogue_application_documented": false,
+        "geometry_fit_validated": false,
+        "physics_assignment": "intentionally_absent",
+        "simready_status": "not_evaluated",
+        "safety_disposition": "not_assessed",
+        "known_limits": [
+          "L'enveloppe est une declaration fournisseur de packaging ou de produit, pas une metrologie de surface.",
+          "Le parallelepipede ne represente ni la forme, ni les interfaces, ni les epaisseurs de la piece.",
+          "La matiere et le procede restent non resolus lorsqu'ils ne sont pas explicitement sources.",
+          "Aucune fabrication, simulation fonctionnelle ou validation de montage n'est autorisee par ce proxy."
+        ]
+      }
+    },
+    {
+      "twin_id": "TWIN-993-TURBO-HEAT-SHIELD-COVER-LEFT",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-TURBO-HEAT-SHIELD-COVER-LEFT",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": null,
+        "part_id": null,
+        "oem_reference": "993 123 113 51",
+        "name": "Couvercle de protection thermique du turbo gauche"
+      },
+      "fidelity": "F1_envelope",
+      "representation": "declared_bounding_envelope",
+      "geometry": {
+        "file": "twins/catalogue-parts/usd/993-turbo-heat-shield-cover-left.usda",
+        "editable_proxy_file": "twins/catalogue-parts/cad/993-turbo-heat-shield-cover-left.scad",
+        "units": "mm",
+        "parameters": {
+          "bounding_box_mm": [
+            160.0,
+            110.0,
+            105.0
+          ]
+        },
+        "accuracy_mm": null,
+        "source_master": null
+      },
+      "physical": {
+        "mass": {
+          "value_kg": 0.23,
+          "basis": "third_party_declared",
+          "source_id": "SRC-FVD-993-TURBO-HEAT-SHIELD-DIMENSIONS"
+        },
+        "material": {
+          "family": null,
+          "grade": null,
+          "process": null,
+          "declared_label": "a_determiner",
+          "source_id": "SRC-FVD-993-TURBO-HEAT-SHIELD-DIMENSIONS"
+        },
+        "material_status": "unresolved"
+      },
+      "provenance": {
+        "source_ids": [
+          "SRC-FVD-993-TURBO-HEAT-SHIELD-DIMENSIONS"
+        ],
+        "porschefanatics_context": null
+      },
+      "validation": {
+        "status": "geometry_generated_unvalidated",
+        "catalogue_application_documented": false,
+        "geometry_fit_validated": false,
+        "physics_assignment": "intentionally_absent",
+        "simready_status": "not_evaluated",
+        "safety_disposition": "not_assessed",
+        "known_limits": [
+          "L'enveloppe est une declaration fournisseur de packaging ou de produit, pas une metrologie de surface.",
+          "Le parallelepipede ne represente ni la forme, ni les interfaces, ni les epaisseurs de la piece.",
+          "La matiere et le procede restent non resolus lorsqu'ils ne sont pas explicitement sources.",
+          "Aucune fabrication, simulation fonctionnelle ou validation de montage n'est autorisee par ce proxy."
+        ]
+      }
+    },
+    {
+      "twin_id": "TWIN-993-TURBOCHARGER-K16-24-FVD",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-TURBOCHARGER-K16-24-FVD",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": null,
+        "part_id": null,
+        "oem_reference": null,
+        "name": "Turbocompresseur hybride K16/24 FVD"
+      },
+      "fidelity": "F1_envelope",
+      "representation": "declared_bounding_envelope",
+      "geometry": {
+        "file": "twins/catalogue-parts/usd/993-turbocharger-k16-24-fvd.usda",
+        "editable_proxy_file": "twins/catalogue-parts/cad/993-turbocharger-k16-24-fvd.scad",
+        "units": "mm",
+        "parameters": {
+          "bounding_box_mm": [
+            290.0,
+            230.0,
+            230.0
+          ]
+        },
+        "accuracy_mm": null,
+        "source_master": null
+      },
+      "physical": {
+        "mass": {
+          "value_kg": 5.63,
+          "basis": "third_party_declared",
+          "source_id": "SRC-FVD-993-K16-24-SPORT-TURBO-DATA"
+        },
+        "material": {
+          "family": null,
+          "grade": null,
+          "process": null,
+          "declared_label": "a_determiner",
+          "source_id": "SRC-FVD-993-K16-24-SPORT-TURBO-DATA"
+        },
+        "material_status": "unresolved"
+      },
+      "provenance": {
+        "source_ids": [
+          "SRC-FVD-993-K16-24-SPORT-TURBO-DATA"
+        ],
+        "porschefanatics_context": null
+      },
+      "validation": {
+        "status": "geometry_generated_unvalidated",
+        "catalogue_application_documented": false,
+        "geometry_fit_validated": false,
+        "physics_assignment": "intentionally_absent",
+        "simready_status": "not_evaluated",
+        "safety_disposition": "not_assessed",
+        "known_limits": [
+          "L'enveloppe est une declaration fournisseur de packaging ou de produit, pas une metrologie de surface.",
+          "Le parallelepipede ne represente ni la forme, ni les interfaces, ni les epaisseurs de la piece.",
+          "La matiere et le procede restent non resolus lorsqu'ils ne sont pas explicitement sources.",
+          "Aucune fabrication, simulation fonctionnelle ou validation de montage n'est autorisee par ce proxy."
+        ]
+      }
+    },
+    {
+      "twin_id": "TWIN-993-TURBOCHARGER-K16-LEFT",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-TURBOCHARGER-K16-LEFT",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": "catalog/parts/993-turbocharger-k16-pair-0001.json",
+        "part_id": "993-TURBOCHARGER-K16-PAIR-0001",
+        "oem_reference": "993 123 013 52",
+        "name": "Turbocompresseur K16 gauche complet"
+      },
+      "fidelity": "F1_envelope",
+      "representation": "declared_bounding_envelope",
+      "geometry": {
+        "file": "twins/catalogue-parts/usd/993-turbocharger-k16-left.usda",
+        "editable_proxy_file": "twins/catalogue-parts/cad/993-turbocharger-k16-left.scad",
+        "units": "mm",
+        "parameters": {
+          "bounding_box_mm": [
+            280.0,
+            190.0,
+            210.0
+          ]
+        },
+        "accuracy_mm": null,
+        "source_master": null
+      },
+      "physical": {
+        "mass": {
+          "value_kg": 5.76,
+          "basis": "third_party_declared",
+          "source_id": "SRC-FVD-993-K16-OEM-DIMENSIONS"
+        },
+        "material": {
+          "family": null,
+          "grade": null,
+          "process": null,
+          "declared_label": "a_determiner",
+          "source_id": "SRC-FVD-993-K16-OEM-DIMENSIONS"
+        },
+        "material_status": "unresolved"
+      },
+      "provenance": {
+        "source_ids": [
+          "SRC-FVD-993-K16-OEM-DIMENSIONS"
+        ],
+        "porschefanatics_context": null
+      },
+      "validation": {
+        "status": "geometry_generated_unvalidated",
+        "catalogue_application_documented": false,
+        "geometry_fit_validated": false,
+        "physics_assignment": "intentionally_absent",
+        "simready_status": "not_evaluated",
+        "safety_disposition": "not_assessed",
+        "known_limits": [
+          "L'enveloppe est une declaration fournisseur de packaging ou de produit, pas une metrologie de surface.",
+          "Le parallelepipede ne represente ni la forme, ni les interfaces, ni les epaisseurs de la piece.",
+          "La matiere et le procede restent non resolus lorsqu'ils ne sont pas explicitement sources.",
+          "Aucune fabrication, simulation fonctionnelle ou validation de montage n'est autorisee par ce proxy."
+        ]
+      }
+    },
+    {
+      "twin_id": "TWIN-993-TURBOCHARGER-K16-RIGHT",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-TURBOCHARGER-K16-RIGHT",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": "catalog/parts/993-turbocharger-k16-pair-0001.json",
+        "part_id": "993-TURBOCHARGER-K16-PAIR-0001",
+        "oem_reference": "993 123 014 52",
+        "name": "Turbocompresseur K16 droit complet"
+      },
+      "fidelity": "F1_envelope",
+      "representation": "declared_bounding_envelope",
+      "geometry": {
+        "file": "twins/catalogue-parts/usd/993-turbocharger-k16-right.usda",
+        "editable_proxy_file": "twins/catalogue-parts/cad/993-turbocharger-k16-right.scad",
+        "units": "mm",
+        "parameters": {
+          "bounding_box_mm": [
+            280.0,
+            190.0,
+            210.0
+          ]
+        },
+        "accuracy_mm": null,
+        "source_master": null
+      },
+      "physical": {
+        "mass": {
+          "value_kg": 5.6,
+          "basis": "third_party_declared",
+          "source_id": "SRC-FVD-993-K16-OEM-DIMENSIONS"
+        },
+        "material": {
+          "family": null,
+          "grade": null,
+          "process": null,
+          "declared_label": "a_determiner",
+          "source_id": "SRC-FVD-993-K16-OEM-DIMENSIONS"
+        },
+        "material_status": "unresolved"
+      },
+      "provenance": {
+        "source_ids": [
+          "SRC-FVD-993-K16-OEM-DIMENSIONS"
+        ],
+        "porschefanatics_context": null
+      },
+      "validation": {
+        "status": "geometry_generated_unvalidated",
+        "catalogue_application_documented": false,
+        "geometry_fit_validated": false,
+        "physics_assignment": "intentionally_absent",
+        "simready_status": "not_evaluated",
+        "safety_disposition": "not_assessed",
+        "known_limits": [
+          "L'enveloppe est une declaration fournisseur de packaging ou de produit, pas une metrologie de surface.",
+          "Le parallelepipede ne represente ni la forme, ni les interfaces, ni les epaisseurs de la piece.",
+          "La matiere et le procede restent non resolus lorsqu'ils ne sont pas explicitement sources.",
+          "Aucune fabrication, simulation fonctionnelle ou validation de montage n'est autorisee par ce proxy."
+        ]
+      }
+    },
+    {
+      "twin_id": "TWIN-FUCHS-37024.013",
+      "subject": {
+        "kind": "catalog_component",
+        "id": "COMP-FUCHS-37024.013",
+        "record": "catalog/components/comp-fuchs-37024.013.json",
+        "name": "Roue Fuchs forgée aluminium 7J x 17 ET55"
+      },
+      "fidelity": "F1_envelope",
+      "representation": "annular_wheel_interface_proxy",
+      "geometry": {
+        "file": "twins/catalogue-parts/usd/comp-fuchs-37024-013.usda",
+        "editable_proxy_file": "twins/catalogue-parts/cad/comp-fuchs-37024-013.scad",
+        "units": "mm",
+        "parameters": {
+          "rim_diameter_mm": 431.8,
+          "rim_width_mm": 177.8,
+          "centre_bore_mm": 71.58
+        },
+        "accuracy_mm": null,
+        "source_master": "components/wheels/fuchs/source/wheel_interface_proxy.py"
+      },
+      "physical": {
+        "mass": {
+          "value_g": 7500,
+          "tolerance_g": null,
+          "basis": "manufacturer",
+          "source_id": "FUCHS-993-PDF"
+        },
+        "material": {
+          "family": "aluminium",
+          "grade": null,
+          "process": "forged",
+          "source_id": "FUCHS-PRODUCT"
+        },
+        "material_status": "manufacturer_sourced"
+      },
+      "provenance": {
+        "source_ids": [
+          "FUCHS-PRODUCT",
+          "FUCHS-993-PDF",
+          "FUCHS-37024-APPROVAL"
+        ],
+        "porschefanatics_context": null
+      },
+      "validation": {
+        "status": "geometry_generated_unvalidated",
+        "catalogue_application_documented": true,
+        "geometry_fit_validated": false,
+        "physics_assignment": "intentionally_absent",
+        "simready_status": "not_evaluated",
+        "safety_disposition": "wheel_part_blocked_from_release_pending_professional_engineering",
+        "known_limits": [
+          "Le proxy représente le cylindre nominal de portée et l'alésage central ; les cinq perçages restent des métadonnées faute de géométrie complète du siège sphérique.",
+          "Profil de jante, branches et enveloppe extérieure réelle non documentés.",
+          "La tolérance de masse n'est pas publiée par le fabricant."
+        ]
+      }
+    },
+    {
+      "twin_id": "TWIN-FUCHS-37026.013",
+      "subject": {
+        "kind": "catalog_component",
+        "id": "COMP-FUCHS-37026.013",
+        "record": "catalog/components/comp-fuchs-37026.013.json",
+        "name": "Roue Fuchs forgée aluminium 9J x 17 ET55"
+      },
+      "fidelity": "F1_envelope",
+      "representation": "annular_wheel_interface_proxy",
+      "geometry": {
+        "file": "twins/catalogue-parts/usd/comp-fuchs-37026-013.usda",
+        "editable_proxy_file": "twins/catalogue-parts/cad/comp-fuchs-37026-013.scad",
+        "units": "mm",
+        "parameters": {
+          "rim_diameter_mm": 431.8,
+          "rim_width_mm": 228.6,
+          "centre_bore_mm": 71.5
+        },
+        "accuracy_mm": null,
+        "source_master": "components/wheels/fuchs/source/wheel_interface_proxy.py"
+      },
+      "physical": {
+        "mass": {
+          "value_g": 7950,
+          "tolerance_g": null,
+          "basis": "manufacturer",
+          "source_id": "FUCHS-993-PDF"
+        },
+        "material": {
+          "family": "aluminium",
+          "grade": null,
+          "process": "forged",
+          "source_id": "FUCHS-PRODUCT"
+        },
+        "material_status": "manufacturer_sourced"
+      },
+      "provenance": {
+        "source_ids": [
+          "FUCHS-PRODUCT",
+          "FUCHS-993-PDF",
+          "FUCHS-37026-APPROVAL"
+        ],
+        "porschefanatics_context": null
+      },
+      "validation": {
+        "status": "geometry_generated_unvalidated",
+        "catalogue_application_documented": true,
+        "geometry_fit_validated": false,
+        "physics_assignment": "intentionally_absent",
+        "simready_status": "not_evaluated",
+        "safety_disposition": "wheel_part_blocked_from_release_pending_professional_engineering",
+        "known_limits": [
+          "Le proxy représente le cylindre nominal de portée et l'alésage central ; l'entraxe reste une métadonnée faute de diamètre et de siège des fixations.",
+          "Profil de jante, branches et enveloppe extérieure réelle non documentés.",
+          "Pour Turbo/Turbo Look, le fabricant recommande une entretoise de 32 mm pour raisons esthétiques et signale une réception individuelle.",
+          "La tolérance de masse n'est pas publiée par le fabricant."
+        ]
+      }
+    },
+    {
+      "twin_id": "TWIN-FUCHS-37027.011",
+      "subject": {
+        "kind": "catalog_component",
+        "id": "COMP-FUCHS-37027.011",
+        "record": "catalog/components/comp-fuchs-37027.011.json",
+        "name": "Roue Fuchs forgée aluminium 8J x 18 ET52"
+      },
+      "fidelity": "F1_envelope",
+      "representation": "annular_wheel_interface_proxy",
+      "geometry": {
+        "file": "twins/catalogue-parts/usd/comp-fuchs-37027-011.usda",
+        "editable_proxy_file": "twins/catalogue-parts/cad/comp-fuchs-37027-011.scad",
+        "units": "mm",
+        "parameters": {
+          "rim_diameter_mm": 457.2,
+          "rim_width_mm": 203.2,
+          "centre_bore_mm": 71.5
+        },
+        "accuracy_mm": null,
+        "source_master": "components/wheels/fuchs/source/wheel_interface_proxy.py"
+      },
+      "physical": {
+        "mass": {
+          "value_g": 8200,
+          "tolerance_g": null,
+          "basis": "manufacturer",
+          "source_id": "FUCHS-993-PDF"
+        },
+        "material": {
+          "family": "aluminium",
+          "grade": null,
+          "process": "forged",
+          "source_id": "FUCHS-PRODUCT"
+        },
+        "material_status": "manufacturer_sourced"
+      },
+      "provenance": {
+        "source_ids": [
+          "FUCHS-PRODUCT",
+          "FUCHS-993-PDF",
+          "FUCHS-APPROVAL"
+        ],
+        "porschefanatics_context": null
+      },
+      "validation": {
+        "status": "geometry_generated_unvalidated",
+        "catalogue_application_documented": true,
+        "geometry_fit_validated": false,
+        "physics_assignment": "intentionally_absent",
+        "simready_status": "not_evaluated",
+        "safety_disposition": "wheel_part_blocked_from_release_pending_professional_engineering",
+        "known_limits": [
+          "Le proxy représente le cylindre nominal de portée et l'alésage central ; l'entraxe reste une métadonnée faute de diamètre et de siège des fixations.",
+          "Profil de jante, branches, sièges de fixation et enveloppe extérieure réelle non disponibles.",
+          "Les tolérances dimensionnelles et de masse ne sont pas publiées dans les sources retenues."
+        ]
+      }
+    },
+    {
+      "twin_id": "TWIN-FUCHS-37028.011",
+      "subject": {
+        "kind": "catalog_component",
+        "id": "COMP-FUCHS-37028.011",
+        "record": "catalog/components/comp-fuchs-37028.011.json",
+        "name": "Roue Fuchs forgée aluminium 10J x 18 ET65"
+      },
+      "fidelity": "F1_envelope",
+      "representation": "annular_wheel_interface_proxy",
+      "geometry": {
+        "file": "twins/catalogue-parts/usd/comp-fuchs-37028-011.usda",
+        "editable_proxy_file": "twins/catalogue-parts/cad/comp-fuchs-37028-011.scad",
+        "units": "mm",
+        "parameters": {
+          "rim_diameter_mm": 457.2,
+          "rim_width_mm": 254.0,
+          "centre_bore_mm": 71.5
+        },
+        "accuracy_mm": null,
+        "source_master": "components/wheels/fuchs/source/wheel_interface_proxy.py"
+      },
+      "physical": {
+        "mass": {
+          "value_g": 8800,
+          "tolerance_g": null,
+          "basis": "manufacturer",
+          "source_id": "FUCHS-993-PDF"
+        },
+        "material": {
+          "family": "aluminium",
+          "grade": null,
+          "process": "forged",
+          "source_id": "FUCHS-PRODUCT"
+        },
+        "material_status": "manufacturer_sourced"
+      },
+      "provenance": {
+        "source_ids": [
+          "FUCHS-PRODUCT",
+          "FUCHS-993-PDF",
+          "FUCHS-APPROVAL"
+        ],
+        "porschefanatics_context": null
+      },
+      "validation": {
+        "status": "geometry_generated_unvalidated",
+        "catalogue_application_documented": true,
+        "geometry_fit_validated": false,
+        "physics_assignment": "intentionally_absent",
+        "simready_status": "not_evaluated",
+        "safety_disposition": "wheel_part_blocked_from_release_pending_professional_engineering",
+        "known_limits": [
+          "Le proxy représente le cylindre nominal de portée et l'alésage central ; l'entraxe reste une métadonnée faute de diamètre et de siège des fixations.",
+          "Profil de jante, branches, sièges de fixation et enveloppe extérieure réelle non disponibles.",
+          "Sur 993 Turbo/Turbo Look, la documentation fabricant impose une entretoise de 25 mm avec le pneumatique 285/30ZR18.",
+          "Les tolérances dimensionnelles et de masse ne sont pas publiées dans les sources retenues."
+        ]
+      }
+    }
+  ]
+}

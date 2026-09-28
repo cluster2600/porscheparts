@@ -1,0 +1,457 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_id": "964-993-CARBON-MONOCOQUE-TUV-DIMENSIONS-DE-0004",
+  "as_of": "2026-09-02",
+  "jurisdiction_assumption": "Germany_StVZO_19_2_and_21",
+  "purpose": "Registre fail-closed des cotes 964 et 993 trouvees sur des sources allemandes et des cotes structurelles encore manquantes avant conception detaillee et discussion TÜV.",
+  "target_configuration": {
+    "generations": [
+      "Porsche_911_964",
+      "Porsche_911_993"
+    ],
+    "body_style": null,
+    "body_width_family": null,
+    "drivetrain": null,
+    "model_year": null,
+    "vin_specific_baseline": false,
+    "status": "not_frozen",
+    "blocking_reason": "Les interfaces 964 et 993 doivent être mesurées séparément; Coupe, Cabriolet, Targa, Carrera étroite, Turbo large, propulsion et transmission intégrale ne doivent pas partager une seule définition de caisse."
+  },
+  "coordinate_system": {
+    "datum_definition": null,
+    "axis_definition": null,
+    "reference_holes": [],
+    "status": "missing",
+    "release_credit": false
+  },
+  "confirmed_public_dimensions": [
+    {
+      "configuration": "964_Carrera_2_Coupe_ROW_narrow_body",
+      "source_id": "SRC-PORSCHE-FINDER-964-C2-COUPE-DIMENSIONS",
+      "source_country": "DE",
+      "publisher_level": "official_manufacturer_marketplace",
+      "dimensions": {
+        "overall_length_mm": 4250,
+        "overall_width_mm": 1652,
+        "overall_height_mm": 1310,
+        "wheelbase_mm": 2272,
+        "front_track_mm": 1374,
+        "rear_track_mm": 1374,
+        "turning_circle_m": 11.9
+      },
+      "masses": {
+        "curb_DIN_kg": 1350,
+        "curb_EC_kg": 1425,
+        "maximum_permitted_kg": 1690
+      },
+      "status": "confirmed_as_published_for_named_vehicle",
+      "limitations": [
+        "annonce dynamique susceptible de disparaitre",
+        "Carrera 2 Coupe et non C4, Turbo, Cabriolet ou Targa",
+        "aucune tolerance ni definition des conditions de mesure",
+        "aucune coordonnee d'interface structurelle"
+      ]
+    },
+    {
+      "configuration": "964_Carrera_4_Coupe_ROW_narrow_body",
+      "source_id": "SRC-PORSCHE-FINDER-964-C4-COUPE-DIMENSIONS",
+      "source_country": "DE",
+      "publisher_level": "official_manufacturer_marketplace_cross_checked_by_official_porsche_table",
+      "dimensions": {
+        "overall_length_mm": 4250,
+        "overall_width_mm": 1652,
+        "overall_height_mm": 1310,
+        "wheelbase_mm": 2272,
+        "front_track_mm": 1380,
+        "rear_track_mm": 1374,
+        "turning_circle_m": 11.9
+      },
+      "masses": {
+        "curb_DIN_kg": 1450,
+        "curb_EC_kg": 1525,
+        "maximum_permitted_kg": 1790
+      },
+      "status": "confirmed_as_published_for_named_vehicle_and_cross_checked",
+      "limitations": [
+        "annonce dynamique susceptible de disparaitre",
+        "Carrera 4 Coupe et non C2, Turbo, Cabriolet ou Targa",
+        "aucune tolerance ni definition complete des conditions de mesure",
+        "aucune coordonnee de tunnel, transmission, suspension ou caisse"
+      ]
+    },
+    {
+      "configuration": "993_Carrera_Cabriolet_II_ROW_narrow_body",
+      "source_id": "SRC-PORSCHE-FINDER-993-CABRIOLET-DIMENSIONS",
+      "source_country": "DE",
+      "publisher_level": "official_manufacturer_marketplace",
+      "dimensions": {
+        "overall_length_mm": 4245,
+        "overall_width_mm": 1735,
+        "overall_height_mm": 1300,
+        "wheelbase_mm": 2272,
+        "front_track_mm": 1405,
+        "rear_track_mm": 1444,
+        "turning_circle_m": 11.7
+      },
+      "masses": {
+        "curb_DIN_kg": 1370,
+        "curb_EC_kg": 1445,
+        "maximum_permitted_kg": 1710
+      },
+      "status": "confirmed_as_published_for_named_vehicle",
+      "limitations": [
+        "annonce dynamique susceptible de disparaitre",
+        "Cabriolet et non Coupe",
+        "aucune tolerance ni definition des conditions de mesure",
+        "aucune coordonnee d'interface structurelle"
+      ]
+    },
+    {
+      "configuration": "993_Turbo_S_wide_body",
+      "source_id": "SRC-PORSCHE-NEWSROOM-993-TURBO-S-DIMENSIONS",
+      "source_country": "DE",
+      "publisher_level": "official_manufacturer",
+      "dimensions": {
+        "overall_length_mm": 4245,
+        "overall_width_mm": 1795,
+        "overall_height_mm": 1285,
+        "wheelbase_mm": 2272,
+        "front_track_mm": null,
+        "rear_track_mm": null
+      },
+      "masses": {
+        "curb_vehicle_certificate_kg": 1575
+      },
+      "status": "confirmed_as_published_for_variant",
+      "limitations": [
+        "Turbo S et non Carrera etroite",
+        "voies et garde au sol non publiees",
+        "aucune tolerance ni coordonnee d'interface structurelle"
+      ]
+    }
+  ],
+  "official_porsche_variant_tables": {
+    "interpretation": "Les voies sont des cotes de vehicule dependantes de la variante, de l'annee et parfois des roues. Elles ne localisent pas les ancrages de suspension et ne doivent pas servir a dessiner le tunnel ou la caisse.",
+    "964": {
+      "source_ids": [
+        "SRC-PORSCHE-CLUB-964-WHEELBASE-TRACK-DE",
+        "SRC-PORSCHE-CLUB-964-UNLADEN-MASS"
+      ],
+      "rows": [
+        {
+          "variant": "Carrera_2",
+          "model_years": "1990-1994",
+          "wheelbase_mm": 2272,
+          "front_track_mm": 1380,
+          "rear_track_mm": 1374,
+          "ground_clearance_at_permitted_gross_weight_mm": 115,
+          "ground_clearance_sport_suspension_mm": 95,
+          "unladen_DIN_kg": 1350
+        },
+        {
+          "variant": "Carrera_4",
+          "model_years": "1989",
+          "wheelbase_mm": 2272,
+          "front_track_mm": 1380,
+          "rear_track_mm": 1374,
+          "ground_clearance_at_permitted_gross_weight_mm": 120,
+          "ground_clearance_sport_suspension_mm": 100,
+          "unladen_DIN_kg": 1450
+        },
+        {
+          "variant": "Carrera_4",
+          "model_years": "1990-1994",
+          "wheelbase_mm": 2272,
+          "front_track_mm": 1380,
+          "rear_track_mm": 1374,
+          "ground_clearance_at_permitted_gross_weight_mm": 120,
+          "ground_clearance_sport_suspension_mm": 100,
+          "unladen_DIN_kg": 1450
+        },
+        {
+          "variant": "Carrera_4_Turbo_Look",
+          "model_years": "1994",
+          "wheelbase_mm": 2272,
+          "front_track_mm": 1434,
+          "rear_track_mm": 1493,
+          "ground_clearance_at_permitted_gross_weight_mm": 115,
+          "ground_clearance_sport_suspension_mm": null,
+          "unladen_DIN_kg": 1420
+        }
+      ]
+    },
+    "993": {
+      "source_ids": [
+        "SRC-PORSCHE-CLUB-993-WHEELBASE-TRACK",
+        "SRC-PORSCHE-CLUB-993-UNLADEN-MASS-DE"
+      ],
+      "rows": [
+        {
+          "variant": "Carrera",
+          "model_years": "1994-1995",
+          "wheelbase_mm": 2272,
+          "front_track_mm": 1405,
+          "rear_track_mm": 1444,
+          "ground_clearance_at_permitted_gross_weight_mm": 110,
+          "unladen_DIN_kg": 1370
+        },
+        {
+          "variant": "Carrera_4",
+          "model_years": "1995",
+          "wheelbase_mm": 2272,
+          "front_track_mm": 1405,
+          "rear_track_mm": 1444,
+          "ground_clearance_at_permitted_gross_weight_mm": 110,
+          "unladen_DIN_kg": 1420
+        },
+        {
+          "variant": "Turbo",
+          "model_years": "1995-1998",
+          "wheelbase_mm": 2272,
+          "front_track_mm": 1411,
+          "rear_track_mm": 1504,
+          "ground_clearance_at_permitted_gross_weight_mm": 90,
+          "unladen_DIN_kg": 1500
+        },
+        {
+          "variant": "Carrera",
+          "model_years": "1997",
+          "wheelbase_mm": 2272,
+          "front_track_mm": 1405,
+          "rear_track_mm": 1444,
+          "ground_clearance_at_permitted_gross_weight_mm": 95,
+          "unladen_DIN_kg": 1370
+        },
+        {
+          "variant": "Carrera_S",
+          "model_years": "1997-1998",
+          "wheelbase_mm": 2272,
+          "front_track_mm": 1405,
+          "rear_track_mm": 1536,
+          "ground_clearance_at_permitted_gross_weight_mm": 110,
+          "unladen_DIN_kg": 1370
+        },
+        {
+          "variant": "Carrera_4",
+          "model_years": "1997",
+          "wheelbase_mm": 2272,
+          "front_track_mm": 1405,
+          "rear_track_mm": 1444,
+          "ground_clearance_at_permitted_gross_weight_mm": 110,
+          "unladen_DIN_kg": 1400
+        },
+        {
+          "variant": "Carrera_4S",
+          "model_years": "1997-1998",
+          "wheelbase_mm": 2272,
+          "front_track_mm": 1405,
+          "rear_track_mm": 1444,
+          "ground_clearance_at_permitted_gross_weight_mm": null,
+          "unladen_DIN_kg": 1420,
+          "wheel_dependent_permitted_tracks_mm": {
+            "17_inch": {
+              "front": 1405,
+              "rear": 1474
+            },
+            "18_inch": {
+              "front": 1411,
+              "rear": 1454
+            }
+          }
+        }
+      ]
+    }
+  },
+  "documented_964_body_repair_constraints": {
+    "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOLUME5",
+    "measurement_id": "MEAS-MANUAL-964-BODY-REPAIR-DIMENSIONS",
+    "document_pages": {
+      "pdf_pages": [6, 7, 8, 9],
+      "printed_pages": ["50-02", "50-03", "50-05", "50-05a"]
+    },
+    "variant_scope": "Carrera_4_basis_also_used_for_Carrera_2; no_alternate_floor_repair_table_found_in_Carrera_2_addendum; driveline_specific_interfaces_still_separate",
+    "point_ids_visible": ["P1", "P2", "P3", "P4", "P5", "P6", "P7", "P11", "P12", "P13", "P14", "P15", "P16", "P17", "P18", "P19", "P20", "P21"],
+    "manually_transcribed_dimension_keys": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "K", "L", "M", "N", "O", "P", "R", "S"],
+    "key_constraints_mm": {
+      "front_axle_outer_crossmember_P5_left_right": {"nominal": 770.0, "tolerance": 2.0},
+      "front_axle_inner_crossmember_P6_left_right": {"nominal": 204.0, "tolerance": 2.0},
+      "transmission_crossmember_P12_left_right": {"nominal": 278.0, "tolerance": 1.0},
+      "engine_mount_inner_P21_left_right": {"nominal": 640.0, "tolerance": 1.0},
+      "front_to_rear_jacking_same_side_P17_P18": {"nominal": 1245.0, "tolerance": 2.0},
+      "front_to_rear_platform_same_side_P17_P19": {"nominal": 1328.0, "tolerance": 2.0}
+    },
+    "coordinate_reconstruction_status": "pairwise_constraint_graph_only_not_unique_xyz",
+    "usable_for": [
+      "controle de coherence d'un scan 964",
+      "definition du plan de pointage CMM",
+      "recalage d'un gabarit de soubassement",
+      "controle de l'entraxe de traverse de boite P12"
+    ],
+    "not_usable_for": [
+      "surface CAO du tunnel",
+      "axe de l'arbre longitudinal C4",
+      "enveloppe du pont avant et des demi-arbres",
+      "coordonnees XYZ uniques des points",
+      "geometrie 993",
+      "autorisation de fabrication"
+    ],
+    "rights_status": "factual_values_transcribed_full_scan_not_redistributed_authorized_porsche_copy_still_required",
+    "release_credit": false
+  },
+  "source_discrepancies": [
+    {
+      "dimension": "964_Carrera_2_front_track_mm",
+      "official_porsche_club_table": 1380,
+      "porsche_finder_named_vehicle": 1374,
+      "status": "unresolved_variant_or_listing_discrepancy",
+      "design_action": "Ne pas choisir une valeur pour la CAO des ancrages. Geler annee, carrosserie, roues et suspension, puis verifier sur documentation de type et vehicule mesure."
+    }
+  ],
+  "mass_basis_correction": {
+    "project_target_vehicle_mass_kg": 1200,
+    "status": "design_target_only",
+    "published_reference_range_unladen_DIN_kg": {
+      "minimum_in_supported_C2_C4_rows": 1350,
+      "maximum_in_supported_C2_C4_rows": 1450,
+      "maximum_in_supported_993_rows_including_turbo": 1500
+    },
+    "published_964_C4_maximum_permitted_mass_kg": 1790,
+    "engineering_rule": "La rigidite et la resistance ne doivent pas etre justifiees avec 1200 kg comme unique cas. Les cas de charge devront couvrir au minimum la masse maximale autorisee retenue, les charges par essieu, les occupants, le carburant, les charges dynamiques et les coefficients convenus avec l'expert TÜV."
+  },
+  "variant_cross_check": {
+    "claim": "La carrosserie Turbo est elargie de 60 mm par rapport a la famille Carrera etroite.",
+    "source_id": "SRC-PORSCHE-NEWSROOM-993-30Y",
+    "numeric_reconciliation_mm": 60,
+    "calculation": "1795 - 1735",
+    "status": "consistent"
+  },
+  "cross_generation_envelope_comparison": {
+    "reference_pair": "993 Carrera narrow reference minus 964 Carrera 2 Coupe",
+    "wheelbase_delta_mm": 0,
+    "overall_width_delta_mm": 83,
+    "front_track_delta_mm": 31,
+    "rear_track_delta_mm": 70,
+    "status": "documentary_only_not_structural_compatibility_and_front_track_source_discrepancy_open"
+  },
+  "critical_structural_dimensions": [
+    {
+      "group_id": "BODY_DATUMS",
+      "required": [
+        "plan de reference caisse",
+        "origine XYZ",
+        "trous et surfaces primaires, secondaires et tertiaires",
+        "tolerance de mise en position"
+      ],
+      "public_numeric_data": true,
+      "status": "partial_964_pairwise_constraints_no_unique_xyz_no_993"
+    },
+    {
+      "group_id": "FRONT_SUSPENSION_STEERING",
+      "required": [
+        "XYZ de chaque ancrage de bras et jambe",
+        "XYZ de cremaillere et colonne",
+        "axes, diametres, plans d'appui et tolerances",
+        "enveloppes cinematiques roues-braquage-debattement"
+      ],
+      "public_numeric_data": false,
+      "status": "blocked"
+    },
+    {
+      "group_id": "REAR_SUSPENSION_POWERTRAIN",
+      "required": [
+        "XYZ de chaque ancrage LSA",
+        "axes et interfaces du support moteur et de boite",
+        "plans d'appui, fixations et tolerances",
+        "enveloppes groupe motopropulseur, echappement et transmission"
+      ],
+      "public_numeric_data": false,
+      "status": "blocked"
+    },
+    {
+      "group_id": "OCCUPANT_RESTRAINTS",
+      "required": [
+        "ancrages sieges et rails",
+        "ancrages de ceinture et orientations de charge",
+        "geometrie colonne-pedalier-volant",
+        "zones tete, jambes et egress"
+      ],
+      "public_numeric_data": false,
+      "status": "blocked"
+    },
+    {
+      "group_id": "GLAZING_DOORS_AND_CLOSURES",
+      "required": [
+        "surfaces nominales de baies",
+        "charniere et gache de chaque ouvrant",
+        "profondeurs et rayons de collage des vitrages",
+        "jeux, affleurements et tolerances"
+      ],
+      "public_numeric_data": false,
+      "status": "blocked"
+    },
+    {
+      "group_id": "CRASH_LOAD_PATHS_AND_TOWING",
+      "required": [
+        "interfaces de traverses avant et arriere",
+        "barres anti-intrusion et serrures",
+        "points de levage et remorquage",
+        "volumes carburant, batterie et circuits critiques"
+      ],
+      "public_numeric_data": false,
+      "status": "blocked"
+    }
+  ],
+  "acquisition_routes": [
+    {
+      "priority": 1,
+      "route": "Pre-consultation avec un expert officiellement reconnu avant de figer le programme d'essais et la classification du vehicule.",
+      "evidence": [
+        "SRC-TUVSUD-STVZO-21-GUTACHTEN"
+      ],
+      "status": "not_started"
+    },
+    {
+      "priority": 2,
+      "route": "Demander a un Porsche Classic Partner l'acces autorise aux Reparaturleitfaeden de carrosserie 964 et 993, aux Karosseriemasse et aux donnees d'archives; transcrire uniquement les cotes factuelles avec reference de document et de page.",
+      "evidence": [
+        "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+        "SRC-PORSCHE-TECHNICAL-LITERATURE-DE",
+        "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOLUME5"
+      ],
+      "status": "964_unofficial_scan_fact_values_transcribed_authorized_964_copy_and_993_body_manual_still_missing"
+    },
+    {
+      "priority": 3,
+      "route": "Louer ou faire utiliser le jeu Celette 564.330 avec supplement 993 et relever les interfaces dans un repere documente.",
+      "evidence": [
+        "SRC-RICHTSATZ-MIETEN-993-CELETTE",
+        "SRC-CELETTE-MZX-964-993-JIGS"
+      ],
+      "status": "commercial_lead_no_coordinates"
+    },
+    {
+      "priority": 4,
+      "route": "Scanner et mesurer au CMM une caisse donneuse saine de la variante gelee, avec repetitions, artefact d'echelle, temperature, incertitude et controle par gabarits des sous-chassis.",
+      "evidence": [
+        "SRC-KFZ-GUTACHTER-BERLIN-993-3D-BODY-MEASUREMENT"
+      ],
+      "status": "not_started"
+    },
+    {
+      "priority": 5,
+      "route": "Commander si utile un Datenblatt TÜV SÜD lie au numero de chassis pour les donnees d'immatriculation; ne pas supposer qu'il contient les coordonnees de marbre.",
+      "evidence": [
+        "SRC-TUVSUD-OLDTIMER-DATA-SHEET-SERVICE"
+      ],
+      "status": "not_ordered"
+    }
+  ],
+  "decision": {
+    "geometry_fit_claim": false,
+    "detailed_design_authorized": false,
+    "mold_design_authorized": false,
+    "manufacturing_authorized": false,
+    "tuv_approval_claim": false,
+    "reason": "Le manuel 964 apporte un graphe partiel de distances de controle de caisse, mais pas des coordonnees XYZ uniques, pas la surface du tunnel ni les enveloppes C4, et aucune definition equivalente 993. L'empattement commun et les cotes d'enveloppe ne suffisent toujours pas a liberer une caisse autoporteuse 964/993."
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0.0",
+  "status": "F1_hypothesis_only",
+  "units": "mm",
+  "geometry_defaults": {
+    "face_thickness_mm": 2.5,
+    "neck_length_mm": 8.0,
+    "seat_angle_deg": 45.0,
+    "keeper_geometry": "omitted_pending_measurement"
+  },
+  "materials": {
+    "ti64_grade5_lpbf": {
+      "name": "Ti-6Al-4V Grade 5 LPBF",
+      "density_g_cm3": 4.43,
+      "role": "intake_comparison_only",
+      "source": "https://www.eos.info/metal-solutions/metal-materials/data-sheets/mds-eos-titanium-ti64-grade-5",
+      "limits": "Properties depend on machine, parameter set, orientation, heat treatment, HIP, machining and surface condition."
+    },
+    "inconel_751_bar": {
+      "name": "INCONEL alloy 751 (UNS N07751)",
+      "density_g_cm3": 8.22,
+      "role": "exhaust_reference_candidate",
+      "source": "https://www.specialmetals.com/documents/technical-bulletins/inconel/inconel-alloy-751.pdf",
+      "limits": "Official bulletin describes round bar and conventional valve manufacture; it is not an LPBF qualification."
+    },
+    "steel_reference": {
+      "name": "Generic valve steel density placeholder",
+      "density_g_cm3": 7.80,
+      "role": "mass_baseline_only",
+      "source": "estimated",
+      "limits": "Not a selected alloy and not valid for thermal, fatigue or manufacturing calculations."
+    }
+  },
+  "variants": [
+    {
+      "id": "993-intake-49-f1",
+      "service": "intake",
+      "head_diameter_mm": 49.0,
+      "stem_diameter_mm": 8.0,
+      "overall_length_mm": 109.0,
+      "length_status": "hypothesis_from_110_mm_product_envelope",
+      "declared_reference_mass_g": 120.0,
+      "source_id": "SRC-FVD-993-INLET-VALVE-DIMENSIONS",
+      "material_variants": ["steel_reference", "ti64_grade5_lpbf"]
+    },
+    {
+      "id": "993-carrera-exhaust-42_5-f1",
+      "service": "exhaust",
+      "head_diameter_mm": 42.5,
+      "stem_diameter_mm": 8.0,
+      "overall_length_mm": 109.0,
+      "length_status": "supplier_declared",
+      "declared_reference_mass_g": null,
+      "source_id": "SRC-PARTWORKS-993-EXHAUST-VALVE-DIMENSIONS",
+      "material_variants": ["steel_reference", "inconel_751_bar", "ti64_grade5_lpbf"]
+    },
+    {
+      "id": "993-turbo-exhaust-43_5-f1",
+      "service": "exhaust",
+      "head_diameter_mm": 43.5,
+      "stem_diameter_mm": 8.0,
+      "overall_length_mm": 108.9,
+      "length_status": "supplier_declared",
+      "declared_reference_mass_g": null,
+      "source_id": "SRC-PARTWORKS-993-EXHAUST-VALVE-DIMENSIONS",
+      "material_variants": ["steel_reference", "inconel_751_bar", "ti64_grade5_lpbf"]
+    }
+  ]
+}

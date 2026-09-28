@@ -1,0 +1,4943 @@
+{
+  "$comment": "Topologie fonctionnelle F0 des flux du vehicule. Les aretes indiquent les bilans a fermer; aucun port, parametre ou resultat physique n'est encore qualifie.",
+  "schema_version": "1.0.0",
+  "generated_by": "scripts/generate_993_functional_flow_graph.py",
+  "source_boundary": {
+    "program_definition": "twins/vehicle-993/program-definition.json",
+    "program_definition_sha256": "668cc79a63ce87671f635d47d1c9203622acfcd725577e02624a491cf6086c5d",
+    "assembly_skeleton": "catalog/reference/993-assembly-skeleton.json",
+    "assembly_skeleton_sha256": "736ee9bfc271e9b9027f53e4fe63cc2d84bad850ded87f43098e4b9bd4c27c71",
+    "turbo_integration_seed": "twins/vehicle-993/turbo-integration-seed-f0.json",
+    "turbo_integration_seed_sha256": "76f28b25754f24fb02c5bed792931a832830972803a89d232943b3148e070cad"
+  },
+  "scope": {
+    "system_count": 10,
+    "flow_type_count": 10,
+    "flow_edge_count": 29,
+    "configuration_metadata_edge_count": 9,
+    "physical_coupling_edge_count": 20,
+    "declared_integration_interface_pairs": 20,
+    "covered_integration_interface_pairs": 20,
+    "work_package_bindings": 239,
+    "virtual_mission_contracts": 7,
+    "quantified_component_ports": 0,
+    "closed_balance_equations": 0,
+    "reference_solver_results": 0,
+    "physicsnemo_results": 0,
+    "simready_bindings": 0,
+    "passed_virtual_missions": 0,
+    "functioning_vehicle_claim": false
+  },
+  "flow_types": {
+    "configuration_metadata": {
+      "state_variables": [
+        "variant_id",
+        "revision_id",
+        "option_state"
+      ],
+      "conservation_law": null,
+      "reference_model": "configuration_constraint_graph"
+    },
+    "mechanical_power": {
+      "state_variables": [
+        "torque_Nm",
+        "angular_speed_rad_s",
+        "power_W"
+      ],
+      "conservation_law": "power_W=torque_Nm*angular_speed_rad_s",
+      "reference_model": "rotational_power_balance_and_multibody"
+    },
+    "structural_wrench": {
+      "state_variables": [
+        "force_vector_N",
+        "moment_vector_Nm",
+        "displacement_vector_m",
+        "rotation_vector_rad"
+      ],
+      "conservation_law": "sum_forces_N=0_and_sum_moments_Nm=0",
+      "reference_model": "interface_free_body_then_CalculiX"
+    },
+    "thermofluid_mass_energy": {
+      "state_variables": [
+        "mass_flow_kg_s",
+        "pressure_Pa",
+        "temperature_K",
+        "specific_enthalpy_J_kg"
+      ],
+      "conservation_law": "sum_mass_flow_kg_s=0_and_sum_enthalpy_flow_W=0",
+      "reference_model": "zero_one_dimensional_network_then_OpenFOAM"
+    },
+    "electrical_power_and_signal": {
+      "state_variables": [
+        "voltage_V",
+        "current_A",
+        "power_W",
+        "signal_value"
+      ],
+      "conservation_law": "Kirchhoff_current_voltage_and_power_balance",
+      "reference_model": "circuit_graph_then_SPICE_and_state_machines"
+    },
+    "hydraulic_power": {
+      "state_variables": [
+        "pressure_Pa",
+        "volume_flow_m3_s",
+        "fluid_temperature_K",
+        "power_W"
+      ],
+      "conservation_law": "flow_continuity_and_power_W=pressure_Pa*volume_flow_m3_s",
+      "reference_model": "zero_dimensional_hydraulic_network"
+    },
+    "kinematic_command": {
+      "state_variables": [
+        "position_m_or_rad",
+        "velocity_m_s_or_rad_s",
+        "effort_N_or_Nm"
+      ],
+      "conservation_law": "compatible_joint_motion_and_virtual_work",
+      "reference_model": "analytical_kinematics_then_multibody"
+    },
+    "vehicle_state": {
+      "state_variables": [
+        "velocity_m_s",
+        "linear_acceleration_m_s2",
+        "yaw_rate_rad_s",
+        "wheel_speed_rad_s"
+      ],
+      "conservation_law": "vehicle_linear_and_angular_momentum_balance",
+      "reference_model": "bicycle_then_7DoF_14DoF_and_multibody"
+    },
+    "thermal_energy": {
+      "state_variables": [
+        "temperature_K",
+        "heat_rate_W",
+        "thermal_resistance_K_W"
+      ],
+      "conservation_law": "sum_heat_rate_W_plus_stored_energy_rate_W=0",
+      "reference_model": "thermal_resistance_network_then_CHT"
+    },
+    "occupant_control_load": {
+      "state_variables": [
+        "force_N",
+        "moment_Nm",
+        "travel_m_or_rad"
+      ],
+      "conservation_law": "control_input_reaction_and_travel_compatibility",
+      "reference_model": "free_body_and_ergonomic_envelope_model"
+    }
+  },
+  "flow_edges": [
+    {
+      "flow_edge_id": "FLOW-0XX-1XX-CONFIG",
+      "source_system_id": "0xx",
+      "target_system_id": "1xx",
+      "flow_type_id": "configuration_metadata",
+      "direction": "source_to_target",
+      "engineering_role": "variant_revision_option_and_quantity_context",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-0XX-2XX-CONFIG",
+      "source_system_id": "0xx",
+      "target_system_id": "2xx",
+      "flow_type_id": "configuration_metadata",
+      "direction": "source_to_target",
+      "engineering_role": "variant_revision_option_and_quantity_context",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-0XX-3XX-CONFIG",
+      "source_system_id": "0xx",
+      "target_system_id": "3xx",
+      "flow_type_id": "configuration_metadata",
+      "direction": "source_to_target",
+      "engineering_role": "variant_revision_option_and_quantity_context",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-0XX-4XX-CONFIG",
+      "source_system_id": "0xx",
+      "target_system_id": "4xx",
+      "flow_type_id": "configuration_metadata",
+      "direction": "source_to_target",
+      "engineering_role": "variant_revision_option_and_quantity_context",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-0XX-5XX-CONFIG",
+      "source_system_id": "0xx",
+      "target_system_id": "5xx",
+      "flow_type_id": "configuration_metadata",
+      "direction": "source_to_target",
+      "engineering_role": "variant_revision_option_and_quantity_context",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-0XX-6XX-CONFIG",
+      "source_system_id": "0xx",
+      "target_system_id": "6xx",
+      "flow_type_id": "configuration_metadata",
+      "direction": "source_to_target",
+      "engineering_role": "variant_revision_option_and_quantity_context",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-0XX-7XX-CONFIG",
+      "source_system_id": "0xx",
+      "target_system_id": "7xx",
+      "flow_type_id": "configuration_metadata",
+      "direction": "source_to_target",
+      "engineering_role": "variant_revision_option_and_quantity_context",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-0XX-8XX-CONFIG",
+      "source_system_id": "0xx",
+      "target_system_id": "8xx",
+      "flow_type_id": "configuration_metadata",
+      "direction": "source_to_target",
+      "engineering_role": "variant_revision_option_and_quantity_context",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-0XX-9XX-CONFIG",
+      "source_system_id": "0xx",
+      "target_system_id": "9xx",
+      "flow_type_id": "configuration_metadata",
+      "direction": "source_to_target",
+      "engineering_role": "variant_revision_option_and_quantity_context",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-1XX-2XX-THERMOFLUID",
+      "source_system_id": "1xx",
+      "target_system_id": "2xx",
+      "flow_type_id": "thermofluid_mass_energy",
+      "direction": "bidirectional_coupling",
+      "engineering_role": "fuel_charge_air_exhaust_and_heat_exchange",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-1XX-3XX-POWER",
+      "source_system_id": "1xx",
+      "target_system_id": "3xx",
+      "flow_type_id": "mechanical_power",
+      "direction": "source_to_target",
+      "engineering_role": "engine_crankshaft_to_clutch_and_transmission",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-1XX-8XX-MOUNTS",
+      "source_system_id": "1xx",
+      "target_system_id": "8xx",
+      "flow_type_id": "structural_wrench",
+      "direction": "bidirectional_equilibrium",
+      "engineering_role": "powertrain_loads_to_body_and_mount_reactions",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-1XX-9XX-CONTROL",
+      "source_system_id": "1xx",
+      "target_system_id": "9xx",
+      "flow_type_id": "electrical_power_and_signal",
+      "direction": "bidirectional_coupling",
+      "engineering_role": "starting_charging_ignition_injection_and_engine_signals",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-2XX-8XX-THERMAL",
+      "source_system_id": "2xx",
+      "target_system_id": "8xx",
+      "flow_type_id": "thermal_energy",
+      "direction": "bidirectional_coupling",
+      "engineering_role": "hot_exhaust_fuel_and_charge_air_environment_to_body",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-2XX-9XX-CONTROL",
+      "source_system_id": "2xx",
+      "target_system_id": "9xx",
+      "flow_type_id": "electrical_power_and_signal",
+      "direction": "bidirectional_coupling",
+      "engineering_role": "fuel_pumps_sensors_actuators_and_diagnostics",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-3XX-5XX-POWER",
+      "source_system_id": "3xx",
+      "target_system_id": "5xx",
+      "flow_type_id": "mechanical_power",
+      "direction": "source_to_target",
+      "engineering_role": "gearbox_differential_and_rear_wheel_drive",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-3XX-7XX-CLUTCH",
+      "source_system_id": "3xx",
+      "target_system_id": "7xx",
+      "flow_type_id": "hydraulic_power",
+      "direction": "bidirectional_coupling",
+      "engineering_role": "clutch_actuation_and_pedal_reaction",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-3XX-9XX-SIGNALS",
+      "source_system_id": "3xx",
+      "target_system_id": "9xx",
+      "flow_type_id": "electrical_power_and_signal",
+      "direction": "bidirectional_coupling",
+      "engineering_role": "starter_reverse_speed_and_driveline_signals",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-4XX-5XX-STATE",
+      "source_system_id": "4xx",
+      "target_system_id": "5xx",
+      "flow_type_id": "vehicle_state",
+      "direction": "bidirectional_coupling",
+      "engineering_role": "front_rear_chassis_state_and_road_contact_consistency",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-4XX-6XX-BRAKE",
+      "source_system_id": "6xx",
+      "target_system_id": "4xx",
+      "flow_type_id": "mechanical_power",
+      "direction": "source_to_target",
+      "engineering_role": "front_brake_torque_and_wheel_energy_dissipation",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-4XX-7XX-STEERING",
+      "source_system_id": "7xx",
+      "target_system_id": "4xx",
+      "flow_type_id": "kinematic_command",
+      "direction": "source_to_target",
+      "engineering_role": "steering_wheel_column_rack_and_road_wheel_command",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-4XX-8XX-LOAD",
+      "source_system_id": "4xx",
+      "target_system_id": "8xx",
+      "flow_type_id": "structural_wrench",
+      "direction": "bidirectional_equilibrium",
+      "engineering_role": "front_suspension_and_steering_loads_to_body",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-5XX-6XX-BRAKE",
+      "source_system_id": "6xx",
+      "target_system_id": "5xx",
+      "flow_type_id": "mechanical_power",
+      "direction": "source_to_target",
+      "engineering_role": "rear_brake_torque_and_wheel_energy_dissipation",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-5XX-8XX-LOAD",
+      "source_system_id": "5xx",
+      "target_system_id": "8xx",
+      "flow_type_id": "structural_wrench",
+      "direction": "bidirectional_equilibrium",
+      "engineering_role": "rear_suspension_and_driveline_loads_to_body",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-6XX-7XX-HYDRAULIC",
+      "source_system_id": "7xx",
+      "target_system_id": "6xx",
+      "flow_type_id": "hydraulic_power",
+      "direction": "source_to_target",
+      "engineering_role": "driver_brake_input_to_master_cylinder_and_brake_network",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-6XX-9XX-CONTROL",
+      "source_system_id": "6xx",
+      "target_system_id": "9xx",
+      "flow_type_id": "electrical_power_and_signal",
+      "direction": "bidirectional_coupling",
+      "engineering_role": "brake_switch_warning_and_control_signals",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-7XX-8XX-CONTROL-LOAD",
+      "source_system_id": "7xx",
+      "target_system_id": "8xx",
+      "flow_type_id": "occupant_control_load",
+      "direction": "bidirectional_equilibrium",
+      "engineering_role": "pedal_column_seat_and_body_control_reactions",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-7XX-9XX-SIGNALS",
+      "source_system_id": "7xx",
+      "target_system_id": "9xx",
+      "flow_type_id": "electrical_power_and_signal",
+      "direction": "bidirectional_coupling",
+      "engineering_role": "driver_switches_interlocks_and_feedback",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    },
+    {
+      "flow_edge_id": "FLOW-8XX-9XX-BODY-ELECTRICAL",
+      "source_system_id": "9xx",
+      "target_system_id": "8xx",
+      "flow_type_id": "electrical_power_and_signal",
+      "direction": "bidirectional_coupling",
+      "engineering_role": "lighting_body_equipment_HVAC_and_cabin_signals",
+      "topology_status": "engineering_hypothesis_requires_interface_evidence",
+      "source_port_id": null,
+      "target_port_id": null,
+      "geometry_interface_id": null,
+      "parameter_values": {},
+      "balance_residual": null,
+      "acceptance_threshold": null,
+      "reference_solver_result": null,
+      "physicsnemo_result": null,
+      "simready_binding": null
+    }
+  ],
+  "systems": [
+    {
+      "system_id": "0xx",
+      "name": "Consommables, adhesifs et documentation",
+      "criticality": "support_and_configuration",
+      "simulation_domain_ids": [
+        "materials_and_process"
+      ],
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-0XX-2XX-CONFIG",
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-0XX-4XX-CONFIG",
+        "FLOW-0XX-5XX-CONFIG",
+        "FLOW-0XX-6XX-CONFIG",
+        "FLOW-0XX-7XX-CONFIG",
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-0XX-9XX-CONFIG"
+      ],
+      "catalogue_illustration_count": 4,
+      "turbo_seed_candidate_occurrence_count": 10,
+      "port_definition_status": "blocked_missing_F2_component_interfaces",
+      "material_property_status": "blocked_unqualified",
+      "reference_model_status": "blocked_unquantified_ports_and_boundaries",
+      "physicsnemo_status": "blocked_no_reference_dataset"
+    },
+    {
+      "system_id": "1xx",
+      "name": "Moteur",
+      "criticality": "safety_critical_highly_loaded_engine",
+      "simulation_domain_ids": [
+        "package_interfaces",
+        "powertrain_0d",
+        "structural",
+        "thermal_fluid",
+        "network_flow",
+        "rotordynamics",
+        "multibody"
+      ],
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "catalogue_illustration_count": 34,
+      "turbo_seed_candidate_occurrence_count": 105,
+      "port_definition_status": "blocked_missing_F2_component_interfaces",
+      "material_property_status": "blocked_unqualified",
+      "reference_model_status": "blocked_unquantified_ports_and_boundaries",
+      "physicsnemo_status": "blocked_no_reference_dataset"
+    },
+    {
+      "system_id": "2xx",
+      "name": "Carburant, echappement et suralimentation",
+      "criticality": "safety_critical_fuel_pressure_and_hot_gas",
+      "simulation_domain_ids": [
+        "package_interfaces",
+        "network_flow",
+        "thermal_fluid",
+        "structural",
+        "powertrain_0d"
+      ],
+      "flow_edge_ids": [
+        "FLOW-0XX-2XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-2XX-9XX-CONTROL"
+      ],
+      "catalogue_illustration_count": 11,
+      "turbo_seed_candidate_occurrence_count": 5,
+      "port_definition_status": "blocked_missing_F2_component_interfaces",
+      "material_property_status": "blocked_unqualified",
+      "reference_model_status": "blocked_unquantified_ports_and_boundaries",
+      "physicsnemo_status": "blocked_no_reference_dataset"
+    },
+    {
+      "system_id": "3xx",
+      "name": "Boite de vitesses",
+      "criticality": "safety_critical_driveline",
+      "simulation_domain_ids": [
+        "package_interfaces",
+        "multibody",
+        "structural",
+        "thermal_fluid",
+        "vehicle_dynamics"
+      ],
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "catalogue_illustration_count": 34,
+      "turbo_seed_candidate_occurrence_count": 16,
+      "port_definition_status": "blocked_missing_F2_component_interfaces",
+      "material_property_status": "blocked_unqualified",
+      "reference_model_status": "blocked_unquantified_ports_and_boundaries",
+      "physicsnemo_status": "blocked_no_reference_dataset"
+    },
+    {
+      "system_id": "4xx",
+      "name": "Direction, traverse et train avant",
+      "criticality": "safety_critical_steering_and_front_suspension",
+      "simulation_domain_ids": [
+        "package_interfaces",
+        "multibody",
+        "structural",
+        "vehicle_dynamics"
+      ],
+      "flow_edge_ids": [
+        "FLOW-0XX-4XX-CONFIG",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-4XX-8XX-LOAD"
+      ],
+      "catalogue_illustration_count": 14,
+      "turbo_seed_candidate_occurrence_count": 28,
+      "port_definition_status": "blocked_missing_F2_component_interfaces",
+      "material_property_status": "blocked_unqualified",
+      "reference_model_status": "blocked_unquantified_ports_and_boundaries",
+      "physicsnemo_status": "blocked_no_reference_dataset"
+    },
+    {
+      "system_id": "5xx",
+      "name": "Train arriere, amortisseurs et transmission",
+      "criticality": "safety_critical_rear_suspension_and_driveline",
+      "simulation_domain_ids": [
+        "package_interfaces",
+        "multibody",
+        "structural",
+        "vehicle_dynamics"
+      ],
+      "flow_edge_ids": [
+        "FLOW-0XX-5XX-CONFIG",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-5XX-6XX-BRAKE",
+        "FLOW-5XX-8XX-LOAD"
+      ],
+      "catalogue_illustration_count": 7,
+      "turbo_seed_candidate_occurrence_count": 26,
+      "port_definition_status": "blocked_missing_F2_component_interfaces",
+      "material_property_status": "blocked_unqualified",
+      "reference_model_status": "blocked_unquantified_ports_and_boundaries",
+      "physicsnemo_status": "blocked_no_reference_dataset"
+    },
+    {
+      "system_id": "6xx",
+      "name": "Freinage et hydraulique",
+      "criticality": "safety_critical_braking",
+      "simulation_domain_ids": [
+        "package_interfaces",
+        "hydraulic_0d",
+        "structural",
+        "thermal_fluid",
+        "vehicle_dynamics"
+      ],
+      "flow_edge_ids": [
+        "FLOW-0XX-6XX-CONFIG",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-5XX-6XX-BRAKE",
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-6XX-9XX-CONTROL"
+      ],
+      "catalogue_illustration_count": 13,
+      "turbo_seed_candidate_occurrence_count": 45,
+      "port_definition_status": "blocked_missing_F2_component_interfaces",
+      "material_property_status": "blocked_unqualified",
+      "reference_model_status": "blocked_unquantified_ports_and_boundaries",
+      "physicsnemo_status": "blocked_no_reference_dataset"
+    },
+    {
+      "system_id": "7xx",
+      "name": "Commandes, pedalier et embrayage",
+      "criticality": "safety_critical_driver_controls_and_clutch",
+      "simulation_domain_ids": [
+        "package_interfaces",
+        "multibody",
+        "hydraulic_0d",
+        "controls"
+      ],
+      "flow_edge_ids": [
+        "FLOW-0XX-7XX-CONFIG",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-7XX-9XX-SIGNALS"
+      ],
+      "catalogue_illustration_count": 8,
+      "turbo_seed_candidate_occurrence_count": 4,
+      "port_definition_status": "blocked_missing_F2_component_interfaces",
+      "material_property_status": "blocked_unqualified",
+      "reference_model_status": "blocked_unquantified_ports_and_boundaries",
+      "physicsnemo_status": "blocked_no_reference_dataset"
+    },
+    {
+      "system_id": "8xx",
+      "name": "Carrosserie et habillage",
+      "criticality": "mixed_body_structure_restraint_and_trim",
+      "simulation_domain_ids": [
+        "package_interfaces",
+        "structural",
+        "crash",
+        "external_aero",
+        "thermal_cabin",
+        "materials_and_process"
+      ],
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "catalogue_illustration_count": 85,
+      "turbo_seed_candidate_occurrence_count": 57,
+      "port_definition_status": "blocked_missing_F2_component_interfaces",
+      "material_property_status": "blocked_unqualified",
+      "reference_model_status": "blocked_unquantified_ports_and_boundaries",
+      "physicsnemo_status": "blocked_no_reference_dataset"
+    },
+    {
+      "system_id": "9xx",
+      "name": "Electricite, eclairage et equipements",
+      "criticality": "mixed_electrical_lighting_and_control",
+      "simulation_domain_ids": [
+        "package_interfaces",
+        "electrical_network",
+        "controls",
+        "thermal_cabin"
+      ],
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "catalogue_illustration_count": 29,
+      "turbo_seed_candidate_occurrence_count": 47,
+      "port_definition_status": "blocked_missing_F2_component_interfaces",
+      "material_property_status": "blocked_unqualified",
+      "reference_model_status": "blocked_unquantified_ports_and_boundaries",
+      "physicsnemo_status": "blocked_no_reference_dataset"
+    }
+  ],
+  "work_package_bindings": [
+    {
+      "work_package_id": "WP-993-001-00",
+      "catalogue_illustration": "001-00",
+      "system_id": "0xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-0XX-2XX-CONFIG",
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-0XX-4XX-CONFIG",
+        "FLOW-0XX-5XX-CONFIG",
+        "FLOW-0XX-6XX-CONFIG",
+        "FLOW-0XX-7XX-CONFIG",
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-0XX-9XX-CONFIG"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-001-05",
+      "catalogue_illustration": "001-05",
+      "system_id": "0xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-0XX-2XX-CONFIG",
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-0XX-4XX-CONFIG",
+        "FLOW-0XX-5XX-CONFIG",
+        "FLOW-0XX-6XX-CONFIG",
+        "FLOW-0XX-7XX-CONFIG",
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-0XX-9XX-CONFIG"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-004-00",
+      "catalogue_illustration": "004-00",
+      "system_id": "0xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-0XX-2XX-CONFIG",
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-0XX-4XX-CONFIG",
+        "FLOW-0XX-5XX-CONFIG",
+        "FLOW-0XX-6XX-CONFIG",
+        "FLOW-0XX-7XX-CONFIG",
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-0XX-9XX-CONFIG"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-005-00",
+      "catalogue_illustration": "005-00",
+      "system_id": "0xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-0XX-2XX-CONFIG",
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-0XX-4XX-CONFIG",
+        "FLOW-0XX-5XX-CONFIG",
+        "FLOW-0XX-6XX-CONFIG",
+        "FLOW-0XX-7XX-CONFIG",
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-0XX-9XX-CONFIG"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-101-00",
+      "catalogue_illustration": "101-00",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-101-05",
+      "catalogue_illustration": "101-05",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-101-10",
+      "catalogue_illustration": "101-10",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-102-00",
+      "catalogue_illustration": "102-00",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-102-05",
+      "catalogue_illustration": "102-05",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-103-00",
+      "catalogue_illustration": "103-00",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-103-05",
+      "catalogue_illustration": "103-05",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-103-07",
+      "catalogue_illustration": "103-07",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-103-10",
+      "catalogue_illustration": "103-10",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-103-15",
+      "catalogue_illustration": "103-15",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-104-00",
+      "catalogue_illustration": "104-00",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-104-01",
+      "catalogue_illustration": "104-01",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-104-03",
+      "catalogue_illustration": "104-03",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-104-05",
+      "catalogue_illustration": "104-05",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-105-00",
+      "catalogue_illustration": "105-00",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-105-05",
+      "catalogue_illustration": "105-05",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-105-10",
+      "catalogue_illustration": "105-10",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-106-00",
+      "catalogue_illustration": "106-00",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-107-00",
+      "catalogue_illustration": "107-00",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-107-05",
+      "catalogue_illustration": "107-05",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-107-10",
+      "catalogue_illustration": "107-10",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-107-12",
+      "catalogue_illustration": "107-12",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-107-14",
+      "catalogue_illustration": "107-14",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-107-15",
+      "catalogue_illustration": "107-15",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-107-20",
+      "catalogue_illustration": "107-20",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-107-45",
+      "catalogue_illustration": "107-45",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-108-00",
+      "catalogue_illustration": "108-00",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-108-05",
+      "catalogue_illustration": "108-05",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-108-07",
+      "catalogue_illustration": "108-07",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-108-10",
+      "catalogue_illustration": "108-10",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-108-12",
+      "catalogue_illustration": "108-12",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-109-00",
+      "catalogue_illustration": "109-00",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-198-00",
+      "catalogue_illustration": "198-00",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-198-00R",
+      "catalogue_illustration": "198-00R",
+      "system_id": "1xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-1XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-201-00",
+      "catalogue_illustration": "201-00",
+      "system_id": "2xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-2XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-2XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-201-05",
+      "catalogue_illustration": "201-05",
+      "system_id": "2xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-2XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-2XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-201-20",
+      "catalogue_illustration": "201-20",
+      "system_id": "2xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-2XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-2XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-202-00",
+      "catalogue_illustration": "202-00",
+      "system_id": "2xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-2XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-2XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-202-01",
+      "catalogue_illustration": "202-01",
+      "system_id": "2xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-2XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-2XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-202-05",
+      "catalogue_illustration": "202-05",
+      "system_id": "2xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-2XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-2XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-202-10",
+      "catalogue_illustration": "202-10",
+      "system_id": "2xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-2XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-2XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-202-15",
+      "catalogue_illustration": "202-15",
+      "system_id": "2xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-2XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-2XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-202-16",
+      "catalogue_illustration": "202-16",
+      "system_id": "2xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-2XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-2XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-202-20",
+      "catalogue_illustration": "202-20",
+      "system_id": "2xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-2XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-2XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-298-00",
+      "catalogue_illustration": "298-00",
+      "system_id": "2xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-2XX-CONFIG",
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-2XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-301-00",
+      "catalogue_illustration": "301-00",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-301-05",
+      "catalogue_illustration": "301-05",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-301-10",
+      "catalogue_illustration": "301-10",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-302-00",
+      "catalogue_illustration": "302-00",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-302-01",
+      "catalogue_illustration": "302-01",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-302-02",
+      "catalogue_illustration": "302-02",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-302-05",
+      "catalogue_illustration": "302-05",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-303-00",
+      "catalogue_illustration": "303-00",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-303-01",
+      "catalogue_illustration": "303-01",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-303-02",
+      "catalogue_illustration": "303-02",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-303-03",
+      "catalogue_illustration": "303-03",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-303-10",
+      "catalogue_illustration": "303-10",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-304-00",
+      "catalogue_illustration": "304-00",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-304-05",
+      "catalogue_illustration": "304-05",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-305-00",
+      "catalogue_illustration": "305-00",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-305-05",
+      "catalogue_illustration": "305-05",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-305-10",
+      "catalogue_illustration": "305-10",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-305-15",
+      "catalogue_illustration": "305-15",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-307-00",
+      "catalogue_illustration": "307-00",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-320-00",
+      "catalogue_illustration": "320-00",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-320-01",
+      "catalogue_illustration": "320-01",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-320-02",
+      "catalogue_illustration": "320-02",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-320-03",
+      "catalogue_illustration": "320-03",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-320-04",
+      "catalogue_illustration": "320-04",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-320-05",
+      "catalogue_illustration": "320-05",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-330-00",
+      "catalogue_illustration": "330-00",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-330-01",
+      "catalogue_illustration": "330-01",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-340-00",
+      "catalogue_illustration": "340-00",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-340-01",
+      "catalogue_illustration": "340-01",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-340-02",
+      "catalogue_illustration": "340-02",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-360-00",
+      "catalogue_illustration": "360-00",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-370-00",
+      "catalogue_illustration": "370-00",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-398-00",
+      "catalogue_illustration": "398-00",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-398-00R",
+      "catalogue_illustration": "398-00R",
+      "system_id": "3xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-3XX-CONFIG",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-3XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-401-00",
+      "catalogue_illustration": "401-00",
+      "system_id": "4xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-4XX-CONFIG",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-4XX-8XX-LOAD"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-401-05",
+      "catalogue_illustration": "401-05",
+      "system_id": "4xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-4XX-CONFIG",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-4XX-8XX-LOAD"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-401-10",
+      "catalogue_illustration": "401-10",
+      "system_id": "4xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-4XX-CONFIG",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-4XX-8XX-LOAD"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-402-00",
+      "catalogue_illustration": "402-00",
+      "system_id": "4xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-4XX-CONFIG",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-4XX-8XX-LOAD"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-402-01",
+      "catalogue_illustration": "402-01",
+      "system_id": "4xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-4XX-CONFIG",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-4XX-8XX-LOAD"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-402-05",
+      "catalogue_illustration": "402-05",
+      "system_id": "4xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-4XX-CONFIG",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-4XX-8XX-LOAD"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-403-00",
+      "catalogue_illustration": "403-00",
+      "system_id": "4xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-4XX-CONFIG",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-4XX-8XX-LOAD"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-403-01",
+      "catalogue_illustration": "403-01",
+      "system_id": "4xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-4XX-CONFIG",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-4XX-8XX-LOAD"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-403-02",
+      "catalogue_illustration": "403-02",
+      "system_id": "4xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-4XX-CONFIG",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-4XX-8XX-LOAD"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-403-03",
+      "catalogue_illustration": "403-03",
+      "system_id": "4xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-4XX-CONFIG",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-4XX-8XX-LOAD"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-403-04",
+      "catalogue_illustration": "403-04",
+      "system_id": "4xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-4XX-CONFIG",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-4XX-8XX-LOAD"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-403-05",
+      "catalogue_illustration": "403-05",
+      "system_id": "4xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-4XX-CONFIG",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-4XX-8XX-LOAD"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-403-06",
+      "catalogue_illustration": "403-06",
+      "system_id": "4xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-4XX-CONFIG",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-4XX-8XX-LOAD"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-403-07",
+      "catalogue_illustration": "403-07",
+      "system_id": "4xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-4XX-CONFIG",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-4XX-8XX-LOAD"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-501-00",
+      "catalogue_illustration": "501-00",
+      "system_id": "5xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-5XX-CONFIG",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-5XX-6XX-BRAKE",
+        "FLOW-5XX-8XX-LOAD"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-501-01",
+      "catalogue_illustration": "501-01",
+      "system_id": "5xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-5XX-CONFIG",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-5XX-6XX-BRAKE",
+        "FLOW-5XX-8XX-LOAD"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-501-02",
+      "catalogue_illustration": "501-02",
+      "system_id": "5xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-5XX-CONFIG",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-5XX-6XX-BRAKE",
+        "FLOW-5XX-8XX-LOAD"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-501-05",
+      "catalogue_illustration": "501-05",
+      "system_id": "5xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-5XX-CONFIG",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-5XX-6XX-BRAKE",
+        "FLOW-5XX-8XX-LOAD"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-502-00",
+      "catalogue_illustration": "502-00",
+      "system_id": "5xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-5XX-CONFIG",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-5XX-6XX-BRAKE",
+        "FLOW-5XX-8XX-LOAD"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-502-01",
+      "catalogue_illustration": "502-01",
+      "system_id": "5xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-5XX-CONFIG",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-5XX-6XX-BRAKE",
+        "FLOW-5XX-8XX-LOAD"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-502-02",
+      "catalogue_illustration": "502-02",
+      "system_id": "5xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-5XX-CONFIG",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-5XX-6XX-BRAKE",
+        "FLOW-5XX-8XX-LOAD"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-601-00",
+      "catalogue_illustration": "601-00",
+      "system_id": "6xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-6XX-CONFIG",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-5XX-6XX-BRAKE",
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-6XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-602-00",
+      "catalogue_illustration": "602-00",
+      "system_id": "6xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-6XX-CONFIG",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-5XX-6XX-BRAKE",
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-6XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-603-00",
+      "catalogue_illustration": "603-00",
+      "system_id": "6xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-6XX-CONFIG",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-5XX-6XX-BRAKE",
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-6XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-603-05",
+      "catalogue_illustration": "603-05",
+      "system_id": "6xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-6XX-CONFIG",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-5XX-6XX-BRAKE",
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-6XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-604-00",
+      "catalogue_illustration": "604-00",
+      "system_id": "6xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-6XX-CONFIG",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-5XX-6XX-BRAKE",
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-6XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-604-01",
+      "catalogue_illustration": "604-01",
+      "system_id": "6xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-6XX-CONFIG",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-5XX-6XX-BRAKE",
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-6XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-604-05",
+      "catalogue_illustration": "604-05",
+      "system_id": "6xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-6XX-CONFIG",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-5XX-6XX-BRAKE",
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-6XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-604-08",
+      "catalogue_illustration": "604-08",
+      "system_id": "6xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-6XX-CONFIG",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-5XX-6XX-BRAKE",
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-6XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-604-09",
+      "catalogue_illustration": "604-09",
+      "system_id": "6xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-6XX-CONFIG",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-5XX-6XX-BRAKE",
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-6XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-604-10",
+      "catalogue_illustration": "604-10",
+      "system_id": "6xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-6XX-CONFIG",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-5XX-6XX-BRAKE",
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-6XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-604-12",
+      "catalogue_illustration": "604-12",
+      "system_id": "6xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-6XX-CONFIG",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-5XX-6XX-BRAKE",
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-6XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-605-00",
+      "catalogue_illustration": "605-00",
+      "system_id": "6xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-6XX-CONFIG",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-5XX-6XX-BRAKE",
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-6XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-698-00",
+      "catalogue_illustration": "698-00",
+      "system_id": "6xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-6XX-CONFIG",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-5XX-6XX-BRAKE",
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-6XX-9XX-CONTROL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-701-00",
+      "catalogue_illustration": "701-00",
+      "system_id": "7xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-7XX-CONFIG",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-7XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-701-01",
+      "catalogue_illustration": "701-01",
+      "system_id": "7xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-7XX-CONFIG",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-7XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-701-05",
+      "catalogue_illustration": "701-05",
+      "system_id": "7xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-7XX-CONFIG",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-7XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-702-00",
+      "catalogue_illustration": "702-00",
+      "system_id": "7xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-7XX-CONFIG",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-7XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-702-05",
+      "catalogue_illustration": "702-05",
+      "system_id": "7xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-7XX-CONFIG",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-7XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-702-08",
+      "catalogue_illustration": "702-08",
+      "system_id": "7xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-7XX-CONFIG",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-7XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-702-09",
+      "catalogue_illustration": "702-09",
+      "system_id": "7xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-7XX-CONFIG",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-7XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-702-10",
+      "catalogue_illustration": "702-10",
+      "system_id": "7xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-7XX-CONFIG",
+        "FLOW-3XX-7XX-CLUTCH",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-7XX-9XX-SIGNALS"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-801-00",
+      "catalogue_illustration": "801-00",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-801-05",
+      "catalogue_illustration": "801-05",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-801-10",
+      "catalogue_illustration": "801-10",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-801-15",
+      "catalogue_illustration": "801-15",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-801-20",
+      "catalogue_illustration": "801-20",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-801-25",
+      "catalogue_illustration": "801-25",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-801-30",
+      "catalogue_illustration": "801-30",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-801-35",
+      "catalogue_illustration": "801-35",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-801-40",
+      "catalogue_illustration": "801-40",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-801-45",
+      "catalogue_illustration": "801-45",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-801-55",
+      "catalogue_illustration": "801-55",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-801-60",
+      "catalogue_illustration": "801-60",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-801-65",
+      "catalogue_illustration": "801-65",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-801-70",
+      "catalogue_illustration": "801-70",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-801-75",
+      "catalogue_illustration": "801-75",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-802-00",
+      "catalogue_illustration": "802-00",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-802-02",
+      "catalogue_illustration": "802-02",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-802-03",
+      "catalogue_illustration": "802-03",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-802-05",
+      "catalogue_illustration": "802-05",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-802-10",
+      "catalogue_illustration": "802-10",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-803-00",
+      "catalogue_illustration": "803-00",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-803-05",
+      "catalogue_illustration": "803-05",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-803-10",
+      "catalogue_illustration": "803-10",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-803-15",
+      "catalogue_illustration": "803-15",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-803-20",
+      "catalogue_illustration": "803-20",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-803-25",
+      "catalogue_illustration": "803-25",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-803-30",
+      "catalogue_illustration": "803-30",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-804-00",
+      "catalogue_illustration": "804-00",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-804-05",
+      "catalogue_illustration": "804-05",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-804-10",
+      "catalogue_illustration": "804-10",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-804-15",
+      "catalogue_illustration": "804-15",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-804-20",
+      "catalogue_illustration": "804-20",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-804-22",
+      "catalogue_illustration": "804-22",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-804-25",
+      "catalogue_illustration": "804-25",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-804-30",
+      "catalogue_illustration": "804-30",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-805-00",
+      "catalogue_illustration": "805-00",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-805-05",
+      "catalogue_illustration": "805-05",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-807-00",
+      "catalogue_illustration": "807-00",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-807-01",
+      "catalogue_illustration": "807-01",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-807-02",
+      "catalogue_illustration": "807-02",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-807-05",
+      "catalogue_illustration": "807-05",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-807-06",
+      "catalogue_illustration": "807-06",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-807-07",
+      "catalogue_illustration": "807-07",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-807-08",
+      "catalogue_illustration": "807-08",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-807-09",
+      "catalogue_illustration": "807-09",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-807-10",
+      "catalogue_illustration": "807-10",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-807-11",
+      "catalogue_illustration": "807-11",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-807-12",
+      "catalogue_illustration": "807-12",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-807-15",
+      "catalogue_illustration": "807-15",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-808-00",
+      "catalogue_illustration": "808-00",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-808-01",
+      "catalogue_illustration": "808-01",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-809-00",
+      "catalogue_illustration": "809-00",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-809-01",
+      "catalogue_illustration": "809-01",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-809-02",
+      "catalogue_illustration": "809-02",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-809-05",
+      "catalogue_illustration": "809-05",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-809-10",
+      "catalogue_illustration": "809-10",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-809-12",
+      "catalogue_illustration": "809-12",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-809-15",
+      "catalogue_illustration": "809-15",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-810-00",
+      "catalogue_illustration": "810-00",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-810-05",
+      "catalogue_illustration": "810-05",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-811-00",
+      "catalogue_illustration": "811-00",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-811-01",
+      "catalogue_illustration": "811-01",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-811-02",
+      "catalogue_illustration": "811-02",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-811-05",
+      "catalogue_illustration": "811-05",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-811-10",
+      "catalogue_illustration": "811-10",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-811-15",
+      "catalogue_illustration": "811-15",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-811-20",
+      "catalogue_illustration": "811-20",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-811-25",
+      "catalogue_illustration": "811-25",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-811-30",
+      "catalogue_illustration": "811-30",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-811-35",
+      "catalogue_illustration": "811-35",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-811-36",
+      "catalogue_illustration": "811-36",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-812-00",
+      "catalogue_illustration": "812-00",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-812-05",
+      "catalogue_illustration": "812-05",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-813-00",
+      "catalogue_illustration": "813-00",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-813-01",
+      "catalogue_illustration": "813-01",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-813-05",
+      "catalogue_illustration": "813-05",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-813-10",
+      "catalogue_illustration": "813-10",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-813-15",
+      "catalogue_illustration": "813-15",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-813-20",
+      "catalogue_illustration": "813-20",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-813-25",
+      "catalogue_illustration": "813-25",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-813-30",
+      "catalogue_illustration": "813-30",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-813-40",
+      "catalogue_illustration": "813-40",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-813-45",
+      "catalogue_illustration": "813-45",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-898-00",
+      "catalogue_illustration": "898-00",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-898-00R",
+      "catalogue_illustration": "898-00R",
+      "system_id": "8xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-8XX-CONFIG",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-901-00",
+      "catalogue_illustration": "901-00",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-901-01",
+      "catalogue_illustration": "901-01",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-901-02",
+      "catalogue_illustration": "901-02",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-901-03",
+      "catalogue_illustration": "901-03",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-901-05",
+      "catalogue_illustration": "901-05",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-902-00",
+      "catalogue_illustration": "902-00",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-902-05",
+      "catalogue_illustration": "902-05",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-902-10",
+      "catalogue_illustration": "902-10",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-902-15",
+      "catalogue_illustration": "902-15",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-902-20",
+      "catalogue_illustration": "902-20",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-903-00",
+      "catalogue_illustration": "903-00",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-903-04",
+      "catalogue_illustration": "903-04",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-903-05",
+      "catalogue_illustration": "903-05",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-903-06",
+      "catalogue_illustration": "903-06",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-903-10",
+      "catalogue_illustration": "903-10",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-904-00",
+      "catalogue_illustration": "904-00",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-904-05",
+      "catalogue_illustration": "904-05",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-904-06",
+      "catalogue_illustration": "904-06",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-904-10",
+      "catalogue_illustration": "904-10",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-904-20",
+      "catalogue_illustration": "904-20",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-905-00",
+      "catalogue_illustration": "905-00",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-905-05",
+      "catalogue_illustration": "905-05",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-905-10",
+      "catalogue_illustration": "905-10",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-906-00",
+      "catalogue_illustration": "906-00",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-907-00",
+      "catalogue_illustration": "907-00",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-911-00",
+      "catalogue_illustration": "911-00",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-911-01",
+      "catalogue_illustration": "911-01",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-911-05",
+      "catalogue_illustration": "911-05",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    },
+    {
+      "work_package_id": "WP-993-911-10",
+      "catalogue_illustration": "911-10",
+      "system_id": "9xx",
+      "flow_edge_ids": [
+        "FLOW-0XX-9XX-CONFIG",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-3XX-9XX-SIGNALS",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "binding_status": "system_level_topology_only_missing_part_ports",
+      "quantified_ports": 0,
+      "closed_balance_equations": 0
+    }
+  ],
+  "balance_closure_policy": {
+    "required_for_each_quantified_edge": [
+      "source_and_target_port_identity",
+      "common_units_and_sign_convention",
+      "source_parameter_and_uncertainty",
+      "reference_model_revision",
+      "computed_residual",
+      "predeclared_acceptance_threshold"
+    ],
+    "LLM_may_author_topology_and_triage_residuals": true,
+    "LLM_may_supply_physical_values_or_pass_a_balance": false,
+    "physicsnemo_role": "field_surrogate_only_after_reference_balance_closure",
+    "omniverse_role": "bind_validated_ports_transforms_materials_and_results_after_F2_F3"
+  },
+  "virtual_missions": [
+    {
+      "mission_id": "MISSION-993-START-IDLE",
+      "name": "demarrage_et_ralenti",
+      "required_system_ids": [
+        "1xx",
+        "2xx",
+        "3xx",
+        "7xx",
+        "8xx",
+        "9xx"
+      ],
+      "required_flow_edge_ids": [
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-1XX-8XX-MOUNTS",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-3XX-7XX-CLUTCH"
+      ],
+      "status": "blocked_unquantified_system_models_and_interfaces",
+      "input_scenario": null,
+      "reference_solver_results": [],
+      "balance_residuals": {},
+      "acceptance_criteria": {},
+      "physicsnemo_results": [],
+      "functional_pass": false
+    },
+    {
+      "mission_id": "MISSION-993-ACCELERATION",
+      "name": "acceleration_longitudinale",
+      "required_system_ids": [
+        "1xx",
+        "2xx",
+        "3xx",
+        "4xx",
+        "5xx",
+        "8xx",
+        "9xx"
+      ],
+      "required_flow_edge_ids": [
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-1XX-3XX-POWER",
+        "FLOW-3XX-5XX-POWER",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-1XX-8XX-MOUNTS"
+      ],
+      "status": "blocked_unquantified_system_models_and_interfaces",
+      "input_scenario": null,
+      "reference_solver_results": [],
+      "balance_residuals": {},
+      "acceptance_criteria": {},
+      "physicsnemo_results": [],
+      "functional_pass": false
+    },
+    {
+      "mission_id": "MISSION-993-BRAKING",
+      "name": "freinage_stabilise_et_transitoire",
+      "required_system_ids": [
+        "4xx",
+        "5xx",
+        "6xx",
+        "7xx",
+        "8xx",
+        "9xx"
+      ],
+      "required_flow_edge_ids": [
+        "FLOW-6XX-7XX-HYDRAULIC",
+        "FLOW-4XX-6XX-BRAKE",
+        "FLOW-5XX-6XX-BRAKE",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD"
+      ],
+      "status": "blocked_unquantified_system_models_and_interfaces",
+      "input_scenario": null,
+      "reference_solver_results": [],
+      "balance_residuals": {},
+      "acceptance_criteria": {},
+      "physicsnemo_results": [],
+      "functional_pass": false
+    },
+    {
+      "mission_id": "MISSION-993-CORNERING",
+      "name": "virage_stationnaire_et_transition",
+      "required_system_ids": [
+        "4xx",
+        "5xx",
+        "7xx",
+        "8xx"
+      ],
+      "required_flow_edge_ids": [
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-5XX-8XX-LOAD"
+      ],
+      "status": "blocked_unquantified_system_models_and_interfaces",
+      "input_scenario": null,
+      "reference_solver_results": [],
+      "balance_residuals": {},
+      "acceptance_criteria": {},
+      "physicsnemo_results": [],
+      "functional_pass": false
+    },
+    {
+      "mission_id": "MISSION-993-THERMAL-SOAK",
+      "name": "montee_en_temperature_et_arret_chaud",
+      "required_system_ids": [
+        "1xx",
+        "2xx",
+        "8xx",
+        "9xx"
+      ],
+      "required_flow_edge_ids": [
+        "FLOW-1XX-2XX-THERMOFLUID",
+        "FLOW-2XX-8XX-THERMAL",
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "status": "blocked_unquantified_system_models_and_interfaces",
+      "input_scenario": null,
+      "reference_solver_results": [],
+      "balance_residuals": {},
+      "acceptance_criteria": {},
+      "physicsnemo_results": [],
+      "functional_pass": false
+    },
+    {
+      "mission_id": "MISSION-993-STEERING-MANOEUVRE",
+      "name": "manoeuvre_direction_basse_vitesse",
+      "required_system_ids": [
+        "4xx",
+        "5xx",
+        "7xx",
+        "8xx"
+      ],
+      "required_flow_edge_ids": [
+        "FLOW-4XX-7XX-STEERING",
+        "FLOW-4XX-5XX-STATE",
+        "FLOW-4XX-8XX-LOAD",
+        "FLOW-7XX-8XX-CONTROL-LOAD"
+      ],
+      "status": "blocked_unquantified_system_models_and_interfaces",
+      "input_scenario": null,
+      "reference_solver_results": [],
+      "balance_residuals": {},
+      "acceptance_criteria": {},
+      "physicsnemo_results": [],
+      "functional_pass": false
+    },
+    {
+      "mission_id": "MISSION-993-ELECTRICAL-PEAK",
+      "name": "charge_electrique_de_pointe",
+      "required_system_ids": [
+        "1xx",
+        "2xx",
+        "6xx",
+        "7xx",
+        "8xx",
+        "9xx"
+      ],
+      "required_flow_edge_ids": [
+        "FLOW-1XX-9XX-CONTROL",
+        "FLOW-2XX-9XX-CONTROL",
+        "FLOW-6XX-9XX-CONTROL",
+        "FLOW-7XX-9XX-SIGNALS",
+        "FLOW-8XX-9XX-BODY-ELECTRICAL"
+      ],
+      "status": "blocked_unquantified_system_models_and_interfaces",
+      "input_scenario": null,
+      "reference_solver_results": [],
+      "balance_residuals": {},
+      "acceptance_criteria": {},
+      "physicsnemo_results": [],
+      "functional_pass": false
+    }
+  ],
+  "assembly_readiness": {
+    "functional_topology": "complete_system_level_hypothesis",
+    "part_level_ports": "blocked",
+    "parameterization": "blocked",
+    "reference_models": "blocked",
+    "multiphysics_balance_closure": "blocked",
+    "PhysicsNeMo": "blocked",
+    "Omniverse_SimReady": "blocked",
+    "functioning_vehicle": false
+  },
+  "prohibited_claims": [
+    "flow_edge_is_a_measured_interface",
+    "system_topology_is_part_level_connectivity",
+    "equation_definition_is_a_solved_balance",
+    "mission_contract_is_a_virtual_mission_pass",
+    "LLM_topology_is_physical_evidence",
+    "flow_graph_authorizes_manufacturing_installation_or_road_use"
+  ]
+}

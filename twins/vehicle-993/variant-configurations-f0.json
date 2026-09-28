@@ -1,0 +1,4484 @@
+{
+  "$comment": "Contrats F0 de configuration par variante. Les entrees ne sont incluses que lorsque la variante et la quantite sont relues dans le contexte PET; aucun BOM n'est complet.",
+  "schema_version": "1.0.0",
+  "generated_by": "scripts/generate_993_variant_configurations.py",
+  "source_boundary": {
+    "expected_relative_repository": "../porschefanatics.com",
+    "vehicles_path": "data/vehicles.json",
+    "vehicles_sha256": "ae2be59f7d2acc027341ba0910762c359615b7e97bb38633f0f8b9cca57e7484",
+    "oem_parts_path": "data/oem-parts.json",
+    "oem_parts_sha256": "dcbb439642e3ca072e689073a37c1b17d15d9d1d450bb16eb9d085eafd9561a1",
+    "pet_twin_index": "twins/pet-993/index-f0.json",
+    "pet_twin_index_sha256": "1c62dcd1b307b351ebb77bbc676471f723b3f8f87922c52131952c468a4706d3",
+    "applicability_evidence": "twins/pet-993/applicability-evidence-f0.json",
+    "applicability_evidence_sha256": "d518ab639f58969f92de15904e974c2c2580b641d736d5809ee1feed2a54abae",
+    "configuration_axes": "twins/vehicle-993/configuration-axes-f0.json",
+    "configuration_axes_sha256": "2d512ca8c892435687ff83f041c9bbc72dc66009b763250ab8481ca25290d4e3",
+    "configuration_roster": "twins/vehicle-993/configuration-roster-f0.json",
+    "configuration_roster_sha256": "3b222342ad8ec754e5aa4b6e89e84cfe69729d0c67f4047118a748de9854d192",
+    "configuration_part_links": "twins/vehicle-993/configuration-part-links-f0.json",
+    "configuration_part_links_sha256": "e334d6bb941ad793ae4562a74d02511e8a8e78b884d2e500989a65c76662c7a0",
+    "configuration_exceptions": "twins/vehicle-993/configuration-exceptions-f0.json",
+    "configuration_exceptions_sha256": "5227eb96167960801e491590c0d39ca2f3b8e70d3f2d2a947632b3ac9fc5ee0d"
+  },
+  "strategy": {
+    "configuration_model": "one_separate_bom_contract_per_documented_vehicle_variant",
+    "first_integration_target": "993-turbo",
+    "first_integration_target_basis": "source_vehicle_record_mvp_true",
+    "universal_993_bom_allowed": false
+  },
+  "scope": {
+    "variant_configuration_count": 8,
+    "complete_variant_bom_count": 0,
+    "human_read_pet_part_count": 15,
+    "human_read_parts_with_variant_proof": 13,
+    "human_read_parts_without_variant_proof": 2,
+    "variant_assignment_links": 28,
+    "machine_resolved_bom_candidate_occurrences": 173,
+    "machine_resolved_bom_candidate_links": 178,
+    "unresolved_listed_pet_occurrences": 12864,
+    "listed_occurrences_without_direct_model_candidate": 12691,
+    "complete_configuration_universe": false,
+    "provisional_configuration_axis_contracts": 4,
+    "pet_summary_type_records": 69,
+    "pet_summary_configuration_candidates": 149,
+    "pet_summary_configuration_gaps": 2,
+    "single_dimension_part_constraint_occurrences": 694,
+    "resolved_configuration_part_constraint_occurrences": 682,
+    "configuration_part_candidate_links": 24063,
+    "configuration_exception_contracts": 4,
+    "mapped_configuration_exception_occurrences": 12,
+    "fully_resolved_configuration_exceptions": 0
+  },
+  "catalogue_configuration_universe": {
+    "status": "incomplete_source_vehicle_records_do_not_cover_all_pet_dimensions",
+    "source_vehicle_record_count": 8,
+    "source_vehicle_body_styles": [
+      "Coupé"
+    ],
+    "observed_body_style_tokens": {
+      "CABRIO": 62,
+      "CABRIO,TARGA": 4,
+      "CABRIO/TARGA": 5,
+      "COUPE": 87,
+      "COUPE/CABRIO": 4,
+      "COUPE/TARGA": 8,
+      "TARGA": 33
+    },
+    "missing_body_style_contracts": [
+      "CABRIO",
+      "TARGA"
+    ],
+    "provisional_axis_contracts": [
+      {
+        "contract_id": "CONFIG-AXIS-993-BODY-CABRIOLET",
+        "axis": "body_style",
+        "value": "Cabriolet",
+        "candidate_occurrence_count": 73,
+        "complete_vehicle_bom": false,
+        "combined_with_model_variant": false
+      },
+      {
+        "contract_id": "CONFIG-AXIS-993-BODY-TARGA",
+        "axis": "body_style",
+        "value": "Targa",
+        "candidate_occurrence_count": 50,
+        "complete_vehicle_bom": false,
+        "combined_with_model_variant": false
+      },
+      {
+        "contract_id": "CONFIG-AXIS-993-TRANSMISSION-MANUAL-6-SPEED",
+        "axis": "transmission_family",
+        "value": "manual_6_speed_candidate",
+        "candidate_occurrence_count": 89,
+        "complete_vehicle_bom": false,
+        "combined_with_model_variant": false
+      },
+      {
+        "contract_id": "CONFIG-AXIS-993-TRANSMISSION-TIPTRONIC-4-SPEED",
+        "axis": "transmission_family",
+        "value": "tiptronic_4_speed_candidate",
+        "candidate_occurrence_count": 2,
+        "complete_vehicle_bom": false,
+        "combined_with_model_variant": false
+      }
+    ],
+    "pet_summary_roster": {
+      "status": "candidate_intersections_not_human_reviewed",
+      "type_record_count": 69,
+      "engine_option_count": 34,
+      "transmission_option_count": 40,
+      "configuration_candidate_count": 149,
+      "configuration_gap_count": 2,
+      "review_queue_entry_count": 151,
+      "promoted_vehicle_configurations": 0
+    },
+    "configuration_part_linkage": {
+      "status": "single_dimension_constraints_not_vehicle_bom",
+      "eligible_constraint_occurrences": 694,
+      "resolved_constraint_occurrences": 682,
+      "unresolved_constraint_occurrences": 12,
+      "configuration_candidate_links": 24063,
+      "promoted_vehicle_bom_entries": 0
+    },
+    "configuration_exceptions": {
+      "status": "all_unmatched_constraints_tracked_but_not_resolved",
+      "exception_contract_count": 4,
+      "mapped_exception_occurrences": 12,
+      "unmapped_exception_occurrences": 0,
+      "fully_resolved_configuration_exceptions": 0,
+      "contract_ids": [
+        "CONFIG-EXCEPTION-993-A50-07",
+        "CONFIG-EXCEPTION-993-CARRERA-4S",
+        "CONFIG-EXCEPTION-993-CARRERA-S",
+        "CONFIG-EXCEPTION-993-TURBO-S"
+      ]
+    },
+    "observed_engine_code_tokens": {
+      "M64.05/06": 30,
+      "M64.05/06/07": 3,
+      "M64.05/07": 9,
+      "M64.05/07/20": 1,
+      "M64.06/07/08": 1,
+      "M64.06/08": 3,
+      "M64.07": 1,
+      "M64.07/08": 10,
+      "M64.08": 1,
+      "M64.20": 32,
+      "M64.20/21/22": 7,
+      "M64.20/60": 2,
+      "M64.21/22": 31,
+      "M64.21/23": 2,
+      "M64.23/24": 8,
+      "M64.60": 102
+    },
+    "observed_transmission_code_tokens": {
+      "A50.05": 1,
+      "A50.07": 1,
+      "G50.20": 12,
+      "G50.20/21": 19,
+      "G50.21": 13,
+      "G50.31": 4,
+      "G50.31/32/33": 8,
+      "G50.32": 12,
+      "G50.33": 3,
+      "G64.20": 1,
+      "G64.20/21": 6,
+      "G64.51": 11
+    },
+    "observed_option_code_tokens": {
+      "M030": 10,
+      "M030/491": 1,
+      "M033": 2,
+      "M092": 1,
+      "M094": 1,
+      "M150": 5,
+      "M159": 5,
+      "M159/491": 3,
+      "M159/493": 2,
+      "M224": 10,
+      "M224/339": 2,
+      "M249": 23,
+      "M288": 1,
+      "M288/454": 1,
+      "M288/454/659": 1,
+      "M288/659": 1,
+      "M329": 2,
+      "M335": 3,
+      "M338": 1,
+      "M338/408": 2,
+      "M339": 32,
+      "M339/408": 1,
+      "M339/491": 1,
+      "M397": 2,
+      "M398": 2,
+      "M398/495": 1,
+      "M408/493": 1,
+      "M413/491": 2,
+      "M425": 8,
+      "M425/490": 2,
+      "M425/650": 1,
+      "M439": 2,
+      "M446": 1,
+      "M454": 4,
+      "M480": 13,
+      "M490": 18,
+      "M491": 2,
+      "M491/495": 4,
+      "M493": 4,
+      "M495": 14,
+      "M520/650": 1,
+      "M529/530": 3,
+      "M530": 7,
+      "M534": 1,
+      "M544": 3,
+      "M545": 7,
+      "M573": 10,
+      "M601": 17,
+      "M602": 1,
+      "M650": 4,
+      "M659": 2,
+      "M660": 14,
+      "M680": 3,
+      "M688": 2,
+      "M692": 4,
+      "M981": 1
+    },
+    "blockers": [
+      "join_provisional_cabriolet_targa_and_transmission_axes_to_model_year_market_rules",
+      "map_engine_transmission_option_and_model_year_rules_from_pet_context",
+      "review_compound_and_exclusion_annotations"
+    ]
+  },
+  "configurations": [
+    {
+      "configuration_id": "CONFIG-993-CARRERA",
+      "vehicle_id": "993-carrera",
+      "documentary_vehicle_fields": {
+        "manufacturer": "Porsche",
+        "model": "911",
+        "variant": "Carrera",
+        "bodyStyle": "Coupé",
+        "yearStart": 1994,
+        "yearEnd": 1998,
+        "engineCode": "M64.05",
+        "transmissionCodes": [
+          "G50.20",
+          "G50.21"
+        ],
+        "drivetrain": "RWD"
+      },
+      "verified_bom_entries": [
+        {
+          "entry_id": "BOM-993-179C99024F8E4FD409B0",
+          "oem_reference": "993 115 021 90",
+          "description": "Engine carrier",
+          "quantity_per_car": 1,
+          "pet_illustration": "109-00",
+          "pet_position": 1,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-BD8B0F314C597A96E0DA",
+          "part_master_twin_id": "TWIN-PET-993-PART-EE4DEB573669BCD0DE8C",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "entry_id": "BOM-993-3F865EB7724947FAC3E3",
+          "oem_reference": "993 375 309 00",
+          "description": "Transmission carrier",
+          "quantity_per_car": 1,
+          "pet_illustration": "307-00",
+          "pet_position": 15,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-13237967021DA309F8BC",
+          "part_master_twin_id": "TWIN-PET-993-PART-88ED11C98FCA5415F35F",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        }
+      ],
+      "machine_resolved_bom_candidates": [
+        {
+          "candidate_id": "BOMC-993-10E806FB72175ABFA8B0",
+          "oem_reference": "993 612 022 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-05",
+          "pet_page": 568,
+          "occurrence_twin_id": "TWIN-PET-993-4E54F5FEF25658C7EAEB",
+          "part_master_twin_id": "TWIN-PET-993-PART-17D030D9738640A40923",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-15C6E78144F707356C98",
+          "oem_reference": "993 559 519 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "810-05",
+          "pet_page": 492,
+          "occurrence_twin_id": "TWIN-PET-993-C9A705B74AEB865AADC4",
+          "part_master_twin_id": "TWIN-PET-993-PART-946FBEC2286B9E530B26",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-1CA7809368A38C4FC12D",
+          "oem_reference": "993 559 326 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "810-00",
+          "pet_page": 488,
+          "occurrence_twin_id": "TWIN-PET-993-4E67949A4AE35A51DE1F",
+          "part_master_twin_id": "TWIN-PET-993-PART-F1E13372DF0032A62BA9",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-1CDB224A8ABCF01968C2",
+          "oem_reference": "993 356 367 11",
+          "quantity_per_car": 1,
+          "pet_illustration": "201-05",
+          "pet_page": 128,
+          "occurrence_twin_id": "TWIN-PET-993-2AD2324673B569DD9A83",
+          "part_master_twin_id": "TWIN-PET-993-PART-70B09CB8CBD6BB6BCD6C",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-1F6174C5889EE27653D2",
+          "oem_reference": "993 333 051 39",
+          "quantity_per_car": 2,
+          "pet_illustration": "502-02",
+          "pet_page": 278,
+          "occurrence_twin_id": "TWIN-PET-993-6DA7735461F0F776EF24",
+          "part_master_twin_id": "TWIN-PET-993-PART-2BEF7E42990E52C8A09E",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-29CDF51D37D83C3E1BC5",
+          "oem_reference": "900 075 374 01",
+          "quantity_per_car": 2,
+          "pet_illustration": "106-00",
+          "pet_page": 85,
+          "occurrence_twin_id": "TWIN-PET-993-447FA64DBD892D37A9E7",
+          "part_master_twin_id": "TWIN-PET-993-PART-7F31C91AE72F816F929F",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-2ACA783944D37A50659D",
+          "oem_reference": "900 075 374 02",
+          "quantity_per_car": 2,
+          "pet_illustration": "106-00",
+          "pet_page": 85,
+          "occurrence_twin_id": "TWIN-PET-993-86F9AC59BF43639ECDBC",
+          "part_master_twin_id": "TWIN-PET-993-PART-12A877CF63DF03DED745",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-34B4A47333B7F9ABB7C6",
+          "oem_reference": "993 559 325 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "810-00",
+          "pet_page": 488,
+          "occurrence_twin_id": "TWIN-PET-993-555A432D7701852C30F7",
+          "part_master_twin_id": "TWIN-PET-993-PART-6824C85B6196EFC9583D",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-3590F71F3E2DE0A3B603",
+          "oem_reference": "993 559 520 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "810-05",
+          "pet_page": 492,
+          "occurrence_twin_id": "TWIN-PET-993-EF15A62D06F3ED05D15A",
+          "part_master_twin_id": "TWIN-PET-993-PART-30C8DB87F66CAA4EB8EE",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-37C29E5E2087A75D5499",
+          "oem_reference": "999 512 499 00",
+          "quantity_per_car": 3,
+          "pet_illustration": "106-00",
+          "pet_page": 85,
+          "occurrence_twin_id": "TWIN-PET-993-BAA4FDF36146FA82B033",
+          "part_master_twin_id": "TWIN-PET-993-PART-7FCAEE23750E31989453",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-3E7772D9D7771657D207",
+          "oem_reference": "993 356 367 08",
+          "quantity_per_car": 1,
+          "pet_illustration": "201-05",
+          "pet_page": 128,
+          "occurrence_twin_id": "TWIN-PET-993-1D94BA6AF7B3F3E1B7A7",
+          "part_master_twin_id": "TWIN-PET-993-PART-90B44B41F04EF1540E92",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-51F991209FAE44287B6F",
+          "oem_reference": "993 606 113 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "106-00",
+          "pet_page": 85,
+          "occurrence_twin_id": "TWIN-PET-993-58198D6AC9A13ED040D9",
+          "part_master_twin_id": "TWIN-PET-993-PART-858541E03A1B16E2CCF1",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-562415DF8024370989E7",
+          "oem_reference": "993 110 118 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "106-00",
+          "pet_page": 85,
+          "occurrence_twin_id": "TWIN-PET-993-398D842224ED62D47A8F",
+          "part_master_twin_id": "TWIN-PET-993-PART-235335303883CD61BB40",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-6C2BD8E6D557A72A940C",
+          "oem_reference": "993 612 032 01",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 572,
+          "occurrence_twin_id": "TWIN-PET-993-CC2B5DF938563D07739C",
+          "part_master_twin_id": "TWIN-PET-993-PART-9236C2AFDAAF14DF8222",
+          "direct_model_annotations": [
+            "CARRERA 2"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-744A66CDFDFD6AA47138",
+          "oem_reference": "993 612 035 01",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 572,
+          "occurrence_twin_id": "TWIN-PET-993-86E03F85F9B2DDDEE1EC",
+          "part_master_twin_id": "TWIN-PET-993-PART-90659FF2E6AA1ADD4886",
+          "direct_model_annotations": [
+            "CARRERA 2"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-85209B515EF9D0E3D745",
+          "oem_reference": "993 110 530 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "106-00",
+          "pet_page": 85,
+          "occurrence_twin_id": "TWIN-PET-993-A77E61ACCA76BEDBD2C5",
+          "part_master_twin_id": "TWIN-PET-993-PART-C68C8DC20E421C9F5C97",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-8EC3AC3F5AF67F468FA2",
+          "oem_reference": "900 143 159 07",
+          "quantity_per_car": 10,
+          "pet_illustration": "810-05",
+          "pet_page": 492,
+          "occurrence_twin_id": "TWIN-PET-993-FDDE71023C1A7F399056",
+          "part_master_twin_id": "TWIN-PET-993-PART-8DB5FD2BA0DBD035E4E2",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-8F63D49AA621A35A5BF7",
+          "oem_reference": "993 559 325 04",
+          "quantity_per_car": 1,
+          "pet_illustration": "810-00",
+          "pet_page": 488,
+          "occurrence_twin_id": "TWIN-PET-993-5BFA009FC7DADEF7C956",
+          "part_master_twin_id": "TWIN-PET-993-PART-60CA8D6735E61C451598",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-939D5ADBF9CAB9E89B27",
+          "oem_reference": "993 612 032 06",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 572,
+          "occurrence_twin_id": "TWIN-PET-993-453105A04655FA2C55B7",
+          "part_master_twin_id": "TWIN-PET-993-PART-C3E45325B991F5729307",
+          "direct_model_annotations": [
+            "CARRERA 2"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-969583951F0341B3778D",
+          "oem_reference": "993 110 020 02",
+          "quantity_per_car": 1,
+          "pet_illustration": "106-00",
+          "pet_page": 85,
+          "occurrence_twin_id": "TWIN-PET-993-A9374280D5AF1C34F039",
+          "part_master_twin_id": "TWIN-PET-993-PART-75B60187A8D79FB4C7AC",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-9723AB327D2BA3E84748",
+          "oem_reference": "999 782 041 90",
+          "quantity_per_car": 1,
+          "pet_illustration": "106-00",
+          "pet_page": 85,
+          "occurrence_twin_id": "TWIN-PET-993-032326C618EA7D6F3491",
+          "part_master_twin_id": "TWIN-PET-993-PART-CA57603A23CD1CEB7494",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-9FEEEDD0E4D5B0C9CEB1",
+          "oem_reference": "993 612 035 06",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 572,
+          "occurrence_twin_id": "TWIN-PET-993-F682F133D2AEAC4AE0E8",
+          "part_master_twin_id": "TWIN-PET-993-PART-2C9C21ECEB17AD20C4CA",
+          "direct_model_annotations": [
+            "CARRERA 2"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-B6052174C9BBA9E187D3",
+          "oem_reference": "993 612 032 03",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 572,
+          "occurrence_twin_id": "TWIN-PET-993-E482015C0D39D170892D",
+          "part_master_twin_id": "TWIN-PET-993-PART-F219680A8A0769BB0232",
+          "direct_model_annotations": [
+            "CARRERA 2"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-B91300F3DF8191801E89",
+          "oem_reference": "993 612 052 04",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 572,
+          "occurrence_twin_id": "TWIN-PET-993-D11D632169B5395509FC",
+          "part_master_twin_id": "TWIN-PET-993-PART-252D93878E90FB74456E",
+          "direct_model_annotations": [
+            "CARRERA 2"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-BBB432F36D70DA502B91",
+          "oem_reference": "993 559 326 04",
+          "quantity_per_car": 1,
+          "pet_illustration": "810-00",
+          "pet_page": 488,
+          "occurrence_twin_id": "TWIN-PET-993-6BF85131034FE97E5C16",
+          "part_master_twin_id": "TWIN-PET-993-PART-E1026C58F72253B320D9",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-BDF80524710B93C6D594",
+          "oem_reference": "993 612 055 04",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 572,
+          "occurrence_twin_id": "TWIN-PET-993-85B4CF337427D15F8EBD",
+          "part_master_twin_id": "TWIN-PET-993-PART-CA1DD9E3BAF3BE96E6B9",
+          "direct_model_annotations": [
+            "CARRERA 2"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-C35E370C10282335607A",
+          "oem_reference": "999 507 373 00",
+          "quantity_per_car": 4,
+          "pet_illustration": "810-05",
+          "pet_page": 492,
+          "occurrence_twin_id": "TWIN-PET-993-F812A99AE6D9BE70B600",
+          "part_master_twin_id": "TWIN-PET-993-PART-48721FA809168134CDEC",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-C3C0FBA78A89054D84C8",
+          "oem_reference": "993 333 531 18",
+          "quantity_per_car": 1,
+          "pet_illustration": "502-02",
+          "pet_page": 278,
+          "occurrence_twin_id": "TWIN-PET-993-A3355B6E94D12D941FBE",
+          "part_master_twin_id": "TWIN-PET-993-PART-02F5AFB69D45DC4C1706",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-DCEF0E867E48414EC5C7",
+          "oem_reference": "993 612 055 06",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 572,
+          "occurrence_twin_id": "TWIN-PET-993-41727F2BB7DE94545752",
+          "part_master_twin_id": "TWIN-PET-993-PART-3060876DF150FD34C2DA",
+          "direct_model_annotations": [
+            "CARRERA 2"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-DE6373110842D1BE30AC",
+          "oem_reference": "993 559 326 01",
+          "quantity_per_car": 1,
+          "pet_illustration": "810-00",
+          "pet_page": 488,
+          "occurrence_twin_id": "TWIN-PET-993-7E282006D72EABD03630",
+          "part_master_twin_id": "TWIN-PET-993-PART-C16E7602A74A88B8DC9C",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-DE9A11C2986AF25F1457",
+          "oem_reference": "993 559 325 01",
+          "quantity_per_car": 1,
+          "pet_illustration": "810-00",
+          "pet_page": 488,
+          "occurrence_twin_id": "TWIN-PET-993-4AFEDCF32648319871A1",
+          "part_master_twin_id": "TWIN-PET-993-PART-00D1E33F1391390E98CE",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-DEB89D134BD54F675CDD",
+          "oem_reference": "993 612 052 06",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 572,
+          "occurrence_twin_id": "TWIN-PET-993-CE0909D9D90C5DA215AB",
+          "part_master_twin_id": "TWIN-PET-993-PART-BDE5E228F480FB4D0D74",
+          "direct_model_annotations": [
+            "CARRERA 2"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-E376CB10D70728B89D8D",
+          "oem_reference": "993 356 367 09",
+          "quantity_per_car": 1,
+          "pet_illustration": "201-05",
+          "pet_page": 128,
+          "occurrence_twin_id": "TWIN-PET-993-652030068DECEF0E0D3E",
+          "part_master_twin_id": "TWIN-PET-993-PART-48B5CACD0B021518F94D",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-EDD26EA0CA03260A525F",
+          "oem_reference": "993 612 032 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 572,
+          "occurrence_twin_id": "TWIN-PET-993-D451E0BCFEB642C232BF",
+          "part_master_twin_id": "TWIN-PET-993-PART-75318E85340240DFEC59",
+          "direct_model_annotations": [
+            "CARRERA 2"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-EE6433AA202B62A3AA9F",
+          "oem_reference": "PCG 993 111 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "298-00",
+          "pet_page": 151,
+          "occurrence_twin_id": "TWIN-PET-993-53446955518F705C7B07",
+          "part_master_twin_id": "TWIN-PET-993-PART-38D2611F93A985A7B185",
+          "direct_model_annotations": [
+            "CARRERA"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-FB39D86ADA781C2B2F3D",
+          "oem_reference": "993 612 035 03",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 572,
+          "occurrence_twin_id": "TWIN-PET-993-43CB7E2F75D6B9CD0512",
+          "part_master_twin_id": "TWIN-PET-993-PART-F651D0640053A4D70ED4",
+          "direct_model_annotations": [
+            "CARRERA 2"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-FF50D8D6DB1657116FA4",
+          "oem_reference": "993 612 035 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 572,
+          "occurrence_twin_id": "TWIN-PET-993-577CB48407A12D90293C",
+          "part_master_twin_id": "TWIN-PET-993-PART-3FA28B0DE3F9DFF37DC8",
+          "direct_model_annotations": [
+            "CARRERA 2"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        }
+      ],
+      "readiness": {
+        "verified_bom_entry_count": 2,
+        "verified_instance_quantity": 2,
+        "configured_pet_occurrence_count": 2,
+        "machine_resolved_bom_candidate_count": 37,
+        "machine_candidate_instance_quantity": 54,
+        "complete_variant_bom": false,
+        "editable_geometry_entries": 0,
+        "mounted_transform_entries": 0,
+        "selected_material_entries": 0,
+        "reference_solver_results": 0,
+        "physicsnemo_results": 0,
+        "simready_assets": 0,
+        "functional_vehicle_claim": false
+      },
+      "missing_gates": [
+        "resolve_applicability_for_all_listed_pet_occurrences",
+        "resolve_option_year_body_transmission_and_supersession_rules",
+        "prove_quantities_and_exclusions",
+        "author_editable_geometry_and_interfaces",
+        "select_materials_from_loads_environment_and_process",
+        "run_and_converge_reference_solvers",
+        "assemble_and_preflight_in_omniverse",
+        "correlate_with_physical_measurement_and_test"
+      ]
+    },
+    {
+      "configuration_id": "CONFIG-993-CARRERA-4",
+      "vehicle_id": "993-carrera-4",
+      "documentary_vehicle_fields": {
+        "manufacturer": "Porsche",
+        "model": "911",
+        "variant": "Carrera 4",
+        "bodyStyle": "Coupé",
+        "yearStart": 1995,
+        "yearEnd": 1998,
+        "engineCode": "M64.05",
+        "transmissionCodes": [
+          "G64.20",
+          "G64.21"
+        ],
+        "drivetrain": "AWD"
+      },
+      "verified_bom_entries": [
+        {
+          "entry_id": "BOM-993-16F731B34F40B215CDCB",
+          "oem_reference": "993 375 023 00",
+          "description": "Bearing bracket",
+          "quantity_per_car": 1,
+          "pet_illustration": "307-00",
+          "pet_position": 1,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-A13E6133E25E75F657DC",
+          "part_master_twin_id": "TWIN-PET-993-PART-777401B608DFDDC591BA",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "entry_id": "BOM-993-91A4BE8ED57CBDBA3587",
+          "oem_reference": "993 115 021 90",
+          "description": "Engine carrier",
+          "quantity_per_car": 1,
+          "pet_illustration": "109-00",
+          "pet_position": 1,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-BD8B0F314C597A96E0DA",
+          "part_master_twin_id": "TWIN-PET-993-PART-EE4DEB573669BCD0DE8C",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "entry_id": "BOM-993-BA24E71373B3E105AAD4",
+          "oem_reference": "993 375 313 01",
+          "description": "Bracket",
+          "quantity_per_car": 1,
+          "pet_illustration": "307-00",
+          "pet_position": 8,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-CC977E546C309F72EC56",
+          "part_master_twin_id": "TWIN-PET-993-PART-DACC43CF608C4B14AE94",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "entry_id": "BOM-993-C48ABDDDB75D7F3D9A37",
+          "oem_reference": "993 375 049 05",
+          "description": "Engine mounting",
+          "quantity_per_car": 2,
+          "pet_illustration": "109-00",
+          "pet_position": 7,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-E24B620426C59636AF18",
+          "part_master_twin_id": "TWIN-PET-993-PART-AAC1FC895D1A1B62EA25",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        }
+      ],
+      "machine_resolved_bom_candidates": [
+        {
+          "candidate_id": "BOMC-993-19DB8D32658FFCD06D96",
+          "oem_reference": "993 612 038 01",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 572,
+          "occurrence_twin_id": "TWIN-PET-993-14A8962DD45D3CC338D2",
+          "part_master_twin_id": "TWIN-PET-993-PART-519E8184AAB98E5F0698",
+          "direct_model_annotations": [
+            "CARRERA 4",
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-41FE128DC0BD953FA90F",
+          "oem_reference": "993 612 022 02",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-05",
+          "pet_page": 568,
+          "occurrence_twin_id": "TWIN-PET-993-111DE03B359EE7DDB2A0",
+          "part_master_twin_id": "TWIN-PET-993-PART-60762F0ECBA5D76464AB",
+          "direct_model_annotations": [
+            "CARRERA 4"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-47D1F68742F9A687DE5A",
+          "oem_reference": "993 612 038 03",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 572,
+          "occurrence_twin_id": "TWIN-PET-993-48C40FBB85E575983694",
+          "part_master_twin_id": "TWIN-PET-993-PART-F7299AAEC45C71118917",
+          "direct_model_annotations": [
+            "CARRERA 4",
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-830059862D79936BCA23",
+          "oem_reference": "993 612 058 06",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 572,
+          "occurrence_twin_id": "TWIN-PET-993-DA3FC41879E11D941AD7",
+          "part_master_twin_id": "TWIN-PET-993-PART-DB5B64EFA7DB3B86A4E6",
+          "direct_model_annotations": [
+            "CARRERA 4",
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-A417B87E2925722694E1",
+          "oem_reference": "993 612 058 04",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 572,
+          "occurrence_twin_id": "TWIN-PET-993-3CF166CD9971F64A2B59",
+          "part_master_twin_id": "TWIN-PET-993-PART-D81C089F481F2109ACEF",
+          "direct_model_annotations": [
+            "CARRERA 4",
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-AE5D7074DC866383C9CA",
+          "oem_reference": "993 612 038 06",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 572,
+          "occurrence_twin_id": "TWIN-PET-993-0172C7826887347AE55F",
+          "part_master_twin_id": "TWIN-PET-993-PART-BF0C8E760244559E78BE",
+          "direct_model_annotations": [
+            "CARRERA 4",
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        }
+      ],
+      "readiness": {
+        "verified_bom_entry_count": 4,
+        "verified_instance_quantity": 5,
+        "configured_pet_occurrence_count": 4,
+        "machine_resolved_bom_candidate_count": 6,
+        "machine_candidate_instance_quantity": 6,
+        "complete_variant_bom": false,
+        "editable_geometry_entries": 0,
+        "mounted_transform_entries": 0,
+        "selected_material_entries": 0,
+        "reference_solver_results": 0,
+        "physicsnemo_results": 0,
+        "simready_assets": 0,
+        "functional_vehicle_claim": false
+      },
+      "missing_gates": [
+        "resolve_applicability_for_all_listed_pet_occurrences",
+        "resolve_option_year_body_transmission_and_supersession_rules",
+        "prove_quantities_and_exclusions",
+        "author_editable_geometry_and_interfaces",
+        "select_materials_from_loads_environment_and_process",
+        "run_and_converge_reference_solvers",
+        "assemble_and_preflight_in_omniverse",
+        "correlate_with_physical_measurement_and_test"
+      ]
+    },
+    {
+      "configuration_id": "CONFIG-993-CARRERA-4S",
+      "vehicle_id": "993-carrera-4s",
+      "documentary_vehicle_fields": {
+        "manufacturer": "Porsche",
+        "model": "911",
+        "variant": "Carrera 4S",
+        "bodyStyle": "Coupé",
+        "yearStart": 1996,
+        "yearEnd": 1998,
+        "engineCode": "M64.21",
+        "transmissionCodes": [
+          "G64.21"
+        ],
+        "drivetrain": "AWD",
+        "optionCodes": [
+          "M491",
+          "M495"
+        ]
+      },
+      "verified_bom_entries": [
+        {
+          "entry_id": "BOM-993-08B3820CFC68C2543A43",
+          "oem_reference": "993 505 641 01",
+          "description": "Support tube, left",
+          "quantity_per_car": 1,
+          "pet_illustration": "802-05",
+          "pet_position": 13,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-99A62C8F5FC7388CE276",
+          "part_master_twin_id": "TWIN-PET-993-PART-7B6D27D6021D4FB2E286",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "entry_id": "BOM-993-0C082AE08182715BF440",
+          "oem_reference": "993 115 021 90",
+          "description": "Engine carrier",
+          "quantity_per_car": 1,
+          "pet_illustration": "109-00",
+          "pet_position": 1,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-BD8B0F314C597A96E0DA",
+          "part_master_twin_id": "TWIN-PET-993-PART-EE4DEB573669BCD0DE8C",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "entry_id": "BOM-993-183364B1853DDE13771F",
+          "oem_reference": "993 375 023 00",
+          "description": "Bearing bracket",
+          "quantity_per_car": 1,
+          "pet_illustration": "307-00",
+          "pet_position": 1,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-A13E6133E25E75F657DC",
+          "part_master_twin_id": "TWIN-PET-993-PART-777401B608DFDDC591BA",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "entry_id": "BOM-993-5B1E8010D9E8C40BD39C",
+          "oem_reference": "993 505 642 01",
+          "description": "Support tube, right",
+          "quantity_per_car": 1,
+          "pet_illustration": "802-05",
+          "pet_position": 13,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-A868DBE8353C13B4699B",
+          "part_master_twin_id": "TWIN-PET-993-PART-A98B6FDC07A98EB92FCC",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "entry_id": "BOM-993-96EA53C62A0AD3C591AE",
+          "oem_reference": "993 505 639 01",
+          "description": "Rear support",
+          "quantity_per_car": 2,
+          "pet_illustration": "802-05",
+          "pet_position": 8,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-8F6DC7C6CBE1070A34C0",
+          "part_master_twin_id": "TWIN-PET-993-PART-A531CE0ECA5C2C104198",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "entry_id": "BOM-993-A7052341DE3F033E8F45",
+          "oem_reference": "993 504 116 01",
+          "description": "Support, right",
+          "quantity_per_car": 1,
+          "pet_illustration": "802-05",
+          "pet_position": 9,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-BC046336A1F2D041E5BE",
+          "part_master_twin_id": "TWIN-PET-993-PART-9F4222F69B9C1FF4FF25",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "entry_id": "BOM-993-C9721B0536EB1CD5A4D4",
+          "oem_reference": "993 504 115 01",
+          "description": "Support, left",
+          "quantity_per_car": 1,
+          "pet_illustration": "802-05",
+          "pet_position": 9,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-F4BD8A18181991D5EF95",
+          "part_master_twin_id": "TWIN-PET-993-PART-2425E35F0DCBACB21DF9",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "entry_id": "BOM-993-D626EAABCDD0C26CEE49",
+          "oem_reference": "993 375 313 01",
+          "description": "Bracket",
+          "quantity_per_car": 1,
+          "pet_illustration": "307-00",
+          "pet_position": 8,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-CC977E546C309F72EC56",
+          "part_master_twin_id": "TWIN-PET-993-PART-DACC43CF608C4B14AE94",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        }
+      ],
+      "machine_resolved_bom_candidates": [
+        {
+          "candidate_id": "BOMC-993-3E91EB3614481097B466",
+          "oem_reference": "993 701 287 24",
+          "quantity_per_car": 1,
+          "pet_illustration": "001-05",
+          "pet_page": 25,
+          "occurrence_twin_id": "TWIN-PET-993-13971328764EF64CD208",
+          "part_master_twin_id": "TWIN-PET-993-PART-3B4FB3124EED58E00475",
+          "direct_model_annotations": [
+            "CARRERA 4 S"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-B9498909566C5774CE04",
+          "oem_reference": "993 701 287 17",
+          "quantity_per_car": 1,
+          "pet_illustration": "001-05",
+          "pet_page": 25,
+          "occurrence_twin_id": "TWIN-PET-993-71F6C28AB8932CB687A9",
+          "part_master_twin_id": "TWIN-PET-993-PART-98EF4BF4C2F3394BD27D",
+          "direct_model_annotations": [
+            "CARRERA 4 S"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        }
+      ],
+      "readiness": {
+        "verified_bom_entry_count": 8,
+        "verified_instance_quantity": 9,
+        "configured_pet_occurrence_count": 8,
+        "machine_resolved_bom_candidate_count": 2,
+        "machine_candidate_instance_quantity": 2,
+        "complete_variant_bom": false,
+        "editable_geometry_entries": 0,
+        "mounted_transform_entries": 0,
+        "selected_material_entries": 0,
+        "reference_solver_results": 0,
+        "physicsnemo_results": 0,
+        "simready_assets": 0,
+        "functional_vehicle_claim": false
+      },
+      "missing_gates": [
+        "resolve_applicability_for_all_listed_pet_occurrences",
+        "resolve_option_year_body_transmission_and_supersession_rules",
+        "prove_quantities_and_exclusions",
+        "author_editable_geometry_and_interfaces",
+        "select_materials_from_loads_environment_and_process",
+        "run_and_converge_reference_solvers",
+        "assemble_and_preflight_in_omniverse",
+        "correlate_with_physical_measurement_and_test"
+      ]
+    },
+    {
+      "configuration_id": "CONFIG-993-CARRERA-S",
+      "vehicle_id": "993-carrera-s",
+      "documentary_vehicle_fields": {
+        "manufacturer": "Porsche",
+        "model": "911",
+        "variant": "Carrera S",
+        "bodyStyle": "Coupé",
+        "yearStart": 1997,
+        "yearEnd": 1998,
+        "engineCode": "M64.21",
+        "transmissionCodes": [
+          "G50.21"
+        ],
+        "drivetrain": "RWD"
+      },
+      "verified_bom_entries": [
+        {
+          "entry_id": "BOM-993-2692FEEA232FEE02A969",
+          "oem_reference": "993 375 309 00",
+          "description": "Transmission carrier",
+          "quantity_per_car": 1,
+          "pet_illustration": "307-00",
+          "pet_position": 15,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-13237967021DA309F8BC",
+          "part_master_twin_id": "TWIN-PET-993-PART-88ED11C98FCA5415F35F",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "entry_id": "BOM-993-73AB793D881819366D0A",
+          "oem_reference": "993 115 021 90",
+          "description": "Engine carrier",
+          "quantity_per_car": 1,
+          "pet_illustration": "109-00",
+          "pet_position": 1,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-BD8B0F314C597A96E0DA",
+          "part_master_twin_id": "TWIN-PET-993-PART-EE4DEB573669BCD0DE8C",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        }
+      ],
+      "machine_resolved_bom_candidates": [
+        {
+          "candidate_id": "BOMC-993-2C53D535EE0E86E82126",
+          "oem_reference": "999 591 390 02",
+          "quantity_per_car": 14,
+          "pet_illustration": "803-10",
+          "pet_page": 386,
+          "occurrence_twin_id": "TWIN-PET-993-90F5DA2C4212E3991DED",
+          "part_master_twin_id": "TWIN-PET-993-PART-630A9C6381017437DAD9",
+          "direct_model_annotations": [
+            "CARRERA S"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-40DC256A0509F3C33516",
+          "oem_reference": "993 512 777 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "803-10",
+          "pet_page": 386,
+          "occurrence_twin_id": "TWIN-PET-993-5863C1756D3EC948DF08",
+          "part_master_twin_id": "TWIN-PET-993-PART-0003AA1FCAD87E99A976",
+          "direct_model_annotations": [
+            "CARRERA S"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-6AD4AAE66860CE0985AC",
+          "oem_reference": "993 701 287 29",
+          "quantity_per_car": 1,
+          "pet_illustration": "001-05",
+          "pet_page": 25,
+          "occurrence_twin_id": "TWIN-PET-993-A0F91472760CA63BD0D2",
+          "part_master_twin_id": "TWIN-PET-993-PART-010C40DCD2577E2A9586",
+          "direct_model_annotations": [
+            "CARRERA S"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-767173E09C0E0D865B3E",
+          "oem_reference": "993 555 031 20",
+          "quantity_per_car": 1,
+          "pet_illustration": "807-11",
+          "pet_page": 456,
+          "occurrence_twin_id": "TWIN-PET-993-1AE69CD90611D7B021C2",
+          "part_master_twin_id": "TWIN-PET-993-PART-97A844F5C4EBEE09248A",
+          "direct_model_annotations": [
+            "CARRERA S"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-83D404A821A57FDDA182",
+          "oem_reference": "993 512 591 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "803-10",
+          "pet_page": 386,
+          "occurrence_twin_id": "TWIN-PET-993-6C9BF157573AFA173CCC",
+          "part_master_twin_id": "TWIN-PET-993-PART-015B447F846A69EE3311",
+          "direct_model_annotations": [
+            "CARRERA S"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-998C4DB1FF28A3169F43",
+          "oem_reference": "993 512 123 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "803-10",
+          "pet_page": 386,
+          "occurrence_twin_id": "TWIN-PET-993-1B464BB049BC8C12CE45",
+          "part_master_twin_id": "TWIN-PET-993-PART-D29488B7D22A2DDB811B",
+          "direct_model_annotations": [
+            "CARRERA S"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-D599511CECB02DC0E75A",
+          "oem_reference": "993 512 592 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "803-10",
+          "pet_page": 386,
+          "occurrence_twin_id": "TWIN-PET-993-1AAEF2AAFCF9048C76AA",
+          "part_master_twin_id": "TWIN-PET-993-PART-54F6F9EBDC0EEFFE788C",
+          "direct_model_annotations": [
+            "CARRERA S"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-D785395E280F63703814",
+          "oem_reference": "993 555 032 19",
+          "quantity_per_car": 1,
+          "pet_illustration": "807-11",
+          "pet_page": 456,
+          "occurrence_twin_id": "TWIN-PET-993-9DA51D2266126B846A7E",
+          "part_master_twin_id": "TWIN-PET-993-PART-32A61FA97E6DD3B8DA4B",
+          "direct_model_annotations": [
+            "CARRERA S"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        }
+      ],
+      "readiness": {
+        "verified_bom_entry_count": 2,
+        "verified_instance_quantity": 2,
+        "configured_pet_occurrence_count": 2,
+        "machine_resolved_bom_candidate_count": 8,
+        "machine_candidate_instance_quantity": 21,
+        "complete_variant_bom": false,
+        "editable_geometry_entries": 0,
+        "mounted_transform_entries": 0,
+        "selected_material_entries": 0,
+        "reference_solver_results": 0,
+        "physicsnemo_results": 0,
+        "simready_assets": 0,
+        "functional_vehicle_claim": false
+      },
+      "missing_gates": [
+        "resolve_applicability_for_all_listed_pet_occurrences",
+        "resolve_option_year_body_transmission_and_supersession_rules",
+        "prove_quantities_and_exclusions",
+        "author_editable_geometry_and_interfaces",
+        "select_materials_from_loads_environment_and_process",
+        "run_and_converge_reference_solvers",
+        "assemble_and_preflight_in_omniverse",
+        "correlate_with_physical_measurement_and_test"
+      ]
+    },
+    {
+      "configuration_id": "CONFIG-993-GT2",
+      "vehicle_id": "993-gt2",
+      "documentary_vehicle_fields": {
+        "manufacturer": "Porsche",
+        "model": "911",
+        "variant": "GT2",
+        "bodyStyle": "Coupé",
+        "yearStart": 1995,
+        "yearEnd": 1998,
+        "engineCode": "M64.60R",
+        "transmissionCodes": [
+          "G64.51"
+        ],
+        "drivetrain": "RWD",
+        "notes": "Engine and gearbox codes need PET confirmation; recorded as unverified."
+      },
+      "verified_bom_entries": [],
+      "machine_resolved_bom_candidates": [],
+      "readiness": {
+        "verified_bom_entry_count": 0,
+        "verified_instance_quantity": 0,
+        "configured_pet_occurrence_count": 0,
+        "machine_resolved_bom_candidate_count": 0,
+        "machine_candidate_instance_quantity": 0,
+        "complete_variant_bom": false,
+        "editable_geometry_entries": 0,
+        "mounted_transform_entries": 0,
+        "selected_material_entries": 0,
+        "reference_solver_results": 0,
+        "physicsnemo_results": 0,
+        "simready_assets": 0,
+        "functional_vehicle_claim": false
+      },
+      "missing_gates": [
+        "resolve_applicability_for_all_listed_pet_occurrences",
+        "resolve_option_year_body_transmission_and_supersession_rules",
+        "prove_quantities_and_exclusions",
+        "author_editable_geometry_and_interfaces",
+        "select_materials_from_loads_environment_and_process",
+        "run_and_converge_reference_solvers",
+        "assemble_and_preflight_in_omniverse",
+        "correlate_with_physical_measurement_and_test"
+      ]
+    },
+    {
+      "configuration_id": "CONFIG-993-RS",
+      "vehicle_id": "993-rs",
+      "documentary_vehicle_fields": {
+        "manufacturer": "Porsche",
+        "model": "911",
+        "variant": "Carrera RS",
+        "bodyStyle": "Coupé",
+        "yearStart": 1995,
+        "yearEnd": 1996,
+        "engineCode": "M64.20",
+        "transmissionCodes": [
+          "G50.31"
+        ],
+        "drivetrain": "RWD",
+        "notes": "PET carries RS-specific variants of several rear body parts."
+      },
+      "verified_bom_entries": [
+        {
+          "entry_id": "BOM-993-6D3A256F13E1A3196876",
+          "oem_reference": "993 375 309 00",
+          "description": "Transmission carrier",
+          "quantity_per_car": 1,
+          "pet_illustration": "307-00",
+          "pet_position": 15,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-13237967021DA309F8BC",
+          "part_master_twin_id": "TWIN-PET-993-PART-88ED11C98FCA5415F35F",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "entry_id": "BOM-993-7739AFB4F96707B8A486",
+          "oem_reference": "993 115 021 41",
+          "description": "Engine carrier, RS",
+          "quantity_per_car": 1,
+          "pet_illustration": "109-00",
+          "pet_position": 1,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-15FC7E24E408D4F6F10C",
+          "part_master_twin_id": "TWIN-PET-993-PART-7DB2D8ED6E6B7AD88A86",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        }
+      ],
+      "machine_resolved_bom_candidates": [
+        {
+          "candidate_id": "BOMC-993-0A8F3B00158BF20A75F9",
+          "oem_reference": "964 351 959 01",
+          "quantity_per_car": 2,
+          "pet_illustration": "603-00",
+          "pet_page": 289,
+          "occurrence_twin_id": "TWIN-PET-993-7BB75F62EA6E3C4901EA",
+          "part_master_twin_id": "TWIN-PET-993-PART-0F68448B8C1EB6DC015E",
+          "direct_model_annotations": [
+            "CARRERA RS"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-0B62C505B8F08C4773D8",
+          "oem_reference": "993 803 035 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "812-00",
+          "pet_page": 522,
+          "occurrence_twin_id": "TWIN-PET-993-5B24F92F6F03D836C48D",
+          "part_master_twin_id": "TWIN-PET-993-PART-E25A3861E3562C8B5ED6",
+          "direct_model_annotations": [
+            "CARRERA RS"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-36071BB76098C2630FF0",
+          "oem_reference": "951 351 919 10",
+          "quantity_per_car": 2,
+          "pet_illustration": "603-00",
+          "pet_page": 289,
+          "occurrence_twin_id": "TWIN-PET-993-1CCA3DA6D678D62307F9",
+          "part_master_twin_id": "TWIN-PET-993-PART-1B0C09888A0C59457432",
+          "direct_model_annotations": [
+            "CARRERA RS"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-37F0F69AB6AA84FF3690",
+          "oem_reference": "964 803 033 04",
+          "quantity_per_car": 2,
+          "pet_illustration": "812-00",
+          "pet_page": 522,
+          "occurrence_twin_id": "TWIN-PET-993-64C34F6C1764BEE7BFA2",
+          "part_master_twin_id": "TWIN-PET-993-PART-8EC2C49179E98D94522C",
+          "direct_model_annotations": [
+            "CARRERA RS"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-3AA316AA900CDB07AF43",
+          "oem_reference": "993 501 807 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "801-10",
+          "pet_page": 337,
+          "occurrence_twin_id": "TWIN-PET-993-216B974344F4E8F627F6",
+          "part_master_twin_id": "TWIN-PET-993-PART-066DB53D44D55CEE96F9",
+          "direct_model_annotations": [
+            "CARRERA RS"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-611B608714B33372BBBA",
+          "oem_reference": "993 551 067 06",
+          "quantity_per_car": 1,
+          "pet_illustration": "807-00",
+          "pet_page": 418,
+          "occurrence_twin_id": "TWIN-PET-993-AC76B655FE4B4CABD029",
+          "part_master_twin_id": "TWIN-PET-993-PART-39DE1950BAC80E44B62A",
+          "direct_model_annotations": [
+            "CARRERA RS"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-652922B4BD7B12CD5C88",
+          "oem_reference": "928 332 030 08",
+          "quantity_per_car": 2,
+          "pet_illustration": "501-05",
+          "pet_page": 273,
+          "occurrence_twin_id": "TWIN-PET-993-93518C638437FA793FF6",
+          "part_master_twin_id": "TWIN-PET-993-PART-7B95D94584B13E535955",
+          "direct_model_annotations": [
+            "CARRERA RS"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-65C109CD52F80D808408",
+          "oem_reference": "993 542 067 07",
+          "quantity_per_car": 1,
+          "pet_illustration": "804-25",
+          "pet_page": 407,
+          "occurrence_twin_id": "TWIN-PET-993-7221DFC46AF20C0777B8",
+          "part_master_twin_id": "TWIN-PET-993-PART-0F5CE26FE2CF1A018D78",
+          "direct_model_annotations": [
+            "CARRERA RS"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-9A8ECAE971BFCFBBD8B7",
+          "oem_reference": "959 542 805 00",
+          "quantity_per_car": 2,
+          "pet_illustration": "804-25",
+          "pet_page": 407,
+          "occurrence_twin_id": "TWIN-PET-993-6C4D0FF13200DE75F86E",
+          "part_master_twin_id": "TWIN-PET-993-PART-082B45B1D12078B19D2B",
+          "direct_model_annotations": [
+            "CARRERA RS"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-9CCE8224E17F9253D4B1",
+          "oem_reference": "999 090 010 01",
+          "quantity_per_car": 2,
+          "pet_illustration": "501-05",
+          "pet_page": 273,
+          "occurrence_twin_id": "TWIN-PET-993-C71CF8869EFD6022AF38",
+          "part_master_twin_id": "TWIN-PET-993-PART-629D48BD1D9ED361D9DC",
+          "direct_model_annotations": [
+            "CARRERA RS"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-A6D8A174D3C566CE1DF6",
+          "oem_reference": "993 542 068 07",
+          "quantity_per_car": 1,
+          "pet_illustration": "804-25",
+          "pet_page": 407,
+          "occurrence_twin_id": "TWIN-PET-993-9342A6ED02D05DD99EBC",
+          "part_master_twin_id": "TWIN-PET-993-PART-8E911A076AEF6A705897",
+          "direct_model_annotations": [
+            "CARRERA RS"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-A6F12F034D68DE158A44",
+          "oem_reference": "993 803 036 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "812-00",
+          "pet_page": 522,
+          "occurrence_twin_id": "TWIN-PET-993-9656D25D8C1EEDDC2AFB",
+          "part_master_twin_id": "TWIN-PET-993-PART-40C89BA2CC7E3B61D84E",
+          "direct_model_annotations": [
+            "CARRERA RS"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-A9D29C4EDDF5C4CFC426",
+          "oem_reference": "999 076 046 09",
+          "quantity_per_car": 2,
+          "pet_illustration": "501-05",
+          "pet_page": 273,
+          "occurrence_twin_id": "TWIN-PET-993-AE4E730F1481E6B03179",
+          "part_master_twin_id": "TWIN-PET-993-PART-5B4ADD436EA674C86FB0",
+          "direct_model_annotations": [
+            "CARRERA RS"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-B29321902945B5A5D132",
+          "oem_reference": "999 090 010 09",
+          "quantity_per_car": 2,
+          "pet_illustration": "501-05",
+          "pet_page": 273,
+          "occurrence_twin_id": "TWIN-PET-993-487C178806A77E20A64B",
+          "part_master_twin_id": "TWIN-PET-993-PART-88FDA87391D165353BCA",
+          "direct_model_annotations": [
+            "CARRERA RS"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-CB78CF89F85DD5206052",
+          "oem_reference": "964 343 531 13",
+          "quantity_per_car": 1,
+          "pet_illustration": "402-00",
+          "pet_page": 240,
+          "occurrence_twin_id": "TWIN-PET-993-4847C6F0CEE3E1DB8D94",
+          "part_master_twin_id": "TWIN-PET-993-PART-65E3AAAB7CCEA2CF9CB0",
+          "direct_model_annotations": [
+            "CARRERA RS"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-F89F1D5B0E1AC0CDAB06",
+          "oem_reference": "964 351 959 00",
+          "quantity_per_car": 2,
+          "pet_illustration": "603-00",
+          "pet_page": 289,
+          "occurrence_twin_id": "TWIN-PET-993-E033ACD55E81F0176B18",
+          "part_master_twin_id": "TWIN-PET-993-PART-E282F867D588F3702F3C",
+          "direct_model_annotations": [
+            "CARRERA RS"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        }
+      ],
+      "readiness": {
+        "verified_bom_entry_count": 2,
+        "verified_instance_quantity": 2,
+        "configured_pet_occurrence_count": 2,
+        "machine_resolved_bom_candidate_count": 16,
+        "machine_candidate_instance_quantity": 25,
+        "complete_variant_bom": false,
+        "editable_geometry_entries": 0,
+        "mounted_transform_entries": 0,
+        "selected_material_entries": 0,
+        "reference_solver_results": 0,
+        "physicsnemo_results": 0,
+        "simready_assets": 0,
+        "functional_vehicle_claim": false
+      },
+      "missing_gates": [
+        "resolve_applicability_for_all_listed_pet_occurrences",
+        "resolve_option_year_body_transmission_and_supersession_rules",
+        "prove_quantities_and_exclusions",
+        "author_editable_geometry_and_interfaces",
+        "select_materials_from_loads_environment_and_process",
+        "run_and_converge_reference_solvers",
+        "assemble_and_preflight_in_omniverse",
+        "correlate_with_physical_measurement_and_test"
+      ]
+    },
+    {
+      "configuration_id": "CONFIG-993-TURBO",
+      "vehicle_id": "993-turbo",
+      "documentary_vehicle_fields": {
+        "manufacturer": "Porsche",
+        "model": "911",
+        "variant": "Turbo",
+        "bodyStyle": "Coupé",
+        "yearStart": 1995,
+        "yearEnd": 1998,
+        "engineCode": "M64.60",
+        "transmissionCodes": [
+          "G64.51",
+          "G64.52"
+        ],
+        "drivetrain": "AWD",
+        "optionCodes": [
+          "M491",
+          "M495"
+        ],
+        "notes": "MVP focus. PET annotates Turbo-specific rear body parts with the M491/M495 option codes rather than the word Turbo, so those codes are the reliable filter.",
+        "mvp": true
+      },
+      "verified_bom_entries": [
+        {
+          "entry_id": "BOM-993-29472465967106A494B2",
+          "oem_reference": "993 504 115 01",
+          "description": "Support, left",
+          "quantity_per_car": 1,
+          "pet_illustration": "802-05",
+          "pet_position": 9,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-F4BD8A18181991D5EF95",
+          "part_master_twin_id": "TWIN-PET-993-PART-2425E35F0DCBACB21DF9",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "entry_id": "BOM-993-35E5F63BCFB94B87CA1B",
+          "oem_reference": "993 375 313 01",
+          "description": "Bracket",
+          "quantity_per_car": 1,
+          "pet_illustration": "307-00",
+          "pet_position": 8,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-CC977E546C309F72EC56",
+          "part_master_twin_id": "TWIN-PET-993-PART-DACC43CF608C4B14AE94",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "entry_id": "BOM-993-3802BF7567F6874173DD",
+          "oem_reference": "993 505 642 01",
+          "description": "Support tube, right",
+          "quantity_per_car": 1,
+          "pet_illustration": "802-05",
+          "pet_position": 13,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-A868DBE8353C13B4699B",
+          "part_master_twin_id": "TWIN-PET-993-PART-A98B6FDC07A98EB92FCC",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "entry_id": "BOM-993-4373998719792D41DDB9",
+          "oem_reference": "993 115 021 53",
+          "description": "Engine carrier",
+          "quantity_per_car": 1,
+          "pet_illustration": "109-00",
+          "pet_position": 17,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-5ADBBF1FEAB9F19D518E",
+          "part_master_twin_id": "TWIN-PET-993-PART-F77CBF8A0C10743C3178",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "entry_id": "BOM-993-601FCABB368AE4381843",
+          "oem_reference": "993 505 639 01",
+          "description": "Rear support",
+          "quantity_per_car": 2,
+          "pet_illustration": "802-05",
+          "pet_position": 8,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-8F6DC7C6CBE1070A34C0",
+          "part_master_twin_id": "TWIN-PET-993-PART-A531CE0ECA5C2C104198",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "entry_id": "BOM-993-759B0F28BF13C3C2463F",
+          "oem_reference": "993 375 049 05",
+          "description": "Engine mounting",
+          "quantity_per_car": 2,
+          "pet_illustration": "109-00",
+          "pet_position": 7,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-E24B620426C59636AF18",
+          "part_master_twin_id": "TWIN-PET-993-PART-AAC1FC895D1A1B62EA25",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "entry_id": "BOM-993-767644EAD1EE05B5474C",
+          "oem_reference": "993 115 103 52",
+          "description": "Engine bracket",
+          "quantity_per_car": 1,
+          "pet_illustration": "109-00",
+          "pet_position": 18,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-74CA5F733441F40A13F3",
+          "part_master_twin_id": "TWIN-PET-993-PART-194C2AE4D80CBF268FA8",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "entry_id": "BOM-993-7B8B367E21B0BFE34A0C",
+          "oem_reference": "993 505 641 01",
+          "description": "Support tube, left",
+          "quantity_per_car": 1,
+          "pet_illustration": "802-05",
+          "pet_position": 13,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-99A62C8F5FC7388CE276",
+          "part_master_twin_id": "TWIN-PET-993-PART-7B6D27D6021D4FB2E286",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "entry_id": "BOM-993-81B1E60F2C72CAC3EDF5",
+          "oem_reference": "993 375 023 00",
+          "description": "Bearing bracket",
+          "quantity_per_car": 1,
+          "pet_illustration": "307-00",
+          "pet_position": 1,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-A13E6133E25E75F657DC",
+          "part_master_twin_id": "TWIN-PET-993-PART-777401B608DFDDC591BA",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "entry_id": "BOM-993-DBE6F1A7D8F46E00702A",
+          "oem_reference": "993 504 116 01",
+          "description": "Support, right",
+          "quantity_per_car": 1,
+          "pet_illustration": "802-05",
+          "pet_position": 9,
+          "pet_source_id": "pet-993-pdf-rsworkshop",
+          "occurrence_twin_id": "TWIN-PET-993-BC046336A1F2D041E5BE",
+          "part_master_twin_id": "TWIN-PET-993-PART-9F4222F69B9C1FF4FF25",
+          "evidence_depth": "human_read_in_catalogue_context",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        }
+      ],
+      "machine_resolved_bom_candidates": [
+        {
+          "candidate_id": "BOMC-993-00B4E37E9E3F358C5E4E",
+          "oem_reference": "993 504 461 04",
+          "quantity_per_car": 1,
+          "pet_illustration": "801-75",
+          "pet_page": 366,
+          "occurrence_twin_id": "TWIN-PET-993-488539B96DFD9B9A07C7",
+          "part_master_twin_id": "TWIN-PET-993-PART-352152DBB313AA7EDEF8",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-017F8994BE2A09122364",
+          "oem_reference": "993 110 118 50",
+          "quantity_per_car": 1,
+          "pet_illustration": "106-00",
+          "pet_page": 85,
+          "occurrence_twin_id": "TWIN-PET-993-109400C5D8BAB9739F98",
+          "part_master_twin_id": "TWIN-PET-993-PART-D903E1A643849D95ECFE",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-0768C5FCFDC19DED73B8",
+          "oem_reference": "993 504 125 01",
+          "quantity_per_car": 1,
+          "pet_illustration": "801-75",
+          "pet_page": 366,
+          "occurrence_twin_id": "TWIN-PET-993-1C5B5533B99D63B6F931",
+          "part_master_twin_id": "TWIN-PET-993-PART-419C68080455707F3007",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-093C5DF03076E8B9D5D7",
+          "oem_reference": "993 356 367 07",
+          "quantity_per_car": 1,
+          "pet_illustration": "201-05",
+          "pet_page": 128,
+          "occurrence_twin_id": "TWIN-PET-993-783865C47B7473CBDE44",
+          "part_master_twin_id": "TWIN-PET-993-PART-FFBE981AFD3399FCDA49",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-0C1829C1B36EFD5D6F8E",
+          "oem_reference": "PCG 512 055 02",
+          "quantity_per_car": 1,
+          "pet_illustration": "604-00",
+          "pet_page": 294,
+          "occurrence_twin_id": "TWIN-PET-993-8B9299786E2EE158AA55",
+          "part_master_twin_id": "TWIN-PET-993-PART-650738073D40FC49C7A3",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-106300C7DE7BD0D5E21A",
+          "oem_reference": "993 351 980 07",
+          "quantity_per_car": 1,
+          "pet_illustration": "602-00",
+          "pet_page": 286,
+          "occurrence_twin_id": "TWIN-PET-993-3749532BF8EDB079B164",
+          "part_master_twin_id": "TWIN-PET-993-PART-D66F47295C88CB298CBB",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-1346372EF14FC21D62CA",
+          "oem_reference": "993 352 971 00",
+          "quantity_per_car": 2,
+          "pet_illustration": "603-00",
+          "pet_page": 290,
+          "occurrence_twin_id": "TWIN-PET-993-8F62FE68B7DD4E3A296C",
+          "part_master_twin_id": "TWIN-PET-993-PART-00FDEB604177D6B32309",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-19A8FEDF267E9EFB8585",
+          "oem_reference": "993 355 953 50",
+          "quantity_per_car": 1,
+          "pet_illustration": "605-00",
+          "pet_page": 309,
+          "occurrence_twin_id": "TWIN-PET-993-A01A25A59B4CD1D113D0",
+          "part_master_twin_id": "TWIN-PET-993-PART-AE7F71B845254D5D58C1",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-1C9C8463159C3821F757",
+          "oem_reference": "993 352 045 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "603-00",
+          "pet_page": 289,
+          "occurrence_twin_id": "TWIN-PET-993-9DF4E96692B529319DC8",
+          "part_master_twin_id": "TWIN-PET-993-PART-813D84B63F164018A967",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-1E22DB119B4B56A262D3",
+          "oem_reference": "993 355 247 02",
+          "quantity_per_car": 1,
+          "pet_illustration": "604-09",
+          "pet_page": 303,
+          "occurrence_twin_id": "TWIN-PET-993-5428457401855F2A3340",
+          "part_master_twin_id": "TWIN-PET-993-PART-C11F8A099DAC8B218259",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-1F49906E9D2F20AA8ACC",
+          "oem_reference": "993 110 025 53",
+          "quantity_per_car": 1,
+          "pet_illustration": "907-00",
+          "pet_page": 611,
+          "occurrence_twin_id": "TWIN-PET-993-1A6FAAC39D267560D707",
+          "part_master_twin_id": "TWIN-PET-993-PART-74A3556F669CA43B8C04",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-1FB57340C3E4EBD9C7E5",
+          "oem_reference": "993 641 547 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "906-00",
+          "pet_page": 609,
+          "occurrence_twin_id": "TWIN-PET-993-8A7A48DDCD8E611C3014",
+          "part_master_twin_id": "TWIN-PET-993-PART-AC25CEAF8491813B8E6D",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-22B7DF3D6F7BC6A04D09",
+          "oem_reference": "993 701 287 26",
+          "quantity_per_car": 1,
+          "pet_illustration": "001-05",
+          "pet_page": 25,
+          "occurrence_twin_id": "TWIN-PET-993-5BEADB913D6CAB18ECC3",
+          "part_master_twin_id": "TWIN-PET-993-PART-4105C25015FD9E4AC9B0",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-24BEA4FA803AEE048BC8",
+          "oem_reference": "993 361 303 02",
+          "quantity_per_car": 4,
+          "pet_illustration": "601-00",
+          "pet_page": 282,
+          "occurrence_twin_id": "TWIN-PET-993-22DF60F6C037616E4374",
+          "part_master_twin_id": "TWIN-PET-993-PART-FEBAE0D0177243E55BB3",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-260E2923DC29F581C4A2",
+          "oem_reference": "993 351 046 10",
+          "quantity_per_car": 1,
+          "pet_illustration": "602-00",
+          "pet_page": 286,
+          "occurrence_twin_id": "TWIN-PET-993-0D439CE5DC8F3DA3A12D",
+          "part_master_twin_id": "TWIN-PET-993-PART-5E3D42749A6C47FA71C3",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-27638489B8144907F6F7",
+          "oem_reference": "993 351 426 10",
+          "quantity_per_car": 1,
+          "pet_illustration": "602-00",
+          "pet_page": 286,
+          "occurrence_twin_id": "TWIN-PET-993-B2463B67CA57E4964298",
+          "part_master_twin_id": "TWIN-PET-993-PART-6B1C1383A1253CB37A81",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-2B351060FF855DC9B14A",
+          "oem_reference": "993 006 109 13",
+          "quantity_per_car": 1,
+          "pet_illustration": "001-05",
+          "pet_page": 25,
+          "occurrence_twin_id": "TWIN-PET-993-967D28FF572CB5C92333",
+          "part_master_twin_id": "TWIN-PET-993-PART-F5BEB394B18FD3181E4E",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-2F2C30CA9755B65C35E9",
+          "oem_reference": "993 351 980 08",
+          "quantity_per_car": 1,
+          "pet_illustration": "602-00",
+          "pet_page": 286,
+          "occurrence_twin_id": "TWIN-PET-993-4288C261AC060BDAF1D4",
+          "part_master_twin_id": "TWIN-PET-993-PART-485A8C27EE827944C8AC",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-325781871E5F4116CC55",
+          "oem_reference": "993 505 277 01",
+          "quantity_per_car": 1,
+          "pet_illustration": "802-10",
+          "pet_page": 379,
+          "occurrence_twin_id": "TWIN-PET-993-4BAE1B73C9392A071B18",
+          "part_master_twin_id": "TWIN-PET-993-PART-265D18FF74BCACD5CDAD",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-351CD65DA62F561DDC2E",
+          "oem_reference": "993 110 025 52",
+          "quantity_per_car": 1,
+          "pet_illustration": "907-00",
+          "pet_page": 611,
+          "occurrence_twin_id": "TWIN-PET-993-5FF80CD64358789C36D1",
+          "part_master_twin_id": "TWIN-PET-993-PART-812B732487515801FBFB",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-3626F753065EFB68B125",
+          "oem_reference": "993 352 046 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "603-00",
+          "pet_page": 289,
+          "occurrence_twin_id": "TWIN-PET-993-6C256DBB235A88AF81F4",
+          "part_master_twin_id": "TWIN-PET-993-PART-263EB7AAC107DF8BD335",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-39708B0ED7F02A31EE5D",
+          "oem_reference": "993 612 368 01",
+          "quantity_per_car": 2,
+          "pet_illustration": "602-00",
+          "pet_page": 287,
+          "occurrence_twin_id": "TWIN-PET-993-3F653289B4AD79F13D2B",
+          "part_master_twin_id": "TWIN-PET-993-PART-DDEF41B778537BF87169",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-3A9A7EDAE75DC20350B4",
+          "oem_reference": "993 701 805 00",
+          "quantity_per_car": 2,
+          "pet_illustration": "802-05",
+          "pet_page": 377,
+          "occurrence_twin_id": "TWIN-PET-993-A6761A008C73611B62BB",
+          "part_master_twin_id": "TWIN-PET-993-PART-624318F9CA10AF23DEC7",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-3D4FE97B94D1BC1FB30F",
+          "oem_reference": "993 355 954 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "604-09",
+          "pet_page": 303,
+          "occurrence_twin_id": "TWIN-PET-993-4547D6B0A2BF68802EDC",
+          "part_master_twin_id": "TWIN-PET-993-PART-0ADDDE3A6E7ACE2D2688",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-4095EC608DD2E3000B0E",
+          "oem_reference": "993 612 173 19",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-20",
+          "pet_page": 577,
+          "occurrence_twin_id": "TWIN-PET-993-B102B289A4AC0012CF1E",
+          "part_master_twin_id": "TWIN-PET-993-PART-AC3C5DF0E5E8E9D2D43B",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-4162EFBEFDCF274E37E7",
+          "oem_reference": "993 351 980 11",
+          "quantity_per_car": 1,
+          "pet_illustration": "602-00",
+          "pet_page": 286,
+          "occurrence_twin_id": "TWIN-PET-993-DF8B1261156BF85F5044",
+          "part_master_twin_id": "TWIN-PET-993-PART-FE4A354B2B1F6C17A26A",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-417AAB29E45BE42D303D",
+          "oem_reference": "993 423 023 10",
+          "quantity_per_car": 1,
+          "pet_illustration": "702-10",
+          "pet_page": 331,
+          "occurrence_twin_id": "TWIN-PET-993-FFBA56B2EED88F53A365",
+          "part_master_twin_id": "TWIN-PET-993-PART-059510747943B51AE4AB",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-4292777281D3B9B399B5",
+          "oem_reference": "993 351 939 01",
+          "quantity_per_car": 1,
+          "pet_illustration": "603-00",
+          "pet_page": 289,
+          "occurrence_twin_id": "TWIN-PET-993-86E5D4D9C5D43A557707",
+          "part_master_twin_id": "TWIN-PET-993-PART-8C32CDD3C1305667AA17",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-4519BDFF6410049A47F0",
+          "oem_reference": "993 333 701 02",
+          "quantity_per_car": 1,
+          "pet_illustration": "501-01",
+          "pet_page": 268,
+          "occurrence_twin_id": "TWIN-PET-993-21B3AF00CA9E191481A9",
+          "part_master_twin_id": "TWIN-PET-993-PART-D10D755D3EEBA1ED00ED",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-45E3C3AF8CC3827C14E8",
+          "oem_reference": "964 333 792 00",
+          "quantity_per_car": 2,
+          "pet_illustration": "501-01",
+          "pet_page": 268,
+          "occurrence_twin_id": "TWIN-PET-993-14F3DB0C6B7A2C1EDC78",
+          "part_master_twin_id": "TWIN-PET-993-PART-D1F213E368B8FED4F8A1",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-49F45B35A5390773FDE8",
+          "oem_reference": "993 333 531 17",
+          "quantity_per_car": 1,
+          "pet_illustration": "502-00",
+          "pet_page": 276,
+          "occurrence_twin_id": "TWIN-PET-993-E43E21AEE4994FE0D160",
+          "part_master_twin_id": "TWIN-PET-993-PART-ADB5F7BD1C047DC0ABF8",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-4ADBCE4F3FF8B66068FF",
+          "oem_reference": "993 504 126 01",
+          "quantity_per_car": 1,
+          "pet_illustration": "801-75",
+          "pet_page": 366,
+          "occurrence_twin_id": "TWIN-PET-993-0D97040260AA430C1761",
+          "part_master_twin_id": "TWIN-PET-993-PART-532D2C41FCE4EE7A0FAF",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-4DF96B841C51F3366BED",
+          "oem_reference": "993 355 123 03",
+          "quantity_per_car": 1,
+          "pet_illustration": "604-09",
+          "pet_page": 303,
+          "occurrence_twin_id": "TWIN-PET-993-6E93877428B2BFEDB7C9",
+          "part_master_twin_id": "TWIN-PET-993-PART-6084318F9F896897C972",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-517D04EE34D8C4174877",
+          "oem_reference": "993 351 959 02",
+          "quantity_per_car": 2,
+          "pet_illustration": "602-00",
+          "pet_page": 287,
+          "occurrence_twin_id": "TWIN-PET-993-D1FD9F929DDB47C2EED0",
+          "part_master_twin_id": "TWIN-PET-993-PART-E85189CAC514CCCFEE14",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-54CCDB144DF6E85CDBE6",
+          "oem_reference": "993 701 287 18",
+          "quantity_per_car": 1,
+          "pet_illustration": "001-05",
+          "pet_page": 25,
+          "occurrence_twin_id": "TWIN-PET-993-368AD0B2BECF0429F9D3",
+          "part_master_twin_id": "TWIN-PET-993-PART-A51FF993A60E6CB3B868",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-563A94524A0A099A1809",
+          "oem_reference": "993 503 031 03",
+          "quantity_per_car": 1,
+          "pet_illustration": "801-40",
+          "pet_page": 353,
+          "occurrence_twin_id": "TWIN-PET-993-57333A0595C6F92AF20D",
+          "part_master_twin_id": "TWIN-PET-993-PART-9B3B81E6E3F1E96D638F",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-5B0A7E00D726529ED316",
+          "oem_reference": "993 355 123 01",
+          "quantity_per_car": 1,
+          "pet_illustration": "604-09",
+          "pet_page": 303,
+          "occurrence_twin_id": "TWIN-PET-993-CAAC46D6AEE50CE33345",
+          "part_master_twin_id": "TWIN-PET-993-PART-9CB68D60FF4DCA525E4D",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-5CCA2C85115423089F38",
+          "oem_reference": "999 218 103 09",
+          "quantity_per_car": 2,
+          "pet_illustration": "403-00",
+          "pet_page": 248,
+          "occurrence_twin_id": "TWIN-PET-993-A44F439AA3D7A854EC29",
+          "part_master_twin_id": "TWIN-PET-993-PART-458F7100AB4795497476",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-5DBF5FA8EFE8460557FA",
+          "oem_reference": "993 423 551 51",
+          "quantity_per_car": 1,
+          "pet_illustration": "702-00",
+          "pet_page": 323,
+          "occurrence_twin_id": "TWIN-PET-993-5B582F04F9EB30C002C2",
+          "part_master_twin_id": "TWIN-PET-993-PART-C80984D4D95C3EFADC67",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-5F06E41D73259A1A0AD4",
+          "oem_reference": "993 502 039 01",
+          "quantity_per_car": 1,
+          "pet_illustration": "801-15",
+          "pet_page": 340,
+          "occurrence_twin_id": "TWIN-PET-993-77AC8C8F1DAEC3142C14",
+          "part_master_twin_id": "TWIN-PET-993-PART-C7EE5CF0AF91DE5A51F1",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-62B7984F138601F0B6FC",
+          "oem_reference": "993 356 367 10",
+          "quantity_per_car": 1,
+          "pet_illustration": "201-05",
+          "pet_page": 128,
+          "occurrence_twin_id": "TWIN-PET-993-4B2FE8E386F41BDB0C6F",
+          "part_master_twin_id": "TWIN-PET-993-PART-6CDF88CBEF1ED969C769",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-6387079A9F003184ACA1",
+          "oem_reference": "993 632 071 18",
+          "quantity_per_car": 1,
+          "pet_illustration": "903-05",
+          "pet_page": 583,
+          "occurrence_twin_id": "TWIN-PET-993-C82FF6539B1EF4975BB5",
+          "part_master_twin_id": "TWIN-PET-993-PART-669296E5732CF0916FA3",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-639C55E84D26010D9518",
+          "oem_reference": "999 067 042 09",
+          "quantity_per_car": 4,
+          "pet_illustration": "602-00",
+          "pet_page": 287,
+          "occurrence_twin_id": "TWIN-PET-993-AB6FB85670AB864EB9DB",
+          "part_master_twin_id": "TWIN-PET-993-PART-367231A878BD62A1F9F7",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-6464993B7B327D8DD8D6",
+          "oem_reference": "993 351 959 03",
+          "quantity_per_car": 2,
+          "pet_illustration": "602-00",
+          "pet_page": 287,
+          "occurrence_twin_id": "TWIN-PET-993-418B1A3C26FEAB129AA7",
+          "part_master_twin_id": "TWIN-PET-993-PART-DB19A9296A68A23F943A",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-7078303D5A36219F9CD8",
+          "oem_reference": "993 006 109 09",
+          "quantity_per_car": 1,
+          "pet_illustration": "001-05",
+          "pet_page": 25,
+          "occurrence_twin_id": "TWIN-PET-993-21E2CBE3C8B6DC03958D",
+          "part_master_twin_id": "TWIN-PET-993-PART-71C37A6EDA51933366FB",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-70A9196C74456C2E11EC",
+          "oem_reference": "999 782 043 90",
+          "quantity_per_car": 1,
+          "pet_illustration": "106-00",
+          "pet_page": 85,
+          "occurrence_twin_id": "TWIN-PET-993-0DDD4251436FF169CF20",
+          "part_master_twin_id": "TWIN-PET-993-PART-07168BF95038DB5354ED",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-73CAF9A67EB54A099A02",
+          "oem_reference": "993 632 071 17",
+          "quantity_per_car": 1,
+          "pet_illustration": "903-05",
+          "pet_page": 583,
+          "occurrence_twin_id": "TWIN-PET-993-EC4189F93DC9902489A3",
+          "part_master_twin_id": "TWIN-PET-993-PART-EE09C051A3F91406A369",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-7A681D73244B5F2FBCFD",
+          "oem_reference": "999 218 102 01",
+          "quantity_per_car": 2,
+          "pet_illustration": "403-00",
+          "pet_page": 248,
+          "occurrence_twin_id": "TWIN-PET-993-C99FDDA7B2F2D256A311",
+          "part_master_twin_id": "TWIN-PET-993-PART-8D943EA16E49E91BAA5F",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-7BA1E869E3D50A014D04",
+          "oem_reference": "993 612 016 02",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 571,
+          "occurrence_twin_id": "TWIN-PET-993-466C56491B4045C7AC4A",
+          "part_master_twin_id": "TWIN-PET-993-PART-E30098C17C3F7F35EC54",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-7C821A1070EB44750BBF",
+          "oem_reference": "999 072 005 09",
+          "quantity_per_car": 1,
+          "pet_illustration": "907-00",
+          "pet_page": 611,
+          "occurrence_twin_id": "TWIN-PET-993-4A60D4BC6FE21615DB5D",
+          "part_master_twin_id": "TWIN-PET-993-PART-71D170A4B5372730D050",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-7C92F1BBAA7BB6C4AB16",
+          "oem_reference": "993 332 024 13",
+          "quantity_per_car": 2,
+          "pet_illustration": "501-05",
+          "pet_page": 273,
+          "occurrence_twin_id": "TWIN-PET-993-E141CC90D533386CF2D7",
+          "part_master_twin_id": "TWIN-PET-993-PART-2B4F45D90092BABB7391",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-7CC5944691CAB12A5CF2",
+          "oem_reference": "993 505 278 01",
+          "quantity_per_car": 1,
+          "pet_illustration": "802-10",
+          "pet_page": 379,
+          "occurrence_twin_id": "TWIN-PET-993-53E95A0C1CB11AACE208",
+          "part_master_twin_id": "TWIN-PET-993-PART-024DD63ABC8F732C67FE",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-806B016C266136A37DA1",
+          "oem_reference": "993 362 140 00",
+          "quantity_per_car": 2,
+          "pet_illustration": "601-00",
+          "pet_page": 282,
+          "occurrence_twin_id": "TWIN-PET-993-41A5395296842743FEE7",
+          "part_master_twin_id": "TWIN-PET-993-PART-2DF75D290A2E95BD18B7",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-836818823803A33A76A4",
+          "oem_reference": "964 355 013 25",
+          "quantity_per_car": 1,
+          "pet_illustration": "604-00",
+          "pet_page": 294,
+          "occurrence_twin_id": "TWIN-PET-993-7E06CAD920EACEA04EB5",
+          "part_master_twin_id": "TWIN-PET-993-PART-C5A44686EFC074995767",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-842F7331468A6A42FAC5",
+          "oem_reference": "999 072 005 01",
+          "quantity_per_car": 1,
+          "pet_illustration": "907-00",
+          "pet_page": 611,
+          "occurrence_twin_id": "TWIN-PET-993-1FEE60A38EB7060F54F6",
+          "part_master_twin_id": "TWIN-PET-993-PART-BD630438EC132305F3BB",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-85960AB31BDAAE45907A",
+          "oem_reference": "993 612 038 03",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 572,
+          "occurrence_twin_id": "TWIN-PET-993-48C40FBB85E575983694",
+          "part_master_twin_id": "TWIN-PET-993-PART-F7299AAEC45C71118917",
+          "direct_model_annotations": [
+            "CARRERA 4",
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-8CAC0118D250B9560FBE",
+          "oem_reference": "993 352 426 10",
+          "quantity_per_car": 1,
+          "pet_illustration": "603-00",
+          "pet_page": 289,
+          "occurrence_twin_id": "TWIN-PET-993-C0AFEDE702F6D8BAA03C",
+          "part_master_twin_id": "TWIN-PET-993-PART-BD5DDEF85B2523ED2A00",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-8E543191624EC74BB629",
+          "oem_reference": "993 612 058 04",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 572,
+          "occurrence_twin_id": "TWIN-PET-993-3CF166CD9971F64A2B59",
+          "part_master_twin_id": "TWIN-PET-993-PART-D81C089F481F2109ACEF",
+          "direct_model_annotations": [
+            "CARRERA 4",
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-8EC5B83DD52CC9341CEE",
+          "oem_reference": "993 351 949 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "698-00",
+          "pet_page": 312,
+          "occurrence_twin_id": "TWIN-PET-993-46445ADA73126F9398F8",
+          "part_master_twin_id": "TWIN-PET-993-PART-C2616CF57761D312DB5E",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-9199AD04CE00E252C0F2",
+          "oem_reference": "993 355 249 03",
+          "quantity_per_car": 1,
+          "pet_illustration": "604-09",
+          "pet_page": 303,
+          "occurrence_twin_id": "TWIN-PET-993-474E5624EF74BD251A78",
+          "part_master_twin_id": "TWIN-PET-993-PART-77A44B5CB3A8F5827DB1",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-924A678A7FD005464A7A",
+          "oem_reference": "993 352 425 10",
+          "quantity_per_car": 1,
+          "pet_illustration": "603-00",
+          "pet_page": 289,
+          "occurrence_twin_id": "TWIN-PET-993-3E608FBFCBBA62019EE1",
+          "part_master_twin_id": "TWIN-PET-993-PART-F350D3267ED5310D038D",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-937311F1BC6ECFC57E74",
+          "oem_reference": "993 006 109 11",
+          "quantity_per_car": 1,
+          "pet_illustration": "001-05",
+          "pet_page": 25,
+          "occurrence_twin_id": "TWIN-PET-993-8B5996F590DAC74F8433",
+          "part_master_twin_id": "TWIN-PET-993-PART-B198FD4F14260BAE657A",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-98950AF20C34A1933464",
+          "oem_reference": "993 333 531 27",
+          "quantity_per_car": 1,
+          "pet_illustration": "502-00",
+          "pet_page": 276,
+          "occurrence_twin_id": "TWIN-PET-993-4D96EA5AC90F39ABE780",
+          "part_master_twin_id": "TWIN-PET-993-PART-41CD37F41E018B55038F",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-9922C8C4A0317700890B",
+          "oem_reference": "993 612 368 00",
+          "quantity_per_car": 2,
+          "pet_illustration": "602-00",
+          "pet_page": 287,
+          "occurrence_twin_id": "TWIN-PET-993-562D27E271ABAE1AEBA6",
+          "part_master_twin_id": "TWIN-PET-993-PART-C3468B6C9ADF7FA2BFC9",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-9CC5012057CD103D77AE",
+          "oem_reference": "993 355 247 03",
+          "quantity_per_car": 1,
+          "pet_illustration": "604-09",
+          "pet_page": 303,
+          "occurrence_twin_id": "TWIN-PET-993-6EC5A55D19C62A2FD42C",
+          "part_master_twin_id": "TWIN-PET-993-PART-7DBDE5D4454AC697D435",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-9F40AA3DE4B1544C16B4",
+          "oem_reference": "911 355 327 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "604-00",
+          "pet_page": 294,
+          "occurrence_twin_id": "TWIN-PET-993-F929428B89F8ABCFEE78",
+          "part_master_twin_id": "TWIN-PET-993-PART-E7E2B75D8879C7F3C0DB",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-9FF45BBFF0B7EE30AF79",
+          "oem_reference": "964 355 305 10",
+          "quantity_per_car": 2,
+          "pet_illustration": "605-00",
+          "pet_page": 309,
+          "occurrence_twin_id": "TWIN-PET-993-D48B8DBE442BCBF470AB",
+          "part_master_twin_id": "TWIN-PET-993-PART-D12E01EC5340AF7D0D64",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-A14C4BB71FF9DFAD021D",
+          "oem_reference": "999 218 102 09",
+          "quantity_per_car": 2,
+          "pet_illustration": "403-00",
+          "pet_page": 248,
+          "occurrence_twin_id": "TWIN-PET-993-0B94A19022942E69921B",
+          "part_master_twin_id": "TWIN-PET-993-PART-2D565BBB3CDCB9EF46E7",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-A1CCCEB7B1CA369602CD",
+          "oem_reference": "993 612 038 06",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 572,
+          "occurrence_twin_id": "TWIN-PET-993-0172C7826887347AE55F",
+          "part_master_twin_id": "TWIN-PET-993-PART-BF0C8E760244559E78BE",
+          "direct_model_annotations": [
+            "CARRERA 4",
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-A28F3CED766313594041",
+          "oem_reference": "993 355 249 04",
+          "quantity_per_car": 1,
+          "pet_illustration": "604-09",
+          "pet_page": 303,
+          "occurrence_twin_id": "TWIN-PET-993-E37F20D8D934F37CB263",
+          "part_master_twin_id": "TWIN-PET-993-PART-B734760694A825424FC6",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-A37659AFD2420BB2A2B8",
+          "oem_reference": "993 351 425 10",
+          "quantity_per_car": 1,
+          "pet_illustration": "602-00",
+          "pet_page": 286,
+          "occurrence_twin_id": "TWIN-PET-993-6C59E323A62A530A57F4",
+          "part_master_twin_id": "TWIN-PET-993-PART-EEA3BE670B46C233E484",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-A4911580E05F7E1DCB68",
+          "oem_reference": "993 332 030 00",
+          "quantity_per_car": 2,
+          "pet_illustration": "501-05",
+          "pet_page": 273,
+          "occurrence_twin_id": "TWIN-PET-993-499272008ADAAFD9ABCD",
+          "part_master_twin_id": "TWIN-PET-993-PART-30ECFE17D22703701F30",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-A56E7177DB9FA3A399AC",
+          "oem_reference": "900 378 158 09",
+          "quantity_per_car": 1,
+          "pet_illustration": "604-09",
+          "pet_page": 303,
+          "occurrence_twin_id": "TWIN-PET-993-046BA229B374EE1934EB",
+          "part_master_twin_id": "TWIN-PET-993-PART-A96A76009185DF666850",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-A9ED41FD2C3CEC1CC79D",
+          "oem_reference": "993 612 038 01",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 572,
+          "occurrence_twin_id": "TWIN-PET-993-14A8962DD45D3CC338D2",
+          "part_master_twin_id": "TWIN-PET-993-PART-519E8184AAB98E5F0698",
+          "direct_model_annotations": [
+            "CARRERA 4",
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-B352623FAD5E1D362781",
+          "oem_reference": "993 332 024 10",
+          "quantity_per_car": 2,
+          "pet_illustration": "501-05",
+          "pet_page": 273,
+          "occurrence_twin_id": "TWIN-PET-993-4E6452417CF859B2E0E6",
+          "part_master_twin_id": "TWIN-PET-993-PART-F756EA1104861F74BC3D",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-B38A42FD0C4CBB37F6EC",
+          "oem_reference": "993 347 131 02",
+          "quantity_per_car": 1,
+          "pet_illustration": "403-00",
+          "pet_page": 248,
+          "occurrence_twin_id": "TWIN-PET-993-B0C450FA14161C00EEB0",
+          "part_master_twin_id": "TWIN-PET-993-PART-16875D37C4122560FDC4",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-BAC2AAF530BC6BF6E560",
+          "oem_reference": "993 612 173 17",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-20",
+          "pet_page": 577,
+          "occurrence_twin_id": "TWIN-PET-993-B6373C1DAD542F52A7CA",
+          "part_master_twin_id": "TWIN-PET-993-PART-DD1ADFE96B8454A5584B",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-BD56C93C5D69EBB0CD6D",
+          "oem_reference": "996 721 211 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "001-00",
+          "pet_page": 23,
+          "occurrence_twin_id": "TWIN-PET-993-5FB212BC25A7BAADA507",
+          "part_master_twin_id": "TWIN-PET-993-PART-0D176D0E44EEAC0DE2E0",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-BFF1EDF9513A8A25F62D",
+          "oem_reference": "993 110 220 50",
+          "quantity_per_car": 1,
+          "pet_illustration": "907-00",
+          "pet_page": 611,
+          "occurrence_twin_id": "TWIN-PET-993-97A6E390A917AAEF2FFF",
+          "part_master_twin_id": "TWIN-PET-993-PART-52BE33AE96E5740FB4EA",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-C25821B5C4A9AC17E411",
+          "oem_reference": "993 503 902 02",
+          "quantity_per_car": 1,
+          "pet_illustration": "801-55",
+          "pet_page": 358,
+          "occurrence_twin_id": "TWIN-PET-993-A41EDA0CA311F1B271A0",
+          "part_master_twin_id": "TWIN-PET-993-PART-88C35BCAD899A316CBF1",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-C366893CB0198F57994E",
+          "oem_reference": "993 505 624 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "802-05",
+          "pet_page": 377,
+          "occurrence_twin_id": "TWIN-PET-993-2CFFF14CF2D8A7D9A845",
+          "part_master_twin_id": "TWIN-PET-993-PART-4D7BE7F372060C0FCFD1",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-C5802FD17CCED133EFF0",
+          "oem_reference": "993 362 126 02",
+          "quantity_per_car": 2,
+          "pet_illustration": "601-00",
+          "pet_page": 282,
+          "occurrence_twin_id": "TWIN-PET-993-FEFCFFB9E50A3A701309",
+          "part_master_twin_id": "TWIN-PET-993-PART-299D532BE5D7298F19C7",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-C634728C4702ED9852BD",
+          "oem_reference": "993 612 058 06",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 572,
+          "occurrence_twin_id": "TWIN-PET-993-DA3FC41879E11D941AD7",
+          "part_master_twin_id": "TWIN-PET-993-PART-DB5B64EFA7DB3B86A4E6",
+          "direct_model_annotations": [
+            "CARRERA 4",
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-C715B5F4450DE76D5EDD",
+          "oem_reference": "993 503 032 09",
+          "quantity_per_car": 1,
+          "pet_illustration": "801-40",
+          "pet_page": 353,
+          "occurrence_twin_id": "TWIN-PET-993-316A072B45C6C37BC403",
+          "part_master_twin_id": "TWIN-PET-993-PART-7BCA29FAB36EB1DCACCB",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-C75D7D49E91D363325F4",
+          "oem_reference": "993 573 097 02",
+          "quantity_per_car": 1,
+          "pet_illustration": "813-30",
+          "pet_page": 542,
+          "occurrence_twin_id": "TWIN-PET-993-B63FFA5A39F69C134959",
+          "part_master_twin_id": "TWIN-PET-993-PART-00B83B1379212EE54EEC",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-C77C4FA1545DA4D8E5FF",
+          "oem_reference": "993 632 071 15",
+          "quantity_per_car": 1,
+          "pet_illustration": "903-05",
+          "pet_page": 583,
+          "occurrence_twin_id": "TWIN-PET-993-40406266DFE07A072F6D",
+          "part_master_twin_id": "TWIN-PET-993-PART-359183BD98FA71933B15",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-C8A227C3AD872675A91C",
+          "oem_reference": "993 505 475 01",
+          "quantity_per_car": 1,
+          "pet_illustration": "802-10",
+          "pet_page": 379,
+          "occurrence_twin_id": "TWIN-PET-993-4AD045B03AA75D371FE1",
+          "part_master_twin_id": "TWIN-PET-993-PART-FA8F1DD43CCE35F04C59",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-C9E29D43E2AE45A20D66",
+          "oem_reference": "993 503 032 03",
+          "quantity_per_car": 1,
+          "pet_illustration": "801-40",
+          "pet_page": 353,
+          "occurrence_twin_id": "TWIN-PET-993-790ECB06A30B9A1A1F0F",
+          "part_master_twin_id": "TWIN-PET-993-PART-3D34986A9D0A276DF4D2",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-CDE00DB553199B379C63",
+          "oem_reference": "993 612 058 01",
+          "quantity_per_car": 1,
+          "pet_illustration": "902-10",
+          "pet_page": 572,
+          "occurrence_twin_id": "TWIN-PET-993-5DFC8773F755882C1E09",
+          "part_master_twin_id": "TWIN-PET-993-PART-9C5DA70A9B7EA35E2A4B",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-CE8219B589BFE0894201",
+          "oem_reference": "999 623 001 00",
+          "quantity_per_car": 2,
+          "pet_illustration": "802-05",
+          "pet_page": 377,
+          "occurrence_twin_id": "TWIN-PET-993-E359DF99113264F6C32E",
+          "part_master_twin_id": "TWIN-PET-993-PART-843FD2CA4B0217EDEA96",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-D192BDA970B6C18787C3",
+          "oem_reference": "993 351 980 12",
+          "quantity_per_car": 1,
+          "pet_illustration": "602-00",
+          "pet_page": 286,
+          "occurrence_twin_id": "TWIN-PET-993-E55F0F83E891C2E666E1",
+          "part_master_twin_id": "TWIN-PET-993-PART-6D7FDAB5BD95B9C29578",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-D5E62D444EF96185B7B2",
+          "oem_reference": "993 110 360 51",
+          "quantity_per_car": 1,
+          "pet_illustration": "106-00",
+          "pet_page": 85,
+          "occurrence_twin_id": "TWIN-PET-993-A75D5BCED83E94E47398",
+          "part_master_twin_id": "TWIN-PET-993-PART-35C56AC454A4EF53C8CD",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-D76F73402DAD67C3A629",
+          "oem_reference": "999 190 463 30",
+          "quantity_per_car": 4,
+          "pet_illustration": "802-05",
+          "pet_page": 377,
+          "occurrence_twin_id": "TWIN-PET-993-5670CCB69572CB778B8D",
+          "part_master_twin_id": "TWIN-PET-993-PART-F72FFA35C887B7590C65",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-D895639CFCC436B6AD12",
+          "oem_reference": "993 641 340 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "901-03",
+          "pet_page": 558,
+          "occurrence_twin_id": "TWIN-PET-993-FB837007F81C4CEB5D64",
+          "part_master_twin_id": "TWIN-PET-993-PART-262A7615793E6844309C",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-DF6F2C0BD7CAFEDF3D88",
+          "oem_reference": "993 332 024 12",
+          "quantity_per_car": 2,
+          "pet_illustration": "501-05",
+          "pet_page": 273,
+          "occurrence_twin_id": "TWIN-PET-993-62D1AE2492A8E23D2F8D",
+          "part_master_twin_id": "TWIN-PET-993-PART-498344E92A18B34756BE",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-E2AED8299DF220CF36C3",
+          "oem_reference": "993 347 131 03",
+          "quantity_per_car": 1,
+          "pet_illustration": "403-00",
+          "pet_page": 248,
+          "occurrence_twin_id": "TWIN-PET-993-5A286CB8ADD6D981A341",
+          "part_master_twin_id": "TWIN-PET-993-PART-D20FA7C019D97593381D",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-E5C173298E453C2B43EA",
+          "oem_reference": "993 333 531 27",
+          "quantity_per_car": 1,
+          "pet_illustration": "502-02",
+          "pet_page": 278,
+          "occurrence_twin_id": "TWIN-PET-993-F9EEC00171710DCAB2EC",
+          "part_master_twin_id": "TWIN-PET-993-PART-41CD37F41E018B55038F",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-E84C08686BA0C9D93690",
+          "oem_reference": "993 362 136 00",
+          "quantity_per_car": 2,
+          "pet_illustration": "601-00",
+          "pet_page": 281,
+          "occurrence_twin_id": "TWIN-PET-993-0168FA40F658561D1B5A",
+          "part_master_twin_id": "TWIN-PET-993-PART-7265899249ED4E31F5A3",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-E87F3A6A11336A7EE12E",
+          "oem_reference": "993 351 045 10",
+          "quantity_per_car": 1,
+          "pet_illustration": "602-00",
+          "pet_page": 286,
+          "occurrence_twin_id": "TWIN-PET-993-880C8DE1EB60E9D2694E",
+          "part_master_twin_id": "TWIN-PET-993-PART-0EE483BDF52D380C5932",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-E9F9BCE0DA88FFAF25C6",
+          "oem_reference": "993 351 949 00",
+          "quantity_per_car": 1,
+          "pet_illustration": "602-00",
+          "pet_page": 287,
+          "occurrence_twin_id": "TWIN-PET-993-F51CE3EC576671731441",
+          "part_master_twin_id": "TWIN-PET-993-PART-C2616CF57761D312DB5E",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-EDD6FC662032EA270371",
+          "oem_reference": "928 351 971 01",
+          "quantity_per_car": 2,
+          "pet_illustration": "602-00",
+          "pet_page": 287,
+          "occurrence_twin_id": "TWIN-PET-993-3F97E63E9E653648269E",
+          "part_master_twin_id": "TWIN-PET-993-PART-5A8985D8358851916074",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-EED95E9B67A6E881487B",
+          "oem_reference": "993 361 073 00",
+          "quantity_per_car": 4,
+          "pet_illustration": "601-00",
+          "pet_page": 283,
+          "occurrence_twin_id": "TWIN-PET-993-FDA92EE7C693723FD190",
+          "part_master_twin_id": "TWIN-PET-993-PART-D05854AFB3F9917602E8",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-F527BEF5C882F2250B0D",
+          "oem_reference": "993 331 131 05",
+          "quantity_per_car": 1,
+          "pet_illustration": "501-00",
+          "pet_page": 265,
+          "occurrence_twin_id": "TWIN-PET-993-FBE1D84B4DDD71761ECE",
+          "part_master_twin_id": "TWIN-PET-993-PART-7584D9DE327D8F6A6C29",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-F6D91C10949B006C7FAF",
+          "oem_reference": "993 503 901 02",
+          "quantity_per_car": 1,
+          "pet_illustration": "801-55",
+          "pet_page": 358,
+          "occurrence_twin_id": "TWIN-PET-993-055D9FA6FB070190AF47",
+          "part_master_twin_id": "TWIN-PET-993-PART-2FF431004F4E593F9C2E",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-F92AC2DE6EDC1FC4F4D3",
+          "oem_reference": "993 573 099 06",
+          "quantity_per_car": 1,
+          "pet_illustration": "813-30",
+          "pet_page": 542,
+          "occurrence_twin_id": "TWIN-PET-993-04FE57FA92EAAAB0C218",
+          "part_master_twin_id": "TWIN-PET-993-PART-7CEAF36F56B7C471365D",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-F9DEA5851BB9557AF2BD",
+          "oem_reference": "993 351 939 01",
+          "quantity_per_car": 1,
+          "pet_illustration": "698-00",
+          "pet_page": 312,
+          "occurrence_twin_id": "TWIN-PET-993-72190C8B0275FA5FFBEE",
+          "part_master_twin_id": "TWIN-PET-993-PART-8C32CDD3C1305667AA17",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-FDE7A2D962A9BC9C2CA5",
+          "oem_reference": "951 352 919 10",
+          "quantity_per_car": 4,
+          "pet_illustration": "603-00",
+          "pet_page": 289,
+          "occurrence_twin_id": "TWIN-PET-993-7F60E7988C459749107E",
+          "part_master_twin_id": "TWIN-PET-993-PART-7D0E6807613FD3E78233",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        },
+        {
+          "candidate_id": "BOMC-993-FE6822D8B582C5811645",
+          "oem_reference": "999 512 055 02",
+          "quantity_per_car": 1,
+          "pet_illustration": "604-00",
+          "pet_page": 294,
+          "occurrence_twin_id": "TWIN-PET-993-3D697D1C9B1A3D0D72D8",
+          "part_master_twin_id": "TWIN-PET-993-PART-590DF1C7114FAF5A81B3",
+          "direct_model_annotations": [
+            "TURBO"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        }
+      ],
+      "readiness": {
+        "verified_bom_entry_count": 10,
+        "verified_instance_quantity": 12,
+        "configured_pet_occurrence_count": 10,
+        "machine_resolved_bom_candidate_count": 108,
+        "machine_candidate_instance_quantity": 143,
+        "complete_variant_bom": false,
+        "editable_geometry_entries": 0,
+        "mounted_transform_entries": 0,
+        "selected_material_entries": 0,
+        "reference_solver_results": 0,
+        "physicsnemo_results": 0,
+        "simready_assets": 0,
+        "functional_vehicle_claim": false
+      },
+      "missing_gates": [
+        "resolve_applicability_for_all_listed_pet_occurrences",
+        "resolve_option_year_body_transmission_and_supersession_rules",
+        "prove_quantities_and_exclusions",
+        "author_editable_geometry_and_interfaces",
+        "select_materials_from_loads_environment_and_process",
+        "run_and_converge_reference_solvers",
+        "assemble_and_preflight_in_omniverse",
+        "correlate_with_physical_measurement_and_test"
+      ]
+    },
+    {
+      "configuration_id": "CONFIG-993-TURBO-S",
+      "vehicle_id": "993-turbo-s",
+      "documentary_vehicle_fields": {
+        "manufacturer": "Porsche",
+        "model": "911",
+        "variant": "Turbo S",
+        "bodyStyle": "Coupé",
+        "yearStart": 1997,
+        "yearEnd": 1998,
+        "engineCode": "M64.60S",
+        "transmissionCodes": [
+          "G64.51",
+          "G64.52"
+        ],
+        "drivetrain": "AWD",
+        "notes": "Engine code suffix needs PET confirmation; recorded as unverified."
+      },
+      "verified_bom_entries": [],
+      "machine_resolved_bom_candidates": [
+        {
+          "candidate_id": "BOMC-993-590F885AF95A9A1F0312",
+          "oem_reference": "993 361 980 00",
+          "quantity_per_car": 4,
+          "pet_illustration": "601-00",
+          "pet_page": 282,
+          "occurrence_twin_id": "TWIN-PET-993-AB4C9A8ED1B3EF2005D8",
+          "part_master_twin_id": "TWIN-PET-993-PART-6DBE6E88421B4233772B",
+          "direct_model_annotations": [
+            "TURBO S"
+          ],
+          "evidence_status": "machine_extracted_direct_model_column_not_human_reviewed",
+          "evidence_contract": "twins/pet-993/applicability-evidence-f0.json",
+          "mounted_transform": null,
+          "geometry_revision": null,
+          "selected_material": null,
+          "manufacturing_route": null,
+          "promoted_to_verified_bom": false
+        }
+      ],
+      "readiness": {
+        "verified_bom_entry_count": 0,
+        "verified_instance_quantity": 0,
+        "configured_pet_occurrence_count": 0,
+        "machine_resolved_bom_candidate_count": 1,
+        "machine_candidate_instance_quantity": 4,
+        "complete_variant_bom": false,
+        "editable_geometry_entries": 0,
+        "mounted_transform_entries": 0,
+        "selected_material_entries": 0,
+        "reference_solver_results": 0,
+        "physicsnemo_results": 0,
+        "simready_assets": 0,
+        "functional_vehicle_claim": false
+      },
+      "missing_gates": [
+        "resolve_applicability_for_all_listed_pet_occurrences",
+        "resolve_option_year_body_transmission_and_supersession_rules",
+        "prove_quantities_and_exclusions",
+        "author_editable_geometry_and_interfaces",
+        "select_materials_from_loads_environment_and_process",
+        "run_and_converge_reference_solvers",
+        "assemble_and_preflight_in_omniverse",
+        "correlate_with_physical_measurement_and_test"
+      ]
+    }
+  ],
+  "unassigned_human_read_parts": [
+    {
+      "oem_reference": "993 501 075 00",
+      "description": "Rear axle cross member",
+      "quantity_per_car": 1,
+      "pet_illustration": "801-25",
+      "occurrence_twin_id": "TWIN-PET-993-C319CC518528C6EC5604",
+      "part_master_twin_id": "TWIN-PET-993-PART-6F6D60665341ECF9C24A",
+      "blocker": "variant_not_proven_in_read_context"
+    },
+    {
+      "oem_reference": "993 501 075 01",
+      "description": "Rear axle cross member",
+      "quantity_per_car": 1,
+      "pet_illustration": "801-25",
+      "occurrence_twin_id": "TWIN-PET-993-2DA97AA8DF9EB6BF58A6",
+      "part_master_twin_id": "TWIN-PET-993-PART-A733BDA8D93B2C0EA526",
+      "blocker": "variant_not_proven_in_read_context"
+    }
+  ],
+  "prohibited_claims": [
+    "configuration_contract_is_complete_vehicle_bom",
+    "source_vehicle_metadata_is_independently_verified",
+    "missing_variant_assignment_means_part_is_excluded",
+    "bom_identity_entry_proves_geometry_or_mounting",
+    "virtual_only_program_authorizes_functional_manufacturing_or_road_use"
+  ]
+}

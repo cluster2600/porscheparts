@@ -1,0 +1,605 @@
+{
+  "$comment": "Definition humaine du programme de reconstruction virtuelle de la Porsche 993. Elle organise le catalogue sans transformer une hypothese, un calcul ou une scene USD en preuve physique.",
+  "schema_version": "1.0.0",
+  "program_id": "VEHICLE-993-VIRTUAL-ONLY-F0",
+  "vehicle": {
+    "generation": "993",
+    "variant_policy": "architecture_commune_puis_ecarts_par_variante",
+    "initial_variants": [
+      "Carrera_2_manuel",
+      "Carrera_4_manuel",
+      "Turbo_manuel"
+    ],
+    "vehicle_coordinate_system": {
+      "origin": "plan_de_symetrie_a_la_verticale_du_centre_d_essieu_avant_sur_le_plan_de_sol_nominal",
+      "axes": "X_vers_avant_Y_vers_gauche_Z_vers_haut",
+      "units": "SI"
+    }
+  },
+  "claim_policy": {
+    "virtual_only": true,
+    "no_new_physical_measurements_available": true,
+    "maximum_possible_fidelity_without_physical_correlation": "F3_engineering_virtual_only",
+    "current_claim": "programme_de_reconstruction_virtuelle_indexe_sur_le_catalogue",
+    "functioning_vehicle_claim": false,
+    "roadworthy_claim": false,
+    "manufacturing_release_claim": false,
+    "prohibited_claims": [
+      "catalogue_identity_as_dimensional_geometry",
+      "LLM_output_as_engineering_evidence",
+      "surrogate_prediction_as_reference_solution",
+      "OpenUSD_visual_coherence_as_functional_validation",
+      "SimReady_conformance_as_vehicle_safety_validation",
+      "virtual_result_as_roadworthiness_or_manufacturing_release"
+    ]
+  },
+  "llm_policy": {
+    "allowed_roles": [
+      "extraction_de_faits_avec_provenance",
+      "generation_d_hypotheses_explicitement_marquees",
+      "generation_de_cas_de_charge_a_revoir",
+      "generation_de_tests_de_coherence",
+      "triage_des_ecarts_et_resultats"
+    ],
+    "forbidden_roles": [
+      "solveur_physique_de_reference",
+      "source_de_cotes",
+      "qualification_matiere_ou_procede",
+      "autorite_de_securite_ou_de_liberation"
+    ]
+  },
+  "material_selection_policy": {
+    "current_decisions": 0,
+    "default_status": "unresolved_until_part_geometry_loads_temperature_environment_and_process_are_documented",
+    "required_inputs": [
+      "fonction_et_modes_de_defaillance",
+      "matiere_OEM_sourcee_ou_identifiee",
+      "temperature_et_environnement",
+      "charges_et_duree_de_vie",
+      "geometrie_et_tolerances",
+      "procede_orientation_et_post_traitements",
+      "proprietes_matiere_dependantes_du_procede",
+      "corrosion_usure_fatigue_et_compatibilite_galvanique",
+      "criteres_d_acceptation"
+    ],
+    "virtual_selection_method": "analyse_multicritere_puis_sensibilite_sur_intervalles_de_proprietes",
+    "rule": "Une famille candidate peut etre comparee virtuellement; une nuance n'est choisie qu'avec donnees sourcees et domaine d'emploi documente.",
+    "titanium_extra_requirements": [
+      "alliage",
+      "procede_de_fabrication",
+      "orientation",
+      "traitement_thermique",
+      "usinage_de_finition",
+      "inspection",
+      "hypotheses_de_fatigue",
+      "isolation_galvanique"
+    ]
+  },
+  "manufacturing_policy": {
+    "routes_considered": [
+      "usinage_CNC",
+      "tolerie_et_soudage",
+      "fonderie_ou_forge",
+      "fabrication_additive_polymere",
+      "fabrication_additive_metal"
+    ],
+    "route_selection_status": "per_part_after_F3_reference_analysis",
+    "functional_release_requires_physical_validation": true,
+    "safety_critical_release_requires_professional_engineering_review": true,
+    "virtual_only_outputs_allowed": [
+      "maquette_visuelle",
+      "proxy_d_encombrement",
+      "geometrie_parametrique",
+      "comparaison_de_concepts",
+      "dossier_de_simulation_non_corrige"
+    ]
+  },
+  "simulation_domains": {
+    "package_interfaces": {
+      "reference_method": "CAO_solide_parametrique_empilement_de_tolerances_et_detection_de_collision",
+      "required_geometry": "F2_interface",
+      "physicsnemo_candidates": []
+    },
+    "structural": {
+      "reference_method": "CalculiX_statique_modal_et_thermomecanique_selon_le_cas",
+      "required_geometry": "F3_engineering",
+      "physicsnemo_candidates": [
+        "GeoTransolver",
+        "Transolver",
+        "MeshGraphNet",
+        "FIGConvUNet"
+      ]
+    },
+    "crash": {
+      "reference_method": "solveur_elements_finis_explicite_a_selectionner_et_valider",
+      "required_geometry": "F3_engineering_body_in_white",
+      "physicsnemo_candidates": [
+        "GeoTransolver",
+        "Transolver",
+        "MeshGraphNet",
+        "FIGConvUNet"
+      ]
+    },
+    "thermal_fluid": {
+      "reference_method": "bilans_0D_1D_puis_OpenFOAM_CFD_CHT_selon_le_cas",
+      "required_geometry": "F3_engineering",
+      "physicsnemo_candidates": [
+        "GeoTransolver",
+        "Transolver"
+      ]
+    },
+    "external_aero": {
+      "reference_method": "OpenFOAM_RANS_puis_etudes_de_sensibilite_maillage_et_conditions",
+      "required_geometry": "F3_watertight_external_surface_and_fluid_domain",
+      "physicsnemo_candidates": [
+        "DoMINO",
+        "FIGConvUNet"
+      ]
+    },
+    "powertrain_0d": {
+      "reference_method": "bilans_masse_energie_cycle_moteur_et_cartographies_de_couple_sourcees",
+      "required_geometry": "parameters_and_maps",
+      "physicsnemo_candidates": []
+    },
+    "network_flow": {
+      "reference_method": "reseau_0D_1D_pression_debit_temperature_puis_CFD_locale",
+      "required_geometry": "F2_interfaces_and_section_network",
+      "physicsnemo_candidates": [
+        "GeoTransolver",
+        "Transolver"
+      ]
+    },
+    "rotordynamics": {
+      "reference_method": "modele_arbre_paliers_equilibrage_et_carte_de_stabilite_a_selectionner",
+      "required_geometry": "F3_rotating_assembly",
+      "physicsnemo_candidates": []
+    },
+    "multibody": {
+      "reference_method": "cinematique_analytique_puis_solveur_multicorps_valide_a_selectionner",
+      "required_geometry": "F2_joint_axes_and_F3_mass_inertia",
+      "physicsnemo_candidates": []
+    },
+    "vehicle_dynamics": {
+      "reference_method": "modeles_bicyclette_7DoF_14DoF_puis_modele_multicorps",
+      "required_geometry": "wheelbase_tracks_CG_inertias_tyres_suspension_steering_brakes",
+      "physicsnemo_candidates": []
+    },
+    "hydraulic_0d": {
+      "reference_method": "reseau_hydraulique_0D_puis_thermique_frein_et_dynamique_vehicule",
+      "required_geometry": "piston_master_cylinder_lines_valves_and_disc_interfaces",
+      "physicsnemo_candidates": []
+    },
+    "electrical_network": {
+      "reference_method": "graphe_de_circuit_bilan_de_puissance_et_simulation_SPICE_a_selectionner",
+      "required_geometry": "wiring_topology_component_ratings_and_control_logic",
+      "physicsnemo_candidates": []
+    },
+    "controls": {
+      "reference_method": "machines_d_etats_equations_de_commande_et_tests_model_in_the_loop",
+      "required_geometry": "signals_calibrations_actuators_and_plant_models",
+      "physicsnemo_candidates": []
+    },
+    "thermal_cabin": {
+      "reference_method": "reseau_thermique_0D_puis_CFD_confort_si_justifiee",
+      "required_geometry": "cabin_envelope_vents_glazing_and_thermal_properties",
+      "physicsnemo_candidates": [
+        "GeoTransolver",
+        "Transolver"
+      ]
+    },
+    "materials_and_process": {
+      "reference_method": "base_de_donnees_sourcee_et_modeles_constitutifs_dependants_du_procede",
+      "required_geometry": "part_process_and_failure_mode_specific",
+      "physicsnemo_candidates": []
+    }
+  },
+  "system_routes": [
+    {
+      "system_id": "0xx",
+      "criticality": "support_and_configuration",
+      "simulation_domains": [
+        "materials_and_process"
+      ],
+      "integration_interfaces": [
+        "all_systems"
+      ]
+    },
+    {
+      "system_id": "1xx",
+      "criticality": "safety_critical_highly_loaded_engine",
+      "simulation_domains": [
+        "package_interfaces",
+        "powertrain_0d",
+        "structural",
+        "thermal_fluid",
+        "network_flow",
+        "rotordynamics",
+        "multibody"
+      ],
+      "integration_interfaces": [
+        "2xx",
+        "3xx",
+        "8xx",
+        "9xx"
+      ]
+    },
+    {
+      "system_id": "2xx",
+      "criticality": "safety_critical_fuel_pressure_and_hot_gas",
+      "simulation_domains": [
+        "package_interfaces",
+        "network_flow",
+        "thermal_fluid",
+        "structural",
+        "powertrain_0d"
+      ],
+      "integration_interfaces": [
+        "1xx",
+        "8xx",
+        "9xx"
+      ]
+    },
+    {
+      "system_id": "3xx",
+      "criticality": "safety_critical_driveline",
+      "simulation_domains": [
+        "package_interfaces",
+        "multibody",
+        "structural",
+        "thermal_fluid",
+        "vehicle_dynamics"
+      ],
+      "integration_interfaces": [
+        "1xx",
+        "5xx",
+        "7xx",
+        "9xx"
+      ]
+    },
+    {
+      "system_id": "4xx",
+      "criticality": "safety_critical_steering_and_front_suspension",
+      "simulation_domains": [
+        "package_interfaces",
+        "multibody",
+        "structural",
+        "vehicle_dynamics"
+      ],
+      "integration_interfaces": [
+        "5xx",
+        "6xx",
+        "7xx",
+        "8xx"
+      ]
+    },
+    {
+      "system_id": "5xx",
+      "criticality": "safety_critical_rear_suspension_and_driveline",
+      "simulation_domains": [
+        "package_interfaces",
+        "multibody",
+        "structural",
+        "vehicle_dynamics"
+      ],
+      "integration_interfaces": [
+        "3xx",
+        "4xx",
+        "6xx",
+        "8xx"
+      ]
+    },
+    {
+      "system_id": "6xx",
+      "criticality": "safety_critical_braking",
+      "simulation_domains": [
+        "package_interfaces",
+        "hydraulic_0d",
+        "structural",
+        "thermal_fluid",
+        "vehicle_dynamics"
+      ],
+      "integration_interfaces": [
+        "4xx",
+        "5xx",
+        "7xx",
+        "9xx"
+      ]
+    },
+    {
+      "system_id": "7xx",
+      "criticality": "safety_critical_driver_controls_and_clutch",
+      "simulation_domains": [
+        "package_interfaces",
+        "multibody",
+        "hydraulic_0d",
+        "controls"
+      ],
+      "integration_interfaces": [
+        "3xx",
+        "4xx",
+        "6xx",
+        "8xx",
+        "9xx"
+      ]
+    },
+    {
+      "system_id": "8xx",
+      "criticality": "mixed_body_structure_restraint_and_trim",
+      "simulation_domains": [
+        "package_interfaces",
+        "structural",
+        "crash",
+        "external_aero",
+        "thermal_cabin",
+        "materials_and_process"
+      ],
+      "integration_interfaces": [
+        "1xx",
+        "2xx",
+        "4xx",
+        "5xx",
+        "7xx",
+        "9xx"
+      ]
+    },
+    {
+      "system_id": "9xx",
+      "criticality": "mixed_electrical_lighting_and_control",
+      "simulation_domains": [
+        "package_interfaces",
+        "electrical_network",
+        "controls",
+        "thermal_cabin"
+      ],
+      "integration_interfaces": [
+        "1xx",
+        "2xx",
+        "3xx",
+        "6xx",
+        "7xx",
+        "8xx"
+      ]
+    }
+  ],
+  "engineering_workstreams": [
+    {
+      "workstream_id": "VEH-00",
+      "name": "Configurations et reperes",
+      "depends_on": [],
+      "deliverables": [
+        "matrice_variantes_options_exclusions",
+        "nomenclature_configuree",
+        "repere_vehicule_essieux_plans_et_points_durs",
+        "registre_masse_CG_inerties_sans_double_comptage"
+      ]
+    },
+    {
+      "workstream_id": "VEH-10",
+      "name": "Caisse porteuse et enveloppe",
+      "depends_on": [
+        "VEH-00"
+      ],
+      "deliverables": [
+        "coque_traverses_berceaux_ouvrants_et_vitrages",
+        "reperes_hotes_et_interfaces_caisse",
+        "surface_exterieure_etanche_pour_aerodynamique"
+      ]
+    },
+    {
+      "workstream_id": "VEH-20",
+      "name": "Chassis roulant",
+      "depends_on": [
+        "VEH-00",
+        "VEH-10"
+      ],
+      "deliverables": [
+        "trains_direction_moyeux_roues_pneus_et_freins",
+        "axes_articulations_debattements_et_contacts_sol",
+        "modele_dynamique_vehicule"
+      ]
+    },
+    {
+      "workstream_id": "VEH-30",
+      "name": "Groupe motopropulseur",
+      "depends_on": [
+        "VEH-00",
+        "VEH-10"
+      ],
+      "deliverables": [
+        "moteur_embrayage_boite_differentiels_arbres_et_supports",
+        "chaine_de_couple_masses_inerties_et_reactions",
+        "banc_virtuel_demarrage_et_regimes"
+      ]
+    },
+    {
+      "workstream_id": "VEH-40",
+      "name": "Fluides et thermique",
+      "depends_on": [
+        "VEH-10",
+        "VEH-30"
+      ],
+      "deliverables": [
+        "carburant_admission_suralimentation_echappement_huile_et_refroidissement",
+        "reseaux_0D_1D_et_domaines_CFD_locaux",
+        "bilans_masse_et_energie"
+      ]
+    },
+    {
+      "workstream_id": "VEH-50",
+      "name": "Electricite et commandes",
+      "depends_on": [
+        "VEH-00",
+        "VEH-30",
+        "VEH-40"
+      ],
+      "deliverables": [
+        "batterie_alternateur_faisceaux_calculateurs_capteurs_et_actionneurs",
+        "graphe_de_puissance_signaux_et_defauts",
+        "tests_model_in_the_loop"
+      ]
+    },
+    {
+      "workstream_id": "VEH-60",
+      "name": "Habitacle et retenue",
+      "depends_on": [
+        "VEH-10",
+        "VEH-50"
+      ],
+      "deliverables": [
+        "sieges_ceintures_airbags_pedalier_tableau_de_bord_et_habillages",
+        "enveloppes_ergonomiques_et_interfaces_de_retenue",
+        "modele_HVAC_habitacle"
+      ]
+    },
+    {
+      "workstream_id": "VEH-90",
+      "name": "Integration vehicule",
+      "depends_on": [
+        "VEH-20",
+        "VEH-30",
+        "VEH-40",
+        "VEH-50",
+        "VEH-60"
+      ],
+      "deliverables": [
+        "graphe_d_interfaces_ferme",
+        "scene_OpenUSD_federee_par_variantes",
+        "missions_virtuelles_demarrage_roulage_freinage_manoeuvre_et_thermique",
+        "registre_des_ecarts_et_domaines_non_valides"
+      ]
+    }
+  ],
+  "physicsnemo_policy": {
+    "role": "surrogate_only_after_converged_reference_solver_dataset",
+    "execution_enabled": false,
+    "canonical_repository": "https://github.com/NVIDIA/physicsnemo",
+    "discovered_on": "2026-09-02",
+    "discovered_commit": "4fbfcfd62bf050b48ceec6b438da409b9f4644b3",
+    "verified_model_families": [
+      "GeoTransolver",
+      "Transolver",
+      "MeshGraphNet",
+      "FIGConvUNet",
+      "DoMINO"
+    ],
+    "verified_data_interfaces": [
+      "VTKReader",
+      "MeshReader",
+      "DomainMeshReader",
+      "DoMINODataPipe",
+      "TransolverDataPipe"
+    ],
+    "dataset_rules": [
+      "SI_units",
+      "geometry_material_mesh_load_and_solver_revision_identity",
+      "grouped_split_by_geometry_and_load_family",
+      "held_out_geometry_or_load_family",
+      "mesh_convergence_and_balance_evidence",
+      "out_of_domain_rejection",
+      "reference_solver_remains_authoritative"
+    ]
+  },
+  "omniverse_policy": {
+    "property_assignment_intent": "run_for_end_to_end_request",
+    "current_status": "blocked_before_preflight",
+    "blockers": [
+      "no_whole_vehicle_source_asset",
+      "no_complete_F2_or_F3_component_assembly",
+      "content_agents_OVRTX_material_physics_endpoints_not_verified",
+      "simready_vehicle_profile_not_selected"
+    ],
+    "latest_local_proxy_validation_preflight": {
+      "date": "2026-09-02",
+      "source_asset": "twins/catalogue-parts/usd/993-engine-carrier-turbo.usda",
+      "property_assignment_intent": "skip_validation_only",
+      "status": "blocked",
+      "report": "work/catalogue-parts/simready-preflight/preflight.json",
+      "blockers": [
+        "openusd_python_unavailable",
+        "asset_validator_unavailable",
+        "simready_foundation_checkout_missing"
+      ]
+    },
+    "required_stage_order": [
+      "source_asset",
+      "preflight_and_content_agents_readiness",
+      "asset_context",
+      "convert_to_USD",
+      "minimum_USD_validation",
+      "material_and_physics_assignment",
+      "post_assignment_conformance",
+      "asset_geometry_physics_and_profile_validation",
+      "OVRTX_render",
+      "package_validation"
+    ],
+    "simready_claim": false
+  },
+  "integration_gates": [
+    {
+      "gate_id": "G0",
+      "name": "structure_catalogue_agregee",
+      "required_evidence": "somme_des_references_et_illustrations_par_systeme",
+      "current_status": "pass_documentary_aggregate"
+    },
+    {
+      "gate_id": "G1",
+      "name": "identite_et_provenance_par_piece",
+      "required_evidence": "identite_application_droits_et_source_par_reference",
+      "current_status": "blocked_catalogue_lines_not_materialized_in_this_repository"
+    },
+    {
+      "gate_id": "G2",
+      "name": "geometrie_et_enveloppes",
+      "required_evidence": "CAO_editable_echelle_repere_et_incertitude",
+      "current_status": "blocked_incomplete_vehicle_geometry"
+    },
+    {
+      "gate_id": "G3",
+      "name": "interfaces_et_tolerances",
+      "required_evidence": "interfaces_F2_jeux_contacts_fixations_et_transformations",
+      "current_status": "blocked_missing_interfaces"
+    },
+    {
+      "gate_id": "G4",
+      "name": "matieres_et_procedes",
+      "required_evidence": "nuances_et_proprietes_dependantes_du_procede",
+      "current_status": "blocked_unqualified_materials"
+    },
+    {
+      "gate_id": "G5",
+      "name": "solveurs_de_reference",
+      "required_evidence": "cas_convergents_equilibres_reproductibles_et_criteres",
+      "current_status": "blocked_missing_G2_G3_G4"
+    },
+    {
+      "gate_id": "G6",
+      "name": "surrogates_PhysicsNeMo",
+      "required_evidence": "dataset_groupe_erreurs_OOD_et_comparaison_au_solveur",
+      "current_status": "blocked_no_reference_dataset"
+    },
+    {
+      "gate_id": "G7",
+      "name": "scene_OpenUSD_et_SimReady",
+      "required_evidence": "preflight_assignation_conformance_et_validations",
+      "current_status": "blocked_no_whole_vehicle_source_asset_and_services"
+    },
+    {
+      "gate_id": "G8",
+      "name": "integration_multiphysique",
+      "required_evidence": "bilans_masse_energie_efforts_et_interfaces_fermes",
+      "current_status": "blocked_upstream_systems"
+    },
+    {
+      "gate_id": "G9",
+      "name": "missions_vehicule_virtuelles",
+      "required_evidence": "demarrage_roulage_freinage_manoeuvre_thermique_et_defaillances",
+      "current_status": "blocked_upstream_integration"
+    },
+    {
+      "gate_id": "G10",
+      "name": "correlation_physique",
+      "required_evidence": "metrologie_banc_et_essais_vehicule",
+      "current_status": "blocked_by_no_new_physical_measurements_constraint"
+    }
+  ]
+}

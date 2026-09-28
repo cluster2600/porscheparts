@@ -1,0 +1,777 @@
+#usda 1.0
+(
+    defaultPrim = "FunctionalFlow993"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "FunctionalFlow993" (
+    customData = {
+        string fidelity = "F0_functional_topology"
+        string purpose = "engineering_topology_diagram_not_vehicle_geometry"
+        bool simreadyValidated = false
+        bool physicsAssigned = false
+        bool materialAssigned = false
+        bool functioningVehicle = false
+    }
+)
+{
+    def Scope "Systems"
+    {
+        def Xform "System_0xx"
+        {
+            custom string systemId = "0xx"
+            custom string systemName = "Consommables, adhesifs et documentation"
+            custom string criticality = "support_and_configuration"
+            custom string fidelity = "F0_system_marker"
+            custom int catalogueIllustrationCount = 4
+            custom int turboSeedCandidateOccurrenceCount = 10
+            custom bool partGeometryPresent = false
+            custom bool quantifiedPortsPresent = false
+            double3 xformOp:translate = (0.0000, 0.0000, 0.0000)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Cube "Marker"
+            {
+                double size = 0.30
+                color3f[] primvars:displayColor = [(0.5500, 0.5500, 0.6000)]
+                uniform token primvars:displayColor:interpolation = "constant"
+            }
+        }
+        def Xform "System_1xx"
+        {
+            custom string systemId = "1xx"
+            custom string systemName = "Moteur"
+            custom string criticality = "safety_critical_highly_loaded_engine"
+            custom string fidelity = "F0_system_marker"
+            custom int catalogueIllustrationCount = 34
+            custom int turboSeedCandidateOccurrenceCount = 105
+            custom bool partGeometryPresent = false
+            custom bool quantifiedPortsPresent = false
+            double3 xformOp:translate = (0.0000, 2.4000, 0.0000)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Cube "Marker"
+            {
+                double size = 0.30
+                color3f[] primvars:displayColor = [(0.1800, 0.4500, 0.7500)]
+                uniform token primvars:displayColor:interpolation = "constant"
+            }
+        }
+        def Xform "System_2xx"
+        {
+            custom string systemId = "2xx"
+            custom string systemName = "Carburant, echappement et suralimentation"
+            custom string criticality = "safety_critical_fuel_pressure_and_hot_gas"
+            custom string fidelity = "F0_system_marker"
+            custom int catalogueIllustrationCount = 11
+            custom int turboSeedCandidateOccurrenceCount = 5
+            custom bool partGeometryPresent = false
+            custom bool quantifiedPortsPresent = false
+            double3 xformOp:translate = (1.5427, 1.8385, 0.0000)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Cube "Marker"
+            {
+                double size = 0.30
+                color3f[] primvars:displayColor = [(0.1800, 0.4500, 0.7500)]
+                uniform token primvars:displayColor:interpolation = "constant"
+            }
+        }
+        def Xform "System_3xx"
+        {
+            custom string systemId = "3xx"
+            custom string systemName = "Boite de vitesses"
+            custom string criticality = "safety_critical_driveline"
+            custom string fidelity = "F0_system_marker"
+            custom int catalogueIllustrationCount = 34
+            custom int turboSeedCandidateOccurrenceCount = 16
+            custom bool partGeometryPresent = false
+            custom bool quantifiedPortsPresent = false
+            double3 xformOp:translate = (2.3635, 0.4168, 0.0000)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Cube "Marker"
+            {
+                double size = 0.30
+                color3f[] primvars:displayColor = [(0.1800, 0.4500, 0.7500)]
+                uniform token primvars:displayColor:interpolation = "constant"
+            }
+        }
+        def Xform "System_4xx"
+        {
+            custom string systemId = "4xx"
+            custom string systemName = "Direction, traverse et train avant"
+            custom string criticality = "safety_critical_steering_and_front_suspension"
+            custom string fidelity = "F0_system_marker"
+            custom int catalogueIllustrationCount = 14
+            custom int turboSeedCandidateOccurrenceCount = 28
+            custom bool partGeometryPresent = false
+            custom bool quantifiedPortsPresent = false
+            double3 xformOp:translate = (2.0785, -1.2000, 0.0000)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Cube "Marker"
+            {
+                double size = 0.30
+                color3f[] primvars:displayColor = [(0.1800, 0.4500, 0.7500)]
+                uniform token primvars:displayColor:interpolation = "constant"
+            }
+        }
+        def Xform "System_5xx"
+        {
+            custom string systemId = "5xx"
+            custom string systemName = "Train arriere, amortisseurs et transmission"
+            custom string criticality = "safety_critical_rear_suspension_and_driveline"
+            custom string fidelity = "F0_system_marker"
+            custom int catalogueIllustrationCount = 7
+            custom int turboSeedCandidateOccurrenceCount = 26
+            custom bool partGeometryPresent = false
+            custom bool quantifiedPortsPresent = false
+            double3 xformOp:translate = (0.8208, -2.2553, 0.0000)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Cube "Marker"
+            {
+                double size = 0.30
+                color3f[] primvars:displayColor = [(0.1800, 0.4500, 0.7500)]
+                uniform token primvars:displayColor:interpolation = "constant"
+            }
+        }
+        def Xform "System_6xx"
+        {
+            custom string systemId = "6xx"
+            custom string systemName = "Freinage et hydraulique"
+            custom string criticality = "safety_critical_braking"
+            custom string fidelity = "F0_system_marker"
+            custom int catalogueIllustrationCount = 13
+            custom int turboSeedCandidateOccurrenceCount = 45
+            custom bool partGeometryPresent = false
+            custom bool quantifiedPortsPresent = false
+            double3 xformOp:translate = (-0.8208, -2.2553, 0.0000)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Cube "Marker"
+            {
+                double size = 0.30
+                color3f[] primvars:displayColor = [(0.1800, 0.4500, 0.7500)]
+                uniform token primvars:displayColor:interpolation = "constant"
+            }
+        }
+        def Xform "System_7xx"
+        {
+            custom string systemId = "7xx"
+            custom string systemName = "Commandes, pedalier et embrayage"
+            custom string criticality = "safety_critical_driver_controls_and_clutch"
+            custom string fidelity = "F0_system_marker"
+            custom int catalogueIllustrationCount = 8
+            custom int turboSeedCandidateOccurrenceCount = 4
+            custom bool partGeometryPresent = false
+            custom bool quantifiedPortsPresent = false
+            double3 xformOp:translate = (-2.0785, -1.2000, 0.0000)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Cube "Marker"
+            {
+                double size = 0.30
+                color3f[] primvars:displayColor = [(0.1800, 0.4500, 0.7500)]
+                uniform token primvars:displayColor:interpolation = "constant"
+            }
+        }
+        def Xform "System_8xx"
+        {
+            custom string systemId = "8xx"
+            custom string systemName = "Carrosserie et habillage"
+            custom string criticality = "mixed_body_structure_restraint_and_trim"
+            custom string fidelity = "F0_system_marker"
+            custom int catalogueIllustrationCount = 85
+            custom int turboSeedCandidateOccurrenceCount = 57
+            custom bool partGeometryPresent = false
+            custom bool quantifiedPortsPresent = false
+            double3 xformOp:translate = (-2.3635, 0.4168, 0.0000)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Cube "Marker"
+            {
+                double size = 0.30
+                color3f[] primvars:displayColor = [(0.1800, 0.4500, 0.7500)]
+                uniform token primvars:displayColor:interpolation = "constant"
+            }
+        }
+        def Xform "System_9xx"
+        {
+            custom string systemId = "9xx"
+            custom string systemName = "Electricite, eclairage et equipements"
+            custom string criticality = "mixed_electrical_lighting_and_control"
+            custom string fidelity = "F0_system_marker"
+            custom int catalogueIllustrationCount = 29
+            custom int turboSeedCandidateOccurrenceCount = 47
+            custom bool partGeometryPresent = false
+            custom bool quantifiedPortsPresent = false
+            double3 xformOp:translate = (-1.5427, 1.8385, 0.0000)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+
+            def Cube "Marker"
+            {
+                double size = 0.30
+                color3f[] primvars:displayColor = [(0.1800, 0.4500, 0.7500)]
+                uniform token primvars:displayColor:interpolation = "constant"
+            }
+        }
+    }
+
+    def Scope "Flows"
+    {
+        def BasisCurves "FLOW_0XX_1XX_CONFIG"
+        {
+            custom string flowEdgeId = "FLOW-0XX-1XX-CONFIG"
+            custom string flowTypeId = "configuration_metadata"
+            custom string sourceSystemId = "0xx"
+            custom string targetSystemId = "1xx"
+            custom string direction = "source_to_target"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(0.0000, 0.0000, -0.0500), (0.0000, 2.4000, -0.0500)]
+            float[] widths = [0.0120]
+            color3f[] primvars:displayColor = [(0.4500, 0.4500, 0.5000)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_0XX_2XX_CONFIG"
+        {
+            custom string flowEdgeId = "FLOW-0XX-2XX-CONFIG"
+            custom string flowTypeId = "configuration_metadata"
+            custom string sourceSystemId = "0xx"
+            custom string targetSystemId = "2xx"
+            custom string direction = "source_to_target"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(0.0000, 0.0000, -0.0500), (1.5427, 1.8385, -0.0500)]
+            float[] widths = [0.0120]
+            color3f[] primvars:displayColor = [(0.4500, 0.4500, 0.5000)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_0XX_3XX_CONFIG"
+        {
+            custom string flowEdgeId = "FLOW-0XX-3XX-CONFIG"
+            custom string flowTypeId = "configuration_metadata"
+            custom string sourceSystemId = "0xx"
+            custom string targetSystemId = "3xx"
+            custom string direction = "source_to_target"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(0.0000, 0.0000, -0.0500), (2.3635, 0.4168, -0.0500)]
+            float[] widths = [0.0120]
+            color3f[] primvars:displayColor = [(0.4500, 0.4500, 0.5000)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_0XX_4XX_CONFIG"
+        {
+            custom string flowEdgeId = "FLOW-0XX-4XX-CONFIG"
+            custom string flowTypeId = "configuration_metadata"
+            custom string sourceSystemId = "0xx"
+            custom string targetSystemId = "4xx"
+            custom string direction = "source_to_target"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(0.0000, 0.0000, -0.0500), (2.0785, -1.2000, -0.0500)]
+            float[] widths = [0.0120]
+            color3f[] primvars:displayColor = [(0.4500, 0.4500, 0.5000)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_0XX_5XX_CONFIG"
+        {
+            custom string flowEdgeId = "FLOW-0XX-5XX-CONFIG"
+            custom string flowTypeId = "configuration_metadata"
+            custom string sourceSystemId = "0xx"
+            custom string targetSystemId = "5xx"
+            custom string direction = "source_to_target"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(0.0000, 0.0000, -0.0500), (0.8208, -2.2553, -0.0500)]
+            float[] widths = [0.0120]
+            color3f[] primvars:displayColor = [(0.4500, 0.4500, 0.5000)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_0XX_6XX_CONFIG"
+        {
+            custom string flowEdgeId = "FLOW-0XX-6XX-CONFIG"
+            custom string flowTypeId = "configuration_metadata"
+            custom string sourceSystemId = "0xx"
+            custom string targetSystemId = "6xx"
+            custom string direction = "source_to_target"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(0.0000, 0.0000, -0.0500), (-0.8208, -2.2553, -0.0500)]
+            float[] widths = [0.0120]
+            color3f[] primvars:displayColor = [(0.4500, 0.4500, 0.5000)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_0XX_7XX_CONFIG"
+        {
+            custom string flowEdgeId = "FLOW-0XX-7XX-CONFIG"
+            custom string flowTypeId = "configuration_metadata"
+            custom string sourceSystemId = "0xx"
+            custom string targetSystemId = "7xx"
+            custom string direction = "source_to_target"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(0.0000, 0.0000, -0.0500), (-2.0785, -1.2000, -0.0500)]
+            float[] widths = [0.0120]
+            color3f[] primvars:displayColor = [(0.4500, 0.4500, 0.5000)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_0XX_8XX_CONFIG"
+        {
+            custom string flowEdgeId = "FLOW-0XX-8XX-CONFIG"
+            custom string flowTypeId = "configuration_metadata"
+            custom string sourceSystemId = "0xx"
+            custom string targetSystemId = "8xx"
+            custom string direction = "source_to_target"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(0.0000, 0.0000, -0.0500), (-2.3635, 0.4168, -0.0500)]
+            float[] widths = [0.0120]
+            color3f[] primvars:displayColor = [(0.4500, 0.4500, 0.5000)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_0XX_9XX_CONFIG"
+        {
+            custom string flowEdgeId = "FLOW-0XX-9XX-CONFIG"
+            custom string flowTypeId = "configuration_metadata"
+            custom string sourceSystemId = "0xx"
+            custom string targetSystemId = "9xx"
+            custom string direction = "source_to_target"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(0.0000, 0.0000, -0.0500), (-1.5427, 1.8385, -0.0500)]
+            float[] widths = [0.0120]
+            color3f[] primvars:displayColor = [(0.4500, 0.4500, 0.5000)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_1XX_2XX_THERMOFLUID"
+        {
+            custom string flowEdgeId = "FLOW-1XX-2XX-THERMOFLUID"
+            custom string flowTypeId = "thermofluid_mass_energy"
+            custom string sourceSystemId = "1xx"
+            custom string targetSystemId = "2xx"
+            custom string direction = "bidirectional_coupling"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(0.0000, 2.4000, 0.0500), (1.5427, 1.8385, 0.0500)]
+            float[] widths = [0.0250]
+            color3f[] primvars:displayColor = [(0.1500, 0.5500, 0.9500)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_1XX_3XX_POWER"
+        {
+            custom string flowEdgeId = "FLOW-1XX-3XX-POWER"
+            custom string flowTypeId = "mechanical_power"
+            custom string sourceSystemId = "1xx"
+            custom string targetSystemId = "3xx"
+            custom string direction = "source_to_target"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(0.0000, 2.4000, 0.0500), (2.3635, 0.4168, 0.0500)]
+            float[] widths = [0.0250]
+            color3f[] primvars:displayColor = [(0.9500, 0.2500, 0.1500)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_1XX_8XX_MOUNTS"
+        {
+            custom string flowEdgeId = "FLOW-1XX-8XX-MOUNTS"
+            custom string flowTypeId = "structural_wrench"
+            custom string sourceSystemId = "1xx"
+            custom string targetSystemId = "8xx"
+            custom string direction = "bidirectional_equilibrium"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(0.0000, 2.4000, 0.0500), (-2.3635, 0.4168, 0.0500)]
+            float[] widths = [0.0250]
+            color3f[] primvars:displayColor = [(0.9000, 0.6000, 0.1000)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_1XX_9XX_CONTROL"
+        {
+            custom string flowEdgeId = "FLOW-1XX-9XX-CONTROL"
+            custom string flowTypeId = "electrical_power_and_signal"
+            custom string sourceSystemId = "1xx"
+            custom string targetSystemId = "9xx"
+            custom string direction = "bidirectional_coupling"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(0.0000, 2.4000, 0.0500), (-1.5427, 1.8385, 0.0500)]
+            float[] widths = [0.0250]
+            color3f[] primvars:displayColor = [(0.9500, 0.9000, 0.1500)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_2XX_8XX_THERMAL"
+        {
+            custom string flowEdgeId = "FLOW-2XX-8XX-THERMAL"
+            custom string flowTypeId = "thermal_energy"
+            custom string sourceSystemId = "2xx"
+            custom string targetSystemId = "8xx"
+            custom string direction = "bidirectional_coupling"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(1.5427, 1.8385, 0.0500), (-2.3635, 0.4168, 0.0500)]
+            float[] widths = [0.0250]
+            color3f[] primvars:displayColor = [(0.9500, 0.4000, 0.0500)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_2XX_9XX_CONTROL"
+        {
+            custom string flowEdgeId = "FLOW-2XX-9XX-CONTROL"
+            custom string flowTypeId = "electrical_power_and_signal"
+            custom string sourceSystemId = "2xx"
+            custom string targetSystemId = "9xx"
+            custom string direction = "bidirectional_coupling"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(1.5427, 1.8385, 0.0500), (-1.5427, 1.8385, 0.0500)]
+            float[] widths = [0.0250]
+            color3f[] primvars:displayColor = [(0.9500, 0.9000, 0.1500)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_3XX_5XX_POWER"
+        {
+            custom string flowEdgeId = "FLOW-3XX-5XX-POWER"
+            custom string flowTypeId = "mechanical_power"
+            custom string sourceSystemId = "3xx"
+            custom string targetSystemId = "5xx"
+            custom string direction = "source_to_target"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(2.3635, 0.4168, 0.0500), (0.8208, -2.2553, 0.0500)]
+            float[] widths = [0.0250]
+            color3f[] primvars:displayColor = [(0.9500, 0.2500, 0.1500)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_3XX_7XX_CLUTCH"
+        {
+            custom string flowEdgeId = "FLOW-3XX-7XX-CLUTCH"
+            custom string flowTypeId = "hydraulic_power"
+            custom string sourceSystemId = "3xx"
+            custom string targetSystemId = "7xx"
+            custom string direction = "bidirectional_coupling"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(2.3635, 0.4168, 0.0500), (-2.0785, -1.2000, 0.0500)]
+            float[] widths = [0.0250]
+            color3f[] primvars:displayColor = [(0.5500, 0.2500, 0.9000)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_3XX_9XX_SIGNALS"
+        {
+            custom string flowEdgeId = "FLOW-3XX-9XX-SIGNALS"
+            custom string flowTypeId = "electrical_power_and_signal"
+            custom string sourceSystemId = "3xx"
+            custom string targetSystemId = "9xx"
+            custom string direction = "bidirectional_coupling"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(2.3635, 0.4168, 0.0500), (-1.5427, 1.8385, 0.0500)]
+            float[] widths = [0.0250]
+            color3f[] primvars:displayColor = [(0.9500, 0.9000, 0.1500)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_4XX_5XX_STATE"
+        {
+            custom string flowEdgeId = "FLOW-4XX-5XX-STATE"
+            custom string flowTypeId = "vehicle_state"
+            custom string sourceSystemId = "4xx"
+            custom string targetSystemId = "5xx"
+            custom string direction = "bidirectional_coupling"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(2.0785, -1.2000, 0.0500), (0.8208, -2.2553, 0.0500)]
+            float[] widths = [0.0250]
+            color3f[] primvars:displayColor = [(0.1500, 0.8000, 0.8000)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_4XX_6XX_BRAKE"
+        {
+            custom string flowEdgeId = "FLOW-4XX-6XX-BRAKE"
+            custom string flowTypeId = "mechanical_power"
+            custom string sourceSystemId = "6xx"
+            custom string targetSystemId = "4xx"
+            custom string direction = "source_to_target"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(-0.8208, -2.2553, 0.0500), (2.0785, -1.2000, 0.0500)]
+            float[] widths = [0.0250]
+            color3f[] primvars:displayColor = [(0.9500, 0.2500, 0.1500)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_4XX_7XX_STEERING"
+        {
+            custom string flowEdgeId = "FLOW-4XX-7XX-STEERING"
+            custom string flowTypeId = "kinematic_command"
+            custom string sourceSystemId = "7xx"
+            custom string targetSystemId = "4xx"
+            custom string direction = "source_to_target"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(-2.0785, -1.2000, 0.0500), (2.0785, -1.2000, 0.0500)]
+            float[] widths = [0.0250]
+            color3f[] primvars:displayColor = [(0.2000, 0.8000, 0.3500)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_4XX_8XX_LOAD"
+        {
+            custom string flowEdgeId = "FLOW-4XX-8XX-LOAD"
+            custom string flowTypeId = "structural_wrench"
+            custom string sourceSystemId = "4xx"
+            custom string targetSystemId = "8xx"
+            custom string direction = "bidirectional_equilibrium"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(2.0785, -1.2000, 0.0500), (-2.3635, 0.4168, 0.0500)]
+            float[] widths = [0.0250]
+            color3f[] primvars:displayColor = [(0.9000, 0.6000, 0.1000)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_5XX_6XX_BRAKE"
+        {
+            custom string flowEdgeId = "FLOW-5XX-6XX-BRAKE"
+            custom string flowTypeId = "mechanical_power"
+            custom string sourceSystemId = "6xx"
+            custom string targetSystemId = "5xx"
+            custom string direction = "source_to_target"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(-0.8208, -2.2553, 0.0500), (0.8208, -2.2553, 0.0500)]
+            float[] widths = [0.0250]
+            color3f[] primvars:displayColor = [(0.9500, 0.2500, 0.1500)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_5XX_8XX_LOAD"
+        {
+            custom string flowEdgeId = "FLOW-5XX-8XX-LOAD"
+            custom string flowTypeId = "structural_wrench"
+            custom string sourceSystemId = "5xx"
+            custom string targetSystemId = "8xx"
+            custom string direction = "bidirectional_equilibrium"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(0.8208, -2.2553, 0.0500), (-2.3635, 0.4168, 0.0500)]
+            float[] widths = [0.0250]
+            color3f[] primvars:displayColor = [(0.9000, 0.6000, 0.1000)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_6XX_7XX_HYDRAULIC"
+        {
+            custom string flowEdgeId = "FLOW-6XX-7XX-HYDRAULIC"
+            custom string flowTypeId = "hydraulic_power"
+            custom string sourceSystemId = "7xx"
+            custom string targetSystemId = "6xx"
+            custom string direction = "source_to_target"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(-2.0785, -1.2000, 0.0500), (-0.8208, -2.2553, 0.0500)]
+            float[] widths = [0.0250]
+            color3f[] primvars:displayColor = [(0.5500, 0.2500, 0.9000)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_6XX_9XX_CONTROL"
+        {
+            custom string flowEdgeId = "FLOW-6XX-9XX-CONTROL"
+            custom string flowTypeId = "electrical_power_and_signal"
+            custom string sourceSystemId = "6xx"
+            custom string targetSystemId = "9xx"
+            custom string direction = "bidirectional_coupling"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(-0.8208, -2.2553, 0.0500), (-1.5427, 1.8385, 0.0500)]
+            float[] widths = [0.0250]
+            color3f[] primvars:displayColor = [(0.9500, 0.9000, 0.1500)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_7XX_8XX_CONTROL_LOAD"
+        {
+            custom string flowEdgeId = "FLOW-7XX-8XX-CONTROL-LOAD"
+            custom string flowTypeId = "occupant_control_load"
+            custom string sourceSystemId = "7xx"
+            custom string targetSystemId = "8xx"
+            custom string direction = "bidirectional_equilibrium"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(-2.0785, -1.2000, 0.0500), (-2.3635, 0.4168, 0.0500)]
+            float[] widths = [0.0250]
+            color3f[] primvars:displayColor = [(0.8500, 0.3000, 0.6500)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_7XX_9XX_SIGNALS"
+        {
+            custom string flowEdgeId = "FLOW-7XX-9XX-SIGNALS"
+            custom string flowTypeId = "electrical_power_and_signal"
+            custom string sourceSystemId = "7xx"
+            custom string targetSystemId = "9xx"
+            custom string direction = "bidirectional_coupling"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(-2.0785, -1.2000, 0.0500), (-1.5427, 1.8385, 0.0500)]
+            float[] widths = [0.0250]
+            color3f[] primvars:displayColor = [(0.9500, 0.9000, 0.1500)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+        def BasisCurves "FLOW_8XX_9XX_BODY_ELECTRICAL"
+        {
+            custom string flowEdgeId = "FLOW-8XX-9XX-BODY-ELECTRICAL"
+            custom string flowTypeId = "electrical_power_and_signal"
+            custom string sourceSystemId = "9xx"
+            custom string targetSystemId = "8xx"
+            custom string direction = "bidirectional_coupling"
+            custom string topologyStatus = "engineering_hypothesis_requires_interface_evidence"
+            custom bool quantified = false
+            custom bool referenceSolverResultPresent = false
+            custom bool physicsNeMoResultPresent = false
+            custom bool simreadyBindingPresent = false
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(-1.5427, 1.8385, 0.0500), (-2.3635, 0.4168, 0.0500)]
+            float[] widths = [0.0250]
+            color3f[] primvars:displayColor = [(0.9500, 0.9000, 0.1500)]
+            uniform token primvars:displayColor:interpolation = "constant"
+        }
+    }
+}

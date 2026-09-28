@@ -1,0 +1,266 @@
+{
+  "$comment": "F29 cree quatre concepts de culasse a partir d'hypotheses explicites. Les geometries et calculs sont des prototypes numeriques non ajustes a une culasse 917 physique et n'autorisent aucune fabrication.",
+  "schema_version": "1.0.0",
+  "phase": "F29",
+  "status": "clean_sheet_concept_cad_and_analytical_screening_only_all_release_gates_blocked",
+  "asset": {
+    "id": "porsche-917-clean-sheet-cylinder-head-f29",
+    "scope": "individual_air_cooled_cylinder_head_concept",
+    "architecture_variants": [
+      "2v",
+      "4v"
+    ],
+    "engine_scenarios": [
+      "type_912_5_0_na",
+      "917_30_1973_turbo_5374"
+    ],
+    "concept_count": 4,
+    "scan_derived": false,
+    "physical_fit_claim": false,
+    "historical_replica_claim": false,
+    "engine_performance_claim": false,
+    "manufacturing_claim": false
+  },
+  "authority_boundary": {
+    "upstream_contract": "twins/reference-917-engine/dual-variant-parametric-cad-contract-f28.json",
+    "upstream_status": "zero_geometry_semantic_contract_all_physical_and_release_gates_blocked",
+    "f28_geometry_or_dimensions_transferred": false,
+    "new_dimensions_classification": "f29_design_hypotheses_for_trade_study_only",
+    "documentary_bore_and_stroke_role": "scenario_envelope_only_not_fitment_or_design_lock",
+    "allowed_outputs": [
+      "work/917-clean-sheet-head-f29/design-study.json",
+      "work/917-clean-sheet-head-f29/cad/*.step",
+      "work/917-clean-sheet-head-f29/cad/*.stl",
+      "work/917-clean-sheet-head-f29/cad/geometry-report.json",
+      "work/917-clean-sheet-head-f29/report.json"
+    ],
+    "forbidden_claims": [
+      "dimensionally_accurate_917_head",
+      "validated_digital_twin",
+      "omniverse_test_passed",
+      "cfd_or_fea_correlated",
+      "safe_for_engine_operation",
+      "ready_for_metal_print",
+      "1600_hp_capable"
+    ]
+  },
+  "scenarios": [
+    {
+      "id": "type_912_5_0_na",
+      "bore_mm": 86.8,
+      "stroke_mm": 70.4,
+      "screening_speed_rpm": 8300,
+      "screening_peak_cylinder_pressure_mpa": 9.0,
+      "screening_combustion_heat_flux_w_m2": 1300000.0,
+      "intake_reference_density_kg_m3": 1.18,
+      "flow_bench_pressure_drop_pa": 10000.0,
+      "classification": "mixed_documentary_envelope_and_unvalidated_load_hypotheses",
+      "documentary_fact_refs": [
+        "FACT-50-BORE",
+        "FACT-50-STROKE"
+      ],
+      "load_case_validated": false
+    },
+    {
+      "id": "917_30_1973_turbo_5374",
+      "bore_mm": 90.0,
+      "stroke_mm": 70.4,
+      "screening_speed_rpm": 7800,
+      "screening_peak_cylinder_pressure_mpa": 18.0,
+      "screening_combustion_heat_flux_w_m2": 2200000.0,
+      "intake_reference_density_kg_m3": 2.2,
+      "flow_bench_pressure_drop_pa": 10000.0,
+      "classification": "mixed_documentary_envelope_and_unvalidated_load_hypotheses",
+      "documentary_fact_refs": [
+        "FACT-5374-BORE",
+        "FACT-5374-STROKE"
+      ],
+      "load_case_validated": false
+    }
+  ],
+  "geometry_hypotheses": {
+    "head_height_mm": 55.0,
+    "radial_wall_allowance_mm": 18.0,
+    "deck_thickness_mm": 14.0,
+    "combustion_chamber_depth_mm": 10.0,
+    "fin_count": 5,
+    "fin_thickness_mm": 2.2,
+    "fin_overhang_mm": 4.0,
+    "fastener_hole_diameter_mm": 7.0,
+    "spark_plug_bore_diameter_mm": 10.0,
+    "port_to_valve_diameter_ratio": 0.72,
+    "tolerance_definition": null,
+    "machining_allowance_definition": null,
+    "cooling_passage_definition": null,
+    "oil_passage_definition": null,
+    "seat_insert_interface_definition": null
+  },
+  "architecture_search": {
+    "minimum_seat_bridge_mm": 2.0,
+    "minimum_chamber_edge_margin_mm": 1.0,
+    "lift_profile": "half_sine_screening_profile_not_a_cam_law",
+    "sample_count": 101,
+    "2v": {
+      "intake_count": 1,
+      "exhaust_count": 1,
+      "seat_ring_radius_ratio": 0.24,
+      "intake_diameter_ratios": [0.46, 0.48, 0.5],
+      "exhaust_diameter_ratios": [0.36, 0.38, 0.4],
+      "intake_lift_ratios": [0.22, 0.24, 0.26],
+      "exhaust_lift_ratios": [0.22, 0.24, 0.26]
+    },
+    "4v": {
+      "intake_count": 2,
+      "exhaust_count": 2,
+      "seat_ring_radius_ratio": 0.3,
+      "intake_diameter_ratios": [0.32, 0.34, 0.36],
+      "exhaust_diameter_ratios": [0.26, 0.28, 0.3],
+      "intake_lift_ratios": [0.26, 0.29, 0.32],
+      "exhaust_lift_ratios": [0.26, 0.29, 0.32]
+    }
+  },
+  "material_screening": {
+    "head_candidates": [
+      {
+        "id": "AlF357_LPBF_screening",
+        "alloy": "AlF357 / AlSi7Mg0.6",
+        "process": "laser_powder_bed_fusion_candidate",
+        "room_temperature_yield_strength_mpa": 250.0,
+        "room_temperature_ultimate_strength_mpa": 365.0,
+        "elongation_percent": 6.0,
+        "screening_thermal_conductivity_w_mk": 150.0,
+        "thermal_value_classification": "sensitivity_assumption_not_datasheet_value",
+        "source": "https://store.eos.info/products/eos-aluminum-alf357"
+      },
+      {
+        "id": "AlSi10Mg_LPBF_screening",
+        "alloy": "AlSi10Mg",
+        "process": "laser_powder_bed_fusion_candidate",
+        "room_temperature_yield_strength_mpa": 230.0,
+        "room_temperature_ultimate_strength_mpa": 450.0,
+        "elongation_percent": 5.0,
+        "screening_thermal_conductivity_w_mk": 150.0,
+        "thermal_value_classification": "sensitivity_assumption_not_datasheet_value",
+        "source": "https://store.eos.info/products/eos-aluminum-alsi10mg"
+      }
+    ],
+    "screening_selection": "AlF357_LPBF_screening",
+    "selection_basis": "higher_conservative_room_temperature_yield_and_elongation_in_the_cited_supplier_condition",
+    "selection_limits": [
+      "no_elevated_temperature_strength_curve",
+      "no_fatigue_or_thermomechanical_fatigue_curve",
+      "no_powder_lot_or_machine_parameter_set",
+      "no_build_orientation_or_heat_treatment_qualification",
+      "no_gas_tightness_or_porosity_acceptance_criteria",
+      "no_nondestructive_inspection_plan"
+    ]
+  },
+  "valvetrain_screening": {
+    "intake_valve": {
+      "candidate": "forged_or_machined_Ti_6Al_4V_purchased",
+      "density_kg_m3": 4430.0,
+      "additive_manufacturing_allowed": false,
+      "coating_seat_stem_and_supplier_specification": null
+    },
+    "exhaust_valve": {
+      "candidate": "INCONEL_alloy_751_purchased",
+      "density_kg_m3": 8200.0,
+      "additive_manufacturing_allowed": false,
+      "source": "https://www.specialmetals.com/documents/technical-bulletins/inconel/inconel-alloy-751.pdf",
+      "coating_seat_stem_and_supplier_specification": null
+    },
+    "spring": {
+      "candidate": "oil_tempered_silicon_chromium_steel_nitrided_and_multistage_shot_peened_purchased",
+      "additive_manufacturing_allowed": false,
+      "source": "https://saemobilus.sae.org/papers/development-high-fatigue-strength-valve-spring-using-control-white-layer-nitriding-2009-32-0082",
+      "wire_diameter_coil_geometry_installed_height_and_supplier_specification": null
+    }
+  },
+  "virtual_test_models": [
+    {
+      "id": "quasi_steady_orifice_flow",
+      "equations": [
+        "A_curtain=n*pi*d*lift",
+        "A_throat=n*pi*(0.86*d)^2/4",
+        "m_dot=Cd*min(A_curtain,A_throat)*sqrt(2*rho*delta_p)"
+      ],
+      "role": "relative_2v_4v_flow_screening_only"
+    },
+    {
+      "id": "thin_circular_plate_pressure_screen",
+      "equations": [
+        "D=E*t^3/(12*(1-nu^2))",
+        "w_max=p*a^4/(64*D)",
+        "sigma_base=((3+nu)/8)*p*(a/t)^2"
+      ],
+      "role": "closed_form_deck_resistance_proxy_with_empirical_opening_penalty"
+    },
+    {
+      "id": "one_dimensional_deck_conduction",
+      "equation": "delta_T=q_double_prime*t/k",
+      "role": "thermal_sensitivity_not_conjugate_heat_transfer"
+    },
+    {
+      "id": "sinusoidal_valve_motion",
+      "equations": [
+        "event_time=duration_crank_deg/(6*rpm)",
+        "a_max=2*pi^2*lift/event_time^2",
+        "F_open=1.25*m_valve*a_max+delta_p_gas*pi*d^2/4"
+      ],
+      "role": "spring_force_and_frequency_screening_not_cam_dynamics"
+    }
+  ],
+  "physicsnemo_discovery": {
+    "repository": "https://github.com/NVIDIA/physicsnemo",
+    "discovered_version": "2.3.0a0",
+    "models": [
+      "physicsnemo.models.domino.DoMINO",
+      "physicsnemo.models.transolver.Transolver",
+      "physicsnemo.models.figconvnet.FIGConvUNet",
+      "physicsnemo.models.meshgraphnet.MeshGraphNet"
+    ],
+    "datapipes": [
+      "physicsnemo.datapipes.cae.DoMINODataPipe",
+      "physicsnemo.datapipes.cae.TransolverDataPipe",
+      "physicsnemo.datapipes.cae.mesh_datapipe.MeshDatapipe"
+    ],
+    "dataset_available": false,
+    "training_authorized": false,
+    "surrogate_result_available": false
+  },
+  "omniverse_preflight": {
+    "report": "work/917-clean-sheet-head-f29/omniverse/preflight.json",
+    "status": "blocked",
+    "blocking_reasons": [
+      "no_nvidia_gpu_or_nvidia_smi_on_current_host",
+      "openusd_python_and_asset_validator_unavailable",
+      "simready_foundation_and_usd_convert_cad_checkouts_missing",
+      "material_physics_and_ovrtx_endpoints_unavailable",
+      "content_agents_not_deployable_on_current_macos_arm64_host"
+    ],
+    "usd_created": false,
+    "simready_conformance_run": false,
+    "physx_test_run": false,
+    "performance_test_run": false
+  },
+  "release_gates": {
+    "physical_917_head_identity_verified": false,
+    "physical_scale_and_datums_verified": false,
+    "fitment_dimensions_verified": false,
+    "cooling_and_oil_passages_dimensioned": false,
+    "valve_seat_and_guide_interfaces_dimensioned": false,
+    "classical_cfd_mesh_authorized": false,
+    "classical_fea_mesh_authorized": false,
+    "combustion_boundary_conditions_validated": false,
+    "thermal_boundary_conditions_validated": false,
+    "material_at_temperature_qualified": false,
+    "valvetrain_dynamics_validated": false,
+    "physicsnemo_dataset_authorized": false,
+    "physicsnemo_training_authorized": false,
+    "omniverse_simready_authorized": false,
+    "instrumented_bench_correlated": false,
+    "professional_engineering_review_approved": false,
+    "metal_additive_manufacturing_authorized": false,
+    "engine_start_authorized": false
+  }
+}

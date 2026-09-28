@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- ADR 0004: new M64 geometry is C# / PicoGK on net8.0.
+       PicoGK 2.3.0 (commit 0e6cf6b6f499) is built from the pinned sources
+       in containers/m64-picogk-net8/sources.lock; see README.md for the
+       container build chain (image m64-engineering-worker:latest). -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <AssemblyName>M64PicogkSmoke</AssemblyName>
+    <RootNamespace>M64.PicoGK.Smoke</RootNamespace>
+    <PicoGkBin Condition="'$(PicoGkBin)' == ''">/opt/PicoGK/bin</PicoGkBin>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Reference Include="PicoGK">
+      <HintPath>$(PicoGkBin)/PicoGK.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

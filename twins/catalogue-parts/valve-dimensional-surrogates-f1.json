@@ -1,0 +1,272 @@
+{
+  "$comment": "Surrogates F1 des soupapes 993 lies au PET. Les dimensions partielles et les hypotheses de profil ne constituent pas des interfaces ou une CAO moteur.",
+  "schema_version": "1.0.0",
+  "generated_by": "scripts/generate_pet_993_valve_surrogates.py",
+  "status": "F1_valve_dimensional_surrogates_complete_no_component_CAE_credit",
+  "source_boundary": {
+    "files": [
+      {
+        "path": "twins/reference-935-cylinder-head/source/valve_variants_f1.json",
+        "sha256": "7b9e9d94d627c7ed9e383863e2186075f190e15188d7fed3a9391ae00809a735",
+        "role": "proxy_geometry_hypotheses_and_material_candidates"
+      },
+      {
+        "path": "catalog/parts/993-eng-intake-valve-f1-0001.json",
+        "sha256": "9983219ac7a9b7ad47603a015ccc208bd7b19280047e92d90c039ed06d43938e",
+        "role": "intake_part_identity_and_claim_boundary"
+      },
+      {
+        "path": "catalog/parts/993-eng-exhaust-valve-f1-0001.json",
+        "sha256": "9e225764e4369096a3c137af2d670e3e2fd98c35d702cdd7ff3339d64d9ac4e1",
+        "role": "exhaust_part_identity_and_claim_boundary"
+      },
+      {
+        "path": "catalog/sources/src-fvd-993-inlet-valve-dimensions.json",
+        "sha256": "043ec7b2ee00d3685287ce6ebb186c198dbed8fa72fc2f0bd64951c09bd11678",
+        "role": "supplier_declared_intake_dimensions_and_mass"
+      },
+      {
+        "path": "catalog/sources/src-partworks-993-exhaust-valve-dimensions.json",
+        "sha256": "6f56372f7ffb559e139f12a320526e3a62275903f48f18bc15a3038e2d6ef9a8",
+        "role": "supplier_declared_exhaust_dimensions"
+      },
+      {
+        "path": "twins/pet-993/catalog-crosswalk-f0.json",
+        "sha256": "cc360aac9861b37c739db4df1a3a48bd82a75a4a82d0ddd9295acf8dd743be9d",
+        "role": "exact_OEM_identity_to_PET_master_links"
+      }
+    ],
+    "third_party_geometry_redistributed": false,
+    "llm_generated_dimensions_used": false,
+    "independent_metrology_used": false
+  },
+  "summary": {
+    "dimensional_surrogate_variants": 3,
+    "full_supplier_dimension_sets": 2,
+    "partial_dimension_sets_with_length_hypothesis": 1,
+    "oem_references_in_scope": 5,
+    "pet_linked_oem_references": 3,
+    "pet_unmatched_oem_references": 2,
+    "pet_linked_part_masters": 3,
+    "declared_mass_consistency_checks": 1,
+    "selected_interface_geometry": 0,
+    "qualified_material_decisions": 0,
+    "reference_solver_results": 0,
+    "physicsnemo_results": 0,
+    "simready_assets": 0,
+    "manufacturing_releases": 0
+  },
+  "geometry_model": {
+    "model": "head_cylinder_plus_hypothetical_neck_frustum_plus_stem_cylinder",
+    "hypotheses": {
+      "face_thickness_mm": 2.5,
+      "neck_length_mm": 8.0,
+      "seat_angle_deg_not_used_as_interface": 45.0
+    },
+    "unknowns": [
+      "seat_angle_width_margin_and_contact_surface",
+      "guide_clearance_and_hot_stem_diameter",
+      "keeper_groove_tip_and_retainer_interfaces",
+      "neck_fillet_underhead_profile_and_hollow_or_sodium_filled_construction",
+      "tolerances_surface_finish_coatings_and_heat_treatment"
+    ]
+  },
+  "variants": [
+    {
+      "variant_id": "993-carrera-exhaust-42_5-f1",
+      "part_id": "993-ENG-EXHAUST-VALVE-F1-0001",
+      "service": "exhaust",
+      "source_id": "SRC-PARTWORKS-993-EXHAUST-VALVE-DIMENSIONS",
+      "dimensional_basis": "three_supplier_declared_overall_dimensions",
+      "oem_references": [
+        "99310541901"
+      ],
+      "linked_pet_oem_references": [
+        "99310541901"
+      ],
+      "unmatched_pet_oem_references": [],
+      "pet_part_master_twin_ids": [
+        "TWIN-PET-993-PART-6789C1E10B0A876F0A27"
+      ],
+      "dimensions_mm": {
+        "head_diameter": 42.5,
+        "stem_diameter": 8.0,
+        "overall_length": 109.0,
+        "overall_length_status": "supplier_declared"
+      },
+      "proxy_volume_mm3": 13126.850378714,
+      "mass_comparisons": [
+        {
+          "material_id": "steel_reference",
+          "density_g_cm3": 7.8,
+          "proxy_mass_g": 102.389432954,
+          "role": "mass_baseline_only",
+          "qualification_status": "candidate_or_placeholder_not_part_qualified"
+        },
+        {
+          "material_id": "inconel_751_bar",
+          "density_g_cm3": 8.22,
+          "proxy_mass_g": 107.902710113,
+          "role": "exhaust_reference_candidate",
+          "qualification_status": "candidate_or_placeholder_not_part_qualified"
+        },
+        {
+          "material_id": "ti64_grade5_lpbf",
+          "density_g_cm3": 4.43,
+          "proxy_mass_g": 58.151947178,
+          "role": "intake_comparison_only",
+          "qualification_status": "candidate_or_placeholder_not_part_qualified"
+        }
+      ],
+      "declared_mass_consistency": null
+    },
+    {
+      "variant_id": "993-intake-49-f1",
+      "part_id": "993-ENG-INTAKE-VALVE-F1-0001",
+      "service": "intake",
+      "source_id": "SRC-FVD-993-INLET-VALVE-DIMENSIONS",
+      "dimensional_basis": "partial_supplier_declaration_plus_length_hypothesis",
+      "oem_references": [
+        "99310540902"
+      ],
+      "linked_pet_oem_references": [
+        "99310540902"
+      ],
+      "unmatched_pet_oem_references": [],
+      "pet_part_master_twin_ids": [
+        "TWIN-PET-993-PART-40A1DD2E26DA5D33F129"
+      ],
+      "dimensions_mm": {
+        "head_diameter": 49.0,
+        "stem_diameter": 8.0,
+        "overall_length": 109.0,
+        "overall_length_status": "hypothesis_from_110_mm_product_envelope"
+      },
+      "proxy_volume_mm3": 15649.189305388,
+      "mass_comparisons": [
+        {
+          "material_id": "steel_reference",
+          "density_g_cm3": 7.8,
+          "proxy_mass_g": 122.063676582,
+          "role": "mass_baseline_only",
+          "qualification_status": "candidate_or_placeholder_not_part_qualified"
+        },
+        {
+          "material_id": "ti64_grade5_lpbf",
+          "density_g_cm3": 4.43,
+          "proxy_mass_g": 69.325908623,
+          "role": "intake_comparison_only",
+          "qualification_status": "candidate_or_placeholder_not_part_qualified"
+        }
+      ],
+      "declared_mass_consistency": {
+        "declared_reference_mass_g": 120.0,
+        "equivalent_density_g_cm3": 7.668128851,
+        "generic_steel_proxy_mass_g": 122.063676582,
+        "generic_steel_residual_g": 2.063676582,
+        "generic_steel_relative_residual": 0.017197305,
+        "interpretation": "arithmetic_consistency_only_not_material_identification"
+      }
+    },
+    {
+      "variant_id": "993-turbo-exhaust-43_5-f1",
+      "part_id": "993-ENG-EXHAUST-VALVE-F1-0001",
+      "service": "exhaust",
+      "source_id": "SRC-PARTWORKS-993-EXHAUST-VALVE-DIMENSIONS",
+      "dimensional_basis": "three_supplier_declared_overall_dimensions",
+      "oem_references": [
+        "99310541984",
+        "99310541952",
+        "99310541953"
+      ],
+      "linked_pet_oem_references": [
+        "99310541952"
+      ],
+      "unmatched_pet_oem_references": [
+        "99310541953",
+        "99310541984"
+      ],
+      "pet_part_master_twin_ids": [
+        "TWIN-PET-993-PART-8F0B533FDCBA381567D2"
+      ],
+      "dimensions_mm": {
+        "head_diameter": 43.5,
+        "stem_diameter": 8.0,
+        "overall_length": 108.9,
+        "overall_length_status": "supplier_declared"
+      },
+      "proxy_volume_mm3": 13487.557575223,
+      "mass_comparisons": [
+        {
+          "material_id": "steel_reference",
+          "density_g_cm3": 7.8,
+          "proxy_mass_g": 105.202949087,
+          "role": "mass_baseline_only",
+          "qualification_status": "candidate_or_placeholder_not_part_qualified"
+        },
+        {
+          "material_id": "inconel_751_bar",
+          "density_g_cm3": 8.22,
+          "proxy_mass_g": 110.867723268,
+          "role": "exhaust_reference_candidate",
+          "qualification_status": "candidate_or_placeholder_not_part_qualified"
+        },
+        {
+          "material_id": "ti64_grade5_lpbf",
+          "density_g_cm3": 4.43,
+          "proxy_mass_g": 59.749880058,
+          "role": "intake_comparison_only",
+          "qualification_status": "candidate_or_placeholder_not_part_qualified"
+        }
+      ],
+      "declared_mass_consistency": null
+    }
+  ],
+  "interface_readiness": {
+    "interface_hypotheses": [
+      "stem_to_guide",
+      "head_to_seat",
+      "tip_and_keeper_to_retainer_train"
+    ],
+    "selected_interface_coordinate_count": 0,
+    "F2_interface_geometry": false
+  },
+  "simulation_readiness": {
+    "blocked_load_case_ids": [
+      "LC-993-VALVE-THERMAL-STEADY",
+      "LC-993-VALVE-DYNAMIC-CYCLE",
+      "LC-993-CAMSHAFT-VALVETRAIN"
+    ],
+    "reference_solver": "not_run_missing_F2_interfaces_hot_properties_and_boundaries",
+    "physicsnemo": "ineligible_without_converged_reference_solver_dataset"
+  },
+  "assets": {
+    "editable_scad": "twins/catalogue-parts/engineering/993-valve-dimensional-surrogates-f1.scad",
+    "editable_scad_sha256": "44f8218482e33f66a26168bdbaafbd64dace466f6fd7f12c868aea8c81ae3515",
+    "openusd_guide": "twins/catalogue-parts/engineering/993-valve-dimensional-surrogates-f1.usda",
+    "openusd_guide_sha256": "51bbfca07c881a8987b96ff22453d08c98b34b539d5ced147711e20ce30f0ded",
+    "openusd_variant_prim_count": 3,
+    "openusd_guide_primitive_count": 9,
+    "openusd_physics_schema_count": 0,
+    "openusd_material_binding_count": 0
+  },
+  "model_roles": {
+    "llm": "source_routing_hypothesis_and_audit_only_no_dimensions_generated",
+    "reference_solver": "not_run",
+    "physicsnemo": "not_run",
+    "omniverse": "OpenUSD_guides_authored_not_SimReady"
+  },
+  "claim_boundary": {
+    "is_complete_OEM_geometry": false,
+    "is_F2_interface_geometry": false,
+    "is_analysis_geometry": false,
+    "is_dimensionally_accurate": false,
+    "is_fitment_validated": false,
+    "is_qualified_material_selection": false,
+    "is_reference_CAE_result": false,
+    "is_physicsnemo_result": false,
+    "is_simready_validated": false,
+    "is_manufacturing_release": false
+  },
+  "next_gate": "source_or_reconstruct_seat_guide_keeper_and_hot_clearance_interfaces_with_explicit_uncertainty_before_any_thermal_or_dynamic_reference_case"
+}

@@ -1,0 +1,108 @@
+{
+  "$comment": "Crosswalk F0 des seules revendications replacesOem exactes de PorscheFanatics vers les maitres PET. Les details commerciaux sont en sortie de travail; aucune geometrie, matiere OEM ou equivalence fonctionnelle n'est promue.",
+  "schema_version": "1.0.0",
+  "generated_by": "scripts/generate_pet_993_porschefanatics_crosswalk.py",
+  "source_boundary": {
+    "expected_source_root": "../porschefanatics.com",
+    "part_shards": [
+      {
+        "path": "data/parts/000.json",
+        "sha256": "aa94639c7bb49ce72563e251524f027a0288ea92a4f00ccfc4272068c209be6c"
+      },
+      {
+        "path": "data/parts/001.json",
+        "sha256": "3296e965a7071dd1b85df6968eb5fff425f9acdd0510cf5721196d3b27087a87"
+      },
+      {
+        "path": "data/parts/002.json",
+        "sha256": "70bc9002aa491ccced7145c574bf59a75ab53e821c639a54d59d89045c769f2e"
+      },
+      {
+        "path": "data/parts/003.json",
+        "sha256": "fb1160004b5190d58df687d94b8845b224800238a58d02532100a50ed130cc15"
+      },
+      {
+        "path": "data/parts/004.json",
+        "sha256": "7e78a29a7f1c1cdfbb2c986508e0bbc791e5a30e3aa48cddb91ef9361409183d"
+      },
+      {
+        "path": "data/parts/005.json",
+        "sha256": "d1c4e9641ad2c6b36879e56851eb3d2c6e7c12ef886cf488da8470c6c19782ca"
+      },
+      {
+        "path": "data/parts/006.json",
+        "sha256": "1321fa9c6ea6cf25c1dd67aa7d262de466214697d66d5f006fa230400690943b"
+      },
+      {
+        "path": "data/parts/007.json",
+        "sha256": "42867e1ea8ac0bcc1b66703e46949d90807adcbda4ff848a97c7e166c7c08461"
+      },
+      {
+        "path": "data/parts/008.json",
+        "sha256": "8dca380c8ff95add053b92133ae5c0e79553fcfb79ae96b38fcfe7875d9fdc6e"
+      },
+      {
+        "path": "data/parts/009.json",
+        "sha256": "5dcbf5be197c4a6969d455df0ccfa38ec71f190552ae2b27906bf8e9fd89d122"
+      },
+      {
+        "path": "data/parts/010.json",
+        "sha256": "4499e5f7860eacdc32ef2922cf5009c416886b4291ac9b01f50c1d9a8d04c730"
+      }
+    ],
+    "engineering_readiness_index": "twins/pet-993/engineering-readiness-f0.json",
+    "engineering_readiness_index_sha256": "554be7f55a341090db1c3ee9ee7e0be3d540d61bf4d82e8bfa290b5817133385",
+    "eligible_link_field": "replacesOem",
+    "prohibited_link_methods": [
+      "name_similarity",
+      "description_similarity",
+      "category_similarity",
+      "generation_fitment_without_oem_reference",
+      "llm_inference"
+    ]
+  },
+  "scope": {
+    "porschefanatics_part_records": 109316,
+    "direct_993_fitment_records": 29400,
+    "records_with_replaces_oem": 6,
+    "exact_pet_replacement_links": 6,
+    "linked_pet_part_masters": 2,
+    "linked_normalized_oem_references": 2,
+    "links_with_qualified_material_basis": 0,
+    "links_with_unqualified_material_labels": 6,
+    "links_with_published_part_weight": 0,
+    "promoted_oem_geometry_material_process_or_validation_claims": 0
+  },
+  "coverage": {
+    "links_per_linked_master": {
+      "1": 1,
+      "5": 1
+    },
+    "links_by_commercial_process_id": {
+      "cnc": 4,
+      "fabricated": 2
+    }
+  },
+  "output": {
+    "tracked": false,
+    "detailed_crosswalk": "work/pet-993/porschefanatics-crosswalk-f0.jsonl",
+    "record_count": 6,
+    "sha256": "368ad1ecd7ff3f34873b0dfc9f3b8cf055098754d29214599a20a38f7d157cd6"
+  },
+  "rights_boundary": {
+    "tracked_manifest_contains_commercial_descriptions": false,
+    "tracked_manifest_contains_commercial_images": false,
+    "tracked_manifest_contains_oem_reference_values": false,
+    "source_urls_remain_in_work_output": true
+  },
+  "claim_boundary": {
+    "commercial_alternative_is_oem_geometry": false,
+    "commercial_material_is_oem_material": false,
+    "commercial_process_is_selected_manufacturing_route": false,
+    "replacement_claim_proves_functional_equivalence": false,
+    "generation_fitment_is_part_master_link": false,
+    "llm_or_lexical_matching_enabled": false,
+    "manufacturing_release_authorized": false
+  },
+  "next_gate": "review_each_exact_replacement_source_then_acquire_authorized_dimensions_interfaces_material_basis_and_test_evidence_before_any_engineering_promotion"
+}

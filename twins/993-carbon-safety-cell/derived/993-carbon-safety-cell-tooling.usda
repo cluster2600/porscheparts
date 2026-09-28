@@ -1,0 +1,149 @@
+#usda 1.0
+(
+    defaultPrim = "World"
+    metersPerUnit = 0.001
+    upAxis = "Z"
+)
+
+def Xform "World" (
+    kind = "assembly"
+)
+{
+    custom string manufacturingStatus = "tooling_partition_concept_only"
+    custom bool partingDraftValidated = false
+    custom bool autoclaveThermalPressureValidated = false
+    custom bool fabricationReleased = false
+
+    def Scope "Looks"
+    {
+        def Material "Tool"
+        {
+            token outputs:surface.connect = </World/Looks/Tool/PreviewSurface.outputs:surface>
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.12, 0.42, 0.62)
+                float inputs:metallic = 0.55
+                float inputs:opacity = 0.58
+                float inputs:roughness = 0.24
+                token outputs:surface
+            }
+        }
+
+    }
+
+    def Xform "ToolingSectors"
+    {
+            def Cube "M01_FloorLower" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Tool>
+                double3 xformOp:scale = (1060, 830, 45)
+                double3 xformOp:translate = (1140, 0, 135)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "M02_LeftSide" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Tool>
+                double3 xformOp:scale = (1060, 45, 415)
+                double3 xformOp:translate = (1140, 695, 415)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "M03_RightSide" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Tool>
+                double3 xformOp:scale = (1060, 45, 415)
+                double3 xformOp:translate = (1140, -695, 415)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "M04_FrontBulkhead" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Tool>
+                double3 xformOp:scale = (45, 830, 415)
+                double3 xformOp:translate = (385, 0, 415)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "M05_RearBulkhead" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Tool>
+                double3 xformOp:scale = (45, 830, 415)
+                double3 xformOp:translate = (1885, 0, 415)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "M06_RoofLeftJig" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Tool>
+                double3 xformOp:scale = (885, 60, 70)
+                double3 xformOp:translate = (1135, 507, 1310)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "M07_RoofRightJig" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Tool>
+                double3 xformOp:scale = (885, 60, 70)
+                double3 xformOp:translate = (1135, -507, 1310)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "M08_TunnelMandrel" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Tool>
+                double3 xformOp:scale = (775, 139, 121.5)
+                double3 xformOp:translate = (1205, 0, 317.5)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "M09_RearShelfUpper" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Tool>
+                double3 xformOp:scale = (325, 610, 45)
+                double3 xformOp:translate = (1660, 0, 525)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+            def Cube "M10_RoofHeadersJig" (
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                double size = 2
+                uniform token purpose = "proxy"
+                rel material:binding = </World/Looks/Tool>
+                double3 xformOp:scale = (525, 650, 70)
+                double3 xformOp:translate = (1135, 0, 1310)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:scale"]
+            }
+    }
+}

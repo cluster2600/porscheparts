@@ -1,0 +1,150 @@
+#usda 1.0
+(
+    defaultPrim = "ValveDimensionalSurrogatesF1"
+    metersPerUnit = 0.001
+    upAxis = "Z"
+)
+
+def Xform "ValveDimensionalSurrogatesF1" (
+    kind = "assembly"
+)
+{
+    custom string status = "F1_dimensional_surrogates_not_F2_or_analysis_geometry"
+    custom bool physicsAssigned = false
+    custom bool materialAssigned = false
+    custom bool simReadyValidated = false
+    def Xform "Valve993CarreraExhaust425F1" (
+        kind = "component"
+    )
+    {
+        custom string fidelity = "F1_dimensional_surrogate_unvalidated"
+        custom string dimensionalBasis = "three_supplier_declared_overall_dimensions"
+        custom string oemReferences = "99310541901"
+        custom string petPartMasterTwinIds = "TWIN-PET-993-PART-6789C1E10B0A876F0A27"
+        custom bool interfaceGeometryPresent = false
+        custom bool analysisGeometryAvailable = false
+        custom bool selectedMaterialPresent = false
+        custom bool simReadyValidated = false
+        double3 xformOp:translate = (-60.000000, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Cylinder "HeadGuide"
+        {
+            uniform token axis = "Z"
+            double height = 2.500000
+            double radius = 21.250000
+            uniform token purpose = "guide"
+            double3 xformOp:translate = (0, 0, 1.250000)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+        def Cone "NeckGuide"
+        {
+            uniform token axis = "Z"
+            double height = 8.000000
+            double radius0 = 21.250000
+            double radius1 = 4.000000
+            uniform token purpose = "guide"
+            double3 xformOp:translate = (0, 0, 6.500000)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+        def Cylinder "StemGuide"
+        {
+            uniform token axis = "Z"
+            double height = 106.500000
+            double radius = 4.000000
+            uniform token purpose = "guide"
+            double3 xformOp:translate = (0, 0, 55.750000)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+    }
+
+    def Xform "Valve993Intake49F1" (
+        kind = "component"
+    )
+    {
+        custom string fidelity = "F1_dimensional_surrogate_unvalidated"
+        custom string dimensionalBasis = "partial_supplier_declaration_plus_length_hypothesis"
+        custom string oemReferences = "99310540902"
+        custom string petPartMasterTwinIds = "TWIN-PET-993-PART-40A1DD2E26DA5D33F129"
+        custom bool interfaceGeometryPresent = false
+        custom bool analysisGeometryAvailable = false
+        custom bool selectedMaterialPresent = false
+        custom bool simReadyValidated = false
+        double3 xformOp:translate = (0.000000, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Cylinder "HeadGuide"
+        {
+            uniform token axis = "Z"
+            double height = 2.500000
+            double radius = 24.500000
+            uniform token purpose = "guide"
+            double3 xformOp:translate = (0, 0, 1.250000)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+        def Cone "NeckGuide"
+        {
+            uniform token axis = "Z"
+            double height = 8.000000
+            double radius0 = 24.500000
+            double radius1 = 4.000000
+            uniform token purpose = "guide"
+            double3 xformOp:translate = (0, 0, 6.500000)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+        def Cylinder "StemGuide"
+        {
+            uniform token axis = "Z"
+            double height = 106.500000
+            double radius = 4.000000
+            uniform token purpose = "guide"
+            double3 xformOp:translate = (0, 0, 55.750000)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+    }
+
+    def Xform "Valve993TurboExhaust435F1" (
+        kind = "component"
+    )
+    {
+        custom string fidelity = "F1_dimensional_surrogate_unvalidated"
+        custom string dimensionalBasis = "three_supplier_declared_overall_dimensions"
+        custom string oemReferences = "99310541984,99310541952,99310541953"
+        custom string petPartMasterTwinIds = "TWIN-PET-993-PART-8F0B533FDCBA381567D2"
+        custom bool interfaceGeometryPresent = false
+        custom bool analysisGeometryAvailable = false
+        custom bool selectedMaterialPresent = false
+        custom bool simReadyValidated = false
+        double3 xformOp:translate = (60.000000, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+
+        def Cylinder "HeadGuide"
+        {
+            uniform token axis = "Z"
+            double height = 2.500000
+            double radius = 21.750000
+            uniform token purpose = "guide"
+            double3 xformOp:translate = (0, 0, 1.250000)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+        def Cone "NeckGuide"
+        {
+            uniform token axis = "Z"
+            double height = 8.000000
+            double radius0 = 21.750000
+            double radius1 = 4.000000
+            uniform token purpose = "guide"
+            double3 xformOp:translate = (0, 0, 6.500000)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+        def Cylinder "StemGuide"
+        {
+            uniform token axis = "Z"
+            double height = 106.400000
+            double radius = 4.000000
+            uniform token purpose = "guide"
+            double3 xformOp:translate = (0, 0, 55.700000)
+            uniform token[] xformOpOrder = ["xformOp:translate"]
+        }
+    }
+}

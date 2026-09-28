@@ -1,0 +1,425 @@
+{
+  "$comment": "Guides F1 K16 lies au PET et modele mathematique 0D fail-closed. Les coupons de diametre ne sont pas places dans les enveloppes.",
+  "schema_version": "1.0.0",
+  "generated_by": "scripts/generate_pet_993_k16_surrogates.py",
+  "status": "F1_K16_envelope_and_diameter_guides_complete_zeroD_execution_blocked",
+  "source_boundary": {
+    "files": [
+      {
+        "path": "catalog/parts/993-turbocharger-k16-pair-0001.json",
+        "sha256": "4d29d9ca8e7404822f347b7725dc7ae89e3b24e747fb99a7293f1cceeaa63bb6",
+        "role": "part_identity_claim_and_safety_boundary"
+      },
+      {
+        "path": "catalog/sources/src-fvd-993-k16-oem-dimensions.json",
+        "sha256": "506ae45a04f065282b1e53626ba779a2a8b2755599e95518c7208636c486ce70",
+        "role": "supplier_declared_complete_unit_envelopes_and_masses"
+      },
+      {
+        "path": "catalog/sources/src-invasionautoproducts-993-k16-internal-data.json",
+        "sha256": "d41a7d46dfa41c7007ccdd0226de93fa6152644afe1a24a61deef2059d767956",
+        "role": "right_side_catalogue_wheel_diameters_and_wastegate_data"
+      },
+      {
+        "path": "twins/pet-993/catalog-crosswalk-f0.json",
+        "sha256": "cc360aac9861b37c739db4df1a3a48bd82a75a4a82d0ddd9295acf8dd743be9d",
+        "role": "exact_OEM_identity_to_four_PET_master_links"
+      },
+      {
+        "path": "twins/engine-simulation-contracts/engine-components-f1.json",
+        "sha256": "89282e96e13cc3df5c564bfa935e7d2fc9fbfa44ac4bb2337106306fcbb5e016",
+        "role": "structured_F1_K16_values"
+      },
+      {
+        "path": "twins/engine-simulation-contracts/load-cases-f1.json",
+        "sha256": "d0be5e535f41e42130d0c9ccecc921684150f448ec6128be572b4166fa402449",
+        "role": "blocked_reference_solver_input_contract"
+      },
+      {
+        "path": "twins/engine-simulation-contracts/materials-f1.json",
+        "sha256": "5a1acdf21579983c4b84eed89231a8d8065a1193420dc879a421b111fd81250e",
+        "role": "unassigned_multimaterial_contract"
+      },
+      {
+        "path": "twins/vehicle-993/program-definition.json",
+        "sha256": "668cc79a63ce87671f635d47d1c9203622acfcd725577e02624a491cf6086c5d",
+        "role": "PhysicsNeMo_and_Omniverse_execution_policy"
+      },
+      {
+        "path": "simulation/993-k16-cold-side-baseline/parameters.json",
+        "sha256": "c1b532180f6e28e68b24cf2c4c11a95f1bc4840be4ffbd424c954c757611e559",
+        "role": "synthetic_solver_harness_boundary"
+      }
+    ],
+    "third_party_geometry_redistributed": false,
+    "llm_generated_dimensions_used": false,
+    "independent_metrology_used": false
+  },
+  "summary": {
+    "assembly_variants": 2,
+    "pet_linked_oem_references": 4,
+    "pet_linked_part_masters": 4,
+    "supplier_declared_envelopes": 2,
+    "supplier_declared_masses": 2,
+    "right_side_wheel_diameter_guides": 4,
+    "left_side_wheel_diameter_guides": 0,
+    "algebraic_consistency_checks": 5,
+    "symbolic_zeroD_equation_contracts": 6,
+    "evaluated_zeroD_operating_points": 0,
+    "selected_interface_coordinates": 0,
+    "qualified_material_decisions": 0,
+    "reference_solver_results": 0,
+    "physicsnemo_results": 0,
+    "simready_assets": 0,
+    "manufacturing_releases": 0
+  },
+  "geometry_model": {
+    "representation": "two_complete_unit_bounding_boxes_plus_four_unpositioned_right_side_diameter_coupons",
+    "coupon_thickness_mm": 2.0,
+    "coupon_thickness_status": "visualization_hypothesis",
+    "display_offsets_status": "not_vehicle_or_internal_coordinates",
+    "unknowns": [
+      "all_mounting_and_fluid_interface_coordinates_sections_and_tolerances",
+      "compressor_and_turbine_housing_internal_and_external_surfaces",
+      "wheel_blade_profiles_bores_backfaces_and_axial_positions",
+      "shaft_CHRA_bearing_seal_clearance_and_lubrication_geometry",
+      "wastegate_flap_port_linkage_and_actuator_installation_geometry",
+      "wall_thicknesses_surface_finishes_and_balance_features"
+    ]
+  },
+  "variants": [
+    {
+      "variant_id": "993-k16-left-f1",
+      "side": "left",
+      "oem_references": [
+        "99312301351",
+        "99312301352"
+      ],
+      "pet_part_master_twin_ids": [
+        "TWIN-PET-993-PART-62DA237715E2C0D682AE",
+        "TWIN-PET-993-PART-735A418DC9A79D381968"
+      ],
+      "supplier_declared_complete_unit_envelope_mm": [
+        280.0,
+        190.0,
+        210.0
+      ],
+      "supplier_declared_complete_unit_mass_kg": 5.76,
+      "mass_per_envelope_volume_kg_m3": 515.574650913,
+      "wheel_diameter_guides_mm": null,
+      "wheel_diameter_evidence": "not_available_and_not_mirrored_from_right",
+      "interface_coordinate_count": 0,
+      "geometry_credit": "F1_complete_unit_envelope_and_separate_diameter_guides_only"
+    },
+    {
+      "variant_id": "993-k16-right-f1",
+      "side": "right",
+      "oem_references": [
+        "99312301451",
+        "99312301452"
+      ],
+      "pet_part_master_twin_ids": [
+        "TWIN-PET-993-PART-814D6E2DE71ADB280A99",
+        "TWIN-PET-993-PART-C0D8139928F041588F9B"
+      ],
+      "supplier_declared_complete_unit_envelope_mm": [
+        280.0,
+        190.0,
+        210.0
+      ],
+      "supplier_declared_complete_unit_mass_kg": 5.6,
+      "mass_per_envelope_volume_kg_m3": 501.253132832,
+      "wheel_diameter_guides_mm": {
+        "compressor_inducer": 40.6,
+        "compressor_exducer": 60.5,
+        "turbine_inducer": 54.96,
+        "turbine_exducer": 48.97
+      },
+      "wheel_diameter_evidence": "right_turbo_supplier_catalogue_only",
+      "interface_coordinate_count": 0,
+      "geometry_credit": "F1_complete_unit_envelope_and_separate_diameter_guides_only"
+    }
+  ],
+  "mass_and_dimension_consistency": {
+    "status": "passed_arithmetic_only_not_geometry_or_material_validation",
+    "checks": [
+      {
+        "check_id": "equal_supplier_envelopes",
+        "result": "passed",
+        "value_mm": [
+          280.0,
+          190.0,
+          210.0
+        ]
+      },
+      {
+        "check_id": "pair_mass_sum",
+        "result": "passed",
+        "value_kg": 11.36
+      },
+      {
+        "check_id": "left_right_mass_difference",
+        "result": "passed",
+        "value_kg": 0.16,
+        "relative_to_pair_mean": 0.028169014
+      },
+      {
+        "check_id": "compressor_diameter_order",
+        "result": "passed_supplier_values_are_numerically_ordered_only",
+        "inducer_to_exducer_ratio": 0.67107438
+      },
+      {
+        "check_id": "turbine_diameter_order",
+        "result": "passed_supplier_values_are_numerically_ordered_only",
+        "exducer_to_inducer_ratio": 0.891011645
+      }
+    ],
+    "complete_unit_envelope_volume_m3": 0.011172,
+    "combined_mass_per_combined_envelope_volume_kg_m3": 508.413891873,
+    "interpretation": "packaging_and_data_consistency_only_multimaterial_void_assembly_prevents_density_inference"
+  },
+  "flow_interface_readiness": {
+    "interface_topology_hypotheses": [
+      "compressor_inlet_air",
+      "compressor_outlet_charge_air",
+      "turbine_inlet_exhaust_gas",
+      "turbine_outlet_exhaust_gas",
+      "oil_feed",
+      "oil_drain",
+      "wastegate_bypass",
+      "actuator_pressure_or_control_reference"
+    ],
+    "topology_status": "LLM_assisted_engineering_hypotheses_for_review",
+    "selected_interface_coordinate_count": 0,
+    "selected_flow_area_count": 0,
+    "selected_sealing_surface_count": 0,
+    "supplier_declared_right_actuator_observations": {
+      "wastegate_pressure_bar": 0.5,
+      "rod_lift_mm": 4.2,
+      "simulation_boundary_condition_status": "not_promoted_requires_definition_and_verification"
+    }
+  },
+  "zeroD_model": {
+    "status": "symbolic_contracts_only_no_operating_point_evaluated",
+    "equations": [
+      {
+        "id": "compressor_pressure_ratio",
+        "equation": "PR_c = p02 / p01",
+        "missing": [
+          "p01_total_Pa",
+          "p02_total_Pa"
+        ]
+      },
+      {
+        "id": "compressor_power",
+        "equation": "P_c = mdot_c * cp_c * T01 * (PR_c^((gamma_c-1)/gamma_c)-1) / eta_c",
+        "missing": [
+          "mdot_c",
+          "cp_c",
+          "T01",
+          "gamma_c",
+          "eta_c",
+          "PR_c"
+        ]
+      },
+      {
+        "id": "turbine_power",
+        "equation": "P_t = mdot_t * cp_t * T03 * eta_t * (1-PR_t^-((gamma_t-1)/gamma_t))",
+        "missing": [
+          "mdot_t",
+          "cp_t",
+          "T03",
+          "gamma_t",
+          "eta_t",
+          "PR_t"
+        ]
+      },
+      {
+        "id": "shaft_power_balance",
+        "equation": "P_t * eta_mech = P_c + P_bearing + dE_rotor_dt",
+        "missing": [
+          "eta_mech",
+          "P_bearing",
+          "rotor_inertia",
+          "rotor_speed_history"
+        ]
+      },
+      {
+        "id": "corrected_map_coordinates",
+        "equation": "mdot_corr = mdot*sqrt(T/Tref)/(P/Pref); N_corr = N/sqrt(T/Tref)",
+        "missing": [
+          "mdot",
+          "T",
+          "P",
+          "Tref",
+          "Pref",
+          "rotor_speed_N"
+        ]
+      },
+      {
+        "id": "wheel_tip_speed",
+        "equation": "U_tip = pi * D * N / 60",
+        "missing": [
+          "verified_wheel_operating_diameter",
+          "rotor_speed_rpm"
+        ]
+      }
+    ],
+    "required_map_and_operating_inputs": [
+      "measured_internal_housings_and_blade_surfaces",
+      "shaft_bearing_and_clearance_geometry",
+      "compressor_and_turbine_maps",
+      "mass_flow_pressure_temperature_cases",
+      "rotor_speed_rpm_cases",
+      "oil_flow_pressure_and_temperature",
+      "qualified_material_property_sets",
+      "high_speed_balance_and_failure_containment_plan"
+    ],
+    "map_available": false,
+    "operating_point_available": false,
+    "shaft_balance_evaluated": false,
+    "reference_solver_credit": false
+  },
+  "cold_side_solver_harness": {
+    "case_id": "993-K16-COLD-SIDE-BASELINE-0001",
+    "status": "toolchain_smoke_not_K16_reference_CFD",
+    "geometry_source": "parts/993-turbocharger-k16-cold-side-prototype/source/cold_side_concept.scad",
+    "synthetic_geometry": {
+      "concept": "stationary_axisymmetric_cold_side_diffuser",
+      "inlet_diameter_mm": 50.0,
+      "outlet_diameter_mm": 68.0,
+      "diffuser_length_mm": 90.0,
+      "wall_thickness_mm": 4.0,
+      "mesh_cells_streamwise": 80,
+      "mesh_cells_across_inlet": 24
+    },
+    "synthetic_flow": {
+      "fluid": "air",
+      "air_density_kg_m3": 1.2,
+      "kinematic_viscosity_m2_s": 1.5e-05,
+      "inlet_velocity_m_s": 40.0,
+      "pressure_reference_pa": 0.0,
+      "mass_flow_per_case_kg_s": 0.0942477796
+    },
+    "values_promoted_to_K16_operating_point": 0,
+    "reason": "stationary_equivalent_diffuser_without_wheel_CHRA_hot_side_or_K16_flowpath"
+  },
+  "material_and_manufacturing_route": {
+    "assembly_material_status": "unassigned",
+    "required_identification": [
+      "alloy per housing and rotor component",
+      "casting or forging condition",
+      "coating",
+      "bearing materials",
+      "temperature-dependent properties"
+    ],
+    "LLM_hypothesis_matrix": [
+      {
+        "subassembly": "compressor_housing",
+        "candidate_family": "cast_aluminium_family",
+        "status": "unsourced_hypothesis_not_selected"
+      },
+      {
+        "subassembly": "turbine_housing",
+        "candidate_family": "high_temperature_cast_iron_or_nickel_family",
+        "status": "unsourced_hypothesis_not_selected"
+      },
+      {
+        "subassembly": "compressor_wheel",
+        "candidate_family": "forged_aluminium_or_titanium_family",
+        "status": "unsourced_hypothesis_not_selected"
+      },
+      {
+        "subassembly": "turbine_wheel",
+        "candidate_family": "nickel_superalloy_family",
+        "status": "unsourced_hypothesis_not_selected"
+      },
+      {
+        "subassembly": "shaft_bearings_and_seals",
+        "candidate_family": "specialist_turbomachinery_material_system",
+        "status": "unsourced_hypothesis_not_selected"
+      }
+    ],
+    "selected_material_count": 0,
+    "selected_functional_manufacturing_route_count": 0,
+    "whole_turbo_additive_or_CNC_release": "prohibited_pending_F3_reference_analysis_balance_containment_and_professional_review",
+    "first_permitted_candidate_scope": "non_rotating_cold_side_adapter_after_F2_interfaces_and_reference_CFD"
+  },
+  "physicsnemo_discovery": {
+    "canonical_repository": "https://github.com/NVIDIA/physicsnemo",
+    "commit": "4fbfcfd62bf050b48ceec6b438da409b9f4644b3",
+    "discovered_on": "2026-09-02",
+    "paths_verified_live_during_authoring": true,
+    "local_revalidation_required_before_execution": true,
+    "model_menu": [
+      {
+        "model": "GeoTransolver",
+        "path": "physicsnemo/models/geotransolver",
+        "role": "candidate_irregular_mesh_field_surrogate_after_reference_CFD_dataset",
+        "selected": false
+      },
+      {
+        "model": "Transolver",
+        "path": "physicsnemo/models/transolver",
+        "role": "candidate_irregular_mesh_field_surrogate_after_reference_CFD_dataset",
+        "selected": false
+      },
+      {
+        "model": "MeshGraphNet",
+        "path": "physicsnemo/models/meshgraphnet",
+        "role": "exploratory_mesh_graph_candidate_requires_K16_specific_compressible_formulation",
+        "selected": false
+      },
+      {
+        "model": "DoMINO",
+        "path": "physicsnemo/models/domino",
+        "role": "not_selected_external_aerodynamics_example_is_not_internal_K16_validation",
+        "selected": false
+      }
+    ],
+    "verified_datapipes": [
+      "physicsnemo/datapipes/cae/DoMINODataPipe",
+      "physicsnemo/datapipes/cae/TransolverDataPipe"
+    ],
+    "verified_examples": [
+      "examples/cfd/external_aerodynamics/domino",
+      "examples/cfd/external_aerodynamics/transformer_models",
+      "examples/cfd/stokes_mgn"
+    ],
+    "execution_enabled": false,
+    "eligibility_gate": "converged_mesh_independent_K16_reference_CFD_dataset_with_held_out_cases_and_acceptance_thresholds"
+  },
+  "omniverse_handoff": {
+    "openusd_source_authoring": "completed_as_guides",
+    "property_assignment_intent": "run",
+    "content_agents_preflight": "blocked_by_recorded_program_preflight",
+    "material_and_physics_assignment": "not_run",
+    "nvidia_asset_validator": "not_run_preflight_blocked",
+    "simready_foundation": "not_run_preflight_blocked",
+    "simready_validated": false
+  },
+  "assets": {
+    "editable_scad": "twins/catalogue-parts/engineering/993-k16-envelope-diameter-guides-f1.scad",
+    "editable_scad_sha256": "92b3a8f29a298457386fe78cb2eb0627d06968c6a2296f05371f9e5a7868f1b6",
+    "openusd_guide": "twins/catalogue-parts/engineering/993-k16-envelope-diameter-guides-f1.usda",
+    "openusd_guide_sha256": "25a27c7fc5a213228716c361e53de92ace90fdd1cb283fdcac91d4972c6e658d",
+    "openusd_variant_prim_count": 2,
+    "openusd_guide_primitive_count": 6,
+    "openusd_physics_schema_count": 0,
+    "openusd_material_binding_count": 0
+  },
+  "claim_boundary": {
+    "is_complete_OEM_geometry": false,
+    "is_F2_interface_geometry": false,
+    "is_F3_analysis_geometry": false,
+    "is_dimensionally_accurate_part_shape": false,
+    "is_fitment_validated": false,
+    "is_qualified_material_selection": false,
+    "is_evaluated_operating_point": false,
+    "is_reference_CFD_or_rotordynamics_result": false,
+    "is_physicsnemo_result": false,
+    "is_simready_validated": false,
+    "is_manufacturing_or_engine_release": false
+  },
+  "next_gate": "resolve_PET_configuration_then_source_or_reconstruct_F2_interfaces_and_F3_internal_flowpath_before_reference_CFD"
+}

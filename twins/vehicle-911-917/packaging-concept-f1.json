@@ -1,0 +1,110 @@
+{
+  "$comment": "Etude F1 orientee comportement dynamique. Le flat-12 est avance devant l'essieu arriere et la boite est placee derriere. Toutes les cotes d'integration qui ne proviennent pas du scan ou de la reference 993 restent des hypotheses de screening.",
+  "schema_version": "1.0.0",
+  "concept_id": "911-917-VEHICLE-PACKAGING-F1",
+  "status": "screening_only_mid_engine_scan_scale_body_and_gearbox_dimensions_unverified",
+  "base_concept": "twins/vehicle-911-917/packaging-concept-f0.json",
+  "decision_driver": "reduce_rear_overhang_mass_and_keep_engine_geometric_centre_ahead_of_rear_axle",
+  "coordinate_system": {
+    "origin": "centre de l'axe avant",
+    "x": "avant vers arriere",
+    "y": "gauche vers droite",
+    "z": "haut depuis le plan de sol de visualisation",
+    "units": "mm"
+  },
+  "inputs": {
+    "vehicle_reference": "twin/993/reference-envelope.json",
+    "vehicle_packaging_hypotheses": "twins/993-carbon-safety-cell/design-space.json",
+    "engine_scan": "raw-scans/917-engine/original/917-engine-case-with-cylinders.obj",
+    "engine_scan_sha256_contract": "twins/reference-917-engine/scan-scale-orientation-acquisition-f21.json",
+    "engine_scan_interface_report": "work/917-engine/scan-metrology-f13-report.json"
+  },
+  "engine_screening": {
+    "obj_unit_to_mm": 1.0,
+    "scale_status": "screening_assumption_not_traceably_calibrated",
+    "scan_scope": "external crankcase and cylinders only",
+    "installation_rule": "scan_longitudinal_axis_parallel_to_vehicle_x_with_scan_rear_at_engine_gearbox_mating_plane",
+    "full_engine_service_envelope_mm": {
+      "length": 1150.0,
+      "width": 1200.0,
+      "height": 800.0,
+      "status": "compact_design_reservation_not_measured",
+      "warning": "The F1 length is an aggressive packaging target, not proof that the complete engine and turbo system fit.",
+      "includes_allowance_target_for": [
+        "complete_heads",
+        "cooling_fan",
+        "intake",
+        "exhaust",
+        "two_turbochargers",
+        "heat_shields"
+      ]
+    }
+  },
+  "body_and_occupant_screening_mm": {
+    "stock_wheelbase": 2272.0,
+    "wheelbase_extension_trials": [
+      300.0,
+      450.0,
+      600.0
+    ],
+    "selected_wheelbase_extension": 450.0,
+    "front_occupant_rear_limit_x": 1365.0,
+    "front_occupant_rear_limit_status": "hypothesis_from_existing_vehicle_screening_model_not_measured",
+    "rear_seats_deleted": true,
+    "rear_seat_delete_start_x": 1365.0,
+    "rear_seat_delete_end_x": 2450.0,
+    "powertrain_firewall_x": 1420.0,
+    "powertrain_floor_z": 180.0,
+    "minimum_occupant_to_engine_service_clearance": 100.0,
+    "minimum_firewall_to_engine_service_clearance": 50.0,
+    "all_values_status": "screening_hypotheses_pending_body_scan_seat_buck_and_CMM"
+  },
+  "rear_transaxle_screening": {
+    "architecture": "longitudinal_mid_engine_transaxle_with_final_drive_near_front_and_gear_cluster_behind_rear_axle",
+    "engine_mating_plane_ahead_of_differential_mm": 100.0,
+    "rear_extent_from_differential_plane_mm": 550.0,
+    "width": 500.0,
+    "height": 460.0,
+    "status": "reserved_volume_not_manufacturer_dimensions",
+    "candidate_topology_reference": "hewland_lws_200",
+    "candidate_selected": null,
+    "research": "twins/vehicle-911-917/research/gearbox-shortlist.md"
+  },
+  "handling_screening": {
+    "engine_geometric_centre_target_ahead_of_rear_axle_mm": [
+      350.0,
+      750.0
+    ],
+    "vehicle_static_rear_mass_fraction_target": [
+      0.55,
+      0.6
+    ],
+    "status": "design_target_not_predicted_weight_distribution",
+    "mass_properties_available": false,
+    "required_next_inputs": [
+      "complete_engine_mass_and_CG",
+      "gearbox_mass_and_CG",
+      "body_in_white_mass_and_CG",
+      "fuel_and_oil_masses_and_CG",
+      "cooling_system_mass_and_CG",
+      "driver_mass_and_position"
+    ]
+  },
+  "release_gates": {
+    "scan_scale_verified": false,
+    "scan_orientation_verified": false,
+    "complete_engine_envelope_measured": false,
+    "complete_engine_mass_and_CG_measured": false,
+    "gearbox_GA_received": false,
+    "gearbox_torque_duty_cycle_accepted": false,
+    "body_datums_measured": false,
+    "occupant_clearance_verified": false,
+    "rear_suspension_geometry_defined": false,
+    "driveline_angles_verified": false,
+    "cooling_and_fire_separation_verified": false,
+    "structural_load_paths_verified": false,
+    "vehicle_mass_distribution_verified": false,
+    "manufacturing_authorized": false,
+    "road_or_track_use_authorized": false
+  }
+}

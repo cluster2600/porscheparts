@@ -1,0 +1,40 @@
+{
+  "$comment": "Provenance de la variante F7. Retouche ciblee de la cloison moteur dans la coupe laterale, sans modification intentionnelle du reste du concept.",
+  "schema_version": "1.0.0",
+  "asset_id": "911-917-MID-ENGINE-STRAIGHT-FIREWALL-F7",
+  "base_asset": "twins/vehicle-911-917/designer-render-cabin-closed-f6.json",
+  "tool": "OpenAI imagegen",
+  "tool_mode": "precise_object_edit",
+  "model": "not_exposed_by_tool",
+  "edit_target": {
+    "path": "work/911-917-packaging-f1/911-917-mid-engine-cabin-closed-f6.png",
+    "sha256": "8ffbe956d0683d8ec839c934c8572f47987bc13366564ca8a8c3bb8af1042659"
+  },
+  "output_asset": {
+    "path": "work/911-917-packaging-f1/911-917-mid-engine-straight-firewall-f7.png",
+    "sha256": "47390edf72558cad10eae7e806604587ff319730324656f60dfca71c6757b9a2",
+    "width_px": 1536,
+    "height_px": 1024,
+    "tracked_in_git": false
+  },
+  "design_requirement": {
+    "seat_count": 2,
+    "seat_location": "ahead_of_full_height_firewall",
+    "firewall_visual_plane": "single_straight_vertical_plane_perpendicular_to_floor",
+    "firewall_visual_continuity": "floor_to_upper_body_structure",
+    "firewall_visual_thickness": "uniform_double_skin",
+    "firewall_longitudinal_position_mm": null,
+    "firewall_thickness_mm": null,
+    "status": "visual_consistency_only_not_dimensioned_or_safety_validated"
+  },
+  "prompt": "Precise object edit of this existing two-panel automotive designer board. Correct ONLY the engine firewall/bulkhead geometry in the LOWER side-cutaway drawing. Replace the current kinked or leaning partition immediately behind the two front seats with one perfectly straight, flat, continuous double-skin firewall plane. In true side view its front and rear faces must be two parallel vertical straight lines at one constant longitudinal position, exactly perpendicular (90 degrees) to the horizontal floor datum, with uniform thickness, extending continuously from the floor/sill up to the roof/upper body structure. No diagonal segment, no dogleg, no curve, no forward or rearward lean. Leave a small believable uniform clearance behind the seat backs. Make the same firewall plane read coherently through any visible upper structure, but do not open the cabin in the upper exterior view. Preserve every other visual feature and composition: the visibly lengthened +450 mm body, widened rear track and arches, flat-12 entirely ahead of the rear axle, drivetrain behind it, two seats only, opaque quarter-window air intakes and ducts, the rearward raised upturned 930 Turbo tea-tray spoiler containing the heat exchanger, wheels, body, labels, arrows, datum lines, sketch-paper rendering, colors, and both camera views. Do not add new text, logos, seats, mechanical parts, or annotations. This is a targeted firewall-straightening edit, not a redesign.",
+  "release_gates": {
+    "firewall_geometry_dimensioned": false,
+    "firewall_perpendicularity_measured": false,
+    "firewall_fire_resistance_verified": false,
+    "firewall_fume_sealing_verified": false,
+    "firewall_structure_reviewed": false,
+    "manufacturing_authorized": false,
+    "road_or_track_use_authorized": false
+  }
+}

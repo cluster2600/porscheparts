@@ -1,0 +1,292 @@
+{
+  "$comment": "Base F9 du travail d'ingenierie mecanique. Le rendu F8 est gele comme brief visuel sans autorite geometrique. Les seules valeurs calculees proviennent d'entrees explicites; les mesures absentes restent nulles.",
+  "schema_version": "1.0.0",
+  "phase": "F9",
+  "engineering_basis_id": "911-917-MECHANICAL-ENGINEERING-BASIS-F9",
+  "status": "preliminary_mechanical_screening_no_component_selected",
+  "upstream": {
+    "packaging_hypothesis": "twins/vehicle-911-917/packaging-concept-f1.json",
+    "latest_artistic_brief": {
+      "path": "twins/vehicle-911-917/designer-render-roof-profile-f8.json",
+      "authority": "visual_brief_only_no_dimensional_or_engineering_authority"
+    },
+    "vehicle_reference_envelope": "twin/993/reference-envelope.json",
+    "engine_scan_scale_contract": "twins/reference-917-engine/scan-scale-orientation-acquisition-f21.json"
+  },
+  "coordinate_system": {
+    "origin": "centre de l'axe avant",
+    "x": "avant vers arriere",
+    "y": "gauche vers droite",
+    "z": "haut",
+    "units": "mm"
+  },
+  "powertrain_load_basis": {
+    "target_power": {
+      "value": 1600.0,
+      "unit": "mechanical_hp",
+      "watts_per_unit": 745.6998715822702,
+      "application_point": "engine_crankshaft_assumption",
+      "power_unit_and_application_point_confirmed": false
+    },
+    "equivalent_power_speeds_rpm": [
+      7000.0,
+      7500.0,
+      8000.0,
+      8500.0,
+      9000.0
+    ],
+    "preliminary_service_factor": {
+      "value": 1.3,
+      "status": "screening_assumption_not_component_acceptance_criterion",
+      "must_be_replaced_by": "measured_engine_torque_curve_transients_and_manufacturer_duty_cycle_acceptance"
+    },
+    "formula": "T_Nm = P_W / (2*pi*rpm/60)",
+    "warning": "Chaque point suppose mathematiquement 1600 hp a ce regime; il ne constitue pas une courbe moteur mesuree."
+  },
+  "transaxle_candidates": [
+    {
+      "candidate_id": "dma_s1098",
+      "manufacturer": "D.M.A. Racing Gears",
+      "architecture": "longitudinal_six_speed_sequential_cluster_forward_of_differential",
+      "ratings": [
+        {
+          "duty": "endurance",
+          "maximum_input_torque_nm": 900.0
+        },
+        {
+          "duty": "sprint_hillclimb",
+          "maximum_input_torque_nm": 1300.0
+        }
+      ],
+      "published_mass_kg": 76.0,
+      "public_overall_dimensions_mm": null,
+      "source_url": "https://dmaracinggears.com/2wd-transaxle-sequential-s1098/",
+      "source_checked_utc": "2026-09-08"
+    },
+    {
+      "candidate_id": "dma_1071_w_2wd",
+      "manufacturer": "D.M.A. Racing Gears",
+      "architecture": "two_wheel_drive_sequential_transaxle_front_mid_or_rear_engine",
+      "ratings": [
+        {
+          "duty": "five_speed_published",
+          "maximum_input_torque_nm": 1200.0
+        },
+        {
+          "duty": "six_speed_published",
+          "maximum_input_torque_nm": 900.0
+        }
+      ],
+      "published_mass_kg": null,
+      "public_overall_dimensions_mm": null,
+      "source_url": "https://dmaracinggears.com/2wd-transaxle-sequential-1071-w-2wd/",
+      "source_checked_utc": "2026-09-08"
+    },
+    {
+      "candidate_id": "hewland_lws_200",
+      "manufacturer": "Hewland",
+      "architecture": "longitudinal_six_speed_rear_transaxle_cluster_behind_final_drive",
+      "ratings": [
+        {
+          "duty": "manufacturer_max_engine_input",
+          "maximum_input_torque_nm": 935.0
+        }
+      ],
+      "published_mass_kg": {
+        "aluminium": 69.0,
+        "magnesium": 63.0
+      },
+      "public_overall_dimensions_mm": null,
+      "source_url": "https://motorsport.hewland.com/browse-products/?singleproduct=725",
+      "source_checked_utc": "2026-09-08"
+    },
+    {
+      "candidate_id": "xtrac_p1192",
+      "manufacturer": "Xtrac",
+      "architecture": "transverse_seven_speed_synchromesh_transaxle",
+      "ratings": [
+        {
+          "duty": "depending_on_duty_cycle",
+          "maximum_input_torque_nm": 1100.0
+        }
+      ],
+      "published_mass_kg": 115.0,
+      "public_overall_dimensions_mm": null,
+      "source_url": "https://www.xtrac.com/product/p1192-supercar-transverse-synchromesh-gearbox/",
+      "source_checked_utc": "2026-09-08",
+      "architecture_note": "rating_benchmark_only_not_compatible_with_selected_longitudinal_layout_without_architecture_change"
+    }
+  ],
+  "load_cases": [
+    {
+      "load_case_id": "LC-TQ-01",
+      "name": "equivalent_steady_input_torque",
+      "status": "computable_from_declared_power_and_speed_grid"
+    },
+    {
+      "load_case_id": "LC-TQ-02",
+      "name": "preliminary_service_factor_input_torque",
+      "status": "computable_screening_assumption_not_validation"
+    },
+    {
+      "load_case_id": "LC-TQ-03",
+      "name": "measured_boost_transient_and_combustion_torsional_peaks",
+      "status": "blocked_missing_instrumented_engine_torque_and_torsional_data"
+    },
+    {
+      "load_case_id": "LC-LAUNCH-01",
+      "name": "traction_limited_launch_and_clutch_event",
+      "status": "blocked_missing_vehicle_mass_tire_radius_mu_ratios_and_clutch_control"
+    },
+    {
+      "load_case_id": "LC-MOUNT-01",
+      "name": "engine_transaxle_mount_reactions",
+      "status": "blocked_missing_mass_CG_mount_coordinates_and_dynamic_accelerations"
+    },
+    {
+      "load_case_id": "LC-THERMAL-01",
+      "name": "engine_charge_air_oil_and_transaxle_heat_rejection",
+      "status": "blocked_missing_measured_heat_rejection_and_airflow_targets"
+    }
+  ],
+  "required_input_register": [
+    {
+      "input_id": "ENG-SCALE",
+      "system": "engine",
+      "quantity": "scan scale from three traceable physical controls",
+      "value": null,
+      "unit": "mm_per_obj_unit",
+      "required_for": ["packaging", "mount_geometry"]
+    },
+    {
+      "input_id": "ENG-ORIENTATION",
+      "system": "engine",
+      "quantity": "crankshaft axis split plane and handedness registration",
+      "value": null,
+      "unit": "registered_datum_set",
+      "required_for": ["packaging", "driveline_alignment"]
+    },
+    {
+      "input_id": "ENG-ENVELOPE",
+      "system": "engine",
+      "quantity": "complete hot and service envelope including turbos intake exhaust and fan",
+      "value": null,
+      "unit": "traceable_3d_geometry",
+      "required_for": ["packaging", "firewall", "cooling"]
+    },
+    {
+      "input_id": "ENG-MASS-CG",
+      "system": "engine",
+      "quantity": "wet engine mass and centre of gravity",
+      "value": null,
+      "unit": "kg_and_xyz_mm",
+      "required_for": ["mass_distribution", "mount_loads", "handling"]
+    },
+    {
+      "input_id": "ENG-TORQUE-CURVE",
+      "system": "engine",
+      "quantity": "measured steady and transient crankshaft torque versus speed and boost",
+      "value": null,
+      "unit": "Nm_vs_rpm",
+      "required_for": ["transaxle", "clutch", "shafts", "mount_loads"]
+    },
+    {
+      "input_id": "BODY-DATUMS",
+      "system": "body",
+      "quantity": "floor roof firewall sills axle and suspension hardpoints in one datum frame",
+      "value": null,
+      "unit": "xyz_mm_with_uncertainty",
+      "required_for": ["packaging", "structure", "occupant_clearance"]
+    },
+    {
+      "input_id": "BODY-MASS-CG",
+      "system": "body",
+      "quantity": "body in white mass and centre of gravity after rear-seat deletion and extension",
+      "value": null,
+      "unit": "kg_and_xyz_mm",
+      "required_for": ["mass_distribution", "handling"]
+    },
+    {
+      "input_id": "OCC-HPOINT",
+      "system": "occupant",
+      "quantity": "seat H-point helmet envelope pedal and steering positions",
+      "value": null,
+      "unit": "xyz_mm_envelopes",
+      "required_for": ["firewall_position", "roof_clearance", "egress"]
+    },
+    {
+      "input_id": "GBX-GA",
+      "system": "transaxle",
+      "quantity": "manufacturer general arrangement or STEP with all service appendages",
+      "value": null,
+      "unit": "dimensioned_drawing_or_step",
+      "required_for": ["packaging", "rear_overhang", "suspension"]
+    },
+    {
+      "input_id": "GBX-INTERFACES",
+      "system": "transaxle",
+      "quantity": "bellhousing input shaft differential outputs mounts and permitted reactions",
+      "value": null,
+      "unit": "interface_control_document",
+      "required_for": ["adapter", "shafts", "mounts", "structure"]
+    },
+    {
+      "input_id": "GBX-DUTY",
+      "system": "transaxle",
+      "quantity": "manufacturer accepted torque by ratio transient duration and duty cycle",
+      "value": null,
+      "unit": "approved_load_spectrum",
+      "required_for": ["selection", "durability"]
+    },
+    {
+      "input_id": "GBX-MASS-CG",
+      "system": "transaxle",
+      "quantity": "installed mass and centre of gravity including actuation and oil circuit",
+      "value": null,
+      "unit": "kg_and_xyz_mm",
+      "required_for": ["mass_distribution", "mount_loads"]
+    },
+    {
+      "input_id": "VEH-DYNAMIC",
+      "system": "vehicle",
+      "quantity": "target wet mass tire loaded radius friction and longitudinal/lateral acceleration envelopes",
+      "value": null,
+      "unit": "load_case_dataset",
+      "required_for": ["traction", "shafts", "brakes", "suspension", "mounts"]
+    },
+    {
+      "input_id": "THERMAL-DUTY",
+      "system": "thermal",
+      "quantity": "engine oil charge-air and gearbox heat rejection versus duty cycle",
+      "value": null,
+      "unit": "kW_vs_operating_point",
+      "required_for": ["heat_exchangers", "ducts", "firewall"]
+    }
+  ],
+  "architecture_decision": {
+    "selected_transaxle": null,
+    "current_direction": "bespoke_or_manufacturer_validated_high_capacity_longitudinal_transaxle",
+    "compactness_is_requirement": false,
+    "primary_requirement": "torque_duty_cycle_and_load_path_capacity_before_packaging_optimization",
+    "split_torque_architecture_status": "open_trade_study_not_selected"
+  },
+  "release_gates": {
+    "power_definition_confirmed": false,
+    "engine_torque_curve_measured": false,
+    "preliminary_service_factor_approved": false,
+    "scan_scale_verified": false,
+    "scan_orientation_verified": false,
+    "complete_engine_envelope_measured": false,
+    "complete_engine_mass_and_CG_measured": false,
+    "body_datums_measured": false,
+    "gearbox_GA_received": false,
+    "gearbox_duty_cycle_accepted": false,
+    "gearbox_selected": false,
+    "mount_loads_calculated": false,
+    "vehicle_mass_distribution_calculated": false,
+    "thermal_system_sized": false,
+    "structural_load_paths_verified": false,
+    "manufacturing_authorized": false,
+    "road_or_track_use_authorized": false
+  }
+}

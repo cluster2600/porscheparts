@@ -1,0 +1,55 @@
+{
+  "$comment": "Capture non secrete du preflight NVIDIA CAD-to-SimReady en lecture seule. Le fichier source est lisible, mais aucune validation OpenUSD, assignation de propriete ou conformite SimReady n'a ete executee.",
+  "schema_version": "1.0.0",
+  "captured_at": "2026-09-02T08:40:35.731403+00:00",
+  "workflow": "nvidia_omniverse_cad_to_simready_preflight",
+  "execution_mode": "check_only_skip_deploy",
+  "targets": [
+    "validation",
+    "content-agents"
+  ],
+  "source_asset": {
+    "path": "twins/vehicle-993/usd/993-functional-flow-f0.usda",
+    "sha256": "658af40d0ec9f5a2aa89060b4c5eee1c2c292e93dea0bce481429cd3e343c097",
+    "format": "usd",
+    "request_input_status": "ready"
+  },
+  "status": "blocked",
+  "blockers": [
+    "asset_validator_unavailable",
+    "content_agents_services_unhealthy_and_deployment_not_requested",
+    "openusd_python_apis_unavailable",
+    "simready_foundation_checkout_missing",
+    "material_service_unhealthy",
+    "ovrtx_service_unhealthy",
+    "physics_service_unhealthy"
+  ],
+  "runtime_status": {
+    "openusd_python": "blocked",
+    "asset_validator": "blocked",
+    "simready_validate": "blocked",
+    "content_agents": "blocked",
+    "git_lfs": "ready"
+  },
+  "service_status": {
+    "material": "blocked",
+    "physics": "blocked",
+    "ovrtx": "blocked"
+  },
+  "host_observations": {
+    "platform": "darwin_arm64",
+    "nvidia_smi": "unavailable",
+    "docker_daemon": "ready",
+    "docker_compose_v2": "ready"
+  },
+  "result_boundary": {
+    "openusd_api_validation_passed": false,
+    "asset_validation_passed": false,
+    "material_assignment_run": false,
+    "physics_assignment_run": false,
+    "simready_conformance_run": false,
+    "simready_validated": false,
+    "functioning_vehicle": false
+  },
+  "next_gate": "provide_or_prepare_OpenUSD_Asset_Validator_SimReady_Foundation_and_healthy_authenticated_Content_Agents_then_rerun_preflight"
+}

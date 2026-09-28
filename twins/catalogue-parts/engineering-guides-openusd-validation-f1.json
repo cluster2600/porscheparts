@@ -1,0 +1,128 @@
+{
+  "$comment": "Validation OpenUSD stricte de guides d'ingenierie F1 lies au PET. Elle ne prouve ni geometrie OEM, ni physique, ni SimReady.",
+  "schema_version": "1.0.0",
+  "generated_by": "scripts/validate_pet_993_engineering_guides_openusd.py",
+  "status": "passed_openusd_strict_not_nvidia_asset_validator_or_simready",
+  "validator": {
+    "command": "usdchecker --strict",
+    "tool_suite": "Apple USD Tools (0.25.11)",
+    "framework": "OpenUSD_compliance_and_dependency_checks"
+  },
+  "scope": {
+    "validated_stage_count": 8,
+    "validated_F1_surrogate_variants": 176,
+    "guide_primitive_count": 97,
+    "pet_linked_part_master_count": 171,
+    "analysis_geometry_count": 0,
+    "physics_schema_count": 0,
+    "qualified_material_assignment_count": 0,
+    "simready_asset_count": 0
+  },
+  "validated_stages": [
+    {
+      "role": "engine_carrier_mass_constrained_F1_guide",
+      "source_report": "twins/catalogue-parts/engine-carrier-mass-constrained-surrogate-f1.json",
+      "source_report_sha256": "19bbba728a0707fe93c0e8ad795175a297d155ce38641187c4e04bbacae9c354",
+      "stage": "twins/catalogue-parts/engineering/993-engine-carrier-mass-constrained-surrogate-f1.usda",
+      "stage_sha256": "1a1c44691c8ebe26c7cdd61a68d231748ff9949ad44373389ecf064f4da10e0b",
+      "expected_guide_primitives": 4,
+      "strict_mode": true,
+      "return_code": 0,
+      "result": "passed"
+    },
+    {
+      "role": "three_valve_dimensional_F1_guides",
+      "source_report": "twins/catalogue-parts/valve-dimensional-surrogates-f1.json",
+      "source_report_sha256": "b60a1fe4594910a5f97de373b0c960d8eeeab0199238c5d14fe2211341ef6765",
+      "stage": "twins/catalogue-parts/engineering/993-valve-dimensional-surrogates-f1.usda",
+      "stage_sha256": "51bbfca07c881a8987b96ff22453d08c98b34b539d5ced147711e20ce30f0ded",
+      "expected_guide_primitives": 9,
+      "strict_mode": true,
+      "return_code": 0,
+      "result": "passed"
+    },
+    {
+      "role": "two_K16_envelope_and_right_diameter_F1_guides",
+      "source_report": "twins/catalogue-parts/k16-envelope-flow-readiness-f1.json",
+      "source_report_sha256": "2d8dc620240145b7debd80340db041397a94faddd5f1cd6bce957b6adf42d56e",
+      "stage": "twins/catalogue-parts/engineering/993-k16-envelope-diameter-guides-f1.usda",
+      "stage_sha256": "25a27c7fc5a213228716c361e53de92ace90fdd1cb283fdcac91d4972c6e658d",
+      "expected_guide_primitives": 6,
+      "strict_mode": true,
+      "return_code": 0,
+      "result": "passed"
+    },
+    {
+      "role": "five_charge_air_envelope_and_aftermarket_diameter_F1_guides",
+      "source_report": "twins/catalogue-parts/charge-air-chain-readiness-f1.json",
+      "source_report_sha256": "7c8f4e1c19f55ad246bd623957cdaa727adc352b17ea4700e29d6edd62d323b5",
+      "stage": "twins/catalogue-parts/engineering/993-charge-air-chain-guides-f1.usda",
+      "stage_sha256": "687b5f4d9813dba5c7ec11edc1cf77f44c1be40375add1c8ecf1eed84676adce",
+      "expected_guide_primitives": 7,
+      "strict_mode": true,
+      "return_code": 0,
+      "result": "passed"
+    },
+    {
+      "role": "one_turbo_heat_shield_envelope_thermal_F1_guide",
+      "source_report": "twins/catalogue-parts/turbo-heat-shield-readiness-f1.json",
+      "source_report_sha256": "3f3aa8bfb4d07715a59520dacfe39d6ef9ac00c3f91a759ab340c968cce164f0",
+      "stage": "twins/catalogue-parts/engineering/993-turbo-heat-shield-left-guide-f1.usda",
+      "stage_sha256": "03fadedb66faebc79c9834607694b532f70aab00a34d42560e3e348ce4490c5f",
+      "expected_guide_primitives": 1,
+      "strict_mode": true,
+      "return_code": 0,
+      "result": "passed"
+    },
+    {
+      "role": "forty_202_16_turbo_lubrication_control_topology_F1_entries",
+      "source_report": "twins/catalogue-parts/turbo-lubrication-control-topology-readiness-f1.json",
+      "source_report_sha256": "89f12fcc9c8117baaecdba1fd3596f25b6cc1bef1f4f6a88e528c27eb3eec633",
+      "stage": "twins/catalogue-parts/engineering/993-turbo-lubrication-control-topology-f1.usda",
+      "stage_sha256": "d8b6e579c2806e58812c8e8cbe062ce0cc505bafe075604004d1c4d08bebd75b",
+      "expected_guide_primitives": 24,
+      "strict_mode": true,
+      "return_code": 0,
+      "result": "passed"
+    },
+    {
+      "role": "eighty_one_104_01_oil_tank_circuit_topology_F1_entries",
+      "source_report": "twins/catalogue-parts/oil-tank-circuit-topology-readiness-f1.json",
+      "source_report_sha256": "549f4192e6aad0b955be9656a25144c565c29c6872fabb36432b8fe3f078fcdc",
+      "stage": "twins/catalogue-parts/engineering/993-oil-tank-circuit-topology-f1.usda",
+      "stage_sha256": "d5820f0c7c6ab37c5eb1bff128b0fcc5f5528b8dc173746ade456a1ca0d37c89",
+      "expected_guide_primitives": 21,
+      "strict_mode": true,
+      "return_code": 0,
+      "result": "passed"
+    },
+    {
+      "role": "forty_three_104_05_oil_cooler_circuit_topology_F1_entries",
+      "source_report": "twins/catalogue-parts/oil-cooler-circuit-topology-readiness-f1.json",
+      "source_report_sha256": "e19849cf7623c15646d6e8e2f74f775fbbba581d04d7dd72e115e12f3b6db853",
+      "stage": "twins/catalogue-parts/engineering/993-oil-cooler-circuit-topology-f1.usda",
+      "stage_sha256": "b606436a135e8bd8772a12ffd32f8b499c97adc1b760b4130435f12626b8611f",
+      "expected_guide_primitives": 25,
+      "strict_mode": true,
+      "return_code": 0,
+      "result": "passed"
+    }
+  ],
+  "results": {
+    "strict_openusd_validation": "passed",
+    "asset_dependency_resolution": "passed",
+    "nvidia_asset_validator": "not_run_preflight_blocked",
+    "simready_foundation": "not_run_preflight_blocked",
+    "simready_validated": false
+  },
+  "claim_boundary": {
+    "openusd_pass_is_geometry_accuracy": false,
+    "openusd_pass_is_interface_fit": false,
+    "openusd_pass_is_material_or_physics_validation": false,
+    "openusd_pass_is_reference_CAE": false,
+    "openusd_pass_is_physicsnemo_validation": false,
+    "openusd_pass_is_nvidia_asset_validator": false,
+    "openusd_pass_is_simready": false,
+    "openusd_pass_authorizes_manufacturing_or_road_use": false
+  }
+}

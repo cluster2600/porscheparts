@@ -1,0 +1,90 @@
+{
+  "$comment": "Screening analytique d'un coupon generique, pas calcul du berceau. Aucune valeur de contrainte, fatigue, tenue ou fabrication n'est deduite.",
+  "schema_version": "1.0.0",
+  "generated_by": "parts/993-eng-carrier-0001/source/material_tradeoff.py",
+  "subject": {
+    "part_id": "993-ENG-CARRIER-0001",
+    "oem_reference": "993 115 021 53",
+    "scope": "generic_rectangular_tube_material_tradeoff_only",
+    "component_geometry_used": false
+  },
+  "status": "F1_generic_analytic_screening_complete_no_component_credit",
+  "coupon": {
+    "span_mm": 600.0,
+    "height_mm": 60.0,
+    "width_mm": 40.0,
+    "wall_mm": 3.0,
+    "tip_load_N": 1000.0,
+    "area_mm2": 564.0,
+    "second_moment_mm4": 273852.0,
+    "boundary_condition": "ideal_cantilever_tip_load"
+  },
+  "material_hypotheses": {
+    "steel": {
+      "elastic_modulus_MPa": 210000.0,
+      "density_kg_m3": 7850.0,
+      "poisson_ratio": 0.3,
+      "qualification_status": "generic_handbook_value_not_supplier_qualified"
+    },
+    "ti64": {
+      "elastic_modulus_MPa": 114000.0,
+      "density_kg_m3": 4430.0,
+      "poisson_ratio": 0.34,
+      "qualification_status": "generic_handbook_value_not_supplier_qualified"
+    }
+  },
+  "analytic_results": {
+    "same_geometry": {
+      "steel_mass_kg": 2.65644,
+      "ti64_mass_kg": 1.499112,
+      "steel_tip_deflection_mm": 1.251979693,
+      "ti64_tip_deflection_mm": 2.306278382,
+      "ti64_mass_reduction_fraction": 0.43566879,
+      "ti64_deflection_ratio": 1.842105263
+    },
+    "same_bending_stiffness": {
+      "ti64_uniform_section_scale": 1.165007204,
+      "ti64_mass_kg": 2.034657447,
+      "steel_mass_kg": 2.65644,
+      "ti64_mass_reduction_fraction": 0.234066101
+    },
+    "same_mass": {
+      "ti64_uniform_section_scale": 1.331168295,
+      "ti64_to_steel_bending_stiffness_ratio": 1.704580114
+    },
+    "material_index_sqrt_E_over_density": {
+      "steel": 58.376760445,
+      "ti64": 76.216447025
+    }
+  },
+  "model_verification": {
+    "analytic_equations_executed": true,
+    "independent_component_FEA": "not_run_missing_component_geometry",
+    "generic_coupon_CalculiX_crosscheck": "optional_not_release_evidence",
+    "component_model_verified": false
+  },
+  "screening_decision": {
+    "titanium_route": "deprioritized_for_current_concept_program",
+    "reason": "generic stiffness screening and the declared 1.96 kg component mass do not justify a titanium redevelopment before geometry and loads",
+    "machined_wrought_steel_route": "candidate_pending_geometry_loads_grade_and_fatigue_review",
+    "selected_material": null,
+    "selected_functional_process": null,
+    "component_credit": false
+  },
+  "downstream_models": {
+    "reference_solver": "CalculiX_after_F3_geometry_and_boundary_completion",
+    "physicsnemo": "blocked_until_validated_reference_CAE_dataset_exists",
+    "omniverse": "F1_envelope_visualization_only_not_SimReady"
+  },
+  "release_gates": {
+    "dimensionally_accurate": false,
+    "fitment_validated": false,
+    "material_qualified": false,
+    "reference_CAE_passed": false,
+    "physicsnemo_validated": false,
+    "simready_validated": false,
+    "manufacturing": false,
+    "installation": false,
+    "road_use": false
+  }
+}

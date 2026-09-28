@@ -1,0 +1,476 @@
+{
+  "$comment": "Guides F1 de la chaine d'air de suralimentation lies exactement au PET 107-45. Les enveloppes, coupons et equations ne constituent ni CAO OEM ni preuve de fonctionnement.",
+  "schema_version": "1.0.0",
+  "generated_by": "scripts/generate_pet_993_charge_air_surrogates.py",
+  "status": "F1_charge_air_chain_guides_complete_zeroD_execution_blocked",
+  "source_boundary": {
+    "files": [
+      {
+        "path": "catalog/reference/993-declared-part-data.json",
+        "sha256": "987b4912525eac39fec630b0252f7e76777b5a36c6aec0647629034c1273667e",
+        "role": "structured_supplier_observations"
+      },
+      {
+        "path": "twins/pet-993/index-f0.json",
+        "sha256": "1c62dcd1b307b351ebb77bbc676471f723b3f8f87922c52131952c468a4706d3",
+        "role": "PET_master_shard_manifest"
+      },
+      {
+        "path": "catalog/sources/src-porsche-austria-993-107-45-pet.json",
+        "sha256": "ca495d19b4c4c0070bff7d293dc9bc0a9246beba15a8a630b1420c9d0fcc0ad4",
+        "role": "official_107_45_identity_context"
+      },
+      {
+        "path": "catalog/sources/src-porschefanatics-993-turbo-pet.json",
+        "sha256": "84ed004ce9b28a512d8a3f6e570d7eb0f0c3b31ad52a048a91763a052d8bb453",
+        "role": "PorscheFanatics_107_45_catalogue_context"
+      },
+      {
+        "path": "twins/vehicle-993/program-definition.json",
+        "sha256": "668cc79a63ce87671f635d47d1c9203622acfcd725577e02624a491cf6086c5d",
+        "role": "PhysicsNeMo_and_Omniverse_policy"
+      },
+      {
+        "path": "twins/vehicle-993/functional-flow-simready-preflight-f0.json",
+        "sha256": "401674e1282db739a500d1ad7a8e2cb0da89663d414da8b9d6bfe3badcc573c2",
+        "role": "blocked_Omniverse_preflight"
+      },
+      {
+        "path": "twins/catalogue-parts/k16-envelope-flow-readiness-f1.json",
+        "sha256": "2d8dc620240145b7debd80340db041397a94faddd5f1cd6bce957b6adf42d56e",
+        "role": "upstream_turbo_envelope_and_zeroD_boundary"
+      },
+      {
+        "path": "catalog/sources/src-fvd-993-intercooler-hose-left-dimensions.json",
+        "sha256": "162975cb36f567e7496bb60569ed35cc403e358f55c681eb4d1f0d85d6cf23b1",
+        "role": "supplier_declared_component_observation"
+      },
+      {
+        "path": "catalog/sources/src-fvd-993-intercooler-hose-right-dimensions.json",
+        "sha256": "655813ecf98fbe7a5dbd604d8ef554ba0221762beadf1f5a5d6f55bae432e46d",
+        "role": "supplier_declared_component_observation"
+      },
+      {
+        "path": "catalog/sources/src-aks-dasis-993-intercooler-dimensions.json",
+        "sha256": "9bd189fb7b8e011e4e2723cf8c2d675f6f1562c8a2287592f3a8454f6d1e8d36",
+        "role": "supplier_declared_component_observation"
+      },
+      {
+        "path": "catalog/sources/src-fvd-993-intercooler-air-duct-dimensions.json",
+        "sha256": "8ec49f38bf6f860c0a72acd2f0efcc7b36dcfff432c0ebd0c3b746cef37d84f3",
+        "role": "supplier_declared_component_observation"
+      },
+      {
+        "path": "catalog/sources/src-fvd-993-charge-air-temperature-sensor-dimensions.json",
+        "sha256": "c845f036843b0911d63719293f6cd76763932d5f445b1ecb0e56c264aa876847",
+        "role": "supplier_declared_component_observation"
+      }
+    ],
+    "third_party_geometry_redistributed": false,
+    "llm_generated_dimensions_used": false,
+    "independent_metrology_used": false,
+    "porschefanatics_used_for_identity_and_system_context_only": true
+  },
+  "summary": {
+    "pet_linked_component_guides": 5,
+    "pet_linked_oem_references": 5,
+    "pet_linked_part_masters": 5,
+    "supplier_declared_bounding_boxes": 5,
+    "supplier_declared_mass_observations": 5,
+    "aftermarket_unpositioned_diameter_coupons": 2,
+    "quarantined_source_inconsistencies": 1,
+    "symbolic_zeroD_equation_contracts": 8,
+    "evaluated_zeroD_operating_points": 0,
+    "selected_interface_coordinates": 0,
+    "selected_flow_areas": 0,
+    "qualified_material_decisions": 0,
+    "reference_solver_results": 0,
+    "physicsnemo_results": 0,
+    "simready_assets": 0,
+    "manufacturing_releases": 0
+  },
+  "components": [
+    {
+      "component_id": "993-INTERCOOLER-REPLACEMENT-AKS",
+      "name": "Echangeur de remplacement AKS DASIS 177020T",
+      "role": "replacement_intercooler_core_reference",
+      "oem_reference": "99311033053",
+      "display_reference": "993 110 330 53",
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-810FCC3464576E93CEC1",
+      "pet_illustrations": [
+        "107-45"
+      ],
+      "source_id": "SRC-AKS-DASIS-993-INTERCOOLER-DIMENSIONS",
+      "supplier_declared_bounding_box_mm": [
+        260.0,
+        270.0,
+        60.0
+      ],
+      "supplier_declared_mass_kg": 7.06,
+      "bounding_box_volume_m3": 0.0042120000000000005,
+      "dimension_semantics": "aftermarket_core_only_not_complete_OEM_intercooler_envelope",
+      "geometry_credit": "F1_envelope_guide_only",
+      "interface_coordinate_count": 0,
+      "selected_material": null
+    },
+    {
+      "component_id": "993-INTERCOOLER-AIR-DUCT",
+      "name": "Conduit d'air d'echangeur",
+      "role": "ambient_air_guide_reference",
+      "oem_reference": "99311034054",
+      "display_reference": "993 110 340 54",
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-A3E2B5D9713C1FA2DB3F",
+      "pet_illustrations": [
+        "107-45"
+      ],
+      "source_id": "SRC-FVD-993-INTERCOOLER-AIR-DUCT-DIMENSIONS",
+      "supplier_declared_bounding_box_mm": [
+        600.0,
+        280.0,
+        50.0
+      ],
+      "supplier_declared_mass_kg": 0.9,
+      "bounding_box_volume_m3": 0.008400000000000001,
+      "dimension_semantics": "supplier_replacement_product_bounding_box_not_OEM_surface",
+      "geometry_credit": "F1_envelope_guide_only",
+      "interface_coordinate_count": 0,
+      "selected_material": null
+    },
+    {
+      "component_id": "993-INTERCOOLER-PRESSURE-HOSE-RIGHT",
+      "name": "Durite de pression turbo-echangeur droite",
+      "role": "right_turbo_to_intercooler_pressure_hose",
+      "oem_reference": "99311063256",
+      "display_reference": "993 110 632 56",
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-1B4C5EBD6D8FDF52DEE4",
+      "pet_illustrations": [
+        "107-45"
+      ],
+      "source_id": "SRC-FVD-993-INTERCOOLER-HOSE-RIGHT-DIMENSIONS",
+      "supplier_declared_bounding_box_mm": [
+        430.0,
+        70.0,
+        90.0
+      ],
+      "supplier_declared_mass_kg": 0.42,
+      "bounding_box_volume_m3": 0.002709,
+      "dimension_semantics": "supplier_replacement_product_bounding_box_not_OEM_surface",
+      "geometry_credit": "F1_envelope_guide_only",
+      "interface_coordinate_count": 0,
+      "selected_material": null
+    },
+    {
+      "component_id": "993-INTERCOOLER-PRESSURE-HOSE-LEFT",
+      "name": "Durite de pression turbo-echangeur gauche",
+      "role": "left_turbo_to_intercooler_pressure_hose",
+      "oem_reference": "99311063356",
+      "display_reference": "993 110 633 56",
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-9AA4F35891AB3F628F55",
+      "pet_illustrations": [
+        "107-45"
+      ],
+      "source_id": "SRC-FVD-993-INTERCOOLER-HOSE-LEFT-DIMENSIONS",
+      "supplier_declared_bounding_box_mm": [
+        430.0,
+        70.0,
+        115.0
+      ],
+      "supplier_declared_mass_kg": 0.42,
+      "bounding_box_volume_m3": 0.0034615,
+      "dimension_semantics": "supplier_replacement_product_bounding_box_not_OEM_surface",
+      "geometry_credit": "F1_envelope_guide_only",
+      "interface_coordinate_count": 0,
+      "selected_material": null
+    },
+    {
+      "component_id": "993-INTERCOOLER-TEMPERATURE-SENSOR",
+      "name": "Sonde de temperature d'air de suralimentation",
+      "role": "charge_air_temperature_observation_reference",
+      "oem_reference": "99360611400",
+      "display_reference": "993 606 114 00",
+      "pet_part_master_twin_id": "TWIN-PET-993-PART-0A8E53F8AC017024F60B",
+      "pet_illustrations": [
+        "107-45"
+      ],
+      "source_id": "SRC-FVD-993-CHARGE-AIR-TEMPERATURE-SENSOR-DIMENSIONS",
+      "supplier_declared_bounding_box_mm": [
+        75.0,
+        35.0,
+        20.0
+      ],
+      "supplier_declared_mass_kg": 0.02,
+      "bounding_box_volume_m3": 5.25e-05,
+      "dimension_semantics": "supplier_product_bounding_box_not_thread_or_probe_geometry",
+      "geometry_credit": "F1_envelope_guide_only",
+      "interface_coordinate_count": 0,
+      "selected_material": null
+    }
+  ],
+  "aftermarket_dimensional_guides": {
+    "source_entry_id": "993-INTERCOOLER-PRESSURE-HOSE-KIT-FVD",
+    "connection_length_mm": 410.0,
+    "diameter_pair_mm": [
+      43.0,
+      57.0
+    ],
+    "representation": "two_unpositioned_diameter_coupons_only",
+    "assigned_side_count": 0,
+    "assigned_endpoint_count": 0,
+    "promoted_OEM_interface_dimension_count": 0,
+    "pressure_test_value_available": false,
+    "geometry_credit": "aftermarket_reference_guides_only"
+  },
+  "quarantined_evidence": [
+    {
+      "entry_id": "993-INTERCOOLER-TA-TECHNIX-CORE-MODULE",
+      "source_id": "SRC-TA-TECHNIX-993-INTERCOOLER-DIMENSIONS",
+      "outer_diameter_mm": 66.0,
+      "inner_diameter_mm": 68.0,
+      "reason": "declared_inner_diameter_exceeds_declared_outer_diameter",
+      "promoted_to_geometry_or_flow_area": false
+    }
+  ],
+  "arithmetic_consistency": {
+    "status": "passed_arithmetic_only_not_geometry_thermal_or_flow_validation",
+    "positive_bounding_box_count": 5,
+    "sum_of_non_equivalent_supplier_mass_observations_kg": 8.82,
+    "mass_sum_interpretation": "not_a_vehicle_BOM_mass_and_not_a_complete_OEM_charge_air_assembly",
+    "left_right_supplier_hose_box_length_difference_mm": 0.0,
+    "supplier_individual_hose_box_length_minus_aftermarket_kit_connection_length_mm": 20.0,
+    "dimension_comparison_interpretation": "different_product_and_dimension_semantics_no_fit_inference"
+  },
+  "network_topology": {
+    "status": "LLM_assisted_functional_hypothesis_requires_engineering_review",
+    "nodes": [
+      "K16_left_compressor_outlet_unknown_interface",
+      "left_pressure_hose_unknown_endpoints",
+      "intercooler_left_inlet_unknown_interface",
+      "K16_right_compressor_outlet_unknown_interface",
+      "right_pressure_hose_unknown_endpoints",
+      "intercooler_right_inlet_unknown_interface",
+      "intercooler_internal_charge_air_control_volume_unknown",
+      "engine_charge_air_outlet_unknown_interface",
+      "ambient_duct_stream_unknown_section",
+      "charge_air_temperature_sensor_unknown_transfer_function"
+    ],
+    "edges": [
+      "K16_left_to_left_hose_to_intercooler_hypothesis",
+      "K16_right_to_right_hose_to_intercooler_hypothesis",
+      "intercooler_charge_air_to_engine_hypothesis",
+      "ambient_air_through_duct_and_core_hypothesis",
+      "sensor_observes_supplier_described_intercooler_inlet_region_hypothesis"
+    ],
+    "known_vehicle_transform_count": 0,
+    "known_OEM_interface_coordinate_count": 0,
+    "known_OEM_flow_area_count": 0,
+    "upstream_k16_contract": "twins/catalogue-parts/k16-envelope-flow-readiness-f1.json",
+    "topology_is_packaging_or_fitment_proof": false
+  },
+  "zeroD_model": {
+    "status": "symbolic_contracts_only_no_operating_point_evaluated",
+    "equations": [
+      {
+        "id": "charge_air_mass_balance",
+        "equation": "dm_cv/dt = mdot_L + mdot_R - mdot_engine",
+        "missing": [
+          "mdot_L",
+          "mdot_R",
+          "mdot_engine",
+          "control_volume"
+        ]
+      },
+      {
+        "id": "left_hose_velocity",
+        "equation": "v_L = mdot_L / (rho_L * A_L)",
+        "missing": [
+          "mdot_L",
+          "rho_L",
+          "OEM_left_internal_flow_area"
+        ]
+      },
+      {
+        "id": "right_hose_velocity",
+        "equation": "v_R = mdot_R / (rho_R * A_R)",
+        "missing": [
+          "mdot_R",
+          "rho_R",
+          "OEM_right_internal_flow_area"
+        ]
+      },
+      {
+        "id": "hose_pressure_loss",
+        "equation": "delta_p_i = (f_i*L_i/Dh_i + sum(K_i))*rho_i*v_i^2/2",
+        "missing": [
+          "OEM_lengths",
+          "hydraulic_diameters",
+          "roughness",
+          "bend_and_joint_loss_coefficients",
+          "Reynolds_number"
+        ]
+      },
+      {
+        "id": "intercooler_energy_balance",
+        "equation": "Qdot = mdot_charge*cp_charge*(T_in-T_out)",
+        "missing": [
+          "mdot_charge",
+          "cp_charge",
+          "T_in",
+          "T_out"
+        ]
+      },
+      {
+        "id": "intercooler_effectiveness",
+        "equation": "epsilon = (T_in-T_out)/(T_in-T_ambient)",
+        "missing": [
+          "T_in",
+          "T_out",
+          "T_ambient",
+          "operating_point_definition"
+        ]
+      },
+      {
+        "id": "intercooler_pressure_loss",
+        "equation": "delta_p_ic = zeta_ic*rho_charge*v_core^2/2",
+        "missing": [
+          "zeta_ic_map",
+          "free_flow_area",
+          "rho_charge",
+          "core_geometry"
+        ]
+      },
+      {
+        "id": "sensor_first_order_response",
+        "equation": "tau_s*dT_s/dt + T_s = T_gas",
+        "missing": [
+          "sensor_calibration",
+          "tau_s",
+          "tolerance",
+          "installation_conduction_and_radiation"
+        ]
+      }
+    ],
+    "operating_point_available": false,
+    "reference_solver_credit": false,
+    "network_solution_credit": false,
+    "required_first_reference_methods": [
+      "0D_1D_pressure_flow_temperature_network_after_F2_interfaces",
+      "mesh_independent_CFD_and_CHT_after_F3_internal_fluid_and_solid_domains",
+      "sensor_calibration_model_after_identification_or_bench_data"
+    ]
+  },
+  "material_and_manufacturing_route": {
+    "status": "LLM_hypotheses_only_no_selection",
+    "hypothesis_matrix": [
+      {
+        "component": "pressure_hoses",
+        "candidate_family": "high_temperature_reinforced_elastomer_or_silicone_system",
+        "candidate_process": "mandrel_moulding_or_equivalent",
+        "status": "unsourced_unselected"
+      },
+      {
+        "component": "intercooler_core_and_end_tanks",
+        "candidate_family": "aluminium_heat_exchanger_alloy_system",
+        "candidate_process": "brazing_welding_and_finish_machining",
+        "status": "unsourced_unselected"
+      },
+      {
+        "component": "ambient_air_duct",
+        "candidate_family": "temperature_resistant_polymer_or_composite",
+        "candidate_process": "moulding_or_additive_prototype_then_qualified_production_process",
+        "status": "unsourced_unselected"
+      },
+      {
+        "component": "temperature_sensor",
+        "candidate_family": "purchased_multimaterial_sensor_assembly",
+        "candidate_process": "buy_and_validate_not_reverse_engineer_for_functional_release",
+        "status": "unsourced_unselected"
+      }
+    ],
+    "selected_material_count": 0,
+    "selected_functional_manufacturing_route_count": 0,
+    "additive_or_CNC_release": "prohibited_pending_F2_F3_material_environment_pressure_thermal_fatigue_and_professional_review"
+  },
+  "physicsnemo_discovery": {
+    "canonical_repository": "https://github.com/NVIDIA/physicsnemo",
+    "commit": "4fbfcfd62bf050b48ceec6b438da409b9f4644b3",
+    "paths_verified_live_during_authoring": true,
+    "local_revalidation_required_before_execution": true,
+    "model_menu": [
+      {
+        "model": "GeoTransolver",
+        "path": "physicsnemo/models/geotransolver",
+        "role": "candidate_irregular_mesh_CFD_or_CHT_field_surrogate_after_reference_dataset",
+        "selected": false
+      },
+      {
+        "model": "Transolver",
+        "path": "physicsnemo/models/transolver",
+        "role": "candidate_irregular_mesh_CFD_or_CHT_field_surrogate_after_reference_dataset",
+        "selected": false
+      },
+      {
+        "model": "MeshGraphNet",
+        "path": "physicsnemo/models/meshgraphnet",
+        "role": "exploratory_mesh_graph_candidate_requires_charge_air_specific_formulation",
+        "selected": false
+      },
+      {
+        "model": "DoMINO",
+        "path": "physicsnemo/models/domino",
+        "role": "not_selected_external_aerodynamics_recipe_is_not_internal_charge_air_validation",
+        "selected": false
+      }
+    ],
+    "verified_data_interfaces": [
+      "physicsnemo/datapipes/cae/TransolverDataPipe",
+      "physicsnemo/datapipes/cae/DoMINODataPipe"
+    ],
+    "execution_enabled": false,
+    "eligibility_gate": "F3_watertight_fluid_and_solid_domains_plus_converged_CFD_CHT_dataset_with_held_out_geometry_and_operating_cases"
+  },
+  "omniverse_handoff": {
+    "openusd_source_authoring": "completed_as_guides",
+    "property_assignment_intent": "run",
+    "preflight_report": "twins/vehicle-993/functional-flow-simready-preflight-f0.json",
+    "preflight_status": "blocked",
+    "preflight_blockers": [
+      "asset_validator_unavailable",
+      "content_agents_services_unhealthy_and_deployment_not_requested",
+      "openusd_python_apis_unavailable",
+      "simready_foundation_checkout_missing",
+      "material_service_unhealthy",
+      "ovrtx_service_unhealthy",
+      "physics_service_unhealthy"
+    ],
+    "guide_composed_into_vehicle": false,
+    "vehicle_transform_known": false,
+    "material_and_physics_assignment": "not_run_preflight_blocked",
+    "nvidia_asset_validator": "not_run_preflight_blocked",
+    "simready_foundation": "not_run_preflight_blocked",
+    "simready_validated": false
+  },
+  "assets": {
+    "editable_scad": "twins/catalogue-parts/engineering/993-charge-air-chain-guides-f1.scad",
+    "editable_scad_sha256": "f8e40738f45bd36109dd5e8229564a245a46438f681901dafc1bd0ea4c22cf14",
+    "openusd_guide": "twins/catalogue-parts/engineering/993-charge-air-chain-guides-f1.usda",
+    "openusd_guide_sha256": "687b5f4d9813dba5c7ec11edc1cf77f44c1be40375add1c8ecf1eed84676adce",
+    "openusd_component_prim_count": 5,
+    "openusd_guide_primitive_count": 7,
+    "openusd_physics_schema_count": 0,
+    "openusd_material_binding_count": 0
+  },
+  "claim_boundary": {
+    "is_complete_OEM_geometry": false,
+    "is_F2_interface_geometry": false,
+    "is_F3_analysis_geometry": false,
+    "is_dimensionally_accurate_part_shape": false,
+    "is_vehicle_positioned_or_fitment_validated": false,
+    "is_qualified_material_selection": false,
+    "is_evaluated_operating_point": false,
+    "is_reference_network_CFD_CHT_or_sensor_result": false,
+    "is_physicsnemo_result": false,
+    "is_simready_validated": false,
+    "is_manufacturing_or_vehicle_release": false
+  },
+  "next_gate": "resolve_configuration_applicability_then_acquire_F2_interface_coordinates_sections_tolerances_and_material_identification"
+}

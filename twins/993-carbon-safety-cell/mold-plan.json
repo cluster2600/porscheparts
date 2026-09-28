@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0.0",
+  "design_id": "964-993-CARBON-MONOCOQUE-CLEAN-SHEET-0002",
+  "status": "tooling_partition_concept_only",
+  "manufacturing_route": {
+    "candidate": "prepreg_carbon_autoclave_or_qualified_OOA",
+    "released": false,
+    "reason": "Le systeme materiau, la stratification, l'ame, le cycle et les valeurs admissibles ne sont pas encore selectionnes."
+  },
+  "tool_strategy": {
+    "type": "female_multi_part_tool_with_roof_jigs",
+    "tool_material": "TBD apres taille serie, cycle de cuisson, CTE, masse et budget",
+    "common_cell_strategy": "Un outillage commun pour la cellule CFRP centrale.",
+    "platform_module_strategy": {
+      "964": "Outillage dédié des pods CFRP 964 après métrologie et validation F2.",
+      "993": "Outillage dédié des pods CFRP 993 après métrologie et validation F2.",
+      "current_step_outputs": "Volumes conceptuels de pièces uniquement; aucun moule de pod n'est libéré."
+    },
+    "sectors": [
+      {
+        "tool_id": "M01_FLOOR_LOWER",
+        "function": "surface femelle de plancher et tunnel",
+        "release_gate": "plan de joint, drapabilite, rayon minimal, zones d'ame et sequence de demoulage valides"
+      },
+      {
+        "tool_id": "M02_LEFT_SIDE",
+        "function": "caissons de bas de caisse et flanc gauche",
+        "release_gate": "contre-depouilles, inserts, accessibilite sac a vide et presseurs valides"
+      },
+      {
+        "tool_id": "M03_RIGHT_SIDE",
+        "function": "caissons de bas de caisse et flanc droit",
+        "release_gate": "contre-depouilles, inserts, accessibilite sac a vide et presseurs valides"
+      },
+      {
+        "tool_id": "M04_FRONT_BULKHEAD",
+        "function": "diaphragme et interfaces avant",
+        "release_gate": "charges d'interface, accessibilite collage et protection incendie definies"
+      },
+      {
+        "tool_id": "M05_REAR_BULKHEAD",
+        "function": "diaphragme et interfaces arriere",
+        "release_gate": "charges groupe motopropulseur, thermique, incendie et accessibilite collage definies"
+      },
+      {
+        "tool_id": "M06_ROOF_LEFT_JIG",
+        "function": "positionnement des chemins de charge CFRP du pavillon gauche",
+        "release_gate": "tolerances de porte, pare-brise, toit, drapage et vision valides"
+      },
+      {
+        "tool_id": "M07_ROOF_RIGHT_JIG",
+        "function": "positionnement des chemins de charge CFRP du pavillon droit",
+        "release_gate": "tolerances de porte, pare-brise, toit, drapage et vision valides"
+      },
+      {
+        "tool_id": "M08_TUNNEL_MANDREL",
+        "function": "mandrin demontable du tunnel creux commun C2/C4",
+        "release_gate": "section C4 mesuree, extraction du mandrin, etancheite, dilatation et accessibilite de controle validees"
+      },
+      {
+        "tool_id": "M09_REAR_SHELF_UPPER",
+        "function": "surface superieure de plage et puits arriere",
+        "release_gate": "liaison cloison, passages de roue, thermique moteur et sequence de demoulage valides"
+      },
+      {
+        "tool_id": "M10_ROOF_HEADERS_JIG",
+        "function": "positionnement des traverses de baie et du pavillon CFRP",
+        "release_gate": "geometrie de vitrages et ouvrants mesuree, controle diagonales et collage valides"
+      }
+    ]
+  },
+  "required_engineering_before_tool_release": [
+    "surfaces classe A et surfaces structurales correlees aux scans metrologiques 964 et 993",
+    "modele de drapage avec orientations, recouvrements, decoupes, rayons et risques de plis",
+    "compensation d'epaisseur, de retrait resine et de dilatation thermique de l'outillage",
+    "dimensionnement pression autoclave, vide, inertie thermique, gradients et exothermie",
+    "brides, joints, ports de vide, thermocouples, manutention, retournement et stockage",
+    "sequence de fermeture, boulonnage, demoulage et remplacement des elements sacrificiels",
+    "master de detourage, gabarits de perçage, datums de metrologie et echantillons temoins",
+    "analyse AMDEC produit-procede et revue HSE poussiere carbone, resine, solvants et autoclave"
+  ],
+  "release_gates": {
+    "parting_and_draft_validated": false,
+    "drape_simulation_passed": false,
+    "cure_and_thermal_simulation_passed": false,
+    "vacuum_and_pressure_design_approved": false,
+    "metrology_plan_approved": false,
+    "tooling_professional_review": false,
+    "tool_fabrication_released": false
+  }
+}

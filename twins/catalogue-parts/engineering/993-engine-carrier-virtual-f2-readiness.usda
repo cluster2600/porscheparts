@@ -1,0 +1,49 @@
+#usda 1.0
+(
+    defaultPrim = "EngineCarrierVirtualF2Readiness"
+    metersPerUnit = 0.001
+    upAxis = "Z"
+    subLayers = [
+        @../usd/993-engine-carrier-turbo.usda@
+        @993-engine-carrier-mass-constrained-surrogate-f1.usda@
+    ]
+)
+
+def Xform "EngineCarrierVirtualF2Readiness" (
+    kind = "component"
+)
+{
+    custom string contractStatus = "F2_readiness_only_no_F2_geometry_credit"
+    custom bool f2InterfaceGeometryPresent = false
+    custom bool vehicleTransformKnown = false
+    custom bool physicsAssigned = false
+    custom bool simReadyValidated = false
+    custom string sourceEnvelope = "TWIN-993-ENGINE-CARRIER-TURBO"
+
+    def Scope "InterfaceHypotheses"
+    {
+        def Xform "CarrierToEngineBracket"
+        {
+            custom string peerOemReference = "993 115 103 52"
+            custom string relationshipStatus = "PET_group_topology_hypothesis_only"
+            custom bool coordinatesKnown = false
+            custom bool attachmentGeometryKnown = false
+        }
+
+        def Xform "CarrierToEngineMounts"
+        {
+            custom string peerOemReference = "993 375 049 05"
+            custom int peerQuantityPerCar = 2
+            custom string relationshipStatus = "PET_group_topology_hypothesis_only"
+            custom bool coordinatesKnown = false
+            custom bool attachmentGeometryKnown = false
+        }
+    }
+
+    def Scope "SolverReadiness"
+    {
+        custom bool referenceCaeEnabled = false
+        custom bool physicsNeMoEnabled = false
+        custom bool manufacturingEnabled = false
+    }
+}

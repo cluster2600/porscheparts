@@ -1,0 +1,160 @@
+#usda 1.0
+(
+    defaultPrim = "ReferenceFrame993"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "ReferenceFrame993" (
+    customData = {
+        string fidelity = "F1_documented_reference_envelope"
+        string purpose = "datum_cage_not_vehicle_body_geometry"
+        int sourcedDimensionCount = 7
+        int positionedVehiclePartCount = 0
+        bool axleLongitudinalPositionsAreSourced = false
+        bool materialAssigned = false
+        bool physicsAssigned = false
+        bool simreadyValidated = false
+        bool functioningVehicle = false
+    }
+)
+{
+    def Scope "DocumentedValues"
+    {
+        def Scope "length_mm"
+        {
+            custom double valueMeters = 4.260000
+            custom string sourceMeasurementId = "MNL-TECH-0022"
+            custom int sourcePdfPage = 19
+        }
+        def Scope "width_mm"
+        {
+            custom double valueMeters = 1.735000
+            custom string sourceMeasurementId = "MNL-TECH-0023"
+            custom int sourcePdfPage = 19
+        }
+        def Scope "height_mm"
+        {
+            custom double valueMeters = 1.315000
+            custom string sourceMeasurementId = "MNL-TECH-0024"
+            custom int sourcePdfPage = 19
+        }
+        def Scope "wheelbase_mm"
+        {
+            custom double valueMeters = 2.272000
+            custom string sourceMeasurementId = "MNL-TECH-0026"
+            custom int sourcePdfPage = 19
+        }
+        def Scope "front_track_mm"
+        {
+            custom double valueMeters = 1.405000
+            custom string sourceMeasurementId = "MNL-TECH-0027"
+            custom int sourcePdfPage = 19
+        }
+        def Scope "rear_track_mm"
+        {
+            custom double valueMeters = 1.444000
+            custom string sourceMeasurementId = "MNL-TECH-0028"
+            custom int sourcePdfPage = 19
+        }
+        def Scope "ground_clearance_mm"
+        {
+            custom double valueMeters = 0.120000
+            custom string sourceMeasurementId = "MNL-TECH-0029"
+            custom int sourcePdfPage = 19
+        }
+
+        def Scope "MassConstraints"
+        {
+            def Scope "curb_mass_kg"
+            {
+                custom double valueKilograms = 1370.000
+                custom string sourceMeasurementId = "MNL-TECH-0037"
+                custom int sourcePdfPage = 19
+                custom bool isUsdMassProperty = false
+            }
+            def Scope "gross_vehicle_mass_kg"
+            {
+                custom double valueKilograms = 1690.000
+                custom string sourceMeasurementId = "MNL-TECH-0039"
+                custom int sourcePdfPage = 19
+                custom bool isUsdMassProperty = false
+            }
+            def Scope "max_front_axle_load_kg"
+            {
+                custom double valueKilograms = 720.000
+                custom string sourceMeasurementId = "MNL-TECH-0040"
+                custom int sourcePdfPage = 19
+                custom bool isUsdMassProperty = false
+            }
+            def Scope "max_rear_axle_load_kg"
+            {
+                custom double valueKilograms = 1065.000
+                custom string sourceMeasurementId = "MNL-TECH-0041"
+                custom int sourcePdfPage = 19
+                custom bool isUsdMassProperty = false
+            }
+        }
+    }
+
+    def Scope "ReferenceGeometry"
+    {
+        def BasisCurves "EnvelopeCage"
+        {
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+            point3f[] points = [(0.000000, -0.867500, 0.000000), (4.260000, -0.867500, 0.000000), (0.000000, -0.867500, 1.315000), (4.260000, -0.867500, 1.315000), (0.000000, 0.867500, 0.000000), (4.260000, 0.867500, 0.000000), (0.000000, 0.867500, 1.315000), (4.260000, 0.867500, 1.315000), (0.000000, -0.867500, 0.000000), (0.000000, 0.867500, 0.000000), (0.000000, -0.867500, 1.315000), (0.000000, 0.867500, 1.315000), (4.260000, -0.867500, 0.000000), (4.260000, 0.867500, 0.000000), (4.260000, -0.867500, 1.315000), (4.260000, 0.867500, 1.315000), (0.000000, -0.867500, 0.000000), (0.000000, -0.867500, 1.315000), (0.000000, 0.867500, 0.000000), (0.000000, 0.867500, 1.315000), (4.260000, -0.867500, 0.000000), (4.260000, -0.867500, 1.315000), (4.260000, 0.867500, 0.000000), (4.260000, 0.867500, 1.315000)]
+            float[] widths = [0.0080]
+            color3f[] primvars:displayColor = [(0.200000, 0.550000, 0.950000)]
+            uniform token primvars:displayColor:interpolation = "constant"
+            custom string fidelity = "F1_documented_envelope"
+            custom bool isBodySurface = false
+            custom bool collisionGeometry = false
+        }
+        def BasisCurves "FrontAxleDatum"
+        {
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(0.994000, -0.702500, 0.000000), (0.994000, 0.702500, 0.000000)]
+            float[] widths = [0.0140]
+            color3f[] primvars:displayColor = [(0.900000, 0.150000, 0.150000)]
+            uniform token primvars:displayColor:interpolation = "constant"
+            custom string longitudinalPosition = "display_centered_assumption"
+            custom bool longitudinalPositionSourced = false
+            custom bool trackWidthSourced = true
+        }
+        def BasisCurves "RearAxleDatum"
+        {
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(3.266000, -0.722000, 0.000000), (3.266000, 0.722000, 0.000000)]
+            float[] widths = [0.0140]
+            color3f[] primvars:displayColor = [(0.900000, 0.150000, 0.150000)]
+            uniform token primvars:displayColor:interpolation = "constant"
+            custom string longitudinalPosition = "display_centered_assumption"
+            custom bool longitudinalPositionSourced = false
+            custom bool trackWidthSourced = true
+        }
+        def BasisCurves "GroundClearanceDatum"
+        {
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(0.000000, -0.867500, 0.120000), (0.000000, 0.867500, 0.120000)]
+            float[] widths = [0.0120]
+            color3f[] primvars:displayColor = [(1.000000, 0.700000, 0.100000)]
+            uniform token primvars:displayColor:interpolation = "constant"
+            custom string longitudinalPosition = "display_only"
+            custom bool undersideSurfacePresent = false
+        }
+        def BasisCurves "VehicleCenterline"
+        {
+            uniform token type = "linear"
+            int[] curveVertexCounts = [2]
+            point3f[] points = [(0.000000, 0.000000, 0.000000), (4.260000, 0.000000, 0.000000)]
+            float[] widths = [0.0060]
+            color3f[] primvars:displayColor = [(0.650000, 0.650000, 0.650000)]
+            uniform token primvars:displayColor:interpolation = "constant"
+            custom bool vehicleDatumValidated = false
+        }
+    }
+}

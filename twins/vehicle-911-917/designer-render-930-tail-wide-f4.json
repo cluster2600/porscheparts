@@ -1,0 +1,48 @@
+{
+  "$comment": "Provenance de la variante F4. La reference fournie par l'utilisateur guide seulement le profil d'aileron; elle n'est pas ajoutee au depot et ses droits de reutilisation restent inconnus.",
+  "schema_version": "1.0.0",
+  "asset_id": "911-917-MID-ENGINE-930-TAIL-WIDE-F4",
+  "base_asset": "twins/vehicle-911-917/designer-render-930-tail-stretched-f3.json",
+  "tool": "OpenAI imagegen",
+  "tool_mode": "precise_object_edit_with_user_shape_reference",
+  "model": "not_exposed_by_tool",
+  "edit_target": {
+    "path": "work/911-917-packaging-f1/911-917-mid-engine-930-tail-stretched-f3.png",
+    "sha256": "aff73c2fd73dc6f49f25fca482d60908b90684007f1f527a57bf2c0f239063f7"
+  },
+  "user_reference": {
+    "role": "spoiler_profile_reference_only",
+    "sha256": "71a614cfb01bc5b48698398345eb2ea8fbe881ef045a10b59b1ea0a23597bb53",
+    "tracked_in_git": false,
+    "rights_status": "unknown_do_not_publish_or_redistribute"
+  },
+  "output_asset": {
+    "path": "work/911-917-packaging-f1/911-917-mid-engine-930-tail-wide-f4.png",
+    "sha256": "1b383d3eaf66e71a56d6feac1aaba38fc3a8a074e36b265e615b05b9985a8931",
+    "width_px": 1536,
+    "height_px": 1024,
+    "tracked_in_git": false
+  },
+  "design_requirement": {
+    "spoiler_type": "fixed_930_turbo_inspired_whale_tail",
+    "span_intent": "full_rear_fender_width_with_small_outer_projection",
+    "longitudinal_intent": "upper_lip_shifted_rearward",
+    "vertical_intent": "moderately_raised_upturned_trailing_profile",
+    "heat_exchanger_type": "horizontal_twin_turbo_charge_air_heat_exchanger_inside_plenum",
+    "span_mm": null,
+    "incidence_deg": null,
+    "downforce_n": null,
+    "status": "visual_intent_only_not_dimensioned"
+  },
+  "prompt": "Use case: precise-object-edit\nAsset type: automotive engineering concept presentation\nInput images: Image 1 is the edit target. Image 2 is a shape reference only for the classic raised 930 Turbo whale-tail profile; do not copy its car, setting, logo, plate, paint, or photography.\nPrimary request: modify only the fixed whale-tail spoiler on Image 1. Move its upper aerodynamic lip farther rearward, raise it moderately, and give it a more pronounced upward trailing profile like the silhouette in Image 2. Make the spoiler visibly wider, spanning the full rear-fender width with subtly projecting outer corners. It must read as a broad, fixed, integrated 930-inspired tea-tray rather than a separate wing.\nHeat exchanger packaging: retain the large horizontal twin-turbo charge-air heat exchanger inside the spoiler plenum. Keep a broad upper inlet grille below the raised lip and a clear ducted rear hot-air exit. In the lower cutaway, reshape the plenum and heat exchanger position only as needed to follow the higher and more rearward spoiler; keep the heat exchanger contained and structurally supported.\nInvariants: preserve the visibly stretched +450 mm body section between cabin and rear axle, rear-wheel location, long rear quarter, front half, cabin, roof, doors, wheels, body width, camera angles, two-panel composition, engine entirely ahead of the rear axle, transmission behind it, colors, lighting, paper background, datum line and existing labels. Do not move the engine, gearbox, axle, wheels, cabin or body proportions.\nConstraints: no tall pylons, no detached aerofoil, no GT3-style wing, no active/retractable element, no additional text, no logo or watermark. The increased width and angle are visual design intent only; do not imply calculated downforce, traction, cooling capacity or aerodynamic balance.",
+  "release_gates": {
+    "wing_geometry_dimensioned": false,
+    "downforce_map_computed": false,
+    "front_rear_aero_balance_verified": false,
+    "heat_exchanger_sized": false,
+    "cooling_airflow_verified": false,
+    "traction_model_verified": false,
+    "manufacturing_authorized": false,
+    "road_or_track_use_authorized": false
+  }
+}

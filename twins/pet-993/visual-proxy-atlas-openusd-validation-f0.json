@@ -1,0 +1,66 @@
+{
+  "$comment": "Validation OpenUSD stricte de l'atlas visuel PET 993 et de sa composition. Elle prouve la conformite et la resolution des actifs USD, pas SimReady, la justesse dimensionnelle, la physique ou le fonctionnement du vehicule.",
+  "schema_version": "1.0.0",
+  "generated_by": "scripts/validate_pet_993_visual_proxy_openusd.py",
+  "status": "passed_openusd_strict_not_simready",
+  "source": {
+    "atlas_manifest": "twins/pet-993/visual-proxy-atlas-f0.json",
+    "atlas_manifest_sha256": "6738f4b7d76be09fb6ee732ecd6ceb79a7a96fd01daaf41262d9967ab8703b11"
+  },
+  "validator": {
+    "command": "usdchecker --strict",
+    "tool_suite": "Apple USD Tools (0.25.11)",
+    "validation_framework": "OpenUSD_compliance_and_asset_dependency_checks"
+  },
+  "scope": {
+    "validated_root_stages": 3,
+    "visual_proxy_instances_resolved_through_atlas": 6013,
+    "archetype_prototypes_resolved": 42,
+    "shard_layers_resolved_through_atlas": 16,
+    "documentary_visual_and_functional_layers_composed": true
+  },
+  "validated_stages": [
+    {
+      "role": "archetype_prototype_library",
+      "path": "work/pet-993/visual-proxy-atlas/pet-993-visual-proxy-prototypes-f0.usda",
+      "sha256": "a6323e615bf734d584d98178d58108a54c13c5ae12b000fe8a61d40b131bef86",
+      "strict_mode": true,
+      "return_code": 0,
+      "result": "passed"
+    },
+    {
+      "role": "complete_visual_proxy_atlas",
+      "path": "work/pet-993/visual-proxy-atlas/pet-993-visual-proxy-atlas-f0.usda",
+      "sha256": "c343cfb6b248917136cc81afeeb7e1e97e2e5802d7e297713e14bde0b4da4a70",
+      "strict_mode": true,
+      "return_code": 0,
+      "result": "passed"
+    },
+    {
+      "role": "documentary_visual_functional_composition",
+      "path": "work/vehicle-993/openusd/993-pet-catalogue-digital-twin-f0.usda",
+      "sha256": "100317d678fec0faee280b6bbacf719a0d02272777b60df7bf0c403f4859d1e0",
+      "strict_mode": true,
+      "return_code": 0,
+      "result": "passed"
+    }
+  ],
+  "results": {
+    "strict_openusd_validation": "passed",
+    "asset_dependency_resolution": "passed",
+    "composition_resolution": "passed",
+    "openusd_python_api": "not_required_for_this_cli_validation",
+    "nvidia_asset_validator": "not_run",
+    "simready_foundation": "not_run",
+    "simready_validated": false
+  },
+  "claim_boundary": {
+    "openusd_pass_is_simready_pass": false,
+    "openusd_pass_proves_dimensional_accuracy": false,
+    "openusd_pass_proves_vehicle_transforms": false,
+    "openusd_pass_proves_material_or_physics": false,
+    "openusd_pass_proves_physicsnemo_readiness": false,
+    "openusd_pass_proves_functioning_vehicle": false,
+    "openusd_pass_authorizes_manufacturing_or_road_use": false
+  }
+}

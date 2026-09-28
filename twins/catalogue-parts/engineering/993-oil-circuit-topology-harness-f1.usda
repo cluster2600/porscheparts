@@ -1,0 +1,775 @@
+#usda 1.0
+(
+    "M64-Z-OL F1 oil-circuit topology harness: placeholder line-and-fitting guide merged from three F1 topology USDA contracts. Radii are placeholder config values, not measurements. Coordinates are diagram bands, not vehicle positions."
+    defaultPrim = "OilCircuitTopologyHarnessF1"
+)
+
+def Xform "OilCircuitTopologyHarnessF1"
+{
+    custom string coordinateSemantics = "diagram_bands_not_vehicle_coordinates"
+    custom double placeholderRadiusM = 0.08
+    custom double placeholderTubeRadiusM = 0.0125
+    custom string radiusTag = "placeholder_single_config_value_not_measurement"
+    custom string[] sourceSha256ByCircuit = ["OilCoolerCircuit=b606436a135e8bd8772a12ffd32f8b499c97adc1b760b4130435f12626b8611f", "OilTankCircuit=d5820f0c7c6ab37c5eb1bff128b0fcc5f5528b8dc173746ade456a1ca0d37c89", "TurboLubricationControl=d8b6e579c2806e58812c8e8cbe062ce0cc505bafe075604004d1c4d08bebd75b"]
+    custom string status = "F1_placeholder_line_and_fitting_harness_not_part_geometry_or_SimReady"
+
+    def Scope "TurboLubricationControl"
+    {
+        custom string circuit = "TurboLubricationControl"
+        custom string coordinateSemantics = "diagram_units_not_vehicle_coordinates"
+        custom string sourceFile = "twins/catalogue-parts/engineering/993-turbo-lubrication-control-topology-f1.usda"
+        custom string sourceSha256 = "d8b6e579c2806e58812c8e8cbe062ce0cc505bafe075604004d1c4d08bebd75b"
+
+        def Scope "Nodes"
+        {
+            def Sphere "OilSourceBoundary"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "oil_source_boundary"
+                double3 xformOp:translate = (-5, 0, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "DistributionJunction"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "distribution_junction"
+                double3 xformOp:translate = (-3.5, 0, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "LeftK16BearingSystem"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "left_K16_bearing_system"
+                double3 xformOp:translate = (-1.5, 1.5, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "RightK16BearingSystem"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "right_K16_bearing_system"
+                double3 xformOp:translate = (-1.5, -1.5, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "LeftOilCollector"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "left_oil_collection_boundary"
+                double3 xformOp:translate = (0.5, 1.5, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "RightOilCollector"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "right_oil_collection_boundary"
+                double3 xformOp:translate = (0.5, -1.5, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "OilReturnBoundary"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "oil_return_boundary"
+                double3 xformOp:translate = (3, 0, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "VentBoundary"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "vent_boundary"
+                double3 xformOp:translate = (3, 2.5, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "ControlInput"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "control_input_boundary"
+                double3 xformOp:translate = (-4, -3.5, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "ControlBoxPair"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "control_box_pair_identity_only"
+                double3 xformOp:translate = (-1.5, -3.5, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "WastegateTargetPair"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "integrated_wastegate_target_pair_hypothesis"
+                double3 xformOp:translate = (1.5, -3.5, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+
+        def Scope "Edges"
+        {
+            def Mesh "OilSupply"
+            {
+                custom color3f[] displayColor = [(0.75, 0.35, 0.1)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(-5, 0, 0), (-3.5, 0, 0)]
+                custom string topologySemantics = "oil_supply_hypothesis"
+            }
+
+            def Mesh "OilFeedLeft"
+            {
+                custom color3f[] displayColor = [(0.75, 0.35, 0.1)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(-3.5, 0, 0), (-1.5, 1.5, 0)]
+                custom string topologySemantics = "oil_feed_hypothesis"
+            }
+
+            def Mesh "OilFeedRight"
+            {
+                custom color3f[] displayColor = [(0.75, 0.35, 0.1)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(-3.5, 0, 0), (-1.5, -1.5, 0)]
+                custom string topologySemantics = "oil_feed_hypothesis"
+            }
+
+            def Mesh "DrainLeft"
+            {
+                custom color3f[] displayColor = [(0.7, 0.7, 0.7)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(-1.5, 1.5, 0), (0.5, 1.5, 0)]
+                custom string topologySemantics = "gravity_or_pressure_return_hypothesis"
+            }
+
+            def Mesh "DrainRight"
+            {
+                custom color3f[] displayColor = [(0.7, 0.7, 0.7)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(-1.5, -1.5, 0), (0.5, -1.5, 0)]
+                custom string topologySemantics = "gravity_or_pressure_return_hypothesis"
+            }
+
+            def Mesh "ReturnLeft"
+            {
+                custom color3f[] displayColor = [(0.75, 0.35, 0.1)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(0.5, 1.5, 0), (3, 0, 0)]
+                custom string topologySemantics = "oil_return_hypothesis"
+            }
+
+            def Mesh "ReturnRight"
+            {
+                custom color3f[] displayColor = [(0.75, 0.35, 0.1)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(0.5, -1.5, 0), (3, 0, 0)]
+                custom string topologySemantics = "oil_return_hypothesis"
+            }
+
+            def Mesh "VentLeft"
+            {
+                custom color3f[] displayColor = [(0.35, 0.55, 0.8)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(0.5, 1.5, 0), (3, 2.5, 0)]
+                custom string topologySemantics = "ventilation_hypothesis"
+            }
+
+            def Mesh "VentRight"
+            {
+                custom color3f[] displayColor = [(0.35, 0.55, 0.8)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(0.5, -1.5, 0), (3, 2.5, 0)]
+                custom string topologySemantics = "ventilation_hypothesis"
+            }
+
+            def Mesh "ControlSignal"
+            {
+                custom color3f[] displayColor = [(0.45, 0.75, 0.4)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(-4, -3.5, 0), (-1.5, -3.5, 0)]
+                custom string topologySemantics = "control_signal_hypothesis"
+            }
+
+            def Mesh "WastegateCommand"
+            {
+                custom color3f[] displayColor = [(0.45, 0.75, 0.4)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(-1.5, -3.5, 0), (1.5, -3.5, 0)]
+                custom string topologySemantics = "actuation_hypothesis"
+            }
+
+            def Mesh "WastegateLeft"
+            {
+                custom color3f[] displayColor = [(0.45, 0.75, 0.4)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(1.5, -3.5, 0), (-1.5, 1.5, 0)]
+                custom string topologySemantics = "turbo_control_coupling_hypothesis"
+            }
+
+            def Mesh "WastegateRight"
+            {
+                custom color3f[] displayColor = [(0.45, 0.75, 0.4)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(1.5, -3.5, 0), (-1.5, -1.5, 0)]
+                custom string topologySemantics = "turbo_control_coupling_hypothesis"
+            }
+        }
+    }
+
+    def Scope "OilCoolerCircuit"
+    {
+        custom string circuit = "OilCoolerCircuit"
+        custom string coordinateSemantics = "diagram_units_not_vehicle_coordinates"
+        custom string sourceFile = "twins/catalogue-parts/engineering/993-oil-cooler-circuit-topology-f1.usda"
+        custom string sourceSha256 = "b606436a135e8bd8772a12ffd32f8b499c97adc1b760b4130435f12626b8611f"
+
+        def Scope "Nodes"
+        {
+            def Sphere "UpstreamOilBoundary"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "unresolved_upstream_oil_boundary"
+                double3 xformOp:translate = (-5.5, 0, 10)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "OilCoolerCore"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "oil_to_air_heat_exchanger_core"
+                double3 xformOp:translate = (0, 0, 10)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "DownstreamOilBoundary"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "unresolved_downstream_oil_boundary"
+                double3 xformOp:translate = (5.5, 0, 10)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "CoolingAirInlet"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "vehicle_cooling_air_inlet_boundary"
+                double3 xformOp:translate = (-4, -3, 10)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "AirGuideCowl"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "air_guide_cowl_boundary"
+                double3 xformOp:translate = (-1.5, -2, 10)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "CoolingBlower"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "electrically_driven_blower_boundary"
+                double3 xformOp:translate = (-1.5, -4.5, 10)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "CoolingAirOutlet"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "vehicle_cooling_air_outlet_boundary"
+                double3 xformOp:translate = (4, -3, 10)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "TemperatureSensor"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "temperature_sensor_boundary"
+                double3 xformOp:translate = (0, 2, 10)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "ElectricalPowerBoundary"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "vehicle_electrical_power_boundary"
+                double3 xformOp:translate = (-5, 4, 10)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "ThermalControlBoundary"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "unresolved_fan_control_boundary"
+                double3 xformOp:translate = (-1.5, 4, 10)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "VehicleMountBoundary"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "vehicle_mount_and_vibration_boundary"
+                double3 xformOp:translate = (4, 3, 10)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "AmbientThermalBoundary"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "ambient_thermal_boundary"
+                double3 xformOp:translate = (5.5, -5, 10)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+
+        def Scope "Edges"
+        {
+            def Mesh "OilSupply"
+            {
+                custom color3f[] displayColor = [(0.75, 0.35, 0.1)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(-5.5, 0, 10), (0, 0, 10)]
+                custom string topologySemantics = "oil_supply_hypothesis"
+            }
+
+            def Mesh "OilReturn"
+            {
+                custom color3f[] displayColor = [(0.75, 0.35, 0.1)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(0, 0, 10), (5.5, 0, 10)]
+                custom string topologySemantics = "oil_return_hypothesis"
+            }
+
+            def Mesh "AirInletToGuide"
+            {
+                custom color3f[] displayColor = [(0.35, 0.55, 0.8)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(-4, -3, 10), (-1.5, -2, 10)]
+                custom string topologySemantics = "cooling_air_path_hypothesis"
+            }
+
+            def Mesh "GuideToCore"
+            {
+                custom color3f[] displayColor = [(0.35, 0.55, 0.8)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(-1.5, -2, 10), (0, 0, 10)]
+                custom string topologySemantics = "guided_air_path_hypothesis"
+            }
+
+            def Mesh "BlowerToGuide"
+            {
+                custom color3f[] displayColor = [(0.35, 0.55, 0.8)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(-1.5, -4.5, 10), (-1.5, -2, 10)]
+                custom string topologySemantics = "forced_air_path_hypothesis"
+            }
+
+            def Mesh "CoreToAirOutlet"
+            {
+                custom color3f[] displayColor = [(0.35, 0.55, 0.8)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(0, 0, 10), (4, -3, 10)]
+                custom string topologySemantics = "heated_air_path_hypothesis"
+            }
+
+            def Mesh "SensorThermalSample"
+            {
+                custom color3f[] displayColor = [(0.7, 0.7, 0.7)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(0, 0, 10), (0, 2, 10)]
+                custom string topologySemantics = "thermal_observation_hypothesis"
+            }
+
+            def Mesh "SensorSignal"
+            {
+                custom color3f[] displayColor = [(0.45, 0.75, 0.4)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(0, 2, 10), (-1.5, 4, 10)]
+                custom string topologySemantics = "sensor_signal_hypothesis"
+            }
+
+            def Mesh "ControlToBlower"
+            {
+                custom color3f[] displayColor = [(0.45, 0.75, 0.4)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(-1.5, 4, 10), (-1.5, -4.5, 10)]
+                custom string topologySemantics = "blower_control_hypothesis"
+            }
+
+            def Mesh "PowerToControl"
+            {
+                custom color3f[] displayColor = [(0.45, 0.75, 0.4)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(-5, 4, 10), (-1.5, 4, 10)]
+                custom string topologySemantics = "electrical_power_hypothesis"
+            }
+
+            def Mesh "PowerToBlower"
+            {
+                custom color3f[] displayColor = [(0.45, 0.75, 0.4)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(-5, 4, 10), (-1.5, -4.5, 10)]
+                custom string topologySemantics = "electrical_power_hypothesis"
+            }
+
+            def Mesh "CoreToMount"
+            {
+                custom color3f[] displayColor = [(0.7, 0.7, 0.7)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(0, 0, 10), (4, 3, 10)]
+                custom string topologySemantics = "mechanical_support_hypothesis"
+            }
+
+            def Mesh "CoreToAmbient"
+            {
+                custom color3f[] displayColor = [(0.7, 0.7, 0.7)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(0, 0, 10), (5.5, -5, 10)]
+                custom string topologySemantics = "ambient_heat_transfer_hypothesis"
+            }
+        }
+    }
+
+    def Scope "OilTankCircuit"
+    {
+        custom string circuit = "OilTankCircuit"
+        custom string coordinateSemantics = "diagram_units_not_vehicle_coordinates"
+        custom string sourceFile = "twins/catalogue-parts/engineering/993-oil-tank-circuit-topology-f1.usda"
+        custom string sourceSha256 = "d5820f0c7c6ab37c5eb1bff128b0fcc5f5528b8dc173746ade456a1ca0d37c89"
+
+        def Scope "Nodes"
+        {
+            def Sphere "OilTankStorage"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "oil_storage_boundary"
+                double3 xformOp:translate = (0, 0, 20)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "EnginePressureSupplyBoundary"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "engine_pressure_supply_boundary"
+                double3 xformOp:translate = (4, -1, 20)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "EngineScavengeReturnBoundary"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "engine_scavenge_return_boundary"
+                double3 xformOp:translate = (4, 1, 20)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "TurboLubricationReturnBoundary"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "adjacent_202_16_return_boundary"
+                double3 xformOp:translate = (6.5, 2.5, 20)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "OilFillerBoundary"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "oil_filler_boundary"
+                double3 xformOp:translate = (-3, 2, 20)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "OilLevelMeasurement"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "oil_level_measurement_boundary"
+                double3 xformOp:translate = (-3, 0, 20)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "VehicleElectricalBoundary"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "vehicle_electrical_boundary"
+                double3 xformOp:translate = (-5.5, 0, 20)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "CrankcaseVentBoundary"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "crankcase_vent_boundary"
+                double3 xformOp:translate = (1.5, 3, 20)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "VentSystemBoundary"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "vent_system_boundary"
+                double3 xformOp:translate = (-1, 3.5, 20)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "ServiceDrainBoundary"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "service_drain_boundary"
+                double3 xformOp:translate = (0, -3, 20)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+
+            def Sphere "AmbientThermalBoundary"
+            {
+                custom color3f[] displayColor = [(0.85, 0.55, 0.2)]
+                custom string geometryState = "placeholder_not_measurement"
+                double radius = 0.08
+                custom string topologySemantics = "ambient_thermal_boundary"
+                double3 xformOp:translate = (-3, -2, 20)
+                uniform token[] xformOpOrder = ["xformOp:translate"]
+            }
+        }
+
+        def Scope "Edges"
+        {
+            def Mesh "TankToEngineSupply"
+            {
+                custom color3f[] displayColor = [(0.75, 0.35, 0.1)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(0, 0, 20), (4, -1, 20)]
+                custom string topologySemantics = "oil_supply_hypothesis"
+            }
+
+            def Mesh "EngineReturnToTank"
+            {
+                custom color3f[] displayColor = [(0.75, 0.35, 0.1)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(4, 1, 20), (0, 0, 20)]
+                custom string topologySemantics = "oil_return_hypothesis"
+            }
+
+            def Mesh "TurboReturnCoupling"
+            {
+                custom color3f[] displayColor = [(0.7, 0.7, 0.7)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(6.5, 2.5, 20), (4, 1, 20)]
+                custom string topologySemantics = "cross_system_return_hypothesis"
+            }
+
+            def Mesh "FillerToTank"
+            {
+                custom color3f[] displayColor = [(0.7, 0.7, 0.7)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(-3, 2, 20), (0, 0, 20)]
+                custom string topologySemantics = "service_fill_hypothesis"
+            }
+
+            def Mesh "TankToLevel"
+            {
+                custom color3f[] displayColor = [(0.7, 0.7, 0.7)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(0, 0, 20), (-3, 0, 20)]
+                custom string topologySemantics = "level_measurement_hypothesis"
+            }
+
+            def Mesh "LevelSignal"
+            {
+                custom color3f[] displayColor = [(0.45, 0.75, 0.4)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(-3, 0, 20), (-5.5, 0, 20)]
+                custom string topologySemantics = "sensor_signal_hypothesis"
+            }
+
+            def Mesh "CrankcaseBreather"
+            {
+                custom color3f[] displayColor = [(0.35, 0.55, 0.8)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(1.5, 3, 20), (0, 0, 20)]
+                custom string topologySemantics = "breather_flow_hypothesis"
+            }
+
+            def Mesh "TankVent"
+            {
+                custom color3f[] displayColor = [(0.35, 0.55, 0.8)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(0, 0, 20), (-1, 3.5, 20)]
+                custom string topologySemantics = "vent_flow_hypothesis"
+            }
+
+            def Mesh "TankDrain"
+            {
+                custom color3f[] displayColor = [(0.7, 0.7, 0.7)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(0, 0, 20), (0, -3, 20)]
+                custom string topologySemantics = "service_drain_hypothesis"
+            }
+
+            def Mesh "TankHeatTransfer"
+            {
+                custom color3f[] displayColor = [(0.7, 0.7, 0.7)]
+                custom string geometryState = "placeholder_not_measurement"
+                custom double placeholderRadiusM = 0.0125
+                point3f[] points = [(0, 0, 20), (-3, -2, 20)]
+                custom string topologySemantics = "lumped_heat_transfer_hypothesis"
+            }
+        }
+    }
+
+    def Scope "UnknownCrossLinks"
+    {
+        def Mesh "UnknownLink01"
+        {
+            custom color3f[] displayColor = [(0.9, 0.2, 0.2)]
+            custom string geometryState = "placeholder_not_measurement"
+            custom string linkState = "unknown"
+            custom double placeholderRadiusM = 0.0125
+            point3f[] points = [(3, 0, 0), (6.5, 2.5, 20)]
+            custom string topologySemantics = "unknown_link_turbo_return_to_tank_return_hypothesis"
+        }
+
+        def Mesh "UnknownLink02"
+        {
+            custom color3f[] displayColor = [(0.9, 0.2, 0.2)]
+            custom string geometryState = "placeholder_not_measurement"
+            custom string linkState = "unknown"
+            custom double placeholderRadiusM = 0.0125
+            point3f[] points = [(-5.5, 0, 10), (-5, 0, 0)]
+            custom string topologySemantics = "unknown_link_cooler_upstream_to_turbo_supply_hypothesis"
+        }
+
+        def Mesh "UnknownLink03"
+        {
+            custom color3f[] displayColor = [(0.9, 0.2, 0.2)]
+            custom string geometryState = "placeholder_not_measurement"
+            custom string linkState = "unknown"
+            custom double placeholderRadiusM = 0.0125
+            point3f[] points = [(5.5, 0, 10), (4, -1, 20)]
+            custom string topologySemantics = "unknown_link_cooler_downstream_to_engine_supply_hypothesis"
+        }
+
+        def Mesh "UnknownLink04"
+        {
+            custom color3f[] displayColor = [(0.9, 0.2, 0.2)]
+            custom string geometryState = "placeholder_not_measurement"
+            custom string linkState = "unknown"
+            custom double placeholderRadiusM = 0.0125
+            point3f[] points = [(3, 2.5, 0), (-1, 3.5, 20)]
+            custom string topologySemantics = "unknown_link_vent_boundary_to_vent_system_hypothesis"
+        }
+
+        def Mesh "UnknownLink05"
+        {
+            custom color3f[] displayColor = [(0.9, 0.2, 0.2)]
+            custom string geometryState = "placeholder_not_measurement"
+            custom string linkState = "unknown"
+            custom double placeholderRadiusM = 0.0125
+            point3f[] points = [(5.5, -5, 10), (-3, -2, 20)]
+            custom string topologySemantics = "unknown_link_shared_ambient_thermal_hypothesis"
+        }
+    }
+}
+

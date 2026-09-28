@@ -1,0 +1,700 @@
+{
+  "$comment": "Guide F1 et contrat thermique du couvercle 993 123 113 51. L'enveloppe et la masse fournisseur ne definissent ni la forme ni le materiau.",
+  "schema_version": "1.0.0",
+  "generated_by": "scripts/generate_pet_993_heat_shield_surrogate.py",
+  "status": "F1_turbo_heat_shield_envelope_thermal_readiness_complete_reference_solution_blocked",
+  "source_boundary": {
+    "files": [
+      {
+        "path": "catalog/reference/993-declared-part-data.json",
+        "sha256": "987b4912525eac39fec630b0252f7e76777b5a36c6aec0647629034c1273667e",
+        "role": "structured_supplier_envelope_and_mass"
+      },
+      {
+        "path": "catalog/sources/src-fvd-993-turbo-heat-shield-dimensions.json",
+        "sha256": "86726bcbe0f740a2da70bf2ca082e49e96446491fb5bcac48483b518994fee5e",
+        "role": "supplier_page_provenance_and_rights"
+      },
+      {
+        "path": "catalog/sources/src-porschefanatics-993-turbo-pet.json",
+        "sha256": "84ed004ce9b28a512d8a3f6e570d7eb0f0c3b31ad52a048a91763a052d8bb453",
+        "role": "PorscheFanatics_PET_202_16_identity_context"
+      },
+      {
+        "path": "twins/pet-993/index-f0.json",
+        "sha256": "1c62dcd1b307b351ebb77bbc676471f723b3f8f87922c52131952c468a4706d3",
+        "role": "PET_part_master_shard_manifest"
+      },
+      {
+        "path": "twins/vehicle-993/program-definition.json",
+        "sha256": "668cc79a63ce87671f635d47d1c9203622acfcd725577e02624a491cf6086c5d",
+        "role": "PhysicsNeMo_and_Omniverse_policy"
+      },
+      {
+        "path": "twins/vehicle-993/functional-flow-simready-preflight-f0.json",
+        "sha256": "401674e1282db739a500d1ad7a8e2cb0da89663d414da8b9d6bfe3badcc573c2",
+        "role": "blocked_Omniverse_preflight"
+      },
+      {
+        "path": "twins/catalogue-parts/k16-envelope-flow-readiness-f1.json",
+        "sha256": "2d8dc620240145b7debd80340db041397a94faddd5f1cd6bce957b6adf42d56e",
+        "role": "adjacent_turbo_contract_without_spatial_transfer"
+      }
+    ],
+    "third_party_photograph_or_geometry_redistributed": false,
+    "llm_generated_dimensions_used": false,
+    "independent_metrology_used": false,
+    "porschefanatics_used_for_identity_and_system_context_only": true
+  },
+  "subject": {
+    "entry_id": "993-TURBO-HEAT-SHIELD-COVER-LEFT",
+    "oem_reference": "99312311351",
+    "display_reference": "993 123 113 51",
+    "pet_part_master_twin_id": "TWIN-PET-993-PART-B6629ABCA63D241CEDCC",
+    "pet_illustration": "202-16",
+    "pet_position": 7,
+    "quantity_per_car": 1,
+    "side": "left_as_declared_by_supplier_not_vehicle_positioned"
+  },
+  "summary": {
+    "pet_linked_component_guides": 1,
+    "pet_linked_part_masters": 1,
+    "supplier_declared_bounding_boxes": 1,
+    "supplier_declared_mass_observations": 1,
+    "symbolic_thermal_equation_contracts": 7,
+    "blocked_reference_load_cases": 4,
+    "unknown_engineering_parameters": 25,
+    "evaluated_thermal_operating_points": 0,
+    "selected_interface_coordinates": 0,
+    "qualified_material_decisions": 0,
+    "reference_solver_results": 0,
+    "physicsnemo_results": 0,
+    "simready_assets": 0,
+    "manufacturing_releases": 0
+  },
+  "documentary_inputs": {
+    "supplier_declared_bounding_box_mm": [
+      160.0,
+      110.0,
+      105.0
+    ],
+    "supplier_declared_mass_kg": 0.23,
+    "bounding_box_volume_m3": 0.001848,
+    "mass_divided_by_bounding_box_volume_kg_m3": 124.45887445887446,
+    "quotient_semantics": "packaging_arithmetic_only_not_material_density_or_solid_volume",
+    "material_label": null,
+    "surface_thickness_and_mount_geometry": null
+  },
+  "interface_hypotheses": {
+    "status": "LLM_assisted_topology_hypothesis_requires_engineering_review",
+    "nodes": [
+      "left_K16_hot_source_unknown_surface",
+      "left_heat_shield_unknown_formed_surface",
+      "protected_component_zone_unknown_membership",
+      "engine_bay_ambient_unknown_flow_field",
+      "unknown_mounting_interfaces"
+    ],
+    "edges": [
+      "hot_source_radiation_and_convection_to_shield_hypothesis",
+      "shield_conduction_and_reradiation_to_protected_zone_hypothesis",
+      "mount_conduction_to_support_structure_hypothesis"
+    ],
+    "upstream_k16_contract": "twins/catalogue-parts/k16-envelope-flow-readiness-f1.json",
+    "known_vehicle_transform_count": 0,
+    "known_interface_coordinate_count": 0,
+    "topology_is_not_packaging_fitment_or_thermal_proof": true
+  },
+  "parameter_registry": [
+    {
+      "id": "HS-GEO-001",
+      "quantity": "formed_surface_and_edge_profile",
+      "value": null,
+      "unit": "mm",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "package",
+        "thermal",
+        "structural"
+      ]
+    },
+    {
+      "id": "HS-GEO-002",
+      "quantity": "sheet_or_laminate_thickness_map",
+      "value": null,
+      "unit": "mm",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "thermal",
+        "structural",
+        "mass"
+      ]
+    },
+    {
+      "id": "HS-GEO-003",
+      "quantity": "mounting_hole_slot_and_bracket_coordinates",
+      "value": null,
+      "unit": "mm",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "package",
+        "structural"
+      ]
+    },
+    {
+      "id": "HS-GEO-004",
+      "quantity": "hot_source_to_shield_gap_map",
+      "value": null,
+      "unit": "mm",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "radiation",
+        "convection",
+        "package"
+      ]
+    },
+    {
+      "id": "HS-GEO-005",
+      "quantity": "shield_to_protected_components_clearance",
+      "value": null,
+      "unit": "mm",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "package",
+        "acceptance"
+      ]
+    },
+    {
+      "id": "HS-GEO-006",
+      "quantity": "radiative_view_factor_map",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "radiation"
+      ]
+    },
+    {
+      "id": "HS-BC-001",
+      "quantity": "hot_gas_or_turbine_surface_temperature_history",
+      "value": null,
+      "unit": "degC",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "thermal"
+      ]
+    },
+    {
+      "id": "HS-BC-002",
+      "quantity": "hot_side_convection_coefficient",
+      "value": null,
+      "unit": "W_m2_K",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "thermal"
+      ]
+    },
+    {
+      "id": "HS-BC-003",
+      "quantity": "cold_side_ambient_temperature_history",
+      "value": null,
+      "unit": "degC",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "thermal"
+      ]
+    },
+    {
+      "id": "HS-BC-004",
+      "quantity": "cold_side_convection_coefficient",
+      "value": null,
+      "unit": "W_m2_K",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "thermal"
+      ]
+    },
+    {
+      "id": "HS-BC-005",
+      "quantity": "mount_contact_conductance",
+      "value": null,
+      "unit": "W_m2_K",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "thermal"
+      ]
+    },
+    {
+      "id": "HS-BC-006",
+      "quantity": "engine_vibration_and_shock_spectrum",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "structural",
+        "fatigue"
+      ]
+    },
+    {
+      "id": "HS-MAT-001",
+      "quantity": "density",
+      "value": null,
+      "unit": "kg_m3",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "mass",
+        "structural"
+      ]
+    },
+    {
+      "id": "HS-MAT-002",
+      "quantity": "temperature_dependent_specific_heat",
+      "value": null,
+      "unit": "J_kg_K",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "thermal"
+      ]
+    },
+    {
+      "id": "HS-MAT-003",
+      "quantity": "temperature_dependent_thermal_conductivity",
+      "value": null,
+      "unit": "W_m_K",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "thermal"
+      ]
+    },
+    {
+      "id": "HS-MAT-004",
+      "quantity": "temperature_dependent_emissivity_each_face",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "radiation"
+      ]
+    },
+    {
+      "id": "HS-MAT-005",
+      "quantity": "temperature_dependent_elastic_plastic_curve",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "structural"
+      ]
+    },
+    {
+      "id": "HS-MAT-006",
+      "quantity": "thermal_expansion_coefficient",
+      "value": null,
+      "unit": "K_inv",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "structural"
+      ]
+    },
+    {
+      "id": "HS-MAT-007",
+      "quantity": "fatigue_creep_oxidation_and_corrosion_data",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "durability"
+      ]
+    },
+    {
+      "id": "HS-MAT-008",
+      "quantity": "coating_or_insulation_stack_and_ageing",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "thermal",
+        "durability"
+      ]
+    },
+    {
+      "id": "HS-ACC-001",
+      "quantity": "maximum_protected_component_temperature",
+      "value": null,
+      "unit": "degC",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "acceptance"
+      ]
+    },
+    {
+      "id": "HS-ACC-002",
+      "quantity": "maximum_shield_temperature",
+      "value": null,
+      "unit": "degC",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "acceptance"
+      ]
+    },
+    {
+      "id": "HS-ACC-003",
+      "quantity": "minimum_hot_and_cold_clearance",
+      "value": null,
+      "unit": "mm",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "acceptance"
+      ]
+    },
+    {
+      "id": "HS-ACC-004",
+      "quantity": "stress_buckling_and_deflection_limits",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "acceptance"
+      ]
+    },
+    {
+      "id": "HS-ACC-005",
+      "quantity": "fatigue_and_thermal_cycle_life_target",
+      "value": null,
+      "unit": "cycles",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "acceptance"
+      ]
+    }
+  ],
+  "thermal_model": {
+    "status": "symbolic_contracts_only_no_operating_point_evaluated",
+    "equations": [
+      {
+        "id": "hot_side_radiation",
+        "equation": "Qdot_rad_hot = F_hot_shield*epsilon_eff*sigma*A_hot*(T_hot^4-T_shield_hot^4)",
+        "missing": [
+          "view_factor_map",
+          "emissivities",
+          "hot_surface_area",
+          "temperature_history"
+        ]
+      },
+      {
+        "id": "hot_side_convection",
+        "equation": "Qdot_conv_hot = h_hot*A_hot*(T_gas-T_shield_hot)",
+        "missing": [
+          "h_hot",
+          "hot_surface_area",
+          "gas_temperature_history"
+        ]
+      },
+      {
+        "id": "through_thickness_conduction",
+        "equation": "Qdot_cond = integral_A(k(T)/t(x,y)*(T_hot_face-T_cold_face))dA",
+        "missing": [
+          "formed_surface",
+          "thickness_map",
+          "k(T)"
+        ]
+      },
+      {
+        "id": "cold_side_rejection",
+        "equation": "Qdot_cold = h_cold*A_cold*(T_cold-T_ambient)+epsilon_cold*sigma*A_cold*(T_cold^4-T_surroundings^4)",
+        "missing": [
+          "h_cold",
+          "cold_surface_area",
+          "emissivity",
+          "ambient_and_surroundings_temperature"
+        ]
+      },
+      {
+        "id": "transient_energy_balance",
+        "equation": "m*cp(T)*dTbar/dt = Qdot_rad_hot+Qdot_conv_hot-Qdot_cold-Qdot_mount",
+        "missing": [
+          "cp(T)",
+          "temperature_field",
+          "mount_contact_conductance",
+          "boundary_histories"
+        ]
+      },
+      {
+        "id": "free_thermal_expansion",
+        "equation": "delta_L = alpha(T)*L*delta_T",
+        "missing": [
+          "alpha(T)",
+          "formed_lengths",
+          "temperature_field"
+        ]
+      },
+      {
+        "id": "conditional_fully_restrained_stress",
+        "equation": "sigma_th = E(T)*alpha(T)*delta_T/(1-nu(T))",
+        "missing": [
+          "restraint_state",
+          "E(T)",
+          "alpha(T)",
+          "nu(T)",
+          "temperature_field"
+        ],
+        "use_boundary": "screening_upper_bound_only_not_component_stress_solution"
+      }
+    ],
+    "operating_point_available": false,
+    "reference_solver_credit": false,
+    "thermal_solution_credit": false,
+    "required_first_reference_methods": [
+      "view_factor_and_lumped_thermal_network_after_F2_surfaces_gaps_and_material_properties",
+      "mesh_converged_conduction_radiation_convection_CHT_after_F3_domains",
+      "thermomechanical_buckling_modal_and_fatigue_analysis_after_mount_and_material_definition"
+    ]
+  },
+  "load_cases": [
+    {
+      "id": "LC-993-HS-STEADY-HOT",
+      "kind": "steady_hot_side",
+      "status": "blocked",
+      "missing_parameter_ids": [
+        "HS-GEO-001",
+        "HS-GEO-002",
+        "HS-GEO-004",
+        "HS-GEO-006",
+        "HS-BC-001",
+        "HS-BC-002",
+        "HS-BC-003",
+        "HS-BC-004",
+        "HS-MAT-002",
+        "HS-MAT-003",
+        "HS-MAT-004",
+        "HS-ACC-001",
+        "HS-ACC-002"
+      ]
+    },
+    {
+      "id": "LC-993-HS-TRANSIENT-SOAK",
+      "kind": "turbo_heat_soak_transient",
+      "status": "blocked",
+      "missing_parameter_ids": [
+        "HS-BC-001",
+        "HS-BC-003",
+        "HS-BC-005",
+        "HS-MAT-002",
+        "HS-MAT-003",
+        "HS-MAT-004",
+        "HS-ACC-001",
+        "HS-ACC-002"
+      ]
+    },
+    {
+      "id": "LC-993-HS-THERMAL-SHOCK",
+      "kind": "thermal_cycle_and_shock",
+      "status": "blocked",
+      "missing_parameter_ids": [
+        "HS-GEO-002",
+        "HS-GEO-003",
+        "HS-MAT-005",
+        "HS-MAT-006",
+        "HS-MAT-007",
+        "HS-ACC-004",
+        "HS-ACC-005"
+      ]
+    },
+    {
+      "id": "LC-993-HS-VIBRATION-DURABILITY",
+      "kind": "engine_vibration_thermal_fatigue",
+      "status": "blocked",
+      "missing_parameter_ids": [
+        "HS-GEO-001",
+        "HS-GEO-002",
+        "HS-GEO-003",
+        "HS-BC-006",
+        "HS-MAT-005",
+        "HS-MAT-007",
+        "HS-ACC-003",
+        "HS-ACC-004",
+        "HS-ACC-005"
+      ]
+    }
+  ],
+  "material_and_manufacturing_route": {
+    "status": "LLM_screening_hypotheses_only_no_selection",
+    "candidate_matrix": [
+      {
+        "candidate_family": "temperature_resistant_steel_sheet_system",
+        "candidate_process": "sheet_forming_trimming_and_joining",
+        "unresolved_failure_modes": [
+          "oxidation",
+          "thermal_fatigue",
+          "mass",
+          "coating_durability"
+        ],
+        "status": "unsourced_unselected"
+      },
+      {
+        "candidate_family": "ferritic_or_austenitic_stainless_sheet_system",
+        "candidate_process": "sheet_forming_trimming_and_joining",
+        "unresolved_failure_modes": [
+          "thermal_fatigue",
+          "distortion",
+          "mass",
+          "galvanic_compatibility"
+        ],
+        "status": "unsourced_unselected"
+      },
+      {
+        "candidate_family": "nickel_alloy_sheet_system",
+        "candidate_process": "sheet_forming_trimming_and_joining",
+        "unresolved_failure_modes": [
+          "cost",
+          "mass",
+          "formability",
+          "joining"
+        ],
+        "status": "unsourced_unselected"
+      },
+      {
+        "candidate_family": "metal_skin_with_high_temperature_insulation_stack",
+        "candidate_process": "formed_skin_plus_retained_insulation",
+        "unresolved_failure_modes": [
+          "fibre_or_layer_retention",
+          "moisture",
+          "erosion",
+          "serviceability"
+        ],
+        "status": "unsourced_unselected"
+      }
+    ],
+    "selected_material_count": 0,
+    "selected_functional_manufacturing_route_count": 0,
+    "additive_route_disposition": "not_preferred_without_evidence_thin_sheet_forming_is_the_first_process_hypothesis",
+    "CNC_route_disposition": "cutting_and_tooling_may_support_sheet_process_but_billet_machining_is_not_selected",
+    "release": "prohibited_pending_F2_F3_thermal_environment_material_durability_fastener_clearance_and_professional_review"
+  },
+  "physicsnemo_discovery": {
+    "canonical_repository": "https://github.com/NVIDIA/physicsnemo",
+    "commit": "4fbfcfd62bf050b48ceec6b438da409b9f4644b3",
+    "paths_verified_live_during_authoring": true,
+    "local_revalidation_required_before_execution": true,
+    "problem_shape": "future_unstructured_surface_and_volume_thermal_CHT_fields_conditioned_on_geometry_and_boundary_cases",
+    "model_menu": [
+      {
+        "model": "DoMINO",
+        "path": "physicsnemo/models/domino",
+        "role": "candidate_surface_and_volume_CHT_surrogate_after_reference_dataset",
+        "selected": false
+      },
+      {
+        "model": "GeoTransolver",
+        "path": "physicsnemo/models/geotransolver",
+        "role": "candidate_geometry_aware_field_surrogate_on_general discretizations",
+        "selected": false
+      },
+      {
+        "model": "Transolver",
+        "path": "physicsnemo/models/transolver",
+        "role": "candidate_PDE_field_surrogate_on_structured_or_unstructured_meshes",
+        "selected": false
+      },
+      {
+        "model": "MeshGraphNet",
+        "path": "physicsnemo/models/meshgraphnet",
+        "role": "candidate_graph_mesh thermomechanical_or flow field surrogate requiring a custom formulation",
+        "selected": false
+      }
+    ],
+    "datapipe_menu": [
+      {
+        "datapipe": "DoMINODataPipe",
+        "path": "physicsnemo/datapipes/cae/domino_datapipe.py",
+        "role": "surface_volume_or_combined_CAE_preprocessing"
+      },
+      {
+        "datapipe": "TransolverDataPipe",
+        "path": "physicsnemo/datapipes/cae/transolver_datapipe.py",
+        "role": "surface_or_volume_mesh_field_preprocessing"
+      }
+    ],
+    "reference_examples": [
+      {
+        "path": "examples/cfd/transient_conjugate_heat_transfer_tank_fill",
+        "role": "closest_transient_CHT_DoMINO_instantiation_but_not_a_turbo_heat_shield_validation"
+      },
+      {
+        "path": "examples/cfd/stokes_mgn",
+        "role": "mesh_graph_field_learning_reference_not_a_thermal_component_recipe"
+      }
+    ],
+    "execution_enabled": false,
+    "eligibility_gate": "F3_solid_and_fluid_domains_plus_converged_radiation_CHT_thermomechanical_dataset_with_held_out_geometries_and_load_cases"
+  },
+  "omniverse_handoff": {
+    "openusd_source_authoring": "completed_as_one_envelope_guide",
+    "property_assignment_intent": "run",
+    "preflight_report": "twins/vehicle-993/functional-flow-simready-preflight-f0.json",
+    "preflight_status": "blocked",
+    "preflight_blockers": [
+      "asset_validator_unavailable",
+      "content_agents_services_unhealthy_and_deployment_not_requested",
+      "openusd_python_apis_unavailable",
+      "simready_foundation_checkout_missing",
+      "material_service_unhealthy",
+      "ovrtx_service_unhealthy",
+      "physics_service_unhealthy"
+    ],
+    "guide_composed_into_vehicle": false,
+    "vehicle_transform_known": false,
+    "material_and_physics_assignment": "not_run_preflight_blocked",
+    "nvidia_asset_validator": "not_run_preflight_blocked",
+    "simready_foundation": "not_run_preflight_blocked",
+    "simready_validated": false
+  },
+  "assets": {
+    "editable_scad": "twins/catalogue-parts/engineering/993-turbo-heat-shield-left-guide-f1.scad",
+    "editable_scad_sha256": "1a416401f07c15019cdaf6cfef226a65d1a64f2a88852a4d36b1f516ad560fe8",
+    "openusd_guide": "twins/catalogue-parts/engineering/993-turbo-heat-shield-left-guide-f1.usda",
+    "openusd_guide_sha256": "03fadedb66faebc79c9834607694b532f70aab00a34d42560e3e348ce4490c5f",
+    "openusd_component_prim_count": 1,
+    "openusd_guide_primitive_count": 1,
+    "openusd_physics_schema_count": 0,
+    "openusd_material_binding_count": 0
+  },
+  "claim_boundary": {
+    "is_complete_OEM_geometry": false,
+    "is_F2_interface_geometry": false,
+    "is_F3_analysis_geometry": false,
+    "is_dimensionally_accurate_part_shape": false,
+    "is_vehicle_positioned_or_fitment_validated": false,
+    "is_qualified_material_selection": false,
+    "is_evaluated_thermal_operating_point": false,
+    "is_reference_thermal_CHT_or_thermomechanical_result": false,
+    "is_physicsnemo_result": false,
+    "is_simready_validated": false,
+    "is_manufacturing_or_vehicle_release": false
+  },
+  "next_gate": "resolve_Turbo_GT2_applicability_then_infer_and_cross_check_F2_surface_mount_gap_clearance_and_material_hypotheses"
+}

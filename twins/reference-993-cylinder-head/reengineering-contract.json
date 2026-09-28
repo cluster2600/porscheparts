@@ -1,0 +1,362 @@
+{
+  "schema_version": "1.0.0",
+  "asset": {
+    "id": "scan-referenced-993-cylinder-head-2026",
+    "source_sha256": "not-in-repo-scan-hash",
+    "current_verified_level": "F0_reference",
+    "target_level": "F6_engine_test",
+    "intended_result": "Culasse reingenieriee pour fabrication additive, usinee et validee sur banc",
+    "compatibility_claim": "blocked_pending_named_engine_and_measured_interfaces"
+  },
+  "fidelity_levels": [
+    {
+      "id": "F0_reference",
+      "requires": ["source_integrity"]
+    },
+    {
+      "id": "F1_envelope",
+      "requires": ["source_integrity", "generated_geometry", "scale_calibration", "target_engine"]
+    },
+    {
+      "id": "F2_internal_geometry",
+      "requires": ["F1_envelope", "internal_geometry", "valvetrain_geometry"]
+    },
+    {
+      "id": "F3_coupled_physics",
+      "requires": ["F2_internal_geometry", "material_characterization", "operating_loads"]
+    },
+    {
+      "id": "F4_physical_correlation",
+      "requires": ["F3_coupled_physics", "experimental_correlation"]
+    },
+    {
+      "id": "F5_metal_prototype",
+      "requires": ["F4_physical_correlation", "manufacturing_qualification", "prototype_validation"]
+    },
+    {
+      "id": "F6_engine_test",
+      "requires": ["F5_metal_prototype", "engine_test_validation", "professional_review"]
+    }
+  ],
+  "physics_models": [
+    {
+      "id": "cold_flow_rans",
+      "governing_laws": [
+        "conservation_of_mass",
+        "conservation_of_momentum",
+        "turbulent_transport"
+      ],
+      "required_gates": [
+        "scale_calibration",
+        "target_engine",
+        "internal_geometry",
+        "valvetrain_geometry",
+        "operating_loads"
+      ],
+      "required_outputs": [
+        "mass_imbalance",
+        "pressure_drop",
+        "discharge_coefficient",
+        "velocity_uniformity",
+        "swirl_or_tumble",
+        "mesh_independence"
+      ],
+      "acceptance": "Correlation au banc de flux requise avant toute conclusion de rendement."
+    },
+    {
+      "id": "compressible_transient_flow",
+      "governing_laws": [
+        "conservation_of_mass",
+        "conservation_of_momentum",
+        "conservation_of_total_energy",
+        "equation_of_state"
+      ],
+      "required_gates": [
+        "scale_calibration",
+        "target_engine",
+        "internal_geometry",
+        "valvetrain_geometry",
+        "operating_loads"
+      ],
+      "required_outputs": [
+        "mass_imbalance",
+        "energy_imbalance",
+        "transient_pressure",
+        "transient_temperature",
+        "wave_dynamics",
+        "cycle_convergence"
+      ],
+      "acceptance": "Les lois de levee et les traces de pression resolues en angle vilebrequin sont obligatoires."
+    },
+    {
+      "id": "conjugate_heat_transfer",
+      "governing_laws": [
+        "fluid_total_energy",
+        "fourier_heat_conduction",
+        "interface_heat_flux_continuity"
+      ],
+      "required_gates": [
+        "internal_geometry",
+        "material_characterization",
+        "operating_loads"
+      ],
+      "required_outputs": [
+        "peak_metal_temperature",
+        "seat_and_guide_temperature",
+        "thermal_gradient",
+        "interface_heat_balance",
+        "cycle_stabilization"
+      ],
+      "acceptance": "Les temperatures calculees doivent etre correlees a des thermocouples ou une thermographie qualifiee."
+    },
+    {
+      "id": "thermo_mechanical_fea",
+      "governing_laws": [
+        "balance_of_linear_momentum",
+        "thermoelastic_constitutive_law",
+        "contact_and_preload",
+        "plasticity_when_justified"
+      ],
+      "required_gates": [
+        "internal_geometry",
+        "material_characterization",
+        "operating_loads",
+        "valvetrain_geometry"
+      ],
+      "required_outputs": [
+        "seat_distortion",
+        "deck_flatness_change",
+        "stud_load_distribution",
+        "plastic_strain",
+        "factor_of_safety",
+        "mesh_independence"
+      ],
+      "acceptance": "Les deformations et precharges doivent etre correlees sur prototype instrumente."
+    },
+    {
+      "id": "valvetrain_dynamics",
+      "governing_laws": [
+        "newton_second_law",
+        "spring_force_displacement",
+        "contact_dynamics",
+        "damping_and_resonance"
+      ],
+      "required_gates": [
+        "target_engine",
+        "valvetrain_geometry",
+        "operating_loads"
+      ],
+      "required_outputs": [
+        "seat_force_margin",
+        "open_force_margin",
+        "valve_float_margin",
+        "coil_bind_clearance",
+        "contact_force",
+        "spring_stress_and_fatigue"
+      ],
+      "acceptance": "Aucun ressort n'est dimensionne sans profil de came, masses mobiles, pression gaz et essais dynamiques a chaud."
+    },
+    {
+      "id": "thermomechanical_fatigue",
+      "governing_laws": [
+        "cyclic_plasticity",
+        "strain_life_or_stress_life",
+        "creep_when_temperature_requires_it",
+        "defect_sensitive_fracture_mechanics"
+      ],
+      "required_gates": [
+        "material_characterization",
+        "operating_loads",
+        "manufacturing_qualification"
+      ],
+      "required_outputs": [
+        "critical_locations",
+        "fatigue_damage_per_cycle",
+        "creep_damage",
+        "defect_size_sensitivity",
+        "life_margin"
+      ],
+      "acceptance": "Les courbes matiere doivent provenir de coupons produits et traites avec la meme route que la culasse."
+    },
+    {
+      "id": "architecture_2v_vs_4v",
+      "governing_laws": [
+        "conservation_of_mass",
+        "conservation_of_momentum",
+        "conservation_of_total_energy",
+        "newton_second_law",
+        "fourier_heat_conduction",
+        "balance_of_linear_momentum"
+      ],
+      "required_gates": [
+        "scale_calibration",
+        "target_engine",
+        "internal_geometry",
+        "valvetrain_geometry",
+        "operating_loads",
+        "architecture_comparison_geometry"
+      ],
+      "required_outputs": [
+        "effective_curtain_area_vs_lift",
+        "flow_and_efficiency_delta",
+        "moving_mass_and_spring_loss_delta",
+        "seat_bridge_temperature_delta",
+        "thermomechanical_margin_delta",
+        "packaging_and_manufacturing_score",
+        "pareto_dominance"
+      ],
+      "acceptance": "La version 4 soupapes n'est retenue que si elle domine la 2 soupapes sur le domaine moteur cible sans degrader les marges thermiques, structurelles et de fabrication."
+    }
+  ],
+  "design_objectives": {
+    "maximize": [
+      "validated_flow_efficiency",
+      "volumetric_efficiency_in_target_speed_range",
+      "thermal_margin",
+      "fatigue_life",
+      "manufacturing_repeatability"
+    ],
+    "minimize": [
+      "pressure_loss",
+      "peak_metal_temperature",
+      "seat_distortion",
+      "valvetrain_moving_mass",
+      "spring_force_compatible_with_no_float",
+      "residual_stress_and_trapped_powder"
+    ],
+    "hard_constraints": [
+      "measured_993_or_named_engine_interfaces",
+      "no_oil_or_gas_leakage",
+      "machinable_seats_guides_threads_and_deck",
+      "powder_removal_access",
+      "professional_review_before_engine_use"
+    ],
+    "selection_method": "Pareto comparison; no single flow or mass metric may select a design."
+  },
+  "architecture_variants": [
+    {
+      "id": "2v_scan_baseline",
+      "valves_per_cylinder": 2,
+      "role": "measured_reference_architecture",
+      "geometry_status": "external_scan_and_provisional_interfaces_only",
+      "required_measurements": [
+        "intake_and_exhaust_seat_centres",
+        "valve_angles",
+        "port_and_chamber_ct",
+        "spark_plug_axis",
+        "cam_and_rocker_packaging"
+      ]
+    },
+    {
+      "id": "4v_concept",
+      "valves_per_cylinder": 4,
+      "role": "performance_comparison_branch",
+      "geometry_status": "blocked_pending_named_engine_packaging_and_parametric_cad",
+      "configuration": {
+        "intake_valves": 2,
+        "exhaust_valves": 2,
+        "dimensions": "to_be_optimized_not_assumed",
+        "included_angles": "to_be_optimized_not_assumed",
+        "actuation": "to_be_selected_from_packaging_and_dynamics"
+      },
+      "comparison_metrics": [
+        "effective_curtain_area_vs_lift",
+        "discharge_coefficient_vs_lift",
+        "volumetric_efficiency_vs_engine_speed",
+        "total_moving_mass",
+        "minimum_no_float_spring_force",
+        "valvetrain_friction",
+        "combustion_chamber_surface_to_volume_ratio",
+        "seat_bridge_peak_temperature",
+        "seat_bridge_thermomechanical_stress",
+        "spark_plug_and_port_packaging",
+        "machining_and_insert_access",
+        "additive_powder_removal_access"
+      ],
+      "selection_status": "blocked_pending_correlated_2v_and_4v_models"
+    }
+  ],
+  "head_material_candidates": [
+    {
+      "id": "alsi10mg_lpbf_t6",
+      "screening_disposition": "thermal_baseline",
+      "reason": "Alliage LPBF automobile documente, leger, conducteur et disponible avec route de traitement qualifiable.",
+      "manufacturing_route": "LPBF, stress relief or T6 candidate, optional HIP after coupon study, finish machining",
+      "sources": [
+        "https://www.eos.info/metal-solutions/metal-materials/data-sheets/mds-eos-aluminium-alsi10mg",
+        "https://eos.info/05-datasheet-images/Assets_MDS_Metal/EOS_Aluminium_AlSi10Mg/Material_Datasheet_EOS_Aluminium_AlSi10Mg_EN.pdf"
+      ],
+      "limitations": "Les valeurs de fiche ne remplacent pas les coupons de la machine, de l'orientation et du traitement retenus."
+    },
+    {
+      "id": "alf357_lpbf_t6_like",
+      "screening_disposition": "fatigue_and_ductility_challenger",
+      "reason": "Candidat aluminium conforme SAE AMS 4289 a comparer lorsque les charges dynamiques dominent.",
+      "manufacturing_route": "LPBF, T6-like treatment, optional HIP after coupon study, finish machining",
+      "sources": [
+        "https://www.eos.info/metal-solutions/metal-materials/aluminium"
+      ],
+      "limitations": "La conductivite, la fatigue a chaud et la capabilite de la machine cible doivent etre mesurees."
+    }
+  ],
+  "component_strategy": {
+    "head": {
+      "manufacturing": "additive_then_machined",
+      "selection_status": "shortlist_only_pending_coupled_physics_and_coupon_data"
+    },
+    "intake_valve": {
+      "provisional_candidate": "forged_or_bar_ti6al4v_with_qualified_coating_and_steel_tip",
+      "reason": "Reduction de masse mobile pour diminuer la force de ressort, sous reserve d'usure, guide, siege et temperature.",
+      "manufacturing": "supplier_qualified_conventional_route_not_lpbf",
+      "sources": [
+        "https://www.delwestengineering.com/documents/Del_West_RTS_Catalog.pdf"
+      ],
+      "selection_status": "blocked_pending_valvetrain_and_thermal_validation"
+    },
+    "exhaust_valve": {
+      "provisional_candidate": "inconel_751_bar_or_forging",
+      "reason": "Alliage explicitement destine aux soupapes d'echappement et aux gaz chauds corrosifs.",
+      "manufacturing": "supplier_qualified_bar_or_forging_route_not_lpbf",
+      "sources": [
+        "https://www.specialmetals.com/documents/technical-bulletins/inconel/inconel-alloy-751.pdf"
+      ],
+      "selection_status": "blocked_pending_exhaust_temperature_and_fatigue_validation"
+    },
+    "valve_spring": {
+      "provisional_family": "ultra_clean_oil_tempered_chromium_silicon_steel_nitrided_and_multistage_shot_peened",
+      "reason": "Famille de procede documentee pour la resistance a la fatigue et au relachement des ressorts de soupape.",
+      "manufacturing": "specialist_spring_supplier_not_additive",
+      "sources": [
+        "https://saemobilus.sae.org/papers/influence-surface-finishing-chemical-composition-fatigue-strength-steel-wire-valve-springs-970711",
+        "https://saemobilus.sae.org/papers/development-high-fatigue-strength-valve-spring-using-control-white-layer-by-nitriding-2009-32-0082"
+      ],
+      "selection_status": "rate_and_load_blocked_pending_cam_mass_pressure_and_rpm"
+    },
+    "seats_guides_and_threads": {
+      "manufacturing": "replaceable_qualified_inserts_and_finish_machining",
+      "selection_status": "blocked_pending_temperature_wear_and_compatibility_tests"
+    }
+  },
+  "source_basis": [
+    "https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/navier-strokes-equation/",
+    "https://www.nist.gov/programs-projects/additive-manufacturing-fatigue-and-fracture",
+    "https://www.nist.gov/ambench"
+  ],
+  "project_guardrails": {
+    "shape_policy": "no_unjustified_ovalized_fusion",
+    "allowed_geometric_changes": [
+      "internal_cooler_paths",
+      "thickness_reinforcement",
+      "material_interface_regions_for_thermal_path",
+      "machining_stock_and_access_clearance",
+      "support_and_powder_removal_features"
+    ],
+    "max_surface_delta_mm": 2.0,
+    "max_chamber_volume_delta_pct": 12.0
+  },
+  "release_policy": {
+    "manufacturing_release_default": false,
+    "engine_installation_default": false,
+    "required_final_authority": "professional_engineering_review_and_instrumented_test_program"
+  }
+}

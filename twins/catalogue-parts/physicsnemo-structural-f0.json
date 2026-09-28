@@ -1,0 +1,189 @@
+{
+  "$comment": "Contrat de decouverte et de donnees pour un futur surrogate structurel PhysicsNeMo. Il ne prouve ni calcul EF, ni entrainement, ni aptitude a la fabrication.",
+  "schema_version": "1.0.0",
+  "target": {
+    "twin_id": "TWIN-993-ENGINE-CARRIER-TURBO",
+    "part_id": "993-ENG-CARRIER-0001",
+    "current_fidelity": "F1_envelope",
+    "minimum_training_fidelity": "F3_measured_interfaces_and_load_bearing_geometry",
+    "status": "blocked_input_acquisition"
+  },
+  "problem_shape": {
+    "domain": "structural_mechanics",
+    "task": "supervised_surrogate_of_parameterized_reference_FEA",
+    "data_shape": "variable_topology_unstructured_tetrahedral_or_hexahedral_mesh",
+    "axes": ["model_family", "datapipe", "training_strategy", "configuration"]
+  },
+  "discovery": {
+    "canonical_repository": "https://github.com/NVIDIA/physicsnemo",
+    "checked_on": "2026-09-02",
+    "current_snapshot": {
+      "commit": "4fbfcfd62bf050b48ceec6b438da409b9f4644b3",
+      "version": "2.3.0a0",
+      "role": "live_discovery_only_not_runtime_target"
+    },
+    "runtime_snapshot": {
+      "tag": "v2.2.0",
+      "commit": "a078229716ce39d9d9273b23d54b073d3adb925e",
+      "version": "2.2.0",
+      "role": "repository_container_pin"
+    },
+    "verified_paths_in_runtime_snapshot": [
+      "physicsnemo/models/geotransolver/__init__.py",
+      "physicsnemo/models/meshgraphnet/__init__.py",
+      "physicsnemo/models/transolver/__init__.py",
+      "physicsnemo/models/figconvnet/__init__.py",
+      "examples/structural_mechanics/drop_test/README.md",
+      "examples/structural_mechanics/drop_test/datapipe.py",
+      "examples/structural_mechanics/crash/README.md",
+      "examples/structural_mechanics/crash/datapipe.py",
+      "docs/api/models/geotransolver.rst",
+      "docs/api/models/gnns.rst"
+    ]
+  },
+  "model_menu": [
+    {
+      "model": "GeoTransolver",
+      "family_path": "physicsnemo/models/geotransolver/__init__.py",
+      "data_interface": "point_cloud_from_unstructured_mesh",
+      "strategy": "one_shot_parameterized_field_prediction",
+      "reference_example": "examples/structural_mechanics/drop_test",
+      "runtime_extra": "none_beyond_existing_model_extras",
+      "status": "selected_for_first_pilot_after_reference_data_exists",
+      "reason": "Le patron drop-test 2.2.0 prend un maillage tetra/hexa initial et des parametres globaux, puis predit deplacement et contrainte de von Mises. Une adaptation quasi-statique reste necessaire."
+    },
+    {
+      "model": "MeshGraphNet",
+      "family_path": "physicsnemo/models/meshgraphnet/__init__.py",
+      "data_interface": "mesh_connectivity_graph",
+      "strategy": "graph_field_surrogate_or_autoregressive_rollout",
+      "reference_example": "examples/structural_mechanics/deforming_plate",
+      "runtime_extra": "gnns",
+      "status": "candidate_after_graph_datapipe_and_runtime_extra_validation",
+      "reason": "Conserve explicitement la connectivite du maillage et accepte des topologies variables, mais exige l'extra gnns absent du profil par defaut."
+    },
+    {
+      "model": "Transolver",
+      "family_path": "physicsnemo/models/transolver/__init__.py",
+      "data_interface": "point_cloud_or_unstructured_mesh_features",
+      "strategy": "physics_attention_operator",
+      "reference_example": "examples/structural_mechanics/crash",
+      "runtime_extra": "none_beyond_existing_model_extras",
+      "status": "candidate_for_benchmark_after_dataset_creation",
+      "reason": "Operateur d'attention compatible avec des maillages structures et non structures ; a comparer au pilote sur le meme split."
+    },
+    {
+      "model": "FIGConvUNet",
+      "family_path": "physicsnemo/models/figconvnet/__init__.py",
+      "data_interface": "point_cloud_geometry_features",
+      "strategy": "one_shot_field_prediction",
+      "reference_example": "examples/structural_mechanics/crash",
+      "runtime_extra": "none_beyond_existing_model_extras",
+      "status": "candidate_for_benchmark_after_dataset_creation",
+      "reason": "Famille prise en charge par le patron structurel crash ; elle reste une alternative de benchmark, pas le premier choix."
+    }
+  ],
+  "datapipe_menu": [
+    {
+      "name": "DropTestPointCloudDataset_pattern",
+      "path": "examples/structural_mechanics/drop_test/datapipe.py",
+      "serialization": "VTU_one_file_per_solver_run",
+      "model_families": ["GeoTransolver", "Transolver", "FIGConvUNet"],
+      "status": "selected_pattern_adapter_required"
+    },
+    {
+      "name": "DropTestGraphDataset_pattern",
+      "path": "examples/structural_mechanics/drop_test/datapipe.py",
+      "serialization": "VTU_one_file_per_solver_run",
+      "model_families": ["MeshGraphNet"],
+      "status": "candidate_requires_gnns_extra"
+    },
+    {
+      "name": "Crash_VTP_or_Zarr_pattern",
+      "path": "examples/structural_mechanics/crash/datapipe.py",
+      "serialization": "VTP_for_small_dataset_or_Zarr_for_large_dataset",
+      "model_families": ["GeoTransolver", "Transolver", "MeshGraphNet", "FIGConvUNet"],
+      "status": "alternative_after_dataset_scale_is_known"
+    }
+  ],
+  "selected_pilot": {
+    "model": "GeoTransolver",
+    "datapipe_pattern": "DropTestPointCloudDataset_pattern",
+    "serialization": "VTU_one_file_per_CalculiX_run",
+    "training_strategy": "one_shot_single_GPU_then_scale_only_if_needed",
+    "execution_enabled": false,
+    "adapter_status": "not_implemented_until_reference_case_exists"
+  },
+  "dataset_contract": {
+    "unit_system": "SI",
+    "reference_solver": "CalculiX",
+    "source_geometry": "editable_STEP_or_FCStd_with_measured_interfaces",
+    "sample_identity": [
+      "geometry_revision",
+      "material_property_revision",
+      "mesh_revision",
+      "load_case_id",
+      "solver_configuration_digest"
+    ],
+    "mesh_inputs": [
+      "node_coordinates_m",
+      "element_connectivity",
+      "element_type",
+      "boundary_region_label",
+      "material_region_label"
+    ],
+    "global_features": [
+      "vertical_reaction_N",
+      "powertrain_reaction_torque_Nm",
+      "longitudinal_reaction_N",
+      "lateral_reaction_N",
+      "fastener_preload_N",
+      "mount_stiffness_N_per_m",
+      "youngs_modulus_Pa",
+      "poisson_ratio",
+      "yield_strength_Pa",
+      "density_kg_per_m3"
+    ],
+    "nodal_targets": ["displacement_m", "von_mises_stress_Pa", "principal_stress_Pa"],
+    "scalar_targets": [
+      "maximum_displacement_m",
+      "maximum_von_mises_stress_Pa",
+      "first_natural_frequency_Hz",
+      "interface_reaction_force_N"
+    ],
+    "required_evidence_per_sample": [
+      "solver_completed_without_error",
+      "mesh_quality_pass",
+      "mesh_convergence_family_id",
+      "force_and_moment_balance_pass",
+      "material_and_boundary_provenance",
+      "result_checksum"
+    ],
+    "split_policy": {
+      "method": "grouped_by_geometry_revision_and_load_envelope",
+      "train_samples": 0,
+      "validation_samples": 0,
+      "held_out_test_samples": 0,
+      "random_node_split_prohibited": true,
+      "held_out_geometry_or_load_family_required": true
+    }
+  },
+  "enablement_gates": {
+    "measured_F3_geometry": false,
+    "qualified_material_properties": false,
+    "defined_loads_and_acceptance_criteria": false,
+    "validated_reference_CalculiX_case": false,
+    "mesh_convergence_evidence": false,
+    "physical_test_correlation": false,
+    "non_empty_grouped_dataset_splits": false,
+    "documented_surrogate_error_thresholds": false,
+    "out_of_domain_rejection": false
+  },
+  "prohibited_claims": [
+    "PhysicsNeMo_as_reference_solver",
+    "training_on_F1_documentary_proxy",
+    "random_node_split_as_independent_validation",
+    "surrogate_prediction_as_manufacturing_release",
+    "road_use_without_professional_review_and_physical_validation"
+  ]
+}

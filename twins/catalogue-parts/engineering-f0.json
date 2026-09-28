@@ -1,0 +1,2252 @@
+{
+  "$comment": "Contrats F0 d'ingenierie inverse et de simulation. Les controles courants testent la disponibilite des entrees ; ils ne constituent ni FEA, ni essai physique, ni validation de fabrication.",
+  "schema_version": "1.0.0",
+  "generated_by": "scripts/generate_catalogue_part_engineering.py",
+  "source_twin_index": "twins/catalogue-parts/index.json",
+  "engineering_level": "F0_input_readiness",
+  "summary": {
+    "parts": 18,
+    "ready_for_reference_cae": 0,
+    "ready_for_physicsnemo": 0,
+    "released_for_functional_manufacture": 0
+  },
+  "solver_policy": {
+    "reference_structural_solver": "CalculiX",
+    "reference_solver_required_before_surrogate": true,
+    "proxy_geometry_must_not_be_meshed_for_strength_claims": true
+  },
+  "physicsnemo_policy": {
+    "runtime_target": "nvidia-physicsnemo_2.2.0",
+    "execution_enabled": false,
+    "role": "surrogate_only_after_validated_CAE_baseline_and_physical_correlation",
+    "candidate_architecture": "GeoTransolver_one_shot_pilot_for_unstructured_CAE_meshes",
+    "candidate_architectures": [
+      "GeoTransolver",
+      "MeshGraphNet",
+      "Transolver",
+      "FIGConvUNet"
+    ],
+    "candidate_status": "pilot_selected_for_future_dataset_design_not_training",
+    "discovery_contract": "twins/catalogue-parts/physicsnemo-structural-f0.json",
+    "required_before_enablement": [
+      "full_editable_geometry_with_measured_interfaces",
+      "qualified_material_properties_and_manufacturing_state",
+      "validated_CalculiX_cases_with_mesh_convergence",
+      "physical_test_correlation",
+      "parameterized_CAE_training_domain",
+      "separate_train_validation_and_held_out_test_sets",
+      "documented_field_and_scalar_error_thresholds",
+      "uncertainty_and_out_of_domain_rejection"
+    ],
+    "planned_inputs": [
+      "mesh_coordinates_and_connectivity",
+      "boundary_condition_labels",
+      "material_and_process_features",
+      "loads_preloads_and_contact_parameters"
+    ],
+    "planned_outputs": [
+      "nodal_displacement",
+      "stress_and_strain_fields",
+      "modal_or_fatigue_scalars_when_present_in_reference_data"
+    ],
+    "prohibited_claims": [
+      "PhysicsNeMo_prediction_as_reference_solution",
+      "training_on_F1_documentary_proxies",
+      "manufacturing_release_without_physical_validation"
+    ]
+  },
+  "parts": [
+    {
+      "twin_id": "TWIN-993-ENGINE-CARRIER-TURBO",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-ENGINE-CARRIER-TURBO",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": "catalog/parts/993-eng-carrier-0001.json",
+        "part_id": "993-ENG-CARRIER-0001",
+        "oem_reference": "993 115 021 53",
+        "name": "Berceau moteur, Turbo"
+      },
+      "engineering_status": "blocked_input_acquisition",
+      "current_fidelity": "F1_envelope",
+      "minimum_reference_cae_fidelity": "F3_measured_interfaces_and_load_bearing_geometry",
+      "safety_class": "powertrain_mounting_safety_critical",
+      "known_inputs": {
+        "declared_bounding_box_mm": [
+          600.0,
+          50.0,
+          50.0
+        ],
+        "declared_mass_kg": 1.96,
+        "material_family": "acier",
+        "material_status": "inferred_not_measured"
+      },
+      "screening_metrics": {
+        "declared_envelope_volume_m3": 0.0015,
+        "apparent_solid_fraction_if_steel": 0.166454,
+        "interpretation": "catalogue consistency check only; the seller envelope is not a measured solid or analysis geometry"
+      },
+      "reverse_engineering": {
+        "status": "blocked_missing_complete_geometry",
+        "measurement_plan": "parts/993-eng-carrier-0001/evidence/measurement-plan.md",
+        "load_case_plan": "parts/993-eng-carrier-0001/evidence/load-cases.md",
+        "required_acquisitions": [
+          "measured_mounting_interface_coordinates_and_hole_geometries",
+          "complete_curved_body_and_boss_geometry",
+          "thickness_map_flatness_and_as_found_damage",
+          "identified_material_grade_heat_treatment_and_coating",
+          "engine_and_transmission_support_load_distribution",
+          "mount_stiffness_preload_contacts_and_fastener_data"
+        ]
+      },
+      "manufacturing": {
+        "functional_routes": {
+          "machined_wrought_steel": "concept_candidate_pending_geometry_loads_grade_and_fatigue_review",
+          "cast_or_forged_steel": "concept_candidate_pending_original_process_identification",
+          "metal_additive": "screened_out_for_current_600_mm_safety_critical_concept",
+          "polymer_additive_proxy": "fit_and_fixture_check_only_after_complete_geometry"
+        },
+        "selected_functional_route": null
+      },
+      "virtual_material_screening": {
+        "record": "twins/catalogue-parts/engine-carrier-material-screening-f1.json",
+        "record_sha256": "e9efef04fce3c1472217a8bd87a919bee4787c420d3b2d5d06df773f6718bd92",
+        "status": "F1_generic_analytic_screening_complete_no_component_credit",
+        "analytic_results": {
+          "same_geometry": {
+            "steel_mass_kg": 2.65644,
+            "ti64_mass_kg": 1.499112,
+            "steel_tip_deflection_mm": 1.251979693,
+            "ti64_tip_deflection_mm": 2.306278382,
+            "ti64_mass_reduction_fraction": 0.43566879,
+            "ti64_deflection_ratio": 1.842105263
+          },
+          "same_bending_stiffness": {
+            "ti64_uniform_section_scale": 1.165007204,
+            "ti64_mass_kg": 2.034657447,
+            "steel_mass_kg": 2.65644,
+            "ti64_mass_reduction_fraction": 0.234066101
+          },
+          "same_mass": {
+            "ti64_uniform_section_scale": 1.331168295,
+            "ti64_to_steel_bending_stiffness_ratio": 1.704580114
+          },
+          "material_index_sqrt_E_over_density": {
+            "steel": 58.376760445,
+            "ti64": 76.216447025
+          }
+        },
+        "screening_decision": {
+          "titanium_route": "deprioritized_for_current_concept_program",
+          "reason": "generic stiffness screening and the declared 1.96 kg component mass do not justify a titanium redevelopment before geometry and loads",
+          "machined_wrought_steel_route": "candidate_pending_geometry_loads_grade_and_fatigue_review",
+          "selected_material": null,
+          "selected_functional_process": null,
+          "component_credit": false
+        },
+        "component_credit": false
+      },
+      "simulation": {
+        "analysis_geometry": "unavailable",
+        "reference_solver": "CalculiX",
+        "load_cases": [
+          {
+            "load_case_id": "LC-993-ENGINE-CARRIER-VERTICAL",
+            "kind": "engine_mass_vertical_static_and_road_amplification",
+            "baseline_solver": "CalculiX_after_complete_geometry_and_inputs",
+            "status": "blocked_missing_loads_geometry_material_and_acceptance_criteria"
+          },
+          {
+            "load_case_id": "LC-993-ENGINE-CARRIER-TORQUE",
+            "kind": "powertrain_reaction_torque",
+            "baseline_solver": "CalculiX_after_complete_geometry_and_inputs",
+            "status": "blocked_missing_loads_geometry_material_and_acceptance_criteria"
+          },
+          {
+            "load_case_id": "LC-993-ENGINE-CARRIER-LONGITUDINAL",
+            "kind": "acceleration_and_braking_inertia",
+            "baseline_solver": "CalculiX_after_complete_geometry_and_inputs",
+            "status": "blocked_missing_loads_geometry_material_and_acceptance_criteria"
+          },
+          {
+            "load_case_id": "LC-993-ENGINE-CARRIER-LATERAL",
+            "kind": "cornering_inertia",
+            "baseline_solver": "CalculiX_after_complete_geometry_and_inputs",
+            "status": "blocked_missing_loads_geometry_material_and_acceptance_criteria"
+          },
+          {
+            "load_case_id": "LC-993-ENGINE-CARRIER-MODAL",
+            "kind": "modal_and_engine_order_separation",
+            "baseline_solver": "CalculiX_after_complete_geometry_and_inputs",
+            "status": "blocked_missing_loads_geometry_material_and_acceptance_criteria"
+          },
+          {
+            "load_case_id": "LC-993-ENGINE-CARRIER-FATIGUE",
+            "kind": "combined_variable_amplitude_fatigue",
+            "baseline_solver": "CalculiX_after_complete_geometry_and_inputs",
+            "status": "blocked_missing_loads_geometry_material_and_acceptance_criteria"
+          }
+        ],
+        "required_inputs": [
+          "measured_engine_and_transmission_masses_and_centres_of_gravity",
+          "measured_mount_reaction_distribution",
+          "powertrain_torque_envelope_and_duty_cycle",
+          "road_load_acceleration_spectrum",
+          "qualified_material_curve_and_fatigue_data",
+          "fastener_preload_contact_and_mount_stiffness",
+          "mesh_convergence_plan",
+          "stress_displacement_modal_and_fatigue_acceptance_criteria"
+        ]
+      },
+      "digital_twin_tests": {
+        "identity_and_provenance": {
+          "status": "pass_documentary",
+          "claim": "identity_and_application_only"
+        },
+        "dimensional_interface_readiness": {
+          "status": "blocked_missing_measured_interfaces_and_tolerances",
+          "claim": "not_tested"
+        },
+        "mesh_readiness": {
+          "status": "blocked_F1_proxy_is_not_analysis_geometry",
+          "claim": "not_tested"
+        },
+        "reference_cae": {
+          "status": "blocked_not_run",
+          "claim": "no_FEA_result"
+        },
+        "physicsnemo": {
+          "status": "blocked_not_run",
+          "claim": "no_surrogate_result"
+        },
+        "physical_correlation": {
+          "status": "blocked_no_test_article_or_rig",
+          "claim": "not_tested"
+        },
+        "manufacturing_release": {
+          "status": "blocked_pending_professional_engineering_and_validation",
+          "claim": "not_released"
+        }
+      }
+    },
+    {
+      "twin_id": "TWIN-993-INTERCOOLER-AIR-DUCT",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-INTERCOOLER-AIR-DUCT",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": null,
+        "part_id": null,
+        "oem_reference": "993 110 340 54",
+        "name": "Conduit d'air d'echangeur"
+      },
+      "engineering_status": "blocked_input_acquisition",
+      "current_fidelity": "F1_envelope",
+      "minimum_reference_cae_fidelity": "F2_interfaces_then_domain_specific_F3_geometry",
+      "safety_class": "not_assessed",
+      "known_inputs": {
+        "declared_bounding_box_mm": [
+          600.0,
+          280.0,
+          50.0
+        ],
+        "declared_mass_kg": 0.9,
+        "material_family": null,
+        "material_status": "unresolved"
+      },
+      "screening_metrics": {
+        "declared_envelope_volume_m3": 0.0084,
+        "mass_per_envelope_volume_kg_m3": 107.142857,
+        "interpretation": "packaging consistency metric only; voids and multimaterial construction prevent material inference"
+      },
+      "reverse_engineering": {
+        "status": "blocked_missing_complete_geometry_material_and_interfaces",
+        "required_acquisitions": [
+          "licensed_editable_surface_or_parametric_reconstruction",
+          "interface_coordinates_sealing_surfaces_and_fastener_geometry",
+          "wall_thickness_internal_passages_and_tolerances",
+          "operating_temperature_pressure_load_and_environment_envelopes",
+          "material_system_grades_processes_and_supplier_evidence",
+          "acceptance_criteria_and_inspection_plan"
+        ]
+      },
+      "materials": {
+        "selected_material_system": null,
+        "screening_hypothesis": "temperature_resistant_polymer_or_composite_duct",
+        "hypothesis_status": "unqualified_requires_source_environment_and_failure_mode_review",
+        "single_material_assumption_allowed": false
+      },
+      "manufacturing": {
+        "selected_functional_route": null,
+        "candidate_routes": {
+          "original_equivalent_process": "blocked_original_process_not_identified",
+          "machined_reconstruction": "blocked_geometry_material_and_validation_missing",
+          "additive_functional_reconstruction": "blocked_geometry_material_process_and_validation_missing",
+          "additive_proxy": "packaging_only_after_interface_geometry_is_available"
+        }
+      },
+      "simulation": {
+        "analysis_geometry": "unavailable",
+        "domain_ids": [
+          "package_interfaces",
+          "structural",
+          "thermal_fluid"
+        ],
+        "reference_solver": "domain_specific_reference_solver_from_vehicle_program",
+        "load_cases": [],
+        "required_inputs": [
+          "complete_analysis_geometry_and_mesh_plan",
+          "qualified_material_and_process_properties",
+          "loads_boundary_conditions_contacts_and_duty_cycle",
+          "analytical_checks_and_acceptance_criteria",
+          "reference_solver_convergence_and_balance_evidence"
+        ]
+      },
+      "digital_twin_tests": {
+        "identity_and_provenance": {
+          "status": "pass_documentary",
+          "claim": "identity_and_application_only"
+        },
+        "dimensional_interface_readiness": {
+          "status": "blocked_missing_measured_interfaces_and_tolerances",
+          "claim": "not_tested"
+        },
+        "mesh_readiness": {
+          "status": "blocked_F1_proxy_is_not_analysis_geometry",
+          "claim": "not_tested"
+        },
+        "reference_cae": {
+          "status": "blocked_not_run",
+          "claim": "no_FEA_result"
+        },
+        "physicsnemo": {
+          "status": "blocked_not_run",
+          "claim": "no_surrogate_result"
+        },
+        "physical_correlation": {
+          "status": "blocked_no_test_article_or_rig",
+          "claim": "not_tested"
+        },
+        "manufacturing_release": {
+          "status": "blocked_pending_professional_engineering_and_validation",
+          "claim": "not_released"
+        }
+      }
+    },
+    {
+      "twin_id": "TWIN-993-INTERCOOLER-BRACKET-REINFORCED",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-INTERCOOLER-BRACKET-REINFORCED",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": null,
+        "part_id": null,
+        "oem_reference": null,
+        "name": "Support renforce d'echangeur"
+      },
+      "engineering_status": "blocked_input_acquisition",
+      "current_fidelity": "F1_envelope",
+      "minimum_reference_cae_fidelity": "F2_interfaces_then_domain_specific_F3_geometry",
+      "safety_class": "not_assessed",
+      "known_inputs": {
+        "declared_bounding_box_mm": [
+          255.0,
+          80.0,
+          23.0
+        ],
+        "declared_mass_kg": 0.2,
+        "material_family": null,
+        "material_status": "unresolved"
+      },
+      "screening_metrics": {
+        "declared_envelope_volume_m3": 0.0004692,
+        "mass_per_envelope_volume_kg_m3": 426.25746,
+        "interpretation": "packaging consistency metric only; voids and multimaterial construction prevent material inference"
+      },
+      "reverse_engineering": {
+        "status": "blocked_missing_complete_geometry_material_and_interfaces",
+        "required_acquisitions": [
+          "licensed_editable_surface_or_parametric_reconstruction",
+          "interface_coordinates_sealing_surfaces_and_fastener_geometry",
+          "wall_thickness_internal_passages_and_tolerances",
+          "operating_temperature_pressure_load_and_environment_envelopes",
+          "material_system_grades_processes_and_supplier_evidence",
+          "acceptance_criteria_and_inspection_plan"
+        ]
+      },
+      "materials": {
+        "selected_material_system": null,
+        "screening_hypothesis": "formed_or_machined_metal_bracket_system",
+        "hypothesis_status": "unqualified_requires_source_environment_and_failure_mode_review",
+        "single_material_assumption_allowed": false
+      },
+      "manufacturing": {
+        "selected_functional_route": null,
+        "candidate_routes": {
+          "original_equivalent_process": "blocked_original_process_not_identified",
+          "machined_reconstruction": "blocked_geometry_material_and_validation_missing",
+          "additive_functional_reconstruction": "blocked_geometry_material_process_and_validation_missing",
+          "additive_proxy": "packaging_only_after_interface_geometry_is_available"
+        }
+      },
+      "simulation": {
+        "analysis_geometry": "unavailable",
+        "domain_ids": [
+          "package_interfaces",
+          "structural",
+          "thermal_fluid"
+        ],
+        "reference_solver": "domain_specific_reference_solver_from_vehicle_program",
+        "load_cases": [],
+        "required_inputs": [
+          "complete_analysis_geometry_and_mesh_plan",
+          "qualified_material_and_process_properties",
+          "loads_boundary_conditions_contacts_and_duty_cycle",
+          "analytical_checks_and_acceptance_criteria",
+          "reference_solver_convergence_and_balance_evidence"
+        ]
+      },
+      "digital_twin_tests": {
+        "identity_and_provenance": {
+          "status": "pass_documentary",
+          "claim": "identity_and_application_only"
+        },
+        "dimensional_interface_readiness": {
+          "status": "blocked_missing_measured_interfaces_and_tolerances",
+          "claim": "not_tested"
+        },
+        "mesh_readiness": {
+          "status": "blocked_F1_proxy_is_not_analysis_geometry",
+          "claim": "not_tested"
+        },
+        "reference_cae": {
+          "status": "blocked_not_run",
+          "claim": "no_FEA_result"
+        },
+        "physicsnemo": {
+          "status": "blocked_not_run",
+          "claim": "no_surrogate_result"
+        },
+        "physical_correlation": {
+          "status": "blocked_no_test_article_or_rig",
+          "claim": "not_tested"
+        },
+        "manufacturing_release": {
+          "status": "blocked_pending_professional_engineering_and_validation",
+          "claim": "not_released"
+        }
+      }
+    },
+    {
+      "twin_id": "TWIN-993-INTERCOOLER-MOTORSPORT-FVD",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-INTERCOOLER-MOTORSPORT-FVD",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": null,
+        "part_id": null,
+        "oem_reference": null,
+        "name": "Echangeur Motorsport FVD 993 Turbo GT2"
+      },
+      "engineering_status": "blocked_input_acquisition",
+      "current_fidelity": "F1_envelope",
+      "minimum_reference_cae_fidelity": "F2_interfaces_then_domain_specific_F3_geometry",
+      "safety_class": "not_assessed",
+      "known_inputs": {
+        "declared_bounding_box_mm": [
+          870.0,
+          410.0,
+          190.0
+        ],
+        "declared_mass_kg": 10.1,
+        "material_family": null,
+        "material_status": "unresolved"
+      },
+      "screening_metrics": {
+        "declared_envelope_volume_m3": 0.067773,
+        "mass_per_envelope_volume_kg_m3": 149.026899,
+        "interpretation": "packaging consistency metric only; voids and multimaterial construction prevent material inference"
+      },
+      "reverse_engineering": {
+        "status": "blocked_missing_complete_geometry_material_and_interfaces",
+        "required_acquisitions": [
+          "licensed_editable_surface_or_parametric_reconstruction",
+          "interface_coordinates_sealing_surfaces_and_fastener_geometry",
+          "wall_thickness_internal_passages_and_tolerances",
+          "operating_temperature_pressure_load_and_environment_envelopes",
+          "material_system_grades_processes_and_supplier_evidence",
+          "acceptance_criteria_and_inspection_plan"
+        ]
+      },
+      "materials": {
+        "selected_material_system": null,
+        "screening_hypothesis": "brazed_aluminium_heat_exchanger_system",
+        "hypothesis_status": "unqualified_requires_source_environment_and_failure_mode_review",
+        "single_material_assumption_allowed": false
+      },
+      "manufacturing": {
+        "selected_functional_route": null,
+        "candidate_routes": {
+          "original_equivalent_process": "blocked_original_process_not_identified",
+          "machined_reconstruction": "blocked_geometry_material_and_validation_missing",
+          "additive_functional_reconstruction": "blocked_geometry_material_process_and_validation_missing",
+          "additive_proxy": "packaging_only_after_interface_geometry_is_available"
+        }
+      },
+      "simulation": {
+        "analysis_geometry": "unavailable",
+        "domain_ids": [
+          "network_flow",
+          "structural",
+          "thermal_fluid"
+        ],
+        "reference_solver": "domain_specific_reference_solver_from_vehicle_program",
+        "load_cases": [],
+        "required_inputs": [
+          "complete_analysis_geometry_and_mesh_plan",
+          "qualified_material_and_process_properties",
+          "loads_boundary_conditions_contacts_and_duty_cycle",
+          "analytical_checks_and_acceptance_criteria",
+          "reference_solver_convergence_and_balance_evidence"
+        ]
+      },
+      "digital_twin_tests": {
+        "identity_and_provenance": {
+          "status": "pass_documentary",
+          "claim": "identity_and_application_only"
+        },
+        "dimensional_interface_readiness": {
+          "status": "blocked_missing_measured_interfaces_and_tolerances",
+          "claim": "not_tested"
+        },
+        "mesh_readiness": {
+          "status": "blocked_F1_proxy_is_not_analysis_geometry",
+          "claim": "not_tested"
+        },
+        "reference_cae": {
+          "status": "blocked_not_run",
+          "claim": "no_FEA_result"
+        },
+        "physicsnemo": {
+          "status": "blocked_not_run",
+          "claim": "no_surrogate_result"
+        },
+        "physical_correlation": {
+          "status": "blocked_no_test_article_or_rig",
+          "claim": "not_tested"
+        },
+        "manufacturing_release": {
+          "status": "blocked_pending_professional_engineering_and_validation",
+          "claim": "not_released"
+        }
+      }
+    },
+    {
+      "twin_id": "TWIN-993-INTERCOOLER-PRESSURE-HOSE-KIT-FVD",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-INTERCOOLER-PRESSURE-HOSE-KIT-FVD",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": null,
+        "part_id": null,
+        "oem_reference": null,
+        "name": "Kit de durites de pression renforcees FVD 993"
+      },
+      "engineering_status": "blocked_input_acquisition",
+      "current_fidelity": "F1_envelope",
+      "minimum_reference_cae_fidelity": "F2_interfaces_then_domain_specific_F3_geometry",
+      "safety_class": "not_assessed",
+      "known_inputs": {
+        "declared_bounding_box_mm": [
+          440.0,
+          160.0,
+          100.0
+        ],
+        "declared_mass_kg": 1.08,
+        "material_family": null,
+        "material_status": "unresolved"
+      },
+      "screening_metrics": {
+        "declared_envelope_volume_m3": 0.00704,
+        "mass_per_envelope_volume_kg_m3": 153.409091,
+        "interpretation": "packaging consistency metric only; voids and multimaterial construction prevent material inference"
+      },
+      "reverse_engineering": {
+        "status": "blocked_missing_complete_geometry_material_and_interfaces",
+        "required_acquisitions": [
+          "licensed_editable_surface_or_parametric_reconstruction",
+          "interface_coordinates_sealing_surfaces_and_fastener_geometry",
+          "wall_thickness_internal_passages_and_tolerances",
+          "operating_temperature_pressure_load_and_environment_envelopes",
+          "material_system_grades_processes_and_supplier_evidence",
+          "acceptance_criteria_and_inspection_plan"
+        ]
+      },
+      "materials": {
+        "selected_material_system": null,
+        "screening_hypothesis": "reinforced_high_temperature_elastomer_hose_system",
+        "hypothesis_status": "unqualified_requires_source_environment_and_failure_mode_review",
+        "single_material_assumption_allowed": false
+      },
+      "manufacturing": {
+        "selected_functional_route": null,
+        "candidate_routes": {
+          "original_equivalent_process": "blocked_original_process_not_identified",
+          "machined_reconstruction": "blocked_geometry_material_and_validation_missing",
+          "additive_functional_reconstruction": "blocked_geometry_material_process_and_validation_missing",
+          "additive_proxy": "packaging_only_after_interface_geometry_is_available"
+        }
+      },
+      "simulation": {
+        "analysis_geometry": "unavailable",
+        "domain_ids": [
+          "network_flow",
+          "structural",
+          "thermal_fluid"
+        ],
+        "reference_solver": "domain_specific_reference_solver_from_vehicle_program",
+        "load_cases": [],
+        "required_inputs": [
+          "complete_analysis_geometry_and_mesh_plan",
+          "qualified_material_and_process_properties",
+          "loads_boundary_conditions_contacts_and_duty_cycle",
+          "analytical_checks_and_acceptance_criteria",
+          "reference_solver_convergence_and_balance_evidence"
+        ]
+      },
+      "digital_twin_tests": {
+        "identity_and_provenance": {
+          "status": "pass_documentary",
+          "claim": "identity_and_application_only"
+        },
+        "dimensional_interface_readiness": {
+          "status": "blocked_missing_measured_interfaces_and_tolerances",
+          "claim": "not_tested"
+        },
+        "mesh_readiness": {
+          "status": "blocked_F1_proxy_is_not_analysis_geometry",
+          "claim": "not_tested"
+        },
+        "reference_cae": {
+          "status": "blocked_not_run",
+          "claim": "no_FEA_result"
+        },
+        "physicsnemo": {
+          "status": "blocked_not_run",
+          "claim": "no_surrogate_result"
+        },
+        "physical_correlation": {
+          "status": "blocked_no_test_article_or_rig",
+          "claim": "not_tested"
+        },
+        "manufacturing_release": {
+          "status": "blocked_pending_professional_engineering_and_validation",
+          "claim": "not_released"
+        }
+      }
+    },
+    {
+      "twin_id": "TWIN-993-INTERCOOLER-PRESSURE-HOSE-LEFT",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-INTERCOOLER-PRESSURE-HOSE-LEFT",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": null,
+        "part_id": null,
+        "oem_reference": "993 110 633 56",
+        "name": "Durite de pression turbo-echangeur gauche"
+      },
+      "engineering_status": "blocked_input_acquisition",
+      "current_fidelity": "F1_envelope",
+      "minimum_reference_cae_fidelity": "F2_interfaces_then_domain_specific_F3_geometry",
+      "safety_class": "not_assessed",
+      "known_inputs": {
+        "declared_bounding_box_mm": [
+          430.0,
+          70.0,
+          115.0
+        ],
+        "declared_mass_kg": 0.42,
+        "material_family": null,
+        "material_status": "unresolved"
+      },
+      "screening_metrics": {
+        "declared_envelope_volume_m3": 0.0034615,
+        "mass_per_envelope_volume_kg_m3": 121.334681,
+        "interpretation": "packaging consistency metric only; voids and multimaterial construction prevent material inference"
+      },
+      "reverse_engineering": {
+        "status": "blocked_missing_complete_geometry_material_and_interfaces",
+        "required_acquisitions": [
+          "licensed_editable_surface_or_parametric_reconstruction",
+          "interface_coordinates_sealing_surfaces_and_fastener_geometry",
+          "wall_thickness_internal_passages_and_tolerances",
+          "operating_temperature_pressure_load_and_environment_envelopes",
+          "material_system_grades_processes_and_supplier_evidence",
+          "acceptance_criteria_and_inspection_plan"
+        ]
+      },
+      "materials": {
+        "selected_material_system": null,
+        "screening_hypothesis": "reinforced_high_temperature_elastomer_hose_system",
+        "hypothesis_status": "unqualified_requires_source_environment_and_failure_mode_review",
+        "single_material_assumption_allowed": false
+      },
+      "manufacturing": {
+        "selected_functional_route": null,
+        "candidate_routes": {
+          "original_equivalent_process": "blocked_original_process_not_identified",
+          "machined_reconstruction": "blocked_geometry_material_and_validation_missing",
+          "additive_functional_reconstruction": "blocked_geometry_material_process_and_validation_missing",
+          "additive_proxy": "packaging_only_after_interface_geometry_is_available"
+        }
+      },
+      "simulation": {
+        "analysis_geometry": "unavailable",
+        "domain_ids": [
+          "network_flow",
+          "structural",
+          "thermal_fluid"
+        ],
+        "reference_solver": "domain_specific_reference_solver_from_vehicle_program",
+        "load_cases": [],
+        "required_inputs": [
+          "complete_analysis_geometry_and_mesh_plan",
+          "qualified_material_and_process_properties",
+          "loads_boundary_conditions_contacts_and_duty_cycle",
+          "analytical_checks_and_acceptance_criteria",
+          "reference_solver_convergence_and_balance_evidence"
+        ]
+      },
+      "digital_twin_tests": {
+        "identity_and_provenance": {
+          "status": "pass_documentary",
+          "claim": "identity_and_application_only"
+        },
+        "dimensional_interface_readiness": {
+          "status": "blocked_missing_measured_interfaces_and_tolerances",
+          "claim": "not_tested"
+        },
+        "mesh_readiness": {
+          "status": "blocked_F1_proxy_is_not_analysis_geometry",
+          "claim": "not_tested"
+        },
+        "reference_cae": {
+          "status": "blocked_not_run",
+          "claim": "no_FEA_result"
+        },
+        "physicsnemo": {
+          "status": "blocked_not_run",
+          "claim": "no_surrogate_result"
+        },
+        "physical_correlation": {
+          "status": "blocked_no_test_article_or_rig",
+          "claim": "not_tested"
+        },
+        "manufacturing_release": {
+          "status": "blocked_pending_professional_engineering_and_validation",
+          "claim": "not_released"
+        }
+      }
+    },
+    {
+      "twin_id": "TWIN-993-INTERCOOLER-PRESSURE-HOSE-RIGHT",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-INTERCOOLER-PRESSURE-HOSE-RIGHT",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": null,
+        "part_id": null,
+        "oem_reference": "993 110 632 56",
+        "name": "Durite de pression turbo-echangeur droite"
+      },
+      "engineering_status": "blocked_input_acquisition",
+      "current_fidelity": "F1_envelope",
+      "minimum_reference_cae_fidelity": "F2_interfaces_then_domain_specific_F3_geometry",
+      "safety_class": "not_assessed",
+      "known_inputs": {
+        "declared_bounding_box_mm": [
+          430.0,
+          70.0,
+          90.0
+        ],
+        "declared_mass_kg": 0.42,
+        "material_family": null,
+        "material_status": "unresolved"
+      },
+      "screening_metrics": {
+        "declared_envelope_volume_m3": 0.002709,
+        "mass_per_envelope_volume_kg_m3": 155.03876,
+        "interpretation": "packaging consistency metric only; voids and multimaterial construction prevent material inference"
+      },
+      "reverse_engineering": {
+        "status": "blocked_missing_complete_geometry_material_and_interfaces",
+        "required_acquisitions": [
+          "licensed_editable_surface_or_parametric_reconstruction",
+          "interface_coordinates_sealing_surfaces_and_fastener_geometry",
+          "wall_thickness_internal_passages_and_tolerances",
+          "operating_temperature_pressure_load_and_environment_envelopes",
+          "material_system_grades_processes_and_supplier_evidence",
+          "acceptance_criteria_and_inspection_plan"
+        ]
+      },
+      "materials": {
+        "selected_material_system": null,
+        "screening_hypothesis": "reinforced_high_temperature_elastomer_hose_system",
+        "hypothesis_status": "unqualified_requires_source_environment_and_failure_mode_review",
+        "single_material_assumption_allowed": false
+      },
+      "manufacturing": {
+        "selected_functional_route": null,
+        "candidate_routes": {
+          "original_equivalent_process": "blocked_original_process_not_identified",
+          "machined_reconstruction": "blocked_geometry_material_and_validation_missing",
+          "additive_functional_reconstruction": "blocked_geometry_material_process_and_validation_missing",
+          "additive_proxy": "packaging_only_after_interface_geometry_is_available"
+        }
+      },
+      "simulation": {
+        "analysis_geometry": "unavailable",
+        "domain_ids": [
+          "network_flow",
+          "structural",
+          "thermal_fluid"
+        ],
+        "reference_solver": "domain_specific_reference_solver_from_vehicle_program",
+        "load_cases": [],
+        "required_inputs": [
+          "complete_analysis_geometry_and_mesh_plan",
+          "qualified_material_and_process_properties",
+          "loads_boundary_conditions_contacts_and_duty_cycle",
+          "analytical_checks_and_acceptance_criteria",
+          "reference_solver_convergence_and_balance_evidence"
+        ]
+      },
+      "digital_twin_tests": {
+        "identity_and_provenance": {
+          "status": "pass_documentary",
+          "claim": "identity_and_application_only"
+        },
+        "dimensional_interface_readiness": {
+          "status": "blocked_missing_measured_interfaces_and_tolerances",
+          "claim": "not_tested"
+        },
+        "mesh_readiness": {
+          "status": "blocked_F1_proxy_is_not_analysis_geometry",
+          "claim": "not_tested"
+        },
+        "reference_cae": {
+          "status": "blocked_not_run",
+          "claim": "no_FEA_result"
+        },
+        "physicsnemo": {
+          "status": "blocked_not_run",
+          "claim": "no_surrogate_result"
+        },
+        "physical_correlation": {
+          "status": "blocked_no_test_article_or_rig",
+          "claim": "not_tested"
+        },
+        "manufacturing_release": {
+          "status": "blocked_pending_professional_engineering_and_validation",
+          "claim": "not_released"
+        }
+      }
+    },
+    {
+      "twin_id": "TWIN-993-INTERCOOLER-REPLACEMENT-AKS",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-INTERCOOLER-REPLACEMENT-AKS",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": null,
+        "part_id": null,
+        "oem_reference": "993 110 330 53",
+        "name": "Echangeur de remplacement AKS DASIS 177020T"
+      },
+      "engineering_status": "blocked_input_acquisition",
+      "current_fidelity": "F1_envelope",
+      "minimum_reference_cae_fidelity": "F2_interfaces_then_domain_specific_F3_geometry",
+      "safety_class": "not_assessed",
+      "known_inputs": {
+        "declared_bounding_box_mm": [
+          260.0,
+          270.0,
+          60.0
+        ],
+        "declared_mass_kg": 7.06,
+        "material_family": null,
+        "material_status": "unresolved"
+      },
+      "screening_metrics": {
+        "declared_envelope_volume_m3": 0.004212,
+        "mass_per_envelope_volume_kg_m3": 1676.163343,
+        "interpretation": "packaging consistency metric only; voids and multimaterial construction prevent material inference"
+      },
+      "reverse_engineering": {
+        "status": "blocked_missing_complete_geometry_material_and_interfaces",
+        "required_acquisitions": [
+          "licensed_editable_surface_or_parametric_reconstruction",
+          "interface_coordinates_sealing_surfaces_and_fastener_geometry",
+          "wall_thickness_internal_passages_and_tolerances",
+          "operating_temperature_pressure_load_and_environment_envelopes",
+          "material_system_grades_processes_and_supplier_evidence",
+          "acceptance_criteria_and_inspection_plan"
+        ]
+      },
+      "materials": {
+        "selected_material_system": null,
+        "screening_hypothesis": "brazed_aluminium_heat_exchanger_system",
+        "hypothesis_status": "unqualified_requires_source_environment_and_failure_mode_review",
+        "single_material_assumption_allowed": false
+      },
+      "manufacturing": {
+        "selected_functional_route": null,
+        "candidate_routes": {
+          "original_equivalent_process": "blocked_original_process_not_identified",
+          "machined_reconstruction": "blocked_geometry_material_and_validation_missing",
+          "additive_functional_reconstruction": "blocked_geometry_material_process_and_validation_missing",
+          "additive_proxy": "packaging_only_after_interface_geometry_is_available"
+        }
+      },
+      "simulation": {
+        "analysis_geometry": "unavailable",
+        "domain_ids": [
+          "network_flow",
+          "structural",
+          "thermal_fluid"
+        ],
+        "reference_solver": "domain_specific_reference_solver_from_vehicle_program",
+        "load_cases": [],
+        "required_inputs": [
+          "complete_analysis_geometry_and_mesh_plan",
+          "qualified_material_and_process_properties",
+          "loads_boundary_conditions_contacts_and_duty_cycle",
+          "analytical_checks_and_acceptance_criteria",
+          "reference_solver_convergence_and_balance_evidence"
+        ]
+      },
+      "digital_twin_tests": {
+        "identity_and_provenance": {
+          "status": "pass_documentary",
+          "claim": "identity_and_application_only"
+        },
+        "dimensional_interface_readiness": {
+          "status": "blocked_missing_measured_interfaces_and_tolerances",
+          "claim": "not_tested"
+        },
+        "mesh_readiness": {
+          "status": "blocked_F1_proxy_is_not_analysis_geometry",
+          "claim": "not_tested"
+        },
+        "reference_cae": {
+          "status": "blocked_not_run",
+          "claim": "no_FEA_result"
+        },
+        "physicsnemo": {
+          "status": "blocked_not_run",
+          "claim": "no_surrogate_result"
+        },
+        "physical_correlation": {
+          "status": "blocked_no_test_article_or_rig",
+          "claim": "not_tested"
+        },
+        "manufacturing_release": {
+          "status": "blocked_pending_professional_engineering_and_validation",
+          "claim": "not_released"
+        }
+      }
+    },
+    {
+      "twin_id": "TWIN-993-INTERCOOLER-TA-TECHNIX-CORE-MODULE",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-INTERCOOLER-TA-TECHNIX-CORE-MODULE",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": null,
+        "part_id": null,
+        "oem_reference": null,
+        "name": "Module de faisceau d'echangeur TA Technix 993"
+      },
+      "engineering_status": "blocked_input_acquisition",
+      "current_fidelity": "F1_envelope",
+      "minimum_reference_cae_fidelity": "F2_interfaces_then_domain_specific_F3_geometry",
+      "safety_class": "not_assessed",
+      "known_inputs": {
+        "declared_bounding_box_mm": [
+          260.0,
+          260.0,
+          100.0
+        ],
+        "declared_mass_kg": null,
+        "material_family": null,
+        "material_status": "unresolved"
+      },
+      "screening_metrics": {
+        "declared_envelope_volume_m3": 0.00676,
+        "mass_per_envelope_volume_kg_m3": null,
+        "interpretation": "packaging consistency metric only; voids and multimaterial construction prevent material inference"
+      },
+      "reverse_engineering": {
+        "status": "blocked_missing_complete_geometry_material_and_interfaces",
+        "required_acquisitions": [
+          "licensed_editable_surface_or_parametric_reconstruction",
+          "interface_coordinates_sealing_surfaces_and_fastener_geometry",
+          "wall_thickness_internal_passages_and_tolerances",
+          "operating_temperature_pressure_load_and_environment_envelopes",
+          "material_system_grades_processes_and_supplier_evidence",
+          "acceptance_criteria_and_inspection_plan"
+        ]
+      },
+      "materials": {
+        "selected_material_system": null,
+        "screening_hypothesis": "brazed_aluminium_heat_exchanger_system",
+        "hypothesis_status": "unqualified_requires_source_environment_and_failure_mode_review",
+        "single_material_assumption_allowed": false
+      },
+      "manufacturing": {
+        "selected_functional_route": null,
+        "candidate_routes": {
+          "original_equivalent_process": "blocked_original_process_not_identified",
+          "machined_reconstruction": "blocked_geometry_material_and_validation_missing",
+          "additive_functional_reconstruction": "blocked_geometry_material_process_and_validation_missing",
+          "additive_proxy": "packaging_only_after_interface_geometry_is_available"
+        }
+      },
+      "simulation": {
+        "analysis_geometry": "unavailable",
+        "domain_ids": [
+          "network_flow",
+          "structural",
+          "thermal_fluid"
+        ],
+        "reference_solver": "domain_specific_reference_solver_from_vehicle_program",
+        "load_cases": [],
+        "required_inputs": [
+          "complete_analysis_geometry_and_mesh_plan",
+          "qualified_material_and_process_properties",
+          "loads_boundary_conditions_contacts_and_duty_cycle",
+          "analytical_checks_and_acceptance_criteria",
+          "reference_solver_convergence_and_balance_evidence"
+        ]
+      },
+      "digital_twin_tests": {
+        "identity_and_provenance": {
+          "status": "pass_documentary",
+          "claim": "identity_and_application_only"
+        },
+        "dimensional_interface_readiness": {
+          "status": "blocked_missing_measured_interfaces_and_tolerances",
+          "claim": "not_tested"
+        },
+        "mesh_readiness": {
+          "status": "blocked_F1_proxy_is_not_analysis_geometry",
+          "claim": "not_tested"
+        },
+        "reference_cae": {
+          "status": "blocked_not_run",
+          "claim": "no_FEA_result"
+        },
+        "physicsnemo": {
+          "status": "blocked_not_run",
+          "claim": "no_surrogate_result"
+        },
+        "physical_correlation": {
+          "status": "blocked_no_test_article_or_rig",
+          "claim": "not_tested"
+        },
+        "manufacturing_release": {
+          "status": "blocked_pending_professional_engineering_and_validation",
+          "claim": "not_released"
+        }
+      }
+    },
+    {
+      "twin_id": "TWIN-993-INTERCOOLER-TEMPERATURE-SENSOR",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-INTERCOOLER-TEMPERATURE-SENSOR",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": null,
+        "part_id": null,
+        "oem_reference": "993 606 114 00",
+        "name": "Sonde de temperature d'air de suralimentation"
+      },
+      "engineering_status": "blocked_input_acquisition",
+      "current_fidelity": "F1_envelope",
+      "minimum_reference_cae_fidelity": "F2_interfaces_then_domain_specific_F3_geometry",
+      "safety_class": "not_assessed",
+      "known_inputs": {
+        "declared_bounding_box_mm": [
+          75.0,
+          35.0,
+          20.0
+        ],
+        "declared_mass_kg": 0.02,
+        "material_family": null,
+        "material_status": "unresolved"
+      },
+      "screening_metrics": {
+        "declared_envelope_volume_m3": 5.25e-05,
+        "mass_per_envelope_volume_kg_m3": 380.952381,
+        "interpretation": "packaging consistency metric only; voids and multimaterial construction prevent material inference"
+      },
+      "reverse_engineering": {
+        "status": "blocked_missing_complete_geometry_material_and_interfaces",
+        "required_acquisitions": [
+          "licensed_editable_surface_or_parametric_reconstruction",
+          "interface_coordinates_sealing_surfaces_and_fastener_geometry",
+          "wall_thickness_internal_passages_and_tolerances",
+          "operating_temperature_pressure_load_and_environment_envelopes",
+          "material_system_grades_processes_and_supplier_evidence",
+          "acceptance_criteria_and_inspection_plan"
+        ]
+      },
+      "materials": {
+        "selected_material_system": null,
+        "screening_hypothesis": "multimaterial_temperature_sensor_assembly",
+        "hypothesis_status": "unqualified_requires_source_environment_and_failure_mode_review",
+        "single_material_assumption_allowed": false
+      },
+      "manufacturing": {
+        "selected_functional_route": null,
+        "candidate_routes": {
+          "original_equivalent_process": "blocked_original_process_not_identified",
+          "machined_reconstruction": "blocked_geometry_material_and_validation_missing",
+          "additive_functional_reconstruction": "blocked_geometry_material_process_and_validation_missing",
+          "additive_proxy": "packaging_only_after_interface_geometry_is_available"
+        }
+      },
+      "simulation": {
+        "analysis_geometry": "unavailable",
+        "domain_ids": [
+          "controls",
+          "electrical_network",
+          "thermal_fluid"
+        ],
+        "reference_solver": "domain_specific_reference_solver_from_vehicle_program",
+        "load_cases": [],
+        "required_inputs": [
+          "complete_analysis_geometry_and_mesh_plan",
+          "qualified_material_and_process_properties",
+          "loads_boundary_conditions_contacts_and_duty_cycle",
+          "analytical_checks_and_acceptance_criteria",
+          "reference_solver_convergence_and_balance_evidence"
+        ]
+      },
+      "digital_twin_tests": {
+        "identity_and_provenance": {
+          "status": "pass_documentary",
+          "claim": "identity_and_application_only"
+        },
+        "dimensional_interface_readiness": {
+          "status": "blocked_missing_measured_interfaces_and_tolerances",
+          "claim": "not_tested"
+        },
+        "mesh_readiness": {
+          "status": "blocked_F1_proxy_is_not_analysis_geometry",
+          "claim": "not_tested"
+        },
+        "reference_cae": {
+          "status": "blocked_not_run",
+          "claim": "no_FEA_result"
+        },
+        "physicsnemo": {
+          "status": "blocked_not_run",
+          "claim": "no_surrogate_result"
+        },
+        "physical_correlation": {
+          "status": "blocked_no_test_article_or_rig",
+          "claim": "not_tested"
+        },
+        "manufacturing_release": {
+          "status": "blocked_pending_professional_engineering_and_validation",
+          "claim": "not_released"
+        }
+      }
+    },
+    {
+      "twin_id": "TWIN-993-TURBO-HEAT-SHIELD-COVER-LEFT",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-TURBO-HEAT-SHIELD-COVER-LEFT",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": null,
+        "part_id": null,
+        "oem_reference": "993 123 113 51",
+        "name": "Couvercle de protection thermique du turbo gauche"
+      },
+      "engineering_status": "blocked_input_acquisition",
+      "current_fidelity": "F1_envelope",
+      "minimum_reference_cae_fidelity": "F2_interfaces_then_domain_specific_F3_geometry",
+      "safety_class": "not_assessed",
+      "known_inputs": {
+        "declared_bounding_box_mm": [
+          160.0,
+          110.0,
+          105.0
+        ],
+        "declared_mass_kg": 0.23,
+        "material_family": null,
+        "material_status": "unresolved"
+      },
+      "screening_metrics": {
+        "declared_envelope_volume_m3": 0.001848,
+        "mass_per_envelope_volume_kg_m3": 124.458874,
+        "interpretation": "packaging consistency metric only; voids and multimaterial construction prevent material inference"
+      },
+      "reverse_engineering": {
+        "status": "blocked_missing_complete_geometry_material_and_interfaces",
+        "required_acquisitions": [
+          "licensed_editable_surface_or_parametric_reconstruction",
+          "interface_coordinates_sealing_surfaces_and_fastener_geometry",
+          "wall_thickness_internal_passages_and_tolerances",
+          "operating_temperature_pressure_load_and_environment_envelopes",
+          "material_system_grades_processes_and_supplier_evidence",
+          "acceptance_criteria_and_inspection_plan"
+        ]
+      },
+      "materials": {
+        "selected_material_system": null,
+        "screening_hypothesis": "thin_gauge_high_temperature_metal_sheet_system",
+        "hypothesis_status": "unqualified_requires_source_environment_and_failure_mode_review",
+        "single_material_assumption_allowed": false
+      },
+      "manufacturing": {
+        "selected_functional_route": null,
+        "candidate_routes": {
+          "original_equivalent_process": "blocked_original_process_not_identified",
+          "machined_reconstruction": "blocked_geometry_material_and_validation_missing",
+          "additive_functional_reconstruction": "blocked_geometry_material_process_and_validation_missing",
+          "additive_proxy": "packaging_only_after_interface_geometry_is_available"
+        }
+      },
+      "simulation": {
+        "analysis_geometry": "unavailable",
+        "domain_ids": [
+          "package_interfaces",
+          "structural",
+          "thermal_fluid"
+        ],
+        "reference_solver": "domain_specific_reference_solver_from_vehicle_program",
+        "load_cases": [],
+        "required_inputs": [
+          "complete_analysis_geometry_and_mesh_plan",
+          "qualified_material_and_process_properties",
+          "loads_boundary_conditions_contacts_and_duty_cycle",
+          "analytical_checks_and_acceptance_criteria",
+          "reference_solver_convergence_and_balance_evidence"
+        ]
+      },
+      "digital_twin_tests": {
+        "identity_and_provenance": {
+          "status": "pass_documentary",
+          "claim": "identity_and_application_only"
+        },
+        "dimensional_interface_readiness": {
+          "status": "blocked_missing_measured_interfaces_and_tolerances",
+          "claim": "not_tested"
+        },
+        "mesh_readiness": {
+          "status": "blocked_F1_proxy_is_not_analysis_geometry",
+          "claim": "not_tested"
+        },
+        "reference_cae": {
+          "status": "blocked_not_run",
+          "claim": "no_FEA_result"
+        },
+        "physicsnemo": {
+          "status": "blocked_not_run",
+          "claim": "no_surrogate_result"
+        },
+        "physical_correlation": {
+          "status": "blocked_no_test_article_or_rig",
+          "claim": "not_tested"
+        },
+        "manufacturing_release": {
+          "status": "blocked_pending_professional_engineering_and_validation",
+          "claim": "not_released"
+        }
+      }
+    },
+    {
+      "twin_id": "TWIN-993-TURBOCHARGER-K16-24-FVD",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-TURBOCHARGER-K16-24-FVD",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": null,
+        "part_id": null,
+        "oem_reference": null,
+        "name": "Turbocompresseur hybride K16/24 FVD"
+      },
+      "engineering_status": "blocked_input_acquisition",
+      "current_fidelity": "F1_envelope",
+      "minimum_reference_cae_fidelity": "F2_interfaces_then_domain_specific_F3_geometry",
+      "safety_class": "not_assessed",
+      "known_inputs": {
+        "declared_bounding_box_mm": [
+          290.0,
+          230.0,
+          230.0
+        ],
+        "declared_mass_kg": 5.63,
+        "material_family": null,
+        "material_status": "unresolved"
+      },
+      "screening_metrics": {
+        "declared_envelope_volume_m3": 0.015341,
+        "mass_per_envelope_volume_kg_m3": 366.990418,
+        "interpretation": "packaging consistency metric only; voids and multimaterial construction prevent material inference"
+      },
+      "reverse_engineering": {
+        "status": "blocked_missing_complete_geometry_material_and_interfaces",
+        "required_acquisitions": [
+          "licensed_editable_surface_or_parametric_reconstruction",
+          "interface_coordinates_sealing_surfaces_and_fastener_geometry",
+          "wall_thickness_internal_passages_and_tolerances",
+          "operating_temperature_pressure_load_and_environment_envelopes",
+          "material_system_grades_processes_and_supplier_evidence",
+          "acceptance_criteria_and_inspection_plan"
+        ]
+      },
+      "materials": {
+        "selected_material_system": null,
+        "screening_hypothesis": "multimaterial_high_temperature_turbomachinery_assembly",
+        "hypothesis_status": "unqualified_requires_source_environment_and_failure_mode_review",
+        "single_material_assumption_allowed": false
+      },
+      "manufacturing": {
+        "selected_functional_route": null,
+        "candidate_routes": {
+          "original_equivalent_process": "blocked_original_process_not_identified",
+          "machined_reconstruction": "blocked_geometry_material_and_validation_missing",
+          "additive_functional_reconstruction": "blocked_geometry_material_process_and_validation_missing",
+          "additive_proxy": "packaging_only_after_interface_geometry_is_available"
+        }
+      },
+      "simulation": {
+        "analysis_geometry": "unavailable",
+        "domain_ids": [
+          "rotordynamics",
+          "structural",
+          "thermal_fluid"
+        ],
+        "reference_solver": "domain_specific_reference_solver_from_vehicle_program",
+        "load_cases": [],
+        "required_inputs": [
+          "complete_analysis_geometry_and_mesh_plan",
+          "qualified_material_and_process_properties",
+          "loads_boundary_conditions_contacts_and_duty_cycle",
+          "analytical_checks_and_acceptance_criteria",
+          "reference_solver_convergence_and_balance_evidence"
+        ]
+      },
+      "digital_twin_tests": {
+        "identity_and_provenance": {
+          "status": "pass_documentary",
+          "claim": "identity_and_application_only"
+        },
+        "dimensional_interface_readiness": {
+          "status": "blocked_missing_measured_interfaces_and_tolerances",
+          "claim": "not_tested"
+        },
+        "mesh_readiness": {
+          "status": "blocked_F1_proxy_is_not_analysis_geometry",
+          "claim": "not_tested"
+        },
+        "reference_cae": {
+          "status": "blocked_not_run",
+          "claim": "no_FEA_result"
+        },
+        "physicsnemo": {
+          "status": "blocked_not_run",
+          "claim": "no_surrogate_result"
+        },
+        "physical_correlation": {
+          "status": "blocked_no_test_article_or_rig",
+          "claim": "not_tested"
+        },
+        "manufacturing_release": {
+          "status": "blocked_pending_professional_engineering_and_validation",
+          "claim": "not_released"
+        }
+      }
+    },
+    {
+      "twin_id": "TWIN-993-TURBOCHARGER-K16-LEFT",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-TURBOCHARGER-K16-LEFT",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": "catalog/parts/993-turbocharger-k16-pair-0001.json",
+        "part_id": "993-TURBOCHARGER-K16-PAIR-0001",
+        "oem_reference": "993 123 013 52",
+        "name": "Turbocompresseur K16 gauche complet"
+      },
+      "engineering_status": "blocked_input_acquisition",
+      "current_fidelity": "F1_envelope",
+      "minimum_reference_cae_fidelity": "F2_interfaces_then_domain_specific_F3_geometry",
+      "safety_class": "prohibited_pending_engineering",
+      "known_inputs": {
+        "declared_bounding_box_mm": [
+          280.0,
+          190.0,
+          210.0
+        ],
+        "declared_mass_kg": 5.76,
+        "material_family": null,
+        "material_status": "unresolved"
+      },
+      "screening_metrics": {
+        "declared_envelope_volume_m3": 0.011172,
+        "mass_per_envelope_volume_kg_m3": 515.574651,
+        "interpretation": "packaging consistency metric only; voids and multimaterial construction prevent material inference"
+      },
+      "reverse_engineering": {
+        "status": "blocked_missing_complete_geometry_material_and_interfaces",
+        "required_acquisitions": [
+          "licensed_editable_surface_or_parametric_reconstruction",
+          "interface_coordinates_sealing_surfaces_and_fastener_geometry",
+          "wall_thickness_internal_passages_and_tolerances",
+          "operating_temperature_pressure_load_and_environment_envelopes",
+          "material_system_grades_processes_and_supplier_evidence",
+          "acceptance_criteria_and_inspection_plan"
+        ]
+      },
+      "materials": {
+        "selected_material_system": null,
+        "screening_hypothesis": "multimaterial_high_temperature_turbomachinery_assembly",
+        "hypothesis_status": "unqualified_requires_source_environment_and_failure_mode_review",
+        "single_material_assumption_allowed": false
+      },
+      "manufacturing": {
+        "selected_functional_route": null,
+        "candidate_routes": {
+          "original_equivalent_process": "blocked_original_process_not_identified",
+          "machined_reconstruction": "blocked_geometry_material_and_validation_missing",
+          "additive_functional_reconstruction": "blocked_geometry_material_process_and_validation_missing",
+          "additive_proxy": "packaging_only_after_interface_geometry_is_available"
+        }
+      },
+      "simulation": {
+        "analysis_geometry": "unavailable",
+        "domain_ids": [
+          "rotordynamics",
+          "structural",
+          "thermal_fluid"
+        ],
+        "reference_solver": "domain_specific_reference_solver_from_vehicle_program",
+        "load_cases": [],
+        "required_inputs": [
+          "complete_analysis_geometry_and_mesh_plan",
+          "qualified_material_and_process_properties",
+          "loads_boundary_conditions_contacts_and_duty_cycle",
+          "analytical_checks_and_acceptance_criteria",
+          "reference_solver_convergence_and_balance_evidence"
+        ]
+      },
+      "digital_twin_tests": {
+        "identity_and_provenance": {
+          "status": "pass_documentary",
+          "claim": "identity_and_application_only"
+        },
+        "dimensional_interface_readiness": {
+          "status": "blocked_missing_measured_interfaces_and_tolerances",
+          "claim": "not_tested"
+        },
+        "mesh_readiness": {
+          "status": "blocked_F1_proxy_is_not_analysis_geometry",
+          "claim": "not_tested"
+        },
+        "reference_cae": {
+          "status": "blocked_not_run",
+          "claim": "no_FEA_result"
+        },
+        "physicsnemo": {
+          "status": "blocked_not_run",
+          "claim": "no_surrogate_result"
+        },
+        "physical_correlation": {
+          "status": "blocked_no_test_article_or_rig",
+          "claim": "not_tested"
+        },
+        "manufacturing_release": {
+          "status": "blocked_pending_professional_engineering_and_validation",
+          "claim": "not_released"
+        }
+      }
+    },
+    {
+      "twin_id": "TWIN-993-TURBOCHARGER-K16-RIGHT",
+      "subject": {
+        "kind": "declared_reference_entry",
+        "id": "993-TURBOCHARGER-K16-RIGHT",
+        "record": "catalog/reference/993-declared-part-data.json",
+        "part_record": "catalog/parts/993-turbocharger-k16-pair-0001.json",
+        "part_id": "993-TURBOCHARGER-K16-PAIR-0001",
+        "oem_reference": "993 123 014 52",
+        "name": "Turbocompresseur K16 droit complet"
+      },
+      "engineering_status": "blocked_input_acquisition",
+      "current_fidelity": "F1_envelope",
+      "minimum_reference_cae_fidelity": "F2_interfaces_then_domain_specific_F3_geometry",
+      "safety_class": "prohibited_pending_engineering",
+      "known_inputs": {
+        "declared_bounding_box_mm": [
+          280.0,
+          190.0,
+          210.0
+        ],
+        "declared_mass_kg": 5.6,
+        "material_family": null,
+        "material_status": "unresolved"
+      },
+      "screening_metrics": {
+        "declared_envelope_volume_m3": 0.011172,
+        "mass_per_envelope_volume_kg_m3": 501.253133,
+        "interpretation": "packaging consistency metric only; voids and multimaterial construction prevent material inference"
+      },
+      "reverse_engineering": {
+        "status": "blocked_missing_complete_geometry_material_and_interfaces",
+        "required_acquisitions": [
+          "licensed_editable_surface_or_parametric_reconstruction",
+          "interface_coordinates_sealing_surfaces_and_fastener_geometry",
+          "wall_thickness_internal_passages_and_tolerances",
+          "operating_temperature_pressure_load_and_environment_envelopes",
+          "material_system_grades_processes_and_supplier_evidence",
+          "acceptance_criteria_and_inspection_plan"
+        ]
+      },
+      "materials": {
+        "selected_material_system": null,
+        "screening_hypothesis": "multimaterial_high_temperature_turbomachinery_assembly",
+        "hypothesis_status": "unqualified_requires_source_environment_and_failure_mode_review",
+        "single_material_assumption_allowed": false
+      },
+      "manufacturing": {
+        "selected_functional_route": null,
+        "candidate_routes": {
+          "original_equivalent_process": "blocked_original_process_not_identified",
+          "machined_reconstruction": "blocked_geometry_material_and_validation_missing",
+          "additive_functional_reconstruction": "blocked_geometry_material_process_and_validation_missing",
+          "additive_proxy": "packaging_only_after_interface_geometry_is_available"
+        }
+      },
+      "simulation": {
+        "analysis_geometry": "unavailable",
+        "domain_ids": [
+          "rotordynamics",
+          "structural",
+          "thermal_fluid"
+        ],
+        "reference_solver": "domain_specific_reference_solver_from_vehicle_program",
+        "load_cases": [],
+        "required_inputs": [
+          "complete_analysis_geometry_and_mesh_plan",
+          "qualified_material_and_process_properties",
+          "loads_boundary_conditions_contacts_and_duty_cycle",
+          "analytical_checks_and_acceptance_criteria",
+          "reference_solver_convergence_and_balance_evidence"
+        ]
+      },
+      "digital_twin_tests": {
+        "identity_and_provenance": {
+          "status": "pass_documentary",
+          "claim": "identity_and_application_only"
+        },
+        "dimensional_interface_readiness": {
+          "status": "blocked_missing_measured_interfaces_and_tolerances",
+          "claim": "not_tested"
+        },
+        "mesh_readiness": {
+          "status": "blocked_F1_proxy_is_not_analysis_geometry",
+          "claim": "not_tested"
+        },
+        "reference_cae": {
+          "status": "blocked_not_run",
+          "claim": "no_FEA_result"
+        },
+        "physicsnemo": {
+          "status": "blocked_not_run",
+          "claim": "no_surrogate_result"
+        },
+        "physical_correlation": {
+          "status": "blocked_no_test_article_or_rig",
+          "claim": "not_tested"
+        },
+        "manufacturing_release": {
+          "status": "blocked_pending_professional_engineering_and_validation",
+          "claim": "not_released"
+        }
+      }
+    },
+    {
+      "twin_id": "TWIN-FUCHS-37024.013",
+      "subject": {
+        "kind": "catalog_component",
+        "id": "COMP-FUCHS-37024.013",
+        "record": "catalog/components/comp-fuchs-37024.013.json",
+        "name": "Roue Fuchs forgée aluminium 7J x 17 ET55"
+      },
+      "engineering_status": "blocked_input_acquisition",
+      "current_fidelity": "F1_envelope",
+      "minimum_reference_cae_fidelity": "F3_measured_interfaces_and_complete_load_bearing_surfaces",
+      "safety_class": "wheel_safety_critical",
+      "known_inputs": {
+        "parameters": {
+          "RIM_WIDTH": {
+            "parameter_id": "RIM_WIDTH",
+            "name": "largeur nominale de jante",
+            "value": 7,
+            "unit": "in",
+            "source_id": "FUCHS-PRODUCT"
+          },
+          "RIM_DIAMETER": {
+            "parameter_id": "RIM_DIAMETER",
+            "name": "diamètre nominal de jante",
+            "value": 17,
+            "unit": "in",
+            "source_id": "FUCHS-PRODUCT"
+          },
+          "OFFSET": {
+            "parameter_id": "OFFSET",
+            "name": "déport ET",
+            "value": 55,
+            "unit": "mm",
+            "source_id": "FUCHS-PRODUCT"
+          },
+          "BOLT_COUNT": {
+            "parameter_id": "BOLT_COUNT",
+            "name": "nombre de fixations",
+            "value": 5,
+            "unit": "count",
+            "source_id": "FUCHS-37024-APPROVAL"
+          },
+          "PCD": {
+            "parameter_id": "PCD",
+            "name": "diamètre d'entraxe",
+            "value": 130,
+            "unit": "mm",
+            "source_id": "FUCHS-37024-APPROVAL"
+          },
+          "CENTER_BORE": {
+            "parameter_id": "CENTER_BORE",
+            "name": "alésage central",
+            "value": 71.58,
+            "unit": "mm",
+            "source_id": "FUCHS-37024-APPROVAL"
+          },
+          "BOLT_HOLE_DIAMETER": {
+            "parameter_id": "BOLT_HOLE_DIAMETER",
+            "name": "diamètre du trou de fixation",
+            "value": 15,
+            "unit": "mm",
+            "source_id": "FUCHS-37024-APPROVAL"
+          }
+        },
+        "mass": {
+          "value_g": 7500,
+          "tolerance_g": null,
+          "basis": "manufacturer",
+          "source_id": "FUCHS-993-PDF"
+        },
+        "material": {
+          "family": "aluminium",
+          "grade": null,
+          "process": "forged",
+          "source_id": "FUCHS-PRODUCT"
+        }
+      },
+      "screening_metrics": {
+        "nominal_bead_seat_width_mm": 177.8,
+        "mounting_plane_to_inboard_bead_seat_mm": 143.9,
+        "mounting_plane_to_outboard_bead_seat_mm": 33.9,
+        "interpretation": "nominal bead-seat distances only; flange thickness, tyre envelope and body clearance are excluded"
+      },
+      "reverse_engineering": {
+        "status": "blocked_missing_complete_geometry",
+        "required_acquisitions": [
+          "licensed_full_surface_scan_or_owner_measurement_set",
+          "hub_mounting_face_and_fastener_seat_geometry",
+          "barrel_flange_and_spoke_thickness_map",
+          "dimensional_tolerances_and_runout",
+          "material_grade_heat_treatment_and_forging_state",
+          "non_destructive_inspection_baseline"
+        ]
+      },
+      "manufacturing": {
+        "original_process": "forged",
+        "functional_routes": {
+          "machined_wheel": "blocked_not_demonstrated_equivalent_to_forged_reference",
+          "metal_additive_wheel": "blocked_safety_critical_and_unqualified",
+          "polymer_additive_proxy": "fit_and_clearance_only_after_complete_geometry"
+        },
+        "selected_functional_route": null
+      },
+      "simulation": {
+        "analysis_geometry": "unavailable",
+        "reference_solver": "CalculiX",
+        "load_cases": [
+          {
+            "load_case_id": "LC-FUCHS-37024.013-RADIAL",
+            "kind": "radial_static_and_fatigue",
+            "baseline_solver": "CalculiX_after_complete_geometry_and_inputs",
+            "status": "blocked_missing_loads_geometry_material_and_acceptance_criteria"
+          },
+          {
+            "load_case_id": "LC-FUCHS-37024.013-CORNERING",
+            "kind": "lateral_bending_and_fatigue",
+            "baseline_solver": "CalculiX_after_complete_geometry_and_inputs",
+            "status": "blocked_missing_loads_geometry_material_and_acceptance_criteria"
+          },
+          {
+            "load_case_id": "LC-FUCHS-37024.013-TORQUE",
+            "kind": "drive_and_braking_torque",
+            "baseline_solver": "CalculiX_after_complete_geometry_and_inputs",
+            "status": "blocked_missing_loads_geometry_material_and_acceptance_criteria"
+          },
+          {
+            "load_case_id": "LC-FUCHS-37024.013-IMPACT",
+            "kind": "road_impact_transient",
+            "baseline_solver": "CalculiX_after_complete_geometry_and_inputs",
+            "status": "blocked_missing_loads_geometry_material_and_acceptance_criteria"
+          }
+        ],
+        "required_inputs": [
+          "vehicle_corner_mass_and_dynamic_amplification",
+          "tyre_load_and_pressure_envelopes",
+          "hub_bolt_preload_and_contact_definition",
+          "qualified_material_curve_and_fatigue_data",
+          "mesh_convergence_plan",
+          "acceptance_criteria_and_regulatory_test_plan"
+        ]
+      },
+      "digital_twin_tests": {
+        "identity_and_provenance": {
+          "status": "pass_documentary",
+          "claim": "identity_and_application_only"
+        },
+        "dimensional_interface_readiness": {
+          "status": "blocked_missing_measured_interfaces_and_tolerances",
+          "claim": "not_tested"
+        },
+        "mesh_readiness": {
+          "status": "blocked_F1_proxy_is_not_analysis_geometry",
+          "claim": "not_tested"
+        },
+        "reference_cae": {
+          "status": "blocked_not_run",
+          "claim": "no_FEA_result"
+        },
+        "physicsnemo": {
+          "status": "blocked_not_run",
+          "claim": "no_surrogate_result"
+        },
+        "physical_correlation": {
+          "status": "blocked_no_test_article_or_rig",
+          "claim": "not_tested"
+        },
+        "manufacturing_release": {
+          "status": "blocked_pending_professional_engineering_and_validation",
+          "claim": "not_released"
+        }
+      }
+    },
+    {
+      "twin_id": "TWIN-FUCHS-37026.013",
+      "subject": {
+        "kind": "catalog_component",
+        "id": "COMP-FUCHS-37026.013",
+        "record": "catalog/components/comp-fuchs-37026.013.json",
+        "name": "Roue Fuchs forgée aluminium 9J x 17 ET55"
+      },
+      "engineering_status": "blocked_input_acquisition",
+      "current_fidelity": "F1_envelope",
+      "minimum_reference_cae_fidelity": "F3_measured_interfaces_and_complete_load_bearing_surfaces",
+      "safety_class": "wheel_safety_critical",
+      "known_inputs": {
+        "parameters": {
+          "RIM_WIDTH": {
+            "parameter_id": "RIM_WIDTH",
+            "name": "largeur nominale de jante",
+            "value": 9,
+            "unit": "in",
+            "source_id": "FUCHS-PRODUCT"
+          },
+          "RIM_DIAMETER": {
+            "parameter_id": "RIM_DIAMETER",
+            "name": "diamètre nominal de jante",
+            "value": 17,
+            "unit": "in",
+            "source_id": "FUCHS-PRODUCT"
+          },
+          "OFFSET": {
+            "parameter_id": "OFFSET",
+            "name": "déport ET",
+            "value": 55,
+            "unit": "mm",
+            "source_id": "FUCHS-PRODUCT"
+          },
+          "BOLT_COUNT": {
+            "parameter_id": "BOLT_COUNT",
+            "name": "nombre de fixations",
+            "value": 5,
+            "unit": "count",
+            "source_id": "FUCHS-37026-APPROVAL"
+          },
+          "PCD": {
+            "parameter_id": "PCD",
+            "name": "diamètre d'entraxe",
+            "value": 130,
+            "unit": "mm",
+            "source_id": "FUCHS-37026-APPROVAL"
+          },
+          "CENTER_BORE": {
+            "parameter_id": "CENTER_BORE",
+            "name": "alésage central",
+            "value": 71.5,
+            "unit": "mm",
+            "source_id": "FUCHS-37026-APPROVAL"
+          }
+        },
+        "mass": {
+          "value_g": 7950,
+          "tolerance_g": null,
+          "basis": "manufacturer",
+          "source_id": "FUCHS-993-PDF"
+        },
+        "material": {
+          "family": "aluminium",
+          "grade": null,
+          "process": "forged",
+          "source_id": "FUCHS-PRODUCT"
+        }
+      },
+      "screening_metrics": {
+        "nominal_bead_seat_width_mm": 228.6,
+        "mounting_plane_to_inboard_bead_seat_mm": 169.3,
+        "mounting_plane_to_outboard_bead_seat_mm": 59.3,
+        "interpretation": "nominal bead-seat distances only; flange thickness, tyre envelope and body clearance are excluded"
+      },
+      "reverse_engineering": {
+        "status": "blocked_missing_complete_geometry",
+        "required_acquisitions": [
+          "licensed_full_surface_scan_or_owner_measurement_set",
+          "hub_mounting_face_and_fastener_seat_geometry",
+          "barrel_flange_and_spoke_thickness_map",
+          "dimensional_tolerances_and_runout",
+          "material_grade_heat_treatment_and_forging_state",
+          "non_destructive_inspection_baseline"
+        ]
+      },
+      "manufacturing": {
+        "original_process": "forged",
+        "functional_routes": {
+          "machined_wheel": "blocked_not_demonstrated_equivalent_to_forged_reference",
+          "metal_additive_wheel": "blocked_safety_critical_and_unqualified",
+          "polymer_additive_proxy": "fit_and_clearance_only_after_complete_geometry"
+        },
+        "selected_functional_route": null
+      },
+      "simulation": {
+        "analysis_geometry": "unavailable",
+        "reference_solver": "CalculiX",
+        "load_cases": [
+          {
+            "load_case_id": "LC-FUCHS-37026.013-RADIAL",
+            "kind": "radial_static_and_fatigue",
+            "baseline_solver": "CalculiX_after_complete_geometry_and_inputs",
+            "status": "blocked_missing_loads_geometry_material_and_acceptance_criteria"
+          },
+          {
+            "load_case_id": "LC-FUCHS-37026.013-CORNERING",
+            "kind": "lateral_bending_and_fatigue",
+            "baseline_solver": "CalculiX_after_complete_geometry_and_inputs",
+            "status": "blocked_missing_loads_geometry_material_and_acceptance_criteria"
+          },
+          {
+            "load_case_id": "LC-FUCHS-37026.013-TORQUE",
+            "kind": "drive_and_braking_torque",
+            "baseline_solver": "CalculiX_after_complete_geometry_and_inputs",
+            "status": "blocked_missing_loads_geometry_material_and_acceptance_criteria"
+          },
+          {
+            "load_case_id": "LC-FUCHS-37026.013-IMPACT",
+            "kind": "road_impact_transient",
+            "baseline_solver": "CalculiX_after_complete_geometry_and_inputs",
+            "status": "blocked_missing_loads_geometry_material_and_acceptance_criteria"
+          }
+        ],
+        "required_inputs": [
+          "vehicle_corner_mass_and_dynamic_amplification",
+          "tyre_load_and_pressure_envelopes",
+          "hub_bolt_preload_and_contact_definition",
+          "qualified_material_curve_and_fatigue_data",
+          "mesh_convergence_plan",
+          "acceptance_criteria_and_regulatory_test_plan"
+        ]
+      },
+      "digital_twin_tests": {
+        "identity_and_provenance": {
+          "status": "pass_documentary",
+          "claim": "identity_and_application_only"
+        },
+        "dimensional_interface_readiness": {
+          "status": "blocked_missing_measured_interfaces_and_tolerances",
+          "claim": "not_tested"
+        },
+        "mesh_readiness": {
+          "status": "blocked_F1_proxy_is_not_analysis_geometry",
+          "claim": "not_tested"
+        },
+        "reference_cae": {
+          "status": "blocked_not_run",
+          "claim": "no_FEA_result"
+        },
+        "physicsnemo": {
+          "status": "blocked_not_run",
+          "claim": "no_surrogate_result"
+        },
+        "physical_correlation": {
+          "status": "blocked_no_test_article_or_rig",
+          "claim": "not_tested"
+        },
+        "manufacturing_release": {
+          "status": "blocked_pending_professional_engineering_and_validation",
+          "claim": "not_released"
+        }
+      }
+    },
+    {
+      "twin_id": "TWIN-FUCHS-37027.011",
+      "subject": {
+        "kind": "catalog_component",
+        "id": "COMP-FUCHS-37027.011",
+        "record": "catalog/components/comp-fuchs-37027.011.json",
+        "name": "Roue Fuchs forgée aluminium 8J x 18 ET52"
+      },
+      "engineering_status": "blocked_input_acquisition",
+      "current_fidelity": "F1_envelope",
+      "minimum_reference_cae_fidelity": "F3_measured_interfaces_and_complete_load_bearing_surfaces",
+      "safety_class": "wheel_safety_critical",
+      "known_inputs": {
+        "parameters": {
+          "RIM_WIDTH": {
+            "parameter_id": "RIM_WIDTH",
+            "name": "largeur nominale de jante",
+            "value": 8,
+            "unit": "in",
+            "source_id": "FUCHS-PRODUCT"
+          },
+          "RIM_DIAMETER": {
+            "parameter_id": "RIM_DIAMETER",
+            "name": "diamètre nominal de jante",
+            "value": 18,
+            "unit": "in",
+            "source_id": "FUCHS-PRODUCT"
+          },
+          "OFFSET": {
+            "parameter_id": "OFFSET",
+            "name": "déport ET",
+            "value": 52,
+            "unit": "mm",
+            "source_id": "FUCHS-PRODUCT"
+          },
+          "BOLT_COUNT": {
+            "parameter_id": "BOLT_COUNT",
+            "name": "nombre de fixations",
+            "value": 5,
+            "unit": "count",
+            "source_id": "FUCHS-APPROVAL"
+          },
+          "PCD": {
+            "parameter_id": "PCD",
+            "name": "diamètre d'entraxe",
+            "value": 130,
+            "unit": "mm",
+            "source_id": "FUCHS-APPROVAL"
+          },
+          "CENTER_BORE": {
+            "parameter_id": "CENTER_BORE",
+            "name": "alésage central",
+            "value": 71.5,
+            "unit": "mm",
+            "source_id": "FUCHS-APPROVAL"
+          }
+        },
+        "mass": {
+          "value_g": 8200,
+          "tolerance_g": null,
+          "basis": "manufacturer",
+          "source_id": "FUCHS-993-PDF"
+        },
+        "material": {
+          "family": "aluminium",
+          "grade": null,
+          "process": "forged",
+          "source_id": "FUCHS-PRODUCT"
+        }
+      },
+      "screening_metrics": {
+        "nominal_bead_seat_width_mm": 203.2,
+        "mounting_plane_to_inboard_bead_seat_mm": 153.6,
+        "mounting_plane_to_outboard_bead_seat_mm": 49.6,
+        "interpretation": "nominal bead-seat distances only; flange thickness, tyre envelope and body clearance are excluded"
+      },
+      "reverse_engineering": {
+        "status": "blocked_missing_complete_geometry",
+        "required_acquisitions": [
+          "licensed_full_surface_scan_or_owner_measurement_set",
+          "hub_mounting_face_and_fastener_seat_geometry",
+          "barrel_flange_and_spoke_thickness_map",
+          "dimensional_tolerances_and_runout",
+          "material_grade_heat_treatment_and_forging_state",
+          "non_destructive_inspection_baseline"
+        ]
+      },
+      "manufacturing": {
+        "original_process": "forged",
+        "functional_routes": {
+          "machined_wheel": "blocked_not_demonstrated_equivalent_to_forged_reference",
+          "metal_additive_wheel": "blocked_safety_critical_and_unqualified",
+          "polymer_additive_proxy": "fit_and_clearance_only_after_complete_geometry"
+        },
+        "selected_functional_route": null
+      },
+      "simulation": {
+        "analysis_geometry": "unavailable",
+        "reference_solver": "CalculiX",
+        "load_cases": [
+          {
+            "load_case_id": "LC-FUCHS-37027.011-RADIAL",
+            "kind": "radial_static_and_fatigue",
+            "baseline_solver": "CalculiX_after_complete_geometry_and_inputs",
+            "status": "blocked_missing_loads_geometry_material_and_acceptance_criteria"
+          },
+          {
+            "load_case_id": "LC-FUCHS-37027.011-CORNERING",
+            "kind": "lateral_bending_and_fatigue",
+            "baseline_solver": "CalculiX_after_complete_geometry_and_inputs",
+            "status": "blocked_missing_loads_geometry_material_and_acceptance_criteria"
+          },
+          {
+            "load_case_id": "LC-FUCHS-37027.011-TORQUE",
+            "kind": "drive_and_braking_torque",
+            "baseline_solver": "CalculiX_after_complete_geometry_and_inputs",
+            "status": "blocked_missing_loads_geometry_material_and_acceptance_criteria"
+          },
+          {
+            "load_case_id": "LC-FUCHS-37027.011-IMPACT",
+            "kind": "road_impact_transient",
+            "baseline_solver": "CalculiX_after_complete_geometry_and_inputs",
+            "status": "blocked_missing_loads_geometry_material_and_acceptance_criteria"
+          }
+        ],
+        "required_inputs": [
+          "vehicle_corner_mass_and_dynamic_amplification",
+          "tyre_load_and_pressure_envelopes",
+          "hub_bolt_preload_and_contact_definition",
+          "qualified_material_curve_and_fatigue_data",
+          "mesh_convergence_plan",
+          "acceptance_criteria_and_regulatory_test_plan"
+        ]
+      },
+      "digital_twin_tests": {
+        "identity_and_provenance": {
+          "status": "pass_documentary",
+          "claim": "identity_and_application_only"
+        },
+        "dimensional_interface_readiness": {
+          "status": "blocked_missing_measured_interfaces_and_tolerances",
+          "claim": "not_tested"
+        },
+        "mesh_readiness": {
+          "status": "blocked_F1_proxy_is_not_analysis_geometry",
+          "claim": "not_tested"
+        },
+        "reference_cae": {
+          "status": "blocked_not_run",
+          "claim": "no_FEA_result"
+        },
+        "physicsnemo": {
+          "status": "blocked_not_run",
+          "claim": "no_surrogate_result"
+        },
+        "physical_correlation": {
+          "status": "blocked_no_test_article_or_rig",
+          "claim": "not_tested"
+        },
+        "manufacturing_release": {
+          "status": "blocked_pending_professional_engineering_and_validation",
+          "claim": "not_released"
+        }
+      }
+    },
+    {
+      "twin_id": "TWIN-FUCHS-37028.011",
+      "subject": {
+        "kind": "catalog_component",
+        "id": "COMP-FUCHS-37028.011",
+        "record": "catalog/components/comp-fuchs-37028.011.json",
+        "name": "Roue Fuchs forgée aluminium 10J x 18 ET65"
+      },
+      "engineering_status": "blocked_input_acquisition",
+      "current_fidelity": "F1_envelope",
+      "minimum_reference_cae_fidelity": "F3_measured_interfaces_and_complete_load_bearing_surfaces",
+      "safety_class": "wheel_safety_critical",
+      "known_inputs": {
+        "parameters": {
+          "RIM_WIDTH": {
+            "parameter_id": "RIM_WIDTH",
+            "name": "largeur nominale de jante",
+            "value": 10,
+            "unit": "in",
+            "source_id": "FUCHS-PRODUCT"
+          },
+          "RIM_DIAMETER": {
+            "parameter_id": "RIM_DIAMETER",
+            "name": "diamètre nominal de jante",
+            "value": 18,
+            "unit": "in",
+            "source_id": "FUCHS-PRODUCT"
+          },
+          "OFFSET": {
+            "parameter_id": "OFFSET",
+            "name": "déport ET",
+            "value": 65,
+            "unit": "mm",
+            "source_id": "FUCHS-PRODUCT"
+          },
+          "BOLT_COUNT": {
+            "parameter_id": "BOLT_COUNT",
+            "name": "nombre de fixations",
+            "value": 5,
+            "unit": "count",
+            "source_id": "FUCHS-APPROVAL"
+          },
+          "PCD": {
+            "parameter_id": "PCD",
+            "name": "diamètre d'entraxe",
+            "value": 130,
+            "unit": "mm",
+            "source_id": "FUCHS-APPROVAL"
+          },
+          "CENTER_BORE": {
+            "parameter_id": "CENTER_BORE",
+            "name": "alésage central",
+            "value": 71.5,
+            "unit": "mm",
+            "source_id": "FUCHS-APPROVAL"
+          }
+        },
+        "mass": {
+          "value_g": 8800,
+          "tolerance_g": null,
+          "basis": "manufacturer",
+          "source_id": "FUCHS-993-PDF"
+        },
+        "material": {
+          "family": "aluminium",
+          "grade": null,
+          "process": "forged",
+          "source_id": "FUCHS-PRODUCT"
+        }
+      },
+      "screening_metrics": {
+        "nominal_bead_seat_width_mm": 254.0,
+        "mounting_plane_to_inboard_bead_seat_mm": 192.0,
+        "mounting_plane_to_outboard_bead_seat_mm": 62.0,
+        "interpretation": "nominal bead-seat distances only; flange thickness, tyre envelope and body clearance are excluded"
+      },
+      "reverse_engineering": {
+        "status": "blocked_missing_complete_geometry",
+        "required_acquisitions": [
+          "licensed_full_surface_scan_or_owner_measurement_set",
+          "hub_mounting_face_and_fastener_seat_geometry",
+          "barrel_flange_and_spoke_thickness_map",
+          "dimensional_tolerances_and_runout",
+          "material_grade_heat_treatment_and_forging_state",
+          "non_destructive_inspection_baseline"
+        ]
+      },
+      "manufacturing": {
+        "original_process": "forged",
+        "functional_routes": {
+          "machined_wheel": "blocked_not_demonstrated_equivalent_to_forged_reference",
+          "metal_additive_wheel": "blocked_safety_critical_and_unqualified",
+          "polymer_additive_proxy": "fit_and_clearance_only_after_complete_geometry"
+        },
+        "selected_functional_route": null
+      },
+      "simulation": {
+        "analysis_geometry": "unavailable",
+        "reference_solver": "CalculiX",
+        "load_cases": [
+          {
+            "load_case_id": "LC-FUCHS-37028.011-RADIAL",
+            "kind": "radial_static_and_fatigue",
+            "baseline_solver": "CalculiX_after_complete_geometry_and_inputs",
+            "status": "blocked_missing_loads_geometry_material_and_acceptance_criteria"
+          },
+          {
+            "load_case_id": "LC-FUCHS-37028.011-CORNERING",
+            "kind": "lateral_bending_and_fatigue",
+            "baseline_solver": "CalculiX_after_complete_geometry_and_inputs",
+            "status": "blocked_missing_loads_geometry_material_and_acceptance_criteria"
+          },
+          {
+            "load_case_id": "LC-FUCHS-37028.011-TORQUE",
+            "kind": "drive_and_braking_torque",
+            "baseline_solver": "CalculiX_after_complete_geometry_and_inputs",
+            "status": "blocked_missing_loads_geometry_material_and_acceptance_criteria"
+          },
+          {
+            "load_case_id": "LC-FUCHS-37028.011-IMPACT",
+            "kind": "road_impact_transient",
+            "baseline_solver": "CalculiX_after_complete_geometry_and_inputs",
+            "status": "blocked_missing_loads_geometry_material_and_acceptance_criteria"
+          }
+        ],
+        "required_inputs": [
+          "vehicle_corner_mass_and_dynamic_amplification",
+          "tyre_load_and_pressure_envelopes",
+          "hub_bolt_preload_and_contact_definition",
+          "qualified_material_curve_and_fatigue_data",
+          "mesh_convergence_plan",
+          "acceptance_criteria_and_regulatory_test_plan"
+        ]
+      },
+      "digital_twin_tests": {
+        "identity_and_provenance": {
+          "status": "pass_documentary",
+          "claim": "identity_and_application_only"
+        },
+        "dimensional_interface_readiness": {
+          "status": "blocked_missing_measured_interfaces_and_tolerances",
+          "claim": "not_tested"
+        },
+        "mesh_readiness": {
+          "status": "blocked_F1_proxy_is_not_analysis_geometry",
+          "claim": "not_tested"
+        },
+        "reference_cae": {
+          "status": "blocked_not_run",
+          "claim": "no_FEA_result"
+        },
+        "physicsnemo": {
+          "status": "blocked_not_run",
+          "claim": "no_surrogate_result"
+        },
+        "physical_correlation": {
+          "status": "blocked_no_test_article_or_rig",
+          "claim": "not_tested"
+        },
+        "manufacturing_release": {
+          "status": "blocked_pending_professional_engineering_and_validation",
+          "claim": "not_released"
+        }
+      }
+    }
+  ]
+}

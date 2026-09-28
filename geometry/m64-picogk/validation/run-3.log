@@ -1,0 +1,258 @@
++ git -C /opt/PicoGK rev-parse HEAD
+0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3
++ git -C /opt/PicoGK rev-parse HEAD
++ test 0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3 = 0e6cf6b6f4993ec16dbcd72d8f26f26b999980f3
++ test -f /usr/local/lib/picogk.so
++ dotnet --version
+8.0.131
++ ln -sf /usr/local/lib/picogk.so /tmp/picogk.26.2.so
++ export LD_LIBRARY_PATH=/tmp:/usr/lib/x86_64-linux-gnu/openmpi/lib:/usr/lib/openfoam/openfoam2312/platforms/linux64GccDPInt32Opt/lib/dummy
++ rm -rf /tmp/pgkbuild
++ cp -r /opt/PicoGK/. /tmp/pgkbuild
++ sed -i s|<TargetFramework>net[0-9][0-9]*\.0</TargetFramework>|<TargetFramework>net8.0</TargetFramework>| /tmp/pgkbuild/PicoGK.csproj
++ grep -q <TargetFramework>net8.0</TargetFramework> /tmp/pgkbuild/PicoGK.csproj
++ dotnet build /tmp/pgkbuild/PicoGK.csproj -c Release -o /opt/PicoGK/bin -p:GeneratePackageOnBuild=false
+
+Welcome to .NET 8.0!
+---------------------
+SDK Version: 8.0.131
+
+----------------
+Installed an ASP.NET Core HTTPS development certificate.
+To trust the certificate, view the instructions: https://aka.ms/dotnet-https-linux
+
+----------------
+Write your first app: https://aka.ms/dotnet-hello-world
+Find out what's new: https://aka.ms/dotnet-whats-new
+Explore documentation: https://aka.ms/dotnet-docs
+Report issues and find source on GitHub: https://github.com/dotnet/core
+Use 'dotnet --help' to see available commands or visit: https://aka.ms/dotnet-cli
+--------------------------------------------------------------------------------------
+MSBuild version 17.8.49+7806cbf7b for .NET
+  Determining projects to restore...
+  Restored /tmp/pgkbuild/PicoGK.csproj (in 11.95 sec).
+  PicoGK -> /opt/PicoGK/bin/PicoGK.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:14.67
++ dotnet build geometry/m64-picogk/M64PicogkSmoke.csproj -c Release -o /tmp/m64smoke -p:PicoGkBin=/opt/PicoGK/bin -p:GeneratePackageOnBuild=false
+MSBuild version 17.8.49+7806cbf7b for .NET
+MSBUILD : error MSB1009: Project file does not exist.
+Switch: geometry/m64-picogk/M64PicogkSmoke.csproj
++ mkdir -p geometry/m64-picogk/validation
++ dotnet /tmp/m64smoke/M64PicogkSmoke.dll geometry/m64-picogk/validation/m64-picogk-smoke-box-hole.stl 0.5
+Could not execute because the specified command or file was not found.
+Possible reasons for this include:
+  * You misspelled a built-in dotnet command.
+  * You intended to execute a .NET program, but dotnet-/tmp/m64smoke/M64PicogkSmoke.dll does not exist.
+  * You intended to run a global tool, but a dotnet-prefixed executable with this name could not be found on the PATH.
++ _foamEtc -config vtk
++ /usr/lib/openfoam/openfoam2312/bin/foamEtcFile -sh -config vtk
++ eval . /usr/lib/openfoam/openfoam2312/etc/config.sh/vtk 
++ . /usr/lib/openfoam/openfoam2312/etc/config.sh/vtk
++ vtk_version=VTK-8.2.0
++ mesa_version=mesa-17.1.1
++ mesa_llvm=none
++ export VTK_DIR=/usr/lib/openfoam/openfoam2312/ThirdParty/platforms/linux64Gcc/VTK-8.2.0
++ export MESA_ARCH_PATH=/usr/lib/openfoam/openfoam2312/ThirdParty/platforms/linux64Gcc/mesa-17.1.1
++ export LLVM_ARCH_PATH=/usr/lib/openfoam/openfoam2312/ThirdParty/platforms/linux64/none
++ unset ParaView_MESA_DIR
++ [ -n  ]
++ command -v _foamAddLib
++ [ -d /usr/lib/openfoam/openfoam2312/ThirdParty/platforms/linux64Gcc/VTK-8.2.0 ]
++ unset VTK_DIR
++ [ -d /usr/lib/openfoam/openfoam2312/ThirdParty/platforms/linux64Gcc/mesa-17.1.1 ]
++ unset LLVM_ARCH_PATH
++ unset MESA_ARCH_PATH
++ unset vtk_version mesa_version mesa_llvm
++ _foamEtc -config adios2
++ /usr/lib/openfoam/openfoam2312/bin/foamEtcFile -sh -config adios2
++ eval . /usr/lib/openfoam/openfoam2312/etc/config.sh/adios2 
++ . /usr/lib/openfoam/openfoam2312/etc/config.sh/adios2
++ adios2_version=ADIOS2-2.9.2
++ export ADIOS2_ARCH_PATH=/usr/lib/openfoam/openfoam2312/ThirdParty/platforms/linux64Gcc/ADIOS2-2.9.2
++ [ -n  ]
++ command -v _foamAddLibAuto
++ _foamAddLibAuto /usr/lib/openfoam/openfoam2312/ThirdParty/platforms/linux64Gcc/ADIOS2-2.9.2
++ foamVar_prefix=/usr/lib/openfoam/openfoam2312/ThirdParty/platforms/linux64Gcc/ADIOS2-2.9.2
++ foamVar_end=2.9.2
++ [ -z /usr/lib/openfoam/openfoam2312/ThirdParty/platforms/linux64Gcc/ADIOS2-2.9.2 ]
++ [ 2.9.2 = none ]
++ [ 2.9.2 = system ]
++ [ -d /usr/lib/openfoam/openfoam2312/ThirdParty/platforms/linux64Gcc/ADIOS2-2.9.2 ]
++ foamVar_end=
++ [ -n  ]
++ unset foamVar_prefix foamVar_end
++ return 1
++ unset adios2_version
++ _foamEtc -config CGAL
++ /usr/lib/openfoam/openfoam2312/bin/foamEtcFile -sh -config CGAL
++ eval . /usr/lib/openfoam/openfoam2312/etc/config.sh/CGAL 
++ . /usr/lib/openfoam/openfoam2312/etc/config.sh/CGAL
++ boost_version=boost-system
++ cgal_version=cgal-system
++ export BOOST_ARCH_PATH=/usr/lib/openfoam/openfoam2312/ThirdParty/platforms/linux64Gcc/boost-system
++ export CGAL_ARCH_PATH=/usr/lib/openfoam/openfoam2312/ThirdParty/platforms/linux64Gcc/cgal-system
++ [ -n  ]
++ command -v _foamAddLibAuto
++ _foamAddLibAuto /usr/lib/openfoam/openfoam2312/ThirdParty/platforms/linux64Gcc/boost-system lib64
++ foamVar_prefix=/usr/lib/openfoam/openfoam2312/ThirdParty/platforms/linux64Gcc/boost-system
++ foamVar_end=system
++ [ -z /usr/lib/openfoam/openfoam2312/ThirdParty/platforms/linux64Gcc/boost-system ]
++ [ system = none ]
++ [ system = system ]
++ unset foamVar_prefix foamVar_end
++ return 1
++ _foamAddLibAuto /usr/lib/openfoam/openfoam2312/ThirdParty/platforms/linux64Gcc/cgal-system lib64
++ foamVar_prefix=/usr/lib/openfoam/openfoam2312/ThirdParty/platforms/linux64Gcc/cgal-system
++ foamVar_end=system
++ [ -z /usr/lib/openfoam/openfoam2312/ThirdParty/platforms/linux64Gcc/cgal-system ]
++ [ system = none ]
++ [ system = system ]
++ unset foamVar_prefix foamVar_end
++ return 1
++ _foamAddLibAuto
++ foamVar_prefix=
++ foamVar_end=
++ [ -z  ]
++ unset foamVar_prefix foamVar_end
++ return 1
++ _foamAddLibAuto
++ foamVar_prefix=
++ foamVar_end=
++ [ -z  ]
++ unset foamVar_prefix foamVar_end
++ return 1
++ unset boost_version cgal_version
++ _foamEtc -config scotch
++ /usr/lib/openfoam/openfoam2312/bin/foamEtcFile -sh -config scotch
++ eval . /usr/lib/openfoam/openfoam2312/etc/config.sh/scotch 
++ . /usr/lib/openfoam/openfoam2312/etc/config.sh/scotch
++ SCOTCH_VERSION=scotch-system
++ export SCOTCH_ARCH_PATH=/usr/lib/openfoam/openfoam2312/ThirdParty/platforms/linux64GccDPInt32/scotch-system
++ _foamEtc -config FFTW
++ /usr/lib/openfoam/openfoam2312/bin/foamEtcFile -sh -config FFTW
++ eval . /usr/lib/openfoam/openfoam2312/etc/config.sh/FFTW 
++ . /usr/lib/openfoam/openfoam2312/etc/config.sh/FFTW
++ fftw_version=fftw-system
++ export FFTW_ARCH_PATH=/usr/lib/openfoam/openfoam2312/ThirdParty/platforms/linux64Gcc/fftw-system
++ [ -n  ]
++ command -v _foamAddLibAuto
++ _foamAddLibAuto /usr/lib/openfoam/openfoam2312/ThirdParty/platforms/linux64Gcc/fftw-system lib64
++ foamVar_prefix=/usr/lib/openfoam/openfoam2312/ThirdParty/platforms/linux64Gcc/fftw-system
++ foamVar_end=system
++ [ -z /usr/lib/openfoam/openfoam2312/ThirdParty/platforms/linux64Gcc/fftw-system ]
++ [ system = none ]
++ [ system = system ]
++ unset foamVar_prefix foamVar_end
++ return 1
++ unset fftw_version
++ [ -n  ]
++ _foamAddLib /usr/lib/openfoam/openfoam2312/platforms/linux64GccDPInt32Opt/lib
++ export LD_LIBRARY_PATH=/usr/lib/openfoam/openfoam2312/platforms/linux64GccDPInt32Opt/lib:/tmp:/usr/lib/x86_64-linux-gnu/openmpi/lib:/usr/lib/openfoam/openfoam2312/platforms/linux64GccDPInt32Opt/lib/dummy
++ [ sys-openmpi != dummy ]
++ _foamAddLib /usr/lib/openfoam/openfoam2312/platforms/linux64GccDPInt32Opt/lib/sys-openmpi
++ export LD_LIBRARY_PATH=/usr/lib/openfoam/openfoam2312/platforms/linux64GccDPInt32Opt/lib/sys-openmpi:/usr/lib/openfoam/openfoam2312/platforms/linux64GccDPInt32Opt/lib:/tmp:/usr/lib/x86_64-linux-gnu/openmpi/lib:/usr/lib/openfoam/openfoam2312/platforms/linux64GccDPInt32Opt/lib/dummy
++ _foamAddLib /root/OpenFOAM/user-v2312/platforms/linux64GccDPInt32Opt/lib:/usr/lib/openfoam/openfoam2312/site/2312/platforms/linux64GccDPInt32Opt/lib
++ export LD_LIBRARY_PATH=/root/OpenFOAM/user-v2312/platforms/linux64GccDPInt32Opt/lib:/usr/lib/openfoam/openfoam2312/site/2312/platforms/linux64GccDPInt32Opt/lib:/usr/lib/openfoam/openfoam2312/platforms/linux64GccDPInt32Opt/lib/sys-openmpi:/usr/lib/openfoam/openfoam2312/platforms/linux64GccDPInt32Opt/lib:/tmp:/usr/lib/x86_64-linux-gnu/openmpi/lib:/usr/lib/openfoam/openfoam2312/platforms/linux64GccDPInt32Opt/lib/dummy
++ [ -d /usr/lib/openfoam/openfoam2312/doc/man1 ]
++ [ -n #  ]
++ _foamEtc -config aliases
++ /usr/lib/openfoam/openfoam2312/bin/foamEtcFile -sh -config aliases
++ eval . /usr/lib/openfoam/openfoam2312/etc/config.sh/aliases 
++ . /usr/lib/openfoam/openfoam2312/etc/config.sh/aliases
++ alias wmSet=. ${WM_PROJECT_DIR:?}/etc/bashrc
++ alias wmInt32=wmSet WM_LABEL_SIZE=32
++ alias wmInt64=wmSet WM_LABEL_SIZE=64
++ alias wmDP=wmSet WM_PRECISION_OPTION=DP
++ alias wmSP=wmSet WM_PRECISION_OPTION=SP
++ alias wmSPDP=wmSet WM_PRECISION_OPTION=SPDP
++ alias wmUnset=. ${WM_PROJECT_DIR:?}/etc/config.sh/unset
++ alias foam=cd ${WM_PROJECT_DIR:?}
++ alias src=cd ${WM_PROJECT_DIR:?}/src
++ alias lib=cd ${FOAM_LIBBIN:?}
++ alias app=cd ${WM_PROJECT_DIR:?}/applications
++ alias sol=cd ${WM_PROJECT_DIR:?}/applications/solvers
++ alias util=cd ${WM_PROJECT_DIR:?}/applications/utilities
++ alias tut=cd ${FOAM_TUTORIALS:-${WM_PROJECT_DIR:?}/tutorials}
++ alias run=cd ${FOAM_RUN:-${WM_PROJECT_USER_DIR:?}/run}
++ alias ufoam=cd ${WM_PROJECT_USER_DIR:?}
++ alias uapp=cd ${WM_PROJECT_USER_DIR:?}/applications
++ alias usol=cd ${WM_PROJECT_USER_DIR:?}/applications/solvers
++ alias uutil=cd ${WM_PROJECT_USER_DIR:?}/applications/utilities
++ unset -f wmRefresh
++ unset -f foamVersion
++ unset -f foamPV
++ unset -f foamPwd
++ [ 0 -ge 4 ]
++ export PATH MANPATH
++ [ Linux = Darwin ]
++ export LD_LIBRARY_PATH
++ _foamClean PATH
++ foamVar_name=PATH
++ shift
++ /usr/lib/openfoam/openfoam2312/bin/foamCleanPath -sh-env=PATH
++ eval PATH="/usr/lib/x86_64-linux-gnu/openmpi/bin:/root/OpenFOAM/user-v2312/platforms/linux64GccDPInt32Opt/bin:/usr/lib/openfoam/openfoam2312/site/2312/platforms/linux64GccDPInt32Opt/bin:/usr/lib/openfoam/openfoam2312/platforms/linux64GccDPInt32Opt/bin:/usr/lib/openfoam/openfoam2312/bin:/usr/lib/openfoam/openfoam2312/wmake:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
++ PATH=/usr/lib/x86_64-linux-gnu/openmpi/bin:/root/OpenFOAM/user-v2312/platforms/linux64GccDPInt32Opt/bin:/usr/lib/openfoam/openfoam2312/site/2312/platforms/linux64GccDPInt32Opt/bin:/usr/lib/openfoam/openfoam2312/platforms/linux64GccDPInt32Opt/bin:/usr/lib/openfoam/openfoam2312/bin:/usr/lib/openfoam/openfoam2312/wmake:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
++ unset foamVar_name
++ _foamClean MANPATH
++ foamVar_name=MANPATH
++ shift
++ /usr/lib/openfoam/openfoam2312/bin/foamCleanPath -sh-env=MANPATH
++ eval 
++ unset foamVar_name
++ _foamClean -lib
++ foamVar_name=-lib
++ shift
++ /usr/lib/openfoam/openfoam2312/bin/foamCleanPath -sh-env=-lib
++ eval LD_LIBRARY_PATH="/root/OpenFOAM/user-v2312/platforms/linux64GccDPInt32Opt/lib:/usr/lib/openfoam/openfoam2312/site/2312/platforms/linux64GccDPInt32Opt/lib:/usr/lib/openfoam/openfoam2312/platforms/linux64GccDPInt32Opt/lib/sys-openmpi:/usr/lib/openfoam/openfoam2312/platforms/linux64GccDPInt32Opt/lib:/tmp:/usr/lib/x86_64-linux-gnu/openmpi/lib:/usr/lib/openfoam/openfoam2312/platforms/linux64GccDPInt32Opt/lib/dummy"
++ LD_LIBRARY_PATH=/root/OpenFOAM/user-v2312/platforms/linux64GccDPInt32Opt/lib:/usr/lib/openfoam/openfoam2312/site/2312/platforms/linux64GccDPInt32Opt/lib:/usr/lib/openfoam/openfoam2312/platforms/linux64GccDPInt32Opt/lib/sys-openmpi:/usr/lib/openfoam/openfoam2312/platforms/linux64GccDPInt32Opt/lib:/tmp:/usr/lib/x86_64-linux-gnu/openmpi/lib:/usr/lib/openfoam/openfoam2312/platforms/linux64GccDPInt32Opt/lib/dummy
++ unset foamVar_name
++ [ Linux = Darwin ]
++ [ -n  ]
++ . /usr/lib/openfoam/openfoam2312/etc/config.sh/functions
++ [ -z loaded ]
++ unset -f _foamAddPath _foamAddMan _foamAddLib _foamAddLibAuto
++ unset -f _foamClean _foamEcho _foamEtc
++ unset foamClean
++ unset _foam_uname_s
++ unset WM_SHELL_FUNCTIONS
++ unset cleaned foamOldDirs _foamFoundDir _foamPrefixDir
++ unset foamOldDirs projectDir
++ [ -n  ]
++ export OMPI_MCA_btl_vader_single_copy_mechanism=none
++ export OMPI_MCA_btl_base_warn_component_unused=0
++ [ -n  ]
++ exec bash -euo pipefail -c 
+set -x
+# 1) Pin check: PicoGK 2.3.0 sources and native runtime, per ADR 0004.
+git -C /opt/PicoGK rev-parse HEAD
+test "$(git -C /opt/PicoGK rev-parse HEAD)" = 0e6cf6b6f4993ec16dbcd72d8f26f26b999980f3
+test -f /usr/local/lib/picogk.so
+dotnet --version
+
+# 2) The image ships the pinned PicoGKRuntime with SONAME picogk.so while the
+#    pinned C# layer imports "picogk.26.2" (PicoGK Internals/Config.cs).
+#    Bridge the name for the process via LD_LIBRARY_PATH (no image change).
+ln -sf /usr/local/lib/picogk.so /tmp/picogk.26.2.so
+export LD_LIBRARY_PATH=/tmp:${LD_LIBRARY_PATH:-}
+
+# 3) Build the pinned PicoGK managed layer against the net8.0 SDK in the image.
+#    The upstream csproj targets net9.0; override to net8.0 per ADR 0004.
+rm -rf /tmp/pgkbuild && cp -r /opt/PicoGK/. /tmp/pgkbuild
+sed -i "s|<TargetFramework>net[0-9][0-9]*\.0</TargetFramework>|<TargetFramework>net8.0</TargetFramework>|" /tmp/pgkbuild/PicoGK.csproj
+grep -q "<TargetFramework>net8.0</TargetFramework>" /tmp/pgkbuild/PicoGK.csproj
+dotnet build /tmp/pgkbuild/PicoGK.csproj -c Release -o /opt/PicoGK/bin -p:GeneratePackageOnBuild=false
+
+# 4) Build the M64 smoke project (net8.0) and run the deterministic export.
+dotnet build geometry/m64-picogk/M64PicogkSmoke.csproj -c Release -o /tmp/m64smoke -p:PicoGkBin=/opt/PicoGK/bin -p:GeneratePackageOnBuild=false
+mkdir -p geometry/m64-picogk/validation
+dotnet /tmp/m64smoke/M64PicogkSmoke.dll geometry/m64-picogk/validation/m64-picogk-smoke-box-hole.stl 0.5
+
++ git -C /opt/PicoGK rev-parse HEAD
+0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3
+++ git -C /opt/PicoGK rev-parse HEAD
++ test 0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3 = 0e6cf6b6f4993ec16dbcd72d8f26f26b999980f3

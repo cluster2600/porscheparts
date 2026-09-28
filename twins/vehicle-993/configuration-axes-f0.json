@@ -1,0 +1,3844 @@
+{
+  "$comment": "Contrats F0 d'axes de configuration derives du PET. Ils isolent carrosserie et famille de boite mais ne constituent ni des variantes completes ni des nomenclatures vehicule.",
+  "schema_version": "1.0.0",
+  "generated_by": "scripts/generate_993_configuration_axes.py",
+  "source_boundary": {
+    "applicability_evidence": "twins/pet-993/applicability-evidence-f0.json",
+    "applicability_evidence_sha256": "d518ab639f58969f92de15904e974c2c2580b641d736d5809ee1feed2a54abae",
+    "pet_source_id": "pet-classic-993",
+    "pet_text_expected_path": "/tmp/kat517-993.txt",
+    "pet_text_sha256": "f47aeecad76540fb892c6149355ad6435129835e40fc5c9238ad71ed1dd7b11a",
+    "raw_pet_text_copied": false
+  },
+  "scope": {
+    "axis_contract_count": 4,
+    "body_axis_contract_count": 2,
+    "transmission_axis_contract_count": 2,
+    "complete_vehicle_configuration_count": 0,
+    "promoted_vehicle_bom_candidate_count": 0
+  },
+  "transmission_summary_evidence": {
+    "tiptronic_4_speed_code_examples": {
+      "A50.04": [
+        372,
+        386,
+        400,
+        413,
+        435
+      ],
+      "A50.05": [
+        373,
+        387,
+        401,
+        414,
+        436
+      ]
+    },
+    "manual_6_speed_code_examples": {
+      "G50.20": [
+        366,
+        368,
+        377,
+        379,
+        396,
+        397,
+        410,
+        411,
+        432,
+        433
+      ],
+      "G50.21": [
+        370,
+        371,
+        381,
+        382,
+        398,
+        399
+      ],
+      "G50.31": [
+        383
+      ],
+      "G50.32": [
+        384
+      ],
+      "G50.33": [
+        385
+      ],
+      "G64.20": [
+        389,
+        403,
+        417,
+        439
+      ],
+      "G64.21": [
+        391,
+        405
+      ],
+      "G64.42": [
+        442
+      ],
+      "G64.51": [
+        393,
+        407,
+        419,
+        441
+      ]
+    },
+    "interpretation": "Le sommaire PET associe explicitement TIPTRONIC aux codes A50 et 4-SPEED; les lignes 6-SPEED observees utilisent les familles G50 et G64.",
+    "claims": {
+      "complete_code_mapping": false,
+      "vehicle_fitment": false,
+      "functional_validation": false
+    }
+  },
+  "axis_contracts": [
+    {
+      "contract_id": "CONFIG-AXIS-993-BODY-CABRIOLET",
+      "axis": "body_style",
+      "value": "Cabriolet",
+      "status": "provisional_axis_contract_not_a_vehicle_configuration",
+      "interpretation_status": "direct_pet_body_style_token",
+      "candidate_occurrence_count": 73,
+      "candidate_occurrences_with_single_quantity": 73,
+      "candidate_occurrences": [
+        {
+          "occurrence_twin_id": "TWIN-PET-993-0109ECF8C2828B3708AA",
+          "part_master_twin_id": "TWIN-PET-993-PART-BBB5E7E00400D84930B4",
+          "oem_reference": "993 645 303 00",
+          "pet_illustration": "911-00",
+          "pet_page": 613,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-05E4B65580C898674983",
+          "part_master_twin_id": "TWIN-PET-993-PART-03FB04C81A656A7FE2D9",
+          "oem_reference": "993 551 055 02",
+          "pet_illustration": "807-02",
+          "pet_page": 427,
+          "matching_model_annotations": [
+            "COUPE/CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-06E034B979E654D0949B",
+          "part_master_twin_id": "TWIN-PET-993-PART-D886D1AF268A4E295BAB",
+          "oem_reference": "964 501 466 60",
+          "pet_illustration": "801-35",
+          "pet_page": 350,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-1BB29EAF753BD2FD121E",
+          "part_master_twin_id": "TWIN-PET-993-PART-BCDB3176F8A9D90C2C34",
+          "oem_reference": "964 731 032 41",
+          "pet_illustration": "809-05",
+          "pet_page": 478,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-1D9866CB4E0D8DCB2428",
+          "part_master_twin_id": "TWIN-PET-993-PART-BA0207D0A0CE13506832",
+          "oem_reference": "993 531 731 03",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-23B3BC8DA55567576E6C",
+          "part_master_twin_id": "TWIN-PET-993-PART-0F7ECD0A260595D213DD",
+          "oem_reference": "993 551 055 03",
+          "pet_illustration": "807-02",
+          "pet_page": 427,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-24BAD2C9357935283CD4",
+          "part_master_twin_id": "TWIN-PET-993-PART-B7F4D486EA57A91900C7",
+          "oem_reference": "993 618 313 00",
+          "pet_illustration": "901-03",
+          "pet_page": 559,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-24F2630B002D38EF5F72",
+          "part_master_twin_id": "TWIN-PET-993-PART-3688843FE7368AE046A0",
+          "oem_reference": "911 531 296 40",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "CABRIO,TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-277F67C535E8B6EA66D1",
+          "part_master_twin_id": "TWIN-PET-993-PART-C3E2B8BAAC3079EB0405",
+          "oem_reference": "993 803 021 02",
+          "pet_illustration": "812-05",
+          "pet_page": 524,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-27A85DFAD55EA01739C9",
+          "part_master_twin_id": "TWIN-PET-993-PART-5D861E35C03A29D44B98",
+          "oem_reference": "993 612 012 02",
+          "pet_illustration": "902-10",
+          "pet_page": 571,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-2A9F6B49F28221DB45A5",
+          "part_master_twin_id": "TWIN-PET-993-PART-F960DD2DBC006E78CA76",
+          "oem_reference": "964 610 184 00",
+          "pet_illustration": "902-00",
+          "pet_page": 564,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-3560C56F50FC1636E5EF",
+          "part_master_twin_id": "TWIN-PET-993-PART-0390ACD2295B76B7E330",
+          "oem_reference": "993 538 971 01",
+          "pet_illustration": "803-00",
+          "pet_page": 382,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-364A50CF22F7B55C4FE8",
+          "part_master_twin_id": "TWIN-PET-993-PART-58C2C88CF4F18ED00161",
+          "oem_reference": "993 803 022 02",
+          "pet_illustration": "812-05",
+          "pet_page": 524,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-378EE823A64B1F2BE0E7",
+          "part_master_twin_id": "TWIN-PET-993-PART-2DE5A31A83E93F4C6D09",
+          "oem_reference": "993 502 017 01",
+          "pet_illustration": "801-35",
+          "pet_page": 350,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-37CC5DE02B024B6DC543",
+          "part_master_twin_id": "TWIN-PET-993-PART-4F5FE0CF1CBDD8EF68B6",
+          "oem_reference": "993 612 014 01",
+          "pet_illustration": "902-10",
+          "pet_page": 571,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-37FD9DD518F10E992889",
+          "part_master_twin_id": "TWIN-PET-993-PART-8DF7A5150A565A5C3CFA",
+          "oem_reference": "993 503 511 02",
+          "pet_illustration": "801-35",
+          "pet_page": 350,
+          "matching_model_annotations": [
+            "CABRIO,TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-393C65F272EADC050D6B",
+          "part_master_twin_id": "TWIN-PET-993-PART-46DFBB6DAEE12A5A93AB",
+          "oem_reference": "993 531 732 01",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-3AC20D5CDB74AB2D48A1",
+          "part_master_twin_id": "TWIN-PET-993-PART-E1D5C01C5DD119A74256",
+          "oem_reference": "900 143 132 07",
+          "pet_illustration": "911-05",
+          "pet_page": 618,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 8,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-3D9A2B3955EFE6A19ECE",
+          "part_master_twin_id": "TWIN-PET-993-PART-5C834D8309F5066C2CC8",
+          "oem_reference": "964 731 032 40",
+          "pet_illustration": "809-05",
+          "pet_page": 478,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-3DB746AC18EB375F044A",
+          "part_master_twin_id": "TWIN-PET-993-PART-3E829E2B9D275967C8E4",
+          "oem_reference": "911 531 295 40",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "CABRIO,TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-3EAB09E97F5EE1CB2F59",
+          "part_master_twin_id": "TWIN-PET-993-PART-9F13E1B1FB8497FE207F",
+          "oem_reference": "993 645 303 02",
+          "pet_illustration": "911-01",
+          "pet_page": 615,
+          "matching_model_annotations": [
+            "CABRIO/TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-42D29D6935125B850A91",
+          "part_master_twin_id": "TWIN-PET-993-PART-CF623C4B64C46E639433",
+          "oem_reference": "993 531 042 01",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-47A6FC41CC8948325C0D",
+          "part_master_twin_id": "TWIN-PET-993-PART-13D8297077918BE52C6B",
+          "oem_reference": "993 531 041 01",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-4CD82C00753A2327654E",
+          "part_master_twin_id": "TWIN-PET-993-PART-739973AA022ABC36049B",
+          "oem_reference": "993 504 095 01",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-4F1E825D335B163CC614",
+          "part_master_twin_id": "TWIN-PET-993-PART-D7724C46904E65504EAB",
+          "oem_reference": "993 531 041 03",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-5C5537A95C012AC6E540",
+          "part_master_twin_id": "TWIN-PET-993-PART-EC1CAF8D8BC22698CEC0",
+          "oem_reference": "993 343 042 06",
+          "pet_illustration": "402-00",
+          "pet_page": 238,
+          "matching_model_annotations": [
+            "CABRIO",
+            "COUPE"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-5D2A64BF2F4399D260A2",
+          "part_master_twin_id": "TWIN-PET-993-PART-C17040328D80702EE8DC",
+          "oem_reference": "993 343 041 06",
+          "pet_illustration": "402-00",
+          "pet_page": 238,
+          "matching_model_annotations": [
+            "CABRIO",
+            "COUPE"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-5F68298F9B2D126E9BA9",
+          "part_master_twin_id": "TWIN-PET-993-PART-F9E5B1EAB78E2C786E0B",
+          "oem_reference": "993 343 042 37",
+          "pet_illustration": "402-00",
+          "pet_page": 239,
+          "matching_model_annotations": [
+            "CABRIO",
+            "COUPE"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-5F76069D5551566A603B",
+          "part_master_twin_id": "TWIN-PET-993-PART-9D631E8EDD141EE0B8F0",
+          "oem_reference": "993 701 401 07",
+          "pet_illustration": "809-05",
+          "pet_page": 479,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-60770F8495E6E5C0C782",
+          "part_master_twin_id": "TWIN-PET-993-PART-4D4C1B831257D24FA431",
+          "oem_reference": "993 501 061 00",
+          "pet_illustration": "801-35",
+          "pet_page": 350,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-675C7896760E58947068",
+          "part_master_twin_id": "TWIN-PET-993-PART-87E9D4A7A523333DA4E0",
+          "oem_reference": "993 531 042 03",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-6C0F6784ADBE54112DCC",
+          "part_master_twin_id": "TWIN-PET-993-PART-19E58EB45CA6CC80AB76",
+          "oem_reference": "993 551 772 00",
+          "pet_illustration": "807-02",
+          "pet_page": 427,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-6E12E6561124EB264481",
+          "part_master_twin_id": "TWIN-PET-993-PART-5EE9AE0A3DA25988BB15",
+          "oem_reference": "993 701 287 01",
+          "pet_illustration": "001-05",
+          "pet_page": 25,
+          "matching_model_annotations": [
+            "CABRIO/TARGA",
+            "COUPE/CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-704DC080FDF9922BEFC3",
+          "part_master_twin_id": "TWIN-PET-993-PART-545B8B1A3FB3737A5926",
+          "oem_reference": "993 343 041 37",
+          "pet_illustration": "402-00",
+          "pet_page": 239,
+          "matching_model_annotations": [
+            "CABRIO",
+            "COUPE"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-724860EB76DB066C27E8",
+          "part_master_twin_id": "TWIN-PET-993-PART-AD4E275B581937304733",
+          "oem_reference": "993 504 722 00",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-7DD310E0963875B5FD00",
+          "part_master_twin_id": "TWIN-PET-993-PART-F6F54E76A610945D8C2F",
+          "oem_reference": "993 612 017 03",
+          "pet_illustration": "902-10",
+          "pet_page": 571,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-7DF1AE63BE5F35D686E6",
+          "part_master_twin_id": "TWIN-PET-993-PART-820E0BDAF0569A01A039",
+          "oem_reference": "993 501 062 00",
+          "pet_illustration": "801-35",
+          "pet_page": 350,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-7F029E366720E98A1159",
+          "part_master_twin_id": "TWIN-PET-993-PART-0FEBA5A8BAFA4E440C84",
+          "oem_reference": "993 538 971 00",
+          "pet_illustration": "803-00",
+          "pet_page": 381,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-80345D7B52866AA3A496",
+          "part_master_twin_id": "TWIN-PET-993-PART-DB333D299DBB00671892",
+          "oem_reference": "993 701 287 03",
+          "pet_illustration": "001-05",
+          "pet_page": 25,
+          "matching_model_annotations": [
+            "CABRIO/TARGA",
+            "COUPE/CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-8729400AE20BFB0D042C",
+          "part_master_twin_id": "TWIN-PET-993-PART-6B42F85320CC31AAAA25",
+          "oem_reference": "900 145 101 07",
+          "pet_illustration": "809-05",
+          "pet_page": 479,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 4,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-8E5F77E3E218B52566BE",
+          "part_master_twin_id": "TWIN-PET-993-PART-7EF159CF9AAECE663745",
+          "oem_reference": "993 612 014 02",
+          "pet_illustration": "902-10",
+          "pet_page": 571,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-9025DBB3F678ACFD5407",
+          "part_master_twin_id": "TWIN-PET-993-PART-8DC52D63E4352A3FBC54",
+          "oem_reference": "993 731 032 01",
+          "pet_illustration": "809-05",
+          "pet_page": 478,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-922A38B0E9E79F88FC9B",
+          "part_master_twin_id": "TWIN-PET-993-PART-F21C0199A7852BC57991",
+          "oem_reference": "928 645 423 00",
+          "pet_illustration": "911-05",
+          "pet_page": 618,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 2,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-92AC1E97E024B360F714",
+          "part_master_twin_id": "TWIN-PET-993-PART-B902F52AFE924DC4A1E3",
+          "oem_reference": "993 542 012 00",
+          "pet_illustration": "805-05",
+          "pet_page": 416,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-953AD01389A507DD53EA",
+          "part_master_twin_id": "TWIN-PET-993-PART-7C6926006F8F9CA638B9",
+          "oem_reference": "999 703 345 40",
+          "pet_illustration": "804-30",
+          "pet_page": 411,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 4,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-95CF3E9BB857074AAD11",
+          "part_master_twin_id": "TWIN-PET-993-PART-9E6F6ED47C4CC86B8D23",
+          "oem_reference": "993 551 771 00",
+          "pet_illustration": "807-02",
+          "pet_page": 427,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-962FDA02DC455927B6B7",
+          "part_master_twin_id": "TWIN-PET-993-PART-693B652BBFC1D9940E48",
+          "oem_reference": "993 645 304 00",
+          "pet_illustration": "911-00",
+          "pet_page": 613,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-965D4210565BFE2D4CD8",
+          "part_master_twin_id": "TWIN-PET-993-PART-376288E6D05D0803648B",
+          "oem_reference": "993 631 060 00",
+          "pet_illustration": "905-10",
+          "pet_page": 606,
+          "matching_model_annotations": [
+            "COUPE/CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-9BE0FC8B356D744E3AD6",
+          "part_master_twin_id": "TWIN-PET-993-PART-3D8D3BAD47599E46419B",
+          "oem_reference": "993 556 233 02",
+          "pet_illustration": "807-15",
+          "pet_page": 463,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-A3BA3BB808109296AF8E",
+          "part_master_twin_id": "TWIN-PET-993-PART-713DE2004710B24EA442",
+          "oem_reference": "964 645 504 00",
+          "pet_illustration": "911-05",
+          "pet_page": 618,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 2,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-ABFFEA970A01D459D9F6",
+          "part_master_twin_id": "TWIN-PET-993-PART-13FDA7B50E4CBD675647",
+          "oem_reference": "964 501 465 60",
+          "pet_illustration": "801-35",
+          "pet_page": 350,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-AF31790600CA9B641C9E",
+          "part_master_twin_id": "TWIN-PET-993-PART-FEBCCC07B103F47880D5",
+          "oem_reference": "911 531 523 65",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 2,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-B394885D3E6B66D0716E",
+          "part_master_twin_id": "TWIN-PET-993-PART-A560BA24F536DA5A206D",
+          "oem_reference": "993 503 902 01",
+          "pet_illustration": "801-60",
+          "pet_page": 360,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-B858927858F5EBB4BC58",
+          "part_master_twin_id": "TWIN-PET-993-PART-46FA22AA01FD026E9D2D",
+          "oem_reference": "993 502 018 01",
+          "pet_illustration": "801-35",
+          "pet_page": 350,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-C3CFDEE3DD8083EB492C",
+          "part_master_twin_id": "TWIN-PET-993-PART-2C5DCAC3C30800CCCD42",
+          "oem_reference": "964 803 015 00",
+          "pet_illustration": "812-05",
+          "pet_page": 524,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 2,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-C805C0DF8C4C6D0AB61B",
+          "part_master_twin_id": "TWIN-PET-993-PART-9E43E71C9804020CCA43",
+          "oem_reference": "993 500 900 60",
+          "pet_illustration": "801-00",
+          "pet_page": 333,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-CC51CDFFFA3522B9E3B7",
+          "part_master_twin_id": "TWIN-PET-993-PART-693B652BBFC1D9940E48",
+          "oem_reference": "993 645 304 00",
+          "pet_illustration": "911-01",
+          "pet_page": 615,
+          "matching_model_annotations": [
+            "CABRIO/TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-CCFBD381E5E43F770BD0",
+          "part_master_twin_id": "TWIN-PET-993-PART-D8008E8091DEEAE702CF",
+          "oem_reference": "900 146 011 02",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 2,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-CD5BD11A4FF3B0E28F90",
+          "part_master_twin_id": "TWIN-PET-993-PART-970C0ABD7AE9F82E9F61",
+          "oem_reference": "993 542 011 00",
+          "pet_illustration": "805-05",
+          "pet_page": 416,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-CDE22119A5502F9AC483",
+          "part_master_twin_id": "TWIN-PET-993-PART-3D92D7CC6E7ADE71C3C0",
+          "oem_reference": "993 502 579 00",
+          "pet_illustration": "801-20",
+          "pet_page": 343,
+          "matching_model_annotations": [
+            "CABRIO,TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-D121F264524016DAF509",
+          "part_master_twin_id": "TWIN-PET-993-PART-E14FE307ADC287614549",
+          "oem_reference": "993 503 901 01",
+          "pet_illustration": "801-60",
+          "pet_page": 360,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-D6C422074F569BA8FC97",
+          "part_master_twin_id": "TWIN-PET-993-PART-95955BFAAFFA108D62E9",
+          "oem_reference": "964 618 105 00",
+          "pet_illustration": "901-03",
+          "pet_page": 559,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 2,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-DB368FB4B05BF83D3403",
+          "part_master_twin_id": "TWIN-PET-993-PART-E51F194016C3EE2E6BF3",
+          "oem_reference": "993 612 019 05",
+          "pet_illustration": "902-10",
+          "pet_page": 571,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-DC3BF8650D5D653C6C58",
+          "part_master_twin_id": "TWIN-PET-993-PART-E240D6190FDDBA7BB64D",
+          "oem_reference": "993 645 304 01",
+          "pet_illustration": "911-01",
+          "pet_page": 616,
+          "matching_model_annotations": [
+            "CABRIO/TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-DCFAC07C7FAD9B35DAC9",
+          "part_master_twin_id": "TWIN-PET-993-PART-40CC57B0FEB677794784",
+          "oem_reference": "993 612 019 03",
+          "pet_illustration": "902-10",
+          "pet_page": 571,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-DED198868C8504AF0CCC",
+          "part_master_twin_id": "TWIN-PET-993-PART-948CB64625F712409E1B",
+          "oem_reference": "993 612 017 05",
+          "pet_illustration": "902-10",
+          "pet_page": 571,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-E27633DD542ABD61500C",
+          "part_master_twin_id": "TWIN-PET-993-PART-6A8ABE78EF7C45247B47",
+          "oem_reference": "993 531 732 03",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-E3CC173F465BD8ACD2C7",
+          "part_master_twin_id": "TWIN-PET-993-PART-807E3E5BA34C7403DC4A",
+          "oem_reference": "993 503 901 04",
+          "pet_illustration": "801-60",
+          "pet_page": 360,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-E520D8A46D4CA9690A67",
+          "part_master_twin_id": "TWIN-PET-993-PART-39599D3A1B60CD25AD3D",
+          "oem_reference": "993 612 012 01",
+          "pet_illustration": "902-10",
+          "pet_page": 571,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-EDEBE25ED13B10DF1440",
+          "part_master_twin_id": "TWIN-PET-993-PART-21A57151ECA333BDBF11",
+          "oem_reference": "993 503 511 00",
+          "pet_illustration": "801-35",
+          "pet_page": 350,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-F978AE472DA61550C535",
+          "part_master_twin_id": "TWIN-PET-993-PART-FFF0EA5C344F4BFF151D",
+          "oem_reference": "993 503 902 04",
+          "pet_illustration": "801-60",
+          "pet_page": 360,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-FA0BAEF28A91B1FC63FA",
+          "part_master_twin_id": "TWIN-PET-993-PART-2F18268C3DA51B78CD33",
+          "oem_reference": "993 531 731 01",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-FC4885F65C3E8CE74BF8",
+          "part_master_twin_id": "TWIN-PET-993-PART-2AE9BC8B6B95108671FB",
+          "oem_reference": "993 504 721 00",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        }
+      ],
+      "complete_vehicle_bom": false,
+      "combined_with_model_variant": false,
+      "human_reviewed": false,
+      "missing_gates": [
+        "resolve_model_year_market_engine_and_option_intersections",
+        "review_quantities_exclusions_and_supersessions",
+        "promote_only_after_human_pet_review",
+        "author_geometry_interfaces_materials_and_load_cases"
+      ]
+    },
+    {
+      "contract_id": "CONFIG-AXIS-993-BODY-TARGA",
+      "axis": "body_style",
+      "value": "Targa",
+      "status": "provisional_axis_contract_not_a_vehicle_configuration",
+      "interpretation_status": "direct_pet_body_style_token",
+      "candidate_occurrence_count": 50,
+      "candidate_occurrences_with_single_quantity": 50,
+      "candidate_occurrences": [
+        {
+          "occurrence_twin_id": "TWIN-PET-993-056356DF8B7494F9D357",
+          "part_master_twin_id": "TWIN-PET-993-PART-FE2A7A4045C90903483E",
+          "oem_reference": "993 531 732 04",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-120ACD799847D3B49936",
+          "part_master_twin_id": "TWIN-PET-993-PART-D52FA4264E9E55DF9DA8",
+          "oem_reference": "993 612 016 03",
+          "pet_illustration": "902-10",
+          "pet_page": 571,
+          "matching_model_annotations": [
+            "COUPE/TARGA",
+            "TURBO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-1B562524C7782F122A0A",
+          "part_master_twin_id": "TWIN-PET-993-PART-015641D288EE61CF6BA1",
+          "oem_reference": "993 531 429 03",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-20FDEB7612AB75462721",
+          "part_master_twin_id": "TWIN-PET-993-PART-49F59AC6E0FADF9F6DB8",
+          "oem_reference": "993 556 245 00",
+          "pet_illustration": "807-15",
+          "pet_page": 464,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-21F4D6BA8AE29311E5D4",
+          "part_master_twin_id": "TWIN-PET-993-PART-6ABD5771C832460DE829",
+          "oem_reference": "993 618 208 00",
+          "pet_illustration": "901-03",
+          "pet_page": 559,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-223E5A5A658FA6CF9BA9",
+          "part_master_twin_id": "TWIN-PET-993-PART-B9FBAC65FB22469B6813",
+          "oem_reference": "993 555 769 00",
+          "pet_illustration": "911-05",
+          "pet_page": 618,
+          "matching_model_annotations": [
+            "COUPE/TARGA"
+          ],
+          "candidate_quantity_per_car": 2,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-24F2630B002D38EF5F72",
+          "part_master_twin_id": "TWIN-PET-993-PART-3688843FE7368AE046A0",
+          "oem_reference": "911 531 296 40",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "CABRIO,TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-2981EDDF593B86776AB2",
+          "part_master_twin_id": "TWIN-PET-993-PART-CD8B1C9740654EB8A3A2",
+          "oem_reference": "993 562 305 01",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-37D6EF7D6068362A126B",
+          "part_master_twin_id": "TWIN-PET-993-PART-FB08E5A5DC9C14B871DD",
+          "oem_reference": "993 632 071 19",
+          "pet_illustration": "903-05",
+          "pet_page": 583,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-37FD9DD518F10E992889",
+          "part_master_twin_id": "TWIN-PET-993-PART-8DF7A5150A565A5C3CFA",
+          "oem_reference": "993 503 511 02",
+          "pet_illustration": "801-35",
+          "pet_page": 350,
+          "matching_model_annotations": [
+            "CABRIO,TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-3DB746AC18EB375F044A",
+          "part_master_twin_id": "TWIN-PET-993-PART-3E829E2B9D275967C8E4",
+          "oem_reference": "911 531 295 40",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "CABRIO,TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-3E26430EAA5A0A81A05A",
+          "part_master_twin_id": "TWIN-PET-993-PART-61C6D4C898D9B884683D",
+          "oem_reference": "993 542 011 03",
+          "pet_illustration": "805-05",
+          "pet_page": 416,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-3EAB09E97F5EE1CB2F59",
+          "part_master_twin_id": "TWIN-PET-993-PART-9F13E1B1FB8497FE207F",
+          "oem_reference": "993 645 303 02",
+          "pet_illustration": "911-01",
+          "pet_page": 615,
+          "matching_model_annotations": [
+            "CABRIO/TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-4173685CF7566F36F393",
+          "part_master_twin_id": "TWIN-PET-993-PART-48400BDECE6B60E6CF6B",
+          "oem_reference": "993 562 831 00",
+          "pet_illustration": "804-05",
+          "pet_page": 398,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 12,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-5A5EEF8E6631E387F397",
+          "part_master_twin_id": "TWIN-PET-993-PART-03E8F61853C1105A3F23",
+          "oem_reference": "993 612 016 05",
+          "pet_illustration": "902-10",
+          "pet_page": 571,
+          "matching_model_annotations": [
+            "COUPE/TARGA",
+            "TURBO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-62A0446EEFB447223797",
+          "part_master_twin_id": "TWIN-PET-993-PART-611B0DCEA0F9254933DF",
+          "oem_reference": "000 043 203 81",
+          "pet_illustration": "601-00",
+          "pet_page": 281,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-6402B8FFC098F9A3BABE",
+          "part_master_twin_id": "TWIN-PET-993-PART-E77551623309D9522A7B",
+          "oem_reference": "993 504 505 00",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 2,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-6E12E6561124EB264481",
+          "part_master_twin_id": "TWIN-PET-993-PART-5EE9AE0A3DA25988BB15",
+          "oem_reference": "993 701 287 01",
+          "pet_illustration": "001-05",
+          "pet_page": 25,
+          "matching_model_annotations": [
+            "CABRIO/TARGA",
+            "COUPE/CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-7050A4A57A101A1648FD",
+          "part_master_twin_id": "TWIN-PET-993-PART-505BA69333C88B09FB71",
+          "oem_reference": "993 612 018 05",
+          "pet_illustration": "902-10",
+          "pet_page": 571,
+          "matching_model_annotations": [
+            "COUPE/TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-7128F35490A5C4CCCA58",
+          "part_master_twin_id": "TWIN-PET-993-PART-DEBC35F818FA88B30108",
+          "oem_reference": "993 502 018 04",
+          "pet_illustration": "801-35",
+          "pet_page": 350,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-7DEA057F5FD9FA1619FF",
+          "part_master_twin_id": "TWIN-PET-993-PART-E22C494642469E9B2B94",
+          "oem_reference": "993 632 071 20",
+          "pet_illustration": "903-05",
+          "pet_page": 583,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-80345D7B52866AA3A496",
+          "part_master_twin_id": "TWIN-PET-993-PART-DB333D299DBB00671892",
+          "oem_reference": "993 701 287 03",
+          "pet_illustration": "001-05",
+          "pet_page": 25,
+          "matching_model_annotations": [
+            "CABRIO/TARGA",
+            "COUPE/CABRIO"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-8192FC21B10FE645E6F2",
+          "part_master_twin_id": "TWIN-PET-993-PART-B8404A375355A44FBE06",
+          "oem_reference": "993 531 731 04",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-8AB73BC4E467773476A0",
+          "part_master_twin_id": "TWIN-PET-993-PART-7528DC36FC58CE0D3F4B",
+          "oem_reference": "993 502 017 07",
+          "pet_illustration": "801-35",
+          "pet_page": 350,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-8F8AC07D6231E8EA3276",
+          "part_master_twin_id": "TWIN-PET-993-PART-7128D61350B5A4EF5DF1",
+          "oem_reference": "999 507 515 40",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 4,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-9144AF6D649C0B990FC6",
+          "part_master_twin_id": "TWIN-PET-993-PART-0E6EA685113C67AD8744",
+          "oem_reference": "993 645 505 00",
+          "pet_illustration": "911-05",
+          "pet_page": 618,
+          "matching_model_annotations": [
+            "COUPE/TARGA"
+          ],
+          "candidate_quantity_per_car": 2,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-93F31D929E25646C99A7",
+          "part_master_twin_id": "TWIN-PET-993-PART-6EC0F755AFC79D69B1B2",
+          "oem_reference": "993 503 901 03",
+          "pet_illustration": "801-60",
+          "pet_page": 360,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-AE67D4E9E8DBB3C588F3",
+          "part_master_twin_id": "TWIN-PET-993-PART-AD7ED7941AC796F21DA9",
+          "oem_reference": "993 562 571 00",
+          "pet_illustration": "804-05",
+          "pet_page": 398,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 2,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-B01F27C465B6D275BF7A",
+          "part_master_twin_id": "TWIN-PET-993-PART-1040458BBDE163762C12",
+          "oem_reference": "993 542 012 03",
+          "pet_illustration": "805-05",
+          "pet_page": 416,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-B8926AA9F14F73E85E89",
+          "part_master_twin_id": "TWIN-PET-993-PART-DE6DC0C44AFA84A65F17",
+          "oem_reference": "900 145 079 07",
+          "pet_illustration": "809-05",
+          "pet_page": 479,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 4,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-BCE06700FADBEB23E766",
+          "part_master_twin_id": "TWIN-PET-993-PART-8AE8794F8077AC29EDE6",
+          "oem_reference": "993 503 902 03",
+          "pet_illustration": "801-60",
+          "pet_page": 360,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-C3BBC9FCCD95F65EB826",
+          "part_master_twin_id": "TWIN-PET-993-PART-DBBE53ADBFD134B74C3C",
+          "oem_reference": "993 501 062 01",
+          "pet_illustration": "801-35",
+          "pet_page": 350,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-C7D581D59610557C01A8",
+          "part_master_twin_id": "TWIN-PET-993-PART-42C8F744C387BFE37845",
+          "oem_reference": "900 145 093 07",
+          "pet_illustration": "804-05",
+          "pet_page": 398,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 2,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-C9F3AD254959F5D39445",
+          "part_master_twin_id": "TWIN-PET-993-PART-1F5ABAA462DB4BFB7A73",
+          "oem_reference": "993 613 204 00",
+          "pet_illustration": "903-05",
+          "pet_page": 584,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-CB0984243F4141FD30C9",
+          "part_master_twin_id": "TWIN-PET-993-PART-51D567D74ABAF9452FF9",
+          "oem_reference": "993 501 061 01",
+          "pet_illustration": "801-35",
+          "pet_page": 350,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-CC51CDFFFA3522B9E3B7",
+          "part_master_twin_id": "TWIN-PET-993-PART-693B652BBFC1D9940E48",
+          "oem_reference": "993 645 304 00",
+          "pet_illustration": "911-01",
+          "pet_page": 615,
+          "matching_model_annotations": [
+            "CABRIO/TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-CDE22119A5502F9AC483",
+          "part_master_twin_id": "TWIN-PET-993-PART-3D92D7CC6E7ADE71C3C0",
+          "oem_reference": "993 502 579 00",
+          "pet_illustration": "801-20",
+          "pet_page": 343,
+          "matching_model_annotations": [
+            "CABRIO,TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-D831C4AC354625BCC242",
+          "part_master_twin_id": "TWIN-PET-993-PART-326FAC0BA537B61304F9",
+          "oem_reference": "993 562 306 01",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-DC3BF8650D5D653C6C58",
+          "part_master_twin_id": "TWIN-PET-993-PART-E240D6190FDDBA7BB64D",
+          "oem_reference": "993 645 304 01",
+          "pet_illustration": "911-01",
+          "pet_page": 616,
+          "matching_model_annotations": [
+            "CABRIO/TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-E28BD6905597D241AF76",
+          "part_master_twin_id": "TWIN-PET-993-PART-D098F4AF8318373A92F0",
+          "oem_reference": "944 555 149 00",
+          "pet_illustration": "911-05",
+          "pet_page": 618,
+          "matching_model_annotations": [
+            "COUPE/TARGA"
+          ],
+          "candidate_quantity_per_car": 2,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-E4AAFF99091041735630",
+          "part_master_twin_id": "TWIN-PET-993-PART-9C2D40E63FFAFE21076E",
+          "oem_reference": "900 143 037 02",
+          "pet_illustration": "911-05",
+          "pet_page": 618,
+          "matching_model_annotations": [
+            "COUPE/TARGA"
+          ],
+          "candidate_quantity_per_car": 8,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-E4AB477E1A901ACD0F31",
+          "part_master_twin_id": "TWIN-PET-993-PART-B064DDFF1A725137144F",
+          "oem_reference": "993 612 018 03",
+          "pet_illustration": "902-10",
+          "pet_page": 571,
+          "matching_model_annotations": [
+            "COUPE/TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-E93C4D8D3E70FCA24132",
+          "part_master_twin_id": "TWIN-PET-993-PART-7DB50A61D755D4472275",
+          "oem_reference": "911 613 615 01",
+          "pet_illustration": "903-05",
+          "pet_page": 583,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-E9D6AEDCDF00412BA117",
+          "part_master_twin_id": "TWIN-PET-993-PART-0EA5513F60F7950C5438",
+          "oem_reference": "993 531 430 03",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-E9D8A95EF3483AF6CF01",
+          "part_master_twin_id": "TWIN-PET-993-PART-D2D550375C98F7BB506C",
+          "oem_reference": "993 501 466 00",
+          "pet_illustration": "801-35",
+          "pet_page": 350,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-ED5D5601B3BB781F8943",
+          "part_master_twin_id": "TWIN-PET-993-PART-4D3782E9E5855F5AF781",
+          "oem_reference": "993 531 429 02",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-F058B6C4CC8D8DD13F6A",
+          "part_master_twin_id": "TWIN-PET-993-PART-B22AD6A6CB9224D304C1",
+          "oem_reference": "993 531 041 04",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-F0950FDB1BE19E72480C",
+          "part_master_twin_id": "TWIN-PET-993-PART-32E14FE29221714DD1BE",
+          "oem_reference": "993 501 465 00",
+          "pet_illustration": "801-35",
+          "pet_page": 350,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-F5967D620CEFD5EC7866",
+          "part_master_twin_id": "TWIN-PET-993-PART-2C6E7D6C0212D45294FA",
+          "oem_reference": "993 531 042 04",
+          "pet_illustration": "804-05",
+          "pet_page": 397,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-FD7558779911ED82ECC4",
+          "part_master_twin_id": "TWIN-PET-993-PART-38F716D6DFECC9B96532",
+          "oem_reference": "993 618 118 00",
+          "pet_illustration": "901-03",
+          "pet_page": 559,
+          "matching_model_annotations": [
+            "TARGA"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        }
+      ],
+      "complete_vehicle_bom": false,
+      "combined_with_model_variant": false,
+      "human_reviewed": false,
+      "missing_gates": [
+        "resolve_model_year_market_engine_and_option_intersections",
+        "review_quantities_exclusions_and_supersessions",
+        "promote_only_after_human_pet_review",
+        "author_geometry_interfaces_materials_and_load_cases"
+      ]
+    },
+    {
+      "contract_id": "CONFIG-AXIS-993-TRANSMISSION-MANUAL-6-SPEED",
+      "axis": "transmission_family",
+      "value": "manual_6_speed_candidate",
+      "status": "provisional_axis_contract_not_a_vehicle_configuration",
+      "interpretation_status": "pet_summary_maps_g50_g64_examples_to_6_speed",
+      "candidate_occurrence_count": 89,
+      "candidate_occurrences_with_single_quantity": 89,
+      "candidate_occurrences": [
+        {
+          "occurrence_twin_id": "TWIN-PET-993-022A2C99C94385E5E727",
+          "part_master_twin_id": "TWIN-PET-993-PART-7D2A82898EFC659AE61D",
+          "oem_reference": "950 332 053 05",
+          "pet_illustration": "305-05",
+          "pet_page": 190,
+          "matching_model_annotations": [
+            "G50.20/21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-0633927821A39E23DFEE",
+          "part_master_twin_id": "TWIN-PET-993-PART-0275DF54E0E5A968BD32",
+          "oem_reference": "964 301 010 20",
+          "pet_illustration": "302-00",
+          "pet_page": 159,
+          "matching_model_annotations": [
+            "G50.31/32/33"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-093FD2888DDC41800403",
+          "part_master_twin_id": "TWIN-PET-993-PART-517D98519D519A2E0C9B",
+          "oem_reference": "950 300 010 20",
+          "pet_illustration": "302-00",
+          "pet_page": 159,
+          "matching_model_annotations": [
+            "G50.20"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-0A10839F34956F106A04",
+          "part_master_twin_id": "TWIN-PET-993-PART-8A38FEF9EF409735C7F7",
+          "oem_reference": "964 300 020 20",
+          "pet_illustration": "302-00",
+          "pet_page": 159,
+          "matching_model_annotations": [
+            "G64.20"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-1775B485FE22BBD65B50",
+          "part_master_twin_id": "TWIN-PET-993-PART-9B326EDF3454BF0FCC0C",
+          "oem_reference": "950 302 903 39",
+          "pet_illustration": "303-00",
+          "pet_page": 170,
+          "matching_model_annotations": [
+            "G50.20"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-17CD6A1ABF2D680F7D86",
+          "part_master_twin_id": "TWIN-PET-993-PART-BC2910DA8B2D0D8AE366",
+          "oem_reference": "950 332 083 02",
+          "pet_illustration": "305-05",
+          "pet_page": 190,
+          "matching_model_annotations": [
+            "G50.20/21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-1DD43AA2219CFF28B64E",
+          "part_master_twin_id": "TWIN-PET-993-PART-A9B751E75598EBAC5662",
+          "oem_reference": "950 303 134 02",
+          "pet_illustration": "304-05",
+          "pet_page": 184,
+          "matching_model_annotations": [
+            "G50.20/21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-1E46B52455BFC4D29171",
+          "part_master_twin_id": "TWIN-PET-993-PART-748F1A086FBA8153D931",
+          "oem_reference": "950 302 905 80",
+          "pet_illustration": "303-00",
+          "pet_page": 170,
+          "matching_model_annotations": [
+            "G50.21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-20E21782925C29C335A8",
+          "part_master_twin_id": "TWIN-PET-993-PART-3F8145B2777D97784238",
+          "oem_reference": "950 302 906 01",
+          "pet_illustration": "303-00",
+          "pet_page": 170,
+          "matching_model_annotations": [
+            "G50.21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-26A0772A8C820DAD258B",
+          "part_master_twin_id": "TWIN-PET-993-PART-1231A6844812082B37FE",
+          "oem_reference": "950 332 983 07",
+          "pet_illustration": "305-05",
+          "pet_page": 190,
+          "matching_model_annotations": [
+            "G50.31/32/33"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-27819785FFC78DBF95B1",
+          "part_master_twin_id": "TWIN-PET-993-PART-5A134B395807FC41F49C",
+          "oem_reference": "993 302 905 05",
+          "pet_illustration": "303-02",
+          "pet_page": 174,
+          "matching_model_annotations": [
+            "G50.20"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-285BB6DD38ED7F276D05",
+          "part_master_twin_id": "TWIN-PET-993-PART-37D5B855ED2A978FD899",
+          "oem_reference": "993 302 903 51",
+          "pet_illustration": "303-02",
+          "pet_page": 174,
+          "matching_model_annotations": [
+            "G50.21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-2D95CDC0CFE3ADB816F1",
+          "part_master_twin_id": "TWIN-PET-993-PART-77747949987314F3FC4C",
+          "oem_reference": "950 332 983 00",
+          "pet_illustration": "305-05",
+          "pet_page": 190,
+          "matching_model_annotations": [
+            "G50.20/21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-2FC01F51D3CF511BED0D",
+          "part_master_twin_id": "TWIN-PET-993-PART-657B3B8972663793FFBF",
+          "oem_reference": "950 300 020 20",
+          "pet_illustration": "302-00",
+          "pet_page": 159,
+          "matching_model_annotations": [
+            "G50.20"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-33429264E2E80D8B0002",
+          "part_master_twin_id": "TWIN-PET-993-PART-5A134B395807FC41F49C",
+          "oem_reference": "993 302 905 05",
+          "pet_illustration": "303-00",
+          "pet_page": 170,
+          "matching_model_annotations": [
+            "G50.20"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-3480FA4F0CC24FEDA140",
+          "part_master_twin_id": "TWIN-PET-993-PART-BBF3B1B8A66F4942AD96",
+          "oem_reference": "950 302 956 45",
+          "pet_illustration": "303-01",
+          "pet_page": 172,
+          "matching_model_annotations": [
+            "G50.32"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-362F08C134D73AFEB548",
+          "part_master_twin_id": "TWIN-PET-993-PART-73C4AAFEFC14FB435D8A",
+          "oem_reference": "950 302 953 05",
+          "pet_illustration": "303-01",
+          "pet_page": 172,
+          "matching_model_annotations": [
+            "G50.32"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-3784AA8A327DC5F85AE4",
+          "part_master_twin_id": "TWIN-PET-993-PART-B72DC07F7EBF80436287",
+          "oem_reference": "950 303 113 08",
+          "pet_illustration": "304-00",
+          "pet_page": 182,
+          "matching_model_annotations": [
+            "G50.32"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-3AC7FF01813CE38EDA00",
+          "part_master_twin_id": "TWIN-PET-993-PART-BB889E6FAC4FB1B1CBB1",
+          "oem_reference": "950 300 020 32",
+          "pet_illustration": "302-00",
+          "pet_page": 159,
+          "matching_model_annotations": [
+            "G50.32"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-3B6DC765254D3FB0C71A",
+          "part_master_twin_id": "TWIN-PET-993-PART-7696E598D11EBD9FDCDE",
+          "oem_reference": "993 302 904 40",
+          "pet_illustration": "303-01",
+          "pet_page": 172,
+          "matching_model_annotations": [
+            "G50.31"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-3C53FB34D8A5320077A9",
+          "part_master_twin_id": "TWIN-PET-993-PART-A48B6FE2F91886EF27F3",
+          "oem_reference": "900 095 050 00",
+          "pet_illustration": "302-05",
+          "pet_page": 168,
+          "matching_model_annotations": [
+            "G64.51"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-443E5A29C1589243D27D",
+          "part_master_twin_id": "TWIN-PET-993-PART-68FD00CB781C333B5AFB",
+          "oem_reference": "964 301 104 09",
+          "pet_illustration": "302-05",
+          "pet_page": 168,
+          "matching_model_annotations": [
+            "G64.20/21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-444D6BE7F0BBEAF08E8E",
+          "part_master_twin_id": "TWIN-PET-993-PART-77CB4607D595114C9FD4",
+          "oem_reference": "950 300 020 21",
+          "pet_illustration": "302-00",
+          "pet_page": 159,
+          "matching_model_annotations": [
+            "G50.21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-45784DC5BE1D8D3EEA3E",
+          "part_master_twin_id": "TWIN-PET-993-PART-D28C5DEABD7623467B71",
+          "oem_reference": "950 304 611 11",
+          "pet_illustration": "303-10",
+          "pet_page": 179,
+          "matching_model_annotations": [
+            "G50.32"
+          ],
+          "candidate_quantity_per_car": 2,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-45A492DD716092F2F16A",
+          "part_master_twin_id": "TWIN-PET-993-PART-ECF12AD0FD409102D73F",
+          "oem_reference": "950 304 613 11",
+          "pet_illustration": "303-10",
+          "pet_page": 179,
+          "matching_model_annotations": [
+            "G50.32"
+          ],
+          "candidate_quantity_per_car": 2,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-4B6126F2FBCEC9406DB9",
+          "part_master_twin_id": "TWIN-PET-993-PART-4D60ECCA0FF9A3DB6695",
+          "oem_reference": "950 302 955 87",
+          "pet_illustration": "303-01",
+          "pet_page": 172,
+          "matching_model_annotations": [
+            "G50.33"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-4E5E90BFB3478548351F",
+          "part_master_twin_id": "TWIN-PET-993-PART-6BF8276C65488FDD0855",
+          "oem_reference": "950 302 906 11",
+          "pet_illustration": "303-00",
+          "pet_page": 170,
+          "matching_model_annotations": [
+            "G50.20"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-541D885C11553233A2D9",
+          "part_master_twin_id": "TWIN-PET-993-PART-027940EA9176E4347DC4",
+          "oem_reference": "999 201 239 06",
+          "pet_illustration": "303-10",
+          "pet_page": 178,
+          "matching_model_annotations": [
+            "G64.51"
+          ],
+          "candidate_quantity_per_car": 2,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-56CCE903EB04A2622CDD",
+          "part_master_twin_id": "TWIN-PET-993-PART-76A07CCAE765ECA303C2",
+          "oem_reference": "950 300 020 31",
+          "pet_illustration": "302-00",
+          "pet_page": 159,
+          "matching_model_annotations": [
+            "G50.31"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-59216888A8E1C6C12A9B",
+          "part_master_twin_id": "TWIN-PET-993-PART-B38304F1B7C2DCE2A20B",
+          "oem_reference": "993 302 903 35",
+          "pet_illustration": "303-02",
+          "pet_page": 174,
+          "matching_model_annotations": [
+            "G50.20"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-59D9FF58585197D83073",
+          "part_master_twin_id": "TWIN-PET-993-PART-74CEC9BF283F5B1EE295",
+          "oem_reference": "964 301 103 07",
+          "pet_illustration": "302-05",
+          "pet_page": 168,
+          "matching_model_annotations": [
+            "G64.20/21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-5AC677008E764393954F",
+          "part_master_twin_id": "TWIN-PET-993-PART-C06C69C6E656BAF2DE09",
+          "oem_reference": "964 301 301 04",
+          "pet_illustration": "302-05",
+          "pet_page": 167,
+          "matching_model_annotations": [
+            "G50.20/21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-606A926879CB9F86F2B2",
+          "part_master_twin_id": "TWIN-PET-993-PART-BA26121A6C9340426330",
+          "oem_reference": "901 351 927 10",
+          "pet_illustration": "301-05",
+          "pet_page": 155,
+          "matching_model_annotations": [
+            "G50.20/21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-650BEB682DCA1168E73A",
+          "part_master_twin_id": "TWIN-PET-993-PART-F529200D46C9FFC12916",
+          "oem_reference": "950 302 902 37",
+          "pet_illustration": "303-00",
+          "pet_page": 170,
+          "matching_model_annotations": [
+            "G50.21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-66086DA15CEFFE9FC8CD",
+          "part_master_twin_id": "TWIN-PET-993-PART-0242D6433791944214B7",
+          "oem_reference": "950 302 902 56",
+          "pet_illustration": "303-00",
+          "pet_page": 170,
+          "matching_model_annotations": [
+            "G50.20"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-68ADAB3263143B7CE216",
+          "part_master_twin_id": "TWIN-PET-993-PART-97E1BC951ABF4E330BE5",
+          "oem_reference": "950 302 911 13",
+          "pet_illustration": "303-02",
+          "pet_page": 174,
+          "matching_model_annotations": [
+            "G50.20/21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-6A9C348CD69A122ECDBB",
+          "part_master_twin_id": "TWIN-PET-993-PART-14BFD6485847117B1452",
+          "oem_reference": "950 307 101 00",
+          "pet_illustration": "304-05",
+          "pet_page": 185,
+          "matching_model_annotations": [
+            "G50.20/21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-6CC89C444C6D6B9F834D",
+          "part_master_twin_id": "TWIN-PET-993-PART-B3FACCF2AAA781F815F4",
+          "oem_reference": "964 307 109 00",
+          "pet_illustration": "303-10",
+          "pet_page": 180,
+          "matching_model_annotations": [
+            "G64.51"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-6DC6516D4F73D4FC9DCB",
+          "part_master_twin_id": "TWIN-PET-993-PART-514BC3DB5ACB860AB5EC",
+          "oem_reference": "950 300 010 21",
+          "pet_illustration": "302-00",
+          "pet_page": 159,
+          "matching_model_annotations": [
+            "G50.21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-71C6A6A77564BF8207AA",
+          "part_master_twin_id": "TWIN-PET-993-PART-0902765A8BB0EB31D5BD",
+          "oem_reference": "950 332 983 09",
+          "pet_illustration": "305-05",
+          "pet_page": 190,
+          "matching_model_annotations": [
+            "G50.20/21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-79138F0279B14E9BA160",
+          "part_master_twin_id": "TWIN-PET-993-PART-94EBBE71C650FBEA452A",
+          "oem_reference": "950 302 904 42",
+          "pet_illustration": "303-00",
+          "pet_page": 170,
+          "matching_model_annotations": [
+            "G50.21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-7C4439A5446AB40D1C42",
+          "part_master_twin_id": "TWIN-PET-993-PART-384064D227EFB4BFCA03",
+          "oem_reference": "999 062 007 02",
+          "pet_illustration": "301-05",
+          "pet_page": 155,
+          "matching_model_annotations": [
+            "G50.20/21"
+          ],
+          "candidate_quantity_per_car": 2,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-7D6485E50272AD54CB97",
+          "part_master_twin_id": "TWIN-PET-993-PART-6BF8276C65488FDD0855",
+          "oem_reference": "950 302 906 11",
+          "pet_illustration": "303-02",
+          "pet_page": 174,
+          "matching_model_annotations": [
+            "G50.20"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-80034605F8BDA8DC3885",
+          "part_master_twin_id": "TWIN-PET-993-PART-EB8F7E205E5911027B2C",
+          "oem_reference": "950 304 021 22",
+          "pet_illustration": "303-10",
+          "pet_page": 178,
+          "matching_model_annotations": [
+            "G64.51"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-8059EB08E16B9CBBB19C",
+          "part_master_twin_id": "TWIN-PET-993-PART-CCC3118AD90B52832C05",
+          "oem_reference": "993 302 901 23",
+          "pet_illustration": "303-02",
+          "pet_page": 174,
+          "matching_model_annotations": [
+            "G50.21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-8097E0981F9FE8ABA8B4",
+          "part_master_twin_id": "TWIN-PET-993-PART-3F8145B2777D97784238",
+          "oem_reference": "950 302 906 01",
+          "pet_illustration": "303-02",
+          "pet_page": 174,
+          "matching_model_annotations": [
+            "G50.21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-877A702F34FCA88A741A",
+          "part_master_twin_id": "TWIN-PET-993-PART-322B9AAB3C6A24460C7A",
+          "oem_reference": "964 375 055 02",
+          "pet_illustration": "307-00",
+          "pet_page": 197,
+          "matching_model_annotations": [
+            "G50.20/21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-8BA467CE81127FA5108E",
+          "part_master_twin_id": "TWIN-PET-993-PART-B38304F1B7C2DCE2A20B",
+          "oem_reference": "993 302 903 35",
+          "pet_illustration": "303-01",
+          "pet_page": 172,
+          "matching_model_annotations": [
+            "G50.33"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-8D97035AF488B6552945",
+          "part_master_twin_id": "TWIN-PET-993-PART-68566EF5D8EC7C607446",
+          "oem_reference": "964 300 020 51",
+          "pet_illustration": "302-01",
+          "pet_page": 162,
+          "matching_model_annotations": [
+            "G64.51"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-8FA2391204215498839F",
+          "part_master_twin_id": "TWIN-PET-993-PART-812930CCC34CA9CB68DB",
+          "oem_reference": "993 302 901 22",
+          "pet_illustration": "303-02",
+          "pet_page": 174,
+          "matching_model_annotations": [
+            "G50.20"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-9159A1406464C87D84D3",
+          "part_master_twin_id": "TWIN-PET-993-PART-518BF21ADDBBC32BFFAD",
+          "oem_reference": "993 302 905 00",
+          "pet_illustration": "303-01",
+          "pet_page": 172,
+          "matching_model_annotations": [
+            "G50.31"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-98625A4922772FE81987",
+          "part_master_twin_id": "TWIN-PET-993-PART-93C2897849366CBB2D51",
+          "oem_reference": "950 302 903 52",
+          "pet_illustration": "303-00",
+          "pet_page": 170,
+          "matching_model_annotations": [
+            "G50.21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-99EB977B3CE415BE96E3",
+          "part_master_twin_id": "TWIN-PET-993-PART-C8DC3B4C6FBA9C495FE9",
+          "oem_reference": "928 304 211 30",
+          "pet_illustration": "303-10",
+          "pet_page": 178,
+          "matching_model_annotations": [
+            "G50.32"
+          ],
+          "candidate_quantity_per_car": 4,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-9E72D510F82A407079F6",
+          "part_master_twin_id": "TWIN-PET-993-PART-3C769E396B8DA3D9788F",
+          "oem_reference": "950 302 954 05",
+          "pet_illustration": "303-01",
+          "pet_page": 172,
+          "matching_model_annotations": [
+            "G50.32"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-9F08C7948B27B7B48384",
+          "part_master_twin_id": "TWIN-PET-993-PART-9342C2594BE3527EED36",
+          "oem_reference": "900 060 106 01",
+          "pet_illustration": "301-05",
+          "pet_page": 155,
+          "matching_model_annotations": [
+            "G50.20/21"
+          ],
+          "candidate_quantity_per_car": 2,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-A0DC4EFBD0E35537F4F5",
+          "part_master_twin_id": "TWIN-PET-993-PART-49E589FB469CA4AB9AEF",
+          "oem_reference": "950 332 983 02",
+          "pet_illustration": "305-05",
+          "pet_page": 190,
+          "matching_model_annotations": [
+            "G50.20/21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-A2181A7C542FF38CF3A8",
+          "part_master_twin_id": "TWIN-PET-993-PART-97A70EA7D10A53D3B439",
+          "oem_reference": "950 302 270 02",
+          "pet_illustration": "303-10",
+          "pet_page": 179,
+          "matching_model_annotations": [
+            "G64.51"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-A23460C34B006BA42D1F",
+          "part_master_twin_id": "TWIN-PET-993-PART-BAAF79941A49BA3A17DC",
+          "oem_reference": "950 303 113 04",
+          "pet_illustration": "304-00",
+          "pet_page": 182,
+          "matching_model_annotations": [
+            "G50.32"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-AA14BBF7ABD9F7354DE3",
+          "part_master_twin_id": "TWIN-PET-993-PART-662DB94F8C3FA1D662FD",
+          "oem_reference": "964 307 101 00",
+          "pet_illustration": "302-05",
+          "pet_page": 168,
+          "matching_model_annotations": [
+            "G64.51"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-AB507FD774ECD0EB6D32",
+          "part_master_twin_id": "TWIN-PET-993-PART-97E1BC951ABF4E330BE5",
+          "oem_reference": "950 302 911 13",
+          "pet_illustration": "303-00",
+          "pet_page": 170,
+          "matching_model_annotations": [
+            "G50.20/21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-AE442A9FCC9112B6BC77",
+          "part_master_twin_id": "TWIN-PET-993-PART-979EEB99767EADCB9A06",
+          "oem_reference": "950 332 209 01",
+          "pet_illustration": "305-00",
+          "pet_page": 187,
+          "matching_model_annotations": [
+            "G50.20/21"
+          ],
+          "candidate_quantity_per_car": 2,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-AFCB9A0680838B9C81E9",
+          "part_master_twin_id": "TWIN-PET-993-PART-518BF21ADDBBC32BFFAD",
+          "oem_reference": "993 302 905 00",
+          "pet_illustration": "303-00",
+          "pet_page": 170,
+          "matching_model_annotations": [
+            "G50.21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-B0C7B7551B6C40860985",
+          "part_master_twin_id": "TWIN-PET-993-PART-518BF21ADDBBC32BFFAD",
+          "oem_reference": "993 302 905 00",
+          "pet_illustration": "303-02",
+          "pet_page": 174,
+          "matching_model_annotations": [
+            "G50.21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-B38CFE6B7D5B3C2A96F6",
+          "part_master_twin_id": "TWIN-PET-993-PART-2559C249BD9A6FE7E6E9",
+          "oem_reference": "993 302 904 45",
+          "pet_illustration": "303-02",
+          "pet_page": 174,
+          "matching_model_annotations": [
+            "G50.20"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-B4685BB99F8E965E6546",
+          "part_master_twin_id": "TWIN-PET-993-PART-B52B053A00054CE8BD70",
+          "oem_reference": "964 375 055 80",
+          "pet_illustration": "307-00",
+          "pet_page": 197,
+          "matching_model_annotations": [
+            "G50.31/32/33"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-BA6688457F300038C697",
+          "part_master_twin_id": "TWIN-PET-993-PART-7696E598D11EBD9FDCDE",
+          "oem_reference": "993 302 904 40",
+          "pet_illustration": "303-02",
+          "pet_page": 174,
+          "matching_model_annotations": [
+            "G50.21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-BB2985C0E68512C9490D",
+          "part_master_twin_id": "TWIN-PET-993-PART-12B5E7B8FDBF076F42AF",
+          "oem_reference": "964 301 301 02",
+          "pet_illustration": "302-05",
+          "pet_page": 167,
+          "matching_model_annotations": [
+            "G50.20/21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-BFA0C492CA2B54CF56CE",
+          "part_master_twin_id": "TWIN-PET-993-PART-01DC70F5755DDD8E0EFB",
+          "oem_reference": "993 302 901 16",
+          "pet_illustration": "303-01",
+          "pet_page": 172,
+          "matching_model_annotations": [
+            "G50.31/32/33"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-C2AB561E4CA61AA758A2",
+          "part_master_twin_id": "TWIN-PET-993-PART-53AC7E4D0296905993D6",
+          "oem_reference": "950 116 813 30",
+          "pet_illustration": "301-05",
+          "pet_page": 155,
+          "matching_model_annotations": [
+            "G50.32"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-C5BDA6A62AE1EE1750FE",
+          "part_master_twin_id": "TWIN-PET-993-PART-AA14E35F391C9D2CAD40",
+          "oem_reference": "950 303 134 05",
+          "pet_illustration": "304-05",
+          "pet_page": 184,
+          "matching_model_annotations": [
+            "G50.31/32/33"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-C77D03825B7A52205921",
+          "part_master_twin_id": "TWIN-PET-993-PART-671EE81B12EF29E03FE2",
+          "oem_reference": "928 351 945 03",
+          "pet_illustration": "301-05",
+          "pet_page": 155,
+          "matching_model_annotations": [
+            "G50.20/21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-CA374437C199046EEAFA",
+          "part_master_twin_id": "TWIN-PET-993-PART-A7897BD8402FD0DE94BC",
+          "oem_reference": "950 332 983 32",
+          "pet_illustration": "305-05",
+          "pet_page": 190,
+          "matching_model_annotations": [
+            "G50.31/32/33"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-CB2498C1E91080824636",
+          "part_master_twin_id": "TWIN-PET-993-PART-B5C4005FEB94B71B75F4",
+          "oem_reference": "999 201 437 06",
+          "pet_illustration": "303-10",
+          "pet_page": 178,
+          "matching_model_annotations": [
+            "G64.51"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-CBB37226973307470DDB",
+          "part_master_twin_id": "TWIN-PET-993-PART-84AE20DB1A4F85029ECD",
+          "oem_reference": "950 332 083 03",
+          "pet_illustration": "305-05",
+          "pet_page": 190,
+          "matching_model_annotations": [
+            "G64.20/21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-CE6505088F7C664E45D8",
+          "part_master_twin_id": "TWIN-PET-993-PART-78DA88D42F9FE46F13D4",
+          "oem_reference": "950 302 955 11",
+          "pet_illustration": "303-01",
+          "pet_page": 172,
+          "matching_model_annotations": [
+            "G50.32"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-D208D33E3E2F2EA4E45E",
+          "part_master_twin_id": "TWIN-PET-993-PART-8970999F409153CD5253",
+          "oem_reference": "950 302 952 05",
+          "pet_illustration": "303-01",
+          "pet_page": 172,
+          "matching_model_annotations": [
+            "G50.31/32/33"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-D406AE315678FF74BF3B",
+          "part_master_twin_id": "TWIN-PET-993-PART-506651FA14B97AE8DB3F",
+          "oem_reference": "964 302 335 02",
+          "pet_illustration": "303-10",
+          "pet_page": 178,
+          "matching_model_annotations": [
+            "G64.51"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-D8D91A794C88756B22B1",
+          "part_master_twin_id": "TWIN-PET-993-PART-9AE64977A4D6C5D0D841",
+          "oem_reference": "950 116 237 12",
+          "pet_illustration": "301-05",
+          "pet_page": 155,
+          "matching_model_annotations": [
+            "G50.20/21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-E40F3789C1D3377E464D",
+          "part_master_twin_id": "TWIN-PET-993-PART-0C5E94AE5F4281A87AFD",
+          "oem_reference": "950 302 268 12",
+          "pet_illustration": "303-10",
+          "pet_page": 179,
+          "matching_model_annotations": [
+            "G64.51"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-E92980D17FBD5E50E4EE",
+          "part_master_twin_id": "TWIN-PET-993-PART-711F7411B21A1B3331BC",
+          "oem_reference": "964 301 010 55",
+          "pet_illustration": "302-01",
+          "pet_page": 162,
+          "matching_model_annotations": [
+            "G64.51"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-E93662CC085D3D0F1AD4",
+          "part_master_twin_id": "TWIN-PET-993-PART-706E171EEF034B462718",
+          "oem_reference": "950 332 083 38",
+          "pet_illustration": "305-05",
+          "pet_page": 190,
+          "matching_model_annotations": [
+            "G50.31/32/33"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-E96136D2433881BDE41B",
+          "part_master_twin_id": "TWIN-PET-993-PART-86CF20B222D875D5B2D0",
+          "oem_reference": "950 302 901 21",
+          "pet_illustration": "303-00",
+          "pet_page": 170,
+          "matching_model_annotations": [
+            "G50.20/21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-EC0BCBF049E95745BFB7",
+          "part_master_twin_id": "TWIN-PET-993-PART-A34737FC0BFD32F70DBA",
+          "oem_reference": "950 332 983 08",
+          "pet_illustration": "305-05",
+          "pet_page": 190,
+          "matching_model_annotations": [
+            "G64.20/21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-ECED74CFF19BCECC1DEB",
+          "part_master_twin_id": "TWIN-PET-993-PART-A37A908A52D36F732628",
+          "oem_reference": "964 302 911 13",
+          "pet_illustration": "303-02",
+          "pet_page": 174,
+          "matching_model_annotations": [
+            "G64.20/21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-EEFC502D5D4F32E1FD5A",
+          "part_master_twin_id": "TWIN-PET-993-PART-03CF53A0BA380025B47B",
+          "oem_reference": "950 304 617 11",
+          "pet_illustration": "303-10",
+          "pet_page": 179,
+          "matching_model_annotations": [
+            "G50.32"
+          ],
+          "candidate_quantity_per_car": 2,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-F046695D5F52423BE58B",
+          "part_master_twin_id": "TWIN-PET-993-PART-C27B5D231EBA776BB672",
+          "oem_reference": "950 302 953 06",
+          "pet_illustration": "303-01",
+          "pet_page": 172,
+          "matching_model_annotations": [
+            "G50.31"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-F5E12BBF415C3311B39C",
+          "part_master_twin_id": "TWIN-PET-993-PART-2559C249BD9A6FE7E6E9",
+          "oem_reference": "993 302 904 45",
+          "pet_illustration": "303-01",
+          "pet_page": 172,
+          "matching_model_annotations": [
+            "G50.33"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-FD6C77C33FC0D717425B",
+          "part_master_twin_id": "TWIN-PET-993-PART-B84D8DF8ABEB9765D8F9",
+          "oem_reference": "950 302 904 46",
+          "pet_illustration": "303-00",
+          "pet_page": 170,
+          "matching_model_annotations": [
+            "G50.20"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-FFA0377D9D49D726F0CE",
+          "part_master_twin_id": "TWIN-PET-993-PART-652CBBFCF6F1146FFE7B",
+          "oem_reference": "964 301 103 06",
+          "pet_illustration": "302-05",
+          "pet_page": 168,
+          "matching_model_annotations": [
+            "G64.20/21"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        }
+      ],
+      "complete_vehicle_bom": false,
+      "combined_with_model_variant": false,
+      "human_reviewed": false,
+      "missing_gates": [
+        "resolve_model_year_market_engine_and_option_intersections",
+        "review_quantities_exclusions_and_supersessions",
+        "promote_only_after_human_pet_review",
+        "author_geometry_interfaces_materials_and_load_cases"
+      ]
+    },
+    {
+      "contract_id": "CONFIG-AXIS-993-TRANSMISSION-TIPTRONIC-4-SPEED",
+      "axis": "transmission_family",
+      "value": "tiptronic_4_speed_candidate",
+      "status": "provisional_axis_contract_not_a_vehicle_configuration",
+      "interpretation_status": "pet_summary_explicitly_maps_tiptronic_to_a50_4_speed",
+      "candidate_occurrence_count": 2,
+      "candidate_occurrences_with_single_quantity": 2,
+      "candidate_occurrences": [
+        {
+          "occurrence_twin_id": "TWIN-PET-993-7BC5CD6A1144C1605FC3",
+          "part_master_twin_id": "TWIN-PET-993-PART-8F53C7F8097E7283DBCA",
+          "oem_reference": "943 300 010 05",
+          "pet_illustration": "320-00",
+          "pet_page": 200,
+          "matching_model_annotations": [
+            "A50.05"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        },
+        {
+          "occurrence_twin_id": "TWIN-PET-993-C10DE7A9E0EE3963F056",
+          "part_master_twin_id": "TWIN-PET-993-PART-35B7CC7E14E66B2EB228",
+          "oem_reference": "943 300 010 07",
+          "pet_illustration": "320-00",
+          "pet_page": 200,
+          "matching_model_annotations": [
+            "A50.07"
+          ],
+          "candidate_quantity_per_car": 1,
+          "evidence_status": "machine_extracted_configuration_axis_not_human_reviewed",
+          "promoted_to_vehicle_bom": false,
+          "geometry_revision": null,
+          "mounted_transform": null,
+          "selected_material": null,
+          "manufacturing_route": null
+        }
+      ],
+      "complete_vehicle_bom": false,
+      "combined_with_model_variant": false,
+      "human_reviewed": false,
+      "missing_gates": [
+        "resolve_model_year_market_engine_and_option_intersections",
+        "review_quantities_exclusions_and_supersessions",
+        "promote_only_after_human_pet_review",
+        "author_geometry_interfaces_materials_and_load_cases"
+      ]
+    }
+  ],
+  "combination_policy": {
+    "cartesian_product_allowed": false,
+    "reason": "Une annotation de carrosserie ou de boite ne prouve pas son intersection avec une variante, un moteur, un marche, un millesime ou une option.",
+    "required_join_dimensions": [
+      "model_variant",
+      "body_style",
+      "model_year",
+      "market",
+      "engine_code",
+      "transmission_code",
+      "option_codes"
+    ]
+  },
+  "prohibited_claims": [
+    "axis_candidate_is_complete_vehicle_bom",
+    "body_token_proves_model_variant",
+    "transmission_token_proves_vehicle_fitment",
+    "candidate_quantity_authorizes_manufacturing",
+    "virtual_configuration_proves_roadworthy_vehicle"
+  ]
+}

@@ -1,0 +1,574 @@
+{
+  "$comment": "Contrat d'inference virtuelle vers F2. Il structure les interfaces et les equations, mais ne fournit aucune cote d'interface ni autorisation.",
+  "schema_version": "1.0.0",
+  "generated_by": "parts/993-eng-carrier-0001/source/build_virtual_f2_readiness.py",
+  "status": "F2_virtual_readiness_complete_no_F2_geometry_credit",
+  "subject": {
+    "part_id": "993-ENG-CARRIER-0001",
+    "oem_reference": "993 115 021 53",
+    "part_master_twin_id": "TWIN-PET-993-PART-F77CBF8A0C10743C3178",
+    "variant": "993-turbo",
+    "quantity_per_car": 1,
+    "safety_class": "safety_critical",
+    "current_component_fidelity": "F1_envelope_identity_linked_unvalidated"
+  },
+  "source_boundary": {
+    "files": [
+      {
+        "id": "part_record",
+        "path": "catalog/parts/993-eng-carrier-0001.json",
+        "sha256": "575d4c43759a637317f9428d1ab04e280f84e34dc505de53a1e6c1ebdbbe0fbf",
+        "role": "classification_provenance_and_known_limits"
+      },
+      {
+        "id": "declared_part_data",
+        "path": "catalog/reference/993-declared-part-data.json",
+        "sha256": "987b4912525eac39fec630b0252f7e76777b5a36c6aec0647629034c1273667e",
+        "role": "declared_envelope_mass_and_material_observation"
+      },
+      {
+        "id": "manual_measurements",
+        "path": "catalog/measurements/MEAS-MANUAL-993-ALL.json",
+        "sha256": "77c770a19fdeed18aa39aebe89ac6ab93e3374354cfe108940dcfa0cddeeddae",
+        "role": "candidate_torque_record_not_turbo_applicability_proof"
+      },
+      {
+        "id": "porschefanatics_context",
+        "path": "twins/catalogue-parts/evidence/porschefanatics-993-oem-context.json",
+        "sha256": "cd04ee38711ae836b500a79bd6b05d655fb8c2d86ad0be2d2b584d05c112fa51",
+        "role": "pet_identity_variant_quantity_and_companion_parts"
+      },
+      {
+        "id": "catalogue_twin_index",
+        "path": "twins/catalogue-parts/index.json",
+        "sha256": "1d8c4254c3563e0e288d5f9a668a6baf550ad0c8abe32eb52678d1b8403986df",
+        "role": "F1_envelope_identity_and_asset_paths"
+      },
+      {
+        "id": "material_screening",
+        "path": "twins/catalogue-parts/engine-carrier-material-screening-f1.json",
+        "sha256": "e9efef04fce3c1472217a8bd87a919bee4787c420d3b2d5d06df773f6718bd92",
+        "role": "generic_coupon_tradeoff_without_component_credit"
+      },
+      {
+        "id": "mass_constrained_surrogate",
+        "path": "twins/catalogue-parts/engine-carrier-mass-constrained-surrogate-f1.json",
+        "sha256": "19bbba728a0707fe93c0e8ad795175a297d155ce38641187c4e04bbacae9c354",
+        "role": "envelope_mass_constrained_structural_witness_without_component_credit"
+      },
+      {
+        "id": "load_case_evidence",
+        "path": "parts/993-eng-carrier-0001/evidence/load-cases.md",
+        "sha256": "0ed2653415cb3ed12cb871f9858a0ae932fca2aab63b7979acfb188678d687a8",
+        "role": "documentary_mass_load_unknowns_and_review_boundary"
+      }
+    ],
+    "source_integrity_checked": true,
+    "porschefanatics_source_repository_commit": "70a8cc3d546934afe0ed4a3a7096b5bef3e31029",
+    "public_images_copied_into_repository": false,
+    "pet_illustration_used_as_scale_reference": false
+  },
+  "documentary_inputs": {
+    "pet_identity": {
+      "group": "Engine suspension Turbo",
+      "position": 17,
+      "quantity_per_car": 1,
+      "proven_variants": [
+        "993-turbo"
+      ],
+      "status": "verified_in_catalogue_context"
+    },
+    "declared_envelope_mm": [
+      600.0,
+      50.0,
+      50.0
+    ],
+    "declared_part_mass_kg": 1.96,
+    "documentary_powertrain_mass_candidate_kg": {
+      "value": 195.0,
+      "scope": "GT2_Race_complete_engine_outside_gearbox_rounded_anchor",
+      "status": "community_documentary_candidate_not_exact_Turbo_mass_or_carrier_load"
+    },
+    "tightening_candidate": {
+      "value_id": "MNL-TORQUE-0047",
+      "thread": "M 12",
+      "torque_Nm": 85.0,
+      "status": "manual_record_candidate_not_proven_applicable_to_Turbo_reference",
+      "used_to_compute_preload": false
+    }
+  },
+  "coordinate_system": {
+    "units": "mm",
+    "local_axes": {
+      "X": "hypothesis_along_declared_600_mm_envelope",
+      "Y": "hypothesis_along_declared_50_mm_envelope",
+      "Z": "hypothesis_along_declared_50_mm_envelope"
+    },
+    "origin": null,
+    "vehicle_transform": null,
+    "status": "visual_envelope_frame_only_not_vehicle_registered"
+  },
+  "mass_constrained_surrogate": {
+    "contract": "twins/catalogue-parts/engine-carrier-mass-constrained-surrogate-f1.json",
+    "status": "F1_mass_constrained_structural_surrogate_no_component_credit",
+    "editable_scad": "twins/catalogue-parts/engineering/993-engine-carrier-mass-constrained-surrogate-f1.scad",
+    "openusd_guide": "twins/catalogue-parts/engineering/993-engine-carrier-mass-constrained-surrogate-f1.usda",
+    "equivalent_wall_mm": 2.175319724,
+    "fill_fraction": 0.166454352,
+    "mass_constraint_closed": true,
+    "interface_search_domain_count": 2,
+    "selected_interface_point_count": 0,
+    "component_geometry_credit": false,
+    "reference_CAE_credit": false
+  },
+  "interface_hypotheses": [
+    {
+      "interface_id": "IF-993-EC-CARRIER-BRACKET",
+      "peer_oem_reference": "993 115 103 52",
+      "peer_name": "Engine bracket",
+      "peer_quantity_per_car": 1,
+      "identity_status": "verified_same_Turbo_PET_group",
+      "relationship_status": "topology_hypothesis_not_attachment_proof",
+      "coordinates_mm": null,
+      "axes": null,
+      "contact_geometry": null,
+      "tolerance_mm": null,
+      "confirmed_interface_geometry": false
+    },
+    {
+      "interface_id": "IF-993-EC-CARRIER-MOUNTS",
+      "peer_oem_reference": "993 375 049 05",
+      "peer_name": "Engine mounting",
+      "peer_quantity_per_car": 2,
+      "identity_status": "verified_in_Turbo_PET_context",
+      "relationship_status": "topology_hypothesis_not_attachment_proof",
+      "coordinates_mm": null,
+      "axes": null,
+      "contact_geometry": null,
+      "tolerance_mm": null,
+      "confirmed_interface_geometry": false
+    }
+  ],
+  "parameter_registry": [
+    {
+      "id": "P-F2-001",
+      "quantity": "carrier_to_bracket_interface_centres_xyz",
+      "value": null,
+      "unit": "mm",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "package",
+        "structural"
+      ]
+    },
+    {
+      "id": "P-F2-002",
+      "quantity": "carrier_to_mount_interface_centres_xyz",
+      "value": null,
+      "unit": "mm",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "package",
+        "structural",
+        "multibody"
+      ]
+    },
+    {
+      "id": "P-F2-003",
+      "quantity": "interface_axes_and_normals",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "package",
+        "structural"
+      ]
+    },
+    {
+      "id": "P-F2-004",
+      "quantity": "hole_diameters_thread_engagement_and_pattern",
+      "value": null,
+      "unit": "mm",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "package",
+        "structural"
+      ]
+    },
+    {
+      "id": "P-F2-005",
+      "quantity": "bearing_faces_and_contact_areas",
+      "value": null,
+      "unit": "mm2",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "structural"
+      ]
+    },
+    {
+      "id": "P-F2-006",
+      "quantity": "carrier_thickness_and_section_profile",
+      "value": null,
+      "unit": "mm",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "structural"
+      ]
+    },
+    {
+      "id": "P-F2-007",
+      "quantity": "fillet_hole_and_boss_geometry",
+      "value": null,
+      "unit": "mm",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "structural",
+        "fatigue"
+      ]
+    },
+    {
+      "id": "P-F2-008",
+      "quantity": "carrier_to_vehicle_transform",
+      "value": null,
+      "unit": "mm_deg",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "vehicle_integration",
+        "omniverse"
+      ]
+    },
+    {
+      "id": "P-LOAD-001",
+      "quantity": "powertrain_mass_fraction_reacted_by_carrier",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "vertical",
+        "longitudinal",
+        "lateral"
+      ]
+    },
+    {
+      "id": "P-LOAD-002",
+      "quantity": "powertrain_centre_of_gravity_xyz",
+      "value": null,
+      "unit": "mm",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "vertical",
+        "longitudinal",
+        "lateral",
+        "torque"
+      ]
+    },
+    {
+      "id": "P-LOAD-003",
+      "quantity": "turbo_engine_torque_envelope",
+      "value": null,
+      "unit": "N_m",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "torque",
+        "fatigue"
+      ]
+    },
+    {
+      "id": "P-LOAD-004",
+      "quantity": "vertical_dynamic_factor",
+      "value": null,
+      "unit": "g",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "pothole",
+        "fatigue"
+      ]
+    },
+    {
+      "id": "P-LOAD-005",
+      "quantity": "longitudinal_acceleration_factor",
+      "value": null,
+      "unit": "g",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "longitudinal",
+        "fatigue"
+      ]
+    },
+    {
+      "id": "P-LOAD-006",
+      "quantity": "lateral_acceleration_factor",
+      "value": null,
+      "unit": "g",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "lateral",
+        "fatigue"
+      ]
+    },
+    {
+      "id": "P-LOAD-007",
+      "quantity": "mount_stiffness_and_damping_matrix",
+      "value": null,
+      "unit": "N_per_mm",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "modal",
+        "multibody"
+      ]
+    },
+    {
+      "id": "P-LOAD-008",
+      "quantity": "temperature_field_and_gradient",
+      "value": null,
+      "unit": "degC",
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "thermal",
+        "fatigue"
+      ]
+    },
+    {
+      "id": "P-LOAD-009",
+      "quantity": "duty_cycle_and_load_spectrum",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "fatigue"
+      ]
+    },
+    {
+      "id": "P-MAT-001",
+      "quantity": "qualified_material_elastic_plastic_fatigue_curves",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "structural",
+        "modal",
+        "fatigue"
+      ]
+    },
+    {
+      "id": "P-ACC-001",
+      "quantity": "stress_displacement_modal_and_fatigue_limits",
+      "value": null,
+      "unit": null,
+      "uncertainty": null,
+      "status": "unknown_virtual_inference_or_external_evidence_required",
+      "required_by": [
+        "all_reference_solvers"
+      ]
+    }
+  ],
+  "mathematical_model": {
+    "status": "partial_symbolic_screening_only",
+    "constants": {
+      "standard_gravity_m_s2": 9.80665
+    },
+    "equations": [
+      "F_carrier_static_N = m_powertrain_kg * g_m_s2 * alpha_carrier",
+      "R_left_N + R_right_N = F_carrier_static_N",
+      "sum_forces_xyz = 0 and sum_moments_xyz = 0 for every solved load case",
+      "F_dynamic_axis_N = m_powertrain_kg * g_m_s2 * acceleration_factor_axis_g * alpha_carrier",
+      "M_reaction_Nm = T_engine_Nm plus cross(r_CG_m, F_inertial_N)"
+    ],
+    "computed_documentary_bounds": {
+      "alpha_carrier_assumption_range": [
+        0.0,
+        1.0
+      ],
+      "static_gravity_force_range_N": [
+        0.0,
+        1912.29675
+      ],
+      "conditional_equal_mount_reaction_range_N_each": [
+        0.0,
+        956.148375
+      ],
+      "conditional_note": "La reaction par support ne vaut que sous symetrie, charge centree et partage egal ; ces hypotheses ne sont pas validees.",
+      "component_strength_or_life_conclusion": null
+    },
+    "dimensional_balance_required": true,
+    "energy_balance_required_where_applicable": true
+  },
+  "load_cases": [
+    {
+      "id": "LC-993-EC-STATIC-GRAVITY",
+      "kind": "static_vertical",
+      "known_input_ids": [
+        "documentary_powertrain_mass_candidate_kg"
+      ],
+      "missing_parameter_ids": [
+        "P-LOAD-001",
+        "P-LOAD-002"
+      ],
+      "status": "blocked_partial_documentary_bound_only"
+    },
+    {
+      "id": "LC-993-EC-ENGINE-TORQUE",
+      "kind": "powertrain_reaction_torque",
+      "missing_parameter_ids": [
+        "P-LOAD-002",
+        "P-LOAD-003"
+      ],
+      "status": "blocked_no_Turbo_torque_envelope_or_reaction_arm"
+    },
+    {
+      "id": "LC-993-EC-LONGITUDINAL",
+      "kind": "longitudinal_inertia",
+      "missing_parameter_ids": [
+        "P-LOAD-001",
+        "P-LOAD-002",
+        "P-LOAD-005"
+      ],
+      "status": "blocked"
+    },
+    {
+      "id": "LC-993-EC-LATERAL",
+      "kind": "lateral_inertia",
+      "missing_parameter_ids": [
+        "P-LOAD-001",
+        "P-LOAD-002",
+        "P-LOAD-006"
+      ],
+      "status": "blocked"
+    },
+    {
+      "id": "LC-993-EC-POTHOLE",
+      "kind": "vertical_shock",
+      "missing_parameter_ids": [
+        "P-LOAD-001",
+        "P-LOAD-002",
+        "P-LOAD-004"
+      ],
+      "status": "blocked"
+    },
+    {
+      "id": "LC-993-EC-MODAL",
+      "kind": "normal_modes_with_mount_compliance",
+      "missing_parameter_ids": [
+        "P-LOAD-007",
+        "P-MAT-001",
+        "P-ACC-001"
+      ],
+      "status": "blocked"
+    },
+    {
+      "id": "LC-993-EC-THERMAL",
+      "kind": "thermal_expansion_and_gradient",
+      "missing_parameter_ids": [
+        "P-LOAD-008",
+        "P-MAT-001",
+        "P-ACC-001"
+      ],
+      "status": "blocked"
+    },
+    {
+      "id": "LC-993-EC-FATIGUE",
+      "kind": "variable_amplitude_fatigue",
+      "missing_parameter_ids": [
+        "P-LOAD-003",
+        "P-LOAD-004",
+        "P-LOAD-005",
+        "P-LOAD-006",
+        "P-LOAD-009",
+        "P-MAT-001",
+        "P-ACC-001"
+      ],
+      "status": "blocked"
+    }
+  ],
+  "model_roles": {
+    "llm": {
+      "allowed": [
+        "propose_explicit_hypotheses_with_uncertainty",
+        "detect_cross_source_contradictions",
+        "generate_solver_input_drafts_for_deterministic_review"
+      ],
+      "prohibited": [
+        "invent_measurements_or_tolerances",
+        "replace_equilibrium_or_reference_solver",
+        "approve_material_manufacturing_or_vehicle_release"
+      ],
+      "output_authority": "hypothesis_only"
+    },
+    "reference_solver": {
+      "structural": "CalculiX_after_F3_load_bearing_geometry",
+      "package": "parametric_CAD_tolerance_stack_and_collision_check_after_F2",
+      "current_mass_constrained_surrogate": "analytic_sensitivity_bookends_only_not_reference_CAE",
+      "enabled": false
+    },
+    "physicsnemo": {
+      "candidate_models": [
+        "GeoTransolver",
+        "MeshGraphNet",
+        "Transolver",
+        "FIGConvUNet"
+      ],
+      "role": "surrogate_only_after_converged_reference_CAE_dataset",
+      "training_enabled": false,
+      "inference_enabled": false,
+      "validated": false
+    },
+    "omniverse": {
+      "semantic_layer": "twins/catalogue-parts/engineering/993-engine-carrier-virtual-f2-readiness.usda",
+      "semantic_layer_sha256": "1a74fb27790838dcdd674b30079f75ee076c70d9749769570e8afa10ba274a0e",
+      "F1_envelope_composed": true,
+      "F1_mass_constrained_surrogate_composed": true,
+      "F2_interface_geometry_present": false,
+      "physics_assignment_present": false,
+      "simready_validated": false
+    }
+  },
+  "virtual_inference_policy": {
+    "physical_measurements_expected_from_user": false,
+    "allowed_future_inputs": [
+      "licensed_multi_view_public_images",
+      "catalogue_identity_and_quantity_evidence",
+      "declared_bounding_envelopes",
+      "cross_reference_family_geometry_kept_as_non_transferable_prior"
+    ],
+    "required_output_for_each_inference": [
+      "method",
+      "source_image_or_record_ids",
+      "uncertainty_interval",
+      "scale_anchor",
+      "variant_scope",
+      "independent_consistency_check"
+    ],
+    "automatic_promotion_to_F2": false
+  },
+  "release_gates": {
+    "F2_interface_geometry": false,
+    "F3_engineering_geometry": false,
+    "qualified_material_selected": false,
+    "reference_CAE_passed": false,
+    "physicsnemo_validated": false,
+    "simready_validated": false,
+    "professional_engineering_review": false,
+    "manufacturing": false,
+    "installation": false,
+    "road_use": false
+  },
+  "next_gate": "infer_and_cross_check_interface_coordinates_with_uncertainty_then_author_an_editable_F2_hypothesis_without_fit_or_release_claim"
+}
