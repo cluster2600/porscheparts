@@ -15,6 +15,7 @@ from __future__ import annotations
 import math
 
 from .common import (
+    FAN_DRIVE_RATIO, FAN_FLOW_REF_M3_S, FAN_REF_RPM,
     P_AMB_PA, R_AIR, RHO_AMB, T_AMB_K,
     TURBOS, VARIANTS_FLOW_ANCHOR_KG_S, interp,
 )
