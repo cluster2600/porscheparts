@@ -32,3 +32,62 @@ timeFormat      general;
 timePrecision   6;
 
 runTimeModifiable true;
+
+// EXPLORATORY post-processing (added 2026-09-27 baseline run): integral
+// quantities under placeholder BCs. rhoInf is a constant placeholder density.
+functions
+{
+    forces
+    {
+        type            forces;
+        functionSpaceType surface;
+        libs            ("forces");
+        writeControl    timeStep;
+        writeInterval   100;
+        patches         (walls);
+        rho             rhoInf;
+        rhoInf          1.2;
+        origin          (0 0 0);
+        CofR            (0 0 0);
+    }
+    massFlowOut
+    {
+        type            surfaceFieldValue;
+        functionSpaceType surface;
+        libs            ("fieldFunctionObjects");
+        writeControl    timeStep;
+        writeInterval   100;
+        regionType      patch;
+        name            outlet;
+        fields          (U);
+        writeFields     false;
+        operation       sum;
+        weight          magnitude;
+    }
+    inletPressure
+    {
+        type            surfaceFieldValue;
+        functionSpaceType surface;
+        libs            ("fieldFunctionObjects");
+        writeControl    timeStep;
+        writeInterval   100;
+        regionType      patch;
+        name            inlet;
+        fields          (p);
+        writeFields     false;
+        operation       average;
+    }
+    outletPressure
+    {
+        type            surfaceFieldValue;
+        functionSpaceType surface;
+        libs            ("fieldFunctionObjects");
+        writeControl    timeStep;
+        writeInterval   100;
+        regionType      patch;
+        name            outlet;
+        fields          (p);
+        writeFields     false;
+        operation       average;
+    }
+}

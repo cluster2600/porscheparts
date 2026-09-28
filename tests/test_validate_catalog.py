@@ -52,6 +52,13 @@ class CatalogueValidationTests(unittest.TestCase):
 
         self.assertTrue(any("referenced file does not exist" in error for error in errors))
 
+    def test_composite_layup_is_a_supported_process(self) -> None:
+        record = deepcopy(self.template)
+        record["manufacturing"]["candidate_processes"] = ["composite_layup"]
+        record["manufacturing"]["preferred_process"] = "composite_layup"
+
+        self.assertEqual(validate_record(record), [])
+
     def test_template_file_loads_and_validates(self) -> None:
         path = Path(ROOT / "templates" / "part-record.json")
         self.assertEqual(load_and_validate(path), [])

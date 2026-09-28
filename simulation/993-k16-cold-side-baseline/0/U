@@ -14,6 +14,13 @@ FoamFile
 
 dimensions      [0 1 -1 0 0 0 0];
 
+// PLACEHOLDER BC - synthetic inlet velocity, not a K16 compressor-map value.
+// Baseline P1: 40 m/s over the ~50 mm equivalent inlet section -> 0.09425 kg/s
+// (parameters.json derived value).
+// Sensitivity P2 (docs/TURBO_AIRFLOW_SIMULATION_DATA.md fan-flow conflict:
+// 1210 l/s @ 5750 rpm vs 1010 l/s @ 6100 rpm; the 1010 figure split over two
+// banks gives 0.505 m3/s per turbo -> 257.2 m/s over this harness section):
+// run P2 with internalField/inlet value uniform (257.2 0 0).
 internalField   uniform (40 0 0);
 
 boundaryField

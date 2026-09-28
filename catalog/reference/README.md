@@ -3,6 +3,10 @@
 Masses, encombrements et matières relevés **chez des tiers**. Rien ici n'a été
 mesuré par ce projet, et le fichier le dit à chaque ligne.
 
+Le [lot iCloud Porsche du 6 septembre 2026](icloud-porsche-2026-09-06/README.md)
+ajoute les relevés documentaires 917/993 Turbo, matières, transformations et
+divergences d'un classeur fourni, avec leur provenance et leur statut non revérifié.
+
 Deux garde-fous automatiques :
 
 - chaque entrée porte le `source_id` de la fiche qui l'atteste, et le validateur

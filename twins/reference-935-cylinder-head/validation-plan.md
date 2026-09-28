@@ -67,6 +67,46 @@ peut être pertinent pour certains inserts ou éléments allégés. Aucun des de
 doit être choisi par défaut sans simulation conjuguée, architecture de siège et
 stratégie de refroidissement.
 
+La présélection exécutable est décrite dans `reengineering-contract.json`.
+AlSi10Mg LPBF est la référence thermique et de maturité procédé ; AlF357 est le
+challenger mécanique. Le choix final exige des propriétés dépendantes de la
+température mesurées sur coupons issus de la machine, de l'orientation et du
+traitement retenus. Pour la distribution, le contrat privilégie provisoirement
+une admission Ti-6Al-4V conventionnelle, un échappement INCONEL 751 et un ressort
+chrome-silicium qualifié. Ni les soupapes ni les ressorts ne sont prévus en LPBF.
+
+## Comparaison deux et quatre soupapes
+
+La géométrie scannée reste la référence `2v_scan_baseline`. La branche
+`4v_concept` utilise deux admissions et deux échappements mais ne fixe encore
+ni diamètre, ni angle, ni levée. Ces variables sont optimisées après définition
+du moteur cible, du volume de chambre, de l'axe de bougie et de l'encombrement
+de distribution.
+
+La comparaison doit produire les écarts de section de rideau, coefficient de
+débit, rendement volumétrique, masse mobile, force minimale anti-affolement,
+pertes de distribution, surface/volume de chambre, température et contrainte
+des ponts entre sièges, ainsi que la faisabilité d'usinage et de dépoudrage.
+
+## Audit exécutable des lois physiques
+
+`source/build_physics_readiness.py` ne déclare un modèle prêt que lorsque ses
+entrées sont traçables. Il contrôle notamment :
+
+1. trois cotes physiques et leurs incertitudes pour l'échelle ;
+2. le moteur cible et son domaine de fonctionnement ;
+3. un CT segmenté des conduits, chambre, sièges, guides et galeries d'huile ;
+4. les propriétés matière dépendantes de la température et les coupons ;
+5. les pressions, températures, précharges et cycles de service ;
+6. les profils de came, masses, courbes de ressort, hauteurs et jeux ;
+7. les CAO et géométries indépendantes des variantes deux et quatre soupapes ;
+8. les résultats corrélés de banc de flux, température et déformation ;
+9. la qualification LPBF, l'usinage, les NDT et les essais de pression.
+
+Le rapport sépare `generated_geometry_level` de `highest_verified_level` afin
+qu'un STEP valide ou un maillage étanche ne puisse jamais être présenté comme
+une validation physique.
+
 ## Validation physique avant essai moteur
 
 1. scan CT de la pièce ou d'une culasse de référence pour les vides internes ;

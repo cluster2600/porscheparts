@@ -11,6 +11,7 @@ SOURCE="$1"
 OUTPUT="$2"
 PYTHON="${PYTHON:-python3}"
 SCRIPTS="${ROOT}/twins/reference-935-cylinder-head/source"
+ENGINEERING_INPUTS="${ENGINEERING_INPUTS:-${ROOT}/twins/reference-935-cylinder-head/engineering-inputs.template.json}"
 
 "${PYTHON}" "${SCRIPTS}/prepare_scan.py" "${SOURCE}" "${OUTPUT}"
 LIGHT="${OUTPUT}/derived/head-with-studs-light-300k.ply"
@@ -19,6 +20,11 @@ LIGHT="${OUTPUT}/derived/head-with-studs-light-300k.ply"
 "${PYTHON}" "${SCRIPTS}/build_cfd_stubs.py" "${OUTPUT}/reports/interfaces.json" "${OUTPUT}/cfd"
 "${PYTHON}" "${SCRIPTS}/build_interface_proxy.py" "${OUTPUT}/reports/interfaces.json" "${OUTPUT}/cad"
 "${PYTHON}" "${SCRIPTS}/build_valve_variants.py" "${OUTPUT}/cad/valves"
+"${PYTHON}" "${SCRIPTS}/build_physics_readiness.py" \
+    --pipeline "${OUTPUT}" \
+    --contract "${ROOT}/twins/reference-935-cylinder-head/reengineering-contract.json" \
+    --inputs "${ENGINEERING_INPUTS}" \
+    --output "${OUTPUT}/reports/physics-readiness.json"
 "${PYTHON}" "${SCRIPTS}/verify_outputs.py" "${OUTPUT}"
 
 echo "pipeline complete: ${OUTPUT}"

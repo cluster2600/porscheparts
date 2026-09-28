@@ -24,6 +24,7 @@ docs/TITANIUM.md.
 from __future__ import annotations
 
 import argparse
+import json
 import subprocess
 import tempfile
 from pathlib import Path
@@ -39,6 +40,8 @@ HEIGHT_MM = 60.0
 WIDTH_MM = 40.0
 WALL_MM = 3.0
 TIP_LOAD_N = 1000.0
+ROOT = Path(__file__).resolve().parents[3]
+OUTPUT = ROOT / "twins" / "catalogue-parts" / "engine-carrier-material-screening-f1.json"
 
 
 def second_moment(height: float, width: float, wall: float) -> float:
@@ -70,6 +73,139 @@ def scale_for_equal_stiffness(target_EI: float, E_MPa: float) -> float:
         else:
             high = mid
     return (low + high) / 2
+
+
+def build_report() -> dict:
+    """Build a reproducible generic-material screening without part credit."""
+    inertia = second_moment(HEIGHT_MM, WIDTH_MM, WALL_MM)
+    area = section_area(HEIGHT_MM, WIDTH_MM, WALL_MM)
+    steel = MATERIALS["steel"]
+    ti = MATERIALS["ti64"]
+    steel_ei = steel["E_MPa"] * inertia
+    steel_mass = mass_kg(area, SPAN_MM, steel["rho_kg_m3"])
+    ti_mass_same_geometry = mass_kg(area, SPAN_MM, ti["rho_kg_m3"])
+    steel_deflection = tip_deflection_mm(
+        TIP_LOAD_N, SPAN_MM, steel["E_MPa"], inertia
+    )
+    ti_deflection = tip_deflection_mm(
+        TIP_LOAD_N, SPAN_MM, ti["E_MPa"], inertia
+    )
+    stiffness_scale = scale_for_equal_stiffness(steel_ei, ti["E_MPa"])
+    equal_stiffness_area = section_area(
+        HEIGHT_MM * stiffness_scale,
+        WIDTH_MM * stiffness_scale,
+        WALL_MM * stiffness_scale,
+    )
+    ti_mass_equal_stiffness = mass_kg(
+        equal_stiffness_area, SPAN_MM, ti["rho_kg_m3"]
+    )
+    equal_mass_scale = (steel["rho_kg_m3"] / ti["rho_kg_m3"]) ** 0.5
+    equal_mass_inertia = second_moment(
+        HEIGHT_MM * equal_mass_scale,
+        WIDTH_MM * equal_mass_scale,
+        WALL_MM * equal_mass_scale,
+    )
+    return {
+        "$comment": (
+            "Screening analytique d'un coupon generique, pas calcul du berceau. "
+            "Aucune valeur de contrainte, fatigue, tenue ou fabrication n'est deduite."
+        ),
+        "schema_version": "1.0.0",
+        "generated_by": str(Path(__file__).resolve().relative_to(ROOT)),
+        "subject": {
+            "part_id": "993-ENG-CARRIER-0001",
+            "oem_reference": "993 115 021 53",
+            "scope": "generic_rectangular_tube_material_tradeoff_only",
+            "component_geometry_used": False,
+        },
+        "status": "F1_generic_analytic_screening_complete_no_component_credit",
+        "coupon": {
+            "span_mm": SPAN_MM,
+            "height_mm": HEIGHT_MM,
+            "width_mm": WIDTH_MM,
+            "wall_mm": WALL_MM,
+            "tip_load_N": TIP_LOAD_N,
+            "area_mm2": round(area, 6),
+            "second_moment_mm4": round(inertia, 6),
+            "boundary_condition": "ideal_cantilever_tip_load",
+        },
+        "material_hypotheses": {
+            name: {
+                "elastic_modulus_MPa": props["E_MPa"],
+                "density_kg_m3": props["rho_kg_m3"],
+                "poisson_ratio": props["nu"],
+                "qualification_status": "generic_handbook_value_not_supplier_qualified",
+            }
+            for name, props in MATERIALS.items()
+        },
+        "analytic_results": {
+            "same_geometry": {
+                "steel_mass_kg": round(steel_mass, 9),
+                "ti64_mass_kg": round(ti_mass_same_geometry, 9),
+                "steel_tip_deflection_mm": round(steel_deflection, 9),
+                "ti64_tip_deflection_mm": round(ti_deflection, 9),
+                "ti64_mass_reduction_fraction": round(
+                    1.0 - ti_mass_same_geometry / steel_mass, 9
+                ),
+                "ti64_deflection_ratio": round(ti_deflection / steel_deflection, 9),
+            },
+            "same_bending_stiffness": {
+                "ti64_uniform_section_scale": round(stiffness_scale, 9),
+                "ti64_mass_kg": round(ti_mass_equal_stiffness, 9),
+                "steel_mass_kg": round(steel_mass, 9),
+                "ti64_mass_reduction_fraction": round(
+                    1.0 - ti_mass_equal_stiffness / steel_mass, 9
+                ),
+            },
+            "same_mass": {
+                "ti64_uniform_section_scale": round(equal_mass_scale, 9),
+                "ti64_to_steel_bending_stiffness_ratio": round(
+                    ti["E_MPa"] * equal_mass_inertia / steel_ei, 9
+                ),
+            },
+            "material_index_sqrt_E_over_density": {
+                name: round((props["E_MPa"] ** 0.5) / props["rho_kg_m3"] * 1000, 9)
+                for name, props in MATERIALS.items()
+            },
+        },
+        "model_verification": {
+            "analytic_equations_executed": True,
+            "independent_component_FEA": "not_run_missing_component_geometry",
+            "generic_coupon_CalculiX_crosscheck": "optional_not_release_evidence",
+            "component_model_verified": False,
+        },
+        "screening_decision": {
+            "titanium_route": "deprioritized_for_current_concept_program",
+            "reason": (
+                "generic stiffness screening and the declared 1.96 kg component mass "
+                "do not justify a titanium redevelopment before geometry and loads"
+            ),
+            "machined_wrought_steel_route": "candidate_pending_geometry_loads_grade_and_fatigue_review",
+            "selected_material": None,
+            "selected_functional_process": None,
+            "component_credit": False,
+        },
+        "downstream_models": {
+            "reference_solver": "CalculiX_after_F3_geometry_and_boundary_completion",
+            "physicsnemo": "blocked_until_validated_reference_CAE_dataset_exists",
+            "omniverse": "F1_envelope_visualization_only_not_SimReady",
+        },
+        "release_gates": {
+            "dimensionally_accurate": False,
+            "fitment_validated": False,
+            "material_qualified": False,
+            "reference_CAE_passed": False,
+            "physicsnemo_validated": False,
+            "simready_validated": False,
+            "manufacturing": False,
+            "installation": False,
+            "road_use": False,
+        },
+    }
+
+
+def render_report(report: dict) -> str:
+    return json.dumps(report, indent=2, ensure_ascii=False) + "\n"
 
 
 def fea_tip_deflection(E_MPa: float, nu: float) -> float:
@@ -128,7 +264,23 @@ def fea_tip_deflection(E_MPa: float, nu: float) -> float:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--fea", action="store_true", help="cross-check the analytic result with CalculiX")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--write", action="store_true", help="write the tracked JSON screening report")
+    mode.add_argument("--check", action="store_true", help="check the tracked JSON screening report")
     args = parser.parse_args(argv)
+
+    report_text = render_report(build_report())
+    if args.write:
+        OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+        OUTPUT.write_text(report_text, encoding="utf-8")
+        print(f"wrote {OUTPUT.relative_to(ROOT)}")
+    elif args.check:
+        if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != report_text:
+            print(f"stale:{OUTPUT}")
+            return 1
+        print(f"current {OUTPUT.relative_to(ROOT)}")
+    if (args.write or args.check) and not args.fea:
+        return 0
 
     inertia = second_moment(HEIGHT_MM, WIDTH_MM, WALL_MM)
     area = section_area(HEIGHT_MM, WIDTH_MM, WALL_MM)

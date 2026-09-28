@@ -61,10 +61,44 @@ def main() -> int:
             }
         )
 
+    physics = json.loads((root / "reports/physics-readiness.json").read_text())
+    gates = {item["id"]: item["status"] for item in physics["gates"]}
+    verified_levels = {
+        "F0_reference",
+        "F1_envelope",
+        "F2_internal_geometry",
+        "F3_coupled_physics",
+        "F4_physical_correlation",
+        "F5_metal_prototype",
+        "F6_engine_test",
+    }
+    scale_fail_closed = (
+        gates.get("scale_calibration") != "blocked"
+        or physics["highest_verified_level"] == "F0_reference"
+    )
+    release_fail_closed = (
+        not physics["manufacturing_release"]["authorized"]
+        or physics["highest_verified_level"] == "F6_engine_test"
+    )
+    checks.append(
+        {
+            "name": "physics_readiness_fail_closed",
+            "passed": bool(
+                physics["report_status"] == "passed"
+                and physics["highest_verified_level"] in verified_levels
+                and physics["generated_geometry_level"] == "F1_hypothesis_artifacts"
+                and scale_fail_closed
+                and release_fail_closed
+            ),
+            "highest_verified_level": physics["highest_verified_level"],
+            "manufacturing_release_authorized": physics["manufacturing_release"]["authorized"],
+        }
+    )
+
     report = {
         "status": "passed" if all(item["passed"] for item in checks) else "failed",
         "checks": checks,
-        "scope": "geometric integrity only; no fit, material, CFD solution or engine validation",
+        "scope": "geometric integrity plus fail-closed physics-readiness audit; no fit, material, CFD solution or engine validation",
     }
     output = root / "reports/output-verification.json"
     output.write_text(json.dumps(report, indent=2) + "\n")

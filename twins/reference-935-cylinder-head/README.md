@@ -6,10 +6,12 @@ Ce dossier contient la chaîne reproductible qui transforme le scan acheté en
 artefacts de travail. Le fichier OBJ, les maillages dérivés et les résultats de
 calcul restent hors Git. Le code et la méthode sont versionnés.
 
-Le jumeau est actuellement un `F1_interface_proxy` : il permet la revue de
-géométrie, la mesure provisoire, le contrôle de collision et la validation de la
-chaîne de maillage CFD. Il ne représente pas encore une culasse 993 compatible,
-fonctionnelle ou prête à fabriquer.
+La chaîne produit un artefact `F1_interface_proxy`, mais le niveau **vérifié**
+reste `F0_reference` tant que l'échelle et les interfaces physiques ne sont pas
+mesurées. Le proxy permet la revue de géométrie, la mesure provisoire, le
+contrôle de collision et la validation de la chaîne de maillage CFD. Il ne
+représente pas encore une culasse 993 compatible, fonctionnelle ou prête à
+fabriquer.
 
 ## Artefacts produits
 
@@ -23,6 +25,37 @@ fonctionnelle ou prête à fabriquer.
 | STL `fit-check-only` | maquette polymère non fonctionnelle | interdit dans un moteur |
 | deux domaines CFD étanches | validation Gmsh et études locales | seulement les tronçons proches des brides |
 | trois proxies de soupapes STEP/STL | masse, collision et préparation de la dynamique | profils sous tête et gorges non mesurés ; STL `fit-check-only` |
+| rapport `physics-readiness.json` | audit des preuves et des modèles physiques | bloque volontairement les solveurs et la fabrication si une entrée manque |
+
+## Réingénierie et choix provisoires
+
+`reengineering-contract.json` relie la géométrie aux conservations de masse,
+quantité de mouvement et énergie, à la conduction thermique, à la
+thermoélasticité, à la dynamique de distribution et à la fatigue. Il décrit
+aussi le front de Pareto : débit corrélé, température, déformation des sièges,
+fatigue, masse mobile et capabilité de fabrication.
+
+La présélection actuelle, qui n'est pas une libération de production, est :
+
+- culasse : AlSi10Mg LPBF comme référence thermique et industrielle, confronté
+  à AlF357 pour la ductilité et les charges dynamiques ;
+- soupape d'admission : Ti-6Al-4V forgé ou usiné, revêtement et extrémité
+  qualifiés, afin de réduire la masse mobile ;
+- soupape d'échappement : INCONEL 751 en barre ou forge, explicitement conçu
+  pour ce service chaud ;
+- ressort : acier ultra-propre chrome-silicium trempé à l'huile, nitruré et
+  grenaillé en plusieurs passes, fourni par un spécialiste.
+
+Les soupapes, ressorts, sièges, guides et filetages sont des composants rapportés
+et qualifiés. Ils ne font pas partie d'une impression monobloc. Leur
+dimensionnement reste bloqué par le profil de came, les masses, la pression gaz,
+le régime, les jeux et les températures réels.
+
+La branche `4v_concept` compare deux admissions et deux échappements à la
+`2v_scan_baseline`. Elle reste séparée de la géométrie mesurée et doit gagner
+sur un front de Pareto complet : débit, rendement volumétrique, masse mobile,
+pertes de ressort, température et contrainte entre sièges, encombrement,
+usinage et évacuation de poudre.
 
 ## Soupapes et variante titane
 
@@ -70,6 +103,20 @@ PYTHON=/chemin/vers/python \
   raw-scans/wolfe-classics-935-cylinder-head/original/935-xtreme-cylinder-head.obj \
   work/wolfe-classics-935-cylinder-head/pipeline
 ```
+
+L'audit de readiness peut être relancé sans retraiter le maillage lourd :
+
+```bash
+python3 twins/reference-935-cylinder-head/source/build_physics_readiness.py \
+  --pipeline work/wolfe-classics-935-cylinder-head/pipeline \
+  --contract twins/reference-935-cylinder-head/reengineering-contract.json \
+  --inputs twins/reference-935-cylinder-head/engineering-inputs.template.json \
+  --output work/wolfe-classics-935-cylinder-head/pipeline/reports/physics-readiness.json
+```
+
+Le fichier `engineering-inputs.template.json` reste volontairement vide. Une
+preuve externe n'est acceptée que par chemin et empreinte SHA-256 ; trois cotes
+physiques cohérentes sont requises pour valider l'échelle.
 
 L'image `3dprinting993-mesh-cfd` ajoute Blender, Gmsh et OpenFOAM 13 pour les
 calculs distants. Aucun scan n'est inclus dans l'image.
