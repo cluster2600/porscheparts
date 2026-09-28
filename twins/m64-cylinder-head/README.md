@@ -81,6 +81,13 @@ differentiation with every boundary vertex fixed. Native PicoGK roundtrips are
 generated separately and independently screened; none replaces the BRep or
 qualifies the head for printing. Both tools ran locally, with no new Vast rental.
 
+The [CAD-constrained continuation](../../docs/reports/M64_CAD_CONSTRAINED_MESH_20260928.md)
+then tests three surface/volume strategies and a protected coplanar-partition
+candidate. The best new count is 128 deficient tetrahedra, but its minimum
+quality is worse: no new mesh is adopted. A separate 4,917-face BRep candidate
+passes exact native readback and its own BOP audit, but fails numerical integral qualification and
+does not replace the reference body or valve assembly.
+
 ## Evidence and current work
 
 This directory holds the code, records and receipts of the M64 cylinder head
