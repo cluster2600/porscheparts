@@ -4,8 +4,8 @@
 > fournies par l’utilisateur invalide son emploi comme base de conception ou
 > d’optimisation du ventilateur réel. Les images et calculs ci-dessous sont
 > conservés pour tracer ce qui a été exécuté sur cette géométrie simplifiée.
-> Les contrôles des solveurs ne valident pas la géométrie. Aucune nouvelle
-> géométrie corrigée n’est encore livrée dans cette version.
+> Les contrôles des solveurs ne valident pas la géométrie. Une [reconstruction partielle distincte](REFERENCE_REBUILD.md) est désormais
+> disponible ; elle ne reprend aucun des anciens résultats de débit.
 
 ## Écarts à corriger avant de poursuivre les calculs
 
