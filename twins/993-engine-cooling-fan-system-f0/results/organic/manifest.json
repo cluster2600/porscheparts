@@ -1,0 +1,976 @@
+{
+  "created_utc": "2026-09-28T21:02:56.424355+00:00",
+  "scope": "organic_rotor_numerical_trials_not_installed_assembly",
+  "functional_print_authorized": false,
+  "physical_print_executed": false,
+  "physical_material_qualified": false,
+  "validated_airflow_m3_s": null,
+  "candidate_for_further_investigation": "E; not a manufacturing freeze",
+  "software": {
+    "nvidia-physicsnemo": "2.2.2",
+    "torch": "2.14.0",
+    "trimesh": "5.1.0",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "matplotlib": "3.11.2",
+    "usd-core": "26.8",
+    "fast-simplification": "0.2.0"
+  },
+  "solvers": {
+    "OpenFOAM": "Foundation 14, build 14-7b05503f98a8",
+    "CalculiX": "2.21",
+    "Gmsh": "4.12.1",
+    "PicoGK": "2.3.0",
+    ".NET_runtime": "9.0.20"
+  },
+  "cae_image_id": "sha256:d3e0364f73efc28e225d7b8f72631c2eba055c1fe27ffe648d483b0edbe12cdf",
+  "compute": "local CPU; Docker 10 CPUs, 6209773568 bytes; no Vast rental",
+  "verification": {
+    "make_check_exit": 0,
+    "core_tests": 3190,
+    "core_skipped": 150,
+    "make_check_local_log_sha256": "cfdeb2770a76eed8888bf7ed550f16197acd260e6f8bdfc4dfdccbaed6e575c5",
+    "focused_tests": 5,
+    "focused_tests_passed": 5,
+    "focused_local_log_sha256": "67aaaf9f405af3401fbb082ba7094d1e09a3a7d7ed1e2596eedb50ba1c891c40",
+    "archived_structure_and_flow_input_hashes_checked": true
+  },
+  "source_sha256_at_publication": {
+    "twins/993-engine-cooling-fan-system-f0/source/audit_fan_physicsnemo.py": "edac2eb8b9a3aa3ebbb82d3cffe622486e374c2275af2515e9276c44ca15c71d",
+    "twins/993-engine-cooling-fan-system-f0/source/audit_fan_pressure_physicsnemo.py": "545ea0c5a74536526861c20dab822bab2ff0f2992349137fc0c3af584c1d87db",
+    "twins/993-engine-cooling-fan-system-f0/source/build_fan_cfd.py": "ce8dbdc412f948d814102883f869143fc4e57fdf68a539e70e7b3b949772ad63",
+    "twins/993-engine-cooling-fan-system-f0/source/build_reference_review.py": "3730afe1cdbc74341e7121b901465b8124e86807d827dd891512c240d82cf2da",
+    "twins/993-engine-cooling-fan-system-f0/source/build_reference_structure.py": "da649e711b8931d11f23fc05493233ee976118e3e14274e01de6f33d4d132514",
+    "twins/993-engine-cooling-fan-system-f0/source/monitor_reference_cfd.py": "c9c1ddeca68bd6a22c8c9781250876d336cb4497c1d3914c3c4f17193dc022d9",
+    "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/Program.cs": "a5814a81259bf0c2bdd0b84b0edb0a218500cac9ecd300171eef0c0249e1f6e3",
+    "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/organic-a.json": "1592e971464c0cbeda6cc13f93f13662c3088fbbdcfe81cbe4068b07a21a3177",
+    "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/organic-b.json": "34787a87230bcd49b319351e3149a8d7b07dbb9f968abb144a22e7d9616e30a4",
+    "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/organic-c.json": "53d2770acd1388038f70ea9676c7248af85efbdeece007f89dcb98f417fef883",
+    "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/organic-d.json": "17463a52438482aeeb70e5dafa998c07aad7a64b19bfdab00260d648a7f33e42",
+    "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/organic-e.json": "5204c81faca6819e6b0853d6affd13a37f4865ba962018441c87f712fcd9c284",
+    "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json": "503be7f4b9e0eb5cc1699f11138e533e42dd1b4f06ba6fddb5b22eebc03fc645",
+    "twins/993-engine-cooling-fan-system-f0/source/plot_fan_velocity.py": "6f8b61f99aad32b919bb86f0f614662330d225ca31cdf6c80e47dbc6a36ab50e",
+    "twins/993-engine-cooling-fan-system-f0/source/plot_organic_study.py": "175f32f2c56b78ffaf876051033e09ef55b667224f7f989b35a89ac8cccca95a",
+    "twins/993-engine-cooling-fan-system-f0/source/prepare_reference_cfd.py": "824285341b94c7d1bd6fdf58adb7c3f5d40bdc8e0e48dd5611db6cc66e0d1c48",
+    "twins/993-engine-cooling-fan-system-f0/source/run_reference_cfd.sh": "e5150a3712b3f01982d5a06929e2dcbaf6a196f468824d854c3a6b1cf163bdd3",
+    "twins/993-engine-cooling-fan-system-f0/source/run_reference_print_screen.py": "ffa51654e7d56c24e4d286fe24ab462978e96a0620148fdbf623e3d3402e984d",
+    "twins/993-engine-cooling-fan-system-f0/source/simulate_zrapid_print.py": "3eb9514c40e5f58b4e9b269a5299707768defae99edaa7bd55ca7388d219cd5a",
+    "twins/993-engine-cooling-fan-system-f0/source/summarize_fan_cfd.py": "6da8c106783b269da202f776a77c8f2b143dd9d81582c73d4f13edde6ac74acf",
+    "twins/993-engine-cooling-fan-system-f0/source/summarize_reference_structure.py": "82d6ae523006162234eb005f9c8067194aa5eb4facb93baff4d12dce7056b8c6",
+    "twins/993-engine-cooling-fan-system-f0/zrapid-print-process.json": "5632c1083bcfb8cbbe0257aab23cfc33c5b8af3b80e19639d619bd7c5071a6d5"
+  },
+  "artifacts": {
+    "a/generation.json": {
+      "sha256": "05e3385809a970ca8a977212922855def39e2c0ee2de6d72448f94b3722ad694",
+      "bytes": 1811
+    },
+    "a/mass-properties.json": {
+      "sha256": "04e57d705ea72d7bf96b7a86f5a29c7f435655cf40738dc92aacdcba46e2caa2",
+      "bytes": 769
+    },
+    "a/physicsnemo-surface-audit.json": {
+      "sha256": "d8706b93047a7be63e7c0e05d7c096539d0f38d75ce8d03ce840b122e1882bae",
+      "bytes": 984
+    },
+    "a/picogk-report.json": {
+      "sha256": "c7814792ee7421764e9235619ba34a690b2a6879f48d9592f0d6d1b3d951855c",
+      "bytes": 2303
+    },
+    "a/print/993-turbo-fan-reference-layer-metrics.csv": {
+      "sha256": "44e0ab6825b6d6f19f5ee1fe480915f519e24484dc47d86c08029a7d4d6b668a",
+      "bytes": 320048
+    },
+    "a/print/993-turbo-fan-reference-lpbf-geometry-report.json": {
+      "sha256": "b9809e329dacb6b77fe1688569b23fd7de0c9f597de2e380743bebea260ffa35",
+      "bytes": 8018
+    },
+    "a/print/flat-layer-metrics.csv": {
+      "sha256": "0b261f178f4d325834c05dd6e5147cc53f1fd5500e17b654dba277f3a47a432c",
+      "bytes": 76007
+    },
+    "a/print/flat-slicing.json": {
+      "sha256": "777c4b136410d02cd159fe7b65b3cdd2babddd5b3fd1d9d43d4dc4f81ac51fee",
+      "bytes": 913
+    },
+    "a/print/inputs.json": {
+      "sha256": "528470fcba9c513e7750777f4aaed42b6433eaf60627e9abedf595a6b809a71c",
+      "bytes": 392
+    },
+    "a/reproduction.json": {
+      "sha256": "ff0b4e343447b25e027352413a23e9c8f25dda67b748f9f2c65514d61223d96e",
+      "bytes": 84
+    },
+    "a/review/reference-review.png": {
+      "sha256": "89839cd8cc0778e743d37099fa5a3e1d3510b37ecd0bb9717711f66c3962d444",
+      "bytes": 704612
+    },
+    "a/review/reference.usdz": {
+      "sha256": "56a1e7529955e9ac1506dd4f4eb24d63d53d3c0256fb848a799ec34104150665",
+      "bytes": 966069
+    },
+    "a/review/validation.json": {
+      "sha256": "ab6607e7d2140e9e4dd9684d49e2d3e78409eeb32c8310c5514aa7d297502520",
+      "bytes": 1427
+    },
+    "a/thermal-15/history.json": {
+      "sha256": "8205a7f32d0d09f4f33fbee1cfd2d6de588c72797a254d1eeccfce7716841142",
+      "bytes": 11290
+    },
+    "a/thermal-15/thermal-summary.json": {
+      "sha256": "0ae7199b1760a01f8db308d8478293e5b44d4582ea587ed725715577e90ed38b",
+      "bytes": 1916
+    },
+    "a/thermal-2/history.json": {
+      "sha256": "cb760d3b855e3558337b062a6f0403c863d47c906b3547a7a5004b7533fb874f",
+      "bytes": 8338
+    },
+    "a/thermal-2/thermal-summary.json": {
+      "sha256": "0b4fec4a926eaf2e318ff23c025fe26a9422f46cf2bd57f588e109305ec93a86",
+      "bytes": 1915
+    },
+    "a/thermal-slicing/layers.csv": {
+      "sha256": "2409a2dbe31bfd54f0e16a67af4569dcb65192d2b4e6fe1b71c2577a0434d1bb",
+      "bytes": 93240
+    },
+    "a/thermal-slicing/slicing-portable.json": {
+      "sha256": "ab099567294f4264d0d8c8d0c6d6193cd040b71cb9ccc3fc229d8d3c7deb1a29",
+      "bytes": 1605
+    },
+    "a/thermal-slicing/surface-reduction.json": {
+      "sha256": "43e48c1b568a44a4da5fd88a8004d489c5f9d3001d79b575eb095e2eac7e85ee",
+      "bytes": 297
+    },
+    "b/generation.json": {
+      "sha256": "65f53c3a607bb150755af91be5d75ba79c9434bb6a331ce578619277cd4698c1",
+      "bytes": 1810
+    },
+    "b/mass-properties.json": {
+      "sha256": "5b9b5c65245f1418a993f89cc565a0a20b7143e1cbd880e2c63e3abe1783bb98",
+      "bytes": 769
+    },
+    "b/physicsnemo-surface-audit.json": {
+      "sha256": "c2ecf0161d64e2336418d032bfe04295e2fc6f9118ecfaf396c65c8efd8c64f4",
+      "bytes": 985
+    },
+    "b/picogk-report.json": {
+      "sha256": "98fae22d3bf1a441539cca0703936e241910e7ab3ed9b88abea2aa5e9d865629",
+      "bytes": 2387
+    },
+    "b/print/993-turbo-fan-reference-layer-metrics.csv": {
+      "sha256": "d2889c1f37a9550fdbce7f6cdead16130aa654682c1f74ee90a5511d671e2184",
+      "bytes": 265507
+    },
+    "b/print/993-turbo-fan-reference-lpbf-geometry-report.json": {
+      "sha256": "757bef8ec3aeead8e1e93f7dbc9e044b0630f7af62aef395e3762ec30e60e4b8",
+      "bytes": 8021
+    },
+    "b/print/flat-layer-metrics.csv": {
+      "sha256": "6e274bac1f65f6970f3e54f05d700a30ed5c0b7c05535495b502de2a33413b13",
+      "bytes": 76866
+    },
+    "b/print/flat-slicing.json": {
+      "sha256": "b866a0c2cec4f0c9e299ba73848605e35603a8dbd00cabe50bf68b5f3ddf46f1",
+      "bytes": 913
+    },
+    "b/print/inputs.json": {
+      "sha256": "e646b6dd128d92e153f80eb1bba6a391dbdc437e899604a5d655182a7f2c557c",
+      "bytes": 392
+    },
+    "c/generation.json": {
+      "sha256": "eed4acd35277cc45442817f30a36ceeb1955b337aaa70d21160efed7e9fb1dd5",
+      "bytes": 1810
+    },
+    "c/mass-properties.json": {
+      "sha256": "bfa5b2cbe81d61e5cdfac521e50fd039bf710e41fa20095753379f4ef789cd00",
+      "bytes": 765
+    },
+    "c/physicsnemo-surface-audit.json": {
+      "sha256": "f8d9cbc8d38882b70750ffc8ffcb9bb7a19f54bbaced9dd6717a870a0b7711e0",
+      "bytes": 983
+    },
+    "c/picogk-report.json": {
+      "sha256": "5d138968f94ba7b529f2eff7c3a66ce30fe8dd3f51c3b2cab330a091f2539182",
+      "bytes": 2302
+    },
+    "c/print/993-turbo-fan-reference-layer-metrics.csv": {
+      "sha256": "484a9db9f26d0469dd02611de1af026e53ffd571a997bc7eb294469b75a1be16",
+      "bytes": 279596
+    },
+    "c/print/993-turbo-fan-reference-lpbf-geometry-report.json": {
+      "sha256": "523764697fb916336423e169cf39b5f98223ebe6b869baf85c712fabafb4dc44",
+      "bytes": 8012
+    },
+    "c/print/flat-layer-metrics.csv": {
+      "sha256": "6ccd4fc312a6f7bb9aa742b673aee43e080d7e9b836d46f9cd754befa6f8cb29",
+      "bytes": 71568
+    },
+    "c/print/flat-slicing.json": {
+      "sha256": "de383d455867d95ff916a78cf5a396298915a90891dd1013ec84ff033a1e1274",
+      "bytes": 911
+    },
+    "c/print/inputs.json": {
+      "sha256": "fd4d5d6a24f4801945c1ecd2130e8d8ec08d3893395f8653952194a5179002d6",
+      "bytes": 392
+    },
+    "c/review/reference-review.png": {
+      "sha256": "363f625d981f2ff79f142862dd832879350810ff25c16a114d06e0202fbe7c11",
+      "bytes": 705613
+    },
+    "c/review/reference.usdz": {
+      "sha256": "5ac6fecc0d660d46b54e0be8305084272e00566c1a1c0f901e25613455c883b2",
+      "bytes": 965612
+    },
+    "c/review/validation.json": {
+      "sha256": "bd40a19e39420a0d4fd82e810ec24f103c9c469c9c31ee5495c9169a98f59ddd",
+      "bytes": 1426
+    },
+    "c/thermal-15/history.json": {
+      "sha256": "4c953234c47a2750b6d902ba694ad2c900b10d6890ef8a158844ef7490859ffa",
+      "bytes": 11305
+    },
+    "c/thermal-15/thermal-summary.json": {
+      "sha256": "7cb96b52e2c34dc705877a9565344ad0fe65b61f60e03c35d4900d9beddcb95f",
+      "bytes": 1913
+    },
+    "c/thermal-2/history.json": {
+      "sha256": "68b7800698579ad581581d93dee9668108eda5d3ca34ab9bdbfb2e151e08c26e",
+      "bytes": 8408
+    },
+    "c/thermal-2/thermal-summary.json": {
+      "sha256": "69f6fd3788e3fca9a05265b4a4a2fd360a52998be63bcf05d0bd04d639d708c0",
+      "bytes": 1906
+    },
+    "c/thermal-slicing/layers.csv": {
+      "sha256": "4e4fb122125a072641a0bd054384056d469e5a90fbcc7b9bf5995cc758b925d1",
+      "bytes": 87343
+    },
+    "c/thermal-slicing/slicing-portable.json": {
+      "sha256": "25e7cd9f836c7a97c211124ff1615639fb3eeb92f40597e0600e2dc0dad25c92",
+      "bytes": 1593
+    },
+    "c/thermal-slicing/surface-reduction.json": {
+      "sha256": "f9e2dd0fa962144d35e32ca117f2ac3f4ec612d21752654c7ebf4f30c842c9df",
+      "bytes": 179
+    },
+    "d/generation.json": {
+      "sha256": "3d6173dd5341639dc04362246c4ce0202d3630bf42e5caf6508be8d8f6b93b9e",
+      "bytes": 1873
+    },
+    "d/mass-properties.json": {
+      "sha256": "308da36f7bad13c168f947c62ae6365418d46f2b0c53471e17982116e963f70e",
+      "bytes": 767
+    },
+    "d/physicsnemo-surface-audit.json": {
+      "sha256": "ad8e4fb46f76c5688ffa558b914f1f019f567955a2562612ad17e9244e6e0ff3",
+      "bytes": 984
+    },
+    "d/picogk-report.json": {
+      "sha256": "77e62a2f8b55da57b35fb7b3ff0d0df4252c1f1a8727b95c4f85a799c0468017",
+      "bytes": 2450
+    },
+    "d/print/993-turbo-fan-reference-layer-metrics.csv": {
+      "sha256": "c69859114a68402b0949235b37d8063878efc7fc4e68d5631837ba62f4b0f4eb",
+      "bytes": 319836
+    },
+    "d/print/993-turbo-fan-reference-lpbf-geometry-report.json": {
+      "sha256": "49374b6795bdee36e9d0420dee1579009720902da2884ddb99a4ad208ffdea0b",
+      "bytes": 8031
+    },
+    "d/print/flat-layer-metrics.csv": {
+      "sha256": "cb379ce7820fc7747f1bb9ced80c503d7db67b0a901406b1db79a1af9c92dd47",
+      "bytes": 76342
+    },
+    "d/print/flat-slicing.json": {
+      "sha256": "95cc7bb73ecc832413fd69c8a7879724baef23bc6978cd9337552fcb208a921f",
+      "bytes": 905
+    },
+    "d/print/inputs.json": {
+      "sha256": "83860358940f5023c4068252a5a6f0ba7b01ee57dbb31e0d12f433c051987109",
+      "bytes": 392
+    },
+    "d/review/reference-review.png": {
+      "sha256": "bbaea5924a1525c127369dd59db2a2e30417cb1fb5ae0f1eec16b2bf75719e4a",
+      "bytes": 674777
+    },
+    "d/review/reference.usdz": {
+      "sha256": "7223c666aee3a1e0fa819ae30c2341d5de50b098b6b592187572832d4c65f104",
+      "bytes": 678557
+    },
+    "d/review/validation.json": {
+      "sha256": "17f1cf8cbb55726d8aec8f6e7e85bfbad988cfcb0304c2e1126a3c8b24c5e188",
+      "bytes": 1427
+    },
+    "e/generation.json": {
+      "sha256": "c47d7e26b641d640d2477fb6160069bc68f6fc29acc230ec78de7fb5a55abcf6",
+      "bytes": 1862
+    },
+    "e/mass-properties.json": {
+      "sha256": "5dbab67dfd59d797b6c51700492e459b0db5159133a32a19ad61826483a2a9e9",
+      "bytes": 763
+    },
+    "e/physicsnemo-surface-audit.json": {
+      "sha256": "777d45a3a34f412df9f871d2afa259da6098d694548ef041c05b96b415166b8c",
+      "bytes": 984
+    },
+    "e/picogk-report.json": {
+      "sha256": "7773dba4741f86238d1898ff63d832651e7eab9d9fe109e2f4ffe408e4faf09e",
+      "bytes": 2434
+    },
+    "e/print/993-turbo-fan-reference-layer-metrics.csv": {
+      "sha256": "48930ff753308258fcfe37e2180057bfe6896cca4674bcc3a1e3aeee0dd511f7",
+      "bytes": 319248
+    },
+    "e/print/993-turbo-fan-reference-lpbf-geometry-report.json": {
+      "sha256": "f8e2b6f1743a82e84ddb1621a34fc2a9928aba9019d4fc00804b4ccee2f4fb44",
+      "bytes": 8025
+    },
+    "e/print/flat-layer-metrics.csv": {
+      "sha256": "a8b6aeee0f55125d9fc571da228d995e3b6735bd83a6b136c02fb9b2d3e033d3",
+      "bytes": 75781
+    },
+    "e/print/flat-slicing.json": {
+      "sha256": "e9d815774c4b1249f4a5e70aa382ecb961ab7c0d26e316b681dd7b3bf8a6f77a",
+      "bytes": 915
+    },
+    "e/print/inputs.json": {
+      "sha256": "30f6c6167ccc06fea8b0b2657d246c7f4dc3c1a3d94c718b99dbde78ae87a2d4",
+      "bytes": 390
+    },
+    "e/review/reference-review.png": {
+      "sha256": "90392a5f0670f0ba21544ab15f88b7abff73dd4067fdf755b74a8801eb66a4fc",
+      "bytes": 687489
+    },
+    "e/review/reference.usdz": {
+      "sha256": "40e8013ccf448caa5cd245891ad690ef73a4b541c813e55ec75ef2d8e499bd17",
+      "bytes": 680420
+    },
+    "e/review/validation.json": {
+      "sha256": "bbcb932362593f0866ffe165de84aa29e9a05c9efc29a6453d9a68f3e9543c5f",
+      "bytes": 1426
+    },
+    "e/thermal-15/history.json": {
+      "sha256": "d426470b21ba80a548a05044e5dc25a10fcf554ce766246afeb6aa59ca098472",
+      "bytes": 11309
+    },
+    "e/thermal-15/thermal-summary.json": {
+      "sha256": "d38349b41267446eed73b94963975c4160f1e5f4c37dfcc41801bd34fd6a5cd5",
+      "bytes": 1909
+    },
+    "e/thermal-2/history.json": {
+      "sha256": "38ded24fb2820da8d1261fcbb5dc3231f00f8130e52eb26b53bbf9056c284740",
+      "bytes": 8403
+    },
+    "e/thermal-2/thermal-summary.json": {
+      "sha256": "f2bc8766c6b25a50f03d903319d8335d6ac92763316265c9def88ec1a80d8b98",
+      "bytes": 1906
+    },
+    "e/thermal-slicing/layers.csv": {
+      "sha256": "79098cbced9328ed52ddd3f34fb595f4b0d1aa0319736789777b57d858c8762d",
+      "bytes": 93048
+    },
+    "e/thermal-slicing/slicing-portable.json": {
+      "sha256": "4c2174d4d62609dc9ea45d30c652b7e3220bc6968380c0e01cef317fc6201d95",
+      "bytes": 1606
+    },
+    "e/thermal-slicing/surface-reduction.json": {
+      "sha256": "3cf367e6046ebd729333f088c5a135ea62e717bb3f93c0e9642a2a9ab5b17626",
+      "bytes": 179
+    },
+    "flow/a-fine/fan-input.json": {
+      "sha256": "f211c8104726b4f36d991652f334247213bfa525fa288a2782b13b41c3c6af42",
+      "bytes": 4537
+    },
+    "flow/a-fine/forces.dat.gz": {
+      "sha256": "32057e60870aaf404ecabca850cacfd36b2cbc77a09b1b2d2e9afe18e080f87d",
+      "bytes": 38496
+    },
+    "flow/a-fine/inlet.dat": {
+      "sha256": "877881d51abceeca3d9bc503259de8bcb1da4942dfc76d3fa81f545c3943b387",
+      "bytes": 16106
+    },
+    "flow/a-fine/inputs.zip": {
+      "sha256": "f95e2aac546dba80ae28ea1a776ab3f4ae169e79f1c624d673900bb0c3e73080",
+      "bytes": 4875
+    },
+    "flow/a-fine/log.checkMesh-standard.gz": {
+      "sha256": "1bb7a8cf4fab8a5d350bcd522158a56ad24779d63bd0379e6ed9593d932459ac",
+      "bytes": 1344
+    },
+    "flow/a-fine/log.checkMesh.gz": {
+      "sha256": "a93dbab1660421b237757491296454982e94706e5adbbb57d8b8817c432efebe",
+      "bytes": 1847
+    },
+    "flow/a-fine/log.decomposePar.gz": {
+      "sha256": "8b5cb5c80ba20f410125ccd248ac3d40188da5c661623b937b608917b6ce28d9",
+      "bytes": 940
+    },
+    "flow/a-fine/log.foamRun.gz": {
+      "sha256": "23df745e05b5f183404d135b0af7b3e5708e13d7e2bac603d263e934ad9e12ea",
+      "bytes": 67248
+    },
+    "flow/a-fine/log.reconstructPar.gz": {
+      "sha256": "f8c25217abcd7a6f06f2370802c606920a2f320094404e7abeddf2b50b290351",
+      "bytes": 594
+    },
+    "flow/a-fine/log.snappyHexMesh.gz": {
+      "sha256": "c9e2f7937170b2a2b2744703b7c70c4788de12b6d763522d891b963850beab50",
+      "bytes": 4634
+    },
+    "flow/a-fine/log.topoSet.gz": {
+      "sha256": "dd9c6f4548b128df0f488021fa928c1feea1f7cc4f5697e9a175432ee0ebb2a8",
+      "bytes": 695
+    },
+    "flow/a-fine/outlet.dat": {
+      "sha256": "95b8aa3d9cac03bb0485d3d09f9e39baa519a8408df0e7c89182b8bf04b4307e",
+      "bytes": 15676
+    },
+    "flow/a-fine/physicsnemo-surface-audit.json": {
+      "sha256": "d8706b93047a7be63e7c0e05d7c096539d0f38d75ce8d03ce840b122e1882bae",
+      "bytes": 984
+    },
+    "flow/a-fine/picogk-report.json": {
+      "sha256": "c7814792ee7421764e9235619ba34a690b2a6879f48d9592f0d6d1b3d951855c",
+      "bytes": 2303
+    },
+    "flow/a-fine/summary.json": {
+      "sha256": "13a1ab03cc1cd5d3e2e8e45019249f5b1e4b733f1b425e592c97a7cb48aff634",
+      "bytes": 1793
+    },
+    "flow/c-coarse/cutPlane.vtk.gz": {
+      "sha256": "1384f285a4db4e70b71f43d90cf9ad1017f985ef0b4b38db0cc4936cb9c40ef3",
+      "bytes": 119066
+    },
+    "flow/c-coarse/fan-input.json": {
+      "sha256": "604c6aa6ecf8dc6b0692f12a7dfcb8bb6923d8d97c117deef8d61a99e6bee3be",
+      "bytes": 4146
+    },
+    "flow/c-coarse/forces.dat.gz": {
+      "sha256": "762faaf14cafb398305471a0cb1f7ebe83f85620e8a88adc1217999bfa2e5455",
+      "bytes": 31107
+    },
+    "flow/c-coarse/inlet.dat": {
+      "sha256": "071d33d461ca5a0d3a3506c29078ea8f9eb2292643e0a98d784fef3978ea9236",
+      "bytes": 12961
+    },
+    "flow/c-coarse/inputs.zip": {
+      "sha256": "9c511d47d7901106d7ecddf93086c538ab1548d7b3e2cec72f7fcaaddfb68956",
+      "bytes": 5206
+    },
+    "flow/c-coarse/log.blockMesh.gz": {
+      "sha256": "a1fb306499dde55502a13b0b9267f1a0cf60b6e0300e44b5f791ec9ff9554bda",
+      "bytes": 869
+    },
+    "flow/c-coarse/log.checkMesh-standard.gz": {
+      "sha256": "ccae2d6d641f5a83a392aaa77d2c27a3f62fce263d45ae4e914be3ac8dd70914",
+      "bytes": 1332
+    },
+    "flow/c-coarse/log.checkMesh.gz": {
+      "sha256": "e0ac6376cdd164ad82cbbb81f3e6e11c038c1351e9a857219230050ea5aebbd6",
+      "bytes": 1819
+    },
+    "flow/c-coarse/log.decomposePar.gz": {
+      "sha256": "33f26b1a8c7e172463a25fa1ccafeb83fb093acd0d54e8643c5938a8febee9f7",
+      "bytes": 941
+    },
+    "flow/c-coarse/log.foamRun.gz": {
+      "sha256": "4ac642948f7efbfc5576c54052ec64d7eb2e5f2a7b0b2e463d9472b1bf0f01d1",
+      "bytes": 54350
+    },
+    "flow/c-coarse/log.foamToVTK.gz": {
+      "sha256": "e48c7178feae9b89212bc8dc5834634b9ca11a4a8e6e486e1051733d1562f2c1",
+      "bytes": 805
+    },
+    "flow/c-coarse/log.reconstructPar.gz": {
+      "sha256": "e3dc319ebc545cdeb7b6c8f1f771ae5e9f5c278eaafadcd17bdb002d85ae42fe",
+      "bytes": 593
+    },
+    "flow/c-coarse/log.sample-plane.gz": {
+      "sha256": "ddeec92fd311e4ea2fe94515267e4217223f8ce1065b680e1df0b0b0e34c7aa4",
+      "bytes": 635
+    },
+    "flow/c-coarse/log.snappyHexMesh.gz": {
+      "sha256": "a5de0df0cb04ff521a4ae3e38a25a4f9daf59b111eb4de90adc9309f57aecaae",
+      "bytes": 4245
+    },
+    "flow/c-coarse/log.topoSet.gz": {
+      "sha256": "77a37b9c94a10631f4cfccbf8a757ad281671394cff92cf1480bd94bd457a292",
+      "bytes": 693
+    },
+    "flow/c-coarse/outlet.dat": {
+      "sha256": "ebf8b4b694d9b9f173d3e2d299e0c15c7c6d17783acefd588375d9f0eb8cda6e",
+      "bytes": 12616
+    },
+    "flow/c-coarse/physicsnemo-surface-audit.json": {
+      "sha256": "f8d9cbc8d38882b70750ffc8ffcb9bb7a19f54bbaced9dd6717a870a0b7711e0",
+      "bytes": 983
+    },
+    "flow/c-coarse/picogk-report.json": {
+      "sha256": "5d138968f94ba7b529f2eff7c3a66ce30fe8dd3f51c3b2cab330a091f2539182",
+      "bytes": 2302
+    },
+    "flow/c-coarse/pressure-audit.json": {
+      "sha256": "f3304b412af00ad672387dec6c04cbac1d0d42aeee7992ef15deb80791081286",
+      "bytes": 610
+    },
+    "flow/c-coarse/rotor_346.vtk.gz": {
+      "sha256": "a6be25f9af3d9f345589210996ebc275be7c3c00c5e0817284a8c9338a7adf0b",
+      "bytes": 1174950
+    },
+    "flow/c-coarse/summary.json": {
+      "sha256": "4ac1cfd0942d57541428c9ea24b0cc92c07d47bf45f47f9389f635ffc3f799e0",
+      "bytes": 1797
+    },
+    "flow/c-coarse/velocity-plane.png": {
+      "sha256": "bebacd25cf22d498fc9296160b04487b3525c6886dcdb34baafd8fd38522b300",
+      "bytes": 247882
+    },
+    "flow/d-coarse/fan-input.json": {
+      "sha256": "2e7342b5f2cc9951196ff02616ce78d48db588d04708cbc4577cfb1e44c63e8e",
+      "bytes": 4344
+    },
+    "flow/d-coarse/forces.dat.gz": {
+      "sha256": "7f6f67ab240569b386ecb874ab21c29966177151ea1953677abb163d95fb1a8a",
+      "bytes": 27242
+    },
+    "flow/d-coarse/inlet.dat": {
+      "sha256": "8924b7b0e556d0ba64f9b3371e75449eda521ffed3c5cfa29701109a469208fb",
+      "bytes": 11259
+    },
+    "flow/d-coarse/inputs.zip": {
+      "sha256": "7f6e377e8c36dce38e116dc15bcda15f6f45c098e59f32276f29543caf0d204f",
+      "bytes": 4870
+    },
+    "flow/d-coarse/log.blockMesh.gz": {
+      "sha256": "28b0a9c4be9f3c319fe4880dd55b84d9c7c4fa0c6e0fa71e07a6823922f2b5b0",
+      "bytes": 869
+    },
+    "flow/d-coarse/log.checkMesh-standard.gz": {
+      "sha256": "cc64d03be73e7be35d0627d8c6613d052601d582aee801000ec4eba736e87d75",
+      "bytes": 1333
+    },
+    "flow/d-coarse/log.checkMesh.gz": {
+      "sha256": "bd26e634464f0a2fa2515c0594ddd7de92b4ea97b9b8272f7f7674f9ab16b620",
+      "bytes": 1823
+    },
+    "flow/d-coarse/log.decomposePar.gz": {
+      "sha256": "6822bf7b87416e1e152ab47dd8e73a37352f7d65c4fa70b06591e849502be781",
+      "bytes": 937
+    },
+    "flow/d-coarse/log.foamRun.gz": {
+      "sha256": "60542a598b8b046df653e44e153350d8d087a6c1c6dc83d8f7074c6480b9eb50",
+      "bytes": 47957
+    },
+    "flow/d-coarse/log.reconstructPar.gz": {
+      "sha256": "274c852bf887e5e888cb8c9dd467e8516e21a4bf4ce2c181b473088d61daef25",
+      "bytes": 592
+    },
+    "flow/d-coarse/log.snappyHexMesh.gz": {
+      "sha256": "86a762fc1c9933a495de8adac82112784ff5f4d4ce1577cfc48998e7e3f0d422",
+      "bytes": 4192
+    },
+    "flow/d-coarse/log.topoSet.gz": {
+      "sha256": "d5fd3e5f1ec40d78b31b12983cd33f88942a728d3183a81005e72af57a40e97a",
+      "bytes": 694
+    },
+    "flow/d-coarse/outlet.dat": {
+      "sha256": "611dac112a87d67a667368078392b0f16ec11d9bf287506af981e306d01e15bc",
+      "bytes": 10960
+    },
+    "flow/d-coarse/physicsnemo-surface-audit.json": {
+      "sha256": "ad8e4fb46f76c5688ffa558b914f1f019f567955a2562612ad17e9244e6e0ff3",
+      "bytes": 984
+    },
+    "flow/d-coarse/picogk-report.json": {
+      "sha256": "77e62a2f8b55da57b35fb7b3ff0d0df4252c1f1a8727b95c4f85a799c0468017",
+      "bytes": 2450
+    },
+    "flow/d-coarse/summary.json": {
+      "sha256": "9a1827c341748c09c21ab52f3db1aada5f6192dbf3b4ab3809fe5e8ea2c352e5",
+      "bytes": 1792
+    },
+    "flow/e-coarse/cutPlane.vtk.gz": {
+      "sha256": "4e21d5245c31a9e5010b54c511a6970d111ca01e7417a99b822d089ad4ff1e3b",
+      "bytes": 122072
+    },
+    "flow/e-coarse/fan-input.json": {
+      "sha256": "bcf451a60258fae7e5242879f8f832157481e9136230d32888f3f1616615eeae",
+      "bytes": 4328
+    },
+    "flow/e-coarse/forces.dat.gz": {
+      "sha256": "87eed636789ac8ba6b82c2eb56d5a52235dc0ef9593929bf7719e881269ebc83",
+      "bytes": 27180
+    },
+    "flow/e-coarse/inlet.dat": {
+      "sha256": "3021759d948979527663196224fcf1aafe60dfa665037a42776ba2f01a095323",
+      "bytes": 11259
+    },
+    "flow/e-coarse/inputs.zip": {
+      "sha256": "c54ba36fa176886c325bebb9731270e56833d50bf69870c5fe968e561a2c59d7",
+      "bytes": 5203
+    },
+    "flow/e-coarse/log.blockMesh.gz": {
+      "sha256": "b8d9eced9a878ab596a7e626d7daa16bb615b3b2aff64c873288e23520b7e74a",
+      "bytes": 869
+    },
+    "flow/e-coarse/log.checkMesh-standard.gz": {
+      "sha256": "b24610fc948ed259376310b7142041880670f3f3d55b03335cd2155664ad7ddb",
+      "bytes": 1328
+    },
+    "flow/e-coarse/log.checkMesh.gz": {
+      "sha256": "ecdfe07b71e8299b81a9fa4557f032a2badc76b333640086f862ec8f550285a9",
+      "bytes": 1774
+    },
+    "flow/e-coarse/log.decomposePar.gz": {
+      "sha256": "c3516b92c68bcaf7f157010a5fcaf0d364da41b952f5d6e5413262efe3c0fd6f",
+      "bytes": 937
+    },
+    "flow/e-coarse/log.foamRun.gz": {
+      "sha256": "3b430a8795b382e8c9c59b6e68870957e4c3512d8f879076a03f4151985abcfa",
+      "bytes": 47771
+    },
+    "flow/e-coarse/log.foamToVTK.gz": {
+      "sha256": "257f3bcc67c2f644f2f6d138fa79352973fd11a6bcf5c7dfce94cbf44811bc72",
+      "bytes": 805
+    },
+    "flow/e-coarse/log.reconstructPar.gz": {
+      "sha256": "54a40ca123e8408134c2ac1ad9fdda959199a2fd62ae80a7497b970ecc0daaec",
+      "bytes": 591
+    },
+    "flow/e-coarse/log.sample-plane.gz": {
+      "sha256": "12ae08e8a0ff5d1bfefbb88abcda836ab36444a865e9636b56eb21deb1085683",
+      "bytes": 636
+    },
+    "flow/e-coarse/log.snappyHexMesh.gz": {
+      "sha256": "2bf24d4cc8849af0e4ddb66be3f0c44d6186be9109e86d061028c0005f625f2c",
+      "bytes": 4204
+    },
+    "flow/e-coarse/log.topoSet.gz": {
+      "sha256": "143452e0cdc712ccfa424ef2851ae26df2042ae0d5552cab89d03cd79165b480",
+      "bytes": 693
+    },
+    "flow/e-coarse/outlet.dat": {
+      "sha256": "90c4ecc202ce3ece0ed278a7a568ccfa879baed0893e84b6525a324b6685b646",
+      "bytes": 10960
+    },
+    "flow/e-coarse/physicsnemo-surface-audit.json": {
+      "sha256": "777d45a3a34f412df9f871d2afa259da6098d694548ef041c05b96b415166b8c",
+      "bytes": 984
+    },
+    "flow/e-coarse/picogk-report.json": {
+      "sha256": "7773dba4741f86238d1898ff63d832651e7eab9d9fe109e2f4ffe408e4faf09e",
+      "bytes": 2434
+    },
+    "flow/e-coarse/pressure-audit.json": {
+      "sha256": "c02a881c248d2e2369f6a83313147ea5480ce3c8f460ee0616128bcae65ab3cb",
+      "bytes": 612
+    },
+    "flow/e-coarse/rotor_300.vtk.gz": {
+      "sha256": "f63bddefb61f6acdc0dda6420ea5b5008be89d0bfc88aec4dc1d906f0143e66b",
+      "bytes": 1179797
+    },
+    "flow/e-coarse/summary.json": {
+      "sha256": "50a260684bbb8e9cfaf405dc907f457691b729775fb1f6d30275e624b5463c54",
+      "bytes": 1803
+    },
+    "flow/e-coarse/velocity-plane.png": {
+      "sha256": "8fba6adfbd3e79a6a5667e8a7a58e2f1c0439f421ff5b32063780e808e59fd44",
+      "bytes": 259145
+    },
+    "flow/reference-coarse/fan-input.json": {
+      "sha256": "4cb7b9e69c40c3d6ffe22a1d8748b8c3d3bf1c9c1467f23c6d2b2b4a50a538d8",
+      "bytes": 4052
+    },
+    "flow/reference-coarse/forces.dat.gz": {
+      "sha256": "d68ab71d933915bb9d726f19fcd4dc3b82aa07ea131419313e91ecaf601cc365",
+      "bytes": 43707
+    },
+    "flow/reference-coarse/inlet.dat": {
+      "sha256": "72f7efa4feae8c8fae45cf044463d182e05082dd59dfbc6009542d8a15894bfe",
+      "bytes": 18659
+    },
+    "flow/reference-coarse/inputs.zip": {
+      "sha256": "524c8de7bbaed5a908eea79977d08b29b2c96fa3f38d3a14eba0d6b2aba9e844",
+      "bytes": 4870
+    },
+    "flow/reference-coarse/log.blockMesh.gz": {
+      "sha256": "d820fc9f65e7e505f4aea5c0ace665978040d865ccf863202c3f9a644c6c3f1b",
+      "bytes": 874
+    },
+    "flow/reference-coarse/log.checkMesh-standard.gz": {
+      "sha256": "7bd1e2807a6d8b1f7ba3061cfb72d9ac05184eb8dc05fa8833c6ce641bb95428",
+      "bytes": 1334
+    },
+    "flow/reference-coarse/log.checkMesh.gz": {
+      "sha256": "dd9d4898c21f65654866dcb0ff55cf4b8d3e5877b2f0494aa7b96733824e1368",
+      "bytes": 1820
+    },
+    "flow/reference-coarse/log.decomposePar.gz": {
+      "sha256": "4c2af0bd877029faddd4e720b0affde215987b60855f29b250f5ef4e3a678c34",
+      "bytes": 945
+    },
+    "flow/reference-coarse/log.foamRun.gz": {
+      "sha256": "b2c225afe7045b755e02aa4113590b676495de1d2cf319a095f65149f1acc79e",
+      "bytes": 77429
+    },
+    "flow/reference-coarse/log.reconstructPar.gz": {
+      "sha256": "e9915c9e8f9169e35c8e116d1804aa3947311fbd991803ed3445e55f263d17c4",
+      "bytes": 595
+    },
+    "flow/reference-coarse/log.snappyHexMesh.gz": {
+      "sha256": "660bb0ed11e41aa512b1e3db4c2713676ec0fe04eabb3dd97e3596a7f4db2099",
+      "bytes": 4172
+    },
+    "flow/reference-coarse/log.topoSet.gz": {
+      "sha256": "dc875ee9e5298688586ec6d0fafaef7357f1d5e0eb3335716126e30ab3dddbcf",
+      "bytes": 697
+    },
+    "flow/reference-coarse/outlet.dat": {
+      "sha256": "0e4f6ca689f3d923ea1665e455de15961ccec4a26ea62beaf4535fd7a0457303",
+      "bytes": 18160
+    },
+    "flow/reference-coarse/physicsnemo-surface-audit.json": {
+      "sha256": "742ddf4b3a549d068e39ffd28d584f942a897b194c73d601183202234f2d6f8f",
+      "bytes": 985
+    },
+    "flow/reference-coarse/picogk-report.json": {
+      "sha256": "bd0a0bc953e7e4c889a25d54671a6381c4b651eff6657f6d03300d4734faab18",
+      "bytes": 2175
+    },
+    "flow/reference-coarse/summary.json": {
+      "sha256": "b9d166dec3aa5cb6194bd793e8a76623ca3f378439eb4659982caa7d5727b6e5",
+      "bytes": 1802
+    },
+    "flow/reference-fine/fan-input.json": {
+      "sha256": "060a713c6e1d03247671a8317cc70f25fc5e75340d16681cd76befc81265154c",
+      "bytes": 4313
+    },
+    "flow/reference-fine/forces.dat.gz": {
+      "sha256": "669794d8d1bcbe2d0a3dd35435ed7a3a2a2592ce645dd852efcd68a17130b0af",
+      "bytes": 32355
+    },
+    "flow/reference-fine/inlet.dat": {
+      "sha256": "9afd119e20731b51c77b9e5ce4a1c92f7145bc1e29c0e877b7a161b7d71a91ee",
+      "bytes": 13553
+    },
+    "flow/reference-fine/inputs.zip": {
+      "sha256": "f95e2aac546dba80ae28ea1a776ab3f4ae169e79f1c624d673900bb0c3e73080",
+      "bytes": 4875
+    },
+    "flow/reference-fine/log.blockMesh.gz": {
+      "sha256": "c576fe9a536bfa12a5f339e369716cf38c14b4f393e7c08820f73fa312ad82c4",
+      "bytes": 872
+    },
+    "flow/reference-fine/log.checkMesh-standard.gz": {
+      "sha256": "494c2884afd5dbcf43a8f1f447f53d42f0c751cbb608c739bd8a46bfe8dfde97",
+      "bytes": 1345
+    },
+    "flow/reference-fine/log.checkMesh.gz": {
+      "sha256": "b30b6f49782ab179bf3d6f539f0efabd0488b13a1aa6563d823eea9c52c42290",
+      "bytes": 1847
+    },
+    "flow/reference-fine/log.decomposePar.gz": {
+      "sha256": "3ed740b7b08898b2b09a58c396536d5999782355c435d36e88fced9588ef58da",
+      "bytes": 948
+    },
+    "flow/reference-fine/log.foamRun.gz": {
+      "sha256": "5e37190876e9e04c7e169ef7f95b618968dfbfcbc39500ab627204262b12d451",
+      "bytes": 57499
+    },
+    "flow/reference-fine/log.reconstructPar.gz": {
+      "sha256": "6fedd0ae7661f91deccae767325f5d25bd70277bc0c8e6f29dbcc3789e8061c5",
+      "bytes": 596
+    },
+    "flow/reference-fine/log.snappyHexMesh.gz": {
+      "sha256": "fefb8b4e1eb385213902756da991a16b5d0f5d0a6633fe3bfd8d31878873a867",
+      "bytes": 4631
+    },
+    "flow/reference-fine/log.topoSet.gz": {
+      "sha256": "c9edbc2e3a90397a88fbf4a45bed204e75f34e693f29f8ffe948be4e9cb54a5f",
+      "bytes": 697
+    },
+    "flow/reference-fine/outlet.dat": {
+      "sha256": "ae3ed18dcd7172f5d1f717dbb1e1f31a50ad842b2e3cfd113ffb6e4d8ef263d6",
+      "bytes": 13192
+    },
+    "flow/reference-fine/physicsnemo-surface-audit.json": {
+      "sha256": "00ee81b9a548f5840b157669d8440b82e694af93ef68ad465c78d78d1f116af6",
+      "bytes": 985
+    },
+    "flow/reference-fine/picogk-report.json": {
+      "sha256": "bc42c2f69857df8aab2ae13c6175e22f03ba8f8c95212de6aa6d3adeca5c5667",
+      "bytes": 2090
+    },
+    "flow/reference-fine/summary.json": {
+      "sha256": "35a9ffb4c15418091da07a16ae5472fecb8c31a4a00281c35ea51d75f69d2ea6",
+      "bytes": 1803
+    },
+    "structure/organic-a-structure/assumptions.json": {
+      "sha256": "f82682e45031bb54bde694ea5b49f8a450a90405159531b22a5f83d4a73458fd",
+      "bytes": 460
+    },
+    "structure/organic-a-structure/log.ccx.gz": {
+      "sha256": "986bd2f7eaafff494fff03a9f4de731f162004cf6d533eec8ac435cbd31af73e",
+      "bytes": 842
+    },
+    "structure/organic-a-structure/log.gmsh.gz": {
+      "sha256": "a757a6649e4a4c055dbb75d7c0860669593776e3b0bb941820c6dd873fec8602",
+      "bytes": 1314
+    },
+    "structure/organic-a-structure/summary.json": {
+      "sha256": "3aae29f99b4d36fa6db9020093fc458aa458a6a61bdefb202f2d3f573279f004",
+      "bytes": 1201
+    },
+    "structure/organic-a-structure/surface-audit.json": {
+      "sha256": "6d61d680f9f052ef416c363c54cbb081928e93055014c7f52c7b58421d78491c",
+      "bytes": 236
+    },
+    "structure/organic-a-structure-80k/assumptions.json": {
+      "sha256": "7da197f71e33a40b134a75a60165540e0fdff0e0b3663e907672c0a25b9c9841",
+      "bytes": 462
+    },
+    "structure/organic-a-structure-80k/log.ccx.gz": {
+      "sha256": "deb78a9280fc82b5d0626581882838a6e1f1e1de6177cc7c3c0d76f25ccc14a3",
+      "bytes": 845
+    },
+    "structure/organic-a-structure-80k/log.gmsh.gz": {
+      "sha256": "5621e1fdc250aff04bbb50c2b51c3d29662c7c7eb0156910fa6d481efc58401b",
+      "bytes": 1347
+    },
+    "structure/organic-a-structure-80k/summary.json": {
+      "sha256": "3985670c10d6cbe330ee14c933691e2859eb85a944c5dc6db4f5c64c03190ab3",
+      "bytes": 1201
+    },
+    "structure/organic-a-structure-80k/surface-audit.json": {
+      "sha256": "0983588eeda84dceeb42ec3c8a1d3a829521585767a47abf2534c029f3b58fec",
+      "bytes": 238
+    },
+    "structure/organic-a-structure-refined/assumptions.json": {
+      "sha256": "1bb796525a82558d810be24c3cafb1ca73c544f34c497dc193b1279d189d81f3",
+      "bytes": 461
+    },
+    "structure/organic-a-structure-refined/log.ccx.gz": {
+      "sha256": "dd9c4486d1d2f04ac0d01c332e9d909f3c12b17c75db5d72d1880d9bf956dda3",
+      "bytes": 846
+    },
+    "structure/organic-a-structure-refined/log.gmsh.gz": {
+      "sha256": "26b3f47b7afb025953a230d0166c5faada5f301a221870926e47542ae99ea37b",
+      "bytes": 1326
+    },
+    "structure/organic-a-structure-refined/summary.json": {
+      "sha256": "551fb6fafdffea200f87c04d72964ba7f832c47008521a22d3f982fbd46123d1",
+      "bytes": 1197
+    },
+    "structure/organic-a-structure-refined/surface-audit.json": {
+      "sha256": "6891c95edbfdc9ae539abaca0cfbcd2480d19cea44c7c1b94d00addee3d6191a",
+      "bytes": 237
+    },
+    "structure/organic-b-structure/assumptions.json": {
+      "sha256": "c1a7a56b444cce1d170d60935cba676b79266b9468d360fce5e8a43df1017302",
+      "bytes": 460
+    },
+    "structure/organic-b-structure/log.ccx.gz": {
+      "sha256": "0282d7b384709133e71b147fd6d5daccf8fca17cdcdcf765e1dd5455afbe406e",
+      "bytes": 841
+    },
+    "structure/organic-b-structure/log.gmsh.gz": {
+      "sha256": "8e03c5632dca2f6a66009d2b32265e38c51e7bceeb68d2ed6e03dce799652761",
+      "bytes": 1322
+    },
+    "structure/organic-b-structure/summary.json": {
+      "sha256": "e538bf40bb4fbe5dc9b0776d502e90d61580a13468bb9ed9457fd3c6a4551de4",
+      "bytes": 1201
+    },
+    "structure/organic-b-structure/surface-audit.json": {
+      "sha256": "54ac45b84c3dc4a4c4cb80503af43bebfe70ccfcc60f32eeffeaee0ddc24dcad",
+      "bytes": 236
+    },
+    "structure/organic-c-structure-50k/assumptions.json": {
+      "sha256": "65ce96c941c62437dfa1bdd8a34fac12dfb17e8488568894256ee702fb347cb8",
+      "bytes": 461
+    },
+    "structure/organic-c-structure-50k/log.ccx.gz": {
+      "sha256": "eeba99966dd49186b8e61598869737f30e9c894d1baf04236c4434b578cbc7a4",
+      "bytes": 845
+    },
+    "structure/organic-c-structure-50k/log.gmsh.gz": {
+      "sha256": "d3e0b84a5c7e8632ebd43a553e2ba01796bae8cc7dbe2fc89fa930ace63b362b",
+      "bytes": 1369
+    },
+    "structure/organic-c-structure-50k/summary.json": {
+      "sha256": "ac3ae9f72e679659487b3d9be2b46f4c1cb8b094879faa96dac2c5eee56d5f42",
+      "bytes": 1201
+    },
+    "structure/organic-c-structure-50k/surface-audit.json": {
+      "sha256": "fd4d5d6a24f4801945c1ecd2130e8d8ec08d3893395f8653952194a5179002d6",
+      "bytes": 392
+    },
+    "structure/organic-d-structure-50k/assumptions.json": {
+      "sha256": "aa1b558c1ec9546041620e39b3af07347d6a58287cba12276ec7974127242c48",
+      "bytes": 461
+    },
+    "structure/organic-d-structure-50k/log.ccx.gz": {
+      "sha256": "06f954f7c618243d0d3331dabf4635e3dafc38b10d464dc85ea125eec9340e15",
+      "bytes": 846
+    },
+    "structure/organic-d-structure-50k/log.gmsh.gz": {
+      "sha256": "d6b407473d773fe687b090f878844174db3a6c94b66eb67bbaf458f1e9cb1f28",
+      "bytes": 1305
+    },
+    "structure/organic-d-structure-50k/retry.json": {
+      "sha256": "36d489c15a4af69ee27c819927b8fe20ec1281d67879fd1b378c89a64b5a5fb7",
+      "bytes": 166
+    },
+    "structure/organic-d-structure-50k/summary.json": {
+      "sha256": "463b865622316cd5e8d60fd4854528af6be5470db892be55294ab96fd2495472",
+      "bytes": 1200
+    },
+    "structure/organic-d-structure-50k/surface-audit.json": {
+      "sha256": "83860358940f5023c4068252a5a6f0ba7b01ee57dbb31e0d12f433c051987109",
+      "bytes": 392
+    },
+    "structure/organic-e-structure-50k/assumptions.json": {
+      "sha256": "141c3180e5fdd475c690b1ba116d6a7e5b78d46740640bea75c59af3aefd12fc",
+      "bytes": 461
+    },
+    "structure/organic-e-structure-50k/log.ccx.gz": {
+      "sha256": "39bbdb181067e901e97cb514c04f440ad51494a80ef86a15b81e80e984d602cc",
+      "bytes": 846
+    },
+    "structure/organic-e-structure-50k/log.gmsh.gz": {
+      "sha256": "7d60c31549e61c948f8e92d064d78319a1a879414de11b943e3065f2fca6075b",
+      "bytes": 1323
+    },
+    "structure/organic-e-structure-50k/summary.json": {
+      "sha256": "bcda67a9cfc5a326079b543fcf2751ac137af17af04f55c6626e3f1058ad1d63",
+      "bytes": 1198
+    },
+    "structure/organic-e-structure-50k/surface-audit.json": {
+      "sha256": "30f6c6167ccc06fea8b0b2657d246c7f4dc3c1a3d94c718b99dbde78ae87a2d4",
+      "bytes": 390
+    },
+    "structure/reference-structure-50k/assumptions.json": {
+      "sha256": "605f45c47abbc3219a520586b566b87c1835c9c86a45507c4917be8a1b5648ce",
+      "bytes": 461
+    },
+    "structure/reference-structure-50k/log.ccx.gz": {
+      "sha256": "4fc507b5e019d373fd9dcebda34731a79d16204a16bbc64be1749771976b5d0c",
+      "bytes": 847
+    },
+    "structure/reference-structure-50k/log.gmsh.gz": {
+      "sha256": "1d5d2d4e2bc3005446a519b6865b7b4dc7adf7c6d2bbe21c914c457acff49f9a",
+      "bytes": 1326
+    },
+    "structure/reference-structure-50k/summary.json": {
+      "sha256": "91faf63ff7e0715839c193a912340661d4f7a89a6fae2c742105fdae7cd557df",
+      "bytes": 1197
+    },
+    "structure/reference-structure-50k/surface-audit.json": {
+      "sha256": "1a13e5b2e839b0c00932b15f7206efc0923ff9fa3c07631240e4ff322647ac48",
+      "bytes": 238
+    },
+    "study-results.png": {
+      "sha256": "a7d7981cb728cc14a5dde2a6e09f474893f10e7a50fc8f0529686fb936f0b382",
+      "bytes": 237319
+    }
+  }
+}

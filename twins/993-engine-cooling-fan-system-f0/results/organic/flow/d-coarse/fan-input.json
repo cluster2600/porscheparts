@@ -1,0 +1,123 @@
+{
+  "picogk": {
+    "source_generation": {
+      "status": "organic_candidate_unvalidated",
+      "parameters": {
+        "status": "unvalidated_organic_design_candidate",
+        "voxel_mm": 0.65,
+        "rotor_diameter_mm": 245,
+        "blade_count": 11,
+        "vent_count": 12,
+        "cup_radius_mm": 82.5,
+        "cup_front_z_mm": -26,
+        "cup_rear_z_mm": 30,
+        "wall_mm": 4,
+        "web_mm": 5,
+        "bore_radius_mm": 17,
+        "vent_radius_mm": 56,
+        "vent_radial_halfwidth_mm": 11,
+        "vent_tangential_halfwidth_mm": 7,
+        "blade_root_chord_mm": 57,
+        "blade_tip_chord_mm": 70,
+        "blade_pitch_deg": 36,
+        "blade_thickness_mm": 4.4,
+        "hub_radius_mm": 32,
+        "hub_length_mm": 35,
+        "hub_bore_radius_mm": 8.5,
+        "bolt_circle_radius_mm": 25,
+        "bolt_hole_radius_mm": 3.4,
+        "parameter_evidence": {
+          "rotor_diameter_mm": "inferred from FVD 245 \u00d7 245 product envelope, no OEM tolerance",
+          "blade_count": "11 counted in FVD reference images; consistent with Porsche ORIGINALE Turbo image",
+          "vent_count": "12 counted in FVD front/back photographs",
+          "hub_radius_mm": "FVD 64 \u00d7 64 commercial envelope / 2",
+          "hub_length_mm": "FVD commercial 35 mm",
+          "all_other_numeric_shape_parameters": "visual_reconstruction_hypothesis_not_measured",
+          "voxel_mm": "numerical_resolution_not_part_dimension",
+          "organic_blade_parameters": "Design hypothesis: reduced incidence, approximately constant geometric axial lead at 3000 rpm; no flow or fitment guarantee"
+        },
+        "tip_twist_deg": -10,
+        "sweep_mm": 8,
+        "camber_mm": 3.5,
+        "organic": 1,
+        "root_blend_mm": 3
+      },
+      "parts": [
+        {
+          "part": "rotor",
+          "volume_mm3": 302327.03,
+          "triangles": 950888
+        },
+        {
+          "part": "bearing-hub",
+          "volume_mm3": 39164.94,
+          "triangles": 68556
+        }
+      ],
+      "dimensionally_validated": false,
+      "flow_validated": false,
+      "manufacturing_authorized": false
+    },
+    "source_stl_sha256": "5cb74bf3875aabb4fd61aace3a6ecd8a3957199a981d1370bc48796072333b0c",
+    "input_parameters": {
+      "outer_diameter_mm": 245,
+      "housing_diameter_mm": 248,
+      "depth_mm": 60.0
+    },
+    "rig": "Cylindrical test duct; assumed 1.5 mm nominal radial clearance",
+    "rotation": "Negative about +Z; geometric pumping direction, not verified vehicle drive",
+    "pmb_represented": false,
+    "manufacturing_authorized": false
+  },
+  "surface_audit": {
+    "status": "surface_audit_passed",
+    "source_sha256": "b123daecc6611587ab314a54be483489880a3676f2e536a6c806b6f9c1d471fa",
+    "metres_surface_sha256": "233b65b70c9ddfe18a736fe3bcdd77ada406a9ea694b0377fbd1e95b987fd7a6",
+    "metres_export_matches_mm": true,
+    "picogk_report_sha256": "77e62a2f8b55da57b35fb7b3ff0d0df4252c1f1a8727b95c4f85a799c0468017",
+    "physicsnemo_version": "2.2.2",
+    "torch_version": "2.14.0",
+    "device": "cpu",
+    "vertices": 475414,
+    "triangles": 950888,
+    "watertight": true,
+    "winding_consistent": true,
+    "connected_bodies": 1,
+    "volume_mm3": 301864.6055006343,
+    "bounds_mm": [
+      [
+        -122.49913024902344,
+        -122.49913024902344,
+        -28.1359920501709
+      ],
+      [
+        122.49913024902344,
+        122.49913024902344,
+        30.0
+      ]
+    ],
+    "physicsnemo_surface_area_mm2": 147692.95522578797,
+    "area_matches_independent_trimesh": true,
+    "airflow_m3_s": null,
+    "aerodynamic_optimization_completed": false,
+    "manufacturing_authorized": false
+  },
+  "rpm": -3000,
+  "speed_rpm": 3000,
+  "base_cells": 24,
+  "surface_level": 3,
+  "boundary_condition": "inlet_total_pressure_zero_outlet_static_pressure_zero",
+  "model_scope": "isolated_rotor_without_alternator",
+  "alternator_envelope_included": false,
+  "alternator_shaft_wall_model": null,
+  "stationary_surface_audit": null,
+  "missing_components": [
+    "alternator",
+    "alternator_supports",
+    "shaft",
+    "installed_shroud"
+  ],
+  "installed_assembly_represented": false,
+  "study_iteration_budget": 300,
+  "termination_policy": "300-iteration exploratory camber comparison; two complete convergence windows required, extended mesh checks still unqualified"
+}
