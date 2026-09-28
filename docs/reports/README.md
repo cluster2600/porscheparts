@@ -2,14 +2,14 @@
 
 # Execution and audit reports
 
-118 reports of runs, audits and checkpoints, newest first (14 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../../SAFETY.md).
+119 reports of runs, audits and checkpoints, newest first (14 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../../SAFETY.md).
 
 ```mermaid
 xychart-beta
     title "Reports written per day, 2026"
     x-axis ["09-01", "09-06", "09-07", "09-08", "09-09", "09-12", "09-14", "09-16", "09-24", "09-25", "09-26", "09-27", "09-28"]
     y-axis "reports" 0 --> 25
-    bar [1, 1, 20, 24, 13, 9, 7, 1, 2, 8, 6, 3, 9]
+    bar [1, 1, 20, 24, 13, 9, 7, 1, 2, 8, 6, 3, 10]
 ```
 
 ## September 28, 2026
@@ -23,6 +23,7 @@ xychart-beta
 | M64 — 2026 mesh tools and volume-control recovery, 28 September 2026 | [`M64_MESH_VOLUME_TOOLCHAIN_20260928.md`](M64_MESH_VOLUME_TOOLCHAIN_20260928.md) |
 | M64 — native junction recovery, 28 September 2026 | [`M64_NATIVE_JUNCTION_RECOVERY_20260928.md`](M64_NATIVE_JUNCTION_RECOVERY_20260928.md) |
 | M64 — actual PhysicsNeMo and PicoGK continuation, 28 September 2026 | [`M64_NEMO_PICOGK_CONTINUATION_20260928.md`](M64_NEMO_PICOGK_CONTINUATION_20260928.md) |
+| M64 — bounded parallel CAD and meshing campaign, 28 September 2026 | [`M64_PARALLEL_CAD_CAMPAIGN_20260928.md`](M64_PARALLEL_CAD_CAMPAIGN_20260928.md) |
 | M64 — tools from the supplied photographs and native continuation, 28 September 2026 | [`M64_PHOTO_TOOL_SELECTION_20260928.md`](M64_PHOTO_TOOL_SELECTION_20260928.md) |
 | M64 — junction, printing and valve comparisons, 28 September 2026 | [`M64_PHYSICS_AM_CONTINUATION_20260928.md`](M64_PHYSICS_AM_CONTINUATION_20260928.md) |
 
