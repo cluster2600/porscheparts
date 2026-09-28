@@ -2,6 +2,11 @@
 
 ## Decision
 
+Executed follow-up: [bounded chamfer and native tip-cut trials](M64_BOUNDED_MESH_TRIALS_20260928.md).
+The sampled curve-repair hypothesis is not supported; intermediate DelOptim
+fails a topology witness, and bounded spherical cuts are not admitted.
+The retained volume mesh remains at 32 rejected elements.
+
 **The best-supported next experiment is bounded boundary reconstruction, then
 volume remeshing — not another fixed-skin optimisation run.** Test shared-curve
 repair without changing the intended solid first. Where a genuine acute feature
