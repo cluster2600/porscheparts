@@ -110,6 +110,14 @@ completed at two layer increments, including 3,426 layers for the finer run.
 Sparse thickness and two-resolution powder-connectivity screens retain their
 alerts; neither is a thermal/distortion simulation or permission to print.
 
+The [physics and AM continuation](../../docs/reports/M64_PHYSICS_AM_CONTINUATION_20260928.md)
+then demonstrates why the 14 coincident pairs cannot safely be welded. It
+compares 24 original/extended valve material-and-bore cases, without selecting
+a hot-qualified valve. Two real AdditiveFOAM reference-track thermal runs
+complete through heating and cooling; their peak temperatures differ by
+0.553%. This is an IN625 software reference, **not an aluminium-head printing
+simulation**, and it does not clear the prior head geometry/material gates.
+
 ## Evidence and current work
 
 This directory holds the code, records and receipts of the M64 cylinder head
