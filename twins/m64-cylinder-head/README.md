@@ -75,6 +75,12 @@ surface. A 155-face MeshAdapt trial reduces inadequate tetrahedra from 1,314 to
 160 against a same-Mac control. Geometry is unchanged, the volume-mesh gate
 still fails, and the previous GPU refusal is not rewritten as a pass.
 
+The [actual PhysicsNeMo / PicoGK continuation](../../docs/reports/M64_NEMO_PICOGK_CONTINUATION_20260928.md)
+then reduces 160 to **145** inadequate tetrahedra using PhysicsNeMo automatic
+differentiation with every boundary vertex fixed. Native PicoGK roundtrips are
+generated separately and independently screened; none replaces the BRep or
+qualifies the head for printing. Both tools ran locally, with no new Vast rental.
+
 ## Evidence and current work
 
 This directory holds the code, records and receipts of the M64 cylinder head
