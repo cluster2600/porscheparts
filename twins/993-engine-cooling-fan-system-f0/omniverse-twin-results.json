@@ -1,0 +1,234 @@
+{
+  "status": "openusd_rigid_dynamics_and_rtx_captures_checked",
+  "date": "2026-09-28",
+  "newton": {
+    "scope": "isolated_rotor_coast_down_quadratic_drag_not_vehicle_dynamics",
+    "runtime": {
+      "newton": "1.6.0",
+      "warp": "1.17.0",
+      "device": "cpu"
+    },
+    "mass_kg": 0.68732400701244,
+    "density_kg_m3": 2670.0,
+    "center_of_mass_m": [
+      -7.212463870260785e-08,
+      9.809973102847238e-07,
+      -0.007629608651112601
+    ],
+    "inertia_about_com_kg_m2": [
+      [
+        0.0023945029233152252,
+        -8.911039479007746e-09,
+        6.4890313629332066e-09
+      ],
+      [
+        -8.911039479007746e-09,
+        0.0023945465872219867,
+        -1.9388691783582243e-09
+      ],
+      [
+        6.4890313629332066e-09,
+        -1.9388691783582243e-09,
+        0.004599960354878533
+      ]
+    ],
+    "polar_inertia_about_shaft_kg_m2": 0.004599960355543558,
+    "initial_rpm": 3000.0,
+    "final_rpm": 2930.976896485368,
+    "duration_s": 0.1,
+    "dt_s": 0.0001,
+    "drag_coefficient_Nm_per_rad_s_squared": 3.4481087158476966e-06,
+    "maximum_relative_analytic_speed_error": 7.859839289576716e-07,
+    "relative_refinement_difference": 7.771237455658952e-07,
+    "cfd_converged": false,
+    "pmb_240a_inertia_or_load_included": false,
+    "belt_bearings_fatigue_or_elastic_blades_simulated": false,
+    "manufacturing_authorized": false,
+    "input_sha256": {
+      "work/fan-aerodynamics/print-alternator-body160-pitch-plus-100k/analysis-mm.stl": "0f2888b3c0830de463313697eb0682c52235bd7d75679856441d29eca146fd9c",
+      "twins/993-engine-cooling-fan-system-f0/print-and-flow-trial-results.json": "1cef05ff7a2837ad6eca4b58e7ceac8d09ddc275ba212dafcc90a7d3aebc95cb",
+      "twins/993-engine-cooling-fan-system-f0/source/run_fan_newton.py": "6ae0aad3512e6411dc6f2d716b4f70d6000377185460a7fc1cb7a46f27825c2e"
+    }
+  },
+  "physx": {
+    "status": "passed_ideal_bearing_spin_and_quadratic_drag",
+    "ovphysx_version": "0.4.13",
+    "physics_device": "cpu",
+    "duration_s": 0.002,
+    "steps": 200,
+    "expected_angle_rad": 0.6283185307179586,
+    "observed_angle_rad": 0.6283514499664307,
+    "absolute_angle_error_rad": 3.291924847204086e-05,
+    "pose_xyzw": [
+      [
+        -5.684341886080802e-14,
+        -2.2737367544323206e-13,
+        2.7939677238464355e-09,
+        -1.081758682630607e-08,
+        2.8734426393839385e-08,
+        0.30903270840644836,
+        0.9510515332221985
+      ]
+    ],
+    "cfd_drag_included": true,
+    "collisions_simulated": false,
+    "free_spin_final_omega_rad_s": 314.1892395019531,
+    "loaded_case_initial_omega_rad_s": 314.1592712402344,
+    "coastdown_duration_s": 0.1,
+    "coastdown_dt_s": 0.0001,
+    "coastdown_relative_analytic_error": 0.0004049928757362831,
+    "coastdown_final_rpm": 2932.1909580568786,
+    "pmb240a_simulated": false,
+    "manufacturing_authorized": false
+  },
+  "cross_solver": {
+    "status": "passed_simplified_cross_solver_check",
+    "max_omega_difference_rad_s": 0.127349853515625,
+    "final_rpm_difference": 1.2140615715103198,
+    "relative_speed_difference_limit": 0.001,
+    "same_quadratic_drag_model": true,
+    "physical_validation": false
+  },
+  "openusd": {
+    "status": "passed_openusd_composition_and_data_checks",
+    "views": {
+      "assembly": 2,
+      "flow": 3,
+      "newton_coastdown": 2,
+      "print_thermal": 1
+    },
+    "gpu_render_checked": false,
+    "pmb_geometry_verified": false,
+    "simready_claimed": false,
+    "openusd_validator_findings": [],
+    "unresolved_dependencies": []
+  },
+  "package": {
+    "package_opened": true,
+    "findings": [],
+    "camera_focal_length_mm": 35
+  },
+  "nurec": {
+    "status": "not_run_missing_component_multiview_capture"
+  },
+  "pmb_240a_geometry_verified": false,
+  "installed_airflow_validated": false,
+  "manufacturing_authorized": false,
+  "artifacts_sha256": {
+    "work/fan-aerodynamics/omniverse-twin/fan-twin.usda": "347ab09a7896b239939f9fac518e116dcd74ae03d077ee1d2f7652003cd53dd7",
+    "work/fan-aerodynamics/omniverse-twin/components.usdc": "5adb9386671f372e8b5299b7baf9ce8ed6c90f5dd7dcfe0efe708c82438cc4f0",
+    "work/fan-aerodynamics/omniverse-twin/viewer.usda": "aaf1ae833f2496fa59b1203d377542d37cb4a1900c1a19767eb9b8ab3bdcab76",
+    "work/fan-aerodynamics/omniverse-twin/fan-twin.usdz": "b9d0d6a86e52c7372c6c31fda4c862fe63ed958998dda0548880f244f35a6295",
+    "work/fan-aerodynamics/omniverse-twin/build-report.json": "0d928229acba9889a2a89ebb9c1b0fda539fbc7be7320f5fd0fca8f123039120",
+    "work/fan-aerodynamics/omniverse-twin/validation.json": "0960b35f1be2c2c2b486a805e78ac04ceadefb6242f9704ec236474b03e9be3a",
+    "work/fan-aerodynamics/omniverse-twin/package-validation.json": "0f1f2ce559a558dcc3d5794a7e25ae293813d4caaab8b8592815966cbe57d4eb",
+    "work/fan-aerodynamics/omniverse-twin/newton/newton-summary.json": "7feae74797e0fa1dac76e1db43315f4b1a8cf9d8630561fa72303bafd89834ba",
+    "work/fan-aerodynamics/omniverse-twin/newton/rotation.csv": "a1a5baeaecfcebf6412fb100f1ff6fc619df487a108c5dcdb32d8fc04c42e4b3",
+    "work/fan-aerodynamics/omniverse-twin/physx-spin.usda": "5db9b00b4fe81efbe13bddf6b72787e1c20d1fd214dd2555dd2ace223b4a413b",
+    "work/fan-aerodynamics/omniverse-twin/physx-summary.json": "67469d6755b34a0c175def264d5c5788ddcbb691ba6458842369120cef47239d",
+    "work/fan-aerodynamics/omniverse-twin/physx-coastdown.csv": "ea52245a02586f41db02a296da941f2a6cbfd9937012214af71a6f116b140db2",
+    "work/fan-aerodynamics/omniverse-twin/cross-solver-check.json": "ca1412d995d0dbe9faf2c48ba75ffe9bd89e4f1369bd8b2e0735b697567ac42f",
+    "twins/993-engine-cooling-fan-system-f0/source/build_fan_digital_twin.py": "a16d1f06ca14d81da88c14a099ed27a370fa8494588c6b0ec1d9778543d3f5d7",
+    "twins/993-engine-cooling-fan-system-f0/source/run_fan_newton.py": "6ae0aad3512e6411dc6f2d716b4f70d6000377185460a7fc1cb7a46f27825c2e",
+    "twins/993-engine-cooling-fan-system-f0/source/run_fan_physx.py": "efb4d10c2a2b2e9e7eb8cad6c420dad8d24ddfa94cd477b70d8f178529545600",
+    "twins/993-engine-cooling-fan-system-f0/source/render_fan_ovrtx.py": "b16c86d17ba4f0ab40069850a9d0a7b870ebf9e5dd621db5d7804e5697909c26",
+    "work/fan-aerodynamics/omniverse-twin/assembly.png": "e277a19fa04cef4670449d95e0602fdc370dfa58a2b32a5f5fc36579b2e3f458",
+    "work/fan-aerodynamics/omniverse-twin/flow.png": "76ec45aecbe1073a32df8f34202d2e29ca24b92fe43b26de1834383d0ce38366",
+    "work/fan-aerodynamics/omniverse-twin/print_thermal.png": "17269101dcef0f2a42f60411f7d0dba228c1efde6328b4f61fa4b9d9ac48ace6",
+    "work/fan-aerodynamics/omniverse-twin/rotation-0ms.png": "e277a19fa04cef4670449d95e0602fdc370dfa58a2b32a5f5fc36579b2e3f458",
+    "work/fan-aerodynamics/omniverse-twin/rotation-17ms.png": "b654806ae83a8c8c2d95f09fb3cab47dfda75c1570e45f4ad094ba1a181b638d",
+    "work/fan-aerodynamics/omniverse-twin/viewer-flow.usda": "2e877afff04195d2ef6d90afa611af05286c0d82061453401f5d6fbc0f13adea",
+    "work/fan-aerodynamics/omniverse-twin/viewer-print_thermal.usda": "decf6c3012c82d396cd9e2fb64dc9e63d44c489a49e745bf12ba4b07fa3a5581",
+    "work/fan-aerodynamics/omniverse-twin/viewer-newton_coastdown.usda": "e66e3a82aa4ffdb6024ebf3599a8e0d1865f0b5b700aa37c3d08e206bf7dc56e",
+    "work/fan-aerodynamics/omniverse-twin/capture-validation.json": "e1b7c2970fe37c08dfc31f618a9cf7a5bb442152598695219fda98922bdbfd11",
+    "work/fan-aerodynamics/omniverse-twin/vast-destroy.json": "4c820a55ba3652f7bcda23072f1bee8d64f18f4dd07bf8da4b8e20d3f7fdbfc3",
+    "work/fan-aerodynamics/omniverse-twin/vast-final-inventory.json": "35517424da89981723604fd14e58b1ea61ec5d5970a7713fa412c18b4ce4b2f3",
+    "work/fan-aerodynamics/omniverse-twin/capture-evidence.tgz": "56e1943c8185b5ccdd5c2dc3d094d12ce40a90bb19c73ad9719c311334eb3f62",
+    "work/fan-aerodynamics/omniverse-twin/capture-evidence-final.tgz": "511649fa8ed5e1a1d9b5c88365b1526ed84b5b5c6dd39cd9fd757e10e86a0426",
+    "work/fan-aerodynamics/omniverse-twin/flow-corrected.tgz": "dc20536cc81498f843e9958c72ebefe77429286fd84174b263065056cd8ba6e6",
+    "twins/993-engine-cooling-fan-system-f0/OMNIVERSE_DIGITAL_TWIN.md": "d3a56aba9c49b799d7df0c798e5ddef6112880c24f718dd3f4ba6052d4af1279"
+  },
+  "rtx": {
+    "ovrtx_version": "0.3.0",
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Workstation Edition",
+    "driver": "570.211.01",
+    "headless_render": true,
+    "runtime_fix": "libegl1 installed in ephemeral container",
+    "capture_validation": {
+      "assembly": {
+        "shape": [
+          960,
+          1280,
+          4
+        ],
+        "colored_pixels": 90931,
+        "visually_inspected": true
+      },
+      "flow": {
+        "shape": [
+          960,
+          1280,
+          4
+        ],
+        "colored_pixels": 262984,
+        "visually_inspected": true
+      },
+      "print_thermal": {
+        "shape": [
+          960,
+          1280,
+          4
+        ],
+        "colored_pixels": 199367,
+        "visually_inspected": true
+      },
+      "rotation-0ms": {
+        "shape": [
+          960,
+          1280,
+          4
+        ],
+        "colored_pixels": 90931,
+        "visually_inspected": true
+      },
+      "rotation-17ms": {
+        "shape": [
+          960,
+          1280,
+          4
+        ],
+        "colored_pixels": 93200,
+        "visually_inspected": true
+      },
+      "rotation_changed_pixels": 57168,
+      "gpu_render_checked": true
+    },
+    "geometry_or_airflow_validation": false
+  },
+  "rental": {
+    "instance_id": 53187079,
+    "rate_usd_per_hour": 1.3655555555555556,
+    "final_invoice_known": false,
+    "destroy_receipt": {
+      "destroyed": true,
+      "instance_id": 53187079,
+      "verified_absent": true
+    },
+    "study_instances_absent_from_final_inventory": true,
+    "other_instances_untouched": true
+  },
+  "published_artifacts_sha256": {
+    "results/omniverse/package-validation.json": "0f1f2ce559a558dcc3d5794a7e25ae293813d4caaab8b8592815966cbe57d4eb",
+    "results/omniverse/newton-summary.json": "7feae74797e0fa1dac76e1db43315f4b1a8cf9d8630561fa72303bafd89834ba",
+    "results/omniverse/rotation-0ms.png": "e277a19fa04cef4670449d95e0602fdc370dfa58a2b32a5f5fc36579b2e3f458",
+    "results/omniverse/cross-solver-check.json": "ca1412d995d0dbe9faf2c48ba75ffe9bd89e4f1369bd8b2e0735b697567ac42f",
+    "results/omniverse/physx-summary.json": "67469d6755b34a0c175def264d5c5788ddcbb691ba6458842369120cef47239d",
+    "results/omniverse/capture-validation.json": "e1b7c2970fe37c08dfc31f618a9cf7a5bb442152598695219fda98922bdbfd11",
+    "results/omniverse/validation.json": "0960b35f1be2c2c2b486a805e78ac04ceadefb6242f9704ec236474b03e9be3a",
+    "results/omniverse/rotation-17ms.png": "b654806ae83a8c8c2d95f09fb3cab47dfda75c1570e45f4ad094ba1a181b638d",
+    "results/omniverse/print_thermal.png": "17269101dcef0f2a42f60411f7d0dba228c1efde6328b4f61fa4b9d9ac48ace6",
+    "results/omniverse/assembly.png": "e277a19fa04cef4670449d95e0602fdc370dfa58a2b32a5f5fc36579b2e3f458",
+    "results/omniverse/flow.png": "76ec45aecbe1073a32df8f34202d2e29ca24b92fe43b26de1834383d0ce38366",
+    "results/omniverse/fan-twin.usdz": "b9d0d6a86e52c7372c6c31fda4c862fe63ed958998dda0548880f244f35a6295"
+  }
+}
