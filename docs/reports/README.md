@@ -2,20 +2,21 @@
 
 # Execution and audit reports
 
-111 reports of runs, audits and checkpoints, newest first (14 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../../SAFETY.md).
+112 reports of runs, audits and checkpoints, newest first (14 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../../SAFETY.md).
 
 ```mermaid
 xychart-beta
     title "Reports written per day, 2026"
     x-axis ["09-01", "09-06", "09-07", "09-08", "09-09", "09-12", "09-14", "09-16", "09-24", "09-25", "09-26", "09-27", "09-28"]
     y-axis "reports" 0 --> 25
-    bar [1, 1, 20, 24, 13, 9, 7, 1, 2, 8, 6, 3, 2]
+    bar [1, 1, 20, 24, 13, 9, 7, 1, 2, 8, 6, 3, 3]
 ```
 
 ## September 28, 2026
 
 | report | file |
 |---|---|
+| M64 — CAD-constrained mesh and partition trials, 28 September 2026 | [`M64_CAD_CONSTRAINED_MESH_20260928.md`](M64_CAD_CONSTRAINED_MESH_20260928.md) |
 | M64 — area precision and targeted meshing, 28 September 2026 | [`M64_MESH_PRECISION_RECOVERY_20260928.md`](M64_MESH_PRECISION_RECOVERY_20260928.md) |
 | M64 — actual PhysicsNeMo and PicoGK continuation, 28 September 2026 | [`M64_NEMO_PICOGK_CONTINUATION_20260928.md`](M64_NEMO_PICOGK_CONTINUATION_20260928.md) |
 
