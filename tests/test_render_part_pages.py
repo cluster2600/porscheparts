@@ -14,6 +14,14 @@ FICHES = sorted((ROOT / "catalog" / "parts").glob("*.json"))
 
 
 class PartPageTests(unittest.TestCase):
+    def test_fan_rebuild_precedes_archived_geometry(self):
+        record = ROOT / "catalog/parts/993-eng-cooling-impeller-alsi10mg-f0-0001.json"
+        result = pages.presentation(json.loads(record.read_text()), record)
+        self.assertLess(result.index("reference-review.png"), result.index("media/preview.png"))
+        self.assertIn("ne transforme pas cette fiche Carrera", result)
+        self.assertIn("Aucun débit ni montage moteur validé", result)
+        self.assertIn("porschefanatics.com/projects/993-turbo-fan/", result)
+
     def test_one_page_per_catalogue_record(self):
         attendues = pages.attendues()
         descriptions = [c for c in attendues if c.parent.name == "pieces"]

@@ -308,6 +308,15 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
                      badge("candidate process", PROCEDES.get(procede, procede), "lightgrey")]), "",
            "</div>", ""]
 
+    if part_id == "993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001":
+        reprise = "../../twins/993-engine-cooling-fan-system-f0"
+        out += ["## Le projet a été repris", "",
+                "**Le modèle F0 ci-dessous est archivé.** La nouvelle étude porte sur le montage Turbo M64.60 et l’alternateur PMB 240 A ; elle ne transforme pas cette fiche Carrera en pièce Turbo validée.", "",
+                f"[Présentation du projet sur PorscheFanatics](https://porschefanatics.com/projects/993-turbo-fan/) · [Dossier de reconstruction]({reprise}/REFERENCE_REBUILD.md) · [Modèle OpenUSD]({reprise}/results/reference/reference.usdz)", "",
+                f"![Nouvelle reconstruction Turbo : face, arrière, coupe et éclaté]({reprise}/results/reference/reference-review.png)", "",
+                "*Nouvelle géométrie PicoGK : 11 pales, 12 ouvertures, cuvette nervurée et moyeu séparé. Maillages contrôlés ; cotes partielles, compatibilité du moyeu contestée, carter et PMB à reconstruire. Aucun débit ni montage moteur validé.*", "",
+                "## Archive du concept Carrera F0", ""]
+
     # The first thing a reader sees is what this is NOT, from the record's own fields.
     source_geo = geometrie.get("source_type", "unknown")
     mesure = {"measured": "measured", "scan": "scanned"}.get(source_geo)

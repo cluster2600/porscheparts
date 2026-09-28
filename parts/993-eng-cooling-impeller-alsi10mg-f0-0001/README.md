@@ -2,13 +2,25 @@
 
 <div align="center">
 
-# Engine cooling fan impeller, rotating AlSi10Mg concept F0
+# Ventilateur moteur 993 — archive du concept Carrera F0
 
 **`993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001`** · Porsche 993 · 1994–1998
 
 ![status: concept, not a print file](https://img.shields.io/badge/status-concept,%20not%20a%20print%20file-critical) ![safety: prohibited pending engineering](https://img.shields.io/badge/safety-prohibited%20pending%20engineering-critical) ![candidate process: undecided](https://img.shields.io/badge/candidate%20process-undecided-lightgrey)
 
 </div>
+
+## Le projet a été repris
+
+**Le modèle F0 ci-dessous est archivé.** La nouvelle étude porte sur le montage Turbo M64.60 et l’alternateur PMB 240 A ; elle ne transforme pas cette fiche Carrera en pièce Turbo validée.
+
+[Présentation du projet sur PorscheFanatics](https://porschefanatics.com/projects/993-turbo-fan/) · [Dossier de reconstruction](../../twins/993-engine-cooling-fan-system-f0/REFERENCE_REBUILD.md) · [Modèle OpenUSD](../../twins/993-engine-cooling-fan-system-f0/results/reference/reference.usdz)
+
+![Nouvelle reconstruction Turbo : face, arrière, coupe et éclaté](../../twins/993-engine-cooling-fan-system-f0/results/reference/reference-review.png)
+
+*Nouvelle géométrie PicoGK : 11 pales, 12 ouvertures, cuvette nervurée et moyeu séparé. Maillages contrôlés ; cotes partielles, compatibilité du moyeu contestée, carter et PMB à reconstruire. Aucun débit ni montage moteur validé.*
+
+## Archive du concept Carrera F0
 
 > [!CAUTION]
 > **Not ready to print, and not a copy of the original part.** The model shown here is a
@@ -29,7 +41,7 @@ The original part is documented — pictures, catalogue entries or published dat
 </td>
 <td width="50%" valign="top" align="center">
 <b>This repository's concept model</b><br><br>
-<img src="media/preview.png" alt="Concept CAD block for Engine cooling fan impeller, rotating AlSi10Mg concept F0" width="340"><br>
+<img src="media/preview.png" alt="Concept CAD block for Ventilateur moteur 993 — archive du concept Carrera F0" width="340"><br>
 <sub>Concept CAD block, 280.0 × 280.0 × 30.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
 </td>
 </tr></table>
@@ -39,7 +51,7 @@ The original part is documented — pictures, catalogue entries or published dat
 
 ## What it is
 
-Independent concept of a one-piece impeller combining hub, twelve swept blades and a peripheral ring. PorscheFanatics and resellers establish part number 964 106 015 31, a commercial envelope, two consistent masses and an aluminum claim, but no functional geometry. The assembly test explicitly rejects the interference with the previous F0 housing.
+Ce dossier conserve le concept exploratoire Carrera F0 : douze pales balayées, moyeu simplifié et anneau périphérique. Sa géométrie synthétique de 280 mm ne reproduit pas le rotor Porsche et son intégration au carter F0 échoue. Il ne constitue plus la base de la conception actuelle. La reprise du 28 septembre 2026 étudie séparément la 993 Turbo M64.60 : rotor 96410601522 à onze pales, cuvette ventilée, nervures et moyeu distinct, avec intégration visée du PMB / Classic Retrofit 240 A. Cette nouvelle reconstruction reste partielle et ses interfaces, débit, matière et tenue mécanique ne sont pas validés.
 
 ## What it does on the car
 
