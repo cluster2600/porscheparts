@@ -513,6 +513,12 @@ The first composite engine subassembly, the
 converts to OpenUSD but fails its clearance test on an explicit BRep collision:
 it remains a research twin that cannot be manufactured.
 
+For the M64/60 engine (993 Turbo), the master bill of materials of the whole-engine twin is indexed in
+[`twins/m64-engine-system/bom/m64-bom-v1.json`](twins/m64-engine-system/bom/m64-bom-v1.json)
+with its coverage summary
+[`twins/m64-engine-system/bom/coverage.md`](twins/m64-engine-system/bom/coverage.md).
+
+
 ![Sourced state of the 993 digital twin](docs/media/diagrams/digital-twin-993-etat.svg)
 
 This diagram shows the sourced logical relationships, not the actual position
