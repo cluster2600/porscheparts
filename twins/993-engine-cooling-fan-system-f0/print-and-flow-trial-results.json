@@ -1,0 +1,886 @@
+{
+  "status": "numerical_print_and_flow_trials_completed_not_manufacturing_qualified",
+  "physical_print_executed": false,
+  "wind_tunnel_mode": "OpenFOAM MRF exploratory",
+  "dimensional_reference": "twins/993-engine-cooling-fan-system-f0/alternator-dimensional-reference.json",
+  "variants": {
+    "baseline": {
+      "geometry_directory": "work/fan-aerodynamics/turbo-245-alternator-body160-baseline",
+      "print_directory": "work/fan-aerodynamics/print-alternator-body160-baseline-100k",
+      "picogk_report": {
+        "status": "picogk_geometry_only_not_flow_validated",
+        "dimensional_status": "aftermarket_body_diameter_with_hypothetical_axial_placement",
+        "input_parameters": {
+          "dimensional_status": "aftermarket_body_diameter_with_hypothetical_axial_placement",
+          "envelope_source": "https://www.fvd.net/fr/shop/turbine-965-993-turbo-96410601522~p252068",
+          "reference_part": "96410601522",
+          "outer_diameter_mm": 245,
+          "housing_diameter_mm": 252,
+          "hub_diameter_mm": 172,
+          "bore_diameter_mm": 30,
+          "depth_mm": 42,
+          "blade_count": 12,
+          "root_pitch_deg": 42,
+          "tip_pitch_deg": 24,
+          "sweep_deg": 12,
+          "root_thickness_ratio": 0.24,
+          "tip_thickness_ratio": 0.12,
+          "root_chord_mm": 24,
+          "tip_chord_mm": 42,
+          "camber_fraction": 0.025,
+          "minimum_thickness_mm": 1.6,
+          "root_blend_mm": 3,
+          "voxel_mm": 0.4,
+          "cup_wall_mm": 4,
+          "cup_front_web_mm": 5,
+          "alternator": {
+            "reference_part": "96460315601",
+            "geometry_status": "published_replacement_body_diameter_axial_shape_and_mounts_hypothetical",
+            "body_diameter_mm": 160,
+            "body_length_mm": 115,
+            "body_front_z_mm": -8,
+            "shaft_diameter_mm": 17,
+            "shaft_front_z_mm": -55,
+            "support_count": 4,
+            "support_z_mm": 65,
+            "support_width_mm": 10,
+            "support_depth_mm": 8,
+            "shaft_dimension_source": "https://www.iat-usa.com/product/17170-bosch-12v-replacement-alternator-rotor-for-115-amp-i-r-alternator/",
+            "internal_cooling_passages_and_bearing_seals_represented": false,
+            "body_diameter_source": "https://as-pl.com/en/p/A01345S",
+            "body_diameter_source_scope": "AS-PL A01345S replacement body F.1, not an OEM tolerance drawing",
+            "published_overall_length_mm": 256,
+            "overall_length_not_used_as_body_length": true
+          }
+        },
+        "smoothing_radius_mm": 0.4,
+        "volume_mm3": 257646.97,
+        "triangles": 1914832,
+        "zero_area_triangles_removed": 96,
+        "cold_nominal_radial_clearance_mm": 3.5,
+        "airflow_m3_s": null,
+        "optimized": false,
+        "manufacturing_authorized": false,
+        "engine_operation_authorized": false
+      },
+      "print_geometry_report": {
+        "analysis_surface": {
+          "envelope_mm": [
+            244.57764434814453,
+            244.5644302368164,
+            42.001081466674805
+          ],
+          "envelope_tolerance_mm": 0.1,
+          "format": ".stl",
+          "sha256": "eb7d89a9961584de458bb467c1cff5e9ef5c96d0f068fc2542f1772843715358",
+          "single_component": true,
+          "triangles": 100000,
+          "vertices": 50000,
+          "watertight": true
+        },
+        "classification": "actual_full_layer_geometric_slicing_and_support_proxy_not_process_qualification",
+        "full_build_slicing": {
+          "bare_part_nominal_fit": true,
+          "build_envelope_type": "rectangular_prism",
+          "build_height_mm": 244.5644302368164,
+          "depth_margin_mm": 207.9989185333252,
+          "empty_internal_layers": 0,
+          "height_margin_mm": 80.4355697631836,
+          "layer_count": 8153,
+          "layer_thickness_mm": 0.03,
+          "layers_with_new_islands": 14,
+          "layers_with_unsupported_area": 4628,
+          "maximum_unsupported_area_mm2": 117.55924657,
+          "new_island_count": 14,
+          "orientation": "build_y",
+          "part_extents_mm": [
+            244.57764434814453,
+            42.001081466674805,
+            244.5644302368164
+          ],
+          "rigid_transform_only": true,
+          "support_classification": "conservative vertical-column proxy; no supplier support topology",
+          "support_proxy_side_area_mm2": 121588.22999999915,
+          "support_proxy_volume_cm3": 852.2501399999934,
+          "support_proxy_volume_mm3": 852250.1399999934,
+          "support_raster_pitch_mm": 0.5,
+          "width_margin_mm": 5.422355651855469
+        },
+        "gates": {
+          "bare_part_machine_envelope_fit": true,
+          "candidate_orientation_engineering_reviewed": false,
+          "full_piece_layer_slicing_completed": true,
+          "master_hash_verified": true,
+          "metal_print_authorized": false,
+          "physical_coupon_qualified": false,
+          "recoater_clearance_validated": false,
+          "single_watertight_surface_mesh": true,
+          "supplier_machine_file_signed": false,
+          "supplier_supports_validated": false,
+          "target_material_process_physics_correlated": false
+        },
+        "machine_candidate": {
+          "build_depth_mm": 250.0,
+          "build_height_mm": 325.0,
+          "build_width_mm": 250.0,
+          "focus_diameter_um": 100.0,
+          "laser_configuration": "1 x 400 W Yb-fiber laser",
+          "manufacturer": "EOS",
+          "maximum_scan_speed_m_s": 7.0,
+          "model": "EOS M 290",
+          "schema_version": "1.0.0",
+          "scope": "Enveloppe nominale de machine candidate. La hauteur utile r\u00e9elle d\u00e9pend de la plateforme ; aucun projet EOS BUILD, support fournisseur ou fichier machine sign\u00e9 n'est inclus.",
+          "source": "https://www.eos.info/metal-solutions/metal-printers/eos-m-290"
+        },
+        "master": {
+          "format": ".stl",
+          "sha256": "f103150e5d5ed6446ab1216790fcda8b59c8f520f51cb66138ce36a6c0bdfc8d"
+        },
+        "orientation_screen": [
+          {
+            "bare_part_nominal_fit": true,
+            "build_envelope_type": "rectangular_prism",
+            "depth_margin_mm": 5.435569763183594,
+            "downward_projected_area_mm2": 10203.615284104933,
+            "downward_surface_area_mm2": 11487.88107047271,
+            "downward_surface_fraction": 0.09490766797725711,
+            "height_margin_mm": 80.42235565185547,
+            "orientation": "build_x",
+            "part_extents_mm": [
+              42.001081466674805,
+              244.5644302368164,
+              244.57764434814453
+            ],
+            "width_margin_mm": 207.9989185333252
+          },
+          {
+            "bare_part_nominal_fit": true,
+            "build_envelope_type": "rectangular_prism",
+            "depth_margin_mm": 207.9989185333252,
+            "downward_projected_area_mm2": 10196.772273217846,
+            "downward_surface_area_mm2": 11477.347456174824,
+            "downward_surface_fraction": 0.09482064402895443,
+            "height_margin_mm": 80.4355697631836,
+            "orientation": "build_y",
+            "part_extents_mm": [
+              244.57764434814453,
+              42.001081466674805,
+              244.5644302368164
+            ],
+            "width_margin_mm": 5.422355651855469
+          },
+          {
+            "bare_part_nominal_fit": true,
+            "build_envelope_type": "rectangular_prism",
+            "depth_margin_mm": 5.435569763183594,
+            "downward_projected_area_mm2": 33847.3766227797,
+            "downward_surface_area_mm2": 37098.9913254995,
+            "downward_surface_fraction": 0.30649505591258397,
+            "height_margin_mm": 282.9989185333252,
+            "orientation": "build_z",
+            "part_extents_mm": [
+              244.57764434814453,
+              244.5644302368164,
+              42.001081466674805
+            ],
+            "width_margin_mm": 5.422355651855469
+          },
+          {
+            "bare_part_nominal_fit": true,
+            "build_envelope_type": "rectangular_prism",
+            "depth_margin_mm": 5.435569763183594,
+            "downward_projected_area_mm2": 27850.08791992179,
+            "downward_surface_area_mm2": 31111.398259681948,
+            "downward_surface_fraction": 0.25702827512094095,
+            "height_margin_mm": 206.42826715231223,
+            "orientation": "roll_y_25",
+            "part_extents_mm": [
+              227.34313372120204,
+              244.5644302368164,
+              118.57173284768777
+            ],
+            "width_margin_mm": 22.656866278797963
+          },
+          {
+            "bare_part_nominal_fit": true,
+            "build_envelope_type": "rectangular_prism",
+            "depth_margin_mm": 5.435569763183594,
+            "downward_projected_area_mm2": 25192.454398207734,
+            "downward_surface_area_mm2": 30161.03964099982,
+            "downward_surface_fraction": 0.2491768428430564,
+            "height_margin_mm": 171.36936061100744,
+            "orientation": "roll_y_35",
+            "part_extents_mm": [
+              208.8166519749702,
+              244.5644302368164,
+              153.63063938899256
+            ],
+            "width_margin_mm": 41.1833480250298
+          },
+          {
+            "bare_part_nominal_fit": true,
+            "build_envelope_type": "rectangular_prism",
+            "depth_margin_mm": 5.435569763183594,
+            "downward_projected_area_mm2": 12613.364494493027,
+            "downward_surface_area_mm2": 16108.915287797943,
+            "downward_surface_fraction": 0.1330845587823602,
+            "height_margin_mm": 140.9633859670396,
+            "orientation": "roll_y_45",
+            "part_extents_mm": [
+              184.0103029355468,
+              244.5644302368164,
+              184.0366140329604
+            ],
+            "width_margin_mm": 65.9896970644532
+          }
+        ],
+        "orientation_selection_rule": "minimum downward projected area among bare-part envelope-fitting kernel candidates",
+        "part_id": "FAN-ALTERNATOR-PRINT-STUDY",
+        "powder_escape_screen": {
+          "classification": "resolution-limited depowdering screen; CT and endoscopy still required",
+          "connected_void_labels_including_outside": 1,
+          "method": "surface voxelisation, solid fill and 6-connected exterior flood-fill",
+          "no_trapped_volume_detected_at_screen_resolution": true,
+          "pitch_mm": 1.0,
+          "trapped_void_volume_mm3": 0.0,
+          "trapped_void_voxel_count": 0,
+          "voxel_grid_shape": [
+            245,
+            245,
+            43
+          ]
+        },
+        "process_physics": {
+          "additivefoam_executed": false,
+          "reason": "No complete temperature-dependent and machine-calibrated material/process card is available for this exact route.",
+          "target_material_card": "AlSi10Mg / EOS M290 30 um candidate, not qualified",
+          "target_material_card_complete_and_calibrated": false
+        },
+        "recoater_screen": {
+          "blade_clearance_and_compliance_known": false,
+          "collision_simulation_executed": false,
+          "distortion_field_available": false,
+          "pass": false
+        },
+        "schema_version": "1.0.0",
+        "selected_candidate_orientation": "build_y",
+        "software": {
+          "kernel": "twins/reference-917-engine/source/run_f50_lpbf_geometry_audit.py",
+          "trimesh": "5.1.0"
+        },
+        "thickness_screen": {
+          "analysis_normals_repaired_without_vertex_motion": false,
+          "classification": "screening_only_not_a_certified_minimum_wall_map",
+          "median_mm": 4.385041161007091,
+          "method": "trimesh max_sphere local thickness on deterministic area-weighted face-centre probes",
+          "minimum_mm": 0.31132560542795695,
+          "p01_mm": 0.8064480648255916,
+          "p05_mm": 1.5320909206222961,
+          "p95_mm": 5.625811526652672,
+          "sample_count": 2000,
+          "sample_fraction_below_1p5_mm": 0.0445
+        },
+        "verdict": "geometric_print_simulation_completed_process_and_print_release_blocked"
+      },
+      "flat_slicing": {
+        "orientation": "build_z",
+        "rigid_transform_only": true,
+        "layer_thickness_mm": 0.03,
+        "layer_count": 1401,
+        "build_height_mm": 42.001081466674805,
+        "empty_internal_layers": 0,
+        "new_island_count": 51,
+        "layers_with_new_islands": 21,
+        "layers_with_unsupported_area": 668,
+        "maximum_unsupported_area_mm2": 64.82452685,
+        "support_proxy_volume_mm3": 220998.6449999988,
+        "support_proxy_volume_cm3": 220.9986449999988,
+        "support_proxy_side_area_mm2": 72735.06000000123,
+        "support_raster_pitch_mm": 0.5,
+        "support_classification": "conservative vertical-column proxy; no supplier support topology",
+        "part_extents_mm": [
+          244.57764434814453,
+          244.5644302368164,
+          42.001081466674805
+        ],
+        "height_margin_mm": 282.9989185333252,
+        "build_envelope_type": "rectangular_prism",
+        "width_margin_mm": 5.422355651855469,
+        "depth_margin_mm": 5.435569763183594,
+        "bare_part_nominal_fit": true
+      },
+      "cfd_case": "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-baseline",
+      "cfd_status": "completed_exploratory",
+      "flow_summary": {
+        "mean_outlet_m3_s": 0.2687297463245,
+        "mean_outlet_m3_h": 967.4270867682,
+        "maximum_relative_mass_imbalance": 4.5760342295073286e-07,
+        "relative_mean_change_between_windows": 4.323914437811954e-05,
+        "relative_peak_to_peak_last_window": 0.000845133272763058,
+        "numerical_window_checks_passed": false,
+        "status": "exploratory_numerics_only",
+        "last_iteration": 1200.0,
+        "model_scope": "parametric_alternator_envelope_not_oem_validated",
+        "alternator_envelope_included": true,
+        "installed_assembly_represented": false,
+        "installed_airflow_m3_s": null,
+        "relative_torque_mean_change_between_windows": 0.002988738423856144,
+        "relative_torque_peak_to_peak_last_window": 0.003945754859826316,
+        "rpm": 3000.0,
+        "mean_fluid_torque_Nm": -0.23004098537433,
+        "mean_shaft_power_to_fluid_W": 72.26950696765522,
+        "standard_mesh_check_passed": true,
+        "extended_mesh_check_passed": false,
+        "validated_airflow_m3_s": null,
+        "grid_independence_demonstrated": false,
+        "wall_resolution_qualified": false,
+        "optimized": false,
+        "input_sha256": {
+          "fan-input.json": "e7dda3d96cd9ae9cf58b3dcea5fd5a3eec6cda049765a72b51e322ca0f75d2ba",
+          "constant/geometry/rotor.stl": "9b677207ba2f0c88e912e67b1530292dc86fcc9ea78aee4e6c3f426993d7c89f",
+          "constant/MRFProperties": "eb2fb048bcb8fecaba8f8d4d5169436de8f54c359ed917ad608abfcd591bcbb4",
+          "system/controlDict": "457be2eddf3d0cdd26680172c61fc4d34bd33a29f3aa64c925cf5d865feaa4ff",
+          "system/fvSchemes": "8ec89e2c13c3acc400121818c5d1c859884fa45a7fa9e4e1a2dcd390f461d64c",
+          "system/fvSolution": "d33f82d10a5347c7d035d665b119489bf78dd8da43d56d08380cd7ef1ccd2706",
+          "0/U": "d0486d7b5f49b38d1acc6d7f0ecd82af9527d7c8a3067be565d3f5326231db87",
+          "0/p": "063759091363234a1afded3d7cd9e9bb783bcede8a409801070add3aac055848",
+          "constant/geometry/alternator.stl": "946965261586795e7bee76b0014d90d57009943f34669cfce1afbc2634dae068"
+        }
+      },
+      "pressure_audit": {
+        "status": "pressure_integral_only_not_flow_validation",
+        "rho_kg_m3": 1.2,
+        "pressure_force_N": [
+          0.009522026388113213,
+          0.006063866386279247,
+          -2.9188279947552407
+        ],
+        "pressure_moment_Nm": [
+          -0.00041316312694927247,
+          -0.0015805514702539117,
+          -0.2129756611601689
+        ],
+        "relative_force_error": 2.8494454460256873e-07,
+        "relative_moment_error": 9.741734299520468e-07,
+        "matches_openfoam_within_half_percent": true,
+        "vtk_sha256": "7bc057f39702734752020a3c9db45f766a3292c7a0500cfcc2b5c05fe2877410",
+        "forces_sha256": "02ec775f09717ccb041052d643ba4a493e76c87096e35c4bbb9de81910a5d1f0"
+      },
+      "full_surface_thickness_diagnostic": {
+        "scope": "full_surface_area_weighted_max_sphere_samples_not_certified_minimum_wall",
+        "sample_count": 2000,
+        "minimum_mm": 0.33975408036293536,
+        "p01_mm": 0.6957417628949798,
+        "p05_mm": 1.5331119550134489,
+        "fraction_below_1p5_mm": 0.044,
+        "smallest_sample_xyz_mm": [
+          -33.207167307535805,
+          -97.8702163696289,
+          -9.154757817586264
+        ],
+        "thin_samples_radius_range_mm": [
+          15.167570800460606,
+          122.45979592886825
+        ]
+      },
+      "relaxation_change": {
+        "request_after_iteration": 416,
+        "pressure": [
+          0.25,
+          0.15
+        ],
+        "velocity_k_omega": [
+          0.5,
+          0.3
+        ]
+      }
+    },
+    "pitch-plus": {
+      "geometry_directory": "work/fan-aerodynamics/turbo-245-alternator-body160-pitch-plus",
+      "print_directory": "work/fan-aerodynamics/print-alternator-body160-pitch-plus-100k",
+      "picogk_report": {
+        "status": "picogk_geometry_only_not_flow_validated",
+        "dimensional_status": "aftermarket_body_diameter_with_hypothetical_axial_placement",
+        "input_parameters": {
+          "dimensional_status": "aftermarket_body_diameter_with_hypothetical_axial_placement",
+          "envelope_source": "https://www.fvd.net/fr/shop/turbine-965-993-turbo-96410601522~p252068",
+          "reference_part": "96410601522",
+          "outer_diameter_mm": 245,
+          "housing_diameter_mm": 252,
+          "hub_diameter_mm": 172,
+          "bore_diameter_mm": 30,
+          "depth_mm": 42,
+          "blade_count": 12,
+          "root_pitch_deg": 50,
+          "tip_pitch_deg": 32,
+          "sweep_deg": 12,
+          "root_thickness_ratio": 0.24,
+          "tip_thickness_ratio": 0.12,
+          "root_chord_mm": 24,
+          "tip_chord_mm": 42,
+          "camber_fraction": 0.025,
+          "minimum_thickness_mm": 1.6,
+          "root_blend_mm": 3,
+          "voxel_mm": 0.4,
+          "cup_wall_mm": 4,
+          "cup_front_web_mm": 5,
+          "alternator": {
+            "reference_part": "96460315601",
+            "geometry_status": "published_replacement_body_diameter_axial_shape_and_mounts_hypothetical",
+            "body_diameter_mm": 160,
+            "body_length_mm": 115,
+            "body_front_z_mm": -8,
+            "shaft_diameter_mm": 17,
+            "shaft_front_z_mm": -55,
+            "support_count": 4,
+            "support_z_mm": 65,
+            "support_width_mm": 10,
+            "support_depth_mm": 8,
+            "shaft_dimension_source": "https://www.iat-usa.com/product/17170-bosch-12v-replacement-alternator-rotor-for-115-amp-i-r-alternator/",
+            "internal_cooling_passages_and_bearing_seals_represented": false,
+            "body_diameter_source": "https://as-pl.com/en/p/A01345S",
+            "body_diameter_source_scope": "AS-PL A01345S replacement body F.1, not an OEM tolerance drawing",
+            "published_overall_length_mm": 256,
+            "overall_length_not_used_as_body_length": true
+          }
+        },
+        "smoothing_radius_mm": 0.4,
+        "volume_mm3": 257377.31,
+        "triangles": 1949152,
+        "zero_area_triangles_removed": 96,
+        "cold_nominal_radial_clearance_mm": 3.5,
+        "airflow_m3_s": null,
+        "optimized": false,
+        "manufacturing_authorized": false,
+        "engine_operation_authorized": false
+      },
+      "print_geometry_report": {
+        "analysis_surface": {
+          "envelope_mm": [
+            244.41366577148438,
+            244.39171600341797,
+            42.001081466674805
+          ],
+          "envelope_tolerance_mm": 0.1,
+          "format": ".stl",
+          "sha256": "0f2888b3c0830de463313697eb0682c52235bd7d75679856441d29eca146fd9c",
+          "single_component": true,
+          "triangles": 100000,
+          "vertices": 50000,
+          "watertight": true
+        },
+        "classification": "actual_full_layer_geometric_slicing_and_support_proxy_not_process_qualification",
+        "full_build_slicing": {
+          "bare_part_nominal_fit": true,
+          "build_envelope_type": "rectangular_prism",
+          "build_height_mm": 244.39171600341797,
+          "depth_margin_mm": 207.9989185333252,
+          "empty_internal_layers": 0,
+          "height_margin_mm": 80.60828399658203,
+          "layer_count": 8147,
+          "layer_thickness_mm": 0.03,
+          "layers_with_new_islands": 21,
+          "layers_with_unsupported_area": 5156,
+          "maximum_unsupported_area_mm2": 129.88438232,
+          "new_island_count": 23,
+          "orientation": "build_y",
+          "part_extents_mm": [
+            244.41366577148438,
+            42.001081466674805,
+            244.39171600341797
+          ],
+          "rigid_transform_only": true,
+          "support_classification": "conservative vertical-column proxy; no supplier support topology",
+          "support_proxy_side_area_mm2": 144678.8699999988,
+          "support_proxy_volume_cm3": 914.4138600000013,
+          "support_proxy_volume_mm3": 914413.8600000013,
+          "support_raster_pitch_mm": 0.5,
+          "width_margin_mm": 5.586334228515625
+        },
+        "gates": {
+          "bare_part_machine_envelope_fit": true,
+          "candidate_orientation_engineering_reviewed": false,
+          "full_piece_layer_slicing_completed": true,
+          "master_hash_verified": true,
+          "metal_print_authorized": false,
+          "physical_coupon_qualified": false,
+          "recoater_clearance_validated": false,
+          "single_watertight_surface_mesh": true,
+          "supplier_machine_file_signed": false,
+          "supplier_supports_validated": false,
+          "target_material_process_physics_correlated": false
+        },
+        "machine_candidate": {
+          "build_depth_mm": 250.0,
+          "build_height_mm": 325.0,
+          "build_width_mm": 250.0,
+          "focus_diameter_um": 100.0,
+          "laser_configuration": "1 x 400 W Yb-fiber laser",
+          "manufacturer": "EOS",
+          "maximum_scan_speed_m_s": 7.0,
+          "model": "EOS M 290",
+          "schema_version": "1.0.0",
+          "scope": "Enveloppe nominale de machine candidate. La hauteur utile r\u00e9elle d\u00e9pend de la plateforme ; aucun projet EOS BUILD, support fournisseur ou fichier machine sign\u00e9 n'est inclus.",
+          "source": "https://www.eos.info/metal-solutions/metal-printers/eos-m-290"
+        },
+        "master": {
+          "format": ".stl",
+          "sha256": "74e0d9acf3b4b3cf53ed13455cc47c8ba3c88f9af796a8011fa10fbee5cfd937"
+        },
+        "orientation_screen": [
+          {
+            "bare_part_nominal_fit": true,
+            "build_envelope_type": "rectangular_prism",
+            "depth_margin_mm": 5.608283996582031,
+            "downward_projected_area_mm2": 11721.657865151345,
+            "downward_surface_area_mm2": 13453.769477799862,
+            "downward_surface_fraction": 0.11033871608000285,
+            "height_margin_mm": 80.58633422851562,
+            "orientation": "build_x",
+            "part_extents_mm": [
+              42.001081466674805,
+              244.39171600341797,
+              244.41366577148438
+            ],
+            "width_margin_mm": 207.9989185333252
+          },
+          {
+            "bare_part_nominal_fit": true,
+            "build_envelope_type": "rectangular_prism",
+            "depth_margin_mm": 207.9989185333252,
+            "downward_projected_area_mm2": 11716.40836182735,
+            "downward_surface_area_mm2": 13445.036684118317,
+            "downward_surface_fraction": 0.11026709561376823,
+            "height_margin_mm": 80.60828399658203,
+            "orientation": "build_y",
+            "part_extents_mm": [
+              244.41366577148438,
+              42.001081466674805,
+              244.39171600341797
+            ],
+            "width_margin_mm": 5.586334228515625
+          },
+          {
+            "bare_part_nominal_fit": true,
+            "build_envelope_type": "rectangular_prism",
+            "depth_margin_mm": 5.608283996582031,
+            "downward_projected_area_mm2": 25983.46807421444,
+            "downward_surface_area_mm2": 26845.660982414545,
+            "downward_surface_fraction": 0.2201699508830185,
+            "height_margin_mm": 282.9989185333252,
+            "orientation": "build_z",
+            "part_extents_mm": [
+              244.41366577148438,
+              244.39171600341797,
+              42.001081466674805
+            ],
+            "width_margin_mm": 5.586334228515625
+          },
+          {
+            "bare_part_nominal_fit": true,
+            "build_envelope_type": "rectangular_prism",
+            "depth_margin_mm": 5.608283996582031,
+            "downward_projected_area_mm2": 26527.059247129506,
+            "downward_surface_area_mm2": 29774.3725352375,
+            "downward_surface_fraction": 0.24418926183080814,
+            "height_margin_mm": 202.11366660053463,
+            "orientation": "roll_y_25",
+            "part_extents_mm": [
+              229.21865054953213,
+              244.39171600341797,
+              122.88633339946537
+            ],
+            "width_margin_mm": 20.78134945046787
+          },
+          {
+            "bare_part_nominal_fit": true,
+            "build_envelope_type": "rectangular_prism",
+            "depth_margin_mm": 5.608283996582031,
+            "downward_projected_area_mm2": 24470.337473543885,
+            "downward_surface_area_mm2": 29419.48434007889,
+            "downward_surface_fraction": 0.2412787089281168,
+            "height_margin_mm": 167.53052793494106,
+            "orientation": "roll_y_35",
+            "part_extents_mm": [
+              211.47897124036524,
+              244.39171600341797,
+              157.46947206505894
+            ],
+            "width_margin_mm": 38.52102875963476
+          },
+          {
+            "bare_part_nominal_fit": true,
+            "build_envelope_type": "rectangular_prism",
+            "depth_margin_mm": 5.608283996582031,
+            "downward_projected_area_mm2": 12510.465301696606,
+            "downward_surface_area_mm2": 16011.188583750101,
+            "downward_surface_fraction": 0.1313129375496548,
+            "height_margin_mm": 137.6756559742132,
+            "orientation": "roll_y_45",
+            "part_extents_mm": [
+              187.31361040358283,
+              244.39171600341797,
+              187.3243440257868
+            ],
+            "width_margin_mm": 62.68638959641717
+          }
+        ],
+        "orientation_selection_rule": "minimum downward projected area among bare-part envelope-fitting kernel candidates",
+        "part_id": "FAN-ALTERNATOR-PRINT-STUDY",
+        "powder_escape_screen": {
+          "classification": "resolution-limited depowdering screen; CT and endoscopy still required",
+          "connected_void_labels_including_outside": 1,
+          "method": "surface voxelisation, solid fill and 6-connected exterior flood-fill",
+          "no_trapped_volume_detected_at_screen_resolution": true,
+          "pitch_mm": 1.0,
+          "trapped_void_volume_mm3": 0.0,
+          "trapped_void_voxel_count": 0,
+          "voxel_grid_shape": [
+            245,
+            245,
+            43
+          ]
+        },
+        "process_physics": {
+          "additivefoam_executed": false,
+          "reason": "No complete temperature-dependent and machine-calibrated material/process card is available for this exact route.",
+          "target_material_card": "AlSi10Mg / EOS M290 30 um candidate, not qualified",
+          "target_material_card_complete_and_calibrated": false
+        },
+        "recoater_screen": {
+          "blade_clearance_and_compliance_known": false,
+          "collision_simulation_executed": false,
+          "distortion_field_available": false,
+          "pass": false
+        },
+        "schema_version": "1.0.0",
+        "selected_candidate_orientation": "build_y",
+        "software": {
+          "kernel": "twins/reference-917-engine/source/run_f50_lpbf_geometry_audit.py",
+          "trimesh": "5.1.0"
+        },
+        "thickness_screen": {
+          "analysis_normals_repaired_without_vertex_motion": false,
+          "classification": "screening_only_not_a_certified_minimum_wall_map",
+          "median_mm": 4.257245584387836,
+          "method": "trimesh max_sphere local thickness on deterministic area-weighted face-centre probes",
+          "minimum_mm": 0.4216938525508013,
+          "p01_mm": 0.7822177093997871,
+          "p05_mm": 1.491487113981507,
+          "p95_mm": 5.578234194819844,
+          "sample_count": 2000,
+          "sample_fraction_below_1p5_mm": 0.052
+        },
+        "verdict": "geometric_print_simulation_completed_process_and_print_release_blocked"
+      },
+      "flat_slicing": {
+        "orientation": "build_z",
+        "rigid_transform_only": true,
+        "layer_thickness_mm": 0.03,
+        "layer_count": 1401,
+        "build_height_mm": 42.001081466674805,
+        "empty_internal_layers": 0,
+        "new_island_count": 90,
+        "layers_with_new_islands": 32,
+        "layers_with_unsupported_area": 267,
+        "maximum_unsupported_area_mm2": 64.81924228,
+        "support_proxy_volume_mm3": 59434.06499999934,
+        "support_proxy_volume_cm3": 59.43406499999934,
+        "support_proxy_side_area_mm2": 61892.67000000032,
+        "support_raster_pitch_mm": 0.5,
+        "support_classification": "conservative vertical-column proxy; no supplier support topology",
+        "part_extents_mm": [
+          244.41366577148438,
+          244.39171600341797,
+          42.001081466674805
+        ],
+        "height_margin_mm": 282.9989185333252,
+        "build_envelope_type": "rectangular_prism",
+        "width_margin_mm": 5.586334228515625,
+        "depth_margin_mm": 5.608283996582031,
+        "bare_part_nominal_fit": true
+      },
+      "cfd_case": "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-pitch-plus",
+      "cfd_status": "completed_exploratory",
+      "flow_summary": {
+        "mean_outlet_m3_s": 0.2981886353975,
+        "mean_outlet_m3_h": 1073.4790874310002,
+        "maximum_relative_mass_imbalance": 7.593893842576577e-07,
+        "relative_mean_change_between_windows": 0.0004955296435191653,
+        "relative_peak_to_peak_last_window": 0.0009907618028639758,
+        "numerical_window_checks_passed": false,
+        "status": "exploratory_numerics_only",
+        "last_iteration": 1200.0,
+        "model_scope": "parametric_alternator_envelope_not_oem_validated",
+        "alternator_envelope_included": true,
+        "installed_assembly_represented": false,
+        "installed_airflow_m3_s": null,
+        "relative_torque_mean_change_between_windows": 0.0031002231002479376,
+        "relative_torque_peak_to_peak_last_window": 0.009968588741350164,
+        "rpm": 3000.0,
+        "mean_fluid_torque_Nm": -0.34031468957365,
+        "mean_shaft_power_to_fluid_W": 106.913012867327,
+        "standard_mesh_check_passed": true,
+        "extended_mesh_check_passed": false,
+        "validated_airflow_m3_s": null,
+        "grid_independence_demonstrated": false,
+        "wall_resolution_qualified": false,
+        "optimized": false,
+        "input_sha256": {
+          "fan-input.json": "60398e8e8e36964805722d8b5b66ffc5f94cd7c65ab1361794fb8ffaa26b5319",
+          "constant/geometry/rotor.stl": "67afbb786ec2fa88bb55b377e642f9eb620b4a042b02d5fce2aaf15e5dd12d8c",
+          "constant/MRFProperties": "eb2fb048bcb8fecaba8f8d4d5169436de8f54c359ed917ad608abfcd591bcbb4",
+          "system/controlDict": "457be2eddf3d0cdd26680172c61fc4d34bd33a29f3aa64c925cf5d865feaa4ff",
+          "system/fvSchemes": "8ec89e2c13c3acc400121818c5d1c859884fa45a7fa9e4e1a2dcd390f461d64c",
+          "system/fvSolution": "d33f82d10a5347c7d035d665b119489bf78dd8da43d56d08380cd7ef1ccd2706",
+          "0/U": "d0486d7b5f49b38d1acc6d7f0ecd82af9527d7c8a3067be565d3f5326231db87",
+          "0/p": "063759091363234a1afded3d7cd9e9bb783bcede8a409801070add3aac055848",
+          "constant/geometry/alternator.stl": "946965261586795e7bee76b0014d90d57009943f34669cfce1afbc2634dae068"
+        }
+      },
+      "pressure_audit": {
+        "status": "pressure_integral_only_not_flow_validation",
+        "rho_kg_m3": 1.2,
+        "pressure_force_N": [
+          -0.012432048694379227,
+          -0.003286598809178092,
+          -3.8464962261808493
+        ],
+        "pressure_moment_Nm": [
+          0.0004907119303721413,
+          -0.00010908010890568736,
+          -0.32639471402963505
+        ],
+        "relative_force_error": 2.340158286932696e-06,
+        "relative_moment_error": 6.910706928491149e-07,
+        "matches_openfoam_within_half_percent": true,
+        "vtk_sha256": "ea40ea4f1b5da7089900618ba2229777dade942af2c2be7837c17ba7ff27b8dd",
+        "forces_sha256": "333a242333e9e0f3d7fab562c90fae302d49d91e410df5a902eb0fcc075a9df8"
+      },
+      "full_surface_thickness_diagnostic": {
+        "scope": "full_surface_area_weighted_max_sphere_samples_not_certified_minimum_wall",
+        "sample_count": 2000,
+        "minimum_mm": 0.29984034322574166,
+        "p01_mm": 0.701321390109742,
+        "p05_mm": 1.4325253162455003,
+        "fraction_below_1p5_mm": 0.062,
+        "smallest_sample_xyz_mm": [
+          109.62039947509766,
+          -53.479504903157554,
+          11.19160238901774
+        ],
+        "thin_samples_radius_range_mm": [
+          15.069800647447753,
+          122.49663496332667
+        ]
+      },
+      "relaxation_change": {
+        "request_after_iteration": 320,
+        "pressure": [
+          0.25,
+          0.15
+        ],
+        "velocity_k_omega": [
+          0.5,
+          0.3
+        ]
+      }
+    }
+  },
+  "artifact_sha256": {
+    "work/fan-aerodynamics/turbo-245-alternator-body160-baseline/physicsnemo-surface-audit.json": "6854a530b720973a1542f8fc088463631355232c8c7494d027fa6985462e4e7e",
+    "work/fan-aerodynamics/turbo-245-alternator-body160-baseline/packaging-screen.json": "d52fd217c5d693e4ff50444e5b4cfbccbc1c3fec4db685fd7834736b6109f132",
+    "work/fan-aerodynamics/turbo-245-alternator-body160-baseline/alternator-surface-audit.json": "944f1f023632fcf59d5013e1f792c31fbab8a0dd60e1d9b56473197f6ebf41af",
+    "work/fan-aerodynamics/turbo-245-alternator-body160-baseline/picogk-report.json": "a3847bc6e6644af09c95d4acc677ed19a4c5abccdfb4ce539fe78243a8eb4485",
+    "work/fan-aerodynamics/print-alternator-body160-baseline-100k/screen/fan-alternator-print-study-lpbf-geometry-report.json": "151f8a1d148d14f671c285a8e0d16b1abc4b8782d4c0e7c799a1adb5fd013784",
+    "work/fan-aerodynamics/print-alternator-body160-baseline-100k/flat-slicing.json": "936fd7018c1318dc09071f5fbcee2bd60a00684e5ab41171a1acb05f5338fc85",
+    "work/fan-aerodynamics/print-alternator-body160-baseline-100k/surface-reduction.json": "99de1aafa3abe82097c6e3bdc0d4f289aff59c74e6f7bb18ec49340e036ab21a",
+    "work/fan-aerodynamics/print-alternator-body160-baseline-100k/flat-layer-metrics.csv": "5172e3de973d7f1b091c3e46c7eedcc3b7c479d25dbb92b0d3dcc62fff584a31",
+    "work/fan-aerodynamics/print-alternator-body160-baseline-100k/screen/fan-alternator-print-study-layer-metrics.csv": "a14d005b60027e33a25a6afd39d08630ae802f054e4e3bb734294730be5516ff",
+    "work/fan-aerodynamics/turbo-245-alternator-body160-pitch-plus/physicsnemo-surface-audit.json": "648d06161d1f3f8fbf820185523590b9503b124dc7cce8dc8fbc79a6e4dbbbee",
+    "work/fan-aerodynamics/turbo-245-alternator-body160-pitch-plus/packaging-screen.json": "34612982e859a557dc11e547a1a4d0cf58a351127a2812162b662c505c67b182",
+    "work/fan-aerodynamics/turbo-245-alternator-body160-pitch-plus/alternator-surface-audit.json": "eed0ed3dae540c2b85de10b89b7eb1c7a4325c753b0a0bfa4802fa7e6a6c3d1f",
+    "work/fan-aerodynamics/turbo-245-alternator-body160-pitch-plus/picogk-report.json": "2d403b1889aea2fad4ce9e36ccc8af401bd0e34ed3e89f1fa671af4ad2bd7c74",
+    "work/fan-aerodynamics/print-alternator-body160-pitch-plus-100k/screen/fan-alternator-print-study-lpbf-geometry-report.json": "01af216b55f74b54331f1dddacf0972ae61203e559538596c9fa14902fd945cc",
+    "work/fan-aerodynamics/print-alternator-body160-pitch-plus-100k/flat-slicing.json": "901c9f32453b70bbaacb043e89f6a7661b5ebf5058f9ac7fc9be960ffd502e0f",
+    "work/fan-aerodynamics/print-alternator-body160-pitch-plus-100k/surface-reduction.json": "6acbb5a2d9c455376e9a8999a7f61662ce85a5ad7b7565d41a725bb56e72ff04",
+    "work/fan-aerodynamics/print-alternator-body160-pitch-plus-100k/flat-layer-metrics.csv": "916bea8c45ac37ed8742a20dd8742a38c4ee67f138556a50570e9ff249da936d",
+    "work/fan-aerodynamics/print-alternator-body160-pitch-plus-100k/screen/fan-alternator-print-study-layer-metrics.csv": "dd13c9dcdb32e7edd3212b9a44416ab8d3c9c827a513ae90c50d04d0caa3edfa",
+    "work/fan-aerodynamics/turbo-245-alternator-body160-baseline/full-surface-thickness.json": "5cc68890e5bd62d10e2bc71ff3675af87e5522c08aee03131125b6801b2100bd",
+    "work/fan-aerodynamics/turbo-245-alternator-body160-baseline/full-surface-thickness.csv": "ac5ff5a3868a7a68ca4e7a3b068f0a0c0d1f2ecfc95b6e10724c5061fd05028e",
+    "work/fan-aerodynamics/turbo-245-alternator-body160-baseline/thin-edge-diagnostic.json": "359479f9ab15120f029ed878fe04f5f485cb8d701c9137a0a18d7d857aea3d5c",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-baseline/flow-summary.json": "574111964c8394b79cfba2e89fd6f720b8f2dbb5f38393dacb867b1e310fbd4f",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-baseline/fan-input.json": "e7dda3d96cd9ae9cf58b3dcea5fd5a3eec6cda049765a72b51e322ca0f75d2ba",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-baseline/log.foamRun": "3ff61ead3cac46d09126f9a3a1416d46624b74423b290a8b1d679d689627be82",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-baseline/log.checkMesh": "cdf3668f5995bbf09ff05ef47acd75d1d0a865b134e49815ee3e46638173cd40",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-baseline/log.checkMesh-standard": "7a8359a51b43e485975252d008ecbed278022823c71c54f1589a484d3fba7ffd",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-baseline/log.snappyHexMesh": "9cd5514670ca56437e8916c728f264fee5f92ff838f1bff9c8b0346a336c2c44",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-baseline/system/fvSolution": "d33f82d10a5347c7d035d665b119489bf78dd8da43d56d08380cd7ef1ccd2706",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-baseline/system/fvSolution.initial": "a89973077843bc1bc9849fff9a6cd7293622315b3cfe006d87555b83b5021fc2",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-baseline/system/fvSchemes": "8ec89e2c13c3acc400121818c5d1c859884fa45a7fa9e4e1a2dcd390f461d64c",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-baseline/system/controlDict": "457be2eddf3d0cdd26680172c61fc4d34bd33a29f3aa64c925cf5d865feaa4ff",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-baseline/relaxation-change-at-iteration.txt": "4bd9c8921eae6ee2495d46a03047367f0601c45fe6a5e2a619eb1b426ee6c272",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-baseline/postProcessing/inletFlow/0/surfaceFieldValue.dat": "18cc4d0065ab49f3ca421d0f6cff9cbf698a4c48b3313b01f286f4224a442577",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-baseline/postProcessing/outletFlow/0/surfaceFieldValue.dat": "3614ecf938999b85d9e6a7f511c12296d3c8cf7094708561428fbf8508a3f8a2",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-baseline/postProcessing/rotorForces/0/forces.dat": "02ec775f09717ccb041052d643ba4a493e76c87096e35c4bbb9de81910a5d1f0",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-baseline/VTK/rotor/rotor_1200.physicsnemo.json": "09a85d7405a2cb9d36e58c6708f9551575d5c3f7e10f7f8cf5848989bb10f286",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-baseline/VTK/rotor/rotor_1200.vtk": "7bc057f39702734752020a3c9db45f766a3292c7a0500cfcc2b5c05fe2877410",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-baseline/postProcessing/fanVelocityPlane/1200/cutPlane.vtk": "a11e6fc41ff2f09e222ddc9b62d244bab38cc7d4b2e62d4219e206b317098154",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-baseline/postProcessing/fanVelocityPlane/1200/cutPlane.png": "659135fcbdf047a63b4b3be178079c8cb012567917c15d2b62f906c8b0104088",
+    "work/fan-aerodynamics/turbo-245-alternator-body160-pitch-plus/full-surface-thickness.json": "8bd6c8c75af576f0163a398a383747cf68bda8d50ae5eb3f1f476206eceb4be5",
+    "work/fan-aerodynamics/turbo-245-alternator-body160-pitch-plus/full-surface-thickness.csv": "13a86d294cf3ddfee335df8a44a6764d65bc894589ee5fc4e55e99239e9f78d2",
+    "work/fan-aerodynamics/turbo-245-alternator-body160-pitch-plus/thin-edge-diagnostic.json": "3e9cdae672d6fd673de3e37cae93c915341eb14f82485b92dc8f23e62e6edcf2",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-pitch-plus/flow-summary.json": "e422c9f9627f7f6c98cf3710bb5de569f4beaa0da06180497f88f74706153e79",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-pitch-plus/fan-input.json": "60398e8e8e36964805722d8b5b66ffc5f94cd7c65ab1361794fb8ffaa26b5319",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-pitch-plus/log.foamRun": "1173517980684366997a629d3d3f978ce564aed9d6dddedf7558d54f1f7b3de6",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-pitch-plus/log.checkMesh": "44aebb649ecf2c677dc616f101d95dfd52457af4c448f213072e913a731a95bf",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-pitch-plus/log.checkMesh-standard": "a28f58e6c056420daab7677c08fa3171e52b45e93e0da716edcf2372aa13fd6e",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-pitch-plus/log.snappyHexMesh": "52201337799ea7d6fca4bbcaa7f904ecdb4134db7df7b1553d50f7e1d32b9c02",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-pitch-plus/system/fvSolution": "d33f82d10a5347c7d035d665b119489bf78dd8da43d56d08380cd7ef1ccd2706",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-pitch-plus/system/fvSolution.initial": "a89973077843bc1bc9849fff9a6cd7293622315b3cfe006d87555b83b5021fc2",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-pitch-plus/system/fvSchemes": "8ec89e2c13c3acc400121818c5d1c859884fa45a7fa9e4e1a2dcd390f461d64c",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-pitch-plus/system/controlDict": "457be2eddf3d0cdd26680172c61fc4d34bd33a29f3aa64c925cf5d865feaa4ff",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-pitch-plus/relaxation-change-at-iteration.txt": "e90e6dce6196ba6a3db92ecb999ec4b31716aa9d24d98674b9a3130c13350256",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-pitch-plus/postProcessing/inletFlow/0/surfaceFieldValue.dat": "67d4661139e982eb2e4cf244f6a471a6a1407c798ef6f6115cabc307d82d7b02",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-pitch-plus/postProcessing/outletFlow/0/surfaceFieldValue.dat": "8c09aec6f646a5c96e3b0d3b5d7089089f74207d5512900c5bc3e7d4b80a9fb9",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-pitch-plus/postProcessing/rotorForces/0/forces.dat": "333a242333e9e0f3d7fab562c90fae302d49d91e410df5a902eb0fcc075a9df8",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-pitch-plus/VTK/rotor/rotor_1200.physicsnemo.json": "9fd630b19e7ddeeba3c038a6607d28e7a473ca3c939290efd2f2b0e940e8e640",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-pitch-plus/VTK/rotor/rotor_1200.vtk": "ea40ea4f1b5da7089900618ba2229777dade942af2c2be7837c17ba7ff27b8dd",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-pitch-plus/postProcessing/fanVelocityPlane/1200/cutPlane.vtk": "dfcfe2ec11b5e20d857cc710726a86a442440b4ec77e3cd5a7cff8acdec6b1c0",
+    "work/fan-aerodynamics/cfd-turbo-245-alternator-body160-pitch-plus/postProcessing/fanVelocityPlane/1200/cutPlane.png": "3717fd28ea68f8cb18278730f3505a500604d9f323c570b0a19bcc2edfcb45f8",
+    "twins/993-engine-cooling-fan-system-f0/source/audit_fan_physicsnemo.py": "edac2eb8b9a3aa3ebbb82d3cffe622486e374c2275af2515e9276c44ca15c71d",
+    "twins/993-engine-cooling-fan-system-f0/source/audit_fan_pressure_physicsnemo.py": "545ea0c5a74536526861c20dab822bab2ff0f2992349137fc0c3af584c1d87db",
+    "twins/993-engine-cooling-fan-system-f0/source/build_fan_cfd.py": "8280d2d07a5389c820be0e4c2b2d116b22be23ebdd488738c148553c51327184",
+    "twins/993-engine-cooling-fan-system-f0/source/build_fan_structure.py": "fa617f54e935abb993e3123190f0a615c78c1a68d9fcd558f7182877f781dfb0",
+    "twins/993-engine-cooling-fan-system-f0/source/build_usd_assembly.py": "64e344e1766854a7e60f8bde3c94b17291b9102cd1c2881057e838868fa9cc88",
+    "twins/993-engine-cooling-fan-system-f0/source/check_alternator_clearance.py": "e6cc2645c46c57e6a1f369a518b6aa54512710ba30ff331dcf9908083cbadc71",
+    "twins/993-engine-cooling-fan-system-f0/source/evaluate_integration.py": "250883a3ad4a6a7dbd79a9851d1661685372b8fef2a898cb3f113919ff8832ab",
+    "twins/993-engine-cooling-fan-system-f0/source/plot_fan_velocity.py": "e6d332d8b6b1f77b582b22f737f7eeec7a6174900e2c4eeb98f93504eaca2299",
+    "twins/993-engine-cooling-fan-system-f0/source/run_fan_print_screen.py": "a246b6f7c4ec469c88a884be712abd23abf8b79651a60d138dc881762260b57a",
+    "twins/993-engine-cooling-fan-system-f0/source/summarize_fan_cfd.py": "dfbc10f53ec4899220420f41b85501f5ce90cab5741c2accbe505f34d58bac76",
+    "twins/993-engine-cooling-fan-system-f0/source/summarize_fan_structure.py": "34429c0c16d6766a039bef6bf1fd6ca64d79c597102cb51ccc698edeece999ac",
+    "twins/993-engine-cooling-fan-system-f0/source/test_build_fan_cfd.py": "b8fddeeb3f5a411d696e786234f22c21891de4245cf52fe365b2e8200ab7fdfd",
+    "twins/993-engine-cooling-fan-system-f0/source/picogk/Program.cs": "d449ae55ce087a0899e8621d2df3ef03f34d113cc561dbfd198f02bb138cd485",
+    "twins/993-engine-cooling-fan-system-f0/source/picogk/study-alternator-body160-baseline.json": "8dced551a7dfe9fd664c6ed12c2488be426f0a3dcc88d3e5f72965ef2a6dc226",
+    "twins/993-engine-cooling-fan-system-f0/source/picogk/study-alternator-body160-pitch-plus.json": "645a67a225c0d40de4aba38570177455e861b5afdb1485f1b819799c80befa2e",
+    "twins/993-engine-cooling-fan-system-f0/alternator-dimensional-reference.json": "1b390708bc279deeec8b057c70eb39edf1fdd2f5f99db86c0c7becf9993d3c04",
+    "work/fan-aerodynamics/print-comparison-body160.png": "45fb459dae6eecd2c18257f185a150f32e3d04c6f43714848e0ab446756e878e",
+    "work/fan-aerodynamics/thin-probes-body160.png": "d23ae8bc87d4c8d9524a4e3fed8fc48b6dc4dc404b567ad60f7339f8a46138c1",
+    "work/fan-aerodynamics/flow-convergence-body160.png": "6b46f6d17fd9918767a85f675171cd64af33f861b7f703e89d8da4040ec7699d"
+  },
+  "comparison": {
+    "outlet_flow_relative_change": 0.1096227324139527,
+    "shaft_power_relative_change": 0.47936546620107356,
+    "both_numerical_window_checks_passed": false,
+    "physical_gain_validated": false
+  },
+  "thermomechanical_print_simulation_executed": false,
+  "runtime": {
+    "geometry": "PicoGK 2.3.0 / .NET 9.0.20",
+    "flow": "OpenFOAM Foundation 14 / four MPI ranks per case",
+    "flow_image_id": "sha256:d3e0364f73efc28e225d7b8f72631c2eba055c1fe27ffe648d483b0edbe12cdf",
+    "flow_image_architecture": "arm64",
+    "audit": "PhysicsNeMo 2.2.2 / Torch 2.14 CPU",
+    "slicing": "Shapely 2.1.2 / Rtree 1.4.1 / 100000-face analysis surfaces"
+  }
+}
