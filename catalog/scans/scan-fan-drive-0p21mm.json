@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "scan_id": "SCAN-FAN-DRIVE-0P21MM",
+  "title": "Scan 3D de l'entraînement du ventilateur de refroidissement M64 (Fan Drive, 0.21 mm)",
+  "path": "/home/lolman/imports/mac-obj/Downloads/Fan+Drive+0.21mm.obj",
+  "sha256": "6c0b12d4dd782fd4ecf4a5527d9b716ea5861abe1d7c369b3005910fa9ddb2f3",
+  "bytes": 105090339,
+  "mtime": "2026-09-27T18:26:12+02:00",
+  "recorded_on": "2026-09-28",
+  "resolution": {
+    "declared": "0.21 mm",
+    "basis": "filename",
+    "verified": false
+  },
+  "subject_part": "fan_drive",
+  "track": "engine",
+  "subsystems": ["cooling"],
+  "duplicate_of": null,
+  "other_paths": [],
+  "linked_source_ids": [],
+  "linked_artifacts": [
+    "twins/m64-engine-system/program.json#M64-ACQ-0005",
+    "simulation/993-fan-baseline",
+    "docs/research/obj-scan-intake-2026-09-27.md",
+    "work/obj-intake-20260927 (hors Git)"
+  ],
+  "rights": {
+    "license": "unknown",
+    "redistribution": "unknown",
+    "provenance": "inconnue : scanner, date de numérisation et mode d'acquisition non documentés ; importé depuis l'arbre Mac `Downloads/` le 2026-09-27"
+  },
+  "limitations": [
+    "Aucune unité déclarée dans l'OBJ ; mm supposé (convention scanner), non vérifié.",
+    "Pas de frame de scan ni d'échelle de référence jointe.",
+    "Maillage non watertight (1,24 M d'arêtes non-multiiformes, 7 013 arêtes de bord, corps unique).",
+    "Nombre de dents et rapport d'étage non résolus à ce stade (couverture angulaire insuffisante au pas de 0,21 mm)."
+  ],
+  "notes": "Scan de l'entraînement du ventilateur (poulies/denture), unique payload sous ce SHA-256. Alimente directement l'étude du ventilateur de refroidissement M64 (contrat M64-ACQ-0005) : première source de vérité terrain mesurée pour la géométrie de l'entraînement, après promotion par le pipeline obj-metrology-f15. L'enveloppe observée vaut 325,2 x 398,6 x 450,1 unités supposées mm. Provenance et licence non établies : à ne pas publier ni redistribuer avant clarification."
+}

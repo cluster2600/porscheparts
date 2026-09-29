@@ -98,6 +98,28 @@ def main() -> int:
             "rigid_bodies": rigid_bodies,
         }
     )
+    # Engine-assembly v1 scene (wave 2): stdlib structure/evidence check when present,
+    # since the whole-engine scene is generated outside the SimReady image.
+    engine_scene = args.stages / "993-engine-assembly-v1.usda"
+    if engine_scene.is_file():
+        import importlib.util
+
+        spec = importlib.util.spec_from_file_location(
+            "validate_engine_scene",
+            Path(__file__).resolve().parent / "validate_engine_scene.py",
+        )
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        text = engine_scene.read_text(encoding="utf-8")
+        sub = []
+        sub.extend(module.check_usda_structure(text))
+        sub.extend(module.check_evidence_attributes(text))
+        sub.extend(module.check_no_overclaims(text))
+        for item in sub:
+            merged = dict(item)
+            merged["name"] = f"engine_v1_{item['name']}"
+            checks.append(merged)
+
     report = {
         "status": "passed" if all(item["passed"] for item in checks) else "failed",
         "classification": "F0_research_assembly_not_simready_conformance",
