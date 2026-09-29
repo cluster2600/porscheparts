@@ -4,7 +4,7 @@ Dataset `M64-VIRTUAL-BENCH-0002`, status `exploratory_reference`.
 Hypothesis-grade simulation: nothing here is a measured, fitted,
 tested, released, or manufacturing-ready part or engine. Inputs and
 provenance tags: see every module docstring and
-[`inputs-gap.md`](inputs-gap.md).
+[`inputs-gap.md`](../inputs-gap.md).
 
 ## Solver, boundary conditions, convergence
 

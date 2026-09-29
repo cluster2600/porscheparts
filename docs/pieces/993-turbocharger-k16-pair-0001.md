@@ -102,6 +102,7 @@ Catalogue record: [`catalog/parts/993-turbocharger-k16-pair-0001.json`](../../ca
 - [TurboMaster - Exploded parts view of the BorgWarner K16 5316-988-6735](https://www.turbomaster.com/eng/turbo/borgwarner/5316-988-6735/)
 - [Porsche Fanatics - PET transcription of the 993 turbo groups](https://porschefanatics.com/oem/993/202-16/)
 - [Porsche Austria - PET 993, group 107-45 air cooler](https://www.porsche.at/media/Kwc_Basic_DownloadTag_Component/4740-45397-124814-downloadTag/default/f5000535/1729608718/kat017-d-911-98-katalog.pdf)
+- [TurboMaster - K16 gauche 5316-988-6736 de 993 Turbo](https://www.turbomaster.com/eng/turbo/borgwarner/5316-988-6736/)
 
 ## Validation
 

@@ -29,6 +29,7 @@ FIN = "<!-- parts:end -->"
 # because that is where the repository has put its work.
 SYSTEMES = [
     ("ENG", "Engine, intake and cooling"),
+    ("CA", "Charge air"),
     ("TURBOCHARGER", "Turbocharger"),
     ("EXH", "Exhaust"),
     ("BODY", "Body"),
