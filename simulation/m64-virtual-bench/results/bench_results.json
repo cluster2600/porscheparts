@@ -6011,7 +6011,7 @@
       "model_value": 540.0,
       "unit": "Nm",
       "rel_error_percent": 0.0,
-      "note": "blind prediction (not used in calibration)"
+      "note": "calibrated anchor (two-point calibration solve uses this anchor; exact by construction)"
     },
     {
       "label": "boost_plateau_vs_brochure",
@@ -6036,7 +6036,7 @@
   ],
   "verdicts": {
     "air": "AIR/CHARGE-AIR: charge flow closes the public 0.8 bar plateau with the VE shape inside the REPO 0.85-1.0 envelope near peak; per-turbo flow 0.169 kg/s sits within +-3% of the 0.156 kg/s REPO variants anchor at mid-high rpm; compressor duty 29 kW total at 388 K discharge with eta_ad=0.65 ASSUMPTION; implied intercooler effectiveness 0.76; PR curve is an unverified map hypothesis (M64-ACQ-0003).",
-    "fuel": "FUEL: energy balance at AFR 12 reproduces 300 kW at 5750 rpm exactly (calibration) and 556 Nm at 4050 rpm as a blind prediction; BSFC min 288 g/kWh (WOT grid) is plausible for a turbocharged SI; part-load min 289 g/kWh at 4500 rpm / thr 0.25 is a weakly-bounded estimate (no pumping-loss model); fuel card missing (M64-ACQ-BENCH-05/-10).",
+    "fuel": "FUEL: energy balance at AFR 12 reproduces 300 kW at 5750 rpm and 540 Nm at 4050 rpm exactly (both anchors enter the two-point calibration); model peak 556 Nm at 4750 rpm and curve shape between anchors are blind predictions; BSFC min 288 g/kWh (WOT grid) is plausible for a turbocharged SI; part-load min 289 g/kWh at 4500 rpm / thr 0.25 is a weakly-bounded estimate (no pumping-loss model); fuel card missing (M64-ACQ-BENCH-05/-10).",
     "oil_thermal": "COOLING/OIL: oil flow demand 14 L/min (film-floor-dominated) vs assumed pump 233 L/min — no sourced pump curve (M64-ACQ-BENCH-02); fan-air 1.20 kg/s (1035 l/s) implies effective-fin dT 511 K at the assumed 372 kW air share — the fan is the thermal bottleneck until the split and hA are measured (M64-ACQ-BENCH-04).",
     "driveline": "DRIVELINE: crank 303 kW at peak maps to 290 kW wheel-side under ASSUMPTION parasitics (accessory 4.0 kW + oil pump 0.1 kW + 13.0 kW total loss, eta_dl 0.96); gearbox data missing (M64-ACQ-BENCH-09).",
     "heat_split_sum": 1.0,
@@ -6083,7 +6083,7 @@
         "model_value": 540.0,
         "unit": "Nm",
         "rel_error_percent": 0.0,
-        "note": "blind prediction (not used in calibration)"
+        "note": "calibrated anchor (two-point calibration solve uses this anchor; exact by construction)"
       },
       {
         "label": "boost_plateau_vs_brochure",

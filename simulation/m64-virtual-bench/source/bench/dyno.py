@@ -6,9 +6,11 @@ driveline side-panels at each point, and compare the model peaks and
 anchor rows against the public 408 PS / 540 Nm / 1.0 bar / 1010 l/s case
 (docs/research/m64-public-engine-data-2026-09-27.md).
 
-The public case is the calibration reference; deviations at non-calibrated
-rpm (notably the torque anchor) and every part-load row are blind
-predictions, reported verbatim.
+The public case is the calibration reference: both anchor rows (300 kW
+@ 5750 rpm, 540 Nm @ 4050 rpm) enter the two-point calibration solve and
+are exact by construction. Deviations at non-calibrated rpm (notably the
+model peak locations) and every part-load row are blind predictions,
+reported verbatim.
 """
 from __future__ import annotations
 
@@ -83,7 +85,6 @@ def deviation_table(rows: list[dict], part: list[dict]) -> list[dict]:
                 "rel_error_percent": rel, "note": note}
 
     cal = "calibrated anchor (model is exact by construction)"
-    blind = "blind prediction (not used in calibration)"
     return [
         row("peak_power", peak_p["rpm"], 1.0, PUBLIC_CASE["peak_power_kw"],
             peak_p["power_kw"], "kW",
@@ -95,7 +96,9 @@ def deviation_table(rows: list[dict], part: list[dict]) -> list[dict]:
             peak_t["torque_nm"], "Nm",
             "model peak torque location is a prediction"),
         row("torque_at_public_torque_rpm", at4050["rpm"], 1.0,
-            PUBLIC_CASE["peak_torque_nm"], at4050["torque_nm"], "Nm", blind),
+            PUBLIC_CASE["peak_torque_nm"], at4050["torque_nm"], "Nm",
+            "calibrated anchor (two-point calibration solve uses this "
+            "anchor; exact by construction)"),
         row("boost_plateau_vs_brochure", boost_row["rpm"], 1.0,
             boost_row["boost_gauge_pa_brochure"] / 1e5,
             boost_row["boost_gauge_pa_model"] / 1e5, "bar_gauge",
@@ -127,8 +130,10 @@ def verdicts(rows: list[dict], part: list[dict], dev: list[dict],
            f"{peak_p['intercooler_effectiveness']:.2f}; PR curve is an "
            "unverified map hypothesis (M64-ACQ-0003).")
     fuel_v = ("FUEL: energy balance at AFR 12 reproduces 300 kW at 5750 rpm "
-              f"exactly (calibration) and {peak_t['torque_nm']:.0f} Nm at "
-              "4050 rpm as a blind prediction; BSFC min "
+              "and 540 Nm at 4050 rpm exactly (both anchors enter the "
+              "two-point calibration); model peak "
+              f"{peak_t['torque_nm']:.0f} Nm at {peak_t['rpm']:.0f} rpm and "
+              "curve shape between anchors are blind predictions; BSFC min "
               f"{min(r['bsfc_g_kwh'] for r in rows):.0f} g/kWh (WOT grid) is "
               f"plausible for a turbocharged SI; part-load min "
               f"{pl_best['bsfc_g_kwh']:.0f} g/kWh at "
