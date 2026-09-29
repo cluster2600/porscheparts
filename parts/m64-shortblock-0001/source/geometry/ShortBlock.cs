@@ -118,8 +118,8 @@ try
     // flange material remains; finally layout instances of the other three
     // sources so the master shows registered positions.
     Voxels crate = new(BuildCrateHalves(library, p));
-    Merge(ref crate, Voxelize(library, BuildBulkheads(library, p)), add: true);
-    Merge(ref crate, Voxelize(library, BuildFlangeRings(library, p)), add: true);
+    Merge(crate, Voxelize(library, BuildBulkheads(library, p)), add: true);
+    Merge(crate, Voxelize(library, BuildFlangeRings(library, p)), add: true);
 
     // Hollow the crankcase: shrink the inner void union by p.WallMm. The void
     // spans the deck plane so both half-shells open at the cylinder base and
@@ -130,9 +130,9 @@ try
         crate.BoolSubtract(inner);
     }
 
-    Merge(ref crate, Voxelize(library, BuildMainBearings(library, p)), add: false);
-    Merge(ref crate, Voxelize(library, BuildBoreRecesses(library, p)), add: false);
-    Merge(ref crate, Voxelize(library, BuildScavengeGalleries(library, p)), add: false);
+    Merge(crate, Voxelize(library, BuildMainBearings(library, p)), add: false);
+    Merge(crate, Voxelize(library, BuildBoreRecesses(library, p)), add: false);
+    Merge(crate, Voxelize(library, BuildScavengeGalleries(library, p)), add: false);
 
     // Layout instances: two banks x three bores. Cylinders stand on the deck
     // at each flange ring; one reference piston+rod pair per bank marks the
@@ -142,11 +142,11 @@ try
     {
         float side = MathF.Sign(bankX);
         foreach (float yb in p.BoreRowY)
-            Merge(ref crate, BuildFinnedCylinder(library, p,
+            Merge(crate, BuildFinnedCylinder(library, p,
                 new Vector3(bankX, p.DeckHeightMm, yb), -side), add: true);
         Vector3 pin = new(bankX, 0.0f, p.PinCentreOffsetMm);
-        Merge(ref crate, BuildConnectingRod(library, p, pin, side), add: true);
-        Merge(ref crate, BuildPiston(library, p,
+        Merge(crate, BuildConnectingRod(library, p, pin, side), add: true);
+        Merge(crate, BuildPiston(library, p,
             new Vector3(bankX, 0.0f, p.PinCentreOffsetMm
                         - side * (p.RodCentreDistanceMm - p.CompressionHeightMm))),
             add: true);
@@ -238,7 +238,7 @@ static object EmitPart(Voxels vox, string name, string outputDir,
     };
 }
 
-static void Merge(ref Voxels target, Voxels operand, bool add)
+static void Merge(Voxels target, Voxels operand, bool add)
 {
     if (add) target.BoolAdd(operand);
     else target.BoolSubtract(operand);
@@ -256,7 +256,7 @@ static Voxels Voxelize(Library lib, Lattice lat)
 static Voxels UnionAll(params Voxels[] parts)
 {
     Voxels result = parts[0];
-    for (int i = 1; i < parts.Length; i++) Merge(ref result, parts[i], add: true);
+    for (int i = 1; i < parts.Length; i++) Merge(result, parts[i], add: true);
     return result;
 }
 
@@ -341,28 +341,29 @@ static Voxels BuildConnectingRod(Library lib, ShortBlockParams p,
         bigC + new Vector3(p.RodBigEndWidthMm / 2.0f, 0, 0),
         beOr, p.RodBigEndBoreDiaMm / 2.0f);
     // Shank: solid prismatic envelope between the eyes (I-section deferred).
+    // Rectangular-envelope substitute: solid swept beam at the smaller
+    // transverse half-extent; rInner = 0 makes Annulus return the solid.
     float shankR = MathF.Min(p.RodShankWidthMm, p.RodShankDepthMm) / 2.0f;
     float shankStart = seOr * 0.6f;
     using Voxels shank = Annulus(lib,
         pinCentre + new Vector3(0, side * shankStart, 0),
-        p.RodShankWidthMm / 2.0f,
         pinCentre + new Vector3(0, side * (p.RodCentreDistanceMm - beOr * 0.6f), 0),
-        p.RodShankDepthMm / 2.0f, false);
+        shankR, 0.0f);
     // Schematic cap split line and bolt bosses (ASSUMPTION).
-    using Voxels capCuts = new();
+    using Voxels capCuts = new(lib);
     {
         using Voxels split = Annulus(lib,
             bigC - new Vector3(beOr + 1.0f, 0, 0) + new Vector3(0, side * 0.15f, 0),
             bigC + new Vector3(beOr + 1.0f, 0, 0) + new Vector3(0, side * 0.15f, 0),
             beOr + 1.0f, 0.0f);
-        Merge(ref capCuts, split, add: true);
+        Merge(capCuts, split, add: true);
         foreach (float z in new[] { -1.0f, 1.0f })
         {
             Vector3 axis = bigC + new Vector3(0, 0, z * (beOr + p.RodCapBoltBossDiaMm / 2.0f - 2.0f));
             using Lattice lat = new(lib);
             lat.AddBeam(axis - new Vector3(0, beOr, 0), p.RodCapBoltBossDiaMm / 2.0f,
                         axis + new Vector3(0, beOr, 0), p.RodCapBoltBossDiaMm / 2.0f, false);
-            Merge(ref capCuts, Voxelize(lib, lat), add: true);
+            Merge(capCuts, Voxelize(lib, lat), add: true);
         }
     }
     return UnionAll(smallEnd, bigEnd, shank, capCuts);
@@ -378,11 +379,11 @@ static Voxels BuildConnectingRod(Library lib, ShortBlockParams p,
 // O-ring groove and the bore pilot register matching the crankcase recess.
 // ----------------------------------------------------------------------
 static Voxels BuildFinnedCylinder(Library lib, ShortBlockParams p,
-                                  Vector3 base, float dirSign)
+                                  Vector3 baseLoc, float dirSign)
 {
     Vector3 dir = new(0, dirSign, 0);
-    Vector3 y0 = base;
-    Vector3 yTop = base + dir * p.CylBarrelLengthMm;
+    Vector3 y0 = baseLoc;
+    Vector3 yTop = baseLoc + dir * p.CylBarrelLengthMm;
     float barrelOr = (p.BoreMm + 2.0f * p.CylWallMm) / 2.0f;
 
     // Barrel tube: bore wall from base to top, closed at the head-side end.
@@ -391,19 +392,19 @@ static Voxels BuildFinnedCylinder(Library lib, ShortBlockParams p,
     {
         lat.AddBeam(yTop - new Vector3(0, dirSign * p.CylTopFaceThicknessMm, 0), barrelOr,
                     yTop, barrelOr, false);
-        Merge(ref barrel, Voxelize(lib, lat), add: true);
+        Merge(barrel, Voxelize(lib, lat), add: true);
     }
     // Base flange with the FACT O-ring groove and bore pilot.
     Vector3 flangeTop = y0 + dir * p.CylBaseFlangeHeightMm;
     using Voxels flange = Annulus(lib, y0, flangeTop,
                                   p.CylBaseFlangeDiaMm / 2.0f, p.BoreMm / 2.0f);
     using (Voxels groove = Annulus(lib,
-               y0 - new Vector3(0, 0.01f * dirSign, 0) + dir * 0.0f,
+               y0,
                y0 + dir * p.CylORingGrooveDepthMm,
                p.HeadJointORingDiaMm / 2.0f + p.CylORingGrooveWidthMm / 2.0f,
                p.HeadJointORingDiaMm / 2.0f - p.CylORingGrooveWidthMm / 2.0f))
         flange.BoolSubtract(groove);
-    Merge(ref barrel, flange, add: true);
+    Merge(barrel, flange, add: true);
 
     // Deep cooling fins: annular disks at the configured pitch; thickness,
     // outer radius and count are the printability study inputs
@@ -415,7 +416,7 @@ static Voxels BuildFinnedCylinder(Library lib, ShortBlockParams p,
             c - dir * (p.FinThicknessMm / 2.0f + 0.01f),
             c + dir * (p.FinThicknessMm / 2.0f + 0.01f),
             p.FinOuterDiaMm / 2.0f, barrelOr - p.CylWallMm * 0.5f);
-        Merge(ref barrel, fin, add: true);
+        Merge(barrel, fin, add: true);
     }
     return barrel;
 }
@@ -569,11 +570,11 @@ static Lattice BuildBoreRecesses(Library lib, ShortBlockParams p)
 // lacks.
 static Voxels Annulus(Library lib, Vector3 a, Vector3 b, float rOuter, float rInner)
 {
-    Voxels outer;
+    Voxels outer = new(lib);
     using (Lattice lat = new(lib))
     {
         lat.AddBeam(a, rOuter, b, rOuter, false);
-        outer = Voxelize(lib, lat);
+        outer.BoolAdd(Voxelize(lib, lat));
     }
     if (rInner > 0.0005f)
     {
