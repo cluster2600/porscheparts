@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-CA-CHARGE-PIPE-SET-PET-0001",
+  "name": "993 Turbo charge-air tract transcribed parts (group 107-45) - PET-transcribed identity set",
+  "description": "Identity-only catalogue record grouping the charge-air (group 107-45, 'charge air cooler') line items transcribed per-line from the local PET transcriptions and relevant to the M64 charge-air subsystem: charge air cooler 993 110 330 53 (pos 1), air guide 993 110 340 53 and 993 110 340 54 (pos 2), bracket 993 110 110 50 and 993 110 110 52 (pos 5), sleeve 993 110 111 50 (pos 10), temperature sensor 993 606 114 00 (pos 12), pressure hoses 993 110 633 56 and 993 110 632 56 (pos 19), with their clamps 999 512 648 02 and 999 512 647 02 (pos 20/21). Both independent catalogue transcriptions (KAT 17 and Porsche Classic KAT 517 USA) agree on these positions and numbers. No dimensions, flow cross-sections, pressure ratings or geometry are claimed.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_Turbo"],
+    "model_years": {"from": 1995, "to": 1998},
+    "porsche_part_numbers": [
+      "99311033053",
+      "99311034053",
+      "99311034054",
+      "99311011050",
+      "99311011052",
+      "99311011150",
+      "99360611400",
+      "99311063356",
+      "99311063256"
+    ]
+  },
+  "classification": {
+    "category": "charge_air_cooler_plumbing",
+    "safety_class": "non_critical",
+    "intended_use": "Identity anchor for the charge-air subsystem of the M64 digital twin; no manufacturing, fitment or engine use is authorized by this record"
+  },
+  "geometry": {
+    "source_type": "estimated",
+    "master_format": "none",
+    "master_file": "",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": []
+  },
+  "provenance": {
+    "record_license": "All rights reserved (see LICENSE) for this record; no PET illustration or PDF redistributed",
+    "sources": [
+      {
+        "title": "Porsche Fanatics local dataset - data/oem-listed.json, PET illustration 107-45 lines (993)",
+        "url": "https://porschefanatics.com/oem/993/107-45/",
+        "source_type": "community",
+        "license": "site-dataset-reference-only",
+        "accessed_on": "2026-09-29",
+        "notes": "Local file data/oem-listed.json of /home/lolman/repos/porschefanatics.com (commit f5dc1c25c304228a36405aabd6e2f79d9d241093). 49 lines / 28 distinct references; every position above is listed by both pet-993-pdf-rsworkshop (KAT 17, PDF p. 59) and pet-classic-993 (KAT 517 USA, PDF p. 105). See catalog/sources/src-porschefanatics-993-oem-listed-pet.json."
+      },
+      {
+        "title": "Porsche Austria PET - groupe 107-45 echangeur d'air 993 (KAT 17 official read)",
+        "url": "https://www.porsche.at/media/Kwc_Basic_DownloadTag_Component/4740-45397-124814-downloadTag/default/f5000535/1729608718/kat017-d-911-98-katalog.pdf",
+        "source_type": "official",
+        "license": "porsche-ag-copyright-reference-only",
+        "accessed_on": "2026-09-29",
+        "notes": "Already registered as SRC-PORSCHE-AUSTRIA-993-107-45-PET: confirms the same OEM references with quantities, including O-rings 30x3 and clamps 60-80/12 and 40-60/9. Nomenclature and quantities only, no pass-through dimensions."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["CNC"],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "unknown",
+      "grade": "unknown per line item (hoses are rubber/composite assemblies per the PET description 'pressure hose')",
+      "standard": "not recorded"
+    },
+    "post_processing": [],
+    "supplier_requirements": [
+      "professional engineering review before any manufacturing claim",
+      "dimensional inspection on a real part before any geometry work"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": ""
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "SRC-PORSCHEFANATICS-993-OEM-LISTED-PET (107-45 pos 1, 2, 5, 10, 12, 19, 20, 21, both transcriptions)",
+      "SRC-PORSCHE-AUSTRIA-993-107-45-PET"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Identity only: the PET carries part number, position, description and (in the Austria read) quantities, no dimensions, pressure ratings or flow data.",
+      "Suffix variants -53/-54 (air guide) and -50/-52 (bracket) are transcribed as listed without asserting which fits which build date or supersession.",
+      "The intercooler core cross-referenced by an aftermarket supplier (260x270x60 mm declared) is a replacement-product envelope, not OEM geometry; see catalog/sources/src-aks-dasis-993-intercooler-dimensions.json.",
+      "Left/right assignment of the two pressure hoses at pos 19 is by the FVD product pages (633 = left, 632 = right); the PET line itself lists both at position 19 without a side annotation."
+    ]
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-CA-TURBO-INTAKE-MANIFOLD-PET-0001",
+  "name": "993 Turbo turbocharging intake tract (group 107-20) - PET-transcribed identity set",
+  "description": "Identity-only catalogue record for the charge-air side lines of PET group 107-20 ('turbocharging'): intake manifold 993 110 062 50 and 993 110 062 51 (pos 1), intake manifolds 993 110 631 54 (pos 18) and 993 110 630 52 / 993 110 630 53 (pos 21), shut-off valve 993 110 337 50 / -51 (pos 10), pressure transmitter 993 606 103 00 / -01 (pos 14), mass air flow meter 993 606 124 01 (pos 6), hoses 993 110 113 52 and 993 110 114 51 (pos 31/32), rubber sleeves and clamps. Transcribed per-line from the local PET transcriptions; the main engine-side numbers (pos 1, 18, 21) and the valve (pos 10) appear in both independent catalogue transcriptions (KAT 17 and Porsche Classic KAT 517 USA), the sensor revisions and hose lines likewise. No dimensions or geometry are claimed.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_Turbo"],
+    "model_years": {"from": 1995, "to": 1998},
+    "porsche_part_numbers": [
+      "99311006250",
+      "99311006251",
+      "99311063154",
+      "99311063052",
+      "99311063053",
+      "99311033750",
+      "99311033751",
+      "99360612401",
+      "99360610300",
+      "99360610301",
+      "99311011352",
+      "99311011451"
+    ]
+  },
+  "classification": {
+    "category": "turbocharging_intake_tract",
+    "safety_class": "non_critical",
+    "intended_use": "Identity anchor for the charge-air and intake subsystems of the M64 digital twin; no manufacturing, fitment or engine use is authorized by this record"
+  },
+  "geometry": {
+    "source_type": "estimated",
+    "master_format": "none",
+    "master_file": "",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": []
+  },
+  "provenance": {
+    "record_license": "All rights reserved (see LICENSE) for this record; no PET illustration or PDF redistributed",
+    "sources": [
+      {
+        "title": "Porsche Fanatics local dataset - data/oem-listed.json, PET illustration 107-20 lines (993)",
+        "url": "https://porschefanatics.com/oem/993/107-20/",
+        "source_type": "community",
+        "license": "site-dataset-reference-only",
+        "accessed_on": "2026-09-29",
+        "notes": "Local file data/oem-listed.json of /home/lolman/repos/porschefanatics.com (commit f5dc1c25c304228a36405aabd6e2f79d9d241093). 65 lines / 38 distinct references; group 'turbocharging'. The KAT 517 USA transcription adds second suffix variants at pos 1, 10, 14, 19, 20, 21 (e.g. 993 110 062 51, 993 110 630 53). See catalog/sources/src-porschefanatics-993-oem-listed-pet.json."
+      },
+      {
+        "title": "Porsche Fanatics - releve PET des groupes turbo 993",
+        "url": "https://porschefanatics.com/oem/993/202-16/",
+        "source_type": "community",
+        "license": "site-owner-confirmed-reference-only",
+        "accessed_on": "2026-09-29",
+        "notes": "Already registered as SRC-PORSCHEFANATICS-993-TURBO-PET: group-level audit of 107-20 (65 lines, 38 references), 107-45 (49 lines) and 202-16 (71 lines); nomenclature and interface location only."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["CNC"],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "unknown",
+      "grade": "unknown",
+      "standard": "not recorded"
+    },
+    "post_processing": [],
+    "supplier_requirements": [
+      "professional engineering review before any manufacturing claim",
+      "dimensional inspection on a real part before any geometry work"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": ""
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "SRC-PORSCHEFANATICS-993-OEM-LISTED-PET (107-20 lines listed above)",
+      "SRC-PORSCHEFANATICS-993-TURBO-PET"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Identity only: no dimensions, flow areas or geometry are carried by the transcription.",
+      "The 'intake manifold' lines of 107-20 are the Turbo intake tract parts; the BOM throttle/air-duct line M64B-IN-002 is NOT identified by this group and remains unresolved.",
+      "Suffix variants (-50/-51 at pos 1, 10, 14; -52/-53 at pos 21) are transcribed without asserting supersession or applicability split.",
+      "No wastegate actuator line exists anywhere in the local 107-xx or 202-xx transcriptions."
+    ]
+  }
+}
