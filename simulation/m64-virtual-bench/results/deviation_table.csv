@@ -1,0 +1,7 @@
+label,rpm,thr,public_value,model_value,unit,rel_error_percent,note
+peak_power,6250,1,300,303.182,kW,1.06056,model peak may sit off the calibrated rpm if the BSFC/VE shape tilts the curve
+power_at_public_peak_rpm,5750,1,300,300,kW,0,calibrated anchor (model is exact by construction)
+peak_torque,4750,1,540,555.812,Nm,2.92821,model peak torque location is a prediction
+torque_at_public_torque_rpm,4050,1,540,540,Nm,0,blind prediction (not used in calibration)
+boost_plateau_vs_brochure,5750,1,1,0.800467,bar_gauge,-19.9533,model keeps the 0.8 bar REPO-envelope plateau; brochure 1.0 bar setpoint is FACT_public (M64-ACQ-BENCH-08)
+cooling_air_flow_at_6100,6100,1,1010,1010,l/s,0,exact by construction of the fan anchor; effective fin flow 0.71 kg/s assumes a 60 % effective fraction (ASSUMPTION, M64-ACQ-BENCH-06)
