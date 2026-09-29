@@ -28,6 +28,7 @@ from .common import (
 # --- documented constants --------------------------------------------------
 BOOST_PLATEAU_GAUGE_PA = 80000.0     # REPO dyno-envelope plateau (=1.79 abs PR)
 BOOST_BROCHURE_GAUGE_PA = 100000.0   # FACT_public brochure setpoint (deviation row)
+BOOST_PLATEAU_PR = 1.0 + BOOST_PLATEAU_GAUGE_PA / P_AMB_PA  # documented plateau PR
 
 # Compressor adiabatic efficiency at the plateau duty point (ASSUMPTION:
 # typical small-turbo peak ~0.65; no K16 map in repo, M64-ACQ-0003).
@@ -49,7 +50,10 @@ def point(rpm: float, thr: float = 1.0, m_dot_air_kg_s: float = 0.0) -> dict:
     m_dot_air_kg_s is the TOTAL engine charge flow (from the fuel/air
     panel); it is divided by the number of turbos (equal-split
     ASSUMPTION). Duty scales with the throttle-scaled manifold state from
-    air_path."""
+    air_path. At part load (thr<1) the compressor work vanishes with the
+    pressure ratio; the intercooler hot side is throttled toward ambient
+    the same way so effectiveness stays a bounded audit number
+    (ASSUMPTION, M64-ACQ-BENCH-10)."""
     st = manifold_state(rpm, thr)
     pr = st["pr"]
     m_per_turbo = m_dot_air_kg_s / TURBOS
@@ -57,14 +61,17 @@ def point(rpm: float, thr: float = 1.0, m_dot_air_kg_s: float = 0.0) -> dict:
     t2s_k = T_AMB_K * tau
     dt_act_k = (t2s_k - T_AMB_K) / ETA_COMP_AD
     t2_act_k = T_AMB_K + dt_act_k
-    # Intercooler duty target: the manifold temperature the engine actually
-    # sees. At WOT that is the REPO-envelope plateau temperature;
-    # the hot-side approach is throttled toward ambient the same way the
-    # compressor pressure ratio is (ASSUMPTION, M64-ACQ-BENCH-10).
+    w_shaft_w = m_per_turbo * CP_AIR * dt_act_k
+    # Throttling lowers compressor discharge temperature toward ambient in
+    # the same proportion as the pressure ratio (ASSUMPTION). The hot-side
+    # approach is what the intercooler must remove; the cold-side target
+    # is the manifold temperature the engine actually sees (owned by
+    # air_path).
     t_hot_k = T_AMB_K + thr * max(t2_act_k - T_AMB_K, 0.0)
-    q_ic_w = m_per_turbo * CP_AIR * max(t2_act_k - t_man_target_k, 0.0)
-    eff_ic = (q_ic_w / (m_per_turbo * CP_AIR * max(t_hot_k - T_AMB_K, 1e-9))
-              if t_hot_k > T_AMB_K + 1e-9 else 0.0)
+    t_man_target_k = st["t_man_k"]
+    q_ic_w = m_per_turbo * CP_AIR * max(t_hot_k - t_man_target_k, 0.0)
+    denom = m_per_turbo * CP_AIR * max(t_hot_k - T_AMB_K, 1e-9)
+    eff_ic = (q_ic_w / denom) if denom > 1e-9 else 0.0
     return {
         "rpm": rpm, "thr": thr, "pr": pr,
         "m_dot_per_turbo_kg_s": m_per_turbo,
