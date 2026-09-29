@@ -81,6 +81,18 @@ The synthetic, non-qualified M64 head twin: CAD sections, mesh-quality counts an
 </tr>
 </table>
 
+## M64 wave-2: engine parts built this cycle
+
+New F0–F2 geometry from the wave-2 lanes (2026-09-29). Each render shows a parametric model built from the tagged evidence in the part's `provenance.json` — none is a photograph, a measured part or a released design.
+
+<table>
+<tr>
+<td width="33%" valign="top"><a href="../parts/m64-cylinder-head-0001/status.md"><img src="../parts/m64-cylinder-head-0001/evidence/m64-cylinder-head-axon.png" alt="PicoGK cylinder-head envelope with 4-valve pockets, seats, plug wells and stud pattern" width="100%"></a><br><sub>Assembled 4V head envelope (PicoGK station, 2 mm voxel). Envelope and deck features are assumptions; cylinder pitch and deck height are open gaps. <a href="../parts/m64-cylinder-head-0001/status.md">Status here</a>.</sub></td>
+<td width="33%" valign="top"><a href="../parts/m64-cooling-fan-0001/status.md"><img src="../parts/m64-cooling-fan-0001/evidence/m64-cooling-fan-rotor.png" alt="Parametric 11-blade cooling fan rotor render" width="100%"></a><br><sub>11-blade rotor, parametric hypotheses except the blade count (literature). No flow validation. <a href="../parts/m64-cooling-fan-0001/status.md">Status here</a>.</sub></td>
+<td width="33%" valign="top"><a href="../parts/m64-cooling-fan-0001/status.md"><img src="../parts/m64-cooling-fan-0001/evidence/m64-fan-housing-axon.png" alt="Cooling fan housing render with hub, spokes and mounting flange" width="100%"></a><br><sub>Housing envelope mirroring the AlSi10Mg fiche lineage; a packaging model, not a measured part. <a href="../parts/m64-cooling-fan-0001/status.md">Status here</a>.</sub></td>
+</tr>
+</table>
+
 ## Digital twin and pipeline diagrams
 
 Logical diagrams of the twin state and of the M64 execution chain. Some labels are in French. They show planned or recorded relationships, not results.
