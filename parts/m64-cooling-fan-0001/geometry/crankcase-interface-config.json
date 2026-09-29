@@ -1,0 +1,32 @@
+{
+  "status": "parametric_hypotheses_except_explicit_sources",
+  "role": "ventilated-crankcase (carter ventilé) collector interface feeding the m64-cooling-fan-0001 housing inlet; placeholder topology, not a measured crankcase surface",
+  "voxel_mm": 0.65,
+  "flange_outer_diameter_mm": 340.0,
+  "flange_thickness_mm": 6.0,
+  "pilot_radius_mm": 34.0,
+  "pilot_length_mm": 12.0,
+  "central_bore_radius_mm": 17.0,
+  "duct_length_mm": 40.0,
+  "duct_inner_radius_mm": 40.0,
+  "duct_outer_radius_mm": 44.0,
+  "wall_mm": 4.0,
+  "bellmouth_radius_mm": 1.8,
+  "port_count": 6,
+  "port_bolt_circle_radius_mm": 150.0,
+  "port_radius_mm": 18.0,
+  "port_length_mm": 35.0,
+  "port_tilt_deg": 20.0,
+  "mating_fan_housing_outer_radius_mm": 150.0,
+  "interface_gap_mm": 2.0,
+  "housing_hub_bore_radius_mm": 35.0,
+  "parameter_evidence": {
+    "flange_outer_diameter_mm": "ENGINEERING ASSUMPTION: clears the fan-housing outer radius 150 mm (FVD envelope 300 x 300 x 170 mm for 99310666701/03 lineage, twins/993-engine-cooling-fan-system-f0/REFERENCE_REBUILD.md) plus a 2 mm interface gap",
+    "housing_hub_bore_radius_mm": "mirrors housing_hub_bore_radius_mm in fan-config.json (synthetic F0 housing concept re-derived in M64Fan.cs); enforced by the geometry program against the pilot",
+    "mating_fan_housing_outer_radius_mm, interface_gap_mm": "mirrors of fan-config.json housing outer diameter / assumed clearance; enforced by the geometry program against the flange",
+    "central_bore_radius_mm": "mirrors bore_radius_mm in fan-config.json (visual reconstruction hypothesis, not measured)",
+    "flange_thickness_mm, pilot_length_mm, duct_length_mm, duct_inner_radius_mm, duct_outer_radius_mm, wall_mm, bellmouth_radius_mm": "ENGINEERING ASSUMPTIONS: placeholder duct/bellmouth topology for the collector mouth; no OEM dimension exists in this repository for the M64 ventilated crankcase interface",
+    "port_count, port_bolt_circle_radius_mm, port_radius_mm, port_length_mm, port_tilt_deg": "ENGINEERING ASSUMPTIONS: six symmetric stub ports standing in for crankcase collector branches; count, circle and tilt are optimization variables, not sourced values",
+    "voxel_mm": "numerical_resolution_not_part_dimension"
+  }
+}
