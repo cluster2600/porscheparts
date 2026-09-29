@@ -350,7 +350,7 @@ static Voxels BuildConnectingRod(Library lib, ShortBlockParams p,
         pinCentre + new Vector3(0, side * (p.RodCentreDistanceMm - beOr * 0.6f), 0),
         shankR, 0.0f);
     // Schematic cap split line and bolt bosses (ASSUMPTION).
-    using Voxels capCuts = new();
+    using Voxels capCuts = new(lib);
     {
         using Voxels split = Annulus(lib,
             bigC - new Vector3(beOr + 1.0f, 0, 0) + new Vector3(0, side * 0.15f, 0),
@@ -570,11 +570,11 @@ static Lattice BuildBoreRecesses(Library lib, ShortBlockParams p)
 // lacks.
 static Voxels Annulus(Library lib, Vector3 a, Vector3 b, float rOuter, float rInner)
 {
-    Voxels outer;
+    Voxels outer = new(lib);
     using (Lattice lat = new(lib))
     {
         lat.AddBeam(a, rOuter, b, rOuter, false);
-        outer = Voxelize(lib, lat);
+        outer.BoolAdd(Voxelize(lib, lat));
     }
     if (rInner > 0.0005f)
     {
