@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>M64ShortBlock</AssemblyName>
+    <RootNamespace>M64ShortBlock</RootNamespace>
+    <!-- Same convention as the station's /opt/m64-source/HeadVoxels.csproj:
+         resolve the PicoGK kernel from a local checkout, overridable. -->
+    <UpstreamRoot Condition="'$(UpstreamRoot)' == ''">/upstream</UpstreamRoot>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="$(UpstreamRoot)/PicoGK/PicoGK.csproj" />
+  </ItemGroup>
+</Project>
