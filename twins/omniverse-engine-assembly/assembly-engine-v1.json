@@ -1,0 +1,640 @@
+{
+  "schema_version": "1.0.0",
+  "manifest_id": "M64-ENGINE-SCENE-V1",
+  "title": "M64/60 whole-engine Omniverse research layout manifest",
+  "status": "research_layout_not_fitment",
+  "generated_on": "2026-09-29",
+  "generated_by": "m64-writer, wave-2 omniverse whole-engine assembly task",
+  "bom_source": "twins/m64-engine-system/bom/m64-bom-v1.json",
+  "usd": "twins/omniverse-engine-assembly/usd/993-engine-assembly-v1.usda",
+  "generator": "twins/omniverse-engine-assembly/source/build_engine_scene.py",
+  "units": "mm",
+  "up_axis": "Z",
+  "coordinate_frame": {
+    "description": "Engine-local frame hypothesis: origin at crankcase centre on the crankshaft axis; +X toward the flywheel/transmission face; +Y toward the right cylinder bank (cylinders along +/-Y); +Z up. Consistent with the manual Z-up convention of twins/catalogue-parts/usd/ assets.",
+    "layout_status": "layout-hypothesis-engine-local: no common engine metrology frame exists (BOM fidelity_note), so every position is an arrangement hypothesis for loadable visual review, not a measured or fitted position.",
+    "source": "orientation convention derived from catalog/manual/993-workshop-manual-measurements.json layout references and twins/m64-engine-system/program.json zone M64-Z-CC gating statement"
+  },
+  "asset_kind_legend": {
+    "real_asset_reference": "references an existing USD asset file in the repository (itself an F1 documentary proxy mesh, per its own documentationStatus attribute); verified present at build time.",
+    "box_proxy": "axis-aligned box sized from a BOM-cited source record (envelope_status bom-sourced or partial-bom-sourced).",
+    "envelope_unknown": "BOM zone has no local envelope dimensions; a labelled marker box is placed so the zone is visible in the scene; its size is arbitrary display geometry, never an envelope claim."
+  },
+  "limitations": [
+    "research layout, not fitment: positions are engine-local arrangement hypotheses, no interface, clearance or collision is asserted",
+    "every real asset reference resolves to an F1 documentary proxy mesh, not measured component geometry",
+    "box proxies are bounding envelopes from vendor-declared or manual-registered data, not shapes",
+    "no part in this scene is dimensionally accurate, fitted, tested, safe or released (BOM status line)",
+    "envelope-unknown markers carry arbitrary sizes so zones stay visually present without overclaiming",
+    "F0 research assembly work/... assets from assembly-f0.json (valves, internals, turbo envelopes) are missing locally and are represented here as envelope-unknown or BOM-cited proxies, not as references to missing files"
+  ],
+  "zones": [
+    {
+      "zone_id": "M64-Z-CC",
+      "prim": "Crankcase",
+      "label": "crankcase, cylinders, front covers, fasteners",
+      "coverage": "proxy+envelope-unknown",
+      "color": [140, 110, 80],
+      "items": [
+        {
+          "id": "CC-001", "prim": "CrankcaseHalvesMarker", "bom_lines": ["M64B-CC-001"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [0, 0, 0], "size_mm": [560, 440, 400],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CC-001 (dims missing; case pitch unknown, M64-ACQ-0004)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary; through-bolt torques sourced, envelope missing"
+        },
+        {
+          "id": "CC-004", "prim": "ChainHousingMarker", "bom_lines": ["M64B-CC-004"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [-320, 0, 0], "size_mm": [80, 340, 340],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CC-004 (interfaces/loads sourced, dims missing)",
+          "redesign_interest": "med",
+          "note": "marker_size_arbitrary; front cover print candidate once interfaces known"
+        },
+        {
+          "id": "FG-001", "prim": "HeadStudRepresentative", "bom_lines": ["M64B-FG-001"],
+          "asset_kind": "box_proxy", "fidelity": "F0_reference", "envelope_status": "bom-sourced",
+          "position_mm": [0, 205, 190], "size_mm": [8, 8, 22],
+          "source_citation": "docs/research/m64-public-engine-data-2026-09-27.md via BOM M64B-FG-001 (12x M8x22 per head, FACT_public)",
+          "redesign_interest": "low",
+          "note": "single representative of 24; box 8x8x22 envelopes the M8x22 stud"
+        },
+        {
+          "id": "FG-002", "prim": "CylinderBaseORingRepresentative", "bom_lines": ["M64B-FG-002"],
+          "asset_kind": "box_proxy", "fidelity": "F0_reference", "envelope_status": "bom-sourced",
+          "position_mm": [0, 235, 150], "size_mm": [102, 102, 2],
+          "source_citation": "docs/research/m64-public-engine-data-2026-09-27.md via BOM M64B-FG-002 (O-ring 102x2, FACT_public)",
+          "redesign_interest": "low",
+          "note": "single representative of 6; flat box envelopes the 102x2 ring"
+        },
+        {
+          "id": "FG-003", "prim": "HeadGasketMarker", "bom_lines": ["M64B-FG-003"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [0, 250, 175], "size_mm": [110, 110, 3],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-FG-003 (quantities sourced, thickness unknown, blocking M64-ACQ-0001)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary; gasket thickness is itself a blocking dimension"
+        }
+      ]
+    },
+    {
+      "zone_id": "M64-Z-HD",
+      "prim": "Heads",
+      "label": "cylinder heads",
+      "coverage": "envelope-unknown",
+      "color": [170, 130, 60],
+      "items": [
+        {
+          "id": "HD-001-L", "prim": "HeadLeftMarker", "bom_lines": ["M64B-HD-001"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [0, 300, 200], "size_mm": [280, 180, 160],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-HD-001 (dims missing; 3 blocking scale dims -> M64-ACQ-0001)",
+          "redesign_interest": "med",
+          "note": "marker_size_arbitrary; left bank (negative-Y side mirrors at HeadRightMarker)"
+        },
+        {
+          "id": "HD-001-R", "prim": "HeadRightMarker", "bom_lines": ["M64B-HD-001"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [0, -300, 200], "size_mm": [280, 180, 160],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-HD-001",
+          "redesign_interest": "med",
+          "note": "marker_size_arbitrary; 935 scan head is an identity proxy only, kept out of this scene"
+        }
+      ]
+    },
+    {
+      "zone_id": "M64-Z-VT",
+      "prim": "Valvetrain",
+      "label": "camshafts, rockers, valves, springs, covers, timing drive",
+      "coverage": "envelope-unknown",
+      "color": [90, 150, 190],
+      "items": [
+        {
+          "id": "VT-001", "prim": "IntakeValveRowMarker", "bom_lines": ["M64B-VT-001"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [-40, 320, 260], "size_mm": [200, 50, 50],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-VT-001 (head 49 mm / stem 8 mm sourced; functional length unknown)",
+          "redesign_interest": "high",
+          "note": "marker for 24 intake valves (12/engine side pair); head 49 mm sourced, length missing so no box claim"
+        },
+        {
+          "id": "VT-002", "prim": "ExhaustValveRowMarker", "bom_lines": ["M64B-VT-002"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [60, 320, 260], "size_mm": [200, 50, 50],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-VT-002 (dims sourced per suffix variant; Turbo suffix unresolved)",
+          "redesign_interest": "high",
+          "note": "marker for 24 exhaust valves"
+        },
+        {
+          "id": "VT-003", "prim": "ValveSpringRowMarker", "bom_lines": ["M64B-VT-003"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [10, 320, 240], "size_mm": [200, 50, 40],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-VT-003 (installed lengths sourced, rates/O-D missing)",
+          "redesign_interest": "low",
+          "note": "marker for 24 springs"
+        },
+        {
+          "id": "VT-004-L", "prim": "CamshaftLeftMarker", "bom_lines": ["M64B-VT-004"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [0, 340, 300], "size_mm": [480, 45, 45],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-VT-004 (cam profile absent, M64-ACQ-0002)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary; profile unknown blocks F2"
+        },
+        {
+          "id": "VT-004-R", "prim": "CamshaftRightMarker", "bom_lines": ["M64B-VT-004"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [0, -340, 300], "size_mm": [480, 45, 45],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-VT-004",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary"
+        },
+        {
+          "id": "VT-005", "prim": "RockerGearMarker", "bom_lines": ["M64B-VT-005"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [0, 330, 280], "size_mm": [180, 60, 50],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-VT-005 (dims missing)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary"
+        },
+        {
+          "id": "VT-006", "prim": "ValveCoverMarker", "bom_lines": ["M64B-VT-006"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [0, 330, 340], "size_mm": [460, 90, 40],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-VT-006 (dims missing; classic print candidate once scanned)",
+          "redesign_interest": "high",
+          "note": "marker_size_arbitrary; represents one of two covers"
+        },
+        {
+          "id": "VT-007", "prim": "TimingDriveMarker", "bom_lines": ["M64B-VT-007"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [-300, 0, 120], "size_mm": [70, 260, 260],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-VT-007 (dims missing)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary; chain, sprockets, tensioners as one volume"
+        }
+      ]
+    },
+    {
+      "zone_id": "M64-Z-TR",
+      "prim": "Turbos",
+      "label": "K16 turbochargers and thermal shields",
+      "coverage": "real",
+      "color": [190, 90, 90],
+      "items": [
+        {
+          "id": "TR-001", "prim": "TurboK16Left", "bom_lines": ["M64B-TR-001"],
+          "asset_kind": "real_asset_reference", "fidelity": "F0_reference", "envelope_status": "real-asset",
+          "usd": "twins/catalogue-parts/usd/993-turbocharger-k16-left.usda",
+          "position_mm": [-60, 230, -180],
+          "source_citation": "catalog/sources/src-fvd-993-k16-oem-dimensions.json (declared envelope 210x280x190) via BOM M64B-TR-001; asset self-declares F1_documentary_proxy_not_simready",
+          "redesign_interest": "med",
+          "note": "asset is a documentary envelope mesh; interfaces missing"
+        },
+        {
+          "id": "TR-002", "prim": "TurboK16Right", "bom_lines": ["M64B-TR-002"],
+          "asset_kind": "real_asset_reference", "fidelity": "F0_reference", "envelope_status": "real-asset",
+          "usd": "twins/catalogue-parts/usd/993-turbocharger-k16-right.usda",
+          "position_mm": [-60, -230, -180],
+          "source_citation": "catalog/sources/src-fvd-993-k16-oem-dimensions.json via BOM M64B-TR-002; asset self-declares F1_documentary_proxy_not_simready",
+          "redesign_interest": "med",
+          "note": "asset is a documentary envelope mesh; handedness differs"
+        },
+        {
+          "id": "TR-004", "prim": "TurboHeatShieldLeft", "bom_lines": ["M64B-TR-004"],
+          "asset_kind": "real_asset_reference", "fidelity": "F0_reference", "envelope_status": "real-asset",
+          "usd": "twins/catalogue-parts/usd/993-turbo-heat-shield-cover-left.usda",
+          "position_mm": [60, 300, -120],
+          "source_citation": "catalog/sources/src-fvd-993-turbo-heat-shield-dimensions.json (declared 105x160x110) via BOM M64B-TR-004",
+          "redesign_interest": "high",
+          "note": "left side only; right shield absent from local evidence"
+        }
+      ]
+    },
+    {
+      "zone_id": "M64-Z-CL",
+      "prim": "Cooling",
+      "label": "cooling fan, drive, ducting, thermal screens",
+      "coverage": "proxy+envelope-unknown",
+      "color": [80, 170, 150],
+      "items": [
+        {
+          "id": "CL-001", "prim": "FanWheelProxy", "bom_lines": ["M64B-CL-001"],
+          "asset_kind": "box_proxy", "fidelity": "F0_reference", "envelope_status": "partial-bom-sourced",
+          "position_mm": [-430, 0, 0], "size_mm": [70, 256, 256],
+          "source_citation": "docs/research/m64-public-engine-data-2026-09-27.md via BOM M64B-CL-001 (fan scan: pulley r_max ~127.8 mm unconfirmed -> 255.6 mm height/width)",
+          "redesign_interest": "high",
+          "note": "diameter from unconfirmed scan analysis; axial depth unsourced; blade count unresolved (M64-ACQ-0005)"
+        },
+        {
+          "id": "CL-002", "prim": "VBeltMarker", "bom_lines": ["M64B-CL-002"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [-400, 0, -140], "size_mm": [60, 300, 30],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CL-002 (section 10 x 775 mm sourced as a belt loop, not a box)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary; loop geometry cannot be a straight box"
+        },
+        {
+          "id": "CL-003", "prim": "CrankPulleyMarker", "bom_lines": ["M64B-CL-003"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [-360, 0, 0], "size_mm": [50, 256, 256],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CL-003 (diameter unresolved, scan suggests r_max ~127.8 mm unconfirmed)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary pending diameter confirmation"
+        },
+        {
+          "id": "CL-004", "prim": "AlternatorPulleyMarker", "bom_lines": ["M64B-CL-004"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [-350, 120, -220], "size_mm": [80, 150, 150],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CL-004 (dims missing)",
+          "redesign_interest": "med",
+          "note": "marker_size_arbitrary"
+        },
+        {
+          "id": "CL-005", "prim": "FanHousingMarker", "bom_lines": ["M64B-CL-005"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [-480, 0, 0], "size_mm": [140, 320, 320],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CL-005 (dims missing; highest-value missing-evidence item for CFD)",
+          "redesign_interest": "high",
+          "note": "marker_size_arbitrary"
+        },
+        {
+          "id": "AS-002", "prim": "InsulationCoverMarker", "bom_lines": ["M64B-AS-002"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [0, 0, 380], "size_mm": [520, 420, 30],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-AS-002 (vendor claims declared dimensions; none extractable from catalog/sources/src-fvd-993-engine-insulation-cover-dimensions.json)",
+          "redesign_interest": "high",
+          "note": "marker_size_arbitrary; thermal ecosystem relevant"
+        }
+      ]
+    },
+    {
+      "zone_id": "M64-Z-OL",
+      "prim": "Oil",
+      "label": "dry-sump lubrication",
+      "coverage": "proxy+envelope-unknown",
+      "color": [120, 100, 160],
+      "items": [
+        {
+          "id": "CC-002", "prim": "ScavengePumpMarker", "bom_lines": ["M64B-CC-002"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [-100, 60, -230], "size_mm": [150, 150, 120],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CC-002 (identity/dims missing; torque sourced)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary"
+        },
+        {
+          "id": "CC-003", "prim": "ReliefValvePlugMarker", "bom_lines": ["M64B-CC-003"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [40, 120, -210], "size_mm": [24, 24, 20],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CC-003 (thread M18x1.5 sourced only)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary near the M18 thread scale"
+        },
+        {
+          "id": "OL-001", "prim": "OilTankProxy", "bom_lines": ["M64B-OL-001"],
+          "asset_kind": "box_proxy", "fidelity": "F0_reference", "envelope_status": "partial-bom-sourced",
+          "position_mm": [260, 0, -320], "size_mm": [300, 200, 200],
+          "source_citation": "docs/research/m64-public-engine-data-2026-09-27.md via BOM M64B-OL-001 (12 L capacity FACT_public)",
+          "redesign_interest": "med",
+          "note": "box volume equals the sourced 12 L capacity; proportions arbitrary"
+        },
+        {
+          "id": "OL-002", "prim": "OilCoolerMarker", "bom_lines": ["M64B-OL-002"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [420, 0, -80], "size_mm": [250, 300, 60],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-OL-002 (no local source record)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary; flagged in bom/coverage.md"
+        }
+      ]
+    },
+    {
+      "zone_id": "M64-Z-EX",
+      "prim": "Exhaust",
+      "label": "heat exchangers, wastegates, pre-cat sections",
+      "coverage": "envelope-unknown",
+      "color": [200, 120, 50],
+      "items": [
+        {
+          "id": "IN-003-L", "prim": "ManifoldLeftMarker", "bom_lines": ["M64B-IN-003"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [0, 240, -80], "size_mm": [300, 120, 140],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-IN-003 (dims missing; PET 107-20 nomenclature only)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary; heat exchanger / heat exchanger"
+        },
+        {
+          "id": "IN-003-R", "prim": "ManifoldRightMarker", "bom_lines": ["M64B-IN-003"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [0, -240, -80], "size_mm": [300, 120, 140],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-IN-003",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary"
+        },
+        {
+          "id": "IN-004-L", "prim": "FrontMufflerLeftMarker", "bom_lines": ["M64B-IN-004"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [220, 260, -160], "size_mm": [260, 140, 140],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-IN-004 (dims missing; Fabspeed scan lead unextracted)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary"
+        },
+        {
+          "id": "IN-004-R", "prim": "FrontMufflerRightMarker", "bom_lines": ["M64B-IN-004"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [220, -260, -160], "size_mm": [260, 140, 140],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-IN-004",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary"
+        },
+        {
+          "id": "TR-003-L", "prim": "WastegateLeftMarker", "bom_lines": ["M64B-TR-003"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [120, 290, -40], "size_mm": [110, 100, 100],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-TR-003 (spring/travel sourced SINGLE_SOURCE, dims missing)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary"
+        },
+        {
+          "id": "TR-003-R", "prim": "WastegateRightMarker", "bom_lines": ["M64B-TR-003"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [120, -290, -40], "size_mm": [110, 100, 100],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-TR-003",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary"
+        }
+      ]
+    },
+    {
+      "zone_id": "M64-Z-CA",
+      "prim": "ChargeAir",
+      "label": "intake tract, intercoolers, charge-air plumbing",
+      "coverage": "real+proxy+envelope-unknown",
+      "color": [70, 130, 200],
+      "items": [
+        {
+          "id": "IN-001", "prim": "TrumpetSetMarker", "bom_lines": ["M64B-IN-001"],
+          "asset_kind": "box_proxy", "fidelity": "F0_reference", "envelope_status": "partial-bom-sourced",
+          "position_mm": [-120, 260, 260], "size_mm": [240, 40, 34],
+          "source_citation": "catalog/sources/src-classicparts-993-air-funnel-dimensions.json via BOM M64B-IN-001 (aftermarket declared 40x34 mm section)",
+          "redesign_interest": "high",
+          "note": "40x34 section sourced (aftermarket packaging dims); trumpet length and OEM geometry unsourced; represents the set of 6"
+        },
+        {
+          "id": "IN-002", "prim": "IntakeTractMarker", "bom_lines": ["M64B-IN-002"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [-220, 140, 200], "size_mm": [200, 160, 120],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-IN-002 (no local record; OBJ scan lead untriaged)",
+          "redesign_interest": "med",
+          "note": "marker_size_arbitrary"
+        },
+        {
+          "id": "IC-001-L", "prim": "IntercoolerLeft", "bom_lines": ["M64B-IC-001"],
+          "asset_kind": "real_asset_reference", "fidelity": "F0_reference", "envelope_status": "real-asset",
+          "usd": "twins/catalogue-parts/usd/993-intercooler-replacement-aks.usda",
+          "position_mm": [0, 420, 40],
+          "source_citation": "catalog/sources/src-aks-dasis-993-intercooler-dimensions.json (core 260x270x60 declared) via BOM M64B-IC-001",
+          "redesign_interest": "med",
+          "note": "aftermarket core surrogate; core dims do not define the full OE envelope; per-side quantity 2"
+        },
+        {
+          "id": "IC-001-R", "prim": "IntercoolerRight", "bom_lines": ["M64B-IC-001"],
+          "asset_kind": "real_asset_reference", "fidelity": "F0_reference", "envelope_status": "real-asset",
+          "usd": "twins/catalogue-parts/usd/993-intercooler-replacement-aks.usda",
+          "position_mm": [0, -420, 40],
+          "source_citation": "catalog/sources/src-aks-dasis-993-intercooler-dimensions.json via BOM M64B-IC-001",
+          "redesign_interest": "med",
+          "note": "aftermarket core surrogate; same asset reused for the other side"
+        },
+        {
+          "id": "IC-002", "prim": "ChargeHoseLeft", "bom_lines": ["M64B-IC-002"],
+          "asset_kind": "real_asset_reference", "fidelity": "F0_reference", "envelope_status": "real-asset",
+          "usd": "twins/catalogue-parts/usd/993-intercooler-pressure-hose-left.usda",
+          "position_mm": [-120, 360, 120],
+          "source_citation": "catalog/sources/src-fvd-993-intercooler-hose-left-dimensions.json (declared 430x70x115) via BOM M64B-IC-002",
+          "redesign_interest": "high",
+          "note": "FVD own-development part under OE reference, not OEM geometry"
+        },
+        {
+          "id": "IC-003", "prim": "ChargeHoseRight", "bom_lines": ["M64B-IC-003"],
+          "asset_kind": "real_asset_reference", "fidelity": "F0_reference", "envelope_status": "real-asset",
+          "usd": "twins/catalogue-parts/usd/993-intercooler-pressure-hose-right.usda",
+          "position_mm": [-120, -360, 120],
+          "source_citation": "catalog/sources/src-fvd-993-intercooler-hose-right-dimensions.json (declared 430x70x90) via BOM M64B-IC-003",
+          "redesign_interest": "high",
+          "note": "FVD own-development part under OE reference"
+        },
+        {
+          "id": "IC-004", "prim": "IntercoolerDuct", "bom_lines": ["M64B-IC-004"],
+          "asset_kind": "real_asset_reference", "fidelity": "F0_reference", "envelope_status": "real-asset",
+          "usd": "twins/catalogue-parts/usd/993-intercooler-air-duct.usda",
+          "position_mm": [0, 430, 130],
+          "source_citation": "catalog/sources/src-fvd-993-intercooler-air-duct-dimensions.json (declared 600x280x50) via BOM M64B-IC-004",
+          "redesign_interest": "high",
+          "note": "FVD own-development part under OE reference"
+        },
+        {
+          "id": "IC-005", "prim": "IntercoolerBracket", "bom_lines": ["M64B-IC-005"],
+          "asset_kind": "real_asset_reference", "fidelity": "F0_reference", "envelope_status": "real-asset",
+          "usd": "twins/catalogue-parts/usd/993-intercooler-bracket-reinforced.usda",
+          "position_mm": [150, 390, -20],
+          "source_citation": "catalog/sources/src-fvd-993-intercooler-bracket-dimensions.json (OEM dims missing; aftermarket FVD11011050 envelope) via BOM M64B-IC-005",
+          "redesign_interest": "high",
+          "note": "asset represents the aftermarket alternative, not measured OEM bracket geometry"
+        }
+      ]
+    },
+    {
+      "zone_id": "M64-Z-CS",
+      "prim": "Rotating",
+      "label": "crankshaft, rods, pistons",
+      "coverage": "proxy+envelope-unknown",
+      "color": [160, 160, 170],
+      "items": [
+        {
+          "id": "CS-001", "prim": "CrankshaftMarker", "bom_lines": ["M64B-CS-001"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [0, 0, -40], "size_mm": [520, 120, 120],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CS-001 (stroke 76.4 sourced; journal diameters missing)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary"
+        },
+        {
+          "id": "CR-001", "prim": "OemRodMarker", "bom_lines": ["M64B-CR-001"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [-60, 130, 20], "size_mm": [30, 60, 130],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CR-001 (OEM dims missing; rod-bolt torque measured_source)",
+          "redesign_interest": "high",
+          "note": "marker for the OEM rod record; represents 6 rods"
+        },
+        {
+          "id": "CR-002", "prim": "PauterRodProxy", "bom_lines": ["M64B-CR-002"],
+          "asset_kind": "box_proxy", "fidelity": "F0_reference", "envelope_status": "bom-sourced",
+          "position_mm": [60, 130, 20], "size_mm": [19.58, 58.01, 127],
+          "source_citation": "catalog/sources/src-tzr-pauter-993-connecting-rod-dimensions.json via BOM M64B-CR-002 (L 127.00, big-end bore 58.01, max width 19.58, declared)",
+          "redesign_interest": "high",
+          "note": "aftermarket PAUTER datum, not the OEM baseline; single representative of 6"
+        },
+        {
+          "id": "PS-001", "prim": "PistonProxy", "bom_lines": ["M64B-PS-001"],
+          "asset_kind": "box_proxy", "fidelity": "F0_reference", "envelope_status": "partial-bom-sourced",
+          "position_mm": [0, 150, 90], "size_mm": [100, 100, 60],
+          "source_citation": "catalog/manual/993-workshop-manual-measurements.json (bore 100, technical_data p15) via BOM M64B-PS-001",
+          "redesign_interest": "high",
+          "note": "100x100 from the sourced bore; 60 mm height assumed for display only; single representative of 6"
+        }
+      ]
+    },
+    {
+      "zone_id": "M64-Z-ASM",
+      "prim": "CarrierMounts",
+      "label": "engine carrier, brackets, mounts",
+      "coverage": "real+envelope-unknown",
+      "color": [100, 140, 110],
+      "items": [
+        {
+          "id": "MT-001", "prim": "EngineCarrierTurbo", "bom_lines": ["M64B-MT-001"],
+          "asset_kind": "real_asset_reference", "fidelity": "F0_reference", "envelope_status": "real-asset",
+          "usd": "twins/catalogue-parts/usd/993-engine-carrier-turbo.usda",
+          "position_mm": [0, 0, -420],
+          "source_citation": "catalog/parts/993-eng-carrier-0001.json and /home/lolman/repos/porschefanatics.com/data/oem-parts.json (PET-verified) via BOM M64B-MT-001",
+          "redesign_interest": "low",
+          "note": "PET safetyLevel 7 structural; asset is a documentary proxy, geometry not scanned"
+        },
+        {
+          "id": "MT-002", "prim": "EngineBracketMarker", "bom_lines": ["M64B-MT-002"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [-240, 0, -360], "size_mm": [120, 80, 120],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-MT-002 (PET-verified identity; dims missing)",
+          "redesign_interest": "med",
+          "note": "marker_size_arbitrary"
+        },
+        {
+          "id": "MT-003", "prim": "EngineMountMarker", "bom_lines": ["M64B-MT-003"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [250, 0, -380], "size_mm": [100, 80, 60],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-MT-003 (PET-verified identity; dims/stiffness missing)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary; represents 2 mounts"
+        }
+      ]
+    },
+    {
+      "zone_id": "M64-Z-FW",
+      "prim": "FlywheelClutch",
+      "label": "flywheel, drive plate, clutch",
+      "coverage": "envelope-unknown",
+      "color": [150, 90, 140],
+      "items": [
+        {
+          "id": "FW-001", "prim": "DualMassFlywheelMarker", "bom_lines": ["M64B-FW-001"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [330, 0, -40], "size_mm": [60, 300, 300],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-FW-001 (identity sourced via manual; dims/inertia missing)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary; manual-transmission variant"
+        },
+        {
+          "id": "FW-002", "prim": "DrivePlateMarker", "bom_lines": ["M64B-FW-002"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [345, 0, -40], "size_mm": [30, 280, 280],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-FW-002 (Tiptronic variant, kept for completeness)",
+          "redesign_interest": "med",
+          "note": "marker_size_arbitrary; variant-alternative to DualMassFlywheelMarker"
+        },
+        {
+          "id": "CT-001", "prim": "PressurePlateMarker", "bom_lines": ["M64B-CT-001"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [380, 0, -40], "size_mm": [50, 280, 280],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CT-001 (dims missing)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary"
+        },
+        {
+          "id": "CT-002", "prim": "ClutchDiscMarker", "bom_lines": ["M64B-CT-002"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [410, 0, -40], "size_mm": [30, 260, 260],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CT-002 (dims missing; bellhousing interface unsourced)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary; disc + release bearing as one volume"
+        }
+      ]
+    },
+    {
+      "zone_id": "M64-Z-SN",
+      "prim": "Sensors",
+      "label": "engine sensors, ignition, harness",
+      "coverage": "real+envelope-unknown",
+      "color": [220, 200, 90],
+      "items": [
+        {
+          "id": "SN-001", "prim": "MafSensorMarker", "bom_lines": ["M64B-SN-001"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [-260, 200, 260], "size_mm": [120, 90, 80],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-SN-001 (identification sourced; dims missing)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary"
+        },
+        {
+          "id": "SN-002", "prim": "ChargeAirTempSensor", "bom_lines": ["M64B-SN-002"],
+          "asset_kind": "real_asset_reference", "fidelity": "F0_reference", "envelope_status": "real-asset",
+          "usd": "twins/catalogue-parts/usd/993-intercooler-temperature-sensor.usda",
+          "position_mm": [-80, 390, 150],
+          "source_citation": "catalog/sources/src-fvd-993-charge-air-temperature-sensor-dimensions.json (declared 75x35x20) via BOM M64B-SN-002",
+          "redesign_interest": "med",
+          "note": "placed on the charge-air path per the sourced location description (intercooler inlet pipe)"
+        },
+        {
+          "id": "SN-003", "prim": "KnockSensorPairMarker", "bom_lines": ["M64B-SN-003"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [80, 200, 60], "size_mm": [60, 40, 40],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-SN-003 (mounting torques sourced; dims missing)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary; represents 2 sensors with mounting bridge"
+        },
+        {
+          "id": "SN-004", "prim": "NtcSensorMarker", "bom_lines": ["M64B-SN-004"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [150, 250, 150], "size_mm": [30, 30, 40],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-SN-004 (location on cylinder head 3 is itself evidence; dims missing)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary"
+        },
+        {
+          "id": "SN-005", "prim": "LambdaSensorPairMarker", "bom_lines": ["M64B-SN-005"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [200, 250, -100], "size_mm": [30, 30, 80],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-SN-005 (M18x5 thread and torque sourced; dims missing)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary; represents 2 pre-cat sensors"
+        },
+        {
+          "id": "SN-006", "prim": "SparkPlugRowMarker", "bom_lines": ["M64B-SN-006"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [0, 270, 220], "size_mm": [240, 20, 30],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-SN-006 (M14x1.25 thread and torque sourced; dims missing)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary; represents 6 plugs on one bank"
+        },
+        {
+          "id": "SN-007", "prim": "MapSensorMarker", "bom_lines": ["M64B-SN-007"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [-180, 300, 60], "size_mm": [50, 40, 40],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-SN-007 (no component data)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary"
+        },
+        {
+          "id": "AS-001", "prim": "WiringHarnessMarker", "bom_lines": ["M64B-AS-001"],
+          "asset_kind": "envelope_unknown", "fidelity": "F0_reference", "envelope_status": "envelope-unknown",
+          "position_mm": [0, 100, -180], "size_mm": [400, 300, 40],
+          "source_citation": "twins/m64-engine-system/bom/m64-bom-v1.json M64B-AS-001 (registry completeness item; no geometry planned)",
+          "redesign_interest": "low",
+          "note": "marker_size_arbitrary; envelope shown for registry visibility only"
+        }
+      ]
+    }
+  ]
+}
