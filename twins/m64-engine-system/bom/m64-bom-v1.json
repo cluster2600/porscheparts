@@ -332,32 +332,38 @@
     },
     {
       "bom_id_local": "M64B-IN-003",
-      "part_number": null,
+      "part_number": "993 211 039 55 (L) / 993 211 040 55 (R)",
       "name": "Exhaust manifold / heat exchanger (per bank) with integrated wastegate mounting",
       "subsystem": "exhaust_manifolds",
       "quantity": 2,
-      "evidence": {"identity": "missing", "dims": "missing", "interfaces": "sourced", "loads": "measured_source"},
+      "evidence": {"identity": "sourced", "dims": "missing", "interfaces": "sourced", "loads": "measured_source"},
       "sources": [
         "catalog/manual/993-workshop-manual-measurements.json (torque_spec p61: heat exchanger to cylinder head 28 Nm; cat/front muffler 23 Nm; ball clamps 25 Nm; O2 sensor M18x5 50 Nm)",
-        "docs/PORSCHEFANATICS_993_TURBO_AUDIT.md (PET group 107-20: 65 lines, 38 references - nomenclature only)"
+        "docs/PORSCHEFANATICS_993_TURBO_AUDIT.md (PET group 107-20: 65 lines, 38 references - nomenclature only)",
+        "catalog/parts/993-exh-heat-exchanger-pair-pet-0001.json (PET illustration 202-10 pos 1/2, transcribed from two independent catalogue tables: KAT 17 and Porsche Classic KAT 517)",
+        "catalog/sources/src-porschefanatics-993-oem-listed-pet.json (per-line transcription of PET tables; local dataset of /home/lolman/repos/porschefanatics.com @ f5dc1c2) (202-10 lines)"
       ],
       "fidelity": "F0",
       "twin_reference": "twins/m64-engine-system (zone M64-Z-EX: nomenclature only, no geometry)",
       "redesign_interest": "low",
-      "notes": "Manifold part numbers were not transcribed locally from PET group 107-20; flagged as evidence gap."
+      "notes": "Identity closed 2026-09-29 by per-line PET transcription: the heat exchangers are catalogued under illustration 202-10 (not 107-20), left 993 211 039 55 / right 993 211 040 55 (KAT 517 lists -56 suffixes; supersession undocumented locally). Dims still missing."
     },
     {
       "bom_id_local": "M64B-IN-004",
-      "part_number": null,
+      "part_number": "993 113 213 57 / 993 113 214 57 (KAT 517 lists -58 at the second position)",
       "name": "Catalytic converter / front muffler section",
       "subsystem": "exhaust_manifolds",
       "quantity": 2,
-      "evidence": {"identity": "missing", "dims": "missing", "interfaces": "sourced", "loads": "measured_source"},
-      "sources": ["catalog/manual/993-workshop-manual-measurements.json (torque_spec p61, ball clamp assemblies)"],
+      "evidence": {"identity": "sourced", "dims": "missing", "interfaces": "sourced", "loads": "measured_source"},
+      "sources": [
+        "catalog/manual/993-workshop-manual-measurements.json (torque_spec p61, ball clamp assemblies)",
+        "catalog/parts/993-exh-cat-converter-pair-pet-0001.json (PET illustration 202-15 pos 14/15; pos 14 single-source in the KAT 17 table locally)",
+        "catalog/sources/src-porschefanatics-993-oem-listed-pet.json (per-line transcription of PET tables; local dataset of /home/lolman/repos/porschefanatics.com @ f5dc1c2) (202-15 lines)"
+      ],
       "fidelity": "F0",
       "twin_reference": null,
       "redesign_interest": "low",
-      "notes": "Fabspeed laser-scan lead exists (catalog/sources/src-fabspeed-993-laser-scan-exhaust.json) but no extracted geometry."
+      "notes": "Fabspeed laser-scan lead exists (catalog/sources/src-fabspeed-993-laser-scan-exhaust.json) but no extracted geometry. Identity closed 2026-09-29 via PET 202-15 transcription; left/right bank assignment and the -57/-58 suffix relation are unresolved locally."
     },
     {
       "bom_id_local": "M64B-TR-001",
@@ -397,7 +403,10 @@
       "subsystem": "exhaust_manifolds",
       "quantity": 2,
       "evidence": {"identity": "sourced", "dims": "missing", "interfaces": "missing", "loads": "missing"},
-      "sources": ["docs/research/m64-public-engine-data-2026-09-27.md (SINGLE_SOURCE: spring 0.50 bar, lever travel 4.20 mm)"],
+      "sources": [
+        "docs/research/m64-public-engine-data-2026-09-27.md (SINGLE_SOURCE: spring 0.50 bar, lever travel 4.20 mm)",
+        "catalog/sources/src-porschefanatics-993-oem-listed-pet.json (per-line transcription of PET tables; local dataset of /home/lolman/repos/porschefanatics.com @ f5dc1c2) (no wastegate/actuator line exists in any local 993 107-xx or 202-xx PET table - Porsche number stays null)"
+      ],
       "fidelity": "F0",
       "twin_reference": null,
       "redesign_interest": "low",
@@ -425,12 +434,14 @@
       "evidence": {"identity": "sourced", "dims": "sourced", "interfaces": "missing", "loads": "missing"},
       "sources": [
         "catalog/sources/src-aks-dasis-993-intercooler-dimensions.json (aftermarket cross-ref to OE numbers; declared core 260x270x60 mm, 7.06 kg; core dims do not define full envelope)",
-        "catalog/sources/src-ta-technix-993-intercooler-dimensions.json (aftermarket module 260x260x100 mm, connectors ~66/68 mm - aftermarket, bound only)"
+        "catalog/sources/src-ta-technix-993-intercooler-dimensions.json (aftermarket module 260x260x100 mm, connectors ~66/68 mm - aftermarket, bound only)",
+        "catalog/parts/993-ca-charge-pipe-set-pet-0001.json (PET 107-45 lines; both catalogue tables) pos 1: 993 110 330 53 in both local tables - aftermarket cross-ref now PET-confirmed",
+        "catalog/sources/src-porschefanatics-993-oem-listed-pet.json (per-line transcription of PET tables; local dataset of /home/lolman/repos/porschefanatics.com @ f5dc1c2) (107-45 lines)"
       ],
       "fidelity": "F0",
       "twin_reference": null,
       "redesign_interest": "med",
-      "notes": "OE number comes from an aftermarket cross-reference (evidence level C); needs PET confirmation. Effectiveness/pressure-drop data missing."
+      "notes": "OE number came from an aftermarket cross-reference; PET-confirmed 2026-09-29 via local transcription of illustration 107-45 pos 1 (both KAT 17 and KAT 517 tables) and the registered Porsche Austria KAT 17 read. Effectiveness/pressure-drop data missing."
     },
     {
       "bom_id_local": "M64B-IC-002",
@@ -439,7 +450,10 @@
       "subsystem": "charge_air",
       "quantity": 1,
       "evidence": {"identity": "sourced", "dims": "sourced", "interfaces": "missing", "loads": "missing"},
-      "sources": ["catalog/sources/src-fvd-993-intercooler-hose-left-dimensions.json (FVD own-development part under OE ref; declared 430x70x115 mm, 0.42 kg - not OEM geometry)"],
+      "sources": [
+        "catalog/sources/src-fvd-993-intercooler-hose-left-dimensions.json (FVD own-development part under OE ref; declared 430x70x115 mm, 0.42 kg - not OEM geometry)",
+        "catalog/parts/993-ca-charge-pipe-set-pet-0001.json (PET 107-45 lines; both catalogue tables) pos 19: 993 110 633 56 and 993 110 632 56 listed in both local tables"
+      ],
       "fidelity": "F0",
       "twin_reference": null,
       "redesign_interest": "high",
@@ -452,7 +466,10 @@
       "subsystem": "charge_air",
       "quantity": 1,
       "evidence": {"identity": "sourced", "dims": "sourced", "interfaces": "missing", "loads": "missing"},
-      "sources": ["catalog/sources/src-fvd-993-intercooler-hose-right-dimensions.json (declared 430x70x90 mm, 0.42 kg)"],
+      "sources": [
+        "catalog/sources/src-fvd-993-intercooler-hose-right-dimensions.json (declared 430x70x90 mm, 0.42 kg)",
+        "catalog/parts/993-ca-charge-pipe-set-pet-0001.json (PET 107-45 lines; both catalogue tables) pos 19: 993 110 633 56 and 993 110 632 56 listed in both local tables"
+      ],
       "fidelity": "F0",
       "twin_reference": null,
       "redesign_interest": "high",
@@ -465,7 +482,10 @@
       "subsystem": "charge_air",
       "quantity": 1,
       "evidence": {"identity": "sourced", "dims": "sourced", "interfaces": "missing", "loads": "missing"},
-      "sources": ["catalog/sources/src-fvd-993-intercooler-air-duct-dimensions.json (FVD own development under OE ref; declared 600x280x50 mm, 0.9 kg)"],
+      "sources": [
+        "catalog/sources/src-fvd-993-intercooler-air-duct-dimensions.json (FVD own development under OE ref; declared 600x280x50 mm, 0.9 kg)",
+        "catalog/parts/993-ca-charge-pipe-set-pet-0001.json (PET 107-45 lines; both catalogue tables) pos 2: air guide 993 110 340 53 and -54 in both local tables"
+      ],
       "fidelity": "F0",
       "twin_reference": null,
       "redesign_interest": "high",
@@ -478,7 +498,10 @@
       "subsystem": "charge_air",
       "quantity": 1,
       "evidence": {"identity": "sourced", "dims": "missing", "interfaces": "missing", "loads": "missing"},
-      "sources": ["catalog/sources/src-fvd-993-intercooler-bracket-dimensions.json (PET localises OEM 99311011050/52; only aftermarket envelope declared)"],
+      "sources": [
+        "catalog/sources/src-fvd-993-intercooler-bracket-dimensions.json (PET localises OEM 99311011050/52; only aftermarket envelope declared)",
+        "catalog/parts/993-ca-charge-pipe-set-pet-0001.json (PET 107-45 lines; both catalogue tables) pos 5: bracket 993 110 110 50 and -52 in both local tables"
+      ],
       "fidelity": "F0",
       "twin_reference": null,
       "redesign_interest": "high",
@@ -840,5 +863,5 @@
     "Cooling airflow: 1010 l/s @ ~6100 rpm (primary, OBD supplement) vs 1210 l/s @ 5750 rpm (elferclassic, demoted SINGLE_SOURCE).",
     "Compression ratio: 9.5:1 (brochure via research doc) vs 8.0:1 (elferclassic record). Unresolved; neither used for geometry."
   ],
-  "pet_reference_gaps": "PET group 107-20 (Turbocharging, 65 lines / 38 references) and 107-45 hold the official exhaust-manifold and turbo-plumbing part numbers but were only audited at group level (docs/PORSCHEFANATICS_993_TURBO_AUDIT.md); per-line transcription is the cheapest way to close identity gaps for exhaust_manifolds and charge_air."
+  "pet_reference_gaps": "PET group 107-20 (Turbocharging, 65 lines / 38 references) and 107-45 hold the official exhaust-manifold and turbo-plumbing part numbers but were only audited at group level (docs/PORSCHEFANATICS_993_TURBO_AUDIT.md); per-line transcription is the cheapest way to close identity gaps for exhaust_manifolds and charge_air. CLOSED 2026-09-29 by wave-2 per-line transcription (docs/research/pet-107-transcription-2026-09-29.md): heat exchangers and catalytic converters identified under 202-10/202-15, the full 107-45 charge-air bill transcribed, and no wastegate line exists locally."
 }
