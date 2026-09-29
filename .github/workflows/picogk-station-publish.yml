@@ -1,0 +1,154 @@
+name: Publish the qualified PicoGK station
+
+# One prepared Kali2 image, one repository-scoped JIT runner, no build step.
+on:
+  push:
+    branches: [codex/picogk-vast-station]
+    paths: [.github/workflows/picogk-station-publish.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+concurrency:
+  group: picogk-station-publish-20260928-r8kj70sz
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: >-
+      github.repository == 'cluster2600/porscheparts' &&
+      github.ref == 'refs/heads/codex/picogk-vast-station' &&
+      github.actor == 'cluster2600'
+    runs-on: [picogk-station-publish-20260928-r8kj70sz]
+    timeout-minutes: 60
+    env:
+      STATION_IMAGE: ghcr.io/cluster2600/3dprinting993-picogk-m64:station-20260928-persistent-4f58a4e28ab7
+      STATION_IMAGE_ID: sha256:4f58a4e28ab7706e7735b2185123c2d8fd6eb94a3d1842a9e352950ce503bdfb
+    steps:
+      - name: Verify the prebuilt local image before authentication
+        shell: bash
+        run: |
+          set -euo pipefail
+          umask 077
+          export DOCKER_CONFIG="$RUNNER_TEMP/station-ghcr-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          export PUBLICATION_DIR="$RUNNER_TEMP/station-publication-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          printf 'DOCKER_CONFIG=%s\nPUBLICATION_DIR=%s\n' "$DOCKER_CONFIG" "$PUBLICATION_DIR" >> "$GITHUB_ENV"
+          test ! -e "$DOCKER_CONFIG"
+          mkdir -m 0700 "$DOCKER_CONFIG" "$PUBLICATION_DIR"
+          python3 - <<'PY'
+          import json, os, pathlib, subprocess
+          info = json.loads(subprocess.check_output([
+              'docker', 'image', 'inspect', os.environ['STATION_IMAGE']]))[0]
+          assert info['Id'] == os.environ['STATION_IMAGE_ID'], 'Unexpected local image'
+          assert (info['Os'], info['Architecture']) == ('linux', 'amd64')
+          assert info['Config'].get('ExposedPorts') == {'22/tcp': {}, '47998/udp': {}}
+          assert info['Config']['Labels']['org.opencontainers.image.licenses'] == 'NOASSERTION'
+          result = {'local_image_id': info['Id'], 'tag': os.environ['STATION_IMAGE'],
+                    'platform': 'linux/amd64', 'size_bytes': info['Size'],
+                    'published_ports': sorted(info['Config']['ExposedPorts']),
+                    'source_commit': os.environ['GITHUB_SHA']}
+          path = pathlib.Path(os.environ['PUBLICATION_DIR']) / 'local-image.json'
+          path.write_text(json.dumps(result, indent=2) + '\n')
+          print('PREBUILT_STATION_IDENTITY_PASS')
+          PY
+
+      - name: Check out only the anonymous qualification script
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          path: publication-source
+          sparse-checkout-cone-mode: false
+          sparse-checkout: deploy/vast/station/qualify_image.py
+
+      - name: Authenticate with the job's temporary package permission
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          # Explicit always() cleanup below covers success and failure.
+          logout: false
+
+      - name: Push the exact prebuilt station
+        id: push
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(docker image inspect --format '{{.Id}}' "$STATION_IMAGE")" = "$STATION_IMAGE_ID"
+          docker push "$STATION_IMAGE" | tee "$PUBLICATION_DIR/push.log"
+          python3 - <<'PY'
+          import json, os, pathlib, re
+          root = pathlib.Path(os.environ['PUBLICATION_DIR'])
+          digests = set(re.findall(r'digest: (sha256:[0-9a-f]{64})', (root / 'push.log').read_text()))
+          assert len(digests) == 1, 'Expected exactly one pushed manifest digest'
+          digest = digests.pop()
+          reference = os.environ['STATION_IMAGE'].rsplit(':', 1)[0] + '@' + digest
+          (root / 'published-image.json').write_text(json.dumps(
+              {'image_ref': reference, 'local_image_id': os.environ['STATION_IMAGE_ID'],
+               'anonymous_registry_verified': False}, indent=2) + '\n')
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('image_ref=' + reference + '\n')
+          print(reference)
+          PY
+
+      - name: Qualify anonymous access and the exact remote configuration
+        env:
+          PUBLISHED_IMAGE: ${{ steps.push.outputs.image_ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          # urllib obtains only a public pull token; it never reads Docker auth.
+          # Reuse the already public PicoGK package with a station-only tag.
+          # Bound retries for registry propagation after the push.
+          for attempt in {1..20}; do
+            if python3 publication-source/deploy/vast/station/qualify_image.py \
+              "$PUBLISHED_IMAGE" > "$PUBLICATION_DIR/anonymous-qualification.pending.json" 2>/dev/null; then
+              mv "$PUBLICATION_DIR/anonymous-qualification.pending.json" \
+                "$PUBLICATION_DIR/anonymous-qualification.json"
+              break
+            fi
+            echo "Anonymous registry qualification pending: attempt $attempt/20"
+            if [ "$attempt" -lt 20 ]; then sleep 15; fi
+          done
+          if [ ! -s "$PUBLICATION_DIR/anonymous-qualification.json" ]; then
+            echo 'Anonymous registry access was not verified after 20 attempts' >&2
+            exit 1
+          fi
+          python3 - <<'PY'
+          import json, os, pathlib
+          path = pathlib.Path(os.environ['PUBLICATION_DIR']) / 'anonymous-qualification.json'
+          result = json.loads(path.read_text())
+          assert result['config_digest'] == os.environ['STATION_IMAGE_ID']
+          assert result['anonymous_registry_verified'] is True
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
+              summary.write('Published and anonymously qualified: `' + result['image_ref'] + '`\n')
+          print('ANONYMOUS_STATION_CONFIGURATION_PASS')
+          PY
+
+      - name: Remove only this job's registry credentials
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -z "${DOCKER_CONFIG:-}" ]; then exit 0; fi
+          test "$DOCKER_CONFIG" = "$RUNNER_TEMP/station-ghcr-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+          if [ -d "$DOCKER_CONFIG" ]; then
+            docker logout ghcr.io >/dev/null 2>&1 || true
+            rm -rf -- "$DOCKER_CONFIG"
+          fi
+
+      - name: Preserve the publication receipt
+        if: always() && env.PUBLICATION_DIR != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: picogk-station-publication-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ env.PUBLICATION_DIR }}/local-image.json
+            ${{ env.PUBLICATION_DIR }}/published-image.json
+            ${{ env.PUBLICATION_DIR }}/anonymous-qualification.json
+            ${{ env.PUBLICATION_DIR }}/push.log
+          retention-days: 14
+          if-no-files-found: warn

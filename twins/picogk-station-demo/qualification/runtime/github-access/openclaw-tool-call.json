@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "host": "kali2",
+  "agent": "m64-coordinator",
+  "route": "gateway",
+  "isolated_session": true,
+  "deliver_used": false,
+  "local_bypass_used": false,
+  "gateway_restarted": false,
+  "cli_exit_code": 0,
+  "cli_duration_seconds": 11.626372394995997,
+  "started_at_utc": "2026-09-28T22:07:09.058245+00:00",
+  "ended_at_utc": "2026-09-28T22:07:20.684618+00:00",
+  "github_cli_sha256": "dfef7bec7e18503e33b6cc88efab6accaa5b2a2c986aac7ec0c4289f51738b7b",
+  "provider": "vllm",
+  "model": "qwen3.8-flash-next-uncensored-nvfp4",
+  "aggregate_agent_turn_tokens": {
+    "input": 22943,
+    "output": 192,
+    "total": 23135
+  },
+  "tool_calls": [
+    {
+      "name": "exec",
+      "command_as_redacted_by_native_export": "$WORKSPACE_DIR/.local/bin/openclaw-github check cluster2600/porscheparts",
+      "started_at": "2026-09-28T22:07:15.572Z",
+      "completed_at": "2026-09-28T22:07:16.900Z",
+      "success": true,
+      "exit_code": 0,
+      "duration_ms": 1303,
+      "repository": {
+        "full_name": "cluster2600/porscheparts",
+        "id": 1349420480,
+        "pull": true
+      }
+    },
+    {
+      "name": "exec",
+      "command_as_redacted_by_native_export": "$WORKSPACE_DIR/.local/bin/openclaw-github check cluster2600/porschefanatics.com",
+      "started_at": "2026-09-28T22:07:15.575Z",
+      "completed_at": "2026-09-28T22:07:16.793Z",
+      "success": true,
+      "exit_code": 0,
+      "duration_ms": 1192,
+      "repository": {
+        "full_name": "cluster2600/porschefanatics.com",
+        "id": 1336775701,
+        "pull": true
+      }
+    }
+  ],
+  "repositories": [
+    {
+      "full_name": "cluster2600/porscheparts",
+      "id": 1349420480,
+      "pull": true
+    },
+    {
+      "full_name": "cluster2600/porschefanatics.com",
+      "id": 1336775701,
+      "pull": true
+    }
+  ],
+  "credential_fields_absent_in_native_results": true,
+  "repository_metadata_verified_from_tool_results": true,
+  "raw_tool_outputs_published": false,
+  "git_transport_tested_by_this_turn": false,
+  "native_redacted_events_sha256": "0533d86e60c78476667ff045b732c8f2629d47f5a2eb6973056159ba19b7bcfc"
+}

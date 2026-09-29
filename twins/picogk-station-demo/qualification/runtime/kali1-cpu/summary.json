@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0.0",
+  "observed_at_utc": "2026-09-28T21:48:32.381044+00:00",
+  "status": "native_kali1_compute_and_kali2_launch_collect_pass",
+  "host": "kali1",
+  "cpu_model": "Intel Core i5-1235U",
+  "logical_cpus": 12,
+  "isolated_runtime_archive_bytes": 39775617,
+  "isolated_runtime_uncompressed_bytes": 98223982,
+  "runtime_files_sha256_verified": 221,
+  "jobs": {
+    "span40": {
+      "passed": true,
+      "elapsed_seconds": 1.267963,
+      "memory_peak_bytes": 125239296,
+      "span_mm": 40.0,
+      "voxel_mm": 0.25,
+      "report": "span40/execution.json"
+    },
+    "span50": {
+      "passed": true,
+      "elapsed_seconds": 2.411119,
+      "memory_peak_bytes": 131915776,
+      "span_mm": 50.0,
+      "voxel_mm": 0.25,
+      "report": "span50/execution.json"
+    },
+    "span60": {
+      "passed": true,
+      "elapsed_seconds": 1.494442,
+      "memory_peak_bytes": 129093632,
+      "span_mm": 60.0,
+      "voxel_mm": 0.25,
+      "report": "span60/execution.json"
+    },
+    "kali2-triggered": {
+      "passed": true,
+      "elapsed_seconds": 1.220082,
+      "memory_peak_bytes": 121339904,
+      "span_mm": 50.0,
+      "voxel_mm": 0.25,
+      "report": "kali2-triggered/execution.json"
+    }
+  },
+  "native_kali2_launcher": "kali1-picogk",
+  "kali2_triggered_job": "kali1-proof-via-kali2",
+  "kali2_triggered_artifacts_sha256_verified": 8,
+  "ssh_route": "Kali2 loopback2221 through controller backhaul to Kali1",
+  "ssh_host_key_alias": "kali1-cpu",
+  "ssh_host_key_fingerprint": "SHA256:RbqTBL0nlOKOosJ/Fm/hbhw2KI2z+q7J1yuOCSpZRqI",
+  "client_key_generated_natively_on_kali2": true,
+  "only_public_key_installed_on_kali1": true,
+  "authorized_key_restrictions": "restrict",
+  "private_key_transferred": false,
+  "direct_network_route_available": false,
+  "requires_controller_backhaul": true,
+  "full_artifacts_on_kali2_relative_to_home": [
+    "stations/kali1-compute-20260928-r8kj70sz",
+    "stations/kali1/kali1-proof-via-kali2"
+  ],
+  "mesh_duplicates_not_added_to_repository": true,
+  "system_install_performed": false,
+  "new_long_running_service_on_kali1": false,
+  "gateway_restarted_for_setup": false,
+  "manufacturing_validated": false,
+  "final_image_equivalence": "final-image-equivalence.json",
+  "reproduction_document": "../../../../../deploy/intel/picogk-cpu.md"
+}

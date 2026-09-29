@@ -1,0 +1,44 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from picogk-station-hotfix.Dockerfile
+#1 transferring dockerfile: 1.15kB done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/dockerfile:1.7
+#2 DONE 3.8s
+
+#3 docker-image://docker.io/docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e
+#3 CACHED
+
+#4 [internal] load metadata for ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:540d9d4af34a73f91114f2d3dd4f4ad847eee42037c26efaf1caadb5b155e871
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [1/5] FROM ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:540d9d4af34a73f91114f2d3dd4f4ad847eee42037c26efaf1caadb5b155e871
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 transferring context: 17.11kB done
+#7 DONE 0.0s
+
+#8 [2/5] COPY --chmod=0644 deploy/vast/station-client/main.js deploy/vast/station-client/index.html deploy/vast/station-client/config.mjs /opt/station-client/
+#8 CACHED
+
+#9 [3/5] COPY containers/picogk-station/qwen.sh /opt/station/qwen.sh
+#9 CACHED
+
+#10 [4/5] COPY deploy/vast/station/media-relay.py /usr/local/bin/station-media-relay
+#10 DONE 0.0s
+
+#11 [5/5] RUN chmod 0755 /opt/station/qwen.sh /usr/local/bin/station-media-relay     && OVRTX_BIN=/opt/ovrtx-runtime/lib/python3.12/site-packages/ovrtx/bin     && mkdir -p "${OVRTX_BIN}/cache" "${OVRTX_BIN}/mdl/omniverse_exts"     && chown -R station-worker:station-worker "${OVRTX_BIN}/cache" "${OVRTX_BIN}/mdl/omniverse_exts"     && runuser -u station-worker -- test -w "${OVRTX_BIN}/cache"     && runuser -u station-worker -- test -w "${OVRTX_BIN}/mdl/omniverse_exts"     && /usr/bin/python3 /usr/local/bin/station-media-relay --help >/dev/null     && bash -n /opt/station/qwen.sh
+#11 DONE 7.9s
+
+#12 exporting to image
+#12 exporting layers
+#12 exporting layers 1.7s done
+#12 writing image sha256:4f58a4e28ab7706e7735b2185123c2d8fd6eb94a3d1842a9e352950ce503bdfb done
+#12 naming to docker.io/library/picogk-station:qualified-persistent-20260928 done
+#12 DONE 1.7s

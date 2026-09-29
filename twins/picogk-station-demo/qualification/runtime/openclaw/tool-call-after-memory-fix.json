@@ -1,0 +1,51 @@
+{
+  "instance_id": 53246885,
+  "job_id": "openclaw-proof-205858",
+  "agent_id": "m64-coordinator",
+  "route": "gateway",
+  "started_epoch": 1790630170.8610053,
+  "finished_epoch": 1790630189.8878303,
+  "latency_seconds": 19.026823987995158,
+  "cli_duration_ms": 17281,
+  "cli_returncode": 0,
+  "cli_status": "ok",
+  "provider": "vllm",
+  "model": "qwen3.8-flash-next-uncensored-nvfp4",
+  "usage": {
+    "input": 22617,
+    "output": 231,
+    "cacheRead": 0,
+    "cacheWrite": 0,
+    "total": 22848
+  },
+  "usage_scope": "Aggregate reported agent-turn usage, not one context length.",
+  "actual_tool_trace_verified": true,
+  "tool_trace": [
+    {
+      "source": "OpenClaw native redacted runtime trajectory",
+      "tool_call_id": "chatcmpl-tool-8663824f03b76d3a",
+      "tool_name": "exec",
+      "command": "$WORKSPACE_DIR/.local/bin/station-task status",
+      "call_timestamp": "2026-09-28T21:16:16.614Z",
+      "result_timestamp": "2026-09-28T21:16:22.075Z",
+      "runtime_success": true,
+      "exit_code": 0,
+      "process_status": "completed",
+      "job_states": [
+        {
+          "job": "openclaw-proof-205858",
+          "action": "demo",
+          "status": "complete",
+          "returncode": 0,
+          "updated_epoch": 1790629179.582855
+        }
+      ],
+      "command_matches_expected_after_native_redaction": true,
+      "redaction_note": "The native export replaces the workspace root by $WORKSPACE_DIR; the command is retained as exported."
+    }
+  ],
+  "redacted_trajectory_sha256": "eaf6e6a5c0dd03fe30e4398cdeb710ea168174545b931e0c4092dcad85c428db",
+  "passed": true,
+  "usage_is_billing_evidence": false,
+  "source_receipt_sha256": "13592740cca2e7e8752c998d90891661fc7f54fd73b024943fe5a3dca7b76bbf"
+}

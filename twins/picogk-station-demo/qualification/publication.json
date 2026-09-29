@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "observed_at_utc": "2026-09-28T20:12:07Z",
+  "status": "published_and_anonymously_qualified",
+  "publication_tag": "ghcr.io/cluster2600/3dprinting993-picogk-m64:station-20260928-ef4b546991d6",
+  "image": {
+    "image_ref": "ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:540d9d4af34a73f91114f2d3dd4f4ad847eee42037c26efaf1caadb5b155e871",
+    "config_digest": "sha256:4893cbb406c8b88ec9dcaec201ebfbe42f68902e1987c5d65a2f556ee390a603",
+    "platform": "linux/amd64",
+    "anonymous_registry_verified": true,
+    "published_ports": [
+      "22/tcp",
+      "47998/udp"
+    ],
+    "image_download_bytes": 16366225657,
+    "layer_count": 74,
+    "observed_epoch": 1790625929,
+    "observed_at_utc": "2026-09-28T20:05:29Z"
+  },
+  "anonymous_qualification": {
+    "script": "deploy/vast/station/qualify_image.py",
+    "source_receipt_sha256": "a885642b1d2ef964cd3084d65db9ce6628ec9dddbd804882a2d2414d65e83de3",
+    "metadata_only": true,
+    "full_image_pull_on_new_host_verified": false,
+    "local_configuration_matches_published": true,
+    "cpu_build_evidence": "build/final-image.json"
+  },
+  "github_actions": {
+    "repository": "cluster2600/porscheparts",
+    "workflow_path": ".github/workflows/picogk-station-publish.yml",
+    "run_id": 36471929525,
+    "url": "https://github.com/cluster2600/porscheparts/actions/runs/36471929525",
+    "head_sha": "e789fc39d00fbf693e22a19d9cf1fa4c4aed4db7",
+    "status": "completed",
+    "conclusion": "success",
+    "api_observed_at_utc": "2026-09-28T20:05:45Z",
+    "api_observation_time_approximate": true,
+    "verification_source": "controller observation of GitHub run and runners API responses"
+  },
+  "runner": {
+    "host": "Kali2",
+    "id": 22,
+    "just_in_time": true,
+    "single_job": true,
+    "automatically_deregistered": true,
+    "matching_station_runners_remaining_after_job": 0
+  },
+  "existing_image_published_without_rebuild": true,
+  "parent_latest_tag_modified": false,
+  "gpu_runtime_verified": false,
+  "openclaw_tool_call_verified": false,
+  "webrtc_verified": false,
+  "soak_30_minutes_verified": false,
+  "manufacturing_validated": false
+}
