@@ -1,0 +1,47 @@
+{
+  "schema": "m64-part-provenance-v1",
+  "part": "parts/m64-cylinder-head-0001",
+  "status": "F2 coherent parametric assembly - research geometry, not a released part",
+  "generated_utc": "2026-09-29T07:55:00Z",
+  "authority_legend": {
+    "FACT_PUBLIC": "published Porsche/spec value",
+    "SCAN_CANDIDATE_935_C": "dimension read from the 935 scan head twin (twins/reference-935-cylinder-head), candidate not measured",
+    "V2_DESIGN": "four-valve V2 sub-assembly design data (reports/M64_FOUR_VALVE_DISTRIBUTION_MODULE_20260907.md)",
+    "ASSUMPTION": "engineering assumption, listed, not sourced",
+    "MISSING_ACQ": "known gap, parameterized, never baked (ACQ-0004)"
+  },
+  "dimensions": [
+    {"field": "bore_diameter_mm", "value": 100.0, "authority": "FACT_PUBLIC", "source": "AGENTS.md project baseline"},
+    {"field": "register_diameter_mm", "value": 113.423, "authority": "SCAN_CANDIDATE_935_C", "source": "twins/reference-935-cylinder-head head.json register_diameter"},
+    {"field": "register_depth_mm", "value": 2.21, "authority": "SCAN_CANDIDATE_935_C", "source": "935 head.json"},
+    {"field": "carrier_face_height_mm", "value": 86.461, "authority": "SCAN_CANDIDATE_935_C", "source": "935 head.json"},
+    {"field": "head_envelope_LxW_mm", "value": [118.0, 112.0], "authority": "ASSUMPTION", "source": "bore + deck margin / cover flange; sized to enclose 935-derived features"},
+    {"field": "deck_thickness_mm", "value": 12.0, "authority": "ASSUMPTION", "source": "deck material around pockets"},
+    {"field": "seat_angle_deg", "value": 45.0, "authority": "V2_DESIGN", "source": "G3 seat-contact audit candidate 45 deg (not a Porsche-published angle)"},
+    {"field": "seat_band_width_mm", "value": 2.5, "authority": "ASSUMPTION", "source": "cutting band; G3 contact width is 1.0"},
+    {"field": "seat_insert_wall/depth_mm", "value": [2.0, 7.0], "authority": "ASSUMPTION", "source": "radial wall / insert height from 935 head.json guide_seat_retainer reading"},
+    {"field": "intake_valve_head_d_mm", "value": 40.0, "authority": "V2_DESIGN", "source": "V2 build-report + Swindon M64 24V kit product sheet quote"},
+    {"field": "exhaust_valve_head_d_mm", "value": 33.0, "authority": "V2_DESIGN", "source": "V2 build-report + product sheet quote"},
+    {"field": "valve_stem_d_mm", "value": 6.0, "authority": "V2_DESIGN", "source": "V2"},
+    {"field": "guide_od/start/length_mm", "value": [11.0, 20.0, 35.0], "authority": "V2_DESIGN", "source": "V2"},
+    {"field": "valve_positions_mm", "value": {"intake_x": -18.0, "exhaust_x": 23.5, "pair_half_spacing_y": 22.5}, "authority": "V2_DESIGN", "source": "V2 layout"},
+    {"field": "valve_axis_angles_deg", "value": {"intake": 26.576, "exhaust": 29.162}, "authority": "SCAN_CANDIDATE_935_C", "source": "G1 head.json"},
+    {"field": "stud_count", "value": 12, "authority": "FACT_PUBLIC", "source": "Parts Guide quantity"},
+    {"field": "stud_hole_d_mm", "value": 10.879, "authority": "SCAN_CANDIDATE_935_C", "source": "935 gasket_studs.json"},
+    {"field": "stud_span_XY_mm", "value": [85.824, 86.581], "authority": "SCAN_CANDIDATE_935_C", "source": "935 gasket_studs.json"},
+    {"field": "stud_hole_depth_mm", "value": 45.0, "authority": "ASSUMPTION", "source": "blind depth unpublished"},
+    {"field": "cylinder_pitch_mm", "value": null, "authority": "MISSING_ACQ", "source": "ACQ-0004: loaded via --params file, null => parameterized, never baked"},
+    {"field": "deck_height_mm", "value": null, "authority": "MISSING_ACQ", "source": "ACQ-0004: same parameter file"}
+  ],
+  "export": {
+    "stl": "export/m64-cylinder-head.stl",
+    "stl_origin": "PicoGK station build (docker picogk-station:qualified-persistent-20260928), voxel 2 mm; see export/picogk-run-report.json",
+    "stl_stats": {"faces": 70868, "watertight": false, "bbox_mm": [118.0, 117.8, 110.1], "note": "watertight=false at 2 mm voxel skin; no physics/fitment claim"},
+    "step": "export/m64-cylinder-head.step",
+    "step_note": "FreeCAD headless conversion; optimal-face-merge intractable at 70k facets, linear-deflection mode used; see export/conversion-report.json"
+  },
+  "rejected": [
+    {"reading": "stud pattern span 98.07/43.27", "reason": "cam-gear dimension, not head studs (935 metrology record)"}
+  ],
+  "next_gate": "ACQ-0004 cylinder pitch + deck height; then chamber volume audit vs compression target, and seat contact pressure study before any material/process decision."
+}
