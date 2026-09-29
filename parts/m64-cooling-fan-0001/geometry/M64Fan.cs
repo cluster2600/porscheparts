@@ -236,9 +236,11 @@ sealed class FanHousing(Func<string, float> get) : IImplicit {
 
     public void Check() {
         if (throat <= 0 || shell <= 0 || outer <= throat) throw new ArgumentException("Invalid housing");
-        if (fSignedDistance(new Vector3(outer - shell / 2, 0, len / 2)) <= 0) throw new Exception("Shell missing");
-        if (fSignedDistance(new Vector3((throat + outer - shell) / 2, 0, flange / 2)) <= 0) throw new Exception("Flange missing");
-        if (fSignedDistance(new Vector3((hubBore + hubR) / 2, 0, hubLen / 2)) <= 0) throw new Exception("Hub missing");
-        if (fSignedDistance(new Vector3((hubR + spokeEnd) / 2, 0, spokeT / 2)) <= 0) throw new Exception("Spoke missing");
+        // Solid-interior probe points: inside material means negative signed
+        // distance, so the failure sign is >= 0 (same convention as M64Rotor).
+        if (fSignedDistance(new Vector3(outer - shell / 2, 0, len / 2)) >= 0) throw new Exception("Shell missing");
+        if (fSignedDistance(new Vector3((throat + outer - shell) / 2, 0, flange / 2)) >= 0) throw new Exception("Flange missing");
+        if (fSignedDistance(new Vector3((hubBore + hubR) / 2, 0, hubLen / 2)) >= 0) throw new Exception("Hub missing");
+        if (fSignedDistance(new Vector3((hubR + spokeEnd) / 2, 0, spokeT / 2)) >= 0) throw new Exception("Spoke missing");
     }
 }
