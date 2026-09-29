@@ -2,9 +2,10 @@
 # Design intent: planar-face merge (optimal) to keep the STEP face count sane.
 import os, sys, json, time
 
-stl = "/workspace/parts/m64-cylinder-head-0001/export/m64-cylinder-head.stl"
-step = "/workspace/parts/m64-cylinder-head-0001/export/m64-cylinder-head.step"
-report = "/workspace/parts/m64-cylinder-head-0001/export/freecad-convert-stats.json"
+root = os.environ.get("M64_EXPORT_DIR", ".")
+stl = os.path.join(root, "m64-cylinder-head.stl")
+step = os.path.join(root, "m64-cylinder-head.step")
+report = os.path.join(root, "freecad-convert-stats.json")
 
 t0 = time.time()
 import Mesh, MeshPart, Part
