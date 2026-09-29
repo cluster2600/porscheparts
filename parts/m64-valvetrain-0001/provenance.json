@@ -8,17 +8,17 @@
       "head_diameter_mm": {
         "value": 49.0,
         "label": "sourced",
-        "source": "declaration; manual 15-8d 49\u00b10.1 (ocr_unreviewed)"
+        "source": "declaration; manual 15-8d 49±0.1 (ocr_unreviewed)"
       },
       "stem_diameter_mm": {
         "value": 8.0,
         "label": "sourced",
-        "source": "declared \u00d88; manual 7.970 -0.012 (ocr_unreviewed)"
+        "source": "declared Ø8; manual 7.970 -0.012 (ocr_unreviewed)"
       },
       "overall_length_mm": {
         "value": 110.1,
         "label": "unknown",
-        "source": "manual 15-8d 110.1\u00b10.1 recorded for Carrera 2V; applicability to M64/60 unproven \u2014 placeholder default"
+        "source": "manual 15-8d 110.1±0.1 recorded for Carrera 2V; applicability to M64/60 unproven — placeholder default"
       },
       "head_thickness_mm": {
         "value": 5.5,
@@ -43,7 +43,7 @@
       },
       "rim_inner_radius_mm": {
         "label": "derived",
-        "formula": "head\u00d8/2 - seatWidth/cos(seatAngle)"
+        "formula": "headØ/2 - seatWidth/cos(seatAngle)"
       }
     },
     "valve-exhaust-43_5-turbo-proxy": {
@@ -55,12 +55,12 @@
       "stem_diameter_mm": {
         "value": 8.0,
         "label": "sourced",
-        "source": "declared \u00d88"
+        "source": "declared Ø8"
       },
       "overall_length_mm": {
         "value": 109.0,
         "label": "unknown",
-        "source": "~108.9\u2013109 mm envelope stated (SINGLE_SOURCE) \u2014 placeholder default"
+        "source": "~108.9–109 mm envelope stated (SINGLE_SOURCE) — placeholder default"
       },
       "head_thickness_mm": {
         "value": 5.5,
@@ -198,7 +198,7 @@
       },
       "reference_timing_deg": {
         "label": "sourced",
-        "source": "993 Carrera manual p.16 (page_checked), 1mm lift/0 lash: I opens 1 BTDC closes 60 ABDC; E opens 45 BBDC closes 6 ATDC (crank deg). 2V Carrera reference only \u2014 transfer to 4V M64/60 forbidden without justification"
+        "source": "993 Carrera manual p.16 (page_checked), 1mm lift/0 lash: I opens 1 BTDC closes 60 ABDC; E opens 45 BBDC closes 6 ATDC (crank deg). 2V Carrera reference only — transfer to 4V M64/60 forbidden without justification"
       }
     }
   },
@@ -255,5 +255,43 @@
     "guides and seats not validated",
     "camshaft is a layout hypothesis, not an M64 profile claim",
     "per SAFETY.md a calculation never authorizes manufacturing; engine-critical parts stay prohibited_pending_engineering"
-  ]
+  ],
+  "evidence": {
+    "_note": "Registered evidence files in this repository for each component. 'layout only' where no dimensional evidence exists (cam profile MISSING => layout hypothesis only, M64-ACQ-0002).",
+    "valve-intake-49-proxy": {
+      "evidence_files": [
+        "catalog/parts/993-eng-intake-valve-f1-0001.json",
+        "catalog/sources/src-fvd-993-inlet-valve-dimensions.json (registered by the part record)",
+        "catalog/manual/993-workshop-manual-measurements.json (49 +/- 0.1 and 110.1 +/- 0.1 occurrences, ocr_unreviewed)"
+      ],
+      "state": "head/stem diameters SOURCED (declared); length/seat/thickness UNKNOWN-ASSUMPTION"
+    },
+    "valve-exhaust-43_5-turbo-proxy": {
+      "evidence_files": [
+        "catalog/parts/993-eng-exhaust-valve-f1-0001.json (exhaust counterpart record; 108.9-109 x 43.5 x 8 stated, no tolerances)",
+        "catalog/sources/src-partworks-993-exhaust-valve-dimensions.json (registered by the part record)"
+      ],
+      "state": "head/stem SOURCED (declared, SINGLE_SOURCE, suffix unresolved); length UNKNOWN-ASSUMPTION"
+    },
+    "spring-seat-proxy": {
+      "evidence_files": [
+        "catalog/sources/src-elferszene-993-valve-spring-installation-length.json (SRC-ELFERSZENE-993-VALVE-SPRING-INSTALLATION-LEVEL C: A=36.7/35.7 +0.3 installed length, declared, page re-read blocked)",
+        "catalog/manual/993-workshop-manual-measurements.json (installed-length occurrences, ocr_unreviewed)"
+      ],
+      "state": "installed-length SPEC registered; seat geometry itself UNKNOWN/ASSUMPTION"
+    },
+    "cam-follower-bucket-proxy": {
+      "evidence_files": [
+        "catalog/sources/src-mahle-valvetrain-technical-2025.json (SRC-MAHLE-VALVETRAIN-TECHNICAL-2025, level B, generic: material/thermal duty context only, no 993 geometry)",
+        "catalog/manual/993-workshop-manual-measurements.json (lifter travel p.151, ocr_unreviewed)"
+      ],
+      "state": "form ASSUMPTION (OHV-2V lineage layout); hydraulic lash compensation FACT_public; no public M64 bucket dimensions"
+    },
+    "camshaft-parametric-proxy": {
+      "evidence_files": [
+        "NO DIMENSIONAL EVIDENCE: M64 cam profile absent from public domain (M64-ACQ-0002; twins/m64-engine-system/program.json gating)"
+      ],
+      "state": "LAYOUT ONLY: base circle + cosine-rise placeholder lobe; every parameter UNKNOWN/ASSUMPTION"
+    }
+  }
 }
