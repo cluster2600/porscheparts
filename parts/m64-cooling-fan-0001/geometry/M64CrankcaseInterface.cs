@@ -162,28 +162,29 @@ sealed class CrankcaseInterface : IImplicit {
     }
 
     public float fSignedDistance(in Vector3 p) {
-        // Inlet flange annulus, z in [-flangeT, 0]. The fan-housing inlet
-        // plane is the z = 0 interface; the pilot enters the housing hub
-        // bore toward +z and the duct runs to +z into the crankcase side.
-        float body = SdTube(p, pilotBoreR, flangeR, -flangeT, 0);
-        // Locating pilot: fits the housing hub bore (radius pilotR <= bore).
-        body = MathF.Min(body, SdTube(p, pilotBoreR, pilotR, 0, pilotLen));
-        // Inlet duct shell around the collector mouth.
-        body = MathF.Min(body, SdTube(p, ductOutR - wall, ductOutR, 0, ductLen));
-        // Bellmouth lip at the duct entry (ring at the mean duct-mouth radius).
-        body = MathF.Min(body, SdTorusXY(p, (ductInR + ductOutR) / 2, bellmouthR));
-        // Central suction bore (through pilot and flange).
-        float bore = MathF.Max(MathF.Sqrt(p.X * p.X + p.Y * p.Y) - pilotBoreR,
-            MathF.Abs(p.Z + flangeT / 2) - (flangeT / 2 + pilotLen + ductLen));
-        body = MathF.Max(body, -bore);
-        // Stub ports on the bolt circle, drilled through the flange annulus.
+        // Stub ports first: the six tilted channels are subtracted from every
+        // other component so they read as through-holes from the flange face.
+        float body = float.MaxValue;
         for (int i = 0; i < (int)ports; i++) {
             float a = 2 * MathF.PI * i / ports;
             float cs = MathF.Cos(a), sn = MathF.Sin(a);
             Vector3 lp = new(p.X * cs + p.Y * sn, -p.X * sn + p.Y * cs, p.Z);
             body = MathF.Max(body, -SdPort(lp));
         }
-        return body;
+        // Inlet flange annulus, z in [-flangeT, 0]. The fan-housing inlet
+        // plane is the z = 0 interface; the pilot enters the housing hub
+        // bore toward +z and the duct runs to +z into the crankcase side.
+        body = MathF.Min(body, SdTube(p, pilotBoreR, flangeR, -flangeT, 0));
+        // Locating pilot: fits the housing hub bore (radius pilotR <= bore).
+        body = MathF.Min(body, SdTube(p, pilotBoreR, pilotR, 0, pilotLen));
+        // Inlet duct shell around the collector mouth.
+        body = MathF.Min(body, SdTube(p, ductOutR - wall, ductOutR, 0, ductLen));
+        // Bellmouth lip at the duct entry (ring at the mean duct-mouth radius).
+        body = MathF.Min(body, SdTorusXY(p, (ductInR + ductOutR) / 2, bellmouthR));
+        // Central suction bore (through pilot and flange, z in [-flangeT, pilotLen]).
+        float bore = MathF.Max(MathF.Sqrt(p.X * p.X + p.Y * p.Y) - pilotBoreR,
+            MathF.Abs(p.Z - (pilotLen - flangeT) / 2) - (pilotLen + flangeT) / 2);
+        return MathF.Max(body, -bore);
     }
 
     public void Check() {
@@ -197,19 +198,20 @@ sealed class CrankcaseInterface : IImplicit {
         if (ductInR <= pilotR) throw new ArgumentException("Duct must sit outside the pilot");
         if (portBCR + portR >= flangeR) throw new ArgumentException("Port breaks the flange rim");
         if (portBCR - portR <= ductOutR) throw new ArgumentException("Port root overlaps the duct");
-        // Witness probes: flange ring solid, pilot solid, duct wall solid,
-        // bore and a port axis void.
-        if (fSignedDistance(new Vector3((pilotR + flangeR) / 2, 0, -flangeT / 2)) <= 0)
+        // Witness probes (same convention as M64Fan.cs): the field is
+        // negative inside the solid. Flange ring, pilot and duct wall must
+        // be solid; the bore and a port channel must be void.
+        if (fSignedDistance(new Vector3((pilotR + flangeR) / 2, 0, -flangeT / 2)) >= 0)
             throw new Exception("Flange missing");
-        if (fSignedDistance(new Vector3((pilotBoreR + pilotR) / 2, 0, pilotLen / 2)) <= 0)
+        if (fSignedDistance(new Vector3((pilotBoreR + pilotR) / 2, 0, pilotLen / 2)) >= 0)
             throw new Exception("Pilot missing");
-        if (fSignedDistance(new Vector3((ductInR + ductOutR) / 2, 0, ductLen / 2)) <= 0)
+        if (fSignedDistance(new Vector3((ductInR + ductOutR) / 2, 0, ductLen / 2)) >= 0)
             throw new Exception("Duct wall missing");
-        if (fSignedDistance(new Vector3(0, 0, -flangeT / 2)) >= 0)
+        if (fSignedDistance(new Vector3(0, 0, -flangeT / 2)) <= 0)
             throw new Exception("Central bore closed");
         var pp = new Vector3(portBCR + portLen * MathF.Cos(portTilt) / 2, 0,
             portLen * MathF.Sin(portTilt) / 2);
-        if (fSignedDistance(pp) >= 0)
+        if (fSignedDistance(pp) <= 0)
             throw new Exception("Port channel closed");
     }
 }
