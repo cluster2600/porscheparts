@@ -122,8 +122,7 @@ public sealed class Valve : IBoundedImplicit
         float rHead = fHeadDiameterMm / 2f;
         float h = fHeadThicknessMm;
         float tanA = MathF.Tan(fSeatFaceAngleDeg * MathF.PI / 180f);
-        float secA = 1f / MathF.Cos(fSeatFaceAngleDeg * MathF.PI / 180f);
-
+        
         // Stem: cylinder r_stem, from the head back face (z=0, embedded in the
         // head by the union) to the tip, with a step down to the tip pilot.
         float zTipStart = fOverallLengthMm - fTipLengthMm;
@@ -158,7 +157,6 @@ public sealed class Valve : IBoundedImplicit
         dBevelMasked = MathF.Max(dBevelMasked, dTop);               // mask above the back face
         float dInner = rStem - r;                                   // mask (never binds on the head)
         float dHead = MathF.Max(MathF.Max(dTop, dOuter), MathF.Max(dBevelMasked, dInner));
-        _ = secA;
 
         return MathF.Min(dStemBody, dHead);
     }

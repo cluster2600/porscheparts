@@ -30,6 +30,18 @@ The 4-valve M64 head module itself is owned by the separate `wt-head` lane
   (`run-report.json` + a `COMPILE_VERDICT.md` summary). Absence of a report
   means "authored, not compiled" — never a faked mesh.
 
+## Verification status (2026-09-29)
+
+`Valvetrain.cs` is **compiled and run** in
+`picogk-station:qualified-persistent-20260928` (SDK 9.0.317, PicoGK 2.3.0,
+picogk.26.2): build succeeded 0 warnings / 0 errors, all five proxies
+voxelized/meshed/STL-exported at 1.0 mm with sha256-verified
+`validation/run/run-report.json`. See
+`validation/COMPILE_VERDICT.md` for the API conformance table and limits.
+Host-side builds with the workstation SDK 6.0.400 fail with NETSDK1045
+(net9.0 not supported) — an SDK-version limitation of the host, not of the
+code; the station container is the qualified build path for this lane.
+
 ## Status language (binding)
 
 Nothing here is measured, fitted, tested, safe or manufacturing-ready.
