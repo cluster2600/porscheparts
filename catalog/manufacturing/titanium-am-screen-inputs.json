@@ -972,6 +972,113 @@
         "reason": "la piece d'origine est en magnesium coule dont le mode de defaillance est la corrosion des portees ; le titane ne se pique pas. Il n'ameliore en revanche ni la masse ni la raideur : contre le magnesium il perd les deux indices de flexion de plaque."
       },
       "reason": "Couvercle plan boulonne. Aucune des trois familles additives : il se fraise. La piece d'origine est en magnesium coule et se corrode : c'est le critere de corrosion de TITANIUM.md, et c'est le seul vrai argument du titane ici. Mais le carter d'en face est lui aussi en magnesium, et le couple galvanique reste sans parade."
+    },
+    "993-CA-CHARGE-PIPE-SET-PET-0001": {
+      "titanium_relevance": {
+        "mass_reduction_on_complex_metal_part": false,
+        "corrosion_problematic": false,
+        "consolidation": false,
+        "internal_passages_unmachinable": false,
+        "small_series_tooling_dominates": false
+      },
+      "titanium_counter_indications": {
+        "simple_machinable_shape": false,
+        "needs_thermal_conductivity": false,
+        "must_match_steel_stiffness": false,
+        "galling_or_repeated_threads": false,
+        "uncontrolled_galvanic_couple": false,
+        "differential_expansion_with_alloy_mate": false
+      },
+      "additive_families": [],
+      "peak_service_temperature_c": 80,
+      "temperature_basis": "air de suralimentation apres intercooler, ordre de grandeur du depot — non mesure",
+      "interfaces_to_measure": 3,
+      "reason": "Fiche d'identite seule (PET 107-45, flexible et durits) : pas de geometrie, donc aucune famille additive ne peut etre declaree. Le titane n'apporte rien sur du souple/bride.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "origine elastomere et tole bridee : le titane n'ameliore rien sans geometrie instruite"
+      }
+    },
+    "993-CA-TURBO-INTAKE-MANIFOLD-PET-0001": {
+      "titanium_relevance": {
+        "mass_reduction_on_complex_metal_part": true,
+        "corrosion_problematic": false,
+        "consolidation": false,
+        "internal_passages_unmachinable": false,
+        "small_series_tooling_dominates": false
+      },
+      "titanium_counter_indications": {
+        "simple_machinable_shape": false,
+        "needs_thermal_conductivity": false,
+        "must_match_steel_stiffness": false,
+        "galling_or_repeated_threads": false,
+        "uncontrolled_galvanic_couple": false,
+        "differential_expansion_with_alloy_mate": false
+      },
+      "additive_families": [],
+      "peak_service_temperature_c": 80,
+      "temperature_basis": "admission, ordre de grandeur du depot — non mesure",
+      "interfaces_to_measure": 2,
+      "reason": "Fiche d'identite seule (PET 107-20) : la piece paraitrait un vrai cas AM, mais aucune cote n'est transcrite, donc aucune famille additive n'est declaree et le titane reste non instruit face a la matiere d'origine.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "matiere d'origine non confirmee par la fiche PET : comparaison impossible"
+      }
+    },
+    "993-EXH-CAT-CONVERTER-PAIR-PET-0001": {
+      "titanium_relevance": {
+        "mass_reduction_on_complex_metal_part": false,
+        "corrosion_problematic": false,
+        "consolidation": false,
+        "internal_passages_unmachinable": false,
+        "small_series_tooling_dominates": false
+      },
+      "titanium_counter_indications": {
+        "simple_machinable_shape": false,
+        "needs_thermal_conductivity": false,
+        "must_match_steel_stiffness": false,
+        "galling_or_repeated_threads": false,
+        "uncontrolled_galvanic_couple": false,
+        "differential_expansion_with_alloy_mate": false
+      },
+      "additive_families": [],
+      "peak_service_temperature_c": 800,
+      "temperature_basis": "gaz d'echappement amont catalyseur, ordre de grandeur de service — jugement du depot, non mesure",
+      "interfaces_to_measure": 4,
+      "reason": "Fiche d'identite seule (PET 202-15) : nomenclature, pas geometrie. Le corps du catalyseur n'est pas un candidat au tirage titane, et la classe de securite interdit deja le premier tirage.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "acier inoxydable et corps ceramique : le titane n'est pas une matiere de catalyseur"
+      }
+    },
+    "993-EXH-HEAT-EXCHANGER-PAIR-PET-0001": {
+      "titanium_relevance": {
+        "mass_reduction_on_complex_metal_part": true,
+        "corrosion_problematic": true,
+        "consolidation": true,
+        "internal_passages_unmachinable": true,
+        "small_series_tooling_dominates": true
+      },
+      "titanium_counter_indications": {
+        "simple_machinable_shape": false,
+        "needs_thermal_conductivity": false,
+        "must_match_steel_stiffness": false,
+        "galling_or_repeated_threads": false,
+        "uncontrolled_galvanic_couple": false,
+        "differential_expansion_with_alloy_mate": false
+      },
+      "additive_families": [
+        "passages_internes",
+        "consolidation"
+      ],
+      "peak_service_temperature_c": 900,
+      "temperature_basis": "meme jug que 993-ENG-EXHAUST-MANIFOLD-IN625-F0-0001 (collecteur turbo) ; PET 202-10 ne publie aucune temperature",
+      "interfaces_to_measure": 8,
+      "reason": "Identite transcrite des deux collecteurs 993 211 039 55 / 041 55 (PET 202-10). Excellent candidat AM sur le papier, mais 900 C interdit tout titane : cas nickel. La fiche de geometrie 993-ENG-EXHAUST-MANIFOLD-IN625-F0-0001 porte le meme verdict ; cette fiche d'identite le confirme sans le contredire.",
+      "incumbent_material": {
+        "titanium_improves_on_it": false,
+        "reason": "comparaison a la matiere d'origine non instruite ; a 900 C la question ne se pose pas"
+      }
     }
   }
 }

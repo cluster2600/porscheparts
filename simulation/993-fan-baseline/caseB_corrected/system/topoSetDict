@@ -1,0 +1,21 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      topoSetDict;
+}
+// disc block x in [0.368000, 0.388000] m
+actions
+(
+    {
+        name            discCells;
+        type            cellSet;
+        action          new;
+        source          boxToCell;
+        sourceInfo
+        {
+            box             (0.367900 -1.0 -1.0) (0.388100 1.0 1.0);
+        }
+    }
+);

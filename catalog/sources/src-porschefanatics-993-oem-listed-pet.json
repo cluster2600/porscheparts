@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "source_id": "SRC-PORSCHEFANATICS-993-OEM-LISTED-PET",
+  "title": "Porsche Fanatics local dataset - data/oem-listed.json, machine transcription of the 993 PET parts tables",
+  "url": null,
+  "publisher": "Porsche Fanatics (transcriptions of Porsche AG PET catalogues)",
+  "source_type": "dataset",
+  "content_types": ["parts_catalogue"],
+  "coverage": {
+    "generation": "993",
+    "variants": ["993_Turbo", "993_Carrera"],
+    "parts": ["heat_exchanger", "catalytic_converter", "muffler", "charge_air_cooler", "charge_air_duct", "charge_air_hose", "intake_manifold", "shut_off_valve", "fasteners", "sealing_rings", "clamps"]
+  },
+  "access": {
+    "status": "available",
+    "method": "local_copy_read",
+    "accessed_on": "2026-09-29"
+  },
+  "rights": {
+    "license": "site-dataset-reference-only; underlying PET catalogues remain Porsche AG copyright",
+    "redistribution": "prohibited",
+    "attribution": "Porsche Fanatics ; Porsche AG for the PET source catalogues"
+  },
+  "quality": {
+    "evidence_level": "B",
+    "dimensional_accuracy": "not_applicable",
+    "verified_against": ["SRC-PET-993-KAT17-PDF", "SRC-PORSCHE-AUSTRIA-993-107-45-PET", "SRC-PORSCHE-PET-993-TURBO-HEAT-EXCHANGER-202-10"]
+  },
+  "notes": "Fichier local data/oem-listed.json du depot porschefanatics.com (commit f5dc1c25c304228a36405aabd6e2f79d9d241093), 198 288 lignes de transcription de tableaux de pieces PET, dont les illustrations 107-20 (turbocharging, 65 lignes / 38 references), 107-45 (charge air cooler, 49 lignes / 28 references), 202-10 (Turbo exhaust, heat exchanger, 31 lignes / 18 references) et 202-15 (Turbo exhaust, catalytic converter, 98 lignes / 54 references) pour la generation 993. Chaque ligne porte : oemReference, description, position, petIllustration, petPage, petSourceId (pet-993-pdf-rsworkshop = KAT 17 via rsworkshop.ch, ou pet-classic-993 = KAT 517 USA via Porsche Classic), generationId, depth et sightings. Le fichier ne porte PAS de quantite par véhicule, aucune cote, aucune tolerance : identite de piece uniquement. La profondeur 'listed' signifie que la ligne est transcrite sans lecture en contexte ; les references recoupees entre les deux catalogues independants (KAT 17 et KAT 517) ou avec les fiches officielles citees sont traitees comme identite confirmee, les references a source unique restent signalees comme telles. Les champs de revision (rev A) et les variantes de suffixe entre les deux catalogues sont transcrits tels quels, sans affirmer la supersession. Le fichier est une transcription mecanique ; ni le PDF PET ni les illustrations ne sont redistribues ici."
+}

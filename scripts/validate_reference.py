@@ -23,7 +23,28 @@ CONFIDENCE = {"declared", "inferred", "weighed_by_third_party"}
 UNITS_MM = re.compile(r"^\d+(\.\d+)?$")
 
 REQUIRED = {"entry_id", "name", "generation", "confidence", "source_id", "notes"}
-OPTIONAL = {"oem_reference", "mass_kg", "dimensions_mm", "material", "variant", "caveat", "quantity_per_car"}
+OPTIONAL = {
+    "oem_reference",
+    "mass_kg",
+    "dimensions_mm",
+    "additional_declared_dimensions",
+    "material",
+    "variant",
+    "caveat",
+    "quantity_per_car",
+}
+ADDITIONAL_DIMENSION_FIELDS = {
+    "module_count",
+    "connection_outer_diameter_mm",
+    "connection_inner_diameter_mm",
+    "maximum_width_mm",
+    "maximum_height_mm",
+    "mounting_center_distance_mm",
+    "connection_length_mm",
+    "diameter_pair_mm",
+    "status",
+    "semantics",
+}
 
 
 def known_source_ids() -> set[str]:
@@ -71,6 +92,79 @@ def validate_entry(entry: Any, label: str, sources: set[str]) -> list[str]:
             isinstance(v, (int, float)) and not isinstance(v, bool) and v > 0 for v in dims
         ):
             errors.append(f"{label}.dimensions_mm: expected three positive numbers")
+
+    additional = entry.get("additional_declared_dimensions")
+    if additional is not None:
+        if not isinstance(additional, dict) or not additional:
+            errors.append(
+                f"{label}.additional_declared_dimensions: expected a non-empty object"
+            )
+        else:
+            unknown_additional = additional.keys() - ADDITIONAL_DIMENSION_FIELDS
+            if unknown_additional:
+                errors.append(
+                    f"{label}.additional_declared_dimensions: unknown fields: "
+                    f"{', '.join(sorted(unknown_additional))}"
+                )
+            for field, value in additional.items():
+                if field.endswith("_mm") and field != "diameter_pair_mm":
+                    if (
+                        not isinstance(value, (int, float))
+                        or isinstance(value, bool)
+                        or value <= 0
+                    ):
+                        errors.append(
+                            f"{label}.additional_declared_dimensions.{field}: "
+                            "expected a positive number"
+                        )
+            module_count = additional.get("module_count")
+            if module_count is not None and (
+                not isinstance(module_count, int)
+                or isinstance(module_count, bool)
+                or module_count < 1
+            ):
+                errors.append(
+                    f"{label}.additional_declared_dimensions.module_count: "
+                    "expected a positive integer"
+                )
+            diameter_pair = additional.get("diameter_pair_mm")
+            if diameter_pair is not None and (
+                not isinstance(diameter_pair, list)
+                or len(diameter_pair) != 2
+                or not all(
+                    isinstance(value, (int, float))
+                    and not isinstance(value, bool)
+                    and value > 0
+                    for value in diameter_pair
+                )
+            ):
+                errors.append(
+                    f"{label}.additional_declared_dimensions.diameter_pair_mm: "
+                    "expected two positive numbers"
+                )
+            for field in ("status", "semantics"):
+                value = additional.get(field)
+                if value is not None and (
+                    not isinstance(value, str) or not value.strip()
+                ):
+                    errors.append(
+                        f"{label}.additional_declared_dimensions.{field}: "
+                        "expected a non-empty string"
+                    )
+            inner = additional.get("connection_inner_diameter_mm")
+            outer = additional.get("connection_outer_diameter_mm")
+            if (
+                isinstance(inner, (int, float))
+                and not isinstance(inner, bool)
+                and isinstance(outer, (int, float))
+                and not isinstance(outer, bool)
+                and inner >= outer
+                and not str(additional.get("status", "")).startswith("quarantined_")
+            ):
+                errors.append(
+                    f"{label}.additional_declared_dimensions.status: "
+                    "non-physical inner/outer pair must be quarantined"
+                )
 
     # An entry that carries no fact at all is noise.
     if mass is None and entry.get("dimensions_mm") is None and not entry.get("material"):
