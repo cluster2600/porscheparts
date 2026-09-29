@@ -182,7 +182,10 @@ try
         ];
         foreach (int[] f in faces)
             blockShell.nAddTriangle(c[f[0]], c[f[1]], c[f[2]]);
-        return Voxels.voxMeshShell(library, blockShell, 0f);
+        // Solid (filled) voxelisation of the closed block mesh: the Voxels(Mesh)
+        // constructor fills the interior. voxMeshShell would give a shelled
+        // (hollow) body, which is why the first run exported a 55 cc shell.
+        return new Voxels(blockShell);
     }
     Voxels head = HeadBodyField();
 
