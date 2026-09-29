@@ -1,0 +1,23 @@
+{
+  "schema": "m64-part-provenance-v1",
+  "part": "parts/m64-cooling-fan-0001",
+  "status": "research parametric assembly — not dimensionally correct, not flow-validated, not released",
+  "generated_utc": "2026-09-29T08:55:00Z",
+  "config_source": "geometry/fan-config.json (single source of truth; file self-declares 'parametric_hypotheses_except_explicit_sources')",
+  "dimensions": [
+    {"field": "blade_count", "value": 11, "authority": "SOURCED-CONTESTED", "source": "docs/research/m64-fan-drive-blade-count-2026-09-27.md: 993 series fan is 11-blade in OEM literature; fan-drive scan pass could NOT count blades (twins/m64-engine-system/metrology/fan-drive/metrology-report.json: UNKNOWN) — value kept from literature, scan gap recorded"},
+    {"field": "rotor_diameter_mm", "value": 245.0, "authority": "ASSUMPTION", "source": "sized to 993 housing envelope; no published M64/60 rotor diameter found in repo sources"},
+    {"field": "radial_clearance_mm", "value": 2.0, "authority": "ASSUMPTION", "source": "LPBF-feasible assembly clearance; F0 clearance-collision note in docs/993/993_ENGINE_COOLING_FAN_SYSTEM_F0.md is addressed by parametric throat = rotor + 2x clearance"},
+    {"field": "blade_thickness_mm", "value": 4.4, "authority": "ASSUMPTION", "source": ">= LPBF AlSi10Mg practical min wall (printability.md)"},
+    {"field": "blade_root/tip_chord+pitch, camber, sweep", "value": "see fan-config.json", "authority": "DESIGN-HYPOTHESIS", "source": "organic turbo-fan study lineage (merged PR #94 on porschefanatics.com organic fan trials) — qualitative lessons only, no CFD validated"},
+    {"field": "housing envelope 300x170mm, shell 3mm, hub/spokes/mounts", "value": "see fan-config.json", "authority": "ASSUMPTION", "source": "mirrors 993 fan-housing fiche parts/993-eng-fan-housing-alsi10mg-f0-0001/ lineage, not measured"},
+    {"field": "voxel_mm", "value": 0.65, "authority": "PROCESS-PARAM", "source": "PicoGK export resolution"}
+  ],
+  "export": {
+    "stl": "export/raw/ (PicoGK station build; rotor 948132 faces)",
+    "step": ["export/derived/m64-cooling-fan.step (rotor, 1800 planar faces)", "export/derived/m64-fan-housing.step (housing, 1800 planar faces)"],
+    "step_route": "manifold3d watertight -> topology-preserving decimation -> per-triangle planar B-Rep shell -> STEP AP214 (cadquery-ocp 7.8); OCC readback OK; see export/step-conversion-report.json",
+    "limits": "faceted B-Rep (no surface fitting); shell not solid; STEP is exchange/visual geometry, not a manufacturing surface"
+  },
+  "open_acquisition": ["M64-ACQ-0005 fan geometry (rotor D, blade count by metrology)", "rescan of fan-drive scan for blade-count coverage (see metrology findings.md next_steps)"]
+}
