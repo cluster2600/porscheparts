@@ -59,8 +59,8 @@ representative.
 - Guides and seats: **not validated** — no guide or seat geometry is modelled
   or inspected here; the spring-seat and valve-seat geometry are placeholders.
 - The camshaft is a layout hypothesis, not a cam profile claim.
-- `provenance.json` and `printability.md` promised by the lane README are
-  **still missing**; the in-code evidence tags are the current provenance
-  record until those files are authored.
+- `provenance.json` and `printability.md` are present in this lane; they
+  record labels and a screening note only — no new measurement enters
+  through them.
 - Per SAFETY.md: a calculation never authorizes manufacturing; engine-critical
   parts stay `prohibited_pending_engineering`.
