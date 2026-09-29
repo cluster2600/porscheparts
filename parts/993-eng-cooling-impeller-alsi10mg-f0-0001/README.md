@@ -41,8 +41,7 @@ The original part is documented — pictures, catalogue entries or published dat
 </td>
 <td width="50%" valign="top" align="center">
 <b>This repository's concept model</b><br><br>
-<img src="media/preview.png" alt="Concept CAD block for 993 engine cooling fan — archived Carrera F0 concept" width="340"><br>
-<sub>Concept CAD block, 280.0 × 280.0 × 30.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+<i>No CAD geometry to show.</i>
 </td>
 </tr></table>
 
@@ -97,19 +96,12 @@ flowchart LR
 
 *Validation ladder of `catalog/schemas/part.schema.json`; this record is at `concept`.*
 
-## Views
-
-![Front, side and top orthographic views](media/views.png)
-
-*Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
-
 ## What's in this folder
 
 | folder | what it holds | files |
 |---|---|---|
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/cooling_impeller_alsi10mg_f0.step`](derived/cooling_impeller_alsi10mg_f0.step), [`derived/cooling_impeller_alsi10mg_f0.stl`](derived/cooling_impeller_alsi10mg_f0.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json) |
-| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 | `source/` | parametric source — the editable master that generates the geometry | [`source/cooling_impeller.py`](source/cooling_impeller.py) |
 
 ## Read more
