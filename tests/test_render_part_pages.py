@@ -17,10 +17,17 @@ class PartPageTests(unittest.TestCase):
     def test_fan_rebuild_precedes_archived_geometry(self):
         record = ROOT / "catalog/parts/993-eng-cooling-impeller-alsi10mg-f0-0001.json"
         result = pages.presentation(json.loads(record.read_text()), record)
-        self.assertLess(result.index("reference-review.png"), result.index("media/preview.png"))
-        self.assertIn("does not turn this Carrera record", result)
-        self.assertIn("No validated airflow or engine fitment", result)
+        archive = result.index("## Concept Carrera F0 archivé")
+        # the current Turbo rebuild leads the page, before the archived concept
+        self.assertLess(result.index("results/reference/reference-review.png"), archive)
         self.assertIn("porschefanatics.com/projects/993-turbo-fan/", result)
+        # the generic wheel and the schematic orthographic blocks of the
+        # archived concept are no longer shown as images (removed 2026-09-29)
+        self.assertNotIn("](media/preview.png)", result)
+        self.assertNotIn("](media/views.png)", result)
+        # the page keeps its limits: print release on hold, Turbo rotor identified
+        self.assertIn("HOLD", result)
+        self.assertIn("964 106 015 22", result)
 
     def test_one_page_per_catalogue_record(self):
         attendues = pages.attendues()
