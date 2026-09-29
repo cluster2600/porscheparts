@@ -36,7 +36,7 @@ provenance tags: see every module docstring and
 | peak_power | 6250 | 1.00 | 300.0 | 303.2 | kW | +1.06 | model peak may sit off the calibrated rpm if the BSFC/VE shape tilts the curve |
 | power_at_public_peak_rpm | 5750 | 1.00 | 300.0 | 300.0 | kW | +0.00 | calibrated anchor (model is exact by construction) |
 | peak_torque | 4750 | 1.00 | 540.0 | 555.8 | Nm | +2.93 | model peak torque location is a prediction |
-| torque_at_public_torque_rpm | 4050 | 1.00 | 540.0 | 540.0 | Nm | +0.00 | blind prediction (not used in calibration) |
+| torque_at_public_torque_rpm | 4050 | 1.00 | 540.0 | 540.0 | Nm | +0.00 | calibrated anchor (two-point calibration solve uses this anchor; exact by construction) |
 | boost_plateau_vs_brochure | 5750 | 1.00 | 1.0 | 0.8 | bar_gauge | -19.95 | model keeps the 0.8 bar REPO-envelope plateau; brochure 1.0 bar setpoint is FACT_public (M64-ACQ-BENCH-08) |
 | cooling_air_flow_at_6100 | 6100 | 1.00 | 1010.0 | 1010.0 | l/s | +0.00 | exact by construction of the fan anchor; effective fin flow 0.71 kg/s assumes a 60 % effective fraction (ASSUMPTION, M64-ACQ-BENCH-06) |
 
@@ -50,7 +50,7 @@ min BSFC on part-load grid 289 g/kWh at
 ## Panel verdicts
 
 - **Air / charge air:** AIR/CHARGE-AIR: charge flow closes the public 0.8 bar plateau with the VE shape inside the REPO 0.85-1.0 envelope near peak; per-turbo flow 0.169 kg/s sits within +-3% of the 0.156 kg/s REPO variants anchor at mid-high rpm; compressor duty 29 kW total at 388 K discharge with eta_ad=0.65 ASSUMPTION; implied intercooler effectiveness 0.76; PR curve is an unverified map hypothesis (M64-ACQ-0003).
-- **Fuel:** FUEL: energy balance at AFR 12 reproduces 300 kW at 5750 rpm exactly (calibration) and 556 Nm at 4050 rpm as a blind prediction; BSFC min 288 g/kWh (WOT grid) is plausible for a turbocharged SI; part-load min 289 g/kWh at 4500 rpm / thr 0.25 is a weakly-bounded estimate (no pumping-loss model); fuel card missing (M64-ACQ-BENCH-05/-10).
+- **Fuel:** FUEL: energy balance at AFR 12 reproduces 300 kW at 5750 rpm and 540 Nm at 4050 rpm exactly (both anchors enter the two-point calibration); model peak 556 Nm at 4750 rpm and curve shape between anchors are blind predictions; BSFC min 288 g/kWh (WOT grid) is plausible for a turbocharged SI; part-load min 289 g/kWh at 4500 rpm / thr 0.25 is a weakly-bounded estimate (no pumping-loss model); fuel card missing (M64-ACQ-BENCH-05/-10).
 - **Cooling / oil:** COOLING/OIL: oil flow demand 14 L/min (film-floor-dominated) vs assumed pump 233 L/min — no sourced pump curve (M64-ACQ-BENCH-02); fan-air 1.20 kg/s (1035 l/s) implies effective-fin dT 511 K at the assumed 372 kW air share — the fan is the thermal bottleneck until the split and hA are measured (M64-ACQ-BENCH-04).
 - **Driveline:** DRIVELINE: crank 303 kW at peak maps to 290 kW wheel-side under ASSUMPTION parasitics (accessory 4.0 kW + oil pump 0.1 kW + 13.0 kW total loss, eta_dl 0.96); gearbox data missing (M64-ACQ-BENCH-09).
 
