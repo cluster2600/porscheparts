@@ -1,0 +1,297 @@
+{
+  "schema": "m64-valvetrain-0001-provenance-v1",
+  "part": "m64-valvetrain-0001",
+  "generated_utc": "2026-09-29T07:09:28+00:00",
+  "note": "Per-field provenance for the layout proxies in source/picogk/Valvetrain.cs. Labels: sourced (public declaration/manual OCR, flagged SINGLE_SOURCE / ocr_unreviewed where applicable), assumption (engineering inference / design variable), unknown (absent from public domain; default is a placeholder metrology must replace), derived (computed from other fields), optimization (free variable). NOTHING here is measured, fitted, tested or released.",
+  "levels": {
+    "valve-intake-49-proxy": {
+      "head_diameter_mm": {
+        "value": 49.0,
+        "label": "sourced",
+        "source": "declaration; manual 15-8d 49±0.1 (ocr_unreviewed)"
+      },
+      "stem_diameter_mm": {
+        "value": 8.0,
+        "label": "sourced",
+        "source": "declared Ø8; manual 7.970 -0.012 (ocr_unreviewed)"
+      },
+      "overall_length_mm": {
+        "value": 110.1,
+        "label": "unknown",
+        "source": "manual 15-8d 110.1±0.1 recorded for Carrera 2V; applicability to M64/60 unproven — placeholder default"
+      },
+      "head_thickness_mm": {
+        "value": 5.5,
+        "label": "assumption"
+      },
+      "seat_face_angle_deg": {
+        "value": 45.0,
+        "label": "sourced",
+        "source": "manual 15-8d (ocr_unreviewed)"
+      },
+      "seat_width_mm": {
+        "value": 1.5,
+        "label": "unknown"
+      },
+      "tip_diameter_mm": {
+        "value": 6.5,
+        "label": "assumption"
+      },
+      "tip_length_mm": {
+        "value": 6.0,
+        "label": "assumption"
+      },
+      "rim_inner_radius_mm": {
+        "label": "derived",
+        "formula": "headØ/2 - seatWidth/cos(seatAngle)"
+      }
+    },
+    "valve-exhaust-43_5-turbo-proxy": {
+      "head_diameter_mm": {
+        "value": 43.5,
+        "label": "sourced",
+        "source": "declaration (no tolerance, SINGLE_SOURCE); suffix unresolved"
+      },
+      "stem_diameter_mm": {
+        "value": 8.0,
+        "label": "sourced",
+        "source": "declared Ø8"
+      },
+      "overall_length_mm": {
+        "value": 109.0,
+        "label": "unknown",
+        "source": "~108.9–109 mm envelope stated (SINGLE_SOURCE) — placeholder default"
+      },
+      "head_thickness_mm": {
+        "value": 5.5,
+        "label": "assumption"
+      },
+      "seat_face_angle_deg": {
+        "value": 45.0,
+        "label": "sourced",
+        "source": "manual 15-8d (ocr_unreviewed)"
+      },
+      "seat_width_mm": {
+        "value": 1.5,
+        "label": "unknown"
+      },
+      "tip_diameter_mm": {
+        "value": 6.5,
+        "label": "assumption"
+      },
+      "tip_length_mm": {
+        "value": 6.0,
+        "label": "assumption"
+      }
+    },
+    "spring-seat-proxy": {
+      "outer_diameter_mm": {
+        "value": 36.0,
+        "label": "unknown",
+        "note": "configurable placeholder"
+      },
+      "inner_diameter_mm": {
+        "value": 22.0,
+        "label": "unknown",
+        "note": "configurable placeholder (head clearance)"
+      },
+      "height_mm": {
+        "value": 4.0,
+        "label": "assumption"
+      },
+      "installed_length_intake_mm": {
+        "value": 36.7,
+        "label": "sourced",
+        "source": "manual 15 65 06 / 15-8f (SINGLE_SOURCE, ocr_unreviewed); registered spec, no seat geometry derived from it"
+      },
+      "installed_length_exhaust_mm": {
+        "value": 35.7,
+        "label": "sourced",
+        "source": "manual 15 65 06 / 15-8f (SINGLE_SOURCE, ocr_unreviewed)"
+      },
+      "installed_length_tolerance_mm": {
+        "value": 0.3,
+        "label": "sourced",
+        "source": "printed tolerance +0.3, no minus (ocr_unreviewed)"
+      }
+    },
+    "cam-follower-bucket-proxy": {
+      "form": {
+        "label": "assumption",
+        "note": "OHV-2V-lineage 901/911/964-type bucket envelope for layout; actual M64 DOHC components not scanned"
+      },
+      "outer_diameter_mm": {
+        "value": 32.0,
+        "label": "unknown",
+        "note": "no public M64 bucket dimensions"
+      },
+      "height_mm": {
+        "value": 40.0,
+        "label": "assumption"
+      },
+      "wall_thickness_mm": {
+        "value": 3.0,
+        "label": "assumption"
+      },
+      "crown_sagitta_mm": {
+        "value": 0.4,
+        "label": "assumption"
+      },
+      "hydraulic_lash_compensation": {
+        "label": "sourced",
+        "source": "FACT_public, Parts Guide + Carrera spec doc"
+      },
+      "lifter_travel_intake_mm": {
+        "value": [
+          0.2,
+          1.85
+        ],
+        "label": "sourced",
+        "source": "Carrera manual p.151 (15 59 04, ocr_unreviewed)"
+      },
+      "lifter_travel_exhaust_mm": {
+        "value": [
+          0.6,
+          2.25
+        ],
+        "label": "sourced",
+        "source": "Carrera manual p.151 (15 59 04, ocr_unreviewed)"
+      }
+    },
+    "camshaft-parametric-proxy": {
+      "base_circle_diameter_mm": {
+        "value": 34.0,
+        "label": "unknown",
+        "note": "placeholder"
+      },
+      "shaft_diameter_mm": {
+        "value": 25.0,
+        "label": "assumption"
+      },
+      "lobe_lift_mm": {
+        "value": 8.0,
+        "label": "unknown",
+        "source": "M64-ACQ-0002: cam profile absent from public domain"
+      },
+      "lobe_duration_deg": {
+        "value": 240.0,
+        "label": "assumption",
+        "note": "cam degrees; cosine-rise placeholder shape"
+      },
+      "lobe_width_mm": {
+        "value": 28.0,
+        "label": "assumption"
+      },
+      "lobe_spacing_mm": {
+        "value": 55.0,
+        "label": "assumption",
+        "note": "layout only; lobe map from firing order not public"
+      },
+      "lobe_count_per_bank": {
+        "value": 6,
+        "label": "assumption",
+        "note": "4V/6cyl layout hypothesis (design target valves_per_cylinder=4), not a claim"
+      },
+      "total_length_mm": {
+        "label": "derived",
+        "formula": "(n-1)*spacing + 2*(width + spacing/2)"
+      },
+      "reference_timing_deg": {
+        "label": "sourced",
+        "source": "993 Carrera manual p.16 (page_checked), 1mm lift/0 lash: I opens 1 BTDC closes 60 ABDC; E opens 45 BBDC closes 6 ATDC (crank deg). 2V Carrera reference only — transfer to 4V M64/60 forbidden without justification"
+      }
+    }
+  },
+  "validation_run": {
+    "environment": "picogk-station:qualified-persistent-20260928 (SDK 9.0.317, PicoGK 2.3.0, picogk.26.2.so)",
+    "verdict_file": "validation/COMPILE_VERDICT.md",
+    "voxel_mm": 1,
+    "components": [
+      {
+        "id": "valve-intake-49-proxy",
+        "file": "valve-intake-49-proxy.stl",
+        "sha256": "f626f5506f9d51714c270b0850dc9fa365d4a54f640eb2f4608b85467ee498ff",
+        "sha256_verified": true,
+        "triangles": 12596,
+        "volume_mm3": 7154.4204
+      },
+      {
+        "id": "valve-exhaust-43_5-turbo-proxy",
+        "file": "valve-exhaust-43_5-turbo-proxy.stl",
+        "sha256": "2577f03f571367a24ee67ba22b59d40a83c26038eafd8642d3c144421b6eb317",
+        "sha256_verified": true,
+        "triangles": 11956,
+        "volume_mm3": 6891.1523
+      },
+      {
+        "id": "spring-seat-proxy",
+        "file": "spring-seat-proxy.stl",
+        "sha256": "d14027e13b911b4780c1e4c37d7400ca21bc9bd9ab42fbeaed3836a1113b32e8",
+        "sha256_verified": true,
+        "triangles": 3904,
+        "volume_mm3": 2430.663
+      },
+      {
+        "id": "cam-follower-bucket-proxy",
+        "file": "cam-follower-bucket-proxy.stl",
+        "sha256": "cdaa7d03adf4985c7fa617ead87f066cc66aba25e8e795b1b901199d53830915",
+        "sha256_verified": true,
+        "triangles": 9268,
+        "volume_mm3": 19470.543
+      },
+      {
+        "id": "camshaft-parametric-proxy",
+        "file": "camshaft-parametric-proxy.stl",
+        "sha256": "401b80d0eb470463386cb2638b714d6571d368363e553c33a4cdfa61a5c5ee04",
+        "sha256_verified": true,
+        "triangles": 121964,
+        "volume_mm3": 406371.34
+      }
+    ],
+    "all_sha256_verified_on_disk": true
+  },
+  "evidence_limits": [
+    "distribution remains a concept; no metrology",
+    "guides and seats not validated",
+    "camshaft is a layout hypothesis, not an M64 profile claim",
+    "per SAFETY.md a calculation never authorizes manufacturing; engine-critical parts stay prohibited_pending_engineering"
+  ],
+  "evidence": {
+    "_note": "Registered evidence files in this repository for each component. 'layout only' where no dimensional evidence exists (cam profile MISSING => layout hypothesis only, M64-ACQ-0002).",
+    "valve-intake-49-proxy": {
+      "evidence_files": [
+        "catalog/parts/993-eng-intake-valve-f1-0001.json",
+        "catalog/sources/src-fvd-993-inlet-valve-dimensions.json (registered by the part record)",
+        "catalog/manual/993-workshop-manual-measurements.json (49 +/- 0.1 and 110.1 +/- 0.1 occurrences, ocr_unreviewed)"
+      ],
+      "state": "head/stem diameters SOURCED (declared); length/seat/thickness UNKNOWN-ASSUMPTION"
+    },
+    "valve-exhaust-43_5-turbo-proxy": {
+      "evidence_files": [
+        "catalog/parts/993-eng-exhaust-valve-f1-0001.json (exhaust counterpart record; 108.9-109 x 43.5 x 8 stated, no tolerances)",
+        "catalog/sources/src-partworks-993-exhaust-valve-dimensions.json (registered by the part record)"
+      ],
+      "state": "head/stem SOURCED (declared, SINGLE_SOURCE, suffix unresolved); length UNKNOWN-ASSUMPTION"
+    },
+    "spring-seat-proxy": {
+      "evidence_files": [
+        "catalog/sources/src-elferszene-993-valve-spring-installation-length.json (SRC-ELFERSZENE-993-VALVE-SPRING-INSTALLATION-LEVEL C: A=36.7/35.7 +0.3 installed length, declared, page re-read blocked)",
+        "catalog/manual/993-workshop-manual-measurements.json (installed-length occurrences, ocr_unreviewed)"
+      ],
+      "state": "installed-length SPEC registered; seat geometry itself UNKNOWN/ASSUMPTION"
+    },
+    "cam-follower-bucket-proxy": {
+      "evidence_files": [
+        "catalog/sources/src-mahle-valvetrain-technical-2025.json (SRC-MAHLE-VALVETRAIN-TECHNICAL-2025, level B, generic: material/thermal duty context only, no 993 geometry)",
+        "catalog/manual/993-workshop-manual-measurements.json (lifter travel p.151, ocr_unreviewed)"
+      ],
+      "state": "form ASSUMPTION (OHV-2V lineage layout); hydraulic lash compensation FACT_public; no public M64 bucket dimensions"
+    },
+    "camshaft-parametric-proxy": {
+      "evidence_files": [
+        "NO DIMENSIONAL EVIDENCE: M64 cam profile absent from public domain (M64-ACQ-0002; twins/m64-engine-system/program.json gating)"
+      ],
+      "state": "LAYOUT ONLY: base circle + cosine-rise placeholder lobe; every parameter UNKNOWN/ASSUMPTION"
+    }
+  }
+}
