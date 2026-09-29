@@ -141,6 +141,9 @@ def main() -> int:
     parser.add_argument("--skip-reference-resolution", action="store_true",
                         help="skip on-disk resolution of references arcs (only valid when the "
                         "referenced assets are deliberately absent, e.g. a stripped render package)")
+    parser.add_argument("--structure-only", action="store_true",
+                        help="skip the manifest/BOM cross-check (use after generation inside the "
+                        "SimReady image, where the pxr validator already ran the contract)")
     args = parser.parse_args()
 
     manifest_path = args.manifest.resolve()
@@ -149,8 +152,7 @@ def main() -> int:
     scene_path = args.scene.resolve() if args.scene else repo_root / manifest["usd"]
 
     checks: list[dict[str, Any]] = []
-    if not args.skip_reference_resolution or True:
-        # manifest contract always runs in this stdlib validator
+    if not args.structure_only:
         report = bes.validate_manifest(manifest, manifest_path)
         checks.append({"name": "manifest_contract", "passed": report["passed"], "errors": report["errors"]})
     if not scene_path.is_file():
