@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-EXH-CAT-CONVERTER-PAIR-PET-0001",
+  "name": "993 Turbo catalytic converters (front muffler section), left and right - PET-transcribed identity",
+  "description": "Identity-only catalogue record for the two Turbo catalytic converter / front muffler sections, transcribed per-line from the local PET transcriptions: illustration 202-15 (exhaust system, Turbo) position 14 = 993 113 213 57 and position 15 = 993 113 214 57 in the KAT 17 transcription, with position 15 also listed as 993 113 214 58 in the Porsche Classic KAT 517 USA transcription. Same-assembly context transcribed at the same positions: tail pipes (pos 12/13), oxygen sensors 993 606 128 01 (pos 20) and 993 606 127 01 (pos 22), converter cover 993 113 247 51 (pos 19). No dimensions, substrate data, cell counts, pressure drop or geometry are claimed.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_Turbo"],
+    "model_years": {"from": 1995, "to": 1998},
+    "porsche_part_numbers": [
+      "99311321357",
+      "99311321457",
+      "99311321458"
+    ]
+  },
+  "classification": {
+    "category": "exhaust_catalytic_converter",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Identity anchor for the exhaust subsystem of the M64 digital twin; no manufacturing, fitment or engine use is authorized by this record"
+  },
+  "geometry": {
+    "source_type": "estimated",
+    "master_format": "none",
+    "master_file": "",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": []
+  },
+  "provenance": {
+    "record_license": "All rights reserved (see LICENSE) for this record; no PET illustration or PDF redistributed",
+    "sources": [
+      {
+        "title": "Porsche Fanatics local dataset - data/oem-listed.json, PET illustration 202-15 lines (993)",
+        "url": "https://porschefanatics.com/oem/993/202-15/",
+        "source_type": "community",
+        "license": "site-dataset-reference-only",
+        "accessed_on": "2026-09-29",
+        "notes": "Local file data/oem-listed.json of /home/lolman/repos/porschefanatics.com (commit f5dc1c25c304228a36405aabd6e2f79d9d241093). 202-15 Turbo lines, KAT 17 transcription (pet-993-pdf-rsworkshop, PDF p. 87): pos 14 = 993 113 213 57, pos 15 = 993 113 214 57; KAT 517 transcription (pet-classic-993, PDF p. 143) lists pos 15 = 993 113 214 58. See catalog/sources/src-porschefanatics-993-oem-listed-pet.json."
+      },
+      {
+        "title": "Porsche 993 Workshop Manual - Heat exchanger / catalytic converter torque page 61",
+        "url": "https://porschefanatics.com/oem/993/202-15/",
+        "source_type": "official",
+        "license": "all-rights-reserved-reference-only",
+        "accessed_on": "2026-09-29",
+        "notes": "Registered in catalog/manual/993-workshop-manual-measurements.json: catalytic converter or front muffler 23 Nm; ball clamps 25-30 Nm; tensioning strap 20 Nm; O2 sensor M18x5 50-60 Nm; plug M8x1 15 Nm. Interfaces and loads context only."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["CNC"],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "unknown",
+      "grade": "unknown",
+      "standard": "not recorded"
+    },
+    "post_processing": [],
+    "supplier_requirements": [
+      "professional engineering review before any manufacturing claim",
+      "dimensional inspection on a real part before any geometry work"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": ""
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "SRC-PORSCHEFANATICS-993-OEM-LISTED-PET (202-15 pos 14 and 15)",
+      "catalog/manual/993-workshop-manual-measurements.json (torque specs p. 61)"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Identity only: no dimensions, substrate volume, cell density, ageing data or pressure drop are carried by the transcription.",
+      "Position 14 (left) appears only in the KAT 17 transcription; the KAT 517 transcription lists a 993 113 285 00 converter at the naturally aspirated 202-00 illustration, not at 202-15, so the left-hand Turbo number is single-source locally.",
+      "The -57 versus -58 suffix difference at position 15 is transcribed without asserting a supersession relation.",
+      "Which of pos 14/15 is left and which is right is not annotated in the local transcription; the assignment to banks is by assembly convention, not by a transcribed field."
+    ]
+  }
+}
