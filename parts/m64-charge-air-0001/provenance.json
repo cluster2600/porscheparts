@@ -1,0 +1,56 @@
+{
+  "schema": "m64-part-provenance-v1",
+  "part_id": "M64-CHARGE-AIR-0001",
+  "title": "M64/60 charge-air path geometry study (compressor outlet to throttle bodies)",
+  "status_limits": "Concept geometry only. No part in this folder may be declared dimensionally correct, fitted, tested, safe, released, or manufacturing-ready.",
+  "bom_coverage_note": "The wave-1 master engine BOM carries no dimensions for the charge-air line: vendor product envelopes exist (FVD, TA Technix, AKS DASIS, Albert Motorsport fiches), so every geometric dimension below is tagged ASSUMPTION or SOURCED_ENVELOPE, never measured.",
+  "coordinate_system": "mm, right-handed engine frame of twins/m64-engine-system: +X rear along crank axis, +Z up, banks mirrored about Y=0.",
+  "units": "mm",
+  "evidence_classes": {
+    "FACT_public": "published and attributable; non-dimensional here",
+    "SOURCED_ENVELOPE": "third-party product envelope, reference-only copyright, packaging bound not interface dimension",
+    "ASSUMPTION": "engineering placeholder, order of magnitude only",
+    "DERIVED": "computed from other tagged entries"
+  },
+  "dimensions": [
+    {"name": "fVoxelSizeMm", "value_mm": 1.0, "class": "ASSUMPTION", "basis": "study resolution, same family as layout scaffold voxel choice; not a manufacturing resolution"},
+    {"name": "fWallThicknessMm", "value_mm": 2.0, "class": "ASSUMPTION", "basis": "no charge-air wall data in BOM or vendor fiches"},
+    {"name": "fRadialClearanceMm", "value_mm": 1.5, "class": "ASSUMPTION", "basis": "sealing design undefined"},
+    {"name": "fHoseMinBendRadiusMm", "value_mm": 120.0, "class": "ASSUMPTION", "basis": "no vendor bend-radius law published"},
+    {"name": "fNominalDuctOuterDiaMm", "value_mm": 66.0, "class": "SOURCED_ENVELOPE", "basis": "TA Technix aftermarket intercooler declares 66 mm outer / 68 mm inner connector stubs; not OEM", "source_id": "SRC-TA-TECHNIX-993-INTERCOOLER-DIMENSIONS"},
+    {"name": "fNominalDuctBoreDiaMm", "value_mm": 62.0, "class": "DERIVED", "basis": "fNominalDuctOuterDiaMm - 2*fWallThicknessMm"},
+    {"name": "fCouplingLengthMm", "value_mm": 60.0, "class": "ASSUMPTION", "basis": "no published coupling geometry"},
+    {"name": "fCouplingOverDiaMm", "value_mm": 12.0, "class": "ASSUMPTION", "basis": "+6 mm radial sleeve placeholder"},
+    {"name": "aTubeWaypointsPosBank", "class": "ASSUMPTION", "basis": "routing hypothesis inside the layout-scaffold envelope; no OEM charge-air drawing exists in the repository", "anchor_source": "SRC-PORSCHEFANATICS-993-TURBO-PET (locates the circuit, publishes no coordinates)"},
+    {"name": "vecIntercoolerCentre", "class": "ASSUMPTION", "basis": "PET illustration 107-45 locates the charge-air cooler ahead of the engine; no coordinates published", "source_id": "SRC-PORSCHEFANATICS-993-TURBO-PET"},
+    {"name": "fIntercoolerCore{Len,Width,Depth}Mm", "values_mm": [260.0, 270.0, 100.0], "class": "SOURCED_ENVELOPE", "basis": "AKS DASIS OE-matched core 260x270x60; Albert Motorsport and TA Technix declare 260x260x100 cores; envelopes only", "source_ids": ["SRC-AKS-DASIS-993-INTERCOOLER-DIMENSIONS", "SRC-ALBERT-MOTORSPORT-993-ALUMINUM-INTERCOOLER", "SRC-TA-TECHNIX-993-INTERCOOLER-DIMENSIONS"]},
+    {"name": "fPlenum* (length/width/height/centre/corner)", "class": "ASSUMPTION", "basis": "plenum form invented; the three-runner intake kit designation (46x42x100, no interface geometry) gives no plenum dimensions", "source_id": "SRC-PATRICK-PMO-964-993-46MM-INTAKE-MANIFOLD"},
+    {"name": "fThrottleBoreDiaMm", "value_mm": 60.0, "class": "ASSUMPTION", "basis": "no throttle dimension in any local source"},
+    {"name": "aRunnerOffsetsY", "value_mm": [-86.4, 0.0, 86.4], "class": "DERIVED", "basis": "spacing = stroke 76.4 mm (FACT_public) + 10 mm gap (ASSUMPTION), matching the layout scaffold"},
+    {"name": "aHoseWaypointsPosBank", "class": "ASSUMPTION", "basis": "centerline routing hypothesis; FVD hoses publish product envelopes only"},
+    {"name": "fHoseOuterRadiusMm", "value_mm": 28.5, "class": "DERIVED", "basis": "half of the FVD reinforced-kit declared 57 mm upper diameter; envelope bound, not a section spec", "source_id": "SRC-FVD-993-REINFORCED-INTERCOOLER-HOSE-KIT-DIMENSIONS"},
+    {"name": "fHoseWallMm", "value_mm": 3.0, "class": "ASSUMPTION", "basis": "section law not published"},
+    {"name": "fHoseEnvelope{Min,Max}LenMm", "value_mm": [410.0, 430.0], "class": "SOURCED_ENVELOPE", "basis": "FVD kit 410 mm connection length; left/right replacement hoses 430 mm product length; used only for a centerline-length sanity report", "source_ids": ["SRC-FVD-993-REINFORCED-INTERCOOLER-HOSE-KIT-DIMENSIONS", "SRC-FVD-993-INTERCOOLER-HOSE-LEFT-DIMENSIONS", "SRC-FVD-993-INTERCOOLER-HOSE-RIGHT-DIMENSIONS"]},
+    {"name": "fBoostTargetBar", "value_bar": 1.0, "class": "FACT_public", "sizes_geometry": false, "basis": "study brief target for the 3.6 L twin-turbo; a load input, not a dimension"},
+    {"name": "fBoostOemBar", "value_bar": 0.8, "class": "FACT_public", "sizes_geometry": false, "basis": "Christophorus / Porsche newsroom: 993 Turbo max boost 0.8 bar", "source_id": "SRC-PORSCHE-CHRISTOPHORUS-993-TURBO-DATA"}
+  ],
+  "api_verification": {
+    "policy": "no invented PicoGK API syntax",
+    "verified_calls": ["new Library(voxelMm)", "new Lattice(library) / Lattice(Library.oLibrary())", "Lattice.AddSphere(pos,r)", "Lattice.AddBeam(pA,rA,pB,rB,bRoundCap)", "new Voxels(lattice)", "new Voxels(other)", "Voxels.BoolSubtract(other)", "Voxels.BoolAdd(other)", "Voxels.voxOffset(mm)", "Voxels.BoolIntersect(other)", "Voxels.CalculateProperties(out vol,out bbox)", "new Mesh(voxels)", "Mesh.SaveToStlFile(path, Mesh.EStlUnit.MM)"],
+    "verified_against": [
+      "containers/picogk-m64.Dockerfile (SDK 9.0.317, picogk.26.2.so, dotnet build Smoke/RuntimeWitness/HeadVoxels)",
+      "containers/m64-leap71/RuntimeWitness.cs",
+      "twins/m64-cylinder-head/source/picogk*/Program.cs",
+      "twins/993-m64-60-piston-gallery-f0/source/run_picogk_optimization_screen.cs",
+      "containers/m64-leap71/native-preflight-result.json (runtime 26.2.0, commit 0f26321c...)"
+    ],
+    "unverified_calls": []
+  },
+  "build_state": {
+    "compiled": false,
+    "reason": "host dotnet SDK 6.0.400 cannot target net9.0 (NETSDK1045); build must run in the pinned picogk-m64 image",
+    "target_image": "picogk-m64 (containers/picogk-m64.Dockerfile)",
+    "never_claim": "verified build"
+  },
+  "forbidden_claims": ["dimensionally correct", "fitted", "tested", "safe", "released", "manufacturing-ready"]
+}
