@@ -1,0 +1,112 @@
+{
+  "part": "M64-SHORTBLOCK-0001",
+  "generated": "2026-09-29",
+  "lane": "wave2/geo-sb-20260929",
+  "source_file": "source/geometry/ShortBlock.cs",
+  "class_legend": {
+    "measured": "direct dimensional inspection on a physical part (none in this lane)",
+    "sourced": "value from a cited external source; level B = manufacturer-declared",
+    "project_input": "engine baseline value given as a project input (requires provenance in repo)",
+    "assumed": "engineering assumption, order-of-magnitude, configurable",
+    "derived": "computed from other entries by formula",
+    "missing_ACQ-0004": "not public; tracked acquisition item; parameterized, never baked"
+  },
+  "engine_baseline": {
+    "bore_mm": { "value": 100.0, "class": "project_input", "sources": ["SRC-PORSCHE-UK-993-TURBO-BROCHURE-1995", "catalog/manual/993-workshop-manual-measurements.json technical_data p15"] },
+    "stroke_mm": { "value": 76.4, "class": "project_input", "sources": ["SRC-PORSCHE-UK-993-TURBO-BROCHURE-1995"] },
+    "cylinder_count": { "value": 6, "class": "project_input" }
+  },
+  "parts": {
+    "Piston": {
+      "bom_line": "M64B-PS-001",
+      "geometry_status": "nominal-bore envelope only; not piston geometry",
+      "dimensions": {
+        "bore_mm": { "value": 100.0, "class": "project_input" },
+        "bore_clearance_mm": { "value": 0.04, "class": "assumed" },
+        "wall_mm": { "value": 5.0, "class": "assumed" },
+        "compression_height_mm": { "value": 60.0, "class": "assumed", "note": "pin centre to crown; actual unknown (M64B-PS-001)" },
+        "skirt_below_pin_mm": { "value": 45.0, "class": "assumed" },
+        "crown_thickness_mm": { "value": 10.0, "class": "assumed" },
+        "ring_groove_distances_from_crown_mm": { "value": [8.0, 14.0, 20.0], "class": "assumed" },
+        "ring_groove_width_mm": { "value": 3.0, "class": "assumed" },
+        "ring_groove_depth_mm": { "value": 2.5, "class": "assumed" },
+        "overall_height_mm": { "value": 105.0, "class": "derived", "formula": "compression_height + skirt_below_pin" },
+        "crown_geometry": { "value": null, "class": "missing_ACQ-0004", "note": "unknown beyond bore; envelope is flat" },
+        "pin_location": { "value": null, "class": "missing_ACQ-0004" }
+      }
+    },
+    "ConnectingRod": {
+      "bom_line": "M64B-CR-001",
+      "geometry_status": "HYPOTHESIS contour around sourced bores; aftermarket datum, NOT OEM baseline; heavily loaded part",
+      "dimensions": {
+        "centre_distance_mm": { "value": 127.00, "class": "sourced", "level": "B", "provenance": "sourced-hypothesis", "sources": ["catalog/sources/src-tzr-pauter-993-connecting-rod-dimensions.json"] },
+        "pin_bore_dia_mm": { "value": 23.01, "class": "sourced", "level": "B", "provenance": "sourced-hypothesis", "sources": ["catalog/sources/src-tzr-pauter-993-connecting-rod-dimensions.json"] },
+        "big_end_bore_dia_mm": { "value": 58.01, "class": "sourced", "level": "B", "tolerance": "+/-0.003", "provenance": "sourced-hypothesis", "sources": ["catalog/sources/src-tzr-pauter-993-connecting-rod-dimensions.json"] },
+        "big_end_width_mm": { "value": 18.75, "class": "sourced", "level": "B", "provenance": "sourced-hypothesis" },
+        "small_end_width_mm": { "value": 19.58, "class": "sourced", "level": "B", "provenance": "sourced-hypothesis" },
+        "mass_g": { "value": 535, "class": "sourced", "level": "B", "note": "declared per set; not enforced by envelope" },
+        "material": { "value": "4340 steel (declared)", "class": "sourced", "level": "B" },
+        "small_end_wall_mm": { "value": 9.0, "class": "assumed" },
+        "big_end_boss_mm": { "value": 9.0, "class": "assumed" },
+        "shank_width_mm": { "value": 20.0, "class": "assumed", "note": "real section is forged I; envelope is round by current build" },
+        "shank_depth_mm": { "value": 24.0, "class": "assumed" },
+        "cap_bolt_boss_dia_mm": { "value": 14.0, "class": "assumed" },
+        "small_end_od_mm": { "value": 41.01, "class": "derived", "formula": "pin_bore + 2*small_end_wall" },
+        "big_end_od_mm": { "value": 76.01, "class": "derived", "formula": "big_end_bore + 2*big_end_boss" },
+        "contour": { "value": "hypothesis envelope", "class": "assumed" }
+      }
+    },
+    "FinnedCylinder": {
+      "bom_line": "M64B-CY-001",
+      "geometry_status": "deep fins fully parametric; interfaces partial; fin pitch/count unknown",
+      "dimensions": {
+        "bore_mm": { "value": 100.0, "class": "project_input" },
+        "head_joint_oring_dia_mm": { "value": 102.0, "class": "sourced", "sources": ["SRC-PORSCHE-993-US-PARTS-GUIDE-ENGINE-CYLINDERS"] },
+        "barrel_wall_mm": { "value": 5.0, "class": "assumed" },
+        "barrel_length_mm": { "value": 240.0, "class": "assumed" },
+        "top_face_thickness_mm": { "value": 15.0, "class": "assumed" },
+        "base_flange_dia_mm": { "value": 150.0, "class": "assumed" },
+        "base_flange_height_mm": { "value": 14.0, "class": "assumed" },
+        "oring_groove_depth_mm": { "value": 3.0, "class": "assumed" },
+        "oring_groove_width_mm": { "value": 3.0, "class": "assumed" },
+        "fin_outer_dia_mm": { "value": 380.0, "class": "assumed" },
+        "fin_count": { "value": 28, "class": "assumed", "note": "actual fin pitch/count unknown (M64B-CY-001)" },
+        "fin_thickness_mm": { "value": 1.5, "class": "assumed", "note": "printability study input; see printability.md" },
+        "fin_band_inset_mm": { "value": 8.0, "class": "assumed" },
+        "fin_pitch_mm": { "value": null, "class": "missing_ACQ-0004", "note": "derived from count when acquired" }
+      }
+    },
+    "CrankcaseSkeleton": {
+      "bom_line": "M64B-CC-001 / M64B-CS-001",
+      "geometry_status": "layout master; pitch and deck height are parameters, never baked",
+      "dimensions": {
+        "cylinder_pitch_mm": { "value": 86.4, "class": "missing_ACQ-0004", "note": "PROVISIONAL assumption (stroke + 10); override via env M64_PITCH_MM" },
+        "crank_to_deck_height_mm": { "value": 0.0, "class": "missing_ACQ-0004", "note": "PROVISIONAL: deck = split plane; override via env M64_DECK_MM" },
+        "bank_station_x_mm": { "value": 216.0, "class": "assumed", "note": "layout scaffold; override via env M64_BANK_X" },
+        "crate_length_mm": { "value": 640.0, "class": "assumed" },
+        "half_width_mm": { "value": 240.0, "class": "assumed" },
+        "bottom_z_mm": { "value": -140.0, "class": "assumed" },
+        "nominal_wall_mm": { "value": 6.0, "class": "assumed", "note": "configurable" },
+        "bulkhead_stations_x_mm": { "value": [-320.0, -128.0, 128.0, 320.0], "class": "assumed" },
+        "bulkhead_radius_mm": { "value": 135.0, "class": "assumed" },
+        "bulkhead_thickness_mm": { "value": 18.0, "class": "assumed" },
+        "main_journal_dia_mm": { "value": 65.0, "class": "assumed" },
+        "bearing_clearance_mm": { "value": 0.10, "class": "assumed" },
+        "crank_cavity_radius_mm": { "value": 110.0, "class": "assumed" },
+        "gallery_dia_mm": { "value": 12.0, "class": "assumed" },
+        "gallery_offset_y_mm": { "value": 180.0, "class": "assumed" },
+        "gallery_z_mm": { "value": -110.0, "class": "assumed" },
+        "cyl_base_recess_depth_mm": { "value": 3.0, "class": "assumed" },
+        "flange_width_mm": { "value": 14.0, "class": "assumed" },
+        "flange_height_mm": { "value": 12.0, "class": "assumed" },
+        "bore_row_y_mm": { "value": [-86.4, 0.0, 86.4], "class": "derived", "formula": "pitch-spaced from cylinder_pitch_mm" }
+      }
+    }
+  },
+  "notes": [
+    "No entry is class 'measured': nothing in this lane has been dimensionally inspected.",
+    "PAUTER rod values are level B (manufacturer-declared, aftermarket part) and drive a hypothesis contour; they are not the OEM baseline.",
+    "M64-ACQ-0004 unknowns (cylinder pitch, crank-to-deck height) reach geometry only via ShortBlockParams with PROVISIONAL values and env overrides; the run report records a warning when they are not overridden.",
+    "Sources: docs/research/m64-public-engine-data-2026-09-27.md, catalog/manual/993-workshop-manual-measurements.json, catalog/sources/src-tzr-pauter-993-connecting-rod-dimensions.json, twins/m64-engine-system/bom/m64-bom-v1.json."
+  ]
+}

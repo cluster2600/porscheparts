@@ -341,6 +341,8 @@ static Voxels BuildConnectingRod(Library lib, ShortBlockParams p,
         bigC + new Vector3(p.RodBigEndWidthMm / 2.0f, 0, 0),
         beOr, p.RodBigEndBoreDiaMm / 2.0f);
     // Shank: solid prismatic envelope between the eyes (I-section deferred).
+    // Rectangular-envelope substitute: solid swept beam at the smaller
+    // transverse half-extent; rInner = 0 makes Annulus return the solid.
     float shankR = MathF.Min(p.RodShankWidthMm, p.RodShankDepthMm) / 2.0f;
     float shankStart = seOr * 0.6f;
     using Voxels shank = Annulus(lib,
@@ -397,7 +399,7 @@ static Voxels BuildFinnedCylinder(Library lib, ShortBlockParams p,
     using Voxels flange = Annulus(lib, y0, flangeTop,
                                   p.CylBaseFlangeDiaMm / 2.0f, p.BoreMm / 2.0f);
     using (Voxels groove = Annulus(lib,
-               y0 - new Vector3(0, 0.01f * dirSign, 0) + dir * 0.0f,
+               y0,
                y0 + dir * p.CylORingGrooveDepthMm,
                p.HeadJointORingDiaMm / 2.0f + p.CylORingGrooveWidthMm / 2.0f,
                p.HeadJointORingDiaMm / 2.0f - p.CylORingGrooveWidthMm / 2.0f))
