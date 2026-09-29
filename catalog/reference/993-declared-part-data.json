@@ -411,6 +411,15 @@
         260.0,
         100.0
       ],
+      "additional_declared_dimensions": {
+        "module_count": 2,
+        "connection_outer_diameter_mm": 66.0,
+        "connection_inner_diameter_mm": 68.0,
+        "maximum_width_mm": 860.0,
+        "maximum_height_mm": 240.0,
+        "mounting_center_distance_mm": 690.0,
+        "status": "quarantined_source_inconsistency_inner_diameter_exceeds_outer_diameter"
+      },
       "material": "a_determiner"
     },
     {
@@ -426,6 +435,14 @@
         160.0,
         100.0
       ],
+      "additional_declared_dimensions": {
+        "connection_length_mm": 410.0,
+        "diameter_pair_mm": [
+          43.0,
+          57.0
+        ],
+        "semantics": "aftermarket_connection_reference_not_OEM_interface_geometry"
+      },
       "material": "a_determiner"
     },
     {
@@ -525,6 +542,29 @@
       "material": "a_determiner",
       "quantity_per_car": 2,
       "notes": "Masse publiee sur la fiche produit du revendeur. Premiere piece renseignee par cette voie ; le meme catalogue en porte des milliers."
+    },
+    {
+      "entry_id": "993-TURBOCHARGER-K16-WHEEL-DIMENSIONS",
+      "name": "Diametres de roues et calibrage wastegate du K16 de 993 Turbo",
+      "generation": "993",
+      "confidence": "declared",
+      "source_id": "SRC-INVASIONAUTOPRODUCTS-993-K16-INTERNAL-DATA",
+      "notes": "Declaration d'un seul catalogue vendeur (Invasion Auto, consulte en direct le 2026-09-27) : roue de turbine 5316-120-5000 induit 54,96 / exduct 48,97 mm, 12 pales ; roue de compresseur 5324-123-2006 induit 40,6 / exduct 60,5 mm, 6+6 ; A/R turbine 8,0 cm2 (recoupe par TurboMaster 6735 et BorgWarner) ; angles de volute alpha 307,5 degres / beta 70 degres ; actionneur 5825-110-4006, ressort 0,50 bar, leve 4,20 mm. Aucun rendement, carte compresseur, jeu ni tolerance publie ; a confirmer par piece (M64-ACQ-0003). dimensions_mm liste les trois diametres de roues declares (exduct compresseur, induit/exduct turbine) par convention d'enregistrement; ce ne sont pas un encombrement.",
+      "additional_declared_dimensions": {
+        "diameter_pair_mm": [
+          54.96,
+          48.97
+        ],
+        "maximum_width_mm": 60.5,
+        "status": "declared_single_vendor",
+        "semantics": "diameter_pair_mm = roue de turbine [induit, exduct] ; maximum_width_mm = exduct de la roue de compresseur ; A/R 8,0 cm2, angles de volute et calibrage wastegate detailles dans notes"
+      },
+      "dimensions_mm": [
+        60.5,
+        54.96,
+        48.97
+      ],
+      "material": "a_determiner (roues : acier/Waspaloy turbine, Al billet compresseur, non publie)"
     }
   ]
 }

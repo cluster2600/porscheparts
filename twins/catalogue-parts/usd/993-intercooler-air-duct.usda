@@ -1,0 +1,54 @@
+#usda 1.0
+(
+    defaultPrim = "Twin"
+    metersPerUnit = 0.001
+    upAxis = "Z"
+)
+
+def Xform "Twin" (
+    kind = "component"
+)
+{
+    custom string documentationStatus = "F1_documentary_proxy_not_simready"
+    custom string physicsAssignment = "intentionally_absent"
+
+    def Scope "Looks"
+    {
+        def Material "DocumentaryMaterial"
+        {
+            token outputs:surface.connect = </Twin/Looks/DocumentaryMaterial/PreviewSurface.outputs:surface>
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.42, 0.44, 0.47)
+                float inputs:metallic = 0
+                float inputs:roughness = 0.72
+                token outputs:surface
+            }
+        }
+    }
+
+    def Mesh "Geometry" (
+        prepend apiSchemas = ["MaterialBindingAPI"]
+    )
+    {
+        uniform bool doubleSided = true
+        float3[] extent = [(-300, -140, 0), (300, 140, 50)]
+        int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+        int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+        rel material:binding = </Twin/Looks/DocumentaryMaterial>
+        point3f[] points = [
+            (-300, -140, 0),
+            (300, -140, 0),
+            (300, 140, 0),
+            (-300, 140, 0),
+            (-300, -140, 50),
+            (300, -140, 50),
+            (300, 140, 50),
+            (-300, 140, 50)
+        ]
+        uniform token purpose = "proxy"
+        uniform token subdivisionScheme = "none"
+    }
+}

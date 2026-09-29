@@ -1,0 +1,32 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    object      U;
+}
+// M64 fan-baseline deck | tag: SURROGATE (exploratory; placeholder BCs)
+dimensions      [0 1 -1 0 0 0 0];
+internalField   uniform (0 0 0);
+boundaryField
+{
+    inlet
+    {
+        type            fixedValue;
+        value           uniform (24.035062 0 0);
+    }
+    outlet
+    {
+        type            zeroGradient;
+    }
+    hub
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+    throat
+    {
+        type            fixedValue;
+        value           uniform (0 0 0);
+    }
+}

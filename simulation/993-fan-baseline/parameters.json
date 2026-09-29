@@ -1,0 +1,49 @@
+{
+  "deck": "993-fan-baseline",
+  "provenance_doc": "PARAMETERS.md",
+  "common": {
+    "rho_air_kg_m3": 1.204,
+    "mu_air_Pa_s": 1.82e-05,
+    "D_imp_mm": 280.0,
+    "D_imp_tag": "HYPOTHESIS_F0",
+    "D_hub_mm": 100.0,
+    "D_hub_tag": "ASSUMPTION",
+    "t_disc_mm": 20.0,
+    "t_disc_tag": "ASSUMPTION",
+    "drive_ratio": 1.6,
+    "drive_ratio_tag": "FACT_public (docs/research/m64-public-engine-data-2026-09-27.md)",
+    "n_blades": null,
+    "n_blades_tag": "UNKNOWN -> ACQ-0005 (not modelled; actuator disc)",
+    "up_len_annH": 4.0,
+    "dn_len_annH": 8.0,
+    "nx_disc": 4,
+    "nx_up_per_H": 4,
+    "nx_dn_per_H": 8,
+    "nr": 12,
+    "nphi": 36
+  },
+  "cases": {
+    "caseA_published": {
+      "D_throat_mm": 252.0,
+      "D_throat_tag": "HYPOTHESIS_F0 (as-published F0 housing; geometrically FAILED: -14 mm radial clearance)",
+      "Q_l_s": 1010.0,
+      "Q_tag": "FACT_public @ 6100 rpm engine (OBD 1996 supplement)",
+      "n_eng_rpm": 6100.0,
+      "dp_fan_Pa": 25.0,
+      "dp_tag": "ASSUMPTION (no measured fan map)",
+      "beta_disc_1_m": 60.0,
+      "beta_tag": "ASSUMPTION (blockage proxy, scaled by 1/clearance area)"
+    },
+    "caseB_corrected": {
+      "D_throat_mm": 284.0,
+      "D_throat_tag": "DERIVED (throat for 2 mm radial clearance vs 280 mm impeller, F0 integration screen)",
+      "Q_l_s": 1210.0,
+      "Q_tag": "FACT_public variant (provenance weaker) @ 5750 rpm engine",
+      "n_eng_rpm": 5750.0,
+      "dp_fan_Pa": 20.0,
+      "dp_tag": "ASSUMPTION (no measured fan map)",
+      "beta_disc_1_m": 20.0,
+      "beta_tag": "ASSUMPTION (blockage proxy)"
+    }
+  }
+}

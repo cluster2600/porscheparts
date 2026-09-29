@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "scan_id": "SCAN-917-ENGINE-CASE-W-CYL-0P5MM",
+  "title": "Scan 3D du carter 917 avec cylindres (Wolfe Classics, 0.5 mm déclaré)",
+  "path": "/home/lolman/imports/mac-obj/projects/3dprinting993/raw-scans/917-engine/original/917-engine-case-with-cylinders.obj",
+  "sha256": "428c4143d073f8330022f2fecbd1ac1ee7784d4f1565f1160020448dbdffa0ae",
+  "bytes": 107128223,
+  "mtime": "2026-08-31T23:13:45+02:00",
+  "recorded_on": "2026-09-28",
+  "resolution": {
+    "declared": "0.5 mm",
+    "basis": "vendor_page_and_filename",
+    "verified": false
+  },
+  "subject_part": "engine_case_with_cylinders",
+  "track": "engine",
+  "subsystems": ["engine_case", "cylinders"],
+  "duplicate_of": null,
+  "other_paths": [
+    "/home/lolman/imports/mac-obj/Library/Mobile Documents/com~apple~CloudDocs/Downloads/917+engine+case+w+cyl+0.5mm.obj"
+  ],
+  "linked_source_ids": ["SRC-LOCAL-917-ENGINE-CASE-CYLINDERS-SCAN"],
+  "linked_artifacts": [
+    "twins/reference-917-engine",
+    "twins/reference-917-engine/source-scan-integrity-f11.json",
+    "twins/reference-917-engine/source/prepare_scan.py (EXPECTED_SHA256)",
+    "containers/obj-metrology-f15",
+    "docs/research/local-917-engine-case-cylinders-scan.md"
+  ],
+  "rights": {
+    "license": "open-reuse-user-confirmed; exact-license-identifier-not-captured",
+    "redistribution": "unknown",
+    "provenance": "acheté auprès de Wolfe Classics (Porsche 917 Engine Case Scan) ; correspondant à la fiche SRC-LOCAL-917-ENGINE-CASE-CYLINDERS-SCAN"
+  },
+  "limitations": [
+    "La précision 0,5 mm est déclarative, sans rapport de métrologie indépendant.",
+    "Unité OBJ non déclarée ; mm supposé.",
+    "Maillage non étanche (101 809 arêtes ouvertes) ; variante 917 exacte non vérifiée.",
+    "Référence extérieure : ne prouve aucune compatibilité 993/M64."
+  ],
+  "notes": "Payload unique sous ce SHA-256, présent sous deux chemins byte-identiques : la copie raw-scans (chemin canonique, monté en lecture seule dans les pipelines 917) et la copie iCloud `917+engine+case+w+cyl+0.5mm.obj`. Le fichier iCloud n'est DONC pas une variante plus récente ou plus fine : c'est le même octet-à-octet que le scan déjà référencé par les workpackages 917 (F11/F15/F17), enregistré ici comme second chemin plutôt que comme nouvel actif. Déjà aligné avec docs/917_* existants ; aucune nouvelle source créée pour éviter le doublon."
+}

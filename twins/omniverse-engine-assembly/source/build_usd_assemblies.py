@@ -6,8 +6,12 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 from pathlib import Path
 from typing import Any
+
+
+PRIM_NAME = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 
 
 MATERIALS = {
@@ -42,7 +46,21 @@ MATERIALS = {
 }
 
 
-def load_and_validate_config(path: Path, project_root: Path) -> dict[str, Any]:
+def validate_manifest(manifest: dict[str, Any], manifest_path: Path) -> dict[str, Any]:
+    """Contract checks for the whole-engine manifest (engine_v1 schema).
+    Delegates to build_engine_scene.validate_manifest so builder and F0
+    composer share one stdlib contract; import is local so this module
+    still loads without the sibling when it is absent."""
+    import importlib.util
+
+    sibling = Path(__file__).resolve().parent / "build_engine_scene.py"
+    spec = importlib.util.spec_from_file_location("build_engine_scene", sibling)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.validate_manifest(manifest, manifest_path)
+
+
+def load_and_validate_config(path: Path, project_root: Path, engine_manifest: Path | None = None) -> dict[str, Any]:
     data = json.loads(path.read_text())
     errors: list[str] = []
     if data.get("status") != "F0_research_assembly":
@@ -70,6 +88,11 @@ def load_and_validate_config(path: Path, project_root: Path) -> dict[str, Any]:
             errors.append(f"invalid count for {component.get('id')}")
     if not data.get("limitations"):
         errors.append("limitations must be explicit")
+    if engine_manifest is not None and engine_manifest.is_file():
+        manifest = json.loads(engine_manifest.read_text(encoding="utf-8"))
+        report = validate_manifest(manifest, engine_manifest)
+        if not report["passed"]:
+            errors.append(f"engine manifest v1 invalid: {report['errors']}")
     if errors:
         raise ValueError("; ".join(errors))
     return data
@@ -253,16 +276,36 @@ def main() -> int:
     parser.add_argument("--project-root", type=Path, required=True)
     parser.add_argument("--config", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument(
+        "--engine-manifest",
+        type=Path,
+        default=None,
+        help="whole-engine manifest (assembly-engine-v1.json) to cross-validate "
+        "before rebuilding the F0 stages; defaults to the sibling manifest",
+    )
     args = parser.parse_args()
     project_root = args.project_root.resolve()
     output = args.output.resolve()
-    config = load_and_validate_config(args.config.resolve(), project_root)
+    engine_manifest = (
+        args.engine_manifest.resolve()
+        if args.engine_manifest
+        else (args.config.resolve().parent / "assembly-engine-v1.json")
+    )
+    config = load_and_validate_config(args.config.resolve(), project_root, engine_manifest)
     output.mkdir(parents=True, exist_ok=True)
     engine = build_engine_stage(config, project_root, output)
     rig = build_valvetrain_stage(config, project_root, output)
     components = build_component_stage(config, project_root, output)
     overview = build_overview_stage(config, output, engine, rig)
+    manifest_report = validate_manifest(
+        json.loads(engine_manifest.read_text(encoding="utf-8")), engine_manifest
+    )
     report = {
+        "engine_manifest_v1": {
+            "path": str(engine_manifest),
+            "contract": "passed" if manifest_report["passed"] else "failed",
+            "errors": manifest_report["errors"],
+        },
         "status": "passed",
         "property_assignment_intent": "skip",
         "profile": "F0_research_assembly",
@@ -270,9 +313,11 @@ def main() -> int:
         "limitations": config["limitations"],
         "next_step": "validate loaded composition, render, then measure component datums",
     }
+    if not manifest_report["passed"]:
+        report["status"] = "failed"
     (output / "assembly-report.json").write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps(report, indent=2))
-    return 0
+    return 0 if report["status"] == "passed" else 1
 
 
 if __name__ == "__main__":

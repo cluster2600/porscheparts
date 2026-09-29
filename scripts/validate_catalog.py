@@ -45,7 +45,10 @@ GEOMETRY_SOURCE_TYPES = {
     "estimated",
     "mixed",
 }
-PROCESSES = {"FFF", "SLA", "SLS", "MJF", "LPBF", "DMLS", "CNC", "sheet_metal", "casting"}
+PROCESSES = {
+    "FFF", "SLA", "SLS", "MJF", "LPBF", "DMLS", "CNC", "sheet_metal",
+    "casting", "composite_layup",
+}
 
 TOP_LEVEL_KEYS = {
     "schema_version",

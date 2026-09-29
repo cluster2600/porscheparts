@@ -300,6 +300,7 @@ validate:
 	python3 scripts/validate_catalog.py
 	python3 scripts/validate_am_pipeline.py
 	python3 scripts/validate_sources.py
+	python3 scripts/validate_scans.py
 	python3 scripts/validate_measurements.py
 	python3 scripts/validate_reference.py
 	python3 scripts/validate_manual_measurements.py
