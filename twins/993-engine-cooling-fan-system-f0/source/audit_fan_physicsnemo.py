@@ -12,7 +12,9 @@ import trimesh
 from physicsnemo.mesh import Mesh
 
 
-def audit(source: Path, out: Path):
+def audit(source: Path, out: Path, device="cpu"):
+    if device != "cpu" and not (device.startswith("cuda") and torch.cuda.is_available()):
+        raise ValueError("Requested audit device unavailable")
     if not source.name.endswith("-mm.stl"):
         raise ValueError("Expected a PicoGK -mm.stl export")
     metre_source = source.with_name(source.name.removesuffix("-mm.stl") + "-metres.stl")
@@ -25,8 +27,8 @@ def audit(source: Path, out: Path):
     surface = trimesh.load_mesh(source, process=True)
     if not isinstance(surface, trimesh.Trimesh) or len(surface.faces) == 0:
         raise ValueError("Expected nonempty triangular surface")
-    points = torch.as_tensor(np.array(surface.vertices), dtype=torch.float64)
-    cells = torch.as_tensor(np.array(surface.faces), dtype=torch.int64)
+    points = torch.as_tensor(np.array(surface.vertices), dtype=torch.float64, device=device)
+    cells = torch.as_tensor(np.array(surface.faces), dtype=torch.int64, device=device)
     mesh = Mesh(points=points, cells=cells)
     areas = mesh.cell_areas.detach().cpu().numpy()
     normals = mesh.cell_normals.detach().cpu().numpy()
@@ -44,7 +46,7 @@ def audit(source: Path, out: Path):
         "picogk_report_sha256": hashlib.sha256(
             source.with_name("picogk-report.json").read_bytes()).hexdigest(),
         "physicsnemo_version": importlib.metadata.version("nvidia-physicsnemo"),
-        "torch_version": torch.__version__, "device": "cpu",
+        "torch_version": torch.__version__, "device": str(points.device),
         "vertices": len(points), "triangles": len(cells),
         "watertight": bool(surface.is_watertight),
         "winding_consistent": bool(surface.is_winding_consistent),
@@ -66,5 +68,6 @@ if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("surface", type=Path)
     p.add_argument("out", type=Path)
+    p.add_argument("--device", default="cpu")
     a = p.parse_args()
-    audit(a.surface, a.out)
+    audit(a.surface, a.out, a.device)

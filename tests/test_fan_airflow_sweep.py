@@ -1,0 +1,73 @@
+"""Keep geometric experiments distinct from flow predictions."""
+import json
+import os
+from pathlib import Path
+import runpy
+import sys
+import subprocess
+import tempfile
+import unittest
+from _deps import require_modules
+
+SOURCE = Path(__file__).resolve().parents[1] / "twins/993-engine-cooling-fan-system-f0/source"
+
+
+class FanSweepTests(unittest.TestCase):
+    def test_failed_extended_mesh_never_starts_solver(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            (root / "system").mkdir()
+            (root / "system/controlDict").touch()
+            bin_dir = root / "bin"
+            bin_dir.mkdir()
+            for name, body in {
+                "blockMesh": "exit 0", "snappyHexMesh": "exit 0",
+                "checkMesh": 'if [ "$#" = 0 ]; then echo "Mesh OK."; else echo "Failed 1 mesh checks."; fi',
+                "topoSet": 'touch solver-would-start',
+            }.items():
+                command = bin_dir / name
+                command.write_text("#!/bin/sh\n" + body + "\n")
+                command.chmod(0o755)
+            script = root / "run.sh"
+            script.write_text((SOURCE / "run_reference_cfd.sh").read_text().replace(
+                "source /opt/openfoam14/etc/bashrc", ": # test utilities on PATH"))
+            result = subprocess.run(["bash", str(script), str(root)],
+                env=os.environ | {"PATH": str(bin_dir) + os.pathsep + os.environ["PATH"]}, capture_output=True)
+            self.assertEqual(result.returncode, 2)
+            self.assertFalse((root / "solver-would-start").exists())
+
+    def test_controlled_plan_preserves_interfaces_and_prior_outputs(self):
+        module = runpy.run_path(str(SOURCE / "sweep_fan_airflow.py"))
+        with tempfile.TemporaryDirectory() as folder:
+            output = Path(folder) / "plan"
+            module["plan"](output)
+            plan = json.loads((output / "plan.json").read_text())
+            self.assertEqual(len(plan["variants"]), 16)
+            base = json.loads((output / "e-control.json").read_text())
+            for name, changes in plan["variants"].items():
+                candidate = json.loads((output / (name + ".json")).read_text())
+                for key in plan["fixed"]:
+                    self.assertEqual(candidate[key], base[key])
+                differences = {k: v for k, v in candidate.items()
+                               if k != "parameter_evidence" and v != base[k]}
+                self.assertEqual(differences, changes)
+            with self.assertRaises(FileExistsError):
+                module["plan"](output)
+
+    def test_warp_ray_kernel_has_known_hit_and_miss(self):
+        require_modules("warp", "trimesh", "numpy")
+        import numpy as np
+        import trimesh
+        import warp as wp
+        sys.path.insert(0, str(SOURCE))
+        try:
+            from warp_fan_screen import axial_hits
+            box = trimesh.creation.box(extents=(2, 2, 2))
+            mesh = wp.Mesh(points=wp.array(box.vertices.astype(np.float32), dtype=wp.vec3, device="cpu"),
+                           indices=wp.array(box.faces.astype(np.int32).ravel(), dtype=wp.int32, device="cpu"))
+            origins = wp.array([[0, 0, -10], [3, 0, -10]], dtype=wp.vec3, device="cpu")
+            hits = wp.zeros(2, dtype=wp.int32, device="cpu")
+            wp.launch(axial_hits, 2, inputs=[mesh.id, origins, hits], device="cpu")
+            self.assertEqual(hits.numpy().tolist(), [1, 0])
+        finally:
+            sys.path.pop(0)

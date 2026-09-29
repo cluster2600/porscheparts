@@ -9,7 +9,7 @@ snappyHexMesh -overwrite > log.snappyHexMesh 2>&1
 checkMesh > log.checkMesh-standard 2>&1
 checkMesh -allGeometry -allTopology > log.checkMesh 2>&1
 if ! grep -q 'Mesh OK.' log.checkMesh-standard; then echo 'MESH REJECTED'; exit 2; fi
-if ! grep -q 'Mesh OK.' log.checkMesh; then echo 'Exploratory run only: extended mesh checks failed; see log.checkMesh'; fi
+if ! grep -q 'Mesh OK.' log.checkMesh; then echo 'MESH REJECTED: extended checks failed; see log.checkMesh'; exit 2; fi
 topoSet > log.topoSet 2>&1
 decomposePar > log.decomposePar 2>&1
 mpirun --allow-run-as-root -np 4 foamRun -parallel > log.foamRun 2>&1
