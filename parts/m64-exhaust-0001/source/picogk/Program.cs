@@ -38,11 +38,11 @@ try
 
     void Build(string partKey, IImplicit xImplicit, BBox3 bounds, object parameters, string[] tag)
     {
-        Voxels voxels = new(library);
+        using Voxels voxels = new(library);
         voxels.RenderImplicit(xImplicit, bounds);
         voxels.CalculateProperties(out float volumeCubicMm, out BBox3 renderedBounds);
         if (volumeCubicMm <= 0) throw new InvalidDataException($"{partKey}: nonpositive voxel volume");
-        Mesh mesh = new(voxels);
+        using Mesh mesh = new(voxels);
         string stlPath = Path.Combine(output, $"{partKey}.stl");
         mesh.SaveToStlFile(stlPath, Mesh.EStlUnit.MM);
         float massGrams = volumeCubicMm * IN625_DENSITY_G_PER_MM3;
@@ -58,8 +58,6 @@ try
             triangles = mesh.nTriangleCount(),
             provenance_tags = tag
         });
-        voxels.Dispose();
-        mesh.Dispose();
         Console.WriteLine($"{partKey}: volume={volumeCubicMm:F0} mm3 screening mass={massGrams:F1} g, tris={mesh.nTriangleCount()}");
     }
 
