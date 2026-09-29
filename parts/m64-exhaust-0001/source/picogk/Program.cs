@@ -3,9 +3,9 @@ using System.Numerics;
 using System.Text.Json;
 using PicoGK;
 
-// M64 exhaust-wave parametric field functions: ManifoldRunner, HeatShield,
-// ExhaustTip, OilReturnPipe. Signed-distance field functions only; voxel render,
-// boolean and STL export use the PicoGK 26.2 API verified in
+// M64 exhaust-wave parametric field functions: ManifoldRunner, DownpipeRunner,
+// HeatShield, ExhaustTip, OilReturnPipe. Signed-distance field functions only;
+// voxel render, boolean and STL export use the PicoGK 26.2 API verified in
 // containers/picogk-m64.Dockerfile (/upstream/PicoGK).
 //
 // Every dimension is tagged in provenance.json. Nothing here is a measured
@@ -60,7 +60,7 @@ try
         });
         voxels.Dispose();
         mesh.Dispose();
-        Console.WriteLine($"{partKey}: volume={volumeCubicMm:F0} mm3 screening mass={massGrams:F1} g, tris={records.Count}");
+        Console.WriteLine($"{partKey}: volume={volumeCubicMm:F0} mm3 screening mass={massGrams:F1} g, tris={mesh.nTriangleCount()}");
     }
 
     // ------------------------------------------------------------------
@@ -83,6 +83,8 @@ try
         RunnerBendRadiusMm = 60.0f,         // ASSUMED bend strategy marker
         TurbineInletStubDiaMm = 54.0f,      // ASSUMED: K16 turbine inlet face unmeasured
         TurbineInletStubLengthMm = 14.0f,   // ASSUMED
+        TurbineOutletStubDiaMm = 60.0f,     // ASSUMED: K16 turbine outlet face unmeasured
+        TurbineOutletStubLengthMm = 16.0f,  // ASSUMED
         AxialLengthTargetMm = 215.0f        // F0 synthetic axial length
     };
     ManifoldRunner runner = new(manifold);
@@ -91,7 +93,34 @@ try
          "ar_8p00_supplier_declaration_not_design_dim", "dims_missing_in_bom"]);
 
     // ------------------------------------------------------------------
-    // 2. HeatShield — shell over the FVD-declared product envelope
+    // 2. DownpipeRunner — turbine outlet -> routed runner -> tip inlet.
+    //    The whole route (BOM M64B-IN-004, dims=missing, identity=missing)
+    //    is ASSUMED; bend radii are configurable parameters so the layout
+    //    can be revised when the Fabspeed scan lead is extracted.
+    //    Inlet outer diameter = turbine-outlet stub outer (60) + 2 x wall.
+    // ------------------------------------------------------------------
+    DownpipeParams downpipe = new()
+    {
+        InletOuterDiaMm = manifold.TurbineOutletStubDiaMm + 2f * manifold.WallMm,
+        OutletOuterDiaMm = manifold.TurbineOutletStubDiaMm + 2f * manifold.WallMm,
+        WallMm = 1.2f,                      // ASSUMED (F0 study value)
+        AxialLengthMm = 420.0f,             // ASSUMED route length
+        BendRadiusA_Mm = 150.0f,            // ASSUMED: first bend, configurable
+        BendRadiusB_Mm = 150.0f,            // ASSUMED: second bend, configurable
+        BendRadiusMid_Mm = 240.0f,          // ASSUMED: mid-sweep radius, configurable
+        BendRadiusCat_Mm = 320.0f,          // ASSUMED: cat-section radius, configurable
+        DropMm = 90.0f,                     // ASSUMED: descent toward underfloor
+        LateralOffsetMm = 60.0f,            // ASSUMED: inboard step to tip line
+        FlangeOuterMm = 74.0f,              // ASSUMED; ball-clamp geometry unmeasured
+        FlangeThicknessMm = 6.0f            // ASSUMED
+    };
+    DownpipeRunner downpipeRunner = new(downpipe);
+    Build("downpipe_turbine_outlet_to_tip", downpipeRunner, downpipeRunner.Bounds, downpipe,
+        ["all_dims_assumed", "bend_radii_configurable", "route_unknown_pending_laser_scan",
+         "cat_insert_omitted_identity_missing", "dims_missing_in_bom"]);
+
+    // ------------------------------------------------------------------
+    // 3. HeatShield — shell over the FVD-declared product envelope
     //    105 x 160 x 110 mm (H x L x W), ref 993 123 113 51. Only the
     //    envelope is vendor-declared; thickness, fixings and hot face are
     //    ASSUMED.
@@ -111,7 +140,7 @@ try
          "interfaces_missing", "polymer_vs_metal_open_see_printability"]);
 
     // ------------------------------------------------------------------
-    // 3. ExhaustTip — round-to-oval transition to the FVD-declared
+    // 4. ExhaustTip — round-to-oval transition to the FVD-declared
     //    120 (wide) x 85 (high) outlet. Inlet, length, wall and ties follow
     //    the repo oval-tip IN625 F0 study (docs/993/993_OVAL_EXHAUST_TIP_IN625_F0.md):
     //    0.8 mm shell, eight radial ties, open air gap.
@@ -134,7 +163,7 @@ try
          "family_mismatch_narrowbody_vs_turbo"]);
 
     // ------------------------------------------------------------------
-    // 4. OilReturnPipe — gravity scavenge line stub, turbo down to sump.
+    // 5. OilReturnPipe — gravity scavenge line stub, turbo down to sump.
     //    No source publishes any dimension (Patrick Motorsports describes
     //    fit-as-installed practice); every value below is ASSUMED.
     // ------------------------------------------------------------------
@@ -181,11 +210,10 @@ sealed class SdSegment : IImplicit
     readonly Vector3 m_vecB;
     readonly float m_fRadA;
     readonly float m_fRadB;
-    readonly float m_fBendStub;
 
-    public SdSegment(Vector3 vecA, Vector3 vecB, float fRadA, float fRadB, float fBendStub = 0f)
+    public SdSegment(Vector3 vecA, Vector3 vecB, float fRadA, float fRadB)
     {
-        m_vecA = vecA; m_vecB = vecB; m_fRadA = fRadA; m_fRadB = fRadB; m_fBendStub = fBendStub;
+        m_vecA = vecA; m_vecB = vecB; m_fRadA = fRadA; m_fRadB = fRadB;
     }
 
     public float fSignedDistance(in Vector3 vec)
@@ -195,19 +223,7 @@ sealed class SdSegment : IImplicit
         float h = Math.Clamp(Vector3.Dot(pa, ba) / ba.LengthSquared(), 0f, 1f);
         Vector3 proj = pa - h * ba;
         float r = m_fRadA + h * (m_fRadB - m_fRadA);
-        float d = proj.Length() - r;
-        if (m_fBendStub > 0f)
-            // Round the junction so unions of segments stay manifold-ish at F0.
-            d = SmoothMinSphere(d, (vec - (m_vecA + h * ba)).Length() * 0f - 0f, m_fBendStub);
-        return d;
-    }
-
-    static float SmoothMinSphere(float fA, float fB, float fK)
-    {
-        float r = fB + fK;
-        float d = fA + fK;
-        if (d >= 0f || r >= 0f) return Math.Min(fA, fB);
-        return d * d / (4f * fK);
+        return proj.Length() - r;
     }
 }
 
@@ -261,7 +277,7 @@ sealed class SdOvalLoft : IImplicit
         float ry = m_fInletR + smooth * (m_fOutHalfH - m_fInletR) - m_fWallInset;
         if (rx <= 0f || ry <= 0f) return 1000f;
         Vector2 p = new(vec.X, vec.Y);
-        float k = Vector2.Dot(p / new Vector2(rx, ry), p / new Vector2(rx, ry)).Length();
+        float k = (p / new Vector2(rx, ry)).Length();
         float sdSection = (k - 1f) * Math.Min(rx, ry);
         // Blend the section SDF with the slab along Z (capped loft).
         float sdZ = Math.Abs(vec.Z - m_fLength * 0.5f) - m_fLength * 0.5f;
@@ -307,6 +323,8 @@ record ManifoldRunnerParams
     public required float RunnerBendRadiusMm { get; init; }
     public required float TurbineInletStubDiaMm { get; init; }
     public required float TurbineInletStubLengthMm { get; init; }
+    public required float TurbineOutletStubDiaMm { get; init; }
+    public required float TurbineOutletStubLengthMm { get; init; }
     public required float AxialLengthTargetMm { get; init; }
 }
 
@@ -363,6 +381,15 @@ sealed class ManifoldRunner : IBoundedImplicit
         aOuter.Add(new SdSegment(vecCollEnd, vecStub, fStubR + fWall, fStubR + fWall));
         aInner.Add(new SdSegment(vecCollEnd, vecStub, fStubR * 0.9f, fStubR * 0.9f));
 
+        // K16 turbine-outlet stub, coaxial with the collector centreline; the
+        // DownpipeRunner starts where this stub ends. Diameter and length are
+        // assumptions (the FVD source declares only the 210x280x190 turbo
+        // envelope), so they are configured, not measured.
+        float fOutStubR = oParams.TurbineOutletStubDiaMm * 0.5f;
+        Vector3 vecOutStubEnd = vecStub + new Vector3(oParams.TurbineOutletStubLengthMm, 0f, 0f);
+        aOuter.Add(new SdSegment(vecStub, vecOutStubEnd, fOutStubR + fWall, fOutStubR + fWall));
+        aInner.Add(new SdSegment(vecStub, vecOutStubEnd, fOutStubR, fOutStubR));
+
         m_oOuter = new SdUnion([.. aOuter]);
         m_oInner = new SdUnion([.. aInner]);
     }
@@ -376,11 +403,125 @@ sealed class ManifoldRunner : IBoundedImplicit
         {
             float fPad = m_oParams.HeaderStubOuterMm * 0.5f + 2f;
             float fLen = m_oParams.HeaderStubLengthMm + m_oParams.CollectorLengthMm
-                       + m_oParams.TurbineInletStubLengthMm;
+                       + m_oParams.TurbineInletStubLengthMm + m_oParams.TurbineOutletStubLengthMm;
             float fHalfY = (m_oParams.RunnerCount - 1) * 0.5f * m_oParams.HeaderPortPitchMm;
             return new BBox3(
                 new Vector3(-m_oParams.HeaderStubLengthMm - fPad, -fHalfY - fPad, -fPad),
                 new Vector3(fLen + fPad, fHalfY + fPad, fPad));
+        }
+    }
+}
+
+record DownpipeParams
+{
+    public required float InletOuterDiaMm { get; init; }
+    public required float OutletOuterDiaMm { get; init; }
+    public required float WallMm { get; init; }
+    public required float AxialLengthMm { get; init; }
+    public required float BendRadiusA_Mm { get; init; }
+    public required float BendRadiusB_Mm { get; init; }
+    public required float BendRadiusMid_Mm { get; init; }
+    public required float BendRadiusCat_Mm { get; init; }
+    public required float DropMm { get; init; }
+    public required float LateralOffsetMm { get; init; }
+    public required float FlangeOuterMm { get; init; }
+    public required float FlangeThicknessMm { get; init; }
+}
+
+/// <summary>
+/// Turbine-outlet-to-tip runner. The centreline is a three-arc routed
+/// approximation (entry bend radius A, descent bend radius B, mid sweep
+/// radius Mid, exit-cat bend radius Cat) built as a tangent polyline chain of
+/// SdSegments plus junction spheres, so the pipe stays manifold at F0 while
+/// every bend radius stays a configurable parameter. Solid outer minus duct
+/// inner => open at both ends. The whole route is an ASSUMPTION; see
+/// provenance.json.
+/// </summary>
+sealed class DownpipeRunner : IBoundedImplicit
+{
+    readonly DownpipeParams m_oParams;
+    readonly SdShell m_oShell;
+    readonly SdUnion m_oFlanges;
+    readonly float m_fMaxRadius;
+
+    public DownpipeRunner(DownpipeParams oParams)
+    {
+        m_oParams = oParams;
+        if (oParams.BendRadiusA_Mm < oParams.InletOuterDiaMm ||
+            oParams.BendRadiusB_Mm < oParams.InletOuterDiaMm ||
+            oParams.BendRadiusMid_Mm < oParams.InletOuterDiaMm * 0.5f ||
+            oParams.BendRadiusCat_Mm < oParams.OutletOuterDiaMm)
+            throw new ArgumentException($"{nameof(DownpipeRunner)}: bend radius below pipe diameter");
+
+        float fRIn = oParams.InletOuterDiaMm * 0.5f;
+        float fROut = oParams.OutletOuterDiaMm * 0.5f;
+        float fWall = oParams.WallMm;
+        m_fMaxRadius = Math.Max(fRIn, fROut) + fWall;
+
+        // Centreline chain: +X from the turbine outlet, descending, then
+        // inboard (+Y) toward the tip line, exit facing +X at the tip plane.
+        // Each arc is a pair of chords whose length scales with its bend
+        // radius, so the bend radii are first-class geometry parameters.
+        Vector3 vecStart = Vector3.Zero;
+        Vector3 vecB = vecStart + new Vector3(oParams.BendRadiusA_Mm * 0.75f, 0f, -fWall * 2f);
+        Vector3 vecMid = vecB + new Vector3(oParams.BendRadiusMid_Mm * 0.5f,
+                                            0f,
+                                            -oParams.DropMm * 0.5f);
+        Vector3 vecDrop = vecMid + new Vector3(oParams.BendRadiusB_Mm * 0.25f,
+                                               oParams.LateralOffsetMm * 0.5f,
+                                               -oParams.DropMm * 0.5f);
+        Vector3 vecCat = vecDrop + new Vector3(oParams.BendRadiusCat_Mm * 0.25f,
+                                               oParams.LateralOffsetMm * 0.5f, 0f);
+        Vector3 vecExit = vecCat + new Vector3(oParams.AxialLengthMm * 0.5f,
+                                               0f, oParams.DropMm * 0.25f);
+        Vector3 vecEnd = vecExit + new Vector3(oParams.AxialLengthMm * 0.5f, 0f, 0f);
+
+        Vector3[] avec = [vecStart, vecB, vecMid, vecDrop, vecCat, vecExit, vecEnd];
+        List<IImplicit> aOuter = [];
+        List<IImplicit> aInner = [];
+        for (int n = 0; n < avec.Length - 1; n++)
+        {
+            float fT = (float)n / (avec.Length - 2);
+            float rA = fRIn + fT * (fROut - fRIn);
+            float rB = fRIn + (n + 1f) / (avec.Length - 2) * (fROut - fRIn);
+            aOuter.Add(new SdSegment(avec[n], avec[n + 1], rA + fWall, rB + fWall));
+            aInner.Add(new SdSegment(avec[n], avec[n + 1], rA, rB));
+            if (n > 0)
+            {
+                // Junction spheres keep the union (and the subtracted duct)
+                // round at the chord joints; an exact swept-pipe SDF is
+                // deferred until the route is measured.
+                aOuter.Add(new SphereImplicit(avec[n], rA + fWall));
+                aInner.Add(new SphereImplicit(avec[n], rA));
+            }
+        }
+        m_oShell = new SdShell(new SdUnion([.. aOuter]), new SdUnion([.. aInner]));
+        m_oFlanges = new SdUnion(
+            new SdSegment(vecStart, vecStart + new Vector3(oParams.FlangeThicknessMm, 0f, 0f),
+                          oParams.FlangeOuterMm * 0.5f, oParams.FlangeOuterMm * 0.5f),
+            new SdSegment(vecEnd - new Vector3(oParams.FlangeThicknessMm, 0f, 0f), vecEnd,
+                          oParams.FlangeOuterMm * 0.5f, oParams.FlangeOuterMm * 0.5f));
+    }
+
+    public float fSignedDistance(in Vector3 vec)
+        => Math.Min(m_oShell.fSignedDistance(vec), m_oFlanges.fSignedDistance(vec));
+
+    public BBox3 Bounds
+    {
+        get
+        {
+            float fPad = Math.Max(m_fMaxRadius, m_oParams.FlangeOuterMm * 0.5f) + 2f;
+            float fXMin = -fPad;
+            float fXMax = m_oParams.AxialLengthMm
+                        + m_oParams.BendRadiusA_Mm * 0.75f
+                        + m_oParams.BendRadiusMid_Mm * 0.5f
+                        + m_oParams.BendRadiusB_Mm * 0.25f
+                        + m_oParams.BendRadiusCat_Mm * 0.25f + fPad;
+            float fYMin = -fPad;
+            float fYMax = m_oParams.LateralOffsetMm + fPad;
+            float fZMin = -m_oParams.DropMm - fPad;
+            float fZMax = fPad;
+            return new BBox3(new Vector3(fXMin, fYMin, fZMin), new Vector3(fXMax, fYMax, fZMax));
         }
     }
 }
