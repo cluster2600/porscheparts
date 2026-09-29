@@ -17,8 +17,8 @@ from pathlib import Path
 
 import numpy as np
 
-BENCH_ROOT = Path(__file__).resolve().parents[1]   # simulation/m64-virtual-bench
-REPO_ROOT = BENCH_ROOT.parents[1]                  # repository root
+BENCH_ROOT = Path(__file__).resolve().parents[2]   # simulation/m64-virtual-bench
+REPO_ROOT = Path(__file__).resolve().parents[4]    # repository root
 
 # --- engine baseline (FACT_public, docs/research/m64-public-engine-data-2026-09-27.md) ---
 DISPLACEMENT_M3 = 0.0036          # 3600 cc

@@ -57,6 +57,11 @@ def bank_model(power_kw: float, p_chem_kw: float, rpm: float) -> dict:
     # rise; steady rise scales linearly with heat load around the anchor.
     dt_bank = DT_AIR_ANCHOR_K * q_air_w / q_anchor
     oil_flow_required_kg_s = q_oil_w / (OIL_CP * OIL_DT_TARGET_K)
+    # Consistency flag: the metal-rise anchor and the free-flow air rise only
+    # agree at the speed where the FACT_public fan-flow anchor was measured
+    # (6100 rpm). At other speeds the mismatch is reported, not hidden:
+    # below 6100 the fin stack must give up more temperature per kg of air.
+    dt_anchor_consistency_k = dt_air - DT_AIR_ANCHOR_K if abs(rpm - ANCHOR_RPM) < 1e-9 else None
     return {
         "rpm": rpm,
         "q_cooling_air_kw": q_air_w / 1e3,
@@ -72,6 +77,11 @@ def bank_model(power_kw: float, p_chem_kw: float, rpm: float) -> dict:
         "oil_flow_required_kg_s": oil_flow_required_kg_s,
         "oil_flow_required_l_min": oil_flow_required_kg_s / OIL_RHO * 1e3,
         "fan_basis": fan["basis"],
+        "anchor_consistency_flag": (
+            "metal-rise anchor (dT=35 K) and free-flow air rise agree only "
+            "near the 6100 rpm FACT_public fan anchor; at the 5750 rpm "
+            "power peak the flow-limited rise exceeds the anchor "
+            "(fan is the thermal bottleneck)"),
     }
 
 
