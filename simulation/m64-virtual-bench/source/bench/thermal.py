@@ -1,95 +1,57 @@
-"""Oil + cooling-air thermal loop (lumped, 0D, air-cooled).
+"""Oil + cooling-air thermal loop (lumped, 0D, air-cooled) — compatibility shim.
 
-Heat rejection: chemical power in minus brake power out splits into
-cooling air (cylinder fins + fan duct), oil circuit, exhaust enthalpy
-and radiated/store. Fixed split fractions are ASSUMPTIONS (documented
-below); the cooling-air side is closed against the fan airflow model
-(FACT_public anchor 1010 l/s @ 6100 rpm, linear affinity HYPOTHESIS).
+The physics moved to dedicated modules:
 
-Per-bank lumped model: 3 cylinders/bank, equal split. Steady-state bank
-metal temperature rise is solved from Q_bank = hA_eff * dT with a single
-lumped hA_eff per bank, itself anchored so that the cooling-air temperature
-rise at the public peak-power point equals a documented 35 K (ASSUMPTION:
-plausible air-cooled fin-stack rise; no measured fin data in repo).
+  - bench/cooling_air.py: fan flow (FACT_public anchor 1010 l/s @ 6100 rpm,
+    linear affinity HYPOTHESIS), heat-rejection split (ASSUMPTION set),
+    fin-stack rise and entropy-generation audit,
+  - bench/oil.py: hydraulic side (flow demand vs assumed pump capability,
+    bearing film floor, assumed pump drive power, M64-ACQ-BENCH-02),
+  - bench/charge_air.py: compressor duty and intercooler audit.
 
-Oil: flow demand vs pump data. The repo publishes oil CAPACITY (12 L) and
-a synthetic return-line point (2 L/min, 120 degC) but NO pump flow curve
-or pressure -> flagged in inputs-gap.md (M64-ACQ-BENCH-02).
+This shim keeps the historical interface (bank_model, SPLIT_*,
+DT_AIR_ANCHOR_K, ANCHOR_RPM) working so the wave-2 tests and any external
+callers keep running while run_bench.py migrates to the new modules.
 """
 from __future__ import annotations
 
-from .common import (
-    OIL_CP, OIL_RHO, P_AMB_PA, RHO_AMB,
-)
+from . import cooling_air
 from .air_path import fan_airflow
+from .cooling_air import (  # noqa: F401  (re-exported for compatibility)
+    DT_AIR_ANCHOR_K, SPLIT_COOLING_AIR, SPLIT_EXHAUST, SPLIT_OIL,
+    SPLIT_RADIATED, SPLIT_SUM,
+)
 
-# Heat rejection split of chemical power at WOT (ASSUMPTION set; typical
-# turbocharged spark range; sums to 1.0):
-SPLIT_COOLING_AIR = 0.30    # fins + fan duct + intercooler face
-SPLIT_OIL = 0.10            # oil-cooler circuit (incl. CHRA + bearings)
-SPLIT_EXHAUST = 0.55        # enthalpy leaving via turbines/exhaust
-SPLIT_RADIATED = 0.05       # external radiation, accessories
-SPLIT_SUM = SPLIT_COOLING_AIR + SPLIT_OIL + SPLIT_EXHAUST + SPLIT_RADIATED
+ANCHOR_RPM = 5750.0   # public peak-power point (ASSUMPTION rpm position)
 
-# Cooling-air temperature rise anchor at the public peak-power point (ASSUMPTION).
-DT_AIR_ANCHOR_K = 35.0
-ANCHOR_RPM = 5750.0
-
-# Oil circuit design intent (ASSUMPTION: typical air-cooled turbo dry-sump
-# supply target 1.5-2 bar hot idle, 10-15 L/s peak; no pump curve in repo).
+# Kept for callers that import them (documented in oil.py as ASSUMPTIONs).
 OIL_SUPPLY_TARGET_LPS = 0.25          # ASSUMPTION
-OIL_DT_TARGET_K = 25.0                # oil-cooler delta-T target (ASSUMPTION)
+OIL_DT_TARGET_K = 25.0                # ASSUMPTION
 
 
 def bank_model(power_kw: float, p_chem_kw: float, rpm: float) -> dict:
-    fan = fan_airflow(rpm)
-    q_air_w = p_chem_kw * 1e3 * SPLIT_COOLING_AIR
-    q_oil_w = p_chem_kw * 1e3 * SPLIT_OIL
-    m_air = fan["fan_mass_flow_kg_s"]
-    # cooling air temperature rise implied by the actual flow:
-    cp_air = 1005.0
-    dt_air = q_air_w / (m_air * cp_air) if m_air > 0 else float("inf")
-    # lumped hA anchored so bank rise = DT_AIR_ANCHOR_K at ANCHOR_RPM
-    fan_anchor = fan_airflow(ANCHOR_RPM)
-    q_anchor = _p_chem_at_anchor() * 1e3 * SPLIT_COOLING_AIR
-    hA = q_anchor / DT_AIR_ANCHOR_K
-    # Each bank holds half of q_air and half of hA -> both banks show the same
-    # rise; steady rise scales linearly with heat load around the anchor.
-    dt_bank = DT_AIR_ANCHOR_K * q_air_w / q_anchor
-    oil_flow_required_kg_s = q_oil_w / (OIL_CP * OIL_DT_TARGET_K)
-    # Consistency flag: the metal-rise anchor and the free-flow air rise only
-    # agree at the speed where the FACT_public fan-flow anchor was measured
-    # (6100 rpm). At other speeds the mismatch is reported, not hidden:
-    # below 6100 the fin stack must give up more temperature per kg of air.
-    dt_anchor_consistency_k = dt_air - DT_AIR_ANCHOR_K if abs(rpm - ANCHOR_RPM) < 1e-9 else None
+    """Historical interface: cooling_air panel + lumped per-bank rise.
+
+    Bank metal rise is modelled as the cooling-air rise itself (single
+    lumped resistance; linear scaling around the 35 K anchor is inherited
+    from the cooling_air DT shape)."""
+    ca = cooling_air.point(p_chem_kw, rpm)
+    dt_bank = ca["cooling_air_dt_k"]
     return {
         "rpm": rpm,
-        "q_cooling_air_kw": q_air_w / 1e3,
-        "q_oil_kw": q_oil_w / 1e3,
-        "q_exhaust_kw": p_chem_kw * SPLIT_EXHAUST,
-        "fan_mass_flow_kg_s": m_air,
-        "cooling_air_dt_k": dt_air,
-        "bank_metal_rise_k": dt_bank * 1.0,
+        "q_cooling_air_kw": ca["q_cooling_air_kw"],
+        "q_oil_kw": ca["q_oil_kw"],
+        "q_exhaust_kw": ca["q_exhaust_kw"],
+        "fan_mass_flow_kg_s": ca["fan_mass_flow_kg_s"],
+        "cooling_air_dt_k": ca["cooling_air_dt_implied_k"],
+        "bank_metal_rise_k": dt_bank,
         "per_bank": {
-            "q_bank_air_kw": q_air_w / 2e3,
+            "q_bank_air_kw": ca["q_cooling_air_kw"] / 2.0,
             "dt_bank_k": dt_bank,
         },
-        "oil_flow_required_kg_s": oil_flow_required_kg_s,
-        "oil_flow_required_l_min": oil_flow_required_kg_s / OIL_RHO * 1e3,
-        "fan_basis": fan["basis"],
-        "anchor_consistency_flag": (
-            "metal-rise anchor (dT=35 K) and free-flow air rise agree only "
-            "near the 6100 rpm FACT_public fan anchor; at the 5750 rpm "
-            "power peak the flow-limited rise exceeds the anchor "
-            "(fan is the thermal bottleneck)"),
+        "oil_flow_required_kg_s": ca["q_oil_kw"] * 1e3 / (2100.0 * OIL_DT_TARGET_K),
+        "oil_flow_required_l_min": (ca["q_oil_kw"] * 1e3
+                                    / (2100.0 * OIL_DT_TARGET_K) / 850.0 * 1e3),
+        "fan_basis": ca["basis"],
+        "anchor_consistency_flag": ca["anchor_consistency_flag"],
     }
-
-
-_ANCHOR_CACHE: dict = {}
-
-
-def _p_chem_at_anchor() -> float:
-    if "p" not in _ANCHOR_CACHE:
-        from .fuel import point
-        _ANCHOR_CACHE["p"] = point(ANCHOR_RPM)["p_chem_kw"]
-    return _ANCHOR_CACHE["p"]
