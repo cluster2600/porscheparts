@@ -231,8 +231,10 @@ try
             {
                 float a = 2f * MathF.PI * i / seg;
                 Vector3 rad = ex * MathF.Cos(a) + ey * MathF.Sin(a);
-                outer[i] = axisOrigin + rad * rSeat;
-                inner[i] = axisOrigin + rad * (rSeat - SeatBandWidth) + u * SeatBandWidth;
+                // Rim is sunk 0.3 mm below the deck plane so the subtractive
+                // boolean never leaves a coplanar non-manifold edge on Z=0.
+                outer[i] = axisOrigin + rad * rSeat - u * 0.3f;
+                inner[i] = axisOrigin + rad * (rSeat - SeatBandWidth) + u * (SeatBandWidth - 0.3f);
             }
             for (int i = 0; i < seg; i++)
             {
@@ -324,6 +326,11 @@ try
     // ------------------------------------------------------------------
     // Export.
     // ------------------------------------------------------------------
+    Stage("cleanup_offset_zero");
+    // Merge any non-manifold contacts / tiny islands introduced by the
+    // boolean chain before meshing (PicoGK convention: offset by 0).
+    head.BoolOffset(0f);
+
     Stage("export_stl_mm");
     head.CalculateProperties(out float volumeMm3, out BBox3 bounds);
     using Mesh mesh = new(head);
