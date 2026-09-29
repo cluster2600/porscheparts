@@ -87,10 +87,15 @@ def eff_calib(rpm: float) -> float:
     return (C0 + C1 * _tilt(rpm))
 
 
-def point(rpm: float) -> dict:
-    """Brake power/torque/fuel at WOT for one engine speed."""
-    a = air_flow(rpm, DISPLACEMENT_M3)
-    m_fuel = a["m_dot_air_kg_s"] / AFR_WOT
+def point(rpm: float, thr: float = 1.0) -> dict:
+    """Brake power/torque/fuel at given throttle for one engine speed.
+
+    Part load: fuel follows air at stoichiometric AFR (ASSUMPTION,
+    M64-ACQ-BENCH-10); brake efficiency keeps the WOT calibration — the
+    missing part-load pumping loss is flagged, not modelled."""
+    a = air_flow(rpm, DISPLACEMENT_M3, thr)
+    afr = AFR_WOT if thr >= 1.0 else AFR_STOICH
+    m_fuel = a["m_dot_air_kg_s"] / afr
     p_chem = m_fuel * LHV_FUEL_J_KG
     eta_b = eff_calib(rpm) * _bsfc_shape_to_eff(interp(rpm, BSFC_RPM, BSFC_SHAPE))
     p_kw = p_chem * eta_b / 1e3
@@ -98,7 +103,7 @@ def point(rpm: float) -> dict:
     torque = p_kw * 1e3 / omega
     bsfc = 3.6e9 / (eta_b * LHV_FUEL_J_KG)
     bmep_bar = torque * 4.0 * 2.0 * math.pi / (2.0 * DISPLACEMENT_M3) / 1e5
-    return {**a, "afr": AFR_WOT, "m_dot_fuel_kg_s": m_fuel,
+    return {**a, "afr": afr, "m_dot_fuel_kg_s": m_fuel,
             "p_chem_kw": p_chem / 1e3, "eta_brake": eta_b,
             "power_kw": p_kw, "torque_nm": torque, "bsfc_g_kwh": bsfc,
             "bmep_bar": bmep_bar}
