@@ -16,6 +16,8 @@
   "build_state": {
     "local_build": "not_run",
     "local_build_failure": "host dotnet SDK 6.0.400 cannot target net9.0 (NETSDK1045); csproj targets net9.0 per containers/picogk-m64.Dockerfile",
+    "container_build": "succeeded 2026-09-29 in picogk-station:qualified-final-20260928 (dotnet 9.0.317, -e UpstreamRoot=/upstream); two CS0019 Vector3/scalar operator fixes applied, no geometry change; see ../../validation/compile-record.md",
+    "runtime_tested": "not_run (managed compile only; no voxel render, no STL export)",
     "verified_api_source": "https://github.com/leap71/PicoGK commit 0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3 (pinned in containers/m64-leap71/sources.lock); symbols used: Library(float), IImplicit.fSignedDistance(in Vector3), IBoundedImplicit.oBounds, Voxels(Library,IImplicit,BBox3), Voxels.RenderImplicit, Voxels.CalculateProperties(out float,out BBox3), Mesh(Voxels), Mesh.nTriangleCount, Mesh.SaveToStlFile(string,EStlUnit), Mesh.EStlUnit.MM",
     "native_runtime_tested": false,
     "manufacturing_authorized": false,
