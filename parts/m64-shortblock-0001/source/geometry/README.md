@@ -25,7 +25,7 @@ manufacturing-ready. The output is parametric source geometry:
 The piston is a nominal-bore envelope, not piston geometry. No CFD/FEA is
 implied by this folder.
 
-## Build / run (not yet executed on this host — see below)
+## Build / run
 
 ```sh
 dotnet build -c Release                                     # needs SDK >= 8
@@ -40,28 +40,24 @@ pinned API surface is PicoGK 2.3.0 commit `0e6cf6b6f4993ec16dbcd72d8f26b999980f3
 verified surface — no box primitive exists there, so slabs are flat-capped
 beams.
 
-## Build status on this host — honest record
+## Build status — honest record (see validation/build-log.md)
 
-**No build has been run or passed on this host.** Two independent blockers,
-verified 2026-09-29:
+**Compiled clean 2026-09-29** in the pinned station image
+(`picogk-station:qualified-final-20260928`, dotnet build -c Release,
+0 warnings / 0 errors, commit `c48b133`). The first attempt **failed**
+(reserved-word parameter, `ref`-on-using arguments, one malformed
+`Annulus` call); the fixes and both logs are in `validation/build-log.md`.
 
-1. **SDK**: the only .NET SDK installed on kali2 is 6.0.400
-   (`dotnet --list-sdks`), while `ShortBlock.csproj` targets `net9.0`
-   (PicoGK station convention). SDK 6 cannot restore/build a `net9.0`
-   project — this is exactly error NETSDK1045 ("The .NET SDK version does not
-   support targeting .NET 9.0"). Building here would require installing an
-   SDK ≥ 8 (ideally 9), which was not in scope.
-2. **PicoGK kernel**: `/upstream/PicoGK` does not exist on this host; the
-   project reference cannot resolve outside the picogk-station container.
-
-The stale `obj/` and empty `bin/Release/net9.0/` directories in this folder
-were produced inside the station container (`/work/...` paths in the nuget
-cache); they are build by-products, ignored via `.gitignore`, and are **not**
-evidence of a completed compile here.
+On the host directly, a build is still impossible: the only .NET SDK on
+kali2 is 6.0.400 (net9.0 needs >= 8) and `/upstream/PicoGK` exists only
+inside the station image — hence the container build. `bin/`/`obj/` here
+are container by-products (root-owned), ignored via `.gitignore`.
 
 ## Verified vs unverified (as of this commit)
 
-Verified on this host:
+Verified on this host / image:
+- Compiler type-check of `ShortBlock.cs` against PicoGK 2.3.0: **PASS**
+  (0 warnings, 0 errors, see `validation/build-log.md`).
 - The C# uses only .NET 9 / C# 12 language features and BCL APIs (no
   external packages beyond the PicoGK reference; `System.Text.Json` and
   `System.Numerics` ship with the SDK).
@@ -74,7 +70,6 @@ Verified on this host:
   keyword (valid C#, but a static-analysis smell) was removed.
 
 Unverified — requires the station container (or SDK ≥ 8 + PicoGK checkout):
-- Compiler type-check of `ShortBlock.cs` against PicoGK 2.3.0.
 - Runtime execution, STL/vdb export, run-report contents, volume sanity.
 - Any dimensional correctness (`dimensional_correctness_verified: false` is
   written into the run report itself).
