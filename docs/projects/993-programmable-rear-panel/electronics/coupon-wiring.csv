@@ -1,0 +1,35 @@
+scope,pins_or_signal,net_or_connection,review_note
+status,ALL,NON VALIDE POUR FABRICATION,Connexions proposees a transcrire en schema natif et revoir
+J1,1,VCC_3V3,3.3V laboratoire uniquement
+J1,2,GND,Retour alimentation
+S1,1;2,VCC_3V3;VLED_3V3,Interrupteur manuel en serie avec rail LED
+J2,1;2;3;4;5;6,GND;MCU_SIN;MCU_SCLK;MCU_XLAT;DISPLAY_EN;GND,Numero GPIO DK non attribue
+U1-U6 DAP,1;32;EP,GND;VCC_3V3;GND,Ne pas utiliser numerotation RHB
+U1-U6 DAP,2,BLANK,Actif haut sorties eteintes
+U1-U6 DAP,3,SCLK,Horloge commune issue R12
+U1 DAP,4,SIN,Donnees issues R13
+U2-U6 DAP,4,Uprecedent.29 SOUT,Chaine U1 vers U6
+U1-U6 DAP,30,XLAT,Latch commun issu R14
+U1-U6 DAP,31,R1-R6 respectivement vers GND,20.0kohm chaque driver
+U1-U6 DAP,5-28,OUT0-OUT23,Cathodes selon channel-map.csv genere
+U6 DAP,13-28,NC,OUT8 a OUT23 inutilisees avec PWM zero
+U6 DAP,29,TP_SOUT,Point de test sans retour MCU
+D1-D128,A,VLED_3V3,Anodes communes orientation fabricant a verifier
+D1-D128,K,Driver.OUTn,Une cathode par sortie selon carte de canaux
+U7 PW,14;7,VCC_3V3;GND,Buffer 3.3V
+U7 PW,1;4;10,GND,Trois sorties actives au banc
+U7 PW,2;3,MCU_SCLK;R12 puis SCLK,Pas de liaison directe sans buffer
+U7 PW,5;6,MCU_SIN;R13 puis SIN,Sortie vers U1 uniquement
+U7 PW,9;8,MCU_XLAT;R14 puis XLAT,Sortie commune drivers
+U7 PW,13;12;11,VCC_3V3;GND;NC,Quatrieme buffer desactive et entree definie
+U8 DBV,5;3;1,VCC_3V3;GND;NC,Inverseur de commande
+U8 DBV,2;4,DISPLAY_EN;BLANK,Entree basse impose BLANK haut
+R7,1;2,BLANK;VCC_3V3,10kohm pull-up
+R8-R11,1,MCU_SIN;MCU_SCLK;MCU_XLAT;DISPLAY_EN,Une resistance 100kohm par entree dans cet ordre
+R8-R11,2,GND,Etat bas sans commande
+C1-C6,1;2,VCC_3V3;GND,100nF au plus pres de chaque U1-U6
+C7-C8,1;2,VCC_3V3;GND,100nF au plus pres de U7 et U8
+C9,1;2,VCC_3V3;GND,10uF effectif a verifier
+C10,1;2,VLED_3V3;GND,10uF apres S1
+R15,1;2,VLED_3V3;GND,1kohm decharge environ 10ms nominal avec C10 seul
+DK,GND,GND,USB separe aucune liaison de rails VDD VBUS avec J1
