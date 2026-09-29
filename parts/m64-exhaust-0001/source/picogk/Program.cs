@@ -36,10 +36,10 @@ try
     using Library library = new(voxelMm);
     List<object> records = [];
 
-    void Build(string partKey, IImplicit implicit, BBox3 bounds, object parameters, string[] tag)
+    void Build(string partKey, IImplicit xImplicit, BBox3 bounds, object parameters, string[] tag)
     {
         Voxels voxels = new(library);
-        voxels.RenderImplicit(implicit, bounds);
+        voxels.RenderImplicit(xImplicit, bounds);
         voxels.CalculateProperties(out float volumeCubicMm, out BBox3 renderedBounds);
         if (volumeCubicMm <= 0) throw new InvalidDataException($"{partKey}: nonpositive voxel volume");
         Mesh mesh = new(voxels);
@@ -88,7 +88,7 @@ try
         AxialLengthTargetMm = 215.0f        // F0 synthetic axial length
     };
     ManifoldRunner runner = new(manifold);
-    Build("manifold_runner_bank", runner, runner.Bounds, manifold,
+    Build("manifold_runner_bank", runner, runner.oBounds, manifold,
         ["sourced_synthetic_core_34_56_1p2_215", "assumed_paths_and_flanges",
          "ar_8p00_supplier_declaration_not_design_dim", "dims_missing_in_bom"]);
 
@@ -115,7 +115,7 @@ try
         FlangeThicknessMm = 6.0f            // ASSUMED
     };
     DownpipeRunner downpipeRunner = new(downpipe);
-    Build("downpipe_turbine_outlet_to_tip", downpipeRunner, downpipeRunner.Bounds, downpipe,
+    Build("downpipe_turbine_outlet_to_tip", downpipeRunner, downpipeRunner.oBounds, downpipe,
         ["all_dims_assumed", "bend_radii_configurable", "route_unknown_pending_laser_scan",
          "cat_insert_omitted_identity_missing", "dims_missing_in_bom"]);
 
@@ -135,7 +135,7 @@ try
         CornerRadiusMm = 12.0f              // ASSUMED
     };
     HeatShield heatShield = new(shield);
-    Build("heat_shield_left", heatShield, heatShield.Bounds, shield,
+    Build("heat_shield_left", heatShield, heatShield.oBounds, shield,
         ["envelope_declared_105x160x110", "thickness_assumed",
          "interfaces_missing", "polymer_vs_metal_open_see_printability"]);
 
@@ -158,7 +158,7 @@ try
         TieDiameterMm = 5.0f                // ASSUMED
     };
     ExhaustTip exhaustTip = new(tip);
-    Build("exhaust_tip_oval", exhaustTip, exhaustTip.Bounds, tip,
+    Build("exhaust_tip_oval", exhaustTip, exhaustTip.oBounds, tip,
         ["outlet_declared_120x85", "inlet_length_assumed",
          "family_mismatch_narrowbody_vs_turbo"]);
 
@@ -178,7 +178,7 @@ try
         EndFlangeThicknessMm = 6.0f         // ASSUMED
     };
     OilReturnPipe oilReturn = new(oil);
-    Build("oil_return_pipe", oilReturn, oilReturn.Bounds, oil,
+    Build("oil_return_pipe", oilReturn, oilReturn.oBounds, oil,
         ["all_dims_assumed", "fit_as_installed_practice", "pet_107_family_identity_gap"]);
 
     string summaryPath = Path.Combine(output, "geometry-summary.json");
@@ -241,7 +241,7 @@ sealed class SdRoundedBox : IImplicit
 
     public float fSignedDistance(in Vector3 vec)
     {
-        Vector3 q = Vector3.Abs(vec - m_vecCentre) - m_vecHalf + m_fRadius;
+        Vector3 q = Vector3.Abs(vec - m_vecCentre) - m_vecHalf + new Vector3(m_fRadius);
         return Math.Min(Math.Max(Math.Max(q.X, q.Y), q.Z), 0f) +
                Vector3.Max(q, Vector3.Zero).Length() - m_fRadius;
     }
@@ -397,7 +397,7 @@ sealed class ManifoldRunner : IBoundedImplicit
     public float fSignedDistance(in Vector3 vec)
         => Math.Max(m_oOuter.fSignedDistance(vec), -m_oInner.fSignedDistance(vec));
 
-    public BBox3 Bounds
+    public BBox3 oBounds
     {
         get
         {
@@ -506,7 +506,7 @@ sealed class DownpipeRunner : IBoundedImplicit
     public float fSignedDistance(in Vector3 vec)
         => Math.Min(m_oShell.fSignedDistance(vec), m_oFlanges.fSignedDistance(vec));
 
-    public BBox3 Bounds
+    public BBox3 oBounds
     {
         get
         {
@@ -555,14 +555,14 @@ sealed class HeatShield : IBoundedImplicit
         Vector3 vecCentre = Vector3.Zero;
         SdRoundedBox outer = new(vecCentre, vecHalf, oParams.CornerRadiusMm);
         SdRoundedBox inner = new(vecCentre + new Vector3(0f, 0f, -oParams.WallMm),
-                                 vecHalf - oParams.WallMm,
+                                 vecHalf - new Vector3(oParams.WallMm),
                                  Math.Max(oParams.CornerRadiusMm - oParams.WallMm, 0.1f));
         m_oShell = new SdShell(outer, inner);
     }
 
     public float fSignedDistance(in Vector3 vec) => m_oShell.fSignedDistance(vec);
 
-    public BBox3 Bounds => new(
+    public BBox3 oBounds => new(
         new Vector3(-m_oParams.EnvelopeWidthMm * 0.5f - 1f,
                     -m_oParams.EnvelopeLengthMm * 0.5f - 1f,
                     -m_oParams.EnvelopeHeightMm * 0.5f - 1f),
@@ -622,7 +622,7 @@ sealed class ExhaustTip : IBoundedImplicit
 
     public float fSignedDistance(in Vector3 vec) => m_oAll.fSignedDistance(vec);
 
-    public BBox3 Bounds => new(
+    public BBox3 oBounds => new(
         new Vector3(-m_oParams.OutletWidthMm * 0.5f - 1f,
                     -m_oParams.OutletHeightMm * 0.5f - 1f, -1f),
         new Vector3(m_oParams.OutletWidthMm * 0.5f + 1f,
@@ -698,7 +698,7 @@ sealed class OilReturnPipe : IBoundedImplicit
     public float fSignedDistance(in Vector3 vec)
         => Math.Min(m_oShell.fSignedDistance(vec), m_oFlanges.fSignedDistance(vec));
 
-    public BBox3 Bounds => new(
+    public BBox3 oBounds => new(
         new Vector3(-m_oParams.EndFlangeOuterMm, -m_oParams.EndFlangeOuterMm,
                     -m_oParams.DropMm - m_oParams.EndFlangeOuterMm),
         new Vector3(m_oParams.HorizontalRunMm + m_oParams.EndFlangeOuterMm,
