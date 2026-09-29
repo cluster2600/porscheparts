@@ -44,6 +44,80 @@ def vec3(values: list[float]) -> str:
     return "(" + ", ".join(fmt(v) for v in values) + ")"
 
 
+def validate_manifest(manifest: dict[str, Any], manifest_path: Path) -> dict[str, Any]:
+    """Contract checks for the whole-engine manifest (engine_v1 schema),
+    shared by the builder and the stdlib scene validator."""
+    errors: list[str] = []
+    if manifest.get("status") != "research_layout_not_fitment":
+        errors.append("manifest status must be research_layout_not_fitment")
+    if manifest.get("units") != "mm" or manifest.get("up_axis") != "Z":
+        errors.append("the engine scene contract requires millimetres and Z-up")
+    if not manifest.get("coordinate_frame", {}).get("layout_status"):
+        errors.append("coordinate_frame.layout_status must document the layout basis")
+    coverage = manifest.get("bom_coverage", {})
+    declared = coverage.get("bom_lines_unrepresented")
+    if not declared:
+        errors.append("bom_coverage.bom_lines_unrepresented must be declared")
+    if not coverage.get("unrepresentation_reasons"):
+        errors.append("bom_coverage.unrepresentation_reasons must justify each unrepresented line")
+    if not manifest.get("limitations"):
+        errors.append("limitations must be explicit")
+    seen_prims: set[tuple[str, str]] = set()
+    covered: set[str] = set()
+    for zone in manifest.get("zones", []):
+        if not zone.get("coverage"):
+            errors.append(f"zone {zone.get('zone_id')} lacks a coverage statement")
+        if not PRIM_NAME.match(zone["prim"]):
+            errors.append(f"invalid zone prim name: {zone['prim']}")
+        for item in zone["items"]:
+            if not PRIM_NAME.match(item["prim"]):
+                errors.append(f"invalid item prim name: {item['prim']}")
+            key = (zone["prim"], item["prim"])
+            if key in seen_prims:
+                errors.append(f"duplicate prim {zone['prim']}/{item['prim']}")
+            seen_prims.add(key)
+            kind = item["asset_kind"]
+            if kind == "real_asset_reference":
+                usd = item.get("usd")
+                if not usd:
+                    errors.append(f"{item['id']}: real_asset_reference without usd path")
+                elif not (manifest_path.resolve().parents[2] / usd).is_file():
+                    errors.append(f"{item['id']}: referenced asset missing: {usd}")
+            elif kind in ("box_proxy", "envelope_unknown"):
+                if not item.get("size_mm"):
+                    errors.append(f"{item['id']}: proxy/marker without size_mm")
+            else:
+                errors.append(f"{item['id']}: unknown asset_kind {kind}")
+            if not item.get("bom_lines"):
+                errors.append(f"{item['id']}: no bom_lines link")
+            if not item.get("source_citation"):
+                errors.append(f"{item['id']}: no source_citation")
+            if not item.get("positionStatus", item.get("position_mm")):
+                errors.append(f"{item['id']}: no position")
+            covered.update(item["bom_lines"])
+    repo_root = manifest_path.resolve().parents[2]
+    bom_source = repo_root / manifest["bom_source"]
+    if not bom_source.is_file():
+        errors.append(f"BOM source missing: {bom_source}")
+    else:
+        bom = json.loads(bom_source.read_text(encoding="utf-8"))
+        bom_ids = {part["bom_id_local"] for part in bom["parts"]}
+        undeclared = sorted(covered - bom_ids)
+        if undeclared:
+            errors.append(f"prim bom_lines not in BOM: {undeclared}")
+        unrepresented = sorted(bom_ids - covered)
+        if set(unrepresented) != set(declared or []):
+            errors.append(
+                "bom_coverage mismatch: BOM lines missing a prim but not declared: "
+                f"{sorted(set(unrepresented) - set(declared or []))}; declared but represented: "
+                f"{sorted(set(declared or []) - set(unrepresented))}"
+            )
+        missing_reasons = sorted(set(declared or []) - set(coverage["unrepresentation_reasons"]))
+        if missing_reasons:
+            errors.append(f"unrepresented lines without reasons: {missing_reasons}")
+    return {"passed": not errors, "errors": errors}
+
+
 def load_manifest(path: Path) -> dict[str, Any]:
     data = json.loads(path.read_text(encoding="utf-8"))
     if data.get("status") != "research_layout_not_fitment":
@@ -59,18 +133,28 @@ def load_manifest(path: Path) -> dict[str, Any]:
     return data
 
 
-def layer_relative(repo_root: Path, out_dir: Path, repo_relative: Path) -> str:
-    """POSIX path from the scene layer's directory to a repo-relative asset.
-    Works both for the default usd/ output inside the repository (relative)
-    and for out-of-repo --out destinations (relative path still resolves)."""
-    target = (repo_root / repo_relative).resolve()
-    return os.path.relpath(target, out_dir.resolve()).replace(os.sep, "/")
+def layer_relative(repo_root: Path, out_dir: Path, usd_dir: Path, repo_relative: Path) -> str:
+    """POSIX asset path for the references arc, computed lexically (never via
+    .resolve()) so output is deterministic across cwd and symlink layouts.
+
+    When the scene is built into its canonical directory (repo_root/manifest
+    'usd' directory) the reference is relative to that directory, giving the
+    version-stable scene. A build to any other --out directory (a validation
+    copy in /tmp, for example) uses the path that resolves from the canonical
+    location, so a render package can carry the layer beside the versioned
+    scene unchanged."""
+    target = repo_root / repo_relative
+    canonical_dir = repo_root / usd_dir
+    if out_dir == canonical_dir:
+        return os.path.relpath(target, canonical_dir).replace(os.sep, "/")
+    return os.path.relpath(target, out_dir).replace(os.sep, "/")
 
 
 def check_references(manifest: dict[str, Any], manifest_path: Path, out_path: Path) -> list[tuple[dict[str, Any], str]]:
     """Return a list of (item, layer-relative asset path) pairs for real assets,
     failing closed when a referenced asset file is missing."""
-    repo_root = manifest_path.resolve().parents[2]
+    repo_root = manifest_path.parents[2]
+    usd_dir = Path(manifest["usd"]).parent
     pairs: list[tuple[dict[str, Any], str]] = []
     for zone in manifest["zones"]:
         for item in zone["items"]:
@@ -81,7 +165,7 @@ def check_references(manifest: dict[str, Any], manifest_path: Path, out_path: Pa
                 raise FileNotFoundError(
                     f"manifest references missing asset {item['id']}: {repo_root / repo_relative}"
                 )
-            pairs.append((item, layer_relative(repo_root, out_path.parent, repo_relative)))
+            pairs.append((item, layer_relative(repo_root, out_path.parent, usd_dir, repo_relative)))
     return pairs
 
 
@@ -135,54 +219,13 @@ def cube_mesh(item: dict[str, Any], zone: dict[str, Any], indent: str) -> list[s
     return lines
 
 
-def check_coverage(manifest: dict[str, Any], repo_root: Path) -> list[str]:
-    """Fail closed on duplicate prims, missing geometry fields, or BOM lines that
-    are neither represented by a prim nor declared unrepresented in bom_coverage."""
-    errors: list[str] = []
-    seen_prims: set[tuple[str, str]] = set()
-    covered: set[str] = set()
-    for zone in manifest["zones"]:
-        if not zone.get("coverage"):
-            errors.append(f"zone {zone['zone_id']} lacks a coverage statement")
-        for item in zone["items"]:
-            key = (zone["prim"], item["prim"])
-            if key in seen_prims:
-                errors.append(f"duplicate prim {zone['prim']}/{item['prim']}")
-            seen_prims.add(key)
-            kind = item["asset_kind"]
-            if kind == "real_asset_reference":
-                if not item.get("usd"):
-                    errors.append(f"{item['id']}: real_asset_reference without usd path")
-            elif kind not in ("box_proxy", "envelope_unknown"):
-                errors.append(f"{item['id']}: unknown asset_kind {kind}")
-            if kind in ("box_proxy", "envelope_unknown") and not item.get("size_mm"):
-                errors.append(f"{item['id']}: proxy/marker without size_mm")
-            if not item.get("bom_lines"):
-                errors.append(f"{item['id']}: no bom_lines link")
-            covered.update(item["bom_lines"])
-    bom_source = repo_root / manifest["bom_source"]
-    if not bom_source.is_file():
-        errors.append(f"BOM source missing: {bom_source}")
-        return errors
-    bom = json.loads(bom_source.read_text(encoding="utf-8"))
-    bom_ids = {part["bom_id_local"] for part in bom["parts"]}
-    undeclared = sorted(covered - bom_ids)
-    if undeclared:
-        errors.append(f"prim bom_lines not in BOM: {undeclared}")
-    declared = set(manifest["bom_coverage"]["bom_lines_unrepresented"])
-    unrepresented = sorted(bom_ids - covered)
-    if set(unrepresented) != declared:
-        errors.append(
-            "bom_coverage mismatch: BOM lines missing a prim but not declared: "
-            f"{sorted(set(unrepresented) - declared)}; declared but represented: "
-            f"{sorted(declared - set(unrepresented))}"
-        )
-    return errors
+def check_coverage(manifest: dict[str, Any], manifest_path: Path) -> list[str]:
+    """Coverage gate reused from the shared manifest contract check."""
+    return validate_manifest(manifest, manifest_path)["errors"]
 
 
 def build(manifest: dict[str, Any], manifest_path: Path, out_path: Path) -> Path:
-    repo_root = manifest_path.resolve().parents[2]
-    coverage_errors = check_coverage(manifest, repo_root)
+    coverage_errors = check_coverage(manifest, manifest_path)
     if coverage_errors:
         raise ValueError("; ".join(coverage_errors))
     out_path.parent.mkdir(parents=True, exist_ok=True)

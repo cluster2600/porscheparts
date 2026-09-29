@@ -48,69 +48,16 @@ MATERIALS = {
 
 def validate_manifest(manifest: dict[str, Any], manifest_path: Path) -> dict[str, Any]:
     """Contract checks for the whole-engine manifest (engine_v1 schema).
-    Pure stdlib so the coverage gate runs without OpenUSD."""
-    errors: list[str] = []
-    if manifest.get("status") != "research_layout_not_fitment":
-        errors.append("manifest status must be research_layout_not_fitment")
-    if manifest.get("units") != "mm" or manifest.get("up_axis") != "Z":
-        errors.append("the engine scene contract requires millimetres and Z-up")
-    if not manifest.get("coordinate_frame", {}).get("layout_status"):
-        errors.append("coordinate_frame.layout_status must document the layout basis")
-    coverage = manifest.get("bom_coverage", {})
-    declared = coverage.get("bom_lines_unrepresented")
-    if not declared:
-        errors.append("bom_coverage.bom_lines_unrepresented must be declared")
-    if not manifest.get("limitations"):
-        errors.append("limitations must be explicit")
-    seen_prims: set[tuple[str, str]] = set()
-    covered: set[str] = set()
-    for zone in manifest.get("zones", []):
-        if not zone.get("coverage"):
-            errors.append(f"zone {zone.get('zone_id')} lacks a coverage statement")
-        if not PRIM_NAME.match(zone["prim"]):
-            errors.append(f"invalid zone prim name: {zone['prim']}")
-        for item in zone["items"]:
-            if not PRIM_NAME.match(item["prim"]):
-                errors.append(f"invalid item prim name: {item['prim']}")
-            key = (zone["prim"], item["prim"])
-            if key in seen_prims:
-                errors.append(f"duplicate prim {zone['prim']}/{item['prim']}")
-            seen_prims.add(key)
-            kind = item["asset_kind"]
-            if kind == "real_asset_reference":
-                usd = item.get("usd")
-                if not usd:
-                    errors.append(f"{item['id']}: real_asset_reference without usd path")
-                elif not (manifest_path.resolve().parents[2] / usd).is_file():
-                    errors.append(f"{item['id']}: referenced asset missing: {usd}")
-            elif kind in ("box_proxy", "envelope_unknown"):
-                if not item.get("size_mm"):
-                    errors.append(f"{item['id']}: proxy/marker without size_mm")
-            else:
-                errors.append(f"{item['id']}: unknown asset_kind {kind}")
-            if not item.get("bom_lines"):
-                errors.append(f"{item['id']}: no bom_lines link")
-            if not item.get("source_citation"):
-                errors.append(f"{item['id']}: no source_citation")
-            covered.update(item["bom_lines"])
-    repo_root = manifest_path.resolve().parents[2]
-    bom_source = repo_root / manifest["bom_source"]
-    if not bom_source.is_file():
-        errors.append(f"BOM source missing: {bom_source}")
-    else:
-        bom = json.loads(bom_source.read_text(encoding="utf-8"))
-        bom_ids = {part["bom_id_local"] for part in bom["parts"]}
-        undeclared = sorted(covered - bom_ids)
-        if undeclared:
-            errors.append(f"prim bom_lines not in BOM: {undeclared}")
-        unrepresented = sorted(bom_ids - covered)
-        if set(unrepresented) != set(declared or []):
-            errors.append(
-                "bom_coverage mismatch: BOM lines missing a prim but not declared: "
-                f"{sorted(set(unrepresented) - set(declared or []))}; declared but represented: "
-                f"{sorted(set(declared or []) - set(unrepresented))}"
-            )
-    return {"passed": not errors, "errors": errors}
+    Delegates to build_engine_scene.validate_manifest so builder and F0
+    composer share one stdlib contract; import is local so this module
+    still loads without the sibling when it is absent."""
+    import importlib.util
+
+    sibling = Path(__file__).resolve().parent / "build_engine_scene.py"
+    spec = importlib.util.spec_from_file_location("build_engine_scene", sibling)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.validate_manifest(manifest, manifest_path)
 
 
 def load_and_validate_config(path: Path, project_root: Path, engine_manifest: Path | None = None) -> dict[str, Any]:
@@ -350,7 +297,15 @@ def main() -> int:
     rig = build_valvetrain_stage(config, project_root, output)
     components = build_component_stage(config, project_root, output)
     overview = build_overview_stage(config, output, engine, rig)
+    manifest_report = validate_manifest(
+        json.loads(engine_manifest.read_text(encoding="utf-8")), engine_manifest
+    )
     report = {
+        "engine_manifest_v1": {
+            "path": str(engine_manifest),
+            "contract": "passed" if manifest_report["passed"] else "failed",
+            "errors": manifest_report["errors"],
+        },
         "status": "passed",
         "property_assignment_intent": "skip",
         "profile": "F0_research_assembly",
@@ -358,9 +313,11 @@ def main() -> int:
         "limitations": config["limitations"],
         "next_step": "validate loaded composition, render, then measure component datums",
     }
+    if not manifest_report["passed"]:
+        report["status"] = "failed"
     (output / "assembly-report.json").write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps(report, indent=2))
-    return 0
+    return 0 if report["status"] == "passed" else 1
 
 
 if __name__ == "__main__":

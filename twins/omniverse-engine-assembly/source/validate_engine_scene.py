@@ -43,6 +43,26 @@ BANNED_CLAIMS = re.compile(
 )
 
 
+def check_reference_arcs(text: str, scene_path: Path) -> list[dict[str, Any]]:
+    """Every references arc must resolve to a file from the layer's own directory
+    (canonical) or, for a temporary --out copy, from that copy's directory."""
+    unresolved: list[str] = []
+    total = 0
+    for match in re.finditer(r'references = @([^@]+)@', text):
+        total += 1
+        target = (scene_path.parent / match.group(1)).resolve()
+        if not target.is_file():
+            unresolved.append(match.group(1))
+    return [
+        {
+            "name": "all_reference_arcs_resolve",
+            "passed": total > 0 and not unresolved,
+            "reference_count": total,
+            "unresolved": unresolved,
+        }
+    ]
+
+
 def check_usda_structure(text: str) -> list[dict[str, Any]]:
     checks: list[dict[str, Any]] = []
     checks.append({"name": "usda_header", "passed": text.startswith("#usda 1.0")})
@@ -95,8 +115,20 @@ def check_evidence_attributes(text: str) -> list[dict[str, Any]]:
 
 def check_no_overclaims(text: str) -> list[dict[str, Any]]:
     hits = [line.strip() for line in text.splitlines() if BANNED_CLAIMS.search(line)]
-    # The scene is only allowed to state the denial explicitly.
-    offenders = [h for h in hits if "not" not in h.lower()]
+    # Only explicit negations ("not fitted", "never ... tested", "no part ... is")
+    # are allowed; any bare positive claim fails.
+
+    def allowed(line: str) -> bool:
+        lowered = line.lower()
+        return (
+            " not " in lowered
+            or "not_" in lowered
+            or "never" in lowered
+            or "no part" in lowered
+            or "non-" in lowered
+        )
+
+    offenders = [h for h in hits if not allowed(h)]
     return [{"name": "no_bare_fitment_claims", "passed": not offenders, "lines": offenders}]
 
 
@@ -106,8 +138,9 @@ def main() -> int:
     parser.add_argument("--scene", type=Path, default=None,
                         help="generated USDA; default: manifest 'usd' path under the repo root")
     parser.add_argument("--report", type=Path, required=True)
-    parser.add_argument("--structure-only", action="store_true",
-                        help="skip the manifest/BOM cross-check (run after generation in the image)")
+    parser.add_argument("--skip-reference-resolution", action="store_true",
+                        help="skip on-disk resolution of references arcs (only valid when the "
+                        "referenced assets are deliberately absent, e.g. a stripped render package)")
     args = parser.parse_args()
 
     manifest_path = args.manifest.resolve()
@@ -116,7 +149,8 @@ def main() -> int:
     scene_path = args.scene.resolve() if args.scene else repo_root / manifest["usd"]
 
     checks: list[dict[str, Any]] = []
-    if not args.structure_only:
+    if not args.skip_reference_resolution or True:
+        # manifest contract always runs in this stdlib validator
         report = bes.validate_manifest(manifest, manifest_path)
         checks.append({"name": "manifest_contract", "passed": report["passed"], "errors": report["errors"]})
     if not scene_path.is_file():
@@ -126,6 +160,8 @@ def main() -> int:
         checks.extend(check_usda_structure(text))
         checks.extend(check_evidence_attributes(text))
         checks.extend(check_no_overclaims(text))
+        if not args.skip_reference_resolution:
+            checks.extend(check_reference_arcs(text, scene_path))
 
     status = "passed" if all(item["passed"] for item in checks) else "failed"
     out = {
