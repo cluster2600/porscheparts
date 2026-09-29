@@ -126,6 +126,6 @@ public sealed class ChargeAirParameters
     // (SRC-PORSCHE-CHRISTOPHORUS-993-TURBO-DATA); the 3.6 L twin-turbo study
     // brief targets 1.0 bar. Either way, pressure is a load input, NOT a
     // geometric driver here; wall sizing is untouched by it.
-    public const float fBoostTargetBar = 1.0f;      // FACT_public, non-sizing
-    public const float fBoostOemBar = 0.8f;         // FACT_public, non-sizing
+    public float fBoostTargetBar = 1.0f;          // FACT_public, non-sizing
+    public float fBoostOemBar = 0.8f;            // FACT_public, non-sizing
 }
