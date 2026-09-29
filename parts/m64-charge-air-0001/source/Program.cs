@@ -103,6 +103,9 @@ try
         voxel_mm = P.fVoxelSizeMm,
         wall_mm = P.fWallThicknessMm,
         radial_clearance_mm = P.fRadialClearanceMm,
+        hose_min_bend_radius_assumption_mm = P.fHoseMinBendRadiusMm,
+        throttle_bore_assumption_mm = P.fThrottleBoreDiaMm,
+        runner_offsets_y_mm = P.aRunnerOffsetsY,
         units = "mm_engine_frame_plusX_rear_plusZ_up_banks_mirror_about_Y0",
         centerlines = new
         {
@@ -114,8 +117,8 @@ try
         },
         boost_bar = new
         {
-            study_target = ChargeAirParameters.fBoostTargetBar,
-            oem_declared = ChargeAirParameters.fBoostOemBar,
+            study_target = P.fBoostTargetBar,
+            oem_declared = P.fBoostOemBar,
             sizes_geometry = false
         },
         parts,

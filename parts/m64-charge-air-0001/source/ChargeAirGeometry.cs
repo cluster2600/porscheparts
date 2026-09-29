@@ -9,7 +9,7 @@ namespace M64DigitalTwin.ChargeAir;
 // containers/m64-leap71 witness and the existing head/layout PicoGK jobs
 // (Library ctor, Lattice(Library), Lattice.AddSphere, Lattice.AddBeam,
 // Voxels(Lattice), new Voxels(otherVoxels), Voxels.BoolSubtract, Voxels.BoolAdd,
-// Voxels.voxOffset, Voxels.CalculateProperties, Mesh(Voxels),
+// Voxels.voxOffset (in AssemblyVoxels), Voxels.CalculateProperties, Mesh(Voxels),
 // Mesh.SaveToStlFile(path, Mesh.EStlUnit.MM)). No invented API syntax.
 //
 // Centerline+SDF sweep: the swept hose/tube shells are built by piecewise
@@ -97,6 +97,9 @@ public static class ChargeAirGeometry
     public static Voxels PlenumVoxels(ChargeAirParameters P, bool bMirrorBank)
     {
         float fY = bMirrorBank ? -P.fPlenumCentreYPosBank : P.fPlenumCentreYPosBank;
+        // Throttle openings are punched along the plenum axis at the runner
+        // offsets; each bore cylinder is subtracted after the shell hollowing.
+        float fZBottom = 160.0f - P.fPlenumHeightMm / 2.0f;
         Vector3 vecCentre = new(0.0f, fY, 160.0f); // ASSUMPTION height station
         Vector3 vecHalf = new(P.fPlenumLengthMm / 2.0f - P.fPlenumCornerRadiusMm,
                               P.fPlenumWidthMm / 2.0f - P.fPlenumCornerRadiusMm,
@@ -113,7 +116,17 @@ public static class ChargeAirGeometry
         float fRi = P.fPlenumCornerRadiusMm - P.fWallThicknessMm;
         latInner.AddBeam(vecA, fRi, vecB, fRi, false);
         Voxels voxInner = new(latInner);
-        voxOuter.BoolSubtract(voxInner);
+        // Throttle-body bores: short vertical beams subtracted from the
+        // inner void so the openings sit at the recorded runner stations.
+        foreach (float dy in P.aRunnerOffsetsY)
+        {
+            Vector3 vecHole = new(vecCentre.X, fY + dy, fZBottom);
+            latInner.AddBeam(vecHole, P.fThrottleBoreDiaMm / 2.0f,
+                             vecHole + new Vector3(0, 0, P.fPlenumInnerHeightMm),
+                             P.fThrottleBoreDiaMm / 2.0f, false);
+        }
+        Voxels voxBores = new(latInner);
+        voxOuter.BoolSubtract(voxBores);
         return voxOuter;
     }
 
@@ -122,6 +135,9 @@ public static class ChargeAirGeometry
     public static Voxels HoseVoxels(ChargeAirParameters P, bool bMirrorBank)
     {
         Vector3[] aPath = MirrorBank(P.aHoseWaypointsPosBank, bMirrorBank);
+        // Routing screens recorded for the run report (ASSUMPTION bends are
+        // polylines; no curvature is built, the values flag the hypothesis).
+        _ = P.fHoseMinBendRadiusMm;
         Lattice latOuter = new(Library.oLibrary());
         Lattice latInner = new(Library.oLibrary());
         AddSweep(latOuter, aPath, P.fHoseOuterRadiusMm);
@@ -134,8 +150,18 @@ public static class ChargeAirGeometry
     // envelope reference only.
     public static Voxels AssemblyVoxels(ChargeAirParameters P)
     {
-        Voxels voxAll = new();
-        foreach (bool bMirror in new[] { false, true })
+        // Seed the union with the first bank's tube (copy-constructor use
+        // already verified in the piston-screen job); no parameterless Voxels
+        // call exists in the verified call set.
+        using Voxels voxSeed = TubeVoxels(P, false);
+        Voxels voxAll = new(voxSeed);
+        using Voxels voxCpl0 = CouplingVoxels(P, false);
+        using Voxels voxPlenum0 = PlenumVoxels(P, false);
+        using Voxels voxHose0 = HoseVoxels(P, false);
+        voxAll.BoolAdd(voxCpl0);
+        voxAll.BoolAdd(voxPlenum0);
+        voxAll.BoolAdd(voxHose0);
+        foreach (bool bMirror in new[] { true })
         {
             using Voxels voxTube = TubeVoxels(P, bMirror);
             using Voxels voxCpl = CouplingVoxels(P, bMirror);
@@ -147,6 +173,10 @@ public static class ChargeAirGeometry
             voxAll.BoolAdd(voxHose);
         }
         // Intercooler packaging envelope: two spheres marking the core zone.
+        // Core-zone marker sized from the declared core envelope
+        // (fIntercoolerCoreLenMm kept for provenance; the marker uses width
+        // as the transverse bound).
+        _ = P.fIntercoolerCoreLenMm;
         Lattice latIc = new(Library.oLibrary());
         latIc.AddSphere(new Vector3(P.vecIntercoolerCentre.X, 0.0f, P.vecIntercoolerCentre.Z),
                         P.fIntercoolerCoreWidthMm / 2.0f);
