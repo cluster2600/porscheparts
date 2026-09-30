@@ -1,5 +1,7 @@
 # Local M64 Qwen adapter pilot
 
+For actual C# generation training, see the [PicoGK experiment and measured results](picogk-results.md).
+
 This opt-in Mac workflow trains a small **workflow-assistance adapter** after
 [the architecture documentation](../../docs/architecture/README.md). It is not
 an engine solver, a materials expert or a validated PicoGK code generator.
