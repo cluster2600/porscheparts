@@ -1,5 +1,7 @@
 # Local M64 Qwen adapter pilot
 
+For the complete 7B/32B PicoGK and OpenFOAM training guide, see the [engineering copilot runbook](../m64-engineer/README.md).
+
 For actual C# generation training, see the [PicoGK experiment and measured results](picogk-results.md).
 
 This opt-in Mac workflow trains a small **workflow-assistance adapter** after
