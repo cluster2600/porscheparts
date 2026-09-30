@@ -1,0 +1,20 @@
+{
+  "repository": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+  "revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+  "weights_sha256": "daeab4764fb420d161721791cf2e509e2de81a7af4223646e7bed2bf82c57b58",
+  "upstream_repository": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+  "upstream_revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+  "license": "Apache-2.0",
+  "quantization_bits": 4,
+  "mlx_lm_version": "0.31.3",
+  "training": {
+    "iters": 60,
+    "batch_size": 1,
+    "num_layers": 4,
+    "learning_rate": 0.0001,
+    "max_seq_length": 512,
+    "seed": 42,
+    "fine_tune_type": "lora",
+    "mask_prompt": true
+  }
+}

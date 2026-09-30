@@ -93,6 +93,10 @@ flowchart LR
 
 ### Where to start
 
+[M64 local-compute architecture](docs/architecture/README.md) — TOGAF,
+ArchiMate and UML/Mermaid; [local Qwen training](training/m64-qwen/README.md)
+before the next engineering deployment.
+
 | I want to… | go to |
 |---|---|
 | print something today | [the F1 switch trim ring](parts/993-int-switch-trim-ring-f1-0001/print/README.md) · [the connecting rod display mock-up](parts/993-eng-connecting-rod-ti64-f0-0001/print/README.md) · [the switch blank fit-test kit](parts/993-int-switch-blank-0001/print/README.md) |
