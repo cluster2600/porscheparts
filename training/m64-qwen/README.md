@@ -5,7 +5,8 @@ For the complete 7B/32B PicoGK, OpenFOAM and OpenUSD training guide, see the [en
 For actual C# generation training, see the [PicoGK experiment and measured results](picogk-results.md).
 For continued training on Pixar Python APIs, see the [OpenUSD experiment and PicoGK regression checks](openusd-results.md).
 For the expanded curriculum and validation-based checkpoint selection, see the [coding continuation](coding-results.md).
-The [PicoGK-focused continuation](focused-results.md) reaches 40/40 PicoGK validation passes but fails USD retention, so the previous mixed adapter is kept.
+The [PicoGK-focused continuation](focused-results.md) reached 40/40 PicoGK validation passes but was rejected for losing USD retention.
+The [retention continuation](retention-results.md) records further USD replay and a conservative four-layer training trial, with the same per-case validation gate.
 
 This opt-in Mac workflow trains a small **workflow-assistance adapter** after
 [the architecture documentation](../../docs/architecture/README.md). It is not
