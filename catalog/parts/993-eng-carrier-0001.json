@@ -9,7 +9,7 @@
       "993_Turbo"
     ],
     "model_years": {
-      "from": 1994,
+      "from": 1995,
       "to": 1998
     },
     "porsche_part_numbers": [
@@ -32,7 +32,7 @@
     ]
   },
   "provenance": {
-    "record_license": "All rights reserved (see LICENSE) for the record, geometry not yet produced",
+    "record_license": "All rights reserved (see LICENSE); existing geometry is hypothetical concept work",
     "sources": [
       {
         "title": "Porsche Classic Genuine Parts Catalogue - 911 (993)",
@@ -72,7 +72,7 @@
         "source_type": "community",
         "license": "site-du-proprietaire-du-projet-reference-only",
         "accessed_on": "2026-08-28",
-        "notes": "PET reading recorded with method and evidence: group 109-00, position 17, page 115, revision KAT 17. Gives the split of the three 993 carriers and the absence of an alternative for the Turbo."
+        "notes": "PET reading recorded with method and evidence: group 109-00, position 17, page 115, revision KAT 17. Gives the split of the three 993 carriers ; its earlier absence-of-alternative statement is superseded by the unresolved M01-RS lead below."
       },
       {
         "title": "Porsche PET - 911 1994-1998 Type 993, revision KAT 17",
@@ -108,11 +108,43 @@
       },
       {
         "title": "FVD - Engine suspension bracket / carrier 993 Turbo, 99311502153",
-        "url": "https://www.fvd.net/en-us/shop/",
+        "url": "https://www.fvd.net/en-us/shop/engine-suspension-bracket-carrier-993-turbo-99311502153~p248965",
         "source_type": "community",
         "license": "vendor-site-copyright-reference-only",
-        "accessed_on": "2026-08-28",
-        "notes": "Product page: 1,788 USD, 1.96 kg, 600 x 50 x 50 mm, four photographs of the one-piece part."
+        "accessed_on": "2026-10-02",
+        "notes": "Product listing declares 600 x 50 x 50 mm and 1.96 kg. All four gallery views visually inspected; photo references and limits recorded in source/pet-redo/requirements.json. No media imported; material and dimensions not independently measured."
+      },
+      {
+        "title": "Porsche official PET USA - KAT 517, group 109-00",
+        "url": "https://assets-v2.porsche.com/us/-/media/Project/PCOM/SharedSite/PorscheClassic/Original-Parts-Catalogue/PDF-EN-US/KAT517_USA_911_98_KATALOG#page=117",
+        "source_type": "official",
+        "license": "porsche-ag-copyright-reference-only",
+        "accessed_on": "2026-10-02",
+        "notes": "Drawing at PDF reader page 117; Turbo table at 118. Assembly and fastener identities/quantities reviewed. No carrier manufacturing dimensions on these pages; no manual pages imported."
+      },
+      {
+        "title": "Rennline M01-RS - RSR Style Stainless Steel Engine Carrier",
+        "url": "https://www.rennline.com/rennline-rsr-style-stainless-steel-engine-carrier-porsche-sku-m01-rs/",
+        "source_type": "community",
+        "license": "vendor-site-copyright-reference-only",
+        "accessed_on": "2026-10-02",
+        "notes": "Manufacturer lists 53 and 54 as replacement references; vehicle-year table conflicts. Flanges and gussets are a design precedent, not verified Turbo fitment or quantified strength evidence."
+      },
+      {
+        "title": "Sunset Porsche - Engine Carrier 99311502154",
+        "url": "https://www.sunsetporscheparts.com/oem-parts/porsche-engine-carrier-99311502154",
+        "source_type": "community",
+        "license": "dealer-site-copyright-reference-only",
+        "accessed_on": "2026-10-02",
+        "notes": "Dealer lists 54 replacing 53, with Turbo description. No dimensional equivalence or physical stock confirmation."
+      },
+      {
+        "title": "Rothsport - Reinforced 993 Engine Carrier",
+        "url": "https://rothsport.com/products/reinforced-engine-carrier-993",
+        "source_type": "community",
+        "license": "vendor-site-copyright-reference-only",
+        "accessed_on": "2026-10-02",
+        "notes": "Manufacturer reports failures and gusseted replacements. No exact-53 application, 700 hp threshold or quantitative load/fatigue results supplied."
       }
     ]
   },
@@ -122,10 +154,10 @@
       "casting",
       "sheet_metal"
     ],
-    "preferred_process": "CNC",
+    "preferred_process": "undecided",
     "material": {
-      "family": "steel; quenched and tempered 42CrMo4 or 17-4PH considered for a machined part",
-      "grade": "unknown grade; gold finish suggesting yellow passivated zinc plating",
+      "family": "unknown OEM material; steel grades previously considered remain unqualified design candidates",
+      "grade": "unknown; gold appearance does not establish alloy, coating composition or heat treatment",
       "standard": "none"
     },
     "post_processing": [
@@ -161,7 +193,7 @@
       "Part presumed critical by SAFETY.md: main mounting of the powertrain.",
       "Neither the part nor the instruments are available: the record cannot go beyond concept status, since no measurement is possible.",
       "The PET distinguishes three 993 carriers: -90 standard (Carrera, C4, S, 4S), -41 RS, -53 Turbo. They are not interchangeable without proof, and no dimension currently allows them to be compared.",
-      "No known replacement alternative for the Turbo carrier: the tubular carrier from the specialist market is explicitly non-Turbo.",
+      "Rennline M01-RS now explicitly lists 99311502153 and 99311502154 replacement numbers, but its vehicle-year table is inconsistent; Turbo fitment is unresolved. The M19 tubular carrier remains non-Turbo. Sunset Porsche lists suffix 54 as superseding 53; exact geometric equivalence is not established. See source/pet-redo/requirements.json for dated sources.",
       "Price transcribed from the vendor product page: 1,788 USD excluding shipping, availability \"available soon\". The 225 to 270 EUR figure previously reported by a research summary was wrong.",
       "Original material, mass and price remain unknown, including in the PET transcription: the catalogue does not publish them.",
       "Failure mode established at the level of the 964 family, not on this part number: the part cracks, is repaired by welding and commonly receives an added reinforcement (SRC-PCGB-CRACKED-ENGINE-MOUNT-BRACKET, SRC-PFF-RENNLINE-MOTORTRAEGER, pages read). Welding a reinforcing gusset can warp the part. A \"slightly reinforced\" factory revision from about 1991 is mentioned with no supporting reference.",
@@ -174,12 +206,14 @@
       "Torques: 85 Nm on M12 for carrier to engine mount, confirmed by the group 10 factory table. The second figure reported, 45 to 50 Nm, does not appear in that table; the nearby value of 46 Nm concerns the gearbox mount to body shell. No carrier to body shell torque has been found.",
       "The 1.96 kg mass and the 600 x 50 x 50 mm envelope come from the vendor product page. The length matches the proportions visible in the photographs: these values probably describe the part, rounded to the centimeter, and not a parcel. They remain claimed, not measured.",
       "Open contradiction on the Turbo engine mass: 268 kg claimed with no stated scope against 195 kg weighed on a surface plate for a complete GT2 Race unit without gearbox. A 73 kg gap, of the same order as a gearbox. Not settled.",
-      "Construction observed on vendor photographs: one-piece part shaped as a curved blade of variable section, two large lightening holes, a cylindrical boss at each end. Nothing indicates a welded construction. The welded reinforcements mentioned on forums are therefore additions to a one-piece part, which remains consistent with the observed warping.",
+      "All four exact-reference FVD photographs were visually inspected on 2026-10-02: bowed blade, two round central openings, four central mounting holes, raised edges and end features. Boss junctions show seams resembling weld beads; the earlier confirmed-one-piece interpretation is withdrawn. Joint construction, recess geometry, original process and material require measurement and inspection.",
       "Metal additive manufacturing ruled out for this part: 600 mm does not fit in a common 250 x 250 x 325 mm LPBF build volume, the geometry calls for no additive advantage, and the observed failure mode is cracking, while as-built material loses on the order of 25 percent of endurance limit compared with the factory or wrought condition. Additive manufacturing remains relevant for an added reinforcement and for the polymer prototype.",
       "Material choice framed but not settled, see evidence/material-options.md: since all steels have the same modulus, a stronger grade does not change the stiffness, and a stronger grade is more notch-sensitive. Weight reduction by substitution is ruled out, since aluminum has no endurance limit and is three times less stiff. The only defensible weight reduction goes through shape, and therefore through the load cases.",
       "The workshop manual publishes no tightening torque for the carrier on the body shell, checked in the group 10 tables of the Carrera and Carrera 4 volumes. The reassembly procedure does, however, require all mounting nuts to be replaced.",
-      "Market cross-check: a tubular replacement carrier claims 0.635 kg of gain over an original carrier that is already gusseted, and is sold on strength, not mass. Confirms that the useful lever is durability. All these offers are non-Turbo.",
-      "The Qwen-assisted F1 digital concept is documented in parts/993-eng-carrier-0001/source/qwen-concept-f1/README.md. The completed coding-003/checkpoint-600 adapter generated the accepted graph; all internal dimensions are human-designed hypotheses. Native geometry, cleaned-mesh closure and OpenUSD round-trip checks are recorded in parts/993-eng-carrier-0001/derived/qwen-concept-f1/checks.json. This is not OEM reconstruction, measured interface geometry, material qualification, a structural result or manufacturing approval; physical access to the exact part remains unconfirmed. The existing F0 catalogue master is retained."
+      "Market cross-check: a tubular replacement carrier claims 0.635 kg of gain over an original carrier that is already gusseted, and is sold on strength, not mass. Confirms that the useful lever is durability. The older M19 precedent is non-Turbo; the separate M01-RS replacement claim requires fitment verification.",
+      "The Qwen-assisted F1 digital concept is documented in parts/993-eng-carrier-0001/source/qwen-concept-f1/README.md. The completed coding-003/checkpoint-600 adapter generated the accepted graph; all internal dimensions are human-designed hypotheses. Native geometry, cleaned-mesh closure and OpenUSD round-trip checks are recorded in parts/993-eng-carrier-0001/derived/qwen-concept-f1/checks.json. This is not OEM reconstruction, measured interface geometry, material qualification, a structural result or manufacturing approval; physical access to the exact part remains unconfirmed. The existing F0 catalogue master is retained.",
+      "The F1 carrier omits the engine-bracket attachment. Its closed mesh does not establish functional completeness. The independent attachment preflight in parts/993-eng-carrier-0001/source/qwen-concept-f1/interfaces.py blocks generation and checked export unless an incomplete shape study is explicitly requested. The reviewed interface contract preserves unknown dimensions and ties the audit to the original source and mesh hashes. Qwen correction-training execution is recorded separately in parts/993-eng-carrier-0001/source/qwen-concept-f1/training-status.json; preparation must not be represented as trained weights.",
+      "PET-led improved-carrier requirements and photo research are documented in parts/993-eng-carrier-0001/source/pet-redo/README.md and requirements.json. PET establishes four M10 bracket attachments and two end mount interfaces, not their coordinates, bore clearances, section geometry or tolerances. Functional redo is blocked by those missing measurements and load cases. The user reports failures above 700 hp; no traceable exact-reference threshold was found. The flange/gusset candidate has no claimed strength, fatigue or cost result."
     ]
   }
 }

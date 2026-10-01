@@ -1,11 +1,16 @@
 import hashlib, importlib.metadata, json, os, sys, time
 from pathlib import Path
+from interfaces import require_preflight
+shape_study = '--shape-study' in sys.argv
+if shape_study:
+    sys.argv.remove('--shape-study')
 if len(sys.argv) != 3:
-    raise SystemExit('Usage: infer.py <training-checkout> <new-output-json>')
+    raise SystemExit('Usage: infer.py <training-checkout> <new-output-json> [--shape-study]')
 training = Path(sys.argv[1]).resolve()
 output = Path(sys.argv[2])
 if output.exists():
     raise SystemExit('Refusing to overwrite an inference receipt')
+preflight = require_preflight(shape_study)
 sys.path.insert(0, str(training / 'training/m64-qwen'))
 from picogk import SYSTEM, parse, signature
 from run import configure_tokenizer
@@ -54,4 +59,6 @@ receipt={'model_repository':'mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit',
          'decoding':{'temperature':0,'seed':42,'max_tokens':512},'records':records,
          'geometry_scale':10,'coordinate_authority':'human-designed hypotheses; model transcribes a graph, no OEM dimensions inferred',
          'part_number':'993 115 021 53','manufacturing_authorized':False}
+receipt['attachment_preflight'] = preflight
+receipt['is_functionally_complete'] = False
 output.write_text(json.dumps(receipt,indent=2)+'\n')

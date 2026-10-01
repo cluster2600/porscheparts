@@ -4,9 +4,9 @@
 
 # Turbo engine carrier (Motortraeger)
 
-**`993-ENG-CARRIER-0001`** · Porsche 993 · 1994–1998
+**`993-ENG-CARRIER-0001`** · Porsche 993 · 1995–1998
 
-![status: concept, not a print file](https://img.shields.io/badge/status-concept,%20not%20a%20print%20file-critical) ![safety: safety-critical](https://img.shields.io/badge/safety-safety--critical-orange) ![candidate process: CNC](https://img.shields.io/badge/candidate%20process-CNC-lightgrey)
+![status: concept, not a print file](https://img.shields.io/badge/status-concept,%20not%20a%20print%20file-critical) ![safety: safety-critical](https://img.shields.io/badge/safety-safety--critical-orange) ![candidate process: undecided](https://img.shields.io/badge/candidate%20process-undecided-lightgrey)
 
 </div>
 
@@ -51,8 +51,8 @@ Supports the powertrain and transmits its loads to the body shell
 |---|---|
 | Porsche part numbers | 993 115 021 53 |
 | variants | `993_Turbo` |
-| candidate material | unknown grade |
-| candidate process | CNC |
+| candidate material | unknown |
+| candidate process | undecided |
 | safety class | `safety_critical` |
 | validation status | `concept` |
 | geometry | estimated, master build123d |
@@ -95,7 +95,7 @@ flowchart LR
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/engine_carrier_concept_f0.step`](derived/engine_carrier_concept_f0.step), [`derived/qwen-concept-f1/carrier-concept.stl`](derived/qwen-concept-f1/carrier-concept.stl), [`derived/qwen-concept-f1/carrier-concept.usdc`](derived/qwen-concept-f1/carrier-concept.usdc), [`derived/qwen-concept-f1/checks.json`](derived/qwen-concept-f1/checks.json) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/concept-f0.json`](evidence/concept-f0.json), [`evidence/load-cases.md`](evidence/load-cases.md), [`evidence/material-options.md`](evidence/material-options.md), [`evidence/measurement-plan.md`](evidence/measurement-plan.md), [`evidence/measurement-request.md`](evidence/measurement-request.md), [`evidence/public-data-study.md`](evidence/public-data-study.md) |
 | `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/material_tradeoff.py`](source/material_tradeoff.py), [`source/qwen-concept-f1/Carrier.csproj`](source/qwen-concept-f1/Carrier.csproj), [`source/qwen-concept-f1/Program.cs`](source/qwen-concept-f1/Program.cs), [`source/qwen-concept-f1/export.py`](source/qwen-concept-f1/export.py), [`source/qwen-concept-f1/infer.py`](source/qwen-concept-f1/infer.py), [`source/qwen-concept-f1/inference.json`](source/qwen-concept-f1/inference.json) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/material_tradeoff.py`](source/material_tradeoff.py), [`source/pet-redo/requirements.json`](source/pet-redo/requirements.json), [`source/qwen-concept-f1/Carrier.csproj`](source/qwen-concept-f1/Carrier.csproj), [`source/qwen-concept-f1/Program.cs`](source/qwen-concept-f1/Program.cs), [`source/qwen-concept-f1/export.py`](source/qwen-concept-f1/export.py), [`source/qwen-concept-f1/export_checked.py`](source/qwen-concept-f1/export_checked.py), [`source/qwen-concept-f1/infer.py`](source/qwen-concept-f1/infer.py), [`source/qwen-concept-f1/inference.json`](source/qwen-concept-f1/inference.json), … (13 files) |
 
 ## Read more
 
