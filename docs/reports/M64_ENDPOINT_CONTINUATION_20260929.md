@@ -9,11 +9,17 @@ research body, not a metrologically qualified M64 head. All geometric lengths
 below are provisional scan units, not certified millimetres or a printer
 specification. No physical, material or manufacturing gate is closed.
 
-**Latest experiment, 1 October:** local conforming surface subdivision reduces
+**Earlier experiment, 1 October:** local conforming surface subdivision reduces
 the maximum sampled shape error from **0.0948743 to 0.0723482 scan unit**, with
 zero incompatible surface triangles. It still fails the 0.040-unit screen;
 the CAD master and retained volume are unchanged. Details and rejected controls
 are recorded below.
+
+**Latest result, 2 October:** native-curve-aware refinement and one local
+error-driven pass produce **933,562 surface triangles**, zero incompatible
+triangles and a maximum sampled deviation of **0.0665857 scan unit**. The
+0.040-unit shape screen still fails. A second local pass is rejected because
+one child fails the orientation guard relative to its parent; it is not promoted.
 
 **Later recovery, 1 October:** both authorised Linux hosts are reachable again.
 The previously uncollected size-0.1 run completed but has **5 incompatible
@@ -298,3 +304,106 @@ experiment still needs conforming shared-curve and neighbouring-face correction;
 repeating the global size-0.1 recipe is not justified by this rejected result.
 No new calculation, rental, manufacturing release or master replacement is
 claimed by this recovery.
+
+## 2 October: shared native curves, neighbour control and local error refinement
+
+The [projection tool](../../twins/m64-cylinder-head/source/wholebody/trial_project_compound_surface.py)
+now supports `--split-interior-edges --split-shared-boundaries`. One midpoint
+per selected shared mesh edge is used on **both** incident surface triangles.
+The midpoint is projected to the common native **edge**, identified by OCCT
+topological identity, not independently to either face. Existing edge endpoints
+must already lie within 1e-6 scan unit of that common curve; measured maximum
+here is **9.27e-14**. Original nodes are retained at this boundary stage.
+
+Four frozen-source experiments run on the existing Kali1 CPU, with the pinned
+OCP 7.9.3.1 / Gmsh 4.15.2 runtime. No GPU surrogate or rental is involved.
+Each projection run has a 600-second child alarm, and each separate shape
+audit a 1,200-second alarm. The original native body remains hash-identical.
+
+| Experiment | Surface triangles | Incompatible triangles | Minimum q2 | Outcome |
+|---|---:|---:|---:|---|
+| Split every shared boundary | 933,118 | 4 | 0.05084775103 | Reject: quality and shape |
+| Retain exact straight shared curves | 932,176 | 0 | 0.07085403530 | Necessary surface screen passes; shape fails |
+| Refine around measured worst samples | 933,562 | 0 | 0.07085403530 | Necessary surface screen passes; shape still fails |
+| Repeat at newly measured worst samples | 935,576 | 0 | 0.07085403530 | Reject: one nonpositive normal-dot check; no further shape audit |
+
+The first run splits **2,711 shared edges** and finishes in **83.28 s** including
+the supervisor. Four degraded triangles occur on neighbour faces 136, 273 and
+276. Their common native curves are single exact `GeomAbs_Line` edges: extra
+chord subdivision brings no curvature benefit. The revised rule retains those
+straight boundaries after the same endpoint check; it does not relax any quality
+threshold or move a native feature. The second run splits **2,240 curved edges**,
+retains **471 straight edges** and finishes in **44.82 s**.
+
+![Actual local triangles before and after retaining an exact straight boundary](../media/m64-boundary-20261002/comparison.png)
+
+This is a local planar projection of the same actual neighbouring face in the
+two experimental meshes, not a new whole-head product rendering. The displayed
+minimum is **local**, not the whole-surface minimum in the table. The original
+[scan provenance and non-commercial research licence](../../catalog/sources/src-wolfe-classics-935-billet-cylinder-head-scan.json)
+apply. The [renderer](../../twins/m64-cylinder-head/source/wholebody/render_boundary_refinement.py)
+checks input hashes; no smoothing or generative geometry is used. Image SHA-256:
+`353a9678f16ed43bd89064c01847f94c2019e2d6121d8b1d08b29b99056c0027`.
+
+**The boundary experiment does not solve shape fidelity.** Both completed shape
+audits give lower-patch mesh/native maxima **0.04556742862 / 0.06168744117** and
+upper-patch maxima **0.05012542051 / 0.07235533342**. These are essentially the
+previous result (0.07234822226 maximum), not an improvement to advertise.
+The two audits finish in **298.95 s** and **202.25 s**, with unchanged inputs.
+
+Consequently, the third experiment uses `--local-shape-witnesses` with the
+completed, hash-bound parent audit. It selects triangles with a vertex within
+**0.4 scan unit** (two original 0.2 edge sizes) of either directional worst
+sample, then splits only edges interior to that local selection. Local-selection
+and compound-exterior polygons stay fixed; both incident triangles use each
+new midpoint. It selects **275 lower / 226 upper triangles**, adds **384 / 309
+nodes**, and finishes in **27.26 s**. This is adaptive surface approximation,
+not native CAD reconstruction. Its complete shape audit finishes in **162.11 s**:
+
+| After one local pass | Mesh to native, sampled maximum | Native to mesh, sampled maximum |
+|---|---:|---:|
+| Lower | 0.04549009729 | 0.05906187524 |
+| Upper | 0.04847518443 | 0.06658567954 |
+
+The maximum decreases about **8.0%** from the curved-boundary parent, while the
+necessary quality screen remains unchanged. It still fails the exploratory
+0.040-unit screen. This motivates a bounded follow-up on the newly measured
+worst samples, not an extrapolated success or a physical millimetre claim.
+
+The follow-up allows at most three further passes, but **stops after its first
+attempt**, in 27.17 s: one child has a nonpositive normal dot product relative
+to its parent, in the upper patch. Quality q2 alone does not detect this failure. The rejection
+is retained and neither its shape audit nor the two unused passes are launched.
+The best shape-audited candidate therefore remains the first local pass above.
+The next correction must control projection across the native crease/patch
+charts and preserve orientation, instead of blindly adding more subdivisions.
+
+The first three completed mesh exports preserve edge incidence two, have no duplicate
+triangles or nonpositive old/new normal dot products, and read back exactly.
+These checks still do **not** establish vertex-link manifoldness, absence of
+geometric intersections, functional facewise boundary conditions or a volume.
+The modified 2D boundary is not a regenerated native 1D curve-element mesh.
+**No candidate is passed to volume meshing or physical solvers.** The retained
+volume still has **32 rejected tetrahedra / 1,341,461**.
+
+Ten focused tests pass on Mac and Kali1, including a curved cylinder/cap edge
+shared by two surfaces, an exact straight-edge control, unchanged old vertices,
+two-sided edge incidence, missing-native-edge and non-manifold rejection, and
+the local witness selector. The first full `make check` passes 3,209 main tests;
+the final retry passes **3,210 main tests (165 optional skips)** and subsequent
+Python checks, but the pinned F37 Docker target cannot connect to the Mac daemon.
+Thus whole-suite success and merge readiness are **not** claimed.
+The final receipt-binding guard is exercised afterwards in the focused Mac
+runtime: an audit bound to the wrong parent receipt is rejected before output
+creation. Frozen job sources and historical receipts are not overwritten.
+
+Private report hashes: all boundaries
+`1c10c15c723671e30db68cc8a266c0d89534e193c2ebee5fbfd025567b3f127c`;
+curved boundaries
+`50a4a2e3efab515a32c33183975ec4b55988f93e5448495e4345449095cbd15f`;
+local witness refinement
+`c4515f7ac1e3f3d2aad1856e67901911256ab8eff2f22059929af53989d84d88`.
+The rejected second-local-pass report hash is
+`99d5e0fa70a10cf718b2585a4d34e4fc51bd3b7ecf7b5eebf417904d9ea05853`.
+Detailed geometry, coordinates and receipts stay private; the public report
+records measured outcomes without a manufacturing or physical 0.040 mm claim.

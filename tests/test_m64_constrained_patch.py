@@ -133,6 +133,88 @@ class ConstrainedPatchTests(unittest.TestCase):
         self.assertEqual(surface_edges(np.vstack([tetra, tetra[:1]]))['duplicate_triangles'], 1)
         with self.assertRaises(ValueError): surface_edges(np.array([[0, 0, 1]]))
 
+    @unittest.skipUnless(importlib.util.find_spec('gmsh'), 'optional Gmsh runtime')
+    def test_shape_witnesses_select_only_nearby_triangles(self):
+        import numpy as np
+        from trial_project_compound_surface import witness_region
+        p = np.array([[0., 0., 0.], [.2, 0., 0.], [0., .2, 0.], [2., 0., 0.], [2.2, 0., 0.], [2., .2, 0.]])
+        f = np.array([[0, 1, 2], [3, 4, 5]])
+        np.testing.assert_array_equal(witness_region(p, f, [[0., 0., 0.], [.1, 0., 0.]]), [True, False])
+        with self.assertRaises(ValueError): witness_region(p, f, [[0., 0., 0.], [float('nan'), 0., 0.]])
+        # A shape audit must bind the parent receipt too, not just its mesh.
+        import argparse
+        import json
+        import tempfile
+        from trial_project_compound_surface import run, native, BODY_SHA
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            body, mesh, receipt, audit = [root/name for name in ('body.brep', 'mesh.msh', 'receipt.json', 'audit.json')]
+            body.write_text('not a real body'); mesh.write_text('not a real mesh')
+            receipt.write_text(json.dumps({'necessary_surface_checks_passed': True}))
+            data = dict(schema='m64-compound-native-shape-samples/v1', status='completed_diagnostic_only',
+                        inputs_unchanged=True, source_hashes={body.name: BODY_SHA, mesh.name: native.sha256(mesh), receipt.name: 'wrong'})
+            audit.write_text(json.dumps(data))
+            args = argparse.Namespace(body=body, mesh=mesh, receipt=receipt, local_shape_witnesses=audit,
+                                      split_interior_edges=True, split_shared_boundaries=False, output=root/'out')
+            with self.assertRaisesRegex(ValueError, 'bound_completed_shape_audit'):
+                run(args)
+            data['source_hashes'][receipt.name] = native.sha256(receipt)
+            audit.write_text(json.dumps(data))
+            with self.assertRaisesRegex(ValueError, 'pinned_classified_parent'):
+                run(args)
+            self.assertFalse(args.output.exists())
+
+    def test_shared_curve_refinement_splits_both_faces_without_moving_old_nodes(self):
+        import numpy as np
+        from OCP.BRepPrimAPI import BRepPrimAPI_MakeCylinder, BRepPrimAPI_MakeBox
+        from OCP.BRepAdaptor import BRepAdaptor_Surface
+        from OCP.GeomAbs import GeomAbs_Cylinder
+        from OCP.TopAbs import TopAbs_FACE
+        from OCP.TopoDS import TopoDS
+        from trial_constrained_patch import indexed
+        from trial_bounded_tip_cut import encode
+        from trial_project_compound_surface import refine_shared_boundaries
+        body = BRepPrimAPI_MakeCylinder(1., 1.).Shape(); before = encode(body)
+        faces = indexed(body, TopAbs_FACE)
+        side = next(f for f in faces if BRepAdaptor_Surface(TopoDS.Face_s(f)).GetType() == GeomAbs_Cylinder)
+        cap = next(f for f in faces if BRepAdaptor_Surface(TopoDS.Face_s(f)).GetType() != GeomAbs_Cylinder
+                   and abs(BRepAdaptor_Surface(TopoDS.Face_s(f)).Plane().Location().Z()) < 1e-12)
+        p = np.array([[np.cos(.3), -np.sin(.3), 0.], [np.cos(.3), np.sin(.3), 0.],
+                      [.5, 0., 0.], [1., 0., .3]])
+        f = np.array([[0, 1, 2], [1, 0, 3]]); owners = np.array([11, 12])
+        q, g, parents, report = refine_shared_boundaries(p, f, owners, {11: cap, 12: side}, {'cap': [11]})
+        np.testing.assert_array_equal(q[:4], p)
+        np.testing.assert_allclose(q[4], [1., 0., 0.], atol=1e-12)
+        self.assertEqual((len(q), len(g)), (5, 4))
+        self.assertEqual(sorted(parents), [0, 0, 1, 1])
+        self.assertEqual(report['shared_edges'], 1)
+        self.assertEqual(report['neighbour_face_tags_private'], [12])
+        self.assertEqual(encode(body), before)
+        edges, counts = np.unique(np.sort(np.concatenate([g[:, e] for e in ((0, 1), (1, 2), (2, 0))]), axis=1), axis=0, return_counts=True)
+        incidence = {tuple(e): int(n) for e, n in zip(edges, counts)}
+        self.assertNotIn((0, 1), incidence)
+        self.assertEqual((incidence[(0, 4)], incidence[(1, 4)]), (2, 2))
+        normal = lambda xyz: np.cross(xyz[:, 1]-xyz[:, 0], xyz[:, 2]-xyz[:, 0])
+        self.assertTrue((np.einsum('ij,ij->i', normal(p[f])[parents], normal(q[g])) > 0).all())
+        unrelated = indexed(BRepPrimAPI_MakeBox(1., 1., 1.).Shape(), TopAbs_FACE)[0]
+        with self.assertRaises(ValueError): refine_shared_boundaries(p, f, owners, {11: cap, 12: unrelated}, {'cap': [11]})
+        with self.assertRaises(ValueError): refine_shared_boundaries(p, np.vstack([f, f[:1]]), np.array([11, 12, 11]), {11: cap, 12: side}, {'cap': [11]})
+
+        # A native straight common edge already matches its chord exactly.
+        box_faces = indexed(BRepPrimAPI_MakeBox(1., 1., 1.).Shape(), TopAbs_FACE)
+        bottom = next(face for face in box_faces if
+            abs(BRepAdaptor_Surface(TopoDS.Face_s(face)).Plane().Axis().Direction().Z()) > .9
+            and abs(BRepAdaptor_Surface(TopoDS.Face_s(face)).Plane().Location().Z()) < 1e-12)
+        front = next(face for face in box_faces if
+            abs(BRepAdaptor_Surface(TopoDS.Face_s(face)).Plane().Axis().Direction().Y()) > .9
+            and abs(BRepAdaptor_Surface(TopoDS.Face_s(face)).Plane().Location().Y()) < 1e-12)
+        p = np.array([[0., 0., 0.], [1., 0., 0.], [0., 1., 0.], [0., 0., 1.]])
+        q, g, parents, report = refine_shared_boundaries(p, f, owners, {11: bottom, 12: front}, {'cap': [11]})
+        np.testing.assert_array_equal(q, p); np.testing.assert_array_equal(g, f)
+        np.testing.assert_array_equal(parents, [0, 1])
+        self.assertEqual(report['shared_edges'], 0)
+        self.assertEqual(report['skipped_exact_straight_edges'], 1)
+
     def test_faceted_volume_matches_translated_analytic_box(self):
         from OCP.BRepPrimAPI import BRepPrimAPI_MakeBox
         from OCP.gp import gp_Pnt
