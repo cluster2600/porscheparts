@@ -15,6 +15,11 @@ zero incompatible surface triangles. It still fails the 0.040-unit screen;
 the CAD master and retained volume are unchanged. Details and rejected controls
 are recorded below.
 
+**Later recovery, 1 October:** both authorised Linux hosts are reachable again.
+The previously uncollected size-0.1 run completed but has **5 incompatible
+triangles / 976,144**; the curvature-64 run ended at its 1,800-second alarm.
+Neither result replaces the retained geometry. See the recovery record below.
+
 ![Two lateral openings and four recesses of the retained boundary](../media/m64-openings-20260929/openings.png)
 
 The requested close-up is rendered from the exact retained mesh, without
@@ -91,9 +96,10 @@ The largest observed error exceeds the exploratory **0.040 scan-unit** screen.
 This is neither a certified Hausdorff bound nor physical millimetres. No
 volume is generated from this rejected approximation.
 
-On 1 October the two remaining Linux outcomes (size 0.1 and curvature 64)
-cannot be collected: the known SSH host returns `No route to host`. They are
-**uncollected**, not assumed completed, timed out, or still running.
+Initially on 1 October the two remaining Linux outcomes (size 0.1 and curvature
+64) could not be collected: the known SSH host returned `No route to host`.
+They were recorded as **uncollected**, without assuming completion or continued
+execution. The later recovery below supersedes that collection status.
 
 ## Reproduction
 
@@ -255,4 +261,40 @@ CAD-runtime checks. Strict documentation validation reports **zero broken links
 across 573 Markdown files**; diff whitespace checks pass. No new Vast spending,
 automatic Docker restart, main-branch merge, catalogue release or site deployment
 is performed. All local numerical workers from this continuation have ended
-or been explicitly stopped; uncollected Linux outcomes remain unknown.
+or been explicitly stopped; Linux outcomes were still unknown at that checkpoint.
+
+## 1 October: Linux result recovery after network restoration
+
+Both authorised x86_64 hosts now answer authenticated SSH. Kali1 is reached
+through Wi-Fi, checked against its existing trusted host key; host-key checking
+is not disabled and no trusted key is replaced. Each host reports 12 logical
+CPUs and about 15 GiB RAM, not a large-memory GPU workstation. Kali1 has about
+379 GiB free disk and Kali2 about 302 GiB at collection time.
+
+The nine existing result, baseline and log files are copied into fresh private
+storage. All nine local SHA-256 values match their remote originals. These are
+recovered 29 September calculations, **not new 1 October simulation runs**.
+
+| Recovered trial | Execution | Result and decision |
+|---|---|---|
+| Patch size 0.1, curvature 12 | Exit 0; 1,760.64 s | 976,144 triangles; 5 incompatible; minimum q2 0.035495665. Reject. |
+| Curvature 64, junction 0.020 | Exit -14; 1,800.19 s | Child SIGALRM; incomplete receipt; no final mesh. Reject. |
+
+The second launcher receipt says `timed_out: false`: its outer timeout did not
+fire, but the child reached its own alarm. This is not a completed calculation.
+The first receipt binds the unchanged original CAD and copied surface hash;
+it reports no duplicates and no edges without incidence two. Vertex-link and
+self-intersection checks remain absent. No shape-screen pass or new volume
+result is inferred. The retained volume remains **32 rejected tetrahedra**.
+
+Recovered report hashes are
+`b4b626537e3ca0f04c4a3cc12be3b6e2036f21d7141f030f2d7df1061ee9c136`
+(size 0.1) and
+`1879938033a74fcc33a8b6e2bce0df8317517e1ea0945fbe8719ec9b3c8f8957`
+(incomplete curvature 64). The size-0.1 surface hash is
+`77c2f3641ea63a7bb740877f33883a72fe6bd96c349e35d6a39586eaa8e1f91c`.
+Raw geometry and coordinate-bearing receipts stay private. The next geometric
+experiment still needs conforming shared-curve and neighbouring-face correction;
+repeating the global size-0.1 recipe is not justified by this rejected result.
+No new calculation, rental, manufacturing release or master replacement is
+claimed by this recovery.
