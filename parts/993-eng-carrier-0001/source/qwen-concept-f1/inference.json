@@ -1,0 +1,280 @@
+{
+  "model_repository": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+  "model_revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+  "model_weights_sha256": "daeab4764fb420d161721791cf2e509e2de81a7af4223646e7bed2bf82c57b58",
+  "adapter_run": "coding-003/checkpoint-600",
+  "adapter_sha256": "a1014c6f71b46d879c09462c4a57d17d00df8f11b8178dd53bf6d5f2ac2f778a",
+  "adapter_config_sha256": "f24dc7b5c3e5c01e1909236a66377e786d6ff083cd75261f937e5ab02f2b5a3b",
+  "mlx_lm_version": "0.31.3",
+  "decoding": {
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 512
+  },
+  "geometry_scale": 10,
+  "coordinate_authority": "human-designed hypotheses; model transcribes a graph, no OEM dimensions inferred",
+  "part_number": "993 115 021 53",
+  "manufacturing_authorized": false,
+  "attempts": [
+    {
+      "prompt_strategy": "diameters; rejected",
+      "records": [
+        {
+          "side": -1,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Write only C# statements for an existing PicoGK.Lattice named lattice. Use lattice.AddBeam(new Vector3(xf, yf, zf), radiusf, new Vector3(xf, yf, zf), radiusf, true/false); with numeric literals. No declarations, loops, comments, Markdown or other APIs. Coordinates are designed millimeters, not measured engine dimensions. Return one statement per edge."
+            },
+            {
+              "role": "user",
+              "content": "Build a synthetic frame. Vertices in mm: {\"A\": [-28, 0, 0], \"B\": [-20, 0, 1.9], \"C\": [0, 0, 0.9], \"D\": [0, 0, -1.9]}. Directed edges: A->B, B->C, C->D, D->A. Each edge has start diameter 1.2 mm and end diameter 1.2 mm. Rounded caps: true. Convert diameters to radii. Emit every edge exactly once."
+            }
+          ],
+          "response": "lattice.AddBeam(new Vector3(-28f, 0f, 0f), 1.2f, new Vector3(-20f, 0f, 1.9f), 1.2f, true);\nlattice.AddBeam(new Vector3(-20f, 0f, 1.9f), 1.2f, new Vector3(0f, 0f, 0.9f), 1.2f, true);\nlattice.AddBeam(new Vector3(0f, 0f, 0.9f), 1.2f, new Vector3(0f, 0f, -1.9f), 1.2f, true);",
+          "seconds": 11.479003917076625,
+          "vertices": {
+            "A": [
+              -28,
+              0,
+              0
+            ],
+            "B": [
+              -20,
+              0,
+              1.9
+            ],
+            "C": [
+              0,
+              0,
+              0.9
+            ],
+            "D": [
+              0,
+              0,
+              -1.9
+            ]
+          },
+          "edges": [
+            [
+              "A",
+              "B"
+            ],
+            [
+              "B",
+              "C"
+            ],
+            [
+              "C",
+              "D"
+            ],
+            [
+              "D",
+              "A"
+            ]
+          ],
+          "radius_model_mm": 0.6,
+          "rounded_caps": true,
+          "generation_tokens": 158,
+          "generation_tps": 17.324924871712867,
+          "peak_memory_gb": 1.219883288,
+          "semantic_passed": false,
+          "parsed_code": "lattice.AddBeam(new Vector3(-28f, 0f, 0f), 1.2f, new Vector3(-20f, 0f, 1.9f), 1.2f, true);\nlattice.AddBeam(new Vector3(-20f, 0f, 1.9f), 1.2f, new Vector3(0f, 0f, 0.9f), 1.2f, true);\nlattice.AddBeam(new Vector3(0f, 0f, 0.9f), 1.2f, new Vector3(0f, 0f, -1.9f), 1.2f, true);"
+        },
+        {
+          "side": 1,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Write only C# statements for an existing PicoGK.Lattice named lattice. Use lattice.AddBeam(new Vector3(xf, yf, zf), radiusf, new Vector3(xf, yf, zf), radiusf, true/false); with numeric literals. No declarations, loops, comments, Markdown or other APIs. Coordinates are designed millimeters, not measured engine dimensions. Return one statement per edge."
+            },
+            {
+              "role": "user",
+              "content": "Build a synthetic frame. Vertices in mm: {\"A\": [28, 0, 0], \"B\": [20, 0, 1.9], \"C\": [0, 0, 0.9], \"D\": [0, 0, -1.9]}. Directed edges: A->B, B->C, C->D, D->A. Each edge has start diameter 1.2 mm and end diameter 1.2 mm. Rounded caps: true. Convert diameters to radii. Emit every edge exactly once."
+            }
+          ],
+          "response": "lattice.AddBeam(new Vector3(28f, 0f, 0f), 1.2f, new Vector3(20f, 0f, 1.9f), 1.2f, true);\nlattice.AddBeam(new Vector3(20f, 0f, 1.9f), 1.2f, new Vector3(0f, 0f, 0.9f), 1.2f, true);\nlattice.AddBeam(new Vector3(0f, 0f, 0.9f), 1.2f, new Vector3(0f, 0f, -1.9f), 1.2f, true);\nlattice.AddBeam(new Vector3(0f, 0f, -1.9f), 1.2f, new Vector3(28f, 0f, 0f), 1.2f, true);",
+          "seconds": 14.13657795789186,
+          "vertices": {
+            "A": [
+              28,
+              0,
+              0
+            ],
+            "B": [
+              20,
+              0,
+              1.9
+            ],
+            "C": [
+              0,
+              0,
+              0.9
+            ],
+            "D": [
+              0,
+              0,
+              -1.9
+            ]
+          },
+          "edges": [
+            [
+              "A",
+              "B"
+            ],
+            [
+              "B",
+              "C"
+            ],
+            [
+              "C",
+              "D"
+            ],
+            [
+              "D",
+              "A"
+            ]
+          ],
+          "radius_model_mm": 0.6,
+          "rounded_caps": true,
+          "generation_tokens": 209,
+          "generation_tps": 16.739721511900875,
+          "peak_memory_gb": 1.295266412,
+          "semantic_passed": false,
+          "parsed_code": "lattice.AddBeam(new Vector3(28f, 0f, 0f), 1.2f, new Vector3(20f, 0f, 1.9f), 1.2f, true);\nlattice.AddBeam(new Vector3(20f, 0f, 1.9f), 1.2f, new Vector3(0f, 0f, 0.9f), 1.2f, true);\nlattice.AddBeam(new Vector3(0f, 0f, 0.9f), 1.2f, new Vector3(0f, 0f, -1.9f), 1.2f, true);\nlattice.AddBeam(new Vector3(0f, 0f, -1.9f), 1.2f, new Vector3(28f, 0f, 0f), 1.2f, true);"
+        }
+      ]
+    },
+    {
+      "prompt_strategy": "explicit radii; accepted",
+      "records": [
+        {
+          "side": -1,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Write only C# statements for an existing PicoGK.Lattice named lattice. Use lattice.AddBeam(new Vector3(xf, yf, zf), radiusf, new Vector3(xf, yf, zf), radiusf, true/false); with numeric literals. No declarations, loops, comments, Markdown or other APIs. Coordinates are designed millimeters, not measured engine dimensions. Return one statement per edge."
+            },
+            {
+              "role": "user",
+              "content": "Build a synthetic frame. Vertices in mm: {\"A\": [-28, 0, 0], \"B\": [-20, 0, 1.9], \"C\": [0, 0, 0.9], \"D\": [0, 0, -1.9]}. Directed edges: A->B, B->C, C->D, D->A. Each edge has start radius 0.6 mm and end radius 0.6 mm. Rounded caps: true. There are four edges; emit all four exactly once. Use 0.6f for every radius argument."
+            }
+          ],
+          "response": "lattice.AddBeam(new Vector3(-28f, 0f, 0f), 0.6f, new Vector3(-20f, 0f, 1.9f), 0.6f, true);\nlattice.AddBeam(new Vector3(-20f, 0f, 1.9f), 0.6f, new Vector3(0f, 0f, 0.9f), 0.6f, true);\nlattice.AddBeam(new Vector3(0f, 0f, 0.9f), 0.6f, new Vector3(0f, 0f, -1.9f), 0.6f, true);\nlattice.AddBeam(new Vector3(0f, 0f, -1.9f), 0.6f, new Vector3(-28f, 0f, 0f), 0.6f, true);",
+          "seconds": 15.174818750005215,
+          "vertices": {
+            "A": [
+              -28,
+              0,
+              0
+            ],
+            "B": [
+              -20,
+              0,
+              1.9
+            ],
+            "C": [
+              0,
+              0,
+              0.9
+            ],
+            "D": [
+              0,
+              0,
+              -1.9
+            ]
+          },
+          "edges": [
+            [
+              "A",
+              "B"
+            ],
+            [
+              "B",
+              "C"
+            ],
+            [
+              "C",
+              "D"
+            ],
+            [
+              "D",
+              "A"
+            ]
+          ],
+          "radius_model_mm": 0.6,
+          "rounded_caps": true,
+          "generation_tokens": 209,
+          "generation_tps": 15.757344286599505,
+          "peak_memory_gb": 1.288147148,
+          "semantic_passed": true,
+          "parsed_code": "lattice.AddBeam(new Vector3(-28f, 0f, 0f), 0.6f, new Vector3(-20f, 0f, 1.9f), 0.6f, true);\nlattice.AddBeam(new Vector3(-20f, 0f, 1.9f), 0.6f, new Vector3(0f, 0f, 0.9f), 0.6f, true);\nlattice.AddBeam(new Vector3(0f, 0f, 0.9f), 0.6f, new Vector3(0f, 0f, -1.9f), 0.6f, true);\nlattice.AddBeam(new Vector3(0f, 0f, -1.9f), 0.6f, new Vector3(-28f, 0f, 0f), 0.6f, true);"
+        },
+        {
+          "side": 1,
+          "messages": [
+            {
+              "role": "system",
+              "content": "Write only C# statements for an existing PicoGK.Lattice named lattice. Use lattice.AddBeam(new Vector3(xf, yf, zf), radiusf, new Vector3(xf, yf, zf), radiusf, true/false); with numeric literals. No declarations, loops, comments, Markdown or other APIs. Coordinates are designed millimeters, not measured engine dimensions. Return one statement per edge."
+            },
+            {
+              "role": "user",
+              "content": "Build a synthetic frame. Vertices in mm: {\"A\": [28, 0, 0], \"B\": [20, 0, 1.9], \"C\": [0, 0, 0.9], \"D\": [0, 0, -1.9]}. Directed edges: A->B, B->C, C->D, D->A. Each edge has start radius 0.6 mm and end radius 0.6 mm. Rounded caps: true. There are four edges; emit all four exactly once. Use 0.6f for every radius argument."
+            }
+          ],
+          "response": "lattice.AddBeam(new Vector3(28f, 0f, 0f), 0.6f, new Vector3(20f, 0f, 1.9f), 0.6f, true);\nlattice.AddBeam(new Vector3(20f, 0f, 1.9f), 0.6f, new Vector3(0f, 0f, 0.9f), 0.6f, true);\nlattice.AddBeam(new Vector3(0f, 0f, 0.9f), 0.6f, new Vector3(0f, 0f, -1.9f), 0.6f, true);\nlattice.AddBeam(new Vector3(0f, 0f, -1.9f), 0.6f, new Vector3(28f, 0f, 0f), 0.6f, true);",
+          "seconds": 11.574343541986309,
+          "vertices": {
+            "A": [
+              28,
+              0,
+              0
+            ],
+            "B": [
+              20,
+              0,
+              1.9
+            ],
+            "C": [
+              0,
+              0,
+              0.9
+            ],
+            "D": [
+              0,
+              0,
+              -1.9
+            ]
+          },
+          "edges": [
+            [
+              "A",
+              "B"
+            ],
+            [
+              "B",
+              "C"
+            ],
+            [
+              "C",
+              "D"
+            ],
+            [
+              "D",
+              "A"
+            ]
+          ],
+          "radius_model_mm": 0.6,
+          "rounded_caps": true,
+          "generation_tokens": 209,
+          "generation_tps": 20.995283330970704,
+          "peak_memory_gb": 1.307879056,
+          "semantic_passed": true,
+          "parsed_code": "lattice.AddBeam(new Vector3(28f, 0f, 0f), 0.6f, new Vector3(20f, 0f, 1.9f), 0.6f, true);\nlattice.AddBeam(new Vector3(20f, 0f, 1.9f), 0.6f, new Vector3(0f, 0f, 0.9f), 0.6f, true);\nlattice.AddBeam(new Vector3(0f, 0f, 0.9f), 0.6f, new Vector3(0f, 0f, -1.9f), 0.6f, true);\nlattice.AddBeam(new Vector3(0f, 0f, -1.9f), 0.6f, new Vector3(28f, 0f, 0f), 0.6f, true);"
+        }
+      ]
+    }
+  ],
+  "scaffold_author": "Codex; blade trim, bosses, bores, native acceptance checks and export",
+  "generated_scope": "Eight literal AddBeam statements only; the shared center edge is repeated and unioned"
+}
