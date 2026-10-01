@@ -20,6 +20,8 @@ PATCHES = {'lower': (141, 142, 143), 'upper': (1411, 1412, 1413, 1647, 1648)}
 
 def exterior_edges(faces):
     from OCP.TopAbs import TopAbs_EDGE
+    from OCP.TopExp import TopExp
+    from OCP.TopoDS import TopoDS
     from OCP.TopTools import TopTools_IndexedMapOfShape
     mapping = TopTools_IndexedMapOfShape(); uses = Counter()
     for face in faces:
@@ -27,7 +29,26 @@ def exterior_edges(faces):
             uses[mapping.Add(edge)] += 1
     if not uses or any(n not in (1, 2) for n in uses.values()):
         raise ValueError('manifold_patch_edge_incidence_required')
-    return [mapping.FindKey(i) for i, n in uses.items() if n == 1]
+    remaining = [TopoDS.Edge_s(mapping.FindKey(i)) for i, n in uses.items() if n == 1]
+    vertices = TopTools_IndexedMapOfShape(); degree = Counter()
+    for edge in remaining:
+        for vertex in (TopExp.FirstVertex_s(edge, True), TopExp.LastVertex_s(edge, True)):
+            if vertex.IsNull(): raise ValueError('bounded_boundary_vertices_required')
+            degree[vertices.Add(vertex)] += 1
+    if not remaining or any(n != 2 for n in degree.values()):
+        raise ValueError('single_nonbranching_boundary_required')
+    ordered = [remaining.pop(0)]
+    # ponytail: quadratic traversal is bounded by the small local patch; no graph library.
+    while remaining:
+        end = TopExp.LastVertex_s(ordered[-1], True)
+        matches = [(i, edge if TopExp.FirstVertex_s(edge, True).IsSame(end)
+                    else TopoDS.Edge_s(edge.Reversed())) for i, edge in enumerate(remaining)
+                   if any(v.IsSame(end) for v in (TopExp.FirstVertex_s(edge, True), TopExp.LastVertex_s(edge, True)))]
+        if len(matches) != 1: raise ValueError('one_continuous_boundary_loop_required')
+        i, edge = matches[0]; remaining.pop(i); ordered.append(edge)
+    if not TopExp.LastVertex_s(ordered[-1], True).IsSame(TopExp.FirstVertex_s(ordered[0], True)):
+        raise ValueError('closed_boundary_loop_required')
+    return ordered
 
 
 def interior_points(face, resolution):
@@ -50,16 +71,23 @@ def interior_points(face, resolution):
     return points
 
 
-def filling(faces, resolution):
+def filling(faces, resolution, initial_plane=None):
     from OCP.BRepBuilderAPI import BRepBuilderAPI_Copy
     from OCP.BRepOffsetAPI import BRepOffsetAPI_MakeFilling
     from OCP.GeomAbs import GeomAbs_C0
     from OCP.TopoDS import TopoDS
     # Copy constraints: the builder must not mutate the reference's edges.
     edges = exterior_edges(faces)
+    copied = BRepBuilderAPI_Copy(compound(edges), True, False)
     op = BRepOffsetAPI_MakeFilling(3, 25, 3, False, 1e-8, 1e-7, .01, .1, 8, 32)
+    if initial_plane is not None:
+        from OCP.BRepAdaptor import BRepAdaptor_Surface
+        from OCP.GeomAbs import GeomAbs_Plane
+        if BRepAdaptor_Surface(TopoDS.Face_s(initial_plane)).GetType() != GeomAbs_Plane:
+            raise ValueError('orthogonal_planar_initial_surface_required')
+        op.LoadInitSurface(TopoDS.Face_s(BRepBuilderAPI_Copy(initial_plane, True, False).Shape()))
     for edge in edges:
-        op.Add(TopoDS.Edge_s(BRepBuilderAPI_Copy(edge, True, False).Shape()), GeomAbs_C0)
+        op.Add(TopoDS.Edge_s(copied.ModifiedShape(edge)), GeomAbs_C0)
     count = 0
     if resolution:
         for face in faces:
@@ -68,19 +96,25 @@ def filling(faces, resolution):
     op.Build()
     if not op.IsDone(): raise ValueError('constrained_surface_build_failed')
     return op.Shape(), dict(exterior_edges=len(edges), interior_constraints=count,
-                           reported_G0_error=op.G0Error())
+                           reported_G0_error=op.G0Error(), continuous_boundary=True,
+                           boundary_copied_together=True, native_initial_plane=initial_plane is not None)
 
 
 def sampled_distance(points, target):
     from OCP.BRepBuilderAPI import BRepBuilderAPI_MakeVertex
     from OCP.BRepExtrema import BRepExtrema_DistShapeShape
-    values = []
-    for point in points:
-        op = BRepExtrema_DistShapeShape(BRepBuilderAPI_MakeVertex(point).Vertex(), target)
+    values = []; witness = None
+    op = BRepExtrema_DistShapeShape(); op.LoadS2(target)
+    for index, point in enumerate(points):
+        if not np.isfinite(point.Coord()).all(): raise ValueError('finite_native_sample_required')
+        op.LoadS1(BRepBuilderAPI_MakeVertex(point).Vertex()); op.Perform()
         if not op.IsDone() or not np.isfinite(op.Value()): raise ValueError('native_distance_failed')
+        if witness is None or op.Value() > witness['distance']:
+            witness = dict(sample_index=index, point=list(point.Coord()),
+                           closest=list(op.PointOnShape2(1).Coord()), distance=op.Value())
         values.append(op.Value())
     if not values: raise ValueError('nonempty_distance_samples_required')
-    return dict(samples=len(values), maximum=max(values))
+    return dict(samples=len(values), maximum=max(values), maximum_witness_private=witness)
 
 
 def compound(shapes):
@@ -110,6 +144,7 @@ def run(args):
         input_sha256=BODY_SHA, source_sha256=pins[Path(__file__)],
         helper_sha256={p.name: h for p, h in pins.items() if p.suffix == '.py'},
         source_faces=PATCHES[args.patch], constraint_grid=args.grid, OCP_version=OCP.__version__,
+        initial_plane_face=({'lower': 142, 'upper': 1412}[args.patch] if args.initial_plane else None),
         distance_screen_limit_scan_units=.020, master_replaced=False,
         native_Hausdorff_certified=False, functional_face_roles_verified=False,
         CAE_authorized=False, manufacturing_authorized=False)
@@ -125,7 +160,8 @@ def run(args):
                    any(e.IsSame(g) for e in indexed(f, TopAbs_EDGE) for g in edges)}
         protected = {i: encode(f) for i, f in enumerate(faces, 1) if i not in allowed}
         report.update(allowed_representation_faces=sorted(allowed), stage='building_fixed_boundary_patch'); save()
-        replacement, build = filling(patch, args.grid)
+        initial = faces[report['initial_plane_face']-1] if args.initial_plane else None
+        replacement, build = filling(patch, args.grid, initial)
         report.update(build=build, replacement_valid=valid(replacement),
                       source_in_memory_unchanged=encode(body) == before)
         output = args.output/'patch-private.brep'
@@ -183,5 +219,6 @@ if __name__ == '__main__':
     for name in ('body', 'output'): parser.add_argument('--'+name, type=Path, required=True)
     parser.add_argument('--patch', choices=PATCHES, required=True)
     parser.add_argument('--grid', type=int, choices=(0, 5, 9), default=5)
+    parser.add_argument('--initial-plane', action='store_true', help='Initialize from the original patch plane, not an inferred surface.')
     signal.alarm(540)
     raise SystemExit(run(parser.parse_args()))

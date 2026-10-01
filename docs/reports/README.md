@@ -2,15 +2,21 @@
 
 # Execution and audit reports
 
-124 reports of runs, audits and checkpoints, newest first (14 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../../SAFETY.md).
+125 reports of runs, audits and checkpoints, newest first (14 undated, listed last). A report records what was run and what it found on that day; later work may have superseded it. Nothing here releases a part — see [SAFETY.md](../../SAFETY.md).
 
 ```mermaid
 xychart-beta
     title "Reports written per day, 2026"
-    x-axis ["09-01", "09-06", "09-07", "09-08", "09-09", "09-12", "09-14", "09-16", "09-24", "09-25", "09-26", "09-27", "09-28"]
+    x-axis ["09-01", "09-06", "09-07", "09-08", "09-09", "09-12", "09-14", "09-16", "09-24", "09-25", "09-26", "09-27", "09-28", "09-29"]
     y-axis "reports" 0 --> 25
-    bar [1, 1, 20, 24, 13, 9, 7, 1, 2, 8, 6, 3, 15]
+    bar [1, 1, 20, 24, 13, 9, 7, 1, 2, 8, 6, 3, 15, 1]
 ```
+
+## September 29, 2026
+
+| report | file |
+|---|---|
+| M64 — endpoint reconstruction and local mesh sizing, 29 September 2026 | [`M64_ENDPOINT_CONTINUATION_20260929.md`](M64_ENDPOINT_CONTINUATION_20260929.md) |
 
 ## September 28, 2026
 

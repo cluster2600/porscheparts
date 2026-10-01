@@ -29,6 +29,18 @@ def surface_edges(triangles):
                 vertex_links_checked=False, geometric_intersections_checked=False)
 
 
+def restrict_patch_size(gmsh, surfaces, size):
+    if not surfaces or not math.isfinite(size) or not 0 < size <= .2:
+        raise ValueError('bounded_patch_sizing_required')
+    constant = gmsh.model.mesh.field.add('MathEval')
+    gmsh.model.mesh.field.setString(constant, 'F', str(size))
+    restricted = gmsh.model.mesh.field.add('Restrict')
+    gmsh.model.mesh.field.setNumber(restricted, 'InField', constant)
+    gmsh.model.mesh.field.setNumbers(restricted, 'SurfacesList', surfaces)
+    gmsh.model.mesh.field.setNumber(restricted, 'IncludeBoundary', 1)
+    return restricted
+
+
 def run(args):
     import gmsh
     if (args.output.exists() or args.output.is_symlink() or args.body.is_symlink()
@@ -41,6 +53,7 @@ def run(args):
         source_sha256=pins[Path(__file__)], helper_sha256=pins[helper], groups=PATCHES,
         compound_size_factor=args.factor, compound_classify=args.classify, volume_requested=args.volume,
         junction_size=args.junction_size, curvature_points=args.curvature,
+        wall_seconds=args.wall_seconds, patch_size=args.patch_size,
         geometry_modified=False, master_replaced=False, native_shape_conformance_certified=False,
         CAE_authorized=False, manufacturing_authorized=False)
     def save(): native.save(args.output/'report.json', report)
@@ -78,6 +91,7 @@ def run(args):
                 for d, v in gmsh.model.getBoundary([(1, curve)], oriented=False):
                     if d == 0: sizes[v] = min(sizes.get(v, math.inf), size)
         for tag, size in sizes.items(): gmsh.model.mesh.setSize([(0, tag)], size)
+        fields = []
         if args.junction_size:
             curves = []
             for group in PATCHES.values():
@@ -90,8 +104,14 @@ def run(args):
             threshold = gmsh.model.mesh.field.add('Threshold')
             for key, value in dict(InField=distance, SizeMin=args.junction_size, SizeMax=3., DistMin=.2, DistMax=.8).items():
                 gmsh.model.mesh.field.setNumber(threshold, key, value)
-            gmsh.model.mesh.field.setAsBackgroundMesh(threshold)
+            fields.append(threshold)
             report['junction_field'] = dict(curves_private=sorted(set(curves)), sampling=1000, min_distance=.2, max_distance=.8)
+        if args.patch_size:
+            fields.append(restrict_patch_size(gmsh, [tags[i] for group in PATCHES.values() for i in group], args.patch_size))
+        if fields:
+            combined = gmsh.model.mesh.field.add('Min')
+            gmsh.model.mesh.field.setNumbers(combined, 'FieldsList', fields)
+            gmsh.model.mesh.field.setAsBackgroundMesh(combined)
         report.update(sized_points=len(sizes), stage='meshing_compounds'); save()
         gmsh.model.mesh.generate(2)
         types, elements, nodes = gmsh.model.mesh.getElements(2)
@@ -155,6 +175,9 @@ if __name__ == '__main__':
     parser.add_argument('--classify', type=int, choices=(0, 1), default=0)
     parser.add_argument('--volume', action='store_true', help='Run a diagnostic volume only after the surface screen passes.')
     parser.add_argument('--junction-size', type=float, choices=(.02, .05), help='Refine near native internal junction curves.')
+    parser.add_argument('--patch-size', type=float, choices=(.1, .2), help='Limit size across both original compound patches and their boundaries.')
     parser.add_argument('--curvature', type=int, choices=(12, 64), default=12)
-    signal.alarm(540)
-    raise SystemExit(run(parser.parse_args()))
+    parser.add_argument('--wall-seconds', type=int, choices=(540, 1800), default=540)
+    args = parser.parse_args()
+    signal.alarm(args.wall_seconds)
+    raise SystemExit(run(args))

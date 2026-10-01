@@ -15,6 +15,8 @@ class ConstrainedPatchTests(unittest.TestCase):
         from OCP.BRepGProp import BRepGProp
         from OCP.GProp import GProp_GProps
         from OCP.TopAbs import TopAbs_FACE
+        from OCP.TopExp import TopExp
+        from OCP.TopoDS import TopoDS
         from OCP.gp import gp_Pnt
         from trial_constrained_patch import exterior_edges, filling, interior_points, sampled_distance
         from trial_bounded_tip_cut import encode, indexed
@@ -25,12 +27,22 @@ class ConstrainedPatchTests(unittest.TestCase):
             return BRepBuilderAPI_MakeFace(wire.Wire()).Face()
         source = BRepAlgoAPI_Fuse(rectangle(0), rectangle(1)).Shape()
         before = encode(source); faces = indexed(source, TopAbs_FACE)
-        self.assertEqual(len(exterior_edges(faces)), 6)
+        boundary = exterior_edges(faces)
+        self.assertEqual(len(boundary), 6)
+        self.assertTrue(all(TopExp.LastVertex_s(TopoDS.Edge_s(a), True).IsSame(
+            TopExp.FirstVertex_s(TopoDS.Edge_s(b), True))
+            for a, b in zip(boundary, boundary[1:]+boundary[:1])))
+        with self.assertRaises(ValueError): exterior_edges([rectangle(0), rectangle(3)])
         result, report = filling(faces, 5)
         self.assertTrue(BRepCheck_Analyzer(result, True, False, True).IsValid())
         self.assertEqual(encode(source), before)
         self.assertEqual(report['interior_constraints'], 50)
         self.assertLess(report['reported_G0_error'], 1e-12)
+        initialized, initial_report = filling(faces, 5, faces[0])
+        self.assertTrue(BRepCheck_Analyzer(initialized, True, False, True).IsValid())
+        self.assertTrue(initial_report['native_initial_plane'])
+        self.assertLess(initial_report['reported_G0_error'], 1e-12)
+        self.assertEqual(encode(source), before)
         props = GProp_GProps(); BRepGProp.SurfaceProperties_s(result, props)
         self.assertAlmostEqual(props.Mass(), 2., places=10)
         self.assertLess(sampled_distance(interior_points(result, 9), source)['maximum'], 1e-10)
@@ -66,6 +78,52 @@ class ConstrainedPatchTests(unittest.TestCase):
         self.assertAlmostEqual(props.Mass(), 1.04**2*.1, places=12)
         with self.assertRaises(ValueError): support_tool(support, [lip], [0., 0., 2.])
 
+    def test_projection_fixes_only_selected_points_and_rejects_large_shift(self):
+        import numpy as np
+        from OCP.BRepBuilderAPI import BRepBuilderAPI_MakeFace
+        from OCP.gp import gp_Pln
+        from trial_project_compound_surface import project_points
+        from trial_bounded_tip_cut import encode
+        plane = BRepBuilderAPI_MakeFace(gp_Pln(), -1., 1., -1., 1.).Face()
+        before = encode(plane)
+        points = np.array([[-.5, -.5, 0.], [.5, -.5, 0.], [.5, .5, 0.], [-.5, .5, 0.], [0., 0., .02]])
+        original = points.copy(); mask = np.array([False, False, False, False, True])
+        result = project_points(points, plane, mask)
+        np.testing.assert_array_equal(result[:4], points[:4])
+        np.testing.assert_allclose(result[-1], [0., 0., 0.], atol=1e-12)
+        np.testing.assert_array_equal(points, original)
+        self.assertEqual(encode(plane), before)
+        points[-1, 2] = .2
+        with self.assertRaises(ValueError): project_points(points, plane, mask)
+        with self.assertRaises(ValueError): project_points(original, plane, mask.astype(int))
+        with self.assertRaises(ValueError): project_points(original, plane, np.zeros(5, dtype=bool))
+
+    def test_local_refinement_preserves_boundary_orientation_area_and_source(self):
+        import numpy as np
+        from OCP.BRepBuilderAPI import BRepBuilderAPI_MakeFace
+        from OCP.gp import gp_Pln
+        from trial_project_compound_surface import refine_patch
+        plane = BRepBuilderAPI_MakeFace(gp_Pln(), -1., 1., -1., 1.).Face()
+        p = np.array([[-.5, -.5, 0.], [.5, -.5, 0.], [.5, .5, 0.], [-.5, .5, 0.], [0., 0., 0.]])
+        f = np.array([[0, 1, 4], [1, 2, 4], [2, 3, 4], [3, 0, 4]])
+        q, g, parents = refine_patch(p, f, plane)
+        np.testing.assert_array_equal(q[:len(p)], p)
+        self.assertEqual((len(q), len(g)), (9, 12))
+        self.assertEqual(set(parents), {0, 1, 2, 3})
+        cross = np.cross(q[g[:, 1]]-q[g[:, 0]], q[g[:, 2]]-q[g[:, 0]])
+        self.assertTrue((cross[:, 2] > 0).all())
+        self.assertAlmostEqual(float(cross[:, 2].sum()/2), 1.)
+        edges, count = np.unique(np.sort(np.concatenate([g[:, e] for e in ((0, 1), (1, 2), (2, 0))]), axis=1), axis=0, return_counts=True)
+        self.assertTrue((count <= 2).all())
+        self.assertEqual({tuple(e) for e in edges[count == 1]}, {(0, 1), (1, 2), (2, 3), (0, 3)})
+        # A centre triangle plus its three neighbours exercises 0, 1 and 3 splits.
+        p2 = np.array([[0., 0., 0.], [.4, 0., 0.], [0., .4, 0.], [.4, -.4, 0.], [.4, .4, 0.], [-.4, .4, 0.], [-.8, -.8, 0.], [-.6, -.8, 0.], [-.8, -.6, 0.]])
+        f2 = np.array([[0, 1, 2], [1, 0, 3], [2, 1, 4], [0, 2, 5], [6, 7, 8]])
+        q, g, parents = refine_patch(p2, f2, plane)
+        self.assertEqual(len(g), 11)
+        self.assertTrue((np.cross(q[g[:, 1]]-q[g[:, 0]], q[g[:, 2]]-q[g[:, 0]])[:, 2] > 0).all())
+        with self.assertRaises(ValueError): refine_patch(p, np.vstack([f, f[:1]]), plane)
+
     def test_surface_audit_does_not_hide_a_hole_or_duplicate(self):
         import numpy as np
         from trial_compound_junction_mesh import surface_edges
@@ -84,6 +142,31 @@ class ConstrainedPatchTests(unittest.TestCase):
         self.assertAlmostEqual(result['volume'], 24., places=10)
         with self.assertRaises(ValueError): faceted_volume(box, float('nan'))
 
+    @unittest.skipUnless(importlib.util.find_spec('gmsh'), 'optional Gmsh runtime')
+    def test_patch_sizing_refines_selected_surface_not_separate_control(self):
+        import gmsh
+        import numpy as np
+        from trial_compound_junction_mesh import restrict_patch_size
+        gmsh.initialize(['patch-sizing-test', '-nopopup'], readConfigFiles=False, run=False)
+        try:
+            gmsh.option.setNumber('General.Terminal', 0)
+            a = gmsh.model.occ.addRectangle(0, 0, 0, 1, 1)
+            b = gmsh.model.occ.addRectangle(4, 0, 0, 1, 1)
+            gmsh.model.occ.synchronize()
+            for key, value in {'Mesh.MeshSizeFromPoints': 0, 'Mesh.MeshSizeFromCurvature': 0,
+                               'Mesh.MeshSizeMin': .01, 'Mesh.MeshSizeMax': .5}.items():
+                gmsh.option.setNumber(key, value)
+            field = restrict_patch_size(gmsh, [a], .1)
+            gmsh.model.mesh.field.setAsBackgroundMesh(field); gmsh.model.mesh.generate(2)
+            _, ea, na = gmsh.model.mesh.getElements(2, a)
+            _, eb, _ = gmsh.model.mesh.getElements(2, b)
+            self.assertGreater(len(ea[0]), 4*len(eb[0]))
+            p = np.array([gmsh.model.mesh.getNode(int(i))[0] for i in na[0]]).reshape(-1, 3, 3)
+            self.assertLess(np.linalg.norm(p-np.roll(p, 1, axis=1), axis=2).max(), .16)
+            with self.assertRaises(ValueError): restrict_patch_size(gmsh, [], .1)
+            with self.assertRaises(ValueError): restrict_patch_size(gmsh, [a], float('nan'))
+        finally: gmsh.finalize()
+
     @unittest.skipUnless(importlib.util.find_spec('vtk'), 'optional VTK distance runtime')
     def test_native_samples_measure_distance_to_triangle_not_only_vertices(self):
         import numpy as np
@@ -93,6 +176,20 @@ class ConstrainedPatchTests(unittest.TestCase):
         f = np.array([[0, 1, 2]])
         result = points_to_triangles([gp_Pnt(.2, .3, .02)], p, f)
         self.assertAlmostEqual(result['maximum'], .02, places=12)
+        witness = result['maximum_witness_private']
+        self.assertEqual(witness['sample_index'], 0)
+        np.testing.assert_allclose(witness['closest'], [.2, .3, 0.], atol=1e-12)
+        self.assertEqual(witness['triangle'], p.tolist())
+        from OCP.BRepBuilderAPI import BRepBuilderAPI_MakePolygon, BRepBuilderAPI_MakeFace
+        from trial_constrained_patch import sampled_distance
+        wire = BRepBuilderAPI_MakePolygon()
+        for row in p: wire.Add(gp_Pnt(*row))
+        wire.Close()
+        native = sampled_distance([gp_Pnt(.2, .3, .01), gp_Pnt(.2, .3, .02)],
+                                  BRepBuilderAPI_MakeFace(wire.Wire()).Face())
+        self.assertEqual(native['maximum_witness_private']['sample_index'], 1)
+        self.assertAlmostEqual(native['maximum'], .02, places=12)
+        np.testing.assert_allclose(native['maximum_witness_private']['closest'], [.2, .3, 0.], atol=1e-12)
         with self.assertRaises(ValueError): points_to_triangles([], p, f)
 
 
