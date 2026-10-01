@@ -109,7 +109,8 @@ The retained coding-003 adapter SHA-256 remains
 ## Verification and limits
 
 The repository test suite passes: 3,256 tests run with 160 optional-runtime
-skips. The added replay check verifies that repetition cannot add validation or
+skips. After report generation, all six focused tests also pass, including a
+new experiment-identity and receipt-consistency check. The added replay check verifies that repetition cannot add validation or
 test records to training or duplicate evaluation cases. Full `make check`
 stops at the existing F37 LPBF audit because the Docker daemon is unavailable.
 Catalogue-generated pages/tables, the reports index, titanium screening,

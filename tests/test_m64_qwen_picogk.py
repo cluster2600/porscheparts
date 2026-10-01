@@ -1,5 +1,6 @@
 """Offline checks for the bounded PicoGK code evaluation boundary."""
 import importlib.util
+import json
 from pathlib import Path
 import sys
 import unittest
@@ -87,3 +88,18 @@ class PicoGKTrainingTests(unittest.TestCase):
         for split in ('valid','test'):
             self.assertEqual(improve.split_rows(usd,pico,split,16,16),
                              [r for r in usd+pico if r['split']==split])
+
+    def test_retention_report_keeps_experiment_identity_and_case_counts(self):
+        latest=json.loads((HERE/'retention-results.json').read_text())
+        for report,name,step,counts in ((latest,'coding-006',800,(19,7)),
+                (latest['previous_attempt'],'coding-005',600,(16,25))):
+            self.assertEqual(report['experiment'],'m64-qwen-'+name)
+            self.assertEqual(report['candidate_adapter_path'],f'work/m64-qwen/{name}/checkpoint-{step}')
+            self.assertIsNone(report['selected_step'])
+            self.assertFalse(report['final_tests_evaluated'])
+            for domain,expected in zip(('usd','picogk'),counts):
+                rows=report['validation_cases'][domain];score=report['validation_summary'][domain]
+                self.assertEqual(score['total'],len({r['id'] for r in rows}))
+                self.assertEqual(score['after_passed'],expected)
+                self.assertEqual(score['after_passed'],sum(r['after_passed'] for r in rows))
+                self.assertEqual(score['regressions'],[r['id'] for r in rows if r['before_passed'] and not r['after_passed']])

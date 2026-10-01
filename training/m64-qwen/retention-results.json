@@ -1,11 +1,11 @@
 {
-  "experiment": "m64-qwen-training/m64-engineer/openusd.py",
+  "experiment": "m64-qwen-coding-006",
   "date": "2026-10-02",
   "status": "no_validation_improvement",
   "decision": "rejected_for_combined_assistant",
   "selected_step": null,
   "candidate_step": 800,
-  "candidate_adapter_path": "work/m64-qwen/training/m64-engineer/openusd.py/checkpoint-800",
+  "candidate_adapter_path": "work/m64-qwen/coding-006/checkpoint-800",
   "candidate_adapter_sha256": "1bd3d039e63a5dab87149af7a3762ab56099dc42b8364d732afcc8b5de56db4f",
   "comparison_adapter": "coding-003/checkpoint-600",
   "warm_start_adapter": "coding-003/checkpoint-600",
@@ -920,7 +920,9 @@
     "native_picogk_reference_programs": 64,
     "repository_checks_exit_code": 0,
     "strict_documentation_broken_links": 0,
-    "strict_documentation_files": 646
+    "strict_documentation_files": 646,
+    "focused_tests_after_report_check": 6,
+    "focused_tests_passed": true
   },
   "artifacts_sha256": {
     "coding-006/manifest.json": "769290786149f5f5fde22392058956b91dc5df9d37cb31c15737afb0d600ae6f",
@@ -936,7 +938,8 @@
     "coding-006/valid-before-scores.jsonl": "c5cea91f90755ae4c19e92f029c66da6f848a6393a4cb559b5518299bc2539ef",
     "coding-006/valid-800-picogk/adapter-evaluation.json": "bd536cdf0f2c35de6b7007af497d1c56c69496010e7cfc8b3adc68fe19bad684",
     "coding-006/valid-before-picogk/adapter-evaluation.json": "9f12e7ea1149d64a467189cf9021a2c84be396c5713662baecd9b091ce0d9a3f",
-    "coding-006-repository-checks-staged.log": "977de4bf498dadc8a394321c6fd0fb37190527739804cf8f245b9260feca8f27"
+    "coding-006-repository-checks-staged.log": "977de4bf498dadc8a394321c6fd0fb37190527739804cf8f245b9260feca8f27",
+    "coding-006-receipt-check.log": "e82aa5d35ae538fbed08a2d6b4d4c80e76b10a22aa9545d1d115c33e5731bf62"
   },
   "limitations": [
     "Validation-driven continuation after the rejected coding-004; one adaptive experiment family.",
@@ -945,5 +948,967 @@
     "The installed Pixar wheel lacks shader-discovery resources; ShaderPropertyTypeConformanceChecker remains excluded.",
     "No OpenFOAM evaluation, cylinder-head accuracy, material, manufacturing or physical validation.",
     "Adapters remain local and experimental; default inference has not been changed."
-  ]
+  ],
+  "previous_attempt": {
+    "experiment": "m64-qwen-coding-005",
+    "date": "2026-10-02",
+    "status": "no_validation_improvement",
+    "decision": "rejected_for_combined_assistant",
+    "selected_step": null,
+    "candidate_step": 600,
+    "candidate_adapter_path": "work/m64-qwen/coding-005/checkpoint-600",
+    "candidate_adapter_sha256": "64e3c57827d867f052c095efc84265d6bcb8509cf548aea3946826c40c5ddfb4",
+    "comparison_adapter": "coding-003/checkpoint-600",
+    "warm_start_adapter": "coding-004/checkpoint-800",
+    "manifest": {
+      "base_model": {
+        "repository": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+        "revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+        "weights_sha256": "daeab4764fb420d161721791cf2e509e2de81a7af4223646e7bed2bf82c57b58",
+        "upstream_repository": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+        "upstream_revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+        "license": "Apache-2.0",
+        "quantization_bits": 4,
+        "mlx_lm_version": "0.31.3"
+      },
+      "initial_adapter_sha256": "a1014c6f71b46d879c09462c4a57d17d00df8f11b8178dd53bf6d5f2ac2f778a",
+      "source_sha256": {
+        "training/m64-qwen/improve.py": "08b2cc6dc9fd779e509a860ae6205a0c8bcee2f6349cef249949376131bb9cdd",
+        "training/m64-qwen/picogk.py": "3357a289b0314a4e7e24f1a0d515d1bebf55021ccacd2551650b830f352ac3c6",
+        "training/m64-engineer/openusd.py": "eb28db525af0ed21b4f80758a39a67482029510ba26fa23fc2251a3a4e6b4bb6"
+      },
+      "files_sha256": {
+        "usd-cases.jsonl": "d18eb56c5f21679b8e37f05c1dd8442eaf600d967de063ffd358b0e678b98437",
+        "picogk-cases.json": "dd4360574826ddb1f58671e6b0472e3f64e897ff5c1127b47f417d13248d6812",
+        "data/test.jsonl": "e7752ee9c69737a2c6e0b872ed0a8376d32773f902fc19d887df22a9eaad7a0f",
+        "data/train.jsonl": "e0fcd6da66263c9a094993f955456e5f35ec66ee14bb9c8c28e6e1caa98c49e2",
+        "data/valid.jsonl": "0714942456813dc1deb42c6abed58fc249c2ac8841b1b49b3c00eea2188c4233"
+      },
+      "counts": {
+        "train": {
+          "usd": 336,
+          "picogk": 704
+        },
+        "valid": {
+          "usd": 30,
+          "picogk": 40
+        },
+        "test": {
+          "usd": 36,
+          "picogk": 56
+        }
+      },
+      "maximum_sequence_tokens": 547,
+      "steps": [
+        600
+      ],
+      "learning_rate": 5e-05,
+      "seed": 42,
+      "warm_start_sha256": "84323d7364f61091093b6a105b4d3371cbb71c3aa723809150814d17a98979a3",
+      "replay_weight": 1,
+      "usd_replay_weight": 4,
+      "effective_counts": {
+        "train": 2048,
+        "valid": 70,
+        "test": 92
+      },
+      "num_layers": 16,
+      "rank": 8,
+      "lora_scale": 20,
+      "batch_size": 1,
+      "mask_prompt": true,
+      "selection": "Higher PicoGK validation count with no per-case USD or PicoGK regression.",
+      "test_policy": "Tests open only after selection. Only pico3-test cases are fresh in a focused run; all older tests are regressions. Shared grammar, not independent families.",
+      "native_sha256": {
+        "PicoGK.dll": "710c4e0428efbe9c1cd1db1663247b45604f96d167a6726782ab8ddca350565a",
+        "picogk.26.2.dylib": "5c1cd3fc12766a85bc5c1441a95f065fb274338d1333c3ae2d3396b59d0e18e7"
+      }
+    },
+    "registration": {
+      "registered_at_utc": "2026-10-01T22:26:15.500807+00:00",
+      "protocol_commit": "2e993ac6bb4d0898675d2af398bf0b12a96b8306",
+      "protocol_sha256": "db71a248d8a6cb39437234c474db5b29be1e8d6b5785b85d8fa5ed8edd8e4ccb",
+      "manifest_sha256": "92e22a392ec0f2c28ef9856b7f1e2c79193f0a28e4372cc29bca1f11334757a1",
+      "final_tests_opened": false
+    },
+    "validation_summary": {
+      "usd": {
+        "total": 30,
+        "regressions": [
+          "usd-valid-004",
+          "usd2-valid-004",
+          "usd2-valid-013",
+          "usd2-valid-017",
+          "usd2-valid-019",
+          "usd2-valid-021",
+          "usd2-valid-023"
+        ],
+        "gains": [
+          "usd2-valid-010"
+        ],
+        "before_passed": 22,
+        "before_native_passed": 24,
+        "after_passed": 16,
+        "after_native_passed": 30
+      },
+      "picogk": {
+        "total": 40,
+        "regressions": [
+          "valid-002",
+          "valid-006"
+        ],
+        "gains": [
+          "pico2-valid-000",
+          "pico2-valid-001",
+          "pico2-valid-006",
+          "pico2-valid-007",
+          "pico2-valid-008",
+          "pico2-valid-011",
+          "pico2-valid-012",
+          "pico2-valid-013",
+          "pico2-valid-014",
+          "pico3-valid-000",
+          "pico3-valid-001",
+          "pico3-valid-002",
+          "pico3-valid-003",
+          "pico3-valid-006",
+          "pico3-valid-008",
+          "pico3-valid-012",
+          "pico3-valid-013",
+          "pico3-valid-014"
+        ],
+        "before_passed": 9,
+        "before_native_passed": 37,
+        "before_compiled": 40,
+        "after_passed": 25,
+        "after_native_passed": 31,
+        "after_compiled": 32
+      }
+    },
+    "validation_cases": {
+      "usd": [
+        {
+          "id": "usd-valid-000",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "017bc92d9d1be753373b064d1737341216e29927b0f264c3a8f1f8d6e06e22d0",
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "017bc92d9d1be753373b064d1737341216e29927b0f264c3a8f1f8d6e06e22d0"
+        },
+        {
+          "id": "usd-valid-001",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "31964fa538d592cf703ba661026574a2a25b970b3e1d2dfd2a84df324b542593",
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "31964fa538d592cf703ba661026574a2a25b970b3e1d2dfd2a84df324b542593"
+        },
+        {
+          "id": "usd-valid-002",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "5d06a1edc6286362da523ac9973f3b3477c7f2c29646955522fdd48073582f4a",
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "5d06a1edc6286362da523ac9973f3b3477c7f2c29646955522fdd48073582f4a"
+        },
+        {
+          "id": "usd-valid-003",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "734c04ed5ca2ef362599e2110d01b5d0720ec139e97724dd45e19cc49fac983c",
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "734c04ed5ca2ef362599e2110d01b5d0720ec139e97724dd45e19cc49fac983c"
+        },
+        {
+          "id": "usd-valid-004",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "6c869ea563f35ced578c2024beb1c87715dc557be85ff19f71d86b5300ca801f",
+          "after_passed": false,
+          "after_native_passed": true,
+          "after_response_sha256": "b0ab2b7c0409a3f10dcb392b74cc1f63444dccb76f7e30a9c2491c18505633a2"
+        },
+        {
+          "id": "usd-valid-005",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "47cd578a3a2945e316b173a02a2589627ade54ea786b090a440a4c17c9b95501",
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "47cd578a3a2945e316b173a02a2589627ade54ea786b090a440a4c17c9b95501"
+        },
+        {
+          "id": "usd2-valid-000",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "2f2893e214c453f265045eb749a974fe285eb292a31d78229c40958eba0acf24",
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "2f2893e214c453f265045eb749a974fe285eb292a31d78229c40958eba0acf24"
+        },
+        {
+          "id": "usd2-valid-001",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "708483c19702a670a94c9bb53ead4230b21a11223d6f186d9b6de4d755132181",
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "708483c19702a670a94c9bb53ead4230b21a11223d6f186d9b6de4d755132181"
+        },
+        {
+          "id": "usd2-valid-002",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "6a3a1505246156f3a7627e044688f55f634cecc645acbe24c4cf101036b2f31c",
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "6a3a1505246156f3a7627e044688f55f634cecc645acbe24c4cf101036b2f31c"
+        },
+        {
+          "id": "usd2-valid-003",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "d44e2e0e51d9c0c8463bdccc91eb987d50634722ad578fd46ffb62bd5bd7974c",
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "d44e2e0e51d9c0c8463bdccc91eb987d50634722ad578fd46ffb62bd5bd7974c"
+        },
+        {
+          "id": "usd2-valid-004",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "bf644e3ef02c369389eb56575d6108589aaabcabc1af380b61844aa28a0fd170",
+          "after_passed": false,
+          "after_native_passed": true,
+          "after_response_sha256": "461d71ec5f5191487e349a9579e83ebb6ea18a024c273b5ae7e5399ac6b31947"
+        },
+        {
+          "id": "usd2-valid-005",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "c4a6fb96ccd7bb060215740a3911e1ea8fe18444eaa1660aa1e2c2fe37db0b22",
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "c4a6fb96ccd7bb060215740a3911e1ea8fe18444eaa1660aa1e2c2fe37db0b22"
+        },
+        {
+          "id": "usd2-valid-006",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "11829c42f67d31406e1bf2704ad3e3e983916db0afabe56ee398b40f13065383",
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "11829c42f67d31406e1bf2704ad3e3e983916db0afabe56ee398b40f13065383"
+        },
+        {
+          "id": "usd2-valid-007",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "6dfa2971696571bf231cb6ae0528c8b91fff7a59ca6fc2521f71b1566455d93a",
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "6dfa2971696571bf231cb6ae0528c8b91fff7a59ca6fc2521f71b1566455d93a"
+        },
+        {
+          "id": "usd2-valid-008",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "6deec35e0384186f0a8edc3728119235ce58c5981afd3ef242de9c28e70111f1",
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "6deec35e0384186f0a8edc3728119235ce58c5981afd3ef242de9c28e70111f1"
+        },
+        {
+          "id": "usd2-valid-009",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "8796009709d94df4c1981bc7b58b596ac319014997f2b9089549aa5225926e1a",
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "8796009709d94df4c1981bc7b58b596ac319014997f2b9089549aa5225926e1a"
+        },
+        {
+          "id": "usd2-valid-010",
+          "group": "parameter_holdout",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "163f4b7f4665932a43dd252c038c8bb845ca10610d6e327e3975f63140706693",
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "06415f7d7db0aeb7b8fcff6b2a410222fd7c4e87bda059b3a6167b6f0b20737b"
+        },
+        {
+          "id": "usd2-valid-011",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "70e49f25875754ace785ea6bc70ccec95746f5fde62206f1304535058f9dee66",
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "70e49f25875754ace785ea6bc70ccec95746f5fde62206f1304535058f9dee66"
+        },
+        {
+          "id": "usd2-valid-012",
+          "group": "composition_holdout",
+          "before_passed": false,
+          "before_native_passed": false,
+          "before_response_sha256": "55e1961d41725b955a8cc68bfc80b06f2514ebf1b2ecd5e4ba19b9072c0a0aa4",
+          "after_passed": false,
+          "after_native_passed": true,
+          "after_response_sha256": "14156e1315e831f08c4174ed33053d027d6c536090b255efd8d774b4ea434f98"
+        },
+        {
+          "id": "usd2-valid-013",
+          "group": "composition_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "e0cb11fcb25bac8596c5b72b0ab766316711518e6444abd7561b9ee3b27c783c",
+          "after_passed": false,
+          "after_native_passed": true,
+          "after_response_sha256": "64597afb3153cdaf5d966abb048200fcfb8c384c4858e9299456709bec181b55"
+        },
+        {
+          "id": "usd2-valid-014",
+          "group": "composition_holdout",
+          "before_passed": false,
+          "before_native_passed": false,
+          "before_response_sha256": "07f0da1fde1651ddba6233265d51a92322cdb61077a90af986bee76c60b85bab",
+          "after_passed": false,
+          "after_native_passed": true,
+          "after_response_sha256": "6511501facffe2c1433bd54bb5139645bf966feec7ce1ab68d3ecc0e5d988afd"
+        },
+        {
+          "id": "usd2-valid-015",
+          "group": "composition_holdout",
+          "before_passed": false,
+          "before_native_passed": false,
+          "before_response_sha256": "6a796d84b696938bce1d67d66dbe92d1713a44a3efc7a8f6de1a7f2de9dc9799",
+          "after_passed": false,
+          "after_native_passed": true,
+          "after_response_sha256": "adbe8360c8bd12ecb35f604dd972872e1c8d088628add1a3cd54f182afd71829"
+        },
+        {
+          "id": "usd2-valid-016",
+          "group": "composition_holdout",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "64f9d36f32cc30099ef0c46cbd20fb2e6bc0a9997e1e94ac57d57325d5c93e35",
+          "after_passed": false,
+          "after_native_passed": true,
+          "after_response_sha256": "743d4a070c92b9c9a1ece72ce2955a5473d6ec267d704cfb895baddb2e564041"
+        },
+        {
+          "id": "usd2-valid-017",
+          "group": "composition_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "dbd891f8d8db3ab662ac1065cc096922a9261643a8e87d84d62e6c2fd86620e9",
+          "after_passed": false,
+          "after_native_passed": true,
+          "after_response_sha256": "cd067ae4f38d7f62e8600f3a533e70d08258cb4b8413b201f03be99021dca662"
+        },
+        {
+          "id": "usd2-valid-018",
+          "group": "composition_holdout",
+          "before_passed": false,
+          "before_native_passed": false,
+          "before_response_sha256": "e06360550ba1d2e5577f31eaae70cf9b74fc3f0651def5309fb008d721a6ce4a",
+          "after_passed": false,
+          "after_native_passed": true,
+          "after_response_sha256": "2917aaf7ea00e32df3cbf8b69578d8d9bc0a1c561efed92a115c811958040344"
+        },
+        {
+          "id": "usd2-valid-019",
+          "group": "composition_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "38dcbb8490c1cebd44f2f80894b5adf936efe319a1d93dff1408f4b3aa32d569",
+          "after_passed": false,
+          "after_native_passed": true,
+          "after_response_sha256": "1bc9938a877657d0b1bd499e4bae1c96665a4805ccf90b2fb01304be3833d447"
+        },
+        {
+          "id": "usd2-valid-020",
+          "group": "composition_holdout",
+          "before_passed": false,
+          "before_native_passed": false,
+          "before_response_sha256": "2b5bd65fdbda6ad1617d8bd88b78fc6fa3912ed09c7cab686419b56a440fd7a1",
+          "after_passed": false,
+          "after_native_passed": true,
+          "after_response_sha256": "6945514c2320ec93e8d5f45f01407b3f8148ca8360e2b752ee5cd6a4ea6a04d8"
+        },
+        {
+          "id": "usd2-valid-021",
+          "group": "composition_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "d46004260b8849ab9e3629aa12cafb76525664415ca2a3f9e098f6c8aae909bf",
+          "after_passed": false,
+          "after_native_passed": true,
+          "after_response_sha256": "cbe76c4652d3e15b0367bb1a18f651b8819087881afaef055083bd217f3b3b06"
+        },
+        {
+          "id": "usd2-valid-022",
+          "group": "composition_holdout",
+          "before_passed": false,
+          "before_native_passed": false,
+          "before_response_sha256": "a0016abe13d17d3218f7dcd8b72e3dd5fcac1619568f06c0eb3bbce08ab788f6",
+          "after_passed": false,
+          "after_native_passed": true,
+          "after_response_sha256": "467ff0ff8a4816f4cd9104786fe014550671cbbba74764e8d87756106b05e9d5"
+        },
+        {
+          "id": "usd2-valid-023",
+          "group": "composition_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "258384ebbe15ed7b7a8c9ff4640f05085680f6ade803d5289be02c815d6e003d",
+          "after_passed": false,
+          "after_native_passed": true,
+          "after_response_sha256": "6b33d77b8cd3ba10fd5a06c598d9b2491afb892095e912250f852ec53a1de64f"
+        }
+      ],
+      "picogk": [
+        {
+          "id": "valid-000",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "2fd5912a42194064927df3fcdade78486ed3acccb36e5f5931bcaaa992dbb959",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "2fd5912a42194064927df3fcdade78486ed3acccb36e5f5931bcaaa992dbb959",
+          "after_compiled": true
+        },
+        {
+          "id": "valid-001",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "1781906d4f89ebcddbd9dfdba60fe87898c02fb11a2f8f9790f6fa5afab82303",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "1781906d4f89ebcddbd9dfdba60fe87898c02fb11a2f8f9790f6fa5afab82303",
+          "after_compiled": true
+        },
+        {
+          "id": "valid-002",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "f99d9e2f84b88d63d397d93aa0c3294a824540594699ea16146960f9e178581b",
+          "before_compiled": true,
+          "after_passed": false,
+          "after_native_passed": false,
+          "after_response_sha256": "4632810a639a3c0c8667a0283371bb7359164d09dcfc13a8b62a6b5c57881608",
+          "after_compiled": false
+        },
+        {
+          "id": "valid-003",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "ba7179228a7841782f0abcec93e7b4e190f40e1da3b4bc3c12ae7a2451db5685",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "ba7179228a7841782f0abcec93e7b4e190f40e1da3b4bc3c12ae7a2451db5685",
+          "after_compiled": true
+        },
+        {
+          "id": "valid-004",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "bdb97bb087c9a150eb086554c8a5492d761448d81248723f3d8212f7405e19de",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "bdb97bb087c9a150eb086554c8a5492d761448d81248723f3d8212f7405e19de",
+          "after_compiled": true
+        },
+        {
+          "id": "valid-005",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "4fcfadb52c7faf4188b570341485fa32d49977cab78bdbc406d6b4a8b9a7f9d7",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "4fcfadb52c7faf4188b570341485fa32d49977cab78bdbc406d6b4a8b9a7f9d7",
+          "after_compiled": true
+        },
+        {
+          "id": "valid-006",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "e2d9ba1d1e31db29697ba721211da11ee7d799b89dff94eca6497a9b47b46ffb",
+          "before_compiled": true,
+          "after_passed": false,
+          "after_native_passed": false,
+          "after_response_sha256": "699c9b623b99a08b70ae9d871e6c2e7200fb77f4cc76a191c5a899011b9be294",
+          "after_compiled": false
+        },
+        {
+          "id": "valid-007",
+          "group": "parameter_holdout",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "d560907b8af365753d51157641f1e7cd130b16a1e828b941e3e9df3bbb8a1274",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "d560907b8af365753d51157641f1e7cd130b16a1e828b941e3e9df3bbb8a1274",
+          "after_compiled": true
+        },
+        {
+          "id": "pico2-valid-000",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "3402078e5c892513e3664391710496ae21cbf5990f1d433f181758604d855c60",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "971c899aef72c8bebf9fdb3b6785b321f8146c82d51ae49c1e9f8797aba0e3d6",
+          "after_compiled": true
+        },
+        {
+          "id": "pico2-valid-001",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "259f7379383b40e50f19e703295bc980348b410b90869dfadf1094410143fecf",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "0b98bd8ca0a562ace3723b2d5dd5b37883eb84a4991d9f04d86656bcd7d59cab",
+          "after_compiled": true
+        },
+        {
+          "id": "pico2-valid-002",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "593d70e44a292946512c56619883ef17c1b2c02e8c5e8617df374e4ab81209c4",
+          "before_compiled": true,
+          "after_passed": false,
+          "after_native_passed": true,
+          "after_response_sha256": "9797004bad2e6f4158770e3b3ffe943bd6c113069846d1764d02ba0a84d0b319",
+          "after_compiled": true
+        },
+        {
+          "id": "pico2-valid-003",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "ec3950b32d74e80a243831c010b7ab2dd31dac8edfa4d490c835138a56986bba",
+          "before_compiled": true,
+          "after_passed": false,
+          "after_native_passed": false,
+          "after_response_sha256": "93dcb5e3521a30f2a7fd3fd64589eb879cc4b9ffdb2e94539ab6f0b98eed8398",
+          "after_compiled": false
+        },
+        {
+          "id": "pico2-valid-004",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "8f41b5ca9fe2116b5e3dad400db0789defdc6b159fc3274973484c7622f101fa",
+          "before_compiled": true,
+          "after_passed": false,
+          "after_native_passed": true,
+          "after_response_sha256": "993fa2b8d4d9174cb13e01ca6d73495997a52c2415e154c2f36e2a627ae53d3c",
+          "after_compiled": true
+        },
+        {
+          "id": "pico2-valid-005",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "7c17d9dcaec1f921144071d0165265816ddd5b223fdf214d45dcfe62fbbc409e",
+          "before_compiled": true,
+          "after_passed": false,
+          "after_native_passed": false,
+          "after_response_sha256": "4948f7a5dee270629d4fb6e2316362e9705c7020e4e6a5a300f15a33512ec82c",
+          "after_compiled": true
+        },
+        {
+          "id": "pico2-valid-006",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "16c4db74c184e330432e3a9ad8721f6eec6dfcc6ea08e2c3039209b94c8e3543",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "527e1a0dd0be07c035728b0d53f608ac02328832a4b5eaa98a6cabc051b3aa14",
+          "after_compiled": true
+        },
+        {
+          "id": "pico2-valid-007",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "c8ee67e78f97cba43bf14bef3b97efc1fafe14f387eef30c09b9c8e50547411c",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "d99b08ab0343f23fdc7bec0583ab779f8fa200f379db758007a3c5b05fe0b24e",
+          "after_compiled": true
+        },
+        {
+          "id": "pico2-valid-008",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "099a48b605c22656b0265f6cfff576f7a37c93b6bc253a72eac2134805b031f0",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "ba55add88e735d83d7ee05290e9b26a7bf1ce1e95f47db29e973a6a16f7297c1",
+          "after_compiled": true
+        },
+        {
+          "id": "pico2-valid-009",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "8d74f660d80ace522309a4ce99b5edf16f6a9a6516c238e6cab0bf3ac1269a21",
+          "before_compiled": true,
+          "after_passed": false,
+          "after_native_passed": false,
+          "after_response_sha256": "bfec81fac137ed04a3cdf4c81bfc6d2d534577d474a47fbcd2445d4890533248",
+          "after_compiled": false
+        },
+        {
+          "id": "pico2-valid-010",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "494f220f61abae7886df86233e97900ec2f683a750abbba6d7286d85a8a80ed2",
+          "before_compiled": true,
+          "after_passed": false,
+          "after_native_passed": true,
+          "after_response_sha256": "b33837b86879414cef70b27d42d5436f4fbe22b1db7b391911f1088e6dad6305",
+          "after_compiled": true
+        },
+        {
+          "id": "pico2-valid-011",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "bae297979e0fd17668bedbd6cd253c787e7e2f9f493066011764ec4f72c857f1",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "9795fbf340a8878861442d5fe3022e97651c57c5862162e8fe54f5681e5ad408",
+          "after_compiled": true
+        },
+        {
+          "id": "pico2-valid-012",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "37a21c8acbaf009355862a84a312034502f1aed5874921c7cc88107c51d5fee4",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "4d454a22ed6e8d23d469890e83268f89e53266adfc1a6b363e50c60cfe2375d0",
+          "after_compiled": true
+        },
+        {
+          "id": "pico2-valid-013",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "0041424962fd7300abc64a86595c129556225abe03e6d0011a5a2653681ce168",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "ae3552e9f148f5100c6b3d17e903cb83367bb74ecb955e5fc5af7871ca9b43f1",
+          "after_compiled": true
+        },
+        {
+          "id": "pico2-valid-014",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "255c34b7c25869894f9db8593585278c3d8df533a5ec9ad608fba064f056042f",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "8f64ff04c587fe8d57409fb7c2542fc600155b7abdcd120ecb795f10ffec1853",
+          "after_compiled": true
+        },
+        {
+          "id": "pico2-valid-015",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "0c3d425f31607e52b2c255159648301a53b027eb0ebff7e49545b6f7a39ba598",
+          "before_compiled": true,
+          "after_passed": false,
+          "after_native_passed": false,
+          "after_response_sha256": "985a9ac842d9fb1ba52744f0cff5a567ef2e28852abb660dae2a15e9badfc7e5",
+          "after_compiled": false
+        },
+        {
+          "id": "pico3-valid-000",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "6e12f05ab1215e4f90a81e485d1137afc386ffbb43b7a3265b7f4b41b1e404af",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "bcf5b3718c7b37fa7c70307934495e49e84b8b70d01d64a631ae8fea5b9e9b7b",
+          "after_compiled": true
+        },
+        {
+          "id": "pico3-valid-001",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "0ee373a3519fb3038a2227c6a3794ec45240501b5266ec06261bd1938c29ae7f",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "69115227e79413cda7042d7b1d843bc9af221a444ec1de811cfdd83c0ef2d52a",
+          "after_compiled": true
+        },
+        {
+          "id": "pico3-valid-002",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": false,
+          "before_response_sha256": "c885046c63b31e4c2e8324117536d54b0107fc2c33733c89a72c0351acc98da6",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "350698c6d7c6364f72b97d8b5f4a7d66414dce4bb5cfc87651012e35fde073c9",
+          "after_compiled": true
+        },
+        {
+          "id": "pico3-valid-003",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "9291117181b3f2e016a891edf16b6571488999599ce0ee51f692e7490e86fec4",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "b551869b03b4438f8d1b72cd24f78c30a5affd32626a9762b8e171fcf56ba95f",
+          "after_compiled": true
+        },
+        {
+          "id": "pico3-valid-004",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "cf2cd09c1adad1e40a5544e5f6fa3b5e6b8cd7baaf358e8b0259a3692754db9e",
+          "before_compiled": true,
+          "after_passed": false,
+          "after_native_passed": true,
+          "after_response_sha256": "f775fb982e4c125f20718e6a5f21516f85129428b94a9ca6fbbc2a583f271311",
+          "after_compiled": true
+        },
+        {
+          "id": "pico3-valid-005",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "bb111f12eef4dfa028f1e3aff198b70e5e9c123a3f9df046d407c1e016c8f84c",
+          "before_compiled": true,
+          "after_passed": false,
+          "after_native_passed": false,
+          "after_response_sha256": "1300e270ba46bd6835524eadab697178eb2f574f4843fcc209f0a4cc71e3cb8f",
+          "after_compiled": false
+        },
+        {
+          "id": "pico3-valid-006",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "c34dd439f08f475dbafc8160b6ea015ef1e4ee1fc8c62ca56bc630b709310230",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "fc86db2c8d2aef4f15b1373dec85e0a31a6cecd09d5cc102a330ce0f485abadc",
+          "after_compiled": true
+        },
+        {
+          "id": "pico3-valid-007",
+          "group": "fresh_graph_instances",
+          "before_passed": true,
+          "before_native_passed": true,
+          "before_response_sha256": "94ea776d2796260545f477e5118b7565c184a97b138fdb7e2830480b0ea8ff7b",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "81171cea890b36ab09b933e3f24dabc0c08d167e2ea1193e662400fc494eee5b",
+          "after_compiled": true
+        },
+        {
+          "id": "pico3-valid-008",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": false,
+          "before_response_sha256": "312f3af870cc2c04882c8463b053e0c6ff9a489a386f650b37feb354a30a8f3e",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "b838ace0e083b1cd2649f7e50163c9332d13487db7c7d26b9abd5d31ac6720dc",
+          "after_compiled": true
+        },
+        {
+          "id": "pico3-valid-009",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "94d33bbefa267c76ae75fe8caa56b3af99dd483028477e33025c6a164d227bad",
+          "before_compiled": true,
+          "after_passed": false,
+          "after_native_passed": false,
+          "after_response_sha256": "1ccaa2679c60ef58452b85d82d688e898512d4a1abb38fbbf4ceb6136eae5186",
+          "after_compiled": false
+        },
+        {
+          "id": "pico3-valid-010",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "0b5f9d6e408e8a9a88f5aee7c989196254bcfa59b070481da2ba4f59177dac8d",
+          "before_compiled": true,
+          "after_passed": false,
+          "after_native_passed": true,
+          "after_response_sha256": "aa1e94de2221b5de221c230c2efc7e817995bbbf76b4ada1c7122d43372ca423",
+          "after_compiled": true
+        },
+        {
+          "id": "pico3-valid-011",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "eea7f7f90a3b77abfa3e560467341e172a24471d95aa97a99edac85b738a2286",
+          "before_compiled": true,
+          "after_passed": false,
+          "after_native_passed": true,
+          "after_response_sha256": "21ce68a2a2e82ec82ac6b62b7078a57c3f11ad15988c9dd973bf4ec292d762c7",
+          "after_compiled": true
+        },
+        {
+          "id": "pico3-valid-012",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": false,
+          "before_response_sha256": "91d449c3ab58d368c59ed177a8e90fa1299762aed49b138130a79418ce4282b5",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "3d9f580878fca038fd2737c76dca9dd12418d23e5e7e4ac3c57b3e4537bfe06e",
+          "after_compiled": true
+        },
+        {
+          "id": "pico3-valid-013",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "4ba17bc72b8bc42140a36cec06bd6c595e49ce1a87cc716e09e41c24ea865028",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "6eb45169703616500f348b19dfebd96f3c7245925409da75e83ace8023e29b6e",
+          "after_compiled": true
+        },
+        {
+          "id": "pico3-valid-014",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "a44312273ddc34f8ea0418746238e4e1c0b7fab61e3d5d780b2bb88e1074a548",
+          "before_compiled": true,
+          "after_passed": true,
+          "after_native_passed": true,
+          "after_response_sha256": "ded341402f4acf5c8f0f3f5a4e12f28042ad00d4ef91301b59351b68e9410bf7",
+          "after_compiled": true
+        },
+        {
+          "id": "pico3-valid-015",
+          "group": "fresh_graph_instances",
+          "before_passed": false,
+          "before_native_passed": true,
+          "before_response_sha256": "2d6ce1108429de17adcf239598477466d57b98d7433cc3a019b1f159f7740357",
+          "before_compiled": true,
+          "after_passed": false,
+          "after_native_passed": false,
+          "after_response_sha256": "2904151e14f01627f35b199d7c349f8f7da410dbe67b294c4ba52709b1ca78e2",
+          "after_compiled": false
+        }
+      ]
+    },
+    "final_tests_evaluated": false,
+    "default_inference_changed": false,
+    "training_diagnostics": {
+      "iterations": 600,
+      "trained_tokens": 105813,
+      "validation_loss": 0.012,
+      "peak_memory_gb": 3.106
+    },
+    "verification": {
+      "main_suite_tests": 3256,
+      "optional_skips": 160,
+      "main_suite_passed": true,
+      "make_check_exit_code": 2,
+      "make_check_blocker": "Docker daemon unavailable at the existing F37 LPBF audit",
+      "native_picogk_reference_programs": 64
+    },
+    "artifacts_sha256": {
+      "coding-005/manifest.json": "92e22a392ec0f2c28ef9856b7f1e2c79193f0a28e4372cc29bca1f11334757a1",
+      "coding-005/registration.json": "dffeaa1151390ef5098457fb6610268b2e49f2bf13d1cfd14ec2d90f3c3b19c2",
+      "coding-005/selection.json": "f6bca0084cf6651f5a03f14c1abcafe2bb2b849e34b5c11fe54d8738b0739a24",
+      "coding-005/native-oracles.json": "35c1ecf7271ebbf155ce76c523b07f8ba931506840e60178ad888a8c7ab9e8e7",
+      "coding-005/training.log": "f8d41a31fefd30d8fff1a88887c7379afcec898823b3da5b0ad2f6223139fc73",
+      "coding-005/training-command.json": "6c772f0aa0ae4972bf6e05d491bc9e589fd08a49b881e8ed82e168d71ceba32f",
+      "coding-005-check.log": "68f9058ca7195c6b1e69b885456067e058b7c2f55075474e91816da1a638a4f4",
+      "coding-005/valid-600-responses.jsonl": "e19d7e3fcb8ad51576181e0a6b0dc973edf09d6a9b622278f70205be4ec8b2a9",
+      "coding-005/valid-before-responses.jsonl": "c195c9f080738cb0ebece1cd4380ee4209876f1bddf9ac2c1359fb7af9730ce5",
+      "coding-005/valid-600-scores.jsonl": "e25c3286f11fda600a8adabe62e1c2b7cdfc6f2bc49f46358270256e2ec0d102",
+      "coding-005/valid-before-scores.jsonl": "c5cea91f90755ae4c19e92f029c66da6f848a6393a4cb559b5518299bc2539ef",
+      "coding-005/valid-600-picogk/adapter-evaluation.json": "8aa06f3e211f112a9c8d6f16e69718a3728e5f76af366a33a77c63f0568a1688",
+      "coding-005/valid-before-picogk/adapter-evaluation.json": "b0ed8cea1477ab15130707a99fdc8509b7cb3049803016aa1d0c04fb1efa10ea"
+    },
+    "limitations": [
+      "Validation-driven continuation after the rejected coding-004; one adaptive experiment family.",
+      "Only the 24 pico3-test cases were untouched by model inference before validation selection. All older tests are development-informed regressions.",
+      "Shared synthetic grammar and API recipes; no independent task-family benchmark.",
+      "The installed Pixar wheel lacks shader-discovery resources; ShaderPropertyTypeConformanceChecker remains excluded.",
+      "No OpenFOAM evaluation, cylinder-head accuracy, material, manufacturing or physical validation.",
+      "Adapters remain local and experimental; default inference has not been changed."
+    ]
+  }
 }
