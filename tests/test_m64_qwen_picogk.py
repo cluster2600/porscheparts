@@ -74,3 +74,16 @@ class PicoGKTrainingTests(unittest.TestCase):
         self.assertEqual(len({r['messages'][1]['content'] for r in rows}),len(rows))
         for row in fresh:
             self.assertEqual(picogk.signature(picogk.parse(row['messages'][-1]['content'])[1]),picogk.signature(row['expected']))
+
+    def test_replay_changes_training_only(self):
+        usd=[{'id':'usd-'+s,'split':s} for s in ('train','valid','test')]
+        pico=[{'id':'train-original','split':'train'},{'id':'pico3-train-000','split':'train'},
+              {'id':'valid-original','split':'valid'},{'id':'test-original','split':'test'}]
+        rows=improve.split_rows(usd,pico,'train',2,4)
+        self.assertEqual([r['id'] for r in rows].count('usd-train'),4)
+        self.assertEqual([r['id'] for r in rows].count('train-original'),2)
+        self.assertEqual([r['id'] for r in rows].count('pico3-train-000'),1)
+        self.assertTrue(all(r['split']=='train' for r in rows))
+        for split in ('valid','test'):
+            self.assertEqual(improve.split_rows(usd,pico,split,16,16),
+                             [r for r in usd+pico if r['split']==split])

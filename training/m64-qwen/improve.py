@@ -16,7 +16,7 @@ import picogk
 
 
 def select(before, candidates, focus_picogk=False):
-    """Improve USD validation without losing a previously passed PicoGK case."""
+    """Select by validation gains, preserving the required per-case passes."""
     eligible=[]
     for step,result in candidates.items():
         for domain in ('usd','picogk'):
@@ -35,6 +35,14 @@ def select(before, candidates, focus_picogk=False):
     return max(eligible)[-1] if eligible else None
 
 
+def split_rows(usd, pico, split, replay_weight=1, usd_replay_weight=1):
+    rows=[r for r in usd+pico if r['split']==split]
+    if split=='train':
+        rows += [r for r in pico if r['split']=='train' and r['id'].startswith('train-')]*(replay_weight-1)
+        rows += [r for r in usd if r['split']=='train']*(usd_replay_weight-1)
+    return rows
+
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     for name in ('output','previous','model','usd-python','usd-reviewed','sdk','dll'):
@@ -43,10 +51,11 @@ def main():
     p.add_argument('--iterations',type=int,default=800)
     p.add_argument('--learning-rate',type=float,default=0.0001)
     p.add_argument('--replay-weight',type=int,default=1,help='Training-only repeat count of the original PicoGK examples')
+    p.add_argument('--usd-replay-weight',type=int,default=1,help='Training-only repeat count of the OpenUSD examples')
     p.add_argument('--focus-picogk',action='store_true',help='Continue a completed coding run with fresh graphs and a single final checkpoint')
     p.add_argument('--num-layers',type=int,choices=[4,16],default=4)
     a=p.parse_args()
-    if not 2<=a.iterations<=4000 or a.iterations%2 or not 0<a.learning_rate<=0.001 or not 1<=a.replay_weight<=16:
+    if not 2<=a.iterations<=4000 or a.iterations%2 or not 0<a.learning_rate<=0.001 or not all(1<=w<=16 for w in (a.replay_weight,a.usd_replay_weight)):
         p.error('require even iterations 2..4000, learning rate (0,0.001], replay weight 1..16')
     # Resolving the Python symlink bypasses its venv and loses the Pixar package.
     for name,value in vars(a).items():
@@ -87,8 +96,7 @@ def main():
     data=a.output/'data';data.mkdir()
     effective_counts={}
     for split in ('train','valid','test'):
-        part=[r for r in rows if r['split']==split]
-        if split=='train':part += [r for r in pico if r['id'].startswith('train-')]*(a.replay_weight-1)
+        part=split_rows(usd,pico,split,a.replay_weight,a.usd_replay_weight)
         effective_counts[split]=len(part)
         (data/(split+'.jsonl')).write_text(''.join(json.dumps({'messages':r['messages']})+'\n' for r in part))
     (a.output/'usd-cases.jsonl').write_text(''.join(json.dumps(r)+'\n' for r in usd))
@@ -105,7 +113,7 @@ def main():
         'files_sha256':{str(f.relative_to(a.output)):digest(f) for f in [a.output/'usd-cases.jsonl',a.output/'picogk-cases.json',*sorted(data.glob('*.jsonl'))]},
         'counts':{s:{'usd':sum(r['split']==s for r in usd),'picogk':sum(r['split']==s for r in pico)} for s in ('train','valid','test')},
         'maximum_sequence_tokens':max(lengths),'steps':[a.iterations] if a.focus_picogk else [a.iterations//2,a.iterations],'learning_rate':a.learning_rate,'seed':42,
-        'warm_start_sha256':digest(warm_start/'adapters.safetensors'),'replay_weight':a.replay_weight,'effective_counts':effective_counts,
+        'warm_start_sha256':digest(warm_start/'adapters.safetensors'),'replay_weight':a.replay_weight,'usd_replay_weight':a.usd_replay_weight,'effective_counts':effective_counts,
         'num_layers':a.num_layers,'rank':8,'lora_scale':20,'batch_size':1,'mask_prompt':True,
         'selection':'Higher PicoGK validation count with no per-case USD or PicoGK regression.' if a.focus_picogk else 'Higher USD validation pass count; no per-case PicoGK validation regression; ties use PicoGK count then earlier step.',
         'test_policy':'Tests open only after selection. Only pico3-test cases are fresh in a focused run; all older tests are regressions. Shared grammar, not independent families.',
