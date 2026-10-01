@@ -64,3 +64,13 @@ class PicoGKTrainingTests(unittest.TestCase):
         self.assertIsNone(improve.select(before,{400:result(True,False),800:before}))
         self.assertEqual(improve.select(before,{400:result(True,True),800:result(True,True)}),400)
         with self.assertRaises(ValueError):improve.select(before,{400:{'usd':[],'picogk':before['picogk']}})
+        self.assertEqual(improve.select(result(True,False),{800:result(True,True)},True),800)
+        self.assertIsNone(improve.select(result(True,False),{800:result(False,True)},True))
+
+    def test_focused_curriculum_is_disjoint(self):
+        fresh=picogk.expanded_corpus(3)
+        self.assertEqual([sum(r['split']==s for r in fresh) for s in ('train','valid','test')],[512,16,24])
+        rows=picogk.corpus()+picogk.expanded_corpus()+fresh
+        self.assertEqual(len({r['messages'][1]['content'] for r in rows}),len(rows))
+        for row in fresh:
+            self.assertEqual(picogk.signature(picogk.parse(row['messages'][-1]['content'])[1]),picogk.signature(row['expected']))

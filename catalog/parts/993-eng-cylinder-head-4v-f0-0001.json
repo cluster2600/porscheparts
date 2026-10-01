@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-CYLINDER-HEAD-4V-F0-0001",
+  "name": "M64 four-valve cylinder head — creation preparation",
+  "description": "First part in the catalogue-led engine creation sequence. Continues the existing finned four-valve M64 cylinder-head research and its private scan-derived geometry. This record establishes scope, interfaces and verification work; it supplies no released replacement CAD or print file.",
+  "vehicle": {
+    "generation": "993",
+    "variants": [
+      "993_Turbo_M64_60_research_target_fitment_unverified"
+    ],
+    "model_years": {
+      "from": 1995,
+      "to": 1998
+    },
+    "porsche_part_numbers": []
+  },
+  "classification": {
+    "category": "engine_cylinder_head",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Documentary preparation, controlled CAD research and numerical verification only; no manufacturing or engine installation."
+  },
+  "geometry": {
+    "source_type": "mixed",
+    "master_format": "none",
+    "master_file": "",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": []
+  },
+  "provenance": {
+    "record_license": "Repository licence for original records and code; third-party catalogue material is reference-only and private geometry is not redistributed.",
+    "sources": [
+      {
+        "title": "PorscheFanatics — 993 engine specification",
+        "url": "https://porschefanatics.com/engine/993/",
+        "source_type": "community",
+        "license": "reference-only; no third-party images or text copied",
+        "accessed_on": "2026-10-01",
+        "notes": "Discovery and assembly context. Its proposed 4.0-litre build does not replace the project 3.6-litre historical baseline or establish our interfaces."
+      },
+      {
+        "title": "PorscheFanatics — Swindon M64 24-valve head kit",
+        "url": "https://porschefanatics.com/parts/swindon-24v-head-kit-m64/",
+        "source_type": "community",
+        "license": "reference-only",
+        "accessed_on": "2026-10-01",
+        "notes": "Points to the manufacturer. Supplier fitment and performance claims are not transferred to this new head."
+      },
+      {
+        "title": "Swindon Powertrain — M64 24-valve cylinder head kit",
+        "url": "https://swindonpowertrain.com/products/24-valve-porsche-911-m64-cylinder-head-kit/",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-10-01",
+        "notes": "Published 40 mm intake and 33 mm exhaust valve diameters and 95–102.7 mm bore range are benchmark values only. Nominal 11.5:1–12:1 compression ratio is not a turbo design target."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": [
+      "CNC",
+      "casting",
+      "LPBF"
+    ],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "aluminium candidate for head body",
+      "grade": "not selected; hot-property and process qualification required",
+      "standard": "not selected"
+    },
+    "post_processing": [
+      "Define datum machining, seat and guide bores, sealing faces and internal cleaning after geometry and alloy review."
+    ],
+    "supplier_requirements": [
+      "Confirm access to the exact target donor and metrology scope.",
+      "Qualify the exact alloy, machine, process, orientation and heat treatment.",
+      "Provide traceable inspection, hot fatigue data and professional engineering review before any release."
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "Head-body material remains unselected. Valve materials and their contacts are separate component decisions."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "twins/m64-cylinder-head/CREATION.md",
+      "twins/m64-cylinder-head/interface-contract.json",
+      "twins/m64-cylinder-head/README.md",
+      "catalog/sources/src-swindon-m64-24v-head-kit.json",
+      "catalog/scans/scan-935-xtreme-cylinder-head.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Exact physical access to a 993 Turbo M64/60 head is unconfirmed.",
+      "The existing 935 scan is a proxy, not metrology of the exact target part.",
+      "Existing native CAD and rejected mesh experiments are retained unchanged; this record does not claim a new complete head.",
+      "Stud pattern, sealing register, hidden galleries and thermal loads are not established by catalogue images.",
+      "Four-valve packaging, twin ignition, actuation, lubrication and cooling require their own checks.",
+      "LLM benchmark scores do not qualify CAD, CFD, alloy, printing, fitment or engine operation."
+    ]
+  }
+}

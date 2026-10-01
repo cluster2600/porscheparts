@@ -88,12 +88,14 @@ def corpus():
     return rows
 
 
-def expanded_corpus():
+def expanded_corpus(generation=2):
     """Fresh numeric/edge instances, with shared task grammar across partitions."""
     import itertools
     import random
     rows=[]
-    for split,count,seed in [('train',128,9931),('valid',16,9932),('test',16,9933)]:
+    if generation not in (2,3):raise ValueError('unsupported curriculum generation')
+    settings=[('train',128,9931),('valid',16,9932),('test',16,9933)] if generation==2 else [('train',512,19931),('valid',16,19932),('test',24,19933)]
+    for split,count,seed in settings:
         rng=random.Random(seed)
         for i in range(count):
             pts=rng.sample(list(itertools.product(range(-16,17,4),repeat=3)),4)
@@ -106,7 +108,7 @@ def expanded_corpus():
                     '. Directed edges: '+', '.join('ABCD'[a]+'->'+'ABCD'[b] for a,b in edges)+
                     f'. Each edge has start diameter {da} mm and end diameter {db} mm. '
                     f'Rounded caps: {str(rounded).lower()}. Convert diameters to radii. Emit every edge exactly once.')
-            rows.append({'id':f'pico2-{split}-{i:03d}','split':split,'group':'fresh_graph_instances',
+            rows.append({'id':f'pico{generation}-{split}-{i:03d}','split':split,'group':'fresh_graph_instances',
                 'shape':'graph','expected':beams,'messages':[{'role':'system','content':SYSTEM},
                 {'role':'user','content':prompt},{'role':'assistant','content':code(beams)}]})
     return rows

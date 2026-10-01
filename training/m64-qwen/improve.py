@@ -15,13 +15,19 @@ from run import child, save
 import picogk
 
 
-def select(before, candidates):
+def select(before, candidates, focus_picogk=False):
     """Improve USD validation without losing a previously passed PicoGK case."""
     eligible=[]
     for step,result in candidates.items():
         for domain in ('usd','picogk'):
             if [r['id'] for r in before[domain]] != [r['id'] for r in result[domain]]:
                 raise ValueError('validation coverage differs')
+        if focus_picogk:
+            if any(b['passed'] and not a['passed'] for d in ('usd','picogk') for b,a in zip(before[d],result[d])):continue
+            pico=sum(r['passed'] for r in result['picogk'])
+            if pico<=sum(r['passed'] for r in before['picogk']):continue
+            eligible.append((pico,sum(r['passed'] for r in result['usd']),-step,step))
+            continue
         if any(b['passed'] and not a['passed'] for b,a in zip(before['picogk'],result['picogk'])):continue
         usd=sum(r['passed'] for r in result['usd'])
         if usd<=sum(r['passed'] for r in before['usd']):continue
@@ -37,6 +43,8 @@ def main():
     p.add_argument('--iterations',type=int,default=800)
     p.add_argument('--learning-rate',type=float,default=0.0001)
     p.add_argument('--replay-weight',type=int,default=1,help='Training-only repeat count of the original PicoGK examples')
+    p.add_argument('--focus-picogk',action='store_true',help='Continue a completed coding run with fresh graphs and a single final checkpoint')
+    p.add_argument('--num-layers',type=int,choices=[4,16],default=4)
     a=p.parse_args()
     if not 2<=a.iterations<=4000 or a.iterations%2 or not 0<a.learning_rate<=0.001 or not 1<=a.replay_weight<=16:
         p.error('require even iterations 2..4000, learning rate (0,0.001], replay weight 1..16')
@@ -52,20 +60,26 @@ def main():
     subprocess.run([str(a.usd_python),'-c','from pxr import Usd; assert Usd.GetVersion() == (0,25,5)'],check=True)
     previous=json.loads((a.previous/'manifest.json').read_text())
     for filename,key in [('usd-cases.jsonl','usd_cases_sha256'),('picogk-cases.json','picogk_cases_sha256')]:
-        if digest(a.previous/filename)!=previous[key]:raise ValueError('previous corpus changed')
+        expected=previous['files_sha256'][filename] if a.focus_picogk else previous[key]
+        if digest(a.previous/filename)!=expected:raise ValueError('previous corpus changed')
     initial_adapter=a.previous/'adapter'
+    expected_adapter='c7d62072762ceafdf79c76d39aeccdefd8f5371196784f409417725cec0ae434'
+    if a.focus_picogk:
+        prior_result=json.loads((a.previous/'results.json').read_text())
+        initial_adapter=a.previous/f'checkpoint-{prior_result["selected_step"]}'
+        expected_adapter=prior_result['adapter_sha256']
     warm_start=a.warm_start or initial_adapter
-    if digest(initial_adapter/'adapters.safetensors')!='c7d62072762ceafdf79c76d39aeccdefd8f5371196784f409417725cec0ae434':
-        raise ValueError('expected the recorded OpenUSD pilot adapter')
+    if digest(initial_adapter/'adapters.safetensors')!=expected_adapter:raise ValueError('previous adapter changed')
     a.output.mkdir(parents=True,exist_ok=False)
     def phase(name):
         save(a.output/'status.json',{'phase':name});print(name,flush=True)
     phase('prepare')
-    usd=[json.loads(x) for file in (a.previous/'usd-cases.jsonl',a.usd_reviewed) for x in file.read_text().splitlines()]
+    usd_files=[a.previous/'usd-cases.jsonl'] if a.focus_picogk else [a.previous/'usd-cases.jsonl',a.usd_reviewed]
+    usd=[json.loads(x) for file in usd_files for x in file.read_text().splitlines()]
     spec=importlib.util.spec_from_file_location('engineering_data',ROOT/'training/m64-engineer/dataset.py')
     engineering=importlib.util.module_from_spec(spec);spec.loader.exec_module(engineering)
     engineering.check(usd)
-    fresh=picogk.expanded_corpus()
+    fresh=picogk.expanded_corpus(3 if a.focus_picogk else 2)
     pico=json.loads((a.previous/'picogk-cases.json').read_text())+fresh
     rows=usd+pico
     if len({r['id'] for r in rows})!=len(rows) or len({r['messages'][1]['content'] for r in rows})!=len(rows):
@@ -90,11 +104,11 @@ def main():
         'source_sha256':{str(f.relative_to(ROOT)):digest(f) for f in sources},
         'files_sha256':{str(f.relative_to(a.output)):digest(f) for f in [a.output/'usd-cases.jsonl',a.output/'picogk-cases.json',*sorted(data.glob('*.jsonl'))]},
         'counts':{s:{'usd':sum(r['split']==s for r in usd),'picogk':sum(r['split']==s for r in pico)} for s in ('train','valid','test')},
-        'maximum_sequence_tokens':max(lengths),'steps':[a.iterations//2,a.iterations],'learning_rate':a.learning_rate,'seed':42,
+        'maximum_sequence_tokens':max(lengths),'steps':[a.iterations] if a.focus_picogk else [a.iterations//2,a.iterations],'learning_rate':a.learning_rate,'seed':42,
         'warm_start_sha256':digest(warm_start/'adapters.safetensors'),'replay_weight':a.replay_weight,'effective_counts':effective_counts,
-        'num_layers':4,'rank':8,'lora_scale':20,'batch_size':1,'mask_prompt':True,
-        'selection':'Higher USD validation pass count; no per-case PicoGK validation regression; ties use PicoGK count then earlier step.',
-        'test_policy':'Test partitions are evaluated only after selection. Original tests are development-informed regression cases. Fresh tests share recipe grammar; not independent task families.',
+        'num_layers':a.num_layers,'rank':8,'lora_scale':20,'batch_size':1,'mask_prompt':True,
+        'selection':'Higher PicoGK validation count with no per-case USD or PicoGK regression.' if a.focus_picogk else 'Higher USD validation pass count; no per-case PicoGK validation regression; ties use PicoGK count then earlier step.',
+        'test_policy':'Tests open only after selection. Only pico3-test cases are fresh in a focused run; all older tests are regressions. Shared grammar, not independent families.',
         'native_sha256':{f.name:digest(f) for f in [a.dll,a.dll.parent/'picogk.26.2.dylib']}}
     save(a.output/'manifest.json',manifest)
     phase('native_oracles')
@@ -103,13 +117,17 @@ def main():
         result=picogk.witness(row['messages'][-1]['content'],a.output/('oracle-'+row['id']),a.sdk,a.dll)
         if not result['compiled'] or not result['native_passed']:raise ValueError('native oracle failed')
         return {'id':row['id'],**result}
-    with ThreadPoolExecutor(max_workers=4) as pool:oracles=list(pool.map(oracle,fresh))
+    for row in fresh:
+        if picogk.signature(picogk.parse(row['messages'][-1]['content'])[1])!=picogk.signature(row['expected']):raise ValueError('oracle semantics')
+    # ponytail: sample native training witnesses; all reference literals are parsed above.
+    native_rows=[r for r in fresh if r['split']!='train' or int(r['id'].rsplit('-',1)[1])<24] if a.focus_picogk else fresh
+    with ThreadPoolExecutor(max_workers=4) as pool:oracles=list(pool.map(oracle,native_rows))
     save(a.output/'native-oracles.json',oracles)
     phase('training')
     command=[sys.executable,'-m','mlx_lm','lora','--model',str(a.model),'--data',str(data),
-        '--train','--iters',str(a.iterations),'--batch-size','1','--num-layers','4','--learning-rate',str(a.learning_rate),
+        '--train','--iters',str(a.iterations),'--batch-size','1','--num-layers',str(a.num_layers),'--learning-rate',str(a.learning_rate),
         '--max-seq-length','1024','--mask-prompt','--seed','42','--steps-per-report','20',
-        '--steps-per-eval',str(a.iterations//2),'--val-batches','-1','--save-every',str(a.iterations//2),
+        '--steps-per-eval',str(a.iterations if a.focus_picogk else a.iterations//2),'--val-batches','-1','--save-every',str(a.iterations if a.focus_picogk else a.iterations//2),
         '--resume-adapter-file',str(warm_start/'adapters.safetensors'),'--adapter-path',str(a.output/'adapter')]
     save(a.output/'training-command.json',command)
     child(command,a.output/'training.log',timeout=3600)
@@ -132,7 +150,7 @@ def main():
         shutil.copy2(a.output/'adapter'/f'{step:07d}_adapters.safetensors',folder/'adapters.safetensors')
         shutil.copy2(a.output/'adapter/adapter_config.json',folder/'adapter_config.json')
         candidates[step]=evaluate(f'valid-{step}',folder,'valid')
-    selected=select(before,candidates)
+    selected=select(before,candidates,a.focus_picogk)
     selection={'selected_step':selected,'before':before,'candidates':candidates}
     save(a.output/'selection.json',selection)
     if selected is None:
