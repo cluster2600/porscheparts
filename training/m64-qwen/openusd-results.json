@@ -1,0 +1,1169 @@
+{
+  "date": "2026-10-01",
+  "run": "work/m64-qwen/openusd-001",
+  "manifest": {
+    "counts": {
+      "train": {
+        "openusd": 48,
+        "picogk": 64
+      },
+      "valid": {
+        "openusd": 6,
+        "picogk": 8
+      },
+      "test": {
+        "openusd": 12,
+        "picogk": 16
+      }
+    },
+    "source_sha256": "dd6a5809db0f0dbdffe104e5c2e845242cea0d28eb3171889fe996c4406a5324",
+    "usd_cases_sha256": "e80d14527bd4d7317283d47a941e66fe8707bd007171a6a34478739aa86834ff",
+    "picogk_cases_sha256": "1374de37ec6b9eaae069a36ce58f1b5bd6d5684ecb33a1557e20f16d0c972994",
+    "data_sha256": {
+      "test.jsonl": "3292bb00b46429aed3b2317a8ef8a7e1ea0104f80fb8e194810862c35221ea91",
+      "train.jsonl": "58f5b8ddf329e7a7685b3522b7e11fb5bde6e4a2d88ef47d916ea2de30f47428",
+      "valid.jsonl": "95ebdea054e4e78b28ff909a50c22f740b99913f829e738df25ab27116bc22ae"
+    },
+    "limitations": "Shared template families; parameter and small composition holdouts only. Existing PicoGK test is a regression suite, not a fresh benchmark."
+  },
+  "training": {
+    "base_model": {
+      "repository": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+      "revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+      "weights_sha256": "daeab4764fb420d161721791cf2e509e2de81a7af4223646e7bed2bf82c57b58",
+      "upstream_repository": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+      "upstream_revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+      "license": "Apache-2.0",
+      "quantization_bits": 4,
+      "mlx_lm_version": "0.31.3"
+    },
+    "initial_adapter_sha256": "a50561618f4d17da5d4ea2c70014dc7d1af3e6d09eedf3f3b8c21d6395b06de4",
+    "iterations": 160,
+    "batch_size": 1,
+    "num_layers": 4,
+    "rank": 8,
+    "lora_scale": 20,
+    "learning_rate": 0.0001,
+    "max_sequence_length": 1024,
+    "max_actual_sequence_length": 440,
+    "seed": 42,
+    "mask_prompt": true,
+    "decoding": "greedy",
+    "max_generation_tokens": 1024,
+    "usd_core": "25.5.1",
+    "mlx_lm": "0.31.3",
+    "promotion_rule": "all 12 USD cases pass; no per-case PicoGK regression; otherwise keep experimental"
+  },
+  "validation_loss": {
+    "initial": 0.529,
+    "final": 0.007
+  },
+  "peak_training_memory_gb": 1.965,
+  "comparison": {
+    "openusd": {
+      "before": {
+        "passed": 0,
+        "native_verified": 0,
+        "total": 12,
+        "groups": {
+          "parameter_holdout": {
+            "passed": 0,
+            "total": 6
+          },
+          "composition_holdout": {
+            "passed": 0,
+            "total": 6
+          }
+        }
+      },
+      "after": {
+        "passed": 3,
+        "native_verified": 5,
+        "total": 12,
+        "groups": {
+          "parameter_holdout": {
+            "passed": 3,
+            "total": 6
+          },
+          "composition_holdout": {
+            "passed": 0,
+            "total": 6
+          }
+        }
+      }
+    },
+    "picogk": {
+      "before": {
+        "compiled": 16,
+        "native_passed": 16,
+        "semantic_passed": 8,
+        "passed": 8
+      },
+      "after": {
+        "compiled": 16,
+        "native_passed": 16,
+        "semantic_passed": 8,
+        "passed": 8
+      }
+    },
+    "picogk_regressions": [],
+    "decision": "experimental_only",
+    "reason": "Only 3/12 OpenUSD tasks pass; no unseen USD composition passes. Default inference unchanged."
+  },
+  "artifact_sha256": {
+    "work/m64-qwen/openusd-001/adapter/adapters.safetensors": "c7d62072762ceafdf79c76d39aeccdefd8f5371196784f409417725cec0ae434",
+    "work/m64-qwen/openusd-001/training.log": "772b2aeb97d7b578a28a6efc4a181bed6fae2f8ec77a3e64d44c528404a62ca5",
+    "work/m64-qwen/openusd-001/evaluate.sh": "12e5328cd573b151e034ea2fd93850a34db3a62604af84fbc3ac0fcb7282b45b",
+    "training/m64-engineer/openusd.py": "dd6a5809db0f0dbdffe104e5c2e845242cea0d28eb3171889fe996c4406a5324",
+    "training/m64-qwen/picogk.py": "ec4f253d024a8c64c9caad6f2593fddb5e85b17aad2b8a388c993b09bf952d48"
+  },
+  "runtime_sha256": {
+    "PicoGK.dll": "710c4e0428efbe9c1cd1db1663247b45604f96d167a6726782ab8ddca350565a",
+    "picogk.26.2.dylib": "5c1cd3fc12766a85bc5c1441a95f065fb274338d1333c3ae2d3396b59d0e18e7"
+  },
+  "openusd_checks_omitted": [
+    "ShaderPropertyTypeConformanceChecker"
+  ],
+  "openusd_results": {
+    "before": [
+      {
+        "id": "usd-test-000",
+        "group": "parameter_holdout",
+        "passed": false,
+        "response": "```python\nimport usd\nimport usdlib\n\n# Create a new stage\nstage = usdlib.Stage()\n\n# Set the default prim\nstage.SetDefaultPrim(\"/World\")\n\n# Create a cube prim\ncube = stage.CreatePrim(\"/World/Part200\", usdlib.PrimType.kCube)\n\n# Set the size of the cube\ncube.SetAttribute(\"xSize\", 9)\ncube.SetAttribute(\"ySize\", 9)\ncube.SetAttribute(\"zSize\", 9)\n\n# Set the translation of the cube\ncube.SetAttribute(\"translate\", [-2, 0, 0])\n\n# Set the unit type to meters\nstage.SetUnitType(1)\n\n# Set the meters per unit to 0.001\nstage.SetMetersPerUnit(0.001)\n\n# Save the stage\nstage.Save()\n```",
+        "error": "ValueError: unsupported statement"
+      },
+      {
+        "id": "usd-test-001",
+        "group": "parameter_holdout",
+        "passed": false,
+        "response": "```python\nimport usd\nimport usdlib\n\n# Create a new stage\nstage = usdlib.Stage()\n\n# Set the default prim\nstage.SetDefaultPrim(\"/World\")\n\n# Create a new mesh\nmesh = usdlib.Mesh()\nmesh.SetPoints([(0, 0, 0), (10, 0, 0), (0, 10, 0)])\nmesh.SetFaces([0, 1, 2])\n\n# Add the mesh to the stage\nstage.SetPrimAtPath(\"/World/Part201\", mesh)\n\n# Set the subdivision level to 0\nmesh.SetSubdivisionLevel(0)\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh.SetPrimType(\"mesh\")\n\n# Set the primitive type to \"mesh\"\nmesh",
+        "error": "SyntaxError: invalid syntax (<unknown>, line 1)"
+      },
+      {
+        "id": "usd-test-002",
+        "group": "parameter_holdout",
+        "passed": false,
+        "response": "```python\nimport usd\nimport usdlib\n\n# Create a new stage\nstage = usdlib.Stage()\n\n# Set the default prim\nstage.SetDefaultPrim(\"/World\")\n\n# Create a cube prim\ncube = stage.CreatePrim(\"/World/Part202\", \"Cube\")\n\n# Set the size of the cube\ncube.SetAttribute(\"xSize\", 11)\ncube.SetAttribute(\"ySize\", 11)\ncube.SetAttribute(\"zSize\", 11)\n\n# Set the material of the cube\nmaterial = stage.CreatePrim(\"/World/Material\", \"Material\")\nmaterial.SetAttribute(\"type\", \"UsdShade/Material\")\nmaterial.SetAttribute(\"shader\", \"/World/Material/Surface\")\n\n# Create a surface shader prim\nsurface_shader = stage.CreatePrim(\"/World/Material/Surface\", \"UsdShade/Surface\")\nsurface_shader.SetAttribute(\"type\", \"UsdShade/PreviewSurface\")\n\n# Set the diffuse color of the surface shader\nsurface_shader.SetAttribute(\"diffuseColor\", [0.2, 0.4, 0.6])\n\n# Set the roughness of the surface shader\nsurface_shader.SetAttribute(\"roughness\", 0.4)\n\n# Set the parent of the surface shader to the material prim\nmaterial.SetChild(surface_shader)\n\n# Set the parent of the cube prim to the world prim\ncube.SetParent(stage.GetDefaultPrim())\n\n# Set the position of the cube prim\ncube.SetAttribute(\"xPosition\", 0)\ncube.SetAttribute(\"yPosition\", 0)\ncube.SetAttribute(\"zPosition\", 0)\n\n# Set the scale of the cube prim\ncube.SetAttribute(\"xScale\", 1)\ncube.SetAttribute(\"yScale\", 1)\ncube.SetAttribute(\"zScale\", 1)\n\n# Set the rotation of the cube prim\ncube.SetAttribute(\"xRotation\", 0)\ncube.SetAttribute(\"yRotation\", 0)\ncube.SetAttribute(\"zRotation\", 0)\n\n# Set the visibility of the cube prim\ncube.SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the material prim\nmaterial.SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the surface shader prim\nsurface_shader.SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the world prim\nstage.GetDefaultPrim().SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the cube prim in the scene\nstage.GetDefaultPrim().SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the material prim in the scene\nstage.GetDefaultPrim().SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the surface shader prim in the scene\nstage.GetDefaultPrim().SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the world prim in the scene\nstage.GetDefaultPrim().SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the cube prim in the scene\nstage.GetDefaultPrim().SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the material prim in the scene\nstage.GetDefaultPrim().SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the surface shader prim in the scene\nstage.GetDefaultPrim().SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the world prim in the scene\nstage.GetDefaultPrim().SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the cube prim in the scene\nstage.GetDefaultPrim().SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the material prim in the scene\nstage.GetDefaultPrim().SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the surface shader prim in the scene\nstage.GetDefaultPrim().SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the world prim in the scene\nstage.GetDefaultPrim().SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the cube prim in the scene\nstage.GetDefaultPrim().SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the material prim in the scene\nstage.GetDefaultPrim().SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the surface shader prim in the scene\nstage.GetDefaultPrim().SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the world prim in the scene\nstage.GetDefaultPrim().SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the cube prim in the scene\nstage.GetDefaultPrim().SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the material prim in the scene\nstage.GetDefaultPrim().SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the surface shader prim in the scene\nstage.GetDefaultPrim().SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the world prim in the scene\nstage.GetDefaultPrim().SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the cube prim in the scene\nstage.GetDefaultPrim().SetAttribute(\"visibility\", 1)\n\n# Set the visibility of the material prim in",
+        "error": "SyntaxError: invalid syntax (<unknown>, line 1)"
+      },
+      {
+        "id": "usd-test-003",
+        "group": "parameter_holdout",
+        "passed": false,
+        "response": "```python\nimport usd\nimport usdapi\n\n# Create a new stage\nstage = usdapi.NewStage()\n\n# Set the default prim\nstage.SetDefaultPrim(\"/World\")\n\n# Set the Z up direction\nstage.SetWorldUpDirection(usdapi.Vec3f(0, 1, 0))\n\n# Set the metersPerUnit\nstage.SetMetersPerUnit(0.001)\n\n# Create the cube /World/Part203\npart203 = stage.CreatePrim(\"/World/Part203\", \"Cube\")\npart203.SetAttribute(\"size\", 12)\n\n# Create the copy /World/Part203Copy as an internal reference\npart203Copy = stage.CreatePrim(\"/World/Part203Copy\", \"Cube\")\npart203Copy.SetAttribute(\"size\", 12)\npart203Copy.SetAttribute(\"primType\", \"InternalReference\")\npart203Copy.SetAttribute(\"reference\", part203.GetPath())\npart203Copy.SetAttribute(\"isInstanceable\", True)\npart203Copy.SetAttribute(\"isReferenceable\", True)\npart203Copy.SetAttribute(\"isTransformable\", True)\npart203Copy.SetAttribute(\"isWritable\", True)\npart203Copy.SetAttribute(\"isReadable\", True)\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"InternalReference\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy.SetAttribute(\"isPrimType\", \"Cube\")\npart203Copy",
+        "error": "SyntaxError: invalid syntax (<unknown>, line 1)"
+      },
+      {
+        "id": "usd-test-004",
+        "group": "parameter_holdout",
+        "passed": false,
+        "response": "```python\nimport usd\nimport usdapi\nimport usdapi.vt\nimport usdapi.vtapi\nimport usdapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt\nimport usdapi.vtapi.vtapi.vt",
+        "error": "SyntaxError: invalid syntax (<unknown>, line 1)"
+      },
+      {
+        "id": "usd-test-005",
+        "group": "parameter_holdout",
+        "passed": false,
+        "response": "```python\nimport usd\nimport usdlib\n\n# Create a new stage\nstage = usdlib.Stage()\n\n# Set the default prim\nstage.SetDefaultPrim(\"/World\")\n\n# Create a cube prim\ncube = stage.CreatePrim(\"/World/Part205\", usdlib.PrimType.kCube)\n\n# Set the size of the cube\ncube.SetAttribute(\"xSize\", 14)\ncube.SetAttribute(\"ySize\", 14)\ncube.SetAttribute(\"zSize\", 14)\n\n# Set the position of the cube\ncube.SetAttribute(\"translate\", [0, 0, 0])\n\n# Create a time controller\ntime_controller = stage.CreatePrim(\"/World/Part205/timeController\", usdlib.PrimType.kTimeController)\n\n# Create a time range\ntime_range = time_controller.CreateAttribute(\"timeRange\", usdlib.SdfTimeRange(1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 24, 1, 2",
+        "error": "SyntaxError: invalid syntax (<unknown>, line 1)"
+      },
+      {
+        "id": "usd-test-006",
+        "group": "composition_holdout",
+        "passed": false,
+        "response": "```python\nimport usd\nimport usdlib\nimport usdlib.api\nimport usdlib.api.UsdGeom\nimport usdlib.api.UsdShade\nimport usdlib.api.Sdf\nimport usdlib.api.Gf\n\n# Create a new stage\nstage = usdlib.api.UsdStage.Create()\nstage.SetDefaultPrim(\"/World\")\n\n# Set the coordinate system\nstage.SetPrim(\"/World\")\nstage.GetRootLayer().GetPrims().Get(\"/World\").SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp(\"translate\", 1, usdlib.api.UsdGeom.XformOp.Scalar, 1, 4, 0, 0, 0, 1))\n\n# Set the units\nstage.GetRootLayer().GetPrims().Get(\"/World\").SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp(\"scale\", 1, usdlib.api.UsdGeom.XformOp.Scalar, 1, 1, 1, 1, 1, 1))\nstage.GetRootLayer().GetPrims().Get(\"/World\").SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp(\"scale\", 1, usdlib.api.UsdGeom.XformOp.Scalar, 1, 1, 1, 1, 1, 1))\nstage.GetRootLayer().GetPrims().Get(\"/World\").SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp(\"scale\", 1, usdlib.api.UsdGeom.XformOp.Scalar, 1, 1, 1, 1, 1, 1))\nstage.GetRootLayer().GetPrims().Get(\"/World\").SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp(\"scale\", 1, usdlib.api.UsdGeom.XformOp.Scalar, 1, 1, 1, 1, 1, 1))\nstage.GetRootLayer().GetPrims().Get(\"/World\").SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp(\"scale\", 1, usdlib.api.UsdGeom.XformOp.Scalar, 1, 1, 1, 1, 1, 1))\nstage.GetRootLayer().GetPrims().Get(\"/World\").SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp(\"scale\", 1, usdlib.api.UsdGeom.XformOp.Scalar, 1, 1, 1, 1, 1, 1))\nstage.GetRootLayer().GetPrims().Get(\"/World\").SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp(\"scale\", 1, usdlib.api.UsdGeom.XformOp.Scalar, 1, 1, 1, 1, 1, 1))\nstage.GetRootLayer().GetPrims().Get(\"/World\").SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp(\"scale\", 1, usdlib.api.UsdGeom.XformOp.Scalar, 1, 1, 1, 1, 1, 1))\nstage.GetRootLayer().GetPrims().Get(\"/World\").SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp(\"scale\", 1, usdlib.api.UsdGeom.XformOp.Scalar, 1, 1, 1, 1, 1, 1))\nstage.GetRootLayer().GetPrims().Get(\"/World\").SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp(\"scale\", 1, usdlib.api.UsdGeom.XformOp.Scalar, 1, 1, 1, 1, 1, 1))\nstage.GetRootLayer().GetPrims().Get(\"/World\").SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp(\"scale\", 1, usdlib.api.UsdGeom.XformOp.Scalar, 1, 1, 1, 1, 1, 1))\nstage.GetRootLayer().GetPrims().Get(\"/World\").SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp(\"scale\", 1, usdlib.api.UsdGeom.XformOp.Scalar, 1, 1, 1, 1, 1, 1))\nstage.GetRootLayer().GetPrims().Get(\"/World\").SetAttribute(\"xformOp\", usdlib.api.UsdGeom.Xform",
+        "error": "SyntaxError: invalid syntax (<unknown>, line 1)"
+      },
+      {
+        "id": "usd-test-007",
+        "group": "composition_holdout",
+        "passed": false,
+        "response": "```python\nimport usd\nimport usdlib\nimport usdlib.api\nimport usdlib.api.UsdGeom\nimport usdlib.api.UsdShade\nimport usdlib.api.Sdf\nimport usdlib.api.Gf\n\n# Create a new stage\nstage = usdlib.api.UsdStage.Create()\nstage.SetDefaultPrim(\"/World\")\n\n# Set the coordinate system\nstage.SetPrim(\"/World\")\nstage.GetRootLayer().GetPrims().Get(\"/World\").SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateTranslation(0, 0, 0))\n\n# Set the unit system\nstage.GetRootLayer().GetPrims().Get(\"/World\").SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateScale(1, 1, 1))\nstage.GetRootLayer().GetPrims().Get(\"/World\").SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateRotation(0, 0, 0, 1))\n\n# Set the unit system\nstage.GetRootLayer().GetPrims().Get(\"/World\").SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateScale(1, 1, 1))\nstage.GetRootLayer().GetPrims().Get(\"/World\").SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateRotation(0, 0, 0, 1))\n\n# Create a triangular mesh\npart207 = stage.GetRootLayer().GetPrims().Get(\"/World/Part207\")\npart207.SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateTranslation(0, 0, 0))\npart207.SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateScale(1, 1, 1))\npart207.SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateRotation(0, 0, 0, 1))\n\npart207.SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateScale(1, 1, 1))\npart207.SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateRotation(0, 0, 0, 1))\n\npart207.SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateScale(1, 1, 1))\npart207.SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateRotation(0, 0, 0, 1))\n\npart207.SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateScale(1, 1, 1))\npart207.SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateRotation(0, 0, 0, 1))\n\npart207.SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateScale(1, 1, 1))\npart207.SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateRotation(0, 0, 0, 1))\n\npart207.SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateScale(1, 1, 1))\npart207.SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateRotation(0, 0, 0, 1))\n\npart207.SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateScale(1, 1, 1))\npart207.SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateRotation(0, 0, 0, 1))\n\npart207.SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateScale(1, 1, 1))\npart207.SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateRotation(0, 0, 0, 1))\n\npart207.SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateScale(1, 1, 1))\npart207.SetAttribute(\"xformOp\", usdlib.api.UsdGeom.XformOp.CreateRotation(0, 0, 0, 1))\n\npart207.SetAttribute(\"xformOp\", usdlib.api.UsdGeom.Xform",
+        "error": "SyntaxError: invalid syntax (<unknown>, line 1)"
+      },
+      {
+        "id": "usd-test-008",
+        "group": "composition_holdout",
+        "passed": false,
+        "response": "```python\nimport usd\nimport usdapi\nimport usdapi.sdf\nimport usdapi.usd\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usd",
+        "error": "SyntaxError: invalid syntax (<unknown>, line 1)"
+      },
+      {
+        "id": "usd-test-009",
+        "group": "composition_holdout",
+        "passed": false,
+        "response": "```python\nimport usd\nimport usdapi\nimport usdapi.sdf\nimport usdapi.usd\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usd",
+        "error": "SyntaxError: invalid syntax (<unknown>, line 1)"
+      },
+      {
+        "id": "usd-test-010",
+        "group": "composition_holdout",
+        "passed": false,
+        "response": "```python\nimport usd\nimport usdapi\nimport usdapi.sdf\nimport usdapi.usd\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usdapi\nimport usdapi.usd",
+        "error": "SyntaxError: invalid syntax (<unknown>, line 1)"
+      },
+      {
+        "id": "usd-test-011",
+        "group": "composition_holdout",
+        "passed": false,
+        "response": "```python\nimport usd\nimport usdlib\nimport usdlib.api\nimport usdlib.api.UsdGeom\nimport usdlib.api.UsdShade\nimport usdlib.api.Sdf\nimport usdlib.api.Gf\nimport usdlib.api.Pxr\nimport usdlib.api.PxrUsd\nimport usdlib.api.PxrUsdGeom\nimport usdlib.api.PxrUsdShade\nimport usdlib.api.PxrSdf\nimport usdlib.api.PxrGf\nimport usdlib.api.PxrPxr\nimport usdlib.api.PxrPxrUsd\nimport usdlib.api.PxrPxrUsdGeom\nimport usdlib.api.PxrPxrUsdShade\nimport usdlib.api.PxrPxrSdf\nimport usdlib.api.PxrPxrGf\nimport usdlib.api.PxrPxrPxr\nimport usdlib.api.PxrPxrPxrUsd\nimport usdlib.api.PxrPxrPxrUsdGeom\nimport usdlib.api.PxrPxrPxrUsdShade\nimport usdlib.api.PxrPxrPxrSdf\nimport usdlib.api.PxrPxrPxrGf\nimport usdlib.api.PxrPxrPxrPxr\nimport usdlib.api.PxrPxrPxrPxrUsd\nimport usdlib.api.PxrPxrPxrPxrUsdGeom\nimport usdlib.api.PxrPxrPxrPxrShade\nimport usdlib.api.PxrPxrPxrPxrSdf\nimport usdlib.api.PxrPxrPxrPxrGf\nimport usdlib.api.PxrPxrPxrPxrPxr\nimport usdlib.api.PxrPxrPxrPxrPxrUsd\nimport usdlib.api.PxrPxrPxrPxrPxrUsdGeom\nimport usdlib.api.PxrPxrPxrPxrShade\nimport usdlib.api.PxrPxrPxrPxrSdf\nimport usdlib.api.PxrPxrPxrPxrGf\nimport usdlib.api.PxrPxrPxrPxrPxrPxr\nimport usdlib.api.PxrPxrPxrPxrPxrUsd\nimport usdlib.api.PxrPxrPxrPxrPxrUsdGeom\nimport usdlib.api.PxrPxrPxrPxrShade\nimport usdlib.api.PxrPxrPxrPxrSdf\nimport usdlib.api.PxrPxrPxrPxrGf\nimport usdlib.api.PxrPxrPxrPxrPxrPxr\nimport usdlib.api.PxrPxrPxrPxrPxrUsd\nimport usdlib.api.PxrPxrPxrPxrPxrUsdGeom\nimport usdlib.api.PxrPxrPxrPxrShade\nimport usdlib.api.PxrPxrPxrPxrSdf\nimport usdlib.api.PxrPxrPxrPxrGf\nimport usdlib.api.PxrPxrPxrPxrPxrPxr\nimport usdlib.api.PxrPxrPxrPxrPxrUsd\nimport usdlib.api.PxrPxrPxrPxrPxrUsdGeom\nimport usdlib.api.PxrPxrPxrPxrShade\nimport usdlib.api.PxrPxrPxrPxrSdf\nimport usdlib.api.PxrPxrPxrPxrGf\nimport usdlib.api.PxrPxrPxrPxrPxrPxr\nimport usdlib.api.PxrPxrPxrPxrPxrUsd\nimport usdlib.api.PxrPxrPxrPxrPxrUsdGeom\nimport usdlib.api.PxrPxrPxrPxrShade\nimport usdlib.api.PxrPxrPxrPxrSdf\nimport usdlib.api.PxrPxrPxrPxrGf\nimport usdlib.api.PxrPxrPxrPxrPxrPxr\nimport usdlib.api.PxrPxrPxrPxrPxrUsd\nimport usdlib.api.PxrPxrPxrPxrPxrUsdGeom\nimport usdlib.api.PxrPxrPxrPxrShade\nimport usdlib.api.PxrPxrPxrPxrSdf\nimport usdlib.api.PxrPxrPxrPxrGf\nimport usdlib.api.PxrPxrPxrPxrPxrPxr\nimport usdlib.api.PxrPxrPxrPxrPxrUsd\nimport usd",
+        "error": "SyntaxError: invalid syntax (<unknown>, line 1)"
+      }
+    ],
+    "after": [
+      {
+        "id": "usd-test-000",
+        "group": "parameter_holdout",
+        "passed": true,
+        "response": "root = UsdGeom.Xform.Define(stage, \"/World\")\nstage.SetDefaultPrim(root.GetPrim())\nUsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)\nUsdGeom.SetStageMetersPerUnit(stage, 0.001)\npart = UsdGeom.Cube.Define(stage, \"/World/Part200\")\npart.CreateSizeAttr(9)\npart.AddTranslateOp().Set(Gf.Vec3d(-2, 0, 0))\n",
+        "native": {
+          "usd_version": [
+            0,
+            25,
+            5
+          ],
+          "skipped_checks": [
+            "ShaderPropertyTypeConformanceChecker"
+          ],
+          "warnings": [],
+          "usda_sha256": "d035ce35eaa9a675bbab83952bf7e23c2d5c7782f80c56923fdea845874b92e0",
+          "usdc_sha256": "73bfc136e089b376747cf6ee27ad6fb42293d96392be0ac759047cb8ede144fc"
+        }
+      },
+      {
+        "id": "usd-test-001",
+        "group": "parameter_holdout",
+        "passed": true,
+        "response": "root = UsdGeom.Xform.Define(stage, \"/World\")\nstage.SetDefaultPrim(root.GetPrim())\nUsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)\nUsdGeom.SetStageMetersPerUnit(stage, 0.001)\npart = UsdGeom.Mesh.Define(stage, \"/World/Part201\")\npart.CreatePointsAttr([Gf.Vec3f(0,0,0), Gf.Vec3f(10,0,0), Gf.Vec3f(0,10,0)])\npart.CreateFaceVertexCountsAttr([3])\npart.CreateFaceVertexIndicesAttr([0,1,2])\npart.CreateSubdivisionSchemeAttr(UsdGeom.Tokens.none)\n",
+        "native": {
+          "usd_version": [
+            0,
+            25,
+            5
+          ],
+          "skipped_checks": [
+            "ShaderPropertyTypeConformanceChecker"
+          ],
+          "warnings": [],
+          "usda_sha256": "d4b691d3256fc42c613a91c6d473d1bff52ef25ddd38597f525e3c9c29035bb6",
+          "usdc_sha256": "6e14fd46926ca6f73a47c7796c6280363419490d942d53dac56770c63cab613b"
+        }
+      },
+      {
+        "id": "usd-test-002",
+        "group": "parameter_holdout",
+        "passed": true,
+        "response": "root = UsdGeom.Xform.Define(stage, \"/World\")\nstage.SetDefaultPrim(root.GetPrim())\nUsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)\nUsdGeom.SetStageMetersPerUnit(stage, 0.001)\npart = UsdGeom.Cube.Define(stage, \"/World/Part202\")\npart.CreateSizeAttr(11)\nmaterial = UsdShade.Material.Define(stage, \"/World/Material\")\nshader = UsdShade.Shader.Define(stage, \"/World/Material/Surface\")\nshader.CreateIdAttr(\"UsdPreviewSurface\")\nshader.CreateInput(\"diffuseColor\", Sdf.ValueTypeNames.Color3f).Set(Gf.Vec3f(0.2,0.4,0.6))\nshader.CreateInput(\"roughness\", Sdf.ValueTypeNames.Float).Set(0.4)\nmaterial.CreateSurfaceOutput().ConnectToSource(shader.ConnectableAPI(), \"surface\")\nUsdShade.MaterialBindingAPI.Apply(part.GetPrim()).Bind(material)\n",
+        "native": {
+          "usd_version": [
+            0,
+            25,
+            5
+          ],
+          "skipped_checks": [
+            "ShaderPropertyTypeConformanceChecker"
+          ],
+          "warnings": [],
+          "usda_sha256": "b67052ba961ac3507a652f967c695b5a73190c85a5013e25cc9dbd3ea9778127",
+          "usdc_sha256": "4b75937d46da401c2eeb7b659f8adf137824ed7dc1aa28b9365bbc095f89cc7b"
+        }
+      },
+      {
+        "id": "usd-test-003",
+        "group": "parameter_holdout",
+        "passed": false,
+        "response": "root = UsdGeom.Xform.Define(stage, \"/World\")\nstage.SetDefaultPrim(root.GetPrim())\nUsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)\nUsdGeom.SetStageMetersPerUnit(stage, 0.001)\npart = UsdGeom.Cube.Define(stage, \"/World/Part203\")\npart.CreateSizeAttr(12)\ncopy = stage.DefinePrim(\"/World/Part203Copy\")\ncopy.GetReferences().AddInternalReference(\"/World/Part203\")\ncopy.SetInstanceable(True)\ncopy.SetInstanceReference(\"/World/Part203\")\n",
+        "error": "ValueError: unsupported Python outside bounded USD authoring contract"
+      },
+      {
+        "id": "usd-test-004",
+        "group": "parameter_holdout",
+        "passed": false,
+        "response": "root = UsdGeom.Xform.Define(stage, \"/World\")\nstage.SetDefaultPrim(root.GetPrim())\nUsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)\nUsdGeom.SetStageMetersPerUnit(stage, 0.001)\npart = UsdGeom.Cube.Define(stage, \"/World/Part204\")\nvariants = part.GetPrim().GetVariantSets().AddVariantSet(\"detail\")\nvariants.AddVariant(\"small\")\nvariants.AddVariant(\"large\")\nwith variants.GetVariantEditContext():\n    part.CreateSizeAttr(13)\nvariants.AddVariant(\"small\")\nwith variants.GetVariantEditContext():\n    part.CreateSizeAttr(26)\n",
+        "native": {
+          "usd_version": [
+            0,
+            25,
+            5
+          ],
+          "skipped_checks": [
+            "ShaderPropertyTypeConformanceChecker"
+          ],
+          "warnings": [],
+          "usda_sha256": "e7d1d34b2977878a13e750d0a1e21e6d13b8724b438d3a06dea555b8e4d372ba",
+          "usdc_sha256": "3ba8bf4155900b3d3b0631c4ba3869b775ab8ffa557192fbdfccf99d3c0910d2"
+        },
+        "error": "USD stage differs from requested authoring contract"
+      },
+      {
+        "id": "usd-test-005",
+        "group": "parameter_holdout",
+        "passed": false,
+        "response": "root = UsdGeom.Xform.Define(stage, \"/World\")\nstage.SetDefaultPrim(root.GetPrim())\nUsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)\nUsdGeom.SetStageMetersPerUnit(stage, 0.001)\npart = UsdGeom.Cube.Define(stage, \"/World/Part205\")\npart.CreateSizeAttr(14)\nstage.SetStartTimeCode(1)\nstage.SetEndTimeCode(24)\nstage.SetTimeCodesPerSecond(24)\nstage.SetStageUpAxis(UsdGeom.Tokens.z)\nstage.SetStageMetersPerUnit(0.001)\npart.CreateTranslateOp().Set(Gf.Vec3d(0,0,0), 1)\npart.CreateTranslateOp().Set(Gf.Vec3d(14,0,0), 24)\n",
+        "error": "AttributeError: 'Stage' object has no attribute 'SetStageUpAxis'"
+      },
+      {
+        "id": "usd-test-006",
+        "group": "composition_holdout",
+        "passed": false,
+        "response": "root = UsdGeom.Xform.Define(stage, \"/World\")\nstage.SetDefaultPrim(root.GetPrim())\nUsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)\nUsdGeom.SetStageMetersPerUnit(stage, 0.001)\npart = UsdGeom.Cube.Define(stage, \"/World/Part206\")\npart.CreateSizeAttr(15)\npart.AddTranslateOp().Set(Gf.Vec3d(4, 0, 0))\nguide = UsdShade.PurposeGuide.Define(stage, \"/World/Probe\")\n",
+        "error": "ValueError: unsupported Python outside bounded USD authoring contract"
+      },
+      {
+        "id": "usd-test-007",
+        "group": "composition_holdout",
+        "passed": false,
+        "response": "root = UsdGeom.Xform.Define(stage, \"/World\")\nstage.SetDefaultPrim(root.GetPrim())\nUsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)\nUsdGeom.SetStageMetersPerUnit(stage, 0.001)\npart = UsdGeom.Mesh.Define(stage, \"/World/Part207\")\npart.CreatePointsAttr([Gf.Vec3f(0,0,0), Gf.Vec3f(16,0,0), Gf.Vec3f(0,16,0)])\npart.CreateFaceVertexCountsAttr([3])\npart.CreateFaceVertexIndicesAttr([0,1,2])\npart.CreateSubdivisionSchemeAttr(UsdGeom.Tokens.none)\npart.CreatePointsAttr([Gf.Vec3f(0,0,0), Gf.Vec3f(16,0,0), Gf.Vec3f(0,16,0)])\npart.CreateFaceVertexCountsAttr([3])\npart.CreateFaceVertexIndicesAttr([0,1,2])\npart.CreateSubdivisionSchemeAttr(UsdGeom.Tokens.none)\npart.CreatePointsAttr([Gf.Vec3f(0,0,0), Gf.Vec3f(16,0,0), Gf.Vec3f(0,16,0)])\npart.CreateFaceVertexCountsAttr([3])\npart.CreateFaceVertexIndicesAttr([0,1,2])\npart.CreateSubdivisionSchemeAttr(UsdGeom.Tokens.none)\npart.CreatePointsAttr([Gf.Vec3f(0,0,0), Gf.Vec3f(16,0,0), Gf.Vec3f(0,16,0)])\npart.CreateFaceVertexCountsAttr([3])\npart.CreateFaceVertexIndicesAttr([0,1,2])\npart.CreateSubdivisionSchemeAttr(UsdGeom.Tokens.none)\npart.CreatePointsAttr([Gf.Vec3f(0,0,0), Gf.Vec3f(16,0,0), Gf.Vec3f(0,16,0)])\npart.CreateFaceVertexCountsAttr([3])\npart.CreateFaceVertexIndicesAttr([0,1,2])\npart.CreateSubdivisionSchemeAttr(UsdGeom.Tokens.none)\npart.CreatePointsAttr([Gf.Vec3f(0,0,0), Gf.Vec3f(16,0,0), Gf.Vec3f(0,16,0)])\npart.CreateFaceVertexCountsAttr([3])\npart.CreateFaceVertexIndicesAttr([0,1,2])\npart.CreateSubdivisionSchemeAttr(UsdGeom.Tokens.none)\npart.CreatePointsAttr([Gf.Vec3f(0,0,0), Gf.Vec3f(16,0,0), Gf.Vec3f(0,16,0)])\npart.CreateFaceVertexCountsAttr([3])\npart.CreateFaceVertexIndicesAttr([0,1,2])\npart.CreateSubdivisionSchemeAttr(UsdGeom.Tokens.none)\npart.CreatePointsAttr([Gf.Vec3f(0,0,0), Gf.Vec3f(16,0,0), Gf.Vec3f(0,16,0)])\npart.CreateFaceVertexCountsAttr([3])\npart.CreateFaceVertexIndicesAttr([0,1,2])\npart.CreateSubdivisionSchemeAttr(UsdGeom.Tokens.none)\npart.CreatePointsAttr([Gf.Vec3f(0,0,0), Gf.Vec3f(16,0,0), Gf.Vec3f(0,16,0)])\npart.CreateFaceVertexCountsAttr([3])\npart.CreateFaceVertexIndicesAttr([0,1,2])\npart.CreateSubdivisionSchemeAttr(UsdGeom.Tokens.none)\npart.CreatePointsAttr([Gf.Vec3f(0,0,0), Gf.Vec3f(16,0,0), Gf.Vec3f(0,16,0)])\npart.CreateFaceVertexCountsAttr([3])\npart.CreateFaceVertexIndicesAttr([0,1,2])\npart.CreateSubdivisionSchemeAttr(UsdGeom.Tokens.none)\npart.CreatePointsAttr([Gf.Vec3f(0,0,0), Gf.Vec3f(16,0,0), Gf.Vec3f(0,16,0)])\npart.CreateFaceVertexCountsAttr([3])\npart.CreateFaceVertexIndicesAttr([0,1,2])\npart.CreateSubdivisionSchemeAttr(UsdGeom.Tokens.none)\npart.CreatePointsAttr([Gf.Vec3f(0,0,0), Gf.Vec3f(16,0,0), Gf.Vec3f(0,16,0)])\npart.Create",
+        "error": "ValueError: unsupported Python outside bounded USD authoring contract"
+      },
+      {
+        "id": "usd-test-008",
+        "group": "composition_holdout",
+        "passed": false,
+        "response": "root = UsdGeom.Xform.Define(stage, \"/World\")\nstage.SetDefaultPrim(root.GetPrim())\nUsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)\nUsdGeom.SetStageMetersPerUnit(stage, 0.001)\npart = UsdGeom.Cube.Define(stage, \"/World/Part208\")\npart.CreateSizeAttr(4)\nmaterial = UsdShade.Material.Define(stage, \"/World/Material\")\nshader = UsdShade.Shader.Define(stage, \"/World/Material/Surface\")\nshader.CreateIdAttr(\"UsdPreviewSurface\")\nshader.CreateInput(\"diffuseColor\", Sdf.ValueTypeNames.Color3f).Set(Gf.Vec3f(0.2,0.4,0.6))\nshader.CreateInput(\"roughness\", Sdf.ValueTypeNames.Float).Set(0.4)\nmaterial.CreateSurfaceOutput().ConnectToSource(shader.ConnectableAPI(), \"surface\")\nguide = UsdShade.Shader.Define(stage, \"/World/Probe\")\nguide.CreateIdAttr(\"UsdPreviewSurface\")\nguide.CreateInput(\"diffuseColor\", Sdf.ValueTypeNames.Color3f).Set(Gf.Vec3f(0.2,0.4,0.6))\nguide.CreateInput(\"roughness\", Sdf.ValueTypeNames.Float).Set(0.4)\nguide.CreateSurfaceOutput().ConnectToSource(guide.ConnectableAPI(), \"surface\")\npart.CreateSurfaceOutput().ConnectToSource(material.ConnectableAPI(), \"surface\")\nguide.CreateSurfaceOutput().ConnectToSource(guide.ConnectableAPI(), \"surface\")\n",
+        "error": "AttributeError: 'Shader' object has no attribute 'CreateSurfaceOutput'"
+      },
+      {
+        "id": "usd-test-009",
+        "group": "composition_holdout",
+        "passed": false,
+        "response": "root = UsdGeom.Xform.Define(stage, \"/World\")\nstage.SetDefaultPrim(root.GetPrim())\nUsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)\nUsdGeom.SetStageMetersPerUnit(stage, 0.001)\npart = UsdGeom.Cube.Define(stage, \"/World/Part209\")\npart.CreateSizeAttr(5)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(UsdGeom.Tokens.part)\npart.CreatePurposeAttr(Us",
+        "error": "SyntaxError: '(' was never closed (<unknown>, line 85)"
+      },
+      {
+        "id": "usd-test-010",
+        "group": "composition_holdout",
+        "passed": false,
+        "response": "root = UsdGeom.Xform.Define(stage, \"/World\")\nstage.SetDefaultPrim(root.GetPrim())\nUsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)\nUsdGeom.SetStageMetersPerUnit(stage, 0.001)\npart = UsdGeom.Cube.Define(stage, \"/World/Part210\")\nvariants = part.GetPrim().GetVariantSets().AddVariantSet(\"detail\")\nvariants.AddVariant(\"small\")\nvariants.AddVariant(\"large\")\nwith variants.GetVariantEditContext():\n    part.CreateSizeAttr(6)\nvariants.AddVariant(\"small\")\nvariants.AddVariant(\"large\")\nwith variants.GetVariantEditContext():\n    part.CreateSizeAttr(12)\nprobe = UsdGeom.Sphere.Define(stage, \"/World/Probe\")\nprobe.CreatePurposeAttr(UsdGeom.Tokens.guide)\n",
+        "native": {
+          "usd_version": [
+            0,
+            25,
+            5
+          ],
+          "skipped_checks": [
+            "ShaderPropertyTypeConformanceChecker"
+          ],
+          "warnings": [],
+          "usda_sha256": "04da0683d31f54ae8c2fefc4f5b5c54766915f592920ecca2e673a94ae4ae32a",
+          "usdc_sha256": "a8dfed104600f66aae8e7b7c7dd5233be470b60e4998cc59a279f3133c4f5214"
+        },
+        "error": "USD stage differs from requested authoring contract"
+      },
+      {
+        "id": "usd-test-011",
+        "group": "composition_holdout",
+        "passed": false,
+        "response": "root = UsdGeom.Xform.Define(stage, \"/World\")\nstage.SetDefaultPrim(root.GetPrim())\nUsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)\nUsdGeom.SetStageMetersPerUnit(stage, 0.001)\npart = UsdGeom.Cube.Define(stage, \"/World/Part211\")\npart.CreateSizeAttr(7)\nstage.SetStartTimeCode(1)\nstage.SetEndTimeCode(24)\nstage.SetTimeCodesPerSecond(24)\nstage.SetStageUpAxis(UsdGeom.Tokens.z)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(0.001)\nstage.SetStageMetersPerUnit(",
+        "error": "SyntaxError: '(' was never closed (<unknown>, line 75)"
+      }
+    ]
+  },
+  "picogk_results": {
+    "before": [
+      {
+        "id": "test-000",
+        "group": "parameter_holdout",
+        "response": "lattice.AddBeam(new Vector3(-10f, 0f, -2f), 2f, new Vector3(10f, 0f, -2f), 2f, true);",
+        "seconds": 0.6028269580565393,
+        "contract_passed": true,
+        "semantic_passed": true,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 280.93655,
+          "triangles": 3468,
+          "min": [
+            -12,
+            -2,
+            -4
+          ],
+          "max": [
+            12,
+            2,
+            2.2351742e-08
+          ]
+        },
+        "passed": true
+      },
+      {
+        "id": "test-001",
+        "group": "parameter_holdout",
+        "response": "lattice.AddBeam(new Vector3(-10.5f, 0f, -1f), 2f, new Vector3(10.5f, 0f, -1f), 2.5f, false);\nlattice.AddBeam(new Vector3(10.5f, 0f, -1f), 2f, new Vector3(10.5f, 9f, -1f), 2.5f, false);",
+        "seconds": 0.9670187499141321,
+        "contract_passed": true,
+        "semantic_passed": true,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 456.9356,
+          "triangles": 4448,
+          "min": [
+            -10.5,
+            -2.4565558,
+            -3.4565558
+          ],
+          "max": [
+            12.932453,
+            9,
+            1.4565558
+          ]
+        },
+        "passed": true
+      },
+      {
+        "id": "test-002",
+        "group": "parameter_holdout",
+        "response": "lattice.AddBeam(new Vector3(-11f, 0f, 0f), 2f, new Vector3(11f, 0f, 0f), 2f, true);\nlattice.AddBeam(new Vector3(11f, 0f, 0f), 2f, new Vector3(11f, 10f, 0f), 2f, true);\nlattice.AddBeam(new Vector3(11f, 10f, 0f), 2f, new Vector3(-11f, 10f, 0f), 2f, true);\nlattice.AddBeam(new Vector3(-11f, 10f, 0f), 2f, new Vector3(-11f, 0f, 0f), 2f, true);",
+        "seconds": 1.461154207936488,
+        "contract_passed": true,
+        "semantic_passed": true,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 787.0956,
+          "triangles": 9088,
+          "min": [
+            -13,
+            -2,
+            -2
+          ],
+          "max": [
+            13,
+            12,
+            2
+          ]
+        },
+        "passed": true
+      },
+      {
+        "id": "test-003",
+        "group": "parameter_holdout",
+        "response": "lattice.AddBeam(new Vector3(-11.5f, 0f, 1f), 2f, new Vector3(11.5f, 11f, 1f), 2f, false);\nlattice.AddBeam(new Vector3(11.5f, 0f, 1f), 2f, new Vector3(-11.5f, 11f, 1f), 2f, false);",
+        "seconds": 0.875645124935545,
+        "contract_passed": true,
+        "semantic_passed": true,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 575.2014,
+          "triangles": 6524,
+          "min": [
+            -12.108696,
+            -1.6015614,
+            -0.9842152
+          ],
+          "max": [
+            12.108696,
+            12.601564,
+            2.9842153
+          ]
+        },
+        "passed": true
+      },
+      {
+        "id": "test-004",
+        "group": "parameter_holdout",
+        "response": "lattice.AddBeam(new Vector3(-12f, 0f, 2f), 2.5f, new Vector3(12f, 0f, 2f), 3f, true);",
+        "seconds": 0.5340919159352779,
+        "contract_passed": true,
+        "semantic_passed": true,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 656.37836,
+          "triangles": 5380,
+          "min": [
+            -14.448919,
+            -2.9740431,
+            -0.9740432
+          ],
+          "max": [
+            14.957742,
+            2.9740431,
+            4.9740434
+          ]
+        },
+        "passed": true
+      },
+      {
+        "id": "test-005",
+        "group": "parameter_holdout",
+        "response": "lattice.AddBeam(new Vector3(-12.5f, 0f, -2f), 2.5f, new Vector3(12.5f, 0f, -2f), 2.5f, false);\nlattice.AddBeam(new Vector3(12.5f, 0f, -2f), 2.5f, new Vector3(12.5f, 13f, -2f), 2.5f, false);",
+        "seconds": 0.9369456670247018,
+        "contract_passed": true,
+        "semantic_passed": true,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 713.0541,
+          "triangles": 6944,
+          "min": [
+            -12.5,
+            -2.500002,
+            -4.500002
+          ],
+          "max": [
+            15,
+            13,
+            0.5000019
+          ]
+        },
+        "passed": true
+      },
+      {
+        "id": "test-006",
+        "group": "parameter_holdout",
+        "response": "lattice.AddBeam(new Vector3(-13f, 0f, -1f), 2.5f, new Vector3(13f, 0f, -1f), 2.5f, true);\nlattice.AddBeam(new Vector3(13f, 0f, -1f), 2.5f, new Vector3(13f, 14f, -1f), 2.5f, true);\nlattice.AddBeam(new Vector3(13f, 14f, -1f), 2.5f, new Vector3(-13f, 14f, -1f), 2.5f, true);\nlattice.AddBeam(new Vector3(-13f, 14f, -1f), 2.5f, new Vector3(-13f, 0f, -1f), 2.5f, true);",
+        "seconds": 1.5760180409997702,
+        "contract_passed": true,
+        "semantic_passed": true,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 1536.342,
+          "triangles": 12464,
+          "min": [
+            -15.5,
+            -2.5,
+            -3.5
+          ],
+          "max": [
+            15.5,
+            16.5,
+            1.5
+          ]
+        },
+        "passed": true
+      },
+      {
+        "id": "test-007",
+        "group": "parameter_holdout",
+        "response": "lattice.AddBeam(new Vector3(-13.5f, 0f, 0f), 2.5f, new Vector3(13.5f, 15f, 0f), 3f, false);\nlattice.AddBeam(new Vector3(13.5f, 0f, 0f), 2.5f, new Vector3(-13.5f, 15f, 0f), 3f, false);",
+        "seconds": 1.03934333298821,
+        "contract_passed": true,
+        "semantic_passed": true,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 1331.0391,
+          "triangles": 11916,
+          "min": [
+            -14.744237,
+            -2.0108554,
+            -2.9728916
+          ],
+          "max": [
+            14.744237,
+            17.534246,
+            2.9728916
+          ]
+        },
+        "passed": true
+      },
+      {
+        "id": "test-008",
+        "group": "composition_holdout",
+        "response": "lattice.AddBeam(new Vector3(-14f, 0f, 1f), 1f, new Vector3(14f, 0f, 1f), 1f, true);\nlattice.AddBeam(new Vector3(14f, 0f, 1f), 1f, new Vector3(14f, 16f, 1f), 1f, true);\nlattice.AddBeam(new Vector3(14f, 16f, 1f), 1f, new Vector3(0f, 8f, 16f), 1f, true);",
+        "seconds": 1.145839749951847,
+        "contract_passed": true,
+        "semantic_passed": false,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 201.84167,
+          "triangles": 4848,
+          "min": [
+            -15,
+            -1,
+            -1.0244548e-08
+          ],
+          "max": [
+            15,
+            16.880188,
+            16.85296
+          ]
+        },
+        "passed": false
+      },
+      {
+        "id": "test-009",
+        "group": "composition_holdout",
+        "response": "lattice.AddBeam(new Vector3(-5f, 0f, 2f), 1f, new Vector3(5f, 0f, 2f), 1f, false);\nlattice.AddBeam(new Vector3(5f, 0f, 2f), 1f, new Vector3(5f, 6f, 2f), 1f, false);\nlattice.AddBeam(new Vector3(5f, 6f, 2f), 1f, new Vector3(-5f, 6f, 2f), 1f, false);",
+        "seconds": 1.1530848749680445,
+        "contract_passed": true,
+        "semantic_passed": false,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 73.38313,
+          "triangles": 1784,
+          "min": [
+            -5,
+            -1.0000008,
+            0.9999991
+          ],
+          "max": [
+            6,
+            7.000001,
+            3.000001
+          ]
+        },
+        "passed": false
+      },
+      {
+        "id": "test-010",
+        "group": "composition_holdout",
+        "response": "lattice.AddBeam(new Vector3(-5.5f, 0f, -2f), 1f, new Vector3(5.5f, 0f, -2f), 1.5f, true);\nlattice.AddBeam(new Vector3(5.5f, 0f, -2f), 1f, new Vector3(5.5f, 7f, -2f), 1.5f, true);\nlattice.AddBeam(new Vector3(5.5f, 7f, -2f), 1f, new Vector3(0f, 3.5f, 18f), 1.5f, true);",
+        "seconds": 1.2270035829860717,
+        "contract_passed": true,
+        "semantic_passed": false,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 203.05492,
+          "triangles": 3732,
+          "min": [
+            -6.5,
+            -1.5,
+            -3.5
+          ],
+          "max": [
+            7,
+            8.5,
+            19.410557
+          ]
+        },
+        "passed": false
+      },
+      {
+        "id": "test-011",
+        "group": "composition_holdout",
+        "response": "lattice.AddBeam(new Vector3(-6f, 0f, -1f), 1f, new Vector3(6f, 0f, -1f), 1f, false);\nlattice.AddBeam(new Vector3(6f, 0f, -1f), 1f, new Vector3(6f, 8f, -1f), 1f, false);\nlattice.AddBeam(new Vector3(6f, 8f, -1f), 1f, new Vector3(-6f, 8f, -1f), 1f, false);",
+        "seconds": 1.0881383339874446,
+        "contract_passed": true,
+        "semantic_passed": false,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 90.46213,
+          "triangles": 2020,
+          "min": [
+            -6,
+            -1.0000013,
+            -2.0000012
+          ],
+          "max": [
+            6.92819,
+            9.000001,
+            1.2715624e-06
+          ]
+        },
+        "passed": false
+      },
+      {
+        "id": "test-012",
+        "group": "composition_holdout",
+        "response": "lattice.AddBeam(new Vector3(-6.5f, 0f, 0f), 1.5f, new Vector3(6.5f, 0f, 0f), 1.5f, true);\nlattice.AddBeam(new Vector3(6.5f, 0f, 0f), 1.5f, new Vector3(6.5f, 9f, 0f), 1.5f, true);\nlattice.AddBeam(new Vector3(6.5f, 9f, 0f), 1.5f, new Vector3(0f, 4.5f, 20f), 1.5f, true);",
+        "seconds": 1.25088120799046,
+        "contract_passed": true,
+        "semantic_passed": false,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 311.06335,
+          "triangles": 4392,
+          "min": [
+            -7.910556,
+            -1.4561985,
+            -1.4780992
+          ],
+          "max": [
+            7.9567566,
+            10.4247465,
+            21.410557
+          ]
+        },
+        "passed": false
+      },
+      {
+        "id": "test-013",
+        "group": "composition_holdout",
+        "response": "lattice.AddBeam(new Vector3(-7f, 0f, 1f), 1.5f, new Vector3(7f, 0f, 1f), 2f, false);\nlattice.AddBeam(new Vector3(7f, 0f, 1f), 1.5f, new Vector3(7f, 10f, 1f), 2f, false);\nlattice.AddBeam(new Vector3(7f, 10f, 1f), 1.5f, new Vector3(-7f, 10f, 1f), 2f, false);",
+        "seconds": 1.1423189589986578,
+        "contract_passed": true,
+        "semantic_passed": false,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 347.1054,
+          "triangles": 4308,
+          "min": [
+            -7,
+            -1.9406359,
+            -0.94063586
+          ],
+          "max": [
+            8.929704,
+            11.940636,
+            2.940636
+          ]
+        },
+        "passed": false
+      },
+      {
+        "id": "test-014",
+        "group": "composition_holdout",
+        "response": "lattice.AddBeam(new Vector3(-7.5f, 0f, 2f), 1.5f, new Vector3(7.5f, 0f, 2f), 1.5f, true);\nlattice.AddBeam(new Vector3(7.5f, 0f, 2f), 1.5f, new Vector3(7.5f, 11f, 2f), 1.5f, true);\nlattice.AddBeam(new Vector3(7.5f, 11f, 2f), 1.5f, new Vector3(0f, 5.5f, 22f), 1.5f, true);",
+        "seconds": 1.3279240420088172,
+        "contract_passed": true,
+        "semantic_passed": false,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 343.2206,
+          "triangles": 5172,
+          "min": [
+            -8.910556,
+            -1.5,
+            0.49999997
+          ],
+          "max": [
+            9,
+            12.5,
+            23.410557
+          ]
+        },
+        "passed": false
+      },
+      {
+        "id": "test-015",
+        "group": "composition_holdout",
+        "response": "lattice.AddBeam(new Vector3(-8f, 0f, -2f), 1.5f, new Vector3(8f, 0f, -2f), 1.5f, false);\nlattice.AddBeam(new Vector3(8f, 0f, -2f), 1.5f, new Vector3(8f, 12f, -2f), 1.5f, false);\nlattice.AddBeam(new Vector3(8f, 12f, -2f), 1.5f, new Vector3(-8f, 12f, -2f), 1.5f, false);",
+        "seconds": 1.208753417013213,
+        "contract_passed": true,
+        "semantic_passed": false,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 290.75797,
+          "triangles": 3724,
+          "min": [
+            -8,
+            -1.4561985,
+            -3.5000007
+          ],
+          "max": [
+            9.500001,
+            13.456199,
+            -0.49999917
+          ]
+        },
+        "passed": false
+      }
+    ],
+    "after": [
+      {
+        "id": "test-000",
+        "group": "parameter_holdout",
+        "response": "lattice.AddBeam(new Vector3(-10f, 0f, -2f), 2f, new Vector3(10f, 0f, -2f), 2f, true);",
+        "seconds": 0.6059869999298826,
+        "contract_passed": true,
+        "semantic_passed": true,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 280.93655,
+          "triangles": 3468,
+          "min": [
+            -12,
+            -2,
+            -4
+          ],
+          "max": [
+            12,
+            2,
+            2.2351742e-08
+          ]
+        },
+        "passed": true
+      },
+      {
+        "id": "test-001",
+        "group": "parameter_holdout",
+        "response": "lattice.AddBeam(new Vector3(-10.5f, 0f, -1f), 2f, new Vector3(10.5f, 0f, -1f), 2.5f, false);\nlattice.AddBeam(new Vector3(10.5f, 0f, -1f), 2f, new Vector3(10.5f, 9f, -1f), 2.5f, false);",
+        "seconds": 0.9005615839269012,
+        "contract_passed": true,
+        "semantic_passed": true,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 456.9356,
+          "triangles": 4448,
+          "min": [
+            -10.5,
+            -2.4565558,
+            -3.4565558
+          ],
+          "max": [
+            12.932453,
+            9,
+            1.4565558
+          ]
+        },
+        "passed": true
+      },
+      {
+        "id": "test-002",
+        "group": "parameter_holdout",
+        "response": "lattice.AddBeam(new Vector3(-11f, 0f, 0f), 2f, new Vector3(11f, 0f, 0f), 2f, true);\nlattice.AddBeam(new Vector3(11f, 0f, 0f), 2f, new Vector3(11f, 10f, 0f), 2f, true);\nlattice.AddBeam(new Vector3(11f, 10f, 0f), 2f, new Vector3(-11f, 10f, 0f), 2f, true);\nlattice.AddBeam(new Vector3(-11f, 10f, 0f), 2f, new Vector3(-11f, 0f, 0f), 2f, true);",
+        "seconds": 1.4373403749195859,
+        "contract_passed": true,
+        "semantic_passed": true,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 787.0956,
+          "triangles": 9088,
+          "min": [
+            -13,
+            -2,
+            -2
+          ],
+          "max": [
+            13,
+            12,
+            2
+          ]
+        },
+        "passed": true
+      },
+      {
+        "id": "test-003",
+        "group": "parameter_holdout",
+        "response": "lattice.AddBeam(new Vector3(-11.5f, 0f, 1f), 2f, new Vector3(11.5f, 11f, 1f), 2f, false);\nlattice.AddBeam(new Vector3(11.5f, 0f, 1f), 2f, new Vector3(-11.5f, 11f, 1f), 2f, false);",
+        "seconds": 0.9602827919879928,
+        "contract_passed": true,
+        "semantic_passed": true,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 575.2014,
+          "triangles": 6524,
+          "min": [
+            -12.108696,
+            -1.6015614,
+            -0.9842152
+          ],
+          "max": [
+            12.108696,
+            12.601564,
+            2.9842153
+          ]
+        },
+        "passed": true
+      },
+      {
+        "id": "test-004",
+        "group": "parameter_holdout",
+        "response": "lattice.AddBeam(new Vector3(-12f, 0f, 2f), 2.5f, new Vector3(12f, 0f, 2f), 3f, true);",
+        "seconds": 0.6869737079832703,
+        "contract_passed": true,
+        "semantic_passed": true,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 656.37836,
+          "triangles": 5380,
+          "min": [
+            -14.448919,
+            -2.9740431,
+            -0.9740432
+          ],
+          "max": [
+            14.957742,
+            2.9740431,
+            4.9740434
+          ]
+        },
+        "passed": true
+      },
+      {
+        "id": "test-005",
+        "group": "parameter_holdout",
+        "response": "lattice.AddBeam(new Vector3(-12.5f, 0f, -2f), 2.5f, new Vector3(12.5f, 0f, -2f), 2.5f, false);\nlattice.AddBeam(new Vector3(12.5f, 0f, -2f), 2.5f, new Vector3(12.5f, 13f, -2f), 2.5f, false);",
+        "seconds": 1.0346600000048056,
+        "contract_passed": true,
+        "semantic_passed": true,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 713.0541,
+          "triangles": 6944,
+          "min": [
+            -12.5,
+            -2.500002,
+            -4.500002
+          ],
+          "max": [
+            15,
+            13,
+            0.5000019
+          ]
+        },
+        "passed": true
+      },
+      {
+        "id": "test-006",
+        "group": "parameter_holdout",
+        "response": "lattice.AddBeam(new Vector3(-13f, 0f, -1f), 2.5f, new Vector3(13f, 0f, -1f), 2.5f, true);\nlattice.AddBeam(new Vector3(13f, 0f, -1f), 2.5f, new Vector3(13f, 14f, -1f), 2.5f, true);\nlattice.AddBeam(new Vector3(13f, 14f, -1f), 2.5f, new Vector3(-13f, 14f, -1f), 2.5f, true);\nlattice.AddBeam(new Vector3(-13f, 14f, -1f), 2.5f, new Vector3(-13f, 0f, -1f), 2.5f, true);",
+        "seconds": 1.5501416670158505,
+        "contract_passed": true,
+        "semantic_passed": true,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 1536.342,
+          "triangles": 12464,
+          "min": [
+            -15.5,
+            -2.5,
+            -3.5
+          ],
+          "max": [
+            15.5,
+            16.5,
+            1.5
+          ]
+        },
+        "passed": true
+      },
+      {
+        "id": "test-007",
+        "group": "parameter_holdout",
+        "response": "lattice.AddBeam(new Vector3(-13.5f, 0f, 0f), 2.5f, new Vector3(13.5f, 15f, 0f), 3f, false);\nlattice.AddBeam(new Vector3(13.5f, 0f, 0f), 2.5f, new Vector3(-13.5f, 15f, 0f), 3f, false);",
+        "seconds": 1.0126789580099285,
+        "contract_passed": true,
+        "semantic_passed": true,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 1331.0391,
+          "triangles": 11916,
+          "min": [
+            -14.744237,
+            -2.0108554,
+            -2.9728916
+          ],
+          "max": [
+            14.744237,
+            17.534246,
+            2.9728916
+          ]
+        },
+        "passed": true
+      },
+      {
+        "id": "test-008",
+        "group": "composition_holdout",
+        "response": "lattice.AddBeam(new Vector3(-14f, 0f, 1f), 1f, new Vector3(14f, 0f, 1f), 1f, true);\nlattice.AddBeam(new Vector3(14f, 0f, 1f), 1f, new Vector3(14f, 16f, 1f), 1f, true);\nlattice.AddBeam(new Vector3(14f, 16f, 1f), 1f, new Vector3(0f, 8f, 16f), 1f, true);",
+        "seconds": 1.1453274169471115,
+        "contract_passed": true,
+        "semantic_passed": false,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 201.84167,
+          "triangles": 4848,
+          "min": [
+            -15,
+            -1,
+            -1.0244548e-08
+          ],
+          "max": [
+            15,
+            16.880188,
+            16.85296
+          ]
+        },
+        "passed": false
+      },
+      {
+        "id": "test-009",
+        "group": "composition_holdout",
+        "response": "lattice.AddBeam(new Vector3(-5f, 0f, 2f), 1f, new Vector3(5f, 0f, 2f), 1f, false);\nlattice.AddBeam(new Vector3(5f, 0f, 2f), 1f, new Vector3(5f, 6f, 2f), 1f, false);\nlattice.AddBeam(new Vector3(5f, 6f, 2f), 1f, new Vector3(-5f, 6f, 2f), 1f, false);",
+        "seconds": 1.0682987499749288,
+        "contract_passed": true,
+        "semantic_passed": false,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 73.38313,
+          "triangles": 1784,
+          "min": [
+            -5,
+            -1.0000008,
+            0.9999991
+          ],
+          "max": [
+            6,
+            7.000001,
+            3.000001
+          ]
+        },
+        "passed": false
+      },
+      {
+        "id": "test-010",
+        "group": "composition_holdout",
+        "response": "lattice.AddBeam(new Vector3(-5.5f, 0f, -2f), 1f, new Vector3(5.5f, 0f, -2f), 1.5f, true);\nlattice.AddBeam(new Vector3(5.5f, 0f, -2f), 1f, new Vector3(5.5f, 7f, -2f), 1.5f, true);\nlattice.AddBeam(new Vector3(5.5f, 7f, -2f), 1f, new Vector3(0f, 3.5f, 18f), 1.5f, true);",
+        "seconds": 1.178266084054485,
+        "contract_passed": true,
+        "semantic_passed": false,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 203.05492,
+          "triangles": 3732,
+          "min": [
+            -6.5,
+            -1.5,
+            -3.5
+          ],
+          "max": [
+            7,
+            8.5,
+            19.410557
+          ]
+        },
+        "passed": false
+      },
+      {
+        "id": "test-011",
+        "group": "composition_holdout",
+        "response": "lattice.AddBeam(new Vector3(-6f, 0f, -1f), 1f, new Vector3(6f, 0f, -1f), 1f, false);\nlattice.AddBeam(new Vector3(6f, 0f, -1f), 1f, new Vector3(6f, 8f, -1f), 1f, false);\nlattice.AddBeam(new Vector3(6f, 8f, -1f), 1f, new Vector3(-6f, 8f, -1f), 1f, false);",
+        "seconds": 1.142462957999669,
+        "contract_passed": true,
+        "semantic_passed": false,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 90.46213,
+          "triangles": 2020,
+          "min": [
+            -6,
+            -1.0000013,
+            -2.0000012
+          ],
+          "max": [
+            6.92819,
+            9.000001,
+            1.2715624e-06
+          ]
+        },
+        "passed": false
+      },
+      {
+        "id": "test-012",
+        "group": "composition_holdout",
+        "response": "lattice.AddBeam(new Vector3(-6.5f, 0f, 0f), 1.5f, new Vector3(6.5f, 0f, 0f), 1.5f, true);\nlattice.AddBeam(new Vector3(6.5f, 0f, 0f), 1.5f, new Vector3(6.5f, 9f, 0f), 1.5f, true);\nlattice.AddBeam(new Vector3(6.5f, 9f, 0f), 1.5f, new Vector3(0f, 4.5f, 20f), 1.5f, true);",
+        "seconds": 1.2647295000497252,
+        "contract_passed": true,
+        "semantic_passed": false,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 311.06335,
+          "triangles": 4392,
+          "min": [
+            -7.910556,
+            -1.4561985,
+            -1.4780992
+          ],
+          "max": [
+            7.9567566,
+            10.4247465,
+            21.410557
+          ]
+        },
+        "passed": false
+      },
+      {
+        "id": "test-013",
+        "group": "composition_holdout",
+        "response": "lattice.AddBeam(new Vector3(-7f, 0f, 1f), 1.5f, new Vector3(7f, 0f, 1f), 2f, false);\nlattice.AddBeam(new Vector3(7f, 0f, 1f), 1.5f, new Vector3(7f, 10f, 1f), 2f, false);\nlattice.AddBeam(new Vector3(7f, 10f, 1f), 1.5f, new Vector3(-7f, 10f, 1f), 2f, false);",
+        "seconds": 1.1610379579942673,
+        "contract_passed": true,
+        "semantic_passed": false,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 347.1054,
+          "triangles": 4308,
+          "min": [
+            -7,
+            -1.9406359,
+            -0.94063586
+          ],
+          "max": [
+            8.929704,
+            11.940636,
+            2.940636
+          ]
+        },
+        "passed": false
+      },
+      {
+        "id": "test-014",
+        "group": "composition_holdout",
+        "response": "lattice.AddBeam(new Vector3(-7.5f, 0f, 2f), 1.5f, new Vector3(7.5f, 0f, 2f), 1.5f, true);\nlattice.AddBeam(new Vector3(7.5f, 0f, 2f), 1.5f, new Vector3(7.5f, 11f, 2f), 1.5f, true);\nlattice.AddBeam(new Vector3(7.5f, 11f, 2f), 1.5f, new Vector3(0f, 5.5f, 22f), 1.5f, true);",
+        "seconds": 1.3007564160507172,
+        "contract_passed": true,
+        "semantic_passed": false,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 343.2206,
+          "triangles": 5172,
+          "min": [
+            -8.910556,
+            -1.5,
+            0.49999997
+          ],
+          "max": [
+            9,
+            12.5,
+            23.410557
+          ]
+        },
+        "passed": false
+      },
+      {
+        "id": "test-015",
+        "group": "composition_holdout",
+        "response": "lattice.AddBeam(new Vector3(-8f, 0f, -2f), 1.5f, new Vector3(8f, 0f, -2f), 1.5f, false);\nlattice.AddBeam(new Vector3(8f, 0f, -2f), 1.5f, new Vector3(8f, 12f, -2f), 1.5f, false);\nlattice.AddBeam(new Vector3(8f, 12f, -2f), 1.5f, new Vector3(-8f, 12f, -2f), 1.5f, false);",
+        "seconds": 1.2289328339975327,
+        "contract_passed": true,
+        "semantic_passed": false,
+        "compiled": true,
+        "native_passed": true,
+        "metrics": {
+          "volume": 290.75797,
+          "triangles": 3724,
+          "min": [
+            -8,
+            -1.4561985,
+            -3.5000007
+          ],
+          "max": [
+            9.500001,
+            13.456199,
+            -0.49999917
+          ]
+        },
+        "passed": false
+      }
+    ]
+  }
+}

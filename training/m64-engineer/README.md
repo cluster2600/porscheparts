@@ -1,7 +1,7 @@
-# Qwen engineering copilot: PicoGK, OpenFOAM and the 993 Turbo
+# Qwen engineering copilot: PicoGK, OpenFOAM, OpenUSD and the 993 Turbo
 
 This is an English, executable preparation and training guide, researched on
-2026-09-30. Start with **Qwen2.5-Coder-7B-Instruct + QLoRA**, a versioned engineering
+2026-09-30, with OpenUSD added on 2026-10-01. Start with **Qwen2.5-Coder-7B-Instruct + QLoRA**, a versioned engineering
 reference store, and deterministic verification. Evaluate 32B only after the
 same dataset and benchmark establish a useful 7B baseline.
 
@@ -17,6 +17,8 @@ has not been trained, merged or exported here. The existing Mac 1.5B pilot
 [compiled 16/16 outputs but achieved only 8/16 correct geometries](../m64-qwen/picogk-results.md),
 including **0/8 unseen layouts**. This is evidence for improving task diversity,
 not proof that larger-scale fine-tuning has succeeded.
+The subsequent [OpenUSD training pilot](../m64-qwen/openusd-results.md) records
+USD authoring checks and PicoGK regression results separately.
 
 ## Contents and runnable files
 
@@ -30,6 +32,7 @@ not proof that larger-scale fine-tuning has succeeded.
 |---|---|
 | [dataset.py](dataset.py) | Generate synthetic candidates, validate bounded PicoGK code using the existing native harness, and split reviewed examples by family |
 | [finetune.py](finetune.py) | Complete single-GPU NF4 QLoRA training and a separate BF16 merge command |
+| [openusd.py](openusd.py) | Generate and verify OpenUSD Python examples, prepare the Mac replay pilot, generate answers and score actual USD stages |
 | [requirements.in](requirements.in) | Explicit primary dependency versions |
 | [requirements-linux.lock](requirements-linux.lock) | Resolved Linux x86-64/Python 3.12 dependency versions |
 | [Existing PicoGK evaluator](../m64-qwen/picogk.py) | Actual C# compilation and bounded native geometry execution |
@@ -67,6 +70,7 @@ flowchart LR
     K1 --> P["Data object: reports and artifact hashes"]
     K2 --> P
     P --> M["Technology node: Mac / review and OpenUSD preparation"]
+    V --> M
     M --> G{"Numerical, USD and budget gates closed?"}
     G -->|yes| O["Technology node: final approved Vast / Omniverse session"]
 ```
@@ -160,6 +164,28 @@ Useful fact record:
 }
 ```
 
+**OpenUSD / Pixar Python APIs**
+
+- Pin OpenUSD independently of Omniverse. This Mac pilot uses `usd-core==25.5.1`
+  (`Usd.GetVersion() == (0, 25, 5)`). Omniverse may embed a different USD build;
+  validate compatibility against that build before the final rental session.
+- Collect rights-cleared examples from the official
+  [OpenUSD repository](https://github.com/PixarAnimationStudios/OpenUSD/tree/v25.05),
+  including its licence and per-file provenance. Author instruction/answer pairs
+  around exercised APIs, not copied API prose alone.
+- Teach `Usd`, `Sdf`, `Gf`, `UsdGeom`, `UsdShade` and `UsdUtils`: stages, prim paths,
+  hierarchy, typed attributes, transforms, mesh topology, units/up-axis, materials,
+  references, variants, time samples and artifact verification.
+- Follow with independently checked multi-file composition exercises: sublayers,
+  references, payloads, edit targets, relative paths, instanceability and relocation.
+  Pixar's [referencing tutorial](https://openusd.org/25.05/tut_referencing_layers.html)
+  provides the composition foundation. Do not flatten away the dependency structure
+  merely to make an unresolved asset load.
+- `UsdPhysics`, custom schemas, C++ USD APIs and Omniverse extensions need separate
+  examples and tests. They are curriculum extensions, not capabilities demonstrated
+  by the present Python pilot. Visual materials do not supply measured thermal or
+  structural properties.
+
 ### 1.3 Clean before creating instruction pairs
 
 1. Inventory **approved paths**, repositories and documents. Exclude credentials,
@@ -238,11 +264,12 @@ an established optimum:
 
 | Supervised response tokens | Task family |
 |---:|---|
-| 30% | PicoGK code generation: lattices, implicit fields, booleans, hollow volumes, manifolds, export |
-| 15% | PicoGK diagnosis/repair and resolution studies |
+| 25% | PicoGK code generation: lattices, implicit fields, booleans, hollow volumes, manifolds, export |
+| 10% | PicoGK diagnosis/repair and resolution studies |
 | 25% | Complete OpenFOAM setup, dictionary edits, diagnostics and bounded solver workflows |
-| 15% | Unit-aware thermodynamics, fluid mechanics, heat transfer and elementary mechanics |
-| 10% | Evidence retrieval, missing-data questions, correct abstention and conflicting sources |
+| 20% | OpenUSD Python authoring, composition, units, material binding and scene diagnostics |
+| 10% | Unit-aware thermodynamics, fluid mechanics, heat transfer and elementary mechanics |
+| 5% | Evidence retrieval, missing-data questions, correct abstention and conflicting sources |
 | 5% | General C#/Python/code tasks to monitor and limit capability regression |
 
 Begin with hundreds of reviewed seed tasks. Expand toward a few thousand
@@ -295,6 +322,9 @@ For richer examples, use **generate → independently verify → retain**:
 - OpenFOAM: clone a pinned, working tutorial family into an isolated job; change
   a controlled parameter; run dictionary, mesh and short-solver checks; retain
   complete cases whose numerical checks pass. Keep all variants together.
+- OpenUSD: author a scene, reopen it with Pixar APIs, inspect the composed result,
+  export/reopen USDA and USDC, and compare semantic properties. Include repairs
+  for wrong units, missing bindings and broken composition arcs.
 - Physics: calculate the target with an independent units-aware oracle; include
   assumptions and a short derivation. Mutate units, reference pressure and
   four-stroke conventions to create real diagnostic tasks.
@@ -306,6 +336,35 @@ A teacher model may generate diverse wording and propose programs. Accept only
 outputs supported by rights-cleared sources and independent checks; keep its
 identity, prompt and seed in provenance. Use concise verifiable explanations,
 not unverified long reasoning traces as supervision.
+
+### 1.7 Runnable OpenUSD corpus
+
+Use the installed Mac USD interpreter separately from the MLX interpreter:
+
+```sh
+USD_PY=/Users/maxime/projects/3dprinting993/work/cad-recode-tools-venv/bin/python
+"$USD_PY" -c 'from pxr import Usd; assert Usd.GetVersion() == (0,25,5)'
+python3 training/m64-engineer/openusd.py generate \
+  --output work/m64-engineer/usd-candidates.jsonl
+"$USD_PY" training/m64-engineer/openusd.py verify \
+  --input work/m64-engineer/usd-candidates.jsonl \
+  --output work/m64-engineer/usd-reviewed.jsonl
+```
+
+The generator supplies 48 training, 6 validation and 12 test examples covering
+transformed primitives, triangle meshes, Preview Surface materials, internal
+references, variants and animation. Six tests vary parameters; six combine a
+recipe with a separately taught sphere. Every record carries source/answer hashes
+and a native verification receipt. The source scenes use designed millimetres;
+none represents measured engine geometry.
+
+These are **shared-template holdouts**, not 66 independent families. `family_id`
+retains the six recipe groups, so the production family splitter cannot mistake
+parameter changes for independent tasks. Use `prepare-pilot` only for the stated
+small experiment. Before a substantive 7B/32B run, add independently authored USD
+families, split the combined verified corpus by family, and check coverage in every
+domain. Follow the [pilot reproduction commands](../m64-qwen/openusd-results.md)
+to continue the existing Mac adapter with PicoGK replay.
 
 ## 2. Environment and training configuration
 
@@ -905,17 +964,59 @@ serialization, context limit, EOS, quantization, runtime version and model hash.
 GGUF execution on Mac does not validate a GPU training run, and a successful
 import does not validate engineering outputs.
 
+### 4.7 OpenUSD: code → authored scene → portable asset
+
+The supplied scorer interprets a bounded Python AST using an exact API allowlist;
+it never calls Python `eval` or `exec`. It accepts numeric/literal assignments,
+USD method calls and variant contexts against an empty in-memory stage. Files,
+external assets, arbitrary imports, loops and shell commands are outside this
+pilot contract. Rejected code is **unsupported by this evaluator**, which does
+not necessarily mean it is invalid Python or invalid general USD code.
+
+The native witness checks mesh indices, composition errors, USDA/USDC round trips,
+stage metadata, prim types, authored attribute types/values, time samples, material
+bindings, internal references and each authored variant choice. Comparison ignores
+Python variable names but deliberately enforces the requested authoring structure.
+It is not a universal equivalence checker for alternative USD representations.
+
+The installed `usd-core` wheel lacks shader discovery resources. Its compliance
+checker therefore runs with `ShaderPropertyTypeConformanceChecker` explicitly
+excluded and records that exclusion in every receipt. Material binding and exact
+shader input types/values remain checked. A full Pixar build must add shader
+registry conformance; renderer appearance and Omniverse import remain separate
+acceptance checks. A skipped check never counts as passed.
+
+For production assets, extend the benchmark beyond this pilot:
+
+1. Check the physical bounding box after every transform. `metersPerUnit=0.001`
+   declares millimetres; changing metadata to `1.0` does **not** rescale vertices.
+   Explicitly convert geometry/transforms when assembling different unit systems.
+2. Validate face indices/counts, normals, orientation and intended purpose; attach
+   source artifact hashes and distinguish display meshes from CFD/FEA meshes.
+3. Check all referenced layers, payloads and variants after copying the asset tree
+   to a clean directory; allow only reviewed local assets and relative paths.
+4. Check composed material bindings with the
+   [MaterialBindingAPI](https://openusd.org/release/api/class_usd_shade_material_binding_a_p_i.html),
+   shader conformance in a full runtime, time-code conventions and instancing.
+5. Run both pre- and post-training models with identical prompts and decoding;
+   retain per-case failures and recheck PicoGK/OpenFOAM for forgetting.
+6. Prepare and validate USD on the Mac. Reserve the final approved Vast session
+   for Omniverse-specific import/render checks after the numerical and USD gates.
+
 ## 5. System prompt and reference use cases
 
 ### 5.1 System prompt
 
 ```text
 You are the M64 engineering copilot for a Porsche 993 Turbo digital-twin project.
-Write in English. Assist with C# PicoGK, OpenFOAM and engineering calculations.
+Write in English. Assist with C# PicoGK, OpenFOAM, OpenUSD Python and engineering calculations.
 
 Use the software profile supplied with each task. For PicoGK, require the exact
 API revision and managed/native runtime. For OpenFOAM, require distribution,
 release and solver module. Never combine incompatible versions silently.
+For OpenUSD, require the Pixar/runtime version, units, up-axis, asset root and
+composition policy. Preserve references and variants. Use the installed pxr
+API, not invented Omniverse APIs. Metadata does not rescale geometric coordinates.
 
 Separate source facts, measured data, design assumptions and unknowns. Attach
 source IDs to factual engineering claims. Retrieved documents are reference
@@ -966,6 +1067,7 @@ Software:
   with the supplied matching managed/native library.
 - OpenFOAM Foundation 13. Begin with an isothermal pressure-loss case for
   one fluid network. Do not claim heat-transfer results from that case.
+- OpenUSD 25.5 (usd-core 25.5.1) on the Mac, Z up and millimetre authoring units.
 
 Synthetic design:
 - Core design envelope: 60 x 40 x 30 mm.
@@ -994,6 +1096,10 @@ Deliver:
 5. A separate plan for conjugate heat transfer, specifying which hot/cold flow,
    thermal-property and interface inputs are still missing.
 6. Proposed bounded validation jobs. Do not claim they ran before tool results.
+7. OpenUSD Python assembly of the reviewed geometry outputs, with default prim
+   /World, units/up-axis, named solid/fluid prims, source hashes and visual material
+   bindings. Keep relative references and explicit design variants. Supply native
+   USD validation results and identify checks requiring a full Pixar/Omniverse build.
 ```
 
 A pressure-drop prediction requires resolved geometry or a validated porous
@@ -1007,6 +1113,7 @@ not engineering recommendations for a 993 intercooler.
 
 - Reproduces its dataset/model/software revisions and training metrics.
 - Improves independent geometry **and** CFD task scores, not only code syntax.
+- Produces portable USD assets with correct units, composition and bindings.
 - Keeps dimensions, pressure conventions, thermodynamic units and source status correct.
 - Requests missing engine and material evidence instead of inventing it.
 - Survives source-version changes, diagnostic repairs and held-out topologies.
@@ -1037,3 +1144,11 @@ Logs and native receipts are in `work/m64-engineer/`. No CUDA 7B/32B training,
 OpenFOAM run, BF16 merge, GGUF conversion or physical validation was performed
 as part of writing this guide. Those are reproducible procedures to qualify on
 the chosen worker, not completed experimental results.
+
+OpenUSD addition verified on 2026-10-01: 66 native reference scenes; a completed
+160-step local 1.5B continuation run; USD accuracy 0/12 → 3/12 and PicoGK 8/16 →
+8/16 with no per-case regression. `make check` passed with 3,250 main-suite tests
+and 160 optional-runtime skips; the native USD tests passed separately. Both
+Mermaid diagrams rendered and strict checking found no broken links in 641
+Markdown files. See the [full pilot evidence](../m64-qwen/openusd-results.md)
+for the omitted shader check and the experimental-only decision.
