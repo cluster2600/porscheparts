@@ -31,3 +31,22 @@ none of these checks validates CFD, a cylinder head or a manufactured part.
 Results are pending. The existing selected adapter remains
 `work/m64-qwen/coding-003/checkpoint-600/` until the continuation is evaluated.
 Raw status, training logs and receipts will be under `work/m64-qwen/coding-005/`.
+
+## Conservative follow-up registration — coding-006
+
+Coding-005's completed USD validation scores 16/30 and loses the same seven
+previous USD passes as coding-004. Its PicoGK validation is still finishing
+at registration of this follow-up; no final tests have been opened.
+
+The second and final training trial in this continuation starts directly from
+the retained `coding-003/checkpoint-600`, instead of the rejected 16-layer
+candidate. It updates only the original last four LoRA layers for 800 steps at
+`1e-5`. USD training examples are replayed four times; the 64 original PicoGK
+training examples are also replayed four times. This gives 1,344 USD and 896
+PicoGK rows (2,240 total), with the same 1,040 unique training cases. Rank, scale,
+batch, context, masking, seed, validation/test splits, graders and selection
+rule are unchanged. Only step 800 is eligible. Optimiser state restarts.
+
+This adjustment uses validation results from the same experiment family. It
+does not turn previously observed validation cases into an independent test.
+Raw receipts will be saved under `work/m64-qwen/coding-006/`.
