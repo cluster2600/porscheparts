@@ -19,6 +19,8 @@ including **0/8 unseen layouts**. This is evidence for improving task diversity,
 not proof that larger-scale fine-tuning has succeeded.
 The subsequent [OpenUSD training pilot](../m64-qwen/openusd-results.md) records
 USD authoring checks and PicoGK regression results separately.
+The [expanded coding continuation](../m64-qwen/coding-results.md) adds mixed scenes,
+varied graph connectivity and checkpoint selection on validation cases.
 
 ## Contents and runnable files
 

@@ -19,6 +19,8 @@ with patch.dict(sys.modules, {'dataset': dataset}):
     runner = load('picogk_test_runner', 'run.py')
     with patch.dict(sys.modules, {'run': runner}):
         picogk = load('m64_picogk', 'picogk.py')
+with patch.dict(sys.modules, {'dataset':dataset,'run':runner,'picogk':picogk}):
+    improve=load('m64_improve','improve.py')
 
 
 class PicoGKTrainingTests(unittest.TestCase):
@@ -45,3 +47,20 @@ class PicoGKTrainingTests(unittest.TestCase):
         b = rows[0]['expected'][0]
         reversed_beam = b[4:8] + b[:4] + [b[8]]
         self.assertEqual(picogk.signature([b]), picogk.signature([reversed_beam]))
+
+    def test_expanded_graph_instances(self):
+        rows=picogk.expanded_corpus()
+        self.assertEqual(rows,picogk.expanded_corpus())
+        self.assertEqual([sum(r['split']==s for r in rows) for s in ('train','valid','test')],[128,16,16])
+        all_rows=rows+picogk.corpus()
+        self.assertEqual(len({r['messages'][1]['content'] for r in all_rows}),len(all_rows))
+        for r in rows:
+            self.assertEqual(picogk.signature(picogk.parse(r['messages'][-1]['content'])[1]),picogk.signature(r['expected']))
+
+    def test_validation_selection(self):
+        def result(usd,pico):
+            return {'usd':[{'id':'u','passed':usd}],'picogk':[{'id':'p','passed':pico}]}
+        before=result(False,True)
+        self.assertIsNone(improve.select(before,{400:result(True,False),800:before}))
+        self.assertEqual(improve.select(before,{400:result(True,True),800:result(True,True)}),400)
+        with self.assertRaises(ValueError):improve.select(before,{400:{'usd':[],'picogk':before['picogk']}})

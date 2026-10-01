@@ -4,6 +4,7 @@ import argparse
 import ast
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 
@@ -14,15 +15,20 @@ SYSTEM = ('Write only Python code using Pixar OpenUSD 25.5. stage is an empty in
           'Set /World as default prim, Z up and metersPerUnit=0.001. All geometry is synthetic, not measured Porsche data.')
 
 
-def candidates():
+def candidates(expanded=False):
     source={'id':'openusd-authored-examples','uri':'repo:training/m64-engineer/openusd.py',
             'revision_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
             'license':'Repository proprietary; owner-authorized local training','training_allowed':True}
     rows=[]
-    for split,count in [('train',48),('valid',6),('test',12)]:
+    counts=[('train',288),('valid',24),('test',24)] if expanded else [('train',48),('valid',6),('test',12)]
+    for split,count in counts:
         for i in range(count):
             n=i+{'train':0,'valid':100,'test':200}[split]
             kind=i%6; size=4+n%13; shift=n%9-4; label=f'Part{n}'
+            if expanded:
+                n=i+{'train':1000,'valid':10000,'test':20000}[split]
+                size=3+(n*7)%29;shift=n%17-8
+                label=['Core','Mount','Element','Part'][i%4]+str(n)
             path='/World/'+label
             header='root = UsdGeom.Xform.Define(stage, "/World")\nstage.SetDefaultPrim(root.GetPrim())\nUsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)\nUsdGeom.SetStageMetersPerUnit(stage, 0.001)\n'
             cube=f'part = UsdGeom.Cube.Define(stage, "{path}")\npart.CreateSizeAttr({size})\n'
@@ -41,15 +47,36 @@ def candidates():
                  cube+f'stage.SetStartTimeCode(1)\nstage.SetEndTimeCode(24)\nstage.SetTimeCodesPerSecond(24)\nmove = part.AddTranslateOp()\nmove.Set(Gf.Vec3d(0,0,0), 1)\nmove.Set(Gf.Vec3d({size},0,0), 24)\n')]
             prompt,code=tasks[kind]
             group='parameter_holdout'
-            if split=='test' and i>=6:
+            if not expanded and split=='test' and i>=6:
                 group='composition_holdout'
                 prompt+=' Also create sphere /World/Probe of radius 2 mm and purpose guide.'
                 code+='probe = UsdGeom.Sphere.Define(stage, "/World/Probe")\nprobe.CreateRadiusAttr(2)\nprobe.CreatePurposeAttr(UsdGeom.Tokens.guide)\n'
             # Sphere APIs are taught in an independent form, not only seen in held-out compositions.
-            if split=='train' and i%12==0:
+            if not expanded and split=='train' and i%12==0:
                 prompt=f'Create sphere {path}, radius {size} mm, purpose guide, translated ({shift},0,0) mm.'
                 code=f'part = UsdGeom.Sphere.Define(stage, "{path}")\npart.CreateRadiusAttr({size})\npart.CreatePurposeAttr(UsdGeom.Tokens.guide)\n'+translate
-            rows.append({'id':f'usd-{split}-{i:03d}','family_id':f'usd-recipe-{kind}',
+            if expanded:
+                if kind==4 and (i//6)%2:
+                    prompt=prompt.replace('Select large.','Select small.')
+                    code+='variants.SetVariantSelection("small")\n'
+                # ponytail: shared API recipes, not a family-independent benchmark.
+                # Train pairs; validation/final tests also require three-object scenes.
+                additions=[]
+                if split=='train':
+                    if (i//6)%3:additions=['sphere' if (i//6)%3==1 else 'cube']
+                elif i>=12:additions=['sphere','cube']
+                for shape in additions:
+                    extra='/World/'+('Probe' if n%2 else 'Marker'+str(n)) if shape=='sphere' else '/World/Block'+str(n)
+                    value=2+n%4
+                    if shape=='sphere':
+                        prompt+=f' Also create sphere {extra} of radius {value} mm and purpose guide.'
+                        code+=f'probe = UsdGeom.Sphere.Define(stage, "{extra}")\nprobe.CreateRadiusAttr({value})\nprobe.CreatePurposeAttr(UsdGeom.Tokens.guide)\n'
+                    else:
+                        prompt+=f' Also create cube {extra} of size {value} mm, purpose guide, translated (0,{shift},0) mm.'
+                        code+=f'block = UsdGeom.Cube.Define(stage, "{extra}")\nblock.CreateSizeAttr({value})\nblock.CreatePurposeAttr(UsdGeom.Tokens.guide)\nblock.AddTranslateOp().Set(Gf.Vec3d(0,{shift},0))\n'
+                group='composition_holdout' if additions else 'parameter_holdout'
+            prefix='usd2' if expanded else 'usd'
+            rows.append({'id':f'{prefix}-{split}-{i:03d}','family_id':f'usd-recipe-{kind}',
                 'domain':'openusd','split':split,'group':group,'recipe':kind,
                 'messages':[{'role':'system','content':SYSTEM},{'role':'user','content':prompt},
                             {'role':'assistant','content':header+code}],
@@ -184,10 +211,12 @@ def main():
     p.add_argument('--input',type=Path);p.add_argument('--responses',type=Path);p.add_argument('--output',type=Path,required=True)
     p.add_argument('--model',type=Path);p.add_argument('--adapter',type=Path)
     p.add_argument('--replay',type=Path,help='Frozen cases.json from the previous PicoGK run')
+    p.add_argument('--expanded',action='store_true',help='Generate the second curriculum; preserve the original corpus by default')
+    p.add_argument('--split',choices=['valid','test'],default='test',help='Partition to infer/score; never selects training rows')
     a=p.parse_args()
     if a.output.exists():raise ValueError('output already exists')
     if a.action=='generate':
-        rows=candidates()
+        rows=candidates(expanded=a.expanded)
         a.output.write_text(''.join(json.dumps(r)+'\n' for r in rows));return
     rows=[json.loads(x) for x in a.input.read_text().splitlines() if x.strip()]
     if a.action=='prepare-pilot':
@@ -214,7 +243,6 @@ def main():
             'limitations':'Shared template families; parameter and small composition holdouts only. Existing PicoGK test is a regression suite, not a fresh benchmark.'},indent=2)+'\n')
         return
     if a.action=='infer':
-        import os
         os.environ.update(HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',HF_HUB_DISABLE_TELEMETRY='1')
         from mlx_lm import load,stream_generate
         from mlx_lm.sample_utils import make_sampler
@@ -222,16 +250,21 @@ def main():
         tok.add_eos_token('<|im_end|>')
         with a.output.open('x') as f:
             for r in rows:
-                if r['split']!='test':continue
+                if r['split']!=a.split:continue
                 prompt=tok.apply_chat_template(r['messages'][:-1],tokenize=False,add_generation_prompt=True)
                 text=''.join(x.text for x in stream_generate(model,tok,prompt=prompt,max_tokens=1024,sampler=make_sampler(temp=0)))
                 f.write(json.dumps({'id':r['id'],'response':text})+'\n');f.flush()
         return
+    # A missing/wrong runtime is an infrastructure failure, never a model score.
+    # Tiny witnesses run serially to avoid the observed TBB stage-cleanup hang.
+    os.environ.setdefault('PXR_WORK_THREAD_LIMIT','1')
+    from pxr import Usd
+    if Usd.GetVersion()!=VERSION:raise RuntimeError('pin usd-core==25.5.1')
     evidence=a.output.with_suffix('.evidence');evidence.mkdir(exist_ok=False)
     responses={r['id']:r['response'] for r in [json.loads(x) for x in a.responses.read_text().splitlines()]} if a.action=='score' else None
     with a.output.open('x') as f:
         for r in rows:
-            if responses is not None and r['split']!='test':continue
+            if responses is not None and r['split']!=a.split:continue
             if not re.fullmatch(r'[A-Za-z0-9_-]+',r['id']):raise ValueError('invalid id')
             reference=r['messages'][-1]['content']
             text=responses[r['id']] if responses is not None else reference

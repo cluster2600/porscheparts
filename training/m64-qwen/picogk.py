@@ -88,6 +88,30 @@ def corpus():
     return rows
 
 
+def expanded_corpus():
+    """Fresh numeric/edge instances, with shared task grammar across partitions."""
+    import itertools
+    import random
+    rows=[]
+    for split,count,seed in [('train',128,9931),('valid',16,9932),('test',16,9933)]:
+        rng=random.Random(seed)
+        for i in range(count):
+            pts=rng.sample(list(itertools.product(range(-16,17,4),repeat=3)),4)
+            edges=rng.sample(list(itertools.combinations(range(4),2)),1+i%6)
+            edges=[(a,b) if rng.randrange(2) else (b,a) for a,b in edges]
+            da,db=rng.choice([2,3,4,5]),rng.choice([2,3,4,5])
+            rounded=bool(i%2)
+            beams=[list(pts[a])+[da/2]+list(pts[b])+[db/2]+[rounded] for a,b in edges]
+            prompt=('Build a synthetic graph. Vertices in mm: '+json.dumps(dict(zip('ABCD',pts)))+
+                    '. Directed edges: '+', '.join('ABCD'[a]+'->'+'ABCD'[b] for a,b in edges)+
+                    f'. Each edge has start diameter {da} mm and end diameter {db} mm. '
+                    f'Rounded caps: {str(rounded).lower()}. Convert diameters to radii. Emit every edge exactly once.')
+            rows.append({'id':f'pico2-{split}-{i:03d}','split':split,'group':'fresh_graph_instances',
+                'shape':'graph','expected':beams,'messages':[{'role':'system','content':SYSTEM},
+                {'role':'user','content':prompt},{'role':'assistant','content':code(beams)}]})
+    return rows
+
+
 def witness(source, folder, sdk, dll, compile_only=False):
     """Only parsed, bounded literal calls reach compilation/execution; never arbitrary model code."""
     if compile_only:
@@ -126,7 +150,7 @@ def witness(source, folder, sdk, dll, compile_only=False):
     return {'compiled':True,'native_passed':metrics['volume'] > 0 and metrics['triangles'] > 0,'metrics':metrics}
 
 
-def evaluate(output, model, sdk, dll, adapter=None):
+def evaluate(output, model, sdk, dll, adapter=None, split='test'):
     from mlx_lm import load, stream_generate
     from mlx_lm.sample_utils import make_sampler
     network, tokenizer = load(str(model), adapter_path=str(adapter) if adapter else None,
@@ -135,7 +159,7 @@ def evaluate(output, model, sdk, dll, adapter=None):
     label = 'adapter' if adapter else 'base'
     results = []
     for row in json.loads((output/'cases.json').read_text()):
-        if row['split'] != 'test': continue
+        if row['split'] != split: continue
         started = time.perf_counter()
         prompt = tokenizer.apply_chat_template(row['messages'][:2],tokenize=False,add_generation_prompt=True)
         text = ''.join(r.text for r in stream_generate(network,tokenizer,prompt=prompt,max_tokens=512,sampler=make_sampler(temp=0)))
@@ -163,11 +187,12 @@ def main():
     parser.add_argument('--model',type=Path,required=True)
     parser.add_argument('--evaluate',action='store_true')
     parser.add_argument('--adapter',type=Path)
+    parser.add_argument('--split',choices=['valid','test'],default='test')
     args = parser.parse_args()
     for name in ('output','sdk','dll','model'): setattr(args,name,getattr(args,name).resolve())
     os.environ.update(HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',HF_HUB_DISABLE_TELEMETRY='1',DOTNET_CLI_TELEMETRY_OPTOUT='1')
     if args.evaluate:
-        evaluate(args.output,args.model,args.sdk,args.dll,args.adapter)
+        evaluate(args.output,args.model,args.sdk,args.dll,args.adapter,args.split)
         return
     config = json.loads((HERE/'model.json').read_text())
     if digest(args.model/'model.safetensors') != config['weights_sha256']: raise ValueError('model hash mismatch')

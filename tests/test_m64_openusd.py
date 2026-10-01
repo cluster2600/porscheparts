@@ -2,7 +2,9 @@
 import importlib.util
 from pathlib import Path
 import tempfile
+import sys
 import unittest
+from unittest.mock import patch
 
 PATH=Path(__file__).resolve().parents[1]/'training/m64-engineer/openusd.py'
 SPEC=importlib.util.spec_from_file_location('m64_openusd',PATH)
@@ -15,6 +17,15 @@ except ImportError:
 
 
 class OpenUSDTests(unittest.TestCase):
+    def test_missing_runtime_cannot_be_scored(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory);source=root/'empty.jsonl';source.write_text('')
+            output=root/'scores.jsonl'
+            args=['openusd.py','score','--input',str(source),'--responses',str(source),'--output',str(output)]
+            with patch.object(sys,'argv',args),patch.dict(sys.modules,{'pxr':None}):
+                with self.assertRaises(ModuleNotFoundError):usd.main()
+            self.assertFalse(output.exists())
+
     def test_corpus(self):
         rows=usd.candidates()
         self.assertEqual(rows,usd.candidates())
@@ -24,10 +35,17 @@ class OpenUSDTests(unittest.TestCase):
         self.assertTrue(all(r['validation']['status']=='pending' for r in rows))
         # Templates cross splits: this deliberately cannot masquerade as 66 independent families.
         self.assertEqual(len({r['family_id'] for r in rows}),6)
+        expanded=usd.candidates(expanded=True)
+        self.assertEqual(expanded,usd.candidates(expanded=True))
+        self.assertEqual([sum(r['split']==s for r in expanded) for s in ('train','valid','test')],[288,24,24])
+        prompts=[r['messages'][1]['content'] for r in rows+expanded]
+        self.assertEqual(len(set(prompts)),len(prompts))
+        self.assertTrue(all(r['messages'][1]['content'].count('Also create')<=1 for r in expanded if r['split']=='train'))
+        self.assertEqual(sum(r['messages'][1]['content'].count('Also create')==2 for r in expanded if r['split']=='test'),12)
 
     @unittest.skipUnless(NATIVE,'requires usd-core==25.5.1')
     def test_native_contract_and_boundary(self):
-        rows=usd.candidates()
+        rows=usd.candidates()+usd.candidates(expanded=True)
         with tempfile.TemporaryDirectory() as directory:
             for row in rows:
                 with self.subTest(row=row['id']):
