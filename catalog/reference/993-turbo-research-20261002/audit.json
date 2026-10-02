@@ -1,0 +1,252 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_id": "993-turbo-correction-audit-20261002",
+  "date": "2026-10-02",
+  "language": "en",
+  "records": [
+    {
+      "id": "AUDIT-001",
+      "subject": "Compression ratio",
+      "superseded_claim": "9.5:1",
+      "finding": "8.0:1 for stock 408 PS Turbo, brochure PDF p.22.",
+      "source_ids": [
+        "SRC-PORSCHE-UK-993-TURBO-BROCHURE-1995"
+      ],
+      "resolution_status": "corrected_source_metadata",
+      "affected_paths": [
+        "catalog/sources/src-porsche-uk-993-turbo-brochure-1995.json"
+      ],
+      "training_policy": "Train the qualified correction and its uncertainty, never the superseded claim as accepted stock fact."
+    },
+    {
+      "id": "AUDIT-002",
+      "subject": "Boost pressure",
+      "superseded_claim": "1.0 bar; 350 kPa absolute",
+      "finding": "Stock boost 0.8 bar gauge. 1.0 bar gauge plus 1.0 bar ambient would be 200 kPa absolute, not 350.",
+      "source_ids": [
+        "SRC-PORSCHE-UK-993-TURBO-BROCHURE-1995",
+        "SRC-PORSCHE-CHRISTOPHORUS-993-TURBO-DATA"
+      ],
+      "resolution_status": "corrected_source_metadata",
+      "affected_paths": [
+        "catalog/sources/src-porsche-uk-993-turbo-brochure-1995.json"
+      ],
+      "training_policy": "Train the qualified correction and its uncertainty, never the superseded claim as accepted stock fact."
+    },
+    {
+      "id": "AUDIT-003",
+      "subject": "Brochure archive link",
+      "superseded_claim": "Obsolete anstack link",
+      "finding": "HTTP 404 observed; reviewed pubstack archive URL retained with Porsche provenance.",
+      "source_ids": [
+        "SRC-PORSCHE-UK-993-TURBO-BROCHURE-1995"
+      ],
+      "resolution_status": "corrected_source_metadata",
+      "affected_paths": [
+        "catalog/sources/src-porsche-uk-993-turbo-brochure-1995.json"
+      ],
+      "training_policy": "Train the qualified correction and its uncertainty, never the superseded claim as accepted stock fact."
+    },
+    {
+      "id": "AUDIT-004",
+      "subject": "Engine mass / oil capacity",
+      "superseded_claim": "232 kg dry; 12 L attributed to Turbo brochure",
+      "finding": "Neither accepted from the Turbo brochure. Carrera booklet contains 232 kg; exact M64.60 mass/capacity needs variant-specific evidence.",
+      "source_ids": [
+        "SRC-PORSCHE-UK-993-TURBO-BROCHURE-1995",
+        "SRC-PORSCHE-993-SPEC-BOOKLET-PUBSTACK"
+      ],
+      "resolution_status": "withdrawn_unsupported_attribution",
+      "affected_paths": [
+        "catalog/sources/src-porsche-uk-993-turbo-brochure-1995.json"
+      ],
+      "training_policy": "Train the qualified correction and its uncertainty, never the superseded claim as accepted stock fact."
+    },
+    {
+      "id": "AUDIT-005",
+      "subject": "Misidentified Engine Specifications source",
+      "superseded_claim": "Hydraulic-lifter PDF labeled as engine specifications",
+      "finding": "Legacy source now correctly describes hydraulic-lifter bulletin 9702. Separate Carrera Engine Specifications reference retained.",
+      "source_ids": [
+        "SRC-PORSCHE-993-ENGINE-SPECIFICATIONS-PUBSTACK",
+        "SRC-PORSCHE-993-OBD-SUPPLEMENT-ENGINE-SPECIFICATIONS-1996"
+      ],
+      "resolution_status": "corrected_source_metadata",
+      "affected_paths": [
+        "catalog/sources/src-porsche-993-obd-supplement-engine-specifications-1996.json"
+      ],
+      "training_policy": "Train the qualified correction and its uncertainty, never the superseded claim as accepted stock fact."
+    },
+    {
+      "id": "AUDIT-006",
+      "subject": "Carrera fan ratio / cooling flow transferred to Turbo",
+      "superseded_claim": "Fan ratio 1.6 and airflow 1010 L/s",
+      "finding": "Not established for M64.60. Turbo brochure gives +15% with unquantified baseline; absolute Turbo fan ratio remains unknown.",
+      "source_ids": [
+        "SRC-PORSCHE-UK-993-TURBO-BROCHURE-1995",
+        "SRC-PORSCHE-993-ENGINE-SPECIFICATIONS-PUBSTACK",
+        "SRC-PORSCHE-PET-993"
+      ],
+      "resolution_status": "restricted_variant_scope",
+      "affected_paths": [
+        "catalog/sources/src-porsche-993-obd-supplement-engine-specifications-1996.json",
+        "catalog/twins/twin-993-m64-engine-system-0001.json"
+      ],
+      "training_policy": "Train the qualified correction and its uncertainty, never the superseded claim as accepted stock fact."
+    },
+    {
+      "id": "AUDIT-007",
+      "subject": "Ignition-system scope",
+      "superseded_claim": "Risk of copying Carrera twelve plugs",
+      "finding": "Turbo PET lists one distributor, one coil and six plugs.",
+      "source_ids": [
+        "SRC-PORSCHE-PET-993"
+      ],
+      "resolution_status": "qualified_engine_facts_added",
+      "affected_paths": [],
+      "training_policy": "Train the qualified correction and its uncertainty, never the superseded claim as accepted stock fact."
+    },
+    {
+      "id": "AUDIT-008",
+      "subject": "Fan impeller / housing scope",
+      "superseded_claim": "Carrera 96410601531 / 99310666703 applied to Turbo",
+      "finding": "Turbo PET references 96410601521/22 and 99310666750. Carrera masses/material declarations do not establish Turbo properties.",
+      "source_ids": [
+        "SRC-PORSCHE-PET-993"
+      ],
+      "resolution_status": "restricted_variant_scope",
+      "affected_paths": [
+        "catalog/sources/src-carparts-993-fan-housing-aluminium.json",
+        "catalog/sources/src-porsche-poitiers-964-993-fan-wheel-mass.json",
+        "catalog/sources/src-fvd-964-993-fan-wheel-dimensions.json",
+        "catalog/sources/src-partworks-964-993-fan-wheel-aluminium.json",
+        "catalog/sources/src-fvd-993-fan-housing-dimensions.json",
+        "catalog/sources/src-porsche-roissy-993-fan-housing-mass.json"
+      ],
+      "training_policy": "Train the qualified correction and its uncertainty, never the superseded claim as accepted stock fact."
+    },
+    {
+      "id": "AUDIT-009",
+      "subject": "M8 x 22 stud quantity",
+      "superseded_claim": "Twelve per cylinder head",
+      "finding": "Catalogue-level quantity twelve, not twelve per head; separate head retaining studs total twenty-four.",
+      "source_ids": [
+        "SRC-PORSCHE-PET-993"
+      ],
+      "resolution_status": "corrected_source_metadata",
+      "affected_paths": [
+        "catalog/sources/src-porsche-993-us-parts-guide-engine-cylinders.json",
+        "catalog/twins/twin-993-m64-engine-system-0001.json"
+      ],
+      "training_policy": "Train the qualified correction and its uncertainty, never the superseded claim as accepted stock fact."
+    },
+    {
+      "id": "AUDIT-010",
+      "subject": "Piston alloy / mass scope",
+      "superseded_claim": "2618 / 468 g copied to stock 3.6 L",
+      "finding": "Values concern MAHLE aftermarket 3.8 L PP102-012N kit. Exact stock piston alloy/mass remains unknown.",
+      "source_ids": [
+        "SRC-MAHLE-MOTORSPORT-PORSCHE-36-38-KIT"
+      ],
+      "resolution_status": "qualified_engine_facts_added",
+      "affected_paths": [],
+      "training_policy": "Train the qualified correction and its uncertainty, never the superseded claim as accepted stock fact."
+    },
+    {
+      "id": "AUDIT-011",
+      "subject": "Turbo temperature scope",
+      "superseded_claim": "950/980 C treated as stock K16 design limit",
+      "finding": "Figures belong to BorgWarner upgrade table, not measured stock temperature or material qualification.",
+      "source_ids": [
+        "SRC-BORGWARNER-993-K16-PERFORMANCE-CATALOG"
+      ],
+      "resolution_status": "corrected_source_metadata",
+      "affected_paths": [
+        "catalog/sources/src-borgwarner-993-k16-performance-catalog.json"
+      ],
+      "training_policy": "Train the qualified correction and its uncertainty, never the superseded claim as accepted stock fact."
+    },
+    {
+      "id": "AUDIT-012",
+      "subject": "KKK housing notation",
+      "superseded_claim": "Displayed A/R 8.00 interpreted geometrically",
+      "finding": "Transcription retained with unresolved notation; no 0.8 conversion or derived geometry.",
+      "source_ids": [
+        "SRC-TURBOMASTER-993-K16-6735-PARTS",
+        "SRC-TURBOMASTER-993-K16-6736-LEFT-UNIT"
+      ],
+      "resolution_status": "corrected_source_metadata",
+      "affected_paths": [
+        "catalog/sources/src-turbomaster-993-k16-6735-parts.json",
+        "catalog/sources/src-turbomaster-993-k16-6736-left-unit.json"
+      ],
+      "training_policy": "Train the qualified correction and its uncertainty, never the superseded claim as accepted stock fact."
+    },
+    {
+      "id": "AUDIT-013",
+      "subject": "Short piston cooling jet",
+      "superseded_claim": "Bulletin 21.5 mm versus PET 22.5 mm",
+      "finding": "Unresolved documentary conflict. Turbo long jet 33.5 mm agrees. No short-jet machining definition accepted.",
+      "source_ids": [
+        "SRC-PORSCHE-993-PISTON-SPRAY-JETS-1-97",
+        "SRC-PORSCHE-PET-993"
+      ],
+      "resolution_status": "unresolved_source_conflict",
+      "affected_paths": [],
+      "training_policy": "Train the qualified correction and its uncertainty, never the superseded claim as accepted stock fact."
+    },
+    {
+      "id": "AUDIT-014",
+      "subject": "Engine-mount bolt thread pitch",
+      "superseded_claim": "Bulletin body 1.5 mm versus table 1.2 mm",
+      "finding": "Unresolved internal conflict. Verify reference 90008211809 in exact application before workshop use.",
+      "source_ids": [
+        "SRC-PORSCHE-993-TURBO-REAR-MOUNTS-1-99",
+        "SRC-PORSCHE-PET-993"
+      ],
+      "resolution_status": "unresolved_source_conflict",
+      "affected_paths": [],
+      "training_policy": "Train the qualified correction and its uncertainty, never the superseded claim as accepted stock fact."
+    },
+    {
+      "id": "AUDIT-015",
+      "subject": "Carrera Engine Specifications internal anomalies",
+      "superseded_claim": "Carrera M64/23-24 sheet also prints Bi-Turbo and suspicious torque rpm",
+      "finding": "Source-context anomalies preserved; publication is not promoted to exact Turbo specification.",
+      "source_ids": [
+        "SRC-PORSCHE-993-ENGINE-SPECIFICATIONS-PUBSTACK"
+      ],
+      "resolution_status": "restricted_variant_scope",
+      "affected_paths": [],
+      "training_policy": "Train the qualified correction and its uncertainty, never the superseded claim as accepted stock fact."
+    }
+  ],
+  "additional_correction": {
+    "subject": "FVD wastegate actuator",
+    "finding": "Current product page says standard wastegate pressure actuator; previous vacuum-actuator wording corrected in unpinned source metadata.",
+    "source_ids": [
+      "SRC-FVD-993-K16-24-SPORT-TURBO-DATA"
+    ],
+    "affected_paths": [
+      "catalog/sources/src-fvd-993-k16-24-sport-turbo-data.json"
+    ]
+  },
+  "precedence": "This reviewed variant-specific ledger and normalized facts supersede the listed unsupported source notes for retrieval and this training supplement. Historical simulation/training/geometry artifacts have not been revalidated or silently rewritten.",
+  "retained_historical_artifacts": [
+    {
+      "path": "catalog/twins/twin-993-m64-engine-system-0001.json",
+      "superseded_claims": [
+        "Twelve M8 x 22 studs per head",
+        "Turbo fan ratio 1.6 / 1010 L/s"
+      ],
+      "policy": "Historical twin input; not accepted evidence for corrected stock Turbo claims. No revised physics run or manufacturing qualification performed."
+    }
+  ],
+  "raw_manual_context": {
+    "path": "catalog/manual/993-workshop-manual-measurements.json",
+    "record_count": 2496,
+    "ocr_occurrence_count": 2190,
+    "application": "Carrera context, not verified Turbo measurements",
+    "policy": "Retained original checked-in reference only; not duplicated or included as Turbo training examples."
+  }
+}

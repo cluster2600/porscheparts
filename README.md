@@ -60,7 +60,7 @@ withdrawn several, listed [further down this page](#what-the-repository-withdrew
 
 <table>
 <tr>
-<td align="center"><h3>401</h3>qualified source records</td>
+<td align="center"><h3>453</h3>qualified source records</td>
 <td align="center"><h3>34</h3>part records<br><sub>18 prohibited as they stand</sub></td>
 <td align="center"><h3>24</h3>993 design dossiers<br><sub>for additive manufacturing</sub></td>
 </tr>
@@ -353,7 +353,7 @@ Three simpler interior pilots are waiting for a physical measurement session:
 
 ## 4. The catalogue and its data contract
 
-**401 source records** qualified by provenance, rights and level of evidence;
+**453 source records** qualified by provenance, rights and level of evidence;
 34 part records, 9 twins, 4 components, 2 assemblies. Everything is validated by
 a JSON schema and by the test suite:
 
@@ -369,7 +369,7 @@ authorized download nor a validation of accuracy.
 flowchart TB
     subgraph catalog["catalog/ — source of truth, JSON-schema validated"]
       direction LR
-      src["sources/<br/>401 records"] --- prt["parts/<br/>34 records"]
+      src["sources/<br/>453 records"] --- prt["parts/<br/>34 records"]
       prt --- tw["twins/<br/>9 records"]
       prt --- cmp["components/ · assemblies/"]
       prt --- mea["measurements/<br/>3 manual transcriptions"]
@@ -526,6 +526,10 @@ For the M64/60 engine (993 Turbo), the master bill of materials of the whole-eng
 [`twins/m64-engine-system/bom/m64-bom-v1.json`](twins/m64-engine-system/bom/m64-bom-v1.json)
 with its coverage summary
 [`twins/m64-engine-system/bom/coverage.md`](twins/m64-engine-system/bom/coverage.md).
+
+The [2 October 2026 engine and K16 hybrid research](docs/research/993-turbo-20261002/README.md)
+adds source-qualified M64/60 data and map leads, with a separate
+[CPT/SFT preparation package](training/993-turbo-20261002/README.md).
 
 
 ![Sourced state of the 993 digital twin](docs/media/diagrams/digital-twin-993-etat.svg)

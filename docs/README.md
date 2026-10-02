@@ -70,6 +70,7 @@ flowchart LR
 |---|---|
 | [TURBO_DIGITAL_TWIN_PLAN.md](TURBO_DIGITAL_TWIN_PLAN.md) | data plan for the 993 Turbo twin |
 | [TURBO_AIRFLOW_SIMULATION_DATA.md](TURBO_AIRFLOW_SIMULATION_DATA.md) | airflow simulation data |
+| [research/993-turbo-20261002/README.md](research/993-turbo-20261002/README.md) | sourced M64/60 engine research, K16 hybrid/map leads and training-data package |
 | [OPENFOAM_POISEUILLE_VERIFICATION_F25.md](OPENFOAM_POISEUILLE_VERIFICATION_F25.md) | OpenFOAM verification against Poiseuille flow |
 
 ## Decisions and reports

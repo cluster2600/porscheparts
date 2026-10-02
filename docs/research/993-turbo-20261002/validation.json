@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-10-02",
+  "scope": "Research catalog, authored reports and training-data preparation; no model or physical-part qualification.",
+  "catalog_sources_validated": 453,
+  "training_integrity": "passed, input and output hashes checked",
+  "focused_training_tests": {
+    "passed": 4
+  },
+  "documentation_links": {
+    "broken": 0,
+    "markdown_files": 659
+  },
+  "report_exports": {
+    "tracked": 14,
+    "sha256_verified": true,
+    "private_hidden_links_excluded": true
+  },
+  "initial_make_check": {
+    "tests_run": 3349,
+    "skipped": 82,
+    "failures": 1,
+    "failed_test": "test_runtime_output_requires_private_non_symlink_parent_and_fstats_fd",
+    "cause": "Environment umask 077 makes mkdir(mode=0755) produce a 0700 directory; the existing test expects 0755.",
+    "recovery": "Rerun the unchanged OpenBao GHCR test module with umask 022: 17 tests passed."
+  },
+  "remaining_make_targets": {
+    "command": "make -o test -o 917-manufacturing-f37-lpbf-audit-check check",
+    "result": "passed",
+    "test_target_note": "The full suite was already run; the permission failure and new corpus tests received focused reruns."
+  },
+  "not_completed": [
+    {
+      "target": "917-manufacturing-f37-lpbf-audit-check",
+      "cause": "Docker container creation failed: no space left on device after image retrieval.",
+      "relation_to_change": "Existing manufacturing audit; this data integration changes no physical part, pinned recipe or physics evidence."
+    }
+  ],
+  "logs": [
+    {
+      "stage": "initial_full_check",
+      "sha256": "160e204108a9440a8c075d9519ace2be2516a61ec81ee4b00d06c2892263b983",
+      "bytes": 657161
+    },
+    {
+      "stage": "permission_test_recovery",
+      "sha256": "317958b2fb02ff8c80a6bf88680f77b2a564a15fd9dc3d04ff031c44404c47c6",
+      "bytes": 116
+    },
+    {
+      "stage": "docker_attempt",
+      "sha256": "85718366d4e8dc5a213e4ed6d5f21d5577d4e475fd98a199ce74c986d2cb792e",
+      "bytes": 40861
+    },
+    {
+      "stage": "remaining_checks",
+      "sha256": "eefedf64c01659aafb302f094b35d189d35cffad714602a30f0e00eb2df663f6",
+      "bytes": 90736
+    }
+  ],
+  "training_run": false,
+  "tokenized": false
+}
