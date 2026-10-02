@@ -18,6 +18,7 @@ class PhotoCourseTests(unittest.TestCase):
             import refine
             import retain
             import select_variant
+            import final_check
         finally:sys.path.pop(0)
         smoke=refine.module('photo_smoke_test',ROOT/'scripts/cad_recode/ccx_smoke.py')
         class USD:SYSTEM='supplied mesh buffers'
@@ -46,6 +47,10 @@ class PhotoCourseTests(unittest.TestCase):
             held_out={**example,'split':split}
             self.assertIs(select_variant.explicit_selection(held_out),held_out)
         self.assertEqual(len(select_variant.weighted([example,{**example,'split':'valid'}])),6)
+        sample=lambda ident,split,prompt: {'id':ident,'split':split,'domain':'python','messages':[{}, {'content':prompt}, {'content':'unused answer'}]}
+        audited=final_check.partition([sample('a','train','A'),sample('b','valid','B'),sample('c','test','A'),sample('d','test','B'),sample('e','test','C'),sample('f','test','C')])
+        self.assertEqual(audited['selected_ids'],['e'])
+        self.assertEqual(audited['excluded_ids'],['c','d','f'])
         self.assertTrue(all(not r.get('manufacturing_authorized',False) for r in targets if 'geometry_allowed' in r))
         self.assertTrue(any(r.get('manufacturing_authorized') for r in targets))
         for r in rows:

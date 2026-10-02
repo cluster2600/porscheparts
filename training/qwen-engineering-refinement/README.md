@@ -162,3 +162,31 @@ hypothesis about completion ambiguity, to be accepted only on measured results.
 /Users/maxime/.codex/worktrees/m64-local-architecture-qwen/3dprinting993/work/m64-qwen/venv/bin/python \
   training/qwen-engineering-refinement/select_variant.py --output "$PWD/work/qwen-engineering-005"
 ```
+
+An additional [prompt audit](final_check.py) found a partitioning defect in the
+photo course: 33 validation rows and 44 test rows repeat training prompts.
+The 3,224 training records contain 3,177 unique prompts. Earlier references to
+“distinct examples” count record IDs, and the original “fresh photo” label is
+invalid. Those frozen receipts remain intact for traceability. Their scores
+are development/retention evidence, not independent generalisation evidence.
+
+Before final predictions, register all original test rows whose complete prompt
+is absent from both training and validation, also removing duplicate test
+prompts. This yields 150 cases: Python 72, OpenFOAM 8, PicoGK 8, OpenUSD 14,
+engineering decisions 44 and CalculiX 4. Exclusion uses prompt identity alone,
+never model outcomes. The full unchanged validation gate must still pass;
+then compare parent 003/1200 and the selected 005 checkpoint on this registered
+subset, with at least 95% per domain and no previously passing test lost.
+The original recipes remain shared, so this is exact-prompt separation and
+not a test of independent task families or general automotive competence.
+
+```sh
+python3 training/qwen-engineering-refinement/final_check.py register
+/Users/maxime/.codex/worktrees/m64-local-architecture-qwen/3dprinting993/work/m64-qwen/venv/bin/python \
+  training/qwen-engineering-refinement/final_check.py evaluate
+```
+
+Run 005's frozen manifest also reports `maximum_sequence_tokens: 2`, mistakenly
+counting tokenizer dictionary keys. Its separate `sequence-length-check.json`
+counts actual input IDs for every training instance: maximum 632, all below
+1,024. This audit preserves the original manifest and records the correction.
