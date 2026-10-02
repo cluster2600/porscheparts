@@ -9,6 +9,71 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'twins/m64-cylinder-h
 
 @unittest.skipUnless(importlib.util.find_spec('numpy') and importlib.util.find_spec('scipy'), 'optional numpy/scipy runtime')
 class ProjectedSurfaceTopologyTests(unittest.TestCase):
+    def test_curve_subdivision_preserves_direction_and_requires_unique_parent(self):
+        import numpy as np
+        from trial_project_compound_surface import split_curve_lines, update_stored_curves
+        old = np.array([[2, 1], [2, 3]], dtype=np.uint64)
+        new, used = split_curve_lines(old, {(1, 2): 4})
+        np.testing.assert_array_equal(new, [[2, 4], [4, 1], [2, 3]])
+        np.testing.assert_array_equal(old, [[2, 1], [2, 3]])
+        self.assertEqual(used, {(1, 2)})
+        for lines, split in ((old, {(1, 2): 1}), (old.astype(float), {}),
+                             (np.array([[1, 2], [2, 1]]), {}),
+                             (np.array([[1, 2], [1, 4]]), {(1, 2): 4})):
+            with self.assertRaises(ValueError): split_curve_lines(lines, split)
+        class Mesh:
+            def getElements(self, dim, tag): return [1], [[1, 2]], [old.ravel()]
+            def removeElements(self, *args): raise AssertionError('must validate before mutation')
+        class Model:
+            mesh = Mesh()
+            def getEntities(self, dim): return [(1, 7)]
+        class API: model = Model()
+        with self.assertRaisesRegex(ValueError, 'every_split_requires_stored_curve_parent'):
+            update_stored_curves(API(), {(8, 9): 10})
+        from reconcile_projected_curves import recover_bisections
+        children = np.array([[4, 1], [2, 4], [5, 2], [3, 5]])
+        self.assertEqual(recover_bisections(old, children), {(1, 2):4, (2, 3):5})
+        for bad in (children[:-1], children[[0,0,2,3]], np.array([[1,4],[2,4],[2,4],[3,4]]),
+                    np.array([[1,3],[3,2],[2,5],[5,3]])):
+            with self.assertRaises(ValueError): recover_bisections(old, bad)
+        from reconcile_projected_curves import curve_parameters
+        class Curve:
+            def getClosestPoint(self,*args): return [0,0,0, 1,0,0], [999,999]
+            def getParametrization(self,*args): return [0,1]
+            def getParametrizationBounds(self,*args): return [0],[1]
+            def getValue(self,*args): return [0,0,0, 1,0,0]
+        api=API(); api.model=Curve()
+        parameters,distance,residual=curve_parameters(api,7,np.array([[0,0,0],[1,0,0]]))
+        np.testing.assert_array_equal(parameters,[0,1]); self.assertEqual(residual,0)
+        api.model.getValue=lambda *args: [0,0,0, 2,0,0]
+        _,distance,_=curve_parameters(api,7,np.array([[0,0,0],[1,0,0]]))
+        self.assertGreater(distance[1],1e-6)
+        api.model.getValue=lambda *args: [0,0,0, float('nan'),0,0]
+        with self.assertRaisesRegex(ValueError,'parameter_roundtrip_failed'):
+            curve_parameters(api,7,np.array([[0,0,0],[1,0,0]]))
+
+    @unittest.skipUnless(importlib.util.find_spec('gmsh'), 'optional Gmsh runtime')
+    def test_real_gmsh_curve_bisection_does_not_change_surface_or_coordinates(self):
+        import numpy as np
+        import gmsh
+        from trial_project_compound_surface import update_stored_curves
+        if gmsh.__version__ != '4.15.2': self.skipTest('qualified Gmsh 4.15.2 required for removeElements')
+        gmsh.initialize(['curve-test','-nopopup'],readConfigFiles=False,run=False)
+        gmsh.option.setNumber('General.Terminal',0)
+        try:
+            gmsh.model.add('fixture'); gmsh.model.addDiscreteEntity(1,7); gmsh.model.addDiscreteEntity(2,8,[7])
+            gmsh.model.mesh.addNodes(2,8,[1,2,3,4],[0,0,0, 2,0,0, 0,1,0, 1,0,0])
+            gmsh.model.mesh.addElementsByType(7,1,[1],[2,1])
+            gmsh.model.mesh.addElementsByType(8,2,[2,3],[1,4,3, 4,2,3])
+            before=gmsh.model.mesh.getNodes(); triangles=gmsh.model.mesh.getElements(2)
+            result=update_stored_curves(gmsh,{(1,2):4})
+            self.assertEqual(result,dict(rebuilt_curves=1,subdivided_stored_lines=1))
+            np.testing.assert_array_equal(gmsh.model.mesh.getElements(1)[2][0],[2,4,4,1])
+            for a,b in zip(before,gmsh.model.mesh.getNodes()): np.testing.assert_array_equal(a,b)
+            np.testing.assert_array_equal(gmsh.model.mesh.getElements(2)[2][0],triangles[2][0])
+            self.assertEqual(update_stored_curves(gmsh,{}),dict(rebuilt_curves=0,subdivided_stored_lines=0))
+        finally: gmsh.finalize()
+
     @unittest.skipUnless(os.environ.get('M64_CGAL_INTERSECTIONS'), 'optional compiled CGAL auditor')
     def test_intersection_selection_keeps_arrays_and_detects_crossing_and_coplanar_overlap(self):
         import numpy as np

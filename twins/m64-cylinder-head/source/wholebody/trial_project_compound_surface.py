@@ -151,6 +151,52 @@ def split_edges(triangles, edges, first_node, points):
     return np.asarray(refined, dtype=np.int64), np.asarray(parents)
 
 
+def split_curve_lines(lines, midpoints):
+    """Preserve directed 1D connectivity when its surface edge is bisected."""
+    lines = np.asarray(lines)
+    if (lines.ndim != 2 or lines.shape[1] != 2 or lines.dtype.kind not in 'iu'
+            or not len(lines) or len(lines) > 2_000_000 or lines.min() <= 0
+            or (lines[:, 0] == lines[:, 1]).any()
+            or len(np.unique(np.sort(lines, axis=1), axis=0)) != len(lines)):
+        raise ValueError('bounded_unique_positive_curve_lines_required')
+    for edge, midpoint in midpoints.items():
+        if (len(edge) != 2 or tuple(sorted(edge)) != edge or edge[0] <= 0 or edge[0] == edge[1]
+                or midpoint <= 0 or midpoint in edge
+                or any(not isinstance(v, (int, np.integer)) for v in (*edge, midpoint))):
+            raise ValueError('positive_distinct_edge_midpoint_tags_required')
+    result, consumed = [], set()
+    for a, b in lines:
+        key = tuple(sorted((int(a), int(b)))); midpoint = midpoints.get(key)
+        if midpoint is None: result.append((a, b))
+        else:
+            result.extend(((a, midpoint), (midpoint, b))); consumed.add(key)
+    result = np.asarray(result, dtype=lines.dtype)
+    if len(np.unique(np.sort(result, axis=1), axis=0)) != len(result):
+        raise ValueError('duplicate_child_curve_edges')
+    return result, consumed
+
+
+def update_stored_curves(gmsh, midpoints):
+    """Only change 1D elements, after every split has one existing curve owner."""
+    plans, consumed = [], set()
+    for _, tag in gmsh.model.getEntities(1):
+        types, _, nodes = gmsh.model.mesh.getElements(1, tag)
+        if not len(types): continue
+        if list(types) != [1]: raise ValueError('linear_stored_curve_elements_required')
+        lines = np.asarray(nodes[0]).reshape(-1, 2)
+        local = {edge:midpoints[edge] for row in lines
+                 if (edge := tuple(sorted(map(int,row)))) in midpoints}
+        updated, matched = split_curve_lines(lines, local)
+        if consumed & matched: raise ValueError('unique_curve_owner_for_split_required')
+        consumed |= matched
+        if matched: plans.append((tag, updated))
+    if consumed != set(midpoints): raise ValueError('every_split_requires_stored_curve_parent')
+    for tag, lines in plans:
+        gmsh.model.mesh.removeElements(1, tag)
+        gmsh.model.mesh.addElementsByType(tag, 1, [], lines.ravel())
+    return dict(rebuilt_curves=len(plans), subdivided_stored_lines=len(consumed))
+
+
 def witness_region(points, triangles, witnesses):
     from scipy.spatial import cKDTree
     witnesses = np.asarray(witnesses, dtype=float)
@@ -221,7 +267,8 @@ def refine_shared_boundaries(points, triangles, labels, faces, groups):
         maximum_midpoint_shift=float(np.linalg.norm(midpoints-points[selected].mean(axis=1), axis=1).max(initial=0)),
         neighbour_face_tags_private=sorted(neighbours),
         changed_face_tags_private=sorted(set(chosen) | neighbours),
-        original_nodes_unchanged=True, curve_element_mesh_updated=False)
+        original_nodes_unchanged=True, curve_element_mesh_updated=False,
+        split_edges_private=selected.tolist(), first_midpoint_index=len(points))
 
 
 def run(args):
@@ -386,6 +433,9 @@ def run(args):
             new_tags = np.arange(int(node_tags[-1])+1, int(node_tags[-1])+1+new_count, dtype=node_tags.dtype)
             gmsh.model.mesh.addNodes(2, tags[PATCHES['lower'][0]], new_tags, new_points[len(updated):].ravel())
             node_tags = np.concatenate([node_tags, new_tags])
+            splits = {tuple(sorted(map(int, node_tags[e]))): int(new_tags[i])
+                      for i, e in enumerate(shared['split_edges_private'])}
+            shared.update(update_stored_curves(gmsh, splits), curve_element_mesh_updated=True)
             reversed_count = int((np.einsum('ij,ij->i', normals(updated[local])[parents], normals(new_points[refined])) <= 0).sum())
             report['nonpositive_normal_dot_products'] += reversed_count
             next_element = int(gmsh.model.mesh.getMaxElementTag())+1

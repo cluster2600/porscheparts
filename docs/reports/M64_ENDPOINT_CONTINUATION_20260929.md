@@ -51,6 +51,14 @@ no point or triangle geometry changes. **2,565 stored 1D segments still need
 reconciliation** with the subdivided surface. There is no new accepted volume
 or printing release. The topology section at the end records the distinction.
 
+**Latest curve continuation, 2 October:** 2,240 stale exterior segments on
+26 curves are now reconciled with 4,480 existing surface edges. No surface
+point moves; the new MSH reads back exactly to the previously oriented array.
+The remaining 325 stored segments are six internal compound curves, not holes.
+Their native-face partition remains unresolved, and the volume is not replaced.
+The owner's perforated-fin paper is reviewed in the
+[air/oil research supplement](../research/M64_LPBF_OIL_REVIEW_20260912.md#2-october-supplement-the-owners-perforated-fin-paper).
+
 **Later recovery, 1 October:** both authorised Linux hosts are reachable again.
 The previously uncollected size-0.1 run completed but has **5 incompatible
 triangles / 976,144**; the curvature-64 run ended at its 1,800-second alarm.
@@ -875,5 +883,121 @@ Provenance:
 - CGAL source: `476e056e35bb98f32d9d26ef8ba81f9c90ac7464f4af8ad5d76b92fa44f2689f`.
 - Private sidecar image ID: `sha256:3800fddfa4765acaf47b875cec79167db28f905744f826fd8c6f659442de7f5d`.
 - Final CGAL receipt: `c4fd77b8e758adaa7dd7e4a5d619d477e52148fb242a2afab6087bdf272434ed`.
+
+## Exterior curve reconciliation, 2 October
+
+### Cause and correction
+
+The shared-boundary refinement subdivided both neighbouring triangles, but
+left their stored 1D line elements unchanged. The writer now consumes the
+explicit edge/midpoint mapping and splits each directed curve line in the same
+operation. Every selected parent must have exactly one curve owner before any
+line is changed. Ambiguous ownership, duplicate children or a missing parent
+abort the update. This fixes future exports at the source of the inconsistency.
+
+For the existing best surface, `reconcile_projected_curves.py` imports the
+unchanged BRep, rechecks its 4,918-face descriptor correspondence, and verifies
+curve endpoint and compound adjacency metadata. It recovers existing child
+edges only along the matching patch/neighbour boundary. Each old segment must
+be covered exactly by two children with one new midpoint. Evaluated native
+curve points must be within 1e-6 scan unit, inside the trimmed parameter range,
+with each midpoint parameter strictly between its parent endpoint parameters.
+This is a node/graph check, not a continuous chord-error certificate.
+
+| Check | Before | After |
+|---|---:|---:|
+| Exterior stored lines absent from surface edges | 2,240 | **0** |
+| Reconciled exterior curves | 0 | **26** |
+| Child lines replacing those parent lines | 0 | **4,480** |
+| Total stored line elements | 52,191 | **54,431** |
+| Internal compound lines absent from surface edges | 325 | **325, retained** |
+| Surface triangles | 992,724 | **992,724** |
+| Stored coordinates moved | — | **0** |
+
+The six remaining curves are 438, 439, 3209, 3210, 3214 and 3735. Their two
+native faces lie inside the same lower/upper compound patch. The surface
+crosses those native partitions and its inherited individual face labels are
+not a faithful reconstruction of the native trimmed faces. Relabelling the
+boundary as a compound can support a separately named faceted diagnostic, but
+cannot silently confer original face-specific boundary conditions. Conversely,
+a native-face-conforming volume requires reconstruction of those partitions.
+Neither route is declared complete here. No curve or unused node was deleted.
+
+### Parameter API failure found by an independent coordinate check
+
+The qualified Gmsh 4.15.2 runtime returned correct closest-point coordinates
+but inconsistent curve parameters in `getClosestPoint`: one witness gave the
+same parameter for three distinct points; another run returned zeros/tiny
+values. Evaluating those parameters missed the points by about 90 scan units.
+The first recovery attempt therefore failed before modifying a curve.
+
+The recovery now separately calls `getParametrization`, bounds the result to
+the native trim and evaluates it through `getValue`. Acceptance uses distance
+to that evaluated trimmed point, not the untrusted returned parameter or the
+infinite supporting curve. Distant adjacent-curve candidates are excluded, not
+projected into the geometry. Tests inject incorrect parameters and nonfinite
+evaluations. Relevant official API definitions are
+[Gmsh projection, parametrisation and evaluation](https://gmsh.info/doc/texinfo/gmsh.html#gmsh_002fmodel_002fgetClosestPoint).
+
+The accepted Mac run completes in **32.164 seconds**. Maximum accepted-node
+distance is **2.32953603e-8 scan unit**; maximum accepted projection/inversion
+round-trip discrepancy is **8.63065305e-8**. Neither is an error bound between
+sample nodes or proof of physical scale.
+
+The orientation export also retains the previous 17,284 triangle permutations.
+Gmsh's generic reversal produced equivalent cyclic triangle rotations, which
+correctly failed the stricter byte-order readback check. Rebuilding only those
+two face groups with the audited vertex order achieves exact point, triangle
+and element-ID readback. Earlier topology, CGAL and sampled-shape results are
+preserved by exact array identity; they are not presented as new solver runs.
+
+### Reproduction and provenance
+
+```sh
+python twins/m64-cylinder-head/source/wholebody/reconcile_projected_curves.py \
+  --body /private/original.brep --mesh /private/local-6/surface-private.msh \
+  --receipt /private/local-6/report.json \
+  --topology /private/connected-oriented-audit/report.json \
+  --arrays /private/connected-oriented-audit/surface-private.npz \
+  --output /private/fresh-reconciled
+```
+
+Private Mac output: `curve-reconcile-20261002.kzfVsZUb/exact-readback`.
+
+- Reconciled MSH: `3e217847ad1cdf2a819a3e97e0c62839da193e4386166d587bc14c6dd02f85c9`.
+- Receipt: `784d4951845adbb78b57324c3bd40c54d1c458b8870b672b1a03e743a0cdb198`.
+- Recovery source: `65fef9029eae5b3a04b791a55c2a8912f9c6e51ea2f300d238a4d269306a7a06`.
+- Shared refinement/writer: `1c369468059733d59394186d58462344efd57935b100fd6cde873c8f192df4cf`.
+
+Focused native Mac tests pass; the compiled CGAL fixture is separately run on
+Kali2. The initial Linux test launch exposed Gmsh 4.12.1 in the older sidecar,
+missing temporary Git index metadata, and group-writable temporary files.
+No qualified geometry code is run with 4.12.1; tests requiring 4.15.2 explicitly
+skip on that version. Temporary checkout permissions and Git metadata are
+corrected without changing account/service permissions or weakening guards.
+A run with an overly restrictive test umask also fails the fixture that expects
+an intentionally public directory; restoring the normal 022 test umask retains
+the original security assertion. These failed logs are preserved privately.
+
+The independent Kali1 recovery uses the same frozen sources, Gmsh 4.15.2 and
+OCP 7.9.3.1. It completes in **16.148 seconds** and produces the **identical MSH
+SHA-256** above. Its receipt hash is
+`2cf6339983596a2867d9043253fa4b43575fdb6f42aad8173532aeaf2126127f`.
+Sixteen focused native tests pass there (17 discovered, the optional CGAL test
+skipped); Kali2 separately executes the CGAL fixture and array tests (three
+passed, the 4.15.2-only Gmsh mutation fixture explicitly skipped). The first
+Kali1 staging missed an imported helper; the complete source bundle, not a
+changed test, fixes that execution environment.
+
+Final Kali2 `make check` exits **0**: **3,224 main tests**, **162 optional
+skips**, 155.579 seconds for the main suite, followed by all subsequent checks,
+including the 15 pinned F37 Docker tests. The exact edited source/test hashes
+match the local files. Log SHA-256:
+`0108479ba64691ffad76c3e853110013c4a589d5104d9372719bb952aa6c8570`.
+All numerical and verification jobs from this continuation have finished.
+
+**No volume update, CFD, thermal validation, print simulation, rental or
+manufacturing release follows from this curve correction.** The retained
+volume still contains 32 rejected tetrahedra.
 - Actual mesh image: `bd566dfcd16efd777d1ec41c1932cea50f013731cc175d794dbe3c2c836966ee`.
 - Full-suite log: `b04c52b8dbd9b9e51822d1b4cc9b9a647cbf7ba877e2190b88be29701a32155a`.
