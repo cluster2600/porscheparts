@@ -35,3 +35,55 @@ OpenUSD stores scene/asset metadata; solver meshes, boundary conditions,
 materials and loads require explicit transformations and checks. Simulation
 feedback returns to design. Printing additionally requires independently
 approved manufacturing and inspection evidence.
+
+The completed [002 results](results-002.json) reject all three checkpoints.
+Step 600 reaches Python 24/32, OpenFOAM 8/8, OpenUSD 38/38 and PicoGK 46/48
+with no selected-adapter validation regressions. Python misses the registered
+95% floor, so the 56 fresh tests remain unopened and the default is unchanged.
+
+The [verified photo curriculum](photo_course.py) adds 1,416 training examples:
+864 mechanical calculations, 48 USD mesh buffers, 480 engineering decisions
+and 24 complete CalculiX axial-bar decks. It merges the prior 1,808 training
+rows, giving 3,224 train and 266 validation cases. The 140 new fresh photo cases
+remain sealed until selection; the prior 56 fresh cases stay unused.
+
+The [photo runner](photo_run.py) continues checkpoint 002/600 for 1,200 iterations,
+batch 2, learning rate 0.00002, 16 layers, inherited rank 8/scale 20, seed 42,
+masked prompts and maximum 1,024 tokens. It freezes source/data/runtime hashes,
+checks every authored new training reference and evaluates checkpoints
+400/800/1200 against all six domains. Selection requires at least 95% in every
+domain and preserves the union of passing parent and retained-adapter cases.
+This union is a retention obligation, not a single-model baseline score.
+Passing validation opens only the new 140-case test; default replacement is
+never automatic. Source recipes are shared across sampled splits, so these
+scores cannot establish general CAD mastery.
+
+```sh
+/Users/maxime/.codex/worktrees/m64-local-architecture-qwen/3dprinting993/work/m64-qwen/venv/bin/python \
+  training/qwen-engineering-refinement/photo_run.py --output "$PWD/work/qwen-engineering-003"
+python3 -m unittest discover -s tests -p 'test_qwen*py' -v
+```
+
+Corrected photo lessons use [primary-source records](research.json). PicoGK
+constructors and boolean copies replace conceptual placeholder APIs. Converted
+mesh buffers replace generic OBJ layer references. PET drawings and shaders
+do not establish measured mounting interfaces or alloy qualification. Fin,
+intake and shroud claims require controlled thermal/flow comparisons; neither
+surface area nor titanium alone proves improvement. Printing requires process,
+support-removal, powder-exit, heat-treatment, machining and inspection evidence.
+Rigid-body scenes do not establish flexible crankshaft modes or fatigue.
+
+The [fin paper](https://doi.org/10.19206/CE-195440) reports a single-cylinder
+6063-T6 study, not Porsche material data. Its claimed 250 cm³ conflicts with
+50 mm bore and 70 mm stroke, which imply about 137.445 cm³. The curriculum
+teaches requesting clarification and checking supplied dimensions. It also
+separates a temperature difference from a measured heat rate. No article text,
+manual or third-party benchmark rows are training targets.
+
+CalculiX 2.23 is already installed on Kali2. Generated decks pass an independent
+restricted comparison before native execution, with no includes and a fixed
+solver executable hash. The analytical witness checks displacement FL/(EA),
+consistent N-mm-MPa units and complete constraints. This is an axial T3D2
+benchmark, not complex contact, fatigue, crankshaft FEA or part qualification.
+OpenFOAM scoring still covers bounded dictionary tasks; complete CHT cases,
+coupled energy balances and measured engine calibration remain to be added.

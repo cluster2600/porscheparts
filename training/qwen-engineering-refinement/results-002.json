@@ -1,0 +1,206 @@
+{
+  "run": "qwen-engineering-002",
+  "status": "complete_rejected",
+  "registered_commit": "794763b1f8fd07e33fb1318b41abd74f87666160",
+  "counts": {
+    "train": {
+      "python": 192,
+      "openfoam": 96,
+      "openusd": 816,
+      "picogk": 704
+    },
+    "valid": {
+      "python": 32,
+      "openfoam": 8,
+      "openusd": 38,
+      "picogk": 48
+    },
+    "test": {
+      "python": 32,
+      "openfoam": 8,
+      "openusd": 8,
+      "picogk": 8
+    }
+  },
+  "final_training_lines": [
+    "Iter 600: Val loss 0.006, Val took 45.215s",
+    "Iter 600: Train loss 0.037, Learning Rate 2.000e-05, It/sec 0.755, Tokens/sec 210.051, Trained Tokens 176173, Peak mem 5.501 GB",
+    "Iter 600: Saved adapter weights to /Users/maxime/.codex/worktrees/a6cf/3dprinting993/work/qwen-engineering-002/adapter/adapters.safetensors and /Users/maxime/.codex/worktrees/a6cf/3dprinting993/work/qwen-engineering-002/adapter/0000600_adapters.safetensors."
+  ],
+  "results": {
+    "selected_step": null,
+    "trials": {
+      "200": {
+        "screen_passed": 10,
+        "screen_total": 10,
+        "adapter_sha256": "6d6c79b7f36b4503a34968a10d8c664a97a556033f9ddd34a1d63218be80abf4",
+        "candidate_eligible_for_fresh_tests": false,
+        "regressions": [
+          "mechanics-valid-thermal_extension-0",
+          "mechanics-valid-thermal_extension-1",
+          "mechanics-valid-convection_rate-0",
+          "mechanics-valid-convection_rate-1"
+        ],
+        "new_validation": {
+          "python": {
+            "before": 4,
+            "after": 16,
+            "total": 32
+          },
+          "openfoam": {
+            "before": 0,
+            "after": 8,
+            "total": 8
+          },
+          "openusd": {
+            "before": 8,
+            "after": 8,
+            "total": 8
+          },
+          "picogk": {
+            "before": 0,
+            "after": 8,
+            "total": 8
+          }
+        },
+        "mesh_failure_gates_passed": true,
+        "per_domain": {
+          "python": {
+            "passed": 16,
+            "total": 32
+          },
+          "openfoam": {
+            "passed": 8,
+            "total": 8
+          },
+          "openusd": {
+            "passed": 37,
+            "total": 38
+          },
+          "picogk": {
+            "passed": 45,
+            "total": 48
+          }
+        },
+        "near_perfect_bounded_validation": false
+      },
+      "400": {
+        "screen_passed": 10,
+        "screen_total": 10,
+        "adapter_sha256": "2fcf56516bdb4c47d5b3a9e2ecd28221abfdecaaefeb2e2c8927f1f5f6a3bac1",
+        "candidate_eligible_for_fresh_tests": false,
+        "regressions": [
+          "usd2-valid-004",
+          "mechanics-valid-thermal_extension-0",
+          "mechanics-valid-thermal_extension-1",
+          "mechanics-valid-convection_rate-0",
+          "mechanics-valid-convection_rate-1"
+        ],
+        "new_validation": {
+          "python": {
+            "before": 4,
+            "after": 10,
+            "total": 32
+          },
+          "openfoam": {
+            "before": 0,
+            "after": 8,
+            "total": 8
+          },
+          "openusd": {
+            "before": 8,
+            "after": 8,
+            "total": 8
+          },
+          "picogk": {
+            "before": 0,
+            "after": 8,
+            "total": 8
+          }
+        },
+        "mesh_failure_gates_passed": true,
+        "per_domain": {
+          "python": {
+            "passed": 10,
+            "total": 32
+          },
+          "openfoam": {
+            "passed": 8,
+            "total": 8
+          },
+          "openusd": {
+            "passed": 37,
+            "total": 38
+          },
+          "picogk": {
+            "passed": 47,
+            "total": 48
+          }
+        },
+        "near_perfect_bounded_validation": false
+      },
+      "600": {
+        "screen_passed": 10,
+        "screen_total": 10,
+        "adapter_sha256": "e29c7c94276cd100f8f5763cbc2976a1cc054622150aefacc9a533c2fcf0c384",
+        "candidate_eligible_for_fresh_tests": false,
+        "regressions": [],
+        "new_validation": {
+          "python": {
+            "before": 4,
+            "after": 24,
+            "total": 32
+          },
+          "openfoam": {
+            "before": 0,
+            "after": 8,
+            "total": 8
+          },
+          "openusd": {
+            "before": 8,
+            "after": 8,
+            "total": 8
+          },
+          "picogk": {
+            "before": 0,
+            "after": 8,
+            "total": 8
+          }
+        },
+        "mesh_failure_gates_passed": true,
+        "per_domain": {
+          "python": {
+            "passed": 24,
+            "total": 32
+          },
+          "openfoam": {
+            "passed": 8,
+            "total": 8
+          },
+          "openusd": {
+            "passed": 38,
+            "total": 38
+          },
+          "picogk": {
+            "passed": 46,
+            "total": 48
+          }
+        },
+        "near_perfect_bounded_validation": false
+      }
+    },
+    "default_adapter_replaced": false,
+    "fresh_tests_opened": false,
+    "manufacturing_authorized": false
+  },
+  "artifact_sha256": {
+    "manifest.json": "8bac71cc05941790de4f3bb7c482328d4676441bb6a016dabe6b419858a3e2e1",
+    "results.json": "84d2ceae2457aecafff3e4392c293e1ec8deed9dfc7eb936579ac33a6a5ce632",
+    "training.log": "ff00e48e31a7a73200f81fd64c6ca1ec27b000728b1264667c6f15d9306ce583",
+    "validation-before.json": "e10485e0b670c14914c1f1373626b4e36aea0201053ac58acb47d942aa87af96",
+    "validation-200/scores-with-parameter-audit.json": "3b01bfa358ef4841dd880fbb35d9fe31f6984e49ee55500a2f18f92d08528075",
+    "validation-400/scores-with-parameter-audit.json": "dad523770e44915c0228ed702b03ff5d9922504191657cb963d0cea5f2e4bf4f",
+    "validation-600/scores-with-parameter-audit.json": "75b3b0264557ab2232e05d3382c2aa95cc61932d83662cd803ac662362e7efc5"
+  },
+  "limitations": "Shared formula/API recipes; old fresh tests remained unopened. Default adapter unchanged. No engineering release or manufacturing qualification."
+}

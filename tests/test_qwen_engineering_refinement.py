@@ -14,7 +14,8 @@ class RefinementTests(unittest.TestCase):
         sys.path.insert(0, str(ROOT/'training/qwen-engineering-20261002'))
         try:
             import curriculum
-            from run import choose, DOMAINS
+            registered = refine.module('qwen_registered_runner', ROOT/'training/qwen-engineering-20261002/run.py')
+            choose, DOMAINS = registered.choose, registered.DOMAINS
         finally: sys.path.pop(0)
         formulas = {row[0]: row for row in refine.FORMULAS}
         _, expression, values, _ = formulas['goodman_inverse_factor']
