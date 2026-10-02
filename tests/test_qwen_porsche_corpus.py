@@ -59,6 +59,8 @@ class CorpusTest(unittest.TestCase):
                 answer={'claims':[{'text':'Source reports a carrier','record_id':'pet-1'}], 'missing_information':[]}
                 self.assertTrue(ask.citations(answer,{'pet-1'}))
                 self.assertFalse(ask.citations(answer,{'different-source'}))
+                malformed={'claims':[{'text':'claim','record_id':{}}],'missing_information':[]}
+                self.assertFalse(ask.citations(malformed,{'pet-1'}))
                 self.assertFalse(ask.citations({'claims':'not a list','missing_information':[]},{'pet-1'}))
             finally:sys.path.pop(0)
 

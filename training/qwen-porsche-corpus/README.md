@@ -5,6 +5,18 @@ This adds actual catalogue records and manual tables to a private searchable
 corpus and a separate source-grounded fine-tuning experiment. It supplements
 the earlier lessons about evidence limits.
 
+The [first measured run](results-001.json) has completed 320 steps: validation
+10/40 → 40/40 and held-out extraction 13/40 → 40/40, without a lost pass.
+It reports 23,024 training tokens and 3.194 GB peak memory. The weights are at
+`work/qwen-porsche-corpus-001/run/adapter/`, SHA-256
+`89f03a87582fe287c6f718e7fef17745171441716ea4d99e83514a0cf12064ca`.
+These are narrow, source-conditioned extraction scores, not general document
+comprehension. The free-question carrier check produced malformed repetitive
+output and was rejected. The initial review question copied a placeholder
+citation; removing the example template yielded a valid citation but only a
+brief, incomplete answer. Neither check establishes reliable general answers.
+The adapter remains experimental and the broader requested scope is incomplete.
+
 The first index contains 14,101 records: 12,864 PET occurrences, 15 site-reviewed
 parts, 111 technical-data entries, 195 torque rows, 235 procedure-index entries,
 674 full PET text pages and seven full ICE-review text pages. The union has
@@ -83,6 +95,13 @@ and a procedure index, not full procedures. The identified Leffingwell title is
 [*Porsche Turbo: The Inside Story of Stuttgart's Turbocharged Road and Race Cars*](https://play.google.com/store/books/details/Randy_Leffingwell_Porsche_Turbo?id=x1rfCgAAQBAJ).
 The earlier photographed title was imprecise. No purchase or substitute book
 download has been made.
+
+Filename searches covered the local project/worktree trees, Documents,
+Downloads and the iCloud tree. They did not locate the expected workshop/book
+filenames. A local *964 Turbo engine and engine systems* overview by Adrian
+Streather was identified and kept separate: it is neither the 993 workshop
+manual nor Leffingwell's book. The owner has been asked for the originals'
+exact directory while work on available data proceeds.
 
 The full [PET PDF](https://a.storyblok.com/f/332100/f97ce31af4/kat017-e-911-98-katalog.pdf)
 and [ICE review](https://journal.cbiore.id/index.php/jese/article/download/5/5/14)
