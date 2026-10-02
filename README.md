@@ -255,7 +255,7 @@ flowchart LR
 
 | part | candidate material | process | status |
 |---|---|---|---|
-| [Turbo engine carrier (Motortraeger)](docs/pieces/993-eng-carrier-0001.md) | unknown grade | CNC | **safety-critical** |
+| [Turbo engine carrier (Motortraeger)](docs/pieces/993-eng-carrier-0001.md) | unknown | undecided | **safety-critical** |
 | [993 timing chain case and its lids](docs/pieces/993-eng-chain-case-0001.md) | unidentified | undecided | **prohibited pending engineering** |
 | [Left chain case lid 964 105 107 01](docs/pieces/993-eng-chain-case-lid-ti-f0-0001.md) | Ti-6Al-4V Grade 5, plate — deliberate c… | CNC | functional |
 | [993/993 Turbo connecting rod](docs/pieces/993-eng-connecting-rod-ti64-f0-0001.md) | Ti-6Al-4V Grade 5 LPBF for screening | LPBF | **prohibited pending engineering** |
