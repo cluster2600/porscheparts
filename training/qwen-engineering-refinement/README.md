@@ -6,6 +6,10 @@ case lost. It remains **experimental and not qualified**: PicoGK is 7/8 on
 the final subset, below the unchanged 95% per-domain floor. No default adapter
 is replaced and no physical part is qualified.
 
+The [literature addendum](literature-addendum-20261002.md) records subsequent
+full-text reading of the jet-engine paper and ICE review, their limits and
+remaining access gaps. This research has not triggered another training run.
+
 Owner-requested continuation toward high measured accuracy, 2 October 2026.
 This builds on the [first four-domain pilot](../qwen-engineering-20261002/README.md)
 without changing its frozen files, serving defaults or previously selected
