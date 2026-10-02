@@ -106,8 +106,8 @@ This concept uses the completed checkpoint, not an unselected replacement.
 The [FVD product listing](https://www.fvd.net/en-us/shop/engine-suspension-bracket-carrier-993-turbo-99311502153~p248965)
 declares 600 × 50 × 50 mm and 1.96 kg. These are vendor claims, not measurements.
 The existing [catalogue record](../../../../catalog/parts/993-eng-carrier-0001.json)
-identifies the Turbo application and documents the observed one-piece blade,
-two lightening apertures and end bosses. Photographs were not imported or used
+identifies the Turbo application and documents the observed blade, two round
+openings and end features. Photographs were not imported or used
 as training data; their reuse rights are not established.
 
 | Parameter | Concept value | Authority |
@@ -142,11 +142,17 @@ reopened with Pixar USD and its mesh arrays compared with the STL source mesh.
 Self-intersections, CAD fidelity, fit, structural strength, fatigue, printability
 and SimReady qualification were not established.
 
-Repository verification: all 3,263 main-suite tests passed, with 152 optional
-runtime skips. Full `make check` then stopped at the existing Docker-based
+Initial Mac verification ran 3,263 main-suite tests successfully, with 152
+optional runtime skips. Full `make check` then stopped at the existing Docker-based
 `917-manufacturing-f37-lpbf-audit-check` because the Docker daemon was unavailable.
 The focused concept test, catalogue validation, generated pages and strict
-documentation links passed. This is not a fully passing merge check.
+documentation links passed.
+
+On 2026-10-02, full `make check` passed on Kali2's native ext4 checkout of
+commit `2bcca62`: 3,270 main-suite tests ran with 144 optional runtime skips,
+the pinned Docker F37 audit ran all 15 tests without skips, and all subsequent
+checks passed. Python user-site packages were excluded from that run. These
+repository checks do not establish carrier fit, strength or fatigue life.
 
 The raw STL contains degenerate facets and coincident vertices. The exporter
 welds to three decimal places in millimeters and removes degenerate/duplicate
