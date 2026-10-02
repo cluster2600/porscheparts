@@ -1,5 +1,9 @@
 # Digital twin software stack
 
+For the owner's September 28 tool photographs, see the
+[Mac/Linux selection and executed acceptance trials](reports/M64_PHOTO_TOOL_SELECTION_20260928.md).
+That addendum does not upgrade the historical execution statuses below.
+
 This page describes the stack selected as of **September 8, 2026**. It
 separates the tools actually executed from the components that are only
 defined, evaluated or still blocked. The versions specific to a piece of

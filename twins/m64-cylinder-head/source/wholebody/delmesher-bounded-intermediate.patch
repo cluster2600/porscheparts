@@ -1,0 +1,108 @@
+diff --git a/include/tetmesh.h b/include/tetmesh.h
+index 5c0cff0..3737a96 100644
+--- a/include/tetmesh.h
++++ b/include/tetmesh.h
+@@ -2363,14 +2363,16 @@ public:
+ 		FILE* fp;
+ 		if ((fp = fopen(filename, "w")) == NULL) return false;
+ 
+-		fprintf(fp, "%zu vertices\n%zu tets\n", V.size(), T.size());
++		size_t inside = 0;
++		for (Tetrahedron* t : T) if (t->is_internal) ++inside;
++		fprintf(fp, "%zu vertices\n%zu inner tets\n%zu outer tets\n", V.size(), inside, T.size()-inside);
+ 		double x, y, z;
+ 		for (TetVertex* v : V) {
+ 			const pointType* p = v->getPoint();
+ 			p->getApproxXYZCoordinates(x, y, z);
+-			fprintf(fp, "%f %f %f\n", x, y, z);
++			fprintf(fp, "%.17g %.17g %.17g\n", x, y, z);
+ 		}
+-		for (Tetrahedron* t : T) {
++		for (int group = 0; group < 2; ++group) for (Tetrahedron* t : T) if (t->is_internal == (group == 0)) {
+ 			size_t i1 = (size_t)t->v0()->getInfo();
+ 			size_t i2 = (size_t)t->v1()->getInfo();
+ 			size_t i3 = (size_t)t->v2()->getInfo();
+diff --git a/src/delaunay.hpp b/src/delaunay.hpp
+index ca6ae43..729767a 100644
+--- a/src/delaunay.hpp
++++ b/src/delaunay.hpp
+@@ -94,6 +94,7 @@ void TetMesh::tetrahedrize() {
+ bool TetMesh::saveTET(const char* filename, bool inner_only) const
+ {
+     ofstream f(filename);
++    f << std::setprecision(std::numeric_limits<double>::max_digits10);
+ 
+     if (!f) {
+         std::cerr << "\nTetMesh::saveTET: Can't open file for writing.\n";
+diff --git a/src/main.cpp b/src/main.cpp
+index 9f5d8ea..3ccb1ff 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -12,6 +12,10 @@
+ 
+ #include <iostream>
+ #include <fstream>
++#include <cerrno>
++#include <cmath>
++#include <cstdlib>
++#include <iomanip>
+ #include "interfaces.h"
+ 
+ using namespace std;
+@@ -113,6 +117,7 @@ int main(int argc, char* argv[])
+ 	std::string options = "";
+ 	uint32_t min_dist_exp = UINT32_MAX;
+ 	uint32_t max_vrts = UINT32_MAX;
++	double requested_epsilon = std::numeric_limits<double>::quiet_NaN();
+ 	char out4CDT_name[2048] = "";
+ 	char filename[2048] = "";
+ 
+@@ -126,6 +131,18 @@ int main(int argc, char* argv[])
+ 
+ 	for (int i = 1; i < argc; i++)
+ 		if (argv[i][0] == '-') {
++			if (strcmp(argv[i], "-E") == 0) {
++				if (++i >= argc || std::isfinite(requested_epsilon)) {
++					std::cerr << "one_finite_positive_epsilon_required\n"; return 2;
++				}
++				char* end = nullptr;
++				errno = 0;
++				requested_epsilon = std::strtod(argv[i], &end);
++				if (errno || end == argv[i] || *end || !std::isfinite(requested_epsilon) || requested_epsilon <= 0) {
++					std::cerr << "one_finite_positive_epsilon_required\n"; return 2;
++				}
++				continue;
++			}
+ 			if (argv[i][1] == 'e') { min_dist_exp = atoi(argv[++i]); continue; }
+ 			if (argv[i][1] == 'm') { max_vrts = atoi(argv[++i]); continue; }
+ 			for (int j = 1; j < strlen(argv[i]); j++) options += argv[i][j];
+@@ -136,6 +153,9 @@ int main(int argc, char* argv[])
+ 
+ 	if(options.find('b') != string::npos) strcpy(out4CDT_name, filename);
+ 	bool enriched_CDT =   		(options.find('a') == string::npos);
++	if (!enriched_CDT && !std::isfinite(requested_epsilon)) {
++		std::cerr << "intermediate_output_requires_explicit_E_bound\n"; return 2;
++	}
+ 	bool comp_inLFS = 	  		(options.find('c') != string::npos);
+ 	bool remove_slivers = 		(options.find('d') != string::npos);
+ 	bool histo = 		  		(options.find('h') != string::npos);
+@@ -152,7 +172,7 @@ int main(int argc, char* argv[])
+ 	double epsilon; // Chamfering distance; depends on bounding box diagonal.
+ 	bool cham_simpl = true; // DEFAULT: true. Try to remove uncessary edges 
+ 							// while keeping non-acute angles.
+-	bool cham_safe = false; // DEFAULT: false. If true uses "safe" chamfering
++	bool cham_safe = options.find('S') != string::npos; // Explicit safe-mode experiment.
+ 						   // algorithm (with theoretical guarantees of removig
+ 						   // all acute angles, but creates shorter edges).
+ 	double optim_ratio = 2.0; // DEFAULT: 2.0. Affects Delaunay Refinement 
+@@ -207,7 +227,9 @@ int main(int argc, char* argv[])
+ 
+ 	// Chamfering of the input PLC (epsilon controls the chamfering distance)
+ 	// epsilon = plc.bbDiag() / 1000.0;	
+-	epsilon = DBL_MAX; // use the as great as possible epsilon
++	epsilon = std::isfinite(requested_epsilon) ? requested_epsilon : DBL_MAX;
++	std::cout << std::setprecision(17) << "M64_CHAMFER_EPSILON=" << epsilon
++	          << " SAFE_MODE=" << cham_safe << " ENRICHED_CDT=" << enriched_CDT << "\n";
+ 	chamfering_interface cham(cham_safe, cham_simpl, cham_out, empty_plc);
+ 	cham.perform_chamfering(plc, epsilon, toll, verbose_mode);
+ 	if (log_mode) log_chamferPLC_stats(cham, plc);

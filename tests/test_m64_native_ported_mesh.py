@@ -3,6 +3,7 @@ import copy
 import importlib.util
 import math
 from pathlib import Path
+import tempfile
 import unittest
 
 
@@ -161,6 +162,43 @@ class RereadQualityGateTests(unittest.TestCase):
 
 
 class VolumeAlgorithmAndSurfaceSignatureTests(unittest.TestCase):
+    @unittest.skipUnless(importlib.util.find_spec('gmsh'), 'optional native Gmsh runtime')
+    def test_native_skin_survives_same_session_volume_and_binary_readback(self):
+        import gmsh
+        for algorithm, extension, optimize in ((1, 1, 1), (10, 0, 0), (10, 1, 0), (10, 1, 1)):
+            with self.subTest(algorithm=algorithm, extension=extension, optimize=optimize):
+                gmsh.initialize(['same-skin-witness', '-nopopup'], readConfigFiles=False, run=False)
+                gmsh.option.setNumber('General.Terminal', 0)
+                try:
+                    gmsh.model.occ.addBox(0., 0., 0., 1., 1., 1.)
+                    gmsh.model.occ.synchronize()
+                    gmsh.model.mesh.generate(2)
+                    expected = MODULE.surface_mesh_snapshot(gmsh)
+                    gmsh.option.setNumber('Mesh.Algorithm3D', algorithm)
+                    gmsh.option.setNumber('Mesh.MeshSizeExtendFromBoundary', extension)
+                    gmsh.option.setNumber('Mesh.Optimize', optimize)
+                    gmsh.model.mesh.generate(3)
+                    self.assertEqual(MODULE.surface_mesh_snapshot(gmsh), expected)
+                    self.assertGreater(len(gmsh.model.mesh.getElements(3)[1][0]), 0)
+                    gmsh.model.mesh.clear(gmsh.model.getEntities(3))
+                    self.assertEqual(len(gmsh.model.mesh.getElements(3)[0]), 0)
+                    self.assertEqual(MODULE.surface_mesh_snapshot(gmsh), expected)
+                    gmsh.model.mesh.generate(3)
+                    self.assertEqual(MODULE.surface_mesh_snapshot(gmsh), expected)
+                    self.assertGreater(len(gmsh.model.mesh.getElements(3)[1][0]), 0)
+                    with tempfile.TemporaryDirectory() as directory:
+                        mesh = str(Path(directory) / 'cube.msh')
+                        gmsh.option.setNumber('Mesh.Binary', 1)
+                        gmsh.option.setNumber('Mesh.SaveAll', 1)
+                        gmsh.write(mesh)
+                        gmsh.clear()
+                        gmsh.open(mesh)
+                        self.assertEqual(MODULE.surface_mesh_snapshot(gmsh), expected)
+                    gmsh.model.mesh.reverse([(2, expected[0]['gmsh_face_tag'])])
+                    self.assertNotEqual(MODULE.surface_mesh_snapshot(gmsh), expected)
+                finally:
+                    gmsh.finalize()
+
     def test_historical_algorithm_is_default_and_hxt_is_explicit(self):
         parser=MODULE.argument_parser()
         base=['--mode','mesh','--input','body.brep','--sha256','a'*64,'--output','out']
