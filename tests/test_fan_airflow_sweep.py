@@ -13,6 +13,22 @@ SOURCE = Path(__file__).resolve().parents[1] / "twins/993-engine-cooling-fan-sys
 
 
 class FanSweepTests(unittest.TestCase):
+    def test_velocity_plot_rejects_clipped_or_invalid_colour_scales(self):
+        require_modules("numpy", "matplotlib", "torch", "physicsnemo")
+        with tempfile.TemporaryDirectory() as folder:
+            vtk = Path(folder) / "plane.vtk"
+            vtk.write_text("# vtk DataFile Version 2.0\nplane\nASCII\nDATASET POLYDATA\n"
+                "POINTS 3 float\n0 0 0 1 0 0 0 0 1\nPOLYGONS 1 4\n3 0 1 2\n"
+                "CELL_DATA 1\nFIELD attributes 2\np 1 1 float\n0\nU 3 1 float\n0 0 2\n")
+            command = [sys.executable, str(SOURCE / "plot_fan_velocity.py"), str(vtk)]
+            result = subprocess.run(command + ["--speed-max", "3"], capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertTrue(vtk.with_suffix(".png").is_file())
+            for maximum in ("1", "nan", "inf", "0"):
+                result = subprocess.run(command + ["--speed-max", maximum], capture_output=True, text=True)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn("Colour maximum must", result.stderr)
+
     def test_failed_extended_mesh_never_starts_solver(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)

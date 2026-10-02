@@ -18,6 +18,25 @@ The PMB alternator, its supports, shaft and installed cooling shroud are absent.
 This study cannot establish airflow delivered to the engine or authorize a part
 for manufacture or installation.
 
+The [PMB 240 A listing](https://pmbperformance.com/products/high-output-240a-alternator-for-porsche-964-and-993-90-99),
+rechecked on 2 October, identifies a Classic Retrofit unit with a custom
+large-case Denso housing. It recommends a serpentine belt and tensioner for
+the 240 A version. The [WOSP manufacturer flyer](https://www.wosperformance.co.uk/clientarea/files/downloads/Porsche%20911%20WOSP%20Alternator%20Flyer.pdf)
+lists LMA339 as a 964/993 240 A alternator. Neither source supplies a dimensioned
+housing or mounting drawing; the flyer alone does not establish that SKU as
+the exact PMB item. Dimensions from the photographed 997 alternator must not
+be substituted for the selected 964/993 unit.
+
+WOSP's [LMA339/LMA498 spacer instructions](https://www.wosperformance.co.uk/ClientArea/files/Downloads/LMA339%20LMA498%20Spacer%20Instructions.pdf)
+do provide axial spacer selections: 7 mm for the RS arrangement, 17 + 7 = 24 mm
+for the stock dual-pulley hub, and 17 + 7 + 2 = 26 mm for an early 964 Turbo
+housing. A separate bearing-side spacer must remain in place; its thickness is
+not given. These stacks are not dimensions of the alternator body or a verified
+shaft datum for this project. [Classic Retrofit's installation note](https://classic-retrofit.com/forum/index.php?/topic/2521-993-alternator-install/)
+explains the inset-bearing compensation and specifies retaining the rear cone
+because it distributes the alternator nut loads. The installed model must account
+for these parts after confirming the actual alternator and pulley arrangement.
+
 ## Surface correction
 
 The earlier heavily decimated triangulation contained narrow triangles.
@@ -148,14 +167,28 @@ The generator now applies this ambient-reservoir boundary to future pilots and
 records both net and absolute opening fluxes. Domain-length sensitivity is still
 required before treating the rig as boundary-independent.
 
+After the convection and boundary fixes, convergence remained slow. Independent
+control/candidate checkpoints at iterations 800/1000 were preserved before a
+more conservative SIMPLEC retry, requested at observed iterations 812/1083.
+Pressure relaxation is 1 while velocity and both turbulence equations retain
+0.5 relaxation. The previous 0.7 equation relaxation is not reused. Physical
+boundary conditions, spatial schemes, linear tolerances and acceptance limits
+are unchanged; the algorithm request and dictionary hashes are recorded.
+
 ## Verification
 
-The repository's Python suite completed: 3,260 tests, 152 skipped, no failures.
+The repository's Python suite completed again after the outlet correction:
+3,262 tests, 153 skipped, no failures. The new common-colour-scale rendering
+check was separately run in the PhysicsNeMo environment and passed, including
+rejection of clipped, zero and nonfinite ranges.
 The additional imported-mesh rejection test also passed. `make check` reached
 the Docker-only LPBF audit and stopped because this Mac has no running Docker
 daemon; the complete target is therefore not green.
-The pushed mesh-recovery commit separately passed the repository's GitHub
-[check workflow](https://github.com/cluster2600/porscheparts/actions/runs/37011192117/job/110851072384).
+The pushed correction separately passed the repository's GitHub
+[check workflow](https://github.com/cluster2600/porscheparts/actions/runs/37021055598/job/110883928616).
+The pressure-integral audit now accepts an explicit CUDA device. Its analytical
+triangle self-check passed both on the Mac CPU and on the Vast GPU. This checks
+the audit implementation; it is not an aerodynamic validation result.
 
 Primary implementation references: [PyMeshLab filters](https://pymeshlab.readthedocs.io/en/latest/filter_list.html),
 [Gmsh reference manual](https://gmsh.info/doc/texinfo/gmsh.html).
