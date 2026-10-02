@@ -1,0 +1,341 @@
+{
+  "input_sha256": "90904582429b1a388b7831fd731bb9e353e00c62e4e6ed30e0be3b7cba538e19",
+  "method": "localized_projected_pcurve_with_constrained_endpoint_derivatives",
+  "nodes": 129,
+  "before": {
+    "modes": [
+      "CurveOnSurfaceMode"
+    ],
+    "BRep_valid": true,
+    "solids": 1,
+    "faces": 27,
+    "edges": 64,
+    "volume": 10445.637182891393,
+    "has_faulty": true,
+    "has_errors": false,
+    "has_warnings": false,
+    "faults": [
+      {
+        "status": "BOPAlgo_CheckStatus.BOPAlgo_InvalidCurveOnSurface",
+        "max_distance_1": 1.4389485978358216e-07,
+        "max_parameter_1": 0.020876943080876464,
+        "faulty_shapes_1": [
+          {
+            "kind": "TopAbs_ShapeEnum.TopAbs_EDGE",
+            "ids": {
+              "face": 0,
+              "edge": 53,
+              "vertex": 0
+            },
+            "bbox": [
+              39.8692485144263,
+              -78.6676127778407,
+              37.1213202215893,
+              40.1213204655307,
+              -78.3173783905193,
+              37.373392172692704
+            ],
+            "tolerance": 1.2197069998144916e-07,
+            "same_parameter": true,
+            "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+            "degenerated": false,
+            "endpoints": [
+              [
+                40.12132034356,
+                -78.31737851249,
+                37.12132034356
+              ],
+              [
+                39.869248636397,
+                -78.66761265587,
+                37.373392050722
+              ]
+            ],
+            "adjacent_faces": [
+              {
+                "id": 19,
+                "surface_type": "GeomAbs_SurfaceType.GeomAbs_Plane",
+                "tolerance": 1e-07
+              },
+              {
+                "id": 26,
+                "surface_type": "GeomAbs_SurfaceType.GeomAbs_BSplineSurface",
+                "tolerance": 1e-07
+              }
+            ]
+          },
+          {
+            "kind": "TopAbs_ShapeEnum.TopAbs_FACE",
+            "ids": {
+              "face": 26,
+              "edge": 0,
+              "vertex": 0
+            },
+            "bbox": [
+              37.653989131860996,
+              -79.1211768357,
+              35.7499999,
+              45.750433727622,
+              -75.29223920219,
+              38.2500001
+            ]
+          }
+        ],
+        "faulty_shapes_2": []
+      }
+    ],
+    "elapsed_seconds": 0.08612012499997945,
+    "passed": false
+  },
+  "changes": [
+    {
+      "edge": 53,
+      "face": 26,
+      "sampled_projection_floor_not_continuous_bound": 7.978475778497094e-09,
+      "edge_tolerance_before": 1.2197069998144916e-07,
+      "edge_tolerance_after": 1.2197069998144916e-07
+    }
+  ],
+  "all_tolerances_unchanged": true,
+  "serialized_3D_geometry_unchanged": true,
+  "after_native": {
+    "modes": [
+      "CurveOnSurfaceMode"
+    ],
+    "BRep_valid": true,
+    "solids": 1,
+    "faces": 27,
+    "edges": 64,
+    "volume": 10445.637183257058,
+    "has_faulty": false,
+    "has_errors": false,
+    "has_warnings": false,
+    "faults": [],
+    "elapsed_seconds": 0.12991375000001426,
+    "passed": true
+  },
+  "after_STEP": {
+    "modes": [
+      "CurveOnSurfaceMode"
+    ],
+    "BRep_valid": true,
+    "solids": 1,
+    "faces": 27,
+    "edges": 64,
+    "volume": 10445.637178977562,
+    "has_faulty": true,
+    "has_errors": false,
+    "has_warnings": false,
+    "faults": [
+      {
+        "status": "BOPAlgo_CheckStatus.BOPAlgo_InvalidCurveOnSurface",
+        "max_distance_1": 1.8100988617257602e-07,
+        "max_parameter_1": 0.00958927236727428,
+        "faulty_shapes_1": [
+          {
+            "kind": "TopAbs_ShapeEnum.TopAbs_EDGE",
+            "ids": {
+              "face": 0,
+              "edge": 26,
+              "vertex": 0
+            },
+            "bbox": [
+              -37.00735941288,
+              -79.37621693218,
+              37.12132024356,
+              -35.87867955644,
+              -78.71614182029,
+              38.2500001
+            ],
+            "tolerance": 1e-07,
+            "same_parameter": true,
+            "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+            "degenerated": false,
+            "endpoints": [
+              [
+                -35.87867965644,
+                -78.71614192029,
+                37.12132034356
+              ],
+              [
+                -37.00735931288,
+                -79.37621683218,
+                38.25
+              ]
+            ],
+            "adjacent_faces": [
+              {
+                "id": 10,
+                "surface_type": "GeomAbs_SurfaceType.GeomAbs_BSplineSurface",
+                "tolerance": 1e-07
+              },
+              {
+                "id": 11,
+                "surface_type": "GeomAbs_SurfaceType.GeomAbs_Plane",
+                "tolerance": 1e-07
+              }
+            ]
+          },
+          {
+            "kind": "TopAbs_ShapeEnum.TopAbs_FACE",
+            "ids": {
+              "face": 10,
+              "edge": 0,
+              "vertex": 0
+            },
+            "bbox": [
+              -40.74294409094,
+              -79.44286948598999,
+              35.7499999,
+              -35.257414859869996,
+              -74.41827839083001,
+              38.2500001
+            ]
+          }
+        ],
+        "faulty_shapes_2": []
+      },
+      {
+        "status": "BOPAlgo_CheckStatus.BOPAlgo_InvalidCurveOnSurface",
+        "max_distance_1": 2.6592454303135762e-05,
+        "max_parameter_1": 0.9916236712090855,
+        "faulty_shapes_1": [
+          {
+            "kind": "TopAbs_ShapeEnum.TopAbs_EDGE",
+            "ids": {
+              "face": 0,
+              "edge": 48,
+              "vertex": 0
+            },
+            "bbox": [
+              35.095262390344,
+              -78.69314217632,
+              35.7499999,
+              35.87867975644,
+              -78.09572487382,
+              37.12132044356
+            ],
+            "tolerance": 1e-07,
+            "same_parameter": true,
+            "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+            "degenerated": false,
+            "endpoints": [
+              [
+                35.095262490344,
+                -78.09572497382,
+                35.75
+              ],
+              [
+                35.87867965644,
+                -78.69314207632,
+                37.12132034356
+              ]
+            ],
+            "adjacent_faces": [
+              {
+                "id": 17,
+                "surface_type": "GeomAbs_SurfaceType.GeomAbs_Cylinder",
+                "tolerance": 1e-07
+              },
+              {
+                "id": 20,
+                "surface_type": "GeomAbs_SurfaceType.GeomAbs_BSplineSurface",
+                "tolerance": 1e-07
+              }
+            ]
+          },
+          {
+            "kind": "TopAbs_ShapeEnum.TopAbs_FACE",
+            "ids": {
+              "face": 20,
+              "edge": 0,
+              "vertex": 0
+            },
+            "bbox": [
+              34.06229792611,
+              -79.14166983327,
+              35.7499999,
+              41.06545639484,
+              -77.82765631058001,
+              38.2500001
+            ]
+          }
+        ],
+        "faulty_shapes_2": []
+      },
+      {
+        "status": "BOPAlgo_CheckStatus.BOPAlgo_InvalidCurveOnSurface",
+        "max_distance_1": 1.419946071325583e-05,
+        "max_parameter_1": 0.9943349308543276,
+        "faulty_shapes_1": [
+          {
+            "kind": "TopAbs_ShapeEnum.TopAbs_EDGE",
+            "ids": {
+              "face": 0,
+              "edge": 41,
+              "vertex": 0
+            },
+            "bbox": [
+              40.12132024356,
+              -78.31737861248999,
+              35.7499999,
+              40.904737609656,
+              -75.51199176644,
+              37.12132044356
+            ],
+            "tolerance": 1e-07,
+            "same_parameter": true,
+            "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+            "degenerated": false,
+            "endpoints": [
+              [
+                40.904737509656,
+                -75.51199186644,
+                35.75
+              ],
+              [
+                40.12132034356,
+                -78.31737851249,
+                37.12132034356
+              ]
+            ],
+            "adjacent_faces": [
+              {
+                "id": 17,
+                "surface_type": "GeomAbs_SurfaceType.GeomAbs_Cylinder",
+                "tolerance": 1e-07
+              },
+              {
+                "id": 26,
+                "surface_type": "GeomAbs_SurfaceType.GeomAbs_BSplineSurface",
+                "tolerance": 1e-07
+              }
+            ]
+          },
+          {
+            "kind": "TopAbs_ShapeEnum.TopAbs_FACE",
+            "ids": {
+              "face": 26,
+              "edge": 0,
+              "vertex": 0
+            },
+            "bbox": [
+              37.653989131860996,
+              -79.1211768357,
+              35.7499999,
+              45.750433727622,
+              -75.29223920219,
+              38.2500001
+            ]
+          }
+        ],
+        "faulty_shapes_2": []
+      }
+    ],
+    "elapsed_seconds": 0.23417391700058943,
+    "passed": false
+  },
+  "relative_volume_delta": 4.0969222622578845e-10,
+  "input_unchanged": true,
+  "accepted": false
+}

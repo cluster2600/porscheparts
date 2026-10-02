@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0.0",
+  "status": "geometric_concept_not_engine_ready",
+  "length_unit": "mm_under_unverified_1_scan_unit_per_mm_hypothesis",
+  "head": {
+    "source": "private-inputs/four-seat-candidate.step",
+    "source_sha256": "92640fd2ce03b1ffedf35b47063c50d150057ff2fdbac181b640236a0b5f596f",
+    "assembly": "private-inputs/four-seat-candidate-assembly-closed.step",
+    "assembly_sha256": "33a420f9413e55d21417d71840fbf977adafab897d41a22798922cdb4c15d231",
+    "source_body_index": 0,
+    "gallery_radius": 3.0,
+    "gallery_half_spacing": 38.0,
+    "gallery_start_y": -104.0,
+    "gallery_turn_y": 35.0,
+    "gallery_z": 35.0,
+    "maximum_removed_volume_fraction_screen": 0.03,
+    "assumptions": [
+      "Le corps dérive du scan 935; sa variante exacte et ses interfaces 993 ne sont pas confirmées.",
+      "Les sièges et guides sont ceux du candidat privé existant, sans nouvelle qualification.",
+      "La galerie est un choix neuf de refroidissement; aucune galerie OEM cachée n'est reconstituée.",
+      "Deux ouvertures brutes sont prévues; raccords, étanchéité, pompe et retours moteur restent à définir.",
+      "La chambre finale, les conduits complets, la bougie, le piston et les porte-arbres ne sont pas ajoutés."
+    ]
+  },
+  "coupon": {
+    "length": 100.0,
+    "width": 50.0,
+    "height": 24.0,
+    "gallery_radius": 3.0,
+    "gallery_half_spacing": 12.0,
+    "gallery_turn_x": 30.0,
+    "gallery_z": 11.0,
+    "minimum_nominal_ligament_screen": 5.0,
+    "purpose": "Coupon original de nettoyage et dépoudrage, indépendant des interfaces Porsche."
+  },
+  "valve_stand": {
+    "length": 64.0,
+    "width": 42.0,
+    "base_height": 5.0,
+    "boss_radius": 12.0,
+    "boss_height": 19.0,
+    "stem_reference_diameter": 8.0,
+    "diametral_design_clearance": 0.6,
+    "source_id": "SRC-PARTWORKS-993-EXHAUST-VALVE-DIMENSIONS",
+    "purpose": "Support de présentation hors moteur; jeu de conception non qualifié pour montage."
+  },
+  "hydraulic_screen": {
+    "density_kg_m3_hypothesis": 850.0,
+    "dynamic_viscosity_Pa_s_hypotheses": [
+      0.006,
+      0.012,
+      0.03
+    ],
+    "specific_heat_J_kgK_hypothesis": 2000.0,
+    "flow_per_head_L_min_hypotheses": [
+      0.5,
+      1.0,
+      2.0
+    ],
+    "oil_temperature_rise_K_hypothesis": 20.0,
+    "total_minor_loss_K_hypothesis": 2.0,
+    "friction_model": "Darcy 64/Re, circular-equivalent approximation with actual teardrop area and hydraulic diameter; not CFD or a qualified noncircular Poiseuille factor"
+  },
+  "release": {
+    "physical_scale_verified": false,
+    "M64_fitment_validated": false,
+    "thermal_validated": false,
+    "structural_validated": false,
+    "powder_removal_validated": false,
+    "manufacturing_authorized": false,
+    "engine_installation_authorized": false
+  }
+}
