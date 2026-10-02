@@ -87,3 +87,13 @@ consistent N-mm-MPa units and complete constraints. This is an axial T3D2
 benchmark, not complex contact, fatigue, crankshaft FEA or part qualification.
 OpenFOAM scoring still covers bounded dictionary tasks; complete CHT cases,
 coupled energy balances and measured engine calibration remain to be added.
+
+[Native receipts](native-checks.json) record the full Linux check, two analytical
+CalculiX fixtures and PicoGK voxel/mesh conversion and copy booleans. The
+[prescribed CHT witness](native-cht.sh) copies the pinned ESI v2312 tutorial into
+a fresh `/work`, increases its mesh to 12,000 cells and runs five serial steps.
+All five region meshes pass the unchanged topology/geometry checks and write
+temperature fields. The original 3,000-cell mesh failed three solid-region
+quality checks despite solver completion, and was rejected. This is a runtime
+reference authored by us, not a Qwen-generated complete CHT case; energy
+balance, mesh convergence and experimental validation remain unverified.
