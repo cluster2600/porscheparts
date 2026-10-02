@@ -48,6 +48,42 @@ No new training examples or weights have been produced from this reading yet.
   Its material and cooling results do not establish the 993's OEM material
   or a measured improvement on that engine.
 
+## Kinematics photograph: corrections and coverage
+
+The screenshot's blanket statement that opposed boxer cylinders share a
+crankpin must not become a training target. Conventional boxer construction
+uses separate crankpins for opposed rods; sharing a crankshaft does not mean
+sharing a crankpin. The [patent classification F02B75/243](https://patents.google.com/patent/US11982224B2/en)
+explicitly describes separate crankshaft bearings. This general distinction
+does not supply measured M64/60 crank geometry or journal coordinates.
+
+The suggested title *Torsional Vibration Analysis of Horizontally Opposed
+Engines* was not resolved to an identifiable publication in this search.
+A related primary paper was located: [Vasile and Marasescu, 2015, engine-drive
+kinematics and boxer equilibration](https://www.anmb.ro/buletinstiintific/buletine/2015_Issue1/MES/249-257.pdf).
+Its opening kinematics section was inspected; it is not a verified M64/60
+torsional model. Reuse rights are unconfirmed; retain a reference only.
+
+The catalogue record
+[`src-porsche-993-obd-supplement-engine-specifications-1996.json`](../../catalog/sources/src-porsche-993-obd-supplement-engine-specifications-1996.json)
+has a provenance mismatch: its linked [Porsche bulletin](https://members.rennlist.com/geolab/Hydraulic%20lifters_1997_610297.pdf)
+is the one-page January 1997 hydraulic-lifter correction, not an engine
+specification sheet. It cannot substantiate the record's firing order, fan
+ratio or airflow figures. Do not use those assertions as sourced targets
+until the correct document and applicable variant are established. This note
+records the defect without rewriting historical source assertions.
+
+[NVIDIA's Omni Physics documentation](https://docs.omniverse.nvidia.com/kit/docs/omni_physics/109.0/dev_guide/deformables/deformable_bodies.html)
+does support deformable bodies; claiming PhysX can only handle rigid bodies
+would also be incorrect. Engineering interpretation: a rigid crankshaft
+animation alone does not demonstrate elastic torsional modes or fatigue.
+Those require an appropriate compliant model, inertias, stiffness, damping,
+excitation and validation. Existing `dynamics-*` exercises in
+[`photo_course.py`](photo_course.py) already reject torsion/fatigue claims
+based only on firing order and a rigid-body scene. The generic four-stroke
+interval calculation `720 / cylinders` is also present; it does not infer
+cylinder numbering or crank geometry. No new training was run for this photo.
+
 ## Training status
 
 Run 005 remains **148/150** on its filtered synthetic comparison, with PicoGK
