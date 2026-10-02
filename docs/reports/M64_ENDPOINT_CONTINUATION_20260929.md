@@ -9,10 +9,10 @@ research body, not a metrologically qualified M64 head. All geometric lengths
 below are provisional scan units, not certified millimetres or a printer
 specification. No physical, material or manufacturing gate is closed.
 
-**Dernier essai, 2 octobre — appui de ressort :** une addition locale ramène
-les rejets de surface de **5 à 3**, sans changer le seuil de qualité.
-Contacts nominaux et contrôle BOP passent, mais le maillage reste refusé.
-Voir [la comparaison des variantes](#2-octobre--reprise-locale-de-lappui-de-ressort).
+**Dernier essai, 2 octobre — partitions cylindriques : zéro triangle de
+surface rejeté sur 1 081 206.** Contrôles natifs, fermeture et intersections
+passent. Cela ne valide pas encore le volume ni la culasse pour fabrication.
+Voir [la correction et ses limites](#2-octobre--regroupement-des-partitions-cylindriques).
 
 **Earlier experiment, 1 October:** local conforming surface subdivision reduces
 the maximum sampled shape error from **0.0948743 to 0.0723482 scan unit**, with
@@ -1184,6 +1184,166 @@ python twins/m64-cylinder-head/source/wholebody/trial_audited_discrete_volume.py
 python -m unittest discover -s tests -p test_m64_projected_surface_topology.py -v
 python -m unittest discover -s tests -p test_m64_bounded_chamfer.py -v
 ```
+
+## 2 octobre — regroupement des partitions cylindriques
+
+Le [nouvel essai isolé](../../twins/m64-cylinder-head/source/wholebody/trial_isolated_cylinder_union.py)
+regroupe les partitions du support cylindrique sans nouvelle suppression ou
+addition de matière. **La collerette reste une variante de recherche**, pas
+le master : son ajout de matière lors du tour précédent n’est pas justifié
+thermiquement ou mécaniquement par cette réussite de maillage.
+
+### Géométrie propre et représentations auxiliaires
+
+Le contrôle antérieur des sérialisations complètes reste documenté comme
+échoué. Il n’est pas transformé rétroactivement en succès. Deux lectures
+natives indépendantes isolent maintenant la référence de la copie de travail.
+Le regroupement modifie encore des représentations de cette copie ; le corps
+de référence en mémoire et son fichier restent identiques.
+
+Le contrôle supplémentaire compare, pour chaque face protégée, son support
+natif sérialisé, sa position, son orientation, sa tolérance, ses contours et
+toutes leurs occurrences d’arêtes. Il compare aussi les courbes 3D, les
+p-courbes **sur cette face**, leurs domaines, indicateurs et sommets. Une
+p-courbe est une représentation 2D d’une arête sur un support ; son ajout
+sur un autre support peut modifier les octets partagés sans déplacer la face.
+Le [test synthétique](../../tests/test_m64_isolated_cylinder_union.py) reproduit
+ce cas, puis vérifie qu’un changement de la p-courbe propre est bien détecté.
+Les [API OCCT de copie](https://occt3d.com/dev/doc/refman/html/class_b_rep_builder_a_p_i___copy.html)
+et de [remplacement topologique](https://occt3d.com/dev/doc/refman/html/class_b_rep_tools___re_shape.html)
+éclairent la démarche ; leurs pages actuelles décrivent OCCT 8.0.1, tandis
+que les essais restent exécutés sur **OCP 7.9.3.1**.
+
+Sur la collerette, six faces cylindriques connectées ont la même orientation,
+des écarts de rayon et de distance entre axes nuls, et un écart angulaire
+inférieur à `1.2e-17 rad`. Leur regroupement produit une face :
+
+- 4 930 → **4 925 faces**, un solide, une coque, validité native exacte et
+  relecture réussies ; maxima de tolérances non augmentés.
+- Treize arêtes de partition disparaissent. Deux autres restent nécessaires
+  comme coutures périodiques : chacune est fermée sur la nouvelle face,
+  utilisée deux fois en sens opposés et n’appartient à aucune autre face.
+  Aucun nouveau contour 3D n’est créé ; les contours extérieurs sont conservés.
+- Les sérialisations complètes de trois faces protégées changent, mais
+  **aucune de leurs géométries propres ne change** selon le contrôle détaillé.
+- Les deux représentations des coutures sont contrôlées, avec 129 points par
+  occurrence d’arête. Écart maximal p-courbe/courbe 3D : `5.82651e-8` unité
+  de scan, sous le seuil inchangé `1e-6`. C’est un échantillonnage, pas une
+  borne continue de Hausdorff.
+- Un contrôle booléen indépendant soustrait les régions sélectionnées dans
+  les deux sens : zéro face et zéro aire manquantes ou excédentaires.
+- Le BOP indépendant passe sans défaut, erreur ni avertissement en 119,90 s.
+
+Une première construction directe des contours, sans réécriture des p-courbes,
+conservait les sérialisations mais créait une face `UnorientableShape` : elle
+est rejetée, sans export ni maillage. La fusion partielle de l’appui sans
+collerette passe la géométrie et le BOP, mais conserve trois rejets de surface.
+Ces témoins évitent de confondre suppression de partitions et amélioration
+effective du maillage. Les anciens tests et seuils restent inchangés ; ce
+nouveau contrôle ne constitue pas à lui seul une autorisation de master.
+
+### Surface complète et contrôle indépendant
+
+| Variante terminée, mêmes réglages de surface | Triangles | Rejets q2 | Minimum q2 |
+|---|---:|---:|---:|
+| Collerette avant regroupement | 1 079 372 | 3 | 0,06331731 |
+| Appui sans collerette, regroupement partiel | 1 080 692 | 3 | 0,06331731 |
+| Collerette, regroupement complet | **1 081 206** | **0** | **0,07085403** |
+
+Le seuil reste `q2 >= 0.06896551724137931`, condition nécessaire, non
+suffisante, pour le seuil volumique `q3 >= 0.1`. Le dernier essai prend
+130,56 s, avec Gmsh 4.15.2, MeshAdapt, deux threads et le champ de taille de
+chambre déjà documenté. Aucun triangle n’est supprimé ou lissé après coup.
+
+![Maillage réel avant et après regroupement des partitions](../media/m64-chamber-tip-20261002/union-comparison.png)
+
+Même région, projection orthographique locale et échelles identiques.
+Le rouge désigne uniquement une mauvaise qualité numérique, pas une fissure,
+une contrainte ou une température. La provenance et les droits de réutilisation
+du scan [Wolfe Classics](../../catalog/sources/src-wolfe-classics-935-billet-cylinder-head-scan.json)
+restent ceux du dossier ; ni scan, ni B-Rep, ni maillage brut ne sont publiés.
+
+La relecture indépendante trouve **540 589 sommets utilisés**, tous avec
+liens circulaires : zéro défaut d’incidence, doublon de triangle, coordonnée
+utilisée dupliquée ou conflit d’orientation. Les **66 612 segments de courbes**
+stockés sont tous des arêtes directes de la surface. L’export des tableaux
+binaires est relu exactement. CGAL 5.6 sur Kali2, dans le conteneur existant
+limité à deux CPU et 6 Gio, trouve **zéro paire intersectante** en 2,69 s.
+Ces preuves portent sur ce nouveau maillage exact, pas sur une autre version.
+
+```mermaid
+flowchart LR
+    A["Collerette : 3 rejets de surface"] --> B["Copie indépendante et fusion cylindrique"]
+    B --> C["Géométrie propre, région et BOP vérifiés"]
+    C --> D["0 rejet ; fermeture et CGAL passent"]
+    D --> E["Contrôle volumique"]
+    E --> F["Thermique, mécanique, matériaux et fabrication à qualifier"]
+```
+
+### Reproduction et vérification logicielle
+
+```sh
+python twins/m64-cylinder-head/source/wholebody/trial_isolated_cylinder_union.py \
+  --body /private/collar-r175-h3/candidate-private.brep --variant collar \
+  --output /private/fresh-isolated-union
+python -m unittest discover -s tests -p test_m64_isolated_cylinder_union.py -v
+```
+
+L’entrée exacte est la collerette exploratoire archivée, SHA-256
+`3d298c4b354b30eb22704d6ca0430de24666283461effac41710e1af1adf65bb`.
+Une géométrie semblable avec d’autres octets n’est pas substituée silencieusement.
+Le rejeu de l’appui simple avec la version finale du code conserve exactement
+son empreinte de candidat, `7f0f5e1acc52f3300dceed650e4075770b7ed97b5dde66a2f1d11f9c8f19fe62`.
+
+Le témoin natif passe sur Mac, y compris les deux occurrences de couture et
+le refus d’une arête ordinaire comme couture. Sur Kali2, `make check` finit
+avec le code **0** : **3 235 tests principaux, 171 sauts optionnels**, 155,977 s,
+puis les contrôles restants. Le nouveau test CAO est un saut optionnel sur
+ce runtime Linux ; son exécution native sur Mac est comptée séparément.
+Les sources et tests ont les mêmes empreintes sur les deux machines.
+
+Empreintes des artefacts privés, sans publication des géométries :
+
+- Candidat regroupé : `9c40df1642d5eb47a3c1a1aae68c761b23b77e3f7e02e0818294e88ee0322598`.
+- Construction : `eeda940838c1cd1f9d1fa5a40ca73f8e075f875387c6732b5ed835c3b96cba63`.
+- Régions, différence bidirectionnelle : `8af91976851ad56767ae2b6ff9d2b991ede57c75adcb7594c62ee121ba0b9df1`.
+- BOP : `48ef24983b3fa52153167d98c304f45108194af9db68a6da806f7bdbb582992c`.
+- Surface : `dc223d9b4ce2d680cf415e95d97c76ace54b797efa358d3b82a15a5dbb3dbc79`.
+- Audit indépendant : `219817c19e96df4652c43b63cb12bf40dd2d0c3bffcd58224979ed763f04fbab`.
+- Tableaux exacts : `136b2cc1469c40435a52d68fc6f7aae7e99d6c789207bb9372f11d1ff25cf516`.
+- CGAL : `5da4f69198dedb9561c1406fab3ab08fef1b58ded3dc8e872d45d89f2c02d6f3`.
+- Image : `06307b7f43caf00d1d948fa4818d79269df074d1905500e3ab0a495d4f81a295`.
+- Suite Linux : `8c6ba295b0cdbd2242745a798962769a66c18bddfaad50e93acb1db978c4e333`.
+
+### Tentative volumique : arrêt avant génération 3D
+
+La reprise par import/fusion d’un maillage sur une géométrie native est
+testée sur un cube, puis écartée : les essais ne prouvent pas la conservation
+de la surface **et** la production de tétraèdres. Les premiers comparateurs
+bruts étaient également sensibles à la renumérotation des nœuds. Un témoin
+dans un même processus passe avec un comparateur canonique qui ignore
+seulement les numéros et l’ordre des éléments : les coordonnées binaires et
+l’orientation sont conservées ; le contrôle négatif d’une face inversée échoue.
+
+Sur la culasse, le rejeu natif 2D termine en 141,12 s et produit **1 081 082
+triangles, zéro rejet**, avec le même minimum q2. Mais ce n’est pas le maillage
+de 1 081 206 triangles audité plus haut. Le contrôle exact arrête donc le
+processus **avant la génération volumique**. Aucun tétraèdre nouveau, résultat
+d’optimisation 3D ou convergence volumique n’est revendiqué. Le journal est
+conservé ; le résultat n’est pas un dépassement de temps.
+Empreinte de ce journal d’exécution :
+`83c303a31be2d8d4dadea8fd3048214d8aa8466602fcbbd2f6735a20f330005d`.
+
+La prochaine exécution doit auditer sa propre surface — qualité, topologie
+et CGAL — puis générer le volume **sans régénérer cette surface**. Elle devra
+vérifier les Jacobiennes, le seuil q3, la frontière exacte, les composantes,
+le volume et la relecture. La référence volumique historique à 32 rejets
+reste inchangée. L’échelle physique, les interfaces M64, le dimensionnement
+de la collerette, les contacts à chaud, la thermique, les matériaux, la fatigue
+et l’impression ne sont pas qualifiés par le succès surfacique.
+
+Aucun processus numérique de ce tour ne reste actif. Aucune location payante,
+fusion de PR, publication de site ou autorisation de fabrication.
 
 ## 2 octobre — reprise locale de l’appui de ressort
 
