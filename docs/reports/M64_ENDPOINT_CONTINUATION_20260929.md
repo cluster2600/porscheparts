@@ -66,6 +66,13 @@ They cannot be treated as disposable smooth CAD partitions. The sampled
 creases. A separate, explicitly faceted volume diagnostic is recorded below;
 it cannot replace the native reference or close the physical gates.
 
+**Cache recovery and localisation, 2 October:** the Gmsh element-lookup failure
+is reproduced on a cube and corrected by rebuilding the element cache after
+optimisation. The recovered standard-optimiser diagnostic finishes but fails
+quality with **45,091 rejected tetrahedra**. Actual rejected cells are now
+[localised and rendered below](#2-october-cache-recovery-and-rejected-cell-localisation).
+Neither this result nor Netgen's 16,261 rejections replaces the retained volume.
+
 **Later recovery, 1 October:** both authorised Linux hosts are reachable again.
 The previously uncollected size-0.1 run completed but has **5 incompatible
 triangles / 976,144**; the curvature-64 run ended at its 1,800-second alarm.
@@ -1152,3 +1159,90 @@ python twins/m64-cylinder-head/source/wholebody/trial_audited_discrete_volume.py
 python -m unittest discover -s tests -p test_m64_projected_surface_topology.py -v
 python -m unittest discover -s tests -p test_m64_bounded_chamfer.py -v
 ```
+
+## 2 October: cache recovery and rejected-cell localisation
+
+The earlier unknown-element diagnosis is now superseded by a reproducible
+fixture, not by a rewrite of the failed receipts. A unit cube creates 391
+tetrahedra; querying their qualities populates the element cache. Standard
+optimisation replaces cells (386 remain, including 14 new tags), after which
+quality lookup fails with `Unknown element 2242`. The regression test fails
+before the shared optimiser helper calls
+[`rebuildElementCache(False)`](https://gmsh.info/doc/texinfo/#gmsh_002fmodel_002fmesh_002frebuildElementCache),
+and passes afterwards: all 386 qualities are finite. This repairs the lookup,
+not the geometric quality. Both optimiser paths use the same helper.
+
+The saved Linux raw checkpoint is reused only after its pinned hash and exact
+boundary are checked; no surface regeneration occurs. Standard optimisation
+then completes on Kali1 in **227.024 seconds**. Its 1,500,033 tetrahedra have
+positive Jacobians, but **45,091 fail minSICN >= 0.1**, with minimum
+0.00001168019. The exact boundary survives optimisation and MSH readback;
+992,724 triangles match, both region checks find one region, and signed volume
+and boundary flux agree within 1.2e-15 relative difference. Inputs are unchanged.
+The library's warning of 229 ill-shaped cells is not this quality metric.
+**The candidate is rejected.** No native crease or functional interface is
+qualified by this faceted diagnostic.
+
+The new [localiser](../../twins/m64-cylinder-head/source/wholebody/audit_faceted_volume_failures.py)
+requires a completed, mesh-hash-bound diagnostic receipt, recomputes minSICN,
+and checks the rejection count before rendering. Its exact-index contact
+classification distinguishes a boundary vertex from an entire boundary face:
+
+| Diagnostic | Total tetrahedra | Rejected | Touch a boundary vertex | Have a complete boundary face |
+|---|---:|---:|---:|---:|
+| Netgen | 1,519,320 | 16,261 | 16,250 | 9,982 |
+| Standard, recovered | 1,500,033 | 45,091 | 45,091 | 34,787 |
+
+Almost all rejected cells touch the boundary. This focuses the next local
+surface/feature investigation; it does not prove that the six sharp native
+curves explain every rejection. No anatomical role is inferred from the image.
+The reference CAD and historical native volume with 32 rejections remain unchanged.
+
+![Netgen diagnostic: actual rejected tetrahedra in red](../media/m64-volume-failures-20261002/netgen.png)
+
+![Standard diagnostic: actual rejected tetrahedra in red](../media/m64-volume-failures-20261002/standard.png)
+
+Red denotes numerical cell quality, **not cracks, heat or stress**. These VTK
+renders use the full actual boundary and rejected cells, with no smoothing,
+decimation or generative image. The [Wolfe Classics provenance record](../../catalog/sources/src-wolfe-classics-935-billet-cylinder-head-scan.json)
+records owner-confirmed reuse rights, with the exact licence identifier not
+archived. These research views fulfil the owner's documentation request;
+no raw scan or mesh is published.
+
+Verification: Mac discovers seven focused tests, six pass and the optional
+CGAL test is skipped. Kali2's CGAL sidecar passes four tests and skips three
+requiring Gmsh 4.15.2. The final frozen-code Kali2 `make check` exits **0**:
+**3,227 main tests, 164 optional skips**, followed by all remaining targets,
+including 15 pinned Docker tests. Native Gmsh tests run separately on Mac;
+optional-runtime skips are not counted as numerical qualification.
+
+Private receipt/source SHA-256 fingerprints:
+
+- Pinned Linux raw checkpoint: `742d8a3610b2abe766e9c4b476b1110ad69cdb72ecdee718ab1d2d18be55aeb5`.
+- Recovered receipt: `87365319db453656d2e9e21bf4e9b724c59b22af94347fcfa8fcd631e26e0b6e`.
+- Recovered audited mesh: `4939f8aabeb34d12b2a2f5d62e8048c4ff559636662aa76589de06f480406a1f`.
+- Producer: `ccf6142edf8b67c4a7cfcae73b67084b72d6c1b59782cbb67e25e6f846616318`.
+- Localiser: `7407d3ab8d84d7b71a789a5043bd867df246e74fb8d87a065dab4de6ffe1f6cb`.
+- Netgen location receipt: `1a969866019a95b23e94d80b32a4b945da189a7438ac811efb10e13877256204`.
+- Standard location receipt: `cca34893ec276d71f952e286fec118a5404ba9b084c2822aec916510b8f2687f`.
+- Netgen PNG: `37c1f49b2446f9cac2c1eecd27a72189334ca10d1d9ae9f811ce16e30683d9d7`.
+- Standard PNG: `f4ae1e60ad0dcffa4599ca0db297deeb85f12f16552a356959375163e52b42d3`.
+- Full-suite log: `25514df3687b4fb2f46d7fdfb63ef5a5811d290ea9aacf6b4fbf96029898738a`.
+
+Reproduction, with the same qualified runtime and private inputs as above:
+
+```sh
+python twins/m64-cylinder-head/source/wholebody/trial_audited_discrete_volume.py \
+  --arrays /private/connected-oriented-audit/surface-private.npz \
+  --topology /private/connected-oriented-audit/report.json \
+  --intersections /private/cgal-connected.json --no-extend-size --optimizer default \
+  --raw-checkpoint /private/linux-raw-private.msh --output /private/fresh-recovery
+python twins/m64-cylinder-head/source/wholebody/audit_faceted_volume_failures.py \
+  --mesh /private/fresh-recovery/audited-private.msh \
+  --receipt /private/fresh-recovery/report.json --output /private/fresh-location
+```
+
+All these jobs have ended. No Vast rental, physical simulation, catalogue
+release, PR merge or website deployment occurs. The owner's fin-study comparison
+remains a separately documented research plan; no head perforation or thermal
+gain has been accepted. Zero rejected elements and printability remain unmet.

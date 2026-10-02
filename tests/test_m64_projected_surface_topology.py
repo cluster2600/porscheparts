@@ -9,6 +9,40 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'twins/m64-cylinder-h
 
 @unittest.skipUnless(importlib.util.find_spec('numpy') and importlib.util.find_spec('scipy'), 'optional numpy/scipy runtime')
 class ProjectedSurfaceTopologyTests(unittest.TestCase):
+    def test_rejected_cells_boundary_face_contacts_are_not_only_vertex_contacts(self):
+        import numpy as np
+        from audit_faceted_volume_failures import boundary_contacts
+        cells=np.array([[0,1,2,3],[0,4,5,6],[4,5,6,7]])
+        faces=np.array([[0,1,2],[0,1,3],[0,2,3],[1,2,3]])
+        result=boundary_contacts(cells,faces)
+        self.assertEqual(result['boundary_vertex_count_histogram'],[1,1,0,0,1])
+        self.assertEqual(result['boundary_face_count_histogram'],[2,0,0,0,1])
+        self.assertEqual(boundary_contacts(cells[:0],faces)['boundary_face_count_histogram'],[0]*5)
+        with self.assertRaises(ValueError): boundary_contacts(cells.astype(float),faces)
+
+    @unittest.skipUnless(importlib.util.find_spec('gmsh'), 'optional Gmsh runtime')
+    def test_optimisation_refreshes_element_cache_after_topology_changes(self):
+        import numpy as np
+        import gmsh
+        from trial_audited_discrete_volume import optimize_volume
+        if gmsh.__version__ != '4.15.2': self.skipTest('qualified Gmsh 4.15.2 required')
+        gmsh.initialize(['cache-test','-nopopup'],readConfigFiles=False,run=False)
+        gmsh.option.setNumber('General.Terminal',0)
+        try:
+            gmsh.model.occ.addBox(0,0,0,1,1,1); gmsh.model.occ.synchronize()
+            for key,value in {'Mesh.MeshSizeMin':.3,'Mesh.MeshSizeMax':.3,
+                    'Mesh.Optimize':0,'Mesh.Renumber':0,'General.NumThreads':1}.items():
+                gmsh.option.setNumber(key,value)
+            gmsh.model.mesh.generate(3)
+            tags=gmsh.model.mesh.getElements(3)[1][0]
+            gmsh.model.mesh.getElementQualities(tags,'minSICN')  # Populate the old cache.
+            optimize_volume(gmsh,'default')
+            current=gmsh.model.mesh.getElements(3)[1][0]
+            self.assertGreater(len(np.setdiff1d(current,tags)),0)
+            qualities=gmsh.model.mesh.getElementQualities(current,'minSICN')
+            self.assertEqual(len(qualities),len(current)); self.assertTrue(np.isfinite(qualities).all())
+        finally: gmsh.finalize()
+
     @unittest.skipUnless(importlib.util.find_spec('gmsh'), 'optional Gmsh runtime')
     def test_discrete_volume_keeps_boundary_and_rejects_winding_or_coordinate_change(self):
         import numpy as np

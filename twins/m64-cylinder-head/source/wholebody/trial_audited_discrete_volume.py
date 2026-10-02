@@ -18,7 +18,14 @@ from trial_meshers_2026 import native, read_gmsh, audit_output
 ARRAY_SHA = 'a599cb6c317f2559a458331444b211267d12eb77b899bbbb9b02d9d5566c3c8d'
 TOPOLOGY_SHA = '89dc417de042d0bca0ab0588b0e42d563b79284a6c6cc03b4d55322b9eb69a7b'
 CGAL_SHA = 'c4fd77b8e758adaa7dd7e4a5d619d477e52148fb242a2afab6087bdf272434ed'
+RAW_SHA = '742d8a3610b2abe766e9c4b476b1110ad69cdb72ecdee718ab1d2d18be55aeb5'
 OPTIMIZERS = {'default':'', 'netgen':'Netgen'}
+
+
+def optimize_volume(gmsh, method):
+    gmsh.model.mesh.optimize(OPTIMIZERS[method],force=True)
+    # Gmsh 4.15.2 can leave old lookup entries after replacing tetrahedra.
+    gmsh.model.mesh.rebuildElementCache(False)
 
 
 def check_boundary(gmsh, points, faces):
@@ -60,6 +67,7 @@ def run(args):
     import gmsh
     from audit_envelope_regions import audit
     pins = {args.arrays:ARRAY_SHA, args.topology:TOPOLOGY_SHA, args.intersections:CGAL_SHA}
+    if args.raw_checkpoint: pins[args.raw_checkpoint] = RAW_SHA
     for module in (__name__, surface_arrays.__module__, read_gmsh.__module__, audit.__module__, native.__name__):
         path = Path(sys.modules[module].__file__); pins[path] = native.sha256(path)
     if (args.output.exists() or args.output.is_symlink() or gmsh.__version__ != '4.15.2'
@@ -69,6 +77,7 @@ def run(args):
     report = dict(schema='m64-audited-discrete-volume/v1', status='incomplete',
         source_hashes={str(p):h for p,h in pins.items()}, gmsh_version=gmsh.__version__,
         extend_boundary_size=not args.no_extend_size, optimizer=args.optimizer,
+        resumed_raw_checkpoint=bool(args.raw_checkpoint),
         native_sharp_edges_recovered=False, native_face_roles_preserved=False,
         native_CAD_conformance_certified=False, CAE_authorized=False, manufacturing_authorized=False)
     save = lambda: native.save(args.output/'report.json',report)
@@ -79,7 +88,11 @@ def run(args):
             points,faces = surface_arrays(data['points'],data['triangles'])
             report['unreferenced_stored_nodes_excluded'] = len(data['points'])-len(points)
         report.update(boundary_vertices=len(points), boundary_triangles=len(faces), stage='generating_volume'); save()
-        generate(gmsh,points,faces,extend_size=not args.no_extend_size)
+        if args.raw_checkpoint:
+            read_gmsh(args.raw_checkpoint); check_boundary(gmsh,points,faces)
+            gmsh.option.setNumber('General.NumThreads',2)
+        else:
+            generate(gmsh,points,faces,extend_size=not args.no_extend_size)
         def quality():
             types, elements, _ = gmsh.model.mesh.getElements(3)
             report['last_volume_element_counts'] = {int(t):len(e) for t,e in zip(types,elements)}; save()
@@ -92,7 +105,8 @@ def run(args):
         gmsh.option.setNumber('Mesh.Binary',1); gmsh.option.setNumber('Mesh.SaveAll',1)
         raw = args.output/'raw-private.msh'; gmsh.write(str(raw)); raw.chmod(0o600)
         report.update(raw_mesh_sha256=native.sha256(raw),stage='optimizing_volume'); save()
-        gmsh.model.mesh.optimize(OPTIMIZERS[args.optimizer],force=True)
+        optimize_volume(gmsh,args.optimizer)
+        report.update(stage='reading_optimized_quality'); save()
         report.update(optimized_quality=quality(), exact_boundary_after_optimization=check_boundary(gmsh,points,faces),
                       stage='exporting'); save()
         output = args.output/'generated-private.msh'
@@ -118,6 +132,9 @@ if __name__ == '__main__':
     for key in ('arrays','topology','intersections','output'): parser.add_argument('--'+key,type=Path,required=True)
     parser.add_argument('--no-extend-size',action='store_true',help='Do not propagate boundary size into the volume; keep all boundary triangles.')
     parser.add_argument('--optimizer',choices=OPTIMIZERS,default='default')
+    parser.add_argument('--raw-checkpoint',type=Path,help='Reuse only the pinned Linux raw volume; never regenerate the surface.')
     if sys.platform == 'linux': resource.setrlimit(resource.RLIMIT_AS,(10*1024**3,10*1024**3))
     signal.alarm(600)
-    raise SystemExit(run(parser.parse_args()))
+    args=parser.parse_args()
+    if args.raw_checkpoint and not args.no_extend_size: parser.error('checkpoint_requires_original_no_extend_recipe')
+    raise SystemExit(run(args))

@@ -82,6 +82,9 @@ redesigning the fins](https://www.combustion-engines.eu/pdf-195440-116096?filena
 *Combustion Engines* 201(2), 2025, pp. 14–21, DOI 10.19206/CE-195440,
 CC BY 4.0. Full eight-page text read; Figure 2 and tabulated results checked.
 Private PDF SHA-256: `3ed12edd838cc6ffae5c1057ba7d5107628b4913fbe4157b5f778a167816b337`.
+The [publisher landing page](https://doi.org/10.19206/CE-195440) now also links
+an [alternate PDF endpoint](https://www.combustion-engines.eu/pdf-195440-126298?filename=Improving-heat-transfer-i.pdf);
+the review above refers to the hashed copy, not an assumed identical revision.
 
 The study concerns a single cylinder, not a turbo four-valve head. Figure 2
 shows imposed 350 °C and convection at 35 W/(m² K). Table 4 reports a
@@ -119,6 +122,14 @@ Hole size follows local fin width, thickness and ligament constraints; no
 7.14 mm default is transferred from the paper. Screen several hole positions
 before increasing porosity. Reject any connection to a port, oil gallery,
 seat, guide, plug boss or structural interface.
+
+Geometric sanity check, derived here: an isolated cylindrical through-hole in
+a flat fin changes exposed area by `delta_A = 2*pi*r*t - 2*pi*r*r`, where `t`
+is thickness and both broad faces were exposed. When `r > t`, exposed area
+decreases even though mass decreases. This assumes no edge intersections,
+chamfers or roughness; it is not a heat-transfer prediction. Any benefit must
+therefore be assessed with conduction paths and airflow, not presumed from
+the presence of holes.
 
 Use existing OpenFOAM CHT for the coupled solid/air calculation. Compare first
 at equal air mass flow, then at the same fan curve or shaft-power budget:
