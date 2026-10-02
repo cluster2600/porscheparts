@@ -50,7 +50,63 @@ def refine_patch(points, triangles, target):
     mids = project_points(points[interior].mean(axis=1), target, np.ones(len(interior), dtype=bool))
     result = np.vstack([points, mids])
     refined, parents = split_edges(triangles, interior, len(points), result)
+    normals = lambda p: np.cross(p[:, 1]-p[:, 0], p[:, 2]-p[:, 0])
+    old = normals(points[triangles]); visited = set()
+    # ponytail: bounded local closure only; unresolved features fail the surface gate.
+    for _ in range(8):
+        p = result[refined]; n = normals(p)
+        q = 2*np.sqrt(3)*np.linalg.norm(n, axis=1)/np.sum((p-np.roll(p, 1, axis=1))**2, axis=(1, 2))
+        bad = (np.einsum('ij,ij->i', old[parents], n) <= 0) | (q < 2*.1/(3-.1))
+        nodes = np.unique(refined[np.isin(parents, np.unique(parents[bad]))])
+        nodes = np.array([i for i in nodes if i >= len(points) and i not in visited], dtype=int)
+        if not len(nodes): break
+        if len(visited)+len(nodes) > 256: raise ValueError('bounded_native_feature_correction_required')
+        result[nodes] = feature_midpoints(points, interior[nodes-len(points)], target)
+        visited.update(nodes)
+        refined, parents = split_edges(triangles, interior, len(points), result)
     return result, refined, parents
+
+
+def feature_midpoints(points, edges, target):
+    """Bind endpoint supports before projecting: same face or one shared CAD edge."""
+    from OCP.TopAbs import TopAbs_FACE, TopAbs_EDGE
+    from OCP.BRepBuilderAPI import BRepBuilderAPI_MakeVertex
+    from OCP.BRepExtrema import BRepExtrema_DistShapeShape
+    from OCP.gp import gp_Pnt
+    points, edges = np.asarray(points), np.asarray(edges)
+    if (points.ndim != 2 or points.shape[1] != 3 or not np.isfinite(points).all()
+            or edges.ndim != 2 or edges.shape[1] != 2 or not 1 <= len(edges) <= 256
+            or not np.issubdtype(edges.dtype, np.integer) or edges.min() < 0
+            or edges.max() >= len(points) or (edges[:, 0] == edges[:, 1]).any()):
+        raise ValueError('bounded_native_feature_edges_required')
+    faces = indexed(target, TopAbs_FACE)
+    if not 1 <= len(faces) <= 16: raise ValueError('bounded_native_face_support_required')
+    support = {}
+    for i in np.unique(edges):
+        vertex = BRepBuilderAPI_MakeVertex(gp_Pnt(*map(float, points[i]))).Vertex()
+        support[i] = set()
+        for j, face in enumerate(faces):
+            op = BRepExtrema_DistShapeShape(vertex, face)
+            if not op.IsDone() or not np.isfinite(op.Value()): raise ValueError('native_support_distance_failed')
+            if op.Value() <= 1e-6: support[i].add(j)
+        if not support[i]: raise ValueError('endpoint_on_native_face_required')
+    result = []
+    for a, b in edges:
+        common_faces = support[a] & support[b]
+        if common_faces:
+            shape = compound([faces[j] for j in sorted(common_faces)])
+        else:
+            common = []
+            for i in sorted(support[a]):
+                for j in sorted(support[b]):
+                    for edge in indexed(faces[i], TopAbs_EDGE):
+                        if (any(edge.IsSame(e) for e in indexed(faces[j], TopAbs_EDGE))
+                                and not any(edge.IsSame(e) for e in common)):
+                            common.append(edge)
+            if len(common) != 1: raise ValueError('unique_common_native_feature_required')
+            shape = common[0]
+        result.append(project_points(points[[a, b]].mean(axis=0)[None, :], shape, np.ones(1, dtype=bool))[0])
+    return np.asarray(result)
 
 
 def split_edges(triangles, edges, first_node, points):
@@ -227,6 +283,9 @@ def run(args):
         local_refinement_radius_scan_units=.4 if witness else None,
         all_shape_exceedances=args.all_shape_exceedances,
         split_triangulation='default_then_best_positive_nonwrapping_fan_if_default_fails_quality_or_orientation',
+        interior_feature_projection=dict(trigger='failed_child_quality_or_orientation',
+            endpoint_tolerance_scan_units=1e-6, maximum_rounds=8, maximum_nodes_per_patch=256,
+            target='shared_endpoint_faces_else_unique_common_native_edge'),
         maximum_allowed_projection_scan_units=.1, geometry_modified=False, mesh_nodes_modified=True,
         master_replaced=False, CAE_authorized=False, manufacturing_authorized=False)
     def save(): native.save(args.output/'report.json', report)

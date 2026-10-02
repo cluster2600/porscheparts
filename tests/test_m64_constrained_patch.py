@@ -216,6 +216,37 @@ class ConstrainedPatchTests(unittest.TestCase):
             np.testing.assert_array_equal(parents, [0, 0, 0, 0])
         np.testing.assert_array_equal(p, original)
 
+    def test_feature_midpoints_follow_shared_native_edge_not_nearest_face(self):
+        import numpy as np
+        from OCP.BRepPrimAPI import BRepPrimAPI_MakeBox
+        from OCP.BRepAdaptor import BRepAdaptor_Surface
+        from OCP.TopAbs import TopAbs_FACE
+        from OCP.TopoDS import TopoDS
+        from trial_constrained_patch import indexed, compound
+        from trial_bounded_tip_cut import encode
+        from trial_project_compound_surface import feature_midpoints, project_points
+        faces = indexed(BRepPrimAPI_MakeBox(1., 1., 1.).Shape(), TopAbs_FACE)
+        bottom = next(f for f in faces if abs(BRepAdaptor_Surface(TopoDS.Face_s(f)).Plane().Axis().Direction().Z()) > .9
+                      and abs(BRepAdaptor_Surface(TopoDS.Face_s(f)).Plane().Location().Z()) < 1e-12)
+        front = next(f for f in faces if abs(BRepAdaptor_Surface(TopoDS.Face_s(f)).Plane().Axis().Direction().Y()) > .9
+                     and abs(BRepAdaptor_Surface(TopoDS.Face_s(f)).Plane().Location().Y()) < 1e-12)
+        target = compound([bottom, front]); before = encode(target)
+        p = np.array([[.4, .04, 0.], [.6, 0., .06], [.7, .02, 0.]])
+        original = p.copy(); edges = np.array([[0, 1], [0, 2]])
+        near = project_points(p[edges].mean(axis=1), target, np.ones(2, dtype=bool))
+        self.assertGreater(float(np.linalg.norm(near[0]-[.5, 0., 0.])), .01)
+        np.testing.assert_allclose(feature_midpoints(p, edges, target), [[.5, 0., 0.], [.55, .03, 0.]], atol=1e-12)
+        np.testing.assert_array_equal(p, original); self.assertEqual(encode(target), before)
+        with self.assertRaisesRegex(ValueError, 'endpoint_on_native_face'):
+            feature_midpoints(p+np.array([0., 0., .01]), edges, target)
+        with self.assertRaises(ValueError): feature_midpoints(p, np.array([[0, 3]]), target)
+        with self.assertRaises(ValueError): feature_midpoints(p, np.tile(edges, (129, 1)), target)
+        # Geometrically nearby but topologically disconnected faces cannot claim a seam.
+        from OCP.BRepBuilderAPI import BRepBuilderAPI_Copy
+        separate = compound([bottom, BRepBuilderAPI_Copy(front, True, False).Shape()])
+        with self.assertRaisesRegex(ValueError, 'unique_common_native_feature'):
+            feature_midpoints(p, edges[:1], separate)
+
     def test_shared_curve_refinement_splits_both_faces_without_moving_old_nodes(self):
         import numpy as np
         from OCP.BRepPrimAPI import BRepPrimAPI_MakeCylinder, BRepPrimAPI_MakeBox

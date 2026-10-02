@@ -28,13 +28,21 @@ triangles**. It still fails 0.040; the retained volume and physical gates remain
 unchanged. The frozen-code full `make check` now passes on Kali2, including
 the previously blocked pinned Docker test. See the final section below.
 
-**Latest result, 2 October:** all-exceedance selection and guarded polygon
+**Earlier result, 2 October:** all-exceedance selection and guarded polygon
 triangulation lower the sampled maximum to **0.04959299 scan unit**, about 23%
 below 0.0642802. The lower patch passes both sampled directions; the upper
 patch retains **56 native samples above 0.040**. A subsequent pass is rejected
 for one orientation failure. This remains a surface experiment, not the
 physical 0.040 mm goal or a manufacturing release. The retained volume still
 has 32 rejected tetrahedra.
+
+**Latest result, 2 October:** native-feature-constrained projection removes
+the remaining orientation rejection. Both reconstructed patches now pass
+the **sampled 0.040 scan-unit screen**, with a maximum of
+**0.03984823204**, 992,724 triangles and zero necessary surface rejections.
+This is not a continuous error bound, the physical 0.040 mm requirement, or
+volume/printing qualification. The retained volume is still unchanged. See
+the final native-feature section for the measured result and remaining gates.
 
 **Later recovery, 1 October:** both authorised Linux hosts are reachable again.
 The previously uncollected size-0.1 run completed but has **5 incompatible
@@ -637,3 +645,101 @@ Provenance:
 - Rejected pass 6 receipt: `8f650d6bd5e1a45513017ee9f997225eea5458400a7f2582fcad78542bdbf321`.
 - Recovered fan-result archive: `a388d142a5d7c434a6d8f804afd7871feb411a6704df7135d4ea2b509a9174f8`.
 - Full-suite log: `cae6dd9f77d3a64bdbf80167c1265821db4d1ffc6e694bca1afc9cffad10118e`.
+
+## Native-feature projection reaches the sampled screen, 2 October
+
+### Diagnosis and bounded correction
+
+Native distance queries show that the rejected upper parent has two vertices
+on face 1411 and one on face 1647. Those faces share exactly one topological
+edge. Unrestricted nearest-point projection sends the two crossing-edge
+midpoints to different faces, producing the crossed local boundary. The
+nearest-face result cannot be repaired by triangulating its fixed vertices.
+
+The existing refinement helper now attempts a bounded native-feature correction
+only after child orientation or q2 fails. For each affected new point it binds
+both edge endpoints to trimmed native faces, within 1e-6 scan unit:
+
+- Shared endpoint face supports restrict projection to those faces.
+- Otherwise, projection is restricted to the unique native edge common to
+  their supporting faces. A missing or ambiguous shared edge is rejected.
+- Only newly inserted points can change. The same new index is used by both
+  incident triangles; original points and the exterior boundary stay fixed.
+- Adjacent triangles are rechecked after each correction. At most eight rounds
+  and 256 new points per patch are allowed; the original 0.1 displacement
+  bound, q2 threshold and orientation checks are unchanged. Unresolved defects
+  are not accepted when the bounded correction stops.
+
+The private reproduction needs two rounds, considering five new points:
+three common-edge projections and two shared-face projections. The first
+round resolves the initial parent but exposes one neighbour; the second
+resolves it. The original CAD is not edited. A synthetic box-corner regression
+checks common-edge versus nearest-face projection, same-face behavior,
+unchanged inputs, bad indices and bounds, off-surface endpoints, and nearby
+but topologically disconnected faces. No scan coordinates are added to tests.
+
+### Completed full-surface result
+
+The frozen-code job on Kali1 resumes the bound, screened pass-5 candidate.
+Pass 6 completes in **35.15 s**, selects 6,061 upper triangles and adds 8,917
+nodes. The lower patch is not subdivided. All necessary surface checks pass:
+
+| Check | Result |
+|---|---:|
+| Surface triangles | 992,724 |
+| q2 below 0.06896551724 | 0 |
+| Minimum q2 | 0.06913127978 |
+| Nonpositive child/parent normal products | 0 |
+| Edges without exactly two incident triangles | 0 / 1,489,086 |
+| Duplicate triangles | 0 |
+| Protected nodes, native CAD and input hashes unchanged | yes |
+| Exact binary export/readback | yes |
+
+The separate two-direction sampling audit completes in **193.85 s**:
+
+| Patch | Mesh-to-native maximum | Native-to-mesh maximum | Samples above 0.040 |
+|---|---:|---:|---:|
+| Lower | 0.03782211596 | 0.03984823204 | 0 / 0 |
+| Upper | 0.03303451901 | 0.03954089482 | 0 / 0 |
+
+The maximum over these four measurements is **0.03984823203951887**.
+The bounded driver stops on this sampled-screen pass; its three unused
+follow-ups are not launched. This is the existing vertex/centroid/edge-midpoint
+versus 17×17 trimmed-face/65-per-edge sampling, **not a continuous Hausdorff
+bound or an audit of every native face**.
+
+![Actual rejected and corrected triangles at the native junction](../media/m64-native-feature-20261002/comparison.png)
+
+The image reads back four real triangles from each exported mesh, matches
+their node tags, verifies unchanged original vertices, and uses the same
+parent-plane projection and axis scales. Red marks the previous reversed
+child; none is reversed in the corrected view. It is a local mesh diagnostic,
+not a rendering of a finished head. The existing
+[research-scan provenance](../../catalog/sources/src-wolfe-classics-935-billet-cylinder-head-scan.json)
+still applies.
+
+Thirteen native tests pass on Mac and Kali1. Full **`make check` exits 0 on
+Kali2**: 3,220 main tests, 160 optional skips, and subsequent checks including
+the 15 pinned F37 Docker tests. Native skips in the broad suite are not claimed
+as executed coverage. Source and recovered-log hashes match the remote copies.
+All numerical jobs finish; no rental, merge or deployment occurs.
+
+### Still required before volume or physical acceptance
+
+Vertex-link manifoldness, global geometric intersections, consistency of the
+updated native 1D curve mesh and functional face labels remain unchecked.
+The next stage must bind those audits to this exact export before a bounded
+volume experiment. No new tetrahedral volume, CFD/CHT, material, thermal,
+strength or printing result is produced here. The retained 32 rejected
+tetrahedra and the M64 interface/physical-scale gates remain unresolved.
+
+Provenance:
+
+- Frozen source bundle: `816de272173e661a594b3c001ac4671a9fe0583d809b1483a7de5b07d35afc75`.
+- Feature-projection helper: `a49383183f7fdf7e4bc03ca8d94d83c849c242a00018368c811b04679d97cb24`.
+- Corrected pass-6 mesh: `7e59631d8e009107e57af7d284d6501522ed353b6d4b188492b718722ac80076`.
+- Pass-6 receipt: `776442bcc2aab180b2f319370e167b1cf1457d03bd0d97a32ccab5f0e3d6e704`.
+- Completed shape audit: `7d2851c46c80ff5ed8e45c7cdbc3e61a129f9b51d697f4ba42d53019569a8182`.
+- Recovered result archive: `ea59cb1acec095ba3ffceffd85113b8444c7d468af4873b622b40068f5e77338`.
+- Actual mesh image: `2ff9bedd667686f509d44b34353d4a1c98f5daa08519bf103285c40571d6a92a`.
+- Full-suite log: `daa51e9c8163265c8fcc48bfc746fdec3cb5108c9446acadd9d50503215ce6b9`.
