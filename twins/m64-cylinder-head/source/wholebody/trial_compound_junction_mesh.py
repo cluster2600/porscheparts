@@ -16,6 +16,10 @@ import numpy as np
 from run_parallel_cad_trials import BODY_SHA, native
 from trial_constrained_patch import PATCHES
 
+CHAMBER_SHA = '93545442adaf0a95e741d50ef9efeef48c677ff3592dbeb637dba76bb74df6de'
+CHAMBER_GROUPS = {'chamber': (7,11,146,147,151,152)}
+CHAMBER_PARTITIONED_GROUPS = {'roof': (7,146,147,151), 'rim': (11,152)}
+
 
 def surface_edges(triangles):
     if (triangles.ndim != 2 or triangles.shape[1] != 3 or not len(triangles)
@@ -43,14 +47,22 @@ def restrict_patch_size(gmsh, surfaces, size):
 
 def run(args):
     import gmsh
+    chamber_network = getattr(args, 'chamber_network', False)
+    chamber_partitioned = getattr(args, 'partitioned_chamber', False)
+    body_sha = CHAMBER_SHA if chamber_network else BODY_SHA
+    groups = CHAMBER_GROUPS if chamber_network else PATCHES
+    if chamber_partitioned: groups = CHAMBER_PARTITIONED_GROUPS
     if (args.output.exists() or args.output.is_symlink() or args.body.is_symlink()
-            or native.sha256(args.body) != BODY_SHA or gmsh.__version__ != '4.15.2'):
+            or native.sha256(args.body) != body_sha or gmsh.__version__ != '4.15.2'
+            or (chamber_partitioned and not chamber_network)
+            or (chamber_network and (args.volume or args.classify != 1))):
         raise ValueError('pinned_body_runtime_and_fresh_output_required')
-    pins = {args.body: BODY_SHA, Path(__file__): native.sha256(__file__)}
+    pins = {args.body: body_sha, Path(__file__): native.sha256(__file__)}
     helper = Path(__file__).with_name('trial_constrained_patch.py'); pins[helper] = native.sha256(helper)
     args.output.mkdir(mode=0o700); start = time.monotonic()
-    report = dict(schema='m64-compound-junction-screen/v1', status='incomplete', input_sha256=BODY_SHA,
-        source_sha256=pins[Path(__file__)], helper_sha256=pins[helper], groups=PATCHES,
+    report = dict(schema='m64-compound-junction-screen/v1', status='incomplete', input_sha256=body_sha,
+        source_sha256=pins[Path(__file__)], helper_sha256=pins[helper], groups=groups,
+        chamber_network=chamber_network, chamber_partitioned=chamber_partitioned,
         compound_size_factor=args.factor, compound_classify=args.classify, volume_requested=args.volume,
         junction_size=args.junction_size, curvature_points=args.curvature,
         wall_seconds=args.wall_seconds, patch_size=args.patch_size,
@@ -58,7 +70,16 @@ def run(args):
         CAE_authorized=False, manufacturing_authorized=False)
     def save(): native.save(args.output/'report.json', report)
     save()
-    native.baseline(argparse.Namespace(input=args.body, sha256=BODY_SHA, output=args.output))
+    if chamber_network:
+        from audit_shared_curve_consistency import tangent_group, read_native, indexed
+        from OCP.TopAbs import TopAbs_FACE
+        path = Path(tangent_group.__code__.co_filename); pins[path] = native.sha256(path)
+        report['tangent_audit_source_sha256'] = pins[path]
+        faces = indexed(read_native(args.body), TopAbs_FACE)
+        report['tangent_group_audits'] = {name: tangent_group(faces,group) for name,group in groups.items()}
+        report['facewise_boundary_conditions_preserved'] = False
+        save()
+    native.baseline(argparse.Namespace(input=args.body, sha256=body_sha, output=args.output))
     baseline = json.loads((args.output/'native-baseline.json').read_text())
     gmsh.initialize(['compound-screen', '-nopopup'], readConfigFiles=False, run=False)
     gmsh.option.setNumber('General.Terminal', 0)
@@ -75,7 +96,7 @@ def run(args):
             raise ValueError('one_solid_and_native_face_bijection_required')
         tags = {r['source_face_index']: r['gmsh_face_tag'] for r in binding['matches_private']}
         report['native_face_binding_private'] = binding
-        for name, group in PATCHES.items(): gmsh.model.mesh.setCompound(2, [tags[i] for i in group])
+        for name, group in groups.items(): gmsh.model.mesh.setCompound(2, [tags[i] for i in group])
         for key, value in {'Mesh.Algorithm': 1, 'Mesh.MeshSizeMin': .00002, 'Mesh.MeshSizeMax': 3.,
                           'Mesh.MeshSizeFromPoints': 1, 'Mesh.MeshSizeFromCurvature': args.curvature,
                           'Mesh.MeshSizeExtendFromBoundary': 1, 'General.NumThreads': 2,
@@ -94,7 +115,7 @@ def run(args):
         fields = []
         if args.junction_size:
             curves = []
-            for group in PATCHES.values():
+            for group in groups.values():
                 uses = Counter(abs(t) for i in group for d, t in gmsh.model.getBoundary([(2, tags[i])], oriented=False) if d == 1)
                 curves.extend(t for t, count in uses.items() if count == 2)
             if not curves: raise ValueError('measured_internal_junction_curves_required')
@@ -107,7 +128,7 @@ def run(args):
             fields.append(threshold)
             report['junction_field'] = dict(curves_private=sorted(set(curves)), sampling=1000, min_distance=.2, max_distance=.8)
         if args.patch_size:
-            fields.append(restrict_patch_size(gmsh, [tags[i] for group in PATCHES.values() for i in group], args.patch_size))
+            fields.append(restrict_patch_size(gmsh, [tags[i] for group in groups.values() for i in group], args.patch_size))
         if fields:
             combined = gmsh.model.mesh.field.add('Min')
             gmsh.model.mesh.field.setNumbers(combined, 'FieldsList', fields)
@@ -174,6 +195,8 @@ if __name__ == '__main__':
     parser.add_argument('--factor', type=float, choices=(.5, 1.), default=1.)
     parser.add_argument('--classify', type=int, choices=(0, 1), default=0)
     parser.add_argument('--volume', action='store_true', help='Run a diagnostic volume only after the surface screen passes.')
+    parser.add_argument('--chamber-network', action='store_true', help='Exact five-edge blend only; require recorded/sampled G1 seams, classify=1 and no volume.')
+    parser.add_argument('--partitioned-chamber', action='store_true', help='Chamber network only: retain the G1 roof/rim boundary as two smaller compounds.')
     parser.add_argument('--junction-size', type=float, choices=(.02, .05), help='Refine near native internal junction curves.')
     parser.add_argument('--patch-size', type=float, choices=(.1, .2), help='Limit size across both original compound patches and their boundaries.')
     parser.add_argument('--curvature', type=int, choices=(12, 64), default=12)

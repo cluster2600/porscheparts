@@ -90,6 +90,46 @@ def internal_junctions(faces):
     return rows
 
 
+def tangent_group(faces, selected):
+    """Admit a connected diagnostic compound only across recorded, sampled G1 seams.
+
+    Check every internal edge, not just a spanning tree; an indirect smooth
+    path must never license deletion of a sharp edge between two group faces.
+    OCCT continuity metadata and finite samples are not an interval certificate.
+    """
+    from OCP.BRep import BRep_Tool
+    from OCP.GeomAbs import GeomAbs_G1, GeomAbs_C1, GeomAbs_G2, GeomAbs_C2, GeomAbs_C3, GeomAbs_CN
+    from OCP.TopAbs import TopAbs_EDGE
+    from OCP.TopTools import TopTools_IndexedMapOfShape
+    from OCP.TopoDS import TopoDS
+    if (not 2 <= len(selected) <= 8 or len(set(selected)) != len(selected)
+            or any(type(i) is not int or not 1 <= i <= len(faces) for i in selected)):
+        raise ValueError('bounded_distinct_face_indices_required')
+    edges = TopTools_IndexedMapOfShape(); owners = {}
+    for i in selected:
+        for edge in indexed(faces[i-1], TopAbs_EDGE):
+            key = edges.Add(edge); owners.setdefault(key, []).append(i)
+    rows = []; graph = {i: set() for i in selected}; boundary = 0
+    for key, pair in owners.items():
+        if len(pair) == 1: boundary += 1; continue
+        if len(pair) != 2: raise ValueError('manifold_internal_group_edges_required')
+        a,b = pair; edge = TopoDS.Edge_s(edges.FindKey(key))
+        fa,fb = TopoDS.Face_s(faces[a-1]), TopoDS.Face_s(faces[b-1])
+        continuity = BRep_Tool.Continuity_s(edge,fa,fb)
+        row = dict(face_pair_private=pair, recorded_continuity=str(continuity), **junction(edge,(fa,fb)))
+        if (continuity not in (GeomAbs_G1,GeomAbs_C1,GeomAbs_G2,GeomAbs_C2,GeomAbs_C3,GeomAbs_CN)
+                or row['sampled_tangent_under_0p1_degree'] is not True):
+            raise ValueError('sharp_unannotated_or_opposed_internal_seam_rejected')
+        rows.append(row); graph[a].add(b); graph[b].add(a)
+    reached = {selected[0]}; pending = [selected[0]]
+    while pending:
+        for i in graph[pending.pop()]-reached: reached.add(i); pending.append(i)
+    if reached != set(selected): raise ValueError('connected_tangent_group_required')
+    return dict(faces_private=list(selected), internal_seams=rows, exterior_edge_count=boundary,
+                all_internal_seams_screened=True, continuous_tangency_certified=False,
+                physical_face_roles_certified=False)
+
+
 if __name__ == '__main__':
     import OCP
     parser = argparse.ArgumentParser(description=__doc__)

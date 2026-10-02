@@ -55,11 +55,22 @@ def run(args):
     from OCP.BRepAdaptor import BRepAdaptor_Curve
     from OCP.gp import gp_Pnt
     record = json.loads(args.receipt.read_text())
+    chamber_network = record.get('chamber_network') is True
+    body_sha, groups = BODY_SHA, PATCHES
+    if chamber_network:
+        from trial_compound_junction_mesh import CHAMBER_SHA, CHAMBER_GROUPS, CHAMBER_PARTITIONED_GROUPS
+        body_sha = CHAMBER_SHA
+        groups = CHAMBER_PARTITIONED_GROUPS if record.get('chamber_partitioned') is True else CHAMBER_GROUPS
+        if (record.get('schema') != 'm64-compound-junction-screen/v1'
+                or record.get('groups') != {k:list(v) for k,v in groups.items()}):
+            raise ValueError('exact_chamber_compound_groups_required')
     helpers = [Path(__file__).with_name(name) for name in
                ('trial_constrained_patch.py', 'run_bounded_chamfer.py', 'run_parallel_cad_trials.py')]
+    if chamber_network: helpers += [Path(__file__).with_name(name) for name in
+                                   ('trial_compound_junction_mesh.py', 'audit_shared_curve_consistency.py')]
     pins = {p: native.sha256(p) for p in (args.body, args.mesh, args.receipt, Path(__file__), *helpers)}
-    if (args.output.exists() or any(p.is_symlink() for p in pins) or pins[args.body] != BODY_SHA
-            or record.get('input_sha256') != BODY_SHA or record.get('surface_sha256') != pins[args.mesh]
+    if (args.output.exists() or any(p.is_symlink() for p in pins) or pins[args.body] != body_sha
+            or record.get('input_sha256') != body_sha or record.get('surface_sha256') != pins[args.mesh]
             or record.get('schema') not in ('m64-compound-junction-screen/v1', 'm64-projected-compound-screen/v1')
             or record.get('compound_classify') != 1 or record.get('inputs_unchanged') is not True
             or record.get('status') != 'completed_diagnostic_only'):
@@ -68,7 +79,11 @@ def run(args):
     if binding.get('descriptor_bijection_verified') is not True: raise ValueError('native_face_binding_required')
     tags = {r['source_face_index']: r['gmsh_face_tag'] for r in binding['matches_private']}
     faces = indexed(read_native(args.body), TopAbs_FACE); result = {}
+    if chamber_network:
+        from audit_shared_curve_consistency import tangent_group
+        for group in groups.values(): tangent_group(faces,group)
     report = dict(schema='m64-compound-native-shape-samples/v1', status='incomplete',
+        chamber_network=chamber_network,
         source_hashes={p.name: h for p, h in pins.items()}, groups=result,
         wall_seconds=args.wall_seconds, sampled_screen_limit_scan_units=.040,
         native_Hausdorff_certified=False, unsampled_extrema_bounded=False,
@@ -79,7 +94,7 @@ def run(args):
     try:
         gmsh.open(str(args.mesh)); node_tags, xyz, _ = gmsh.model.mesh.getNodes()
         order = np.argsort(node_tags); node_tags = node_tags[order]; xyz = np.array(xyz).reshape(-1, 3)[order]
-        for name, group in PATCHES.items():
+        for name, group in groups.items():
             arrays, empty = [], []
             for i in group:
                 types, _, nodes = gmsh.model.mesh.getElements(2, tags[i])

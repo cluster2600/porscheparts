@@ -77,3 +77,18 @@ class AcuteBlendTest(unittest.TestCase):
         removed=adaptive_volume(body)[0]-adaptive_volume(op.Shape())[0]
         self.assertAlmostEqual(removed,radius**2*(math.tan(turn/2)-turn/2),places=12)
         self.assertEqual(encode(body),before)
+        from audit_shared_curve_consistency import tangent_group
+        result=module.indexed(op.Shape(),TopAbs_FACE)
+        members=list(op.Generated(chosen[0]))+[f for support in supports for f in op.Modified(support)]
+        selected=[i for i,f in enumerate(result,1) if any(f.IsSame(g) for g in members)]
+        self.assertEqual(len(selected),3)
+        audit=tangent_group(result,selected)
+        self.assertEqual(len(audit['internal_seams']),2)
+        self.assertTrue(audit['all_internal_seams_screened'])
+        self.assertFalse(audit['continuous_tangency_certified'])
+        with self.assertRaises(ValueError): tangent_group(result,selected+selected[:1])
+        flipped=list(result); flipped[selected[0]-1]=flipped[selected[0]-1].Reversed()
+        with self.assertRaisesRegex(ValueError,'opposed_internal_seam'):
+            tangent_group(flipped,selected)
+        with self.assertRaisesRegex(ValueError,'sharp_unannotated'):
+            tangent_group(result,list(range(1,len(result)+1)))

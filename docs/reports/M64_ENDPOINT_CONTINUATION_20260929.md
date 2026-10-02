@@ -79,6 +79,13 @@ five cutter faces; the upper patch fails the forward-edge direction guard.
 The [final section](#2-october-native-tip-truncation-is-not-a-junction-reconstruction)
 records the witnesses, unchanged reference and next construction constraint.
 
+**G1/contact follow-up, 2 October:** both bounded compound-meshing trials time
+out without a mesh. A new all-internal-edge guard prevents sharp seams from
+being hidden. Native intersections confirm that both nominal exhaust-seat
+outer cylinders retain their full coincidence area in the five-edge candidate.
+The [contact diagnostic and actual CAD view](#2-october-g1-compounds-and-exhaust-seat-contact)
+do not qualify hot retention, thermal performance or manufacturing.
+
 **Later recovery, 1 October:** both authorised Linux hosts are reachable again.
 The previously uncollected size-0.1 run completed but has **5 incompatible
 triangles / 976,144**; the curvature-64 run ended at its 1,800-second alarm.
@@ -1165,6 +1172,109 @@ python twins/m64-cylinder-head/source/wholebody/trial_audited_discrete_volume.py
 python -m unittest discover -s tests -p test_m64_projected_surface_topology.py -v
 python -m unittest discover -s tests -p test_m64_bounded_chamfer.py -v
 ```
+
+## 2 October: G1 compounds and exhaust-seat contact
+
+The five-edge chamber candidate (`93545442…`) still has **17 incompatible
+triangles / 1,006,116** in its completed MeshAdapt surface. The retained master
+and its 32 rejected tetrahedra remain unchanged. This continuation does not
+replace either with an incomplete calculation.
+
+The [shared native audit](../../twins/m64-cylinder-head/source/wholebody/audit_shared_curve_consistency.py)
+now checks **every internal edge** of a proposed two-to-eight-face compound,
+not merely a connected spanning tree. It requires recorded OCCT G1-or-better
+continuity, consistent oriented normals at 129 samples including endpoints,
+matching p-curves, manifold internal incidence and a connected group. Duplicate
+indices, disconnected groups, unannotated/sharp edges and opposed normals fail
+closed. These finite samples and continuity metadata are not a continuous
+tangency certificate. A native shallow-wedge regression exercises acceptance,
+duplicate rejection, opposed orientation and sharp-edge rejection.
+
+| Exact-candidate compound experiment | Internal seams screened | Outcome |
+|---|---:|---|
+| Faces 7, 11, 146, 147, 151, 152 | 5 G1 seams | 540-second alarm, exit 142; no mesh |
+| Roof 7/146/147/151 and rim 11/152 separately | 4 G1 seams; roof/rim seam retained | 540-second alarm, exit 142; no mesh |
+
+The first group's maximum sampled normal-angle difference is 1.22e-7 degrees;
+maximum p-curve discrepancy is 4.92e-10 scan unit. Neither trial discards the
+known sharp original junctions. Both receipts correctly remain `incomplete` at
+`meshing_compounds`; neither has a triangle-quality result. The extended
+[shape sampler](../../twins/m64-cylinder-head/source/wholebody/audit_compound_shape.py)
+requires exact candidate/group/mesh bindings and repeats the G1 checks, but
+**cannot run on these absent outputs**. No volume meshing follows.
+
+### Identify contact surfaces before changing neighbouring boundaries
+
+A native diagnostic matches original faces 131/140 and candidate faces 2/13
+to the **outer cylinders of the nominal exhaust-2/exhaust-1 seats** respectively.
+It uses the actual 12-solid V2 STEP module, not a photograph or guessed anatomy.
+Its previously recorded placement remains a hypothesis: one scan unit per mm,
+Z rotation -90 degrees, Z translation +3 scan units. This is not M64 metrology.
+
+For each seat, before and after the candidate edit, a non-destructive native
+`Common(body_face, seat_outer_face)` returns one coincident cylindrical face,
+area **622.0353454106107 scan units squared**, agreeing with `2*pi*18*5.5`.
+`Cut(seat_outer_face, common)` leaves **zero faces**. Source faces, seats and
+file hashes remain unchanged. This is nominal coincidence at native OCCT
+tolerances; it does not certify a strict zero gap below those tolerances.
+Seat shoulders, conical sealing bands, interference, pressure, thermal contact
+conductance, expansion and hot retention are **not checked** by this comparison.
+
+The worst surface triangle on candidate face 147 lies near its boundary with
+seat-aligned face 2; the rejected triangles on face 152 lie near its boundary
+with seat-aligned face 13. Proximity is a localisation result, not proof of a
+single cause. Those boundaries are outside the G1 group and must not be erased
+to improve a quality statistic. The next reconstruction/meshing experiment
+must preserve the measured nominal contact patches and sharp boundaries.
+
+![Actual candidate and isolated chamber surfaces with nominal exhaust seats](../media/m64-chamber-tip-20261002/exhaust-seat-checkpoint.png)
+
+The left panel is the actual candidate skin, the right isolates the chamber
+group and two existing seat components. Green and gold identify geometry,
+**not materials, temperature or stress**. The seats reuse hash-checked native
+tessellations with their placement applied once. No smoothing, decimation,
+cosmetic hole filling or generative imaging occurs. Wolfe Classics provenance
+and owner-confirmed reuse remain as recorded in the
+[source record](../../catalog/sources/src-wolfe-classics-935-billet-cylinder-head-scan.json);
+the exact licence identifier remains unarchived. Raw/native geometry stays private.
+
+Verification: the qualified Mac runtime passes 3 acute-blend, 13 constrained-
+patch and 6 bounded-chamfer tests. Final frozen-code Kali2 `make check` exits
+**0**: 3,232 main tests, 168 optional skips, 155.451 seconds, followed by all
+remaining targets. Optional native tests skipped there run on Mac instead.
+The four modified code/test files have identical Mac/Linux hashes. One earlier
+rerun was not launched because recursive permission normalization encountered
+root-owned Docker bytecode; limiting it to the two changed source files fixed
+the preparation without altering those unrelated files.
+
+Private evidence fingerprints:
+
+- Six-face incomplete receipt: `e8d38cf86f44caaebb7670dff3614dc97701e053ae98275bb6a5cba5d23f3dbe`.
+- Partitioned incomplete receipt: `45209ddeed16c3a788a736a841f9be2ac40130003acf1613c454255e1208913d`.
+- Final compound runner: `d7672dfd5ee8a001e4ed73094e88fea9e910a9be467cf29af8058169cfa561fd`.
+- All-internal-edge auditor: `e4d79749e052ac572ce25ec66ba1dc5cad32738811e9c4df8fc206bd5b1502e0`.
+- Native seat comparison: `f3bf42d0f898adbce545dc22ef23fca1ce2b27d3019f6e5992218edcf1ea28ca`.
+- Private seat comparison source: `025c40414e623553766f9b7cd201994cca4d012b77ce9128a728d53ee68c037c`.
+- Actual render receipt: `5d40f063b6fa6a31f960c2eaac443483a1e4856ee30d585bace2d703485af0cf`.
+- Published PNG: `83131578ae493e3648d6906f6604af2c13bb9e71de9bb90f40d700f35ad7ffcf`.
+- Final Linux check log: `cd0a319407acca28db4376fd5356427ebf016e52751a1e5b8a23dc7810ad6d5c`.
+
+Reproduction in the qualified OCP 7.9.3.1 / Gmsh 4.15.2 runtime:
+
+```sh
+python twins/m64-cylinder-head/source/wholebody/trial_compound_junction_mesh.py \
+  --body /private/network-r005-final/candidate.brep --chamber-network \
+  --classify 1 --factor 1 --output /private/fresh-g1-compound
+python twins/m64-cylinder-head/source/wholebody/trial_compound_junction_mesh.py \
+  --body /private/network-r005-final/candidate.brep --chamber-network \
+  --partitioned-chamber --classify 1 --factor 1 --output /private/fresh-g1-partitioned
+python -m unittest discover -s tests -p test_m64_acute_cylinder_blend.py -v
+```
+
+Both jobs have ended. No paid instance, new accepted CAD/mesh, print simulation,
+thermal/material result, manufacturing release, PR merge or site deployment
+occurs in this continuation. The cooling-fin study remains research input,
+not evidence of a heat-transfer gain on this head.
 
 ## 2 October: reject the cutter cusp and test a coupled chamber-edge network
 
