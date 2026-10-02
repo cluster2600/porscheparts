@@ -55,6 +55,11 @@ class CorpusTest(unittest.TestCase):
                 good=[{**fail[0],'passed':True}]
                 self.assertFalse(train.gate(good,fail)['eligible'])
                 self.assertTrue(train.gate(fail,good)['eligible'])
+                import ask
+                answer={'claims':[{'text':'Source reports a carrier','record_id':'pet-1'}], 'missing_information':[]}
+                self.assertTrue(ask.citations(answer,{'pet-1'}))
+                self.assertFalse(ask.citations(answer,{'different-source'}))
+                self.assertFalse(ask.citations({'claims':'not a list','missing_information':[]},{'pet-1'}))
             finally:sys.path.pop(0)
 
 

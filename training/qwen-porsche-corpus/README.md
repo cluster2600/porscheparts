@@ -37,6 +37,22 @@ local document (or page-separated layout text). It reads every page using
 references and SQLite FTS5; multilingual semantic search is not implemented.
 The database is read-only when queried, and an existing index is never replaced.
 
+`ask.py` connects retrieval to the local model. Use source-language keywords
+for `--query` and a natural-language `--question`; the answer is saved with
+source IDs and page numbers. It checks citation structure, not the truth of
+each generated statement. This generative mode is experimental and distinct
+from the field-extraction benchmark. Unknown citations fail closed.
+
+```sh
+/Users/maxime/.codex/worktrees/m64-local-architecture-qwen/3dprinting993/work/m64-qwen/venv/bin/python \
+  training/qwen-porsche-corpus/ask.py \
+  --index work/qwen-porsche-corpus-001/index \
+  --adapter work/qwen-porsche-corpus-001/run/adapter \
+  --query 'data synchronization' \
+  --question 'What does the supplied review say about data quality and validation?' \
+  --output work/qwen-porsche-corpus-001/review-answer.json
+```
+
 The first training protocol contains 677 training, 40 validation and 40 test
 examples sampled from actual source records. Targets ask for a supplied field
 and its provenance, including missing-information cases. All appearances of a
