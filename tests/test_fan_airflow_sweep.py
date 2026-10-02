@@ -13,6 +13,42 @@ SOURCE = Path(__file__).resolve().parents[1] / "twins/993-engine-cooling-fan-sys
 
 
 class FanSweepTests(unittest.TestCase):
+    def test_monitor_exits_for_completed_case_without_windows(self):
+        with tempfile.TemporaryDirectory() as folder:
+            case = Path(folder)
+            (case / "system").mkdir()
+            (case / "system/controlDict").write_text("stopAt endTime;")
+            (case / "log.foamRun").write_text("\nEnd\n")
+            result = subprocess.run([sys.executable, str(SOURCE / "monitor_reference_cfd.py"), str(case)],
+                                    capture_output=True, text=True, timeout=10)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertIn("Ended without usable convergence windows", result.stdout)
+            self.assertEqual((case / "system/controlDict").read_text(), "stopAt endTime;")
+
+    def test_bad_rotating_interface_never_starts_solver(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            for name in ("system", "constant/polyMesh", "bin", "audit_fan_mrf_interface"):
+                (root / name).mkdir(parents=True)
+            (root / "system/controlDict").touch()
+            (root / "constant/polyMesh/boundary").write_text("rotor { type wall; }\nduct { type wall; }\n")
+            for name, body in {
+                "checkMesh": 'echo "Mesh OK."', "topoSet": "exit 0", "wmake": "exit 0",
+                "auditFanMRFInterface": 'echo "MRF REJECTED: internal interface is not tangent to rotation"; exit 2',
+                "decomposePar": "touch solver-would-start",
+            }.items():
+                command = root / "bin" / name
+                command.write_text("#!/bin/sh\n" + body + "\n")
+                command.chmod(0o755)
+            script = root / "run.sh"
+            script.write_text((SOURCE / "run_reference_cfd.sh").read_text().replace(
+                "source /opt/openfoam14/etc/bashrc", ": # test utilities on PATH"))
+            result = subprocess.run(["bash", str(script), str(root), "--existing-mesh"],
+                env=os.environ | {"PATH": str(root / "bin") + os.pathsep + os.environ["PATH"]}, capture_output=True)
+            self.assertEqual(result.returncode, 2, result.stderr)
+            self.assertIn("not tangent to rotation", (root / "log.mrf-interface").read_text())
+            self.assertFalse((root / "solver-would-start").exists())
+
     def test_velocity_plot_rejects_clipped_or_invalid_colour_scales(self):
         require_modules("numpy", "matplotlib", "torch", "physicsnemo")
         with tempfile.TemporaryDirectory() as folder:

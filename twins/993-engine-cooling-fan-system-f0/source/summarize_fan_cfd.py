@@ -34,6 +34,22 @@ def diagnostics(inlet, outlet, window=100):
             "numerical_window_checks_passed": imbalance < .001 and drift < .001 and spread < .002}
 
 
+def mrf_interface_passed(text):
+    try:
+        line, = [line for line in text.splitlines() if line.startswith("MRF_AUDIT ")]
+        fields = dict(item.split("=") for item in line.split()[1:])
+        cells, total, faces = (int(fields[k]) for k in ("cells", "totalCells", "interfaceFaces"))
+        area, mean, maximum = (float(fields[k]) for k in
+            ("interfaceArea_m2", "meanNormalSpeed_per_rad_s", "maxNormalSpeed_per_rad_s"))
+        return ("MRF REJECTED" not in text and 0 < cells <= total and faces >= 0
+                and all(math.isfinite(v) for v in (area, mean, maximum))
+                and 0 <= mean <= maximum <= 1e-8
+                and ((faces == 0 and area == 0 and cells == total)
+                     or (faces > 0 and area > 0 and cells < total)))
+    except (ValueError, KeyError):
+        return False
+
+
 def summarize(case, *, allow_running=False):
     histories = []
     for patch in ("inletFlow", "outletFlow"):
@@ -68,6 +84,7 @@ def summarize(case, *, allow_running=False):
         "rpm": manifest["rpm"], "mean_fluid_torque_Nm": moment,
         "mean_shaft_power_to_fluid_W": -moment * manifest["rpm"] * math.pi / 30,
         "standard_mesh_check_passed": "Mesh OK." in (case / "log.checkMesh-standard").read_text(),
+        "rotating_frame_interface_check_passed": mrf_interface_passed((case / "log.mrf-interface").read_text()),
         "extended_mesh_check_passed": "Mesh OK." in (case / "log.checkMesh").read_text(),
         "validated_airflow_m3_s": None, "grid_independence_demonstrated": False,
         "wall_resolution_qualified": False, "optimized": False,
@@ -88,6 +105,12 @@ if __name__ == "__main__":
         assert diagnostics(inlet, outlet)["numerical_window_checks_passed"]
         outlet[-1][1] = 1.1
         assert not diagnostics(inlet, outlet)["numerical_window_checks_passed"]
+        audit = "MRF_AUDIT cells=100 totalCells=100 interfaceFaces=0 interfaceArea_m2=0 meanNormalSpeed_per_rad_s=0 maxNormalSpeed_per_rad_s=0"
+        assert mrf_interface_passed(audit)
+        for invalid in ("", audit.replace("maxNormalSpeed_per_rad_s=0", "maxNormalSpeed_per_rad_s=nan"),
+                        audit.replace("cells=100", "cells=50"), audit + "\nMRF REJECTED",
+                        "MRF_AUDIT cells=50 totalCells=100 interfaceFaces=10 interfaceArea_m2=.15 meanNormalSpeed_per_rad_s=.035 maxNormalSpeed_per_rad_s=.123"):
+            assert not mrf_interface_passed(invalid)
         print("Fan flow diagnostic checks passed")
     else:
         result = summarize(args.case)

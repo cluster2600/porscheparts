@@ -12,6 +12,7 @@ if [[ $# == 2 ]]; then
 fi
 [[ ! -e "$1/log.foamRun" && ! -e "$1/log.snappyHexMesh" ]] || { echo "Existing run: preserve evidence and prepare a new case"; exit 2; }
 source /opt/openfoam14/etc/bashrc
+source_dir="$(cd "$(dirname "$0")" && pwd)"
 cd "$1"
 if [[ -n "$mesh" ]]; then
  if [[ "$mesh" == existing ]]; then
@@ -40,6 +41,10 @@ checkMesh -allGeometry -allTopology -writeSets -writeSurfaces > log.checkMesh 2>
 if ! grep -Fxq 'Mesh OK.' log.checkMesh-standard; then echo 'MESH REJECTED'; exit 2; fi
 if ! grep -Fxq 'Mesh OK.' log.checkMesh; then echo 'MESH REJECTED: extended checks failed; see log.checkMesh'; exit 2; fi
 topoSet > log.topoSet 2>&1
+(cd "$source_dir/audit_fan_mrf_interface" && wmake) > log.mrf-audit-build 2>&1
+if ! auditFanMRFInterface > log.mrf-interface 2>&1; then
+ echo 'MRF REJECTED: see log.mrf-interface'; exit 2
+fi
 decomposePar > log.decomposePar 2>&1
 ranks=$(foamDictionary system/decomposeParDict -entry numberOfSubdomains -value)
 [[ "$ranks" =~ ^[1-9][0-9]*$ ]] || { echo "Invalid processor count"; exit 2; }

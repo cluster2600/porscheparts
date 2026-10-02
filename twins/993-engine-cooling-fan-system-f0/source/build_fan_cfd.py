@@ -51,6 +51,8 @@ def generate(out: Path, surface: Path, rpm: float, cells: int = 24, surface_leve
         "model_scope": ("parametric_alternator_envelope_not_oem_validated" if with_alternator
                         else "isolated_rotor_without_alternator"),
         "alternator_envelope_included": with_alternator,
+        "rotating_frame_extent": ("local_zone_requires_interface_audit" if with_alternator
+                                  else "whole_axisymmetric_duct"),
         "alternator_shaft_wall_model": "stationary_obstruction_approximation" if with_alternator else None,
         "stationary_surface_audit": fixed_audit if with_alternator else None,
         "missing_components": (["alternator_internal_passages", "bearing_seals", "installed_shroud"]
@@ -113,7 +115,7 @@ actions (
   box (-.15 -.15 -.027) (.15 .15 .027);}
  {name rotorZone; type cellZoneSet; action new; source setToCellZone; set rotorCells;}
 );
-""".replace(".027", str(half_zone)))
+""".replace(".027", str(half_zone if with_alternator else .2)))
     write("system/decomposeParDict", "numberOfSubdomains 4; method scotch;")
     write("constant/MRFProperties", f"""
 MRF {{cellZone rotorZone; origin (0 0 0); axis (0 0 1); omega {rpm * rotation_sign} [rpm];}}

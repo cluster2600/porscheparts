@@ -175,10 +175,56 @@ Pressure relaxation is 1 while velocity and both turbulence equations retain
 boundary conditions, spatial schemes, linear tolerances and acceptance limits
 are unchanged; the algorithm request and dictionary hashes are recorded.
 
+The extended SIMPLEC runs still did not satisfy all integral windows and showed
+renewed flow/torque fluctuations. They stopped and reconstructed normally at
+iterations 1477 and 1753. Complete field checkpoints, dictionaries and histories
+were preserved before a native `localEuler` pseudo-time trial. This follows the
+installed OpenFOAM 14 `incompressibleFluid/pitzDailyLTS` tutorial: PIMPLE with one
+outer iteration, two pressure correctors, `maxCo = 1`, smoothing coefficient 0.1
+and maximum local time step 1. The two non-orthogonal correctors and existing
+linear tolerances are retained. Algebraic under-relaxation is removed; the local
+time derivative supplies damping. Geometry, rotation, boundary conditions,
+turbulence model and spatial schemes are unchanged.
+
+This is a warm-start experiment, **not a physical transient simulation**. Its
+initial budget is 500 pseudo-time iterations per case, with earlier stopping
+possible if the same integral windows pass. Any candidate result must then return
+to `steadyState` and the saved SIMPLEC dictionary for a separate confirmation
+segment. Passing a pseudo-time window alone does not qualify the comparison.
+
+## Rotating-frame interface correction
+
+The pseudo-time retry was stopped before acceptance to investigate a common
+geometric defect in both rotating zones. Cell-centre box selection on the
+unstructured tetrahedral mesh produced a ragged internal MRF interface. A native
+OpenFOAM audit measured 43,445 / 43,507 interface faces, respectively, with
+area-mean absolute rotation-normal velocities of 0.03526 / 0.03537 metres per
+radian. At 3,000 rpm these correspond to approximately 11 m/s on an artificial
+internal interface; maxima reach approximately 38.8 m/s. Neither old result is
+accepted. This is a numerical-interface diagnostic, not measured physical flow.
+
+For the **isolated rotor in the axisymmetric duct only**, fresh cases now assign
+all fluid cells to the rotating frame. This removes the internal interface;
+`MRFnoSlip` remains on the rotor and absolute `noSlip` on the stationary duct.
+Both cases start from their original uniform fields, without reusing old-frame
+`phi` or `Uf`. Mesh connectivity, geometry hashes, rpm, physical boundaries and
+SST model are unchanged. Native audits confirm all 8,182,775 / 8,170,973 cells
+belong to the respective rotating zones and zero internal interface faces.
+Both meshes again pass standard and full extended checks. Fresh steady SIMPLEC
+runs use the unchanged flow, torque and mass-conservation acceptance windows.
+
+The shared runner now rejects a non-tangent internal rotating interface before
+starting the solver. The full-domain method is **not applied to the non-axisymmetric
+stationary alternator assembly**: that future calculation needs a conforming
+local interface or an appropriate moving-mesh method. Duct faceting, wall
+resolution, mesh/domain sensitivity and installed-assembly validation remain
+unresolved. The two new calculations must still converge before comparison.
+
 ## Verification
 
-The repository's Python suite completed again after the outlet correction:
-3,262 tests, 153 skipped, no failures. The new common-colour-scale rendering
+The repository's Python suite completed again after the rotating-interface correction:
+3,263 tests, 153 skipped, no failures. The additional completed-short-run monitor
+regression passed separately with the focused runner checks. The new common-colour-scale rendering
 check was separately run in the PhysicsNeMo environment and passed, including
 rejection of clipped, zero and nonfinite ranges.
 The additional imported-mesh rejection test also passed. `make check` reached
@@ -189,6 +235,13 @@ The pushed correction separately passed the repository's GitHub
 The pressure-integral audit now accepts an explicit CUDA device. Its analytical
 triangle self-check passed both on the Mac CPU and on the Vast GPU. This checks
 the audit implementation; it is not an aerodynamic validation result.
+The actual candidate pressure field saved at iteration 1753 was also exported
+and integrated on CUDA. Relative force and moment errors against OpenFOAM are
+3.89 × 10⁻⁷ and 4.47 × 10⁻⁷ respectively. This confirms the independent pressure
+integration on a real field; that checkpoint still failed the flow/torque windows.
+Its rotor-wall `y+` spans 0.0020–75.24, with a reported average of 14.90; the duct
+average is 8.56. These diagnostics are retained in `log.yPlus-before-lts` and do
+not qualify the wall resolution or replace a wall-layer/grid-sensitivity study.
 
 Primary implementation references: [PyMeshLab filters](https://pymeshlab.readthedocs.io/en/latest/filter_list.html),
 [Gmsh reference manual](https://gmsh.info/doc/texinfo/gmsh.html).
@@ -232,6 +285,7 @@ Downloaded local files and GitHub's uploaded asset digests agree:
 | --- | --- |
 | `checked-cfd-inputs.tar.gz` | `265ab1aa066c1b3278abc09f57b7f0cbc1c1426984c6a6fb223b67837ba5bf8f` |
 | `mesh-recovery-attempt-logs.tar.gz` | `c7c08773fc26430569b0fc9220d171536882e6103794203117b125cb111a1356` |
+| `simplec-pre-lts-checkpoints.tar.gz` | `5426daad8fed5c2d891f57cdc32b59fedad297619d364216541be0f7c2fe6c5b` |
 | `control-restart-and-rejected-branch.tar.gz` | `55b6793b8099325ab00947f8d936221996e085ff95661b6c7ec082a4f6cf1ed0` |
 
 The input archive captures the initial solver setup before the SIMPLEC changes.
