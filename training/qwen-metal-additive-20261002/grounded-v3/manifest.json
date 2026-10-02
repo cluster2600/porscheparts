@@ -1,0 +1,128 @@
+{
+  "status": "pilot_source_checked_not_expert_approved",
+  "training_run": false,
+  "expert_validated": false,
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "chat_template_sha256": "cd8e9439f0570856fd70470bf8889ebd8b5d1107207f67a5efb46e342330527f",
+  "libraries": {
+    "transformers": "4.57.1",
+    "tokenizers": "0.22.2",
+    "beautifulsoup4": "4.15.0",
+    "jinja2": "3.1.6"
+  },
+  "eos_token_id": 151645,
+  "cpt_limit": 2048,
+  "sft_limit": 2048,
+  "source_assignment": {
+    "MET001": "train",
+    "MET002": "train",
+    "MET003": "valid",
+    "MET004": "test",
+    "thermal_en_prediction": "train",
+    "thermal_en_critical": "train",
+    "thermal_en_flow": "train",
+    "NEW_RESIDUAL": "train",
+    "NEW_QUALITY": "valid",
+    "NEW_WAAM": "test"
+  },
+  "concept_count": 40,
+  "counts": {
+    "cpt_text": {
+      "train": 50,
+      "valid": 9,
+      "test": 14
+    },
+    "cpt_tokens": {
+      "train": 50,
+      "valid": 9,
+      "test": 14
+    },
+    "sft_messages": {
+      "train": 53,
+      "valid": 16,
+      "test": 21
+    },
+    "sft_tokens": {
+      "train": 53,
+      "valid": 16,
+      "test": 21
+    }
+  },
+  "maximum_tokens": {
+    "cpt_tokens": 2042,
+    "sft_tokens": 831
+  },
+  "evaluation_count": 8,
+  "near_duplicate_count": 0,
+  "input_hashes": {
+    "prepare_grounded.py": "aab46ea47635951f64bdcabbdac39f456372b22345555e6a3046eced5f1e7682",
+    "format_qwen.py": "aaf3e47551b4a5d0f602a39dd5793c7c0ee2a187249a8f9dc2c3b0cebca3b5a6",
+    "verify_grounded.py": "4b2fb891c21cb8ffaa4a6f36ad590b25e48fcf88d062f0f2d8aa4c7d30ef83d7",
+    "train_pilot.py": "5947e8c084b2617035d7ff907de9618e6fa610b41c583446c23063b71aa4e964",
+    "predict_pilot.py": "1316b09cb92c972021f05239ba2ce39da4fc41f48b8c65b49d0238fcfb8d1cc4",
+    "evaluate_grounded.py": "5f954946ff42f2e97b9c28927b602e710181d172c85b5867f77ec33e5c20b4be",
+    "lora-pilot.json": "109e48a60f6ab8d531c46b5eab778a459c88771b509c63ef6710238ba0628457",
+    "pilot-requirements.txt": "bf72e647c54b643262a4fcae6c140d732a0f448726e2c175707264c88d518ec5",
+    "data/sft-records.jsonl": "9d6cab58050580514f587f554f31c8c14d3a64d17b2c4efac61771adaaf205ed",
+    "grounded-input/NEW_QUALITY.license.txt": "a398ad3b02ae918e34773f90a885e12fc4f311c136d7c53071805e16d783a2c5",
+    "grounded-input/NEW_RESIDUAL.license.txt": "97913192037db0a64a8ae37d1afc52764c0f19b42b18d9a0f331174b9f8ad6f9",
+    "grounded-input/NEW_WAAM.license.txt": "f148af92dd323d5357618484ea042e540908ba131a5b88de3c3eca298f23e5ad",
+    "grounded-input/cases.json": "f7b5bad045d02c46f566dbf8ada4081814600e6667dcad09251248c34dc85c55",
+    "grounded-input/evaluation.json": "8487f832d0d3d862267daa34553c834bd1c2bc9f5911b2671af51e3afb6e051f",
+    "grounded-input/model-card.md": "2e1bcd8bd964728a820be709fa0f7b9dd54817a94fd2254c535df70c5e67fada",
+    "grounded-input/model-profile.json": "dfafb8e4bbefd89f0c18625632b292a9b545df9045ee740e83390c2f0e6d713a",
+    "grounded-input/review-policy.json": "9dc0dc087da4f5c5d67c16c45337d69e3ef1b3ec1e1098ec35642d22068e4eb2",
+    "grounded-input/sources.json": "a1f588cfe13fc8d344e47c48a7be1a00fbf385f57d4786607d36e3495519273c",
+    "input/snapshots/full_00.html": "98a88a8b21db3b142604c64e84ba501305acde7030913c9ef711e5587dc18b26",
+    "input/licenses/MET001.txt": "fe7134f32b9a04b6a3bbae56c7516fe245ef21992a0843a18fd51c644357def0",
+    "input/snapshots/full_01.html": "eb880ab4ba630b926aae42940106eab6dc2162bb647a376036bf6b776c75c1ee",
+    "input/licenses/MET002.txt": "644a9e4314832f62cbcc9baeddd3ce9acea77c3d4ab0c354775d2e45bacd6d80",
+    "input/snapshots/full_02.html": "f9a495279d44d349f3ddd90e5e79768befb74810a4109e630d7727683bc1e0de",
+    "input/licenses/MET003.txt": "a0e166ce578e4119e4017613993b3c759a9f9d9ab4a6453da728a018a2c9a9fe",
+    "format-input/met004-correct-article.html": "08587a4872e370f01a3cd59ccee95118f48bddf127c8771876821542c40040f9",
+    "format-input/MET004.license.txt": "6e4f38e0e2951dea5aeebf2a942de30d9743c5a282eebb31314b40d81d79b87b",
+    "input/snapshots/thermal_en_prediction.html": "3ba97fd683553f5a889b89bacab87e73fefcdc3ed13bc96b369be16ec765ca35",
+    "input/licenses/thermal_en_prediction.txt": "396177e98acb62b63d4dbceb7c545f5cadd57dbc6d556fba39c1d8714864e7a5",
+    "input/snapshots/thermal_en_critical.html": "fe4f425ac6edeb55c1021891f67fdb69d0e75d108878f6bdadfa85d9788e4fcd",
+    "input/licenses/thermal_en_critical.txt": "396177e98acb62b63d4dbceb7c545f5cadd57dbc6d556fba39c1d8714864e7a5",
+    "input/snapshots/thermal_en_flow.html": "3173a1168ca84af4d0ba07a8ccffde45457d9477ba165dc0333ca94f0772a06b",
+    "input/licenses/thermal_en_flow.txt": "a5ce7840a75ebb7d39c9a35aa64768ddfe30092d5611bb08fb5f1480fab2084f",
+    "grounded-input/snapshots/residual.html": "3a1ed28dc48c508bb38aa6e182983c68fb86fd30b68c7f2a5d1f6bf3667662c7",
+    "grounded-input/snapshots/quality.html": "ae0a05c82141a82471f17704efe0aa48e7794e486d1e8009cb664028b099ba76",
+    "grounded-input/snapshots/waam.html": "a90b432281f072699f8411e357dabf85e41aa3a1fb10c653169685b10104af26"
+  },
+  "output_hashes": {
+    "coverage.json": "3087a40dec5660a9807c4f10c648a5942966ed4d73914eb123108003f8b3090d",
+    "cpt_text/test.jsonl": "386031e42bde12e43cc1c2c05b7b303b3a1545e68cd5433bd42205937fa6eea9",
+    "cpt_text/train.jsonl": "3e6385da7903717a5188c213bab85f96856fb5a47f687a4624c1842e653a05b5",
+    "cpt_text/valid.jsonl": "d2adb44920fe3fea2b9e81b642d124ff64163da7377713d33d146e103afe0b6f",
+    "cpt_tokens/test.jsonl": "24a0e06a4639b9616cb3f4133d6ba2c604ed73534da8cea53699dbd984ff16fd",
+    "cpt_tokens/train.jsonl": "7efd3a8d906680fbc709910fffa61dab742b70637bd3b70da0842e22626e28a2",
+    "cpt_tokens/valid.jsonl": "af62dcb595cb9a8eab22e1b40add8409b3e5a83c7c7736fce1ddd3896632f355",
+    "dataset_info.json": "d5e80f2b6b6e2e8c38a6bbd137bec30907264eee907a4b8ffd94b9941cd82246",
+    "evaluation/questions.jsonl": "f6c128438208a0f9c50a469582e617702cf8962e950f7f6b31d98a68bcd0c901",
+    "evaluation/rubrics.jsonl": "26e6ec261c20edbcad6985e2209ad15795d1c7d39e9ba3ee11adb1d8d2c09a36",
+    "legacy-review.jsonl": "74be87c713fbcd90b76b39e47ed65a291bfc58b88905a47e6a78dcb6ddbe0f20",
+    "model-profile.json": "dfafb8e4bbefd89f0c18625632b292a9b545df9045ee740e83390c2f0e6d713a",
+    "near-duplicates.jsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "passages.jsonl": "6247650dbcc722b27cc54b65d98febd9f1291e64a8f563892dc403d5e5c1dc9b",
+    "provenance.jsonl": "5987a132862b2593e458d674e639e7c16c92efff8331d3737b41e3449a6e37f0",
+    "quarantine.jsonl": "da636f8af0ce18690a87ecee729939bbec4e5d24a323fb6a32af5572425c5926",
+    "review-ledger.jsonl": "9fd4e2a7f0cbd917f0d67a8f471e6c23fc50db096dee00dfa67873aeac8c7972",
+    "sft_messages/test.jsonl": "7f8f103d1848a4fefbae84121089a9fd333110c7ac6b1f12f015c17a5fae1ec8",
+    "sft_messages/train.jsonl": "92c32b25a92d928cc27b5d60410bd68de83729598bd8d029aba8229303401735",
+    "sft_messages/valid.jsonl": "acfe952458360480631b9588785ffbd0a2cbd9e0f47439af15ad2a369d2a5bdf",
+    "sft_tokens/test.jsonl": "d77e42b445808623701ad52b58c5699dec05da4ce323591aebd9a85fe6ffc6ca",
+    "sft_tokens/train.jsonl": "f3aa37489a95e26d6045bc09e1558a36d25c6502304807b250167567b932fb04",
+    "sft_tokens/valid.jsonl": "18c24a94b93cc69825b4ae12b314406d398dd6f8cbd5953aceba657727544816",
+    "sources.json": "a1f588cfe13fc8d344e47c48a7be1a00fbf385f57d4786607d36e3495519273c"
+  },
+  "limitations": [
+    "Assistant source-alignment checks do not replace independent expert or translation review.",
+    "Only ten independent English full-text articles; 90 language variants are not 90 independent questions.",
+    "Alloy/topic coverage is still uneven; coverage.json exposes it.",
+    "Evaluation uses supplied passages and measures grounded reading, not closed-book expertise.",
+    "No training, measured model improvement or manufacturing qualification is claimed."
+  ]
+}
