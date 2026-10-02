@@ -121,6 +121,32 @@ def cut_tip_plane(body, centre, radius):
     return op.Shape()
 
 
+def restore_cutter_tip(body, cutter, stock, centre, radius):
+    """Restore only original stock lost at a convex cavity-tool tip."""
+    from OCP.BRepAlgoAPI import BRepAlgoAPI_Cut, BRepAlgoAPI_Common, BRepAlgoAPI_Fuse
+    from OCP.BRepCheck import BRepCheck_Analyzer
+    from OCP.TopAbs import TopAbs_SOLID
+    from OCP.TopTools import TopTools_ListOfShape
+    before = [encode(s) for s in (body, cutter, stock)]
+    def operation(cls, first, second):
+        args, tools = TopTools_ListOfShape(), TopTools_ListOfShape()
+        args.Append(first); tools.Append(second)
+        op = cls(); op.SetArguments(args); op.SetTools(tools)
+        op.SetNonDestructive(True); op.SetRunParallel(False); op.SetFuzzyValue(0.); op.Build()
+        if not op.IsDone() or not BRepCheck_Analyzer(op.Shape(), True, False, True).IsValid():
+            raise ValueError('valid_native_tip_operation_required')
+        return op.Shape()
+    trimmed = cut_tip_plane(cutter, centre, radius)
+    cap = operation(BRepAlgoAPI_Cut, cutter, trimmed)
+    restored = operation(BRepAlgoAPI_Common, stock, cap)
+    if len(indexed(restored, TopAbs_SOLID)) != 1:
+        raise ValueError('one_original_stock_cap_required')
+    result = operation(BRepAlgoAPI_Fuse, body, restored)
+    if before != [encode(s) for s in (body, cutter, stock)]:
+        raise ValueError('tip_restoration_input_mutated')
+    return result
+
+
 def run(args):
     import OCP
     from OCP.BRep import BRep_Tool
@@ -133,11 +159,21 @@ def run(args):
             or native.sha256(args.body) != BODY_SHA or OCP.__version__ != '7.9.3.1'):
         raise ValueError('fresh_output_and_pinned_native_input_required')
     pins = {args.body: BODY_SHA, Path(__file__): native.sha256(__file__)}
+    chamber = getattr(args, 'chamber_tool', None); stock_path = getattr(args, 'stock', None)
+    if bool(chamber) != bool(stock_path): raise ValueError('chamber_tool_and_stock_required_together')
+    if chamber:
+        if args.planar or set(args.face) != {141, 143}:
+            raise ValueError('only_two_diagnosed_chamber_tips_supported')
+        pins.update({chamber: '8643968ccf678fde1a4ba68ff7866fc468ec8faadbf79a53cc055e50c0010dc8',
+                     stock_path: '92640fd2ce03b1ffedf35b47063c50d150057ff2fdbac181b640236a0b5f596f'})
+        if any(p.is_symlink() or native.sha256(p) != h for p, h in pins.items()):
+            raise ValueError('exact_chamber_tool_and_original_stock_required')
     args.output.mkdir(mode=0o700); start = time.monotonic()
     report = dict(schema='m64-bounded-native-tip-cut/v1', status='incomplete', input_sha256=BODY_SHA,
         source_sha256=pins[Path(__file__)], source_faces=args.face, radius_scan_units=args.radius,
-        ball_volume=None if args.planar else 4*math.pi*args.radius**3/3,
-        cutter='bounded_planar_cap' if args.planar else 'ball', CAD_modified=True, master_replaced=False,
+        ball_volume=None if args.planar or chamber else 4*math.pi*args.radius**3/3,
+        cutter='original_chamber_stock_restoration' if chamber else ('bounded_planar_cap' if args.planar else 'ball'),
+        CAD_modified=True, master_replaced=False,
         native_Hausdorff_certified=False, functional_face_roles_verified=False,
         CAE_authorized=False, manufacturing_authorized=False)
     def save(): native.save(args.output/'report.json', report)
@@ -164,8 +200,13 @@ def run(args):
         report.update(tips_private=[dict(angle_degrees=a, centre=p.tolist()) for a, p in tips],
                       tip_count=len(tips), allowed_faces=sorted(allowed)); save()
         result = body
+        if chamber:
+            from build_four_valve_distribution import CAD
+            cavity, stock = read_native(chamber), CAD().read_step(stock_path)
+            report['construction_inputs_sha256'] = {p.name: pins[p] for p in (chamber, stock_path)}
         for _, centre in tips:
-            result = (cut_tip_plane if args.planar else cut_ball)(result,centre,args.radius)
+            result = (restore_cutter_tip(result, cavity, stock, centre, args.radius) if chamber
+                      else (cut_tip_plane if args.planar else cut_ball)(result,centre,args.radius))
         after = indexed(result, TopAbs_FACE); mapping = TopTools_IndexedMapOfShape()
         for face in after: mapping.Add(face)
         changed = {i for i, f in enumerate(faces, 1) if not mapping.Contains(f)}
@@ -206,6 +247,9 @@ if __name__ == '__main__':
     for key in ('body', 'output'): parser.add_argument('--'+key, type=Path, required=True)
     parser.add_argument('--face', type=int, nargs='+', choices=(141, 143, 1411, 1413, 1648), default=[1648])
     parser.add_argument('--radius', type=float, choices=(.005, .01, .02), required=True)
-    parser.add_argument('--planar',action='store_true',help='Try one convex planar cap per tip; reject exposed cutter walls.')
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--planar',action='store_true',help='Try one convex planar cap per tip; reject exposed cutter walls.')
+    mode.add_argument('--chamber-tool',type=Path,help='Restore two convex cutter tips, clipped to exact original stock.')
+    parser.add_argument('--stock',type=Path,help='Exact pre-chamber STEP; required only with --chamber-tool.')
     signal.alarm(300)
     raise SystemExit(run(parser.parse_args()))

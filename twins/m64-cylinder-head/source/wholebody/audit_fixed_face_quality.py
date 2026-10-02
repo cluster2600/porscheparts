@@ -16,6 +16,19 @@ import mesh_native_ported_head as native
 MESH_SHA = '6f68a0afd2a07d163bdda07500f36727fce62768046b48abcea369bbccc89dcd'
 
 
+def triangle_corner_ceiling(angle_degrees):
+    """Best q2 in a convex, straight-sided planar corner of at most 60 degrees.
+
+    A conforming linear triangle fan cannot exceed the corner angle. For fixed
+    angle theta, equal adjacent sides maximize q2 at sqrt(3)*sin(theta)/(2-cos(theta)).
+    Not applicable to a reflex corner or an unconstrained/curved boundary.
+    """
+    if not math.isfinite(angle_degrees) or not 0 < angle_degrees <= 60:
+        raise ValueError('convex_corner_angle_in_0_to_60_degrees_required')
+    theta = math.radians(angle_degrees)
+    return math.sqrt(3)*math.sin(theta)/(2-math.cos(theta))
+
+
 def tetra_ceiling(triangle_quality):
     if not math.isfinite(triangle_quality) or not 0 <= triangle_quality <= 1:
         raise ValueError('triangle_quality_between_zero_and_one_required')

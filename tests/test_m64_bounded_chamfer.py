@@ -10,6 +10,28 @@ sys.path.insert(0, str(HERE))
 @unittest.skipUnless(importlib.util.find_spec('numpy'), 'optional numerical runtime')
 class BoundedChamferTests(unittest.TestCase):
     @unittest.skipUnless(importlib.util.find_spec('OCP'), 'optional CAD runtime')
+    def test_cavity_tip_restoration_adds_only_original_stock(self):
+        from OCP.BRepPrimAPI import BRepPrimAPI_MakeBox
+        from OCP.BRepAlgoAPI import BRepAlgoAPI_Cut
+        from OCP.BRepCheck import BRepCheck_Analyzer
+        from OCP.BRepGProp import BRepGProp
+        from OCP.GProp import GProp_GProps
+        from OCP.gp import gp_Pnt
+        from trial_bounded_tip_cut import restore_cutter_tip, encode
+        stock = BRepPrimAPI_MakeBox(1., 1., 1.).Shape()
+        cutter = BRepPrimAPI_MakeBox(gp_Pnt(.25, .25, .25), .5, .5, .5).Shape()
+        body = BRepAlgoAPI_Cut(stock, cutter).Shape()
+        before = [encode(s) for s in (stock, cutter, body)]
+        result = restore_cutter_tip(body, cutter, stock, [.25, .25, .25], .02)
+        self.assertTrue(BRepCheck_Analyzer(result, True, False, True).IsValid())
+        p = GProp_GProps(); BRepGProp.VolumeProperties_s(result, p)
+        self.assertAlmostEqual(p.Mass() - .875, .01**3/6, places=12)
+        self.assertEqual(before, [encode(s) for s in (stock, cutter, body)])
+        outside = BRepPrimAPI_MakeBox(gp_Pnt(2., 2., 2.), 1., 1., 1.).Shape()
+        with self.assertRaisesRegex(ValueError, 'one_original_stock_cap_required'):
+            restore_cutter_tip(body, cutter, outside, [.25, .25, .25], .02)
+
+    @unittest.skipUnless(importlib.util.find_spec('OCP'), 'optional CAD runtime')
     def test_planar_tip_cut_is_one_cap_not_a_bounded_notch(self):
         from OCP.BRepPrimAPI import BRepPrimAPI_MakeBox
         from OCP.BRepAlgoAPI import BRepAlgoAPI_Cut

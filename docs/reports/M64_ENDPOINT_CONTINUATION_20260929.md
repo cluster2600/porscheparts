@@ -1166,6 +1166,153 @@ python -m unittest discover -s tests -p test_m64_projected_surface_topology.py -
 python -m unittest discover -s tests -p test_m64_bounded_chamfer.py -v
 ```
 
+## 2 October: trace the cutter, then reject a valid but unmeshable restoration
+
+**No replacement head is accepted.** A new source-based construction passes
+native validity and BOP, but produces **27 incompatible surface triangles**.
+The archived unchanged-body control has seven. The new construction is retained
+as a rejected experiment, not as progress toward zero by changing the gate.
+
+### The diagnosed regions are not established port-branch junctions
+
+A read-only comparison of nine retained native stages matches the exact
+serialization of their supporting surfaces. This is not a recovered Boolean
+history, identical trimming, or proof that differently parameterized surfaces
+are different geometries. Nevertheless, it identifies relevant construction
+inputs before changing an unrelated port generator:
+
+| Current reference region | Observed source relationship |
+|---|---|
+| Lower cylinder faces 141/143, radius 50 scan units | Same support as the saved chamber cutter; its faces 2/5 already have 1.995711-degree corners. Those corners persist in the chambered body and later stages. |
+| Upper cylinder faces 1411/1413, radius 16 | Matching supports and 1.444691/1.371396-degree corners already occur after the spring-pocket operation, before the support-pad addition. |
+| Upper support face 1647 | Its bilinear support exists in earlier chambered and ported bodies; the pad operation changes its trimming. |
+| Upper cylinder face 1648, radius 16 | Exact support match occurs in the padded body; none occurs in the compared pre-pad stages. This absence alone is not an ancestry proof. |
+| Retained intake/exhaust negatives | No exact support matches for these selected faces. This does not establish that ports never interact with their neighbourhood. |
+
+The radius-50 surface belongs to the
+[two-plane chamber demonstrator](../../twins/m64-cylinder-head/source/flowbench-intake/build_candidate_chamber.py),
+whose 100-unit diameter is expressly a **design hypothesis, not an OEM sealing
+interface**. The radius-16 operations are documented in the
+[spring pockets](../../twins/m64-cylinder-head/source/wholebody/build_spring_pockets.py)
+and [support pads](../../twins/m64-cylinder-head/source/wholebody/build_spring_seat_pads.py).
+The bounded-C1 port trunk is therefore not modified on the unsupported
+assumption that it generated these particular defects.
+
+### Inverse construction: restore stock instead of cutting a concave cavity
+
+The [existing native trial](../../twins/m64-cylinder-head/source/wholebody/trial_bounded_tip_cut.py)
+now supports `--chamber-tool` with the hash-bound original `--stock`. It truncates
+each convex tip of the simple chamber cutter with the existing one-cap guard,
+extracts the removed cap, intersects it with the original pre-chamber stock,
+then fuses only that intersection into a disposable copy of the current head.
+This is a local material-restoration hypothesis, not an arbitrary fill of
+unobserved scan cavities. Both diagnosed lower tips are processed at radius
+0.020 scan unit. The upper region is untouched.
+
+| Check | Observed result |
+|---|---|
+| Original faces modified | Exactly 2, 141, 142, 143 |
+| Other original faces | 4,914 identities and serializations preserved in memory |
+| Saved/read-back candidate | Valid, one solid, one shell, 4,922 faces |
+| Original body/tool/stock | Preserved; source hashes checked |
+| Maximum stored tolerances | Not increased |
+| Independent error-aware BOP | Pass; no faults, errors or warnings, 198.042 s |
+| Whole-surface MeshAdapt screen | 676,146 triangles; **27 incompatible**, minimum q2 **0.0009291233261** |
+| Surface screen time | 153.576 s in the completed bounded run |
+| Volume solve, CHT, fatigue or print simulation | Not run on this rejected candidate |
+
+The first surface run exhausts its 270 CPU-second limit (process exit 152),
+leaving an incomplete receipt, not a successful screen. A fresh run with the
+same geometric and mesh settings and a 540 CPU-second limit completes.
+The archived original control has 441,650 triangles, seven incompatible and
+minimum q2 0.02134670874. It uses the previously documented curvature-aware
+MeshAdapt recipe; this comparison is not a runtime benchmark. No new
+volume-quality result replaces the retained **32 rejected tetrahedra** baseline.
+
+### Why another volume optimizer cannot rescue these caps
+
+The new planar cap faces 280/281 each contain two straight edges meeting at
+**1.005738323 degrees**. Native point classification finds the short forward
+bisector inside the face and the opposite probe outside, supporting the
+convex rather than reflex interpretation. The native-to-Gmsh face binding
+locates two incompatible triangles on each cap.
+
+For a convex straight-sided planar corner of angle `theta <= 60 degrees`,
+every conforming linear triangle fan contains angles no larger than `theta`.
+For a fixed angle, equal adjacent sides maximize triangle SICN:
+
+```text
+q2 <= sqrt(3) * sin(theta) / (2 - cos(theta))
+q3 <= 3*q2 / (2 + q2)
+```
+
+The [new small algebraic helper](../../twins/m64-cylinder-head/source/wholebody/audit_fixed_face_quality.py)
+therefore gives q2 <= **0.03039721461**, q3 <= **0.04491320377**, below the existing
+q3 >= 0.1 gate. The observed cap triangles give q2 0.03039721363. Their agreement
+is a crosscheck, not a physical test. These evaluations use floating-point
+native geometry, **not interval-certified angles or a CAD Hausdorff bound**.
+The formula is not applied blindly to curved boundaries or reflex corners.
+For the stated planar straight-sided case, the gate requires a corner angle
+of at least about **2.283778 degrees**; merely increasing tetrahedron count
+cannot repair a retained smaller corner.
+
+![Actual rejected cap boundaries, transverse axis enlarged](../media/m64-chamber-tip-20261002/rejected-caps.png)
+
+*Actual native edge samples, projected onto each cap's plane. Axis scales are
+deliberately unequal and labelled; this is neither a full-head render nor a
+thermal field. Image produced from the private 935-derived research candidate,
+with unqualified physical scale and M64 interfaces. No source scan/CAD is
+published. Original source: [Wolfe Classics, provenance and owner-confirmed
+reuse rights](../../catalog/sources/src-wolfe-classics-935-billet-cylinder-head-scan.json);
+the exact licence identifier is not yet archived.*
+
+The next reconstruction must alter the **coupled chamber transition**, not
+just exchange one acute tip for another; the spring-pocket/pad junction is a
+separate upstream problem. Check the new corner geometry before paying for
+another full volume solve. Preserve explicit boundaries, quantify added/removed
+material and two-way deviation, and reject interference with assembly or
+functional surfaces. No physical 0.040 mm, thermal gain, material qualification,
+manufacturing release, paid rental, merge or website deployment is claimed.
+
+Local verification: six bounded-cut/restoration tests, three fixed-face-quality
+tests (including the native Gmsh witness) and thirteen constrained-patch tests
+pass. The new stock-restoration fixture checks a known added volume, unchanged
+inputs and rejection when the cap lies outside original stock. The angle test
+checks unequal-side triangles and invalid inputs; its independent area formula
+was corrected after the initial test exposed a factor-of-two error in the test.
+Kali2's complete `make check` exits **0**: 3,230 main tests, 166 optional skips,
+157.111 s for the main suite, followed by all remaining targets. CAD-dependent
+tests are exercised in the qualified Mac runtime, not counted as executed in
+the Linux skips. The first Linux attempt had one setup failure: the fresh
+archive's Git index was empty, so a tracked-input test correctly rejected it.
+Indexing the isolated archive fixes that setup; no production guard changes.
+Final local report-index and strict link checks pass (573 Markdown files,
+zero broken links). All construction/meshing jobs have ended.
+
+Private artifacts are retained in `work/m64-private-20260907/source-face-trace-20261002.0PFo0cto`.
+Fingerprints:
+
+- Support-origin receipt: `b8618f5181477f2d3c760ff1dbf2e59730ea151c789820050243b27f1efe3d94`.
+- Executed producer: `71b0681df90fe331b6eab66ff58a220f61f86d53b53c67bdd0204c56112461b4`.
+- Candidate: `e2dcedb46094feb6bc7e990d396480384a74e7b6df05be1a48a6422f84e6def1`.
+- Construction receipt: `97019f8117c527631b15bc33af710a8acb2add6054b4ba5f61df20c284fcf9cb`.
+- BOP receipt: `2d83d01e62b2b276ee1e846cac1ce2074f082fd08c63f47f3b09c9d36d4f164c`.
+- Completed surface receipt: `9bdd019c9fa44b5ee0b8b1925204a4e2237b7ac1f31b085eb6e08f2aca8953da`.
+- Native cap-angle receipt: `e2382922c62a649836506b25bb38e72a9efbee42e7a74e1765b0e7a1b0ad4bb4`.
+- Published diagnostic PNG: `9cef135e08189d69e34c59a614d4103662fda044b1cd385a8e6000c6f3c6d0bb`.
+- Successful full-suite log: `f95c4e2cd6975e22c4687814f3b79bde004fd9f06dbbb6a5236b12ca3fd13d6a`.
+
+```sh
+python twins/m64-cylinder-head/source/wholebody/trial_bounded_tip_cut.py \
+  --body /private/original.brep --face 141 143 --radius .02 \
+  --chamber-tool /private/chamber-tool.brep --stock /private/four-seat-candidate.step \
+  --output /private/fresh-restoration
+python twins/m64-cylinder-head/source/wholebody/screen_tip_cut_surface.py \
+  --candidate /private/fresh-restoration --output /private/fresh-screen \
+  --minimum .00002 --cpu-seconds 540 --surface-algorithm 1
+python -m unittest discover -s tests -p test_m64_fixed_face_quality.py -v
+```
+
 ## 2 October: cache recovery and rejected-cell localisation
 
 The earlier unknown-element diagnosis is now superseded by a reproducible

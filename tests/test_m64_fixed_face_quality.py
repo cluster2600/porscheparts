@@ -10,6 +10,18 @@ spec.loader.exec_module(module)
 
 
 class FixedFaceQualityTest(unittest.TestCase):
+    def test_straight_corner_bound_agrees_with_triangle_area_formula(self):
+        for angle in (1., 2., 10., 30., 60.):
+            theta = math.radians(angle); ceiling = module.triangle_corner_ceiling(angle)
+            for ratio in (.01, .1, .5, 1., 2., 10., 100.):
+                q = math.sqrt(3)*ratio*math.sin(theta)/(1+ratio**2-ratio*math.cos(theta))
+                self.assertLessEqual(q, ceiling+1e-14)
+                if ratio == 1.: self.assertAlmostEqual(q, ceiling, places=14)
+        self.assertAlmostEqual(module.triangle_corner_ceiling(60.), 1.)
+        self.assertLess(module.tetra_ceiling(module.triangle_corner_ceiling(1.006)), .1)
+        for angle in (0., -1., 61., float('nan'), float('inf')):
+            with self.assertRaises(ValueError): module.triangle_corner_ceiling(angle)
+
     def test_bound_values_and_invalid_input(self):
         self.assertEqual(module.tetra_ceiling(1.),1.)
         self.assertEqual(module.tetra_ceiling(0.),0.)
