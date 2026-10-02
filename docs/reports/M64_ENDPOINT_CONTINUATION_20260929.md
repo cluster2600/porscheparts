@@ -21,7 +21,13 @@ remplace ni la référence retenue ni une CAO M64 qualifiée.
 
 ![Détails des ouvertures latérales et des quatre logements, sans soupapes](../media/m64-volume-failures-20261002/candidate-openings.png)
 
-**Dernier passage au volume, 2 octobre : HXT exporte 1 852 069 tétraèdres sur
+**Dernière série, 2 octobre : avec propagation des tailles de bord, HXT exporte
+7 123 164 tétraèdres ; 23 279 restent sous minSICN 0,1.** La surface exacte est
+conservée et les jacobiens sont positifs. Le contrôle complet de connectivité
+de ce nouveau volume n'est pas exécuté, et aucune optimisation n'a suivi.
+Voir [les essais, leurs limites et les images](#2-octobre--gradation-volumique-et-publication).
+
+**Passage précédent au volume, 2 octobre : HXT exporte 1 852 069 tétraèdres sur
 sa propre surface auditée et exactement conservée.** Mais 668 417 éléments
 bruts échouent au seuil volumique ; ce volume ne remplace pas la référence.
 La [reprise et la localisation](#2-octobre--audit-de-la-surface-dans-la-session-volumique)
@@ -1202,6 +1208,106 @@ python twins/m64-cylinder-head/source/wholebody/trial_audited_discrete_volume.py
 python -m unittest discover -s tests -p test_m64_projected_surface_topology.py -v
 python -m unittest discover -s tests -p test_m64_bounded_chamfer.py -v
 ```
+
+## 2 octobre — gradation volumique et publication
+
+Cette série conserve le candidat natif `9c40df1642d5…` à **4 925 faces**,
+les seuils q2 = `2 × 0.1 / (3 − 0.1)` et q3 = `0.1`, ainsi que l'interdiction
+de modifier la surface pendant la génération 3D. Aucun perçage d'ailette,
+canal, changement de matière ou déplacement d'interface n'est ajouté.
+
+Le [manuel Gmsh 4.15.2](https://gmsh.info/doc/texinfo/gmsh.html#index-Mesh_002eMeshSizeExtendFromBoundary)
+décrit la propagation des tailles de bord vers l'intérieur. Le
+[code de cette version](https://raw.githubusercontent.com/live-clones/gmsh/gmsh_4_15_2/src/mesh/meshGRegionHxt.cpp)
+relie aussi `Mesh.Optimize` à l'optimiseur intégré HXT pendant `generate(3)`.
+Ce n'est pas un appel indépendant `optimize("HXT")`. Son seuil interne ne
+remplace pas le contrôle minSICN du projet.
+
+| Essai frais | Observation | Décision |
+|---|---|---|
+| Surface sur deux threads, mêmes paramètres que le passage antérieur | 1 080 852 triangles ; **3 refusés**, face native liée au tag 590 ; minimum 0,04999636 | Arrêt avant audit CGAL et volume |
+| Surface sur un thread, tailles et géométrie conservées | **1 081 110 triangles, zéro refus**, minimum 0,07085403 | Audit complet de cette nouvelle surface |
+| HXT brut, propagation des tailles activée | **7 123 164 tétraèdres** ; surface par face exactement conservée | Fichier brut sauvé, puis arrêt sur le plafond opérationnel de 3 millions |
+| Relecture séparée par lots de 100 000 éléments | **23 279 refus minSICN**, 302 sous 10⁻⁶, zéro jacobien non positif | Diagnostic terminé, maillage toujours rejeté |
+| HXT intégré prévu après le brut | Non exécuté : le contrôle précédent arrête le producteur | Aucun résultat d'optimisation revendiqué |
+
+La variabilité observée sur deux threads justifie de réauditer chaque sortie,
+plutôt que de transférer le résultat d'une surface précédente. Un seul passage
+mono-thread est observé ici : il ne démontre pas à lui seul la reproductibilité
+de tous les futurs calculs. Par rapport au brut précédent, la fraction de
+cellules refusées passe de **36,09 % à 0,3268 %**, avec davantage de cellules.
+Les deux triangulations de surface ne sont pas identiques et le nombre de
+threads surfaciques change ; cette comparaison n'isole donc pas exclusivement
+l'effet de la gradation. Les valeurs sont des diagnostics, pas une convergence.
+La référence antérieure à **32 refus** porte sur un autre état géométrique ;
+elle reste inchangée et ne qualifie pas ce candidat reconstruit.
+
+La nouvelle surface passe fermeture, orientation, liens de sommets, composante
+connexe et concordance des courbes stockées. CGAL 5.6 trouve zéro paire de
+triangles en intersection, en 2,748 s, sur les tableaux exacts liés au reçu.
+Le producteur termine avec un échec explicite après 343,009 s ; le superviseur
+observe un pic RSS d'environ 7,51 Gio, sous sa limite de 24 Gio échantillonnée
+toutes les cinq secondes. Ce n'est ni une saturation mémoire ni un volume
+accepté. Le plafond du producteur n'a pas été augmenté pour obtenir un succès.
+
+La relecture diagnostique utilise un plafond distinct de 10 millions de
+tétraèdres et calcule la qualité par lots, sans créer les grandes tables Python
+de connectivité. Elle finit en 48,918 s, avec un pic RSS de 3,03 Gio.
+La qualité minimale vaut −1,1445 × 10⁻¹³, mais le déterminant jacobien minimal
+vaut **+4,6520 × 10⁻²¹** : ne pas confondre ces deux critères numériques.
+La relecture binaire préserve exactement chaque face de la surface auditée.
+**La connexité tétraédrique, les faces internes, l'intégrale du volume et la
+convergence de ce nouveau volume ne sont pas auditées dans cette relecture.**
+Les seuils de qualité et les données sources restent inchangés.
+
+### Images et vérifications logicielles
+
+Les [six vues](../media/m64-volume-failures-20261002/candidate-views.png) et les
+[détails des ouvertures](../media/m64-volume-failures-20261002/candidate-openings.png)
+ci-dessus sont de vrais rendus VTK du **brut HXT précédent**, lié à
+`e64d5771c7c6…`, pour la même CAO candidate. Ce ne sont pas les champs du nouveau
+volume, ni des images de chaleur, de contraintes ou d'une pièce fabriquée.
+Le [rouge de la vue précédente](../media/m64-volume-failures-20261002/native-hxt-raw.png)
+ne représente que ses 5 000 pires éléments, pas l'ensemble des défauts.
+
+Le test existant est étendu à Delaunay et HXT, avec et sans propagation,
+avec et sans optimisation intégrée. Sur chaque cube témoin : surface exactement
+conservée pendant la génération, après suppression du seul volume, après
+remaillage et après export/relecture binaire ; une inversion de face reste
+détectée. **22 tests natifs passent sans omission sur Mac et Kali2.** Ce sont
+des contrôles logiciels, distincts des critères refusés sur la culasse.
+Après intégration de `main`, l'index documentaire et les liens passent :
+zéro lien cassé parmi 652 fichiers Markdown avant ajout de cette section.
+Le résultat de CI de la révision finale doit être consulté dans la PR ; les
+tests natifs ne sont pas présentés comme une CI ni une qualification physique.
+
+L'[étude air + huile publiée séparément](../studies/993-air-oil-20261002/README.md)
+porte sur un autre export, à 4 672 faces. Les résultats de maillage de cette
+page ne lui sont pas transférables. Les scans, BRep et volumes privés restent
+hors Git ; seuls code, bilans et images autorisées sont publiés.
+
+Prochaine expérience utile : dimensionner l'audit complet pour ce volume plus
+grand, puis tester l'optimisation intégrée sur une surface auditée et figée.
+Pas de relance identique de Netgen ou de l'optimiseur générique ayant déjà
+échoué. Les circuits d'huile, le refroidissement, la distribution, la résistance
+à chaud et l'impression ne sont pas validés par cette série. Aucune location
+Vast ni autorisation de fabrication ; tous les travaux numériques de cette
+série sont terminés avant publication.
+
+Empreintes des sorties privées et des images publiques :
+
+- Premier reçu refusé : `14b124ac17b942b6f820c6be05b3d46cf57d46d260d14ba7a02ff065743cc77d`.
+- Producteur mono-thread : `5624e24a0bd4b0bc76e9dd7e9d73ca79f786b0f1e77bb7f112a4b56293efdecd`.
+- Reçu mono-thread : `3f7491b45498524cc85136980e7c7fddead3093dbe36d22a891b002b07ded93d`.
+- Nouveau volume brut : `e872815f07818897b7b35cc7c381a6daeb59f59e3ba14482799e38b057f042a5`.
+- Surface auditée : `79469c4521bfb21c79d135ee2da0c72516d1309726996e8846aee20f0b0a28cd`.
+- Reçu CGAL : `4cacac98213a037344014bb28fb8188fd73b4153505dcc1e58569519a365322d`.
+- Observation terminale : `75c9380b77d60a9cfd7c6f946083d936c7338d49e39f99c23a0b577ffd23e7b8`.
+- Audit qualité par lots, source : `5757cb2f0f4dc4c99585ec7d310d63aab59774ba38ac8a5ea9f23fc3f62dcf2c`.
+- Audit qualité par lots, reçu : `a0c7587e2f32a011b0087f40c34a156f2b715aa4818fbb389c3752a2f7bc3d99`.
+- Rendu, source : `016a699c975022925180a09964ebc408f839b92300c52c52a2f6f84f84638a86`.
+- Six vues : `ca871ff84e05b7bcad94397f92ab0b8a66a87a12d686317c055147f7a9210e83`.
+- Ouvertures : `04ada52f9feffe75a8dcee90011a1df75350af26021c410d60d354778edecd9b`.
 
 ## 2 octobre — audit de la surface dans la session volumique
 
