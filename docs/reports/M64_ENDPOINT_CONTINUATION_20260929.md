@@ -9,7 +9,13 @@ research body, not a metrologically qualified M64 head. All geometric lengths
 below are provisional scan units, not certified millimetres or a printer
 specification. No physical, material or manufacturing gate is closed.
 
-**Dernier essai, 2 octobre — partitions cylindriques : zéro triangle de
+**Dernier passage au volume, 2 octobre : HXT exporte 1 852 069 tétraèdres sur
+sa propre surface auditée et exactement conservée.** Mais 668 417 éléments
+bruts échouent au seuil volumique ; ce volume ne remplace pas la référence.
+La [reprise et la localisation](#2-octobre--audit-de-la-surface-dans-la-session-volumique)
+distinguent ce résultat refusé d’une validation physique ou de fabrication.
+
+**Essai surfacique précédent, 2 octobre — partitions cylindriques : zéro triangle de
 surface rejeté sur 1 081 206.** Contrôles natifs, fermeture et intersections
 passent. Cela ne valide pas encore le volume ni la culasse pour fabrication.
 Voir [la correction et ses limites](#2-octobre--regroupement-des-partitions-cylindriques).
@@ -1184,6 +1190,197 @@ python twins/m64-cylinder-head/source/wholebody/trial_audited_discrete_volume.py
 python -m unittest discover -s tests -p test_m64_projected_surface_topology.py -v
 python -m unittest discover -s tests -p test_m64_bounded_chamfer.py -v
 ```
+
+## 2 octobre — audit de la surface dans la session volumique
+
+La variation entre deux générations 2D ne doit plus conduire à transférer
+l’audit d’un autre maillage. Le nouvel essai importe le même candidat natif
+`9c40df1642d5eb47a3c1a1aae68c761b23b77e3f7e02e0818294e88ee0322598`,
+génère sa surface, l’audite, puis demande le volume dans **le même processus
+Gmsh**. Aucun résultat historique n’est réécrit, aucun seuil n’est abaissé.
+
+Les fonctions existantes `surface_mesh_snapshot`, `indexed_topology`,
+`orient_entities`, `stored_curve_edges` et `intersection_pairs` sont réutilisées.
+La signature par face conserve les coordonnées binaires exactes et les
+triangles orientés tout en ignorant leur ordre et les numéros de nœuds.
+Le contrôle de connexité ne corrige pas les orientations : toute inversion
+nécessaire provoque le refus du candidat. Le résultat CGAL est lié par SHA-256
+aux tableaux, à leur audit et aux scripts réellement exécutés.
+
+Le [nouveau témoin natif](../../tests/test_m64_native_ported_mesh.py)
+construit un cube, compare la surface avant/après génération 3D, puis après
+export et relecture MSH binaire. Il vérifie aussi qu’une face volontairement
+inversée ne conserve pas la signature. Les **22 tests ciblés passent sur Mac**,
+y compris ce témoin Gmsh ; aucune nouvelle dépendance n’est nécessaire.
+
+### Surface propre à cette exécution
+
+- **1 080 910 triangles, zéro rejet** au seuil q2 inchangé.
+- **540 441 sommets**, tous à lien circulaire ; aucun doublon, conflit
+  d’orientation, défaut d’incidence ou coordonnée utilisée dupliquée.
+- Une seule composante par adjacence d’arêtes ; aucune face inversée par
+  l’audit et aucune coordonnée modifiée.
+- Les **66 612 segments stockés** sont tous des arêtes directes de la surface.
+- Relecture exacte des tableaux binaires ; **CGAL 5.6 : zéro intersection**,
+  contrôle complet en 2,83 s sur Kali2.
+
+La collerette reste une variante numérique, pas une amélioration mécanique
+ou thermique démontrée. La source sur les ailettes perforées reste dans le
+[plan comparatif air/huile](../research/M64_LPBF_OIL_REVIEW_20260912.md#2-october-supplement-the-owners-perforated-fin-paper) :
+elle ne justifie ni un perçage automatique de cette géométrie, ni un gain
+thermique déjà acquis sur le M64.
+
+Vérification logicielle : `make check` sur le système de fichiers Linux natif
+de Kali2 termine avec le code **0** : **3 236 tests principaux, 172 sauts
+optionnels**, 155,686 s, puis tous les contrôles restants. Le nouveau témoin
+Gmsh est optionnel sur ce runtime Linux et exécuté séparément sur Mac. Les
+empreintes du fichier de tests sont identiques sur les deux machines.
+
+Les artefacts privés sont conservés dans
+`work/m64-private-20260907/native-volume-same-skin-20261002.YhUkk1b1`.
+Empreintes de la chaîne pré-volumique :
+
+- Producteur exécuté : `4664d1b68c9a0d93903f9f684c68b8f2c2aa0cd3798831809579028cf9bb634a`.
+- Adaptateur CGAL exécuté : `8f6ad2f3972f18d773cfc5aa2b0289ca7c37e3925a440840a2d65dc0a05022f3`.
+- Surface MSH : `879be2a0574ee2d15a59113ab57896bf83f139b286753ccab6755ac5e91e2769`.
+- Tableaux exacts : `32c4559a37b5af249c3db086f79781ce3cf5b9179afe924c8a996f3b740a109a`.
+- Audit de surface : `2e34d122e920733440cd792c4946d0e86391b7ded691b12f32fc5d6374f05b35`.
+- CGAL : `1271398ddf51210779a67d9360046278323c1eedf80cb91e72decd662e3b6094`.
+- Suite Linux : `6d73349be2b81fa062c30ff4ed29cbc65ff344ed1081de0d3dafa017031093d0`.
+
+### Delaunay : limite CPU, aucun volume exporté
+
+La surface ci-dessus franchit effectivement les contrôles préalables et
+la génération 3D commence. Mais l’algorithme Delaunay atteint ensuite la
+limite de **780 secondes CPU**, avec sortie **152 / SIGXCPU** sur macOS,
+avant le premier export volumique. Ce n’est pas un résultat à zéro défaut,
+ni un manque de mémoire démontré : le dernier relevé donne environ 4,7 Gio
+de mémoire résidente. Un profil ponctuel situe l’activité dans Gmsh, sans
+établir à lui seul une cause interne précise.
+
+Le reçu du producteur reste `incomplete`, étape `generating_volume` : il
+n’est pas falsifié en succès ni réécrit après l’arrêt. Une observation
+terminale séparée confirme le code de sortie, l’absence de point de reprise
+3D et les entrées inchangées. La surface et son audit restent disponibles.
+
+- Reçu incomplet : `21531e04378c190fd42c6844ffe6003adcfec7f29f5d8e71255cbbaf7082d3e2`.
+- Observation terminale : `3782758588e1657dc4b251ae68940938f06294df318b40609866d3bb2b319dfb`.
+- Journal Gmsh : `5a1aab4ef5326deba88a15a82f640204d0969e3605efdc37c977270cf0b39653`.
+
+### HXT : volume sauvegardé, qualité brute refusée et arrêt de Netgen
+
+HXT est disponible dans le runtime installé ; un cube témoin produit
+1 147 tétraèdres. L’essai complet reprend la même CAO et les mêmes critères,
+mais **pas les mêmes triangles** : il produit sa propre surface de
+**1 081 040 triangles**, avec zéro rejet, 540 506 sommets et 66 612 segments
+stockés. Sa topologie, sa connexité, ses orientations et son contrôle CGAL
+complet passent séparément. Ce n’est donc pas un benchmark temporel des deux
+algorithmes sur des tableaux d’entrée identiques.
+
+HXT exporte **1 852 069 tétraèdres**. La surface exacte et ses groupes de faces
+sont conservés pendant la génération. Le résultat brut est néanmoins refusé :
+**668 417 éléments sous minSICN 0,1**, soit 36,09 % en nombre et 0,2906 % du
+volume absolu des éléments. Une faible fraction volumique ne dispense pas du
+seuil par élément. Le minimum minSICN est `-1.14453e-13`, alors que le minimum
+`minDetJac` calculé vaut `4.65198e-21` et qu’aucune Jacobienne calculée n’est
+non positive. Les deux métriques sont rapportées distinctement, sans assimiler
+la première à une preuve d’inversion ni arrondir les valeurs pour faire passer
+le contrôle.
+
+L’appel Netgen s’arrête avec **139 / SIGSEGV**, sans export optimisé. Le reçu
+reste incomplet à l’étape `optimizing` ; les entrées sont inchangées. Le point
+de reprise brut ayant été sauvegardé **avant** l’appel, une reprise par
+l’optimiseur standard peut l’utiliser après vérification de ses empreintes,
+de sa surface et de sa qualité. Aucune nouvelle CAO ni génération 2D n’est
+nécessaire à cette reprise.
+
+Artefacts privés : `work/m64-private-20260907/native-volume-hxt-20261002.gOMSIjid`.
+
+- Producteur HXT : `7493df9f8c95a875d079fc951b9db6501f7e324dd3b2822dc98b22bb2d8dd3cf`.
+- Tableaux de sa surface : `49422719c3d9b373bebedb2e5f0d39e0b183b12b0020921791a14f5483590875`.
+- Audit de surface : `7dca6fae7316356edb609ff0bc0115362f20946fa6290cb55bae7f11acd7b1dd`.
+- CGAL : `d6a40e44e2f8edf6296cd0be9dc8a5ecf2b3e6776231ac45f37808cb903a0549`.
+- Reçu incomplet : `66a492d056ae0f1bbfb73ad4814461c16d74aba7f2fa69981646671d3579ebfb`.
+- Observation terminale : `c3d88c0e8a235dba25b8367c5cea4b1e2b746aab100fdcd32ae5df532f429d70`.
+- Volume brut : `e64d5771c7c6a612cca4a001689733816b7d1451980c8925382c72981aef79fd`.
+
+### Localisation réelle et reprise sans nouvelle surface
+
+Un audit indépendant du fichier brut termine en **18,53 s** : une région
+tétraédrique connectée, zéro volume signé non positif, zéro nœud répété par
+cellule, zéro face non-manifold ou triangle de frontière manquant/excédentaire.
+Ses **1 081 040 triangles de frontière** correspondent exactement à ceux
+stockés. Le volume par somme des tétraèdres et celui par flux de surface
+diffèrent de **6,66e-16 en relatif**. Il s’agit de deux intégrations du même
+maillage, pas d’une preuve d’échelle physique ou de fidélité continue à la CAO.
+La fermeture ne compense pas l’échec de qualité des cellules.
+
+La relecture du volume brut retrouve les **668 417 rejets**. Le diagnostic
+réutilise `quality_locations` : **439 777** de ces éléments ont au moins une
+face triangulaire complète sur la frontière ; **228 640** n’en ont pas,
+ce qui ne signifie pas qu’ils sont sans sommet ou arête sur la frontière.
+Les incidences les plus nombreuses concernent les faces natives sources
+1 (255 283), 147 (78 879), 145 (14 991) et 152 (14 435). Un élément pouvant
+toucher plusieurs faces, ces incidences ne sont pas des groupes disjoints.
+Aucune fonction anatomique nouvelle n’est attribuée à partir de ces numéros.
+
+![Volume brut HXT : les 5 000 pires éléments seulement](../media/m64-volume-failures-20261002/native-hxt-raw.png)
+
+La vue VTK utilise la vraie frontière complète, sans lissage ni image
+générative. Pour rester lisible, le rouge montre seulement les **5 000 pires
+éléments**, pas tous les rejets ; les comptes et localisations complets restent
+dans le diagnostic privé. Ce ne sont ni des fissures ni une carte thermique.
+La provenance et les droits de réutilisation sont ceux du
+[scan Wolfe Classics](../../catalog/sources/src-wolfe-classics-935-billet-cylinder-head-scan.json),
+sans publication du scan, du B-Rep ou des tableaux de maillage.
+
+La reprise standard sur Mac lit ce point de reprise exact et retrouve
+l’intégralité de la distribution brute. Elle atteint elle aussi **780 secondes
+CPU**, sortie **152**, sans export optimisé. Son reçu incomplet est conservé,
+les entrées restent inchangées. Aucun échec n’est remplacé par un succès.
+
+- Diagnostic/localisation : `3616e63c95f54e62949b3c9e4afe9d2fe187def7d8309816b375a0ee67a9c0cf`.
+- Producteur de la vue : `f99c94b894b6491ddc548f0b1068b8ae9895ac4f7e709e6e53e70127a6b67b2a`.
+- Image publiée : `2a10d26332b9c06fe5f80fd46b50148ca797b1e1cacac6c9cf294280dfa16d16`.
+- Reprise standard Mac : `09e95a74fe8e4e4abc6290ae6214f111ed59ce9ac51f6a190f0d566228286253`.
+- Reçu incomplet de cette reprise : `a75f92916f1aba4e9d76f83972e00c7bd5204f2ab18d5ee7f082d739d699f01b`.
+- Observation terminale de la reprise : `815a1043f8c0630a4cfecbcefe0af91bcb13c0f644618cf19debeaa2979419ad`.
+- Audit de connexité/volume brut : `4c266dbaf7a7495c4d28321c66769747a215d2ce0d07466b13228ed2710ff22c`.
+- Producteur de cet audit : `bd9b2ff076f9298fa1c541c0d039e6fe26287a0fe9dcf9c066cdaaec5aca4719`.
+
+Un environnement **isolé**, sans modification du Python système, est préparé
+sur Kali2 avec Python 3.13, Gmsh **4.15.2** et NumPy **2.2.6**. Les deux images
+de travail déjà présentes testées ne proposent pas Gmsh sur leur Python par
+défaut ; ce constat ne signifie pas que tous leurs autres runtimes sont absents.
+L’environnement isolé retrouve exactement les métriques du volume brut Mac
+et ses **22 tests natifs passent**, sans saut, en 0,214 s. Aucun achat ou
+nouvelle location n’est nécessaire. Une installation de bibliothèque et un
+témoin sur cube ne sont pas une qualification physique de la culasse.
+
+La reprise x86 standard ne fournit pas non plus d’export optimisé. La session
+SSH termine avec **255** ; le processus n’existe plus, le reçu reste à
+`optimizing`, les entrées sont inchangées. La limite CPU était également
+780 s, mais le signal terminal distant n’a pas été récupéré : **la cause
+exacte de cet arrêt n’est pas certifiée** à partir du seul code SSH. Il n’est
+pas assimilé à une optimisation terminée ni à une simple interruption du
+transport avec un travail encore actif.
+
+- Reprise Linux : `ffc33c79c61f08a283f46d70c361ab36d06bef02da3f74525cb1db2d88c218bf`.
+- Reçu incomplet Linux : `b5320171dc396b30c0617250c5c3cd07c316310f15b065f070672f62ede02330`.
+- Tests natifs Linux : `f19193c32da47d378df442ea74c9100822a524493045a32306beb9f5374f1ab7`.
+
+**Suite ciblée :** ne pas répéter l’optimisation globale identique. Tester la
+gradation entre tailles de surface et de volume, puis une correction locale
+des cellules les plus plates, à géométrie et seuils inchangés. La désactivation
+de la propagation des tailles de frontière est une hypothèse à tester, pas
+une cause démontrée. Chaque nouvelle surface devra recevoir son propre audit ;
+les Jacobiennes, la qualité individuelle, la frontière, la connexité, le
+volume et l’export devront tous repasser avant toute utilisation CAE.
+
+Tous les calculs de cette continuation sont terminaux. Le volume brut est
+sauvegardé, **aucun volume optimisé n’est accepté** et la référence historique
+à 32 rejets reste inchangée. Pas de location Vast, de fusion de PR, de
+déploiement de site, ni d’autorisation d’impression ou de fonctionnement.
 
 ## 2 octobre — regroupement des partitions cylindriques
 
