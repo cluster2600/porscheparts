@@ -48,11 +48,12 @@ def refine_patch(points, triangles, target):
     interior = edges[counts == 2]
     if not len(interior): raise ValueError('interior_edges_required')
     mids = project_points(points[interior].mean(axis=1), target, np.ones(len(interior), dtype=bool))
-    refined, parents = split_edges(triangles, interior, len(points))
-    return np.vstack([points, mids]), refined, parents
+    result = np.vstack([points, mids])
+    refined, parents = split_edges(triangles, interior, len(points), result)
+    return result, refined, parents
 
 
-def split_edges(triangles, edges, first_node):
+def split_edges(triangles, edges, first_node, points):
     """Use one midpoint index per selected edge on every incident triangle."""
     ids = {tuple(edge): first_node+i for i, edge in enumerate(edges)}
     refined, parents = [], []
@@ -68,6 +69,14 @@ def split_edges(triangles, edges, first_node):
             k = next(i for i in range(3) if m[i] is not None) if count == 1 else (m.index(None)+1) % 3
             a, b, c = np.roll(row, -k); x, y, _ = m[k:]+m[:k]
             children = [[a, x, c], [x, b, c]] if count == 1 else [[b, y, x], [a, x, c], [x, y, c]]
+            if count == 2:
+                normal = np.cross(points[b]-points[a], points[c]-points[a])
+                def positive(cells):
+                    p = points[cells]
+                    return (np.cross(p[:, 1]-p[:, 0], p[:, 2]-p[:, 0])@normal > 0).all()
+                alternative = [[b, y, x], [a, x, y], [a, y, c]]
+                if not positive(children) and positive(alternative):
+                    children = alternative
         refined.extend(children); parents.extend([index]*len(children))
     return np.asarray(refined, dtype=np.int64), np.asarray(parents)
 
@@ -131,8 +140,9 @@ def refine_shared_boundaries(points, triangles, labels, faces, groups):
     selected = np.vstack(selected) if selected else np.empty((0, 2), dtype=np.int64)
     midpoints = np.vstack(midpoints) if midpoints else np.empty((0, 3))
     if len(np.unique(selected, axis=0)) != len(selected): raise ValueError('unique_shared_edges_required')
-    refined, parents = split_edges(triangles, selected, len(points))
-    return np.vstack([points, midpoints]), refined, parents, dict(shared_edges=len(selected),
+    result = np.vstack([points, midpoints])
+    refined, parents = split_edges(triangles, selected, len(points), result)
+    return result, refined, parents, dict(shared_edges=len(selected),
         skipped_exact_straight_edges=skipped_straight_edges,
         maximum_endpoint_curve_error=max_endpoint_error,
         maximum_midpoint_shift=float(np.linalg.norm(midpoints-points[selected].mean(axis=1), axis=1).max(initial=0)),
@@ -186,6 +196,7 @@ def run(args):
         split_shared_boundaries=args.split_shared_boundaries,
         local_shape_witness_sha256=pins[args.local_shape_witnesses] if witness else None,
         local_refinement_radius_scan_units=.4 if witness else None,
+        two_edge_split_diagonal='alternate_only_if_default_fails_orientation_and_alternate_passes',
         maximum_allowed_projection_scan_units=.1, geometry_modified=False, mesh_nodes_modified=True,
         master_replaced=False, CAE_authorized=False, manufacturing_authorized=False)
     def save(): native.save(args.output/'report.json', report)

@@ -15,11 +15,18 @@ zero incompatible surface triangles. It still fails the 0.040-unit screen;
 the CAD master and retained volume are unchanged. Details and rejected controls
 are recorded below.
 
-**Latest result, 2 October:** native-curve-aware refinement and one local
+**Earlier result, 2 October:** native-curve-aware refinement and one local
 error-driven pass produce **933,562 surface triangles**, zero incompatible
 triangles and a maximum sampled deviation of **0.0665857 scan unit**. The
 0.040-unit shape screen still fails. A second local pass is rejected because
 one child fails the orientation guard relative to its parent; it is not promoted.
+
+**Latest continuation, 2 October:** the fixed-diagonal defect is corrected and
+three further passes finish without orientation or quality rejections. The
+best sampled maximum is now **0.0642802 scan unit**, with **938,982 surface
+triangles**. It still fails 0.040; the retained volume and physical gates remain
+unchanged. The frozen-code full `make check` now passes on Kali2, including
+the previously blocked pinned Docker test. See the final section below.
 
 **Later recovery, 1 October:** both authorised Linux hosts are reachable again.
 The previously uncollected size-0.1 run completed but has **5 incompatible
@@ -407,3 +414,103 @@ The rejected second-local-pass report hash is
 `99d5e0fa70a10cf718b2585a4d34e4fc51bd3b7ecf7b5eebf417904d9ea05853`.
 Detailed geometry, coordinates and receipts stay private; the public report
 records measured outcomes without a manufacturing or physical 0.040 mm claim.
+
+## Orientation-preserving diagonal correction, 2 October
+
+The rejected second local pass was reproduced from its hash-bound parent.
+The failing parent has two split edges. The old splitter always chose the
+same quadrilateral diagonal, even after the new edge midpoints were projected
+onto the native surface. That fixed diagonal produces a child with a negative
+normal dot product; **the other diagonal preserves orientation using exactly
+the same five vertices**. This is a triangulation defect, not evidence that the
+native CAD needs to be flattened or its feature removed.
+
+The shared `split_edges` helper now tries the alternative only when the
+default fails and all alternative children have positive parent-normal dot
+products. Both interior and shared-boundary callers supply the projected
+coordinates. No vertex moves, quality thresholds, CAD tolerance changes,
+triangle deletion or post-hoc reversal are introduced by this choice. If both
+diagonals fail, the original failure remains visible to the rejection gate.
+
+The regression covers cyclic indexing, reversed parent winding, conserved
+five-edge polygon boundary, signed polygon area and the case where neither
+diagonal is acceptable. All **11 focused tests pass on Mac and Kali1**.
+
+![Real exported local triangles before and after the diagonal correction](../media/m64-orientation-20261002/comparison.png)
+
+Both panels show triangles read back from the rejected and corrected exports,
+projected onto the same parent plane. The five vertices match within 1e-10
+scan unit. Red means negative parent-normal dot product in this local view;
+this is not an independent global intersection test. The image neither changes
+the head silhouette nor depicts a complete, qualified product. The research
+[source licence and provenance](../../catalog/sources/src-wolfe-classics-935-billet-cylinder-head-scan.json)
+still apply. Image SHA-256:
+`01b6280db6983bc101af6749d85bec1a3ade5591a22d73996fb288ebab31f26c`.
+
+The corrected second pass finishes in **27.12 s**, with **935,576 triangles**,
+zero incompatible triangles and zero nonpositive normal dot products. The
+necessary surface checks pass, including exact export readback, fixed protected
+nodes, two-sided edge incidence and no duplicate triangles. Its completed
+shape audit takes **138.85 s** and measures a maximum **0.06558267613 scan unit**.
+This is still above the unchanged exploratory 0.040-unit threshold.
+
+Two further bounded passes also complete; all three retain min q2
+**0.07085403530**, zero incompatible triangles, zero nonpositive normal dot
+products, exact readback, unchanged inputs and all necessary surface checks.
+
+| Local pass | Surface triangles | Lower mesh/native maximum | Lower native/mesh maximum | Upper mesh/native maximum | Upper native/mesh maximum |
+|---|---:|---:|---:|---:|---:|
+| 2, corrected | 935,576 | 0.04496372435 | 0.05637440169 | 0.04723165871 | 0.06558267613 |
+| 3 | 937,484 | 0.04483763451 | 0.05537201348 | 0.04348361352 | 0.06505214650 |
+| 4 | 938,982 | 0.04425521458 | 0.05421935354 | 0.04214043246 | 0.06428019459 |
+
+Passes 3 and 4 take **36.60 / 41.27 s** to build and **161.18 / 166.89 s**
+to audit shape. The chain reaches its three-pass bound normally. No worker
+remains running. The maximum is about **3.46% below the first local pass**;
+all four directional maxima still fail 0.040. The native sample set is fixed,
+but its worst sample changes on each pass (upper indices 797, 781, 1262).
+The next experiment should capture and refine multiple above-threshold error
+regions together, rather than assume that one worst-point neighbourhood closes
+the shape gate. No unsampled-extrema or Hausdorff bound is established.
+
+**Verification runtime:** the first Kali2 full-suite attempt exposes incomplete
+user-site OCP imports and group-writable temporary source metadata. A second
+attempt isolates system Python but still fails metadata guards; its restrictive
+umask also invalidates a fixture that deliberately needs a public directory.
+These failures are retained. Only the job's temporary checkout permissions and
+process environment are corrected: sources are not group/world writable,
+`umask 022`, `PYTHONNOUSERSITE=1`. No installed packages or account permissions
+are changed, and no rejection check is weakened.
+
+The resulting **`make check` exits 0**, with **3,218 main tests, 158 optional
+skips**, and all subsequent Makefile checks. Native OCP coverage is supplied by
+the separate 11-test qualified Mac/Kali1 runs, not claimed for skipped tests.
+The F37 Docker target uses the exact project-pinned image digest and passes
+15 tests (also passed in a separate run). These are software/fixture tests,
+**not a printing simulation of this new candidate**. Final documentation links
+and report-index checks are rerun after the report and picture are added.
+Full-suite log SHA-256:
+`9cc2276dc28c75a12858eee149d55744633c801b2ac32a94b4ef4537406c808a`.
+
+No geometry is promoted to the master, and the retained volume still has
+**32 rejected tetrahedra / 1,341,461**. Vertex-link manifoldness, global geometric
+intersections, native 1D mesh consistency, functional boundary conditions,
+accepted volumetric meshes and the subsequent physical/manufacturing campaign
+are not established by this correction. No cloud rental, CFD/FEA execution,
+GPU inference, thermal result or physical 0.040 mm claim is made.
+
+The source bundle is frozen before these executions:
+`63265d070f0fbd945453f4beac06067b9419d85994dea93bddf81a8b1d1bf502`.
+Corrected second-pass mesh SHA-256:
+`a1ed658a240723e3827df9980486ddee357af0053dfb2e832556361d95c5b0bd`;
+receipt SHA-256:
+`76d9db6c38ec7cc1c8312df57a4a10b6425652c870225e178f5070c57731af2c`.
+Fourth-pass mesh SHA-256:
+`05f4fc09970dfc02651787bc0488bcb37fc8aebf960f8c11ffa51439baa021e0`;
+receipt:
+`dc81056c9cc04917b27ad154b61f4fbc4542a1817a5c3b49195a42fa7b16a771`;
+shape audit:
+`555355ed13606d7ca6f114fb4c8c4697cd0fa574d620341fa57876d1ddc77a1a`.
+The recovered result archive matches the remote SHA-256:
+`094183479a1250ca57b03349b5359547ea7b7a3e2d00fce551730be4c649e2cb`.
+Raw meshes, geometric witnesses and numerical job receipts remain private.

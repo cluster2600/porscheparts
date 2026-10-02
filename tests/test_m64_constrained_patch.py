@@ -133,6 +133,27 @@ class ConstrainedPatchTests(unittest.TestCase):
         self.assertEqual(surface_edges(np.vstack([tetra, tetra[:1]]))['duplicate_triangles'], 1)
         with self.assertRaises(ValueError): surface_edges(np.array([[0, 0, 1]]))
 
+    def test_two_projected_midpoints_choose_an_orientation_preserving_diagonal(self):
+        import numpy as np
+        from trial_project_compound_surface import split_edges
+        # The projected BC midpoint is inside the original triangle: XC folds,
+        # but AY triangulates the same five boundary vertices without a fold.
+        p = np.array([[0., 0., 0.], [1., 0., 0.], [0., 1., 0.], [.5, 0., 0.], [.2, .5, 0.]])
+        edges = np.array([[0, 1], [1, 2]])
+        for row in ([0, 1, 2], [1, 2, 0], [2, 0, 1], [2, 1, 0]):
+            g, parents = split_edges(np.array([row]), edges, 3, p)
+            normals = np.cross(p[g[:, 1]]-p[g[:, 0]], p[g[:, 2]]-p[g[:, 0]])
+            old = np.cross(p[row[1]]-p[row[0]], p[row[2]]-p[row[0]])
+            self.assertTrue((normals@old > 0).all())
+            np.testing.assert_allclose(normals.sum(axis=0), .7*old)
+            np.testing.assert_array_equal(parents, [0, 0, 0])
+            es, count = np.unique(np.sort(np.concatenate([g[:, e] for e in ((0, 1), (1, 2), (2, 0))]), axis=1), axis=0, return_counts=True)
+            self.assertEqual({tuple(e) for e in es[count == 1]}, {(0, 3), (1, 3), (1, 4), (2, 4), (0, 2)})
+        p[4] = [.2, -.2, 0.]
+        g, _ = split_edges(np.array([[0, 1, 2]]), edges, 3, p)
+        # Neither diagonal is valid: retain the failure for the caller's gate.
+        self.assertTrue((np.cross(p[g[:, 1]]-p[g[:, 0]], p[g[:, 2]]-p[g[:, 0]])[:, 2] <= 0).any())
+
     @unittest.skipUnless(importlib.util.find_spec('gmsh'), 'optional Gmsh runtime')
     def test_shape_witnesses_select_only_nearby_triangles(self):
         import numpy as np
