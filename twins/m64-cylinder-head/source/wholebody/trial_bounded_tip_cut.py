@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Remove one tiny ball at an acute native corner, on a disposable CAD copy.
+"""Try a bounded ball cut or planar tip truncation on disposable native CAD.
 
 This is a design-change experiment, not automatic healing or release evidence.
 Ball support bounds the set operation, not a certified surface Hausdorff error.
@@ -61,6 +61,66 @@ def cut_ball(body, centre, radius):
     return op.Shape()
 
 
+def cut_tip_plane(body, centre, radius):
+    """Cut only a convex vertex cap; reject every exposed cutter side wall."""
+    from OCP.BRep import BRep_Tool
+    from OCP.BRepAdaptor import BRepAdaptor_Curve, BRepAdaptor_Surface
+    from OCP.BRepAlgoAPI import BRepAlgoAPI_Cut
+    from OCP.BRepPrimAPI import BRepPrimAPI_MakeBox
+    from OCP.GeomAbs import GeomAbs_Plane
+    from OCP.TopAbs import TopAbs_EDGE, TopAbs_FACE, TopAbs_VERTEX
+    from OCP.TopExp import TopExp
+    from OCP.TopoDS import TopoDS
+    from OCP.TopTools import TopTools_ListOfShape, TopTools_IndexedMapOfShape
+    from OCP.gp import gp_Ax2, gp_Dir, gp_Pnt, gp_Vec
+    centre=np.asarray(centre,dtype=float)
+    if radius not in (.005,.01,.02) or centre.shape!=(3,) or not np.isfinite(centre).all():
+        raise ValueError('finite_bounded_tip_required')
+    vertices=[v for v in indexed(body,TopAbs_VERTEX) if np.linalg.norm(
+        np.asarray(BRep_Tool.Pnt_s(TopoDS.Vertex_s(v)).Coord())-centre)<=1e-7]
+    if len(vertices)!=1: raise ValueError('one_exact_native_vertex_required')
+    rays=[]
+    for edge in indexed(body,TopAbs_EDGE):
+        edge=TopoDS.Edge_s(edge); curve=BRepAdaptor_Curve(edge)
+        for t,sign,vertex in ((curve.FirstParameter(),1,TopExp.FirstVertex_s(edge)),
+                              (curve.LastParameter(),-1,TopExp.LastVertex_s(edge))):
+            if vertex.IsSame(vertices[0]):
+                p,v=gp_Pnt(),gp_Vec(); curve.D1(t,p,v)
+                ray=sign*np.asarray(v.Coord()); length=np.linalg.norm(ray)
+                if not np.isfinite(length) or length<=1e-14: raise ValueError('regular_tip_edges_required')
+                rays.append(ray/length)
+    if not 3<=len(rays)<=8: raise ValueError('bounded_vertex_edge_star_required')
+    # Equal projections on unit edge tangents avoid bias towards duplicate directions.
+    axis=np.linalg.lstsq(np.asarray(rays),np.ones(len(rays)),rcond=None)[0]
+    length=np.linalg.norm(axis)
+    if not np.isfinite(length) or length<=1e-12: raise ValueError('convex_tip_direction_required')
+    axis/=length; alignment=float(np.min(np.asarray(rays)@axis))
+    if alignment<=1e-3: raise ValueError('strictly_forward_tip_edges_required')
+    depth=radius*alignment/2
+    side=np.cross(axis,np.eye(3)[np.argmin(abs(axis))]); side/=np.linalg.norm(side)
+    normal=np.cross(axis,side)
+    origin=centre-radius*(axis+side+normal)
+    frame=gp_Ax2(gp_Pnt(*origin),gp_Dir(*normal),gp_Dir(*axis))
+    tool=BRepPrimAPI_MakeBox(frame,radius+depth,2*radius,2*radius).Shape()
+    args,tools=TopTools_ListOfShape(),TopTools_ListOfShape(); args.Append(body); tools.Append(tool)
+    op=BRepAlgoAPI_Cut(); op.SetArguments(args); op.SetTools(tools)
+    op.SetNonDestructive(True); op.SetRunParallel(False); op.SetFuzzyValue(0.); op.Build()
+    if not op.IsDone(): raise ValueError('native_planar_truncation_failed')
+    original_descendants=TopTools_IndexedMapOfShape()
+    for face in indexed(body,TopAbs_FACE):
+        original_descendants.Add(face)
+        for changed in op.Modified(face): original_descendants.Add(changed)
+    caps=[f for f in indexed(op.Shape(),TopAbs_FACE) if not original_descendants.Contains(f)]
+    if len(caps)!=1: raise ValueError(f'exactly_one_planar_cap_required: new_faces={len(caps)}')
+    surface=BRepAdaptor_Surface(TopoDS.Face_s(caps[0]))
+    if surface.GetType()!=GeomAbs_Plane: raise ValueError('planar_cap_required')
+    plane=surface.Plane()
+    if (abs(np.dot(plane.Axis().Direction().Coord(),axis))<1-1e-12
+            or plane.Distance(gp_Pnt(*(centre+depth*axis)))>1e-7):
+        raise ValueError('cutter_side_wall_exposed')
+    return op.Shape()
+
+
 def run(args):
     import OCP
     from OCP.BRep import BRep_Tool
@@ -76,7 +136,8 @@ def run(args):
     args.output.mkdir(mode=0o700); start = time.monotonic()
     report = dict(schema='m64-bounded-native-tip-cut/v1', status='incomplete', input_sha256=BODY_SHA,
         source_sha256=pins[Path(__file__)], source_faces=args.face, radius_scan_units=args.radius,
-        ball_volume=4*math.pi*args.radius**3/3, CAD_modified=True, master_replaced=False,
+        ball_volume=None if args.planar else 4*math.pi*args.radius**3/3,
+        cutter='bounded_planar_cap' if args.planar else 'ball', CAD_modified=True, master_replaced=False,
         native_Hausdorff_certified=False, functional_face_roles_verified=False,
         CAE_authorized=False, manufacturing_authorized=False)
     def save(): native.save(args.output/'report.json', report)
@@ -103,7 +164,8 @@ def run(args):
         report.update(tips_private=[dict(angle_degrees=a, centre=p.tolist()) for a, p in tips],
                       tip_count=len(tips), allowed_faces=sorted(allowed)); save()
         result = body
-        for _, centre in tips: result = cut_ball(result, centre, args.radius)
+        for _, centre in tips:
+            result = (cut_tip_plane if args.planar else cut_ball)(result,centre,args.radius)
         after = indexed(result, TopAbs_FACE); mapping = TopTools_IndexedMapOfShape()
         for face in after: mapping.Add(face)
         changed = {i for i, f in enumerate(faces, 1) if not mapping.Contains(f)}
@@ -144,5 +206,6 @@ if __name__ == '__main__':
     for key in ('body', 'output'): parser.add_argument('--'+key, type=Path, required=True)
     parser.add_argument('--face', type=int, nargs='+', choices=(141, 143, 1411, 1413, 1648), default=[1648])
     parser.add_argument('--radius', type=float, choices=(.005, .01, .02), required=True)
+    parser.add_argument('--planar',action='store_true',help='Try one convex planar cap per tip; reject exposed cutter walls.')
     signal.alarm(300)
     raise SystemExit(run(parser.parse_args()))

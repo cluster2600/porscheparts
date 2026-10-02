@@ -9,6 +9,32 @@ sys.path.insert(0, str(HERE))
 
 @unittest.skipUnless(importlib.util.find_spec('numpy'), 'optional numerical runtime')
 class BoundedChamferTests(unittest.TestCase):
+    @unittest.skipUnless(importlib.util.find_spec('OCP'), 'optional CAD runtime')
+    def test_planar_tip_cut_is_one_cap_not_a_bounded_notch(self):
+        from OCP.BRepPrimAPI import BRepPrimAPI_MakeBox
+        from OCP.BRepAlgoAPI import BRepAlgoAPI_Cut
+        from OCP.BRepCheck import BRepCheck_Analyzer
+        from OCP.BRepGProp import BRepGProp
+        from OCP.GProp import GProp_GProps
+        from OCP.TopAbs import TopAbs_FACE, TopAbs_SOLID
+        from OCP.gp import gp_Pnt
+        from trial_bounded_tip_cut import cut_tip_plane, encode, indexed
+        body=BRepPrimAPI_MakeBox(1.,1.,1.).Shape(); before=encode(body)
+        result=cut_tip_plane(body,[0.,0.,0.],.02)
+        self.assertEqual(encode(body),before)
+        self.assertTrue(BRepCheck_Analyzer(result,True,False,True).IsValid())
+        self.assertEqual(len(indexed(result,TopAbs_FACE)),7)
+        self.assertEqual(len(indexed(result,TopAbs_SOLID)),1)
+        props=GProp_GProps(); BRepGProp.VolumeProperties_s(result,props)
+        self.assertAlmostEqual(1-props.Mass(),.01**3/6,places=12)
+        notch=BRepAlgoAPI_Cut(body,BRepPrimAPI_MakeBox(gp_Pnt(.5,.5,.5),.5,.5,.5).Shape()).Shape()
+        notch_before=encode(notch)
+        with self.assertRaisesRegex(ValueError,'exactly_one_planar_cap_required'):
+            cut_tip_plane(notch,[.5,.5,.5],.02)
+        self.assertEqual(encode(notch),notch_before)
+        for point,radius in (([float('nan'),0.,0.],.02),([0.,0.,0.],1.),([.5,0.,0.],.02)):
+            with self.assertRaises(ValueError): cut_tip_plane(body,point,radius)
+
     def test_bound_is_not_constraint_filtering_and_open_intervals_fail(self):
         from run_bounded_chamfer import command, interval_ok
         cmd = command(Path('/mesher'), Path('/input.off'), .020, True, 2000)

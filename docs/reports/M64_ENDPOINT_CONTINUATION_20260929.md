@@ -73,6 +73,12 @@ quality with **45,091 rejected tetrahedra**. Actual rejected cells are now
 [localised and rendered below](#2-october-cache-recovery-and-rejected-cell-localisation).
 Neither this result nor Netgen's 16,261 rejections replaces the retained volume.
 
+**Native repair follow-up, 2 October:** bounded planar tip truncations are
+tested and rejected, rather than adopted as notches. The lower patch exposes
+five cutter faces; the upper patch fails the forward-edge direction guard.
+The [final section](#2-october-native-tip-truncation-is-not-a-junction-reconstruction)
+records the witnesses, unchanged reference and next construction constraint.
+
 **Later recovery, 1 October:** both authorised Linux hosts are reachable again.
 The previously uncollected size-0.1 run completed but has **5 incompatible
 triangles / 976,144**; the curvature-64 run ended at its 1,800-second alarm.
@@ -1246,3 +1252,92 @@ All these jobs have ended. No Vast rental, physical simulation, catalogue
 release, PR merge or website deployment occurs. The owner's fin-study comparison
 remains a separately documented research plan; no head perforation or thermal
 gain has been accepted. Zero rejected elements and printability remain unmet.
+
+## 2 October: native tip truncation is not a junction reconstruction
+
+The previous turn changed authoritative software and diagnostic evidence,
+not the accepted CAD. This continuation tests a native design alternative
+against the observed acute junctions; it does not rerun volume optimisation
+on the same rejected skin.
+
+First, the previous support-unification rejection is reproduced. Six protected
+faces (1415, 1651, 1653, 1655, 1929, 1930) change their serialised curve/surface
+representations after unification, but not after the preceding non-destructive
+cut. The differences remain with triangulations excluded. For example, an
+additional p-curve and support-surface representation are stored on an edge.
+This is **not proof of physical movement**, nor a reason to discard the exact
+protected-data guard. The [OCCT safe-input API contract](https://occt3d.com/dev/doc/refman/html/class_shape_upgrade___unify_same_domain.html)
+does not override this observed result in installed OCP 7.9.3.1. The original
+file remains unchanged; that failed fusion is not promoted.
+
+The existing [bounded tip-cut experiment](../../twins/m64-cylinder-head/source/wholebody/trial_bounded_tip_cut.py)
+now has an explicit `--planar` alternative, leaving the historical ball route
+as the default. It identifies one native vertex by position, then selects
+incident edges by topological identity, not proximity alone. A least-squares
+direction attempts equal projections on the outgoing unit tangents; every
+projection must be positive with the documented numerical margin. The plane
+depth is half the radius times the minimum projection. A finite oriented box
+bounds the trial. Boolean history then excludes descendants of original faces
+and requires exactly **one** newly exposed face on the intended cut plane;
+exposed side walls, multiple new faces, or unresolved directions fail closed.
+The original locality, validity, tolerance, export and physical gates remain.
+
+The regression witness truncates a unit-box corner with one planar cap:
+seven faces, one valid solid, unchanged source and removed volume
+`0.01^3 / 6` for radius 0.020. A concave-corner control is rejected rather than
+turned into a bounded notch, and its input remains unchanged. Invalid radius,
+nonfinite position and a non-vertex position are also rejected. This witness
+verifies the construction guard; it is not evidence that the head is convex
+at the diagnosed points.
+
+| Final topology-bound head trial | Outcome | Time |
+|---|---|---:|
+| Lower faces 141/143, two diagnosed tips, radius 0.020 scan unit | First attempted cut exposes **five** new faces, not one cap; reject | 46.704 s |
+| Upper face 1648, two diagnosed tips, same radius | First tip has no admitted strictly forward direction; reject before Boolean cutting | 5.668 s |
+
+Neither run reaches an exported candidate or a surface/volume mesh; neither
+tests all tips after its first rejection. Both preserve input hashes. A
+separate floating-point tangent-cone probe finds opposed tangent pairs at the
+two upper tips; it is a diagnostic on sampled native derivatives, not a global
+proof that every possible junction reconstruction fails. The initial
+sum-of-tangents heuristic was rejected on both patches; it is not retained as
+the plane-selection method.
+
+**Next construction constraint:** replace/retrim the coupled endpoint region
+on its supporting surfaces, with explicit shared curves, rather than clipping
+an isolated convex vertex or fitting one smooth surface across sharp folds.
+Retain the measured sharp boundaries outside that region and recheck protected
+geometry, native validity/BOP, two-direction deviation, topology and mesh
+quality. A larger editing neighbourhood still needs a justified design bound;
+the failed local trials do not authorise arbitrary removal or interface changes.
+The physical source-scale and M64 interface gates also remain unresolved.
+
+Verification in the qualified Mac runtime: five bounded-cut tests and thirteen
+constrained-patch tests pass; six topology tests pass with one optional CGAL
+skip. Frozen-code Kali2 `make check` exits **0**: 3,228 main tests, 165 optional
+skips, 159.373 seconds for the main suite, followed by all remaining targets.
+The new CAD fixture is among the Linux optional skips and runs on Mac instead.
+Local report-index and strict link checks also pass after the documentation
+update (zero broken links in 573 Markdown files).
+No mesh-quality, deviation or locality acceptance threshold is relaxed;
+no paid instance, master replacement, material
+selection, thermal result, printing release, PR merge or deployment is claimed.
+
+Fingerprints (private data remain outside Git):
+
+- Final producer: `bad5c2c4d2fc381ed9fa9f6e8978fbf9c87c641992213da9b6394369723d9f75`.
+- Lower receipt: `6a7fc327834e5325be3517668dc6d4ba27ac4dd9b1746624cabc0a3839861877`.
+- Upper receipt: `bbeb278d944f6bae2d514bd5daad1f38060a6ed111e601b2bdcb4ddd12af2b59`.
+- Unification diagnostic: `5513da2b6635709ecbad617b52852e0789cf5d9ce94009c11e057bf6aa05d107`.
+- Tangent-cone diagnostic: `25b9f0f29b7fb98a43731fac1177072f723ead9b0e206d8b1ccf2514e20a22ac`.
+- Full-suite log: `2a97c0ca2009217e77aad6d5cea40e83ead682342cbb3bde58bb0443ed0ac008`.
+
+```sh
+python twins/m64-cylinder-head/source/wholebody/trial_bounded_tip_cut.py \
+  --body /private/original.brep --face 141 143 --radius .02 --planar \
+  --output /private/fresh-lower-cap
+python twins/m64-cylinder-head/source/wholebody/trial_bounded_tip_cut.py \
+  --body /private/original.brep --face 1648 --radius .02 --planar \
+  --output /private/fresh-upper-cap
+python -m unittest discover -s tests -p test_m64_bounded_chamfer.py -v
+```
