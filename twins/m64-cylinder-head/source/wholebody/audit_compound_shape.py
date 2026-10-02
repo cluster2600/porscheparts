@@ -13,9 +13,11 @@ from run_parallel_cad_trials import BODY_SHA, native
 from trial_constrained_patch import PATCHES, read_native, indexed, compound, interior_points, sampled_distance
 
 
-def points_to_triangles(points, vertices, triangles):
+def points_to_triangles(points, vertices, triangles, exceedance_limit=None):
     import vtk
     from run_bounded_chamfer import surface_arrays
+    if exceedance_limit is not None and (not np.isfinite(exceedance_limit) or exceedance_limit <= 0):
+        raise ValueError('positive_finite_exceedance_limit_required')
     vertices, triangles = surface_arrays(vertices, triangles)
     cloud = vtk.vtkPoints(); cloud.SetDataTypeToDouble()
     for p in vertices: cloud.InsertNextPoint(*map(float, p))
@@ -25,7 +27,7 @@ def points_to_triangles(points, vertices, triangles):
         for i in row: cells.InsertCellPoint(int(i))
     mesh = vtk.vtkPolyData(); mesh.SetPoints(cloud); mesh.SetPolys(cells)
     locator = vtk.vtkStaticCellLocator(); locator.SetDataSet(mesh); locator.BuildLocator()
-    distances = []; witness = None
+    distances = []; witness = None; exceeding = []
     for index, point in enumerate(points):
         if not np.isfinite(point.Coord()).all(): raise ValueError('finite_native_sample_required')
         closest = [0., 0., 0.]; cell = vtk.reference(0); sub = vtk.reference(0); d2 = vtk.reference(0.)
@@ -36,8 +38,14 @@ def points_to_triangles(points, vertices, triangles):
             witness = dict(sample_index=index, point=list(point.Coord()), closest=closest,
                            triangle=vertices[triangles[int(cell)]].tolist(), distance=distance)
         distances.append(distance)
+        if exceedance_limit is not None and distance > exceedance_limit:
+            exceeding.append(list(point.Coord()))
+            if len(exceeding) > 20000: raise ValueError('bounded_exceedance_set_required')
     if not distances: raise ValueError('nonempty_native_samples_required')
-    return dict(samples=len(distances), maximum=max(distances), maximum_witness_private=witness)
+    result = dict(samples=len(distances), maximum=max(distances), maximum_witness_private=witness)
+    if exceedance_limit is not None:
+        result.update(exceedance_limit_scan_units=exceedance_limit, exceedance_points_private=exceeding)
+    return result
 
 
 def run(args):
@@ -99,8 +107,8 @@ def run(args):
                     sample_faces.extend([index]*65)
             result[name] = dict(triangles=len(triangles), empty_reclassified_source_faces=empty,
                 facewise_boundary_conditions_preserved=False,
-                mesh_to_native=sampled_distance([gp_Pnt(*map(float, p)) for p in mesh_samples], compound(patch)),
-                native_to_mesh=points_to_triangles(native_samples, xyz, triangles))
+                mesh_to_native=sampled_distance([gp_Pnt(*map(float, p)) for p in mesh_samples], compound(patch), .040),
+                native_to_mesh=points_to_triangles(native_samples, xyz, triangles, .040))
             witness = result[name]['native_to_mesh']['maximum_witness_private']
             witness['source_face_index'] = sample_faces[witness['sample_index']]
             native.save(args.output, report)

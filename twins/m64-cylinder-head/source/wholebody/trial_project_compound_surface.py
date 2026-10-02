@@ -69,24 +69,41 @@ def split_edges(triangles, edges, first_node, points):
             k = next(i for i in range(3) if m[i] is not None) if count == 1 else (m.index(None)+1) % 3
             a, b, c = np.roll(row, -k); x, y, _ = m[k:]+m[:k]
             children = [[a, x, c], [x, b, c]] if count == 1 else [[b, y, x], [a, x, c], [x, y, c]]
-            if count == 2:
-                normal = np.cross(points[b]-points[a], points[c]-points[a])
-                def positive(cells):
-                    p = points[cells]
-                    return (np.cross(p[:, 1]-p[:, 0], p[:, 2]-p[:, 0])@normal > 0).all()
-                alternative = [[b, y, x], [a, x, y], [a, y, c]]
-                if not positive(children) and positive(alternative):
-                    children = alternative
+        if count >= 2:
+            a, b, c = row
+            normal = np.cross(points[b]-points[a], points[c]-points[a])
+            normal /= np.linalg.norm(normal)
+            def score(cells, fan=False):
+                p = points[cells]; u, v = p[:, 1]-p[:, 0], p[:, 2]-p[:, 0]
+                cross = np.cross(u, v); signed = cross@normal
+                if (signed <= 0).any(): return -np.inf
+                # A fan must not wrap around its apex and overlap itself.
+                if fan and np.arctan2(signed, np.einsum('ij,ij->i', u, v)-(u@normal)*(v@normal)).sum() >= 2*np.pi:
+                    return -np.inf
+                return float((2*np.sqrt(3)*np.linalg.norm(cross, axis=1)
+                    / np.sum((p-np.roll(p, 1, axis=1))**2, axis=(1, 2))).min())
+            best = score(children)
+            if best < 2*.1/(3-.1):
+                polygon = [vertex for i in range(3) for vertex in (row[i], m[i]) if vertex is not None]
+                for k in range(len(polygon)):
+                    ring = polygon[k:]+polygon[:k]
+                    alternative = [[ring[0], ring[i], ring[i+1]] for i in range(1, len(ring)-1)]
+                    quality = score(alternative, fan=True)
+                    if quality > best:
+                        children, best = alternative, quality
         refined.extend(children); parents.extend([index]*len(children))
     return np.asarray(refined, dtype=np.int64), np.asarray(parents)
 
 
 def witness_region(points, triangles, witnesses):
+    from scipy.spatial import cKDTree
     witnesses = np.asarray(witnesses, dtype=float)
-    if witnesses.shape != (2, 3) or not np.isfinite(witnesses).all():
-        raise ValueError('two_finite_directional_shape_witnesses_required')
-    # Two original 0.2-size edge lengths around each measured worst sample.
-    return np.any(np.linalg.norm(points[triangles, None, :]-witnesses, axis=3) <= .4, axis=(1, 2))
+    if (witnesses.ndim != 2 or witnesses.shape[1] != 3 or not 1 <= len(witnesses) <= 40000
+            or not np.isfinite(witnesses).all()):
+        raise ValueError('bounded_finite_shape_witnesses_required')
+    # Two original 0.2-size edge lengths around each selected error sample.
+    distances, _ = cKDTree(witnesses).query(points, workers=1)
+    return np.any(distances[triangles] <= .4, axis=1)
 
 
 def refine_shared_boundaries(points, triangles, labels, faces, groups):
@@ -163,6 +180,8 @@ def run(args):
     pins = {p: native.sha256(p) for p in [args.body, args.mesh, args.receipt, *sources]}
     record = json.loads(args.receipt.read_text())
     witness = None
+    if args.all_shape_exceedances and not args.local_shape_witnesses:
+        raise ValueError('completed_shape_audit_required_for_all_exceedances')
     if args.local_shape_witnesses:
         pins[args.local_shape_witnesses] = native.sha256(args.local_shape_witnesses)
         witness = json.loads(args.local_shape_witnesses.read_text())
@@ -175,6 +194,16 @@ def run(args):
                 or witness.get('source_hashes', {}).get(args.receipt.name) != pins[args.receipt]
                 or witness.get('source_hashes', {}).get(args.body.name) != BODY_SHA):
             raise ValueError('bound_completed_shape_audit_and_screened_parent_required')
+        if args.all_shape_exceedances:
+            for group in PATCHES:
+                for direction in ('mesh_to_native', 'native_to_mesh'):
+                    row = witness['groups'][group][direction]
+                    points = row.get('exceedance_points_private')
+                    if (row.get('exceedance_limit_scan_units') != .040 or not isinstance(points, list)
+                            or len(points) > 20000 or (bool(points) != (row['maximum'] > .040))
+                            or (points and (np.asarray(points).shape != (len(points), 3)
+                                            or not np.isfinite(points).all()))):
+                        raise ValueError('complete_bounded_0040_exceedance_sets_required')
     if (args.output.exists() or args.output.is_symlink() or any(p.is_symlink() for p in pins)
             or (args.split_shared_boundaries and not args.split_interior_edges)
             or gmsh.__version__ != '4.15.2' or OCP.__version__ != '7.9.3.1'
@@ -196,7 +225,8 @@ def run(args):
         split_shared_boundaries=args.split_shared_boundaries,
         local_shape_witness_sha256=pins[args.local_shape_witnesses] if witness else None,
         local_refinement_radius_scan_units=.4 if witness else None,
-        two_edge_split_diagonal='alternate_only_if_default_fails_orientation_and_alternate_passes',
+        all_shape_exceedances=args.all_shape_exceedances,
+        split_triangulation='default_then_best_positive_nonwrapping_fan_if_default_fails_quality_or_orientation',
         maximum_allowed_projection_scan_units=.1, geometry_modified=False, mesh_nodes_modified=True,
         master_replaced=False, CAE_authorized=False, manufacturing_authorized=False)
     def save(): native.save(args.output/'report.json', report)
@@ -245,8 +275,18 @@ def run(args):
                     local = np.searchsorted(node_tags, np.asarray(n[0]).reshape(-1, 3))
                     arrays.append(local); labels.extend([tags[i]]*len(local))
                 local = np.vstack(arrays); labels = np.asarray(labels)
-                mask = witness_region(updated, local, [witness['groups'][name][direction]['maximum_witness_private']['point']
-                    for direction in ('mesh_to_native', 'native_to_mesh')]) if witness else np.ones(len(local), dtype=bool)
+                if args.all_shape_exceedances:
+                    targets = [p for direction in ('mesh_to_native', 'native_to_mesh')
+                               for p in witness['groups'][name][direction]['exceedance_points_private']]
+                    if not targets:
+                        report['refinement'][name] = dict(new_nodes=0, old_triangles=len(local),
+                            selected_triangles=0, new_triangles=len(local), nonpositive_normal_dot_products=0,
+                            skipped='no_sample_above_0040')
+                        continue
+                elif witness:
+                    targets = [witness['groups'][name][direction]['maximum_witness_private']['point']
+                               for direction in ('mesh_to_native', 'native_to_mesh')]
+                mask = witness_region(updated, local, targets) if witness else np.ones(len(local), dtype=bool)
                 if not mask.any(): raise ValueError('nonempty_witness_region_required')
                 if 3*int(mask.sum())+len(gmsh.model.mesh.getElements(2)[1][0]) > 2000000:
                     raise ValueError('bounded_refined_surface_required')
@@ -336,5 +376,6 @@ if __name__ == '__main__':
     parser.add_argument('--split-interior-edges', action='store_true', help='One conforming local subdivision; exterior edges stay fixed.')
     parser.add_argument('--split-shared-boundaries', action='store_true', help='Also subdivide shared curves and adjacent triangles; diagnostic surface only.')
     parser.add_argument('--local-shape-witnesses', type=Path, help='Bound completed parent shape audit: refine within 0.4 scan unit of its worst samples.')
+    parser.add_argument('--all-shape-exceedances', action='store_true', help='Refine around every recorded sample above 0.040, not only the two maxima.')
     signal.alarm(600)
     raise SystemExit(run(parser.parse_args()))

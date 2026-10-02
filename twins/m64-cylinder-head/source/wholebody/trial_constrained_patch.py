@@ -100,10 +100,12 @@ def filling(faces, resolution, initial_plane=None):
                            boundary_copied_together=True, native_initial_plane=initial_plane is not None)
 
 
-def sampled_distance(points, target):
+def sampled_distance(points, target, exceedance_limit=None):
     from OCP.BRepBuilderAPI import BRepBuilderAPI_MakeVertex
     from OCP.BRepExtrema import BRepExtrema_DistShapeShape
-    values = []; witness = None
+    if exceedance_limit is not None and (not np.isfinite(exceedance_limit) or exceedance_limit <= 0):
+        raise ValueError('positive_finite_exceedance_limit_required')
+    values = []; witness = None; exceeding = []
     op = BRepExtrema_DistShapeShape(); op.LoadS2(target)
     for index, point in enumerate(points):
         if not np.isfinite(point.Coord()).all(): raise ValueError('finite_native_sample_required')
@@ -113,8 +115,14 @@ def sampled_distance(points, target):
             witness = dict(sample_index=index, point=list(point.Coord()),
                            closest=list(op.PointOnShape2(1).Coord()), distance=op.Value())
         values.append(op.Value())
+        if exceedance_limit is not None and op.Value() > exceedance_limit:
+            exceeding.append(list(point.Coord()))
+            if len(exceeding) > 20000: raise ValueError('bounded_exceedance_set_required')
     if not values: raise ValueError('nonempty_distance_samples_required')
-    return dict(samples=len(values), maximum=max(values), maximum_witness_private=witness)
+    result = dict(samples=len(values), maximum=max(values), maximum_witness_private=witness)
+    if exceedance_limit is not None:
+        result.update(exceedance_limit_scan_units=exceedance_limit, exceedance_points_private=exceeding)
+    return result
 
 
 def compound(shapes):

@@ -21,12 +21,20 @@ triangles and a maximum sampled deviation of **0.0665857 scan unit**. The
 0.040-unit shape screen still fails. A second local pass is rejected because
 one child fails the orientation guard relative to its parent; it is not promoted.
 
-**Latest continuation, 2 October:** the fixed-diagonal defect is corrected and
+**Earlier continuation, 2 October:** the fixed-diagonal defect is corrected and
 three further passes finish without orientation or quality rejections. The
 best sampled maximum is now **0.0642802 scan unit**, with **938,982 surface
 triangles**. It still fails 0.040; the retained volume and physical gates remain
 unchanged. The frozen-code full `make check` now passes on Kali2, including
 the previously blocked pinned Docker test. See the final section below.
+
+**Latest result, 2 October:** all-exceedance selection and guarded polygon
+triangulation lower the sampled maximum to **0.04959299 scan unit**, about 23%
+below 0.0642802. The lower patch passes both sampled directions; the upper
+patch retains **56 native samples above 0.040**. A subsequent pass is rejected
+for one orientation failure. This remains a surface experiment, not the
+physical 0.040 mm goal or a manufacturing release. The retained volume still
+has 32 rejected tetrahedra.
 
 **Later recovery, 1 October:** both authorised Linux hosts are reachable again.
 The previously uncollected size-0.1 run completed but has **5 incompatible
@@ -514,3 +522,118 @@ shape audit:
 The recovered result archive matches the remote SHA-256:
 `094183479a1250ca57b03349b5359547ea7b7a3e2d00fce551730be4c649e2cb`.
 Raw meshes, geometric witnesses and numerical job receipts remain private.
+
+## All-exceedance refinement and concave split boundaries, 2 October
+
+The shape audit now retains every **sampled** point above 0.040, in each
+direction, rather than only its maximum. Each collection is capped at 20,000
+points and exceeding that cap fails, without truncating the data. Existing
+callers of the distance helpers retain their previous behaviour unless they
+request this collection. A fresh baseline audit reproduces the previous
+maximum **0.06428019459238127** exactly and records:
+
+| Patch | Mesh-to-native samples above 0.040 | Native-to-mesh samples above 0.040 |
+|---|---:|---:|
+| Lower | 19 | 123 |
+| Upper | 3 | 132 |
+
+These are **277 sample records**, not 277 distinct physical defects. Unmeasured
+points remain unbounded. `--all-shape-exceedances` requires a completed,
+body/mesh/receipt-bound audit with finite, threshold-labelled collections.
+An empty collection paired with a maximum above 0.040 is rejected. The existing
+0.4-radius vertex-neighbourhood rule is retained. SciPy's installed `cKDTree`
+replaces the dense triangle-by-witness distance array, avoiding its memory
+growth when many witnesses are used. A patch with no recorded exceedance is
+not subdivided. The unchanged two-million-triangle cap still applies.
+
+### Rejected control and root cause
+
+The first all-exceedance pass selects **7,528 lower / 4,877 upper triangles**
+and adds **10,782 / 7,172 nodes**. It finishes in **36.03 s** with 974,890
+triangles, but fails: **15 nonpositive child-normal dots and two triangles
+below the quality threshold**, minimum q2 **0.06832676524**. It is retained
+as a rejected control; no shape audit or subsequent pass is run from it.
+
+Reproduction locates all 15 orientation failures in triangles with **three**
+split edges. Their projected midpoints form a concave six-vertex boundary;
+the standard central-triangle split folds despite adequate unsigned q2. The
+two quality failures have two split edges. Trying alternative vertex fans on
+the same polygons resolves all 17 local cases without moving any point.
+
+The shared splitter therefore retains the standard subdivision whenever it
+passes. Otherwise, for a five- or six-vertex boundary, it selects the best
+admissible vertex fan by minimum q2. Every child must have a positive
+parent-normal dot product. The sum of projected positive fan angles must be
+less than 2π, excluding a fan that wraps around its apex. The boundary sequence,
+all midpoint indices and child count are preserved. If no alternative passes,
+the full-mesh rejection gates remain decisive; this is not triangle deletion,
+coordinate smoothing or tolerance relaxation.
+
+Twelve focused tests pass in the qualified Mac and Kali1 runtimes, including a concave
+six-vertex witness, rotated/reversed parent indexing, signed polygon area,
+boundary incidence, multi-region selection, invalid collections and exact
+threshold handling. This local triangulation check does not establish global
+intersection freedom, functional face labels or physical validity.
+
+### Completed outcomes and remaining obstruction
+
+The corrected all-exceedance pass completes in **31.89 s**, with the same
+**974,890 triangles**, zero quality rejections, zero nonpositive normal dots,
+minimum q2 **0.07085403530**, unchanged protected nodes and inputs, exact
+readback, two-sided edge incidence and no duplicates. Its shape audit takes
+**173.67 s**:
+
+| Patch | Mesh-to-native maximum | Native-to-mesh maximum | Remaining above-threshold sample records |
+|---|---:|---:|---:|
+| Lower | 0.03782211596 | 0.03984823204 | 0 / 0 |
+| Upper | 0.03303451901 | 0.04959299060 | 0 / 56 |
+
+The next pass correctly skips lower-patch subdivision and selects 6,061 upper
+triangles, adding 8,917 nodes. It completes in **37.24 s**, with **992,724
+triangles**, no quality rejections (minimum q2 0.06913127978), but **one
+nonpositive normal dot product**. It is rejected. Its shape audit and the
+unused third follow-up are not launched.
+
+Reproduction isolates a six-vertex upper-patch boundary which crosses itself
+when projected onto its parent plane. The existing fan alternatives cannot
+repair that boundary without changing a projected vertex. A separate,
+array-only diagnostic tests intersections along averaged adjacent-triangle
+normals, retaining the original CAD and the 0.1 displacement bound. All 8,917
+rays intersect, but the result worsens to **28 orientation failures and four
+quality failures** (minimum q2 0.03963196440). Seven nonempty subsets of the
+three problematic new vertices are then tested with this ray alternative;
+all still have one or two orientation failures. **Neither ray method is
+added to the production helper or exported as an accepted mesh.**
+
+The next reconstruction must constrain projection/connectivity at the actual
+native feature, rather than keep subdividing a crossed local boundary. The
+best complete shape-audited candidate remains the corrected pass 5. Its lower
+patch result is not a continuous error bound, a whole-head dimensional
+certificate or evidence that the upper patch or retained volume passes.
+
+![Actual concave-boundary triangles before and after corrected triangulation](../media/m64-exceedance-20261002/comparison.png)
+
+The picture reads back four actual triangles from each export, on the same
+six vertices, matched within 1e-10 scan unit. It is a local projection, not a
+new head design. The same [non-commercial research provenance](../../catalog/sources/src-wolfe-classics-935-billet-cylinder-head-scan.json)
+applies. Image SHA-256:
+`39a8d0ad27a568af2be0456e69a74eb6d22750d3031579da9521a6c77c20c239`.
+
+The final frozen-source **`make check` exits 0 on Kali2**: 3,219 main tests,
+159 optional skips, and all subsequent checks including the pinned F37 Docker
+target. Twelve native tests run separately on Mac and Kali1. Documentation
+links and report-index checks pass after this report and image are added.
+No numerical process remains active, and no rental is used. The original CAD,
+retained volume, physical qualification and manufacturing authority stay
+unchanged; no CFD, thermal, mechanical or candidate printing simulation is
+claimed.
+
+Provenance:
+
+- First all-exceedance source bundle: `7b46c39fd98bed4d4ed166b4ee00ee7e35fdf018d4aa49ae54c73346fca452db`.
+- Corrected fan source bundle: `2daf2376499b8866a593acc7f0fe1e4e032cd0d5884fcfc7a24c2d4641b8c8ef`.
+- Accepted necessary-surface screen, pass 5 mesh: `a73bf6d6ceb9c2be8ecb8e46e744d10531c62e67a08116ce26534f73e8883013`.
+- Pass 5 receipt: `610afacb8307c22401fae92bcf7235a84db9993f7639f01b25a8a66dcf0e53c1`; shape audit: `23bab39cfa2fa67ae96346962d72cae7ea839e7d6950b6aad5fc1edfd9e56e9b`.
+- Rejected pass 6 receipt: `8f650d6bd5e1a45513017ee9f997225eea5458400a7f2582fcad78542bdbf321`.
+- Recovered fan-result archive: `a388d142a5d7c434a6d8f804afd7871feb411a6704df7135d4ea2b509a9174f8`.
+- Full-suite log: `cae6dd9f77d3a64bdbf80167c1265821db4d1ffc6e694bca1afc9cffad10118e`.

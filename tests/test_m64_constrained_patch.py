@@ -161,7 +161,9 @@ class ConstrainedPatchTests(unittest.TestCase):
         p = np.array([[0., 0., 0.], [.2, 0., 0.], [0., .2, 0.], [2., 0., 0.], [2.2, 0., 0.], [2., .2, 0.]])
         f = np.array([[0, 1, 2], [3, 4, 5]])
         np.testing.assert_array_equal(witness_region(p, f, [[0., 0., 0.], [.1, 0., 0.]]), [True, False])
+        np.testing.assert_array_equal(witness_region(p, f, [[0., 0., 0.], [.1, 0., 0.], [2., 0., 0.]]), [True, True])
         with self.assertRaises(ValueError): witness_region(p, f, [[0., 0., 0.], [float('nan'), 0., 0.]])
+        with self.assertRaises(ValueError): witness_region(p, f, np.zeros((40001, 3)))
         # A shape audit must bind the parent receipt too, not just its mesh.
         import argparse
         import json
@@ -176,14 +178,43 @@ class ConstrainedPatchTests(unittest.TestCase):
                         inputs_unchanged=True, source_hashes={body.name: BODY_SHA, mesh.name: native.sha256(mesh), receipt.name: 'wrong'})
             audit.write_text(json.dumps(data))
             args = argparse.Namespace(body=body, mesh=mesh, receipt=receipt, local_shape_witnesses=audit,
-                                      split_interior_edges=True, split_shared_boundaries=False, output=root/'out')
+                                      split_interior_edges=True, split_shared_boundaries=False,
+                                      all_shape_exceedances=False, output=root/'out')
             with self.assertRaisesRegex(ValueError, 'bound_completed_shape_audit'):
                 run(args)
             data['source_hashes'][receipt.name] = native.sha256(receipt)
             audit.write_text(json.dumps(data))
             with self.assertRaisesRegex(ValueError, 'pinned_classified_parent'):
                 run(args)
+            args.all_shape_exceedances = True
+            data['groups'] = {name: {direction: dict(maximum=.05, exceedance_limit_scan_units=.040,
+                exceedance_points_private=[]) for direction in ('mesh_to_native', 'native_to_mesh')}
+                for name in ('lower', 'upper')}
+            audit.write_text(json.dumps(data))
+            with self.assertRaisesRegex(ValueError, 'complete_bounded_0040'):
+                run(args)
             self.assertFalse(args.output.exists())
+
+    def test_three_projected_midpoints_retriangulate_the_same_concave_boundary(self):
+        import numpy as np
+        from trial_project_compound_surface import split_edges
+        p = np.array([[0., 0., 0.], [1., 0., 0.], [1.22, .52, 0.],
+                      [.4, -.18, 0.], [.92, .13, 0.], [1.11, .26, 0.]])
+        original = p.copy(); edges = np.array([[0, 1], [0, 2], [1, 2]])
+        default = np.array([[0, 3, 4], [3, 1, 5], [4, 5, 2], [3, 5, 4]])
+        cross = lambda f: np.cross(p[f[:, 1]]-p[f[:, 0]], p[f[:, 2]]-p[f[:, 0]])
+        self.assertTrue((cross(default)[:, 2] < 0).any())
+        for row in ([0, 1, 2], [1, 2, 0], [2, 1, 0]):
+            f, parents = split_edges(np.array([row]), edges, 3, p)
+            sign = np.sign(np.cross(p[row[1]]-p[row[0]], p[row[2]]-p[row[0]])[2])
+            self.assertEqual(len(f), 4)
+            self.assertTrue((cross(f)[:, 2]*sign > 0).all())
+            np.testing.assert_allclose(cross(f).sum(axis=0), sign*cross(default).sum(axis=0))
+            es, count = np.unique(np.sort(np.concatenate([f[:, e] for e in ((0, 1), (1, 2), (2, 0))]), axis=1), axis=0, return_counts=True)
+            self.assertEqual({tuple(e) for e in es[count == 1]}, {(0, 3), (1, 3), (1, 5), (2, 5), (2, 4), (0, 4)})
+            self.assertTrue((count <= 2).all())
+            np.testing.assert_array_equal(parents, [0, 0, 0, 0])
+        np.testing.assert_array_equal(p, original)
 
     def test_shared_curve_refinement_splits_both_faces_without_moving_old_nodes(self):
         import numpy as np
@@ -294,6 +325,16 @@ class ConstrainedPatchTests(unittest.TestCase):
         self.assertAlmostEqual(native['maximum'], .02, places=12)
         np.testing.assert_allclose(native['maximum_witness_private']['closest'], [.2, .3, 0.], atol=1e-12)
         with self.assertRaises(ValueError): points_to_triangles([], p, f)
+
+        samples = [gp_Pnt(.2, .3, z) for z in (.01, .04, .05, .08)]
+        plane = BRepBuilderAPI_MakeFace(wire.Wire()).Face()
+        for result in (sampled_distance(samples, plane, .04), points_to_triangles(samples, p, f, .04)):
+            self.assertEqual(result['samples'], 4)
+            self.assertEqual(result['exceedance_limit_scan_units'], .04)
+            np.testing.assert_allclose(result['exceedance_points_private'], [[.2, .3, .05], [.2, .3, .08]])
+            self.assertAlmostEqual(result['maximum'], .08)
+        with self.assertRaises(ValueError): sampled_distance(samples, plane, float('nan'))
+        with self.assertRaises(ValueError): points_to_triangles(samples, p, f, 0.)
 
 
 if __name__ == '__main__': unittest.main()
