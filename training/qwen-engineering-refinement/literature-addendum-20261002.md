@@ -84,6 +84,33 @@ based only on firing order and a rigid-body scene. The generic four-stroke
 interval calculation `720 / cylinders` is also present; it does not infer
 cylinder numbering or crank geometry. No new training was run for this photo.
 
+## Four workflow photographs: existing coverage and live API check
+
+The repeated workflow, lattice, C# and Python photographs are already covered
+by the corrected photo course. They do not constitute new training examples.
+
+| Photograph claim | Accepted lesson and remaining limit |
+|---|---|
+| STEP → voxels → USD → solvers → printing | Preserve independently measured interfaces. CAD tessellation, voxel resolution, units, solid/fluid regions and solver meshes need explicit checks. A USD scene is not automatically a CFD/FEA model, and printing needs its own qualified process. |
+| Gyroids improve cooling; titanium shrouds and intake lattices are better | Treat these as design hypotheses. Existing `cooling-*` and `manufacturing-*` exercises require evidence and reject automatic gains. Compare pressure loss, heat removal, mass and manufacturing access against a baseline. Open cells alone do not prove powder removal. |
+| Conceptual C# is a working PicoGK bridge | The inspected installed PicoGK C# source contains no `MeshToVoxels`, `VoxelMath` class, `CreateLattice`, `StressDrivenScalarField` or `ExportAsObjOrStl`. Undeclared custom helpers must not be presented as kernel APIs. Existing `api-*` lessons use verified constructors and copy-returning booleans. No generic CalculiX stress-to-lattice adapter was demonstrated. |
+| `AddReference("part.obj")` converts OBJ to USD | A reference composes a supported layer; it does not itself convert mesh formats. Existing `asset-*` and `mesh-*` lessons cover this distinction. A custom format plugin could change file support, so inspect the actual runtime. |
+
+The [OpenUSD reference documentation](https://openusd.org/release/api/class_usd_references.html)
+explicitly distinguishes successful reference authoring from successful
+composition. A live USD 25.5 check on 2 October used a temporary valid OBJ
+triangle: no OBJ format plugin was installed, `AddReference` returned true,
+the stage reported one composition error, and the resulting mesh had zero
+points. Assertions checked the failure; the temporary files were removed.
+This reproduces the photographed import defect without claiming an Omniverse
+Kit conversion test. An explicit importer or authoring converted vertex/index
+buffers is required in this runtime.
+
+The existing `test_qwen_photo_course.py` check passes (one test). Previously
+recorded native PicoGK receipts remain unchanged. No new model inference,
+fine-tuning, full CFD/FEA validation or manufacturing release occurred during
+this audit.
+
 ## Training status
 
 Run 005 remains **148/150** on its filtered synthetic comparison, with PicoGK
