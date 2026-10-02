@@ -7,7 +7,7 @@ For continued training on Pixar Python APIs, see the [OpenUSD experiment and Pic
 For the expanded curriculum and validation-based checkpoint selection, see the [coding continuation](coding-results.md).
 The [PicoGK-focused continuation](focused-results.md) reached 40/40 PicoGK validation passes but was rejected for losing USD retention.
 The [retention continuation](retention-results.md) records further USD replay and a conservative four-layer training trial, with the same per-case validation gate.
-The [three-object USD continuation](composition-results.md) registers a broader composition curriculum under that unchanged gate.
+The [scene composition and variant-selection trials](composition-results.md) select coding-008 under that unchanged gate and record its separate final evaluation.
 
 This opt-in Mac workflow trains a small **workflow-assistance adapter** after
 [the architecture documentation](../../docs/architecture/README.md). It is not

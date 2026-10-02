@@ -1,4 +1,4 @@
-# Qwen three-object USD continuation
+# Qwen scene composition and variant selection
 
 ## Registered protocol — 2 October 2026
 
@@ -84,3 +84,68 @@ Use `openusd.py generate --variant-selection` and `verify`, combine its reviewed
 rows with the frozen coding-007 extra USD rows, and pass that JSONL via
 `--usd-extra`. Use the previous run command with `--iterations 400`, output
 `work/m64-qwen/coding-008`, and warm start `coding-007/checkpoint-600`.
+
+## Coding-008 validation selection
+
+The registered follow-up completed 400 steps and 79,345 training tokens,
+with reported validation loss 0.003 and peak memory 3.236 GB. USD validation
+improves from 22/30 to **30/30** and PicoGK from 9/40 to **31/40**. Every prior
+validation pass is retained, so step 400 passes the unchanged selection rule.
+The nine remaining PicoGK failures are in the fresh-graph validation group.
+This selects an experimental candidate; default inference remains unchanged.
+
+The two trials total 1,000 steps and 201,280 training tokens. Coding-007 was
+registered at commit `57932831f0f4256abb5ebad95fe5094b21e43d4d`; coding-008 was
+registered at `43da9e181d4bd0e6bab6a4d919d37afa301310a5`, before their respective
+training runs. The model, data, source and adapter hashes are recorded in the
+[JSON receipts](composition-results.json).
+
+## Coding-008 final evaluation
+
+Final model tests opened only after validation selected step 400. Their results
+were not used to choose a checkpoint or continue training.
+
+| Partition | Coding-003 | Coding-008 | Previous full-task passes lost |
+|---|---:|---:|---:|
+| OpenUSD regression instances | 28/36 | 36/36 | 0 |
+| OpenUSD fresh instances | 11/32 | 31/32 | 0 |
+| PicoGK regression graphs | 10/32 | 24/32 | 0 |
+| PicoGK fresh graphs | 1/24 | 18/24 | 0 |
+
+Across all final cases, USD improves from 39/68 to **67/68** and PicoGK from
+11/56 to **42/56**. All 68 USD answers pass the available native checks, but
+one does not meet the complete request. Of 56 C# answers, 54 pass the literal
+code boundary, compile and produce accepted native geometry. Two are rejected
+before compilation (`pico2-test-014`, `pico3-test-009`); both already failed the
+baseline's full-task contract. Thus compilation falls from 56 to 54 even though
+no complete-task pass is lost. Fourteen PicoGK answers still fail full acceptance.
+
+The selected experimental adapter is
+`work/m64-qwen/coding-008/checkpoint-400/`, SHA-256
+`09024cfb346f3dd7f8994e5fe1cd89e11976db5354b8dac9c0167d57ee7aacb6`.
+Keep the coding-003 adapter as the comparison checkpoint. Weights, raw model
+answers and native logs remain local; default inference is unchanged. This
+closes the registered experiment family. These now-exposed tests are regression
+evidence for future work; a new trial needs an untouched test partition and
+preferably independently authored task families.
+
+## Repository verification on Kali2
+
+At registered commit `43da9e1`, the main suite passes: 3,270 tests including
+156 optional skips. All 15 F37 audit tests pass in the existing pinned Docker
+image. The isolated environment uses Python 3.13.15, the CI-pinned NumPy 2.2.6
+and Matplotlib 3.10.8, and umask 022; CI itself specifies Python 3.12.
+
+Full `make check` exits 2 at the existing `pet-zone-triage-check`: the evidence
+report counts 38 catalogue records while the checkout contains 39, with coverage
+0.295% versus 0.303%. That evidence file is left unchanged. All subsequent Make
+targets pass separately, including strict links across 647 Markdown files.
+The remote checkout remains clean. This replaces the earlier Docker blocker
+with the observed catalogue-report mismatch; it is not a complete green check.
+
+All 818 OpenUSD reference programs pass the native contract suite, including
+the 312 composition and 104 paired-selection rows. Each run also verifies
+64 PicoGK native witnesses; these are the same reference set across the two
+runs. The native acceptance functions and validation prompts are unchanged.
+No paid GPU, OpenFOAM competence, dimensionally accurate head, material result
+or physical validation is claimed.
