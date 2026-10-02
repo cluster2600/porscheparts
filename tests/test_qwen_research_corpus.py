@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class ResearchCorpusTest(unittest.TestCase):
     def test_curation_and_selection(self):
-        for script in ('prepare.py', 'run.py'):
+        for script in ('prepare.py', 'run.py', 'continue.py'):
             with self.subTest(script=script):
                 result = subprocess.run([sys.executable, str(ROOT / 'training/qwen-research-corpus' / script), 'self-check'],
                                         capture_output=True, text=True, timeout=30)

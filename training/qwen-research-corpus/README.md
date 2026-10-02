@@ -9,6 +9,9 @@ generated data and model weights stay outside Git.
 The [first completed local pilot](results-001.md) improved bounded validation
 from 0/10 to 6/10 and retained 16/16 coding smoke cases, but failed the research
 gate. Its final tests remain closed and the candidate is not selected.
+The [480-step continuation](results-002.md) reaches 30/32 on new synthetic
+coverage cases and retains 16/16 coding cases, but fails its gate and regresses
+from 6/10 to 5/10 on the old development set. Its new final tests stay closed.
 It reuses the existing [page/search utilities](../qwen-porsche-corpus/corpus.py)
 and [exact JSON scorer](../qwen-porsche-corpus/train.py).
 
@@ -144,3 +147,47 @@ adapter and `results.json`. A partial run remains evidence of an interrupted
 experiment; the runner refuses to overwrite it. A lower loss alone does not
 qualify the candidate. Failed research or retention gates are recorded without
 changing the grader or using final test targets to tune training.
+
+## Continue with a new, bounded curriculum
+
+`continue.py` preserves the original dataset, runner, scores and adapter. It
+creates a separate dataset with 82 admitted training cases replayed unchanged
+and 192 new synthetic training cases. The new validation has 32 scenarios;
+16 new final scenarios stay outside the training directory. The original ten
+validation cases become development diagnostics; the original eight final
+cases remain closed under `legacy-evaluation/`.
+
+```sh
+python3 training/qwen-research-corpus/continue.py self-check
+/absolute/path/to/m64-qwen/venv/bin/python \
+  training/qwen-research-corpus/continue.py prepare \
+  --parent /absolute/path/to/original-frozen-data \
+  --output /absolute/path/to/new-continuation-data
+/absolute/path/to/m64-qwen/venv/bin/python \
+  training/qwen-research-corpus/continue.py run \
+  --dataset /absolute/path/to/new-continuation-data \
+  --output /absolute/path/to/new-continuation-pilot
+```
+
+The four tasks distinguish test temperature from requested evidence, original
+from substituted component variants, fitted from withheld measurements, and
+supplied from invented citations. Each prompt includes three shuffled records,
+including an irrelevant observation and an instruction embedded in untrusted
+source data. The correct record position and opaque identifier format vary.
+All new observations are authored fixtures, never vehicle measurements.
+
+The registered rubric requires the supplied finding verbatim, its exact record
+ID and the required missing evidence. It normalises case, Unicode and whitespace
+and admits only a finite list of missing-evidence phrases authored before model
+inference. The old exact score is reported alongside it. This is a bounded
+evidence-coverage rubric, not a general semantic science grader. Train,
+validation and test scenarios are disjoint but share the four task recipes;
+the continuation is adaptive to pilot 001, so these are not untouched task
+families or independent evidence of engineering mastery.
+
+The runner starts from pilot 001's checked adapter and uses a fixed final step
+480 with the same learning rate, batch, LoRA and generation settings. It records
+the continuation source hash and substitutions before the baseline. Every one
+of the eight validation cases per task must pass the registered 95% gate, with
+no lost baseline pass, before the new final tests can open. Native development
+retention is measured separately. No candidate replaces a default automatically.
