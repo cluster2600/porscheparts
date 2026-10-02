@@ -86,6 +86,13 @@ outer cylinders retain their full coincidence area in the five-edge candidate.
 The [contact diagnostic and actual CAD view](#2-october-g1-compounds-and-exhaust-seat-contact)
 do not qualify hot retention, thermal performance or manufacturing.
 
+**Corner-grading follow-up, 2 October:** without modifying that candidate's
+CAD, local size grading removes all 12 chamber/seat surface rejections:
+**17 → 5 incompatible triangles** overall. Indexed topology, winding, all
+stored curve segments and a separate CGAL intersection screen pass. The
+[measured before/after result](#2-october-native-corner-grading-removes-the-chamber-rejections)
+does not replace the retained volume or qualify printing.
+
 **Later recovery, 1 October:** both authorised Linux hosts are reachable again.
 The previously uncollected size-0.1 run completed but has **5 incompatible
 triangles / 976,144**; the curvature-64 run ended at its 1,800-second alarm.
@@ -1275,6 +1282,117 @@ Both jobs have ended. No paid instance, new accepted CAD/mesh, print simulation,
 thermal/material result, manufacturing release, PR merge or site deployment
 occurs in this continuation. The cooling-fin study remains research input,
 not evidence of a heat-transfer gain on this head.
+
+## 2 October: native-corner grading removes the chamber rejections
+
+**The chamber/seat surface-meshing defect is corrected on the five-edge
+candidate, without another CAD edit.** The complete head surface still fails
+the necessary quality screen at five triangles in the upper region. This is
+not a completed head, an accepted volume mesh or a manufacturing release.
+
+Native corner inspection finds an 11.314697-degree outgoing-ray angle at the
+worst planar chamber corner. Its existing triangle has adjacent distances
+0.02616795 and 0.49692128 scan unit from that same corner: about **19:1**.
+The surface's low quality is therefore investigated as a boundary/interior
+size mismatch rather than corrected by removing the seat-support material.
+This observation alone is not a proof of a unique cause; the controlled
+remesh below demonstrates the successful correction on this candidate.
+
+The existing [surface screener](../../twins/m64-cylinder-head/source/wholebody/screen_tip_cut_surface.py)
+gains an exact-candidate-only `--chamber-corner-size` experiment. With size
+0.020, a [Gmsh Distance/Threshold field](https://gmsh.info/doc/texinfo/#t10)
+acts on the **19 actual boundary vertices** of mapped faces 147 and 152.
+Size remains 0.020 within 0.15 scan unit and grows linearly to 3.0 at 15 scan
+units. Existing short-edge limits and native curves remain; no compound,
+healing, edge deletion, CAD smoothing or material edit is applied. The 0.010
+option is bounded in code but **not run**, since the first experiment already
+removes the diagnosed chamber failures. Both options require the exact
+candidate and MeshAdapt; the Frontal override cannot be combined with them.
+
+| Completed surface screen | Triangles | Incompatible q2 | Chamber plane 147 | Chamber cylinder 152 |
+|---|---:|---:|---:|---:|
+| Prior MeshAdapt control | 1,006,116 | 17 | 10 rejected | 2 rejected |
+| Native-corner grading, 0.020 | 1,080,790 | **5** | **0**, minimum 0.31153922 | **0**, minimum 0.07160121 |
+
+The unchanged necessary limit is `q2 >= 2*0.1/(3-0.1) = 0.06896551724`.
+The completed run takes **129.237 seconds** and retains all input hashes.
+No Gmsh warning/error is present in its progress log. Native CAD SHA-256 is
+still `93545442adaf0a95e741d50ef9efeef48c677ff3592dbeb637dba76bb74df6de`;
+the previous nominal seat-contact result remains applicable to that identical
+CAD, not a claim that the new surface discretisation solves contact physics.
+
+![Actual chamber corner mesh before and after native-corner grading](../media/m64-chamber-tip-20261002/corner-grading.png)
+
+These are equal-scale projections of actual mesh triangles near the same
+native vertex. Red denotes failed numerical triangle quality, not cracks or
+heat. The ten-before/zero-after counts refer to the entire plane face; the
+image zooms into one corner. The documented Wolfe Classics provenance and
+owner-confirmed derivative use apply; private mesh/native files stay outside Git.
+
+An independent readback recomputes quality and checks **540,381 used vertices**:
+all have circular links, every surface edge has two incident triangles, and
+there are zero duplicate triangles, duplicate used coordinates, unused nodes
+or winding conflicts. All **66,588 stored native-curve segments** are direct
+surface edges. No orientation repair, welding or line reconstruction is needed.
+These checks do not by themselves prove native curve distances or a continuous
+CAD-deviation bound. The binary64/uint64 array export reads back exactly.
+
+The separately hash-bound **CGAL 5.6** auditor on Kali2 finds **zero intersecting
+pairs** over all 1,080,790 triangles in **2.694 seconds**. Its executable is the
+same pinned binary tested previously. The read-only, network-disabled sidecar
+uses two CPUs and 6 GiB; an initial permission failure launches no audit, and
+running as the verified owner UID/GID 1000:1000 fixes access without changing
+file permissions. The recovered report hash matches the remote file.
+
+The remaining faces are 1302 (two rejected triangles), 1304 (one) and 1542
+(two). Their native outgoing-ray angles reach **1.444691 / 1.371396 degrees**.
+A supporting-surface inspection finds coaxial radius-16 cylinders: the two
+pocket faces are reversed, whereas the pad face is forward. These are the
+previously traced spring-pocket/pad surfaces. Opposed orientation of different
+faces is not alone proof of a cusp or interference. The next construction
+must address this coupled support transition while checking the nominal spring
+footprint and surrounding clearances; blindly extending the chamber size field
+does not establish a solution to those different corners.
+
+The logged partitioned-compound control is **explicitly stopped with SIGTERM,
+exit 143**, after the noncompound correction succeeds. It is not another
+timeout and produces no mesh; its receipt remains incomplete. The native
+progress log is now enabled in both existing runners, so a stopped job retains
+its last emitted meshing messages. No GPU or paid machine is used.
+
+Verification: four focused Mac tests pass, including a real meshed rectangle
+with field points taken from its native boundary, unchanged model entities,
+invalid-input rejection and wrong-candidate rejection. Frozen-code Kali2
+`make check` exits **0**: 3,233 main tests, 169 optional skips, 157.065 seconds,
+followed by all remaining targets. The three changed code/test files match
+Mac/Linux hashes; native tests skipped by the Linux base runtime run on Mac.
+The pinned CGAL sidecar separately passes four topology/intersection tests;
+three Gmsh-version-specific tests are explicitly skipped there.
+
+Fingerprints:
+
+- Surface-screen receipt: `edd53bd237fe6597080009f2674acae228f46302dde0f8c544530d88663e4422`.
+- Surface screener: `ad7f7bd769118efc92ab6bf22c4d23a5909bcd45e8a074ff2eaf325e5a87ca4d`.
+- Chamber corner diagnostic: `c8afbd6941ed8476360c464276e3e3db2d5ff2232aa833505ff69c71e4a17f64`.
+- Remaining upper-corner diagnostic: `b95cc29f212d77acc70d57e90b77bf88ad51212e81c2181390cf567cc340e181`.
+- Independent topology/curve/figure receipt: `9cac44276b4593cab70bcc8fd4387932abfadb3a8524b9e66bdcaac2386c176c`.
+- Exact array export: `131973a0b96efcfa2dd2cab4111d6b6e63562ed7359f1df7fdb3baba7f22b0ac`.
+- CGAL receipt: `e3c77a60754c6a46d94c28749f00064bea02be748e9ba819ea83f2105c823286`.
+- Published PNG: `194748b9cbd060341c50c5c8d2c8eb2f5a5006aa12289ab2ae55926a259f260d`.
+- Full Linux check log: `4f1dd16f61db0261ac7184d633bedffa1af916c45860a421d78e074e735ac744`.
+- Stopped compound receipt: `cd88320a462217c7ecfafaafc366415e4e639a1c4514ab75f976090002b4b2dd`.
+
+```sh
+python twins/m64-cylinder-head/source/wholebody/screen_tip_cut_surface.py \
+  --candidate /private/network-r005-final --chamber-corner-size .02 \
+  --cpu-seconds 540 --output /private/fresh-corner-size-002
+python -m unittest discover -s tests -p test_m64_acute_cylinder_blend.py -v
+```
+
+All numerical jobs in this continuation have ended. No volume run is launched
+from a surface with five remaining quality failures. The retained 32-rejection
+volume, physical 0.040 mm requirement, engine interfaces, thermal/strength/
+material/printing qualification, merge and deployment statuses remain unchanged.
 
 ## 2 October: reject the cutter cusp and test a coupled chamber-edge network
 

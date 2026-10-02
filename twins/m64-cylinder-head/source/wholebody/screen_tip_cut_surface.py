@@ -13,6 +13,25 @@ from run_parallel_cad_trials import native, BODY_SHA
 from audit_fixed_face_quality import tetra_ceiling
 
 
+def corner_size_field(gmsh, surfaces, size):
+    """Grade boundary and interior sizes together around bounded native corners."""
+    if (size not in (.01,.02) or not 1 <= len(surfaces) <= 2
+            or len(set(surfaces)) != len(surfaces)
+            or any(type(t) is not int or t <= 0 for t in surfaces)):
+        raise ValueError('bounded_corner_size_and_surfaces_required')
+    curves = sorted(set((d,t) for d,t in gmsh.model.getBoundary([(2,t) for t in surfaces],
+                         combined=False, oriented=False) if d == 1))
+    points = sorted(set(t for d,t in gmsh.model.getBoundary(curves, combined=False, oriented=False) if d == 0))
+    if not 1 <= len(points) <= 24: raise ValueError('bounded_native_corner_points_required')
+    distance = gmsh.model.mesh.field.add('Distance')
+    gmsh.model.mesh.field.setNumbers(distance, 'PointsList', points)
+    threshold = gmsh.model.mesh.field.add('Threshold')
+    values = dict(InField=distance, SizeMin=size, SizeMax=3., DistMin=.15, DistMax=15.)
+    for key,value in values.items(): gmsh.model.mesh.field.setNumber(threshold,key,value)
+    gmsh.model.mesh.field.setAsBackgroundMesh(threshold)
+    return dict(point_tags_private=points, surface_tags_private=surfaces, **values)
+
+
 def run(args):
     import gmsh
     pins = {Path(__file__): native.sha256(__file__)}
@@ -38,9 +57,12 @@ def run(args):
         raise ValueError('fresh_output_and_native_candidate_required')
     pins[body] = sha
     chamber_frontal = getattr(args, 'chamber_frontal', False)
-    if chamber_frontal and (args.reference_body or args.surface_algorithm != 1 or sha !=
+    corner_size = getattr(args, 'chamber_corner_size', None)
+    if (chamber_frontal or corner_size is not None) and (args.reference_body or args.surface_algorithm != 1 or sha !=
             '93545442adaf0a95e741d50ef9efeef48c677ff3592dbeb637dba76bb74df6de'):
         raise ValueError('exact_chamber_network_and_meshadapt_background_required')
+    if corner_size is not None and (chamber_frontal or corner_size not in (.01,.02)):
+        raise ValueError('separate_bounded_corner_size_trial_required')
     args.output.mkdir(mode=0o700); start = time.monotonic()
     report = dict(schema='m64-tip-cut-surface-screen/v1', status='incomplete', input_sha256=sha,
         producer_sha256=None if args.reference_body else pins[report_path], source_sha256=pins[Path(__file__)],
@@ -48,6 +70,7 @@ def run(args):
         minimum_size=args.minimum, cpu_seconds=args.cpu_seconds,
         surface_algorithm=args.surface_algorithm,
         chamber_frontal=chamber_frontal,
+        chamber_corner_size=corner_size,
         mesh_gate_closed=False, manufacturing_authorized=False)
     def save(): native.save(args.output/'report.json', report)
     ns = argparse.Namespace(input=body, sha256=sha, output=args.output)
@@ -55,6 +78,7 @@ def run(args):
     baseline = json.loads((args.output/'native-baseline.json').read_text())
     gmsh.initialize(['tip-cut-screen', '-nopopup'], readConfigFiles=False, run=False)
     gmsh.option.setNumber('General.Terminal', 0)
+    gmsh.option.setString('General.LogFileName', str(args.output/'gmsh-progress.log'))
     try:
         for key in ('OCCFixDegenerated', 'OCCFixSmallEdges', 'OCCFixSmallFaces', 'OCCSewFaces', 'OCCMakeSolids', 'OCCAutoFix'):
             gmsh.option.setNumber('Geometry.'+key, 0)
@@ -80,6 +104,10 @@ def run(args):
             report['surface_algorithm_overrides_private'] = [dict(source_face_index=r['source_face_index'],
                 gmsh_face_tag=r['gmsh_face_tag'], algorithm=6) for r in rows]
             for r in rows: gmsh.model.mesh.setAlgorithm(2, r['gmsh_face_tag'], 6)
+        if corner_size is not None:
+            rows = [r for r in binding['matches_private'] if r['source_face_index'] in (147,152)]
+            if len(rows) != 2: raise ValueError('two_bound_chamber_faces_required')
+            report['corner_size_field_private'] = corner_size_field(gmsh,[r['gmsh_face_tag'] for r in rows],corner_size)
         sizes = {}
         for _, curve in gmsh.model.getEntities(1):
             length = gmsh.model.occ.getMass(1, curve)
@@ -131,6 +159,7 @@ if __name__ == '__main__':
     parser.add_argument('--cpu-seconds', type=int, choices=(270, 540), default=270)
     parser.add_argument('--surface-algorithm', type=int, choices=(1, 6), default=1)
     parser.add_argument('--chamber-frontal', action='store_true', help='Hash-bound five-edge chamber trial only: use Frontal on its two rejected faces.')
+    parser.add_argument('--chamber-corner-size', type=float, choices=(.01,.02), help='Exact chamber trial only: graded native-corner field on the two rejected chamber faces; no geometry change.')
     args = parser.parse_args()
     resource.setrlimit(resource.RLIMIT_CPU, (args.cpu_seconds, args.cpu_seconds+5))
     signal.alarm(args.cpu_seconds+60)

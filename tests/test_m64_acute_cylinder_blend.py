@@ -6,6 +6,30 @@ import unittest
 @unittest.skipUnless(importlib.util.find_spec('numpy'),'optional numerical helper dependencies')
 class AcuteBlendTest(unittest.TestCase):
     @unittest.skipUnless(importlib.util.find_spec('gmsh'),'optional mesh runtime')
+    def test_corner_size_field_uses_actual_boundary_points(self):
+        import sys
+        import gmsh
+        sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'twins/m64-cylinder-head/source/wholebody'))
+        from screen_tip_cut_surface import corner_size_field
+        gmsh.initialize(['corner-field','-nopopup'],readConfigFiles=False,run=False)
+        gmsh.option.setNumber('General.Terminal',0)
+        try:
+            tag=gmsh.model.occ.addRectangle(0,0,0,2,1);gmsh.model.occ.synchronize()
+            before=set(gmsh.model.getEntities())
+            row=corner_size_field(gmsh,[tag],.02)
+            points=sorted(t for d,t in before if d==0)
+            self.assertEqual(row['point_tags_private'],points)
+            self.assertEqual(list(gmsh.model.mesh.field.getNumbers(int(row['InField']),'PointsList')),points)
+            self.assertEqual(set(gmsh.model.getEntities()),before)
+            for bad in (0,float('nan'),1.):
+                with self.assertRaises(ValueError): corner_size_field(gmsh,[tag],bad)
+            with self.assertRaises(ValueError): corner_size_field(gmsh,[tag,tag],.02)
+            gmsh.model.mesh.generate(2)
+            _,tags,_=gmsh.model.mesh.getElements(2)
+            self.assertGreater(min(gmsh.model.mesh.getElementQualities(tags[0],'minSICN')), .06896551724137931)
+        finally: gmsh.finalize()
+
+    @unittest.skipUnless(importlib.util.find_spec('gmsh'),'optional mesh runtime')
     def test_chamber_frontal_override_rejects_another_body(self):
         import argparse
         import hashlib
@@ -20,6 +44,10 @@ class AcuteBlendTest(unittest.TestCase):
                 inputs_unchanged=True,status='candidate_pending_BOP_distance_and_mesh')))
             args=argparse.Namespace(reference_body=None,candidate=root,output=root/'output',
                 surface_algorithm=1,chamber_frontal=True,minimum=.00002,cpu_seconds=540)
+            with self.assertRaisesRegex(ValueError,'exact_chamber_network_and_meshadapt_background_required'):
+                screen.run(args)
+            self.assertFalse(args.output.exists())
+            args.chamber_frontal=False; args.chamber_corner_size=.02
             with self.assertRaisesRegex(ValueError,'exact_chamber_network_and_meshadapt_background_required'):
                 screen.run(args)
             self.assertFalse(args.output.exists())

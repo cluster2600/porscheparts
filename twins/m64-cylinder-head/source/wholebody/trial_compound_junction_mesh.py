@@ -83,6 +83,7 @@ def run(args):
     baseline = json.loads((args.output/'native-baseline.json').read_text())
     gmsh.initialize(['compound-screen', '-nopopup'], readConfigFiles=False, run=False)
     gmsh.option.setNumber('General.Terminal', 0)
+    gmsh.option.setString('General.LogFileName', str(args.output/'gmsh-progress.log'))
     gmsh.logger.start()
     try:
         for key in ('OCCFixDegenerated', 'OCCFixSmallEdges', 'OCCFixSmallFaces', 'OCCSewFaces', 'OCCMakeSolids', 'OCCAutoFix'):
