@@ -370,6 +370,193 @@
     "Shared task recipes limit generalisation.",
     "Original photo-course train/validation/test prompt overlaps invalidate its fresh label.",
     "The filtered 150 cases separate exact prompt text, not task families.",
-    "Published summary metadata does not publish the local source branch, weights or raw model responses."
-  ]
+    "Published summary metadata does not publish the local source branch, weights or raw model responses.",
+    "Porsche document scores measure source-conditioned extraction with shared recipes; failed or incomplete free-question checks do not qualify a general document assistant."
+  ],
+  "porsche_corpus_001": {
+    "source": {
+      "path": "training/qwen-porsche-corpus/results-001.json",
+      "commit": "c53261f5ec94cd330917591e1d4e9fea357b7bc0",
+      "sha256": "4e7897139f7f178a574c78fecd5d93d5b5a241ae913448e75fbfdde0b8b77fb4"
+    },
+    "source_is_claimed_published_on_github": false,
+    "registered_commit": "ca46964d5f1f3b78085820b6da10321c9becea9f",
+    "parent_adapter_sha256": "70142a4583f5c95a74b3a5dd6661d8243e85e7846dc7aba6e8b4ab3c6a3f29d4",
+    "corpus_counts": {
+      "pet": 12864,
+      "technical-data": 111,
+      "torque-specs": 195,
+      "procedures": 235,
+      "site-review": 15,
+      "document-page": 681
+    },
+    "indexed_references": 6013,
+    "indexed_assembly_groups": 452,
+    "training_cases": {
+      "test": 40,
+      "train": 677,
+      "valid": 40
+    },
+    "configuration": {
+      "iterations": 320,
+      "learning_rate": 5e-06,
+      "seed": 1042,
+      "batch_size": 2,
+      "num_layers": 16,
+      "max_seq_length": 1024,
+      "mask_prompt": true,
+      "maximum_observed_sequence_tokens": 260
+    },
+    "training_diagnostics": {
+      "reported_training_tokens": 23024,
+      "peak_memory_gb": 3.194
+    },
+    "selection": "Fixed 320 steps; >=95% per kind and no lost baseline pass on validation. Open test only if eligible; no automatic promotion.",
+    "scores": {
+      "validation-before": {
+        "passed": 10,
+        "total": 40
+      },
+      "validation-after": {
+        "passed": 40,
+        "total": 40
+      },
+      "test-before": {
+        "passed": 13,
+        "total": 40
+      },
+      "test-after": {
+        "passed": 40,
+        "total": 40
+      }
+    },
+    "result": {
+      "validation": {
+        "eligible": true,
+        "regressions": [],
+        "counts": {
+          "pet": {
+            "passed": 10,
+            "total": 10
+          },
+          "procedures": {
+            "passed": 10,
+            "total": 10
+          },
+          "technical-data": {
+            "passed": 10,
+            "total": 10
+          },
+          "torque-specs": {
+            "passed": 10,
+            "total": 10
+          }
+        }
+      },
+      "weights_updated": true,
+      "default_replaced": false,
+      "qualified": false,
+      "test_opened": true,
+      "adapter_sha256": "89f03a87582fe287c6f718e7fef17745171441716ea4d99e83514a0cf12064ca",
+      "test": {
+        "eligible": true,
+        "regressions": [],
+        "counts": {
+          "pet": {
+            "passed": 10,
+            "total": 10
+          },
+          "procedures": {
+            "passed": 10,
+            "total": 10
+          },
+          "technical-data": {
+            "passed": 10,
+            "total": 10
+          },
+          "torque-specs": {
+            "passed": 10,
+            "total": 10
+          }
+        }
+      }
+    },
+    "natural_language_checks": {
+      "review_initial": "rejected_placeholder_citation",
+      "review_revised_prompt": "citation_structure_passed_only; brief answer omits validation detail",
+      "carrier_name_and_material": "rejected_invalid_repetitive_output"
+    },
+    "scope_complete": false,
+    "default_changed": false,
+    "raw_sources_committed": false,
+    "notes": "Private full-page index plus source-grounded field-extraction fine-tuning. This is not complete memorisation of all references or a validated mechanical assembly model.",
+    "verified_receipts": [
+      {
+        "path": "run/protocol.json",
+        "sha256": "21390ed0b9bec0779893aa01b14e470fb7d7647a16cd6a9d7ddc3da4a2becc1a"
+      },
+      {
+        "path": "run/runtime.json",
+        "sha256": "6f378fb51d7dd5e7572b54fe44a7a5c2031e793461512fece0a0706cfcbbceb0"
+      },
+      {
+        "path": "run/results.json",
+        "sha256": "4aa7026523983d2f5adeff851568d3f816b7db26d7dd7b27b6376178cab8d439"
+      },
+      {
+        "path": "run/training.log",
+        "sha256": "fa765bc8761aaa40290aea387d48377e3bd23783bcb4390fe9280483ca223840"
+      },
+      {
+        "path": "index/manifest.json",
+        "sha256": "b49c7530575c37f2fbbed78f6ec7f33fa112fcc9f70105fc765bb48e20e8b3d5"
+      },
+      {
+        "path": "review-answer.json",
+        "sha256": "58cbafa0a81a40561b355b9a075542fa0955d2b648099da0388abbf350af1d86"
+      },
+      {
+        "path": "review-answer-v2.json",
+        "sha256": "cd1d4ba549fb67aef7e9e68f619391e4c938b2c36b3a2c6cc24dce35a2865e45"
+      },
+      {
+        "path": "carrier-answer.json",
+        "sha256": "36afb0ce9fda8169cddfed905551d7e7ed5865adcc3d0558be4be6a510ee4a60"
+      }
+    ],
+    "verified_frozen_inputs": [
+      {
+        "path": "work/qwen-porsche-corpus-001/index/manifest.json",
+        "sha256": "b49c7530575c37f2fbbed78f6ec7f33fa112fcc9f70105fc765bb48e20e8b3d5"
+      },
+      {
+        "path": "work/qwen-porsche-corpus-001/index/records.jsonl",
+        "sha256": "de6c981c3d64a86ae9735451b8fa4764cdd15003709af6aec58ae0145b1009c4"
+      },
+      {
+        "path": "work/qwen-porsche-corpus-001/run/cases.json",
+        "sha256": "e6db93addcdc22801569bd71261b8cc415f3297ffdd5f2bda82cd3adb46c0bfc"
+      },
+      {
+        "path": "work/qwen-porsche-corpus-001/run/data/train.jsonl",
+        "sha256": "4021fd8783e4ccd38a7e049caccb27b5a5a015fc219679aaf474cd386f15d521"
+      },
+      {
+        "path": "work/qwen-porsche-corpus-001/run/data/test.jsonl",
+        "sha256": "835b1e8b77f761cbb8061da17f9ff519f025a62b3619ff3cfa33b50cfed04869"
+      },
+      {
+        "path": "work/qwen-porsche-corpus-001/run/data/valid.jsonl",
+        "sha256": "6347e5aa7df08ede2ab6408ab0778f27ba8eb71718d136a4e68fe16785265598"
+      },
+      {
+        "path": "training/qwen-porsche-corpus/train.py",
+        "sha256": "40fb26d98350d7c95cb1d89deab6a285cde6c497214e05aba37199f33c1c00b0"
+      },
+      {
+        "path": "training/qwen-porsche-corpus/corpus.py",
+        "sha256": "b83fbbc3b1e03ae8ec0d020d767b9466cc1b255ada04fda22ff6d1718b83340b"
+      }
+    ]
+  }
 }

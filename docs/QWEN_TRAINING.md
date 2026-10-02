@@ -18,6 +18,12 @@ a filtered final partition, but remains **unqualified** because PicoGK scores
 use different tasks and selection rules. Their totals cannot rank the adapters
 against each other. Neither report records a serving-default replacement.
 
+The later, separate **Porsche document corpus** adapter completes a 320-step
+source-conditioned extraction experiment: **13/40 → 40/40** on its held-out
+cases. Its free-question checks still fail or produce incomplete answers, so
+this score does not qualify a general document assistant. Sections 3.6 and 5.5
+explain the indexed sources, sampled training cases and remaining gaps.
+
 This documentation adds no training run. The accompanying
 [machine-readable evidence snapshot](QWEN_TRAINING_EVIDENCE_20261002.json)
 extracts metadata from existing reports and records their source hashes.
@@ -34,6 +40,7 @@ extracts metadata from existing reports and records their source hashes.
 8. [How to train it further](#8-how-to-train-it-further)
 9. [A concrete next experiment](#9-a-concrete-next-experiment)
 10. [Reproduction and evidence navigation](#10-reproduction-and-evidence-navigation)
+11. [The supplied scientific references and their training value](#11-the-supplied-scientific-references-and-their-training-value)
 
 ## 1. What we are trying to teach
 
@@ -188,12 +195,14 @@ model card describes broad source-code and text/code training. We did not
 rebuild or independently audit that upstream corpus. The counts below refer
 only to the project's additional supervised examples.
 
-Our examples were **authored synthetic tasks**, derived from project workflows,
-explicit parameters, API contracts and reviewed references. The documented
-pilots did not ingest raw engine scans, proprietary manuals, supplier quotes,
-vehicle identifiers, secrets, complete theses or third-party benchmark rows.
-Research suggested exercises and verification methods; it was not silently
-copied into training targets.
+The coding and engineering curricula use **authored synthetic tasks**, derived
+from project workflows, explicit parameters, API contracts and reviewed
+references. Those pilots did not ingest raw engine scans, proprietary manuals,
+supplier quotes, vehicle identifiers, secrets, complete theses or third-party
+benchmark rows. Research suggested exercises and verification methods; it was
+not silently copied into training targets. A later experiment uses actual
+source records and supplied excerpts for field extraction; section 3.6
+describes that separate private corpus.
 
 The original project material is governed by the current
 [repository licence](../LICENSE). The base model and third-party libraries keep
@@ -213,6 +222,7 @@ redistribute an external dataset or train on it.
 | Four-domain engineering pilot | 384 new Python/OpenFOAM/USD/PicoGK records plus 192 replay records: 576 total | 102 validation; 32 fresh model cases reserved until eligibility |
 | Engineering refinement 002 | 1,808 training records, including shuffled-node graphs, scene composition, paired selection and mechanical calculations | Extended retention evaluation and 56 reserved test records |
 | Six-domain photo course | 3,224 training records, but **3,177 unique prompts** | 266 development validation; audited final evaluation uses a filtered 150-case partition |
+| Porsche source-extraction course | 677 sampled source-conditioned examples from a 14,101-record private index | 40 validation / 40 test; grouped by PET reference or manual page, with shared prompt recipes |
 
 Corpus stages overlap. Do not add these rows together as a total number of
 distinct examples seen. Coding-008 repeats each USD training row twice, giving
@@ -302,6 +312,51 @@ information permits. A measured interface may permit preliminary geometry,
 while missing material allowables still block structural qualification.
 Manufacturing needs its own process and inspection evidence. A single blanket
 answer can be overly permissive or unnecessarily restrictive.
+
+### 3.6 The later Porsche document corpus
+
+This experiment introduces real source records rather than only synthetic
+engineering exercises. Its private index contains **14,101 records**:
+
+| Indexed record type | Count | What the record supplies |
+|---|---:|---|
+| PET catalogue occurrences | 12,864 | Listed references and illustration/page provenance |
+| Site-reviewed parts | 15 | Reviewed site entries, distinct from the listed PET subset |
+| Technical-data entries | 111 | Transcribed technical values with source context |
+| Torque rows | 195 | Source-specific torque table entries |
+| Procedure-index entries | 235 | Procedure locations; these are not complete workshop procedures |
+| Full document text pages | 681 | All 674 PET pages plus seven pages of a separate ICE review |
+
+The listed PET subset has 5,998 distinct references; the listed/reviewed union
+has **6,013**. The index also retains 452 source-specific illustration groups.
+These are overlapping representations of sources, not 14,101 independent
+engineering facts. Page text, table rows and illustration co-occurrence do not
+establish physical joints, variant compatibility or measured geometry.
+
+The PET is the public
+[Porsche catalogue PDF](https://a.storyblok.com/f/332100/f97ce31af4/kat017-e-911-98-katalog.pdf).
+The seven review pages come from the separately indexed
+[ICE research review](https://journal.cbiore.id/index.php/jese/article/download/5/5/14),
+not the metal-AM review in section 11. The workshop material currently consists
+of the local site's tables and procedure index. Complete workshop PDFs and the
+Leffingwell book were not located in the inspected local copies; they have not
+been fully ingested or trained on in this experiment.
+
+SQLite FTS5 supports exact-reference and keyword retrieval. Source IDs, pages,
+input hashes and transcription/OCR status stay attached to records. Known OCR
+errors remain labelled. The private PDFs, full extracted text, database, training
+cases and adapter weights remain outside GitHub; this page publishes metadata.
+Public accessibility does not confer unrestricted source-reuse rights.
+
+Only **677 examples** from this larger index enter fine-tuning. Each prompt
+supplies source context and asks for a field plus its provenance, including
+missing-information cases. Every occurrence of a PET reference belongs to one
+partition; manual cases are grouped by page. The **40 validation and 40 test**
+cases reserve source entities, while sharing extraction recipes with training.
+That separation measures extraction on held-out entities, not independent
+question families or mastery of complete manuals. Retrieval supplies facts at
+answer time; the index's existence does not mean every fact is memorised in
+the adapter.
 
 ## 4. The training and evaluation pipeline
 
@@ -502,6 +557,41 @@ It remains experimental and unqualified. Its adapter hash is
 `70142a4583f5c95a74b3a5dd6661d8243e85e7846dc7aba6e8b4ab3c6a3f29d4`.
 The [evidence snapshot](QWEN_TRAINING_EVIDENCE_20261002.json) preserves the
 local report's source identity, settings, per-domain results and corrections.
+
+### 5.5 The source-conditioned Porsche extraction run
+
+The document experiment continues **engineering-005/1200** for a fixed
+**320 steps**, using learning rate `5e-6`, batch size 2, 16 LoRA layers,
+1,024-token sequences, prompt masking and seed 1042. Its saved runtime audit
+records a maximum example length of 260 tokens; the run reports 23,024 training
+tokens and 3.194 GB peak memory. It is a separate adapter; it does not replace
+coding-008 or repair the engineering candidate's failed graph qualification.
+
+| Extraction partition | Parent | Document adapter | Lost previous passes |
+|---|---:|---:|---:|
+| Validation | 10/40 | 40/40 | 0 |
+| Held-out test | 13/40 | 40/40 | 0 |
+
+Each partition has ten cases in each of four categories: PET, procedure index,
+technical data and torque specifications. The test opened only after validation
+met the registered 95% per-category floor with no lost baseline pass. The final
+adapter hash is
+`89f03a87582fe287c6f718e7fef17745171441716ea4d99e83514a0cf12064ca`.
+
+A different check connects retrieval to free-question generation. Its first
+review answer copies a placeholder citation and is rejected. Removing that
+example template produces a structurally valid citation but a brief answer
+which omits validation detail. A carrier name/material question produces
+malformed repetitive output and is rejected. Citation syntax alone does not
+check the truth or completeness of the associated claim.
+
+The conclusion is narrow: the adapter improves these supplied-context
+extraction tasks. **General sourced question answering remains unqualified**;
+complete workshop/book coverage, diagram interpretation, independent question
+families and coding retention still need work. The
+[evidence snapshot](QWEN_TRAINING_EVIDENCE_20261002.json) records the local report
+at `c53261f5ec94cd330917591e1d4e9fea357b7bc0`, registration commit, configuration,
+scores and receipt hashes. No new training was executed to prepare this page.
 
 ## 6. Mistakes, corrections and remaining limits
 
@@ -727,7 +817,8 @@ publication needs its own authorisation; this roadmap starts with local work.
 ### 8.9 Keep imported data small, licensed and relevant
 
 The source registry considered external CAD/code datasets, but the documented
-corpora imported no third-party rows. Future candidates need revision, licence,
+synthetic coding/engineering curricula imported no external CAD/code rows.
+Future candidates need revision, licence,
 attribution, input/output modality and contamination checks. A vision-conditioned
 CAD dataset is not directly a text-only instruction corpus. A repository's code
 licence may differ from its dataset or upstream geometry rights.
@@ -737,7 +828,25 @@ download. Keep public benchmark tasks for evaluation when that is their role.
 Literature reading can guide a better experiment without being a training run.
 The [evidence snapshot](QWEN_TRAINING_EVIDENCE_20261002.json) records the local
 research register's identity; future licence checks must use current primary
-sources before importing data.
+sources before importing data. Section 11 reviews the nine references supplied
+for turbocharging, combustion, F1 and metal additive manufacturing; these
+references have not been imported into the documented fine-tuning datasets.
+
+### 8.10 Improve document answers separately from coding
+
+The document run demonstrates a useful extraction behaviour and exposes a
+different generation failure. First author complete, claim-cited answers from
+reviewed source passages. Teach missing-source and conflicting-source answers,
+multi-page lookup, units and variant restrictions. Do not train unsupported
+carrier geometry from catalogue co-occurrence. Locate and index the missing
+manual/book originals before claiming complete coverage of them.
+
+Reserve question families, source groups and diagrams that development never
+sees. Score retrieval recall separately from field extraction, claim support,
+answer completeness and handling of unknowns. Include the observed placeholder
+citation and repetitive-answer defects in development regression checks, then
+use different examples for the final assessment. Re-run coding and graph
+retention before considering any general adapter promotion.
 
 ## 9. A concrete next experiment
 
@@ -785,7 +894,7 @@ relative `training/` path works on every branch.
 | [PicoGK runner/scorer](https://github.com/cluster2600/porscheparts/blob/7b9853ad633e1b3847b7a363b89282d3a1d09479/training/m64-qwen/picogk.py) | Literal-code boundaries, native compilation and graph checks |
 | [USD authoring/scoring](https://github.com/cluster2600/porscheparts/blob/7b9853ad633e1b3847b7a363b89282d3a1d09479/training/m64-engineer/openusd.py) | Reviewed reference generation and bounded native scene checks |
 | [Coding-008 detailed JSON](https://github.com/cluster2600/porscheparts/blob/7b9853ad633e1b3847b7a363b89282d3a1d09479/training/m64-qwen/composition-results.json) | Per-case outcomes, manifests, source/data/adapter hashes |
-| [This page's evidence snapshot](QWEN_TRAINING_EVIDENCE_20261002.json) | Selected coding metadata plus the locally verified engineering-005 summary |
+| [This page's evidence snapshot](QWEN_TRAINING_EVIDENCE_20261002.json) | Selected coding metadata plus locally verified engineering-005 and Porsche-extraction summaries |
 
 The engineering-refinement source reports were inspected in a separate local
 checkout at `bf62ab7`; they are not claimed to be published with PR 104. The
@@ -798,6 +907,14 @@ reported value. All 16 checked engineering-005 files—including the candidate
 weights and the saved receipt set—were present and matched their reported
 hashes. This is an integrity check of existing evidence, not a new inference,
 native solver run or independent replication of the training results.
+
+The later Porsche document report was inspected locally at
+`c53261f5ec94cd330917591e1d4e9fea357b7bc0`, under
+`training/qwen-porsche-corpus/results-001.json`. The eight saved receipt files,
+eight frozen inputs and candidate adapter match their recorded hashes; some
+files occur in both groups. This page publishes their scoped metadata rather
+than that source checkout or private text. Its local source commit is not
+presented as a publicly browsable GitHub commit.
 
 ### 10.2 Reproduce the initial training pilot
 
@@ -857,6 +974,13 @@ p = e['per_domain']['picogk']
 assert p['passed'] / p['total'] < 0.95 and not e['eligible']
 assert not d['coding_008']['default_inference_changed']
 assert not d['engineering_005']['physical_validation']
+p = d['porsche_corpus_001']
+assert sum(p['corpus_counts'].values()) == 14101
+assert p['training_cases'] == {'train': 677, 'valid': 40, 'test': 40}
+assert p['scores']['test-before'] == {'passed': 13, 'total': 40}
+assert p['scores']['test-after'] == {'passed': 40, 'total': 40}
+assert not p['result']['qualified'] and not p['default_changed']
+assert p['natural_language_checks']['carrier_name_and_material'].startswith('rejected')
 print('Documented result counts and qualification decision agree.')
 PY
 ```
@@ -865,3 +989,247 @@ This checks summary consistency. The original graders and private receipts are
 needed to audit the individual model answers. Neither this check nor the wider
 repository software suite establishes fitment, calibrated physics or approval
 to manufacture a Porsche part.
+
+## 11. The supplied scientific references and their training value
+
+The owner supplied nine literature leads covering electric turbocharging,
+prechamber combustion, F1 power units and metal additive manufacturing. This
+section resolves them to publisher or institutional sources and explains how
+they could inform future Qwen exercises. It is a **literature and curriculum
+proposal**, not another training receipt or evidence of a Porsche modification.
+None of these nine articles was added to the datasets described above by this
+documentation task.
+
+### 11.1 Verified identities, versions and reading coverage
+
+Several supplied titles were shortened. L04 is the closest identified match to
+the large-engine prechamber lead; its actual title says **large gas engines**,
+not gasoline engines generally. L01 uses the final publisher version rather
+than the earlier preprint. ResearchGate leads resolve here to the primary
+publication or an author manuscript in an institutional archive.
+
+| ID | Identified reference | Version and coverage inspected on 2 October 2026 |
+|---|---|---|
+| L01 | Suciu, Igret, Vetres and Ionel, [*Review of the Integration of Hybrid Electric Turbochargers for Mass-Produced Road Vehicles*](https://www.mdpi.com/1996-1073/17/6/1484), *Energies* 17(6), 1484; DOI `10.3390/en17061484` | 2024 final article; selected technical, review and conclusion sections of the 22-page PDF |
+| L02 | Subramaniam and Wan Salim, [*Modelling an Electrically Turbocharged Engine and Predicting the Performance Under Steady-State Engine*](https://journal.ump.edu.my/ijame/article/view/5978), *IJAME* 18(4), 9244–9252; DOI `10.15282/ijame.18.4.2021.08.0711` | 2021 article; selected model, results and conclusion sections of the 9-page publisher PDF |
+| L03 | Bureshaid, Feng, Zhao and Bunce, [*Combustion and emissions of gasoline, anhydrous ethanol, and wet ethanol in an optical engine with a turbulent jet ignition system*](https://bura.brunel.ac.uk/handle/2438/17882), *Proc. IMechE Part D* 233(13), 3480–3492; DOI `10.1177/0954407019825999` | 2019 publication; experimental conditions and summary in the 25-page accepted manuscript; manuscript pagination differs from the journal |
+| L04 | Posch, Gößnitzer, Rohrhofer, Geiger and Wimmer, [*Finding the Optimum Design of Large Gas Engines Prechambers Using CFD and Bayesian Optimization*](https://arxiv.org/abs/2308.01743v1), Scientific Computing 2023 proceedings; DOI `10.48550/arXiv.2308.01743` | arXiv v1, 3 August 2023; selected setup, objective and optimisation sections of the 9-page PDF |
+| L05 | Vasudev, [*Hybrid Power Unit Efficiency in Formula 1: Thermal Management, Energy Recovery Strategies, and Performance Optimization*](https://www.ijfmr.com/research-paper.php?id=53663), *IJFMR* 7(4); DOI `10.36948/ijfmr.2025.v07i04.53663` | 2025 article; selected overview, methodology and conclusion sections of the 9-page publisher PDF |
+| L06 | Balerna et al., [*Time-Optimal Low-Level Control and Gearshift Strategies for the Formula 1 Hybrid Electric Powertrain*](https://www.mdpi.com/1996-1073/14/1/171), *Energies* 14(1), 171; DOI `10.3390/en14010171` | Published 31 December 2020 in the 2021 volume; selected dynamics, telemetry-validation and conclusion sections of the 30-page publisher PDF |
+| L07 | Xu, [*Thermodynamic evaluation of 2026 Power Unit technical regulation changes in Formula 1*](https://ace.ewapub.com/article/view/5615), *Applied and Computational Engineering* 26, 145–150; DOI `10.54254/2755-2721/26/20230818` | 2023 conference article; selected regulatory assumptions, discussion and conclusion in the 6-page PDF |
+| L08 | Boretti, [*Metal additive manufacturing for internal combustion engine components: a narrative review of applications, materials, processes, challenges, and future directions*](https://link.springer.com/article/10.1007/s00170-025-16219-x), *Int. J. Adv. Manuf. Technol.* 139, 6355–6397; DOI `10.1007/s00170-025-16219-x` | 11 August 2025; publisher abstract, metadata and visible bibliography only; full text is subscription content and was not read |
+| L09 | Takata et al., [*Design of high-performance sustainable aluminum alloy series for laser additive manufacturing*](https://www.nature.com/articles/s41467-025-67281-8), *Nature Communications* 16, 11105; DOI `10.1038/s41467-025-67281-8` | 15 December 2025; selected alloy, exposure and mechanical-test methods/discussion in the 12-page publisher PDF |
+
+Full PDFs were obtained for eight references, but this page does not claim
+every page was read. The short interpretations below are limited to the
+inspected sections. L08 remains a research map from its abstract, with no
+full-text conclusions inferred. No article PDF or copied figure is committed.
+
+### 11.2 What the references establish, and what they do not
+
+**L01 — HET integration.** The review organises road-vehicle electric-turbo
+integration through a SWOT analysis and discusses assistance, recovery and
+system-level tradeoffs. It is useful for distinguishing architectures and
+identifying electrical, thermal and control dependencies. It does not provide
+a measured 993 retrofit, a K16 performance map or a validated M64 benefit.
+Train architecture identification and missing-input questions, not a universal
+fuel-saving percentage. [Publisher article](https://www.mdpi.com/1996-1073/17/6/1484).
+
+**L02 — A decoupled electric turbo.** Its GT-Power model uses a 2.0-litre
+spark-ignition engine at steady-state full load over 1,000–5,000 rpm. The
+turbine-generator and compressor-motor are decoupled, with a battery between
+the electrical paths; this is different from a common-shaft MGU-H. The paper
+reports 21.6 kW recovered at 5,000 rpm and a 2.6% BSFC increase associated with
+backpressure. That recovery figure alone is not a whole-system net efficiency
+gain, and steady-state simulation does not demonstrate transient turbo-lag
+improvement. These model-specific results cannot be transferred to the M64.
+[Publisher PDF](https://journal.ump.edu.my/ijame/article/download/5978/1677/27141).
+
+**L03 — Optical TJI experiments.** The inspected setup is a 631 cc single
+cylinder, compression ratio 8.4, operating at 1,200 rpm and approximately
+1 bar intake pressure. It compares conventional spark ignition and prechamber
+operation with gasoline, anhydrous ethanol and wet ethanol. The experiments
+show extended lean operation and faster combustion under their conditions;
+the ethanol lean limit reaches lambda 1.9. They do not establish knock-free
+boosted M64 operation or a compatible air-cooled cylinder-head conversion.
+Retain fuel, load, geometry and stability criterion whenever extracting a
+reported result. [Accepted manuscript](https://bura.brunel.ac.uk/bitstream/2438/17882/1/FullText.pdf).
+
+**L04 — A constrained flow-design problem.** The simplified large-gas-engine
+case uses a 190 mm bore, 220 mm stroke and approximately 6.2 litres per
+cylinder at 1,500 rpm. It models compression to ignition timing without valves
+or gas exchange. OpenFOAM RANS and Bayesian optimisation vary three prechamber
+dimensions to improve local turbulent kinetic energy while respecting a local
+velocity limit. This is a flow objective and constraint, not a demonstrated
+combustion or knock-suppression result. It suggests a bounded optimisation
+exercise; its optimum dimensions are not Porsche design inputs.
+[Versioned paper](https://arxiv.org/pdf/2308.01743v1).
+
+**L05 — Background on F1 coupling.** This overview connects thermal management
+with energy recovery and deployment. Its short methodology lists public
+documents, simulation tools and a comparison with 2022–2024 telemetry. The
+inspected material does not identify a reusable calibration dataset and
+reproduction harness for independently checking those claims. Treat it as
+background and a lead to stronger primary evidence. Its efficiency discussion
+does not set a target or acceptance criterion for the Porsche project.
+[Publisher PDF](https://www.ijfmr.com/papers/2025/4/53663.pdf).
+
+**L06 — Detailed control with historical MGU-H architecture.** The paper models
+low-level powertrain dynamics and joint gearshift/control optimisation under
+fuel and battery budgets. It includes manifold dynamics, turbocharger maps
+and electrical coupling. Validation uses industrial-partner race telemetry;
+the exact sensor setup is withheld for confidentiality, and some quantities
+come from test-bench maps. The publication therefore does not supply all data
+needed to recreate its calibration. Its pre-2026 MGU-H architecture and lap-time
+results are not a 993 control map. The transferable lesson is to expose states,
+constraints, calibration inputs and validation scope.
+[Publisher PDF](https://res.mdpi.com/d_attachment/energies/energies-14-00171/article_deploy/energies-14-00171-v2.pdf).
+
+**L07 — An early forecast about 2026 rules.** This 2023 analysis discusses
+the anticipated change in fuel and hybrid architecture. Its claims about
+richer combustion and overall efficiency are author conclusions about that
+regulatory scenario, not measured 2026 engine results. Sustainable-fuel status
+alone does not define a supplied fuel's composition, heating value or optimum
+air–fuel ratio. Teach Qwen to distinguish dated forecasts, current rules and
+measured behaviour before using a claim in a calculation.
+[Publisher PDF](https://ace.ewapub.com/article/view/5615.pdf).
+
+**L08 — Metal-AM research orientation.** The abstract maps PBF/DED applications
+to engine components and highlights porosity, residual stress, surface finish
+and cost. It supports building a reading and evidence checklist. Since the
+full text was unavailable, this page extracts no process recipe, quantitative
+property table or component-qualified conclusion from it. A printable geometry
+still needs a separately qualified material/process and inspection route.
+[Publisher abstract](https://link.springer.com/article/10.1007/s00170-025-16219-x).
+
+**L09 — A specific Al–Fe alloy study.** The article investigates laser powder-bed
+fusion of an Al–Fe-based alloy series and the roles of added elements in its
+microstructure. Inspected methods include exposure at 300°C for up to 300 hours
+and temperature-dependent tensile testing with specified specimen orientation.
+Those coupon conditions matter as much as an alloy name. They do not establish
+Porsche cylinder-head fatigue life, creep limits, cast-alloy equivalence or a
+commercial supply route. The linked
+[data deposit](https://doi.org/10.6084/m9.figshare.28463321) is a separate candidate
+source; its files and reuse rights were not audited or imported.
+[Publisher article](https://www.nature.com/articles/s41467-025-67281-8).
+
+### 11.3 Keep the F1 regulatory version explicit
+
+The current authority checked for this page is the FIA's
+[2026 Section C technical regulations, Issue 20](https://www.fia.com/system/files/documents/fia_2026_f1_regulations_-_section_c_technical_-_iss_20_-_2026-08-05.pdf),
+dated **5 August 2026**, as listed by the
+[FIA regulations register](https://www.fia.com/regulation/category/2182)
+on 2 October 2026. This pass inspected the relevant turbocharger clauses;
+it did not review all 254 PDF pages.
+
+Article **C5.3.1** requires the single compressor/turbine shaft arrangement
+and permits only the turbine to supply energy to the turbo's rotating parts;
+their energy cannot be transferred to another component. The historical
+MGU-H electrical assistance/recovery arrangement discussed in L06 therefore
+cannot be used as the 2026 regulatory model. Nor is L02's decoupled electrical
+architecture the arrangement specified by that clause. Keep historical F1,
+current F1 and exploratory road-vehicle architectures as separate inputs.
+
+Regulations are retrieved, versioned context. They should not become timeless
+rules memorised in weights. Any future F1-related exercise must freeze the
+applicable issue, date and article before grading; Porsche exercises need
+their own engineering requirements rather than borrowed F1 limits.
+
+### 11.4 Reuse status before admitting source content
+
+The following records the notices observed; it is not a blanket conclusion
+about permission for a particular training or redistribution workflow.
+
+| Reference | Observed source notice | Status for this documentation task |
+|---|---|---|
+| L01, L02, L04, L06, L07 | CC BY 4.0 on publisher PDF/page or arXiv licence link | Cited and summarised; no source-text dataset import |
+| L05 | Publisher states CC BY-SA 4.0 | Cited; future admission must retain applicable attribution/reuse obligations |
+| L03 | Institutional manuscript available; a training/republication licence was not established | Link and bounded summary only; no imported manuscript text |
+| L08 | Subscription preview; full-text reuse permission not established | Abstract-only coverage; no full-text import |
+| L09 | PDF states **CC BY-NC-ND 4.0** | No assumption that it permits commercial training or adapted-source redistribution; no imported text/figures |
+| FIA Issue 20 | FIA copyright notice | Versioned regulatory citation; no dataset import |
+
+Keep article, figure and underlying dataset rights separate. A permissive
+article notice does not establish that confidential telemetry or every cited
+third-party map is available for reuse. For any admitted external material,
+record its exact version, scope, licence, attribution and exclusions before
+creating training rows. Prefer original, reviewed exercises over copying
+whole papers into completion targets.
+
+### 11.5 Proposed training families and independent checks
+
+These are **our proposed exercises**, not experiments performed by the authors
+or newly generated training rows. Every numeric case would supply its own
+reviewed parameters and an independently computed answer. Their purpose is to
+teach reliable reasoning and code under explicit assumptions.
+
+| Proposed family | What Qwen should produce | Independent acceptance check |
+|---|---|---|
+| Turbo architecture and energy accounting | Identify common-shaft versus decoupled paths; preserve generator/motor efficiencies, losses and power signs | Analytical balance under parameter changes; reject unexplained energy creation and gross/net confusion |
+| Turbo dynamics with supplied maps | Code shaft-energy and manifold-state updates, with initial/boundary conditions and operating limits | Reference integration, unit checks, step-size study and map-domain checks; decline prediction when maps are absent |
+| Combustion evidence extraction | Return fuel, speed, load, compression ratio, lambda and the measured stability/emissions scope with citations | Reviewed fields; matched cases change one condition; reject transfer to an unsupported engine |
+| Prechamber flow optimisation | Build a complete bounded case and distinguish objective, constraint and proxy metric | Native solver, mesh/time-step studies and independent re-evaluation of the selected point; no knock claim from flow alone |
+| Versioned energy/control constraints | Separate historical/current architecture and identify missing calibration for an optimisation request | Frozen clause/date fixtures, feasible energy budgets and constraint checks; no claim of optimality from successful execution |
+| AM material/process extraction | Preserve composition, machine/process, build orientation, heat history, test temperature and specimen conditions | Source-row audit; reject substituting room-temperature/cast properties for an unqualified printed hot part |
+| Thermal/structural evidence planning | Identify missing heat loads, material curves, interfaces and inspection evidence | Independent project gate; coupon results alone cannot qualify a loaded engine component |
+| Sourced answer completeness | Produce a supported multi-claim answer or identify missing coverage | Retrieval recall, claim-by-claim support, required-field completeness and valid source/page citations, scored separately |
+
+For example, an original energy-accounting fixture could supply generator
+output of 6 kW, motor input of 4 kW and auxiliary draw of 0.5 kW. With all three
+values defined at the same electrical boundary, the expected battery charging
+power is `6 - 4 - 0.5 = 1.5 kW`, before separately specified battery losses.
+Qwen should state that boundary, preserve the formula in variables and decline
+to call it a fuel-efficiency improvement without the missing engine/fuel
+comparison. These illustrative values come from this documentation exercise,
+not a paper or a measured Porsche.
+
+Split by physical architecture, source group and task family before training.
+Reserve an untouched final set with new combinations of operating conditions
+and deliberately missing inputs. Swapping fuel or build orientation must change
+the conclusion when its evidence requires it; changing a reference ID must not
+invent a property. Repeated templates with different numbers remain development
+practice, not proof of independent generalisation.
+
+### 11.6 Priority for the current 993 programme
+
+The immediate coding priority remains the graph/attachment experiment in
+section 9. The document-assistant priority is the complete sourced-answer and
+retrieval evaluation in section 8.10. Both address observed failures, so these
+references should supplement those lanes rather than displace their acceptance
+checks.
+
+After those gates pass, start a small material/process extraction and energy-
+accounting development set. Those tasks can be checked without pretending that
+an unmeasured M64 geometry or an unavailable turbo map exists. Complete,
+numerically verified solver cases come next. Prechamber redesign, electric-turbo
+integration and F1-style optimisation remain exploratory until the relevant
+engine, thermal, mechanical and calibration evidence is independently supplied.
+
+Train a separate candidate with frozen inputs and a matched baseline. Promote
+it only if its new-family metrics pass and the coding, graph and evidence-gate
+regression checks retain their previous passes. Reading literature, preparing
+cases, passing a solver and updating weights are separate recorded milestones;
+none alone authorises manufacture or proves an engine improvement.
+
+### 11.7 PDF identity receipts
+
+These SHA-256 values identify the public PDFs inspected locally. They attest
+file identity, not scientific correctness, complete reading or replication.
+The title/source links above and the version/date records are the citation
+route; the files themselves remain outside the repository.
+
+| PDF | Pages | SHA-256 |
+|---|---:|---|
+| L01 publisher PDF | 22 | `34b4d825645c37310127f5ff383cb67f268047b0710f8002e86c28cb850519e4` |
+| L02 publisher PDF | 9 | `3d965f3ef77e2444fd299d67e7cea85e800d05e021cda173b0103f9076886373` |
+| L03 accepted manuscript | 25 | `75e0413d76882644166c312d22e2d001a2846f3fb798d871b58efe142c9f206b` |
+| L04 arXiv v1 PDF | 9 | `b1fa402659ddedf97205ac8148e8a118d79f85634a129e9fb14250500fb77caa` |
+| L05 publisher PDF | 9 | `dbb80ed7fc8a0713ba4e4e69d03d6b1cf5d71666814cb98f6a47fab331808cb5` |
+| L06 publisher PDF, `v2` file | 30 | `55c4b4ec64fab5b395ef29080b1f3d16d5176723217f6d122d27fde22addbb6c` |
+| L07 publisher PDF | 6 | `884aacb2bed37a75600cf690988789267b05014870c6e27136c798ce4b812d66` |
+| L09 publisher PDF | 12 | `caa1cfe5907a13d6df6cc68c4638b994d404256442282b94d4635a783791d25d` |
+| FIA Section C, Issue 20 | 254 | `cf0b919eef5eecc27497fb6de012f8d27e200f6dbd34d62b7e5385f7274ff652` |
+
+L08 has no PDF receipt because its full text was not obtained. The existing
+training scores and historical dataset identities remain those in the evidence
+snapshot; this literature pass changes neither model weights nor defaults.
