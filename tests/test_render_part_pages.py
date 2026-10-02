@@ -17,7 +17,9 @@ class PartPageTests(unittest.TestCase):
     def test_fan_rebuild_precedes_archived_geometry(self):
         record = ROOT / "catalog/parts/993-eng-cooling-impeller-alsi10mg-f0-0001.json"
         result = pages.presentation(json.loads(record.read_text()), record)
-        archive = result.index("## Concept Carrera F0 archivé")
+        archive = result.index("## Archived Carrera F0 concept")
+        self.assertIn("MESH_RECOVERY_20261002.md", result)
+        self.assertIn("QWEN_CHAIN_20261002.md", result)
         # the current Turbo rebuild leads the page, before the archived concept
         self.assertLess(result.index("results/reference/reference-review.png"), archive)
         self.assertIn("porschefanatics.com/projects/993-turbo-fan/", result)

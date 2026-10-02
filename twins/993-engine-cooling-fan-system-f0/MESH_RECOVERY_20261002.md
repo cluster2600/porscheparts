@@ -220,11 +220,19 @@ local interface or an appropriate moving-mesh method. Duct faceting, wall
 resolution, mesh/domain sensitivity and installed-assembly validation remain
 unresolved. The two new calculations must still converge before comparison.
 
+After the first 300 full-frame iterations, both cold starts remained monotonic
+but slow. Complete iteration-300 restart fields and dictionaries were preserved.
+At observed iterations 307 / 306, velocity, k and omega relaxation changed
+from 0.5 to 0.7 in both cases; pressure relaxation stayed at 1. This is a matched
+iteration-acceleration change, not a change to physical conditions or acceptance
+thresholds. Each case records its timestamp and old/new dictionary hashes in
+`relaxation-change.json`. These runs still require the full convergence checks.
+
 ## Verification
 
-The repository's Python suite completed again after the rotating-interface correction:
-3,263 tests, 153 skipped, no failures. The additional completed-short-run monitor
-regression passed separately with the focused runner checks. The new common-colour-scale rendering
+The repository's Python suite completed again after the interface correction and English presentation update:
+3,264 tests, 153 skipped, no failures. The completed-short-run monitor regression
+and focused runner checks are included. The new common-colour-scale rendering
 check was separately run in the PhysicsNeMo environment and passed, including
 rejection of clipped, zero and nonfinite ranges.
 The additional imported-mesh rejection test also passed. The latest `make check` completed with exit status 0, including catalogue,
