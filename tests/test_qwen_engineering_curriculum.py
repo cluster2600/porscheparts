@@ -1,5 +1,6 @@
 """Check arithmetic isolation, split provenance and the unchanged retention gate."""
 import importlib.util
+import json
 from pathlib import Path
 import sys
 import unittest
@@ -39,6 +40,22 @@ class EngineeringCurriculumTests(unittest.TestCase):
         self.assertTrue(runner.choose(before, after)['candidate_eligible_for_fresh_tests'])
         after[0]['passed'] = False
         self.assertFalse(runner.choose(before, after)['candidate_eligible_for_fresh_tests'])
+
+    def test_saved_report_agrees_with_per_case_outcomes(self):
+        report = json.loads((HERE/'results.json').read_text())
+        rows = report['validation_cases']
+        before = [{**r, 'passed': r['before_passed']} for r in rows]
+        after = [{**r, 'passed': r['after_passed']} for r in rows]
+        decision = runner.choose(before, after)
+        for key, value in decision.items():
+            self.assertEqual(report['selection'][key], value)
+        for domain, totals in report['retention_validation'].items():
+            subset = [r for r in rows if r['domain'] == domain and r['retention']]
+            self.assertEqual(totals, {'before': sum(r['before_passed'] for r in subset),
+                                     'after': sum(r['after_passed'] for r in subset), 'total': len(subset)})
+        self.assertEqual(len(rows), 102)
+        self.assertEqual(report['selection']['decision'], 'rejected')
+        self.assertFalse(report['selection']['default_adapter_replaced'])
 
 
 if __name__ == '__main__': unittest.main()

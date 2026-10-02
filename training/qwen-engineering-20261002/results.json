@@ -1,0 +1,1217 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-02",
+  "run": "qwen-engineering-001",
+  "registered_code_commit": "a7fa1dbfbf72cdd58f82704092b4b03a258348c7",
+  "model": "Qwen2.5-Coder-1.5B-Instruct, 4-bit, MLX-LM 0.31.3",
+  "base_sha256": "daeab4764fb420d161721791cf2e509e2de81a7af4223646e7bed2bf82c57b58",
+  "warm_start_adapter": "coding-003/checkpoint-600",
+  "warm_start_sha256": "a1014c6f71b46d879c09462c4a57d17d00df8f11b8178dd53bf6d5f2ac2f778a",
+  "candidate_adapter": "work/qwen-engineering-001/adapter",
+  "candidate_sha256": "eee6ac87e5f9b3f65a61238e5c54ab23cac419b31d94ccaaad056bb033dcdfd1",
+  "training": {
+    "method": "supervised LoRA, prompt masked",
+    "iterations_completed": 480,
+    "trained_tokens": 55705,
+    "peak_memory_gb": 3.438,
+    "final_reported_train_loss": 0.007,
+    "final_reported_validation_loss": 0.006,
+    "learning_rate": 5e-05,
+    "num_layers": 16,
+    "rank": 8,
+    "scale": 20,
+    "seed": 42,
+    "maximum_sequence_tokens": 620,
+    "counts": {
+      "train": {
+        "python": 96,
+        "openfoam": 96,
+        "openusd": 192,
+        "picogk": 192
+      },
+      "valid": {
+        "python": 8,
+        "openfoam": 8,
+        "openusd": 38,
+        "picogk": 48
+      },
+      "test": {
+        "python": 8,
+        "openfoam": 8,
+        "openusd": 8,
+        "picogk": 8
+      }
+    },
+    "third_party_rows_imported": 0
+  },
+  "selection": {
+    "candidate_eligible_for_fresh_tests": false,
+    "regressions": [
+      "usd-valid-004",
+      "usd2-valid-017"
+    ],
+    "new_validation": {
+      "python": {
+        "before": 0,
+        "after": 8,
+        "total": 8
+      },
+      "openfoam": {
+        "before": 0,
+        "after": 8,
+        "total": 8
+      },
+      "openusd": {
+        "before": 8,
+        "after": 8,
+        "total": 8
+      },
+      "picogk": {
+        "before": 0,
+        "after": 4,
+        "total": 8
+      }
+    },
+    "mesh_failure_gates_passed": true,
+    "decision": "rejected",
+    "reasons": [
+      "New graph-to-PicoGK validation is 4/8, below the registered per-domain threshold.",
+      "Two previously passing OpenUSD cases regress despite higher total retention scores."
+    ],
+    "fresh_tests_opened": false,
+    "default_adapter_replaced": false,
+    "manufacturing_authorized": false
+  },
+  "retention_validation": {
+    "openusd": {
+      "before": 22,
+      "after": 25,
+      "total": 30
+    },
+    "picogk": {
+      "before": 9,
+      "after": 34,
+      "total": 40
+    }
+  },
+  "python_additional_audit": {
+    "cases": 8,
+    "independent_parameter_perturbations": 36,
+    "all_passed": true
+  },
+  "execution_recovery": {
+    "original_runner_exit_code": 1,
+    "original_runner_reason": "frozen input changed",
+    "changed_external_file": "training/m64-engineer/openusd.py",
+    "recovered_external_commit": "57932831f0f4256abb5ebad95fe5094b21e43d4d",
+    "recovery": "Recovered all four helper files with their original hashes. Re-scored the same before/after responses. All 102 outcomes and response hashes in each scoring agree with the original scoring. No concurrent files were reverted.",
+    "status": "complete_recovered_rejected"
+  },
+  "software_checks": {
+    "recorded_on": "2026-10-02",
+    "make_check": {
+      "exit_code": 0,
+      "platform": "Kali2, native ext4",
+      "tested_commit": "a7fa1dbfbf72cdd58f82704092b4b03a258348c7",
+      "tested_tree": "6f41fc7f0c95581725b24fa8de3e766b44268cb2",
+      "main_tests": 3273,
+      "main_skipped": 144,
+      "docker_f37_tests": 15,
+      "log_sha256": "ef4c2e0e31b70f21df0362acc044baedb454860a1ce7390e269953fbaf3cff5c",
+      "final_documentation_checked_separately": true
+    },
+    "openfoam_native": {
+      "exit_code": 0,
+      "image_id": "sha256:1dc508c2bfab4d9911707fbfd9cacdf43faf84956a1502805194e3e70e18ae68",
+      "distribution": "ESI v2312",
+      "network": "none",
+      "physical_validation": false,
+      "cases": [
+        {
+          "application": "icoFoam",
+          "distribution": "ESI",
+          "version": "2312",
+          "deltaT": 0.001,
+          "endTime": 0.02,
+          "writeInterval": 10,
+          "cells": 400,
+          "mesh_ok": true,
+          "solver_completed": true,
+          "max_abs_global_continuity_error": 2.33017e-19,
+          "physical_validation": false
+        },
+        {
+          "application": "icoFoam",
+          "distribution": "ESI",
+          "version": "2312",
+          "deltaT": 0.002,
+          "endTime": 0.04,
+          "writeInterval": 10,
+          "cells": 400,
+          "mesh_ok": true,
+          "solver_completed": true,
+          "max_abs_global_continuity_error": 6.85468e-19,
+          "physical_validation": false
+        },
+        {
+          "application": "icoFoam",
+          "distribution": "ESI",
+          "version": "2312",
+          "deltaT": 0.005,
+          "endTime": 0.1,
+          "writeInterval": 10,
+          "cells": 400,
+          "mesh_ok": true,
+          "solver_completed": true,
+          "max_abs_global_continuity_error": 1.56056e-18,
+          "physical_validation": false
+        }
+      ],
+      "log_sha256": "6c043a976e1b60c9f0131505d6b9bcde059c366ac23be39bc3574a13463818b9",
+      "witness_script_sha256": "5b30c9a964d133dd6de9adc0ab979c3404e50e50914304b6b53241b7b233e542",
+      "corrections": "Per-run FOAM_LIBBIN library path; detect actual fatal errors rather than the normal trapFpe startup notice. No image or host configuration was changed."
+    }
+  },
+  "receipts_sha256": {
+    "work/qwen-engineering-001/manifest.json": "0e190c9252b6bf1b914d1161c5b2526310068df5dc29340801ba8fbd8eb29c43",
+    "work/qwen-engineering-001/training-command.json": "23d2260a5c6c7ac645236a740bd39eb929ce42876f40bed12eca2eb9c7826715",
+    "work/qwen-engineering-001/training.log": "7c8a64a5d837ae1368e8432a9b650b8cd7cd8fe382b528f878e404be01793cc6",
+    "work/qwen-engineering-001/cases.json": "6a9118eeea2d628643db2195019942cac5b0b97585038b414546afb490c894ee",
+    "work/qwen-engineering-001/validation-before-responses.json": "f731314bf5a19066051b079deb9373482255280ac5b3594b4b1adb535d5fdb08",
+    "work/qwen-engineering-001/validation-after-responses.json": "b4220020ed36db645248ec17a366b531b7592f0b8d0e128080d8fe8c269ce81b",
+    "work/qwen-engineering-001/validation-before-frozen/scores.json": "280c213822eb9aa2b9462a51161810c6f02fc237d06289e873e129175281a74e",
+    "work/qwen-engineering-001/validation-after-frozen/scores.json": "1029fa5a0ec27662d7d36b462489a881adb9231274b9f30aa66ce283fe8f2dc7",
+    "work/qwen-engineering-001/frozen-helper-recovery.json": "ba8476cb1ecce7a682bdd8f9b9eacdf08e984cb841afe5e86ba650f02c6c380f",
+    "work/qwen-engineering-001/python-parameter-audit.json": "1282c097a297dbd708a0aebe9c8e094b4deb6e7acca1702aa46468dcf38d9309",
+    "work/qwen-engineering-research/runner-001.log": "365c1db5936760c9b5ec2f3e0c18d20f6f44c4fb9b1ee7f7128ffe9dca660474"
+  },
+  "limitations": [
+    "Fixture names are disjoint but four task recipes are shared; no independent task-family generalisation claim.",
+    "Python covers four parameterised arithmetic kernels, not arbitrary scientific Python.",
+    "OpenFOAM model scores cover reviewed control values and failed-mesh gates, not complete case generation or field accuracy. Native witnesses are three prescribed cavity runs, not generated full cases.",
+    "PicoGK scores require the specified graph and native execution. All eight new generated outputs compile and execute, but only four have the requested graph.",
+    "No measured Porsche interface, material qualification, physical validation or engineering release is established."
+  ],
+  "validation_cases": [
+    {
+      "id": "python-diffuser_260022_0",
+      "domain": "python",
+      "task": "reynolds",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "ef43b5bf1eb3b9e2d3a2503ffca8d0333863e20c14a8169a56cdae651d08f913",
+      "after_response_sha256": "d75d01e2ffe354973a4536b88b9a4f8a68ace218c44dbbe7d1ba2b9606d1daf9"
+    },
+    {
+      "id": "openfoam-diffuser_260022_0",
+      "domain": "openfoam",
+      "task": "control",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "1407cefc68a06445a45b6c970074a050997ac2c33cbd30570fe4d6de47135206",
+      "after_response_sha256": "7a9b71e5d5d8e13ab9109ea8f514a66660f44838115729cff3926cc90daf1460"
+    },
+    {
+      "id": "picogk-diffuser_260022_0",
+      "domain": "picogk",
+      "task": "graph",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": false,
+      "before_response_sha256": "46f0f77a8bc2e31e6d1265fdf37995e5a52b1109b2bfe9a2c349eee635b663c2",
+      "after_response_sha256": "9fb2d262eac43d8cb4dd9266e21d3feb403a83e178aed3dbe6f35785ef99d641"
+    },
+    {
+      "id": "openusd-diffuser_260022_0",
+      "domain": "openusd",
+      "task": "scene",
+      "retention": false,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "070ee3e9db43782c46a3f9fe4bf9472a9fee58b0318e34b012ea8305a38098b1",
+      "after_response_sha256": "070ee3e9db43782c46a3f9fe4bf9472a9fee58b0318e34b012ea8305a38098b1"
+    },
+    {
+      "id": "python-enclosure_260022_1",
+      "domain": "python",
+      "task": "courant",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "a9fa0c05a33869f2181822d7eb23cfab7fb848c51559c509bd9edbc412c9eb2a",
+      "after_response_sha256": "aaf42d6395120680e7ab779c483de2e81396704525872c6f412b54c778753270"
+    },
+    {
+      "id": "openfoam-enclosure_260022_1",
+      "domain": "openfoam",
+      "task": "control",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "6cca61691aa13b06d051f3aeb884515c668d4c9515c3de209131a55126243541",
+      "after_response_sha256": "6ae7311f6c64aee9ed43f4d76def797ad58215a55ef29f2faeb683289832d0ef"
+    },
+    {
+      "id": "picogk-enclosure_260022_1",
+      "domain": "picogk",
+      "task": "graph",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "e5cab6ce3a752b9425ece4397a4b2adb35aa2859177794e0bde64d32982fbb46",
+      "after_response_sha256": "749cfb5ce420207086361604c0c991ccebd03daf146ff6f3a6995f50b1d5ba32"
+    },
+    {
+      "id": "openusd-enclosure_260022_1",
+      "domain": "openusd",
+      "task": "scene",
+      "retention": false,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "89d6ac3a3da5b0a01e767f90114ea6104a12eaa1f32060f30c43469fb5f4acba",
+      "after_response_sha256": "89d6ac3a3da5b0a01e767f90114ea6104a12eaa1f32060f30c43469fb5f4acba"
+    },
+    {
+      "id": "python-diffuser_260022_2",
+      "domain": "python",
+      "task": "conversion",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "9f29a130438b81170b92a42650f9a94291ecad60bd47af2a3886e75f7f728725",
+      "after_response_sha256": "3d2b7f20b5171f68bb5d29349f485885b95e5a27c265a37df7a7ab8123eef722"
+    },
+    {
+      "id": "openfoam-diffuser_260022_2",
+      "domain": "openfoam",
+      "task": "control",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "28e82706ced2909cd19abbe1c967f2a9d694cf943f4a2c95e2edfe59b74b96de",
+      "after_response_sha256": "74ad1f7905aa036a4de52bf43bfd3337575ad6e22b00855ce2e0a2a11251f795"
+    },
+    {
+      "id": "picogk-diffuser_260022_2",
+      "domain": "picogk",
+      "task": "graph",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "568478f56cca939e145e8450778ac55b99ed8cae9f02195c5690a96d942fa580",
+      "after_response_sha256": "8f15e0a4b928d02cf54e1e94a2be5c8b4c25c851eb7529a20687b94ede73664f"
+    },
+    {
+      "id": "openusd-diffuser_260022_2",
+      "domain": "openusd",
+      "task": "scene",
+      "retention": false,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "63ee6286f7db7a29bcdebb2221cc36f52970e4696fb2738d2f14b4f2e03fae82",
+      "after_response_sha256": "63ee6286f7db7a29bcdebb2221cc36f52970e4696fb2738d2f14b4f2e03fae82"
+    },
+    {
+      "id": "python-enclosure_260022_3",
+      "domain": "python",
+      "task": "torque",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "6af4874cbcaaacb5d052c7188342988a4e88507b4d99e2bc64d548da29ffdef4",
+      "after_response_sha256": "13571854aace52ad52e5405126990588e66765ce9fdff54bf29da5d0d46d2793"
+    },
+    {
+      "id": "openfoam-enclosure_260022_3",
+      "domain": "openfoam",
+      "task": "mesh_gate",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "447a5359f3c755ca9de393aba66e6a3a1a026dae51495343d7439049ddd6d3cf",
+      "after_response_sha256": "0caa687d20e5a5f449e6cc08b56f9b24d3ad6ae010b87654d352e870120d1e93"
+    },
+    {
+      "id": "picogk-enclosure_260022_3",
+      "domain": "picogk",
+      "task": "graph",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": false,
+      "before_response_sha256": "ade5a3cf191d3338d836d7c3bdb2fbb7bbbece8b110d5cc55cdaeddb0756d2c4",
+      "after_response_sha256": "9fdbc662c3c9ad0972ba3cda12360e948fbe8be460c847715dc129204972a250"
+    },
+    {
+      "id": "openusd-enclosure_260022_3",
+      "domain": "openusd",
+      "task": "scene",
+      "retention": false,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "d66eda5174ab94e1a277fdbfacfd804dca1c3055ea7ab90f58fcc3466a1cbaff",
+      "after_response_sha256": "d66eda5174ab94e1a277fdbfacfd804dca1c3055ea7ab90f58fcc3466a1cbaff"
+    },
+    {
+      "id": "python-diffuser_260022_4",
+      "domain": "python",
+      "task": "reynolds",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "b42b6987ed45c90603f8851a4f8df6e4f21dfbf8459ff6b4066da03cf58b38bb",
+      "after_response_sha256": "d75d01e2ffe354973a4536b88b9a4f8a68ace218c44dbbe7d1ba2b9606d1daf9"
+    },
+    {
+      "id": "openfoam-diffuser_260022_4",
+      "domain": "openfoam",
+      "task": "control",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "18a3a3718666804e3e9a0c5456ed7500f531221bff85deed58b56623134652b3",
+      "after_response_sha256": "35443a9e47d315eebddb613bbd1ed60cd992b1514f47a21be52b0df9da5627fe"
+    },
+    {
+      "id": "picogk-diffuser_260022_4",
+      "domain": "picogk",
+      "task": "graph",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "a36de4231fd3ee88087aa5d5bc13c19f30be296b82a545b34f7c38824f52e9f2",
+      "after_response_sha256": "4963cb0053e09e974fa920d4126f11799de4b78c864a5a8a852e2087703663f5"
+    },
+    {
+      "id": "openusd-diffuser_260022_4",
+      "domain": "openusd",
+      "task": "scene",
+      "retention": false,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "45dd7269c75b5581eabd848b17baf792e8676936bdb47f599bf2fe4df709c8a7",
+      "after_response_sha256": "45dd7269c75b5581eabd848b17baf792e8676936bdb47f599bf2fe4df709c8a7"
+    },
+    {
+      "id": "python-enclosure_260022_5",
+      "domain": "python",
+      "task": "courant",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "9ae2bdd7beedc2e766c6b76585530e16925115707dc7a06ab5ee4aa2776b2c7b",
+      "after_response_sha256": "aaf42d6395120680e7ab779c483de2e81396704525872c6f412b54c778753270"
+    },
+    {
+      "id": "openfoam-enclosure_260022_5",
+      "domain": "openfoam",
+      "task": "control",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "6c8f48949af28cc3f7b1d35e69c26ade6611cc585a86914f295a306830793037",
+      "after_response_sha256": "7a9b71e5d5d8e13ab9109ea8f514a66660f44838115729cff3926cc90daf1460"
+    },
+    {
+      "id": "picogk-enclosure_260022_5",
+      "domain": "picogk",
+      "task": "graph",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": false,
+      "before_response_sha256": "3961a21b718375082c4d6c592835e7de13ec74cfabf36a0dbc22df7d693a4a99",
+      "after_response_sha256": "29741fd051c527b89fde1b7a9f29cac5250e12c59d00f2b43e648c0559da9cdd"
+    },
+    {
+      "id": "openusd-enclosure_260022_5",
+      "domain": "openusd",
+      "task": "scene",
+      "retention": false,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "8c226178f5e3c6a41827515aa9b988eac9fb17f6e4452adff826a6acd23eaec1",
+      "after_response_sha256": "8c226178f5e3c6a41827515aa9b988eac9fb17f6e4452adff826a6acd23eaec1"
+    },
+    {
+      "id": "python-diffuser_260022_6",
+      "domain": "python",
+      "task": "conversion",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "67edea722c4dca33040b62fd53e59990124cc09236ddc080814e3715840d81c3",
+      "after_response_sha256": "3d2b7f20b5171f68bb5d29349f485885b95e5a27c265a37df7a7ab8123eef722"
+    },
+    {
+      "id": "openfoam-diffuser_260022_6",
+      "domain": "openfoam",
+      "task": "control",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "0865c962d88c130f52e56a81d0976eb3b31716bd513c294dd49b12535b9dc8a2",
+      "after_response_sha256": "35443a9e47d315eebddb613bbd1ed60cd992b1514f47a21be52b0df9da5627fe"
+    },
+    {
+      "id": "picogk-diffuser_260022_6",
+      "domain": "picogk",
+      "task": "graph",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": false,
+      "before_response_sha256": "871fdca9c4bfb125f9da50e23b5dbcacf551aabd8a6c92045dc8c816b21fccc1",
+      "after_response_sha256": "9ad051e08e88abdecbcfde84ceb03189ba992c706f9abf3c61db162d38b579fd"
+    },
+    {
+      "id": "openusd-diffuser_260022_6",
+      "domain": "openusd",
+      "task": "scene",
+      "retention": false,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "1e5cd9f679c6f88dc13f135f42eaa72d61aaf91b46e861d3090cfd0872654039",
+      "after_response_sha256": "1e5cd9f679c6f88dc13f135f42eaa72d61aaf91b46e861d3090cfd0872654039"
+    },
+    {
+      "id": "python-enclosure_260022_7",
+      "domain": "python",
+      "task": "torque",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "b8dcf786e314af001d032c64ede2b94b6b51269a56ad21f8272909b5b7a62a00",
+      "after_response_sha256": "13571854aace52ad52e5405126990588e66765ce9fdff54bf29da5d0d46d2793"
+    },
+    {
+      "id": "openfoam-enclosure_260022_7",
+      "domain": "openfoam",
+      "task": "mesh_gate",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "447a5359f3c755ca9de393aba66e6a3a1a026dae51495343d7439049ddd6d3cf",
+      "after_response_sha256": "0caa687d20e5a5f449e6cc08b56f9b24d3ad6ae010b87654d352e870120d1e93"
+    },
+    {
+      "id": "picogk-enclosure_260022_7",
+      "domain": "picogk",
+      "task": "graph",
+      "retention": false,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "c09b981972727c85d3c3ad02d58778418f682f60842e7f7eae8011fa8c6f1c9c",
+      "after_response_sha256": "5f3f58a44976a25c20e6f8f1142a87b49878d826ee7b4895ce3ddc3c108e23f2"
+    },
+    {
+      "id": "openusd-enclosure_260022_7",
+      "domain": "openusd",
+      "task": "scene",
+      "retention": false,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "266e757da57fc5c25681bba48ccd106297b616cffc9bbcc4d333b130ca581650",
+      "after_response_sha256": "266e757da57fc5c25681bba48ccd106297b616cffc9bbcc4d333b130ca581650"
+    },
+    {
+      "id": "usd-valid-000",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "ffe673afc33120bd608741f29158780fa66399ff6a605c3c17dee0f0883d3854",
+      "after_response_sha256": "ffe673afc33120bd608741f29158780fa66399ff6a605c3c17dee0f0883d3854"
+    },
+    {
+      "id": "usd-valid-001",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "b8d5fc6ce0493ced7e17c5339c4a41b3006ed6d3af7ed37c2bc644f3b6ee3136",
+      "after_response_sha256": "b8d5fc6ce0493ced7e17c5339c4a41b3006ed6d3af7ed37c2bc644f3b6ee3136"
+    },
+    {
+      "id": "usd-valid-002",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "eb51fc959b26503d04a9d5ec461c811903a5c605818c26823fe8d045fb8fadd4",
+      "after_response_sha256": "eb51fc959b26503d04a9d5ec461c811903a5c605818c26823fe8d045fb8fadd4"
+    },
+    {
+      "id": "usd-valid-003",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "2591e4294f7cd353bffee02c5b1302757f46a4f368e7181dd7872b9cadc9a685",
+      "after_response_sha256": "2591e4294f7cd353bffee02c5b1302757f46a4f368e7181dd7872b9cadc9a685"
+    },
+    {
+      "id": "usd-valid-004",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": false,
+      "before_response_sha256": "7bab685ff707e66a005ccd46b01a56ff8fe1f3ef2ae71b1e206465ed6a1a7949",
+      "after_response_sha256": "5407a8dc90783c4b9a9dd54d57babecc5737a8487b09f401c4af26d30ec09cab"
+    },
+    {
+      "id": "usd-valid-005",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "7d28d8dce6f77cadc0f526885d3ea5aa6ec9600e8caa47cd7c964ca1e4268e94",
+      "after_response_sha256": "7d28d8dce6f77cadc0f526885d3ea5aa6ec9600e8caa47cd7c964ca1e4268e94"
+    },
+    {
+      "id": "usd2-valid-000",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "f5d855c01f51317702dd9a507388d1950cb5be6351dc2b0ab2887dfe41dfef04",
+      "after_response_sha256": "f5d855c01f51317702dd9a507388d1950cb5be6351dc2b0ab2887dfe41dfef04"
+    },
+    {
+      "id": "usd2-valid-001",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "0762a3c27a1a00046193003baa2c3c744ee2df02f6f0107a65be49ffb5813983",
+      "after_response_sha256": "0762a3c27a1a00046193003baa2c3c744ee2df02f6f0107a65be49ffb5813983"
+    },
+    {
+      "id": "usd2-valid-002",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "95254af0e7b6d0a1c9bcce61c1855e7141fc150e8468ce9aeac530a17d4b2fab",
+      "after_response_sha256": "95254af0e7b6d0a1c9bcce61c1855e7141fc150e8468ce9aeac530a17d4b2fab"
+    },
+    {
+      "id": "usd2-valid-003",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "014b44a7cba4bd27ed48750afeaac6b2b53a99a68a987c5cf55af2b9b4a1153a",
+      "after_response_sha256": "014b44a7cba4bd27ed48750afeaac6b2b53a99a68a987c5cf55af2b9b4a1153a"
+    },
+    {
+      "id": "usd2-valid-004",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "3242087b7ee9b9ee78c94850831a5506b636bf9f3060e52185a22b8e9a1e764d",
+      "after_response_sha256": "ed5cb556dd7b972730fda87e2aefefa14d18a0a8eb94172271c663752f6bdf45"
+    },
+    {
+      "id": "usd2-valid-005",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "194978ca9fbef6ebf097f2c2b01597b086555a374438e9eabf06046e79d43dd3",
+      "after_response_sha256": "194978ca9fbef6ebf097f2c2b01597b086555a374438e9eabf06046e79d43dd3"
+    },
+    {
+      "id": "usd2-valid-006",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "7277dbac23a510125d11ff909b013075e9de1b74c5905c4f56b1b8a6278e1bda",
+      "after_response_sha256": "7277dbac23a510125d11ff909b013075e9de1b74c5905c4f56b1b8a6278e1bda"
+    },
+    {
+      "id": "usd2-valid-007",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "a4706a2768c3306686582a784349956854507bcafc342f7324581b6e8f179a01",
+      "after_response_sha256": "a4706a2768c3306686582a784349956854507bcafc342f7324581b6e8f179a01"
+    },
+    {
+      "id": "usd2-valid-008",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "fb8752f4c4ef162eaf8a8aff6d8ecc58515da08d36dfdfc2b7c4c32b9e7ab5fb",
+      "after_response_sha256": "fb8752f4c4ef162eaf8a8aff6d8ecc58515da08d36dfdfc2b7c4c32b9e7ab5fb"
+    },
+    {
+      "id": "usd2-valid-009",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "b28493ce943e6576c29c366d90f83a4ef8fd21ffe3c25135b15597bf5f354c1f",
+      "after_response_sha256": "b28493ce943e6576c29c366d90f83a4ef8fd21ffe3c25135b15597bf5f354c1f"
+    },
+    {
+      "id": "usd2-valid-010",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "2445a425971c35ee90d7158d57f785bb212bdbcec05133b89a3030bc78976bda",
+      "after_response_sha256": "a0605e9751bb152a7f71499ff4cbc260c56830508c23ead26bc1fa28798984e2"
+    },
+    {
+      "id": "usd2-valid-011",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "d1c024d2c34f34b902735e1fa40e04b38309f02aa44e76a88abb450e4d13fe17",
+      "after_response_sha256": "d1c024d2c34f34b902735e1fa40e04b38309f02aa44e76a88abb450e4d13fe17"
+    },
+    {
+      "id": "usd2-valid-012",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": false,
+      "before_response_sha256": "d5f5572bf03e04440803e6493d485c58bc8b89c349a8a6314ba1cf41b12c7d24",
+      "after_response_sha256": "237cc71ebde61fa836d7d4695c9c6c9b5585cfd115148455eb08ed61065c6194"
+    },
+    {
+      "id": "usd2-valid-013",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "6c100d779411c4b816afdb8e8e70abf6d154da313b746c954f5ce79531e01a97",
+      "after_response_sha256": "a4fc6a153d6bf7882f9444dfbc81eaf31c9fcd314b34de13fd2b7ffaf6387aec"
+    },
+    {
+      "id": "usd2-valid-014",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "07f0da1fde1651ddba6233265d51a92322cdb61077a90af986bee76c60b85bab",
+      "after_response_sha256": "68b99322f0f6b471cae08150ff1523721bba8dfee0d396f311509d6acd14840a"
+    },
+    {
+      "id": "usd2-valid-015",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "bbc1f2cb04508ac3096c0b918437778dab50402310a6c8317762d56ddfe911c3",
+      "after_response_sha256": "ed30b4f3269552133b8c28602131634d435bc42d02a0656cdd3a925c02b6a6ea"
+    },
+    {
+      "id": "usd2-valid-016",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "c35c3b0991fe2f47f9a96d7a303729cb9d64061d9f2b161e321e41ce66b42013",
+      "after_response_sha256": "7e7dcc2253d7bbb0007213d83b2ce3efc86316ba6f82e6e57b77bda62ed184dc"
+    },
+    {
+      "id": "usd2-valid-017",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": false,
+      "before_response_sha256": "4c7c208e0ad1f922b7e67f44b33fd2391ac4b5f2ff987e1b4234a83c880825b4",
+      "after_response_sha256": "7bb999069109cdbcf9ac21caea32d8cae27948a67655620371d9c4f39fc5ed02"
+    },
+    {
+      "id": "usd2-valid-018",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": false,
+      "before_response_sha256": "e06360550ba1d2e5577f31eaae70cf9b74fc3f0651def5309fb008d721a6ce4a",
+      "after_response_sha256": "499ec39d4434b8a597b274fa604bf1f3cab3c528e122060f796bd2c2df52fe62"
+    },
+    {
+      "id": "usd2-valid-019",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "c60af64bf44732ae5c7a19187bb7c3b48ad9c23a35003c53be11e5c981494adb",
+      "after_response_sha256": "c60af64bf44732ae5c7a19187bb7c3b48ad9c23a35003c53be11e5c981494adb"
+    },
+    {
+      "id": "usd2-valid-020",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "2b5bd65fdbda6ad1617d8bd88b78fc6fa3912ed09c7cab686419b56a440fd7a1",
+      "after_response_sha256": "14e1b74e892e40319b37ed7cd81cff4f9ae73d2748ca56c4d3c3a5e6ea7c3ae6"
+    },
+    {
+      "id": "usd2-valid-021",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "37c776cc63ca01f46baebde1808953b3b906c106058a3262c711845c05644a85",
+      "after_response_sha256": "37c9826a4c9486416c73c482bdc5a62e5efc00026fdb770b5fa8c0543d220c3f"
+    },
+    {
+      "id": "usd2-valid-022",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": false,
+      "before_response_sha256": "a0016abe13d17d3218f7dcd8b72e3dd5fcac1619568f06c0eb3bbce08ab788f6",
+      "after_response_sha256": "6cea701af61cebc8558c4291ffaa2d6eb5329f5c0eea34f966decc7ac96dd28f"
+    },
+    {
+      "id": "usd2-valid-023",
+      "domain": "openusd",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "b6da19e32d8a0d9c5d7d19873a076080c0ac1110f05ef4c4d8e3ad07892ac57a",
+      "after_response_sha256": "b6da19e32d8a0d9c5d7d19873a076080c0ac1110f05ef4c4d8e3ad07892ac57a"
+    },
+    {
+      "id": "valid-000",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "2fd5912a42194064927df3fcdade78486ed3acccb36e5f5931bcaaa992dbb959",
+      "after_response_sha256": "2fd5912a42194064927df3fcdade78486ed3acccb36e5f5931bcaaa992dbb959"
+    },
+    {
+      "id": "valid-001",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "1781906d4f89ebcddbd9dfdba60fe87898c02fb11a2f8f9790f6fa5afab82303",
+      "after_response_sha256": "1781906d4f89ebcddbd9dfdba60fe87898c02fb11a2f8f9790f6fa5afab82303"
+    },
+    {
+      "id": "valid-002",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "f99d9e2f84b88d63d397d93aa0c3294a824540594699ea16146960f9e178581b",
+      "after_response_sha256": "f99d9e2f84b88d63d397d93aa0c3294a824540594699ea16146960f9e178581b"
+    },
+    {
+      "id": "valid-003",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "ba7179228a7841782f0abcec93e7b4e190f40e1da3b4bc3c12ae7a2451db5685",
+      "after_response_sha256": "ba7179228a7841782f0abcec93e7b4e190f40e1da3b4bc3c12ae7a2451db5685"
+    },
+    {
+      "id": "valid-004",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "bdb97bb087c9a150eb086554c8a5492d761448d81248723f3d8212f7405e19de",
+      "after_response_sha256": "bdb97bb087c9a150eb086554c8a5492d761448d81248723f3d8212f7405e19de"
+    },
+    {
+      "id": "valid-005",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "4fcfadb52c7faf4188b570341485fa32d49977cab78bdbc406d6b4a8b9a7f9d7",
+      "after_response_sha256": "4fcfadb52c7faf4188b570341485fa32d49977cab78bdbc406d6b4a8b9a7f9d7"
+    },
+    {
+      "id": "valid-006",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "e2d9ba1d1e31db29697ba721211da11ee7d799b89dff94eca6497a9b47b46ffb",
+      "after_response_sha256": "e2d9ba1d1e31db29697ba721211da11ee7d799b89dff94eca6497a9b47b46ffb"
+    },
+    {
+      "id": "valid-007",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "d560907b8af365753d51157641f1e7cd130b16a1e828b941e3e9df3bbb8a1274",
+      "after_response_sha256": "d560907b8af365753d51157641f1e7cd130b16a1e828b941e3e9df3bbb8a1274"
+    },
+    {
+      "id": "pico2-valid-000",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "3402078e5c892513e3664391710496ae21cbf5990f1d433f181758604d855c60",
+      "after_response_sha256": "971c899aef72c8bebf9fdb3b6785b321f8146c82d51ae49c1e9f8797aba0e3d6"
+    },
+    {
+      "id": "pico2-valid-001",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "259f7379383b40e50f19e703295bc980348b410b90869dfadf1094410143fecf",
+      "after_response_sha256": "0b98bd8ca0a562ace3723b2d5dd5b37883eb84a4991d9f04d86656bcd7d59cab"
+    },
+    {
+      "id": "pico2-valid-002",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": false,
+      "before_response_sha256": "593d70e44a292946512c56619883ef17c1b2c02e8c5e8617df374e4ab81209c4",
+      "after_response_sha256": "18f56f53cde3def8fc3b55677fd03c7daba459dc3ca447953b4a82e1da29c71b"
+    },
+    {
+      "id": "pico2-valid-003",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "ec3950b32d74e80a243831c010b7ab2dd31dac8edfa4d490c835138a56986bba",
+      "after_response_sha256": "8349e55535d60590c9401f49ab17226bbd331a688a0cbeb60c000b5fd7e0ca9c"
+    },
+    {
+      "id": "pico2-valid-004",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "8f41b5ca9fe2116b5e3dad400db0789defdc6b159fc3274973484c7622f101fa",
+      "after_response_sha256": "750a1b579b734aadb4d0936d209084a32eb4c1fee88f9671fe1f7b8456ce5f08"
+    },
+    {
+      "id": "pico2-valid-005",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "7c17d9dcaec1f921144071d0165265816ddd5b223fdf214d45dcfe62fbbc409e",
+      "after_response_sha256": "0ad559e5aa3913fa89ced2ea0bfa979084f7e6573d06413e178630fafb03d45b"
+    },
+    {
+      "id": "pico2-valid-006",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "16c4db74c184e330432e3a9ad8721f6eec6dfcc6ea08e2c3039209b94c8e3543",
+      "after_response_sha256": "527e1a0dd0be07c035728b0d53f608ac02328832a4b5eaa98a6cabc051b3aa14"
+    },
+    {
+      "id": "pico2-valid-007",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "c8ee67e78f97cba43bf14bef3b97efc1fafe14f387eef30c09b9c8e50547411c",
+      "after_response_sha256": "d99b08ab0343f23fdc7bec0583ab779f8fa200f379db758007a3c5b05fe0b24e"
+    },
+    {
+      "id": "pico2-valid-008",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": false,
+      "before_response_sha256": "099a48b605c22656b0265f6cfff576f7a37c93b6bc253a72eac2134805b031f0",
+      "after_response_sha256": "60fcab04098386dc8a9b5edf5a6f607420257a524893a6f8cc7e8932a1574870"
+    },
+    {
+      "id": "pico2-valid-009",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "8d74f660d80ace522309a4ce99b5edf16f6a9a6516c238e6cab0bf3ac1269a21",
+      "after_response_sha256": "4a1e2dbeab602204c7274f0cb28cf08adfe5ab1cd73915db9478ef84882121d2"
+    },
+    {
+      "id": "pico2-valid-010",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "494f220f61abae7886df86233e97900ec2f683a750abbba6d7286d85a8a80ed2",
+      "after_response_sha256": "e01522799f4cee41b75c1c2341fca4360dd03d4ab45e87730a76987d36be9f96"
+    },
+    {
+      "id": "pico2-valid-011",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "bae297979e0fd17668bedbd6cd253c787e7e2f9f493066011764ec4f72c857f1",
+      "after_response_sha256": "9795fbf340a8878861442d5fe3022e97651c57c5862162e8fe54f5681e5ad408"
+    },
+    {
+      "id": "pico2-valid-012",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "37a21c8acbaf009355862a84a312034502f1aed5874921c7cc88107c51d5fee4",
+      "after_response_sha256": "4d454a22ed6e8d23d469890e83268f89e53266adfc1a6b363e50c60cfe2375d0"
+    },
+    {
+      "id": "pico2-valid-013",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "0041424962fd7300abc64a86595c129556225abe03e6d0011a5a2653681ce168",
+      "after_response_sha256": "ae3552e9f148f5100c6b3d17e903cb83367bb74ecb955e5fc5af7871ca9b43f1"
+    },
+    {
+      "id": "pico2-valid-014",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "255c34b7c25869894f9db8593585278c3d8df533a5ec9ad608fba064f056042f",
+      "after_response_sha256": "8f64ff04c587fe8d57409fb7c2542fc600155b7abdcd120ecb795f10ffec1853"
+    },
+    {
+      "id": "pico2-valid-015",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": false,
+      "before_response_sha256": "0c3d425f31607e52b2c255159648301a53b027eb0ebff7e49545b6f7a39ba598",
+      "after_response_sha256": "2b7ae7bfbf13d081f7022ca9c27701fe4dad833bb999140d88dc55a7b9b17718"
+    },
+    {
+      "id": "pico3-valid-000",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "6e12f05ab1215e4f90a81e485d1137afc386ffbb43b7a3265b7f4b41b1e404af",
+      "after_response_sha256": "bcf5b3718c7b37fa7c70307934495e49e84b8b70d01d64a631ae8fea5b9e9b7b"
+    },
+    {
+      "id": "pico3-valid-001",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "0ee373a3519fb3038a2227c6a3794ec45240501b5266ec06261bd1938c29ae7f",
+      "after_response_sha256": "69115227e79413cda7042d7b1d843bc9af221a444ec1de811cfdd83c0ef2d52a"
+    },
+    {
+      "id": "pico3-valid-002",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "c885046c63b31e4c2e8324117536d54b0107fc2c33733c89a72c0351acc98da6",
+      "after_response_sha256": "350698c6d7c6364f72b97d8b5f4a7d66414dce4bb5cfc87651012e35fde073c9"
+    },
+    {
+      "id": "pico3-valid-003",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "9291117181b3f2e016a891edf16b6571488999599ce0ee51f692e7490e86fec4",
+      "after_response_sha256": "b551869b03b4438f8d1b72cd24f78c30a5affd32626a9762b8e171fcf56ba95f"
+    },
+    {
+      "id": "pico3-valid-004",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": false,
+      "before_response_sha256": "cf2cd09c1adad1e40a5544e5f6fa3b5e6b8cd7baaf358e8b0259a3692754db9e",
+      "after_response_sha256": "24650f5d5fca1d8d306f5ab59677bd3907fb49ccabc0e32b57d95520d7c0dbda"
+    },
+    {
+      "id": "pico3-valid-005",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": false,
+      "before_response_sha256": "bb111f12eef4dfa028f1e3aff198b70e5e9c123a3f9df046d407c1e016c8f84c",
+      "after_response_sha256": "0d9718415b66693cf3696828a38e1d185b79558aa799f5ace09ad0c074cc6a93"
+    },
+    {
+      "id": "pico3-valid-006",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "c34dd439f08f475dbafc8160b6ea015ef1e4ee1fc8c62ca56bc630b709310230",
+      "after_response_sha256": "fc86db2c8d2aef4f15b1373dec85e0a31a6cecd09d5cc102a330ce0f485abadc"
+    },
+    {
+      "id": "pico3-valid-007",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": true,
+      "after_passed": true,
+      "before_response_sha256": "94ea776d2796260545f477e5118b7565c184a97b138fdb7e2830480b0ea8ff7b",
+      "after_response_sha256": "81171cea890b36ab09b933e3f24dabc0c08d167e2ea1193e662400fc494eee5b"
+    },
+    {
+      "id": "pico3-valid-008",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "312f3af870cc2c04882c8463b053e0c6ff9a489a386f650b37feb354a30a8f3e",
+      "after_response_sha256": "b838ace0e083b1cd2649f7e50163c9332d13487db7c7d26b9abd5d31ac6720dc"
+    },
+    {
+      "id": "pico3-valid-009",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "94d33bbefa267c76ae75fe8caa56b3af99dd483028477e33025c6a164d227bad",
+      "after_response_sha256": "dd9f478c115773c8392e4cc6ebe0a69dbce4c1ce9e75548313f556fddda0d9fb"
+    },
+    {
+      "id": "pico3-valid-010",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "0b5f9d6e408e8a9a88f5aee7c989196254bcfa59b070481da2ba4f59177dac8d",
+      "after_response_sha256": "1252d196e09e9f15dc3b86f4754a9ac79c57e99cbe5b63712faf601f912a1949"
+    },
+    {
+      "id": "pico3-valid-011",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": false,
+      "before_response_sha256": "eea7f7f90a3b77abfa3e560467341e172a24471d95aa97a99edac85b738a2286",
+      "after_response_sha256": "85560c6db077322af3a5e9f57d4d654723c3d11dceb14e5f4f69960c0155743c"
+    },
+    {
+      "id": "pico3-valid-012",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "91d449c3ab58d368c59ed177a8e90fa1299762aed49b138130a79418ce4282b5",
+      "after_response_sha256": "3d9f580878fca038fd2737c76dca9dd12418d23e5e7e4ac3c57b3e4537bfe06e"
+    },
+    {
+      "id": "pico3-valid-013",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "4ba17bc72b8bc42140a36cec06bd6c595e49ce1a87cc716e09e41c24ea865028",
+      "after_response_sha256": "6eb45169703616500f348b19dfebd96f3c7245925409da75e83ace8023e29b6e"
+    },
+    {
+      "id": "pico3-valid-014",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "a44312273ddc34f8ea0418746238e4e1c0b7fab61e3d5d780b2bb88e1074a548",
+      "after_response_sha256": "ded341402f4acf5c8f0f3f5a4e12f28042ad00d4ef91301b59351b68e9410bf7"
+    },
+    {
+      "id": "pico3-valid-015",
+      "domain": "picogk",
+      "task": null,
+      "retention": true,
+      "before_passed": false,
+      "after_passed": true,
+      "before_response_sha256": "2d6ce1108429de17adcf239598477466d57b98d7433cc3a019b1f159f7740357",
+      "after_response_sha256": "483f9a48e22b877edb9a48c70f0cedead7e2502a1d03c91d8180ec5d115f28a4"
+    }
+  ]
+}
