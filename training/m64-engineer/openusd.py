@@ -15,18 +15,21 @@ SYSTEM = ('Write only Python code using Pixar OpenUSD 25.5. stage is an empty in
           'Set /World as default prim, Z up and metersPerUnit=0.001. All geometry is synthetic, not measured Porsche data.')
 
 
-def candidates(expanded=False):
+def candidates(expanded=False, composition=False):
+    if composition:expanded=True
     source={'id':'openusd-authored-examples','uri':'repo:training/m64-engineer/openusd.py',
             'revision_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
             'license':'Repository proprietary; owner-authorized local training','training_allowed':True}
     rows=[]
     counts=[('train',288),('valid',24),('test',24)] if expanded else [('train',48),('valid',6),('test',12)]
+    if composition:counts=[('train',288),('test',24)]
     for split,count in counts:
         for i in range(count):
             n=i+{'train':0,'valid':100,'test':200}[split]
             kind=i%6; size=4+n%13; shift=n%9-4; label=f'Part{n}'
             if expanded:
                 n=i+{'train':1000,'valid':10000,'test':20000}[split]
+                if composition:n=i+{'train':30000,'test':90000}[split]
                 size=3+(n*7)%29;shift=n%17-8
                 label=['Core','Mount','Element','Part'][i%4]+str(n)
             path='/World/'+label
@@ -60,9 +63,10 @@ def candidates(expanded=False):
                     prompt=prompt.replace('Select large.','Select small.')
                     code+='variants.SetVariantSelection("small")\n'
                 # ponytail: shared API recipes, not a family-independent benchmark.
-                # Train pairs; validation/final tests also require three-object scenes.
+                # The third curriculum teaches triples without changing old validation cases.
                 additions=[]
-                if split=='train':
+                if composition:additions=['sphere','cube']
+                elif split=='train':
                     if (i//6)%3:additions=['sphere' if (i//6)%3==1 else 'cube']
                 elif i>=12:additions=['sphere','cube']
                 for shape in additions:
@@ -76,6 +80,7 @@ def candidates(expanded=False):
                         code+=f'block = UsdGeom.Cube.Define(stage, "{extra}")\nblock.CreateSizeAttr({value})\nblock.CreatePurposeAttr(UsdGeom.Tokens.guide)\nblock.AddTranslateOp().Set(Gf.Vec3d(0,{shift},0))\n'
                 group='composition_holdout' if additions else 'parameter_holdout'
             prefix='usd2' if expanded else 'usd'
+            if composition:prefix='usd3'
             rows.append({'id':f'{prefix}-{split}-{i:03d}','family_id':f'usd-recipe-{kind}',
                 'domain':'openusd','split':split,'group':group,'recipe':kind,
                 'messages':[{'role':'system','content':SYSTEM},{'role':'user','content':prompt},
@@ -212,11 +217,12 @@ def main():
     p.add_argument('--model',type=Path);p.add_argument('--adapter',type=Path)
     p.add_argument('--replay',type=Path,help='Frozen cases.json from the previous PicoGK run')
     p.add_argument('--expanded',action='store_true',help='Generate the second curriculum; preserve the original corpus by default')
+    p.add_argument('--composition',action='store_true',help='Generate 288 three-object training scenes and 24 fresh tests; no validation changes')
     p.add_argument('--split',choices=['valid','test'],default='test',help='Partition to infer/score; never selects training rows')
     a=p.parse_args()
     if a.output.exists():raise ValueError('output already exists')
     if a.action=='generate':
-        rows=candidates(expanded=a.expanded)
+        rows=candidates(expanded=a.expanded,composition=a.composition)
         a.output.write_text(''.join(json.dumps(r)+'\n' for r in rows));return
     rows=[json.loads(x) for x in a.input.read_text().splitlines() if x.strip()]
     if a.action=='prepare-pilot':

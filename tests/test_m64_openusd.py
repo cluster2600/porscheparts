@@ -42,10 +42,17 @@ class OpenUSDTests(unittest.TestCase):
         self.assertEqual(len(set(prompts)),len(prompts))
         self.assertTrue(all(r['messages'][1]['content'].count('Also create')<=1 for r in expanded if r['split']=='train'))
         self.assertEqual(sum(r['messages'][1]['content'].count('Also create')==2 for r in expanded if r['split']=='test'),12)
+        composition=usd.candidates(composition=True)
+        self.assertEqual(composition,usd.candidates(composition=True))
+        self.assertEqual([sum(r['split']==s for r in composition) for s in ('train','valid','test')],[288,0,24])
+        self.assertTrue(all(r['messages'][1]['content'].count('Also create')==2 for r in composition))
+        for key in ('id','prompt','answer'):
+            values=[r['id'] if key=='id' else r['messages'][1 if key=='prompt' else 2]['content'] for r in rows+expanded+composition]
+            self.assertEqual(len(set(values)),len(values),key)
 
     @unittest.skipUnless(NATIVE,'requires usd-core==25.5.1')
     def test_native_contract_and_boundary(self):
-        rows=usd.candidates()+usd.candidates(expanded=True)
+        rows=usd.candidates()+usd.candidates(expanded=True)+usd.candidates(composition=True)
         with tempfile.TemporaryDirectory() as directory:
             for row in rows:
                 with self.subTest(row=row['id']):

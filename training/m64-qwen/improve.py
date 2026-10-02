@@ -48,6 +48,7 @@ def main():
     for name in ('output','previous','model','usd-python','usd-reviewed','sdk','dll'):
         p.add_argument('--'+name,type=Path,required=True)
     p.add_argument('--warm-start',type=Path,help='Adapter directory for a validation-driven continuation')
+    p.add_argument('--usd-extra',type=Path,help='Additional verified USD training and fresh test examples; cannot alter validation')
     p.add_argument('--iterations',type=int,default=800)
     p.add_argument('--learning-rate',type=float,default=0.0001)
     p.add_argument('--replay-weight',type=int,default=1,help='Training-only repeat count of the original PicoGK examples')
@@ -85,6 +86,11 @@ def main():
     phase('prepare')
     usd_files=[a.previous/'usd-cases.jsonl'] if a.focus_picogk else [a.previous/'usd-cases.jsonl',a.usd_reviewed]
     usd=[json.loads(x) for file in usd_files for x in file.read_text().splitlines()]
+    if a.usd_extra:
+        extra=[json.loads(x) for x in a.usd_extra.read_text().splitlines()]
+        if any(r['split'] not in ('train','test') or r['domain']!='openusd' for r in extra):
+            raise ValueError('extra USD examples must be training or fresh tests only')
+        usd+=extra
     spec=importlib.util.spec_from_file_location('engineering_data',ROOT/'training/m64-engineer/dataset.py')
     engineering=importlib.util.module_from_spec(spec);spec.loader.exec_module(engineering)
     engineering.check(usd)
@@ -114,9 +120,10 @@ def main():
         'counts':{s:{'usd':sum(r['split']==s for r in usd),'picogk':sum(r['split']==s for r in pico)} for s in ('train','valid','test')},
         'maximum_sequence_tokens':max(lengths),'steps':[a.iterations] if a.focus_picogk else [a.iterations//2,a.iterations],'learning_rate':a.learning_rate,'seed':42,
         'warm_start_sha256':digest(warm_start/'adapters.safetensors'),'replay_weight':a.replay_weight,'usd_replay_weight':a.usd_replay_weight,'effective_counts':effective_counts,
+        'extra_usd_sha256':digest(a.usd_extra) if a.usd_extra else None,
         'num_layers':a.num_layers,'rank':8,'lora_scale':20,'batch_size':1,'mask_prompt':True,
         'selection':'Higher PicoGK validation count with no per-case USD or PicoGK regression.' if a.focus_picogk else 'Higher USD validation pass count; no per-case PicoGK validation regression; ties use PicoGK count then earlier step.',
-        'test_policy':'Tests open only after selection. Only pico3-test cases are fresh in a focused run; all older tests are regressions. Shared grammar, not independent families.',
+        'test_policy':'Tests open only after selection. Fresh cases: pico3-test and registered extra USD tests if provided. All older tests are regressions. Shared grammar, not independent families.',
         'native_sha256':{f.name:digest(f) for f in [a.dll,a.dll.parent/'picogk.26.2.dylib']}}
     save(a.output/'manifest.json',manifest)
     phase('native_oracles')
