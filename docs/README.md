@@ -60,6 +60,7 @@ flowchart LR
 | [DIGITAL_TWIN.md](DIGITAL_TWIN.md) | the 993 digital twin, its zones and levels |
 | [SOFTWARE_STACK.md](SOFTWARE_STACK.md) | the twin's software stack |
 | [AI_DIGITAL_TWIN_STACK.md](AI_DIGITAL_TWIN_STACK.md) | the open-source suite for building the twin |
+| [QWEN_TRAINING.md](QWEN_TRAINING.md) | how Qwen was trained, the actual datasets and results, and the next experiments for the 993 project |
 | [TOOLCHAIN.md](TOOLCHAIN.md) | the local CAD and analysis toolchain |
 | [COMPUTE_ENVIRONMENT.md](COMPUTE_ENVIRONMENT.md) | compute environment and images |
 | [GITHUB_OPENBAO_WRAPPER.md](GITHUB_OPENBAO_WRAPPER.md) | the GitHub wrapper bounded by OpenBao |
