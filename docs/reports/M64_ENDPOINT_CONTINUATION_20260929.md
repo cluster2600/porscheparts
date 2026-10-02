@@ -9,6 +9,18 @@ research body, not a metrologically qualified M64 head. All geometric lengths
 below are provisional scan units, not certified millimetres or a printer
 specification. No physical, material or manufacturing gate is closed.
 
+### Vues du candidat de recherche — 2 octobre
+
+Ces rendus proviennent du maillage HXT brut identifié ci-dessous, sur le corps
+à 4 925 faces. Ils montrent la géométrie réellement calculée, sans lissage ni
+image générative : corps seul, sans assemblage de soupapes validé. Les aspérités
+issues de la reconstruction restent visibles. Ce candidat de maillage ne
+remplace ni la référence retenue ni une CAO M64 qualifiée.
+
+![Six vues orthogonales du candidat réel, non qualifié pour fabrication](../media/m64-volume-failures-20261002/candidate-views.png)
+
+![Détails des ouvertures latérales et des quatre logements, sans soupapes](../media/m64-volume-failures-20261002/candidate-openings.png)
+
 **Dernier passage au volume, 2 octobre : HXT exporte 1 852 069 tétraèdres sur
 sa propre surface auditée et exactement conservée.** Mais 668 417 éléments
 bruts échouent au seuil volumique ; ce volume ne remplace pas la référence.
