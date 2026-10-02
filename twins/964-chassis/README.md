@@ -3,6 +3,17 @@
 Niveau atteint : **`F1_envelope`** (ADR 0003). Enveloppe a l'echelle et repere
 documente. Ni `F2_interface`, ni geometrie de piece liberable.
 
+## Reprise avec Qwen Mac et PicoGK — 2026-10-02
+
+La [premiere etude locale executee](source/qwen-picogk-tunnel/README.md) reprend
+le tunnel du concept existant : Qwen transcrit trois enveloppes sous controle
+deterministe, puis PicoGK recherche les intersections en volume a 4 et 2 mm.
+Trois interferences du concept initial sont retrouvees (nez/tube C4,
+nez/guidage C4, couvercle/tour de levier C2). Une variante avec ouvertures est
+generee pour revue ; elle ne qualifie ni les jeux dynamiques ni la structure.
+Les interfaces inconnues restent inconnues. Aucune nouvelle cote Porsche n'est
+deduite par le modele et aucun fichier historique n'est remplace.
+
 ## Reprise d'execution et acces aux cotes — 2026-09-25
 
 Docker est joignable sur le Mac (29.8.0) et Kali (28.5.2+dfsg4, amd64).

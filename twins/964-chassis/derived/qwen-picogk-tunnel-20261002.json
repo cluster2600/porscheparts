@@ -1,0 +1,338 @@
+{
+  "schema_version": "1.0.0",
+  "study_id": "964-993-QWEN-PICOGK-TUNNEL-20261002",
+  "status": "executed_hypothetical_interference_study_not_vehicle_validation",
+  "design_source_commit": "135dcc8ef6e71ac483e1ed3036217536562c80a1",
+  "legacy_cad_source_sha256": "adb4f2ffc15fdf8292384a0cacb22db0d327932215cecda27edcbc09f0ff4f64",
+  "coordinate_system": "X rearward, Y left, Z up; mm; not registered to 964 scan",
+  "inference": {
+    "status": "accepted_bounded_transcription",
+    "base_model": "Qwen2.5-Coder-1.5B-Instruct-4bit",
+    "base_sha256": "daeab4764fb420d161721791cf2e509e2de81a7af4223646e7bed2bf82c57b58",
+    "adapter": "coding-003/checkpoint-600",
+    "adapter_sha256": "a1014c6f71b46d879c09462c4a57d17d00df8f11b8178dd53bf6d5f2ac2f778a",
+    "parser_sha256": "3357a289b0314a4e7e24f1a0d515d1bebf55021ccacd2551650b830f352ac3c6",
+    "design_sha256": "7d66590268e8151242303461e43ecf3fbda5d2f9fb0f13152406d23236ad192f",
+    "source_sha256": "ecf08a35f6d1252b9d21cd99b39c80698fca31b7aaf851da0fa18349dc773d9d",
+    "temperature": 0,
+    "seed": 42,
+    "max_tokens": 256,
+    "records": [
+      {
+        "id": "c2_shift_rod",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Write only C# statements for an existing PicoGK.Lattice named lattice. Use lattice.AddBeam(new Vector3(xf, yf, zf), radiusf, new Vector3(xf, yf, zf), radiusf, true/false); with numeric literals. No declarations, loops, comments, Markdown or other APIs. Coordinates are designed millimeters, not measured engine dimensions. Return one statement per edge."
+          },
+          {
+            "role": "user",
+            "content": "Synthetic graph, not a vehicle measurement. Vertices in model mm: {\"A\": [14.2, 0.0, 6.7], \"B\": [40.2, 0.0, 6.7]}. Directed edges: A->B. Start radius 0.42 mm, end radius 0.42 mm. Flat caps: rounded_caps=false. Emit exactly one AddBeam statement, using these radii unchanged."
+          }
+        ],
+        "response": "lattice.AddBeam(new Vector3(14.2f, 0f, 6.7f), 0.42f, new Vector3(40.2f, 0f, 6.7f), 0.42f, false);",
+        "seconds": 2.8992099160022917,
+        "semantic_passed": true
+      },
+      {
+        "id": "c4_central_tube",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Write only C# statements for an existing PicoGK.Lattice named lattice. Use lattice.AddBeam(new Vector3(xf, yf, zf), radiusf, new Vector3(xf, yf, zf), radiusf, true/false); with numeric literals. No declarations, loops, comments, Markdown or other APIs. Coordinates are designed millimeters, not measured engine dimensions. Return one statement per edge."
+          },
+          {
+            "role": "user",
+            "content": "Synthetic graph, not a vehicle measurement. Vertices in model mm: {\"A\": [-3.4, 0.0, 6.2], \"B\": [39.6, 0.0, 6.2]}. Directed edges: A->B. Start radius 1.5 mm, end radius 1.5 mm. Flat caps: rounded_caps=false. Emit exactly one AddBeam statement, using these radii unchanged."
+          }
+        ],
+        "response": "lattice.AddBeam(new Vector3(-3.4f, 0f, 6.2f), 1.5f, new Vector3(39.6f, 0f, 6.2f), 1.5f, false);",
+        "seconds": 1.5595634589990368,
+        "semantic_passed": true
+      },
+      {
+        "id": "c4_shift_guide",
+        "messages": [
+          {
+            "role": "system",
+            "content": "Write only C# statements for an existing PicoGK.Lattice named lattice. Use lattice.AddBeam(new Vector3(xf, yf, zf), radiusf, new Vector3(xf, yf, zf), radiusf, true/false); with numeric literals. No declarations, loops, comments, Markdown or other APIs. Coordinates are designed millimeters, not measured engine dimensions. Return one statement per edge."
+          },
+          {
+            "role": "user",
+            "content": "Synthetic graph, not a vehicle measurement. Vertices in model mm: {\"A\": [-0.8, 1.84, 7.84], \"B\": [37.0, 1.84, 7.84]}. Directed edges: A->B. Start radius 0.32 mm, end radius 0.32 mm. Flat caps: rounded_caps=false. Emit exactly one AddBeam statement, using these radii unchanged."
+          }
+        ],
+        "response": "lattice.AddBeam(new Vector3(-0.8f, 1.84f, 7.84f), 0.32f, new Vector3(37f, 1.84f, 7.84f), 0.32f, false);",
+        "seconds": 1.6948020420022658,
+        "semantic_passed": true
+      }
+    ],
+    "manufacturing_authorized": false,
+    "vehicle_fit_verified": false
+  },
+  "input": {
+    "scale": 50,
+    "boxes_mm": [
+      [
+        1205,
+        -152,
+        317.5,
+        1550,
+        26,
+        275
+      ],
+      [
+        1205,
+        152,
+        317.5,
+        1550,
+        26,
+        275
+      ],
+      [
+        1205,
+        0,
+        455,
+        1550,
+        330,
+        18
+      ],
+      [
+        430,
+        0,
+        317.5,
+        38,
+        330,
+        275
+      ],
+      [
+        1205,
+        0,
+        180,
+        1550,
+        330,
+        34
+      ]
+    ],
+    "expected_beams_mm": {
+      "c2_shift_rod": [
+        710,
+        0,
+        335,
+        21,
+        2010,
+        0,
+        335,
+        21,
+        false
+      ],
+      "c4_central_tube": [
+        -170,
+        0,
+        310,
+        75,
+        1980,
+        0,
+        310,
+        75,
+        false
+      ],
+      "c4_shift_guide": [
+        -40,
+        92,
+        392,
+        16,
+        1850,
+        92,
+        392,
+        16,
+        false
+      ]
+    },
+    "tower_box_mm": [
+      980,
+      0,
+      430,
+      220,
+      250,
+      180
+    ],
+    "analytic_collision_mm3": {
+      "c2_shift_rod": 0,
+      "c4_central_tube": 671515.4297048183,
+      "c4_shift_guide": 30561.413334121506,
+      "c2_shifter_tower": 990000
+    },
+    "accepted_beams_mm": {
+      "c2_shift_rod": [
+        710,
+        0,
+        335,
+        21,
+        2010,
+        0,
+        335,
+        21,
+        false
+      ],
+      "c4_central_tube": [
+        -170,
+        0,
+        310,
+        75,
+        1980,
+        0,
+        310,
+        75,
+        false
+      ],
+      "c4_shift_guide": [
+        -40,
+        92,
+        392,
+        16,
+        1850,
+        92,
+        392,
+        16,
+        false
+      ]
+    },
+    "inference_sha256": "916104e3e1585b327a3f3fa087cc6ef4b6d6173ca92e9d5236af120bcc9d722e",
+    "status": "hypothetical_tunnel_interference_study_not_oem",
+    "manufacturing_authorized": false,
+    "vehicle_fit_verified": false,
+    "design_sha256": "7d66590268e8151242303461e43ecf3fbda5d2f9fb0f13152406d23236ad192f"
+  },
+  "native_runs": [
+    {
+      "status": "hypothetical_geometric_study_only",
+      "voxel_size_mm": 4,
+      "scale": 50,
+      "input_sha256": "dfbdd48ca991e6ccb0153d8cdc8c3421582ec568f80bbb16d8ec9ca2d094b6e3",
+      "inference_sha256": "916104e3e1585b327a3f3fa087cc6ef4b6d6173ca92e9d5236af120bcc9d722e",
+      "picogk_assembly_sha256": "710c4e0428efbe9c1cd1db1663247b45604f96d167a6726782ab8ddca350565a",
+      "runtime": "9.0.19",
+      "baseline_volume_mm3": 49543731.689453125,
+      "relieved_volume_mm3": 47831172.943115234,
+      "collisions": [
+        {
+          "feature": "c2_shift_rod",
+          "baseline_collision_mm3": 0,
+          "analytic_collision_mm3": 0,
+          "relative_volume_error": 0
+        },
+        {
+          "feature": "c4_central_tube",
+          "baseline_collision_mm3": 670613.8849258423,
+          "analytic_collision_mm3": 671515.4297048183,
+          "relative_volume_error": -0.0013425525894055841
+        },
+        {
+          "feature": "c4_shift_guide",
+          "baseline_collision_mm3": 30110.612511634827,
+          "analytic_collision_mm3": 30561.413334121506,
+          "relative_volume_error": -0.014750653628422494
+        },
+        {
+          "feature": "c2_shifter_tower",
+          "baseline_collision_mm3": 965290.8444404602,
+          "analytic_collision_mm3": 990000,
+          "relative_volume_error": -0.024958742989434138
+        }
+      ],
+      "residual_same_grid_collision_mm3": 0,
+      "nose_passage_probe": true,
+      "service_opening_probe": true,
+      "side_wall_probes": true,
+      "geometry_note": "Five local tunnel/floor volumes only. C2/C4 are hypothetical packages, not measured 964/993 variants.",
+      "relief_note": "Same-grid subtraction has zero design allowance. It is not an independent clearance or tolerance verification.",
+      "structural_simulation_performed": false,
+      "dynamic_clearance_verified": false,
+      "manufacturing_authorized": false,
+      "vehicle_fit_verified": false
+    },
+    {
+      "status": "hypothetical_geometric_study_only",
+      "voxel_size_mm": 2,
+      "scale": 50,
+      "input_sha256": "dfbdd48ca991e6ccb0153d8cdc8c3421582ec568f80bbb16d8ec9ca2d094b6e3",
+      "inference_sha256": "916104e3e1585b327a3f3fa087cc6ef4b6d6173ca92e9d5236af120bcc9d722e",
+      "picogk_assembly_sha256": "710c4e0428efbe9c1cd1db1663247b45604f96d167a6726782ab8ddca350565a",
+      "runtime": "9.0.19",
+      "baseline_volume_mm3": 49620582.580566406,
+      "relieved_volume_mm3": 47930397.033691406,
+      "collisions": [
+        {
+          "feature": "c2_shift_rod",
+          "baseline_collision_mm3": 0,
+          "analytic_collision_mm3": 0,
+          "relative_volume_error": 0
+        },
+        {
+          "feature": "c4_central_tube",
+          "baseline_collision_mm3": 670408.1296920776,
+          "analytic_collision_mm3": 671515.4297048183,
+          "relative_volume_error": -0.001648956917084389
+        },
+        {
+          "feature": "c4_shift_guide",
+          "baseline_collision_mm3": 30293.649062514305,
+          "analytic_collision_mm3": 30561.413334121506,
+          "relative_volume_error": -0.008761514681267846
+        },
+        {
+          "feature": "c2_shifter_tower",
+          "baseline_collision_mm3": 985619.1873550415,
+          "analytic_collision_mm3": 990000,
+          "relative_volume_error": -0.004425063277735855
+        }
+      ],
+      "residual_same_grid_collision_mm3": 0,
+      "nose_passage_probe": true,
+      "service_opening_probe": true,
+      "side_wall_probes": true,
+      "geometry_note": "Five local tunnel/floor volumes only. C2/C4 are hypothetical packages, not measured 964/993 variants.",
+      "relief_note": "Same-grid subtraction has zero design allowance. It is not an independent clearance or tolerance verification.",
+      "structural_simulation_performed": false,
+      "dynamic_clearance_verified": false,
+      "manufacturing_authorized": false,
+      "vehicle_fit_verified": false
+    }
+  ],
+  "runtime": {
+    "sdk": "9.0.317",
+    "runtime": "9.0.19",
+    "picogk_source_commit": "0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3",
+    "picogk_native_file": "picogk.26.2.dylib",
+    "picogk_native_sha256": "5c1cd3fc12766a85bc5c1441a95f065fb274338d1333c3ae2d3396b59d0e18e7"
+  },
+  "exclusions": [
+    "whole shell reconstruction",
+    "OEM fit",
+    "laminate design",
+    "structural FEA",
+    "cure simulation",
+    "tooling release",
+    "dynamic clearance",
+    "road or track approval"
+  ],
+  "raw_scan_used": false,
+  "paid_compute_used": false,
+  "manufacturing_authorized": false,
+  "artifacts": {
+    "twins/964-chassis/source/qwen-picogk-tunnel/prepare.py": "ecf08a35f6d1252b9d21cd99b39c80698fca31b7aaf851da0fa18349dc773d9d",
+    "twins/964-chassis/source/qwen-picogk-tunnel/Program.cs": "28e44665a0764956991578eb341244a956e97a400e40c85f133e0b2d237e7e6f",
+    "twins/964-chassis/source/qwen-picogk-tunnel/Tunnel.csproj": "ad64542da547fa0bd1cdc522660bc3db27f835e09f0031bc8361b03b7bafa3ca",
+    "twins/964-chassis/source/qwen-picogk-tunnel/sections.py": "7f14e82f815e722d4e1a52432f2d86817867903586cba43831a0cec9ee8ab9aa",
+    "work/qwen-picogk-monocoque-20261002/inference-01/inference.json": "916104e3e1585b327a3f3fa087cc6ef4b6d6173ca92e9d5236af120bcc9d722e",
+    "work/qwen-picogk-monocoque-20261002/inference-01/input.json": "dfbdd48ca991e6ccb0153d8cdc8c3421582ec568f80bbb16d8ec9ca2d094b6e3",
+    "work/qwen-picogk-monocoque-20261002/native-4mm/driveline-envelopes.stl": "a73fcd02ff556645f10f26a4f14b747150a339951f5e1067970cae8bac82d93a",
+    "work/qwen-picogk-monocoque-20261002/native-4mm/tunnel-baseline.stl": "35c67a46ea9159fc1809e43185cec627a39a9450e7c54bec990e5f1baed1c5c4",
+    "work/qwen-picogk-monocoque-20261002/native-4mm/tunnel-relief-study.stl": "417581583c2b14d6c0fe797f36418ea84e7b91ea06eb2a7f22bd97ab42890f00",
+    "work/qwen-picogk-monocoque-20261002/native-2mm/driveline-envelopes.stl": "6e1ed894b588dd1139206bbdb7cc2965cb5272e09c395f9d86e7997ba77bfb81",
+    "work/qwen-picogk-monocoque-20261002/native-2mm/tunnel-baseline.stl": "01401509744661297014d724235b21826a6b203dc43d1a915c17f99be7991d56",
+    "work/qwen-picogk-monocoque-20261002/native-2mm/tunnel-relief-study.stl": "875c876f7b8ea5a9beaf330826aacbedd4d55c1567e8f824f78a3baafb4d1580",
+    "work/qwen-picogk-monocoque-20261002/tunnel-sections-final.png": "aae2a633ab820263ec302b646999f7d7922893cbcde528cd9b3907e1f90449e2"
+  }
+}
