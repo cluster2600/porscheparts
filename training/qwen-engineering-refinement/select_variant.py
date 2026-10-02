@@ -61,7 +61,7 @@ def main():
     for split,subset in [('train',train),('valid',[r for r in rows if r['split']=='valid']),('test',[r for r in rows if r['split']=='test'])]:
         (data/(split+'.jsonl')).write_text(''.join(json.dumps({'messages':r['messages']})+'\n' for r in subset))
     from transformers import AutoTokenizer
-    tok=AutoTokenizer.from_pretrained(str(model),trust_remote_code=False); configure(tok)
+    tok=AutoTokenizer.from_pretrained(str(model),trust_remote_code=False)
     maximum=max(len(tok.apply_chat_template(r['messages'],tokenize=True)) for r in train); assert maximum<=1024; del tok
     frozen={**prior['files_sha256'],str(Path(__file__).resolve()):digest(Path(__file__)),**{str(f):digest(f) for f in data.glob('*.jsonl')}}
     frozen.update({str(previous/f):digest(previous/f) for f in ('manifest.json','results.json','validation-before.json','validation-1200-responses.json','validation-1200/scores-independent.json')})
