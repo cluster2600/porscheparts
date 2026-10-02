@@ -1,8 +1,15 @@
 # Qwen engineering refinement
 
+Latest measured outcome: [run 005](results-005.json) passes 264/266 development
+validation cases and 148/150 filtered final cases, without a previously passing
+case lost. It remains **experimental and not qualified**: PicoGK is 7/8 on
+the final subset, below the unchanged 95% per-domain floor. No default adapter
+is replaced and no physical part is qualified.
+
 Owner-requested continuation toward high measured accuracy, 2 October 2026.
 This builds on the [first four-domain pilot](../qwen-engineering-20261002/README.md)
-without changing its frozen files or the selected default adapter.
+without changing its frozen files, serving defaults or previously selected
+experimental adapters.
 
 The [runner](refine.py) uses private copies of the original four native graders.
 It adds 512 paired PicoGK graphs with shuffled node identifiers/order, 288
@@ -41,11 +48,13 @@ Step 600 reaches Python 24/32, OpenFOAM 8/8, OpenUSD 38/38 and PicoGK 46/48
 with no selected-adapter validation regressions. Python misses the registered
 95% floor, so the 56 fresh tests remain unopened and the default is unchanged.
 
-The [verified photo curriculum](photo_course.py) adds 1,416 training examples:
+The [verified photo curriculum](photo_course.py) adds 1,416 training records:
 864 mechanical calculations, 48 USD mesh buffers, 480 engineering decisions
 and 24 complete CalculiX axial-bar decks. It merges the prior 1,808 training
-rows, giving 3,224 train and 266 validation cases. The 140 new fresh photo cases
-remain sealed until selection; the prior 56 fresh cases stay unused.
+rows, giving 3,224 training records (3,177 unique prompts) and 266 validation
+records. The 140 photo test records are deferred until selection; the prompt
+audit below establishes overlap, so deferral does not make them unseen.
+The prior 56 test cases stay unused until the final filtered evaluation.
 
 The [photo runner](photo_run.py) continues checkpoint 002/600 for 1,200 iterations,
 batch 2, learning rate 0.00002, 16 layers, inherited rank 8/scale 20, seed 42,
@@ -102,17 +111,17 @@ balance, mesh convergence and experimental validation remain unverified.
 tokens, peak memory 5.501 GB. Step 1200 reaches Python 80/80, OpenFOAM 8/8,
 OpenUSD 44/46, PicoGK 46/48, engineering decisions 77/80 and native CalculiX
 4/4. Every domain exceeds 95%, but two earlier USD passes regress; selection
-rejects the candidate and the 140 fresh photo cases remain unopened.
+rejects the candidate and the 140 photo test records remain unopened.
 
-The [retention continuation](retain.py) uses the same 3,224 distinct training
-rows with explicit replay: prior USD rows weight 3, CalculiX weight 4,
+The [retention continuation](retain.py) uses the same 3,224 training
+records with explicit replay: prior USD rows weight 3, CalculiX weight 4,
 engineering decisions weight 2, other rows weight 1. That makes 4,448 training
 instances, not additional distinct examples. Continue 003/1200 for 480 steps,
 batch 2, learning rate 0.00001; evaluate checkpoints 240/480. Re-score all saved
 parent validation answers before learning, requiring identical decisions and
 response hashes. Preserve every parent pass and every earlier passing
-obligation; use the same 95% domain floor. Validation and fresh tests are never
-replay data. The 140 fresh photo cases open only after eligibility.
+obligation; use the same 95% domain floor. Validation/test record IDs are never replayed, but duplicate prompts
+were discovered across partitions; see the audit below. The 140 photo test records open only after eligibility.
 
 ```sh
 /Users/maxime/.codex/worktrees/m64-local-architecture-qwen/3dprinting993/work/m64-qwen/venv/bin/python \
@@ -144,7 +153,7 @@ workflow, manufacturing distortion prediction or a calibrated Porsche twin.
 [Continuation 004](results-004.json) is rejected: step 480 reaches USD 45/46
 but engineering decisions fall to 70/80, losing seven parent passes as well as
 one earlier USD case. Its 98,708 reported training tokens do not establish an
-improvement; the fresh tests remain unopened.
+improvement; test predictions remain unopened.
 
 The [explicit-selection continuation](select_variant.py) returns to 003/1200.
 Existing USD training examples now end with the requested variant selection,
@@ -190,3 +199,49 @@ Run 005's frozen manifest also reports `maximum_sequence_tokens: 2`, mistakenly
 counting tokenizer dictionary keys. Its separate `sequence-length-check.json`
 counts actual input IDs for every training instance: maximum 632, all below
 1,024. This audit preserves the original manifest and records the correction.
+
+The completed explicit-selection run reports 285,004 training tokens and
+5.478 GB peak memory. Validation selects step 1200; step 600 is rejected for
+three asset-import regressions. The raw legacy photo score is 139/140 but is
+not independent evidence because that partition contains repeated prompts.
+
+The final filtered comparison was registered at commit `345efa6` before final
+predictions. Its prescribed references all pass, including native USD/PicoGK,
+independent Python perturbations and four native CalculiX cases. Results:
+
+| Domain | Parent 003/1200 | Candidate 005/1200 |
+|---|---:|---:|
+| Python mechanics | 72/72 | 72/72 |
+| OpenFOAM dictionary contracts | 8/8 | 8/8 |
+| OpenUSD scenes | 14/14 | 14/14 |
+| PicoGK dependency graphs | 7/8 | 7/8 |
+| Engineering evidence decisions | 41/44 | 43/44 |
+| CalculiX axial bars | 4/4 | 4/4 |
+
+There are no per-case regressions. The failing graph duplicates edge 0→3 and
+omits required edge 1→3; the independent graph contract rejects it. The other
+failure is conservative: geometry is rejected despite measured interfaces and
+a verified load path when material remains unqualified. Structural calculation
+and manufacturing are correctly blocked in that case. The aggregate 148/150
+does not override the failed PicoGK domain floor.
+
+Experimental weights are local at
+`work/qwen-engineering-005/checkpoint-1200/`, SHA-256
+`70142a4583f5c95a74b3a5dd6661d8243e85e7846dc7aba6e8b4ab3c6a3f29d4`.
+Load alongside the original Qwen2.5-Coder-1.5B-Instruct 4-bit base; they are not
+standalone weights. Preserve the ignored `work/qwen-engineering-*` directories
+before archiving this checkout. The separate coding-008 experiment and serving defaults are
+untouched.
+
+Further training needs a new registered protocol and untouched task families.
+The exposed 150 cases now serve only as regression evidence. Priorities are
+node/edge binding without duplicated connections, paired geometry-versus-
+material decisions, and complete generated solver cases with balance and mesh
+convergence checks. Fixture identifiers alone must not create nominally fresh
+engineering questions. The catalogue's independent attachment, load, material
+and manufacturing gates remain mandatory regardless of model score.
+
+Full `make check` passes on Kali2 native ext4 for source commit `345efa6`: 3,276
+main tests including 144 optional skips, plus the pinned F37 Docker audit and
+all remaining Make checks. This confirms software checks, not engine fitment,
+physical safety or manufacturing approval.
