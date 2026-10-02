@@ -1,5 +1,11 @@
 # Metal additive manufacturing data for Qwen
 
+**For subsequent training, use [the Qwen v2 formatting guide](FORMATTING.md)
+and `formatted-v2/`.** It replaces the character-based training layout below
+with paragraph-aligned token exports and assistant-only labels. The guide also
+documents a corrected v1 Ti-6Al-4V snapshot/attribution association; frozen v1
+files remain historical inputs.
+
 Owner-requested preparation of the multilingual research corpus, 2 October 2026.
 The data are prepared and partitioned; **no training has run, no weights have
 changed, and no existing adapter or serving default is replaced**.
