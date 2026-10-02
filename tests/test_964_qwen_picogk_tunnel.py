@@ -10,6 +10,25 @@ MODULE = runpy.run_path(str(Path(__file__).resolve().parents[1] /
 
 
 class QwenTunnelTests(unittest.TestCase):
+    def test_kali_execution_keeps_runtime_failure_and_physical_limits(self):
+        root = Path(__file__).resolve().parents[1]
+        report = json.loads((root/'twins/964-chassis/derived/kali-compute-20261002.json').read_text())
+        self.assertFalse(report['boolean_regression']['stock']['stock_passed'])
+        self.assertTrue(report['boolean_regression']['candidate']['stock_passed'])
+        self.assertTrue(report['calculix_comparison']['passed'])
+        self.assertFalse(report['truss']['new_tunnel_openings_represented'])
+        self.assertFalse(report['manufacturing_authorized'])
+        self.assertFalse(report['road_or_track_release'])
+        self.assertFalse(report['runtime']['shared_runtime_modified'])
+        self.assertFalse(report['verification']['global_check_passed'])
+        for run in report['native_runs']:
+            self.assertTrue(run['nose_passage_probe'] and run['service_opening_probe'] and run['side_wall_probes'])
+            self.assertFalse(run['structural_simulation_performed'])
+            self.assertEqual(run['residual_same_grid_collision_mm3'], 0)
+        for path, sha in report['artifacts'].items():
+            if path.startswith('twins/'):
+                self.assertEqual(hashlib.sha256((root/path).read_bytes()).hexdigest(), sha)
+
     def test_published_run_binds_source_and_keeps_release_closed(self):
         root = Path(__file__).resolve().parents[1]
         report = json.loads((root/'twins/964-chassis/derived/qwen-picogk-tunnel-20261002.json').read_text())

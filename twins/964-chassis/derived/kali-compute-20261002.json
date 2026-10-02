@@ -1,0 +1,515 @@
+{
+  "schema_version": "1.0.0",
+  "study_id": "964-993-KALI-COMPUTE-20261002",
+  "status": "executed_exploratory_checks_not_product_validation",
+  "recorded_date": "2026-10-02",
+  "source_commits": {
+    "tunnel": "c751517340bacac5d2a88670d6dfb54d82609545",
+    "legacy_truss": "135dcc8ef6e71ac483e1ed3036217536562c80a1"
+  },
+  "hosts": {
+    "kali1": {
+      "architecture": "x86_64",
+      "execution": "native_python_3.14.7",
+      "docker_authorized_for_ssh_user": false,
+      "permissions_changed": false
+    },
+    "kali2": {
+      "architecture": "x86_64",
+      "docker_server": "28.5.2+dfsg4",
+      "execution": "docker",
+      "cpus_available": 12,
+      "memory_bytes": 16438767616
+    }
+  },
+  "runtime": {
+    "station_image_id": "sha256:4f58a4e28ab7706e7735b2185123c2d8fd6eb94a3d1842a9e352950ce503bdfb",
+    "f37_image_id": "sha256:49979f46f421459dae4bf21aaa898e2253b07301c3e5b2cabaa6eaf06f54d696",
+    "dotnet_sdk": "9.0.317",
+    "dotnet_runtime": "9.0.19",
+    "original_picogk_assembly_sha256": "710c4e0428efbe9c1cd1db1663247b45604f96d167a6726782ab8ddca350565a",
+    "candidate_picogk_assembly_sha256": "a699fdd93269e39ee4a39dd0363d77d42e593456509a6a1827d0ddd62949e667",
+    "native_picogk_sha256": "fc62c8ae58d9e277b1b9ef1b2bb1e761159d5bab81f752c9243fb6bbd150d54b",
+    "original_interop_sha256": "c1c372b4c03657caa746b98d9fd6c48cc2292bc444c43d9e519e709008874e32",
+    "candidate_interop_sha256": "a82bd37963159553f8e3fb9a4c590d71f903b8944da8f5fbff8e7839cc87048f",
+    "patch_scope": "Only the return marshalling of Voxels_bIsInside; candidate assembly build metadata also differs. Not a general PicoGK qualification.",
+    "shared_runtime_modified": false,
+    "container_limits": {
+      "cpu": 2,
+      "memory_bytes": 2147483648,
+      "swap_bytes": 0,
+      "pids": 128,
+      "wall_timeout_seconds": 600,
+      "network": "none",
+      "read_only_rootfs": true,
+      "user": "1000:1000",
+      "capabilities_dropped": "ALL"
+    }
+  },
+  "failures_preserved": [
+    {
+      "stage": "first_transfer_build",
+      "exit_code": 1,
+      "cause": "macOS AppleDouble ._Program.cs interpreted as C# source",
+      "resolution": "New staging using COPYFILE_DISABLE=1 tar --no-xattrs --exclude=._*"
+    },
+    {
+      "stage": "stock_linux_tunnel_4mm",
+      "exit_code": 134,
+      "cause": "Tunnel probes failed; no accepted output published"
+    },
+    {
+      "stage": "stock_boolean_probe",
+      "exit_code": 1,
+      "cause": "Unspecified native bool return width gives false inside classification for two outside controls"
+    }
+  ],
+  "boolean_regression": {
+    "stock": {
+      "diagnostic_only": true,
+      "stock_passed": false,
+      "one_byte_passed": true,
+      "probes": [
+        {
+          "point": [
+            5,
+            0,
+            0
+          ],
+          "expected": true,
+          "stock": true,
+          "one_byte": true
+        },
+        {
+          "point": [
+            5,
+            5,
+            0
+          ],
+          "expected": false,
+          "stock": true,
+          "one_byte": false
+        },
+        {
+          "point": [
+            50,
+            50,
+            50
+          ],
+          "expected": false,
+          "stock": true,
+          "one_byte": false
+        }
+      ]
+    },
+    "candidate": {
+      "diagnostic_only": true,
+      "stock_passed": true,
+      "one_byte_passed": true,
+      "probes": [
+        {
+          "point": [
+            5,
+            0,
+            0
+          ],
+          "expected": true,
+          "stock": true,
+          "one_byte": true
+        },
+        {
+          "point": [
+            5,
+            5,
+            0
+          ],
+          "expected": false,
+          "stock": false,
+          "one_byte": false
+        },
+        {
+          "point": [
+            50,
+            50,
+            50
+          ],
+          "expected": false,
+          "stock": false,
+          "one_byte": false
+        }
+      ]
+    },
+    "candidate_exit_code": 0,
+    "reference": "https://learn.microsoft.com/en-us/dotnet/standard/native-interop/best-practices#boolean-parameters-and-fields"
+  },
+  "truss": {
+    "status": "screening_complete_not_validated",
+    "selection": {
+      "architecture_id": "all_carbon_multicell_x10",
+      "selection_basis": "meilleure rigidite torsionnelle specifique parmi les candidats tout CFRP qui passent les portes provisoires",
+      "eligible_architecture_ids": [
+        "all_carbon_multicell_x10",
+        "all_carbon_multicell_x12"
+      ],
+      "manufacturing_release": false,
+      "road_release": false,
+      "track_release": false
+    },
+    "architectures": [
+      {
+        "architecture_id": "open_tub_reference",
+        "active_member_mass_kg": 14.53,
+        "torsion": {
+          "torque_Nm": 7025,
+          "twist_deg": 2.448977,
+          "stiffness_Nm_per_deg": 2868.5
+        },
+        "side_intrusion": {
+          "force_N": 10000,
+          "mean_displacement_mm": 1.240569,
+          "stiffness_N_per_mm": 8060.8
+        }
+      },
+      {
+        "architecture_id": "deep_sill_tunnel",
+        "active_member_mass_kg": 27.841,
+        "torsion": {
+          "torque_Nm": 7025,
+          "twist_deg": 1.592592,
+          "stiffness_Nm_per_deg": 4411
+        },
+        "side_intrusion": {
+          "force_N": 10000,
+          "mean_displacement_mm": 0.782319,
+          "stiffness_N_per_mm": 12782.5
+        }
+      },
+      {
+        "architecture_id": "closed_carbon_cell",
+        "active_member_mass_kg": 30.909,
+        "torsion": {
+          "torque_Nm": 7025,
+          "twist_deg": 0.830448,
+          "stiffness_Nm_per_deg": 8459.3
+        },
+        "side_intrusion": {
+          "force_N": 10000,
+          "mean_displacement_mm": 0.723263,
+          "stiffness_N_per_mm": 13826.2
+        }
+      },
+      {
+        "architecture_id": "hybrid_tube_safety_cell",
+        "active_member_mass_kg": 40.846,
+        "torsion": {
+          "torque_Nm": 7025,
+          "twist_deg": 0.456748,
+          "stiffness_Nm_per_deg": 15380.5
+        },
+        "side_intrusion": {
+          "force_N": 10000,
+          "mean_displacement_mm": 0.535448,
+          "stiffness_N_per_mm": 18675.9
+        }
+      },
+      {
+        "architecture_id": "hybrid_multicell_reinforced",
+        "active_member_mass_kg": 57.275,
+        "torsion": {
+          "torque_Nm": 7025,
+          "twist_deg": 0.323583,
+          "stiffness_Nm_per_deg": 21710.1
+        },
+        "side_intrusion": {
+          "force_N": 10000,
+          "mean_displacement_mm": 0.380161,
+          "stiffness_N_per_mm": 26304.6
+        }
+      },
+      {
+        "architecture_id": "all_carbon_multicell_x8",
+        "active_member_mass_kg": 69.648,
+        "torsion": {
+          "torque_Nm": 7025,
+          "twist_deg": 0.352381,
+          "stiffness_Nm_per_deg": 19935.8
+        },
+        "side_intrusion": {
+          "force_N": 10000,
+          "mean_displacement_mm": 0.417875,
+          "stiffness_N_per_mm": 23930.6
+        }
+      },
+      {
+        "architecture_id": "all_carbon_multicell_x10",
+        "active_member_mass_kg": 78.079,
+        "torsion": {
+          "torque_Nm": 7025,
+          "twist_deg": 0.334338,
+          "stiffness_Nm_per_deg": 21011.7
+        },
+        "side_intrusion": {
+          "force_N": 10000,
+          "mean_displacement_mm": 0.39622,
+          "stiffness_N_per_mm": 25238.5
+        }
+      },
+      {
+        "architecture_id": "all_carbon_multicell_x12",
+        "active_member_mass_kg": 86.509,
+        "torsion": {
+          "torque_Nm": 7025,
+          "twist_deg": 0.321755,
+          "stiffness_Nm_per_deg": 21833.4
+        },
+        "side_intrusion": {
+          "force_N": 10000,
+          "mean_displacement_mm": 0.377132,
+          "stiffness_N_per_mm": 26515.9
+        }
+      }
+    ],
+    "python_outputs_identical_between_hosts": true,
+    "output_sha256": "1e4b53b07ac140947fe0e2e8c0246663da4834aae8f622121b76d07903f836ca",
+    "selected_deck_sha256": "f8f5ad4a54002ffb45636add427eaf8a77727c0c46161516a0f747cb837ff3fd",
+    "new_tunnel_openings_represented": false
+  },
+  "calculix_comparison": {
+    "schema_version": "1.0.0",
+    "status": "passed",
+    "comparison_scope": "même modèle treillis linéaire, assemblages numériques indépendants",
+    "calculix": {
+      "version": "2.21",
+      "input": "twins/993-carbon-safety-cell/derived/selected-torsion.inp",
+      "raw_result": "twins/993-carbon-safety-cell/derived/selected-torsion.dat",
+      "front_left_displacement_mm": [
+        0.008565356,
+        3.17205,
+        4.099295
+      ],
+      "front_right_displacement_mm": [
+        -0.008565356,
+        3.17205,
+        -4.099295
+      ],
+      "torsional_stiffness_Nm_per_deg": 21011.7
+    },
+    "python_reference": {
+      "report": "twins/993-carbon-safety-cell/derived/structural-screening.json",
+      "torsional_stiffness_Nm_per_deg": 21011.7
+    },
+    "relative_error": 7.817523457564439e-7,
+    "tolerance": 0.0001,
+    "passed": true,
+    "claim_limits": [
+      "Cette concordance vérifie l'implémentation du treillis, pas sa fidélité à une coque composite.",
+      "Les deux solveurs utilisent les mêmes nœuds, barres, propriétés équivalentes et conditions aux limites.",
+      "Aucun matériau, joint, stratifié, flambement, fatigue, impact ou crash réel n'est corrélé."
+    ],
+    "road_or_track_release": false
+  },
+  "native_runs": [
+    {
+      "status": "hypothetical_geometric_study_only",
+      "voxel_size_mm": 4,
+      "scale": 50,
+      "input_sha256": "dfbdd48ca991e6ccb0153d8cdc8c3421582ec568f80bbb16d8ec9ca2d094b6e3",
+      "inference_sha256": "916104e3e1585b327a3f3fa087cc6ef4b6d6173ca92e9d5236af120bcc9d722e",
+      "picogk_assembly_sha256": "a699fdd93269e39ee4a39dd0363d77d42e593456509a6a1827d0ddd62949e667",
+      "runtime": "9.0.19",
+      "baseline_volume_mm3": 49543731.689453125,
+      "relieved_volume_mm3": 47831184.38720703,
+      "collisions": [
+        {
+          "feature": "c2_shift_rod",
+          "baseline_collision_mm3": 0,
+          "analytic_collision_mm3": 0,
+          "relative_volume_error": 0
+        },
+        {
+          "feature": "c4_central_tube",
+          "baseline_collision_mm3": 670614.3617630005,
+          "analytic_collision_mm3": 671515.4297048183,
+          "relative_volume_error": -0.0013418424982638026
+        },
+        {
+          "feature": "c4_shift_guide",
+          "baseline_collision_mm3": 30060.75508892536,
+          "analytic_collision_mm3": 30561.413334121506,
+          "relative_volume_error": -0.01638203834759056
+        },
+        {
+          "feature": "c2_shifter_tower",
+          "baseline_collision_mm3": 965290.8444404602,
+          "analytic_collision_mm3": 990000,
+          "relative_volume_error": -0.024958742989434138
+        }
+      ],
+      "residual_same_grid_collision_mm3": 0,
+      "nose_passage_probe": true,
+      "service_opening_probe": true,
+      "side_wall_probes": true,
+      "geometry_note": "Five local tunnel/floor volumes only. C2/C4 are hypothetical packages, not measured 964/993 variants.",
+      "relief_note": "Same-grid subtraction has zero design allowance. It is not an independent clearance or tolerance verification.",
+      "structural_simulation_performed": false,
+      "dynamic_clearance_verified": false,
+      "manufacturing_authorized": false,
+      "vehicle_fit_verified": false
+    },
+    {
+      "status": "hypothetical_geometric_study_only",
+      "voxel_size_mm": 2,
+      "scale": 50,
+      "input_sha256": "dfbdd48ca991e6ccb0153d8cdc8c3421582ec568f80bbb16d8ec9ca2d094b6e3",
+      "inference_sha256": "916104e3e1585b327a3f3fa087cc6ef4b6d6173ca92e9d5236af120bcc9d722e",
+      "picogk_assembly_sha256": "a699fdd93269e39ee4a39dd0363d77d42e593456509a6a1827d0ddd62949e667",
+      "runtime": "9.0.19",
+      "baseline_volume_mm3": 49620582.580566406,
+      "relieved_volume_mm3": 47930416.107177734,
+      "collisions": [
+        {
+          "feature": "c2_shift_rod",
+          "baseline_collision_mm3": 0,
+          "analytic_collision_mm3": 0,
+          "relative_volume_error": 0
+        },
+        {
+          "feature": "c4_central_tube",
+          "baseline_collision_mm3": 670408.308506012,
+          "analytic_collision_mm3": 671515.4297048183,
+          "relative_volume_error": -0.0016486906329062207
+        },
+        {
+          "feature": "c4_shift_guide",
+          "baseline_collision_mm3": 30298.897996544838,
+          "analytic_collision_mm3": 30561.413334121506,
+          "relative_volume_error": -0.008589764311834754
+        },
+        {
+          "feature": "c2_shifter_tower",
+          "baseline_collision_mm3": 985619.1873550415,
+          "analytic_collision_mm3": 990000,
+          "relative_volume_error": -0.004425063277735855
+        }
+      ],
+      "residual_same_grid_collision_mm3": 0,
+      "nose_passage_probe": true,
+      "service_opening_probe": true,
+      "side_wall_probes": true,
+      "geometry_note": "Five local tunnel/floor volumes only. C2/C4 are hypothetical packages, not measured 964/993 variants.",
+      "relief_note": "Same-grid subtraction has zero design allowance. It is not an independent clearance or tolerance verification.",
+      "structural_simulation_performed": false,
+      "dynamic_clearance_verified": false,
+      "manufacturing_authorized": false,
+      "vehicle_fit_verified": false
+    }
+  ],
+  "mac_comparison": [
+    {
+      "voxel_size_mm": 4,
+      "collisions": [
+        {
+          "feature": "c2_shift_rod",
+          "linux_minus_mac_mm3": 0,
+          "relative_difference_vs_mac": null
+        },
+        {
+          "feature": "c4_central_tube",
+          "linux_minus_mac_mm3": 0.476837158203125,
+          "relative_difference_vs_mac": 7.110457581054328e-7
+        },
+        {
+          "feature": "c4_shift_guide",
+          "linux_minus_mac_mm3": -49.85742270946503,
+          "relative_difference_vs_mac": -0.0016558089839653703
+        },
+        {
+          "feature": "c2_shifter_tower",
+          "linux_minus_mac_mm3": 0,
+          "relative_difference_vs_mac": 0
+        }
+      ],
+      "claim_scope": "Observed implementation differences, not a convergence or manufacturing-tolerance verdict"
+    },
+    {
+      "voxel_size_mm": 2,
+      "collisions": [
+        {
+          "feature": "c2_shift_rod",
+          "linux_minus_mac_mm3": 0,
+          "relative_difference_vs_mac": null
+        },
+        {
+          "feature": "c4_central_tube",
+          "linux_minus_mac_mm3": 0.17881393432617188,
+          "relative_difference_vs_mac": 2.6672399454389397e-7
+        },
+        {
+          "feature": "c4_shift_guide",
+          "linux_minus_mac_mm3": 5.248934030532837,
+          "relative_difference_vs_mac": 0.00017326846362090878
+        },
+        {
+          "feature": "c2_shifter_tower",
+          "linux_minus_mac_mm3": 0,
+          "relative_difference_vs_mac": 0
+        }
+      ],
+      "claim_scope": "Observed implementation differences, not a convergence or manufacturing-tolerance verdict"
+    }
+  ],
+  "verification": {
+    "kali2_candidate_run_exit_code": 0,
+    "f37_docker_tests_passed": 15,
+    "f37_tests_skipped": 0,
+    "full_make_check_on_kali_performed": false,
+    "global_check_passed": false,
+    "global_blocker": "Existing F46 preparation-report source hash mismatch reproduced locally; historical evidence unchanged",
+    "tunnel_source_and_assertions_unchanged": true,
+    "remote_native_artifact_hashes_verified_after_transfer": true
+  },
+  "artifacts": {
+    "twins/964-chassis/source/picogk-abi-probe/Program.cs": "dce16d2e4fe6a5e7e07c8a520af86c8190a6dc69cfa9a4e93bdb935953a7a876",
+    "twins/964-chassis/source/picogk-abi-probe/Probe.csproj": "ad64542da547fa0bd1cdc522660bc3db27f835e09f0031bc8361b03b7bafa3ca",
+    "twins/964-chassis/source/picogk-abi-probe/PicoGK.Candidate.csproj": "0ff7948be1479f658ee911e1c7d02b34b329f8e1349b73eb61f56d1850d3d277",
+    "twins/964-chassis/source/picogk-abi-probe/bool-return.patch": "d5bc4d090c4c8adc02b7ca764cff26172b7b60b2ed95c799eabddc6f483849b5",
+    "twins/964-chassis/source/qwen-picogk-tunnel/linux-checks.sh": "86874ec893d6ac147286fece5a597ebe6b3bac2d4a6ced4b39f0f801075bacfd",
+    "work/monocoque-kali-20261002/input/manifest.sha256": "6bb6ab1107b017ed12ea38fa0c498adcf5b5c56590a67717725184f6a59beaa1",
+    "work/monocoque-kali-20261002/kali1/derived/selected-topology.json": "077472803b74596d18e646116d78135b86ed5a4eaeadaa44452406c81352a8e3",
+    "work/monocoque-kali-20261002/kali1/derived/structural-screening.json": "1e4b53b07ac140947fe0e2e8c0246663da4834aae8f622121b76d07903f836ca",
+    "work/monocoque-kali-20261002/kali1/derived/selected-torsion.inp": "f8f5ad4a54002ffb45636add427eaf8a77727c0c46161516a0f747cb837ff3fd",
+    "work/monocoque-kali-20261002/kali2/derived/calculix-verification.json": "2e82ffc3cd74c11c9d57477cfdaf53fda7f2b754f2530c7ce88332ae95366db4",
+    "work/monocoque-kali-20261002/kali2/derived/selected-topology.json": "077472803b74596d18e646116d78135b86ed5a4eaeadaa44452406c81352a8e3",
+    "work/monocoque-kali-20261002/kali2/derived/structural-screening.json": "1e4b53b07ac140947fe0e2e8c0246663da4834aae8f622121b76d07903f836ca",
+    "work/monocoque-kali-20261002/kali2/derived/selected-torsion.inp": "f8f5ad4a54002ffb45636add427eaf8a77727c0c46161516a0f747cb837ff3fd",
+    "work/monocoque-kali-20261002/kali2/abi.log": "5e7a7d55a857a3c79b61df3fcc748f4203652544c1a91a4a20577174c3491e61",
+    "work/monocoque-kali-20261002/kali2/candidate-build.log": "55b85342bf97f71ba2314a86ebc0d0081497d23a5758cde90170fd882a09ecb6",
+    "work/monocoque-kali-20261002/kali2/diagnostic.log": "74dc2309429eec5b53f9c95695ea84ec674d192f207b0968311d24050dd3ef72",
+    "work/monocoque-kali-20261002/kali2/execution-candidate.log": "ed8017ffac503863a4932782adb3ea044fc9ded0c88e80c9f29cd22e591d829d",
+    "work/monocoque-kali-20261002/kali2/execution-clean.log": "0fa5df3e3227045ad52fe45b03be61b052c64aabffdcd72857bb5bea7833443a",
+    "work/monocoque-kali-20261002/kali2/execution.log": "dd1b8d9810badce0b84a686000c5a87f569ebbdf72aa0b02841390f979bd224a",
+    "work/monocoque-kali-20261002/kali2/f37.log": "65f32380315adbb27d6d238369d69f78d2848bac2b1acb3f6a10a1dfc43ac76e",
+    "work/monocoque-kali-20261002/kali2/truss.log": "870acb72a0b105130783e25c7420bebcdadd56401efdb95f778182d8ea75ed58",
+    "work/monocoque-kali-20261002/kali2/native-4mm/driveline-envelopes.stl": "ec78fd9bd4b92157c46f109efda0a088d5119bb46b1527d5c8bd224164a93ea1",
+    "work/monocoque-kali-20261002/kali2/native-4mm/report.json": "bb8874b1db8d217116ce895e6ae917aa5caf87891606bee86de6d0a345eac1e3",
+    "work/monocoque-kali-20261002/kali2/native-4mm/tunnel-baseline.stl": "35c67a46ea9159fc1809e43185cec627a39a9450e7c54bec990e5f1baed1c5c4",
+    "work/monocoque-kali-20261002/kali2/native-4mm/tunnel-relief-study.stl": "4c2975439785fd8785ee508affeca3ed5d78bb400e1e64a49574bff73931e4dc",
+    "work/monocoque-kali-20261002/kali2/native-2mm/driveline-envelopes.stl": "f61c87ed083bffe91c3b2158159020544223f55100e90a694cdf9c561092dd6c",
+    "work/monocoque-kali-20261002/kali2/native-2mm/report.json": "d89d20818be4ffe217bc7e1ac51a2ff37fc8ec75d31e5f54a28c2797d3d29570",
+    "work/monocoque-kali-20261002/kali2/native-2mm/tunnel-baseline.stl": "01401509744661297014d724235b21826a6b203dc43d1a915c17f99be7991d56",
+    "work/monocoque-kali-20261002/kali2/native-2mm/tunnel-relief-study.stl": "e488e7344f206031d286e67580548aaa1009e8a9332a1fceb3ca32b940a7bcf1"
+  },
+  "paid_compute_used": false,
+  "raw_scan_used": false,
+  "new_qwen_inference_performed": false,
+  "vehicle_fit_verified": false,
+  "dynamic_clearance_verified": false,
+  "structural_product_validation_performed": false,
+  "manufacturing_authorized": false,
+  "road_or_track_release": false,
+  "claim_limits": [
+    "PicoGK validates only five hypothetical tunnel/floor volumes and same-grid zero-allowance subtractions.",
+    "The legacy pin-jointed linear truss has equivalent materials and hypothetical supports; its stiffness is not the modified shell stiffness.",
+    "No laminate, bonding, buckling, fatigue, crash, cure, mould or physical correlation result has been established."
+  ]
+}

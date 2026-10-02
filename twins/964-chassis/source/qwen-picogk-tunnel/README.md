@@ -78,6 +78,11 @@ Runtime effectivement utilise : SDK .NET 9.0.317, runtime 9.0.19,
 PicoGK source `0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3` et bibliotheque native
 Mac `picogk.26.2.dylib`. Ce profil ne modifie pas celui des anciens jobs Linux.
 
+La [reprise suivante sur Kali](../picogk-abi-probe/README.md) documente les
+calculs Docker et la correction isolee d'une liaison booleenne PicoGK sous
+Linux. Elle ne remplace pas le present recu Mac et ne valide pas tous les
+usages de la bibliotheque.
+
 ## Verification du 2 octobre 2026
 
 - Build natif : aucune erreur ni avertissement ; executions a 4 et 2 mm terminees.

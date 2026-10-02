@@ -3,6 +3,23 @@
 Niveau atteint : **`F1_envelope`** (ADR 0003). Enveloppe a l'echelle et repere
 documente. Ni `F2_interface`, ni geometrie de piece liberable.
 
+## Calculs sur Kali 1 et Kali 2 — 2026-10-02
+
+La [reprise Linux executee](source/picogk-abi-probe/README.md) reproduit les huit
+architectures du treillis F1 sur les deux machines, puis verifie le cas retenu
+avec CalculiX sur Kali 2. L'ecart relatif est de `7.82e-7` ; cette concordance
+ne valide ni une coque stratifiee ni les nouvelles ouvertures du tunnel.
+Les 15 tests Docker F37 passent sur Kali 2. Le compte SSH de Kali 1 ne peut
+pas utiliser Docker ; son calcul a ete effectue en Python natif.
+
+La comparaison PicoGK Linux a revele un defaut de lecture du booleen natif
+`bIsInside`. Un test minimal et une correction de liaison, dans une copie
+isolee de la bibliotheque, permettent de reexecuter le tunnel a 4 et 2 mm sans
+changer sa geometrie ni ses assertions. Le [recu](derived/kali-compute-20261002.json)
+conserve aussi les echecs initiaux. La bibliotheque partagee reste intacte.
+Le controle global reste bloque par l'ancien ecart d'empreinte F46 ; aucune
+preuve historique, autorisation de fabrication ou qualification n'est modifiee.
+
 ## Reprise avec Qwen Mac et PicoGK — 2026-10-02
 
 La [premiere etude locale executee](source/qwen-picogk-tunnel/README.md) reprend
