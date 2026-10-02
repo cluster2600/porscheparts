@@ -1,0 +1,91 @@
+{
+  "modes": [
+    "SelfInterMode",
+    "SmallEdgeMode",
+    "RebuildFaceMode",
+    "ContinuityMode",
+    "CurveOnSurfaceMode"
+  ],
+  "BRep_valid": true,
+  "solids": 1,
+  "faces": 27,
+  "edges": 64,
+  "volume": 10445.637182891393,
+  "has_faulty": true,
+  "has_errors": false,
+  "has_warnings": false,
+  "faults": [
+    {
+      "status": "BOPAlgo_CheckStatus.BOPAlgo_InvalidCurveOnSurface",
+      "max_distance_1": 1.4389485978358216e-07,
+      "max_parameter_1": 0.020876943080876464,
+      "faulty_shapes_1": [
+        {
+          "kind": "TopAbs_ShapeEnum.TopAbs_EDGE",
+          "ids": {
+            "face": 0,
+            "edge": 53,
+            "vertex": 0
+          },
+          "bbox": [
+            39.8692485144263,
+            -78.6676127778407,
+            37.1213202215893,
+            40.1213204655307,
+            -78.3173783905193,
+            37.373392172692704
+          ],
+          "tolerance": 1.2197069998144916e-07,
+          "same_parameter": true,
+          "curve_type": "GeomAbs_CurveType.GeomAbs_BSplineCurve",
+          "degenerated": false,
+          "endpoints": [
+            [
+              40.12132034356,
+              -78.31737851249,
+              37.12132034356
+            ],
+            [
+              39.869248636397,
+              -78.66761265587,
+              37.373392050722
+            ]
+          ],
+          "adjacent_faces": [
+            {
+              "id": 19,
+              "surface_type": "GeomAbs_SurfaceType.GeomAbs_Plane",
+              "tolerance": 1e-07
+            },
+            {
+              "id": 26,
+              "surface_type": "GeomAbs_SurfaceType.GeomAbs_BSplineSurface",
+              "tolerance": 1e-07
+            }
+          ]
+        },
+        {
+          "kind": "TopAbs_ShapeEnum.TopAbs_FACE",
+          "ids": {
+            "face": 26,
+            "edge": 0,
+            "vertex": 0
+          },
+          "bbox": [
+            37.653989131860996,
+            -79.1211768357,
+            35.7499999,
+            45.750433727622,
+            -75.29223920219,
+            38.2500001
+          ]
+        }
+      ],
+      "faulty_shapes_2": []
+    }
+  ],
+  "elapsed_seconds": 0.39624962499965477,
+  "passed": false,
+  "input_sha256": "90904582429b1a388b7831fd731bb9e353e00c62e4e6ed30e0be3b7cba538e19",
+  "input_unchanged": true
+}
