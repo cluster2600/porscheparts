@@ -36,6 +36,37 @@ class FanSweepTests(unittest.TestCase):
             self.assertEqual(result.returncode, 2)
             self.assertFalse((root / "solver-would-start").exists())
 
+    def test_imported_mesh_is_walled_and_rejected_before_solver(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            (root / "system").mkdir()
+            (root / "system/controlDict").touch()
+            (root / "fluid.msh").touch()
+            bin_dir = root / "bin"
+            bin_dir.mkdir()
+            commands = {
+                "gmshToFoam": 'mkdir -p constant/polyMesh; printf "rotor { type patch; }\\nduct { type patch; }\\n" > constant/polyMesh/boundary',
+                "checkMesh": 'echo "Failed 1 mesh checks."',
+                "topoSet": 'touch solver-would-start',
+            }
+            for name, body in commands.items():
+                command = bin_dir / name
+                command.write_text("#!/bin/sh\n" + body + "\n")
+                command.chmod(0o755)
+            script = root / "run.sh"
+            script.write_text((SOURCE / "run_reference_cfd.sh").read_text().replace(
+                "source /opt/openfoam14/etc/bashrc", ": # test utilities on PATH"))
+            result = subprocess.run(["bash", str(script), str(root), str(root / "fluid.msh")],
+                env=os.environ | {"PATH": str(bin_dir) + os.pathsep + os.environ["PATH"]}, capture_output=True)
+            self.assertEqual(result.returncode, 2, result.stderr)
+            self.assertEqual((root / "constant/polyMesh/boundary").read_text().count("type wall;"), 2)
+            self.assertFalse((root / "solver-would-start").exists())
+            (bin_dir / "gmshToFoam").write_text("#!/bin/sh\nexit 99\n")
+            result = subprocess.run(["bash", str(script), str(root), "--existing-mesh"],
+                env=os.environ | {"PATH": str(bin_dir) + os.pathsep + os.environ["PATH"]}, capture_output=True)
+            self.assertEqual(result.returncode, 2, result.stderr)
+            self.assertFalse((root / "solver-would-start").exists())
+
     def test_controlled_plan_preserves_interfaces_and_prior_outputs(self):
         module = runpy.run_path(str(SOURCE / "sweep_fan_airflow.py"))
         with tempfile.TemporaryDirectory() as folder:
