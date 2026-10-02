@@ -1,0 +1,123 @@
+{
+  "status": "formatted_not_trained",
+  "tokenizer_files_sha256": {
+    "config.json": "0708e236aa7b7db3c01bf8a46200e1a92d57f20fa668a7c430154bd6a21cdba5",
+    "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+    "special_tokens_map.json": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd",
+    "tokenizer.json": "a8506e7111b80c6d8635951a02eab0f4e1a8e4e5772da83846579e97b16f61bf",
+    "tokenizer_config.json": "dced901d401aa828f313a2baec70d0ce164653285812237b5285c7efd5b9e760",
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+  },
+  "libraries": {
+    "transformers": "4.57.1",
+    "tokenizers": "0.22.2",
+    "beautifulsoup4": "4.15.0",
+    "jinja2": "3.1.6"
+  },
+  "chat_template_sha256": "89d726e7795b101935db5c909c75a7d403a47deedad53a64947e9b079ba94def",
+  "eos_token": "<|im_end|>",
+  "eos_token_id": 151645,
+  "cpt_limit": 2048,
+  "sft_limit": 1024,
+  "counts": {
+    "cpt_text": {
+      "train": 36,
+      "valid": 5,
+      "test": 8
+    },
+    "cpt_tokens": {
+      "train": 36,
+      "valid": 5,
+      "test": 8
+    },
+    "sft_messages": {
+      "train": 27,
+      "valid": 1,
+      "test": 2
+    },
+    "sft_tokens": {
+      "train": 27,
+      "valid": 1,
+      "test": 2
+    },
+    "metadata_messages": {
+      "train": 20,
+      "valid": 4,
+      "test": 4
+    },
+    "metadata_tokens": {
+      "train": 20,
+      "valid": 4,
+      "test": 4
+    }
+  },
+  "maximum_tokens": {
+    "cpt_tokens": 2042,
+    "sft_tokens": 370,
+    "metadata_tokens": 191
+  },
+  "quarantine_reasons": {
+    "short_fragment_or_label": 5,
+    "outside_scientific_sections": 456,
+    "formula_or_image_requires_visual_review": 89,
+    "figure_or_table_context": 19
+  },
+  "source_assignment": {
+    "MET001": "train",
+    "MET002": "train",
+    "thermal_en_prediction": "train",
+    "thermal_en_critical": "train",
+    "thermal_en_flow": "train",
+    "MET003": "valid",
+    "MET004": "test"
+  },
+  "packing": "whole contiguous paragraphs within one source, without overlap; no SFT packing or padding",
+  "sft_labels": "assistant content plus its EOS only; system/user/assistant header/trailing newline use -100",
+  "cpt_labels": "every token including one EOS per row; no chat template",
+  "sft_default": "technical explanations only; metadata is an optional separate curriculum, not mixed by default",
+  "input_hashes": {
+    "format_qwen.py": "aaf3e47551b4a5d0f602a39dd5793c7c0ee2a187249a8f9dc2c3b0cebca3b5a6",
+    "format-input/corrections.json": "b1c2244517f813ce3699c67944aff3ffba5aceb5d2c9237346333e57a7f085aa",
+    "format-input/MET004.license.txt": "6e4f38e0e2951dea5aeebf2a942de30d9743c5a282eebb31314b40d81d79b87b",
+    "input/snapshots/full_00.html": "98a88a8b21db3b142604c64e84ba501305acde7030913c9ef711e5587dc18b26",
+    "input/snapshots/full_01.html": "eb880ab4ba630b926aae42940106eab6dc2162bb647a376036bf6b776c75c1ee",
+    "input/snapshots/full_02.html": "f9a495279d44d349f3ddd90e5e79768befb74810a4109e630d7727683bc1e0de",
+    "format-input/met004-correct-article.html": "08587a4872e370f01a3cd59ccee95118f48bddf127c8771876821542c40040f9",
+    "input/snapshots/thermal_en_prediction.html": "3ba97fd683553f5a889b89bacab87e73fefcdc3ed13bc96b369be16ec765ca35",
+    "input/snapshots/thermal_en_critical.html": "fe4f425ac6edeb55c1021891f67fdb69d0e75d108878f6bdadfa85d9788e4fcd",
+    "input/snapshots/thermal_en_flow.html": "3173a1168ca84af4d0ba07a8ccffde45457d9477ba165dc0333ca94f0772a06b"
+  },
+  "output_hashes": {
+    "cpt-provenance.jsonl": "bea898fcf5a0f2841076d57b410a5906323ad4349648b53f3dfdc5c932d7cbf4",
+    "cpt_text/test.jsonl": "26aba779ac2dfd7cfd076db044eb470eb6ded8cf427232711a1ab751f8f36920",
+    "cpt_text/train.jsonl": "22edb2e3057f63e2d8480c87347e5e56234078027411a0271220aa92a44a6698",
+    "cpt_text/valid.jsonl": "3fc06f12e0fc881c4863a4e495290425d797a9ec3fffea3d5afc0aed1ba455ce",
+    "cpt_tokens/test.jsonl": "8e52589a29541386053d7044bd449e6a8889ef791638a2a479b972d8862d33a0",
+    "cpt_tokens/train.jsonl": "f628f4d223878678eacaa78a62834fda7e750c539f3d1aa17ab7765a4cd812ec",
+    "cpt_tokens/valid.jsonl": "4225c1195d35f43a2a5e22e92619f46f564596ab08aae0d7b0e435a9bedb2ded",
+    "dataset_info.json": "0338ef4356274fb9fbc72460c03fb1d9cb55171df251f18aaf1b32c6cb881e90",
+    "metadata_messages/test.jsonl": "6ace9d22a076d294009234c75ca804a263b854eb046d8ee79014bb10b40c9b8f",
+    "metadata_messages/train.jsonl": "45b3adc3c557cec94330ff4a171e04e9f31c3d14a98a8938f241fe8ad13a3472",
+    "metadata_messages/valid.jsonl": "8d5758b1a75ab2348964c091abbe4b179c1c9c23f1c1aadff30528a279c2b952",
+    "metadata_tokens/test.jsonl": "d19aeb287920e789defebb968ac448534873c43b6bcf8def842db25d051ace0c",
+    "metadata_tokens/train.jsonl": "c5c67196fe92d612d5dd86e39bfc3d3a8449291b796aba83df944f247e966daa",
+    "metadata_tokens/valid.jsonl": "4b2b195ffaa2d2ee487a876d6a93b63322ccd4c4c9b815619f968acb17c254ef",
+    "quarantine.jsonl": "54b08a70e7f2ce7d8ffe1d7e2562c5cb855b61ab729c9ae0c7877420db69f94d",
+    "sft-provenance.jsonl": "578f7eede63d3ff21667a2137d3cff2a4c48a4bccfb64c77d24e5689663e1b86",
+    "sft_messages/test.jsonl": "04dd203ad28b53b678f599cfd7f8df65e1c0960e03a64d77e4ca60ba184b3b19",
+    "sft_messages/train.jsonl": "4f672e41ce2a0092d147c1d7731ee31750da90fe8457fc2c77d9d7c83f902fe7",
+    "sft_messages/valid.jsonl": "d57f60a5522595ec4936131656f973e6ace4485afef43834b77927b8096e148e",
+    "sft_tokens/test.jsonl": "ceb34305e99289b2c5ca4280577b53117ee98ea981eefa8f0512a0029c626eb4",
+    "sft_tokens/train.jsonl": "e3ea27b33820c803c40f34a21457b0e89e956b07dcd3a9edb8e5d5e9f0ec4298",
+    "sft_tokens/valid.jsonl": "f2a18718a1d6588f87d198a43b201a71c319357707e25344a5672977e22827da",
+    "sources.json": "b7c7dd7f8469c79bd32b91f1a08aef3d2af1a444e530f9340a4f2e14cde07313"
+  },
+  "expert_validated": false,
+  "training_run": false,
+  "limits": [
+    "No universal optimal format; tokenized exports are bound to this exact tokenizer/template.",
+    "Formula detection is conservative and incomplete; other numerical claims still need review.",
+    "SFT targets are synthetic; supplied bibliographic references do not constitute passage-level evidence.",
+    "Technical SFT validation/test are very small; no measured model performance is claimed."
+  ]
+}
