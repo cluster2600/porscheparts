@@ -1,5 +1,9 @@
 # M64 cylinder head twin
 
+The [catalogue-led creation work package](CREATION.md) registers this head as
+the first part, links the retained CAD and interface work, and records the
+PorscheFanatics/manufacturer comparison without importing unverified dimensions.
+
 ## Product target — complete finned four-valve head
 
 The user's reference, reaffirmed on 27 September 2026, is the individual,

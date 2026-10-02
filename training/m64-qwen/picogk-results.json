@@ -1,0 +1,1124 @@
+{
+  "manifest": {
+    "model": {
+      "repository": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+      "revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+      "weights_sha256": "daeab4764fb420d161721791cf2e509e2de81a7af4223646e7bed2bf82c57b58",
+      "upstream_repository": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+      "upstream_revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+      "license": "Apache-2.0",
+      "quantization_bits": 4,
+      "mlx_lm_version": "0.31.3",
+      "training": {
+        "iters": 60,
+        "batch_size": 1,
+        "num_layers": 4,
+        "learning_rate": 0.0001,
+        "max_seq_length": 512,
+        "seed": 42,
+        "fine_tune_type": "lora",
+        "mask_prompt": true
+      }
+    },
+    "dataset_sha256": "1374de37ec6b9eaae069a36ce58f1b5bd6d5684ecb33a1557e20f16d0c972994",
+    "source_sha256": "ef0c1c56cad550538bdfcb3465bd94bfbc0ea9c0fcdafc56b95126119a704d6c",
+    "dll_sha256": "710c4e0428efbe9c1cd1db1663247b45604f96d167a6726782ab8ddca350565a",
+    "native_sha256": "5c1cd3fc12766a85bc5c1441a95f065fb274338d1333c3ae2d3396b59d0e18e7",
+    "picogk_revision": "0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3",
+    "sdk": "9.0.317",
+    "counts": {
+      "train": 64,
+      "valid": 8,
+      "test": 16
+    },
+    "max_sequence_tokens": 437,
+    "iterations": 100,
+    "seed": 42,
+    "learning_rate": 0.0001,
+    "num_layers": 4,
+    "max_seq_length": 1024,
+    "max_generation_tokens": 512,
+    "training_license": "New synthetic examples, repository proprietary license; local owner-authorized training",
+    "promotion_rule": "All 16 semantic, compile and native checks pass; strict improvement; no per-case regression",
+    "limitations": "Shared graph specification format; composition holdout is small. Not arbitrary PicoGK programs or engineering validation."
+  },
+  "comparison": {
+    "base": {
+      "contract_passed": 0,
+      "semantic_passed": 0,
+      "compiled": 0,
+      "native_passed": 0,
+      "passed": 0
+    },
+    "adapter": {
+      "contract_passed": 16,
+      "semantic_passed": 8,
+      "compiled": 16,
+      "native_passed": 16,
+      "passed": 8
+    },
+    "total": 16,
+    "regressions": [],
+    "decision": "keep_base",
+    "adapter_sha256": "a50561618f4d17da5d4ea2c70014dc7d1af3e6d09eedf3f3b8c21d6395b06de4"
+  },
+  "base": [
+    {
+      "id": "test-000",
+      "group": "parameter_holdout",
+      "response": "lattice.AddBeam(new Vector3(-10.0, 0, -2), 4.0 / 2.0, new Vector3(10.0, 0, -2), 4.0 / 2.0, true);",
+      "seconds": 0.7658424169640057,
+      "contract_passed": false,
+      "semantic_passed": false,
+      "compiled": false,
+      "native_passed": false,
+      "error": "invalid or empty literal code",
+      "passed": false
+    },
+    {
+      "id": "test-001",
+      "group": "parameter_holdout",
+      "response": "lattice.AddBeam(new Vector3(-10.5, 0, -1), 4f, new Vector3(10.5, 0, -1), 5f, false);",
+      "seconds": 0.3973231670097448,
+      "contract_passed": false,
+      "semantic_passed": false,
+      "compiled": false,
+      "native_passed": false,
+      "error": "invalid or empty literal code",
+      "passed": false
+    },
+    {
+      "id": "test-002",
+      "group": "parameter_holdout",
+      "response": "lattice.AddBeam(new Vector3(-11.0, 0, 0), 4.0f, new Vector3(11.0, 0, 0), 4.0f, true);\nlattice.AddBeam(new Vector3(11.0, 0, 0), 4.0f, new Vector3(11.0, 10, 0), 4.0f, true);\nlattice.AddBeam(new Vector3(11.0, 10, 0), 4.0f, new Vector3(-11.0, 10, 0), 4.0f, true);\nlattice.AddBeam(new Vector3(-11.0, 10, 0), 4.0f, new Vector3(-11.0, 0, 0), 4.0f, true);",
+      "seconds": 1.1394286670256406,
+      "contract_passed": false,
+      "semantic_passed": false,
+      "compiled": false,
+      "native_passed": false,
+      "error": "invalid or empty literal code",
+      "passed": false
+    },
+    {
+      "id": "test-003",
+      "group": "parameter_holdout",
+      "response": "lattice.AddBeam(new Vector3(-11.5, 0, 1), 4f, new Vector3(11.5, 0, 1), 4f, false);",
+      "seconds": 0.3996993750333786,
+      "contract_passed": false,
+      "semantic_passed": false,
+      "compiled": false,
+      "native_passed": false,
+      "error": "invalid or empty literal code",
+      "passed": false
+    },
+    {
+      "id": "test-004",
+      "group": "parameter_holdout",
+      "response": "lattice.AddBeam(new Vector3(-12.0, 0, 2), 5 / 2, new Vector3(12.0, 0, 2), 6 / 2, true);",
+      "seconds": 0.417157459014561,
+      "contract_passed": false,
+      "semantic_passed": false,
+      "compiled": false,
+      "native_passed": false,
+      "error": "invalid or empty literal code",
+      "passed": false
+    },
+    {
+      "id": "test-005",
+      "group": "parameter_holdout",
+      "response": "lattice.AddBeam(new Vector3(-12.5, 0, -2), 5f, new Vector3(12.5, 0, -2), 5f, false);  \nlattice.AddBeam(new Vector3(12.5, 0, -2), 5f, new Vector3(12.5, 13, -2), 5f, false);",
+      "seconds": 0.6216959159937687,
+      "contract_passed": false,
+      "semantic_passed": false,
+      "compiled": false,
+      "native_passed": false,
+      "error": "invalid or empty literal code",
+      "passed": false
+    },
+    {
+      "id": "test-006",
+      "group": "parameter_holdout",
+      "response": "lattice.AddBeam(new Vector3(-13.0, 0, -1), 5f / 2f, new Vector3(13.0, 0, -1), 5f / 2f, true);\nlattice.AddBeam(new Vector3(13.0, 0, -1), 5f / 2f, new Vector3(13.0, 14, -1), 5f / 2f, true);\nlattice.AddBeam(new Vector3(13.0, 14, -1), 5f / 2f, new Vector3(-13.0, 14, -1), 5f / 2f, true);\nlattice.AddBeam(new Vector3(-13.0, 14, -1), 5f / 2f, new Vector3(-13.0, 0, -1), 5f / 2f, true);",
+      "seconds": 1.2138076669652946,
+      "contract_passed": false,
+      "semantic_passed": false,
+      "compiled": false,
+      "native_passed": false,
+      "error": "invalid or empty literal code",
+      "passed": false
+    },
+    {
+      "id": "test-007",
+      "group": "parameter_holdout",
+      "response": "lattice.AddBeam(new Vector3(-13.5, 0, 0), 5 / 2, new Vector3(13.5, 0, 0), 5 / 2, false);\nlattice.AddBeam(new Vector3(13.5, 0, 0), 6 / 2, new Vector3(13.5, 15, 0), 6 / 2, false);\nlattice.AddBeam(new Vector3(13.5, 15, 0), -13.5, 15, 0), 6 / 2, false);\nlattice.AddBeam(new Vector3(-13.5, 15, 0), -13.5, 0, 0), 6 / 2, false);",
+      "seconds": 1.0536117080482654,
+      "contract_passed": false,
+      "semantic_passed": false,
+      "compiled": false,
+      "native_passed": false,
+      "error": "invalid or empty literal code",
+      "passed": false
+    },
+    {
+      "id": "test-008",
+      "group": "composition_holdout",
+      "response": "lattice.AddBeam(new Vector3(-14.0, 0, 1), 2.0, new Vector3(-14.0, 8.0, 16), 2.0, true);\nlattice.AddBeam(new Vector3(14.0, 0, 1), 2.0, new Vector3(14.0, 8.0, 16), 2.0, true);\nlattice.AddBeam(new Vector3(14.0, 16, 1), 2.0, new Vector3(14.0, 8.0, 16), 2.0, true);",
+      "seconds": 0.9039744579931721,
+      "contract_passed": false,
+      "semantic_passed": false,
+      "compiled": false,
+      "native_passed": false,
+      "error": "invalid or empty literal code",
+      "passed": false
+    },
+    {
+      "id": "test-009",
+      "group": "composition_holdout",
+      "response": "lattice.AddBeam(new Vector3(-5.0, 0, 2), 1.0, new Vector3(5.0, 0, 2), 1.0, false);  \nlattice.AddBeam(new Vector3(5.0, 0, 2), 1.0, new Vector3(5.0, 6, 2), 1.0, false);  \nlattice.AddBeam(new Vector3(5.0, 6, 2), 1.0, new Vector3(-5.0, 6, 2), 1.0, false);",
+      "seconds": 0.8383489999687299,
+      "contract_passed": false,
+      "semantic_passed": false,
+      "compiled": false,
+      "native_passed": false,
+      "error": "invalid or empty literal code",
+      "passed": false
+    },
+    {
+      "id": "test-010",
+      "group": "composition_holdout",
+      "response": "lattice.AddBeam(new Vector3(-5.5, 0, -2), 1, new Vector3(-5.5, 0, -2), 1, true);\nlattice.AddBeam(new Vector3(5.5, 0, -2), 1, new Vector3(5.5, 0, -2), 1, true);\nlattice.AddBeam(new Vector3(5.5, 7, -2), 1, new Vector3(5.5, 7, -2), 1, true);\nlattice.AddBeam(new Vector3(0, 3.5, 18), 1, new Vector3(0, 3.5, 18), 1, true);",
+      "seconds": 0.9759561250102706,
+      "contract_passed": false,
+      "semantic_passed": false,
+      "compiled": false,
+      "native_passed": false,
+      "error": "invalid or empty literal code",
+      "passed": false
+    },
+    {
+      "id": "test-011",
+      "group": "composition_holdout",
+      "response": "lattice.AddBeam(new Vector3(-6.0, 0, -1), 2.0, new Vector3(6.0, 0, -1), 2.0, false);\nlattice.AddBeam(new Vector3(6.0, 0, -1), 2.0, new Vector3(6.0, 8, -1), 2.0, false);\nlattice.AddBeam(new Vector3(6.0, 8, -1), 2.0, new Vector3(-6.0, 8, -1), 2.0, false);",
+      "seconds": 0.8330485000042245,
+      "contract_passed": false,
+      "semantic_passed": false,
+      "compiled": false,
+      "native_passed": false,
+      "error": "invalid or empty literal code",
+      "passed": false
+    },
+    {
+      "id": "test-012",
+      "group": "composition_holdout",
+      "response": "lattice.AddBeam(new Vector3(-6.5, 0, 0), 3, new Vector3(-6.5, 0, 0), 3, true);\nlattice.AddBeam(new Vector3(6.5, 0, 0), 3, new Vector3(6.5, 0, 0), 3, true);\nlattice.AddBeam(new Vector3(6.5, 9, 0), 3, new Vector3(6.5, 9, 0), 3, true);\nlattice.AddBeam(new Vector3(0, 4.5, 20), 3, new Vector3(0, 4.5, 20), 3, true);",
+      "seconds": 0.9734944999800064,
+      "contract_passed": false,
+      "semantic_passed": false,
+      "compiled": false,
+      "native_passed": false,
+      "error": "invalid or empty literal code",
+      "passed": false
+    },
+    {
+      "id": "test-013",
+      "group": "composition_holdout",
+      "response": "lattice.AddBeam(new Vector3(-7.0, 0, 1), 3.0 / 2, new Vector3(7.0, 0, 1), 3.0 / 2, false);\nlattice.AddBeam(new Vector3(7.0, 0, 1), 4.0 / 2, new Vector3(7.0, 10, 1), 4.0 / 2, false);\nlattice.AddBeam(new Vector3(7.0, 10, 1), 3.0 / 2, new Vector3(-7.0, 10, 1), 3.0 / 2, false);",
+      "seconds": 0.9295224170200527,
+      "contract_passed": false,
+      "semantic_passed": false,
+      "compiled": false,
+      "native_passed": false,
+      "error": "invalid or empty literal code",
+      "passed": false
+    },
+    {
+      "id": "test-014",
+      "group": "composition_holdout",
+      "response": "lattice.AddBeam(new Vector3(-7.5, 0, 2), 3f, new Vector3(-7.5, 0, 2), 3f, true);\nlattice.AddBeam(new Vector3(7.5, 0, 2), 3f, new Vector3(7.5, 0, 2), 3f, true);\nlattice.AddBeam(new Vector3(7.5, 11, 2), 3f, new Vector3(7.5, 11, 2), 3f, true);\nlattice.AddBeam(new Vector3(0, 5.5, 22), 3f, new Vector3(0, 5.5, 22), 3f, true);",
+      "seconds": 1.0226659999461845,
+      "contract_passed": false,
+      "semantic_passed": false,
+      "compiled": false,
+      "native_passed": false,
+      "error": "invalid or empty literal code",
+      "passed": false
+    },
+    {
+      "id": "test-015",
+      "group": "composition_holdout",
+      "response": "lattice.AddBeam(new Vector3(-8.0, 0, -2), 3.0f, new Vector3(8.0, 0, -2), 3.0f, false);\nlattice.AddBeam(new Vector3(8.0, 0, -2), 3.0f, new Vector3(8.0, 12, -2), 3.0f, false);\nlattice.AddBeam(new Vector3(8.0, 12, -2), 3.0f, new Vector3(-8.0, 12, -2), 3.0f, false);",
+      "seconds": 0.8726348340278491,
+      "contract_passed": false,
+      "semantic_passed": false,
+      "compiled": false,
+      "native_passed": false,
+      "error": "invalid or empty literal code",
+      "passed": false
+    }
+  ],
+  "adapter": [
+    {
+      "id": "test-000",
+      "group": "parameter_holdout",
+      "response": "lattice.AddBeam(new Vector3(-10f, 0f, -2f), 2f, new Vector3(10f, 0f, -2f), 2f, true);",
+      "seconds": 0.6142837920342572,
+      "contract_passed": true,
+      "semantic_passed": true,
+      "compiled": true,
+      "native_passed": true,
+      "metrics": {
+        "volume": 280.93655,
+        "triangles": 3468,
+        "min": [
+          -12,
+          -2,
+          -4
+        ],
+        "max": [
+          12,
+          2,
+          2.2351742e-08
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "test-001",
+      "group": "parameter_holdout",
+      "response": "lattice.AddBeam(new Vector3(-10.5f, 0f, -1f), 2f, new Vector3(10.5f, 0f, -1f), 2.5f, false);\nlattice.AddBeam(new Vector3(10.5f, 0f, -1f), 2f, new Vector3(10.5f, 9f, -1f), 2.5f, false);",
+      "seconds": 0.9715482920291834,
+      "contract_passed": true,
+      "semantic_passed": true,
+      "compiled": true,
+      "native_passed": true,
+      "metrics": {
+        "volume": 456.9356,
+        "triangles": 4448,
+        "min": [
+          -10.5,
+          -2.4565558,
+          -3.4565558
+        ],
+        "max": [
+          12.932453,
+          9,
+          1.4565558
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "test-002",
+      "group": "parameter_holdout",
+      "response": "lattice.AddBeam(new Vector3(-11f, 0f, 0f), 2f, new Vector3(11f, 0f, 0f), 2f, true);\nlattice.AddBeam(new Vector3(11f, 0f, 0f), 2f, new Vector3(11f, 10f, 0f), 2f, true);\nlattice.AddBeam(new Vector3(11f, 10f, 0f), 2f, new Vector3(-11f, 10f, 0f), 2f, true);\nlattice.AddBeam(new Vector3(-11f, 10f, 0f), 2f, new Vector3(-11f, 0f, 0f), 2f, true);",
+      "seconds": 1.5126499999896623,
+      "contract_passed": true,
+      "semantic_passed": true,
+      "compiled": true,
+      "native_passed": true,
+      "metrics": {
+        "volume": 787.0956,
+        "triangles": 9088,
+        "min": [
+          -13,
+          -2,
+          -2
+        ],
+        "max": [
+          13,
+          12,
+          2
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "test-003",
+      "group": "parameter_holdout",
+      "response": "lattice.AddBeam(new Vector3(-11.5f, 0f, 1f), 2f, new Vector3(11.5f, 11f, 1f), 2f, false);\nlattice.AddBeam(new Vector3(11.5f, 0f, 1f), 2f, new Vector3(-11.5f, 11f, 1f), 2f, false);",
+      "seconds": 0.9033572909538634,
+      "contract_passed": true,
+      "semantic_passed": true,
+      "compiled": true,
+      "native_passed": true,
+      "metrics": {
+        "volume": 575.2014,
+        "triangles": 6524,
+        "min": [
+          -12.108696,
+          -1.6015614,
+          -0.9842152
+        ],
+        "max": [
+          12.108696,
+          12.601564,
+          2.9842153
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "test-004",
+      "group": "parameter_holdout",
+      "response": "lattice.AddBeam(new Vector3(-12f, 0f, 2f), 2.5f, new Vector3(12f, 0f, 2f), 3f, true);",
+      "seconds": 0.5231354999705218,
+      "contract_passed": true,
+      "semantic_passed": true,
+      "compiled": true,
+      "native_passed": true,
+      "metrics": {
+        "volume": 656.37836,
+        "triangles": 5380,
+        "min": [
+          -14.448919,
+          -2.9740431,
+          -0.9740432
+        ],
+        "max": [
+          14.957742,
+          2.9740431,
+          4.9740434
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "test-005",
+      "group": "parameter_holdout",
+      "response": "lattice.AddBeam(new Vector3(-12.5f, 0f, -2f), 2.5f, new Vector3(12.5f, 0f, -2f), 2.5f, false);\nlattice.AddBeam(new Vector3(12.5f, 0f, -2f), 2.5f, new Vector3(12.5f, 13f, -2f), 2.5f, false);",
+      "seconds": 0.9173690000316128,
+      "contract_passed": true,
+      "semantic_passed": true,
+      "compiled": true,
+      "native_passed": true,
+      "metrics": {
+        "volume": 713.0541,
+        "triangles": 6944,
+        "min": [
+          -12.5,
+          -2.500002,
+          -4.500002
+        ],
+        "max": [
+          15,
+          13,
+          0.5000019
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "test-006",
+      "group": "parameter_holdout",
+      "response": "lattice.AddBeam(new Vector3(-13f, 0f, -1f), 2.5f, new Vector3(13f, 0f, -1f), 2.5f, true);\nlattice.AddBeam(new Vector3(13f, 0f, -1f), 2.5f, new Vector3(13f, 14f, -1f), 2.5f, true);\nlattice.AddBeam(new Vector3(13f, 14f, -1f), 2.5f, new Vector3(-13f, 14f, -1f), 2.5f, true);\nlattice.AddBeam(new Vector3(-13f, 14f, -1f), 2.5f, new Vector3(-13f, 0f, -1f), 2.5f, true);",
+      "seconds": 1.583738999965135,
+      "contract_passed": true,
+      "semantic_passed": true,
+      "compiled": true,
+      "native_passed": true,
+      "metrics": {
+        "volume": 1536.342,
+        "triangles": 12464,
+        "min": [
+          -15.5,
+          -2.5,
+          -3.5
+        ],
+        "max": [
+          15.5,
+          16.5,
+          1.5
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "test-007",
+      "group": "parameter_holdout",
+      "response": "lattice.AddBeam(new Vector3(-13.5f, 0f, 0f), 2.5f, new Vector3(13.5f, 15f, 0f), 3f, false);\nlattice.AddBeam(new Vector3(13.5f, 0f, 0f), 2.5f, new Vector3(-13.5f, 15f, 0f), 3f, false);",
+      "seconds": 0.9819719160441309,
+      "contract_passed": true,
+      "semantic_passed": true,
+      "compiled": true,
+      "native_passed": true,
+      "metrics": {
+        "volume": 1331.0391,
+        "triangles": 11916,
+        "min": [
+          -14.744237,
+          -2.0108554,
+          -2.9728916
+        ],
+        "max": [
+          14.744237,
+          17.534246,
+          2.9728916
+        ]
+      },
+      "passed": true
+    },
+    {
+      "id": "test-008",
+      "group": "composition_holdout",
+      "response": "lattice.AddBeam(new Vector3(-14f, 0f, 1f), 1f, new Vector3(14f, 0f, 1f), 1f, true);\nlattice.AddBeam(new Vector3(14f, 0f, 1f), 1f, new Vector3(14f, 16f, 1f), 1f, true);\nlattice.AddBeam(new Vector3(14f, 16f, 1f), 1f, new Vector3(0f, 8f, 16f), 1f, true);",
+      "seconds": 1.171451541944407,
+      "contract_passed": true,
+      "semantic_passed": false,
+      "compiled": true,
+      "native_passed": true,
+      "metrics": {
+        "volume": 201.84167,
+        "triangles": 4848,
+        "min": [
+          -15,
+          -1,
+          -1.0244548e-08
+        ],
+        "max": [
+          15,
+          16.880188,
+          16.85296
+        ]
+      },
+      "passed": false
+    },
+    {
+      "id": "test-009",
+      "group": "composition_holdout",
+      "response": "lattice.AddBeam(new Vector3(-5f, 0f, 2f), 1f, new Vector3(5f, 0f, 2f), 1f, false);\nlattice.AddBeam(new Vector3(5f, 0f, 2f), 1f, new Vector3(5f, 6f, 2f), 1f, false);\nlattice.AddBeam(new Vector3(5f, 6f, 2f), 1f, new Vector3(-5f, 6f, 2f), 1f, false);",
+      "seconds": 1.1208919580094516,
+      "contract_passed": true,
+      "semantic_passed": false,
+      "compiled": true,
+      "native_passed": true,
+      "metrics": {
+        "volume": 73.38313,
+        "triangles": 1784,
+        "min": [
+          -5,
+          -1.0000008,
+          0.9999991
+        ],
+        "max": [
+          6,
+          7.000001,
+          3.000001
+        ]
+      },
+      "passed": false
+    },
+    {
+      "id": "test-010",
+      "group": "composition_holdout",
+      "response": "lattice.AddBeam(new Vector3(-5.5f, 0f, -2f), 1f, new Vector3(5.5f, 0f, -2f), 1.5f, true);\nlattice.AddBeam(new Vector3(5.5f, 0f, -2f), 1f, new Vector3(5.5f, 7f, -2f), 1.5f, true);\nlattice.AddBeam(new Vector3(5.5f, 7f, -2f), 1f, new Vector3(0f, 3.5f, 18f), 1.5f, true);",
+      "seconds": 1.216880374995526,
+      "contract_passed": true,
+      "semantic_passed": false,
+      "compiled": true,
+      "native_passed": true,
+      "metrics": {
+        "volume": 203.05492,
+        "triangles": 3732,
+        "min": [
+          -6.5,
+          -1.5,
+          -3.5
+        ],
+        "max": [
+          7,
+          8.5,
+          19.410557
+        ]
+      },
+      "passed": false
+    },
+    {
+      "id": "test-011",
+      "group": "composition_holdout",
+      "response": "lattice.AddBeam(new Vector3(-6f, 0f, -1f), 1f, new Vector3(6f, 0f, -1f), 1f, false);\nlattice.AddBeam(new Vector3(6f, 0f, -1f), 1f, new Vector3(6f, 8f, -1f), 1f, false);\nlattice.AddBeam(new Vector3(6f, 8f, -1f), 1f, new Vector3(-6f, 8f, -1f), 1f, false);",
+      "seconds": 1.0950832919916138,
+      "contract_passed": true,
+      "semantic_passed": false,
+      "compiled": true,
+      "native_passed": true,
+      "metrics": {
+        "volume": 90.46213,
+        "triangles": 2020,
+        "min": [
+          -6,
+          -1.0000013,
+          -2.0000012
+        ],
+        "max": [
+          6.92819,
+          9.000001,
+          1.2715624e-06
+        ]
+      },
+      "passed": false
+    },
+    {
+      "id": "test-012",
+      "group": "composition_holdout",
+      "response": "lattice.AddBeam(new Vector3(-6.5f, 0f, 0f), 1.5f, new Vector3(6.5f, 0f, 0f), 1.5f, true);\nlattice.AddBeam(new Vector3(6.5f, 0f, 0f), 1.5f, new Vector3(6.5f, 9f, 0f), 1.5f, true);\nlattice.AddBeam(new Vector3(6.5f, 9f, 0f), 1.5f, new Vector3(0f, 4.5f, 20f), 1.5f, true);",
+      "seconds": 1.268716459046118,
+      "contract_passed": true,
+      "semantic_passed": false,
+      "compiled": true,
+      "native_passed": true,
+      "metrics": {
+        "volume": 311.06335,
+        "triangles": 4392,
+        "min": [
+          -7.910556,
+          -1.4561985,
+          -1.4780992
+        ],
+        "max": [
+          7.9567566,
+          10.4247465,
+          21.410557
+        ]
+      },
+      "passed": false
+    },
+    {
+      "id": "test-013",
+      "group": "composition_holdout",
+      "response": "lattice.AddBeam(new Vector3(-7f, 0f, 1f), 1.5f, new Vector3(7f, 0f, 1f), 2f, false);\nlattice.AddBeam(new Vector3(7f, 0f, 1f), 1.5f, new Vector3(7f, 10f, 1f), 2f, false);\nlattice.AddBeam(new Vector3(7f, 10f, 1f), 1.5f, new Vector3(-7f, 10f, 1f), 2f, false);",
+      "seconds": 1.135702166997362,
+      "contract_passed": true,
+      "semantic_passed": false,
+      "compiled": true,
+      "native_passed": true,
+      "metrics": {
+        "volume": 347.1054,
+        "triangles": 4308,
+        "min": [
+          -7,
+          -1.9406359,
+          -0.94063586
+        ],
+        "max": [
+          8.929704,
+          11.940636,
+          2.940636
+        ]
+      },
+      "passed": false
+    },
+    {
+      "id": "test-014",
+      "group": "composition_holdout",
+      "response": "lattice.AddBeam(new Vector3(-7.5f, 0f, 2f), 1.5f, new Vector3(7.5f, 0f, 2f), 1.5f, true);\nlattice.AddBeam(new Vector3(7.5f, 0f, 2f), 1.5f, new Vector3(7.5f, 11f, 2f), 1.5f, true);\nlattice.AddBeam(new Vector3(7.5f, 11f, 2f), 1.5f, new Vector3(0f, 5.5f, 22f), 1.5f, true);",
+      "seconds": 1.2562332910019904,
+      "contract_passed": true,
+      "semantic_passed": false,
+      "compiled": true,
+      "native_passed": true,
+      "metrics": {
+        "volume": 343.2206,
+        "triangles": 5172,
+        "min": [
+          -8.910556,
+          -1.5,
+          0.49999997
+        ],
+        "max": [
+          9,
+          12.5,
+          23.410557
+        ]
+      },
+      "passed": false
+    },
+    {
+      "id": "test-015",
+      "group": "composition_holdout",
+      "response": "lattice.AddBeam(new Vector3(-8f, 0f, -2f), 1.5f, new Vector3(8f, 0f, -2f), 1.5f, false);\nlattice.AddBeam(new Vector3(8f, 0f, -2f), 1.5f, new Vector3(8f, 12f, -2f), 1.5f, false);\nlattice.AddBeam(new Vector3(8f, 12f, -2f), 1.5f, new Vector3(-8f, 12f, -2f), 1.5f, false);",
+      "seconds": 1.221722292015329,
+      "contract_passed": true,
+      "semantic_passed": false,
+      "compiled": true,
+      "native_passed": true,
+      "metrics": {
+        "volume": 290.75797,
+        "triangles": 3724,
+        "min": [
+          -8,
+          -1.4561985,
+          -3.5000007
+        ],
+        "max": [
+          9.500001,
+          13.456199,
+          -0.49999917
+        ]
+      },
+      "passed": false
+    }
+  ],
+  "supplemental_compilation": {
+    "note": "Supplemental compilation of unchanged saved responses, including contract rejects. No rejected source executed. No retraining or prompt changes.",
+    "evaluator_sha256": "d5634d1d7ecbb18ede5b1b6fa55655ea5c112bd27e518a8ebff159c74b79f428",
+    "cases": [
+      {
+        "model": "base",
+        "id": "test-000",
+        "compiled": false
+      },
+      {
+        "model": "base",
+        "id": "test-001",
+        "compiled": false
+      },
+      {
+        "model": "base",
+        "id": "test-002",
+        "compiled": false
+      },
+      {
+        "model": "base",
+        "id": "test-003",
+        "compiled": false
+      },
+      {
+        "model": "base",
+        "id": "test-004",
+        "compiled": false
+      },
+      {
+        "model": "base",
+        "id": "test-005",
+        "compiled": false
+      },
+      {
+        "model": "base",
+        "id": "test-006",
+        "compiled": false
+      },
+      {
+        "model": "base",
+        "id": "test-007",
+        "compiled": false
+      },
+      {
+        "model": "base",
+        "id": "test-008",
+        "compiled": false
+      },
+      {
+        "model": "base",
+        "id": "test-009",
+        "compiled": false
+      },
+      {
+        "model": "base",
+        "id": "test-010",
+        "compiled": false
+      },
+      {
+        "model": "base",
+        "id": "test-011",
+        "compiled": false
+      },
+      {
+        "model": "base",
+        "id": "test-012",
+        "compiled": false
+      },
+      {
+        "model": "base",
+        "id": "test-013",
+        "compiled": false
+      },
+      {
+        "model": "base",
+        "id": "test-014",
+        "compiled": false
+      },
+      {
+        "model": "base",
+        "id": "test-015",
+        "compiled": false
+      },
+      {
+        "model": "adapter",
+        "id": "test-000",
+        "compiled": true
+      },
+      {
+        "model": "adapter",
+        "id": "test-001",
+        "compiled": true
+      },
+      {
+        "model": "adapter",
+        "id": "test-002",
+        "compiled": true
+      },
+      {
+        "model": "adapter",
+        "id": "test-003",
+        "compiled": true
+      },
+      {
+        "model": "adapter",
+        "id": "test-004",
+        "compiled": true
+      },
+      {
+        "model": "adapter",
+        "id": "test-005",
+        "compiled": true
+      },
+      {
+        "model": "adapter",
+        "id": "test-006",
+        "compiled": true
+      },
+      {
+        "model": "adapter",
+        "id": "test-007",
+        "compiled": true
+      },
+      {
+        "model": "adapter",
+        "id": "test-008",
+        "compiled": true
+      },
+      {
+        "model": "adapter",
+        "id": "test-009",
+        "compiled": true
+      },
+      {
+        "model": "adapter",
+        "id": "test-010",
+        "compiled": true
+      },
+      {
+        "model": "adapter",
+        "id": "test-011",
+        "compiled": true
+      },
+      {
+        "model": "adapter",
+        "id": "test-012",
+        "compiled": true
+      },
+      {
+        "model": "adapter",
+        "id": "test-013",
+        "compiled": true
+      },
+      {
+        "model": "adapter",
+        "id": "test-014",
+        "compiled": true
+      },
+      {
+        "model": "adapter",
+        "id": "test-015",
+        "compiled": true
+      }
+    ]
+  },
+  "oracle_native": [
+    {
+      "id": "oracle-test-000",
+      "metrics": {
+        "volume": 280.93655,
+        "triangles": 3468,
+        "min": [
+          -12,
+          -2,
+          -4
+        ],
+        "max": [
+          12,
+          2,
+          2.2351742e-08
+        ]
+      }
+    },
+    {
+      "id": "oracle-test-001",
+      "metrics": {
+        "volume": 456.9356,
+        "triangles": 4448,
+        "min": [
+          -10.5,
+          -2.4565558,
+          -3.4565558
+        ],
+        "max": [
+          12.932453,
+          9,
+          1.4565558
+        ]
+      }
+    },
+    {
+      "id": "oracle-test-002",
+      "metrics": {
+        "volume": 787.0956,
+        "triangles": 9088,
+        "min": [
+          -13,
+          -2,
+          -2
+        ],
+        "max": [
+          13,
+          12,
+          2
+        ]
+      }
+    },
+    {
+      "id": "oracle-test-003",
+      "metrics": {
+        "volume": 575.2014,
+        "triangles": 6524,
+        "min": [
+          -12.108696,
+          -1.6015614,
+          -0.9842152
+        ],
+        "max": [
+          12.108696,
+          12.601564,
+          2.9842153
+        ]
+      }
+    },
+    {
+      "id": "oracle-test-004",
+      "metrics": {
+        "volume": 656.37836,
+        "triangles": 5380,
+        "min": [
+          -14.448919,
+          -2.9740431,
+          -0.9740432
+        ],
+        "max": [
+          14.957742,
+          2.9740431,
+          4.9740434
+        ]
+      }
+    },
+    {
+      "id": "oracle-test-005",
+      "metrics": {
+        "volume": 713.0541,
+        "triangles": 6944,
+        "min": [
+          -12.5,
+          -2.500002,
+          -4.500002
+        ],
+        "max": [
+          15,
+          13,
+          0.5000019
+        ]
+      }
+    },
+    {
+      "id": "oracle-test-006",
+      "metrics": {
+        "volume": 1536.342,
+        "triangles": 12464,
+        "min": [
+          -15.5,
+          -2.5,
+          -3.5
+        ],
+        "max": [
+          15.5,
+          16.5,
+          1.5
+        ]
+      }
+    },
+    {
+      "id": "oracle-test-007",
+      "metrics": {
+        "volume": 1331.0391,
+        "triangles": 11916,
+        "min": [
+          -14.744237,
+          -2.0108554,
+          -2.9728916
+        ],
+        "max": [
+          14.744237,
+          17.534246,
+          2.9728916
+        ]
+      }
+    },
+    {
+      "id": "oracle-test-008",
+      "metrics": {
+        "volume": 198.95305,
+        "triangles": 5124,
+        "min": [
+          -14.854905,
+          -0.8801879,
+          0.14704011
+        ],
+        "max": [
+          14.854905,
+          16.880188,
+          16.85296
+        ]
+      }
+    },
+    {
+      "id": "oracle-test-009",
+      "metrics": {
+        "volume": 73.77912,
+        "triangles": 1628,
+        "min": [
+          -5.223275,
+          -1.0000008,
+          0.9999991
+        ],
+        "max": [
+          6,
+          6.6166897,
+          3.000001
+        ]
+      }
+    },
+    {
+      "id": "oracle-test-010",
+      "metrics": {
+        "volume": 278.0551,
+        "triangles": 5084,
+        "min": [
+          -6.388721,
+          -0.91084725,
+          -2.8498755
+        ],
+        "max": [
+          6.388721,
+          7.910847,
+          19.410557
+        ]
+      }
+    },
+    {
+      "id": "oracle-test-011",
+      "metrics": {
+        "volume": 93.30756,
+        "triangles": 1964,
+        "min": [
+          -6.2572227,
+          -1.0000013,
+          -2.0000012
+        ],
+        "max": [
+          6.92819,
+          8.59874,
+          1.2715624e-06
+        ]
+      }
+    },
+    {
+      "id": "oracle-test-012",
+      "metrics": {
+        "volume": 436.36743,
+        "triangles": 6792,
+        "min": [
+          -7.914757,
+          -1.4247462,
+          -1.4105561
+        ],
+        "max": [
+          7.914757,
+          10.4247465,
+          21.410557
+        ]
+      }
+    },
+    {
+      "id": "oracle-test-013",
+      "metrics": {
+        "volume": 352.36032,
+        "triangles": 4384,
+        "min": [
+          -8.03392,
+          -1.9406359,
+          -0.946723
+        ],
+        "max": [
+          8.929704,
+          11.041111,
+          2.946723
+        ]
+      }
+    },
+    {
+      "id": "oracle-test-014",
+      "metrics": {
+        "volume": 452.82352,
+        "triangles": 7224,
+        "min": [
+          -9,
+          -1.4206461,
+          0.589444
+        ],
+        "max": [
+          9,
+          12.420646,
+          23.410557
+        ]
+      }
+    },
+    {
+      "id": "oracle-test-015",
+      "metrics": {
+        "volume": 303.09634,
+        "triangles": 4128,
+        "min": [
+          -8.625,
+          -1.4561985,
+          -3.5000007
+        ],
+        "max": [
+          9.500001,
+          13.034271,
+          -0.49999917
+        ]
+      }
+    }
+  ],
+  "effective_training": {
+    "batch_size": 1,
+    "fine_tune_type": "lora",
+    "grad_accumulation_steps": 1,
+    "iters": 100,
+    "learning_rate": 0.0001,
+    "lora_parameters": {
+      "rank": 8,
+      "dropout": 0.0,
+      "scale": 20.0
+    },
+    "mask_prompt": true,
+    "max_seq_length": 1024,
+    "num_layers": 4,
+    "optimizer": "adam",
+    "seed": 42
+  },
+  "training_metrics": {
+    "completion_tokens": 11408,
+    "final_training_loss": 0.003,
+    "final_validation_loss": 0.002,
+    "peak_allocation_gb": 1.965
+  }
+}
