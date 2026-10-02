@@ -21,7 +21,15 @@ remplace ni la référence retenue ni une CAO M64 qualifiée.
 
 ![Détails des ouvertures latérales et des quatre logements, sans soupapes](../media/m64-volume-failures-20261002/candidate-openings.png)
 
-**Dernière série, 2 octobre : avec propagation des tailles de bord, HXT exporte
+**Dernière série, 2 octobre : l'optimisation intégrée HXT ramène les refus à
+118 / 6 879 702 tétraèdres, sur la même surface exacte que la série à 23 279.**
+Connexité, volumes positifs et correspondance de frontière passent l'audit
+séparé. La qualité minimale reste insuffisante ; ce candidat ne remplace pas
+la référence et n'autorise pas la fabrication. Une optimisation générique
+supplémentaire régresse à 282 refus et est rejetée.
+Voir [les contrôles complets et le rendu réel des 118 cellules](#2-octobre--optimisation-hxt-et-audit-indexé-complet).
+
+**Série précédente, 2 octobre : avec propagation des tailles de bord, HXT exporte
 7 123 164 tétraèdres ; 23 279 restent sous minSICN 0,1.** La surface exacte est
 conservée et les jacobiens sont positifs. Le contrôle complet de connectivité
 de ce nouveau volume n'est pas exécuté, et aucune optimisation n'a suivi.
@@ -1208,6 +1216,149 @@ python twins/m64-cylinder-head/source/wholebody/trial_audited_discrete_volume.py
 python -m unittest discover -s tests -p test_m64_projected_surface_topology.py -v
 python -m unittest discover -s tests -p test_m64_bounded_chamfer.py -v
 ```
+
+## 2 octobre — optimisation HXT et audit indexé complet
+
+**23 279 → 118 refus, sans changement de géométrie ni de seuil.** Ce progrès
+porte sur le candidat natif `9c40df1642d5…`, pas sur une nouvelle culasse M64
+fonctionnelle. La référence antérieure à 32 refus concerne une autre géométrie
+et reste inchangée. Aucun pourcentage d'achèvement industriel n'est déduit du
+nombre de cellules valides.
+
+### Ce qui change et ce qui reste figé
+
+Le producteur reprend la surface mono-thread et le champ de tailles précédents,
+mais appelle directement HXT avec `Mesh.Optimize=1`, au lieu de générer d'abord
+un brut qui dépasse le plafond de l'ancien producteur. Le nouveau plafond
+opérationnel est explicitement **10 millions de tétraèdres** ; q3 reste **0,1**,
+et le filtre surfacique q2 reste `2 × 0.1 / (3 − 0.1)`. Ce changement de capacité
+n'est pas une relaxation de qualité. Gmsh 4.15.2 utilise ici deux threads pour
+le volume, un pour la surface, sans Netgen.
+
+Le [code Gmsh 4.15.2](https://raw.githubusercontent.com/live-clones/gmsh/gmsh_4_15_2/src/mesh/meshGRegionHxt.cpp)
+relie `Mesh.Optimize` à l'optimisation HXT pendant `generate(3)` ; le seuil interne
+par défaut de **0,3** n'est pas le critère minSICN du projet. Il n'y a pas d'appel
+`optimize("HXT")`. La nouvelle surface est auditée dans la session de génération :
+**1 081 110 triangles**, zéro refus q2, fermeture/orientation/courbes conformes,
+zéro intersection CGAL 5.6 en **2,720 s**. Ses tableaux exportés ont exactement
+le même SHA-256 que ceux du brut précédent : `3a44d462da75…`.
+L'audit CGAL est néanmoins réexécuté et lié à son propre reçu, pas recopié.
+
+```mermaid
+flowchart LR
+    A[CAO native inchangée] --> B[Surface mono-thread]
+    B --> C[Topologie et CGAL frais]
+    C --> D[HXT avec optimisation intégrée]
+    D --> E[Export et relecture exacte]
+    E --> F[Qualité par lots et audit indexé]
+    F --> G[118 refus : candidat non accepté]
+    G --> H[Essai générique : 282 refus, rejeté]
+```
+
+| Contrôle sur le volume HXT intégré | Résultat |
+|---|---:|
+| Tétraèdres linéaires | 6 879 702 |
+| minSICN < 0,1 / < 10⁻⁶ | **118 / 0** |
+| minSICN minimal | **0,03702439807 : échec** |
+| Jacobien minimal / jacobiens non positifs | +2,262096427 × 10⁻⁸ / **0** |
+| Volume signé minimal d'un tétraèdre | +3,770160712 × 10⁻⁹ unités³ |
+| Tétraèdres inversés, nuls, à nœud répété | **0 / 0 / 0** |
+| Régions connexes par faces | **1** |
+| Faces non-manifold | **0** |
+| Triangles de frontière manquants, supplémentaires, dupliqués | **0 / 0 / 0** |
+| Frontière tétraédrique égale à la surface stockée | **1 081 110 triangles, oui** |
+| Surface exacte par face après génération et relecture | **Conservée** |
+| Écart relatif entre somme des volumes et flux de frontière | **2,33 × 10⁻¹⁵** |
+
+Le volume maillé vaut **1 113 234,709367 unités³**. Sa différence avec le volume
+BRep natif est environ **0,104 %** : l'accord entre les deux intégrales du
+maillage n'est donc pas une preuve de conformité continue à la CAO. Ni un
+contrôle exhaustif d'intersection de tous les tétraèdres, ni une certification
+de l'écart géométrique continu ou des 0,040 mm physiques n'est réalisé ici.
+
+Le producteur termine en **425,45 s** ; son superviseur relève environ
+**6,92 Gio** de RSS du processus, échantillonnée toutes les cinq secondes.
+L'audit séparé termine en **85,51 s**, pic **3,14 Gio**. Le Mac existant suffit ;
+CGAL est exécuté sur Kali2, sans réseau dans le conteneur. Aucune location Vast
+n'est effectuée pour cette série.
+
+### Audit indexé, témoins et contrôle numérique contradictoire
+
+Le [nouvel auditeur indexé](../../twins/m64-cylinder-head/source/wholebody/audit_indexed_tetrahedra.py)
+réutilise le tri des faces et le graphe creux de `audit_envelope_regions`, mais
+**ne normalise pas l'orientation**. Il conserve l'ordre arithmétique du témoin
+scalaire existant pour calculer les volumes, par lots de 100 000. Le tri global
+reste en O(N log N), borné à dix millions de cellules ; aucune bibliothèque
+supplémentaire n'est installée. Le graphe utilise
+[SciPy connected_components](https://docs.scipy.org/doc/scipy/reference/generated/scipy.sparse.csgraph.connected_components.html).
+
+Les [trois tests](../../tests/test_m64_indexed_tetrahedra.py) couvrent onze petits
+témoins, inversion, frontière incomplète/supplémentaire/dupliquée, répétitions,
+non-manifold, déconnexion, entrées invalides, petits volumes et une inversion
+au-delà de la limite de lot de 100 000 cellules. Ils comparent les résultats
+au code scalaire et vérifient l'absence de mutation. Ils passent sans omission
+sur Mac (NumPy 2.2.6, SciPy 1.16.2) et Kali2 (NumPy 2.4.6, SciPy 1.17.1).
+Sur le vrai volume témoin à **1 852 069 cellules**, toutes les métriques
+correspondent exactement au reçu scalaire antérieur : audit en 11,84 s,
+pic 1,04 Gio.
+
+L'audit du brut précédent à 7 123 164 cellules trouve **un volume nul en
+arithmétique flottante**, malgré son jacobien Gmsh positif. Le témoin concerné
+est recalculé avec `Fraction.from_float` et un déterminant rationnel exact :
+son volume est **positif, environ 9,2062 × 10⁻¹⁷ unités³**, pour les coordonnées
+binaires exportées. Ce zéro est donc une annulation numérique du calcul
+flottant, pas une preuve de collapse exact. Son minSICN d'environ 4,14 × 10⁻¹⁵
+reste inacceptable. Le reçu flottant original n'est pas corrigé a posteriori ;
+ce test exact porte sur **un seul témoin**, pas sur tous les éléments. Le premier
+script de ce diagnostic a échoué sur une conversion Fraction/float ; la version
+corrigée a ensuite terminé, sans mutation du maillage.
+
+### Localisation réelle et essai rejeté
+
+![Tous les 118 tétraèdres rejetés du volume HXT intégré, pas une carte thermique](../media/m64-hxt-integrated-20261002/rejected-tetrahedra.png)
+
+Les **118 cellules** sont soumises au rendu VTK, sans agrandissement artificiel
+ni échantillonnage : leur petite taille et les occultations limitent ce que
+l'image laisse voir. **91 ont au moins une face sur la frontière** (85 une,
+6 deux) ; 27 n'ont aucune face de frontière. Toutes ont au moins deux sommets
+de frontière : ces 27 ne sont donc pas nécessairement loin de la paroi.
+Les incidences concernent 42 groupes de faces ; ce ne sont pas des noms
+anatomiques inférés, et le rouge ne représente ni chaleur, contrainte ni fissure.
+Les [vues extérieures précédentes](../media/m64-volume-failures-20261002/candidate-views.png)
+restent utiles pour la même CAO, mais proviennent de l'ancien volume brut.
+
+Une unique optimisation générique `optimize('', force=True)` est ensuite
+essayée sur **ce nouveau** volume, avec reconstruction du cache d'éléments.
+Ce n'est pas la relance du vieux brut à 668 417 refus. Le producteur termine
+en **91,84 s** et préserve exactement la surface et la relecture binaire.
+La qualité régresse à **282 refus / 6 883 712 cellules**, minimum **0,02809065** :
+**essai rejeté**, sans remplacement du candidat à 118. Les deux sorties et leurs
+reçus restent distincts. L'audit séparé de cette sortie termine en **86,64 s** :
+une région connexe, zéro volume négatif/nul, frontière exacte, mais qualité
+toujours refusée. Les résultats terminaux et empreintes sont regroupés
+dans le [bilan expurgé](../media/m64-hxt-integrated-20261002/result-summary.json).
+
+Vérification logicielle de cette révision : les trois nouveaux tests passent
+de nouveau sur Mac et Kali2 ; les 22 tests natifs existants passent sur Mac.
+Le groupe topologie ajoute sept tests, dont six exécutés et un omis sur Mac
+faute du binaire CGAL local ; le véritable audit CGAL ci-dessus a tourné sur
+Kali2. Le nouveau contrôle se rejoue avec NumPy et SciPy installés :
+
+```sh
+python3 -m unittest discover -s tests -p 'test_m64_indexed_tetrahedra.py' -v
+```
+
+Le `make check` complet de la révision publiée est rapporté séparément dans
+la PR. La CI standard n'installe pas SciPy et omet ces trois tests optionnels :
+elle ne remplace pas les exécutions natives rapportées ici.
+
+Prochaine action : traiter les témoins des 118 cellules avec une modification
+locale bornée et réauditer toute sortie. Les essais de thermique, fatigue,
+huile, distribution et impression restent à faire sur une géométrie acceptée
+avec données physiques qualifiées. Cette série ne clôt aucun de ces critères.
+Scans, BRep, maillages et coordonnées privées restent hors Git ; le code de
+contrôle, ses tests, les bilans et les rendus sont publiables. Aucune nouvelle
+autorisation de fabrication ni promotion du modèle de référence.
 
 ## 2 octobre — gradation volumique et publication
 

@@ -1,0 +1,153 @@
+{
+  "schema": "m64-integrated-hxt-public-summary/v1",
+  "status": "rejected_quality_diagnostic_only",
+  "units": "provisional_scan_units_not_certified_mm",
+  "manufacturing_authorized": false,
+  "master_replaced": false,
+  "current_native_brep_sha256": "9c40df1642d5eb47a3c1a1aae68c761b23b77e3f7e02e0818294e88ee0322598",
+  "geometry_modified_in_this_round": false,
+  "threshold_minSICN": 0.1,
+  "gmsh_version": "4.15.2",
+  "surface": {
+    "triangles": 1081110,
+    "incompatible_triangles": 0,
+    "cgal_intersection_pairs": 0,
+    "fresh_cgal_seconds": 2.7197933759889565,
+    "same_arrays_as_previous_graded_volume": true,
+    "arrays_sha256": "3a44d462da75b1ac31113f4c4d68e267d939c6681d5a8c37ce7bf7a1b4975d5d",
+    "topology_receipt_sha256": "79469c4521bfb21c79d135ee2da0c72516d1309726996e8846aee20f0b0a28cd",
+    "cgal_receipt_sha256": "e87bcb487ef12245b4eb7546b211028b5e7810523c6d39aa8bd2af806f5304ea"
+  },
+  "integrated_HXT": {
+    "receipt_sha256": "4c93829f06331ee94f6936b392b162c01e890f18082cb63f95138807837f232b",
+    "quality": {
+      "tetrahedra": 6879702,
+      "minSICN_below_0p1": 118,
+      "minSICN_below_1e_6": 0,
+      "nonpositive_Jacobians": 0,
+      "minimum_minSICN": 0.03702439806664275,
+      "minimum_Jacobian_determinant": 2.262096427037724e-8,
+      "bad_tetrahedron_count_fraction": 0.00001715190570754373
+    },
+    "connectivity": {
+      "signed_volume_sum": 1113234.7093671863,
+      "absolute_volume_sum": 1113234.7093671863,
+      "minimum_signed_tetra_volume": 3.770160711729539e-9,
+      "count_negative": 0,
+      "count_zero": 0,
+      "repeated_node_tetrahedra": 0,
+      "tetra_connected_components": 1,
+      "boundary_missing_triangles": 0,
+      "stored_triangles_not_on_boundary": 0,
+      "duplicate_stored_triangles": 0,
+      "nonmanifold_faces": 0,
+      "boundary_triangle_count": 1081110,
+      "boundary_matches": true
+    },
+    "seconds": 85.50550708301307,
+    "peak_RSS_bytes": 3368517632,
+    "relative_volume_flux_difference": 2.3314683517128287e-15,
+    "exact_surface_readback": true,
+    "inputs_unchanged": true,
+    "source_hashes": {
+      "integrated-volume-private.msh": "f53295de83aa47e6d55880e4231d50752a545448c3c7ecdec67f075533b65d7e",
+      "report.json": "7ed07db1a5efaaafa4656d774800ba849a70fc777673faa63e696223b090c5c9",
+      "surface-private.msh": "7350970f147649638e8943233ef3d0136c818baceaa40f7629b9f169340927c5",
+      "audit_integrated.py": "c41b98a0464a8a5a3dfc3b7fa6b06bab370ce9161aba286c62ecc9a9f02f582b",
+      "mesh_native_ported_head.py": "7171d7b1da250d63086b7fac1e5e1617190ec26f45f2928e729d60582a1d1c04",
+      "audit_indexed_tetrahedra.py": "02064ef3e68a4de8b1d5bebcebc10713ff18288b983ac6468b686064fa53bfc6",
+      "trial_meshers_2026.py": "694ffd9c690f9145f59d53b56d28b1a5852749589172f7bc07a9fa58da4cedb0"
+    }
+  },
+  "subsequent_standard_optimizer": {
+    "decision": "rejected_regression_118_to_282",
+    "receipt_sha256": "8d8097dcccd40d71ebc03572b3be5c9e8a4876508c967a8db0d8fe0559667c27",
+    "quality": {
+      "tetrahedra": 6883712,
+      "minSICN_below_0p1": 282,
+      "minSICN_below_1e_6": 0,
+      "nonpositive_Jacobians": 0,
+      "minimum_minSICN": 0.028090649246948415,
+      "minimum_Jacobian_determinant": 3.383764963782692e-8,
+      "bad_tetrahedron_count_fraction": 0.00004096626936164674
+    },
+    "connectivity": {
+      "signed_volume_sum": 1113234.7093671863,
+      "absolute_volume_sum": 1113234.7093671863,
+      "minimum_signed_tetra_volume": 5.639608272971154e-9,
+      "count_negative": 0,
+      "count_zero": 0,
+      "repeated_node_tetrahedra": 0,
+      "tetra_connected_components": 1,
+      "boundary_missing_triangles": 0,
+      "stored_triangles_not_on_boundary": 0,
+      "duplicate_stored_triangles": 0,
+      "nonmanifold_faces": 0,
+      "boundary_triangle_count": 1081110,
+      "boundary_matches": true
+    },
+    "seconds": 86.63709329199628,
+    "peak_RSS_bytes": 3463610368,
+    "relative_volume_flux_difference": 2.3314683517128287e-15,
+    "exact_surface_readback": true,
+    "inputs_unchanged": true,
+    "source_hashes": {
+      "optimized-private.msh": "488e595e1a3a6114e30bba5c830697e0c3d27c14822013fddcc6f01ed46ead33",
+      "report.json": "6abe9d9e750a72652c85bcbe91e4450843ff6bee7e7a30a3636eafc2c2b85864",
+      "surface-private.msh": "7350970f147649638e8943233ef3d0136c818baceaa40f7629b9f169340927c5",
+      "audit_standard.py": "a5066b875ffd6b88e01199728ae9075b7d1f2eafd111a2995ba820eb59984b0a",
+      "mesh_native_ported_head.py": "7171d7b1da250d63086b7fac1e5e1617190ec26f45f2928e729d60582a1d1c04",
+      "audit_indexed_tetrahedra.py": "02064ef3e68a4de8b1d5bebcebc10713ff18288b983ac6468b686064fa53bfc6",
+      "trial_meshers_2026.py": "694ffd9c690f9145f59d53b56d28b1a5852749589172f7bc07a9fa58da4cedb0"
+    }
+  },
+  "scalar_control": {
+    "tetrahedra": 1852069,
+    "all_connectivity_metrics_exact_match": true,
+    "seconds": 11.8434164999926,
+    "peak_RSS_bytes": 1117601792,
+    "receipt_sha256": "0bdd83fe0e2d09574e96e015d4cfada436dbb660576ee56c5d3f1e462afd2838"
+  },
+  "previous_graded_zero_witness": {
+    "tetrahedra": 7123164,
+    "float_zero_count": 1,
+    "exact_witnesses_checked": 1,
+    "exact_witness_positive": true,
+    "exact_volume_as_float": 9.206185994960193e-17,
+    "all_tetrahedra_exact_orientation_checked": false,
+    "original_float_receipt_preserved": true,
+    "receipt_sha256": "1d4d3dbf21860671557d706c0d794d2a4d603da6167c254206efcb8c094b818e"
+  },
+  "rendering": {
+    "displayed_rejected_cells": 118,
+    "total_rejected_cells": 118,
+    "boundary_vertex_count_histogram": [
+      0,
+      0,
+      10,
+      46,
+      62
+    ],
+    "boundary_face_count_histogram": [
+      27,
+      85,
+      6,
+      0,
+      0
+    ],
+    "affected_face_groups": 42,
+    "anatomical_classification_performed": false,
+    "generative_image": false,
+    "thermal_or_stress_map": false,
+    "image": "rejected-tetrahedra.png",
+    "image_sha256": "973a47dd7fc4f6dae0b24cffc3fe06162bc85513df2616087c215672ddf44f93",
+    "receipt_sha256": "c8278c4251732aec0d547663229153094c6bfc4f8038484ce9abbabf55f8ff0f"
+  },
+  "limitations": [
+    "Mesh quality still fails unchanged threshold.",
+    "No exhaustive geometric tetrahedron intersection audit.",
+    "Agreement of mesh volume and surface flux is not continuous CAD conformance.",
+    "No measured M64 interfaces, physical 0.040 mm, hot material, thermal, fatigue or printing qualification from this round.",
+    "Private coordinates and mesh files intentionally excluded."
+  ]
+}
