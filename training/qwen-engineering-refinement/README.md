@@ -97,3 +97,24 @@ temperature fields. The original 3,000-cell mesh failed three solid-region
 quality checks despite solver completion, and was rejected. This is a runtime
 reference authored by us, not a Qwen-generated complete CHT case; energy
 balance, mesh convergence and experimental validation remain unverified.
+
+[Photo run 003](results-003.json) completed 1,200 steps and 229,873 reported
+tokens, peak memory 5.501 GB. Step 1200 reaches Python 80/80, OpenFOAM 8/8,
+OpenUSD 44/46, PicoGK 46/48, engineering decisions 77/80 and native CalculiX
+4/4. Every domain exceeds 95%, but two earlier USD passes regress; selection
+rejects the candidate and the 140 fresh photo cases remain unopened.
+
+The [retention continuation](retain.py) uses the same 3,224 distinct training
+rows with explicit replay: prior USD rows weight 3, CalculiX weight 4,
+engineering decisions weight 2, other rows weight 1. That makes 4,448 training
+instances, not additional distinct examples. Continue 003/1200 for 480 steps,
+batch 2, learning rate 0.00001; evaluate checkpoints 240/480. Re-score all saved
+parent validation answers before learning, requiring identical decisions and
+response hashes. Preserve every parent pass and every earlier passing
+obligation; use the same 95% domain floor. Validation and fresh tests are never
+replay data. The 140 fresh photo cases open only after eligibility.
+
+```sh
+/Users/maxime/.codex/worktrees/m64-local-architecture-qwen/3dprinting993/work/m64-qwen/venv/bin/python \
+  training/qwen-engineering-refinement/retain.py --output "$PWD/work/qwen-engineering-004"
+```

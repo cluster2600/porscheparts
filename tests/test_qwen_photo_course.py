@@ -16,6 +16,7 @@ class PhotoCourseTests(unittest.TestCase):
             import photo_run
             import photo_course
             import refine
+            import retain
         finally:sys.path.pop(0)
         smoke=refine.module('photo_smoke_test',ROOT/'scripts/cad_recode/ccx_smoke.py')
         class USD:SYSTEM='supplied mesh buffers'
@@ -29,6 +30,10 @@ class PhotoCourseTests(unittest.TestCase):
         self.assertTrue(any(r.get('displacement_consistent') for r in targets))
         self.assertFalse(any(r.get('delta_temperature_alone_proves_heat_rate') for r in targets))
         self.assertAlmostEqual(3.141592653589793*50*50*70/4/1000,137.4446786)
+        replay=retain.weighted(rows)
+        self.assertTrue(all(r['split']=='train' for r in replay))
+        self.assertEqual(sum(r['domain']=='calculix' for r in replay),96)
+        self.assertEqual(sum(r['domain']=='engineering' for r in replay),960)
         self.assertTrue(all(not r.get('manufacturing_authorized',False) for r in targets if 'geometry_allowed' in r))
         self.assertTrue(any(r.get('manufacturing_authorized') for r in targets))
         for r in rows:

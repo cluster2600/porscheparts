@@ -1,0 +1,216 @@
+{
+  "run": "qwen-engineering-003",
+  "status": "complete_rejected",
+  "training_final": [
+    "Iter 1200: Val loss 0.001, Val took 66.388s",
+    "Iter 1200: Train loss 0.002, Learning Rate 2.000e-05, It/sec 0.880, Tokens/sec 206.365, Trained Tokens 229873, Peak mem 5.501 GB",
+    "Iter 1200: Saved adapter weights to /Users/maxime/.codex/worktrees/a6cf/3dprinting993/work/qwen-engineering-003/adapter/adapters.safetensors and /Users/maxime/.codex/worktrees/a6cf/3dprinting993/work/qwen-engineering-003/adapter/0001200_adapters.safetensors."
+  ],
+  "manifest": {
+    "files_sha256": {
+      "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/training/qwen-engineering-refinement/refine.py": "41573c83ca73b2d19f98edd748f61bd188eb6e91fcc0f2166df8b14296aaeb65",
+      "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/training/qwen-engineering-20261002/run.py": "9132aa2db506d56b23a624f19f1b82be602fc123fe943dbdd35ab745f17ced78",
+      "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/training/qwen-engineering-20261002/curriculum.py": "09d11a82745f80c92218aa272d952a1f8a91905104da343a5ac77dd63bdb140e",
+      "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/work/qwen-engineering-002/variant-generator.py": "678cab123cdc93159d0a221dbfd581953e0339cf2fd8833262fb24688d6546c5",
+      "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/work/qwen-engineering-002/cases.json": "20f6593463974de981c356562cf5be8ba79bd63b4d40bbbf3f8aea9594b036c2",
+      "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/work/qwen-engineering-002/helpers/training/m64-qwen/run.py": "f92c45133c9c3dfdf403999ac5f8a81fc2bbf38830ba1e490c7b4b7dfaaaca36",
+      "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/work/qwen-engineering-002/helpers/training/m64-qwen/dataset.py": "4201ec0bd6f176f0d5c89b69be271d249669f4b05f83283e1edc84956b92edc8",
+      "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/work/qwen-engineering-002/helpers/training/m64-qwen/picogk.py": "3357a289b0314a4e7e24f1a0d515d1bebf55021ccacd2551650b830f352ac3c6",
+      "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/work/qwen-engineering-002/helpers/training/m64-engineer/openusd.py": "30f789743ce2ff7d675da7d30744e0eb9508e5f100b8c80de46dd6ed16b379e1",
+      "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/work/qwen-engineering-002/data/train.jsonl": "0f8f44aa1dc4603cf597536c397db4aec07d04260b37fa506d2d416ae05fdeb3",
+      "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/work/qwen-engineering-002/data/test.jsonl": "0330fe7ced1e11309853224b8fc139c4fc21e2a8c8938738dc0797112b761d80",
+      "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/work/qwen-engineering-002/data/valid.jsonl": "4988d083db7fec80f37ab468a7ec6de4e0d926147ae43690817e1e4b93ab6770",
+      "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/training/qwen-engineering-refinement/photo_run.py": "40c361a2a42d969365912fd532b35d79162c6b9607a19c45a8cff0a82c6817e3",
+      "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/training/qwen-engineering-refinement/photo_course.py": "2da41b2e168fa26279776f12a8640178db4b83bf2a59774f50b1d5b5c1454747",
+      "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/training/qwen-engineering-refinement/research.json": "96e06a37e7a9dd98ad41baef4bd7fd631f28aad5b3c2213cc6f95927028bb8ed",
+      "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/scripts/cad_recode/ccx_smoke.py": "f559b208e1e6fedb3727b390f130eb9a6bee63214f13e474045c52db3b825729",
+      "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/work/qwen-engineering-003/cases.json": "08daf036a4441c33409e523daae9a537d5d74255afde0caa528eea9b421df22a",
+      "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/work/qwen-engineering-003/data/train.jsonl": "54e9265bd33c187fedd84dc2af58461fda3df2edc8aaa6b907850a7cdd2dbe0f",
+      "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/work/qwen-engineering-003/data/test.jsonl": "58ac5ff3cdca4b98658b660b16a8e80c432c79c34a5bb69e5815c92f09a8fae2",
+      "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/work/qwen-engineering-003/data/valid.jsonl": "57ca08ba024c98192a7e87bedc4c45bf35fa827fe84f431b267affdcc5930a97"
+    },
+    "warm_sha256": "e29c7c94276cd100f8f5763cbc2976a1cc054622150aefacc9a533c2fcf0c384",
+    "base_sha256": "daeab4764fb420d161721791cf2e509e2de81a7af4223646e7bed2bf82c57b58",
+    "ccx_sha256": "db2ed33d0fd97ef4daad298def2fd8d3e9879e488647b0e7b44f52038b62ea0b",
+    "native_sha256": {
+      "/Users/maxime/projects/3dprinting993/work/m64-private-20260907/nemo-picogk-20260928.ADELugEK/picogk-bin/PicoGK.dll": "710c4e0428efbe9c1cd1db1663247b45604f96d167a6726782ab8ddca350565a",
+      "/Users/maxime/projects/3dprinting993/work/m64-private-20260907/nemo-picogk-20260928.ADELugEK/picogk-bin/picogk.26.2.dylib": "5c1cd3fc12766a85bc5c1441a95f065fb274338d1333c3ae2d3396b59d0e18e7"
+    },
+    "maximum_sequence_tokens": 632,
+    "iterations": 1200,
+    "batch_size": 2,
+    "seed": 42,
+    "learning_rate": 2e-05,
+    "num_layers": 16,
+    "mlx_lm_version": "0.31.3",
+    "usd_version": "(0, 25, 5)",
+    "registered_commit": "02068925291571e8ebd285de5cfc7ca6332e9593",
+    "counts": {
+      "train": {
+        "calculix": 24,
+        "engineering": 480,
+        "openfoam": 96,
+        "openusd": 864,
+        "picogk": 704,
+        "python": 1056
+      },
+      "valid": {
+        "calculix": 4,
+        "engineering": 80,
+        "openfoam": 8,
+        "openusd": 46,
+        "picogk": 48,
+        "python": 80
+      },
+      "test": {
+        "calculix": 4,
+        "engineering": 80,
+        "openfoam": 8,
+        "openusd": 16,
+        "picogk": 8,
+        "python": 80
+      }
+    },
+    "limits": "Shared API/formula/decision recipes. INP benchmark is axial T3D2 only. No engine qualification, general CAD mastery, arbitrary CHT, or calibrated surrogate claim.",
+    "selection": ">=95% in every domain and no passing parent/selected validation case lost; fresh photo cases only after eligibility; default replacement is not automatic."
+  },
+  "results": {
+    "selected_step": null,
+    "trials": {
+      "400": {
+        "per_domain": {
+          "calculix": {
+            "passed": 0,
+            "total": 4
+          },
+          "engineering": {
+            "passed": 64,
+            "total": 80
+          },
+          "openfoam": {
+            "passed": 8,
+            "total": 8
+          },
+          "openusd": {
+            "passed": 43,
+            "total": 46
+          },
+          "picogk": {
+            "passed": 47,
+            "total": 48
+          },
+          "python": {
+            "passed": 78,
+            "total": 80
+          }
+        },
+        "regressions": [
+          "python-enclosure_260022_3",
+          "python-enclosure_260022_7",
+          "usd-valid-004",
+          "usd2-valid-004",
+          "usd2-valid-016",
+          "photo-valid-consistency-0",
+          "photo-valid-consistency-2",
+          "photo-valid-consistency-4",
+          "photo-valid-twin-5",
+          "photo-valid-consistency-6"
+        ],
+        "eligible": false,
+        "adapter_sha256": "a759fe35bc6a41ca37f202f22611aeed2c2c65b3bf86a212f0533762bd3cd7c5"
+      },
+      "800": {
+        "per_domain": {
+          "calculix": {
+            "passed": 0,
+            "total": 4
+          },
+          "engineering": {
+            "passed": 70,
+            "total": 80
+          },
+          "openfoam": {
+            "passed": 8,
+            "total": 8
+          },
+          "openusd": {
+            "passed": 44,
+            "total": 46
+          },
+          "picogk": {
+            "passed": 47,
+            "total": 48
+          },
+          "python": {
+            "passed": 80,
+            "total": 80
+          }
+        },
+        "regressions": [
+          "usd2-valid-004",
+          "usd2-valid-022",
+          "photo-valid-twin-5"
+        ],
+        "eligible": false,
+        "adapter_sha256": "029a62ad63b78551235831366cc4f16e29aae609979f55264d578d115ef85e8f"
+      },
+      "1200": {
+        "per_domain": {
+          "calculix": {
+            "passed": 4,
+            "total": 4
+          },
+          "engineering": {
+            "passed": 77,
+            "total": 80
+          },
+          "openfoam": {
+            "passed": 8,
+            "total": 8
+          },
+          "openusd": {
+            "passed": 44,
+            "total": 46
+          },
+          "picogk": {
+            "passed": 46,
+            "total": 48
+          },
+          "python": {
+            "passed": 80,
+            "total": 80
+          }
+        },
+        "regressions": [
+          "usd2-valid-004",
+          "usd2-valid-016"
+        ],
+        "eligible": false,
+        "adapter_sha256": "af8c9487a3bc8cbbcefb73cac98933c57db41dc2297da08680253b241fe1ec13"
+      }
+    },
+    "fresh_photo_tests_opened": false,
+    "default_adapter_replaced": false,
+    "manufacturing_authorized": false
+  },
+  "artifact_sha256": {
+    "training.log": "e8ca72bc10f7f00eb89fa6b3d9725809641f37c07304da28e0ba36140f17aab5",
+    "results.json": "15fb55b2eaec713d1022d9886f16a90ebc891137143ec9b22d15986296afe3e2",
+    "manifest.json": "55e7d6618ae44ff1cad4f94ac0a11446a3496fd95f32759f86c0ef8e5b2fab26",
+    "validation-before.json": "f6181329e4bc58268c0c9c5478f1f43bfb3272bb900dd37aa17cd26fb5a58777",
+    "validation-400/scores-independent.json": "1dcda285ff566c3ebb2c48a6284a884a95dd9f1b49c7d6f223c2594f5d62227c",
+    "validation-800/scores-independent.json": "73710616a48c2a6d07c5a1f69817977d7e993a603157f01ba04633fca370d14c",
+    "validation-1200/scores-independent.json": "d7c2683da28ccfa6d62ab0d1a74aebd776bc9284b6b85bf6bc725c4374a0574e"
+  },
+  "full_repository_check": {
+    "tested_commit": "2883394f8be415f33b02ccb709bec194b9bd87fd",
+    "tested_tree": "b23b98ae79a2050d78d77f17123067d460ddefcc",
+    "platform": "Kali2 native ext4",
+    "exit_code": 0,
+    "main_tests": 3276,
+    "main_seconds": 161.895,
+    "main_skipped": 144,
+    "pinned_docker_f37_tests": 15,
+    "log_sha256": "ce7e0df721e255afc3a9afc7ce71a30732eb8b5734c1fa4a360d88965e864183"
+  }
+}
