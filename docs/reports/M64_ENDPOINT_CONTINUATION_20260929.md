@@ -44,6 +44,13 @@ This is not a continuous error bound, the physical 0.040 mm requirement, or
 volume/printing qualification. The retained volume is still unchanged. See
 the final native-feature section for the measured result and remaining gates.
 
+**Latest topology continuation, 2 October:** an exact-coordinate array export
+now passes vertex-link, connected-shell, consistent-winding and CGAL
+intersection checks. Two face groups require orientation permutations;
+no point or triangle geometry changes. **2,565 stored 1D segments still need
+reconciliation** with the subdivided surface. There is no new accepted volume
+or printing release. The topology section at the end records the distinction.
+
 **Later recovery, 1 October:** both authorised Linux hosts are reachable again.
 The previously uncollected size-0.1 run completed but has **5 incompatible
 triangles / 976,144**; the curvature-64 run ended at its 1,800-second alarm.
@@ -743,3 +750,130 @@ Provenance:
 - Recovered result archive: `ea59cb1acec095ba3ffceffd85113b8444c7d468af4873b622b40068f5e77338`.
 - Actual mesh image: `2ff9bedd667686f509d44b34353d4a1c98f5daa08519bf103285c40571d6a92a`.
 - Full-suite log: `daa51e9c8163265c8fcc48bfc746fdec3cb5108c9446acadd9d50503215ce6b9`.
+
+## Global topology, winding and intersection checks, 2 October
+
+### A local normal guard was not a global winding certificate
+
+The pass-6 export has 496,348 referenced vertices, and every vertex link is a
+single circle. There are no duplicate used coordinates, duplicate triangles
+or edges of incidence other than two. There are also 319 stored nodes unused
+by the surface; they are retained, not welded or removed.
+
+However, an independent **global edge-direction** check finds 2,180 conflicts
+between face groups. The earlier zero orientation count referred only to
+child-versus-parent normal dots during refinement, not global consistency.
+The pass-4 parent already has 1,404 such conflicts and pass 5 has 2,180; the
+last native-feature correction introduces none. All current conflicts are
+between entities, not within a single entity.
+
+Blindly applying all signed volume-boundary tags is not a valid correction
+for this reclassified compound mesh: that private control reverses 80,220
+triangles on 42 faces and increases the conflicts to 6,170. It is rejected.
+Gmsh documents signed boundary tags in its
+[model-boundary API](https://gmsh.info/doc/texinfo/#gmsh_002fmodel_002fgetBoundary);
+their interpretation must still agree with the actual stored element winding.
+
+The new auditor reuses the existing PicoGK-witness `link_type` check, retaining
+indexed topology instead of merging coincident coordinates. An explicit
+`--orient-entities` option solves consistent edge-direction constraints for
+whole entities. It rejects inconsistent constraints, open/nonmanifold input,
+and more than one edge-connected triangle component, including disconnected
+components which reuse the same entity labels. It then selects positive signed
+flux for this single shell. Native/material face orientation remains a separate
+claim; positive flux is not used to infer arbitrary cavity nesting.
+
+The result reverses **17,284 triangle vertex orders on faces 141 and 143**.
+Coordinates, triangle labels and unordered triangle vertex sets are unchanged.
+The source MSH and B-Rep remain untouched; only a separately hashed binary
+array export carries the permutation. The sampled-distance result is preserved
+geometrically, not presented as a newly run distance audit.
+
+| Oriented-array check | Result |
+|---|---:|
+| Triangles / referenced vertices | 992,724 / 496,348 |
+| Edge-connected triangle components | 1 |
+| Circular vertex links | 496,348 |
+| Global two-incidence orientation conflicts | 0 |
+| Duplicate coordinates / triangles | 0 / 0 |
+| Coordinate changes / deleted triangles | 0 / 0 |
+| Signed flux | 1,113,008.6409500074 scan units cubed |
+| Exact binary array readback | pass |
+
+### MeshLab control rejected; CGAL audit completed
+
+The existing pinned MeshLab 2025.7.post1 filter detects a transverse crossing,
+but **misses the nested coplanar-triangle fixture**. Its documented
+[self-intersection selection filter](https://pymeshlab.readthedocs.io/en/latest/filter_list.html#compute-selection-by-self-intersections-per-face)
+is therefore not retained as the acceptance auditor. The test is not relaxed
+to hide this limitation, and no full-head MeshLab pass is claimed.
+
+A small CGAL executable uses
+[`triangle_soup_self_intersections`](https://doc.cgal.org/5.6.1/Polygon_mesh_processing/group__PMP__intersection__grp.html)
+with the exact-predicate/inexact-construction kernel, sequential execution and
+a 100,001-pair cap. Reaching the cap is incomplete, never a passing result.
+The input is little-endian binary64 coordinates and uint64 indices, not rounded
+STL or decimal coordinates. The compiled reader bounds counts, rejects truncated
+or trailing input, nonfinite points and out-of-range indices. No construction,
+welding, repair or orientation change is performed by the intersection auditor.
+
+The original and oriented 992,724-triangle exports both complete with **zero
+intersecting pairs**. The final hash-bound oriented run takes **4.88 s**.
+Tests pass for transverse crossings, coplanar containment, separated triangles,
+ordinary shared-edge adjacency and a degenerate triangle. This checks the stored
+polyhedral geometry, not the entire native B-Rep or the physical part.
+
+CGAL **5.6**, Ubuntu package **5.6-1build3**, is compiled in a new private sidecar
+derived from the already pinned mesh-CFD image. The existing image/lock and host
+packages are not changed. Compilation uses:
+
+```sh
+g++ -std=c++20 -O2 surface_intersections_cgal.cpp \
+  -o surface-intersections -lgmp -lmpfr
+M64_CGAL_INTERSECTIONS=/absolute/path/surface-intersections \
+  python -m unittest discover -s tests -p test_m64_projected_surface_topology.py -v
+```
+
+The Python coordinator requires the executable SHA-256 and the exact-array
+receipt. Jobs run on Kali2 with no runtime network, a read-only container root,
+a two-CPU quota, a 6 GiB memory limit and a 350-second supervisor limit. No GPU
+or rental is required. Both focused tests execute in this runtime; the final
+full Linux `make check` also exits 0: **3,222 main tests, 161 optional skips**,
+and subsequent checks including the pinned F37 Docker target. The optional
+CGAL test is counted separately from skipped broad-suite coverage.
+
+### Curves are the next native-mesh consistency task
+
+Of 52,191 stored line elements, **2,565 are no longer direct triangle edges**,
+on 32 curve entities. Of these, 2,240 have both endpoints on the surface and
+325 have at least one endpoint unreferenced by surface triangles. This does
+**not** mean 2,565 holes or failed physical interfaces. Subdivided chains,
+unused internal compound curves and genuine native-curve discrepancies still
+have to be distinguished using native topology and curve parameters.
+
+No line elements are silently removed, and no inferred functional face or
+oil-channel label is introduced. The next native-volume attempt must use a
+reconciled curve/face mesh; any separate faceted-boundary diagnostic must be
+explicitly identified as such, without inheriting native-interface authority.
+The retained volume remains **32 rejected tetrahedra / 1,341,461**. Thermal,
+strength, material, printing and M64 fitment qualification remain incomplete.
+
+![Actual oriented research mesh without smoothing](../media/m64-topology-20261002/current-mesh.png)
+
+The view renders the actual oriented array export with all 992,724 triangles.
+There is no smoothing, decimation or invented valve assembly. The existing
+[scan licence and provenance](../../catalog/sources/src-wolfe-classics-935-billet-cylinder-head-scan.json)
+apply; the image is a research-state view, not a printable-product claim.
+
+Provenance:
+
+- Frozen final source bundle: `a9d00e61f252e592c5ba508a8e8d45dc713ebfb860269a7a76105bb34ed2029c`.
+- Connected/oriented topology receipt: `89dc417de042d0bca0ab0588b0e42d563b79284a6c6cc03b4d55322b9eb69a7b`.
+- Original exact array export: `5fa2296839c9e4e4e12c3e7a7a6f668f1ea8d21cc17786a1a0e58693f36d71f4`.
+- Oriented exact array export: `a599cb6c317f2559a458331444b211267d12eb77b899bbbb9b02d9d5566c3c8d`.
+- CGAL executable: `8088a42e15ed42b9e124a08c3a003e2f57723ea9280bd26e54259374791740b6`.
+- CGAL source: `476e056e35bb98f32d9d26ef8ba81f9c90ac7464f4af8ad5d76b92fa44f2689f`.
+- Private sidecar image ID: `sha256:3800fddfa4765acaf47b875cec79167db28f905744f826fd8c6f659442de7f5d`.
+- Final CGAL receipt: `c4fd77b8e758adaa7dd7e4a5d619d477e52148fb242a2afab6087bdf272434ed`.
+- Actual mesh image: `bd566dfcd16efd777d1ec41c1932cea50f013731cc175d794dbe3c2c836966ee`.
+- Full-suite log: `b04c52b8dbd9b9e51822d1b4cc9b9a647cbf7ba877e2190b88be29701a32155a`.
