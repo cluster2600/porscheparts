@@ -9,6 +9,11 @@ research body, not a metrologically qualified M64 head. All geometric lengths
 below are provisional scan units, not certified millimetres or a printer
 specification. No physical, material or manufacturing gate is closed.
 
+**Dernier essai, 2 octobre — appui de ressort :** une addition locale ramène
+les rejets de surface de **5 à 3**, sans changer le seuil de qualité.
+Contacts nominaux et contrôle BOP passent, mais le maillage reste refusé.
+Voir [la comparaison des variantes](#2-octobre--reprise-locale-de-lappui-de-ressort).
+
 **Earlier experiment, 1 October:** local conforming surface subdivision reduces
 the maximum sampled shape error from **0.0948743 to 0.0723482 scan unit**, with
 zero incompatible surface triangles. It still fails the 0.040-unit screen;
@@ -1179,6 +1184,163 @@ python twins/m64-cylinder-head/source/wholebody/trial_audited_discrete_volume.py
 python -m unittest discover -s tests -p test_m64_projected_surface_topology.py -v
 python -m unittest discover -s tests -p test_m64_bounded_chamfer.py -v
 ```
+
+## 2 octobre — reprise locale de l’appui de ressort
+
+Deux variantes additives sur l’appui nominal `exhaust_2` partent du candidat
+à cinq raccordements de chambre, SHA-256
+`93545442adaf0a95e741d50ef9efeef48c677ff3592dbeb637dba76bb74df6de`.
+Le rayon extérieur passe de 16 à 17,5, en conservant le rayon intérieur 7
+et les niveaux axiaux 55,1–58,1. La seconde variante prolonge une couronne
+de rayons 16–17,5 jusqu’au niveau 61,1. Ces dimensions sont des **unités de
+scan non étalonnées**, pas des cotes Porsche. L’épaisseur radiale nominale
+de 1,5 n’est ni une carte d’épaisseurs complète, ni une justification mécanique.
+
+| Essai terminé | Triangles | Rejets q2 | Minimum q2 |
+|---|---:|---:|---:|
+| Candidat précédent, graduation de chambre | 1 080 790 | 5 | 0,02134671 |
+| Appui élargi seul, mêmes réglages | 1 081 320 | 3 | 0,06331731 |
+| Même appui, graduation supérieure supplémentaire de 0,02 | 1 098 056 | 4 | 0,04157261 |
+| Appui élargi avec collerette, graduation de chambre seule | 1 079 372 | 3 | 0,06331731 |
+
+Les trois nouveaux maillages finissent en 126,75, 134,43 et 127,44 s avec
+Gmsh 4.15.2, MeshAdapt et deux threads. Aucun triangle n’est supprimé.
+Le seuil `q2 >= 0.06896551724137931`, nécessaire pour `q3 >= 0.1`, est
+inchangé : **toutes les surfaces restent refusées**. Ce ne sont pas des
+comptages de fissures ou de trous. Aucun volume n’est lancé ; les anciens
+audits topologiques/CGAL ne sont pas transférés aux nouvelles surfaces.
+
+### Contrôles natifs et contacts
+
+- Chaque variante est un B-Rep valide à un solide et une coque : 4 929 et
+  4 930 faces. Les maxima des tolérances n’augmentent pas. La boîte globale
+  est inchangée, mais le contour **local** est volontairement modifié.
+- Les différences booléennes ne trouvent aucun solide retiré, ni ajout
+  hors de l’appui autorisé. Les volumes ajoutés par intégration CAO courante
+  sont environ 71,70 et 281,55 unités³, sans conversion en grammes.
+  La convergence de ces intégrales n’est pas certifiée.
+- 4 904 et 4 896 faces conservent identités et sérialisations. Toutes les
+  faces modifiées touchent l’appui. Chambre et portées cylindriques des
+  sièges d’échappement sont conservées ; les corps sources restent inchangés.
+- Les BOP indépendants passent sans défaut, erreur ni avertissement,
+  en 116,99 et 117,99 s.
+- Les quatre empreintes nominales de rondelle restent entièrement
+  soutenues aux niveaux 58,1 et 58,099 : zéro face manquante, aire
+  `pi*(16²-7²) = 650,3096793` unités². Les quatre enveloppes de ressorts
+  restent libres. Aucun des douze composants nominaux n’intersecte l’ajout ;
+  l’écart minimal au guide le plus proche est 1,50332964 unités.
+- Les deux conduits natifs vérifiés par empreinte n’intersectent pas
+  l’ajout : distances minimales 34,61737 et 11,08115 unités.
+
+Ces vérifications à froid ne qualifient ni débit, température, serrage,
+jeux fonctionnels, fatigue, ni fabricabilité.
+
+![Coupe native avant et après l’élargissement local de l’appui](../media/m64-chamber-tip-20261002/support-land-section.png)
+
+Intersections réelles du B-Rep avec un même plan, 41 points par arête pour
+l’affichage, axes à échelles égales. Ni image générative ni métrologie.
+Référence issue du scan Wolfe Classics ; autorisation du propriétaire
+enregistrée dans la [fiche source](../../catalog/sources/src-wolfe-classics-935-billet-cylinder-head-scan.json),
+sans nouvelle revendication de licence. Aucun B-Rep brut n’est publié.
+
+### Essais rejetés et prochaine correction
+
+La collerette ajoute davantage de matière sans gain sur les trois défauts.
+Quatre de ses faces reposent sur le même cylindre analytique, avec même
+orientation : différences de rayon et de distance entre axes nulles,
+écart angulaire inférieur à `1.2e-17 rad` dans le noyau. Leur fusion locale
+supprime trois partitions et laisse un B-Rep valide, mais **échoue** aux
+contrôles de sérialisation des faces protégées et de préservation du corps
+en mémoire, malgré le mode d’entrée sûr. Aucun candidat fusionné n’est
+exporté ni maillé.
+
+Le contrôle préalable p-courbe/courbe 3D échoue aussi sur une arête au seuil
+`1e-6`. L’identité des cylindres est une vérification analytique distincte,
+pas une réparation de cette p-courbe. Prochaine étape : travailler sur une
+copie indépendante, identifier les représentations modifiées et contrôler
+les surfaces et courbes natives avant une nouvelle fusion locale.
+
+L’intégration adaptative séparée des volumes atteint son alarme de 120 s,
+code 142, sans rapport final. Les coupes ont été produites séparément,
+sans présenter cette intégration comme terminée.
+
+### Reproduction
+
+Le [constructeur borné](../../twins/m64-cylinder-head/source/wholebody/trial_upper_spring_support.py)
+réutilise les opérations et contrôles existants ; seules les hauteurs 0 et
+3 et les entrées exactes sont acceptées. Le [test natif](../../tests/test_m64_upper_spring_support.py)
+vérifie appui, passages et refus des paramètres invalides sur une géométrie
+synthétique. Les deux reconstructions complètes passent leurs contrôles
+natifs. Leurs empreintes de sérialisation diffèrent des essais exploratoires :
+aucun résultat de maillage ou BOP n’est automatiquement transféré à ces fichiers.
+
+```sh
+python twins/m64-cylinder-head/source/wholebody/trial_upper_spring_support.py \
+  --body /private/chamber-candidate.brep \
+  --registration /private/registration.json --collar-height 0 \
+  --output /private/fresh-support-land
+python -m unittest discover -s tests -p test_m64_upper_spring_support.py -v
+```
+
+```mermaid
+flowchart LR
+    A["Surface : 5 rejets"] --> B["Appui élargi : 3 rejets"]
+    B --> C["Raffinement supérieur : 4 — refusé"]
+    A --> D["Collerette : 3 — aucun gain"]
+    D --> E["Fusion : préservation échouée"]
+    E --> F["Copie indépendante et audit des représentations"]
+```
+
+### Vérification logicielle
+
+Dans le runtime natif du Mac, le nouveau test d’appui passe, ainsi que les
+quatre tests de raccordement/graduation existants. Il s’agit de témoins
+logiciels sur géométrie synthétique, pas d’une qualification de culasse.
+
+Les premiers contrôles Linux sont conservés dans les journaux privés :
+la copie initiale n’avait pas de métadonnées Git ; son extraction avec umask
+002 laissait des fichiers modifiables par le groupe ; enfin quatre fichiers
+AppleDouble du transfert macOS ajoutaient un faux rapport à l’index. La
+copie temporaire reçoit un dépôt local, les droits d’écriture groupe/autres
+sont retirés uniquement dans cette copie et les quatre métadonnées sont
+déplacées hors du checkout, sans suppression. Aucun garde de sécurité, code
+historique ou résultat attendu n’est modifié. Le troisième contrôle avait
+déjà passé les 3 234 tests principaux avec 170 sauts optionnels, mais échouait
+encore sur l’index documentaire : il n’est pas présenté comme un succès global.
+Le quatrième révèle que les métadonnées déplacées restaient enregistrées
+dans l’index Git temporaire ; elles en sont retirées. La liste des fichiers
+suivis est alors identique à celle du vrai dépôt, et les deux contrôles
+documentaires passent séparément avant de relancer la suite complète.
+
+Le contrôle final `make check` sur le système de fichiers Linux natif de
+Kali2 finit avec le code **0** : **3 234 tests principaux, 170 sauts
+optionnels**, 155,903 s pour cette suite, puis tous les autres contrôles,
+dont les quinze tests Docker épinglés. Les sources du constructeur et du
+test ont les mêmes empreintes sur Mac et Linux. Le témoin CAO optionnel
+est exécuté séparément sur Mac ; un saut Linux ne vaut pas qualification.
+Les contrôles locaux de l’index et des liens passent aussi après mise à jour
+du rapport : zéro lien cassé dans 573 fichiers Markdown.
+
+Empreinte du journal complet final :
+`8e9b35a15e993e07c3ac501ce68e37628834d44c6090ef4fbdc867ebb867db43`.
+
+Empreintes des essais exploratoires, géométrie conservée hors Git :
+
+- Appui B-Rep : `01cce1b6009b29f2755b2b86b52e572b2ca9872caf4704fb819da91004f87cc5`.
+- Construction appui : `b9277c928ccfc03255b8d6f3f8101f7507692c4da26fb7ec6b72805372b5f12f`.
+- Surface appui : `7a283dbf5d7d0bac49821bdf2db6e8c3fedc06d5510e8019890781007c878d2a`.
+- Surface graduée : `41a5e64ff5e96cac953692b420060c18544916fddf30da13ab9e478e2c42cc35`.
+- BOP appui : `3d43404e398d3178db67ebaeb236af93165265dc47b77cbf400aa80c7e6c62ed`.
+- Contacts appui : `3a885e151b2680bf2d96a08fea919708699bb974fc1e50875a84cf33737d5037`.
+- Collerette B-Rep : `3d298c4b354b30eb22704d6ca0430de24666283461effac41710e1af1adf65bb`.
+- Surface collerette : `40e4039edd082558511eb3a3b00b83f3361a148f998750b233eb7fe06f1f63d0`.
+- Fusion refusée : `06ca974ef4f4d49121ae91888d31485b88805e4de630549af3c0fdd22a523df1`.
+- Coupe : `58b849f40b27173374699e6a532b057250961626591a311bedbe47b646f60ae6`.
+
+Le volume de référence reste à **32 tétraèdres rejetés**. Le seuil physique
+de 0,040 mm, les interfaces M64, propriétés à chaud, refroidissement,
+fatigue et impression restent à qualifier. Aucun nouveau master, alliage,
+lancement d’impression ou agrément moteur ; aucune location payante.
 
 ## 2 October: G1 compounds and exhaust-seat contact
 
