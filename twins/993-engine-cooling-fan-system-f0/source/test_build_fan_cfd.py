@@ -33,7 +33,8 @@ with tempfile.TemporaryDirectory() as directory:
     assert "radius 0.125" in (case / "system/snappyHexMeshDict").read_text()
     assert "0.036" in (case / "system/topoSetDict").read_text()
     assert "omega 4200 [rpm]" in (case / "constant/MRFProperties").read_text()
-    assert "outlet {type fixedValue" in (case / "0/p").read_text()
+    assert "outlet {type totalPressure; p0 uniform 0;" in (case / "0/p").read_text()
+    assert (case / "system/controlDict").read_text().count("operation sumMag;") == 2
     clockwise = root / "clockwise"
     generate(clockwise, surface, 4200, rotor_only=True, rotation_sign=-1)
     assert "omega -4200 [rpm]" in (clockwise / "constant/MRFProperties").read_text()

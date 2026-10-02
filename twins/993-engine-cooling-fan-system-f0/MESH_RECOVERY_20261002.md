@@ -81,7 +81,7 @@ All failed attempts are retained; quality thresholds were not lowered.
 ## Runtime and acceptance
 
 Vast was provisioned through the approved API wrapper, without browser access.
-The owned worker has 64 effective CPU cores, approximately 125 GiB RAM and an
+The owned worker exposes 64 CPU cores with a 61.44-core cgroup quota, approximately 125 GiB RAM and an
 RTX PRO 6000 GPU. Its quoted base rate was USD 1.4708888889/hour. The pinned
 SimReady image passed its GPU smoke check; OpenFOAM Foundation 14 package
 20260724 was then installed explicitly. OpenFOAM runs on CPU; PhysicsNeMo
@@ -100,12 +100,62 @@ shaft power are measured from OpenFOAM function-object histories. A run ending
 at its iteration budget is not, by itself, convergence. Wall-layer qualification,
 grid independence and physical bench validation remain outstanding.
 
+The cold-start runs initially used SIMPLE with pressure relaxation 0.25 and
+velocity/turbulence relaxation 0.5. A live switch to SIMPLEC was requested at
+observed iterations 261 (control) and 259 (candidate), retaining the same linear
+solver tolerances and two non-orthogonal corrections. Pressure relaxation became
+1 and equation relaxation 0.7. Growing control residuals prompted a reduction of
+all three equation relaxation factors to 0.5 on both cases, requested at observed
+iterations 343 and 346. Control residuals continued growing, so both cases reverted
+to the original SIMPLE dictionary at observed iterations 382 and 389. The request
+iterations are not exact application times:
+OpenFOAM reloads modified dictionaries asynchronously. Original dictionaries,
+SHA-256 change journals and an independent iteration-200 checkpoint are retained.
+Acceptance criteria were not changed.
+
+The control's perturbed state did not recover promptly after reverting SIMPLE;
+its large negative torque made that branch unsuitable for comparison. It was
+stopped normally and retained as a rejected numerical attempt. A separate
+`control-restart-flow` case restarts the independently preserved iteration-200
+fields with the original SIMPLE settings. Checkpoint hashes and restart provenance
+are retained. Failed-branch histories are not spliced into the restarted history.
+The 42° case continues with the restored original SIMPLE settings.
+
+The restarted control subsequently showed growing residuals and nonphysical
+torque with the original component-wise `linearUpwind` convection too. Both
+active cases therefore switched to `bounded Gauss limitedLinearV 1`, requested
+at observed iterations 332 (restarted control) and 592 (candidate). This applies
+a common vector limiter near steep gradients; it locally approaches upwind and
+must not be described as uniformly second-order accurate. The mesh and acceptance
+thresholds remain unchanged. See the Foundation
+[numerical-schemes guide](https://doc.cfd.direct/openfoam/user-guide/fvschemes).
+
+The vector limiter brought control torque back to a positive value. An added
+boundary-flux diagnostic then detected substantial outlet return flow in the
+42° checkpoint at iteration 600: `sum(abs(phi))` was 0.59526 m³/s, substantially
+above its approximately 0.456 m³/s net flow. The fixed-static-pressure outlet
+was therefore replaced with `totalPressure`, `p0 = 0`, on **both** cases. This
+retains ambient static pressure for outflow and accounts for dynamic pressure
+on incoming ambient air; it does not impose an outlet flow rate. See the
+[Foundation boundary-condition definition](https://cpp.openfoam.org/v14/classFoam_1_1totalPressureFvPatchScalarField.html).
+
+Both runs stopped normally and resumed from their saved fields at iterations
+408 and 672. Native `foamDictionary` changed only the outlet entry in pressure
+fields; serialized internal pressure values were verified identical in all 66
+modified files. Original files, logs and change hashes are retained. The final
+convergence windows must lie entirely in the new boundary-condition segments.
+The generator now applies this ambient-reservoir boundary to future pilots and
+records both net and absolute opening fluxes. Domain-length sensitivity is still
+required before treating the rig as boundary-independent.
+
 ## Verification
 
 The repository's Python suite completed: 3,260 tests, 152 skipped, no failures.
 The additional imported-mesh rejection test also passed. `make check` reached
 the Docker-only LPBF audit and stopped because this Mac has no running Docker
 daemon; the complete target is therefore not green.
+The pushed mesh-recovery commit separately passed the repository's GitHub
+[check workflow](https://github.com/cluster2600/porscheparts/actions/runs/37011192117/job/110851072384).
 
 Primary implementation references: [PyMeshLab filters](https://pymeshlab.readthedocs.io/en/latest/filter_list.html),
 [Gmsh reference manual](https://gmsh.info/doc/texinfo/gmsh.html).
@@ -140,3 +190,19 @@ Run standard and full extended checks, export and audit the actual rotor patch,
 and only then run the repaired case with `run_reference_cfd.sh CASE
 --existing-mesh`. The checked case archives, surface audits and file hashes are
 the authoritative run inputs.
+
+The checked inputs and meshing-attempt logs are available in the experimental
+[evidence release](https://github.com/cluster2600/porscheparts/releases/tag/fan-cfd-mesh-recovery-2026-10-02).
+Downloaded local files and GitHub's uploaded asset digests agree:
+
+| Archive | SHA-256 |
+| --- | --- |
+| `checked-cfd-inputs.tar.gz` | `265ab1aa066c1b3278abc09f57b7f0cbc1c1426984c6a6fb223b67837ba5bf8f` |
+| `mesh-recovery-attempt-logs.tar.gz` | `c7c08773fc26430569b0fc9220d171536882e6103794203117b125cb111a1356` |
+| `control-restart-and-rejected-branch.tar.gz` | `55b6793b8099325ab00947f8d936221996e085ff95661b6c7ec082a4f6cf1ed0` |
+
+The input archive captures the initial solver setup before the SIMPLEC changes.
+Runtime journals and the final dictionaries must accompany any reported result.
+The restart archive contains the independent control checkpoint at iteration 200
+and the rejected first control branch's final fields at iteration 418; neither
+is a final airflow result.
