@@ -1,6 +1,6 @@
 # Registre de sources
 
-**Consultation : 27 septembre 2026, sauf S01 et S31–S34 relus le 28 septembre 2026.** Les pages fournisseur
+**Consultation : 27 septembre 2026, sauf S01/S34 relus le 28 septembre et S31–S33/S35 relus le 2 octobre 2026.** Les pages fournisseur
 attestent une offre publiée, pas un engagement, un stock ou une aptitude automobile.
 Les documents sont liés, pas copiés dans le dépôt. Les hypothèses d'ingénierie et
 les enveloppes financières de ce dossier sont nos propositions, non des données
@@ -61,7 +61,16 @@ Les fichiers fabricants sont uniquement liés ; aucun PDF propriétaire recopié
 - Anibis 180 CHF et budgets historiques : **source = brief du porteur**, annonce,
   acquisition et devis d'origine non disponibles ; aucune URL inventée.
 
-## Limites de collecte
+## Schéma natif E0 — complément du 2 octobre 2026
+
+| ID | Source | Vérification / limite |
+|---|---|---|
+| S35 | [KiCad — CLI 9](https://docs.kicad.org/9.0/en/cli/cli.html), [format des schémas](https://dev-docs.kicad.org/en/file-formats/sexpr-schematic/), [licence des bibliothèques](https://www.kicad.org/libraries/license/) | Export netlist/PDF et ERC ; KiCad 9.0.2 exécuté localement sous Debian, symboles 9.0.2. CC BY-SA 4.0 avec exception pour les circuits ; attribution et licence incluses pour la bibliothèque locale dérivée. Ne constitue pas une validation de fabrication |
+
+S31–S33 : fiches TI relues pour les brochages DAP/PW/DBV, sans modification des
+références candidates. Les PDF fabricants ne sont pas redistribués dans le dépôt.
+
+## Limites de collecte initiale (27 septembre)
 
 Recherches ciblées FR/DE/EN et sites fabricants/autorités ; pas d'audit global,
 contact fournisseur, inscription ni achat. L'outil de recherche web a ensuite

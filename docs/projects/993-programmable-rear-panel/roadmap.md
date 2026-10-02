@@ -31,7 +31,7 @@ Pas de compensation logicielle à un défaut des fonctions réglementaires.
 | RP-04 | P0 | Envoyer après accord les RFQ scan et coupon/électronique ; récupérer droits, données et chiffrage séparé | RP-01/03 |
 | RP-05 | P0 | Compléter measurements.csv ; définir datums, incertitudes et tolérances avec le porteur | scan |
 | RP-06 | P0 | Comparer pas 2,5/4 mm et mono/RGB, mesurer transmittance et contraste | coupon |
-| RP-06a | P0 | Faire transcrire et revoir le [circuit E0](electronics/coupon.md) : BOM et connexions préparées, encodeur hôte testé ; schéma natif/ERC/DRC puis assemblage et essais restent à faire | revue électronicien ; aucune commande lancée |
+| RP-06a | P0 | Revoir le [schéma natif E0](electronics/kicad/README.md) : trois feuilles, ERC et contrôle de netlist préparés ; revue professionnelle, empreintes, routage/DRC, assemblage et essais restent à faire | revue électronicien ; aucune commande lancée |
 | RP-07 | P0 | Remplacer hypothèses budget par devis 1/10/100/1 000 ; identifier site réel de chaque opération | RP-04/06 |
 | RP-08 | P1 | Porter la machine d'états sur MCU choisi ; authentification BLE et coupure matérielle, tests iOS/Android | choix MCU |
 | RP-09 | P1 | Réaliser la CAO native et l'analyse d'empilement ; gabarit sans charge puis PCB intégré | RP-05/06 |
