@@ -9,6 +9,34 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'twins/m64-cylinder-h
 
 @unittest.skipUnless(importlib.util.find_spec('numpy') and importlib.util.find_spec('scipy'), 'optional numpy/scipy runtime')
 class ProjectedSurfaceTopologyTests(unittest.TestCase):
+    @unittest.skipUnless(importlib.util.find_spec('gmsh'), 'optional Gmsh runtime')
+    def test_discrete_volume_keeps_boundary_and_rejects_winding_or_coordinate_change(self):
+        import numpy as np
+        import gmsh
+        from trial_audited_discrete_volume import generate, check_boundary, OPTIMIZERS
+        if gmsh.__version__ != '4.15.2': self.skipTest('qualified Gmsh 4.15.2 required')
+        p = np.array([[0.,0.,0.], [1.,0.,0.], [0.,1.,0.], [0.,0.,1.]])
+        f = np.array([[0,2,1],[0,1,3],[0,3,2],[1,2,3]])
+        gmsh.initialize(['discrete-test','-nopopup'],readConfigFiles=False,run=False)
+        gmsh.option.setNumber('General.Terminal',0)
+        try:
+            generate(gmsh,p,f)
+            self.assertTrue(check_boundary(gmsh,p,f[:,[1,2,0]][::-1]))
+            types, elements, _ = gmsh.model.mesh.getElements(3)
+            self.assertEqual(list(types),[4]); self.assertGreater(len(elements[0]),0)
+            self.assertTrue((gmsh.model.mesh.getElementQualities(elements[0],'minDetJac')>0).all())
+            with self.assertRaisesRegex(ValueError,'oriented_boundary'):
+                check_boundary(gmsh,p,f[:,::-1])
+            altered=p.copy(); altered[0,0]=1e-12
+            with self.assertRaisesRegex(ValueError,'exact_boundary_nodes'):
+                check_boundary(gmsh,altered,f)
+            gmsh.clear(); generate(gmsh,p,f,extend_size=False)
+            self.assertTrue(check_boundary(gmsh,p,f))
+            for method in OPTIMIZERS.values():
+                gmsh.model.mesh.optimize(method,force=True)
+                self.assertTrue(check_boundary(gmsh,p,f))
+        finally: gmsh.finalize()
+
     def test_curve_subdivision_preserves_direction_and_requires_unique_parent(self):
         import numpy as np
         from trial_project_compound_surface import split_curve_lines, update_stored_curves

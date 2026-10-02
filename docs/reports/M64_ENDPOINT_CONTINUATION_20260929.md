@@ -59,6 +59,13 @@ Their native-face partition remains unresolved, and the volume is not replaced.
 The owner's perforated-fin paper is reviewed in the
 [air/oil research supplement](../research/M64_LPBF_OIL_REVIEW_20260912.md#2-october-supplement-the-owners-perforated-fin-paper).
 
+**Internal-feature audit, 2 October:** all six remaining native junctions are
+sharp at the sampled points: oriented face normals differ by **81.55–98.45°**.
+They cannot be treated as disposable smooth CAD partitions. The sampled
+0.040-unit distance and watertight surface checks do not certify these native
+creases. A separate, explicitly faceted volume diagnostic is recorded below;
+it cannot replace the native reference or close the physical gates.
+
 **Later recovery, 1 October:** both authorised Linux hosts are reachable again.
 The previously uncollected size-0.1 run completed but has **5 incompatible
 triangles / 976,144**; the curvature-64 run ended at its 1,800-second alarm.
@@ -1001,3 +1008,147 @@ manufacturing release follows from this curve correction.** The retained
 volume still contains 32 rejected tetrahedra.
 - Actual mesh image: `bd566dfcd16efd777d1ec41c1932cea50f013731cc175d794dbe3c2c836966ee`.
 - Full-suite log: `b04c52b8dbd9b9e51822d1b4cc9b9a647cbf7ba877e2190b88be29701a32155a`.
+
+## 2 October: the six internal curves are sharp features, not smooth seams
+
+The [native curve auditor](../../twins/m64-cylinder-head/source/wholebody/audit_shared_curve_consistency.py)
+now examines every topologically shared edge inside the two compound groups.
+It evaluates both original trimmed p-curves at 129 parameters, including the
+endpoints, obtains surface derivatives and applies the original face
+orientations. The angle uses `atan2(norm(cross(n1,n2)), dot(n1,n2))`, not an
+absolute dot product that could hide an inverted normal. Surface singularities,
+mismatched parameter intervals and curve/surface disagreement above 1e-6 fail
+closed. No coordinate, tolerance, topology or native file changes.
+
+| Native face pair | Minimum sampled normal angle | Maximum sampled normal angle |
+|---|---:|---:|
+| 141 / 142 | 82.25136° | 83.70630° |
+| 142 / 143 | 82.25136° | 83.70630° |
+| 1411 / 1647 | 97.47269° | 98.44766° |
+| 1412 / 1648 | 90.00000° | 90.00000° |
+| 1413 / 1647 | 97.47687° | 98.07230° |
+| 1647 / 1648 | 81.54970° | 81.92770° |
+
+The maximum sampled 3D-curve/p-curve gap is **3.26412e-8 scan unit**. These are
+native angular observations, not an anatomical classification or continuous
+tangency certificate. Synthetic controls distinguish 0°, 90° and 180° and
+reject a missing second face. A second OCP 7.9.3.1 run on Kali1 provides an
+independent execution of the same method, not an independent mathematical
+method. This supplements, rather than repeats, the earlier acute *in-face*
+corner-angle diagnosis.
+
+**Decision:** retain the six curves in the reference. The 325 stored lines are
+not holes, but removing their metadata would also not restore the omitted
+creases. Any native candidate must either recover those sharp boundaries with
+face-aware constraints or explicitly reconstruct a bounded local transition,
+then repeat locality, CAD validity, deviation and volume audits. Renaming a
+faceted surface as CAD or assigning inherited face labels is not that work.
+
+### Separate faceted-volume experiment
+
+The [bounded diagnostic](../../twins/m64-cylinder-head/source/wholebody/trial_audited_discrete_volume.py)
+accepts only the exact oriented-array, topology and CGAL receipt hashes from
+the previous section. It creates a single discrete surface bounding a built-in
+Gmsh volume, following the [hybrid-model API](https://gmsh.info/doc/texinfo/#x2).
+A purely discrete volume does not generate tetrahedra in the small regression
+fixture; the built-in volume is necessary. No surface reparametrisation,
+smoothing, native import, welding, hole filling or automatic geometric repair
+is used. The 319 unreferenced stored points are excluded from this *separate*
+input; no point used by a triangle is removed. Original files are retained.
+
+The witness test requires identical binary64 surface coordinates and identical
+oriented triangles, allowing only triangle row order and cyclic permutations.
+It rejects coordinate drift of 1e-12 and reversed winding. These same checks
+run after volume generation, after optimisation and after MSH export/readback.
+The existing minSICN >= 0.1, positive-Jacobian, complete-boundary, one-region,
+volume-flux and independent region audits are reused without relaxed criteria.
+The process is limited to two meshing threads, ten minutes and 10 GiB of
+address space on Linux; the existing three-million-tetrahedron audit cap stays.
+
+The initial run stops at the bounded-linear-volume guard after **76.764 s**;
+the initial logger does not record its element count, so that count is unknown.
+No mesh from it is retained. The logger now records counts before the guard.
+A second run disables only propagation of fine surface mesh sizes into the
+interior (`Mesh.MeshSizeExtendFromBoundary=0`,
+[documented sizing behaviour](https://gmsh.info/doc/texinfo/#Specifying-mesh-element-sizes)).
+The boundary itself is not coarsened. Its raw mesh has **1,549,428 tetrahedra**,
+positive Jacobians and **61,847 elements below minSICN 0.1**, before optimisation.
+This is an intermediate result, not an accepted replacement volume.
+
+The Netgen run completes in **525.830 s** with **1,519,320 tetrahedra** and
+**16,261 below minSICN 0.1** (minimum **0.00001852290**). All Jacobians and
+signed volumes are positive. The exact boundary survives optimisation and
+export/readback, all 992,724 triangles match the tetrahedral boundary, and
+both connectivity audits find one region with no duplicate-coordinate vertices.
+The oriented tetrahedral sum and boundary flux both equal
+**1,113,008.6409500074 scan units cubed**. These integrity successes do not
+override the failed quality gate. The diagnostic is rejected; the historical
+32-rejection native-volume result is not replaced. Counts on different meshes
+are not a percentage of physical progress.
+
+The final writer now saves a raw MSH checkpoint before optimisation. A bounded
+control compares Gmsh's standard tetrahedral optimiser with Netgen. The Kali1
+control reproduces the same raw count and quality distribution; the Mac raw
+count differs slightly (1,549,324 tetrahedra and 62,169 quality rejections).
+Identical input geometry does not guarantee an identical floating-point
+mesher trajectory across platforms. No cross-platform bitwise volume identity
+is claimed.
+
+The standard-optimiser control on Kali1 ends after **305.438 s** with
+`Unknown element 30775537` during the post-optimisation sequence, before any
+accepted optimised quality report or final MSH. Its internal warning says
+229 ill-shaped tetrahedra remain; that library warning is **not** the project's
+minSICN rejection count. It must not be presented as an improvement from
+16,261 to 229. The cause of the element lookup failure is not yet reproduced
+or attributed to a cache. The Mac control reaches its **600 s SIGALRM**, exit
+142, while its receipt still says `optimizing_volume`. Its incomplete receipt
+is preserved, not rewritten as completed. Both raw MSH checkpoints survive;
+there is no optimised Mac volume to qualify.
+
+The next bounded diagnostic should reopen the saved raw checkpoint, reproduce
+the element-lookup failure and check export/reimport or cache behaviour before
+another whole-head run. Separately localise the retained poor elements and
+their boundary support; neither the six omitted creases nor interior sizing
+has yet been proved to account for every rejection. Native-feature-preserving
+reconstruction remains distinct from this faceted mesher investigation.
+
+Checks on the final code: eight focused tests pass on Mac (nine discovered,
+CGAL skipped). Seven pass on Kali1, where CGAL and the optional distance library
+are skipped; the new native-normal and volume-boundary tests do run. Three array/CGAL tests
+pass in the isolated Kali2 sidecar, with both Gmsh-4.15.2-only cases skipped
+in that older Gmsh image. Kali2 full `make check` exits **0**, with **3,225 main
+tests**, **163 optional skips**, 163.475 seconds for that suite and all further
+targets, including the 15 pinned F37 Docker tests. These are software tests,
+not an additive-manufacturing simulation of the new head. An initial local
+link check fails until the newly authored diagnostic is added to the Git index;
+the repeated strict link check finds zero broken links in 573 Markdown files.
+
+Private receipts/source fingerprints:
+
+- Native-angle Mac receipt: `e8acb52c7c4f3e43fb2e6eb6d1732e0072cc7b382142b39043a62f236839aecd`.
+- Native-angle Kali1 receipt: `d1e140a5913b740a669fd070471e4322aeb381e20a5963d0991f505ed90405a5`.
+- Netgen volume receipt: `2ea3493b8e8ff07792469e861945bf71cb2b4f1fb42fb8342684cb25a9f9fa87`.
+- Netgen producer snapshot: `5afc513f3487ecbac6b0d548d733b8f5bb9f290cc530f9f804d15d82732d5b70`.
+- Netgen generated MSH: `6dbd3f1b32d142cd2618df14f4a19e4706855d13a3420ed6ee1169b8555957cc`.
+- Netgen audited MSH: `7221889ad081a4faf9d00b2aaba5ba16828d2474af4b6c154aabdf4eaf20c662`.
+- Final volume producer: `f35506665bcb26016a27589f57728ad968facb69b29f26e7b515e8308af1051b`.
+- Final full-suite log: `d01010d2db8da4c63da9e860804c8103cd60a138c2cf0a29259bc208a44f5922`.
+
+All numerical jobs above have ended. No paid instance is used, and no native
+master, catalogue qualification, CFD/thermal/printing result, PR merge or
+website deployment is changed. The reference volume remains the earlier
+32-rejection result; **the requested zero-defect volume has not been achieved**.
+
+Reproduction in the qualified Gmsh 4.15.2 / OCP 7.9.3.1 environment:
+
+```sh
+python twins/m64-cylinder-head/source/wholebody/audit_shared_curve_consistency.py \
+  --body /private/original.brep --internal-compounds --output /private/junctions.json
+python twins/m64-cylinder-head/source/wholebody/trial_audited_discrete_volume.py \
+  --arrays /private/connected-oriented-audit/surface-private.npz \
+  --topology /private/connected-oriented-audit/report.json \
+  --intersections /private/cgal-connected.json --no-extend-size --optimizer netgen \
+  --output /private/fresh-faceted-volume
+python -m unittest discover -s tests -p test_m64_projected_surface_topology.py -v
+python -m unittest discover -s tests -p test_m64_bounded_chamfer.py -v
+```

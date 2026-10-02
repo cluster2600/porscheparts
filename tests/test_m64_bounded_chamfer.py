@@ -39,13 +39,23 @@ class BoundedChamferTests(unittest.TestCase):
     @unittest.skipUnless(importlib.util.find_spec('OCP'), 'optional CAD runtime')
     def test_native_curve_representations_agree_on_a_box(self):
         from OCP.BRepPrimAPI import BRepPrimAPI_MakeBox
-        from OCP.TopAbs import TopAbs_FACE
-        from audit_shared_curve_consistency import indexed, inspect
+        from OCP.TopAbs import TopAbs_EDGE, TopAbs_FACE
+        from audit_shared_curve_consistency import indexed, inspect, junction
         shape = BRepPrimAPI_MakeBox(1., 2., 3.).Shape()
         rows = inspect(list(enumerate(indexed(shape, TopAbs_FACE), 1)))
         self.assertEqual(len(rows), 24)
         self.assertLess(max(r['maximum_sampled_gap'] for r in rows), 1e-12)
         self.assertTrue(all(r['same_parameter'] and r['same_range'] for r in rows))
+        faces = indexed(shape, TopAbs_FACE); fa = faces[0]
+        edge = indexed(fa, TopAbs_EDGE)[0]
+        fb = next(f for f in faces[1:] if any(edge.IsSame(e) for e in indexed(f, TopAbs_EDGE)))
+        for other, angle in ((fa,0.), (fb,90.), (fa.Reversed(),180.)):
+            row = junction(edge, (fa,other))
+            self.assertAlmostEqual(row['minimum_oriented_normal_angle_degrees'], angle, places=10)
+            self.assertAlmostEqual(row['maximum_oriented_normal_angle_degrees'], angle, places=10)
+            self.assertEqual(row['sampled_tangent_under_0p1_degree'], angle == 0.)
+            self.assertTrue(row['endpoints_included'])
+        with self.assertRaises(ValueError): junction(edge, (fa,))
 
     @unittest.skipUnless(importlib.util.find_spec('OCP'), 'optional CAD runtime')
     def test_bounded_cut_removes_one_eighth_ball_at_box_corner(self):
