@@ -227,9 +227,9 @@ The repository's Python suite completed again after the rotating-interface corre
 regression passed separately with the focused runner checks. The new common-colour-scale rendering
 check was separately run in the PhysicsNeMo environment and passed, including
 rejection of clipped, zero and nonfinite ranges.
-The additional imported-mesh rejection test also passed. `make check` reached
-the Docker-only LPBF audit and stopped because this Mac has no running Docker
-daemon; the complete target is therefore not green.
+The additional imported-mesh rejection test also passed. The latest `make check` completed with exit status 0, including catalogue,
+source, documentation and existing manufacturing-evidence checks. It does not
+run a new physical printing test or qualify the fan manufacturing process.
 The pushed correction separately passed the repository's GitHub
 [check workflow](https://github.com/cluster2600/porscheparts/actions/runs/37021055598/job/110883928616).
 The pressure-integral audit now accepts an explicit CUDA device. Its analytical
