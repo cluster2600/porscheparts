@@ -118,3 +118,47 @@ replay data. The 140 fresh photo cases open only after eligibility.
 /Users/maxime/.codex/worktrees/m64-local-architecture-qwen/3dprinting993/work/m64-qwen/venv/bin/python \
   training/qwen-engineering-refinement/retain.py --output "$PWD/work/qwen-engineering-004"
 ```
+
+The owner's architecture diagram is used with an explicit meshing and review
+loop. OpenUSD carries the scene and exchange metadata; solver inputs also need
+their own mesh, units, region/patch mappings, materials and boundary conditions.
+
+```mermaid
+flowchart TD
+    A[Independent interfaces, loads and material data] --> B[PicoGK geometry]
+    B --> C[OpenUSD scene and explicit mesh exports]
+    C --> D[Checked solver meshes and boundary mappings]
+    D --> E[OpenFOAM]
+    D --> F[CalculiX]
+    E --> G[Convergence, balances and acceptance checks]
+    F --> G
+    G -->|revise| B
+    G -->|design accepted| H[Qualified build, machining and inspection plan]
+    H -->|professional release| I[Manufacturing]
+```
+
+Current model benchmarks cover individual operations and evidence decisions.
+They do not yet demonstrate autonomous execution of this complete coupled
+workflow, manufacturing distortion prediction or a calibrated Porsche twin.
+
+[Continuation 004](results-004.json) is rejected: step 480 reaches USD 45/46
+but engineering decisions fall to 70/80, losing seven parent passes as well as
+one earlier USD case. Its 98,708 reported training tokens do not establish an
+improvement; the fresh tests remain unopened.
+
+The [explicit-selection continuation](select_variant.py) returns to 003/1200.
+Existing USD training examples now end with the requested variant selection,
+including both `small` and `large`. Previously many `large` targets relied on
+the selection left by the last authoring context, whereas `small` required an
+explicit final call. Each revised completion is checked natively against its
+original, unchanged expected scene before training. Validation/test prompts,
+answers and graders remain frozen. Sixfold replay applies only to these
+training variants; CalculiX weight 4 and engineering weight 2 retain coverage.
+Train 1,200 steps at learning rate 0.000005, batch 2; checkpoints 600/1200 face
+the same 95% domain floor and all prior passing obligations. This is a scoped
+hypothesis about completion ambiguity, to be accepted only on measured results.
+
+```sh
+/Users/maxime/.codex/worktrees/m64-local-architecture-qwen/3dprinting993/work/m64-qwen/venv/bin/python \
+  training/qwen-engineering-refinement/select_variant.py --output "$PWD/work/qwen-engineering-005"
+```

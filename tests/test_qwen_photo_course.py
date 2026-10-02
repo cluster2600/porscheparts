@@ -17,6 +17,7 @@ class PhotoCourseTests(unittest.TestCase):
             import photo_course
             import refine
             import retain
+            import select_variant
         finally:sys.path.pop(0)
         smoke=refine.module('photo_smoke_test',ROOT/'scripts/cad_recode/ccx_smoke.py')
         class USD:SYSTEM='supplied mesh buffers'
@@ -34,6 +35,17 @@ class PhotoCourseTests(unittest.TestCase):
         self.assertTrue(all(r['split']=='train' for r in replay))
         self.assertEqual(sum(r['domain']=='calculix' for r in replay),96)
         self.assertEqual(sum(r['domain']=='engineering' for r in replay),960)
+        example={'split':'train','domain':'openusd','messages':[{}, {'content':'Select large.'}, {'content':'variants.SetVariantSelection("small")\n'}], 'expected':{'selection':'large'}}
+        revised=select_variant.explicit_selection(example)
+        self.assertTrue(revised['messages'][-1]['content'].endswith('variants.SetVariantSelection("large")\n'))
+        self.assertEqual(revised['expected'],example['expected'])
+        self.assertEqual(example['messages'][-1]['content'],'variants.SetVariantSelection("small")\n')
+        small={**example,'messages':[{}, {'content':'Select small.'}, {'content':'variants.SetVariantSelection("large")\n'}]}
+        self.assertTrue(select_variant.explicit_selection(small)['messages'][-1]['content'].endswith('variants.SetVariantSelection("small")\n'))
+        for split in ('valid','test'):
+            held_out={**example,'split':split}
+            self.assertIs(select_variant.explicit_selection(held_out),held_out)
+        self.assertEqual(len(select_variant.weighted([example,{**example,'split':'valid'}])),6)
         self.assertTrue(all(not r.get('manufacturing_authorized',False) for r in targets if 'geometry_allowed' in r))
         self.assertTrue(any(r.get('manufacturing_authorized') for r in targets))
         for r in rows:
