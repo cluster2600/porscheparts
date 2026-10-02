@@ -89,6 +89,23 @@ def candidates(expanded=False, composition=False):
     return rows
 
 
+def variant_selection_candidates():
+    """Pair each scene with both final selections so names cannot predict the answer."""
+    rows=[]
+    for original in candidates(expanded=True):
+        if original['recipe']!=4 or original['split']=='valid':continue
+        for choice in ('small','large'):
+            row=json.loads(json.dumps(original))
+            row['id']=row['id'].replace('usd2-','usd4-')+'-'+choice
+            row['group']='variant_selection_pairs'
+            for message in row['messages'][1:]:
+                message['content']=message['content'].replace('/World/','/World/Choice')
+            row['messages'][1]['content']=re.sub(r'Select (small|large)\.',f'Select {choice}.',row['messages'][1]['content'])
+            row['messages'][2]['content']+=f'variants.SetVariantSelection("{choice}")\n'
+            rows.append(row)
+    return rows
+
+
 # Exact API allowlist. No file access, imports beyond pxr names, arbitrary getattr,
 # Python eval/exec, external references, functions, loops or comprehension syntax.
 ALLOWED = set('''Xform Cube Sphere Mesh Xformable Material Shader MaterialBindingAPI
@@ -218,11 +235,13 @@ def main():
     p.add_argument('--replay',type=Path,help='Frozen cases.json from the previous PicoGK run')
     p.add_argument('--expanded',action='store_true',help='Generate the second curriculum; preserve the original corpus by default')
     p.add_argument('--composition',action='store_true',help='Generate 288 three-object training scenes and 24 fresh tests; no validation changes')
+    p.add_argument('--variant-selection',action='store_true',help='Generate 96 training and 8 fresh-test examples in matched small/large pairs')
     p.add_argument('--split',choices=['valid','test'],default='test',help='Partition to infer/score; never selects training rows')
     a=p.parse_args()
     if a.output.exists():raise ValueError('output already exists')
     if a.action=='generate':
-        rows=candidates(expanded=a.expanded,composition=a.composition)
+        if a.variant_selection and (a.expanded or a.composition):p.error('variant-selection is a separate curriculum')
+        rows=variant_selection_candidates() if a.variant_selection else candidates(expanded=a.expanded,composition=a.composition)
         a.output.write_text(''.join(json.dumps(r)+'\n' for r in rows));return
     rows=[json.loads(x) for x in a.input.read_text().splitlines() if x.strip()]
     if a.action=='prepare-pilot':
