@@ -1,0 +1,9 @@
+{
+  "device": "cpu",
+  "dtype": "bfloat16",
+  "quantization": null,
+  "threads": 4,
+  "source_config": "lora-pilot.json",
+  "decoding": {"do_sample": false, "max_new_tokens": 256},
+  "purpose": "Single fixed one-epoch LoRA run on the available BF16 CPU. Separate from the unexecuted GPU NF4 QLoRA profile. No tuning on test predictions."
+}

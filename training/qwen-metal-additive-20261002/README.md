@@ -8,8 +8,10 @@ The [v2 formatting guide](FORMATTING.md) and `formatted-v2/` remain historical
 exports, including the correction to v1's Ti-6Al-4V snapshot/attribution.
 
 Owner-requested preparation of the multilingual research corpus, 2 October 2026.
-The data are prepared and partitioned; **no training has run, no weights have
-changed, and no existing adapter or serving default is replaced**.
+The v1/v2/v3 preparation releases remain historical, frozen inputs. A separate
+[CPU BF16 LoRA pilot](CPU_PILOT.md) has now trained a new adapter against the
+frozen v3 release. See its [measured results](runs/cpu-lora-001/RESULTS.md);
+independent scientific review is pending.
 
 This is a separate sibling of the existing engineering and Porsche-document
 experiments. It covers metal additive manufacturing simulation, powder and alloy
