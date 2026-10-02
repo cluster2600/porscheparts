@@ -21,20 +21,33 @@ def run(args):
         if sha != BODY_SHA: raise ValueError('original_control_required')
     else:
         report_path = args.candidate/'report.json'; body = args.candidate/'candidate-private.brep'
-        producer = json.loads(report_path.read_text()); sha = native.sha256(body)
+        producer = json.loads(report_path.read_text())
+        expected_status = 'candidate_pending_BOP_distance_and_mesh'
+        if producer.get('schema') == 'm64-acute-cylinder-blend/v1':
+            body = args.candidate/'candidate.brep'
+            expected_status = 'candidate_pending_BOP_deviation_volume_and_remesh'
+            if (producer.get('input_sha256') != BODY_SHA or producer.get('pair') != [2,142]
+                    or producer.get('crease_seams_without_cusp') is not True):
+                raise ValueError('bound_non_cusped_chamber_crease_required')
+        sha = native.sha256(body)
         if (producer.get('candidate_sha256') != sha or producer.get('inputs_unchanged') is not True
-                or producer.get('status') != 'candidate_pending_BOP_distance_and_mesh'):
+                or producer.get('status') != expected_status):
             raise ValueError('bound_candidate_required')
         pins[report_path] = native.sha256(report_path)
     if (args.output.exists() or args.output.is_symlink() or body.is_symlink() or gmsh.__version__ != '4.15.2'):
         raise ValueError('fresh_output_and_native_candidate_required')
     pins[body] = sha
+    chamber_frontal = getattr(args, 'chamber_frontal', False)
+    if chamber_frontal and (args.reference_body or args.surface_algorithm != 1 or sha !=
+            '93545442adaf0a95e741d50ef9efeef48c677ff3592dbeb637dba76bb74df6de'):
+        raise ValueError('exact_chamber_network_and_meshadapt_background_required')
     args.output.mkdir(mode=0o700); start = time.monotonic()
     report = dict(schema='m64-tip-cut-surface-screen/v1', status='incomplete', input_sha256=sha,
         producer_sha256=None if args.reference_body else pins[report_path], source_sha256=pins[Path(__file__)],
         unchanged_reference_control=bool(args.reference_body),
         minimum_size=args.minimum, cpu_seconds=args.cpu_seconds,
         surface_algorithm=args.surface_algorithm,
+        chamber_frontal=chamber_frontal,
         mesh_gate_closed=False, manufacturing_authorized=False)
     def save(): native.save(args.output/'report.json', report)
     ns = argparse.Namespace(input=body, sha256=sha, output=args.output)
@@ -61,6 +74,12 @@ def run(args):
                           'General.NumThreads': 2, 'Mesh.MaxNumThreads1D': 2, 'Mesh.MaxNumThreads2D': 2,
                           'Mesh.RandomSeed': 1, 'Mesh.ElementOrder': 1}.items():
             gmsh.option.setNumber(key, value)
+        if chamber_frontal:
+            rows = [r for r in binding['matches_private'] if r['source_face_index'] in (147,152)]
+            if len(rows) != 2: raise ValueError('two_bound_chamber_faces_required')
+            report['surface_algorithm_overrides_private'] = [dict(source_face_index=r['source_face_index'],
+                gmsh_face_tag=r['gmsh_face_tag'], algorithm=6) for r in rows]
+            for r in rows: gmsh.model.mesh.setAlgorithm(2, r['gmsh_face_tag'], 6)
         sizes = {}
         for _, curve in gmsh.model.getEntities(1):
             length = gmsh.model.occ.getMass(1, curve)
@@ -111,6 +130,7 @@ if __name__ == '__main__':
     parser.add_argument('--minimum', type=float, choices=(.005, .00002), default=.00002)
     parser.add_argument('--cpu-seconds', type=int, choices=(270, 540), default=270)
     parser.add_argument('--surface-algorithm', type=int, choices=(1, 6), default=1)
+    parser.add_argument('--chamber-frontal', action='store_true', help='Hash-bound five-edge chamber trial only: use Frontal on its two rejected faces.')
     args = parser.parse_args()
     resource.setrlimit(resource.RLIMIT_CPU, (args.cpu_seconds, args.cpu_seconds+5))
     signal.alarm(args.cpu_seconds+60)

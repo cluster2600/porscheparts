@@ -1166,6 +1166,145 @@ python -m unittest discover -s tests -p test_m64_projected_surface_topology.py -
 python -m unittest discover -s tests -p test_m64_bounded_chamfer.py -v
 ```
 
+## 2 October: reject the cutter cusp and test a coupled chamber-edge network
+
+**No new master or printable head is accepted.** This continuation rounds the
+identified native junctions instead of hiding them inside a smooth compound.
+All dimensions below are provisional **scan units**, not certified millimetres.
+
+The first private prototype rounds the chamber cutter's entire 8-degree lower
+crease at radius 0.002, intersects the recovered material with the original
+pre-chamber stock, then fuses it into a disposable head. It preserves the 4,914
+protected face identities/serializations in memory and passes BOP. Nevertheless,
+its bottom plane and curved cavity meet with **opposed oriented normals**:
+the restored lip tapers to zero thickness. Native validity alone misses this
+engineering defect. Three other internal seams are merely coplanar, but merging
+those seams would not remove the cusp. This construction is rejected.
+Its original executable prototype and seven-test fixture are retained privately;
+they are not added as another production geometry generator.
+
+The existing [bounded blend runner](../../twins/m64-cylinder-head/source/wholebody/trial_acute_cylinder_blend.py)
+now supports the original head's face pair 2/142, with an oriented seam check.
+History faces must first be resolved to their orientations in the **final
+solid**: using the Boolean/fillet history orientations directly initially
+caused a false 180-degree rejection. The correction does not take an absolute
+dot product or relax the angular threshold. The runnable shallow-wedge fixture
+checks both tangent seams, unchanged input, and the removed volume
+`r²[tan(turn/2) − turn/2]` for a unit extrusion, to twelve decimal places.
+Sampling 129 points per seam is not a continuous G1 certificate.
+
+| Construction and completed whole-surface screen | Triangles | Incompatible with a fixed-face tetrahedron of q3 ≥ 0.1 | Minimum q2 |
+|---|---:|---:|---:|
+| Archived unchanged-body MeshAdapt control | 441,650 | 7 | 0.021346709 |
+| Cutter round r=0.002, Frontal on every face | 948,434 | 12,907 | 0.000221057 |
+| Material crease r=0.5, MeshAdapt | 468,112 | 17 | 0.006629914 |
+| Coupled five-edge network r=0.05, MeshAdapt | 1,006,116 | 17 | 0.020083135 |
+| Same network, Frontal only on faces 147/152 | 992,598 | 163 | 0.009959070 |
+
+The cutter-round MeshAdapt process exits **139** before producing a completed
+mesh; its Frontal run is a different algorithm, not a matched improvement
+comparison. An independent whole-body Boolean removal check exceeds its
+120-second alarm and exits 142 without a result. Global default and adaptive
+volume integration also disagree numerically at this tiny modification scale;
+neither incomplete check proves that no material was removed.
+
+The isolated material-crease blend has two tangent support seams, but its
+cylindrical endpoint faces acquire zero unsigned tangent-ray angles. Twelve
+bad triangles occur on those two endpoint faces. It is rejected.
+
+The coupled trial explicitly includes five edges: 2/142, 2/141, 2/143, 141/142,
+and 142/143. There is no contour propagation. Exactly six original faces change
+(2, 131, 140, 141, 142, 143); all **4,912** other face identities and serialized
+data remain intact in memory. One valid solid, 4,925 faces, unchanged maximum
+tolerances, and BOP with no errors/warnings/faults are obtained. BOP takes
+118.110 seconds. A metadata-only producer rerun emits the **same BRep SHA-256**.
+
+Its twelve local bad triangles are now on candidate faces 147 and 152; the
+other five lie outside the modified patch. Some endpoint boundaries remain
+sharp: the principal crease's two tangent seams do **not** establish smoothness
+of the entire network. The local native unsigned ray minima on the two retained
+cylindrical faces are about 2.37348 degrees; these are curved boundaries, so the
+earlier straight-sided planar-corner theorem must not be applied to them.
+
+The [surface runner](../../twins/m64-cylinder-head/source/wholebody/screen_tip_cut_surface.py)
+also admits this hash-bound blend receipt and offers `--chamber-frontal`:
+Frontal on only those two rejected faces, MeshAdapt elsewhere, all sizes and
+quality thresholds unchanged. The flag rejects every other BRep hash and a
+different background algorithm before creating output. No curve is discarded
+and no compound is formed. The run completes in 114.853 seconds, but worsens
+the local rejection count from twelve to **158**; five other failures remain.
+This recipe is also rejected, not adopted as a faster or better mesh.
+
+Bidirectional native **patch sampling**, including native boundaries and
+trimmed-face interiors, finds maxima of **0.0207106781** (11,164 original-to-new
+samples) and **0.0146446609** (13,442 new-to-original samples). No sampled value
+exceeds 0.040. This is neither a Hausdorff bound, a whole-head dimensional
+certificate nor a physical 0.040 mm result. A separate readback face-byte lookup
+matches only 4,804 of the 4,912 protected face serializations; representation
+differences are **not** proof of movement, but this lookup cannot be advertised
+as a protected-face export certificate. The patch audit uses the producer's
+explicit result-face indices bound to the emitted BRep hash instead.
+
+![Actual central sections through the rejected and trial chamber junctions](../media/m64-chamber-tip-20261002/crease-sections.png)
+
+These are actual native sections at X=0, not generated product imagery. The
+vertical axis is enlarged. The central section cannot establish endpoint mesh
+quality. Source attribution: Wolfe Classics-derived geometry under the owner's
+recorded reuse permission; the exact licence identifier remains unarchived.
+No raw scan, private native CAD, mesh coordinates or third-party article image
+is committed.
+
+Private run root: `work/m64-private-20260907/chamber-blend-20261002.lHhDahOj`.
+Key fingerprints:
+
+- Coupled native candidate: `93545442adaf0a95e741d50ef9efeef48c677ff3592dbeb637dba76bb74df6de`.
+- Final producer receipt: `b3f95e94e103f0f5dfb207d0c1b21349d497df176983e9200bb78406156fe060`.
+- Sample/section receipt: `f4eedb7f39e2ee43db1cc64c918950b11168b4ca25fb715485139fac89c4d4c3`.
+- Section PNG: `d2efd885381f82a62a8607b23f28e51e30fe64f40d12515650aea6be3281c381`.
+- Local-Frontal mesh: `4790a965482088ef750bd527c3bd3c70e18049619580ce26473d4b2effd6daa5`.
+
+Verification in the qualified Mac runtime: three blend/override tests, six
+bounded-cut tests and three fixed-face quality tests pass. The added override
+test rejects a different body before creating an output directory. Kali2's
+first system-Python run discovers a partial user-installed OCP package and
+fails imports such as `TopTools_IndexedMapOfShape` (59 errors and three
+failures). This is not a passing full suite. The clean-runtime rerun disables
+user-site packages with `PYTHONNOUSERSITE=1`; optional native fixtures remain
+covered by the qualified Mac run, not by Linux skips. No installed package or
+acceptance threshold is changed to hide these environment errors.
+That rerun exits **0** for the complete `make check`: 3,232 main tests,
+168 optional skips, 155.486 seconds, followed by all remaining targets. The
+three changed code/test file hashes match the Mac checkout exactly. Full log:
+`8c951b57076126e75806dec6ad970a65a7898a0fc03ef454b46f520e68f7837a`,
+retained under Kali2 `m64-crease-check-20261002.a8yuGF0r`. Final local report-index
+and strict link checks also pass; no geometry or test process remains running.
+
+Next bounded experiment: audit every shared boundary before considering any
+smooth-face compound or local retriangulation. The 90-degree and 16-degree
+boundaries adjacent to face 147 must not disappear. In parallel with that
+numerical work, the upper spring-pocket/pad transition still requires its own
+source-based reconstruction. None of these rejected recipes justifies a volume
+optimizer run, a looser quality threshold or a changed physical design envelope.
+
+```sh
+python twins/m64-cylinder-head/source/wholebody/trial_acute_cylinder_blend.py \
+  --body /private/original.brep --pair 2 142 --radius .05 \
+  --chamber-corner-network --output /private/fresh-network
+python twins/m64-cylinder-head/source/wholebody/screen_tip_cut_surface.py \
+  --candidate /private/fresh-network --cpu-seconds 540 \
+  --output /private/fresh-network-surface
+python twins/m64-cylinder-head/source/wholebody/screen_tip_cut_surface.py \
+  --candidate /private/fresh-network --cpu-seconds 540 --chamber-frontal \
+  --output /private/fresh-network-local-frontal
+python -m unittest discover -s tests -p test_m64_acute_cylinder_blend.py -v
+```
+
+No volume meshing or physical simulation is warranted for an incompatible
+surface. The retained reference remains **32 rejected tetrahedra**, not zero.
+The source scale, M64 interfaces, loads, material-at-temperature data, oil/air
+cooling, fatigue, printing and physical correlation gates remain open. No
+Vast rental, release, PR merge or website deployment occurs in this run.
+
 ## 2 October: trace the cutter, then reject a valid but unmeshable restoration
 
 **No replacement head is accepted.** A new source-based construction passes
