@@ -30,7 +30,7 @@ while pending:
         if report['normal_solver_exit']:
             pending.remove(case)
         elif report['last_iteration'] >= 250 and all(report[key] for key in (
-                'numerical_window_checks_passed', 'standard_mesh_check_passed',
+                'numerical_window_checks_passed', 'nonlinear_residual_checks_passed', 'standard_mesh_check_passed',
                 'extended_mesh_check_passed', 'rotating_frame_interface_check_passed')):
             control = case/'system/controlDict'
             text = control.read_text()

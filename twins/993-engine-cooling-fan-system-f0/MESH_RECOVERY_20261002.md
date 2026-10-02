@@ -228,6 +228,25 @@ iteration-acceleration change, not a change to physical conditions or acceptance
 thresholds. Each case records its timestamp and old/new dictionary hashes in
 `relaxation-change.json`. These runs still require the full convergence checks.
 
+After preserving iteration-400 fields, velocity relaxation alone increased to
+0.9 at observed iterations 476 / 475; k and omega stayed at 0.7. These are the
+velocity/turbulence relaxation values in the installed OpenFOAM 14
+`mixerSRF/system/fvSolution` tutorial. The case-specific spatial schemes,
+non-orthogonal corrections, linear tolerances and physical inputs remain
+unchanged. `velocity-relaxation-change.json` records this second update.
+Using a tutorial setting does not establish convergence; the original integral
+checks still decide whether the resulting run is acceptable.
+
+The final acceptance guard also checks the maximum initial nonlinear residuals
+over the last 100 complete iterations: velocity ≤ 1e-4; pressure, k and omega
+≤ 1e-3. These match the installed `rotorDisk` tutorial residual-control levels
+and supplement, rather than relax, the existing integral windows. Missing,
+nonfinite or incomplete residual histories cannot pass. Pressure uses the
+largest initial residual across all pressure corrections in each iteration.
+This is still a numerical screen, not a mesh-independence or physical-validation
+claim. The monitor follows the solver's bounded run instead of abandoning its
+watch after an unrelated two-hour timeout.
+
 ## Verification
 
 The repository's Python suite completed again after the interface correction and English presentation update:

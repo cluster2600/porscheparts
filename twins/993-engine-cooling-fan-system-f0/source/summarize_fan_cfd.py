@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 import math
+import re
 from pathlib import Path
 import runpy
 import statistics
@@ -50,6 +51,38 @@ def mrf_interface_passed(text):
         return False
 
 
+def residual_diagnostics(log, last_iteration, window=100):
+    limits = {"U": 1e-4, "p": 1e-3, "k": 1e-3, "omega": 1e-3}
+    maxima = dict.fromkeys(limits, 0.)
+    starts = list(re.finditer(r"^Time = ([0-9.]+)s?\s*$", log, re.M))
+    expected = set(range(int(last_iteration) - window + 1, int(last_iteration) + 1))
+    seen = set()
+    for i, start in enumerate(starts):
+        iteration = float(start[1])
+        if iteration not in expected:
+            continue
+        if iteration in seen:
+            raise ValueError("Repeated residual iteration")
+        seen.add(iteration)
+        block = log[start.end():starts[i+1].start() if i+1 < len(starts) else len(log)]
+        values = {}
+        for field, value in re.findall(r"Solving for (Ux|Uy|Uz|p|k|omega), Initial residual = ([^,\s]+)", block):
+            value = float(value)
+            if not math.isfinite(value) or value < 0:
+                raise ValueError("Invalid nonlinear residual")
+            values[field] = max(values.get(field, 0.), value)
+        if set(values) != {"Ux", "Uy", "Uz", "p", "k", "omega"}:
+            raise ValueError("Incomplete nonlinear residual history")
+        for field, value in values.items():
+            key = "U" if field.startswith("U") else field
+            maxima[key] = max(maxima[key], value)
+    if seen != expected:
+        raise ValueError("Incomplete nonlinear residual window")
+    return {"maximum_initial_residual_last_window": maxima,
+            "initial_residual_acceptance_limits": limits,
+            "nonlinear_residual_checks_passed": all(maxima[k] <= limits[k] for k in limits)}
+
+
 def summarize(case, *, allow_running=False):
     histories = []
     for patch in ("inletFlow", "outletFlow"):
@@ -92,6 +125,7 @@ def summarize(case, *, allow_running=False):
             for name in ("fan-input.json", "constant/geometry/rotor.stl", "constant/MRFProperties",
                          "system/controlDict", "system/fvSchemes", "system/fvSolution", "0/U", "0/p")
                          + (("constant/geometry/alternator.stl",) if manifest.get("alternator_envelope_included") else ())}})
+    result.update(residual_diagnostics(log, forces[-1][0]))
     return result
 
 
@@ -111,6 +145,18 @@ if __name__ == "__main__":
                         audit.replace("cells=100", "cells=50"), audit + "\nMRF REJECTED",
                         "MRF_AUDIT cells=50 totalCells=100 interfaceFaces=10 interfaceArea_m2=.15 meanNormalSpeed_per_rad_s=.035 maxNormalSpeed_per_rad_s=.123"):
             assert not mrf_interface_passed(invalid)
+        residual_log = "".join(f"Time = {i}s\n" + "".join(
+            f"Solving for {field}, Initial residual = 1e-5, Final residual = 1e-8\n"
+            for field in ("Ux", "Uy", "Uz", "p", "k", "omega")) for i in (1, 2))
+        assert residual_diagnostics(residual_log, 2, 2)["nonlinear_residual_checks_passed"]
+        assert not residual_diagnostics(residual_log.replace("1e-5", "0.01"), 2, 2)["nonlinear_residual_checks_passed"]
+        for bad in (residual_log.replace("1e-5", "nan"), residual_log.replace("for Ux", "for absent"), residual_log * 2, "Time = 2s\n"):
+            try:
+                residual_diagnostics(bad, 2, 2)
+            except ValueError:
+                pass
+            else:
+                raise AssertionError("Invalid residual history accepted")
         print("Fan flow diagnostic checks passed")
     else:
         result = summarize(args.case)
