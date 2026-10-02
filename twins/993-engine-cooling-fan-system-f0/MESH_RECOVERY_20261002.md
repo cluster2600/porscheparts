@@ -293,6 +293,7 @@ Downloaded local files and GitHub's uploaded asset digests agree:
 | --- | --- |
 | `checked-cfd-inputs.tar.gz` | `265ab1aa066c1b3278abc09f57b7f0cbc1c1426984c6a6fb223b67837ba5bf8f` |
 | `mesh-recovery-attempt-logs.tar.gz` | `c7c08773fc26430569b0fc9220d171536882e6103794203117b125cb111a1356` |
+| `full-frame-iteration300-checkpoints.tar.gz` | `97326dc49ff9fd3a3a8cf0073692bb08e1224ec6f8a5e6d23df655bb2370e405` |
 | `rejected-lts-and-interface-evidence.tar.gz` | `1cf3873df6e465e75d89042f9a0cf5700f3366a2f3e66988d2c77819edb877ef` |
 | `simplec-pre-lts-checkpoints.tar.gz` | `5426daad8fed5c2d891f57cdc32b59fedad297619d364216541be0f7c2fe6c5b` |
 | `control-restart-and-rejected-branch.tar.gz` | `55b6793b8099325ab00947f8d936221996e085ff95661b6c7ec082a4f6cf1ed0` |

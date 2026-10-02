@@ -13,10 +13,7 @@ pending = args.cases.copy()
 for case in pending:
     if not (case/'system/controlDict').is_file():
         raise ValueError(f'Not a prepared case: {case}')
-deadline = time.monotonic() + 7200
 while pending:
-    if time.monotonic() > deadline:
-        raise TimeoutError('Study monitor exceeded two hours; solver remains independently controlled')
     for case in pending[:]:
         log = case/'log.foamRun'
         log_text = log.read_text() if log.exists() else ''
