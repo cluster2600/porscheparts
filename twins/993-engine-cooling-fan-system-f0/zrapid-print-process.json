@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0.0",
+  "manufacturer": "ZRapid Tech / Suzhou Zhongrui",
+  "manufacturer_country": "China",
+  "model": "iSLM420DN",
+  "build_width_mm": 420,
+  "build_depth_mm": 420,
+  "build_height_mm": 450,
+  "source": "https://www.zero-tek.com/cn/slm420dn.html",
+  "manufacturer_location_source": "https://www.zrapid.com/en/index.html",
+  "retrieved_on": "2026-09-28",
+  "published_machine": {
+    "laser_count": 2,
+    "maximum_power_per_laser_w": 500,
+    "beam_diameter_1_e2_range_mm": [0.06, 0.20],
+    "recommended_scan_speed_mm_s": [1000, 4000],
+    "precision_layer_range_mm": [0.02, 0.05],
+    "gas": "Argon selected from published compatible gases",
+    "dimensional_scope": "Nominal envelope excluding screw holes and rounded corners; plate thickness and usable margins require confirmation"
+  },
+  "published_research_recipe": {
+    "source": "https://www.sciencedirect.com/science/article/pii/S2352492826011013",
+    "doi": "10.1016/j.mtcomm.2026.115712",
+    "machine": "iSLM420DN",
+    "material": "AlSi10Mg",
+    "power_w": 500,
+    "scan_speed_mm_s": 1300,
+    "hatch_spacing_mm": 0.10,
+    "layer_thickness_mm": 0.04,
+    "spot_diameter_mm": 0.08,
+    "plate_temperature_k": 303.15,
+    "scope": "Experimental recipe from a research paper on this machine, not a supplier-qualified fan production recipe"
+  },
+  "study_assumptions": {
+    "active_lasers": 1,
+    "orientation": "build_z",
+    "standoff_mm": 6,
+    "base_plate_thickness_mm": 20,
+    "xy_edge_margin_mm": 10,
+    "recoat_seconds_per_layer": 8,
+    "absorptivity": 0.35,
+    "absorptivity_sensitivity": [0.25, 0.45],
+    "thermal_support_solid_fraction": 0.15,
+    "ambient_temperature_k": 298.15,
+    "convection_w_m2_k": 12,
+    "emissivity": 0.4,
+    "macro_pitches_mm": [2.0, 1.5],
+    "substeps_per_macro_layer": 4,
+    "cooldown_seconds": 120,
+    "support_model": "Homogenized vertical columns below the first part voxel in each XY column, perfectly attached to an isothermal plate; not industrial supports",
+    "source_model": "Laser energy averaged over each macro-layer and its scan/recoat duration; no resolved beam or melt pool",
+    "missing_physics": ["melt pool", "powder gas flow", "latent heat and phase change", "temperature-dependent properties", "plasticity and residual stress", "plate release and warpage", "recoater collision", "contour passes", "laser jumps and dual-laser scheduling"]
+  },
+  "material_model": {
+    "source": "https://raw.githubusercontent.com/ORNL/AdditiveFOAM/9c05c5eb/etc/materials/AlSi10Mg.cfg",
+    "property_evaluation_temperature_k": 303.15,
+    "scope": "Reuse the existing ORNL-based material_fields helper at plate temperature; constant solid properties for a coarse bulk thermal screen, not a calibrated machine material card"
+  },
+  "physical_print_executed": false,
+  "supplier_contacted": false,
+  "manufacturing_authorized": false
+}

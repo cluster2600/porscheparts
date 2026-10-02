@@ -1,0 +1,135 @@
+{
+  "schema": "m64-exhaust-geometry-provenance-v1",
+  "scope": "geometry_preparation_not_physical_validation",
+  "part_folder": "parts/m64-exhaust-0001",
+  "authored_on_branch": "wave2/geo-ex-20260929",
+  "bom_binding": {
+    "bom_file": "twins/m64-engine-system/bom/m64-bom-v1.json",
+    "rule": "every exhaust-family line carries evidence.dims=missing; vendor sources declare envelopes only, so every dimension below is tagged ASSUMPTION or SYNTHETIC unless tagged DECLARED (vendor-declared envelope) or STUDY (project F0 study value)",
+    "lines": [
+      {"bom_id_local": "M64B-IN-003", "name": "Exhaust manifold / heat exchanger per bank", "dims": "missing", "identity": "missing", "note": "PET group 107-20 not transcribed locally"},
+      {"bom_id_local": "M64B-IN-004", "name": "Catalytic converter / front muffler section", "dims": "missing", "identity": "missing", "note": "Fabspeed laser-scan lead exists, no extracted geometry"},
+      {"bom_id_local": "M64B-TR-003", "name": "Wastegate actuator", "dims": "missing", "identity": "sourced"},
+      {"bom_id_local": "M64B-TR-004", "name": "Turbo heat shield / protective cover, left", "dims": "declared_envelope_only", "part_number": "993 123 113 51"}
+    ]
+  },
+  "build_state": {
+    "local_build": "not_run",
+    "local_build_failure": "host dotnet SDK 6.0.400 cannot target net9.0 (NETSDK1045); csproj targets net9.0 per containers/picogk-m64.Dockerfile",
+    "container_build": "succeeded 2026-09-29 in picogk-station:qualified-final-20260928 (dotnet 9.0.317, -e UpstreamRoot=/upstream); two CS0019 Vector3/scalar operator fixes applied, no geometry change; see ../../validation/compile-record.md",
+    "runtime_tested": "not_run (managed compile only; no voxel render, no STL export)",
+    "verified_api_source": "https://github.com/leap71/PicoGK commit 0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3 (pinned in containers/m64-leap71/sources.lock); symbols used: Library(float), IImplicit.fSignedDistance(in Vector3), IBoundedImplicit.oBounds, Voxels(Library,IImplicit,BBox3), Voxels.RenderImplicit, Voxels.CalculateProperties(out float,out BBox3), Mesh(Voxels), Mesh.nTriangleCount, Mesh.SaveToStlFile(string,EStlUnit), Mesh.EStlUnit.MM",
+    "native_runtime_tested": false,
+    "manufacturing_authorized": false,
+    "dimensionally_validated": false
+  },
+  "tag_legend": {
+    "DECLARED": "vendor-declared product envelope (marketplace/manufacturer page, no instrument)",
+    "SYNTHETIC": "project F0 study core, explicitly synthetic in its own dossier",
+    "STUDY": "value taken from the project F0 study dossier, revisable",
+    "ASSUMPTION": "engineering assumption, no source publishes this number",
+    "GEOM_DRIVER": "drives the generated field",
+    "METADATA": "carried for audit, does not drive geometry"
+  },
+  "parts": {
+    "manifold_runner_bank": {
+      "field_class": "ManifoldRunner",
+      "catalog_record": "catalog/parts/993-eng-exhaust-manifold-in625-f0-0001.json",
+      "bom_lines": ["M64B-IN-003"],
+      "source_docs": [
+        "docs/993/993_EXHAUST_MANIFOLD_IN625_F0.md (synthetic F0 core 34/56/1.2/215; Kline IN625 2.9 kg/side declares no dimension)",
+        "catalog/parts/993-eng-exhaust-manifold-in625-f0-0001.json",
+        "catalog/sources/src-porschefanatics-993-in625-exhaust-register.json"
+      ],
+      "dimensions_mm": [
+        {"field": "RunnerCount", "value": 3, "tag": "SYNTHETIC", "role": "GEOM_DRIVER", "provenance": "3-into-1 layout of the F0 synthetic core"},
+        {"field": "PrimaryInnerDiaMm", "value": 34.0, "tag": "SYNTHETIC", "role": "GEOM_DRIVER", "provenance": "F0 core, revisable, no public diameter"},
+        {"field": "CollectorInnerDiaMm", "value": 56.0, "tag": "SYNTHETIC", "role": "GEOM_DRIVER", "provenance": "F0 core, revisable"},
+        {"field": "WallMm", "value": 1.2, "tag": "SYNTHETIC", "role": "GEOM_DRIVER", "provenance": "F0 nominal wall"},
+        {"field": "AxialLengthTargetMm", "value": 215.0, "tag": "SYNTHETIC", "role": "METADATA", "provenance": "F0 axial length; layout sized to stay near it"},
+        {"field": "HeaderPortPitchMm", "value": 46.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "head port pitch unknown; PET 107-20 transcription gap"},
+        {"field": "HeaderStubLengthMm", "value": 18.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "no source"},
+        {"field": "HeaderStubOuterMm", "value": 48.0, "tag": "ASSUMPTION", "role": "METADATA", "provenance": "bounding pad only; flange geometry not invented"},
+        {"field": "CollectorLengthMm", "value": 120.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "sized against the F0 215 mm target"},
+        {"field": "RunnerBendRadiusMm", "value": 60.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "bend strategy marker for the two-segment bend"},
+        {"field": "TurbineInletStubDiaMm", "value": 54.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "K16 turbine inlet face unmeasured; bearing housing 5316-151-0008 has no published face geometry"},
+        {"field": "TurbineInletStubLengthMm", "value": 14.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "no source"},
+        {"field": "TurbineOutletStubDiaMm", "value": 60.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "K16 turbine outlet face unmeasured; FVD declares only the 210x280x190 mm turbo envelope (catalog/sources/src-fvd-993-k16-oem-dimensions.json)"},
+        {"field": "TurbineOutletStubLengthMm", "value": 16.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "no source"},
+        {"field": "ar_cm2", "value": 8.0, "tag": "DECLARED", "role": "METADATA", "provenance": "supplier-declared turbine A/R; not a driving dimension (docs/research/m64-public-engine-data-2026-09-27.md)"}
+      ]
+    },
+    "downpipe_turbine_outlet_to_tip": {
+      "field_class": "DownpipeRunner",
+      "bom_lines": ["M64B-IN-004"],
+      "source_docs": [
+        "twins/m64-engine-system/bom/m64-bom-v1.json (front muffler / cat section dims=missing, identity=missing)",
+        "catalog/sources/src-fabspeed-993-laser-scan-exhaust.json (Carrera-family scan lead, no Turbo geometry extracted)"
+      ],
+      "dimensions_mm": [
+        {"field": "InletOuterDiaMm", "value": 62.4, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "turbine-outlet stub outer 60 + 2x1.2 wall; single-bank single-turbo layout; cat/front-muffler inlet unmeasured"},
+        {"field": "OutletOuterDiaMm", "value": 62.4, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "constant-section assumption to the tip inlet"},
+        {"field": "WallMm", "value": 1.2, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "F0 study value"},
+        {"field": "AxialLengthMm", "value": 420.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "turbine-outlet to tip-plane route length unknown"},
+        {"field": "BendRadiusA/B/Mid/CatMm", "value": [150.0, 150.0, 240.0, 320.0], "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "bend radii are configurable parameters; no published minimum-bend data; each kept >= 2x local centreline radius"},
+        {"field": "DropMm", "value": 90.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "route assumed to descend toward underfloor"},
+        {"field": "LateralOffsetMm", "value": 60.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "route assumed to step inboard toward the tip line"},
+        {"field": "FlangeOuterMm", "value": 74.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "ball-clamp joint of the workshop-manual torque list (25 Nm) exists; clamp geometry unmeasured"},
+        {"field": "FlangeThicknessMm", "value": 6.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "no source"}
+      ],
+      "open_items": ["catalytic-converter insert omitted (identity missing)", "wastegate exit merge omitted", "hanger mounts omitted"]
+    },
+    "heat_shield_left": {
+      "field_class": "HeatShield",
+      "catalog_record": "catalog/parts/993-eng-turbo-heat-shield-in625-f0-0001.json",
+      "bom_lines": ["M64B-TR-004"],
+      "source_docs": ["catalog/sources/src-fvd-993-turbo-heat-shield-dimensions.json (declared 105x160x110 mm, 0.23 kg)"],
+      "dimensions_mm": [
+        {"field": "EnvelopeHeightMm", "value": 105.0, "tag": "DECLARED", "role": "GEOM_DRIVER", "provenance": "vendor-declared envelope H"},
+        {"field": "EnvelopeLengthMm", "value": 160.0, "tag": "DECLARED", "role": "GEOM_DRIVER", "provenance": "vendor-declared envelope L"},
+        {"field": "EnvelopeWidthMm", "value": 110.0, "tag": "DECLARED", "role": "GEOM_DRIVER", "provenance": "vendor-declared envelope W"},
+        {"field": "WallMm", "value": 1.5, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "no source"},
+        {"field": "MountTabDiameterMm", "value": 0.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "interfaces missing -> no fixings invented"},
+        {"field": "CornerRadiusMm", "value": 12.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "no source"}
+      ]
+    },
+    "exhaust_tip_oval": {
+      "field_class": "ExhaustTip",
+      "catalog_record": "catalog/parts/993-exh-oval-tip-in625-f0-0001.json",
+      "bom_lines": ["M64B-IN-004 (adjacent; tip not separately listed in m64-bom-v1)"],
+      "source_docs": [
+        "docs/993/993_OVAL_EXHAUST_TIP_IN625_F0.md (0.8 mm shell, eight ties, open air gap)",
+        "catalog/sources/src-fvd-993-exhaust-tips-dimensions.json (FVD11199300 declared 120x85 mm outlet, narrow-body C2/C4/RS)"
+      ],
+      "family_mismatch": "the declared outlet envelope is for narrow-body 993, not the Turbo; carried as adjacent-family evidence",
+      "dimensions_mm": [
+        {"field": "OutletWidthMm", "value": 120.0, "tag": "DECLARED", "role": "GEOM_DRIVER", "provenance": "vendor-declared outlet envelope width"},
+        {"field": "OutletHeightMm", "value": 85.0, "tag": "DECLARED", "role": "GEOM_DRIVER", "provenance": "vendor-declared outlet envelope height"},
+        {"field": "InletDiameterMm", "value": 60.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "revisable per the F0 study"},
+        {"field": "LengthMm", "value": 180.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "no source"},
+        {"field": "WallMm", "value": 0.8, "tag": "STUDY", "role": "GEOM_DRIVER", "provenance": "oval-tip F0 study value"},
+        {"field": "TieCount", "value": 8, "tag": "STUDY", "role": "GEOM_DRIVER", "provenance": "oval-tip F0 study value"},
+        {"field": "TieDiameterMm", "value": 5.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "no source"}
+      ]
+    },
+    "oil_return_pipe": {
+      "field_class": "OilReturnPipe",
+      "catalog_record": "catalog/parts/993-eng-turbo-oil-return-line-in625-f0-0001.json",
+      "bom_lines": ["not separately listed; PET 202-16 oil-pipe refs 993 107 125/126/338/339 53 identified, not dimensioned (docs/993/993_CIRCUIT_HUILE_TURBO_202-16.md)"],
+      "source_docs": [
+        "docs/993/993_CIRCUIT_HUILE_TURBO_202-16.md (identified, not dimensioned; fire failure mode -> prohibited_pending_engineering)",
+        "catalog/parts/993-eng-turbo-oil-return-line-in625-f0-0001.json (entire F0 route synthetic)"
+      ],
+      "dimensions_mm": [
+        {"field": "InnerDiaMm", "value": 24.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "no published dimension"},
+        {"field": "WallMm", "value": 1.2, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "no published dimension"},
+        {"field": "DropMm", "value": 140.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "assumed routing"},
+        {"field": "HorizontalRunMm", "value": 160.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "assumed routing"},
+        {"field": "BendRadiusMm", "value": 34.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "kept >= 1.5x centreline radius"},
+        {"field": "EndFlangeOuterMm", "value": 38.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "real clamps unknown"},
+        {"field": "EndFlangeThicknessMm", "value": 6.0, "tag": "ASSUMPTION", "role": "GEOM_DRIVER", "provenance": "no source"}
+      ]
+    }
+  },
+  "evidence_limits": "No part here may be declared dimensionally correct, fitted, tested, safe, released, or manufacturing-ready. DECLARED tags record vendor claims, not measurements. STL export path and API symbols were verified against the pinned upstream source, but the module has never been compiled or run (NETSDK1045 on host; no container run in this lane)."
+}

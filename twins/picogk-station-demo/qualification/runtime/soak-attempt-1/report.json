@@ -1,0 +1,193 @@
+{
+  "status": "FAIL",
+  "passed": false,
+  "duration_required_seconds": 1800,
+  "model": "qwen3.8-flash-next-uncensored-nvfp4",
+  "start_epoch": 1790629338.5659952,
+  "errors": [
+    "GPU memory reached 98% or more"
+  ],
+  "inference": [
+    {
+      "batch": 0,
+      "slot": 0,
+      "duration_seconds": 9.010280357906595,
+      "usage": {
+        "prompt_tokens": 92,
+        "total_tokens": 220,
+        "completion_tokens": 128,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": {
+          "reasoning_tokens": 128
+        }
+      },
+      "completion_tokens_per_second": 14.205995253819038,
+      "finish_reason": "length"
+    },
+    {
+      "batch": 0,
+      "slot": 1,
+      "duration_seconds": 9.243948532966897,
+      "usage": {
+        "prompt_tokens": 92,
+        "total_tokens": 220,
+        "completion_tokens": 128,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": {
+          "reasoning_tokens": 128
+        }
+      },
+      "completion_tokens_per_second": 13.846896652822199,
+      "finish_reason": "length"
+    },
+    {
+      "batch": 0,
+      "slot": 2,
+      "duration_seconds": 9.382377996109426,
+      "usage": {
+        "prompt_tokens": 92,
+        "total_tokens": 220,
+        "completion_tokens": 128,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": {
+          "reasoning_tokens": 128
+        }
+      },
+      "completion_tokens_per_second": 13.642596797216818,
+      "finish_reason": "length"
+    },
+    {
+      "batch": 0,
+      "slot": 3,
+      "duration_seconds": 14.248185118893161,
+      "usage": {
+        "prompt_tokens": 92,
+        "total_tokens": 220,
+        "completion_tokens": 128,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": {
+          "reasoning_tokens": 128
+        }
+      },
+      "completion_tokens_per_second": 8.983600292381897,
+      "finish_reason": "length"
+    }
+  ],
+  "pipelines": [],
+  "samples": [
+    {
+      "pids": {
+        "qwen": 1384,
+        "kit": 8261
+      },
+      "gpus": [
+        {
+          "index": 0,
+          "uuid": "GPU-555182fe-f041-de9e-d757-3362a7893033",
+          "total_mib": 97887,
+          "used_mib": 95072,
+          "used_fraction": 0.9712423508739669,
+          "utilization_percent": 99
+        },
+        {
+          "index": 1,
+          "uuid": "GPU-a7a4ee9d-d65d-6e27-5af5-b16d3a98f5bb",
+          "total_mib": 97887,
+          "used_mib": 94364,
+          "used_fraction": 0.9640095211825881,
+          "utilization_percent": 99
+        },
+        {
+          "index": 2,
+          "uuid": "GPU-9a617e3a-bb62-c00f-7d54-e41f664d5390",
+          "total_mib": 97887,
+          "used_mib": 4740,
+          "used_fraction": 0.04842318183211254,
+          "utilization_percent": 6
+        },
+        {
+          "index": 3,
+          "uuid": "GPU-da55ec0d-dc80-73ca-a25b-5bd0a5d478c5",
+          "total_mib": 97887,
+          "used_mib": 291,
+          "used_fraction": 0.002972815593490453,
+          "utilization_percent": 0
+        }
+      ],
+      "memory": {
+        "effective_total_bytes": 1101706297344,
+        "available_bytes": 792242765824,
+        "available_fraction": 0.7191052349740975,
+        "cgroup_current_bytes": 309463531520,
+        "cgroup_limit": "1101706297344",
+        "oom": {
+          "oom": 0,
+          "oom_kill": 0
+        }
+      },
+      "elapsed_seconds": 0.16309583000838757
+    },
+    {
+      "pids": {
+        "qwen": 1384,
+        "kit": 8261
+      },
+      "gpus": [
+        {
+          "index": 0,
+          "uuid": "GPU-555182fe-f041-de9e-d757-3362a7893033",
+          "total_mib": 97887,
+          "used_mib": 96088,
+          "used_fraction": 0.9816216657983184,
+          "utilization_percent": 82
+        },
+        {
+          "index": 1,
+          "uuid": "GPU-a7a4ee9d-d65d-6e27-5af5-b16d3a98f5bb",
+          "total_mib": 97887,
+          "used_mib": 95384,
+          "used_fraction": 0.9744296995515237,
+          "utilization_percent": 80
+        },
+        {
+          "index": 2,
+          "uuid": "GPU-9a617e3a-bb62-c00f-7d54-e41f664d5390",
+          "total_mib": 97887,
+          "used_mib": 4740,
+          "used_fraction": 0.04842318183211254,
+          "utilization_percent": 6
+        },
+        {
+          "index": 3,
+          "uuid": "GPU-da55ec0d-dc80-73ca-a25b-5bd0a5d478c5",
+          "total_mib": 97887,
+          "used_mib": 291,
+          "used_fraction": 0.002972815593490453,
+          "utilization_percent": 0
+        }
+      ],
+      "memory": {
+        "effective_total_bytes": 1101706297344,
+        "available_bytes": 791414931456,
+        "available_fraction": 0.718353823849376,
+        "cgroup_current_bytes": 310291365888,
+        "cgroup_limit": "1101706297344",
+        "oom": {
+          "oom": 0,
+          "oom_kill": 0
+        }
+      },
+      "elapsed_seconds": 15.367702417075634
+    }
+  ],
+  "manufacturing_validated": false,
+  "duration_seconds": 15.400949647882953,
+  "end_epoch": 1790629353.96694,
+  "summary": {
+    "successful_requests": 4,
+    "completed_pipelines": 0,
+    "completion_tokens": 512,
+    "maximum_gpu_memory_fraction": 0.9816216657983184,
+    "minimum_ram_available_bytes": 791414931456
+  }
+}

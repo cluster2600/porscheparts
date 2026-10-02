@@ -97,3 +97,28 @@ not join the active graph of 993 components.
 - [Wolfe Classics product page](https://www.wolfeclassics.com/shop/p/p-car-billet-cylinder-head-scan)
 - Structured record:
   `catalog/sources/src-wolfe-classics-935-billet-cylinder-head-scan.json`
+
+
+## Complément de provenance : publication autorisée le 2 octobre 2026
+
+Le propriétaire a explicitement autorisé la publication sur le dépôt GitHub
+public des modèles de culasse générés et corrigés, de leurs rendus, de leur
+rapport et du code de cette étude, ainsi que des prototypes originaux d’atelier.
+La sélection et ses empreintes sont dans
+[l’étude air + huile du 2 octobre 2026](../studies/993-air-oil-20261002/README.md).
+Cette autorisation remplace la consigne antérieure de conservation locale des
+dérivés pour ce lot précis. **Le scan OBJ brut reste privé et hors Git.**
+
+Cet accord du propriétaire ne crée pas une licence supplémentaire du vendeur.
+La réutilisation ouverte est confirmée par le propriétaire ; l’identifiant
+standardisé ou le texte exact de licence Wolfe Classics reste à archiver.
+L’attribution au vendeur est conservée. Les droits originaux du projet sont
+ceux de sa licence actuelle, sans autorisation générale de fabrication ou de
+réutilisation.
+
+La fiche source du catalogue est figée par l’empreinte du contrat
+`head-architecture-authority-f45.json` et reste inchangée. Sa dernière consigne
+de publication décrit l’instruction antérieure ; le présent complément
+documente son remplacement limité au lot autorisé. Aucun niveau de preuve,
+aucune précision, aucune compatibilité 993 ni aucune validation physique de la
+fiche ne change. Le scan reste une référence 935 au niveau `F0_reference`.

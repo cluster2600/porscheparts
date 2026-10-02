@@ -1,0 +1,99 @@
+{
+  "status": "data_prepared_not_model_trained",
+  "source_assignment": {
+    "MET001": "train",
+    "MET002": "train",
+    "thermal_en_prediction": "train",
+    "thermal_en_critical": "train",
+    "thermal_en_flow": "train",
+    "MET003": "valid",
+    "MET004": "test"
+  },
+  "source_partition_rule": "Whole DOI/article stays together across CPT, SFT and translations; source families shared by multi-source examples must have one partition.",
+  "counts": {
+    "cpt": {
+      "train": 81,
+      "valid": 17,
+      "test": 18
+    },
+    "sft": {
+      "train": 47,
+      "valid": 5,
+      "test": 6
+    }
+  },
+  "sft_languages": {
+    "fr": 18,
+    "en": 30,
+    "de": 2,
+    "zh": 2,
+    "ja": 2,
+    "es": 2,
+    "pt": 2
+  },
+  "audit": [
+    {
+      "dataset": "cpt",
+      "exact_cross_partition_duplicates": 0
+    },
+    {
+      "dataset": "sft",
+      "exact_cross_partition_duplicates": 0
+    }
+  ],
+  "input_and_data_sha256": {
+    "input/candidates_hal_metadata.json": "f14495cf461431add5d98fdd9f2c8c93e9d6d60a6631625a8cd68982e796769b",
+    "input/corpus_candidates.jsonl": "20c80ec8da7b2cb04f954356c36e41a70ac6b95284100fe645b9c4ce725d309a",
+    "input/documents/met001_body.txt": "3f59e87b717eb8c382d56049e882e87206cbf539492ac206c07f791a30369713",
+    "input/documents/met002_body.txt": "598f7bfe101bd9e4f3f37d80746399fd6d7cadb15fcad2499421c905f6ff200d",
+    "input/documents/met003_body.txt": "caa119536f9ae3c0dca037628a523567c9e497e4682cbe479599fac4691d9d56",
+    "input/documents/met004_body.txt": "9ce036e1f67e34de63c00241d0ae23d8649faa8b89a408f0f569cd96bb78199a",
+    "input/documents/thermal_en_critical_body.txt": "6b27b3a656aef890f0fab42c0d7f906d4d87e21dd9888ef2f7aa55e17ef070fc",
+    "input/documents/thermal_en_flow_body.txt": "dfd58ceb3523eff3a4031b14d65e1a94cbe92187734f06bb514fa52cdd042107",
+    "input/documents/thermal_en_prediction_body.txt": "7a0a9c5f049fd59fd182a1d79d782f427638d2e2d6330571028ac589af8f436f",
+    "input/documents.json": "b9c6e5f0ee05e8436426d1c07639af881e24a52e9243aef397d20f05509a3806",
+    "input/evaluation.jsonl": "35adeecf30e1051f15db65a2f480059aea5880b5a5911958fe0daf64e3e40f86",
+    "input/exclusions.json": "7415659736d5a4729135f5c92ea3e81565f5952dd669ab1e4ebdc6691ec7a96a",
+    "input/glossaire_7_langues.csv": "88ea70ae00505c5da0b2657856f0e1f4b69c025008d4ccccebe0cce7f70caa2e",
+    "input/licenses/MET001.txt": "fe7134f32b9a04b6a3bbae56c7516fe245ef21992a0843a18fd51c644357def0",
+    "input/licenses/MET002.txt": "644a9e4314832f62cbcc9baeddd3ce9acea77c3d4ab0c354775d2e45bacd6d80",
+    "input/licenses/MET003.txt": "a0e166ce578e4119e4017613993b3c759a9f9d9ab4a6453da728a018a2c9a9fe",
+    "input/licenses/MET004.txt": "a082bcd941d8b342de83255dba7a77a8245880cc6fb0a119e37ec5079c303011",
+    "input/licenses/thermal_en_critical.txt": "396177e98acb62b63d4dbceb7c545f5cadd57dbc6d556fba39c1d8714864e7a5",
+    "input/licenses/thermal_en_flow.txt": "a5ce7840a75ebb7d39c9a35aa64768ddfe30092d5611bb08fb5f1480fab2084f",
+    "input/licenses/thermal_en_prediction.txt": "396177e98acb62b63d4dbceb7c545f5cadd57dbc6d556fba39c1d8714864e7a5",
+    "input/qwen_sources.json": "59ed49bf42b085bf6e9525e21989ad80ec5b77604af2b84d0c512f5e06605850",
+    "input/sft_pilot.jsonl": "d56f66f1fe0e6bfe35f6c4431355026bceea62f4b8cfe05ca0fa63d629e9a6a8",
+    "input/snapshots/full_00.html": "98a88a8b21db3b142604c64e84ba501305acde7030913c9ef711e5587dc18b26",
+    "input/snapshots/full_01.html": "eb880ab4ba630b926aae42940106eab6dc2162bb647a376036bf6b776c75c1ee",
+    "input/snapshots/full_02.html": "f9a495279d44d349f3ddd90e5e79768befb74810a4109e630d7727683bc1e0de",
+    "input/snapshots/full_04.html": "be653b86268996c6b43eaaf2a0e2f9e5727a4ae57d235c1197c664ce1b6df0e0",
+    "input/snapshots/thermal_en_critical.html": "fe4f425ac6edeb55c1021891f67fdb69d0e75d108878f6bdadfa85d9788e4fcd",
+    "input/snapshots/thermal_en_flow.html": "3173a1168ca84af4d0ba07a8ccffde45457d9477ba165dc0333ca94f0772a06b",
+    "input/snapshots/thermal_en_prediction.html": "3ba97fd683553f5a889b89bacab87e73fefcdc3ed13bc96b369be16ec765ca35",
+    "input/sources.json": "5a1d971bdb0faaae89b08f72e94f2943270b321cc3e19129113f112e9fa0077b",
+    "data/cpt/test.jsonl": "b7579b9b5a8232ced66f8d8b5bb403c62d5364f293a2fbcd3bbadafde26cfe00",
+    "data/cpt/train.jsonl": "6672b56baf047a52bdef2cfab4d0d95e2e6b0e2300dea9e5141b53e82f3fc148",
+    "data/cpt/valid.jsonl": "111a26db8e76b52894796f8acc5ee08b83665db5b61855b2607de0abc8f428f0",
+    "data/cpt-provenance.jsonl": "d675881778801febae87706f6ccc1fbe16ffabaebf52ceb99ed8948a88de6291",
+    "data/sft/test.jsonl": "fe698fbf8d31ecd5eb4e347d7757826012498549fdfa741e03477b51889d60f1",
+    "data/sft/train.jsonl": "9eecd2d86b2e78c26345ecde3ae54f7bdfd45c87d72728b744b8b8187ef1fc74",
+    "data/sft/valid.jsonl": "57fcf71ae7946cdb65b979a6076f64f3ec1fcbb75b9032428d309152226ef7a1",
+    "data/sft-records.jsonl": "9d6cab58050580514f587f554f31c8c14d3a64d17b2c4efac61771adaaf205ed",
+    "prepare.py": "ebf8c28b4a58647ca509320e0f95075c15538106fefb555530511462190f4007",
+    "audit_tokens.py": "6bc367fdefb1f52714766e49e3d8ff8f3b123cc6999df3519d009bbc91de449a",
+    "token-audit.json": "d3664b7ca3fcf6b8186bc0d64d9dbc8e1ca76ec3f6a177d075904b013ec123b9"
+  },
+  "weights_updated": false,
+  "default_adapter_replaced": false,
+  "scientific_expert_validation": false,
+  "limitations": [
+    "Seven full-text articles are all English; other languages are discovery or synthetic translations.",
+    "Only seven source groups: very small validation/test partitions, shared task recipes.",
+    "HTML extraction can flatten mathematical expressions and tables.",
+    "Technical targets and translations need expert review; metadata extraction is mechanically checked.",
+    "12 original evaluation rubrics are prototypes, not an independent blind benchmark.",
+    "Token lengths are model/template-specific; the measured project tokenizer audit is in token-audit.json. Audit other exact local tokenizers before training.",
+    "CPT and SFT must use the same source assignment; never train on validation or test texts."
+  ]
+}

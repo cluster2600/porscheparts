@@ -38,7 +38,7 @@ Catalogue record: [`catalog/parts/993-eng-carrier-0001.json`](../../catalog/part
 | identifier | 993-ENG-CARRIER-0001 |
 | generation | 993 |
 | variants | 993_Turbo |
-| model years | 1994 to 1998 |
+| model years | 1995 to 1998 |
 | Porsche part numbers | 993 115 021 53 |
 | category | powertrain_mounting |
 | safety class | safety_critical |
@@ -48,10 +48,10 @@ Catalogue record: [`catalog/parts/993-eng-carrier-0001.json`](../../catalog/part
 
 | field | value |
 |---|---|
-| preferred process | CNC |
+| preferred process | undecided |
 | candidate processes | CNC, casting, sheet_metal |
-| material family | steel; quenched and tempered 42CrMo4 or 17-4PH considered for a machined part |
-| grade | unknown grade; gold finish suggesting yellow passivated zinc plating |
+| material family | unknown OEM material; steel grades previously considered remain unqualified design candidates |
+| grade | unknown; gold appearance does not establish alloy, coating composition or heat treatment |
 | standard | none |
 | supplier requirements | Material and batch traceability, Process and parameters qualified by the manufacturer, Dimensional inspection of the mounting interfaces, Non-destructive testing suited to a structural part, Manufacturing report kept and linked to the STEP revision |
 | post-processing | carefully finished fillet radii, fine surface finish in the tensile zones, shot peening, corrosion protection if the grade is not stainless |
@@ -87,7 +87,7 @@ Catalogue record: [`catalog/parts/993-eng-carrier-0001.json`](../../catalog/part
 
 | field | value |
 |---|---|
-| record license | All rights reserved (see LICENSE) for the record, geometry not yet produced |
+| record license | All rights reserved (see LICENSE); existing geometry is hypothetical concept work |
 
 **Sources**
 
@@ -100,7 +100,11 @@ Catalogue record: [`catalog/parts/993-eng-carrier-0001.json`](../../catalog/part
 - [Porsche Club GB - Cracked engine mount bracket](https://www.porscheclubgb.com/forum/threads/cracked-engine-mount-bracket.124901/)
 - [PFF - Rennline Motortraeger / Schwert](https://www.pff.de/thread/2823902-rennline-motortraeger-schwert/)
 - [Porsche - 911 (993) workshop manual, group 10, tightening torque table](https://www.pelicanparts.com/More_Info/WKD483121.htm?pn=WKD-483-121-OEM)
-- [FVD - Engine suspension bracket / carrier 993 Turbo, 99311502153](https://www.fvd.net/en-us/shop/)
+- [FVD - Engine suspension bracket / carrier 993 Turbo, 99311502153](https://www.fvd.net/en-us/shop/engine-suspension-bracket-carrier-993-turbo-99311502153~p248965)
+- [Porsche official PET USA - KAT 517, group 109-00](https://assets-v2.porsche.com/us/-/media/Project/PCOM/SharedSite/PorscheClassic/Original-Parts-Catalogue/PDF-EN-US/KAT517_USA_911_98_KATALOG#page=117)
+- [Rennline M01-RS - RSR Style Stainless Steel Engine Carrier](https://www.rennline.com/rennline-rsr-style-stainless-steel-engine-carrier-porsche-sku-m01-rs/)
+- [Sunset Porsche - Engine Carrier 99311502154](https://www.sunsetporscheparts.com/oem-parts/porsche-engine-carrier-99311502154)
+- [Rothsport - Reinforced 993 Engine Carrier](https://rothsport.com/products/reinforced-engine-carrier-993)
 
 ## Validation
 

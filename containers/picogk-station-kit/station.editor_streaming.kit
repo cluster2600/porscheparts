@@ -1,0 +1,38 @@
+[package]
+title = "PicoGK Station Streaming"
+version = "0.1.0"
+description = "Native Kit Base Editor with private signaling and Vast UDP media."
+keywords = ["app", "streaming"]
+
+[dependencies]
+"station.editor" = {}
+"omni.kit.livestream.app" = {}
+
+[settings.app]
+window.title = "PicoGK Station"
+window.width = 1920
+window.height = 1080
+renderer.resolution.width = 1920
+renderer.resolution.height = 1080
+
+[settings.app.exts]
+folders.'++' = ["${app}/../exts", "${app}/../apps", "${app}/../extscache"]
+
+[settings.app.extensions]
+registryEnabled = false
+exclude = ["omni.kit.developer.bundle", "omni.kit.widget.cache_indicator"]
+
+[settings.exts."omni.kit.livestream.app".primaryStream]
+streamType = "webrtc"
+signalPort = 49100
+streamPort = 47998
+targetFps = 30
+allowDynamicResize = false
+enableAudioCapture = false
+enableEventTracing = false
+
+[settings]
+renderer.multiGpu.enabled = false
+renderer.multiGpu.autoEnable = false
+telemetry.enableAnonymousData = false
+telemetry.enableAnonymousAppName = false

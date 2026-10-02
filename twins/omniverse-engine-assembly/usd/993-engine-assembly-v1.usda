@@ -1,0 +1,2125 @@
+#usda 1.0
+(
+    defaultPrim = "EngineAssembly"
+    metersPerUnit = 0.001
+    upAxis = "Z"
+    doc = "M64/60 whole-engine research layout. Status: research layout, not fitment. Every prim is a real documented asset reference or a labelled box proxy. Positions are engine-local layout hypotheses, not measured or fitted positions. See assembly-engine-v1.json for BOM line references and citations."
+)
+
+def Xform "EngineAssembly" (
+    kind = "assembly"
+    custom string m64:status = "research_layout_not_fitment"
+    custom string m64:bomSource = "twins/m64-engine-system/bom/m64-bom-v1.json"
+    custom string m64:coordinateFrame = "Engine-local frame hypothesis: origin at crankcase centre on the crankshaft axis; +X toward the flywheel/transmission face; +Y toward the right cylinder bank (cylinders along +/-Y); +Z up. Consistent with the manual Z-up convention of twins/catalogue-parts/usd/ assets."
+    custom string m64:layoutStatus = "layout-hypothesis-engine-local: no common engine metrology frame exists (BOM fidelity_note), so every position is an arrangement hypothesis for loadable visual review, not a measured or fitted position."
+    custom string[] m64:bomLinesUnrepresented = [
+        "M64B-CS-002",
+        "M64B-CY-001"
+    ]
+    custom string m64:bomCoverageUnrepresentedReasons = "{\"M64B-CS-002\": \"Intermediate shaft gear / balance drive: no local evidence record (all evidence fields missing, BOM sources list empty); a zero-evidence prim would add clutter without information, so the line is declared unrepresented here instead of marked in the scene.\", \"M64B-CY-001\": \"Cylinder barrels are represented inside the Crankcase zone by the CrankcaseHalvesMarker volume (CC-001): bore 100 is sourced but the skirt/case interface and fin pitch are unknown (M64-ACQ-0004), so a separate marker would imply a cylinder/case datum that does not exist.\"}"
+    custom string[] m64:limitations = [
+        "research layout, not fitment: positions are engine-local arrangement hypotheses, no interface, clearance or collision is asserted",
+        "every real asset reference resolves to an F1 documentary proxy mesh, not measured component geometry",
+        "box proxies are bounding envelopes from vendor-declared or manual-registered data, not shapes",
+        "no part in this scene is dimensionally accurate, fitted, tested, safe or released (BOM status line)",
+        "envelope-unknown markers carry arbitrary sizes so zones stay visually present without overclaiming",
+        "F0 research assembly work/... assets from assembly-f0.json (valves, internals, turbo envelopes) are missing locally and are represented here as envelope-unknown or BOM-cited proxies, not as references to missing files"
+    ]
+)
+{
+    def Scope "Crankcase" (
+        kind = "group"
+        custom string m64:zoneId = "M64-Z-CC"
+        custom string m64:zoneCoverage = "proxy+envelope-unknown"
+        custom string m64:zoneLabel = "crankcase, cylinders, front covers, fasteners"
+    )
+    {
+    def Xform "CrankcaseHalvesMarker" (
+        custom string[] m64:bomLines = ["M64B-CC-001"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CC"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CC-001 (dims missing; case pitch unknown, M64-ACQ-0004)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary; through-bolt torques sourced, envelope missing"
+    )
+    {
+        double3 xformOp:translate = (0, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-280, -220, -200), (280, 220, 200)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.549, 0.431, 0.314)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-280, -220, -200),
+                (280, -220, -200),
+                (280, 220, -200),
+                (-280, 220, -200),
+                (-280, -220, 200),
+                (280, -220, 200),
+                (280, 220, 200),
+                (-280, 220, 200)
+            ]
+        }
+    }
+
+    def Xform "ChainHousingMarker" (
+        custom string[] m64:bomLines = ["M64B-CC-004"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CC"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CC-004 (interfaces/loads sourced, dims missing)"
+        custom string m64:redesignInterest = "med"
+        custom string m64:note = "marker_size_arbitrary; front cover print candidate once interfaces known"
+    )
+    {
+        double3 xformOp:translate = (-320, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-40, -170, -170), (40, 170, 170)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.549, 0.431, 0.314)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-40, -170, -170),
+                (40, -170, -170),
+                (40, 170, -170),
+                (-40, 170, -170),
+                (-40, -170, 170),
+                (40, -170, 170),
+                (40, 170, 170),
+                (-40, 170, 170)
+            ]
+        }
+    }
+
+    def Xform "HeadStudRepresentative" (
+        custom string[] m64:bomLines = ["M64B-FG-001"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "box_proxy"
+        custom string m64:envelopeStatus = "bom-sourced"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CC"
+        custom string m64:sourceCitation = "docs/research/m64-public-engine-data-2026-09-27.md via BOM M64B-FG-001 (12x M8x22 per head, FACT_public)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "single representative of 24; box 8x8x22 envelopes the M8x22 stud"
+    )
+    {
+        double3 xformOp:translate = (0, 205, 190)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-4, -4, -11), (4, 4, 11)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.549, 0.431, 0.314)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-4, -4, -11),
+                (4, -4, -11),
+                (4, 4, -11),
+                (-4, 4, -11),
+                (-4, -4, 11),
+                (4, -4, 11),
+                (4, 4, 11),
+                (-4, 4, 11)
+            ]
+        }
+    }
+
+    def Xform "CylinderBaseORingRepresentative" (
+        custom string[] m64:bomLines = ["M64B-FG-002"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "box_proxy"
+        custom string m64:envelopeStatus = "bom-sourced"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CC"
+        custom string m64:sourceCitation = "docs/research/m64-public-engine-data-2026-09-27.md via BOM M64B-FG-002 (O-ring 102x2, FACT_public)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "single representative of 6; flat box envelopes the 102x2 ring"
+    )
+    {
+        double3 xformOp:translate = (0, 235, 150)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-51, -51, -1), (51, 51, 1)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.549, 0.431, 0.314)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-51, -51, -1),
+                (51, -51, -1),
+                (51, 51, -1),
+                (-51, 51, -1),
+                (-51, -51, 1),
+                (51, -51, 1),
+                (51, 51, 1),
+                (-51, 51, 1)
+            ]
+        }
+    }
+
+    def Xform "HeadGasketMarker" (
+        custom string[] m64:bomLines = ["M64B-FG-003"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CC"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-FG-003 (quantities sourced, thickness unknown, blocking M64-ACQ-0001)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary; gasket thickness is itself a blocking dimension"
+    )
+    {
+        double3 xformOp:translate = (0, 250, 175)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-55, -55, -1.5), (55, 55, 1.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.549, 0.431, 0.314)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-55, -55, -1.5),
+                (55, -55, -1.5),
+                (55, 55, -1.5),
+                (-55, 55, -1.5),
+                (-55, -55, 1.5),
+                (55, -55, 1.5),
+                (55, 55, 1.5),
+                (-55, 55, 1.5)
+            ]
+        }
+    }
+
+    }
+
+    def Scope "Heads" (
+        kind = "group"
+        custom string m64:zoneId = "M64-Z-HD"
+        custom string m64:zoneCoverage = "envelope-unknown"
+        custom string m64:zoneLabel = "cylinder heads"
+    )
+    {
+    def Xform "HeadLeftMarker" (
+        custom string[] m64:bomLines = ["M64B-HD-001"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-HD"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-HD-001 (dims missing; 3 blocking scale dims -> M64-ACQ-0001)"
+        custom string m64:redesignInterest = "med"
+        custom string m64:note = "marker_size_arbitrary; left bank (negative-Y side mirrors at HeadRightMarker)"
+    )
+    {
+        double3 xformOp:translate = (0, 300, 200)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-140, -90, -80), (140, 90, 80)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.667, 0.51, 0.235)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-140, -90, -80),
+                (140, -90, -80),
+                (140, 90, -80),
+                (-140, 90, -80),
+                (-140, -90, 80),
+                (140, -90, 80),
+                (140, 90, 80),
+                (-140, 90, 80)
+            ]
+        }
+    }
+
+    def Xform "HeadRightMarker" (
+        custom string[] m64:bomLines = ["M64B-HD-001"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-HD"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-HD-001"
+        custom string m64:redesignInterest = "med"
+        custom string m64:note = "marker_size_arbitrary; 935 scan head is an identity proxy only, kept out of this scene"
+    )
+    {
+        double3 xformOp:translate = (0, -300, 200)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-140, -90, -80), (140, 90, 80)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.667, 0.51, 0.235)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-140, -90, -80),
+                (140, -90, -80),
+                (140, 90, -80),
+                (-140, 90, -80),
+                (-140, -90, 80),
+                (140, -90, 80),
+                (140, 90, 80),
+                (-140, 90, 80)
+            ]
+        }
+    }
+
+    }
+
+    def Scope "Valvetrain" (
+        kind = "group"
+        custom string m64:zoneId = "M64-Z-VT"
+        custom string m64:zoneCoverage = "envelope-unknown"
+        custom string m64:zoneLabel = "camshafts, rockers, valves, springs, covers, timing drive"
+    )
+    {
+    def Xform "IntakeValveRowMarker" (
+        custom string[] m64:bomLines = ["M64B-VT-001"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-VT"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-VT-001 (head 49 mm / stem 8 mm sourced; functional length unknown)"
+        custom string m64:redesignInterest = "high"
+        custom string m64:note = "marker for 24 intake valves (12/engine side pair); head 49 mm sourced, length missing so no box claim"
+    )
+    {
+        double3 xformOp:translate = (-40, 320, 260)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-100, -25, -25), (100, 25, 25)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.353, 0.588, 0.745)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-100, -25, -25),
+                (100, -25, -25),
+                (100, 25, -25),
+                (-100, 25, -25),
+                (-100, -25, 25),
+                (100, -25, 25),
+                (100, 25, 25),
+                (-100, 25, 25)
+            ]
+        }
+    }
+
+    def Xform "ExhaustValveRowMarker" (
+        custom string[] m64:bomLines = ["M64B-VT-002"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-VT"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-VT-002 (dims sourced per suffix variant; Turbo suffix unresolved)"
+        custom string m64:redesignInterest = "high"
+        custom string m64:note = "marker for 24 exhaust valves"
+    )
+    {
+        double3 xformOp:translate = (60, 320, 260)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-100, -25, -25), (100, 25, 25)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.353, 0.588, 0.745)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-100, -25, -25),
+                (100, -25, -25),
+                (100, 25, -25),
+                (-100, 25, -25),
+                (-100, -25, 25),
+                (100, -25, 25),
+                (100, 25, 25),
+                (-100, 25, 25)
+            ]
+        }
+    }
+
+    def Xform "ValveSpringRowMarker" (
+        custom string[] m64:bomLines = ["M64B-VT-003"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-VT"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-VT-003 (installed lengths sourced, rates/O-D missing)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker for 24 springs"
+    )
+    {
+        double3 xformOp:translate = (10, 320, 240)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-100, -25, -20), (100, 25, 20)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.353, 0.588, 0.745)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-100, -25, -20),
+                (100, -25, -20),
+                (100, 25, -20),
+                (-100, 25, -20),
+                (-100, -25, 20),
+                (100, -25, 20),
+                (100, 25, 20),
+                (-100, 25, 20)
+            ]
+        }
+    }
+
+    def Xform "CamshaftLeftMarker" (
+        custom string[] m64:bomLines = ["M64B-VT-004"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-VT"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-VT-004 (cam profile absent, M64-ACQ-0002)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary; profile unknown blocks F2"
+    )
+    {
+        double3 xformOp:translate = (0, 340, 300)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-240, -22.5, -22.5), (240, 22.5, 22.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.353, 0.588, 0.745)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-240, -22.5, -22.5),
+                (240, -22.5, -22.5),
+                (240, 22.5, -22.5),
+                (-240, 22.5, -22.5),
+                (-240, -22.5, 22.5),
+                (240, -22.5, 22.5),
+                (240, 22.5, 22.5),
+                (-240, 22.5, 22.5)
+            ]
+        }
+    }
+
+    def Xform "CamshaftRightMarker" (
+        custom string[] m64:bomLines = ["M64B-VT-004"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-VT"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-VT-004"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary"
+    )
+    {
+        double3 xformOp:translate = (0, -340, 300)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-240, -22.5, -22.5), (240, 22.5, 22.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.353, 0.588, 0.745)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-240, -22.5, -22.5),
+                (240, -22.5, -22.5),
+                (240, 22.5, -22.5),
+                (-240, 22.5, -22.5),
+                (-240, -22.5, 22.5),
+                (240, -22.5, 22.5),
+                (240, 22.5, 22.5),
+                (-240, 22.5, 22.5)
+            ]
+        }
+    }
+
+    def Xform "RockerGearMarker" (
+        custom string[] m64:bomLines = ["M64B-VT-005"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-VT"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-VT-005 (dims missing)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary"
+    )
+    {
+        double3 xformOp:translate = (0, 330, 280)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-90, -30, -25), (90, 30, 25)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.353, 0.588, 0.745)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-90, -30, -25),
+                (90, -30, -25),
+                (90, 30, -25),
+                (-90, 30, -25),
+                (-90, -30, 25),
+                (90, -30, 25),
+                (90, 30, 25),
+                (-90, 30, 25)
+            ]
+        }
+    }
+
+    def Xform "ValveCoverMarker" (
+        custom string[] m64:bomLines = ["M64B-VT-006"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-VT"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-VT-006 (dims missing; classic print candidate once scanned)"
+        custom string m64:redesignInterest = "high"
+        custom string m64:note = "marker_size_arbitrary; represents one of two covers"
+    )
+    {
+        double3 xformOp:translate = (0, 330, 340)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-230, -45, -20), (230, 45, 20)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.353, 0.588, 0.745)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-230, -45, -20),
+                (230, -45, -20),
+                (230, 45, -20),
+                (-230, 45, -20),
+                (-230, -45, 20),
+                (230, -45, 20),
+                (230, 45, 20),
+                (-230, 45, 20)
+            ]
+        }
+    }
+
+    def Xform "TimingDriveMarker" (
+        custom string[] m64:bomLines = ["M64B-VT-007"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-VT"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-VT-007 (dims missing)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary; chain, sprockets, tensioners as one volume"
+    )
+    {
+        double3 xformOp:translate = (-300, 0, 120)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-35, -130, -130), (35, 130, 130)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.353, 0.588, 0.745)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-35, -130, -130),
+                (35, -130, -130),
+                (35, 130, -130),
+                (-35, 130, -130),
+                (-35, -130, 130),
+                (35, -130, 130),
+                (35, 130, 130),
+                (-35, 130, 130)
+            ]
+        }
+    }
+
+    }
+
+    def Scope "Turbos" (
+        kind = "group"
+        custom string m64:zoneId = "M64-Z-TR"
+        custom string m64:zoneCoverage = "real"
+        custom string m64:zoneLabel = "K16 turbochargers and thermal shields"
+    )
+    {
+    def Xform "TurboK16Left" (
+        custom string[] m64:bomLines = ["M64B-TR-001"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "real_asset_reference"
+        custom string m64:envelopeStatus = "real-asset"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-TR"
+        custom string m64:sourceCitation = "catalog/sources/src-fvd-993-k16-oem-dimensions.json (declared envelope 210x280x190) via BOM M64B-TR-001; asset self-declares F1_documentary_proxy_not_simready"
+        custom string m64:redesignInterest = "med"
+        custom string m64:note = "asset is a documentary envelope mesh; interfaces missing"
+        references = @../../catalogue-parts/usd/993-turbocharger-k16-left.usda@
+    )
+    {
+        double3 xformOp:translate = (-60, 230, -180)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+
+    def Xform "TurboK16Right" (
+        custom string[] m64:bomLines = ["M64B-TR-002"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "real_asset_reference"
+        custom string m64:envelopeStatus = "real-asset"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-TR"
+        custom string m64:sourceCitation = "catalog/sources/src-fvd-993-k16-oem-dimensions.json via BOM M64B-TR-002; asset self-declares F1_documentary_proxy_not_simready"
+        custom string m64:redesignInterest = "med"
+        custom string m64:note = "asset is a documentary envelope mesh; handedness differs"
+        references = @../../catalogue-parts/usd/993-turbocharger-k16-right.usda@
+    )
+    {
+        double3 xformOp:translate = (-60, -230, -180)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+
+    def Xform "TurboHeatShieldLeft" (
+        custom string[] m64:bomLines = ["M64B-TR-004"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "real_asset_reference"
+        custom string m64:envelopeStatus = "real-asset"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-TR"
+        custom string m64:sourceCitation = "catalog/sources/src-fvd-993-turbo-heat-shield-dimensions.json (declared 105x160x110) via BOM M64B-TR-004"
+        custom string m64:redesignInterest = "high"
+        custom string m64:note = "left side only; right shield absent from local evidence"
+        references = @../../catalogue-parts/usd/993-turbo-heat-shield-cover-left.usda@
+    )
+    {
+        double3 xformOp:translate = (60, 300, -120)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+
+    }
+
+    def Scope "Cooling" (
+        kind = "group"
+        custom string m64:zoneId = "M64-Z-CL"
+        custom string m64:zoneCoverage = "proxy+envelope-unknown"
+        custom string m64:zoneLabel = "cooling fan, drive, ducting, thermal screens"
+    )
+    {
+    def Xform "FanWheelProxy" (
+        custom string[] m64:bomLines = ["M64B-CL-001"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "box_proxy"
+        custom string m64:envelopeStatus = "partial-bom-sourced"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CL"
+        custom string m64:sourceCitation = "docs/research/m64-public-engine-data-2026-09-27.md via BOM M64B-CL-001 (fan scan: pulley r_max ~127.8 mm unconfirmed -> 255.6 mm height/width)"
+        custom string m64:redesignInterest = "high"
+        custom string m64:note = "diameter from unconfirmed scan analysis; axial depth unsourced; blade count unresolved (M64-ACQ-0005)"
+    )
+    {
+        double3 xformOp:translate = (-430, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-35, -128, -128), (35, 128, 128)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.314, 0.667, 0.588)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-35, -128, -128),
+                (35, -128, -128),
+                (35, 128, -128),
+                (-35, 128, -128),
+                (-35, -128, 128),
+                (35, -128, 128),
+                (35, 128, 128),
+                (-35, 128, 128)
+            ]
+        }
+    }
+
+    def Xform "VBeltMarker" (
+        custom string[] m64:bomLines = ["M64B-CL-002"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CL"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CL-002 (section 10 x 775 mm sourced as a belt loop, not a box)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary; loop geometry cannot be a straight box"
+    )
+    {
+        double3 xformOp:translate = (-400, 0, -140)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-30, -150, -15), (30, 150, 15)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.314, 0.667, 0.588)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-30, -150, -15),
+                (30, -150, -15),
+                (30, 150, -15),
+                (-30, 150, -15),
+                (-30, -150, 15),
+                (30, -150, 15),
+                (30, 150, 15),
+                (-30, 150, 15)
+            ]
+        }
+    }
+
+    def Xform "CrankPulleyMarker" (
+        custom string[] m64:bomLines = ["M64B-CL-003"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CL"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CL-003 (diameter unresolved, scan suggests r_max ~127.8 mm unconfirmed)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary pending diameter confirmation"
+    )
+    {
+        double3 xformOp:translate = (-360, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-25, -128, -128), (25, 128, 128)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.314, 0.667, 0.588)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-25, -128, -128),
+                (25, -128, -128),
+                (25, 128, -128),
+                (-25, 128, -128),
+                (-25, -128, 128),
+                (25, -128, 128),
+                (25, 128, 128),
+                (-25, 128, 128)
+            ]
+        }
+    }
+
+    def Xform "AlternatorPulleyMarker" (
+        custom string[] m64:bomLines = ["M64B-CL-004"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CL"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CL-004 (dims missing)"
+        custom string m64:redesignInterest = "med"
+        custom string m64:note = "marker_size_arbitrary"
+    )
+    {
+        double3 xformOp:translate = (-350, 120, -220)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-40, -75, -75), (40, 75, 75)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.314, 0.667, 0.588)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-40, -75, -75),
+                (40, -75, -75),
+                (40, 75, -75),
+                (-40, 75, -75),
+                (-40, -75, 75),
+                (40, -75, 75),
+                (40, 75, 75),
+                (-40, 75, 75)
+            ]
+        }
+    }
+
+    def Xform "FanHousingMarker" (
+        custom string[] m64:bomLines = ["M64B-CL-005"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CL"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CL-005 (dims missing; highest-value missing-evidence item for CFD)"
+        custom string m64:redesignInterest = "high"
+        custom string m64:note = "marker_size_arbitrary"
+    )
+    {
+        double3 xformOp:translate = (-480, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-70, -160, -160), (70, 160, 160)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.314, 0.667, 0.588)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-70, -160, -160),
+                (70, -160, -160),
+                (70, 160, -160),
+                (-70, 160, -160),
+                (-70, -160, 160),
+                (70, -160, 160),
+                (70, 160, 160),
+                (-70, 160, 160)
+            ]
+        }
+    }
+
+    def Xform "InsulationCoverMarker" (
+        custom string[] m64:bomLines = ["M64B-AS-002"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CL"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-AS-002 (vendor claims declared dimensions; none extractable from catalog/sources/src-fvd-993-engine-insulation-cover-dimensions.json)"
+        custom string m64:redesignInterest = "high"
+        custom string m64:note = "marker_size_arbitrary; thermal ecosystem relevant"
+    )
+    {
+        double3 xformOp:translate = (0, 0, 380)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-260, -210, -15), (260, 210, 15)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.314, 0.667, 0.588)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-260, -210, -15),
+                (260, -210, -15),
+                (260, 210, -15),
+                (-260, 210, -15),
+                (-260, -210, 15),
+                (260, -210, 15),
+                (260, 210, 15),
+                (-260, 210, 15)
+            ]
+        }
+    }
+
+    }
+
+    def Scope "Oil" (
+        kind = "group"
+        custom string m64:zoneId = "M64-Z-OL"
+        custom string m64:zoneCoverage = "proxy+envelope-unknown"
+        custom string m64:zoneLabel = "dry-sump lubrication"
+    )
+    {
+    def Xform "ScavengePumpMarker" (
+        custom string[] m64:bomLines = ["M64B-CC-002"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-OL"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CC-002 (identity/dims missing; torque sourced)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary"
+    )
+    {
+        double3 xformOp:translate = (-100, 60, -230)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-75, -75, -60), (75, 75, 60)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.471, 0.392, 0.627)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-75, -75, -60),
+                (75, -75, -60),
+                (75, 75, -60),
+                (-75, 75, -60),
+                (-75, -75, 60),
+                (75, -75, 60),
+                (75, 75, 60),
+                (-75, 75, 60)
+            ]
+        }
+    }
+
+    def Xform "ReliefValvePlugMarker" (
+        custom string[] m64:bomLines = ["M64B-CC-003"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-OL"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CC-003 (thread M18x1.5 sourced only)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary near the M18 thread scale"
+    )
+    {
+        double3 xformOp:translate = (40, 120, -210)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-12, -12, -10), (12, 12, 10)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.471, 0.392, 0.627)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-12, -12, -10),
+                (12, -12, -10),
+                (12, 12, -10),
+                (-12, 12, -10),
+                (-12, -12, 10),
+                (12, -12, 10),
+                (12, 12, 10),
+                (-12, 12, 10)
+            ]
+        }
+    }
+
+    def Xform "OilTankProxy" (
+        custom string[] m64:bomLines = ["M64B-OL-001"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "box_proxy"
+        custom string m64:envelopeStatus = "partial-bom-sourced"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-OL"
+        custom string m64:sourceCitation = "docs/research/m64-public-engine-data-2026-09-27.md via BOM M64B-OL-001 (12 L capacity FACT_public)"
+        custom string m64:redesignInterest = "med"
+        custom string m64:note = "box volume equals the sourced 12 L capacity; proportions arbitrary"
+    )
+    {
+        double3 xformOp:translate = (260, 0, -320)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-150, -100, -100), (150, 100, 100)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.471, 0.392, 0.627)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-150, -100, -100),
+                (150, -100, -100),
+                (150, 100, -100),
+                (-150, 100, -100),
+                (-150, -100, 100),
+                (150, -100, 100),
+                (150, 100, 100),
+                (-150, 100, 100)
+            ]
+        }
+    }
+
+    def Xform "OilCoolerMarker" (
+        custom string[] m64:bomLines = ["M64B-OL-002"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-OL"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-OL-002 (no local source record)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary; flagged in bom/coverage.md"
+    )
+    {
+        double3 xformOp:translate = (420, 0, -80)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-125, -150, -30), (125, 150, 30)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.471, 0.392, 0.627)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-125, -150, -30),
+                (125, -150, -30),
+                (125, 150, -30),
+                (-125, 150, -30),
+                (-125, -150, 30),
+                (125, -150, 30),
+                (125, 150, 30),
+                (-125, 150, 30)
+            ]
+        }
+    }
+
+    }
+
+    def Scope "Exhaust" (
+        kind = "group"
+        custom string m64:zoneId = "M64-Z-EX"
+        custom string m64:zoneCoverage = "envelope-unknown"
+        custom string m64:zoneLabel = "heat exchangers, wastegates, pre-cat sections"
+    )
+    {
+    def Xform "ManifoldLeftMarker" (
+        custom string[] m64:bomLines = ["M64B-IN-003"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-EX"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-IN-003 (dims missing; PET 107-20 nomenclature only)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary; heat exchanger / heat exchanger"
+    )
+    {
+        double3 xformOp:translate = (0, 240, -80)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-150, -60, -70), (150, 60, 70)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.784, 0.471, 0.196)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-150, -60, -70),
+                (150, -60, -70),
+                (150, 60, -70),
+                (-150, 60, -70),
+                (-150, -60, 70),
+                (150, -60, 70),
+                (150, 60, 70),
+                (-150, 60, 70)
+            ]
+        }
+    }
+
+    def Xform "ManifoldRightMarker" (
+        custom string[] m64:bomLines = ["M64B-IN-003"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-EX"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-IN-003"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary"
+    )
+    {
+        double3 xformOp:translate = (0, -240, -80)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-150, -60, -70), (150, 60, 70)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.784, 0.471, 0.196)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-150, -60, -70),
+                (150, -60, -70),
+                (150, 60, -70),
+                (-150, 60, -70),
+                (-150, -60, 70),
+                (150, -60, 70),
+                (150, 60, 70),
+                (-150, 60, 70)
+            ]
+        }
+    }
+
+    def Xform "FrontMufflerLeftMarker" (
+        custom string[] m64:bomLines = ["M64B-IN-004"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-EX"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-IN-004 (dims missing; Fabspeed scan lead unextracted)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary"
+    )
+    {
+        double3 xformOp:translate = (220, 260, -160)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-130, -70, -70), (130, 70, 70)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.784, 0.471, 0.196)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-130, -70, -70),
+                (130, -70, -70),
+                (130, 70, -70),
+                (-130, 70, -70),
+                (-130, -70, 70),
+                (130, -70, 70),
+                (130, 70, 70),
+                (-130, 70, 70)
+            ]
+        }
+    }
+
+    def Xform "FrontMufflerRightMarker" (
+        custom string[] m64:bomLines = ["M64B-IN-004"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-EX"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-IN-004"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary"
+    )
+    {
+        double3 xformOp:translate = (220, -260, -160)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-130, -70, -70), (130, 70, 70)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.784, 0.471, 0.196)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-130, -70, -70),
+                (130, -70, -70),
+                (130, 70, -70),
+                (-130, 70, -70),
+                (-130, -70, 70),
+                (130, -70, 70),
+                (130, 70, 70),
+                (-130, 70, 70)
+            ]
+        }
+    }
+
+    def Xform "WastegateLeftMarker" (
+        custom string[] m64:bomLines = ["M64B-TR-003"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-EX"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-TR-003 (spring/travel sourced SINGLE_SOURCE, dims missing)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary"
+    )
+    {
+        double3 xformOp:translate = (120, 290, -40)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-55, -50, -50), (55, 50, 50)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.784, 0.471, 0.196)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-55, -50, -50),
+                (55, -50, -50),
+                (55, 50, -50),
+                (-55, 50, -50),
+                (-55, -50, 50),
+                (55, -50, 50),
+                (55, 50, 50),
+                (-55, 50, 50)
+            ]
+        }
+    }
+
+    def Xform "WastegateRightMarker" (
+        custom string[] m64:bomLines = ["M64B-TR-003"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-EX"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-TR-003"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary"
+    )
+    {
+        double3 xformOp:translate = (120, -290, -40)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-55, -50, -50), (55, 50, 50)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.784, 0.471, 0.196)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-55, -50, -50),
+                (55, -50, -50),
+                (55, 50, -50),
+                (-55, 50, -50),
+                (-55, -50, 50),
+                (55, -50, 50),
+                (55, 50, 50),
+                (-55, 50, 50)
+            ]
+        }
+    }
+
+    }
+
+    def Scope "ChargeAir" (
+        kind = "group"
+        custom string m64:zoneId = "M64-Z-CA"
+        custom string m64:zoneCoverage = "real+proxy+envelope-unknown"
+        custom string m64:zoneLabel = "intake tract, intercoolers, charge-air plumbing"
+    )
+    {
+    def Xform "TrumpetSetMarker" (
+        custom string[] m64:bomLines = ["M64B-IN-001"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "box_proxy"
+        custom string m64:envelopeStatus = "partial-bom-sourced"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CA"
+        custom string m64:sourceCitation = "catalog/sources/src-classicparts-993-air-funnel-dimensions.json via BOM M64B-IN-001 (aftermarket declared 40x34 mm section)"
+        custom string m64:redesignInterest = "high"
+        custom string m64:note = "40x34 section sourced (aftermarket packaging dims); trumpet length and OEM geometry unsourced; represents the set of 6"
+    )
+    {
+        double3 xformOp:translate = (-120, 260, 260)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-120, -20, -17), (120, 20, 17)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.275, 0.51, 0.784)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-120, -20, -17),
+                (120, -20, -17),
+                (120, 20, -17),
+                (-120, 20, -17),
+                (-120, -20, 17),
+                (120, -20, 17),
+                (120, 20, 17),
+                (-120, 20, 17)
+            ]
+        }
+    }
+
+    def Xform "IntakeTractMarker" (
+        custom string[] m64:bomLines = ["M64B-IN-002"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CA"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-IN-002 (no local record; OBJ scan lead untriaged)"
+        custom string m64:redesignInterest = "med"
+        custom string m64:note = "marker_size_arbitrary"
+    )
+    {
+        double3 xformOp:translate = (-220, 140, 200)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-100, -80, -60), (100, 80, 60)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.275, 0.51, 0.784)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-100, -80, -60),
+                (100, -80, -60),
+                (100, 80, -60),
+                (-100, 80, -60),
+                (-100, -80, 60),
+                (100, -80, 60),
+                (100, 80, 60),
+                (-100, 80, 60)
+            ]
+        }
+    }
+
+    def Xform "IntercoolerLeft" (
+        custom string[] m64:bomLines = ["M64B-IC-001"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "real_asset_reference"
+        custom string m64:envelopeStatus = "real-asset"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CA"
+        custom string m64:sourceCitation = "catalog/sources/src-aks-dasis-993-intercooler-dimensions.json (core 260x270x60 declared) via BOM M64B-IC-001"
+        custom string m64:redesignInterest = "med"
+        custom string m64:note = "aftermarket core surrogate; core dims do not define the full OE envelope; per-side quantity 2"
+        references = @../../catalogue-parts/usd/993-intercooler-replacement-aks.usda@
+    )
+    {
+        double3 xformOp:translate = (0, 420, 40)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+
+    def Xform "IntercoolerRight" (
+        custom string[] m64:bomLines = ["M64B-IC-001"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "real_asset_reference"
+        custom string m64:envelopeStatus = "real-asset"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CA"
+        custom string m64:sourceCitation = "catalog/sources/src-aks-dasis-993-intercooler-dimensions.json via BOM M64B-IC-001"
+        custom string m64:redesignInterest = "med"
+        custom string m64:note = "aftermarket core surrogate; same asset reused for the other side"
+        references = @../../catalogue-parts/usd/993-intercooler-replacement-aks.usda@
+    )
+    {
+        double3 xformOp:translate = (0, -420, 40)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+
+    def Xform "ChargeHoseLeft" (
+        custom string[] m64:bomLines = ["M64B-IC-002"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "real_asset_reference"
+        custom string m64:envelopeStatus = "real-asset"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CA"
+        custom string m64:sourceCitation = "catalog/sources/src-fvd-993-intercooler-hose-left-dimensions.json (declared 430x70x115) via BOM M64B-IC-002"
+        custom string m64:redesignInterest = "high"
+        custom string m64:note = "FVD own-development part under OE reference, not OEM geometry"
+        references = @../../catalogue-parts/usd/993-intercooler-pressure-hose-left.usda@
+    )
+    {
+        double3 xformOp:translate = (-120, 360, 120)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+
+    def Xform "ChargeHoseRight" (
+        custom string[] m64:bomLines = ["M64B-IC-003"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "real_asset_reference"
+        custom string m64:envelopeStatus = "real-asset"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CA"
+        custom string m64:sourceCitation = "catalog/sources/src-fvd-993-intercooler-hose-right-dimensions.json (declared 430x70x90) via BOM M64B-IC-003"
+        custom string m64:redesignInterest = "high"
+        custom string m64:note = "FVD own-development part under OE reference"
+        references = @../../catalogue-parts/usd/993-intercooler-pressure-hose-right.usda@
+    )
+    {
+        double3 xformOp:translate = (-120, -360, 120)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+
+    def Xform "IntercoolerDuct" (
+        custom string[] m64:bomLines = ["M64B-IC-004"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "real_asset_reference"
+        custom string m64:envelopeStatus = "real-asset"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CA"
+        custom string m64:sourceCitation = "catalog/sources/src-fvd-993-intercooler-air-duct-dimensions.json (declared 600x280x50) via BOM M64B-IC-004"
+        custom string m64:redesignInterest = "high"
+        custom string m64:note = "FVD own-development part under OE reference"
+        references = @../../catalogue-parts/usd/993-intercooler-air-duct.usda@
+    )
+    {
+        double3 xformOp:translate = (0, 430, 130)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+
+    def Xform "IntercoolerBracket" (
+        custom string[] m64:bomLines = ["M64B-IC-005"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "real_asset_reference"
+        custom string m64:envelopeStatus = "real-asset"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CA"
+        custom string m64:sourceCitation = "catalog/sources/src-fvd-993-intercooler-bracket-dimensions.json (OEM dims missing; aftermarket FVD11011050 envelope) via BOM M64B-IC-005"
+        custom string m64:redesignInterest = "high"
+        custom string m64:note = "asset represents the aftermarket alternative, not measured OEM bracket geometry"
+        references = @../../catalogue-parts/usd/993-intercooler-bracket-reinforced.usda@
+    )
+    {
+        double3 xformOp:translate = (150, 390, -20)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+
+    }
+
+    def Scope "Rotating" (
+        kind = "group"
+        custom string m64:zoneId = "M64-Z-CC-ROT"
+        custom string m64:zoneCoverage = "proxy+envelope-unknown"
+        custom string m64:zoneLabel = "crankshaft, rods, pistons (BOM subsystem zone M64-Z-CC; separate scene scope to keep the case-halves marker readable)"
+    )
+    {
+    def Xform "CrankshaftMarker" (
+        custom string[] m64:bomLines = ["M64B-CS-001"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CC-ROT"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CS-001 (stroke 76.4 sourced; journal diameters missing)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary"
+    )
+    {
+        double3 xformOp:translate = (0, 0, -40)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-260, -60, -60), (260, 60, 60)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.627, 0.627, 0.667)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-260, -60, -60),
+                (260, -60, -60),
+                (260, 60, -60),
+                (-260, 60, -60),
+                (-260, -60, 60),
+                (260, -60, 60),
+                (260, 60, 60),
+                (-260, 60, 60)
+            ]
+        }
+    }
+
+    def Xform "OemRodMarker" (
+        custom string[] m64:bomLines = ["M64B-CR-001"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CC-ROT"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CR-001 (OEM dims missing; rod-bolt torque measured_source)"
+        custom string m64:redesignInterest = "high"
+        custom string m64:note = "marker for the OEM rod record; represents 6 rods"
+    )
+    {
+        double3 xformOp:translate = (-60, 130, 20)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-15, -30, -65), (15, 30, 65)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.627, 0.627, 0.667)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-15, -30, -65),
+                (15, -30, -65),
+                (15, 30, -65),
+                (-15, 30, -65),
+                (-15, -30, 65),
+                (15, -30, 65),
+                (15, 30, 65),
+                (-15, 30, 65)
+            ]
+        }
+    }
+
+    def Xform "PauterRodProxy" (
+        custom string[] m64:bomLines = ["M64B-CR-002"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "box_proxy"
+        custom string m64:envelopeStatus = "bom-sourced"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CC-ROT"
+        custom string m64:sourceCitation = "catalog/sources/src-tzr-pauter-993-connecting-rod-dimensions.json via BOM M64B-CR-002 (L 127.00, big-end bore 58.01, max width 19.58, declared)"
+        custom string m64:redesignInterest = "high"
+        custom string m64:note = "aftermarket PAUTER datum, not the OEM baseline; single representative of 6"
+    )
+    {
+        double3 xformOp:translate = (60, 130, 20)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-9.79, -29.005, -63.5), (9.79, 29.005, 63.5)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.627, 0.627, 0.667)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-9.79, -29.005, -63.5),
+                (9.79, -29.005, -63.5),
+                (9.79, 29.005, -63.5),
+                (-9.79, 29.005, -63.5),
+                (-9.79, -29.005, 63.5),
+                (9.79, -29.005, 63.5),
+                (9.79, 29.005, 63.5),
+                (-9.79, 29.005, 63.5)
+            ]
+        }
+    }
+
+    def Xform "PistonProxy" (
+        custom string[] m64:bomLines = ["M64B-PS-001"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "box_proxy"
+        custom string m64:envelopeStatus = "partial-bom-sourced"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-CC-ROT"
+        custom string m64:sourceCitation = "catalog/manual/993-workshop-manual-measurements.json (bore 100, technical_data p15) via BOM M64B-PS-001"
+        custom string m64:redesignInterest = "high"
+        custom string m64:note = "100x100 from the sourced bore; 60 mm height assumed for display only; single representative of 6"
+    )
+    {
+        double3 xformOp:translate = (0, 150, 90)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-50, -50, -30), (50, 50, 30)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.627, 0.627, 0.667)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-50, -50, -30),
+                (50, -50, -30),
+                (50, 50, -30),
+                (-50, 50, -30),
+                (-50, -50, 30),
+                (50, -50, 30),
+                (50, 50, 30),
+                (-50, 50, 30)
+            ]
+        }
+    }
+
+    }
+
+    def Scope "CarrierMounts" (
+        kind = "group"
+        custom string m64:zoneId = "M64-Z-ASM"
+        custom string m64:zoneCoverage = "real+envelope-unknown"
+        custom string m64:zoneLabel = "engine carrier, brackets, mounts"
+    )
+    {
+    def Xform "EngineCarrierTurbo" (
+        custom string[] m64:bomLines = ["M64B-MT-001"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "real_asset_reference"
+        custom string m64:envelopeStatus = "real-asset"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-ASM"
+        custom string m64:sourceCitation = "catalog/parts/993-eng-carrier-0001.json and /home/lolman/repos/porschefanatics.com/data/oem-parts.json (PET-verified) via BOM M64B-MT-001"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "PET safetyLevel 7 structural; asset is a documentary proxy, geometry not scanned"
+        references = @../../catalogue-parts/usd/993-engine-carrier-turbo.usda@
+    )
+    {
+        double3 xformOp:translate = (0, 0, -420)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+
+    def Xform "EngineBracketMarker" (
+        custom string[] m64:bomLines = ["M64B-MT-002"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-ASM"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-MT-002 (PET-verified identity; dims missing)"
+        custom string m64:redesignInterest = "med"
+        custom string m64:note = "marker_size_arbitrary"
+    )
+    {
+        double3 xformOp:translate = (-240, 0, -360)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-60, -40, -60), (60, 40, 60)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.392, 0.549, 0.431)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-60, -40, -60),
+                (60, -40, -60),
+                (60, 40, -60),
+                (-60, 40, -60),
+                (-60, -40, 60),
+                (60, -40, 60),
+                (60, 40, 60),
+                (-60, 40, 60)
+            ]
+        }
+    }
+
+    def Xform "EngineMountMarker" (
+        custom string[] m64:bomLines = ["M64B-MT-003"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-ASM"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-MT-003 (PET-verified identity; dims/stiffness missing)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary; represents 2 mounts"
+    )
+    {
+        double3 xformOp:translate = (250, 0, -380)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-50, -40, -30), (50, 40, 30)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.392, 0.549, 0.431)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-50, -40, -30),
+                (50, -40, -30),
+                (50, 40, -30),
+                (-50, 40, -30),
+                (-50, -40, 30),
+                (50, -40, 30),
+                (50, 40, 30),
+                (-50, 40, 30)
+            ]
+        }
+    }
+
+    }
+
+    def Scope "FlywheelClutch" (
+        kind = "group"
+        custom string m64:zoneId = "M64-Z-FW"
+        custom string m64:zoneCoverage = "envelope-unknown"
+        custom string m64:zoneLabel = "flywheel, drive plate, clutch"
+    )
+    {
+    def Xform "DualMassFlywheelMarker" (
+        custom string[] m64:bomLines = ["M64B-FW-001"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-FW"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-FW-001 (identity sourced via manual; dims/inertia missing)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary; manual-transmission variant"
+    )
+    {
+        double3 xformOp:translate = (330, 0, -40)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-30, -150, -150), (30, 150, 150)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.588, 0.353, 0.549)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-30, -150, -150),
+                (30, -150, -150),
+                (30, 150, -150),
+                (-30, 150, -150),
+                (-30, -150, 150),
+                (30, -150, 150),
+                (30, 150, 150),
+                (-30, 150, 150)
+            ]
+        }
+    }
+
+    def Xform "DrivePlateMarker" (
+        custom string[] m64:bomLines = ["M64B-FW-002"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-FW"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-FW-002 (Tiptronic variant, kept for completeness)"
+        custom string m64:redesignInterest = "med"
+        custom string m64:note = "marker_size_arbitrary; variant-alternative to DualMassFlywheelMarker"
+    )
+    {
+        double3 xformOp:translate = (345, 0, -40)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-15, -140, -140), (15, 140, 140)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.588, 0.353, 0.549)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-15, -140, -140),
+                (15, -140, -140),
+                (15, 140, -140),
+                (-15, 140, -140),
+                (-15, -140, 140),
+                (15, -140, 140),
+                (15, 140, 140),
+                (-15, 140, 140)
+            ]
+        }
+    }
+
+    def Xform "PressurePlateMarker" (
+        custom string[] m64:bomLines = ["M64B-CT-001"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-FW"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CT-001 (dims missing)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary"
+    )
+    {
+        double3 xformOp:translate = (380, 0, -40)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-25, -140, -140), (25, 140, 140)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.588, 0.353, 0.549)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-25, -140, -140),
+                (25, -140, -140),
+                (25, 140, -140),
+                (-25, 140, -140),
+                (-25, -140, 140),
+                (25, -140, 140),
+                (25, 140, 140),
+                (-25, 140, 140)
+            ]
+        }
+    }
+
+    def Xform "ClutchDiscMarker" (
+        custom string[] m64:bomLines = ["M64B-CT-002"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-FW"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-CT-002 (dims missing; bellhousing interface unsourced)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary; disc + release bearing as one volume"
+    )
+    {
+        double3 xformOp:translate = (410, 0, -40)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-15, -130, -130), (15, 130, 130)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.588, 0.353, 0.549)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-15, -130, -130),
+                (15, -130, -130),
+                (15, 130, -130),
+                (-15, 130, -130),
+                (-15, -130, 130),
+                (15, -130, 130),
+                (15, 130, 130),
+                (-15, 130, 130)
+            ]
+        }
+    }
+
+    }
+
+    def Scope "Sensors" (
+        kind = "group"
+        custom string m64:zoneId = "M64-Z-SN"
+        custom string m64:zoneCoverage = "real+envelope-unknown"
+        custom string m64:zoneLabel = "engine sensors, ignition, harness"
+    )
+    {
+    def Xform "MafSensorMarker" (
+        custom string[] m64:bomLines = ["M64B-SN-001"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-SN"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-SN-001 (identification sourced; dims missing)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary"
+    )
+    {
+        double3 xformOp:translate = (-260, 200, 260)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-60, -45, -40), (60, 45, 40)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.863, 0.784, 0.353)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-60, -45, -40),
+                (60, -45, -40),
+                (60, 45, -40),
+                (-60, 45, -40),
+                (-60, -45, 40),
+                (60, -45, 40),
+                (60, 45, 40),
+                (-60, 45, 40)
+            ]
+        }
+    }
+
+    def Xform "ChargeAirTempSensor" (
+        custom string[] m64:bomLines = ["M64B-SN-002"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "real_asset_reference"
+        custom string m64:envelopeStatus = "real-asset"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-SN"
+        custom string m64:sourceCitation = "catalog/sources/src-fvd-993-charge-air-temperature-sensor-dimensions.json (declared 75x35x20) via BOM M64B-SN-002"
+        custom string m64:redesignInterest = "med"
+        custom string m64:note = "placed on the charge-air path per the sourced location description (intercooler inlet pipe)"
+        references = @../../catalogue-parts/usd/993-intercooler-temperature-sensor.usda@
+    )
+    {
+        double3 xformOp:translate = (-80, 390, 150)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+
+    def Xform "KnockSensorPairMarker" (
+        custom string[] m64:bomLines = ["M64B-SN-003"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-SN"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-SN-003 (mounting torques sourced; dims missing)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary; represents 2 sensors with mounting bridge"
+    )
+    {
+        double3 xformOp:translate = (80, 200, 60)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-30, -20, -20), (30, 20, 20)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.863, 0.784, 0.353)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-30, -20, -20),
+                (30, -20, -20),
+                (30, 20, -20),
+                (-30, 20, -20),
+                (-30, -20, 20),
+                (30, -20, 20),
+                (30, 20, 20),
+                (-30, 20, 20)
+            ]
+        }
+    }
+
+    def Xform "NtcSensorMarker" (
+        custom string[] m64:bomLines = ["M64B-SN-004"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-SN"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-SN-004 (location on cylinder head 3 is itself evidence; dims missing)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary"
+    )
+    {
+        double3 xformOp:translate = (150, 250, 150)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-15, -15, -20), (15, 15, 20)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.863, 0.784, 0.353)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-15, -15, -20),
+                (15, -15, -20),
+                (15, 15, -20),
+                (-15, 15, -20),
+                (-15, -15, 20),
+                (15, -15, 20),
+                (15, 15, 20),
+                (-15, 15, 20)
+            ]
+        }
+    }
+
+    def Xform "LambdaSensorPairMarker" (
+        custom string[] m64:bomLines = ["M64B-SN-005"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-SN"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-SN-005 (M18x5 thread and torque sourced; dims missing)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary; represents 2 pre-cat sensors"
+    )
+    {
+        double3 xformOp:translate = (200, 250, -100)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-15, -15, -40), (15, 15, 40)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.863, 0.784, 0.353)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-15, -15, -40),
+                (15, -15, -40),
+                (15, 15, -40),
+                (-15, 15, -40),
+                (-15, -15, 40),
+                (15, -15, 40),
+                (15, 15, 40),
+                (-15, 15, 40)
+            ]
+        }
+    }
+
+    def Xform "SparkPlugRowMarker" (
+        custom string[] m64:bomLines = ["M64B-SN-006"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-SN"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-SN-006 (M14x1.25 thread and torque sourced; dims missing)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary; represents 6 plugs on one bank"
+    )
+    {
+        double3 xformOp:translate = (0, 270, 220)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-120, -10, -15), (120, 10, 15)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.863, 0.784, 0.353)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-120, -10, -15),
+                (120, -10, -15),
+                (120, 10, -15),
+                (-120, 10, -15),
+                (-120, -10, 15),
+                (120, -10, 15),
+                (120, 10, 15),
+                (-120, 10, 15)
+            ]
+        }
+    }
+
+    def Xform "MapSensorMarker" (
+        custom string[] m64:bomLines = ["M64B-SN-007"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-SN"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-SN-007 (no component data)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary"
+    )
+    {
+        double3 xformOp:translate = (-180, 300, 60)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-25, -20, -20), (25, 20, 20)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.863, 0.784, 0.353)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-25, -20, -20),
+                (25, -20, -20),
+                (25, 20, -20),
+                (-25, 20, -20),
+                (-25, -20, 20),
+                (25, -20, 20),
+                (25, 20, 20),
+                (-25, 20, 20)
+            ]
+        }
+    }
+
+    def Xform "WiringHarnessMarker" (
+        custom string[] m64:bomLines = ["M64B-AS-001"]
+        custom string m64:fidelity = "F0_reference"
+        custom string m64:assetKind = "envelope_unknown"
+        custom string m64:envelopeStatus = "envelope-unknown"
+        custom string m64:positionStatus = "layout-hypothesis-engine-local"
+        custom string m64:zone = "M64-Z-SN"
+        custom string m64:sourceCitation = "twins/m64-engine-system/bom/m64-bom-v1.json M64B-AS-001 (registry completeness item; no geometry planned)"
+        custom string m64:redesignInterest = "low"
+        custom string m64:note = "marker_size_arbitrary; envelope shown for registry visibility only"
+    )
+    {
+        double3 xformOp:translate = (0, 100, -180)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+        def Mesh "ProxyBox"
+        {
+            uniform bool doubleSided = true
+            float3[] extent = [(-200, -150, -20), (200, 150, 20)]
+            int[] faceVertexCounts = [4, 4, 4, 4, 4, 4]
+            int[] faceVertexIndices = [0, 3, 2, 1, 4, 5, 6, 7, 0, 1, 5, 4, 1, 2, 6, 5, 2, 3, 7, 6, 3, 0, 4, 7]
+            color3f[] primvars:displayColor = [(0.863, 0.784, 0.353)] (interp = "constant")
+            uniform token purpose = "proxy"
+            uniform token subdivisionScheme = "none"
+            point3f[] points = [
+                (-200, -150, -20),
+                (200, -150, -20),
+                (200, 150, -20),
+                (-200, 150, -20),
+                (-200, -150, 20),
+                (200, -150, 20),
+                (200, 150, 20),
+                (-200, 150, 20)
+            ]
+        }
+    }
+
+    }
+
+}

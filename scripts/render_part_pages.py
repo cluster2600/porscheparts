@@ -269,9 +269,156 @@ def jumeaux_lies(part_id: str) -> list[Path]:
     return [p for p in sorted(TWINS.glob("*.json")) if part_id in p.read_text(encoding="utf-8")]
 
 
+IMPELLER_ID = "993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001"
+
+
+def presentation_impeller(fiche: dict, chemin_fiche: Path) -> str:
+    """Custom French presentation of the archived Carrera F0 impeller.
+
+    The generic wheel view and the orthographic blocks of the archived concept
+    were removed from the page on 2026-09-29: they showed a synthetic Carrera
+    study block that read as a Turbo part. The page now presents the current
+    M64/60 Turbo fan programme with its editable sources, its real PicoGK
+    visuals, the fan-drive metrology, and the provenance limits — and keeps
+    the archived concept visibly archived. Regenerate the removed views with
+    `make part-previews` if ever needed again.
+    """
+    part_id = fiche["part_id"]
+    page = PARTS / part_id.lower() / "README.md"
+    classification = fiche.get("classification", {})
+    classe = classification.get("safety_class", "unknown")
+    procede = fiche.get("manufacturing", {}).get("preferred_process", "undecided")
+    niveau = fiche.get("validation", {}).get("status", "concept")
+    vehicule = fiche.get("vehicle", {})
+    annees = vehicule.get("model_years", {})
+    reprise = lien(ROOT / "twins" / "993-engine-cooling-fan-system-f0", page)
+    rel_page = f"docs/pieces/{part_id.lower()}.md"
+
+    def L(p: str) -> str:
+        return lien(ROOT / p, page)
+
+    badges = " ".join([
+        badge("status", f"{niveau}, not a print file", "critical"),
+        badge("safety", STATUTS.get(classe, classe).strip("*"), "critical"),
+        badge("candidate process", PROCEDES.get(procede, procede), "lightgrey"),
+    ])
+    out = [ENTETE, "", '<div align="center">', "", f"# {nom(fiche)}", "",
+           f"**`{part_id}`** · Porsche {vehicule.get('generation', '?')}"
+           + (f" · {annees.get('from')}–{annees.get('to')}" if annees else ""), "",
+           badges, "", "</div>", ""]
+
+    out += ["> [!CAUTION]",
+            "> **Not ready to print, and not a copy of the original part.** Ce dossier conserve un "
+            "concept **Carrera F0 archivé**. Le programme ventilateur du Turbo M64/60 a été repris "
+            "et vit ailleurs dans le dépôt (section suivante). Aucune pièce de ce dépôt n'est "
+            "déclarée exacte, ajustée, testée, sûre, libérée ni prête à fabriquer sans preuve — "
+            f"lire [SAFETY.md]({L('SAFETY.md')}).", ""]
+
+    out += ["## Programme actuel : ventilateur de refroidissement M64/60 Turbo", "",
+            "Cible : **993 Turbo M64.60 avec alternateur PMB / Classic Retrofit 240 A**. "
+            "Le PET Porsche (illustration 105-00, planches 77–78) distingue le rotor Turbo "
+            "(964 106 015 22) du rotor Carrera (964 106 015 31, record de ce dossier). "
+            "L'étude en cours porte sur le rotor Turbo ; l'état par dossier, avec son statut "
+            "réel, sans rien déclarer de plus :", "",
+            "| quoi | où | état |", "|---|---|---|",
+            f"| Rebuild de référence : rotor 11 pales, cuvette ventilée, 12 fenêtres | "
+            f"[REFERENCE_REBUILD.md]({reprise}/REFERENCE_REBUILD.md) · "
+            f"[paramètres éditables]({reprise}/source/picogk-reference/reference.json) · "
+            f"[source C# PicoGK]({reprise}/source/picogk-reference/Program.cs) | "
+            "reconstruction de référence visuelle, partiellement hypothétique ; paramètres non "
+            "mesurés explicitement marqués |",
+            f"| Étude pales organiques A–E | [ORGANIC_BLADE_STUDY.md]({reprise}/ORGANIC_BLADE_STUDY.md) · "
+            f"[config candidat E]({reprise}/source/picogk-reference/organic-e.json) | "
+            "essais numériques documentés, échecs compris ; hypothèses de design, pas des optima mesurés |",
+            f"| Source paramétrique vague 2 (rotor + carter, PicoGK C# net9.0) | "
+            f"[M64Fan.cs]({L('parts/m64-cooling-fan-0001/geometry/M64Fan.cs')}) · "
+            f"[fan-config.json]({L('parts/m64-cooling-fan-0001/geometry/fan-config.json')}) | "
+            "source éditable, chaque paramètre étiqueté ; pas encore de sortie compilée archivée |",
+            f"| CFD de la zone ventilateur (disque actuateur, OpenFOAM v2312) | "
+            f"[simulation/993-fan-baseline]({L('simulation/993-fan-baseline/README.md')}) | "
+            "surrogat exploratoire, limites de référence au dossier ; ne prédit pas la performance d'installation |",
+            f"| Métrologie entraînement ventilateur (M64-ACQ-0005) | "
+            f"[fan-drive-dimensions.json]({L('twins/m64-engine-system/metrology/fan-drive/fan-drive-dimensions.json')}) · "
+            f"[fiche de scan]({L('catalog/scans/scan-fan-drive-0p21mm.json')}) | "
+            "première passe sur le scan 0,21 mm ; incertitudes ±4 mm ; écarts ouverts avec l'estimation vague 1 |",
+            f"| Dossier de sortie tirage métal | [PRINT_RELEASE.md]({reprise}/PRINT_RELEASE.md) | "
+            "**HOLD — aucune autorisation d'impression** |", ""]
+
+    out += ["### Vues réelles de la géométrie actuelle", "",
+            f"![Rotor Turbo reconstruit : face, arrière, coupe, éclaté]({reprise}/results/reference/reference-review.png)", "",
+            f"*Rotor reconstruit — maillage PicoGK réel, régénéré par "
+            f"`source/build_reference_review.py` depuis les "
+            f"[paramètres éditables]({reprise}/source/picogk-reference/reference.json) ; "
+            "statut `visual_reference_reconstruction` (" 
+            f"[fiche de génération]({reprise}/results/reference/generation.json)). "
+            "Rendu d'une géométrie hypothétique, pas une photo d'une pièce fabriquée.*", "",
+            f"![Pale organique candidat E : vues du maillage PicoGK]({reprise}/results/organic/e/review/reference-review.png)", "",
+            f"*Candidat organique E — maillage PicoGK réel, contrôles de maille dans "
+            f"[`validation.json`]({reprise}/results/organic/e/review/validation.json). "
+            "Hypothèse de design : aucun gain aérodynamique validé, aucune interface vérifiée.*", ""]
+
+    out += ["### Métrologie de l'entraînement (M64-ACQ-0005)", "",
+            "Première passe sur `Fan+Drive+0.21mm.obj` (sha256 `6c0b12d4…`, 1 256 836 sommets, "
+            "précision nominale 0,21 mm, unités mm supposées). Résultats issus de "
+            f"[`fan_drive_metrology.py`]({L('twins/m64-engine-system/metrology/fan-drive/fan_drive_metrology.py')}) :", "",
+            "| dimension | valeur | incertitude | note |", "|---|---|---|---|",
+            "| Ø poulie de ventilateur | 229,5 mm | ±4 mm | écart ouvert avec l'estimation vague 1 (~255,6 mm) |",
+            "| Ø flasque de pignon | 214,2 mm | ±4 mm | bande externe du disque |",
+            "| Ø sommet de dents | 104,0 mm | ±4 mm | plafond de rayon troncature ; vague 1 disait 127,6 mm |",
+            "",
+            "Rien ici n'est déclaré exact : passe unique, plafond de 140 mm qui tronque l'analyse "
+            "harmonique, pas de métrologie instrumentale tracée.", ""]
+
+    out += ["## Provenance et limites", "",
+            "- Nombre de pales (11) et de fenêtres (12) : comptages de photographies FVD, pas des cotes de plan ;",
+            "- diamètre nominal 245 mm : interprétation de l'enveloppe commerciale FVD, sans tolérance OEM ;",
+            "- profondeur de cuvette, pas, cordes, épaisseurs, rayons : hypothèses visibles dans les fichiers de paramètres ;",
+            "- interfaces moyeu, roulement, carter, cône et PMB : non mesurées, aucune géométrie publiée ;",
+            "- CFD : surrogats (disque actuateur, MRF) sans courbe de résistance moteur ; aucune performance de refroidissement installée prédite ;",
+            "- tirage métal : HOLD ; aucune matière qualifiée pour pales en rotation ;",
+            "- les résultats F0 de ce dossier ne se transfèrent pas au rotor reconstruit.", ""]
+
+    out += ["## Prochaines mesures", "",
+            "1. Confirmer le moyeu Turbo réel et son interface de roulement avant toute définition d'ajustement ;",
+            "2. mesurer le carter et le jeu radial rotor/carter (la gorge est dérivée, pas libre) ;",
+            "3. relever les interfaces PMB / Classic Retrofit 240 A et le cône arrière ;",
+            "4. rescanner l'entraînement complet sans plafond de rayon, avec traçabilité instrumentale (M64-ACQ-0005) ;",
+            "5. mesurer le pas de pale réel sur un rotor Turbo d'origine.", ""]
+
+    out += ["## Concept Carrera F0 archivé", "",
+            "Ce dossier conserve le concept exploratoire Carrera F0 : "
+            f"[source paramétrique build123d]({L('parts/993-eng-cooling-impeller-alsi10mg-f0-0001/source/cooling_impeller.py')}), "
+            f"exports [STEP]({L('parts/993-eng-cooling-impeller-alsi10mg-f0-0001/derived/cooling_impeller_alsi10mg_f0.step')}) / "
+            f"[STL]({L('parts/993-eng-cooling-impeller-alsi10mg-f0-0001/derived/cooling_impeller_alsi10mg_f0.stl')}) et "
+            f"[criblage d'ingénierie]({L('parts/993-eng-cooling-impeller-alsi10mg-f0-0001/evidence/engineering-screen.json')}) "
+            "(**épinglé par SHA-256, jamais modifié à la main**) — échec d'intégration avec le carter F0 "
+            "(−14 mm de jeu radial) documenté. Le diamètre 280 mm, le moyeu et les douze pales sont "
+            "synthétiques : un bloc d'étude Carrera, jamais une pièce Turbo.", "",
+            "> Les vues de présentation de l'archivage (`media/preview.png` — la roue générique — "
+            "et `media/views.png` — les vues orthographiques schématiques) ont été **retirées le "
+            "29/09/2026** : purement décoratives, sans valeur de preuve, elles pouvaient être lues à "
+            "tort comme la pièce Turbo. Elles restent régénérables depuis le STEP conservé "
+            "(`make part-previews`).", ""]
+
+    out += ["## Pour aller plus loin", "",
+            f"- **Page de description complète** : [{rel_page}]({lien(PAGES / f'{part_id.lower()}.md', page)})",
+            f"- **Record catalogue** (source de vérité) : [`{chemin_fiche.relative_to(ROOT).as_posix()}`]({lien(chemin_fiche, page)})",
+            f"- **Dossier de conception** : [993_COOLING_IMPELLER_ALSI10MG_F0]({L('docs/993/993_COOLING_IMPELLER_ALSI10MG_F0.md')})",
+            f"- **Dossier système** : [993_ENGINE_COOLING_FAN_SYSTEM_F0]({L('docs/993/993_ENGINE_COOLING_FAN_SYSTEM_F0.md')})",
+            f"- **Présentation du projet** : [porschefanatics.com/projects/993-turbo-fan](https://porschefanatics.com/projects/993-turbo-fan/)",
+            f"- **Record jumeau numérique** : [`twin-993-engine-cooling-fan-system-f0.json`]({L('catalog/twins/twin-993-engine-cooling-fan-system-f0.json')})",
+            f"- **Règles de sécurité** : [SAFETY.md]({L('SAFETY.md')})", "",
+            "---", "",
+            "*Cette page est générée à partir du record catalogue par `scripts/render_part_pages.py` "
+            "et vérifiée par `make check`. Les corrections vont dans le record, pas ici.*", ""]
+    return "\n".join(out)
+
+
 def presentation(fiche: dict, chemin_fiche: Path) -> str:
     """The README GitHub shows when a part folder is opened: the concept next to the original."""
     part_id = fiche["part_id"]
+    if part_id == IMPELLER_ID:
+        return presentation_impeller(fiche, chemin_fiche)
     dossier = PARTS / part_id.lower()
     page = dossier / "README.md"
     classification = fiche.get("classification", {})

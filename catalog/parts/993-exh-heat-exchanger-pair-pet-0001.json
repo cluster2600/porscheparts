@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-EXH-HEAT-EXCHANGER-PAIR-PET-0001",
+  "name": "993 Turbo exhaust heat exchangers (manifolds), left and right - PET-transcribed identity",
+  "description": "Identity-only catalogue record for the two Turbo exhaust heat exchangers (exhaust manifolds with integrated catalysis in the Turbo line), transcribed per-line from the local PET transcriptions: illustration 202-10 (exhaust system, Turbo) position 1 left 993 211 039 55 and position 2 right 993 211 040 55, confirmed independently by two Porsche PET catalogue transcriptions (KAT 17 and Porsche Classic KAT 517 USA, which lists the -56 suffixes). The record carries part number, group, position, applicability and catalogue context only: no dimensions, materials, wall thicknesses, flow data or geometry are claimed. Quantity per car is not carried by the local transcription; the engine uses one unit per bank (2 per car).",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_Turbo"],
+    "model_years": {"from": 1995, "to": 1998},
+    "porsche_part_numbers": [
+      "99321103955",
+      "99321104055",
+      "99321103956",
+      "99321104056"
+    ]
+  },
+  "classification": {
+    "category": "exhaust_manifold_heat_exchanger",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Identity anchor for the exhaust subsystem of the M64 digital twin; no manufacturing, fitment or engine use is authorized by this record"
+  },
+  "geometry": {
+    "source_type": "estimated",
+    "master_format": "none",
+    "master_file": "",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": []
+  },
+  "provenance": {
+    "record_license": "All rights reserved (see LICENSE) for this record; no PET illustration or PDF redistributed",
+    "sources": [
+      {
+        "title": "Porsche Fanatics local dataset - data/oem-listed.json, PET illustration 202-10 lines (993)",
+        "url": "https://porschefanatics.com/oem/993/202-10/",
+        "source_type": "community",
+        "license": "site-dataset-reference-only",
+        "accessed_on": "2026-09-29",
+        "notes": "Local file data/oem-listed.json of /home/lolman/repos/porschefanatics.com (commit f5dc1c25c304228a36405aabd6e2f79d9d241093). 202-10 lines: pos 1 = 993 211 039 55 (revision A) and pos 2 = 993 211 040 55 (revision A) from pet-993-pdf-rsworkshop (KAT 17, PDF p. 86); same positions also present from pet-classic-993 (KAT 517 USA, PDF p. 141) with the -56 suffixes. Group 'exhaust system'. See catalog/sources/src-porschefanatics-993-oem-listed-pet.json."
+      },
+      {
+        "title": "Porsche PET 993 - Turbo heat exchangers illustration 202-10 (Porsche Classic KAT 517)",
+        "url": "https://assets-v2.porsche.com/us/-/media/Project/PCOM/SharedSite/PorscheClassic/Original-Parts-Catalogue/PDF-EN-US/KAT517_USA_911_98_KATALOG",
+        "source_type": "official",
+        "license": "porsche-ag-copyright-reference-only",
+        "accessed_on": "2026-09-29",
+        "notes": "Official read of the same illustration, already registered as SRC-PORSCHE-PET-993-TURBO-HEAT-EXCHANGER-202-10: left 993 211 039 55, right 993 211 040 55, sealing rings, lock nuts and heating tube; no dimensions."
+      },
+      {
+        "title": "Porsche 993 Workshop Manual - Exhaust system torque page 61",
+        "url": "https://porschefanatics.com/oem/993/202-10/",
+        "source_type": "official",
+        "license": "all-rights-reserved-reference-only",
+        "accessed_on": "2026-09-29",
+        "notes": "Registered in catalog/manual/993-workshop-manual-measurements.json: heat exchanger to cylinder head 28 Nm; catalytic converter or front muffler 23 Nm; ball clamps 25-30 Nm; O2 sensor M18x5 50-60 Nm. Interfaces and loads context only."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["CNC"],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "unknown",
+      "grade": "unknown (an IN625 aftermarket offer exists, see 993-ENG-EXHAUST-MANIFOLD-IN625-F0-0001)",
+      "standard": "not recorded"
+    },
+    "post_processing": [],
+    "supplier_requirements": [
+      "professional engineering review before any manufacturing claim",
+      "dimensional inspection on a real part before any geometry work"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": ""
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "SRC-PORSCHEFANATICS-993-OEM-LISTED-PET (202-10 pos 1 and 2, both catalogue transcriptions)",
+      "SRC-PORSCHE-PET-993-TURBO-HEAT-EXCHANGER-202-10"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Identity only: the PET transcriptions carry part number, group, position and description, no dimensions, tolerances, materials or geometry.",
+      "KAT 17 lists the -55 suffix (revision A), KAT 517 lists -56; the local data do not document the supersession relation, both suffixes are recorded without claiming replacement.",
+      "Quantity per car is not carried by the local transcription; 2 per car reflects the two-bank engine, not a transcribed field.",
+      "Wastegate actuator part numbers do not appear in any local PET transcription line and remain unsourced."
+    ]
+  }
+}

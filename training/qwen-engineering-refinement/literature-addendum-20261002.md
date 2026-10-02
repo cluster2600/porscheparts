@@ -1,0 +1,120 @@
+# Literature reading addendum — 2 October 2026
+
+This note extends the reading status in frozen `research.json`; it does not
+change that registry, training examples, checkpoints or evaluation receipts.
+The repeated user photograph was used to identify sources, not as scientific
+evidence. Main text was read through publisher PDF extraction and arXiv HTML;
+PDF screenshot requests timed out, so visual inspection is not claimed.
+
+## Small jet engine digital twin
+
+[Wright et al., 2023, arXiv:2312.09978v1](https://arxiv.org/html/2312.09978v1)
+was read in full, beyond its previously consulted abstract. The displayed
+licence is arXiv's perpetual non-exclusive licence, not CC BY. Keep this as a
+reference; no article text has been imported into the training corpus.
+
+The demonstrated NG-RC predicts thrust using delayed sensor features and
+quadratic terms fitted with ridge regression. It is not an LLM trained on
+papers. The experiment calibrates the thrust sensor per run and reconciles
+different sampling rates. Same-run and cross-run evaluations have different
+scopes. Its reported NRMSE cannot establish Porsche 993 prediction accuracy.
+
+Section 4.1 contains an arithmetic inconsistency: one constant, eight linear
+and 36 quadratic features sum to **45**, although the text gives 36 total.
+Future authored exercises should check feature dimensions, chronological
+splits, sensor calibration and error definitions independently of source prose.
+
+## Internal-combustion-engine review
+
+[Tran, Sharma and Nguyen, 2023, DOI 10.61435/jese.2023.5](https://journal.cbiore.id/index.php/jese/article/download/5/5/14)
+was read through the main text and conclusion. The seven-page publisher PDF
+identifies *Journal of Emerging Science and Engineering* and CC BY 4.0;
+the generic title returned by the web extractor is not the journal identity.
+
+This narrative review covers sensor integration, modelling, monitoring,
+maintenance and validation challenges. It supplies context rather than a
+complete executable engine model, calibrated boundary conditions or a 993
+solver recipe. Authored exercises can distinguish a proposed benefit from a
+measured result and require comparison against actual engine observations.
+No new training examples or weights have been produced from this reading yet.
+
+## Remaining source boundaries
+
+- [Baird et al., SAE 2006-32-0004](https://pure.qub.ac.uk/en/publications/cfd-simulations-of-heat-transfer-from-air-cooled-engines): university metadata
+  was found; full text remains unavailable in this session. No claim of
+  reproducing its CFD setup is supported.
+- [Fin redesign study, DOI 10.19206/CE-195440](https://www.combustion-engines.eu/Improving-heat-transfer-in-an-air-cooled-engine-by-redesigning-the-fins,195440,0,2.html):
+  full-text reading and existing authored exercises were already recorded.
+  Its material and cooling results do not establish the 993's OEM material
+  or a measured improvement on that engine.
+
+## Kinematics photograph: corrections and coverage
+
+The screenshot's blanket statement that opposed boxer cylinders share a
+crankpin must not become a training target. Conventional boxer construction
+uses separate crankpins for opposed rods; sharing a crankshaft does not mean
+sharing a crankpin. The [patent classification F02B75/243](https://patents.google.com/patent/US11982224B2/en)
+explicitly describes separate crankshaft bearings. This general distinction
+does not supply measured M64/60 crank geometry or journal coordinates.
+
+The suggested title *Torsional Vibration Analysis of Horizontally Opposed
+Engines* was not resolved to an identifiable publication in this search.
+A related primary paper was located: [Vasile and Marasescu, 2015, engine-drive
+kinematics and boxer equilibration](https://www.anmb.ro/buletinstiintific/buletine/2015_Issue1/MES/249-257.pdf).
+Its opening kinematics section was inspected; it is not a verified M64/60
+torsional model. Reuse rights are unconfirmed; retain a reference only.
+
+The catalogue record
+[`src-porsche-993-obd-supplement-engine-specifications-1996.json`](../../catalog/sources/src-porsche-993-obd-supplement-engine-specifications-1996.json)
+has a provenance mismatch: its linked [Porsche bulletin](https://members.rennlist.com/geolab/Hydraulic%20lifters_1997_610297.pdf)
+is the one-page January 1997 hydraulic-lifter correction, not an engine
+specification sheet. It cannot substantiate the record's firing order, fan
+ratio or airflow figures. Do not use those assertions as sourced targets
+until the correct document and applicable variant are established. This note
+records the defect without rewriting historical source assertions.
+
+[NVIDIA's Omni Physics documentation](https://docs.omniverse.nvidia.com/kit/docs/omni_physics/109.0/dev_guide/deformables/deformable_bodies.html)
+does support deformable bodies; claiming PhysX can only handle rigid bodies
+would also be incorrect. Engineering interpretation: a rigid crankshaft
+animation alone does not demonstrate elastic torsional modes or fatigue.
+Those require an appropriate compliant model, inertias, stiffness, damping,
+excitation and validation. Existing `dynamics-*` exercises in
+[`photo_course.py`](photo_course.py) already reject torsion/fatigue claims
+based only on firing order and a rigid-body scene. The generic four-stroke
+interval calculation `720 / cylinders` is also present; it does not infer
+cylinder numbering or crank geometry. No new training was run for this photo.
+
+## Four workflow photographs: existing coverage and live API check
+
+The repeated workflow, lattice, C# and Python photographs are already covered
+by the corrected photo course. They do not constitute new training examples.
+
+| Photograph claim | Accepted lesson and remaining limit |
+|---|---|
+| STEP → voxels → USD → solvers → printing | Preserve independently measured interfaces. CAD tessellation, voxel resolution, units, solid/fluid regions and solver meshes need explicit checks. A USD scene is not automatically a CFD/FEA model, and printing needs its own qualified process. |
+| Gyroids improve cooling; titanium shrouds and intake lattices are better | Treat these as design hypotheses. Existing `cooling-*` and `manufacturing-*` exercises require evidence and reject automatic gains. Compare pressure loss, heat removal, mass and manufacturing access against a baseline. Open cells alone do not prove powder removal. |
+| Conceptual C# is a working PicoGK bridge | The inspected installed PicoGK C# source contains no `MeshToVoxels`, `VoxelMath` class, `CreateLattice`, `StressDrivenScalarField` or `ExportAsObjOrStl`. Undeclared custom helpers must not be presented as kernel APIs. Existing `api-*` lessons use verified constructors and copy-returning booleans. No generic CalculiX stress-to-lattice adapter was demonstrated. |
+| `AddReference("part.obj")` converts OBJ to USD | A reference composes a supported layer; it does not itself convert mesh formats. Existing `asset-*` and `mesh-*` lessons cover this distinction. A custom format plugin could change file support, so inspect the actual runtime. |
+
+The [OpenUSD reference documentation](https://openusd.org/release/api/class_usd_references.html)
+explicitly distinguishes successful reference authoring from successful
+composition. A live USD 25.5 check on 2 October used a temporary valid OBJ
+triangle: no OBJ format plugin was installed, `AddReference` returned true,
+the stage reported one composition error, and the resulting mesh had zero
+points. Assertions checked the failure; the temporary files were removed.
+This reproduces the photographed import defect without claiming an Omniverse
+Kit conversion test. An explicit importer or authoring converted vertex/index
+buffers is required in this runtime.
+
+The existing `test_qwen_photo_course.py` check passes (one test). Previously
+recorded native PicoGK receipts remain unchanged. No new model inference,
+fine-tuning, full CFD/FEA validation or manufacturing release occurred during
+this audit.
+
+## Training status
+
+Run 005 remains **148/150** on its filtered synthetic comparison, with PicoGK
+**7/8**, and is not qualified. This addendum does not constitute another MLX
+run. Any subsequent training needs newly authored, executable exercises and
+pre-registered untouched task families; the exposed 150 cases are regressions
+only. Reading a paper does not itself train or validate the model.

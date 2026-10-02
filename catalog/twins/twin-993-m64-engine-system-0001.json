@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0.0",
+  "twin_id": "TWIN-993-M64-ENGINE-SYSTEM-0001",
+  "name": "Systeme moteur M64/60 de Porsche 993 Turbo — zones, interfaces et niveaux verifie",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_Turbo"],
+    "model_years": {"from": 1995, "to": 1998}
+  },
+  "scope": {
+    "zone": "m64_engine_system",
+    "purposes": ["fit", "thermal", "fluid", "structural"]
+  },
+  "fidelity": "F0_reference",
+  "coordinate_system": {
+    "frame": "local",
+    "origin": "axe vilebrequin, plan de joint du volant moteur (convention provisoire non mesuree)",
+    "axes": "X axe vilebrequin vers le volant moteur, Y vers la droite moteur, Z vers le haut (provisoire)",
+    "units": "mm",
+    "vehicle_transform": null
+  },
+  "components": [
+    {"component_id": "CRANKCASE_DATUM", "role": "host", "geometry_file": "", "accuracy_mm": null},
+    {"component_id": "CYL_LEFT_1", "role": "context", "geometry_file": "", "accuracy_mm": null},
+    {"component_id": "CYL_LEFT_3", "role": "context", "geometry_file": "", "accuracy_mm": null},
+    {"component_id": "CYL_LEFT_5", "role": "context", "geometry_file": "", "accuracy_mm": null},
+    {"component_id": "CYL_RIGHT_2", "role": "context", "geometry_file": "", "accuracy_mm": null},
+    {"component_id": "CYL_RIGHT_4", "role": "context", "geometry_file": "", "accuracy_mm": null},
+    {"component_id": "CYL_RIGHT_6", "role": "context", "geometry_file": "", "accuracy_mm": null},
+    {"component_id": "HEAD_PROXY_935", "role": "candidate", "geometry_file": "", "accuracy_mm": null},
+    {"component_id": "TURBO_K16_LEFT", "role": "candidate", "geometry_file": "", "accuracy_mm": null},
+    {"component_id": "TURBO_K16_RIGHT", "role": "candidate", "geometry_file": "", "accuracy_mm": null},
+    {"component_id": "COOLING_FAN", "role": "context", "geometry_file": "", "accuracy_mm": null}
+  ],
+  "interfaces": [
+    {
+      "interface_id": "IF_HEAD_BASE_LEFT",
+      "kind": "fastener",
+      "components": ["CYL_LEFT_1", "HEAD_PROXY_935"],
+      "required_measurements": ["M64-ACQ-0001_echelle_scan_culasse", "entraxe_goujons_M8_reel", "hauteur_de_joint_mesuree"],
+      "acceptance_rule": "Les 12 goujons M8 x 22 par culasse (quantite publiee) ne deviennent une interface F2 que positionnee a l'echelle mesuree ; au pire cas, marge positive avec incertitude de mesure incluse.",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_CYL_BASE_SEAL",
+      "kind": "contact",
+      "components": ["CRANKCASE_DATUM", "CYL_LEFT_1"],
+      "required_measurements": ["diametre_reel_O_ring_102x2", "portee_de_joint_carter", "jeu_de_jupe_admissible"],
+      "acceptance_rule": "L'O-ring declare 102 x 2 par cylindre (quantite publiee) doit recouvrir une portee carter mesuree ; contact sans interpenetration avec incertitudes.",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_TURBO_EXHAUST_RIGHT",
+      "kind": "contact",
+      "components": ["CYL_RIGHT_2", "TURBO_K16_RIGHT"],
+      "required_measurements": ["bride_collecteur_reelle", "entraxe_boulonnerie_turbo", "position_du_banc_reference"],
+      "acceptance_rule": "La bride d'echappement du K16 droit ne peut etre positionnee que lorsque le repere moteur commun est etabli ; aucune revendication d'alignement avant F2.",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_TURBO_EXHAUST_LEFT",
+      "kind": "contact",
+      "components": ["CYL_LEFT_1", "TURBO_K16_LEFT"],
+      "required_measurements": ["bride_collecteur_reelle", "entraxe_boulonnerie_turbo", "position_du_banc_reference"],
+      "acceptance_rule": "Identique au banc droit : position bloquee par le repere moteur commun.",
+      "status": "missing_data"
+    },
+    {
+      "interface_id": "IF_FAN_SHROUD_CLEARANCE",
+      "kind": "clearance",
+      "components": ["COOLING_FAN", "CRANKCASE_DATUM"],
+      "required_measurements": ["nombre_de_pales", "diametre_poulies", "jeu_radial_admissible"],
+      "acceptance_rule": "Le rapport d'entrainement 1:1,6 et le debit 1010 l/s a 6100 tr/min sont publies, la roue ne l'est pas : le controle de jeu attend la geometrie reelle du ventilateur.",
+      "status": "missing_data"
+    }
+  ],
+  "geometry": {
+    "master_format": "none",
+    "master_file": "",
+    "derived_files": []
+  },
+  "validation": {
+    "status": "concept",
+    "evidence": [
+      "docs/research/m64-public-engine-data-2026-09-27.md",
+      "catalog/sources/src-porsche-uk-993-turbo-brochure-1995.json",
+      "catalog/sources/src-porsche-993-us-parts-guide-engine-cylinders.json",
+      "catalog/sources/src-porsche-993-obd-supplement-engine-specifications-1996.json",
+      "twins/m64-engine-system/program.json"
+    ],
+    "known_limits": [
+      "Aucune cote mesuree : toutes les valeurs sont publiques ou declarees, jamais metrologiees par le projet.",
+      "Aucun composant n'a de geometrie associee a ce niveau : la scene est un registre de zones et d'interfaces, pas une geometrie.",
+      "Le repere moteur commun est provisoire ; la transformation vers le repere vehicule reste a etablir.",
+      "La culasse estrepresentee par le proxy du scan 935, dont l'echelle n'est pas confirmee."
+    ]
+  }
+}

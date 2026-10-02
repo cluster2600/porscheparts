@@ -1,0 +1,2808 @@
+[
+  {
+    "id": "SIM-nist_ambench",
+    "title": "NIST AM Bench",
+    "url": "https://www.nist.gov/ambench",
+    "language": "en",
+    "topic": "validation; LPBF; DED; qualité",
+    "source_type": "institutionnel",
+    "summary": "Programme de benchmarks pour tester les modèles contre des mesures contrôlées.",
+    "key_findings": [
+      "Cycles 2018, 2022 et 2025; métaux nickel 625/718 et acier 15-5 suivant cycles.",
+      "Les benchmarks couvrent procédé, microstructure et propriétés; les problèmes aveugles servent à évaluer la généralisation.",
+      "2025 inclut DED fil chaud laser, fatigue et transformations de phase."
+    ],
+    "license_status": "Données annoncées publiques; conditions propres à chaque dataset à vérifier; page sans licence corpus explicite.",
+    "access_status": "HTTP 200; HTML et texte vérifiés, récupération 2026-10-02",
+    "research_agent": "simulation",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "SIM-nist_links",
+    "title": "NIST — Direct AM Bench Data Links and Referencing Guidance",
+    "url": "https://www.nist.gov/ambench/direct-am-bench-data-links-and-referencing-guidance",
+    "language": "en",
+    "topic": "datasets; provenance; référence",
+    "source_type": "catalogue de données institutionnel",
+    "summary": "Point d’entrée vers les jeux de données et leurs consignes de citation.",
+    "key_findings": [
+      "Préférer chaque fiche de dépôt et DOI à une copie de la page globale.",
+      "Conserver les identifiants de benchmark, matériau, procédé et protocole dans le corpus."
+    ],
+    "license_status": "Vérifier licence et restrictions sur chaque fiche; accès public ne suffit pas à établir droits SFT.",
+    "access_status": "HTTP 200; HTML et texte vérifiés, récupération 2026-10-02",
+    "research_agent": "simulation",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "SIM-nist_models",
+    "title": "NIST — Example Model Comparisons",
+    "url": "https://www.nist.gov/ambench/example-model-comparisons",
+    "language": "en",
+    "topic": "comparaison de modèles; validation",
+    "source_type": "bibliographie institutionnelle",
+    "summary": "Références des comparaisons publiées aux mesures AM Bench 2018.",
+    "key_findings": [
+      "Liste études thermique non linéaire avec changements de phase, conduction isotrope/anisotrope, microstructure dendritique.",
+      "Inclut simulations sans maillage et prévision des déformations résiduelles.",
+      "La page bibliographique ne prouve pas les résultats détaillés des articles."
+    ],
+    "license_status": "Licence des articles à inspecter individuellement; titres et références visibles.",
+    "access_status": "HTTP 200; HTML et texte vérifiés, récupération 2026-10-02",
+    "research_agent": "simulation",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "SIM-adamantine",
+    "title": "adamantine — thermomechanical code for additive manufacturing",
+    "url": "https://adamantine-sim.github.io/adamantine/",
+    "language": "en",
+    "topic": "FEM; thermomécanique; assimilation",
+    "source_type": "documentation officielle logiciel",
+    "summary": "Code thermomécanique sur deal.II, ArborX, Trilinos et Kokkos.",
+    "key_findings": [
+      "États solide, liquide et poudre distincts.",
+      "Assimilation de données expérimentales avec filtre de Kalman d’ensemble.",
+      "Documentation point d’entrée vers exemples et équations."
+    ],
+    "license_status": "Dépôt associé affiche Apache 2.0 avec LLVM Exceptions; portée documentation à vérifier.",
+    "access_status": "HTTP 200; HTML et texte vérifiés, récupération 2026-10-02",
+    "research_agent": "simulation",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "SIM-adamantine_repo",
+    "title": "adamantine — dépôt de code",
+    "url": "https://github.com/adamantine-sim/adamantine",
+    "language": "en",
+    "topic": "logiciel ouvert; reproductibilité",
+    "source_type": "code et README",
+    "summary": "Code source et informations de licence pour le simulateur adamantine.",
+    "key_findings": [
+      "README et licence visibles.",
+      "Fixer commit/version avant extraction pour reproductibilité; ne pas faire varier la documentation entre train et test."
+    ],
+    "license_status": "Apache License v2.0 with LLVM Exceptions affichée au README; conditions à préserver.",
+    "access_status": "HTTP 200; HTML et texte vérifiés, récupération 2026-10-02",
+    "research_agent": "simulation",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "SIM-adamantine_equations",
+    "title": "adamantine — Governing Equations",
+    "url": "https://adamantine-sim.github.io/adamantine/doc/governing_equations.html",
+    "language": "en",
+    "topic": "équation chaleur; enthalpie; conditions limites; FEM",
+    "source_type": "documentation technique",
+    "summary": "Équation de chaleur, prise en compte du changement de phase et couplage thermomécanique.",
+    "key_findings": [
+      "Hypothèses explicites: pas de mouvement liquide, pas d’évaporation, couplage thermique vers mécanique à sens unique.",
+      "Conduction avec rho(T), Cp(T), k; traitement enthalpique; pertes convectives et radiatives.",
+      "ATTENTION: coquilles et étapes discutables repérées; révision mathématique nécessaire avant exemples entraînement."
+    ],
+    "license_status": "Licence dépôt Apache 2.0 avec LLVM Exceptions; portée précise doc non confirmée.",
+    "access_status": "HTTP 200; HTML et texte vérifiés, récupération 2026-10-02",
+    "research_agent": "simulation",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "SIM-adamantine_thermal",
+    "title": "adamantine — Thermal Simulation tutorial",
+    "url": "https://adamantine-sim.github.io/adamantine/doc/examples/thermal_simulation.html",
+    "language": "en",
+    "topic": "simulation thermique; paramètres; exemple",
+    "source_type": "tutoriel technique",
+    "summary": "Exemple de simulation thermique avec paramètres d’entrée et trajectoires.",
+    "key_findings": [
+      "Utile pour construire des exercices de configuration expliqués et reproductibles.",
+      "Ne pas confondre les valeurs d’un exemple avec paramètres universels de matériau."
+    ],
+    "license_status": "Licence dépôt connue; vérifier portée fichiers exemples/documentation.",
+    "access_status": "HTTP 200; HTML et texte vérifiés, récupération 2026-10-02",
+    "research_agent": "simulation",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "SIM-openfoam_additive",
+    "title": "ORNL AdditiveFOAM — repository",
+    "url": "https://github.com/ORNL/AdditiveFOAM",
+    "language": "en",
+    "topic": "CFD; chaleur; masse; logiciel ouvert",
+    "source_type": "code et README",
+    "summary": "Code transfert de chaleur et de masse pour fabrication additive basé sur OpenFOAM.",
+    "key_findings": [
+      "Version consultée indique dépendance OpenFOAM Foundation 14.",
+      "Documentation dédiée et tutoriels disponibles."
+    ],
+    "license_status": "GPL v3 ou ultérieure déclarée; ne pas extrapoler cette licence à d’autres articles.",
+    "access_status": "HTTP 200; HTML et texte vérifiés, récupération 2026-10-02",
+    "research_agent": "simulation",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "SIM-additivefoam_docs",
+    "title": "AdditiveFOAM — documentation capabilities",
+    "url": "https://ornl.github.io/AdditiveFOAM/",
+    "language": "en",
+    "topic": "CFD; bain fondu; Marangoni; solidification",
+    "source_type": "documentation officielle logiciel",
+    "summary": "Liste explicite des phénomènes physiques et des capacités numériques.",
+    "key_findings": [
+      "Conduction, convection, fusion, solidification, chaleur latente, flottabilité, résistance zone pâteuse, écoulement Marangoni.",
+      "Propriétés solide/liquide/poudre dépendantes de T; maillage adaptatif avec équilibrage.",
+      "Export historiques thermiques et conditions de solidification vers ExaCA."
+    ],
+    "license_status": "GPL v3 ou ultérieure déclarée sur la page; portée documentation à vérifier.",
+    "access_status": "HTTP 200; HTML et texte vérifiés, récupération 2026-10-02",
+    "research_agent": "simulation",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "SIM-exaca",
+    "title": "LLNL ExaCA — cellular automaton",
+    "url": "https://github.com/LLNL/ExaCA",
+    "language": "en",
+    "topic": "microstructure; grains; solidification",
+    "source_type": "code et README",
+    "summary": "Automate cellulaire pour nucléation et croissance de grains en fabrication additive.",
+    "key_findings": [
+      "Historique temps-température peut venir de fichiers ou du couplage Finch.",
+      "Exemples gradient thermique/taux refroidissement et cas biphasé acier 316L.",
+      "Orientation et taille de grain sorties: ne fournit pas seul un modèle de bain CFD."
+    ],
+    "license_status": "MIT déclarée au README et affichée par GitHub.",
+    "access_status": "HTTP 200; HTML et texte vérifiés, récupération 2026-10-02",
+    "research_agent": "simulation",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "SIM-exaconstit",
+    "title": "LLNL ExaConstit — crystal plasticity FEM",
+    "url": "https://github.com/LLNL/ExaConstit",
+    "language": "en",
+    "topic": "qualité mécanique; plasticité cristalline; homogénéisation",
+    "source_type": "code et README",
+    "summary": "Code éléments finis de plasticité cristalline pour propriétés macroscopiques de polycristaux.",
+    "key_findings": [
+      "Formulation non linéaire quasi statique implicite sur MFEM.",
+      "Interface modèles constitutifs UMAT et ExaCMech.",
+      "Chaîne ExaAM procédé–structure–propriétés; réponse mécanique liée à microstructure."
+    ],
+    "license_status": "BSD-3-Clause déclarée au README.",
+    "access_status": "HTTP 200; HTML et texte vérifiés, récupération 2026-10-02",
+    "research_agent": "simulation",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "SIM-truchas",
+    "title": "LANL Truchas — multiphysics metal processing",
+    "url": "https://github.com/lanl/truchas",
+    "language": "en",
+    "topic": "multiphysique; métal; logiciel",
+    "source_type": "page officielle dépôt",
+    "summary": "Outil de simulation physique des procédés métal, historiquement centré fonderie.",
+    "key_findings": [
+      "Capacités AM décrites comme en développement sur la page consultée.",
+      "Le vrai dépôt est lié vers GitLab; page GitHub ici est une porte d’entrée."
+    ],
+    "license_status": "Open source annoncé; licence exacte non inspectée, non confirmée.",
+    "access_status": "HTTP 200; HTML et texte vérifiés, récupération 2026-10-02",
+    "research_agent": "simulation",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "SIM-fraunhofer_ilt",
+    "title": "Fraunhofer ILT — Additive Fertigung",
+    "url": "https://www.ilt.fraunhofer.de/de/technologiefelder/additive-fertigung.html",
+    "language": "de",
+    "topic": "LPBF; DED; préchauffage; fissures",
+    "source_type": "institutionnel recherche",
+    "summary": "Présentation allemande des procédés additifs laser et travaux matériaux.",
+    "key_findings": [
+      "Préchauffage LPBF décrit pour réduire contraintes résiduelles et déformations, permettre matériaux sujets aux fissures.",
+      "Stratégies d’exposition et gestion de température adaptées aux matériaux.",
+      "Cuivre, matériaux ODS et alliages eutectiques cités."
+    ],
+    "license_status": "Aucune licence ouverte corpus constatée; autorisation réutilisation à établir.",
+    "access_status": "HTTP 200; HTML et texte vérifiés, récupération 2026-10-02",
+    "research_agent": "simulation",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "de",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "SIM-fraunhofer_simulation",
+    "title": "Fraunhofer ILT — Simulation – Laserprozesse und Systeme",
+    "url": "https://www.ilt.fraunhofer.de/de/leistungsangebote/simulation-laserprozesse-und-systeme.html",
+    "language": "de",
+    "topic": "simulation laser; absorption; contraintes résiduelles",
+    "source_type": "institutionnel recherche",
+    "summary": "Offres simulation et liens vers résultats scientifiques/rapports annuels.",
+    "key_findings": [
+      "Références allemandes directes sur déformation et contraintes en dépôt laser, calcul rapide température, distribution absorption.",
+      "Liens PDF publics listés; PDF non téléchargés ici."
+    ],
+    "license_status": "Aucune licence ouverte corpus constatée; droits des PDF individuels à vérifier.",
+    "access_status": "HTTP 200; HTML et texte vérifiés, récupération 2026-10-02",
+    "research_agent": "simulation",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "de",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "SIM-ansys_de",
+    "title": "Ansys — Additive Manufacturing, page allemande",
+    "url": "https://ansys.synopsys.com/de-de/products/additive",
+    "language": "de/en",
+    "topic": "logiciels industriels; PBF; DED; frittage",
+    "source_type": "éditeur commercial",
+    "summary": "Panorama fonctionnalités simulation procédé et validation structure/thermique.",
+    "key_findings": [
+      "La navigation est allemande mais le corps technique mêle anglais/allemand.",
+      "Décrit simulation thermomécanique pièce complète et workflow PBF; distinguer allégations fournisseur des preuves expérimentales."
+    ],
+    "license_status": "Copyright commercial; pas de licence réutilisation corpus constatée.",
+    "access_status": "HTTP 200; HTML et texte vérifiés, récupération 2026-10-02",
+    "research_agent": "simulation",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "de",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "SIM-thermocalc",
+    "title": "Thermo-Calc — Additive Manufacturing applications",
+    "url": "https://thermocalc.com/applications/applications-by-process/additive-manufacturing/",
+    "language": "en",
+    "topic": "CALPHAD; propriétés T; solidification; cartes imprimabilité",
+    "source_type": "éditeur logiciel matériaux",
+    "summary": "Applications thermodynamique et cinétique reliées à modèles thermiques et microstructure.",
+    "key_findings": [
+      "Propriétés dépendant de température pour FEM; chaleur latente et capacité thermique.",
+      "Cartes imprimabilité, sources gaussian/Goldak calibrées, dimension bain, ségrégation et piégeage soluté.",
+      "Lien gradients G et vitesse solidification aux structures colonnaires/équiaxes; résultats dépendants matériau, modèle et calibration."
+    ],
+    "license_status": "Copyright commercial; pas de licence corpus ouverte constatée.",
+    "access_status": "HTTP 200; HTML et texte vérifiés, récupération 2026-10-02",
+    "research_agent": "simulation",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "thermal_ja_powder",
+    "title": "積層造形用金属粉末の各種物性測定に関する研究 —熱伝導率およびレーザ光吸収率の簡易測定方法の提案—",
+    "url": "https://doi.org/10.2493/jjspe.73.558",
+    "language": "ja (article), en (résumé)",
+    "topic": "powder thermal conductivity; laser absorptivity",
+    "source_type": "journal_article",
+    "summary": "Furumoto et al., 2007: méthode de mesure thermique transitoire de poudres de cuivre et acier SCM.",
+    "key_findings": [
+      "Dans les conditions expérimentales étudiées, la conductivité effective des poudres est très inférieure à celle des métaux massifs.",
+      "L’absorption laser de surface des poudres est supérieure à celle du métal massif dans les expériences décrites.",
+      "Ne pas généraliser les conclusions de faible influence de taille/forme à tous les états, gaz et températures."
+    ],
+    "license_status": "Licence de réutilisation inconnue; exclure entraînement automatique",
+    "access_status": "abstract/page lus; texte intégral non lu",
+    "research_agent": "thermal",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "ja",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "thermal_ja_anisotropy",
+    "title": "レーザ粉末床溶融結合法によるAl-10%Si-0.4%Mg合金積層造形体の特異的な熱伝導率のイメージベース有限要素解析",
+    "url": "https://doi.org/10.2464/jilm.72.164",
+    "language": "ja (article), en (résumé)",
+    "topic": "thermal conductivity anisotropy; image-based FEM",
+    "source_type": "journal_article",
+    "summary": "Suzuki et al., 2022: FEM homogénéisé sur reconstructions FIB-SEM de Al-10Si-0.4Mg LPBF.",
+    "key_findings": [
+      "L’hypothèse k(alpha-Al)=k(Al pur) surestime la conductivité effective de l’état brut dans ce modèle.",
+      "L’anisotropie apparaît pour le modèle brut uniquement lorsque la résistance thermique des interfaces Al/Si est prise en compte.",
+      "Deux états considérés: brut et traitement 300 °C / 2 h."
+    ],
+    "license_status": "Licence de réutilisation inconnue; exclure entraînement automatique",
+    "access_status": "abstract/page lus; texte intégral non lu",
+    "research_agent": "thermal",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "ja",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "thermal_ja_aluminum",
+    "title": "レーザ積層造形法により作製した工業用純アルミニウム造形体の熱的および機械的性質",
+    "url": "https://doi.org/10.2464/jilm.66.167",
+    "language": "ja (article), en (résumé)",
+    "topic": "heat treatment; thermal-mechanical tradeoff",
+    "source_type": "journal_article",
+    "summary": "Kimura et Nakamoto, 2016: propriétés aluminium de pureté commerciale SLM et recuit.",
+    "key_findings": [
+      "Le résumé rapporte environ 200 W/(m K) pour les échantillons SLM et 230 W/(m K) pour le matériau corroyé de comparaison; ne pas utiliser comme constantes universelles.",
+      "Le recuit 450 °C pendant 10 min restaure une conductivité comparable au corroyé, avec diminution légère de limite d’élasticité et allongement.",
+      "Densité relative rapportée: 99,7 %, pour conditions optimisées et ce matériau."
+    ],
+    "license_status": "Licence de réutilisation inconnue; exclure entraînement automatique",
+    "access_status": "abstract/page lus; texte intégral non lu",
+    "research_agent": "thermal",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "ja",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "thermal_ja_quality",
+    "title": "金属積層造形における造形品質向上技術の開発",
+    "url": "https://doi.org/10.57557/itiyamaguchi.34.0_1",
+    "language": "ja",
+    "topic": "high-temperature material properties; residual stress; relative density",
+    "source_type": "institutional_technical_report",
+    "summary": "Rapport de Murakawa, centre industriel Yamaguchi, 2023; résumé japonais.",
+    "key_findings": [
+      "La prise en compte des propriétés à haute température améliore, dans cette étude, la concordance entre paramètres simulés à faibles contraintes résiduelles et paramètres expérimentaux à haute densité relative.",
+      "La densité relative diminue pour des dimensions de fabrication plus petites dans les deux matériaux étudiés; matériaux non précisés dans le résumé lu."
+    ],
+    "license_status": "Licence de réutilisation inconnue; exclure entraînement automatique",
+    "access_status": "abstract/page lus; texte intégral non lu",
+    "research_agent": "thermal",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "ja",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "thermal_ja_copper",
+    "title": "金属積層造形用粉末の特性と開発",
+    "url": "https://doi.org/10.11330/jtss.58.154",
+    "language": "ja (article), en (résumé)",
+    "topic": "copper thermal conductivity; optical absorption; feedstock",
+    "source_type": "journal_article",
+    "summary": "Sugitani, 2021: caractéristiques poudres PBF et exemple Cu-Cr.",
+    "key_findings": [
+      "Le cuivre pur pose des difficultés LPBF associées à haute réflectance autour de 1060 nm et haute conductivité thermique.",
+      "Le résumé mentionne une dureté Cu-Cr après vieillissement supérieure à la comparaison arc-fondue, attribuée à la sursaturation Cr permise par refroidissement rapide."
+    ],
+    "license_status": "Licence de réutilisation inconnue; exclure entraînement automatique",
+    "access_status": "abstract/page lus; texte intégral non lu",
+    "research_agent": "thermal",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "ja",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "thermal_en_prediction",
+    "title": "A Prediction Model of Effective Thermal Conductivity for Metal Powder Bed in Additive Manufacturing",
+    "url": "https://doi.org/10.1186/s10033-023-00840-6",
+    "language": "en",
+    "topic": "powder effective conductivity; DEM-FDM",
+    "source_type": "journal_article",
+    "summary": "Zhao et al., 2023: modèle couplé DEM–différences finies, poudres sphériques, contacts thermiques.",
+    "key_findings": [
+      "Résistance de contact, conduction gaz et rayonnement sont traités comme contributions distinctes.",
+      "L’aire moyenne de contact explique mieux les tendances que la seule fraction solide dans les configurations étudiées.",
+      "Le modèle simplifié dépend de d50; erreur <20,9 % à température ambiante rapportée dans le résumé, pas garantie hors domaine testé.",
+      "Ne pas recopier les unités/équations sans contrôle: l’extraction HTML montre des formules potentiellement ambiguës."
+    ],
+    "license_status": "CC BY 4.0 explicitement vérifiée dans Rights and permissions; attribution, lien licence et indication des modifications; vérifier les éventuels contenus tiers.",
+    "access_status": "HTML intégral disponible; résumé, modèles, résultats et conclusions examinés",
+    "research_agent": "thermal",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "thermal_en_critical",
+    "title": "A critical look at the prediction of the temperature field around a laser-induced melt pool on metallic substrates",
+    "url": "https://doi.org/10.1038/s41598-021-91039-z",
+    "language": "en",
+    "topic": "thermal history validation; Marangoni; k(T); phase change",
+    "source_type": "journal_article",
+    "summary": "Shu et al., 2021: expériences sur 17-4PH et Ti-6Al-4V hors keyhole et comparaison modèles conduction/convection.",
+    "key_findings": [
+      "Reproduire une trace 2D du bain ne suffit pas en général à identifier un historique thermique 3D.",
+      "La distribution spatiale de puissance laser doit être mesurée et contrôlée.",
+      "La convection ne peut pas être ignorée dans les expériences étudiées, même pour des bains dits en mode conduction.",
+      "Les paramètres thermophysiques dépendent de T et le traitement des changements de phase doit rester explicite."
+    ],
+    "license_status": "CC BY 4.0 explicitement vérifiée dans Rights and permissions; attribution, lien licence et indication des modifications; vérifier les éventuels contenus tiers.",
+    "access_status": "HTML intégral disponible; introduction, méthodes et discussion examinées",
+    "research_agent": "thermal",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "thermal_en_flow",
+    "title": "Revealing internal flow behaviour in arc welding and additive manufacturing of metals",
+    "url": "https://doi.org/10.1038/s41467-018-07900-9",
+    "language": "en",
+    "topic": "Marangoni; sulfur; turbulent melt flow; WAAM",
+    "source_type": "journal_article",
+    "summary": "Aucott et al., 2018: imagerie synchrotron directe du bain acier TIG.",
+    "key_findings": [
+      "Les éléments tensioactifs modifient le coefficient thermique de tension superficielle et les directions de l’écoulement.",
+      "La comparaison acier bas/haut soufre montre des bains de profondeur très différente à paramètres de fusion identiques.",
+      "La validation est faite pour soudage arc acier; transposition directe de valeurs vers LPBF ou autres alliages injustifiée.",
+      "Les jeux de données supplémentaires ne sont pas publics sur la page: disponibles auprès des auteurs sur demande raisonnable."
+    ],
+    "license_status": "CC BY 4.0 explicitement vérifiée dans Rights and permissions; attribution, lien licence et indication des modifications; vérifier les éventuels contenus tiers.",
+    "access_status": "HTML intégral disponible; introduction, résultats, méthodes et disponibilité données examinés",
+    "research_agent": "thermal",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "thermal_goldak",
+    "title": "A new finite element model for welding heat sources",
+    "url": "https://doi.org/10.1007/BF02667333",
+    "language": "en",
+    "topic": "Gaussian double ellipsoid heat source; FEM",
+    "source_type": "journal_article",
+    "summary": "Goldak, Chakravarti et Bibby, 1984: source volumique gaussienne double ellipsoïde.",
+    "key_findings": [
+      "La double ellipsoïde permet de modifier taille et forme de source, pour pénétration faible ou profonde.",
+      "Comparaisons historiques soudage arc submergé et faisceau électrons; ce n’est pas une validation générale du LPBF."
+    ],
+    "license_status": "Licence de réutilisation inconnue; exclure entraînement automatique",
+    "access_status": "Résumé et page éditeur lus; texte intégral sous abonnement",
+    "research_agent": "thermal",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "thermal_rosenthal",
+    "title": "The Theory of Moving Sources of Heat and Its Application to Metal Treatments",
+    "url": "https://doi.org/10.1115/1.4018624",
+    "language": "en",
+    "topic": "moving heat source; analytical conduction",
+    "source_type": "journal_article",
+    "summary": "Rosenthal, 1946: solutions analytiques de source mobile et applications soudage.",
+    "key_findings": [
+      "Le résumé distingue sources ponctuelles, linéaires et planes, avec configurations infinies ou bornées par plans.",
+      "Les applications incluent estimation du temps/vitesse de refroidissement en soudage.",
+      "Référence fondamentale à lire avant d’utiliser une formule; pas de formule particulière vérifiée dans cette collecte."
+    ],
+    "license_status": "Licence de réutilisation inconnue; exclure entraînement automatique",
+    "access_status": "Résumé et métadonnées Crossref lus; texte intégral non consulté",
+    "research_agent": "thermal",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "thermal_de_thermal",
+    "title": "Additive Fertigung – Fraunhofer ILT",
+    "url": "https://www.ilt.fraunhofer.de/de/technologiefelder/additive-fertigung.html",
+    "language": "de",
+    "topic": "preheating; residual stress; distortion; thermal management",
+    "source_type": "institutional_webpage",
+    "summary": "Présentation institutionnelle allemande LPBF et dépôt laser.",
+    "key_findings": [
+      "Le préchauffage est présenté comme moyen de réduire contraintes thermiques et déformations et de traiter des matériaux sensibles à la fissuration.",
+      "Les stratégies d’exposition et de température doivent être adaptées aux matériaux.",
+      "La simulation et les jumeaux numériques sont proposés pour ajuster les propriétés et stratégies de procédé."
+    ],
+    "license_status": "Licence de réutilisation inconnue; exclure entraînement automatique",
+    "access_status": "Page HTML entière lue",
+    "research_agent": "thermal",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "de",
+    "same_url_as": "SIM-fraunhofer_ilt",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "thermal_powder_reference",
+    "title": "Thermal conductivity of metal powders for powder bed additive manufacturing",
+    "url": "https://doi.org/10.1016/j.addma.2018.02.002",
+    "language": "en",
+    "topic": "powder thermal conductivity",
+    "source_type": "journal_article",
+    "summary": "Wei et al., Additive Manufacturing 21, 2018, p. 201–208; référence bibliographique confirmée.",
+    "key_findings": [
+      "Référence spécifique aux mesures de conductivité des poudres; aucun résultat quantitatif extrait car le texte et le résumé n’ont pas été lus."
+    ],
+    "license_status": "Licence de réutilisation inconnue; exclure entraînement automatique",
+    "access_status": "Métadonnées Crossref seules; accès éditeur bloqué",
+    "research_agent": "thermal",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "thermal_liquid_reference",
+    "title": "Effective liquid conductivity for improved simulation of thermal transport in laser beam melting powder bed technology",
+    "url": "https://doi.org/10.1016/j.addma.2016.12.004",
+    "language": "en",
+    "topic": "effective liquid conductivity surrogate",
+    "source_type": "journal_article",
+    "summary": "Référence confirmée par Crossref; piste pour modèle de conduction effective du liquide.",
+    "key_findings": [
+      "Sujet repéré par titre uniquement; ne pas transformer cette référence en réponse technique ou en conclusion expérimentale avant lecture."
+    ],
+    "license_status": "Licence de réutilisation inconnue; exclure entraînement automatique",
+    "access_status": "Métadonnées Crossref seules; accès éditeur bloqué",
+    "research_agent": "thermal",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "MET001",
+    "title": "Additive Manufacturing of AISI 316L Stainless Steel: A Review",
+    "url": "https://www.mdpi.com/2075-4701/13/8/1370",
+    "doi": "10.3390/met13081370",
+    "language": "en",
+    "topic": "316L; défauts; fatigue; corrosion",
+    "source_type": "revue scientifique",
+    "summary": "Revue des procédés, défauts et propriétés du 316L additif.",
+    "key_findings": [
+      "Distingue manque de fusion, porosités gazeuses, rugosité et contraintes résiduelles.",
+      "Corrosion et fatigue dépendent du procédé, de la microstructure et du post-traitement: éviter un classement universel AM versus conventionnel.",
+      "Vigilance: l’affirmation de conductivité élevée du 316L est relative et ne signifie pas supérieure au cuivre ou à l’aluminium."
+    ],
+    "license_status": "CC BY 4.0 explicite, section Copyright; métadonnée dc.rights contradictoire CC BY 3.0",
+    "access_status": "Texte intégral HTML vérifié et archivé",
+    "authors": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-9809-8434",
+        "authenticated-orcid": false,
+        "given": "Danilo",
+        "family": "D’Andrea",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Department of Engineering, University of Messina, Contrada di Dio (S. Agata), 98166 Messina, Italy"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "publication_date": {
+      "date-parts": [
+        [
+          2023,
+          7,
+          30
+        ]
+      ]
+    },
+    "training_use": "candidat CC à revue humaine",
+    "research_agent": "metallurgy",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "MET002",
+    "title": "A Review on Additive Manufacturing of Pure Copper",
+    "url": "https://www.mdpi.com/2079-6412/11/6/740",
+    "doi": "10.3390/coatings11060740",
+    "language": "en",
+    "topic": "Cu; conductivité thermique; absorptivité; densité",
+    "source_type": "revue scientifique",
+    "summary": "Revue fabrication additive cuivre pur, PBF laser/électron et binder jetting.",
+    "key_findings": [
+      "Conductivité thermique élevée et faible absorption laser infrarouge rendent la fusion du cuivre difficile.",
+      "Densification, contamination et porosité affectent les performances; la conductivité annoncée doit garder pureté et état métallurgique.",
+      "Puissance, longueur d’onde, préchauffage, substrat et frittage sont des variables distinctes: la densité d’énergie seule ne suffit pas."
+    ],
+    "license_status": "CC BY 4.0 explicite, section Copyright; métadonnée dc.rights contradictoire CC BY 3.0",
+    "access_status": "Texte intégral HTML vérifié et archivé",
+    "authors": [
+      {
+        "given": "Qi",
+        "family": "Jiang",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "School of Materials Engineering, Shanghai University of Engineering Science, Shanghai 201620, China"
+          },
+          {
+            "name": "Shanghai Collaborative Innovation Center of Laser of Manufacturing Technology, Shanghai 201620, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-2342-5832",
+        "authenticated-orcid": false,
+        "given": "Peilei",
+        "family": "Zhang",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Materials Engineering, Shanghai University of Engineering Science, Shanghai 201620, China"
+          },
+          {
+            "name": "Shanghai Collaborative Innovation Center of Laser of Manufacturing Technology, Shanghai 201620, China"
+          },
+          {
+            "name": "Fraunhofer Institute for Laser Technology ILT, 52074 Aachen, Germany"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Zhishui",
+        "family": "Yu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Materials Engineering, Shanghai University of Engineering Science, Shanghai 201620, China"
+          },
+          {
+            "name": "Shanghai Collaborative Innovation Center of Laser of Manufacturing Technology, Shanghai 201620, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Haichuan",
+        "family": "Shi",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Materials Engineering, Shanghai University of Engineering Science, Shanghai 201620, China"
+          },
+          {
+            "name": "Shanghai Collaborative Innovation Center of Laser of Manufacturing Technology, Shanghai 201620, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Di",
+        "family": "Wu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Materials Engineering, Shanghai University of Engineering Science, Shanghai 201620, China"
+          },
+          {
+            "name": "Shanghai Collaborative Innovation Center of Laser of Manufacturing Technology, Shanghai 201620, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Hua",
+        "family": "Yan",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Materials Engineering, Shanghai University of Engineering Science, Shanghai 201620, China"
+          },
+          {
+            "name": "Shanghai Collaborative Innovation Center of Laser of Manufacturing Technology, Shanghai 201620, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Xin",
+        "family": "Ye",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Materials Engineering, Shanghai University of Engineering Science, Shanghai 201620, China"
+          },
+          {
+            "name": "Shanghai Collaborative Innovation Center of Laser of Manufacturing Technology, Shanghai 201620, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Qinghua",
+        "family": "Lu",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Materials Engineering, Shanghai University of Engineering Science, Shanghai 201620, China"
+          },
+          {
+            "name": "Shanghai Collaborative Innovation Center of Laser of Manufacturing Technology, Shanghai 201620, China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-3602-259X",
+        "authenticated-orcid": false,
+        "given": "Yingtao",
+        "family": "Tian",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Engineering, Lancaster University, Bailrigg, Lancaster LA1 4YW, UK"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "publication_date": {
+      "date-parts": [
+        [
+          2021,
+          6,
+          21
+        ]
+      ]
+    },
+    "training_use": "candidat CC à revue humaine",
+    "research_agent": "metallurgy",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "MET003",
+    "title": "Microstructure Evolution in Inconel 718 Produced by Powder Bed Fusion Additive Manufacturing",
+    "url": "https://www.mdpi.com/2504-4494/6/1/20",
+    "doi": "10.3390/jmmp6010020",
+    "language": "en",
+    "topic": "IN718; ségrégation Nb; Laves; HIP; traitements",
+    "source_type": "article expérimental",
+    "summary": "Identification des phases IN718 PBF laser et évolution par post-traitement.",
+    "key_findings": [
+      "Combine diffraction, analyse thermique et TKD/TEM pour identifier phases riches en Nb.",
+      "Phases Laves et NbC de faible fraction; absence de pic XRD après traitement ne prouve pas absence de phase.",
+      "Cycles HIP/homogénéisation et vieillissement changent le partage des phases; ne pas transférer automatiquement les recettes du forgé."
+    ],
+    "license_status": "CC BY 4.0 explicite, section Copyright; métadonnée dc.rights contradictoire CC BY 3.0",
+    "access_status": "Texte intégral HTML vérifié et archivé",
+    "authors": [
+      {
+        "given": "Judy",
+        "family": "Schneider",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Department of Mechanical Engineering, University of Alabama in Huntsville, Huntsville, AL 35805, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Laura",
+        "family": "Farris",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Department of Mechanical Engineering, University of Alabama in Huntsville, Huntsville, AL 35805, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Gert",
+        "family": "Nolze",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "BAM Federal Institute for Materials and Research and Testing, 12205 Berlin, Germany"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-3216-4635",
+        "authenticated-orcid": false,
+        "given": "Stefan",
+        "family": "Reinsch",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "BAM Federal Institute for Materials and Research and Testing, 12205 Berlin, Germany"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-4269-5456",
+        "authenticated-orcid": false,
+        "given": "Grzegorz",
+        "family": "Cios",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Academic Centre for Materials and Nanotechnology, AGH University of Science and Technology, aleja Mickiewicza 30 Krakow, 30-059 Malopolskie, Poland"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-5733-7809",
+        "authenticated-orcid": false,
+        "given": "Tomasz",
+        "family": "Tokarski",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Academic Centre for Materials and Nanotechnology, AGH University of Science and Technology, aleja Mickiewicza 30 Krakow, 30-059 Malopolskie, Poland"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Sean",
+        "family": "Thompson",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Materials Science and Engineering Division, Propulsion and Structures Technology, Development Directorate FCDD-AMT-MPS, Huntsville, AL 35808, USA"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "publication_date": {
+      "date-parts": [
+        [
+          2022,
+          1,
+          29
+        ]
+      ]
+    },
+    "training_use": "candidat CC à revue humaine",
+    "research_agent": "metallurgy",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "MET004",
+    "title": "Modeling of Microstructure Evolution of Ti6Al4V for Additive Manufacturing",
+    "url": "https://www.mdpi.com/2075-4701/8/8/633",
+    "doi": "10.3390/met8080633",
+    "language": "en",
+    "topic": "Ti6Al4V; simulation microstructure; phases; JMAK",
+    "source_type": "article de modélisation",
+    "summary": "Modèle de transformations solides Ti6Al4V adapté aux cycles thermiques additifs.",
+    "key_findings": [
+      "Couple historique température-temps et fractions de phases dans COMET éléments finis.",
+      "Gère transformations incomplètes, simultanées et réchauffages; distingue transformations diffusives et martensite.",
+      "Validation par données de littérature et analyse de sensibilité paramètres; pas un modèle universel sans calibration."
+    ],
+    "license_status": "CC BY 4.0 explicite, section Copyright",
+    "access_status": "Texte intégral HTML vérifié et archivé",
+    "authors": [
+      {
+        "given": "Emilio",
+        "family": "Salsi",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "International Center for Numerical Methods in Engineering (CIMNE), Universidad Politécnica de Cataluña (UPC), Edificio C1, Campus Norte, Gran Capitán s/n, 08034 Barcelona, Spain"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "Michele",
+        "family": "Chiumenti",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "International Center for Numerical Methods in Engineering (CIMNE), Universidad Politécnica de Cataluña (UPC), Edificio C1, Campus Norte, Gran Capitán s/n, 08034 Barcelona, Spain"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "Miguel",
+        "family": "Cervera",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "International Center for Numerical Methods in Engineering (CIMNE), Universidad Politécnica de Cataluña (UPC), Edificio C1, Campus Norte, Gran Capitán s/n, 08034 Barcelona, Spain"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      }
+    ],
+    "publication_date": {
+      "date-parts": [
+        [
+          2018,
+          8,
+          10
+        ]
+      ]
+    },
+    "training_use": "candidat CC à revue humaine",
+    "research_agent": "metallurgy",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "MET005",
+    "title": "Correlação entre processos de fabricação convencional e por manufatura aditiva com as propriedades do aço inoxidável 316L",
+    "url": "https://repositorio.ufu.br/handle/123456789/34965",
+    "doi": "10.14393/ufu.di.2022.82",
+    "language": "pt",
+    "topic": "316L; WAAM; SLM; anisotropie",
+    "source_type": "mémoire universitaire UFU",
+    "summary": "Comparaison WAAM/MADA et SLM/FSL du 316L avec tube recuit; résumé portugais vérifié.",
+    "key_findings": [
+      "Dans cet essai, WAAM présente une structure ferritique-austénitique, SLM une structure austénitique.",
+      "Grains plus fins, microdureté et limite d’élasticité plus élevées que témoin recuit; ductilité moindre.",
+      "Dispersion locale de microdureté et anisotropie WAAM documentées; résultat lié aux éprouvettes et procédés de l’étude."
+    ],
+    "license_status": "Inconnue / pas de licence de réutilisation de texte confirmée",
+    "access_status": "Notice et résumés PT/EN vérifiés; accès annoncé ouvert, licence non confirmée",
+    "authors": [
+      {
+        "given": "Lídia",
+        "family": "Souza",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      }
+    ],
+    "publication_date": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          10
+        ]
+      ],
+      "date-time": "2022-05-10T13:11:13Z",
+      "timestamp": 1652188273000
+    },
+    "training_use": "catalogue uniquement; ne pas ingérer de texte sans droits confirmés",
+    "research_agent": "metallurgy",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "pt",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "MET006",
+    "title": "Estudo do processo de microfresamento em aço inoxidável ABNT 316L produzido por fundição e manufatura aditiva",
+    "url": "https://repositorio.ufu.br/handle/123456789/36050",
+    "doi": "10.14393/ufu.te.2022.380",
+    "language": "pt",
+    "topic": "316L; microfraisage; finition; L-DED",
+    "source_type": "thèse universitaire UFU",
+    "summary": "Étude microfraisage 316L L-DED versus fonderie et solution; stratégies linéaire, zigzag, échiquier, contour.",
+    "key_findings": [
+      "Finition, bavures et effort de coupe dépendent du procédé de dépôt et de l’avance par dent.",
+      "Résumé consulté: bavures minimales pour stratégie linéaire dans l’étude; aucune règle universelle sans contexte expérimental."
+    ],
+    "license_status": "Inconnue / pas de licence de réutilisation de texte confirmée",
+    "access_status": "Notice et résumé EN/PT vérifiés; licence non confirmée",
+    "authors": [
+      {
+        "given": "Milla",
+        "family": "Gomes",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      }
+    ],
+    "publication_date": {
+      "date-parts": [
+        [
+          2022,
+          9,
+          19
+        ]
+      ],
+      "date-time": "2022-09-19T12:50:22Z",
+      "timestamp": 1663591822000
+    },
+    "training_use": "catalogue uniquement; ne pas ingérer de texte sans droits confirmés",
+    "research_agent": "metallurgy",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "pt",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "MET007",
+    "title": "AVALIAÇÃO DA SUPER LONGA VIDA EM FADIGA DO AÇO INOXIDÁVEL AISI 316L PROCESSADO POR MANUFATURA ADITIVA L-DED",
+    "url": "https://doi.org/10.17771/pucrio.acad.61128",
+    "doi": "10.17771/pucrio.acad.61128",
+    "language": "pt",
+    "topic": "316L; L-DED; fatigue très longue durée",
+    "source_type": "thèse universitaire PUC-Rio",
+    "summary": "Thèse intitulée évaluation fatigue très longue durée AISI 316L L-DED.",
+    "key_findings": [
+      "Titre et notice vérifiés; résultats non extraits, à consulter avant toute affirmation sur endurance."
+    ],
+    "license_status": "Inconnue / pas de licence de réutilisation de texte confirmée",
+    "access_status": "Notice institutionnelle vérifiée; résultats non exploités",
+    "authors": [
+      {
+        "given": "MATHEUS",
+        "family": "FERNANDES DE ANDRADE",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      }
+    ],
+    "publication_date": {
+      "date-parts": [
+        [
+          2022,
+          11,
+          11
+        ]
+      ],
+      "date-time": "2022-11-11T19:00:00Z",
+      "timestamp": 1668193200000
+    },
+    "training_use": "catalogue uniquement; ne pas ingérer de texte sans droits confirmés",
+    "research_agent": "metallurgy",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "pt",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "MET008",
+    "title": "Modelo MEF basado en CT: estimación de la influencia de la porosidad en el comportamiento y fallo de componentes de fabricación aditiva",
+    "url": "https://e-spacio.uned.es/entities/publication/bc9f99f9-599e-45db-b74f-051a84516de9",
+    "doi": "10.5944/bicim2022.185",
+    "language": "es",
+    "topic": "CT; FEM; porosité; rupture; jumeau numérique",
+    "source_type": "communication universitaire UNED/UPM",
+    "summary": "Construction de modèle éléments finis à partir de tomographie pour prédire comportement et rupture de pièces additives.",
+    "key_findings": [
+      "Résumé ES/EN confirme fabrication éprouvettes L-PBF selon ASTM E8/E8M, tomographie et confrontation aux essais de traction.",
+      "Le modèle étudie morphologie des porosités et scénarios virtuels; matériau non identifié dans le résumé, ne pas attribuer un alliage."
+    ],
+    "license_status": "Inconnue / pas de licence de réutilisation de texte confirmée",
+    "access_status": "Notice et résumés ES/EN vérifiés; licence non confirmée",
+    "authors": [],
+    "publication_date": {
+      "date-parts": [
+        [
+          2022
+        ]
+      ]
+    },
+    "training_use": "catalogue uniquement; ne pas ingérer de texte sans droits confirmés",
+    "research_agent": "metallurgy",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "es",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "MET009",
+    "title": "Powder Characterization for Metal Additive Manufacturing",
+    "url": "https://doi.org/10.31399/asm.hb.v24.a0006568",
+    "doi": "10.31399/asm.hb.v24.a0006568",
+    "language": "en",
+    "topic": "poudres; rhéologie; porosité interne",
+    "source_type": "chapitre ASM Handbook",
+    "summary": "Résumé consulté des méthodes de caractérisation de poudre métallique.",
+    "key_findings": [
+      "Tests Hall/Carney, densités apparente/tassée, rhéomètre et tambour tournant.",
+      "Microtomographie X pour caractériser porosité interne de poudre; ne pas confondre écoulement mesuré et étalement réel sans validation."
+    ],
+    "license_status": "Inconnue / pas de licence de réutilisation de texte confirmée",
+    "access_status": "Résumé Crossref vérifié; texte intégral non consulté",
+    "authors": [
+      {
+        "given": "Zheng",
+        "family": "Wu",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Carnegie Mellon University"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Srujana Rao",
+        "family": "Yarasi",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Carnegie Mellon University"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Amir",
+        "family": "Mostafaei",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Carnegie Mellon University"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Anthony D.",
+        "family": "Rollett",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Carnegie Mellon University"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "publication_date": {
+      "date-parts": [
+        [
+          2020,
+          6,
+          15
+        ]
+      ]
+    },
+    "training_use": "catalogue uniquement; ne pas ingérer de texte sans droits confirmés",
+    "research_agent": "metallurgy",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "MET010",
+    "title": "Essential characterization of metal powder for additive manufacturing",
+    "url": "https://doi.org/10.1088/1757-899x/1173/1/012062",
+    "doi": "10.1088/1757-899x/1173/1/012062",
+    "language": "en",
+    "topic": "poudres; morphologie; granulométrie; écoulement",
+    "source_type": "article de conférence IOP",
+    "summary": "Résumé des caractéristiques poudre et outils de caractérisation pour pièces fiables.",
+    "key_findings": [
+      "Morphologie, granulométrie, porosité et aptitude à l’écoulement étudiées par SEM, microscopie optique, diffraction laser et rhéomètre.",
+      "Page IOP retourne contrôle anti-bot: HTTP 200 ne vaut pas accès au texte scientifique."
+    ],
+    "license_status": "Crossref annonce CC BY 3.0 pour version publiée; à revalider sur texte éditeur avant ingestion",
+    "access_status": "Résumé Crossref vérifié; texte IOP bloqué par contrôle anti-bot",
+    "authors": [
+      {
+        "given": "S M Q M",
+        "family": "Ramli",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "N A",
+        "family": "Fadzil",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "H",
+        "family": "Ghazali",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "P",
+        "family": "Viklund",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "W F F W",
+        "family": "Ali",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      }
+    ],
+    "publication_date": {
+      "date-parts": [
+        [
+          2021,
+          8,
+          1
+        ]
+      ]
+    },
+    "training_use": "catalogue uniquement; ne pas ingérer de texte sans droits confirmés",
+    "research_agent": "metallurgy",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "MET011",
+    "title": "Hot Isostatic Pressing for Metal Additive Manufacturing",
+    "url": "https://doi.org/10.31399/asm.hb.v24.a0006552",
+    "doi": "10.31399/asm.hb.v24.a0006552",
+    "language": "en",
+    "topic": "HIP; défauts internes; propriétés",
+    "source_type": "chapitre ASM Handbook",
+    "summary": "Résumé du chapitre consacré à HIP après fabrication additive.",
+    "key_findings": [
+      "Traite équipement, paramètres de fermeture des défauts internes et influence microstructure/propriétés.",
+      "Le résumé ne justifie pas l’affirmation que HIP corrige toute fissure, toute surface ou toute inclusion."
+    ],
+    "license_status": "Inconnue / pas de licence de réutilisation de texte confirmée",
+    "access_status": "Résumé Crossref vérifié; texte intégral non consulté",
+    "authors": [
+      {
+        "given": "Magnus",
+        "family": "Ahlfors",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Quintus Technologies"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "publication_date": {
+      "date-parts": [
+        [
+          2020,
+          6,
+          15
+        ]
+      ]
+    },
+    "training_use": "catalogue uniquement; ne pas ingérer de texte sans droits confirmés",
+    "research_agent": "metallurgy",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "MET012",
+    "title": "Process Defects in Metal Additive Manufacturing",
+    "url": "https://doi.org/10.31399/asm.hb.v24a.a0006972",
+    "doi": "10.31399/asm.hb.v24a.a0006972",
+    "language": "en",
+    "topic": "défauts; LPBF; DED; binder jetting",
+    "source_type": "chapitre ASM Handbook",
+    "summary": "Résumé sur les causes et pistes de solutions des défauts de L-PBF, DED laser et binder jetting.",
+    "key_findings": [
+      "Source de taxonomie par procédé; résultats détaillés non consultés."
+    ],
+    "license_status": "Inconnue / pas de licence de réutilisation de texte confirmée",
+    "access_status": "Résumé Crossref vérifié; texte intégral non consulté",
+    "authors": [
+      {
+        "given": "Scott M.",
+        "family": "Thompson",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Kansas State University"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "Nathan B.",
+        "family": "Crane",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Brigham Young University"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      }
+    ],
+    "publication_date": {
+      "date-parts": [
+        [
+          2023,
+          6,
+          30
+        ]
+      ]
+    },
+    "training_use": "catalogue uniquement; ne pas ingérer de texte sans droits confirmés",
+    "research_agent": "metallurgy",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "MET013",
+    "title": "Heat treatment effects on microstructure-residual stress for selective laser melting AlSi10Mg",
+    "url": "https://doi.org/10.1080/02670836.2019.1685770",
+    "doi": "10.1080/02670836.2019.1685770",
+    "language": "en",
+    "topic": "AlSi10Mg; traitements; contraintes; ductilité",
+    "source_type": "article expérimental",
+    "summary": "Résumé des effets des traitements sur AlSi10Mg SLM.",
+    "key_findings": [
+      "Dans l’étude, traitement fait décroître la résistance en traction et augmenter fortement l’allongement.",
+      "Les températures et effets quantifiés restent liés aux conditions étudiées; ne pas enseigner un traitement universel optimal."
+    ],
+    "license_status": "Inconnue / pas de licence de réutilisation de texte confirmée",
+    "access_status": "Résumé Crossref vérifié; texte intégral non consulté",
+    "authors": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-4796-8233",
+        "authenticated-orcid": false,
+        "given": "Xiaohui",
+        "family": "Jiang",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "College of Mechanical Engineering, University of Shanghai for Science and Technology, Shanghai, People's Republic of China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Wenjing",
+        "family": "Xiong",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "College of Mechanical Engineering, University of Shanghai for Science and Technology, Shanghai, People's Republic of China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Lianfeng",
+        "family": "Wang",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Shanghai Aerospace Equipments Manufacturer Co., Ltd., Shanghai, People's Republic of China"
+          },
+          {
+            "name": "Shanghai Research Center of Complex Metal Parts by Additive Manufacturing, Shanghai, People's Republic of China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0001-8411-7051",
+        "authenticated-orcid": false,
+        "given": "Miaoxian",
+        "family": "Guo",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "College of Mechanical Engineering, University of Shanghai for Science and Technology, Shanghai, People's Republic of China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Zishan",
+        "family": "Ding",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "College of Mechanical Engineering, University of Shanghai for Science and Technology, Shanghai, People's Republic of China"
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "publication_date": {
+      "date-parts": [
+        [
+          2020,
+          1
+        ]
+      ]
+    },
+    "training_use": "catalogue uniquement; ne pas ingérer de texte sans droits confirmés",
+    "research_agent": "metallurgy",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "MET014",
+    "title": "Effect of Heat Treatment on Microstructure and Mechanical Properties of AlSi10Mg Alloy Fabricated by Selective Laser Melting",
+    "url": "https://doi.org/10.4028/www.scientific.net/msf.1035.312",
+    "doi": "10.4028/www.scientific.net/msf.1035.312",
+    "language": "en",
+    "topic": "AlSi10Mg; T1 T4 T6; grains; précipitation",
+    "source_type": "article de conférence",
+    "summary": "Résumé comparaison T1/T4/T6 du AlSi10Mg obtenu SLM.",
+    "key_findings": [
+      "T1 accroît microdureté dans l’étude; T4 et T6 peuvent la réduire par grossissement des grains et du Si.",
+      "Mg2Si ne compense pas forcément les pertes par grossissement; conserver temps/températures et état initial."
+    ],
+    "license_status": "Inconnue / pas de licence de réutilisation de texte confirmée",
+    "access_status": "Résumé Crossref vérifié; texte intégral non consulté",
+    "authors": [
+      {
+        "given": "Peng",
+        "family": "Qi",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Beijing University of Technology"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "Bo Long",
+        "family": "Li",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Beijing University of Technology"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "Tong Bo",
+        "family": "Wang",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Aluminum Corporation of China Limited"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "Lian",
+        "family": "Zhou",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Beijing University of Technology"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "given": "Zuo Ren",
+        "family": "Nie",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Beijing University of Technology"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      }
+    ],
+    "publication_date": {
+      "date-parts": [
+        [
+          2021,
+          6,
+          22
+        ]
+      ]
+    },
+    "training_use": "catalogue uniquement; ne pas ingérer de texte sans droits confirmés",
+    "research_agent": "metallurgy",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "MET015",
+    "title": "Literature review of metal additive manufacturing defects",
+    "url": "https://doi.org/10.6028/nist.ams.100-16",
+    "doi": "10.6028/nist.ams.100-16",
+    "language": "en",
+    "topic": "taxonomie défauts; qualité métaux",
+    "source_type": "rapport technique NIST",
+    "summary": "Rapport institutionnel intitulé Literature review of metal additive manufacturing defects.",
+    "key_findings": [
+      "Existence bibliographique et DOI vérifiés; PDF NIST bloqué HTTP 403, contenu non ingéré."
+    ],
+    "license_status": "Inconnue / pas de licence de réutilisation de texte confirmée",
+    "access_status": "Métadonnées Crossref vérifiées; tentative PDF NIST HTTP 403",
+    "authors": [
+      {
+        "ORCID": "https://orcid.org/0000-0002-1042-9500",
+        "authenticated-orcid": false,
+        "given": "Felix H",
+        "family": "Kim",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Shawn P",
+        "family": "Moylan",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "publication_date": {
+      "date-parts": [
+        [
+          2018,
+          5
+        ]
+      ]
+    },
+    "training_use": "catalogue uniquement; ne pas ingérer de texte sans droits confirmés",
+    "research_agent": "metallurgy",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "MET016",
+    "title": "Evaluación de las propiedades tribológicas de materiales compuestos de matriz metálica (MMCs) procesados por técnicas de fabricación aditiva con haz láser (SLM)",
+    "url": "https://doi.org/10.18273/revuin.v16n1-2017010",
+    "doi": "10.18273/revuin.v16n1-2017010",
+    "language": "es",
+    "topic": "tribologie; composites matrice métallique; SLM",
+    "source_type": "article Revista UIS Ingenierías",
+    "summary": "Article ES sur propriétés tribologiques MMC élaborés par SLM.",
+    "key_findings": [
+      "Titre et publication vérifiés; éditeur renvoie HTTP 503, ne pas extrapoler résultats ou matrice particulière."
+    ],
+    "license_status": "Inconnue / pas de licence de réutilisation de texte confirmée",
+    "access_status": "Métadonnées Crossref vérifiées; texte éditeur HTTP 503",
+    "authors": [
+      {
+        "name": "Instituto Tecnológico Metalmecánico",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Elkin",
+        "family": "Martínez",
+        "sequence": "first",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-2778-3389",
+        "authenticated-orcid": false,
+        "given": "Octavio Andrés",
+        "family": "González-Estrada",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "name": "Universidad Industrial de Santander",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "given": "Alejandro",
+        "family": "Martínez",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "name": "Universidad Industrial de Santander",
+        "sequence": "additional",
+        "affiliation": [],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "publication_date": {
+      "date-parts": [
+        [
+          2017,
+          5,
+          19
+        ]
+      ]
+    },
+    "training_use": "catalogue uniquement; ne pas ingérer de texte sans droits confirmés",
+    "research_agent": "metallurgy",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "es",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "FR-HAL-3678763",
+    "title": "Compréhension et simulation des phénomènes physiques affectant la fabrication additive en SLM",
+    "url": "https://hal.science/tel-03612996v2",
+    "language": "fr",
+    "topic": "hydrodynamique du bain, simulation LPBF",
+    "source_type": "THESE",
+    "authors": [
+      "Yaasin Mayi"
+    ],
+    "date": "2021-10-05",
+    "summary": "Modèle COMSOL combinant bain/vapeur, lit de poudre équivalent et ray tracing. Étude de stabilité conduction/intermédiaire/keyhole et dénudation ; comparaison radiographie X et campagnes expérimentales.",
+    "key_findings": [
+      "Modèle COMSOL combinant bain/vapeur, lit de poudre équivalent et ray tracing.",
+      "Étude de stabilité conduction/intermédiaire/keyhole et dénudation ; comparaison radiographie X et campagnes expérimentales."
+    ],
+    "license_status": "Autorisation HAL v1 déclarée : œuvre protégée ; pas de licence libre de réutilisation. Vérifier autorisation ou exception applicable avant corpus entraînement.",
+    "license_url": "https://about.hal.science/hal-authorisation-v1/",
+    "access_status": "Métadonnées et résumé FR lus via API HAL. PDF indiqué par HAL mais contenu intégral non vérifié/téléchargement indisponible.",
+    "fulltext_url": "https://hal.science/tel-03612996/document",
+    "download_verification": {
+      "id": "3678763",
+      "url": "https://hal.science/tel-03612996/document",
+      "status": 200,
+      "content_type": "application/pdf",
+      "bytes": 6249308,
+      "final_url": "https://hal.science/tel-03612996/document",
+      "pdf_verified": false,
+      "text_extraction_success": false,
+      "text_extraction_error": "Syntax Error: Couldn't find trailer dictionary\nSyntax Error: Couldn't find trailer dictionary\nSyntax Error: Couldn't read xref table\n"
+    },
+    "evidence_scope": "abstract; fulltext non analysé exhaustivement",
+    "training_eligible_without_further_review": false,
+    "research_agent": "french",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "fr",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "FR-HAL-2496906",
+    "title": "Modélisation magnéto-thermohydraulique de procédés de fabrication additive arc-fil (WAAM)",
+    "url": "https://theses.hal.science/tel-02496906v1",
+    "language": "fr",
+    "topic": "WAAM ; transferts thermiques multi-échelles",
+    "source_type": "THESE",
+    "authors": [
+      "Stephen Cadiou"
+    ],
+    "date": "2019-12-12",
+    "summary": "Modélisation arc TIG 2D axisymétrique avec couplage électromagnétique/thermique/hydrodynamique. Level set pour interfaces MIG pulsé ; extension mur 3D CMT puis modèle thermique simplifié à échelle pièce.",
+    "key_findings": [
+      "Modélisation arc TIG 2D axisymétrique avec couplage électromagnétique/thermique/hydrodynamique.",
+      "Level set pour interfaces MIG pulsé ; extension mur 3D CMT puis modèle thermique simplifié à échelle pièce."
+    ],
+    "license_status": "Autorisation HAL v1 déclarée : œuvre protégée ; pas de licence libre de réutilisation. Vérifier autorisation ou exception applicable avant corpus entraînement.",
+    "license_url": "https://about.hal.science/hal-authorisation-v1/",
+    "access_status": "Métadonnées et résumé FR lus via API HAL. PDF indiqué par HAL mais contenu intégral non vérifié/téléchargement indisponible.",
+    "fulltext_url": "https://theses.hal.science/tel-02496906/document",
+    "download_verification": {
+      "id": "2496906",
+      "url": "https://theses.hal.science/tel-02496906/document",
+      "status": 200,
+      "content_type": "application/pdf",
+      "bytes": 9743128,
+      "final_url": "https://theses.hal.science/tel-02496906/document",
+      "pdf_verified": false,
+      "text_extraction_success": false,
+      "text_extraction_error": "Syntax Error: Invalid XRef entry 3100\nInternal Error: xref num 3100 not found but needed, try to reconstruct\nSyntax Error: Invalid XRef entry 3063\nSyntax Error: Top-level pages object is wrong type (null)\nCommand Line Error: Wrong page range given: the first page (1) can not be after the last page (0).\n"
+    },
+    "evidence_scope": "abstract; fulltext non analysé exhaustivement",
+    "training_eligible_without_further_review": false,
+    "research_agent": "french",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "fr",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "FR-HAL-4731325",
+    "title": "Modélisation des microstructures de solidification de l'acier 316L élaboré par fabrication additive",
+    "url": "https://theses.hal.science/tel-04731325v1",
+    "language": "fr",
+    "topic": "solidification ; microstructure 316L",
+    "source_type": "THESE",
+    "authors": [
+      "Raphaël Engel"
+    ],
+    "date": "2024-03-27",
+    "summary": "Chaînage éléments finis thermiques et automates cellulaires pour grains sur murs multicordons. Deux poudres 316L donnent structures colonnaires ou équiaxes ; ajout de germination pour rendre compte de cette différence.",
+    "key_findings": [
+      "Chaînage éléments finis thermiques et automates cellulaires pour grains sur murs multicordons.",
+      "Deux poudres 316L donnent structures colonnaires ou équiaxes ; ajout de germination pour rendre compte de cette différence."
+    ],
+    "license_status": "Autorisation HAL v1 déclarée : œuvre protégée ; pas de licence libre de réutilisation. Vérifier autorisation ou exception applicable avant corpus entraînement.",
+    "license_url": "https://about.hal.science/hal-authorisation-v1/",
+    "access_status": "Métadonnées et résumé FR lus via API HAL. PDF indiqué par HAL mais contenu intégral non vérifié/téléchargement indisponible.",
+    "fulltext_url": "https://theses.hal.science/tel-04731325/document",
+    "download_verification": {
+      "id": "4731325",
+      "pdf_verified": false,
+      "error": "Téléchargement interrompu après plusieurs minutes sans document exploitable ; résumé et métadonnées seuls vérifiés."
+    },
+    "evidence_scope": "abstract; fulltext non analysé exhaustivement",
+    "training_eligible_without_further_review": false,
+    "research_agent": "french",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "fr",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "FR-HAL-5386961",
+    "title": "Modélisation thermo-mécanique et approche expérimentale d'une opération de fabrication additive arc-fil",
+    "url": "https://theses.hal.science/tel-05386961v1",
+    "language": "fr",
+    "topic": "WAAM ; sources équivalentes ; distorsion",
+    "source_type": "THESE",
+    "authors": [
+      "Lauriane Guilmois"
+    ],
+    "date": "2021-02-17",
+    "summary": "Développement et comparaison de modèles thermiques équivalents pour aciers 304L et 415. Étudie énergie, épaisseur du substrat et stratégie de dépôt, puis prédiction mécanique des déplacements.",
+    "key_findings": [
+      "Développement et comparaison de modèles thermiques équivalents pour aciers 304L et 415.",
+      "Étudie énergie, épaisseur du substrat et stratégie de dépôt, puis prédiction mécanique des déplacements."
+    ],
+    "license_status": "Autorisation HAL v1 déclarée : œuvre protégée ; pas de licence libre de réutilisation. Vérifier autorisation ou exception applicable avant corpus entraînement.",
+    "license_url": "https://about.hal.science/hal-authorisation-v1/",
+    "access_status": "Métadonnées et résumé FR lus via API HAL. PDF indiqué par HAL mais contenu intégral non vérifié/téléchargement indisponible.",
+    "fulltext_url": "https://theses.hal.science/tel-05386961/document",
+    "download_verification": {
+      "id": "5386961",
+      "pdf_verified": false,
+      "error": "Téléchargement interrompu après plusieurs minutes sans document exploitable ; résumé et métadonnées seuls vérifiés."
+    },
+    "evidence_scope": "abstract; fulltext non analysé exhaustivement",
+    "training_eligible_without_further_review": false,
+    "research_agent": "french",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "fr",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "FR-HAL-3323057",
+    "title": "Caractérisation et simulation des défauts géométriques induits par les phénomènes thermomécaniques en fabrication additive métallique EBM",
+    "url": "https://hal.science/tel-03287428v2",
+    "language": "fr",
+    "topic": "EBM ; contraintes résiduelles ; qualité géométrique",
+    "source_type": "THESE",
+    "authors": [
+      "Soukaina Ghaoui"
+    ],
+    "date": "2021-03-17",
+    "summary": "Surplombs : perte de bord et warping analysés expérimentalement. Simulation par activation éléments thermique puis thermomécanique ; modèles rapides utilisant courbes température.",
+    "key_findings": [
+      "Surplombs : perte de bord et warping analysés expérimentalement.",
+      "Simulation par activation éléments thermique puis thermomécanique ; modèles rapides utilisant courbes température."
+    ],
+    "license_status": "Autorisation HAL v1 déclarée : œuvre protégée ; pas de licence libre de réutilisation. Vérifier autorisation ou exception applicable avant corpus entraînement.",
+    "license_url": "https://about.hal.science/hal-authorisation-v1/",
+    "access_status": "Métadonnées et résumé FR lus via API HAL. PDF indiqué par HAL mais contenu intégral non vérifié/téléchargement indisponible.",
+    "fulltext_url": "https://hal.science/tel-03287428/document",
+    "download_verification": {
+      "id": "3323057",
+      "url": "https://hal.science/tel-03287428/document",
+      "status": 200,
+      "content_type": "application/pdf",
+      "bytes": 13152333,
+      "final_url": "https://hal.science/tel-03287428/document",
+      "pdf_verified": false,
+      "text_extraction_success": false,
+      "text_extraction_error": "Syntax Error: Couldn't find trailer dictionary\nSyntax Error: Couldn't find trailer dictionary\nSyntax Error: Couldn't read xref table\n"
+    },
+    "evidence_scope": "abstract; fulltext non analysé exhaustivement",
+    "training_eligible_without_further_review": false,
+    "research_agent": "french",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "fr",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "FR-HAL-4496257",
+    "title": "Modélisation des microstructures générées en fabrication additive par procédé LPBF d'un alliage base nickel",
+    "url": "https://pastel.hal.science/tel-04496257v1",
+    "language": "fr",
+    "topic": "LPBF Inconel 718 ; grains",
+    "source_type": "THESE",
+    "authors": [
+      "Théophile Camus"
+    ],
+    "date": "2023-05-23",
+    "summary": "Modèle thermohydraulique éléments finis et automate cellulaire des grains. Méthodologie hybride réutilisant champ stationnaire pour multipasses multicouches, afin de réduire coût thermique.",
+    "key_findings": [
+      "Modèle thermohydraulique éléments finis et automate cellulaire des grains.",
+      "Méthodologie hybride réutilisant champ stationnaire pour multipasses multicouches, afin de réduire coût thermique."
+    ],
+    "license_status": "Autorisation HAL v1 déclarée : œuvre protégée ; pas de licence libre de réutilisation. Vérifier autorisation ou exception applicable avant corpus entraînement.",
+    "license_url": "https://about.hal.science/hal-authorisation-v1/",
+    "access_status": "Métadonnées et résumé FR lus via API HAL. PDF indiqué par HAL mais contenu intégral non vérifié/téléchargement indisponible.",
+    "fulltext_url": "https://pastel.hal.science/tel-04496257/document",
+    "download_verification": {
+      "id": "4496257",
+      "url": "https://pastel.hal.science/tel-04496257/document",
+      "status": 200,
+      "content_type": "application/pdf",
+      "bytes": 8654169,
+      "final_url": "https://pastel.hal.science/tel-04496257/document",
+      "pdf_verified": false,
+      "text_extraction_success": false,
+      "text_extraction_error": "Syntax Error: Couldn't find trailer dictionary\nSyntax Error: Couldn't find trailer dictionary\nSyntax Error: Couldn't read xref table\n"
+    },
+    "evidence_scope": "abstract; fulltext non analysé exhaustivement",
+    "training_eligible_without_further_review": false,
+    "research_agent": "french",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "fr",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "FR-HAL-4464037",
+    "title": "Fabrication additive de cuivre pur par fusion sélective laser",
+    "url": "https://pastel.hal.science/tel-04464037v1",
+    "language": "fr",
+    "topic": "cuivre ; conductivité ; absorption laser",
+    "source_type": "THESE",
+    "authors": [
+      "Guillaume Nordet"
+    ],
+    "date": "2021-12-17",
+    "summary": "Forte conductivité thermique et réflectivité infrarouge rendent le cuivre difficile en SLM IR. Comparaison longueurs d’onde IR/vert/bleu et poudres revêtues ; résumé rapporte densité supérieure à 99,5 % dans les conditions étudiées.",
+    "key_findings": [
+      "Forte conductivité thermique et réflectivité infrarouge rendent le cuivre difficile en SLM IR.",
+      "Comparaison longueurs d’onde IR/vert/bleu et poudres revêtues ; résumé rapporte densité supérieure à 99,5 % dans les conditions étudiées."
+    ],
+    "license_status": "Autorisation HAL v1 déclarée : œuvre protégée ; pas de licence libre de réutilisation. Vérifier autorisation ou exception applicable avant corpus entraînement.",
+    "license_url": "https://about.hal.science/hal-authorisation-v1/",
+    "access_status": "Métadonnées et résumé FR lus via API HAL. PDF indiqué par HAL mais contenu intégral non vérifié/téléchargement indisponible.",
+    "fulltext_url": "https://pastel.hal.science/tel-04464037/document",
+    "download_verification": {
+      "id": "4464037",
+      "pdf_verified": false,
+      "error": "Téléchargement interrompu après plusieurs minutes sans document exploitable ; résumé et métadonnées seuls vérifiés."
+    },
+    "evidence_scope": "abstract; fulltext non analysé exhaustivement",
+    "training_eligible_without_further_review": false,
+    "research_agent": "french",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "fr",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "FR-HAL-2466522",
+    "title": "Nocivité en fatigue et contrôle de défauts produits par fabrication additive",
+    "url": "https://pastel.hal.science/tel-02466522v1",
+    "language": "fr",
+    "topic": "316L ; porosité ; fatigue ; contrôle",
+    "source_type": "THESE",
+    "authors": [
+      "Olivier Andreau"
+    ],
+    "date": "2019-11-15",
+    "summary": "Étude de pores surfaciques/internes et populations aléatoires par tomographie X. Défauts déterministes contrôlés pour analyser amorçage en fatigue ; morphologie et emplacement comptent avec microstructure.",
+    "key_findings": [
+      "Étude de pores surfaciques/internes et populations aléatoires par tomographie X.",
+      "Défauts déterministes contrôlés pour analyser amorçage en fatigue ; morphologie et emplacement comptent avec microstructure."
+    ],
+    "license_status": "Autorisation HAL v1 déclarée : œuvre protégée ; pas de licence libre de réutilisation. Vérifier autorisation ou exception applicable avant corpus entraînement.",
+    "license_url": "https://about.hal.science/hal-authorisation-v1/",
+    "access_status": "Métadonnées et résumé FR lus via API HAL. PDF indiqué par HAL mais contenu intégral non vérifié/téléchargement indisponible.",
+    "fulltext_url": "https://pastel.hal.science/tel-02466522/document",
+    "download_verification": {
+      "id": "2466522",
+      "pdf_verified": false,
+      "error": "Téléchargement interrompu après plusieurs minutes sans document exploitable ; résumé et métadonnées seuls vérifiés."
+    },
+    "evidence_scope": "abstract; fulltext non analysé exhaustivement",
+    "training_eligible_without_further_review": false,
+    "research_agent": "french",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "fr",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "FR-HAL-4841189",
+    "title": "Caractérisation et prédiction de la microstructure obtenue par fabrication additive. Application aux aciers inoxydables",
+    "url": "https://theses.hal.science/tel-04841189v1",
+    "language": "fr",
+    "topic": "métallurgie 316L ; composition ; thermique",
+    "source_type": "THESE",
+    "authors": [
+      "Sébastien Relave"
+    ],
+    "date": "2020-01-17",
+    "summary": "La composition chimique affecte le chemin de solidification malgré paramètres procédé identiques. Modèle thermique pour forme/taille de zone fondue et structure de solidification, avec caractérisations microstructurales et mécaniques.",
+    "key_findings": [
+      "La composition chimique affecte le chemin de solidification malgré paramètres procédé identiques.",
+      "Modèle thermique pour forme/taille de zone fondue et structure de solidification, avec caractérisations microstructurales et mécaniques."
+    ],
+    "license_status": "Autorisation HAL v1 déclarée : œuvre protégée ; pas de licence libre de réutilisation. Vérifier autorisation ou exception applicable avant corpus entraînement.",
+    "license_url": "https://about.hal.science/hal-authorisation-v1/",
+    "access_status": "Métadonnées et résumé FR lus via API HAL. PDF indiqué par HAL mais contenu intégral non vérifié/téléchargement indisponible.",
+    "fulltext_url": "https://theses.hal.science/tel-04841189/document",
+    "download_verification": {
+      "id": "4841189",
+      "pdf_verified": false,
+      "error": "Téléchargement interrompu après plusieurs minutes sans document exploitable ; résumé et métadonnées seuls vérifiés."
+    },
+    "evidence_scope": "abstract; fulltext non analysé exhaustivement",
+    "training_eligible_without_further_review": false,
+    "research_agent": "french",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "fr",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "FR-HAL-5271775",
+    "title": "Fonctionnalisation des poudres métalliques pour la fabrication additive : Oxydation et protection par revêtement des matériaux issu de la fabrication additive",
+    "url": "https://theses.hal.science/tel-05271775v1",
+    "language": "fr",
+    "topic": "poudres composites ; oxydation ; qualité",
+    "source_type": "THESE",
+    "authors": [
+      "Antoine Duval"
+    ],
+    "date": "2024-11-18",
+    "summary": "Pré-oxydation contrôlée de poudres pour LPBF d’alliages ODS, préservant sphéricité et fluidité. Nano-renforts oxydes et revêtements diffusion Al/Al-Si améliorent stabilité couches et résistance oxydation haute température.",
+    "key_findings": [
+      "Pré-oxydation contrôlée de poudres pour LPBF d’alliages ODS, préservant sphéricité et fluidité.",
+      "Nano-renforts oxydes et revêtements diffusion Al/Al-Si améliorent stabilité couches et résistance oxydation haute température."
+    ],
+    "license_status": "Autorisation HAL v1 déclarée : œuvre protégée ; pas de licence libre de réutilisation. Vérifier autorisation ou exception applicable avant corpus entraînement.",
+    "license_url": "https://about.hal.science/hal-authorisation-v1/",
+    "access_status": "Métadonnées et résumé FR lus via API HAL. PDF indiqué par HAL mais contenu intégral non vérifié/téléchargement indisponible.",
+    "fulltext_url": "https://theses.hal.science/tel-05271775/document",
+    "download_verification": {
+      "id": "5271775",
+      "pdf_verified": false,
+      "error": "Téléchargement interrompu après plusieurs minutes sans document exploitable ; résumé et métadonnées seuls vérifiés."
+    },
+    "evidence_scope": "abstract; fulltext non analysé exhaustivement",
+    "training_eligible_without_further_review": false,
+    "research_agent": "french",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "fr",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "FR-HAL-3268306",
+    "title": "Simulation thermique des trajectoires de lasage basée sur des flashs en fabrication additive LPBF",
+    "url": "https://hal.science/hal-03268306v1",
+    "language": "fr",
+    "topic": "LPBF ; conduction ; trajectoires",
+    "source_type": "COMM",
+    "authors": [
+      "Kamel Ettaieb",
+      "Sylvain Lavernhe",
+      "Christophe Tournier"
+    ],
+    "date": "2021-06-10",
+    "summary": "Modèle analytique par impulsions de température et superposition conduction. Trajectoires influencent température maximale et gradients ; optimisation pour homogénéiser champ thermique.",
+    "key_findings": [
+      "Modèle analytique par impulsions de température et superposition conduction.",
+      "Trajectoires influencent température maximale et gradients ; optimisation pour homogénéiser champ thermique."
+    ],
+    "license_status": "Autorisation HAL v1 déclarée : œuvre protégée ; pas de licence libre de réutilisation. Vérifier autorisation ou exception applicable avant corpus entraînement.",
+    "license_url": "https://about.hal.science/hal-authorisation-v1/",
+    "access_status": "Métadonnées et résumé FR lus via API HAL. PDF indiqué par HAL mais contenu intégral non vérifié/téléchargement indisponible.",
+    "fulltext_url": "https://hal.science/hal-03268306/document",
+    "download_verification": {
+      "id": "3268306",
+      "pdf_verified": false,
+      "error": "Téléchargement interrompu après plusieurs minutes sans document exploitable ; résumé et métadonnées seuls vérifiés."
+    },
+    "evidence_scope": "abstract; fulltext non analysé exhaustivement",
+    "training_eligible_without_further_review": false,
+    "research_agent": "french",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "fr",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "FR-HAL-1908905",
+    "title": "Simulation d'un procédé de fabrication additive dans Cast3M",
+    "url": "https://hal.science/hal-01908905v1",
+    "language": "fr",
+    "topic": "éléments finis ; Cast3M ; thermoplasticité",
+    "source_type": "COMM",
+    "authors": [
+      "Clément Berthinier"
+    ],
+    "date": "2017-05-15",
+    "summary": "Simulation Cast3M de fabrication additive pour état final : contraintes résiduelles, déformations et écrouissage. Résumé relie températures locales élevées, dilatation et plastification.",
+    "key_findings": [
+      "Simulation Cast3M de fabrication additive pour état final : contraintes résiduelles, déformations et écrouissage.",
+      "Résumé relie températures locales élevées, dilatation et plastification."
+    ],
+    "license_status": "Autorisation HAL v1 déclarée : œuvre protégée ; pas de licence libre de réutilisation. Vérifier autorisation ou exception applicable avant corpus entraînement.",
+    "license_url": "https://about.hal.science/hal-authorisation-v1/",
+    "access_status": "Métadonnées et résumé FR lus via API HAL. PDF indiqué par HAL mais contenu intégral non vérifié/téléchargement indisponible.",
+    "fulltext_url": "https://hal.science/hal-01908905/document",
+    "download_verification": {
+      "id": "1908905",
+      "pdf_verified": false,
+      "error": "Téléchargement interrompu après plusieurs minutes sans document exploitable ; résumé et métadonnées seuls vérifiés."
+    },
+    "evidence_scope": "abstract; fulltext non analysé exhaustivement",
+    "training_eligible_without_further_review": false,
+    "research_agent": "french",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "fr",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "ZH-01",
+    "title": "6061铝合金搅拌摩擦增材制造显微组织演变及力学性能",
+    "url": "https://www.ams.org.cn/CN/10.11900/0412.1961.2023.00220",
+    "language": "zh",
+    "topic": "Al6061, fabrication additive par friction-malaxage",
+    "source_type": "peer_reviewed_research",
+    "summary": "La fabrication additive solide FSAM affine les grains par recristallisation dynamique mais dissout les précipités durcissants. Les interfaces subissent plusieurs cycles thermiques.",
+    "key_findings": [
+      "Après traitement solution 520 °C/1 h et vieillissement 165 °C/18 h, la résistance atteint 87,2–91,9 % du matériau de base; valeur spécifique aux éprouvettes de cette étude.",
+      "La résistance du brut représente 47,7–55,2 % du matériau de base; la ductilité augmente."
+    ],
+    "license_status": "Non déterminée : accès public, copyright éditorial observé; aucune autorisation d’entraînement/redistribution déduite.",
+    "access_status": "Résumé chinois vérifié; lien intégral HTML présent mais intégral non vérifié.",
+    "full_text_url": "https://www.ams.org.cn/article/2025/0412-1961/0412-1961-2025-61-8-1129.shtml",
+    "publisher": "金属学报 / Acta Metallurgica Sinica",
+    "verified_date": "2026-10-02",
+    "research_agent": "chinese",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "zh",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "ZH-02",
+    "title": "镁合金电弧熔丝增材制造技术研究现状与展望",
+    "url": "https://www.ams.org.cn/CN/10.11900/0412.1961.2024.00314",
+    "language": "zh",
+    "topic": "WAAM magnésium, transfert thermique, défauts",
+    "source_type": "peer_reviewed_review",
+    "summary": "Revue de WAAM des alliages Mg : conductivité élevée, faibles températures de fusion/ébullition, défauts métallurgiques, microstructure et stratégies de contrôle.",
+    "key_findings": [
+      "Les contrôles du bain et de la température entre couches doivent être distingués des traitements de la pièce complète.",
+      "Le texte intégral décrit porosité liée à évaporation, oxydes, fissuration à chaud; un apport thermique excessif peut refondre les phases intergranulaires."
+    ],
+    "license_status": "Non déterminée : accès public, copyright éditorial observé; aucune autorisation d’entraînement/redistribution déduite.",
+    "access_status": "Résumé chinois vérifié; intégral HTML chinois vérifié.",
+    "full_text_url": "https://www.ams.org.cn/article/2025/0412-1961/0412-1961-2025-61-3-397.shtml",
+    "publisher": "金属学报 / Acta Metallurgica Sinica",
+    "verified_date": "2026-10-02",
+    "research_agent": "chinese",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "zh",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "ZH-03",
+    "title": "电弧熔丝增材制造Mg/Mg双金属的组织与力学性能",
+    "url": "https://www.ams.org.cn/CN/10.11900/0412.1961.2023.00493",
+    "language": "zh",
+    "topic": "WAAM multimatériaux Mg/Mg",
+    "source_type": "peer_reviewed_research",
+    "summary": "Etude de parois bimétalliques Mg-Al-Si/Mg-Gd-Y-Zn obtenues en WAAM, avec gradients chimiques et mécanismes de rupture.",
+    "key_findings": [
+      "Zone de transition d’environ 1,4 mm; microdureté passant de 57 à 90 HV0.5.",
+      "Résistance à la traction 236,8 MPa et allongement 11,0 % dans la configuration étudiée; ne pas généraliser à tous les Mg."
+    ],
+    "license_status": "Non déterminée : accès public, copyright éditorial observé; aucune autorisation d’entraînement/redistribution déduite.",
+    "access_status": "Résumé chinois vérifié; lien intégral HTML présent mais intégral non vérifié.",
+    "full_text_url": "https://www.ams.org.cn/article/2025/0412-1961/0412-1961-2025-61-2-211.shtml",
+    "publisher": "金属学报 / Acta Metallurgica Sinica",
+    "verified_date": "2026-10-02",
+    "research_agent": "chinese",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "zh",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "ZH-04",
+    "title": "Ni43.5Co19Cr10Fe10Al15Ti2Mo0.5 共晶高熵合金快速凝固行为及组织调控",
+    "url": "https://www.ams.org.cn/CN/10.11900/0412.1961.2024.00271",
+    "language": "zh",
+    "topic": "LPBF/SLM, refroidissement et alliages à haute entropie",
+    "source_type": "peer_reviewed_research",
+    "summary": "Alliage eutectique Ni43.5Co19Cr10Fe10Al15Ti2Mo0.5; influence des conditions de solidification sur phases, morphologie et propriétés.",
+    "key_findings": [
+      "La diminution de vitesse de balayage à 500 mm/s réduit le gradient et favorise la transition colonnaire–équiaxe dans cette étude.",
+      "Le refroidissement très rapide peut piéger le soluté et diminuer la fraction B2; la fraction de phase n’est donc pas nécessairement monotone avec la vitesse de refroidissement.",
+      "L’intégral signale que le jeu optimal étudié conserve quelques microfissures; qualité mécanique et absence de défauts ne sont pas équivalentes."
+    ],
+    "license_status": "Non déterminée : accès public, copyright éditorial observé; aucune autorisation d’entraînement/redistribution déduite.",
+    "access_status": "Résumé chinois vérifié; intégral HTML chinois vérifié.",
+    "full_text_url": "https://www.ams.org.cn/article/2025/0412-1961/0412-1961-2025-61-1-191.shtml",
+    "publisher": "金属学报 / Acta Metallurgica Sinica",
+    "verified_date": "2026-10-02",
+    "research_agent": "chinese",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "zh",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "ZH-05",
+    "title": "铝合金熔滴复合电弧增材组织演化及外延生长特性",
+    "url": "https://www.ams.org.cn/CN/10.11900/0412.1961.2023.00331",
+    "language": "zh",
+    "topic": "Simulation FEM thermique + champ de phase Al2319",
+    "source_type": "peer_reviewed_research",
+    "summary": "Couplage multi-échelle du champ thermique FEM au champ de phase pour la croissance dendritique en dépôt hybride gouttelettes–arc d’aluminium 2319.",
+    "key_findings": [
+      "Activation/désactivation d’éléments pour le dépôt; propriétés dépendant de la température calculées par JMatPro.",
+      "Source double ellipsoïde; pertes par convection et rayonnement; température initiale 25 °C.",
+      "La simulation simplifie l’alliage en binaire Al–6,3 %Cu; distinguer ce choix de modèle d’une composition universelle.",
+      "Les températures/gradients et vitesses de solidification alimentent le champ de phase; la métallographie vérifie la transition colonnaire–équiaxe."
+    ],
+    "license_status": "Non déterminée : accès public, copyright éditorial observé; aucune autorisation d’entraînement/redistribution déduite.",
+    "access_status": "Résumé chinois vérifié; intégral HTML chinois vérifié.",
+    "full_text_url": "https://www.ams.org.cn/article/2024/0412-1961/0412-1961-2024-60-11-1584.shtml",
+    "publisher": "金属学报 / Acta Metallurgica Sinica",
+    "verified_date": "2026-10-02",
+    "research_agent": "chinese",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "zh",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "ZH-06",
+    "title": "激光熔化沉积制备316L不锈钢的电化学腐蚀及空化腐蚀性能",
+    "url": "https://www.ams.org.cn/CN/10.11900/0412.1961.2022.00382",
+    "language": "zh",
+    "topic": "LMD 316L, corrosion et cavitation",
+    "source_type": "peer_reviewed_research",
+    "summary": "L’influence de puissance, stratégie de balayage, refusion et direction de construction sur la corrosion et la cavitation de 316L déposé au laser est comparée au 316L forgé.",
+    "key_findings": [
+      "Les pores et interfaces de grains peuvent initier des dommages par cavitation même lorsque la résistance globale est améliorée.",
+      "Dans les essais rapportés à 3,5 % NaCl, la résistance de polarisation augmente de 2 à 98 fois selon paramètres; résultat conditionnel, pas propriété générale du 316L imprimé."
+    ],
+    "license_status": "Non déterminée : accès public, copyright éditorial observé; aucune autorisation d’entraînement/redistribution déduite.",
+    "access_status": "Résumé chinois vérifié; lien intégral HTML présent mais intégral non vérifié.",
+    "full_text_url": "https://www.ams.org.cn/article/2024/0412-1961/0412-1961-2024-60-11-1512.shtml",
+    "publisher": "金属学报 / Acta Metallurgica Sinica",
+    "verified_date": "2026-10-02",
+    "research_agent": "chinese",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "zh",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "ZH-07",
+    "title": "316L不锈钢表面激光熔化沉积CoCrNiCu中熵合金的界面相容性",
+    "url": "https://www.ams.org.cn/CN/10.11900/0412.1961.2022.00426",
+    "language": "zh",
+    "topic": "Interfaces 316L–CoCrNiCu, métallurgie",
+    "source_type": "peer_reviewed_research",
+    "summary": "Dépôt CoCrNiCu sur acier 316L; compatibilité cristallographique et mécanique d’interface.",
+    "key_findings": [
+      "Zone de transition CoCrNiCuFe en solution solide; cisaillement pouvant atteindre 324 MPa dans les essais.",
+      "Partition du carbone et contraintes résiduelles contribuent à une transformation martensitique induite; compromis entre TRIP et compatibilité interfaciale."
+    ],
+    "license_status": "Non déterminée : accès public, copyright éditorial observé; aucune autorisation d’entraînement/redistribution déduite.",
+    "access_status": "Résumé chinois vérifié; lien intégral HTML présent mais intégral non vérifié.",
+    "full_text_url": "https://www.ams.org.cn/article/2024/0412-1961/0412-1961-2024-60-9-1213.shtml",
+    "publisher": "金属学报 / Acta Metallurgica Sinica",
+    "verified_date": "2026-10-02",
+    "research_agent": "chinese",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "zh",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "ZH-08",
+    "title": "退火热处理对增材制造AlSi10Mg合金宏观和微观变形行为的影响",
+    "url": "https://www.ams.org.cn/CN/10.11900/0412.1961.2024.00116",
+    "language": "zh",
+    "topic": "AlSi10Mg, recuit et contraintes résiduelles",
+    "source_type": "peer_reviewed_research",
+    "summary": "Etude par diffraction synchrotron in situ de l’effet du recuit sur transfert de charge, contraintes de phase et densité de dislocations.",
+    "key_findings": [
+      "Les contraintes résiduelles affectent stabilité dimensionnelle, sécurité de service et corrosion.",
+      "Le réseau eutectique Al–Si est modifié par recuit; la plasticité et le durcissement changent à plusieurs échelles."
+    ],
+    "license_status": "Non déterminée : accès public, copyright éditorial observé; aucune autorisation d’entraînement/redistribution déduite.",
+    "access_status": "Résumé chinois vérifié; intégral HTML chinois vérifié.",
+    "full_text_url": "https://www.ams.org.cn/article/2024/0412-1961/0412-1961-2024-60-8-1091.shtml",
+    "publisher": "金属学报 / Acta Metallurgica Sinica",
+    "verified_date": "2026-10-02",
+    "research_agent": "chinese",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "zh",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "ZH-09",
+    "title": "电弧微铸锻复合增材制造GH4169D高温合金的显微组织与力学性能",
+    "url": "https://www.ams.org.cn/CN/10.11900/0412.1961.2022.00264",
+    "language": "zh",
+    "topic": "Alliage Ni GH4169D, WAAM et laminage",
+    "source_type": "peer_reviewed_research",
+    "summary": "Comparaison WAAM et arc couplé à micro-laminage HARAM; grain, anisotropie et traitements thermiques.",
+    "key_findings": [
+      "Le micro-laminage fragmente les grains colonnaires; homogénéisation, solution et double vieillissement éliminent les phases Laves ségrégées.",
+      "Après traitement, traction 1366 MPa/25,0 % en X et 1354 MPa/24,6 % en Z pour les essais rapportés."
+    ],
+    "license_status": "Non déterminée : accès public, copyright éditorial observé; aucune autorisation d’entraînement/redistribution déduite.",
+    "access_status": "Résumé chinois vérifié; lien intégral HTML présent mais intégral non vérifié.",
+    "full_text_url": "https://www.ams.org.cn/article/2024/0412-1961/0412-1961-2024-60-5-681.shtml",
+    "publisher": "金属学报 / Acta Metallurgica Sinica",
+    "verified_date": "2026-10-02",
+    "research_agent": "chinese",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "zh",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "ZH-10",
+    "title": "基于熔池原位冶金的电弧增材制造Al-Cu-Li合金显微组织与硬度",
+    "url": "https://www.ams.org.cn/CN/10.11900/0412.1961.2022.00559",
+    "language": "zh",
+    "topic": "WAAM Al-Cu-Li, cycles thermiques et précipités",
+    "source_type": "peer_reviewed_research",
+    "summary": "Fabrication Al-Cu-Li en alimentant simultanément fil Al-Cu et poudre Al-Li; microstructure et dureté.",
+    "key_findings": [
+      "Les cycles thermiques induisent précipitation de phases TB et T1 près des joints de grains.",
+      "La fraction T1 augmente avec les cycles dans la pièce; dureté maximale mesurée 126,7 HV0.1."
+    ],
+    "license_status": "Non déterminée : accès public, copyright éditorial observé; aucune autorisation d’entraînement/redistribution déduite.",
+    "access_status": "Résumé chinois vérifié; lien intégral HTML présent mais intégral non vérifié.",
+    "full_text_url": "https://www.ams.org.cn/article/2024/0412-1961/0412-1961-2024-60-5-661.shtml",
+    "publisher": "金属学报 / Acta Metallurgica Sinica",
+    "verified_date": "2026-10-02",
+    "research_agent": "chinese",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "zh",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "ZH-11",
+    "title": "金属3D打印数字化制造研究进展",
+    "url": "https://www.ams.org.cn/CN/10.11900/0412.1961.2023.00416",
+    "language": "zh",
+    "topic": "Revue simulation numérique, contrôle et données",
+    "source_type": "peer_reviewed_review",
+    "summary": "Revue chinoise centrale pour Qwen : données de surveillance, simulation numérique et interactions entre systèmes physiques et informationnels en impression métal.",
+    "key_findings": [
+      "Le texte intégral couvre différences finies/FEM, bain, écoulement Marangoni, transport thermique/solutal, contraintes et déformations.",
+      "Présente des méthodes combinant simulation thermofluide, mesures et apprentissage pour relations procédé–microstructure–propriétés.",
+      "L’article distingue modèles physiques et optimisation fondée sur données; utile pour éviter de décrire un LLM comme solveur thermique."
+    ],
+    "license_status": "Non déterminée : accès public, copyright éditorial observé; aucune autorisation d’entraînement/redistribution déduite.",
+    "access_status": "Résumé chinois vérifié; intégral HTML chinois vérifié.",
+    "full_text_url": "https://www.ams.org.cn/article/2024/0412-1961/0412-1961-2024-60-5-569.shtml",
+    "publisher": "金属学报 / Acta Metallurgica Sinica",
+    "verified_date": "2026-10-02",
+    "research_agent": "chinese",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "zh",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "ZH-12",
+    "title": "超声冲击对增材制造组织改善及强化机理影响的研究进展",
+    "url": "https://www.ams.org.cn/CN/10.11900/0412.1961.2022.00542",
+    "language": "zh",
+    "topic": "Impact ultrasonore, affinage et renforcement",
+    "source_type": "peer_reviewed_review",
+    "summary": "Revue des mécanismes de l’impact ultrasonore associé à la fabrication additive des métaux.",
+    "key_findings": [
+      "Amélioration des contraintes, affinage et transition colonnaire–équiaxe; limites des explications par déformation plastique de surface.",
+      "Séparer renforcement mécanique et modification de microstructure pendant les cycles thermiques."
+    ],
+    "license_status": "Non déterminée : accès public, copyright éditorial observé; aucune autorisation d’entraînement/redistribution déduite.",
+    "access_status": "Résumé chinois vérifié; lien intégral HTML présent mais intégral non vérifié.",
+    "full_text_url": "https://www.ams.org.cn/article/2024/0412-1961/0412-1961-2024-60-3-273.shtml",
+    "publisher": "金属学报 / Acta Metallurgica Sinica",
+    "verified_date": "2026-10-02",
+    "research_agent": "chinese",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "zh",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "ZH-13",
+    "title": "钛合金三维点阵结构增韧纳米铝合金的力学性能和变形行为",
+    "url": "https://www.ams.org.cn/CN/10.11900/0412.1961.2022.00046",
+    "language": "zh",
+    "topic": "Structures treillis Ti et composite Al",
+    "source_type": "peer_reviewed_research",
+    "summary": "Composite de nanostructure Al84Ni7Gd6Co3 renforcé par treillis tridimensionnel TC4 obtenu par additive puis extrusion.",
+    "key_findings": [
+      "Le treillis limite initiation et propagation des fissures et améliore la traction.",
+      "La structure est un composite avec transformation par extrusion; ne pas attribuer toutes les propriétés à la seule impression."
+    ],
+    "license_status": "Non déterminée : accès public, copyright éditorial observé; aucune autorisation d’entraînement/redistribution déduite.",
+    "access_status": "Résumé chinois vérifié; lien intégral HTML présent mais intégral non vérifié.",
+    "full_text_url": "https://www.ams.org.cn/article/2024/0412-1961/0412-1961-2024-60-2-247.shtml",
+    "publisher": "金属学报 / Acta Metallurgica Sinica",
+    "verified_date": "2026-10-02",
+    "research_agent": "chinese",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "zh",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "ZH-14",
+    "title": "微米级选区激光熔化316L不锈钢的拉伸力学性能",
+    "url": "https://www.ams.org.cn/CN/10.11900/0412.1961.2022.00041",
+    "language": "zh",
+    "topic": "Micro-SLM 316L, anisotropie et traction",
+    "source_type": "peer_reviewed_research",
+    "summary": "Etude micro-SLM du 316L : microstructure cellulaire, fracture et macles Σ3.",
+    "key_findings": [
+      "Cellules 100–300 nm; résistance moyenne transversale 692,1 MPa; allongement longitudinal 54,6 % dans les essais.",
+      "Les populations de macles et orientations dépendent de la direction; anisotropie à conserver dans les données."
+    ],
+    "license_status": "Non déterminée : accès public, copyright éditorial observé; aucune autorisation d’entraînement/redistribution déduite.",
+    "access_status": "Résumé chinois vérifié; lien intégral HTML présent mais intégral non vérifié.",
+    "full_text_url": "https://www.ams.org.cn/article/2024/0412-1961/0412-1961-2024-60-2-211.shtml",
+    "publisher": "金属学报 / Acta Metallurgica Sinica",
+    "verified_date": "2026-10-02",
+    "research_agent": "chinese",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "zh",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "ZH-15",
+    "title": "增材制造TiAl合金的研究进展",
+    "url": "https://www.ams.org.cn/CN/10.11900/0412.1961.2022.00582",
+    "language": "zh",
+    "topic": "Revue TiAl, LPBF/LMD/EBM et qualité",
+    "source_type": "peer_reviewed_review",
+    "summary": "Revue des relations procédé–microstructure–propriétés des alliages TiAl obtenus par LMD, SLM et EBM.",
+    "key_findings": [
+      "La faible ductilité/ténacité de TiAl complique la fabrication; différents procédés induisent des histoires thermiques différentes.",
+      "L’intégral souligne le contrôle de l’oxygène dans les poudres et durant le dépôt; atmosphère inerte et vide ne sont pas interchangeables."
+    ],
+    "license_status": "Non déterminée : accès public, copyright éditorial observé; aucune autorisation d’entraînement/redistribution déduite.",
+    "access_status": "Résumé chinois vérifié; intégral HTML chinois vérifié.",
+    "full_text_url": "https://www.ams.org.cn/article/2024/0412-1961/0412-1961-2024-60-1-1.shtml",
+    "publisher": "金属学报 / Acta Metallurgica Sinica",
+    "verified_date": "2026-10-02",
+    "research_agent": "chinese",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "zh",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "ZH-16",
+    "title": "钛合金薄壁件选区激光熔化应力演变的数值模拟",
+    "url": "https://www.ams.org.cn/CN/10.11900/0412.1961.2019.00198",
+    "language": "zh",
+    "topic": "Simulation FEM Ti, contraintes thermiques",
+    "source_type": "peer_reviewed_research",
+    "summary": "Modèle éléments finis transitoire couplé thermique–structurel du SLM de parois minces de titane; influence de vitesse et épaisseur de couche.",
+    "key_findings": [
+      "La contrainte résiduelle finale est inférieure au pic instantané pendant le chauffage.",
+      "Les cycles thermiques induisent un relâchement; baisse des maxima dépassant 30 % dans la configuration simulée."
+    ],
+    "license_status": "Non déterminée : copyright éditorial observé; autorisation entraînement/redistribution non établie.",
+    "access_status": "Résumé chinois vérifié dans collection officielle 2019–2021; page DOI HTTP 503; intégral non vérifié.",
+    "publisher": "金属学报 / Acta Metallurgica Sinica",
+    "verified_date": "2026-10-02",
+    "research_agent": "chinese",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "zh",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "ZH-17",
+    "title": "CrMoTi 中熵合金的性能及其原位合金化增材制造",
+    "url": "https://www.ams.org.cn/CN/10.11900/0412.1961.2021.00030",
+    "language": "zh",
+    "topic": "Propriétés thermiques CrMoTi, DLD vs SLM",
+    "source_type": "peer_reviewed_research",
+    "summary": "Alliage CrMoTi pour moules; mesure de propriétés thermiques et comparaison DLD/SLM par alliage in situ.",
+    "key_findings": [
+      "À température ambiante sur échantillon fondu à l’arc : cp 371 J/(kg·K), conductivité 14,0 W/(m·K). Ces valeurs ne sont pas identifiées comme mesures sur pièce imprimée.",
+      "Le DLD atteint une densité de 7,46 g/cm³ contre 7,27 g/cm³ en SLM; résidus de Mo non fondus en SLM dans les essais."
+    ],
+    "license_status": "Non déterminée : copyright éditorial observé; autorisation entraînement/redistribution non établie.",
+    "access_status": "Résumé chinois vérifié dans collection officielle 2019–2021; page DOI HTTP 503; intégral non vérifié.",
+    "publisher": "金属学报 / Acta Metallurgica Sinica",
+    "verified_date": "2026-10-02",
+    "research_agent": "chinese",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "zh",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "PROP-copper",
+    "title": "NIST Chemistry WebBook — Copper — condensed phase thermochemistry",
+    "url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C7440508&Mask=2",
+    "language": "en",
+    "topic": "heat capacity; thermochemistry; pure metal; Shomate",
+    "source_type": "institutional reference database entry",
+    "summary": "Données thermochimiques du métal pur et capacité calorifique solide/liquide sous forme de coefficients de Shomate, avec plages de température et références.",
+    "key_findings": [
+      "La capacité calorifique est molaire, en J/(mol·K); convertir par masse molaire avant une utilisation massique.",
+      "Les propriétés du métal pur ne sont pas celles d’un alliage ni d’un lit de poudre.",
+      "Cette page ne fournit pas la conductivité thermique k(T).",
+      "Le site mentionne explicitement copyright et droits réservés sous le Standard Reference Data Act: ne pas présumer domaine public parce que NIST est fédéral."
+    ],
+    "license_status": "Compilation copyright explicite; droits de réutilisation corpus non établis; hors allowlist.",
+    "access_status": "HTTP 200; données solides/liquides et unités lues; aucune ingestion entraînement.",
+    "research_agent": "properties",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "PROP-aluminum",
+    "title": "NIST Chemistry WebBook — Aluminum — condensed phase thermochemistry",
+    "url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C7429905&Mask=2",
+    "language": "en",
+    "topic": "heat capacity; thermochemistry; pure metal; Shomate",
+    "source_type": "institutional reference database entry",
+    "summary": "Données thermochimiques du métal pur et capacité calorifique solide/liquide sous forme de coefficients de Shomate, avec plages de température et références.",
+    "key_findings": [
+      "La capacité calorifique est molaire, en J/(mol·K); convertir par masse molaire avant une utilisation massique.",
+      "Les propriétés du métal pur ne sont pas celles d’un alliage ni d’un lit de poudre.",
+      "Cette page ne fournit pas la conductivité thermique k(T).",
+      "Le site mentionne explicitement copyright et droits réservés sous le Standard Reference Data Act: ne pas présumer domaine public parce que NIST est fédéral."
+    ],
+    "license_status": "Compilation copyright explicite; droits de réutilisation corpus non établis; hors allowlist.",
+    "access_status": "HTTP 200; données solides/liquides et unités lues; aucune ingestion entraînement.",
+    "research_agent": "properties",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "PROP-iron",
+    "title": "NIST Chemistry WebBook — Iron — condensed phase thermochemistry",
+    "url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C7439896&Mask=2",
+    "language": "en",
+    "topic": "heat capacity; thermochemistry; pure metal; Shomate",
+    "source_type": "institutional reference database entry",
+    "summary": "Données thermochimiques du métal pur et capacité calorifique solide/liquide sous forme de coefficients de Shomate, avec plages de température et références.",
+    "key_findings": [
+      "La capacité calorifique est molaire, en J/(mol·K); convertir par masse molaire avant une utilisation massique.",
+      "Les propriétés du métal pur ne sont pas celles d’un alliage ni d’un lit de poudre.",
+      "Cette page ne fournit pas la conductivité thermique k(T).",
+      "Le site mentionne explicitement copyright et droits réservés sous le Standard Reference Data Act: ne pas présumer domaine public parce que NIST est fédéral."
+    ],
+    "license_status": "Compilation copyright explicite; droits de réutilisation corpus non établis; hors allowlist.",
+    "access_status": "HTTP 200; données solides/liquides et unités lues; aucune ingestion entraînement.",
+    "research_agent": "properties",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "PROP-nickel",
+    "title": "NIST Chemistry WebBook — Nickel — condensed phase thermochemistry",
+    "url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C7440020&Mask=2",
+    "language": "en",
+    "topic": "heat capacity; thermochemistry; pure metal; Shomate",
+    "source_type": "institutional reference database entry",
+    "summary": "Données thermochimiques du métal pur et capacité calorifique solide/liquide sous forme de coefficients de Shomate, avec plages de température et références.",
+    "key_findings": [
+      "La capacité calorifique est molaire, en J/(mol·K); convertir par masse molaire avant une utilisation massique.",
+      "Les propriétés du métal pur ne sont pas celles d’un alliage ni d’un lit de poudre.",
+      "Cette page ne fournit pas la conductivité thermique k(T).",
+      "Le site mentionne explicitement copyright et droits réservés sous le Standard Reference Data Act: ne pas présumer domaine public parce que NIST est fédéral."
+    ],
+    "license_status": "Compilation copyright explicite; droits de réutilisation corpus non établis; hors allowlist.",
+    "access_status": "HTTP 200; données solides/liquides et unités lues; aucune ingestion entraînement.",
+    "research_agent": "properties",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  },
+  {
+    "id": "PROP-titanium",
+    "title": "NIST Chemistry WebBook — Titanium — condensed phase thermochemistry",
+    "url": "https://webbook.nist.gov/cgi/cbook.cgi?ID=C7440326&Mask=2",
+    "language": "en",
+    "topic": "heat capacity; thermochemistry; pure metal; Shomate",
+    "source_type": "institutional reference database entry",
+    "summary": "Données thermochimiques du métal pur et capacité calorifique solide/liquide sous forme de coefficients de Shomate, avec plages de température et références.",
+    "key_findings": [
+      "La capacité calorifique est molaire, en J/(mol·K); convertir par masse molaire avant une utilisation massique.",
+      "Les propriétés du métal pur ne sont pas celles d’un alliage ni d’un lit de poudre.",
+      "Cette page ne fournit pas la conductivité thermique k(T).",
+      "Le site mentionne explicitement copyright et droits réservés sous le Standard Reference Data Act: ne pas présumer domaine public parce que NIST est fédéral."
+    ],
+    "license_status": "Compilation copyright explicite; droits de réutilisation corpus non établis; hors allowlist.",
+    "access_status": "HTTP 200; données solides/liquides et unités lues; aucune ingestion entraînement.",
+    "research_agent": "properties",
+    "retrieved_at": "2026-10-02",
+    "primary_language": "en",
+    "publication_scope": "bibliographic_metadata_and_research_synthesis_only; fulltext included only if source_id is in documents.json"
+  }
+]

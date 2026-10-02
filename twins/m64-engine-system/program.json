@@ -1,0 +1,189 @@
+{
+  "schema_version": "1.0.0",
+  "program_id": "M64-WHOLE-ENGINE-TWIN-0001",
+  "name": "Jumeau numerique fonctionnel du moteur Porsche 993 Turbo (M64/60 3.6 L biturbo)",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_Turbo"],
+    "model_years": {"from": 1995, "to": 1998}
+  },
+  "objective": "Assembler le moteur complet sous forme de systeme de zones, chacune avec son propre niveau de fidelite verifie, jusqu'a un jumeau fonctionnel (F6) correlate a un banc instrumente. Une zone ne herite jamais du niveau d'une autre.",
+  "engine_baseline": {
+    "architecture": "Flat-six, refroidissement air/huile, biturbo parallel (un turbo par banc)",
+    "displacement_cc": 3600,
+    "bore_mm": 100.0,
+    "stroke_mm": 76.4,
+    "public duty points": {"power_hp": 408, "torque_nm": 540, "max_boost_bar": 0.8},
+    "provenance_note": "Architecture, alesa course et cylindree sont des donnees publiques Porsche recoupees; les points de service publics sont des cas de charge, pas des limites de conception. Les cotes d'interfaces (entraxe cylindres, hauteur de bloc) restent inconnues et bloquent F2."
+  },
+  "coordinate_system": {
+    "frame": "engine",
+    "origin": "centre du vilebrequin, plan du volant moteur en reference axiale (convention a confirmer par metrologie)",
+    "axes": "X axe vilebrequin, Y vers la droite moteur, Z vers le haut (convention provisoire, non verifiee)",
+    "units": "mm"
+  },
+  "fidelity_ladder": [
+    "F0_reference: actif registre et preuves d'identite, aucune geometrie",
+    "F1_envelope: proxy parametrique d'encombrement, echelle non confirmee",
+    "F2_interface: interfaces mesurees et cotes d'echelle fermées",
+    "F3_engineering: geometrie complete y compris passages internes (CT requis)",
+    "F4_correlated: simulations thermo-fluides et mecaniques correlees aux mesures",
+    "F5_prototype: prototype metallique inspecte et controle non destructif",
+    "F6_engine_test: essai moteur instrumente"
+  ],
+  "zones": [
+    {
+      "zone_id": "M64-Z-HD",
+      "name": "Culasse (base 2V scannee + variante concept 4V)",
+      "owner_artifact": "twins/reference-993-cylinder-head",
+      "seed": "Scan achete Wolfe Classics 935 (proxy), pipeline complet: maillage 300k, registre d'interfaces, STEP F1, soupapes parametriques, 2 domaines CFD",
+      "verified_fidelity": "F0_reference",
+      "target_fidelity": "F4_correlated",
+      "gating": [
+        "3 cotes d'echelle bloquantes (scale_loop)",
+        "CT des passages internes pour F2/F3",
+        "qualite de maillage: checkMesh echoue encore sur 33/561 cellules a petit determinants (best connu)"
+      ]
+    },
+    {
+      "zone_id": "M64-Z-VT",
+      "name": "Distribution et soupapes",
+      "owner_artifact": "twins/reference-993-cylinder-head/source/build_valve_variants.py",
+      "seed": "Trois variantes de soupapes parametriques F1 (admission 49, echappement 42.5/43.5, queue 8 mm) avec modeles de masse Ti-6Al-4V / INCONEL 751",
+      "verified_fidelity": "F0_reference",
+      "target_fidelity": "F3_engineering",
+      "gating": [
+        "profil de came introuvable dans le domaine public (acquisition contract M64-ACQ-0002)",
+        "masses, ressorts, jeux et regime reels inconnus"
+      ]
+    },
+    {
+      "zone_id": "M64-Z-CC",
+      "name": "Carter, cylindres, pistons, vilebrequin",
+      "owner_artifact": "twins/reference-917-engine (reference methodologique, autre moteur)",
+      "seed": "Aucun scan M64. Squelette dimensionnel a batir a partir des donnees publiques taggees (docs/research/m64-public-engine-data-2026-09-27.md)",
+      "verified_fidelity": "F0_reference",
+      "target_fidelity": "F2_interface",
+      "gating": [
+        "entraxe cylindres et hauteur de bloc non publies",
+        "interface jupe cylindre/carter inconnue",
+        "scan ou piece metrologique requis"
+      ]
+    },
+    {
+      "zone_id": "M64-Z-TR",
+      "name": "Turbocompresseurs K16 (paire) et chaine d'air de suralimentation",
+      "owner_artifact": "catalog/parts/993-turbocharger-k16-pair-0001.json",
+      "seed": "Identite PET recoupee (4 references), declarations fournisseurs (encombrements, masses, diametres de roues, A/R 8.00), echangeur/durites/ecran au statut declared",
+      "verified_fidelity": "F0_reference",
+      "target_fidelity": "F3_engineering",
+      "gating": [
+        "carte compresseur absente du domaine public (acquisition contract M64-ACQ-0003)",
+        "cartes debit/pression/temperature aux points de service moteur",
+        "vitesse rotor maxi, jeux, interfaces huile non publies"
+      ]
+    },
+    {
+      "zone_id": "M64-Z-CL",
+      "name": "Refroidissement: ventilateur, conduit d'air, ecosysteme thermique",
+      "owner_artifact": "docs/TURBO_AIRFLOW_SIMULATION_DATA.md",
+      "seed": "Bornes de sensibilite de debit calculees a partir des donnees declarees; etude 11 pales prevue par la charte",
+      "verified_fidelity": "F0_reference",
+      "target_fidelity": "F4_correlated",
+      "gating": [
+        "nombre de pales et diametres de poulies a confirmer par source primaire",
+        "debit d'air reel et temperatures non mesures"
+      ]
+    },
+    {
+      "zone_id": "M64-Z-OL",
+      "name": "Lubrification et circuit d'huile turbo",
+      "owner_artifact": "twins/catalogue-parts/turbo-lubrication-control-topology-readiness-f1.json",
+      "seed": "Contrat de topologie F1 non spatiale: 40 maitres PET, 11 noeuds, 13 aretes hypothetiques, 10 equations symboliques, 36 parametres inconnus",
+      "verified_fidelity": "F0_reference",
+      "target_fidelity": "F2_interface",
+      "gating": [
+        "diametres de conduites, debit et temperature d'huile inconnus"
+      ]
+    },
+    {
+      "zone_id": "M64-Z-EX",
+      "name": "Echappement, collecteurs, wastegates",
+      "owner_artifact": "docs/TURBO_DIGITAL_TWIN_PLAN.md (groupe PET 107-20)",
+      "seed": "Nomenclature PET uniquement (65 lignes, 38 references); aucune geometrie",
+      "verified_fidelity": "F0_reference",
+      "target_fidelity": "F2_interface",
+      "gating": [
+        "geometrie des collecteurs et contre-pressions mesurees requise"
+      ]
+    },
+    {
+      "zone_id": "M64-Z-ASM",
+      "name": "Assemblage moteur complet et scene federative",
+      "owner_artifact": "twins/omniverse-engine-assembly",
+      "seed": "Scene OpenUSD F0 avec badges de validation par zone",
+      "verified_fidelity": "F0_reference",
+      "target_fidelity": "F4_correlated",
+      "gating": [
+        "repere moteur commun non etabli (depend de la metrologie des zones)"
+      ]
+    }
+  ],
+  "cross_zone_rules": [
+    "Aucune zone ne peut revendiquer un niveau superieur a F1 tant que le repere moteur commun n'est pas etabli par metrologie.",
+    "Les valeurs issues du web entrent au catalogue reference avec un source_id et un niveau de preuve (FACT_public / CROSSCHECKED / SINGLE_SOURCE / ASSUMPTION), jamais comme mesures.",
+    "La CAO parametrique de generation est ecrite en C#/PicoGK (decision 2026-09-27: PicoGK pour le neuf uniquement; les chaines Python/build123d existantes sont conservees).",
+    "CFD/FEA ne remplacent jamais une inspection dimensionnelle, un montage physique ou une revue d'ingenierie."
+  ],
+  "acquisition_contracts": [
+    {
+      "contract_id": "M64-ACQ-0001",
+      "zone": "M64-Z-HD",
+      "item": "3 cotes d'echelle et d'interfaces de la culasse (entraxe goujons, hauteur totale, epaisseur de joint)",
+      "unlocks": "F1 vers F2 de la zone culasse",
+      "means": "piece physique ou metrologie tierce; aucune voie purement logicielle"
+    },
+    {
+      "contract_id": "M64-ACQ-0002",
+      "zone": "M64-Z-VT",
+      "item": "profil de came M64 Turbo (levée, duree, centre) et masses de distribution",
+      "unlocks": "dimensionnement ressort/force, dynamique de distribution F2",
+      "means": "documentaire (Repetier/fiche usine) ou palpage"
+    },
+    {
+      "contract_id": "M64-ACQ-0003",
+      "zone": "M64-Z-TR",
+      "item": "carte compresseur K16 d'origine (axes, lignes de surge/choke)",
+      "unlocks": "CFD calibre et modele 1D du circuit de suralimentation",
+      "means": "documentaire (archive KKK/BorgWarner) ou banc"
+    },
+    {
+      "contract_id": "M64-ACQ-0004",
+      "zone": "M64-Z-CC",
+      "item": "entraxe cylindres, hauteur de bloc, interface jupe/joint carter",
+      "unlocks": "squelette dimensionnel F1 credible puis F2",
+      "means": "documentaire manuel atelier ou scan"
+    },
+    {
+      "contract_id": "M64-ACQ-0005",
+      "zone": "M64-Z-CL",
+      "item": "nombre de pales, diametres de poulies, débit d'air mesure",
+      "unlocks": "etude aeraulique calibre F2",
+      "means": "documentaire primaire ou anemometrie"
+    }
+  ],
+  "validation": {
+    "status": "concept",
+    "evidence": [
+      "docs/TURBO_DIGITAL_TWIN_PLAN.md",
+      "docs/PORSCHEFANATICS_993_TURBO_AUDIT.md",
+      "twins/reference-935-cylinder-head/reengineering-contract.json",
+      "docs/research/m64-public-engine-data-2026-09-27.md"
+    ],
+    "known_limits": [
+      "Aucun scan 993/M64 fiable dans le depot: la culasse tourne sur le proxy 935.",
+      "Aucune mesure physique: toute cote web reste declaree, jamais mesuree.",
+      "Aucune liberation de fabrication ni d'installation moteur a ce niveau."
+    ]
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "checked_on": "2026-10-02",
+  "updates_frozen_source_register": false,
+  "note": "Follow-up research completed after pilot 001 source registration. No third-party rows entered pilot 001. Declared licences are author metadata, not an audit of all upstream inputs.",
+  "sources": [
+    {
+      "id": "futurecad",
+      "kind": "dataset",
+      "url": "https://huggingface.co/datasets/jhlee11/FutureCAD",
+      "metadata_url": "https://huggingface.co/api/datasets/jhlee11/FutureCAD",
+      "revision": "7ccd4bba1608b33a8bd1f65376bf7f7e02a7617e",
+      "declared_license": "cc-by-4.0",
+      "imported_rows": 0,
+      "use": "Candidate only: retain attribution and source provenance; re-split by parent CAD identity before training. Grounding rows overlap parent identities across published splits."
+    },
+    {
+      "id": "brepground",
+      "kind": "dataset",
+      "url": "https://huggingface.co/datasets/jhlee11/BRepGround",
+      "metadata_url": "https://huggingface.co/api/datasets/jhlee11/BRepGround",
+      "revision": "ccef4af2efa79f95ec268e3b95d78a6a86efba09",
+      "declared_license": "cc-by-4.0",
+      "imported_rows": 0,
+      "use": "Candidate only: retain attribution and source provenance; re-split by parent CAD identity before training. Grounding rows overlap parent identities across published splits."
+    },
+    {
+      "id": "picogk_examples",
+      "kind": "code_examples",
+      "url": "https://github.com/leap71/PicoGK_Examples",
+      "revision": "60cdddac92f9e9aa7ee6f5e262e03367827f9307",
+      "license_url": "https://raw.githubusercontent.com/leap71/PicoGK_Examples/60cdddac92f9e9aa7ee6f5e262e03367827f9307/LICENSE.md",
+      "declared_license": "CC0-1.0",
+      "license_sha256": "6d392392ee326963594846a077405a4bd7488589a17d450e4aedd3f3429a9c6e",
+      "imported_rows": 0,
+      "use": "Candidate only: review code, pin compatible APIs and verify generated geometry independently before deriving training rows."
+    },
+    {
+      "id": "leap71_shapekernel",
+      "kind": "code_examples",
+      "url": "https://github.com/leap71/LEAP71_ShapeKernel",
+      "revision": "7b9097842446a28bb5d49203724622e594ce7510",
+      "license_url": "https://raw.githubusercontent.com/leap71/LEAP71_ShapeKernel/7b9097842446a28bb5d49203724622e594ce7510/LICENSE",
+      "declared_license": "Apache-2.0",
+      "license_sha256": "50e6751797c50dedd75ef1b8a0d9e42f5f8472e9fbce91f34718e9f97b0c780a",
+      "imported_rows": 0,
+      "use": "Candidate only: review code, pin compatible APIs and verify generated geometry independently before deriving training rows."
+    },
+    {
+      "id": "bod",
+      "kind": "paper",
+      "title": "Bilinear Optimization Divergence: Diagnosing Factor-Constrained LoRA Continual Learning",
+      "url": "https://arxiv.org/abs/2609.23594v1",
+      "date": "2026-09-20",
+      "status": "preprint",
+      "imported_rows": 0,
+      "use": "Future retention experiment only: protect the composed LoRA update after the optimizer step, not merely a factor gradient. Qwen3-8B classification evidence does not establish benefit for 1.5B code or CAD. Not implemented in pilot 001."
+    },
+    {
+      "id": "continual_prompt_replay",
+      "kind": "paper",
+      "title": "Beyond Forgetting: Diagnosing and Harnessing Shared Reasoning in Continual RLVR",
+      "url": "https://arxiv.org/abs/2608.18574v3",
+      "date": "2026-09-24",
+      "status": "preprint revision",
+      "imported_rows": 0,
+      "use": "Future verified-reward experiment only: prompt replay regenerates current-policy answers. Requires independent rewards and retention metrics; pilot 001 is supervised fine-tuning, not RLVR."
+    },
+    {
+      "id": "itercad_repair",
+      "kind": "paper",
+      "title": "IterCAD: Iterative Program Repair for CAD Code Generation from Orthographic Views",
+      "url": "https://arxiv.org/abs/2608.24020v2",
+      "date": "2026-09-05",
+      "status": "ACM MM 2026 acceptance reported by authors",
+      "imported_rows": 0,
+      "use": "Future curriculum: verified intermediate CAD errors and explicit revise-or-stop targets. Its orthographic-image conditioning requires a vision model; this Qwen is text-only. Dataset rights not verified; no rows imported."
+    },
+    {
+      "id": "transfer_selective_replay",
+      "kind": "paper",
+      "title": "Rethinking Transfer in Continual Learning: A Replay-Based Realisation",
+      "url": "https://arxiv.org/abs/2607.15587v1",
+      "date": "2026-07-17",
+      "status": "preprint",
+      "imported_rows": 0,
+      "use": "Future controlled replay selection and training-only distillation experiment; compare with existing replay before adoption. No validation targets become training data."
+    }
+  ]
+}

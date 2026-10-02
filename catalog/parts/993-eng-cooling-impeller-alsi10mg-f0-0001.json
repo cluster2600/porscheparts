@@ -1,13 +1,21 @@
 {
   "schema_version": "1.0.0",
   "part_id": "993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001",
-  "name": "Engine cooling fan impeller, rotating AlSi10Mg concept F0",
-  "description": "Independent concept of a one-piece impeller combining hub, twelve swept blades and a peripheral ring. PorscheFanatics and resellers establish part number 964 106 015 31, a commercial envelope, two consistent masses and an aluminum claim, but no functional geometry. The assembly test explicitly rejects the interference with the previous F0 housing.",
+  "name": "993 engine cooling fan — archived Carrera F0 concept",
+  "description": "This folder preserves the exploratory Carrera F0 concept: twelve swept blades, a simplified hub and a peripheral ring. Its synthetic 280 mm geometry does not reproduce the Porsche rotor, and integration with the F0 housing fails. It is no longer the baseline for the current design. The separate reconstruction dated 28 September 2026 studies the 993 Turbo M64.60: an eleven-blade 96410601522 rotor, ventilated cup, ribs and separate hub, targeting a PMB / Classic Retrofit 240 A alternator. This reconstruction remains partial: its interfaces, airflow, material and mechanical integrity are not validated.",
   "vehicle": {
     "generation": "993",
-    "variants": ["993_Carrera_fitment_to_confirm", "964_shared_component"],
-    "model_years": {"from": 1994, "to": 1998},
-    "porsche_part_numbers": ["96410601531"]
+    "variants": [
+      "993_Carrera_fitment_to_confirm",
+      "964_shared_component"
+    ],
+    "model_years": {
+      "from": 1994,
+      "to": 1998
+    },
+    "porsche_part_numbers": [
+      "96410601531"
+    ]
   },
   "classification": {
     "category": "engine_cooling_fan_impeller",
@@ -20,7 +28,9 @@
     "master_file": "parts/993-eng-cooling-impeller-alsi10mg-f0-0001/source/cooling_impeller.py",
     "units": "mm",
     "accuracy_mm": null,
-    "derived_files": ["parts/993-eng-cooling-impeller-alsi10mg-f0-0001/derived/cooling_impeller_alsi10mg_f0.step"]
+    "derived_files": [
+      "parts/993-eng-cooling-impeller-alsi10mg-f0-0001/derived/cooling_impeller_alsi10mg_f0.step"
+    ]
   },
   "provenance": {
     "record_license": "All rights reserved (see LICENSE) for the concept, the script and the calculations; no photograph, illustration, Porsche/PorscheFanatics/FVD/Porsche Poitiers/Partworks/EOS surface or commercial geometry redistributed",
@@ -68,7 +78,12 @@
     ]
   },
   "manufacturing": {
-    "candidate_processes": ["LPBF", "DMLS", "CNC", "casting"],
+    "candidate_processes": [
+      "LPBF",
+      "DMLS",
+      "CNC",
+      "casting"
+    ],
     "preferred_process": "undecided",
     "material": {
       "family": "candidate LPBF aluminum-silicon-magnesium alloy",
@@ -117,6 +132,7 @@
     "reviewed_by": "",
     "reviewed_on": null,
     "known_limits": [
+      "F0 concept archived as a design reference. The separate Turbo reconstruction is documented in twins/993-engine-cooling-fan-system-f0/REFERENCE_REBUILD.md; F0 results must not be transferred to the new rotor.",
       "The 300 x 300 x 150 mm is a commercial envelope, not an impeller drawing.",
       "The 0.94/0.948 kg masses are commercial claims with no protocol and no weighing boundary.",
       "The aluminum material has no grade, no process and no certificate; AlSi10Mg remains a candidate.",

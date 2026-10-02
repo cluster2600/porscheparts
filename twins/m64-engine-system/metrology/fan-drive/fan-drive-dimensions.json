@@ -1,0 +1,1724 @@
+{
+ "study_id": "M64-ACQ-0005",
+ "wave": "wave2/metro-fan-20260929",
+ "generated_utc": "2026-09-29T05:42:21+00:00",
+ "source": {
+  "path": "/home/lolman/imports/mac-obj/Downloads/Fan+Drive+0.21mm.obj",
+  "sha256": "6c0b12d4dd782fd4ecf4a5527d9b716ea5861abe1d7c369b3005910fa9ddb2f3",
+  "sha256_matches_wave1_intake": true,
+  "vertices": 1256836,
+  "units_assumption": "mm assumed; OBJ carries no units metadata (verified wave-1: no '#' header comments)",
+  "nominal_point_accuracy_mm": 0.21
+ },
+ "global_bbox_mm": {
+  "min": [
+   -184.6,
+   -235.5,
+   -7.9
+  ],
+  "max": [
+   140.6,
+   163.2,
+   442.2
+  ],
+  "method": "vertex bounding box of full mesh",
+  "uncertainty_mm": 1.0
+ },
+ "components": {
+  "lower_cluster": {
+   "vertices": 538791,
+   "z_range_mm": [
+    -8.0,
+    205.0
+   ],
+   "axis_xy_mm": [
+    -2.9,
+    -226.6
+   ],
+   "axis_method": "iterated rim-band centroid seeded from wave-1 note (-11.6,-187.1), radius cap 52 mm",
+   "axis_uncertainty_mm": 2.0
+  },
+  "upper_cluster": {
+   "vertices": 711161,
+   "z_range_mm": [
+    205.0,
+    442.2
+   ],
+   "axis_xy_mm": [
+    -83.5,
+    68.5
+   ],
+   "axis_method": "iterated rim-band centroid seeded from wave-1 note (-85,80), radius cap 135 mm",
+   "axis_uncertainty_mm": 2.0
+  }
+ },
+ "dimensions": {
+  "gear_sprocket_tip_od_mm": {
+   "value": 104.0,
+   "method": "p90 of per-slab max radius in tooth band (r<52 mm cap), x2; slabs of 8 mm; axis fixed at component level",
+   "slab_maxima_mm": [
+    51.8,
+    52.0,
+    52.0,
+    52.0,
+    52.0,
+    52.0,
+    52.0,
+    52.0,
+    52.0,
+    52.0,
+    52.0,
+    52.0,
+    52.0,
+    52.0
+   ],
+   "uncertainty_mm": 4.0,
+   "note": "tooth-band cap truncates at 104 mm; wave-1 estimate 127.6 mm likely refers to the full disc outer flange measured below"
+  },
+  "sprocket_disc_outer_od_mm": {
+   "value": 214.2,
+   "method": "p99.5 of radius about iterated disc centroid over all lower-cluster disc vertices (z<60, y<-129)",
+   "uncertainty_mm": 4.0,
+   "note": "covers the disc outer band out to r~66 mm; consistent in scale with the wave-1 127.6 mm gear OD figure"
+  },
+  "fan_pulley_od_mm": {
+   "value": 229.5,
+   "method": "min-p99 grid-search axis at the pulley rim (z=310..328 mm, r<140), OD = 2 x p99 radius about the fitted axis",
+   "uncertainty_mm": 4.0,
+   "note": "consistent with wave-1 r_max~127.8 mm (OD~255.6); per-slab raw maxima elsewhere reach r=135 mm (OD 270) due to axis scatter and blade asymmetry and are not used"
+  }
+ },
+ "harmonic_analysis": {
+  "method": "1-deg angular bins, radial crest per bin, rFFT amplitude for k=3..60; peaks counted via wrap-around local maxima",
+  "fan_slabs": [
+   {
+    "z_mm": [
+     205.0,
+     213.0
+    ],
+    "vertices": 6478,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 140.0,
+    "r_p999_mm": 139.8,
+    "r_p99_mm": 139.0,
+    "coverage": 0.1,
+    "cap_truncated": true
+   },
+   {
+    "z_mm": [
+     213.0,
+     221.0
+    ],
+    "vertices": 7591,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 140.0,
+    "r_p999_mm": 139.9,
+    "r_p99_mm": 139.0,
+    "coverage": 0.1,
+    "cap_truncated": true
+   },
+   {
+    "z_mm": [
+     221.0,
+     229.0
+    ],
+    "vertices": 8188,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 140.0,
+    "r_p999_mm": 139.9,
+    "r_p99_mm": 139.2,
+    "coverage": 0.11,
+    "cap_truncated": true
+   },
+   {
+    "z_mm": [
+     229.0,
+     237.0
+    ],
+    "vertices": 9549,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 140.0,
+    "r_p999_mm": 139.9,
+    "r_p99_mm": 138.7,
+    "coverage": 0.17,
+    "cap_truncated": true
+   },
+   {
+    "z_mm": [
+     237.0,
+     245.0
+    ],
+    "vertices": 14534,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 140.0,
+    "r_p999_mm": 139.6,
+    "r_p99_mm": 137.0,
+    "coverage": 0.44,
+    "harmonics": [
+     [
+      3,
+      702.97
+     ],
+     [
+      6,
+      235.92
+     ],
+     [
+      5,
+      226.79
+     ],
+     [
+      9,
+      184.86
+     ],
+     [
+      13,
+      154.46
+     ],
+     [
+      12,
+      152.79
+     ]
+    ],
+    "peaks": 33,
+    "median_peak_spacing_deg": 3.0,
+    "cap_truncated": true
+   },
+   {
+    "z_mm": [
+     245.0,
+     253.0
+    ],
+    "vertices": 19263,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 133.9,
+    "r_p999_mm": 133.2,
+    "r_p99_mm": 130.2,
+    "coverage": 0.51,
+    "harmonics": [
+     [
+      3,
+      812.87
+     ],
+     [
+      4,
+      316.86
+     ],
+     [
+      7,
+      174.37
+     ],
+     [
+      6,
+      169.06
+     ],
+     [
+      14,
+      134.44
+     ],
+     [
+      8,
+      127.69
+     ]
+    ],
+    "peaks": 34,
+    "median_peak_spacing_deg": 3.5,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     253.0,
+     261.0
+    ],
+    "vertices": 22619,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 127.1,
+    "r_p999_mm": 126.4,
+    "r_p99_mm": 123.6,
+    "coverage": 0.68,
+    "harmonics": [
+     [
+      3,
+      1903.66
+     ],
+     [
+      4,
+      1117.12
+     ],
+     [
+      10,
+      604.7
+     ],
+     [
+      9,
+      529.35
+     ],
+     [
+      11,
+      385.31
+     ],
+     [
+      16,
+      343.75
+     ]
+    ],
+    "peaks": 48,
+    "median_peak_spacing_deg": 3.0,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     261.0,
+     269.0
+    ],
+    "vertices": 29360,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 120.2,
+    "r_p999_mm": 119.4,
+    "r_p99_mm": 115.4,
+    "coverage": 0.74,
+    "harmonics": [
+     [
+      4,
+      1358.28
+     ],
+     [
+      3,
+      1317.25
+     ],
+     [
+      5,
+      966.76
+     ],
+     [
+      8,
+      668.03
+     ],
+     [
+      6,
+      597.75
+     ],
+     [
+      7,
+      554.91
+     ]
+    ],
+    "peaks": 35,
+    "median_peak_spacing_deg": 5.0,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     269.0,
+     277.0
+    ],
+    "vertices": 32638,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 113.4,
+    "r_p999_mm": 112.4,
+    "r_p99_mm": 108.9,
+    "coverage": 0.78,
+    "harmonics": [
+     [
+      4,
+      1356.87
+     ],
+     [
+      5,
+      1247.78
+     ],
+     [
+      3,
+      970.9
+     ],
+     [
+      8,
+      864.01
+     ],
+     [
+      6,
+      805.48
+     ],
+     [
+      9,
+      747.8
+     ]
+    ],
+    "peaks": 21,
+    "median_peak_spacing_deg": 9.0,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     277.0,
+     285.0
+    ],
+    "vertices": 35515,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 106.6,
+    "r_p999_mm": 105.8,
+    "r_p99_mm": 101.9,
+    "coverage": 0.79,
+    "harmonics": [
+     [
+      5,
+      1032.69
+     ],
+     [
+      6,
+      727.95
+     ],
+     [
+      9,
+      640.67
+     ],
+     [
+      4,
+      636.63
+     ],
+     [
+      8,
+      499.64
+     ],
+     [
+      10,
+      424.68
+     ]
+    ],
+    "peaks": 16,
+    "median_peak_spacing_deg": 17.0,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     285.0,
+     293.0
+    ],
+    "vertices": 36938,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 104.0,
+    "r_p999_mm": 103.0,
+    "r_p99_mm": 99.3,
+    "coverage": 0.8,
+    "harmonics": [
+     [
+      5,
+      1047.07
+     ],
+     [
+      6,
+      642.89
+     ],
+     [
+      9,
+      525.32
+     ],
+     [
+      3,
+      465.86
+     ],
+     [
+      8,
+      461.28
+     ],
+     [
+      7,
+      316.88
+     ]
+    ],
+    "peaks": 15,
+    "median_peak_spacing_deg": 18.0,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     293.0,
+     301.0
+    ],
+    "vertices": 35168,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 108.3,
+    "r_p999_mm": 107.5,
+    "r_p99_mm": 104.0,
+    "coverage": 0.75,
+    "harmonics": [
+     [
+      5,
+      1215.32
+     ],
+     [
+      7,
+      821.72
+     ],
+     [
+      9,
+      621.94
+     ],
+     [
+      6,
+      546.59
+     ],
+     [
+      3,
+      409.61
+     ],
+     [
+      10,
+      384.62
+     ]
+    ],
+    "peaks": 14,
+    "median_peak_spacing_deg": 22.5,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     301.0,
+     309.0
+    ],
+    "vertices": 35602,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 112.4,
+    "r_p999_mm": 111.6,
+    "r_p99_mm": 108.5,
+    "coverage": 0.79,
+    "harmonics": [
+     [
+      4,
+      1612.22
+     ],
+     [
+      7,
+      1084.17
+     ],
+     [
+      10,
+      1083.69
+     ],
+     [
+      5,
+      1000.45
+     ],
+     [
+      6,
+      639.05
+     ],
+     [
+      8,
+      626.57
+     ]
+    ],
+    "peaks": 19,
+    "median_peak_spacing_deg": 16.0,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     309.0,
+     317.0
+    ],
+    "vertices": 39146,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 116.0,
+    "r_p999_mm": 115.2,
+    "r_p99_mm": 113.7,
+    "coverage": 0.85,
+    "harmonics": [
+     [
+      4,
+      2605.22
+     ],
+     [
+      7,
+      1725.93
+     ],
+     [
+      9,
+      1140.39
+     ],
+     [
+      11,
+      924.41
+     ],
+     [
+      3,
+      789.34
+     ],
+     [
+      13,
+      555.36
+     ]
+    ],
+    "peaks": 17,
+    "median_peak_spacing_deg": 19.0,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     317.0,
+     325.0
+    ],
+    "vertices": 37587,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 119.4,
+    "r_p999_mm": 118.9,
+    "r_p99_mm": 115.9,
+    "coverage": 0.87,
+    "harmonics": [
+     [
+      4,
+      2771.96
+     ],
+     [
+      7,
+      1441.6
+     ],
+     [
+      9,
+      1016.1
+     ],
+     [
+      5,
+      838.82
+     ],
+     [
+      6,
+      832.07
+     ],
+     [
+      11,
+      801.06
+     ]
+    ],
+    "peaks": 21,
+    "median_peak_spacing_deg": 10.0,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     325.0,
+     333.0
+    ],
+    "vertices": 30471,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 122.7,
+    "r_p999_mm": 122.2,
+    "r_p99_mm": 119.8,
+    "coverage": 0.85,
+    "harmonics": [
+     [
+      4,
+      3047.16
+     ],
+     [
+      6,
+      1293.17
+     ],
+     [
+      5,
+      976.27
+     ],
+     [
+      9,
+      940.29
+     ],
+     [
+      3,
+      824.45
+     ],
+     [
+      7,
+      787.08
+     ]
+    ],
+    "peaks": 18,
+    "median_peak_spacing_deg": 15.5,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     333.0,
+     341.0
+    ],
+    "vertices": 30686,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 125.7,
+    "r_p999_mm": 125.2,
+    "r_p99_mm": 122.7,
+    "coverage": 0.9,
+    "harmonics": [
+     [
+      4,
+      2951.29
+     ],
+     [
+      6,
+      1754.86
+     ],
+     [
+      3,
+      1539.46
+     ],
+     [
+      8,
+      1442.63
+     ],
+     [
+      10,
+      873.25
+     ],
+     [
+      7,
+      768.37
+     ]
+    ],
+    "peaks": 22,
+    "median_peak_spacing_deg": 3.5,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     341.0,
+     349.0
+    ],
+    "vertices": 33965,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 128.6,
+    "r_p999_mm": 128.1,
+    "r_p99_mm": 125.5,
+    "coverage": 0.88,
+    "harmonics": [
+     [
+      4,
+      2607.85
+     ],
+     [
+      3,
+      2394.41
+     ],
+     [
+      6,
+      1878.73
+     ],
+     [
+      9,
+      1870.99
+     ],
+     [
+      5,
+      1546.29
+     ],
+     [
+      13,
+      1126.76
+     ]
+    ],
+    "peaks": 34,
+    "median_peak_spacing_deg": 4.0,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     349.0,
+     357.0
+    ],
+    "vertices": 33558,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 131.5,
+    "r_p999_mm": 131.1,
+    "r_p99_mm": 128.8,
+    "coverage": 1.0,
+    "harmonics": [
+     [
+      5,
+      3283.87
+     ],
+     [
+      3,
+      2666.04
+     ],
+     [
+      6,
+      2302.06
+     ],
+     [
+      4,
+      2018.34
+     ],
+     [
+      11,
+      1574.91
+     ],
+     [
+      10,
+      1278.21
+     ]
+    ],
+    "peaks": 46,
+    "median_peak_spacing_deg": 3.0,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     357.0,
+     365.0
+    ],
+    "vertices": 32335,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 132.3,
+    "r_p999_mm": 132.0,
+    "r_p99_mm": 128.8,
+    "coverage": 0.94,
+    "harmonics": [
+     [
+      6,
+      1967.61
+     ],
+     [
+      7,
+      1419.77
+     ],
+     [
+      10,
+      1387.99
+     ],
+     [
+      4,
+      1304.95
+     ],
+     [
+      3,
+      1189.03
+     ],
+     [
+      11,
+      1135.84
+     ]
+    ],
+    "peaks": 22,
+    "median_peak_spacing_deg": 9.5,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     365.0,
+     373.0
+    ],
+    "vertices": 36525,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 128.1,
+    "r_p999_mm": 126.6,
+    "r_p99_mm": 123.7,
+    "coverage": 0.96,
+    "harmonics": [
+     [
+      6,
+      1773.45
+     ],
+     [
+      7,
+      1320.3
+     ],
+     [
+      4,
+      1279.52
+     ],
+     [
+      8,
+      1168.33
+     ],
+     [
+      9,
+      1167.91
+     ],
+     [
+      11,
+      1073.43
+     ]
+    ],
+    "peaks": 40,
+    "median_peak_spacing_deg": 3.0,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     373.0,
+     381.0
+    ],
+    "vertices": 31860,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 128.3,
+    "r_p999_mm": 127.8,
+    "r_p99_mm": 125.9,
+    "coverage": 0.68,
+    "harmonics": [
+     [
+      8,
+      1322.84
+     ],
+     [
+      4,
+      1288.16
+     ],
+     [
+      6,
+      1100.21
+     ],
+     [
+      11,
+      805.29
+     ],
+     [
+      5,
+      754.34
+     ],
+     [
+      13,
+      679.29
+     ]
+    ],
+    "peaks": 14,
+    "median_peak_spacing_deg": 13.0,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     381.0,
+     389.0
+    ],
+    "vertices": 29022,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 129.5,
+    "r_p999_mm": 129.3,
+    "r_p99_mm": 127.5,
+    "coverage": 0.55,
+    "harmonics": [
+     [
+      3,
+      820.94
+     ],
+     [
+      7,
+      366.61
+     ],
+     [
+      4,
+      307.3
+     ],
+     [
+      8,
+      298.4
+     ],
+     [
+      5,
+      191.43
+     ],
+     [
+      12,
+      159.5
+     ]
+    ],
+    "peaks": 13,
+    "median_peak_spacing_deg": 17.0,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     389.0,
+     397.0
+    ],
+    "vertices": 24308,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 125.6,
+    "r_p999_mm": 124.6,
+    "r_p99_mm": 122.2,
+    "coverage": 0.46,
+    "harmonics": [
+     [
+      3,
+      517.01
+     ],
+     [
+      4,
+      378.58
+     ],
+     [
+      5,
+      256.98
+     ],
+     [
+      9,
+      181.23
+     ],
+     [
+      10,
+      160.44
+     ],
+     [
+      12,
+      146.13
+     ]
+    ],
+    "peaks": 7,
+    "median_peak_spacing_deg": 33.0,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     397.0,
+     405.0
+    ],
+    "vertices": 18476,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 119.2,
+    "r_p999_mm": 118.1,
+    "r_p99_mm": 115.7,
+    "coverage": 0.38,
+    "harmonics": [
+     [
+      3,
+      277.57
+     ],
+     [
+      5,
+      265.35
+     ],
+     [
+      6,
+      257.83
+     ],
+     [
+      4,
+      226.72
+     ],
+     [
+      8,
+      134.89
+     ],
+     [
+      9,
+      101.01
+     ]
+    ],
+    "peaks": 8,
+    "median_peak_spacing_deg": 25.0,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     405.0,
+     413.0
+    ],
+    "vertices": 15373,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 112.7,
+    "r_p999_mm": 112.1,
+    "r_p99_mm": 110.1,
+    "coverage": 0.3,
+    "harmonics": [
+     [
+      5,
+      158.43
+     ],
+     [
+      4,
+      133.98
+     ],
+     [
+      3,
+      121.61
+     ],
+     [
+      6,
+      72.12
+     ],
+     [
+      7,
+      62.87
+     ],
+     [
+      9,
+      59.79
+     ]
+    ],
+    "peaks": 6,
+    "median_peak_spacing_deg": 23.0,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     413.0,
+     421.0
+    ],
+    "vertices": 11405,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 106.6,
+    "r_p999_mm": 106.0,
+    "r_p99_mm": 104.1,
+    "coverage": 0.25,
+    "harmonics": [
+     [
+      3,
+      102.25
+     ],
+     [
+      5,
+      88.62
+     ],
+     [
+      6,
+      58.45
+     ],
+     [
+      7,
+      55.67
+     ],
+     [
+      4,
+      50.46
+     ],
+     [
+      8,
+      37.77
+     ]
+    ],
+    "peaks": 2,
+    "median_peak_spacing_deg": 180.0,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     421.0,
+     429.0
+    ],
+    "vertices": 8446,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 100.5,
+    "r_p999_mm": 100.0,
+    "r_p99_mm": 98.3,
+    "coverage": 0.2,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     429.0,
+     437.0
+    ],
+    "vertices": 3590,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 94.5,
+    "r_p999_mm": 94.3,
+    "r_p99_mm": 92.9,
+    "coverage": 0.14,
+    "cap_truncated": false
+   },
+   {
+    "z_mm": [
+     437.0,
+     445.0
+    ],
+    "vertices": 965,
+    "axis_xy": [
+     -83.5,
+     68.5
+    ],
+    "r_max_mm": 88.5,
+    "r_p999_mm": 88.4,
+    "r_p99_mm": 88.0,
+    "coverage": 0.04,
+    "cap_truncated": false
+   }
+  ],
+  "gear_slabs": [
+   {
+    "z_mm": [
+     -7.9,
+     0.1
+    ],
+    "vertices": 3602,
+    "axis_xy": [
+     -2.9,
+     -226.6
+    ],
+    "r_max_mm": 51.8,
+    "r_p999_mm": 51.4,
+    "r_p99_mm": 50.7,
+    "coverage": 0.16
+   },
+   {
+    "z_mm": [
+     0.1,
+     8.1
+    ],
+    "vertices": 4376,
+    "axis_xy": [
+     -2.9,
+     -226.6
+    ],
+    "r_max_mm": 52.0,
+    "r_p999_mm": 52.0,
+    "r_p99_mm": 51.6,
+    "coverage": 0.51,
+    "harmonics": [
+     [
+      3,
+      643.36
+     ],
+     [
+      4,
+      482.08
+     ],
+     [
+      6,
+      359.31
+     ],
+     [
+      5,
+      346.56
+     ],
+     [
+      7,
+      335.56
+     ],
+     [
+      8,
+      335.4
+     ]
+    ],
+    "peaks": 33,
+    "median_peak_spacing_deg": 5.0
+   },
+   {
+    "z_mm": [
+     8.1,
+     16.1
+    ],
+    "vertices": 6688,
+    "axis_xy": [
+     -4.5,
+     -230.5
+    ],
+    "r_max_mm": 52.0,
+    "r_p999_mm": 51.9,
+    "r_p99_mm": 51.2,
+    "coverage": 0.73,
+    "harmonics": [
+     [
+      5,
+      620.4
+     ],
+     [
+      6,
+      439.13
+     ],
+     [
+      4,
+      341.51
+     ],
+     [
+      3,
+      259.19
+     ],
+     [
+      7,
+      182.21
+     ],
+     [
+      19,
+      155.24
+     ]
+    ],
+    "peaks": 63,
+    "median_peak_spacing_deg": 3.0
+   },
+   {
+    "z_mm": [
+     16.1,
+     24.1
+    ],
+    "vertices": 5586,
+    "axis_xy": [
+     -3.1,
+     -233.1
+    ],
+    "r_max_mm": 52.0,
+    "r_p999_mm": 51.9,
+    "r_p99_mm": 51.7,
+    "coverage": 0.7,
+    "harmonics": [
+     [
+      5,
+      425.08
+     ],
+     [
+      3,
+      369.8
+     ],
+     [
+      6,
+      321.3
+     ],
+     [
+      12,
+      258.81
+     ],
+     [
+      16,
+      236.46
+     ],
+     [
+      11,
+      234.84
+     ]
+    ],
+    "peaks": 64,
+    "median_peak_spacing_deg": 4.0
+   },
+   {
+    "z_mm": [
+     24.1,
+     32.1
+    ],
+    "vertices": 7280,
+    "axis_xy": [
+     -2.3,
+     -233.2
+    ],
+    "r_max_mm": 52.0,
+    "r_p999_mm": 51.9,
+    "r_p99_mm": 51.2,
+    "coverage": 0.75,
+    "harmonics": [
+     [
+      3,
+      515.56
+     ],
+     [
+      6,
+      450.7
+     ],
+     [
+      5,
+      447.91
+     ],
+     [
+      10,
+      316.5
+     ],
+     [
+      4,
+      303.2
+     ],
+     [
+      9,
+      302.71
+     ]
+    ],
+    "peaks": 63,
+    "median_peak_spacing_deg": 3.0
+   },
+   {
+    "z_mm": [
+     32.1,
+     40.1
+    ],
+    "vertices": 4926,
+    "axis_xy": [
+     -2.9,
+     -226.6
+    ],
+    "r_max_mm": 52.0,
+    "r_p999_mm": 52.0,
+    "r_p99_mm": 51.3,
+    "coverage": 0.95,
+    "harmonics": [
+     [
+      3,
+      1080.33
+     ],
+     [
+      4,
+      776.29
+     ],
+     [
+      5,
+      522.06
+     ],
+     [
+      16,
+      381.16
+     ],
+     [
+      15,
+      360.52
+     ],
+     [
+      17,
+      351.26
+     ]
+    ],
+    "peaks": 97,
+    "median_peak_spacing_deg": 3.0
+   },
+   {
+    "z_mm": [
+     40.1,
+     48.1
+    ],
+    "vertices": 5287,
+    "axis_xy": [
+     -2.9,
+     -226.6
+    ],
+    "r_max_mm": 52.0,
+    "r_p999_mm": 51.8,
+    "r_p99_mm": 50.4,
+    "coverage": 0.93,
+    "harmonics": [
+     [
+      3,
+      1030.99
+     ],
+     [
+      4,
+      688.15
+     ],
+     [
+      5,
+      463.6
+     ],
+     [
+      6,
+      217.87
+     ],
+     [
+      24,
+      214.39
+     ],
+     [
+      25,
+      208.2
+     ]
+    ],
+    "peaks": 88,
+    "median_peak_spacing_deg": 3.0
+   },
+   {
+    "z_mm": [
+     48.1,
+     56.1
+    ],
+    "vertices": 5456,
+    "axis_xy": [
+     -2.9,
+     -226.6
+    ],
+    "r_max_mm": 52.0,
+    "r_p999_mm": 51.8,
+    "r_p99_mm": 50.7,
+    "coverage": 0.67,
+    "harmonics": [
+     [
+      3,
+      598.35
+     ],
+     [
+      4,
+      324.96
+     ],
+     [
+      17,
+      294.59
+     ],
+     [
+      18,
+      266.24
+     ],
+     [
+      16,
+      242.21
+     ],
+     [
+      22,
+      228.39
+     ]
+    ],
+    "peaks": 54,
+    "median_peak_spacing_deg": 4.0
+   },
+   {
+    "z_mm": [
+     56.1,
+     64.1
+    ],
+    "vertices": 4450,
+    "axis_xy": [
+     -2.9,
+     -226.6
+    ],
+    "r_max_mm": 52.0,
+    "r_p999_mm": 52.0,
+    "r_p99_mm": 51.8,
+    "coverage": 0.32,
+    "harmonics": [
+     [
+      8,
+      198.93
+     ],
+     [
+      5,
+      194.3
+     ],
+     [
+      11,
+      171.95
+     ],
+     [
+      14,
+      167.27
+     ],
+     [
+      4,
+      154.62
+     ],
+     [
+      17,
+      143.15
+     ]
+    ],
+    "peaks": 20,
+    "median_peak_spacing_deg": 3.0
+   },
+   {
+    "z_mm": [
+     64.1,
+     72.1
+    ],
+    "vertices": 2578,
+    "axis_xy": [
+     -2.9,
+     -226.6
+    ],
+    "r_max_mm": 52.0,
+    "r_p999_mm": 52.0,
+    "r_p99_mm": 51.8,
+    "coverage": 0.2
+   },
+   {
+    "z_mm": [
+     72.1,
+     80.1
+    ],
+    "vertices": 2186,
+    "axis_xy": [
+     -2.9,
+     -226.6
+    ],
+    "r_max_mm": 52.0,
+    "r_p999_mm": 52.0,
+    "r_p99_mm": 51.7,
+    "coverage": 0.11
+   },
+   {
+    "z_mm": [
+     80.1,
+     88.1
+    ],
+    "vertices": 1667,
+    "axis_xy": [
+     -2.9,
+     -226.6
+    ],
+    "r_max_mm": 52.0,
+    "r_p999_mm": 52.0,
+    "r_p99_mm": 51.7,
+    "coverage": 0.07
+   },
+   {
+    "z_mm": [
+     88.1,
+     96.1
+    ],
+    "vertices": 1781,
+    "axis_xy": [
+     -2.9,
+     -226.6
+    ],
+    "r_max_mm": 52.0,
+    "r_p999_mm": 52.0,
+    "r_p99_mm": 51.8,
+    "coverage": 0.06
+   },
+   {
+    "z_mm": [
+     96.1,
+     104.1
+    ],
+    "vertices": 1533,
+    "axis_xy": [
+     -2.9,
+     -226.6
+    ],
+    "r_max_mm": 52.0,
+    "r_p999_mm": 52.0,
+    "r_p99_mm": 52.0,
+    "coverage": 0.05
+   }
+  ],
+  "fan_strong_votes": [
+   [
+    3,
+    [
+     237.0,
+     245.0
+    ],
+    0.44
+   ],
+   [
+    3,
+    [
+     245.0,
+     253.0
+    ],
+    0.51
+   ],
+   [
+    4,
+    [
+     317.0,
+     325.0
+    ],
+    0.87
+   ],
+   [
+    4,
+    [
+     325.0,
+     333.0
+    ],
+    0.85
+   ],
+   [
+    3,
+    [
+     381.0,
+     389.0
+    ],
+    0.55
+   ]
+  ],
+  "gear_strong_votes": [
+   [
+    3,
+    [
+     48.1,
+     56.1
+    ],
+    0.67
+   ]
+  ]
+ },
+ "blade_count_verdict": {
+  "value": null,
+  "status": "UNKNOWN",
+  "criteria": "a count is DETERMINED only when >=2 coverage-gated slabs agree on a single top harmonic whose amplitude exceeds 1.8x the runner-up",
+  "note": "angular coverage on this scan is far below 1.0 on most blade-band slabs, so gap-based peak counting is noise-dominated; prior wave-1 conclusion (harmonics 4-7 inconclusive) is reproduced"
+ },
+ "gear_tooth_count_verdict": {
+  "value": null,
+  "status": "UNKNOWN"
+ },
+ "evidence_limits": [
+  "All values are scan-derived estimates, not physical measurements.",
+  "Nothing here declares any part dimensionally correct, fitted, tested, safe, released, or manufacturing-ready.",
+  "Blade count remains UNKNOWN absent physical metrology or a higher-coverage scan.",
+  "Max-radius estimators are upward-biased by isolated tessellation spikes; p999 and coverage-gated variants are provided."
+ ]
+}

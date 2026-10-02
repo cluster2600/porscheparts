@@ -1,0 +1,231 @@
+{
+  "observed_at_utc": "2026-09-28T22:12:17.283505+00:00",
+  "state": "qualified_running_user_retained_final_image_published",
+  "rental_started": true,
+  "vast_inventory": [
+    {
+      "instance_id": 53246885,
+      "offer_id": 49181720,
+      "machine_id": 44690,
+      "state": "running",
+      "created_epoch": 1790626377,
+      "created_at_utc": "2026-09-28T20:12:57Z"
+    }
+  ],
+  "qualification_spend_usd": null,
+  "local_image_tag": "ghcr.io/cluster2600/3dprinting993-picogk-m64:station-20260928-ef4b546991d6",
+  "local_image_config_digest": "sha256:4893cbb406c8b88ec9dcaec201ebfbe42f68902e1987c5d65a2f556ee390a603",
+  "published_registry_manifest_digest": "sha256:540d9d4af34a73f91114f2d3dd4f4ad847eee42037c26efaf1caadb5b155e871",
+  "openclaw_kali2": {
+    "gateway_http_status": 200,
+    "gateway_url_from_kali2": "http://127.0.0.1:18789/",
+    "version": "2026.9.6",
+    "linger_enabled": true,
+    "max_concurrent_agents": 4,
+    "llm_api_url": "http://127.0.0.1:18000/v1",
+    "llm_backend_ready": true,
+    "gateway_restarts": 0,
+    "gateway_active_state": "active",
+    "verified_after_ssh_disconnect": true,
+    "llm_backend_state": "api_reverified_with_memory_utilization_0.90",
+    "tunnels_active": true,
+    "streaming_client_http_status": 200,
+    "streaming_client_url_from_kali2": "http://127.0.0.1:8088/",
+    "http_verified_at_utc": "2026-09-28T20:36:04.199569+00:00",
+    "llm_api_evidence": "runtime/qwen-api/response.json",
+    "tool_call_verified": true,
+    "tool_call_evidence": "runtime/openclaw/tool-call.json",
+    "gateway_pid": 221922,
+    "tunnel_pid": 1487387,
+    "tunnel_restarts": 0,
+    "gateway_after_turn_verified_at_utc": "2026-09-28T21:02:31Z",
+    "prior_api_response_verified": true,
+    "llm_api_after_memory_fix_evidence": "runtime/qwen-api/response-after-memory-fix.json",
+    "tool_call_after_memory_fix_reverified": true,
+    "tool_call_after_memory_fix_evidence": "runtime/openclaw/tool-call-after-memory-fix.json",
+    "user_dashboard_response_under_diagnosis": false,
+    "user_dashboard_response_recovered_user_confirmed": true
+  },
+  "gpu_preflight": "pass",
+  "webrtc": "pass_via_persistent_ssh_media_relay",
+  "soak_30_minutes": "pass",
+  "manufacturing_validated": false,
+  "publication_plan_updated_at_utc": "2026-09-28T19:12:41.536808+00:00",
+  "publication_route": {
+    "method": "github_actions_ephemeral_runner",
+    "status": "published_and_anonymously_qualified",
+    "runner_host": "Kali2",
+    "publish_existing_image_without_rebuild": true,
+    "controller": "existing approved OpenBao GitHub wrapper",
+    "package_write_identity": "job-scoped GITHUB_TOKEN with packages:write",
+    "new_ghcr_credential_required": false,
+    "anonymous_registry_verification_required_before_rental": true,
+    "run_id": 36471929525,
+    "runner_automatically_deregistered": true
+  },
+  "publication_tag": "ghcr.io/cluster2600/3dprinting993-picogk-m64:station-20260928-ef4b546991d6",
+  "publisher_repository_admin_verified": true,
+  "prior_direct_push_attempts": {
+    "publication_attempts": 2,
+    "publication_failed_phase": "PUSH",
+    "publication_failure_category": "denied",
+    "publisher_matches_namespace": true,
+    "oauth_scopes_header_present": true,
+    "write_packages_scope": false,
+    "publication_failure_explanation": "The GHCR reader was used for a direct push; prior image publication used the GitHub Actions job token."
+  },
+  "provider_create_requested": true,
+  "anonymous_registry_verified": true,
+  "publication_evidence": "publication.json",
+  "rental_attempt": {
+    "duration_hours": 4,
+    "manifest_budget_usd": 26.99,
+    "provider_create_requested": true,
+    "state": "instance_running",
+    "budget_correction_pending": false,
+    "deadline_epoch": 1790640736,
+    "deadline_at_utc": "2026-09-29T00:12:16Z",
+    "external_guard_active": false,
+    "reserved_cost_ceiling_usd": 26.98721064814815,
+    "status": "historical_qualification_budget_superseded_by_user_keep_running_request",
+    "former_external_guard_pid": 84535
+  },
+  "prior_rental_attempt": {
+    "state": "refused_before_provider_create_due_to_manifest_budget",
+    "provider_create_requested": false
+  },
+  "cpu_witness": "pass",
+  "runtime_evidence": "runtime/summary.json",
+  "result_sync_kali2": {
+    "active": true,
+    "persistent": true,
+    "deadline": null,
+    "main_pid": 1535288,
+    "last_observed_success_at_utc": "2026-09-28T21:42:55Z",
+    "last_exit_code": 0,
+    "evidence": "runtime/sync-persistent.json",
+    "soak_hash_verification_passed": true,
+    "soak_verified_job_files": 1219,
+    "soak_verification_evidence": "runtime/soak/kali2-sync-verification.json"
+  },
+  "make_check_evidence": "runtime/make-check-final-release.json",
+  "qwen_api": "pass",
+  "ovrtx_gpu3": "pass",
+  "ovrtx_evidence": "runtime/ovrtx-gpu3/summary.json",
+  "external_udp_reachability": {
+    "status": "failed_from_current_network",
+    "probes_from_mac": 3,
+    "probes_from_kali2": 3,
+    "server_external_datagrams_observed": 0,
+    "shared_uplink_possible": true,
+    "provider_fault_proven": false,
+    "observation_source": "controller bounded echo probes"
+  },
+  "soak_started_at_utc": "2026-09-28T21:25:42Z",
+  "soak_first_attempt": {
+    "status": "failed_memory_threshold",
+    "elapsed_seconds": 15.400949647882953,
+    "gpu0_peak_used_mib": 96088,
+    "gpu0_total_mib": 97887,
+    "gpu0_peak_percent": 98.16216657983185,
+    "oom_events": 0,
+    "qwen_requests_passed": 4,
+    "source": "runtime/soak-attempt-1/report.json"
+  },
+  "soak_second_attempt": {
+    "status": "interrupted_by_controller_for_dashboard_diagnostic",
+    "interrupted_at_utc_approximate": "2026-09-28T21:21:30Z",
+    "resource_failure_asserted": false,
+    "qualification_passed": false,
+    "observation_source": "runtime/soak-attempt-2/report.json",
+    "elapsed_seconds": 168.6693296029698,
+    "qwen_requests_passed": 12,
+    "pipelines_completed": 5,
+    "peak_gpu_percent": 91.026
+  },
+  "image_hotfix": {
+    "local_image_id": "sha256:4f58a4e28ab7706e7735b2185123c2d8fd6eb94a3d1842a9e352950ce503bdfb",
+    "local_tag": "picogk-station:qualified-persistent-20260928",
+    "cpu_config_worker_smoke": "pass",
+    "published": false,
+    "evidence": "runtime/image-hotfix-persistent/final-image.json"
+  },
+  "omniverse_ui_evidence": "runtime/omniverse-ui/summary.json",
+  "soak_expected_end_at_utc": "2026-09-28T21:55:42Z",
+  "current_operation": {
+    "mode": "keep_running_at_explicit_user_request",
+    "automatic_destruction_enabled": false,
+    "deadline": null,
+    "estimated_hourly_usd": 6.237037037037037,
+    "estimated_daily_usd_excluding_transfers": 149.6888888888889,
+    "actual_billed_cost_usd": null,
+    "evidence": "runtime/keep-running.json"
+  },
+  "result_sync_kali2_previous": {
+    "pid": 1489013,
+    "alive": true,
+    "last_success_at_utc": "2026-09-28T20:35:17Z",
+    "last_exit_code": 0,
+    "destination_relative_to_home": "stations/qualification-53246885",
+    "destination_mode": "0700",
+    "source_user": "station-worker",
+    "source_directories_relative_to_workspace": [
+      "qualification",
+      "jobs",
+      "logs"
+    ],
+    "interval_after_transfer_seconds": 60,
+    "deadline_epoch": 1790640736,
+    "root_fallback_used": false,
+    "delete_enabled": false,
+    "follow_symlinks": false
+  },
+  "kali1_cpu": {
+    "status": "pass",
+    "kali2_native_command": "kali1-picogk",
+    "evidence": "runtime/kali1-cpu/summary.json"
+  },
+  "image_hotfix_previous": {
+    "local_image_id": "sha256:fd50c61399fd8b419b8f63b1eaf33dc5bfaeb5e8df5182ff68c3db45dc600c6a",
+    "local_tag": "picogk-station:qualified-final-20260928",
+    "cpu_config_worker_smoke": "pass",
+    "published": false,
+    "evidence": "runtime/image-hotfix/final-image.json"
+  },
+  "soak_ended_at_utc": "2026-09-28T21:55:42.702302+00:00",
+  "soak_evidence": "runtime/soak/summary.json",
+  "soak_kali2_sync_evidence": "runtime/soak/kali2-sync-verification.json",
+  "make_check_previous_evidence": "runtime/make-check.json",
+  "github_access_evidence": "runtime/github-access/proof.json",
+  "final_publication_evidence": "publication-final.json",
+  "delivered_image_ref": "ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:6548a22795a01bf6b4a1d79a4bf9415d839ef5f445773d19d3df81bec2bef154",
+  "final_image_config_digest": "sha256:4f58a4e28ab7706e7735b2185123c2d8fd6eb94a3d1842a9e352950ce503bdfb",
+  "final_image_fresh_gpu_boot_verified": false,
+  "live_instance_image_scope": "initial published image with verified runtime corrections; existing user work preserved",
+  "image_hotfix_persistent": {
+    "published": true,
+    "evidence": "runtime/image-hotfix-persistent/final-image.json",
+    "publication_evidence": "publication-final.json",
+    "image_ref": "ghcr.io/cluster2600/3dprinting993-picogk-m64@sha256:6548a22795a01bf6b4a1d79a4bf9415d839ef5f445773d19d3df81bec2bef154"
+  },
+  "engine_work_monitoring": {
+    "active": true,
+    "interval_minutes": 30,
+    "target": "Porsche 911 993 engine reconstruction in existing M64/60 program",
+    "automatic_rental_shutdown": false,
+    "token_rotation_requested": false,
+    "user_requested_token_retention": true
+  },
+  "github_access": {
+    "repositories": [
+      "cluster2600/porscheparts",
+      "cluster2600/porschefanatics.com"
+    ],
+    "native_reads_verified": true,
+    "push_dry_run_verified": true,
+    "remote_refs_created_by_verification": false,
+    "api_authentication_metadata_filtered": true,
+    "evidence": "runtime/github-access/proof.json"
+  },
+  "make_check_delivery_evidence": "runtime/make-check-delivery.json"
+}

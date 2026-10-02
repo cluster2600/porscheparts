@@ -1,0 +1,404 @@
+{
+  "checked_on": "2026-10-02",
+  "scope": "Curated primary-source mechanical engineering and design-as-code search. This is not an exhaustive collection of worldwide doctoral work.",
+  "previous_registers": [
+    "../qwen-engineering-20261002/sources.json",
+    "../qwen-engineering-20261002/sources-followup.json"
+  ],
+  "training_imports": 0,
+  "policy": "Metadata, methodology and task ideas only. Public access does not grant unrestricted training rights. Author new exercises, verify them independently, group splits by parent design/problem family, and reserve benchmarks for evaluation.",
+  "search_coverage": [
+    {
+      "topic": "CAD intent and assemblies",
+      "queries": [
+        "2026 CAD code constraint verification",
+        "2026 manufacturable functional assemblable text CAD"
+      ]
+    },
+    {
+      "topic": "Doctoral computational design",
+      "repositories": [
+        "ETH EDAC",
+        "EPFL EDAM and Infoscience",
+        "TU Delft",
+        "TUM mediaTUM"
+      ],
+      "queries": [
+        "doctoral computational design constraints",
+        "doctoral topology optimization nonlinear structures"
+      ]
+    },
+    {
+      "topic": "Automotive thermomechanics",
+      "repositories": [
+        "Theses.fr",
+        "Bordeaux OSKAR",
+        "White Rose"
+      ],
+      "queries": [
+        "culasse fatigue aluminium these",
+        "engine cooling thermal management doctoral",
+        "conjugate heat transfer FEA CFD PhD"
+      ]
+    },
+    {
+      "topic": "Metal manufacturing",
+      "queries": [
+        "2026 inherent strain residual stress topology optimization",
+        "LPBF predictive thermal control doctoral",
+        "cleanable topology optimization fluid jet access"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "cit-cad-2609-v2",
+      "kind": "preprint",
+      "date": "2026-09-13",
+      "title": "CIT-CAD: Constraint Intent Tree-based CAD Code Generation and Verification",
+      "url": "https://arxiv.org/abs/2609.07434v2",
+      "reviewed": "abstract and method overview; not the complete paper",
+      "rights": "CC-BY-NC-ND-4.0 paper; code rights not verified",
+      "use": "Methodology reference only: explicit intent, deterministic extraction and preservation of satisfied constraints during repair. Owner-measured attachment contracts remain independent of model-inferred intent."
+    },
+    {
+      "id": "muse-2605-v2",
+      "kind": "preprint_and_benchmark",
+      "date": "2026-06-04",
+      "title": "MUSE: Benchmarking Manufacturable, Functional, and Assemblable Text-to-CAD Generation",
+      "url": "https://arxiv.org/abs/2605.28579v2",
+      "project": "https://dong7313.github.io/muse-benchmark/",
+      "code": "https://github.com/dong7313/muse",
+      "dataset": "https://huggingface.co/datasets/dongxiaoyu/MUSE",
+      "dataset_revision": "f8a1dc45d1ea73df4161e8a1caf1d503c5358c30",
+      "rights": "MIT code; CC-BY-4.0 dataset confirmed on author project, repository and dataset metadata",
+      "reviewed": "abstract, author repository README, dataset card and metadata",
+      "use": "Reserve the 106-case test benchmark; no rows imported. Code, geometry and design-intent gates are distinct. Its VLM judge and paid inference are not our independent engineering inspection."
+    },
+    {
+      "id": "residual-stress-2609",
+      "kind": "preprint",
+      "date": "2026-09-07",
+      "title": "Elastoplastic inherent strain-based topology optimization for residual stress reduction in metal additive manufacturing",
+      "url": "https://arxiv.org/abs/2609.07337v1",
+      "reviewed": "abstract",
+      "rights": "not cleared for corpus import",
+      "use": "Process-aware design and finite-difference sensitivity checks. No measured inherent strain, yield law or build process is available for our part; those inputs cannot be invented."
+    },
+    {
+      "id": "cht-coupling-ofj-2025",
+      "kind": "journal_article",
+      "date": "2025-03-07",
+      "title": "Analysis of Coupling Strategies for Conjugate Heat Transfer Problems",
+      "authors": [
+        "Emad Tandis",
+        "Philip Cardiff",
+        "Ali Ashrafizadeh"
+      ],
+      "url": "https://journal.openfoam.com/index.php/ofj/article/view/92",
+      "doi": "10.51560/ofj.v5.92",
+      "rights": "CC-BY-SA-4.0 paper; linked code archive rights not separately checked",
+      "reviewed": "abstract, publication date and licence",
+      "use": "CHT coupling stability, transient benchmarks and multiple regions. The modified foam-extend solver is not an ESI v2312 dictionary recipe."
+    },
+    {
+      "id": "multiregionfoam-2306-v2",
+      "kind": "preprint",
+      "date": "2023-07-09",
+      "title": "multiRegionFoam -- A Unified Multiphysics Framework for Multi-Region Coupled Continuum-Physical Problems",
+      "url": "https://arxiv.org/abs/2306.01924v2",
+      "reviewed": "abstract",
+      "rights": "not cleared for corpus import",
+      "use": "Explicit per-region models and interface transmission conditions; FOAM-extend family, not a drop-in ESI or Foundation solver."
+    },
+    {
+      "id": "eth-wirth-2026",
+      "kind": "doctoral_thesis",
+      "year": 2026,
+      "author": "M. Wirth",
+      "title": "Computational Design of Additively Manufactured Architected Textiles",
+      "url": "https://www.research-collection.ethz.ch/entities/publication/14bd0798-1523-40e1-a504-9e01e3b6d908",
+      "verification_url": "https://edac.ethz.ch/publications-and-awards/DoctoralThesis.html",
+      "reviewed": "official doctoral catalogue metadata; individual record returned 403",
+      "rights": "unverified; excluded from training",
+      "use": "Procedural architecture reading queue, not automotive material evidence."
+    },
+    {
+      "id": "eth-walker-2026",
+      "kind": "doctoral_thesis",
+      "year": 2026,
+      "author": "A. Walker",
+      "title": "Computational Design of 4D-Printed Shape-Morphing Structures",
+      "url": "https://www.research-collection.ethz.ch/entities/publication/f3b06412-d0a9-40b7-88bc-f69232bfa082",
+      "verification_url": "https://edac.ethz.ch/publications-and-awards/DoctoralThesis.html",
+      "reviewed": "official doctoral catalogue metadata; individual record returned 403",
+      "rights": "unverified; excluded from training",
+      "use": "Coupled geometry-response reading queue; not metal engine qualification."
+    },
+    {
+      "id": "eth-du-pasquier-2022",
+      "kind": "doctoral_thesis",
+      "year": 2022,
+      "author": "C. du Pasquier",
+      "title": "Design, Optimization, and Verification of Pneumatically Actuated Shape-Morphing Lattices",
+      "url": "https://www.research-collection.ethz.ch/handle/20.500.11850/543889",
+      "verification_url": "https://edac.ethz.ch/publications-and-awards/DoctoralThesis.html",
+      "reviewed": "official doctoral catalogue metadata; individual record returned 403",
+      "rights": "unverified; excluded from training",
+      "use": "Verification and lattice reading queue."
+    },
+    {
+      "id": "eth-blosch-2020",
+      "kind": "doctoral_thesis",
+      "year": 2020,
+      "author": "Alexandra Blosch Klein",
+      "title": "Design Heuristics for Additive Manufacturing",
+      "url": "https://doi.org/10.3929/ethz-b-000412677",
+      "verification_url": "https://www.research-collection.ethz.ch/handle/20.500.11850/412677",
+      "reviewed": "individual record, abstract and rights",
+      "rights": "In Copyright - Non-Commercial Use Permitted; excluded from unrestricted corpus",
+      "use": "Separate design opportunities from process limits and controlled validation."
+    },
+    {
+      "id": "eth-rigger-2019",
+      "kind": "doctoral_thesis",
+      "year": 2019,
+      "author": "Eugen Rigger",
+      "title": "Task Definition for Design Automation",
+      "url": "https://doi.org/10.3929/ethz-b-000382356",
+      "verification_url": "https://www.research-collection.ethz.ch/handle/20.500.11850/382356",
+      "reviewed": "individual record, abstract and rights",
+      "rights": "In Copyright - Non-Commercial Use Permitted; excluded from unrestricted corpus",
+      "use": "Define automation tasks and failure-derived metrics before expanding a training curriculum."
+    },
+    {
+      "id": "eth-munzer-2015",
+      "kind": "doctoral_thesis",
+      "year": 2015,
+      "author": "Clemens Munzer",
+      "title": "Constraint-Based Methods for Automated Computational Design Synthesis of Solution Spaces",
+      "url": "https://www.research-collection.ethz.ch/handle/20.500.11850/113711",
+      "reviewed": "doctoral catalogue and record metadata; thesis title page in primary search result",
+      "rights": "not cleared for corpus import",
+      "use": "Constraint-based design synthesis reading queue."
+    },
+    {
+      "id": "tum-gmeiner-2015",
+      "kind": "doctoral_thesis",
+      "year": 2015,
+      "author": "Thomas Gmeiner",
+      "title": "Automatic Fixture Design Based on Formal Knowledge Representation, Design Synthesis and Verification",
+      "url": "https://mediatum.ub.tum.de/?id=1231686",
+      "verification_url": "https://edac.ethz.ch/publications-and-awards/DoctoralThesis.html",
+      "reviewed": "official doctoral catalogue and primary thesis introduction excerpt; record then rate limited",
+      "rights": "not cleared for corpus import",
+      "use": "Fixture knowledge, interference and FEA verification. The introduction excludes workpiece tolerances/datums from its scope; it cannot establish our mounting interfaces."
+    },
+    {
+      "id": "tum-helms-2013",
+      "kind": "doctoral_thesis",
+      "year": 2013,
+      "author": "B. Helms",
+      "title": "Object-Oriented Graph Grammars for Computational Design Synthesis",
+      "url": "https://mediatum.ub.tum.de/node?id=1113665",
+      "verification_url": "https://edac.ethz.ch/publications-and-awards/DoctoralThesis.html",
+      "reviewed": "official doctoral catalogue metadata; individual record rate limited",
+      "rights": "unverified; excluded from training",
+      "use": "Graph grammar reading queue."
+    },
+    {
+      "id": "epfl-schlenger-2026",
+      "kind": "doctoral_thesis",
+      "year": 2026,
+      "author": "L. M. Schlenger",
+      "title": "Toward Predictive Thermal Control in LPBF: Quantifying Heat Build-Up and Stabilizing Melt Pool Behavior",
+      "url": "https://infoscience.epfl.ch/items/68770b05-f721-485c-9227-d462f1906e2e",
+      "verification_url": "https://www.epfl.ch/education/phd/edam-advanced-manufacturing/edam-published-theses/",
+      "reviewed": "official doctoral catalogue metadata; individual record unavailable",
+      "rights": "unverified; excluded from training",
+      "use": "LPBF thermal-process reading queue; no calibrated process model imported."
+    },
+    {
+      "id": "epfl-ozsoy-2026",
+      "kind": "doctoral_thesis",
+      "year": 2026,
+      "author": "A. Ozsoy",
+      "title": "Cracking in Additive Manufacturing of Immiscible Multi-Materials: Mechanisms and Mitigation Strategies",
+      "url": "https://infoscience.epfl.ch/items/868a1be7-3ed9-4a73-b8b4-38d512940134",
+      "verification_url": "https://www.epfl.ch/education/phd/edam-advanced-manufacturing/edam-published-theses/",
+      "reviewed": "official doctoral catalogue metadata; individual record unavailable",
+      "rights": "unverified; excluded from training",
+      "use": "Manufacturing defect-mechanism reading queue."
+    },
+    {
+      "id": "epfl-esmaeilzadeh-2025",
+      "kind": "doctoral_thesis",
+      "year": 2025,
+      "author": "Reza Esmaeilzadeh",
+      "title": "In-situ Microstructural Control and Process Monitoring in Laser Powder Bed Fusion of Ti-6Al-4V Alloy",
+      "url": "https://infoscience.epfl.ch/entities/publication/96f77c30-7240-4d85-b9e3-89e48b50275d",
+      "reviewed": "individual record, abstract and access conditions",
+      "rights": "restricted PDF; licence N/A; no full-text access or import",
+      "use": "Thermal history, defects and process monitoring; no transferable alloy allowables claimed."
+    },
+    {
+      "id": "delft-zhang-2026",
+      "kind": "doctoral_thesis",
+      "year": 2026,
+      "author": "Lidan Zhang",
+      "title": "Topology optimization of geometrically nonlinear structures",
+      "url": "https://doi.org/10.4233/uuid:4943b025-56b5-45b5-bc2f-79e14b6891c3",
+      "verification_url": "https://repository.tudelft.nl/record/uuid:4943b025-56b5-45b5-bc2f-79e14b6891c3",
+      "reviewed": "individual record and abstract",
+      "rights": "License info not available; excluded from training",
+      "use": "Nonlinear solver convergence and connectivity to input/output/support fixtures."
+    },
+    {
+      "id": "leeds-pohl-2016",
+      "kind": "doctoral_thesis",
+      "year": 2016,
+      "author": "Julien Pohl",
+      "title": "Turbine Stator Well Heat Transfer and Design Optimisation Using Numerical Methods",
+      "url": "https://etheses.whiterose.ac.uk/id/eprint/15939/",
+      "reviewed": "individual record, abstract and licence",
+      "rights": "CC-BY-NC-SA-2.5; excluded from unrestricted corpus",
+      "use": "CHT/FEA coupling and validation against experiments; aero-engine reference, not Porsche boundary conditions."
+    },
+    {
+      "id": "calculix-2.23",
+      "kind": "official_documentation",
+      "version": "2.23",
+      "url": "https://www.dhondt.de/",
+      "manual_archive": "https://www.dhondt.de/ccx_2.23.htm.tar.bz2",
+      "examples_archive": "https://www.dhondt.de/ccx_2.23.test.tar.bz2",
+      "rights": "GPL-2.0 solver; no upstream text/example import performed",
+      "use": "INP syntax, material cards, sets, boundary constraints and native analytical checks. Installed Kali2 runtime verified as 2.23-1."
+    },
+    {
+      "id": "esi-cht-2312",
+      "kind": "official_documentation",
+      "version": "ESI v2312",
+      "url": "https://doc.openfoam.com/2312/tools/processing/solvers/rtm/heat-transfer/chtMultiRegionFoam/",
+      "rights": "documentation reuse not cleared; reference only",
+      "use": "CHT solver family aligned with the installed engineering image. Closed-case dictionary and interface tests still required."
+    },
+    {
+      "id": "foundation-thermal-14",
+      "kind": "official_documentation",
+      "version": "Foundation 14",
+      "url": "https://doc.cfd.direct/openfoam/user-guide-v14/thermal-boundary-conditions",
+      "related_url": "https://doc.cfd.direct/openfoam/user-guide-v14/thermophysical",
+      "rights": "reference only",
+      "use": "Thermal interface concepts; do not mix these dictionary APIs with ESI v2312 targets."
+    },
+    {
+      "id": "fins-ce-195440",
+      "kind": "journal_article",
+      "date": "2025-06-22",
+      "online_date": "2024-11-06",
+      "title": "Improving heat transfer in an air-cooled engine by redesigning the fins",
+      "authors": [
+        "Zbigniew Jan Sroka",
+        "Gadisa Sufe",
+        "Ebisa Kejela"
+      ],
+      "url": "https://www.combustion-engines.eu/Improving-heat-transfer-in-an-air-cooled-engine-by-redesigning-the-fins,195440,0,2.html",
+      "doi": "10.19206/CE-195440",
+      "rights": "CC-BY-4.0; verified on PDF first page",
+      "reviewed": "Eight-page PDF, tables and page-three visual inspection",
+      "pdf_sha256": "3ed12edd838cc6ffae5c1057ba7d5107628b4913fbe4157b5f778a167816b337",
+      "use": "Study reports single-cylinder 6063-T6, not Porsche alloy. Section 3.1 claims 250 cm^3; Table 1 gives bore 50 mm and stroke 70 mm, implying 137.445 cm^3. Table 3 masses 0.89/0.96 kg imply 7.865% increase, versus 8.23% in the text. These discrepancies require clarification. Temperature differences alone do not independently establish heat rate."
+    },
+    {
+      "id": "ice-digital-twins-review",
+      "kind": "journal_article",
+      "year": 2023,
+      "title": "Digital twins for internal combustion engines: A brief review",
+      "authors": [
+        "Viet Dung Tran",
+        "Prabhakar Sharma",
+        "Lan Huong Nguyen"
+      ],
+      "url": "https://journal.cbiore.id/index.php/jese/article/view/5",
+      "doi": "10.61435/jese.2023.5",
+      "rights": "Not cleared for full-text import; PDF search metadata reports CC-BY but full text was inaccessible",
+      "reviewed": "Primary indexed metadata and abstract; direct publisher access failed",
+      "use": "Review reference only. Not a complete calibrated Porsche engine model or solver case."
+    },
+    {
+      "id": "jet-reservoir-2312",
+      "kind": "preprint",
+      "date": "2023-12-15",
+      "title": "Small jet engine reservoir computing digital twin",
+      "authors": [
+        "C. J. Wright",
+        "N. Biederman",
+        "B. Gyovai",
+        "D. J. Gauthier",
+        "J. P. Wilhelm"
+      ],
+      "url": "https://arxiv.org/abs/2312.09978v1",
+      "rights": "Not cleared for corpus import",
+      "reviewed": "Abstract and version metadata",
+      "use": "A numerical jet engine and sensor-trained JetCat P100-RX reservoir model. Its reported test accuracy does not transfer to a Porsche 993 or a language model."
+    },
+    {
+      "id": "qbu-air-cooled-cfd-2006",
+      "kind": "technical_paper",
+      "date": "2006-11-13",
+      "title": "CFD Simulations of Heat Transfer from Air Cooled Engines",
+      "authors": [
+        "Alan Baird",
+        "David Thornhill",
+        "Geoffrey Cunningham",
+        "Paul Troxler",
+        "Brian Price"
+      ],
+      "url": "https://saemobilus.sae.org/papers/cfd-simulations-heat-transfer-air-cooled-engines-2006-32-0004",
+      "doi": "10.4271/2006-32-0004",
+      "rights": "Publisher-controlled full text; no import",
+      "reviewed": "Publisher abstract and metadata only",
+      "use": "Fin dimensions, experimental comparison and circumferential temperature trends; does not supply our fan curve or Porsche geometry."
+    },
+    {
+      "id": "picogk-photo-api",
+      "kind": "official_source",
+      "revision": "0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3",
+      "url": "https://github.com/leap71/PicoGK/tree/0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3",
+      "rights": "Apache-2.0 source; no bulk code import",
+      "reviewed": "Base/Voxels.cs and Base/Mesh.cs at installed helper revision",
+      "use": "Verified new Voxels(mesh), new Mesh(voxels), voxBoolAdd and voxBoolIntersect. Screenshot placeholders do not establish actual API availability."
+    },
+    {
+      "id": "openusd-mesh-buffers",
+      "kind": "official_documentation",
+      "url": "https://openusd.org/release/api/class_usd_geom_mesh.html",
+      "rights": "Reference only; exercises are independently authored",
+      "reviewed": "Mesh schema documentation and installed USD 25.5 round-trip checks",
+      "use": "Populate points, face counts and indices. Generic OBJ references need a registered layer plugin or conversion; a scene mesh is not automatically a volume solver mesh."
+    }
+  ],
+  "pending_primary_records": [
+    {
+      "url": "https://theses.fr/2015PA066063",
+      "topic": "engine cooling and phase-change materials",
+      "status": "primary record timed out; author and rights not verified; not imported"
+    },
+    {
+      "url": "https://oskar-bordeaux.fr/handle/20.500.12278/77355",
+      "topic": "casting defects and low-cycle fatigue",
+      "status": "primary record timed out; author, date and rights not verified; not imported"
+    }
+  ],
+  "excluded_or_separate": [
+    {
+      "url": "https://repository.tudelft.nl/record/uuid:d4b42b1e-71df-4317-8fc0-0fe86890ba2a",
+      "reason": "WAAM AM70 fatigue study is a 2025 master's thesis, not a doctorate; embargo to 31 December 2026."
+    },
+    {
+      "url": "https://memento.epfl.ch/event/computational-design-and-optimization-for-physical/",
+      "reason": "Junyu Liu's 29 May 2026 event is a candidacy exam, not a completed doctoral thesis."
+    }
+  ],
+  "photo_policy": "User photographs are research leads, not authoritative API or geometry evidence. Corrected lessons are authored locally; third-party manuals and paper text are not training targets."
+}

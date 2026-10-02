@@ -1,0 +1,191 @@
+{
+  "status": "completed_correction_trials_rejected",
+  "trained": true,
+  "selected_attachment_review_adapter": null,
+  "selected_coding_adapter_changed": false,
+  "manufacturing_authorized": false,
+  "scope": "Narrow synthetic attachment audit; no dimensional reconstruction, material qualification or engineering release.",
+  "completed_trials": [
+    {
+      "run_directory": "work/qwen-attachment-001",
+      "manifest": {
+        "counts": {
+          "train": 48,
+          "valid": 16,
+          "test": 24,
+          "incident": 1
+        },
+        "families": {
+          "train": [
+            "duct",
+            "cover",
+            "bracket",
+            "shroud",
+            "spacer",
+            "baffle"
+          ],
+          "valid": [
+            "enclosure",
+            "diffuser"
+          ],
+          "test": [
+            "carrier",
+            "cam_housing",
+            "oil_cooler"
+          ]
+        },
+        "base_sha256": "daeab4764fb420d161721791cf2e509e2de81a7af4223646e7bed2bf82c57b58",
+        "initial_adapter_sha256": "a1014c6f71b46d879c09462c4a57d17d00df8f11b8178dd53bf6d5f2ac2f778a",
+        "source_sha256": {
+          "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/parts/993-eng-carrier-0001/source/qwen-concept-f1/train_interfaces.py": "d9747a53739152c60ae08987dfe61f8af9a2abe3af39e0dc45a4c5a1a6245eb6",
+          "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/parts/993-eng-carrier-0001/source/qwen-concept-f1/interfaces.py": "5b218f49857c91090b2fc01a2bdfda1d4078d01f83ad9bdea36fb3040e0b7e11",
+          "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/parts/993-eng-carrier-0001/source/qwen-concept-f1/interface-contract.json": "5ee555c4fb01387720108a8a83fc767a5f03755a455585d2b881e76c07da7ef1",
+          "/Users/maxime/.codex/worktrees/m64-local-architecture-qwen/3dprinting993/training/m64-qwen/run.py": "f92c45133c9c3dfdf403999ac5f8a81fc2bbf38830ba1e490c7b4b7dfaaaca36",
+          "/Users/maxime/.codex/worktrees/m64-local-architecture-qwen/3dprinting993/training/m64-qwen/dataset.py": "4201ec0bd6f176f0d5c89b69be271d249669f4b05f83283e1edc84956b92edc8"
+        },
+        "data_sha256": {
+          "cases.json": "1fc18cd45483f6eacfb3619646a6d0f1e2fbb77b809667529f0161c9745b6012",
+          "data/test.jsonl": "27c4cc75503263e0aa260397ea9fbae99765acebbdb2a4f3b96c28367561658f",
+          "data/train.jsonl": "e927ca0d00f787c26cc3b7aa5d79c2280dc68e5bc5b0f417aa46d073a6cab666",
+          "data/valid.jsonl": "e3b43f0d5c10b53bd94561117749da1cd5676f514a7a0bfe87ba643db4bc0d71"
+        },
+        "training": {
+          "iterations": 120,
+          "learning_rate": 0.0001,
+          "num_layers": 4,
+          "rank": 8,
+          "scale": 20,
+          "batch_size": 1,
+          "max_seq_length": 1024,
+          "seed": 42
+        },
+        "selection": "All validation cases pass, no previously passed validation case lost; then open the frozen test and incident once.",
+        "scope": "Separate attachment-review adapter; never replace the coding adapter or grant engineering release.",
+        "provenance": "Owner-authorized, authored synthetic fixtures; no raw manual, scan or vendor image.",
+        "limitation": "Shared rules/templates across family-disjoint splits; not a general engineering benchmark."
+      },
+      "results": {
+        "validation_before": 0,
+        "validation_after": 16,
+        "validation_total": 16,
+        "candidate_selected_for_attachment_review": false,
+        "coding_adapter_replaced": false,
+        "manufacturing_authorized": false,
+        "candidate_sha256": "ba6f1ad63bc0bc14a3bfe822025c1481d1b9ba3e67c7a508f9b35c750e24af51",
+        "test_before": 0,
+        "test_after": 18,
+        "test_total": 25,
+        "incident_passed": false
+      },
+      "receipt_sha256": {
+        "adapter/adapter_config.json": "d524ae33dc70600d57fef1d57936fc5c359f1bafe19a30cb3f2a556a95b7813b",
+        "baseline-validation.json": "a6af454dd3bab097fc62737af3778467bfda4916e981ec6d9ca6664dd1b49efd",
+        "baseline-validation.log": "8db5e005f0e36fb72b834645dff4b14ac135c85e8b8bb1af49a90dd22a3a370e",
+        "cache-cleanup.json": "ffe2f08bd4dcdd0cda0cee35ceba7100b97046d064566a5d80036f8a766c1bff",
+        "cases.json": "1fc18cd45483f6eacfb3619646a6d0f1e2fbb77b809667529f0161c9745b6012",
+        "docs-links.log": "1e59f7b77e5de3edbdcd4991a941e0a4031a2f334205757ca6e68c1654854ff2",
+        "execution.log": "8370f37313e1f0c063aaa9811f32d9da18277b0b48565c68d4d29e3dca9deb5a",
+        "local-checks.log": "c6ee828cbdffe3b1ab5721e98b15aabc2fe6bf9eb6e330e0492f9d40df4d25e1",
+        "manifest.json": "65422f7cecf977980d784fc8bcbfc5cef920036988e8bedea0b71891dfa07d80",
+        "repository-check.log": "b61c5c553266cedc0ef796d72dcc3e64b1ad4667a7ffbaea2a6dbf4908fcc2b6",
+        "results.json": "e2c0c5133f1c4dde14a0a0dd27bda9850a3b1f388071f1aa12793221ffd8589f",
+        "status.json": "4999750fb9f0acc8aede74aad9429947c016f2c327189c548d383eb01b7faa00",
+        "test-after.json": "6c5efb9b246d155e27b37ae9d68563bb7ab3200f58ef5fd7c295e5c9e424ce81",
+        "test-before.json": "72773f086a84d392cea99338bddd579d6d6b9426212fab0bb44bdf58ede15456",
+        "tokenization.json": "c03101754f4fbfeea1ad3cd91b0d35dadc78d9903438535f5d2aa144ce3f71df",
+        "training-command.json": "b8683382f7716186eb6d04c0ed0bd8aaae3257164a2c6d9431b5dc34d7ae334b",
+        "training.log": "5dd59a347bc45323f4d4a309e7f8cab895aed30ce60562f4f092c9147486be00",
+        "validation-after.json": "8acec6490fbcdf2bd7b9c994e3ec67ab205f8cdd2037276918d81b34b4a53a72",
+        "validation-before.json": "e72412ac507cd08730c3f704726f6373e23647cff2b2c7dbcd2e33311f70fd48"
+      },
+      "adapter_path": "work/qwen-attachment-001/adapter/adapters.safetensors",
+      "fresh_test_opened": true
+    },
+    {
+      "run_directory": "work/qwen-attachment-003",
+      "manifest": {
+        "counts": {
+          "train": 210,
+          "valid": 70,
+          "test": 81,
+          "regression": 25
+        },
+        "source_sha256": {
+          "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/parts/993-eng-carrier-0001/source/qwen-concept-f1/train_interfaces_v2.py": "df5dc680c51f371677a3d35cf14fb45dadb5172a8c91eef9f81b06da268c2e88",
+          "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/parts/993-eng-carrier-0001/source/qwen-concept-f1/train_interfaces.py": "d9747a53739152c60ae08987dfe61f8af9a2abe3af39e0dc45a4c5a1a6245eb6",
+          "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/parts/993-eng-carrier-0001/source/qwen-concept-f1/interfaces.py": "5b218f49857c91090b2fc01a2bdfda1d4078d01f83ad9bdea36fb3040e0b7e11",
+          "/Users/maxime/.codex/worktrees/a6cf/3dprinting993/parts/993-eng-carrier-0001/source/qwen-concept-f1/interface-contract.json": "5ee555c4fb01387720108a8a83fc767a5f03755a455585d2b881e76c07da7ef1",
+          "/Users/maxime/.codex/worktrees/m64-local-architecture-qwen/3dprinting993/training/m64-qwen/run.py": "f92c45133c9c3dfdf403999ac5f8a81fc2bbf38830ba1e490c7b4b7dfaaaca36",
+          "/Users/maxime/.codex/worktrees/m64-local-architecture-qwen/3dprinting993/training/m64-qwen/dataset.py": "4201ec0bd6f176f0d5c89b69be271d249669f4b05f83283e1edc84956b92edc8"
+        },
+        "data_sha256": {
+          "cases.json": "9b4c63757840e083979794b9f921c2e37b7daee03084e7a521d66bd64b9c4622",
+          "data/test.jsonl": "0b59cb604b2314dd77fd72ede3e8b7dd7d3cb414782f4d947ccc3e3541586002",
+          "data/train.jsonl": "b5e9967983925193cbe82c05bea11ac35949ea64fb88f75cdc929618272588e9",
+          "data/valid.jsonl": "dcc5790a934c4ad51c101b3d3873dbfb00e7117a55d994c7b554d2e26ee181c3"
+        },
+        "base_sha256": "daeab4764fb420d161721791cf2e509e2de81a7af4223646e7bed2bf82c57b58",
+        "coding_adapter_sha256": "a1014c6f71b46d879c09462c4a57d17d00df8f11b8178dd53bf6d5f2ac2f778a",
+        "warm_start_sha256": "ba6f1ad63bc0bc14a3bfe822025c1481d1b9ba3e67c7a508f9b35c750e24af51",
+        "maximum_sequence_tokens": 386,
+        "iterations": 360,
+        "learning_rate": 0.0001,
+        "num_layers": 4,
+        "rank": 8,
+        "scale": 20,
+        "batch_size": 1,
+        "seed": 42,
+        "selection": "All 70 validation cases must pass before fresh tests open; then all tests and regressions must pass.",
+        "limitation": "Shared templates/rules, family-disjoint fresh tests; not general engineering qualification.",
+        "provenance": "Owner-authorized synthetic fixtures; original tests retained as regressions, never added to training."
+      },
+      "results": {
+        "validation_before": 20,
+        "validation_after": 39,
+        "validation_total": 70,
+        "candidate_selected_for_attachment_review": false,
+        "coding_adapter_replaced": false,
+        "manufacturing_authorized": false,
+        "candidate_sha256": "bd393683330e6289748d5a35684633271be195a03f59b50fa084d6fcbf87e506"
+      },
+      "receipt_sha256": {
+        "adapter/adapter_config.json": "ae5bce1565645f476177522818be4f1deb9c2c4f7a798565b01fb842137dfb9a",
+        "cases.json": "9b4c63757840e083979794b9f921c2e37b7daee03084e7a521d66bd64b9c4622",
+        "catalog-check.log": "d8cf5554ae9ec37b9a3f9517c71fe37be27455e9ce89f5d758bfd5e57009a17f",
+        "manifest.json": "417e283a8b28934ed0660a49130127468bdc426ec0051ad29bf5601b9a9e20ee",
+        "results.json": "64439d3c528a51a7ce0b4ff10c3dbb61c3d624652d12215ea610502a4b27a26a",
+        "status.json": "3fbad712812d263278684730c58b3ed0d542121426fdd2c4d62f032ecac34dff",
+        "training-command.json": "3b9c9bb5b55564cbf87bf06d61d1ef82d1e703a74250f3563c772dff68bb82f5",
+        "training.log": "96da77f8388a8407ac171150619fe604083870bee4e102a57c4f32c67f8bec22",
+        "validation-after/adapter-evaluation.json": "8a8b531f80ed9fe3da02262412b63ae0fc80c17656881e763706450eec5e509e",
+        "validation-after/data/cases.json": "2b09fdf86dc8a2f905920648a39e1950a3e6f07bb30df583feb196fbe156de69",
+        "validation-before/adapter-evaluation.json": "ed1294a5a3d287406795d3e731c62bd9ab113f0e3c31d572547c869546e04706",
+        "validation-before/data/cases.json": "2b09fdf86dc8a2f905920648a39e1950a3e6f07bb30df583feb196fbe156de69"
+      },
+      "adapter_path": "work/qwen-attachment-003/adapter/adapters.safetensors",
+      "fresh_test_opened": false
+    }
+  ],
+  "interrupted_trial": {
+    "run_directory": "work/qwen-attachment-002",
+    "status": {
+      "phase": "interrupted_without_completed_weights",
+      "observed_at": "2026-10-01T22:08:15.754334+00:00",
+      "last_reported_iteration": 330,
+      "planned_iterations": 360,
+      "completed_adapter_present": false,
+      "cause": "Process no longer running; cause not established. Frozen data and logs retained."
+    },
+    "manifest_sha256": "417e283a8b28934ed0660a49130127468bdc426ec0051ad29bf5601b9a9e20ee"
+  },
+  "conclusion": "First continuation failed 7/25 final cases including the incident. The joint-state continuation improved validation from 20/70 to 39/70 but failed the 70/70 gate; its 81 fresh tests and 25 regressions remain closed. Neither candidate is selected. The independent preflight blocks the original omission regardless of model output.",
+  "cleanup": {
+    "method": "python3 -m pip cache purge",
+    "reported_removed_MB": 12607.3,
+    "files_removed": 10788,
+    "directories_removed": 2540,
+    "verified_free_GiB_after": 13.88,
+    "qwen_weights_removed": false,
+    "installed_environments_removed": false
+  }
+}
