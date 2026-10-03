@@ -1,0 +1,56 @@
+{
+  "status": "prepared_not_solved",
+  "source_deck_sha256": "1d5429240702cff505339fbcc6dbe27e8bed4b0c80163e4ce0cac3698d756853",
+  "nodes": 172493,
+  "tetrahedra": 92848,
+  "units": "mm,N,s,tonne",
+  "cases": [
+    {
+      "case": "rpm-0",
+      "rpm_assumed": 0.0,
+      "deck_sha256": "ea3a6e2c7e2ecdd8626726bc777a5521d107efb77f58aa991d34d84d9fff9e16",
+      "centrifugal_prestress": false,
+      "coriolis_requested": false,
+      "requested_modes": 12
+    },
+    {
+      "case": "rpm-3000",
+      "rpm_assumed": 3000.0,
+      "deck_sha256": "748fa3a3d076b798c97f2bd16cdfce7dad0b8784cd32fe7836643fe7eeb79bc5",
+      "centrifugal_prestress": true,
+      "coriolis_requested": true,
+      "requested_modes": 12
+    },
+    {
+      "case": "rpm-6000",
+      "rpm_assumed": 6000.0,
+      "deck_sha256": "73de4952fba095fa9b127cafa5a5be0170238a0b5a61f27f5d67675cd88097b2",
+      "centrifugal_prestress": true,
+      "coriolis_requested": true,
+      "requested_modes": 12
+    },
+    {
+      "case": "rpm-10000",
+      "rpm_assumed": 10000.0,
+      "deck_sha256": "06ce07c90ea11d2ba52900fd12f803e5ccd6fea20102ab3f84b0d4a23a7e915e",
+      "centrifugal_prestress": true,
+      "coriolis_requested": true,
+      "requested_modes": 12
+    }
+  ],
+  "boundary": "inherited hypothetical fully fixed bore",
+  "material": "inherited assumed isotropic elastic card, not qualified AlSi10Mg",
+  "bearing_belt_contact_damping_included": false,
+  "mesh_independence": false,
+  "validated_campbell_diagram": false,
+  "safe_speed_rpm": null,
+  "manufacturing_authorized": false,
+  "contract_ids": [
+    "drive.rotor_speed",
+    "dynamics.prestressed_modes",
+    "dynamics.excitation_orders",
+    "material.elastic_properties",
+    "material.density",
+    "hub.bore_profile"
+  ]
+}

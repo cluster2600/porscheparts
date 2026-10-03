@@ -1,0 +1,19 @@
+parameter,value,unit,evidence_class,source_id,source_url,required_next_evidence,release_admissible
+machine,iSLM420DN,model,inherited_project_scenario,PROJECT_SCENARIO,,Inherited local scenario only; production selection not confirmed.,False
+material,AlSi10Mg,alloy,inherited_project_scenario,PROJECT_SCENARIO,,Inherited local scenario only; production selection not confirmed.,False
+laser_power,500,W,inherited_research_scenario,CHEN_ROLLING_2026,https://www.sciencedirect.com/science/article/pii/S2352492826011013,Verify exact experimental section and matching supplier recipe; keep as-built control separate from rolled material.,False
+scan_speed,1300,mm/s,inherited_research_scenario,CHEN_ROLLING_2026,https://www.sciencedirect.com/science/article/pii/S2352492826011013,Verify exact experimental section and matching supplier recipe; keep as-built control separate from rolled material.,False
+hatch_spacing,0.1,mm,inherited_research_scenario,CHEN_ROLLING_2026,https://www.sciencedirect.com/science/article/pii/S2352492826011013,Verify exact experimental section and matching supplier recipe; keep as-built control separate from rolled material.,False
+layer_thickness,0.04,mm,inherited_research_scenario,CHEN_ROLLING_2026,https://www.sciencedirect.com/science/article/pii/S2352492826011013,Verify exact experimental section and matching supplier recipe; keep as-built control separate from rolled material.,False
+beam_diameter,0.08,mm,inherited_research_scenario,CHEN_ROLLING_2026,https://www.sciencedirect.com/science/article/pii/S2352492826011013,Verify exact experimental section and matching supplier recipe; keep as-built control separate from rolled material.,False
+baseplate_temperature,303.15,K,inherited_research_scenario,CHEN_ROLLING_2026,https://www.sciencedirect.com/science/article/pii/S2352492826011013,Verify exact experimental section and matching supplier recipe; keep as-built control separate from rolled material.,False
+active_lasers,1,count,project_assumption,PROJECT_SCENARIO,,Measure or obtain actual build-file/machine data; sensitivity interval is not a confidence interval.,False
+absorptivity,0.35,1,project_assumption,PROJECT_SCENARIO,,Measure or obtain actual build-file/machine data; sensitivity interval is not a confidence interval.,False
+absorptivity_sensitivity,"[0.25, 0.45]",1,project_assumption,PROJECT_SCENARIO,,Measure or obtain actual build-file/machine data; sensitivity interval is not a confidence interval.,False
+recoat_time,8,s,project_assumption,PROJECT_SCENARIO,,Measure or obtain actual build-file/machine data; sensitivity interval is not a confidence interval.,False
+installed_lasers,2,count,official_machine_capability,ZRAPID_420DN,https://www.zrapid.com/en/slm420dn.html,"Capacity does not qualify a particular material, part, scan job, or usable support envelope.",False
+laser_rated_power_each,500,W,official_machine_capability,ZRAPID_420DN,https://www.zrapid.com/en/slm420dn.html,"Capacity does not qualify a particular material, part, scan job, or usable support envelope.",False
+beam_diameter_capability,"[0.06, 0.2]",mm at1/e2,official_machine_capability,ZRAPID_420DN,https://www.zrapid.com/en/slm420dn.html,"Capacity does not qualify a particular material, part, scan job, or usable support envelope.",False
+build_XY,"[420, 420]",mm,official_machine_capability,ZRAPID_420DN,https://www.zrapid.com/en/slm420dn.html,"Capacity does not qualify a particular material, part, scan job, or usable support envelope.",False
+nominal_build_Z_including_substrate,500,mm,official_machine_capability,ZRAPID_420DN,https://www.zrapid.com/en/slm420dn.html,"Capacity does not qualify a particular material, part, scan job, or usable support envelope.",False
+precision_layer_capability,"[0.02, 0.05]",mm,official_machine_capability,ZRAPID_420DN,https://www.zrapid.com/en/slm420dn.html,"Capacity does not qualify a particular material, part, scan job, or usable support envelope.",False

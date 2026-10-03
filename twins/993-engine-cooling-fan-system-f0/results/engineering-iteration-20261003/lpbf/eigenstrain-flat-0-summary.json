@@ -1,0 +1,122 @@
+{
+  "status": "completed_uncalibrated_elastic_eigenstrain_support_release",
+  "solver": "CalculiX",
+  "version": "2.17",
+  "elapsed_solver_seconds": 44.266321,
+  "assumptions": {
+    "status": "prepared_not_solved",
+    "source_deck_sha256": "1d5429240702cff505339fbcc6dbe27e8bed4b0c80163e4ce0cac3698d756853",
+    "deck_sha256": "f6dc00845ccc03983633886150f62a0490b885c6041233ebf241f76dce12a0ec",
+    "nodes": 172493,
+    "tetrahedra": 92848,
+    "units": "mm,N,s,tonne",
+    "strain_amplitude_assumed": 0.0,
+    "strain_is_not_a_measured_process_property": true,
+    "build_direction": [
+      0.0,
+      0.0,
+      1.0
+    ],
+    "formula": "epsilon_star = -amplitude*(0.5+0.5*s^2)*(I-0.7*n*nT), s=normalized build height",
+    "support_proxy": "fully fixed lowest surface node per projected 5 mm raster cell; rigid column bound, no supplier topology",
+    "support_attachment_nodes": 1898,
+    "gauge_nodes": [
+      12943,
+      9694,
+      9666
+    ],
+    "gauge_node_coordinates_mm": [
+      [
+        16.890308380127,
+        -2.0581834316254,
+        -23.362211227417
+      ],
+      [
+        -122.49999237061,
+        0.8220626115799,
+        10.964813232422
+      ],
+      [
+        -0.5531975030899,
+        122.5,
+        -12.401247024536
+      ]
+    ],
+    "support_release_included": true,
+    "layer_activation_included": false,
+    "scan_path_temperature_plasticity_recoater_included": false,
+    "process_calibrated": false,
+    "distortion_prediction_qualified": false,
+    "material": "inherited assumed isotropic elastic card, not a route-qualified material",
+    "mesh_independence": false,
+    "manufacturing_authorized": false,
+    "contract_ids": [
+      "lpbf.build_orientation",
+      "lpbf.support_strategy",
+      "lpbf.machine_parameters",
+      "lpbf.heat_treatment",
+      "material.elastic_properties",
+      "material.defect_population"
+    ]
+  },
+  "states": [
+    {
+      "state": "attached",
+      "nodes": 172493,
+      "integration_points": 371392,
+      "maximum_displacement_mm": 0.0,
+      "displacement_component_ranges_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_radial_change_mm": 0.0,
+      "von_mises_max_MPa": 0.0,
+      "von_mises_p99_MPa": 0.0,
+      "peak_element_and_ip": [
+        1,
+        1
+      ],
+      "peak_element_corner_centroid_mm": [
+        -90.675922393799,
+        -82.34649848938001,
+        -12.94079399108875
+      ]
+    },
+    {
+      "state": "released",
+      "nodes": 172493,
+      "integration_points": 371392,
+      "maximum_displacement_mm": 0.0,
+      "displacement_component_ranges_mm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "maximum_radial_change_mm": 0.0,
+      "von_mises_max_MPa": 0.0,
+      "von_mises_p99_MPa": 0.0,
+      "peak_element_and_ip": [
+        1,
+        1
+      ],
+      "peak_element_corner_centroid_mm": [
+        -90.675922393799,
+        -82.34649848938001,
+        -12.94079399108875
+      ]
+    }
+  ],
+  "maximum_release_displacement_mm": 0.0,
+  "process_calibrated": false,
+  "distortion_prediction_qualified": false,
+  "mesh_independence": false,
+  "manufacturing_authorized": false,
+  "file_sha256": {
+    "rotor.inp": "f6dc00845ccc03983633886150f62a0490b885c6041233ebf241f76dce12a0ec",
+    "rotor.dat": "d4e08ecd22e005b46adfbc44d203b7cf5c3187f8717f777b72bb7c34ca4df591",
+    "rotor.frd": "115a9b4b0039d60ec5b86e269a2fbe94412c6d8933bc919f5786b16968d1f64b",
+    "preparation.json": "6a1dd023e465dd7c2b1b42725fdf257e58286fa60cc1fe89e1379973d488dacb",
+    "log.ccx": "18c5ff78409a699ed4e36d54c39dc0399ab13f41cc904ce140d70d497aa55e21"
+  }
+}
