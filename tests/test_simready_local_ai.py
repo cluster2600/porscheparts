@@ -96,6 +96,8 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertEqual(dockerfile.count("ADD --link --checksum=sha256:"), 6)
         self.assertIn("ffmpeg", dockerfile)
         self.assertIn("libglu1-mesa", dockerfile)
+        self.assertIn("libxft2", dockerfile)
+        self.assertIn("libxinerama1", dockerfile)
         self.assertIn('test -f "${LOCAL_VLM_PATH}/LICENSE.apache-2.0"', dockerfile)
         self.assertIn('"torch==${VLLM_TORCH_VERSION}"', dockerfile)
         self.assertIn('"torchvision==${VLLM_TORCHVISION_VERSION}"', dockerfile)
