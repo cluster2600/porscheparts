@@ -131,6 +131,13 @@ An accepted new volume mesh, matched baseline/candidate studies, wall-layer
 and turbulence sensitivity, mesh independence and physical bench correlation
 are still needed before aerodynamic ranking.
 
+The [targeted diagnosis and independent recovery](MESH_DIAGNOSIS_20261003.md)
+locate native bad-cell/face IDs and separate stencil rank problems from boundary
+shape conditioning. The resumed hex pilot finished in 1,053 seconds and resolves
+the initial four quality failures, but fails extended concavity (82,294 cells)
+and source retention (two nonmanifold edges; 0.378 mm sampled error). Native
+diagnostic sets, exact logs and coordinate receipts are retained. No flow runs.
+
 ## OpenUSD and NVIDIA workflow
 
 The two new assets contain the **actual C3D10 analysis boundary**: 99,970 native

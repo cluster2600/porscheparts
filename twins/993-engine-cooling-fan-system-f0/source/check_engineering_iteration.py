@@ -4,6 +4,7 @@ import gzip
 import hashlib
 import json
 from pathlib import Path
+import re
 
 FAN=Path(__file__).resolve().parents[1]
 RESULT=FAN/'results/engineering-iteration-20261003'
@@ -59,6 +60,25 @@ def check():
             raise ValueError('USD field metadata/validation mismatch')
         if any(record[k] for k in ['simready_validated','digital_twin_validated','process_calibrated','manufacturing_authorized','scan_included']):
             raise ValueError('Generic USD checks cannot qualify a physical twin')
+    diagnosis=json.loads((RESULT/'mesh/targeted-diagnosis/localization.json').read_text())
+    if sum(diagnosis['boundary_face_count_histogram'].values())!=diagnosis['underdetermined_cells']:
+        raise ValueError('Native bad-cell localization coverage differs')
+    for name,expected in diagnosis['native_set_sha256'].items():
+        raw=gzip.decompress((RESULT/'mesh/targeted-diagnosis'/f'{name}.gz').read_bytes())
+        if digest(raw)!=expected:raise ValueError('Native diagnostic set changed')
+    outcome=json.loads((RESULT/'mesh/hex-er1/outcome.json').read_text())
+    for name,expected in outcome['native_log_sha256'].items():
+        if digest(gzip.decompress((RESULT/'mesh/hex-er1'/f'{name}.gz').read_bytes()))!=expected:
+            raise ValueError('Native hex experiment log changed')
+    log=gzip.decompress((RESULT/'mesh/hex-er1/log.checkMesh.gz').read_bytes()).decode()
+    count=re.search(r'Concave cells .*number of cells:\s*(\d+)',log)
+    if not count or int(count[1])!=outcome['concave_cells'] or 'Failed 1 mesh checks.' not in log:
+        raise ValueError('Independent extended mesh rejection must remain explicit')
+    surface=json.loads((RESULT/'mesh/hex-er1/surface-audit.json').read_text())
+    if any(outcome[k] for k in ['extended_check_passed','surface_gate_passed','flow_solver_launched','private_scan_used','manufacturing_authorized']) or all(surface['gates'].values()):
+        raise ValueError('Rejected mesh cannot advance aerodynamic or physical qualification')
+    if surface['native_boundary_sha256']!=outcome['mesh_boundary_sha256']:
+        raise ValueError('Hex surface receipt identity differs')
     print('Engineering input identities, native receipts and qualification boundaries passed')
 
 
