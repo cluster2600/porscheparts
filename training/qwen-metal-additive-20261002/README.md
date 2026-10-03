@@ -10,9 +10,16 @@ exports, including the correction to v1's Ti-6Al-4V snapshot/attribution.
 The [compact Qwen3 trial](COMPACT_QWEN3.md) has been trained and evaluated;
 its [raw final results](runs/qwen3-compact-001/RESULTS.md) are explicitly rejected
 (10/12 primary, 7/8 supplemental). The [precision iteration](PRECISION_QWEN3.md)
-adds a factual curriculum and newly registered untouched test paragraphs.
-No failed trial is promoted as a successful model; independent review remains
-pending.
+was actually trained and rejected on development. The
+[source-profile iteration](EVIDENCE_QWEN3.md) was rejected early on its primary
+test. The [fidelity iteration](FIDELITY_QWEN3.md) retains the conservative trained
+weights, separates factual extraction from scope questions and registers a
+third test on unused paragraphs. The [verified final package](runs/qwen3-fidelity-001/RESULTS.md)
+meets the registered prototype threshold: **11/12 primary, 7/8 supplemental**,
+20/20 citations and all seven critical qualification boundaries. The paired
+base obtains **12/12 primary**: no LoRA benefit is demonstrated. Retain the base
+as the stronger primary benchmark control; the trained adapter is a research
+artifact, not evidence of improved scientific accuracy. Human review remains pending.
 
 Owner-requested preparation of the multilingual research corpus, 2 October 2026.
 The v1/v2/v3 preparation releases remain historical, frozen inputs. A separate

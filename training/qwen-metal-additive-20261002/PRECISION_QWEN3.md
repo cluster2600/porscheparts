@@ -32,6 +32,16 @@ and every prompt still carry licensed source text and references.
 avoids oversampling generic refusal templates. Actual steps, durations, losses,
 base hashes and adapter hashes are recorded by `run_precision.py`.
 
+## Actual outcome
+
+The actual run completed 30 optimizer steps in 1,642.87 seconds, with mean
+training loss 2.15966. It was **rejected on development**, before generating
+any new final-test prediction: several answers became bare refusals, and one
+confused substrate thickness with layer height. The complete trained adapter,
+raw development answers and receipts are retained in
+[runs/qwen3-precision-development-001](runs/qwen3-precision-development-001/RESULTS.md).
+A lower training loss did not establish better scientific answers.
+
 ## Registered evaluation policy
 
 The 12 development prompts comprise the eight old prompts plus two failed
@@ -72,7 +82,7 @@ work/metal-cpu-env/bin/python training/qwen-metal-additive-20261002/run_precisio
 reproduces the actual dataset. Its manifest binds the producer, inference
 profile/helper, original frozen releases, license and all resulting files.
 
-After reviewing development answers, freeze a selection file with the training
+For a future candidate that passes development, freeze a selection file with the training
 receipt, weights, profile/helper hashes and per-question assistant decisions,
 then run `evaluate_precision.py` with `--source`, `--selection`, `--output` and
 `--cache`. It generates paired 12-question base/adapter results plus eight

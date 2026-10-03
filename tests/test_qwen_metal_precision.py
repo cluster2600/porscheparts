@@ -31,4 +31,24 @@ class PrecisionTest(unittest.TestCase):
    manifest=json.loads((copied/'package-manifest.json').read_text());manifest['status']=assessment['status'];manifest['files_sha256']['assistant-final-assessment.json']=v.sha(copied/'assistant-final-assessment.json')
    (copied/'package-manifest.json').write_text(json.dumps(manifest))
    with self.assertRaisesRegex(ValueError,'Acceptance claim disagrees'):verify.verify(copied)
+ def test_unpackaged_adapter_cannot_silently_use_wrong_inference_profile(self):
+  m=module('answer_metal')
+  with tempfile.TemporaryDirectory() as folder:
+   adapter=Path(folder)/'adapter';adapter.mkdir()
+   with self.assertRaisesRegex(ValueError,'explicit --profile'):m.resolve_profile(adapter,'Qwen/Qwen3-4B-Instruct-2507','cdbee75f17c01a7cc42f958dc650907174af0554')
+   helper,package=m.resolve_profile(adapter,'Qwen/Qwen3-4B-Instruct-2507','cdbee75f17c01a7cc42f958dc650907174af0554','precision-v9')
+   self.assertIn('precision_terminology_profile',helper.__name__)
+   self.assertEqual(package,{})
+ def test_changed_weights_cannot_reuse_a_package_benchmark_status(self):
+  m=module('answer_metal')
+  with tempfile.TemporaryDirectory() as folder:
+   source=ROOT/'runs/qwen3-compact-001';copied=Path(folder)/'trial';shutil.copytree(source,copied)
+   (copied/'adapter/adapter_model.safetensors').write_bytes(b'changed tensors')
+   with self.assertRaisesRegex(ValueError,'Packaged adapter changed'):m.resolve_profile(copied/'adapter','Qwen/Qwen3-4B-Instruct-2507','cdbee75f17c01a7cc42f958dc650907174af0554')
+ def test_changed_inference_receipt_cannot_reuse_benchmark_status(self):
+  m=module('answer_metal')
+  with tempfile.TemporaryDirectory() as folder:
+   copied=Path(folder)/'trial';shutil.copytree(ROOT/'runs/qwen3-compact-001',copied)
+   (copied/'final-receipt.json').write_text('{}')
+   with self.assertRaisesRegex(ValueError,'Packaged inference receipt changed'):m.resolve_profile(copied/'adapter','Qwen/Qwen3-4B-Instruct-2507','cdbee75f17c01a7cc42f958dc650907174af0554')
 if __name__=='__main__':unittest.main()
