@@ -1,0 +1,21 @@
+{
+  "id": "935-horizontal-fan-vast-screen-f0",
+  "kind": "scan-guided parametric horizontal fan proxy",
+  "geometry": {
+    "outer_diameter_mm": 226.94,
+    "blade_count": 10,
+    "disc_thickness_mm": 4.0,
+    "blade_height_mm": 8.0,
+    "hub_bore_diameter_mm": 34.0,
+    "coordinate_basis": "The 226.94 source-unit annular feature is provisionally treated as mm only for comparative geometry. The scan itself remains open and unregistered.",
+    "interfaces_verified": false
+  },
+  "loads": {
+    "static_rpm": 8500,
+    "rpm_sweep": [3000, 6000, 8500, 10000, 12000],
+    "axis": "local +Z; a modelling convention, not a measured vehicle datum",
+    "bore_restraint": "all translations fixed at r <= 17 mm; assumed only",
+    "thermal_proxy_W_per_blade": 1.0
+  },
+  "scope": "Linear centrifugal finite-element screen at 8500 rpm, unprestressed modal screen for AlSi10Mg with exact elastic similarity for equal-Poisson material cards, and analytic radial-conduction ranking. No CFD, fatigue, balance, overspeed, burst, contact, residual stress, physical validation, fitment, or manufacturing authorization."
+}
