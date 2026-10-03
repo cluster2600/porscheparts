@@ -1,0 +1,112 @@
+{
+  "status": "trained_integrity_verified_not_selected_or_evaluated",
+  "protocol_sha256": "7ce3b4043341eddaf8400f9f575dce82ea2335e40d868bd585d59ce3c539e0ec",
+  "runner_sha256": "b55681e3a9a6d8d711cb2fc255c6633dd40e10984f6e17182259f3bb8eae28fa",
+  "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+  "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "runtime": {
+    "python": "3.12.11 (main, Aug 18 2025, 19:02:39) [Clang 20.1.4 ]",
+    "platform": "darwin",
+    "libraries": {
+      "mlx": "0.32.3",
+      "mlx-lm": "0.31.3",
+      "transformers": "5.17.0",
+      "tokenizers": "0.23.2",
+      "numpy": "2.5.3"
+    },
+    "source_sha256": {
+      "mlx_lm.models.qwen3": "2284df96ecb669109b281df4534470b18f285aa9a5e41735ad682f601f93c639",
+      "mlx_lm.sample_utils": "c0ce439f8dbf0d4e6d0f37f728a324f3f72878e6a9123df41be520804c596d67",
+      "mlx_lm.tuner.lora": "4d3a8edab111d4ddba33398ba8700203db7b61621c39e9c348fdd50e57278b45",
+      "mlx_lm.tuner.trainer": "ee33ebdbd20a184108541cb490d08085485e71a82ffd6d68d7d216029ecd28fe",
+      "mlx_lm.tuner.utils": "166eaf5e5f923113bed43614a5fb7319795fa0cac5a7fa319ea54e5f0045b553",
+      "mlx_lm.utils": "ba0371e9c88d52b34d71271945c2394005fbcb2bfb2ee9f6f82d627a33b72422",
+      "mlx.optimizers.optimizers": "25a57fe00ff9ae1fe836cd504506e16d0e9d890112daed05cef0e2bcb95f7714",
+      "mlx_lm.generate": "270778ad53eaca55a8533d82e6752660fe5d2605c4aa0879b48a50a91f69345f"
+    },
+    "mlx_native_extension_sha256": "49eeb7232106aa9ab846b20e0417add980b1c7213ef6dda6e25c01d45ca54851",
+    "device": "Device(gpu, 0)",
+    "device_info": {
+      "device_name": "Apple M1 Max",
+      "max_recommended_working_set_size": 55662788608,
+      "memory_size": 68719476736,
+      "architecture": "applegpu_g13s",
+      "max_buffer_length": 41747087360,
+      "resource_limit": 499000
+    },
+    "numeric_policy": "Native MLX BF16 tied base with FP32 LoRA; official delta cast before addition differs from PEFT; no cross-runtime parity claimed",
+    "runner_sha256": "b55681e3a9a6d8d711cb2fc255c6633dd40e10984f6e17182259f3bb8eae28fa",
+    "cpu_threads_target": 2,
+    "cpu_threads_scope": "Environment target only; actual CPU utilization recorded by supervisor",
+    "nice": 10,
+    "memory_limits": {
+      "worker_rss_limit_bytes": 25769803776,
+      "minimum_system_available_bytes": 17179869184,
+      "maximum_swap_growth_bytes": 268435456,
+      "mlx_active_limit_bytes": 21474836480,
+      "mlx_cache_limit_bytes": 536870912,
+      "nice": 10,
+      "cpu_threads_target": 2,
+      "cpu_utilization_policy": "Environment target only; measured host peak may exceed it under explicit parent authorization; record actual peak and do not claim a strict cap"
+    }
+  },
+  "native_policy": "Native MLX BF16 tied base with FP32 LoRA; official delta cast before addition differs from PEFT; no cross-runtime parity claimed",
+  "initial_adapter_sha256": "fb6ab78bf8868a1e77e3c1c5e156eeef63b0b3e42378aaa1410e8c7cfaf1d5cb",
+  "model_files_sha256": {
+    "config.json": "5beea1a4a34c62782bfb2f911c606741a3bab8f92d80a118fa053c28af12e8ba",
+    "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+    "tokenizer_config.json": "a62ff0a2472a0fa1b8eaabcb57c59b58afa42a22831dc141400b6e0cf2b65ce3",
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+    "merges.txt": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+    "model-00002-of-00003.safetensors": "0b48adbb1f60e901153d91907ba11ce63bd4b8b584482e730f48808d055dfba1",
+    "model-00003-of-00003.safetensors": "7dd39ccca5e4de123c74c14af44c9bf2eb75df33b4614382af0134528e060d5d",
+    "model-00001-of-00003.safetensors": "75311d91bb08cf0b882913da464a1e722a31fb44db35208663487efb7a3d8ed6"
+  },
+  "data_manifest_sha256": "3387e879621be4b9db03274c78f345774a6bbaa1260146459429bf4c38ac405f",
+  "gate_receipt_sha256": "674730c84671110081035845453e36e56b3c9c21a84610ea7803a4490132a35b",
+  "optimizer_steps": 10,
+  "scientific_gain_demonstrated": false,
+  "reserved_test_opened": false,
+  "seconds": 54.87081166700227,
+  "adapter_sha256": "b7297b423533166867585a895511909bd173615908e7b16c1a7dca4152572477",
+  "adapter_config_sha256": "05ba7708a0c1858aac26f9e2a7c0828654121fd125d7f929ae4ea89fcb404508",
+  "frozen_integrity_verified": true,
+  "frozen_signature_sha256": "e2b91208f3e109aa764a1b20a836ff8c8d8444f768cb831b585ca3174ce872c0",
+  "embedding_raw_sha256": "f0f77f31dbc072961e5131d4e82d8769d851339b2c0cc1f22de689b735cc4ff2",
+  "checkpoints": [
+    {
+      "step": 4,
+      "adapter_sha256": "611de07f8e08eecab38670890997eb7b0f29372dd58dc8ba5e85ee33f9a77bd5",
+      "adapter_config_sha256": "05ba7708a0c1858aac26f9e2a7c0828654121fd125d7f929ae4ea89fcb404508",
+      "all_144_tensors_finite": true
+    },
+    {
+      "step": 8,
+      "adapter_sha256": "a7aaeccc7d3c1b9e8b11d4c2cfa4668695346d99d26b602a5751106370bfdff2",
+      "adapter_config_sha256": "05ba7708a0c1858aac26f9e2a7c0828654121fd125d7f929ae4ea89fcb404508",
+      "all_144_tensors_finite": true
+    },
+    {
+      "step": 10,
+      "adapter_sha256": "b7297b423533166867585a895511909bd173615908e7b16c1a7dca4152572477",
+      "adapter_config_sha256": "05ba7708a0c1858aac26f9e2a7c0828654121fd125d7f929ae4ea89fcb404508",
+      "all_144_tensors_finite": true
+    }
+  ],
+  "rows": 20,
+  "active_memory_bytes": 8092122144,
+  "peak_mlx_memory_bytes": 9730795347,
+  "optimizer_config": {
+    "name": "mlx.optimizers.AdamW",
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0.0,
+    "bias_correction": true,
+    "global_clip_norm": 1.0,
+    "new_optimizer_state": true
+  },
+  "conversion_receipt_sha256": "0f6ae9ded8d2116912e161fe45efbf42937cbaa1bc857cc336325f7b82beca9c"
+}

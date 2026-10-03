@@ -1,0 +1,435 @@
+{
+  "status": "rejected_development_scientific_errors",
+  "suite": "development",
+  "reserved_opened": false,
+  "heldout_claim": false,
+  "assistant_review_only": true,
+  "protocol_sha256": "7ce3b4043341eddaf8400f9f575dce82ea2335e40d868bd585d59ce3c539e0ec",
+  "arms": {
+    "base": {
+      "acceptable": 14,
+      "total": 20,
+      "critical_failures": 1,
+      "unsupported_citations": 5,
+      "unit_condition_failures": 5,
+      "causal_failures": 3,
+      "budget_hits": 0,
+      "disagreements": 0,
+      "failures": [
+        {
+          "id": "fidelity-01",
+          "critical": false,
+          "reviewer_reasons": [
+            "Reports more gradual transition and better agreement across analyzed cooling rates, but omits that both transition endpoints are fully martensitic and fully Widmanstätten, weakening the stated microstructural qualifiers.",
+            "Reports the more gradual transition and improved agreement across analyzed cooling rates, but drops 'fully' from both the martensitic and Widmanstätten endpoint structures."
+          ]
+        },
+        {
+          "id": "fidelity-07",
+          "critical": false,
+          "reviewer_reasons": [
+            "The clamping sentence states an important influence on printed products; the response specifically attributes generated stresses to clamping, conflating it with the separate thermal-load statement.",
+            "The cited sentence says clamping degree-of-freedom constraints importantly influence printed products; it does not specify an influence on the developed stresses, which the response adds."
+          ]
+        },
+        {
+          "id": "fidelity-09",
+          "critical": true,
+          "reviewer_reasons": [
+            "Correctly denies a certified fatigue life or cycle count, but changes the modeling target from material-property prediction through phase evolution to prediction only of phase evolution.",
+            "Safely denies fatigue-cycle certification but reverses the model's prediction target: material properties in terms of phase evolution are stated, not prediction of phase evolution."
+          ]
+        },
+        {
+          "id": "fidelity-domain-01",
+          "critical": false,
+          "reviewer_reasons": [
+            "Pavel's 140 °C and porosity change from 3% to 0.88% are correct, but 'elle permet' promotes the reported observation to a causal effect.",
+            "Preserves Pavel's 140 °C and porosity change from 3% to 0.88%, but 'elle permet' turns the reported observation under substrate preheating into a causal assertion."
+          ]
+        },
+        {
+          "id": "fidelity-domain-02",
+          "critical": false,
+          "reviewer_reasons": [
+            "The 8.2% packing-density gain and 6.4% shrinkage reduction are correct, but 'without changing median size' comes from a distinct earlier feasibility study and is improperly attached to the quantified improvements.",
+            "Correctly reports the requested porosity, 6.4% shrinkage reduction and 8.2% packing-density improvement, but transfers unchanged median size from the separate earlier study to these measured improvements."
+          ]
+        },
+        {
+          "id": "fidelity-domain-03",
+          "critical": false,
+          "reviewer_reasons": [
+            "Correctly reports lower solid fraction with higher conductivity and opposite trends, but infers another dominant influence, which the excerpt does not identify or establish.",
+            "The excerpt's opposing trends do not establish another dominant influence; the response also leaves out the non-equal-size comparator for equal-size powder."
+          ]
+        }
+      ],
+      "by_family": {
+        "MET004": {
+          "acceptable": 1,
+          "total": 3
+        },
+        "NEW_WAAM": {
+          "acceptable": 8,
+          "total": 9
+        },
+        "MET002": {
+          "acceptable": 1,
+          "total": 3
+        },
+        "thermal_en_prediction": {
+          "acceptable": 3,
+          "total": 4
+        },
+        "MET001": {
+          "acceptable": 1,
+          "total": 1
+        }
+      }
+    },
+    "historical_adapter": {
+      "acceptable": 14,
+      "total": 20,
+      "critical_failures": 1,
+      "unsupported_citations": 5,
+      "unit_condition_failures": 6,
+      "causal_failures": 3,
+      "budget_hits": 0,
+      "disagreements": 0,
+      "failures": [
+        {
+          "id": "fidelity-01",
+          "critical": false,
+          "reviewer_reasons": [
+            "Reports more gradual transition and better agreement across analyzed cooling rates, but omits that both transition endpoints are fully martensitic and fully Widmanstätten, weakening the stated microstructural qualifiers.",
+            "Captures gradual transition and better agreement across analyzed cooling rates but omits that both endpoint microstructures are fully martensitic and fully Widmanstätten."
+          ]
+        },
+        {
+          "id": "fidelity-07",
+          "critical": false,
+          "reviewer_reasons": [
+            "The clamping sentence states an important influence on printed products; the response specifically attributes generated stresses to clamping, conflating it with the separate thermal-load statement.",
+            "The cited sentence says clamping degree-of-freedom constraints importantly influence printed products; it does not specify an influence on the developed stresses, which the response adds."
+          ]
+        },
+        {
+          "id": "fidelity-09",
+          "critical": true,
+          "reviewer_reasons": [
+            "Correctly denies a certified fatigue life or cycle count, but changes the modeling target from material-property prediction through phase evolution to prediction only of phase evolution.",
+            "Correctly refuses certified fatigue cycles but incorrectly says the model predicts phase evolution; the excerpt says material properties are predicted in terms of phase evolution."
+          ]
+        },
+        {
+          "id": "fidelity-domain-01",
+          "critical": false,
+          "reviewer_reasons": [
+            "Retains Pavel's 140 °C and 3%→0.88% porosity values, but 'ce qui permet' asserts a causal reduction and adds 'significativement' beyond the reported decrease.",
+            "Correctly gives 140 °C and 3% to 0.88%, but 'ce qui permet' asserts causation and 'significativement' adds an unsupported significance qualifier to Pavel's reported decrease."
+          ]
+        },
+        {
+          "id": "fidelity-domain-02",
+          "critical": false,
+          "reviewer_reasons": [
+            "The 8.2% packing-density gain and 6.4% shrinkage reduction are correct, but 'without changing median size' comes from a distinct earlier feasibility study and is improperly attached to the quantified improvements.",
+            "The numerical improvements and shrinkage reduction are correct, but 'sans modifier la taille médiane' transfers the condition from a separately described earlier study to those measured results."
+          ]
+        },
+        {
+          "id": "fidelity-domain-03",
+          "critical": false,
+          "reviewer_reasons": [
+            "Correctly reports lower solid fraction with higher conductivity and opposite trends, but infers another dominant influence, which the excerpt does not identify or establish.",
+            "The opposing trends do not establish 'une autre influence dominante'; the response also omits that equal-size powder is compared with non-equal-size powder."
+          ]
+        }
+      ],
+      "by_family": {
+        "MET004": {
+          "acceptable": 1,
+          "total": 3
+        },
+        "NEW_WAAM": {
+          "acceptable": 8,
+          "total": 9
+        },
+        "MET002": {
+          "acceptable": 1,
+          "total": 3
+        },
+        "thermal_en_prediction": {
+          "acceptable": 3,
+          "total": 4
+        },
+        "MET001": {
+          "acceptable": 1,
+          "total": 1
+        }
+      }
+    },
+    "adapter": {
+      "acceptable": 13,
+      "total": 20,
+      "critical_failures": 2,
+      "unsupported_citations": 7,
+      "unit_condition_failures": 6,
+      "causal_failures": 3,
+      "budget_hits": 0,
+      "disagreements": 0,
+      "failures": [
+        {
+          "id": "fidelity-01",
+          "critical": false,
+          "reviewer_reasons": [
+            "Omits the fully martensitic/fully Widmanstätten endpoint qualifiers and changes the agreement target to numerical results, whereas the excerpt says numerical predictions better match actual microstructures.",
+            "Omits fully martensitic/fully Widmanstätten endpoints and incorrectly says the model agrees better with numerical results; the source says numerical predictions agree better with actual microstructures."
+          ]
+        },
+        {
+          "id": "fidelity-07",
+          "critical": false,
+          "reviewer_reasons": [
+            "The clamping sentence states an important influence on printed products; the response specifically attributes generated stresses to clamping, conflating it with the separate thermal-load statement.",
+            "The clamping sentence reports an important influence on printed products, without identifying developed stresses as the affected quantity; the response adds that consequence."
+          ]
+        },
+        {
+          "id": "fidelity-09",
+          "critical": true,
+          "reviewer_reasons": [
+            "Correctly denies a certified fatigue life or cycle count, but changes the modeling target from material-property prediction through phase evolution to prediction only of phase evolution.",
+            "Correctly denies certified fatigue cycles, but reverses the source's prediction target: microstructural modeling predicts material properties in terms of phase evolution, not phase evolution itself."
+          ]
+        },
+        {
+          "id": "fidelity-domain-01",
+          "critical": false,
+          "reviewer_reasons": [
+            "Pavel's 140 °C and porosity change from 3% to 0.88% are correct, but 'elle permet' promotes the reported observation to a causal effect.",
+            "Preserves Pavel's 140 °C and porosity change from 3% to 0.88%, but 'elle permet' turns the reported observation under substrate preheating into a causal assertion."
+          ]
+        },
+        {
+          "id": "fidelity-domain-02",
+          "critical": false,
+          "reviewer_reasons": [
+            "The 8.2% packing-density gain and 6.4% shrinkage reduction are correct, but 'without changing median size' comes from a distinct earlier feasibility study and is improperly attached to the quantified improvements.",
+            "Reports the numerical improvements correctly but attaches the unchanged-median-size condition from the separately described earlier study to the tested packing, fluidity and sintering results."
+          ]
+        },
+        {
+          "id": "fidelity-domain-03",
+          "critical": false,
+          "reviewer_reasons": [
+            "Correctly reports lower solid fraction with higher conductivity and opposite trends, but infers another dominant influence, which the excerpt does not identify or establish.",
+            "Opposite observed trends do not demonstrate another dominant influence; the equal-size versus non-equal-size powder comparison is also left unspecified."
+          ]
+        },
+        {
+          "id": "fidelity-domain-08",
+          "critical": true,
+          "reviewer_reasons": [
+            "The fatigue-certification refusal is correct, but the supporting property list replaces the excerpt's toughness with ductility, a different mechanical property.",
+            "Correctly denies fatigue certification, but attributes ductility to the excerpt where the stated property is toughness; these are distinct material properties."
+          ]
+        }
+      ],
+      "by_family": {
+        "MET004": {
+          "acceptable": 1,
+          "total": 3
+        },
+        "NEW_WAAM": {
+          "acceptable": 8,
+          "total": 9
+        },
+        "MET002": {
+          "acceptable": 0,
+          "total": 3
+        },
+        "thermal_en_prediction": {
+          "acceptable": 3,
+          "total": 4
+        },
+        "MET001": {
+          "acceptable": 1,
+          "total": 1
+        }
+      }
+    }
+  },
+  "paired_rows": [
+    {
+      "id": "fidelity-01",
+      "source_family": "MET004",
+      "critical": false,
+      "base_acceptable": false,
+      "candidate_acceptable": false,
+      "result": "tie_fail"
+    },
+    {
+      "id": "fidelity-02",
+      "source_family": "MET004",
+      "critical": false,
+      "base_acceptable": true,
+      "candidate_acceptable": true,
+      "result": "tie_pass"
+    },
+    {
+      "id": "fidelity-03",
+      "source_family": "NEW_WAAM",
+      "critical": false,
+      "base_acceptable": true,
+      "candidate_acceptable": true,
+      "result": "tie_pass"
+    },
+    {
+      "id": "fidelity-04",
+      "source_family": "NEW_WAAM",
+      "critical": false,
+      "base_acceptable": true,
+      "candidate_acceptable": true,
+      "result": "tie_pass"
+    },
+    {
+      "id": "fidelity-05",
+      "source_family": "NEW_WAAM",
+      "critical": false,
+      "base_acceptable": true,
+      "candidate_acceptable": true,
+      "result": "tie_pass"
+    },
+    {
+      "id": "fidelity-06",
+      "source_family": "NEW_WAAM",
+      "critical": false,
+      "base_acceptable": true,
+      "candidate_acceptable": true,
+      "result": "tie_pass"
+    },
+    {
+      "id": "fidelity-07",
+      "source_family": "NEW_WAAM",
+      "critical": false,
+      "base_acceptable": false,
+      "candidate_acceptable": false,
+      "result": "tie_fail"
+    },
+    {
+      "id": "fidelity-08",
+      "source_family": "NEW_WAAM",
+      "critical": false,
+      "base_acceptable": true,
+      "candidate_acceptable": true,
+      "result": "tie_pass"
+    },
+    {
+      "id": "fidelity-09",
+      "source_family": "MET004",
+      "critical": true,
+      "base_acceptable": false,
+      "candidate_acceptable": false,
+      "result": "tie_fail"
+    },
+    {
+      "id": "fidelity-10",
+      "source_family": "NEW_WAAM",
+      "critical": true,
+      "base_acceptable": true,
+      "candidate_acceptable": true,
+      "result": "tie_pass"
+    },
+    {
+      "id": "fidelity-11",
+      "source_family": "NEW_WAAM",
+      "critical": true,
+      "base_acceptable": true,
+      "candidate_acceptable": true,
+      "result": "tie_pass"
+    },
+    {
+      "id": "fidelity-12",
+      "source_family": "NEW_WAAM",
+      "critical": true,
+      "base_acceptable": true,
+      "candidate_acceptable": true,
+      "result": "tie_pass"
+    },
+    {
+      "id": "fidelity-domain-01",
+      "source_family": "MET002",
+      "critical": false,
+      "base_acceptable": false,
+      "candidate_acceptable": false,
+      "result": "tie_fail"
+    },
+    {
+      "id": "fidelity-domain-02",
+      "source_family": "MET002",
+      "critical": false,
+      "base_acceptable": false,
+      "candidate_acceptable": false,
+      "result": "tie_fail"
+    },
+    {
+      "id": "fidelity-domain-03",
+      "source_family": "thermal_en_prediction",
+      "critical": false,
+      "base_acceptable": false,
+      "candidate_acceptable": false,
+      "result": "tie_fail"
+    },
+    {
+      "id": "fidelity-domain-04",
+      "source_family": "thermal_en_prediction",
+      "critical": false,
+      "base_acceptable": true,
+      "candidate_acceptable": true,
+      "result": "tie_pass"
+    },
+    {
+      "id": "fidelity-domain-05",
+      "source_family": "MET001",
+      "critical": false,
+      "base_acceptable": true,
+      "candidate_acceptable": true,
+      "result": "tie_pass"
+    },
+    {
+      "id": "fidelity-domain-06",
+      "source_family": "thermal_en_prediction",
+      "critical": true,
+      "base_acceptable": true,
+      "candidate_acceptable": true,
+      "result": "tie_pass"
+    },
+    {
+      "id": "fidelity-domain-07",
+      "source_family": "thermal_en_prediction",
+      "critical": true,
+      "base_acceptable": true,
+      "candidate_acceptable": true,
+      "result": "tie_pass"
+    },
+    {
+      "id": "fidelity-domain-08",
+      "source_family": "MET002",
+      "critical": true,
+      "base_acceptable": true,
+      "candidate_acceptable": false,
+      "result": "loss"
+    }
+  ],
+  "paired": {
+    "gains": 0,
+    "losses": 1,
+    "net_gain": -1,
+    "critical_regressions": 1,
+    "exact_two_sided_mcnemar_descriptive_p": 1,
+    "independent_improvement_claim": false
+  },
+  "decision_reason": "Unresolved scientific errors under preregistered development rejection gate; no reserved generation or additional checkpoint selection."
+}

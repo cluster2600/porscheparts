@@ -1,0 +1,313 @@
+{
+  "schema_version": "1.0",
+  "status": "data_diagnosis_and_preparation_only_no_new_protocol_or_training",
+  "evidence": {
+    "development_summary_path": "training/qwen3-continuation-20261003/development-summary.json",
+    "development_summary_sha256": "b28c2d32bd3525bf4e4a77bc3f20eb5965fb4bc436b346a57af3aa41ee25d757",
+    "review_paths_sha256": {
+      "training/qwen3-continuation-20261003/reviews/development-d/RUBRIC.txt": "c3833428cde0feeb943adb2aff72eff1573ea5c3cd1940422b137b01d8f413b2",
+      "training/qwen3-continuation-20261003/reviews/development-d/arm-map.json": "920f048abeab676909687bee3786de8212b1ec9d7e42c917709abcb7e16f94ba",
+      "training/qwen3-continuation-20261003/reviews/development-d/reviewer-1.json": "11ff48f8b7effee46cc08e9a8fafb05e4e36c561332f134de1b8fb8332c1eb8c",
+      "training/qwen3-continuation-20261003/reviews/development-d/reviewer-2.json": "52a3e442b29bae28c85b1a48d5d40eeb88519fde7e36f40c7544f4c9b5d3cb6a"
+    },
+    "training_history_path": "training/qwen3-continuation-20261003/runs/candidate-d-001/trainer-history.json",
+    "training_history_sha256": "27188d6592ec58c5c45ecc99c898dde517b024bd28c291c258d81e6fab3fa81b",
+    "current_train_rows_sha256": "25a2dc9af573e1a0f391a52b1804e5ccca4d31cc626b45632f698da08f7fc1d0"
+  },
+  "observed_comparison": {
+    "base": 14,
+    "historical_adapter": 14,
+    "candidate_D": 13,
+    "total": 20,
+    "gains": 0,
+    "losses": 1,
+    "critical_regressions": 1,
+    "reserved_opened": false,
+    "assistant_review_only": true
+  },
+  "execution_observations": {
+    "row_events": 20,
+    "optimizer_entries": 10,
+    "optimizer_entries_with_nonzero_learning_rate": 9,
+    "all_recorded_gradients_finite": true,
+    "all_recorded_row_losses_finite": true,
+    "generation_budget_hits": 0,
+    "interpretation": "Finite gradients/loss and bounded completion do not explain the scientific regression or show useful training. First zero-lr optimizer entry and later schedule are observed, not diagnosed causal faults."
+  },
+  "failure_classes": [
+    {
+      "class": "endpoint_qualifiers_and_relation_operands",
+      "failed_ids": [
+        "fidelity-01"
+      ],
+      "observed": "All arms drop fully endpoint qualifiers; D also changes the agreement target from actual microstructures to numerical results.",
+      "current_20_coverage": "Partial: gradual-trend, most and in-most-cases tasks cover general qualifiers, but not both transition endpoints or agreement operands.",
+      "missing": "Degree modifiers attached to both entities and correct prediction-versus-observation comparison direction.",
+      "donors": [
+        "[MET001:p24]",
+        "[MET001:p41]",
+        "[NEW_RESIDUAL:p99]"
+      ],
+      "remaining_gap": "No proposed source reproduces the held-out microstructural-transition task; do not train MET004 or rewrite its development question."
+    },
+    {
+      "class": "sentence_to_effect_binding",
+      "failed_ids": [
+        "fidelity-07"
+      ],
+      "observed": "All arms attach developed stresses to the clamping statement, which only states influence on printed products.",
+      "current_20_coverage": "Partial: residual-stress operator list is accurate, but its clauses all explicitly concern residual stress and do not exercise neighbouring claims with different affected quantities.",
+      "missing": "Claim segmentation with separate subject/relation/object scopes.",
+      "donors": [
+        "[MET001:p24]",
+        "[MET001:p26]"
+      ],
+      "remaining_gap": "Do not infer that these analogue tasks correct the clamping error until independently measured."
+    },
+    {
+      "class": "predictor_output_direction",
+      "failed_ids": [
+        "fidelity-09"
+      ],
+      "observed": "All arms correctly refuse fatigue cycles yet reverse material-property prediction through phase evolution into prediction of phase evolution.",
+      "current_20_coverage": "Missing direct target/mechanism extraction; model/error conditions and beam ambiguity do not require a causal input/output chain.",
+      "missing": "Explicit model output versus intermediate state, retained beside a useful evidence-limit answer.",
+      "donors": [
+        "[NEW_RESIDUAL:p99]",
+        "[NEW_RESIDUAL:p104]"
+      ],
+      "remaining_gap": "A safe refusal does not compensate for a wrong positive fact; property prediction in MET004 remains held-out-source development."
+    },
+    {
+      "class": "reported_association_not_promoted_to_cause",
+      "failed_ids": [
+        "fidelity-domain-01"
+      ],
+      "observed": "All arms preserve values but use permits/allows causal phrasing; old adapter also adds unsupported significantly.",
+      "current_20_coverage": "Partial: suggested dominance and no-ranking lessons exist, but no task distinguishes reported quantitative change under a condition from proof of its causal effect.",
+      "missing": "Source-attributed observed results, actual causal qualifiers, and no invented significance.",
+      "donors": [
+        "[NEW_RESIDUAL:p97]",
+        "[thermal_en_flow:p11]",
+        "[MET001:p26]"
+      ],
+      "remaining_gap": "Do not deny causation stated in a source; distinguish observation from interpretation. The donor paper itself can contain causal interpretations that must remain attributed and scoped."
+    },
+    {
+      "class": "conditions_not_transferred_between_studies",
+      "failed_ids": [
+        "fidelity-domain-02"
+      ],
+      "observed": "All arms transfer unchanged median size from the earlier feasibility study to a later quantified result.",
+      "current_20_coverage": "Missing: excerpt slices predominantly contain one study or relation; powder error preserves temperature but not study boundaries.",
+      "missing": "Dense multi-study subject/condition/value segmentation and exact named-study attribution.",
+      "donors": [
+        "[MET001:p24]",
+        "[MET001:p26]"
+      ],
+      "remaining_gap": "MET001:p42 removed entirely under the independent documentary hold; p24 complete-laws clause omitted. Replacement p26 requires independent review of prediction target and fully-dense results, preserving source study boundaries."
+    },
+    {
+      "class": "explicit_comparator_and_no_dominance_inference",
+      "failed_ids": [
+        "fidelity-domain-03"
+      ],
+      "observed": "All arms infer another dominant influence; second reviewer additionally notes omission of non-equal-size powder comparator.",
+      "current_20_coverage": "Direct for no-ranking via PBF and steel-specific suggested dominance; only partial comparator coverage via wavelengths/beam types. D shows no measured benefit on this class.",
+      "missing": "Explicit subject/comparator pair with opposite observations, without inventing a ranking.",
+      "donors": [
+        "[thermal_en_flow:p11]",
+        "[MET001:p41]",
+        "[NEW_RESIDUAL:p97]"
+      ],
+      "remaining_gap": "No evidence that more repetitions of the current no-ranking targets alone will improve transfer; do not reuse thermal_en_prediction:p42."
+    },
+    {
+      "class": "distinct_property_retention_during_refusal",
+      "failed_ids": [
+        "fidelity-domain-08"
+      ],
+      "observed": "Only D replaces source toughness with ductility while correctly denying certification: the sole new critical regression.",
+      "current_20_coverage": "Missing direct toughness inventory. One target names lower ductility in SEBM, but this does not prove it caused substitution. Missing-batch-value refusal never selects the v14 scope branch.",
+      "missing": "Exact property inventory and supported positive source facts preserved alongside qualification refusal.",
+      "donors": [
+        "[MET001:p11]",
+        "[MET001:p41]",
+        "[NEW_RESIDUAL:p104]"
+      ],
+      "remaining_gap": "No unsupported definitions or synonyms: toughness and ductility are distinct; do not quote the exposed MET002:p38 paragraph."
+    }
+  ],
+  "causal_hypotheses_not_proven": [
+    "Insufficient task coverage or transfer from simple one-study excerpts to dense multi-study passages.",
+    "Lexical priming from a ductility target; no ablation demonstrates that it caused the toughness substitution.",
+    "Too few updates, learning-rate schedule, gradient clipping, warm-start choice, capacity or overfitting; no controlled comparison establishes any of these as the cause."
+  ],
+  "targeted_preparation": {
+    "directory": "training/qwen3-next-preparation-20261003",
+    "planned_rows": 16,
+    "objectives": 8,
+    "source_families": 3,
+    "candidate_fingerprints": [
+      {
+        "passage_id": "[MET001:p11]",
+        "source_id": "MET001",
+        "source_snapshot_path": "training/qwen-metal-additive-20261002/input/snapshots/full_00.html",
+        "source_snapshot_sha256": "98a88a8b21db3b142604c64e84ba501305acde7030913c9ef711e5587dc18b26",
+        "parent_paragraph_original_sha256": "fbe7852d107f078cfcf74759dccfed063268304ab05c4f07653257c2a663ed67",
+        "parent_paragraph_text_sha256": "857ba06bc952ce3eca7458840bb3d314a48436a0c36651407740f89e519626d5",
+        "selected_excerpt_sha256": "50a64b7a0acafdb7d1cc9e363f84d5d72187b7fd1b68439400dc6401a4c9d46b",
+        "section": "1. Introduction",
+        "paragraph_index": 11,
+        "original_split": "train",
+        "license": "CC BY 4.0",
+        "license_evidence_path": "training/qwen-metal-additive-20261002/input/licenses/MET001.txt",
+        "license_evidence_sha256": "fe7134f32b9a04b6a3bbae56c7516fe245ef21992a0843a18fd51c644357def0",
+        "custodian_exclusion_status": "pending_no_reserve_content_access"
+      },
+      {
+        "passage_id": "[MET001:p24]",
+        "source_id": "MET001",
+        "source_snapshot_path": "training/qwen-metal-additive-20261002/input/snapshots/full_00.html",
+        "source_snapshot_sha256": "98a88a8b21db3b142604c64e84ba501305acde7030913c9ef711e5587dc18b26",
+        "parent_paragraph_original_sha256": "c55275024113f7531577c05fa65c57db1000d380eedf15cf10ed97f67b15fb5f",
+        "parent_paragraph_text_sha256": "bd6fdc5985bdde4b700e67d604ea7d722ae8dad1bdb26b26d4f70f5b96e5393b",
+        "selected_excerpt_sha256": "bfaf5933ab729f01bfdec6a0d21e16510ca46d37d1cbee731359019fb4e86ee7",
+        "section": "2.1. Powder Bed Fusion (PBF) Technology",
+        "paragraph_index": 24,
+        "original_split": "train",
+        "license": "CC BY 4.0",
+        "license_evidence_path": "training/qwen-metal-additive-20261002/input/licenses/MET001.txt",
+        "license_evidence_sha256": "fe7134f32b9a04b6a3bbae56c7516fe245ef21992a0843a18fd51c644357def0",
+        "custodian_exclusion_status": "pending_no_reserve_content_access"
+      },
+      {
+        "passage_id": "[MET001:p26]",
+        "source_id": "MET001",
+        "source_snapshot_path": "training/qwen-metal-additive-20261002/input/snapshots/full_00.html",
+        "source_snapshot_sha256": "98a88a8b21db3b142604c64e84ba501305acde7030913c9ef711e5587dc18b26",
+        "parent_paragraph_original_sha256": "92183b2c4a4a873bec1d2a185e5b69fd89f62c0ea3306229503724c4ae1b65d8",
+        "parent_paragraph_text_sha256": "39dd7e47e9b572101931c70e66701c117cd31195c4275fe4e883a946423ef94d",
+        "selected_excerpt_sha256": "d702bf22fd80fe9353f3ec81a6c89c5a9fbfc71ed45be1782918decfe0365f21",
+        "section": "2.2. Directed Energy Deposition (DED) Technology",
+        "paragraph_index": 26,
+        "original_split": "train",
+        "license": "CC BY 4.0",
+        "license_evidence_path": "training/qwen-metal-additive-20261002/input/licenses/MET001.txt",
+        "license_evidence_sha256": "fe7134f32b9a04b6a3bbae56c7516fe245ef21992a0843a18fd51c644357def0",
+        "custodian_exclusion_status": "pending_no_reserve_content_access"
+      },
+      {
+        "passage_id": "[NEW_RESIDUAL:p99]",
+        "source_id": "NEW_RESIDUAL",
+        "source_snapshot_path": "training/qwen-metal-additive-20261002/grounded-input/snapshots/residual.html",
+        "source_snapshot_sha256": "3a1ed28dc48c508bb38aa6e182983c68fb86fd30b68c7f2a5d1f6bf3667662c7",
+        "parent_paragraph_original_sha256": "bb4a62ba2800d0fbcdeaf69519aa68f5882e96abbe590e941dae0b8950a88395",
+        "parent_paragraph_text_sha256": "5ef55a2f5df339b08d51317c5343cadc722489317eb0d6ad87a4ab93e305eed6",
+        "selected_excerpt_sha256": "b67a044f2a01a2adc4e09d5a17fb5ccd86a7fc0e3b93725c06b95de444b13740",
+        "section": "5.1. Approaches to Prevent Deflection",
+        "paragraph_index": 99,
+        "original_split": "train",
+        "license": "CC BY 4.0",
+        "license_evidence_path": "training/qwen-metal-additive-20261002/grounded-input/NEW_RESIDUAL.license.txt",
+        "license_evidence_sha256": "97913192037db0a64a8ae37d1afc52764c0f19b42b18d9a0f331174b9f8ad6f9",
+        "custodian_exclusion_status": "pending_no_reserve_content_access"
+      },
+      {
+        "passage_id": "[NEW_RESIDUAL:p104]",
+        "source_id": "NEW_RESIDUAL",
+        "source_snapshot_path": "training/qwen-metal-additive-20261002/grounded-input/snapshots/residual.html",
+        "source_snapshot_sha256": "3a1ed28dc48c508bb38aa6e182983c68fb86fd30b68c7f2a5d1f6bf3667662c7",
+        "parent_paragraph_original_sha256": "99ea78197d379ebf995c3ca8858dbda80ad958815f9adf558f9c95d10765883b",
+        "parent_paragraph_text_sha256": "e2e4aabca4c9ee2f6065eda71b02d5ec4ce28edb20937c4632da625abbe44c44",
+        "selected_excerpt_sha256": "9a53deb0602d9b9b2799db5c277c4b55fbcea8a21f1a04d08b03b1f41b3654fd",
+        "section": "5.2. Corrective Design to Mitigate Residual Stresses in AM",
+        "paragraph_index": 104,
+        "original_split": "train",
+        "license": "CC BY 4.0",
+        "license_evidence_path": "training/qwen-metal-additive-20261002/grounded-input/NEW_RESIDUAL.license.txt",
+        "license_evidence_sha256": "97913192037db0a64a8ae37d1afc52764c0f19b42b18d9a0f331174b9f8ad6f9",
+        "custodian_exclusion_status": "pending_no_reserve_content_access"
+      },
+      {
+        "passage_id": "[NEW_RESIDUAL:p97]",
+        "source_id": "NEW_RESIDUAL",
+        "source_snapshot_path": "training/qwen-metal-additive-20261002/grounded-input/snapshots/residual.html",
+        "source_snapshot_sha256": "3a1ed28dc48c508bb38aa6e182983c68fb86fd30b68c7f2a5d1f6bf3667662c7",
+        "parent_paragraph_original_sha256": "d0b0bd6be204473d2e0981e41e16ded9f46299d5f087a3762da37ab1dd7000b2",
+        "parent_paragraph_text_sha256": "4828cf8c105e4ae9e6c02b313c172917713dcad7ecf22cd55dbd4467c581aa65",
+        "selected_excerpt_sha256": "4828cf8c105e4ae9e6c02b313c172917713dcad7ecf22cd55dbd4467c581aa65",
+        "section": "5.1. Approaches to Prevent Deflection",
+        "paragraph_index": 97,
+        "original_split": "train",
+        "license": "CC BY 4.0",
+        "license_evidence_path": "training/qwen-metal-additive-20261002/grounded-input/NEW_RESIDUAL.license.txt",
+        "license_evidence_sha256": "97913192037db0a64a8ae37d1afc52764c0f19b42b18d9a0f331174b9f8ad6f9",
+        "custodian_exclusion_status": "pending_no_reserve_content_access"
+      },
+      {
+        "passage_id": "[thermal_en_flow:p11]",
+        "source_id": "thermal_en_flow",
+        "source_snapshot_path": "training/qwen-metal-additive-20261002/input/snapshots/thermal_en_flow.html",
+        "source_snapshot_sha256": "3173a1168ca84af4d0ba07a8ccffde45457d9477ba165dc0333ca94f0772a06b",
+        "parent_paragraph_original_sha256": "fcac05d9bbeb25e3ebf765b53a9329b7d3bfc30436edaa0a42b7a766ef083024",
+        "parent_paragraph_text_sha256": "fcac05d9bbeb25e3ebf765b53a9329b7d3bfc30436edaa0a42b7a766ef083024",
+        "selected_excerpt_sha256": "fcac05d9bbeb25e3ebf765b53a9329b7d3bfc30436edaa0a42b7a766ef083024",
+        "section": "Results",
+        "paragraph_index": 11,
+        "original_split": "train",
+        "license": "CC BY 4.0",
+        "license_evidence_path": "training/qwen-metal-additive-20261002/input/licenses/thermal_en_flow.txt",
+        "license_evidence_sha256": "a5ce7840a75ebb7d39c9a35aa64768ddfe30092d5611bb08fb5f1480fab2084f",
+        "custodian_exclusion_status": "pending_no_reserve_content_access"
+      },
+      {
+        "passage_id": "[MET001:p41]",
+        "source_id": "MET001",
+        "source_snapshot_path": "training/qwen-metal-additive-20261002/input/snapshots/full_00.html",
+        "source_snapshot_sha256": "98a88a8b21db3b142604c64e84ba501305acde7030913c9ef711e5587dc18b26",
+        "parent_paragraph_original_sha256": "d08b90336914b7be18482e71f22d65808ef39156f040fe58194fa7b6cea46d52",
+        "parent_paragraph_text_sha256": "d08b90336914b7be18482e71f22d65808ef39156f040fe58194fa7b6cea46d52",
+        "selected_excerpt_sha256": "d08b90336914b7be18482e71f22d65808ef39156f040fe58194fa7b6cea46d52",
+        "section": "4.1. Hardness",
+        "paragraph_index": 41,
+        "original_split": "train",
+        "license": "CC BY 4.0",
+        "license_evidence_path": "training/qwen-metal-additive-20261002/input/licenses/MET001.txt",
+        "license_evidence_sha256": "fe7134f32b9a04b6a3bbae56c7516fe245ef21992a0843a18fd51c644357def0",
+        "custodian_exclusion_status": "pending_no_reserve_content_access"
+      }
+    ],
+    "admission_status": "preparation_only_not_training_admitted",
+    "screen": "Paragraph IDs absent from publicly scanned historical SFT/evaluation/question metadata plus current 20 rows. Full article texts, untrained CPT and this audit expose the donor wording, so no absolute-unseen or concept-independence claim. Custodian overlap audit must operate on full parent paragraph fingerprints as well as excerpt hashes.",
+    "conditional_documentary_screen": {
+      "whitelist_sha256": "ca22875ae1d88447ecf81a2c13b62e468606ae6eb1a04a54518b22c9a4f97615",
+      "decisions_sha256": "792af5ffc800d0e870359aa14663936776c7a3f0c3531b58cc4156a55f3e2195",
+      "whitelist_source": "Explicitly authorized read-only conditional-corpus-review/admissible-ids.json; no file copied or republished.",
+      "training_ready": false,
+      "selected_paragraphs_whitelisted": true,
+      "removed_donor": "[MET001:p42]",
+      "replacement_donor": "[MET001:p26]",
+      "exclusions_respected": [
+        "[thermal_en_prediction:p15]",
+        "[NEW_RESIDUAL:p96]",
+        "[NEW_RESIDUAL:p101]"
+      ],
+      "independent_scientific_gold_review_complete": false
+    }
+  },
+  "required_gates": [
+    "Independent custodian exclusion audit against sealed reserve; disclose only allow/deny decisions and commitments, never reserve prompts or golds to training owners.",
+    "Independent scientific and translation review of all 16 source-conditioned golds; reject causal, property, numeric, qualifier or study-scope errors.",
+    "Verify original train split, CC BY notices/authors/DOI and contiguous excerpt-to-snapshot lineage; no held-out source family, exposed paragraph, private scan/manual or forum claim.",
+    "Freeze a new protocol, data hashes, one candidate and bounded resource budget before execution; parent owns this protocol. Hyperparameter alterations require an explicit controlled hypothesis, not known-score tuning.",
+    "Compare pinned base, original adapter and candidate with identical evidence/prompt/template/decoding; positive factual fidelity and safe qualification both matter. No new critical regression and no supported-fact degradation; no loss/citation-only acceptance.",
+    "Use known development only for declared diagnostic/rejection gates. Admit a frozen candidate to fresh final evaluation only after eligibility; failed candidates stop with the reserve closed.",
+    "Fresh final holdout remains under independent custody. Any amended/replacement set must be sealed before candidate predictions and screened against source/paragraph/task-family fingerprints. No answer reuse across different tensors."
+  ],
+  "actions_not_taken": [
+    "No new training or model job.",
+    "No change to current 20 corrective rows, D artifacts, historical profiles, main protocol or reserve.",
+    "No private reviewer/corpus/session-log access, broad ingestion, release or merge."
+  ]
+}
