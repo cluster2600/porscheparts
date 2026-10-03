@@ -151,3 +151,21 @@ Passing an integrity/token audit does not qualify scientific explanations,
 manufacturing, fit, fatigue, CFD fields or model performance. Readiness remains
 explicit until scientific/translation review and separate experiment registration
 are complete. Prepared rows and actually trained rows must be reported separately.
+
+## Readiness depends on the intended use
+
+| Intended use | Admission conditions | Current preparation does establish |
+| --- | --- | --- |
+| Local inventory/reference retrieval | Authorized access, provenance, privacy filters, explicit claim/rights limits | Searchable metadata and traceable reviewed context; unknown-rights items remain references |
+| Bounded experimental training | Item-specific reuse permission, frozen family/exposure boundaries, faithful excerpts/targets, exact tokenizer/masks/lengths, registered protocol and explicit run authorization | Integrity and formatting can be ready while a scientific deployment review remains open |
+| Scientific/mechanical use or deployment | Independent subject-matter/translation review, suitable experimental/solver evidence, conditions/units/uncertainty, application validation and engineering gates | Preparation and an experimental score do not supply these approvals |
+
+An assisted fidelity review may identify quotation, attribution, qualification,
+unit or translation errors and quarantine individual rows. It is not human expert
+approval. Once a bounded protocol and its data gates are satisfied, a separately
+authorized experimental run can be appropriate while real-use validation remains
+open. Report these states separately, retain pending reviews, and compare against
+the exact base/retrieval controls. This preparation-only tool neither grants run
+authorization nor silently promotes `training_ready`; the experiment owner must
+register the actual admission decision and its evidence. Failed CFD remains failed
+for every intended use.
