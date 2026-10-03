@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import base64
 import hashlib
 import json
 import math
@@ -10,6 +11,8 @@ import re
 import shutil
 import subprocess
 import sys
+import urllib.parse
+import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -241,7 +244,7 @@ def parse_modes(case: Path, expected: str) -> list[float]:
 
 
 def build_usd(out: Path, cards: dict, scenario: dict, geometry: dict, input_contract: dict) -> Path:
-    from pxr import Sdf, Usd, UsdGeom
+    from pxr import Gf, Usd, UsdGeom, UsdLux
     stage_path = out / "935-horizontal-fan-alloy-screen.usda"
     stage = Usd.Stage.CreateNew(str(stage_path))
     UsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)
@@ -252,21 +255,84 @@ def build_usd(out: Path, cards: dict, scenario: dict, geometry: dict, input_cont
                         "scanTransferred": False, "interfacesVerified": False, "source": scenario["id"],
                         "inputContractSha256": input_contract["matrix_sha256"],
                         "accepted935NumericPhysicalClaims": input_contract["accepted_935_numeric_physical_claims"]})
-    scope = UsdGeom.Scope.Define(stage, "/FanAlloyScreen/MaterialVariants")
+    camera = UsdGeom.Camera.Define(stage, "/FanAlloyScreen/Camera")
+    camera.CreateFocalLengthAttr(52.0)
+    camera.AddTranslateOp().Set(Gf.Vec3d(0.0, 0.0, 600.0))
+    light = UsdLux.DistantLight.Define(stage, "/FanAlloyScreen/KeyLight")
+    light.CreateIntensityAttr(1800.0)
+    light.AddRotateXOp().Set(180.0)
+    g = scenario["geometry"]
+    outer_radius = float(g["outer_diameter_mm"]) / 2.0
+    disc_t = float(g["disc_thickness_mm"])
+    blade_h = float(g["blade_height_mm"])
+    radial_length, tangential_width = outer_radius * 0.62, outer_radius * 0.13
+    centre_radius = outer_radius * 0.61
+    variant_set = root.GetVariantSets().AddVariantSet("materialScenario")
     colors = [(0.65,0.65,0.7),(0.8,0.7,0.25),(0.5,0.55,0.6),(0.4,0.6,0.7),(0.75,0.45,0.25)]
     for index, card in enumerate(cards["materials"]):
-        prim = UsdGeom.Xform.Define(stage, f"/FanAlloyScreen/MaterialVariants/{card['id']}").GetPrim()
-        prim.SetCustomData({"materialScenario": card["name"], "source": card["source"], "yieldComparatorMPa": card["yield_comparator_MPa"],
-                            "processQualifiedForPart": False, "variantRole": "comparison_only"})
-        geom = UsdGeom.Cube.Define(stage, f"{prim.GetPath()}/ScreenToken")
-        geom.CreateSizeAttr(0.001)
-        geom.CreateDisplayColorAttr([colors[index % len(colors)]])
+        variant_set.AddVariant(card["id"])
+        variant_set.SetVariantSelection(card["id"])
+        with variant_set.GetVariantEditContext():
+            prim = UsdGeom.Xform.Define(stage, "/FanAlloyScreen/Proxy").GetPrim()
+            prim.SetCustomData({"materialScenario": card["name"], "source": card["source"], "yieldComparatorMPa": card["yield_comparator_MPa"],
+                                "processQualifiedForPart": False, "variantRole": "comparison_only"})
+            disc = UsdGeom.Cylinder.Define(stage, "/FanAlloyScreen/Proxy/Disc")
+            disc.CreateRadiusAttr(outer_radius)
+            disc.CreateHeightAttr(disc_t)
+            disc.CreateDisplayColorAttr([colors[index % len(colors)]])
+            hub = UsdGeom.Cylinder.Define(stage, "/FanAlloyScreen/Proxy/Hub")
+            hub.CreateRadiusAttr(30.0)
+            hub.CreateHeightAttr(16.0)
+            hub.CreateDisplayColorAttr([colors[index % len(colors)]])
+            for blade_index in range(int(g["blade_count"])):
+                blade = UsdGeom.Cube.Define(stage, f"/FanAlloyScreen/Proxy/Blade{blade_index:02d}")
+                blade.CreateSizeAttr(1.0)
+                blade.CreateDisplayColorAttr([colors[index % len(colors)]])
+                blade.AddTranslateOp().Set(Gf.Vec3d(centre_radius, 0.0, disc_t / 2.0 + blade_h / 2.0))
+                blade.AddRotateZOp().Set(360.0 * blade_index / int(g["blade_count"]) + 24.0)
+                blade.AddScaleOp().Set(Gf.Vec3f(radial_length, tangential_width, blade_h))
+    variant_set.SetVariantSelection("alsi10mg")
     stage.GetRootLayer().documentation = "Exploratory 935 horizontal fan alloy screen. No physical validation or manufacturing authorization."
     stage.GetRootLayer().Save()
     return stage_path
 
 
-def run(root: Path, out: Path) -> dict:
+def require_ovrtx_endpoint(endpoint: str) -> str:
+    parsed = urllib.parse.urlparse(endpoint)
+    if parsed.scheme != "http" or parsed.hostname not in {"127.0.0.1", "localhost"} or parsed.port != 8001:
+        raise ValueError("OVRTX endpoint must remain local loopback port 8001")
+    if (parsed.username is not None or parsed.password is not None or parsed.query or parsed.fragment
+            or parsed.path not in {"", "/"}):
+        raise ValueError("OVRTX endpoint must not carry credentials or parameters")
+    return endpoint.rstrip("/")
+
+
+def render_ovrtx(stage_path: Path, out: Path, endpoint: str) -> dict:
+    endpoint = require_ovrtx_endpoint(endpoint)
+    camera_path = "/FanAlloyScreen/Camera"
+    payload = {"url": stage_path.resolve().as_uri(), "force_render": True,
+               "render_settings": {"camera_paths": [camera_path], "frame_range": {"start": 0, "end": 0},
+                                   "camera_parameters": {"width": 1024, "height": 1024}, "sensors": ["rgb"],
+                                   "apply_background_mask": False, "render_mode": "PathTracing",
+                                   "num_sensor_updates": 16, "material_target": "All"}}
+    request = urllib.request.Request(f"{endpoint}/render", data=json.dumps(payload).encode("utf-8"),
+                                     headers={"Content-Type": "application/json"}, method="POST")
+    with urllib.request.urlopen(request, timeout=3600) as response:
+        result = json.loads(response.read().decode("utf-8"))
+    if result.get("status") != "success":
+        raise RuntimeError(f"OVRTX render failed: {result.get('error')}")
+    encoded = result.get("images", {}).get("0", {}).get(camera_path, {}).get("rgb")
+    if not isinstance(encoded, str) or not encoded:
+        raise RuntimeError("OVRTX render returned no RGB frame")
+    image_path = out / "ovrtx-preview.png"
+    image_path.write_bytes(base64.b64decode(encoded, validate=True))
+    if image_path.stat().st_size < 1024:
+        raise RuntimeError("OVRTX render output is unexpectedly small")
+    return {"status": "passed", "endpoint": endpoint, "camera_path": camera_path,
+            "image": {"path": str(image_path), "sha256": sha(image_path), "bytes": image_path.stat().st_size}}
+
+
+def run(root: Path, out: Path, ovrtx_endpoint: str | None = None) -> dict:
     cards, scenario = load_inputs(root)
     input_contract = load_input_contract(root)
     out.mkdir(parents=True, exist_ok=False)
@@ -308,9 +374,11 @@ def run(root: Path, out: Path) -> dict:
                          "above_yield_comparator": None if comparator is None else peak > comparator,
                          "method": "fresh CalculiX static solve" if rpm == rpm_static else "linear-elastic omega-squared extrapolation"})
     usd = build_usd(out, cards, scenario, geometry, input_contract)
+    render = None if ovrtx_endpoint is None else render_ovrtx(usd, out, ovrtx_endpoint)
     report = {"schema_version": "1.0.0", "status": "completed_unvalidated_comparative_screen", "generated_at": datetime.now(timezone.utc).isoformat(),
               "scenario": scenario, "input_contract": input_contract, "geometry": geometry, "mesh": {key: value for key, value in mesh.items() if key != "fixed_ids"},
               "materials": results, "rpm_sweep": rows, "usd": {"path": str(usd), "sha256": sha(usd)},
+              "ovrtx_render": render,
               "solver": {"name": "CalculiX", "static_cases": len(cards["materials"]), "modal_cases": 1, "static_rpm": rpm_static},
               "limits": "Comparative proxy only: no scan mesh transfer, dimensional validation, interfaces, CFD, fatigue, balance, contact, residual stress, overspeed, burst or physical correlation.",
               "manufacturing_authorized": False, "vehicle_operation_authorized": False, "digital_twin_calibrated": False}
@@ -324,8 +392,9 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--ovrtx-endpoint", default=None)
     args = parser.parse_args()
-    report = run(args.root.resolve(), args.output.resolve())
+    report = run(args.root.resolve(), args.output.resolve(), args.ovrtx_endpoint)
     print(json.dumps({"status": report["status"], "output": str(args.output)}, sort_keys=True))
     return 0
 

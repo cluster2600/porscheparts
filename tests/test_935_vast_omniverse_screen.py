@@ -33,6 +33,11 @@ class ScreenContractTests(unittest.TestCase):
         self.assertIn('"$INPUT_CONTRACT/data/input-matrix.json"', transfer)
         self.assertIn('"$INPUT_CONTRACT/research/coverage.json"', transfer)
 
+    def test_ovrtx_renderer_is_limited_to_the_local_service(self):
+        self.assertEqual(module.require_ovrtx_endpoint("http://127.0.0.1:8001"), "http://127.0.0.1:8001")
+        with self.assertRaisesRegex(ValueError, "local loopback"):
+            module.require_ovrtx_endpoint("https://renderer.example/preview")
+
     def test_invalid_duplicate_material_is_rejected_before_solver(self):
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
