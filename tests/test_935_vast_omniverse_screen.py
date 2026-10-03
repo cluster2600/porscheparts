@@ -46,6 +46,11 @@ class ScreenContractTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "local loopback"):
             module.require_ovrtx_endpoint("https://renderer.example/preview")
 
+    def test_usd_fallback_is_scoped_to_the_local_ovrtx_runtime(self):
+        source = SOURCE.read_text(encoding="utf-8")
+        self.assertIn('Path("/opt/ovrtx-app/lib/python3.12/site-packages")', source)
+        self.assertIn('if exc.name != "pxr"', source)
+
     def test_ovrtx_renderer_saves_a_hashed_preview(self):
         class Response:
             def __enter__(self):

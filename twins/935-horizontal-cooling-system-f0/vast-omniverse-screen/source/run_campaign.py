@@ -250,8 +250,23 @@ def parse_modes(case: Path, expected: str) -> list[float]:
     return modes
 
 
+def load_usd_modules():
+    """Load OpenUSD from the local OVRTX runtime when the solver venv lacks it."""
+    try:
+        from pxr import Gf, Usd, UsdGeom, UsdLux
+    except ModuleNotFoundError as exc:
+        if exc.name != "pxr":
+            raise
+        ovrtx_site_packages = Path("/opt/ovrtx-app/lib/python3.12/site-packages")
+        if not ovrtx_site_packages.is_dir():
+            raise RuntimeError("OpenUSD runtime is unavailable") from exc
+        sys.path.insert(0, str(ovrtx_site_packages))
+        from pxr import Gf, Usd, UsdGeom, UsdLux
+    return Gf, Usd, UsdGeom, UsdLux
+
+
 def build_usd(out: Path, cards: dict, scenario: dict, geometry: dict, input_contract: dict) -> Path:
-    from pxr import Gf, Usd, UsdGeom, UsdLux
+    Gf, Usd, UsdGeom, UsdLux = load_usd_modules()
     stage_path = out / "935-horizontal-fan-alloy-screen.usda"
     stage = Usd.Stage.CreateNew(str(stage_path))
     UsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)
