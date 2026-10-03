@@ -1,0 +1,156 @@
+{
+  "schema_version": "1.0.0",
+  "program_id": "993-ENGINE-COOLING-FAN-SYSTEM-F0",
+  "assessed_on": "2026-10-03",
+  "status": "exploratory_blocked_for_functional_validation",
+  "catalogue_source_of_truth": "catalog/parts/*.json",
+  "catalogue_records": [
+    "catalog/parts/993-eng-cooling-impeller-alsi10mg-f0-0001.json",
+    "catalog/parts/993-eng-fan-housing-alsi10mg-f0-0001.json"
+  ],
+  "current_target": {
+    "vehicle_variant": "993_Turbo_M64_60",
+    "reference_part_number": "96410601522",
+    "alternator": "not_selected_175A_240A_alternatives_interfaces_unmeasured",
+    "functional_catalogue_record": null,
+    "identity_of_private_scan_verified": false
+  },
+  "scan": {
+    "sha256": "244d4caeb2c4ac4a692b650ec9d766bee2a8124335a0236a55a1d30c1b2b98ba",
+    "commercial_provenance": "Wolfe Classics acquisition reported verified in private purchase evidence; delivery filename matches; no vendor checksum supplied",
+    "rights_status": "unconfirmed_private_only",
+    "units": null,
+    "scale_verified": false,
+    "equivalence_935_993_verified": false,
+    "raw_or_geometry_derivatives_published": false,
+    "audit_summary": {
+      "vertices": 624492,
+      "triangles": 1240465,
+      "boundary_edges": 8611,
+      "surface_components": 2,
+      "zero_area_triangles": 26
+    },
+    "report": "twins/993-engine-cooling-fan-system-f0/program/SCAN_INTAKE.md",
+    "private_preparation": {
+      "method": "rigid_PCA_pose_without_scale_and_exact_zero_area_face_removal",
+      "raw_unchanged": true,
+      "removed_exact_zero_area_faces": 26,
+      "remaining_boundary_edges": 8657,
+      "remaining_components": 2,
+      "relative_component_alignment_fixed": false,
+      "solver_ready": false,
+      "geometry_published": false
+    }
+  },
+  "variants": [
+    {
+      "id": "archived-carrera-f0",
+      "status": "archived_synthetic_not_current_baseline",
+      "source": "parts/993-eng-cooling-impeller-alsi10mg-f0-0001/source/cooling_impeller.py",
+      "part_number": "96410601531"
+    },
+    {
+      "id": "turbo-reference-20260928",
+      "status": "unmeasured_parametric_reference",
+      "source": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/Program.cs",
+      "parameters": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json",
+      "part_number": "96410601522"
+    },
+    {
+      "id": "organic-b",
+      "status": "unvalidated_parametric_variant",
+      "source": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/Program.cs",
+      "parameters": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/organic-b.json"
+    },
+    {
+      "id": "organic-c",
+      "status": "unvalidated_parametric_variant",
+      "source": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/Program.cs",
+      "parameters": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/organic-c.json"
+    },
+    {
+      "id": "organic-d",
+      "status": "unvalidated_parametric_variant",
+      "source": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/Program.cs",
+      "parameters": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/organic-d.json"
+    },
+    {
+      "id": "organic-e",
+      "status": "unvalidated_parametric_variant",
+      "source": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/Program.cs",
+      "parameters": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/organic-e.json"
+    },
+    {
+      "id": "organic-a",
+      "status": "unvalidated_parametric_variant",
+      "source": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/Program.cs",
+      "parameters": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/organic-a.json",
+      "note": "Recovered verbatim from retained results/organic/a/generation.json parameters; pitch 52 degrees, organic=1"
+    },
+    {
+      "id": "qwen-pitch42-pr105",
+      "status": "unvalidated_pitch_candidate_cfd_convergence_rejected",
+      "reference_commit": "ffe5ed00",
+      "source_url": "https://github.com/cluster2600/porscheparts/tree/ffe5ed00/twins/993-engine-cooling-fan-system-f0/results/qwen-chain-20261002",
+      "parameter_change": {
+        "blade_pitch_deg": {
+          "from": 36,
+          "to": 42
+        }
+      },
+      "interfaces_measured": false
+    }
+  ],
+  "evidence_records": [
+    "twins/993-engine-cooling-fan-system-f0/results/reference/validation.json",
+    "twins/993-engine-cooling-fan-system-f0/results/organic/structure/reference-structure-50k/summary.json",
+    "twins/993-engine-cooling-fan-system-f0/results/program-20261003/modal/summary.json",
+    "twins/993-engine-cooling-fan-system-f0/results/program-20261003/cfd/control-audit.json",
+    "twins/993-engine-cooling-fan-system-f0/results/program-20261003/cfd/pitch42-audit.json",
+    "twins/993-engine-cooling-fan-system-f0/results/program-20261003/usd-validation.json"
+  ],
+  "release_gates": {
+    "functional_geometry_validated": false,
+    "installed_airflow_validated": false,
+    "material_qualified": false,
+    "fatigue_validated": false,
+    "lpbf_process_qualified": false,
+    "digital_twin_validated": false,
+    "manufacturing_authorized": false
+  },
+  "missing_inputs": [
+    "scan units and independent metrology",
+    "scan identity and permitted reuse scope",
+    "measured attachment and bearing datums and tolerances",
+    "housing, alternator, cone, spacers and drive definition",
+    "speed and thermal/load envelope",
+    "fan bench curve and engine system resistance",
+    "qualified LPBF alloy/machine/process and calibration",
+    "professional engineering review and approved validation plan"
+  ],
+  "asset": "twins/993-engine-cooling-fan-system-f0/program/fan-program.usda",
+  "execution_report": "twins/993-engine-cooling-fan-system-f0/program/EXECUTION_20261003.md",
+  "runtime_policy": "existing resources only; no new rental, persistent access or security changes",
+  "scan_geometry_used_in_new_calculations": false,
+  "research_registry": "twins/993-engine-cooling-fan-system-f0/program/research/source-index.json",
+  "preliminary_research_registry": "twins/993-engine-cooling-fan-system-f0/program/research/dossier.json",
+  "research": {
+    "source_records": 140,
+    "distinct_url_groups": 130,
+    "original_text_files": 20,
+    "engineering_validation": false,
+    "import_manifest": "twins/993-engine-cooling-fan-system-f0/program/research/corpus/import-manifest.json"
+  },
+  "cfd_field_backup": {
+    "status": "interrupted_external_worker_deletion_partial_recovery_verified",
+    "control_files_verified": 897,
+    "control_files_expected": 913,
+    "control_final_partition_files_verified": 256,
+    "control_final_partition_files_expected": 256,
+    "candidate_full_case_files_recovered_in_stream": 0,
+    "candidate_full_case_files_expected": 913,
+    "both_native_final_logs_saved": true,
+    "other_archives_to_verify_before_recalculation": true,
+    "global_control_fields_reconstruction_executed": false
+  }
+}

@@ -206,7 +206,12 @@ check: validate test 917-clean-sheet-2026-f32-check \
 	tip-routes-check pet-zone-triage-check pet-verdict-check \
 	route-lever-hook-check print-screen-sections-check parts-table-check \
 	part-pages-check reports-index-check docs-links-check part-previews-check \
-	help-check
+	help-check fan-program-check
+
+.PHONY: fan-program-check
+#> check | Check fan programme links, evidence hashes and validation boundaries
+fan-program-check:
+	python3 twins/993-engine-cooling-fan-system-f0/source/check_fan_program.py
 
 917-valvetrain-material-f45:
 	python3 twins/reference-917-engine/source/build_valvetrain_material_screen_f45.py --project-root .

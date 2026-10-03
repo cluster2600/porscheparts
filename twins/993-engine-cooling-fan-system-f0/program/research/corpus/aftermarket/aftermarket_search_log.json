@@ -1,0 +1,137 @@
+{
+  "accessed_utc": "2026-10-03",
+  "scope": "Supplier lane only; representative queries, not an exhaustive search-engine transcript",
+  "queries": [
+    {
+      "language": "en",
+      "queries": [
+        "Porsche 911 billet cooling fan manufacturer",
+        "Porsche 935 horizontal fan conversion kit",
+        "Porsche 911 cooling fan billet 964 993 Classic Retrofit"
+      ],
+      "useful_sources": [
+        "EPS",
+        "LN Engineering",
+        "Rennline",
+        "Jim Torres Racing",
+        "INDEX"
+      ],
+      "finding": "Cast rotor / forged hub, billet housings, composite products and flat-fan suppliers identified"
+    },
+    {
+      "language": "de",
+      "queries": [
+        "Porsche 911 Lüfterrad Aluminium Nachfertigung 245mm",
+        "Porsche 911 Lüfterrad Carbon 935 Flachgebläse",
+        "partworks Lüfterrad Porsche 3765 245mm",
+        "site:carpoint.de Fan housing RSR"
+      ],
+      "useful_sources": [
+        "partworks",
+        "Carpoint",
+        "Mittelmotor"
+      ],
+      "finding": "Oversize blank, small-diameter variants and dimensional installation sheet recovered"
+    },
+    {
+      "language": "fr",
+      "queries": [
+        "Porsche 911 turbine refroidissement aluminium forgé débit",
+        "Porsche 911 turbine refroidissement 11 pales aluminium",
+        "Porsche 911 turbine refroidissement aluminium 11 pales EPS débit"
+      ],
+      "useful_sources": [
+        "https://www.design911.com/fr/p/porsche-911-alternator-fan---impeller-93010601200/",
+        "https://partworks.de/Roue-de-ventilateur-pour-PORSCHE-911-2-0-2-2-2-4-2-7-914-6-90110601003"
+      ],
+      "finding": "Localized EPS and partworks descriptions; same underlying evidence, no independent performance test"
+    },
+    {
+      "language": "it",
+      "queries": [
+        "Porsche 911 ventola raffreddamento alluminio ricambio",
+        "Porsche 911 ventola 245 alluminio",
+        "Porsche 911 ventola alternatore 245 alluminio 11 pale"
+      ],
+      "useful_sources": [
+        "https://partworks.de/Ventola-per-PORSCHE-911-2-0-2-2-2-4-2-7-914-6-90110601003"
+      ],
+      "finding": "Localized partworks machining requirement; no new manufacturer geometry or test evidence"
+    },
+    {
+      "language": "ja",
+      "queries": [
+        "ポルシェ 911 クーリングファン 社外 鋳造 964",
+        "ポルシェ 空冷 カーボン クーリングファン インデックス",
+        "ポルシェ カーボンファン 回転"
+      ],
+      "useful_sources": [
+        "INDEX",
+        "FLAT4",
+        "https://cartune.co.jp/notes/cHKYBihaUO"
+      ],
+      "finding": "Actual composite supplier, VW-conversion exclusion and unattributed firsthand CFRP rubbing lead"
+    },
+    {
+      "language": "en",
+      "queries": [
+        "Porsche 935 flat fan reproduction",
+        "Porsche horizontal fan kit",
+        "Spezialmotorer fan",
+        "Gunther Werks flat fan",
+        "EB Motorsport flat fan"
+      ],
+      "useful_sources": [
+        "Spezialmotorer",
+        "Bailey Cars",
+        "FSH",
+        "Stuttgear",
+        "Gunther Werks",
+        "Ferdinand firsthand EB interview"
+      ],
+      "finding": "Full versus partial kits separated; historical rig power points distinguished from marketing volume claims"
+    },
+    {
+      "language": "en",
+      "queries": [
+        "Porsche fan additive cooling",
+        "Porsche cooling fan printed",
+        "Porsche 3D printed fan engine"
+      ],
+      "useful_sources": [
+        "https://www.researchgate.net/publication/372237377_Heat_transfer_optimization_of_a_3D_printed_air-cooled_aftermarket_Porsche_engine"
+      ],
+      "finding": "No qualified operational retail AM rotor recovered; scale models and stationary ducts excluded"
+    },
+    {
+      "language": "en",
+      "queries": [
+        "Classic Retrofit 240 alternator fan instructions",
+        "Classic Retrofit alternator pulley 964"
+      ],
+      "useful_sources": [
+        "Classic Retrofit manufacturer catalog and official installation forum"
+      ],
+      "finding": "Drive topology differences; rear cone load-spreading requirement; separate early-911 versus 964/993 fitment"
+    }
+  ],
+  "negative_results": [
+    "No reviewed supplier published a full pressure-flow-power map with boundary conditions",
+    "No numerical residual-unbalance grade, rotor continuous-speed rating or full burst/fatigue report recovered for catalog rotors",
+    "No primary CAD/STEP/STL release or full rotor blade-section drawing recovered",
+    "No current primary release specification established for historical D-Zug or Promotive kits",
+    "No current primary support established for historical Bailey RPM/material claims",
+    "French/Italian supplier pages were translations of shared catalog content, not independent validation"
+  ],
+  "access_limits": [
+    "Carpoint PDF web fetches failed, but read-only curl succeeded; page visually verified",
+    "LN direct web open returned403; manufacturer indexed content readable",
+    "Bailey direct page returned verification interstitial; indexed manufacturer content only",
+    "Design911935 language-selector clicks failed; French EPS product was later recovered by direct search",
+    "Torres direct open returned no lines; manufacturer indexed content readable"
+  ],
+  "circularity_exclusions": [
+    "PorscheFanatics project page and aggregate catalog were not treated as independent engineering evidence"
+  ],
+  "redistribution": "Supplier PDFs and photos downloaded for internal verification are not automatically licensed for public-repository redistribution"
+}

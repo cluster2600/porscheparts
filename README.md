@@ -17,6 +17,7 @@
 [**See the structural results**](#1-structural-analysis-of-the-964-body-shell) ·
 [**Run the checks**](#quick-start) ·
 [**Gallery**](docs/GALLERY.md) ·
+[**Programme ventilateur 993 : modèles, calculs et preuves**](twins/993-engine-cooling-fan-system-f0/README.md) ·
 [**Culasse 4 soupapes : étude air + huile**](docs/studies/993-air-oil-20261002/README.md) ·
 [**Contribute**](CONTRIBUTING.md) ·
 [**Safety first**](SAFETY.md)

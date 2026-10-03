@@ -1,0 +1,71 @@
+#usda 1.0
+(
+    defaultPrim = "FanProgram"
+    framesPerSecond = 24
+    metersPerUnit = 1
+    timeCodesPerSecond = 1
+    upAxis = "Z"
+)
+
+def Xform "FanProgram" (
+    customData = {
+        string axis = "geometric_model_positive_Z_not_a_measured_vehicle_datum"
+        string cfdStatus = "PR105_final_2000_iterations_rejected_convergence"
+        bool digitalTwinValidated = 0
+        string geometryUnitsBeforeOriginalExport = "mm"
+        bool manufacturingAuthorized = 0
+        string programRecord = "program.json"
+        bool rotationAnimated = 0
+        string rpmToRadPerSecond = "rpm*pi/30"
+        string rpmToUsdPhysicsDegreesPerSecond = "rpm*6"
+        bool scanIncluded = 0
+        double sourceExportScale = 0.001
+        string sourceReferenceSHA256 = "687304e03f71f41e6b1bff88000edfc4d06fd5cf9721902f7fad913e3feaa2e1"
+        string status = "unmeasured_parametric_reference_only"
+        string timeUnit = "seconds"
+    }
+)
+{
+    def Xform "Reference" (
+        prepend references = @../results/reference/reference.usdz@
+    )
+    {
+        over "Rotor" (
+            prepend apiSchemas = ["MaterialBindingAPI"]
+        )
+        {
+            rel material:binding = </FanProgram/Materials/AlSi10MgCandidate>
+        }
+    }
+
+    def "Materials"
+    {
+        def Material "AlSi10MgCandidate" (
+            customData = {
+                string qualification = "unqualified_candidate_visual_shader_only"
+            }
+        )
+        {
+            token outputs:surface.connect = </FanProgram/Materials/AlSi10MgCandidate/Surface.outputs:surface>
+
+            def Shader "Surface"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor = (0.64, 0.68, 0.73)
+                float inputs:metallic = 1
+                float inputs:roughness = 0.4
+                token outputs:surface
+            }
+        }
+    }
+
+    def Scope "Results" (
+        customData = {
+            bool fieldsAttached = 0
+            string reason = "no historical field transferred to another geometry"
+            string record = "../results/program-20261003/"
+        }
+    )
+    {
+    }
+}
