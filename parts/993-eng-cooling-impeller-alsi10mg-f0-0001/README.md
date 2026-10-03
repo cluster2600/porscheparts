@@ -11,77 +11,79 @@
 </div>
 
 > [!CAUTION]
-> **Not ready to print, and not a copy of the original part.** Ce dossier conserve un concept **Carrera F0 archivé**. Le programme ventilateur du Turbo M64/60 a été repris et vit ailleurs dans le dépôt (section suivante). Aucune pièce de ce dépôt n'est déclarée exacte, ajustée, testée, sûre, libérée ni prête à fabriquer sans preuve — lire [SAFETY.md](../../SAFETY.md).
+> **Not ready to print, and not a copy of the original part.** This folder preserves an archived Carrera F0 concept. The current Turbo study is linked below. No part is declared dimensionally accurate, fitted, tested, safe or released without supporting evidence: see [SAFETY.md](../../SAFETY.md).
 
-## Programme actuel : ventilateur de refroidissement M64/60 Turbo
+## Current programme: M64/60 Turbo cooling fan
 
-Cible : **993 Turbo M64.60 avec alternateur PMB / Classic Retrofit 240 A**. Le PET Porsche (illustration 105-00, planches 77–78) distingue le rotor Turbo (964 106 015 22) du rotor Carrera (964 106 015 31, record de ce dossier). L'étude en cours porte sur le rotor Turbo ; l'état par dossier, avec son statut réel, sans rien déclarer de plus :
+Target: **993 Turbo M64.60 with the PMB / Classic Retrofit 240 A alternator**. Porsche PET illustration 105-00, plates 77–78, distinguishes the Turbo rotor (964 106 015 22) from the Carrera rotor (964 106 015 31, this folder's catalogue record). The experimental rotor remains partly hypothetical.
 
-| quoi | où | état |
-|---|---|---|
-| Rebuild de référence : rotor 11 pales, cuvette ventilée, 12 fenêtres | [REFERENCE_REBUILD.md](../../twins/993-engine-cooling-fan-system-f0/REFERENCE_REBUILD.md) · [paramètres éditables](../../twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json) · [source C# PicoGK](../../twins/993-engine-cooling-fan-system-f0/source/picogk-reference/Program.cs) | reconstruction de référence visuelle, partiellement hypothétique ; paramètres non mesurés explicitement marqués |
-| Étude pales organiques A–E | [ORGANIC_BLADE_STUDY.md](../../twins/993-engine-cooling-fan-system-f0/ORGANIC_BLADE_STUDY.md) · [config candidat E](../../twins/993-engine-cooling-fan-system-f0/source/picogk-reference/organic-e.json) | essais numériques documentés, échecs compris ; hypothèses de design, pas des optima mesurés |
-| Source paramétrique vague 2 (rotor + carter, PicoGK C# net9.0) | [M64Fan.cs](../../parts/m64-cooling-fan-0001/geometry/M64Fan.cs) · [fan-config.json](../../parts/m64-cooling-fan-0001/geometry/fan-config.json) | source éditable, chaque paramètre étiqueté ; pas encore de sortie compilée archivée |
-| CFD de la zone ventilateur (disque actuateur, OpenFOAM v2312) | [simulation/993-fan-baseline](../../simulation/993-fan-baseline/README.md) | surrogat exploratoire, limites de référence au dossier ; ne prédit pas la performance d'installation |
-| Métrologie entraînement ventilateur (M64-ACQ-0005) | [fan-drive-dimensions.json](../../twins/m64-engine-system/metrology/fan-drive/fan-drive-dimensions.json) · [fiche de scan](../../catalog/scans/scan-fan-drive-0p21mm.json) | première passe sur le scan 0,21 mm ; incertitudes ±4 mm ; écarts ouverts avec l'estimation vague 1 |
-| Dossier de sortie tirage métal | [PRINT_RELEASE.md](../../twins/993-engine-cooling-fan-system-f0/PRINT_RELEASE.md) | **HOLD — aucune autorisation d'impression** |
+**Latest campaign:** [blade/clearance mesh recovery and CFD evidence](../../twins/993-engine-cooling-fan-system-f0/MESH_RECOVERY_20261002.md), following the [local Qwen → PicoGK → OpenFOAM / CalculiX → OpenUSD run](../../twins/993-engine-cooling-fan-system-f0/QWEN_CHAIN_20261002.md). The recovery report carries the current calculation status and archived evidence. The isolated-duct calculations do not establish airflow delivered to the installed engine.
 
-### Vues réelles de la géométrie actuelle
+| Work | Editable sources and evidence | Status |
+| --- | --- | --- |
+| Reference rebuild: 11 blades, ventilated cup, 12 windows | [Rebuild report](../../twins/993-engine-cooling-fan-system-f0/REFERENCE_REBUILD.md), [parameters](../../twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json), [PicoGK C#](../../twins/993-engine-cooling-fan-system-f0/source/picogk-reference/Program.cs) | Visual reference reconstruction; unmeasured parameters explicitly identified |
+| Organic blade candidates A–E | [Study](../../twins/993-engine-cooling-fan-system-f0/ORGANIC_BLADE_STUDY.md), [candidate E parameters](../../twins/993-engine-cooling-fan-system-f0/source/picogk-reference/organic-e.json) | Documented numerical attempts, including failures; no validated aerodynamic optimum |
+| Parametric rotor and housing, wave 2 | [M64Fan.cs](../../parts/m64-cooling-fan-0001/geometry/M64Fan.cs), [configuration](../../parts/m64-cooling-fan-0001/geometry/fan-config.json) | Editable, labelled assumptions; no archived compiled output for this separate source |
+| Earlier actuator-disc CFD, OpenFOAM v2312 | [Baseline rig](../../simulation/993-fan-baseline/README.md) | Exploratory surrogate; not an installed performance prediction |
+| Fan-drive metrology, M64-ACQ-0005 | [Dimensions](../../twins/m64-engine-system/metrology/fan-drive/fan-drive-dimensions.json), [scan record](../../catalog/scans/scan-fan-drive-0p21mm.json) | Initial scan analysis; ±4 mm uncertainty and unresolved discrepancies |
+| Metal printing release | [Release dossier](../../twins/993-engine-cooling-fan-system-f0/PRINT_RELEASE.md) | **HOLD — no printing authorization** |
 
-![Rotor Turbo reconstruit : face, arrière, coupe, éclaté](../../twins/993-engine-cooling-fan-system-f0/results/reference/reference-review.png)
+### Views generated from the actual study geometry
 
-*Rotor reconstruit — maillage PicoGK réel, régénéré par `source/build_reference_review.py` depuis les [paramètres éditables](../../twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json) ; statut `visual_reference_reconstruction` ([fiche de génération](../../twins/993-engine-cooling-fan-system-f0/results/reference/generation.json)). Rendu d'une géométrie hypothétique, pas une photo d'une pièce fabriquée.*
+![Reconstructed rotor: front, rear, section and exploded views](../../twins/993-engine-cooling-fan-system-f0/results/reference/reference-review.png)
 
-![Pale organique candidat E : vues du maillage PicoGK](../../twins/993-engine-cooling-fan-system-f0/results/organic/e/review/reference-review.png)
+*Actual PicoGK mesh regenerated by `source/build_reference_review.py` from the [editable parameters](../../twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json). Status: `visual_reference_reconstruction`; [generation record](../../twins/993-engine-cooling-fan-system-f0/results/reference/generation.json). This is hypothetical CAD, not a photograph of a manufactured part.*
 
-*Candidat organique E — maillage PicoGK réel, contrôles de maille dans [`validation.json`](../../twins/993-engine-cooling-fan-system-f0/results/organic/e/review/validation.json). Hypothèse de design : aucun gain aérodynamique validé, aucune interface vérifiée.*
+![Organic candidate E: actual PicoGK mesh views](../../twins/993-engine-cooling-fan-system-f0/results/organic/e/review/reference-review.png)
 
-### Métrologie de l'entraînement (M64-ACQ-0005)
+*Candidate E: [mesh checks](../../twins/993-engine-cooling-fan-system-f0/results/organic/e/review/validation.json). Design hypothesis; no validated airflow gain or verified mating interfaces.*
 
-Première passe sur `Fan+Drive+0.21mm.obj` (sha256 `6c0b12d4…`, 1 256 836 sommets, précision nominale 0,21 mm, unités mm supposées). Résultats issus de [`fan_drive_metrology.py`](../../twins/m64-engine-system/metrology/fan-drive/fan_drive_metrology.py) :
+### Fan-drive metrology
 
-| dimension | valeur | incertitude | note |
-|---|---|---|---|
-| Ø poulie de ventilateur | 229,5 mm | ±4 mm | écart ouvert avec l'estimation vague 1 (~255,6 mm) |
-| Ø flasque de pignon | 214,2 mm | ±4 mm | bande externe du disque |
-| Ø sommet de dents | 104,0 mm | ±4 mm | plafond de rayon troncature ; vague 1 disait 127,6 mm |
+The initial M64-ACQ-0005 analysis used 1,256,836 scan vertices, nominal scan precision 0.21 mm and assumed millimetre units. Results from [fan_drive_metrology.py](../../twins/m64-engine-system/metrology/fan-drive/fan_drive_metrology.py):
 
-Rien ici n'est déclaré exact : passe unique, plafond de 140 mm qui tronque l'analyse harmonique, pas de métrologie instrumentale tracée.
+| Dimension | Estimate | Uncertainty | Limitation |
+| --- | ---: | ---: | --- |
+| Fan pulley diameter | 229.5 mm | ±4 mm | Unresolved difference from the earlier ~255.6 mm estimate |
+| Gear flange diameter | 214.2 mm | ±4 mm | Outer disc band |
+| Tooth-tip diameter | 104.0 mm | ±4 mm | Radius-truncated analysis; earlier estimate was 127.6 mm |
 
-## Provenance et limites
+These are preliminary estimates, not exact dimensions. The single-pass harmonic analysis was truncated at a 140 mm radius and lacks traceable instrument metrology.
 
-- Nombre de pales (11) et de fenêtres (12) : comptages de photographies FVD, pas des cotes de plan ;
-- diamètre nominal 245 mm : interprétation de l'enveloppe commerciale FVD, sans tolérance OEM ;
-- profondeur de cuvette, pas, cordes, épaisseurs, rayons : hypothèses visibles dans les fichiers de paramètres ;
-- interfaces moyeu, roulement, carter, cône et PMB : non mesurées, aucune géométrie publiée ;
-- CFD : surrogats (disque actuateur, MRF) sans courbe de résistance moteur ; aucune performance de refroidissement installée prédite ;
-- tirage métal : HOLD ; aucune matière qualifiée pour pales en rotation ;
-- les résultats F0 de ce dossier ne se transfèrent pas au rotor reconstruit.
+## Provenance and limits
 
-## Prochaines mesures
+- The 11 blades and 12 windows were counted from FVD photographs, not a dimensioned drawing.
+- Nominal 245 mm rotor diameter is an interpretation of commercial data, without an OEM tolerance.
+- Cup depth, blade pitch, chords, thicknesses and radii remain labelled modelling assumptions.
+- Hub, bearing, housing, rear cone and PMB mating interfaces are not dimensionally verified.
+- The CFD lacks a measured engine resistance curve and a validated installed assembly. Rendering or solver success does not establish engine cooling performance.
+- Printing remains on hold; no material/process is qualified for the rotating blades.
+- Results from the archived Carrera F0 concept do not transfer to the rebuilt rotor.
 
-1. Confirmer le moyeu Turbo réel et son interface de roulement avant toute définition d'ajustement ;
-2. mesurer le carter et le jeu radial rotor/carter (la gorge est dérivée, pas libre) ;
-3. relever les interfaces PMB / Classic Retrofit 240 A et le cône arrière ;
-4. rescanner l'entraînement complet sans plafond de rayon, avec traçabilité instrumentale (M64-ACQ-0005) ;
-5. mesurer le pas de pale réel sur un rotor Turbo d'origine.
+## Measurements still needed
 
-## Concept Carrera F0 archivé
+1. Confirm the actual Turbo hub and bearing interface before defining fits.
+2. Measure the housing and radial rotor clearance.
+3. Measure the selected PMB / Classic Retrofit 240 A interfaces and rear cone.
+4. Reanalyse or scan the complete drive without radius truncation, with instrument traceability.
+5. Measure the blade pitch on an original Turbo rotor.
 
-Ce dossier conserve le concept exploratoire Carrera F0 : [source paramétrique build123d](../../parts/993-eng-cooling-impeller-alsi10mg-f0-0001/source/cooling_impeller.py), exports [STEP](../../parts/993-eng-cooling-impeller-alsi10mg-f0-0001/derived/cooling_impeller_alsi10mg_f0.step) / [STL](../../parts/993-eng-cooling-impeller-alsi10mg-f0-0001/derived/cooling_impeller_alsi10mg_f0.stl) et [criblage d'ingénierie](../../parts/993-eng-cooling-impeller-alsi10mg-f0-0001/evidence/engineering-screen.json) (**épinglé par SHA-256, jamais modifié à la main**) — échec d'intégration avec le carter F0 (−14 mm de jeu radial) documenté. Le diamètre 280 mm, le moyeu et les douze pales sont synthétiques : un bloc d'étude Carrera, jamais une pièce Turbo.
+## Archived Carrera F0 concept
 
-> Les vues de présentation de l'archivage (`media/preview.png` — la roue générique — et `media/views.png` — les vues orthographiques schématiques) ont été **retirées le 29/09/2026** : purement décoratives, sans valeur de preuve, elles pouvaient être lues à tort comme la pièce Turbo. Elles restent régénérables depuis le STEP conservé (`make part-previews`).
+This folder retains the [build123d source](../../parts/993-eng-cooling-impeller-alsi10mg-f0-0001/source/cooling_impeller.py), [STEP](../../parts/993-eng-cooling-impeller-alsi10mg-f0-0001/derived/cooling_impeller_alsi10mg_f0.step), [STL](../../parts/993-eng-cooling-impeller-alsi10mg-f0-0001/derived/cooling_impeller_alsi10mg_f0.stl) and [engineering screen](../../parts/993-eng-cooling-impeller-alsi10mg-f0-0001/evidence/engineering-screen.json). Evidence is SHA-256 pinned. The concept failed integration with its F0 housing: −14 mm radial clearance. Its 280 mm diameter, hub and twelve blades are synthetic study geometry, not a Turbo part.
 
-## Pour aller plus loin
+The generic wheel and schematic orthographic images were removed from this presentation on 29 September 2026 because they could be mistaken for the Turbo design. They remain reproducible from the archived STEP with `make part-previews`.
 
-- **Page de description complète** : [docs/pieces/993-eng-cooling-impeller-alsi10mg-f0-0001.md](../../docs/pieces/993-eng-cooling-impeller-alsi10mg-f0-0001.md)
-- **Record catalogue** (source de vérité) : [`catalog/parts/993-eng-cooling-impeller-alsi10mg-f0-0001.json`](../../catalog/parts/993-eng-cooling-impeller-alsi10mg-f0-0001.json)
-- **Dossier de conception** : [993_COOLING_IMPELLER_ALSI10MG_F0](../../docs/993/993_COOLING_IMPELLER_ALSI10MG_F0.md)
-- **Dossier système** : [993_ENGINE_COOLING_FAN_SYSTEM_F0](../../docs/993/993_ENGINE_COOLING_FAN_SYSTEM_F0.md)
-- **Présentation du projet** : [porschefanatics.com/projects/993-turbo-fan](https://porschefanatics.com/projects/993-turbo-fan/)
-- **Record jumeau numérique** : [`twin-993-engine-cooling-fan-system-f0.json`](../../catalog/twins/twin-993-engine-cooling-fan-system-f0.json)
-- **Règles de sécurité** : [SAFETY.md](../../SAFETY.md)
+## Related records
+
+- [Full catalogue description](../../docs/pieces/993-eng-cooling-impeller-alsi10mg-f0-0001.md) (`docs/pieces/993-eng-cooling-impeller-alsi10mg-f0-0001.md`)
+- [Catalogue source of truth](../../catalog/parts/993-eng-cooling-impeller-alsi10mg-f0-0001.json) (`catalog/parts/993-eng-cooling-impeller-alsi10mg-f0-0001.json`)
+- [F0 design dossier](../../docs/993/993_COOLING_IMPELLER_ALSI10MG_F0.md)
+- [System dossier](../../docs/993/993_ENGINE_COOLING_FAN_SYSTEM_F0.md)
+- [PorscheFanatics project presentation](https://porschefanatics.com/projects/993-turbo-fan/)
+- [Digital twin record](../../catalog/twins/twin-993-engine-cooling-fan-system-f0.json)
+- [Safety rules](../../SAFETY.md)
 
 ---
 
-*Cette page est générée à partir du record catalogue par `scripts/render_part_pages.py` et vérifiée par `make check`. Les corrections vont dans le record, pas ici.*
+*Generated by `scripts/render_part_pages.py` and checked by `make check`. Update the catalogue record or this part's presentation template, not the generated page.*
