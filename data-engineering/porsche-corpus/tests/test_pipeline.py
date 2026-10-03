@@ -140,6 +140,18 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(p.family("pet-993-pdf-rsworkshop"), p.family("SRC-PORSCHE-PET-993"))
         self.assertEqual("project-mirror:porschefanatics", p.family("https://porschefanatics.com/oem/part"))
 
+    def test_carpet_urls_do_not_become_pet_or_independent_manual_evidence(self):
+        self.assertEqual("publisher:parts-wise.com", p.family("https://parts-wise.com/carpet-light-grey-667917"))
+        self.assertEqual("publisher:vendor.example", p.family("https://vendor.example/carpet-993-kit"))
+        self.assertEqual("publisher:catalogue.example", p.family("https://catalogue.example/993_KATALOG.pdf"))
+
+    def test_generation_tokens_do_not_come_from_part_numbers_or_opaque_ids(self):
+        self.assertEqual("porsche-pet:unspecified", p.family("SRC-PORSCHE-PET-99355201300"))
+        self.assertEqual("porsche-pet:964", p.family("https://example.org/993abc/pet-porsche/964_1989-94_KATALOG.pdf"))
+        self.assertEqual("porsche-pet:multiple", p.family("SRC-PORSCHE-PET-964-993"))
+        self.assertEqual("porsche-workshop-manual:964", p.family("SRC-PORSCHE-WORKSHOP-MANUAL-964-VOLUME5"))
+        self.assertEqual("porsche-workshop-manual:unspecified", p.family("SRC-WORKSHOP-MANUAL-96455201300"))
+
     def test_mixed_numeric_status_metadata_is_counted_without_parse_error(self):
         path, output = self.fixture({"data/solver.json": '{"status":"rejected","checks":[{"status":0.0}]}'} )
         p.build(path, output)
