@@ -9,6 +9,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import pipeline as p
 import format_tokens as formatter
 import reconcile
+import code_units
 
 
 class FakeTokenizer:
@@ -210,6 +211,30 @@ class PipelineTests(unittest.TestCase):
         messages[-1]["content"] = "<|im_end|>"
         with self.assertRaisesRegex(ValueError, "injection"):
             formatter.assistant_labels(FakeTokenizer(), messages, {})
+
+    def test_code_units_preserve_dependency_closure_constraints_and_comments(self):
+        text = '# Source notice\n"""Original policy."""\nfrom __future__ import annotations\nimport math\nLIMIT = 4\n\n# Keep the positive-domain constraint.\ndef helper(value):\n    if value < 0:\n        raise ValueError("negative")\n    return math.sqrt(value)\n\ndef checked(value):\n    return helper(min(value, LIMIT))\n\nif __name__ == "__main__":\n    print(checked(9))\n'
+        result = {r["unit"]: r for r in code_units.units(text)}
+        row = result["checked"]
+        self.assertIn('import math', row['text'])
+        self.assertIn('LIMIT = 4', row['text'])
+        self.assertIn('# Keep the positive-domain constraint.', row['text'])
+        self.assertNotIn('print(checked(9))', row['text'])
+        source, derived = {"__name__": "fixture"}, {"__name__": "fixture"}
+        exec(compile(text, '<fixture>', 'exec'), source)
+        exec(compile(row['text'], '<derived>', 'exec'), derived)
+        for value in [0, 1, 4, 9]:
+            self.assertEqual(source['checked'](value), derived['checked'](value))
+        with self.assertRaisesRegex(ValueError, 'negative'):
+            derived['checked'](-1)
+        lines = text.splitlines(keepends=True)
+        for span in row['source_ranges']:
+            self.assertEqual(span['sha256'], p.digest(''.join(lines[span['start_line']-1:span['end_line']]).encode()))
+
+    def test_code_units_refuse_unproven_dynamic_and_initialization_context(self):
+        for source in ["from module import *\ndef f():\n    return value\n", "x = []\nx.append(1)\ndef f():\n    return x\n", "def f():\n    return globals()['x']\n", "x = 1\nx = 2\ndef f():\n    return x\n"]:
+            with self.assertRaises(ValueError):
+                list(code_units.units(source))
 
 
 if __name__ == "__main__":

@@ -106,6 +106,22 @@ the task-profile/helper hashes. Reasoning examples should state what evidence
 is missing and what would resolve it; they must not invent measured values or
 manufacturing approval. No answer generation is part of this pipeline.
 
+For reviewed Python code that exceeds the whole-row token budget,
+`code_units.py` attempts complete functions/classes with their transitive imports,
+constants and helper definitions. It preserves original bodies, constraints,
+comments, ordering, source ranges and range hashes. All units retain their
+parent source family/split; repeated dependency context is not additional
+independent evidence. Module initialization effects, rebound names, wildcard
+imports and dynamic namespace access fail closed for manual review. Complete
+units that still exceed the fixed budget remain quarantined. Syntax/dependency
+checks do not claim portability beyond the original module/repository context.
+
+```sh
+/path/to/existing/python data-engineering/porsche-corpus/code_units.py \
+  --corpus /path/to/verified-corpus --profile /path/to/exact-coder-profile.json \
+  --tokenizer /path/to/pinned-local-snapshot --output /path/to/new-code-units
+```
+
 ## Model-specific length and loss
 
 Keep Qwen3 scientific and Qwen2.5-Coder profiles separate, with model ID,
