@@ -124,11 +124,33 @@ ni des références Porsche ni la preuve d'une architecture interne particulièr
 | `935-COOL-INLET` | Carter/entonnoir et jeu rotor | Source publique repérée ; scan local non retrouvé |
 | `935-COOL-GUIDES` | Éléments fixes, guides et distribution | Présence/type à constater ; guide commercial 934/935 ambigu |
 | `935-COOL-MOUNTS` | Fixations, empilages et raccords moteur | Datums, axes, trous, faces, chemin des efforts et joints à relever |
+| `935-COOL-COUPLING` | Accouplement souple | Reproduction EB identifiée ; emplacement, cotes et raideur du spécimen inconnus |
+| `935-COOL-ALTERNATOR` | Alternateur séparé et intégration moteur | Application documentée chez les fabricants ; support, courroie et encombrement à établir |
+
+Le [relevé des dimensions et détails](DIMENSIONS_AND_DETAILS.md) ajoute la
+lecture de la fiche FIA 645 et de l'Annexe J 1976, les cotes PET 993 et les
+informations des fabricants de reproductions. Le [registre](dimensions.json)
+conserve chaque valeur avec sa portée et ses limites.
+
+## Préparation exécutée
+
+Les deux scans ont été préparés en privé et importés dans le noyau natif
+PicoGK 26.2.0, puis réexportés en OBJ. La connectivité a été vérifiée dans le
+noyau et par un nouvel audit des exports. Les trous restent ouverts. Un
+contrôle d'ajustement des seuls contours de bord ne trouve aucun cercle
+répondant aux seuils diagnostiques ; cela ne signifie pas que les pièces
+sont dépourvues d'alésages ou d'interfaces.
+
+Le [résumé de préparation](preparation-summary.json) publie seulement les
+empreintes, comptes et états. La [fiche technique de cette étape](../../../twins/935-horizontal-cooling-system-f0/README.md)
+décrit les sources exécutables et les preuves restant à établir. Les
+géométries préparées, transformations et rapports détaillés restent privés.
 
 ## Suite concrète
 
-Le prochain lot est un assemblage de référence avec pièces segmentées,
-repères et contrat d'interfaces. La reconstruction PicoGK, les maillages de
+Le contrat d'interfaces est désormais défini ; ses cotes restent inconnues.
+Le prochain lot doit établir échelle, segmentation mécanique et repères
+physiques pour construire l'assemblage de référence. La reconstruction PicoGK, les maillages de
 calcul et le jumeau utiliseront ce même assemblage et des identifiants de
 géométrie communs. Les anciens calculs 993 paramétriques restent des outils
 de méthode ; ils n'apportent aucune performance validée à ce système 935.

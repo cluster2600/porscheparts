@@ -1,0 +1,394 @@
+{
+  "id": "935-horizontal-cooling-system-f0",
+  "revision": 1,
+  "status": "interface_evidence_incomplete",
+  "scope": "owner_declared_horizontal_935_reference_and_separate_improved_variants",
+  "created_on": "2026-10-03",
+  "exact_donor_variant": null,
+  "receiving_engine_variant": null,
+  "assembly_transform": null,
+  "measured_datums": null,
+  "measured_interfaces_complete": false,
+  "functional_geometry_generation_allowed": false,
+  "manufacturing_release_allowed": false,
+  "digital_twin_validated": false,
+  "calibration_requirements": [
+    "identify_the_exact_part_and_geometric_feature",
+    "independent_dimension_in_mm_with_datum_tolerance_and_provenance",
+    "second_independent_nonparallel_dimension_for_scale_cross_check",
+    "assess_scan_distortion_and_rotor_back_registration"
+  ],
+  "scans": [
+    {
+      "id": "rotor",
+      "sha256": "244d4caeb2c4ac4a692b650ec9d766bee2a8124335a0236a55a1d30c1b2b98ba",
+      "source_unit": null,
+      "scale_to_mm": null,
+      "scale_verified": false,
+      "calibration_evidence": []
+    },
+    {
+      "id": "drive",
+      "sha256": "6c0b12d4dd782fd4ecf4a5527d9b716ea5861abe1d7c369b3005910fa9ddb2f3",
+      "source_unit": null,
+      "scale_to_mm": null,
+      "scale_verified": false,
+      "calibration_evidence": []
+    }
+  ],
+  "interfaces": [
+    {
+      "id": "rotor-hub",
+      "components": [
+        "935-COOL-ROTOR",
+        "935-COOL-HUB"
+      ],
+      "required_evidence": [
+        "bore_axis",
+        "centering_diameter",
+        "mating_face",
+        "fastener_pattern",
+        "axial_stack",
+        "torque_path"
+      ],
+      "load_path_description_fr": "couple et effort aerodynamique du rotor vers le moyeu",
+      "nominal_dimensions_mm": null,
+      "measured_axes_faces_holes": null,
+      "tolerances": null,
+      "independent_evidence": [],
+      "verified": false
+    },
+    {
+      "id": "hub-output",
+      "components": [
+        "935-COOL-HUB",
+        "935-COOL-OUTPUT"
+      ],
+      "required_evidence": [
+        "shaft_axis",
+        "shaft_hub_fit",
+        "key_or_spline_if_present",
+        "axial_retention",
+        "runout"
+      ],
+      "load_path_description_fr": "couple et efforts du moyeu vers arbre et appuis",
+      "nominal_dimensions_mm": null,
+      "measured_axes_faces_holes": null,
+      "tolerances": null,
+      "independent_evidence": [],
+      "verified": false
+    },
+    {
+      "id": "input-belt",
+      "components": [
+        "935-COOL-INPUT",
+        "935-COOL-BELT"
+      ],
+      "required_evidence": [
+        "pulley_axis",
+        "pitch_diameter",
+        "groove_profile",
+        "belt_plane",
+        "pretension",
+        "tension_travel"
+      ],
+      "load_path_description_fr": "traction de courroie vers arbre entree et carter",
+      "nominal_dimensions_mm": null,
+      "measured_axes_faces_holes": null,
+      "tolerances": null,
+      "independent_evidence": [],
+      "verified": false
+    },
+    {
+      "id": "crank-belt",
+      "components": [
+        "engine_crankshaft",
+        "935-COOL-BELT"
+      ],
+      "required_evidence": [
+        "crank_axis",
+        "crank_pulley_attachment",
+        "pitch_diameter",
+        "alignment",
+        "speed_ratio"
+      ],
+      "load_path_description_fr": "puissance du vilebrequin vers ventilateur; effort radial de courroie",
+      "nominal_dimensions_mm": null,
+      "measured_axes_faces_holes": null,
+      "tolerances": null,
+      "independent_evidence": [],
+      "verified": false
+    },
+    {
+      "id": "input-gearset",
+      "components": [
+        "935-COOL-INPUT",
+        "935-COOL-GEARSET"
+      ],
+      "required_evidence": [
+        "shaft_axis",
+        "gear_attachment",
+        "tooth_geometry",
+        "ratio",
+        "backlash",
+        "lubrication"
+      ],
+      "load_path_description_fr": "couple vers engrenages; reactions radiales et axiales vers appuis",
+      "nominal_dimensions_mm": null,
+      "measured_axes_faces_holes": null,
+      "tolerances": null,
+      "independent_evidence": [],
+      "verified": false
+    },
+    {
+      "id": "gearset-output",
+      "components": [
+        "935-COOL-GEARSET",
+        "935-COOL-OUTPUT"
+      ],
+      "required_evidence": [
+        "shaft_angle",
+        "shaft_offset",
+        "gear_attachment",
+        "contact_pattern",
+        "backlash",
+        "rotation_direction"
+      ],
+      "load_path_description_fr": "couple engrenages vers arbre vertical et efforts vers appuis",
+      "nominal_dimensions_mm": null,
+      "measured_axes_faces_holes": null,
+      "tolerances": null,
+      "independent_evidence": [],
+      "verified": false
+    },
+    {
+      "id": "input-bearings",
+      "components": [
+        "935-COOL-INPUT",
+        "935-COOL-BEARINGS"
+      ],
+      "required_evidence": [
+        "bearing_ids",
+        "shaft_seats",
+        "shoulders",
+        "fits",
+        "preload_or_clearance",
+        "retention"
+      ],
+      "load_path_description_fr": "reactions de courroie et engrenages vers roulements",
+      "nominal_dimensions_mm": null,
+      "measured_axes_faces_holes": null,
+      "tolerances": null,
+      "independent_evidence": [],
+      "verified": false
+    },
+    {
+      "id": "output-bearings",
+      "components": [
+        "935-COOL-OUTPUT",
+        "935-COOL-BEARINGS"
+      ],
+      "required_evidence": [
+        "bearing_ids",
+        "shaft_seats",
+        "axial_support",
+        "fits",
+        "preload_or_clearance",
+        "retention"
+      ],
+      "load_path_description_fr": "efforts du rotor et engrenages vers roulements",
+      "nominal_dimensions_mm": null,
+      "measured_axes_faces_holes": null,
+      "tolerances": null,
+      "independent_evidence": [],
+      "verified": false
+    },
+    {
+      "id": "bearings-case",
+      "components": [
+        "935-COOL-BEARINGS",
+        "935-COOL-DRIVE-CASE"
+      ],
+      "required_evidence": [
+        "housing_bores",
+        "coaxiality",
+        "shoulders",
+        "fits",
+        "retention",
+        "seals"
+      ],
+      "load_path_description_fr": "roulements vers carter/support",
+      "nominal_dimensions_mm": null,
+      "measured_axes_faces_holes": null,
+      "tolerances": null,
+      "independent_evidence": [],
+      "verified": false
+    },
+    {
+      "id": "case-mounts",
+      "components": [
+        "935-COOL-DRIVE-CASE",
+        "935-COOL-MOUNTS"
+      ],
+      "required_evidence": [
+        "mounting_faces",
+        "hole_pattern",
+        "datum_axes",
+        "fasteners",
+        "stack_height"
+      ],
+      "load_path_description_fr": "carter vers fixations moteur",
+      "nominal_dimensions_mm": null,
+      "measured_axes_faces_holes": null,
+      "tolerances": null,
+      "independent_evidence": [],
+      "verified": false
+    },
+    {
+      "id": "mounts-engine",
+      "components": [
+        "935-COOL-MOUNTS",
+        "receiving_engine"
+      ],
+      "required_evidence": [
+        "exact_engine_variant",
+        "engine_datums",
+        "hole_pattern",
+        "mating_faces",
+        "package_clearance",
+        "thermal_expansion"
+      ],
+      "load_path_description_fr": "support et reactions transmission vers bloc moteur",
+      "nominal_dimensions_mm": null,
+      "measured_axes_faces_holes": null,
+      "tolerances": null,
+      "independent_evidence": [],
+      "verified": false
+    },
+    {
+      "id": "rotor-inlet",
+      "components": [
+        "935-COOL-ROTOR",
+        "935-COOL-INLET"
+      ],
+      "required_evidence": [
+        "rotor_axis",
+        "housing_axis",
+        "tip_clearance",
+        "axial_clearance",
+        "sweep_envelope"
+      ],
+      "load_path_description_fr": "jeu fonctionnel; pas une liaison mecanique rotor/carter",
+      "nominal_dimensions_mm": null,
+      "measured_axes_faces_holes": null,
+      "tolerances": null,
+      "independent_evidence": [],
+      "verified": false
+    },
+    {
+      "id": "inlet-guides",
+      "components": [
+        "935-COOL-INLET",
+        "935-COOL-GUIDES"
+      ],
+      "required_evidence": [
+        "attachment_pattern",
+        "sealing_faces",
+        "passage_sections",
+        "guide_orientation"
+      ],
+      "load_path_description_fr": "carter et guides vers supports; etancheite du circuit air",
+      "nominal_dimensions_mm": null,
+      "measured_axes_faces_holes": null,
+      "tolerances": null,
+      "independent_evidence": [],
+      "verified": false
+    },
+    {
+      "id": "guides-engine",
+      "components": [
+        "935-COOL-GUIDES",
+        "receiving_engine"
+      ],
+      "required_evidence": [
+        "engine_variant",
+        "mating_faces",
+        "cooling_passages",
+        "leakage_paths",
+        "exhaust_clearance"
+      ],
+      "load_path_description_fr": "distribution et efforts des guides vers moteur",
+      "nominal_dimensions_mm": null,
+      "measured_axes_faces_holes": null,
+      "tolerances": null,
+      "independent_evidence": [],
+      "verified": false
+    },
+    {
+      "id": "lube-drive",
+      "components": [
+        "935-COOL-LUBE",
+        "935-COOL-DRIVE-CASE"
+      ],
+      "required_evidence": [
+        "port_positions",
+        "thread_ids",
+        "feed_restrictions",
+        "drain_path",
+        "oil_type",
+        "feed_pressure",
+        "seals"
+      ],
+      "load_path_description_fr": "alimentation et retour huile; fixation tuyauterie",
+      "nominal_dimensions_mm": null,
+      "measured_axes_faces_holes": null,
+      "tolerances": null,
+      "independent_evidence": [],
+      "verified": false
+    },
+    {
+      "id": "coupling-drive",
+      "components": [
+        "935-COOL-COUPLING",
+        "drive_location_to_identify"
+      ],
+      "required_evidence": [
+        "location",
+        "centering",
+        "attachment_pattern",
+        "elastomer_or_other_type",
+        "torsional_stiffness",
+        "rated_speed",
+        "misalignment"
+      ],
+      "load_path_description_fr": "couple avec souplesse torsionnelle; emplacement sur specimen a identifier",
+      "nominal_dimensions_mm": null,
+      "measured_axes_faces_holes": null,
+      "tolerances": null,
+      "independent_evidence": [],
+      "verified": false
+    },
+    {
+      "id": "alternator-engine",
+      "components": [
+        "935-COOL-ALTERNATOR",
+        "receiving_engine"
+      ],
+      "required_evidence": [
+        "alternator_type",
+        "support_attachment",
+        "pulley_plane",
+        "belt_routing",
+        "clearance",
+        "tension"
+      ],
+      "load_path_description_fr": "accessoire separe; reactions de courroie et support vers moteur",
+      "nominal_dimensions_mm": null,
+      "measured_axes_faces_holes": null,
+      "tolerances": null,
+      "independent_evidence": [],
+      "verified": false
+    }
+  ],
+  "promotion_rule_fr": "Une photo, une dimension commerciale ou un ajustement du scan ne fournit pas les cotes independantes de sa propre validation. Toute promotion requiert les preuves pour la variante exacte."
+}
