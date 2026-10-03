@@ -164,10 +164,11 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn("--prefer-index=false", workflow)
         self.assertIn('test "$latest_digest" = "$expected_digest"', workflow)
         self.assertIn("Verify anonymous digest pull", workflow)
-        self.assertIn(
-            'DOCKER_CONFIG="${anonymous_config}" docker pull --platform linux/amd64',
-            workflow,
-        )
+        self.assertIn("anonymous_pull_ok=false", workflow)
+        self.assertIn("for attempt in 1 2 3", workflow)
+        self.assertIn('timeout 2100 env DOCKER_CONFIG="${anonymous_config}"', workflow)
+        self.assertIn('docker pull --platform linux/amd64 "${pinned_image}"', workflow)
+        self.assertIn("Anonymous digest pull failed after three bounded attempts", workflow)
         self.assertIn("group: container-publication-${{ matrix.image }}", workflow)
         self.assertIn("GOMAXPROCS=3 GOMEMLIMIT=12GiB", workflow)
         self.assertIn("id: standard_build", workflow)
@@ -197,7 +198,7 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn("docker system prune --all --force --volumes", anonymous)
         self.assertIn("printf '{}\\n'", anonymous)
         self.assertLess(
-            anonymous.index('DOCKER_CONFIG="${anonymous_config}" docker pull'),
+            anonymous.index("for attempt in 1 2 3"),
             anonymous.index('DOCKER_CONFIG="${anonymous_config}" docker run'),
         )
 

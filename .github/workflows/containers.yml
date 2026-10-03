@@ -271,8 +271,20 @@ jobs:
           printf '{}\n' > "${anonymous_config}/config.json"
           DOCKER_CONFIG="${anonymous_config}" docker buildx imagetools inspect --raw \
             "${pinned_image}" >/dev/null
-          DOCKER_CONFIG="${anonymous_config}" docker pull --platform linux/amd64 \
-            "${pinned_image}"
+          anonymous_pull_ok=false
+          for attempt in 1 2 3; do
+            if timeout 2100 env DOCKER_CONFIG="${anonymous_config}" \
+              docker pull --platform linux/amd64 "${pinned_image}"; then
+              anonymous_pull_ok=true
+              break
+            fi
+            docker image rm -f "${pinned_image}" >/dev/null 2>&1 || true
+            sleep "$((attempt * 30))"
+          done
+          if [ "${anonymous_pull_ok}" != true ]; then
+            echo "Anonymous digest pull failed after three bounded attempts" >&2
+            exit 1
+          fi
           test "$(docker image inspect --format '{{.Os}}/{{.Architecture}}' \
             "$pinned_image")" = linux/amd64
           DOCKER_CONFIG="${anonymous_config}" docker run --rm \
