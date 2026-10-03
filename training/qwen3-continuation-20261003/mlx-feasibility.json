@@ -1,0 +1,257 @@
+{
+  "schema_version": "1.0.0",
+  "audited_utc": "2026-10-03T14:02:44.445453+00:00",
+  "status": "static_source_compatibility_only_not_executed",
+  "scope": "Read-only installed-source, exact local HF configuration/safetensors headers, and original released adapter audit. No MLX/torch import, model load, conversion, GPU command, optimization, download or installation was performed.",
+  "environment_locator": "Existing work/m64-qwen/venv in original m64-local-architecture-qwen checkout; package paths below are relative to its lib/python3.12/site-packages. No Qwen2.5-Coder cache or weights were used.",
+  "installed_packages": {
+    "mlx": "0.32.3",
+    "mlx-lm": "0.31.3",
+    "numpy": "2.5.3",
+    "safetensors": "0.8.0",
+    "transformers": "5.17.0"
+  },
+  "installed_source_files": [
+    {
+      "path_from_existing_mlx_site_packages": "mlx_lm/models/qwen3.py",
+      "sha256": "2284df96ecb669109b281df4534470b18f285aa9a5e41735ad682f601f93c639"
+    },
+    {
+      "path_from_existing_mlx_site_packages": "mlx_lm/models/base.py",
+      "sha256": "61330e1c065739cd712bfeb09d673f33797cde7e613e95bf6d9ebbee9006f373"
+    },
+    {
+      "path_from_existing_mlx_site_packages": "mlx_lm/utils.py",
+      "sha256": "ba0371e9c88d52b34d71271945c2394005fbcb2bfb2ee9f6f82d627a33b72422"
+    },
+    {
+      "path_from_existing_mlx_site_packages": "mlx_lm/convert.py",
+      "sha256": "dc60df164c2d51ee2f05f5f9f3324bc3a44a59dd2ccddb75dde680e854ce5e9a"
+    },
+    {
+      "path_from_existing_mlx_site_packages": "mlx_lm/tuner/lora.py",
+      "sha256": "4d3a8edab111d4ddba33398ba8700203db7b61621c39e9c348fdd50e57278b45"
+    },
+    {
+      "path_from_existing_mlx_site_packages": "mlx_lm/tuner/utils.py",
+      "sha256": "166eaf5e5f923113bed43614a5fb7319795fa0cac5a7fa319ea54e5f0045b553"
+    },
+    {
+      "path_from_existing_mlx_site_packages": "mlx_lm/lora.py",
+      "sha256": "3f188fc6aef80efcb9938678af0548588122ed25845053cc555aece0ad2da5e7"
+    },
+    {
+      "path_from_existing_mlx_site_packages": "mlx/nn/layers/linear.py",
+      "sha256": "07ce0d9ac6a1499a0d0f01971bf195305424b6d91a20f77488f7d8116c0a2e23"
+    },
+    {
+      "path_from_existing_mlx_site_packages": "mlx/nn/layers/embedding.py",
+      "sha256": "f77b039903294c6e880c503a953ea86b43aac36661b724cc9c38e3ed1969e3a8"
+    },
+    {
+      "path_from_existing_mlx_site_packages": "mlx/nn/layers/dropout.py",
+      "sha256": "a79c13d31c61163587d83c58f4e4cb81bf24f32923994abd3d98d9dfdd59148f"
+    },
+    {
+      "path_from_existing_mlx_site_packages": "mlx/nn/layers/base.py",
+      "sha256": "ec749e1d50fd1a5e57e0aedc8e6eb13fc697e630f59333a0e24aee62a8dc7f0f"
+    },
+    {
+      "path_from_existing_mlx_site_packages": "mlx/core/__init__.pyi",
+      "sha256": "bfa3c09f0f1e3edb925bf92e021f3121f0b953959f43ffd91cfa13895a41e8ce"
+    },
+    {
+      "path_from_existing_torch_site_packages": "peft/tuners/lora/layer.py",
+      "sha256": "39e2f6908c9f3faf4d2de2b6ecfdf44c96d2cae67b8155ed1b51bc67fb25b734"
+    }
+  ],
+  "exact_base": {
+    "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "snapshot_from_continuation_work": "cache/models--Qwen--Qwen3-4B-Instruct-2507/snapshots/cdbee75f17c01a7cc42f958dc650907174af0554",
+    "configuration_sha256": "5beea1a4a34c62782bfb2f911c606741a3bab8f92d80a118fa053c28af12e8ba",
+    "configuration": {
+      "architectures": [
+        "Qwen3ForCausalLM"
+      ],
+      "attention_bias": false,
+      "attention_dropout": 0.0,
+      "bos_token_id": 151643,
+      "eos_token_id": 151645,
+      "head_dim": 128,
+      "hidden_act": "silu",
+      "hidden_size": 2560,
+      "initializer_range": 0.02,
+      "intermediate_size": 9728,
+      "max_position_embeddings": 262144,
+      "max_window_layers": 36,
+      "model_type": "qwen3",
+      "num_attention_heads": 32,
+      "num_hidden_layers": 36,
+      "num_key_value_heads": 8,
+      "rms_norm_eps": 1e-06,
+      "rope_scaling": null,
+      "rope_theta": 5000000,
+      "sliding_window": null,
+      "tie_word_embeddings": true,
+      "torch_dtype": "bfloat16",
+      "transformers_version": "4.51.0",
+      "use_cache": true,
+      "use_sliding_window": false,
+      "vocab_size": 151936
+    },
+    "shards": [
+      {
+        "filename": "model-00001-of-00003.safetensors",
+        "file_bytes": 3957900840,
+        "safetensors_header_bytes": 20000,
+        "header_sha256": "a8f45f72beda0f33ad73b7c94747c4c5bace94e3770a90810e9a23ec0a6a6abd",
+        "cache_blob_name": "75311d91bb08cf0b882913da464a1e722a31fb44db35208663487efb7a3d8ed6",
+        "historical_payload_sha256": "75311d91bb08cf0b882913da464a1e722a31fb44db35208663487efb7a3d8ed6",
+        "blob_name_matches_historical_payload_sha256": true,
+        "full_payload_sha256_recomputed_in_this_audit": false
+      },
+      {
+        "filename": "model-00002-of-00003.safetensors",
+        "file_bytes": 3987450520,
+        "safetensors_header_bytes": 25232,
+        "header_sha256": "55d8e8decb2976c9758e922be1274c003bf57dd8ac5f7c4a74dd91ee39fc0351",
+        "cache_blob_name": "0b48adbb1f60e901153d91907ba11ce63bd4b8b584482e730f48808d055dfba1",
+        "historical_payload_sha256": "0b48adbb1f60e901153d91907ba11ce63bd4b8b584482e730f48808d055dfba1",
+        "blob_name_matches_historical_payload_sha256": true,
+        "full_payload_sha256_recomputed_in_this_audit": false
+      },
+      {
+        "filename": "model-00003-of-00003.safetensors",
+        "file_bytes": 99630640,
+        "safetensors_header_bytes": 552,
+        "header_sha256": "19f753c0ae5015a4f6110a351070e77ff01c59ec37dd2c12fbae4f3c7eb1a0d1",
+        "cache_blob_name": "7dd39ccca5e4de123c74c14af44c9bf2eb75df33b4614382af0134528e060d5d",
+        "historical_payload_sha256": "7dd39ccca5e4de123c74c14af44c9bf2eb75df33b4614382af0134528e060d5d",
+        "blob_name_matches_historical_payload_sha256": true,
+        "full_payload_sha256_recomputed_in_this_audit": false
+      }
+    ],
+    "tensor_count": 398,
+    "native_safetensors_dtype": "BF16",
+    "elements": 4022468096,
+    "tied_embeddings_shape": [
+      151936,
+      2560
+    ],
+    "lm_head_weight_present": false,
+    "loader_from_source": "mlx_lm.utils.load(snapshot_path,lazy=True,adapter_path=None); local existing path bypasses snapshot_download; load_model reads model*.safetensors and imports mlx_lm.models.qwen3. Base serialization conversion is not required by the inspected source. Loading success remains untested.",
+    "dtype_behavior_from_source": "mx.load supplies BF16 tensors; load_model does not explicitly cast them. convert() defaults to config torch_dtype=bfloat16 when a serialization conversion is invoked. Quantization is absent in the base config and is forbidden for this feasibility path."
+  },
+  "original_adapter": {
+    "path_from_repository": "training/qwen-metal-additive-20261002/runs/qwen3-fidelity-001/adapter/adapter_model.safetensors",
+    "sha256": "fb6ab78bf8868a1e77e3c1c5e156eeef63b0b3e42378aaa1410e8c7cfaf1d5cb",
+    "file_bytes": 11815504,
+    "header_sha256": "3cd7c656d0c4e648454756154f494068a971d729d8b8dcaf9ac1744b92c8924b",
+    "configuration_sha256": "20da74643f4b45405879c37c89de14e7492209dee5eb74250dda09dba2425fb3",
+    "rank": 8,
+    "alpha": 16,
+    "scale": 2.0,
+    "dropout": 0.05,
+    "tensor_count": 144,
+    "modules": 72,
+    "layers": 36,
+    "tensor_dtype": "F32",
+    "trainable_elements": 2949120,
+    "q_A_shape": [
+      8,
+      2560
+    ],
+    "q_B_shape": [
+      4096,
+      8
+    ],
+    "v_A_shape": [
+      8,
+      2560
+    ],
+    "v_B_shape": [
+      1024,
+      8
+    ],
+    "all_q_v_keys_exactly_cover_original_36_layers": true,
+    "source_payload_finiteness_not_recomputed": "Released adapter integrity audit already records finite tensors; this audit reads headers and hashes only. Future conversion must verify finiteness before writing."
+  },
+  "conversion_contract": {
+    "key_pattern": "^base_model\\.model\\.model\\.layers\\.(\\d+)\\.self_attn\\.(q_proj|v_proj)\\.lora_([AB])\\.weight$",
+    "mlx_key_rule": "base_model.model.model.layers.i.self_attn.PROJ.lora_A.weight -> model.layers.i.self_attn.PROJ.lora_a; B -> lora_b",
+    "array_rule": "MLX lora_a = original A.T; MLX lora_b = original B.T; preserve FP32 elements and require byte-equal original tensors after inverse transpose. No optimizer update, merge, quantization, scaling baked into values or random LoRA replacement.",
+    "mlx_adapter_filename": "adapters.safetensors",
+    "mlx_adapter_config": {
+      "fine_tune_type": "lora",
+      "num_layers": 36,
+      "lora_parameters": {
+        "rank": 8,
+        "scale": 2.0,
+        "dropout": 0.05,
+        "keys": [
+          "self_attn.q_proj",
+          "self_attn.v_proj"
+        ]
+      }
+    },
+    "strictness": "Official load_adapters uses model.load_weights(..., strict=False). Independently require exact 144-key coverage, exact shapes and FP32 dtype, 72 wrappers and 2,949,120 trainable elements; forbid missing or extra keys and any non-q/v trainable base parameter.",
+    "training_scope": "Follow official lora.py: freeze the base before creating q/v LoRALinear wrappers. Explicit num_layers=36 and keys are essential; installed defaults num_layers=16, scale=20, dropout=0 and keys=all are unsuitable. Call eval again after attachment for deterministic inference; p=0.05 is active only in train mode."
+  },
+  "precision_limits": {
+    "mathematical_mapping": "PEFT scale(alpha/r)=2 and x @ A.T @ B.T matches MLX x @ lora_a @ lora_b mathematically.",
+    "native_bf16_addition_order_difference": "PEFT casts input to FP32 LoRA weight dtype, adds FP32 scaled delta to base result, then casts combined result to original base output dtype. Official MLX LoRALinear casts scaled delta to x.dtype before adding it to base output. BF16 native execution can differ even with identical tensor values.",
+    "float32_option": "Explicitly promoting original BF16 base values to FP32 for a new backend can remove this particular BF16 pre-addition rounding difference but changes runtime and base storage. It requires independent kernel/logit/answer comparisons and separately named receipts.",
+    "not_demonstrated": [
+      "MLX model loading on this Mac",
+      "BF16 backend operation support or performance",
+      "FP32 or BF16 logit parity",
+      "Correct tokenizer/profile expanded-input parity under Transformers 5.17",
+      "Finite backpropagation",
+      "Successful optimization",
+      "Scientific improvement"
+    ]
+  },
+  "operational_blocker": {
+    "basis": "Parent task report, not independently inspected by this source audit",
+    "condition": "Candidate C MPS command-buffer error/stall; owner reports TERM/KILL but worker state unresolved. No GPU probe until owner verifies exited worker and free resources. A/B/C checkpoints must not be reused."
+  },
+  "proposed_next_steps": [
+    {
+      "phase": "CPU-only original adapter format conversion",
+      "execute_now": false,
+      "wall_seconds_max": 300,
+      "optimizer_steps": 0,
+      "cpu_threads_max": 2,
+      "memory_bytes_max": 1073741824,
+      "gpu_allowed": false,
+      "model_load_allowed": false,
+      "method": "Use already installed NumPy/safetensors CPU APIs only; import neither mlx.core nor torch. Read only original fb6 adapter, transpose 144 FP32 arrays into a new immutable directory, write the explicit official adapter config, check inverse-transpose bitwise roundtrip, finiteness, keys, shapes, count and hashes. Preserve original bytes and separate source/destination hashes. Stop on any mismatch or bound violation."
+    },
+    {
+      "phase": "Light official LoRALinear numerical probe after resources are clear",
+      "execute_now": false,
+      "blocked_until": "Owner verifies C worker exited and resources available, then explicitly starts isolated own-process probe.",
+      "wall_seconds_max": 300,
+      "optimizer_steps": 0,
+      "gpu_memory_bytes_max": 1073741824,
+      "full_model_load_allowed": false,
+      "method": "Only one q and one v projection from the pinned original base, with a fixed synthetic two-token input; original fb6 adapter only. Compare official unquantized MLX LoRALinear in FP32 eval mode with the PEFT CPU FP32 projection reference and base-only output. For a later full-model stage, preserve the tied-head configuration. Register atol=1e-5, rtol=1e-4 plus relative L2 error <=1e-4 before execution; retain every raw finite output and hash. A successful tiny probe provides only architecture and format evidence. No generation or optimization.",
+      "acceptance_metrics": {
+        "pairs": [
+          "base_output",
+          "adapter_only_delta",
+          "combined_output"
+        ],
+        "all_pairs_required": true,
+        "absolute_tolerance": 1e-05,
+        "relative_tolerance": 0.0001,
+        "maximum_relative_l2_error": 0.0001,
+        "relative_l2_definition": "norm(actual-reference)/max(norm(reference),1e-12)",
+        "all_values_finite": true
+      }
+    }
+  ],
+  "publication_scope": "This document records static compatibility and a bounded proposal, not trained weights or a successful model/GPU/conversion result.",
+  "comparison_source_peft_version": "0.17.1"
+}
