@@ -247,7 +247,7 @@ jobs:
 
       - name: Verify anonymous digest pull
         id: public_manifest
-        if: steps.gate.outputs.run == 'true' && inputs.push
+        if: steps.gate.outputs.run == 'true' && inputs.push && matrix.image != 'simready-local-ai'
         env:
           QUALIFY_DIGEST: ${{ inputs.qualify_digest }}
         run: |
@@ -297,7 +297,7 @@ jobs:
           echo "digest=$digest" >> "$GITHUB_OUTPUT"
 
       - name: Promote verified image
-        if: steps.gate.outputs.run == 'true' && inputs.qualify_digest == '' && inputs.push
+        if: steps.gate.outputs.run == 'true' && inputs.qualify_digest == '' && inputs.push && matrix.image != 'simready-local-ai'
         run: |
           expected_digest=${{ steps.public_manifest.outputs.digest }}
           docker buildx imagetools create \
@@ -307,4 +307,85 @@ jobs:
           latest_digest="$(docker buildx imagetools inspect \
             ghcr.io/${{ github.repository_owner }}/3dprinting993-${{ matrix.image }}:latest \
             | awk '$1 == "Digest:" { print $2; exit }')"
+          test "$latest_digest" = "$expected_digest"
+
+  verify_simready_local_ai_public:
+    needs: build
+    if: inputs.push && (inputs.image == 'simready-local-ai' || inputs.image == 'both')
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    concurrency:
+      group: container-publication-simready-local-ai-public-qualification
+      cancel-in-progress: false
+    steps:
+      - name: Stop Docker before preparing the clean qualification store
+        run: sudo systemctl stop docker.socket docker
+
+      - name: Maximize clean qualification storage
+        uses: easimon/maximize-build-space@c28619d8999a147d5e09c1199f84ff6af6ad5794
+        with:
+          root-reserve-mb: 4096
+          temp-reserve-mb: 1024
+          swap-size-mb: 2048
+          build-mount-path: /var/lib/docker
+          build-mount-path-ownership: root:root
+          remove-dotnet: 'true'
+          remove-android: 'true'
+          remove-haskell: 'true'
+          remove-codeql: 'true'
+
+      - name: Start clean Docker qualification store
+        run: |
+          sudo systemctl set-environment GOMAXPROCS=3 GOMEMLIMIT=12GiB
+          sudo systemctl start docker
+          docker info >/dev/null
+          df -h / /var/lib/docker
+
+      - name: Verify anonymous local AI digest pull
+        id: public_manifest
+        run: |
+          set -euo pipefail
+          repository=ghcr.io/${{ github.repository_owner }}/3dprinting993-simready-local-ai
+          tagged_image="${repository}:${{ github.sha }}"
+          digest="$(docker buildx imagetools inspect "$tagged_image" | awk '$1 == "Digest:" { print $2; exit }')"
+          [[ "$digest" =~ ^sha256:[0-9a-f]{64}$ ]]
+          pinned_image="${repository}@${digest}"
+          docker buildx imagetools inspect --raw "$pinned_image" | jq -e '
+            ((.mediaType == "application/vnd.docker.distribution.manifest.v2+json") or
+             (.mediaType == "application/vnd.oci.image.manifest.v1+json")) and
+            (([.layers[].size] | max) < 5000000000) and
+            (([.layers[].size] | add) < 45000000000)
+          ' >/dev/null
+          anonymous_config="$(mktemp -d)"
+          trap 'rm -rf "${anonymous_config}"' EXIT
+          printf '{}\n' > "${anonymous_config}/config.json"
+          DOCKER_CONFIG="${anonymous_config}" docker buildx imagetools inspect --raw "$pinned_image" >/dev/null
+          anonymous_pull_ok=false
+          for attempt in 1 2 3; do
+            if timeout 2100 env DOCKER_CONFIG="${anonymous_config}" \
+              docker pull --platform linux/amd64 "$pinned_image"; then
+              anonymous_pull_ok=true
+              break
+            fi
+            docker image rm -f "$pinned_image" >/dev/null 2>&1 || true
+            sleep "$((attempt * 30))"
+          done
+          if [ "${anonymous_pull_ok}" != true ]; then
+            echo "Anonymous digest pull failed after three bounded attempts" >&2
+            exit 1
+          fi
+          test "$(docker image inspect --format '{{.Os}}/{{.Architecture}}' "$pinned_image")" = linux/amd64
+          DOCKER_CONFIG="${anonymous_config}" docker run --rm "$pinned_image" smoke-test.sh simready-local-ai
+          DOCKER_CONFIG="${anonymous_config}" docker run --rm \
+            --entrypoint /usr/local/bin/simready-sshd-runtime-smoke "$pinned_image"
+          echo "digest=$digest" >> "$GITHUB_OUTPUT"
+
+      - name: Promote verified local AI image
+        run: |
+          set -euo pipefail
+          expected_digest='${{ steps.public_manifest.outputs.digest }}'
+          repository=ghcr.io/${{ github.repository_owner }}/3dprinting993-simready-local-ai
+          docker buildx imagetools create --prefer-index=false \
+            --tag "${repository}:latest" "${repository}@${expected_digest}"
+          latest_digest="$(docker buildx imagetools inspect "${repository}:latest" | awk '$1 == "Digest:" { print $2; exit }')"
           test "$latest_digest" = "$expected_digest"

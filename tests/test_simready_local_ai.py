@@ -164,6 +164,12 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn("--prefer-index=false", workflow)
         self.assertIn('test "$latest_digest" = "$expected_digest"', workflow)
         self.assertIn("Verify anonymous digest pull", workflow)
+        self.assertIn("verify_simready_local_ai_public:", workflow)
+        self.assertIn("needs: build", workflow)
+        self.assertIn("Maximize clean qualification storage", workflow)
+        self.assertIn("Verify anonymous local AI digest pull", workflow)
+        self.assertIn("Promote verified local AI image", workflow)
+        self.assertIn('tagged_image="${repository}:${{ github.sha }}"', workflow)
         self.assertIn("anonymous_pull_ok=false", workflow)
         self.assertIn("for attempt in 1 2 3", workflow)
         self.assertIn('timeout 2100 env DOCKER_CONFIG="${anonymous_config}"', workflow)
@@ -201,6 +207,12 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
             anonymous.index("for attempt in 1 2 3"),
             anonymous.index('DOCKER_CONFIG="${anonymous_config}" docker run'),
         )
+        local_ai_verifier = workflow[workflow.index("  verify_simready_local_ai_public:") :]
+        self.assertIn("timeout-minutes: 150", local_ai_verifier)
+        self.assertIn('docker pull --platform linux/amd64 "$pinned_image"', local_ai_verifier)
+        self.assertIn("Anonymous digest pull failed after three bounded attempts", local_ai_verifier)
+        self.assertIn("smoke-test.sh simready-local-ai", local_ai_verifier)
+        self.assertIn("simready-sshd-runtime-smoke", local_ai_verifier)
 
         ssh_wrapper = (ROOT / "containers/simready-sshd-runtime-wrapper.sh").read_text()
         self.assertIn("/usr/bin/flock -x 9", ssh_wrapper)
