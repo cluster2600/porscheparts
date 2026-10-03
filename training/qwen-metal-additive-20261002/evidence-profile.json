@@ -1,0 +1,89 @@
+{
+  "name": "quote_first_two_demonstrations_v1",
+  "purpose": "Evidence precision profile selected using development only before final-test generation. Demonstrations use training-source passages only.",
+  "system_suffix": {
+    "fr": "Pour cette réponse, commence par une courte citation mot pour mot de l’extrait anglais (20 mots environ), avec la référence exacte. Puis réponds à la question en français, avec les détails pertinents du passage. Une simple formule de refus générale ne suffit pas. Ne rajoute aucun fait absent du passage.",
+    "en": "For this answer, start with a short word-for-word quotation from the English excerpt (about 20 words) and its exact reference. Then answer the question in English with the relevant passage details. A generic refusal is insufficient. Add no facts absent from the passage.",
+    "de": "Beginne mit einem kurzen wörtlichen Zitat aus dem englischen Auszug und der genauen Quelle. Beantworte anschließend die Frage auf Deutsch mit den relevanten Details. Eine allgemeine Ablehnung genügt nicht; ergänze keine unbelegten Fakten.",
+    "zh": "先从英文摘录中逐字引用一个简短的相关片段，并附上准确来源。然后用中文根据摘录的具体细节回答问题。不要只给笼统拒绝，也不要添加摘录中没有的事实。"
+  },
+  "demonstrations": {
+    "fr": [
+      {
+        "role": "user",
+        "content": "Quel réglage laser certifié dois-je utiliser pour ma nouvelle pièce ?\n\nEXCERPT [MET001:p32]:\noften due to insufficient laser energy input"
+      },
+      {
+        "role": "assistant",
+        "content": "« often due to insufficient laser energy input » [MET001:p32]\nL’extrait donne un mécanisme de manque de fusion, pas un réglage certifié pour votre nouvelle pièce. Aucun réglage qualifié ne peut en être déduit."
+      },
+      {
+        "role": "user",
+        "content": "Quelles longueurs d’onde ce passage compare-t-il pour l’absorption du cuivre ?\n\nEXCERPT [MET002:p8]:\nCopper can absorb laser wavelengths of 515 nm more easily than 1000 nm."
+      },
+      {
+        "role": "assistant",
+        "content": "« Copper can absorb laser wavelengths of 515 nm more easily than 1000 nm. » [MET002:p8]\nIl rapporte une absorption plus facile à 515 nm qu’à 1000 nm ; cette comparaison ne qualifie pas les paramètres de votre machine."
+      }
+    ],
+    "en": [
+      {
+        "role": "user",
+        "content": "Which certified laser setting should I use for my new part?\n\nEXCERPT [MET001:p32]:\noften due to insufficient laser energy input"
+      },
+      {
+        "role": "assistant",
+        "content": "“often due to insufficient laser energy input” [MET001:p32]\nThe excerpt gives a lack-of-fusion mechanism, not a certified setting for your new part. No qualified setting can be inferred."
+      },
+      {
+        "role": "user",
+        "content": "Which laser wavelengths does this passage compare for copper absorption?\n\nEXCERPT [MET002:p8]:\nCopper can absorb laser wavelengths of 515 nm more easily than 1000 nm."
+      },
+      {
+        "role": "assistant",
+        "content": "“Copper can absorb laser wavelengths of 515 nm more easily than 1000 nm.” [MET002:p8]\nIt reports easier absorption at 515 nm than 1000 nm; this comparison does not qualify your machine settings."
+      }
+    ],
+    "de": [
+      {
+        "role": "user",
+        "content": "Welche zertifizierte Lasereinstellung soll ich für mein neues Bauteil verwenden?\n\nEXCERPT [MET001:p32]:\noften due to insufficient laser energy input"
+      },
+      {
+        "role": "assistant",
+        "content": "„often due to insufficient laser energy input“ [MET001:p32]\nDer Auszug beschreibt einen Bindefehlermechanismus, keine zertifizierte Einstellung für Ihr neues Bauteil. Eine qualifizierte Einstellung lässt sich daraus nicht ableiten."
+      },
+      {
+        "role": "user",
+        "content": "Welche Laserwellenlängen vergleicht diese Passage für die Absorption von Kupfer?\n\nEXCERPT [MET002:p8]:\nCopper can absorb laser wavelengths of 515 nm more easily than 1000 nm."
+      },
+      {
+        "role": "assistant",
+        "content": "„Copper can absorb laser wavelengths of 515 nm more easily than 1000 nm.“ [MET002:p8]\nDer Auszug berichtet eine leichtere Absorption bei 515 nm als bei 1000 nm; dies qualifiziert keine Maschineneinstellung."
+      }
+    ],
+    "zh": [
+      {
+        "role": "user",
+        "content": "我的新零件应该采用什么经过认证的激光参数？\n\nEXCERPT [MET001:p32]:\noften due to insufficient laser energy input"
+      },
+      {
+        "role": "assistant",
+        "content": "“often due to insufficient laser energy input” [MET001:p32]\n摘录解释了未熔合的一个机制，并没有认证您的新零件的激光参数，因此不能推断经过认证的设置。"
+      },
+      {
+        "role": "user",
+        "content": "这段摘录比较了铜对哪些激光波长的吸收？\n\nEXCERPT [MET002:p8]:\nCopper can absorb laser wavelengths of 515 nm more easily than 1000 nm."
+      },
+      {
+        "role": "assistant",
+        "content": "“Copper can absorb laser wavelengths of 515 nm more easily than 1000 nm.” [MET002:p8]\n摘录报告铜对515 nm的吸收比1000 nm更容易；这项比较并不认证您的机器参数。"
+      }
+    ]
+  },
+  "demonstration_passages": [
+    "[MET001:p32]",
+    "[MET002:p8]"
+  ],
+  "independent_expert_validated": false
+}
