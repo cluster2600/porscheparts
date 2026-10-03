@@ -14,7 +14,12 @@ while [ "$#" -gt 0 ]; do
 done
 [ -n "$INSTANCE_ID" ] && [ -n "$EXPECTED_IMAGE" ] && [ -n "$JOB_ID" ] && [ -n "$SKILL_ROOT" ] || controller_die "paramètres requis absents"
 validate_controller_id "$JOB_ID"; validate_pinned_image "$EXPECTED_IMAGE"
-[ -f "$SKILL_ROOT/SKILL.md" ] && [ "$(basename "$SKILL_ROOT")" = "omniverse-cad-to-simready" ] || controller_die "skill NVIDIA explicite absent"
+SKILL_CANONICAL_NAME="omniverse-cad-to-simready"
+[ -f "$SKILL_ROOT/SKILL.md" ] || controller_die "skill NVIDIA explicite absent"
+case "$(basename "$SKILL_ROOT")" in
+  "$SKILL_CANONICAL_NAME"|"nvidia-physical-ai-$SKILL_CANONICAL_NAME") ;;
+  *) controller_die "répertoire du skill NVIDIA non reconnu" ;;
+esac
 PROJECT_ROOT="$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)"
 SCREEN="twins/935-horizontal-cooling-system-f0/vast-omniverse-screen"
 INPUT_CONTRACT="twins/935-horizontal-cooling-system"
@@ -57,7 +62,11 @@ PY
 PARTIAL="/workspace/jobs/${JOB_ID}.partial"; FINAL="/workspace/jobs/${JOB_ID}"
 controller_ssh "test ! -e '$FINAL' && test ! -e '$PARTIAL' && mkdir -p '$PARTIAL/project' '$PARTIAL/vendor' '$PARTIAL/control'"
 (cd "$PROJECT_ROOT" && COPYFILE_DISABLE=1 tar -cf - "${FILES[@]}") | controller_ssh "tar -xf - -C '$PARTIAL/project'"
-(cd "$(dirname "$SKILL_ROOT")" && COPYFILE_DISABLE=1 tar -cf - "$(basename "$SKILL_ROOT")") | controller_ssh "tar -xf - -C '$PARTIAL/vendor'"
+# Le catalogue de skills local préfixe les dossiers NVIDIA. Le transfert garde
+# le nom canonique déclaré dans le reçu, sans modifier le skill source.
+mkdir -p "$TMP/vendor"
+cp -R "$SKILL_ROOT" "$TMP/vendor/$SKILL_CANONICAL_NAME"
+(cd "$TMP/vendor" && COPYFILE_DISABLE=1 tar -cf - "$SKILL_CANONICAL_NAME") | controller_ssh "tar -xf - -C '$PARTIAL/vendor'"
 (cd "$TMP" && tar -cf - job-control.json source-manifest.json) | controller_ssh "tar -xf - -C '$PARTIAL/control'"
 controller_ssh "chmod -R go-w '$PARTIAL' && mv '$PARTIAL' '$FINAL'"
 python3 - "$CONTROL_ROOT/transfer-report.json" "$JOB_ID" "$INSTANCE_ID" "$EXPECTED_IMAGE" "$REVISION" "$TMP/source-manifest.json" <<'PY'

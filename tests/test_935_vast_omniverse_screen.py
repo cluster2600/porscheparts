@@ -38,6 +38,8 @@ class ScreenContractTests(unittest.TestCase):
         self.assertIn('INPUT_CONTRACT="twins/935-horizontal-cooling-system"', transfer)
         self.assertIn('"$INPUT_CONTRACT/data/input-matrix.json"', transfer)
         self.assertIn('"$INPUT_CONTRACT/research/coverage.json"', transfer)
+        self.assertIn('"nvidia-physical-ai-$SKILL_CANONICAL_NAME"', transfer)
+        self.assertIn('cp -R "$SKILL_ROOT" "$TMP/vendor/$SKILL_CANONICAL_NAME"', transfer)
 
     def test_ovrtx_renderer_is_limited_to_the_local_service(self):
         self.assertEqual(module.require_ovrtx_endpoint("http://127.0.0.1:8001"), "http://127.0.0.1:8001")
