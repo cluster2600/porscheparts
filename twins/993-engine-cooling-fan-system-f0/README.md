@@ -1,57 +1,62 @@
-# Programme ventilateur Porsche 993
+# Porsche 993 cooling impeller program
 
-[Accueil du dépôt](../../README.md) · [Registre du programme](program/program.json) · [Commandes](program/REPRODUCE.md) · [Validation et données manquantes](program/VALIDATION_PLAN.md)
+[Repository home](../../README.md) · [Program record](program/program.json) · [Reproduction commands](program/REPRODUCE.md) · [Validation and missing inputs](program/VALIDATION_PLAN.md)
 
-[Recherche documentaire multilingue 911 / 935 / 993 : sources, paramètres et contradictions](program/research/README.md)
+[Multilingual 911 / 935 / 993 research: sources, parameters and contradictions](program/research/README.md)
 
-**État au 3 octobre 2026 : études exploratoires, aucune pièce validée.** Le scan
-fourni comme « 935 » est retrouvé et audité en privé ; son identité, ses unités,
-sa calibration et les droits sur ses dérivés restent inconnus ; l'acquisition
-Wolfe Classics est rapportée par les justificatifs privés. L'équivalence avec
-un ventilateur 993 reste une hypothèse. Aucun brut ni dérivé de ce scan n'est publié.
+**Status on October 3, 2026: exploratory studies; no validated part.** The scan
+supplied as a “935” has been located and audited privately. Its identity, units,
+calibration and derivative rights remain unresolved; private purchase evidence
+supports the reported Wolfe Classics acquisition. Equivalence to a 993 impeller
+remains a hypothesis. Neither the raw scan nor its geometry derivatives is public.
 
-## Parcours des travaux
+**Terminology:** *impeller* means the rotating bladed wheel; *cooling fan assembly*
+means the complete impeller, fan housing and drive arrangement; *fan housing*
+means the surrounding housing. Original source titles, quotations, part numbers,
+filenames and machine identifiers retain their original wording.
 
-| Étape | Livrables et preuves | État réel |
+## Work by stage
+
+| Stage | Deliverables and evidence | Actual status |
 |---|---|---|
-| Identification / scan | [Audit et frontière privée](program/SCAN_INTAKE.md), [sources et nomenclature](REFERENCE_REBUILD.md), [registre](reference-research.json) | Scan ouvert ; deux composantes ; échelle et pièce non établies |
-| Modèle de référence | [Source éditable PicoGK](source/picogk-reference/Program.cs), [paramètres](source/picogk-reference/reference.json), [contrôles](results/reference/validation.json), [vues calculées](results/reference/reference-review.png) | Reconstruction hypothétique Turbo, distincte du scan |
-| Variantes | [Étude A–E](ORGANIC_BLADE_STUDY.md), [plans de balayage](results/airflow-sweep-20260929/configs/plan.json), [candidat Qwen / PR105](https://github.com/cluster2600/porscheparts/pull/105) | Variantes traçables ; aucune forme optimale établie |
-| Rotation / structure / modes | [Calculs centrifuges](results/organic/structure/), [nouveau calcul modal](program/EXECUTION_20261003.md) | Calculs exécutés ; appuis/matière hypothétiques, fatigue et convergence non qualifiées |
-| Aérodynamique | [PR103 / diagnostic](MESH_RECOVERY_20261001.md), [reprise PR105](https://github.com/cluster2600/porscheparts/pull/105), [audit des sorties finales](program/EXECUTION_20261003.md) | Deux maillages acceptés ; calculs terminés à 2 000 itérations, convergence rejetée |
-| Fabrication additive | [Écran géométrique](PRINT_RELEASE.md), [scénario machine/matière](zrapid-print-process.json), [code thermique](source/simulate_zrapid_print.py) | LPBF AlSi10Mg exploratoire ; pas de prédiction qualifiée de distorsion/résidus |
-| Omniverse / OpenUSD | [Asset organisé](program/fan-program.usda), [contrôles et portée](program/EXECUTION_20261003.md), [archive des démonstrateurs](OMNIVERSE_DIGITAL_TWIN.md) | Composition et unités contrôlées ; géométrie et jumeau physique non validés |
+| Identification / scan | [Intake and privacy boundary](program/SCAN_INTAKE.md), [sources and part identification](REFERENCE_REBUILD.md), [earlier research record](reference-research.json) | Open scan; two components; scale and specimen identity not established |
+| Reference model | [Editable PicoGK source](source/picogk-reference/Program.cs), [parameters](source/picogk-reference/reference.json), [checks](results/reference/validation.json), [model-derived views](results/reference/reference-review.png) | Hypothetical Turbo reconstruction, separate from the scan |
+| Variants | [A–E study](ORGANIC_BLADE_STUDY.md), [sweep plans](results/airflow-sweep-20260929/configs/plan.json), [Qwen candidate / PR105](https://github.com/cluster2600/porscheparts/pull/105) | Traceable variants; no established optimum |
+| Rotation / structure / modes | [Centrifugal calculations](results/organic/structure/), [new modal calculation](program/EXECUTION_20261003.md) | Executed; assumed supports/material, unqualified fatigue and convergence |
+| Aerodynamics | [PR103 / diagnostics](MESH_RECOVERY_20261001.md), [PR105 recovery](https://github.com/cluster2600/porscheparts/pull/105), [final-output audit](program/EXECUTION_20261003.md) | Two accepted meshes; runs ended at 2,000 iterations; convergence rejected |
+| Additive manufacturing | [Geometric screening](PRINT_RELEASE.md), [machine/material scenario](zrapid-print-process.json), [thermal code](source/simulate_zrapid_print.py) | Exploratory AlSi10Mg LPBF; no qualified distortion/residual-stress prediction |
+| Omniverse / OpenUSD | [Organized asset](program/fan-program.usda), [checks and scope](program/EXECUTION_20261003.md), [earlier demonstrators](OMNIVERSE_DIGITAL_TWIN.md) | Composition and units checked; geometry and physical digital twin not validated |
 
-![Vues issues du modèle paramétrique de référence, sans qualification dimensionnelle](results/reference/reference-review.png)
+![Views generated from the parametric reference impeller; no dimensional qualification](results/reference/reference-review.png)
 
-## Trois identités à ne pas confondre
+*These views show the existing parametric model, not a dimensionally validated physical impeller.*
 
-Le [catalogue Carrera F0](../../catalog/parts/993-eng-cooling-impeller-alsi10mg-f0-0001.json)
-reste la source de vérité pour cet ancien concept : référence 96410601531,
-géométrie synthétique de 280 mm, douze pales et statut
-`prohibited_pending_engineering`. Son ancien [carter](../../catalog/parts/993-eng-fan-housing-alsi10mg-f0-0001.json)
-ne devient pas le carter Turbo.
+## Three distinct identities
 
-La reconstruction du 28 septembre cible **993 Turbo M64.60 / 96410601522**, avec
-un diamètre de travail hypothétique de 245 mm et onze pales. Les interfaces du
-moyeu, du carter 99310666750, du cône, des entretoises, des poulies et de
-l'alternateur restent à mesurer. Aucun alternateur n'est sélectionné par
-l'utilisateur : 175 A / 240 A restent des alternatives de recherche avec des
-contraintes d'entraînement distinctes. Les dimensions
-d'un alternateur AS-PL ne sont pas celles du PMB. Il n'existe pas de fiche
-catalogue fonctionnelle validée pour cette reconstruction.
+The [archived Carrera F0 catalog record](../../catalog/parts/993-eng-cooling-impeller-alsi10mg-f0-0001.json)
+remains the source of truth for that earlier concept: part number 96410601531,
+synthetic 280 mm geometry, twelve blades and status
+`prohibited_pending_engineering`. Its earlier [fan housing](../../catalog/parts/993-eng-fan-housing-alsi10mg-f0-0001.json)
+does not become the Turbo fan housing.
 
-Le **scan « 935 »** forme une troisième branche d'investigation. Il ne remplace
-aucune des deux précédentes par simple similarité visuelle. Porsche distingue
-les turbines Turbo et Carrera dans [ORIGINALE 05, page PDF 7](https://assets-v2.porsche.com/int/-/media/Project/PCOM/SharedSite/PorscheClassic/ORIGINALE/Editions---EN/originale-05-ww.pdf).
-Cette source ne tranche pas l'identité de la pièce scannée.
+The September 28 reconstruction targets **993 Turbo M64.60 / 96410601522**, with
+an assumed working diameter of 245 mm and eleven blades. Interfaces for the hub,
+fan housing 99310666750, rear cone, spacers, pulleys and alternator still require
+measurement. The user has selected no alternator: 175 A / 240 A remain research
+alternatives with different drive requirements. AS-PL alternator dimensions do
+not describe the PMB unit. No validated functional catalog record exists for
+this reconstruction.
 
-## Reprise utile
+The **“935” scan** is a third investigation branch. Visual resemblance does not
+replace either earlier identity. Porsche distinguishes Turbo and Carrera
+impellers in [ORIGINALE 05, PDF page 7](https://assets-v2.porsche.com/int/-/media/Project/PCOM/SharedSite/PorscheClassic/ORIGINALE/Editions---EN/originale-05-ww.pdf).
+That source does not identify the scanned specimen.
 
-Les [critères de validation](program/VALIDATION_PLAN.md) ordonnent les travaux
-restants. L'audit et la préparation des modèles restent possibles ; une
-géométrie fonctionnelle issue du scan demande d'abord son identité, une référence
-dimensionnelle indépendante, les raccords mesurés et la portée de réutilisation.
-Les anciens champs CFD/thermiques ne sont pas transférés au scan ou à la nouvelle
-référence. Aucune fabrication, commande, rotation physique ni installation
-n'est autorisée par ce programme.
+## Next work
+
+The [validation criteria](program/VALIDATION_PLAN.md) order the remaining work.
+Auditing and model preparation can continue, but functional geometry derived
+from the scan first requires specimen identity, independent dimensional
+references, measured interfaces and permitted reuse scope. Earlier CFD/thermal
+fields are not transferred to the scan or a different reference model. This
+program authorizes no manufacturing, purchase, physical spin test or installation.
