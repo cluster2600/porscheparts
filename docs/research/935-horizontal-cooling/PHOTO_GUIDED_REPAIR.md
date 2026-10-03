@@ -21,7 +21,19 @@ Ces sources documentent une silhouette et des composants commerciaux. Elles ne
 calibrent pas une caméra, ne donnent aucune profondeur de pales ou épaisseur
 du spécimen, et ne démontrent pas l'identité de sa variante.
 
-## Méthode et résultat
+## Fermeture Poisson rejetée après revue visuelle
+
+La méthode historique a produit `run-009`. Cette sortie est fermée au sens
+topologique mais sa revue multi-vues a révélé des ponts artificiels entre les
+pales, le moyeu et la face arrière. Elle est donc **rejetée comme référence
+visuelle** ; son volume et ses comptes de maillage ne doivent pas être repris.
+Elle reste privée uniquement comme trace de la tentative.
+
+La suite retenue est le [proxy visuel PicoGK](PICOGK_ROTOR_VISUAL_PROXY.md),
+qui reconstruit explicitement le disque, le moyeu et les dix pales observées,
+sans faire passer les surfaces absentes pour mesurées.
+
+## Méthode historique et trace privée
 
 Le programme [photo_guided_surface_repair.py](../../../twins/935-horizontal-cooling-system-f0/source/photo_guided_surface_repair.py)
 contrôle l'empreinte SHA-256 de l'OBJ préparé, réduit la surface pour le
@@ -30,14 +42,11 @@ Il réexporte dans un nouveau dossier privé `work/`, puis contrôle la fermetur
 topologique après soudure des sommets STL. Les petits fragments créés par le
 reconstructeur sous 0,1 % des triangles sont retirés et consignés.
 
-L'exécution `run-009` a conservé deux composantes substantielles, retiré 16
-triangles de poussière générée et donné une surface de 72 879 sommets et
-145 794 triangles. Elle est étanche et son orientation est cohérente. Le
-volume de 1 173 660,4 unités source cubiques est seulement une propriété de
-cette fermeture visuelle : l'unité de l'OBJ est inconnue et ce volume ne doit
-être converti ni en masse ni en dimension.
-Le contrôle MeshLab de cette sortie ne détecte ni face auto-intersectée,
-ni face d'arête non-manifold, ni sommet non-manifold.
+L'exécution `run-009` a conservé deux composantes substantielles et retiré 16
+triangles de poussière générée. Ces résultats techniques ne compensent pas
+l'écart visible avec le rotor. Le contrôle MeshLab de cette sortie ne détecte
+ni face auto-intersectée, ni face d'arête non-manifold, ni sommet non-manifold
+mais il ne détecte pas une topologie mécaniquement ou visuellement inventée.
 
 La géométrie, son aperçu et le reçu d'exécution restent privés dans
 `work/935-photo-guided-repair-20261003/run-009/`. Les scans, leurs coordonnées

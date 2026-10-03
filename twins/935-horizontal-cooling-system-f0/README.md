@@ -97,15 +97,21 @@ surfaces distinctes et protections des entrées/sorties. Six cas CLI natifs
 ont vérifié export ouvert, rejet de valeurs non finies/indices invalides/
 records inconnus, contrôle SHA et refus d'écrasement.
 
-## Reconstruction visuelle fermée du rotor
+## Réparation visuelle du rotor
 
-Le programme [photo_guided_surface_repair.py](source/photo_guided_surface_repair.py)
-construit une surface privée étanche avec Screened Poisson à partir du scan
-préparé et des photos publiques de flat fans. Il protège l'empreinte d'entrée,
-interdit toute sortie hors de `work/`, vérifie fermeture/orientation et écarte
-la poussière de reconstruction. La [fiche de réparation](../../docs/research/935-horizontal-cooling/PHOTO_GUIDED_REPAIR.md)
-enregistre les sources, le résultat et les limites : c'est une réparation
-visuelle, jamais une interface ou une géométrie prête au calcul.
+La fermeture Screened Poisson produite par
+[photo_guided_surface_repair.py](source/photo_guided_surface_repair.py) est
+rejetée après revue multi-vues : sa fermeture topologique invente des volumes
+au moyeu et entre les pales. Elle est gardée privée comme tentative, jamais
+comme référence, interface ou maillage de calcul.
+
+Le programme
+[picogk-rotor-visual-proxy](source/picogk-rotor-visual-proxy/Program.cs)
+produit à la place une topologie visuelle explicite avec un disque, un moyeu
+et dix pales courbes. PicoGK l'aligne sur l'enveloppe PCA du scan, sans
+convertir l'unité source en millimètres ni déduire une interface. La
+[documentation du proxy](../../docs/research/935-horizontal-cooling/PICOGK_ROTOR_VISUAL_PROXY.md)
+enregistre son audit et ses limites.
 
 ## Prochaine preuve à obtenir
 
