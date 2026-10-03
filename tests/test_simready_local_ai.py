@@ -58,6 +58,19 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn("VLLM_TORCHVISION_VERSION=0.26.0", dockerfile)
         self.assertIn("VLLM_TORCHAUDIO_VERSION=2.11.0", dockerfile)
         self.assertIn("https://download.pytorch.org/whl/cu129", dockerfile)
+        self.assertIn("CUDA_COMPAT_12_9_VERSION=575.57.08-0ubuntu1", dockerfile)
+        self.assertIn("cuda-compat-12-9_${CUDA_COMPAT_12_9_VERSION}_amd64.deb", dockerfile)
+        self.assertIn(
+            "sha256:d6571727935e52731a415e22df4d0f0a8717f35c9937d4c4a9fe286297dceaab",
+            dockerfile,
+        )
+        self.assertIn("CUDA_COMPAT_12_9_DIR=/usr/local/cuda-12.9/compat", dockerfile)
+        self.assertIn(
+            "VLLM_LIBRARY_PATH=/usr/local/cuda-12.9/compat:/opt/local-ai/lib",
+            dockerfile,
+        )
+        self.assertIn("dpkg-query -W -f='${Version}' cuda-compat-12-9", dockerfile)
+        self.assertIn('test -e "${CUDA_COMPAT_12_9_DIR}/libcuda.so.1"', dockerfile)
         self.assertEqual(dockerfile.count("pip install --no-cache-dir --no-compile"), 9)
         self.assertNotIn("TRANSFORMERS_VERSION", dockerfile)
         self.assertIn("PHYSICSNEMO_VERSION=2.2.0", dockerfile)
@@ -80,7 +93,7 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn("ARG PYTHONDONTWRITEBYTECODE=1", dockerfile)
         self.assertIn("ARG PIP_DISABLE_PIP_VERSION_CHECK=1", dockerfile)
         self.assertIn("ARG PIP_PROGRESS_BAR=off", dockerfile)
-        self.assertEqual(dockerfile.count("ADD --link --checksum=sha256:"), 5)
+        self.assertEqual(dockerfile.count("ADD --link --checksum=sha256:"), 6)
         self.assertIn("ffmpeg", dockerfile)
         self.assertIn('test -f "${LOCAL_VLM_PATH}/LICENSE.apache-2.0"', dockerfile)
         self.assertIn('"torch==${VLLM_TORCH_VERSION}"', dockerfile)
@@ -151,10 +164,11 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn("--prefer-index=false", workflow)
         self.assertIn('test "$latest_digest" = "$expected_digest"', workflow)
         self.assertIn("Verify anonymous digest pull", workflow)
-        self.assertIn(
-            'DOCKER_CONFIG="${anonymous_config}" docker pull --platform linux/amd64',
-            workflow,
-        )
+        self.assertIn("anonymous_pull_ok=false", workflow)
+        self.assertIn("for attempt in 1 2 3", workflow)
+        self.assertIn('timeout 2100 env DOCKER_CONFIG="${anonymous_config}"', workflow)
+        self.assertIn('docker pull --platform linux/amd64 "${pinned_image}"', workflow)
+        self.assertIn("Anonymous digest pull failed after three bounded attempts", workflow)
         self.assertIn("group: container-publication-${{ matrix.image }}", workflow)
         self.assertIn("GOMAXPROCS=3 GOMEMLIMIT=12GiB", workflow)
         self.assertIn("id: standard_build", workflow)
@@ -184,7 +198,7 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn("docker system prune --all --force --volumes", anonymous)
         self.assertIn("printf '{}\\n'", anonymous)
         self.assertLess(
-            anonymous.index('DOCKER_CONFIG="${anonymous_config}" docker pull'),
+            anonymous.index("for attempt in 1 2 3"),
             anonymous.index('DOCKER_CONFIG="${anonymous_config}" docker run'),
         )
 
@@ -259,7 +273,9 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn('"${PHYSICSNEMO_PYTHON:-/opt/venv/bin/python}" -m pip check', smoke)
         self.assertIn('VLLM_USE_FLASHINFER_SAMPLER="0"', config)
         self.assertIn('PATH="/opt/local-ai/bin:', config)
-        self.assertIn('LD_LIBRARY_PATH="/opt/local-ai/lib/python3.12/site-packages/torch/lib:', config)
+        self.assertIn('LD_LIBRARY_PATH="/usr/local/cuda-12.9/compat:/opt/local-ai/lib/python3.12/site-packages/torch/lib:', config)
+        self.assertIn("CUDA_COMPAT_12_9_DIR=", smoke)
+        self.assertIn('test -e "${CUDA_COMPAT_12_9_DIR}/libcuda.so.1"', smoke)
         self.assertIn("VLLM_LIBRARY_PATH=", smoke)
         self.assertIn('env LD_LIBRARY_PATH="${VLLM_LIBRARY_PATH}" /opt/local-ai/bin/python', smoke)
         self.assertIn('actual["distribution"].split("+", 1)[0] == "0.26.0"', smoke)

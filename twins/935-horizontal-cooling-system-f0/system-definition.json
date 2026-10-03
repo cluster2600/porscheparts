@@ -1,0 +1,190 @@
+{
+  "id": "935-horizontal-cooling-system-f0",
+  "programme": "FAN-935-HORIZONTAL",
+  "status": "logical_system_blueprint",
+  "spatial_assembly_verified": false,
+  "rotor_plane": "horizontal",
+  "rotor_axis_in_declared_engine_frame": "vertical",
+  "orientation_is_owner_requirement_not_scan_registration": true,
+  "interface_contract": "interface-contract.json",
+  "components": [
+    {
+      "id": "935-COOL-ROTOR",
+      "label_fr": "Rotor et pales",
+      "role": "physical_candidate",
+      "geometry_admitted": false,
+      "transform_in_engine_frame": null,
+      "mass_kg": null,
+      "material": null,
+      "quantity": null
+    },
+    {
+      "id": "935-COOL-HUB",
+      "label_fr": "Moyeu",
+      "role": "physical_candidate",
+      "geometry_admitted": false,
+      "transform_in_engine_frame": null,
+      "mass_kg": null,
+      "material": null,
+      "quantity": null
+    },
+    {
+      "id": "935-COOL-OUTPUT",
+      "label_fr": "Arbre vertical de sortie",
+      "role": "physical_candidate",
+      "geometry_admitted": false,
+      "transform_in_engine_frame": null,
+      "mass_kg": null,
+      "material": null,
+      "quantity": null
+    },
+    {
+      "id": "935-COOL-INPUT",
+      "label_fr": "Arbre et poulie d’entrée",
+      "role": "physical_candidate",
+      "geometry_admitted": false,
+      "transform_in_engine_frame": null,
+      "mass_kg": null,
+      "material": null,
+      "quantity": null
+    },
+    {
+      "id": "935-COOL-BELT",
+      "label_fr": "Courroie et poulies",
+      "role": "physical_candidate",
+      "geometry_admitted": false,
+      "transform_in_engine_frame": null,
+      "mass_kg": null,
+      "material": null,
+      "quantity": null
+    },
+    {
+      "id": "engine_crankshaft",
+      "label_fr": "Vilebrequin — frontière moteur",
+      "role": "external_or_unresolved_boundary",
+      "geometry_admitted": false,
+      "transform_in_engine_frame": null,
+      "mass_kg": null,
+      "material": null,
+      "quantity": null
+    },
+    {
+      "id": "935-COOL-GEARSET",
+      "label_fr": "Renvoi à angle droit",
+      "role": "physical_candidate",
+      "geometry_admitted": false,
+      "transform_in_engine_frame": null,
+      "mass_kg": null,
+      "material": null,
+      "quantity": null
+    },
+    {
+      "id": "935-COOL-BEARINGS",
+      "label_fr": "Roulements et retenues",
+      "role": "physical_candidate",
+      "geometry_admitted": false,
+      "transform_in_engine_frame": null,
+      "mass_kg": null,
+      "material": null,
+      "quantity": null
+    },
+    {
+      "id": "935-COOL-DRIVE-CASE",
+      "label_fr": "Support et carter de transmission",
+      "role": "physical_candidate",
+      "geometry_admitted": false,
+      "transform_in_engine_frame": null,
+      "mass_kg": null,
+      "material": null,
+      "quantity": null
+    },
+    {
+      "id": "935-COOL-MOUNTS",
+      "label_fr": "Fixations moteur",
+      "role": "physical_candidate",
+      "geometry_admitted": false,
+      "transform_in_engine_frame": null,
+      "mass_kg": null,
+      "material": null,
+      "quantity": null
+    },
+    {
+      "id": "receiving_engine",
+      "label_fr": "Moteur récepteur à identifier",
+      "role": "external_or_unresolved_boundary",
+      "geometry_admitted": false,
+      "transform_in_engine_frame": null,
+      "mass_kg": null,
+      "material": null,
+      "quantity": null
+    },
+    {
+      "id": "935-COOL-INLET",
+      "label_fr": "Carter et entrée d’air",
+      "role": "physical_candidate",
+      "geometry_admitted": false,
+      "transform_in_engine_frame": null,
+      "mass_kg": null,
+      "material": null,
+      "quantity": null
+    },
+    {
+      "id": "935-COOL-GUIDES",
+      "label_fr": "Guides et étanchéité",
+      "role": "physical_candidate",
+      "geometry_admitted": false,
+      "transform_in_engine_frame": null,
+      "mass_kg": null,
+      "material": null,
+      "quantity": null
+    },
+    {
+      "id": "935-COOL-LUBE",
+      "label_fr": "Lubrification et joints",
+      "role": "physical_candidate",
+      "geometry_admitted": false,
+      "transform_in_engine_frame": null,
+      "mass_kg": null,
+      "material": null,
+      "quantity": null
+    },
+    {
+      "id": "935-COOL-COUPLING",
+      "label_fr": "Accouplement à localiser",
+      "role": "physical_candidate",
+      "geometry_admitted": false,
+      "transform_in_engine_frame": null,
+      "mass_kg": null,
+      "material": null,
+      "quantity": null
+    },
+    {
+      "id": "drive_location_to_identify",
+      "label_fr": "Emplacement de l’accouplement inconnu",
+      "role": "external_or_unresolved_boundary",
+      "geometry_admitted": false,
+      "transform_in_engine_frame": null,
+      "mass_kg": null,
+      "material": null,
+      "quantity": null
+    },
+    {
+      "id": "935-COOL-ALTERNATOR",
+      "label_fr": "Alternateur séparé à identifier",
+      "role": "physical_candidate",
+      "geometry_admitted": false,
+      "transform_in_engine_frame": null,
+      "mass_kg": null,
+      "material": null,
+      "quantity": null
+    }
+  ],
+  "air_network_model": "candidate_series_resistance_then_parallel_branches_common_outlet",
+  "air_topology_verified": false,
+  "thermal_model": "independent_solid_lumps_with_single_pass_air_heat_exchange",
+  "thermal_topology_verified": false,
+  "source_ids": [
+    "GUNNAR-935-DRIVE"
+  ],
+  "active_catalogue_part_admission": false
+}

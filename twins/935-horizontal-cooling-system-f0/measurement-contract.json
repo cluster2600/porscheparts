@@ -1,0 +1,170 @@
+{
+  "id": "935-cooling-measurements-v1",
+  "physical_tests_authorised": false,
+  "speed_envelope_rpm": null,
+  "acceptance_thresholds": null,
+  "channels": [
+    {
+      "id": "engine_speed",
+      "unit": "rpm",
+      "purpose": "drive",
+      "sensor_id": null,
+      "sensor_position_and_frame": null,
+      "calibration_reference": null,
+      "sampling_hz": null,
+      "uncertainty": null
+    },
+    {
+      "id": "input_speed",
+      "unit": "rpm",
+      "purpose": "drive",
+      "sensor_id": null,
+      "sensor_position_and_frame": null,
+      "calibration_reference": null,
+      "sampling_hz": null,
+      "uncertainty": null
+    },
+    {
+      "id": "rotor_speed",
+      "unit": "rpm",
+      "purpose": "drive",
+      "sensor_id": null,
+      "sensor_position_and_frame": null,
+      "calibration_reference": null,
+      "sampling_hz": null,
+      "uncertainty": null
+    },
+    {
+      "id": "fan_shaft_torque",
+      "unit": "N*m",
+      "purpose": "fan_power",
+      "sensor_id": null,
+      "sensor_position_and_frame": null,
+      "calibration_reference": null,
+      "sampling_hz": null,
+      "uncertainty": null
+    },
+    {
+      "id": "crank_accessory_torque",
+      "unit": "N*m",
+      "purpose": "drive_loss",
+      "sensor_id": null,
+      "sensor_position_and_frame": null,
+      "calibration_reference": null,
+      "sampling_hz": null,
+      "uncertainty": null
+    },
+    {
+      "id": "fan_inlet_total_pressure",
+      "unit": "Pa",
+      "purpose": "aerodynamics",
+      "sensor_id": null,
+      "sensor_position_and_frame": null,
+      "calibration_reference": null,
+      "sampling_hz": null,
+      "uncertainty": null
+    },
+    {
+      "id": "fan_outlet_total_pressure",
+      "unit": "Pa",
+      "purpose": "aerodynamics",
+      "sensor_id": null,
+      "sensor_position_and_frame": null,
+      "calibration_reference": null,
+      "sampling_hz": null,
+      "uncertainty": null
+    },
+    {
+      "id": "actual_volume_flow",
+      "unit": "m3/s",
+      "purpose": "aerodynamics",
+      "sensor_id": null,
+      "sensor_position_and_frame": null,
+      "calibration_reference": null,
+      "sampling_hz": null,
+      "uncertainty": null
+    },
+    {
+      "id": "branch_mass_flow",
+      "unit": "kg/s",
+      "purpose": "distribution",
+      "sensor_id": null,
+      "sensor_position_and_frame": null,
+      "calibration_reference": null,
+      "sampling_hz": null,
+      "uncertainty": null
+    },
+    {
+      "id": "branch_inlet_air_temperature",
+      "unit": "degC",
+      "purpose": "thermal",
+      "sensor_id": null,
+      "sensor_position_and_frame": null,
+      "calibration_reference": null,
+      "sampling_hz": null,
+      "uncertainty": null
+    },
+    {
+      "id": "branch_outlet_air_temperature",
+      "unit": "degC",
+      "purpose": "thermal",
+      "sensor_id": null,
+      "sensor_position_and_frame": null,
+      "calibration_reference": null,
+      "sampling_hz": null,
+      "uncertainty": null
+    },
+    {
+      "id": "metal_temperature",
+      "unit": "degC",
+      "purpose": "thermal",
+      "sensor_id": null,
+      "sensor_position_and_frame": null,
+      "calibration_reference": null,
+      "sampling_hz": null,
+      "uncertainty": null
+    },
+    {
+      "id": "support_acceleration",
+      "unit": "m/s2",
+      "purpose": "vibration",
+      "sensor_id": null,
+      "sensor_position_and_frame": null,
+      "calibration_reference": null,
+      "sampling_hz": null,
+      "uncertainty": null
+    },
+    {
+      "id": "oil_feed_pressure",
+      "unit": "Pa",
+      "purpose": "lubrication",
+      "sensor_id": null,
+      "sensor_position_and_frame": null,
+      "calibration_reference": null,
+      "sampling_hz": null,
+      "uncertainty": null
+    },
+    {
+      "id": "oil_temperature",
+      "unit": "degC",
+      "purpose": "lubrication",
+      "sensor_id": null,
+      "sensor_position_and_frame": null,
+      "calibration_reference": null,
+      "sampling_hz": null,
+      "uncertainty": null
+    }
+  ],
+  "dataset_roles": [
+    "calibration",
+    "holdout"
+  ],
+  "requirements_fr": [
+    "Même spécimen, même configuration, unités SI et stations identifiées.",
+    "Ne pas confondre débit volumique réel et débit normalisé.",
+    "Séparer couple du rotor, pertes du renvoi et charge alternateur.",
+    "Conserver horodatage, synchronisation, fréquence et incertitudes.",
+    "Définir les seuils avant de comparer un jeu holdout indépendant.",
+    "Les géométries et résultats natifs CFD/FEA restent privés."
+  ]
+}

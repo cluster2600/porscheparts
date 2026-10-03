@@ -1,0 +1,50 @@
+{
+  "status": "unqualified_isotropic_screening_cards",
+  "comparison_date": "2026-10-03",
+  "temperature_C": 20,
+  "poisson_ratio_common_assumed": 0.33,
+  "materials": [
+    {
+      "id": "alsi10mg",
+      "name": "AlSi10Mg LPBF",
+      "density_g_cm3": 2.67,
+      "young_modulus_GPa": 70.0,
+      "tensile_yield_comparator_MPa": 250.0,
+      "process": "EOS M290, 30 um, EOS T6",
+      "density_basis": "EOS average density lower bound used as nominal scenario, not measured part density",
+      "modulus_basis": "engineering screening assumption; not supplied for this process in current EOS card",
+      "yield_basis": "lower of published vertical/horizontal values, comparator only, not design allowable",
+      "source": "https://www.eos.info/metal-solutions/data-sheets/all-processes-and-materials?id=eos-aluminium-alsi10mg",
+      "process_qualified_for_part": false
+    },
+    {
+      "id": "we43",
+      "name": "WE43 magnesium LPBF candidate",
+      "density_g_cm3": 1.83,
+      "young_modulus_GPa": 44.1,
+      "tensile_yield_comparator_MPa": null,
+      "process": "LPBF process for this fan not qualified; elastic proxy from wrought Elektron 43",
+      "density_basis": "nominal wrought WE43C, conditional surrogate for dense LPBF material",
+      "modulus_basis": "wrought WE43C surrogate, not a measured LPBF fan coupon",
+      "yield_basis": "unknown; published compression/bending results must not substitute tensile yield",
+      "source": "https://www.luxfermeltechnologies.com/elektron-43/",
+      "process_qualified_for_part": false
+    },
+    {
+      "id": "ti64",
+      "name": "Ti-6Al-4V LPBF",
+      "density_g_cm3": 4.4,
+      "young_modulus_GPa": 110.0,
+      "tensile_yield_comparator_MPa": 1000.0,
+      "process": "EOS M290, 60 um, 800 C / 2 h in argon",
+      "density_basis": "EOS average density lower bound used as nominal scenario, not measured part density",
+      "modulus_basis": "EOS published value for this process and heat treatment",
+      "yield_basis": "EOS published minimum specimen value, comparator only, not design allowable for a fan",
+      "source": "https://www.eos.info/metal-solutions/data-sheets/all-processes-and-materials?id=eos-titanium-ti64",
+      "process_qualified_for_part": false
+    }
+  ],
+  "fatigue_allowables": null,
+  "anisotropy_residual_stress_and_temperature_dependence_included": false,
+  "manufacturing_authorized": false
+}
