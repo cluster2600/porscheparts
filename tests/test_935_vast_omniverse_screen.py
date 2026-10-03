@@ -3,6 +3,8 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest import mock
+import base64
 
 ROOT = Path(__file__).resolve().parents[1]
 SCREEN = ROOT / "twins/935-horizontal-cooling-system-f0/vast-omniverse-screen"
@@ -37,6 +39,29 @@ class ScreenContractTests(unittest.TestCase):
         self.assertEqual(module.require_ovrtx_endpoint("http://127.0.0.1:8001"), "http://127.0.0.1:8001")
         with self.assertRaisesRegex(ValueError, "local loopback"):
             module.require_ovrtx_endpoint("https://renderer.example/preview")
+
+    def test_ovrtx_renderer_saves_a_hashed_preview(self):
+        class Response:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *_):
+                return False
+
+            def read(self):
+                return json.dumps({"status": "success", "images": {"0": {
+                    "/FanAlloyScreen/Camera": {"rgb": base64.b64encode(b"x" * 1025).decode("ascii")}
+                }}}).encode("utf-8")
+
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            stage = root / "screen.usda"
+            stage.write_text("#usda 1.0\n", encoding="utf-8")
+            with mock.patch.object(module.urllib.request, "urlopen", return_value=Response()):
+                render = module.render_ovrtx(stage, root, "http://127.0.0.1:8001")
+            self.assertEqual(render["status"], "passed")
+            self.assertEqual(render["image"]["bytes"], 1025)
+            self.assertRegex(render["image"]["sha256"], r"^[0-9a-f]{64}$")
 
     def test_invalid_duplicate_material_is_rejected_before_solver(self):
         with tempfile.TemporaryDirectory() as temporary:
