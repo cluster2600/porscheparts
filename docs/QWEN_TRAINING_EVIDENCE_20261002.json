@@ -1,0 +1,562 @@
+{
+  "snapshot_date": "2026-10-02",
+  "kind": "documentation_summary_of_existing_receipts",
+  "new_training_performed": false,
+  "base_model": {
+    "repository": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+    "revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+    "weights_sha256": "daeab4764fb420d161721791cf2e509e2de81a7af4223646e7bed2bf82c57b58",
+    "upstream_repository": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+    "upstream_revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+    "license": "Apache-2.0",
+    "quantization_bits": 4,
+    "mlx_lm_version": "0.31.3",
+    "training": {
+      "iters": 60,
+      "batch_size": 1,
+      "num_layers": 4,
+      "learning_rate": 0.0001,
+      "max_seq_length": 512,
+      "seed": 42,
+      "fine_tune_type": "lora",
+      "mask_prompt": true
+    }
+  },
+  "coding_008": {
+    "source": {
+      "path": "training/m64-qwen/composition-results.json",
+      "commit": "7b9853ad633e1b3847b7a363b89282d3a1d09479",
+      "sha256": "ab3217dd8d69c8fae503743931e7be2a3dea5a0ea80f0f9121c982acb631138b"
+    },
+    "source_is_on_github_training_branch": true,
+    "selected_step": 400,
+    "adapter_sha256": "09024cfb346f3dd7f8994e5fe1cd89e11976db5354b8dac9c0167d57ee7aacb6",
+    "counts": {
+      "train": {
+        "usd": 720,
+        "picogk": 704
+      },
+      "valid": {
+        "usd": 30,
+        "picogk": 40
+      },
+      "test": {
+        "usd": 68,
+        "picogk": 56
+      }
+    },
+    "training_diagnostics": {
+      "iterations": 400,
+      "trained_tokens": 79345,
+      "validation_loss": 0.003,
+      "peak_memory_gb": 3.236
+    },
+    "validation": {
+      "usd": {
+        "total": 30,
+        "regressions": [],
+        "before_passed": 22,
+        "after_passed": 30
+      },
+      "picogk": {
+        "total": 40,
+        "regressions": [],
+        "before_passed": 9,
+        "after_passed": 31
+      }
+    },
+    "final": {
+      "usd": {
+        "all": {
+          "total": 68,
+          "regressions": [],
+          "before_passed": 39,
+          "after_passed": 67,
+          "after_native_passed": 68
+        },
+        "regression": {
+          "total": 36,
+          "regressions": [],
+          "before_passed": 28,
+          "after_passed": 36,
+          "after_native_passed": 36
+        },
+        "fresh": {
+          "total": 32,
+          "regressions": [],
+          "before_passed": 11,
+          "after_passed": 31,
+          "after_native_passed": 32
+        }
+      },
+      "picogk": {
+        "all": {
+          "total": 56,
+          "regressions": [],
+          "before_passed": 11,
+          "after_passed": 42,
+          "after_native_passed": 54,
+          "after_compiled": 54
+        },
+        "regression": {
+          "total": 32,
+          "regressions": [],
+          "before_passed": 10,
+          "after_passed": 24,
+          "after_native_passed": 31,
+          "after_compiled": 31
+        },
+        "fresh": {
+          "total": 24,
+          "regressions": [],
+          "before_passed": 1,
+          "after_passed": 18,
+          "after_native_passed": 23,
+          "after_compiled": 23
+        }
+      }
+    },
+    "default_inference_changed": false
+  },
+  "engineering_005": {
+    "source": {
+      "path": "training/qwen-engineering-refinement/results-005.json",
+      "commit": "32958f6799198bae15ac672da002870ec48427b7",
+      "sha256": "008bd103986ff06a29a395e96f3baf817e6299a25b1a3faaaf411648f838755b"
+    },
+    "source_is_on_github_training_branch": false,
+    "status": "complete_experimental_not_qualified",
+    "selected_step": 1200,
+    "adapter_sha256": "70142a4583f5c95a74b3a5dd6661d8243e85e7846dc7aba6e8b4ab3c6a3f29d4",
+    "parent": "qwen-engineering-003/checkpoint-1200",
+    "training": {
+      "steps": 1200,
+      "reported_tokens": 285004,
+      "peak_memory_gb": 5.478,
+      "batch_size": 2,
+      "learning_rate": 5e-06,
+      "layers": 16,
+      "lora_rank": 8,
+      "lora_scale": 20,
+      "seed": 42,
+      "masked_prompts": true,
+      "maximum_sequence_tokens": 632,
+      "configured_sequence_limit": 1024,
+      "training_records": 3224,
+      "unique_training_prompts": 3177,
+      "weighted_training_instances": 4776,
+      "explicit_usd_reference_checks_passed": 200,
+      "sequence_length_correction": {
+        "correction": "The frozen manifest maximum_sequence_tokens=2 counted BatchEncoding keys. Independently count input_ids without changing any frozen input.",
+        "train_data_sha256": "6dacf7373b9c1cd2a9a16f9f3672c9d28bef26c7755bf3112af5550889bf39ba",
+        "training_instances": 4776,
+        "maximum_sequence_tokens": 632,
+        "all_at_most_1024": true
+      }
+    },
+    "validation": {
+      "per_domain": {
+        "calculix": {
+          "passed": 4,
+          "total": 4
+        },
+        "engineering": {
+          "passed": 79,
+          "total": 80
+        },
+        "openfoam": {
+          "passed": 8,
+          "total": 8
+        },
+        "openusd": {
+          "passed": 46,
+          "total": 46
+        },
+        "picogk": {
+          "passed": 47,
+          "total": 48
+        },
+        "python": {
+          "passed": 80,
+          "total": 80
+        }
+      },
+      "regressions": [],
+      "eligible": true,
+      "adapter_sha256": "70142a4583f5c95a74b3a5dd6661d8243e85e7846dc7aba6e8b4ab3c6a3f29d4"
+    },
+    "final_comparison": {
+      "before_passed": 146,
+      "after_passed": 148,
+      "total": 150,
+      "per_domain": {
+        "calculix": {
+          "passed": 4,
+          "total": 4
+        },
+        "engineering": {
+          "passed": 43,
+          "total": 44
+        },
+        "openfoam": {
+          "passed": 8,
+          "total": 8
+        },
+        "openusd": {
+          "passed": 14,
+          "total": 14
+        },
+        "picogk": {
+          "passed": 7,
+          "total": 8
+        },
+        "python": {
+          "passed": 72,
+          "total": 72
+        }
+      },
+      "regressions": [],
+      "eligible": false
+    },
+    "protocol_corrections": {
+      "original_photo_fresh_label_invalid": true,
+      "train_overlap_validation_rows": 33,
+      "train_overlap_test_rows": 44,
+      "excluded_final_rows": 46,
+      "filtered_partition_registered_before_final_predictions": true,
+      "limits": "Exact text separation only. Shared task recipes and cosmetic fixture identifiers do not establish new engineering task families. OpenFOAM model score covers bounded dictionaries; prescribed native CHT is a separate reference witness. CalculiX model benchmark is axial T3D2 only. No general automotive, calibrated twin, coupled solver or manufacturing qualification."
+    },
+    "filtered_partition": {
+      "excluded_ids": [
+        "photo-test-four_stroke_interval-0",
+        "photo-test-four_stroke_interval-1",
+        "photo-test-four_stroke_interval-2",
+        "photo-test-four_stroke_interval-3",
+        "photo-test-four_stroke_interval-4",
+        "photo-test-four_stroke_interval-5",
+        "photo-test-four_stroke_interval-6",
+        "photo-test-four_stroke_interval-7",
+        "photo-test-mesh-2",
+        "photo-test-mesh-6",
+        "photo-test-paper-0",
+        "photo-test-consistency-0",
+        "photo-test-pet-0",
+        "photo-test-dynamics-0",
+        "photo-test-paper-1",
+        "photo-test-consistency-1",
+        "photo-test-pet-1",
+        "photo-test-dynamics-1",
+        "photo-test-attachments-2",
+        "photo-test-cooling-2",
+        "photo-test-paper-2",
+        "photo-test-consistency-2",
+        "photo-test-pet-2",
+        "photo-test-twin-2",
+        "photo-test-dynamics-2",
+        "photo-test-manufacturing-2",
+        "photo-test-paper-3",
+        "photo-test-consistency-3",
+        "photo-test-pet-3",
+        "photo-test-dynamics-3",
+        "photo-test-paper-4",
+        "photo-test-consistency-4",
+        "photo-test-pet-4",
+        "photo-test-dynamics-4",
+        "photo-test-paper-5",
+        "photo-test-consistency-5",
+        "photo-test-pet-5",
+        "photo-test-dynamics-5",
+        "photo-test-paper-6",
+        "photo-test-consistency-6",
+        "photo-test-pet-6",
+        "photo-test-dynamics-6",
+        "photo-test-paper-7",
+        "photo-test-consistency-7",
+        "photo-test-pet-7",
+        "photo-test-dynamics-7"
+      ],
+      "unique_train_prompts": 3177,
+      "train_overlap_rows": {
+        "valid": 33,
+        "test": 44
+      },
+      "per_domain": {
+        "calculix": 4,
+        "engineering": 44,
+        "openfoam": 8,
+        "openusd": 14,
+        "picogk": 8,
+        "python": 72
+      },
+      "limits": "Exact prompt separation only. Shared API, formula and decision recipes; no independent-family, automotive or manufacturing qualification.",
+      "cases_sha256": "08daf036a4441c33409e523daae9a537d5d74255afde0caa528eea9b421df22a",
+      "script_sha256": "0abaa9b427d191715591685061a4258da4a4eceb9b00a4541765341c5f362306",
+      "registered_commit": "345efa62ed76addbf032cf0648e51f1ea2ee6914",
+      "candidate_run": "qwen-engineering-005",
+      "baseline_run": "qwen-engineering-003/checkpoint-1200"
+    },
+    "remaining_errors": [
+      {
+        "id": "picogk-guide_260023_3",
+        "error": "Duplicate edge 0->3 replaces required edge 1->3. Code compilation cannot establish graph correctness."
+      },
+      {
+        "id": "photo-test-attachments-5",
+        "error": "Overly conservative geometry rejection when interfaces and load path are verified but material is unqualified. Structural calculation and manufacturing are correctly blocked."
+      }
+    ],
+    "receipts_sha256": {
+      "work/qwen-engineering-005/manifest.json": "898b56fe8ef82c8547a2adc09b064af5ab1d6636bef2a33760759023c708ac91",
+      "work/qwen-engineering-005/results.json": "88d125e6f2652f9dba2439669e06b8ca8ede31760d131312da34f220e499e1d5",
+      "work/qwen-engineering-005/training.log": "26087b332ee00559029cef9d11a56ae97056586ba09ab7235fe9b8f59750b331",
+      "work/qwen-engineering-005/sequence-length-check.json": "0fc33a574aa0f377a5359971d82db0ae301e75c1cd9619f31f9622127f6b74cf",
+      "work/qwen-engineering-005/prompt-overlap-check.json": "0c98c8fedb4e97c84237aa284dddfa093ae79f4bc938a6fd62688c7564e0608f",
+      "work/qwen-engineering-005/parent-check/scores-independent.json": "b2ba1b476303a93240f88eb79fb876b6cd19f4bb28ae95b9fb4b9543cca09916",
+      "work/qwen-engineering-005/explicit-references/scores-independent.json": "1491756540c3c0f38bc870581dfd585d30b7eb5f3b150aa9139d9e8953d47ffa",
+      "work/qwen-engineering-005/validation-1200/scores-independent.json": "2cb2a3b1eacced51f04367176766dae50d7e18b50c5692ebb7ae5dcb115dc20a",
+      "work/qwen-engineering-final-005/partition.json": "fcb3115e2ad04de2144487cef9e5bfe7fb0bb5fd7e7b8ed3bbc081082f9774b1",
+      "work/qwen-engineering-final-005/started.json": "c04ddcf4eda40a8453579f4906884adc7b6e288f93c9663d0667c2db5f56bc78",
+      "work/qwen-engineering-final-005/results.json": "e51c0e25a409cbd6bc08ebc5796e7b630204a1bd4b6d76c6096f6d61790413c0",
+      "work/qwen-engineering-final-005/before-scores.json": "26e38a9d226cebd6f92966be5c24daddf0f1e1d7e496bfe2f1be91074e6fc397",
+      "work/qwen-engineering-final-005/after-scores.json": "caf5dcd78a0726c103a10bdf516d8b518291631e51b0cba051bac51d995a89c7",
+      "work/qwen-engineering-final-005/reference-check/scores.json": "6827a6e5a5fd0cd82cb341dc4cd2ccd67e8cd3b2a443f79ac549fd26784b41db",
+      "work/qwen-engineering-final-005/reference-extra-checks.json": "051f8aa88a73544ed1e33c40b0f34de9df34b3c2177d8928b6eb0eb19498deea"
+    },
+    "default_adapter_replaced": false,
+    "physical_validation": false,
+    "manufacturing_authorized": false
+  },
+  "local_integrity_check": {
+    "coding_008_weight_hash_matched": true,
+    "engineering_005_files_checked": 16,
+    "missing_files": 0,
+    "hash_mismatches": 0,
+    "scope": "Existing adapter weights and saved engineering-005 receipts were hashed locally; training, inference and native solvers were not rerun for this documentation."
+  },
+  "additional_local_sources": [
+    {
+      "path": "training/qwen-engineering-refinement/README.md",
+      "commit": "e847a34fc9bee7aeb10100cd928e838d2367aa81",
+      "sha256": "9f6381344e31560cb6d2fa04316b582bc4aa476293d2e5b7ebe8c03f16e80f57"
+    },
+    {
+      "path": "training/qwen-engineering-refinement/results-002.json",
+      "commit": "02068925291571e8ebd285de5cfc7ca6332e9593",
+      "sha256": "20a8d16c8a8e47a1a869c09b55c051a728738c81623381d623d6661daa0c8e67"
+    },
+    {
+      "path": "training/qwen-engineering-refinement/results-003.json",
+      "commit": "76f19335090a0551ca8c16db9a2aad37b583d553",
+      "sha256": "3db005a042fb5c74d47d8145021a31c320452292628ba874cbb57de5dc8d25e5"
+    },
+    {
+      "path": "training/qwen-engineering-refinement/results-004.json",
+      "commit": "a4444e6e9724a8469b5c0c006e68758cd4dbba29",
+      "sha256": "d1b5ef1b97b7429518ae81a54b18a9d85178feac2ead84340d99972a23944ca1"
+    },
+    {
+      "path": "training/qwen-engineering-refinement/research.json",
+      "commit": "02068925291571e8ebd285de5cfc7ca6332e9593",
+      "sha256": "96e06a37e7a9dd98ad41baef4bd7fd631f28aad5b3c2213cc6f95927028bb8ed"
+    },
+    {
+      "path": "training/qwen-engineering-20261002/results.json",
+      "commit": "4edc9201a21b1e2bc115371d603f38d2ba4b735e",
+      "sha256": "ffe4fc40a073c836976bb6d91ac5847a365bd1e1b560b04bafde7b56c099c373"
+    }
+  ],
+  "limits": [
+    "Scores from different partitions are not directly comparable.",
+    "Shared task recipes limit generalisation.",
+    "Original photo-course train/validation/test prompt overlaps invalidate its fresh label.",
+    "The filtered 150 cases separate exact prompt text, not task families.",
+    "Published summary metadata does not publish the local source branch, weights or raw model responses.",
+    "Porsche document scores measure source-conditioned extraction with shared recipes; failed or incomplete free-question checks do not qualify a general document assistant."
+  ],
+  "porsche_corpus_001": {
+    "source": {
+      "path": "training/qwen-porsche-corpus/results-001.json",
+      "commit": "c53261f5ec94cd330917591e1d4e9fea357b7bc0",
+      "sha256": "4e7897139f7f178a574c78fecd5d93d5b5a241ae913448e75fbfdde0b8b77fb4"
+    },
+    "source_is_claimed_published_on_github": false,
+    "registered_commit": "ca46964d5f1f3b78085820b6da10321c9becea9f",
+    "parent_adapter_sha256": "70142a4583f5c95a74b3a5dd6661d8243e85e7846dc7aba6e8b4ab3c6a3f29d4",
+    "corpus_counts": {
+      "pet": 12864,
+      "technical-data": 111,
+      "torque-specs": 195,
+      "procedures": 235,
+      "site-review": 15,
+      "document-page": 681
+    },
+    "indexed_references": 6013,
+    "indexed_assembly_groups": 452,
+    "training_cases": {
+      "test": 40,
+      "train": 677,
+      "valid": 40
+    },
+    "configuration": {
+      "iterations": 320,
+      "learning_rate": 5e-06,
+      "seed": 1042,
+      "batch_size": 2,
+      "num_layers": 16,
+      "max_seq_length": 1024,
+      "mask_prompt": true,
+      "maximum_observed_sequence_tokens": 260
+    },
+    "training_diagnostics": {
+      "reported_training_tokens": 23024,
+      "peak_memory_gb": 3.194
+    },
+    "selection": "Fixed 320 steps; >=95% per kind and no lost baseline pass on validation. Open test only if eligible; no automatic promotion.",
+    "scores": {
+      "validation-before": {
+        "passed": 10,
+        "total": 40
+      },
+      "validation-after": {
+        "passed": 40,
+        "total": 40
+      },
+      "test-before": {
+        "passed": 13,
+        "total": 40
+      },
+      "test-after": {
+        "passed": 40,
+        "total": 40
+      }
+    },
+    "result": {
+      "validation": {
+        "eligible": true,
+        "regressions": [],
+        "counts": {
+          "pet": {
+            "passed": 10,
+            "total": 10
+          },
+          "procedures": {
+            "passed": 10,
+            "total": 10
+          },
+          "technical-data": {
+            "passed": 10,
+            "total": 10
+          },
+          "torque-specs": {
+            "passed": 10,
+            "total": 10
+          }
+        }
+      },
+      "weights_updated": true,
+      "default_replaced": false,
+      "qualified": false,
+      "test_opened": true,
+      "adapter_sha256": "89f03a87582fe287c6f718e7fef17745171441716ea4d99e83514a0cf12064ca",
+      "test": {
+        "eligible": true,
+        "regressions": [],
+        "counts": {
+          "pet": {
+            "passed": 10,
+            "total": 10
+          },
+          "procedures": {
+            "passed": 10,
+            "total": 10
+          },
+          "technical-data": {
+            "passed": 10,
+            "total": 10
+          },
+          "torque-specs": {
+            "passed": 10,
+            "total": 10
+          }
+        }
+      }
+    },
+    "natural_language_checks": {
+      "review_initial": "rejected_placeholder_citation",
+      "review_revised_prompt": "citation_structure_passed_only; brief answer omits validation detail",
+      "carrier_name_and_material": "rejected_invalid_repetitive_output"
+    },
+    "scope_complete": false,
+    "default_changed": false,
+    "raw_sources_committed": false,
+    "notes": "Private full-page index plus source-grounded field-extraction fine-tuning. This is not complete memorisation of all references or a validated mechanical assembly model.",
+    "verified_receipts": [
+      {
+        "path": "run/protocol.json",
+        "sha256": "21390ed0b9bec0779893aa01b14e470fb7d7647a16cd6a9d7ddc3da4a2becc1a"
+      },
+      {
+        "path": "run/runtime.json",
+        "sha256": "6f378fb51d7dd5e7572b54fe44a7a5c2031e793461512fece0a0706cfcbbceb0"
+      },
+      {
+        "path": "run/results.json",
+        "sha256": "4aa7026523983d2f5adeff851568d3f816b7db26d7dd7b27b6376178cab8d439"
+      },
+      {
+        "path": "run/training.log",
+        "sha256": "fa765bc8761aaa40290aea387d48377e3bd23783bcb4390fe9280483ca223840"
+      },
+      {
+        "path": "index/manifest.json",
+        "sha256": "b49c7530575c37f2fbbed78f6ec7f33fa112fcc9f70105fc765bb48e20e8b3d5"
+      },
+      {
+        "path": "review-answer.json",
+        "sha256": "58cbafa0a81a40561b355b9a075542fa0955d2b648099da0388abbf350af1d86"
+      },
+      {
+        "path": "review-answer-v2.json",
+        "sha256": "cd1d4ba549fb67aef7e9e68f619391e4c938b2c36b3a2c6cc24dce35a2865e45"
+      },
+      {
+        "path": "carrier-answer.json",
+        "sha256": "36afb0ce9fda8169cddfed905551d7e7ed5865adcc3d0558be4be6a510ee4a60"
+      }
+    ],
+    "verified_frozen_inputs": [
+      {
+        "path": "work/qwen-porsche-corpus-001/index/manifest.json",
+        "sha256": "b49c7530575c37f2fbbed78f6ec7f33fa112fcc9f70105fc765bb48e20e8b3d5"
+      },
+      {
+        "path": "work/qwen-porsche-corpus-001/index/records.jsonl",
+        "sha256": "de6c981c3d64a86ae9735451b8fa4764cdd15003709af6aec58ae0145b1009c4"
+      },
+      {
+        "path": "work/qwen-porsche-corpus-001/run/cases.json",
+        "sha256": "e6db93addcdc22801569bd71261b8cc415f3297ffdd5f2bda82cd3adb46c0bfc"
+      },
+      {
+        "path": "work/qwen-porsche-corpus-001/run/data/train.jsonl",
+        "sha256": "4021fd8783e4ccd38a7e049caccb27b5a5a015fc219679aaf474cd386f15d521"
+      },
+      {
+        "path": "work/qwen-porsche-corpus-001/run/data/test.jsonl",
+        "sha256": "835b1e8b77f761cbb8061da17f9ff519f025a62b3619ff3cfa33b50cfed04869"
+      },
+      {
+        "path": "work/qwen-porsche-corpus-001/run/data/valid.jsonl",
+        "sha256": "6347e5aa7df08ede2ab6408ab0778f27ba8eb71718d136a4e68fe16785265598"
+      },
+      {
+        "path": "training/qwen-porsche-corpus/train.py",
+        "sha256": "40fb26d98350d7c95cb1d89deab6a285cde6c497214e05aba37199f33c1c00b0"
+      },
+      {
+        "path": "training/qwen-porsche-corpus/corpus.py",
+        "sha256": "b83fbbc3b1e03ae8ec0d020d767b9466cc1b255ada04fda22ff6d1718b83340b"
+      }
+    ]
+  }
+}
