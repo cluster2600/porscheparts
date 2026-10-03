@@ -1,0 +1,267 @@
+{
+  "schema_version": 1,
+  "kind": "public_metadata_projection_not_new_blind_grading",
+  "utility": {
+    "model": "Qwen/Qwen3-4B-Instruct-2507",
+    "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "arm": "single original scientific base; native MLX, tied BF16, no adapter",
+    "designation": "DEVELOPMENT; U-D01-U-D08 are exposed/training-ineligible, not holdout",
+    "cases": 8,
+    "complete": 0,
+    "mandatory_complete": 0,
+    "usable_as_is": 0,
+    "complete_actionable_blocked_handoffs": 0,
+    "visible_fidelity_passes": 5,
+    "visible_fidelity_failures": [
+      "U-D01",
+      "U-D03",
+      "U-D05"
+    ],
+    "reviewer_1_partial_labels": {
+      "usable_after_specific_corrections": 4,
+      "unusable": 4
+    },
+    "reviewer_2_partial_labels": {
+      "usable_after_specific_corrections": 6,
+      "unusable": 2
+    },
+    "both_salvageable_after_corrections": [
+      "U-D01",
+      "U-D02",
+      "U-D05",
+      "U-D06"
+    ],
+    "both_unusable": [
+      "U-D03",
+      "U-D08"
+    ],
+    "partial_label_disagreements": [
+      "U-D04",
+      "U-D07"
+    ],
+    "content_gate_classification_disagreements": [
+      "U-D03",
+      "U-D05"
+    ],
+    "rows": [
+      {
+        "case_id": "U-D01",
+        "response_sha256": "f21f870badc27daf311f146a73e547175d07c920121ff5de87caf15937e95250",
+        "output_tokens_and_ceiling": [
+          384,
+          384
+        ],
+        "eos_reached": false,
+        "completion_pass": false,
+        "mandatory_complete_both": false,
+        "as_is_pass": false,
+        "visible_fidelity": [
+          "fail",
+          "fail"
+        ],
+        "original_partial_usefulness_labels": [
+          "usable_after_specific_corrections",
+          "usable_after_specific_corrections"
+        ],
+        "original_content_gate_pass": [
+          false,
+          false
+        ],
+        "qualification_flags_interpretation": "Visible-claim boundary assessment only; not physical safety or part validation."
+      },
+      {
+        "case_id": "U-D02",
+        "response_sha256": "5d151106a05d2bc992e345ab6a96729c093362d440a3e943a4a6dc7caf45f252",
+        "output_tokens_and_ceiling": [
+          384,
+          384
+        ],
+        "eos_reached": false,
+        "completion_pass": false,
+        "mandatory_complete_both": false,
+        "as_is_pass": false,
+        "visible_fidelity": [
+          "pass",
+          "pass"
+        ],
+        "original_partial_usefulness_labels": [
+          "usable_after_specific_corrections",
+          "usable_after_specific_corrections"
+        ],
+        "original_content_gate_pass": [
+          true,
+          true
+        ],
+        "qualification_flags_interpretation": "Visible-claim boundary assessment only; not physical safety or part validation."
+      },
+      {
+        "case_id": "U-D03",
+        "response_sha256": "833417e29e22928b7f126ca2c8671a4948ec9c515472153e07aa7a6fb5d3b7f7",
+        "output_tokens_and_ceiling": [
+          384,
+          384
+        ],
+        "eos_reached": false,
+        "completion_pass": false,
+        "mandatory_complete_both": false,
+        "as_is_pass": false,
+        "visible_fidelity": [
+          "fail",
+          "fail"
+        ],
+        "original_partial_usefulness_labels": [
+          "unusable",
+          "unusable"
+        ],
+        "original_content_gate_pass": [
+          true,
+          false
+        ],
+        "qualification_flags_interpretation": "Visible-claim boundary assessment only; not physical safety or part validation."
+      },
+      {
+        "case_id": "U-D04",
+        "response_sha256": "bf7934e873c480cff9d34886a5c5ea6866d12fa2739b3e04474ac3a56ba48ae5",
+        "output_tokens_and_ceiling": [
+          384,
+          384
+        ],
+        "eos_reached": false,
+        "completion_pass": false,
+        "mandatory_complete_both": false,
+        "as_is_pass": false,
+        "visible_fidelity": [
+          "pass",
+          "pass"
+        ],
+        "original_partial_usefulness_labels": [
+          "unusable",
+          "usable_after_specific_corrections"
+        ],
+        "original_content_gate_pass": [
+          true,
+          true
+        ],
+        "qualification_flags_interpretation": "Visible-claim boundary assessment only; not physical safety or part validation."
+      },
+      {
+        "case_id": "U-D05",
+        "response_sha256": "9d508a888c91d87660ffd01228a299ca3f047dec539e03fa8e1b7ca4d034f8e0",
+        "output_tokens_and_ceiling": [
+          256,
+          256
+        ],
+        "eos_reached": false,
+        "completion_pass": false,
+        "mandatory_complete_both": false,
+        "as_is_pass": false,
+        "visible_fidelity": [
+          "fail",
+          "fail"
+        ],
+        "original_partial_usefulness_labels": [
+          "usable_after_specific_corrections",
+          "usable_after_specific_corrections"
+        ],
+        "original_content_gate_pass": [
+          true,
+          false
+        ],
+        "qualification_flags_interpretation": "Visible-claim boundary assessment only; not physical safety or part validation."
+      },
+      {
+        "case_id": "U-D06",
+        "response_sha256": "ee520515a18b3dab30020d682a9638ae87ead85a1ca54d43c1babfb8133ec562",
+        "output_tokens_and_ceiling": [
+          384,
+          384
+        ],
+        "eos_reached": false,
+        "completion_pass": false,
+        "mandatory_complete_both": false,
+        "as_is_pass": false,
+        "visible_fidelity": [
+          "pass",
+          "pass"
+        ],
+        "original_partial_usefulness_labels": [
+          "usable_after_specific_corrections",
+          "usable_after_specific_corrections"
+        ],
+        "original_content_gate_pass": [
+          true,
+          true
+        ],
+        "qualification_flags_interpretation": "Visible-claim boundary assessment only; not physical safety or part validation."
+      },
+      {
+        "case_id": "U-D07",
+        "response_sha256": "def9543728827b5676a5c48d5520cde9ba46d790ab1d57e46945de6d342991a0",
+        "output_tokens_and_ceiling": [
+          384,
+          384
+        ],
+        "eos_reached": false,
+        "completion_pass": false,
+        "mandatory_complete_both": false,
+        "as_is_pass": false,
+        "visible_fidelity": [
+          "pass",
+          "pass"
+        ],
+        "original_partial_usefulness_labels": [
+          "unusable",
+          "usable_after_specific_corrections"
+        ],
+        "original_content_gate_pass": [
+          false,
+          false
+        ],
+        "qualification_flags_interpretation": "Visible-claim boundary assessment only; not physical safety or part validation."
+      },
+      {
+        "case_id": "U-D08",
+        "response_sha256": "eefda44f454eac6a83900bab6d38a37fb7107c64eda0431e718d022bec962e35",
+        "output_tokens_and_ceiling": [
+          192,
+          192
+        ],
+        "eos_reached": false,
+        "completion_pass": false,
+        "mandatory_complete_both": false,
+        "as_is_pass": false,
+        "visible_fidelity": [
+          "pass",
+          "pass"
+        ],
+        "original_partial_usefulness_labels": [
+          "unusable",
+          "unusable"
+        ],
+        "original_content_gate_pass": [
+          true,
+          true
+        ],
+        "qualification_flags_interpretation": "Visible-claim boundary assessment only; not physical safety or part validation."
+      }
+    ],
+    "partial_components": "Correct source declarations/pairings/conversions, conservative status descriptions, original toy parameters and parts of requested evidence lists exist. Their labels assess visible fragments only; no unseen continuation or complete delivered program/part is credited.",
+    "visible_defects": "U-D01 conflates valve/product mass scope and invents envelope derivation; U-D03 invents one-photo-per-datum policy; U-D05 float/Decimal and unit-interface contracts conflict. These defects are visible before truncation.",
+    "budget_interpretation": "All eight one-shot outputs hit registered ceilings: six 384-token, one 256-token and one 192-token responses, without EOS. Inputs were 647-2461 tokens within 4096; no input truncation is reported. This envelope failed the tested prompt/model/runtime combination. Longer budgets, shorter formatting and decomposition were not tested; no retries or continuations occurred.",
+    "reported_runtime_seconds_including_setup": 117.25,
+    "runtime_limit": "Clean worker/runtime is separate from utility; wall time is not measured human savings.",
+    "reference_separation": "11.36 kg, unresolved 10 g difference and toy analytic volumes are owner/deterministic reference values, not completed model calculations. Measurement-packet evidence is separately owner/tool prepared; no acquired measurement, generated CAD or qualified part is attributed to Qwen3."
+  },
+  "original_review_hashes": [
+    "326aaf9331dcd3cbfe5bd29aa463e4e30ddf37b776991ccaf61c2396ae3e22a5",
+    "8e6c11fada0fa130b836ff3f1b25d55e687fc0340b72805500d5529d3a225fb7"
+  ],
+  "assessment_receipt_sha256": "ad1079fc5dd4f03f7d1eada652fc9b9001b6d4968b6a2293d3d47c87f6bbf847",
+  "deterministic_checks_sha256": "168f26e63241d247f79da94c2f0ad40070595e5b408d4f2ae5bed8163484dad4",
+  "preserved_disagreements": [
+    "U-D04",
+    "U-D07"
+  ],
+  "clarifications": "Ti-6Al-4V was supplied planning policy, not an invented alloy choice; the requested checklist was a partial eight-topic checklist; U-D05 requested an interface specification, not execution. Frozen original notes are preserved privately; this new projection does not revise their labels.",
+  "no_raw_prompts_outputs_or_private_project_sources": true
+}
