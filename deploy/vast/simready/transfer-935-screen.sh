@@ -17,9 +17,11 @@ validate_controller_id "$JOB_ID"; validate_pinned_image "$EXPECTED_IMAGE"
 [ -f "$SKILL_ROOT/SKILL.md" ] && [ "$(basename "$SKILL_ROOT")" = "omniverse-cad-to-simready" ] || controller_die "skill NVIDIA explicite absent"
 PROJECT_ROOT="$(git -C "$SCRIPT_DIR" rev-parse --show-toplevel)"
 SCREEN="twins/935-horizontal-cooling-system-f0/vast-omniverse-screen"
+INPUT_CONTRACT="twins/935-horizontal-cooling-system"
 FILES=(
   "$SCREEN/README.md" "$SCREEN/materials.json" "$SCREEN/scenario.json"
   "$SCREEN/material-prompt.txt" "$SCREEN/physics-prompt.txt" "$SCREEN/source/run_campaign.py"
+  "$INPUT_CONTRACT/data/input-matrix.json" "$INPUT_CONTRACT/research/coverage.json"
 )
 for file in "${FILES[@]}"; do
   [ -f "$PROJECT_ROOT/$file" ] || controller_die "source absente: $file"
@@ -63,7 +65,7 @@ from datetime import datetime, timezone
 import hashlib, json, sys
 from pathlib import Path
 manifest=Path(sys.argv[6])
-payload={"schema_version":"1.0.0","status":"passed","passed":True,"job_id":sys.argv[2],"instance_id":int(sys.argv[3]),"expected_image":sys.argv[4],"source_revision":sys.argv[5],"source_manifest_sha256":hashlib.sha256(manifest.read_bytes()).hexdigest(),"source_policy":"tracked clean allowlist only; no raw scans","remote_project_root":f"/workspace/jobs/{sys.argv[2]}/project","remote_skill_root":f"/workspace/jobs/{sys.argv[2]}/vendor/omniverse-cad-to-simready","finished_at":datetime.now(timezone.utc).isoformat()}
+payload={"schema_version":"1.0.0","status":"passed","passed":True,"job_id":sys.argv[2],"instance_id":int(sys.argv[3]),"expected_image":sys.argv[4],"source_revision":sys.argv[5],"source_manifest_sha256":hashlib.sha256(manifest.read_bytes()).hexdigest(),"source_policy":"tracked clean allowlist only; no raw scans; 935 matrix retains zero admitted numeric physical claims","remote_project_root":f"/workspace/jobs/{sys.argv[2]}/project","remote_skill_root":f"/workspace/jobs/{sys.argv[2]}/vendor/omniverse-cad-to-simready","finished_at":datetime.now(timezone.utc).isoformat()}
 Path(sys.argv[1]).write_text(json.dumps(payload,indent=2,sort_keys=True)+"\n")
 PY
 printf '%s\n' "$CONTROL_ROOT/transfer-report.json"

@@ -53,6 +53,38 @@ def load_inputs(root: Path) -> tuple[dict, dict]:
     return cards, scenario
 
 
+def load_input_contract(root: Path) -> dict:
+    """Bind the comparative proxy to the separately published 935 evidence gate."""
+    contract_root = root.parents[1] / "935-horizontal-cooling-system"
+    matrix_path = contract_root / "data/input-matrix.json"
+    coverage_path = contract_root / "research/coverage.json"
+    matrix = read_json(matrix_path)
+    coverage = read_json(coverage_path)
+    if matrix.get("schema_version") != "1.0.0" or len(matrix.get("rows", [])) != 50:
+        raise ValueError("935 input matrix is not the expected published contract")
+    if len(matrix.get("variants", [])) != 6:
+        raise ValueError("935 input contract must keep six variant scopes separate")
+    if matrix.get("accepted_935_numeric_physical_claims") != 0:
+        raise ValueError("comparative proxy cannot consume unreviewed 935 physical claims")
+    if matrix.get("manufacturing_authorized") is not False:
+        raise ValueError("935 input contract must keep manufacturing authorization closed")
+    if coverage.get("status") != "partial_awaiting_original_bundle":
+        raise ValueError("935 research coverage status is not the declared partial intake")
+    if coverage.get("admitted_935_numeric_physical_claims") != 0:
+        raise ValueError("935 coverage cannot admit numeric claims for this proxy")
+    return {
+        "matrix_path": "twins/935-horizontal-cooling-system/data/input-matrix.json",
+        "matrix_sha256": sha(matrix_path),
+        "matrix_rows": len(matrix["rows"]),
+        "separate_variants": len(matrix["variants"]),
+        "accepted_935_numeric_physical_claims": matrix["accepted_935_numeric_physical_claims"],
+        "coverage_path": "twins/935-horizontal-cooling-system/research/coverage.json",
+        "coverage_sha256": sha(coverage_path),
+        "research_coverage": coverage["status"],
+        "physical_claims_consumed": False,
+    }
+
+
 def build_proxy(step_path: Path, stl_path: Path, scenario: dict) -> dict:
     import cadquery as cq
     from cadquery import exporters
@@ -208,7 +240,7 @@ def parse_modes(case: Path, expected: str) -> list[float]:
     return modes
 
 
-def build_usd(out: Path, cards: dict, scenario: dict, geometry: dict) -> Path:
+def build_usd(out: Path, cards: dict, scenario: dict, geometry: dict, input_contract: dict) -> Path:
     from pxr import Sdf, Usd, UsdGeom
     stage_path = out / "935-horizontal-fan-alloy-screen.usda"
     stage = Usd.Stage.CreateNew(str(stage_path))
@@ -217,7 +249,9 @@ def build_usd(out: Path, cards: dict, scenario: dict, geometry: dict) -> Path:
     root = UsdGeom.Xform.Define(stage, "/FanAlloyScreen").GetPrim()
     stage.SetDefaultPrim(root)
     root.SetCustomData({"digitalTwinStatus": "exploratory_comparative_screen", "manufacturingAuthorized": False,
-                        "scanTransferred": False, "interfacesVerified": False, "source": scenario["id"]})
+                        "scanTransferred": False, "interfacesVerified": False, "source": scenario["id"],
+                        "inputContractSha256": input_contract["matrix_sha256"],
+                        "accepted935NumericPhysicalClaims": input_contract["accepted_935_numeric_physical_claims"]})
     scope = UsdGeom.Scope.Define(stage, "/FanAlloyScreen/MaterialVariants")
     colors = [(0.65,0.65,0.7),(0.8,0.7,0.25),(0.5,0.55,0.6),(0.4,0.6,0.7),(0.75,0.45,0.25)]
     for index, card in enumerate(cards["materials"]):
@@ -234,6 +268,7 @@ def build_usd(out: Path, cards: dict, scenario: dict, geometry: dict) -> Path:
 
 def run(root: Path, out: Path) -> dict:
     cards, scenario = load_inputs(root)
+    input_contract = load_input_contract(root)
     out.mkdir(parents=True, exist_ok=False)
     geometry_dir = out / "geometry"; geometry_dir.mkdir()
     geometry = build_proxy(geometry_dir / "rotor-proxy.step", geometry_dir / "rotor-proxy.stl", scenario)
@@ -272,9 +307,9 @@ def run(root: Path, out: Path) -> dict:
                          "yield_comparator_over_peak": None if comparator is None else comparator / peak,
                          "above_yield_comparator": None if comparator is None else peak > comparator,
                          "method": "fresh CalculiX static solve" if rpm == rpm_static else "linear-elastic omega-squared extrapolation"})
-    usd = build_usd(out, cards, scenario, geometry)
+    usd = build_usd(out, cards, scenario, geometry, input_contract)
     report = {"schema_version": "1.0.0", "status": "completed_unvalidated_comparative_screen", "generated_at": datetime.now(timezone.utc).isoformat(),
-              "scenario": scenario, "geometry": geometry, "mesh": {key: value for key, value in mesh.items() if key != "fixed_ids"},
+              "scenario": scenario, "input_contract": input_contract, "geometry": geometry, "mesh": {key: value for key, value in mesh.items() if key != "fixed_ids"},
               "materials": results, "rpm_sweep": rows, "usd": {"path": str(usd), "sha256": sha(usd)},
               "solver": {"name": "CalculiX", "static_cases": len(cards["materials"]), "modal_cases": 1, "static_rpm": rpm_static},
               "limits": "Comparative proxy only: no scan mesh transfer, dimensional validation, interfaces, CFD, fatigue, balance, contact, residual stress, overspeed, burst or physical correlation.",
