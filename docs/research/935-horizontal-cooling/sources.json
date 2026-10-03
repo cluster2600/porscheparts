@@ -1,0 +1,121 @@
+{
+  "assessed_on": "2026-10-03",
+  "scope": "historical_935_horizontal_cooling_system_reverse_engineering",
+  "sources": [
+    {
+      "id": "GUNNAR-935-DRIVE",
+      "url": "https://www.gunnarracing.com/team/lola/stage4.htm",
+      "kind": "primary_workshop_account",
+      "reading_scope": "public_text",
+      "supports": ["horizontal_fan_drive_architecture", "horizontal_input_vertical_output_via_90_degree_gearbox", "installation_on_two_935_engines"],
+      "does_not_establish": ["scan_donor_identity", "gear_type", "ratio", "dimensions", "loads_or_efficiency_of_owner_specimen"]
+    },
+    {
+      "id": "PORSCHE-935-VARIANTS",
+      "url": "https://newsroom.porsche.com/en/2026/history/porsche-heritage-moments-935-norbert-singer-timo-bernhard-42018.html",
+      "kind": "primary_manufacturer_history",
+      "reading_scope": "public_text",
+      "supports": ["multiple_historical_935_variants", "935_78_water_cooled_four_valve_heads_air_cooled_cylinders"],
+      "does_not_establish": ["scan_variant", "rotor_geometry", "drive_ratios"]
+    },
+    {
+      "id": "WOLFE-935-FAN",
+      "url": "https://www.wolfeclassics.com/shop/p/porsche-935-fan-3d-scan",
+      "kind": "primary_scan_vendor_description",
+      "reading_scope": "public_text",
+      "supports": ["vendor_labels_fan_as_matching_fan_drive"],
+      "does_not_establish": ["bytewise_identity_of_owner_file", "independent_calibration", "redistribution_rights", "period_part_number"]
+    },
+    {
+      "id": "WOLFE-935-DRIVE",
+      "url": "https://www.wolfeclassics.com/shop/p/porsche-935-fan-drive-3d-scan",
+      "kind": "primary_scan_vendor_description",
+      "reading_scope": "public_text",
+      "supports": ["vendor_describes_exterior_scan_of_drive_removed_for_service"],
+      "does_not_establish": ["internal_gears_bearings_or_lubrication", "scan_accuracy", "owner_file_license"]
+    },
+    {
+      "id": "WOLFE-935-HOUSING",
+      "url": "https://www.wolfeclassics.com/shop/p/porsche-935-fan-housing-3d-scan",
+      "kind": "primary_scan_vendor_description",
+      "reading_scope": "public_text",
+      "supports": ["separate_housing_scan_product", "vendor_describes_rough_scan"],
+      "local_file_found": false,
+      "does_not_establish": ["complete_dimensions_or_uncertainty", "same_donor_as_other_scans"]
+    },
+    {
+      "id": "WOLFE-935-934-GUIDE",
+      "url": "https://www.wolfeclassics.com/shop/p/porsche-935-air-guide-3d-scan",
+      "kind": "primary_scan_vendor_description",
+      "reading_scope": "public_text",
+      "supports": ["separate_air_guide_product", "separate_top_bottom_acquisitions_advertised"],
+      "contradiction": "title_935_description_934",
+      "local_file_found": false,
+      "does_not_establish": ["934_935_interchangeability", "same_donor", "functional_interfaces"]
+    },
+    {
+      "id": "DESIGN911-935-FUNNEL",
+      "url": "https://www.design911.co.uk/p/fan-housing-with-fan-blades-porsche-935/",
+      "kind": "primary_vendor_description_of_its_reproduction",
+      "reading_scope": "public_text",
+      "supports": ["commercial_horizontal_fan_and_inlet_funnel_reproduction"],
+      "vendor_sku": "93510610300R/1",
+      "does_not_establish": ["original_porsche_reference", "owner_rotor_material_or_geometry", "scan_variant", "performance"]
+    },
+    {
+      "id": "AASE-935-79-LITERATURE",
+      "url": "https://www.aasesales.com/collections/misc-media/products/d5i-104380",
+      "kind": "primary_vendor_listing",
+      "reading_scope": "listing_metadata_only",
+      "supports": ["operating_instructions_and_parts_catalogue_acquisition_lead"],
+      "full_document_read": false,
+      "does_not_establish": ["catalogue_contents", "fan_part_numbers", "scan_variant"]
+    },
+    {
+      "id": "ISO-10300-1",
+      "url": "https://www.iso.org/standard/79401.html",
+      "kind": "primary_standard_metadata",
+      "reading_scope": "public_abstract_only",
+      "edition": "ISO 10300-1:2023",
+      "supports": ["bevel_gear_load_capacity_method_reference"],
+      "full_document_read": false,
+      "does_not_establish": ["gearset_selection", "component_compliance", "allowables"]
+    },
+    {
+      "id": "ISO-281",
+      "url": "https://www.iso.org/standard/38102.html",
+      "kind": "primary_standard_metadata",
+      "reading_scope": "public_abstract_and_status_only",
+      "edition": "ISO 281:2007",
+      "status_note": "published_with_revision_under_development_at_assessment",
+      "supports": ["rolling_bearing_dynamic_rating_and_life_method_reference"],
+      "full_document_read": false,
+      "does_not_establish": ["935_bearing_identity", "actual_life", "wear_corrosion_or_electrical_erosion_life"]
+    },
+    {
+      "id": "ISO-21940-11",
+      "url": "https://www.iso.org/standard/54074.html",
+      "kind": "primary_standard_metadata",
+      "reading_scope": "public_metadata_only",
+      "edition": "ISO 21940-11:2016 with amendment 1:2022 listed",
+      "supports": ["rigid_rotor_balancing_method_reference"],
+      "full_document_read": false,
+      "does_not_establish": ["rigid_behaviour_of_actual_rotor", "required_balance_grade", "component_compliance"]
+    },
+    {
+      "id": "SKF-BEARING-ARRANGEMENTS",
+      "url": "https://evolution.skf.com/new-skf-engineering-software-for-the-evaluation-of-bearing-arrangements/",
+      "kind": "primary_component_manufacturer_method_description",
+      "reading_scope": "public_text",
+      "supports": ["bearing_arrangement_inputs_include_gears_loads_speed_and_lubrication"],
+      "does_not_establish": ["935_component_selection", "verified_rotor_dynamics", "qualified_life"]
+    }
+  ],
+  "excluded_from_technical_evidence": [
+    {"url": "https://jimtorresracing.com/for-sale/reproduction-flat-fan", "reason": "public_page_returned_no_readable_text"},
+    {"kind": "forum_and_general_history_results", "reason": "not_used_as_manufacturing_geometry_or_load_data"}
+  ],
+  "raw_public_pages_or_images_committed": false,
+  "supplier_contacted": false,
+  "purchase_made": false
+}
