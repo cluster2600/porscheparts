@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "Four authorized public synthesis views, preserved byte for byte; raw originals and download bundles remain private",
+  "bundle": {
+    "filename": "935-public-synthesis-40-languages.json.gz",
+    "bytes": 205683,
+    "sha256": "5e5a9ce4e0048d697a2b16d03f6deff455e0fbd41dfa0574dc06528b64f6d01b",
+    "integrity_verified": true,
+    "bounded_gzip_decode_passed": true,
+    "all_four_entry_digests_verified": true
+  },
+  "files": {
+    "CONSOLIDATED_REPORT.md": {
+      "bytes": 26998,
+      "sha256": "fb3320aa5dc8b7b75b9402f176e1d1d3422ad289558879bb83a4456562af2cf4",
+      "transformation": "none; byte-identical public synthesis"
+    },
+    "ENGINE_FAN_PARAMETER_LEDGER.json": {
+      "bytes": 548454,
+      "sha256": "6fc4d5b47892b3c8dc01e1761ab9d1312cec85e3a278fe816d6d9740db548883",
+      "transformation": "none; byte-identical public synthesis"
+    },
+    "QA_SUMMARY.json": {
+      "bytes": 40068,
+      "sha256": "c94dbbc1c2c48b7ffa573ee967079645abee71fc73fa1977bd2e33dd8ee99024",
+      "transformation": "none; byte-identical public synthesis"
+    },
+    "SOURCE_FAMILIES.json": {
+      "bytes": 516175,
+      "sha256": "f008cffe129ebe1130d04b022c4bd34eabb3fb1e2c19e60fe7514e609e398f76",
+      "transformation": "none; byte-identical public synthesis"
+    }
+  },
+  "underlying_originals": {
+    "qa_manifest_language_files": 160,
+    "qa_manifest_engine_supplement_files": 3,
+    "locally_verified_private_batch_files": 97,
+    "matched_originals_against_synthesis_input_manifest": 94,
+    "input_manifest_files_not_received_locally": 69,
+    "matching_files_with_different_hashes": 0,
+    "basis_for_40_lanes": "Verified public synthesis and its input-hash/QA registers; not independent local receipt of all 160 originals"
+  },
+  "transfer_history": [
+    {
+      "artifact": "935-research-batch1.json.gz",
+      "attempt": 1,
+      "status": "failed_download",
+      "private_failure_evidence_preserved": true
+    },
+    {
+      "artifact": "935-research-batch1.json.gz",
+      "attempt": 2,
+      "status": "failed_download",
+      "private_failure_evidence_preserved": true
+    },
+    {
+      "artifact": "935-research-batch1.json.gz",
+      "attempt": 3,
+      "status": "verified_private_bundle",
+      "cause_and_correction": "Default Python trust store contained no CAs; existing certifi CA used for this invocation only; certificate and hostname checks enabled"
+    },
+    {
+      "artifact": "935-public-synthesis-40-languages.json.gz",
+      "attempt": 1,
+      "status": "failed_download_in_restricted_network_context",
+      "private_failure_evidence_preserved": true
+    },
+    {
+      "artifact": "935-public-synthesis-40-languages.json.gz",
+      "attempt": 2,
+      "status": "verified_public_synthesis",
+      "context": "Authorized network invocation; unchanged current Library helper; existing certifi CA scoped to the process"
+    }
+  ],
+  "persistent_security_changes": false,
+  "raw_scan_or_source_caches_published": false,
+  "new_solver_runs": 0
+}
