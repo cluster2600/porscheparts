@@ -74,11 +74,14 @@ class ScreenContractTests(unittest.TestCase):
             root = Path(temporary)
             stage = root / "screen.usda"
             stage.write_text("#usda 1.0\n", encoding="utf-8")
-            with mock.patch.object(module.urllib.request, "urlopen", return_value=Response()):
+            with mock.patch.object(module.urllib.request, "urlopen", return_value=Response()) as urlopen:
                 render = module.render_ovrtx(stage, root, "http://127.0.0.1:8001")
             self.assertEqual(render["status"], "passed")
             self.assertEqual(render["image"]["bytes"], 1025)
             self.assertRegex(render["image"]["sha256"], r"^[0-9a-f]{64}$")
+            payload = json.loads(urlopen.call_args.args[0].data.decode("utf-8"))
+            self.assertEqual(payload["render_settings"]["render_mode"], "pt")
+            self.assertEqual(payload["render_settings"]["material_target"], "auto")
 
     def test_invalid_duplicate_material_is_rejected_before_solver(self):
         with tempfile.TemporaryDirectory() as temporary:

@@ -350,8 +350,8 @@ def render_ovrtx(stage_path: Path, out: Path, endpoint: str) -> dict:
     payload = {"url": stage_path.resolve().as_uri(), "force_render": True,
                "render_settings": {"camera_paths": [camera_path], "frame_range": {"start": 0, "end": 0},
                                    "camera_parameters": {"width": 1024, "height": 1024}, "sensors": ["rgb"],
-                                   "apply_background_mask": False, "render_mode": "PathTracing",
-                                   "num_sensor_updates": 16, "material_target": "All"}}
+                                   "apply_background_mask": False, "render_mode": "pt",
+                                   "num_sensor_updates": 16, "material_target": "auto"}}
     request = urllib.request.Request(f"{endpoint}/render", data=json.dumps(payload).encode("utf-8"),
                                      headers={"Content-Type": "application/json"}, method="POST")
     with urllib.request.urlopen(request, timeout=3600) as response:
