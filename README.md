@@ -371,7 +371,7 @@ authorized download nor a validation of accuracy.
 flowchart TB
     subgraph catalog["catalog/ — source of truth, JSON-schema validated"]
       direction LR
-      src["sources/<br/>453 records"] --- prt["parts/<br/>34 records"]
+      src["sources/<br/>494 records"] --- prt["parts/<br/>34 records"]
       prt --- tw["twins/<br/>9 records"]
       prt --- cmp["components/ · assemblies/"]
       prt --- mea["measurements/<br/>3 manual transcriptions"]
@@ -532,6 +532,8 @@ with its coverage summary
 The [2 October 2026 engine and K16 hybrid research](docs/research/993-turbo-20261002/README.md)
 adds source-qualified M64/60 data and map leads, with a separate
 [CPT/SFT preparation package](training/993-turbo-20261002/README.md).
+The [3 October 2026 Mezger variants and materials supplement](docs/research/mezger-turbo-materials-20261003/README.md)
+adds 203 scoped records and a [separate training increment](training/mezger-turbo-materials-20261003/README.md).
 
 
 ![Sourced state of the 993 digital twin](docs/media/diagrams/digital-twin-993-etat.svg)

@@ -1,0 +1,3267 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_id": "mezger-turbo-materials-20261003",
+  "reviewed_on": "2026-10-03",
+  "scope": "Original air-cooled 911 turbo lineage, racing derivatives, 996/997 water-cooled Mezger variants and explicitly identified aftermarket material comparisons.",
+  "records": [
+    {
+      "id": "MEZGER-A001",
+      "application": "993 Carrera M64/05 and M64/06",
+      "component": "main_crankcase",
+      "parameter": "Material family and predecessor continuity",
+      "value": "Aluminium-silicon alloy; split crankcase and fasteners adopted unchanged from the 964 Carrera 2/4",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-AIR-COOLED-ENGINE-REPAIR-PUBSTACK"
+      ],
+      "locator": "Printed p.53 / PDF p.57, Crankcase",
+      "caveat": "No specific alloy grade, heat treatment, casting process or wall thickness is given. This statement directly covers Carrera, not the Turbo material grade.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-A002",
+      "application": "993 Turbo M64/60 and Carrera; replacement catalogue dated 2017",
+      "component": "main_crankcase",
+      "parameter": "Catalogue relationship to the Carrera crankcase",
+      "value": [
+        "96410190510",
+        "96410190511"
+      ],
+      "unit": "Porsche part number",
+      "evidence_status": "factory_parts_catalogue_verified",
+      "source_ids": [
+        "SRC-PORSCHE-PET-993",
+        "SRC-PORSCHE-AIR-COOLED-ENGINE-REPAIR-PUBSTACK"
+      ],
+      "locator": "PET illustration 101-05 PDF p.35 and 101-10 PDF p.39; training printed p.53 / PDF p.57",
+      "caveat": "The PET provides no separate M64/60 main-case line and identifies M64/20 separately. Combined with the Carrera Al-Si statement, this supports a qualified material-family relationship, not a chemical grade or proof for every casting revision.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-A003",
+      "application": "993 Carrera M64/05 and M64/06",
+      "component": "rocker_arms",
+      "parameter": "Published casting grade",
+      "value": "GGG70",
+      "unit": "legacy material designation",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-AIR-COOLED-ENGINE-REPAIR-PUBSTACK"
+      ],
+      "locator": "Printed p.58 / PDF p.62, Rocker Arm; page image checked",
+      "caveat": "Direct Carrera statement. The source does not establish the alloy or heat treatment of the rocker shafts, nor a certified grade for Turbo replacement revisions.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-A004",
+      "application": "993 Turbo M64/60 and Carrera; replacement catalogue dated 2017",
+      "component": "rocker_arms",
+      "parameter": "Shared catalogue lines",
+      "value": [
+        "99310508126",
+        "99310508500",
+        "99310508201",
+        "99310508600"
+      ],
+      "unit": "Porsche part number",
+      "evidence_status": "factory_parts_catalogue_verified",
+      "source_ids": [
+        "SRC-PORSCHE-PET-993"
+      ],
+      "locator": "Illustration 103-10, PDF p.61",
+      "caveat": "The rocker lines carry no engine-code restriction; hydraulic tappets on the same page do distinguish M64/60. This does not independently prove GGG70 for every Turbo rocker revision.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-A005",
+      "application": "993 Carrera M64/05 and M64/06",
+      "component": "camshaft_housing_covers",
+      "parameter": "Published material family",
+      "value": "Glass-fibre-reinforced polyamide with inserted bushes",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-AIR-COOLED-ENGINE-REPAIR-PUBSTACK"
+      ],
+      "locator": "Printed p.59 / PDF p.63, Camshaft Housing Covers",
+      "caveat": "This differs from the magnesium covers described in the 964 chapter. Polyamide type, fibre content and thickness are not specified.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-A006",
+      "application": "993 Turbo M64/60 and Carrera; replacement catalogue dated 2017",
+      "component": "camshaft_housing_covers",
+      "parameter": "Cover and housing applicability boundary",
+      "value": {
+        "shared_upper_cover": "99310511505",
+        "Turbo_lower_covers": [
+          "99310511654",
+          "99310511750"
+        ],
+        "Turbo_housings": [
+          "99310501150",
+          "99310501250"
+        ]
+      },
+      "unit": "Porsche part number",
+      "evidence_status": "factory_parts_catalogue_verified",
+      "source_ids": [
+        "SRC-PORSCHE-PET-993",
+        "SRC-PORSCHE-AIR-COOLED-ENGINE-REPAIR-PUBSTACK"
+      ],
+      "locator": "PET illustration 103-07, PDF p.59; training printed p.59 / PDF p.63",
+      "caveat": "The shared upper-cover number supports comparison with the Carrera description. The Turbo lower covers and camshaft housings have separate numbers; their materials must not be assigned from the Carrera text.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-A007",
+      "application": "993 Carrera M64/05 and M64/06",
+      "component": "main_oil_pump_housing",
+      "parameter": "Material family and manufacturing process",
+      "value": "Die-cast magnesium; shared housing of pressure and scavenge gear pumps",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-AIR-COOLED-ENGINE-REPAIR-PUBSTACK"
+      ],
+      "locator": "Printed p.61 / PDF p.65, Engine Lubrication",
+      "caveat": "The source describes the oil-pump housing, not the main engine crankcase. No magnesium grade or wall thickness is published.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-A008",
+      "application": "993 Turbo M64/60 and Carrera; replacement catalogue dated 2017",
+      "component": "main_oil_pump_housing",
+      "parameter": "Shared pump catalogue line",
+      "value": [
+        "96410701111",
+        "96410701114"
+      ],
+      "unit": "Porsche part number",
+      "evidence_status": "factory_parts_catalogue_verified",
+      "source_ids": [
+        "SRC-PORSCHE-PET-993",
+        "SRC-PORSCHE-AIR-COOLED-ENGINE-REPAIR-PUBSTACK"
+      ],
+      "locator": "PET illustration 104-00, PDF p.67; training printed p.61 / PDF p.65",
+      "caveat": "The PET does not distinguish an M64/60 pump line. This supports a qualified relationship with the Carrera magnesium-housing description; it does not certify the material of every superseding revision or modified engine pump.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-A009",
+      "application": "964 Carrera; predecessor context only",
+      "component": "chain_housings",
+      "parameter": "Published material family",
+      "value": "Magnesium alloy",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-AIR-COOLED-ENGINE-REPAIR-PUBSTACK"
+      ],
+      "locator": "Printed p.18 / PDF p.22, Chain Housings",
+      "caveat": "This page belongs to the 964 chapter. It is not direct proof of the 993 Turbo chain-housing material. The adjacent 1 mm aluminium dimension concerns a gasket, not a housing wall.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-A010",
+      "application": "964 Carrera; predecessor context only",
+      "component": "camshaft_housing_covers",
+      "parameter": "Published material family",
+      "value": "Magnesium",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-AIR-COOLED-ENGINE-REPAIR-PUBSTACK"
+      ],
+      "locator": "Printed p.16 / PDF p.20, Covers for Camshaft Housings",
+      "caveat": "Do not transfer this material to 993 Carrera covers, which the 993 chapter identifies as reinforced polyamide.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-A011",
+      "application": "964 Carrera; predecessor context only",
+      "component": "engine_cooling_fan_housing",
+      "parameter": "Published housing material",
+      "value": "Magnesium",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-AIR-COOLED-ENGINE-REPAIR-PUBSTACK"
+      ],
+      "locator": "Printed p.22 / PDF p.26, Cooling Fan Drive",
+      "caveat": "The statement concerns the stationary housing. It does not identify the fan-wheel material and does not establish the 993 Turbo housing or wheel material.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-A012",
+      "application": "993 Turbo M64/60 and Carrera; replacement catalogue dated 2017",
+      "component": "engine_cooling_fan",
+      "parameter": "Variant-specific housing and wheel references",
+      "value": {
+        "Turbo_housing": "99310666750",
+        "Turbo_wheels": [
+          "96410601521",
+          "96410601522"
+        ],
+        "Carrera_housing": "99310666703",
+        "Carrera_wheel": "96410601531"
+      },
+      "unit": "Porsche part number",
+      "evidence_status": "factory_parts_catalogue_verified",
+      "source_ids": [
+        "SRC-PORSCHE-PET-993"
+      ],
+      "locator": "Illustration 105-00, PDF p.78",
+      "caveat": "Different references prevent automatic transfer of Carrera or 964 fan-material claims to the Turbo. The PET does not specify the materials or grades of these Turbo components.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-A013",
+      "application": "993 Turbo, 1995 factory brochure",
+      "component": "engine_cooling_system",
+      "parameter": "Broad material allocation",
+      "value": "Aluminium for highly stressed casing elements; synthetic compounds or magnesium for less stressed components",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-UK-993-TURBO-BROCHURE-1995"
+      ],
+      "locator": "PDF p.7, engine and cooling-system spread; page image checked",
+      "caveat": "The brochure does not map these material families to individual part numbers. It cannot identify the material of the main case, fan wheel, chain housing or a specific cover.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-A014",
+      "application": "993 Carrera M64/05 and M64/06",
+      "component": "cylinders",
+      "parameter": "Substrate family and bore coating",
+      "value": "High-temperature-resistant light alloy with galvanically applied Nikasil",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-AIR-COOLED-ENGINE-REPAIR-PUBSTACK"
+      ],
+      "locator": "Printed p.55 / PDF p.59, Cylinders",
+      "caveat": "No substrate grade or coating thickness is given. Turbo cylinder-piston assemblies have different PET references, so this page is not direct M64/60 material evidence.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-A015",
+      "application": "993 Carrera M64/05 and M64/06",
+      "component": "pistons",
+      "parameter": "Wall-thickness documentation scope",
+      "value": "The source attributes piston-weight reduction partly to thinner skirt walls without giving an absolute wall thickness",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-AIR-COOLED-ENGINE-REPAIR-PUBSTACK"
+      ],
+      "locator": "Printed p.55 / PDF p.59, Pistons",
+      "caveat": "Carrera context only. Do not use the reduction as a Turbo thickness, a piston drawing or a manufacturing definition.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-A016",
+      "application": "993 Carrera and Carrera RS; Turbo intake-valve relationship only",
+      "component": "valves",
+      "parameter": "Sodium-filled valve applicability",
+      "value": {
+        "Carrera_intake": "sodium-filled",
+        "Carrera_RS_intake": "sodium-filled",
+        "Carrera_RS_exhaust": "sodium-filled",
+        "Turbo_intake_catalogue_relationship": "99310540902 shared with M64/05/06/07/08",
+        "Turbo_exhaust_reference": "99310541952, distinct"
+      },
+      "unit": "",
+      "evidence_status": "factory_document_and_parts_catalogue_verified",
+      "source_ids": [
+        "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+        "SRC-PORSCHE-PET-993",
+        "SRC-PORSCHE-AIR-COOLED-ENGINE-REPAIR-PUBSTACK"
+      ],
+      "locator": "Workshop 15-8d / Volume I PDF p.155; PET illustration 103-00 PDF pp.54–55; training printed p.58 / PDF p.62",
+      "caveat": "The workshop page does not cover M64/60. The shared intake-valve number supports qualified comparison; the Turbo exhaust filling and metallic grade remain unverified. None of these sources establishes titanium valves.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-A017",
+      "application": "993 Carrera, Carrera 4, Carrera RS and Varioram; no detailed M64/60 coverage",
+      "component": "workshop_literature",
+      "parameter": "Scope of the inspected Volume I",
+      "value": "351-page Volume I with Carrera/Carrera 4 coverage, Carrera RS and Varioram sections; no Turbo supplement in the inspected contents",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-WORKSHOP-MANUAL-993"
+      ],
+      "locator": "Public Volume I PDF pp.8–13, table of contents; PDF p.180 begins Carrera 4",
+      "caveat": "The workshop volume separates design descriptions into Service Information Technik references. Carrera dimensions are not automatically Turbo dimensions.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-A018",
+      "application": "993 GT2 road car; manufacturer technical table published 2024",
+      "component": "engine",
+      "parameter": "Factory road-GT2 specification",
+      "value": {
+        "engine_code": "M64/60 R",
+        "architecture": "air-cooled OHC flat-six with two turbochargers",
+        "compression_ratio": "8.0:1",
+        "power_kW": 316,
+        "power_PS": 430,
+        "power_rpm": 5750,
+        "torque_Nm": 540,
+        "torque_rpm": 4500,
+        "engine_management": "Bosch Motronic M 5.2",
+        "displacement_cm3": 3600,
+        "bore_mm": 100,
+        "stroke_mm": 76.4
+      },
+      "unit": "Units are named in the individual fields",
+      "evidence_status": "manufacturer_retrospective_verified",
+      "source_ids": [
+        "SRC-MEZGER-AIRCOOLED-GT2-ROAD-COPPA-FLORIO-2024"
+      ],
+      "locator": "Technical data table, 911 GT2 Type 993",
+      "caveat": "This identifies the road-car M64/60 R. It is not a racing GT2 or GT2 Evolution specification and does not establish internal materials, titanium rods or valves, or stock Turbo parts equivalence.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-A019",
+      "application": "993 GT2 road car, model years 1996–1998",
+      "component": "engine",
+      "parameter": "Published model-year power distinction",
+      "value": {
+        "MY1996_1997": "430 hp",
+        "MY1998": "450 hp"
+      },
+      "unit": "hp as published",
+      "evidence_status": "manufacturer_retrospective_verified",
+      "source_ids": [
+        "SRC-MEZGER-AIRCOOLED-GT2-ROAD-JAN-2019"
+      ],
+      "locator": "Power discussion after the lightweight-car description and the model-year 1998 update paragraph",
+      "caveat": "The article uses hp wording. Preserve the label; this record does not convert it silently to SAE mechanical horsepower or extend the figures to race GT2/Evolution.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-A020",
+      "application": "993 Turbo M64/60 and 993 GT2/GT2 Evolution racing variants",
+      "component": "engine_internal_materials",
+      "parameter": "Unresolved OEM grade and titanium evidence",
+      "value": "No primary grade evidence acquired for Turbo head RR350, Turbo/Evolution titanium rods or titanium valves; no component wall-thickness definition acquired",
+      "unit": "",
+      "evidence_status": "unresolved_documentary_gap",
+      "source_ids": [
+        "SRC-PORSCHE-AIR-COOLED-ENGINE-REPAIR-PUBSTACK",
+        "SRC-PORSCHE-PET-993",
+        "SRC-MEZGER-AIRCOOLED-GT2-ROAD-COPPA-FLORIO-2024",
+        "SRC-MEZGER-AIRCOOLED-GT2-ROAD-JAN-2019"
+      ],
+      "locator": "Finite review of the sources cited in this dataset",
+      "caveat": "This is a limit of the inspected corpus, not proof that such documents or components do not exist. Resolve with model-specific factory material specifications, Motorsport literature or identified homologation extensions.",
+      "training_eligibility": "teach_uncertainty_only"
+    },
+    {
+      "id": "MEZGER-R001",
+      "application": "934 Group 4, 1976",
+      "component": "engine",
+      "parameter": "historical_displacement_and_power",
+      "value": {
+        "displacement_L": 3.0,
+        "power_kW_approx": 357
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Section Record-breaking world champion: Porsche 935, first paragraph",
+      "caveat": "Rounded displacement and approximate power; related to the road 911 Turbo engine, not proof of identical parts. No full engine-code suffix.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-R002",
+      "application": "935 initial version, 1976",
+      "component": "engine",
+      "parameter": "historical_displacement_and_power",
+      "value": {
+        "displacement_L": 2.85,
+        "power_kW": 434
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Section Record-breaking world champion: Porsche 935, second paragraph",
+      "caveat": "Published historical version; displacement rounded. Do not transfer to later 935 variants.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-R003",
+      "application": "935 initial version, 1976",
+      "component": "turbocharger_system",
+      "parameter": "turbocharger_count",
+      "value": 1,
+      "unit": "count",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Section Record-breaking world champion: Porsche 935, second paragraph",
+      "caveat": "",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-R004",
+      "application": "935 evolution, 1977",
+      "component": "engine",
+      "parameter": "power",
+      "value": 463,
+      "unit": "kW",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Section Record-breaking world champion: Porsche 935, second paragraph",
+      "caveat": "Exact displacement and crankshaft speed are not provided for this statement.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-R005",
+      "application": "935 evolution, 1977",
+      "component": "turbocharger_system",
+      "parameter": "turbocharger_count",
+      "value": 2,
+      "unit": "count",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Section Record-breaking world champion: Porsche 935, second paragraph",
+      "caveat": "",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-R006",
+      "application": "935 Baby, 1977",
+      "component": "engine",
+      "parameter": "historical_displacement_and_power",
+      "value": {
+        "displacement_L": 1.4,
+        "power_kW": 279
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Section Record-breaking world champion: Porsche 935, second paragraph",
+      "caveat": "Rounded displacement; distinct small-displacement variant.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-R007",
+      "application": "935/78 Moby Dick, 1978",
+      "component": "cylinder_heads",
+      "parameter": "cooling_and_valve_architecture",
+      "value": {
+        "cooling": "water",
+        "valve_architecture": "multi-valve"
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Section Record-breaking world champion: Porsche 935, second paragraph",
+      "caveat": "This passage establishes head cooling, not a fully water-cooled complete engine. It does not state a valve count.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-R008",
+      "application": "935/78 Moby Dick, 1978 museum specification",
+      "component": "engine",
+      "parameter": "displacement",
+      "value": 3211,
+      "unit": "cm3",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-MUSEUM-93578"
+      ],
+      "locator": "Specifications table: Model Year / Engine / Displacement / Power Output",
+      "caveat": "Museum version-specific specification; no bore/stroke or manufacturing dimensions.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-R009",
+      "application": "935/78 Moby Dick, 1978 museum specification",
+      "component": "engine",
+      "parameter": "power",
+      "value": 621,
+      "unit": "kW",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-MUSEUM-93578"
+      ],
+      "locator": "Specifications table: Model Year / Engine / Displacement / Power Output",
+      "caveat": "Use kW; the English museum HP label may represent a translation of PS. Maximum stated power does not establish a continuous mechanical rating.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-R010",
+      "application": "936/76, 1976",
+      "component": "engine",
+      "parameter": "cooling_medium",
+      "value": "air",
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Section Turbo start in a racing car: the Porsche 936 Spyder, first paragraph",
+      "caveat": "",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-R011",
+      "application": "936/76, 1976",
+      "component": "turbocharger_system",
+      "parameter": "turbocharger_count_and_intercooling",
+      "value": {
+        "turbocharger_count": 1,
+        "charge_air_cooling": true
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Section Turbo start in a racing car: the Porsche 936 Spyder, first paragraph",
+      "caveat": "",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-R012",
+      "application": "936/76, 1976",
+      "component": "engine",
+      "parameter": "historical_displacement_and_power",
+      "value": {
+        "displacement_L": 2.1,
+        "power_kW": 382
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Section Turbo start in a racing car: the Porsche 936 Spyder, first paragraph",
+      "caveat": "Displacement is rounded.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-R013",
+      "application": "936, 1977 evolution",
+      "component": "turbocharger_system",
+      "parameter": "turbocharger_count",
+      "value": 2,
+      "unit": "count",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Section Turbo start in a racing car: the Porsche 936 Spyder, first paragraph",
+      "caveat": "",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-R014",
+      "application": "936, 1977 evolution",
+      "component": "engine",
+      "parameter": "power",
+      "value": 397,
+      "unit": "kW",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Section Turbo start in a racing car: the Porsche 936 Spyder, first paragraph",
+      "caveat": "",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-R015",
+      "application": "936, 1978 four-valve version",
+      "component": "cylinder_heads",
+      "parameter": "cooling_and_valve_architecture",
+      "value": {
+        "cooling": "water",
+        "valves_per_cylinder": 4
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Section Turbo start in a racing car: the Porsche 936 Spyder, first paragraph",
+      "caveat": "Head cooling does not mean complete-engine water cooling.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-R016",
+      "application": "936, 1978 four-valve version",
+      "component": "engine",
+      "parameter": "historical_displacement_and_power",
+      "value": {
+        "displacement_L": 2.1,
+        "power_kW": 426
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Section Turbo start in a racing car: the Porsche 936 Spyder, first paragraph",
+      "caveat": "Displacement is rounded.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-R017",
+      "application": "936, 1981 Le Mans version",
+      "component": "engine",
+      "parameter": "configuration_and_origin",
+      "value": {
+        "displacement_L": 2.65,
+        "turbocharger_count": 2,
+        "power_kW": 456,
+        "position": "ahead of rear axle",
+        "origin": "Porsche IndyCar programme"
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Section Turbo start in a racing car: the Porsche 936 Spyder, first paragraph",
+      "caveat": "Rounded displacement. Indy methanol and later petrol engine calibrations must not be treated as identical.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-R018",
+      "application": "956, 1982 museum specification",
+      "component": "engine",
+      "parameter": "displacement",
+      "value": 2649,
+      "unit": "cm3",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-MUSEUM-956"
+      ],
+      "locator": "Specifications table: Model Year / Engine / Displacement / Power Output",
+      "caveat": "Version-specific museum specification; do not generalize to later Group C variants.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-R019",
+      "application": "956, 1982 museum specification",
+      "component": "engine",
+      "parameter": "power",
+      "value": 456,
+      "unit": "kW",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-MUSEUM-956"
+      ],
+      "locator": "Specifications table: Model Year / Engine / Displacement / Power Output",
+      "caveat": "Use kW; English museum HP label may translate PS.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-R020",
+      "application": "956 initial Group C version",
+      "component": "turbocharger_system",
+      "parameter": "count_and_layout",
+      "value": {
+        "turbocharger_count": 2,
+        "location": "close to cylinder banks",
+        "purpose": "shorter charge-air paths"
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Section Record winners: the 956, 962 IMSA and 962 C prototypes; paragraph starting The specially shaped underbody",
+      "caveat": "Qualitative layout description; no conduit dimensions or response-time measurement.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-R021",
+      "application": "956 initial Group C version",
+      "component": "engine_control",
+      "parameter": "control_system_and_recorded_channels",
+      "value": {
+        "engine_management": "Bosch Motronic",
+        "recorded_channels": [
+          "engine speed",
+          "boost pressure",
+          "accelerator pedal position"
+        ],
+        "use": "adjust injection and ignition maps"
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Section Record winners: the 956, 962 IMSA and 962 C prototypes; paragraph starting The specially shaped underbody",
+      "caveat": "Historical system description, not a published ECU table.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-R022",
+      "application": "962 IMSA, 1984 and subsequent Andial evolution",
+      "component": "engine",
+      "parameter": "cooling_and_turbo_architecture",
+      "value": {
+        "cooling": "air",
+        "turbocharger_count": 1
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Section Record winners: the 956, 962 IMSA and 962 C prototypes; paragraph starting In a racing programme",
+      "caveat": "Do not transfer this configuration to 962 C variants.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-R023",
+      "application": "962 IMSA Andial evolution",
+      "component": "engine",
+      "parameter": "displacement_evolution_and_power",
+      "value": {
+        "displacement_evolution_L": [
+          2.8,
+          3.2
+        ],
+        "power_kW_later_evolution": 500
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Section Record winners: the 956, 962 IMSA and 962 C prototypes; paragraph starting In a racing programme",
+      "caveat": "Rounded capacities. The power applies to the described later evolution, not automatically the initial 2.8 L engine.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-R024",
+      "application": "962 C later 3.0 L version",
+      "component": "engine",
+      "parameter": "cooling_and_turbo_architecture",
+      "value": {
+        "cooling": "fully water",
+        "turbocharger_count": 2
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Section Record winners: the 956, 962 IMSA and 962 C prototypes; paragraph starting For the sports car World Championship",
+      "caveat": "The factory source explicitly describes coexistence with earlier 2.65 L engines; no claim for all 962 C chassis.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-R025",
+      "application": "962 C later 3.0 L version",
+      "component": "engine",
+      "parameter": "historical_displacement_and_power",
+      "value": {
+        "displacement_L": 3.0,
+        "power_kW": 515
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Section Record winners: the 956, 962 IMSA and 962 C prototypes; paragraph starting For the sports car World Championship",
+      "caveat": "Rounded displacement and version-specific historical output.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-R026",
+      "application": "959 Paris-Dakar, 1986",
+      "component": "engine",
+      "parameter": "historical_displacement_and_power",
+      "value": {
+        "displacement_L": 2.85,
+        "power_kW": 294
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Paragraph starting Even before the Porsche 959",
+      "caveat": "Rally-specific output, not the road 959 rating. Displacement is rounded.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-R027",
+      "application": "959 Paris-Dakar, 1986",
+      "component": "cylinder_heads",
+      "parameter": "cooling_medium",
+      "value": "water",
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Paragraph starting Even before the Porsche 959",
+      "caveat": "",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-R028",
+      "application": "959 Paris-Dakar, 1986",
+      "component": "turbocharger_system",
+      "parameter": "staging_strategy",
+      "value": {
+        "strategy": "sequential",
+        "low_speed": "all exhaust flow directed to one turbocharger",
+        "higher_speed": "second turbocharger engaged"
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Paragraph starting Even before the Porsche 959",
+      "caveat": "No exact switching rpm or wheel sizes are published.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-R029",
+      "application": "Porsche 2.65 L Indy project, 1978-1980",
+      "component": "engine",
+      "parameter": "configuration_and_fuel",
+      "value": {
+        "displacement_L": 2.65,
+        "turbocharger_count": 1,
+        "fuel": "methanol"
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Section 911-based engine: almost a contender for the Indy 500",
+      "caveat": "Rounded capacity; an unraced Indy project with a different fuel/calibration from road petrol engines.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-R030",
+      "application": "Porsche 2.65 L Indy project, 1978-1980",
+      "component": "engine",
+      "parameter": "dyno_power_and_regulatory_boost",
+      "value": {
+        "dyno_power_kW": 665,
+        "power_kW_at_regulatory_boost": 463,
+        "regulatory_boost_bar": 1.8,
+        "pressure_reference": "not stated"
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-TURBO-MOTORSPORT-HISTORY"
+      ],
+      "locator": "Section 911-based engine: almost a contender for the Indy 500",
+      "caveat": "The source does not identify absolute versus gauge pressure. Do not silently use 1.8 bar as either in calculations.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-R031",
+      "application": "959 road Coupe, 1987 museum specification",
+      "component": "engine",
+      "parameter": "historical_displacement_and_power",
+      "value": {
+        "displacement_cm3": 2849,
+        "power_kW": 331
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-MUSEUM-959"
+      ],
+      "locator": "Introductory paragraph (engine relationship) and Specifications table (Model Year / Engine / Displacement / Power Output)",
+      "caveat": "Use kW; English museum HP labels can translate PS. The described relationship to 956 does not establish identical components.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-R032",
+      "application": "959 road engine",
+      "component": "engine_block",
+      "parameter": "material_family",
+      "value": "aluminium alloy",
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-959-ALLOY-COOLING"
+      ],
+      "locator": "Paragraph starting The six-cylinder biturbo flat engine block",
+      "caveat": "Only a material family is verified. Exact alloy grade, temper, casting process and heat treatment are not stated.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-R033",
+      "application": "959 road engine",
+      "component": "cylinders_and_heads",
+      "parameter": "cooling_architecture",
+      "value": {
+        "cylinders": "air",
+        "cylinder_heads": "water"
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-959-ALLOY-COOLING"
+      ],
+      "locator": "Paragraph starting The six-cylinder biturbo flat engine block",
+      "caveat": "Do not generalize to 930, 935, 956, 962 C or M64/60.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-R034",
+      "application": "959 road engine",
+      "component": "turbocharger_system",
+      "parameter": "staging_strategy",
+      "value": "sequential",
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-959-ALLOY-COOLING"
+      ],
+      "locator": "Paragraph starting The six-cylinder biturbo flat engine block",
+      "caveat": "No exact turbo identification or switching rpm is stated.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-R035",
+      "application": "959 S road version",
+      "component": "engine_and_turbochargers",
+      "parameter": "relative_hardware_and_power",
+      "value": {
+        "turbochargers": "larger than base version",
+        "boost": "higher than base version",
+        "power_PS": 515,
+        "base_power_PS": 450
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-959-S-TURBOS"
+      ],
+      "locator": "Paragraph starting The Sport version is even rarer",
+      "caveat": "PS is retained as published. No wheel dimensions, pressure value, turbo part number or map is provided.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-R036",
+      "application": "original 901/911 design lineage",
+      "component": "engine",
+      "parameter": "designer_and_architecture",
+      "value": {
+        "designer": "Hans Mezger",
+        "architecture": "air-cooled flat-six"
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-MEZGER-ORIGINAL-LINEAGE"
+      ],
+      "locator": "Section Design of the 911 engine and head of Race car design",
+      "caveat": "Historical attribution does not define an interchangeable single engine family.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-R037",
+      "application": "930 original 3.0 L road version",
+      "component": "engine",
+      "parameter": "historical_displacement_and_power",
+      "value": {
+        "displacement_L": 3.0,
+        "power_kW": 191
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-930-ROAD-HISTORY"
+      ],
+      "locator": "First generation paragraph",
+      "caveat": "Rounded capacity and original road specification; no complete engine-code suffix.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-R038",
+      "application": "930 3.3 road version, MY1978",
+      "component": "engine",
+      "parameter": "historical_displacement_power_and_torque",
+      "value": {
+        "displacement_L": 3.3,
+        "power_kW": 221,
+        "power_rpm": 5500,
+        "maximum_torque_Nm": 412
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-930-ROAD-HISTORY"
+      ],
+      "locator": "Second generation paragraph starting For the second Turbo version",
+      "caveat": "Rounded capacity. Market/model-year differences require separate verification.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-R039",
+      "application": "930 3.3 road version, MY1978",
+      "component": "charge_air_cooler",
+      "parameter": "location",
+      "value": "below rear spoiler",
+      "unit": "",
+      "evidence_status": "factory_retrospective_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-930-ROAD-HISTORY"
+      ],
+      "locator": "Second generation paragraph starting For the second Turbo version",
+      "caveat": "",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-R040",
+      "application": "Porsche turbocharging engineering history through 1978",
+      "component": "documentary_reference",
+      "parameter": "primary_paper_lead",
+      "value": {
+        "author": "Hans Mezger",
+        "title": "Turbocharging Engines for Racing and Passenger Cars",
+        "paper": "SAE 780718",
+        "doi": "10.4271/780718",
+        "year": 1978
+      },
+      "unit": "",
+      "evidence_status": "documentary_lead_abstract_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-SAE780718-ABSTRACT-LEAD"
+      ],
+      "locator": "Authors / Abstract Content / Details",
+      "caveat": "Publisher abstract/citation read only. Full text not acquired; no technical facts or map content inferred.",
+      "training_eligibility": "exclude"
+    },
+    {
+      "id": "MEZGER-R041",
+      "application": "historical air-cooled 911 material context only",
+      "component": "unassigned_911_component",
+      "parameter": "documentary_material_lead",
+      "value": {
+        "paper": "SAE 830004",
+        "alloy_as_mentioned": "390",
+        "component_assignment": "unverified"
+      },
+      "unit": "",
+      "evidence_status": "documentary_lead_abstract_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-RACING-SAE830004-ALLOY390-LEAD"
+      ],
+      "locator": "Abstract, paragraph beginning 10 years experience",
+      "caveat": "Publisher-deposited abstract references historical 911 use, but the relevant 911 component is unassigned. This is not an OEM block/head alloy fact for any targeted engine.",
+      "training_eligibility": "exclude"
+    },
+    {
+      "id": "MEZGER-W001",
+      "application": "997.1 911 Turbo 3.6 L; introductory Porsche brochure edition 12/2005",
+      "component": "piston",
+      "parameter": "material/manufacture",
+      "value": "forged aluminium",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2006"
+      ],
+      "locator": "section: Lightweight design; printed 30–31; pdf page: 12",
+      "caveat": "Exact material grade, chemistry, treatment and manufacturing dimensions are not established by this generic material or process description.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W002",
+      "application": "997.1 911 Turbo 3.6 L; introductory Porsche brochure edition 12/2005",
+      "component": "cylinder liner substrate",
+      "parameter": "material/manufacture",
+      "value": "aluminium",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2006"
+      ],
+      "locator": "section: Lightweight design; printed 30–31; pdf page: 12",
+      "caveat": "Exact material grade, chemistry, treatment and manufacturing dimensions are not established by this generic material or process description.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W003",
+      "application": "997.1 911 Turbo 3.6 L; introductory Porsche brochure edition 12/2005",
+      "component": "cylinder bore coating",
+      "parameter": "material/manufacture",
+      "value": "Nikasil",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2006"
+      ],
+      "locator": "section: Lightweight design; printed 30–31; pdf page: 12",
+      "caveat": "Exact material grade, chemistry, treatment and manufacturing dimensions are not established by this generic material or process description. Nikasil presence does not establish coating thickness, nickel/silicon-carbide fraction or substrate alloy grade.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W004",
+      "application": "997.1 911 Turbo 3.6 L; introductory Porsche brochure edition 12/2005",
+      "component": "cylinder head",
+      "parameter": "material/manufacture",
+      "value": "heat-resistant lightweight alloy; no alloy grade given",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2006"
+      ],
+      "locator": "section: Lightweight design; printed 30–31; pdf page: 12",
+      "caveat": "Exact material grade, chemistry, treatment and manufacturing dimensions are not established by this generic material or process description.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W005",
+      "application": "997.1 911 Turbo 3.6 L; introductory Porsche brochure edition 12/2005",
+      "component": "crankcase",
+      "parameter": "material/manufacture",
+      "value": "lightweight alloy; two main sections; no alloy grade given",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2006"
+      ],
+      "locator": "section: Lightweight design; printed 30–31; pdf page: 12",
+      "caveat": "Exact material grade, chemistry, treatment and manufacturing dimensions are not established by this generic material or process description.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W006",
+      "application": "997.1 911 Turbo 3.6 L; introductory Porsche brochure edition 12/2005",
+      "component": "connecting rod",
+      "parameter": "material/manufacture",
+      "value": "forged; metal and grade not named in this brochure",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2006"
+      ],
+      "locator": "section: Lightweight design; printed 30–31; pdf page: 12",
+      "caveat": "Exact material grade, chemistry, treatment and manufacturing dimensions are not established by this generic material or process description.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W007",
+      "application": "997.1 911 Turbo 3.6 L; introductory Porsche brochure edition 12/2005",
+      "component": "piston",
+      "parameter": "cooling",
+      "value": "individual oil-spray cooling",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2006"
+      ],
+      "locator": "section: Lightweight design; printed 30–31; pdf page: 12",
+      "caveat": "",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W008",
+      "application": "997.1 911 Turbo 3.6 L; introductory Porsche brochure edition 12/2005",
+      "component": "crankshaft main bearings",
+      "parameter": "arrangement",
+      "value": 8,
+      "unit": "count",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2006"
+      ],
+      "locator": "section: Lightweight design; printed 30–31; pdf page: 12",
+      "caveat": "",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W009",
+      "application": "997.1 911 Turbo 3.6 L; introductory Porsche brochure edition 12/2005",
+      "component": "camshafts per cylinder bank",
+      "parameter": "valvetrain",
+      "value": 2,
+      "unit": "count",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2006"
+      ],
+      "locator": "section: Lightweight design; printed 30–31; pdf page: 12",
+      "caveat": "",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W010",
+      "application": "997.1 911 Turbo 3.6 L; introductory Porsche brochure edition 12/2005",
+      "component": "valves per cylinder",
+      "parameter": "valvetrain",
+      "value": 4,
+      "unit": "count",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2006"
+      ],
+      "locator": "section: Lightweight design; printed 30–31; pdf page: 12",
+      "caveat": "Two inlet and two exhaust; V configuration; dual springs.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W011",
+      "application": "997.1 911 Turbo 3.6 L; introductory Porsche brochure edition 12/2005",
+      "component": "oil reservoir",
+      "parameter": "lubrication",
+      "value": "separate external reservoir with defoaming device",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2006"
+      ],
+      "locator": "section: Dry-sump lubrication; printed 30–31; pdf page: 12",
+      "caveat": "",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W012",
+      "application": "997.1 911 Turbo 3.6 L; introductory Porsche brochure edition 12/2005",
+      "component": "scavenge pumps in cylinder heads",
+      "parameter": "lubrication",
+      "value": 4,
+      "unit": "count",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2006"
+      ],
+      "locator": "section: Dry-sump lubrication; printed 30–31; pdf page: 12",
+      "caveat": "Two pairs according to brochure.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W013",
+      "application": "997.1 911 Turbo 3.6 L; introductory Porsche brochure edition 12/2005",
+      "component": "scavenge pumps in crankcase",
+      "parameter": "lubrication",
+      "value": 2,
+      "unit": "count",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2006"
+      ],
+      "locator": "section: Dry-sump lubrication; printed 30–31; pdf page: 12",
+      "caveat": "",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W014",
+      "application": "997.1 911 Turbo 3.6 L; introductory Porsche brochure edition 12/2005",
+      "component": "scavenge pumps at turbochargers",
+      "parameter": "lubrication",
+      "value": 2,
+      "unit": "count",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2006"
+      ],
+      "locator": "section: Dry-sump lubrication; printed 30–31; pdf page: 12",
+      "caveat": "One at each turbocharger.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W015",
+      "application": "997.1 911 Turbo 3.6 L; introductory Porsche brochure edition 12/2005",
+      "component": "oil-feed pump",
+      "parameter": "lubrication",
+      "value": 1,
+      "unit": "count",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2006"
+      ],
+      "locator": "section: Dry-sump lubrication; printed 30–31; pdf page: 12",
+      "caveat": "",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W016",
+      "application": "997.1 911 Turbo 3.6 L; introductory Porsche brochure edition 12/2005",
+      "component": "total pumps in oil system",
+      "parameter": "lubrication",
+      "value": 9,
+      "unit": "count",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2006"
+      ],
+      "locator": "section: Dry-sump lubrication; printed 30–31; pdf page: 12",
+      "caveat": "Brochure total; not a pump shaft speed or independent electric motors.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W017",
+      "application": "997.1 911 Turbo 3.6 L; introductory Porsche brochure edition 12/2005",
+      "component": "VTG components",
+      "parameter": "turbo materials",
+      "value": "aerospace-developed materials used to withstand gasoline exhaust heat; no alloy grade named",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2006"
+      ],
+      "locator": "section: Engineering; printed 16–17; pdf page: 7",
+      "caveat": "Exact material grade, chemistry, treatment and manufacturing dimensions are not established by this generic material or process description.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W018",
+      "application": "997.1 911 Turbo 3.6 L; introductory Porsche brochure edition 12/2005",
+      "component": "gasoline exhaust-gas temperature",
+      "parameter": "turbo thermal context",
+      "value": 1000,
+      "unit": "degC approximate",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2006"
+      ],
+      "locator": "section: Engineering; printed 16–17; pdf page: 7",
+      "caveat": "Approximately 1000 C is brochure exhaust-temperature context, not a continuously permissible turbine-inlet limit or a measured 993 temperature.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W019",
+      "application": "997.1 911 Turbo 3.6 L; introductory Porsche brochure edition 12/2005",
+      "component": "power",
+      "parameter": "performance",
+      "value": 353,
+      "unit": "kW",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2006"
+      ],
+      "locator": "section: Engineering; printed 16–17; pdf page: 7",
+      "caveat": "At 6000 rpm. Brochure prints 480 bhp alongside 353 kW; retain the original unit wording without asserting a precise conversion.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W020",
+      "application": "997.1 911 Turbo 3.6 L; introductory Porsche brochure edition 12/2005",
+      "component": "torque",
+      "parameter": "performance",
+      "value": 620,
+      "unit": "Nm",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2006"
+      ],
+      "locator": "section: Engineering; printed 16–17; pdf page: 7",
+      "caveat": "Between 1950 and 5000 rpm.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W021",
+      "application": "997.1 911 Turbo 3.6 L; introductory Porsche brochure edition 12/2005",
+      "component": "turbocharger centre housing",
+      "parameter": "turbo cooling",
+      "value": "oil inlet and coolant inlet shown",
+      "unit": "diagram labels",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2006"
+      ],
+      "locator": "section: VTG diagram; printed 35–37; pdf page: 14",
+      "caveat": "",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W022",
+      "application": "997 911 GT2 3.6 L; Porsche brochure edition 03/2008",
+      "component": "piston",
+      "parameter": "material/manufacture",
+      "value": "forged aluminium",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2-BROCHURE-2008"
+      ],
+      "locator": "section: Lightweight design; printed 24–25; pdf page: 11",
+      "caveat": "Exact material grade, chemistry, treatment and manufacturing dimensions are not established by this generic material or process description.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W023",
+      "application": "997 911 GT2 3.6 L; Porsche brochure edition 03/2008",
+      "component": "cylinder liner substrate",
+      "parameter": "material/manufacture",
+      "value": "aluminium",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2-BROCHURE-2008"
+      ],
+      "locator": "section: Lightweight design; printed 24–25; pdf page: 11",
+      "caveat": "Exact material grade, chemistry, treatment and manufacturing dimensions are not established by this generic material or process description.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W024",
+      "application": "997 911 GT2 3.6 L; Porsche brochure edition 03/2008",
+      "component": "cylinder bore coating",
+      "parameter": "material/manufacture",
+      "value": "Nikasil",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2-BROCHURE-2008"
+      ],
+      "locator": "section: Lightweight design; printed 24–25; pdf page: 11",
+      "caveat": "Exact material grade, chemistry, treatment and manufacturing dimensions are not established by this generic material or process description. Nikasil presence does not establish coating thickness, nickel/silicon-carbide fraction or substrate alloy grade.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W025",
+      "application": "997 911 GT2 3.6 L; Porsche brochure edition 03/2008",
+      "component": "cylinder head",
+      "parameter": "material/manufacture",
+      "value": "extremely heat-resistant lightweight alloy; no alloy grade given",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2-BROCHURE-2008"
+      ],
+      "locator": "section: Lightweight design; printed 24–25; pdf page: 11",
+      "caveat": "Exact material grade, chemistry, treatment and manufacturing dimensions are not established by this generic material or process description.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W026",
+      "application": "997 911 GT2 3.6 L; Porsche brochure edition 03/2008",
+      "component": "crankcase",
+      "parameter": "material/manufacture",
+      "value": "lightweight alloy; two main sections; no alloy grade given",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2-BROCHURE-2008"
+      ],
+      "locator": "section: Lightweight design; printed 24–25; pdf page: 11",
+      "caveat": "Exact material grade, chemistry, treatment and manufacturing dimensions are not established by this generic material or process description.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W027",
+      "application": "997 911 GT2 3.6 L; Porsche brochure edition 03/2008",
+      "component": "connecting rod",
+      "parameter": "material/manufacture",
+      "value": "forged; metal and grade not named in this brochure",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2-BROCHURE-2008"
+      ],
+      "locator": "section: Lightweight design; printed 24–25; pdf page: 11",
+      "caveat": "Exact material grade, chemistry, treatment and manufacturing dimensions are not established by this generic material or process description.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W028",
+      "application": "997 911 GT2 3.6 L; Porsche brochure edition 03/2008",
+      "component": "piston",
+      "parameter": "cooling",
+      "value": "individual oil-spray jets",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2-BROCHURE-2008"
+      ],
+      "locator": "section: Lightweight design; printed 24–25; pdf page: 11",
+      "caveat": "",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W029",
+      "application": "997 911 GT2 3.6 L; Porsche brochure edition 03/2008",
+      "component": "crankshaft main bearings",
+      "parameter": "arrangement",
+      "value": 8,
+      "unit": "count",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2-BROCHURE-2008"
+      ],
+      "locator": "section: Lightweight design; printed 24–25; pdf page: 11",
+      "caveat": "",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W030",
+      "application": "997 911 GT2 3.6 L; Porsche brochure edition 03/2008",
+      "component": "camshafts per cylinder bank",
+      "parameter": "valvetrain",
+      "value": 2,
+      "unit": "count",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2-BROCHURE-2008"
+      ],
+      "locator": "section: Lightweight design; printed 24–25; pdf page: 11",
+      "caveat": "",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W031",
+      "application": "997 911 GT2 3.6 L; Porsche brochure edition 03/2008",
+      "component": "valves per cylinder",
+      "parameter": "valvetrain",
+      "value": 4,
+      "unit": "count",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2-BROCHURE-2008"
+      ],
+      "locator": "section: Lightweight design; printed 24–25; pdf page: 11",
+      "caveat": "Two inlet and two exhaust; V configuration; dual springs.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W032",
+      "application": "997 911 GT2 3.6 L; Porsche brochure edition 03/2008",
+      "component": "rear silencer",
+      "parameter": "material",
+      "value": "titanium",
+      "unit": "metal family only",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2-BROCHURE-2008"
+      ],
+      "locator": "section: Exhaust system; printed 34–35; pdf page: 16",
+      "caveat": "No titanium grade, wall thickness, welding specification or surface treatment provided. Exact material grade, chemistry, treatment and manufacturing dimensions are not established by this generic material or process description.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W033",
+      "application": "997 911 GT2 3.6 L; Porsche brochure edition 03/2008",
+      "component": "tailpipes",
+      "parameter": "material",
+      "value": "titanium",
+      "unit": "metal family only",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2-BROCHURE-2008"
+      ],
+      "locator": "section: Exhaust system; printed 34–35; pdf page: 16",
+      "caveat": "Do not transfer this exhaust-material statement to connecting rods, the turbine wheel or stock 993 exhaust. Exact material grade, chemistry, treatment and manufacturing dimensions are not established by this generic material or process description.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W034",
+      "application": "997 911 GT2 3.6 L; Porsche brochure edition 03/2008",
+      "component": "engine oil reservoir",
+      "parameter": "lubrication",
+      "value": "external dry-sump tank",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2-BROCHURE-2008"
+      ],
+      "locator": "section: Drive; printed 20–21; pdf page: 9",
+      "caveat": "",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W035",
+      "application": "997 911 GT2 3.6 L; Porsche brochure edition 03/2008",
+      "component": "engine oil",
+      "parameter": "cooling",
+      "value": "dedicated oil-water heat exchanger",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2-BROCHURE-2008"
+      ],
+      "locator": "section: Drive; printed 20–21; pdf page: 9",
+      "caveat": "",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W036",
+      "application": "997 911 GT2 3.6 L; Porsche brochure edition 03/2008",
+      "component": "turbochargers",
+      "parameter": "turbo matching",
+      "value": "Flow-optimised VTG turbines with larger compressors than the contemporary 911 Turbo",
+      "unit": "relative supplier description",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2-BROCHURE-2008"
+      ],
+      "locator": "section: Drive; printed 20–21; pdf page: 9",
+      "caveat": "No wheel dimensions, compressor map or exact rotor speed published here.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W037",
+      "application": "997 911 GT2 3.6 L; Porsche brochure edition 03/2008",
+      "component": "power",
+      "parameter": "performance",
+      "value": 390,
+      "unit": "kW",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2-BROCHURE-2008"
+      ],
+      "locator": "section: Drive; printed 20–21; pdf page: 9",
+      "caveat": "At 6500 rpm; brochure also prints 530 hp.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W038",
+      "application": "997 911 GT2 3.6 L; Porsche brochure edition 03/2008",
+      "component": "torque",
+      "parameter": "performance",
+      "value": 680,
+      "unit": "Nm",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2-BROCHURE-2008"
+      ],
+      "locator": "section: Drive; printed 20–21; pdf page: 9",
+      "caveat": "Between 2200 and 4500 rpm.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W039",
+      "application": "997 911 GT2 RS 3.6 L; Porsche brochure edition 01/2010",
+      "component": "engine",
+      "parameter": "arrangement",
+      "value": "Water-cooled flat-six with twin VTG turbos, four valves per cylinder and VarioCam Plus",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2RS-BROCHURE-2010"
+      ],
+      "locator": "section: Engine; printed 13; pdf page: 10",
+      "caveat": "",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W040",
+      "application": "997 911 GT2 RS 3.6 L; Porsche brochure edition 01/2010",
+      "component": "displacement",
+      "parameter": "performance",
+      "value": 3600,
+      "unit": "cm3",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2RS-BROCHURE-2010"
+      ],
+      "locator": "section: Engine; printed 13; pdf page: 10",
+      "caveat": "",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W041",
+      "application": "997 911 GT2 RS 3.6 L; Porsche brochure edition 01/2010",
+      "component": "power",
+      "parameter": "performance",
+      "value": 456,
+      "unit": "kW",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2RS-BROCHURE-2010"
+      ],
+      "locator": "section: Engine; printed 13; pdf page: 10",
+      "caveat": "At 6500 rpm; brochure prints 620 hp.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W042",
+      "application": "997 911 GT2 RS 3.6 L; Porsche brochure edition 01/2010",
+      "component": "torque",
+      "parameter": "performance",
+      "value": 700,
+      "unit": "Nm",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2RS-BROCHURE-2010"
+      ],
+      "locator": "section: Engine; printed 13; pdf page: 10",
+      "caveat": "Available from 2250 rpm.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W043",
+      "application": "997 911 GT2 RS 3.6 L; Porsche brochure edition 01/2010",
+      "component": "maximum boost pressure",
+      "parameter": "boost",
+      "value": 1.6,
+      "unit": "bar",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2RS-BROCHURE-2010"
+      ],
+      "locator": "section: Engine; printed 13; pdf page: 10",
+      "caveat": "Published boost pressure, not an absolute compressor pressure ratio. The source excerpt does not explicitly identify gauge versus absolute pressure; preserve 1.6 bar as printed and do not use it directly in a compressor-ratio calculation.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W044",
+      "application": "997 911 GT2 RS 3.6 L; Porsche brochure edition 01/2010",
+      "component": "engine oil reservoir",
+      "parameter": "lubrication",
+      "value": "separate reservoir, dry sump",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2RS-BROCHURE-2010"
+      ],
+      "locator": "section: Engine; printed 13; pdf page: 10",
+      "caveat": "",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W045",
+      "application": "997 911 GT2 RS 3.6 L; Porsche brochure edition 01/2010",
+      "component": "engine oil",
+      "parameter": "cooling",
+      "value": "oil-water heat exchanger",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2RS-BROCHURE-2010"
+      ],
+      "locator": "section: Engine; printed 13; pdf page: 10",
+      "caveat": "",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W046",
+      "application": "997 911 GT2 RS 3.6 L; Porsche brochure edition 01/2010",
+      "component": "main silencer",
+      "parameter": "material",
+      "value": "titanium",
+      "unit": "diagram label",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2RS-BROCHURE-2010"
+      ],
+      "locator": "section: Vehicle cutaway; printed 15; pdf page: 12",
+      "caveat": "Exact material grade, chemistry, treatment and manufacturing dimensions are not established by this generic material or process description.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W047",
+      "application": "997 911 GT2 RS 3.6 L; Porsche brochure edition 01/2010",
+      "component": "tailpipe",
+      "parameter": "material",
+      "value": "titanium",
+      "unit": "diagram label",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-GT2RS-BROCHURE-2010"
+      ],
+      "locator": "section: Vehicle cutaway; printed 15; pdf page: 12",
+      "caveat": "Exact material grade, chemistry, treatment and manufacturing dimensions are not established by this generic material or process description.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W048",
+      "application": "997.2 911 Turbo / Turbo S 3.8 L direct injection; non-Mezger scope-boundary comparison only",
+      "component": "crankcase",
+      "parameter": "arrangement",
+      "value": "vertically divided alloy crankcase with integrated cylinders",
+      "unit": "",
+      "evidence_status": "scope_boundary_comparison",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2010-BOUNDARY"
+      ],
+      "locator": "section: Lightweight design; printed 34–35; pdf page: 18",
+      "caveat": "Scope-boundary comparison only: this is the newer direct-injected 3.8 L 997.2 Turbo architecture, not Mezger material evidence for 993 or 997.1 Turbo / GT2.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W049",
+      "application": "997.2 911 Turbo / Turbo S 3.8 L direct injection; non-Mezger scope-boundary comparison only",
+      "component": "piston",
+      "parameter": "material/manufacture",
+      "value": "forged aluminium",
+      "unit": "",
+      "evidence_status": "scope_boundary_comparison",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2010-BOUNDARY"
+      ],
+      "locator": "section: Lightweight design; printed 34–35; pdf page: 18",
+      "caveat": "Exact material grade, chemistry, treatment and manufacturing dimensions are not established by this generic material or process description. Scope-boundary comparison only: this is the newer direct-injected 3.8 L 997.2 Turbo architecture, not Mezger material evidence for 993 or 997.1 Turbo / GT2.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W050",
+      "application": "997.2 911 Turbo / Turbo S 3.8 L direct injection; non-Mezger scope-boundary comparison only",
+      "component": "cylinders",
+      "parameter": "material",
+      "value": "aluminium/silicon alloy; grade not named",
+      "unit": "metal family",
+      "evidence_status": "scope_boundary_comparison",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2010-BOUNDARY"
+      ],
+      "locator": "section: Lightweight design; printed 34–35; pdf page: 18",
+      "caveat": "Do not assign this integrated-cylinder construction to 997.1 Turbo, GT2 or 993. Exact material grade, chemistry, treatment and manufacturing dimensions are not established by this generic material or process description. Scope-boundary comparison only: this is the newer direct-injected 3.8 L 997.2 Turbo architecture, not Mezger material evidence for 993 or 997.1 Turbo / GT2.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W051",
+      "application": "997.2 911 Turbo / Turbo S 3.8 L direct injection; non-Mezger scope-boundary comparison only",
+      "component": "connecting rod",
+      "parameter": "material/manufacture",
+      "value": "forged; metal not named",
+      "unit": "",
+      "evidence_status": "scope_boundary_comparison",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2010-BOUNDARY"
+      ],
+      "locator": "section: Lightweight design; printed 34–35; pdf page: 18",
+      "caveat": "Exact material grade, chemistry, treatment and manufacturing dimensions are not established by this generic material or process description. Scope-boundary comparison only: this is the newer direct-injected 3.8 L 997.2 Turbo architecture, not Mezger material evidence for 993 or 997.1 Turbo / GT2.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W052",
+      "application": "997.2 911 Turbo / Turbo S 3.8 L direct injection; non-Mezger scope-boundary comparison only",
+      "component": "piston",
+      "parameter": "cooling",
+      "value": "individual oil-spray jets",
+      "unit": "",
+      "evidence_status": "scope_boundary_comparison",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2010-BOUNDARY"
+      ],
+      "locator": "section: Lightweight design; printed 34–35; pdf page: 18",
+      "caveat": "Scope-boundary comparison only: this is the newer direct-injected 3.8 L 997.2 Turbo architecture, not Mezger material evidence for 993 or 997.1 Turbo / GT2.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W053",
+      "application": "997.2 911 Turbo / Turbo S 3.8 L direct injection; non-Mezger scope-boundary comparison only",
+      "component": "camshaft bearing system",
+      "parameter": "arrangement",
+      "value": "fully integrated into cylinder heads",
+      "unit": "",
+      "evidence_status": "scope_boundary_comparison",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-997-TURBO-BROCHURE-2010-BOUNDARY"
+      ],
+      "locator": "section: Lightweight design; printed 34–35; pdf page: 18",
+      "caveat": "Scope-boundary comparison only: this is the newer direct-injected 3.8 L 997.2 Turbo architecture, not Mezger material evidence for 993 or 997.1 Turbo / GT2.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W054",
+      "application": "996 Turbo / GT2 / GT3 lineage; Porsche retrospective published in 2018",
+      "component": "Turbo engine",
+      "parameter": "lineage",
+      "value": "Porsche links the water-cooled Turbo engine to the 3.2 L six-cylinder GT1 engine used at Le Mans in 1998",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-HISTORY-996-2018"
+      ],
+      "locator": "section: Turbo and GT3 history",
+      "caveat": "",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W055",
+      "application": "996 Turbo / GT2 / GT3 lineage; Porsche retrospective published in 2018",
+      "component": "Turbo standard power",
+      "parameter": "performance",
+      "value": 420,
+      "unit": "PS",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-HISTORY-996-2018"
+      ],
+      "locator": "section: Turbo and GT3 history",
+      "caveat": "",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W056",
+      "application": "996 Turbo / GT2 / GT3 lineage; Porsche retrospective published in 2018",
+      "component": "GT2 power range",
+      "parameter": "performance",
+      "value": [
+        462,
+        483
+      ],
+      "unit": "PS",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-HISTORY-996-2018"
+      ],
+      "locator": "section: Turbo and GT3 history",
+      "caveat": "Different variant/update outputs, not one operating point.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W057",
+      "application": "996 Turbo / GT2 / GT3 lineage; Porsche retrospective published in 2018",
+      "component": "GT3 engine",
+      "parameter": "lineage",
+      "value": "Porsche retrospectively describes the GT3 engine as the same engine family without turbocharging",
+      "unit": "retrospective family summary",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-HISTORY-996-2018"
+      ],
+      "locator": "section: Turbo and GT3 history",
+      "caveat": "Family-level history does not imply identical rods, pistons, compression ratios, camshafts or castings between GT3 and Turbo. Naturally aspirated GT3 lineage comparison only; not proof of Turbo component identity.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W058",
+      "application": "911 GT1-98 museum Team Zakspeed FIA GT 1998 example; not every GT1 race or road configuration",
+      "component": "engine",
+      "parameter": "cooling",
+      "value": "Water-cooled mid-engine layout",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-MUSEUM-GT1-98"
+      ],
+      "locator": "section: Introduction",
+      "caveat": "",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W059",
+      "application": "911 GT1-98 museum Team Zakspeed FIA GT 1998 example; not every GT1 race or road configuration",
+      "component": "displacement",
+      "parameter": "performance",
+      "value": 3220,
+      "unit": "cm3",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-MUSEUM-GT1-98"
+      ],
+      "locator": "section: Specifications",
+      "caveat": "",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W060",
+      "application": "911 GT1-98 museum Team Zakspeed FIA GT 1998 example; not every GT1 race or road configuration",
+      "component": "power",
+      "parameter": "performance",
+      "value": 404,
+      "unit": "kW",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-MUSEUM-GT1-98"
+      ],
+      "locator": "section: Specifications",
+      "caveat": "Museum example prints 550 HP; do not replace specifications for all GT1 race or road variants.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W061",
+      "application": "911 GT1-98 museum Team Zakspeed FIA GT 1998 example; not every GT1 race or road configuration",
+      "component": "engine",
+      "parameter": "arrangement",
+      "value": "six-cylinder boxer",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-MUSEUM-GT1-98"
+      ],
+      "locator": "section: Specifications",
+      "caveat": "",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W062",
+      "application": "911 GT1-98 museum Team Zakspeed FIA GT 1998 example; not every GT1 race or road configuration",
+      "component": "chassis",
+      "parameter": "material",
+      "value": "Carbon fibre",
+      "unit": "vehicle chassis",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-MUSEUM-GT1-98"
+      ],
+      "locator": "section: Introduction",
+      "caveat": "Material of the chassis, not the crankcase, pistons or heads. Exact material grade, chemistry, treatment and manufacturing dimensions are not established by this generic material or process description.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W063",
+      "application": "997 Turbo model history; generations distinguished as stated in each record",
+      "component": "Initial Turbo power",
+      "parameter": "performance",
+      "value": 353,
+      "unit": "kW",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-CLASSIC-997-TURBO"
+      ],
+      "locator": "section: Introduction",
+      "caveat": "Porsche also states 480 PS and a June 2006 market launch.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W064",
+      "application": "997 Turbo model history; generations distinguished as stated in each record",
+      "component": "MY2010 Turbo engine",
+      "parameter": "lineage",
+      "value": "Newly developed MY2010 Turbo engine, 500 PS",
+      "unit": "scope boundary",
+      "evidence_status": "scope_boundary_comparison",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-CLASSIC-997-TURBO"
+      ],
+      "locator": "section: Introduction",
+      "caveat": "Supports separating the 997.2 Turbo / Turbo S from the unchanged water-cooled Mezger 3.6 L family. Scope-boundary comparison only: this is the newer direct-injected 3.8 L 997.2 Turbo architecture, not Mezger material evidence for 993 or 997.1 Turbo / GT2.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W065",
+      "application": "997 Turbo model history; generations distinguished as stated in each record",
+      "component": "VTG turbochargers",
+      "parameter": "turbo development",
+      "value": "Developed with BorgWarner",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-CLASSIC-997-TURBO"
+      ],
+      "locator": "section: Introduction",
+      "caveat": "",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-W066",
+      "application": "997.1 GT3 / GT3 RS naturally aspirated 3.6 L comparison; not Turbo or 993",
+      "component": "connecting rods",
+      "parameter": "Published component/architecture statement",
+      "value": "Titanium connecting rods explicitly specified in shared engine section.",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-GT3-9971-BROCHURE"
+      ],
+      "locator": "pdf page: 15; printed page: 36–37",
+      "caveat": "No titanium grade, supplier, forging process, exact mass, or rod dimensions stated. Cannot apply this to Turbo/993. Naturally aspirated GT3 comparison; no transfer to Turbo or 993 OEM parts.",
+      "training_eligibility": "qualified_only",
+      "research_fact_id": "9971-gt3-rods"
+    },
+    {
+      "id": "MEZGER-W067",
+      "application": "997.1 GT3 / GT3 RS naturally aspirated 3.6 L comparison; not Turbo or 993",
+      "component": "pistons, cylinder bore and connecting rods",
+      "parameter": "Published component/architecture statement",
+      "value": "Engine drawing explicitly labels forged piston, Nikasil-coated cylinder bore, titanium connecting rod.",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-GT3-9971-BROCHURE"
+      ],
+      "locator": "pdf page: 16; printed page: 38–39",
+      "caveat": "No bare cylinder substrate or coating thickness/alloy grade in legend; no piston alloy grade. Naturally aspirated GT3 comparison; no transfer to Turbo or 993 OEM parts.",
+      "training_eligibility": "qualified_only",
+      "research_fact_id": "9971-gt3-pistons-cylinder"
+    },
+    {
+      "id": "MEZGER-W068",
+      "application": "997.1 GT3 naturally aspirated comparison; not Turbo or 993",
+      "component": "engine pistons, rods and maximum crankshaft speed",
+      "parameter": "Published component/architecture statement",
+      "value": "Technical data independently reiterates lightweight pistons and titanium connecting rods, maximum speed 8400 rpm.",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-GT3-9971-BROCHURE"
+      ],
+      "locator": "pdf page: 51; printed page: 110–111",
+      "caveat": "rpm is engine crankshaft, not a material-dependent design limit for a transferred component. Naturally aspirated GT3 comparison; no transfer to Turbo or 993 OEM parts.",
+      "training_eligibility": "qualified_only",
+      "research_fact_id": "9971-gt3-spec"
+    },
+    {
+      "id": "MEZGER-W069",
+      "application": "997.2 GT3 naturally aspirated 3.797 L comparison; not Turbo or 993",
+      "component": "connecting rods, pistons and maximum crankshaft speed",
+      "parameter": "Published component/architecture statement",
+      "value": "Titanium connecting rod and lighter pistons; max engine speed 8500 rpm.",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-GT3-9972-BROCHURE"
+      ],
+      "locator": "pdf page: 9; printed page: 20–21",
+      "caveat": "No alloy grade, heat treatment or precise masses. Naturally aspirated GT3 comparison; no transfer to Turbo or 993 OEM parts.",
+      "training_eligibility": "qualified_only",
+      "research_fact_id": "9972-gt3-rods"
+    },
+    {
+      "id": "MEZGER-W070",
+      "application": "997.2 GT3 naturally aspirated 3.797 L comparison; not Turbo or 993",
+      "component": "pistons, connecting rods and cylinder-bore coating",
+      "parameter": "Published component/architecture statement",
+      "value": "Explicit forged aluminium piston, titanium connecting rod, Nikasil cylinder-bore coating.",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-GT3-9972-BROCHURE"
+      ],
+      "locator": "pdf page: 10; printed page: 22–23 (not text printed in extracted image spread)",
+      "caveat": "Aluminium family and forging are confirmed for piston; exact alloy, silicon fraction, piston thermal coating, pin material and ring metallurgy unreported. Nikasil does not give the cylinder substrate grade. Naturally aspirated GT3 comparison; no transfer to Turbo or 993 OEM parts.",
+      "training_eligibility": "qualified_only",
+      "research_fact_id": "9972-gt3-pistons-cylinder"
+    },
+    {
+      "id": "MEZGER-W071",
+      "application": "997.2 GT3 / GT3 RS naturally aspirated comparison; cutaway caption scope retained; cutaway explicitly captioned 911 GT3 3.8-litre boxer engine",
+      "component": "pistons, connecting rods and cylinder-bore coating",
+      "parameter": "Published component/architecture statement",
+      "value": "Forged aluminium piston, titanium connecting rod, Nikasil cylinder-bore coating; prose in GT3/GT3RS drive section supports lightweight rods/pistons generally.",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-GT3-9972-RS-BROCHURE"
+      ],
+      "locator": "pdf page: 14; printed page: 34–35",
+      "caveat": "Drawn engine caption is GT3. Avoid assuming identical detailed piston geometry or same OEM part number for GT3 and RS: compression ratios 12.0 and 12.2 differ (PDF p50). Naturally aspirated GT3 comparison; no transfer to Turbo or 993 OEM parts.",
+      "training_eligibility": "qualified_only",
+      "research_fact_id": "9972-gt3rs-pistons-cylinder"
+    },
+    {
+      "id": "MEZGER-W072",
+      "application": "997.2 GT3 / GT3 RS naturally aspirated comparison; cutaway caption scope retained",
+      "component": "engine cooling and lubrication",
+      "parameter": "Published component/architecture statement",
+      "value": "Water-cooled six-cylinder boxer; external-reservoir dry sump and oil-water heat exchanger.",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-GT3-9972-RS-BROCHURE"
+      ],
+      "locator": "pdf page: 13; printed page: 32–33",
+      "caveat": "Does not identify radiator alloy, casting alloy or precise coolant-flow rates. Naturally aspirated GT3 comparison; no transfer to Turbo or 993 OEM parts.",
+      "training_eligibility": "qualified_only",
+      "research_fact_id": "9972-cooling-lube"
+    },
+    {
+      "id": "MEZGER-W073",
+      "application": "997.2 GT3 / GT3 RS naturally aspirated comparison; cutaway caption scope retained",
+      "component": "valvetrain, pistons, rods and maximum crankshaft speed",
+      "parameter": "Published component/architecture statement",
+      "value": "Titanium rod/lightened pistons and lightweight tappets associated with maximum engine speed 8500 rpm.",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-GT3-9972-RS-BROCHURE"
+      ],
+      "locator": "pdf page: 14; printed page: 34–35",
+      "caveat": "Not evidence of safe 8500 rpm on another Mezger assembly. Naturally aspirated GT3 comparison; no transfer to Turbo or 993 OEM parts.",
+      "training_eligibility": "qualified_only",
+      "research_fact_id": "9972-rod-rpm"
+    },
+    {
+      "id": "MEZGER-W074",
+      "application": "991 GT3 introduced in 2013; non-Mezger scope-boundary comparison only",
+      "component": "engine family boundary",
+      "parameter": "Mezger scope boundary",
+      "value": "Porsche states the completely redeveloped 3.8L 991 GT3 engine was for the first time no longer based on the legendary Mezger engine.",
+      "unit": "",
+      "evidence_status": "scope_boundary_comparison",
+      "source_ids": [
+        "SRC-PORSCHE-MEZGER-GT3-HISTORY-CURRENT"
+      ],
+      "locator": "991 generation paragraph",
+      "caveat": "Modern 991/992 materials should not be back-projected to 996/997 Mezger. Scope-boundary comparison only, not material evidence for Mezger engines.",
+      "training_eligibility": "qualified_only",
+      "research_fact_id": "gt3-mezger-end"
+    },
+    {
+      "id": "MEZGER-M001",
+      "application": "MAHLE Motorsport aftermarket POWERPAK range",
+      "component": "piston",
+      "parameter": "available forged aluminum alloy families",
+      "value": [
+        "4032",
+        "2618"
+      ],
+      "unit": "",
+      "evidence_status": "supplier_declared",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-MAHLE-PORSCHE-GUIDE-2024"
+      ],
+      "locator": "PDF page 3, The POWERPAK",
+      "caveat": "Generic product range. Not an OEM M64/60 alloy identification.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M002",
+      "application": "MAHLE Motorsport aircooled aftermarket kits",
+      "component": "piston",
+      "parameter": "manufacturing and surface processes",
+      "value": [
+        "machined forging",
+        "phosphate treatment",
+        "GRAFAL skirt coating"
+      ],
+      "unit": "",
+      "evidence_status": "supplier_declared",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-MAHLE-AIRCOOLED-ASSEMBLY-2020"
+      ],
+      "locator": "PDF page 2, piston construction paragraphs",
+      "caveat": "Modern aftermarket adaptations. Coating thickness and exact heat treatment are not specified.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M003",
+      "application": "993 Turbo 3.6 to 3.8 L conversion, PP102-012N",
+      "component": "piston",
+      "parameter": "aluminum alloy",
+      "value": "2618",
+      "unit": "",
+      "evidence_status": "supplier_declared",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-MAHLE-PORSCHE-GUIDE-2024"
+      ],
+      "locator": "PDF page 9 / printed page 5, 993 TURBO row",
+      "caveat": "Specific aftermarket piston, not the stock 100 mm OEM piston.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M004",
+      "application": "993 Turbo 3.6 to 3.8 L conversion, PP102-012N",
+      "component": "piston",
+      "parameter": "bore diameter",
+      "value": 102,
+      "unit": "mm",
+      "evidence_status": "supplier_declared",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-MAHLE-PORSCHE-GUIDE-2024"
+      ],
+      "locator": "PDF page 9 / printed page 5, 993 TURBO row",
+      "caveat": "Aftermarket 3.8 L application.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M005",
+      "application": "993 Turbo 3.6 to 3.8 L conversion, PP102-012N",
+      "component": "piston",
+      "parameter": "compression height",
+      "value": 31.8,
+      "unit": "mm",
+      "evidence_status": "supplier_declared",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-MAHLE-PORSCHE-GUIDE-2024"
+      ],
+      "locator": "PDF page 9 / printed page 5, 993 TURBO row",
+      "caveat": "Geometric height, not piston crown thickness.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M006",
+      "application": "993 Turbo 3.6 to 3.8 L conversion, PP102-012N",
+      "component": "piston",
+      "parameter": "crown volume",
+      "value": 9.6,
+      "unit": "cm3",
+      "evidence_status": "supplier_declared",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-MAHLE-PORSCHE-GUIDE-2024"
+      ],
+      "locator": "PDF page 9 / printed page 5, 993 TURBO row",
+      "caveat": "Volume, not piston crown thickness. Compression ratio is calculated at a stated deck condition.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M007",
+      "application": "993 Turbo 3.6 to 3.8 L conversion, LN 105-102/109",
+      "component": "cylinder",
+      "parameter": "published cylinder height",
+      "value": 114.5,
+      "unit": "mm",
+      "evidence_status": "supplier_declared",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-MAHLE-PORSCHE-GUIDE-2024"
+      ],
+      "locator": "PDF page 9 / printed page 5, 993 TURBO application heading",
+      "caveat": "Aftermarket height, not a local wall thickness.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M008",
+      "application": "993 Turbo 3.6 to 3.8 L conversion, LN 105-102/109",
+      "component": "cylinder",
+      "parameter": "machined case register diameter",
+      "value": 109,
+      "unit": "mm",
+      "evidence_status": "supplier_declared",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-MAHLE-PORSCHE-GUIDE-2024"
+      ],
+      "locator": "PDF page 9 / printed page 5, 993 TURBO application heading",
+      "caveat": "Register diameter does not establish local cylinder wall thickness.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M009",
+      "application": "964 Turbo 3.6 to 3.8 L or 993 Carrera turbo conversion, PP102-013",
+      "component": "piston",
+      "parameter": "aluminum alloy",
+      "value": "4032",
+      "unit": "",
+      "evidence_status": "supplier_declared",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-MAHLE-PORSCHE-GUIDE-2024"
+      ],
+      "locator": "PDF page 9 / printed page 5, 964 TURBO rows",
+      "caveat": "Aftermarket conversion piston. Distinct from the 993 Turbo PP102-012N specification.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M010",
+      "application": "930 Turbo 3.3 to 3.4 L conversion, PP98-012",
+      "component": "piston",
+      "parameter": "aluminum alloy",
+      "value": "4032",
+      "unit": "",
+      "evidence_status": "supplier_declared",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-MAHLE-PORSCHE-GUIDE-2024"
+      ],
+      "locator": "PDF page 8 / printed page 4, 930 TURBO 3.3L to 3.4L",
+      "caveat": "Aftermarket 98 mm piston. Does not identify the stock 97 mm piston alloy.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M011",
+      "application": "930 Turbo 3.0 to 3.2 L conversion, PP98-016",
+      "component": "piston",
+      "parameter": "aluminum alloy",
+      "value": "4032",
+      "unit": "",
+      "evidence_status": "supplier_declared",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-MAHLE-PORSCHE-GUIDE-2024"
+      ],
+      "locator": "PDF page 8 / printed page 4, 930 TURBO 3.0L to 3.2L",
+      "caveat": "Aftermarket conversion. Not a stock 3.0 L piston material certificate.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M012",
+      "application": "930T 3.3 to 3.5 L conversion, PP100-010N",
+      "component": "piston",
+      "parameter": "aluminum alloy",
+      "value": "2618",
+      "unit": "",
+      "evidence_status": "supplier_declared",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-MAHLE-PORSCHE-GUIDE-2024"
+      ],
+      "locator": "PDF page 8 / printed page 4, 930T 3.3L to 3.5L",
+      "caveat": "Aftermarket 100 mm conversion, not all 930 pistons.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M013",
+      "application": "930T 3.3 to 3.5 L conversion, PP100-010N",
+      "component": "piston top ring groove",
+      "parameter": "surface process",
+      "value": "hard anodized",
+      "unit": "",
+      "evidence_status": "supplier_declared",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-MAHLE-PORSCHE-GUIDE-2024"
+      ],
+      "locator": "PDF page 8 / printed page 4, PP100-010N double-asterisk note",
+      "caveat": "Thickness, process settings and coating chemistry are not supplied.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M014",
+      "application": "MAHLE Motorsport aircooled aftermarket kits",
+      "component": "piston",
+      "parameter": "clearance gauge location interpretation",
+      "value": "distance upward from piston skirt bottom",
+      "unit": "",
+      "evidence_status": "supplier_declared",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-MAHLE-AIRCOOLED-ASSEMBLY-2020"
+      ],
+      "locator": "PDF page 2, Piston to Cylinder Wall Clearance",
+      "caveat": "The catalog Meas. values are gauge locations, not crown or wall thickness. Clearance is measured over GRAFAL.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M015",
+      "application": "LN Nickies aftermarket aircooled cylinders",
+      "component": "cylinder",
+      "parameter": "material family",
+      "value": "proprietary low-silicon extruded aluminum",
+      "unit": "",
+      "evidence_status": "supplier_declared",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-LN-NICKIES-MATERIAL-FAQ"
+      ],
+      "locator": "Case Study, Increased Strength and Increased Cooling",
+      "caveat": "Exact normalized alloy and heat treatment are not disclosed. Do not infer 6061 or 6063.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M016",
+      "application": "LN Nickies aftermarket aircooled cylinders",
+      "component": "cylinder",
+      "parameter": "exact normalized alloy designation",
+      "value": null,
+      "unit": "",
+      "evidence_status": "not_established_in_review",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-LN-NICKIES-MATERIAL-FAQ"
+      ],
+      "locator": "Case Study, custom extrusion description",
+      "caveat": "Supplier names a proprietary alloy, not a standard alloy grade.",
+      "training_eligibility": "teach_uncertainty_only"
+    },
+    {
+      "id": "MEZGER-M017",
+      "application": "LN Nickies aftermarket aircooled cylinders",
+      "component": "cylinder",
+      "parameter": "manufacturing sequence",
+      "value": [
+        "custom extrusion",
+        "CNC turning",
+        "CNC milling",
+        "NSC electroplating",
+        "plateau honing"
+      ],
+      "unit": "",
+      "evidence_status": "supplier_declared",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-LN-NICKIES-MANUFACTURING"
+      ],
+      "locator": "Nickies Billet Aluminum Aircooled Cylinders and Quality Control Process",
+      "caveat": "Manufacturer description, not original Porsche casting process. Local wall dimensions are not supplied.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M018",
+      "application": "LN NSC process for Nickies aftermarket cylinders",
+      "component": "cylinder bore plating",
+      "parameter": "finished thickness per side",
+      "value": [
+        0.004,
+        0.005
+      ],
+      "unit": "inch",
+      "evidence_status": "supplier_declared",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-LN-NSC-PLATING-FAQ"
+      ],
+      "locator": "FAQ: difference between Nikasil and NSC cylinder bore platings",
+      "caveat": "Explicitly after honing and PER SIDE. Generic supplier process range, not an OEM 993 or lot certificate.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M019",
+      "application": "LN NSC process for Nickies aftermarket cylinders",
+      "component": "cylinder bore plating",
+      "parameter": "converted finished thickness per side",
+      "value": [
+        0.1016,
+        0.127
+      ],
+      "unit": "mm",
+      "evidence_status": "calculated_from_supplier_declaration",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-LN-NSC-PLATING-FAQ"
+      ],
+      "locator": "FAQ: difference between Nikasil and NSC; inch to mm conversion",
+      "caveat": "Calculated as inch times 25.4. Remains a radial per-side value; not diametral buildup.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M020",
+      "application": "LN NSC process for Nickies aftermarket cylinders",
+      "component": "cylinder bore plating",
+      "parameter": "SiC particle size",
+      "value": [
+        1,
+        3
+      ],
+      "unit": "um",
+      "evidence_status": "supplier_declared",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-LN-NSC-PLATING-FAQ"
+      ],
+      "locator": "FAQ: difference between Nikasil and NSC cylinder bore platings",
+      "caveat": "Supplier generic process data, not an analysis of original Porsche 993 material.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M021",
+      "application": "LN NSC process for Nickies aftermarket cylinders",
+      "component": "cylinder bore plating",
+      "parameter": "SiC volume fraction",
+      "value": [
+        7,
+        14
+      ],
+      "unit": "percent by volume",
+      "evidence_status": "supplier_declared",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-LN-NSC-PLATING-FAQ"
+      ],
+      "locator": "FAQ: difference between Nikasil and NSC cylinder bore platings",
+      "caveat": "Approximate supplier range in a nickel matrix, not exact batch chemistry.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M022",
+      "application": "Nikasil industry range described by LN",
+      "component": "cylinder bore plating",
+      "parameter": "general industry thickness range",
+      "value": [
+        0.003,
+        0.005
+      ],
+      "unit": "inch",
+      "evidence_status": "generic_supplier_context",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-LN-NICKIES-MATERIAL-FAQ"
+      ],
+      "locator": "Why use our NSC plating?",
+      "caveat": "General statement with less explicit finishing context. Keep separate from final NSC per-side range.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M023",
+      "application": "LN993BCH aftermarket 993RS / 964 / 993 heads",
+      "component": "cylinder head",
+      "parameter": "material and manufacturing",
+      "value": "upgraded stress-relieved wrought aluminum billet, CNC machined",
+      "unit": "",
+      "evidence_status": "supplier_declared",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-LN-993RS-BILLET-HEADS"
+      ],
+      "locator": "Visible product heading and SKU LN993BCH; material paragraph",
+      "caveat": "Exact grade not disclosed. 6061-T6/T651 and A356-T6 are comparison materials. Page metadata title incorrectly repeats 930, but article heading, SKU and 993RS port description are distinct. Not an OEM 993 Turbo head.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M024",
+      "application": "LN993BCH aftermarket 993RS / 964 / 993 heads",
+      "component": "cylinder head",
+      "parameter": "exact alloy designation",
+      "value": null,
+      "unit": "",
+      "evidence_status": "not_established_in_review",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-LN-993RS-BILLET-HEADS"
+      ],
+      "locator": "Visible SKU LN993BCH; material paragraph",
+      "caveat": "Not disclosed; comparisons cannot identify the material.",
+      "training_eligibility": "teach_uncertainty_only"
+    },
+    {
+      "id": "MEZGER-M025",
+      "application": "LN930BCH aftermarket 3.0 / 3.2 / 3.3 Turbo heads",
+      "component": "cylinder head",
+      "parameter": "material and manufacturing",
+      "value": "upgraded stress-relieved wrought aluminum billet, CNC machined",
+      "unit": "",
+      "evidence_status": "supplier_declared",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-LN-930-BILLET-HEADS"
+      ],
+      "locator": "SKU LN930BCH; material paragraph",
+      "caveat": "Exact grade not disclosed. Not an original Porsche casting; no wall dimensions supplied.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M026",
+      "application": "Xtreme aftermarket Porsche head programs, including 3.6 to 4.0 L Turbo",
+      "component": "cylinder head",
+      "parameter": "declared aluminum alloy",
+      "value": "RR350",
+      "unit": "",
+      "evidence_status": "supplier_declared",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-XTREME-RR350-HEADS"
+      ],
+      "locator": "Our Programs, general manufacturing paragraph",
+      "caveat": "Supplier declaration. Not an OEM Porsche casting identification; exact chemistry and heat treatment not specified.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M027",
+      "application": "Xtreme aftermarket Porsche head programs, including 3.6 to 4.0 L Turbo",
+      "component": "cylinder head",
+      "parameter": "manufacturing and post-casting process",
+      "value": [
+        "lost-wax investment casting",
+        "HIP"
+      ],
+      "unit": "",
+      "evidence_status": "supplier_declared",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-XTREME-RR350-HEADS"
+      ],
+      "locator": "Our Programs, general manufacturing paragraph",
+      "caveat": "Supplier declaration. HIP conditions, alloy certificate and local wall dimensions not supplied.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M028",
+      "application": "Generic factory Porsche aircooled cylinder/piston discussion",
+      "component": "piston",
+      "parameter": "generic supplier alloy statement",
+      "value": "4032",
+      "unit": "",
+      "evidence_status": "generic_supplier_context",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-LN-AIRCOOLED-PISTON-GUIDE"
+      ],
+      "locator": "Piston-to-cylinder-clearance discussion, factory cylinder paragraph",
+      "caveat": "No exact M64/60 piston reference, OEM source or certificate. Excluded from exact stock 993 material labeling.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M029",
+      "application": "Historical Alusil 2.7 L / 3.0 SC cylinder discussion",
+      "component": "cylinder substrate",
+      "parameter": "historical supplier alloy association",
+      "value": "Reynolds A390",
+      "unit": "",
+      "evidence_status": "generic_supplier_context",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-LN-AIRCOOLED-PISTON-GUIDE"
+      ],
+      "locator": "Alusil technology discussion",
+      "caveat": "Historical Alusil context, not the substrate grade of Nikasil-plated 993 Turbo cylinders.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M030",
+      "application": "Ferrea 996TT 3.6 L DOHC 24-valve, 2000 to 2005",
+      "component": "valve",
+      "parameter": "application exclusion",
+      "value": "996TT, not 993 M64/60",
+      "unit": "",
+      "evidence_status": "verified_application_exclusion",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-FERREA-PORSCHE-APPLICATION-EXCLUSION"
+      ],
+      "locator": "Available applications and F2271P / F2272P rows",
+      "caveat": "Do not transfer these valve dimensions or superalloy labels to 993 SOHC 12-valve engines.",
+      "training_eligibility": "exclude"
+    },
+    {
+      "id": "MEZGER-M031",
+      "application": "Ferrea Competition Plus generic valve range",
+      "component": "valve",
+      "parameter": "generic alloy family",
+      "value": "EV8-Z18",
+      "unit": "",
+      "evidence_status": "generic_supplier_context",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-FERREA-VALVE-GENERIC-MATERIAL"
+      ],
+      "locator": "Competition Plus Valves description",
+      "caveat": "No specific 993 part mapping and no OEM Porsche valve identification.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-M032",
+      "application": "Original Porsche 993 Turbo M64/60",
+      "component": "piston",
+      "parameter": "OEM exact alloy and crown/wall thickness",
+      "value": null,
+      "unit": "",
+      "evidence_status": "not_established_in_review",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-MAHLE-PORSCHE-GUIDE-2024"
+      ],
+      "locator": "Aftermarket catalog reviewed; original-part data absent",
+      "caveat": "No exact stock OEM alloy, crown thickness or local wall measurements established by these sources.",
+      "training_eligibility": "teach_uncertainty_only"
+    },
+    {
+      "id": "MEZGER-M033",
+      "application": "Original Porsche 993 Turbo M64/60",
+      "component": "cylinder head",
+      "parameter": "OEM exact alloy and chamber/port wall thickness",
+      "value": null,
+      "unit": "",
+      "evidence_status": "not_established_in_review",
+      "source_ids": [
+        "SRC-MEZGER-MATERIALS-XTREME-RR350-HEADS"
+      ],
+      "locator": "Aftermarket program page reviewed; original-part data absent",
+      "caveat": "RR350 aftermarket heads do not identify original Porsche head alloy. No original-part wall dimensions established.",
+      "training_eligibility": "teach_uncertainty_only"
+    },
+    {
+      "id": "MEZGER-P001",
+      "application": "Pauter aftermarket 993-230-580-1270F, manufacturer-listed 993/993 Turbo application",
+      "component": "connecting rod",
+      "parameter": "Declared steel grade",
+      "value": "4340 chrome-moly",
+      "unit": "",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-PAUTER-993-TURBO-ROD-PRIMARY"
+      ],
+      "locator": "Product description and dimension table",
+      "caveat": "Aftermarket product declaration, not a measured stock Porsche rod. No engineering tolerances, operating rpm limit or greater-than-550-PS validation is supplied here.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P002",
+      "application": "Pauter aftermarket 993-230-580-1270F, manufacturer-listed 993/993 Turbo application",
+      "component": "connecting rod",
+      "parameter": "Centre-to-centre length",
+      "value": 127.0,
+      "unit": "mm",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-PAUTER-993-TURBO-ROD-PRIMARY"
+      ],
+      "locator": "Product description and dimension table",
+      "caveat": "Aftermarket product declaration, not a measured stock Porsche rod. No engineering tolerances, operating rpm limit or greater-than-550-PS validation is supplied here.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P003",
+      "application": "Pauter aftermarket 993-230-580-1270F, manufacturer-listed 993/993 Turbo application",
+      "component": "connecting rod",
+      "parameter": "Big-end bore diameter",
+      "value": 58.01,
+      "unit": "mm",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-PAUTER-993-TURBO-ROD-PRIMARY"
+      ],
+      "locator": "Product description and dimension table",
+      "caveat": "Aftermarket product declaration, not a measured stock Porsche rod. No engineering tolerances, operating rpm limit or greater-than-550-PS validation is supplied here.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P004",
+      "application": "Pauter aftermarket 993-230-580-1270F, manufacturer-listed 993/993 Turbo application",
+      "component": "connecting rod",
+      "parameter": "Big-end width",
+      "value": 18.75,
+      "unit": "mm",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-PAUTER-993-TURBO-ROD-PRIMARY"
+      ],
+      "locator": "Product description and dimension table",
+      "caveat": "Aftermarket product declaration, not a measured stock Porsche rod. No engineering tolerances, operating rpm limit or greater-than-550-PS validation is supplied here.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P005",
+      "application": "Pauter aftermarket 993-230-580-1270F, manufacturer-listed 993/993 Turbo application",
+      "component": "connecting rod",
+      "parameter": "Small-end bore diameter",
+      "value": 23.01,
+      "unit": "mm",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-PAUTER-993-TURBO-ROD-PRIMARY"
+      ],
+      "locator": "Product description and dimension table",
+      "caveat": "Aftermarket product declaration, not a measured stock Porsche rod. No engineering tolerances, operating rpm limit or greater-than-550-PS validation is supplied here.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P006",
+      "application": "Pauter aftermarket 993-230-580-1270F, manufacturer-listed 993/993 Turbo application",
+      "component": "connecting rod",
+      "parameter": "Small-end width",
+      "value": 19.58,
+      "unit": "mm",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-PAUTER-993-TURBO-ROD-PRIMARY"
+      ],
+      "locator": "Product description and dimension table",
+      "caveat": "Aftermarket product declaration, not a measured stock Porsche rod. No engineering tolerances, operating rpm limit or greater-than-550-PS validation is supplied here.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P007",
+      "application": "Pauter aftermarket 993-230-580-1270F, manufacturer-listed 993/993 Turbo application",
+      "component": "connecting rod",
+      "parameter": "Declared overall rod mass",
+      "value": 535,
+      "unit": "g",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-PAUTER-993-TURBO-ROD-PRIMARY"
+      ],
+      "locator": "Product description and dimension table",
+      "caveat": "Aftermarket product declaration, not a measured stock Porsche rod. No engineering tolerances, operating rpm limit or greater-than-550-PS validation is supplied here.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P008",
+      "application": "Pauter aftermarket 993-230-580-1270F, manufacturer-listed 993/993 Turbo application",
+      "component": "connecting rod",
+      "parameter": "Declared big-end mass",
+      "value": 373,
+      "unit": "g",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-PAUTER-993-TURBO-ROD-PRIMARY"
+      ],
+      "locator": "Product description and dimension table",
+      "caveat": "Aftermarket product declaration, not a measured stock Porsche rod. No engineering tolerances, operating rpm limit or greater-than-550-PS validation is supplied here.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P009",
+      "application": "Pauter aftermarket 993-230-580-1270F, manufacturer-listed 993/993 Turbo application",
+      "component": "connecting rod",
+      "parameter": "Set quantity",
+      "value": 6,
+      "unit": "rods",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-PAUTER-993-TURBO-ROD-PRIMARY"
+      ],
+      "locator": "Product description and dimension table",
+      "caveat": "Aftermarket product declaration, not a measured stock Porsche rod. No engineering tolerances, operating rpm limit or greater-than-550-PS validation is supplied here.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P010",
+      "application": "Pauter general steel connecting-rod product family",
+      "component": "connecting rod",
+      "parameter": "Steel manufacturing routes",
+      "value": "Most rods use 4340 steel forgings; special applications outside forging dimensions use 4340 billet",
+      "unit": "",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-PAUTER-ROD-MATERIALS-PRIMARY"
+      ],
+      "locator": "4340 Chrome-Moly Connecting Rods",
+      "caveat": "The general statement does not authenticate the manufacturing route of a particular delivered 993 rod. No heat-treatment recipe or hardness is given.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P011",
+      "application": "Pauter custom titanium connecting-rod product family",
+      "component": "connecting rod",
+      "parameter": "Titanium grade and stock form",
+      "value": "6AL4V titanium bar stock",
+      "unit": "",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-PAUTER-ROD-MATERIALS-PRIMARY",
+        "SRC-PAUTER-ROD-TECHNICAL-PRIMARY"
+      ],
+      "locator": "Pauter Titanium Connecting Rods",
+      "caveat": "General custom product offering. No individually confirmed titanium 993 part number, mass, heat treatment or endurance evidence is supplied; the standard 993-230-580-1270F product is 4340 steel.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P012",
+      "application": "Pauter custom titanium connecting-rod product family",
+      "component": "connecting rod",
+      "parameter": "Claimed average mass reduction",
+      "value": 33,
+      "unit": "% versus steel counterpart",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-PAUTER-ROD-MATERIALS-PRIMARY"
+      ],
+      "locator": "Pauter Titanium Connecting Rods",
+      "caveat": "Manufacturer average across products. Do not apply this percentage to the 535 g 993 rod to create a purported measured titanium rod mass.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P013",
+      "application": "Pauter catalogue product nomenclature",
+      "component": "connecting rod",
+      "parameter": "F suffix meaning",
+      "value": "Factory dimensions rather than custom dimensions",
+      "unit": "",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-PAUTER-ROD-TECHNICAL-PRIMARY"
+      ],
+      "locator": "Pauter Rod Naming Convention",
+      "caveat": "This is supplier nomenclature and does not make the part a Porsche factory-made rod or authenticate every stock dimensional tolerance.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P014",
+      "application": "Pauter standard rod-fastener product family",
+      "component": "connecting rod bolt",
+      "parameter": "Standard fastener material designation",
+      "value": "ARP 2000",
+      "unit": "",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-PAUTER-ROD-BOLT-FAQ-PRIMARY"
+      ],
+      "locator": "What is the difference between ARP 625 and ARP 2000 bolts?",
+      "caveat": "Generic Pauter declaration; supplied hardware must be identified for the exact purchased set. No bolt diameter or torque is inferred for the 993 product.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P015",
+      "application": "Pauter description of ARP 2000 rod-fastener material",
+      "component": "connecting rod bolt",
+      "parameter": "Material family and treatment",
+      "value": "Heavily alloyed martensitic steel, quenched and tempered",
+      "unit": "",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-PAUTER-ROD-BOLT-FAQ-PRIMARY"
+      ],
+      "locator": "ARP 625 versus ARP 2000 FAQ",
+      "caveat": "Supplier description, not chemical composition or a material certificate for a specific bolt.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P016",
+      "application": "Pauter description of ARP 2000 rod-fastener material",
+      "component": "connecting rod bolt",
+      "parameter": "Typical hardness range",
+      "value": [
+        44,
+        47
+      ],
+      "unit": "HRC",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-PAUTER-ROD-BOLT-FAQ-PRIMARY"
+      ],
+      "locator": "ARP 625 versus ARP 2000 FAQ",
+      "caveat": "Published typical material figure, not a hardness measurement on an installed fastener.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P017",
+      "application": "Pauter description of ARP 2000 rod-fastener material",
+      "component": "connecting rod bolt",
+      "parameter": "Declared tensile strength",
+      "value": 220000,
+      "unit": "psi",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-PAUTER-ROD-BOLT-FAQ-PRIMARY"
+      ],
+      "locator": "ARP 625 versus ARP 2000 FAQ",
+      "caveat": "Supplier material rating, not an allowable stress or load rating for an engine assembly.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P018",
+      "application": "Pauter description of optional ARP Custom Age 625+ rod fasteners",
+      "component": "connecting rod bolt",
+      "parameter": "Declared tensile strength",
+      "value": 260000,
+      "unit": "psi",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-PAUTER-ROD-BOLT-FAQ-PRIMARY"
+      ],
+      "locator": "ARP 625 versus ARP 2000 FAQ",
+      "caveat": "Optional supplier fastener-family rating. Not original Porsche hardware, not Inconel 625 exhaust alloy; exact chemistry and bolt dimensions are not established here.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P019",
+      "application": "Kline Innovation aftermarket Inconel exhaust for Porsche 993 Turbo",
+      "component": "exhaust system",
+      "parameter": "Declared alloy",
+      "value": "Inconel 625",
+      "unit": "",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-KLINE-993-TURBO-IN625-MANIFOLDS"
+      ],
+      "locator": "The Specifics / Materials / Inconel 625",
+      "caveat": "Manufacturer product declaration. Original Porsche exhaust alloy, tube wall thickness, bore diameters, weld process and heat treatment are not specified.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P020",
+      "application": "Kline Innovation aftermarket Inconel exhaust for Porsche 993 Turbo",
+      "component": "exhaust manifold with heat exchanger",
+      "parameter": "Declared mass per manifold",
+      "value": 2.9,
+      "unit": "kg",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-KLINE-993-TURBO-IN625-MANIFOLDS"
+      ],
+      "locator": "The Specifics / Materials / Inconel 625",
+      "caveat": "Manufacturer product declaration. Original Porsche exhaust alloy, tube wall thickness, bore diameters, weld process and heat treatment are not specified.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P021",
+      "application": "Kline Innovation aftermarket Inconel exhaust for Porsche 993 Turbo",
+      "component": "silencer section",
+      "parameter": "Declared mass",
+      "value": 7.2,
+      "unit": "kg",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-KLINE-993-TURBO-IN625-MANIFOLDS"
+      ],
+      "locator": "The Specifics / Materials / Inconel 625",
+      "caveat": "Manufacturer product declaration. Original Porsche exhaust alloy, tube wall thickness, bore diameters, weld process and heat treatment are not specified.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P022",
+      "application": "Kline Innovation aftermarket Inconel exhaust for Porsche 993 Turbo",
+      "component": "100-cell X-pipe",
+      "parameter": "Declared mass",
+      "value": 8.4,
+      "unit": "kg",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-KLINE-993-TURBO-IN625-MANIFOLDS"
+      ],
+      "locator": "The Specifics / Materials / Inconel 625",
+      "caveat": "Manufacturer product declaration. Original Porsche exhaust alloy, tube wall thickness, bore diameters, weld process and heat treatment are not specified.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P023",
+      "application": "Kline Innovation aftermarket Inconel exhaust for Porsche 993 Turbo",
+      "component": "exhaust system downstream of manifolds",
+      "parameter": "Declared total mass",
+      "value": 15.6,
+      "unit": "kg",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-KLINE-993-TURBO-IN625-MANIFOLDS"
+      ],
+      "locator": "The Specifics / Materials / Inconel 625",
+      "caveat": "Manufacturer product declaration. Original Porsche exhaust alloy, tube wall thickness, bore diameters, weld process and heat treatment are not specified.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P024",
+      "application": "Kline Innovation aftermarket Inconel exhaust for Porsche 993 Turbo",
+      "component": "exhaust system including manifolds",
+      "parameter": "Declared total mass",
+      "value": 21.4,
+      "unit": "kg",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-KLINE-993-TURBO-IN625-MANIFOLDS"
+      ],
+      "locator": "The Specifics / Materials / Inconel 625",
+      "caveat": "Manufacturer product declaration. Original Porsche exhaust alloy, tube wall thickness, bore diameters, weld process and heat treatment are not specified.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P025",
+      "application": "Swindon aftermarket 24-valve conversion for air-cooled M64 964/993 engines",
+      "component": "intake valve",
+      "parameter": "Diameter",
+      "value": 40,
+      "unit": "mm",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-SWINDON-M64-24V-PRODUCT-SHEET"
+      ],
+      "locator": "PDF p.4 / Specifications",
+      "caveat": "Supplier conversion-kit specification, not the original two-valve M64/60. The reviewed product sheet does not give head aluminium grade, valve material, component wall thickness or turbo endurance qualification.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P026",
+      "application": "Swindon aftermarket 24-valve conversion for air-cooled M64 964/993 engines",
+      "component": "intake valve",
+      "parameter": "Maximum lift",
+      "value": 11.5,
+      "unit": "mm",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-SWINDON-M64-24V-PRODUCT-SHEET"
+      ],
+      "locator": "PDF p.4 / Specifications",
+      "caveat": "Supplier conversion-kit specification, not the original two-valve M64/60. The reviewed product sheet does not give head aluminium grade, valve material, component wall thickness or turbo endurance qualification.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P027",
+      "application": "Swindon aftermarket 24-valve conversion for air-cooled M64 964/993 engines",
+      "component": "intake cam profile",
+      "parameter": "Duration at 1 mm lift",
+      "value": 255,
+      "unit": "degrees",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-SWINDON-M64-24V-PRODUCT-SHEET"
+      ],
+      "locator": "PDF p.4 / Specifications",
+      "caveat": "Supplier conversion-kit specification, not the original two-valve M64/60. The reviewed product sheet does not give head aluminium grade, valve material, component wall thickness or turbo endurance qualification.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P028",
+      "application": "Swindon aftermarket 24-valve conversion for air-cooled M64 964/993 engines",
+      "component": "exhaust valve",
+      "parameter": "Diameter",
+      "value": 33,
+      "unit": "mm",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-SWINDON-M64-24V-PRODUCT-SHEET"
+      ],
+      "locator": "PDF p.4 / Specifications",
+      "caveat": "Supplier conversion-kit specification, not the original two-valve M64/60. The reviewed product sheet does not give head aluminium grade, valve material, component wall thickness or turbo endurance qualification.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P029",
+      "application": "Swindon aftermarket 24-valve conversion for air-cooled M64 964/993 engines",
+      "component": "exhaust valve",
+      "parameter": "Maximum lift",
+      "value": 9.6,
+      "unit": "mm",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-SWINDON-M64-24V-PRODUCT-SHEET"
+      ],
+      "locator": "PDF p.4 / Specifications",
+      "caveat": "Supplier conversion-kit specification, not the original two-valve M64/60. The reviewed product sheet does not give head aluminium grade, valve material, component wall thickness or turbo endurance qualification.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P030",
+      "application": "Swindon aftermarket 24-valve conversion for air-cooled M64 964/993 engines",
+      "component": "exhaust cam profile",
+      "parameter": "Duration at 1 mm lift",
+      "value": 245,
+      "unit": "degrees",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-SWINDON-M64-24V-PRODUCT-SHEET"
+      ],
+      "locator": "PDF p.4 / Specifications",
+      "caveat": "Supplier conversion-kit specification, not the original two-valve M64/60. The reviewed product sheet does not give head aluminium grade, valve material, component wall thickness or turbo endurance qualification.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P031",
+      "application": "Swindon aftermarket 24-valve conversion for air-cooled M64 964/993 engines",
+      "component": "cylinder-head kit",
+      "parameter": "Compatible bore range",
+      "value": [
+        95,
+        102.7
+      ],
+      "unit": "mm",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-SWINDON-M64-24V-PRODUCT-SHEET"
+      ],
+      "locator": "PDF p.4 / Specifications",
+      "caveat": "Supplier conversion-kit specification, not the original two-valve M64/60. The reviewed product sheet does not give head aluminium grade, valve material, component wall thickness or turbo endurance qualification.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P032",
+      "application": "Swindon aftermarket 24-valve conversion for air-cooled M64 964/993 engines",
+      "component": "cylinder-head kit with Swindon pistons",
+      "parameter": "Published nominal compression-ratio range",
+      "value": "11.5:1 to 12:1",
+      "unit": "",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-SWINDON-M64-24V-PRODUCT-SHEET"
+      ],
+      "locator": "PDF p.4 / Specifications",
+      "caveat": "Supplier conversion-kit specification, not the original two-valve M64/60. The reviewed product sheet does not give head aluminium grade, valve material, component wall thickness or turbo endurance qualification.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P033",
+      "application": "Swindon aftermarket 24-valve conversion for air-cooled M64 964/993 engines",
+      "component": "cylinder head",
+      "parameter": "Published chamber volume",
+      "value": 16.6,
+      "unit": "cm3",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-SWINDON-M64-24V-PRODUCT-SHEET"
+      ],
+      "locator": "PDF p.4 / Specifications",
+      "caveat": "Supplier conversion-kit specification, not the original two-valve M64/60. The reviewed product sheet does not give head aluminium grade, valve material, component wall thickness or turbo endurance qualification.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P034",
+      "application": "Swindon aftermarket 24-valve conversion for air-cooled M64 964/993 engines",
+      "component": "valvetrain",
+      "parameter": "Claimed designed engine-speed capability",
+      "value": 12000,
+      "unit": "rpm",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-SWINDON-M64-24V-PRODUCT-SHEET"
+      ],
+      "locator": "PDF p.2 and p.4",
+      "caveat": "Supplier valvetrain design figure. It is not a verified rpm limit for a stock M64/60 crankshaft, rods, turbochargers or completed boosted engine.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-P035",
+      "application": "Swindon aftermarket 24-valve conversion for air-cooled M64 964/993 engines",
+      "component": "cylinder-head kit",
+      "parameter": "Claimed mass reduction versus standard 993 heads",
+      "value": 3.5,
+      "unit": "kg",
+      "evidence_status": "manufacturer_declaration",
+      "source_ids": [
+        "SRC-SWINDON-M64-24V-PRODUCT-SHEET"
+      ],
+      "locator": "PDF p.2",
+      "caveat": "Supplier kit comparison with an unspecified measurement convention. It does not establish the individual head mass or the OEM head alloy.",
+      "training_eligibility": "qualified_only"
+    }
+  ]
+}
