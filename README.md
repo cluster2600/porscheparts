@@ -62,7 +62,7 @@ withdrawn several, listed [further down this page](#what-the-repository-withdrew
 
 <table>
 <tr>
-<td align="center"><h3>453</h3>qualified source records</td>
+<td align="center"><h3>521</h3>qualified source records</td>
 <td align="center"><h3>34</h3>part records<br><sub>18 prohibited as they stand</sub></td>
 <td align="center"><h3>24</h3>993 design dossiers<br><sub>for additive manufacturing</sub></td>
 </tr>
@@ -355,7 +355,7 @@ Three simpler interior pilots are waiting for a physical measurement session:
 
 ## 4. The catalogue and its data contract
 
-**453 source records** qualified by provenance, rights and level of evidence;
+**521 source records** qualified by provenance, rights and level of evidence;
 34 part records, 9 twins, 4 components, 2 assemblies. Everything is validated by
 a JSON schema and by the test suite:
 
@@ -371,7 +371,7 @@ authorized download nor a validation of accuracy.
 flowchart TB
     subgraph catalog["catalog/ — source of truth, JSON-schema validated"]
       direction LR
-      src["sources/<br/>494 records"] --- prt["parts/<br/>34 records"]
+      src["sources/<br/>521 records"] --- prt["parts/<br/>34 records"]
       prt --- tw["twins/<br/>9 records"]
       prt --- cmp["components/ · assemblies/"]
       prt --- mea["measurements/<br/>3 manual transcriptions"]
@@ -534,6 +534,10 @@ adds source-qualified M64/60 data and map leads, with a separate
 [CPT/SFT preparation package](training/993-turbo-20261002/README.md).
 The [3 October 2026 Mezger variants and materials supplement](docs/research/mezger-turbo-materials-20261003/README.md)
 adds 203 scoped records and a [separate training increment](training/mezger-turbo-materials-20261003/README.md).
+
+The [German-source supplement](docs/research/mezger-german-sources-20261003/README.md)
+adds 108 records on alloy chemistry, manufacturing, scoped hybrid-turbo wheel
+data and racing variants, with [108 CPT and 108 SFT examples](training/mezger-german-sources-20261003/README.md).
 
 
 ![Sourced state of the 993 digital twin](docs/media/diagrams/digital-twin-993-etat.svg)

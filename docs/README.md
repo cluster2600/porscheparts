@@ -72,6 +72,7 @@ flowchart LR
 | [TURBO_AIRFLOW_SIMULATION_DATA.md](TURBO_AIRFLOW_SIMULATION_DATA.md) | airflow simulation data |
 | [research/993-turbo-20261002/README.md](research/993-turbo-20261002/README.md) | sourced M64/60 engine research, K16 hybrid/map leads and training-data package |
 | [research/mezger-turbo-materials-20261003/README.md](research/mezger-turbo-materials-20261003/README.md) | turbo and racing engine variants, scoped alloy/process/thickness evidence and separate training increment |
+| [research/mezger-german-sources-20261003/README.md](research/mezger-german-sources-20261003/README.md) | German primary sources: RR350/2618A grade data, magnesium-case manufacture, hybrid-wheel declarations and racing comparisons |
 | [OPENFOAM_POISEUILLE_VERIFICATION_F25.md](OPENFOAM_POISEUILLE_VERIFICATION_F25.md) | OpenFOAM verification against Poiseuille flow |
 
 ## Decisions and reports
