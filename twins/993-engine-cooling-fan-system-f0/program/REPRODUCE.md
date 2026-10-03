@@ -1,13 +1,13 @@
-# Commandes reproductibles
+# Reproducible commands
 
-[Programme](../README.md) · [État des calculs](EXECUTION_20261003.md)
+[Program](../README.md) · [Calculation status](EXECUTION_20261003.md)
 
-Exécuter depuis la racine du dépôt. Les scripts refusent d'écraser leurs sorties.
-Choisir des répertoires neufs. Les scripts nouveaux auditent le scan en privé et
-des reçus existants ; ils ne créent aucun modèle fonctionnel à partir de cotes
-inconnues. La CI utilise Python 3.12, NumPy 2.2.6 et Matplotlib 3.10.8.
+Run from the repository root. Scripts refuse to overwrite their outputs;
+choose fresh output directories. New scripts audit the scan privately and
+existing receipts; they create no functional model from unknown dimensions.
+CI uses Python 3.12, NumPy 2.2.6 and Matplotlib 3.10.8.
 
-## Contrôles du programme
+## Program checks
 
 ```sh
 make fan-program-check
@@ -16,25 +16,25 @@ python3 scripts/check_doc_links.py --strict
 git diff --check
 ```
 
-Le premier contrôle n'a pas besoin de solveur ni de GPU. `make check` inclut des
-audits Docker historiques de la culasse 917 ; un runtime absent doit être
-signalé, jamais présenté comme un test réussi. Le test du scan nécessite NumPy.
+The first check needs neither solver nor GPU. `make check` includes historical
+Docker audits of the 917 cylinder head; an absent runtime must be reported,
+never counted as a passing test. Scan tests require NumPy.
 
-## Scan local privé
+## Private local scan
 
-Avec Python et NumPy, indiquer le fichier de l'utilisateur sans le copier dans
-un chemin versionné :
+With Python and NumPy, reference the user's file without copying it into a
+versioned path:
 
 ```sh
 python3 twins/993-engine-cooling-fan-system-f0/source/audit_private_scan.py \
   "$PRIVATE_SCAN" work/fan-scan-audit-new/report.json
 ```
 
-Le rapport contient des coordonnées privées : garder `work/` ignoré et ne pas
-publier les aperçus. Le script ne fait ni réparation ni rescaling. Les sources
-scan et les justificatifs ne sont pas nécessaires aux tests synthétiques.
+The report contains private coordinates: keep `work/` ignored and do not
+publish previews. The script neither repairs nor rescales. Synthetic tests
+need neither scan sources nor supporting purchase evidence.
 
-Pour la copie de préparation réversible, toujours privée :
+For the reversible preparation copy, still private:
 
 ```sh
 python3 twins/993-engine-cooling-fan-system-f0/source/prepare_private_scan.py \
@@ -42,23 +42,23 @@ python3 twins/993-engine-cooling-fan-system-f0/source/prepare_private_scan.py \
   --expected-sha256 244d4caeb2c4ac4a692b650ec9d766bee2a8124335a0236a55a1d30c1b2b98ba
 ```
 
-Cette commande normalise seulement la pose globale et retire les faces d'aire
-exactement nulle. Elle conserve les trous et le défaut éventuel d'alignement
-relatif ; elle refuse un fichier ne correspondant pas au hash d'entrée.
+This command only normalizes global pose and removes exactly zero-area faces.
+It preserves holes and any relative alignment error; it rejects input that
+does not match the intake digest.
 
-## Modèles et variantes
+## Models and variants
 
-Les commandes et dépendances PicoGK de la reconstruction et des variantes sont
-conservées dans [REFERENCE_REBUILD](../REFERENCE_REBUILD.md) et
-[ORGANIC_BLADE_STUDY](../ORGANIC_BLADE_STUDY.md). Employer leurs paramètres
-éditables, conserver `generation.json`, hash source et contrôles du maillage.
-Une exportation STEP à partir d'une surface ne rendrait pas les datums connus.
-Le candidat 42° et le pipeline CFD corrigé se trouvent au commit **ffe5ed00** de
-la [PR105](https://github.com/cluster2600/porscheparts/pull/105), avec leurs
-[preuves de maillage](https://github.com/cluster2600/porscheparts/releases/tag/fan-cfd-mesh-recovery-2026-10-02).
-Ne pas lancer deux campagnes pour les mêmes variantes.
+PicoGK commands/dependencies for the reconstruction and variants remain in
+[REFERENCE_REBUILD](../REFERENCE_REBUILD.md) and
+[ORGANIC_BLADE_STUDY](../ORGANIC_BLADE_STUDY.md). Use their editable parameters;
+retain `generation.json`, source digest and mesh checks. Exporting STEP from a
+surface would not establish missing datums. The 42° candidate and corrected
+CFD workflow are at **ffe5ed00** in
+[PR105](https://github.com/cluster2600/porscheparts/pull/105), with
+[mesh evidence](https://github.com/cluster2600/porscheparts/releases/tag/fan-cfd-mesh-recovery-2026-10-02).
+Do not run duplicate campaigns for the same variants.
 
-## Audit des calculs CFD terminés
+## Audit completed CFD runs
 
 ```sh
 mkdir -p work/fan-final-audit-new
@@ -70,14 +70,14 @@ python3 twins/993-engine-cooling-fan-system-f0/source/audit_completed_cfd.py \
   work/fan-final-audit-new/pitch42-full-frame-flow work/fan-final-audit-new/pitch42-audit.json
 ```
 
-Une sortie zéro signifie que le reçu correspond aux données natives. Les deux
-flags `integral_checks_passed` et `nonlinear_residual_checks_passed` restent faux.
-Pour refaire la CFD, suivre les commandes et garde-fous #105 ; ce paquet contient
-les preuves et conditions finales, pas les champs volumiques/maillages complets.
-Leur récupération depuis les archives de campagne et un runtime suffisamment
-dimensionné restent nécessaires. Aucun seuil ne doit être relâché.
+Exit code zero means the receipt matches native data. Both flags
+`integral_checks_passed` and `nonlinear_residual_checks_passed` remain false.
+To rerun CFD, follow #105 commands and safeguards. This package holds final
+evidence and conditions, not complete volume fields/meshes. Recovery from
+campaign archives and a sufficiently sized runtime are still needed.
+No threshold may be relaxed.
 
-## Refaire le calcul modal
+## Reproduce the modal calculation
 
 ```sh
 mkdir -p work/fan-modal-new
@@ -92,25 +92,25 @@ python3 twins/993-engine-cooling-fan-system-f0/source/summarize_modal_screen.py 
   work/fan-modal-new work/fan-modal-new/summary.json
 ```
 
-CalculiX 2.17 a été utilisé, image existante
+The original run used CalculiX 2.17 in the existing image
 `sha256:1dc508c2bfab4d9911707fbfd9cacdf43faf84956a1502805194e3e70e18ae68`.
-Le jeu exact suffit à refaire ce calcul sans scan. Pour préparer un autre cas à
-partir d'un **jeu centrifuge audité du même modèle**, employer
-`twins/993-engine-cooling-fan-system-f0/source/prepare_modal_screen.py SOURCE_INP NEW_DIRECTORY --modes 12`.
-Cela produit des modes non précontraints ; ne pas les appeler Campbell.
+The exact deck suffices to reproduce this calculation without the scan.
+To prepare another case from an **audited centrifugal deck of the same model**,
+use `twins/993-engine-cooling-fan-system-f0/source/prepare_modal_screen.py SOURCE_INP NEW_DIRECTORY --modes 12`.
+This produces unprestressed modes; do not call it Campbell analysis.
 
-## LPBF et asset OpenUSD
+## LPBF and OpenUSD asset
 
-Les commandes géométriques, thermiques et de sensibilité existent dans
-[ORGANIC_BLADE_STUDY](../ORGANIC_BLADE_STUDY.md) ; fournir la carte
-[zrapid-print-process.json](../zrapid-print-process.json), identifier matériau,
-machine, orientation, source exacte et hypothèses. Les calculs ne sont pas un
-programme machine, ne prédisent pas de distorsion qualifiée et n'autorisent pas
-de fabrication.
+Geometric, thermal and sensitivity commands are in
+[ORGANIC_BLADE_STUDY](../ORGANIC_BLADE_STUDY.md). Supply
+[zrapid-print-process.json](../zrapid-print-process.json); identify material,
+machine, orientation, exact source and assumptions. These calculations are
+not a machine program, do not predict qualified distortion and authorize no
+manufacturing.
 
-Ouvrir `program/fan-program.usda` dans une application compatible OpenUSD.
-Avec le runtime `usd-core` 26.8 disponible, on peut reproduire la composition
-sous un **nouveau nom dans le même dossier** pour garder les références relatives :
+Open `program/fan-program.usda` in an OpenUSD-compatible application. With the
+available `usd-core` 26.8 runtime, reproduce composition under a **new name in
+the same directory** to retain relative references:
 
 ```sh
 python3 twins/993-engine-cooling-fan-system-f0/source/build_program_asset.py \
@@ -118,7 +118,7 @@ python3 twins/993-engine-cooling-fan-system-f0/source/build_program_asset.py \
   work/fan-usd-reproduction-new.json
 ```
 
-Les résultats des solveurs restent dans leurs dossiers avec conditions/hashes.
-L'asset ne simule pas la mécanique ou le fluide par simple ouverture. Kit-CAE et
-le rendu RTX constituent des étapes distinctes, à vérifier dans un runtime
-compatible lorsqu'une ressource GPU autorisée est disponible.
+Solver outputs stay in their own directories with conditions/digests.
+Opening the asset does not simulate mechanics or fluid flow. Kit-CAE and RTX
+rendering are separate stages to verify in a compatible runtime when an
+authorized GPU resource is available.

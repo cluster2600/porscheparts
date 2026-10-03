@@ -1,52 +1,54 @@
-# Recherche documentaire 911 / 935 / 993
+# 911 / 935 / 993 cooling impeller research
 
-[Programme ventilateur](../../README.md) · [Synthèse en français](SYNTHESIS.md) · [Index complet](source-index.json) · [Règles d'intégration](INTEGRATION.md)
+[Impeller program](../../README.md) · [English synthesis](SYNTHESIS.md) · [Complete index](source-index.json) · [Integration rules](INTEGRATION.md)
 
-Les quatre lots livrés le 3 octobre 2026 sont intégrés : **20 fichiers originaux,
-140 fiches sources et 130 groupes d'URL**. La couverture est limitée aux pages
-et requêtes consultées. Les 130 groupes ne sont pas 130 mesures indépendantes :
-traductions, copies et témoignages peuvent reprendre une même origine. Aucune
-publication ne valide le modèle du projet, l'identité 935/993 du scan ou une
-pièce à fabriquer.
+All four research deliveries from October 3, 2026 are integrated: **20 original
+files, 140 source records and 130 URL groups**. Coverage is limited to the pages
+and queries actually consulted. These groups are not 130 independent
+measurements: translations, copies and accounts may share an origin. No
+publication validates the project model, the scan's 935/993 identity or a part
+for manufacturing.
 
-## Accès aux quatre lots
+## Four research lanes
 
-| Lot | Rapport et limites | Données complètes | Couverture livrée |
+| Lane | Report and limits | Complete data | Delivered coverage |
 |---|---|---|---|
-| OEM / histoire | [Rapport](corpus/oem/research_report.md) | [Registre](corpus/oem/oem_research.json), [sources](corpus/oem/sources.json), [paramètres CSV](corpus/oem/oem_parameters.csv) | 32 sources, 114 records ; PET, variantes, conditions historiques |
-| Aftermarket / fabricants | [Rapport](corpus/aftermarket/aftermarket_fan_supplier_review.md), [requêtes et limites](corpus/aftermarket/aftermarket_search_log.json) | [Catalogue](corpus/aftermarket/aftermarket_catalog.json), [85 assertions quantitatives CSV](corpus/aftermarket/aftermarket_parameters.csv), [sources CSV](corpus/aftermarket/aftermarket_source_manifest.csv), [produits CSV](corpus/aftermarket/aftermarket_products.csv) | 44 sources, 28 produits ; rotor, moyeu, carter et système complet séparés |
-| Forums multilingues | [Rapport](corpus/forums/multilingual_forum_research.md), [couverture et lacunes](corpus/forums/coverage_and_gaps.md) | [Corpus](corpus/forums/forum_corpus.json), [sources CSV](corpus/forums/forum_sources.csv), [assertions CSV](corpus/forums/forum_claims.csv), [9 points de banc rapportés](corpus/forums/reported_bench_series.csv) | 36 sources, 45 assertions ; filiation et axes de régime parfois inconnus |
-| Géométrie / performance | [Notes](corpus/geometry/engineering-notes.md), [mesures à obtenir](corpus/geometry/measurement-checklist.md) | [Preuves](corpus/geometry/evidence.json), [contrat de 104 paramètres](corpus/geometry/parameter-contract.json) | 28 sources, 22 assertions ; neuf grandeurs calculées et sept portes d'acceptation |
+| OEM / history | [Report](corpus/oem/research_report.md) | [Records](corpus/oem/oem_research.json), [sources](corpus/oem/sources.json), [parameter CSV](corpus/oem/oem_parameters.csv) | 32 sources, 114 records; PET, variants, historical conditions |
+| Aftermarket / manufacturers | [Report](corpus/aftermarket/aftermarket_fan_supplier_review.md), [queries and limits](corpus/aftermarket/aftermarket_search_log.json) | [Catalog](corpus/aftermarket/aftermarket_catalog.json), [85 quantitative claims CSV](corpus/aftermarket/aftermarket_parameters.csv), [source CSV](corpus/aftermarket/aftermarket_source_manifest.csv), [product CSV](corpus/aftermarket/aftermarket_products.csv) | 44 sources, 28 products; impeller, hub, fan housing and complete assembly distinguished |
+| Multilingual forums | [Report](corpus/forums/multilingual_forum_research.md), [coverage and gaps](corpus/forums/coverage_and_gaps.md) | [Corpus](corpus/forums/forum_corpus.json), [source CSV](corpus/forums/forum_sources.csv), [claim CSV](corpus/forums/forum_claims.csv), [9 reported bench points](corpus/forums/reported_bench_series.csv) | 36 sources, 45 claims; copy lineage and sometimes unknown speed axes |
+| Geometry / performance | [Notes](corpus/geometry/engineering-notes.md), [measurement checklist](corpus/geometry/measurement-checklist.md) | [Evidence](corpus/geometry/evidence.json), [104-parameter contract](corpus/geometry/parameter-contract.json) | 28 sources, 22 claims; nine computed quantities and seven acceptance gates |
 
-Les rapports originaux en anglais sont conservés à l'identique pour leur
-traçabilité. La synthèse et les instructions d'intégration sont en français.
-Aucun plan, photographie, manuel, fichier CAO ou scan de tiers n'est réédité
-ici. Le [manifeste d'import](corpus/import-manifest.json) conserve le SHA-256
-du transfert et de chaque texte original.
+The original research reports are preserved byte for byte, including multilingual
+quotations and original terminology. The program's main navigation, synthesis
+and integration instructions are in English. No third-party drawing,
+photograph, manual, CAD file or scan is republished here. The
+[import manifest](corpus/import-manifest.json) retains the transfer SHA-256 and
+the digest of every original text.
 
-## Traçabilité et déduplication
+## Traceability and deduplication
 
-L'[index commun](source-index.json) conserve chaque identifiant source d'origine,
-son lot, son fichier et son pointeur JSON ou sa position CSV. Les identifiants
-`AF-P###` et `OEM-R###` ajoutés par l'index désignent des lignes originelles sans
-identifiant ; ils ne remplacent pas leur contenu. La normalisation groupe les
-URL identiques et les ancres de page d'un même PDF, sans fusionner éditions,
-variantes, conditions ou conclusions. La filiation déclarée dans les lots
-reste nécessaire pour reconnaître les autres copies.
+The [common index](source-index.json) retains every original source ID, lane,
+file and JSON pointer or CSV row position. Added IDs `AF-P###` and `OEM-R###`
+identify original rows without IDs; they do not replace their content.
+Normalization groups identical URLs and page anchors in the same PDF without
+merging editions, variants, conditions or conclusions. The lineage recorded
+within each lane is still needed to recognize other copies.
 
-PorscheFanatics et les pages du projet sont signalées comme non indépendantes.
-Les autres liens peuvent être indépendants du projet sans être une mesure
-primaire ni une corroboration entre eux. Les états d'accès, locators, droits,
-incertitudes et contradictions restent dans les records originaux.
+PorscheFanatics and project pages are marked as non-independent. Other links
+may be independent of the project without being primary measurements or
+independent corroboration of one another. Original records retain access
+status, locators, rights, uncertainty and contradictions.
 
-Le [registre préliminaire](dossier.json) conserve la première tranche de huit
-sources et ses hypothèses historiques ; **il ne représente pas le corpus
-complet**. L'index complet et les quatre lots sont les références de recherche.
-Le catalogue `catalog/parts/*.json` demeure la source de vérité des pièces.
-Aucun paramètre documentaire n'est automatiquement promu dans la géométrie,
-le maillage, les conditions aux limites ou les propriétés matière.
+The [English preliminary-ledger view](PRELIMINARY_LEDGER.md) explains the first
+slice of eight sources and its historical assumptions. Its
+[archived French source record](dossier.json) remains unchanged; the English
+view has its own identity and does not claim the source file's digest.
+**This preliminary slice is not the complete corpus.** The complete index and
+four lanes are the research references. `catalog/parts/*.json` remains the part
+catalog's source of truth. Documentary parameters are not automatically
+promoted into geometry, meshes, boundary conditions or material properties.
 
-## Contrôles reproductibles
+## Reproducible checks
 
 ```sh
 make fan-program-check
@@ -54,7 +56,7 @@ python3 twins/993-engine-cooling-fan-system-f0/source/build_research_index.py --
 python3 twins/993-engine-cooling-fan-system-f0/source/check_research_registry.py
 ```
 
-Ces contrôles vérifient les hashes des vingt originaux, les références source
-de tous les records indexés et l'absence de promotion en validation
-d'ingénierie. Pour régénérer uniquement l'index après un import documenté,
-exécuter `build_research_index.py` sans `--check` ; préserver les originaux.
+These checks verify the twenty original hashes, source references for all
+indexed records and the absence of promotion to engineering validation.
+To regenerate only the index after a documented import, run
+`build_research_index.py` without `--check`; preserve the originals.

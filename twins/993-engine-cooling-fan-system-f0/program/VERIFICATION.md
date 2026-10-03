@@ -1,37 +1,39 @@
-# Vérification de la publication
+# Publication verification
 
-[Programme](../README.md) · [Reçu de vérification](../results/program-20261003/verification.json) · [CI de la PR](https://github.com/cluster2600/porscheparts/pull/118/checks)
+[Program](../README.md) · [Verification receipt](../results/program-20261003/verification.json) · [PR118 checks](https://github.com/cluster2600/porscheparts/pull/118/checks)
 
-`make check` termine avec **code 0** après l’intégration complète des recherches,
-avec Python 3.12.11, NumPy 2.2.6 et Matplotlib 3.10.8. La suite principale
-exécute **3 375 tests**, avec **193 sauts optionnels**. Tous les contrôles
-complémentaires du Makefile passent, dont l’audit LPBF Docker historique et le
-contrôle des références, hashes et barrières de validation du programme.
-Les journaux complets restent privés ; le SHA-256 du dernier journal est dans
-le reçu. Les tests utilisant Git temporaire, loopback ou Docker ont été exécutés
-avec les permissions locales nécessaires.
+After complete research integration, `make check` finishes with **exit code 0**,
+using Python 3.12.11, NumPy 2.2.6 and Matplotlib 3.10.8. The main suite runs
+**3,375 tests**, with **193 optional skips**. All additional Makefile checks pass,
+including the historical Docker LPBF audit and checks of program references,
+digests and validation boundaries. Full logs remain private; the receipt records
+the latest log's SHA-256. Tests requiring temporary Git repositories, loopback
+or Docker ran with the necessary local permissions.
 
-Les **cinq tests scan/préparation/contours** et les **six tests recherche** passent
-séparément sans saut. Les vingt textes originaux de recherche sont contrôlés
-par SHA-256 ; leurs références et l’index de 140 fiches sources / 130 groupes
-d’URL sont vérifiés. Une exception Git limitée à la ligne finale d’un CSV
-préserve ses octets originaux. Les contrôles stricts de liens/ancres passent
-sur **687 fichiers Markdown**, ainsi que `git diff --check`.
+The **five scan/preparation/contour tests** and **six research tests** also pass
+separately without skips. SHA-256 checks cover the twenty original research
+texts; references and the index of 140 source records / 130 URL groups are
+verified. A Git whitespace exception limited to one CSV's final blank line
+preserves its original bytes. Strict links/anchors checks pass across
+**687 Markdown files**, as does `git diff --check`.
 
-Les intégrales et résidus natifs des deux CFD ont été recalculés et confirment
-les critères rejetés. La composition OpenUSD a été générée deux fois avec
-rapports et hashes identiques, sans utiliser le scan. Les fichiers récupérés
-du transfert CFD interrompu ont été confrontés au manifeste distant : les
-32 partitions finales du contrôle sont présentes, pas les champs complets du
-candidat. Le détail est dans l’[état d’exécution](EXECUTION_20261003.md).
+Native integrals and residuals from both CFD runs were recalculated and confirm
+rejected criteria. OpenUSD composition was generated twice with identical
+reports and digests, without using the scan. Recovered files from the interrupted
+CFD transfer were compared with the remote manifest: all 32 final control
+partitions are present, not the candidate's complete fields. See the
+[execution record](EXECUTION_20261003.md).
 
-Les archives publiques n’incluent ni scan, dérivé du scan, justificatif d’achat,
-identifiant privé d’hôte ni données de facturation. Les métadonnées d’utilisateur
-des archives solveur publiées ont été retirées. Les originaux et dérivés privés
-ainsi que les rapports de récupération sont conservés sur le Mac.
+Public archives contain no scan, scan derivative, purchase evidence, private
+host identifier or billing data. User metadata was removed from published
+solver archives. Private originals/derivatives and recovery reports remain on
+the Mac.
 
-Les CI des commits [0ddd2238](https://github.com/cluster2600/porscheparts/actions/runs/37110927353)
-et [ebd13b93](https://github.com/cluster2600/porscheparts/actions/runs/37111701807)
-sont vertes. Les [checks de la PR brouillon 118](https://github.com/cluster2600/porscheparts/pull/118/checks)
-affichent le commit contrôlé pour chaque nouveau complément. Un contrôle logiciel
-réussi ne ferme aucune barrière physique du plan de validation.
+CI passed for [0ddd2238](https://github.com/cluster2600/porscheparts/actions/runs/37110927353)
+and [ebd13b93](https://github.com/cluster2600/porscheparts/actions/runs/37111701807).
+The [PR118 checks](https://github.com/cluster2600/porscheparts/pull/118/checks)
+identify the tested commit for each subsequent update. PR118 was later merged
+as `54a33c78`, with [main CI passing](https://github.com/cluster2600/porscheparts/actions/runs/37117710821).
+These are historical verification results, not a claim that a later translation
+has already passed its own checks. Passing software verification closes no
+physical validation gate.

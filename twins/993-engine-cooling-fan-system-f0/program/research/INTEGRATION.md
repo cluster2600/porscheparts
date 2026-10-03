@@ -1,37 +1,36 @@
-# Intégrer une recherche
+# Integrating research
 
-[Dossier documentaire](README.md) · [Registre](dossier.json)
+[Research](README.md) · [English preliminary-ledger view](PRELIMINARY_LEDGER.md) · [Archived French source record](dossier.json)
 
-1. Ajouter une source avec identifiant stable, éditeur/auteur, URL directe,
-   langue, édition/date et statut d'accès. Distinguer lecture directe, extrait,
-   résumé, copie et résultat de recherche. Indiquer la page PDF et imprimée,
-   figure ou message/date. Ne pas stocker de justificatif personnel.
-2. Relier les reprises à leur origine avec `origin_source_id`. Noter les limites
-   d'indépendance et garder `independent_of_project=false` pour les productions
-   du projet, PorscheFanatics et leurs dérivés. Ne pas compter les copies comme
-   de nouvelles confirmations.
-3. Ajouter chaque proposition comme `claim` avec variante et portée. Une source
-   absente produit une question de recherche ; une source inaccessible conserve
-   un statut de lecture non vérifiée. Ne pas annoncer une équivalence 935/993
-   sur une photo ou un nom commercial.
-4. Ajouter un paramètre numérique avec unité, variante, conditions, locator et
-   incertitude. Écrire `null` si inconnu. Distinguer diamètre extérieur, diamètre
-   carter et jeu radial ; vitesse vilebrequin, ventilateur et alternateur ;
-   pression statique/totale et débit volumique/massique. Une valeur dérivée doit
-   garder sa formule et ses entrées dans `conditions`.
-5. Ouvrir une contradiction en pointant les records concernés. Documenter une
-   résolution avec son évidence sans effacer la valeur d'origine. Séparer
-   variantes et montages avant de supposer une erreur de source.
-6. Compléter la couverture avec langues réellement lues, requêtes et dates,
-   sites/forums, pages retenues/rejetées et blocages d'accès. Une recherche
-   terminée dans son périmètre ne prouve pas l'exhaustivité du Web.
-7. Réviser la synthèse du dossier, exécuter les contrôles puis publier sur la
-   branche de la PR brouillon. Conserver les sources de géométrie et le scan
-   privés tant que leur licence de réutilisation/publication n'est pas établie.
+1. Add a source with a stable ID, publisher/author, direct URL, language,
+   edition/date and access status. Distinguish direct reading, excerpts,
+   abstracts, copies and search results. Give PDF and printed page numbers,
+   figure or post/date. Do not store personal purchase evidence.
+2. Link republications to their origin with `origin_source_id`. Record limits
+   on independence and keep `independent_of_project=false` for project outputs,
+   PorscheFanatics and their derivatives. Copies are not new confirmations.
+3. Record each proposition as a `claim` with variant and scope. An absent
+   source leaves a research question; an inaccessible source retains an
+   unverified-reading status. A photograph or trade name does not establish
+   935/993 equivalence.
+4. Record numerical parameters with units, variant, conditions, locator and
+   uncertainty. Use `null` for unknowns. Distinguish impeller outside diameter,
+   fan housing diameter and radial clearance; crankshaft, impeller and
+   alternator speeds; static/total pressure and volume/mass flow. Derived
+   values retain their formula and inputs in `conditions`.
+5. Open a contradiction referencing the affected records. Document a resolution
+   with evidence without deleting the original value. Separate variants and
+   installations before assuming a source error.
+6. Record languages actually read, queries and dates, sites/forums, retained
+   and rejected pages, and access blockers. A completed bounded search does
+   not establish exhaustive web coverage.
+7. Update the synthesis, run checks and publish on the dedicated PR branch.
+   Keep geometry sources and scans private until their reuse/publication
+   license is established. Preserve original research texts and their hashes;
+   label translated reading views separately from immutable source archives.
 
-Les champs `engineering_validation` et `engineering_use_approved` restent faux
-dans ce registre. Une donnée OEM documentée peut servir d'entrée proposée pour
-une étude ; accepter un modèle fonctionnel demande toujours les preuves du
-[plan de validation](../VALIDATION_PLAN.md), les interfaces mesurées et la revue
-d'ingénierie. Une modification de catalogue se traite séparément avec ces
-preuves, sans convertir une synthèse bibliographique en pièce libérée.
+`engineering_validation` and `engineering_use_approved` remain false in this
+ledger. Documented OEM data may be proposed as study inputs, but accepting a
+functional model still requires the [validation-plan evidence](../VALIDATION_PLAN.md),
+measured interfaces and engineering review. Catalog changes are handled
+separately with that evidence; a literature synthesis does not release a part.
