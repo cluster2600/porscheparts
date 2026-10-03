@@ -27,6 +27,10 @@ class ScreenContractTests(unittest.TestCase):
         self.assertEqual(contract["matrix_rows"], 50)
         self.assertEqual(contract["separate_variants"], 6)
         self.assertEqual(contract["accepted_935_numeric_physical_claims"], 0)
+        self.assertEqual(
+            contract["research_coverage"],
+            "completed_40_lane_public_synthesis_engine_data_partial",
+        )
         self.assertFalse(contract["physical_claims_consumed"])
 
     def test_transfer_includes_the_input_contract_needed_by_the_runner(self):

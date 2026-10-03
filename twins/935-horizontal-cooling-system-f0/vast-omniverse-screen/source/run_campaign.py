@@ -71,8 +71,12 @@ def load_input_contract(root: Path) -> dict:
         raise ValueError("comparative proxy cannot consume unreviewed 935 physical claims")
     if matrix.get("manufacturing_authorized") is not False:
         raise ValueError("935 input contract must keep manufacturing authorization closed")
-    if coverage.get("status") != "partial_awaiting_original_bundle":
-        raise ValueError("935 research coverage status is not the declared partial intake")
+    accepted_coverage_statuses = {
+        "partial_awaiting_original_bundle",
+        "completed_40_lane_public_synthesis_engine_data_partial",
+    }
+    if coverage.get("status") not in accepted_coverage_statuses:
+        raise ValueError("935 research coverage status is not an allowed evidence state")
     if coverage.get("admitted_935_numeric_physical_claims") != 0:
         raise ValueError("935 coverage cannot admit numeric claims for this proxy")
     return {
