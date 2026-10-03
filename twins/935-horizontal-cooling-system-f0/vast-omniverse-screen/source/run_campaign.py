@@ -347,7 +347,10 @@ def require_ovrtx_endpoint(endpoint: str) -> str:
 def render_ovrtx(stage_path: Path, out: Path, endpoint: str) -> dict:
     endpoint = require_ovrtx_endpoint(endpoint)
     camera_path = "/FanAlloyScreen/Camera"
-    payload = {"url": stage_path.resolve().as_uri(), "force_render": True,
+    # OVRTX receives the stage as a data URI.  A file:// URL refers to the
+    # renderer container's filesystem, not to the campaign process filesystem.
+    stage_data_uri = "data:application/octet-stream;base64," + base64.b64encode(stage_path.read_bytes()).decode("ascii")
+    payload = {"url": stage_data_uri, "force_render": True,
                "render_settings": {"camera_paths": [camera_path], "frame_range": {"start": 0, "end": 0},
                                    "camera_parameters": {"width": 1024, "height": 1024}, "sensors": ["rgb"],
                                    "apply_background_mask": False, "render_mode": "pt",

@@ -80,6 +80,11 @@ class ScreenContractTests(unittest.TestCase):
             self.assertEqual(render["image"]["bytes"], 1025)
             self.assertRegex(render["image"]["sha256"], r"^[0-9a-f]{64}$")
             payload = json.loads(urlopen.call_args.args[0].data.decode("utf-8"))
+            self.assertTrue(payload["url"].startswith("data:application/octet-stream;base64,"))
+            self.assertEqual(
+                base64.b64decode(payload["url"].split(",", 1)[1]),
+                stage.read_bytes(),
+            )
             self.assertEqual(payload["render_settings"]["render_mode"], "pt")
             self.assertEqual(payload["render_settings"]["material_target"], "auto")
 
