@@ -12,6 +12,10 @@ FAN = Path(__file__).resolve().parents[1]
 def check():
     from check_research_registry import check as check_research
     check_research()
+    from check_material_process_import import check as check_materials
+    check_materials()
+    from check_engineering_iteration import check as check_engineering
+    check_engineering()
     program = json.loads((FAN / "program/program.json").read_text())
     research = json.loads((ROOT / program["research_registry"]).read_text())
     for field in ("source_records", "distinct_url_groups"):

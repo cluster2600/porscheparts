@@ -4,6 +4,14 @@
 
 [Multilingual 911 / 935 / 993 research: sources, parameters and contradictions](program/research/README.md)
 
+**Latest engineering iteration:** [native results and failed gates](program/ENGINEERING_RESULTS_20261003.md),
+[declared criteria](program/ENGINEERING_ITERATION_20261003.md),
+[reproduction](program/ENGINEERING_REPRODUCE_20261003.md),
+[material/process admission](program/research/materials-20261003/ADMISSION.md),
+[native-field OpenUSD study](program/engineering-iteration.usda).
+Four rotating-mode and four uncalibrated support-release calculations completed.
+New CFD mesh repairs remain rejected; no new flow solve or manufacturing qualification.
+
 **Status on October 3, 2026: exploratory studies; no validated part.** The scan
 supplied as a “935” has been located and audited privately. Its identity, units,
 calibration and derivative rights remain unresolved; private purchase evidence
