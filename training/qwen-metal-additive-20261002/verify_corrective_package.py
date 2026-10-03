@@ -35,6 +35,13 @@ def verify(output):
  auxiliary=verify_grounded.rows(HERE/'corrective-domain-benchmark.jsonl')
  if verify_grounded.sha(HERE/'corrective-domain-benchmark.jsonl')!=final['auxiliary_benchmark_sha256']:raise ValueError('Domain benchmark changed')
  if evaluate_corrective.screen(auxiliary,verify_grounded.rows(output/'adapter-domain-test.jsonl'))!=run_corrective.load(output/'adapter-domain-screen.json'):raise ValueError('Domain screen changed')
+ if assessment['domain_predictions_sha256']!=verify_grounded.sha(output/'adapter-domain-test.jsonl'):raise ValueError('Domain assessment belongs to other predictions')
+ primary_rows=assessment['primary_rows'];domain_rows=assessment['domain_rows']
+ if [r['id'] for r in primary_rows]!=[q['id'] for q in questions] or [r['id'] for r in domain_rows]!=[q['id'] for q in auxiliary]:raise ValueError('Assistant assessment incomplete or out of order')
+ if any(not isinstance(r['pass'],bool) or not r['reason'] for r in primary_rows+domain_rows):raise ValueError('Assistant assessment lacks decisions or reasons')
+ primary=run_corrective.load(output/'adapter-final-screen.json');domain=run_corrective.load(output/'adapter-domain-screen.json')
+ accepted=(primary['expected_citations']==12 and sum(r['pass'] for r in primary_rows)>=11 and all(r['pass'] for q,r in zip(questions,primary_rows) if q['critical_boundary']) and domain['expected_citations']==8 and sum(r['pass'] for r in domain_rows)>=7 and all(r['pass'] for q,r in zip(auxiliary,domain_rows) if q['critical_boundary']))
+ if accepted!=(assessment['status']=='accepted_on_registered_benchmark'):raise ValueError('Acceptance claim disagrees with recorded decisions')
  if assessment['predictions_sha256']!=verify_grounded.sha(output/'adapter-final-test.jsonl'):raise ValueError('Assessment prediction mismatch')
  return {'status':'pass','assessment_status':assessment['status'],'scope':'Integrity and recomputed lexical screens; assistant assessment is not independent expert review.'}
 

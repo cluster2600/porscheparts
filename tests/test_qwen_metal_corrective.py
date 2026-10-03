@@ -19,6 +19,10 @@ class CorrectiveTest(unittest.TestCase):
   self.assertEqual(manifest['train_rows'],191)
   self.assertFalse(set(manifest['training_sources'])&set(manifest['final_test_sources']))
   self.assertEqual(manifest['final_test_count'],12)
+ def test_incomplete_final_predictions_are_rejected(self):
+  evaluator=module('evaluate_corrective')
+  with self.assertRaisesRegex(ValueError,'Predictions missing'):
+   evaluator.screen([{'id':'missing'}],[])
  def test_missing_value_with_guessed_temperature_fails_screen(self):
   evaluator=module('evaluate_corrective')
   q={'id':'probe','passage_id':'[NEW_WAAM:p45]','required_groups':[['ne','pas']],'critical_boundary':True}

@@ -7,6 +7,13 @@ tools plus a future QLoRA configuration. Expert review remains pending.
 The [v2 formatting guide](FORMATTING.md) and `formatted-v2/` remain historical
 exports, including the correction to v1's Ti-6Al-4V snapshot/attribution.
 
+The [compact Qwen3 trial](COMPACT_QWEN3.md) has been trained and evaluated;
+its [raw final results](runs/qwen3-compact-001/RESULTS.md) are explicitly rejected
+(10/12 primary, 7/8 supplemental). The [precision iteration](PRECISION_QWEN3.md)
+adds a factual curriculum and newly registered untouched test paragraphs.
+No failed trial is promoted as a successful model; independent review remains
+pending.
+
 Owner-requested preparation of the multilingual research corpus, 2 October 2026.
 The v1/v2/v3 preparation releases remain historical, frozen inputs. A separate
 [CPU BF16 LoRA pilot](CPU_PILOT.md) has now trained a new adapter against the

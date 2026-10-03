@@ -44,7 +44,8 @@ assessment before generating any final-test prediction.
 
 Final acceptance requires all 12 expected citations, at least 11/12 answers
 passing passage-by-passage assistant assessment and no invented qualification,
-unsupported certified parameter or failed critical boundary. Automated keyword
+unsupported certified parameter or failed critical boundary. The additional domain check requires 8/8 citations, at least 7/8 passage
+assessments and no failed critical boundary. Automated keyword
 screens are reported separately; independent expert scores remain blank.
 If the final test fails, retire it into development and register a fresh held-out
 benchmark before another selection cycle. Do not tune against the same final

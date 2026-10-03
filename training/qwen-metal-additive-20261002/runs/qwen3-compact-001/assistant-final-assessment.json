@@ -1,0 +1,120 @@
+{
+  "status": "failed_registered_benchmark",
+  "predictions_sha256": "9310e0b433f74e58a777ffd728cbce2dece3fb2656a3f288cc36eb9c56892f76",
+  "domain_predictions_sha256": "9d81c08e48df1ffd80db6535ceb08c8d0ddeb18579fab0cc5d428d4366a2b2ba",
+  "primary_rows": [
+    {
+      "id": "fresh-01",
+      "pass": true,
+      "reason": "COMET FE framework and temperature inputs correct."
+    },
+    {
+      "id": "fresh-02",
+      "pass": true,
+      "reason": "Incomplete transformations and initial phase fractions correct."
+    },
+    {
+      "id": "fresh-03",
+      "pass": false,
+      "reason": "Correct substrate thickness, but adds a categorical thickness-to-compression/tension cause not established by the passage."
+    },
+    {
+      "id": "fresh-04",
+      "pass": true,
+      "reason": "Reference-fluid and local-surface temperatures correct."
+    },
+    {
+      "id": "fresh-05",
+      "pass": false,
+      "reason": "Core short/long cooling contrast correct, but translates deposited molten beads as droplets, changing the physical entity."
+    },
+    {
+      "id": "fresh-06",
+      "pass": true,
+      "reason": "Correctly refuses missing certified preheat and preserves absent material/thickness relationship."
+    },
+    {
+      "id": "fresh-07",
+      "pass": true,
+      "reason": "Manufacturing and post-processing heat-treatment loads correct."
+    },
+    {
+      "id": "fresh-08",
+      "pass": true,
+      "reason": "Chinese correctly refuses a certified optimum absent from excerpt."
+    },
+    {
+      "id": "fresh-09",
+      "pass": true,
+      "reason": "Initial phase fractions correctly accompany incomplete transformations."
+    },
+    {
+      "id": "fresh-10",
+      "pass": true,
+      "reason": "Scientifically correct German answer; grammatical gender error remains."
+    },
+    {
+      "id": "fresh-11",
+      "pass": true,
+      "reason": "Correctly rejects fatigue qualification from COMET implementation alone."
+    },
+    {
+      "id": "fresh-12",
+      "pass": true,
+      "reason": "Correctly rejects automatic Ti6Al4V-to-copper validation."
+    }
+  ],
+  "domain_rows": [
+    {
+      "id": "heat-01",
+      "pass": true,
+      "reason": "Correct value and unit 400 W/(m·K)."
+    },
+    {
+      "id": "heat-02",
+      "pass": true,
+      "reason": "Correctly rejects batch certification from a reference value."
+    },
+    {
+      "id": "heat-03",
+      "pass": true,
+      "reason": "Correctly rejects universal power improvement and retains excessive-power defects."
+    },
+    {
+      "id": "heat-04",
+      "pass": true,
+      "reason": "Convection/radiation/evaporation and approximately 20% loss correct."
+    },
+    {
+      "id": "heat-05",
+      "pass": true,
+      "reason": "Observed density/conductivity trend tied to the cited study; causal wording could be more cautious."
+    },
+    {
+      "id": "heat-06",
+      "pass": true,
+      "reason": "Room-temperature and d50 condition preserved."
+    },
+    {
+      "id": "heat-07",
+      "pass": true,
+      "reason": "Correct refusal of a 1500°C guarantee; only at room temperature should be reported at room temperature."
+    },
+    {
+      "id": "heat-08",
+      "pass": false,
+      "reason": "Marangoni identified, but pression de réaction mistranslates recoil pressure; exact term is pression de recul."
+    }
+  ],
+  "primary_passes": 10,
+  "domain_passes": 7,
+  "critical_boundaries_passed": 7,
+  "base_primary_passes": 10,
+  "lora_improvement_proven": false,
+  "reviewers": [
+    "root assistant",
+    "pipeline_review assistant peer"
+  ],
+  "independent_expert_validated": false,
+  "interpretation": "Strict passage-by-passage assistant assessment; no statistical or human-expert validation. Test now retired for further development; never reused as untouched evaluation."
+}

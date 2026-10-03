@@ -6,6 +6,7 @@ import verify_grounded
 HERE=Path(__file__).resolve().parent
 
 def screen(questions,predictions):
+ if len(questions)!=len(predictions) or [q['id'] for q in questions]!=[r['id'] for r in predictions]:raise ValueError('Predictions missing or out of order')
  result=[]
  for q,r in zip(questions,predictions):
   response=r['response'].casefold()
