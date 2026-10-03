@@ -1,10 +1,10 @@
 # Horizontal 935 cooling-system input matrix
 
-Published planning package, October 3, 2026. The complete original engine/system
-research bundle is pending; coverage remains partial. No public research was
-repeated, no incomplete incoming brief was ingested, and no physics solver was
-launched. This is an input/dependency contract, not a reconstruction or a validated
-digital twin.
+Published planning and evidence package, October 3, 2026. The verified
+[forty-language public synthesis](research/CONSOLIDATED_REPORT.md) is integrated
+with this input contract. Bounded language passes are complete; engine-data
+coverage remains partial. No additional public search or physics solver was
+launched for this integration. No physical digital-twin validation is claimed.
 
 [Repository home](../../README.md) · [Related 993 impeller program](../993-engine-cooling-fan-system-f0/README.md) · [Research coverage and intake](research/README.md)
 
@@ -15,7 +15,10 @@ template. The [existing-evidence register](data/existing-evidence.json) distingu
 verified local artifacts from physical claims about a particular 935.
 The register uses public repository paths, immutable commit URLs and SHA-256
 receipts; local paths and duplicate artifact snapshots are excluded. These are
-previous project artifacts, not the awaited new multilingual fact bundle.
+previous project artifacts, separate from the newly received public synthesis.
+The [research index](research/README.md) links the four unchanged public views,
+[all 50 requirements to relevant ledger records](research/matrix-crosswalk.json),
+[coverage](research/coverage.json) and [import provenance](research/import-manifest.json).
 
 ## First model versus complete coupling
 
@@ -91,7 +94,7 @@ revision records; K3, K4 and replicas are not single interchangeable assemblies.
 |---|---|---|
 | `factory_935_1976` | Factory 935 / 1976 | Exact engine revision, horizontal arrangement, drive and cooling circuits unresolved here |
 | `factory_935_1977` | Factory 935 / 1977 | Separate claims and conditions; no automatic 1976 or 1978 inheritance |
-| `factory_935_1978_moby_dick` | Factory 935 / 1978 / Moby Dick | Separate exact-variant sources needed; architecture not filled from a partial brief |
+| `factory_935_1978_moby_dick` | Factory 935 / 1978 / Moby Dick | Separate exact-variant sources needed; reported architecture retained in the ledger; no automatic matrix admission |
 | `kremer_k3` | Kremer K3 | Engine/build revision and circuits must be evidenced independently |
 | `kremer_k4` | Kremer K4 | Separate from K3 and factory specifications |
 | `replica_declared_build` | Individually declared replica | Record actual engine, drive and cooling configuration plus intended reference; no assumption of factory equivalence |
@@ -157,10 +160,14 @@ engine data would not by itself make that mesh admissible.
 
 ## Complete-bundle admission and next inputs
 
-No partial multilingual research briefs have been ingested. On receipt of the
-complete bundle, retain its original manifest and hashes, then create claims
-with source locators, original/canonical units, conversion, exact variant and
-engine/assembly revision, conditions, uncertainty, conflicts and accepted scope.
+The four public synthesis files are preserved byte for byte with an import
+manifest; original per-lane reports and source caches remain private. Their
+535 source/access records and 418 claim observations include exclusions and
+gaps. The ledger contains 143 parameter/gap entries, including 66 explicit
+nulls; all automatic admission and physical-validation flags remain false.
+For any future engineering admission, retain source locators, original/canonical
+units, conversion, exact variant and engine/assembly revision, conditions,
+uncertainty, conflicts and accepted scope.
 Repetition of the same publisher or a photograph does not independently confirm
 a quantity. Keep unsupported values null, and conflicts separate rather than
 averaged. Reuse claims across variants only after an explicit applicability
@@ -183,5 +190,7 @@ Run `python3 twins/935-horizontal-cooling-system/source/check_input_matrix.py`
 from the repository root, then `make check`. The checker verifies CSV/JSON
 agreement, unique IDs, acyclic dependencies, variant separation, legacy
 parameter references, immutable public evidence pointers and empty physical-
-claim fields. Unit tests cover admission and provenance failures. These checks
+claim fields, four-view digests, source/claim references, bounded language
+coverage, null gaps and navigation-only crosswalks. Unit tests cover admission,
+provenance, publication privacy and digest failures. These checks
 launch no physics solver and establish no physical 935 parameter value.

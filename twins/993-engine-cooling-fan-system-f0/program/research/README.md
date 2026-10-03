@@ -3,8 +3,8 @@
 [Impeller program](../../README.md) · [English synthesis](SYNTHESIS.md) · [Complete index](source-index.json) · [Integration rules](INTEGRATION.md)
 
 The separate [935 engine/horizontal cooling-system intake](../../../935-horizontal-cooling-system/research/README.md)
-contains the 50-entry input matrix and tracks the new research wave. Its original
-bundle is pending and coverage is partial; the four historical lanes below are
+contains the 50-entry input matrix and four verified public synthesis views from
+40 bounded language passes. Engine-data coverage remains partial; the four historical lanes below are
 a separate earlier delivery.
 
 All four research deliveries from October 3, 2026 are integrated: **20 original

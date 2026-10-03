@@ -4,7 +4,7 @@
 
 [Multilingual 911 / 935 / 993 research: sources, parameters and contradictions](program/research/README.md)
 
-[935 horizontal system: variant-resolved engine inputs and incomplete research coverage](../935-horizontal-cooling-system/README.md).
+[935 horizontal system: 40-language evidence, variant-resolved inputs and remaining gaps](../935-horizontal-cooling-system/README.md).
 This is a separate target; 993 inputs and the unscaled scan are not admitted as 935 data.
 
 **Status on October 3, 2026: exploratory studies; no validated part.** The scan
