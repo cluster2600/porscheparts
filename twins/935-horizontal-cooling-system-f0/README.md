@@ -97,6 +97,16 @@ surfaces distinctes et protections des entrées/sorties. Six cas CLI natifs
 ont vérifié export ouvert, rejet de valeurs non finies/indices invalides/
 records inconnus, contrôle SHA et refus d'écrasement.
 
+## Reconstruction visuelle fermée du rotor
+
+Le programme [photo_guided_surface_repair.py](source/photo_guided_surface_repair.py)
+construit une surface privée étanche avec Screened Poisson à partir du scan
+préparé et des photos publiques de flat fans. Il protège l'empreinte d'entrée,
+interdit toute sortie hors de `work/`, vérifie fermeture/orientation et écarte
+la poussière de reconstruction. La [fiche de réparation](../../docs/research/935-horizontal-cooling/PHOTO_GUIDED_REPAIR.md)
+enregistre les sources, le résultat et les limites : c'est une réparation
+visuelle, jamais une interface ou une géométrie prête au calcul.
+
 ## Prochaine preuve à obtenir
 
 Il faut identifier la variante, établir l'échelle sur deux cotes indépendantes
