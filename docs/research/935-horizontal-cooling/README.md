@@ -132,6 +132,16 @@ lecture de la fiche FIA 645 et de l'Annexe J 1976, les cotes PET 993 et les
 informations des fabricants de reproductions. Le [registre](dimensions.json)
 conserve chaque valeur avec sa portée et ses limites.
 
+Le [relevé des matières](MATERIALS.md) distingue carters d'entraînement 935
+usine en magnésium rapportés par l'atelier, reproductions aluminium et 7075,
+conduits composites, ainsi que les applications Carrera/Turbo et les rechanges
+993. Ces sources ne constituent pas une identification matière des deux OBJ.
+
+Le [dossier de fabrication additive](ADDITIVE_MATERIALS.md) enregistre les
+trois familles choisies par le propriétaire : aluminium, magnésium et titane.
+Les premiers candidats sont AlSi10Mg, WE43 et Ti64, à comparer séparément
+pour chaque pièce et procédé des versions améliorées 993 et 935.
+
 ## Préparation exécutée
 
 Les deux scans ont été préparés en privé et importés dans le noyau natif

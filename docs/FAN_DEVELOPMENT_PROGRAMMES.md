@@ -46,6 +46,16 @@ les températures correspondantes lorsque les charges thermiques sont connues.
 Les mesures et les calculs doivent résoudre les gains au-delà de leurs
 incertitudes. Aucun pourcentage de gain n'est fixé avant la référence mesurée.
 
+Le propriétaire a retenu trois familles pour la fabrication additive des
+versions améliorées : aluminium, magnésium et titane. Le
+[dossier matière et procédé](research/935-horizontal-cooling/ADDITIVE_MATERIALS.md)
+documente AlSi10Mg, WE43 et Ti64 comme candidats de départ. Le choix est
+propre à chaque pièce et ne découle pas de la matière historique.
+
+Le [rapport comparatif des alliages](../twins/fan-alloy-comparison-f0/README.md)
+présente les calculs masse, inertie et centrifuge sur le rotor paramétrique
+993, ainsi que les essais PicoGK de reconstruction volumique du scan 935.
+
 | Levier d'amélioration | Effet à étudier | Contraintes à vérifier |
 |---|---|---|
 | Sections, corde, cambrure, vrillage et extrémités de pales | Débit, pression, rendement, recirculation et bruit | Racines, épaisseurs, centrifuge, jeu et fabrication |

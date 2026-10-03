@@ -73,6 +73,11 @@ diamètre de pointe, de la masse du rotor nu ou d'une pièce 935.
 
 ## 935 : détails constructifs et cotes encore manquantes
 
+Le [relevé des matières](MATERIALS.md) complète cette section : Jim Torres
+décrit les carters métalliques usine en magnésium, puis ses reproductions en
+aluminium. Cette observation concerne les carters d'entraînement ; elle ne
+donne pas la matière du rotor 935 du propriétaire.
+
 [Jim Torres Racing](https://jimtorresracing.com/for-sale/reproduction-flat-fan)
 décrit sa reproduction avec carters coulés en aluminium, rotor usiné en
 aluminium 7075, arbre de distribution d'huile, boulon banjo long et conduite
