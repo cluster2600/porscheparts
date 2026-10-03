@@ -79,6 +79,21 @@ class ScreenContractTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 module.load_inputs(root)
 
+    def test_static_decks_define_the_node_set_used_for_displacements(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            base = root / "base.inp"
+            base.write_text("*NODE\n1,0,0,0\n", encoding="utf-8")
+            cards = {"poisson_ratio_common_assumed": 0.3, "materials": [{
+                "id": "alsi10mg", "young_modulus_GPa": 70.0, "density_g_cm3": 2.67,
+            }]}
+            scenario = {"loads": {"static_rpm": 8500.0}}
+            mesh = {"fixed_ids": [1], "all_node_ids": [1, 2, 3]}
+            module.prepare_decks(base, mesh, cards, scenario, root / "cases")
+            deck = (root / "cases" / "alsi10mg" / "rotor.inp").read_text(encoding="utf-8")
+            self.assertIn("*NSET,NSET=NALL\n1,2,3\n", deck)
+            self.assertIn("*NODE PRINT,NSET=NALL\nU", deck)
+
     def test_readme_has_no_fabrication_or_fitment_claim(self):
         text = (SCREEN / "README.md").read_text().lower()
         self.assertIn("pas le scan privé", text)

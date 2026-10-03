@@ -164,7 +164,7 @@ def build_base_deck(stl_path: Path, out: Path, bore_radius: float) -> dict:
             raise ValueError("expected quadratic tets and bore node set")
         return {"quadratic_tetrahedra": int(len(element_tags[0])), "nodes": int(len(tags)),
                 "bore_fixed_nodes": int(len(fixed)), "minimum_jacobian": float(min(determinants)),
-                "fixed_ids": [int(x) for x in fixed]}
+                "fixed_ids": [int(x) for x in fixed], "all_node_ids": [int(x) for x in tags]}
     finally:
         gmsh.finalize()
 
@@ -182,6 +182,9 @@ def prepare_decks(base: Path, mesh: dict, cards: dict, scenario: dict, cases: Pa
         header = raw + "\n*NSET,NSET=BORE\n"
         ids = mesh["fixed_ids"]
         header += "\n".join(",".join(str(value) for value in ids[index:index + 12]) for index in range(0, len(ids), 12)) + "\n"
+        header += "*NSET,NSET=NALL\n"
+        ids = mesh["all_node_ids"]
+        header += "\n".join(",".join(str(value) for value in ids[index:index + 12]) for index in range(0, len(ids), 12)) + "\n"
         header += ("*MATERIAL,NAME=SCREEN\n*ELASTIC\n"
                    f"{float(card['young_modulus_GPa']) * 1000.0:.12g},{float(cards['poisson_ratio_common_assumed']):.12g}\n"
                    "*DENSITY\n"
@@ -189,7 +192,7 @@ def prepare_decks(base: Path, mesh: dict, cards: dict, scenario: dict, cases: Pa
                    "*SOLID SECTION,ELSET=ROTOR,MATERIAL=SCREEN\n*BOUNDARY\nBORE,1,3\n")
         static = header + ("*STEP\n*STATIC\n*DLOAD\n"
                            f"ROTOR,CENTRIF,{omega2:.12g},0,0,0,0,0,1\n"
-                           "*NODE PRINT,NSET=Nall\nU\n*EL PRINT,ELSET=ROTOR\nS\n*END STEP\n")
+                           "*NODE PRINT,NSET=NALL\nU\n*EL PRINT,ELSET=ROTOR\nS\n*END STEP\n")
         modal = header + "*STEP\n*FREQUENCY\n12\n*END STEP\n"
         (case / "rotor.inp").write_text(static, encoding="utf-8")
         (case / "modal.inp").write_text(modal, encoding="utf-8")
