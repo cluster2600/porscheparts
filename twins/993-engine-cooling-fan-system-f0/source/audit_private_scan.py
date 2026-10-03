@@ -60,6 +60,37 @@ def read_obj(path):
     return v, f, sorted(ignored)
 
 
+def boundary_graph_summary(boundary_edges):
+    """Separate simple boundary cycles from pinched or branching contours."""
+    adjacency = {}
+    for a, b in boundary_edges.tolist():
+        adjacency.setdefault(a, []).append(b)
+        adjacency.setdefault(b, []).append(a)
+    remaining = set(adjacency)
+    components = []
+    while remaining:
+        pending = [remaining.pop()]
+        members = []
+        while pending:
+            vertex = pending.pop()
+            members.append(vertex)
+            for neighbor in adjacency[vertex]:
+                if neighbor in remaining:
+                    remaining.remove(neighbor)
+                    pending.append(neighbor)
+        degrees = [len(adjacency[vertex]) for vertex in members]
+        components.append({"vertices": len(members), "edges": sum(degrees) // 2,
+                           "simple_cycle": all(degree == 2 for degree in degrees),
+                           "endpoints": sum(degree == 1 for degree in degrees),
+                           "branch_vertices": sum(degree > 2 for degree in degrees)})
+    components.sort(key=lambda component: component["edges"], reverse=True)
+    return {"connected_contours": len(components),
+            "simple_cycles": sum(component["simple_cycle"] for component in components),
+            "branch_vertices": sum(component["branch_vertices"] for component in components),
+            "contours": components,
+            "cycles_are_not_classified_as_missing_surface_holes": True}
+
+
 def audit(path):
     vertices, faces, ignored = read_obj(path)
     edges = np.concatenate((faces[:, [0, 1]], faces[:, [1, 2]], faces[:, [2, 0]]))
@@ -85,6 +116,7 @@ def audit(path):
         "pca_extents_source_units": np.ptp(pca, axis=0).tolist(),
         "pca_is_rigid_visual_diagnostic_not_a_measured_datum": True,
         "boundary_edges": int(np.sum(count == 1)), "nonmanifold_edges": int(np.sum(count > 2)),
+        "boundary_graph": boundary_graph_summary(unique[count == 1]),
         "inconsistent_two_face_edges": int(np.sum((count == 2) & (sums != 0))),
         "watertight_edge_topology": bool(np.all(count == 2)),
         "duplicate_faces": int(len(faces) - len(np.unique(np.sort(faces, axis=1), axis=0))),

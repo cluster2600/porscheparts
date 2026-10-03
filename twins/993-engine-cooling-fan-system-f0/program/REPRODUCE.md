@@ -96,7 +96,7 @@ CalculiX 2.17 a été utilisé, image existante
 `sha256:1dc508c2bfab4d9911707fbfd9cacdf43faf84956a1502805194e3e70e18ae68`.
 Le jeu exact suffit à refaire ce calcul sans scan. Pour préparer un autre cas à
 partir d'un **jeu centrifuge audité du même modèle**, employer
-`source/prepare_modal_screen.py SOURCE_INP NEW_DIRECTORY --modes 12`.
+`twins/993-engine-cooling-fan-system-f0/source/prepare_modal_screen.py SOURCE_INP NEW_DIRECTORY --modes 12`.
 Cela produit des modes non précontraints ; ne pas les appeler Campbell.
 
 ## LPBF et asset OpenUSD

@@ -32,6 +32,15 @@ class PrivateScanTests(unittest.TestCase):
         self.assertFalse(report["solver_ready"])
         self.assertIsNone(report["units"])
 
+    def test_pinched_contour_is_not_a_simple_hole(self):
+        report = self.run_obj("v 0 0 0\nv 1 0 0\nv 0 1 0\nv -1 0 0\nv 0 -1 0\nf 1 2 3\nf 1 4 5\n")
+        self.assertEqual(report["nonmanifold_edges"], 0)
+        graph = report["boundary_graph"]
+        self.assertEqual(graph["connected_contours"], 1)
+        self.assertEqual(graph["simple_cycles"], 0)
+        self.assertEqual(graph["branch_vertices"], 1)
+        self.assertTrue(graph["cycles_are_not_classified_as_missing_surface_holes"])
+
     def test_closed_tetrahedron_does_not_establish_identity(self):
         report = self.run_obj("v 0 0 0\nv 1 0 0\nv 0 1 0\nv 0 0 1\nf 1 3 2\nf 1 2 4\nf 2 3 4\nf 3 1 4\n")
         self.assertTrue(report["watertight_edge_topology"])

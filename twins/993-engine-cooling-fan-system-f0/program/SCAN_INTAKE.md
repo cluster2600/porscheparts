@@ -80,3 +80,19 @@ mesurés, puis enregistrer rigidement les prises avec transformation et erreur
 de correspondance. Sans ces correspondances, un ICP automatique risquerait
 d'ajuster deux surfaces physiquement différentes. Aucun alignement arrière
 fonctionnel n'est inventé.
+
+## Contours ouverts ensuite inspectés
+
+Le graphe des arêtes de bord originales comporte **48 contours**, tous des
+cycles simples, sans embranchement. Après retrait des triangles nuls, la copie
+compte **58 cycles** et **8 657 arêtes de bord** : retirer une face invalide peut
+exposer de nouvelles arêtes. L'auditeur conserve la liste des tailles de contours
+dans les rapports privés et un test synthétique distingue les contours pincés
+des cycles simples. Les comptes d'arêtes à plus de deux faces ne suffisent donc
+pas, seuls, à caractériser les contours.
+
+Un cycle topologique n'est pas automatiquement un trou à reboucher : il peut
+correspondre à une ouverture réelle, une frontière de prise de vue ou une
+surface manquante. Les rapports ne publient ni positions ni maillage et ne
+classent aucun contour sans observation de la pièce. La fermeture volumique et
+le recalage relatif des composantes restent à effectuer avec ces références.

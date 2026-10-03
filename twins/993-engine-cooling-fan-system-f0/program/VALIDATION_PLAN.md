@@ -53,8 +53,12 @@ Le [cadre NASA](https://www.grc.nasa.gov/www/wind/valid/tutorial/verassess.html)
 sépare convergence itérative, conservation et convergence spatiale/temporelle.
 
 La poursuite des deux cas de plus de huit millions de cellules n'est pas
-lancée : pas de nouvelle location autorisée, Kali disponible avec environ
-15 GiB par hôte, et aucune preuve de mémoire suffisante pour ces mêmes cas.
+lancée. Le worker historique #105 reste joignable en lecture, sans solveur
+actif ; les répertoires complets occupent environ **7,2 GiB chacun** et ne sont
+pas archivés intégralement par cette mission. La récupération des champs et la
+reprise ou libération de ce worker doivent être coordonnées avec la campagne
+qui le possède. Aucune nouvelle location n'est autorisée. Kali est disponible
+avec environ 15 GiB par hôte, sans preuve de mémoire suffisante pour ces mêmes cas.
 Définir un pilote plus petit traçable et vérifier sa fidélité serait une étape
 de récupération numérique ; il ne résoudrait pas les interfaces manquantes.
 
