@@ -1,7 +1,10 @@
 # Système horizontal 935 — préparation de la référence
 
 Étape du 3 octobre 2026 : deux scans préparés et passés par PicoGK, exigences
-d'interfaces définies, recherche dimensionnelle poursuivie. La référence
+d'interfaces définies, recherche dimensionnelle poursuivie, puis
+[base exécutable du jumeau système](SYSTEM_TWIN.md) : registre complet des
+fonctions, graphe OpenUSD, six modèles réduits et comparaison aux mesures.
+La référence
 fonctionnelle, les améliorations et le jumeau calibré restent à construire.
 
 ## Contrat indépendant avant reconstruction

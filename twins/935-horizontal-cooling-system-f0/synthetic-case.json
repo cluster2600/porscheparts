@@ -1,0 +1,301 @@
+{
+  "id": "synthetic-two-branch-witness-not-a-935",
+  "purpose": "synthetic_verification",
+  "specimen_id": null,
+  "evidence": [
+    {
+      "id": "SYNTHETIC-ANALYTIC",
+      "kind": "synthetic_fixture",
+      "locator": "chosen arithmetic fixture; no physical specimen",
+      "sha256": null
+    }
+  ],
+  "parameters": {
+    "engine_rpm": {
+      "value": 1000,
+      "unit": "rpm",
+      "uncertainty": 0,
+      "evidence_ids": [
+        "SYNTHETIC-ANALYTIC"
+      ]
+    },
+    "belt_speed_ratio": {
+      "value": 2,
+      "unit": "1",
+      "uncertainty": 0,
+      "evidence_ids": [
+        "SYNTHETIC-ANALYTIC"
+      ]
+    },
+    "belt_slip_fraction": {
+      "value": 0,
+      "unit": "1",
+      "uncertainty": 0,
+      "evidence_ids": [
+        "SYNTHETIC-ANALYTIC"
+      ]
+    },
+    "gear_speed_ratio": {
+      "value": 0.5,
+      "unit": "1",
+      "uncertainty": 0,
+      "evidence_ids": [
+        "SYNTHETIC-ANALYTIC"
+      ]
+    },
+    "rotor_diameter": {
+      "value": 0.2,
+      "unit": "m",
+      "uncertainty": 0,
+      "evidence_ids": [
+        "SYNTHETIC-ANALYTIC"
+      ]
+    },
+    "blade_count": {
+      "value": 10,
+      "unit": "1",
+      "uncertainty": 0,
+      "evidence_ids": [
+        "SYNTHETIC-ANALYTIC"
+      ]
+    },
+    "rotor_inertia": {
+      "value": 0.01,
+      "unit": "kg*m2",
+      "uncertainty": 0,
+      "evidence_ids": [
+        "SYNTHETIC-ANALYTIC"
+      ]
+    },
+    "rotor_acceleration": {
+      "value": 10,
+      "unit": "rad/s2",
+      "uncertainty": 0,
+      "evidence_ids": [
+        "SYNTHETIC-ANALYTIC"
+      ]
+    },
+    "residual_unbalance": {
+      "value": 1e-05,
+      "unit": "kg*m",
+      "uncertainty": 0,
+      "evidence_ids": [
+        "SYNTHETIC-ANALYTIC"
+      ]
+    },
+    "air_density": {
+      "value": 1,
+      "unit": "kg/m3",
+      "uncertainty": 0,
+      "evidence_ids": [
+        "SYNTHETIC-ANALYTIC"
+      ]
+    },
+    "air_cp": {
+      "value": 1000,
+      "unit": "J/(kg*K)",
+      "uncertainty": 0,
+      "evidence_ids": [
+        "SYNTHETIC-ANALYTIC"
+      ]
+    },
+    "branch_inlet_temperature": {
+      "value": 20,
+      "unit": "degC",
+      "uncertainty": 0,
+      "evidence_ids": [
+        "SYNTHETIC-ANALYTIC"
+      ]
+    },
+    "common_resistance": {
+      "value": 5,
+      "unit": "Pa*s2/m6",
+      "uncertainty": 0,
+      "evidence_ids": [
+        "SYNTHETIC-ANALYTIC"
+      ]
+    },
+    "drive_efficiency": {
+      "value": 0.8,
+      "unit": "1",
+      "uncertainty": 0,
+      "evidence_ids": [
+        "SYNTHETIC-ANALYTIC"
+      ]
+    },
+    "input_pulley_pitch_radius": {
+      "value": 0.05,
+      "unit": "m",
+      "uncertainty": 0,
+      "evidence_ids": [
+        "SYNTHETIC-ANALYTIC"
+      ]
+    },
+    "thermal_step": {
+      "value": 1,
+      "unit": "s",
+      "uncertainty": 0,
+      "evidence_ids": [
+        "SYNTHETIC-ANALYTIC"
+      ]
+    },
+    "map_rotor_rpm": {
+      "value": 1000,
+      "unit": "rpm",
+      "uncertainty": 0,
+      "evidence_ids": [
+        "SYNTHETIC-ANALYTIC"
+      ]
+    },
+    "map_air_density": {
+      "value": 1,
+      "unit": "kg/m3",
+      "uncertainty": 0,
+      "evidence_ids": [
+        "SYNTHETIC-ANALYTIC"
+      ]
+    },
+    "fan_map": {
+      "value": [
+        [
+          0,
+          200,
+          0.5
+        ],
+        [
+          2,
+          0,
+          0.5
+        ]
+      ],
+      "unit": "Q_m3_s,dp_total_total_Pa,eta_total_total",
+      "uncertainty": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "evidence_ids": [
+        "SYNTHETIC-ANALYTIC"
+      ]
+    }
+  },
+  "pressure_basis": "total_to_total",
+  "pressure_stations": [
+    "synthetic_fan_inlet_total",
+    "synthetic_fan_outlet_total"
+  ],
+  "air_topology_confirmed": true,
+  "air_topology_evidence_ids": [
+    "SYNTHETIC-ANALYTIC"
+  ],
+  "branches": [
+    {
+      "id": "synthetic-A",
+      "role": "cooled_zone",
+      "parameters": {
+        "resistance": {
+          "value": 180,
+          "unit": "Pa*s2/m6",
+          "uncertainty": 0,
+          "evidence_ids": [
+            "SYNTHETIC-ANALYTIC"
+          ]
+        },
+        "solid_heat_load": {
+          "value": 100,
+          "unit": "W",
+          "uncertainty": 0,
+          "evidence_ids": [
+            "SYNTHETIC-ANALYTIC"
+          ]
+        },
+        "ua": {
+          "value": 10,
+          "unit": "W/K",
+          "uncertainty": 0,
+          "evidence_ids": [
+            "SYNTHETIC-ANALYTIC"
+          ]
+        },
+        "thermal_capacity": {
+          "value": 1000,
+          "unit": "J/K",
+          "uncertainty": 0,
+          "evidence_ids": [
+            "SYNTHETIC-ANALYTIC"
+          ]
+        },
+        "initial_temperature": {
+          "value": 20,
+          "unit": "degC",
+          "uncertainty": 0,
+          "evidence_ids": [
+            "SYNTHETIC-ANALYTIC"
+          ]
+        }
+      }
+    },
+    {
+      "id": "synthetic-B",
+      "role": "cooled_zone",
+      "parameters": {
+        "resistance": {
+          "value": 180,
+          "unit": "Pa*s2/m6",
+          "uncertainty": 0,
+          "evidence_ids": [
+            "SYNTHETIC-ANALYTIC"
+          ]
+        },
+        "solid_heat_load": {
+          "value": 200,
+          "unit": "W",
+          "uncertainty": 0,
+          "evidence_ids": [
+            "SYNTHETIC-ANALYTIC"
+          ]
+        },
+        "ua": {
+          "value": 10,
+          "unit": "W/K",
+          "uncertainty": 0,
+          "evidence_ids": [
+            "SYNTHETIC-ANALYTIC"
+          ]
+        },
+        "thermal_capacity": {
+          "value": 1000,
+          "unit": "J/K",
+          "uncertainty": 0,
+          "evidence_ids": [
+            "SYNTHETIC-ANALYTIC"
+          ]
+        },
+        "initial_temperature": {
+          "value": 20,
+          "unit": "degC",
+          "uncertainty": 0,
+          "evidence_ids": [
+            "SYNTHETIC-ANALYTIC"
+          ]
+        }
+      }
+    }
+  ],
+  "scope_exclusions": [
+    "rotating_3d_cfd",
+    "elastic_and_contact_fea",
+    "gear_tooth_rating",
+    "bearing_life",
+    "coupled_rotordynamics",
+    "lubrication_flow",
+    "manufacturing_qualification"
+  ]
+}
