@@ -19,7 +19,8 @@ géométrie, son hash, sa variante, ses unités, son runtime et ses conditions.
 Mesurer les datums rotor/moyeu/roulement, portées et faces, entraxes et diamètres
 de perçages, empilage cône/entretoises/poulies et faux-rond. Résoudre les
 divergences documentées sur le moyeu 96410605131. Identifier le kit d'entraînement
-PMB 240 A, rapport moteur/ventilateur/alternateur, signe de rotation et enveloppe
+selon la variante d'alternateur à sélectionner (175 A / 240 A et autres montages
+documentés), rapport moteur/ventilateur/alternateur, signe de rotation et enveloppe
 de vitesses/overspeed. Aucun rapport n'est supposé solidaire. Tracer la reprise
 des charges centrifuges, couple d'entraînement, courroie, appuis et dilatation.
 
@@ -53,11 +54,13 @@ Le [cadre NASA](https://www.grc.nasa.gov/www/wind/valid/tutorial/verassess.html)
 sépare convergence itérative, conservation et convergence spatiale/temporelle.
 
 La poursuite des deux cas de plus de huit millions de cellules n'est pas
-lancée. Le worker historique #105 reste joignable en lecture, sans solveur
-actif ; les répertoires complets occupent environ **7,2 GiB chacun** et ne sont
-pas archivés intégralement par cette mission. La récupération des champs et la
-reprise ou libération de ce worker doivent être coordonnées avec la campagne
-qui le possède. Aucune nouvelle location n'est autorisée. Kali est disponible
+lancée. Le worker historique a été supprimé par une autre tâche pendant la
+sauvegarde autorisée. Les journaux finaux des deux cas sont conservés ; les
+32 partitions finales du contrôle sont sauvegardées et vérifiées localement.
+Les champs complets du candidat ne sont pas présents dans ce transfert
+interrompu. Vérifier les archives de l'autre tâche avant tout recalcul ; voir
+l'[état de récupération](EXECUTION_20261003.md#sauvegarde-des-champs-finaux).
+Aucune nouvelle location n'est autorisée. Kali est disponible
 avec environ 15 GiB par hôte, sans preuve de mémoire suffisante pour ces mêmes cas.
 Définir un pilote plus petit traçable et vérifier sa fidélité serait une étape
 de récupération numérique ; il ne résoudrait pas les interfaces manquantes.

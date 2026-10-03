@@ -66,6 +66,29 @@ prévoit ni bruit ni charge vibratoire résolue. La qualité pariétale et
 l'indépendance au maillage ne sont pas qualifiées. Aucun nouveau rendu de champ
 CFD n'est fabriqué à partir de ces moyennes.
 
+### Sauvegarde des champs finaux
+
+Une sauvegarde des deux répertoires complets a été autorisée vers le Mac.
+Le worker a été supprimé par une autre tâche avant la fin du transfert.
+Le flux comprimé original interrompu est préservé localement ; il ne constitue
+pas une archive complète. L'extraction récupérable a été contrôlée fichier par
+fichier contre le manifeste SHA-256 établi sur le worker avant sa suppression.
+
+Sur 913 fichiers du contrôle, **897 fichiers** sont récupérés et vérifiés,
+dont **256 fichiers sur 256 des 32 partitions à l'itération 2000**, ainsi que
+les maillages et dictionnaires. Seize fichiers sont absents, notamment les
+champs globaux reconstruits à 2000. Un fichier partiel est conservé séparément,
+sans statut vérifié. Aucun des 913 fichiers du candidat n'a été récupéré dans
+ce flux. Ses journaux, intégrales, dictionnaires et résultats finaux avaient
+déjà été sauvegardés dans les reçus ci-dessus.
+
+Une reconstruction du champ global du contrôle depuis les partitions pourrait
+être tentée sans relancer son solveur. Elle n'est pas présentée comme effectuée.
+Vérifier les autres sauvegardes avant toute nouvelle exécution. Ces données
+volumiques et le rapport d'intégrité restent locaux ; aucune donnée du scan
+privé n'est incluse. La perte d'accès au worker ne modifie pas les échecs de
+convergence documentés par les deux journaux natifs.
+
 ## Structure, rotation et modal
 
 Les [résultats centrifuges existants](../results/organic/structure/reference-structure-50k/summary.json)

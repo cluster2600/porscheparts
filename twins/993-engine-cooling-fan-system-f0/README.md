@@ -2,9 +2,12 @@
 
 [Accueil du dépôt](../../README.md) · [Registre du programme](program/program.json) · [Commandes](program/REPRODUCE.md) · [Validation et données manquantes](program/VALIDATION_PLAN.md)
 
+[Recherche documentaire multilingue 911 / 935 / 993 : sources, paramètres et contradictions](program/research/README.md)
+
 **État au 3 octobre 2026 : études exploratoires, aucune pièce validée.** Le scan
 fourni comme « 935 » est retrouvé et audité en privé ; son identité, ses unités,
-sa provenance et les droits sur ses dérivés restent inconnus. L'équivalence avec
+sa calibration et les droits sur ses dérivés restent inconnus ; l'acquisition
+Wolfe Classics est rapportée par les justificatifs privés. L'équivalence avec
 un ventilateur 993 reste une hypothèse. Aucun brut ni dérivé de ce scan n'est publié.
 
 ## Parcours des travaux
@@ -32,7 +35,9 @@ ne devient pas le carter Turbo.
 La reconstruction du 28 septembre cible **993 Turbo M64.60 / 96410601522**, avec
 un diamètre de travail hypothétique de 245 mm et onze pales. Les interfaces du
 moyeu, du carter 99310666750, du cône, des entretoises, des poulies et de
-l'alternateur PMB / Classic Retrofit 240 A restent à mesurer. Les dimensions
+l'alternateur restent à mesurer. Aucun alternateur n'est sélectionné par
+l'utilisateur : 175 A / 240 A restent des alternatives de recherche avec des
+contraintes d'entraînement distinctes. Les dimensions
 d'un alternateur AS-PL ne sont pas celles du PMB. Il n'existe pas de fiche
 catalogue fonctionnelle validée pour cette reconstruction.
 

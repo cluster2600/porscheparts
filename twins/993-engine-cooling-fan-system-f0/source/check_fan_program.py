@@ -10,7 +10,15 @@ FAN = Path(__file__).resolve().parents[1]
 
 
 def check():
+    from check_research_registry import check as check_research
+    check_research()
     program = json.loads((FAN / "program/program.json").read_text())
+    research = json.loads((ROOT / program["research_registry"]).read_text())
+    for field in ("source_records", "distinct_url_groups"):
+        if program["research"][field] != research[field]:
+            raise ValueError("Programme research counts differ from the complete index")
+    if program["research"]["engineering_validation"]:
+        raise ValueError("Programme research is not engineering validation")
     if program["scan_geometry_used_in_new_calculations"] or program["scan"]["raw_or_geometry_derivatives_published"]:
         raise ValueError("Private scan must remain outside published geometry and calculations")
     if program["scan"]["units"] is not None or program["scan"]["scale_verified"] or program["scan"]["equivalence_935_993_verified"]:
