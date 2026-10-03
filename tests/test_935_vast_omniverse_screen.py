@@ -51,6 +51,12 @@ class ScreenContractTests(unittest.TestCase):
         self.assertIn('Path("/opt/ovrtx-app/lib/python3.12/site-packages")', source)
         self.assertIn('if exc.name != "pxr"', source)
 
+    def test_unknown_yield_comparator_is_usd_safe_and_remains_unknown(self):
+        we43 = next(item for item in module.load_inputs(SCREEN)[0]["materials"] if item["id"] == "we43")
+        data = module.material_variant_custom_data(we43)
+        self.assertEqual(data["yieldComparatorStatus"], "not_provided")
+        self.assertNotIn("yieldComparatorMPa", data)
+
     def test_ovrtx_renderer_saves_a_hashed_preview(self):
         class Response:
             def __enter__(self):

@@ -265,6 +265,22 @@ def load_usd_modules():
     return Gf, Usd, UsdGeom, UsdLux
 
 
+def material_variant_custom_data(card: dict) -> dict:
+    """Encode comparison metadata without turning an unknown comparator into a value."""
+    data = {
+        "materialScenario": card["name"],
+        "source": card["source"],
+        "processQualifiedForPart": False,
+        "variantRole": "comparison_only",
+    }
+    if card["yield_comparator_MPa"] is None:
+        data["yieldComparatorStatus"] = "not_provided"
+    else:
+        data["yieldComparatorMPa"] = float(card["yield_comparator_MPa"])
+        data["yieldComparatorStatus"] = "comparison_only"
+    return data
+
+
 def build_usd(out: Path, cards: dict, scenario: dict, geometry: dict, input_contract: dict) -> Path:
     Gf, Usd, UsdGeom, UsdLux = load_usd_modules()
     stage_path = out / "935-horizontal-fan-alloy-screen.usda"
@@ -296,8 +312,7 @@ def build_usd(out: Path, cards: dict, scenario: dict, geometry: dict, input_cont
         variant_set.SetVariantSelection(card["id"])
         with variant_set.GetVariantEditContext():
             prim = UsdGeom.Xform.Define(stage, "/FanAlloyScreen/Proxy").GetPrim()
-            prim.SetCustomData({"materialScenario": card["name"], "source": card["source"], "yieldComparatorMPa": card["yield_comparator_MPa"],
-                                "processQualifiedForPart": False, "variantRole": "comparison_only"})
+            prim.SetCustomData(material_variant_custom_data(card))
             disc = UsdGeom.Cylinder.Define(stage, "/FanAlloyScreen/Proxy/Disc")
             disc.CreateRadiusAttr(outer_radius)
             disc.CreateHeightAttr(disc_t)
