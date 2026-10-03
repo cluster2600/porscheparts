@@ -2,6 +2,11 @@
 
 [Impeller program](../../README.md) · [English synthesis](SYNTHESIS.md) · [Complete index](source-index.json) · [Integration rules](INTEGRATION.md)
 
+The separate [935 engine/horizontal cooling-system intake](../../../935-horizontal-cooling-system/research/README.md)
+contains the 50-entry input matrix and tracks the new research wave. Its original
+bundle is pending and coverage is partial; the four historical lanes below are
+a separate earlier delivery.
+
 The subsequent [material/process corpus](materials-20261003/ADMISSION.md)
 adds eight original files, 143 property records, 25 sources and fourteen open
 target-route process requirements. It has a separate immutable import manifest;
