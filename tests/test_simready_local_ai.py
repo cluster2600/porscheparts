@@ -95,6 +95,7 @@ class SimReadyLocalAiImageTests(unittest.TestCase):
         self.assertIn("ARG PIP_PROGRESS_BAR=off", dockerfile)
         self.assertEqual(dockerfile.count("ADD --link --checksum=sha256:"), 6)
         self.assertIn("ffmpeg", dockerfile)
+        self.assertIn("calculix-ccx", dockerfile)
         self.assertIn("libglu1-mesa", dockerfile)
         self.assertIn("libxft2", dockerfile)
         self.assertIn("libxinerama1", dockerfile)

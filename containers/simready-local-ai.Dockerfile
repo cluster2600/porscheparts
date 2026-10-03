@@ -139,7 +139,7 @@ ADD --link --checksum=sha256:0c859795ad3a627a9b95bcb762e059d5b768a4a36fdd4affeff
     /opt/models/qwen2.5-vl-7b-instruct/model-00005-of-00005.safetensors
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends ffmpeg libglu1-mesa libxft2 libxinerama1 \
+    && apt-get install -y --no-install-recommends calculix-ccx ffmpeg libglu1-mesa libxft2 libxinerama1 \
     && rm -rf /var/lib/apt/lists/* \
     && cp /usr/share/common-licenses/Apache-2.0 "${LOCAL_VLM_PATH}/LICENSE.apache-2.0" \
     && test -f "${LOCAL_VLM_PATH}/LICENSE.apache-2.0" \
