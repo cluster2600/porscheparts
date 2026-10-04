@@ -85,6 +85,12 @@ consécutives. Si D1 ne distingue pas l'effet du solveur linéaire, une sensibil
 commune de longueur de sortie doit être préparée avec ses propres gates CAD et
 maillage avant toute conclusion fine. Aucun de ces lots n'est lancé en arrière-plan.
 Les fenêtres Kali2 doivent être coordonnées avec les travaux FEM indépendants.
+Les [configurations exactes D1 et la politique de fenêtres prospectives](D1_PREPARATION.md)
+sont préparées séparément, sans lancement.
+Les [configurations exactes D1 et la politique de fenêtres prospectives](D1_PREPARATION.md)
+sont préparées séparément, sans lancement.
+Les [configurations exactes D1 et la politique de fenêtres prospectives](D1_PREPARATION.md)
+sont préparées séparément, sans lancement.
 
 Pour reproduire le diagnostic léger depuis les entrées natives privées :
 

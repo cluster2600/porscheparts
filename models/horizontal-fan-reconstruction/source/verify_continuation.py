@@ -37,6 +37,8 @@ def verify(root):
     bad='writeInterval 600;\nfunctions {\n'+''.join(name+' { writeControl timeStep; writeInterval 150; }\n' for name in ['inletFlow','outletFlow','rotorForces'])+'}\n'
     fixed=configure_measurement_cadence(bad,150)
     require(fixed.count('writeInterval 1;')==3 and fixed.count('writeInterval 150;')==1,'Checkpoint cadence must not change telemetry cadence')
+    from verify_d1_preparation import verify as verify_d1
+    verify_d1(root)
     comparison=read('results/lpbf/manufacturing-comparison.json')
     require(len(comparison['cases'])==12,'Twelve declared manufacturing scenarios required')
     require(not any(comparison[k] for k in ['mesh_independence_established','process_calibrated','fabrication_validated','service_validated']),'Unsupported manufacturing qualification')

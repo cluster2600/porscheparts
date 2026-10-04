@@ -7,6 +7,9 @@
 [Revue de qualification de fabrication](MANUFACTURING_REVIEW.md) ·
 [Preuves de la chaîne logicielle](SOFTWARE_CHAIN.md) ·
 [Diagnostic de pression et prochains lots non lancés](PRESSURE_FOLLOWUP.md) ·
+[Préparation exacte D1 et sous-systèmes non mesurés](D1_PREPARATION.md) ·
+[Préparation exacte D1 et sous-systèmes non mesurés](D1_PREPARATION.md) ·
+[Préparation exacte D1 et sous-systèmes non mesurés](D1_PREPARATION.md) ·
 [Accueil du dépôt](../../README.md)
 
 Reconstructions analytiques informées par le scan privé, publiées avec
