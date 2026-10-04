@@ -74,12 +74,17 @@ def safe_url(value):
 
 def family(value):
     low = value.lower()
+    generations = sorted(set(re.findall(r"(?<![a-z0-9])(?:993|964|917|935|991|987|986)(?![a-z0-9])", low)))
+    generation = generations[0] if len(generations) == 1 else "multiple" if generations else "unspecified"
     # Mirrors and our own transcriptions do not add independent PET evidence.
-    if "pet-" in low or "porsche-pet" in low or "katalog" in low or "original-parts-catalogue" in low:
-        generation = next((g for g in ("993", "964", "917", "935", "991", "987", "986") if g in low), "unspecified")
+    # A carpet product slug and digits inside part numbers/opaque IDs are not
+    # evidence of a PET source or a Porsche generation.
+    if re.search(r"(?<![a-z0-9])pet(?:[-_/]|$)", low) or "original-parts-catalogue" in low:
+        return "porsche-pet:" + generation
+    if re.search(r"(?<![a-z0-9])katalog(?![a-z0-9])", low) and "porsche" in low:
         return "porsche-pet:" + generation
     if "workshop-manual" in low or "993/manual" in low or "993/technical-data" in low or "993/torques" in low:
-        return "porsche-workshop-manual:993"
+        return "porsche-workshop-manual:" + generation
     if "porschefanatics" in low:
         return "project-mirror:porschefanatics"
     url = safe_url(value)

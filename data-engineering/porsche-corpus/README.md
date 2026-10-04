@@ -71,6 +71,10 @@ does not turn them into factual SFT or numerical surrogate data.
 Partitions follow connected source/article/project families, explicit anchors
 and known lineage. Exact normalized copies and high-overlap lexical 5-grams are
 linked before assigning splits. Conflicting anchors quarantine the entire group.
+PET markers and model-generation tokens use explicit boundaries: carpet product
+slugs, part numbers and opaque URL IDs do not establish catalogue lineage.
+Multiple declared generations remain `multiple`; unclassified catalogues retain
+their publisher/source identity pending an item-specific origin review.
 Already exposed historical tests become `dev`; validation families stay `valid`.
 New sealed reserves are never read or produced. Missing reviewer boundary metadata
 keeps new candidates in development. Protected prefixes cannot be overridden by

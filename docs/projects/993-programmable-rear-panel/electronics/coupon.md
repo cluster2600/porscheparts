@@ -1,10 +1,12 @@
 # Coupon électronique E0 — revue de conception
 
-28 septembre 2026 — **NON VALIDÉ POUR FABRICATION. BANC UNIQUEMENT.**
+2 octobre 2026 — **NON VALIDÉ POUR FABRICATION. BANC UNIQUEMENT.**
 Ce dossier fixe une première proposition de circuit et un ordre de mise au point.
-Aucun composant acheté, PCB routé, schéma KiCad vérifié ou matériel programmé.
-Les connexions ci-dessous sont à transcrire puis revoir par l'électronicien avant
-fabrication. Il n'existe pas de Gerber, de placement ni de contrôle ERC/DRC.
+Aucun composant acheté, PCB routé ou matériel programmé.
+Le [schéma KiCad en trois feuilles](kicad/README.md) et son [PDF](coupon-e0.pdf)
+transcrivent ces connexions ; ERC sans erreur ni avertissement. La revue par
+l'électronicien et les essais restent nécessaires avant fabrication. Il n'existe
+pas de Gerber, de placement ni de contrôle DRC PCB ; empreintes non attribuées.
 
 ## Choix pour commencer
 
@@ -163,7 +165,8 @@ surtension, inversion, load dump), tension maximale écrêtée, énergie TVS, SO
 MOSFETs, coordination fusible, tenue des condensateurs/buck et stabilité du filtre.
 Le suffixe Q1 d'un contrôleur n'est pas une qualification du sous-ensemble.
 
-Prochain livrable : schéma natif du coupon revu, puis carte E1 comprenant limites
+Prochain livrable : revue professionnelle du schéma natif puis routage du coupon,
+avant une carte E1 comprenant limites
 de courant, surveillance tension/température, watchdog matériel imposant l'arrêt
 et réarmement local après défaut. Distinguer cette coupure des fonctions légales
 du bandeau. La source et les interfaces réversibles sur la 993 restent inconnues.

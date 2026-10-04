@@ -1,0 +1,73 @@
+{
+  "source_sha256": "afacfd8926cdc71b0c6adbf87351107d7962db8288d896879a79e5c70d7dd388",
+  "source_volume_mm3": 301815.10138447175,
+  "meshed_rotor_volume_mm3": 301815.10138447175,
+  "surface_faces": 618286,
+  "gmsh_version": "4.15.2",
+  "method": "Conforming tetrahedra with disjoint local cell agglomeration using OpenFOAM removeFaces",
+  "surface_decimation_skipped": true,
+  "netgen_optimization": true,
+  "duct_gap_refinement": true,
+  "duct_circumferential_segments": 768,
+  "graded_interior": true,
+  "algorithm_3d": 10,
+  "far_field_size_mm": 2.0,
+  "threads": 16,
+  "far_wall_step_mm": 1,
+  "duct_radius_mm": 124,
+  "duct_length_mm": 360,
+  "output_units": "m",
+  "alternator_included": false,
+  "wall_layers": false,
+  "manufacturing_authorized": false,
+  "status": "mesh_checks_passed_flow_not_yet_run",
+  "primal_gmsh_quality": {
+    "tetrahedra": 8170982,
+    "minimum_signed_inverse_condition_number": 0.1287480572213837
+  },
+  "removed_internal_faces_per_round": [
+    9
+  ],
+  "quality": {
+    "cells": 8170973,
+    "standard_check_passed": true,
+    "extended_check_passed": true
+  },
+  "solver_mesh_format": "OpenFOAM polyMesh",
+  "actual_surface_audit": {
+    "status": "passed",
+    "source_sha256": "afacfd8926cdc71b0c6adbf87351107d7962db8288d896879a79e5c70d7dd388",
+    "export_sha256": "e3a45c5fbdc347374e41ff05bdef78e6a00336d3d54ca43cf2e867c367983997",
+    "watertight": true,
+    "consistent_winding": true,
+    "connected_bodies": 1,
+    "surface_triangles": 618286,
+    "signed_export_volume_mm3": -301815.1155908404,
+    "volume_error_fraction": 4.7069774078423166e-08,
+    "orientation_note": "Fluid-side wall normals can be opposite to CAD solid normals",
+    "sampled_distances_not_global_bound": [
+      {
+        "max_mm": 3.7681521702557316e-06,
+        "p99_mm": 2.8720056619162295e-06
+      },
+      {
+        "max_mm": 3.688003623901869e-06,
+        "p99_mm": 3.0422778101610284e-06
+      }
+    ],
+    "sample_count_each_direction": 10000,
+    "sample_seeds": [
+      993,
+      994
+    ],
+    "manufacturing_authorized": false
+  },
+  "mesh_sha256": {
+    "points": "9fc878f4f79e08ad5583f40ac6165ef4321aa51b8db93e1c3a998f0e98564745",
+    "neighbour": "4bbffe610373ea05d8fb39740051ecb6e998b2111bdcd6a67950662788189f53",
+    "faces": "a526e60c9509b427a491eb15ac1c476a3fc509d2208cf40aff0eb270f0c173a3",
+    "owner": "613f244e339a14a05a2f4cef19c79b98f9732a9f695ce8b9a69b4dfa25d06f19",
+    "cellZones": "2aa71cfe61b14f1972696139276f9079c65889c13c01f38b7a3e908bc025c71c",
+    "boundary": "341fddad3951f91fe22a9b1c58ee2913e4f6247f05351aab8412cc3db036d4c3"
+  }
+}

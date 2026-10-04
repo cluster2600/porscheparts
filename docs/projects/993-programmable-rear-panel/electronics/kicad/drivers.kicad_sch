@@ -1,0 +1,1137 @@
+(kicad_sch (version 20250114) (generator "eeschema") (uuid d183084d-508d-5081-a0b8-04bdcbbcd858) (paper "A3") (title_block (title "Coupon E0 - Drivers et points de test") (date "2026-10-02") (rev "E0.1") (comment 1 "NON VALIDE POUR FABRICATION - BANC 3.3 V UNIQUEMENT") (comment 2 "Empreintes non attribuees; aucun PCB ni validation physique"))
+ (lib_symbols
+(symbol "Driver_LED:TLC5947DAP"
+      (pin_names
+        (offset 1.016))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "U"
+        (at -13.97 38.1 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (justify left)))
+      (property "Value" "TLC5947DAP"
+        (at -13.97 35.56 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (justify left)))
+      (property "Footprint" "Package_SO:HTSSOP-32-1EP_6.1x11mm_P0.65mm_EP5.2x11mm_Mask4.11x4.36mm_ThermalVias"
+        (at -13.97 40.64 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (justify left)
+          (hide yes)))
+      (property "Datasheet" "http://www.ti.com/lit/ds/symlink/tlc5947.pdf"
+        (at 0 0 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (hide yes)))
+      (property "Description" "24-Channel, 12-Bit PWM LED Driver, HTSSOP"
+        (at 0 0 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (hide yes)))
+      (property "ki_keywords" "PWM LED driver HTSSOP"
+        (at 0 0 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (hide yes)))
+      (property "ki_fp_filters" "HTSSOP*"
+        (at 0 0 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (hide yes)))
+      (symbol "TLC5947DAP_0_1"
+        (rectangle
+          (start -13.97 34.29)
+          (end 13.97 -31.75)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type background)))
+        (pin input line
+          (at -17.78 7.62 0)
+          (length 3.81)
+          (name "IREF"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "31"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin input line
+          (at -17.78 5.08 0)
+          (length 3.81)
+          (name "BLANK"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "2"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin input line
+          (at -17.78 2.54 0)
+          (length 3.81)
+          (name "XLAT"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "30"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin input line
+          (at -17.78 0 0)
+          (length 3.81)
+          (name "SCLK"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "3"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin input line
+          (at -17.78 -2.54 0)
+          (length 3.81)
+          (name "SIN"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "4"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at -17.78 -5.08 0)
+          (length 3.81)
+          (name "SOUT"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "29"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin power_in line
+          (at -2.54 -35.56 90)
+          (length 3.81)
+          (name "GND"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin power_in line
+          (at 2.54 -35.56 90)
+          (length 3.81)
+          (name "PowerPAD"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "33"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin power_in line
+          (at 5.08 38.1 270)
+          (length 3.81)
+          (name "VCC"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "32"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 30.48 180)
+          (length 3.81)
+          (name "OUT0"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "5"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 27.94 180)
+          (length 3.81)
+          (name "OUT1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "6"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 25.4 180)
+          (length 3.81)
+          (name "OUT2"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "7"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 22.86 180)
+          (length 3.81)
+          (name "OUT3"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "8"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 20.32 180)
+          (length 3.81)
+          (name "OUT4"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "9"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 17.78 180)
+          (length 3.81)
+          (name "OUT5"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "10"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 15.24 180)
+          (length 3.81)
+          (name "OUT6"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "11"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 12.7 180)
+          (length 3.81)
+          (name "OUT7"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "12"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 10.16 180)
+          (length 3.81)
+          (name "OUT8"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "13"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 7.62 180)
+          (length 3.81)
+          (name "OUT9"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "14"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 5.08 180)
+          (length 3.81)
+          (name "OUT10"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "15"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 2.54 180)
+          (length 3.81)
+          (name "OUT11"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "16"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 0 180)
+          (length 3.81)
+          (name "OUT12"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "17"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 -2.54 180)
+          (length 3.81)
+          (name "OUT13"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "18"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 -5.08 180)
+          (length 3.81)
+          (name "OUT14"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "19"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 -7.62 180)
+          (length 3.81)
+          (name "OUT15"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "20"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 -10.16 180)
+          (length 3.81)
+          (name "OUT16"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "21"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 -12.7 180)
+          (length 3.81)
+          (name "OUT17"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "22"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 -15.24 180)
+          (length 3.81)
+          (name "OUT18"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "23"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 -17.78 180)
+          (length 3.81)
+          (name "OUT19"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "24"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 -20.32 180)
+          (length 3.81)
+          (name "OUT20"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "25"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 -22.86 180)
+          (length 3.81)
+          (name "OUT21"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "26"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 -25.4 180)
+          (length 3.81)
+          (name "OUT22"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "27"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin output line
+          (at 17.78 -27.94 180)
+          (length 3.81)
+          (name "OUT23"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "28"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no))
+(symbol "Device:R"
+      (pin_numbers
+        (hide yes))
+      (pin_names
+        (offset 0))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "R"
+        (at 2.032 0 90)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Value" "R"
+        (at 0 0 90)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Footprint" ""
+        (at -1.778 0 90)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (hide yes)))
+      (property "Datasheet" "~"
+        (at 0 0 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (hide yes)))
+      (property "Description" "Resistor"
+        (at 0 0 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (hide yes)))
+      (property "ki_keywords" "R res resistor"
+        (at 0 0 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (hide yes)))
+      (property "ki_fp_filters" "R_*"
+        (at 0 0 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (hide yes)))
+      (symbol "R_0_1"
+        (rectangle
+          (start -1.016 -2.54)
+          (end 1.016 2.54)
+          (stroke
+            (width 0.254)
+            (type default))
+          (fill
+            (type none))))
+      (symbol "R_1_1"
+        (pin passive line
+          (at 0 3.81 270)
+          (length 1.27)
+          (name "~"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 0 -3.81 90)
+          (length 1.27)
+          (name "~"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "2"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no))
+(symbol "Device:C"
+      (pin_numbers
+        (hide yes))
+      (pin_names
+        (offset 0.254))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "C"
+        (at 0.635 2.54 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (justify left)))
+      (property "Value" "C"
+        (at 0.635 -2.54 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (justify left)))
+      (property "Footprint" ""
+        (at 0.9652 -3.81 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (hide yes)))
+      (property "Datasheet" "~"
+        (at 0 0 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (hide yes)))
+      (property "Description" "Unpolarized capacitor"
+        (at 0 0 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (hide yes)))
+      (property "ki_keywords" "cap capacitor"
+        (at 0 0 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (hide yes)))
+      (property "ki_fp_filters" "C_*"
+        (at 0 0 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (hide yes)))
+      (symbol "C_0_1"
+        (polyline
+          (pts
+            (xy -2.032 0.762)
+            (xy 2.032 0.762))
+          (stroke
+            (width 0.508)
+            (type default))
+          (fill
+            (type none)))
+        (polyline
+          (pts
+            (xy -2.032 -0.762)
+            (xy 2.032 -0.762))
+          (stroke
+            (width 0.508)
+            (type default))
+          (fill
+            (type none))))
+      (symbol "C_1_1"
+        (pin passive line
+          (at 0 3.81 270)
+          (length 2.794)
+          (name "~"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27)))))
+        (pin passive line
+          (at 0 -3.81 90)
+          (length 2.794)
+          (name "~"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "2"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no))
+(symbol "Connector:TestPoint"
+      (pin_numbers
+        (hide yes))
+      (pin_names
+        (offset 0.762)
+        (hide yes))
+      (exclude_from_sim no)
+      (in_bom yes)
+      (on_board yes)
+      (property "Reference" "TP"
+        (at 0 6.858 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Value" "TestPoint"
+        (at 0 5.08 0)
+        (effects
+          (font
+            (size 1.27 1.27))))
+      (property "Footprint" ""
+        (at 5.08 0 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (hide yes)))
+      (property "Datasheet" "~"
+        (at 5.08 0 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (hide yes)))
+      (property "Description" "test point"
+        (at 0 0 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (hide yes)))
+      (property "ki_keywords" "test point tp"
+        (at 0 0 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (hide yes)))
+      (property "ki_fp_filters" "Pin* Test*"
+        (at 0 0 0)
+        (effects
+          (font
+            (size 1.27 1.27))
+          (hide yes)))
+      (symbol "TestPoint_0_1"
+        (circle
+          (center 0 3.302)
+          (radius 0.762)
+          (stroke
+            (width 0)
+            (type default))
+          (fill
+            (type none))))
+      (symbol "TestPoint_1_1"
+        (pin passive line
+          (at 0 0 90)
+          (length 2.54)
+          (name "1"
+            (effects
+              (font
+                (size 1.27 1.27))))
+          (number "1"
+            (effects
+              (font
+                (size 1.27 1.27))))))
+      (embedded_fonts no)))
+(text "6 x TLC5947DAP / sorties statiques / chaine SIN -> U1 -> ... -> U6" (at 15.24 15.24 0) (effects (font (size 2 2)) (justify left top)) (uuid 31c46b2e-0a6f-5f32-aad9-876933543e59))
+(text "DAP uniquement. Pad thermique = broche KiCad 33, a relier a GND. IREF : 20k 1% / driver." (at 15.24 22.86 0) (effects (font (size 1.3 1.3)) (justify left top)) (uuid 28984767-eaa9-521a-b649-7ad0bf430f93))
+(symbol (lib_id "Driver_LED:TLC5947DAP") (at 76.2 83.82 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid 18d08b88-74a2-59ab-9539-d12c5bbf7914) (property "Reference" "U1" (at 62.23 45.72 0) (effects (font (size 1.0 1.0)))) (property "Value" "TLC5947DAP" (at 62.23 48.26 0) (effects (font (size 1.0 1.0)))) (property "Footprint" "" (at 62.23 43.18 0) (effects (font (size 1.0 1.0)) (hide yes))) (property "Datasheet" "http://www.ti.com/lit/ds/symlink/tlc5947.pdf" (at 76.2 83.82 0) (effects (font (size 1.0 1.0)) (hide yes))) (pin "31" (uuid 294eb139-90d2-533a-b20e-7dccbbeaa021)) (pin "2" (uuid c630e70d-9872-5b24-9162-4e472d02e6c6)) (pin "30" (uuid cf4b6609-4439-54a4-a32c-6d3d842449a1)) (pin "3" (uuid 0adebc28-5a46-5075-a973-32d56973f0e9)) (pin "4" (uuid d8367777-8265-59c8-97e2-9382b1140fcc)) (pin "29" (uuid 963f59bd-96c8-5177-a0fd-042dcd99a128)) (pin "1" (uuid 3e79b61c-264f-532c-9c04-4c90f7aefb5d)) (pin "33" (uuid 813461e9-5e5f-5136-810c-e96065d4c52a)) (pin "32" (uuid fa07b64d-bdc2-5a6d-844b-e1e6e61ac16b)) (pin "5" (uuid 01f2e426-ce2d-59f8-a0e8-6892b75bf6a2)) (pin "6" (uuid f265a1c4-899a-53e4-ae62-0c593b29a614)) (pin "7" (uuid 755dd959-3200-5a0a-bf26-b9d99c72fa54)) (pin "8" (uuid cdbbdb97-4688-5f92-bf10-1510fb4e3ce6)) (pin "9" (uuid 3d779e4c-f4d3-539e-93bd-dfb83db570a3)) (pin "10" (uuid bf73a7d9-74fc-5626-a4e8-2152c50fc0a7)) (pin "11" (uuid adb8b477-6ab1-598b-bcd2-c89ed483dfc7)) (pin "12" (uuid a1dddfc7-3b5b-5f33-8d78-fde794113a9e)) (pin "13" (uuid 6ffd8224-2f88-543e-b07e-75932d5b3767)) (pin "14" (uuid e6037546-6a38-5070-be06-145a4835556f)) (pin "15" (uuid e5608177-2630-52a0-835b-ab91bdd0a6c1)) (pin "16" (uuid 701a1920-1c5b-5b60-9383-df116fbdb5dd)) (pin "17" (uuid 99ab52ce-2107-542c-98a5-49942b220573)) (pin "18" (uuid 7c91c1ee-d4f9-5867-bcb9-3a2572a6ebca)) (pin "19" (uuid 49439764-3ac8-5624-acb5-8a62333c3dad)) (pin "20" (uuid d0d862ff-883f-5fd6-a7fe-f185d20eeb04)) (pin "21" (uuid eb463894-58c3-56c2-90f5-14e537540609)) (pin "22" (uuid bd4dd2f0-5d0a-543c-960a-bf496aea4965)) (pin "23" (uuid 3418088d-a64e-5fef-b6b7-dde720000656)) (pin "24" (uuid 5060662d-e6bf-58e2-8def-acca03a20cc4)) (pin "25" (uuid a8635eb3-0885-5cfb-be64-f3bf07e21c66)) (pin "26" (uuid 404fe12f-94bf-5798-ba25-fd81b70deac8)) (pin "27" (uuid 6c628092-b28d-5bca-9ecd-7a0750763a01)) (pin "28" (uuid d0ab7c29-c0bd-5d2e-bce1-34a779f817f5)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "U1") (unit 1)))))
+(wire (pts (xy 73.66 119.38) (xy 73.66 124.46)) (stroke (width 0) (type default)) (uuid c4c6f49f-2057-5166-8793-66d70724c804))
+(global_label "GND" (shape passive) (at 73.66 124.46 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 50a7c671-c7c6-5cbf-8a07-4d1cb30c5336) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 73.66 124.46 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 78.74 119.38) (xy 78.74 124.46)) (stroke (width 0) (type default)) (uuid 9f48ccde-e6d8-53f8-9135-8538ddf870a6))
+(global_label "GND" (shape passive) (at 78.74 124.46 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid eba7aceb-814c-566a-9981-de72cf1b355f) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 78.74 124.46 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 81.28 45.72) (xy 81.28 40.64)) (stroke (width 0) (type default)) (uuid 89b3d890-ffd3-5668-9dc9-bf72494e886d))
+(global_label "VCC_3V3" (shape passive) (at 81.28 40.64 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid c1b625b5-a275-5b72-b549-c8d8ef4ace9a) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 81.28 40.64 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 58.42 78.74) (xy 53.34 78.74)) (stroke (width 0) (type default)) (uuid 57e5d62e-4245-5571-ae3f-f0d8b775d4a1))
+(global_label "BLANK" (shape passive) (at 53.34 78.74 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid f4511a80-c1d0-57fb-92d5-15626c8dc0d2) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 53.34 78.74 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 58.42 83.82) (xy 53.34 83.82)) (stroke (width 0) (type default)) (uuid ea1b5b28-e4cb-5205-836b-e329dfade224))
+(global_label "SCLK" (shape passive) (at 53.34 83.82 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid e0593969-c992-5a25-9e63-1911cf226345) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 53.34 83.82 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 58.42 81.28) (xy 53.34 81.28)) (stroke (width 0) (type default)) (uuid 2695374b-ecce-5d12-ad15-c5e026244904))
+(global_label "XLAT" (shape passive) (at 53.34 81.28 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid 15723d6e-1081-5b91-83db-4a055beaeb09) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 53.34 81.28 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 58.42 86.36) (xy 53.34 86.36)) (stroke (width 0) (type default)) (uuid e37e2f28-b14d-5d55-ae2e-94de5e5a520f))
+(global_label "SIN" (shape passive) (at 53.34 86.36 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid 0e260b68-41c0-50e9-97d7-37ce654e1ed4) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 53.34 86.36 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 58.42 88.9) (xy 53.34 88.9)) (stroke (width 0) (type default)) (uuid d332c920-eeee-59ae-b312-45cdcba0df1a))
+(global_label "CHAIN_1_2" (shape passive) (at 53.34 88.9 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid c606994d-da11-502e-aab9-7a76f9a87c72) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 53.34 88.9 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Device:R") (at 40.64 63.49999999999999 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid 4c8bb272-3955-576e-9a13-50154dd5deeb) (property "Reference" "R1" (at 44.64 62 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "20k / 1%" (at 44.64 65 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Footprint" "" (at 44.64 65 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Datasheet" "~" (at 44.64 65 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (pin "1" (uuid 2c08c5f0-f11e-5731-a4ae-3b616ccced65)) (pin "2" (uuid 632f70ea-d519-5077-b6fb-47e6e722264a)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "R1") (unit 1)))))
+(wire (pts (xy 58.42 76.2) (xy 50.8 76.2)) (stroke (width 0) (type default)) (uuid 7caebfc3-fea7-58e1-8776-75693caa13f5))
+(wire (pts (xy 50.8 76.2) (xy 50.8 59.69)) (stroke (width 0) (type default)) (uuid 5f4b877a-51b9-5feb-9fac-c4606eb6ca4c))
+(wire (pts (xy 50.8 59.69) (xy 40.64 59.69)) (stroke (width 0) (type default)) (uuid 1ace5f82-7cb7-58d8-a225-399be7b25074))
+(wire (pts (xy 40.64 67.31) (xy 40.64 69.85)) (stroke (width 0) (type default)) (uuid 2cc978fb-c181-53e9-b6b5-087aa21c7487))
+(global_label "GND" (shape passive) (at 40.64 69.85 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 7f7a45a6-f6e1-567e-9e6e-dc0a587eb843) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 40.64 69.85 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Device:C") (at 35.56 109.22 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid 62c3c2b6-d93e-5790-ac52-7e47737d1b99) (property "Reference" "C1" (at 39.56 107.72 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "100n / X7R / 10V" (at 39.56 110.72 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Footprint" "" (at 39.56 110.72 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Datasheet" "~" (at 39.56 110.72 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (pin "1" (uuid e04b277b-4f47-5f71-a4ee-50e6399c8759)) (pin "2" (uuid 0ea02408-89fa-5816-8742-7c00871214b6)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "C1") (unit 1)))))
+(wire (pts (xy 35.56 105.41) (xy 35.56 100.33)) (stroke (width 0) (type default)) (uuid 9df97377-e02e-5a83-a734-c5e01a4cb273))
+(global_label "VCC_3V3" (shape passive) (at 35.56 100.33 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 0934bdd9-51ee-5a6b-9d81-31b1a4695581) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 35.56 100.33 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 35.56 113.03) (xy 35.56 118.11)) (stroke (width 0) (type default)) (uuid d07fb28f-cdc7-5ccc-b2b3-416c535db58c))
+(global_label "GND" (shape passive) (at 35.56 118.11 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 8c5e4c2f-4d2f-5c54-a3e8-39f93fe93131) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 35.56 118.11 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 53.34) (xy 96.52 53.34)) (stroke (width 0) (type default)) (uuid c330ad2b-3872-5bef-abda-1043b3586f19))
+(global_label "LED_K001" (shape passive) (at 96.52 53.34 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid a5a39fd4-596f-510c-8ec0-b432345c28d3) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 53.34 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 55.88) (xy 96.52 55.88)) (stroke (width 0) (type default)) (uuid 52ea0284-0c9a-5408-b01e-7d1b0e01d160))
+(global_label "LED_K002" (shape passive) (at 96.52 55.88 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 5b3e42b2-4275-5d52-8786-7479e0010277) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 55.88 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 58.42) (xy 96.52 58.42)) (stroke (width 0) (type default)) (uuid 61a40d04-a87e-5f6d-97b7-4805ce2ff751))
+(global_label "LED_K003" (shape passive) (at 96.52 58.42 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid cb43fddb-642b-5c64-bc5b-466e24e0da2e) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 58.42 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 60.96) (xy 96.52 60.96)) (stroke (width 0) (type default)) (uuid a4d783e2-1113-5058-ad82-97012d511cd8))
+(global_label "LED_K004" (shape passive) (at 96.52 60.96 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid ea3e035b-53e7-52d6-ab33-052359537974) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 60.96 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 63.5) (xy 96.52 63.5)) (stroke (width 0) (type default)) (uuid fee48bcb-5c7e-546c-9b94-a68a2e3b7159))
+(global_label "LED_K005" (shape passive) (at 96.52 63.5 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid b7bacbf8-ea37-5b80-a5a2-fa1fdf602780) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 63.5 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 66.04) (xy 96.52 66.04)) (stroke (width 0) (type default)) (uuid b6c0c5ea-976c-5ed7-b1bb-679fcbc27805))
+(global_label "LED_K006" (shape passive) (at 96.52 66.04 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid ae96f99f-a4b0-5ba8-aa7f-a4bda558d6cf) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 66.04 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 68.58) (xy 96.52 68.58)) (stroke (width 0) (type default)) (uuid 417cb216-40f9-51fa-b02f-96b2bdd7ca75))
+(global_label "LED_K007" (shape passive) (at 96.52 68.58 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 501a7b5d-7ea8-53ab-bc27-bbcbe1a80d4b) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 68.58 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 71.12) (xy 96.52 71.12)) (stroke (width 0) (type default)) (uuid 7e760319-ba1c-5873-a7e0-f8ca9f9e05dd))
+(global_label "LED_K008" (shape passive) (at 96.52 71.12 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 448c63ae-dafa-5fbf-9e54-f012405b06ac) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 71.12 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 73.66) (xy 96.52 73.66)) (stroke (width 0) (type default)) (uuid b6f52398-3fd5-5ec3-98c9-dd09d7d6f7c9))
+(global_label "LED_K009" (shape passive) (at 96.52 73.66 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid b1be7516-844e-5d04-8255-f9f95f693814) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 73.66 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 76.2) (xy 96.52 76.2)) (stroke (width 0) (type default)) (uuid 15a5ebbe-d4dd-57f7-995d-9d88a47c100e))
+(global_label "LED_K010" (shape passive) (at 96.52 76.2 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 99d8cbfb-aec7-56cd-aea2-34ca3e307c52) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 76.2 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 78.74) (xy 96.52 78.74)) (stroke (width 0) (type default)) (uuid 7913fae9-1a6c-565b-a676-83e0c6fff503))
+(global_label "LED_K011" (shape passive) (at 96.52 78.74 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 05ade281-eaf9-5af8-a91a-4b3028faa69a) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 78.74 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 81.28) (xy 96.52 81.28)) (stroke (width 0) (type default)) (uuid 09d802d7-82cd-5334-960b-20d25ffbc4f7))
+(global_label "LED_K012" (shape passive) (at 96.52 81.28 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 5e6dc357-53fe-5cfe-90d8-061d4b4ff02b) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 81.28 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 83.82) (xy 96.52 83.82)) (stroke (width 0) (type default)) (uuid 6ba86c72-5b1c-5c59-9a55-097c7d08c30b))
+(global_label "LED_K013" (shape passive) (at 96.52 83.82 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid c3b065f4-faa2-5e8a-b234-153c5c60362a) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 83.82 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 86.36) (xy 96.52 86.36)) (stroke (width 0) (type default)) (uuid f8ece9b4-f81e-564d-8870-8d7d35346878))
+(global_label "LED_K014" (shape passive) (at 96.52 86.36 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 83b9e38e-722b-5a3f-b1a9-d620f9901daa) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 86.36 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 88.9) (xy 96.52 88.9)) (stroke (width 0) (type default)) (uuid 98363f45-3dd9-592d-90de-3bc992c5de11))
+(global_label "LED_K015" (shape passive) (at 96.52 88.9 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid b5c29cdf-3969-5683-89d8-afd131c6faee) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 88.9 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 91.44) (xy 96.52 91.44)) (stroke (width 0) (type default)) (uuid 454bc52f-6621-594d-99bd-280d8707da51))
+(global_label "LED_K016" (shape passive) (at 96.52 91.44 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 4ce1b166-c897-5d25-a5a8-9365763c1901) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 91.44 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 93.98) (xy 96.52 93.98)) (stroke (width 0) (type default)) (uuid 92aeb039-8752-560f-a04e-f085f8a4cc12))
+(global_label "LED_K017" (shape passive) (at 96.52 93.98 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid d3f90991-a43b-5160-8312-f3ef534615a8) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 93.98 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 96.52) (xy 96.52 96.52)) (stroke (width 0) (type default)) (uuid 24b98592-7698-5512-89b3-49a22b48e321))
+(global_label "LED_K018" (shape passive) (at 96.52 96.52 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 6610f835-3bea-5a4f-91b7-226240679636) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 96.52 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 99.06) (xy 96.52 99.06)) (stroke (width 0) (type default)) (uuid 0126bd94-8693-575a-a50d-1d966d4599e0))
+(global_label "LED_K019" (shape passive) (at 96.52 99.06 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 71ec2382-7f80-58ad-bd01-044b9f5d0e25) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 99.06 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 101.6) (xy 96.52 101.6)) (stroke (width 0) (type default)) (uuid b4201200-82a7-516e-80e8-da1fbae1e32c))
+(global_label "LED_K020" (shape passive) (at 96.52 101.6 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 7926b85e-4733-5cca-807a-b8a951a1b85b) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 101.6 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 104.14) (xy 96.52 104.14)) (stroke (width 0) (type default)) (uuid e59c0a6b-b4fb-590f-ab37-577898fdbc00))
+(global_label "LED_K021" (shape passive) (at 96.52 104.14 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 93157001-8fc6-532d-9b38-40f62ea08207) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 104.14 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 106.68) (xy 96.52 106.68)) (stroke (width 0) (type default)) (uuid 297c2333-5e1d-58bc-aea5-c080d0b9906c))
+(global_label "LED_K022" (shape passive) (at 96.52 106.68 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid c3453ecf-3f7f-50b2-8e28-55adcdbffa43) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 106.68 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 109.22) (xy 96.52 109.22)) (stroke (width 0) (type default)) (uuid 4bfc2f69-34f5-53d2-a657-114382442f3c))
+(global_label "LED_K023" (shape passive) (at 96.52 109.22 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid f0fd5f37-e2d4-5f1f-b988-ec7469aa3597) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 109.22 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 111.76) (xy 96.52 111.76)) (stroke (width 0) (type default)) (uuid 763d3f19-5a29-5976-abba-a19bf4289287))
+(global_label "LED_K024" (shape passive) (at 96.52 111.76 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid d9450fd4-f7d3-5bf5-b106-ac82bfb73770) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 111.76 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Driver_LED:TLC5947DAP") (at 208.28000000000003 83.82 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid 61af07d6-fcaf-52dc-b8a7-dafae72a0cce) (property "Reference" "U2" (at 194.31 45.72 0) (effects (font (size 1.0 1.0)))) (property "Value" "TLC5947DAP" (at 194.31 48.26 0) (effects (font (size 1.0 1.0)))) (property "Footprint" "" (at 194.31 43.18 0) (effects (font (size 1.0 1.0)) (hide yes))) (property "Datasheet" "http://www.ti.com/lit/ds/symlink/tlc5947.pdf" (at 208.28 83.82 0) (effects (font (size 1.0 1.0)) (hide yes))) (pin "31" (uuid 7519991f-982e-5658-9380-cb546ad9d700)) (pin "2" (uuid 0350fdb7-95ce-55c8-b479-47c55fa54cd0)) (pin "30" (uuid 5f8d7ad6-ab9a-5f4c-9ea0-d96b22b8a414)) (pin "3" (uuid 0931f4ce-bd18-5258-bb67-3d34a9ac7782)) (pin "4" (uuid 8d442cdf-af6d-58a5-b714-eb8b334ad9ea)) (pin "29" (uuid 783163b4-5bdc-52c3-91be-9db06e85f893)) (pin "1" (uuid b05891ac-8c06-5db3-a78e-390ca2d1e377)) (pin "33" (uuid 02d88e6c-0f3b-5fac-b10d-e629159cf49c)) (pin "32" (uuid 7d65079a-f5ae-5596-85fb-416e52efc9c8)) (pin "5" (uuid c87229cd-0681-5d91-a6a1-cf12d304fb7d)) (pin "6" (uuid 52a5ae49-3728-5964-aa09-9d4b34f7db7e)) (pin "7" (uuid 872a5013-db3b-5b5e-8c09-5a855bdddb43)) (pin "8" (uuid 3fc63f2e-5d95-5d9c-9e59-a28f6c98d1b2)) (pin "9" (uuid 69c9480e-aff1-54e9-8d0a-ce5a2fe1f269)) (pin "10" (uuid 67fa0b7c-2d47-50a3-a93d-d7ddf0d845e1)) (pin "11" (uuid 28a2cd20-10e5-5af1-be19-11caea3a3ba7)) (pin "12" (uuid 4a4686f8-6c1b-5136-870e-a4175d520bd6)) (pin "13" (uuid d82358c9-b9d1-50d6-bd8e-b493c6a2b68d)) (pin "14" (uuid 6c259048-246e-55aa-9e22-71a5773f7503)) (pin "15" (uuid 33bd04c3-45f1-504a-b75e-8910a9f9b187)) (pin "16" (uuid a11cb4f4-b45b-5842-8fb7-0cfe827b7f4e)) (pin "17" (uuid 6ce4c8f9-9607-5e7c-8562-c2ca340c0727)) (pin "18" (uuid 8779576f-f4ef-50ad-a2c9-2159012c52b9)) (pin "19" (uuid 2fcb2bac-eb98-5df1-b5d9-643dd99b2e28)) (pin "20" (uuid cefbe146-b309-59db-877d-02be8b21dc88)) (pin "21" (uuid 3324cbfb-754b-5cb2-a41b-3fc734c94c23)) (pin "22" (uuid ebbeaa86-6fea-5e60-849a-01722e76bce0)) (pin "23" (uuid 826899a1-a3f8-566c-9765-9aad6da29ba4)) (pin "24" (uuid 5e7a6b1d-299b-5f82-a062-55ea6595abab)) (pin "25" (uuid bbec4c87-9ba5-519e-9a6a-6e56ed7f66ab)) (pin "26" (uuid c94b2bcc-4eed-5628-9a25-a5b116e7c5d4)) (pin "27" (uuid 3920468d-31f8-5b9b-b3b6-21b22aee4079)) (pin "28" (uuid 1141b243-8426-534d-8f6b-714833a7ce31)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "U2") (unit 1)))))
+(wire (pts (xy 205.74 119.38) (xy 205.74 124.46)) (stroke (width 0) (type default)) (uuid e240ea44-49bc-5a8a-9931-8d55e5fd86a9))
+(global_label "GND" (shape passive) (at 205.74 124.46 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid d8e23f0f-d666-50ce-9fec-2ffd3b643b16) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 205.74 124.46 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 210.82 119.38) (xy 210.82 124.46)) (stroke (width 0) (type default)) (uuid 1cc94ee2-deb1-53c6-9557-3beeb77bf738))
+(global_label "GND" (shape passive) (at 210.82 124.46 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 646ddfb1-9c8d-5496-821d-945aa9d2246c) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 210.82 124.46 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 213.36 45.72) (xy 213.36 40.64)) (stroke (width 0) (type default)) (uuid 75bd6c78-5d2d-5385-8f52-43f8c4a31c28))
+(global_label "VCC_3V3" (shape passive) (at 213.36 40.64 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid c31e43e6-bbd6-5716-9684-1661e6518ac6) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 213.36 40.64 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 190.5 78.74) (xy 185.42 78.74)) (stroke (width 0) (type default)) (uuid 2bfc3831-37b8-5dc6-9c5f-4f3888717808))
+(global_label "BLANK" (shape passive) (at 185.42 78.74 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid 377a96c4-84b7-58a1-9fd1-d68abe5d39a4) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 185.42 78.74 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 190.5 83.82) (xy 185.42 83.82)) (stroke (width 0) (type default)) (uuid c214bdda-3aff-57ff-8556-901cdecafd07))
+(global_label "SCLK" (shape passive) (at 185.42 83.82 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid 6cb698b8-44ad-5ece-9724-3f8db913b2fb) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 185.42 83.82 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 190.5 81.28) (xy 185.42 81.28)) (stroke (width 0) (type default)) (uuid 1c98b62f-e32c-5dde-aba8-4277f1ff97fd))
+(global_label "XLAT" (shape passive) (at 185.42 81.28 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid 716fd836-20ed-511d-91a9-aae08efe7e69) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 185.42 81.28 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 190.5 86.36) (xy 185.42 86.36)) (stroke (width 0) (type default)) (uuid c8240fa3-c6f5-5d98-97c3-b4e747d720fc))
+(global_label "CHAIN_1_2" (shape passive) (at 185.42 86.36 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid 4b4bd23c-87b3-5c2c-ab53-5842eaf770d9) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 185.42 86.36 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 190.5 88.9) (xy 185.42 88.9)) (stroke (width 0) (type default)) (uuid 227db884-f082-5765-9cc6-805392e58058))
+(global_label "CHAIN_2_3" (shape passive) (at 185.42 88.9 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid f917818a-0bf8-545e-b4d1-bcbb9f7d4d39) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 185.42 88.9 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Device:R") (at 172.72000000000003 63.49999999999999 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid db7b0912-bbcd-514a-9361-649621a9db70) (property "Reference" "R2" (at 176.72 62 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "20k / 1%" (at 176.72 65 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Footprint" "" (at 176.72 65 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Datasheet" "~" (at 176.72 65 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (pin "1" (uuid 1ee29e49-77bc-5d47-8ac6-4e67a919ff6e)) (pin "2" (uuid 64f14588-aedb-5b99-888c-14b398e3f23c)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "R2") (unit 1)))))
+(wire (pts (xy 190.5 76.2) (xy 182.88 76.2)) (stroke (width 0) (type default)) (uuid c6e7841d-3245-53c0-9359-dd7e35629f06))
+(wire (pts (xy 182.88 76.2) (xy 182.88 59.69)) (stroke (width 0) (type default)) (uuid 38e8cbd6-8bc3-5749-9e91-c871083dddca))
+(wire (pts (xy 182.88 59.69) (xy 172.72 59.69)) (stroke (width 0) (type default)) (uuid 62211d3c-af21-53f9-9adc-80edd8d2868f))
+(wire (pts (xy 172.72 67.31) (xy 172.72 69.85)) (stroke (width 0) (type default)) (uuid 49f5926b-92c7-59af-aa5a-a22ebbd486ed))
+(global_label "GND" (shape passive) (at 172.72 69.85 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 70d7d80e-8ec6-50b7-bc94-cda2ef892c30) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 172.72 69.85 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Device:C") (at 167.64000000000004 109.22 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid bb0c7128-2bc9-578e-a824-0704735b4e1b) (property "Reference" "C2" (at 171.64 107.72 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "100n / X7R / 10V" (at 171.64 110.72 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Footprint" "" (at 171.64 110.72 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Datasheet" "~" (at 171.64 110.72 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (pin "1" (uuid a4325dbf-d9f5-5a02-bf23-5d95251f3f8d)) (pin "2" (uuid e402cca8-cf2a-5b74-915f-74a91cc74a03)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "C2") (unit 1)))))
+(wire (pts (xy 167.64 105.41) (xy 167.64 100.33)) (stroke (width 0) (type default)) (uuid 20999980-0dea-5911-919b-d06724b2ce0e))
+(global_label "VCC_3V3" (shape passive) (at 167.64 100.33 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 38c6d071-297b-5b20-9fa2-16d254e1132b) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 167.64 100.33 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 167.64 113.03) (xy 167.64 118.11)) (stroke (width 0) (type default)) (uuid 5add5ae8-3485-5e7c-8878-51fac1864b58))
+(global_label "GND" (shape passive) (at 167.64 118.11 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid f57e7d13-9cf4-523c-9e82-06ac5e40e8c4) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 167.64 118.11 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 53.34) (xy 228.6 53.34)) (stroke (width 0) (type default)) (uuid 10f03233-e323-59a1-9b5a-966de3b30ec6))
+(global_label "LED_K025" (shape passive) (at 228.6 53.34 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 73cb8847-86b3-529a-b8e6-379d9f98eaa2) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 53.34 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 55.88) (xy 228.6 55.88)) (stroke (width 0) (type default)) (uuid 22220cb6-9c38-5e55-a03b-9f38d2dcef07))
+(global_label "LED_K026" (shape passive) (at 228.6 55.88 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid f897e975-6f5c-5a8a-911f-8e46766eb464) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 55.88 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 58.42) (xy 228.6 58.42)) (stroke (width 0) (type default)) (uuid d0ed3a31-8294-5844-ac46-3d09484726e7))
+(global_label "LED_K027" (shape passive) (at 228.6 58.42 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 79e4c928-5650-5e1d-9f8a-c1711752d8a6) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 58.42 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 60.96) (xy 228.6 60.96)) (stroke (width 0) (type default)) (uuid 1fc2c81f-4870-5bd3-9818-71cfe5b193e4))
+(global_label "LED_K028" (shape passive) (at 228.6 60.96 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 3fdbb20a-694a-5e8c-a727-849593f53e4d) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 60.96 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 63.5) (xy 228.6 63.5)) (stroke (width 0) (type default)) (uuid bc41aa57-d931-52ae-a3c2-6137e21925b8))
+(global_label "LED_K029" (shape passive) (at 228.6 63.5 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 303bc286-6222-5116-93f7-b964035242a0) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 63.5 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 66.04) (xy 228.6 66.04)) (stroke (width 0) (type default)) (uuid d7ba7991-5ec5-5abd-a01b-22b7a6b8bc2b))
+(global_label "LED_K030" (shape passive) (at 228.6 66.04 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 9e2d46f0-ddbb-561b-90f3-f3b23840fb35) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 66.04 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 68.58) (xy 228.6 68.58)) (stroke (width 0) (type default)) (uuid b8bc768e-e4d6-5922-8519-43e31b5f1288))
+(global_label "LED_K031" (shape passive) (at 228.6 68.58 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 90d6d245-692a-562d-9d4b-a981b4a6fb5f) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 68.58 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 71.12) (xy 228.6 71.12)) (stroke (width 0) (type default)) (uuid e0f34e62-e0fc-53f3-b08c-3ef96986d102))
+(global_label "LED_K032" (shape passive) (at 228.6 71.12 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 814b66a2-685d-53a7-a495-3e38e406b9a1) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 71.12 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 73.66) (xy 228.6 73.66)) (stroke (width 0) (type default)) (uuid 775f6373-24ec-5db5-810f-9b7eeb07f624))
+(global_label "LED_K033" (shape passive) (at 228.6 73.66 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 3c846f65-296c-55dc-a79e-3714529f6105) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 73.66 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 76.2) (xy 228.6 76.2)) (stroke (width 0) (type default)) (uuid 36245246-12b8-57d8-a558-bfd79d7dc093))
+(global_label "LED_K034" (shape passive) (at 228.6 76.2 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 45ca2781-4805-5dc3-945c-c97eed39f4c4) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 76.2 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 78.74) (xy 228.6 78.74)) (stroke (width 0) (type default)) (uuid 7838bb76-e579-57fa-ad31-6032a4ba241a))
+(global_label "LED_K035" (shape passive) (at 228.6 78.74 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid eb593539-2fcb-53a7-90bf-1acda41f27a1) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 78.74 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 81.28) (xy 228.6 81.28)) (stroke (width 0) (type default)) (uuid 2c33bdbc-c30b-5ade-80c9-8a3dc9076219))
+(global_label "LED_K036" (shape passive) (at 228.6 81.28 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 4e6bdcb5-aa23-58dc-8712-19cacd83a95c) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 81.28 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 83.82) (xy 228.6 83.82)) (stroke (width 0) (type default)) (uuid f10e1062-698f-5192-a91e-eee5bb80b69c))
+(global_label "LED_K037" (shape passive) (at 228.6 83.82 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid d7dfa8d4-5618-5408-9ae5-d540a25f7050) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 83.82 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 86.36) (xy 228.6 86.36)) (stroke (width 0) (type default)) (uuid 41fad5b3-bf28-5820-8611-f3c2af39a86e))
+(global_label "LED_K038" (shape passive) (at 228.6 86.36 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 45779291-02ef-5e3c-aedf-a62c7f08d25c) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 86.36 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 88.9) (xy 228.6 88.9)) (stroke (width 0) (type default)) (uuid 246d2f5b-6e86-5f41-811f-389abcdaa4a6))
+(global_label "LED_K039" (shape passive) (at 228.6 88.9 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 6f02ae93-300d-5be1-a935-01918996bc79) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 88.9 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 91.44) (xy 228.6 91.44)) (stroke (width 0) (type default)) (uuid 375d11ef-76ab-5424-b838-ac2d43a4e5df))
+(global_label "LED_K040" (shape passive) (at 228.6 91.44 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 31bfb8cf-5de2-5e3b-adfc-a7879702f9f8) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 91.44 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 93.98) (xy 228.6 93.98)) (stroke (width 0) (type default)) (uuid 8e69562d-fa3c-51ff-8e92-10e0db23df24))
+(global_label "LED_K041" (shape passive) (at 228.6 93.98 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid f7742466-1789-5fae-b394-b268c184e2d4) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 93.98 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 96.52) (xy 228.6 96.52)) (stroke (width 0) (type default)) (uuid 66dc475a-9da6-570e-9696-14fbdd1f7e35))
+(global_label "LED_K042" (shape passive) (at 228.6 96.52 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 10bd8da8-b2f1-57de-b3e7-85de9b5f726a) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 96.52 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 99.06) (xy 228.6 99.06)) (stroke (width 0) (type default)) (uuid feab1662-792b-5e07-978d-6613c1de3575))
+(global_label "LED_K043" (shape passive) (at 228.6 99.06 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid b503f83a-2152-5bee-89df-dd17ce956440) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 99.06 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 101.6) (xy 228.6 101.6)) (stroke (width 0) (type default)) (uuid 99e71647-3bb6-58a5-a934-3fae0a582f8e))
+(global_label "LED_K044" (shape passive) (at 228.6 101.6 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 169641a3-65fe-5b7b-b891-a5d6e2d607bb) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 101.6 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 104.14) (xy 228.6 104.14)) (stroke (width 0) (type default)) (uuid a05bd245-22b5-5ba1-82b4-46b0f3c4d62f))
+(global_label "LED_K045" (shape passive) (at 228.6 104.14 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 3bd9049f-f079-5290-bed7-b5a010bf1eca) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 104.14 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 106.68) (xy 228.6 106.68)) (stroke (width 0) (type default)) (uuid ecb2b6cd-794f-57e6-972c-2f066bd1971a))
+(global_label "LED_K046" (shape passive) (at 228.6 106.68 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 8b53aef1-3d59-57d6-a056-dc640232e1fc) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 106.68 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 109.22) (xy 228.6 109.22)) (stroke (width 0) (type default)) (uuid c02ea29a-420f-58d4-9859-d12e874a5020))
+(global_label "LED_K047" (shape passive) (at 228.6 109.22 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 786aeb99-4b67-5e82-934d-cab211fa2cf3) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 109.22 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 111.76) (xy 228.6 111.76)) (stroke (width 0) (type default)) (uuid eb59295b-c5de-5620-b9df-aa4447fd2440))
+(global_label "LED_K048" (shape passive) (at 228.6 111.76 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 54cd6925-9585-57af-a3fe-d599284784eb) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 111.76 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Driver_LED:TLC5947DAP") (at 340.36 83.82 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid 432aae0d-a724-5483-a98c-4d9e9e2c5f22) (property "Reference" "U3" (at 326.39 45.72 0) (effects (font (size 1.0 1.0)))) (property "Value" "TLC5947DAP" (at 326.39 48.26 0) (effects (font (size 1.0 1.0)))) (property "Footprint" "" (at 326.39 43.18 0) (effects (font (size 1.0 1.0)) (hide yes))) (property "Datasheet" "http://www.ti.com/lit/ds/symlink/tlc5947.pdf" (at 340.36 83.82 0) (effects (font (size 1.0 1.0)) (hide yes))) (pin "31" (uuid 3269cfed-8397-5a17-a481-b09a07754241)) (pin "2" (uuid c5c8c0ee-475a-5e58-9de0-65f41280b381)) (pin "30" (uuid 24cafdd6-7b79-5361-b00f-01aceaebd53b)) (pin "3" (uuid 132884f0-936b-5cab-bc36-82274927fff6)) (pin "4" (uuid 0f76117b-6e49-5657-a8c5-371c9fd62711)) (pin "29" (uuid e4cc1200-6ca4-5e92-8a7a-c2f263070481)) (pin "1" (uuid 3b054535-1e0b-5a29-ae5b-e8ef401941b9)) (pin "33" (uuid b6c879a9-d3b6-5a1f-b41b-f1320d9c9801)) (pin "32" (uuid d942f469-2179-5957-8724-f55c7f6e1590)) (pin "5" (uuid 1edd1a13-700c-5446-86cd-d7c0227cd666)) (pin "6" (uuid 3c970f92-5561-54f2-8f02-28442abbe709)) (pin "7" (uuid 14dd9c19-1694-5797-95cc-5a9fe0321901)) (pin "8" (uuid cb9f6b46-d5e6-5f3f-bc7c-b7393b836032)) (pin "9" (uuid d43f75f2-907d-504c-a69b-0f95a7a46b5b)) (pin "10" (uuid 13a003c7-0631-59a7-bfdb-92e77445df14)) (pin "11" (uuid 2816b179-ab6c-5b0b-85b6-866243173fef)) (pin "12" (uuid 50b7ba4f-7fde-5dbe-a2d6-9a641c66ff0e)) (pin "13" (uuid 733503ee-72d1-58a6-b027-a4e62e709599)) (pin "14" (uuid 12a9fdf4-d494-5bef-84ea-7afe1766b02d)) (pin "15" (uuid 2f2e57e3-025e-5ee7-9b7d-147401685e42)) (pin "16" (uuid 34cd732b-92ec-522b-978b-f63e6db4b89a)) (pin "17" (uuid 3decc3e4-9442-5f7a-bdab-5b4daa70ff7d)) (pin "18" (uuid 0b6e5f87-d0f9-588c-be1c-f2c714a26b58)) (pin "19" (uuid 9a9a5bc2-8577-5f8d-8dca-8707277b9679)) (pin "20" (uuid c43b1cae-5b28-53c6-bcc4-1fcdfb10d679)) (pin "21" (uuid a949d621-0bcc-5f4a-b97c-1abd76bbe3ce)) (pin "22" (uuid 70d3ff2b-7667-598d-993e-7d8cfe9349c7)) (pin "23" (uuid 852a84c1-8d23-50dc-911d-df4fa60dd9a5)) (pin "24" (uuid f86ac573-4de4-5467-bcaa-4d8d93ffda6f)) (pin "25" (uuid 7f0a73bc-e65d-5a15-b021-9919af58bc5d)) (pin "26" (uuid 6977a125-b7ed-5851-9060-f83f75136f92)) (pin "27" (uuid b2fff621-418a-515e-bd65-68adbbfc2cd0)) (pin "28" (uuid 954df615-45af-5569-9a72-31f9a2960b29)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "U3") (unit 1)))))
+(wire (pts (xy 337.82 119.38) (xy 337.82 124.46)) (stroke (width 0) (type default)) (uuid 47fa6413-9283-59b8-9920-2a3abe9824fb))
+(global_label "GND" (shape passive) (at 337.82 124.46 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 113c24e6-764f-5905-ac66-cccfef3b9171) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 337.82 124.46 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 342.9 119.38) (xy 342.9 124.46)) (stroke (width 0) (type default)) (uuid e885630a-7c3c-54fb-bf22-065ca6fd76cc))
+(global_label "GND" (shape passive) (at 342.9 124.46 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 3ed11d95-b15f-5a94-ace2-85575f838cc3) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 342.9 124.46 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 345.44 45.72) (xy 345.44 40.64)) (stroke (width 0) (type default)) (uuid db8af7ec-1512-57e2-92f6-64d58a14febd))
+(global_label "VCC_3V3" (shape passive) (at 345.44 40.64 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 1803b227-225e-5526-86ba-fa003fb510bf) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 345.44 40.64 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 322.58 78.74) (xy 317.5 78.74)) (stroke (width 0) (type default)) (uuid 628409d4-aa0f-5d41-a9fe-6644a9d0ba1a))
+(global_label "BLANK" (shape passive) (at 317.5 78.74 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid 5a661ba9-6917-565a-a22a-510ccf00b38e) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 317.5 78.74 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 322.58 83.82) (xy 317.5 83.82)) (stroke (width 0) (type default)) (uuid a787f222-0fea-53c3-9dee-4445b33d0abf))
+(global_label "SCLK" (shape passive) (at 317.5 83.82 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid e8b595a0-ab46-5865-90d9-f421bda18899) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 317.5 83.82 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 322.58 81.28) (xy 317.5 81.28)) (stroke (width 0) (type default)) (uuid 4243d532-fad7-5b72-b700-615c7f39ede9))
+(global_label "XLAT" (shape passive) (at 317.5 81.28 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid b0e00f48-11b6-5759-a624-1b02a1da4325) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 317.5 81.28 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 322.58 86.36) (xy 317.5 86.36)) (stroke (width 0) (type default)) (uuid 2c96eae6-35e1-5716-b050-9465db2305d7))
+(global_label "CHAIN_2_3" (shape passive) (at 317.5 86.36 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid 5680d16f-fb77-583e-b871-8205700fc26d) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 317.5 86.36 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 322.58 88.9) (xy 317.5 88.9)) (stroke (width 0) (type default)) (uuid 0e3000f6-0530-5536-bf22-4b3ed358f26f))
+(global_label "CHAIN_3_4" (shape passive) (at 317.5 88.9 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid c43149c3-a55b-5d16-b911-ca59896abd34) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 317.5 88.9 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Device:R") (at 304.8 63.49999999999999 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid daa9c763-08ee-573d-a874-2559679deae6) (property "Reference" "R3" (at 308.8 62 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "20k / 1%" (at 308.8 65 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Footprint" "" (at 308.8 65 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Datasheet" "~" (at 308.8 65 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (pin "1" (uuid 8f6903a9-3b8b-53e0-b74b-1dac678aa685)) (pin "2" (uuid cad5116f-8b7a-5ccc-bd60-f786e42558bd)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "R3") (unit 1)))))
+(wire (pts (xy 322.58 76.2) (xy 314.96 76.2)) (stroke (width 0) (type default)) (uuid 19c34ef3-fd06-51e4-96e2-577b0685514d))
+(wire (pts (xy 314.96 76.2) (xy 314.96 59.69)) (stroke (width 0) (type default)) (uuid 195d0ac5-8285-5905-8d48-a42e74471578))
+(wire (pts (xy 314.96 59.69) (xy 304.8 59.69)) (stroke (width 0) (type default)) (uuid 72591019-1413-52af-901d-6ff7f8542314))
+(wire (pts (xy 304.8 67.31) (xy 304.8 69.85)) (stroke (width 0) (type default)) (uuid 8caf5db7-5b20-578a-b0fe-843b376e0914))
+(global_label "GND" (shape passive) (at 304.8 69.85 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid e60b6bd5-f294-50a3-88a8-4287eab5c422) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 304.8 69.85 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Device:C") (at 299.72 109.22 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid aaf30268-e335-5fdd-935c-1f76270c9112) (property "Reference" "C3" (at 303.72 107.72 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "100n / X7R / 10V" (at 303.72 110.72 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Footprint" "" (at 303.72 110.72 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Datasheet" "~" (at 303.72 110.72 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (pin "1" (uuid b9fa9ade-d1b7-5d6c-bada-03f4938b4413)) (pin "2" (uuid 3c79b0ae-e36e-5bb7-9b84-1bdcf37ba738)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "C3") (unit 1)))))
+(wire (pts (xy 299.72 105.41) (xy 299.72 100.33)) (stroke (width 0) (type default)) (uuid fd58db85-2ec0-5dc1-9fb5-125bc818a8a2))
+(global_label "VCC_3V3" (shape passive) (at 299.72 100.33 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 28cc964f-a9f3-5c78-8b0c-1c4eef4919e4) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 299.72 100.33 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 299.72 113.03) (xy 299.72 118.11)) (stroke (width 0) (type default)) (uuid 867bcb17-eb05-5dc0-8335-92e1060fcd5c))
+(global_label "GND" (shape passive) (at 299.72 118.11 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid e799d6a4-4b1b-5485-b500-91981a20b575) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 299.72 118.11 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 53.34) (xy 360.68 53.34)) (stroke (width 0) (type default)) (uuid edae5ef3-06ce-524e-96d7-16b94a9c9f3c))
+(global_label "LED_K049" (shape passive) (at 360.68 53.34 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid aae6e493-99eb-5013-850e-0067b18dd31e) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 53.34 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 55.88) (xy 360.68 55.88)) (stroke (width 0) (type default)) (uuid f563e682-99c1-5e6a-86a6-631aec15dd2e))
+(global_label "LED_K050" (shape passive) (at 360.68 55.88 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 7a078b5a-a873-562c-bdbf-91e91c9b9a3e) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 55.88 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 58.42) (xy 360.68 58.42)) (stroke (width 0) (type default)) (uuid ddb1eb59-8e46-53f6-a0a1-002396b0e5f2))
+(global_label "LED_K051" (shape passive) (at 360.68 58.42 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 4a2171d5-c6ab-5130-9232-611784eccef1) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 58.42 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 60.96) (xy 360.68 60.96)) (stroke (width 0) (type default)) (uuid 5765cec7-36ac-5125-91e3-318db00cccde))
+(global_label "LED_K052" (shape passive) (at 360.68 60.96 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid c97d4041-3a54-5275-a715-988f00df5d2d) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 60.96 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 63.5) (xy 360.68 63.5)) (stroke (width 0) (type default)) (uuid 625f779d-77de-5278-a634-9653e6e87a1d))
+(global_label "LED_K053" (shape passive) (at 360.68 63.5 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid db314529-399a-5161-80df-3260da601265) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 63.5 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 66.04) (xy 360.68 66.04)) (stroke (width 0) (type default)) (uuid a2eaaf24-545c-5579-90d7-faa562e68faf))
+(global_label "LED_K054" (shape passive) (at 360.68 66.04 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 3ec65664-5c29-559e-96f6-312ef0691f59) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 66.04 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 68.58) (xy 360.68 68.58)) (stroke (width 0) (type default)) (uuid 21f47624-941d-5189-8ac8-d904e67878f8))
+(global_label "LED_K055" (shape passive) (at 360.68 68.58 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 1191ccce-4084-5e9e-b268-08a722e8a1f8) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 68.58 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 71.12) (xy 360.68 71.12)) (stroke (width 0) (type default)) (uuid 4c39bea8-e2ae-5940-8fd1-1c80473eb7db))
+(global_label "LED_K056" (shape passive) (at 360.68 71.12 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 85e54f9d-f852-583c-b5c5-ecf82f3fd617) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 71.12 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 73.66) (xy 360.68 73.66)) (stroke (width 0) (type default)) (uuid e08e189e-94cf-56cb-ad8b-6bd89c495584))
+(global_label "LED_K057" (shape passive) (at 360.68 73.66 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 77785030-f06f-5b6b-aa3a-295f95eaf4be) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 73.66 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 76.2) (xy 360.68 76.2)) (stroke (width 0) (type default)) (uuid 10c15d0a-42f6-56bc-9ca2-8662640d17e1))
+(global_label "LED_K058" (shape passive) (at 360.68 76.2 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid da9779c9-1c0f-5d84-b919-da9147b3cd63) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 76.2 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 78.74) (xy 360.68 78.74)) (stroke (width 0) (type default)) (uuid adb778e2-c46e-58c1-9776-1dac7c9085f0))
+(global_label "LED_K059" (shape passive) (at 360.68 78.74 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 9593a9cf-cfdf-5aa1-866d-ffcf4f942090) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 78.74 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 81.28) (xy 360.68 81.28)) (stroke (width 0) (type default)) (uuid b692b370-02cf-5f8d-87f4-474035867b55))
+(global_label "LED_K060" (shape passive) (at 360.68 81.28 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 942adb63-633d-5782-bd5f-0e51a05242aa) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 81.28 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 83.82) (xy 360.68 83.82)) (stroke (width 0) (type default)) (uuid 240904e1-b0c0-5fa4-8d02-855c48366187))
+(global_label "LED_K061" (shape passive) (at 360.68 83.82 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid bee416ab-8fce-5c6a-aa30-286f13fadd0f) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 83.82 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 86.36) (xy 360.68 86.36)) (stroke (width 0) (type default)) (uuid 39e3a522-4f02-5c78-b646-7e504da5dc12))
+(global_label "LED_K062" (shape passive) (at 360.68 86.36 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 527ab2d2-255f-5d46-a10c-5e51aefb5144) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 86.36 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 88.9) (xy 360.68 88.9)) (stroke (width 0) (type default)) (uuid 8575adca-f5bc-540b-9a7e-a8dfa3d91ec1))
+(global_label "LED_K063" (shape passive) (at 360.68 88.9 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid fafa5b23-207e-5683-b46a-a8d4b725c922) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 88.9 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 91.44) (xy 360.68 91.44)) (stroke (width 0) (type default)) (uuid e98c8a83-e75d-5b94-995e-0e00e074fb61))
+(global_label "LED_K064" (shape passive) (at 360.68 91.44 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 62fb6f22-27ac-556f-804e-03f09b012368) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 91.44 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 93.98) (xy 360.68 93.98)) (stroke (width 0) (type default)) (uuid f6f7d12a-2052-5c37-9884-6dd3add37065))
+(global_label "LED_K065" (shape passive) (at 360.68 93.98 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 9f9564dd-5453-5eba-b7ef-43063b6c65f6) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 93.98 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 96.52) (xy 360.68 96.52)) (stroke (width 0) (type default)) (uuid 1cb2ea6a-ee31-50ae-ad51-09214a79ee0b))
+(global_label "LED_K066" (shape passive) (at 360.68 96.52 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 1b43ebfa-f6f9-5fa6-8d73-31d4915b0992) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 96.52 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 99.06) (xy 360.68 99.06)) (stroke (width 0) (type default)) (uuid 584c1dab-e60a-573d-896b-1bdcde0aab79))
+(global_label "LED_K067" (shape passive) (at 360.68 99.06 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 5e58abaa-0ec0-5e0f-8e24-abb4df922c87) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 99.06 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 101.6) (xy 360.68 101.6)) (stroke (width 0) (type default)) (uuid dad974de-2e0e-59ec-b4ee-44e38aca6656))
+(global_label "LED_K068" (shape passive) (at 360.68 101.6 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid c2fe2af4-3559-5390-9a93-7090a4c2cc6d) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 101.6 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 104.14) (xy 360.68 104.14)) (stroke (width 0) (type default)) (uuid 2888746f-111d-5cbf-92e3-a2a1b7e70e08))
+(global_label "LED_K069" (shape passive) (at 360.68 104.14 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 433d4dd7-2eba-5834-b4f6-0cc9fcb455e3) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 104.14 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 106.68) (xy 360.68 106.68)) (stroke (width 0) (type default)) (uuid 5e356f2d-50c7-542e-8cfa-8eea38019655))
+(global_label "LED_K070" (shape passive) (at 360.68 106.68 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 82019fca-3311-5b8e-8184-0a2d57ba7b10) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 106.68 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 109.22) (xy 360.68 109.22)) (stroke (width 0) (type default)) (uuid 1d0064f6-5a0a-56d7-9b74-7bc1dbe6ae9a))
+(global_label "LED_K071" (shape passive) (at 360.68 109.22 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 69929f77-437b-5d31-b8c4-a954549f29ab) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 109.22 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 111.76) (xy 360.68 111.76)) (stroke (width 0) (type default)) (uuid 94007bca-5e18-589f-9724-e9c1cfa6f79e))
+(global_label "LED_K072" (shape passive) (at 360.68 111.76 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 1db857a7-ffd5-5c14-aaf9-83c8b13a01ff) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 111.76 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Driver_LED:TLC5947DAP") (at 76.2 200.66 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid 8312a151-cddb-5766-8d59-011b7d6b1131) (property "Reference" "U4" (at 62.23 162.56 0) (effects (font (size 1.0 1.0)))) (property "Value" "TLC5947DAP" (at 62.23 165.1 0) (effects (font (size 1.0 1.0)))) (property "Footprint" "" (at 62.23 160.02 0) (effects (font (size 1.0 1.0)) (hide yes))) (property "Datasheet" "http://www.ti.com/lit/ds/symlink/tlc5947.pdf" (at 76.2 200.66 0) (effects (font (size 1.0 1.0)) (hide yes))) (pin "31" (uuid 62e55c1e-a63e-51aa-b4dd-e479d810277d)) (pin "2" (uuid fb9f1eec-fc26-51e1-b1b3-b5ec0d3c3b68)) (pin "30" (uuid e4ef923c-af54-585e-81c4-7e96ae22af34)) (pin "3" (uuid cc7c4296-9685-510b-b596-d6dc7200e897)) (pin "4" (uuid 8497a926-48ec-5d67-a9c6-eac46d83f05e)) (pin "29" (uuid 8e191860-bb78-5669-baf7-14e816a6b979)) (pin "1" (uuid c41e2e27-ff90-576f-9165-94336ec7d8f2)) (pin "33" (uuid c655fd1d-5487-54cb-b71d-c46ee92253e9)) (pin "32" (uuid 5b2c4cd8-1311-54a6-82a4-b7bcabe3ad4c)) (pin "5" (uuid 7cb22e64-8135-5518-b563-d229e47551f4)) (pin "6" (uuid bac2c212-f94b-5ac0-88c3-fc02335200c1)) (pin "7" (uuid f8b84ea1-07d6-559f-bc9e-169c85ce428c)) (pin "8" (uuid ceb1cebc-1942-5b0f-a448-a8c51173e356)) (pin "9" (uuid 7c9e4762-16c2-50cd-bce6-b0f983633779)) (pin "10" (uuid 47017e72-2363-5b6e-aba8-aba1bc77b3ea)) (pin "11" (uuid f8ae68a4-b2bb-5a5b-97c2-7c60518c06e3)) (pin "12" (uuid 6dae9731-7315-5484-9967-fd39f257de3a)) (pin "13" (uuid 3bfac296-eca8-5331-aa22-52d519233a5d)) (pin "14" (uuid f6a65a47-5a11-5b63-a5a0-4915a3fb3816)) (pin "15" (uuid 0a81194a-46d3-5785-b207-65b6c64b61d7)) (pin "16" (uuid 37d43b06-90f3-5a8d-aa60-859a75ca7f17)) (pin "17" (uuid d9df15cc-8138-5d55-8a99-1b0ab788b84e)) (pin "18" (uuid b886d562-65e6-5d67-aa2a-c5578e448330)) (pin "19" (uuid b81873cd-a77e-5778-880d-3f72062a8a03)) (pin "20" (uuid f6195b83-3fba-5785-83a1-18a4b8b54263)) (pin "21" (uuid 6b0b0bea-0e49-5fcb-a8b3-a30ff5fa9d8b)) (pin "22" (uuid 24c75ecc-2967-5fb5-8bf2-536355a91c35)) (pin "23" (uuid d67ff942-1080-59b3-bba3-3348fa161715)) (pin "24" (uuid 0a7a16cb-d4d3-5154-8a30-3c0ad79c66c3)) (pin "25" (uuid 96ca5c39-dbe4-5ef1-81a2-99ef1a9b5ec3)) (pin "26" (uuid db31206b-3bb2-5695-923c-4e42a2255321)) (pin "27" (uuid 4ddede9e-efd2-5290-bd24-92f6d5fe47db)) (pin "28" (uuid 7a197ff5-bc99-5e0d-b143-7752d87d0f98)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "U4") (unit 1)))))
+(wire (pts (xy 73.66 236.22) (xy 73.66 241.3)) (stroke (width 0) (type default)) (uuid 93020880-f3dc-5f22-88db-e035c3b2fde8))
+(global_label "GND" (shape passive) (at 73.66 241.3 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid e1deacc4-5fd3-56c9-ab9b-d264ae909cdb) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 73.66 241.3 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 78.74 236.22) (xy 78.74 241.3)) (stroke (width 0) (type default)) (uuid c3f1aa7c-b63a-5c35-8f85-d177bd63d5d9))
+(global_label "GND" (shape passive) (at 78.74 241.3 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid ba3a2694-e2b2-59ba-ba0e-819b0820bdda) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 78.74 241.3 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 81.28 162.56) (xy 81.28 157.48)) (stroke (width 0) (type default)) (uuid 61a8374c-f4c1-5741-8329-d393ed474066))
+(global_label "VCC_3V3" (shape passive) (at 81.28 157.48 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid a13115e6-fecd-55cc-aee7-a5bc821e5bdb) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 81.28 157.48 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 58.42 195.58) (xy 53.34 195.58)) (stroke (width 0) (type default)) (uuid 9b362323-6e10-530c-968e-8f421c472a04))
+(global_label "BLANK" (shape passive) (at 53.34 195.58 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid 8dbb2184-ce53-5e13-a53e-b1dedaebb259) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 53.34 195.58 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 58.42 200.66) (xy 53.34 200.66)) (stroke (width 0) (type default)) (uuid a8bbb8ca-fd99-542e-af48-3f16e37fd8de))
+(global_label "SCLK" (shape passive) (at 53.34 200.66 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid 3a936fc1-57d5-5f96-bb6d-2824b18b068e) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 53.34 200.66 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 58.42 198.12) (xy 53.34 198.12)) (stroke (width 0) (type default)) (uuid dbc1c85f-a766-5f74-a8c2-d1732a6cc3d4))
+(global_label "XLAT" (shape passive) (at 53.34 198.12 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid 984d2350-2f9b-5c52-8a0f-a5468d8c6e9d) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 53.34 198.12 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 58.42 203.2) (xy 53.34 203.2)) (stroke (width 0) (type default)) (uuid c4d2a92e-1d3f-5874-a033-3e4b89c85372))
+(global_label "CHAIN_3_4" (shape passive) (at 53.34 203.2 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid dae370ab-1b6b-5f56-91a5-badb40c16d20) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 53.34 203.2 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 58.42 205.74) (xy 53.34 205.74)) (stroke (width 0) (type default)) (uuid da186d92-9ef1-551a-a7de-b28bde5e4712))
+(global_label "CHAIN_4_5" (shape passive) (at 53.34 205.74 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid cfc7b4b5-df24-5b07-9925-6aa0d1a5d139) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 53.34 205.74 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Device:R") (at 40.64 180.34 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid 4fac71e3-b57d-5308-ac39-15ea87ffe4c2) (property "Reference" "R4" (at 44.64 178.84 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "20k / 1%" (at 44.64 181.84 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Footprint" "" (at 44.64 181.84 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Datasheet" "~" (at 44.64 181.84 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (pin "1" (uuid 56693ad4-d624-5114-9804-5002875d9da1)) (pin "2" (uuid c71865aa-5fd0-534a-94f0-1e789348779d)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "R4") (unit 1)))))
+(wire (pts (xy 58.42 193.04) (xy 50.8 193.04)) (stroke (width 0) (type default)) (uuid 000f7fcd-96d0-5a93-bbe2-b43e799db52d))
+(wire (pts (xy 50.8 193.04) (xy 50.8 176.53)) (stroke (width 0) (type default)) (uuid 0d6beb43-81ef-59ab-a569-1ff57c3bf842))
+(wire (pts (xy 50.8 176.53) (xy 40.64 176.53)) (stroke (width 0) (type default)) (uuid af9bd358-f60a-53c8-9e82-1c9198082b3f))
+(wire (pts (xy 40.64 184.15) (xy 40.64 186.69)) (stroke (width 0) (type default)) (uuid 0b640fd3-6b0a-5263-9bc4-d36c8b2dc4d3))
+(global_label "GND" (shape passive) (at 40.64 186.69 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 4b797da2-4dae-508a-a7bd-f442dbbcb601) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 40.64 186.69 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Device:C") (at 35.56 226.06 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid 0be3542c-233c-5da7-a01d-f213d60885c1) (property "Reference" "C4" (at 39.56 224.56 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "100n / X7R / 10V" (at 39.56 227.56 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Footprint" "" (at 39.56 227.56 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Datasheet" "~" (at 39.56 227.56 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (pin "1" (uuid e1a8e715-261b-55a7-a085-ac1bff1b931f)) (pin "2" (uuid b2960f4a-fe17-5bdb-a02b-2ee273eeb871)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "C4") (unit 1)))))
+(wire (pts (xy 35.56 222.25) (xy 35.56 217.17)) (stroke (width 0) (type default)) (uuid 37982026-946f-5166-a73c-f41a289501ea))
+(global_label "VCC_3V3" (shape passive) (at 35.56 217.17 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 232a1199-8817-5a0e-b144-1d3b9ab23652) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 35.56 217.17 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 35.56 229.87) (xy 35.56 234.95)) (stroke (width 0) (type default)) (uuid 97e5b353-35fe-5dc7-8401-49237edf427d))
+(global_label "GND" (shape passive) (at 35.56 234.95 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid c9e1a8c0-60f9-51bd-ab10-4bce29703cf6) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 35.56 234.95 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 170.18) (xy 96.52 170.18)) (stroke (width 0) (type default)) (uuid 9445607c-d95c-5403-bddb-71761da80f64))
+(global_label "LED_K073" (shape passive) (at 96.52 170.18 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid e4120617-99fb-5800-8b7c-d0f04df5a67d) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 170.18 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 172.72) (xy 96.52 172.72)) (stroke (width 0) (type default)) (uuid 3c7d1829-91ca-5ad5-8a8e-cc8638f8438e))
+(global_label "LED_K074" (shape passive) (at 96.52 172.72 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 3ea2188f-5c91-59cd-b644-e7d442eadb73) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 172.72 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 175.26) (xy 96.52 175.26)) (stroke (width 0) (type default)) (uuid a9140884-f835-5357-ac9c-068cbff886aa))
+(global_label "LED_K075" (shape passive) (at 96.52 175.26 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 15e75baf-bbad-5e5b-bf80-7235b922fb50) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 175.26 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 177.8) (xy 96.52 177.8)) (stroke (width 0) (type default)) (uuid ff1fea39-9b21-5384-8d67-dda98b77e960))
+(global_label "LED_K076" (shape passive) (at 96.52 177.8 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 5b00b96a-a239-5438-b0f4-84c8aaba6402) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 177.8 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 180.34) (xy 96.52 180.34)) (stroke (width 0) (type default)) (uuid 9ceb5cf9-0618-5b5f-87f6-d75d423d8e9a))
+(global_label "LED_K077" (shape passive) (at 96.52 180.34 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid b6f1738f-3a15-5456-a56f-c04076f324a6) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 180.34 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 182.88) (xy 96.52 182.88)) (stroke (width 0) (type default)) (uuid ea60cb09-c674-5f85-84b8-522efba605cb))
+(global_label "LED_K078" (shape passive) (at 96.52 182.88 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid ec97791f-f3bd-5cfa-95b7-48655ff7f631) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 182.88 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 185.42) (xy 96.52 185.42)) (stroke (width 0) (type default)) (uuid 8778813b-da38-56ac-ab38-5dd508b2bc45))
+(global_label "LED_K079" (shape passive) (at 96.52 185.42 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid a85a3867-e5f2-5d82-bcb0-0eff331197be) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 185.42 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 187.96) (xy 96.52 187.96)) (stroke (width 0) (type default)) (uuid c73a2486-de46-5900-b09f-2f97a5015f24))
+(global_label "LED_K080" (shape passive) (at 96.52 187.96 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 84d100c2-173e-5332-924d-255ff2cc57ff) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 187.96 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 190.5) (xy 96.52 190.5)) (stroke (width 0) (type default)) (uuid 51433184-5921-5889-b243-73da7309002d))
+(global_label "LED_K081" (shape passive) (at 96.52 190.5 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid b2c60b9f-e10f-5d8e-87d9-6ecf49c7e5a7) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 190.5 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 193.04) (xy 96.52 193.04)) (stroke (width 0) (type default)) (uuid 1aacd575-2bbb-5bc8-8a6a-9921f51d34d8))
+(global_label "LED_K082" (shape passive) (at 96.52 193.04 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid ad499d34-71f4-5d9f-938e-a1de21f9de5f) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 193.04 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 195.58) (xy 96.52 195.58)) (stroke (width 0) (type default)) (uuid c5daa592-7a7f-5c33-8ea0-319d4eb84412))
+(global_label "LED_K083" (shape passive) (at 96.52 195.58 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 278ace2e-5c50-5020-b6d3-5d2080d253b5) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 195.58 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 198.12) (xy 96.52 198.12)) (stroke (width 0) (type default)) (uuid 9132e4bf-ae43-5921-a757-a0257192977d))
+(global_label "LED_K084" (shape passive) (at 96.52 198.12 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 7fa626aa-42db-5413-ae79-78507f596c68) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 198.12 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 200.66) (xy 96.52 200.66)) (stroke (width 0) (type default)) (uuid 4e13f06c-9cf1-5274-896f-44aa7995517b))
+(global_label "LED_K085" (shape passive) (at 96.52 200.66 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid b98bd3a2-6ceb-5e65-9c51-047dbe026447) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 200.66 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 203.2) (xy 96.52 203.2)) (stroke (width 0) (type default)) (uuid 2fc190b6-1324-584c-b410-d9b8d1409251))
+(global_label "LED_K086" (shape passive) (at 96.52 203.2 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid ccf3f708-71e2-5e83-91c3-d07e37e19350) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 203.2 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 205.74) (xy 96.52 205.74)) (stroke (width 0) (type default)) (uuid 9494d442-3fad-5162-aa6e-98c3b8e0dbcb))
+(global_label "LED_K087" (shape passive) (at 96.52 205.74 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 65b40214-e829-54cd-b639-5255672336cf) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 205.74 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 208.28) (xy 96.52 208.28)) (stroke (width 0) (type default)) (uuid c89ac35f-fee1-50df-9394-79076b84ba74))
+(global_label "LED_K088" (shape passive) (at 96.52 208.28 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 1c7acebf-4fa9-5333-9128-ec9660ab3bf7) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 208.28 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 210.82) (xy 96.52 210.82)) (stroke (width 0) (type default)) (uuid c889d9f4-32c4-5c9d-92a8-0f717a26d5c1))
+(global_label "LED_K089" (shape passive) (at 96.52 210.82 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid fb0448cd-d5f7-57be-8d21-591cf8e820a6) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 210.82 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 213.36) (xy 96.52 213.36)) (stroke (width 0) (type default)) (uuid 6d803002-ebad-5cfe-9611-c9b608c0cc70))
+(global_label "LED_K090" (shape passive) (at 96.52 213.36 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid a87c633e-0034-5cf9-8604-4d8179e4cce8) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 213.36 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 215.9) (xy 96.52 215.9)) (stroke (width 0) (type default)) (uuid 6602b405-36f9-577e-8094-7050fc1961a2))
+(global_label "LED_K091" (shape passive) (at 96.52 215.9 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid c10eac2d-6694-549f-852a-84a1490011b1) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 215.9 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 218.44) (xy 96.52 218.44)) (stroke (width 0) (type default)) (uuid 39a5107e-05d9-5b7a-9295-d98f5b06637a))
+(global_label "LED_K092" (shape passive) (at 96.52 218.44 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid c6f7fc38-6750-5bcd-a11d-385ef85383f1) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 218.44 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 220.98) (xy 96.52 220.98)) (stroke (width 0) (type default)) (uuid 02afed14-c4b6-5d59-b481-68376d3e06f9))
+(global_label "LED_K093" (shape passive) (at 96.52 220.98 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 207e90b6-0ed0-5038-a90a-dacf465de3d8) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 220.98 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 223.52) (xy 96.52 223.52)) (stroke (width 0) (type default)) (uuid c004091d-fcf2-56a6-939f-e121658d0610))
+(global_label "LED_K094" (shape passive) (at 96.52 223.52 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 043a28a1-2beb-5f71-9a36-488be47feedd) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 223.52 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 226.06) (xy 96.52 226.06)) (stroke (width 0) (type default)) (uuid f1984eef-c3df-59dd-bbd0-8223bcfe0837))
+(global_label "LED_K095" (shape passive) (at 96.52 226.06 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid b8536bae-d38f-53a1-a86d-7dc02a1b6f23) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 226.06 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 93.98 228.6) (xy 96.52 228.6)) (stroke (width 0) (type default)) (uuid fa8ff5a2-ca26-53ba-8f83-3ce04c85955d))
+(global_label "LED_K096" (shape passive) (at 96.52 228.6 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 7c6ffd7e-1ec5-5717-8d7e-e41bf734fba1) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 96.52 228.6 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Driver_LED:TLC5947DAP") (at 208.28000000000003 200.66 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid f6edd475-92ce-5ca2-8707-151f97141605) (property "Reference" "U5" (at 194.31 162.56 0) (effects (font (size 1.0 1.0)))) (property "Value" "TLC5947DAP" (at 194.31 165.1 0) (effects (font (size 1.0 1.0)))) (property "Footprint" "" (at 194.31 160.02 0) (effects (font (size 1.0 1.0)) (hide yes))) (property "Datasheet" "http://www.ti.com/lit/ds/symlink/tlc5947.pdf" (at 208.28 200.66 0) (effects (font (size 1.0 1.0)) (hide yes))) (pin "31" (uuid e12fa7f9-aa26-55cc-b32f-dd1bdc8d20f0)) (pin "2" (uuid f5b08108-e8f8-50ac-8626-62b04b777611)) (pin "30" (uuid 6fa01664-2b1b-5f5e-9626-cee5cea6ac83)) (pin "3" (uuid 6d265563-70be-53ea-af09-9434e80959b9)) (pin "4" (uuid 7c480061-f4db-5180-bd0a-132ca5e25e2e)) (pin "29" (uuid 3fb2bcf4-6ff5-52c3-b6b6-a5d4aea06cd9)) (pin "1" (uuid 34a66287-571e-51b7-a7f4-5e01ec7c5be2)) (pin "33" (uuid cfd8eff5-4f85-5204-8e23-853287b9e5be)) (pin "32" (uuid 64bf7b64-efdf-5ece-8c18-9d7921c5acd7)) (pin "5" (uuid e971134c-f1b1-5dcd-ab12-95dee4a9f552)) (pin "6" (uuid 840db082-0d19-59ea-a2ae-79d684c4e639)) (pin "7" (uuid 86446e3c-d297-54ec-bec4-e8aebe903ca5)) (pin "8" (uuid 139b6c8f-3f74-5526-828e-41e8c2678ecb)) (pin "9" (uuid 5db6c3aa-08dc-59e6-94f7-7dcfb89ded04)) (pin "10" (uuid eb437e77-2e82-5e66-ba55-dc39db2bd7b6)) (pin "11" (uuid 18af40e7-8fee-5501-9b80-45c3c9fed00a)) (pin "12" (uuid 696b748d-9d4d-5aea-b9da-b38f87a62f9c)) (pin "13" (uuid f0aa196b-047c-5e07-8286-122c563e9e45)) (pin "14" (uuid 146f5338-4077-5c62-b00b-13801df51a91)) (pin "15" (uuid a8f9cbba-8e0b-5260-b6af-4b3aed1dfc27)) (pin "16" (uuid 7cdc879a-d58e-5938-811b-55aaf39adcd8)) (pin "17" (uuid f48ebdf7-9bd4-597a-bf39-ff0a216aba5b)) (pin "18" (uuid ce906d6e-a1f3-5cfb-951c-88f638554728)) (pin "19" (uuid 341e13e2-0846-548c-b923-2f4acf1fe56b)) (pin "20" (uuid 09cfae90-68af-51e3-952a-0b0606d81f42)) (pin "21" (uuid 07be10d0-165d-5800-aa01-8334d7545a95)) (pin "22" (uuid 5cb33a89-7111-581d-b092-814b619a64a5)) (pin "23" (uuid 4bd8c809-98ac-5a95-b04f-91a7e9ef57be)) (pin "24" (uuid ddc6beff-4291-58c6-877f-3416eff65992)) (pin "25" (uuid f33059fa-f11c-513f-85cb-0151fa392f0f)) (pin "26" (uuid 903cf8d6-70d4-5117-8726-dca8bec41484)) (pin "27" (uuid 400e67e2-007d-5589-b908-6fe122a1e920)) (pin "28" (uuid 4523088b-7a09-5b83-879c-352bde479f3a)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "U5") (unit 1)))))
+(wire (pts (xy 205.74 236.22) (xy 205.74 241.3)) (stroke (width 0) (type default)) (uuid 74f06f63-1a59-55d8-8a12-628774ebaf5d))
+(global_label "GND" (shape passive) (at 205.74 241.3 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 83d29742-a491-54d2-8c9a-5984efc98f60) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 205.74 241.3 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 210.82 236.22) (xy 210.82 241.3)) (stroke (width 0) (type default)) (uuid 538a23b7-da8d-5107-b24f-4e9b727dbf80))
+(global_label "GND" (shape passive) (at 210.82 241.3 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid b4cc4ee6-7a2a-5898-9d23-591129fb9898) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 210.82 241.3 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 213.36 162.56) (xy 213.36 157.48)) (stroke (width 0) (type default)) (uuid 618bd60e-5df7-5fe4-88e5-44e2b28cc4af))
+(global_label "VCC_3V3" (shape passive) (at 213.36 157.48 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 3c500347-14af-5a1b-a825-4e55e7340748) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 213.36 157.48 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 190.5 195.58) (xy 185.42 195.58)) (stroke (width 0) (type default)) (uuid d8042bbd-81eb-5be1-a545-1aa553d0f5c0))
+(global_label "BLANK" (shape passive) (at 185.42 195.58 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid 71988308-c86f-5c92-ac29-19f9d26e06e4) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 185.42 195.58 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 190.5 200.66) (xy 185.42 200.66)) (stroke (width 0) (type default)) (uuid fc30d6d2-06b9-5bc6-adc6-1d3ecc9a072a))
+(global_label "SCLK" (shape passive) (at 185.42 200.66 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid fbd4ac2b-d491-57ff-aeb5-121b3b0fdc3f) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 185.42 200.66 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 190.5 198.12) (xy 185.42 198.12)) (stroke (width 0) (type default)) (uuid 870e7e70-5de9-5da9-8a97-e8add8850258))
+(global_label "XLAT" (shape passive) (at 185.42 198.12 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid 5466ba9e-024b-5999-8827-9360a006888b) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 185.42 198.12 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 190.5 203.2) (xy 185.42 203.2)) (stroke (width 0) (type default)) (uuid bf73fe7f-38fb-575b-b3b1-9be39a23de1a))
+(global_label "CHAIN_4_5" (shape passive) (at 185.42 203.2 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid 6537a9cf-f65d-5e81-b55b-30a63fb6e134) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 185.42 203.2 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 190.5 205.74) (xy 185.42 205.74)) (stroke (width 0) (type default)) (uuid 61f0dcea-e497-5576-a9b3-0759c67d68ce))
+(global_label "CHAIN_5_6" (shape passive) (at 185.42 205.74 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid 6fe0d81d-c4da-510e-872b-f37f76c1dbc2) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 185.42 205.74 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Device:R") (at 172.72000000000003 180.34 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid 0b8e04fe-2e25-5854-a9b8-3469c84dc444) (property "Reference" "R5" (at 176.72 178.84 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "20k / 1%" (at 176.72 181.84 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Footprint" "" (at 176.72 181.84 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Datasheet" "~" (at 176.72 181.84 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (pin "1" (uuid 9bf97724-8ffc-5229-a8e0-6fb6771da07d)) (pin "2" (uuid 3d07cb00-6e15-555e-bf11-ff3c4bdc7fd7)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "R5") (unit 1)))))
+(wire (pts (xy 190.5 193.04) (xy 182.88 193.04)) (stroke (width 0) (type default)) (uuid dc44ee52-048c-56ee-9633-dab78963eefe))
+(wire (pts (xy 182.88 193.04) (xy 182.88 176.53)) (stroke (width 0) (type default)) (uuid dcfe7f9a-7cb6-5673-89f7-f870795ce8c8))
+(wire (pts (xy 182.88 176.53) (xy 172.72 176.53)) (stroke (width 0) (type default)) (uuid 4d7f6b87-7064-5b7b-8398-f4c10411f872))
+(wire (pts (xy 172.72 184.15) (xy 172.72 186.69)) (stroke (width 0) (type default)) (uuid 0e397adc-780b-5f5d-8eeb-acfddedee607))
+(global_label "GND" (shape passive) (at 172.72 186.69 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 52100ca3-8555-5523-85f8-608196c604e3) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 172.72 186.69 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Device:C") (at 167.64000000000004 226.06 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid 90e133bf-ce77-5c66-832a-ac697e028654) (property "Reference" "C5" (at 171.64 224.56 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "100n / X7R / 10V" (at 171.64 227.56 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Footprint" "" (at 171.64 227.56 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Datasheet" "~" (at 171.64 227.56 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (pin "1" (uuid 7f69c9d4-954b-507a-b84c-21533d47a10e)) (pin "2" (uuid fba357e6-7ad0-52d2-b385-c8ddb990f8c7)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "C5") (unit 1)))))
+(wire (pts (xy 167.64 222.25) (xy 167.64 217.17)) (stroke (width 0) (type default)) (uuid f55ad259-7033-551f-bae3-3939012bab7f))
+(global_label "VCC_3V3" (shape passive) (at 167.64 217.17 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 4674fcfc-0ef9-5b29-843f-5d5c9282912a) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 167.64 217.17 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 167.64 229.87) (xy 167.64 234.95)) (stroke (width 0) (type default)) (uuid 5939f9e8-d011-5933-94e6-439939bad9f9))
+(global_label "GND" (shape passive) (at 167.64 234.95 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid aedc5390-799b-531a-bf43-66c1b7ed8d75) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 167.64 234.95 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 170.18) (xy 228.6 170.18)) (stroke (width 0) (type default)) (uuid 48efa0cc-2221-5993-b3b8-994b56d4db4a))
+(global_label "LED_K097" (shape passive) (at 228.6 170.18 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid ac4c8142-9042-5a4c-8957-6a796cb850ee) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 170.18 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 172.72) (xy 228.6 172.72)) (stroke (width 0) (type default)) (uuid 0a722008-d579-547f-89f9-3c5925ec9a07))
+(global_label "LED_K098" (shape passive) (at 228.6 172.72 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 912bd598-516e-5c7d-bc7e-8c74149c24a6) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 172.72 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 175.26) (xy 228.6 175.26)) (stroke (width 0) (type default)) (uuid 021775ba-8217-59af-b150-a01fce8df189))
+(global_label "LED_K099" (shape passive) (at 228.6 175.26 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 6f0fe4c3-bdae-5a6f-9ffd-48bfea4fd805) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 175.26 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 177.8) (xy 228.6 177.8)) (stroke (width 0) (type default)) (uuid a09143be-98b2-543f-9691-b1abfe430a7d))
+(global_label "LED_K100" (shape passive) (at 228.6 177.8 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 3fd49ca3-dfc3-5ee5-a263-8132299e04b4) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 177.8 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 180.34) (xy 228.6 180.34)) (stroke (width 0) (type default)) (uuid 96122e21-504d-5b1e-ad50-6f88484e8f34))
+(global_label "LED_K101" (shape passive) (at 228.6 180.34 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid befa9dd7-4233-51d5-9d7c-e2309e65bc8c) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 180.34 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 182.88) (xy 228.6 182.88)) (stroke (width 0) (type default)) (uuid 7ce63214-e278-5e48-a4a7-82f54fae2c84))
+(global_label "LED_K102" (shape passive) (at 228.6 182.88 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 2143d7db-d38a-55eb-9f18-e8d9544efce8) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 182.88 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 185.42) (xy 228.6 185.42)) (stroke (width 0) (type default)) (uuid 3e8beb82-b770-5a4e-9fa7-e8d3da372abc))
+(global_label "LED_K103" (shape passive) (at 228.6 185.42 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid c6331af0-7c8e-5023-807e-33afbd19aef0) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 185.42 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 187.96) (xy 228.6 187.96)) (stroke (width 0) (type default)) (uuid b85091e3-a24c-50b2-bcf4-a879c9a48b26))
+(global_label "LED_K104" (shape passive) (at 228.6 187.96 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 4aa7cf6e-673f-595b-bdc5-f974f0534444) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 187.96 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 190.5) (xy 228.6 190.5)) (stroke (width 0) (type default)) (uuid c1f3b3b8-3430-5b15-b9fb-f6a933ad1170))
+(global_label "LED_K105" (shape passive) (at 228.6 190.5 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 4649fb8a-92f1-5af6-9c22-b5a91b0c8ce5) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 190.5 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 193.04) (xy 228.6 193.04)) (stroke (width 0) (type default)) (uuid 49500918-91af-53e9-83f7-a0b2fd4b09c2))
+(global_label "LED_K106" (shape passive) (at 228.6 193.04 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 2b7ab07c-e8cd-5b0a-9285-09016bf86502) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 193.04 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 195.58) (xy 228.6 195.58)) (stroke (width 0) (type default)) (uuid a52411bd-e13a-5393-83e2-a50d71f45458))
+(global_label "LED_K107" (shape passive) (at 228.6 195.58 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 48e18066-fb01-5820-9324-930d8a147810) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 195.58 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 198.12) (xy 228.6 198.12)) (stroke (width 0) (type default)) (uuid 51d86493-b01f-5565-ba38-43f43323ac14))
+(global_label "LED_K108" (shape passive) (at 228.6 198.12 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 06a64960-5134-5bbc-aec4-6771dfa83b88) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 198.12 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 200.66) (xy 228.6 200.66)) (stroke (width 0) (type default)) (uuid 11db706f-b3d5-54dd-a9c4-5b552393ffe5))
+(global_label "LED_K109" (shape passive) (at 228.6 200.66 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid a5a60334-b1aa-58ab-b1ac-ea85f3e2b286) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 200.66 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 203.2) (xy 228.6 203.2)) (stroke (width 0) (type default)) (uuid d93c9904-17ba-57d6-8c56-7a3f2699847b))
+(global_label "LED_K110" (shape passive) (at 228.6 203.2 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 4c023675-fc8c-5f2f-978c-7c7b8314c224) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 203.2 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 205.74) (xy 228.6 205.74)) (stroke (width 0) (type default)) (uuid f7ea31a8-66e6-5966-824a-92610d505bff))
+(global_label "LED_K111" (shape passive) (at 228.6 205.74 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 2745bb93-b192-55f4-a890-5ab00e57a5ab) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 205.74 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 208.28) (xy 228.6 208.28)) (stroke (width 0) (type default)) (uuid 7c8daf50-ac45-53be-96a1-5e666d1876ac))
+(global_label "LED_K112" (shape passive) (at 228.6 208.28 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 60ca69b1-f964-5e97-bd83-98f0d44c4694) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 208.28 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 210.82) (xy 228.6 210.82)) (stroke (width 0) (type default)) (uuid 57d5060c-323c-5b11-acb9-635480dbba91))
+(global_label "LED_K113" (shape passive) (at 228.6 210.82 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 54851513-0940-57be-8545-ae900bbb80cc) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 210.82 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 213.36) (xy 228.6 213.36)) (stroke (width 0) (type default)) (uuid 863b36a0-46de-54d7-95d4-0294d5c30dcf))
+(global_label "LED_K114" (shape passive) (at 228.6 213.36 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid c79ec1c0-ae2c-53f4-92bd-85d57e25ae34) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 213.36 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 215.9) (xy 228.6 215.9)) (stroke (width 0) (type default)) (uuid 9e658ce9-587c-5507-8b2d-dfb8d0f4be44))
+(global_label "LED_K115" (shape passive) (at 228.6 215.9 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid cc9ccf22-d080-5ab8-8bf6-84e6b8348106) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 215.9 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 218.44) (xy 228.6 218.44)) (stroke (width 0) (type default)) (uuid f92ced15-beeb-5696-b825-512e93b37a08))
+(global_label "LED_K116" (shape passive) (at 228.6 218.44 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 1791654c-d6f4-5c8a-99e6-5532863852fc) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 218.44 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 220.98) (xy 228.6 220.98)) (stroke (width 0) (type default)) (uuid e4fba0e1-5afb-5f20-b2d8-6ed456473f91))
+(global_label "LED_K117" (shape passive) (at 228.6 220.98 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 238eb101-2511-52b0-8811-e9e00e5d5cd6) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 220.98 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 223.52) (xy 228.6 223.52)) (stroke (width 0) (type default)) (uuid a86fc518-971e-5430-9d38-734d23756306))
+(global_label "LED_K118" (shape passive) (at 228.6 223.52 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 2e2074c7-c75d-53de-99ae-db0d4c510711) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 223.52 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 226.06) (xy 228.6 226.06)) (stroke (width 0) (type default)) (uuid 0e41476c-834e-59ea-af3f-5e1921f34ead))
+(global_label "LED_K119" (shape passive) (at 228.6 226.06 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid f04a8a02-8cf6-5afb-b012-efd787daa7aa) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 226.06 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 226.06 228.6) (xy 228.6 228.6)) (stroke (width 0) (type default)) (uuid 3bf92d26-6d05-50eb-a682-8c13f9b70d1e))
+(global_label "LED_K120" (shape passive) (at 228.6 228.6 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid c993f2c2-b2d9-5083-b25f-8b455599ae72) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 228.6 228.6 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Driver_LED:TLC5947DAP") (at 340.36 200.66 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid 5ef52f6c-f6fd-5c38-9f9b-c5aa860d8d30) (property "Reference" "U6" (at 326.39 162.56 0) (effects (font (size 1.0 1.0)))) (property "Value" "TLC5947DAP" (at 326.39 165.1 0) (effects (font (size 1.0 1.0)))) (property "Footprint" "" (at 326.39 160.02 0) (effects (font (size 1.0 1.0)) (hide yes))) (property "Datasheet" "http://www.ti.com/lit/ds/symlink/tlc5947.pdf" (at 340.36 200.66 0) (effects (font (size 1.0 1.0)) (hide yes))) (pin "31" (uuid b0f80d7a-4ebb-5652-a19f-0f6e88f5ffe1)) (pin "2" (uuid 5b38ba30-1983-5c76-8aaa-e744414ffb7e)) (pin "30" (uuid 6f611bd1-6277-5ad6-bf4e-a5f94b61affc)) (pin "3" (uuid 41be81f3-ed5e-5f2a-aa54-b39ca35c1606)) (pin "4" (uuid 39c3b20c-049d-5d7c-8400-9d9c439c507a)) (pin "29" (uuid 2729f221-0e7e-5099-ad52-fc37ce59b1c8)) (pin "1" (uuid b61362fb-f8e1-5588-bd4d-c52b40363c32)) (pin "33" (uuid fa045f9b-dacb-5611-bd55-8d3ef36fb9e7)) (pin "32" (uuid f536d8aa-49f2-5ffc-93a6-e869162be46a)) (pin "5" (uuid 2eb7af54-0223-59a9-9b51-a7254770717a)) (pin "6" (uuid a6135788-4f47-5fda-9e7e-305f344c9fd5)) (pin "7" (uuid bfde0f37-5760-57f4-9b20-b7721ca04b54)) (pin "8" (uuid ddd1d836-6e08-5ea7-bb04-db786b0883bd)) (pin "9" (uuid 4e923855-a080-50ea-85cb-29254ce12e59)) (pin "10" (uuid 58cb0d47-f4a6-551d-a390-75c49c3c1051)) (pin "11" (uuid e90414fe-70ba-5630-9e47-8c7e561add6b)) (pin "12" (uuid f5458fe9-8034-5fd8-8421-fcb672791e96)) (pin "13" (uuid 871b7640-e934-583a-8495-030bc9b17cd7)) (pin "14" (uuid 3894fa65-1754-57b4-a73b-d795f54750d9)) (pin "15" (uuid 5e5057a3-ffa3-5265-bad7-cf16344664e2)) (pin "16" (uuid ff5145bc-41e1-58f3-8508-81088c6c021f)) (pin "17" (uuid d4bacbf6-1c75-5798-b10e-a575dff6082a)) (pin "18" (uuid 61abe6a1-a9d5-5eb0-afd4-c70075f29da2)) (pin "19" (uuid db4f31a0-f180-5a3d-8ba2-9e6379891649)) (pin "20" (uuid b7574073-e7f1-504f-912f-d4946269e493)) (pin "21" (uuid 1612891e-1772-52fa-a6ec-edb409f94fce)) (pin "22" (uuid d23e740a-d524-501c-8d7b-9a634a24b3de)) (pin "23" (uuid b346bbf5-9fab-5983-aaa5-5e0819f85eee)) (pin "24" (uuid ab20ce8f-5c18-5e58-a0a3-eef3d2bde210)) (pin "25" (uuid cd8f2ad9-0aee-5f68-a0b8-52b7215fee7c)) (pin "26" (uuid 0303093b-2b6b-5f8c-8ef2-446c2cf7cabd)) (pin "27" (uuid be094ec2-e345-5f92-888d-95cee99aa9f2)) (pin "28" (uuid ce7e80c3-0835-57dd-bcb5-6b404d66d0aa)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "U6") (unit 1)))))
+(wire (pts (xy 337.82 236.22) (xy 337.82 241.3)) (stroke (width 0) (type default)) (uuid 44c64873-db06-5a9c-adcf-cf5ce2088fcd))
+(global_label "GND" (shape passive) (at 337.82 241.3 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid ae1558e2-15f8-5874-ac32-dcfbe6ce3f9c) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 337.82 241.3 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 342.9 236.22) (xy 342.9 241.3)) (stroke (width 0) (type default)) (uuid 1dde2b30-4c8d-5cc4-a5aa-ebc83aaa14a2))
+(global_label "GND" (shape passive) (at 342.9 241.3 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 1a1d91ab-071e-5141-8c8f-62e383bc1d5a) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 342.9 241.3 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 345.44 162.56) (xy 345.44 157.48)) (stroke (width 0) (type default)) (uuid 3a570c4c-6990-5f78-8622-25ac34a25670))
+(global_label "VCC_3V3" (shape passive) (at 345.44 157.48 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid d6b3ea16-6c01-5457-925d-af677bc14de9) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 345.44 157.48 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 322.58 195.58) (xy 317.5 195.58)) (stroke (width 0) (type default)) (uuid f3f5d3ed-2fbb-5f65-b369-12bc69282d9e))
+(global_label "BLANK" (shape passive) (at 317.5 195.58 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid a05401e3-fbe3-5b8c-a50b-66d53ba17887) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 317.5 195.58 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 322.58 200.66) (xy 317.5 200.66)) (stroke (width 0) (type default)) (uuid 3c16d2e1-018a-59bf-8466-d2b2ffb85a71))
+(global_label "SCLK" (shape passive) (at 317.5 200.66 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid c2ab4741-ae47-5ce7-9828-a2db8c867cb5) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 317.5 200.66 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 322.58 198.12) (xy 317.5 198.12)) (stroke (width 0) (type default)) (uuid 14870e53-1710-5e28-ab33-6b0f492242e9))
+(global_label "XLAT" (shape passive) (at 317.5 198.12 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid 23e8cf1b-d8a9-5edb-a5e1-e03f3de7311a) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 317.5 198.12 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 322.58 203.2) (xy 317.5 203.2)) (stroke (width 0) (type default)) (uuid ae024f38-0fba-556b-a905-15356ad3c549))
+(global_label "CHAIN_5_6" (shape passive) (at 317.5 203.2 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid a26c0fab-bc60-5385-919e-acb17c057c56) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 317.5 203.2 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 322.58 205.74) (xy 317.5 205.74)) (stroke (width 0) (type default)) (uuid 7897ca0b-8d49-5fa6-a246-dcd666592dfd))
+(global_label "SOUT_TEST" (shape passive) (at 317.5 205.74 180) (effects (font (size 0.95 0.95)) (justify right)) (uuid 599a0efb-b9d4-5ce3-9eb2-2e6d2bf1082b) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 317.5 205.74 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Device:R") (at 304.8 180.34 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid 7e16a7e6-330f-506a-a0a9-4048aa705f09) (property "Reference" "R6" (at 308.8 178.84 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "20k / 1%" (at 308.8 181.84 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Footprint" "" (at 308.8 181.84 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Datasheet" "~" (at 308.8 181.84 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (pin "1" (uuid 061c1228-d3e0-5f5a-9abe-6cab4cc6ccad)) (pin "2" (uuid cbcf05d9-c2b9-51ec-891e-cdeec9433d6a)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "R6") (unit 1)))))
+(wire (pts (xy 322.58 193.04) (xy 314.96 193.04)) (stroke (width 0) (type default)) (uuid 48a98111-dc91-5aec-adb5-5602b1ffaf1c))
+(wire (pts (xy 314.96 193.04) (xy 314.96 176.53)) (stroke (width 0) (type default)) (uuid 5ad99208-80a1-5bbe-a7c5-68ed1769419b))
+(wire (pts (xy 314.96 176.53) (xy 304.8 176.53)) (stroke (width 0) (type default)) (uuid 219b0769-3195-50b7-b7d3-3e83efa8a636))
+(wire (pts (xy 304.8 184.15) (xy 304.8 186.69)) (stroke (width 0) (type default)) (uuid 095e461d-9e9a-5b76-a081-4d13a1fc1e3f))
+(global_label "GND" (shape passive) (at 304.8 186.69 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid d708c1f3-c44b-5dfb-9810-1f7758ab58fb) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 304.8 186.69 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Device:C") (at 299.72 226.06 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid 3dcc45cf-2984-55bc-96a5-36d64585ecfc) (property "Reference" "C6" (at 303.72 224.56 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "100n / X7R / 10V" (at 303.72 227.56 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Footprint" "" (at 303.72 227.56 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Datasheet" "~" (at 303.72 227.56 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (pin "1" (uuid 53965aaa-80bf-5500-958c-9b4c5f553b91)) (pin "2" (uuid 0b3b1ced-623c-514b-973b-6ed2f355c201)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "C6") (unit 1)))))
+(wire (pts (xy 299.72 222.25) (xy 299.72 217.17)) (stroke (width 0) (type default)) (uuid 7235de9c-aec1-5273-ab16-977d08b88d9d))
+(global_label "VCC_3V3" (shape passive) (at 299.72 217.17 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 8358aef5-324e-5d8b-92bc-47d696d18d94) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 299.72 217.17 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 299.72 229.87) (xy 299.72 234.95)) (stroke (width 0) (type default)) (uuid 8c97b3b1-e2ec-5fe2-b81c-dbd3d88a1af6))
+(global_label "GND" (shape passive) (at 299.72 234.95 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 633786ce-a5c2-591a-a97c-f8da02b56a5f) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 299.72 234.95 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 170.18) (xy 360.68 170.18)) (stroke (width 0) (type default)) (uuid 01d29a1a-b857-5639-923d-106bcef707dd))
+(global_label "LED_K121" (shape passive) (at 360.68 170.18 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 99e185f3-2891-5119-b781-fb10a005181c) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 170.18 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 172.72) (xy 360.68 172.72)) (stroke (width 0) (type default)) (uuid 92489905-ec34-5f48-844f-d0e327b6c38c))
+(global_label "LED_K122" (shape passive) (at 360.68 172.72 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid c1497441-974b-5dbb-aced-78a8881475a1) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 172.72 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 175.26) (xy 360.68 175.26)) (stroke (width 0) (type default)) (uuid 86e7772d-96c4-51b7-80f3-c3128c05fa74))
+(global_label "LED_K123" (shape passive) (at 360.68 175.26 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 417a6f94-dc89-5a85-a05e-10f7f1b7f8ad) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 175.26 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 177.8) (xy 360.68 177.8)) (stroke (width 0) (type default)) (uuid 5e9a8467-d46d-5fef-b781-5195f195a5b7))
+(global_label "LED_K124" (shape passive) (at 360.68 177.8 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 49bf3d73-e743-5023-9511-c170ccfa3de4) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 177.8 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 180.34) (xy 360.68 180.34)) (stroke (width 0) (type default)) (uuid 406bfdd8-bc9b-58e8-a474-789dbcd672d3))
+(global_label "LED_K125" (shape passive) (at 360.68 180.34 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 6a98ca53-f7b2-5607-a5c6-4bae50932b86) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 180.34 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 182.88) (xy 360.68 182.88)) (stroke (width 0) (type default)) (uuid cbf9565e-101e-571e-ad6b-d1a60090af2d))
+(global_label "LED_K126" (shape passive) (at 360.68 182.88 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 5af76917-fc3d-54f8-b9ea-40dbdb806b9b) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 182.88 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 185.42) (xy 360.68 185.42)) (stroke (width 0) (type default)) (uuid 25d5a9f7-873d-5298-8dda-314648b26a77))
+(global_label "LED_K127" (shape passive) (at 360.68 185.42 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid af1e80ef-5888-5e41-ab54-41d5f80b9f03) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 185.42 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(wire (pts (xy 358.14 187.96) (xy 360.68 187.96)) (stroke (width 0) (type default)) (uuid b7dce10b-6fac-51bb-ac2c-605ffc7c6e5f))
+(global_label "LED_K128" (shape passive) (at 360.68 187.96 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 80b026e3-22b8-59f1-9412-9ee36ec5308a) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 360.68 187.96 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(no_connect (at 358.14 190.5) (uuid 846f6c7e-15e8-5125-ad9e-b31e41eb8d4d))
+(no_connect (at 358.14 193.04) (uuid ae068cb5-c82c-5372-9a76-a69caf8436f4))
+(no_connect (at 358.14 195.58) (uuid 1aff95b6-b6d3-562e-83d3-061ffa433d8f))
+(no_connect (at 358.14 198.12) (uuid 9e6c9ed6-b48e-5c29-824c-0741b2c4b7f0))
+(no_connect (at 358.14 200.66) (uuid fd1fc7f9-e45c-5362-ba24-202db0c9c175))
+(no_connect (at 358.14 203.2) (uuid 3a244bdc-4666-5434-b1a9-5b8032172f2d))
+(no_connect (at 358.14 205.74) (uuid d2c80a84-4385-5818-ae3d-db125b853f12))
+(no_connect (at 358.14 208.28) (uuid dded0ec7-65e9-5ec8-810f-fb42890672e0))
+(no_connect (at 358.14 210.82) (uuid 5a7d9fb4-80d3-59a8-82af-8128d641666e))
+(no_connect (at 358.14 213.36) (uuid e5ea11c3-003d-5f79-b4e9-079079d6d730))
+(no_connect (at 358.14 215.9) (uuid 11899eda-2bae-5e30-af2c-836a56fdab7a))
+(no_connect (at 358.14 218.44) (uuid 15f798f8-275d-5df1-93ae-bd458b69f725))
+(no_connect (at 358.14 220.98) (uuid 5755a30c-70b6-5f95-baf3-bd09460712ad))
+(no_connect (at 358.14 223.52) (uuid 568cf4bd-0945-578a-9236-2d942d174857))
+(no_connect (at 358.14 226.06) (uuid 734be602-a1f5-554c-8371-901246bfca0a))
+(no_connect (at 358.14 228.6) (uuid bd5970de-0c52-578a-b1ea-24c46f6133e1))
+(symbol (lib_id "Connector:TestPoint") (at 25.4 265.43 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid d58804f3-1d8f-59a1-8db7-d25679ea4a7a) (property "Reference" "TP1" (at 29.4 263.93 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "VCC_3V3" (at 29.4 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Footprint" "" (at 29.4 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Datasheet" "~" (at 29.4 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (pin "1" (uuid 6dd8e60f-ebc1-5704-a29d-e48acc7b2600)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "TP1") (unit 1)))))
+(wire (pts (xy 25.4 265.43) (xy 25.4 270.51)) (stroke (width 0) (type default)) (uuid b86676a3-8bb1-5138-ae10-5e630badee66))
+(global_label "VCC_3V3" (shape passive) (at 25.4 270.51 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid aa35d530-18b2-5741-991c-2e1f956c4f30) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 25.4 270.51 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Connector:TestPoint") (at 50.8 265.43 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid 962d50a5-ab3a-5bcf-b7cf-7398f1f64a1a) (property "Reference" "TP2" (at 54.8 263.93 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "VLED_3V3" (at 54.8 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Footprint" "" (at 54.8 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Datasheet" "~" (at 54.8 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (pin "1" (uuid 4c06b66c-595e-5e44-9526-5a4b98a2a1ca)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "TP2") (unit 1)))))
+(wire (pts (xy 50.8 265.43) (xy 50.8 270.51)) (stroke (width 0) (type default)) (uuid e2b4ab38-6135-513b-a01c-ed31ddfb4d11))
+(global_label "VLED_3V3" (shape passive) (at 50.8 270.51 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 5041d9ca-61ca-5317-b9b8-1a73b4d90b17) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 50.8 270.51 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Connector:TestPoint") (at 76.19999999999999 265.43 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid 9c1b0ee0-21b3-5194-a636-d4ad5d58cd4f) (property "Reference" "TP3" (at 80.2 263.93 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "GND" (at 80.2 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Footprint" "" (at 80.2 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Datasheet" "~" (at 80.2 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (pin "1" (uuid e129717d-14c4-5184-8cd5-c0f3fe66950c)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "TP3") (unit 1)))))
+(wire (pts (xy 76.2 265.43) (xy 76.2 270.51)) (stroke (width 0) (type default)) (uuid 40476f1e-712d-512d-b47e-b78943ba59b1))
+(global_label "GND" (shape passive) (at 76.2 270.51 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 0539d59a-82d7-5f10-8b52-3748696a63c9) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 76.2 270.51 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Connector:TestPoint") (at 101.6 265.43 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid 1c3ddf8f-4eb9-5ea8-8247-977bb41b4344) (property "Reference" "TP4" (at 105.6 263.93 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "SIN" (at 105.6 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Footprint" "" (at 105.6 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Datasheet" "~" (at 105.6 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (pin "1" (uuid 8b43d362-a77f-5ac4-91ef-cc3897f27c4e)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "TP4") (unit 1)))))
+(wire (pts (xy 101.6 265.43) (xy 101.6 270.51)) (stroke (width 0) (type default)) (uuid 8ee5c4f7-dde0-5fa2-9ab3-061db0efc01a))
+(global_label "SIN" (shape passive) (at 101.6 270.51 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid b923fdc4-2514-5133-88de-a8196d6fbaec) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 101.6 270.51 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Connector:TestPoint") (at 127.0 265.43 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid a5acd151-a8c1-5c02-82b8-e9e538c4d32f) (property "Reference" "TP5" (at 131 263.93 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "SCLK" (at 131 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Footprint" "" (at 131 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Datasheet" "~" (at 131 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (pin "1" (uuid ec4bae9e-1d14-5196-bb8e-9b8fbd2e1468)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "TP5") (unit 1)))))
+(wire (pts (xy 127 265.43) (xy 127 270.51)) (stroke (width 0) (type default)) (uuid 1fd25674-eaf1-57b9-9007-c02485a942ee))
+(global_label "SCLK" (shape passive) (at 127 270.51 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 93a31efa-1a51-5b15-9a4d-5e3111c8bfaa) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 127 270.51 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Connector:TestPoint") (at 152.4 265.43 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid 938ba9b7-c42c-5811-b3eb-d0911c689de1) (property "Reference" "TP6" (at 156.4 263.93 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "XLAT" (at 156.4 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Footprint" "" (at 156.4 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Datasheet" "~" (at 156.4 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (pin "1" (uuid 7f0f4bdd-9c23-530a-b86e-c6f01af73b45)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "TP6") (unit 1)))))
+(wire (pts (xy 152.4 265.43) (xy 152.4 270.51)) (stroke (width 0) (type default)) (uuid 90083afe-8fa2-5d83-9018-6b9309c5bc31))
+(global_label "XLAT" (shape passive) (at 152.4 270.51 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 7959eef2-c524-5ffd-9d6e-e1b42183a85f) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 152.4 270.51 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Connector:TestPoint") (at 177.79999999999998 265.43 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid 19db4690-2f2a-57b5-a666-a3fbc5a73a5f) (property "Reference" "TP7" (at 181.8 263.93 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "BLANK" (at 181.8 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Footprint" "" (at 181.8 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Datasheet" "~" (at 181.8 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (pin "1" (uuid 92144751-b07c-5113-ba44-1189a7ca8b76)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "TP7") (unit 1)))))
+(wire (pts (xy 177.8 265.43) (xy 177.8 270.51)) (stroke (width 0) (type default)) (uuid 36219437-f0d5-5b36-b1ba-906f73bb7fcc))
+(global_label "BLANK" (shape passive) (at 177.8 270.51 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid a857e77a-43aa-5c09-8108-1fe26f46fff6) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 177.8 270.51 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(symbol (lib_id "Connector:TestPoint") (at 203.2 265.43 0) (unit 1) (in_bom yes) (on_board yes) (dnp no) (uuid 88d58ac2-b026-5db2-9479-c5900e9fca97) (property "Reference" "TP8" (at 207.2 263.93 0) (effects (font (size 1.0 1.0)) (justify left))) (property "Value" "SOUT_TEST" (at 207.2 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Footprint" "" (at 207.2 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (property "Datasheet" "~" (at 207.2 266.93 0) (effects (font (size 1.0 1.0)) (justify left) (hide yes))) (pin "1" (uuid 7fb2b180-ec95-5f89-b2ad-1de44594450d)) (instances (project "coupon-e0" (path "/1851a418-39cb-5a7b-850e-cab555b60ad9/d65a47c0-f40b-54eb-9822-b2e6360cf081" (reference "TP8") (unit 1)))))
+(wire (pts (xy 203.2 265.43) (xy 203.2 270.51)) (stroke (width 0) (type default)) (uuid 4268238b-eee3-5a66-b748-e1e180c038f9))
+(global_label "SOUT_TEST" (shape passive) (at 203.2 270.51 0) (effects (font (size 0.95 0.95)) (justify left)) (uuid 056b49ee-1afd-5da0-ae10-c0a8d711a79a) (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 203.2 270.51 0) (effects (font (size 1.0 1.0)) (hide yes))))
+(text "U6 OUT8..23 non connectees; donnees PWM = 0. C1..C6 au plus pres des VCC des drivers." (at 15.24 248.92 0) (effects (font (size 1.1 1.1)) (justify left top)) (uuid ddcd5e3f-9ff8-5e14-a7ed-a11683525d7e))
+)

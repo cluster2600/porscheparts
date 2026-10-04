@@ -31,7 +31,8 @@ confirmer. Elle n'est ni acquise ni mesurée. Une pièce déformée ne suffit pa
 1. [Feuille de route et backlog](roadmap.md) : dépendances, responsables et portes de décision.
 2. [Mécanique, scan et optique](mechanical-optical.md) et [fiche de mesures](measurements.csv).
 3. [Architecture électronique et prototype](electronics.md), [BOM préliminaire](bom.csv),
-   [coupon E0 : circuit, câblage, BOM et mise au point](electronics/coupon.md).
+   [coupon E0 : circuit, câblage, BOM et mise au point](electronics/coupon.md),
+   [schéma KiCad éditable](electronics/kicad/README.md) et [PDF de revue](electronics/coupon-e0.pdf).
 4. [Logiciel et BLE](software.md), [simulateur](software/panel_simulator.py).
 5. [Budget](budget.md), [coûts modifiables](budget.csv), [registre Swissness](swissness.csv).
 6. [Prestataires](suppliers.md), [demandes de devis non envoyées](rfqs.md).

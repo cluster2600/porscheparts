@@ -52,6 +52,11 @@ Its bionic configurations are explicitly not experimentally validated.
 
 ## Current numerical gate
 
+Update, 2026-10-02: the [blade and tip-clearance mesh recovery](MESH_RECOVERY_20261002.md)
+now passes both standard and full extended checks for the 36° control and 42°
+candidate. Their matched CFD calculations are in progress; no accepted flow gain
+is reported yet. The following paragraph records the earlier rejected attempt.
+
 The first stricter E mesh eliminates the reported concave face angles but
 still fails the extended check because of concave cells. The solver is now
 stopped on that failure. There is no new accepted CFD result or demonstrated

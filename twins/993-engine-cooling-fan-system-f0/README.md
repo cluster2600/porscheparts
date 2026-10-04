@@ -4,10 +4,14 @@
 
 [Multilingual 911 / 935 / 993 research: sources, parameters and contradictions](program/research/README.md)
 
+[935 horizontal system: 40-language evidence, variant-resolved inputs and remaining gaps](../935-horizontal-cooling-system/README.md).
+This is a separate target; 993 inputs and the unscaled scan are not admitted as 935 data.
+
 **Latest engineering iteration:** [native results and failed gates](program/ENGINEERING_RESULTS_20261003.md),
 [declared criteria](program/ENGINEERING_ITERATION_20261003.md),
 [reproduction](program/ENGINEERING_REPRODUCE_20261003.md),
 [material/process admission](program/research/materials-20261003/ADMISSION.md),
+[targeted mesh diagnosis](program/MESH_DIAGNOSIS_20261003.md),
 [native-field OpenUSD study](program/engineering-iteration.usda).
 Four rotating-mode and four uncalibrated support-release calculations completed.
 New CFD mesh repairs remain rejected; no new flow solve or manufacturing qualification.

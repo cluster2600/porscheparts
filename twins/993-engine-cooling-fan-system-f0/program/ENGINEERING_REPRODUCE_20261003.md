@@ -132,6 +132,37 @@ The internal centroid split preserves boundary triangles but still fails QA.
 The experimental polyhedral dual and stale-zone correction are separately
 recorded as rejected alternatives, not part of an accepted flow workflow.
 
+## Targeted diagnosis and mesh-only hex experiment
+
+Use the preserved native primal mesh and the ASCII sets/VTKs from
+`checkMesh -allGeometry -allTopology -writeSets -writeSurfaces`. Cell locations
+come from exact converter order, not nearest-neighbor guesses:
+
+```sh
+python3 /source/localize_mesh_failures.py /work/er1-volume/fluid.msh /work/er1-qa/constant/polyMesh/sets /work/er1-qa/postProcessing/checkMesh/constant /work/localization
+python3 /source/prepare_hex_mesh_pilot.py /work/er1/rotor-metres.stl /work/er1/surface-preparation.json /work/log.surface-er1 /work/hex-er1
+cd /work/hex-er1
+blockMesh > log.blockMesh 2>&1
+timeout 600 snappyHexMesh -overwrite > log.snappyHexMesh 2>&1
+```
+
+These are mesh-only commands. After the first timeout, preserve the intermediate
+case and log privately, change only `castellatedMesh true` to `false` and resume
+`timeout 1200 snappyHexMesh -overwrite`; this avoids regenerating refinement.
+The [declared recovery limits](MESH_DIAGNOSIS_20261003.md) apply. Run both
+independent checks on the finished mesh. Export the native boundary with
+`foamToSurface -tri mesh-boundary.obj`, then run:
+
+```sh
+python3 /source/audit_hex_surface.py /work/er1/rotor-metres.stl /work/hex-er1/mesh-boundary.obj /work/hex-er1/surface-audit.json
+```
+
+The rotor patch is extracted by its actual OBJ group and native vertex IDs.
+No smoothing, triangle deletion, topology welding or displacement scaling is
+used to force acceptance. Generic mesh success is insufficient for source
+geometry retention. An accepted future mesh would still need separate
+wall-resolution, convergence and refinement studies before airflow ranking.
+
 ## Review checks
 
 ```sh
