@@ -29,6 +29,18 @@ def verify(root):
     require(not contract['CAD_generation_authorized_by_this_contract'] and not contract['third_party_images_published'] and not contract['absolute_scale_verified'],'Unmeasured visual contract boundary')
     for subsystem in contract['subsystems'].values():
         require(subsystem['functional_completion_blocked'] and all(value is None for value in subsystem['parameters'].values()) and all(value is None for interface in subsystem['required_interfaces'].values() for value in interface.values()),'Unknown dimensions/interfaces must remain unknown')
+        require(subsystem['documented_dimensions']==[] and set(subsystem['design_variables'])==set(subsystem['parameters']),'No independently measured installed dimensions available')
+        require(all(v['value'] is None and v['bounds'] is None and not v['dimensionally_documented'] and v['symbol'] and v['unit'] for v in subsystem['design_variables'].values()),'Symbolic design variables cannot supply measurement evidence')
+    assumptions=contract['existing_study_assumptions_not_installed_dimensions']
+    require(assumptions['source_sha256']==sha(root/'parameters/R0.json') and not assumptions['may_populate_documented_dimensions'],'R0 assumptions must remain distinct from installed measurements')
+    coupling=json.loads((root/'parameters/D1-coupling-proposed-protocol.json').read_text())
+    before=(root/'parameters/D1-prepared-configurations/control/system/fvSolution').read_text()
+    after=(root/'parameters/D1-coupling-candidate/fvSolution').read_text()
+    require(before.count('consistent no;')==1 and after==before.replace('consistent no;','consistent yes;'),'Coupling proposal changes exactly one token')
+    require(coupling['candidate_fvSolution_sha256']==sha(root/'parameters/D1-coupling-candidate/fvSolution') and coupling['control_fvSolution_sha256']==sha(root/'parameters/D1-prepared-configurations/control/system/fvSolution'),'Coupling candidate hashes')
+    frozen=json.loads((root/'parameters/D1-prepared-configurations/control/reference-protocol.json').read_text())
+    require(coupling['acceptance_all_required']==frozen['acceptance_all_required'] and coupling['initial_native_checkpoint_field_sha256']==frozen['initial_fields_sha256'],'Proposed coupling preserves all original criteria and native start')
+    require(not coupling['solver_started'] and coupling['coordination_required_before_solver'] and coupling['new_cases']==1 and coupling['expected_new_iterations']==list(range(901,961)) and coupling['admission_window']==[941,960],'One unlaunched coupling case and prospective window')
     # Native decomposePar uses this exact relative uniform directory link.
     with tempfile.TemporaryDirectory(prefix='fan-D1-uniform-link-') as directory:
         linkroot=Path(directory)

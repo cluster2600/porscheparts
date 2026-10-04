@@ -9,10 +9,8 @@
 [Diagnostic de pression et prochains lots non lancés](PRESSURE_FOLLOWUP.md) ·
 [Préparation exacte D1 et sous-systèmes non mesurés](D1_PREPARATION.md) ·
 [Exécution D1 bornée et résultat incomplet](D1_EXECUTION.md) ·
-[Préparation exacte D1 et sous-systèmes non mesurés](D1_PREPARATION.md) ·
-[Exécution D1 bornée et résultat incomplet](D1_EXECUTION.md) ·
-[Préparation exacte D1 et sous-systèmes non mesurés](D1_PREPARATION.md) ·
-[Exécution D1 bornée et résultat incomplet](D1_EXECUTION.md) ·
+[Analyse locale après D1 et essai unique proposé](D1_NEXT_DIAGNOSTIC.md) ·
+[Sous-systèmes et variables symboliques](SUBSYSTEM_PARAMETERS.md) ·
 [Accueil du dépôt](../../README.md)
 
 Reconstructions analytiques informées par le scan privé, publiées avec
@@ -33,8 +31,9 @@ assets informés par le scan n'a été établie.
 retire l'admission fine R0 et les moyennes fines présentées comme vingt mesures.
 Les rapports historiques sont conservés ; la [comparaison corrigée](results/cfd/matched-grid-comparison.json)
 fournit l'état actuel. La paire sur grille commune reste admise numériquement.
-Le diagnostic et le protocole suivant ne prouvent aucune amélioration de
-refroidissement installé et n'ont lancé aucun nouveau calcul.
+Le témoin D1 terminé reste non admis sur p et la branche stricte est
+incomplète. L'analyse locale suivante ne relance aucun solveur ; les résultats
+ne prouvent aucune amélioration du refroidissement installé.
 
 ![Reconstruction analytique R0](R0-render.png)
 

@@ -56,6 +56,18 @@ def verify(root):
     require(archive_d1['archive_sha256']==d1['native_archive_sha256'] and archive_d1['all_members_verified'] and archive_d1['local_transferred_archive_identity_verified'] and archive_d1['private_archive_not_published'],'Private D1 native archive identity')
     picture=read('results/cfd/D1-residuals.json')
     require(picture['source_report_sha256']==sha('results/cfd/D1-bounded-result.json') and picture['script_sha256']==sha('source/plot_d1_residuals.py') and picture['png_sha256']==sha('results/cfd/D1-residuals.png') and picture['plotted_complete_samples']=={'control':60,'absolute':29} and picture['partial_tail_not_extrapolated'],'Actual complete native residual render')
+    local=read('results/cfd/D1-local-field-diagnostic.json')
+    require(local['script_sha256']==sha('source/analyze_d1_local_fields.py') and local['native_D1_archive_sha256']==archive_d1['archive_sha256'] and local['cells']==453496,'Preserved-field diagnostic provenance')
+    historical=read('results/cfd/pressure-diagnostic-input-manifest.json')['members']
+    for name,entry in local['used_private_inputs'].items():
+        prefix,key=name.split('/',1)
+        require(entry==(historical if prefix=='historical' else archive_d1['members'])[key],'All light-diagnostic inputs match independently preserved native identity')
+    require(not local['new_solver_run'] and not local['actual_algebraic_residual_cells_identified'] and not local['physical_validation_established'] and not local['historical_fine_admission_restored'],'Spatial differences cannot qualify residual localization or flow')
+    require(local['stored_MRF_relative_phi_continuity_at960']['discrete_global_sum_matches_boundary_sum'],'Discrete native relative-phi global sum')
+    for name,entry in local['dependency_sha256'].items():require(entry==sha('source/'+name),'Local diagnostic dependency identity')
+    require(local['complete_native_correction_log_statistics']['control']['complete_iteration_count']==60 and local['complete_native_correction_log_statistics']['absolute']['complete_iteration_count']==29 and local['complete_native_correction_log_statistics']['absolute']['excluded_incomplete_iterations']==[930],'Incomplete strict iteration excluded from local log analysis')
+    proposal=read('parameters/D1-coupling-proposed-protocol.json')
+    require(proposal['baseline_report_sha256']==sha('results/cfd/D1-bounded-result.json') and proposal['shared_initial_MPI_partition_sha256']==d1['shared_initial_partition_sha256'],'Prospective reused control and MPI identity')
     comparison=read('results/lpbf/manufacturing-comparison.json')
     require(len(comparison['cases'])==12,'Twelve declared manufacturing scenarios required')
     require(not any(comparison[k] for k in ['mesh_independence_established','process_calibrated','fabrication_validated','service_validated']),'Unsupported manufacturing qualification')

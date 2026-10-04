@@ -1,7 +1,7 @@
 {
   "status": "qualitative_subsystem_contract_only_no_new_dimensioned_geometry",
   "reference_URL": "https://www.instagram.com/patrickmotorsports/reel/DeC4x04yjNP/",
-  "source_scope": "Pixels inspectés localement à0/4/6/11s ; publication exacte fournie par le parent, recherche non dupliquée. Légende auteur9353.5LFlatFanMoTeCEFI et9936spdTransaxle, non preuve de base moteur993.",
+  "source_scope": "Pixels inspectés localement à 0 / 4 / 6 / 11 s ; publication exacte fournie par le parent. Légende auteur 935 3.5L Flat Fan MoTeC EFI et 993 6spd Transaxle ; aucune preuve de base moteur 993.",
   "third_party_images_published": false,
   "absolute_scale_verified": false,
   "historical_identity_verified": false,
@@ -42,7 +42,76 @@
       },
       "functional_completion_blocked": true,
       "dimensional_fit_verified": false,
-      "existing_R0_geometry_supplies_measurements": false
+      "existing_R0_geometry_supplies_measurements": false,
+      "documented_dimensions": [],
+      "design_variables": {
+        "inlet_lip_profile": {
+          "symbol": "lip(u)",
+          "unit": "profile",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        },
+        "fan_plane_to_engine_depth": {
+          "symbol": "H",
+          "unit": "mm",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        },
+        "radial_extent": {
+          "symbol": "R",
+          "unit": "mm",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        },
+        "outlet_distribution_sections": {
+          "symbol": "A_i",
+          "unit": "mm2",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        },
+        "wall_thickness": {
+          "symbol": "t",
+          "unit": "mm",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        },
+        "rotor_tip_clearance": {
+          "symbol": "g",
+          "unit": "mm",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        }
+      },
+      "datum_dependency_order": [
+        "engine_mating_surfaces",
+        "fastener_pattern",
+        "clearance_to_intake_and_linkages",
+        "rotor_reference_datums"
+      ],
+      "conditional_relations": [
+        {
+          "relation": "Q_total = sum(Q_i)",
+          "assumptions": "Conservation stationnaire incompressible, fuites négligées ; sorties réelles et partage des débits à mesurer.",
+          "status": "generic_relation_not_installed_validation"
+        },
+        {
+          "relation": "A_i = Q_i / v_i ; dp_i = K_i * Q_i^2",
+          "assumptions": "Vitesse cible et résistance K_i à documenter ; aucune valeur installée déduite du film ou des trois résistances de screening.",
+          "status": "generic_design_variables_only"
+        }
+      ]
     },
     "front-pulley-belt-train": {
       "observation": "Deux poulies et une courroie à l’avant de l’ensemble ; rôles moteur/alternateur/ventilateur et transmission interne non établis par ces images.",
@@ -84,7 +153,90 @@
       },
       "functional_completion_blocked": true,
       "dimensional_fit_verified": false,
-      "existing_R0_geometry_supplies_measurements": false
+      "existing_R0_geometry_supplies_measurements": false,
+      "documented_dimensions": [],
+      "design_variables": {
+        "driver_pitch_diameter": {
+          "symbol": "D_driver",
+          "unit": "mm",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        },
+        "driven_pitch_diameter": {
+          "symbol": "D_driven",
+          "unit": "mm",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        },
+        "center_distance": {
+          "symbol": "C",
+          "unit": "mm",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        },
+        "belt_pitch_and_width": {
+          "symbol": "belt_spec",
+          "unit": "profile",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        },
+        "pulley_grooves": {
+          "symbol": "N_g",
+          "unit": "count",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        },
+        "ratio": {
+          "symbol": "i",
+          "unit": "dimensionless",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        },
+        "tensioner_travel": {
+          "symbol": "x_tensioner",
+          "unit": "mm",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        }
+      },
+      "datum_dependency_order": [
+        "driver_shaft_axis_and_attachment",
+        "driven_shaft_axis_and_attachment",
+        "pulley_alignment",
+        "belt_tension_and_load_path",
+        "bearing_and_mount_datums"
+      ],
+      "conditional_relations": [
+        {
+          "relation": "n_driven / n_driver = D_driver / D_driven * (1 - slip)",
+          "assumptions": "Seulement si entraînement par courroie établi et diamètres primitifs mesurés ; slip inconnu. Sens de rotation dépend du montage.",
+          "status": "generic_relation_not_identified_drive"
+        },
+        {
+          "relation": "T_pulley = (F_tight - F_slack) * D_pitch / 2 ; P = T * omega",
+          "assumptions": "Unités SI ; tensions, prétension, service et axes mesurés requis pour les charges de paliers/supports.",
+          "status": "generic_load_path_only"
+        },
+        {
+          "relation": "L_open = 2*sqrt(C^2-delta^2) + pi*(D_large+D_small)/2 + 2*delta*asin(delta/C) ; delta=(D_large-D_small)/2",
+          "assumptions": "Courroie ouverte idéale sur deux poulies coplanaires, sans tendeur, C > delta ; topologie installée non établie.",
+          "status": "conditional_symbolic_relation_not_a_belt_selection"
+        }
+      ]
     },
     "ribbed-accessory-support": {
       "observation": "Support nervuré visible sous/près des poulies ; fixation et chemin de charge exacts inconnus.",
@@ -125,7 +277,72 @@
       },
       "functional_completion_blocked": true,
       "dimensional_fit_verified": false,
-      "existing_R0_geometry_supplies_measurements": false
+      "existing_R0_geometry_supplies_measurements": false,
+      "documented_dimensions": [],
+      "design_variables": {
+        "rib_sections": {
+          "symbol": "rib(u)",
+          "unit": "profile",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        },
+        "plate_and_boss_thickness": {
+          "symbol": "t_boss",
+          "unit": "mm",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        },
+        "span": {
+          "symbol": "L_support",
+          "unit": "mm",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        },
+        "bolt_pattern": {
+          "symbol": "bolt_datums",
+          "unit": "datum_pattern",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        },
+        "bearing_seat": {
+          "symbol": "bearing_fit",
+          "unit": "fit",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        },
+        "material_and_state": {
+          "symbol": "material_state",
+          "unit": "material_card",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        }
+      },
+      "datum_dependency_order": [
+        "engine_mount_faces_and_holes",
+        "shaft_and_accessory_axes",
+        "belt_reaction_loads",
+        "fastener_preload",
+        "vibration_and_thermal_loads"
+      ],
+      "load_dependencies": [
+        "belt tensions and direction",
+        "shaft-bearing reaction",
+        "accessory inertia",
+        "bolt preload",
+        "temperature and vibration spectrum"
+      ]
     },
     "raised-central-hub-envelope": {
       "observation": "Moyeu/capot central relevé et profil en cuvette visibles ; R0 utilise un voile analytique et ne reproduit pas cette enveloppe.",
@@ -160,7 +377,73 @@
       },
       "functional_completion_blocked": true,
       "dimensional_fit_verified": false,
-      "existing_R0_geometry_supplies_measurements": false
+      "existing_R0_geometry_supplies_measurements": false,
+      "documented_dimensions": [],
+      "design_variables": {
+        "hub_profile": {
+          "symbol": "hub(u)",
+          "unit": "profile",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        },
+        "hub_height": {
+          "symbol": "h_hub",
+          "unit": "mm",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        },
+        "bore_and_shaft_interface": {
+          "symbol": "shaft_fit",
+          "unit": "fit",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        },
+        "axial_clearances": {
+          "symbol": "g_axial",
+          "unit": "mm",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        },
+        "carrier_web_sections": {
+          "symbol": "web(u)",
+          "unit": "profile",
+          "value": null,
+          "bounds": null,
+          "status": "unmeasured_unselected_design_variable",
+          "dimensionally_documented": false
+        }
+      },
+      "datum_dependency_order": [
+        "rotor_shaft_fit",
+        "central_accessory_clearance",
+        "axial_retention",
+        "assembly_datums"
+      ],
+      "load_dependencies": [
+        "shaft-fit and retention datums",
+        "rotor speed and torque",
+        "bearing arrangement",
+        "thermal growth and axial clearance"
+      ]
     }
+  },
+  "schema_version": 2,
+  "dimensional_evidence_policy": "Les dimensions documentées nécessitent une mesure et une référence indépendante. Les variables de conception restent sans valeur ni borne ; les hypothèses R0 ne sont pas des mesures de ces sous-systèmes.",
+  "existing_study_assumptions_not_installed_dimensions": {
+    "source": "R0.json",
+    "source_sha256": "2be56bbe4f3f6818a1f9fbb97b3bafcdd1c3178738dc1b9212cde9cc1f7b5c85",
+    "diameter_mm": 275,
+    "blade_count": 9,
+    "tip_gap_ratio": 0.008,
+    "status": "analyst_assumptions_only",
+    "may_populate_documented_dimensions": false
   }
 }

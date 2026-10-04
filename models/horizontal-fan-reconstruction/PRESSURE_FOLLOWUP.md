@@ -80,19 +80,12 @@ extrapolation ni efficacité qualifiée n'est annoncée.
 | D2a | Après diagnostic et nouvelle fenêtre : R0 et V2 à Q = 1,00 sur leurs grilles communes ; au plus deux phases de 150 par cas | 4 CPU, 5 GiB, 300 s par phase | 8–12 min / 20 min |
 | D2b | Après admission D2a et nouvelle fenêtre : quatre points Q = 0,85 / 1,10 pour R0 et V2 | 4 CPU, 5 GiB, au plus deux phases de 150 par cas | 16–24 min / 40 min |
 
-Tous les seuils originaux restent exigés, ainsi qu'au moins vingt mesures
-consécutives. Si D1 ne distingue pas l'effet du solveur linéaire, une sensibilité
-commune de longueur de sortie doit être préparée avec ses propres gates CAD et
-maillage avant toute conclusion fine. Aucun de ces lots n'est lancé en arrière-plan.
+Ce tableau conserve les lots proposés avant D1. L'[analyse locale après D1](D1_NEXT_DIAGNOSTIC.md)
+hiérarchise désormais couplage, sortie et conditionnement, et propose une seule
+branche `consistent yes` face au témoin déjà calculé. Une sensibilité de
+longueur de sortie demeure le suivi possible, avec ses propres gates CAD et
+maillage. Tous les seuils originaux restent exigés, avec vingt mesures consécutives. Aucun de ces lots n'est lancé en arrière-plan.
 Les fenêtres Kali2 doivent être coordonnées avec les travaux FEM indépendants.
-Les [configurations exactes D1 et la politique de fenêtres prospectives](D1_PREPARATION.md)
-étaient préparées séparément avant lancement. Le [résultat D1 actuel](D1_EXECUTION.md)
-conserve le témoin non admis et la branche stricte interrompue dans le budget.
-Les lots D2 ne sont pas lancés.
-Les [configurations exactes D1 et la politique de fenêtres prospectives](D1_PREPARATION.md)
-étaient préparées séparément avant lancement. Le [résultat D1 actuel](D1_EXECUTION.md)
-conserve le témoin non admis et la branche stricte interrompue dans le budget.
-Les lots D2 ne sont pas lancés.
 Les [configurations exactes D1 et la politique de fenêtres prospectives](D1_PREPARATION.md)
 étaient préparées séparément avant lancement. Le [résultat D1 actuel](D1_EXECUTION.md)
 conserve le témoin non admis et la branche stricte interrompue dans le budget.

@@ -88,3 +88,7 @@ manquantes. Une comparaison finale stricte nécessiterait une nouvelle fenêtre
 explicitement coordonnée : aucune reprise ni extension n'est lancée. Les
 interfaces physiques et scénarios de refroidissement installés restent aussi
 à établir.
+
+L’[analyse locale des champs conservés et le prochain essai proposé](D1_NEXT_DIAGNOSTIC.md)
+complètent ce résultat sans nouvelle exécution. Les [sous-systèmes installés](SUBSYSTEM_PARAMETERS.md)
+restent symboliques et sans dimensions mesurées.
