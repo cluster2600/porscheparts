@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "kind": "public_projection_separate_cpu_exception",
+  "origin_sha256": "b00d8b0b2ae891338f30bb53a1356f9cfd6f48f6789ceb66313756a004167d1a",
+  "facts": {
+    "strict_requested_cpu_ceiling_satisfied": false,
+    "requested_core_equivalents": 2,
+    "native_peak_interval": {
+      "elapsed_start_s": 6.211671875003958,
+      "elapsed_end_s": 6.257383166986983,
+      "cpu_seconds_delta": 0.412550838,
+      "wall_seconds_delta": 0.04571129198302515,
+      "sampled_core_equivalents": 9.025140618497513
+    },
+    "interval_ratio_recomputed_from_exception_metadata": 9.025140618497513,
+    "native_intervals_recorded_above_two": 4,
+    "trace_sha256_reference_not_rehashed_here": "e1be3b71c948a381d2d74e73408835de9e3cea4e986ebb69881b788f02fe3888",
+    "trace_path_relative_reference_only": "logs/runtime001-resources.jsonl",
+    "prior_review_already_recorded_same_peak": true,
+    "observed_native_threads": 18,
+    "native_elapsed_s": 7.074787416990148,
+    "sampled_aggregate_peak_rss_bytes": 238452736,
+    "sampled_maximum_job_average_core_equivalents": 1.306517741509633,
+    "recorded_global_window_s": 491.67161297798157,
+    "classification": "Artifact geometry checks pass within their computational scope; strict two-CPU resource compliance fails. Mean usage below two is not ceiling compliance.",
+    "measurement_scope": "Sampled cumulative child CPU increment divided by the recorded wall interval, not instruction-level instantaneous utilization. Supervisor is outside child quota and final unsampled CPU/short-lived processes may be missed. RSS is sampled; short peaks may be missed."
+  },
+  "original_review_unchanged": true,
+  "geometry_changed": false,
+  "strict_two_cpu_compliance": false
+}
