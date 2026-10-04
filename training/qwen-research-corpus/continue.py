@@ -3,6 +3,7 @@ import argparse
 from collections import Counter
 import hashlib
 import json
+import os
 from pathlib import Path
 import random
 import re
@@ -16,7 +17,7 @@ from ask import citations
 
 HERE = Path(__file__).resolve().parent
 TASKS = ('temperature', 'variant', 'independence', 'citation')
-PARENT = Path('/Users/maxime/Documents/993-Turbo-Restomod-Research/2026-10-02-pilot-001/adapter')
+PARENT = Path(os.environ.get('QWEN_RESEARCH_PARENT_ADAPTER', str(workflow.ENGINEERING / 'work/qwen-research-mlx-001/adapter')))
 PARENT_SHA = '5086fc5cf5d9c2de05cc87b1d7efed5036f5b2431c62c13368955501c1810ec8'
 SYSTEM = (prepare.SYSTEM + ' All new experimental observations are synthetic fixtures, not vehicle evidence. '
           'Quote each observed finding verbatim in claim text and copy its exact supplied record ID. '

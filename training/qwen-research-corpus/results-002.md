@@ -16,7 +16,7 @@ scores, hashes and limitations. [Pilot 001](results-001.md) is preserved.
 ## What was added to training
 
 The new private dataset is
-`/Users/maxime/Documents/993-Turbo-Restomod-Research/2026-10-03-training-002`.
+`private/training-002`.
 It replays all 82 admitted training cases from pilot 001 unchanged and adds
 192 original synthetic cases: 48 for each of four evidence-coverage tasks.
 The new observations are hypothetical exercises, not measurements of a Porsche
@@ -80,7 +80,7 @@ witness was taken during training, before candidate evaluation, and is labelled
 as supplementary rather than a separately pre-registered file hash.
 
 Private receipts, native witnesses and weights are in
-`/Users/maxime/Documents/993-Turbo-Restomod-Research/2026-10-03-pilot-002`.
+`private/pilot-002`.
 Only documentation, helper code and non-sensitive result metadata are in Git.
 
 ## What the registered evaluation measures

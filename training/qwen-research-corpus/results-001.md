@@ -7,7 +7,7 @@ remains experimental. The final eight research tests were not evaluated.
 
 The [metadata receipt](results-001.json) records hashes, settings, scores and
 limitations. The private run directory is
-`/Users/maxime/Documents/993-Turbo-Restomod-Research/2026-10-02-pilot-001`;
+`private/pilot-001`;
 it retains answers, native witnesses, training logs and the separate adapter.
 Raw articles, training exports, answer text and weights are outside Git.
 

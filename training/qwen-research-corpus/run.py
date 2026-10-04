@@ -16,11 +16,11 @@ from prepare import compact, digest, save, verify
 from train import BASE, RUNTIME, gate, score
 
 ROOT = Path(__file__).resolve().parents[2]
-ENGINEERING = Path('/Users/maxime/.codex/worktrees/a6cf/3dprinting993')
+ENGINEERING = Path(os.environ.get('QWEN_RESEARCH_ENGINEERING_ROOT', str(ROOT)))
 PARENT = ENGINEERING / 'work/qwen-engineering-005/checkpoint-1200'
 PRIVATE = ENGINEERING / 'work/qwen-engineering-002/helpers'
-USD_PYTHON = Path('/Users/maxime/projects/3dprinting993/work/cad-recode-tools-venv/bin/python')
-PICO = Path('/Users/maxime/projects/3dprinting993/work/m64-private-20260907/nemo-picogk-20260928.ADELugEK')
+USD_PYTHON = Path(os.environ.get('QWEN_RESEARCH_USD_PYTHON', str(ENGINEERING / 'work/cad-recode-tools-venv/bin/python')))
+PICO = Path(os.environ.get('QWEN_RESEARCH_PICOGK_ROOT', str(ENGINEERING / 'work/picogk-runtime')))
 PARENT_SHA = '70142a4583f5c95a74b3a5dd6661d8243e85e7846dc7aba6e8b4ab3c6a3f29d4'
 BASE_SHA = 'daeab4764fb420d161721791cf2e509e2de81a7af4223646e7bed2bf82c57b58'
 

@@ -191,3 +191,17 @@ the continuation source hash and substitutions before the baseline. Every one
 of the eight validation cases per task must pass the registered 95% gate, with
 no lost baseline pass, before the new final tests can open. Native development
 retention is measured separately. No candidate replaces a default automatically.
+
+## Portable reproduction paths
+
+Public reports use logical private artifact aliases instead of personal host paths.
+The original local receipts and recorded hashes remain historical evidence; this
+privacy projection changes no dataset, score, selection or scientific limit.
+
+Set `QWEN_RESEARCH_ENGINEERING_ROOT` to the preserved engineering checkout,
+`QWEN_RESEARCH_USD_PYTHON` to its pinned existing USD Python, and
+`QWEN_RESEARCH_PICOGK_ROOT` to its existing qualified PicoGK runtime. The
+continuation uses `QWEN_RESEARCH_PARENT_ADAPTER` for pilot 001's preserved
+adapter. Defaults are relative to the current checkout's `work/` area; the
+unchanged integrity gates reject missing or different artifacts. These path
+settings do not authorize training, downloading or installing anything.
