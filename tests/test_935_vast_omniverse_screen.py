@@ -51,6 +51,12 @@ class ScreenContractTests(unittest.TestCase):
         self.assertIn('Path("/opt/ovrtx-app/lib/python3.12/site-packages")', source)
         self.assertIn('if exc.name != "pxr"', source)
 
+    def test_ovrtx_usd_uses_the_closed_stl_proxy_as_renderable_mesh(self):
+        source = SOURCE.read_text(encoding="utf-8")
+        self.assertIn("def load_render_mesh(stl_path: Path)", source)
+        self.assertIn('UsdGeom.Mesh.Define(stage, "/FanAlloyScreen/Proxy/Surface")', source)
+        self.assertIn('geometry_dir / "rotor-proxy.stl"', source)
+
     def test_unknown_yield_comparator_is_usd_safe_and_remains_unknown(self):
         we43 = next(item for item in module.load_inputs(SCREEN)[0]["materials"] if item["id"] == "we43")
         data = module.material_variant_custom_data(we43)

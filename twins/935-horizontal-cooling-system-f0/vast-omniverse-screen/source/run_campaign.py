@@ -253,7 +253,7 @@ def parse_modes(case: Path, expected: str) -> list[float]:
 def load_usd_modules():
     """Load OpenUSD from the local OVRTX runtime when the solver venv lacks it."""
     try:
-        from pxr import Gf, Usd, UsdGeom, UsdLux
+        from pxr import Gf, Usd, UsdGeom, UsdLux, Vt
     except ModuleNotFoundError as exc:
         if exc.name != "pxr":
             raise
@@ -261,8 +261,8 @@ def load_usd_modules():
         if not ovrtx_site_packages.is_dir():
             raise RuntimeError("OpenUSD runtime is unavailable") from exc
         sys.path.insert(0, str(ovrtx_site_packages))
-        from pxr import Gf, Usd, UsdGeom, UsdLux
-    return Gf, Usd, UsdGeom, UsdLux
+        from pxr import Gf, Usd, UsdGeom, UsdLux, Vt
+    return Gf, Usd, UsdGeom, UsdLux, Vt
 
 
 def material_variant_custom_data(card: dict) -> dict:
@@ -281,8 +281,29 @@ def material_variant_custom_data(card: dict) -> dict:
     return data
 
 
-def build_usd(out: Path, cards: dict, scenario: dict, geometry: dict, input_contract: dict) -> Path:
-    Gf, Usd, UsdGeom, UsdLux = load_usd_modules()
+def load_render_mesh(stl_path: Path):
+    """Convert the campaign's closed STL proxy to the OVRTX-renderable USD arrays."""
+    import numpy as np
+    import trimesh
+
+    mesh = trimesh.load_mesh(stl_path, process=False)
+    vertices = np.ascontiguousarray(mesh.vertices, dtype=np.float32)
+    faces = np.ascontiguousarray(mesh.faces, dtype=np.int32)
+    normals = np.ascontiguousarray(mesh.face_normals, dtype=np.float32)
+    if vertices.ndim != 2 or vertices.shape[1] != 3 or len(vertices) == 0:
+        raise ValueError("render proxy has no valid vertices")
+    if faces.ndim != 2 or faces.shape[1] != 3 or len(faces) == 0:
+        raise ValueError("render proxy has no triangular faces")
+    if normals.shape != faces.shape or not np.isfinite(vertices).all() or not np.isfinite(normals).all():
+        raise ValueError("render proxy has non-finite geometry")
+    if faces.min() < 0 or faces.max() >= len(vertices):
+        raise ValueError("render proxy indices are out of range")
+    return vertices, faces, normals
+
+
+def build_usd(out: Path, cards: dict, scenario: dict, geometry: dict, input_contract: dict, stl_path: Path) -> Path:
+    Gf, Usd, UsdGeom, UsdLux, Vt = load_usd_modules()
+    vertices, faces, normals = load_render_mesh(stl_path)
     stage_path = out / "935-horizontal-fan-alloy-screen.usda"
     stage = Usd.Stage.CreateNew(str(stage_path))
     UsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)
@@ -299,12 +320,6 @@ def build_usd(out: Path, cards: dict, scenario: dict, geometry: dict, input_cont
     light = UsdLux.DistantLight.Define(stage, "/FanAlloyScreen/KeyLight")
     light.CreateIntensityAttr(1800.0)
     light.AddRotateXOp().Set(180.0)
-    g = scenario["geometry"]
-    outer_radius = float(g["outer_diameter_mm"]) / 2.0
-    disc_t = float(g["disc_thickness_mm"])
-    blade_h = float(g["blade_height_mm"])
-    radial_length, tangential_width = outer_radius * 0.62, outer_radius * 0.13
-    centre_radius = outer_radius * 0.61
     variant_set = root.GetVariantSets().AddVariantSet("materialScenario")
     colors = [(0.65,0.65,0.7),(0.8,0.7,0.25),(0.5,0.55,0.6),(0.4,0.6,0.7),(0.75,0.45,0.25)]
     for index, card in enumerate(cards["materials"]):
@@ -313,21 +328,22 @@ def build_usd(out: Path, cards: dict, scenario: dict, geometry: dict, input_cont
         with variant_set.GetVariantEditContext():
             prim = UsdGeom.Xform.Define(stage, "/FanAlloyScreen/Proxy").GetPrim()
             prim.SetCustomData(material_variant_custom_data(card))
-            disc = UsdGeom.Cylinder.Define(stage, "/FanAlloyScreen/Proxy/Disc")
-            disc.CreateRadiusAttr(outer_radius)
-            disc.CreateHeightAttr(disc_t)
-            disc.CreateDisplayColorAttr([colors[index % len(colors)]])
-            hub = UsdGeom.Cylinder.Define(stage, "/FanAlloyScreen/Proxy/Hub")
-            hub.CreateRadiusAttr(30.0)
-            hub.CreateHeightAttr(16.0)
-            hub.CreateDisplayColorAttr([colors[index % len(colors)]])
-            for blade_index in range(int(g["blade_count"])):
-                blade = UsdGeom.Cube.Define(stage, f"/FanAlloyScreen/Proxy/Blade{blade_index:02d}")
-                blade.CreateSizeAttr(1.0)
-                blade.CreateDisplayColorAttr([colors[index % len(colors)]])
-                blade.AddTranslateOp().Set(Gf.Vec3d(centre_radius, 0.0, disc_t / 2.0 + blade_h / 2.0))
-                blade.AddRotateZOp().Set(360.0 * blade_index / int(g["blade_count"]) + 24.0)
-                blade.AddScaleOp().Set(Gf.Vec3f(radial_length, tangential_width, blade_h))
+            surface = UsdGeom.Mesh.Define(stage, "/FanAlloyScreen/Proxy/Surface")
+            surface.CreatePointsAttr(Vt.Vec3fArray.FromNumpy(vertices))
+            surface.CreateFaceVertexCountsAttr([3] * len(faces))
+            surface.CreateFaceVertexIndicesAttr(Vt.IntArray.FromNumpy(faces.reshape(-1)))
+            surface.CreateNormalsAttr(Vt.Vec3fArray.FromNumpy(normals))
+            surface.SetNormalsInterpolation(UsdGeom.Tokens.uniform)
+            surface.CreateExtentAttr(Vt.Vec3fArray([
+                Gf.Vec3f(*vertices.min(axis=0).tolist()),
+                Gf.Vec3f(*vertices.max(axis=0).tolist()),
+            ]))
+            surface.CreateSubdivisionSchemeAttr(UsdGeom.Tokens.none)
+            surface.CreateOrientationAttr(UsdGeom.Tokens.rightHanded)
+            surface.CreateDoubleSidedAttr(False)
+            surface.CreateDisplayColorPrimvar("constant").Set(
+                Vt.Vec3fArray([Gf.Vec3f(*colors[index % len(colors)])])
+            )
     variant_set.SetVariantSelection("alsi10mg")
     stage.GetRootLayer().documentation = "Exploratory 935 horizontal fan alloy screen. No physical validation or manufacturing authorization."
     stage.GetRootLayer().Save()
@@ -413,7 +429,7 @@ def run(root: Path, out: Path, ovrtx_endpoint: str | None = None) -> dict:
                          "yield_comparator_over_peak": None if comparator is None else comparator / peak,
                          "above_yield_comparator": None if comparator is None else peak > comparator,
                          "method": "fresh CalculiX static solve" if rpm == rpm_static else "linear-elastic omega-squared extrapolation"})
-    usd = build_usd(out, cards, scenario, geometry, input_contract)
+    usd = build_usd(out, cards, scenario, geometry, input_contract, geometry_dir / "rotor-proxy.stl")
     render = None if ovrtx_endpoint is None else render_ovrtx(usd, out, ovrtx_endpoint)
     report = {"schema_version": "1.0.0", "status": "completed_unvalidated_comparative_screen", "generated_at": datetime.now(timezone.utc).isoformat(),
               "scenario": scenario, "input_contract": input_contract, "geometry": geometry, "mesh": {key: value for key, value in mesh.items() if key != "fixed_ids"},
