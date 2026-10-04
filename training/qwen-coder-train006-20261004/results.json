@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "report_id": "qwen-coder-train006-20261004",
+  "date_utc": "2026-10-04",
+  "artifact_scope": "metadata_projection_not_end_to_end_reproduction",
+  "status": "adapter_not_selected_static_source_gate_failed",
+  "model": {
+    "repository": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+    "revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+    "quantization_bits": 4,
+    "group_size": 64,
+    "runtime": {
+      "mlx": "0.32.3",
+      "mlx_lm": "0.31.3"
+    }
+  },
+  "training": {
+    "run": "train006",
+    "initialization": "fresh_base_and_fresh_adapter",
+    "resumed_old_checkpoint": false,
+    "unique_exposed_development_rows": 5,
+    "dependent_source_groups": 2,
+    "seed": 42,
+    "optimizer_updates": 16,
+    "selected_checkpoint": "predeclared_final_step_16_only",
+    "lora": {
+      "rank": 8,
+      "scale": 2.0,
+      "dropout": 0.0,
+      "layer_count": 4,
+      "projection_keys": [
+        "self_attn.q_proj",
+        "self_attn.v_proj"
+      ]
+    },
+    "optimizer": {
+      "name": "mlx.optimizers.Adam",
+      "learning_rate": 0.0001,
+      "batch_size": 1,
+      "bias_correction": false,
+      "weight_decay": 0.0
+    },
+    "objective": "Assistant code plus one real EOS; prompt, trailer and padding labels excluded.",
+    "finite_update_checks": "PASS_RECORDED_NUMERIC_AND_DOCUMENTARY_ADMISSION",
+    "strict_reload": "PASS",
+    "genuine_terminal_wait4_exit_code": 0,
+    "bindings_before_after_unchanged": true,
+    "adapter_file_sha256": "93f4d64cde2567fa8cffb222360131338fac1f1b737f52584d3bd5c9288c845e",
+    "weights_or_dataset_published": false,
+    "history": {
+      "train005_still_quarantined": true,
+      "train006_adapter_bytes_identical_to_documented_train005": true,
+      "old_run_retroactively_admitted": false,
+      "change": "Clean train006 execution supplies terminal supervision and post-run evidence; identical artifact bytes do not demonstrate an additional model gain."
+    }
+  },
+  "development_comparison": {
+    "case_count": 1,
+    "case": "already_exposed_original_synthetic_spacer",
+    "independent_holdout": false,
+    "generations_per_arm": 1,
+    "repairs_or_retries": 0,
+    "old_outputs_reused": false,
+    "same_input_runtime_and_decoding": true,
+    "input_tokens": 392,
+    "decoder": "greedy",
+    "seed": 0,
+    "max_generated_tokens_including_terminal": 2048,
+    "actual_terminal_id_both": 151645,
+    "base_generated_tokens_including_terminal": 368,
+    "adapter_generated_tokens_including_terminal": 465,
+    "pair_elapsed_seconds": 21.27942212499329,
+    "genuine_wait4_exit_code_both": 0,
+    "unchanged_binding_count": 49,
+    "observed_resources": {
+      "peak_conservative_combined_memory_GiB": 2.54,
+      "max_sampled_owned_threads": 14,
+      "max_rolling_cpu_core_equivalents": 1.1697384353872025,
+      "interpretation": "Sampled telemetry; overlapping conservative memory accounting, no hard OS caps or complete Metal-driver accounting."
+    },
+    "static_review": {
+      "independent_blinded_reviewers": 2,
+      "method": "Manual review of unchanged anonymized source and common documentary metadata; no compiler AST/symbol resolution or execution.",
+      "completion_S01_both": "PASS_DOCUMENTARY_RAW_EOS_COMPLETION",
+      "source_only_format_S02_both": "FAIL",
+      "owner_effects_API_admission_S03_both": "NOT_EVALUATED",
+      "downstream_S04_S05_both": {
+        "review_1": "FAIL",
+        "review_2": "NOT_EVALUATED_DEPENDENCY_BLOCKED",
+        "combined": "DISAGREEMENT_PRESERVED_NO_PASS"
+      },
+      "common_source_findings": [
+        "Markdown fences violate source-only format.",
+        "Numeric guards do not cover nonfinite values and equal inner/outer diameters.",
+        "API routes and nullable-to-float argument use lack the required owner compatibility proof.",
+        "Beam radius/cap arguments conflict with the constant-radius flat-cap contract."
+      ],
+      "adapter_change": "PicoGK imports corrected; an additional oversized cutter introduced.",
+      "nullable_context": "No nullable context in either source; no equivalent owner context admitted. This absence is distinguished from a compiler diagnostic.",
+      "source_only_format_passes": {
+        "base": 0,
+        "adapter": 0,
+        "exposed_case_denominator": 1
+      },
+      "raw_source_admitted_both": false
+    },
+    "managed_compilation": "NOT_EVALUATED",
+    "generated_code_execution": false,
+    "native_geometry": "NOT_EVALUATED",
+    "adapter_selected": false,
+    "base_remains_comparison_reference": true,
+    "base_output_also_rejected": true,
+    "demonstrated_utility_gain": false,
+    "full_functional_success_admitted": false
+  },
+  "control_levels": {
+    "token_mask": "Prior tokenizer-only proofs are bound by the training protocol; no tokenizer replay for this publication.",
+    "numeric_training": "Recorded finite gradient/optimizer/update checks, strict reload and admitted terminal supervision.",
+    "generation": "Raw EOS completion plus documentary runtime integrity; runtime reviewer retains supervisor-author lineage caveat.",
+    "source": "Two independent blinded manual reviews; source execution blocked.",
+    "managed_native_physical": "Not evaluated; no generated-source compilation or geometry run."
+  },
+  "scope_limits": [
+    "Five exposed training rows in two dependent source groups and one exposed comparison case establish no independent generalization or statistically reliable improvement.",
+    "Static geometry intent is not measured geometry; no dimensions, fit, materials, safety, manufacturing or Porsche part qualification follows.",
+    "Reserved evaluations stayed closed. Scientific Qwen3 and the distinct PR117 Coder/MLX pilot retain separate data, checkpoints and metrics.",
+    "PR127 documents earlier negative findings; this report adds train006 and its exposed comparison without rewriting that history.",
+    "This explicit projection contains no weights, datasets, source bodies or raw receipts. Commitments identify retained evidence and do not make this package an end-to-end reproduction."
+  ],
+  "publication_rights": "Owner-authored reporting prose follows the repository licence; metadata publication grants no reuse or redistribution rights to the underlying model, training data or course code.",
+  "evidence_commitments_sha256": {
+    "training_protocol": "f5893dc3ceccb40129e67806fda1d640672c3d1bd04160fafb17b2e87916ad1c",
+    "numeric_training_receipt": "1a135efea37e4a55df39ac23b35d9faa94eae65765b24366428a3ec6c5ce0886",
+    "training_supervision_receipt": "20564fa4c077d52fda6f659205a44b8015992a627f83b8533751d0cf35349f2b",
+    "training_admission": "22671a78fa7a21df5a7e4cc8878c6470340425bcb0a98268671001452e83f386",
+    "paired_generation_protocol": "b607f8468ccd0e5cf56b3905bf1c594761731147a9d44b2b277da1c7606f9d9a",
+    "paired_generation_supervision": "314ca64d553bc8483b45d1c65e3ff5412b0a5dc83db6d465a605fdcea9cd3826",
+    "paired_development_outcome": "7bd1a6c1e2bcdd59be82008e8229a0ea40db8b3ab6a128198a06e859c43d5e04",
+    "runtime_documentary_review": "9f51fe780d7fb234adf1604732e54cfaf2f049a275f5d3d90a582219a7330e8f",
+    "root_generation_verification": "56258ef5f9ae645272fb1ec1ebde9ed0c5015299a2912c531cd3b45022178596",
+    "blind_review_1_addendum": "941132a03ec9d8d21fd2285bcf1ae5b8087e5d62699602c53674da3759b83ef4",
+    "blind_review_2_addendum": "d6fdc9961d61365e83ac8d617babcbdbfdc39b7219915bfc27207f89f655faff",
+    "base_generated_source": "73259f5d318bf4ec4210f91b9b7c48f9b31a01b3f7bb2e5bafa467228b39367b",
+    "adapter_generated_source": "cc972bf3f4ed4b1ba4d546b95230cc47aa475a1072590a18c18f62c90b08ce1d"
+  }
+}
