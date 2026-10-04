@@ -12,6 +12,7 @@ from audit_fan_pressure_physicsnemo import read_patch
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('vtk', type=Path)
 parser.add_argument('--title', default='Isolated rotor in an assumed test duct')
+parser.add_argument('--speed-max', type=float, help='Common colour maximum in m/s; must cover all sampled speeds')
 args = parser.parse_args()
 points, faces, pressure = read_patch(args.vtk)
 tokens = args.vtk.read_text().split()
@@ -24,8 +25,11 @@ if not np.isfinite(u).all():
 polygons = [points[face][:,[0,2]]*1000 for face in faces]
 centres = np.array([p.mean(axis=0) for p in polygons])
 speed = np.linalg.norm(u,axis=1)
+maximum = float(speed.max()) if args.speed_max is None else args.speed_max
+if not np.isfinite(maximum) or maximum <= 0 or maximum < speed.max():
+    raise ValueError('Colour maximum must be finite, positive and cover every sampled speed')
 fig,ax = plt.subplots(figsize=(7,8),layout='constrained')
-collection = PolyCollection(polygons,array=speed,cmap='viridis',edgecolors='none',clim=(0,float(speed.max())))
+collection = PolyCollection(polygons,array=speed,cmap='viridis',edgecolors='none',clim=(0,maximum))
 ax.add_collection(collection);fig.colorbar(collection,ax=ax,label='3D speed (m/s), full sampled range')
 _,selected = np.unique(np.floor(centres/14).astype(int),axis=0,return_index=True)
 q=ax.quiver(centres[selected,0],centres[selected,1],u[selected,0],u[selected,2],

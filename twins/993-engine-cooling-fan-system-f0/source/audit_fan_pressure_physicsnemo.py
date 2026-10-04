@@ -2,6 +2,7 @@
 """Independently integrate OpenFOAM rotor pressure with PhysicsNeMo Mesh."""
 import argparse
 import hashlib
+import importlib.metadata
 import json
 from pathlib import Path
 
@@ -44,7 +45,9 @@ def read_patch(path):
     return points, polygons, pressure
 
 
-def integrate(points, polygons, pressure, rho=1.2):
+def integrate(points, polygons, pressure, rho=1.2, device="cpu"):
+    if device != "cpu" and not (device.startswith("cuda") and torch.cuda.is_available()):
+        raise ValueError("Requested audit device unavailable")
     vertices = list(points)
     triangles, values = [], []
     for face, p in zip(polygons, pressure, strict=True):
@@ -53,13 +56,13 @@ def integrate(points, polygons, pressure, rho=1.2):
         for a, b in zip(face, face[1:]+face[:1]):
             triangles.append([center, a, b])
             values.append(p * rho)
-    xyz = torch.as_tensor(np.asarray(vertices), dtype=torch.float64)
-    cells = torch.as_tensor(np.asarray(triangles), dtype=torch.int64)
+    xyz = torch.as_tensor(np.asarray(vertices), dtype=torch.float64, device=device)
+    cells = torch.as_tensor(np.asarray(triangles), dtype=torch.int64, device=device)
     mesh = Mesh(points=xyz, cells=cells)
-    forces = mesh.cell_normals * mesh.cell_areas[:, None] * torch.tensor(values, dtype=torch.float64)[:, None]
+    forces = mesh.cell_normals * mesh.cell_areas[:, None] * torch.tensor(values, dtype=torch.float64, device=device)[:, None]
     centers = xyz[cells].mean(dim=1)
     moments = torch.linalg.cross(centers, forces)
-    force, moment = forces.sum(dim=0).numpy(), moments.sum(dim=0).numpy()
+    force, moment = forces.sum(dim=0).cpu().numpy(), moments.sum(dim=0).cpu().numpy()
     if not np.isfinite(force).all() or not np.isfinite(moment).all():
         raise ValueError("Invalid pressure integral")
     return force, moment
@@ -69,6 +72,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("vtk", type=Path, nargs="?")
     parser.add_argument("--forces", type=Path)
+    parser.add_argument("--device", default="cpu")
     args = parser.parse_args()
     if args.vtk is None:
         from tempfile import TemporaryDirectory
@@ -77,7 +81,7 @@ if __name__ == "__main__":
             patch.write_text("# vtk DataFile Version 2.0\ntriangle\nASCII\nDATASET POLYDATA\n"
                 "POINTS 3 float\n0 0 0 1 0 0 0 1 0\nPOLYGONS 1 4\n3 0 1 2\n"
                 "CELL_DATA 1\nFIELD attributes 1\np 1 1 float\n2\n")
-            f, m = integrate(*read_patch(patch))
+            f, m = integrate(*read_patch(patch), device=args.device)
             patch.write_text(patch.read_text().replace("CELL_DATA 1", "CELL_DATA 2"))
             try:
                 read_patch(patch)
@@ -90,7 +94,7 @@ if __name__ == "__main__":
     else:
         if args.forces is None:
             parser.error("--forces is required with a VTK patch")
-        f, m = integrate(*read_patch(args.vtk))
+        f, m = integrate(*read_patch(args.vtk), device=args.device)
         row = [line for line in args.forces.read_text().splitlines() if line.strip() and not line.startswith("#")][-1]
         values = np.asarray(list(map(float, row.replace("(", " ").replace(")", " ").split())))
         if len(values) != 13 or not np.isfinite(values).all():
@@ -100,6 +104,8 @@ if __name__ == "__main__":
         force_error = np.linalg.norm(f-values[1:4]) / max(np.linalg.norm(values[1:4]), 1e-12)
         moment_error = np.linalg.norm(m-values[7:10]) / max(np.linalg.norm(values[7:10]), 1e-12)
         result = {"status":"pressure_integral_only_not_flow_validation", "rho_kg_m3":1.2,
+            "device":str(torch.device(args.device)), "torch_version":torch.__version__,
+            "physicsnemo_version":importlib.metadata.version("nvidia-physicsnemo"),
             "pressure_force_N":f.tolist(), "pressure_moment_Nm":m.tolist(),
             "relative_force_error":float(force_error), "relative_moment_error":float(moment_error),
             "matches_openfoam_within_half_percent":bool(max(force_error,moment_error)<.005),

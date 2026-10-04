@@ -31,9 +31,11 @@ with tempfile.TemporaryDirectory() as directory:
     generate(case, surface, 4200, rotor_only=True)
     assert json.loads((case / "fan-input.json").read_text())["installed_assembly_represented"] is False
     assert "radius 0.125" in (case / "system/snappyHexMeshDict").read_text()
-    assert "0.036" in (case / "system/topoSetDict").read_text()
+    assert "(-.15 -.15 -0.2) (.15 .15 0.2)" in (case / "system/topoSetDict").read_text()
+    assert json.loads((case / "fan-input.json").read_text())["rotating_frame_extent"] == "whole_axisymmetric_duct"
     assert "omega 4200 [rpm]" in (case / "constant/MRFProperties").read_text()
-    assert "outlet {type fixedValue" in (case / "0/p").read_text()
+    assert "outlet {type totalPressure; p0 uniform 0;" in (case / "0/p").read_text()
+    assert (case / "system/controlDict").read_text().count("operation sumMag;") == 2
     clockwise = root / "clockwise"
     generate(clockwise, surface, 4200, rotor_only=True, rotation_sign=-1)
     assert "omega -4200 [rpm]" in (clockwise / "constant/MRFProperties").read_text()
@@ -61,6 +63,8 @@ with tempfile.TemporaryDirectory() as directory:
     (root / "alternator-surface-audit.json").write_text(json.dumps(stationary_audit))
     assembly = root / "assembly"
     generate(assembly, surface, 4200, with_alternator=True)
+    assert "0.036" in (assembly / "system/topoSetDict").read_text()
+    assert json.loads((assembly / "fan-input.json").read_text())["rotating_frame_extent"] == "local_zone_requires_interface_audit"
     assert (assembly / "constant/geometry/alternator.stl").read_bytes() == stationary.read_bytes()
     assert "alternator {level (4 4)" in (assembly / "system/snappyHexMeshDict").read_text()
     assert '"(duct|sides|alternator)" {type noSlip;}' in (assembly / "0/U").read_text()
