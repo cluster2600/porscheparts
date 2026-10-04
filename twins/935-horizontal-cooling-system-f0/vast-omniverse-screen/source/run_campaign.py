@@ -253,7 +253,7 @@ def parse_modes(case: Path, expected: str) -> list[float]:
 def load_usd_modules():
     """Load OpenUSD from the local OVRTX runtime when the solver venv lacks it."""
     try:
-        from pxr import Gf, Usd, UsdGeom, UsdLux, Vt
+        from pxr import Gf, Sdf, Usd, UsdGeom, UsdLux, UsdShade, Vt
     except ModuleNotFoundError as exc:
         if exc.name != "pxr":
             raise
@@ -261,8 +261,8 @@ def load_usd_modules():
         if not ovrtx_site_packages.is_dir():
             raise RuntimeError("OpenUSD runtime is unavailable") from exc
         sys.path.insert(0, str(ovrtx_site_packages))
-        from pxr import Gf, Usd, UsdGeom, UsdLux, Vt
-    return Gf, Usd, UsdGeom, UsdLux, Vt
+        from pxr import Gf, Sdf, Usd, UsdGeom, UsdLux, UsdShade, Vt
+    return Gf, Sdf, Usd, UsdGeom, UsdLux, UsdShade, Vt
 
 
 def material_variant_custom_data(card: dict) -> dict:
@@ -302,7 +302,7 @@ def load_render_mesh(stl_path: Path):
 
 
 def build_usd(out: Path, cards: dict, scenario: dict, geometry: dict, input_contract: dict, stl_path: Path) -> Path:
-    Gf, Usd, UsdGeom, UsdLux, Vt = load_usd_modules()
+    Gf, Sdf, Usd, UsdGeom, UsdLux, UsdShade, Vt = load_usd_modules()
     vertices, faces, normals = load_render_mesh(stl_path)
     stage_path = out / "935-horizontal-fan-alloy-screen.usda"
     stage = Usd.Stage.CreateNew(str(stage_path))
@@ -314,12 +314,23 @@ def build_usd(out: Path, cards: dict, scenario: dict, geometry: dict, input_cont
                         "scanTransferred": False, "interfacesVerified": False, "source": scenario["id"],
                         "inputContractSha256": input_contract["matrix_sha256"],
                         "accepted935NumericPhysicalClaims": input_contract["accepted_935_numeric_physical_claims"]})
+    minimum, maximum = vertices.min(axis=0), vertices.max(axis=0)
+    center = (minimum + maximum) / 2.0
+    radius = max(float((maximum - minimum).dot(maximum - minimum)) ** 0.5 / 2.0, 1.0)
     camera = UsdGeom.Camera.Define(stage, "/FanAlloyScreen/Camera")
     camera.CreateFocalLengthAttr(52.0)
-    camera.AddTranslateOp().Set(Gf.Vec3d(0.0, 0.0, 600.0))
-    light = UsdLux.DistantLight.Define(stage, "/FanAlloyScreen/KeyLight")
-    light.CreateIntensityAttr(1800.0)
-    light.AddRotateXOp().Set(180.0)
+    camera.CreateHorizontalApertureAttr(36.0)
+    camera.CreateVerticalApertureAttr(36.0)
+    camera.CreateClippingRangeAttr((max(radius * 0.01, 0.01), radius * 10.0))
+    eye = Gf.Vec3d(float(center[0] + radius * 2.3), float(center[1] - radius * 2.3), float(center[2] + radius * 0.78))
+    transform = Gf.Matrix4d().SetLookAt(eye, Gf.Vec3d(*center.tolist()), Gf.Vec3d(0.0, 0.0, 1.0)).GetInverse()
+    camera.AddTransformOp().Set(transform)
+    dome = UsdLux.DomeLight.Define(stage, "/FanAlloyScreen/Lighting/Dome")
+    dome.CreateIntensityAttr(650.0)
+    key = UsdLux.SphereLight.Define(stage, "/FanAlloyScreen/Lighting/Key")
+    key.CreateIntensityAttr(5500.0)
+    key.CreateRadiusAttr(radius * 0.25)
+    key.AddTranslateOp().Set(Gf.Vec3d(float(center[0] + radius), float(center[1] - radius), float(center[2] + radius)))
     variant_set = root.GetVariantSets().AddVariantSet("materialScenario")
     colors = [(0.65,0.65,0.7),(0.8,0.7,0.25),(0.5,0.55,0.6),(0.4,0.6,0.7),(0.75,0.45,0.25)]
     for index, card in enumerate(cards["materials"]):
@@ -344,6 +355,13 @@ def build_usd(out: Path, cards: dict, scenario: dict, geometry: dict, input_cont
             surface.CreateDisplayColorPrimvar("constant").Set(
                 Vt.Vec3fArray([Gf.Vec3f(*colors[index % len(colors)])])
             )
+            material = UsdShade.Material.Define(stage, "/FanAlloyScreen/Proxy/DisplayMaterial")
+            shader = UsdShade.Shader.Define(stage, "/FanAlloyScreen/Proxy/DisplayMaterial/Surface")
+            shader.CreateIdAttr("UsdPreviewSurface")
+            shader.CreateInput("diffuseColor", Sdf.ValueTypeNames.Color3f).Set(Gf.Vec3f(*colors[index % len(colors)]))
+            shader.CreateInput("roughness", Sdf.ValueTypeNames.Float).Set(0.38)
+            material.CreateSurfaceOutput().ConnectToSource(shader.ConnectableAPI(), "surface")
+            UsdShade.MaterialBindingAPI.Apply(surface.GetPrim()).Bind(material)
     variant_set.SetVariantSelection("alsi10mg")
     stage.GetRootLayer().documentation = "Exploratory 935 horizontal fan alloy screen. No physical validation or manufacturing authorization."
     stage.GetRootLayer().Save()

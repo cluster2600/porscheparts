@@ -55,6 +55,8 @@ class ScreenContractTests(unittest.TestCase):
         source = SOURCE.read_text(encoding="utf-8")
         self.assertIn("def load_render_mesh(stl_path: Path)", source)
         self.assertIn('UsdGeom.Mesh.Define(stage, "/FanAlloyScreen/Proxy/Surface")', source)
+        self.assertIn('UsdShade.MaterialBindingAPI.Apply(surface.GetPrim()).Bind(material)', source)
+        self.assertIn('camera.AddTransformOp().Set(transform)', source)
         self.assertIn('geometry_dir / "rotor-proxy.stl"', source)
 
     def test_unknown_yield_comparator_is_usd_safe_and_remains_unknown(self):
