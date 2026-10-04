@@ -111,3 +111,15 @@ repository validation. No merge or manufacturing release is requested.
 The cfMesh preparation script reproduced its submitted STL and dictionary
 byte-for-byte. No Vast instance was created; the final API inventory was empty.
 All temporary engineering containers exited.
+
+## Public log privacy projections
+
+Owner-authorized public copies of `log.make-check.gz` and `log.usd.gz` replace
+only personal host paths with logical private artifact aliases. The
+[projection manifest](results/qwen-chain-20261002/privacy-projection.json) records
+original and projected SHA-256 identities separately. Original payloads remain
+preserved privately. Three lines in the repository-check log and two traceback
+lines in the USD log contain path substitutions; every other decoded byte is
+unchanged. Test outcomes, skips, errors, geometry, solver results and all earlier
+scores retain their original meaning. These copies are sanitized projections,
+not byte-exact original logs or newly executed calculations.
