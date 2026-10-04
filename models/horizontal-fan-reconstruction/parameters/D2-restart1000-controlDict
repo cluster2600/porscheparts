@@ -1,0 +1,67 @@
+FoamFile {version 2.0; format ascii; class dictionary; object controlDict;}
+
+application foamRun; solver incompressibleFluid;
+startFrom startTime; startTime 1000; stopAt endTime; endTime 1020; deltaT 1;
+writeControl timeStep; writeInterval 20; purgeWrite 0;
+writeFormat ascii; writePrecision 10; writeCompression off; runTimeModifiable false;
+functions {
+ inletFlow {type surfaceFieldValue; libs ("libfieldFunctionObjects.so");
+ writeControl timeStep; writeInterval 1; patch inlet; operation sum; fields (phi); writeFields false;}
+ outletFlow {type surfaceFieldValue; libs ("libfieldFunctionObjects.so");
+ writeControl timeStep; writeInterval 1; patch outlet; operation sum; fields (phi); writeFields false;}
+ rotorForces {type forces; libs ("libforces.so"); patches (rotor); rho rhoInf; rhoInf 1.2;
+ CofR (0 0 0); writeControl timeStep; writeInterval 1;}
+// Foundation OpenFOAM13; preparation only, requires explicit zones first.
+commonOutletFlux
+{
+    type surfaceFieldValue;
+    libs ("libfieldFunctionObjects.so");
+    faceZone commonOutletFlux;
+    operation orientedSum;
+    fields (phi);
+    writeFields false;
+    executeControl timeStep;
+    executeInterval 1;
+    writeControl timeStep;
+    writeInterval 1;
+}
+commonPressureBandMean
+{
+    type volFieldValue;
+    libs ("libfieldFunctionObjects.so");
+    cellZone commonPressureBand;
+    operation volAverage;
+    fields (p);
+    writeFields false;
+    executeControl timeStep;
+    executeInterval 1;
+    writeControl timeStep;
+    writeInterval 1;
+}
+commonOutletOwnersMean
+{
+    type volFieldValue;
+    libs ("libfieldFunctionObjects.so");
+    cellZone commonOutletOwners;
+    operation volAverage;
+    fields (p);
+    writeFields false;
+    executeControl timeStep;
+    executeInterval 1;
+    writeControl timeStep;
+    writeInterval 1;
+}
+commonTipWakeMean
+{
+    type volFieldValue;
+    libs ("libfieldFunctionObjects.so");
+    cellZone commonTipWake;
+    operation volAverage;
+    fields (p);
+    writeFields false;
+    executeControl timeStep;
+    executeInterval 1;
+    writeControl timeStep;
+    writeInterval 1;
+}
+}

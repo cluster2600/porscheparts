@@ -11,6 +11,7 @@
 [Exécution D1 bornée et résultat incomplet](D1_EXECUTION.md) ·
 [D1C terminé, gates numériques et reflux persistant](D1C_EXECUTION.md) ·
 [D2 clos : témoin60, sortie prolongée 40, comparaison inconclusive](D2_EXECUTION.md) ·
+[D2 : checkpoint1000 vérifié et complétion20 pas non lancée](D2_COMPLETION_PREPARATION.md) ·
 [Préparation historique D2 et critères gelés](OUTLET_SENSITIVITY_PREPARATION.md) ·
 [Analyse locale après D1 et essai unique proposé](D1_NEXT_DIAGNOSTIC.md) ·
 [Sous-systèmes et variables symboliques](SUBSYSTEM_PARAMETERS.md) ·
@@ -42,6 +43,8 @@ amélioration du refroidissement installé n’est démontrée.
 **D2** conserve le cœur et valide les deux maillages ; le témoin termine 60
 itérations, la branche prolongée 40 seulement sous le timer global original.
 La comparaison stationnaire de sortie reste inconclusive ; ressources libérées.
+Les checkpoints natifs980 et1000 sont vérifiés ; une reprise unique1001–1020
+est [préparée, sans lancement ni réservation](D2_COMPLETION_PREPARATION.md).
 
 ![Reconstruction analytique R0](R0-render.png)
 

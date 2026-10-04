@@ -1,0 +1,139 @@
+{
+  "protocol_id": "D2-fixed-completion1000-to1020",
+  "status": "prepared_not_launched",
+  "new_solver_launched": false,
+  "checkpoint_audit_sha256": "49f3a4b94190a3dbebaf34d827412365d677060177a40028e0b5480d6588f685",
+  "original_protocol_sha256": "813fe69f68f27edff69b406c22c5d2b32cd3e133c90263c3a736090a6465ec6b",
+  "controlDict_sha256": "0e5fc44459dd8fa89f148dd6c2eeb861ce4e7617136d8399216634794e4eee7b",
+  "restart_iteration": 1000,
+  "first_iteration": 1001,
+  "target_iteration": 1020,
+  "new_iterations": 20,
+  "new_cases": [
+    "extended"
+  ],
+  "current_control_replayed": false,
+  "seed_kind": "native_complete_four_processor_checkpoint",
+  "ranks": 4,
+  "cells": 680596,
+  "rank_cells": [
+    122709,
+    167115,
+    208232,
+    182540
+  ],
+  "geometry_numerics_boundaries_MRF_and_common_selections_unchanged": true,
+  "original_numerical_acceptance_all_required": {
+    "last_window_iterations": 20,
+    "maximum_initial_residual_p": 0.0001,
+    "maximum_initial_residual_U_components": 1e-05,
+    "maximum_initial_residual_k_and_omega": 0.0001,
+    "maximum_absolute_inlet_plus_outlet_flow_over_mean_absolute_flow": 0.005,
+    "maximum_flow_relative_standard_deviation": 0.01,
+    "maximum_rotor_torque_relative_standard_deviation": 0.02,
+    "flow_direction_matches_declared_reference": true,
+    "fields_finite_and_complete": true
+  },
+  "additional_stationarity_screen": {
+    "last_two20_windows_required": true,
+    "last_window_common_flow_CV_max": 0.01,
+    "last_window_common_pressure_std_Pa_max": 2,
+    "between_last_two_window_mean_common_flow_relative_max": 0.01,
+    "between_last_two_window_mean_torque_relative_max": 0.02,
+    "between_last_two_window_mean_pressure_difference_Pa_max": 2,
+    "checkpoint1000_to1020_core_pressure_volume_RMS_Pa_max": 1,
+    "checkpoint1000_to1020_core_velocity_volume_RMS_m_s_max": 0.1,
+    "local_wake_p99_and_max_must_be_reported": true,
+    "local_field_qualification_established_by_bulk_gates": false
+  },
+  "domain_comparison_screen": {
+    "common_flow_last20_relative_difference_max": 0.01,
+    "rotor_torque_and_input_power_last20_relative_difference_max": 0.02,
+    "common_pressure_last20_difference_Pa_floor": 5,
+    "common_pressure_last20_relative_difference_max": 0.01,
+    "pressure_limit_formula": "max(5 Pa,0.01*max(abs(meanPressure_current),abs(meanPressure_extended)))",
+    "symmetric_relative_formula": "abs(a-b)/max(abs(a),abs(b)); zero denominator => explicit undefined/reject",
+    "requires_both_numerical_and_stationarity_gates": true,
+    "thresholds_are_analyst_screening_not_Porsche_acceptance": true,
+    "matrix_residuals_comparable_as_physical_domain_effect": false,
+    "passing_scope": "Bulk observables insensitive to this one extension within the declared bands; no general domain independence, no local or installed physical validation",
+    "numerical_gate_failure": "inconclusive_domain_comparison",
+    "comparison_gate_failure_after_both_numeric_pass": "domain_dependent_model_operating_point"
+  },
+  "original_case_runtime_protocol_sha256": "33055167a6af33a4dbaf20bb073d584b55f83385e7d8fba62f01127c6a15cc3f",
+  "no_redecomposition_or_regridding": true,
+  "no_further_continuation_if_rejected": true,
+  "required_final_window": [
+    1001,
+    1020
+  ],
+  "previous_window": [
+    981,
+    1000
+  ],
+  "required_checkpoints": [
+    1000,
+    1020
+  ],
+  "control_changes_only": {
+    "startFrom": [
+      "latestTime",
+      "startTime"
+    ],
+    "startTime": [
+      0,
+      1000
+    ]
+  },
+  "checkpoint1000_native_files_bytes": 152261842,
+  "prepared_mesh_config_and_checkpoint_copy_bytes": 310730224,
+  "budget_proposed_not_authorized_or_started": {
+    "CPU_max": 4,
+    "memory_and_swap_GiB": 5,
+    "network": "none",
+    "nice": 10,
+    "existing_image": "sha256:49979f46f421459dae4bf21aaa898e2253b07301c3e5b2cabaa6eaf06f54d696",
+    "aggregate_wall_cap_seconds": 240,
+    "solver_wall_cap_seconds": 110,
+    "nominal_solver_seconds": [
+      75,
+      80
+    ],
+    "nominal_total_seconds": [
+      120,
+      180
+    ],
+    "setup_identity_cap_seconds": 30,
+    "reconstruction1000_and1020_cap_seconds": 25,
+    "postprocessing_identity_cap_seconds": 30,
+    "archive_and_release_reserve_seconds": 45,
+    "measured_previous_last20_execution_seconds": 73.96185400000002,
+    "measured_previous_last20_wall_seconds_rounded": 75.0,
+    "measured_previous_native_archive_verification_seconds": 6.389131,
+    "reconstruction_and_archive_estimates_not_new_measurements": true,
+    "fresh_load_RAM_and_coordination_before_any_future_launch": true,
+    "new_deadline_required_do_not_reuse_expired_D2_deadline": true
+  },
+  "future_owned_commands_only": [
+    [
+      "mpirun",
+      "--bind-to",
+      "none",
+      "--use-hwthread-cpus",
+      "-np",
+      "4",
+      "foamRun",
+      "-parallel"
+    ],
+    [
+      "reconstructPar",
+      "-time",
+      "1000,1020"
+    ]
+  ],
+  "solver_count_max": 1,
+  "physical_validation_established": false,
+  "domain_independence_established": false,
+  "airflow_improvement_proven": false,
+  "raw_scan_or_native_fields_published": false
+}
