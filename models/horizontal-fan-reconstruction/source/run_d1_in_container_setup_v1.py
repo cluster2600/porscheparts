@@ -41,7 +41,7 @@ def execute(native,configs,output):
     partition_sha=None
     try:
         command(cases['control'],['decomposePar','-latestTime'],'log.decomposePar',60)
-        for index in range(4):shutil.copytree(cases['control']/('processor'+str(index)),cases['absolute']/('processor'+str(index)),symlinks=True)
+        for index in range(4):shutil.copytree(cases['control']/('processor'+str(index)),cases['absolute']/('processor'+str(index)))
         partitions={}
         for label,case in cases.items():
             partitions[label]={str(f.relative_to(case)):sha(f) for index in range(4) for f in sorted((case/('processor'+str(index))).rglob('*')) if f.is_file()}

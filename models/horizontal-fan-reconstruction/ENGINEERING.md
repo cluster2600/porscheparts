@@ -202,7 +202,9 @@ installé ni indépendance au maillage n'est établi.
 
 Le [diagnostic de pression et protocole suivant](PRESSURE_FOLLOWUP.md) prépare
 une discrimination numérique bornée, puis des points Q–Δp–P à objectif commun.
-Ces prochains lots ne sont pas lancés ; ils attendent une fenêtre Kali2 coordonnée.
+Le [D1 exécuté](D1_EXECUTION.md) reste incomplet : témoin960 non admis sur p,
+branche stricte arrêtée après29 itérations dans le budget initial. Les lots D2
+ne sont pas lancés et attendent une nouvelle fenêtre coordonnée.
 
 
 Le bilan reconstruit indépendamment le couple de pression depuis les surfaces et

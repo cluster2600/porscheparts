@@ -29,6 +29,16 @@ def verify(root):
     require(not contract['CAD_generation_authorized_by_this_contract'] and not contract['third_party_images_published'] and not contract['absolute_scale_verified'],'Unmeasured visual contract boundary')
     for subsystem in contract['subsystems'].values():
         require(subsystem['functional_completion_blocked'] and all(value is None for value in subsystem['parameters'].values()) and all(value is None for interface in subsystem['required_interfaces'].values() for value in interface.values()),'Unknown dimensions/interfaces must remain unknown')
+    # Native decomposePar uses this exact relative uniform directory link.
+    with tempfile.TemporaryDirectory(prefix='fan-D1-uniform-link-') as directory:
+        linkroot=Path(directory)
+        for label in ['control','absolute']:
+            (linkroot/label/'900/uniform').mkdir(parents=True)
+            (linkroot/label/'900/uniform/time').write_text('software fixture900\n')
+        (linkroot/'control/processor0/900').mkdir(parents=True)
+        (linkroot/'control/processor0/900/uniform').symlink_to('../../900/uniform',target_is_directory=True)
+        shutil.copytree(linkroot/'control/processor0',linkroot/'absolute/processor0',symlinks=True)
+        require((linkroot/'absolute/processor0/900/uniform').is_symlink() and (linkroot/'absolute/processor0/900/uniform/time').read_bytes()==(linkroot/'control/processor0/900/uniform/time').read_bytes(),'Native uniform symlink clone regression')
     # Synthetic rows exercise future software guards, never solver/physical evidence.
     with tempfile.TemporaryDirectory(prefix='fan-D1-software-fixture-') as directory:
         work=Path(directory)
@@ -63,6 +73,6 @@ def verify(root):
         try:compare(*args)
         except ValueError as error:require('Paired discretization/control differs' in str(error),'Paired-mismatch rejection reason')
         else:raise ValueError('Mismatched paired configuration accepted')
-    print('D1 prospective configuration identities and software fixture guards passed; no native solver run')
+    print('D1 configuration identities and software fixture guards passed; checker launches no solver')
 
 if __name__=='__main__':verify(Path(__file__).resolve().parents[1])

@@ -8,8 +8,11 @@
 [Preuves de la chaîne logicielle](SOFTWARE_CHAIN.md) ·
 [Diagnostic de pression et prochains lots non lancés](PRESSURE_FOLLOWUP.md) ·
 [Préparation exacte D1 et sous-systèmes non mesurés](D1_PREPARATION.md) ·
+[Exécution D1 bornée et résultat incomplet](D1_EXECUTION.md) ·
 [Préparation exacte D1 et sous-systèmes non mesurés](D1_PREPARATION.md) ·
+[Exécution D1 bornée et résultat incomplet](D1_EXECUTION.md) ·
 [Préparation exacte D1 et sous-systèmes non mesurés](D1_PREPARATION.md) ·
+[Exécution D1 bornée et résultat incomplet](D1_EXECUTION.md) ·
 [Accueil du dépôt](../../README.md)
 
 Reconstructions analytiques informées par le scan privé, publiées avec

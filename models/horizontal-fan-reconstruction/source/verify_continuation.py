@@ -39,6 +39,23 @@ def verify(root):
     require(fixed.count('writeInterval 1;')==3 and fixed.count('writeInterval 150;')==1,'Checkpoint cadence must not change telemetry cadence')
     from verify_d1_preparation import verify as verify_d1
     verify_d1(root)
+    d1=read('results/cfd/D1-bounded-result.json')
+    require(d1['script_sha256']==sha('source/analyze_d1_bounded_result.py') and d1['input_manifest_sha256']==sha('results/cfd/D1-diagnostic-input-manifest.json'),'Native bounded D1 analysis provenance')
+    require(d1['records']['control']['complete_iteration_count']==60 and d1['records']['absolute']['complete_iteration_count']==29,'Exact completed D1 iteration counts')
+    for label,total,new in [('control',61,60),('absolute',30,29)]:
+        record=d1['records'][label]
+        require(all(t['total_samples_including_initial900']==total and t['new_samples_after900']==new for t in record['tables'].values()),'Exact native D1 telemetry counts')
+        require(record['windows'][0]['complete20_native_samples'],'Prospective901–920 native window required')
+    require(not d1['records']['absolute']['admission_window_941_960_verified'] and d1['records']['absolute']['windows'][1]['statistics'] is None and d1['records']['absolute']['windows'][2]['statistics'] is None and not d1['complete_paired_target960_comparison_established'] and not d1['historical_fine_admission_restored'],'Incomplete strict target must not be admitted or backfilled')
+    require(d1['global_budget']['total_elapsed_since_initial_launcher_seconds']<=600 and d1['global_budget']['exit_status']==124 and d1['resources_released'] and d1['no_owned_D1_container_remaining'] and d1['remaining_services_match_preflight'],'D1 original global cap and resource release')
+    limits=d1['actual_container_limits']
+    require(limits['CPU_max']==4 and limits['RAM_limit_bytes']==5*1024**3 and limits['memory_and_swap_limit_bytes']==5*1024**3 and limits['network']=='none' and limits['mounts_read_only']['/native'],'Actual D1 isolation and resource limits')
+    source=read('results/cfd/D1-control-960-flow-summary.json')
+    require(source['status']=='reference_pilot_not_converged_to_frozen_criteria' and not source['criteria_checks']['residual_p'] and all(value for key,value in source['criteria_checks'].items() if key!='residual_p') and source['native_window_sample_count']==20 and source['contiguous_measurement_window_verified'],'Control960 actual gate result')
+    archive_d1=read('results/runtime/D1-native-archive-verification.json')
+    require(archive_d1['archive_sha256']==d1['native_archive_sha256'] and archive_d1['all_members_verified'] and archive_d1['local_transferred_archive_identity_verified'] and archive_d1['private_archive_not_published'],'Private D1 native archive identity')
+    picture=read('results/cfd/D1-residuals.json')
+    require(picture['source_report_sha256']==sha('results/cfd/D1-bounded-result.json') and picture['script_sha256']==sha('source/plot_d1_residuals.py') and picture['png_sha256']==sha('results/cfd/D1-residuals.png') and picture['plotted_complete_samples']=={'control':60,'absolute':29} and picture['partial_tail_not_extrapolated'],'Actual complete native residual render')
     comparison=read('results/lpbf/manufacturing-comparison.json')
     require(len(comparison['cases'])==12,'Twelve declared manufacturing scenarios required')
     require(not any(comparison[k] for k in ['mesh_independence_established','process_calibrated','fabrication_validated','service_validated']),'Unsupported manufacturing qualification')

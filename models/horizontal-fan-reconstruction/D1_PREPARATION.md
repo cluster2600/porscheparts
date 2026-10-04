@@ -1,6 +1,8 @@
-# D1 préparé, aucun solveur lancé
+# Préparation prospective D1 — snapshot avant exécution
 
-Ce lot attend la libération explicite de Kali2 par la coordination. Le pilote
+Ce document décrit la préparation antérieure au lancement. Le [résultat actuel](D1_EXECUTION.md)
+rapporte le témoin terminé et la branche stricte interrompue, sans admission.
+À la date de cette préparation, le lot attendait la libération explicite de Kali2 par la coordination. Le pilote
 Ti conserve sa fenêtre ; aucun solveur, conteneur ou copie de maillage D1 n'a
 été lancé. Les petits dictionnaires V2/900 ont été lus en lecture seule et
 recoupés avec l'archive native privée : huit fichiers, 8027 octets. Les champs

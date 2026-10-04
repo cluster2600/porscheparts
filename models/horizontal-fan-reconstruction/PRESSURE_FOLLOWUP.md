@@ -86,11 +86,17 @@ commune de longueur de sortie doit être préparée avec ses propres gates CAD e
 maillage avant toute conclusion fine. Aucun de ces lots n'est lancé en arrière-plan.
 Les fenêtres Kali2 doivent être coordonnées avec les travaux FEM indépendants.
 Les [configurations exactes D1 et la politique de fenêtres prospectives](D1_PREPARATION.md)
-sont préparées séparément, sans lancement.
+étaient préparées séparément avant lancement. Le [résultat D1 actuel](D1_EXECUTION.md)
+conserve le témoin non admis et la branche stricte interrompue dans le budget.
+Les lots D2 ne sont pas lancés.
 Les [configurations exactes D1 et la politique de fenêtres prospectives](D1_PREPARATION.md)
-sont préparées séparément, sans lancement.
+étaient préparées séparément avant lancement. Le [résultat D1 actuel](D1_EXECUTION.md)
+conserve le témoin non admis et la branche stricte interrompue dans le budget.
+Les lots D2 ne sont pas lancés.
 Les [configurations exactes D1 et la politique de fenêtres prospectives](D1_PREPARATION.md)
-sont préparées séparément, sans lancement.
+étaient préparées séparément avant lancement. Le [résultat D1 actuel](D1_EXECUTION.md)
+conserve le témoin non admis et la branche stricte interrompue dans le budget.
+Les lots D2 ne sont pas lancés.
 
 Pour reproduire le diagnostic léger depuis les entrées natives privées :
 
