@@ -1,0 +1,57 @@
+// Foundation OpenFOAM13; preparation only, requires explicit zones first.
+commonOutletFlux
+{
+    type surfaceFieldValue;
+    libs ("libfieldFunctionObjects.so");
+    regionType faceZone;
+    name commonOutletFlux;
+    operation orientedSum;
+    fields (phi);
+    writeFields false;
+    executeControl timeStep;
+    executeInterval 1;
+    writeControl timeStep;
+    writeInterval 1;
+}
+commonPressureBandMean
+{
+    type volFieldValue;
+    libs ("libfieldFunctionObjects.so");
+    regionType cellZone;
+    name commonPressureBand;
+    operation volAverage;
+    fields (p);
+    writeFields false;
+    executeControl timeStep;
+    executeInterval 1;
+    writeControl timeStep;
+    writeInterval 1;
+}
+commonOutletOwnersMean
+{
+    type volFieldValue;
+    libs ("libfieldFunctionObjects.so");
+    regionType cellZone;
+    name commonOutletOwners;
+    operation volAverage;
+    fields (p);
+    writeFields false;
+    executeControl timeStep;
+    executeInterval 1;
+    writeControl timeStep;
+    writeInterval 1;
+}
+commonTipWakeMean
+{
+    type volFieldValue;
+    libs ("libfieldFunctionObjects.so");
+    regionType cellZone;
+    name commonTipWake;
+    operation volAverage;
+    fields (p);
+    writeFields false;
+    executeControl timeStep;
+    executeInterval 1;
+    writeControl timeStep;
+    writeInterval 1;
+}

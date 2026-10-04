@@ -10,6 +10,7 @@
 [Préparation exacte D1 et sous-systèmes non mesurés](D1_PREPARATION.md) ·
 [Exécution D1 bornée et résultat incomplet](D1_EXECUTION.md) ·
 [D1C terminé, gates numériques et reflux persistant](D1C_EXECUTION.md) ·
+[Sortie éloignée : diagnostic, protocole et budget non exécutés](OUTLET_SENSITIVITY_PREPARATION.md) ·
 [Analyse locale après D1 et essai unique proposé](D1_NEXT_DIAGNOSTIC.md) ·
 [Sous-systèmes et variables symboliques](SUBSYSTEM_PARAMETERS.md) ·
 [Accueil du dépôt](../../README.md)
