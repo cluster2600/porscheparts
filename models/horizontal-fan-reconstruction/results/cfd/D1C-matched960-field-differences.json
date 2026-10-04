@@ -1,0 +1,84 @@
+{
+  "status": "matched960_native_field_difference_and_persistent_outlet_reflux_only",
+  "new_solver_run": false,
+  "same_mesh_cells": 453496,
+  "density_kg_m3_assumed": 1.2,
+  "pressure_difference_volume_RMS_Pa": 0.5440379498217638,
+  "pressure_difference_abs_max_Pa": 317.66885807999995,
+  "pressure_difference_abs_cell_count_p99_Pa": 0.2161758300000026,
+  "velocity_difference_volume_RMS_m_s": 0.062463019439572214,
+  "velocity_difference_max_m_s": 67.6649468329121,
+  "outlet": {
+    "control": {
+      "net_flow_m3_s": 1.1522996846143871,
+      "gross_reverse_flow_m3_s": 0.12399008787308902,
+      "gross_reverse_to_net_ratio": 0.10760229264020135,
+      "reverse_area_fraction": 0.3515382290234844,
+      "reverse_face_count": 1572,
+      "total_outlet_faces": 4542
+    },
+    "consistent": {
+      "net_flow_m3_s": 1.1522998351999125,
+      "gross_reverse_flow_m3_s": 0.12399021344643239,
+      "gross_reverse_to_net_ratio": 0.10760238755472991,
+      "reverse_area_fraction": 0.35153822902305065,
+      "reverse_face_count": 1572,
+      "total_outlet_faces": 4542
+    }
+  },
+  "used_native_inputs": {
+    "control/p": {
+      "bytes": 5838139,
+      "sha256": "6e894c305f21898eabaf334c74dc8e4becc5d88b01bea6488f26290b572a19d4"
+    },
+    "control/U": {
+      "bytes": 19569680,
+      "sha256": "7396cdce34e7a489cb5320023ea805f6b23d221cd174de4f6dd0f7c9812336fd"
+    },
+    "control/phi": {
+      "bytes": 14626413,
+      "sha256": "057a4fc6db142ebc179556b350d17474c6c9306485289cd6afd3a332dd6123a7"
+    },
+    "consistent/p": {
+      "bytes": 5838086,
+      "sha256": "c1d7960d4b7e717a9007c47c9d58de99b2bd9e6b25228a0e2b6357fca8181830"
+    },
+    "consistent/U": {
+      "bytes": 19570002,
+      "sha256": "9f4487cf36e447d0733ba76ab4f5b952f5dc0d77dac7d07bf240c1d7d9968422"
+    },
+    "consistent/phi": {
+      "bytes": 14626729,
+      "sha256": "fb9aa384c073e7bead724a2813d4737b90680ff5d79df03c05e2a3c256970474"
+    },
+    "mesh/points": {
+      "bytes": 4133280,
+      "sha256": "534ec1bffda6917a884a7652cb0ee54b46bd27389a201de6a68dcf5681cb7ca4"
+    },
+    "mesh/faces": {
+      "bytes": 19505560,
+      "sha256": "f5803f92966e9523a4b417625e6b89923ffe24c2063742d968dacb425ca11298"
+    },
+    "mesh/owner": {
+      "bytes": 6232435,
+      "sha256": "29085acd8ad621e232027f73ed2a8880c0a09064a3cf6ff549bd0751543e5679"
+    },
+    "mesh/neighbour": {
+      "bytes": 6022569,
+      "sha256": "54ef96f7ec6b5fc1db3213549659d9c01b4b1ff8dab8f3d81e4a909699b16c36"
+    },
+    "mesh/boundary": {
+      "bytes": 1279,
+      "sha256": "e9283505efb7152fa238e1cca2dc32fd780c19860fd751f0b2ef91b804a639cd"
+    }
+  },
+  "script_sha256": "de71df84b6bdb19c32832f720901cb204fb89567d07cba6df32420cb7a07d1a5",
+  "dependency_sha256": {
+    "analyze_flow_balance.py": "efe094ed408c81fad0364ef5c48ab12f30f53f358dccf83e499965e8a43d236f",
+    "diagnose_and_merge_fv_cells.py": "d2c931b1acf641e21abef98e9490a81563ca1c2bb2029ebec6f1bc0f40f65361"
+  },
+  "actual_algebraic_residual_cells_identified": false,
+  "physical_validation_established": false,
+  "installed_cooling_improvement_established": false,
+  "field_differences_are_not_experimental_error_bars": true
+}

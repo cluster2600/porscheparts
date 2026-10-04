@@ -1,5 +1,9 @@
 # Après D1 : causes possibles et essai discriminant proposé
 
+**Mise à jour :** l’essai unique préparé ici a été autorisé et exécuté.
+Le [résultat D1C](D1C_EXECUTION.md) passe les critères numériques originaux
+mais conserve le reflux et les limites physiques. Aucun lot supplémentaire lancé.
+
 Les [champs natifs privés vérifiés](results/cfd/D1-local-field-diagnostic.json)
 permettent cette analyse légère, sans nouveau solveur. Elle complète le
 [résultat D1](D1_EXECUTION.md). Le témoin reste non admis sur la pression ;
@@ -49,7 +53,7 @@ les corrections du flux et de la vitesse. Le [code des contrôles géométriques
 fonde les trois métriques locales reproduites ; leurs extrema sont comparés
 aux résultats indépendants avant acceptation de ce rapport.
 
-## Plus petit essai proposé : une seule branche, non lancée
+## Plus petit essai proposé avant lancement : une seule branche
 
 Le [protocole fixé](parameters/D1-coupling-proposed-protocol.json) et le
 [dictionnaire candidat](parameters/D1-coupling-candidate/fvSolution) changent

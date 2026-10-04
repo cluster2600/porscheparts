@@ -1,5 +1,9 @@
 # Pression non convergée et prochain objectif commun
 
+**Mise à jour :** l’essai unique préparé ici a été autorisé et exécuté.
+Le [résultat D1C](D1C_EXECUTION.md) passe les critères numériques originaux
+mais conserve le reflux et les limites physiques. Aucun lot supplémentaire lancé.
+
 La correction de cadence retire l'admission R0 fine et les moyennes fines
 présentées comme vingt itérations. Les [39 tables natives](results/cfd/measurement-cadence-audit.json)
 restent identiques à leurs empreintes originales ; les helpers historiques

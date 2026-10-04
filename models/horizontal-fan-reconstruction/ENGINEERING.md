@@ -450,3 +450,12 @@ Le scan brut et les répliques de champs MPI sont exclus ; les champs reconstrui
 faisant autorité, entrées, historiques et reçus sont conservés. L'archive reste
 privée ; seul son reçu assaini est publié. Tous les jobs de cette livraison sont
 terminés ; aucun autre processus ou service n'a été arrêté ou modifié.
+
+## D1C : état numérique actuel
+
+Le [calcul unique D1C](D1C_EXECUTION.md), depuis le même checkpoint 900, termine 60 itérations
+et passe les critères originaux avec `consistent yes` : résidu initial p maximal
+7,6223×10⁻⁵, baisse 45,01 %. Le témoin reste non admis et l’admission historique
+R0 fine reste retirée. Reflux 10,76 % du débit net, champs locaux sensibles,
+compressibilité/maillage/parois/conditions installées non qualifiés ; aucune
+amélioration du refroidissement démontrée et aucune phase supplémentaire.
