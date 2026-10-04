@@ -1,0 +1,54 @@
+{
+  "protocol_id": "V2-36deg-6000rpm-600iterations-v2",
+  "frozen_before_solver_launch": true,
+  "reference_configuration": "private_scan_informed_horizontal_study_V2_lower_collective_pitch",
+  "rpm_assumed": 6000,
+  "fluid": {
+    "density_kg_m3": 1.2,
+    "kinematic_viscosity_m2_s": 1.5e-05,
+    "tip_Mach_assuming_343m_s": 0.2518769620225053
+  },
+  "boundary_conditions": {
+    "top_inlet": "total pressure zero gauge",
+    "bottom_outlet": "static pressure zero gauge",
+    "expected_flow_direction": [
+      0,
+      0,
+      -1
+    ],
+    "rotation_axis_positive": [
+      0,
+      0,
+      1
+    ]
+  },
+  "model": "Foundation OpenFOAM 13 isolated fan incompressible steady MRF kOmegaSST, first-order convection",
+  "mesh_gate": "standard and extended checkMesh both Mesh OK and zero failed checks, original thresholds",
+  "iterations": 600,
+  "wall_timeout_seconds": 600,
+  "maximum_CPU": 4,
+  "maximum_memory_GiB": 5,
+  "acceptance_all_required": {
+    "last_window_iterations": 20,
+    "maximum_initial_residual_p": 0.0001,
+    "maximum_initial_residual_U_components": 1e-05,
+    "maximum_initial_residual_k_and_omega": 0.0001,
+    "maximum_absolute_inlet_plus_outlet_flow_over_mean_absolute_flow": 0.005,
+    "maximum_flow_relative_standard_deviation": 0.01,
+    "maximum_rotor_torque_relative_standard_deviation": 0.02,
+    "flow_direction_matches_declared_reference": true,
+    "fields_finite_and_complete": true
+  },
+  "not_established": [
+    "Wall-layer resolution",
+    "Aerodynamic mesh independence",
+    "Physical validation",
+    "Measured inlet/outlet installed engine conditions",
+    "Measured material or bearing data"
+  ],
+  "variant_comparison_policy": "No pitch variant or performance ranking before reference admission; same conditions and gates required",
+  "physical_validation_established": false,
+  "manufacturing_authorized": false,
+  "reference_admitted_summary_sha256": "628589b2a47ad5e3f6fd3ad4e4839507bc999cc2e8e4fd5f06d939f765e83c3e",
+  "previous_attempt": "MPI admission rejected hardware-thread slot count before any flow timestep"
+}

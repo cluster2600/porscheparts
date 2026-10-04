@@ -79,6 +79,20 @@ aérodynamiques ne sont pas inclus.
 
 ![Champs CalculiX V5](results/mechanics/V5-fields.png)
 
+V2 est maintenant également calculé sous les mêmes hypothèses, avec le mailleur
+structural original : 33219 puis 48699 C3D10, Jacobien Gauss4 positif et volume
+recoupé au CAD. Les [six résultats R0/V5/V2](results/mechanics/three-variant-comparison.json)
+conservent les deux grilles. V2 donne Umax 0,493745 / 0,497753 mm, extension radiale
+0,213118 / 0,215046 mm et premier mode 377,033 / 375,642 Hz. Entre ces deux
+grilles : +0,81 % pour Umax, +0,90 % pour l'extension et −0,37 % pour f1 ; pic
+nodal 202,942 / 205,291 MPa (+1,16 %), sans preuve de convergence locale.
+À la grille fine, par rapport à R0 : masse −0,10 %, déplacement −2,39 %, f1
+−0,096 %. Le [rendu](results/mechanics/V2-fields.png) utilise tous les vrais nœuds,
+les maxima complets et les coordonnées non déformées ; il ne représente aucun
+état de rupture ni une validation d'alliage.
+
+![Champs mécaniques V2 calculés](results/mechanics/V2-fields.png)
+
 ## Aérodynamique et admission CFD
 
 Le modèle scalaire à éléments de pale est un screening : ses polaires sont supposées
@@ -117,15 +131,103 @@ Les [rapports 200](results/cfd/reference-flow-200-summary-complete-fields.json) 
 conservent les critères, les champs contrôlés et les empreintes des mesures.
 
 La variante [V2 à 36°](V2-assembly.step) conserve les autres paramètres R0
-([paramètres exacts](parameters/V2.json)). Son BRep est valide, mais deux essais
-CFD échouent au contrôle étendu : 36 cellules / 22 faces à faible interpolation,
-puis 51 cellules / 15 faces après raffinement ciblé. Aucun flow V2 n'est lancé.
-Le [diagnostic de petites arêtes](results/cfd/V2-final-records.json) mesure neuf
-arêtes de 0,176 mm, contre 1,278 mm minimum pour R0 ; elles accompagnent la
-modification de jonction voile/pales. Cette corrélation cible la révision CAD,
-sans prouver à elle seule la cause de chaque cellule. Une jonction définie et
-contrôlée, avec déviation géométrique tracée pour toute réparation, est requise
-avant comparaison. Le calage 36° n'est pas classé comme meilleur ou moins bon.
+([paramètres exacts](parameters/V2.json)). Ses deux premiers essais échouaient au
+contrôle étendu : 36 cellules / 22 faces, puis 51 cellules / 15 faces. Ils restent
+conservés comme échecs. Le diagnostic mesure neuf arêtes de 0,176 mm, contre
+1,278 mm minimum pour R0. Le CAD n'a pas été réparé : une tentative de healing
+modifiait le volume et a été écartée. La résolution locale de ces petites arêtes,
+avec taille minimale explicitement réduite, permet au maillage V2 de passer les
+deux contrôles inchangés : 223300 cellules, déterminant minimal 0,0021815,
+non-orthogonalité maximale 72,411°. Les [rapports](results/cfd/V2-common-h7-mesh-report.json)
+et [gate](results/cfd/V2-common-h7-independent-mesh-gate.json) tracent ce rétablissement.
+
+À 600 itérations, [V2 passe les critères figés](results/cfd/V2-common-h7-flow-summary.json) :
+débit 1,14659 m³/s, couple −3,83969 N·m et puissance 2412,55 W.
+R0 a ensuite été recalculé avec les mêmes champs de taille spatiaux et la même
+limite minimale de 0,015 mm : 262047 cellules, les deux gates passent et
+[600 itérations admises](results/cfd/R0-common-h7-flow-summary.json), débit
+1,23472 m³/s et puissance 3303,89 W. Cela établit une comparaison sous les mêmes
+conditions de pression et règles de maillage, pas une indépendance au maillage.
+V2 réduit simultanément débit et puissance ; le rapport débit/puissance est un
+indicateur de screening, pas un rendement ni la preuve d'un meilleur refroidissement
+sur moteur. La grille commune plus fine réduit la taille générale de 7 à 5,6 mm. Son premier
+maillage R0 (476657 cellules) échoue au contrôle étendu : trois cellules au pied
+pale/voile et quatre faces d'interpolation insuffisante. Leurs positions et leurs
+neuf images de symétrie servent à la [recette locale complémentaire](parameters/common-grid-refinement-fine-repair1.json),
+sans changer le CAD ni les seuils. Le [R0 raffiné](results/cfd/R0-common-h5p6-independent-mesh-gate.json)
+compte 594940 cellules ; les deux gates passent. Un premier lot de 300 itérations
+atteint sa limite interne de 570 s avant son checkpoint et reste un échec archivé.
+Quatre lots prévus de 150 itérations, chacun borné à 600 s, donnent les checkpoints
+150/300/450/600 ; le premier temps de chaque reprise est vérifié (1/151/301/451).
+À [600](results/cfd/R0-fine-150steps-phase600-summary.json), tous les critères
+originaux passent : Q = 1,23019 m³/s et P = 3320,18 W, soit −0,37 % / +0,49 %
+par rapport à la grille R0 commune précédente. Ces écarts ne démontrent pas une
+indépendance au maillage. V2 utilise la même recette fine (453496 cellules), admise par les deux gates.
+À [600](results/cfd/V2-fine-150steps-phase600-summary.json), puis après une
+[reprise à 750](results/cfd/V2-fine-continuation750-summary.json), la pression
+seule dépasse le seuil : 1,2306×10⁻⁴ puis 1,2442×10⁻⁴ contre 10⁻⁴. Débit,
+couple, masse et autres résidus passent, mais ces deux résultats restent non
+admis. La sensibilité numérique suivante réduit la relaxation des mises à jour
+de pression de 0,25 à 0,15, avec R0 apparié ; tolérances des solveurs, critères,
+maillage et modèle physique sont inchangés. Chaque nouveau protocole lie
+l'empreinte du précédent et les dictionnaires avant/après modification.
+Les résultats antérieurs ne sont pas réécrits.
+
+La sensibilité [R0 à 750](results/cfd/R0-fine-pressure015-750-summary.json)
+reste admise. [V2 à 900](results/cfd/V2-fine-pressure015-900-summary.json) échoue
+encore sur la pression seule (maximum 1,5667×10⁻⁴) ; aucun seuil n'est abaissé.
+Ce blocage de convergence est conservé et interdit un classement sur la paire
+fine. La [comparaison calculée](results/cfd/matched-grid-comparison.json) n'émet
+aucune variation comparative fine pour V2 (`null`) ; les valeurs ci-dessous
+permettent d'auditer le résultat non admis.
+
+| Cas | Cellules | Admission / itération finale | Q moyen des 20 dernières itérations, m³/s | P d'entrée moyen, W | Δpt final aux ports, Pa | Rapport énergétique final aux ports, non qualifié |
+| --- | ---: | --- | ---: | ---: | ---: | ---: |
+| R0, grille commune 7 mm | 262047 | admis / 600 | 1,234720 | 3303,895 | 1960,672 | 0,732745 |
+| V2, grille commune 7 mm | 223300 | admis / 600 | 1,146586 | 2412,549 | 1541,226 | 0,732475 |
+| R0, grille fine 5,6 mm, relaxation 0,15 | 594940 | admis / 750 | 1,230193 | 3320,970 | 1998,375 | 0,740207 |
+| V2, grille fine 5,6 mm, relaxation 0,15 | 453496 | **non admis** / 900 | 1,152298 | 2429,793 | 1569,574 | 0,744361 |
+
+Sur la paire commune admise, V2 réduit Q de 7,14 %, P de 26,98 % et Δpt de
+21,39 %. Q/P augmente de 27,17 %, mais le rapport d'énergie aux ports varie de
+−0,037 % relatif : ce n'est pas une démonstration d'efficacité supérieure. Les
+conditions décrivent un ventilateur isolé à pressions de jauge nulles imposées,
+sans courbe de résistance moteur. Aucun compromis définitif de refroidissement
+installé n'est sélectionné. R0 fin contre R0 commun donne Q −0,37 %, P +0,52 %
+et Δpt +1,92 % ; deux grilles sans couches de paroi ni ordre systématique de
+raffinement ne constituent pas une étude d'indépendance complète.
+
+
+Le bilan reconstruit indépendamment le couple de pression depuis les surfaces et
+vérifie la vitesse des parois du rotor contre Ω × r. La référence à 6000 tr/min
+correspond à Ω = 628,319 rad/s, vitesse de bout de pale 86,394 m/s et Mach de bout
+0,252 avec la célérité supposée 343 m/s. Les Mach locaux absolu et relatif au rotor
+sont également analysés : le Mach de bout seul ne qualifie pas l'incompressibilité.
+Le [bilan R0 recoupé](results/cfd/R0-common-h7-balance-v4.json) conserve les pressions
+et flux réellement exportés. La pression totale d'entrée est nulle en jauge, la
+pression statique de sortie est nulle ; la pression totale sortante est calculée
+et comporte de l'énergie cinétique axiale et du swirl. Δpt utilise la moyenne
+pondérée par le flux signé aux ports ; l'énergie y est intégrée à partir des
+champs finaux, alors que Q/P moyens utilisent les 20 dernières itérations.
+Un retour d'écoulement
+local à la sortie est présent et doit être distingué du débit net.
+
+La reconstruction du flux absolu sur le carter stationnaire donne environ
+1,3 à 3,6×10⁻¹² m³/s (arrondi numérique) ; les flux relatifs MRF ne sont pas
+des fuites. Le retour brut de sortie vaut 0,1268 / 0,1318 m³/s pour V2/R0
+communs, distinct des débits nets. Le produit couple × Ω confirme la puissance
+d'entrée, mais le bilan mécanique
+simplifié reste non fermé. Le transfert visqueux/turbulent moyen calculé ne
+comprend pas une fermeture qualifiée des transports turbulents, travaux et
+pertes numériques. Son rapport d'énergie aux ports ne sera pas présenté comme
+rendement physique. Le défaut de fermeture après ce transfert reste de
+25,29 % / 25,57 % de la puissance pour V2/R0 communs, et 23,53 % pour R0 fin.
+Le flux `phi` aux faces dans la zone MRF est relatif au repère
+tournant ; la reconstruction du flux absolu distingue ce terme d'une fuite sur
+une paroi stationnaire. Les fortes vitesses locales motivent une sensibilité à la
+compressibilité. Le calcul isentropique utilisé pour cadrer cette hypothèse est
+un screening idéal, pas une correction de densité simulée :
+[NASA, relations isentropiques](https://www.grc.nasa.gov/www/k-12/airplane/isentrop.html).
 
 ## Fabrication additive
 
@@ -138,11 +240,59 @@ horizontale sont calculées ; l'intégration diffère du volume STL de 0,111 %.
 Le proxy de supports additionne des colonnes verticales avec recouvrements possibles.
 Ce n'est ni un support généré, ni un chemin laser, ni une simulation thermo-mécanique.
 
-Une simulation process qualifiée demande une machine et une stratégie laser choisies,
-une carte matériau dépendante de la température, des supports/contacts et échanges
-thermiques définis et calibrés, un traitement thermique, des reprises d'usinage,
-une inspection et un plan de validation en fatigue. Le matériau élastique FEM ne
-qualifie pas l'AlSi10Mg LPBF. Aucune fabrication ou commande n'est autorisée.
+Une comparaison mécanique de retrait et débridage est maintenant exécutée sur
+**R0 et V5**, distincte des anciennes études sur une autre géométrie. Les
+[12 cas](results/lpbf/manufacturing-comparison.json) réutilisent les C3D10 vérifiés
+et l'élasticité générique E = 70 GPa, ν = 0,33. Le champ de contraction est
+`ε* = −a(0,5 + 0,5s²)(I − 0,7nnᵀ)` ; amplitude `a`, hauteur normalisée `s` et
+normale de construction `n` sont explicitement supposées. CalculiX initialise le
+stockage de déformation initiale puis utilise `INITIAL STRAIN INCREASE` ; aucune
+loi de plasticité dépendante de T ni déformation inhérente calibrée n'est inventée.
+Les attaches sont des nœuds de surface les plus bas par maille de raster,
+complètement fixés : proxy de colonnes rigides, sans solides de support ni contact
+thermique. Le second état libère ces attaches et conserve six contraintes de
+jauge pour enlever les mouvements rigides.
+
+| Variante / scénario, amplitude 0,001 | Déplacement libéré max (mm) | Incrément max au débridage (mm) | Déformation max après retrait du mouvement rigide (mm) |
+|---|---:|---:|---:|
+| R0, diagonal sur chant, raster 5 mm, taille 4,5 mm | 0,096015 | 0,196200 | 0,093672 |
+| V5, mêmes conditions | 0,096054 | 0,180054 | 0,093714 |
+| R0, à plat, construction +Z, raster 5 mm | 0,214339 | 0,209967 | 0,130655 |
+| V5, mêmes conditions | 0,211377 | 0,207043 | 0,129899 |
+| R0, diagonal sur chant, taille 3,6 mm | 0,098434 | 0,190741 | 0,093502 |
+| V5, mêmes conditions | 0,098447 | 0,175210 | 0,093656 |
+
+Le benchmark analytique natif de contraction uniforme passe. Le contrôle à
+amplitude nulle donne exactement déplacement et contrainte nuls ; doubler
+l'amplitude reproduit les déplacements à environ 1,6×10⁻⁶ relatif. Le changement
+de raster 5 → 10 mm augmente l'incrément au débridage mais laisse le dernier état
+élastique inchangé : le champ prescrit est indépendant du parcours process, et
+le modèle ne simule pas l'évolution plastique/thermique imposée par les supports.
+C'est une limite de la méthode, pas une validation d'une stratégie de supports.
+
+Les maxima après retrait du mouvement rigide varient de 0,18 % (R0) et 0,06 %
+(V5) sur le maillage plus fin, tandis que les RMS nodaux varient de 5,27 % et
+7,38 %. Les attaches passent de 518 à 521 nœuds : cette sensibilité combine
+maillage et échantillonnage du proxy, sans démontrer une indépendance complète.
+Le déplacement libéré final est presque identique R0/V5 ; V5 réduit l'incrément
+au débridage d'environ 8,23 % dans le scénario de référence. Les pics élastiques
+attachés de 720/661 MPa se concentrent aux attaches ponctuelles et ne constituent
+ni contrainte process physique ni admissible de fabrication.
+
+![Retrait R0, champs natifs réels](results/lpbf/R0-manufacturing-release.png)
+
+![Retrait V5, champs natifs réels](results/lpbf/V5-manufacturing-release.png)
+
+La revue de qualification est préparée en anglais dans le
+[dossier fabricant BLT](MANUFACTURING_REVIEW.md). BLT à Xi'an est la cible de
+revue communiquée par le coordinateur ; aucune machine, matière, condition,
+recette ou prestation n'est automatiquement sélectionnée. Le cas AlSi10Mg/S400
+commercial documente une capacité, pas ce rotor. Aucune calibration thermique,
+activation de couche, trajectoire laser, porosité ou microstructure n'est simulée.
+La fabrication reste **non validée** : données atelier, dessins/tolérances,
+calibration, mesures dimensionnelles, NDT/CT, coupons, traitement et essais
+physiques sont nécessaires. Fabricabilité/acceptation fabricant et qualification
+en service d'un rotor sont deux décisions distinctes. Aucune commande n'est passée.
 
 ## OpenUSD et Omniverse
 
@@ -158,6 +308,23 @@ La règle Sdr shader est bloquée par l'absence de `shaderDefs.usda` dans le run
 USD déjà disponible et reste explicitement non validée. Aucun runtime GPU NVIDIA,
 rendu RTX, qualification SimReady ou corrélation de jumeau physique n'est établi.
 L'asset ne résout aucune équation ; les calculs externes restent liés séparément.
+
+La [scène de débridage](omniverse/manufacturing-studies.usda) contient les vraies
+frontières C3D10 libérées : 40480/41060 nœuds, subdivision des faces quadratiques
+en triangles linéaires ; chaque arête a deux orientations opposées, aires positives
+et écart de volume au CAD de 0,0021 % / 0,0014 %
+([R0](results/lpbf/R0-native-boundary-verification.json),
+[V5](results/lpbf/V5-native-boundary-verification.json)). Unités mètres, +Z,
+déformation à l'échelle 1, identifiants
+des nœuds et vecteurs de déplacement conservés. Toutes les coordonnées sont
+[recoupées en texte](results/lpbf/field-export-authored-coordinate-verification.json) avec les champs
+natifs ; erreur décimale maximale d'environ 5×10⁻⁸ mm. Le contrôle indépendant de
+toutes les valeurs réellement chargées en `point3f` par OpenUSD mesure au maximum
+7,63×10⁻⁶ mm ([R0](results/lpbf/R0-USD-field-coordinate-verification.json),
+[V5](results/lpbf/V5-USD-field-coordinate-verification.json)). Cette borne de
+représentation numérique ne constitue aucune tolérance de fabrication. Les
+[contrôles de composition](omniverse/manufacturing-scene-validation.json) passent
+avec la même réserve shader Sdr. Aucun jumeau process ou SimReady validé n'en découle.
 
 ## Commandes reproductibles
 
@@ -196,6 +363,52 @@ Le gate échoue fermé dès qu'un contrôle échoue. Un résultat de mesh seul n
 pas résultat de flow. Le runner borné limite chaque job isolé : affinité, nice,
 mémoire et délai ; aucun service ou processus tiers n'est modifié.
 
+Pour la comparaison fine, placer les sources dans un répertoire de calcul neuf
+sur le runtime Linux déjà disponible, avec les dossiers CAD nommés dans les
+recettes (`private-R0-v3`, `private-V2`) et les recettes JSON à sa racine. Les
+noms désignent les études analytiques ; aucun scan n'est requis. Les scripts
+appellent le runner borné et refusent un autre conteneur de cette étude actif.
+`gate-local.sh` est une copie exacte de `source/run_analytical_cfd_gate.sh` ; le
+runner MPI exige `run_parallel_pilot.sh` à la racine. Vérifier localement les
+quatre cœurs physiques indiqués par `lscpu` avant de réutiliser le CPU set.
+
+```sh
+# Dans ce répertoire de calcul neuf ; image Foundation déjà présente.
+python run_matched_cfd.py R0-common-h5p6-repair1 private-R0-v3 common-grid-refinement-fine-repair1.json --size-mm 5.6 --minimum-size-mm 0.01 --mesh-only
+python run_existing_grid_sensitivity.py cfd-R0-common-h5p6-repair1 R0-fine-150steps --protocol-template V2-common-h7-protocol.json
+python run_matched_cfd.py V2-common-h5p6-repair1 private-V2 common-grid-refinement-fine-repair1.json --size-mm 5.6 --minimum-size-mm 0.01 --mesh-only
+python run_existing_grid_sensitivity.py cfd-V2-common-h5p6-repair1 V2-fine-150steps --protocol-template V2-common-h7-protocol.json
+python continue_admitted_mesh_flow.py cfd-V2-fine-150steps-phase600 V2-fine-continuation750
+python continue_admitted_mesh_flow.py cfd-R0-fine-150steps-phase600 R0-fine-pressure015-750 --pressure-relaxation .15
+python continue_admitted_mesh_flow.py cfd-V2-fine-continuation750 V2-fine-pressure015-900 --pressure-relaxation .15
+```
+
+Les scripts de scénarios utilisent les maillages mécaniques R0/V5 existants
+`mesh-R0-h4p5`, `mesh-R0-h3p6`, `mesh-V5-h4p5`, `mesh-V5-h3p6` et le benchmark
+`unit-eigenstrain.inp`. Les résultats déjà présents sont recoupés avant reprise ;
+les jobs terminés ne sont pas relancés. Les dossiers de sorties neufs servent à
+une reproduction indépendante.
+
+```sh
+python build_manufacturing_scenarios.py
+python run_manufacturing_cases.py
+python compare_manufacturing.py . manufacturing-comparison.json
+python verify_native_benchmark.py manufacturing-analytic-benchmark native-verified.json
+python export_manufacturing_bundle.py manufacturing-R0-diagonal-edge R0-manufacturing-native.npz
+```
+
+Depuis le dossier publié, avec NumPy/Matplotlib pour l'export et la bibliothèque
+OpenUSD 25.11 existante pour ses validateurs (les sorties `work/` sont neuves) :
+
+```sh
+python source/render_manufacturing_fields.py results/lpbf/R0-manufacturing-native.npz work/R0-manufacturing-release.usda work/R0-manufacturing-release.png --label R0
+python source/create_native_coordinate_reference.py results/lpbf/R0-manufacturing-native.npz work/R0-native-reference.json
+python source/verify_usd_field_coordinates.py omniverse/R0-manufacturing-release.usda work/R0-native-reference.json work/R0-coordinate-check.json
+python source/validate_openusd_asset.py omniverse/R0-manufacturing-release.usda work/R0-field-validation.json --expected-meshes 1 --meters-per-unit 1
+python source/compare_matched_flow.py . work/matched-grid-comparison.json
+python source/compare_mechanical_studies.py . work/three-variant-comparison.json
+```
+
 ## Données manquantes pour une pièce et un jumeau validés
 
 Identité et échelle indépendantes du spécimen ; datums, interfaces et tolérances
@@ -213,4 +426,14 @@ rencontré les incompatibilités documentées dans le
 [rapport runtime](results/runtime/repository-checks.json). Ils ne sont pas annoncés
 verts. La CI du commit final fait autorité pour le logiciel du dépôt, sans valider
 la physique. Les contrôles spécialisés ci-dessus concernent uniquement leurs
-artefacts et hypothèses. Aucun merge n'est autorisé pour cette mission.
+artefacts et hypothèses. La PR129 a été fusionnée par le coordinateur sur main
+`8283155cb2b1275b0bf3e22d4d7459d4ac76b059` ; les présents compléments sont
+isolés sur une nouvelle branche de revue. Aucun merge automatique de cette
+nouvelle branche n'est demandé.
+Voir la [matrice de preuves logicielle](SOFTWARE_CHAIN.md). Les [preuves natives privées](results/runtime/native-archive-verification.json)
+regroupent 1197 fichiers (2,08 Go compressés), chaque membre vérifié par SHA-256
+sur le runtime ; le transfert local possède exactement la même taille et empreinte.
+Le scan brut et les répliques de champs MPI sont exclus ; les champs reconstruits
+faisant autorité, entrées, historiques et reçus sont conservés. L'archive reste
+privée ; seul son reçu assaini est publié. Tous les jobs de cette livraison sont
+terminés ; aucun autre processus ou service n'a été arrêté ou modifié.

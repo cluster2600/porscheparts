@@ -42,7 +42,9 @@ def summarize(case,output):
         fields_finite=fields_finite and int(match[1])==cell_count and len(values)==cell_count*components and bool(np.isfinite(values).all()) and not bool(re.search(r'(?i)\b(?:nan|inf)\b',match[2]))
         field_counts[field]=int(match[1])
         if field=='U':max_speed=float(np.linalg.norm(values.reshape(-1,3),axis=1).max())
-    checks={'residual_p':residual_max['p']<=criteria['maximum_initial_residual_p'],
+    initial_times=[float(p.split('/')[0]) for p in protocol.get('initial_fields_sha256',{})]
+    expected_first=min(initial_times)+1 if initial_times else 1
+    checks={'initial_time_matches_frozen_continuation':residuals[0]['iteration']==expected_first,'residual_p':residual_max['p']<=criteria['maximum_initial_residual_p'],
             'residual_U':max(residual_max[k] for k in ['Ux','Uy','Uz'])<=criteria['maximum_initial_residual_U_components'],
             'residual_turbulence':max(residual_max['k'],residual_max['omega'])<=criteria['maximum_initial_residual_k_and_omega'],
             'mass_balance':float(imbalance.max())<=criteria['maximum_absolute_inlet_plus_outlet_flow_over_mean_absolute_flow'],
@@ -52,7 +54,7 @@ def summarize(case,output):
             'complete_finite_fields':bool(fields_finite),
             'finite_measurements':bool(np.isfinite(inlet).all() and np.isfinite(outlet).all() and np.isfinite(force).all())}
     r={'status':'reference_pilot_admitted_numerically' if all(checks.values()) else 'reference_pilot_not_converged_to_frozen_criteria',
-       'protocol_id':protocol['protocol_id'],'final_field_cell_counts':field_counts,'maximum_final_speed_m_s':max_speed,'maximum_final_local_Mach_assuming_343m_s':max_speed/343,'iterations_completed':residuals[-1]['iteration'],'window_size':n,'criteria_checks':checks,
+       'protocol_id':protocol['protocol_id'],'first_iteration':residuals[0]['iteration'],'expected_first_iteration':expected_first,'final_field_cell_counts':field_counts,'maximum_final_speed_m_s':max_speed,'maximum_final_local_Mach_assuming_343m_s':max_speed/343,'iterations_completed':residuals[-1]['iteration'],'window_size':n,'criteria_checks':checks,
        'maximum_initial_residual_last_window':residual_max,'last_window_mean_outlet_flow_m3_s':float(qout.mean()),
        'last_window_mean_inlet_flow_m3_s':float(qin.mean()),'last_window_max_mass_imbalance_ratio':float(imbalance.max()),
        'last_window_outlet_flow_relative_std':ratio(qout),'last_window_rotor_torque_relative_std':ratio(torque),

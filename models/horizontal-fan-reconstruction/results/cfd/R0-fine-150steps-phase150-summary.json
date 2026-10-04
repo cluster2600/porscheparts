@@ -1,0 +1,55 @@
+{
+  "status": "reference_pilot_not_converged_to_frozen_criteria",
+  "protocol_id": "R0-fine-150steps-phase150",
+  "first_iteration": 1.0,
+  "expected_first_iteration": 1,
+  "final_field_cell_counts": {
+    "U": 594940,
+    "p": 594940,
+    "k": 594940,
+    "omega": 594940,
+    "nut": 594940
+  },
+  "maximum_final_speed_m_s": 136.79800933811975,
+  "maximum_final_local_Mach_assuming_343m_s": 0.3988280155630314,
+  "iterations_completed": 150.0,
+  "window_size": 20,
+  "criteria_checks": {
+    "initial_time_matches_frozen_continuation": true,
+    "residual_p": false,
+    "residual_U": false,
+    "residual_turbulence": false,
+    "mass_balance": false,
+    "flow_stability": false,
+    "torque_stability": false,
+    "declared_flow_direction": true,
+    "complete_finite_fields": true,
+    "finite_measurements": true
+  },
+  "maximum_initial_residual_last_window": {
+    "p": 0.003168432586,
+    "Ux": 0.001117560165,
+    "Uy": 0.001123093207,
+    "Uz": 0.001063884694,
+    "k": 0.006472787304,
+    "omega": 2.647143681e-06
+  },
+  "last_window_mean_outlet_flow_m3_s": 0.6160616746065001,
+  "last_window_mean_inlet_flow_m3_s": -0.624411923427,
+  "last_window_max_mass_imbalance_ratio": 0.2432825426682303,
+  "last_window_outlet_flow_relative_std": 0.9020657245858749,
+  "last_window_rotor_torque_relative_std": 1.000008417351428,
+  "last_window_mean_fluid_on_rotor_torque_Nm": -2.5567196181632355,
+  "last_window_mean_rotor_input_power_W": 1606.4343139421044,
+  "aerodynamic_mesh_independence_established": false,
+  "wall_resolution_qualified": false,
+  "physical_validation_established": false,
+  "performance_improvement_proven": false,
+  "file_sha256": {
+    "log.foamRun": "ee22c143809c0790d8a75691d31a4e49c637a5179722a23ba1b06fe77defc301",
+    "reference-protocol.json": "24c879fc7e3f06dd26b3b7151ef45b9dffba27e5bd6ba3eda74457979c62fe04",
+    "postProcessing/inletFlow/0/surfaceFieldValue.dat": "c4e80e3699ef7e23e99a0792e04942abf0c78260dcc8241cf6ede45375902558",
+    "postProcessing/outletFlow/0/surfaceFieldValue.dat": "3dea9cd7c34ceb116812ff33dbf8255c7cdb3272232e89838dfc2bd97b3c22c7",
+    "postProcessing/rotorForces/0/forces.dat": "e7812590e513e5f0cb211915e6249318a89dee498c8677db99a5bc927539f81c"
+  }
+}

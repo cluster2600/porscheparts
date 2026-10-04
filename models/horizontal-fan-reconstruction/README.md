@@ -1,8 +1,11 @@
 # Horizontal fan reconstruction studies
 
 [R0 editable STEP](R0-assembly.step) · [R0 render](R0-render.png) ·
+[V2 editable STEP](V2-assembly.step) · [V2 computed fields](results/mechanics/V2-fields.png) ·
 [V5 editable STEP](V5-assembly.step) · [V5 render](V5-render.png) ·
 [Engineering, reproduction and validation status](ENGINEERING.md) ·
+[Manufacturing qualification review](MANUFACTURING_REVIEW.md) ·
+[Software chain evidence](SOFTWARE_CHAIN.md) ·
 [Repository home](../../README.md)
 
 Scan-informed analytical reconstructions, published with the project owner's

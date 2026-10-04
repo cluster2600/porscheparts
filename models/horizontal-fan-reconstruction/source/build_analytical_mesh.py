@@ -8,7 +8,7 @@ from pathlib import Path
 import time
 
 
-def build(run, output, mode, size_mm=4.5, rpm=6000, netgen=False, local_refinement=None):
+def build(run, output, mode, size_mm=4.5, rpm=6000, netgen=False, local_refinement=None, minimum_size_mm=None):
     import gmsh
     import numpy as np
     if not math.isfinite(size_mm) or not 2.5<=size_mm<=15 or not math.isfinite(rpm) or not 0<rpm<=12000:
@@ -59,7 +59,9 @@ def build(run, output, mode, size_mm=4.5, rpm=6000, netgen=False, local_refineme
             for key,tags in boundaries.items():
                 if not tags:raise ValueError('Missing boundary '+key)
                 physical=gmsh.model.addPhysicalGroup(2,tags);gmsh.model.setPhysicalName(2,physical,key)
-        gmsh.option.setNumber('Mesh.MeshSizeMin',size*.12)
+        if minimum_size_mm is not None and (not math.isfinite(minimum_size_mm) or not .01<=minimum_size_mm<=size_mm):raise ValueError('Explicit minimum mesh size outside .01mm..global size')
+        minimum_size=size*.12 if minimum_size_mm is None else minimum_size_mm*(.001 if mode=='fluid' else 1)
+        gmsh.option.setNumber('Mesh.MeshSizeMin',minimum_size)
         gmsh.option.setNumber('Mesh.MeshSizeMax',size)
         gmsh.option.setNumber('Mesh.MeshSizeFromCurvature',12)
         gmsh.option.setNumber('Mesh.Algorithm',6)
@@ -72,10 +74,11 @@ def build(run, output, mode, size_mm=4.5, rpm=6000, netgen=False, local_refineme
             refinement=json.loads(Path(local_refinement).read_text())
             if refinement['length_unit']!='m':raise ValueError('Refinement centres must be in metres')
             fields=[]
-            for center in refinement['centers_m']:
+            balls=[dict(center_m=center,radius_m=refinement['radius_m'],transition_m=refinement['transition_m'],size_inside_m=refinement['size_inside_m']) for center in refinement['centers_m']]+refinement.get('additional_balls',[])
+            for ball in balls:
                 field=gmsh.model.mesh.field.add('Ball');fields.append(field)
-                for key,value in zip(['XCenter','YCenter','ZCenter'],center):gmsh.model.mesh.field.setNumber(field,key,value)
-                for key,value in [('Radius',refinement['radius_m']),('Thickness',refinement['transition_m']),('VIn',refinement['size_inside_m']),('VOut',size)]:gmsh.model.mesh.field.setNumber(field,key,value)
+                for key,value in zip(['XCenter','YCenter','ZCenter'],ball['center_m']):gmsh.model.mesh.field.setNumber(field,key,value)
+                for key,value in [('Radius',ball['radius_m']),('Thickness',ball['transition_m']),('VIn',ball['size_inside_m']),('VOut',size)]:gmsh.model.mesh.field.setNumber(field,key,value)
             minimum=gmsh.model.mesh.field.add('Min');gmsh.model.mesh.field.setNumbers(minimum,'FieldsList',fields)
             gmsh.model.mesh.field.setAsBackgroundMesh(minimum)
         gmsh.model.mesh.generate(3)
@@ -102,7 +105,7 @@ def build(run, output, mode, size_mm=4.5, rpm=6000, netgen=False, local_refineme
                 'mode':mode,'units':'mm-N-s-tonne' if mode=='structural' else 'm-kg-s',
                 'gmsh_version':gmsh.__version__,'source_step_sha256':hashlib.sha256(step.read_bytes()).hexdigest(),
                 'mesher_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
-                'size_mm_requested':size_mm,'netgen_and_relocation_requested':netgen,'nodes':len(ntags),'volume_elements':len(tags),
+                'minimum_size_mm_requested':minimum_size_mm,'size_mm_requested':size_mm,'netgen_and_relocation_requested':netgen,'nodes':len(ntags),'volume_elements':len(tags),
                 'element_type':'C3D10' if mode=='structural' else 'linear_tetrahedron',
                 'minimum_Gauss4_jacobian':float(determinants.min()),'minimum_scaled_jacobian':float(min(qualities)),
                 'cad_volume':cad_volume,'integrated_mesh_volume':mesh_volume,'relative_volume_error':volume_error,
@@ -147,4 +150,5 @@ if __name__=='__main__':
     parser.add_argument('--size-mm',type=float,default=4.5);parser.add_argument('--rpm',type=float,default=6000)
     parser.add_argument('--netgen',action='store_true')
     parser.add_argument('--local-refinement',type=Path)
-    args=parser.parse_args();build(args.run,args.output,args.mode,args.size_mm,args.rpm,args.netgen,args.local_refinement)
+    parser.add_argument('--minimum-size-mm',type=float)
+    args=parser.parse_args();build(args.run,args.output,args.mode,args.size_mm,args.rpm,args.netgen,args.local_refinement,args.minimum_size_mm)

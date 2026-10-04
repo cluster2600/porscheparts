@@ -19,7 +19,7 @@
 [**Gallery**](docs/GALLERY.md) ·
 [**993 cooling impeller program: models, calculations and evidence**](twins/993-engine-cooling-fan-system-f0/README.md) ·
 [**935 horizontal cooling system: 40-language evidence, engine inputs and gaps**](twins/935-horizontal-cooling-system/README.md) ·
-[**Horizontal fan: CAD, mechanics, CFD gates, LPBF screening and OpenUSD studies**](models/horizontal-fan-reconstruction/README.md) ·
+[**Ventilateur horizontal : CAO, mécanique, CFD, fabrication et OpenUSD**](models/horizontal-fan-reconstruction/README.md) ·
 [**Latest impeller engineering results and open gates**](twins/993-engine-cooling-fan-system-f0/program/ENGINEERING_RESULTS_20261003.md) ·
 [**Four-valve cylinder head: air + oil study**](docs/studies/993-air-oil-20261002/README.md) ·
 [**Contribute**](CONTRIBUTING.md) ·

@@ -7,6 +7,8 @@ from pathlib import Path
 def verify(root):
     read=lambda p:json.loads((root/p).read_text())
     manifest=read('manifest.json');errors=[]
+    actual={str(p.relative_to(root)) for p in root.rglob('*') if p.is_file() and p.name!='manifest.json' and '__pycache__' not in p.parts and p.suffix!='.pyc' and p.relative_to(root).parts[0]!='work'}
+    if actual!=set(manifest['files']):errors.append('Manifest inventory differs from published study files')
     for name,entry in manifest['files'].items():
         p=root/name
         if not p.is_file() or p.stat().st_size!=entry['bytes'] or hashlib.sha256(p.read_bytes()).hexdigest()!=entry['sha256']:errors.append('Artifact integrity: '+name)
@@ -20,8 +22,8 @@ def verify(root):
         if len(g['components'])!=8 or g['components']['rotor']['solids']!=1:errors.append('Wrong solid topology: '+label)
         if not all(c['brep_valid'] and c['volume_mm3']>0 and c['step_roundtrip_volume_relative_error']<1e-7 for c in g['components'].values()):errors.append('Invalid BRep/roundtrip: '+label)
         if hashlib.sha256((root/'source/build_analytical_system.py').read_bytes()).hexdigest()!=g['builder_sha256']:errors.append('Builder identity: '+label)
-        if label!='V2' and hashlib.sha256((root/(label+'-rotor.step')).read_bytes()).hexdigest()!=g['components']['rotor']['step_sha256']:errors.append('Rotor geometry identity: '+label)
-    for label in ['R0','V5']:
+        if hashlib.sha256((root/(label+'-rotor.step')).read_bytes()).hexdigest()!=g['components']['rotor']['step_sha256']:errors.append('Rotor geometry identity: '+label)
+    for label in ['R0','V5','V2']:
         g=read('results/geometry/'+label+'.json')
         for size in ['h3p6','h4p5']:
             r=read('results/mechanics/mesh-'+label+'-'+size+'.json');m=r['mesh']
@@ -37,6 +39,8 @@ def verify(root):
     for label in ['R0','V5']:
         usd=read('omniverse/'+label+'.json')
         if usd['USD_sha256']!=hashlib.sha256((root/'omniverse'/(label+'.usda')).read_bytes()).hexdigest():errors.append('USD artifact identity')
+    from verify_continuation import verify as verify_continuation
+    verify_continuation(root)
     if errors:raise ValueError('\n'.join(errors))
     print('Study integrity and cross-stage identity checks passed ('+str(len(manifest['files']))+' artifacts)')
 

@@ -4,11 +4,11 @@ import argparse,hashlib,json
 from pathlib import Path
 
 
-def validate(path,output):
+def validate(path,output,expected_meshes=None,meters_per_unit=.001):
     from pxr import Usd,UsdGeom,UsdShade,UsdUtils
     stage=Usd.Stage.Open(str(path))
     if not stage or not stage.GetDefaultPrim():raise ValueError('USD stage/default prim missing')
-    if UsdGeom.GetStageMetersPerUnit(stage)!=.001 or UsdGeom.GetStageUpAxis(stage)!='Z':raise ValueError('Unexpected units or axis')
+    if UsdGeom.GetStageMetersPerUnit(stage)!=meters_per_unit or UsdGeom.GetStageUpAxis(stage)!='Z':raise ValueError('Unexpected units or axis')
     linked_files=set()
     for prim in stage.Traverse():
         metadata=prim.GetCustomData()
@@ -31,7 +31,7 @@ def validate(path,output):
                     key=tuple(sorted((int(a),int(b))));edges[key]=edges.get(key,0)+1
             if any(n!=2 for n in edges.values()):raise ValueError('Mesh has non-manifold boundary edges')
             meshes.append({'path':str(prim.GetPath()),'triangles':len(counts),'points':len(points),'all_edges_incident_to_two_triangles':True})
-    expected=16 if path.name=='studies.usda' else 8
+    expected=expected_meshes if expected_meshes is not None else 16 if path.name=='studies.usda' else 8
     if len(meshes)!=expected:raise ValueError('Unexpected component count')
     from pxr import UsdValidation
     registry=UsdValidation.ValidationRegistry()
@@ -55,7 +55,7 @@ def validate(path,output):
         if shader_findings:raise ValueError('Shader compliance findings: '+str([e.GetMessage() for e in shader_findings]))
         names.append('usdShadeValidators:ShaderSdrCompliance')
     report={'status':'composition_geometry_and_material_binding_checks_passed_shader_rule_blocked' if shader_block else 'generic_OpenUSD_asset_checks_passed','USD_version':list(Usd.GetVersion()),'asset_sha256':hashlib.sha256(path.read_bytes()).hexdigest(),
-            'metersPerUnit':.001,'upAxis':'Z','meshes':meshes,'linked_files_checked':sorted(linked_files),'validators_executed':names,'validator_findings':findings,
+            'metersPerUnit':meters_per_unit,'upAxis':'Z','meshes':meshes,'linked_files_checked':sorted(linked_files),'validators_executed':names,'validator_findings':findings,
             'shader_Sdr_validation':shader_block or 'passed',
             'complete_generic_validation_established':shader_block is None,
             'Omniverse_GPU_execution_verified':False,'physical_validation_established':False,'SimReady_qualified':False}
@@ -63,4 +63,6 @@ def validate(path,output):
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('asset',type=Path);p.add_argument('output',type=Path);a=p.parse_args();validate(a.asset,a.output)
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('asset',type=Path);p.add_argument('output',type=Path)
+    p.add_argument('--expected-meshes',type=int);p.add_argument('--meters-per-unit',type=float,default=.001)
+    a=p.parse_args();validate(a.asset,a.output,a.expected_meshes,a.meters_per_unit)
