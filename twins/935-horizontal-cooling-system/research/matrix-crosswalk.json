@@ -1,0 +1,991 @@
+{
+  "schema_version": "1.0.0",
+  "policy": "Navigation by explicitly selected parameter names only; reported claims, rejected transfers and missing values remain separate. References are not admitted inputs or evidence of applicability.",
+  "matrix": "../data/input-matrix.json",
+  "ledger": "ENGINE_FAN_PARAMETER_LEDGER.json",
+  "matrix_variant_templates": [
+    "factory_935_1976",
+    "factory_935_1977",
+    "factory_935_1978_moby_dick",
+    "kremer_k3",
+    "kremer_k4",
+    "replica_declared_build"
+  ],
+  "variant_name_links": [
+    {
+      "matrix_variant": "factory_935_1976",
+      "ledger_context": "factory_935_1976",
+      "relationship": "same historical branch label; exact revision still requires admission"
+    },
+    {
+      "matrix_variant": "factory_935_1977",
+      "ledger_context": "factory_935_77",
+      "relationship": "same historical branch label; customer and Baby branches remain separate"
+    },
+    {
+      "matrix_variant": "factory_935_1978_moby_dick",
+      "ledger_context": "factory_935_78_moby_dick",
+      "relationship": "same historical branch label; development and Le Mans states remain distinct"
+    },
+    {
+      "matrix_variant": "kremer_k3",
+      "ledger_context": "kremer_k3_selected_chassis",
+      "relationship": "selected-specimen gap register; other K3 specimen records cannot be generalized"
+    },
+    {
+      "matrix_variant": "kremer_k4",
+      "ledger_context": "kremer_k4_selected_chassis",
+      "relationship": "selected-specimen gap register; K4-01 restored-state data remains specimen-specific"
+    },
+    {
+      "matrix_variant": "replica_declared_build",
+      "ledger_context": null,
+      "relationship": "no universal alias; EB, Torres, FSH, Spezialmotorer and other declared builds remain distinct"
+    }
+  ],
+  "extra_ledger_contexts": "Baby, customer cars, Group C and individually identified builds are retained without expanding or silently filling the six matrix templates.",
+  "rows": [
+    {
+      "matrix_id": "I01",
+      "quantity": "Named variant, engine revision and assembly/build identity",
+      "minimum_level": "L0",
+      "ledger_parameter_names": [
+        "nominal_displacement",
+        "reported_displacement",
+        "descriptive_engine",
+        "engine_identifier",
+        "engine_configuration"
+      ],
+      "ledger_record_ids": [
+        "P001",
+        "P006",
+        "P008",
+        "P011",
+        "P012",
+        "P026",
+        "P028",
+        "P029",
+        "P032",
+        "P061"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "I02",
+      "quantity": "Scan/export scale and independent dimensional calibration",
+      "minimum_level": "L0",
+      "ledger_parameter_names": [],
+      "ledger_record_ids": [],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "No matching curated ledger parameter; consult matrix requirements and existing evidence. This is not a numeric zero."
+    },
+    {
+      "matrix_id": "I03",
+      "quantity": "Raw geometry provenance, derivative rights and reconstruction history",
+      "minimum_level": "L0",
+      "ledger_parameter_names": [],
+      "ledger_record_ids": [],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "No matching curated ledger parameter; consult matrix requirements and existing evidence. This is not a numeric zero."
+    },
+    {
+      "matrix_id": "I04",
+      "quantity": "Horizontal arrangement, datum frame, rotation axis and gravity",
+      "minimum_level": "L0",
+      "ledger_parameter_names": [
+        "fan_orientation",
+        "rotation_datum",
+        "drive_architecture"
+      ],
+      "ledger_record_ids": [
+        "P016",
+        "P038",
+        "P081",
+        "P092",
+        "P103",
+        "P114",
+        "P125",
+        "P136"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "I05",
+      "quantity": "Editable rotor geometry and topology",
+      "minimum_level": "L1",
+      "ledger_parameter_names": [
+        "fan_geometry",
+        "fan_diameter_and_flow_fraction"
+      ],
+      "ledger_record_ids": [
+        "P017",
+        "P078",
+        "P089",
+        "P100",
+        "P111",
+        "P122",
+        "P133"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "I06",
+      "quantity": "Shroud, inlet, support/stator geometry and cold gaps",
+      "minimum_level": "L1",
+      "ledger_parameter_names": [
+        "fan_geometry",
+        "shrouds",
+        "rotor_funnel_materials"
+      ],
+      "ledger_record_ids": [
+        "P050",
+        "P051",
+        "P078",
+        "P089",
+        "P100",
+        "P111",
+        "P122",
+        "P133"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "I07",
+      "quantity": "Functional shaft/hub/bearing/drive interfaces and load path",
+      "minimum_level": "L2",
+      "ledger_parameter_names": [
+        "gears_bearings_preload",
+        "drive_architecture",
+        "supplier_identifier"
+      ],
+      "ledger_record_ids": [
+        "P038",
+        "P056",
+        "P082",
+        "P093",
+        "P104",
+        "P115",
+        "P126",
+        "P137"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "I08",
+      "quantity": "Operating minimum gaps and expansion envelope",
+      "minimum_level": "L3",
+      "ledger_parameter_names": [],
+      "ledger_record_ids": [],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "No matching curated ledger parameter; consult matrix requirements and existing evidence. This is not a numeric zero."
+    },
+    {
+      "matrix_id": "A01",
+      "quantity": "Signed fan speed and aerodynamic speed envelope",
+      "minimum_level": "L1",
+      "ledger_parameter_names": [
+        "drive_ratio_and_rpm",
+        "proposed_speed",
+        "reported_drive_power_low_speed",
+        "reported_drive_power_high_speed"
+      ],
+      "ledger_record_ids": [
+        "P039",
+        "P040",
+        "P042",
+        "P080",
+        "P091",
+        "P102",
+        "P113",
+        "P124",
+        "P135"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "A02",
+      "quantity": "Rotation direction, blade handedness and observation view",
+      "minimum_level": "L1",
+      "ledger_parameter_names": [
+        "rotation_datum"
+      ],
+      "ledger_record_ids": [
+        "P081",
+        "P092",
+        "P103",
+        "P114",
+        "P125",
+        "P136"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "A03",
+      "quantity": "Inlet total pressure, total temperature and air composition",
+      "minimum_level": "L1",
+      "ledger_parameter_names": [],
+      "ledger_record_ids": [],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "No matching curated ledger parameter; consult matrix requirements and existing evidence. This is not a numeric zero."
+    },
+    {
+      "matrix_id": "A04",
+      "quantity": "Inlet turbulence, swirl and spatial profiles",
+      "minimum_level": "L1",
+      "ledger_parameter_names": [],
+      "ledger_record_ids": [],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "No matching curated ledger parameter; consult matrix requirements and existing evidence. This is not a numeric zero."
+    },
+    {
+      "matrix_id": "A05",
+      "quantity": "Outlet static pressure/backpressure and pressure stations",
+      "minimum_level": "L1",
+      "ledger_parameter_names": [
+        "flow_pressure_power_map"
+      ],
+      "ledger_record_ids": [
+        "P084",
+        "P095",
+        "P106",
+        "P117",
+        "P128",
+        "P139"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "A06",
+      "quantity": "Air density, viscosity, heat capacity, conductivity and compressibility basis",
+      "minimum_level": "L1",
+      "ledger_parameter_names": [],
+      "ledger_record_ids": [],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "No matching curated ledger parameter; consult matrix requirements and existing evidence. This is not a numeric zero."
+    },
+    {
+      "matrix_id": "A07",
+      "quantity": "Installed air inlet/outlet paths, sealing and recirculation",
+      "minimum_level": "L2",
+      "ledger_parameter_names": [
+        "installed_air_resistance",
+        "shrouds",
+        "intercooler_position",
+        "radiator_layout"
+      ],
+      "ledger_record_ids": [
+        "P015",
+        "P022",
+        "P050",
+        "P085",
+        "P096",
+        "P107",
+        "P118",
+        "P129",
+        "P140"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "A08",
+      "quantity": "Cooling branch resistance and flow split",
+      "minimum_level": "L2",
+      "ledger_parameter_names": [
+        "installed_air_resistance"
+      ],
+      "ledger_record_ids": [
+        "P085",
+        "P096",
+        "P107",
+        "P118",
+        "P129",
+        "P140"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "A09",
+      "quantity": "Fan performance validation map",
+      "minimum_level": "L2",
+      "ledger_parameter_names": [
+        "flow_pressure_power_map",
+        "reported_flow",
+        "proposed_flow",
+        "reported_drive_power_low_speed",
+        "reported_drive_power_high_speed"
+      ],
+      "ledger_record_ids": [
+        "P018",
+        "P039",
+        "P040",
+        "P043",
+        "P084",
+        "P095",
+        "P106",
+        "P117",
+        "P128",
+        "P139"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "A10",
+      "quantity": "Unsteady interactions and pressure/acoustic validation",
+      "minimum_level": "L4",
+      "ledger_parameter_names": [
+        "validation_dataset"
+      ],
+      "ledger_record_ids": [
+        "P088",
+        "P099",
+        "P110",
+        "P121",
+        "P132",
+        "P143"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "A11",
+      "quantity": "Numerical geometry/mesh and convergence contract",
+      "minimum_level": "L1",
+      "ledger_parameter_names": [],
+      "ledger_record_ids": [],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "No matching curated ledger parameter; consult matrix requirements and existing evidence. This is not a numeric zero."
+    },
+    {
+      "matrix_id": "D01",
+      "quantity": "Engine speed, engine loading and drive state",
+      "minimum_level": "L2",
+      "ledger_parameter_names": [
+        "engine_operating_map",
+        "reported_engine_range",
+        "nominal_power",
+        "maximum_reported_power",
+        "reported_power",
+        "reported_torque",
+        "reported_engine_output"
+      ],
+      "ledger_record_ids": [
+        "P003",
+        "P005",
+        "P007",
+        "P010",
+        "P014",
+        "P019",
+        "P020",
+        "P030",
+        "P034",
+        "P035",
+        "P068",
+        "P069",
+        "P086",
+        "P097",
+        "P108",
+        "P119",
+        "P130",
+        "P141"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "D02",
+      "quantity": "Engine-to-fan speed ratio and drive topology",
+      "minimum_level": "L2",
+      "ledger_parameter_names": [
+        "drive_ratio_and_rpm",
+        "overall_fan_crank_ratio",
+        "drive_architecture"
+      ],
+      "ledger_record_ids": [
+        "P038",
+        "P041",
+        "P080",
+        "P091",
+        "P102",
+        "P113",
+        "P124",
+        "P135"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "D03",
+      "quantity": "Fan shaft torque, absorbed mechanical power and losses",
+      "minimum_level": "L2",
+      "ledger_parameter_names": [
+        "flow_pressure_power_map",
+        "reported_drive_power_low_speed",
+        "reported_drive_power_high_speed",
+        "proposed_drive_power",
+        "reported_drive_demand"
+      ],
+      "ledger_record_ids": [
+        "P039",
+        "P040",
+        "P044",
+        "P045",
+        "P084",
+        "P095",
+        "P106",
+        "P117",
+        "P128",
+        "P139"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "D04",
+      "quantity": "Gear/belt/shaft drive definition and transmitted loads",
+      "minimum_level": "L2",
+      "ledger_parameter_names": [
+        "gears_bearings_preload",
+        "drive_architecture",
+        "supplier_identifier"
+      ],
+      "ledger_record_ids": [
+        "P038",
+        "P056",
+        "P082",
+        "P093",
+        "P104",
+        "P115",
+        "P126",
+        "P137"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "D05",
+      "quantity": "Rotor material, density and elastic/strength/fatigue state",
+      "minimum_level": "L2",
+      "ledger_parameter_names": [
+        "fan_materials_and_rotordynamics",
+        "rotor_material",
+        "rotor_funnel_materials",
+        "material_and_identity",
+        "fan_blades_material"
+      ],
+      "ledger_record_ids": [
+        "P046",
+        "P051",
+        "P055",
+        "P070",
+        "P079",
+        "P090",
+        "P101",
+        "P112",
+        "P123",
+        "P134"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "D06",
+      "quantity": "Bearing, support/contact and assembly preload",
+      "minimum_level": "L2",
+      "ledger_parameter_names": [
+        "gears_bearings_preload"
+      ],
+      "ledger_record_ids": [
+        "P082",
+        "P093",
+        "P104",
+        "P115",
+        "P126",
+        "P137"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "D07",
+      "quantity": "Prestressed rotating dynamics, forcing and balance",
+      "minimum_level": "L2",
+      "ledger_parameter_names": [
+        "fan_materials_and_rotordynamics"
+      ],
+      "ledger_record_ids": [
+        "P079",
+        "P090",
+        "P101",
+        "P112",
+        "P123",
+        "P134"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "D08",
+      "quantity": "Bearing/gearing oil or other lubrication circuit",
+      "minimum_level": "L2",
+      "ledger_parameter_names": [
+        "lubrication_and_seals",
+        "oil_interfaces"
+      ],
+      "ledger_record_ids": [
+        "P048",
+        "P083",
+        "P094",
+        "P105",
+        "P116",
+        "P127",
+        "P138"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "D09",
+      "quantity": "Mechanical duty, endurance and overspeed validation",
+      "minimum_level": "L4",
+      "ledger_parameter_names": [
+        "validation_dataset",
+        "reported_run_in"
+      ],
+      "ledger_record_ids": [
+        "P049",
+        "P088",
+        "P099",
+        "P110",
+        "P121",
+        "P132",
+        "P143"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "T01",
+      "quantity": "Variant-specific cooling architecture and circuit routing",
+      "minimum_level": "L2",
+      "ledger_parameter_names": [
+        "head_cylinder_cooling",
+        "charge_air_cooling",
+        "charge_cooling",
+        "radiator_layout",
+        "water_circuits",
+        "head_cooling_and_temperature_claim"
+      ],
+      "ledger_record_ids": [
+        "P013",
+        "P015",
+        "P021",
+        "P036",
+        "P071",
+        "P077"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "T02",
+      "quantity": "Ambient, inlet heating and external duty conditions",
+      "minimum_level": "L3",
+      "ledger_parameter_names": [],
+      "ledger_record_ids": [],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "No matching curated ledger parameter; consult matrix requirements and existing evidence. This is not a numeric zero."
+    },
+    {
+      "matrix_id": "T03",
+      "quantity": "Cylinder and head heat-rejection maps",
+      "minimum_level": "L3",
+      "ledger_parameter_names": [
+        "thermal_rejection"
+      ],
+      "ledger_record_ids": [
+        "P087",
+        "P098",
+        "P109",
+        "P120",
+        "P131",
+        "P142"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "T04",
+      "quantity": "Cooling-fin/solid geometry and contact conductance",
+      "minimum_level": "L3",
+      "ledger_parameter_names": [],
+      "ledger_record_ids": [],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "No matching curated ledger parameter; consult matrix requirements and existing evidence. This is not a numeric zero."
+    },
+    {
+      "matrix_id": "T05",
+      "quantity": "Thermal material functions and temperature limits",
+      "minimum_level": "L3",
+      "ledger_parameter_names": [
+        "fan_materials_and_rotordynamics"
+      ],
+      "ledger_record_ids": [
+        "P079",
+        "P090",
+        "P101",
+        "P112",
+        "P123",
+        "P134"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "T06",
+      "quantity": "Engine oil cooling heat load, flow and cooler routing",
+      "minimum_level": "L3",
+      "ledger_parameter_names": [
+        "thermal_rejection",
+        "radiator_layout"
+      ],
+      "ledger_record_ids": [
+        "P015",
+        "P087",
+        "P098",
+        "P109",
+        "P120",
+        "P131",
+        "P142"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "T07",
+      "quantity": "Turbocharger heat and flow boundary data",
+      "minimum_level": "L3",
+      "ledger_parameter_names": [
+        "turbocharger_count",
+        "turbochargers",
+        "turbo cross-reference",
+        "maximum_pressure"
+      ],
+      "ledger_record_ids": [
+        "P002",
+        "P004",
+        "P009",
+        "P066",
+        "P067",
+        "P072",
+        "P073",
+        "P074"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "T08",
+      "quantity": "Intercooler/charge-air system and shared cooling paths",
+      "minimum_level": "L3",
+      "ledger_parameter_names": [
+        "charge_air_cooling",
+        "charge_cooling",
+        "intercooler_position",
+        "intake_temperature_reduction"
+      ],
+      "ledger_record_ids": [
+        "P021",
+        "P022",
+        "P023",
+        "P025",
+        "P036"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "T09",
+      "quantity": "Conditional liquid-cooled head/cylinder branch",
+      "minimum_level": "L3",
+      "ledger_parameter_names": [
+        "head_cylinder_cooling",
+        "radiator_layout",
+        "water_circuits"
+      ],
+      "ledger_record_ids": [
+        "P013",
+        "P015",
+        "P071"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "T10",
+      "quantity": "Correlated solid/fluid temperature and heat-balance observations",
+      "minimum_level": "L3",
+      "ledger_parameter_names": [
+        "thermal_rejection",
+        "validation_dataset",
+        "intake_temperature_reduction"
+      ],
+      "ledger_record_ids": [
+        "P023",
+        "P025",
+        "P087",
+        "P088",
+        "P098",
+        "P099",
+        "P109",
+        "P110",
+        "P120",
+        "P121",
+        "P131",
+        "P132",
+        "P142",
+        "P143"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "T11",
+      "quantity": "Transient thermal state and mission coupling",
+      "minimum_level": "L4",
+      "ledger_parameter_names": [
+        "thermal_rejection",
+        "validation_dataset"
+      ],
+      "ledger_record_ids": [
+        "P087",
+        "P088",
+        "P098",
+        "P099",
+        "P109",
+        "P110",
+        "P120",
+        "P121",
+        "P131",
+        "P132",
+        "P142",
+        "P143"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "T12",
+      "quantity": "Engine performance/fuel/exhaust boundary maps when heat loads are predicted",
+      "minimum_level": "L3",
+      "ledger_parameter_names": [
+        "engine_operating_map",
+        "nominal_power",
+        "reported_power",
+        "reported_engine_output",
+        "reported_torque",
+        "power_torque_inconsistency"
+      ],
+      "ledger_record_ids": [
+        "P003",
+        "P005",
+        "P007",
+        "P014",
+        "P020",
+        "P030",
+        "P034",
+        "P035",
+        "P068",
+        "P069",
+        "P075",
+        "P076",
+        "P086",
+        "P097",
+        "P108",
+        "P119",
+        "P130",
+        "P141"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "M01",
+      "quantity": "Intended original replacement/redesign and selected material route",
+      "minimum_level": "M0",
+      "ledger_parameter_names": [
+        "rotor_material",
+        "rotor_funnel_materials",
+        "material_and_identity",
+        "listed_material_mass"
+      ],
+      "ledger_record_ids": [
+        "P046",
+        "P051",
+        "P055",
+        "P057"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "M02",
+      "quantity": "Machine/build envelope, powder and controlled scan/layer recipe",
+      "minimum_level": "M1",
+      "ledger_parameter_names": [],
+      "ledger_record_ids": [],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "No matching curated ledger parameter; consult matrix requirements and existing evidence. This is not a numeric zero."
+    },
+    {
+      "matrix_id": "M03",
+      "quantity": "Build orientation, supports, plate and release sequence",
+      "minimum_level": "M1",
+      "ledger_parameter_names": [],
+      "ledger_record_ids": [],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "No matching curated ledger parameter; consult matrix requirements and existing evidence. This is not a numeric zero."
+    },
+    {
+      "matrix_id": "M04",
+      "quantity": "Calibrated thermal/process or inherent-strain model",
+      "minimum_level": "M2",
+      "ledger_parameter_names": [],
+      "ledger_record_ids": [],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "No matching curated ledger parameter; consult matrix requirements and existing evidence. This is not a numeric zero."
+    },
+    {
+      "matrix_id": "M05",
+      "quantity": "Postprocessing, machining, balance and inspection acceptance",
+      "minimum_level": "M2",
+      "ledger_parameter_names": [],
+      "ledger_record_ids": [],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "No matching curated ledger parameter; consult matrix requirements and existing evidence. This is not a numeric zero."
+    },
+    {
+      "matrix_id": "M06",
+      "quantity": "Qualified structural/endurance and guarded spin/engine-test release",
+      "minimum_level": "M3",
+      "ledger_parameter_names": [
+        "validation_dataset"
+      ],
+      "ledger_record_ids": [
+        "P088",
+        "P099",
+        "P110",
+        "P121",
+        "P132",
+        "P143"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    },
+    {
+      "matrix_id": "V01",
+      "quantity": "Variant-resolved source admission and uncertainty ledger",
+      "minimum_level": "L0",
+      "ledger_parameter_names": [],
+      "ledger_record_ids": [],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "No matching curated ledger parameter; consult matrix requirements and existing evidence. This is not a numeric zero."
+    },
+    {
+      "matrix_id": "V02",
+      "quantity": "Native outputs, provenance and model-validity envelope",
+      "minimum_level": "L1",
+      "ledger_parameter_names": [],
+      "ledger_record_ids": [],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "No matching curated ledger parameter; consult matrix requirements and existing evidence. This is not a numeric zero."
+    },
+    {
+      "matrix_id": "V03",
+      "quantity": "OpenUSD axes/units/time, composition and native-field mapping",
+      "minimum_level": "L1",
+      "ledger_parameter_names": [],
+      "ledger_record_ids": [],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "No matching curated ledger parameter; consult matrix requirements and existing evidence. This is not a numeric zero."
+    },
+    {
+      "matrix_id": "V04",
+      "quantity": "Physical twin state synchronization and validation",
+      "minimum_level": "L4",
+      "ledger_parameter_names": [
+        "validation_dataset"
+      ],
+      "ledger_record_ids": [
+        "P088",
+        "P099",
+        "P110",
+        "P121",
+        "P132",
+        "P143"
+      ],
+      "accepted_input_value": null,
+      "automatic_model_admission": false,
+      "gap_note": "Matrix conditions and required evidence remain controlling; no linked record satisfies admission automatically."
+    }
+  ]
+}
