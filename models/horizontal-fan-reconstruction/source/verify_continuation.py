@@ -15,6 +15,8 @@ def verify(root):
     verify_d2(root)
     from verify_d2_restart import verify as verify_restart
     verify_restart(root)
+    from verify_d2_completion import verify as verify_completion
+    verify_completion(root)
     from measurement_window import require_measurement_window,configure_measurement_cadence
     cadence=read('results/cfd/measurement-cadence-audit.json')
     require(cadence['script_sha256']==sha('source/audit_measurement_cadence.py'),'Cadence audit source identity')

@@ -21,7 +21,7 @@
 [**935 horizontal cooling system: 40-language evidence, engine inputs and gaps**](twins/935-horizontal-cooling-system/README.md) ·
 [**Ventilateur horizontal : CAO, mécanique, CFD, fabrication et OpenUSD**](models/horizontal-fan-reconstruction/README.md) ·
 [D2 : sortie prolongée, résultats partiels et clôture](models/horizontal-fan-reconstruction/D2_EXECUTION.md) ·
-[D2 : vingt pas restants préparés, aucun lancement](models/horizontal-fan-reconstruction/D2_COMPLETION_PREPARATION.md) ·
+[D2 : terminé1020, pression non admise et ressources libérées](models/horizontal-fan-reconstruction/D2_COMPLETION_EXECUTION.md) ·
 [**Latest impeller engineering results and open gates**](twins/993-engine-cooling-fan-system-f0/program/ENGINEERING_RESULTS_20261003.md) ·
 [**Four-valve cylinder head: air + oil study**](docs/studies/993-air-oil-20261002/README.md) ·
 [**Contribute**](CONTRIBUTING.md) ·

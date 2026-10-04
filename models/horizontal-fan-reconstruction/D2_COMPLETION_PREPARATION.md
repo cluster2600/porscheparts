@@ -1,5 +1,10 @@
 # D2 : préparer les vingt itérations manquantes
 
+**Historique de préparation.** La [reprise1001–1020 est désormais terminée](D2_COMPLETION_EXECUTION.md)
+après accord explicite, en110,505 s tout compris. Pression encore non admise,
+comparaison inconclusive, ressources libérées. Le protocole préparé ci-dessous
+et ses critères sont conservés sans modifier ses artefacts gelés.
+
 **Préparation vérifiée, aucun solveur lancé, aucune ressource réservée.** Le lot
 [D2 initial](D2_EXECUTION.md) reste clos et ses résultats restent inchangés.
 Le témoin a terminé 961–1020 ; seule la branche prolongée est concernée par
@@ -76,6 +81,11 @@ appliquer le plafond global ci-dessous, conserver les preuves et arrêter
 uniquement son propre processus/conteneur. Il doit utiliser une **nouvelle
 date limite**, jamais la date limite expirée du lot720 s. Aucune installation,
 image téléchargée, location ou modification de service n'est nécessaire.
+
+Le [superviseur dédié désormais testé et exécuté](source/launch_d2_completion.py)
+applique ce contrat à une seule branche ; sa [capsule exacte](parameters/D2-completion-executed-capsule-manifest.json)
+et ses preuves se trouvent dans le rapport final. Les anciens passages sur une
+adaptation restant à faire décrivent l'état de préparation antérieur au lot.
 
 ## Coût observé et budget proposé
 

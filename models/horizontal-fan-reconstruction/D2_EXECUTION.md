@@ -162,3 +162,9 @@ compressibilité, parois, fatigue et validation physique restent ouvertes.
 Suivi : les checkpoints natifs980 et1000 sont désormais audités et une
 [complétion fixe de vingt pas](D2_COMPLETION_PREPARATION.md) est préparée.
 Elle n'a lancé aucun solveur et ne modifie pas les résultats de ce lot clos.
+
+Suivi ultérieur : après accord explicite, la
+[reprise unique1001–1020 a terminé](D2_COMPLETION_EXECUTION.md) en110,505 s,
+archivage et libération compris. La fenêtre manquante existe maintenant mais
+la pression reste non admise ; la comparaison demeure inconclusive. Les
+résultats partiels et la capsule du premier lot restent conservés.
