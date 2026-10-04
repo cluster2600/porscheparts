@@ -377,7 +377,10 @@ def render_ovrtx(stage_path: Path, out: Path, endpoint: str) -> dict:
         result = json.loads(response.read().decode("utf-8"))
     if result.get("status") != "success":
         raise RuntimeError(f"OVRTX render failed: {result.get('error')}")
-    encoded = result.get("images", {}).get("0", {}).get(camera_path, {}).get("rgb")
+    frame = result.get("images", {}).get("0", {}).get(camera_path, {})
+    # OVRTX builds expose the PNG under either rgb or images.  Prefer the
+    # documented RGB slot, then accept the populated PNG slot returned here.
+    encoded = frame.get("rgb") or frame.get("images")
     if not isinstance(encoded, str) or not encoded:
         raise RuntimeError("OVRTX render returned no RGB frame")
     image_path = out / "ovrtx-preview.png"

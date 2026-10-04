@@ -73,7 +73,10 @@ class ScreenContractTests(unittest.TestCase):
 
             def read(self):
                 return json.dumps({"status": "success", "images": {"0": {
-                    "/FanAlloyScreen/Camera": {"rgb": base64.b64encode(b"x" * 1025).decode("ascii")}
+                    "/FanAlloyScreen/Camera": {
+                        "rgb": "",
+                        "images": base64.b64encode(b"x" * 1025).decode("ascii"),
+                    }
                 }}}).encode("utf-8")
 
         with tempfile.TemporaryDirectory() as temporary:
