@@ -8,6 +8,7 @@
 [declared criteria](program/ENGINEERING_ITERATION_20261003.md),
 [reproduction](program/ENGINEERING_REPRODUCE_20261003.md),
 [material/process admission](program/research/materials-20261003/ADMISSION.md),
+[targeted mesh diagnosis](program/MESH_DIAGNOSIS_20261003.md),
 [native-field OpenUSD study](program/engineering-iteration.usda).
 Four rotating-mode and four uncalibrated support-release calculations completed.
 New CFD mesh repairs remain rejected; no new flow solve or manufacturing qualification.
