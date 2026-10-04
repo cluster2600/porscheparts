@@ -2,6 +2,7 @@
 
 [R0 editable STEP](R0-assembly.step) · [R0 render](R0-render.png) ·
 [V5 editable STEP](V5-assembly.step) · [V5 render](V5-render.png) ·
+[Engineering, reproduction and validation status](ENGINEERING.md) ·
 [Repository home](../../README.md)
 
 Scan-informed analytical reconstructions, published with the project owner's
