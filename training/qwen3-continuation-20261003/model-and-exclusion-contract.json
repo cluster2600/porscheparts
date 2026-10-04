@@ -59,12 +59,13 @@
     "private_porschefanatics": "private/local only; no publication into public Porscheparts"
   },
   "protected_local_prefixes": [
-    "/tmp/porscheparts-qwen-independent-review-20261003-4e65eoni/",
-    "/Users/maxime/projects/3dprinting993/work/qwen3-continuation-20261003/"
+    "private/independent-review/",
+    "work/qwen3-continuation-20261003/"
   ],
   "protected_repository_families": [
     "training/qwen-metal-additive-20261002/runs/",
     "training/qwen3-continuation-20261003/"
   ],
-  "protection_rule": "Do not ingest evaluation prompts/golds, generation outputs, diagnostics, candidates, custody author scripts or private session logs. Public source/format metadata may be read, but frozen train/protocol/tests cannot be modified by broader corpus task. Do not open the independent review directory, including public metadata, for ingestion."
+  "protection_rule": "Do not ingest evaluation prompts/golds, generation outputs, diagnostics, candidates, custody author scripts or private session logs. Public source/format metadata may be read, but frozen train/protocol/tests cannot be modified by broader corpus task. Do not open the independent review directory, including public metadata, for ingestion.",
+  "local_prefix_resolution": "Logical aliases: resolve against operator-configured private roots. Always exclude independent-custodian files regardless of their physical location; protection_rule and repository exclusions remain unchanged."
 }

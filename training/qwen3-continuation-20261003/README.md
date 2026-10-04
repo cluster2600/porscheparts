@@ -113,3 +113,23 @@ preserved; no rejected checkpoint initializes D.
 No model score certifies a part, supplies missing measured interfaces or validates
 a material process. Familiar source families, unknown base-pretraining exposure,
 small dependent FR/EN samples and missing human engineering review limit claims.
+
+## Public privacy projection and adapter provenance
+
+The model/exclusion contract uses logical private aliases instead of personal host
+paths or custody-session directory identifiers. Operators resolve these aliases
+locally; the prohibition on ingesting independent-custodian records and frozen
+evaluation material is unchanged. Original receipts remain preserved privately.
+The historical Linux snapshot receipt retains the original contract SHA-256
+`b374e122c9705c1e8b6ffd6f2b2eb0e70873ec9940d2fdbb67c2f5798efd9127`; it describes
+the original snapshot, while this public projection requires its own final-head CI.
+No frozen training data, model weights, scores, selection or scientific limit changed.
+
+The three published safetensors files are project LoRA adapters/checkpoints, each
+containing 144 FP32 q/v matrices (rank 8; 2,949,120 parameters). No complete base
+model weights are included in this package. The pinned upstream Qwen3 model uses
+[Apache 2.0](LICENSE-QWEN.txt), reproduced unchanged from its
+[exact revision](https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507/blob/cdbee75f17c01a7cc42f958dc650907174af0554/LICENSE),
+with Alibaba Cloud attribution retained. Project-authored material remains under
+the repository licence. The dataset's existing source-specific CC BY 4.0 notices
+and exclusions remain unchanged; these adapters grant no additional corpus rights.
