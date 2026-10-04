@@ -10,7 +10,8 @@
 [Préparation exacte D1 et sous-systèmes non mesurés](D1_PREPARATION.md) ·
 [Exécution D1 bornée et résultat incomplet](D1_EXECUTION.md) ·
 [D1C terminé, gates numériques et reflux persistant](D1C_EXECUTION.md) ·
-[Sortie éloignée : diagnostic, protocole et budget non exécutés](OUTLET_SENSITIVITY_PREPARATION.md) ·
+[D2 clos : témoin60, sortie prolongée 40, comparaison inconclusive](D2_EXECUTION.md) ·
+[Préparation historique D2 et critères gelés](OUTLET_SENSITIVITY_PREPARATION.md) ·
 [Analyse locale après D1 et essai unique proposé](D1_NEXT_DIAGNOSTIC.md) ·
 [Sous-systèmes et variables symboliques](SUBSYSTEM_PARAMETERS.md) ·
 [Accueil du dépôt](../../README.md)
@@ -38,6 +39,9 @@ Le témoin D1 reste non admis sur p et sa branche stricte reste incomplète.
 passe les critères originaux, avec une baisse de 45,01 % du maximum initial p.
 Le reflux de sortie et la sensibilité des champs locaux persistent ; aucune
 amélioration du refroidissement installé n’est démontrée.
+**D2** conserve le cœur et valide les deux maillages ; le témoin termine 60
+itérations, la branche prolongée 40 seulement sous le timer global original.
+La comparaison stationnaire de sortie reste inconclusive ; ressources libérées.
 
 ![Reconstruction analytique R0](R0-render.png)
 

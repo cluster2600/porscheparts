@@ -1,6 +1,8 @@
 # Sensibilité à la position de sortie : préparation D2
 
-**Préparation uniquement : aucun nouveau maillage ni solveur lancé.** Le
+**Préparation historique : aucun nouveau maillage ni solveur n’avait été lancé
+à ce stade.** L’[exécution D2 et sa clôture](D2_EXECUTION.md) sont maintenant
+documentées séparément. Le
 [diagnostic](results/cfd/outlet-preparation-diagnostic.json) relit les champs
 natifs privés vérifiés par SHA. Le [protocole proposé](parameters/outlet-sensitivity-proposed-protocol.json)
 fixe les hypothèses, les observables et le budget avant une éventuelle exécution.

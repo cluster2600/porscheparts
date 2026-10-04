@@ -1,0 +1,156 @@
+{
+  "status": "failed_or_partial",
+  "phase": "extended_solver",
+  "error": "RuntimeError: Owned command failed: extended/log.foamRun",
+  "commands": [
+    {
+      "case": "current",
+      "args": [
+        "checkMesh"
+      ],
+      "log": "log.checkMesh-standard",
+      "exit_status": 0,
+      "wall_cap_seconds": 25,
+      "wall_seconds": 2.518865599995479
+    },
+    {
+      "case": "current",
+      "args": [
+        "checkMesh",
+        "-allGeometry",
+        "-allTopology"
+      ],
+      "log": "log.checkMesh-extended",
+      "exit_status": 0,
+      "wall_cap_seconds": 35,
+      "wall_seconds": 7.506275302963331
+    },
+    {
+      "case": "extended",
+      "args": [
+        "checkMesh"
+      ],
+      "log": "log.checkMesh-standard",
+      "exit_status": 0,
+      "wall_cap_seconds": 25,
+      "wall_seconds": 4.35485564195551
+    },
+    {
+      "case": "extended",
+      "args": [
+        "checkMesh",
+        "-allGeometry",
+        "-allTopology"
+      ],
+      "log": "log.checkMesh-extended",
+      "exit_status": 0,
+      "wall_cap_seconds": 35,
+      "wall_seconds": 11.198301772004925
+    },
+    {
+      "case": "current",
+      "args": [
+        "foamPostProcess",
+        "-solver",
+        "incompressibleFluid",
+        "-time",
+        "960"
+      ],
+      "log": "log.seed-functions",
+      "exit_status": 0,
+      "wall_cap_seconds": 20,
+      "wall_seconds": 2.9581711359787732
+    },
+    {
+      "case": "extended",
+      "args": [
+        "foamPostProcess",
+        "-solver",
+        "incompressibleFluid",
+        "-time",
+        "960"
+      ],
+      "log": "log.seed-functions",
+      "exit_status": 0,
+      "wall_cap_seconds": 20,
+      "wall_seconds": 4.646398389013484
+    },
+    {
+      "case": "current",
+      "args": [
+        "decomposePar",
+        "-latestTime"
+      ],
+      "log": "log.decomposePar",
+      "exit_status": 0,
+      "wall_cap_seconds": 35,
+      "wall_seconds": 4.842400799039751
+    },
+    {
+      "case": "current",
+      "args": [
+        "mpirun",
+        "--bind-to",
+        "none",
+        "--use-hwthread-cpus",
+        "-np",
+        "4",
+        "foamRun",
+        "-parallel"
+      ],
+      "log": "log.foamRun",
+      "exit_status": 0,
+      "wall_cap_seconds": 180,
+      "wall_seconds": 118.7308927589329
+    },
+    {
+      "case": "current",
+      "args": [
+        "reconstructPar",
+        "-time",
+        "980,1000,1020"
+      ],
+      "log": "log.reconstructPar",
+      "exit_status": 0,
+      "wall_cap_seconds": 35,
+      "wall_seconds": 11.479500266956165
+    },
+    {
+      "case": "extended",
+      "args": [
+        "decomposePar",
+        "-latestTime"
+      ],
+      "log": "log.decomposePar",
+      "exit_status": 0,
+      "wall_cap_seconds": 35,
+      "wall_seconds": 8.134888714994304
+    },
+    {
+      "case": "extended",
+      "args": [
+        "mpirun",
+        "--bind-to",
+        "none",
+        "--use-hwthread-cpus",
+        "-np",
+        "4",
+        "foamRun",
+        "-parallel"
+      ],
+      "log": "log.foamRun",
+      "exit_status": 124,
+      "wall_cap_seconds": 159,
+      "wall_seconds": 160.03032424091361
+    }
+  ],
+  "wall_seconds": 361.91266714199446,
+  "coordinated_release": "parent-authorized-D2-exact-pair-original-deadline",
+  "exact_distance_m": 0.275,
+  "exact_layers": 50,
+  "maximum_new_cases": 2,
+  "maximum_iterations_each": 60,
+  "no_retry_or_continuation": true,
+  "child_peak_RSS_KiB_not_aggregate": 930260,
+  "physical_validation_established": false
+}

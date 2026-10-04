@@ -213,6 +213,7 @@ check: validate test 917-clean-sheet-2026-f32-check \
 fan-program-check:
 	python3 twins/993-engine-cooling-fan-system-f0/source/check_fan_program.py
 	python3 models/horizontal-fan-reconstruction/source/verify_study.py
+	python3 models/horizontal-fan-reconstruction/source/test_outlet_prisms.py
 
 917-valvetrain-material-f45:
 	python3 twins/reference-917-engine/source/build_valvetrain_material_screen_f45.py --project-root .

@@ -11,6 +11,8 @@ def verify(root):
         if not condition:raise ValueError(message)
     from verify_outlet_preparation import verify as verify_outlet
     verify_outlet(root)
+    from verify_d2 import verify as verify_d2
+    verify_d2(root)
     from measurement_window import require_measurement_window,configure_measurement_cadence
     cadence=read('results/cfd/measurement-cadence-audit.json')
     require(cadence['script_sha256']==sha('source/audit_measurement_cadence.py'),'Cadence audit source identity')
