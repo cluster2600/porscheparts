@@ -1,0 +1,50 @@
+{
+  "scope": "Whole repository make check; existing isolated native-Linux runtimes only",
+  "first_published_commit": "2a9dba8cb3d06a3b2208c60a848dbe5f2a63899d",
+  "first_published_CI_passed": "https://github.com/cluster2600/porscheparts/actions/runs/37197948418/job/111423586901",
+  "local_attempts": [
+    {
+      "runtime": "Native Python 3.14 / OCP 8",
+      "tests_run": 3378,
+      "failures": 28,
+      "errors": 157,
+      "skipped": 63,
+      "exit_status": 2,
+      "known_obstacles": [
+        "OCP 8 API differences",
+        "Checkout default umask created writable modes rejected by guard tests"
+      ]
+    },
+    {
+      "runtime": "Existing engineering worker Python 3.11, old NumPy/SciPy, private checkout umask077",
+      "tests_run": 3386,
+      "failures": 1,
+      "errors": 4,
+      "skipped": 178,
+      "exit_status": 2,
+      "known_obstacles": [
+        "SciPy CG rtol unsupported",
+        "NumPy nested list indexing difference",
+        "Umask077 incompatible with one expected fixture mode"
+      ]
+    },
+    {
+      "runtime": "Existing Foundation13 Python3.12 NumPy2.5.2 SciPy1.18.1 image, test umask022",
+      "tests_run": 3390,
+      "failures": 1,
+      "errors": 30,
+      "skipped": 69,
+      "exit_status": 2,
+      "wall_seconds": 205.008765987,
+      "known_obstacles": [
+        "Image lacks git required by repository tooling",
+        "One native CAD fixture fails before its expected geometric guard"
+      ]
+    }
+  ],
+  "no_packages_installed": true,
+  "no_tests_weakened": true,
+  "public_scan_included": false,
+  "merge_performed": false,
+  "resource_accounting_note": "Bounded native solver receipts measure actual child RSS; Docker wrapper child RSS measures the CLI only. Container memory limits are enforced separately; no Docker RSS peak is inferred from CLI RSS."
+}
