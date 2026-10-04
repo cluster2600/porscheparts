@@ -2,7 +2,6 @@
 """Run an admitted existing mesh in four predeclared 150-iteration phases."""
 import argparse,hashlib,json,os,re,shutil,subprocess,sys
 from pathlib import Path
-from measurement_window import configure_measurement_cadence
 IMAGE='sha256:49979f46f421459dae4bf21aaa898e2253b07301c3e5b2cabaa6eaf06f54d696'
 
 
@@ -27,8 +26,7 @@ def main():
   protocol.pop('previous_attempt',None)
   if previous:
    initial=str(end-150);shutil.copytree(previous/initial,case/initial);protocol['initial_fields_sha256']={str(f.relative_to(previous)):hashlib.sha256(f.read_bytes()).hexdigest() for f in (previous/initial).iterdir() if f.is_file()}
-  control=case/'system/controlDict';s=control.read_text();s=re.sub(r'\bstartFrom\s+\w+','startFrom latestTime' if previous else 'startFrom startTime',s);s=re.sub(r'\bendTime\s+[0-9]+','endTime '+str(end),s);s=configure_measurement_cadence(s,150)
-  control.write_text(s)
+  control=case/'system/controlDict';s=control.read_text();s=re.sub(r'\bstartFrom\s+\w+','startFrom latestTime' if previous else 'startFrom startTime',s);s=re.sub(r'\bendTime\s+[0-9]+','endTime '+str(end),s);s=re.sub(r'\bwriteInterval\s+[0-9]+','writeInterval 150',s);control.write_text(s)
   (case/'reference-protocol.json').write_text(json.dumps(protocol,indent=2)+'\n')
   bounded(a.label+'-phase'+str(end),docker(case))
   bounded(a.label+'-summary'+str(end),[sys.executable,'summarize_reference_flow.py',case,root/(a.label+'-phase'+str(end)+'-summary.json')],threads=1,mem=3,seconds=90)

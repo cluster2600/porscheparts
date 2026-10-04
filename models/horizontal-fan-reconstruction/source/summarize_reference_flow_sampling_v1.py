@@ -5,9 +5,6 @@ from pathlib import Path
 import numpy as np
 
 
-from measurement_window import require_measurement_window
-
-
 def summarize(case,output):
     protocol=json.loads((case/'reference-protocol.json').read_text());criteria=protocol['acceptance_all_required'];n=criteria['last_window_iterations']
     log=(case/'log.foamRun').read_text();residuals=[]
@@ -25,7 +22,6 @@ def summarize(case,output):
     inlet=table('postProcessing/inletFlow/'+start+'/surfaceFieldValue.dat')[-n:]
     outlet=table('postProcessing/outletFlow/'+start+'/surfaceFieldValue.dat')[-n:]
     force=table('postProcessing/rotorForces/'+start+'/forces.dat')[-n:]
-    require_measurement_window([r['iteration'] for r in residuals],inlet,outlet,force,n)
     if not np.array_equal(inlet[:,0],outlet[:,0]) or not np.array_equal(inlet[:,0],force[:,0]):raise ValueError('Measurement iteration mismatch')
     torque=force[:,9]+force[:,12];qin=inlet[:,1];qout=outlet[:,1]
     residual_max={key:max(r[key] for r in residuals[-n:]) for key in ['p','Ux','Uy','Uz','k','omega']}
@@ -58,7 +54,7 @@ def summarize(case,output):
             'complete_finite_fields':bool(fields_finite),
             'finite_measurements':bool(np.isfinite(inlet).all() and np.isfinite(outlet).all() and np.isfinite(force).all())}
     r={'status':'reference_pilot_admitted_numerically' if all(checks.values()) else 'reference_pilot_not_converged_to_frozen_criteria',
-       'protocol_id':protocol['protocol_id'],'first_iteration':residuals[0]['iteration'],'expected_first_iteration':expected_first,'final_field_cell_counts':field_counts,'maximum_final_speed_m_s':max_speed,'maximum_final_local_Mach_assuming_343m_s':max_speed/343,'iterations_completed':residuals[-1]['iteration'],'window_size':n,'native_window_sample_count':len(outlet),'contiguous_measurement_window_verified':True,'criteria_checks':checks,
+       'protocol_id':protocol['protocol_id'],'first_iteration':residuals[0]['iteration'],'expected_first_iteration':expected_first,'final_field_cell_counts':field_counts,'maximum_final_speed_m_s':max_speed,'maximum_final_local_Mach_assuming_343m_s':max_speed/343,'iterations_completed':residuals[-1]['iteration'],'window_size':n,'criteria_checks':checks,
        'maximum_initial_residual_last_window':residual_max,'last_window_mean_outlet_flow_m3_s':float(qout.mean()),
        'last_window_mean_inlet_flow_m3_s':float(qin.mean()),'last_window_max_mass_imbalance_ratio':float(imbalance.max()),
        'last_window_outlet_flow_relative_std':ratio(qout),'last_window_rotor_torque_relative_std':ratio(torque),

@@ -5,7 +5,6 @@ import hashlib
 import json
 import os
 from pathlib import Path
-from measurement_window import configure_measurement_cadence
 import re
 import shutil
 import subprocess
@@ -24,8 +23,7 @@ def main():
     previous_sha=hashlib.sha256((source/'reference-protocol.json').read_bytes()).hexdigest()
     protocol.update(protocol_id=a.label,iterations=end,previous_frozen_protocol_sha256=previous_sha,previous_target_iteration=initial,additional_phase_reason='Pressure residual did not satisfy the unchanged frozen criterion; preserve previous result and continue its fields',planned_total_target=end,wall_timeout_seconds=600,maximum_CPU=4,maximum_memory_GiB=5,initial_fields_sha256={str(f.relative_to(source)):hashlib.sha256(f.read_bytes()).hexdigest() for f in (source/str(initial)).iterdir() if f.is_file()},flow_runner_sha256=hashlib.sha256((root/'run_parallel_pilot.sh').read_bytes()).hexdigest())
     protocol['planned_phase_end_iterations']=protocol.get('planned_phase_end_iterations',[])+[end]
-    control=case/'system/controlDict';s=control.read_text();s=re.sub(r'\bstartFrom\s+\w+','startFrom latestTime',s);s=re.sub(r'\bendTime\s+[0-9]+','endTime '+str(end),s);s=configure_measurement_cadence(s,150)
-    control.write_text(s)
+    control=case/'system/controlDict';s=control.read_text();s=re.sub(r'\bstartFrom\s+\w+','startFrom latestTime',s);s=re.sub(r'\bendTime\s+[0-9]+','endTime '+str(end),s);s=re.sub(r'\bwriteInterval\s+[0-9]+','writeInterval 150',s);control.write_text(s)
     if a.pressure_relaxation is not None:
         if not 0<a.pressure_relaxation<=.25:raise ValueError('Pressure relaxation must be positive and no higher than the original 0.25')
         fv=case/'system/fvSolution';before=fv.read_bytes();text=before.decode()

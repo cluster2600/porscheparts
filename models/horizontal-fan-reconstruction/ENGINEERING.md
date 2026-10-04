@@ -159,43 +159,50 @@ compte 594940 cellules ; les deux gates passent. Un premier lot de 300 itératio
 atteint sa limite interne de 570 s avant son checkpoint et reste un échec archivé.
 Quatre lots prévus de 150 itérations, chacun borné à 600 s, donnent les checkpoints
 150/300/450/600 ; le premier temps de chaque reprise est vérifié (1/151/301/451).
-À [600](results/cfd/R0-fine-150steps-phase600-summary.json), tous les critères
-originaux passent : Q = 1,23019 m³/s et P = 3320,18 W, soit −0,37 % / +0,49 %
-par rapport à la grille R0 commune précédente. Ces écarts ne démontrent pas une
-indépendance au maillage. V2 utilise la même recette fine (453496 cellules), admise par les deux gates.
-À [600](results/cfd/V2-fine-150steps-phase600-summary.json), puis après une
-[reprise à 750](results/cfd/V2-fine-continuation750-summary.json), la pression
-seule dépasse le seuil : 1,2306×10⁻⁴ puis 1,2442×10⁻⁴ contre 10⁻⁴. Débit,
-couple, masse et autres résidus passent, mais ces deux résultats restent non
-admis. La sensibilité numérique suivante réduit la relaxation des mises à jour
-de pression de 0,25 à 0,15, avec R0 apparié ; tolérances des solveurs, critères,
-maillage et modèle physique sont inchangés. Chaque nouveau protocole lie
-l'empreinte du précédent et les dictionnaires avant/après modification.
-Les résultats antérieurs ne sont pas réécrits.
+L'[audit de cadence des mesures natives](results/cfd/measurement-cadence-audit.json)
+retire l'admission historique R0 fine à 600 et à 750. Une substitution globale de
+`writeInterval` avait changé de 1 à 150 la cadence des trois fonctions de débit
+et de force, en même temps que celle des checkpoints. Le résumeur acceptait
+silencieusement deux lignes comme une fenêtre de vingt. Les 39 tables des
+13 cas correspondent exactement aux empreintes originales : aucune perte ni
+réécriture de ces tables n'est constatée. Seuls les deux cas communs disposent
+des mesures consécutives exigées ; les onze phases fines sont insuffisamment
+échantillonnées. Les résidus de pression et les champs complets restent
+exploitables séparément. Les anciens résumés restent inchangés pour l'audit,
+mais leur statut d'admission fine et leurs étiquettes « dernière fenêtre » sont
+supplantés par cet audit et la [comparaison corrigée](results/cfd/matched-grid-comparison.json).
 
-La sensibilité [R0 à 750](results/cfd/R0-fine-pressure015-750-summary.json)
-reste admise. [V2 à 900](results/cfd/V2-fine-pressure015-900-summary.json) échoue
-encore sur la pression seule (maximum 1,5667×10⁻⁴) ; aucun seuil n'est abaissé.
-Ce blocage de convergence est conservé et interdit un classement sur la paire
-fine. La [comparaison calculée](results/cfd/matched-grid-comparison.json) n'émet
-aucune variation comparative fine pour V2 (`null`) ; les valeurs ci-dessous
-permettent d'auditer le résultat non admis.
+V2 fine à [600](results/cfd/V2-fine-150steps-phase600-summary.json), puis à
+[750](results/cfd/V2-fine-continuation750-summary.json), dépasse encore le seuil
+de pression : 1,2306×10⁻⁴ et 1,2442×10⁻⁴ contre 10⁻⁴. La sensibilité appariée
+réduit la relaxation de 0,25 à 0,15 sans changer les critères, le maillage ni la
+physique. [V2 à 900](results/cfd/V2-fine-pressure015-900-summary.json) échoue
+encore sur la pression (maximum 1,5667×10⁻⁴). [R0 à 750](results/cfd/R0-fine-pressure015-750-summary.json)
+a des résidus conformes, mais son admission est retirée faute de fenêtre de
+mesures. Aucun classement fin ni écart fin/commun n'est retenu.
 
 | Cas | Cellules | Admission / itération finale | Q moyen des 20 dernières itérations, m³/s | P d'entrée moyen, W | Δpt final aux ports, Pa | Rapport énergétique final aux ports, non qualifié |
 | --- | ---: | --- | ---: | ---: | ---: | ---: |
 | R0, grille commune 7 mm | 262047 | admis / 600 | 1,234720 | 3303,895 | 1960,672 | 0,732745 |
 | V2, grille commune 7 mm | 223300 | admis / 600 | 1,146586 | 2412,549 | 1541,226 | 0,732475 |
-| R0, grille fine 5,6 mm, relaxation 0,15 | 594940 | admis / 750 | 1,230193 | 3320,970 | 1998,375 | 0,740207 |
-| V2, grille fine 5,6 mm, relaxation 0,15 | 453496 | **non admis** / 900 | 1,152298 | 2429,793 | 1569,574 | 0,744361 |
+| R0, grille fine 5,6 mm, relaxation 0,15 | 594940 | **admission retirée** / 750 | indisponible | indisponible | 1998,375 | 0,740207 |
+| V2, grille fine 5,6 mm, relaxation 0,15 | 453496 | **non admis** / 900 | indisponible | indisponible | 1569,574 | 0,744361 |
+
+Les valeurs finales des champs fins sont des instantanés, distincts de moyennes
+ou d'une admission : R0 Q = 1,230172 m³/s et P = 3321,160 W ; V2 Q et P sont
+tracés dans la comparaison corrigée. La [comparaison historique](results/cfd/matched-grid-comparison-sampling-v1-historical.json)
+est conservée comme document supplanté, sans valeur d'admission actuelle.
 
 Sur la paire commune admise, V2 réduit Q de 7,14 %, P de 26,98 % et Δpt de
 21,39 %. Q/P augmente de 27,17 %, mais le rapport d'énergie aux ports varie de
 −0,037 % relatif : ce n'est pas une démonstration d'efficacité supérieure. Les
 conditions décrivent un ventilateur isolé à pressions de jauge nulles imposées,
 sans courbe de résistance moteur. Aucun compromis définitif de refroidissement
-installé n'est sélectionné. R0 fin contre R0 commun donne Q −0,37 %, P +0,52 %
-et Δpt +1,92 % ; deux grilles sans couches de paroi ni ordre systématique de
-raffinement ne constituent pas une étude d'indépendance complète.
+installé ni indépendance au maillage n'est établi.
+
+Le [diagnostic de pression et protocole suivant](PRESSURE_FOLLOWUP.md) prépare
+une discrimination numérique bornée, puis des points Q–Δp–P à objectif commun.
+Ces prochains lots ne sont pas lancés ; ils attendent une fenêtre Kali2 coordonnée.
 
 
 Le bilan reconstruit indépendamment le couple de pression depuis les surfaces et
@@ -208,7 +215,8 @@ et flux réellement exportés. La pression totale d'entrée est nulle en jauge, 
 pression statique de sortie est nulle ; la pression totale sortante est calculée
 et comporte de l'énergie cinétique axiale et du swirl. Δpt utilise la moyenne
 pondérée par le flux signé aux ports ; l'énergie y est intégrée à partir des
-champs finaux, alors que Q/P moyens utilisent les 20 dernières itérations.
+champs finaux ; seuls les Q/P moyens des cas communs utilisent une fenêtre
+complète de vingt mesures. Les moyennes fines sont indisponibles.
 Un retour d'écoulement
 local à la sortie est présent et doit être distingué du débit net.
 
@@ -363,7 +371,10 @@ Le gate échoue fermé dès qu'un contrôle échoue. Un résultat de mesh seul n
 pas résultat de flow. Le runner borné limite chaque job isolé : affinité, nice,
 mémoire et délai ; aucun service ou processus tiers n'est modifié.
 
-Pour la comparaison fine, placer les sources dans un répertoire de calcul neuf
+Les commandes historiques ci-dessous décrivent les phases fines insuffisamment
+échantillonnées. Les helpers corrigés séparent désormais checkpoints et télémétrie ;
+le résumeur refuse une fenêtre incomplète. Ils ne sont pas une autorisation de
+prolonger automatiquement V2. Pour une reproduction, placer les sources dans un répertoire de calcul neuf
 sur le runtime Linux déjà disponible, avec les dossiers CAD nommés dans les
 recettes (`private-R0-v3`, `private-V2`) et les recettes JSON à sa racine. Les
 noms désignent les études analytiques ; aucun scan n'est requis. Les scripts

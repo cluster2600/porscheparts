@@ -1,5 +1,5 @@
 {
-  "status": "actual_common_grid_operating_points_fine_admission_withdrawn_for_insufficient_sampling",
+  "status": "actual_operating_points_with_explicit_frozen_admission_and_grid_limits",
   "operating_point": "Isolated 6000 rpm; top total pressure 0 gauge, bottom static pressure 0 gauge; steady incompressible kOmegaSST MRF, first-order convection; no installed engine resistance curve",
   "records": {
     "R0-h7": {
@@ -9,12 +9,6 @@
       "mean_last20_input_power_W": 3303.8947839936864,
       "mean_last20_fluid_on_rotor_torque_Nm": -5.25831186328125,
       "Q_per_input_power_m3_per_J_screen": 0.0003737164955787404,
-      "contiguous_measurement_window_valid": true,
-      "historical_admission_withdrawn": false,
-      "historical_incomplete_sample_Q_mean_m3_s": null,
-      "historical_incomplete_sample_power_mean_W": null,
-      "final_instantaneous_outlet_Q_m3_s": 1.2347184766660504,
-      "final_instantaneous_input_power_W": 3303.8470975223927,
       "final_signed_flux_total_pressure_rise_Pa": 1960.6721423687536,
       "final_open_port_mechanical_energy_flux_W": 2420.8781208596715,
       "final_port_energy_to_input_power_ratio_not_qualified_efficiency": 0.7327452056347058,
@@ -29,16 +23,10 @@
     "R0-h5p6": {
       "cells": 594940,
       "final_iteration": 750.0,
-      "mean_last20_Q_m3_s": null,
-      "mean_last20_input_power_W": null,
-      "mean_last20_fluid_on_rotor_torque_Nm": null,
-      "Q_per_input_power_m3_per_J_screen": null,
-      "contiguous_measurement_window_valid": false,
-      "historical_admission_withdrawn": true,
-      "historical_incomplete_sample_Q_mean_m3_s": 1.2301929016,
-      "historical_incomplete_sample_power_mean_W": 3320.970022955984,
-      "final_instantaneous_outlet_Q_m3_s": 1.2301717522409086,
-      "final_instantaneous_input_power_W": 3321.159721585279,
+      "mean_last20_Q_m3_s": 1.2301929016,
+      "mean_last20_input_power_W": 3320.970022955984,
+      "mean_last20_fluid_on_rotor_torque_Nm": -5.2854879501345,
+      "Q_per_input_power_m3_per_J_screen": 0.000370431799473158,
       "final_signed_flux_total_pressure_rise_Pa": 1998.3751503537637,
       "final_open_port_mechanical_energy_flux_W": 2458.3446603431894,
       "final_port_energy_to_input_power_ratio_not_qualified_efficiency": 0.7402066947776168,
@@ -47,10 +35,8 @@
       "final_MRF_relative_Mach_max": 0.38300662708874034,
       "final_mean_energy_balance_residual_after_modeled_transfer_W": 781.3469859981931,
       "final_energy_balance_residual_fraction_input_power": 0.23526329701036935,
-      "all_frozen_flow_gates_passed": false,
-      "failed_frozen_criteria": [
-        "contiguous_measurement_window"
-      ]
+      "all_frozen_flow_gates_passed": true,
+      "failed_frozen_criteria": []
     },
     "V2-h7": {
       "cells": 223300,
@@ -59,12 +45,6 @@
       "mean_last20_input_power_W": 2412.5492636688823,
       "mean_last20_fluid_on_rotor_torque_Nm": -3.83969140765615,
       "Q_per_input_power_m3_per_J_screen": 0.0004752593074726812,
-      "contiguous_measurement_window_valid": true,
-      "historical_admission_withdrawn": false,
-      "historical_incomplete_sample_Q_mean_m3_s": null,
-      "historical_incomplete_sample_power_mean_W": null,
-      "final_instantaneous_outlet_Q_m3_s": 1.1465826725775812,
-      "final_instantaneous_input_power_W": 2412.564794042222,
       "final_signed_flux_total_pressure_rise_Pa": 1541.2262360259033,
       "final_open_port_mechanical_energy_flux_W": 1767.1432967478636,
       "final_port_energy_to_input_power_ratio_not_qualified_efficiency": 0.7324749582319144,
@@ -79,16 +59,10 @@
     "V2-h5p6": {
       "cells": 453496,
       "final_iteration": 900.0,
-      "mean_last20_Q_m3_s": null,
-      "mean_last20_input_power_W": null,
-      "mean_last20_fluid_on_rotor_torque_Nm": null,
-      "Q_per_input_power_m3_per_J_screen": null,
-      "contiguous_measurement_window_valid": false,
-      "historical_admission_withdrawn": false,
-      "historical_incomplete_sample_Q_mean_m3_s": 1.1522981774,
-      "historical_incomplete_sample_power_mean_W": 2429.793367323271,
-      "final_instantaneous_outlet_Q_m3_s": 1.1522988355558974,
-      "final_instantaneous_input_power_W": 2429.7614489731322,
+      "mean_last20_Q_m3_s": 1.1522981774,
+      "mean_last20_input_power_W": 2429.793367323271,
+      "mean_last20_fluid_on_rotor_torque_Nm": -3.867136251014,
+      "Q_per_input_power_m3_per_J_screen": 0.00047423710711228266,
       "final_signed_flux_total_pressure_rise_Pa": 1569.5743264603057,
       "final_open_port_mechanical_energy_flux_W": 1808.6186686978735,
       "final_port_energy_to_input_power_ratio_not_qualified_efficiency": 0.7443605912268604,
@@ -99,8 +73,7 @@
       "final_energy_balance_residual_fraction_input_power": 0.22485222355987583,
       "all_frozen_flow_gates_passed": false,
       "failed_frozen_criteria": [
-        "residual_p",
-        "contiguous_measurement_window"
+        "residual_p"
       ]
     }
   },
@@ -115,12 +88,17 @@
     "h5p6": null
   },
   "fine_vs_coarse_percent_change": {
-    "R0": null,
+    "R0": {
+      "mean_last20_Q_m3_s": -0.36664822038476874,
+      "mean_last20_input_power_W": 0.5168215115390895,
+      "Q_per_input_power_m3_per_J_screen": -0.8789272468413989,
+      "final_signed_flux_total_pressure_rise_Pa": 1.9229634149572794,
+      "final_port_energy_to_input_power_ratio_not_qualified_efficiency": 1.018292454939762
+    },
     "V2": null
   },
   "paired_fine_grid_admitted": false,
   "source_sha256": {
-    "results/cfd/measurement-cadence-audit.json": "6d422294c52278ad8921f356fb1a897db5a18972c918b45485170f7836f95d2a",
     "results/cfd/R0-common-h7-mesh-report.json": "d6d6dfbdbb6d52b7a34ba432520c073d6f9c983b02763ace911733c73d285477",
     "results/cfd/R0-common-h7-independent-mesh-gate.json": "873a7aa26621281882eb5f053f4808c00222ffb028f69b69ae292507135ceb82",
     "results/cfd/R0-common-h7-flow-summary.json": "9b1c5891989d49796868df8470121ee11c22c824c1b1411bacb02053f0a4ef89",
@@ -142,6 +120,5 @@
   "physical_validation_established": false,
   "qualified_efficiency_established": false,
   "installed_cooling_improvement_proven": false,
-  "historical_fine_window_statistics_are_not_last20_means": true,
-  "interpretation": "Fine native tables contain only two snapshots; their historical statistics are preserved but cannot establish a 20-iteration window. Fine admissions are withdrawn. Reduced power must be read with reduced flow and achieved pressure at these boundary conditions. Q/P and port-energy ratios are screening metrics. Two differently refined unstructured tetrahedral grids without wall layers, a closed total-energy audit or compressible sensitivity do not establish grid independence or installed performance."
+  "interpretation": "Reduced power must be read with reduced flow and achieved pressure at these boundary conditions. Q/P and port-energy ratios are screening metrics. Two differently refined unstructured tetrahedral grids without wall layers, a closed total-energy audit or compressible sensitivity do not establish grid independence or installed performance."
 }
