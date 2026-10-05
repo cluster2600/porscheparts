@@ -12,6 +12,15 @@ constitue un projet distinct.
 [Sources et limites](sources.json) · [Résumé des audits OBJ](scan-summary.json) ·
 [Programme ventilateur existant](../../../twins/993-engine-cooling-fan-system-f0/README.md)
 
+## Reconstruction depuis les scans — 5 octobre 2026
+
+La [campagne exécutée](IMPLEMENTATION.md) ajuste des surfaces cylindriques
+observées et les sections de neuf régions de pales. Elle fournit des lofts
+PicoGK, trois résolutions, une CAO FreeCAD/STEP éditable et des cartes d'écarts
+privées. Le rotor complet, le recalage du dos et le mécanisme restent ouverts.
+Les anciens proxies visuels sont exclus de cette reconstruction.
+Le [protocole de banc](BENCH_PROTOCOL.md) prépare la validation physique future.
+
 ## Architecture documentée
 
 Le plan du rotor est horizontal au-dessus du moteur ; son axe est vertical dans
@@ -85,8 +94,10 @@ Le hash du Fan Drive correspond au
 le titre l'affecte au M64. Ce rattachement antérieur ne prouve pas son identité. Les anciens
 comptes de bord/non-manifold diffèrent du nouvel audit des indices originaux ;
 la cause n'est pas établie. Les anciens rapports restent intacts. Les unités
-ne sont pas déclarées dans les OBJ et les suffixes des noms ne qualifient pas
-leur précision. Voir le [résumé reproductible](scan-summary.json).
+ne sont pas déclarées dans les OBJ. Le propriétaire a confirmé que les suffixes
+désignent les précisions d'acquisition déclarées, sans définir les unités
+des coordonnées ou les tolérances d'usinage. Voir le
+[résumé historique reproductible](scan-summary.json), conservé sans réécriture.
 
 ## Ce que les sources de scan établissent
 

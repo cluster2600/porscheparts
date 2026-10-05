@@ -3,6 +3,25 @@
 [Deux programmes distincts](../../FAN_DEVELOPMENT_PROGRAMMES.md) ·
 [Dossier et nomenclature](README.md) · [Sources](sources.json)
 
+## Ordre d'implémentation retenu et état actuel
+
+Environnement Linux/Python/.NET qualifié → surfaces depuis les scans avec
+SciPy/PicoGK → assemblage et interfaces BRep/FreeCAD → OpenFOAM →
+Gmsh/CalculiX → optimisation SciPy puis coordination OpenMDAO → modèle
+PhysicsNeMo sur calculs acceptés → assemblage et résultats USD/Omniverse.
+La référence historique précède la variante améliorée. Le premier lot porte
+sur la validation numérique et le [protocole de banc](BENCH_PROTOCOL.md) ;
+fabrication et validation physique viennent après.
+
+La [fiche d'implémentation du 5 octobre](IMPLEMENTATION.md) contient les
+commandes exécutables, versions, contrôles et limites. Le coordinateur accepte
+un cas, une étape et un nouveau dossier privé. La campagne a reconstruit neuf
+plages de pales observées, produit trois résolutions PicoGK, une CAO native
+éditable et les cartes d'écarts/coupes. Elle n'a pas encore clos la géométrie
+du rotor, la métrologie des interfaces ou le mécanisme ; les étapes physiques
+qui en dépendent restent ouvertes. Aucun ancien proxy n'entre dans les calculs
+de référence et aucune nouvelle location Vast n'est utilisée.
+
 Le résultat attendu est une géométrie source éditable de toutes les pièces
 spécifiques, une nomenclature des composants normalisés, un assemblage avec
 interfaces documentées, des calculs caractérisant le système et un jumeau
