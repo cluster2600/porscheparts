@@ -1,0 +1,595 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_id": "porsche-993-turbo-research-20261002",
+  "created_on": "2026-10-02",
+  "format": "UTF-8 JSONL, native role/content messages and text",
+  "counts": {
+    "cpt": {
+      "train": 237,
+      "valid": 3,
+      "test": 8
+    },
+    "sft": {
+      "train": 238,
+      "valid": 4,
+      "test": 9
+    },
+    "excluded_engine_records": 1,
+    "passages": 248,
+    "unique_sources_used": 51,
+    "evidence_kinds": {
+      "Carrera_context_only": 1,
+      "M64_architecture_cross_checked": 1,
+      "M64_family_Turbo_confirmation_required": 1,
+      "M64_manufacturing_family_cross_checked": 1,
+      "architecture_cross_checked": 2,
+      "builder_specification_other_engine": 2,
+      "calculated": 31,
+      "calculated_not_measured": 24,
+      "candidate_compressor_map_other_application": 1,
+      "commercial_specification": 1,
+      "commercial_specification_with_unit_conflict": 1,
+      "dataset_offer_not_acquired": 1,
+      "derived_count_from_factory_architecture": 3,
+      "different_builder_release_configurations": 1,
+      "different_commercial_configurations": 1,
+      "distributor_nomenclature": 1,
+      "existing_aftermarket_reference": 1,
+      "existing_supplier_declaration": 2,
+      "factory_and_family_architecture_cross_checked": 1,
+      "factory_cross_checked": 1,
+      "factory_document_verified": 103,
+      "forum_transcription_with_arithmetic_check": 1,
+      "generic_supplier_capability": 1,
+      "manufacturer_aftermarket": 2,
+      "manufacturer_capacity_estimate": 1,
+      "manufacturer_catalogue_capacity": 1,
+      "manufacturer_catalogue_upgrade_conditions": 1,
+      "manufacturer_commercial_capacity": 1,
+      "manufacturer_compressor_map_other_turbo": 2,
+      "manufacturer_declared_speed_limit": 1,
+      "manufacturer_or_supplier_verified": 9,
+      "manufacturer_specification_other_turbo": 2,
+      "manufacturer_upgrade_table": 1,
+      "mechanical_relation_with_unknown_absolute_speed": 1,
+      "mechanical_relationship": 1,
+      "methodology": 5,
+      "not_established_in_review": 19,
+      "observed_map_lines": 1,
+      "other_application_map": 2,
+      "owner_report": 1,
+      "supplier_claim": 11,
+      "supplier_convention_unresolved": 1,
+      "tuner_claim": 1,
+      "unavailable_specification": 1
+    }
+  },
+  "tokenized": false,
+  "training_run": false,
+  "model_weights_produced": false,
+  "sft_synthetic": true,
+  "cpt_wording_synthetic": true,
+  "source_facts_synthetic": false,
+  "languages": [
+    "en"
+  ],
+  "token_count": null,
+  "context_fit_verified": false,
+  "target_model_profile_reference": "training/qwen-metal-additive-20261002/grounded-v3/model-profile.json",
+  "target_profile_is_advisory": true,
+  "inputs": [
+    {
+      "path": "catalog/reference/993-turbo-research-20261002/calculations.json",
+      "sha256": "699d460783a8878150ccf5d6959d6daa894101297dcb24a072528720122f4a97"
+    },
+    {
+      "path": "catalog/reference/993-turbo-research-20261002/engine-facts.json",
+      "sha256": "ee6b763597c16f0f6138cafefe5add8faa0e7fcb83f286c5e41486c290b8954b"
+    },
+    {
+      "path": "catalog/reference/993-turbo-research-20261002/source-crosswalk.json",
+      "sha256": "b121806117c7e6369049b0d7fca7d7bd472a9aa7e9d46372870f7671d8e26ff6"
+    },
+    {
+      "path": "catalog/reference/993-turbo-research-20261002/turbo-evidence.json",
+      "sha256": "48450b924fdb3e1609029fe10774d2d23023f3b33446867e5a28a9ffd378d77c"
+    },
+    {
+      "path": "catalog/reference/993-turbo-research-20261002/unknowns.json",
+      "sha256": "2863eff7519f4cc90b4e9b3f0f4f47bce687cb9d0ea348cfa2f2cf944f4514be"
+    },
+    {
+      "path": "catalog/sources/src-993-research-guntherwerks-turbo-current.json",
+      "sha256": "735c70cf8ec0c941954f022194712e208036d327bbbb7b990bc774fc58581168"
+    },
+    {
+      "path": "catalog/sources/src-993-research-map-garrett-g25-550.json",
+      "sha256": "d640273758ddcf47c0be403342e92483c733c75a96c5de3aa0612730efc60f43"
+    },
+    {
+      "path": "catalog/sources/src-993-research-map-garrett-gt2860rs.json",
+      "sha256": "9fb4e3a8c3f722bfd7f848c6843c0ac254d48a3dbe7d04955c6e326eee810f24"
+    },
+    {
+      "path": "catalog/sources/src-993-research-map-sjm-audi-k24.json",
+      "sha256": "c5ec154b34c600ee90b06f2c37fd2cf2f7936534ed49c29a50ebcae26d8cd975"
+    },
+    {
+      "path": "catalog/sources/src-993-research-map-sjm-audi-rs2.json",
+      "sha256": "7510aec17450145ff6e014a08e204029db4b042ab47a6ac0db5de80666121da3"
+    },
+    {
+      "path": "catalog/sources/src-993-research-map-turbomap-porsche-996-k16.json",
+      "sha256": "9eff40df7c5e0f2e0a6a1f263c5bb3c109a33d4ca9fe85fb763018786eddb4b7"
+    },
+    {
+      "path": "catalog/sources/src-993-research-method-garrett-system-optimization.json",
+      "sha256": "f9fd806248240f3052b3e87051a00d9891f67b205d33b9f0c69fd2ecdc003069"
+    },
+    {
+      "path": "catalog/sources/src-993-research-method-garrett-tech103.json",
+      "sha256": "81558ea345598cf5d3eeaef42a21ae5cc0980fec41856639deb58957ade62abb"
+    },
+    {
+      "path": "catalog/sources/src-993-research-pca-ruf-993-turbo-r.json",
+      "sha256": "072143c1fc2f1e6a4ccc220d7c91be95e11facc15c7f6e53c2e755758d88e65b"
+    },
+    {
+      "path": "catalog/sources/src-993-research-porsche-993-turbos-brochure-lead.json",
+      "sha256": "25f68ceff4db4563758a2a900500018ceea23498c105fd433a069fc07e34f0d3"
+    },
+    {
+      "path": "catalog/sources/src-993-research-rennlist-k24-lag-page1.json",
+      "sha256": "046c5bdcf699df346798de51080315756f63905262233c480b094256a2ca081b"
+    },
+    {
+      "path": "catalog/sources/src-993-research-rennlist-ruf-conversion.json",
+      "sha256": "f7233b48dc07eb8a4bfff3a469e1420c18319b96fb85bf33a6556bd98f293b7d"
+    },
+    {
+      "path": "catalog/sources/src-993-research-rennlist-ruf-ctr2-conflict.json",
+      "sha256": "98b2cb975c13d12b8d8a430f3312a91251e499dfacb715bfc3b93376bddf2ecb"
+    },
+    {
+      "path": "catalog/sources/src-993-research-rennlist-ruf-turbo-r-dyno.json",
+      "sha256": "4d027ebaac28887fbef1845edad0be597dd3aedb2994c52aedba1087236bc33a"
+    },
+    {
+      "path": "catalog/sources/src-993-research-rstrada-ctr2.json",
+      "sha256": "da63158800557b8b2fc00216314ef176975145458eae1fe0d9e99eeeadb92914"
+    },
+    {
+      "path": "catalog/sources/src-993-research-rstrada-turbo-r-historic.json",
+      "sha256": "3a07cd48f3bcb0e46f72df40ad176a077d10f789c386e8af11c0bd053f179ec6"
+    },
+    {
+      "path": "catalog/sources/src-993-research-ruf-uk-turbo-r-current.json",
+      "sha256": "d5c1b2bcefa7cf6a14a670254ff02c56eb071233c0dff8ca7c1b63c9a8ea1d96"
+    },
+    {
+      "path": "catalog/sources/src-993-research-singer-classic-turbo-2022.json",
+      "sha256": "115b621043a18d41f483cfc0d873d10eb9d5a9760cdda0d72af8702001e4de0e"
+    },
+    {
+      "path": "catalog/sources/src-993-research-singer-dls-turbo-2023.json",
+      "sha256": "e8b33fc81d2a38fbe38ad23ab70f8969ed1e7e9ceb460506475e85631cf52ece"
+    },
+    {
+      "path": "catalog/sources/src-993-research-singer-sorcerer-2026.json",
+      "sha256": "aa1e898f49ae5479c8cd6b4a8f4a5f5175fc3ca457eed3ffee951dfae8250743"
+    },
+    {
+      "path": "catalog/sources/src-993-research-sjm-k16-6717.json",
+      "sha256": "1cddaec5d07894dda8518ed8fd7476f86e90aec0c2f6d61789360d2a8ae15b5b"
+    },
+    {
+      "path": "catalog/sources/src-993-research-tte-k16-650.json",
+      "sha256": "2b51c361c4e00b403d7c0dd01f33a9fa42e535981dde1ef807683defa840b18d"
+    },
+    {
+      "path": "catalog/sources/src-993-research-tte-k24-750.json",
+      "sha256": "40615f69a28376b0baf93ff0d80a42c71b4b310e3629f17dc5fc9fec5d571a25"
+    },
+    {
+      "path": "catalog/sources/src-993-research-tte-k24-800.json",
+      "sha256": "bfaf056159d592a77d87c17460d697381bf22b7ab97b6031a480a8d93ea44cf3"
+    },
+    {
+      "path": "catalog/sources/src-993-research-tth-k16-650.json",
+      "sha256": "79b60ba7658cd52d0db7cfa14d56a6ad1d538c65bd04911c96194d6d1ff6cad9"
+    },
+    {
+      "path": "catalog/sources/src-993-research-turbo-dynamics-md433.json",
+      "sha256": "efc705afe4f60834da45e74492806c51cefed3f112c1d4f2a3af51b069d8c788"
+    },
+    {
+      "path": "catalog/sources/src-993-research-turbo-technics-general.json",
+      "sha256": "a67b6d0121c91e4ac092319ba2a2f2b96d8225ce51d77e603c745a3cf553f6c1"
+    },
+    {
+      "path": "catalog/sources/src-borgwarner-993-k16-performance-catalog.json",
+      "sha256": "6205773812f47e88c0499ef008f65fc2dc875081f7d24cd75776bc9217045d95"
+    },
+    {
+      "path": "catalog/sources/src-borgwarner-matchbot-993-inputs-outputs.json",
+      "sha256": "f4724189c0c433b94f0ff189b0d0e7bb390394b09c034024b8cf587fb01947ed"
+    },
+    {
+      "path": "catalog/sources/src-cargraphic-993-k16-24-powerkit-data.json",
+      "sha256": "9d32479c1e683bf217604502f27a6960c93d5e92f0a47babfe9f18677ef6651f"
+    },
+    {
+      "path": "catalog/sources/src-carparts-993-fan-housing-aluminium.json",
+      "sha256": "f480cc14ec5dfba4e536329362da5ea8938922af120b5dd1b30667d428dd08f7"
+    },
+    {
+      "path": "catalog/sources/src-carpassion-993-turbo-boost-hose-forum.json",
+      "sha256": "d3055fbeacf5b70d7d95cc8ecf70c511cc4909e854f30d5af7785a4ae6a3ad0b"
+    },
+    {
+      "path": "catalog/sources/src-elferclassic-993-turbo-technical-data.json",
+      "sha256": "62adcdc46a229edd366f7d2477db79b34dd3702b30465397e3f6fea344b4b751"
+    },
+    {
+      "path": "catalog/sources/src-elferszene-993-valve-spring-installation-length.json",
+      "sha256": "41de6e7ccc0a2e4bc4389893568fc670112843524edfc824c04e4fc912163928"
+    },
+    {
+      "path": "catalog/sources/src-fia-historic-database-993-lead.json",
+      "sha256": "5551dff598c011fbe3e5a765923fe08cf381b79bd54073ef834321c1ead9f59c"
+    },
+    {
+      "path": "catalog/sources/src-fvd-993-billet-valve-cover-set.json",
+      "sha256": "c45d16cbc58299483c18733d9f45910279e6da93769f0dfb6f791463e2375f4e"
+    },
+    {
+      "path": "catalog/sources/src-fvd-993-engine-carrier.json",
+      "sha256": "9e77f9b7cd91632cedc77ab52a2f275a6f7cbd34d6a99e0d334b4cc581a42ad2"
+    },
+    {
+      "path": "catalog/sources/src-fvd-993-engine-insulation-cover-dimensions.json",
+      "sha256": "6bed7313a16a1dce234ab5518748d06fa43f238e482a26503e246e0e5ced2b79"
+    },
+    {
+      "path": "catalog/sources/src-fvd-993-fan-housing-dimensions.json",
+      "sha256": "9daf5328b51a94316329d483da10ee774754451f7a753e42fa44b2b529cf2735"
+    },
+    {
+      "path": "catalog/sources/src-fvd-993-inlet-valve-dimensions.json",
+      "sha256": "043ec7b2ee00d3685287ce6ebb186c198dbed8fa72fc2f0bd64951c09bd11678"
+    },
+    {
+      "path": "catalog/sources/src-fvd-993-k16-24-sport-turbo-data.json",
+      "sha256": "b90b019c5152dc61fed53b44166e286b9a5be8436def5a345e852513d81cd12f"
+    },
+    {
+      "path": "catalog/sources/src-fvd-993-turbo-heat-shield-dimensions.json",
+      "sha256": "86726bcbe0f740a2da70bf2ca082e49e96446491fb5bcac48483b518994fee5e"
+    },
+    {
+      "path": "catalog/sources/src-kline-993-turbo-in625-manifolds.json",
+      "sha256": "dba2dcde5c5b65f6b8050c5a8e3cf7dd4fbf711544d6a6f4ffb3a4e1bb7c211b"
+    },
+    {
+      "path": "catalog/sources/src-mahle-motorsport-porsche-36-38-kit.json",
+      "sha256": "90d018218456568bf1725d227966235ab4e364392b46253fabff288b7b75152c"
+    },
+    {
+      "path": "catalog/sources/src-mahle-valvetrain-technical-2025.json",
+      "sha256": "fe159cb97c521ee34cb60c69a4cad146942b6d062f32123b70241e21e3ae01b4"
+    },
+    {
+      "path": "catalog/sources/src-mahleretail-oc229-993-filter-interface.json",
+      "sha256": "00f57f94aed305c71862be820068afa7122edc9487bf48c58b1e638a1bd237a3"
+    },
+    {
+      "path": "catalog/sources/src-motortalk-993-turbo-forum-technical-leads.json",
+      "sha256": "d554e719d88dcf99d6e231f09152570a29678d56fb237cc3188142472b90eda1"
+    },
+    {
+      "path": "catalog/sources/src-partworks-993-exhaust-valve-dimensions.json",
+      "sha256": "6f56372f7ffb559e139f12a320526e3a62275903f48f18bc15a3038e2d6ef9a8"
+    },
+    {
+      "path": "catalog/sources/src-patrickmotorsports-993-turbo-oil-return-pipes.json",
+      "sha256": "43644583427c3fd439c2bf5389bad861e76d35b4a3c806b8514a6a7b7555f1fd"
+    },
+    {
+      "path": "catalog/sources/src-pelican-993-fan-shroud-delete-cad-lead.json",
+      "sha256": "958cfa646ec32c9ef048612e649939c097ec458a39e5eb55db19b752c6ed1d29"
+    },
+    {
+      "path": "catalog/sources/src-pet-993-202-16-turbo-oil-circuit.json",
+      "sha256": "4f76d91d3ab541f5d95b5750cecf3ba9e2bf5fc922e302fa76c8c78342f4c438"
+    },
+    {
+      "path": "catalog/sources/src-pff-993-biturbo-variant-forum.json",
+      "sha256": "fc5aa2c88aab4338b28a634a1377eca53556446736afe6b1749d025ee07659fb"
+    },
+    {
+      "path": "catalog/sources/src-porsche-993-air-filter-teilegutachten.json",
+      "sha256": "9083980a98359def807dad0a84a8ec6dc17ed983de5c2852a1eea7b7dc8f690c"
+    },
+    {
+      "path": "catalog/sources/src-porsche-993-alternator-pulley-7-97a.json",
+      "sha256": "35d980d85d1da98dcfc263698ff4d5cc0bf47a942493c5d59e24cd996eff5e99"
+    },
+    {
+      "path": "catalog/sources/src-porsche-993-dme-reference-sensor-gap.json",
+      "sha256": "88ea5b45e71c070b206ff7b827b44440524a3998dcc03c286a5bde96ac00d799"
+    },
+    {
+      "path": "catalog/sources/src-porsche-993-engine-specifications-pubstack.json",
+      "sha256": "174387c14b0c629e8e1130294a0835b39ec15dc747386432b7d85a2d3762d970"
+    },
+    {
+      "path": "catalog/sources/src-porsche-993-fluid-capacities-pubstack.json",
+      "sha256": "d555d29b26b31877bc1a38c9709bdb7399c3094f0652938b2c5a6aade2e7624e"
+    },
+    {
+      "path": "catalog/sources/src-porsche-993-obd-supplement-engine-specifications-1996.json",
+      "sha256": "daaa5fcc9c1ce57e821c105f5b914e5b1185f3b4b4c9b1ec6e449e50edb28b8d"
+    },
+    {
+      "path": "catalog/sources/src-porsche-993-piston-spray-jets-1-97.json",
+      "sha256": "1ef47226aeb95230f7ee09e14f3252b0cfceb88e3381a1c6df02173c18295682"
+    },
+    {
+      "path": "catalog/sources/src-porsche-993-spec-booklet-pubstack.json",
+      "sha256": "1466c4caa6bf62622b5023890ebf68647cc987067131423635bffec1ee5b2a8e"
+    },
+    {
+      "path": "catalog/sources/src-porsche-993-turbo-cam-timing-9504.json",
+      "sha256": "08c3a8561eacf6b8c9157813722d9fc722d9094e18f1bfb293d2c8c8ab0b5e24"
+    },
+    {
+      "path": "catalog/sources/src-porsche-993-turbo-dual-exhaust-1-98.json",
+      "sha256": "553b709bc767bcb012dff7cbc9792049d97cf6183c8b58c24758e6f83913bf46"
+    },
+    {
+      "path": "catalog/sources/src-porsche-993-turbo-dyno-9502.json",
+      "sha256": "eb8d663ea5563aae9bbafd2c66f2a8263cfc31720e0f92cdd0b0026b422f0765"
+    },
+    {
+      "path": "catalog/sources/src-porsche-993-turbo-fan-belt-9505.json",
+      "sha256": "1754a13b954a25266f5078c2525a55ccbc12942e4ab6cc963830636913fbda9a"
+    },
+    {
+      "path": "catalog/sources/src-porsche-993-turbo-oil-fill-9603.json",
+      "sha256": "9549225f4dd495145e1659dac4c760d024293ae44d62f4f17449cea223432971"
+    },
+    {
+      "path": "catalog/sources/src-porsche-993-turbo-oil-filter-9503.json",
+      "sha256": "36b27e95795f718f3da7748b86768ee00c9b8f6fff47ad224310cd72bbe6042e"
+    },
+    {
+      "path": "catalog/sources/src-porsche-993-turbo-rear-mounts-1-99.json",
+      "sha256": "5151ee114e12c457e43ae2516504fc9a39778973b98ab20c46ea04deae26394b"
+    },
+    {
+      "path": "catalog/sources/src-porsche-993-us-parts-guide-engine-cylinders.json",
+      "sha256": "a763d4a6475fa9d2bddc31aac0226c6677a3562d1f1f58f80239f174030c1c45"
+    },
+    {
+      "path": "catalog/sources/src-porsche-air-cooled-engine-repair-pubstack.json",
+      "sha256": "1c8c26fc96aab4e919d738569d1687e6d7ecfe0fa54583c9015602de03d6228a"
+    },
+    {
+      "path": "catalog/sources/src-porsche-austria-993-107-45-pet.json",
+      "sha256": "ca495d19b4c4c0070bff7d293dc9bc0a9246beba15a8a630b1420c9d0fcc0ad4"
+    },
+    {
+      "path": "catalog/sources/src-porsche-christophorus-993-turbo-data.json",
+      "sha256": "2500742c748bff5a16645aab3ab19c217de143ce3ee17bb7c3d2178de849b1a5"
+    },
+    {
+      "path": "catalog/sources/src-porsche-classicshop-usa.json",
+      "sha256": "c2c21848b385e82e6330f82ce19b26f5924cc20d0e137fa6167f5d9a68d2d48d"
+    },
+    {
+      "path": "catalog/sources/src-porsche-dilavar-cylinder-studs-9604.json",
+      "sha256": "05d607a61a2c3789baf8a1131cd205bb177a60e6a4943d5231fa36aece5c616a"
+    },
+    {
+      "path": "catalog/sources/src-porsche-newsroom-993-30-years.json",
+      "sha256": "7ac3b406435196dd1607b3fa296ad063defe20872239287a3ad76cce4480c816"
+    },
+    {
+      "path": "catalog/sources/src-porsche-newsroom-993.json",
+      "sha256": "6984341bd54d602fcccd3e3107ffab1f5601f0ae09467b2990db96b6cf1ab17c"
+    },
+    {
+      "path": "catalog/sources/src-porsche-originale-993-product-dimensions.json",
+      "sha256": "899ce50b4b092e0bb395449566b18d738bccac18ca819c2b4e0ad7eb9267b50f"
+    },
+    {
+      "path": "catalog/sources/src-porsche-pcss-service-portal.json",
+      "sha256": "818349c3d56a74d2a21127aa27cb98b4ed98fdfce58296f8895c0ad929494dbf"
+    },
+    {
+      "path": "catalog/sources/src-porsche-pet-993-turbo-heat-exchanger-202-10.json",
+      "sha256": "a8385eb6e5ddf7fcc4965a6040d78fba3f38cba03637b5001c3aa8ca2a28197a"
+    },
+    {
+      "path": "catalog/sources/src-porsche-pet-993.json",
+      "sha256": "46ff49ec5c8fd075cfe7a8f355ffad0372f4d87a379db652eb7d61e81a0273b2"
+    },
+    {
+      "path": "catalog/sources/src-porsche-roissy-993-fan-housing-mass.json",
+      "sha256": "0fc5321a4c5c02531ce2c51777206c597f9354e8ff773feaa0f772b9d034f752"
+    },
+    {
+      "path": "catalog/sources/src-porsche-uk-993-turbo-brochure-1995.json",
+      "sha256": "7d97cff6034eadf8c567041bd21c7053212b2973651c22fcef014d26b2274341"
+    },
+    {
+      "path": "catalog/sources/src-porsche-workshop-manual-964-vol4-chassis.json",
+      "sha256": "464385b684384d159bb43a68ff04eb9fc218163a6b576c4a51f9b54a46d21aed"
+    },
+    {
+      "path": "catalog/sources/src-porsche-workshop-manual-993.json",
+      "sha256": "c62f243ede968d16cc44a73e8a5655c56f40c121b31e4077c0c2591d80b40a5c"
+    },
+    {
+      "path": "catalog/sources/src-porschefanatics-993-additive-piston-precedent.json",
+      "sha256": "98bfa03f8a2b3713e4c5c47f2e98e7dd16ead80515ee4e64c7a0944a301bacc5"
+    },
+    {
+      "path": "catalog/sources/src-porschefanatics-993-engine-cooling-impeller-candidate.json",
+      "sha256": "a7c8f31d150aebdb52494427889b082ef6312dd2318be9b07f946122c498433c"
+    },
+    {
+      "path": "catalog/sources/src-porschefanatics-993-fan-housing-candidate.json",
+      "sha256": "c70d2958736e93be0180f6adf11eec9c3cf68e588182da33adb313f616f449a4"
+    },
+    {
+      "path": "catalog/sources/src-porschefanatics-993-in625-exhaust-register.json",
+      "sha256": "55b78c39f118428a24c9abc19a8396ea5850318594ff69150d85cd87211ac257"
+    },
+    {
+      "path": "catalog/sources/src-porschefanatics-993-lightweight-bumper-support.json",
+      "sha256": "32c8c8672f63eb9586562173b3f0968928af28e48afb303376f0854ed865bcfc"
+    },
+    {
+      "path": "catalog/sources/src-porschefanatics-993-manual-data.json",
+      "sha256": "7f26aa91305a0515a89810ae5c29ccae009e40bf575980640550dae1792fedb4"
+    },
+    {
+      "path": "catalog/sources/src-porschefanatics-993-oil-filter-console-candidate.json",
+      "sha256": "561c28904814e57f555775b59342e458a431039b0351bff4a8417b5069364edd"
+    },
+    {
+      "path": "catalog/sources/src-porschefanatics-993-technical-data.json",
+      "sha256": "6d3145bf1f11ad5e09e46693fd1469e7d0ecc2fa81e8cbce9a4634b7e42a1880"
+    },
+    {
+      "path": "catalog/sources/src-porschefanatics-993-torques.json",
+      "sha256": "740b949e4cfe08f2bcfd72cb9ee8793de1797499e25c3917b1d1162a2b52e51f"
+    },
+    {
+      "path": "catalog/sources/src-porschefanatics-993-turbo-in625-manifolds.json",
+      "sha256": "23dcf0320f0b969ebdbe4679429a6e0cf366e2af10b4d5c5102ae760157fd9a9"
+    },
+    {
+      "path": "catalog/sources/src-porschefanatics-pmo-964-993-46mm-intake-manifold.json",
+      "sha256": "7831b0ba4ad0a1bf2b9b3abb7bf4a2687e95ca882f6e65976f49570e26dfe269"
+    },
+    {
+      "path": "catalog/sources/src-porscheparts-993-carrera-manual-registry.json",
+      "sha256": "ed8914c878c75e933474b016e912b0022ca4042ee3c2487ab222dbc308b341e2"
+    },
+    {
+      "path": "catalog/sources/src-porscheparts-993-declared-reference.json",
+      "sha256": "84e8177fdada237a5e95fb26f7f92917ce28d08288441344980f415c39266311"
+    },
+    {
+      "path": "catalog/sources/src-protomotive-993-upper-valve-cover-6061.json",
+      "sha256": "f2852ec9f3348437674fd6d2c34477899c422e19fc8496a0bf6263417d09011b"
+    },
+    {
+      "path": "catalog/sources/src-pubstack-993-archive-index.json",
+      "sha256": "acdd4d84edf2bdc5fa255ced4d424dd2083779f78f5657eca651e1e46dfc5817"
+    },
+    {
+      "path": "catalog/sources/src-rennline-tubular-engine-carrier.json",
+      "sha256": "43ddbda867f1725cacf04aa50817a2a808ea1a60a76b8a5dd02bcc927a22f586"
+    },
+    {
+      "path": "catalog/sources/src-rennlist-993-k16-k24-comparative-engine-dyno.json",
+      "sha256": "1ef69a5566de2cca09b0e3fafbcecbcdd9561ef050689fbd35372baa01a86ceb"
+    },
+    {
+      "path": "catalog/sources/src-rennlist-993-ruf-turbo-r-engine-dyno.json",
+      "sha256": "064591792676b1b2589d4a4bbf1ce7675369f8364093f8829e762a145f563a43"
+    },
+    {
+      "path": "catalog/sources/src-shining3d-julia-993-reverse-engineering.json",
+      "sha256": "5c79991520b216e17cce08337defef84d5ebeb8d23104e1bcc83d286e9d3b013"
+    },
+    {
+      "path": "catalog/sources/src-teile-com-993-engine-carrier.json",
+      "sha256": "d43bcf24b401f5db23c78c4101b4d87a49de571644edcce2b635d7a7f588b981"
+    },
+    {
+      "path": "catalog/sources/src-tth-993-k24-750-turbo-processing.json",
+      "sha256": "3a01e823a6fb04db5136aa4967b8f1bd4aba614bf0ed5c984f606522ccfb79e5"
+    },
+    {
+      "path": "catalog/sources/src-ttp-993-turbo-tuning-stages.json",
+      "sha256": "27dd80fe974531d64ca201647f01ebb3cf291132f8dfac27565b5249e16e8a23"
+    },
+    {
+      "path": "catalog/sources/src-turbomap-compressor-map-methodology.json",
+      "sha256": "496157f46989784212fa1d9f703a9e11c68d6c5702d8c247c4b896a5d8cce786"
+    },
+    {
+      "path": "catalog/sources/src-turbomaster-993-k16-6735-parts.json",
+      "sha256": "0914fee9f759123ce2a293e6be0793359e7b5d55cccb0b21664850ef58cff0d6"
+    },
+    {
+      "path": "catalog/sources/src-turbomaster-993-k16-6736-left-unit.json",
+      "sha256": "97ce86b1524bf36f5ff73088e97e0a378edd756a2f70e568eb68b4dd95f2a571"
+    },
+    {
+      "path": "training/993-turbo-20261002/input/authored-passages.json",
+      "sha256": "6be96bcb558625dbb581397a89bd3185300e8d324a24339f183dd77b54e61d80"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "coverage.json",
+      "sha256": "cd722c753fe577c1ce24aa46d03d7d9ff241abaee83ae03a2db0679a41721d0c"
+    },
+    {
+      "path": "cpt_text/test.jsonl",
+      "sha256": "6f889fb7d6a8045fa58e73a361beccc167650d84329cea8d06c1f471c05eeafa"
+    },
+    {
+      "path": "cpt_text/train.jsonl",
+      "sha256": "661168ff470f406c748def1562acfef8a3190b619a5bf5192256450ac10dd321"
+    },
+    {
+      "path": "cpt_text/valid.jsonl",
+      "sha256": "daa3913d6fa14d340ebb119e575c7a070ceb0d2be0b847d77745aaa0ea05ac2d"
+    },
+    {
+      "path": "dataset_info.json",
+      "sha256": "bd2b3eff1c2fe7944deaa2c3ffcf2ccc8e2def6bd7af6a434c0b55cdbad47059"
+    },
+    {
+      "path": "excluded.json",
+      "sha256": "1949b6c20f242902ace76f44bdb76f15045825dbb3a6889b27a6fea01bfae17c"
+    },
+    {
+      "path": "passages.jsonl",
+      "sha256": "c35c35904bc5491a3feec67c3f1e99292fb00bedfc033b557b61c1bf2804e43a"
+    },
+    {
+      "path": "provenance.jsonl",
+      "sha256": "f0ab809ce75899cc493cf20030187d0368ffcdc8277ffad921b55edb7968facd"
+    },
+    {
+      "path": "sft_messages/test.jsonl",
+      "sha256": "e02d3f39b44388b27b41386e84a631bfd45b52b4e25005a289773a8eb9c2d424"
+    },
+    {
+      "path": "sft_messages/train.jsonl",
+      "sha256": "423e49fa8df827166a86019cae696328f431ad6534e08cbc7e187b66e5a12b22"
+    },
+    {
+      "path": "sft_messages/valid.jsonl",
+      "sha256": "ff4ec75279071be38cb7526dda92dbf1cfaf6353e299e7943a3400e2e941e373"
+    },
+    {
+      "path": "split-ledger.json",
+      "sha256": "c7925a325ff22298dd900cb30a7bd71cc57358f4a32d888148415747e7c06baf"
+    }
+  ],
+  "builder_sha256": "fc76d37105f5de63abce561f6af943c094f4a16f0a5d68a6be0a7eb28f0aaea6",
+  "licensing": "No original source document licence is asserted or transferred; original authored fact summaries only.",
+  "limitations": [
+    "No exact stock K16 compressor/turbine map established by this corpus.",
+    "Supplier power figures are claims for stated configurations, not factory measurements or durability approval.",
+    "No effectiveness claim, tokenizer audit or model evaluation follows from dataset integrity checks."
+  ]
+}

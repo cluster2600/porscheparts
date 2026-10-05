@@ -1,0 +1,272 @@
+{
+  "experiment": "qwen-research-mlx-002",
+  "registered_at_utc": "2026-10-02T22:44:24.700198+00:00",
+  "model": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+  "base_sha256": "daeab4764fb420d161721791cf2e509e2de81a7af4223646e7bed2bf82c57b58",
+  "parent_adapter": "qwen-research-mlx-001/adapter",
+  "parent_sha256": "5086fc5cf5d9c2de05cc87b1d7efed5036f5b2431c62c13368955501c1810ec8",
+  "adapter_sha256": "b702886b119f53ca94ad9294fddbd85891e806b4dcd18c53a537808c1e9a6c90",
+  "local_run_directory": "private/pilot-002",
+  "dataset": {
+    "indexed_records": 4939,
+    "candidate_cases": 980,
+    "excluded_candidates": 658,
+    "train": 274,
+    "replayed_training_cases": 82,
+    "new_synthetic_training_cases": 192,
+    "validation": 32,
+    "test": 16,
+    "legacy_tests": 8,
+    "legacy_evaluation_in_training": false,
+    "active_cases": 322,
+    "frozen_files": 142,
+    "maximum_sequence_tokens": 669,
+    "manifest_sha256": "9d004a07338c4a1f7b4e2693596a2a0901a1801c91f11b90e605c22ac8aa071d",
+    "frozen_sha256": "a483d6c0bd066dd3f436eacfb174f25e0f1d677ba6e595f5b8fd758de644a307"
+  },
+  "runtime": {
+    "mlx_lm": "0.31.3",
+    "usd_core": "25.5.1",
+    "usd_api": [
+      0,
+      25,
+      5
+    ],
+    "dotnet_sdk": "9.0.317"
+  },
+  "training": {
+    "iterations": 480,
+    "learning_rate": 5e-06,
+    "batch_size": 2,
+    "seed": 1042,
+    "rank": 8,
+    "scale": 20,
+    "lora_layers": 16,
+    "mask_prompt": true,
+    "max_sequence_tokens": 1024,
+    "trainable_parameters": 5276000,
+    "trained_assistant_tokens": 66182,
+    "initial_validation_loss": 0.459,
+    "final_validation_loss": 0.001,
+    "final_train_loss": 0.002,
+    "peak_memory_gb": 5.654
+  },
+  "results": {
+    "validation": {
+      "eligible": false,
+      "regressions": [],
+      "counts": {
+        "citation": {
+          "passed": 8,
+          "total": 8
+        },
+        "independence": {
+          "passed": 7,
+          "total": 8
+        },
+        "temperature": {
+          "passed": 8,
+          "total": 8
+        },
+        "variant": {
+          "passed": 7,
+          "total": 8
+        }
+      }
+    },
+    "weights_updated": true,
+    "default_replaced": false,
+    "qualified": false,
+    "test_opened": false,
+    "adapter_sha256": "b702886b119f53ca94ad9294fddbd85891e806b4dcd18c53a537808c1e9a6c90",
+    "retention": {
+      "eligible": true,
+      "regressions": [],
+      "counts": {
+        "openusd": {
+          "passed": 8,
+          "total": 8
+        },
+        "picogk": {
+          "passed": 8,
+          "total": 8
+        }
+      }
+    },
+    "validation_before_passed": 0,
+    "validation_after_passed": 30,
+    "retention_before_passed": 16,
+    "retention_after_passed": 16,
+    "dataset_integrity_after": {
+      "status": "passed",
+      "frozen_files": 142,
+      "active_cases": 322
+    }
+  },
+  "scoring": {
+    "registered_rubric": "Supplied quote/citation and finite pre-authored missing-information aliases. Case/Unicode/whitespace normalised; no general semantic grader.",
+    "rubric_before_passed": 0,
+    "rubric_after_passed": 30,
+    "exact_before_passed": 0,
+    "exact_after_passed": 30,
+    "validation_total": 32,
+    "post_run_rescoring": false
+  },
+  "retention": {
+    "reference": {
+      "openusd": {
+        "passed": 8,
+        "total": 8
+      },
+      "picogk": {
+        "passed": 8,
+        "total": 8
+      }
+    },
+    "before": {
+      "openusd": {
+        "passed": 8,
+        "total": 8
+      },
+      "picogk": {
+        "passed": 8,
+        "total": 8
+      }
+    },
+    "after": {
+      "openusd": {
+        "passed": 8,
+        "total": 8
+      },
+      "picogk": {
+        "passed": 8,
+        "total": 8
+      }
+    }
+  },
+  "manual_validation_review": {
+    "purpose": "Post-run diagnostic review; registered scores and test closure unchanged.",
+    "semantic_rescoring_performed": false,
+    "reviews": [
+      {
+        "id": "coverage-v2:valid:variant:5",
+        "finding": "Correct quote and exact supplied citation, followed by a false statement that maps for the matching research-prototype variant are missing. Coverage of supplied synthetic maps does not establish fitment, but they are present for this bounded task."
+      },
+      {
+        "id": "coverage-v2:valid:independence:0",
+        "finding": "Correctly quotes 36 fitting points and five independent withheld points, then incorrectly states that withheld independent measured points are not supplied. These synthetic points are evidence-coverage fixtures, not physical validation."
+      }
+    ]
+  },
+  "legacy_development_review": {
+    "purpose": "Previously used validation diagnostic; exact scores remain unchanged and are not new held-out evidence.",
+    "exact_before": 6,
+    "exact_after": 5,
+    "regressions": [
+      "ja-metals-hastelloy-creep-2025-fact-1-bounded-summary"
+    ],
+    "findings": [
+      {
+        "id": "ja-metals-hastelloy-creep-2025-fact-1-bounded-summary",
+        "finding": "Main cited creep finding remains correct. The missing-information statement becomes generic and omits the target heat identifiers and low-ductility constraint; it fails the original exact metric."
+      },
+      {
+        "id": "authored-material-temperature-evidence-reasoning",
+        "finding": "The candidate still falsely combines room-temperature fatigue conditions with a 600-degree component duty. The narrow synthetic improvement has not transferred to this earlier differently structured reasoning case."
+      },
+      {
+        "id": "authored-aftermarket-valve-curve-evidence-reasoning",
+        "finding": "Refuses applicability but still omits original Turbo cam curve and valvetrain masses."
+      },
+      {
+        "id": "authored-independent-validation-evidence-reasoning",
+        "finding": "General missing-validation refusal does not explicitly identify independent measurements withheld from calibration."
+      },
+      {
+        "id": "authored-registration-quality-evidence-reasoning",
+        "finding": "Identifies missing scale and occluded-interface measurements but omits registration residual versus complete accuracy."
+      }
+    ],
+    "semantic_rescoring_performed": false
+  },
+  "retrieval_smoke": {
+    "before": {
+      "citation_structure_passed": false,
+      "semantic_accuracy_verified": false,
+      "receipt_sha256": "627672ac9a804f67f20841c073b55204f8774bce5d39a4fbaab7f949cfef2c9e",
+      "claim_count": null
+    },
+    "after": {
+      "citation_structure_passed": true,
+      "semantic_accuracy_verified": false,
+      "receipt_sha256": "86bd3aa163291c313878ae130bdfd89d430186cd2bae0ac85b3682538624d9bf",
+      "claim_count": 0
+    },
+    "manual_diagnostic": "Candidate returns no claims and incorrectly says test conditions are unsupported despite a retrieved training-side condition summary. A structural pass with empty claims is not a useful source-grounded answer or a RAG improvement."
+  },
+  "receipts_sha256": {
+    "protocol.json": "aa9e6326433828d1df9def8976f59cbcbabacafc1ad623938ccc2e184df37b39",
+    "protocol.sha256.json": "799644dea83b12e11e8fbd41416df68aa55f718c99132a3302808bfd26ae33d7",
+    "training-command.json": "126b6b2cd21e77b443ee378cf0b4d17be8c58d09110318e20f7b4b9de78c52b3",
+    "training.log": "e3c10534e1b6e22c1689d5559f6a65f8de1ff4474383ac8beb6a040c0e9a5d70",
+    "results.json": "c373a036b0096f6f13c33e33a533ef548422c8f4ac314758af8b225694c12a78",
+    "validation-before-answers.json": "e19213bfe16ef88db94861d36702ac8206bb9c56b1a821d861d4f4b35ecdcfa7",
+    "validation-after-answers.json": "4dab07e7c0ec0a798b740d9b3cd6bd6921a736858b77bbde53f7dd5a11841ecb",
+    "validation-before-scores.json": "47d4d02076eec5037495992f14d156ef4380b418df83f66603429302cbfcbaa9",
+    "validation-after-scores.json": "2e5edc758b7d69de6eca24ece7d174ee54ac3261fca9956b8c5f2ba7d5823786",
+    "validation-review.json": "95db04846c06bb19fe6cec2a23fca0642ce15de8679da6ba760ebc8dd62966f4",
+    "retention-reference/scores.json": "40598f2bc9f1c5311c19ae8831e838f9f46ef780456c4cb9b9acf38368f54581",
+    "retention-before/scores.json": "40598f2bc9f1c5311c19ae8831e838f9f46ef780456c4cb9b9acf38368f54581",
+    "retention-after/scores.json": "40598f2bc9f1c5311c19ae8831e838f9f46ef780456c4cb9b9acf38368f54581",
+    "development-check.py": "622800550cd080902605f911d728aab6998d26667ba032c206fd17abf0bff8e9",
+    "development-protocol.json": "9e11d940d296096c1724776f08c4b13e0de39657f1539f6cf52d0b00bef53e89",
+    "development-comparison.json": "9a732ab6a246df5d41d09ddcab6854f54753af1f74464fbd3df354b51b71dc59",
+    "development-review.json": "61fd86a1dd4061eec652c939a47eeec000807660c977488adfce93fa5c7b6b5a",
+    "retrieval-protocol.json": "7ec19343969344ed81f8d287c16268067c9d04221fe9cc1ad89268f0e21bec60",
+    "retrieval-before.json": "627672ac9a804f67f20841c073b55204f8774bce5d39a4fbaab7f949cfef2c9e",
+    "retrieval-after.json": "86bd3aa163291c313878ae130bdfd89d430186cd2bae0ac85b3682538624d9bf",
+    "citation-validator-witness.json": "09a26084514ab5bb03afcb4d45b72190c39c53f81dd902de6a426503a0881173",
+    "retrieval-review.json": "44de71d4f83dbcbd872da2d2da28b1aab9a44d847f2d647f115a5722c0b332cb"
+  },
+  "source_sha256": {
+    "prepare.py": "f2b07bbd6bdb8e31cf9bfe4229e1cf9c12146101c52b9b983fd058c596205699",
+    "curriculum.py": "10a40ad04e1bd57b81b0f2f17e3a00f2d046cc76b0e36b6e4829197df90ac3c5",
+    "run.py": "6a2b3800d8a30d2f1395515544c715251e39a1509b2192c3bf89028f3c14c862",
+    "continue.py": "c727b024b7154d9747452cfa4ee0390a87e0965f7c5e6551a9ed589965efe5c0"
+  },
+  "citation_validator_dependency": {
+    "dependency": "training/qwen-porsche-corpus/ask.py",
+    "sha256": "e16a0647e5a73793175d96d08a84e582b96a0224edd3318575a7ca60090cb79c",
+    "registered_commit": "2dda7fd4199142f300f61d9eac502d8ac5565164",
+    "matches_registered_commit": true,
+    "scope": "Supplementary dependency witness taken during training before candidate evaluation. The protocol pins the repository commit but does not separately list this citation validator file hash."
+  },
+  "selection": "Fixed final step 480. >=95% per new bounded coverage task and no lost baseline pass; evaluate the new sixteen tests once only if eligible. Original eight tests remain closed. Retention separately reports no regression; no automatic promotion.",
+  "qualification": "Experimental adapter, not selected or promoted. Validation gate fails and previous development includes a regression and a persistent test-temperature contradiction.",
+  "limits": [
+    "Adaptive continuation after pilot 001 with synthetic, scenario-disjoint data sharing four task recipes.",
+    "Thirty passes under both registered rubric and unchanged exact metric; the two remaining failures incorrectly label supplied evidence as missing.",
+    "Old validation is a previously seen development diagnostic, not a new test; the old eight tests and new sixteen tests were never inferred.",
+    "All NIMS fatigue observations remain training examples; there is no held-out fatigue-transcription evaluation.",
+    "Sixteen previously used development coding cases are only native retention smoke evidence; USD shader-property checker exclusion persists.",
+    "A single known retrieval question with empty-claim abstention does not establish scientific answer quality.",
+    "No component fitment, material allowable, CFD/FEA correlation or physical engineering gate was closed.",
+    "Original dataset and pilot 001 receipts preserved; raw documents, active data, generations and weights remain outside Git."
+  ],
+  "repository_verification": {
+    "targeted_self_checks_passed": true,
+    "full_local_make_check_passed": false,
+    "local_environment_limits_unchanged": [
+      "Matplotlib absent for the existing LPBF voxel audit test class.",
+      "Installed Trimesh lacks util.random_generator used by an existing PicoGK checkpoint test."
+    ],
+    "dependencies_modified": false,
+    "previous_publication_ci": {
+      "head": "2dda7fd4199142f300f61d9eac502d8ac5565164",
+      "conclusion": "SUCCESS",
+      "url": "https://github.com/cluster2600/porscheparts/actions/runs/37067853325/job/111040000651"
+    },
+    "continuation_ci": "Check the current PR head separately; no pending CI is represented as passed.",
+    "full_local_make_check_repeated": false
+  }
+}

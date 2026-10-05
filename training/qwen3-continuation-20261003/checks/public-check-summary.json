@@ -1,0 +1,395 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "Frozen D source, weights and outcome snapshot; excludes neighboring next-preparation package. Final PR HEAD needs its own CI. Software checks do not measure model gain or manufacturing validity.",
+  "completed_utc": "2026-10-03T15:18:51.834743+00:00",
+  "base_commit": "09f2728a646d0cf6e30c07df28800f26454a5276",
+  "snapshot_manifest_sha256": "68114e5800bce9f9e961c8f8edd8837a52f8a96daeeb51f77dd7a5b37d6a1864",
+  "snapshot_file_count": 137,
+  "snapshot_files_sha256": {
+    "tests/test_qwen3_continuation.py": "4ab1dbaed1d3c67bf27bee5361ca37d511bbe46af88acac4d5abef3d86e6201b",
+    "tests/test_qwen3_native_mlx.py": "efcd7adab42e980c87a1cf8e06c88b4bba571dea2d8c5904e7aad3c1461c2ebb",
+    "training/qwen3-continuation-20261003/CORPUS_COVERAGE.md": "6aa3d76571a368818cd9d8d0395e4502c82feb1479cc3324229dec4edb0ecab6",
+    "training/qwen3-continuation-20261003/DATA_CONTRACT.md": "66d64ab150d58f90c78bf9acf136954050622e2c127f826a325d258c603aa4e3",
+    "training/qwen3-continuation-20261003/MLX_FEASIBILITY.md": "45e56c52bd8da04f8dcd564bd41e04b8d50f4436cd672c8a658eb1ddaef9e7d5",
+    "training/qwen3-continuation-20261003/NEXT_DATA_PLAN.md": "0ab13398c3df53c493fb5c628d6062b39019d52b924146d64762382282dabedc",
+    "training/qwen3-continuation-20261003/PROTOCOL.md": "35ecc04cb2c441ff38fdb2670ac174e617aa0961f02d5981df513bc16697dee4",
+    "training/qwen3-continuation-20261003/README.md": "241e4f801ce558ff0785cd88862ee893884f672978d79e11f89994768c72f1d8",
+    "training/qwen3-continuation-20261003/RESULTS.md": "699e8883c79dd31a5d224004d56f2298c352cd1209d00f68de3efae617bc9d20",
+    "training/qwen3-continuation-20261003/TRIALS.json": "0559937e83eaae14495c07ec405c017b7db9a792445d755b7ae05c1850826547",
+    "training/qwen3-continuation-20261003/audit.py": "557d421f9f429b480dff2f48c322a7d0ff02676127d441b5c73a469f4b0ae9fb",
+    "training/qwen3-continuation-20261003/corpus-coverage.json": "a2896d695f2f9575cc6d4a6ed5eea1c41bae49d01ec9cce5c379814539def9d7",
+    "training/qwen3-continuation-20261003/data/LICENSE-NOTICES.md": "804ebc0dd6deab6c2e13b984976655991b9e51a27b2ba4e9ce309f682f41cfa0",
+    "training/qwen3-continuation-20261003/data/licenses/MET001.txt": "fe7134f32b9a04b6a3bbae56c7516fe245ef21992a0843a18fd51c644357def0",
+    "training/qwen3-continuation-20261003/data/licenses/MET002.txt": "644a9e4314832f62cbcc9baeddd3ce9acea77c3d4ab0c354775d2e45bacd6d80",
+    "training/qwen3-continuation-20261003/data/licenses/NEW_RESIDUAL.txt": "97913192037db0a64a8ae37d1afc52764c0f19b42b18d9a0f331174b9f8ad6f9",
+    "training/qwen3-continuation-20261003/data/licenses/thermal_en_critical.txt": "396177e98acb62b63d4dbceb7c545f5cadd57dbc6d556fba39c1d8714864e7a5",
+    "training/qwen3-continuation-20261003/data/licenses/thermal_en_flow.txt": "a5ce7840a75ebb7d39c9a35aa64768ddfe30092d5611bb08fb5f1480fab2084f",
+    "training/qwen3-continuation-20261003/data/licenses/thermal_en_prediction.txt": "396177e98acb62b63d4dbceb7c545f5cadd57dbc6d556fba39c1d8714864e7a5",
+    "training/qwen3-continuation-20261003/data/manifest.json": "3387e879621be4b9db03274c78f345774a6bbaa1260146459429bf4c38ac405f",
+    "training/qwen3-continuation-20261003/data/source-ledger.json": "99ceb8241eb4b6489bbcbdea41602cc4356d8d864d41d669c8bc2e0b85e01003",
+    "training/qwen3-continuation-20261003/data/train-records.jsonl": "25a2dc9af573e1a0f391a52b1804e5ccca4d31cc626b45632f698da08f7fc1d0",
+    "training/qwen3-continuation-20261003/development/questions.jsonl": "7c05fa29689d7dec190fab8f34409ac8cd81ab6af83aebebe15b3e6ac0884711",
+    "training/qwen3-continuation-20261003/development/registration.json": "8999604da9fa84eeecbe47f88f3542b48a0fe15b410c0161e40a19c7918f08af",
+    "training/qwen3-continuation-20261003/development-summary.json": "b28c2d32bd3525bf4e4a77bc3f20eb5965fb4bc436b346a57af3aa41ee25d757",
+    "training/qwen3-continuation-20261003/diagnose_batch.py": "3c75fa362e96b5eef3264695a84111728f5898794ab76d02ccdfb16a6de1ef97",
+    "training/qwen3-continuation-20261003/historical-exclusion-metadata.json": "2b66e4bd33f20d36871aecc2cd3cd79383ebce7c2b0a084931b6265bb372e935",
+    "training/qwen3-continuation-20261003/mlx-feasibility.json": "cc30f436d860532ec81c31866d049ac67f5e1441a71233e9cd5b718a7673071e",
+    "training/qwen3-continuation-20261003/mlx_run.py": "b55681e3a9a6d8d711cb2fc255c6633dd40e10984f6e17182259f3bb8eae28fa",
+    "training/qwen3-continuation-20261003/model-and-exclusion-contract.json": "b374e122c9705c1e8b6ffd6f2b2eb0e70873ec9940d2fdbb67c2f5798efd9127",
+    "training/qwen3-continuation-20261003/next-data-plan.json": "ad639f50faae48e09ccf33c2ec10275fb9bbcdf4aaf815342d29aa5c7a0ad144",
+    "training/qwen3-continuation-20261003/probe_cost.py": "857194712ad73014c336aa101cd82608345cee0a491f8f61923f496ec6b67a8f",
+    "training/qwen3-continuation-20261003/probe_gradients.py": "121cb2139410d0f7aba1679b94f34be743b88d0510be1e341863261b4c683fc3",
+    "training/qwen3-continuation-20261003/probe_mlx.py": "fd7ae78bf9eac1590df9bc090d1e9ef064b2b51065929f7a29b1c3318077d2b9",
+    "training/qwen3-continuation-20261003/protocol-candidate-a.json": "a052ca73d96e6fd7f3d99b76339dbf21f1e9e04e7cc236d6c8d9557d41d696a5",
+    "training/qwen3-continuation-20261003/protocol-candidate-b.json": "14d09fc92fc30391c61c5891e510dd2ef44115e3fa46c854660eec8cb4ee91b4",
+    "training/qwen3-continuation-20261003/protocol-candidate-c-preflight.json": "5e662ab5a412a9aabad1f313868f327c9534e1722e164031b352a7cb6865a4e8",
+    "training/qwen3-continuation-20261003/protocol-candidate-c.json": "ffab2b6fcf2d2d8421fea2fd7c54554b0312ee37def8365d4d7a44d82278fb7c",
+    "training/qwen3-continuation-20261003/protocol-candidate-d.json": "7ce3b4043341eddaf8400f9f575dce82ea2335e40d868bd585d59ce3c539e0ec",
+    "training/qwen3-continuation-20261003/protocol-cpu-registration.json": "a8a147d9f330c128a841b04f6cb5978eccf0e9f1bff6e02418ca8c6362af3aaa",
+    "training/qwen3-continuation-20261003/protocol.json": "7ce3b4043341eddaf8400f9f575dce82ea2335e40d868bd585d59ce3c539e0ec",
+    "training/qwen3-continuation-20261003/requirements-macos.txt": "44e4364c09dce9b0534661159f60eb50d2fdbccdf1791c5e1c9a8756e877fddc",
+    "training/qwen3-continuation-20261003/requirements-mlx.txt": "11ac2ce084b2dd53af8a428ba64e287e8f0bebe5ba366535fcd5437b72250242",
+    "training/qwen3-continuation-20261003/reserved-public/RUBRIC.md": "23b6590488b79a74ac73d1c1416d60c502bea04064125b4d3bcb3a043ca25fad",
+    "training/qwen3-continuation-20261003/reserved-public/amendment-b.json": "74ae38a6f6c64f69b2372ea8e6fd09b286ef312e975c7f9ff671618d0df3c52b",
+    "training/qwen3-continuation-20261003/reserved-public/amendment-c.json": "101140aad90ed875f06441caac1ae25755ff3084b55699f531021470be38b303",
+    "training/qwen3-continuation-20261003/reserved-public/amendment-d.json": "14472c9f660d10722fd99f6de33ded13b0632450ce6bfcd9fff14fc045a77b43",
+    "training/qwen3-continuation-20261003/reserved-public/registration.json": "d2a72858a98e5b6541e433bf427a46561d8fa3d39979ceb46e2ef58e1f0b0344",
+    "training/qwen3-continuation-20261003/reviews/development-d/RUBRIC.txt": "c3833428cde0feeb943adb2aff72eff1573ea5c3cd1940422b137b01d8f413b2",
+    "training/qwen3-continuation-20261003/reviews/development-d/arm-map.json": "920f048abeab676909687bee3786de8212b1ec9d7e42c917709abcb7e16f94ba",
+    "training/qwen3-continuation-20261003/reviews/development-d/reviewer-1.json": "11ff48f8b7effee46cc08e9a8fafb05e4e36c561332f134de1b8fb8332c1eb8c",
+    "training/qwen3-continuation-20261003/reviews/development-d/reviewer-2.json": "52a3e442b29bae28c85b1a48d5d40eeb88519fde7e36f40c7544f4c9b5d3cb6a",
+    "training/qwen3-continuation-20261003/run.py": "68a8ec26b3fd7e42142673e58823b1091c8eeac47aebee26ad014e91324bce98",
+    "training/qwen3-continuation-20261003/runs/candidate-a-001/checkpoint-inventory.json": "974f5d1db8095766b1c6aa012fefeabcc6d23ae8c7037794714a994bb4eb9e7a",
+    "training/qwen3-continuation-20261003/runs/candidate-a-001/executed-code/protocol.json": "a052ca73d96e6fd7f3d99b76339dbf21f1e9e04e7cc236d6c8d9557d41d696a5",
+    "training/qwen3-continuation-20261003/runs/candidate-a-001/executed-code/run.py": "cc13398251af9735846b110cf8ca55538a2c6a16777aa7ec955f5ea431f76295",
+    "training/qwen3-continuation-20261003/runs/candidate-a-001/interruption-receipt.json": "7cbe9fefe4773289990dede148dcfa62402c7b099172d76e2f71d73480f8d975",
+    "training/qwen3-continuation-20261003/runs/candidate-a-001/log-provenance.json": "65e1c258cb6a3455d8e9349b8e74d1f093b9f628974f21f1805da39342695b34",
+    "training/qwen3-continuation-20261003/runs/candidate-a-001/resource-monitor.json": "99f204a71c2ecbe361483b356488e511d96a1ba6adda203e21ad5a8b9ed302bd",
+    "training/qwen3-continuation-20261003/runs/candidate-a-001/status.json": "feb6a997d2501e9860ddd245effb76209ab690173b10684b148b5af2d3df2e9f",
+    "training/qwen3-continuation-20261003/runs/candidate-a-001/training.log": "b4c3ddc35999ceb1c3ad125d00eef90e0826760c82abee3549ae0d30ed3ce907",
+    "training/qwen3-continuation-20261003/runs/candidate-b-001/checkpoint-inventory.json": "00a3ce9f00748d22208a68f9a9929a61a28687716f98e08e0eb5fd07ef713698",
+    "training/qwen3-continuation-20261003/runs/candidate-b-001/executed-code/protocol.json": "14d09fc92fc30391c61c5891e510dd2ef44115e3fa46c854660eec8cb4ee91b4",
+    "training/qwen3-continuation-20261003/runs/candidate-b-001/executed-code/run.py": "1ea918fe1fb16139f62699894c97acd219c671dda2577e1eac4a4a8ba45204cd",
+    "training/qwen3-continuation-20261003/runs/candidate-b-001/interruption-receipt.json": "7cbe9fefe4773289990dede148dcfa62402c7b099172d76e2f71d73480f8d975",
+    "training/qwen3-continuation-20261003/runs/candidate-b-001/log-provenance.json": "aee7ce1c461af44cb46e67d0f00e1975f18d30eea90885714d72eca563c023fd",
+    "training/qwen3-continuation-20261003/runs/candidate-b-001/non-finite-metric-receipt.json": "c77254b443e1d0a06350e8b8c1eb9d5e40ce8dbad1c0bc35fb2182be655b6cf1",
+    "training/qwen3-continuation-20261003/runs/candidate-b-001/resource-monitor.json": "f6973fccdf9e8f1d2e9d5b6502b6815c9b17817848457a96699aed6b1cfbc2be",
+    "training/qwen3-continuation-20261003/runs/candidate-b-001/status.json": "e3f18643e08d2fa8a01269dbf9fe91b8006e38e5f85581d7e6212e8f56d8dd7b",
+    "training/qwen3-continuation-20261003/runs/candidate-b-001/training.log": "80c5cda538fd580b4d2db3415b64cea8d9fef49cae3ddc2c611fb748682be4bd",
+    "training/qwen3-continuation-20261003/runs/candidate-c-001/checkpoint-inventory.json": "47c69e9d2e456f2a491f8a4977302e651f6cb6281b359a204423a1a09a4e1c71",
+    "training/qwen3-continuation-20261003/runs/candidate-c-001/executed-code/protocol.json": "ffab2b6fcf2d2d8421fea2fd7c54554b0312ee37def8365d4d7a44d82278fb7c",
+    "training/qwen3-continuation-20261003/runs/candidate-c-001/executed-code/run.py": "68a8ec26b3fd7e42142673e58823b1091c8eeac47aebee26ad014e91324bce98",
+    "training/qwen3-continuation-20261003/runs/candidate-c-001/log-provenance.json": "d95a469a2c91e36bc278c1750f203f6eab360ed6a24173559c6259d7812f07a6",
+    "training/qwen3-continuation-20261003/runs/candidate-c-001/resource-monitor.json": "a497735864b4872368690608d54c8509d52d064e4b80bcfc45b80cd936b9bb41",
+    "training/qwen3-continuation-20261003/runs/candidate-c-001/runtime-rejection-receipt.json": "baab9d4f35edb388f255e51992288ebf213575ae7fb9b9bef87b46c3be35deb5",
+    "training/qwen3-continuation-20261003/runs/candidate-c-001/status.json": "1f0f0d856425d9c83a2b74c0c930c41a698b8d7ea5df91f975fd5d994796338a",
+    "training/qwen3-continuation-20261003/runs/candidate-c-001/training.log": "9b74ae89b13a2ca3f0a29ce172882b42c8deff677cd8f3ec6e0e48b91fe66995",
+    "training/qwen3-continuation-20261003/runs/candidate-d-001/adapter/adapter_config.json": "05ba7708a0c1858aac26f9e2a7c0828654121fd125d7f929ae4ea89fcb404508",
+    "training/qwen3-continuation-20261003/runs/candidate-d-001/adapter/adapters.safetensors": "b7297b423533166867585a895511909bd173615908e7b16c1a7dca4152572477",
+    "training/qwen3-continuation-20261003/runs/candidate-d-001/checkpoints/step-0004/adapter_config.json": "05ba7708a0c1858aac26f9e2a7c0828654121fd125d7f929ae4ea89fcb404508",
+    "training/qwen3-continuation-20261003/runs/candidate-d-001/checkpoints/step-0004/adapters.safetensors": "611de07f8e08eecab38670890997eb7b0f29372dd58dc8ba5e85ee33f9a77bd5",
+    "training/qwen3-continuation-20261003/runs/candidate-d-001/checkpoints/step-0008/adapter_config.json": "05ba7708a0c1858aac26f9e2a7c0828654121fd125d7f929ae4ea89fcb404508",
+    "training/qwen3-continuation-20261003/runs/candidate-d-001/checkpoints/step-0008/adapters.safetensors": "a7aaeccc7d3c1b9e8b11d4c2cfa4668695346d99d26b602a5751106370bfdff2",
+    "training/qwen3-continuation-20261003/runs/candidate-d-001/conversion-receipt.json": "0f6ae9ded8d2116912e161fe45efbf42937cbaa1bc857cc336325f7b82beca9c",
+    "training/qwen3-continuation-20261003/runs/candidate-d-001/frozen-base-after.json": "311df3a28332c132aea7963d2911f8afdc982c8908115b20665947f2caaa100a",
+    "training/qwen3-continuation-20261003/runs/candidate-d-001/frozen-base-before.json": "311df3a28332c132aea7963d2911f8afdc982c8908115b20665947f2caaa100a",
+    "training/qwen3-continuation-20261003/runs/candidate-d-001/mlx_run.py": "b55681e3a9a6d8d711cb2fc255c6633dd40e10984f6e17182259f3bb8eae28fa",
+    "training/qwen3-continuation-20261003/runs/candidate-d-001/protocol.json": "7ce3b4043341eddaf8400f9f575dce82ea2335e40d868bd585d59ce3c539e0ec",
+    "training/qwen3-continuation-20261003/runs/candidate-d-001/resource-monitor.json": "8256d9149df0c0f18946d82066e19d2b4bd7d670c416aa239bd304e644164bef",
+    "training/qwen3-continuation-20261003/runs/candidate-d-001/status.json": "d951c0d0d175001e03b63391142ec5e38134f2ce21c49ce5423b5df9fdf4032e",
+    "training/qwen3-continuation-20261003/runs/candidate-d-001/supervisor-receipt.json": "912152317c29f670b7b0a47f6c667f206250c0626c5321a8528c4c37cbef4f6a",
+    "training/qwen3-continuation-20261003/runs/candidate-d-001/trainer-history.json": "27188d6592ec58c5c45ecc99c898dde517b024bd28c291c258d81e6fab3fa81b",
+    "training/qwen3-continuation-20261003/runs/candidate-d-001/training-receipt.json": "1d2a60edc343db031d3cf53baf62b264c036eda3cdbb349fdb0238c294cc082f",
+    "training/qwen3-continuation-20261003/runs/candidate-d-001/worker.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "training/qwen3-continuation-20261003/runs/development-d-001/adapter-frozen-integrity.json": "311df3a28332c132aea7963d2911f8afdc982c8908115b20665947f2caaa100a",
+    "training/qwen3-continuation-20261003/runs/development-d-001/adapter.json": "c16c78ce6acb656988e4044a68e47bfd0394bce14907c36319ae06bc7fd63470",
+    "training/qwen3-continuation-20261003/runs/development-d-001/base-frozen-integrity.json": "311df3a28332c132aea7963d2911f8afdc982c8908115b20665947f2caaa100a",
+    "training/qwen3-continuation-20261003/runs/development-d-001/base.json": "4749cddbc0b6e4a9dbd9aef1d8c1a0bf868c84d39fcb8422512067e5ebd01092",
+    "training/qwen3-continuation-20261003/runs/development-d-001/conversion-receipt.json": "0f6ae9ded8d2116912e161fe45efbf42937cbaa1bc857cc336325f7b82beca9c",
+    "training/qwen3-continuation-20261003/runs/development-d-001/frozen-base-before.json": "311df3a28332c132aea7963d2911f8afdc982c8908115b20665947f2caaa100a",
+    "training/qwen3-continuation-20261003/runs/development-d-001/generation-receipt.json": "cce02f669cfb8df902220e757e238a96e1adf7d26c4782a7a165804a2bbe0340",
+    "training/qwen3-continuation-20261003/runs/development-d-001/historical_adapter-frozen-integrity.json": "311df3a28332c132aea7963d2911f8afdc982c8908115b20665947f2caaa100a",
+    "training/qwen3-continuation-20261003/runs/development-d-001/historical_adapter.json": "4061f98d196598a0eb9caa27444aa364fc2a43c917b4e78b922b2d5cb160d11f",
+    "training/qwen3-continuation-20261003/runs/development-d-001/resource-monitor.json": "e68e538975ac4fe18f2378185fabfff4d6cf7c04e33bf2f9c76224e116eef0ef",
+    "training/qwen3-continuation-20261003/runs/development-d-001/supervisor-receipt.json": "bb1c4bd33131aeb19a6853aa53c0ccc44708b69fd9fba46ebe7bfb2a38e64463",
+    "training/qwen3-continuation-20261003/runs/development-d-001/worker.log": "80650b0294f2630043b57d91b9e2a0cfc8dcc8090710b474f4bd15c6f0d0100a",
+    "training/qwen3-continuation-20261003/runs/gradient-probe-c-alltrain-002/gradient-probe-receipt.json": "6e8b72695474126f26994bb87397c816cf2225eba372c0a1aef5d28b92365705",
+    "training/qwen3-continuation-20261003/runs/gradient-probe-c-alltrain-002/interruption-receipt.json": "2c84991545fe42a59b3335f1ea30ea9040c78aa431ac7b2b78fb0bc96a694e4a",
+    "training/qwen3-continuation-20261003/runs/gradient-probe-c-alltrain-002/resource-limit-receipt.json": "992782d666cdc1e2e8c83c26ec68f26897e0aef72cbc738e4accd0115981d114",
+    "training/qwen3-continuation-20261003/runs/gradient-probe-c-alltrain-002/resource-monitor.json": "bbdb927aeb30cb4c978c94c6fe8975b76484630fc01bd22b7fa46c00e65c521f",
+    "training/qwen3-continuation-20261003/runs/gradient-probe-c-alltrain-003/gradient-probe-receipt.json": "45d5dc3b9ac09e6955ffc8e8e66cf763ff6405f45e17ba5c96bc7d773207cf67",
+    "training/qwen3-continuation-20261003/runs/gradient-probe-c-alltrain-003/interruption-receipt.json": "2c84991545fe42a59b3335f1ea30ea9040c78aa431ac7b2b78fb0bc96a694e4a",
+    "training/qwen3-continuation-20261003/runs/gradient-probe-c-alltrain-003/projection-receipt.json": "df1f6a4623cfd45abbce06b088de9ddf7f6b0d9843fe1a36ed696f973085d533",
+    "training/qwen3-continuation-20261003/runs/gradient-probe-c-alltrain-003/resource-limit-receipt.json": "ff944cc2fcaea6dda294a437a0012f4f4d465429e0d505c748a7849b725f6c23",
+    "training/qwen3-continuation-20261003/runs/gradient-probe-c-alltrain-003/resource-monitor.json": "522013ec7046a1fa5946d3a8e061e3bf0e503bcd2b9a72e193248699ec8e1a23",
+    "training/qwen3-continuation-20261003/runs/gradient-probe-c-alltrain-004/gradient-probe-receipt.json": "74e45c0ae3585108cbbce49ad13ae69aac693278efaf561fc37466edbd112d28",
+    "training/qwen3-continuation-20261003/runs/gradient-probe-c-alltrain-004/interruption-receipt.json": "2c84991545fe42a59b3335f1ea30ea9040c78aa431ac7b2b78fb0bc96a694e4a",
+    "training/qwen3-continuation-20261003/runs/gradient-probe-c-alltrain-004/projection-receipt.json": "edbf7f2047f27fd2a872ce79d0e9adc25b0898c3f1d5d252d4d91851c2b65a9e",
+    "training/qwen3-continuation-20261003/runs/gradient-probe-c-alltrain-004/resource-limit-receipt.json": "47b07900bcf15332c3747d856d4a7bd4db31ece7f19b63f601b1ab3123cf2482",
+    "training/qwen3-continuation-20261003/runs/gradient-probe-c-alltrain-004/resource-monitor.json": "b67cba7eb0a443c2eae1b198242b31217b03350a6e85d70f524178892124b8cd",
+    "training/qwen3-continuation-20261003/runs/gradient-probe-c-alltrain-005/gradient-probe-receipt.json": "ece5aed91358bff4c193204fd2858daf52e526b457a289274d75a0698e27a8a9",
+    "training/qwen3-continuation-20261003/runs/gradient-probe-c-alltrain-005/projection-receipt.json": "edbf7f2047f27fd2a872ce79d0e9adc25b0898c3f1d5d252d4d91851c2b65a9e",
+    "training/qwen3-continuation-20261003/runs/gradient-probe-c-alltrain-005/resource-monitor.json": "56e3a9628b3e310d4d72993b5cd7bc07a3037fc6faa787aaf0459da133ca70d9",
+    "training/qwen3-continuation-20261003/runs/mlx-probe-001/mlx-probe-receipt.json": "c805537f16b3b92f383b347a916a34bfe671dc68e03bb5ad648d53c939ab1c06",
+    "training/qwen3-continuation-20261003/runs/mlx-probe-001/supervisor-receipt.json": "6ae70e42047c057d3a1f637f2eb96f60e0ac18119f64106cdcd23192d69f9c36",
+    "training/qwen3-continuation-20261003/runs/mlx-probe-001/worker.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "training/qwen3-continuation-20261003/runs/mlx-probe-002/mlx-probe-receipt.json": "d1195e1b0ece3174d4163a6e556f005329382bf28d90ec46efae9625e545931b",
+    "training/qwen3-continuation-20261003/runs/mlx-probe-002/resource-monitor.json": "544947badd4d11fc17ed94f02846ea396abfddcc42e9193390ab74b9f49219ee",
+    "training/qwen3-continuation-20261003/runs/mlx-probe-002/supervisor-receipt.json": "6fd47ce19327c1ce93b0231201eb0ef5d5a0955fb1dab647874376162d1fe018",
+    "training/qwen3-continuation-20261003/runs/mlx-probe-002/worker.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "training/qwen3-continuation-20261003/runs/mlx-probe-003/mlx-probe-receipt.json": "674730c84671110081035845453e36e56b3c9c21a84610ea7803a4490132a35b",
+    "training/qwen3-continuation-20261003/runs/mlx-probe-003/resource-monitor.json": "34f1aab6234916ce01870a9f7c349e518d1266311a2d252c3acbbe1f5fd1fa38",
+    "training/qwen3-continuation-20261003/runs/mlx-probe-003/supervisor-receipt.json": "e51b7b1be7d5f45835e92031c88d85cf158049b5315e7303da01011ef4a7980f",
+    "training/qwen3-continuation-20261003/runs/mlx-probe-003/worker.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "training/qwen3-continuation-20261003/runs/mlx-runtime-inventory.json": "9b83db6f5ff5bf2f7d5d6e97316a56adde3c0c93a8d1605c3f9e7b90a2f0c3ea",
+    "training/qwen3-continuation-20261003/selection-receipt.json": "5808932a4b125767bdb1c9ba51e323b6950e38ca18a2e3bd7d2e25e130a30fe3"
+  },
+  "command": [
+    "make",
+    "-k",
+    "check"
+  ],
+  "exit_code": 0,
+  "stop_reason": null,
+  "unittest_suites": [
+    {
+      "cases": 3420,
+      "seconds": 171.386,
+      "result": "OK (skipped=194)",
+      "skipped": 194
+    },
+    {
+      "cases": 10,
+      "seconds": 0.002,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 7,
+      "seconds": 0.007,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 15,
+      "seconds": 0.49,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 5,
+      "seconds": 0.002,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 10,
+      "seconds": 0.002,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 6,
+      "seconds": 0.028,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 4,
+      "seconds": 0.001,
+      "result": "OK (skipped=1)",
+      "skipped": 1
+    },
+    {
+      "cases": 7,
+      "seconds": 0.001,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 6,
+      "seconds": 0.002,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 8,
+      "seconds": 0.066,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 26,
+      "seconds": 0.42,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 9,
+      "seconds": 0.005,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 6,
+      "seconds": 0.005,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 8,
+      "seconds": 0.013,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 4,
+      "seconds": 0.001,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 4,
+      "seconds": 0.001,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 20,
+      "seconds": 0.07,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 9,
+      "seconds": 0.604,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 6,
+      "seconds": 0.007,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 7,
+      "seconds": 0.011,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 6,
+      "seconds": 0.008,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 9,
+      "seconds": 0.041,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 10,
+      "seconds": 0.046,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 7,
+      "seconds": 0.041,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 8,
+      "seconds": 0.044,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 13,
+      "seconds": 0.022,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 8,
+      "seconds": 0.114,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 10,
+      "seconds": 0.001,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 8,
+      "seconds": 0.026,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 9,
+      "seconds": 0.002,
+      "result": "OK",
+      "skipped": 0
+    },
+    {
+      "cases": 12,
+      "seconds": 0.014,
+      "result": "OK",
+      "skipped": 0
+    }
+  ],
+  "main_unittest_cases": 3420,
+  "main_unittest_skipped": 194,
+  "new_qwen_tests_passed": 49,
+  "strict_doc_links": {
+    "broken_links": 0,
+    "markdown_files": 688
+  },
+  "seconds": 186.933179715008,
+  "limits": {
+    "logical_cpus": 2,
+    "threads": 2,
+    "nice": 10,
+    "umask": "022",
+    "owned_group_rss_bytes": 1610612736,
+    "wall_seconds": 900
+  },
+  "observed_memory": {
+    "sampled_owned_group_peak_rss_bytes": 429248512,
+    "linux_child_rusage_maxrss_kib": 450140
+  },
+  "environment": {
+    "os_family": "Linux",
+    "architecture": "x86_64",
+    "python": "3.13.15",
+    "numpy": "2.2.6",
+    "matplotlib": "3.10.8",
+    "dependencies_installed_for_this_check": false
+  },
+  "receipts_sha256": {
+    "overlay-manifest.json": "68114e5800bce9f9e961c8f8edd8837a52f8a96daeeb51f77dd7a5b37d6a1864",
+    "check-receipt.json": "27bd508d11ee23405d374fcba0ac4931e800aae4d62045cdf749fa4b9cd8f99a",
+    "make-check.log": "0bde5d957caef5dcecfee395bf16240ae44685b6a6df3d68a27324ddffc226b3",
+    "linux-ssh-execution.json": "d305fedd2e8fd379366604aff833d88aa908fc88bb18aedd8e1fd444bce474de",
+    "snapshot-integrity-receipt.json": "4d6e3876dedecc05e89e28475856faf42866d1b6b82630958d1ab24eee83f92e",
+    "current-snapshot-diff.json": "ceaf83564d5be8d2c1e0fca4fafa48fc64bae011a53fd98d219be1b3082d5cf4"
+  },
+  "scientific_model_gain_evaluated": false,
+  "manufacturing_validated": false,
+  "source_snapshot_unchanged_after_checks": true,
+  "local_snapshot_matches_tested_at_receipt": false,
+  "local_changed_files_at_receipt": [
+    "training/qwen3-continuation-20261003/NEXT_DATA_PLAN.md",
+    "training/qwen3-continuation-20261003/README.md",
+    "training/qwen3-continuation-20261003/next-data-plan.json"
+  ],
+  "local_added_training_files_at_receipt": [],
+  "old_checkout_unchanged": true
+}

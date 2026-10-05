@@ -1,0 +1,19 @@
+#usda 1.0
+(
+    defaultPrim = "Studies"
+    metersPerUnit = 0.001
+    upAxis = "Z"
+)
+def Xform "Studies"
+{
+    def Xform "R0" (prepend references = @R0.usda@</Fan>)
+    {
+        double3 xformOp:translate = (-350, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+    def Xform "V5" (prepend references = @V5.usda@</Fan>)
+    {
+        double3 xformOp:translate = (350, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+}

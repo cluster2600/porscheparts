@@ -1,20 +1,28 @@
 {
   "schema_version": "1.0.0",
   "source_id": "SRC-PORSCHE-993-OBD-SUPPLEMENT-ENGINE-SPECIFICATIONS-1996",
-  "title": "Supplement OBD 1996 « Engine Specifications » — 993 Carrera M64/23-24 (architecture commune M64)",
-  "url": "https://members.rennlist.com/geolab/Hydraulic%20lifters_1997_610297.pdf",
-  "publisher": "Porsche AG (document technique usine, archive communautaire hebergeante)",
+  "title": "Porsche bulletin 9702 - Hydraulic Valve Lifters (legacy source ID retained)",
+  "url": "https://raw.githubusercontent.com/pubstack/pubstack.github.io/master/static/993/Technical%20Bulletin%20-%20Mechanical%20-%20Hydraulic%20Valve%20lifters.pdf",
+  "publisher": "Porsche AG, public community archive",
   "source_type": "official",
-  "content_types": ["technical_data", "manual"],
+  "content_types": [
+    "technical_data",
+    "manual"
+  ],
   "coverage": {
     "generation": "993",
-    "variants": ["993_Carrera", "993_Turbo"],
-    "parts": ["moteur_M64", "allumage", "ventilateur_refroidissement", "poussoirs_hydrauliques", "carter_sec"]
+    "variants": [
+      "993_Carrera",
+      "993_Turbo_M64_60"
+    ],
+    "parts": [
+      "hydraulic_lifter"
+    ]
   },
   "access": {
     "status": "available",
     "method": "direct_download",
-    "accessed_on": "2026-09-27"
+    "accessed_on": "2026-10-02"
   },
   "rights": {
     "license": "porsche-ag-copyright-reference-only",
@@ -26,5 +34,5 @@
     "dimensional_accuracy": "unknown",
     "verified_against": []
   },
-  "notes": "Donnees applicables a l'architecture M64 commune : ordre d'allumage 1-6-2-4-3-5, entraînement du ventilateur par courroie avec rapport ~1:1,6, debit d'air de refroidissement 1010 l/s a 6100 tr/min, compensation hydraulique du jeu aux soupapes, graissage a carter sec. Document Carrera M64/23-24 : l'extension a la variante Turbo M64/60 repose sur l'architecture commune partagee, pas sur une identite de variante. Le fichier herberge est un extrait ; a recouper avec le manuel atelier complet."
+  "notes": "Legacy record corrected on 2026-10-02: the linked publication is bulletin 9702, group 1559, dated 1997-01-28, about hydraulic valve lifters. It is not the OBD Engine Specifications document. Turbo standard lifter is 99310514103; size 1 is 99310514150 and size 2 is 99310514160. Earlier firing-order, 1.6 fan ratio, 1010 L/s cooling airflow and dry-sump specifications attributed to this bulletin are withdrawn. The separate Carrera Engine Specifications source is SRC-PORSCHE-993-ENGINE-SPECIFICATIONS-PUBSTACK; its numerical fan data are not accepted as M64.60 values. Historical source ID remains stable for existing references."
 }

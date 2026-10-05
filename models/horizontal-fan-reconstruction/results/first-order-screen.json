@@ -1,0 +1,4300 @@
+{
+  "status": "first_order_conditional_screen_no_physical_qualification",
+  "reference_configuration": "private_scan_informed_horizontal_study_R0",
+  "comparison_basis": "Same assumed 6000 W total shaft input, air density 1.2 kg/m3 and common polar; uniform disk induction",
+  "method": "Blade elements + static actuator momentum + finite-blade loss, explicit gap-loss surrogate and linear drive friction. Beam screening separately assumes aluminium 2700kg/m3 / 70GPa.",
+  "dominant_uncertainties": [
+    "absolute scale",
+    "profile and stall polar",
+    "hub/shroud blockage",
+    "inlet and downstream resistance",
+    "drive friction",
+    "blade root geometry and supports"
+  ],
+  "variants": [
+    {
+      "variant": "R0",
+      "changes": {},
+      "parameters": {
+        "configuration_id": "private_scan_informed_horizontal_study_R0_R0",
+        "geometry_origin": "private analytic reconstruction informed by relative scan proportions; absolute scale hypothetical",
+        "diameter_mm": 275,
+        "blade_count": 9,
+        "blade_root_radius_ratio": 0.61,
+        "carrier_radius_ratio": 0.665,
+        "bore_radius_ratio": 0.1,
+        "root_chord_ratio": 0.47,
+        "tip_chord_ratio": 0.46,
+        "root_pitch_deg": 42,
+        "tip_twist_deg": -8,
+        "sweep_ratio": 0.045,
+        "camber_ratio": 0.022,
+        "blade_thickness_ratio": 0.022,
+        "web_thickness_ratio": 0.035,
+        "tip_gap_ratio": 0.008,
+        "shroud_wall_ratio": 0.024
+      },
+      "result": {
+        "configuration_id": "private_scan_informed_horizontal_study_R0_R0",
+        "diameter_mm_assumed": 275,
+        "shaft_power_W_assumed": 6000,
+        "fan_rpm_screen": 7480.291917289049,
+        "flow_m3_s_screen": 1.2484720875815123,
+        "static_pressure_Pa_screen": 3408.3194130921465,
+        "useful_air_power_W_screen": 4255.191652807747,
+        "shaft_to_air_efficiency_screen": 0.7091986088012912,
+        "tip_speed_m_s": 107.70847144778594,
+        "tip_mach_assuming_343_m_s": 0.31401886719471117,
+        "drag_and_gap_model": {
+          "lift_slope_per_rad": 5.7,
+          "cl_limit": 1.1,
+          "Cd0": 0.025,
+          "drag_quadratic": 0.04,
+          "gap_loss_coefficient": 5,
+          "friction_torque_Nm": 0.63
+        },
+        "radial_sections_over_12deg_incidence_fraction": 1.0,
+        "beam_stress_MPa_screen": 13.95086262301873,
+        "beam_centrifugal_stress_MPa_screen": 9.720796773618531,
+        "beam_aero_bending_stress_MPa_screen": 4.230065849400201,
+        "per_blade_mass_kg_screen": 0.023424325192025815,
+        "cantilever_first_frequency_Hz_screen": 865.2430821402746,
+        "blade_passing_frequency_Hz": 1122.0437875933574,
+        "radial_thrust_density_not_installed_air_distribution": [
+          {
+            "radius_ratio": 0.6676171875000001,
+            "blade_incidence_deg": 18.541314134362466,
+            "relative_annular_thrust": 0.012599235208071474
+          },
+          {
+            "radius_ratio": 0.6728515625000001,
+            "blade_incidence_deg": 18.61905034485044,
+            "relative_annular_thrust": 0.012770392171951108
+          },
+          {
+            "radius_ratio": 0.6780859375000001,
+            "blade_incidence_deg": 18.694552957323214,
+            "relative_annular_thrust": 0.012942199398403836
+          },
+          {
+            "radius_ratio": 0.6833203125,
+            "blade_incidence_deg": 18.76785895794854,
+            "relative_annular_thrust": 0.01311459732065889
+          },
+          {
+            "radius_ratio": 0.6885546875000002,
+            "blade_incidence_deg": 18.83900461375996,
+            "relative_annular_thrust": 0.013287521134262917
+          },
+          {
+            "radius_ratio": 0.6937890625,
+            "blade_incidence_deg": 18.908025486944656,
+            "relative_annular_thrust": 0.013460900351682533
+          },
+          {
+            "radius_ratio": 0.6990234375000001,
+            "blade_incidence_deg": 18.974956448925866,
+            "relative_annular_thrust": 0.01363465831946835
+          },
+          {
+            "radius_ratio": 0.7042578125000001,
+            "blade_incidence_deg": 19.039831694235367,
+            "relative_annular_thrust": 0.01380871169485494
+          },
+          {
+            "radius_ratio": 0.7094921875000001,
+            "blade_incidence_deg": 19.10268475417239,
+            "relative_annular_thrust": 0.013982969878401256
+          },
+          {
+            "radius_ratio": 0.7147265625,
+            "blade_incidence_deg": 19.163548510245995,
+            "relative_annular_thrust": 0.014157334398978256
+          },
+          {
+            "radius_ratio": 0.7199609375000001,
+            "blade_incidence_deg": 19.22245520739849,
+            "relative_annular_thrust": 0.014331698247083555
+          },
+          {
+            "radius_ratio": 0.7251953125,
+            "blade_incidence_deg": 19.27943646700815,
+            "relative_annular_thrust": 0.014505945152101525
+          },
+          {
+            "radius_ratio": 0.7304296875,
+            "blade_incidence_deg": 19.334523299669982,
+            "relative_annular_thrust": 0.014679948798727579
+          },
+          {
+            "radius_ratio": 0.7356640625,
+            "blade_incidence_deg": 19.38774611775372,
+            "relative_annular_thrust": 0.014853571977330423
+          },
+          {
+            "radius_ratio": 0.7408984375000001,
+            "blade_incidence_deg": 19.439134747738844,
+            "relative_annular_thrust": 0.015026665662530875
+          },
+          {
+            "radius_ratio": 0.7461328125000001,
+            "blade_incidence_deg": 19.488718442326594,
+            "relative_annular_thrust": 0.015199068013720264
+          },
+          {
+            "radius_ratio": 0.7513671875000001,
+            "blade_incidence_deg": 19.536525892329433,
+            "relative_annular_thrust": 0.015370603290616848
+          },
+          {
+            "radius_ratio": 0.7566015625,
+            "blade_incidence_deg": 19.58258523833891,
+            "relative_annular_thrust": 0.01554108067625302
+          },
+          {
+            "radius_ratio": 0.7618359375000001,
+            "blade_incidence_deg": 19.626924082172778,
+            "relative_annular_thrust": 0.015710292998983025
+          },
+          {
+            "radius_ratio": 0.7670703125,
+            "blade_incidence_deg": 19.669569498102913,
+            "relative_annular_thrust": 0.01587801534418527
+          },
+          {
+            "radius_ratio": 0.7723046875,
+            "blade_incidence_deg": 19.71054804386561,
+            "relative_annular_thrust": 0.016044003545279396
+          },
+          {
+            "radius_ratio": 0.7775390625,
+            "blade_incidence_deg": 19.749885771456047,
+            "relative_annular_thrust": 0.01620799254246158
+          },
+          {
+            "radius_ratio": 0.7827734375000001,
+            "blade_incidence_deg": 19.787608237708938,
+            "relative_annular_thrust": 0.016369694596146213
+          },
+          {
+            "radius_ratio": 0.7880078125,
+            "blade_incidence_deg": 19.823740514667744,
+            "relative_annular_thrust": 0.016528797340445645
+          },
+          {
+            "radius_ratio": 0.7932421875000001,
+            "blade_incidence_deg": 19.858307199744605,
+            "relative_annular_thrust": 0.016684961660070427
+          },
+          {
+            "radius_ratio": 0.7984765625,
+            "blade_incidence_deg": 19.891332425673685,
+            "relative_annular_thrust": 0.016837819371721654
+          },
+          {
+            "radius_ratio": 0.8037109375000001,
+            "blade_incidence_deg": 19.922839870260436,
+            "relative_annular_thrust": 0.01698697068829263
+          },
+          {
+            "radius_ratio": 0.8089453125,
+            "blade_incidence_deg": 19.95285276592956,
+            "relative_annular_thrust": 0.017131981440891595
+          },
+          {
+            "radius_ratio": 0.8141796875,
+            "blade_incidence_deg": 19.98139390907461,
+            "relative_annular_thrust": 0.017272380029707216
+          },
+          {
+            "radius_ratio": 0.8194140624999999,
+            "blade_incidence_deg": 20.008485669211954,
+            "relative_annular_thrust": 0.017407654069890623
+          },
+          {
+            "radius_ratio": 0.8246484375,
+            "blade_incidence_deg": 20.03414999794222,
+            "relative_annular_thrust": 0.017537246692704095
+          },
+          {
+            "radius_ratio": 0.8298828125,
+            "blade_incidence_deg": 20.05840843772226,
+            "relative_annular_thrust": 0.017660552454900752
+          },
+          {
+            "radius_ratio": 0.8351171875000001,
+            "blade_incidence_deg": 20.081282130450557,
+            "relative_annular_thrust": 0.017776912800288272
+          },
+          {
+            "radius_ratio": 0.8403515625,
+            "blade_incidence_deg": 20.102791825869488,
+            "relative_annular_thrust": 0.017885611006210698
+          },
+          {
+            "radius_ratio": 0.8455859375,
+            "blade_incidence_deg": 20.122957889787237,
+            "relative_annular_thrust": 0.01798586653363172
+          },
+          {
+            "radius_ratio": 0.8508203125,
+            "blade_incidence_deg": 20.1418003121228,
+            "relative_annular_thrust": 0.018076828681789493
+          },
+          {
+            "radius_ratio": 0.8560546875,
+            "blade_incidence_deg": 20.159338714777128,
+            "relative_annular_thrust": 0.018157569425913612
+          },
+          {
+            "radius_ratio": 0.8612890625,
+            "blade_incidence_deg": 20.17559235933358,
+            "relative_annular_thrust": 0.018227075287766417
+          },
+          {
+            "radius_ratio": 0.8665234375,
+            "blade_incidence_deg": 20.19058015459096,
+            "relative_annular_thrust": 0.018284238051780914
+          },
+          {
+            "radius_ratio": 0.8717578125000001,
+            "blade_incidence_deg": 20.204320663932204,
+            "relative_annular_thrust": 0.01832784409156104
+          },
+          {
+            "radius_ratio": 0.8769921875,
+            "blade_incidence_deg": 20.216832112531904,
+            "relative_annular_thrust": 0.01835656200866585
+          },
+          {
+            "radius_ratio": 0.8822265625000001,
+            "blade_incidence_deg": 20.228132394405957,
+            "relative_annular_thrust": 0.01836892820256419
+          },
+          {
+            "radius_ratio": 0.8874609375,
+            "blade_incidence_deg": 20.238239079306197,
+            "relative_annular_thrust": 0.018363329879807672
+          },
+          {
+            "radius_ratio": 0.8926953125000001,
+            "blade_incidence_deg": 20.247169419463326,
+            "relative_annular_thrust": 0.018337984860862768
+          },
+          {
+            "radius_ratio": 0.8979296875,
+            "blade_incidence_deg": 20.254940356181212,
+            "relative_annular_thrust": 0.018290917338616815
+          },
+          {
+            "radius_ratio": 0.9031640625,
+            "blade_incidence_deg": 20.261568526285465,
+            "relative_annular_thrust": 0.01821992845944227
+          },
+          {
+            "radius_ratio": 0.9083984374999999,
+            "blade_incidence_deg": 20.267070268429393,
+            "relative_annular_thrust": 0.018122560199673385
+          },
+          {
+            "radius_ratio": 0.9136328125,
+            "blade_incidence_deg": 20.271461629260394,
+            "relative_annular_thrust": 0.017996050441451767
+          },
+          {
+            "radius_ratio": 0.9188671875000001,
+            "blade_incidence_deg": 20.274758369449522,
+            "relative_annular_thrust": 0.017837276323693606
+          },
+          {
+            "radius_ratio": 0.9241015625000001,
+            "blade_incidence_deg": 20.276975969587337,
+            "relative_annular_thrust": 0.017642681713221125
+          },
+          {
+            "radius_ratio": 0.9293359375,
+            "blade_incidence_deg": 20.278129635948826,
+            "relative_annular_thrust": 0.017408182769705648
+          },
+          {
+            "radius_ratio": 0.9345703125,
+            "blade_incidence_deg": 20.278234306130113,
+            "relative_annular_thrust": 0.01712904265769397
+          },
+          {
+            "radius_ratio": 0.9398046874999999,
+            "blade_incidence_deg": 20.277304654559966,
+            "relative_annular_thrust": 0.016799701765508518
+          },
+          {
+            "radius_ratio": 0.9450390625000001,
+            "blade_incidence_deg": 20.275355097888607,
+            "relative_annular_thrust": 0.016413541989268084
+          },
+          {
+            "radius_ratio": 0.9502734375,
+            "blade_incidence_deg": 20.272399800256647,
+            "relative_annular_thrust": 0.015962550157605348
+          },
+          {
+            "radius_ratio": 0.9555078125,
+            "blade_incidence_deg": 20.268452678446803,
+            "relative_annular_thrust": 0.01543682128577995
+          },
+          {
+            "radius_ratio": 0.9607421875,
+            "blade_incidence_deg": 20.263527406920883,
+            "relative_annular_thrust": 0.014823795786129516
+          },
+          {
+            "radius_ratio": 0.9659765625,
+            "blade_incidence_deg": 20.257637422744743,
+            "relative_annular_thrust": 0.01410702985158774
+          },
+          {
+            "radius_ratio": 0.9712109375000001,
+            "blade_incidence_deg": 20.250795930403577,
+            "relative_annular_thrust": 0.013264088451085213
+          },
+          {
+            "radius_ratio": 0.9764453125000001,
+            "blade_incidence_deg": 20.243015906510173,
+            "relative_annular_thrust": 0.012262636241135102
+          },
+          {
+            "radius_ratio": 0.9816796875,
+            "blade_incidence_deg": 20.234310104408387,
+            "relative_annular_thrust": 0.011052355818341734
+          },
+          {
+            "radius_ratio": 0.9869140625,
+            "blade_incidence_deg": 20.224691058674264,
+            "relative_annular_thrust": 0.009545379789327766
+          },
+          {
+            "radius_ratio": 0.9921484374999999,
+            "blade_incidence_deg": 20.2141710895172,
+            "relative_annular_thrust": 0.007554883916990277
+          },
+          {
+            "radius_ratio": 0.9973828125000002,
+            "blade_incidence_deg": 20.202762307083365,
+            "relative_annular_thrust": 0.004456359742121866
+          }
+        ],
+        "illustrative_four_branch_flow_fractions": [
+          0.28932843061262425,
+          0.2587832154692636,
+          0.23623567436039256,
+          0.21565267955771966
+        ],
+        "branch_resistances_assumed_relative": [
+          1.0,
+          1.25,
+          1.5,
+          1.8
+        ],
+        "validity_flags": {
+          "polar_measured": false,
+          "boundary_conditions_measured": false,
+          "tip_mach_above_0p3": true,
+          "sections_outside_small_angle_polar": true,
+          "CFD_or_FEM_result": false,
+          "physical_validation_established": false,
+          "manufacturing_authorized": false
+        }
+      }
+    },
+    {
+      "variant": "V1_tip_unloading",
+      "changes": {
+        "tip_twist_deg": -15
+      },
+      "parameters": {
+        "configuration_id": "private_scan_informed_horizontal_study_R0_V1_tip_unloading",
+        "geometry_origin": "private analytic reconstruction informed by relative scan proportions; absolute scale hypothetical",
+        "diameter_mm": 275,
+        "blade_count": 9,
+        "blade_root_radius_ratio": 0.61,
+        "carrier_radius_ratio": 0.665,
+        "bore_radius_ratio": 0.1,
+        "root_chord_ratio": 0.47,
+        "tip_chord_ratio": 0.46,
+        "root_pitch_deg": 42,
+        "tip_twist_deg": -15,
+        "sweep_ratio": 0.045,
+        "camber_ratio": 0.022,
+        "blade_thickness_ratio": 0.022,
+        "web_thickness_ratio": 0.035,
+        "tip_gap_ratio": 0.008,
+        "shroud_wall_ratio": 0.024
+      },
+      "result": {
+        "configuration_id": "private_scan_informed_horizontal_study_R0_V1_tip_unloading",
+        "diameter_mm_assumed": 275,
+        "shaft_power_W_assumed": 6000,
+        "fan_rpm_screen": 7480.291917289049,
+        "flow_m3_s_screen": 1.2484720875815123,
+        "static_pressure_Pa_screen": 3408.3194130921465,
+        "useful_air_power_W_screen": 4255.191652807747,
+        "shaft_to_air_efficiency_screen": 0.7091986088012912,
+        "tip_speed_m_s": 107.70847144778594,
+        "tip_mach_assuming_343_m_s": 0.31401886719471117,
+        "drag_and_gap_model": {
+          "lift_slope_per_rad": 5.7,
+          "cl_limit": 1.1,
+          "Cd0": 0.025,
+          "drag_quadratic": 0.04,
+          "gap_loss_coefficient": 5,
+          "friction_torque_Nm": 0.63
+        },
+        "radial_sections_over_12deg_incidence_fraction": 1.0,
+        "beam_stress_MPa_screen": 13.95086262301873,
+        "beam_centrifugal_stress_MPa_screen": 9.720796773618531,
+        "beam_aero_bending_stress_MPa_screen": 4.230065849400201,
+        "per_blade_mass_kg_screen": 0.023424325192025815,
+        "cantilever_first_frequency_Hz_screen": 865.2430821402746,
+        "blade_passing_frequency_Hz": 1122.0437875933574,
+        "radial_thrust_density_not_installed_air_distribution": [
+          {
+            "radius_ratio": 0.6676171875000001,
+            "blade_incidence_deg": 17.50715948692657,
+            "relative_annular_thrust": 0.012599235208071474
+          },
+          {
+            "radius_ratio": 0.6728515625000001,
+            "blade_incidence_deg": 17.49094537690172,
+            "relative_annular_thrust": 0.012770392171951108
+          },
+          {
+            "radius_ratio": 0.6780859375000001,
+            "blade_incidence_deg": 17.472497668861678,
+            "relative_annular_thrust": 0.012942199398403836
+          },
+          {
+            "radius_ratio": 0.6833203125,
+            "blade_incidence_deg": 17.451853348974176,
+            "relative_annular_thrust": 0.01311459732065889
+          },
+          {
+            "radius_ratio": 0.6885546875000002,
+            "blade_incidence_deg": 17.429048684272775,
+            "relative_annular_thrust": 0.013287521134262917
+          },
+          {
+            "radius_ratio": 0.6937890625,
+            "blade_incidence_deg": 17.404119236944652,
+            "relative_annular_thrust": 0.013460900351682533
+          },
+          {
+            "radius_ratio": 0.6990234375000001,
+            "blade_incidence_deg": 17.37709987841304,
+            "relative_annular_thrust": 0.01363465831946835
+          },
+          {
+            "radius_ratio": 0.7042578125000001,
+            "blade_incidence_deg": 17.34802480320972,
+            "relative_annular_thrust": 0.01380871169485494
+          },
+          {
+            "radius_ratio": 0.7094921875000001,
+            "blade_incidence_deg": 17.316927542633927,
+            "relative_annular_thrust": 0.013982969878401256
+          },
+          {
+            "radius_ratio": 0.7147265625,
+            "blade_incidence_deg": 17.28384097819471,
+            "relative_annular_thrust": 0.014157334398978256
+          },
+          {
+            "radius_ratio": 0.7199609375000001,
+            "blade_incidence_deg": 17.248797354834387,
+            "relative_annular_thrust": 0.014331698247083555
+          },
+          {
+            "radius_ratio": 0.7251953125,
+            "blade_incidence_deg": 17.21182829393123,
+            "relative_annular_thrust": 0.014505945152101525
+          },
+          {
+            "radius_ratio": 0.7304296875,
+            "blade_incidence_deg": 17.17296480608024,
+            "relative_annular_thrust": 0.014679948798727579
+          },
+          {
+            "radius_ratio": 0.7356640625,
+            "blade_incidence_deg": 17.132237303651156,
+            "relative_annular_thrust": 0.014853571977330423
+          },
+          {
+            "radius_ratio": 0.7408984375000001,
+            "blade_incidence_deg": 17.08967561312346,
+            "relative_annular_thrust": 0.015026665662530875
+          },
+          {
+            "radius_ratio": 0.7461328125000001,
+            "blade_incidence_deg": 17.045308987198386,
+            "relative_annular_thrust": 0.015199068013720264
+          },
+          {
+            "radius_ratio": 0.7513671875000001,
+            "blade_incidence_deg": 16.999166116688407,
+            "relative_annular_thrust": 0.015370603290616848
+          },
+          {
+            "radius_ratio": 0.7566015625,
+            "blade_incidence_deg": 16.951275142185064,
+            "relative_annular_thrust": 0.01554108067625302
+          },
+          {
+            "radius_ratio": 0.7618359375000001,
+            "blade_incidence_deg": 16.901663665506113,
+            "relative_annular_thrust": 0.015710292998983025
+          },
+          {
+            "radius_ratio": 0.7670703125,
+            "blade_incidence_deg": 16.85035876092342,
+            "relative_annular_thrust": 0.01587801534418527
+          },
+          {
+            "radius_ratio": 0.7723046875,
+            "blade_incidence_deg": 16.797386986173304,
+            "relative_annular_thrust": 0.016044003545279396
+          },
+          {
+            "radius_ratio": 0.7775390625,
+            "blade_incidence_deg": 16.742774393250922,
+            "relative_annular_thrust": 0.01620799254246158
+          },
+          {
+            "radius_ratio": 0.7827734375000001,
+            "blade_incidence_deg": 16.68654653899098,
+            "relative_annular_thrust": 0.016369694596146213
+          },
+          {
+            "radius_ratio": 0.7880078125,
+            "blade_incidence_deg": 16.62872849543697,
+            "relative_annular_thrust": 0.016528797340445645
+          },
+          {
+            "radius_ratio": 0.7932421875000001,
+            "blade_incidence_deg": 16.569344860001014,
+            "relative_annular_thrust": 0.016684961660070427
+          },
+          {
+            "radius_ratio": 0.7984765625,
+            "blade_incidence_deg": 16.508419765417276,
+            "relative_annular_thrust": 0.016837819371721654
+          },
+          {
+            "radius_ratio": 0.8037109375000001,
+            "blade_incidence_deg": 16.445976889491202,
+            "relative_annular_thrust": 0.01698697068829263
+          },
+          {
+            "radius_ratio": 0.8089453125,
+            "blade_incidence_deg": 16.38203946464751,
+            "relative_annular_thrust": 0.017131981440891595
+          },
+          {
+            "radius_ratio": 0.8141796875,
+            "blade_incidence_deg": 16.316630287279743,
+            "relative_annular_thrust": 0.017272380029707216
+          },
+          {
+            "radius_ratio": 0.8194140624999999,
+            "blade_incidence_deg": 16.249771726904264,
+            "relative_annular_thrust": 0.017407654069890623
+          },
+          {
+            "radius_ratio": 0.8246484375,
+            "blade_incidence_deg": 16.18148573512171,
+            "relative_annular_thrust": 0.017537246692704095
+          },
+          {
+            "radius_ratio": 0.8298828125,
+            "blade_incidence_deg": 16.111793854388928,
+            "relative_annular_thrust": 0.017660552454900752
+          },
+          {
+            "radius_ratio": 0.8351171875000001,
+            "blade_incidence_deg": 16.040717226604407,
+            "relative_annular_thrust": 0.017776912800288272
+          },
+          {
+            "radius_ratio": 0.8403515625,
+            "blade_incidence_deg": 15.968276601510514,
+            "relative_annular_thrust": 0.017885611006210698
+          },
+          {
+            "radius_ratio": 0.8455859375,
+            "blade_incidence_deg": 15.894492344915445,
+            "relative_annular_thrust": 0.01798586653363172
+          },
+          {
+            "radius_ratio": 0.8508203125,
+            "blade_incidence_deg": 15.819384446738178,
+            "relative_annular_thrust": 0.018076828681789493
+          },
+          {
+            "radius_ratio": 0.8560546875,
+            "blade_incidence_deg": 15.742972528879687,
+            "relative_annular_thrust": 0.018157569425913612
+          },
+          {
+            "radius_ratio": 0.8612890625,
+            "blade_incidence_deg": 15.665275852923324,
+            "relative_annular_thrust": 0.018227075287766417
+          },
+          {
+            "radius_ratio": 0.8665234375,
+            "blade_incidence_deg": 15.586313327667884,
+            "relative_annular_thrust": 0.018284238051780914
+          },
+          {
+            "radius_ratio": 0.8717578125000001,
+            "blade_incidence_deg": 15.506103516496301,
+            "relative_annular_thrust": 0.01832784409156104
+          },
+          {
+            "radius_ratio": 0.8769921875,
+            "blade_incidence_deg": 15.424664644583185,
+            "relative_annular_thrust": 0.01835656200866585
+          },
+          {
+            "radius_ratio": 0.8822265625000001,
+            "blade_incidence_deg": 15.34201460594442,
+            "relative_annular_thrust": 0.01836892820256419
+          },
+          {
+            "radius_ratio": 0.8874609375,
+            "blade_incidence_deg": 15.258170970331832,
+            "relative_annular_thrust": 0.018363329879807672
+          },
+          {
+            "radius_ratio": 0.8926953125000001,
+            "blade_incidence_deg": 15.173150989976147,
+            "relative_annular_thrust": 0.018337984860862768
+          },
+          {
+            "radius_ratio": 0.8979296875,
+            "blade_incidence_deg": 15.086971606181216,
+            "relative_annular_thrust": 0.018290917338616815
+          },
+          {
+            "radius_ratio": 0.9031640625,
+            "blade_incidence_deg": 14.999649455772648,
+            "relative_annular_thrust": 0.01821992845944227
+          },
+          {
+            "radius_ratio": 0.9083984374999999,
+            "blade_incidence_deg": 14.91120087740376,
+            "relative_annular_thrust": 0.018122560199673385
+          },
+          {
+            "radius_ratio": 0.9136328125,
+            "blade_incidence_deg": 14.821641917721934,
+            "relative_annular_thrust": 0.017996050441451767
+          },
+          {
+            "radius_ratio": 0.9188671875000001,
+            "blade_incidence_deg": 14.730988337398237,
+            "relative_annular_thrust": 0.017837276323693606
+          },
+          {
+            "radius_ratio": 0.9241015625000001,
+            "blade_incidence_deg": 14.639255617023233,
+            "relative_annular_thrust": 0.017642681713221125
+          },
+          {
+            "radius_ratio": 0.9293359375,
+            "blade_incidence_deg": 14.546458962871897,
+            "relative_annular_thrust": 0.017408182769705648
+          },
+          {
+            "radius_ratio": 0.9345703125,
+            "blade_incidence_deg": 14.452613312540366,
+            "relative_annular_thrust": 0.01712904265769397
+          },
+          {
+            "radius_ratio": 0.9398046874999999,
+            "blade_incidence_deg": 14.357733340457402,
+            "relative_annular_thrust": 0.016799701765508518
+          },
+          {
+            "radius_ratio": 0.9450390625000001,
+            "blade_incidence_deg": 14.261833463273218,
+            "relative_annular_thrust": 0.016413541989268084
+          },
+          {
+            "radius_ratio": 0.9502734375,
+            "blade_incidence_deg": 14.164927845128442,
+            "relative_annular_thrust": 0.015962550157605348
+          },
+          {
+            "radius_ratio": 0.9555078125,
+            "blade_incidence_deg": 14.06703040280578,
+            "relative_annular_thrust": 0.01543682128577995
+          },
+          {
+            "radius_ratio": 0.9607421875,
+            "blade_incidence_deg": 13.968154810767034,
+            "relative_annular_thrust": 0.014823795786129516
+          },
+          {
+            "radius_ratio": 0.9659765625,
+            "blade_incidence_deg": 13.86831450607807,
+            "relative_annular_thrust": 0.01410702985158774
+          },
+          {
+            "radius_ratio": 0.9712109375000001,
+            "blade_incidence_deg": 13.767522693224086,
+            "relative_annular_thrust": 0.013264088451085213
+          },
+          {
+            "radius_ratio": 0.9764453125000001,
+            "blade_incidence_deg": 13.66579234881787,
+            "relative_annular_thrust": 0.012262636241135102
+          },
+          {
+            "radius_ratio": 0.9816796875,
+            "blade_incidence_deg": 13.563136226203259,
+            "relative_annular_thrust": 0.011052355818341734
+          },
+          {
+            "radius_ratio": 0.9869140625,
+            "blade_incidence_deg": 13.459566859956318,
+            "relative_annular_thrust": 0.009545379789327766
+          },
+          {
+            "radius_ratio": 0.9921484374999999,
+            "blade_incidence_deg": 13.35509657028644,
+            "relative_annular_thrust": 0.007554883916990277
+          },
+          {
+            "radius_ratio": 0.9973828125000002,
+            "blade_incidence_deg": 13.24973746733977,
+            "relative_annular_thrust": 0.004456359742121866
+          }
+        ],
+        "illustrative_four_branch_flow_fractions": [
+          0.28932843061262425,
+          0.2587832154692636,
+          0.23623567436039256,
+          0.21565267955771966
+        ],
+        "branch_resistances_assumed_relative": [
+          1.0,
+          1.25,
+          1.5,
+          1.8
+        ],
+        "validity_flags": {
+          "polar_measured": false,
+          "boundary_conditions_measured": false,
+          "tip_mach_above_0p3": true,
+          "sections_outside_small_angle_polar": true,
+          "CFD_or_FEM_result": false,
+          "physical_validation_established": false,
+          "manufacturing_authorized": false
+        }
+      },
+      "relative_to_R0_percent": {
+        "flow_m3_s_screen": 0.0,
+        "static_pressure_Pa_screen": 0.0,
+        "shaft_to_air_efficiency_screen": 0.0,
+        "beam_stress_MPa_screen": 0.0,
+        "cantilever_first_frequency_Hz_screen": 0.0
+      }
+    },
+    {
+      "variant": "V2_lower_collective_pitch",
+      "changes": {
+        "root_pitch_deg": 36
+      },
+      "parameters": {
+        "configuration_id": "private_scan_informed_horizontal_study_R0_V2_lower_collective_pitch",
+        "geometry_origin": "private analytic reconstruction informed by relative scan proportions; absolute scale hypothetical",
+        "diameter_mm": 275,
+        "blade_count": 9,
+        "blade_root_radius_ratio": 0.61,
+        "carrier_radius_ratio": 0.665,
+        "bore_radius_ratio": 0.1,
+        "root_chord_ratio": 0.47,
+        "tip_chord_ratio": 0.46,
+        "root_pitch_deg": 36,
+        "tip_twist_deg": -8,
+        "sweep_ratio": 0.045,
+        "camber_ratio": 0.022,
+        "blade_thickness_ratio": 0.022,
+        "web_thickness_ratio": 0.035,
+        "tip_gap_ratio": 0.008,
+        "shroud_wall_ratio": 0.024
+      },
+      "result": {
+        "configuration_id": "private_scan_informed_horizontal_study_R0_V2_lower_collective_pitch",
+        "diameter_mm_assumed": 275,
+        "shaft_power_W_assumed": 6000,
+        "fan_rpm_screen": 7480.291917289049,
+        "flow_m3_s_screen": 1.2484720875815123,
+        "static_pressure_Pa_screen": 3408.3194130921465,
+        "useful_air_power_W_screen": 4255.191652807747,
+        "shaft_to_air_efficiency_screen": 0.7091986088012912,
+        "tip_speed_m_s": 107.70847144778594,
+        "tip_mach_assuming_343_m_s": 0.31401886719471117,
+        "drag_and_gap_model": {
+          "lift_slope_per_rad": 5.7,
+          "cl_limit": 1.1,
+          "Cd0": 0.025,
+          "drag_quadratic": 0.04,
+          "gap_loss_coefficient": 5,
+          "friction_torque_Nm": 0.63
+        },
+        "radial_sections_over_12deg_incidence_fraction": 1.0,
+        "beam_stress_MPa_screen": 13.95086262301873,
+        "beam_centrifugal_stress_MPa_screen": 9.720796773618531,
+        "beam_aero_bending_stress_MPa_screen": 4.230065849400201,
+        "per_blade_mass_kg_screen": 0.023424325192025815,
+        "cantilever_first_frequency_Hz_screen": 865.2430821402746,
+        "blade_passing_frequency_Hz": 1122.0437875933574,
+        "radial_thrust_density_not_installed_air_distribution": [
+          {
+            "radius_ratio": 0.6676171875000001,
+            "blade_incidence_deg": 12.541314134362468,
+            "relative_annular_thrust": 0.012599235208071474
+          },
+          {
+            "radius_ratio": 0.6728515625000001,
+            "blade_incidence_deg": 12.619050344850443,
+            "relative_annular_thrust": 0.012770392171951108
+          },
+          {
+            "radius_ratio": 0.6780859375000001,
+            "blade_incidence_deg": 12.69455295732322,
+            "relative_annular_thrust": 0.012942199398403836
+          },
+          {
+            "radius_ratio": 0.6833203125,
+            "blade_incidence_deg": 12.767858957948546,
+            "relative_annular_thrust": 0.01311459732065889
+          },
+          {
+            "radius_ratio": 0.6885546875000002,
+            "blade_incidence_deg": 12.839004613759958,
+            "relative_annular_thrust": 0.013287521134262917
+          },
+          {
+            "radius_ratio": 0.6937890625,
+            "blade_incidence_deg": 12.908025486944652,
+            "relative_annular_thrust": 0.013460900351682533
+          },
+          {
+            "radius_ratio": 0.6990234375000001,
+            "blade_incidence_deg": 12.974956448925862,
+            "relative_annular_thrust": 0.01363465831946835
+          },
+          {
+            "radius_ratio": 0.7042578125000001,
+            "blade_incidence_deg": 13.039831694235364,
+            "relative_annular_thrust": 0.01380871169485494
+          },
+          {
+            "radius_ratio": 0.7094921875000001,
+            "blade_incidence_deg": 13.10268475417239,
+            "relative_annular_thrust": 0.013982969878401256
+          },
+          {
+            "radius_ratio": 0.7147265625,
+            "blade_incidence_deg": 13.163548510245992,
+            "relative_annular_thrust": 0.014157334398978256
+          },
+          {
+            "radius_ratio": 0.7199609375000001,
+            "blade_incidence_deg": 13.222455207398491,
+            "relative_annular_thrust": 0.014331698247083555
+          },
+          {
+            "radius_ratio": 0.7251953125,
+            "blade_incidence_deg": 13.279436467008153,
+            "relative_annular_thrust": 0.014505945152101525
+          },
+          {
+            "radius_ratio": 0.7304296875,
+            "blade_incidence_deg": 13.334523299669986,
+            "relative_annular_thrust": 0.014679948798727579
+          },
+          {
+            "radius_ratio": 0.7356640625,
+            "blade_incidence_deg": 13.387746117753727,
+            "relative_annular_thrust": 0.014853571977330423
+          },
+          {
+            "radius_ratio": 0.7408984375000001,
+            "blade_incidence_deg": 13.439134747738844,
+            "relative_annular_thrust": 0.015026665662530875
+          },
+          {
+            "radius_ratio": 0.7461328125000001,
+            "blade_incidence_deg": 13.488718442326592,
+            "relative_annular_thrust": 0.015199068013720264
+          },
+          {
+            "radius_ratio": 0.7513671875000001,
+            "blade_incidence_deg": 13.536525892329431,
+            "relative_annular_thrust": 0.015370603290616848
+          },
+          {
+            "radius_ratio": 0.7566015625,
+            "blade_incidence_deg": 13.582585238338908,
+            "relative_annular_thrust": 0.01554108067625302
+          },
+          {
+            "radius_ratio": 0.7618359375000001,
+            "blade_incidence_deg": 13.626924082172774,
+            "relative_annular_thrust": 0.015710292998983025
+          },
+          {
+            "radius_ratio": 0.7670703125,
+            "blade_incidence_deg": 13.669569498102911,
+            "relative_annular_thrust": 0.01587801534418527
+          },
+          {
+            "radius_ratio": 0.7723046875,
+            "blade_incidence_deg": 13.710548043865618,
+            "relative_annular_thrust": 0.016044003545279396
+          },
+          {
+            "radius_ratio": 0.7775390625,
+            "blade_incidence_deg": 13.74988577145605,
+            "relative_annular_thrust": 0.01620799254246158
+          },
+          {
+            "radius_ratio": 0.7827734375000001,
+            "blade_incidence_deg": 13.787608237708941,
+            "relative_annular_thrust": 0.016369694596146213
+          },
+          {
+            "radius_ratio": 0.7880078125,
+            "blade_incidence_deg": 13.823740514667747,
+            "relative_annular_thrust": 0.016528797340445645
+          },
+          {
+            "radius_ratio": 0.7932421875000001,
+            "blade_incidence_deg": 13.858307199744607,
+            "relative_annular_thrust": 0.016684961660070427
+          },
+          {
+            "radius_ratio": 0.7984765625,
+            "blade_incidence_deg": 13.891332425673685,
+            "relative_annular_thrust": 0.016837819371721654
+          },
+          {
+            "radius_ratio": 0.8037109375000001,
+            "blade_incidence_deg": 13.922839870260434,
+            "relative_annular_thrust": 0.01698697068829263
+          },
+          {
+            "radius_ratio": 0.8089453125,
+            "blade_incidence_deg": 13.952852765929558,
+            "relative_annular_thrust": 0.017131981440891595
+          },
+          {
+            "radius_ratio": 0.8141796875,
+            "blade_incidence_deg": 13.98139390907461,
+            "relative_annular_thrust": 0.017272380029707216
+          },
+          {
+            "radius_ratio": 0.8194140624999999,
+            "blade_incidence_deg": 14.008485669211952,
+            "relative_annular_thrust": 0.017407654069890623
+          },
+          {
+            "radius_ratio": 0.8246484375,
+            "blade_incidence_deg": 14.034149997942224,
+            "relative_annular_thrust": 0.017537246692704095
+          },
+          {
+            "radius_ratio": 0.8298828125,
+            "blade_incidence_deg": 14.058408437722257,
+            "relative_annular_thrust": 0.017660552454900752
+          },
+          {
+            "radius_ratio": 0.8351171875000001,
+            "blade_incidence_deg": 14.08128213045056,
+            "relative_annular_thrust": 0.017776912800288272
+          },
+          {
+            "radius_ratio": 0.8403515625,
+            "blade_incidence_deg": 14.102791825869485,
+            "relative_annular_thrust": 0.017885611006210698
+          },
+          {
+            "radius_ratio": 0.8455859375,
+            "blade_incidence_deg": 14.122957889787235,
+            "relative_annular_thrust": 0.01798586653363172
+          },
+          {
+            "radius_ratio": 0.8508203125,
+            "blade_incidence_deg": 14.141800312122799,
+            "relative_annular_thrust": 0.018076828681789493
+          },
+          {
+            "radius_ratio": 0.8560546875,
+            "blade_incidence_deg": 14.159338714777125,
+            "relative_annular_thrust": 0.018157569425913612
+          },
+          {
+            "radius_ratio": 0.8612890625,
+            "blade_incidence_deg": 14.175592359333582,
+            "relative_annular_thrust": 0.018227075287766417
+          },
+          {
+            "radius_ratio": 0.8665234375,
+            "blade_incidence_deg": 14.190580154590961,
+            "relative_annular_thrust": 0.018284238051780914
+          },
+          {
+            "radius_ratio": 0.8717578125000001,
+            "blade_incidence_deg": 14.204320663932196,
+            "relative_annular_thrust": 0.01832784409156104
+          },
+          {
+            "radius_ratio": 0.8769921875,
+            "blade_incidence_deg": 14.216832112531902,
+            "relative_annular_thrust": 0.01835656200866585
+          },
+          {
+            "radius_ratio": 0.8822265625000001,
+            "blade_incidence_deg": 14.228132394405957,
+            "relative_annular_thrust": 0.01836892820256419
+          },
+          {
+            "radius_ratio": 0.8874609375,
+            "blade_incidence_deg": 14.2382390793062,
+            "relative_annular_thrust": 0.018363329879807672
+          },
+          {
+            "radius_ratio": 0.8926953125000001,
+            "blade_incidence_deg": 14.247169419463328,
+            "relative_annular_thrust": 0.018337984860862768
+          },
+          {
+            "radius_ratio": 0.8979296875,
+            "blade_incidence_deg": 14.254940356181212,
+            "relative_annular_thrust": 0.018290917338616815
+          },
+          {
+            "radius_ratio": 0.9031640625,
+            "blade_incidence_deg": 14.261568526285462,
+            "relative_annular_thrust": 0.01821992845944227
+          },
+          {
+            "radius_ratio": 0.9083984374999999,
+            "blade_incidence_deg": 14.267070268429398,
+            "relative_annular_thrust": 0.018122560199673385
+          },
+          {
+            "radius_ratio": 0.9136328125,
+            "blade_incidence_deg": 14.271461629260397,
+            "relative_annular_thrust": 0.017996050441451767
+          },
+          {
+            "radius_ratio": 0.9188671875000001,
+            "blade_incidence_deg": 14.27475836944952,
+            "relative_annular_thrust": 0.017837276323693606
+          },
+          {
+            "radius_ratio": 0.9241015625000001,
+            "blade_incidence_deg": 14.27697596958734,
+            "relative_annular_thrust": 0.017642681713221125
+          },
+          {
+            "radius_ratio": 0.9293359375,
+            "blade_incidence_deg": 14.278129635948822,
+            "relative_annular_thrust": 0.017408182769705648
+          },
+          {
+            "radius_ratio": 0.9345703125,
+            "blade_incidence_deg": 14.278234306130116,
+            "relative_annular_thrust": 0.01712904265769397
+          },
+          {
+            "radius_ratio": 0.9398046874999999,
+            "blade_incidence_deg": 14.27730465455997,
+            "relative_annular_thrust": 0.016799701765508518
+          },
+          {
+            "radius_ratio": 0.9450390625000001,
+            "blade_incidence_deg": 14.275355097888603,
+            "relative_annular_thrust": 0.016413541989268084
+          },
+          {
+            "radius_ratio": 0.9502734375,
+            "blade_incidence_deg": 14.272399800256647,
+            "relative_annular_thrust": 0.015962550157605348
+          },
+          {
+            "radius_ratio": 0.9555078125,
+            "blade_incidence_deg": 14.268452678446803,
+            "relative_annular_thrust": 0.01543682128577995
+          },
+          {
+            "radius_ratio": 0.9607421875,
+            "blade_incidence_deg": 14.26352740692088,
+            "relative_annular_thrust": 0.014823795786129516
+          },
+          {
+            "radius_ratio": 0.9659765625,
+            "blade_incidence_deg": 14.257637422744741,
+            "relative_annular_thrust": 0.01410702985158774
+          },
+          {
+            "radius_ratio": 0.9712109375000001,
+            "blade_incidence_deg": 14.250795930403575,
+            "relative_annular_thrust": 0.013264088451085213
+          },
+          {
+            "radius_ratio": 0.9764453125000001,
+            "blade_incidence_deg": 14.24301590651018,
+            "relative_annular_thrust": 0.012262636241135102
+          },
+          {
+            "radius_ratio": 0.9816796875,
+            "blade_incidence_deg": 14.234310104408385,
+            "relative_annular_thrust": 0.011052355818341734
+          },
+          {
+            "radius_ratio": 0.9869140625,
+            "blade_incidence_deg": 14.224691058674264,
+            "relative_annular_thrust": 0.009545379789327766
+          },
+          {
+            "radius_ratio": 0.9921484374999999,
+            "blade_incidence_deg": 14.214171089517205,
+            "relative_annular_thrust": 0.007554883916990277
+          },
+          {
+            "radius_ratio": 0.9973828125000002,
+            "blade_incidence_deg": 14.202762307083363,
+            "relative_annular_thrust": 0.004456359742121866
+          }
+        ],
+        "illustrative_four_branch_flow_fractions": [
+          0.28932843061262425,
+          0.2587832154692636,
+          0.23623567436039256,
+          0.21565267955771966
+        ],
+        "branch_resistances_assumed_relative": [
+          1.0,
+          1.25,
+          1.5,
+          1.8
+        ],
+        "validity_flags": {
+          "polar_measured": false,
+          "boundary_conditions_measured": false,
+          "tip_mach_above_0p3": true,
+          "sections_outside_small_angle_polar": true,
+          "CFD_or_FEM_result": false,
+          "physical_validation_established": false,
+          "manufacturing_authorized": false
+        }
+      },
+      "relative_to_R0_percent": {
+        "flow_m3_s_screen": 0.0,
+        "static_pressure_Pa_screen": 0.0,
+        "shaft_to_air_efficiency_screen": 0.0,
+        "beam_stress_MPa_screen": 0.0,
+        "cantilever_first_frequency_Hz_screen": 0.0
+      }
+    },
+    {
+      "variant": "V3_tighter_clearance",
+      "changes": {
+        "tip_gap_ratio": 0.004
+      },
+      "parameters": {
+        "configuration_id": "private_scan_informed_horizontal_study_R0_V3_tighter_clearance",
+        "geometry_origin": "private analytic reconstruction informed by relative scan proportions; absolute scale hypothetical",
+        "diameter_mm": 275,
+        "blade_count": 9,
+        "blade_root_radius_ratio": 0.61,
+        "carrier_radius_ratio": 0.665,
+        "bore_radius_ratio": 0.1,
+        "root_chord_ratio": 0.47,
+        "tip_chord_ratio": 0.46,
+        "root_pitch_deg": 42,
+        "tip_twist_deg": -8,
+        "sweep_ratio": 0.045,
+        "camber_ratio": 0.022,
+        "blade_thickness_ratio": 0.022,
+        "web_thickness_ratio": 0.035,
+        "tip_gap_ratio": 0.004,
+        "shroud_wall_ratio": 0.024
+      },
+      "result": {
+        "configuration_id": "private_scan_informed_horizontal_study_R0_V3_tighter_clearance",
+        "diameter_mm_assumed": 275,
+        "shaft_power_W_assumed": 6000,
+        "fan_rpm_screen": 7438.514781836223,
+        "flow_m3_s_screen": 1.2668855182747047,
+        "static_pressure_Pa_screen": 3509.597866882819,
+        "useful_air_power_W_screen": 4446.258712521638,
+        "shaft_to_air_efficiency_screen": 0.7410431187536063,
+        "tip_speed_m_s": 107.10692388108058,
+        "tip_mach_assuming_343_m_s": 0.3122650842014011,
+        "drag_and_gap_model": {
+          "lift_slope_per_rad": 5.7,
+          "cl_limit": 1.1,
+          "Cd0": 0.025,
+          "drag_quadratic": 0.04,
+          "gap_loss_coefficient": 5,
+          "friction_torque_Nm": 0.63
+        },
+        "radial_sections_over_12deg_incidence_fraction": 1.0,
+        "beam_stress_MPa_screen": 13.78756771879635,
+        "beam_centrifugal_stress_MPa_screen": 9.612519449127742,
+        "beam_aero_bending_stress_MPa_screen": 4.175048269668608,
+        "per_blade_mass_kg_screen": 0.023424325192025815,
+        "cantilever_first_frequency_Hz_screen": 865.2430821402746,
+        "blade_passing_frequency_Hz": 1115.7772172754333,
+        "radial_thrust_density_not_installed_air_distribution": [
+          {
+            "radius_ratio": 0.6676171875000001,
+            "blade_incidence_deg": 18.061746335328753,
+            "relative_annular_thrust": 0.012650261533947965
+          },
+          {
+            "radius_ratio": 0.6728515625000001,
+            "blade_incidence_deg": 18.141593311331903,
+            "relative_annular_thrust": 0.012821124775731987
+          },
+          {
+            "radius_ratio": 0.6780859375000001,
+            "blade_incidence_deg": 18.219200578359803,
+            "relative_annular_thrust": 0.012992601464311065
+          },
+          {
+            "radius_ratio": 0.6833203125,
+            "blade_incidence_deg": 18.294604757054795,
+            "relative_annular_thrust": 0.013164629777934969
+          },
+          {
+            "radius_ratio": 0.6885546875000002,
+            "blade_incidence_deg": 18.36784176980546,
+            "relative_annular_thrust": 0.013337142546018112
+          },
+          {
+            "radius_ratio": 0.6937890625,
+            "blade_incidence_deg": 18.438946854118875,
+            "relative_annular_thrust": 0.013510066802516929
+          },
+          {
+            "radius_ratio": 0.6990234375000001,
+            "blade_incidence_deg": 18.50795457582467,
+            "relative_annular_thrust": 0.013683323302428073
+          },
+          {
+            "radius_ratio": 0.7042578125000001,
+            "blade_incidence_deg": 18.574898842105068,
+            "relative_annular_thrust": 0.013856825998376995
+          },
+          {
+            "radius_ratio": 0.7094921875000001,
+            "blade_incidence_deg": 18.63981291434601,
+            "relative_annular_thrust": 0.014030481474006415
+          },
+          {
+            "radius_ratio": 0.7147265625,
+            "blade_incidence_deg": 18.702729420804854,
+            "relative_annular_thrust": 0.01420418833058786
+          },
+          {
+            "radius_ratio": 0.7199609375000001,
+            "blade_incidence_deg": 18.76368036909123,
+            "relative_annular_thrust": 0.014377836522964597
+          },
+          {
+            "radius_ratio": 0.7251953125,
+            "blade_incidence_deg": 18.82269715845783,
+            "relative_annular_thrust": 0.014551306640585564
+          },
+          {
+            "radius_ratio": 0.7304296875,
+            "blade_incidence_deg": 18.87981059189888,
+            "relative_annular_thrust": 0.014724469129004079
+          },
+          {
+            "radius_ratio": 0.7356640625,
+            "blade_incidence_deg": 18.93505088805419,
+            "relative_annular_thrust": 0.01489718344678479
+          },
+          {
+            "radius_ratio": 0.7408984375000001,
+            "blade_incidence_deg": 18.98844769291752,
+            "relative_annular_thrust": 0.01506929715228228
+          },
+          {
+            "radius_ratio": 0.7461328125000001,
+            "blade_incidence_deg": 19.040030091348203,
+            "relative_annular_thrust": 0.015240644914215656
+          },
+          {
+            "radius_ratio": 0.7513671875000001,
+            "blade_incidence_deg": 19.08982661838528,
+            "relative_annular_thrust": 0.01541104743935555
+          },
+          {
+            "radius_ratio": 0.7566015625,
+            "blade_incidence_deg": 19.137865270364326,
+            "relative_annular_thrust": 0.015580310309951956
+          },
+          {
+            "radius_ratio": 0.7618359375000001,
+            "blade_incidence_deg": 19.184173515836598,
+            "relative_annular_thrust": 0.015748222722746542
+          },
+          {
+            "radius_ratio": 0.7670703125,
+            "blade_incidence_deg": 19.22877830629138,
+            "relative_annular_thrust": 0.01591455612051576
+          },
+          {
+            "radius_ratio": 0.7723046875,
+            "blade_incidence_deg": 19.271706086681952,
+            "relative_annular_thrust": 0.01607906270605652
+          },
+          {
+            "radius_ratio": 0.7775390625,
+            "blade_incidence_deg": 19.31298280575629,
+            "relative_annular_thrust": 0.016241473827328257
+          },
+          {
+            "radius_ratio": 0.7827734375000001,
+            "blade_incidence_deg": 19.35263392619364,
+            "relative_annular_thrust": 0.016401498221069212
+          },
+          {
+            "radius_ratio": 0.7880078125,
+            "blade_incidence_deg": 19.390684434548454,
+            "relative_annular_thrust": 0.016558820100567646
+          },
+          {
+            "radius_ratio": 0.7932421875000001,
+            "blade_incidence_deg": 19.427158851003195,
+            "relative_annular_thrust": 0.016713097071337682
+          },
+          {
+            "radius_ratio": 0.7984765625,
+            "blade_incidence_deg": 19.462081238931844,
+            "relative_annular_thrust": 0.016863957856157772
+          },
+          {
+            "radius_ratio": 0.8037109375000001,
+            "blade_incidence_deg": 19.495475214276052,
+            "relative_annular_thrust": 0.017010999808193213
+          },
+          {
+            "radius_ratio": 0.8089453125,
+            "blade_incidence_deg": 19.52736395473587,
+            "relative_annular_thrust": 0.017153786187636775
+          },
+          {
+            "radius_ratio": 0.8141796875,
+            "blade_incidence_deg": 19.557770208777413,
+            "relative_annular_thrust": 0.01729184317332954
+          },
+          {
+            "radius_ratio": 0.8194140624999999,
+            "blade_incidence_deg": 19.58671630445959,
+            "relative_annular_thrust": 0.01742465657599457
+          },
+          {
+            "radius_ratio": 0.8246484375,
+            "blade_incidence_deg": 19.61422415808234,
+            "relative_annular_thrust": 0.017551668213812995
+          },
+          {
+            "radius_ratio": 0.8298828125,
+            "blade_incidence_deg": 19.640315282658822,
+            "relative_annular_thrust": 0.017672271903809256
+          },
+          {
+            "radius_ratio": 0.8351171875000001,
+            "blade_incidence_deg": 19.665010796214048,
+            "relative_annular_thrust": 0.0177858090135297
+          },
+          {
+            "radius_ratio": 0.8403515625,
+            "blade_incidence_deg": 19.688331429912612,
+            "relative_annular_thrust": 0.017891563506316523
+          },
+          {
+            "radius_ratio": 0.8455859375,
+            "blade_incidence_deg": 19.71029753601803,
+            "relative_annular_thrust": 0.01798875639947831
+          },
+          {
+            "radius_ratio": 0.8508203125,
+            "blade_incidence_deg": 19.730929095686456,
+            "relative_annular_thrust": 0.018076539537013873
+          },
+          {
+            "radius_ratio": 0.8560546875,
+            "blade_incidence_deg": 19.750245726597466,
+            "relative_annular_thrust": 0.018153988556164066
+          },
+          {
+            "radius_ratio": 0.8612890625,
+            "blade_incidence_deg": 19.768266690424554,
+            "relative_annular_thrust": 0.018220094898474107
+          },
+          {
+            "radius_ratio": 0.8665234375,
+            "blade_incidence_deg": 19.78501090014817,
+            "relative_annular_thrust": 0.018273756679252972
+          },
+          {
+            "radius_ratio": 0.8717578125000001,
+            "blade_incidence_deg": 19.80049692721402,
+            "relative_annular_thrust": 0.01831376818158213
+          },
+          {
+            "radius_ratio": 0.8769921875,
+            "blade_incidence_deg": 19.814743008539352,
+            "relative_annular_thrust": 0.01833880767856524
+          },
+          {
+            "radius_ratio": 0.8822265625000001,
+            "blade_incidence_deg": 19.82776705337013,
+            "relative_annular_thrust": 0.018347423205012665
+          },
+          {
+            "radius_ratio": 0.8874609375,
+            "blade_incidence_deg": 19.839586649991606,
+            "relative_annular_thrust": 0.018338015789668614
+          },
+          {
+            "radius_ratio": 0.8926953125000001,
+            "blade_incidence_deg": 19.850219072295282,
+            "relative_annular_thrust": 0.018308819510537106
+          },
+          {
+            "radius_ratio": 0.8979296875,
+            "blade_incidence_deg": 19.85968128620485,
+            "relative_annular_thrust": 0.0182578775329187
+          },
+          {
+            "radius_ratio": 0.9031640625,
+            "blade_incidence_deg": 19.867989955963925,
+            "relative_annular_thrust": 0.01818301300873312
+          },
+          {
+            "radius_ratio": 0.9083984374999999,
+            "blade_incidence_deg": 19.875161450288164,
+            "relative_annular_thrust": 0.01808179332064973
+          },
+          {
+            "radius_ratio": 0.9136328125,
+            "blade_incidence_deg": 19.88121184838457,
+            "relative_annular_thrust": 0.0179514855899319
+          },
+          {
+            "radius_ratio": 0.9188671875000001,
+            "blade_incidence_deg": 19.88615694584054,
+            "relative_annular_thrust": 0.017789000544933962
+          },
+          {
+            "radius_ratio": 0.9241015625000001,
+            "blade_incidence_deg": 19.89001226038534,
+            "relative_annular_thrust": 0.017590820625722113
+          },
+          {
+            "radius_ratio": 0.9293359375,
+            "blade_incidence_deg": 19.892793037526634,
+            "relative_annular_thrust": 0.017352906342870535
+          },
+          {
+            "radius_ratio": 0.9345703125,
+            "blade_incidence_deg": 19.89451425606449,
+            "relative_annular_thrust": 0.017070572009757132
+          },
+          {
+            "radius_ratio": 0.9398046874999999,
+            "blade_incidence_deg": 19.89519063348567,
+            "relative_annular_thrust": 0.016738317308703548
+          },
+          {
+            "radius_ratio": 0.9450390625000001,
+            "blade_incidence_deg": 19.89483663124038,
+            "relative_annular_thrust": 0.016349593406598528
+          },
+          {
+            "radius_ratio": 0.9502734375,
+            "blade_incidence_deg": 19.89346645990425,
+            "relative_annular_thrust": 0.01589646895031084
+          },
+          {
+            "radius_ratio": 0.9555078125,
+            "blade_incidence_deg": 19.89109408422776,
+            "relative_annular_thrust": 0.015369137059791978
+          },
+          {
+            "radius_ratio": 0.9607421875,
+            "blade_incidence_deg": 19.88773322807567,
+            "relative_annular_thrust": 0.014755158205157224
+          },
+          {
+            "radius_ratio": 0.9659765625,
+            "blade_incidence_deg": 19.883397379258675,
+            "relative_annular_thrust": 0.0140382396108343
+          },
+          {
+            "radius_ratio": 0.9712109375000001,
+            "blade_incidence_deg": 19.878099794259693,
+            "relative_annular_thrust": 0.013196143513253314
+          },
+          {
+            "radius_ratio": 0.9764453125000001,
+            "blade_incidence_deg": 19.871853502857107,
+            "relative_annular_thrust": 0.0121968060136576
+          },
+          {
+            "radius_ratio": 0.9816796875,
+            "blade_incidence_deg": 19.864671312647083,
+            "relative_annular_thrust": 0.010990312279916483
+          },
+          {
+            "radius_ratio": 0.9869140625,
+            "blade_incidence_deg": 19.856565813467245,
+            "relative_annular_thrust": 0.00948946440019057
+          },
+          {
+            "radius_ratio": 0.9921484374999999,
+            "blade_incidence_deg": 19.847549381723905,
+            "relative_annular_thrust": 0.007508793511430192
+          },
+          {
+            "radius_ratio": 0.9973828125000002,
+            "blade_incidence_deg": 19.837634184624932,
+            "relative_annular_thrust": 0.004428097759482269
+          }
+        ],
+        "illustrative_four_branch_flow_fractions": [
+          0.28932843061262425,
+          0.2587832154692636,
+          0.23623567436039256,
+          0.21565267955771966
+        ],
+        "branch_resistances_assumed_relative": [
+          1.0,
+          1.25,
+          1.5,
+          1.8
+        ],
+        "validity_flags": {
+          "polar_measured": false,
+          "boundary_conditions_measured": false,
+          "tip_mach_above_0p3": true,
+          "sections_outside_small_angle_polar": true,
+          "CFD_or_FEM_result": false,
+          "physical_validation_established": false,
+          "manufacturing_authorized": false
+        }
+      },
+      "relative_to_R0_percent": {
+        "flow_m3_s_screen": 1.4748772420585032,
+        "static_pressure_Pa_screen": 2.9715071129084336,
+        "shaft_to_air_efficiency_screen": 4.490210437121367,
+        "beam_stress_MPa_screen": -1.1705004101534633,
+        "cantilever_first_frequency_Hz_screen": 0.0
+      }
+    },
+    {
+      "variant": "V4_thicker_blade",
+      "changes": {
+        "blade_thickness_ratio": 0.026399999999999996
+      },
+      "parameters": {
+        "configuration_id": "private_scan_informed_horizontal_study_R0_V4_thicker_blade",
+        "geometry_origin": "private analytic reconstruction informed by relative scan proportions; absolute scale hypothetical",
+        "diameter_mm": 275,
+        "blade_count": 9,
+        "blade_root_radius_ratio": 0.61,
+        "carrier_radius_ratio": 0.665,
+        "bore_radius_ratio": 0.1,
+        "root_chord_ratio": 0.47,
+        "tip_chord_ratio": 0.46,
+        "root_pitch_deg": 42,
+        "tip_twist_deg": -8,
+        "sweep_ratio": 0.045,
+        "camber_ratio": 0.022,
+        "blade_thickness_ratio": 0.026399999999999996,
+        "web_thickness_ratio": 0.035,
+        "tip_gap_ratio": 0.008,
+        "shroud_wall_ratio": 0.024
+      },
+      "result": {
+        "configuration_id": "private_scan_informed_horizontal_study_R0_V4_thicker_blade",
+        "diameter_mm_assumed": 275,
+        "shaft_power_W_assumed": 6000,
+        "fan_rpm_screen": 7480.291917289049,
+        "flow_m3_s_screen": 1.2484720875815123,
+        "static_pressure_Pa_screen": 3408.3194130921465,
+        "useful_air_power_W_screen": 4255.191652807747,
+        "shaft_to_air_efficiency_screen": 0.7091986088012912,
+        "tip_speed_m_s": 107.70847144778594,
+        "tip_mach_assuming_343_m_s": 0.31401886719471117,
+        "drag_and_gap_model": {
+          "lift_slope_per_rad": 5.7,
+          "cl_limit": 1.1,
+          "Cd0": 0.025,
+          "drag_quadratic": 0.04,
+          "gap_loss_coefficient": 5,
+          "friction_torque_Nm": 0.63
+        },
+        "radial_sections_over_12deg_incidence_fraction": 1.0,
+        "beam_stress_MPa_screen": 12.658342502368669,
+        "beam_centrifugal_stress_MPa_screen": 9.72079677361853,
+        "beam_aero_bending_stress_MPa_screen": 2.9375457287501394,
+        "per_blade_mass_kg_screen": 0.02810919023043098,
+        "cantilever_first_frequency_Hz_screen": 1038.2916985683296,
+        "blade_passing_frequency_Hz": 1122.0437875933574,
+        "radial_thrust_density_not_installed_air_distribution": [
+          {
+            "radius_ratio": 0.6676171875000001,
+            "blade_incidence_deg": 18.541314134362466,
+            "relative_annular_thrust": 0.012599235208071474
+          },
+          {
+            "radius_ratio": 0.6728515625000001,
+            "blade_incidence_deg": 18.61905034485044,
+            "relative_annular_thrust": 0.012770392171951108
+          },
+          {
+            "radius_ratio": 0.6780859375000001,
+            "blade_incidence_deg": 18.694552957323214,
+            "relative_annular_thrust": 0.012942199398403836
+          },
+          {
+            "radius_ratio": 0.6833203125,
+            "blade_incidence_deg": 18.76785895794854,
+            "relative_annular_thrust": 0.01311459732065889
+          },
+          {
+            "radius_ratio": 0.6885546875000002,
+            "blade_incidence_deg": 18.83900461375996,
+            "relative_annular_thrust": 0.013287521134262917
+          },
+          {
+            "radius_ratio": 0.6937890625,
+            "blade_incidence_deg": 18.908025486944656,
+            "relative_annular_thrust": 0.013460900351682533
+          },
+          {
+            "radius_ratio": 0.6990234375000001,
+            "blade_incidence_deg": 18.974956448925866,
+            "relative_annular_thrust": 0.01363465831946835
+          },
+          {
+            "radius_ratio": 0.7042578125000001,
+            "blade_incidence_deg": 19.039831694235367,
+            "relative_annular_thrust": 0.01380871169485494
+          },
+          {
+            "radius_ratio": 0.7094921875000001,
+            "blade_incidence_deg": 19.10268475417239,
+            "relative_annular_thrust": 0.013982969878401256
+          },
+          {
+            "radius_ratio": 0.7147265625,
+            "blade_incidence_deg": 19.163548510245995,
+            "relative_annular_thrust": 0.014157334398978256
+          },
+          {
+            "radius_ratio": 0.7199609375000001,
+            "blade_incidence_deg": 19.22245520739849,
+            "relative_annular_thrust": 0.014331698247083555
+          },
+          {
+            "radius_ratio": 0.7251953125,
+            "blade_incidence_deg": 19.27943646700815,
+            "relative_annular_thrust": 0.014505945152101525
+          },
+          {
+            "radius_ratio": 0.7304296875,
+            "blade_incidence_deg": 19.334523299669982,
+            "relative_annular_thrust": 0.014679948798727579
+          },
+          {
+            "radius_ratio": 0.7356640625,
+            "blade_incidence_deg": 19.38774611775372,
+            "relative_annular_thrust": 0.014853571977330423
+          },
+          {
+            "radius_ratio": 0.7408984375000001,
+            "blade_incidence_deg": 19.439134747738844,
+            "relative_annular_thrust": 0.015026665662530875
+          },
+          {
+            "radius_ratio": 0.7461328125000001,
+            "blade_incidence_deg": 19.488718442326594,
+            "relative_annular_thrust": 0.015199068013720264
+          },
+          {
+            "radius_ratio": 0.7513671875000001,
+            "blade_incidence_deg": 19.536525892329433,
+            "relative_annular_thrust": 0.015370603290616848
+          },
+          {
+            "radius_ratio": 0.7566015625,
+            "blade_incidence_deg": 19.58258523833891,
+            "relative_annular_thrust": 0.01554108067625302
+          },
+          {
+            "radius_ratio": 0.7618359375000001,
+            "blade_incidence_deg": 19.626924082172778,
+            "relative_annular_thrust": 0.015710292998983025
+          },
+          {
+            "radius_ratio": 0.7670703125,
+            "blade_incidence_deg": 19.669569498102913,
+            "relative_annular_thrust": 0.01587801534418527
+          },
+          {
+            "radius_ratio": 0.7723046875,
+            "blade_incidence_deg": 19.71054804386561,
+            "relative_annular_thrust": 0.016044003545279396
+          },
+          {
+            "radius_ratio": 0.7775390625,
+            "blade_incidence_deg": 19.749885771456047,
+            "relative_annular_thrust": 0.01620799254246158
+          },
+          {
+            "radius_ratio": 0.7827734375000001,
+            "blade_incidence_deg": 19.787608237708938,
+            "relative_annular_thrust": 0.016369694596146213
+          },
+          {
+            "radius_ratio": 0.7880078125,
+            "blade_incidence_deg": 19.823740514667744,
+            "relative_annular_thrust": 0.016528797340445645
+          },
+          {
+            "radius_ratio": 0.7932421875000001,
+            "blade_incidence_deg": 19.858307199744605,
+            "relative_annular_thrust": 0.016684961660070427
+          },
+          {
+            "radius_ratio": 0.7984765625,
+            "blade_incidence_deg": 19.891332425673685,
+            "relative_annular_thrust": 0.016837819371721654
+          },
+          {
+            "radius_ratio": 0.8037109375000001,
+            "blade_incidence_deg": 19.922839870260436,
+            "relative_annular_thrust": 0.01698697068829263
+          },
+          {
+            "radius_ratio": 0.8089453125,
+            "blade_incidence_deg": 19.95285276592956,
+            "relative_annular_thrust": 0.017131981440891595
+          },
+          {
+            "radius_ratio": 0.8141796875,
+            "blade_incidence_deg": 19.98139390907461,
+            "relative_annular_thrust": 0.017272380029707216
+          },
+          {
+            "radius_ratio": 0.8194140624999999,
+            "blade_incidence_deg": 20.008485669211954,
+            "relative_annular_thrust": 0.017407654069890623
+          },
+          {
+            "radius_ratio": 0.8246484375,
+            "blade_incidence_deg": 20.03414999794222,
+            "relative_annular_thrust": 0.017537246692704095
+          },
+          {
+            "radius_ratio": 0.8298828125,
+            "blade_incidence_deg": 20.05840843772226,
+            "relative_annular_thrust": 0.017660552454900752
+          },
+          {
+            "radius_ratio": 0.8351171875000001,
+            "blade_incidence_deg": 20.081282130450557,
+            "relative_annular_thrust": 0.017776912800288272
+          },
+          {
+            "radius_ratio": 0.8403515625,
+            "blade_incidence_deg": 20.102791825869488,
+            "relative_annular_thrust": 0.017885611006210698
+          },
+          {
+            "radius_ratio": 0.8455859375,
+            "blade_incidence_deg": 20.122957889787237,
+            "relative_annular_thrust": 0.01798586653363172
+          },
+          {
+            "radius_ratio": 0.8508203125,
+            "blade_incidence_deg": 20.1418003121228,
+            "relative_annular_thrust": 0.018076828681789493
+          },
+          {
+            "radius_ratio": 0.8560546875,
+            "blade_incidence_deg": 20.159338714777128,
+            "relative_annular_thrust": 0.018157569425913612
+          },
+          {
+            "radius_ratio": 0.8612890625,
+            "blade_incidence_deg": 20.17559235933358,
+            "relative_annular_thrust": 0.018227075287766417
+          },
+          {
+            "radius_ratio": 0.8665234375,
+            "blade_incidence_deg": 20.19058015459096,
+            "relative_annular_thrust": 0.018284238051780914
+          },
+          {
+            "radius_ratio": 0.8717578125000001,
+            "blade_incidence_deg": 20.204320663932204,
+            "relative_annular_thrust": 0.01832784409156104
+          },
+          {
+            "radius_ratio": 0.8769921875,
+            "blade_incidence_deg": 20.216832112531904,
+            "relative_annular_thrust": 0.01835656200866585
+          },
+          {
+            "radius_ratio": 0.8822265625000001,
+            "blade_incidence_deg": 20.228132394405957,
+            "relative_annular_thrust": 0.01836892820256419
+          },
+          {
+            "radius_ratio": 0.8874609375,
+            "blade_incidence_deg": 20.238239079306197,
+            "relative_annular_thrust": 0.018363329879807672
+          },
+          {
+            "radius_ratio": 0.8926953125000001,
+            "blade_incidence_deg": 20.247169419463326,
+            "relative_annular_thrust": 0.018337984860862768
+          },
+          {
+            "radius_ratio": 0.8979296875,
+            "blade_incidence_deg": 20.254940356181212,
+            "relative_annular_thrust": 0.018290917338616815
+          },
+          {
+            "radius_ratio": 0.9031640625,
+            "blade_incidence_deg": 20.261568526285465,
+            "relative_annular_thrust": 0.01821992845944227
+          },
+          {
+            "radius_ratio": 0.9083984374999999,
+            "blade_incidence_deg": 20.267070268429393,
+            "relative_annular_thrust": 0.018122560199673385
+          },
+          {
+            "radius_ratio": 0.9136328125,
+            "blade_incidence_deg": 20.271461629260394,
+            "relative_annular_thrust": 0.017996050441451767
+          },
+          {
+            "radius_ratio": 0.9188671875000001,
+            "blade_incidence_deg": 20.274758369449522,
+            "relative_annular_thrust": 0.017837276323693606
+          },
+          {
+            "radius_ratio": 0.9241015625000001,
+            "blade_incidence_deg": 20.276975969587337,
+            "relative_annular_thrust": 0.017642681713221125
+          },
+          {
+            "radius_ratio": 0.9293359375,
+            "blade_incidence_deg": 20.278129635948826,
+            "relative_annular_thrust": 0.017408182769705648
+          },
+          {
+            "radius_ratio": 0.9345703125,
+            "blade_incidence_deg": 20.278234306130113,
+            "relative_annular_thrust": 0.01712904265769397
+          },
+          {
+            "radius_ratio": 0.9398046874999999,
+            "blade_incidence_deg": 20.277304654559966,
+            "relative_annular_thrust": 0.016799701765508518
+          },
+          {
+            "radius_ratio": 0.9450390625000001,
+            "blade_incidence_deg": 20.275355097888607,
+            "relative_annular_thrust": 0.016413541989268084
+          },
+          {
+            "radius_ratio": 0.9502734375,
+            "blade_incidence_deg": 20.272399800256647,
+            "relative_annular_thrust": 0.015962550157605348
+          },
+          {
+            "radius_ratio": 0.9555078125,
+            "blade_incidence_deg": 20.268452678446803,
+            "relative_annular_thrust": 0.01543682128577995
+          },
+          {
+            "radius_ratio": 0.9607421875,
+            "blade_incidence_deg": 20.263527406920883,
+            "relative_annular_thrust": 0.014823795786129516
+          },
+          {
+            "radius_ratio": 0.9659765625,
+            "blade_incidence_deg": 20.257637422744743,
+            "relative_annular_thrust": 0.01410702985158774
+          },
+          {
+            "radius_ratio": 0.9712109375000001,
+            "blade_incidence_deg": 20.250795930403577,
+            "relative_annular_thrust": 0.013264088451085213
+          },
+          {
+            "radius_ratio": 0.9764453125000001,
+            "blade_incidence_deg": 20.243015906510173,
+            "relative_annular_thrust": 0.012262636241135102
+          },
+          {
+            "radius_ratio": 0.9816796875,
+            "blade_incidence_deg": 20.234310104408387,
+            "relative_annular_thrust": 0.011052355818341734
+          },
+          {
+            "radius_ratio": 0.9869140625,
+            "blade_incidence_deg": 20.224691058674264,
+            "relative_annular_thrust": 0.009545379789327766
+          },
+          {
+            "radius_ratio": 0.9921484374999999,
+            "blade_incidence_deg": 20.2141710895172,
+            "relative_annular_thrust": 0.007554883916990277
+          },
+          {
+            "radius_ratio": 0.9973828125000002,
+            "blade_incidence_deg": 20.202762307083365,
+            "relative_annular_thrust": 0.004456359742121866
+          }
+        ],
+        "illustrative_four_branch_flow_fractions": [
+          0.28932843061262425,
+          0.2587832154692636,
+          0.23623567436039256,
+          0.21565267955771966
+        ],
+        "branch_resistances_assumed_relative": [
+          1.0,
+          1.25,
+          1.5,
+          1.8
+        ],
+        "validity_flags": {
+          "polar_measured": false,
+          "boundary_conditions_measured": false,
+          "tip_mach_above_0p3": true,
+          "sections_outside_small_angle_polar": true,
+          "CFD_or_FEM_result": false,
+          "physical_validation_established": false,
+          "manufacturing_authorized": false
+        }
+      },
+      "relative_to_R0_percent": {
+        "flow_m3_s_screen": 0.0,
+        "static_pressure_Pa_screen": 0.0,
+        "shaft_to_air_efficiency_screen": 0.0,
+        "beam_stress_MPa_screen": -9.264804303336927,
+        "cantilever_first_frequency_Hz_screen": 19.999999999999996
+      }
+    }
+  ],
+  "sensitivities": [
+    {
+      "case": "diameter_low",
+      "changes": {
+        "diameter_mm": 244.75
+      },
+      "result": {
+        "configuration_id": "private_scan_informed_horizontal_study_R0",
+        "diameter_mm_assumed": 244.75,
+        "shaft_power_W_assumed": 6000,
+        "fan_rpm_screen": 9027.346236831687,
+        "flow_m3_s_screen": 1.062161145034105,
+        "static_pressure_Pa_screen": 3931.908549118565,
+        "useful_air_power_W_screen": 4176.320486701162,
+        "shaft_to_air_efficiency_screen": 0.6960534144501936,
+        "tip_speed_m_s": 115.68616450850838,
+        "tip_mach_assuming_343_m_s": 0.33727744754667166,
+        "drag_and_gap_model": {
+          "lift_slope_per_rad": 5.7,
+          "cl_limit": 1.1,
+          "Cd0": 0.025,
+          "drag_quadratic": 0.04,
+          "gap_loss_coefficient": 5,
+          "friction_torque_Nm": 0.63
+        },
+        "radial_sections_over_12deg_incidence_fraction": 1.0,
+        "beam_stress_MPa_screen": 16.094006859897252,
+        "beam_centrifugal_stress_MPa_screen": 11.214114437636924,
+        "beam_aero_bending_stress_MPa_screen": 4.879892422260326,
+        "per_blade_mass_kg_screen": 0.016513423106297238,
+        "cantilever_first_frequency_Hz_screen": 972.183238359859,
+        "blade_passing_frequency_Hz": 1354.1019355247531,
+        "radial_thrust_density_not_installed_air_distribution": [
+          {
+            "radius_ratio": 0.6676171875000001,
+            "blade_incidence_deg": 18.54131413436246,
+            "relative_annular_thrust": 0.012599235208071474
+          },
+          {
+            "radius_ratio": 0.6728515625000001,
+            "blade_incidence_deg": 18.61905034485043,
+            "relative_annular_thrust": 0.012770392171951103
+          },
+          {
+            "radius_ratio": 0.6780859375,
+            "blade_incidence_deg": 18.694552957323214,
+            "relative_annular_thrust": 0.012942199398403836
+          },
+          {
+            "radius_ratio": 0.6833203125,
+            "blade_incidence_deg": 18.767858957948537,
+            "relative_annular_thrust": 0.01311459732065889
+          },
+          {
+            "radius_ratio": 0.6885546875,
+            "blade_incidence_deg": 18.839004613759954,
+            "relative_annular_thrust": 0.01328752113426291
+          },
+          {
+            "radius_ratio": 0.6937890625,
+            "blade_incidence_deg": 18.908025486944645,
+            "relative_annular_thrust": 0.013460900351682533
+          },
+          {
+            "radius_ratio": 0.6990234375,
+            "blade_incidence_deg": 18.97495644892586,
+            "relative_annular_thrust": 0.01363465831946835
+          },
+          {
+            "radius_ratio": 0.7042578125000001,
+            "blade_incidence_deg": 19.039831694235364,
+            "relative_annular_thrust": 0.013808711694854939
+          },
+          {
+            "radius_ratio": 0.7094921875000001,
+            "blade_incidence_deg": 19.10268475417239,
+            "relative_annular_thrust": 0.013982969878401258
+          },
+          {
+            "radius_ratio": 0.7147265625000001,
+            "blade_incidence_deg": 19.16354851024599,
+            "relative_annular_thrust": 0.014157334398978262
+          },
+          {
+            "radius_ratio": 0.7199609375,
+            "blade_incidence_deg": 19.22245520739848,
+            "relative_annular_thrust": 0.01433169824708355
+          },
+          {
+            "radius_ratio": 0.7251953125,
+            "blade_incidence_deg": 19.27943646700815,
+            "relative_annular_thrust": 0.014505945152101529
+          },
+          {
+            "radius_ratio": 0.7304296875,
+            "blade_incidence_deg": 19.33452329966997,
+            "relative_annular_thrust": 0.014679948798727574
+          },
+          {
+            "radius_ratio": 0.7356640624999999,
+            "blade_incidence_deg": 19.387746117753714,
+            "relative_annular_thrust": 0.01485357197733042
+          },
+          {
+            "radius_ratio": 0.7408984375000001,
+            "blade_incidence_deg": 19.43913474773884,
+            "relative_annular_thrust": 0.01502666566253088
+          },
+          {
+            "radius_ratio": 0.7461328125000001,
+            "blade_incidence_deg": 19.488718442326586,
+            "relative_annular_thrust": 0.015199068013720255
+          },
+          {
+            "radius_ratio": 0.7513671875000001,
+            "blade_incidence_deg": 19.536525892329426,
+            "relative_annular_thrust": 0.01537060329061685
+          },
+          {
+            "radius_ratio": 0.7566015625,
+            "blade_incidence_deg": 19.582585238338904,
+            "relative_annular_thrust": 0.015541080676253016
+          },
+          {
+            "radius_ratio": 0.7618359375,
+            "blade_incidence_deg": 19.626924082172767,
+            "relative_annular_thrust": 0.015710292998983022
+          },
+          {
+            "radius_ratio": 0.7670703125,
+            "blade_incidence_deg": 19.669569498102906,
+            "relative_annular_thrust": 0.01587801534418527
+          },
+          {
+            "radius_ratio": 0.7723046875,
+            "blade_incidence_deg": 19.710548043865618,
+            "relative_annular_thrust": 0.016044003545279382
+          },
+          {
+            "radius_ratio": 0.7775390625,
+            "blade_incidence_deg": 19.74988577145604,
+            "relative_annular_thrust": 0.016207992542461577
+          },
+          {
+            "radius_ratio": 0.7827734375000001,
+            "blade_incidence_deg": 19.787608237708938,
+            "relative_annular_thrust": 0.01636969459614621
+          },
+          {
+            "radius_ratio": 0.7880078125000001,
+            "blade_incidence_deg": 19.82374051466774,
+            "relative_annular_thrust": 0.016528797340445642
+          },
+          {
+            "radius_ratio": 0.7932421875000001,
+            "blade_incidence_deg": 19.858307199744605,
+            "relative_annular_thrust": 0.016684961660070424
+          },
+          {
+            "radius_ratio": 0.7984765625,
+            "blade_incidence_deg": 19.89133242567368,
+            "relative_annular_thrust": 0.01683781937172165
+          },
+          {
+            "radius_ratio": 0.8037109375,
+            "blade_incidence_deg": 19.922839870260425,
+            "relative_annular_thrust": 0.01698697068829263
+          },
+          {
+            "radius_ratio": 0.8089453125,
+            "blade_incidence_deg": 19.952852765929556,
+            "relative_annular_thrust": 0.017131981440891595
+          },
+          {
+            "radius_ratio": 0.8141796875,
+            "blade_incidence_deg": 19.981393909074605,
+            "relative_annular_thrust": 0.017272380029707213
+          },
+          {
+            "radius_ratio": 0.8194140625,
+            "blade_incidence_deg": 20.00848566921195,
+            "relative_annular_thrust": 0.01740765406989062
+          },
+          {
+            "radius_ratio": 0.8246484375,
+            "blade_incidence_deg": 20.03414999794222,
+            "relative_annular_thrust": 0.017537246692704088
+          },
+          {
+            "radius_ratio": 0.8298828125000001,
+            "blade_incidence_deg": 20.058408437722253,
+            "relative_annular_thrust": 0.017660552454900752
+          },
+          {
+            "radius_ratio": 0.8351171875,
+            "blade_incidence_deg": 20.081282130450557,
+            "relative_annular_thrust": 0.017776912800288272
+          },
+          {
+            "radius_ratio": 0.8403515625,
+            "blade_incidence_deg": 20.102791825869485,
+            "relative_annular_thrust": 0.017885611006210698
+          },
+          {
+            "radius_ratio": 0.8455859375,
+            "blade_incidence_deg": 20.12295788978723,
+            "relative_annular_thrust": 0.01798586653363171
+          },
+          {
+            "radius_ratio": 0.8508203125000001,
+            "blade_incidence_deg": 20.141800312122797,
+            "relative_annular_thrust": 0.018076828681789496
+          },
+          {
+            "radius_ratio": 0.8560546875,
+            "blade_incidence_deg": 20.15933871477712,
+            "relative_annular_thrust": 0.01815756942591361
+          },
+          {
+            "radius_ratio": 0.8612890625,
+            "blade_incidence_deg": 20.175592359333578,
+            "relative_annular_thrust": 0.01822707528776641
+          },
+          {
+            "radius_ratio": 0.8665234375,
+            "blade_incidence_deg": 20.190580154590958,
+            "relative_annular_thrust": 0.01828423805178092
+          },
+          {
+            "radius_ratio": 0.8717578125000001,
+            "blade_incidence_deg": 20.2043206639322,
+            "relative_annular_thrust": 0.018327844091561043
+          },
+          {
+            "radius_ratio": 0.8769921875,
+            "blade_incidence_deg": 20.2168321125319,
+            "relative_annular_thrust": 0.01835656200866585
+          },
+          {
+            "radius_ratio": 0.8822265625,
+            "blade_incidence_deg": 20.228132394405957,
+            "relative_annular_thrust": 0.0183689282025642
+          },
+          {
+            "radius_ratio": 0.8874609375000001,
+            "blade_incidence_deg": 20.23823907930619,
+            "relative_annular_thrust": 0.01836332987980766
+          },
+          {
+            "radius_ratio": 0.8926953124999999,
+            "blade_incidence_deg": 20.247169419463322,
+            "relative_annular_thrust": 0.018337984860862768
+          },
+          {
+            "radius_ratio": 0.8979296875,
+            "blade_incidence_deg": 20.254940356181212,
+            "relative_annular_thrust": 0.01829091733861681
+          },
+          {
+            "radius_ratio": 0.9031640625,
+            "blade_incidence_deg": 20.26156852628546,
+            "relative_annular_thrust": 0.01821992845944227
+          },
+          {
+            "radius_ratio": 0.9083984375,
+            "blade_incidence_deg": 20.267070268429393,
+            "relative_annular_thrust": 0.01812256019967339
+          },
+          {
+            "radius_ratio": 0.9136328125,
+            "blade_incidence_deg": 20.27146162926039,
+            "relative_annular_thrust": 0.017996050441451764
+          },
+          {
+            "radius_ratio": 0.9188671875,
+            "blade_incidence_deg": 20.27475836944952,
+            "relative_annular_thrust": 0.01783727632369361
+          },
+          {
+            "radius_ratio": 0.9241015625000001,
+            "blade_incidence_deg": 20.276975969587333,
+            "relative_annular_thrust": 0.017642681713221125
+          },
+          {
+            "radius_ratio": 0.9293359375,
+            "blade_incidence_deg": 20.27812963594882,
+            "relative_annular_thrust": 0.01740818276970564
+          },
+          {
+            "radius_ratio": 0.9345703125,
+            "blade_incidence_deg": 20.278234306130106,
+            "relative_annular_thrust": 0.017129042657693955
+          },
+          {
+            "radius_ratio": 0.9398046875,
+            "blade_incidence_deg": 20.277304654559963,
+            "relative_annular_thrust": 0.016799701765508514
+          },
+          {
+            "radius_ratio": 0.9450390625,
+            "blade_incidence_deg": 20.275355097888603,
+            "relative_annular_thrust": 0.016413541989268095
+          },
+          {
+            "radius_ratio": 0.9502734375,
+            "blade_incidence_deg": 20.272399800256647,
+            "relative_annular_thrust": 0.01596255015760535
+          },
+          {
+            "radius_ratio": 0.9555078124999999,
+            "blade_incidence_deg": 20.2684526784468,
+            "relative_annular_thrust": 0.015436821285779952
+          },
+          {
+            "radius_ratio": 0.9607421875000001,
+            "blade_incidence_deg": 20.26352740692088,
+            "relative_annular_thrust": 0.014823795786129502
+          },
+          {
+            "radius_ratio": 0.9659765625,
+            "blade_incidence_deg": 20.25763742274474,
+            "relative_annular_thrust": 0.014107029851587736
+          },
+          {
+            "radius_ratio": 0.9712109375,
+            "blade_incidence_deg": 20.250795930403573,
+            "relative_annular_thrust": 0.013264088451085223
+          },
+          {
+            "radius_ratio": 0.9764453125,
+            "blade_incidence_deg": 20.24301590651018,
+            "relative_annular_thrust": 0.0122626362411351
+          },
+          {
+            "radius_ratio": 0.9816796875,
+            "blade_incidence_deg": 20.234310104408383,
+            "relative_annular_thrust": 0.011052355818341747
+          },
+          {
+            "radius_ratio": 0.9869140625,
+            "blade_incidence_deg": 20.224691058674257,
+            "relative_annular_thrust": 0.009545379789327763
+          },
+          {
+            "radius_ratio": 0.9921484374999999,
+            "blade_incidence_deg": 20.2141710895172,
+            "relative_annular_thrust": 0.007554883916990268
+          },
+          {
+            "radius_ratio": 0.9973828125,
+            "blade_incidence_deg": 20.202762307083358,
+            "relative_annular_thrust": 0.0044563597421219065
+          }
+        ],
+        "illustrative_four_branch_flow_fractions": [
+          0.28932843061262425,
+          0.2587832154692636,
+          0.23623567436039256,
+          0.21565267955771966
+        ],
+        "branch_resistances_assumed_relative": [
+          1.0,
+          1.25,
+          1.5,
+          1.8
+        ],
+        "validity_flags": {
+          "polar_measured": false,
+          "boundary_conditions_measured": false,
+          "tip_mach_above_0p3": true,
+          "sections_outside_small_angle_polar": true,
+          "CFD_or_FEM_result": false,
+          "physical_validation_established": false,
+          "manufacturing_authorized": false
+        }
+      }
+    },
+    {
+      "case": "diameter_high",
+      "changes": {
+        "diameter_mm": 305.25
+      },
+      "result": {
+        "configuration_id": "private_scan_informed_horizontal_study_R0",
+        "diameter_mm_assumed": 305.25,
+        "shaft_power_W_assumed": 6000,
+        "fan_rpm_screen": 6315.1990789560605,
+        "flow_m3_s_screen": 1.4415053971039102,
+        "static_pressure_Pa_screen": 2993.1139032153064,
+        "useful_air_power_W_screen": 4314.589845631615,
+        "shaft_to_air_efficiency_screen": 0.7190983076052693,
+        "tip_speed_m_s": 100.93489617736242,
+        "tip_mach_assuming_343_m_s": 0.29427083433633355,
+        "drag_and_gap_model": {
+          "lift_slope_per_rad": 5.7,
+          "cl_limit": 1.1,
+          "Cd0": 0.025,
+          "drag_quadratic": 0.04,
+          "gap_loss_coefficient": 5,
+          "friction_torque_Nm": 0.63
+        },
+        "radial_sections_over_12deg_incidence_fraction": 1.0,
+        "beam_stress_MPa_screen": 12.251352006037827,
+        "beam_centrifugal_stress_MPa_screen": 8.536597791182873,
+        "beam_aero_bending_stress_MPa_screen": 3.714754214854956,
+        "per_blade_mass_kg_screen": 0.03203583328669545,
+        "cantilever_first_frequency_Hz_screen": 779.4982721984454,
+        "blade_passing_frequency_Hz": 947.2798618434091,
+        "radial_thrust_density_not_installed_air_distribution": [
+          {
+            "radius_ratio": 0.6676171875,
+            "blade_incidence_deg": 18.541314134362484,
+            "relative_annular_thrust": 0.01259923520807147
+          },
+          {
+            "radius_ratio": 0.6728515625,
+            "blade_incidence_deg": 18.619050344850447,
+            "relative_annular_thrust": 0.012770392171951096
+          },
+          {
+            "radius_ratio": 0.6780859375,
+            "blade_incidence_deg": 18.69455295732323,
+            "relative_annular_thrust": 0.012942199398403829
+          },
+          {
+            "radius_ratio": 0.6833203125,
+            "blade_incidence_deg": 18.767858957948555,
+            "relative_annular_thrust": 0.013114597320658887
+          },
+          {
+            "radius_ratio": 0.6885546874999999,
+            "blade_incidence_deg": 18.83900461375996,
+            "relative_annular_thrust": 0.013287521134262905
+          },
+          {
+            "radius_ratio": 0.6937890625,
+            "blade_incidence_deg": 18.908025486944663,
+            "relative_annular_thrust": 0.013460900351682528
+          },
+          {
+            "radius_ratio": 0.6990234375,
+            "blade_incidence_deg": 18.974956448925866,
+            "relative_annular_thrust": 0.013634658319468347
+          },
+          {
+            "radius_ratio": 0.7042578125,
+            "blade_incidence_deg": 19.039831694235374,
+            "relative_annular_thrust": 0.013808711694854932
+          },
+          {
+            "radius_ratio": 0.7094921875,
+            "blade_incidence_deg": 19.102684754172397,
+            "relative_annular_thrust": 0.013982969878401247
+          },
+          {
+            "radius_ratio": 0.7147265625,
+            "blade_incidence_deg": 19.163548510246,
+            "relative_annular_thrust": 0.014157334398978252
+          },
+          {
+            "radius_ratio": 0.7199609375,
+            "blade_incidence_deg": 19.22245520739849,
+            "relative_annular_thrust": 0.014331698247083543
+          },
+          {
+            "radius_ratio": 0.7251953124999999,
+            "blade_incidence_deg": 19.279436467008157,
+            "relative_annular_thrust": 0.014505945152101516
+          },
+          {
+            "radius_ratio": 0.7304296875,
+            "blade_incidence_deg": 19.334523299669986,
+            "relative_annular_thrust": 0.014679948798727574
+          },
+          {
+            "radius_ratio": 0.7356640625,
+            "blade_incidence_deg": 19.387746117753725,
+            "relative_annular_thrust": 0.014853571977330412
+          },
+          {
+            "radius_ratio": 0.7408984375,
+            "blade_incidence_deg": 19.439134747738855,
+            "relative_annular_thrust": 0.015026665662530867
+          },
+          {
+            "radius_ratio": 0.7461328125000001,
+            "blade_incidence_deg": 19.488718442326597,
+            "relative_annular_thrust": 0.015199068013720247
+          },
+          {
+            "radius_ratio": 0.7513671875,
+            "blade_incidence_deg": 19.53652589232944,
+            "relative_annular_thrust": 0.015370603290616843
+          },
+          {
+            "radius_ratio": 0.7566015625,
+            "blade_incidence_deg": 19.582585238338915,
+            "relative_annular_thrust": 0.015541080676253012
+          },
+          {
+            "radius_ratio": 0.7618359375,
+            "blade_incidence_deg": 19.626924082172778,
+            "relative_annular_thrust": 0.01571029299898301
+          },
+          {
+            "radius_ratio": 0.7670703125,
+            "blade_incidence_deg": 19.669569498102923,
+            "relative_annular_thrust": 0.015878015344185266
+          },
+          {
+            "radius_ratio": 0.7723046875,
+            "blade_incidence_deg": 19.710548043865632,
+            "relative_annular_thrust": 0.016044003545279382
+          },
+          {
+            "radius_ratio": 0.7775390624999999,
+            "blade_incidence_deg": 19.749885771456057,
+            "relative_annular_thrust": 0.016207992542461577
+          },
+          {
+            "radius_ratio": 0.7827734375000001,
+            "blade_incidence_deg": 19.787608237708948,
+            "relative_annular_thrust": 0.016369694596146202
+          },
+          {
+            "radius_ratio": 0.7880078125000001,
+            "blade_incidence_deg": 19.82374051466775,
+            "relative_annular_thrust": 0.016528797340445635
+          },
+          {
+            "radius_ratio": 0.7932421875,
+            "blade_incidence_deg": 19.858307199744612,
+            "relative_annular_thrust": 0.01668496166007042
+          },
+          {
+            "radius_ratio": 0.7984765625,
+            "blade_incidence_deg": 19.891332425673696,
+            "relative_annular_thrust": 0.01683781937172165
+          },
+          {
+            "radius_ratio": 0.8037109375,
+            "blade_incidence_deg": 19.922839870260436,
+            "relative_annular_thrust": 0.01698697068829262
+          },
+          {
+            "radius_ratio": 0.8089453125,
+            "blade_incidence_deg": 19.952852765929567,
+            "relative_annular_thrust": 0.017131981440891588
+          },
+          {
+            "radius_ratio": 0.8141796875,
+            "blade_incidence_deg": 19.98139390907462,
+            "relative_annular_thrust": 0.01727238002970721
+          },
+          {
+            "radius_ratio": 0.8194140625,
+            "blade_incidence_deg": 20.008485669211964,
+            "relative_annular_thrust": 0.017407654069890626
+          },
+          {
+            "radius_ratio": 0.8246484374999999,
+            "blade_incidence_deg": 20.03414999794224,
+            "relative_annular_thrust": 0.017537246692704088
+          },
+          {
+            "radius_ratio": 0.8298828125,
+            "blade_incidence_deg": 20.058408437722264,
+            "relative_annular_thrust": 0.017660552454900745
+          },
+          {
+            "radius_ratio": 0.8351171875,
+            "blade_incidence_deg": 20.081282130450564,
+            "relative_annular_thrust": 0.01777691280028826
+          },
+          {
+            "radius_ratio": 0.8403515625000001,
+            "blade_incidence_deg": 20.102791825869495,
+            "relative_annular_thrust": 0.017885611006210687
+          },
+          {
+            "radius_ratio": 0.8455859375000001,
+            "blade_incidence_deg": 20.122957889787244,
+            "relative_annular_thrust": 0.017985866533631722
+          },
+          {
+            "radius_ratio": 0.8508203124999999,
+            "blade_incidence_deg": 20.141800312122804,
+            "relative_annular_thrust": 0.018076828681789493
+          },
+          {
+            "radius_ratio": 0.8560546875,
+            "blade_incidence_deg": 20.159338714777135,
+            "relative_annular_thrust": 0.01815756942591361
+          },
+          {
+            "radius_ratio": 0.8612890625,
+            "blade_incidence_deg": 20.17559235933359,
+            "relative_annular_thrust": 0.018227075287766403
+          },
+          {
+            "radius_ratio": 0.8665234375,
+            "blade_incidence_deg": 20.190580154590968,
+            "relative_annular_thrust": 0.018284238051780914
+          },
+          {
+            "radius_ratio": 0.8717578125000001,
+            "blade_incidence_deg": 20.2043206639322,
+            "relative_annular_thrust": 0.01832784409156104
+          },
+          {
+            "radius_ratio": 0.8769921875,
+            "blade_incidence_deg": 20.21683211253191,
+            "relative_annular_thrust": 0.018356562008665842
+          },
+          {
+            "radius_ratio": 0.8822265625,
+            "blade_incidence_deg": 20.228132394405964,
+            "relative_annular_thrust": 0.018368928202564194
+          },
+          {
+            "radius_ratio": 0.8874609375,
+            "blade_incidence_deg": 20.238239079306197,
+            "relative_annular_thrust": 0.018363329879807665
+          },
+          {
+            "radius_ratio": 0.8926953125,
+            "blade_incidence_deg": 20.247169419463333,
+            "relative_annular_thrust": 0.018337984860862775
+          },
+          {
+            "radius_ratio": 0.8979296875000001,
+            "blade_incidence_deg": 20.254940356181223,
+            "relative_annular_thrust": 0.018290917338616812
+          },
+          {
+            "radius_ratio": 0.9031640624999999,
+            "blade_incidence_deg": 20.26156852628547,
+            "relative_annular_thrust": 0.01821992845944227
+          },
+          {
+            "radius_ratio": 0.9083984374999999,
+            "blade_incidence_deg": 20.267070268429404,
+            "relative_annular_thrust": 0.018122560199673385
+          },
+          {
+            "radius_ratio": 0.9136328125000001,
+            "blade_incidence_deg": 20.2714616292604,
+            "relative_annular_thrust": 0.01799605044145176
+          },
+          {
+            "radius_ratio": 0.9188671875000001,
+            "blade_incidence_deg": 20.274758369449525,
+            "relative_annular_thrust": 0.017837276323693595
+          },
+          {
+            "radius_ratio": 0.9241015625000001,
+            "blade_incidence_deg": 20.27697596958734,
+            "relative_annular_thrust": 0.01764268171322112
+          },
+          {
+            "radius_ratio": 0.9293359375,
+            "blade_incidence_deg": 20.27812963594883,
+            "relative_annular_thrust": 0.01740818276970565
+          },
+          {
+            "radius_ratio": 0.9345703125,
+            "blade_incidence_deg": 20.27823430613012,
+            "relative_annular_thrust": 0.017129042657693966
+          },
+          {
+            "radius_ratio": 0.9398046875,
+            "blade_incidence_deg": 20.277304654559977,
+            "relative_annular_thrust": 0.01679970176550851
+          },
+          {
+            "radius_ratio": 0.9450390625,
+            "blade_incidence_deg": 20.27535509788861,
+            "relative_annular_thrust": 0.016413541989268088
+          },
+          {
+            "radius_ratio": 0.9502734375000002,
+            "blade_incidence_deg": 20.272399800256654,
+            "relative_annular_thrust": 0.015962550157605334
+          },
+          {
+            "radius_ratio": 0.9555078124999999,
+            "blade_incidence_deg": 20.268452678446806,
+            "relative_annular_thrust": 0.015436821285779955
+          },
+          {
+            "radius_ratio": 0.9607421875,
+            "blade_incidence_deg": 20.263527406920893,
+            "relative_annular_thrust": 0.014823795786129513
+          },
+          {
+            "radius_ratio": 0.9659765625000001,
+            "blade_incidence_deg": 20.257637422744743,
+            "relative_annular_thrust": 0.014107029851587726
+          },
+          {
+            "radius_ratio": 0.9712109374999999,
+            "blade_incidence_deg": 20.250795930403584,
+            "relative_annular_thrust": 0.013264088451085254
+          },
+          {
+            "radius_ratio": 0.9764453125000001,
+            "blade_incidence_deg": 20.243015906510177,
+            "relative_annular_thrust": 0.012262636241135088
+          },
+          {
+            "radius_ratio": 0.9816796875,
+            "blade_incidence_deg": 20.234310104408387,
+            "relative_annular_thrust": 0.011052355818341757
+          },
+          {
+            "radius_ratio": 0.9869140625,
+            "blade_incidence_deg": 20.224691058674267,
+            "relative_annular_thrust": 0.009545379789327759
+          },
+          {
+            "radius_ratio": 0.9921484375,
+            "blade_incidence_deg": 20.214171089517208,
+            "relative_annular_thrust": 0.007554883916990238
+          },
+          {
+            "radius_ratio": 0.9973828124999999,
+            "blade_incidence_deg": 20.202762307083365,
+            "relative_annular_thrust": 0.004456359742122055
+          }
+        ],
+        "illustrative_four_branch_flow_fractions": [
+          0.28932843061262425,
+          0.2587832154692636,
+          0.23623567436039256,
+          0.21565267955771966
+        ],
+        "branch_resistances_assumed_relative": [
+          1.0,
+          1.25,
+          1.5,
+          1.8
+        ],
+        "validity_flags": {
+          "polar_measured": false,
+          "boundary_conditions_measured": false,
+          "tip_mach_above_0p3": false,
+          "sections_outside_small_angle_polar": true,
+          "CFD_or_FEM_result": false,
+          "physical_validation_established": false,
+          "manufacturing_authorized": false
+        }
+      }
+    },
+    {
+      "case": "polar_low_lift",
+      "changes": {},
+      "result": {
+        "configuration_id": "private_scan_informed_horizontal_study_R0",
+        "diameter_mm_assumed": 275,
+        "shaft_power_W_assumed": 6000,
+        "fan_rpm_screen": 8550.276374051533,
+        "flow_m3_s_screen": 1.2183917754881834,
+        "static_pressure_Pa_screen": 3246.0599125337126,
+        "useful_air_power_W_screen": 3954.9727001729675,
+        "shaft_to_air_efficiency_screen": 0.6591621166954946,
+        "tip_speed_m_s": 123.11514161321224,
+        "tip_mach_assuming_343_m_s": 0.35893627292481706,
+        "drag_and_gap_model": {
+          "lift_slope_per_rad": 4.0,
+          "cl_limit": 0.8,
+          "Cd0": 0.04,
+          "drag_quadratic": 0.04,
+          "gap_loss_coefficient": 5,
+          "friction_torque_Nm": 0.63
+        },
+        "radial_sections_over_12deg_incidence_fraction": 1.0,
+        "beam_stress_MPa_screen": 16.765819101639536,
+        "beam_centrifugal_stress_MPa_screen": 12.700624509854999,
+        "beam_aero_bending_stress_MPa_screen": 4.06519459178454,
+        "per_blade_mass_kg_screen": 0.023424325192025815,
+        "cantilever_first_frequency_Hz_screen": 865.2430821402746,
+        "blade_passing_frequency_Hz": 1282.54145610773,
+        "radial_thrust_density_not_installed_air_distribution": [
+          {
+            "radius_ratio": 0.6676171875000001,
+            "blade_incidence_deg": 22.093287094744525,
+            "relative_annular_thrust": 0.012206168660306969
+          },
+          {
+            "radius_ratio": 0.6728515625000001,
+            "blade_incidence_deg": 22.153840697082536,
+            "relative_annular_thrust": 0.012379197915632481
+          },
+          {
+            "radius_ratio": 0.6780859375000001,
+            "blade_incidence_deg": 22.212246658040936,
+            "relative_annular_thrust": 0.012553130689535832
+          },
+          {
+            "radius_ratio": 0.6833203125,
+            "blade_incidence_deg": 22.26854368021338,
+            "relative_annular_thrust": 0.012727924599923673
+          },
+          {
+            "radius_ratio": 0.6885546875000002,
+            "blade_incidence_deg": 22.322769613373552,
+            "relative_annular_thrust": 0.012903533034204906
+          },
+          {
+            "radius_ratio": 0.6937890625,
+            "blade_incidence_deg": 22.374961475402774,
+            "relative_annular_thrust": 0.013079904733766797
+          },
+          {
+            "radius_ratio": 0.6990234375000001,
+            "blade_incidence_deg": 22.42515547270788,
+            "relative_annular_thrust": 0.013256983338131028
+          },
+          {
+            "radius_ratio": 0.7042578125000001,
+            "blade_incidence_deg": 22.473387020138308,
+            "relative_annular_thrust": 0.013434706884933952
+          },
+          {
+            "radius_ratio": 0.7094921875000001,
+            "blade_incidence_deg": 22.519690760411585,
+            "relative_annular_thrust": 0.013613007261505735
+          },
+          {
+            "radius_ratio": 0.7147265625,
+            "blade_incidence_deg": 22.564100583056366,
+            "relative_annular_thrust": 0.013791809603417039
+          },
+          {
+            "radius_ratio": 0.7199609375000001,
+            "blade_incidence_deg": 22.606649642882594,
+            "relative_annular_thrust": 0.013971031634914696
+          },
+          {
+            "radius_ratio": 0.7251953125,
+            "blade_incidence_deg": 22.6473703779882,
+            "relative_annular_thrust": 0.014150582945675682
+          },
+          {
+            "radius_ratio": 0.7304296875,
+            "blade_incidence_deg": 22.686294527311908,
+            "relative_annular_thrust": 0.014330364197765472
+          },
+          {
+            "radius_ratio": 0.7356640625,
+            "blade_incidence_deg": 22.723453147741864,
+            "relative_annular_thrust": 0.01451026625608673
+          },
+          {
+            "radius_ratio": 0.7408984375000001,
+            "blade_incidence_deg": 22.758876630789565,
+            "relative_annular_thrust": 0.014690169234939716
+          },
+          {
+            "radius_ratio": 0.7461328125000001,
+            "blade_incidence_deg": 22.792594718838856,
+            "relative_annular_thrust": 0.01486994145257858
+          },
+          {
+            "radius_ratio": 0.7513671875000001,
+            "blade_incidence_deg": 22.824636520979304,
+            "relative_annular_thrust": 0.01504943828482724
+          },
+          {
+            "radius_ratio": 0.7566015625,
+            "blade_incidence_deg": 22.855030528433797,
+            "relative_annular_thrust": 0.015228500907903194
+          },
+          {
+            "radius_ratio": 0.7618359375000001,
+            "blade_incidence_deg": 22.883804629589463,
+            "relative_annular_thrust": 0.01540695491957219
+          },
+          {
+            "radius_ratio": 0.7670703125,
+            "blade_incidence_deg": 22.91098612464148,
+            "relative_annular_thrust": 0.015584608826604524
+          },
+          {
+            "radius_ratio": 0.7723046875,
+            "blade_incidence_deg": 22.936601739858926,
+            "relative_annular_thrust": 0.015761252385202314
+          },
+          {
+            "radius_ratio": 0.7775390625,
+            "blade_incidence_deg": 22.960677641481812,
+            "relative_annular_thrust": 0.015936654779590134
+          },
+          {
+            "radius_ratio": 0.7827734375000001,
+            "blade_incidence_deg": 22.983239449258303,
+            "relative_annular_thrust": 0.016110562622277134
+          },
+          {
+            "radius_ratio": 0.7880078125,
+            "blade_incidence_deg": 23.00431224963101,
+            "relative_annular_thrust": 0.01628269775756468
+          },
+          {
+            "radius_ratio": 0.7932421875000001,
+            "blade_incidence_deg": 23.023920608581133,
+            "relative_annular_thrust": 0.01645275484763979
+          },
+          {
+            "radius_ratio": 0.7984765625,
+            "blade_incidence_deg": 23.042088584138938,
+            "relative_annular_thrust": 0.01662039871799658
+          },
+          {
+            "radius_ratio": 0.8037109375000001,
+            "blade_incidence_deg": 23.058839738569166,
+            "relative_annular_thrust": 0.01678526143588273
+          },
+          {
+            "radius_ratio": 0.8089453125,
+            "blade_incidence_deg": 23.074197150239495,
+            "relative_annular_thrust": 0.016946939091873066
+          },
+          {
+            "radius_ratio": 0.8141796875,
+            "blade_incidence_deg": 23.088183425180368,
+            "relative_annular_thrust": 0.017104988250393163
+          },
+          {
+            "radius_ratio": 0.8194140624999999,
+            "blade_incidence_deg": 23.10082070834405,
+            "relative_annular_thrust": 0.017258922029880913
+          },
+          {
+            "radius_ratio": 0.8246484375,
+            "blade_incidence_deg": 23.112130694570677,
+            "relative_annular_thrust": 0.017408205767061913
+          },
+          {
+            "radius_ratio": 0.8298828125,
+            "blade_incidence_deg": 23.122134639269177,
+            "relative_annular_thrust": 0.017552252212235463
+          },
+          {
+            "radius_ratio": 0.8351171875000001,
+            "blade_incidence_deg": 23.130853368820233,
+            "relative_annular_thrust": 0.017690416193146024
+          },
+          {
+            "radius_ratio": 0.8403515625,
+            "blade_incidence_deg": 23.138307290708894,
+            "relative_annular_thrust": 0.01782198867345364
+          },
+          {
+            "radius_ratio": 0.8455859375,
+            "blade_incidence_deg": 23.144516403393816,
+            "relative_annular_thrust": 0.01794619011736153
+          },
+          {
+            "radius_ratio": 0.8508203125,
+            "blade_incidence_deg": 23.1495003059202,
+            "relative_annular_thrust": 0.018062163053738863
+          },
+          {
+            "radius_ratio": 0.8560546875,
+            "blade_incidence_deg": 23.153278207283265,
+            "relative_annular_thrust": 0.01816896370992558
+          },
+          {
+            "radius_ratio": 0.8612890625,
+            "blade_incidence_deg": 23.155868935548856,
+            "relative_annular_thrust": 0.018265552555749315
+          },
+          {
+            "radius_ratio": 0.8665234375,
+            "blade_incidence_deg": 23.157290946737813,
+            "relative_annular_thrust": 0.01835078355998172
+          },
+          {
+            "radius_ratio": 0.8717578125000001,
+            "blade_incidence_deg": 23.15756233348033,
+            "relative_annular_thrust": 0.018423391911571538
+          },
+          {
+            "radius_ratio": 0.8769921875,
+            "blade_incidence_deg": 23.15670083344657,
+            "relative_annular_thrust": 0.018481979892434032
+          },
+          {
+            "radius_ratio": 0.8822265625000001,
+            "blade_incidence_deg": 23.15472383755962,
+            "relative_annular_thrust": 0.018525000501626657
+          },
+          {
+            "radius_ratio": 0.8874609375,
+            "blade_incidence_deg": 23.151648397996528,
+            "relative_annular_thrust": 0.018550738314263217
+          },
+          {
+            "radius_ratio": 0.8926953125000001,
+            "blade_incidence_deg": 23.147491235983292,
+            "relative_annular_thrust": 0.018557286900797366
+          },
+          {
+            "radius_ratio": 0.8979296875,
+            "blade_incidence_deg": 23.14226874938934,
+            "relative_annular_thrust": 0.018542521916205344
+          },
+          {
+            "radius_ratio": 0.9031640625,
+            "blade_incidence_deg": 23.135997020126982,
+            "relative_annular_thrust": 0.01850406866864358
+          },
+          {
+            "radius_ratio": 0.9083984374999999,
+            "blade_incidence_deg": 23.128691821361052,
+            "relative_annular_thrust": 0.018439262554780348
+          },
+          {
+            "radius_ratio": 0.9136328125,
+            "blade_incidence_deg": 23.120368624533988,
+            "relative_annular_thrust": 0.018345100144630054
+          },
+          {
+            "radius_ratio": 0.9188671875000001,
+            "blade_incidence_deg": 23.11104260621134,
+            "relative_annular_thrust": 0.018218177818293796
+          },
+          {
+            "radius_ratio": 0.9241015625000001,
+            "blade_incidence_deg": 23.10072865475259,
+            "relative_annular_thrust": 0.018054613548357995
+          },
+          {
+            "radius_ratio": 0.9293359375,
+            "blade_incidence_deg": 23.089441376812108,
+            "relative_annular_thrust": 0.017849945431883372
+          },
+          {
+            "radius_ratio": 0.9345703125,
+            "blade_incidence_deg": 23.0771951036747,
+            "relative_annular_thrust": 0.017598997471584048
+          },
+          {
+            "radius_ratio": 0.9398046874999999,
+            "blade_incidence_deg": 23.064003897430535,
+            "relative_annular_thrust": 0.017295698118782538
+          },
+          {
+            "radius_ratio": 0.9450390625000001,
+            "blade_incidence_deg": 23.049881556993537,
+            "relative_annular_thrust": 0.01693282880550757
+          },
+          {
+            "radius_ratio": 0.9502734375,
+            "blade_incidence_deg": 23.034841623967704,
+            "relative_annular_thrust": 0.016501665382457866
+          },
+          {
+            "radius_ratio": 0.9555078125,
+            "blade_incidence_deg": 23.018897388365467,
+            "relative_annular_thrust": 0.01599144950967023
+          },
+          {
+            "radius_ratio": 0.9607421875,
+            "blade_incidence_deg": 23.002061894182003,
+            "relative_annular_thrust": 0.015388577681069524
+          },
+          {
+            "radius_ratio": 0.9659765625,
+            "blade_incidence_deg": 22.98434794482959,
+            "relative_annular_thrust": 0.014675294993578088
+          },
+          {
+            "radius_ratio": 0.9712109375000001,
+            "blade_incidence_deg": 22.965768108435654,
+            "relative_annular_thrust": 0.013827458602391577
+          },
+          {
+            "radius_ratio": 0.9764453125000001,
+            "blade_incidence_deg": 22.94633472300842,
+            "relative_annular_thrust": 0.012810391591568649
+          },
+          {
+            "radius_ratio": 0.9816796875,
+            "blade_incidence_deg": 22.92605990147347,
+            "relative_annular_thrust": 0.011570318346652272
+          },
+          {
+            "radius_ratio": 0.9869140625,
+            "blade_incidence_deg": 22.904955536585003,
+            "relative_annular_thrust": 0.010013646110053728
+          },
+          {
+            "radius_ratio": 0.9921484374999999,
+            "blade_incidence_deg": 22.883033305715035,
+            "relative_annular_thrust": 0.007942011405509384
+          },
+          {
+            "radius_ratio": 0.9973828125000002,
+            "blade_incidence_deg": 22.860304675523874,
+            "relative_annular_thrust": 0.004694401234506191
+          }
+        ],
+        "illustrative_four_branch_flow_fractions": [
+          0.28932843061262425,
+          0.2587832154692636,
+          0.23623567436039256,
+          0.21565267955771966
+        ],
+        "branch_resistances_assumed_relative": [
+          1.0,
+          1.25,
+          1.5,
+          1.8
+        ],
+        "validity_flags": {
+          "polar_measured": false,
+          "boundary_conditions_measured": false,
+          "tip_mach_above_0p3": true,
+          "sections_outside_small_angle_polar": true,
+          "CFD_or_FEM_result": false,
+          "physical_validation_established": false,
+          "manufacturing_authorized": false
+        }
+      }
+    },
+    {
+      "case": "polar_high_lift",
+      "changes": {},
+      "result": {
+        "configuration_id": "private_scan_informed_horizontal_study_R0",
+        "diameter_mm_assumed": 275,
+        "shaft_power_W_assumed": 6000,
+        "fan_rpm_screen": 6936.8660235282005,
+        "flow_m3_s_screen": 1.2579450409677293,
+        "static_pressure_Pa_screen": 3460.2378207285033,
+        "useful_air_power_W_screen": 4352.789007154403,
+        "shaft_to_air_efficiency_screen": 0.7254648345257338,
+        "tip_speed_m_s": 99.88370030124219,
+        "tip_mach_assuming_343_m_s": 0.2912061233272367,
+        "drag_and_gap_model": {
+          "lift_slope_per_rad": 6.3,
+          "cl_limit": 1.3,
+          "Cd0": 0.015,
+          "drag_quadratic": 0.04,
+          "gap_loss_coefficient": 5,
+          "friction_torque_Nm": 0.63
+        },
+        "radial_sections_over_12deg_incidence_fraction": 1.0,
+        "beam_stress_MPa_screen": 12.633919353826855,
+        "beam_centrifugal_stress_MPa_screen": 8.359713317203935,
+        "beam_aero_bending_stress_MPa_screen": 4.2742060366229175,
+        "per_blade_mass_kg_screen": 0.023424325192025815,
+        "cantilever_first_frequency_Hz_screen": 865.2430821402746,
+        "blade_passing_frequency_Hz": 1040.52990352923,
+        "radial_thrust_density_not_installed_air_distribution": [
+          {
+            "radius_ratio": 0.6676171875000001,
+            "blade_incidence_deg": 16.54125630239046,
+            "relative_annular_thrust": 0.012816933128102538
+          },
+          {
+            "radius_ratio": 0.6728515625000001,
+            "blade_incidence_deg": 16.62745102556755,
+            "relative_annular_thrust": 0.012986573569668406
+          },
+          {
+            "radius_ratio": 0.6780859375000001,
+            "blade_incidence_deg": 16.711395172452363,
+            "relative_annular_thrust": 0.013156704352444686
+          },
+          {
+            "radius_ratio": 0.6833203125,
+            "blade_incidence_deg": 16.793124018594636,
+            "relative_annular_thrust": 0.013327256694229427
+          },
+          {
+            "radius_ratio": 0.6885546875000002,
+            "blade_incidence_deg": 16.872672210479514,
+            "relative_annular_thrust": 0.013498156153097598
+          },
+          {
+            "radius_ratio": 0.6937890625,
+            "blade_incidence_deg": 16.95007377603817,
+            "relative_annular_thrust": 0.013669322180705436
+          },
+          {
+            "radius_ratio": 0.6990234375000001,
+            "blade_incidence_deg": 17.02536213509964,
+            "relative_annular_thrust": 0.013840667640654619
+          },
+          {
+            "radius_ratio": 0.7042578125000001,
+            "blade_incidence_deg": 17.098570109774414,
+            "relative_annular_thrust": 0.014012098289172737
+          },
+          {
+            "radius_ratio": 0.7094921875000001,
+            "blade_incidence_deg": 17.16972993476105,
+            "relative_annular_thrust": 0.014183512215134786
+          },
+          {
+            "radius_ratio": 0.7147265625,
+            "blade_incidence_deg": 17.238873267568177,
+            "relative_annular_thrust": 0.014354799236194994
+          },
+          {
+            "radius_ratio": 0.7199609375000001,
+            "blade_incidence_deg": 17.30603119864453,
+            "relative_annular_thrust": 0.014525840247515472
+          },
+          {
+            "radius_ratio": 0.7251953125,
+            "blade_incidence_deg": 17.37123426141085,
+            "relative_annular_thrust": 0.01469650651926428
+          },
+          {
+            "radius_ratio": 0.7304296875,
+            "blade_incidence_deg": 17.434512442187895,
+            "relative_annular_thrust": 0.014866658938705517
+          },
+          {
+            "radius_ratio": 0.7356640625,
+            "blade_incidence_deg": 17.495895190015315,
+            "relative_annular_thrust": 0.01503614719231227
+          },
+          {
+            "radius_ratio": 0.7408984375000001,
+            "blade_incidence_deg": 17.555411426357118,
+            "relative_annular_thrust": 0.015204808882892657
+          },
+          {
+            "radius_ratio": 0.7461328125000001,
+            "blade_incidence_deg": 17.613089554689527,
+            "relative_annular_thrust": 0.015372468576221786
+          },
+          {
+            "radius_ratio": 0.7513671875000001,
+            "blade_incidence_deg": 17.668957469967737,
+            "relative_annular_thrust": 0.015538936771107105
+          },
+          {
+            "radius_ratio": 0.7566015625,
+            "blade_incidence_deg": 17.723042567968708,
+            "relative_annular_thrust": 0.015704008786170533
+          },
+          {
+            "radius_ratio": 0.7618359375000001,
+            "blade_incidence_deg": 17.775371754507134,
+            "relative_annular_thrust": 0.015867463555890953
+          },
+          {
+            "radius_ratio": 0.7670703125,
+            "blade_incidence_deg": 17.825971454522563,
+            "relative_annular_thrust": 0.016029062327598206
+          },
+          {
+            "radius_ratio": 0.7723046875,
+            "blade_incidence_deg": 17.874867621035765,
+            "relative_annular_thrust": 0.016188547250121352
+          },
+          {
+            "radius_ratio": 0.7775390625,
+            "blade_incidence_deg": 17.922085743972744,
+            "relative_annular_thrust": 0.016345639843640913
+          },
+          {
+            "radius_ratio": 0.7827734375000001,
+            "blade_incidence_deg": 17.967650858855336,
+            "relative_annular_thrust": 0.01650003933894449
+          },
+          {
+            "radius_ratio": 0.7880078125,
+            "blade_incidence_deg": 18.011587555357394,
+            "relative_annular_thrust": 0.016651420872692047
+          },
+          {
+            "radius_ratio": 0.7932421875000001,
+            "blade_incidence_deg": 18.053919985725965,
+            "relative_annular_thrust": 0.01679943352341034
+          },
+          {
+            "radius_ratio": 0.7984765625,
+            "blade_incidence_deg": 18.094671873067032,
+            "relative_annular_thrust": 0.016943698170687384
+          },
+          {
+            "radius_ratio": 0.8037109375000001,
+            "blade_incidence_deg": 18.13386651949573,
+            "relative_annular_thrust": 0.017083805157344128
+          },
+          {
+            "radius_ratio": 0.8089453125,
+            "blade_incidence_deg": 18.171526814150898,
+            "relative_annular_thrust": 0.017219311731117168
+          },
+          {
+            "radius_ratio": 0.8141796875,
+            "blade_incidence_deg": 18.20767524107451,
+            "relative_annular_thrust": 0.017349739238460067
+          },
+          {
+            "radius_ratio": 0.8194140624999999,
+            "blade_incidence_deg": 18.242333886956015,
+            "relative_annular_thrust": 0.01747457003829258
+          },
+          {
+            "radius_ratio": 0.8246484375,
+            "blade_incidence_deg": 18.275524448742495,
+            "relative_annular_thrust": 0.017593244097682294
+          },
+          {
+            "radius_ratio": 0.8298828125,
+            "blade_incidence_deg": 18.30726824111515,
+            "relative_annular_thrust": 0.01770515522425425
+          },
+          {
+            "radius_ratio": 0.8351171875000001,
+            "blade_incidence_deg": 18.337586203832984,
+            "relative_annular_thrust": 0.01780964688123514
+          },
+          {
+            "radius_ratio": 0.8403515625,
+            "blade_incidence_deg": 18.366498908944795,
+            "relative_annular_thrust": 0.01790600751998327
+          },
+          {
+            "radius_ratio": 0.8455859375,
+            "blade_incidence_deg": 18.394026567870327,
+            "relative_annular_thrust": 0.017993465351028234
+          },
+          {
+            "radius_ratio": 0.8508203125,
+            "blade_incidence_deg": 18.42018903835195,
+            "relative_annular_thrust": 0.01807118245723983
+          },
+          {
+            "radius_ratio": 0.8560546875,
+            "blade_incidence_deg": 18.445005831278017,
+            "relative_annular_thrust": 0.018138248130698854
+          },
+          {
+            "radius_ratio": 0.8612890625,
+            "blade_incidence_deg": 18.468496117379328,
+            "relative_annular_thrust": 0.018193671286717034
+          },
+          {
+            "radius_ratio": 0.8665234375,
+            "blade_incidence_deg": 18.490678733799996,
+            "relative_annular_thrust": 0.018236371772306487
+          },
+          {
+            "radius_ratio": 0.8717578125000001,
+            "blade_incidence_deg": 18.51157219054432,
+            "relative_annular_thrust": 0.01826517033956611
+          },
+          {
+            "radius_ratio": 0.8769921875,
+            "blade_incidence_deg": 18.531194676801096,
+            "relative_annular_thrust": 0.018278776993239033
+          },
+          {
+            "radius_ratio": 0.8822265625000001,
+            "blade_incidence_deg": 18.549564067147042,
+            "relative_annular_thrust": 0.018275777340924303
+          },
+          {
+            "radius_ratio": 0.8874609375,
+            "blade_incidence_deg": 18.56669792763081,
+            "relative_annular_thrust": 0.01825461646672897
+          },
+          {
+            "radius_ratio": 0.8926953125000001,
+            "blade_incidence_deg": 18.58261352173944,
+            "relative_annular_thrust": 0.018213579703909542
+          },
+          {
+            "radius_ratio": 0.8979296875,
+            "blade_incidence_deg": 18.597327816248733,
+            "relative_annular_thrust": 0.01815076948372494
+          },
+          {
+            "radius_ratio": 0.9031640625,
+            "blade_incidence_deg": 18.610857486959464,
+            "relative_annular_thrust": 0.018064077163160858
+          },
+          {
+            "radius_ratio": 0.9083984374999999,
+            "blade_incidence_deg": 18.623218924320984,
+            "relative_annular_thrust": 0.017951148348295694
+          },
+          {
+            "radius_ratio": 0.9136328125,
+            "blade_incidence_deg": 18.634428238944096,
+            "relative_annular_thrust": 0.017809339678581733
+          },
+          {
+            "radius_ratio": 0.9188671875000001,
+            "blade_incidence_deg": 18.64450126700486,
+            "relative_annular_thrust": 0.017635664234413494
+          },
+          {
+            "radius_ratio": 0.9241015625000001,
+            "blade_incidence_deg": 18.65345357554122,
+            "relative_annular_thrust": 0.0174267215370873
+          },
+          {
+            "radius_ratio": 0.9293359375,
+            "blade_incidence_deg": 18.661300467644143,
+            "relative_annular_thrust": 0.01717860629543643
+          },
+          {
+            "radius_ratio": 0.9345703125,
+            "blade_incidence_deg": 18.66805698754501,
+            "relative_annular_thrust": 0.016886787220667165
+          },
+          {
+            "radius_ratio": 0.9398046874999999,
+            "blade_incidence_deg": 18.673737925601227,
+            "relative_annular_thrust": 0.01654594267707407
+          },
+          {
+            "radius_ratio": 0.9450390625000001,
+            "blade_incidence_deg": 18.678357823181546,
+            "relative_annular_thrust": 0.01614973236484978
+          },
+          {
+            "radius_ratio": 0.9502734375,
+            "blade_incidence_deg": 18.681930977453174,
+            "relative_annular_thrust": 0.015690471142671154
+          },
+          {
+            "radius_ratio": 0.9555078125,
+            "blade_incidence_deg": 18.684471446072166,
+            "relative_annular_thrust": 0.01515864741755237
+          },
+          {
+            "radius_ratio": 0.9607421875,
+            "blade_incidence_deg": 18.685993051779082,
+            "relative_annular_thrust": 0.014542183305349505
+          },
+          {
+            "radius_ratio": 0.9659765625,
+            "blade_incidence_deg": 18.686509386901438,
+            "relative_annular_thrust": 0.013825241558424621
+          },
+          {
+            "radius_ratio": 0.9712109375000001,
+            "blade_incidence_deg": 18.686033817764816,
+            "relative_annular_thrust": 0.012986180403173123
+          },
+          {
+            "radius_ratio": 0.9764453125000001,
+            "blade_incidence_deg": 18.684579489014375,
+            "relative_annular_thrust": 0.01199375768952635
+          },
+          {
+            "radius_ratio": 0.9816796875,
+            "blade_incidence_deg": 18.68215932784833,
+            "relative_annular_thrust": 0.010799279997383103
+          },
+          {
+            "radius_ratio": 0.9869140625,
+            "blade_incidence_deg": 18.67878604816513,
+            "relative_annular_thrust": 0.009317585300428559
+          },
+          {
+            "radius_ratio": 0.9921484374999999,
+            "blade_incidence_deg": 18.67447215462611,
+            "relative_annular_thrust": 0.0073673357326083
+          },
+          {
+            "radius_ratio": 0.9973828125000002,
+            "blade_incidence_deg": 18.669229946635113,
+            "relative_annular_thrust": 0.004341484462283843
+          }
+        ],
+        "illustrative_four_branch_flow_fractions": [
+          0.28932843061262425,
+          0.2587832154692636,
+          0.23623567436039256,
+          0.21565267955771966
+        ],
+        "branch_resistances_assumed_relative": [
+          1.0,
+          1.25,
+          1.5,
+          1.8
+        ],
+        "validity_flags": {
+          "polar_measured": false,
+          "boundary_conditions_measured": false,
+          "tip_mach_above_0p3": false,
+          "sections_outside_small_angle_polar": true,
+          "CFD_or_FEM_result": false,
+          "physical_validation_established": false,
+          "manufacturing_authorized": false
+        }
+      }
+    },
+    {
+      "case": "clearance_loss_low",
+      "changes": {},
+      "result": {
+        "configuration_id": "private_scan_informed_horizontal_study_R0",
+        "diameter_mm_assumed": 275,
+        "shaft_power_W_assumed": 6000,
+        "fan_rpm_screen": 7430.241700987728,
+        "flow_m3_s_screen": 1.2705522339384414,
+        "static_pressure_Pa_screen": 3529.9427521366993,
+        "useful_air_power_W_screen": 4484.976649402093,
+        "shaft_to_air_efficiency_screen": 0.7474961082336822,
+        "tip_speed_m_s": 106.9878000685064,
+        "tip_mach_assuming_343_m_s": 0.3119177844562869,
+        "drag_and_gap_model": {
+          "lift_slope_per_rad": 5.7,
+          "cl_limit": 1.1,
+          "Cd0": 0.025,
+          "drag_quadratic": 0.04,
+          "gap_loss_coefficient": 2,
+          "friction_torque_Nm": 0.63
+        },
+        "radial_sections_over_12deg_incidence_fraction": 1.0,
+        "beam_stress_MPa_screen": 13.755393124455312,
+        "beam_centrifugal_stress_MPa_screen": 9.591149342555697,
+        "beam_aero_bending_stress_MPa_screen": 4.164243781899614,
+        "per_blade_mass_kg_screen": 0.023424325192025815,
+        "cantilever_first_frequency_Hz_screen": 865.2430821402746,
+        "blade_passing_frequency_Hz": 1114.5362551481594,
+        "radial_thrust_density_not_installed_air_distribution": [
+          {
+            "radius_ratio": 0.6676171875000001,
+            "blade_incidence_deg": 17.966264767831923,
+            "relative_annular_thrust": 0.012660425484095975
+          },
+          {
+            "radius_ratio": 0.6728515625000001,
+            "blade_incidence_deg": 18.046525843797045,
+            "relative_annular_thrust": 0.012831227395453892
+          },
+          {
+            "radius_ratio": 0.6780859375000001,
+            "blade_incidence_deg": 18.124546148613867,
+            "relative_annular_thrust": 0.013002635336225378
+          },
+          {
+            "radius_ratio": 0.6833203125,
+            "blade_incidence_deg": 18.20036222666576,
+            "relative_annular_thrust": 0.0131745870387353
+          },
+          {
+            "radius_ratio": 0.6885546875000002,
+            "blade_incidence_deg": 18.274009928300412,
+            "relative_annular_thrust": 0.013347014865070377
+          },
+          {
+            "radius_ratio": 0.6937890625,
+            "blade_incidence_deg": 18.345524423020212,
+            "relative_annular_thrust": 0.013519845360282627
+          },
+          {
+            "radius_ratio": 0.6990234375000001,
+            "blade_incidence_deg": 18.4149402125117,
+            "relative_annular_thrust": 0.013692998768828209
+          },
+          {
+            "radius_ratio": 0.7042578125000001,
+            "blade_incidence_deg": 18.482291143508085,
+            "relative_annular_thrust": 0.013866388511230038
+          },
+          {
+            "radius_ratio": 0.7094921875000001,
+            "blade_incidence_deg": 18.547610420479483,
+            "relative_annular_thrust": 0.014039920617693985
+          },
+          {
+            "radius_ratio": 0.7147265625,
+            "blade_incidence_deg": 18.610930618146387,
+            "relative_annular_thrust": 0.01421349311512495
+          },
+          {
+            "radius_ratio": 0.7199609375000001,
+            "blade_incidence_deg": 18.672283693812407,
+            "relative_annular_thrust": 0.014386995363675853
+          },
+          {
+            "radius_ratio": 0.7251953125,
+            "blade_incidence_deg": 18.731700999513095,
+            "relative_annular_thrust": 0.01456030733861689
+          },
+          {
+            "radius_ratio": 0.7304296875,
+            "blade_incidence_deg": 18.78921329397816,
+            "relative_annular_thrust": 0.014733298852928694
+          },
+          {
+            "radius_ratio": 0.7356640625,
+            "blade_incidence_deg": 18.844850754404927,
+            "relative_annular_thrust": 0.014905828715595879
+          },
+          {
+            "radius_ratio": 0.7408984375000001,
+            "blade_incidence_deg": 18.898642988041395,
+            "relative_annular_thrust": 0.01507774382009988
+          },
+          {
+            "radius_ratio": 0.7461328125000001,
+            "blade_incidence_deg": 18.95061904357774,
+            "relative_annular_thrust": 0.015248878157074292
+          },
+          {
+            "radius_ratio": 0.7513671875000001,
+            "blade_incidence_deg": 19.000807422345332,
+            "relative_annular_thrust": 0.015419051744481013
+          },
+          {
+            "radius_ratio": 0.7566015625,
+            "blade_incidence_deg": 19.0492360893231,
+            "relative_annular_thrust": 0.015588069467980638
+          },
+          {
+            "radius_ratio": 0.7618359375000001,
+            "blade_incidence_deg": 19.09593248395094,
+            "relative_annular_thrust": 0.01575571982338936
+          },
+          {
+            "radius_ratio": 0.7670703125,
+            "blade_incidence_deg": 19.14092353075055,
+            "relative_annular_thrust": 0.01592177355222058
+          },
+          {
+            "radius_ratio": 0.7723046875,
+            "blade_incidence_deg": 19.18423564975425,
+            "relative_annular_thrust": 0.016085982160278314
+          },
+          {
+            "radius_ratio": 0.7775390625,
+            "blade_incidence_deg": 19.225894766742517,
+            "relative_annular_thrust": 0.016248076308075322
+          },
+          {
+            "radius_ratio": 0.7827734375000001,
+            "blade_incidence_deg": 19.265926323291303,
+            "relative_annular_thrust": 0.016407764060455878
+          },
+          {
+            "radius_ratio": 0.7880078125,
+            "blade_incidence_deg": 19.304355286630436,
+            "relative_annular_thrust": 0.01656472898116995
+          },
+          {
+            "radius_ratio": 0.7932421875000001,
+            "blade_incidence_deg": 19.341206159314478,
+            "relative_annular_thrust": 0.01671862805621759
+          },
+          {
+            "radius_ratio": 0.7984765625,
+            "blade_incidence_deg": 19.376502988707784,
+            "relative_annular_thrust": 0.016869089427494155
+          },
+          {
+            "radius_ratio": 0.8037109375000001,
+            "blade_incidence_deg": 19.410269376285388,
+            "relative_annular_thrust": 0.017015709915533653
+          },
+          {
+            "radius_ratio": 0.8089453125,
+            "blade_incidence_deg": 19.442528486751755,
+            "relative_annular_thrust": 0.017158052306863354
+          },
+          {
+            "radius_ratio": 0.8141796875,
+            "blade_incidence_deg": 19.473303056979443,
+            "relative_annular_thrust": 0.0172956423775141
+          },
+          {
+            "radius_ratio": 0.8194140624999999,
+            "blade_incidence_deg": 19.502615404769752,
+            "relative_annular_thrust": 0.01742796561940505
+          },
+          {
+            "radius_ratio": 0.8246484375,
+            "blade_incidence_deg": 19.53048743743768,
+            "relative_annular_thrust": 0.01755446363042194
+          },
+          {
+            "radius_ratio": 0.8298828125,
+            "blade_incidence_deg": 19.55694066022354,
+            "relative_annular_thrust": 0.017674530121749965
+          },
+          {
+            "radius_ratio": 0.8351171875000001,
+            "blade_incidence_deg": 19.58199618453352,
+            "relative_annular_thrust": 0.017787506487045402
+          },
+          {
+            "radius_ratio": 0.8403515625,
+            "blade_incidence_deg": 19.60567473601191,
+            "relative_annular_thrust": 0.017892676866855174
+          },
+          {
+            "radius_ratio": 0.8455859375,
+            "blade_incidence_deg": 19.6279966624472,
+            "relative_annular_thrust": 0.017989262627703156
+          },
+          {
+            "radius_ratio": 0.8508203125,
+            "blade_incidence_deg": 19.648981941514904,
+            "relative_annular_thrust": 0.01807641615763129
+          },
+          {
+            "radius_ratio": 0.8560546875,
+            "blade_incidence_deg": 19.668650188359567,
+            "relative_annular_thrust": 0.018153213857621184
+          },
+          {
+            "radius_ratio": 0.8612890625,
+            "blade_incidence_deg": 19.687020663018593,
+            "relative_annular_thrust": 0.018218648179757848
+          },
+          {
+            "radius_ratio": 0.8665234375,
+            "blade_incidence_deg": 19.70411227769061,
+            "relative_annular_thrust": 0.01827161852623967
+          },
+          {
+            "radius_ratio": 0.8717578125000001,
+            "blade_incidence_deg": 19.71994360385103,
+            "relative_annular_thrust": 0.018310920775659854
+          },
+          {
+            "radius_ratio": 0.8769921875,
+            "blade_incidence_deg": 19.73453287921738,
+            "relative_annular_thrust": 0.018335235140599912
+          },
+          {
+            "radius_ratio": 0.8822265625000001,
+            "blade_incidence_deg": 19.747898014567337,
+            "relative_annular_thrust": 0.018343111978185618
+          },
+          {
+            "radius_ratio": 0.8874609375,
+            "blade_incidence_deg": 19.76005660041179,
+            "relative_annular_thrust": 0.018332955065319175
+          },
+          {
+            "radius_ratio": 0.8926953125000001,
+            "blade_incidence_deg": 19.771025913525975,
+            "relative_annular_thrust": 0.01830300170195822
+          },
+          {
+            "radius_ratio": 0.8979296875,
+            "blade_incidence_deg": 19.780822923341084,
+            "relative_annular_thrust": 0.018251298803161113
+          },
+          {
+            "radius_ratio": 0.9031640625,
+            "blade_incidence_deg": 19.789464298199146,
+            "relative_annular_thrust": 0.018175673859993094
+          },
+          {
+            "radius_ratio": 0.9083984374999999,
+            "blade_incidence_deg": 19.79696641147376,
+            "relative_annular_thrust": 0.018073699254920746
+          },
+          {
+            "radius_ratio": 0.9136328125,
+            "blade_incidence_deg": 19.803345347559365,
+            "relative_annular_thrust": 0.017942647853546434
+          },
+          {
+            "radius_ratio": 0.9188671875000001,
+            "blade_incidence_deg": 19.808616907731494,
+            "relative_annular_thrust": 0.017779436973791713
+          },
+          {
+            "radius_ratio": 0.9241015625000001,
+            "blade_incidence_deg": 19.812796615880803,
+            "relative_annular_thrust": 0.01758055661398329
+          },
+          {
+            "radius_ratio": 0.9293359375,
+            "blade_incidence_deg": 19.815899724123298,
+            "relative_annular_thrust": 0.017341975966614902
+          },
+          {
+            "radius_ratio": 0.9345703125,
+            "blade_incidence_deg": 19.81794121828919,
+            "relative_annular_thrust": 0.01705901935007514
+          },
+          {
+            "radius_ratio": 0.9398046874999999,
+            "blade_incidence_deg": 19.81893582329314,
+            "relative_annular_thrust": 0.016726198038413614
+          },
+          {
+            "radius_ratio": 0.9450390625000001,
+            "blade_incidence_deg": 19.818898008388032,
+            "relative_annular_thrust": 0.016336976735653222
+          },
+          {
+            "radius_ratio": 0.9502734375,
+            "blade_incidence_deg": 19.81784199230496,
+            "relative_annular_thrust": 0.01588344007490497
+          },
+          {
+            "radius_ratio": 0.9555078125,
+            "blade_incidence_deg": 19.81578174828166,
+            "relative_annular_thrust": 0.015355800344340843
+          },
+          {
+            "radius_ratio": 0.9607421875,
+            "blade_incidence_deg": 19.812731008981824,
+            "relative_annular_thrust": 0.014741641475202218
+          },
+          {
+            "radius_ratio": 0.9659765625,
+            "blade_incidence_deg": 19.808703271307603,
+            "relative_annular_thrust": 0.014024700214620054
+          },
+          {
+            "radius_ratio": 0.9712109375000001,
+            "blade_incidence_deg": 19.803711801107518,
+            "relative_annular_thrust": 0.013182777375990225
+          },
+          {
+            "radius_ratio": 0.9764453125000001,
+            "blade_incidence_deg": 19.797769637782174,
+            "relative_annular_thrust": 0.012183862170950844
+          },
+          {
+            "radius_ratio": 0.9816796875,
+            "blade_incidence_deg": 19.790889598789864,
+            "relative_annular_thrust": 0.01097811857960765
+          },
+          {
+            "radius_ratio": 0.9869140625,
+            "blade_incidence_deg": 19.783084284054187,
+            "relative_annular_thrust": 0.00947847983573216
+          },
+          {
+            "radius_ratio": 0.9921484374999999,
+            "blade_incidence_deg": 19.774366080276053,
+            "relative_annular_thrust": 0.007499742742262873
+          },
+          {
+            "radius_ratio": 0.9973828125000002,
+            "blade_incidence_deg": 19.764747165151913,
+            "relative_annular_thrust": 0.004422550077675032
+          }
+        ],
+        "illustrative_four_branch_flow_fractions": [
+          0.28932843061262425,
+          0.2587832154692636,
+          0.23623567436039256,
+          0.21565267955771966
+        ],
+        "branch_resistances_assumed_relative": [
+          1.0,
+          1.25,
+          1.5,
+          1.8
+        ],
+        "validity_flags": {
+          "polar_measured": false,
+          "boundary_conditions_measured": false,
+          "tip_mach_above_0p3": true,
+          "sections_outside_small_angle_polar": true,
+          "CFD_or_FEM_result": false,
+          "physical_validation_established": false,
+          "manufacturing_authorized": false
+        }
+      }
+    },
+    {
+      "case": "clearance_loss_high",
+      "changes": {},
+      "result": {
+        "configuration_id": "private_scan_informed_horizontal_study_R0",
+        "diameter_mm_assumed": 275,
+        "shaft_power_W_assumed": 6000,
+        "fan_rpm_screen": 7566.0185568180805,
+        "flow_m3_s_screen": 1.211234344002423,
+        "static_pressure_Pa_screen": 3208.0340336032123,
+        "useful_air_power_W_screen": 3885.6809982288337,
+        "shaft_to_air_efficiency_screen": 0.6476134997048056,
+        "tip_speed_m_s": 108.94284644385877,
+        "tip_mach_assuming_343_m_s": 0.3176176281162063,
+        "drag_and_gap_model": {
+          "lift_slope_per_rad": 5.7,
+          "cl_limit": 1.1,
+          "Cd0": 0.025,
+          "drag_quadratic": 0.04,
+          "gap_loss_coefficient": 10,
+          "friction_torque_Nm": 0.63
+        },
+        "radial_sections_over_12deg_incidence_fraction": 1.0,
+        "beam_stress_MPa_screen": 14.29022490857549,
+        "beam_centrifugal_stress_MPa_screen": 9.94488064017178,
+        "beam_aero_bending_stress_MPa_screen": 4.34534426840371,
+        "per_blade_mass_kg_screen": 0.023424325192025815,
+        "cantilever_first_frequency_Hz_screen": 865.2430821402746,
+        "blade_passing_frequency_Hz": 1134.902783522712,
+        "radial_thrust_density_not_installed_air_distribution": [
+          {
+            "radius_ratio": 0.6676171875000001,
+            "blade_incidence_deg": 19.511331341923366,
+            "relative_annular_thrust": 0.012496161908172869
+          },
+          {
+            "radius_ratio": 0.6728515625000001,
+            "blade_incidence_deg": 19.584642561453244,
+            "relative_annular_thrust": 0.012667838931328222
+          },
+          {
+            "radius_ratio": 0.6780859375000001,
+            "blade_incidence_deg": 19.65573652011971,
+            "relative_annular_thrust": 0.012840238312101961
+          },
+          {
+            "radius_ratio": 0.6833203125,
+            "blade_incidence_deg": 19.724650851029725,
+            "relative_annular_thrust": 0.013013305112456575
+          },
+          {
+            "radius_ratio": 0.6885546875000002,
+            "blade_incidence_deg": 19.791422427668063,
+            "relative_annular_thrust": 0.013186979400148964
+          },
+          {
+            "radius_ratio": 0.6937890625,
+            "blade_incidence_deg": 19.85608738003931,
+            "relative_annular_thrust": 0.013361195807713664
+          },
+          {
+            "radius_ratio": 0.6990234375000001,
+            "blade_incidence_deg": 19.918681110525462,
+            "relative_annular_thrust": 0.01353588305297408
+          },
+          {
+            "radius_ratio": 0.7042578125000001,
+            "blade_incidence_deg": 19.9792383094579,
+            "relative_annular_thrust": 0.013710963417759887
+          },
+          {
+            "radius_ratio": 0.7094921875000001,
+            "blade_incidence_deg": 20.03779297040301,
+            "relative_annular_thrust": 0.013886352181214779
+          },
+          {
+            "radius_ratio": 0.7147265625,
+            "blade_incidence_deg": 20.094378405161432,
+            "relative_annular_thrust": 0.014061957003756677
+          },
+          {
+            "radius_ratio": 0.7199609375000001,
+            "blade_incidence_deg": 20.14902725848141,
+            "relative_annular_thrust": 0.014237677257397727
+          },
+          {
+            "radius_ratio": 0.7251953125,
+            "blade_incidence_deg": 20.201771522487142,
+            "relative_annular_thrust": 0.01441340329774115
+          },
+          {
+            "radius_ratio": 0.7304296875,
+            "blade_incidence_deg": 20.25264255082358,
+            "relative_annular_thrust": 0.014589015672540402
+          },
+          {
+            "radius_ratio": 0.7356640625,
+            "blade_incidence_deg": 20.30167107251937,
+            "relative_annular_thrust": 0.014764384261227819
+          },
+          {
+            "radius_ratio": 0.7408984375000001,
+            "blade_incidence_deg": 20.348887205570115,
+            "relative_annular_thrust": 0.01493936733928817
+          },
+          {
+            "radius_ratio": 0.7461328125000001,
+            "blade_incidence_deg": 20.394320470244438,
+            "relative_annular_thrust": 0.015113810560759593
+          },
+          {
+            "radius_ratio": 0.7513671875000001,
+            "blade_incidence_deg": 20.437999802115343,
+            "relative_annular_thrust": 0.015287545851478858
+          },
+          {
+            "radius_ratio": 0.7566015625,
+            "blade_incidence_deg": 20.479953564820217,
+            "relative_annular_thrust": 0.015460390204940345
+          },
+          {
+            "radius_ratio": 0.7618359375000001,
+            "blade_incidence_deg": 20.520209562552235,
+            "relative_annular_thrust": 0.01563214437179114
+          },
+          {
+            "radius_ratio": 0.7670703125,
+            "blade_incidence_deg": 20.5587950522869,
+            "relative_annular_thrust": 0.015802591433022938
+          },
+          {
+            "radius_ratio": 0.7723046875,
+            "blade_incidence_deg": 20.595736755747023,
+            "relative_annular_thrust": 0.015971495245821088
+          },
+          {
+            "radius_ratio": 0.7775390625,
+            "blade_incidence_deg": 20.63106087111003,
+            "relative_annular_thrust": 0.016138598749766093
+          },
+          {
+            "radius_ratio": 0.7827734375000001,
+            "blade_incidence_deg": 20.664793084461163,
+            "relative_annular_thrust": 0.016303622119619086
+          },
+          {
+            "radius_ratio": 0.7880078125,
+            "blade_incidence_deg": 20.69695858099682,
+            "relative_annular_thrust": 0.01646626074921768
+          },
+          {
+            "radius_ratio": 0.7932421875000001,
+            "blade_incidence_deg": 20.727582055981777,
+            "relative_annular_thrust": 0.016626183049010358
+          },
+          {
+            "radius_ratio": 0.7984765625,
+            "blade_incidence_deg": 20.756687725464523,
+            "relative_annular_thrust": 0.01678302803739896
+          },
+          {
+            "radius_ratio": 0.8037109375000001,
+            "blade_incidence_deg": 20.7842993367548,
+            "relative_annular_thrust": 0.016936402703256817
+          },
+          {
+            "radius_ratio": 0.8089453125,
+            "blade_incidence_deg": 20.810440178667527,
+            "relative_annular_thrust": 0.01708587911363805
+          },
+          {
+            "radius_ratio": 0.8141796875,
+            "blade_incidence_deg": 20.835133091537433,
+            "relative_annular_thrust": 0.01723099123665737
+          },
+          {
+            "radius_ratio": 0.8194140624999999,
+            "blade_incidence_deg": 20.85840047700848,
+            "relative_annular_thrust": 0.017371231444625802
+          },
+          {
+            "radius_ratio": 0.8246484375,
+            "blade_incidence_deg": 20.88026430760248,
+            "relative_annular_thrust": 0.017506046656555377
+          },
+          {
+            "radius_ratio": 0.8298828125,
+            "blade_incidence_deg": 20.900746136071046,
+            "relative_annular_thrust": 0.01763483407180868
+          },
+          {
+            "radius_ratio": 0.8351171875000001,
+            "blade_incidence_deg": 20.919867104535225,
+            "relative_annular_thrust": 0.017756936437596394
+          },
+          {
+            "radius_ratio": 0.8403515625,
+            "blade_incidence_deg": 20.937647953417034,
+            "relative_annular_thrust": 0.017871636781733105
+          },
+          {
+            "radius_ratio": 0.8455859375,
+            "blade_incidence_deg": 20.954109030167025,
+            "relative_annular_thrust": 0.017978152527912777
+          },
+          {
+            "radius_ratio": 0.8508203125,
+            "blade_incidence_deg": 20.969270297792207,
+            "relative_annular_thrust": 0.01807562889291905
+          },
+          {
+            "radius_ratio": 0.8560546875,
+            "blade_incidence_deg": 20.983151343188403,
+            "relative_annular_thrust": 0.018163131442519714
+          },
+          {
+            "radius_ratio": 0.8612890625,
+            "blade_incidence_deg": 20.995771385281166,
+            "relative_annular_thrust": 0.01823963765380211
+          },
+          {
+            "radius_ratio": 0.8665234375,
+            "blade_incidence_deg": 21.007149282979377,
+            "relative_annular_thrust": 0.01830402729433984
+          },
+          {
+            "radius_ratio": 0.8717578125000001,
+            "blade_incidence_deg": 21.017303542945545,
+            "relative_annular_thrust": 0.018355071380038654
+          },
+          {
+            "radius_ratio": 0.8769921875,
+            "blade_incidence_deg": 21.02625232718673,
+            "relative_annular_thrust": 0.018391419409902982
+          },
+          {
+            "radius_ratio": 0.8822265625000001,
+            "blade_incidence_deg": 21.03401346047025,
+            "relative_annular_thrust": 0.018411584491849896
+          },
+          {
+            "radius_ratio": 0.8874609375,
+            "blade_incidence_deg": 21.04060443756767,
+            "relative_annular_thrust": 0.0184139258613305
+          },
+          {
+            "radius_ratio": 0.8926953125000001,
+            "blade_incidence_deg": 21.046042430331337,
+            "relative_annular_thrust": 0.018396628142752586
+          },
+          {
+            "radius_ratio": 0.8979296875,
+            "blade_incidence_deg": 21.05034429460692,
+            "relative_annular_thrust": 0.018357676496215152
+          },
+          {
+            "radius_ratio": 0.9031640625,
+            "blade_incidence_deg": 21.05352657698576,
+            "relative_annular_thrust": 0.018294826504592777
+          },
+          {
+            "radius_ratio": 0.9083984374999999,
+            "blade_incidence_deg": 21.055605521400757,
+            "relative_annular_thrust": 0.018205567251767623
+          },
+          {
+            "radius_ratio": 0.9136328125,
+            "blade_incidence_deg": 21.056597075569258,
+            "relative_annular_thrust": 0.01808707546495088
+          },
+          {
+            "radius_ratio": 0.9188671875000001,
+            "blade_incidence_deg": 21.056516897286524,
+            "relative_annular_thrust": 0.017936157752739934
+          },
+          {
+            "radius_ratio": 0.9241015625000001,
+            "blade_incidence_deg": 21.055380360573274,
+            "relative_annular_thrust": 0.017749176720415146
+          },
+          {
+            "radius_ratio": 0.9293359375,
+            "blade_incidence_deg": 21.053202561680664,
+            "relative_annular_thrust": 0.017521954843167438
+          },
+          {
+            "radius_ratio": 0.9345703125,
+            "blade_incidence_deg": 21.04999832495595,
+            "relative_annular_thrust": 0.017249647011974952
+          },
+          {
+            "radius_ratio": 0.9398046874999999,
+            "blade_incidence_deg": 21.045782208572337,
+            "relative_annular_thrust": 0.01692656790068833
+          },
+          {
+            "radius_ratio": 0.9450390625000001,
+            "blade_incidence_deg": 21.040568510125915,
+            "relative_annular_thrust": 0.016545952381618455
+          },
+          {
+            "radius_ratio": 0.9502734375,
+            "blade_incidence_deg": 21.034371272103066,
+            "relative_annular_thrust": 0.01609961352926855
+          },
+          {
+            "radius_ratio": 0.9555078125,
+            "blade_incidence_deg": 21.02720428722129,
+            "relative_annular_thrust": 0.01557743799766448
+          },
+          {
+            "radius_ratio": 0.9607421875,
+            "blade_incidence_deg": 21.019081103646492,
+            "relative_annular_thrust": 0.014966611300141245
+          },
+          {
+            "radius_ratio": 0.9659765625,
+            "blade_incidence_deg": 21.01001503008966,
+            "relative_annular_thrust": 0.014250369206794766
+          },
+          {
+            "radius_ratio": 0.9712109375000001,
+            "blade_incidence_deg": 21.000019140785817,
+            "relative_annular_thrust": 0.013405858623043842
+          },
+          {
+            "radius_ratio": 0.9764453125000001,
+            "blade_incidence_deg": 20.989106280358154,
+            "relative_annular_thrust": 0.012400169713414783
+          },
+          {
+            "radius_ratio": 0.9816796875,
+            "blade_incidence_deg": 20.977289068569934,
+            "relative_annular_thrust": 0.011182134357537853
+          },
+          {
+            "radius_ratio": 0.9869140625,
+            "blade_incidence_deg": 20.964579904966985,
+            "relative_annular_thrust": 0.009662472666490372
+          },
+          {
+            "radius_ratio": 0.9921484374999999,
+            "blade_incidence_deg": 20.95099097341342,
+            "relative_annular_thrust": 0.007651505318124541
+          },
+          {
+            "radius_ratio": 0.9973828125000002,
+            "blade_incidence_deg": 20.93653424652312,
+            "relative_annular_thrust": 0.0045156660875000304
+          }
+        ],
+        "illustrative_four_branch_flow_fractions": [
+          0.28932843061262425,
+          0.2587832154692636,
+          0.23623567436039256,
+          0.21565267955771966
+        ],
+        "branch_resistances_assumed_relative": [
+          1.0,
+          1.25,
+          1.5,
+          1.8
+        ],
+        "validity_flags": {
+          "polar_measured": false,
+          "boundary_conditions_measured": false,
+          "tip_mach_above_0p3": true,
+          "sections_outside_small_angle_polar": true,
+          "CFD_or_FEM_result": false,
+          "physical_validation_established": false,
+          "manufacturing_authorized": false
+        }
+      }
+    }
+  ],
+  "reported_EB_replica_power_context": {
+    "source_ledger_ids": [
+      "P039",
+      "P040",
+      "P041"
+    ],
+    "reported_points": [
+      [
+        4000,
+        1.5
+      ],
+      [
+        12000,
+        32
+      ]
+    ],
+    "units_as_reported": [
+      "fan rpm",
+      "hp, standard not resolved"
+    ],
+    "two_point_power_law_exponent": 2.7855785214287443,
+    "cubic_plus_linear_hp_at_rpm_over_4000": {
+      "cubic": 1.1458333333333333,
+      "linear": 0.35416666666666674
+    },
+    "fit_at_8000fan_rpm_hp": 9.875,
+    "mechanical_hp_assumption_W": 745.6998715822702,
+    "metric_PS_W": 735.49875,
+    "transfer_to_factory_or_scan_geometry_calibrated": false
+  },
+  "manufacturing_scope": "Geometry access, thickness and cantilever screening only; no machine, powder, thermal history, supports, residual stress or process qualification",
+  "automatic_model_admission": false,
+  "physical_validation_established": false
+}

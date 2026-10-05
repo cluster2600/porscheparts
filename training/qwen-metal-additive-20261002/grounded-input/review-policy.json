@@ -1,0 +1,13 @@
+{
+  "status": "pilot_source_checked_not_expert_approved",
+  "review_fields": [
+    "source_alignment",
+    "expert_review",
+    "translation_review",
+    "quantitative_claims"
+  ],
+  "release_rule": "A substantive specialist training release requires independent expert approval of technical targets and translations; this pilot explicitly records pending review and makes no such release claim.",
+  "split_policy": "Article/DOI and all language/task variants remain in one split across CPT, SFT and evaluation. Previously held-out v2 sources stay held out.",
+  "duplicate_policy": "Reject exact duplicated paragraphs/examples and report cross-source 5-word-shingle Jaccard similarity >= 0.8 for human review. Intentional translations share a case family; they are not independent evidence.",
+  "evaluation_policy": "Test sources, questions and rubrics must never enter training or hyperparameter selection. Compare base and adapter on identical prompts after freezing tuning on validation."
+}

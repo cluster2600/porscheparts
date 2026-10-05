@@ -74,3 +74,79 @@ Sources consulted on **September 12, 2026**, publications retained up to that da
 [^11]: Singer Vehicle Design, [DLS Turbo Services — Road](https://singervehicledesign.com/singer-in-the-world/featured-restoration-3/), undated page. Manufacturer source; **Engine section**, transcribed on September 12, 2026.
 [^12]: Idaho National Laboratory, [MALAMUTE System Design Description](https://malamute.inl.gov/sqa/malamute_sdd.html) and [overview](https://malamute.inl.gov/), official documentation; **process and architecture sections**. The home page indicates a documentation build of September 11, 2026. No M64 run established.
 [^13]: LLNL, [ExaConstit](https://github.com/LLNL/ExaConstit), official code and README, **applications, constitutive and input-data sections**, transcribed on September 12, 2026; software documentation, not a material test.
+
+## 2 October supplement: the owner's perforated-fin paper
+
+Sroka, Sufe and Kejela, [Improving heat transfer in an air-cooled engine by
+redesigning the fins](https://www.combustion-engines.eu/pdf-195440-116096?filename=Improvingheattransfer.pdf),
+*Combustion Engines* 201(2), 2025, pp. 14–21, DOI 10.19206/CE-195440,
+CC BY 4.0. Full eight-page text read; Figure 2 and tabulated results checked.
+Private PDF SHA-256: `3ed12edd838cc6ffae5c1057ba7d5107628b4913fbe4157b5f778a167816b337`.
+The [publisher landing page](https://doi.org/10.19206/CE-195440) now also links
+an [alternate PDF endpoint](https://www.combustion-engines.eu/pdf-195440-126298?filename=Improving-heat-transfer-i.pdf);
+the review above refers to the hashed copy, not an assumed identical revision.
+
+The study concerns a single cylinder, not a turbo four-valve head. Figure 2
+shows imposed 350 °C and convection at 35 W/(m² K). Table 4 reports a
+temperature span of 69 K without perforations and 71.8 K with circular holes;
+mass changes from 0.960 to 0.926 kg. These yield **+4.06% temperature span**
+and **−3.54% mass**, not independent proof of +4% heat flow in watts.
+
+Reproduction checks expose unresolved input consistency:
+
+- Table 1's 50 mm bore and 70 mm stroke imply **137.445 cm³**, not the
+  stated 250 cm³.
+- For 96 through-holes, 2.5 mm thickness and 2,700 kg/m³ density, equal
+  40 mm² openings remove about **25.9 g** in either shape, unlike the
+  differing reported mass reductions. Placement/intersections need recovery.
+- No mesh-convergence study or experimental correlation is established here.
+
+This is a useful hypothesis source, not an M64 validation or an LPBF alloy
+qualification. Its dimensions, convection coefficient and material properties
+are not imported into the head's physical boundary conditions.
+
+### Project-derived experiment, not a result of the paper
+
+Preserve the scanned outer envelope, mating regions and load paths. Do not
+drill the current CAD until fin and protected-region labels are established.
+Compare these candidates with identical loads, material state, oil routing and
+ambient conditions:
+
+| Candidate | Controlled change | Mandatory comparison |
+|---|---|---|
+| A | Original unperforated fins | Reference mass, temperatures and fan demand |
+| B | Rounded through-holes restricted to labelled fins | Same removed volume and protected fin roots |
+| C | Rounded slots, without exterior-envelope change | Same porosity and minimum ligament as B |
+
+Hole size follows local fin width, thickness and ligament constraints; no
+7.14 mm default is transferred from the paper. Screen several hole positions
+before increasing porosity. Reject any connection to a port, oil gallery,
+seat, guide, plug boss or structural interface.
+
+Geometric sanity check, derived here: an isolated cylindrical through-hole in
+a flat fin changes exposed area by `delta_A = 2*pi*r*t - 2*pi*r*r`, where `t`
+is thickness and both broad faces were exposed. When `r > t`, exposed area
+decreases even though mass decreases. This assumes no edge intersections,
+chamfers or roughness; it is not a heat-transfer prediction. Any benefit must
+therefore be assessed with conduction paths and airflow, not presumed from
+the presence of holes.
+
+Use existing OpenFOAM CHT for the coupled solid/air calculation. Compare first
+at equal air mass flow, then at the same fan curve or shaft-power budget:
+perforations can change pressure losses and bypass useful fin passages.
+Record integrated heat rejection, mass/energy residuals, pressure loss, peak
+seat-bridge temperature, gradients and mass. At fixed heat input, prefer
+thermal resistance `(T_hotspot - T_air_in)/Q_in`, not a larger arbitrary
+maximum-minus-minimum temperature span. Cross-check a simple fin coupon with
+an analytical conduction/convection model before running the complete head.
+
+Run three systematically refined grids and explicit numerical-uncertainty
+estimates; require any improvement to exceed those uncertainties. Then test
+hot thermomechanical fatigue and fin-root vibration, followed by the existing
+LPBF support/removal, minimum-wall and distortion checks. No gain is accepted
+if it sacrifices a required structural or manufacturing margin. PhysicsNeMo
+may rank designs only after independent solver results supply training and
+held-out validation; it does not certify a geometry from this paper.
+
+**Status:** comparison defined, no perforated-head CAD or CFD result produced.
+The current curve/volume reconciliation remains the immediate numerical gate.

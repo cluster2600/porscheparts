@@ -1,0 +1,16 @@
+{
+  "fine_tune_type": "lora",
+  "num_layers": 36,
+  "lora_parameters": {
+    "rank": 8,
+    "scale": 2.0,
+    "dropout": 0.05,
+    "keys": [
+      "self_attn.q_proj",
+      "self_attn.v_proj"
+    ]
+  },
+  "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+  "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "native_policy": "Native MLX BF16 tied base with FP32 LoRA; official delta cast before addition differs from PEFT; no cross-runtime parity claimed"
+}

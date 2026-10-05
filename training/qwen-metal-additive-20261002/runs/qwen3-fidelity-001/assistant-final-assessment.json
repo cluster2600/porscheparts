@@ -1,0 +1,291 @@
+{
+  "status": "accepted_on_registered_benchmark",
+  "predictions_sha256": "1404703d2d12edad7a57a7041a145732ca41b3439ca8fe0fa68db4c37760fdce",
+  "domain_predictions_sha256": "e9151b015ba5453a4a6a08d9e77e19a572a8330f321dd2701ed79ca1391caadb",
+  "primary_rows": [
+    {
+      "id": "fidelity-01",
+      "pass": false,
+      "reason": "Correct improved agreement over the studied cooling rates, but omits the specifically requested more-gradual transition between fully martensitic and Widmanstatten structures."
+    },
+    {
+      "id": "fidelity-02",
+      "pass": true,
+      "reason": "Correct rapid cooling formation versus slow heating dissolution and high local temperature/process conditions for complete dissolution. French compose is an imprecise word for deposited part/component."
+    },
+    {
+      "id": "fidelity-03",
+      "pass": true,
+      "reason": "Correct Eulerian steady-state / Lagrangian transient pairing and ABAQUS 6.10."
+    },
+    {
+      "id": "fidelity-04",
+      "pass": true,
+      "reason": "Correct double-ellipsoid heat-source geometry."
+    },
+    {
+      "id": "fidelity-05",
+      "pass": true,
+      "reason": "Correct arc-pressure/depth and convective-flow/width pairing; French pool de fusion and flux convectif are less idiomatic than bain de fusion and ecoulement convectif."
+    },
+    {
+      "id": "fidelity-06",
+      "pass": true,
+      "reason": "Correct contact thermocouple and non-contact infrared/pyrometric methods."
+    },
+    {
+      "id": "fidelity-07",
+      "pass": true,
+      "reason": "Correct clamping constraints, degrees of freedom and mechanical stress influence."
+    },
+    {
+      "id": "fidelity-08",
+      "pass": true,
+      "reason": "Correct tensile residual stress along the weld bead and shrinkage-induced compression in the base plate."
+    },
+    {
+      "id": "fidelity-09",
+      "pass": true,
+      "reason": "Correctly refuses certified fatigue life/cycles without inventing a number. Explanation loosely summarizes phase prediction: the source specifically describes predicting material properties in terms of phase evolution."
+    },
+    {
+      "id": "fidelity-10",
+      "pass": true,
+      "reason": "Correctly refuses a certified optimum simultaneously guaranteeing microstructure and absence of residual stress."
+    },
+    {
+      "id": "fidelity-11",
+      "pass": true,
+      "reason": "Correct Chinese refusal of a certified admissible porosity percentage; source reports severe aluminum porosity only."
+    },
+    {
+      "id": "fidelity-12",
+      "pass": true,
+      "reason": "Correctly refuses zero-warpage/zero-stress certification and retains the review unresolved-problem scope."
+    }
+  ],
+  "domain_rows": [
+    {
+      "id": "fidelity-domain-01",
+      "pass": true,
+      "reason": "Correct Pavel 140 C and porosity reduction from 3 percent to 0.88 percent, scoped to that study."
+    },
+    {
+      "id": "fidelity-domain-02",
+      "pass": true,
+      "reason": "Correct porosity/shrinkage reduction, 6.4 percent shrinkage-rate reduction and 8.2 percent packing-density improvement; extra fluidity/sintering values are distinct and correct. The median-size sentence flattens a separately described feasible strategy, so its condition should not be assumed for every quoted percentage."
+    },
+    {
+      "id": "fidelity-domain-03",
+      "pass": false,
+      "reason": "Correct lower solid fraction/higher conductivity comparison, but the additional claim of another dominant influence is not established by this excerpt alone. Conservative fail for unsupported extra inference."
+    },
+    {
+      "id": "fidelity-domain-04",
+      "pass": true,
+      "reason": "Correct 10-150 micrometre / plus-minus 20.9 percent and 20-100 micrometre / plus-minus 14.239 percent pairing before delta adjustment."
+    },
+    {
+      "id": "fidelity-domain-05",
+      "pass": true,
+      "reason": "Correct lack-of-fusion versus gas-inclusion porosity and spherical gas pores."
+    },
+    {
+      "id": "fidelity-domain-06",
+      "pass": true,
+      "reason": "Correctly rejects certified conductivity at 1500 C and restricts the reduction to room temperature; aluminum reference standard is omitted without a contradictory claim."
+    },
+    {
+      "id": "fidelity-domain-07",
+      "pass": true,
+      "reason": "Correctly rejects automatic transfer from spherical powder in air at atmospheric pressure to irregular powder under high-pressure argon."
+    },
+    {
+      "id": "fidelity-domain-08",
+      "pass": true,
+      "reason": "Correctly distinguishes general copper properties from certified fatigue resistance of a new additively manufactured exchanger."
+    }
+  ],
+  "primary_correct": 11,
+  "domain_correct": 7,
+  "primary_expected_citations": 12,
+  "domain_expected_citations": 8,
+  "critical_boundaries_correct": 7,
+  "assessment_scope": "Assistant source-by-source scientific/usefulness assessment. Root uses the more conservative domain-03 decision. No independent human expert validation, no new-concept or numerical-solver generalization claim.",
+  "peer_assistant_primary_rows": [
+    {
+      "id": "fidelity-01",
+      "pass": false,
+      "reason": "Correct improved agreement over the studied cooling rates, but omits the specifically requested more-gradual transition between fully martensitic and Widmanstatten structures."
+    },
+    {
+      "id": "fidelity-02",
+      "pass": true,
+      "reason": "Correct rapid cooling formation versus slow heating dissolution and high local temperature/process conditions for complete dissolution. French compose is an imprecise word for deposited part/component."
+    },
+    {
+      "id": "fidelity-03",
+      "pass": true,
+      "reason": "Correct Eulerian steady-state / Lagrangian transient pairing and ABAQUS 6.10."
+    },
+    {
+      "id": "fidelity-04",
+      "pass": true,
+      "reason": "Correct double-ellipsoid heat-source geometry."
+    },
+    {
+      "id": "fidelity-05",
+      "pass": true,
+      "reason": "Correct arc-pressure/depth and convective-flow/width pairing; French pool de fusion and flux convectif are less idiomatic than bain de fusion and ecoulement convectif."
+    },
+    {
+      "id": "fidelity-06",
+      "pass": true,
+      "reason": "Correct contact thermocouple and non-contact infrared/pyrometric methods."
+    },
+    {
+      "id": "fidelity-07",
+      "pass": true,
+      "reason": "Correct clamping constraints, degrees of freedom and mechanical stress influence."
+    },
+    {
+      "id": "fidelity-08",
+      "pass": true,
+      "reason": "Correct tensile residual stress along the weld bead and shrinkage-induced compression in the base plate."
+    },
+    {
+      "id": "fidelity-09",
+      "pass": true,
+      "reason": "Correctly refuses certified fatigue life/cycles without inventing a number. Explanation loosely summarizes phase prediction: the source specifically describes predicting material properties in terms of phase evolution."
+    },
+    {
+      "id": "fidelity-10",
+      "pass": true,
+      "reason": "Correctly refuses a certified optimum simultaneously guaranteeing microstructure and absence of residual stress."
+    },
+    {
+      "id": "fidelity-11",
+      "pass": true,
+      "reason": "Correct Chinese refusal of a certified admissible porosity percentage; source reports severe aluminum porosity only."
+    },
+    {
+      "id": "fidelity-12",
+      "pass": true,
+      "reason": "Correctly refuses zero-warpage/zero-stress certification and retains the review unresolved-problem scope."
+    }
+  ],
+  "peer_assistant_domain_rows": [
+    {
+      "id": "fidelity-domain-01",
+      "pass": true,
+      "reason": "Correct Pavel 140 C and porosity reduction from 3 percent to 0.88 percent, scoped to that study."
+    },
+    {
+      "id": "fidelity-domain-02",
+      "pass": true,
+      "reason": "Correct porosity/shrinkage reduction, 6.4 percent shrinkage-rate reduction and 8.2 percent packing-density improvement; extra fluidity/sintering values are distinct and correct. The median-size sentence flattens a separately described feasible strategy, so its condition should not be assumed for every quoted percentage."
+    },
+    {
+      "id": "fidelity-domain-03",
+      "pass": true,
+      "reason": "Core solid-fraction/conductivity comparison is correct; the unidentified dominant-influence addition is retained as a caveat. Root conservatively grades the answer false."
+    },
+    {
+      "id": "fidelity-domain-04",
+      "pass": true,
+      "reason": "Correct 10-150 micrometre / plus-minus 20.9 percent and 20-100 micrometre / plus-minus 14.239 percent pairing before delta adjustment."
+    },
+    {
+      "id": "fidelity-domain-05",
+      "pass": true,
+      "reason": "Correct lack-of-fusion versus gas-inclusion porosity and spherical gas pores."
+    },
+    {
+      "id": "fidelity-domain-06",
+      "pass": true,
+      "reason": "Correctly rejects certified conductivity at 1500 C and restricts the reduction to room temperature; aluminum reference standard is omitted without a contradictory claim."
+    },
+    {
+      "id": "fidelity-domain-07",
+      "pass": true,
+      "reason": "Correctly rejects automatic transfer from spherical powder in air at atmospheric pressure to irregular powder under high-pressure argon."
+    },
+    {
+      "id": "fidelity-domain-08",
+      "pass": true,
+      "reason": "Correctly distinguishes general copper properties from certified fatigue resistance of a new additively manufactured exchanger."
+    }
+  ],
+  "peer_assistant_scope": "Second assistant review, not an independent human expert. Original peer domain-03 pass is retained separately; scientific caution motivates root fail.",
+  "independent_expert_validated": false,
+  "independent_expert_score": null,
+  "independent_reviewer": null,
+  "lora_improvement_proven": false,
+  "base_comparison_status": "completed_twelve_paired_predictions",
+  "base_correct": 12,
+  "base_expected_citations": 12,
+  "base_predictions_sha256": "c8093a6a6fef590a53dae6e2dcff9f7448f9e715ede0fa1fee10c1e0f84ba445",
+  "base_rows": [
+    {
+      "id": "fidelity-01",
+      "pass": true,
+      "reason": "Includes the requested more-gradual microstructure transition and improved agreement."
+    },
+    {
+      "id": "fidelity-02",
+      "pass": true,
+      "reason": "Correct rapid cooling formation versus slow heating dissolution and high local temperature/process conditions for complete dissolution. French compose is an imprecise word for deposited part/component."
+    },
+    {
+      "id": "fidelity-03",
+      "pass": true,
+      "reason": "Correct Eulerian steady-state / Lagrangian transient pairing and ABAQUS 6.10."
+    },
+    {
+      "id": "fidelity-04",
+      "pass": true,
+      "reason": "Correct double-ellipsoid heat-source geometry."
+    },
+    {
+      "id": "fidelity-05",
+      "pass": true,
+      "reason": "Correct arc-pressure/depth and convective-flow/width pairing; French pool de fusion and flux convectif are less idiomatic than bain de fusion and ecoulement convectif."
+    },
+    {
+      "id": "fidelity-06",
+      "pass": true,
+      "reason": "Correct contact thermocouple and non-contact infrared/pyrometric methods."
+    },
+    {
+      "id": "fidelity-07",
+      "pass": true,
+      "reason": "Correct clamping constraints, degrees of freedom and mechanical stress influence."
+    },
+    {
+      "id": "fidelity-08",
+      "pass": true,
+      "reason": "Correct tensile residual stress along the weld bead and shrinkage-induced compression in the base plate."
+    },
+    {
+      "id": "fidelity-09",
+      "pass": true,
+      "reason": "Correctly refuses certified fatigue life/cycles without inventing a number. Explanation loosely summarizes phase prediction: the source specifically describes predicting material properties in terms of phase evolution."
+    },
+    {
+      "id": "fidelity-10",
+      "pass": true,
+      "reason": "Correctly refuses a certified optimum simultaneously guaranteeing microstructure and absence of residual stress."
+    },
+    {
+      "id": "fidelity-11",
+      "pass": true,
+      "reason": "Correct Chinese refusal of a certified admissible porosity percentage; source reports severe aluminum porosity only."
+    },
+    {
+      "id": "fidelity-12",
+      "pass": true,
+      "reason": "Correctly refuses zero-warpage/zero-stress certification and retains the review unresolved-problem scope."
+    }
+  ],
+  "base_domain_evaluated": false
+}

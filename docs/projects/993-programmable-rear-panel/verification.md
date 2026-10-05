@@ -3,6 +3,48 @@
 Dossier préparé le 27 septembre 2026. Aucun essai matériel, montage, métrologie,
 qualification radio/routière ou certification d'origine n'est obtenu.
 
+## Schéma natif E0 — 2 octobre 2026
+
+Base `0efe260` (`origin/main`), après fusion du travail E0 précédent. Nouvelle
+branche `codex/993-e0-kicad`, dans le worktree isolé existant ; aucun changement
+du répertoire principal incorporé. Ajout de trois feuilles KiCad A3 éditables,
+du projet et de sa bibliothèque locale attribuée, d'un PDF et d'un test de netlist.
+Documentation, RFQ non envoyée et backlog actualisés. Aucun achat ni fabrication.
+
+| Contrôle | Résultat observé |
+|---|---|
+| KiCad 9.0.2, `sch erc --severity-all --exit-code-violations` | **0 erreur, 0 avertissement**, aucune exclusion ni règle désactivée |
+| Test du schéma sur export `kicadxml` frais | **172 composants, 172 nets, 541 broches** : groupes de connexions complets, valeurs, rails, 128 cathodes, chaîne des drivers, IREF, BLANK, pad thermique et broches inutilisées conformes au contrat E0 |
+| `python3 -m unittest discover -s tests -p 'test_993_rear_panel*.py' -v`, Linux avec KiCad | **17 tests réussis**, aucun ignoré |
+| Même commande sur macOS sans KiCad | 17 tests exécutés, **OK, 1 ignoré** (le schéma) ; ne remplace pas le contrôle Linux |
+| Export PDF KiCad | Trois pages A3 relues visuellement, champs lisibles, métadonnées auteur absentes ; aucun dessin de PCB |
+| `make docs-links-check reports-index-check` | Réussi, 0 lien cassé sur 641 fichiers Markdown ; index des rapports à jour |
+| `git diff --cached --check` | Réussi après suppression d'un espace final dans le texte de licence importé |
+| `make check`, Linux natif | Suite de **3 250 tests, OK, 159 ignorés**, puis contrôles F32/F34/F37 franchis. Arrêt sur `917-manufacturing-f37-lpbf-audit-check`, `/bin/sh: 1: docker: not found`, Makefile ligne 1014, code global **2** ; cibles suivantes non exécutées |
+
+Environnement : conteneur local Debian trixie arm64, image
+`debian:trixie-slim@sha256:a99cfc517144bc59b1978475ec53b46ecabec7e43635402ee5b77cc54cd1b20a`,
+KiCad `9.0.2+dfsg-1`, symboles `9.0.2-1`, Python 3.13.5, NumPy 2.2.4,
+Pillow 11.1.0, Node 20.19.2. Dépendances installées dans ce conteneur uniquement.
+Copie sur son système Linux, index Git local, UID/GID 1000, umask 022 ; réseau
+déconnecté avant les tests, aucun secret ni socket Docker hôte monté. Les messages
+de publication/cloud de la suite globale proviennent de simulations.
+
+Corrections de préparation : premier fichier généré refusé par KiCad (parenthèse
+de fermeture manquante par instance), corrigé avant validation ; premiers ERC
+avec avertissements d'héritage de symbole et de bibliothèque locale non chargée,
+corrigés par symboles locaux explicites et projet associé. Premier contrôle de
+liens avant ajout des nouveaux fichiers à l'index Git : cinq liens signalés absents,
+puis zéro après ajout. Aucun contrôle désactivé pour obtenir ces résultats.
+
+Le schéma n'est **pas validé pour fabrication** : empreintes non attribuées,
+aucun PCB/DRC, aucune simulation analogique ni mesure de courant, température,
+extinction ou alimentation parasite. Revue indépendante puis routage et essais
+E0 restent ouverts. Le calcul de puissance, les coûts et les limites du MCU
+bloqué du 28 septembre restent des hypothèses inchangées. `make check` global
+doit encore être exécuté dans un environnement disposant du moteur Docker et
+des images imposées par le dépôt ; son résultat n'est pas annoncé réussi.
+
 ## Complément électronique E0 — 28 septembre 2026
 
 Ajout du [circuit de principe E0](electronics/coupon.md), des BOM/connexions CSV,
@@ -25,7 +67,7 @@ Première copie rejetée par `validate_catalog.py` à cause de fichiers AppleDou
 avec `COPYFILE_DISABLE=1` et sans attributs étendus, puis la commande relancée ;
 aucun fichier catalogue ni garde de validation modifié pour la faire passer.
 
-`kicad-cli` n'est pas disponible dans cet environnement : aucun ERC/DRC exécuté,
+À la livraison du 28 septembre, `kicad-cli` n'était pas disponible : aucun ERC/DRC exécuté,
 et aucun fichier EDA natif ou export de fabrication annoncé. Les tests valident
 uniquement les données et calculs hôtes. Revue électronique, schéma natif, routage,
 alimentation automobile, watchdog matériel, mesures optiques/thermiques et portage

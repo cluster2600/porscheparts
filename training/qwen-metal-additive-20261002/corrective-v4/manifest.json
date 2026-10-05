@@ -1,0 +1,35 @@
+{
+  "status": "prepared_corrective_sft",
+  "train_rows": 191,
+  "total_tokens": 46785,
+  "assistant_tokens": 7182,
+  "maximum_tokens": 737,
+  "development_count": 8,
+  "final_test_count": 12,
+  "source_manifest_sha256": "5d99c6c77f404a90738c558e5fd1ecd19037c45914679170abb87bed56df9cc3",
+  "training_sources": [
+    "MET001",
+    "MET002",
+    "NEW_RESIDUAL",
+    "thermal_en_critical",
+    "thermal_en_flow",
+    "thermal_en_prediction"
+  ],
+  "final_test_sources": [
+    "MET004",
+    "NEW_WAAM"
+  ],
+  "expert_review": "pending",
+  "development_policy": "All eight previously inspected v3 prompts are development only. Final test questions use untouched paragraphs of source-held-out articles and are not scored until candidate selection is frozen.",
+  "files_sha256": {
+    "train-tokens.jsonl": "c1b0c224bec9b70a3c4c84cd87ea4b1c8832244c8e2bb463a9a3d5f0fb499aa6",
+    "final-test.jsonl": "bdad4719c859cc053dce6fe915fbd7b1b84fa58697565c53039456b578d058a5",
+    "model-profile.json": "dfafb8e4bbefd89f0c18625632b292a9b545df9045ee740e83390c2f0e6d713a",
+    "train-records.jsonl": "c66cab81d0777121b48267b7c8bcff45c996d1b65cfa44b17c6b7741d21939ff",
+    "development.jsonl": "ce80a58b0b52d6cb41c47ce3705da1665c2974c7de7e0dcce763e56664b4230a"
+  },
+  "inputs_sha256": {
+    "prepare_corrective.py": "701e989f87d121fd7e6120f12b4332e94467ab901ab0c11dcf5d6473c02bc98b",
+    "corrective-test-specs.json": "157e5519f294467e868ada5eccdcb94744c24329c5b1a9d06be08f8367e8b011"
+  }
+}

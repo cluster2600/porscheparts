@@ -1,0 +1,21 @@
+{
+  "observed_at": "REPLACE_WITH_VERIFIED_OBSERVATION_TIMESTAMP",
+  "max_json_bytes": 60000000,
+  "sources": [
+    {
+      "id": "project-source",
+      "root": "/path/to/authorized/local/repository",
+      "commit": "REPLACE_WITH_EXACT_40_CHARACTER_COMMIT",
+      "repository_url": "https://github.com/owner/repository",
+      "visibility": "private",
+      "metadata_json_globs": ["catalog/**/*.json"]
+    }
+  ],
+  "protected_roots": ["/path/to/sealed-review-reserve"],
+  "protected_repository_prefixes": ["training/reserved/", "training/experiment/runs/"],
+  "reviewer_boundary_metadata_complete": false,
+  "reviewed_items": [],
+  "family_splits": {},
+  "model_profiles": {},
+  "public_site_observations": []
+}

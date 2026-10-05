@@ -1,0 +1,290 @@
+{
+  "candidate_output_tokens": {
+    "EXTRACT-001": 222,
+    "EXTRACT-002": 216,
+    "EXTRACT-003": 835,
+    "EXTRACT-004": 419
+  },
+  "candidate_schema_fits_512_tokens": false,
+  "case_count": 4,
+  "ci_wrapper": {
+    "chars": 712,
+    "repository_path": "tests/test_qwen_source_extraction_preparation.py",
+    "sha256": "7dadeae4d191d6c9aab03c17cc7fb7d4ff92f16911e043ea86a91d18b7c8e49b",
+    "utf8_bytes": 712
+  },
+  "cloud_cost_avoided_eur": null,
+  "content_token_audit_path": "content-token-audit.json",
+  "deterministic_outcome_path": "deterministic-outcome.json",
+  "exclusions": [
+    "All third-party payloads, PDF/manual/scan content and forum posts.",
+    "All private reviewer roots, reserved questions/golds and session journals.",
+    "Model backend import or inference, CAD/solver/native compilation, installations and downloads; the pinned offline tokenizer content audit is separate.",
+    "All other research rows and reported third-party measurements.",
+    "Golds and human queue from any future model inputs."
+  ],
+  "family_count": 4,
+  "files": [
+    {
+      "chars": 5513,
+      "path": "README.md",
+      "sha256": "367d4c2d9c2f8dd7821b4f0ee616dcaa0fa605395f856070c14f3fc0b0d55bee",
+      "utf8_bytes": 5513
+    },
+    {
+      "chars": 1861,
+      "path": "content-token-audit.json",
+      "sha256": "529f162033299406caf66b5c7b60f701dd9f3a0a6a7bb2acb3094d208a8ba38a",
+      "utf8_bytes": 1861
+    },
+    {
+      "chars": 5174,
+      "path": "corpus/inputs.jsonl",
+      "sha256": "0f0161b930aca01cc727df756acc35ec581538e38b5e0af6a316cc81b58f6a36",
+      "utf8_bytes": 5175
+    },
+    {
+      "chars": 1116,
+      "path": "deterministic-outcome.json",
+      "sha256": "22a9ad779ba89ee2ad6ac1140d87da473dae963cf56b937db69459a794192465",
+      "utf8_bytes": 1116
+    },
+    {
+      "chars": 5745,
+      "path": "gold/expected.jsonl",
+      "sha256": "f2f057ce5bbcaaf7eba92927b1ac6b6c9cfa9c3a5b529ae9a3866a3d2db759ab",
+      "utf8_bytes": 5747
+    },
+    {
+      "chars": 7612,
+      "path": "human-review-queue.jsonl",
+      "sha256": "3a73c7086d38b80c429c1d864ec7ec015222d4bd22508c29435a37d71acb9590",
+      "utf8_bytes": 7613
+    },
+    {
+      "chars": 3245,
+      "path": "measure_content_tokens.py",
+      "sha256": "94c1a4b11e39aaf801063e20df8c02949d0bbbb8ea75515d181b0204ea230bf4",
+      "utf8_bytes": 3245
+    },
+    {
+      "chars": 14082,
+      "path": "parser_validator.py",
+      "sha256": "cbab6f6655a9fa6daddfbe46d79f431c67675c9e69cc318b167e1924a49ef449",
+      "utf8_bytes": 14086
+    },
+    {
+      "chars": 9034,
+      "path": "protocol.json",
+      "sha256": "9200f7783bb2f41f58203ebdd1e9bebd2bc5c806c2c2547db63707a6e112c723",
+      "utf8_bytes": 9035
+    },
+    {
+      "chars": 981,
+      "path": "system_prompt.txt",
+      "sha256": "5b21d5abf24280faba8524c5056f7730a4a497a4b913f14ff433758c8598afb3",
+      "utf8_bytes": 981
+    },
+    {
+      "chars": 6703,
+      "path": "test_parser_validator.py",
+      "sha256": "70bfbeccd766daa64f330174543c54d0e798ffb5977c304ad109e60186e8dd3b",
+      "utf8_bytes": 6703
+    }
+  ],
+  "gold_is_worker_input": false,
+  "gold_path": "gold/expected.jsonl",
+  "human_review_seconds": null,
+  "independent_measurements_claimed": 0,
+  "input_costs": [
+    {
+      "canonical_candidate_content_tokens": 222,
+      "canonical_candidate_plus_eos_fits_512": true,
+      "case_id": "EXTRACT-001",
+      "cloud_billed_tokens": null,
+      "cloud_cost_avoided_eur": null,
+      "cloud_tokens_avoided": null,
+      "excerpt_chars": 199,
+      "excerpt_utf8_bytes": 199,
+      "human_time_saved_seconds": null,
+      "local_input_tokens": 76,
+      "local_system_content_tokens": 179,
+      "prospective_user_json_chars": 312,
+      "prospective_user_json_utf8_bytes": 312
+    },
+    {
+      "canonical_candidate_content_tokens": 216,
+      "canonical_candidate_plus_eos_fits_512": true,
+      "case_id": "EXTRACT-002",
+      "cloud_billed_tokens": null,
+      "cloud_cost_avoided_eur": null,
+      "cloud_tokens_avoided": null,
+      "excerpt_chars": 235,
+      "excerpt_utf8_bytes": 235,
+      "human_time_saved_seconds": null,
+      "local_input_tokens": 84,
+      "local_system_content_tokens": 179,
+      "prospective_user_json_chars": 343,
+      "prospective_user_json_utf8_bytes": 343
+    },
+    {
+      "canonical_candidate_content_tokens": 835,
+      "canonical_candidate_plus_eos_fits_512": false,
+      "case_id": "EXTRACT-003",
+      "cloud_billed_tokens": null,
+      "cloud_cost_avoided_eur": null,
+      "cloud_tokens_avoided": null,
+      "excerpt_chars": 279,
+      "excerpt_utf8_bytes": 280,
+      "human_time_saved_seconds": null,
+      "local_input_tokens": 111,
+      "local_system_content_tokens": 179,
+      "prospective_user_json_chars": 362,
+      "prospective_user_json_utf8_bytes": 363
+    },
+    {
+      "canonical_candidate_content_tokens": 419,
+      "canonical_candidate_plus_eos_fits_512": true,
+      "case_id": "EXTRACT-004",
+      "cloud_billed_tokens": null,
+      "cloud_cost_avoided_eur": null,
+      "cloud_tokens_avoided": null,
+      "excerpt_chars": 352,
+      "excerpt_utf8_bytes": 352,
+      "human_time_saved_seconds": null,
+      "local_input_tokens": 111,
+      "local_system_content_tokens": 179,
+      "prospective_user_json_chars": 439,
+      "prospective_user_json_utf8_bytes": 439
+    }
+  ],
+  "inputs_path": "corpus/inputs.jsonl",
+  "kind": "project_owned_extraction_preparation_manifest",
+  "local_tokenization_metadata_owner_addition_pending": false,
+  "local_tokenization_scope": "Content only; chat framing/special tokens and cloud billing not measured.",
+  "measured_record_count": 0,
+  "model_calls": 0,
+  "model_need_established": false,
+  "model_wall_seconds": null,
+  "prospective_model_calls_max_prose": 2,
+  "prospective_model_calls_structured": 0,
+  "readiness": false,
+  "record_count": 7,
+  "repository_revision": "8283155cb2b1275b0bf3e22d4d7459d4ac76b059",
+  "schema_version": 1,
+  "source_file_count": 3,
+  "source_licenses": [
+    {
+      "identifier": "porscheparts Proprietary License v1.0",
+      "path": "LICENSE",
+      "scope": "Original project prose and records only; third-party material retains separate rights.",
+      "sha256": "518ff42b02bb3263adbc938cd0863c565e389589876fe8b93db2ef624d316b53"
+    }
+  ],
+  "sources": [
+    {
+      "authority": "project_context",
+      "case_id": "EXTRACT-001",
+      "chars": 199,
+      "excerpt_sha256": "6ec45c246c75a0635bcc71a0831ce884ed6ec0a830feb9f29ab030d06b727604",
+      "family": "geometry_parameter_contract",
+      "file_sha256": "d7896e9445c00d594ca0c3f2a34f68bdd15f94d79bf5389f01c20000c48473a7",
+      "json_pointer": "/parameter_dictionary/9",
+      "license": "porscheparts Proprietary License v1.0",
+      "license_evidence": {
+        "identifier": "porscheparts Proprietary License v1.0",
+        "path": "LICENSE",
+        "scope": "Original project prose and records only; third-party material retains separate rights.",
+        "sha256": "518ff42b02bb3263adbc938cd0863c565e389589876fe8b93db2ef624d316b53"
+      },
+      "line_end": 128,
+      "line_start": 128,
+      "ownership": "project_authored",
+      "path": "twins/993-engine-cooling-fan-system-f0/program/research/corpus/geometry/parameter-contract.json",
+      "permission_scope": "Owner-authorized four-excerpt preparation and development review; no blanket reuse, training or runtime grant.",
+      "third_party_payload": false,
+      "utf8_bytes": 199
+    },
+    {
+      "authority": "project_context",
+      "case_id": "EXTRACT-002",
+      "chars": 235,
+      "excerpt_sha256": "779d01702212827765d0db14bfd150c9e5836e0609ab5c3e5073d0e401cc2cce",
+      "family": "geometry_research_gap",
+      "file_sha256": "228f7afc0d4726a13d540840ae4bf119366988357037406221990c9e1eb0ccbe",
+      "json_pointer": "/claims/17",
+      "license": "porscheparts Proprietary License v1.0",
+      "license_evidence": {
+        "identifier": "porscheparts Proprietary License v1.0",
+        "path": "LICENSE",
+        "scope": "Original project prose and records only; third-party material retains separate rights.",
+        "sha256": "518ff42b02bb3263adbc938cd0863c565e389589876fe8b93db2ef624d316b53"
+      },
+      "line_end": 54,
+      "line_start": 54,
+      "ownership": "project_authored",
+      "path": "twins/993-engine-cooling-fan-system-f0/program/research/corpus/geometry/evidence.json",
+      "permission_scope": "Owner-authorized four-excerpt preparation and development review; no blanket reuse, training or runtime grant.",
+      "third_party_payload": false,
+      "utf8_bytes": 235
+    },
+    {
+      "authority": "project_context",
+      "case_id": "EXTRACT-003",
+      "chars": 279,
+      "excerpt_sha256": "0d1d1d935313fdd012630fb75f28c0ad8f4c1bb7ce3061f118750d3a2f8f425e",
+      "family": "material_legacy_assumption",
+      "file_sha256": "82d1a849997ac4f1bd2d09d41cf5e175696e5f333c82e4d01a048eaa1879877a",
+      "json_pointer": null,
+      "license": "porscheparts Proprietary License v1.0",
+      "license_evidence": {
+        "identifier": "porscheparts Proprietary License v1.0",
+        "path": "LICENSE",
+        "scope": "Original project prose and records only; third-party material retains separate rights.",
+        "sha256": "518ff42b02bb3263adbc938cd0863c565e389589876fe8b93db2ef624d316b53"
+      },
+      "line_end": 38,
+      "line_start": 35,
+      "ownership": "project_authored",
+      "path": "twins/993-engine-cooling-fan-system-f0/program/research/materials-20261003/ADMISSION.md",
+      "permission_scope": "Owner-authorized four-excerpt preparation and development review; no blanket reuse, training or runtime grant.",
+      "third_party_payload": false,
+      "utf8_bytes": 280
+    },
+    {
+      "authority": "project_context",
+      "case_id": "EXTRACT-004",
+      "chars": 352,
+      "excerpt_sha256": "b700e79618c3d75c2b168bb3d3d34d5b94a1b34f203db441617c196040524e81",
+      "family": "material_admission_contract",
+      "file_sha256": "82d1a849997ac4f1bd2d09d41cf5e175696e5f333c82e4d01a048eaa1879877a",
+      "json_pointer": null,
+      "license": "porscheparts Proprietary License v1.0",
+      "license_evidence": {
+        "identifier": "porscheparts Proprietary License v1.0",
+        "path": "LICENSE",
+        "scope": "Original project prose and records only; third-party material retains separate rights.",
+        "sha256": "518ff42b02bb3263adbc938cd0863c565e389589876fe8b93db2ef624d316b53"
+      },
+      "line_end": 14,
+      "line_start": 10,
+      "ownership": "project_authored",
+      "path": "twins/993-engine-cooling-fan-system-f0/program/research/materials-20261003/ADMISSION.md",
+      "permission_scope": "Owner-authorized four-excerpt preparation and development review; no blanket reuse, training or runtime grant.",
+      "third_party_payload": false,
+      "utf8_bytes": 352
+    }
+  ],
+  "split": "exposed_preparation_development",
+  "state": "preparation_only_not_runtime_admitted",
+  "system_prompt_chars": 981,
+  "system_prompt_utf8_bytes": 981,
+  "test_status": "11_specific_stdlib_tests_passed",
+  "tests": {
+    "count": 10,
+    "repository_build_run": false,
+    "scope": "specific preparation and public-source bindings only"
+  },
+  "total_excerpt_chars": 1065,
+  "total_excerpt_utf8_bytes": 1066
+}

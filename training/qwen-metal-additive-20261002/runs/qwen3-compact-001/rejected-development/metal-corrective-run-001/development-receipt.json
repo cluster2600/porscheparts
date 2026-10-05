@@ -1,0 +1,238 @@
+{
+  "status": "development_completed",
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "dataset_manifest_sha256": "a19ced55f0dbd6069112bdc649f41c6848c54b8120a7eb0a6fd1cf91163df5dc",
+  "config_sha256": "5e84779fe5a88c83143f21860c0860bb32a74871a6019c4186f0b9969aa28700",
+  "runner_sha256": "f6e17e47d66002729bd0a82fad49acb5cda12247fbb486a984347faea5f1addc",
+  "training_seconds": 1576.8092763900004,
+  "total_seconds": 1998.4244125469995,
+  "peak_rss_kib": 9222800,
+  "global_step": 96,
+  "training_sources": [
+    "MET001",
+    "MET002",
+    "NEW_RESIDUAL",
+    "thermal_en_critical",
+    "thermal_en_flow",
+    "thermal_en_prediction"
+  ],
+  "train_rows": 191,
+  "test_used_in_training": false,
+  "final_test_generated": false,
+  "expert_validated": false,
+  "screens": {
+    "checkpoint-48": {
+      "examples": 8,
+      "expected_citations": 8,
+      "critical_boundaries_screened": 7,
+      "critical_boundaries_pass": 7,
+      "token_budget_hits": 0,
+      "rows": [
+        {
+          "id": "eval-001",
+          "expected_citation": "[MET003:p0]",
+          "citation_present": true,
+          "critical_boundary_screen": true,
+          "reached_token_budget": false
+        },
+        {
+          "id": "eval-002",
+          "expected_citation": "[MET003:p4]",
+          "citation_present": true,
+          "critical_boundary_screen": true,
+          "reached_token_budget": false
+        },
+        {
+          "id": "eval-003",
+          "expected_citation": "[NEW_QUALITY:p21]",
+          "citation_present": true,
+          "critical_boundary_screen": true,
+          "reached_token_budget": false
+        },
+        {
+          "id": "eval-004",
+          "expected_citation": "[NEW_QUALITY:p23]",
+          "citation_present": true,
+          "critical_boundary_screen": true,
+          "reached_token_budget": false
+        },
+        {
+          "id": "eval-005",
+          "expected_citation": "[MET004:p0]",
+          "citation_present": true,
+          "critical_boundary_screen": true,
+          "reached_token_budget": false
+        },
+        {
+          "id": "eval-006",
+          "expected_citation": "[MET004:p1]",
+          "citation_present": true,
+          "critical_boundary_screen": null,
+          "reached_token_budget": false
+        },
+        {
+          "id": "eval-007",
+          "expected_citation": "[NEW_WAAM:p8]",
+          "citation_present": true,
+          "critical_boundary_screen": true,
+          "reached_token_budget": false
+        },
+        {
+          "id": "eval-008",
+          "expected_citation": "[NEW_WAAM:p46]",
+          "citation_present": true,
+          "critical_boundary_screen": true,
+          "reached_token_budget": false
+        }
+      ],
+      "scope": "Lexical development screen, not semantic accuracy or expert review."
+    },
+    "checkpoint-96": {
+      "examples": 8,
+      "expected_citations": 8,
+      "critical_boundaries_screened": 7,
+      "critical_boundaries_pass": 6,
+      "token_budget_hits": 0,
+      "rows": [
+        {
+          "id": "eval-001",
+          "expected_citation": "[MET003:p0]",
+          "citation_present": true,
+          "critical_boundary_screen": true,
+          "reached_token_budget": false
+        },
+        {
+          "id": "eval-002",
+          "expected_citation": "[MET003:p4]",
+          "citation_present": true,
+          "critical_boundary_screen": true,
+          "reached_token_budget": false
+        },
+        {
+          "id": "eval-003",
+          "expected_citation": "[NEW_QUALITY:p21]",
+          "citation_present": true,
+          "critical_boundary_screen": true,
+          "reached_token_budget": false
+        },
+        {
+          "id": "eval-004",
+          "expected_citation": "[NEW_QUALITY:p23]",
+          "citation_present": true,
+          "critical_boundary_screen": true,
+          "reached_token_budget": false
+        },
+        {
+          "id": "eval-005",
+          "expected_citation": "[MET004:p0]",
+          "citation_present": true,
+          "critical_boundary_screen": true,
+          "reached_token_budget": false
+        },
+        {
+          "id": "eval-006",
+          "expected_citation": "[MET004:p1]",
+          "citation_present": true,
+          "critical_boundary_screen": null,
+          "reached_token_budget": false
+        },
+        {
+          "id": "eval-007",
+          "expected_citation": "[NEW_WAAM:p8]",
+          "citation_present": true,
+          "critical_boundary_screen": true,
+          "reached_token_budget": false
+        },
+        {
+          "id": "eval-008",
+          "expected_citation": "[NEW_WAAM:p46]",
+          "citation_present": true,
+          "critical_boundary_screen": false,
+          "reached_token_budget": false
+        }
+      ],
+      "scope": "Lexical development screen, not semantic accuracy or expert review."
+    }
+  },
+  "base_screen": {
+    "examples": 8,
+    "expected_citations": 0,
+    "critical_boundaries_screened": 7,
+    "critical_boundaries_pass": 2,
+    "token_budget_hits": 1,
+    "rows": [
+      {
+        "id": "eval-001",
+        "expected_citation": "[MET003:p0]",
+        "citation_present": false,
+        "critical_boundary_screen": true,
+        "reached_token_budget": false
+      },
+      {
+        "id": "eval-002",
+        "expected_citation": "[MET003:p4]",
+        "citation_present": false,
+        "critical_boundary_screen": false,
+        "reached_token_budget": false
+      },
+      {
+        "id": "eval-003",
+        "expected_citation": "[NEW_QUALITY:p21]",
+        "citation_present": false,
+        "critical_boundary_screen": true,
+        "reached_token_budget": false
+      },
+      {
+        "id": "eval-004",
+        "expected_citation": "[NEW_QUALITY:p23]",
+        "citation_present": false,
+        "critical_boundary_screen": false,
+        "reached_token_budget": true
+      },
+      {
+        "id": "eval-005",
+        "expected_citation": "[MET004:p0]",
+        "citation_present": false,
+        "critical_boundary_screen": false,
+        "reached_token_budget": false
+      },
+      {
+        "id": "eval-006",
+        "expected_citation": "[MET004:p1]",
+        "citation_present": false,
+        "critical_boundary_screen": null,
+        "reached_token_budget": false
+      },
+      {
+        "id": "eval-007",
+        "expected_citation": "[NEW_WAAM:p8]",
+        "citation_present": false,
+        "critical_boundary_screen": false,
+        "reached_token_budget": false
+      },
+      {
+        "id": "eval-008",
+        "expected_citation": "[NEW_WAAM:p46]",
+        "citation_present": false,
+        "critical_boundary_screen": false,
+        "reached_token_budget": false
+      }
+    ],
+    "scope": "Lexical development screen, not semantic accuracy or expert review."
+  },
+  "libraries": {
+    "torch": "2.8.0+cpu",
+    "transformers": "4.57.1",
+    "peft": "0.17.1",
+    "datasets": "4.1.1",
+    "accelerate": "1.10.1"
+  },
+  "base_weights_sha256": {
+    "model.safetensors": "dd924a11b4c220f385b51ffa522daea7c9f3d850e31b162bb5661df483c6d3ee"
+  },
+  "checkpoint_weights_sha256": {
+    "checkpoint-48": "2724bbcd10cd235530ad50ad70ff6d33f760cc684969176ac2ba9850ee6cd3d8",
+    "checkpoint-96": "e668f4869d37e17d244061ffbfdf8a2551d1be45cf95ef0802f96cec5b270958"
+  }
+}

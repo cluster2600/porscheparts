@@ -65,6 +65,7 @@ The [local Qwen pilot](../training/m64-qwen/README.md) implements the first AI i
 | [DIGITAL_TWIN.md](DIGITAL_TWIN.md) | the 993 digital twin, its zones and levels |
 | [SOFTWARE_STACK.md](SOFTWARE_STACK.md) | the twin's software stack |
 | [AI_DIGITAL_TWIN_STACK.md](AI_DIGITAL_TWIN_STACK.md) | the open-source suite for building the twin |
+| [QWEN_TRAINING.md](QWEN_TRAINING.md) | how Qwen was trained, the actual datasets and results, and the next experiments for the 993 project |
 | [TOOLCHAIN.md](TOOLCHAIN.md) | the local CAD and analysis toolchain |
 | [COMPUTE_ENVIRONMENT.md](COMPUTE_ENVIRONMENT.md) | compute environment and images |
 | [GITHUB_OPENBAO_WRAPPER.md](GITHUB_OPENBAO_WRAPPER.md) | the GitHub wrapper bounded by OpenBao |
@@ -75,6 +76,9 @@ The [local Qwen pilot](../training/m64-qwen/README.md) implements the first AI i
 |---|---|
 | [TURBO_DIGITAL_TWIN_PLAN.md](TURBO_DIGITAL_TWIN_PLAN.md) | data plan for the 993 Turbo twin |
 | [TURBO_AIRFLOW_SIMULATION_DATA.md](TURBO_AIRFLOW_SIMULATION_DATA.md) | airflow simulation data |
+| [research/993-turbo-20261002/README.md](research/993-turbo-20261002/README.md) | sourced M64/60 engine research, K16 hybrid/map leads and training-data package |
+| [research/mezger-turbo-materials-20261003/README.md](research/mezger-turbo-materials-20261003/README.md) | turbo and racing engine variants, scoped alloy/process/thickness evidence and separate training increment |
+| [research/mezger-german-sources-20261003/README.md](research/mezger-german-sources-20261003/README.md) | German primary sources: RR350/2618A grade data, magnesium-case manufacture, hybrid-wheel declarations and racing comparisons |
 | [OPENFOAM_POISEUILLE_VERIFICATION_F25.md](OPENFOAM_POISEUILLE_VERIFICATION_F25.md) | OpenFOAM verification against Poiseuille flow |
 
 ## Decisions and reports

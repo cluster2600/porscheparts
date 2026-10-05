@@ -1,0 +1,108 @@
+{
+  "schema_version": "1.0",
+  "status": "prepared_candidate_corrections_not_trained_not_independently_validated",
+  "source_root_commit": "09f2728a",
+  "model_family": "Qwen/Qwen3-4B-Instruct-2507",
+  "base_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "warm_start_adapter_sha256": "fb6ab78bf8868a1e77e3c1c5e156eeef63b0b3e42378aaa1410e8c7cfaf1d5cb",
+  "inference_profile": "task_routed_v14",
+  "profile_sha256": "ded8a63089797791787fe9fb2c5c149df073f8b0da06463549424263e49e2c36",
+  "profile_helper_sha256": "1bd6d3c1d2d6da7bd58a3a326553f0eeeebb7e3a861c0ead99eb831d7f3e02a1",
+  "prompt_policy": "Both training and evaluation expand QUESTION/excerpt inputs using the unchanged historical task_routed_profile.questions_with_profile; candidate data never changes the profile.",
+  "train_rows": 20,
+  "case_families": 10,
+  "unique_passage_ids": 10,
+  "language_counts": {
+    "fr": 10,
+    "en": 10
+  },
+  "source_counts": {
+    "MET001": 6,
+    "MET002": 6,
+    "thermal_en_prediction": 2,
+    "thermal_en_critical": 2,
+    "thermal_en_flow": 2,
+    "NEW_RESIDUAL": 2
+  },
+  "route_counts": {
+    "factual": 20
+  },
+  "heldout_claim": false,
+  "inspection_scope": "Every authored row and every inspected historical training or evaluation row is training/development material. No new blind test was read or created by the data audit. Original base-model pretraining exposure remains unknown.",
+  "training_source_splits_only": true,
+  "retired_fidelity_passages_excluded": [
+    "[MET001:p34]",
+    "[MET002:p21]",
+    "[MET002:p29]",
+    "[MET002:p38]",
+    "[MET004:p65]",
+    "[MET004:p79]",
+    "[MET004:p81]",
+    "[NEW_WAAM:p13]",
+    "[NEW_WAAM:p16]",
+    "[NEW_WAAM:p19]",
+    "[NEW_WAAM:p20]",
+    "[NEW_WAAM:p25]",
+    "[NEW_WAAM:p26]",
+    "[NEW_WAAM:p27]",
+    "[NEW_WAAM:p42]",
+    "[NEW_WAAM:p7]",
+    "[thermal_en_prediction:p31]",
+    "[thermal_en_prediction:p42]",
+    "[thermal_en_prediction:p51]",
+    "[thermal_en_prediction:p55]"
+  ],
+  "excluded_test_files_sha256": {
+    "training/qwen-metal-additive-20261002/fidelity-final-test.jsonl": "026db9e7a97e02f9a9ad4195cf3058929d8b0bcf1e74a7929fcebc64f85ff5a9",
+    "training/qwen-metal-additive-20261002/fidelity-domain-benchmark.jsonl": "f6f4c2c7c1954726b490d36e07abaa226ef5bd3d595f8fa0336765affb6f242f"
+  },
+  "historical_files_modified": false,
+  "quality_rationale": [
+    "Corrects original compact ground-001 EN/FR targets by retaining often and possibility.",
+    "Preserves most, in most cases, gradually and suggested, with process/sample scope; does not copy the retired fidelity-01 paragraph or its answer.",
+    "No clear PBF trend does not establish zero effect or another dominant cause; disclosed partial explanations retain their actual scope.",
+    "Keeps wavelength units, model/powder scope, room-temperature error and beam-specific inverse-problem ambiguity attached to their original conditions.",
+    "Only one objective asks for a missing batch-specific value; paired translations are explicit objective-linked repetition, not independent evidence.",
+    "Uses six original licensed training-source families; no held-out source family, retired fidelity paragraph, impeller forum assertion, raw scan or full third-party document is included."
+  ],
+  "known_limitations": [
+    "Independent human scientific and translation review pending.",
+    "The gradual adjective example concerns manufacturing-complexity requirements, not a learned microstructure-transition mechanism. It targets qualifier retention without reproducing the retired failure answer.",
+    "Article summaries reference prior experiments; the source-grounded response does not validate the experiments or a manufactured part.",
+    "This data correction alone demonstrates no fine-tuning improvement; tensor-only paired model evaluation remains necessary.",
+    "The unchanged historical task routing has distinct factual and scope branches. Authored row questions here all select its factual branch; this question choice is part of development and is not independently held-out performance."
+  ],
+  "files_sha256": {
+    "LICENSE-NOTICES.md": "804ebc0dd6deab6c2e13b984976655991b9e51a27b2ba4e9ce309f682f41cfa0",
+    "licenses/MET001.txt": "fe7134f32b9a04b6a3bbae56c7516fe245ef21992a0843a18fd51c644357def0",
+    "licenses/MET002.txt": "644a9e4314832f62cbcc9baeddd3ce9acea77c3d4ab0c354775d2e45bacd6d80",
+    "licenses/NEW_RESIDUAL.txt": "97913192037db0a64a8ae37d1afc52764c0f19b42b18d9a0f331174b9f8ad6f9",
+    "licenses/thermal_en_critical.txt": "396177e98acb62b63d4dbceb7c545f5cadd57dbc6d556fba39c1d8714864e7a5",
+    "licenses/thermal_en_flow.txt": "a5ce7840a75ebb7d39c9a35aa64768ddfe30092d5611bb08fb5f1480fab2084f",
+    "licenses/thermal_en_prediction.txt": "396177e98acb62b63d4dbceb7c545f5cadd57dbc6d556fba39c1d8714864e7a5",
+    "source-ledger.json": "99ceb8241eb4b6489bbcbdea41602cc4356d8d864d41d669c8bc2e0b85e01003",
+    "train-records.jsonl": "25a2dc9af573e1a0f391a52b1804e5ccca4d31cc626b45632f698da08f7fc1d0"
+  },
+  "row_sha256": {
+    "qualifier-lof-often-fr": "7570473af10717242438b9c5888bf93ae1478f0f31379a33d81d686e98bc489a",
+    "qualifier-lof-often-en": "dfeb4f751dafbec72aa814f5e8988761ef7f106f88df561eac9622e9747c69e5",
+    "qualifier-sebm-most-fr": "fd09a0c466dd39a883315d6fa5d4c4d67533c1886e18570533d6e76126b0c1e4",
+    "qualifier-sebm-most-en": "26995159c8de37f742bb437ea789bc1f04903d7542837fa2f5f2de9bccbc9efc",
+    "inference-pbf-no-ranking-fr": "312f529cba501f7bee93d0df4897b71dcdaf0649114966cba9d024002afbc757",
+    "inference-pbf-no-ranking-en": "f833a60a59e9803507e74f92ec841d11638e669986d5ac7facccc4e0acb0acb2",
+    "qualifier-gradual-trend-fr": "0da23d21b067c0b10d79757eaeb3861f4cbfc7f10778d3e736e9a193a4e0fe82",
+    "qualifier-gradual-trend-en": "4707652e95b0cb66d7bf2e011b93fd0fd1473b813fff06b6131eec218f437476",
+    "units-copper-wavelengths-fr": "f3b9dd69e5446a710e7bd961ed0ff0e3c3a0e557d3d0b305b0c5e8c84bb94405",
+    "units-copper-wavelengths-en": "7288a1780216e3309b26b8854391179654edbf58a8adc198669cace1f4ecec4a",
+    "qualifier-sebm-heat-treatment-fr": "a0db87554b4c17f5e74904f0e880ed44c71487956a706690fb574ad64b953220",
+    "qualifier-sebm-heat-treatment-en": "3260b15a22d8ae3a0eecefac3c9cb812b9a8ff0408796d4911bf801bca11d00f",
+    "conditions-powder-model-error-fr": "fbbe685804d0c6c653e760501ab458e6516ec1380fd7997cdbbddf6900c738d7",
+    "conditions-powder-model-error-en": "c5e3ffcf3335faf3b1a28b2a3fa770e2f3361d2c8b1d1181aff30a598878876e",
+    "conditions-melt-pool-inversion-fr": "f653200fbec11616bab0006670b4ddd4c099b8115f74c55ea1c939232a2d3827",
+    "conditions-melt-pool-inversion-en": "918298bec0fa6c08d59c7984bda24481bb3922629b2c3413bd7315584b20640a",
+    "scope-flow-dominance-suggested-fr": "eb59750be84b716e8bf6c3be4bc89b6a93193054a1e94815f56f8992b587a2ef",
+    "scope-flow-dominance-suggested-en": "ce6aee0c2fe32e0f1106368e9df8bf68e530e24bd65f843e848cda9be14f880f",
+    "scope-residual-stress-no-batch-value-fr": "1fe8362c404807f343f334f32f0ab6c898d1b7527ff42d06fd8d314020e5f177",
+    "scope-residual-stress-no-batch-value-en": "65cf814001a4f251af4775f970b399b19b0658ed98cf7a11e9669dc5cbb93296"
+  }
+}

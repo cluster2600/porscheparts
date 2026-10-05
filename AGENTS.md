@@ -10,6 +10,14 @@ parts for additive and conventional manufacturing.
   meshes (`.3mf`, `.stl`).
 - Never label a part as dimensionally accurate, fitted, tested, safe, or
   released without linked evidence in its catalogue record.
+- Before generating a functional part, list its required attachments and load
+  path for the exact catalogue variant. Establish measured hole patterns, axes,
+  mating faces, datums and tolerances before designing around those interfaces.
+  Missing evidence blocks functional completion; never fill it with plausible
+  coordinates. Compilation, a watertight mesh, lightening windows and a metal
+  shader do not establish attachment completeness or material qualification.
+  Check model proposals against an independent interface contract before
+  accepting them; model output must not supply its own inspection evidence.
 - A publicly visible model or photograph is not automatically reusable. Record
   its licence and provenance before adding it.
 - Do not commit raw scans, proprietary manuals, supplier quotes, personal data,

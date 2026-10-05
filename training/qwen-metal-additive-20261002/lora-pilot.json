@@ -1,0 +1,28 @@
+{
+  "status": "prepared_not_run",
+  "model_id": "Qwen/Qwen2.5-1.5B-Instruct",
+  "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "export": "grounded-v3",
+  "quantization": {"load_in_4bit": true, "type": "nf4", "double_quant": true, "compute_dtype": "bfloat16"},
+  "lora": {"r": 8, "lora_alpha": 16, "lora_dropout": 0.05, "target_modules": ["q_proj", "v_proj"], "bias": "none", "task_type": "CAUSAL_LM"},
+  "training_arguments": {
+    "num_train_epochs": 1,
+    "learning_rate": 0.00005,
+    "per_device_train_batch_size": 1,
+    "per_device_eval_batch_size": 1,
+    "gradient_accumulation_steps": 8,
+    "warmup_ratio": 0.1,
+    "weight_decay": 0.01,
+    "bf16": true,
+    "gradient_checkpointing": true,
+    "gradient_checkpointing_kwargs": {"use_reentrant": false},
+    "eval_strategy": "epoch",
+    "save_strategy": "no",
+    "logging_steps": 1,
+    "seed": 42,
+    "data_seed": 42,
+    "report_to": [],
+    "remove_unused_columns": false
+  },
+  "purpose": "Small single-GPU QLoRA pilot on source-checked candidates; not an expert-approved specialist release. No test split or metadata curriculum enters Trainer."
+}

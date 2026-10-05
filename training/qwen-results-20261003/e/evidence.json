@@ -1,0 +1,300 @@
+{
+  "schema_version": 1,
+  "kind": "public_metadata_projection_not_new_grading",
+  "initial_blind_evidence": {
+    "reviewer_ids": [
+      "e_blind_grader_one",
+      "e_blind_grader_two"
+    ],
+    "each_reviewer_rows": 60,
+    "independent_assistant_review": true,
+    "matching_id_arm_response_run_bindings": true,
+    "aggregation": "Acceptable seulement si les deux assistants acceptent ; un désaccord de qualification des extrêmes est compté comme échec par bras.",
+    "arms": {
+      "base": {
+        "total": 20,
+        "individual_reviewer_acceptable": [
+          15,
+          16
+        ],
+        "conservative_initial_acceptable": 15,
+        "initial_primary_acceptable": 10,
+        "primary_total": 12,
+        "initial_supplemental_acceptable": 5,
+        "supplemental_total": 8,
+        "acceptance_disagreement_ids": [
+          "fidelity-01"
+        ],
+        "initial_critical_failure_count": 0,
+        "initial_unsupported_citation_count": 4,
+        "initial_unit_condition_failure_count": 3,
+        "initial_causal_failure_count": 3,
+        "raw_combined_quantitative_failure_counter": 11,
+        "quantitative_explicit_fail_by_at_least_one_reviewer": 3,
+        "quantitative_na_pass_disagreements": 8,
+        "post_claim_conservative_acceptable": 14,
+        "post_claim_critical_failure_count": 1,
+        "budget_hits": 0
+      },
+      "historical_adapter": {
+        "total": 20,
+        "individual_reviewer_acceptable": [
+          15,
+          16
+        ],
+        "conservative_initial_acceptable": 15,
+        "initial_primary_acceptable": 10,
+        "primary_total": 12,
+        "initial_supplemental_acceptable": 5,
+        "supplemental_total": 8,
+        "acceptance_disagreement_ids": [
+          "fidelity-01"
+        ],
+        "initial_critical_failure_count": 0,
+        "initial_unsupported_citation_count": 4,
+        "initial_unit_condition_failure_count": 4,
+        "initial_causal_failure_count": 3,
+        "raw_combined_quantitative_failure_counter": 12,
+        "quantitative_explicit_fail_by_at_least_one_reviewer": 4,
+        "quantitative_na_pass_disagreements": 8,
+        "post_claim_conservative_acceptable": 14,
+        "post_claim_critical_failure_count": 1,
+        "budget_hits": 0
+      },
+      "E": {
+        "total": 20,
+        "individual_reviewer_acceptable": [
+          15,
+          16
+        ],
+        "conservative_initial_acceptable": 15,
+        "initial_primary_acceptable": 10,
+        "primary_total": 12,
+        "initial_supplemental_acceptable": 5,
+        "supplemental_total": 8,
+        "acceptance_disagreement_ids": [
+          "fidelity-01"
+        ],
+        "initial_critical_failure_count": 0,
+        "initial_unsupported_citation_count": 4,
+        "initial_unit_condition_failure_count": 3,
+        "initial_causal_failure_count": 3,
+        "raw_combined_quantitative_failure_counter": 11,
+        "quantitative_explicit_fail_by_at_least_one_reviewer": 3,
+        "quantitative_na_pass_disagreements": 8,
+        "post_claim_conservative_acceptable": 14,
+        "post_claim_critical_failure_count": 1,
+        "budget_hits": 0
+      }
+    },
+    "paired_E_vs_fresh_base": {
+      "gain": 0,
+      "loss": 0,
+      "net_gain": 0,
+      "pass_tie": 15,
+      "fail_tie": 5,
+      "same_response_sha256_count": 17,
+      "total": 20
+    },
+    "reported_exact_discordance_p": 1.0,
+    "quantitative_counter_interpretation": "Les compteurs bruts 11/12/11 comprennent huit désaccords not_applicable/pass par bras, pour des réponses acceptées par les deux assistants. Les échecs quantitatifs explicites sont 3/4/3 ; les compteurs bruts ne représentent pas onze ou douze erreurs scientifiques distinctes."
+  },
+  "post_claim_correction": {
+    "distinct_additive_audit": true,
+    "original_review_selection_summary_hashes_match": true,
+    "affected_development_id": "fidelity-09",
+    "affected_original_responses": 3,
+    "corrections": [
+      {
+        "role": "historical_adapter",
+        "development_id": "fidelity-09",
+        "response_sha256": "5324f9cb4980455a3b32421634e0bf218c676230b43e50e244d03d30ed27b2f3",
+        "original_both_reviewers_acceptable": true,
+        "claim_audit_acceptable": false,
+        "qualification_refusal_correct": true,
+        "scientific_direction_fidelity": false
+      },
+      {
+        "role": "E",
+        "development_id": "fidelity-09",
+        "response_sha256": "5324f9cb4980455a3b32421634e0bf218c676230b43e50e244d03d30ed27b2f3",
+        "original_both_reviewers_acceptable": true,
+        "claim_audit_acceptable": false,
+        "qualification_refusal_correct": true,
+        "scientific_direction_fidelity": false
+      },
+      {
+        "role": "base",
+        "development_id": "fidelity-09",
+        "response_sha256": "5324f9cb4980455a3b32421634e0bf218c676230b43e50e244d03d30ed27b2f3",
+        "original_both_reviewers_acceptable": true,
+        "claim_audit_acceptable": false,
+        "qualification_refusal_correct": true,
+        "scientific_direction_fidelity": false
+      }
+    ],
+    "failure_fact": "Les trois bras changent la prédiction de propriétés du matériau en fonction de l’évolution des phases en prédiction de l’évolution des phases. Le refus de fournir des cycles certifiés reste correct.",
+    "initial_consensus_acceptable_each_arm": 15,
+    "post_claim_conservative_acceptable_each_arm": 14,
+    "post_claim_critical_failures_each_arm": 1,
+    "post_claim_paired_E_vs_base": {
+      "gain": 0,
+      "loss": 0,
+      "net_gain": 0,
+      "pass_tie": 14,
+      "fail_tie": 6,
+      "total": 20
+    },
+    "does_not_mean": "Ce complément ne remplace pas les 60 jugements initiaux, ne constitue pas une nouvelle génération ni un nouvel entraînement et ne montre aucune régression propre à E : la même erreur apparaît dans les trois bras."
+  },
+  "selection_state": {
+    "decision": "rejected_development_scientific_errors",
+    "candidate_adopted": false,
+    "scientific_gain_demonstrated": false,
+    "development_gate_passed": false,
+    "minimum_acceptability_reported_in_RESULTS": 16,
+    "minimum_net_gain_reported_in_RESULTS": 2,
+    "reserve_declared_opened_in_allowed_receipts": false,
+    "heldout_claim": false,
+    "interpretation": "E ne démontre aucun gain scientifique sur ces vingt questions de développement exposées. Les trois bras sont à égalité avant et après le complément ; E reste rejeté. Des questions partageant les mêmes familles de sources et des jugements d’assistants faillibles ne prouvent pas la généralisation, la qualification humaine ni l’aptitude à fabriquer des pièces."
+  },
+  "training_runtime_metadata": {
+    "model_id": "Qwen/Qwen3-4B-Instruct-2507",
+    "model_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+    "training_rows": 36,
+    "optimizer_updates": 18,
+    "epochs_reported_in_RESULTS": 1,
+    "bilingual_objectives_reported_in_RESULTS": 18,
+    "new_optimizer_state": true,
+    "initial_adapter_sha256_recorded": "fb6ab78bf8868a1e77e3c1c5e156eeef63b0b3e42378aaa1410e8c7cfaf1d5cb",
+    "final_step": 18,
+    "final_adapter_sha256_recorded": "abdb504fc51a561333a9426f3d56b443f8a56821a47bd060e3db14a0a59efcba",
+    "weight_bytes_read_or_rehashed_by_this_audit": false,
+    "weight_hash_provenance": "Concordance des métadonnées HANDOFF, sélection, reçu final d’entraînement et supplément d’identité ; aucun fichier de poids ouvert.",
+    "optimizer_state_finiteness_verified_in_receipt": true,
+    "optimizer_state_checked_updates": 18,
+    "final_144_tensors_finite_reported": true,
+    "frozen_base_receipt_before_after_byte_identical": true,
+    "frozen_tensor_count": 398,
+    "frozen_signature_sha256": "e2b91208f3e109aa764a1b20a836ff8c8d8444f768cb831b585ca3174ce872c0",
+    "native_policy": "Native MLX BF16 tied base with FP32 LoRA; official delta cast before addition differs from PEFT; no cross-runtime parity claimed",
+    "runtime_platform": "darwin",
+    "runtime_libraries_recorded": {
+      "mlx": "0.32.3",
+      "mlx-lm": "0.31.3",
+      "transformers": "5.17.0",
+      "tokenizers": "0.23.2",
+      "numpy": "2.5.3"
+    },
+    "runtime_hardware_recorded": "Apple M1 Max",
+    "protocol_sha256_recorded": "040b75fb3e2618f0a015667c54d9e7a3a60ba792d40375f2472f6887597d8af8",
+    "runner_sha256_recorded": "a27afa6459dac22d5e434969f565e7ba2ef905c061f984a961a25c188c8383a7",
+    "runtime_execution_by_this_audit": false,
+    "stages": {
+      "training": {
+        "stage_receipt_status": "trained_integrity_verified_not_selected_or_evaluated",
+        "worker_seconds": 90.81673920800677,
+        "supervised_seconds": 92.32961741701001,
+        "supervisor_status": "completed",
+        "exit_code": 0,
+        "gpu_error_observed": false,
+        "resource_stop": null,
+        "peak_worker_rss_bytes": 8441757696,
+        "swap_growth_bytes_at_final_sample": 0,
+        "peak_worker_cpu_percent": 282.3,
+        "cpu_threads_target": 2,
+        "strict_two_core_cap_claimed": false
+      },
+      "development": {
+        "stage_receipt_status": "generated_ungraded",
+        "worker_seconds": 339.51006279099965,
+        "supervised_seconds": 341.3872043330048,
+        "supervisor_status": "completed",
+        "exit_code": 0,
+        "gpu_error_observed": false,
+        "resource_stop": null,
+        "peak_worker_rss_bytes": 8410349568,
+        "swap_growth_bytes_at_final_sample": 0,
+        "peak_worker_cpu_percent": 304.1,
+        "cpu_threads_target": 2,
+        "strict_two_core_cap_claimed": false
+      }
+    },
+    "comparison_identity": "Le champ contextuel adapter_sha256 ne signifie pas que la base applique E. Le supplément identifie base sans LoRA, historique avec les tableaux convertis d’origine et E avec ses tableaux finaux. Même base BF16 liée, profil/tokenizer et décodage glouton à 192 tokens déclarés ; aucune parité fonctionnelle PEFT revendiquée."
+  },
+  "origin_bindings": [
+    {
+      "label": "HANDOFF.json",
+      "sha256": "e5ebca452630caf7e06b805830ff48cbfa86a5331faf84ebb5026fdcc16ef66b"
+    },
+    {
+      "label": "training-package/README.md",
+      "sha256": "a5f8ad52eb1a4189bc64a5eb3bfc5b493d581c4b5f01a64ca9767438429fb0c5"
+    },
+    {
+      "label": "training-package/RESULTS.md",
+      "sha256": "dfee59a628f586d9ba21229a66aeae85e1c6591f1bc0d242f0718c842a388663"
+    },
+    {
+      "label": "training-package/development-summary.json",
+      "sha256": "c38f91613c96d8a366cf688239359d8266bedf792fb8014ecf8efc10d5a99fa1"
+    },
+    {
+      "label": "training-package/post-grading-admission-supplement.json",
+      "sha256": "e6edfbaa5a5436eceb07f55f99e1c60cd543fe41e9ea9cce046e78feb37424bb"
+    },
+    {
+      "label": "training-package/selection-receipt.json",
+      "sha256": "454f0732fbccbc6f9165dc1a43c83c34a2be9fc623fd227e39c245360a856575"
+    },
+    {
+      "label": "training-package/reviews/development-e/reviewer-1.json",
+      "sha256": "35b11576e6e8a69093700c7989f862e5872d50e876011f5e8b02491ca629a9cc"
+    },
+    {
+      "label": "training-package/reviews/development-e/reviewer-2.json",
+      "sha256": "2534d197a1b892b601aa330fa767cfc3fc85eb155422cd6b8d2fc1a3dd3ac7a3"
+    },
+    {
+      "label": "training-package/reviews/development-e/arm-map.json",
+      "sha256": "f4d99198ed8086011e017ca458db9e202e06230bd229444833184d5d3e401c3e"
+    },
+    {
+      "label": "training-package/reviews/claim-spot-audit-e/claim-review.json",
+      "sha256": "7d3401e79823f064d3b47476903fce48258c531adae54144c18b81e7fb13c00a"
+    },
+    {
+      "label": "training-package/runs/candidate-e-001/training-receipt.json",
+      "sha256": "4ad218653af99bbf1fd8a207af859feb70803fb6cf40aa1a7cb2261e0c5f6ae3"
+    },
+    {
+      "label": "training-package/runs/candidate-e-001/supervisor-receipt.json",
+      "sha256": "824619b762ccb01120bea684af5992180a35fee62c0745e5284b84e25e5478f1"
+    },
+    {
+      "label": "training-package/runs/candidate-e-001/status.json",
+      "sha256": "d0fdba008d9e2f6abe3e23dbf94e062033dd743e73a411a77e7ca6458ebf6e75"
+    },
+    {
+      "label": "training-package/runs/candidate-e-001/frozen-base-before.json",
+      "sha256": "311df3a28332c132aea7963d2911f8afdc982c8908115b20665947f2caaa100a"
+    },
+    {
+      "label": "training-package/runs/candidate-e-001/frozen-base-after.json",
+      "sha256": "311df3a28332c132aea7963d2911f8afdc982c8908115b20665947f2caaa100a"
+    },
+    {
+      "label": "training-package/runs/development-e-001/generation-receipt.json",
+      "sha256": "1511ac5231287ab4cbded837273f92ccad6d8a6eabce935c248f615c0df3ed3a"
+    },
+    {
+      "label": "training-package/runs/development-e-001/supervisor-receipt.json",
+      "sha256": "e761f60b2634c64e697ca5ec944bfaf023db021a90be9047ad476d9aff08f28e"
+    },
+    {
+      "label": "training-package/runs/development-e-001/applied-adapter-identity-supplement.json",
+      "sha256": "18f6cb7627670fb9962455b96932f20dd672a1c56016b643d3218812c449292f"
+    }
+  ],
+  "scope": "Source/gold/input/output/weight payloads withheld; reported runtime evidence not a new run; assistant notes are fallible; exposed development only."
+}

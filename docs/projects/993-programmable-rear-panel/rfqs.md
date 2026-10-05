@@ -35,7 +35,9 @@ expertise protection réseau 12 V, transitoires, polarité, courant constant, CE
 thermique et BLE sécurisé. Aucune homologation ni dimension définitive n'est acquise.
 La proposition [E0](electronics/coupon.md) joint une BOM et les connexions d'un
 coupon 16 × 8 à six TLC5947 sur alimentation de laboratoire 3,3 V, pas sur la voiture.
-Merci de revoir ce choix, de réaliser le schéma natif/ERC/DRC et de chiffrer E0
+Le [schéma KiCad préparatoire et son PDF](electronics/kicad/README.md) sont fournis,
+avec ERC et test de netlist ; aucune empreinte n'est attribuée. Merci de revoir ce
+choix et ce schéma, de compléter empreintes/routage/ERC/DRC et de chiffrer E0
 séparément de la future protection automobile E1. Aucun fichier n'est libéré en fabrication.
 Merci de chiffrer séparément revue, schéma/BOM, PCB coupon, firmware éventuel,
 industrialisation, prétests et correction ; fournir format natif éditable, droits,

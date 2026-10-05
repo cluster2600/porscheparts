@@ -1,0 +1,586 @@
+{
+  "schema_version": "1.0",
+  "date": "2026-10-03",
+  "repository_commit": "09f2728a646d0cf6e30c07df28800f26454a5276",
+  "audit_scope": "Bounded coverage audit of repository navigation and explicitly named training/research guides at main 09f2728a plus the new corrective data manifest. No raw private corpus or independent reserve contents inspected.",
+  "guide_ambiguity": "No single repository file uniquely identifies the human phrase guide de Porsche Parts. README.md, docs/README.md and the named corpus/training guides are audited; an external guide/site/wiki is not inferred to be identical.",
+  "states_are_not_additive": true,
+  "training_receipts_override_preparation_guides": true,
+  "source_or_parameter_count_is_not_sft_or_measurement_count": true,
+  "model_chains_kept_separate": true,
+  "independent_expert_validation_claimed": false,
+  "new_training_protocol_or_data_modified": false,
+  "guides_audited": [
+    "README.md",
+    "docs/README.md",
+    "training/qwen-metal-additive-20261002/README.md",
+    "training/qwen-metal-additive-20261002/FORMATTING.md",
+    "training/qwen-metal-additive-20261002/GROUNDING.md",
+    "training/qwen-metal-additive-20261002/COMPACT_QWEN3.md",
+    "training/qwen-metal-additive-20261002/PRECISION_QWEN3.md",
+    "training/qwen-metal-additive-20261002/EVIDENCE_QWEN3.md",
+    "training/qwen-metal-additive-20261002/FIDELITY_QWEN3.md",
+    "twins/993-engine-cooling-fan-system-f0/program/research/README.md",
+    "training/qwen-porsche-corpus/README.md",
+    "training/993-turbo-20261002/README.md",
+    "training/qwen-engineering-20261002/README.md",
+    "training/qwen-engineering-refinement/README.md"
+  ],
+  "entries": [
+    {
+      "id": "metal-discovery",
+      "model_chain": "reference",
+      "status": "reference_rag_or_bibliography",
+      "paths": [
+        "training/qwen-metal-additive-20261002/input/sources.json",
+        "training/qwen-metal-additive-20261002/input/documents.json"
+      ],
+      "counts": {
+        "research_source_records": 79,
+        "fulltext_articles_v1": 7,
+        "article_languages": {
+          "en": 7
+        }
+      },
+      "interpretation": "Multilingual discovery metadata is broader than the licensed English full-text inventory. Abstract/metadata access and public URLs are not reusable training prose."
+    },
+    {
+      "id": "metal-v1",
+      "model_chain": "historical_export",
+      "status": "excluded_from_current_training",
+      "paths": [
+        "training/qwen-metal-additive-20261002/manifest.json",
+        "training/qwen-metal-additive-20261002/data/cpt/",
+        "training/qwen-metal-additive-20261002/data/sft/"
+      ],
+      "counts": {
+        "cpt": {
+          "train": 81,
+          "valid": 17,
+          "test": 18
+        },
+        "sft": {
+          "train": 47,
+          "valid": 5,
+          "test": 6
+        }
+      },
+      "interpretation": "Overlaps later exports; the MET004 attached snapshot/attribution was incorrect and corrected in v2. Historical counts are not rows consumed by Qwen3."
+    },
+    {
+      "id": "metal-v2",
+      "model_chain": "historical_Qwen2.5_Coder_tokenizer_export",
+      "status": "prepared_historical_not_selected",
+      "paths": [
+        "training/qwen-metal-additive-20261002/FORMATTING.md",
+        "training/qwen-metal-additive-20261002/formatted-v2/manifest.json"
+      ],
+      "counts": {
+        "cpt_text": {
+          "train": 36,
+          "valid": 5,
+          "test": 8
+        },
+        "sft_messages": {
+          "train": 27,
+          "valid": 1,
+          "test": 2
+        },
+        "metadata_messages": {
+          "train": 20,
+          "valid": 4,
+          "test": 4
+        }
+      },
+      "interpretation": "Raw exports and tokenizer-bound arrays represent the same examples. V1/v2/v3 must not be concatenated as independent datasets; optional metadata drills are distinct from science SFT."
+    },
+    {
+      "id": "metal-grounded-v3",
+      "model_chain": "Qwen2.5-1.5B-Instruct_preparation",
+      "status": "prepared_article_corpus_with_historical_partitions",
+      "paths": [
+        "training/qwen-metal-additive-20261002/GROUNDING.md",
+        "training/qwen-metal-additive-20261002/grounded-v3/manifest.json",
+        "training/qwen-metal-additive-20261002/grounded-v3/sources.json",
+        "training/qwen-metal-additive-20261002/grounded-v3/passages.jsonl"
+      ],
+      "counts": {
+        "articles": 10,
+        "article_partition_counts": {
+          "train": 6,
+          "valid": 2,
+          "test": 2
+        },
+        "cleaned_passages": 405,
+        "cleaned_passage_partition_counts": {
+          "train": 256,
+          "valid": 86,
+          "test": 63
+        },
+        "cpt_text": {
+          "train": 50,
+          "valid": 9,
+          "test": 14
+        },
+        "sft_messages": {
+          "train": 53,
+          "valid": 16,
+          "test": 21
+        },
+        "sft_concepts": 40,
+        "evaluation_questions": 8
+      },
+      "interpretation": "Ten English CC BY 4.0 articles; 90 language variants cover 40 questions, not 90 independent concepts. CPT sequences group paragraphs and are not 405 additional examples. Historical source labels are retained, but inspected/exposed data supplies development evidence for this continuation.",
+      "source_ids_by_original_partition": {
+        "train": [
+          "MET001",
+          "MET002",
+          "thermal_en_prediction",
+          "thermal_en_critical",
+          "thermal_en_flow",
+          "NEW_RESIDUAL"
+        ],
+        "valid": [
+          "MET003",
+          "NEW_QUALITY"
+        ],
+        "test": [
+          "MET004",
+          "NEW_WAAM"
+        ]
+      }
+    },
+    {
+      "id": "metal-quarantine",
+      "model_chain": "reference",
+      "status": "excluded_pending_review",
+      "paths": [
+        "training/qwen-metal-additive-20261002/grounded-v3/quarantine.jsonl",
+        "training/qwen-metal-additive-20261002/grounded-v3/legacy-review.jsonl"
+      ],
+      "counts": {
+        "quarantined_paragraph_records": 658,
+        "quarantine_reasons": {
+          "short_fragment_or_label": 10,
+          "outside_scientific_sections": 513,
+          "nested_duplicate_text": 11,
+          "formula_or_image_requires_visual_review": 105,
+          "figure_or_table_context": 19
+        },
+        "excluded_legacy_explanations": 30,
+        "detected_cross_source_near_duplicates": 0
+      },
+      "interpretation": "Formula/image paragraphs, figure/table context, administrative text, nested duplicates and labels are excluded. Zero lexical near-duplicates is not proof of semantic independence or scientific correctness."
+    },
+    {
+      "id": "metal-cpu-general-pilot",
+      "model_chain": "Qwen2.5-1.5B-Instruct_HF_CPU",
+      "status": "used_distinct_historical_pilot",
+      "paths": [
+        "training/qwen-metal-additive-20261002/CPU_PILOT.md",
+        "training/qwen-metal-additive-20261002/runs/cpu-lora-001/package-manifest.json"
+      ],
+      "counts": {
+        "training_sft_rows": 53
+      },
+      "interpretation": "Recorded CPU pilot uses the general Qwen2.5 family, not the selected Qwen3 tensors and not the separate Coder/MLX programme. Prepared CPT is not evidence of CPT training."
+    },
+    {
+      "id": "qwen3-selected-compact",
+      "model_chain": "Qwen3-4B-Instruct-2507",
+      "status": "used_by_selected_adapter",
+      "paths": [
+        "training/qwen-metal-additive-20261002/compact-qwen3-v5/manifest.json",
+        "training/qwen-metal-additive-20261002/compact-qwen3-v5/train-records.jsonl",
+        "training/qwen-metal-additive-20261002/runs/qwen3-fidelity-001/RESULTS.md"
+      ],
+      "counts": {
+        "training_rows": 24,
+        "objectives": 12,
+        "unique_passages": 11,
+        "source_families": 6,
+        "assistant_tokens": 1388,
+        "optimizer_steps": 12
+      },
+      "interpretation": "The selected adapter trained only this compact curriculum. It does not encode the whole guide, catalogue, impeller corpus or code curriculum.",
+      "adapter_sha256": "fb6ab78bf8868a1e77e3c1c5e156eeef63b0b3e42378aaa1410e8c7cfaf1d5cb"
+    },
+    {
+      "id": "metal-corrective-v4",
+      "model_chain": "historical_metal_development",
+      "status": "historical_development_not_selected",
+      "paths": [
+        "training/qwen-metal-additive-20261002/corrective-v4/manifest.json"
+      ],
+      "counts": {
+        "rows": 191,
+        "unique_passages": 22,
+        "source_families": 6
+      },
+      "interpretation": "Overlapping corrective variants are not additive independent evidence; no row enters the current candidate by inclusion in this inventory."
+    },
+    {
+      "id": "metal-precision-qwen3-v6",
+      "model_chain": "historical_metal_development",
+      "status": "prepared_historical_development_not_selected",
+      "paths": [
+        "training/qwen-metal-additive-20261002/precision-qwen3-v6/manifest.json"
+      ],
+      "counts": {
+        "rows": 53,
+        "unique_passages": 22,
+        "source_families": 6
+      },
+      "interpretation": "Overlapping corrective variants are not additive independent evidence; no row enters the current candidate by inclusion in this inventory."
+    },
+    {
+      "id": "metal-precision-qwen3-v7",
+      "model_chain": "historical_metal_development",
+      "status": "used_candidate_rejected_on_development",
+      "paths": [
+        "training/qwen-metal-additive-20261002/precision-qwen3-v7/manifest.json"
+      ],
+      "counts": {
+        "rows": 59,
+        "unique_passages": 25,
+        "source_families": 6
+      },
+      "interpretation": "Overlapping corrective variants are not additive independent evidence; no row enters the current candidate by inclusion in this inventory."
+    },
+    {
+      "id": "qwen3-historical-evaluation",
+      "model_chain": "Qwen3-4B-Instruct-2507",
+      "status": "development_exposed_tests_retired",
+      "paths": [
+        "training/qwen-metal-additive-20261002/FIDELITY_QWEN3.md",
+        "training/qwen-metal-additive-20261002/runs/qwen3-fidelity-001/RESULTS.md"
+      ],
+      "counts": {
+        "primary_cases": 12,
+        "supplemental_cases": 8,
+        "critical_boundaries": 7,
+        "adapter_primary_pass": 11,
+        "adapter_supplemental_pass": 7,
+        "base_primary_pass": 12,
+        "base_supplemental_cases_evaluated": 0
+      },
+      "interpretation": "No LoRA gain was demonstrated. Omitting a gradual transition and inferring an unsupported dominant influence remain documented defects. Earlier tests/profile-selection questions are development, not a new blind benchmark."
+    },
+    {
+      "id": "qwen3-current-corrections",
+      "model_chain": "Qwen3-4B-Instruct-2507",
+      "status": "training_ready_at_data_audit",
+      "paths": [
+        "training/qwen3-continuation-20261003/data/manifest.json",
+        "training/qwen3-continuation-20261003/data/source-ledger.json"
+      ],
+      "counts": {
+        "rows": 20,
+        "objectives": 10,
+        "unique_passages": 10,
+        "source_families": 6,
+        "language_counts": {
+          "fr": 10,
+          "en": 10
+        }
+      },
+      "interpretation": "20 authored corrective FR/EN rows use the six original training families and unchanged task_routed_v14. All inspected rows are training/development. Training completion and candidate quality must come from separate new receipts; this snapshot does not infer them."
+    },
+    {
+      "id": "impeller-research",
+      "model_chain": "reference",
+      "status": "reference_rag_excluded_from_current_sft",
+      "paths": [
+        "twins/993-engine-cooling-fan-system-f0/program/research/README.md",
+        "twins/993-engine-cooling-fan-system-f0/program/research/source-index.json",
+        "twins/993-engine-cooling-fan-system-f0/program/research/corpus/import-manifest.json",
+        "twins/993-engine-cooling-fan-system-f0/program/research/corpus/geometry/parameter-contract.json"
+      ],
+      "counts": {
+        "original_files": 20,
+        "source_records": 140,
+        "url_groups": 130,
+        "indexed_records": 294,
+        "aftermarket_products": 28,
+        "aftermarket_quantitative_claims": 85,
+        "oem_records": 114,
+        "geometry_claims": 22,
+        "forum_claims": 45,
+        "parameter_dictionary": 104,
+        "computed_quantities": 9,
+        "acceptance_gates": 7,
+        "sft_rows": 0
+      },
+      "interpretation": "140 source records and 104 parameter definitions are neither measured values nor SFT examples. Nine formulas retain assumptions. Seven acceptance gates remain open. Forums, uncertain variant identity and unknown measurements stay unverified. Supplier/OEM/private-scan prose has no established copying permission; no full PDFs or scans enter training.",
+      "source_lane_counts": {
+        "oem": 32,
+        "aftermarket": 44,
+        "forums": 36,
+        "geometry": 28
+      },
+      "eligible_dataset_metadata": "GEO-S009 FAN-01 v5 is documented CC BY 4.0, but its files were not downloaded or inspected. Separate arXiv paper GEO-S010 is not shown CC BY; no paper passage is admitted."
+    },
+    {
+      "id": "porsche-document-library",
+      "model_chain": "Qwen2.5_Coder_MLX_private_document_adapter",
+      "status": "used_distinct_private_extraction_and_rag",
+      "paths": [
+        "training/qwen-porsche-corpus/README.md",
+        "training/qwen-porsche-corpus/results-001.json"
+      ],
+      "counts": {
+        "indexed_records": 14101,
+        "record_type_counts": {
+          "pet": 12864,
+          "technical-data": 111,
+          "torque-specs": 195,
+          "procedures": 235,
+          "site-review": 15,
+          "document-page": 681
+        },
+        "part_references_union": 6013,
+        "source_specific_illustration_groups": 452,
+        "train_rows": 677,
+        "valid_rows": 40,
+        "test_rows": 40,
+        "steps": 320
+      },
+      "interpretation": "14,101 index records were sampled into 677 training rows, not all learned. Exact reference/FTS retrieval is implemented; semantic multilingual search is not. Raw manuals/pages/index/datasets/weights remain ignored private work artifacts and were not opened in this audit. Public receipts report narrow extraction; open-question checks fail or remain incomplete. Full workshop and Leffingwell book integration is outstanding.",
+      "scope_complete": false,
+      "actual_payload_verified_in_this_audit": false
+    },
+    {
+      "id": "993-turbo-research-pack",
+      "model_chain": "model_independent",
+      "status": "prepared_untrained_untokenized",
+      "paths": [
+        "training/993-turbo-20261002/README.md",
+        "training/993-turbo-20261002/manifest.json",
+        "training/993-turbo-20261002/coverage.json",
+        "catalog/reference/993-turbo-research-20261002/manifest.json"
+      ],
+      "counts": {
+        "cpt": {
+          "train": 237,
+          "valid": 3,
+          "test": 8
+        },
+        "sft": {
+          "train": 238,
+          "valid": 4,
+          "test": 9
+        },
+        "authored_cpt_passages": 248,
+        "unique_sources_used": 51,
+        "reference_counts": {
+          "engine_facts": 164,
+          "turbo_source_records": 36,
+          "secondary_engine_curve_series": 6,
+          "matching_calculations": 20,
+          "rotation_examples": 4,
+          "unknowns": 19,
+          "audit_entries": 15,
+          "original_research_source_references": 125,
+          "new_catalog_source_records": 47,
+          "referenced_canonical_sources": 108
+        }
+      },
+      "interpretation": "248 CPT passages and 251 synthetic excerpt-grounded SFT rows are prepared, with separate source-family partitions; no tokenizer, training or weights receipt exists. Supplier claims, Carrera context, calculations and unknowns retain their evidence labels. This pack is not part of selected Qwen3 training.",
+      "excluded": {
+        "conditional_fan_ratio": "ENGINE-D163",
+        "unreviewed_Carrera_context_OCR_rows": 2496,
+        "other": "raw manuals/scans/OCR, exact supplier quotes, private material, unverified snippets and hypotheses"
+      }
+    },
+    {
+      "id": "engineering-picogk-openusd",
+      "model_chain": "Qwen2.5-Coder-1.5B-Instruct_4bit_MLX",
+      "status": "used_distinct_code_curriculum_experimental_not_qualified",
+      "paths": [
+        "training/qwen-engineering-20261002/README.md",
+        "training/qwen-engineering-20261002/results.json",
+        "training/qwen-engineering-refinement/README.md",
+        "training/qwen-engineering-refinement/results-005.json"
+      ],
+      "counts": {
+        "pilot001_train_by_domain": {
+          "python": 96,
+          "openfoam": 96,
+          "openusd": 192,
+          "picogk": 192
+        },
+        "pilot001_validation_by_domain": {
+          "python": 8,
+          "openfoam": 8,
+          "openusd": 38,
+          "picogk": 48
+        },
+        "refinement002_training_records": 1808,
+        "refinement005_training_records": 3224,
+        "refinement005_unique_training_prompts": 3177,
+        "refinement005_weighted_training_instances": 4776,
+        "filtered_final_cases": 150,
+        "final_overlap_corrections": {
+          "validation_rows_repeating_train": 33,
+          "test_rows_repeating_train": 44
+        },
+        "third_party_rows_imported": 0
+      },
+      "interpretation": "Authored Python/OpenFOAM/PicoGK/OpenUSD/evidence/CalculiX exercises are a separate Coder programme; do not combine its metrics, weights or training rows with Qwen3 science. Native compile/execute/scene/graph/deck checks do not validate vehicle science. Final PicoGK 7/8 misses its 95% floor; exposed 150 final cases now serve regression/development. Existing experimental parent coding adapters and ignored private payloads were not independently reopened.",
+      "final_eligible": false
+    },
+    {
+      "id": "engineering-external-research",
+      "model_chain": "reference",
+      "status": "reference_methodology_or_not_processed_third_party",
+      "paths": [
+        "training/qwen-engineering-20261002/sources.json",
+        "training/qwen-engineering-20261002/sources-followup.json",
+        "training/qwen-engineering-refinement/research.json"
+      ],
+      "counts": {
+        "initial_scientific_records": 9,
+        "initial_api_dataset_records": 9,
+        "followup_records": 8,
+        "refinement_research_records": 27,
+        "third_party_training_imports": 0
+      },
+      "interpretation": "Registers can overlap; counts are not independent publications. Research/API guidance informs authored tasks. Declared FutureCAD/BRepGround CC BY, PicoGK examples CC0, ShapeKernel Apache and rStar-Coder CC BY remain candidates requiring upstream audit/contamination/execution checks. CAD-Recode CC BY-NC, missing-licence GenCAD and vision-only task mismatch prevent automatic text-SFT admission."
+    },
+    {
+      "id": "catalogue-and-general-guide",
+      "model_chain": "reference",
+      "status": "reference_not_all_processed_for_qwen3",
+      "paths": [
+        "README.md",
+        "docs/README.md",
+        "catalog/sources/",
+        "catalog/parts/",
+        "docs/AM_VALIDATION_PIPELINE.md"
+      ],
+      "counts": {
+        "catalog_source_files": 453,
+        "catalog_part_records": 38,
+        "part_validation_statuses": {
+          "concept": 38
+        }
+      },
+      "interpretation": "Catalogue files are the source of truth for part status. Guide navigation, CAD, OpenUSD scenes, solver evidence and test code are not automatically licensed/quality-audited SFT rows. No blanket ingestion of all guide-linked artifacts is evidenced. README introductory 34-part count is stale against its generated 38-part section and the current catalogue."
+    },
+    {
+      "id": "new-independent-reserve",
+      "model_chain": "Qwen3-4B-Instruct-2507",
+      "status": "sealed_closed_not_executed",
+      "paths": [
+        "/tmp/porscheparts-qwen-independent-review-20261003-4e65eoni/reserved-public/registration.json",
+        "/tmp/porscheparts-qwen-independent-review-20261003-4e65eoni/reserved-public/coverage-and-commitment.json"
+      ],
+      "counts": {
+        "questions": 24,
+        "primary": 16,
+        "supplemental": 8,
+        "critical": 10,
+        "languages": {
+          "fr": 12,
+          "en": 12
+        },
+        "source_families": 4
+      },
+      "interpretation": "Custodian metadata received through the parent message only. This audit did not open registration, commitment, pool, prompts, gold answers, IDs or any reviewer directory. Do not infer performance or task-family independence from counts.",
+      "sealed_at": "2026-10-03T12:48:43Z",
+      "registration_sha256_received": "d2a72858a98e5b6541e433bf427a46561d8fa3d39979ceb46e2ef58e1f0b0344",
+      "metadata_verification": "received_from_parent_not_independently_file_read",
+      "pending_amendment": "numerical gate amendment C"
+    }
+  ],
+  "evidence_files_sha256": {
+    "README.md": "4b7c6cc699d1612df150482baedb420b9fce9cb8e33d4a7455ac0484484779aa",
+    "catalog/reference/993-turbo-research-20261002/manifest.json": "8b73dc9f2a86453f838c115eb138cd02b63e66f4250ed8a3a53dc2cf71279994",
+    "docs/AM_VALIDATION_PIPELINE.md": "acfa8f1d08a970de402bb31e19dcfcc605d4e1f1f4857313c424e2dea443541b",
+    "docs/README.md": "9a1511b72d72cc0e459ff7836ec06295ca36c7b4949270ec885dcc7067fbc263",
+    "training/993-turbo-20261002/README.md": "2e238d66d1c5695991445cff7c8be04e7a4da02f7cc08bf64029480678314c02",
+    "training/993-turbo-20261002/coverage.json": "cd722c753fe577c1ce24aa46d03d7d9ff241abaee83ae03a2db0679a41721d0c",
+    "training/993-turbo-20261002/manifest.json": "4cf19e17d0e2ce78e3b8a9d78b29c52bc6a4b3fb14c2aea81e9a52885a84189a",
+    "training/qwen-engineering-20261002/README.md": "acf0a95d47f6aab16cd89b69084eb499782f4d441c6bbe1284efa662ff5b5282",
+    "training/qwen-engineering-20261002/results.json": "ffe4fc40a073c836976bb6d91ac5847a365bd1e1b560b04bafde7b56c099c373",
+    "training/qwen-engineering-20261002/sources-followup.json": "8c6bdf40b9c3896e7a509f9cd9b0be2e218c45978eb5100541c51dc79c9f2d6c",
+    "training/qwen-engineering-20261002/sources.json": "1bd0d3464c467dfbd081586bc894995c2ad76dc73d7ec625664e3af35e48dcf0",
+    "training/qwen-engineering-refinement/README.md": "9f6381344e31560cb6d2fa04316b582bc4aa476293d2e5b7ebe8c03f16e80f57",
+    "training/qwen-engineering-refinement/research.json": "96e06a37e7a9dd98ad41baef4bd7fd631f28aad5b3c2213cc6f95927028bb8ed",
+    "training/qwen-engineering-refinement/results-005.json": "008bd103986ff06a29a395e96f3baf817e6299a25b1a3faaaf411648f838755b",
+    "training/qwen-metal-additive-20261002/COMPACT_QWEN3.md": "c2befa9eddaa595ba3fbdfffdf3404aa55f407aea4b4242087a41da60aef5044",
+    "training/qwen-metal-additive-20261002/CPU_PILOT.md": "1af05799b643ec950e2bbb704d148846769b9777360789195d0478a095f1b1ae",
+    "training/qwen-metal-additive-20261002/EVIDENCE_QWEN3.md": "e0b138ae16ee1ff7fd434dc564fca55e778372104f4c336a6ab1d89a32c7dfe7",
+    "training/qwen-metal-additive-20261002/FIDELITY_QWEN3.md": "c330242edfc593993ee71f19d3dbc52e4fe5403ac017dca6d234d726099f2e09",
+    "training/qwen-metal-additive-20261002/FORMATTING.md": "137ef8300edad154a307203588fdc3921c5e218d87640dd6103cf4e8a239d890",
+    "training/qwen-metal-additive-20261002/GROUNDING.md": "7edcd575e5707109b24c0c75867f18f87a61886baa846a4c137750ae9862b6f6",
+    "training/qwen-metal-additive-20261002/PRECISION_QWEN3.md": "dc14651524ccff381bafd37a904f710bbc40db1cbfd14b7224a268170b1e62f8",
+    "training/qwen-metal-additive-20261002/README.md": "7c9a568f9b8e0d4d36b7a3de073482292edd3c3c31dede51e4e6bdda6db8cfd9",
+    "training/qwen-metal-additive-20261002/compact-qwen3-v5/manifest.json": "a8fa584c5665622eefd616e3e7420471adc8885522edd79298b58869c55a50a1",
+    "training/qwen-metal-additive-20261002/compact-qwen3-v5/train-records.jsonl": "98e2e139d46d2ecc296b82f9110c1a3e490bc34231e1904bdcc285c72fa92ffd",
+    "training/qwen-metal-additive-20261002/corrective-v4/manifest.json": "a19ced55f0dbd6069112bdc649f41c6848c54b8120a7eb0a6fd1cf91163df5dc",
+    "training/qwen-metal-additive-20261002/formatted-v2/manifest.json": "fe14a7a0c846c341ce6fe728766ad958b255c97943a0f8a94cfcf9b99006e991",
+    "training/qwen-metal-additive-20261002/grounded-v3/legacy-review.jsonl": "74be87c713fbcd90b76b39e47ed65a291bfc58b88905a47e6a78dcb6ddbe0f20",
+    "training/qwen-metal-additive-20261002/grounded-v3/manifest.json": "5d99c6c77f404a90738c558e5fd1ecd19037c45914679170abb87bed56df9cc3",
+    "training/qwen-metal-additive-20261002/grounded-v3/passages.jsonl": "6247650dbcc722b27cc54b65d98febd9f1291e64a8f563892dc403d5e5c1dc9b",
+    "training/qwen-metal-additive-20261002/grounded-v3/quarantine.jsonl": "da636f8af0ce18690a87ecee729939bbec4e5d24a323fb6a32af5572425c5926",
+    "training/qwen-metal-additive-20261002/grounded-v3/sources.json": "a1f588cfe13fc8d344e47c48a7be1a00fbf385f57d4786607d36e3495519273c",
+    "training/qwen-metal-additive-20261002/input/documents.json": "b9c6e5f0ee05e8436426d1c07639af881e24a52e9243aef397d20f05509a3806",
+    "training/qwen-metal-additive-20261002/input/sources.json": "5a1d971bdb0faaae89b08f72e94f2943270b321cc3e19129113f112e9fa0077b",
+    "training/qwen-metal-additive-20261002/manifest.json": "eb58bb4124d9243502225af8ea30ff94a6caa6987e3892a34922ad728041095b",
+    "training/qwen-metal-additive-20261002/precision-qwen3-v6/manifest.json": "018056275fd5e3114221214bebb24802637f2aed5e63a8dc01884f1c62dbe3d2",
+    "training/qwen-metal-additive-20261002/precision-qwen3-v7/manifest.json": "d5d0caff6d7e21d79299f5322797cb20c77e5bf5f5076c827ff61de8ef0a36c7",
+    "training/qwen-metal-additive-20261002/runs/cpu-lora-001/package-manifest.json": "bee91bd011ad8104a7d433537fa0703d62374064b52fbfd36e5d473a0c2324ab",
+    "training/qwen-metal-additive-20261002/runs/qwen3-fidelity-001/RESULTS.md": "d281ed1ad80a7a2560a17265057b0e65bd8d875afb524b1f6c9e397358245b08",
+    "training/qwen-porsche-corpus/README.md": "94ac33a3dd1e153d6096593bede38a99219ec5db6df729f38da7513302af0c38",
+    "training/qwen-porsche-corpus/results-001.json": "4e7897139f7f178a574c78fecd5d93d5b5a241ae913448e75fbfdde0b8b77fb4",
+    "training/qwen3-continuation-20261003/data/manifest.json": "3387e879621be4b9db03274c78f345774a6bbaa1260146459429bf4c38ac405f",
+    "training/qwen3-continuation-20261003/data/source-ledger.json": "99ceb8241eb4b6489bbcbdea41602cc4356d8d864d41d669c8bc2e0b85e01003",
+    "twins/993-engine-cooling-fan-system-f0/program/research/README.md": "f4c2d280554f0b52bbe9dd5ec70d3d07e5e2e2022448aa67d88cf62ef9ee14e3",
+    "twins/993-engine-cooling-fan-system-f0/program/research/corpus/geometry/parameter-contract.json": "d7896e9445c00d594ca0c3f2a34f68bdd15f94d79bf5389f01c20000c48473a7",
+    "twins/993-engine-cooling-fan-system-f0/program/research/corpus/import-manifest.json": "8e8fdd17e90b9e7500791f5a6aa1c2627619f5098ffa0c2c9eca9692da705429",
+    "twins/993-engine-cooling-fan-system-f0/program/research/source-index.json": "d2235ed2e0f3dcff682c39b81ea686df038b7695c50923e46ad1f169f3c0d1d8",
+    "training/qwen-engineering-refinement/select_variant.py": "107c2aec64de60c7c71ded1eaf8e8b24d9ba260c84895802ca0b7dc1b3f7648a",
+    "training/qwen-engineering-refinement/final_check.py": "0abaa9b427d191715591685061a4258da4a4eceb9b00a4541765341c5f362306",
+    "training/qwen-engineering-20261002/run.py": "9132aa2db506d56b23a624f19f1b82be602fc123fe943dbdd35ab745f17ced78",
+    "training/qwen-porsche-corpus/train.py": "40fb26d98350d7c95cb1d89deab6a285cde6c497214e05aba37199f33c1c00b0",
+    "training/qwen-metal-additive-20261002/token-audit.json": "d3664b7ca3fcf6b8186bc0d64d9dbc8e1ca76ec3f6a177d075904b013ec123b9",
+    "training/qwen-metal-additive-20261002/compact-qwen3-v5/model-profile.json": "5afec09b4e323ec938c1f8014e47f602b815ffceba94f5f301ec79a903bda74c",
+    "training/qwen-metal-additive-20261002/grounded-v3/model-profile.json": "dfafb8e4bbefd89f0c18625632b292a9b545df9045ee740e83390c2f0e6d713a"
+  },
+  "remaining_work": [
+    "Independent scientific and translation review of corrective rows.",
+    "Separate public-safe engineering-data ingestion task 01a101f9-662f-70f9-bb7d-9836d9cb50b4 owns Porscheparts/PorscheFanatics ingestion; this audit duplicates no ingestion.",
+    "Complete private workshop/book location and integration only with authorized source access and rights.",
+    "Audit licence, quality, variant identity and independence before any impeller fact SFT; generic FAN-01 is not a Porsche impeller.",
+    "Future code/data coverage needs grouped task families, independent physical references and explicit engineering gates.",
+    "Only the sealed reserve custodian can report its eventual execution and semantic comparison; this audit records no unseen-test result."
+  ],
+  "model_profiles": {
+    "qwen3_scientific": {
+      "model": "Qwen/Qwen3-4B-Instruct-2507",
+      "model_and_tokenizer_revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+      "profile_path": "training/qwen-metal-additive-20261002/compact-qwen3-v5/model-profile.json",
+      "selected_adapter_sha256": "fb6ab78bf8868a1e77e3c1c5e156eeef63b0b3e42378aaa1410e8c7cfaf1d5cb"
+    },
+    "qwen25_general_cpu": {
+      "model": "Qwen/Qwen2.5-1.5B-Instruct",
+      "model_and_tokenizer_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "profile_path": "training/qwen-metal-additive-20261002/grounded-v3/model-profile.json"
+    },
+    "qwen25_coder_mlx": {
+      "model": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+      "model_and_tokenizer_snapshot_revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+      "base_weights_sha256": "daeab4764fb420d161721791cf2e509e2de81a7af4223646e7bed2bf82c57b58",
+      "executed_receipt": "training/qwen-engineering-refinement/results-005.json",
+      "snapshot_pin_sources": [
+        "training/qwen-engineering-refinement/select_variant.py",
+        "training/qwen-engineering-refinement/final_check.py",
+        "training/qwen-engineering-20261002/run.py",
+        "training/qwen-porsche-corpus/train.py"
+      ],
+      "tokenizer_hash_receipt": "training/qwen-metal-additive-20261002/token-audit.json",
+      "tokenizer_hash_receipt_scope": "Length audit only, not a model training result."
+    }
+  }
+}

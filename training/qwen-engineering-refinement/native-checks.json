@@ -1,0 +1,115 @@
+{
+  "make_check": {
+    "tested_commit": "02068925291571e8ebd285de5cfc7ca6332e9593",
+    "tested_tree": "df4cea6078f12d67951cae8230a0434e8b382c2b",
+    "platform": "Kali2 native ext4",
+    "umask": "022",
+    "PYTHONNOUSERSITE": 1,
+    "main_tests": 3276,
+    "main_skipped": 144,
+    "pinned_docker_f37_tests": 15,
+    "exit_code": 0,
+    "log_sha256": "9672e6ce5f38c205af82dae085eb300a6d67ab8dc310337bab22eb99a4088be3"
+  },
+  "calculix": {
+    "status": "passed",
+    "synthetic_only": true,
+    "head_physics_validated": false,
+    "checks": {
+      "bar": {
+        "expected": 0.05,
+        "observed": [
+          0.05
+        ],
+        "relative_error": 0.0,
+        "passed": true
+      },
+      "heat": {
+        "expected": -1000.0,
+        "observed": [
+          -1000.0,
+          -1000.0,
+          -1000.0,
+          -1000.0,
+          -1000.0,
+          -1000.0,
+          -1000.0,
+          -1000.0
+        ],
+        "relative_error": 0.0,
+        "passed": true
+      }
+    }
+  },
+  "picogk_photo_api": {
+    "synthetic_only": true,
+    "source_sha256": "ad60b574694b177fa886af8cfc4026b96d506020a61245934273253cd4398952",
+    "metrics": {
+      "passed": true,
+      "va": 131.17007,
+      "vb": 131.1687,
+      "vu": 155.90205,
+      "vi": 106.43673,
+      "vc": 126.25906,
+      "triangles": 1436,
+      "immutable_inputs": true
+    },
+    "native_sha256": {
+      "PicoGK.dll": "710c4e0428efbe9c1cd1db1663247b45604f96d167a6726782ab8ddca350565a",
+      "picogk.26.2.dylib": "5c1cd3fc12766a85bc5c1441a95f065fb274338d1333c3ae2d3396b59d0e18e7"
+    }
+  },
+  "openfoam_cht_reference": {
+    "application": "chtMultiRegionFoam",
+    "distribution": "ESI",
+    "version": "2312",
+    "tutorial": "multiRegionHeater",
+    "deltaT": 0.001,
+    "endTime": 0.005,
+    "steps": 5,
+    "regions": {
+      "bottomWater": {
+        "mesh_ok": true,
+        "temperature_field_written": true,
+        "temperature_sha256": "ab69d9446c93044b5632f1c7faee6e964cf84f5db54347703290c114eb26bd49"
+      },
+      "topAir": {
+        "mesh_ok": true,
+        "temperature_field_written": true,
+        "temperature_sha256": "af309c034fa46b63b787e4135e6ac24afa43dfff9ccb24f37870f33791b901c0"
+      },
+      "heater": {
+        "mesh_ok": true,
+        "temperature_field_written": true,
+        "temperature_sha256": "54b638f2b21ed023d1c4c6b17afeaca94c378bbc099cba871d65361b416e317e"
+      },
+      "leftSolid": {
+        "mesh_ok": true,
+        "temperature_field_written": true,
+        "temperature_sha256": "34b6a91a807cf9ddbc09065b1b8763647fcede45a5e023b2e6d1d9beb523e0a0"
+      },
+      "rightSolid": {
+        "mesh_ok": true,
+        "temperature_field_written": true,
+        "temperature_sha256": "89af95902b307041fdf9731b8d702b25a0f96f858aee1cef953ede0e7d5789f9"
+      }
+    },
+    "solver_completed": true,
+    "energy_balance_verified": false,
+    "mesh_convergence_verified": false,
+    "generated_by_qwen": false,
+    "physical_validation": false,
+    "solver_log_sha256": "54af9d2694dc975d9b61660d21f7dae0044faf6f052ee90728baa2b44f961be6",
+    "image_id": "sha256:1dc508c2bfab4d9911707fbfd9cacdf43faf84956a1502805194e3e70e18ae68",
+    "mesh_cells": 12000,
+    "mesh_resolution": [
+      30,
+      20,
+      20
+    ],
+    "runtime_network": "none",
+    "witness_script_sha256": "0e1108df95b6b62d6fbb801c5707e2cb8ba25e858e0f763a5e75cafc3eb648f8",
+    "receipt_log_sha256": "8506e4cb94be1c89e3e33e272d667b784b87b0c04c0b38cb71bd20559f1b05b9"
+  },
+  "earlier_rejections": "Original 3,000-cell tutorial failed small determinant checks in three solid regions, even though the solver completed. Retained failure, increased resolution and required five Mesh OK results before execution; no quality threshold relaxed."
+}

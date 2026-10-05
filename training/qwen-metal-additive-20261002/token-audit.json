@@ -1,0 +1,53 @@
+{
+  "repository": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+  "revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+  "files_sha256": {
+    "tokenizer.json": "a8506e7111b80c6d8635951a02eab0f4e1a8e4e5772da83846579e97b16f61bf",
+    "tokenizer_config.json": "dced901d401aa828f313a2baec70d0ce164653285812237b5285c7efd5b9e760",
+    "special_tokens_map.json": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd",
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+    "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+    "config.json": "0708e236aa7b7db3c01bf8a46200e1a92d57f20fa668a7c430154bd6a21cdba5"
+  },
+  "scope": "Exact tokenizer length audit only, no model weights or training",
+  "python": "3.12.14",
+  "transformers": "4.57.1",
+  "tokenizers": "0.22.2",
+  "jinja2": "3.1.6",
+  "sft_limit": 1024,
+  "cpt_limit": 2048,
+  "sft": {
+    "train": {
+      "maximum_tokens": 191,
+      "total_tokens": 7302,
+      "over_limit": 0
+    },
+    "valid": {
+      "maximum_tokens": 180,
+      "total_tokens": 838,
+      "over_limit": 0
+    },
+    "test": {
+      "maximum_tokens": 172,
+      "total_tokens": 971,
+      "over_limit": 0
+    }
+  },
+  "cpt": {
+    "train": {
+      "maximum_tokens": 1058,
+      "total_tokens": 51622,
+      "over_limit": 0
+    },
+    "valid": {
+      "maximum_tokens": 715,
+      "total_tokens": 10686,
+      "over_limit": 0
+    },
+    "test": {
+      "maximum_tokens": 1215,
+      "total_tokens": 14428,
+      "over_limit": 0
+    }
+  }
+}

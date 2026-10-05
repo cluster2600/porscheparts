@@ -1,0 +1,94 @@
+{
+  "reviewed_on": "2026-10-03",
+  "status": "research_and_training_checks_passed_with_global_environment_limitation",
+  "checks": [
+    {
+      "command": "python scripts/validate_sources.py",
+      "result": "passed",
+      "source_records": 521,
+      "log_sha256": "839ebc5ad41866876ba22b9ddb9303fac9128ff8db922fc2b12d9e619a0f7521"
+    },
+    {
+      "command": "python scripts/check_doc_links.py --strict",
+      "result": "passed",
+      "markdown_files": 700,
+      "broken_links": 0,
+      "log_sha256": "9240c889bfed3ee31013c6d5c2b2353fa2f5b8f8443757c8ef05cdbad7965f1d"
+    },
+    {
+      "command": "python training/mezger-german-sources-20261003/verify.py",
+      "result": "passed",
+      "cpt_rows": 108,
+      "sft_rows": 108,
+      "partitions_each": {
+        "train": 102,
+        "valid": 0,
+        "test": 6
+      },
+      "combined_prior_partition_isolation": true,
+      "log_sha256": "7746873b5886578e195ef9619bbc83290bcd4e0fa59c697e6335e6b642db12be"
+    },
+    {
+      "command": "python training/mezger-german-sources-20261003/test_verify.py",
+      "result": "passed",
+      "tests": 7,
+      "log_sha256": "1586943416309dccbbd48badd9bc68697f3965d6f1a3e21c47bd04fe58ab1644"
+    },
+    {
+      "command": "python training/993-turbo-20261002/verify.py",
+      "result": "passed; frozen pack retained",
+      "log_sha256": "8947124e511bf2d3bc8c16b9c807573138e52c1643bf3888332b6b22725f50f3"
+    },
+    {
+      "command": "python training/mezger-turbo-materials-20261003/verify.py",
+      "result": "passed; frozen pack retained",
+      "log_sha256": "45107a20c8a577bc46c21a8070e00b8bd0e2b0ad7e45d7a5a4cfcc2941608bc1"
+    },
+    {
+      "command": "make check (umask 022)",
+      "checked_base_commit": "3da42a816d5dd3ef28a8bb709aad42236ebb7a0f",
+      "result": "Python suite and preceding targets passed; Docker audit could not start",
+      "tests": 3390,
+      "skipped_tests": 82,
+      "log_sha256": "1f14215008b1940ddd9ffb49fac711f2ae9ab310fc4eafd95cf212dc4899a1a3"
+    },
+    {
+      "command": "make -o test -o 917-manufacturing-f37-lpbf-audit-check check (umask 022)",
+      "result": "passed; all remaining current Makefile targets checked",
+      "log_sha256": "74559104e852c40840591c608770469211a61a5d2a41dd3c42a3e1a99783b8f8"
+    },
+    {
+      "command": "Independent technical review, capture/source closure, reference manifest, frozen-file hashes, privacy scan and git diff --cached --check",
+      "result": "passed",
+      "facts": 108,
+      "canonical_sources": 27,
+      "fact_bearing_sources": 24,
+      "source_capture_hashes_verified": 27,
+      "frozen_files_unchanged": 535,
+      "prior_training_artifacts_unchanged": 33,
+      "private_or_raw_content_present": false
+    }
+  ],
+  "environment_limitation": {
+    "target": "917-manufacturing-f37-lpbf-audit-check",
+    "result": "blocked_before_test_execution",
+    "reason": "Docker daemon returned no space left on device while creating the pinned audit container.",
+    "full_make_check_claimed_passed": false,
+    "unrelated_image_or_volume_pruning_performed": false
+  },
+  "publication_scope": {
+    "new_source_records": 27,
+    "catalogue_source_total": 521,
+    "facts": 108,
+    "source_languages": {
+      "de": 25,
+      "de/en": 1,
+      "en": 1
+    },
+    "unread_full_article_bibliographic_sources": 3,
+    "cpt_rows": 108,
+    "sft_rows": 108,
+    "new_model_training_executed": false,
+    "raw_source_documents_published": false
+  }
+}

@@ -1,0 +1,736 @@
+Abstract
+In current research, many researchers propose analytical expressions for calculating the packing structure of spherical particles such as DN Model, Compact Model and NLS criterion et al. However, there is still a question that has not been well explained yet. That is: What is the core factors affecting the thermal conductivity of particles? In this paper, based on the coupled discrete element-finite difference (DE-FD) method and spherical aluminum powder, the relationship between the parameters and the thermal conductivity of the powder (
+ETC
+p
+) is studied. It is found that the key factor that can described the change trend of
+ETC
+p
+more accurately is not the materials of the powder but the average contact area between particles (
+a
+ave
+) which also have a close nonlinear relationship with the average particle size
+d
+50
+. Based on this results, the expression for calculating the
+ETC
+p
+of the sphere metal powder is successfully reduced to only one main parameter
+d
+50
+and an efficient calculation model is proposed which can applicate both in room and high temperature and the corresponding error is less than 20.9% in room temperature. Therefore, in this study, based on the core factors analyzation, a fast calculation model of
+ETC
+p
+is proposed, which has a certain guiding significance in the field of thermal field simulation.
+
+1
+Introduction
+Effective thermal conductivity of powder bed (ETC
+p
+) has been studied in diverse industries, including the energy, chemical, and machinery industries [
+1
+,
+2
+,
+3
+,
+4
+]. In the field of nuclear energy, for example, modular air-cooled high temperature reactors require natural heat transfer to prevent nucleation and melting. Studies show that the pebble bed structure can effectively resolve this problem [
+5
+,
+6
+,
+7
+,
+8
+,
+9
+]. Therefore, the thermal conductivity of ball pebble reactors has become an important design parameter for nuclear applications. In the machinery industry, knowing the thermal conductivity of the powder beds is of significant importance in the design at high temperature processes (over 200 °C). Therefore, additional scientific methods are required to evaluate the effects of the thermal conductivity of powders and determine the feasibility of powder beds for high temperature applications.
+For majority of researchers, it is convenient to use one or a group of equations to calculate a series of required thermal conductivity [
+10
+,
+11
+,
+12
+,
+13
+]. Therefore, many researchers have proposed analytical expressions for calculating the packing structure of spherical particles, such as DN Model, A Compact Model and NLS criterion, etc. [
+14
+,
+15
+,
+16
+,
+17
+]. Although many equations are proposed so far, there is still a question that has not been well explained yet. That is: What is the core factors affecting the thermal conductivity of particles?
+The accumulation structure of particles varies significantly with particle size and distribution. The stacking structure has a significant influence on the thermal conductivity [
+18
+,
+19
+]. Therefore, if it is hard to prove that the independent variables in the equation are strongly correlated with the thermal conductivity. So, it is a challenge to ensure that the proposed expression is universal for all stacking powder structures. According to Majid et al, it is assumed that by determined the thermal contact resistance between particles, the particles surface condition and the average particle size are the main factors affecting the thermal conductivity [
+15
+]. However, this study shows that this statement is not accurate.
+In this study, the accumulation of particles is classified into two categories, including equal particle size accumulation and non-equal particle size accumulation. This classification is based on the variance of the particle size distribution. The two situations present different characteristics. Considering these two situations, PFC and the self-developed calculation software are applied to predict the characteristic parameters of the particle accumulation. Meanwhile, the core parameters of the calculation of the thermal conductivity of particles and the core influencing factors are determined. According to the results, the equation for predicting the thermal conductivity of the metal powder is simplified successfully with only one parameter (
+d
+50
+). The error is less than 20% in room temperature, which shows remarkable improvement of the convenience and accuracy of the prediction.
+
+2
+Analysis Processes of
+ETC
+p
+2.1
+Calculation Processes of ETC
+p
+The analysis software PFC based on the discrete element method (DEM) and the computational analysis software based on the finite difference method (FDM) are used in the previous study [
+20
+,
+21
+]. The simulating process of the thermal conductivity is described as follows.
+Figure
+1
+shows that the whole analysis processes are divided into four steps:
+(1)
+Modeling of the particle accumulation process based on the measured particle distribution or specially designed particle distribution.
+(2)
+Extracting particle information and building the discrete model of the particle accumulation.
+(3)
+The calculation process based on FDM.
+(4)
+Analysis of calculation results.
+Figure 1
+Full size image
+The whole analysis processes of
+ETC
+p
+Among these steps, the establishment of physical models and the analysis of results are the key steps.
+2.2
+Experimental Verification Method
+In this study, the calculation results were verified by comparing them to the actual thermal conductivity determined using the hot disk TPS-2500S. This equipment is developed based on transient plane source (TPS) method, which has a higher temperature measurement range and accuracy. Thus, it’s has relatively more applications and research in recent years [
+22
+,
+23
+,
+24
+].
+
+3
+Physical and Numerical Models
+3.1
+Particle Accumulation Model
+The calculation of the thermal conductivity of particles should be performed by the unit cell. The unit cell is a part of the model extracted from the particle accumulation model. In the present study, the PFC software is used to establish the particle accumulation model. This software is developed by the discrete element method (DEM). In 1979, Cundall et al developed the discrete element method to study the mechanics of granular assemblies [
+14
+]. Every degree of freedom of particles is determined by the explicit solution of Newton's equations, which is described as the following:
+$$m_{i} v_{i} = \, \sum F_{i} ,$$
+(1)
+$$I_{i} w_{i} = \, \sum {M_{i} } ,$$
+(2)
+where
+m
+i
+(N·m) and
+I
+i
+(kg·m
+2
+) are the mass and moment of inertia of particle, and
+v
+i
+(m/s) and
+ω
+i
+(rad/s) are the particle velocity and particle angular velocity respectively.
+∑F
+i
+(N) represents the total force applied on particle
+i
+, including body force, contact force between contact particles and external force applied on the boundaries of granular assemblies.
+∑M
+i
+(N·m) represents relevant torques [
+25
+].
+It should be indicated that in the PFC software, the particle size distribution, the friction coefficient between particles and mechanical properties of particle materials can flexibly change to obtain the corresponding packing structure in the process of the accumulation modeling. Therefore, this characteristic provides a great convenience for the subsequent analysis of the characteristic parameters of the stacking model.
+3.2
+Establishment of the Particle Calculation Model
+We established a detailed calculation model of the particle heat transfer (discrete finite difference model) and calculated the thermal conductivity of the powder by obtaining the overall thermal resistance of the model [
+20
+].
+Figure
+2
+shows that in the present study, the “upper substrate-powder-lower substrate” analysis calculation model is utilized to avoid uneven temperature distribution at the top and bottom of the powder. Total powder thermal resistance
+R
+x
+is composed of the following five parts: Total thermal resistance (
+R
+a
+(m
+2
+·K/W)), upper aluminum plate thermal resistance (
+R
+up
+), lower aluminum plate thermal resistance (
+R
+dn
+). Therefore:
+$$R_{x} = R_{a} - R_{up} - R_{dn} .$$
+(3)
+Figure 2
+Full size image
+Thermal resistance composition of the sandwich model
+Meanwhile, through the heat transfer calculation of the calculation software,
+R
+a
+also can be obtained from the following equation:
+$$R_{a} = [{\text{d}}t \cdot s \cdot (T_{up} - T_{dn} )]/\Delta Q,$$
+(4)
+where d
+t
+is the time required to reach the stable temperature,
+s
+is heat transfer area, and Δ
+Q
+(J) is the energy of heat transfer. Therefore, the overall thermal conductivity of the powder bed
+k
+e
+(W/m·K) is described as the following:
+$$k_{e} = {{\left\{ {\frac{{[{\text{d}}t \cdot s \cdot (T_{up} - T_{dn} )]}}{\Delta Q} - R_{up} - R_{dn} } \right\}} \mathord{\left/ {\vphantom {{\left\{ {\frac{{[{\text{d}}t \cdot s \cdot (T_{up} - T_{dn} )]}}{\Delta Q} - R_{up} - R_{dn} } \right\}} {R_{x} }}} \right. \kern-0pt} {R_{x} }}.$$
+(5)
+3.3
+Establishment of the Heat Transfer Model
+In the present study, the heat transfer calculation model is the key step to determine
+R
+a
+. In this model, as Figure
+3
+(a) shows the boundary of the model is not adiabatic, and the heat will transfer from one side of the boundary to the other through the following conduction forms: the heat transfer between particles and the medium gas, the heat transfer between particles contact and the radiation heat transfer. Among them, the calculation models of the heat transfer and radiation heat transfer between particles and media are mostly classical heat transfer formulas, which are not discussed in this study. In this section, the heat transfer between particles is described.
+Figure 3
+Full size image
+Heat transfer calculation model:
+a
+The heat transfer forms in particle model;
+b
+The thermal resistance composition in particle contact area
+As Figure
+3
+(b) shows the micro contact area between particles is composed of the micro contact on the solid surface and the big gap around. In the powder bed model, the interfacial thermal resistance of these micro contact areas hinders the heat transfer process of the powder bed significantly. For each independent contact area, the heat transfer path can be divided into two parts. One is the heat transfer from the large gap around the micro contact area and the other is the heat transfer from the micro contact area. It should be indicated that the micro contact area is composed of the internal small gap and the contact of the surface micro peak [
+17
+]. Therefore, it is necessary to combine the thermal resistance of the large gap with the thermal resistance of the micro contact area to characterize the interface thermal resistance of the particle contact. This simplifies the further analysis and simulation of the heat transfer process of the whole powder bed [
+15
+]. In summary, the thermal contact resistance consists of three parts, including
+R
+s
+,
+R
+g
+and
+R
+L
+, which can be determined as the following:
+$$R_{j} = \left[ {1/((1/R_{s} + 1/R_{g} )^{ - 1} + R_{L} )} \right]^{ - 1} ,$$
+(6)
+where
+R
+s
+and
+R
+L
+denote the peak contact thermal resistance in the micro-contact area and the heat shrinkage resistance between the internal gap and the solid surface, respectively. Moreover, the thermal resistance
+R
+s
+of the micro contact area is mainly affected by geometry, force acting on it, and thermal properties. The detailed calculation of each part has been introduced in the study of Zhang and will not be discussed in the present study [
+20
+].
+3.4
+Selection of Core Parameters
+Before the parameter analysis, it is necessary to conduct the primary selection of parameters, which are as follows.
+(1)
+Temperature
+T
+( °C). There is no doubt that the temperature has a great influence on the thermal conductivity of particles. Moreover, the thermal conductivity of granular materials and gap gas itself is greatly affected by the temperature. Furthermore, the hardness of metals changes as the temperature increases. According to the previous study [
+20
+], when the temperature reaches about 0.5
+T
+m
+, the accumulation structure of particles change significantly, which results in the sudden change of the thermal conductivity.
+(2)
+Solid fraction
+ε.
+The change of densification means that the volume proportion of the solid changes in a certain space and the number of contacts between particles changes. Therefore, it is preliminarily predicted that the thermal conductivity of the powder is sensitive to the change of densification [
+18
+,
+25
+,
+26
+]. Moreover, the heat transfer between particles mainly depends on the contact between particles. Therefore, the influence of the solid fraction on the thermal conductivity of particles is meaningful. In the present study, the
+fric
+coefficient is adjusted to adjust the degree of solid fraction.
+(3)
+Particle size
+d
+50
+. The influence of particle size is mainly divided into two aspects. First, the change of the particle size induces the variation of solid fraction [
+3
+,
+27
+]. Secondly, the increase of the particle size increases the average contact area of particles. Therefore, the particle size is also a factor that cannot be ignored in theory. In this study,
+d
+50
+is set to be 10 µm, 30 µm, 50 µm, 70 µm and 90 µm, respectively. The thermal conductivity of the aluminum powder is calculated.
+(4)
+Particulate material
+TC
+s
+.
+The particle material in this study mainly refers to the thermal conductivity of the particle itself,
+TC
+s
+. When
+TC
+s
+changes,
+ETC
+p
+will also change [
+28
+]. However, the extent of the impact needs to be analyzed. The present study performs the analysis by adjusting the
+TC
+s
+condition in the software calculation.
+
+4
+Results and Discussion
+4.1
+Influence of Parameters
+In this study, the control variable method is used to analyze the parameters. Each time, only one variable is changed to observe its influence on the thermal conductivity. The powder used in the calculation is spherical particles with random particle size distribution and the medium is air at atmospheric pressure. Figure
+4
+shows the calculation results.
+Figure 4
+Full size image
+Trend of
+ETC
+p
+with parameters:
+a
+‒
+d
+ETC
+p
+changes with parameters;
+e
+ETC
+p
+sensitivity analysis of parameter
+The calculation results of Figure
+4
+(a)(b)(c)(d) are all based on spherical aluminum powder with random particle size distribution and illustrate
+T
+,
+ε
+,
+d
+50
+and
+TC
+s
+has a reasonable trend consistency with the thermal conductivity of the powder, which means that the four parameters have an impact on
+ETC
+P
+. However, the degree of impact is obviously different. Therefore, it is necessary to normalize the variables to study the influence degree of these four parameters. It is assumed that the sequences
+x
+1
+,
+x
+2
+,
+x
+3
+,... ,
+x
+n
+are standardized as follows:
+$$x^{\prime}_{i} = \frac{{x_{i} - \mathop {\min }\limits_{1 \le i \le n} \left\{ {x_{i} } \right\}}}{{\mathop {\max }\limits_{1 \le i \le n} \left\{ {x_{i} } \right\} - \mathop {\min }\limits_{1 \le i \le n} \left\{ {x_{i} } \right\}}},$$
+(7)
+where
+x
+i
+and
+\(x^{\prime}_{i}\)
+denote the original variable and the unified dimensionless variable, respectively. Moreover, max{
+x
+i
+} and min{
+x
+i
+} are the maximum and minimum values of variables when they change, respectively. Figure
+4
+(e) shows the results that after treatment, the slopes of solid friction
+ε
+, particle sizes
+d
+50
+and temperature
+T
+are large and the following conclusions can be drawn.
+Firstly, the slop of
+TC
+s
+is approximately horizontal which means the
+TC
+s
+has little effect on the thermal conductivity of the powder, when the particle size is randomly distributed. Therefore, in practical application, when the requirements for heat conduction accuracy are not high, and the particle size distribution is random, the actual heat transfer error caused by changing different materials and the medium gas of powder can be ignored.
+Second, the slope of solid friction is nearly vertical, which means that the thermal conductivity of the powder is highly sensitive to the compactness of the deposit. Therefore, the solid fraction of particles can be regarded as the core factor affecting the thermal conductivity of particles.
+4.2
+Core Factor Confirmation
+In order to verify the above mentioned viewpoint, two groups of particle models of different materials are established in the present study. One of group is spherical aluminum powder (
+TC
+s
+=240 W/mK) and the other one is 316L (
+TC
+s
+= 15 W/mK) stainless steel. Moreover, each group of material particle models is divided into two kinds of particle size, including 30 µm and 120 µm. Under the same particle size and according to the different standard deviation of the particle size distribution, it also can be divided into equal particle size model and non-equal particle size model. Table
+1
+shows the basic information of powders. The model is calculated at 27 °C. Figure
+5
+shows the calculation results.
+Table 1 Basic information of Al and 316L powders
+Full size table
+Figure 5
+Full size image
+Comparison of
+ETC
+p
+results of equal particle size but different particle size distribution powder:
+a
+Model of unequal size powder;
+b
+Model of equal size powder;
+c
+Discoid display of contact surface of two kinds of stacking structures;
+d
+Columnar display of contact surface of two kinds of stacked structures;
+e
+The change of packing density of equal and unequal size packing structure, and the trend of
+ETC
+p
+when
+TC
+s
+changes;
+f
+The relative change of
+ETC
+p
+in a-stacking structure and b-stacking structure when the materials changes respectively
+The following results are obtained from Figure
+5
+:
+(1) As the particle size increases,
+ETC
+P
+shows a rising trend, and the rising range of particles with equal particle size is significant.
+(2) Due to the influence of
+TC
+s
+, the thermal conductivity of Al particles is higher than that of 316L particles. However, according to the standard deviation of the particle size distribution, the degree of deviation is very different. The small and medium-sized figures show that the powder with the same particle size is significantly affected by the thermal conductivity of the particle itself. However, the influence of the powder with normal particle size distribution is relatively small. It should be indicated that the deviation shall not exceed 10%.
+(3) When the solid fraction of the packing model is compared with the calculated heat conduction coefficient, it is observed that trend of the two is not the same and they even showing an opposite trend. Compared with the non-equal size powder, the Solid fraction of equal size powder is relatively lower. However, its thermal conductivity is higher. This shows that it is not accurate to regard the solid fraction of particles as the core factor affecting the thermal conductivity of particles.
+(4) The circular and cylindrical display of the particle contact distribution of the stacking structure with
+d
+50
+of 30 µm is shown in Figure
+6
+(c), (d). It is observed that the larger disk and the wider the cylinder results in the larger the contact area between particles. Therefore, it is found that under the same
+d
+50
+, although the Solid fraction of the powder with equal particle size is smaller, the contact area between particles is larger. Meanwhile, from the Figure
+6
+(d) it is obvious that as the contact area between particles increases, the heat transfer channel between particles becomes wider, the heat transfer speed in particles is faster, and the calculated thermal conductivity is larger. Therefore, it is considered that the average contact area of particles is a more important factor than the Solid fraction.
+Figure 6
+Full size image
+Calculation diagram of particle contact area
+4.3
+Empirical Formula Fitting of ETC
+p
+In order to verify this statement, two groups of aluminum powder with
+d
+50
+in the range of 10‒120 µm (equal particle size and non-equal particle size) are selected to calculate the thermal conductivity and the average contact area of particles. In the present study, it is assumed that all particles are spherical elastic rigid bodies, and the radius and position information of each particle (
+r
+i
+,
+x
+i
+,
+y
+i
+,
+z
+i
+) can be obtained in the process of establishing the physical model.
+As shown in Figure
+6
+, it is assumed that in the case of contact between two particles:
+\(l_{k} < r_{i} + r_{j}\)
+. The average particle contact area (
+a
+ave
+(µm)) can be calculated by the following equation:
+$$a_{ave} = {{\left( {\sum\limits_{k = 1}^{s} {0.25{\uppi }d_{k}^{2} } } \right)} \mathord{\left/ {\vphantom {{\left( {\sum\limits_{k = 1}^{s} {0.25{\uppi }d_{k}^{2} } } \right)} s}} \right. \kern-0pt} s},$$
+(8)
+where
+s
+and
+d
+k
+denote the number of contact pairs of particles, which are accumulated during the calculation and the contact diameter, respectively:
+$$d_{k} = {{\left( {4\sqrt {p(p - r_{i} )(p - r{}_{j})(p - l_{k} )} } \right)} \mathord{\left/ {\vphantom {{\left( {4\sqrt {p(p - r_{i} )(p - r{}_{j})(p - l_{k} )} } \right)} {l_{k} }}} \right. \kern-0pt} {l_{k} }}, \, p = {{(r_{i} + r_{j} + l_{k} )} \mathord{\left/ {\vphantom {{(r_{i} + r_{j} + l_{k} )} 2}} \right. \kern-0pt} 2},$$
+(9)
+$$l_{k} = \sqrt {(x_{i} - x_{j} )^{2} + (y_{i} - y_{j} )^{2} + (z_{i} - z_{j} )^{2} }$$
+(10)
+Figure
+7
+(a) shows that for powders with the equal particle size, the average contact area and densification have strong regularity with
+ETC
+p
+, and the covariance is 0.923 and 0.486, respectively. For the powder with random particle size distribution, due to the randomness of the particle size distribution and stacking structure, the regularity of the average contact area decreases. However, the covariance is still 0.758. While, the compactness loses its regularity. No matter from the data display or covariance calculation, the correlation between Solid fraction and
+ETC
+p
+is very random. Therefore, it is concluded that the average contact area of particles is more important than the particle solid fraction.
+Figure 7
+Full size image
+a
+Calculation results of equal particle size powder;
+b
+Calculation results of non-equal particle size powder;
+c
+Correlation between
+d
+50
+of particles and the average contact area
+The fitting function obtained by fitting the data points in Figure
+7
+is described as follows:
+$$ETC_{p} = \, 0.{16 } + \, 0.{19}\left( {{1} - {\text{exp}}\left( { - {2}.{2}a_{ave} } \right)} \right).$$
+(11)
+In Eq. (
+11
+), when the temperature is room temperature, aluminum powder is considered as the standard powder, and the calculation formula of the thermal conductivity is reduced to the average contact area of a variable particle. Meanwhile, the correlation between
+d
+50
+of particles and the average contact area is displayed in Figure
+7
+(c).
+It is observed that there is a strong correlation between
+d
+50
+and the average contact area of particles, whether they are equal or randomly distributed. Therefore, according to Figure
+8
+, the correlation of randomly distributed powder between
+d
+50
+and
+a
+ave
+can be obtained as follows:
+$$a_{ave} = b_{0} + b_{1} d_{50} + b_{2} d_{50}^{2} ,$$
+(12)
+where
+b
+0
+= 0.02,
+b
+1
+= −0.00192,
+b
+2
+= 1.19×10
+-4
+and
+d
+50
+\(\in\)
+(10 µm, 150 µm). Therefore, the correlation between
+ETC
+P
+and
+d
+50
+can be determined. Then, the experimental values of other studies and the present study are compared with each other when temperature is 27 ℃ [
+26
+,
+29
+,
+30
+,
+31
+,
+32
+]. Figure
+8
+shows the obtained results.
+Figure 8
+Full size image
+Comparison between theoretical data band and experimental data [
+26
+,
+29
+,
+30
+,
+31
+,
+32
+]:
+a
+Calculation high limit (
+δ
+= 1.4), low limit (
+δ
+= 0.6) and base line;
+b
+Error analysis of theoretical data band and experimental data
+It is found that the experimental data is mostly nearby the base line in Figure
+8
+(a). Actually, as shown in Figure
+8
+(b), the average relative error between the calculated value and the experimental value is ±20.9%, when
+d
+50
+is 10‒150 µm, and the error is reduced to ±14.239% when
+d
+50
+is 20‒100 µm. Therefore, in order to further improve the accuracy, considering the error of the experimental results and the influence of the thermal conductivity of the particles themselves, the adjustment coefficient
+δ
+(0.6 ≤
+δ
+≤ 1.4) is introduced as Eq. (
+13
+) and
+δ
+= 1 when the particle material is aluminum (
+TC
+s
+= 240 W/m·K) and the error can be reduced to ±10%. Common materials and corresponding
+δ
+value are shown in Table
+2
+.
+$$ETC_{0} { = }\delta (0.16 + 0.19(1 - \exp ( - 2.2(b_{0} + b_{1} d_{50} + b_{2} d_{50}^{2} )))).$$
+(13)
+Table 2 Common metal materials and corresponding
+δ
+value
+Full size table
+Furthermore, according to Samuel et al and the experimental results obtained in this study [
+28
+], the correlation between
+ETC
+p
+and temperature is approximately linear as follows:
+$$ETC_p = ETC_{0} + \lambda T,$$
+(14)
+where
+ETC
+0
+can be obtained from Eqs. (
+12
+) and (
+13
+),
+T
+is the temperature (℃),
+λ
+=2.78112×10
+−4
+and the relative error is ±30%. Therefore, according to Eqs. (
+12
+)‒(
+14
+), a
+ETC
+p
+space (random particle sizes distribution, standard atmospheric pressure, without concern gas medium changing) is shown in Figure
+9
+which contains the thermal conductivity of any metal sphere powder at any temperature when
+d
+50
+is 10‒150 µm and the relative error in high temperature is ±50%.
+Figure 9
+Full size image
+ETC
+p
+space contains the thermal conductivity of any metal powder at any temperature when
+d
+50
+is 10‒150 µm
+
+5
+Conclusions
+In the present study, based on the spherical aluminum powder, the relationship between the parameters and the thermal conductivity of the powder is studied. The main findings were summarized as follows.
+(1)
+The slop of
+TC
+s
+is approximately horizontal which means the
+TC
+s
+has little effect on the thermal conductivity of the powder, when the particle size is randomly distributed. Therefore, in practical application, when there no strict requirements for heat conduction accuracy, and the particle size distribution is random, the actual heat transfer error caused by changing different materials the medium gas of powder can be ignored.
+(2)
+Temperature
+T
+, solid fraction
+ε
+and particle sizes
+d
+50
+all of them have a great influence on thermal conductivity of powder (
+ETC
+p
+). However, these parameters have different effects on
+ETC
+p
+which is very sensitive to the change of solid fraction
+ε
+.
+(3)
+By calculated the
+ETC
+p
+with the same average particle size but different particle size distribution, it is found that solid fraction
+ε
+as a core parameter is not accurate. Actually, the average contact area between particles (
+a
+ave
+) is the key factor that affects the efficiency of heat conduction of powder which means the change trend of
+ETC
+p
+can be described by
+a
+ave
+more accurately.
+(4)
+Through calculation, it is found that
+a
+ave
+and average particle
+d
+50
+size also have a close nonlinear relationship.
+Based on the above four points, a simple and efficient calculation model of the
+ETC
+p
+is established. The simplicity of this model originates from its low input parameters. In fact, only parameter
+d
+50
+is required for the established model. This parameter can be found in the document as the standard parameter of a commercial powder. Meanwhile, concern the effect of temperature and
+TC
+s
+, a
+ETC
+p
+space (random particle sizes distribution, standard atmospheric pressure, without concern gas medium changing) is established which contains nearly all metal sphere powder (
+d
+50
+is 10‒150 µm)
+ETC
+p
+in 25–1000 °C, and the error is no more than 20.9% in the room temperature.

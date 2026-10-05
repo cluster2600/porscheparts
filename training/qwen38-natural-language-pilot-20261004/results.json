@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "kind": "qwen38_exposed_natural_language_pilot_publication_summary",
+  "status": "PASS_DESCRIPTIVE_EXPOSED_DEVELOPMENT_PILOT_ONLY",
+  "date": "2026-10-04",
+  "model": {
+    "repository": "mlx-community/Qwen3.8-27B-4bit",
+    "revision": "10c35caafbb80f7dc6a7a432cdd11af10a6d4818",
+    "quantization_bits": 4,
+    "quantization_group_size": 64,
+    "quantization_mode": "affine",
+    "source_tied_embeddings": false,
+    "runtime_model_type": "qwen3_5",
+    "native_signature_sha256": "5cfe9f9a9212e74b345d4b882fa760a6595e90c20ea5bf418b3cb81468dd6eb4",
+    "native_arrays": 1847,
+    "native_dtype_array_counts": {
+      "mlx.core.bfloat16": 1349,
+      "mlx.core.uint32": 498
+    },
+    "native_before_equals_after": true,
+    "upstream_numerical_or_conversion_parity": "UNKNOWN",
+    "runtime_versions": {
+      "mlx": "0.32.3",
+      "mlx-lm": "0.31.3",
+      "mlx-metal": "0.32.3",
+      "numpy": "2.5.3",
+      "safetensors": "0.8.0",
+      "tokenizers": "0.23.2",
+      "transformers": "5.17.0"
+    }
+  },
+  "method": {
+    "dataset": "project-owner-authored fictional, exposed, curated spacer-development requests",
+    "request_count": 8,
+    "language_counts": {
+      "en": 4,
+      "fr": 4
+    },
+    "complete_proposal_requests": 4,
+    "critical_requests": 4,
+    "model_generation_calls": 8,
+    "calls_per_request": 1,
+    "retry_or_repair": false,
+    "few_shot_examples": false,
+    "decoder": "greedy",
+    "seed_per_request": 0,
+    "thinking_enabled": false,
+    "fresh_kv_cache_per_request": true,
+    "maximum_input_tokens": 2048,
+    "maximum_output_tokens_including_terminal": 512,
+    "native_eos_token_id": 248046,
+    "pad_token_id_nonterminal": 248044,
+    "per_case_wall_seconds": 45,
+    "global_wall_seconds": 480,
+    "baseline": "unchanged deterministic parser on the same eight requests",
+    "independent_holdout": false,
+    "blind_assessment": false,
+    "independent_reviews": "documentary, non-blind; no independent model rerun",
+    "geometry_runtime": "NOT_EVALUATED"
+  },
+  "scores": {
+    "baseline_correct": 6,
+    "model_correct": 8,
+    "requests": 8,
+    "baseline_complete_proposals_correct": 2,
+    "model_complete_proposals_correct": 4,
+    "complete_proposal_requests": 4,
+    "baseline_critical_correct": 4,
+    "model_critical_correct": 4,
+    "critical_requests": 4,
+    "paired_wins": 2,
+    "paired_losses": 0,
+    "net_additional_complete_correct_proposals": 2,
+    "format_semantic_unit_or_quantity_errors": 0,
+    "unsupported_or_invented_quantities": 0,
+    "critical_regressions": 0,
+    "response_corrections_required": 0,
+    "gain_families": [
+      "relative_reduction",
+      "change_bore"
+    ],
+    "family_results": {
+      "explicit_control": {
+        "requests": 2,
+        "correct": 2,
+        "wins": 0,
+        "losses": 0
+      },
+      "relative_reduction": {
+        "requests": 1,
+        "correct": 1,
+        "wins": 1,
+        "losses": 0
+      },
+      "change_bore": {
+        "requests": 1,
+        "correct": 1,
+        "wins": 1,
+        "losses": 0
+      },
+      "undecided_alternatives": {
+        "requests": 1,
+        "correct": 1,
+        "wins": 0,
+        "losses": 0
+      },
+      "missing_bore": {
+        "requests": 1,
+        "correct": 1,
+        "wins": 0,
+        "losses": 0
+      },
+      "invalid_larger_bore": {
+        "requests": 1,
+        "correct": 1,
+        "wins": 0,
+        "losses": 0
+      },
+      "unsupported_unit": {
+        "requests": 1,
+        "correct": 1,
+        "wins": 0,
+        "losses": 0
+      }
+    },
+    "descriptive_exact_two_sided_discordance_p": 0.5,
+    "reliable_broad_superiority_demonstrated": false
+  },
+  "operational_cost": {
+    "receipt_elapsed_seconds": 213.3271155829716,
+    "worker_elapsed_seconds": 174.296344375005,
+    "conservative_observed_completion_upper_seconds_from_authorization_creation": 223.590964,
+    "observation_note": "Cross-clock wall interval, with one second added for reported clock granularity. This is a conservative observation interval, not an exact process-duration measurement.",
+    "generation_sum_seconds": 82.30809949999093,
+    "generation_min_seconds": 8.58905149999191,
+    "generation_median_seconds": 9.503292479013908,
+    "generation_max_seconds": 12.519563124980778,
+    "generated_tokens_including_eos": 464,
+    "automatic_validation_wall_seconds": 0.1950459170038812,
+    "actual_human_correction_seconds": null,
+    "human_correction_duration_measured": false,
+    "required_response_corrections_on_frozen_cases": 0,
+    "repairs_performed": 0,
+    "format_semantic_unit_or_quantity_errors_on_frozen_cases": 0
+  },
+  "resources": {
+    "cpu_target_core_equivalents": 2,
+    "authorized_rolling_cpu_ceiling_core_equivalents": 4,
+    "cpu_window_minimum_seconds": 1,
+    "observed_max_rolling_cpu_core_equivalents": 2.468044586622185,
+    "cpu_target_exceeded": true,
+    "os_hard_cpu_cap_enforced": false,
+    "max_sampled_owned_threads": 14,
+    "owned_thread_observation_ceiling": 16,
+    "own_nice": 10,
+    "conservative_combined_memory_ceiling_bytes": 38654705664,
+    "observed_max_conservative_combined_memory_bytes": 32244814228,
+    "mlx_active_peak_ceiling_bytes": 21474836480,
+    "observed_max_mlx_peak_bytes": 16155905556,
+    "cache_retention_target_bytes": 536870912,
+    "observed_max_cache_bytes": 444072832,
+    "minimum_available_system_memory_required_bytes": 17179869184,
+    "observed_minimum_available_memory_proxy_bytes": 17870143488,
+    "resource_guard_failures": 0,
+    "gpu_errors_detected": false,
+    "actual_eos_count": 8,
+    "generated_tokens_including_eos": 464
+  },
+  "history_preserved": [
+    {
+      "attempt": "001",
+      "outcome": "CPU guard rejection",
+      "model_generations": 0,
+      "outcome_sha256": "a2aa2f0d4db72a8f0f23e3fcfb08ef8a215e9ac10b942d232cc2c55d8e950f01"
+    },
+    {
+      "attempt": "002",
+      "outcome": "JSON startup handshake rejection before backend import",
+      "model_generations": 0,
+      "outcome_sha256": "ac44848ea592b78cfc1cbe1fe20f27fa2e0c3df1477e2d520f79c3ab5f0787a0"
+    },
+    {
+      "attempt": "003",
+      "outcome": "complete operational and descriptive exposed-development pilot",
+      "model_generations": 8
+    }
+  ],
+  "permissions_and_scope": {
+    "optimizer_updates": 0,
+    "adapters_loaded": false,
+    "fine_tuning_gain_demonstrated": false,
+    "reserves_opened": false,
+    "generated_code_executed": false,
+    "cad_or_native_geometry_executed": false,
+    "manufacturing_validity_established": false,
+    "automatic_adoption_authorized": false,
+    "baseline_retained": true,
+    "readiness_established": false
+  },
+  "provenance": {
+    "parent_handoff_002": {
+      "sha256": "c2d89d044862f0cf10de9ef68c46dd79f91ae0ad9f348cbf4f59b8c1ca2cbe29",
+      "bytes": 3063,
+      "publication_scope": "hash_only; full record retained privately"
+    },
+    "execution_outcome_001": {
+      "sha256": "9a01f61753b46501abb78fdc309307be3affddccea9ae6fb803fd27cafa130c2",
+      "bytes": 10816,
+      "publication_scope": "hash_only; full record retained privately"
+    },
+    "utility_assessment": {
+      "sha256": "c07a29ae3b33f21bc07bd95c8c85329cd24ff6cced33de8103787e058218e7ad",
+      "bytes": 9167,
+      "publication_scope": "hash_only; full record retained privately"
+    },
+    "worker_generation_receipt": {
+      "sha256": "44f8782b8d4fb3156cf000566d0bbaa3a8f59c0929c44170841662a92b55ccf2",
+      "bytes": 17401,
+      "publication_scope": "hash_only; full record retained privately"
+    },
+    "requests": {
+      "sha256": "138cffa4456312328dd79c364ba6d64b454c8932c0062bf9edf0f13165b0bc42",
+      "bytes": 2103,
+      "publication_scope": "request strings reproduced in cases.json"
+    },
+    "system_prompt": {
+      "sha256": "5d1dfa8a4db3ad196003bdc5b15bd3b10ae0fda624b29db43d0d95def2cda47a",
+      "bytes": 1455,
+      "publication_scope": "exact text reproduced in cases.json"
+    },
+    "worker_source_sha256": "ca78f77827a403e38426c511aed2f6d025f1bec2b792410250d4738b9a43a8f1",
+    "supervisor_source_sha256": "b23a9d232de09a1fe1ad39b3bf04f1ca275e0bb106af8cb97f1415e523fe053d",
+    "worker_profile_sha256": "4db2e7477af4cb1be4e31812699627ed9e4638d94e235e10a8772e2f22c2884c",
+    "execution_contract_sha256": "b1ee2a2d4c4df41354d8b4128fb3c3c50553d7200cf9fbba652a9ee5eae870e2",
+    "independent_documentary_review_hashes": {
+      "INDEPENDENT_RUNTIME_OUTCOME_001.json": {
+        "sha256": "b85fb307c14cdba3d77e006daf5ab0925a6ee91392bdaf7db458e712d44253c9",
+        "bytes": 10474
+      },
+      "INDEPENDENT_UTILITY_REVIEW_001.json": {
+        "sha256": "5432330365c744c56a3b295512d69ed8e9d37e252af2135172f6b0ad0e4e1bae",
+        "bytes": 29790
+      }
+    },
+    "published_parameter_verifier_sha256": "347de31ed978be6569e42eceb3ea75d2c7fe038454fa86bb39fbb852d09a0fde"
+  },
+  "limitations": [
+    "Eight curated exposed development requests, with familiar constraint values/families; not a blind independent holdout or eight independent confirmations.",
+    "Documentary independent outcome reviews were non-blind and do not constitute independent model replication.",
+    "The observed result belongs to the clarified interface plus pinned community quantization and exact installed MLX policy. Model-size causality and upstream numerical/conversion parity remain unknown.",
+    "No adapter was loaded and no optimizer update occurred. This comparison against a deterministic parser does not demonstrate fine-tuning gain.",
+    "Two paired wins and zero losses give descriptive two-sided exact discordance p=0.5; broad reliable superiority is not established.",
+    "Automatic adoption is not authorized. The existing baseline remains available for the complete labelled grammar.",
+    "No generated code, CAD, native geometry, manufacturing, fit, mechanical safety or release was assessed.",
+    "CPU observations are rolling/sampled, not an OS hard cap or strict thread guarantee. The target2 was exceeded; the authorized rolling ceiling4 was respected.",
+    "Conservative RSS plus MLX historical active peak plus cache overlaps allocations and is not exhaustive physical Metal memory accounting. Available-memory values are a conservative proxy.",
+    "Receipt elapsed is the measured owner interval before final receipt durability; full local runtime logs/receipts and model assets are retained privately, not republished. Public hashes do not replace those underlying records."
+  ]
+}

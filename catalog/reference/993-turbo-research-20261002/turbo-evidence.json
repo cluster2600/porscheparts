@@ -1,0 +1,1764 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_id": "993-turbo-evidence-20261002",
+  "date": "2026-10-02",
+  "language": "en",
+  "scope": "Supplier hybrids, related compressor/turbine maps, RUF engine curves and different-architecture restomods. No exact stock 993 K16-6735/6736 map verified.",
+  "records": [
+    {
+      "id": "TURBO-FVD-K16-24",
+      "source_research_ids": [
+        "maps:FVD-K16-24"
+      ],
+      "source_ids": [
+        "SRC-FVD-993-K16-24-SPORT-TURBO-DATA"
+      ],
+      "evidence_kind": "supplier_specification",
+      "application": "Aftermarket hybrid or supplier process; exact donor and conditions as recorded",
+      "data": {
+        "already_in_repo": true,
+        "type": "primary_supplier_specification",
+        "geometry": {
+          "compressor_wheel_inlet_mm": 47.5,
+          "compressor_extended_tip": true,
+          "turbine": "trimming, original size not supplied"
+        },
+        "donor": "K16/24 exchange; exact donor core identification not separately specified on this product page",
+        "declared_power": {
+          "value": 555,
+          "unit": "hp",
+          "condition": "FVD software, intercoolers and tuning components in level 3/4 power kits"
+        },
+        "actual_compressor_map": false,
+        "actual_turbine_map": false,
+        "dyno_graph_published": false,
+        "other_facts": [
+          "CNC-machined compressor housing contour",
+          "Modified and optimized backplate",
+          "Tight-clearance optimized compressor side",
+          "Reinforced thrust bearing",
+          "Core assembly high-speed balanced up to 100,000 rpm",
+          "Standard actuator (wastegate pressure unit)",
+          "Oil line connections modified; adapter needed unless oil-check-valve kit fitted",
+          "DME adjustment required"
+        ],
+        "accessed_on": "2026-10-02",
+        "retrieval_status": "HTTP 200",
+        "source_sha256": "986b43b3d45d1fa387233bacff4e8f0ac40c1938efa8dcbba5491433bb338d30"
+      },
+      "limitations": [
+        "100,000 rpm is a balancing condition, not a maximum operating-speed specification",
+        "No exducer, turbine diameters, wheel alloy, complete profile, pressure-ratio, corrected flow, efficiency, or shaft-speed curve"
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-TTH-K16-650",
+      "source_research_ids": [
+        "maps:TTH-K16-650"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-TTH-K16-650"
+      ],
+      "evidence_kind": "supplier_specification",
+      "application": "Aftermarket hybrid or supplier process; exact donor and conditions as recorded",
+      "data": {
+        "already_in_repo": false,
+        "type": "primary_supplier_specification",
+        "engine": "M64/60, 3600 ccm",
+        "donor": "Supplied original BorgWarner/Porsche K16 turbochargers, 8 hot housing",
+        "declared_power": {
+          "value": 650,
+          "unit": "PS",
+          "kw": 478,
+          "condition": "appropriate engine components and software adjustment"
+        },
+        "actual_compressor_map": false,
+        "actual_turbine_map": false,
+        "dyno_graph_published": false,
+        "other_facts": [
+          "Extended Tip milled compressor wheel, newer geometry",
+          "CNC compressor housing reprofile for clearance",
+          "Turbine trimming to reduce exhaust backpressure",
+          "Reinforced bearings",
+          "Reinforced pressure actuators",
+          "Declared fine balancing to 0.05g",
+          "Supplied cores must be in good working condition",
+          "Conversion or new turbo option shown"
+        ],
+        "accessed_on": "2026-10-02",
+        "retrieval_status": "HTTP 200",
+        "source_sha256": "4fc8d63ca347f43f4a304f451388a6dac361d2f1774fb4daa104b05d1c24a486"
+      },
+      "limitations": [
+        "No wheel diameter, pressure-ratio, corrected flow, speed, efficiency, temperature data or dyno configuration",
+        "0.05g balance statement does not identify radius or balance quality grade"
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-TTE-K16-650",
+      "source_research_ids": [
+        "maps:TTE-K16-650"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-TTE-K16-650"
+      ],
+      "evidence_kind": "supplier_specification",
+      "application": "Aftermarket hybrid or supplier process; exact donor and conditions as recorded",
+      "data": {
+        "already_in_repo": false,
+        "type": "primary_supplier_specification",
+        "donor": "Original BorgWarner K16/8 pair; currently only send-your-turbos upgrade stated in description",
+        "geometry": {
+          "compressor_wheel_inlet_mm": 50,
+          "compressor_blades": "6+6",
+          "compressor_construction": "TTE Billet, extended tip",
+          "turbine_wheel_outlet_mm": 50,
+          "turbine": "Original K16, clipped",
+          "hot_housing": "K16/8"
+        },
+        "declared_power": {
+          "value": 650,
+          "unit": "PS",
+          "condition": "supplier capability claim; no published engine configuration or operating-point set"
+        },
+        "actual_compressor_map": false,
+        "actual_turbine_map": false,
+        "dyno_graph_published": false,
+        "other_facts": [
+          "Original BorgWarner TTE upgrade actuators",
+          "Original BorgWarner upgrade bearing pack",
+          "Serial-numbered balance test result document supplied",
+          "Price stated for pair"
+        ],
+        "accessed_on": "2026-10-02",
+        "retrieval_status": "HTTP 200",
+        "source_sha256": "29a518eeec38de004ddf127ff0d0cf4a522b9fd3a846a0269f901847437f7b7a"
+      },
+      "limitations": [
+        "No compressor exducer/turbine inducer, wheel material grade, design profile, shaft speed map, thermal limits or actual 993 dyno graph",
+        "General up-to-250,000 rpm VSR statement is application dependent and not an operating-speed declaration for this 993 product",
+        "Download Media Pack links to filename TTE650-996-20181217T091152Z-001.zip; do not treat 996 media as 993 evidence"
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-TTE-K24-750",
+      "source_research_ids": [
+        "maps:TTE-K24-750"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-TTE-K24-750"
+      ],
+      "evidence_kind": "supplier_specification",
+      "application": "Aftermarket hybrid or supplier process; exact donor and conditions as recorded",
+      "data": {
+        "already_in_repo": false,
+        "type": "primary_supplier_specification",
+        "donor": "K24 turbochargers only; K16 expressly excluded",
+        "geometry": {
+          "compressor_wheel_inlet_mm": 51,
+          "compressor_construction": "BorgWarner cast compressor",
+          "turbine_wheel_outlet_mm": 54,
+          "turbine": "K24, clipped",
+          "hot_housing": "K24/10"
+        },
+        "declared_power": {
+          "value": 750,
+          "unit": "PS",
+          "condition": "supplier capability claim; software recalibration required"
+        },
+        "actual_compressor_map": false,
+        "actual_turbine_map": false,
+        "dyno_graph_published": false,
+        "other_facts": [
+          "Actuator spring OE unit, crack pressure 0.8 bar or optional 1.0 bar",
+          "Special profile 360-degree motorsport journal bearing",
+          "Reprofiled compressor cover for optimized tolerance",
+          "Price stated for pair",
+          "Currently only upgrade-your-turbos offer stated in description"
+        ],
+        "accessed_on": "2026-10-02",
+        "retrieval_status": "HTTP 200",
+        "source_sha256": "5eb620d6c0ba83948d68bdc696563e2fe9bddc4706c7437b53e9f3e730a3dedd"
+      },
+      "limitations": [
+        "Actuator crack pressure is not full-load commanded boost",
+        "No compressor exducer/turbine inducer or operating-point data"
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-TTE-K24-800",
+      "source_research_ids": [
+        "maps:TTE-K24-800"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-TTE-K24-800"
+      ],
+      "evidence_kind": "supplier_specification",
+      "application": "Aftermarket hybrid or supplier process; exact donor and conditions as recorded",
+      "data": {
+        "already_in_repo": false,
+        "type": "primary_supplier_specification",
+        "donor": "Original K24 base turbocharger, K24/10 hot housings",
+        "geometry": {
+          "compressor_wheel_inlet_mm": 51,
+          "compressor_construction": "TTE Billet geometry",
+          "turbine_wheel_outlet_mm": 54,
+          "turbine": "New TTE 9-blade low-mass high-flow shaft/turbine, K24 size; hot housing CNC machined to accept it",
+          "hot_housing": "K24/10"
+        },
+        "declared_power": {
+          "value": 800,
+          "operator": ">",
+          "unit": "PS",
+          "condition": "102 RON; software recalibration required"
+        },
+        "actual_compressor_map": false,
+        "actual_turbine_map": false,
+        "dyno_graph_published": false,
+        "other_facts": [
+          "Actuator spring OE unit, crack pressure 0.8 bar or optional 1.0 bar",
+          "Special profile 360-degree motorsport journal bearing",
+          "Serial-numbered balance test result document supplied",
+          "Price stated for pair"
+        ],
+        "accessed_on": "2026-10-02",
+        "retrieval_status": "HTTP 200",
+        "source_sha256": "e712ef82d5fc9b62f6d1a39a5aae7b7dc0cdbbefdefe86c6d5a7a46b788517fa"
+      },
+      "limitations": [
+        "Supplier 800PS+ capacity is not a dyno curve nor guaranteed M64/60 road durability",
+        "No pressure-ratio, corrected flow, efficiency, compressor exducer or shaft-speed operating envelope"
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-TTH-K24-750",
+      "source_research_ids": [
+        "maps:TTH-K24-750"
+      ],
+      "source_ids": [
+        "SRC-TTH-993-K24-750-TURBO-PROCESSING"
+      ],
+      "evidence_kind": "supplier_specification",
+      "application": "Aftermarket hybrid or supplier process; exact donor and conditions as recorded",
+      "data": {
+        "already_in_repo": true,
+        "type": "primary_supplier_specification",
+        "engine": "M64/60 R, 3600 ccm",
+        "donor": "K24 BorgWarner/Porsche original units with 10 hot housing",
+        "declared_power": {
+          "value": 750,
+          "unit": "PS",
+          "kw": 552,
+          "condition": "appropriate engine components and software adjustment"
+        },
+        "actual_compressor_map": false,
+        "actual_turbine_map": false,
+        "dyno_graph_published": false,
+        "other_facts": [
+          "Extended Tip milled compressor wheel",
+          "CNC machined compressor contour for clearance",
+          "Turbine trimming",
+          "Reinforced bearings and pressure actuators",
+          "Declared fine balance to 0.05g",
+          "Supplied cores must be in good working condition"
+        ],
+        "accessed_on": "2026-10-02",
+        "retrieval_status": "HTTP 200",
+        "source_sha256": "c29a422be7b7ec16252f852536db04be4011c67fea924237af881e285fb23add"
+      },
+      "limitations": [
+        "No wheel diameters, operating points, map, shaft speed or thermal data"
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-BORGWARNER-993-UPGRADE",
+      "source_research_ids": [
+        "maps:BORGWARNER-993-UPGRADE"
+      ],
+      "source_ids": [
+        "SRC-BORGWARNER-993-K16-PERFORMANCE-CATALOG"
+      ],
+      "evidence_kind": "supplier_specification",
+      "application": "Aftermarket hybrid or supplier process; exact donor and conditions as recorded",
+      "data": {
+        "already_in_repo": true,
+        "type": "primary_manufacturer_catalogue",
+        "engine": "Porsche 993 3.6 biturbo, 1994-1997",
+        "stock_references": [
+          "K16-6735",
+          "K16-6736"
+        ],
+        "upgrade_references": [
+          "5324 988 7003",
+          "5324 988 7004"
+        ],
+        "declared_values": {
+          "original_rating_hp": 408,
+          "stock_turbo_limit_hp": 500,
+          "upgrade_turbo_limit_hp": 555,
+          "plug_and_play": true,
+          "max_T3_continuous_C": 950,
+          "max_T3_temporary_C": 980
+        },
+        "actual_993_compressor_map": false,
+        "actual_993_turbine_map": false,
+        "accessed_on": "2026-10-02",
+        "retrieval_status": "HTTP 200",
+        "source_sha256": "8f4a0056c090c40dbc277e80c9046cfa3d8951889bdfe0739af22a91e857f866"
+      },
+      "limitations": [
+        "Catalogue labels hp, not PS; preserve unit as published",
+        "This is a product/application limit table, not a measured M64/60 dyno sheet",
+        "Catalogue contains other compressor maps, but no map for these K16-6735/6736 or upgrade references is linked on the 993 row"
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-CARGRAPHIC-993-K16-24",
+      "source_research_ids": [
+        "maps:CARGRAPHIC-993-K16-24"
+      ],
+      "source_ids": [
+        "SRC-CARGRAPHIC-993-K16-24-POWERKIT-DATA"
+      ],
+      "evidence_kind": "supplier_specification",
+      "application": "Aftermarket hybrid or supplier process; exact donor and conditions as recorded",
+      "data": {
+        "already_in_repo": true,
+        "type": "primary_tuner_specification",
+        "donor": "Two modified K16/24 special turbochargers in exchange",
+        "declared_power": {
+          "value": 475,
+          "unit": "PS",
+          "kw": 349,
+          "rpm": 6090
+        },
+        "declared_torque": {
+          "nm": 632,
+          "rpm": 4550
+        },
+        "supporting_components": [
+          "ECU upgrade",
+          "100 cpsi catalytic converters Ø110 mm",
+          "rear silencers",
+          "BMC filter",
+          "sport oil cooler kit"
+        ],
+        "actual_compressor_map": false,
+        "actual_turbine_map": false,
+        "dyno_graph_published": false,
+        "accessed_on": "2026-10-02",
+        "retrieval_status": "HTTP 200",
+        "source_sha256": "813b44c13cf479429c2be7e55b1a7e24cc2a0e34a7a1a685a62deaab3c504dff"
+      },
+      "limitations": [
+        "No plotted dyno trace, boost trace, test atmosphere or turbo map published"
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-TURBO-DYNAMICS-MD433",
+      "source_research_ids": [
+        "maps:TURBO-DYNAMICS-MD433"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-TURBO-DYNAMICS-MD433"
+      ],
+      "evidence_kind": "supplier_specification",
+      "application": "Aftermarket hybrid or supplier process; exact donor and conditions as recorded",
+      "data": {
+        "already_in_repo": false,
+        "type": "primary_supplier_page_without_specification",
+        "actual_compressor_map": false,
+        "actual_turbine_map": false,
+        "verified_993_compatibility": false,
+        "accessed_on": "2026-10-02",
+        "retrieval_status": "HTTP 200",
+        "source_sha256": "ba3346e7b1d9e8a65c085cd57d202ede187640801b375f46ffece59cede7e555"
+      },
+      "limitations": [
+        "Product page does not currently establish 993 donor/reference, geometry or capacity; use as supplier contact lead only"
+      ],
+      "training_eligibility": "documentary_lead_only"
+    },
+    {
+      "id": "TURBO-TURBO-TECHNICS-GENERAL",
+      "source_research_ids": [
+        "maps:TURBO-TECHNICS-GENERAL"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-TURBO-TECHNICS-GENERAL"
+      ],
+      "evidence_kind": "supplier_specification",
+      "application": "Aftermarket hybrid or supplier process; exact donor and conditions as recorded",
+      "data": {
+        "already_in_repo": false,
+        "type": "primary_supplier_generic_process",
+        "actual_993_compressor_map": false,
+        "actual_993_turbine_map": false,
+        "verified_993_product": false,
+        "accessed_on": "2026-10-02",
+        "retrieval_status": "HTTP 200",
+        "source_sha256": "8c3888ff9c9edb4452ad2d3de44d6b4ffb2ff2138d905df8865a380e7e28794f"
+      },
+      "limitations": [
+        "Generic hybrid/bespoke capability page, no verified public 993 product datasheet or map found in this search"
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-RUF-UK-TURBO-R-CURRENT",
+      "source_research_ids": [
+        "maps:ruf-uk-turbo-r-current"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-RUF-UK-TURBO-R-CURRENT"
+      ],
+      "evidence_kind": "secondary_993_or_RUF_specification",
+      "application": "993-related Porsche/RUF configurations; exact scope as recorded",
+      "data": {
+        "publisher": "RUF Automobile UK",
+        "kind": "RUF representative specification",
+        "fetch": "HTTP 200, text read",
+        "map_type": "specification points, no compressor map or ECU calibration",
+        "facts": {
+          "engine_L": 3.6,
+          "power_as_printed": "405 kW (550bhp) at 5500 RPM",
+          "torque_Nm": 700,
+          "torque_rpm": 4800,
+          "turbo_description": "RUF Turbochargers with intercooler",
+          "ignition": "Static high-voltage distribution with individual coils",
+          "engine_management": "Electronic; hot-film air-mass; sequential multipoint; cylinder-specific knock"
+        }
+      },
+      "limitations": [
+        "Current rebuild specification must not be projected onto original 1998 Turbo R.",
+        "405 kW corresponds to approximately 550 PS, but approximately 543 bhp: source mixes unit labels. Preserve source wording.",
+        "No wheel geometry, pressure-ratio/flow/efficiency/speed map, turbine swallowing map, boost trace, fuel or ECU tables."
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-RSTRADA-TURBO-R-HISTORIC",
+      "source_research_ids": [
+        "maps:rstrada-turbo-r-historic"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-RSTRADA-TURBO-R-HISTORIC"
+      ],
+      "evidence_kind": "secondary_993_or_RUF_specification",
+      "application": "993-related Porsche/RUF configurations; exact scope as recorded",
+      "data": {
+        "publisher": "Rstrada RUF specialist",
+        "kind": "historical commercial specification",
+        "fetch": "HTTP 200, text read",
+        "map_type": "specification points",
+        "facts": {
+          "base": "993 Turbo",
+          "power_as_printed": "490 hp",
+          "torque_as_printed": "479 lb-ft"
+        }
+      },
+      "limitations": [
+        "No rpm for power/torque given on page.",
+        "No turbo map, wheel identification, boost or dyno protocol."
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-RSTRADA-CTR2",
+      "source_research_ids": [
+        "maps:rstrada-ctr2"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-RSTRADA-CTR2"
+      ],
+      "evidence_kind": "secondary_993_or_RUF_specification",
+      "application": "993-related Porsche/RUF configurations; exact scope as recorded",
+      "data": {
+        "publisher": "Rstrada RUF specialist",
+        "kind": "historical commercial specification",
+        "fetch": "HTTP 200, text read",
+        "map_type": "specification points",
+        "facts": {
+          "base": "993 Carrera narrow body",
+          "engine_L": 3.6,
+          "compression_ratio": 8.0,
+          "power_as_printed": "520 hp at 5800 rpm",
+          "torque_as_printed": "505 lb-ft at 4800 rpm",
+          "sport_power_as_printed": "580 hp at 5800 rpm",
+          "sport_torque_as_printed": "575 lb-ft at 4800 rpm",
+          "intercooler_layout": "Rear side vents for charge-air intercoolers"
+        }
+      },
+      "limitations": [
+        "Architecture related to M64 air-cooled engine but configuration and intercoolers differ from stock 993 Turbo.",
+        "Exact KKK part numbers and hybrid geometry not provided.",
+        "No compressor map, efficiency or shaft-speed data."
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-PCA-RUF-993-TURBO-R",
+      "source_research_ids": [
+        "maps:pca-ruf-993-turbo-r"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-PCA-RUF-993-TURBO-R"
+      ],
+      "evidence_kind": "secondary_993_or_RUF_specification",
+      "application": "993-related Porsche/RUF configurations; exact scope as recorded",
+      "data": {
+        "publisher": "PCA / Randy Wells",
+        "kind": "technical feature, April 2023 Panorama; June 2023 online",
+        "fetch": "HTTP 200, text read",
+        "map_type": "vehicle specification and reported performance",
+        "facts": {
+          "engine_modifications": [
+            "re-programmed ECU",
+            "upgraded turbos",
+            "sports exhaust",
+            "cylinder head revisions",
+            "re-profiled camshafts",
+            "RS lightweight flywheel"
+          ],
+          "reported_document_lead": "RUF engine test documents; Road & Track November 2000 fastest-car challenge"
+        }
+      },
+      "limitations": [
+        "Reported power above 500 hp is not a turbo flow measurement.",
+        "No compressor or turbine maps published.",
+        "Specific car differs from generic kit."
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-RENNLIST-K24-LAG-PAGE1",
+      "source_research_ids": [
+        "maps:rennlist-k24-lag-page1"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-RENNLIST-K24-LAG-PAGE1"
+      ],
+      "evidence_kind": "secondary_993_or_RUF_specification",
+      "application": "993-related Porsche/RUF configurations; exact scope as recorded",
+      "data": {
+        "publisher": "Rennlist / TB993tt and Jean",
+        "kind": "forum transcription/comparison, September–October 2005",
+        "fetch": "HTTP 200, text read",
+        "map_type": "torque versus crankshaft rpm; NOT turbo compressor map",
+        "facts": {
+          "post_1": "Transcription said to be from Porsche published 408PS and Euro Turbo S 450PS engine curves.",
+          "post_9": "Two reported RS engine-dyno curves for same owner engine, ZC K16 Stage 3 and K24RS.",
+          "post_13": "490PS RUF Turbo R curve said to have been taken from RUF website.",
+          "post_10": "Different engine/chassis dyno runs changed octane, boost, exhaust and mapping."
+        }
+      },
+      "limitations": [
+        "Underlying Porsche or RUF graphs not obtained from primary source.",
+        "Mixed hardware, fuels and dynos; crankshaft rpm does not determine turbo shaft rpm.",
+        "No corrected flow, compressor inlet/outlet pressure and temperature, or turbo efficiency.",
+        "Some comparison plots explicitly contain guessed points."
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-RENNLIST-K24-LAG-PAGE2",
+      "source_research_ids": [
+        "maps:rennlist-k24-lag-page2"
+      ],
+      "source_ids": [
+        "SRC-RENNLIST-993-RUF-TURBO-R-ENGINE-DYNO"
+      ],
+      "evidence_kind": "secondary_993_or_RUF_specification",
+      "application": "993-related Porsche/RUF configurations; exact scope as recorded",
+      "data": {
+        "publisher": "Rennlist / TB993tt and Jean",
+        "kind": "forum transcription/comparison, October 2005",
+        "fetch": "HTTP 200, text read; attachments listed but direct attachments HTTP 403",
+        "map_type": "torque versus crankshaft rpm; NOT turbo compressor map",
+        "facts": {
+          "post_20": "RUF customer engine dyno points said published in 911 & Porsche World September 1998",
+          "post_18": "Attached comparison small turbo graph",
+          "post_19": "Attached larger-turbo graph; mentions Superflow WinDyno 600rpm/s versus MAHA chassis run",
+          "post_22": "PSI article translated secondhand claims 120000 versus 180000 turbo rpm, 1.2bar spikes, .95bar steady. No original article available."
+        }
+      },
+      "limitations": [
+        "RUF torque data do not reproduce claimed peak hp exactly.",
+        "Do not use secondhand PSI rpm as stock K16 speed limit or measurement.",
+        "Attachment bodies blocked and not visually inspected.",
+        "Power/torque curves cannot identify full compressor or turbine map."
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-RENNLIST-RUF-TURBO-R-DYNO",
+      "source_research_ids": [
+        "maps:rennlist-ruf-turbo-r-dyno"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-RENNLIST-RUF-TURBO-R-DYNO"
+      ],
+      "evidence_kind": "secondary_993_or_RUF_specification",
+      "application": "993-related Porsche/RUF configurations; exact scope as recorded",
+      "data": {
+        "publisher": "Rennlist / Ima2nr, ca993twin",
+        "kind": "owner dyno record, October 2006",
+        "fetch": "HTTP 200, text read; attachments direct HTTP 403",
+        "map_type": "reported dyno power/torque curves",
+        "facts": {
+          "post_1": "Owner states torn boost hose during session.",
+          "post_11": "AFR not logged.",
+          "post_15": "Attachment described as overlay of original RUF engine dyno 1996, post-tune RUF engine dyno 2000, recent chassis dyno."
+        }
+      },
+      "limitations": [
+        "Specific car acknowledged as possibly different from standard Turbo R.",
+        "Leak prevents clean baseline.",
+        "Dyno image bodies blocked; numerical outputs not read from graph.",
+        "No measured boost/airflow/AFR, speed lines or corrected map."
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-RENNLIST-RUF-CONVERSION",
+      "source_research_ids": [
+        "maps:rennlist-ruf-conversion"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-RENNLIST-RUF-CONVERSION"
+      ],
+      "evidence_kind": "secondary_993_or_RUF_specification",
+      "application": "993-related Porsche/RUF configurations; exact scope as recorded",
+      "data": {
+        "publisher": "Rennlist / owner Bill S.",
+        "kind": "specific conversion owner report, June 2002",
+        "fetch": "HTTP 200, text read",
+        "map_type": "configuration and subjective response, no map",
+        "facts": {
+          "previous_configuration": "Factory 450HP Powerkit Plus",
+          "post_3_modifications": [
+            "cams and cam gears",
+            "catalytic converters",
+            "ECU",
+            "air filter",
+            "additional large oil cooler/fan",
+            "stock turbo housings enlarged hot and cold with larger wheels",
+            "5bar fuel-pressure regulator",
+            "new plugs"
+          ],
+          "post_9": "Hydraulic lifters retained; cam timing stated 1.6mm; no head-seal change reported.",
+          "fuel": "91 octane initially, later mixed 100 octane reported"
+        }
+      },
+      "limitations": [
+        "Owner account is not manufacturing drawing or proof of wheel codes.",
+        "Multiple changes prevent attributing torque/response to turbo alone.",
+        "Reported rev limits must not be treated as factory engine rating."
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-RENNLIST-RUF-CTR2-CONFLICT",
+      "source_research_ids": [
+        "maps:rennlist-ruf-ctr2-conflict"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-RENNLIST-RUF-CTR2-CONFLICT"
+      ],
+      "evidence_kind": "secondary_993_or_RUF_specification",
+      "application": "993-related Porsche/RUF configurations; exact scope as recorded",
+      "data": {
+        "publisher": "Rennlist community",
+        "kind": "forum discussion, September 2014",
+        "fetch": "HTTP 200, text read",
+        "map_type": "no map",
+        "facts": {
+          "conflict": "K24/26 suggested; K26/27 claimed by another participant, then challenged as CTR Yellowbird confusion."
+        }
+      },
+      "limitations": [
+        "Exact CTR2 turbo part number unverified.",
+        "Do not list K26/27 or K24/26 as established CTR2 fact."
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-PORSCHE-CHRISTOPHORUS-TURBO-HISTORY",
+      "source_research_ids": [
+        "maps:porsche-christophorus-turbo-history"
+      ],
+      "source_ids": [
+        "SRC-PORSCHE-CHRISTOPHORUS-993-TURBO-DATA"
+      ],
+      "evidence_kind": "factory_historical_overview",
+      "application": "993-related Porsche/RUF configurations; exact scope as recorded",
+      "data": {
+        "publisher": "Porsche AG",
+        "kind": "official overview",
+        "fetch": "Existing local source from previous research inspected",
+        "map_type": "specification points",
+        "facts": {
+          "993": "Parallel biturbo, integrated wastegates, 3.6L; up to 450ch in GT2 version."
+        }
+      },
+      "limitations": [
+        "No full compressor or turbine map.",
+        "Article general statements about turbo temperatures are not unique 993 turbo material/thermal limits."
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-PORSCHE-993-TURBOS-BROCHURE-LEAD",
+      "source_research_ids": [
+        "maps:porsche-993-turbos-brochure-lead"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-PORSCHE-993-TURBOS-BROCHURE-LEAD"
+      ],
+      "evidence_kind": "secondary_993_or_RUF_specification",
+      "application": "993-related Porsche/RUF configurations; exact scope as recorded",
+      "data": {
+        "publisher": "Porsche AG, third-party archive candidate",
+        "kind": "source lead only",
+        "fetch": "Search indexed; direct HTTP 503; unread",
+        "map_type": "unknown, NOT confirmed compressor map"
+      },
+      "limitations": [
+        "Cannot establish chart content until PDF can be read."
+      ],
+      "training_eligibility": "documentary_lead_only"
+    },
+    {
+      "id": "TURBO-SJM-K16-6717",
+      "source_research_ids": [
+        "maps:sjm-k16-6717"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-SJM-K16-6717"
+      ],
+      "evidence_kind": "secondary_993_or_RUF_specification",
+      "application": "993-related Porsche/RUF configurations; exact scope as recorded",
+      "data": {
+        "publisher": "SJM Autotechnik",
+        "kind": "published KKK map copy",
+        "fetch": "HTTP 200, title/HTML read; image not inspected by this agent",
+        "map_type": "compressor-map candidate",
+        "facts": {
+          "KKK_number": "5316 988 6717",
+          "compressor_as_stated": "2467 GGA/GGB"
+        }
+      },
+      "limitations": [
+        "Different part number from 993 stock 5316 988 6735/6736.",
+        "A K16 family label is insufficient for identity or flow scaling.",
+        "Audi source context; cannot declare it a Porsche stock K16 map."
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-MAP-SJM-K16-2467",
+      "source_research_ids": [
+        "maps:map-sjm-k16-2467"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-SJM-K16-6717"
+      ],
+      "evidence_kind": "published_map_or_measurement_catalogue",
+      "application": "Comparison map; no identity with stock 993 K16 proven",
+      "data": {
+        "map_url": "https://www.sjmautotechnik.com/parts_products/turbo/k16.GIF",
+        "access": "Public; HTTP 200; map visually inspected",
+        "source_type": "Scan bearing the KKK mark, hosted by an independent specialist; complete original provenance is unconfirmed",
+        "kind": "Compressor map",
+        "identity": "KKK 5316 988 6717; 2467 GGA/GGB compressor; Audi 1.8T upgrade application according to the SJM index and BorgWarner catalog",
+        "verified_axes": [
+          "Total-pressure ratio P2t/P1t",
+          "Corrected mass flow in kg/s",
+          "Corrected volumetric flow in m3/s",
+          "Efficiency contours",
+          "Corrected speed lines"
+        ],
+        "reference_conditions": {
+          "pressure_mbar": 981,
+          "temperature_K": 293
+        },
+        "visible_speed_lines_rpm": [
+          40000,
+          60000,
+          80000,
+          100000,
+          120000,
+          140000,
+          160000
+        ],
+        "visible_efficiency_contours": [
+          0.65,
+          0.7,
+          0.73,
+          0.75,
+          0.76
+        ]
+      },
+      "limitations": [
+        "Low-resolution scan with a combined GGA/GGB code. It does not identify units 6735/6736 or establish that the 993 housing and tested configuration are identical. This page publishes no turbine map or mechanical speed limit. Do not treat 160000 rpm as the OEM maximum speed."
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-MAP-TURBOMAP-PORSCHE-996-K16",
+      "source_research_ids": [
+        "maps:map-turbomap-porsche-996-k16"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-MAP-TURBOMAP-PORSCHE-996-K16"
+      ],
+      "evidence_kind": "published_map_or_measurement_catalogue",
+      "application": "Comparison map; no identity with stock 993 K16 proven",
+      "data": {
+        "method_url": "https://www.turbomap.ch/Home/CompressorMaps",
+        "access": "Public catalog; HTTP 200; datasets offered by quotation and not acquired",
+        "source_type": "Hot-gas test-bench measurement provider",
+        "kind": "Compressor and turbine numerical datasets offered; not downloaded",
+        "identity": "BWTS K16-2467G, Porsche 911 3.6L-309kW, M96/70 twin-turbo engine",
+        "verified_claims": [
+          "All listed turbochargers are available as physical hardware",
+          "Numerical compressor and turbine maps include SAE sheets usable for one-dimensional simulation",
+          "Compressor measurements use constant boundary conditions"
+        ],
+        "measurement_boundary_conditions": {
+          "T3_C": 600,
+          "T1_C": 20,
+          "oil_temperature_C": 100,
+          "oil_pressure_bar": 4,
+          "cooling_water_temperature_C": 80
+        }
+      },
+      "limitations": [
+        "Porsche 996 application with the water-cooled M96/70 engine. Request the complete turbocharger reference and internal component references from the provider. Do not assign these data to the 993 M64/60 without comparison. No contact was sent and no quotation was requested."
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-MAP-GARRETT-G25-550",
+      "source_research_ids": [
+        "maps:map-garrett-g25-550"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-MAP-GARRETT-G25-550"
+      ],
+      "evidence_kind": "published_map_or_measurement_catalogue",
+      "application": "Comparison map; no identity with stock 993 K16 proven",
+      "data": {
+        "compressor_map_url": "https://www.garrettmotion.com/wp-content/uploads/2022/06/G25-550-Comp-Map-kg-sec-scaled.jpg",
+        "turbine_flow_url": "https://www.garrettmotion.com/wp-content/uploads/2022/06/Turbine-Flow-Maps-G25-2-scaled.jpg",
+        "access": "Public; HTTP 200; maps visually inspected",
+        "source_type": "Primary manufacturer",
+        "kind": "Compressor map and corrected turbine-flow curves versus pressure ratio",
+        "identity": "Complete Garrett G25-550; no established Porsche K16 equivalence",
+        "wheel_dimensions_mm": {
+          "compressor_inducer": 48,
+          "compressor_exducer": 60,
+          "turbine_inducer": 54,
+          "turbine_exducer": 49
+        },
+        "declared_maximum_shaft_speed_rpm": 185000,
+        "declared_maximum_compressor_efficiency": 0.8,
+        "turbine_flow_curves": [
+          "84 trim, V-band, 0.92 A/R",
+          "84 trim, V-band, 0.72 A/R",
+          "84 trim, T25, 0.49 A/R"
+        ],
+        "turbine_flow_chart_declared_maximum_efficiency": 0.76,
+        "advertised_power_hp_single_turbo": [
+          300,
+          550
+        ],
+        "advertised_power_basis": "Garrett describes potential crankshaft power estimated from compressor-map choke flow. This is not a Porsche measurement or a guaranteed application output.",
+        "limits_for_993": "Thermodynamic comparison reference. The complete turbocharger has different bearings, a water circuit, connections, turbine, and housings. Its map is not the map of a K16 hybrid fitted with a 48 mm wheel."
+      },
+      "limitations": [],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-MAP-GARRETT-GT2860RS",
+      "source_research_ids": [
+        "maps:map-garrett-gt2860rs"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-MAP-GARRETT-GT2860RS"
+      ],
+      "evidence_kind": "published_map_or_measurement_catalogue",
+      "application": "Comparison map; no identity with stock 993 K16 proven",
+      "data": {
+        "compressor_map_url": "https://www.garrettmotion.com/wp-content/uploads/2022/06/GT2860RS-Comp-Map-Kg-Sec-scaled.jpg",
+        "turbine_flow_url": "https://www.garrettmotion.com/wp-content/uploads/2022/06/Turbine-Flow-Maps-GT28-scaled.jpg",
+        "access": "Public page; HTTP 200; manufacturer page contains map URLs",
+        "source_type": "Primary manufacturer",
+        "kind": "Compressor map and turbine-flow curves",
+        "wheel_dimensions_mm": {
+          "compressor_inducer_table_rounded": 47,
+          "compressor_exducer": 60,
+          "turbine_inducer_table_rounded": 54,
+          "turbine_exducer": 47
+        },
+        "advertised_power_hp_single_turbo": [
+          250,
+          360
+        ],
+        "limits_for_993": "Alternative comparison reference; no evidence that this is a K16-24 map. The page describes the compressor as 60 mm, which refers to the exducer rather than the inducer."
+      },
+      "limitations": [],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-MAP-BORGWARNER-EFR6258",
+      "source_research_ids": [
+        "maps:map-borgwarner-efr6258"
+      ],
+      "source_ids": [
+        "SRC-BORGWARNER-993-K16-PERFORMANCE-CATALOG"
+      ],
+      "evidence_kind": "published_map_or_measurement_catalogue",
+      "application": "Comparison map; no identity with stock 993 K16 proven",
+      "data": {
+        "page_pdf": 17,
+        "access": "Public PDF already acquired; page visually inspected",
+        "source_type": "Primary manufacturer",
+        "kind": "Compressor map; no complete turbine map identified on this page",
+        "identity": "EFR6258A/G; the catalog states that the map applies to all 6258 units",
+        "wheel_dimensions_mm": {
+          "compressor_inducer": 49,
+          "compressor_outer": 62,
+          "turbine_exducer": 51,
+          "turbine_outer": 58
+        },
+        "advertised_power_hp_single_turbo": [
+          225,
+          450
+        ],
+        "visible_highest_speed_line_rpm_not_limit": 168000,
+        "features": [
+          "Gamma-Ti turbine wheel",
+          "Ceramic bearings",
+          "Machined compressor wheel",
+          "Speed-sensor provision"
+        ],
+        "limits_for_993": "Different complete EFR turbocharger. Its map supports flow and efficiency comparison but cannot be transferred to a K16 hybrid. The catalog requires cooling for aluminum center housings."
+      },
+      "limitations": [],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-MAP-BORGWARNER-EFR6758",
+      "source_research_ids": [
+        "maps:map-borgwarner-efr6758"
+      ],
+      "source_ids": [
+        "SRC-BORGWARNER-993-K16-PERFORMANCE-CATALOG"
+      ],
+      "evidence_kind": "published_map_or_measurement_catalogue",
+      "application": "Comparison map; no identity with stock 993 K16 proven",
+      "data": {
+        "page_pdf": 18,
+        "access": "Public PDF already acquired; page visually inspected",
+        "source_type": "Primary manufacturer",
+        "kind": "Compressor map; no complete turbine map identified on this page",
+        "identity": "EFR6758A/F/Fv/G; the catalog states that the map applies to all 6758 units",
+        "wheel_dimensions_mm": {
+          "compressor_inducer": 54,
+          "compressor_outer": 67,
+          "turbine_exducer": 51,
+          "turbine_outer": 58
+        },
+        "advertised_power_hp_single_turbo": [
+          250,
+          500
+        ],
+        "visible_highest_speed_line_rpm_not_limit": 154000,
+        "limits_for_993": "Example of a larger compressor sharing the 58 mm turbine-wheel family used by the 6258. This does not establish that a K16 can accept the same wheel or guarantee output above 550 metric hp."
+      },
+      "limitations": [],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-MAP-SJM-AUDI-K24",
+      "source_research_ids": [
+        "maps:map-sjm-audi-k24"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-MAP-SJM-AUDI-K24"
+      ],
+      "evidence_kind": "published_map_or_measurement_catalogue",
+      "application": "Comparison map; no identity with stock 993 K16 proven",
+      "data": {
+        "map_url": "https://www.sjmautotechnik.com/parts_products/turbo/24.jpg",
+        "access": "Public page; HTTP 200; map linked",
+        "kind": "Audi compressor map",
+        "identity": "2470GGA/6.13; Audi 035145701B/703B; KKK 53249707000; MC/3B/AAN engines"
+      },
+      "limitations": [
+        "This Audi K24 is not automatically equivalent to a Porsche 993 K24. The K24 family name alone is insufficient."
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-MAP-SJM-AUDI-RS2",
+      "source_research_ids": [
+        "maps:map-sjm-audi-rs2"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-MAP-SJM-AUDI-RS2"
+      ],
+      "evidence_kind": "published_map_or_measurement_catalogue",
+      "application": "Comparison map; no identity with stock 993 K16 proven",
+      "data": {
+        "access": "Public page; HTTP 200; map linked",
+        "kind": "Audi RS2 compressor map",
+        "identity": "2672GGC; Audi 034145703D; KKK 53249707200; ADU five-cylinder, 20-valve engine"
+      },
+      "limitations": [
+        "Different engine and reference from the 993. The historic Porsche RS2 collaboration does not make this a Porsche 993 map."
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-METHOD-GARRETT-TECH103",
+      "source_research_ids": [
+        "maps:method-garrett-tech103"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-METHOD-GARRETT-TECH103"
+      ],
+      "evidence_kind": "published_map_or_measurement_catalogue",
+      "application": "Comparison map; no identity with stock 993 K16 proven",
+      "data": {
+        "landing_url": "https://www.garrettmotion.com/turbocharger-technology/how-a-turbo-works/expert/",
+        "access": "Public PDF; HTTP 200; 13 pages",
+        "source_type": "Primary manufacturer",
+        "kind": "Map interpretation and selection methodology",
+        "verified_claims": [
+          "A map describes efficiency, mass flow, pressure capability, and speed",
+          "Pressure ratio is P2c/P1c using absolute pressures",
+          "Account for intake and intercooler pressure losses",
+          "Flow can be measured or estimated for preliminary selection"
+        ]
+      },
+      "limitations": [],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-METHOD-GARRETT-SYSTEM-OPTIMIZATION",
+      "source_research_ids": [
+        "maps:method-garrett-system-optimization"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-METHOD-GARRETT-SYSTEM-OPTIMIZATION"
+      ],
+      "evidence_kind": "published_map_or_measurement_catalogue",
+      "application": "Comparison map; no identity with stock 993 K16 proven",
+      "data": {
+        "access": "Public; HTTP 200",
+        "verified_claims": [
+          "Estimate flow and pressure ratio and plot the operating points on maps",
+          "For symmetrical twin-turbo sizing, divide total flow by two",
+          "Intake restriction increases compressor pressure ratio and overspeed risk"
+        ]
+      },
+      "limitations": [],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-SINGER-CLASSIC-TURBO-2022",
+      "source_research_ids": [
+        "maps:singer-classic-turbo-2022"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-SINGER-CLASSIC-TURBO-2022"
+      ],
+      "evidence_kind": "different_architecture_manufacturer_specification",
+      "application": "Different engine architecture; not stock 993 M64/60",
+      "data": {
+        "published": "2022-06-06",
+        "evidence_type": "Manufacturer press release and descriptive specification",
+        "engine": "Type 964 basis; air-cooled Mezger flat-six enlarged to 3.8 L; two turbochargers with electronic wastegates; air-to-water intercoolers integrated into the plenums",
+        "power": "450 or 510 HP; HP retained because the release does not specify PS",
+        "observed": "Output and architecture descriptions; no dyno curve or turbocharger map in the consulted content"
+      },
+      "limitations": [
+        "Different from the production 3.6 L M64/60: displacement, intake, intercooling, and wastegate control differ. This page does not publish a turbocharger manufacturer or reference."
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-SINGER-DLS-TURBO-2023",
+      "source_research_ids": [
+        "maps:singer-dls-turbo-2023"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-SINGER-DLS-TURBO-2023"
+      ],
+      "evidence_kind": "different_architecture_manufacturer_specification",
+      "application": "Different engine architecture; not stock 993 M64/60",
+      "data": {
+        "published": "2023-06-27",
+        "evidence_type": "Manufacturer press release and descriptive specification",
+        "engine": "Rebuilt Type 964 block; 3.8 L; four valves per cylinder; two turbochargers; electronic wastegates; air-to-water intercooling; horizontal electric cooling fan",
+        "power": "More than 700 HP at over 9000 rpm, as described in the 2023 release",
+        "observed": "No compressor or turbine map, boost-pressure value, or dyno curve in the consulted content"
+      },
+      "limitations": [
+        "Four valves per cylinder and operation above 9000 rpm change flow, volumetric efficiency, and matching requirements. This is not a K16 hybrid reference for a standard 993."
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-SINGER-SORCERER-2026",
+      "source_research_ids": [
+        "maps:singer-sorcerer-2026"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-SINGER-SORCERER-2026"
+      ],
+      "evidence_kind": "different_architecture_manufacturer_specification",
+      "application": "Different engine architecture; not stock 993 M64/60",
+      "data": {
+        "published": "2026-01-22",
+        "evidence_type": "Manufacturer press release describing a delivered configuration",
+        "engine": "Type 964 basis; 3.8 L; four valves per cylinder; two variable-geometry turbochargers; water-cooled heads; air-cooled cylinders; horizontal electric cooling fan",
+        "power": "710 HP SAE Net; 750 Nm; engine speed above 9000 rpm",
+        "observed": "The delivered 2026 configuration explicitly includes variable-geometry turbochargers and water-cooled heads. No compressor or turbine map or dyno curve appears in the consulted content. Do not merge this description with the 2023 description without qualification."
+      },
+      "limitations": [
+        "Water-cooled heads, four valves per cylinder, and variable-geometry turbines differ from the fixed-geometry K16 M64/60 architecture. The Mezger name alone does not establish equivalence."
+      ],
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "TURBO-GUNTHERWERKS-TURBO-CURRENT",
+      "source_research_ids": [
+        "maps:guntherwerks-turbo-current"
+      ],
+      "source_ids": [
+        "SRC-993-RESEARCH-GUNTHERWERKS-TURBO-CURRENT"
+      ],
+      "evidence_kind": "different_architecture_manufacturer_specification",
+      "application": "Different engine architecture; not stock 993 M64/60",
+      "data": {
+        "published": null,
+        "evidence_type": "Current manufacturer specification consulted in October 2026",
+        "engine": "993-based program; 4.0 L twin-turbo engine; horizontal cooling fan; Motec ECU; 7500 rpm redline",
+        "power": "850 bhp and 600 lb-ft, as commercially advertised in the current specification",
+        "observed": "The consulted specification provides architecture and nominal output points, without compressor or turbine maps, turbocharger speed or reference, or a dyno curve"
+      },
+      "limitations": [
+        "A 993 body does not establish retention of the M64/60 or K16 housings. Displacement increases to 4.0 L and intake and control differ. No published measurements here allow reconstruction of an OEM map."
+      ],
+      "training_eligibility": "qualified_only"
+    }
+  ],
+  "research_context": {
+    "hybrids": {
+      "research_date": "2026-10-02",
+      "scope": "Porsche 993 Turbo M64/60 original-core hybrids and supplier maps, primary public sources",
+      "analysis": [
+        "For >550 PS with strict reuse of original K16 cores, TTE650 and TTH650 are published candidates that preserve K16/8 hot housings; horsepower remains supplier claim pending measured operating data.",
+        "For priority on top-end power and more margin, K24/10-based TTE750/TTE800/TTH750 are documented alternative donor routes. TTE750 explicitly cannot use K16 cores.",
+        "Stock turbo maps cannot be reverse-engineered uniquely from engine dyno power/boost curves. After clipping or wheel/contour replacement, stock maps cease to describe the new turbo.",
+        "Do not confuse VSR balancing test speed with steady-state shaft operating speed or maximum certified speed.",
+        "Do not interpret supplier 8/10 housing size labels as a dimensionless A/R of 8/10."
+      ],
+      "not_retrieved": [
+        {
+          "url": "https://www.protomotive.com/wp422/product/porsche-993-996-turbo-upgrades-k1665g2/",
+          "status": "HTTP 406",
+          "classification": "Unread documentary lead; search snippets excluded from claims."
+        },
+        {
+          "url": "https://www.protomotive.com/wp422/product/porsche-993-996-turbo-upgrades-k2418gxt/",
+          "status": "HTTP 406",
+          "classification": "Unread documentary lead; search snippets excluded from claims."
+        }
+      ]
+    },
+    "ruf": {
+      "research_date": "2026-10-02",
+      "scope": "Public RUF Turbo R/CTR2 and Porsche 993 comparative turbo-related curves",
+      "key_finding": "Several useful same-generation power/torque references and hybrid precedents exist, but no exact Porsche 993 K16/6735/6736 or RUF compressor+turbine map verified in this sub-research. Power curves cannot uniquely reconstruct turbo maps.",
+      "curves": [
+        {
+          "id": "porsche-k16-408-transcribed",
+          "post": 1,
+          "measurement_status": "secondhand transcription attributed to Porsche published curve",
+          "units": {
+            "x": "engine rpm",
+            "y": "Nm"
+          },
+          "points": [
+            [
+              2000,
+              300
+            ],
+            [
+              2500,
+              400
+            ],
+            [
+              2750,
+              425
+            ],
+            [
+              3000,
+              455
+            ],
+            [
+              3500,
+              500
+            ],
+            [
+              4000,
+              500
+            ]
+          ],
+          "research_source_id": "maps:rennlist-k24-lag-page1",
+          "source_ids": [
+            "SRC-993-RESEARCH-RENNLIST-K24-LAG-PAGE1"
+          ],
+          "training_eligibility": "qualified_secondary_transcription_only"
+        },
+        {
+          "id": "porsche-k24-450-transcribed",
+          "post": 1,
+          "measurement_status": "secondhand transcription attributed to Euro Turbo S 450PS Porsche curve",
+          "units": {
+            "x": "engine rpm",
+            "y": "Nm"
+          },
+          "points": [
+            [
+              2000,
+              250
+            ],
+            [
+              2500,
+              350
+            ],
+            [
+              2750,
+              400
+            ],
+            [
+              3000,
+              475
+            ],
+            [
+              3500,
+              580
+            ],
+            [
+              4000,
+              575
+            ]
+          ],
+          "research_source_id": "maps:rennlist-k24-lag-page1",
+          "source_ids": [
+            "SRC-993-RESEARCH-RENNLIST-K24-LAG-PAGE1"
+          ],
+          "training_eligibility": "qualified_secondary_transcription_only"
+        },
+        {
+          "id": "ruf-turbo-r-web-transcribed",
+          "post": 13,
+          "measurement_status": "secondhand transcription attributed to RUF website, 490PS",
+          "units": {
+            "x": "engine rpm",
+            "y": "Nm"
+          },
+          "points": [
+            [
+              2000,
+              320
+            ],
+            [
+              2500,
+              395
+            ],
+            [
+              3000,
+              500
+            ],
+            [
+              3500,
+              570
+            ],
+            [
+              3750,
+              600
+            ],
+            [
+              4000,
+              614
+            ]
+          ],
+          "research_source_id": "maps:rennlist-k24-lag-page1",
+          "source_ids": [
+            "SRC-993-RESEARCH-RENNLIST-K24-LAG-PAGE1"
+          ],
+          "training_eligibility": "qualified_secondary_transcription_only"
+        },
+        {
+          "id": "zc-k16-stage3-engine-dyno",
+          "post": 9,
+          "measurement_status": "owner reported engine dyno by RS Tuning",
+          "units": {
+            "x": "engine rpm",
+            "y": "Nm"
+          },
+          "points": [
+            [
+              2000,
+              325
+            ],
+            [
+              2500,
+              360
+            ],
+            [
+              2750,
+              400
+            ],
+            [
+              3000,
+              465
+            ],
+            [
+              3250,
+              550
+            ],
+            [
+              3500,
+              605
+            ],
+            [
+              3750,
+              612
+            ],
+            [
+              4000,
+              620
+            ],
+            [
+              4700,
+              671
+            ]
+          ],
+          "research_source_id": "maps:rennlist-k24-lag-page1",
+          "source_ids": [
+            "SRC-993-RESEARCH-RENNLIST-K24-LAG-PAGE1"
+          ],
+          "training_eligibility": "qualified_secondary_transcription_only"
+        },
+        {
+          "id": "k24rs-engine-dyno",
+          "post": 9,
+          "measurement_status": "owner reported same-owner-engine dyno by RS Tuning; exact turbo spec uncertain",
+          "units": {
+            "x": "engine rpm",
+            "y": "Nm"
+          },
+          "points": [
+            [
+              2500,
+              325
+            ],
+            [
+              2750,
+              375
+            ],
+            [
+              3000,
+              425
+            ],
+            [
+              3250,
+              480
+            ],
+            [
+              3500,
+              555
+            ],
+            [
+              3750,
+              675
+            ],
+            [
+              4000,
+              740
+            ],
+            [
+              4550,
+              757
+            ]
+          ],
+          "research_source_id": "maps:rennlist-k24-lag-page1",
+          "source_ids": [
+            "SRC-993-RESEARCH-RENNLIST-K24-LAG-PAGE1"
+          ],
+          "training_eligibility": "qualified_secondary_transcription_only"
+        },
+        {
+          "id": "ruf-1998-customer-engine-dyno",
+          "post": 20,
+          "measurement_status": "forum transcription attributed to RUF customer dyno in 911 & Porsche World September 1998; original unseen",
+          "units": {
+            "x": "engine rpm",
+            "y": "lb-ft"
+          },
+          "points": [
+            [
+              2000,
+              267
+            ],
+            [
+              2500,
+              375
+            ],
+            [
+              3000,
+              404
+            ],
+            [
+              3500,
+              411
+            ],
+            [
+              4000,
+              449
+            ],
+            [
+              4500,
+              535
+            ],
+            [
+              5000,
+              523
+            ],
+            [
+              5500,
+              468
+            ],
+            [
+              6000,
+              395
+            ]
+          ],
+          "inconsistency": "468 lb-ft at 5500rpm gives about 490bhp, versus post claim 506hp. 395lb-ft at 6000rpm gives about 451bhp, versus claim 460hp. Unit definition or transcription uncertainty unresolved.",
+          "research_source_id": "maps:rennlist-k24-lag-page2",
+          "source_ids": [
+            "SRC-RENNLIST-993-RUF-TURBO-R-ENGINE-DYNO"
+          ],
+          "training_eligibility": "qualified_secondary_transcription_only"
+        }
+      ],
+      "attachments": [
+        {
+          "url": "https://rennlist.com/forums/attachments/993-turbo-forum/80950d1128332809-k24-turbo-lag-turbo-lag-k16-24.jpg",
+          "fetch": "HTTP 403",
+          "description": "Torque/rpm comparative graph, named Turbo-Lag-K16-24; not inspected"
+        },
+        {
+          "url": "https://rennlist.com/forums/attachments/993-turbo-forum/80951d1128335054-k24-turbo-lag-turbo-lag-large-turbos.jpg",
+          "fetch": "Not fetched; listed in source page",
+          "description": "Larger-turbo torque/rpm comparative graph, not inspected"
+        },
+        {
+          "url": "https://rennlist.com/forums/attachments/993-turbo-forum/147835d1161790372-ruf-turbo-r-dyno-sheet-before-tune-up-rufdyno.jpg",
+          "fetch": "HTTP 403",
+          "description": "RufDyno chassis graph, not inspected"
+        },
+        {
+          "url": "https://rennlist.com/forums/attachments/993-turbo-forum/149140d1162330258-ruf-turbo-r-dyno-sheet-before-tune-up-image001.gif",
+          "fetch": "HTTP 403",
+          "description": "1996/2000 RUF dyno and 2006 chassis overlay described in source; not inspected"
+        }
+      ],
+      "inverse_identification_limits": [
+        "Crankshaft torque and rpm provide at best engine-system operating anchors, not turbo corrected mass-flow, pressure ratio, efficiency or shaft speed.",
+        "Fueling/lambda, ignition, cams, compression, intake/exhaust restrictions, charge cooling, boost control, transient loading and dyno correction confound inversion.",
+        "Need exact compressor/turbine wheel and housings identity; a family K16/K24 name is insufficient.",
+        "Once hybrid changes wheel/housing geometry, original map is only baseline; hybrid assembly needs its own matched map and balancing validation."
+      ],
+      "practical_next_steps": [
+        "Retrieve original Porsche Turbo/Turbo S curves and RUF bench reports from owner records or RUF technical archives (no contact sent).",
+        "Use same-bank total inlet/outlet pressure and temperature, calibrated mass flow and turbo shaft speed to obtain on-engine operating points.",
+        "For an actual full map, hot-gas turbo bench characterization of original and intended hybrid assemblies, including compressor map and turbine swallowing/efficiency at relevant temperatures.",
+        "Request supplier wheel codes/inducer/exducer/blade geometry, housing throat/A-R and wastegate details, speed/thermal limits, high-speed balancing and exact tested hybrid map."
+      ]
+    },
+    "maps": {
+      "searched_at": "2026-10-02",
+      "scope": "Compressor and turbine maps for Porsche 993 Turbo K16-6735/6736 units, related Porsche applications, and documented alternatives. The user targets more than 550 metric hp at the crankshaft, prioritizes power, and plans to convert the existing K16 units to hybrids.",
+      "conclusions": [
+        "No exact OEM map explicitly identified as the Porsche 993 K16-6735/6736 was confirmed in the sources consulted. This does not establish that such a map does not exist.",
+        "SJM publicly hosts a scan of a KKK 2467 GGA/GGB map associated with the Audi upgrade K16 5316 988 6717. The compressor code overlaps the K16-2467GGA/8.88 designation reported by TurboMaster for the 993. The complete turbocharger and exact housing configuration are different or unconfirmed. This is a candidate family comparison, not a validated 993 OEM map.",
+        "Turbomap.ch lists compressor and turbine measurements for the Porsche 996 M96/70 K16-2467G. SAE-format numerical data are offered by quotation; no directly downloadable Porsche map was observed.",
+        "Garrett publishes compressor maps and turbine flow curves for the GT2860RS and G25-550. These turbine curves do not necessarily provide a complete turbine efficiency map. BorgWarner publishes EFR6258 and EFR6758 compressor maps in its official catalog.",
+        "An engine power curve alone does not provide corrected flow, efficiency, or turbocharger shaft speed, and cannot uniquely identify a compressor or turbine map.",
+        "A map for an alternative wheel in its manufacturer housing cannot automatically be assigned to the same wheel installed in a machined K16 housing. Diffuser and volute geometry, clearances, and other housing details affect performance.",
+        "The highest speed line drawn on a map is not automatically the mechanical rotor speed limit. Garrett explicitly states a 185000 rpm limit for the G25-550. The SJM KKK 160000 rpm line and EFR 168000/154000 rpm lines are only observed plotted speed lines here."
+      ],
+      "discard_or_qualify": [
+        "The public Garrett GT2560R page contains inconsistent power ranges: 170-270 hp in its heading and 200-330 hp in its table. Do not reuse these ranges without resolving the discrepancy. The page links compressor and turbine-flow maps, but its power figures were excluded from this comparison.",
+        "The BorgWarner catalog capacities of 500 hp for stock K16 units and 555 hp for the 993 upgrade are commercial envelopes, not maps or evidence of sustained operation at the target. The 993 upgrade references are 53249887003+7004 and are distinct from Audi K24 map references.",
+        "Do not reproduce downloaded third-party maps or guides in the deliverables. Cite their URLs and summarize factual information."
+      ]
+    },
+    "restomods": {
+      "scope": "Restomod comparison with the Porsche 993 Turbo M64/60 for a target above 550 metric hp at the crankshaft. Official pages consulted on 2026-10-02.",
+      "conclusion": "Singer and Gunther Werks specifications describe engine architectures and advertised outputs. None of the four consulted pages publishes a compressor map, turbine map, rotor speed, or sufficient measurements to reconstruct the original K16 maps.",
+      "practical_value": "Use these sources to compare cooling, intake, control, and nominal operating ranges. For a K16 hybrid above 550 metric hp, request the map for the exact wheel and machined-housing combination, turbine flow, maximum shaft speed, and test protocol from its manufacturer. Advertised power does not provide these measurements."
+    }
+  },
+  "comparison": [
+    [
+      "FVD K16/24",
+      "555 hp",
+      "K16/24 hybrid; exact donor to confirm",
+      "47.5 mm compressor inducer",
+      "Turbine modification; reinforced thrust bearing",
+      "FVD-K16-24"
+    ],
+    [
+      "TTE650 5050",
+      "650 PS",
+      "Original K16/8 donors supplied",
+      "50 mm compressor inducer; 50 mm turbine exducer",
+      "6+6 billet compressor; cut-back K16 turbine; upgraded bearings and actuators",
+      "TTE-K16-650"
+    ],
+    [
+      "TTH K16-650",
+      "650 PS",
+      "Porsche/BorgWarner K16; turbine housing 8",
+      "Diameters not published",
+      "Machined Extended Tip compressor; CNC housing contour; cut-back turbine; reinforced bearings and actuators",
+      "TTH-K16-650"
+    ],
+    [
+      "TTE750 5154",
+      "750 PS",
+      "K24/10 donors required",
+      "51 mm compressor inducer; 54 mm turbine exducer",
+      "Cast BorgWarner compressor wheel; cut-back K24 turbine; K16 donors excluded from this offering",
+      "TTE-K24-750"
+    ],
+    [
+      "TTE800 5154",
+      "800 PS+ on 102 RON",
+      "K24/10",
+      "51 mm compressor inducer; 54 mm turbine exducer",
+      "New TTE nine-blade turbine and shaft with machined housing; billet compressor",
+      "TTE-K24-800"
+    ],
+    [
+      "TTH K24-750",
+      "750 PS",
+      "K24; turbine housing 10",
+      "Diameters not published",
+      "Machined compressor; cut-back turbine; reinforced bearings and actuators",
+      "TTH-K24-750"
+    ]
+  ],
+  "measurement_protocol": [
+    [
+      "Identification",
+      "6735/6736 identification plates, wheel and housing references, and repair history",
+      "Exclude a donor already converted to a hybrid or replaced with a different configuration."
+    ],
+    [
+      "Metrology",
+      "Inducer and exducer diameters, blade count and profile, trim, clearances, volutes, turbine throat, mass and inertia; 3D scan or CMM",
+      "Compare actual geometry with candidate maps. Diameters alone do not describe aerodynamic performance."
+    ],
+    [
+      "Compressor testing",
+      "Flow, total inlet and outlet pressures and temperatures, shaft speed, and declared correction references",
+      "Measure corrected-flow, pressure-ratio, and efficiency points over multiple speed lines, including surge and choke."
+    ],
+    [
+      "Turbine testing",
+      "Corrected gas flow, upstream pressure and temperature, downstream pressure, speed, and wastegate position",
+      "Determine swallowing capacity and efficiency versus expansion ratio; verify turbine-housing backpressure."
+    ],
+    [
+      "Engine measurement",
+      "Engine speed, torque, air and fuel flow, lambda, ignition timing and knock, intake and exhaust pressures and temperatures, and turbocharger speed for each bank",
+      "Separate engine, intercooler, exhaust, and turbocharger effects. Divide total flow by two only after verifying equal sharing."
+    ],
+    [
+      "Hybrid validation",
+      "Component and CHRA balancing, VSR report, manufacturer limits, and steady-state and transient testing",
+      "Wheel and housing modifications require qualification of the resulting assembly."
+    ]
+  ],
+  "supplier_requirements": [
+    [
+      "Target",
+      "More than 550 metric hp at the crankshaft, with power prioritized. Evaluate 600 and 650 metric hp as scenarios, not confirmed targets."
+    ],
+    [
+      "Donors",
+      "Original K16-6735/6736 units; specify exactly what is retained, replaced, machined, or cut back."
+    ],
+    [
+      "Maps",
+      "Compressor and turbine maps of the CHRA in the proposed housings, including corrected flow, pressure or expansion ratio, efficiency, speed, and pressure/temperature references."
+    ],
+    [
+      "Geometry",
+      "Wheel references; inducer and exducer diameters; profiles, blades, and clearances; turbine flow section; modifications and actuators."
+    ],
+    [
+      "Limits",
+      "Maximum shaft speed for the new assembly, permissible duration, continuous and transient exhaust-gas temperature, oil pressures, and VSR protocol."
+    ],
+    [
+      "M64/60 testing",
+      "Torque, power, and boost curves; airflow, lambda, ignition timing, fuel and RON; intercooler inlet and outlet temperatures; EGT; exhaust backpressure; and correction method."
+    ],
+    [
+      "Configuration",
+      "Displacement, compression ratio, heads and cams, exhaust and catalysts, intercooler, injectors, pumps and regulator, DME, and cooling."
+    ],
+    [
+      "Traceability",
+      "Donor and CHRA identification, crack inspection, balancing report, and exact test configuration."
+    ]
+  ],
+  "excluded_fields": [
+    {
+      "field": "hybrids/FVD-K16-24/file",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/FVD-K16-24/exact_quotes",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/FVD-K16-24/local_source",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/TTH-K16-650/file",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/TTH-K16-650/exact_quotes",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/TTH-K16-650/local_source",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/TTE-K16-650/file",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/TTE-K16-650/exact_quotes",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/TTE-K16-650/local_source",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/TTE-K24-750/file",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/TTE-K24-750/exact_quotes",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/TTE-K24-750/local_source",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/TTE-K24-800/file",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/TTE-K24-800/exact_quotes",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/TTE-K24-800/local_source",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/TTH-K24-750/file",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/TTH-K24-750/exact_quotes",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/TTH-K24-750/local_source",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/BORGWARNER-993-UPGRADE/file",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/BORGWARNER-993-UPGRADE/local_source",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/CARGRAPHIC-993-K16-24/file",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/CARGRAPHIC-993-K16-24/exact_quotes",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/CARGRAPHIC-993-K16-24/local_source",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/TURBO-DYNAMICS-MD433/file",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/TURBO-DYNAMICS-MD433/exact_quotes",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/TURBO-DYNAMICS-MD433/local_source",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/TURBO-TECHNICS-GENERAL/file",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "hybrids/TURBO-TECHNICS-GENERAL/local_source",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    },
+    {
+      "field": "ruf/pca-ruf-993-turbo-r/facts/specific_car",
+      "reason": "Private identifier, local scratch path or source quotation omitted."
+    }
+  ],
+  "rights": "Metadata, factual notes and original synthesis only. Raw source documents, copyrighted charts, quotation collections and unread snippets excluded."
+}

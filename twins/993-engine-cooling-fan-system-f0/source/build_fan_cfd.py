@@ -47,10 +47,12 @@ def generate(out: Path, surface: Path, rpm: float, cells: int = 24, surface_leve
     (out / "fan-input.json").write_text(json.dumps({
         "picogk": report, "surface_audit": audit, "rpm": rpm * rotation_sign, "speed_rpm": rpm,
         "base_cells": cells, "surface_level": surface_level,
-        "boundary_condition": "inlet_total_pressure_zero_outlet_static_pressure_zero",
+        "boundary_condition": "ambient_reservoir_totalPressure_at_both_openings",
         "model_scope": ("parametric_alternator_envelope_not_oem_validated" if with_alternator
                         else "isolated_rotor_without_alternator"),
         "alternator_envelope_included": with_alternator,
+        "rotating_frame_extent": ("local_zone_requires_interface_audit" if with_alternator
+                                  else "whole_axisymmetric_duct"),
         "alternator_shaft_wall_model": "stationary_obstruction_approximation" if with_alternator else None,
         "stationary_surface_audit": fixed_audit if with_alternator else None,
         "missing_components": (["alternator_internal_passages", "bearing_seals", "installed_shroud"]
@@ -113,7 +115,7 @@ actions (
   box (-.15 -.15 -.027) (.15 .15 .027);}
  {name rotorZone; type cellZoneSet; action new; source setToCellZone; set rotorCells;}
 );
-""".replace(".027", str(half_zone)))
+""".replace(".027", str(half_zone if with_alternator else .2)))
     write("system/decomposeParDict", "numberOfSubdomains 4; method scotch;")
     write("constant/MRFProperties", f"""
 MRF {{cellZone rotorZone; origin (0 0 0); axis (0 0 1); omega {rpm * rotation_sign} [rpm];}}
@@ -133,6 +135,12 @@ functions {
  outletFlow {type surfaceFieldValue; libs ("libfieldFunctionObjects.so");
    writeControl timeStep; writeInterval 1; patch outlet;
    operation sum; fields (phi); writeFields false;}
+ inletFlowMagnitude {type surfaceFieldValue; libs ("libfieldFunctionObjects.so");
+   writeControl timeStep; writeInterval 1; patch inlet;
+   operation sumMag; fields (phi); writeFields false;}
+ outletFlowMagnitude {type surfaceFieldValue; libs ("libfieldFunctionObjects.so");
+   writeControl timeStep; writeInterval 1; patch outlet;
+   operation sumMag; fields (phi); writeFields false;}
  rotorForces {type forces; libs ("libforces.so"); patches (rotor);
    rho rhoInf; rhoInf 1.2; CofR (0 0 0);
    writeControl timeStep; writeInterval 1;}
@@ -172,7 +180,8 @@ boundaryField {
 dimensions [0 2 -2 0 0 0 0]; internalField uniform 0;
 boundaryField {
  inlet {type totalPressure; p0 uniform 0; value uniform 0;}
- outlet {type fixedValue; value uniform 0;}
+ // Ambient static pressure on outflow, total pressure on return inflow.
+ outlet {type totalPressure; p0 uniform 0; value uniform 0;}
  "(rotor|duct|sides)" {type zeroGradient;}
 }
 """, "volScalarField")

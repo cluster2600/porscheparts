@@ -1,0 +1,1873 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_id": "mezger-german-sources-20261003",
+  "reviewed_on": "2026-10-03",
+  "scope": "German-language primary-document research on Porsche turbo lineage, racing variants, alloy/process definitions and explicitly scoped aftermarket products. One English MAMBATEK source was discovered through German queries; abstract-only journal leads are bibliography, not technical targets.",
+  "records": [
+    {
+      "id": "MEZGER-DEO001",
+      "application": "964 Turbo 3.3, initial version; German Porsche retrospective",
+      "component": "engine",
+      "parameter": "Published original Turbo rating",
+      "value": {
+        "displacement_L": 3.3,
+        "power_kW": 235,
+        "power_PS": 320
+      },
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-DE-TURBO-GENERATIONS-2024"
+      ],
+      "locator": "Section 3. Generation: Porsche 911 Turbo (964)",
+      "caveat": "The historical European rating is not generalized to every market, catalyst version or later 3.6 engine.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DEO002",
+      "application": "964 Turbo S 3.3; German Porsche retrospective",
+      "component": "engine",
+      "parameter": "Published Turbo S rating",
+      "value": 381,
+      "unit": "PS",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-DE-964-HISTORY-2018"
+      ],
+      "locator": "Final article paragraph describing turbocharged 964 variants",
+      "caveat": "Source distinguishes the 3.3 L Turbo S from the later 3.6 L Turbo. This is not a 993 Turbo S rating.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DEO003",
+      "application": "964 Turbo 3.6; Porsche Klassik retrospective technical table",
+      "component": "engine",
+      "parameter": "Nominal bore and stroke",
+      "value": {
+        "bore_mm": 100,
+        "stroke_mm": 76.4
+      },
+      "unit": "mm",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-DE-KLASSIK-TURBO-COMPARISON-2017"
+      ],
+      "locator": "Technical data: Porsche 964 Turbo 3.6, Bohrung x Hub",
+      "caveat": "Nominal engine geometry; no piston clearance, cylinder-wall thickness or machining tolerance is defined.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DEO004",
+      "application": "964 Turbo 3.6; Porsche Klassik retrospective technical table",
+      "component": "engine",
+      "parameter": "Published compression ratio",
+      "value": "7.5:1",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-DE-KLASSIK-TURBO-COMPARISON-2017"
+      ],
+      "locator": "Technical data: Porsche 964 Turbo 3.6, Verdichtung",
+      "caveat": "Specific to the 964 Turbo 3.6 in this comparison; do not transfer to 993 M64/60 or use as a measured combustion-chamber volume.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DEO005",
+      "application": "964 Turbo 3.6; Porsche Klassik retrospective technical table",
+      "component": "engine",
+      "parameter": "Published rated power and engine speed",
+      "value": {
+        "power_PS": 360,
+        "engine_rpm": 5500
+      },
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-DE-KLASSIK-TURBO-COMPARISON-2017"
+      ],
+      "locator": "Technical data: Porsche 964 Turbo 3.6, Max. Leistung",
+      "caveat": "Published engine rating, not an independently acquired dynamometer map.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DEO006",
+      "application": "964 Turbo 3.6; Porsche Klassik retrospective technical table",
+      "component": "engine",
+      "parameter": "Torque figure with unresolved overboost label",
+      "value": {
+        "reported_torque_Nm": 520,
+        "reported_engine_rpm": 4200
+      },
+      "unit": "",
+      "evidence_status": "documentary_ambiguity",
+      "source_ids": [
+        "SRC-PORSCHE-DE-KLASSIK-TURBO-COMPARISON-2017"
+      ],
+      "locator": "Technical data: Porsche 964 Turbo 3.6, torque row",
+      "caveat": "The table labels this row with overboost but gives no control strategy, duration or pressure. Retain the number as an attributed document statement; the label is not proof of a programmed overboost mode.",
+      "training_eligibility": "teach_uncertainty_only"
+    },
+    {
+      "id": "MEZGER-DEO007",
+      "application": "964 Turbo 3.6; Porsche Klassik retrospective narrative",
+      "component": "engine",
+      "parameter": "Low-speed torque point as reported",
+      "value": {
+        "reported_torque_Nm": 450,
+        "reported_engine_rpm": 2400
+      },
+      "unit": "",
+      "evidence_status": "manufacturer_retrospective_statement",
+      "source_ids": [
+        "SRC-PORSCHE-DE-KLASSIK-TURBO-COMPARISON-2017"
+      ],
+      "locator": "Narrative paragraph introducing the M64 engine after the Paris motor-show debut",
+      "caveat": "A single reported point in a retrospective driving article, not an original engine map or proof of a flat torque plateau.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DEO008",
+      "application": "993 Turbo S / factory 450 PS example in Porsche Klassik retrospective",
+      "component": "engine",
+      "parameter": "Published rated power and engine speed",
+      "value": {
+        "power_PS": 450,
+        "engine_rpm": 6000
+      },
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-DE-KLASSIK-TURBO-COMPARISON-2017"
+      ],
+      "locator": "Technical data: Porsche 993 Turbo S, Max. Leistung",
+      "caveat": "The historical factory 450 PS tune is separate from stock 408 PS and 430 PS versions; no ECU binary or boost map was acquired.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DEO009",
+      "application": "993 Turbo S / factory 450 PS example in Porsche Klassik retrospective",
+      "component": "engine",
+      "parameter": "Torque figure with unresolved overboost label",
+      "value": {
+        "reported_torque_Nm": 585,
+        "reported_engine_rpm": 4500
+      },
+      "unit": "",
+      "evidence_status": "documentary_ambiguity",
+      "source_ids": [
+        "SRC-PORSCHE-DE-KLASSIK-TURBO-COMPARISON-2017",
+        "SRC-PORSCHE-DE-993-TURBO-S-HERITAGE",
+        "SRC-PORSCHE-DE-993-TURBO-S-DATASHEET"
+      ],
+      "locator": "Porsche Klassik technical table, Porsche 993 Turbo S torque row; heritage page; bilingual PDF p.1",
+      "caveat": "The 2017 table labels the torque row with overboost. Neither the inspected official heritage page nor the one-page datasheet states torque or an overboost function. A contemporaneous model-specific document is required before treating the label as ECU or hardware behaviour.",
+      "training_eligibility": "teach_uncertainty_only"
+    },
+    {
+      "id": "MEZGER-DEO010",
+      "application": "993 Turbo S and 964 Turbo 3.6; German Porsche Klassik technical-table wording",
+      "component": "boost_control",
+      "parameter": "Unresolved retrospective overboost attribution",
+      "value": null,
+      "unit": "",
+      "evidence_status": "unresolved",
+      "source_ids": [
+        "SRC-PORSCHE-DE-KLASSIK-TURBO-COMPARISON-2017",
+        "SRC-PORSCHE-DE-993-TURBO-S-DATASHEET"
+      ],
+      "locator": "Torque-row headings in the 964/993/991 comparison; official heritage PDF p.1",
+      "caveat": "The same overboost heading appears for the air-cooled and modern cars. The inspected documents do not establish an original 993 or 964 programmed overboost mode, its duration or its boost-pressure delta.",
+      "training_eligibility": "teach_uncertainty_only"
+    },
+    {
+      "id": "MEZGER-DEO011",
+      "application": "964 Turbo 3.3, initial catalyst-equipped version; German Porsche retrospective",
+      "component": "main_catalyst",
+      "parameter": "Published standard catalyst construction",
+      "value": "Three-way metal catalyst",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-DE-TURBO-GENERATIONS-2024"
+      ],
+      "locator": "Section 3. Generation: Porsche 911 Turbo (964), first Turbo paragraph",
+      "caveat": "Metal identifies the broad catalyst construction; substrate alloy, washcoat composition, cell density, wall thickness and catalyst dimensions are not disclosed.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DEO012",
+      "application": "964 Turbo 3.3, initial catalyst-equipped version; German Porsche retrospective",
+      "component": "wastegate_bypass_exhaust",
+      "parameter": "Published exhaust-flow architecture",
+      "value": "Bypass tailpipe with its own catalyst and silencer; bypass gases do not pass through the regular main catalyst",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-DE-TURBO-GENERATIONS-2024"
+      ],
+      "locator": "Section 3. Generation: Porsche 911 Turbo (964), bypass-tailpipe description",
+      "caveat": "The source attributes avoidance of additional main-catalyst backpressure to this routing. It gives no measured pressure loss, tube thickness, gas-temperature map or catalyst dimensions; do not transfer this layout to the 993 integrated-wastegate system.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DEO013",
+      "application": "996 Turbo at introduction; comparison with contemporary naturally aspirated 911",
+      "component": "engine_cooling_radiators",
+      "parameter": "Published total radiator-area increase",
+      "value": 50,
+      "unit": "percent",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-DE-TURBO-GENERATIONS-2024"
+      ],
+      "locator": "Section 5. Generation: Porsche 911 Turbo (996), front cooling-air opening paragraph",
+      "caveat": "Comparison concerns total radiator area. It is not a 50 percent heat-rejection increase, core thickness, measured cooling performance or radiator material specification.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DEO014",
+      "application": "996 Turbo original 420 PS version; German Porsche retrospective",
+      "component": "engine",
+      "parameter": "Published maximum torque",
+      "value": 560,
+      "unit": "Nm",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-DE-TURBO-GENERATIONS-2024"
+      ],
+      "locator": "Section 5. Generation: Porsche 911 Turbo (996), IAA 1999 announcement paragraph",
+      "caveat": "No torque-curve coordinates or associated engine speed are supplied in this source.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DEO015",
+      "application": "997.1 Turbo 3.6 with optional Sport Chrono Paket Turbo",
+      "component": "boost_control",
+      "parameter": "Published maximum overboost duration",
+      "value": 10,
+      "unit": "s",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-DE-TURBO-GENERATIONS-2024"
+      ],
+      "locator": "Section 6. Generation: Porsche 911 Turbo (997), Sport Chrono paragraph",
+      "caveat": "Conditional optional overboost under full acceleration; not continuous-duty operation or a 993 control feature.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DEO016",
+      "application": "997.1 Turbo 3.6 with optional Sport Chrono Paket Turbo",
+      "component": "boost_control",
+      "parameter": "Published overboost pressure increment",
+      "value": 0.2,
+      "unit": "bar",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-DE-TURBO-GENERATIONS-2024"
+      ],
+      "locator": "Section 6. Generation: Porsche 911 Turbo (997), Sport Chrono paragraph",
+      "caveat": "Pressure difference in the midrange, not an absolute manifold pressure or compressor pressure ratio. No baseline operating pressure, inlet losses or compressor map is defined.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DEO017",
+      "application": "997.1 Turbo 3.6 with optional Sport Chrono Paket Turbo",
+      "component": "engine",
+      "parameter": "Published temporary overboost torque",
+      "value": {
+        "temporary_torque_Nm": 680,
+        "increase_from_normal_Nm": 60
+      },
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-DE-TURBO-GENERATIONS-2024"
+      ],
+      "locator": "Section 6. Generation: Porsche 911 Turbo (997), Sport Chrono paragraph",
+      "caveat": "The temporary torque depends on the optional overboost mode and its duration, not a continuous 680 Nm rating or evidence for a 993 map.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DEO018",
+      "application": "930 Turbo 3.3, historical factory special-request programme",
+      "component": "engine",
+      "parameter": "Published optional factory power increment",
+      "value": {
+        "increase_kW": 22,
+        "increase_PS": 30
+      },
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-DE-TURBO-GENERATIONS-2024"
+      ],
+      "locator": "Section 2. Generation Porsche 911 Turbo 3.3 (930), Sonderwunsch programme paragraph",
+      "caveat": "The retrospective describes the increment without identifying an ECU, turbocharger reference, compressor map or exact model-year/market implementation; no specific hardware package is inferred.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DEO019",
+      "application": "Porsche Classic reproduction aluminium crankcases for unspecified larger-displacement 1990s 911",
+      "component": "main_crankcase",
+      "parameter": "Published reproduction-material family and CAD recovery",
+      "value": "Aluminium crankcases made from stored blanks; machining data recovered with the Porsche 962 Group C race-engine reproduction project because old production drawings were no longer fully legible",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-DE-CLASSIC-MAGNESIUM-CRANKCASES-2023"
+      ],
+      "locator": "Paragraph beginning Seit zwei Jahren gibt es...",
+      "caveat": "This is a manufacturer account of reproduction engineering, not a released CAD drawing or evidence that every 1990s variant uses the same geometry or aluminium grade. M64/60 is not specifically named.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DEO020",
+      "application": "Porsche Classic replacement crankcases for 1968–1976 911 F/G-series 2.0,2.2,2.4,2.7 L; early-911 comparison only",
+      "component": "main_crankcase",
+      "parameter": "Published reproduction material and applicability",
+      "value": {
+        "material_family": "magnesium",
+        "model_years": "1968–1976",
+        "displacements_L": [
+          2.0,
+          2.2,
+          2.4,
+          2.7
+        ]
+      },
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-DE-CLASSIC-MAGNESIUM-CRANKCASES-2023"
+      ],
+      "locator": "Article introduction and first model-applicability paragraph",
+      "caveat": "Exact magnesium grade and heat treatment are not published. These early naturally aspirated 911 case applications are not a 930 3.0, 993 M64/60, GT2 or GT1 case specification.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DEO021",
+      "application": "Porsche Classic 2023 early-911 magnesium replacement-crankcase programme",
+      "component": "main_crankcase",
+      "parameter": "Published reproduction casting process",
+      "value": "Sand casting from CAD-based moulds; cores use sand and a resin-containing binder and are destroyed after casting",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-DE-CLASSIC-MAGNESIUM-CRANKCASES-2023"
+      ],
+      "locator": "Section Moderne Fertigung unter strengen Qualitätsvorgaben, casting paragraph",
+      "caveat": "Current reproduction route; do not infer that every historical original case used this supplier/process or assign an undisclosed magnesium grade, porosity limit or minimum wall thickness.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DEO022",
+      "application": "Porsche Classic 2023 early-911 magnesium replacement-crankcase programme",
+      "component": "main_crankcase",
+      "parameter": "Published machining route",
+      "value": {
+        "machine": "five-axis CNC",
+        "tool_count": "more than 50 cutting, drilling and milling tools"
+      },
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-DE-CLASSIC-MAGNESIUM-CRANKCASES-2023"
+      ],
+      "locator": "Section Moderne Fertigung unter strengen Qualitätsvorgaben, machining paragraph",
+      "caveat": "Published manufacturing route, not a machining programme, tool diameter, datum definition or production tolerance.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DEO023",
+      "application": "Porsche Classic 2023 early-911 magnesium replacement-crankcase programme",
+      "component": "main_crankcase",
+      "parameter": "Example material removal at milled surfaces",
+      "value": {
+        "approximate_min_mm": 3,
+        "approximate_max_mm": 4
+      },
+      "unit": "mm",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-DE-CLASSIC-MAGNESIUM-CRANKCASES-2023"
+      ],
+      "locator": "Section Moderne Fertigung unter strengen Qualitätsvorgaben, machining paragraph",
+      "caveat": "This is approximate machining stock removed at example milled surfaces. It is not finished case-wall thickness, total casting thickness or a permission to remove 3–4 mm from an existing 993 component.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DEO024",
+      "application": "Porsche Classic 2023 early-911 magnesium replacement-crankcase programme",
+      "component": "main_crankcase",
+      "parameter": "Published dimensional-inspection scope",
+      "value": "Individual inspection using 3D probing and comparison on a 3D coordinate measuring machine; complete inspection covers more than 1300 control dimensions",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-DE-CLASSIC-MAGNESIUM-CRANKCASES-2023"
+      ],
+      "locator": "Section Moderne Fertigung unter strengen Qualitätsvorgaben, quality-control paragraph",
+      "caveat": "No individual coordinate, tolerance, inspection report or full drawing is released; the number of checks does not itself qualify an independently reproduced part.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DEO025",
+      "application": "Porsche Classic 2023 early-911 magnesium replacement-crankcase programme; Carrera RS 2.7 prototype",
+      "component": "main_crankcase",
+      "parameter": "Published prototype-validation programme",
+      "value": "A Carrera RS 2.7 prototype engine underwent multi-week dynamometer testing with defined loads and engine speeds, oil-particle checks, full teardown and separate crankcase-half inspection at Weissach",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-DE-CLASSIC-MAGNESIUM-CRANKCASES-2023"
+      ],
+      "locator": "Section Moderne Fertigung unter strengen Qualitätsvorgaben, prototype-test paragraph",
+      "caveat": "The source gives no full load spectrum, hours, temperatures, fatigue limits or measurement results. This factory test is not qualification of a 993 Turbo part or of any user-made case.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DEO026",
+      "application": "Porsche Classic early-911 replacement-crankcase programme",
+      "component": "main_crankcase",
+      "parameter": "Published reproduction revision-traceability policy",
+      "value": "Reproductions follow the last mature historical series revision; raw-part numbers identify that revision and purchased-part numbers are also marked",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-PORSCHE-DE-CLASSIC-MAGNESIUM-CRANKCASES-2023"
+      ],
+      "locator": "Paragraph beginning Bei einer solchen Nachfertigung...",
+      "caveat": "Describes Porsche Classic traceability; it does not reveal CAD geometry, exact alloy chemistry, a specific 993 part revision or an equivalence certificate.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-R001",
+      "application": "911 Carrera RSR Turbo 2.1, factory racing version, 1974",
+      "component": "engine",
+      "parameter": "historical_displacement_and_power",
+      "value": {
+        "displacement_L": 2.1,
+        "power_kW": 368,
+        "power_PS": 500
+      },
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-TURBO-MOTORSPORT"
+      ],
+      "locator": "Section Nach der Initialzündung: Siegeszug der Idee „Turbo“ im Porsche 911, paragraph on Carrera RSR Turbo 2.1",
+      "caveat": "Rounded displacement and historical output; no power-peak rpm, boost pressure or alloy grade is specified.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-R002",
+      "application": "911 Carrera RSR Turbo 2.1, factory racing version, 1974",
+      "component": "charge_air_cooling",
+      "parameter": "intercooler_presence",
+      "value": true,
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-TURBO-MOTORSPORT"
+      ],
+      "locator": "Section Nach der Initialzündung: Siegeszug der Idee „Turbo“ im Porsche 911, paragraph on Carrera RSR Turbo 2.1",
+      "caveat": "Factory says charge-air cooling is fitted; cooler material, type, dimensions, effectiveness and outlet temperature are not established.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-R003",
+      "application": "911 Turbo IMSA Supercar, Hans-Joachim Stuck championship version, 1993",
+      "component": "engine",
+      "parameter": "historical_displacement_turbo_count_and_power",
+      "value": {
+        "displacement_L": 3.6,
+        "turbocharger_count": 1,
+        "power_kW": 272,
+        "power_PS": 370
+      },
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-TURBO-MOTORSPORT"
+      ],
+      "locator": "Section Vom 911 Turbo 3.3 bis zum 911 GT2 RS: Einzel-Exoten und Breitensport, opening paragraph",
+      "caveat": "Specific IMSA historical version, not the 993 Turbo biturbo or a rated output for every 964 Turbo 3.6.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-R004",
+      "application": "911 Turbo S Le Mans GT, factory GT racing version, 1993",
+      "component": "engine",
+      "parameter": "historical_displacement_turbo_count_and_restricted_power",
+      "value": {
+        "displacement_L": 3.16,
+        "turbocharger_count": 2,
+        "power_kW": 353,
+        "power_PS": 480,
+        "air_intake_restrictors": "required by racing regulations"
+      },
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-TURBO-MOTORSPORT"
+      ],
+      "locator": "Section Vom 911 Turbo 3.3 bis zum 911 GT2 RS: Einzel-Exoten und Breitensport, paragraph beginning Während der Elfer für die IMSA",
+      "caveat": "Restrictor diameter, boost pressure and peak rpm are not given. Distinct from road Turbo S and later 993 GT2.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-R005",
+      "application": "993 911 GT2, initial 1995 racing version",
+      "component": "engine",
+      "parameter": "historical_displacement_and_power",
+      "value": {
+        "displacement_L": 3.6,
+        "turbocharger_count": 2,
+        "power_kW": 331,
+        "power_PS": 450
+      },
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-TURBO-MOTORSPORT"
+      ],
+      "locator": "Section Vom 911 Turbo 3.3 bis zum 911 GT2 RS: Einzel-Exoten und Breitensport, paragraph beginning Im Jahr 1995",
+      "caveat": "Describes initial racing output, not the road GT2 M64/60R output and not all later race evolutions.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-R006",
+      "application": "993 911 GT2 Evo, final racing development stages described by Porsche",
+      "component": "engine",
+      "parameter": "historical_displacement_and_maximum_power",
+      "value": {
+        "displacement_L": 3.8,
+        "power_kW_up_to": 515,
+        "power_PS_up_to": 700
+      },
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-TURBO-MOTORSPORT"
+      ],
+      "locator": "Section Vom 911 Turbo 3.3 bis zum 911 GT2 RS: Einzel-Exoten und Breitensport, paragraph beginning Im Jahr 1995",
+      "caveat": "Factory retrospective explicitly assigns 3.8 L and up to 700 PS to latest development stages; it does not establish one engine-code suffix, exact build year, boost, restrictors or connecting-rod alloy.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-R007",
+      "application": "911 GT1, factory competition version, 1996",
+      "component": "engine",
+      "parameter": "configuration_cooling_displacement_and_power",
+      "value": {
+        "architecture": "six-cylinder boxer",
+        "displacement_L": 3.2,
+        "turbocharger_count": 2,
+        "cooling": "fully water-cooled",
+        "position": "ahead of rear axle",
+        "power_kW": 441,
+        "power_PS": 600
+      },
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-TURBO-MOTORSPORT"
+      ],
+      "locator": "Section Die Evolution geht weiter: Wasserkühlung, Motor vor der Hinterachse",
+      "caveat": "Historical factory race configuration, not museum Zakspeed 1998 rating of 404 kW and not a road GT1 rating. No exact alloy is given.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-R008",
+      "application": "962 Dauer Le Mans GT, competition version, 1994",
+      "component": "engine",
+      "parameter": "restricted_power_and_displacement",
+      "value": {
+        "displacement_L": 3.0,
+        "turbocharger_count": 2,
+        "power_kW": 500,
+        "power_PS": 680,
+        "air_intake_restrictors": "required by racing regulations"
+      },
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-TURBO-MOTORSPORT"
+      ],
+      "locator": "Section Rekordsieger: die Prototypen 956, 962 IMSA und 962 C, final paragraph",
+      "caveat": "Restricted Le Mans competition output; not an unrestricted Dauer road-car engine rating and not all 962C engines.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-R009",
+      "application": "Porsche 961, race derivative of 959, Le Mans 1986",
+      "component": "engine",
+      "parameter": "historical_power",
+      "value": {
+        "power_kW_approx": 500,
+        "power_PS_approx": 680
+      },
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-TURBO-MOTORSPORT"
+      ],
+      "locator": "Section Porsche 959: Erfolg in der Wüste und in Le Mans, final sentences",
+      "caveat": "Factory describes approximate output for the 961 race derivative; not the 400 PS Dakar or 450 PS road 959 rating.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-R010",
+      "application": "935/78 Moby Dick, 1978",
+      "component": "cylinders_and_cylinder_heads",
+      "parameter": "separate_cooling_media_and_head_valve_architecture",
+      "value": {
+        "cylinders": "air-cooled",
+        "cylinder_heads": "water-cooled",
+        "valves_per_cylinder": 4
+      },
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-HERITAGE-935-2026"
+      ],
+      "locator": "Main article, paragraph beginning Als Singer im Herbst 1977, technical foundation of the fourth episode",
+      "caveat": "Explicitly separates cooling of cylinders and heads. Does not support labelling the complete 935/78 engine fully water-cooled or assigning an alloy grade.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-DE-R011",
+      "application": "935/77, factory racing evolution of 1976 935",
+      "component": "turbochargers",
+      "parameter": "reason_for_two_smaller_turbochargers",
+      "value": "Two smaller turbochargers replaced the large single turbo to respond faster, reduce turbo lag and improve power controllability.",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-HERITAGE-935-2026"
+      ],
+      "locator": "Section describing second episode and the 1977 evolution, paragraph beginning In der zweiten Episode",
+      "caveat": "Engineering recollection attributed to Norbert Singer; does not specify compressor maps, rotor dimensions, inertia, speed or a measured transient response time.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-R012",
+      "application": "935 Baby, 1.4 L racing version, 1977, retrospective driving account",
+      "component": "engine",
+      "parameter": "reported_response_transition_speed",
+      "value": {
+        "transition_engine_rpm_approx": 5000,
+        "below": "restrained response",
+        "above": "abrupt strong response"
+      },
+      "unit": "",
+      "evidence_status": "factory_retrospective_driver_account",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-HERITAGE-935-2026"
+      ],
+      "locator": "Section describing third episode, paragraph beginning Die dritte Episode",
+      "caveat": "Driver description attributed to Timo Bernhard; not a dyno measurement, turbo-shaft speed, peak-power rpm or engine rev limit.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-R013",
+      "application": "959 road six-cylinder biturbo engine shown as IAA cutaway",
+      "component": "engine_block",
+      "parameter": "material_and_manufacturing_family",
+      "value": {
+        "material_family": "aluminium alloy",
+        "manufacturing_family": "casting"
+      },
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-959-CAST-BLOCK"
+      ],
+      "locator": "Main technical paragraph beginning Der Block des Sechszylinder-Biturbo-Boxers",
+      "caveat": "German factory source explicitly says the block is cast from aluminium alloy. Exact alloy designation, casting method subtype, heat treatment and wall thickness are not given. Does not apply to 993 M64/60.",
+      "training_eligibility": "eligible"
+    },
+    {
+      "id": "MEZGER-DE-R014",
+      "application": "959 Paris-Dakar, restored second-place vehicle from 1986 rally",
+      "component": "engine",
+      "parameter": "reason_for_reduced_output",
+      "value": {
+        "power_kW": 294,
+        "power_PS": 400,
+        "reason": "low fuel quality"
+      },
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-959-DAKAR-RESTORATION"
+      ],
+      "locator": "Section Überarbeitung: Die Geschichte des Fahrzeugs authentisch erzählen, opening paragraph",
+      "caveat": "Factory links lower output to fuel quality. Fuel octane, fuel formulation, ignition map, boost pressure and injection calibration are not disclosed.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-R015",
+      "application": "959 Paris-Dakar, rally adaptations, 1980s",
+      "component": "engine_management_units",
+      "parameter": "installation_height_reason",
+      "value": "Engine control units were mounted high to reduce damage during river crossings.",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-959-DAKAR-RESTORATION"
+      ],
+      "locator": "Section Überarbeitung: Die Geschichte des Fahrzeugs authentisch erzählen, paragraph beginning Für die harte Distanz",
+      "caveat": "Rally packaging adaptation; source supplies no mounting coordinates, protection class, enclosure alloy or circuit specification.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-R016",
+      "application": "959 Paris-Dakar, rally adaptations, 1980s",
+      "component": "oil_cooling",
+      "parameter": "location_and_rally_preparation",
+      "value": "Oil coolers and oil lines beneath the rear fenders were prepared for rally conditions.",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-959-DAKAR-RESTORATION"
+      ],
+      "locator": "Section Überarbeitung: Die Geschichte des Fahrzeugs authentisch erzählen, paragraph beginning Für die harte Distanz",
+      "caveat": "Rear-fender location is stated. Cooler core geometry, material, tube wall thickness, oil pressure, capacity and temperature are not specified.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-R017",
+      "application": "956/962 Group C PDK experiments beginning autumn 1984, mature system from 1987",
+      "component": "turbochargers_and_transmission",
+      "parameter": "qualitative_speed_retention_during_shifts",
+      "value": "Very fast PDK shifts without interrupting drive torque kept turbochargers at high rotational speed.",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-TURBO-MOTORSPORT"
+      ],
+      "locator": "Section Rekordsieger: die Prototypen 956, 962 IMSA und 962 C, paragraph on Motronic, recording and PDK",
+      "caveat": "Qualitative statement only; no turbo-shaft rpm value, shaft inertia or shift time is supplied. Not a 993 manual-transmission operating condition.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-R018",
+      "application": "Type 935 and 936 six-cylinder turbo racing-engine development, 1977–1978",
+      "component": "cylinder_heads",
+      "parameter": "factory_engineering_chronology",
+      "value": "Hans Mezger developed water cooling and the four-valve concept for the type 935 and 936 six-cylinder turbo engines during 1977–1978.",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-MEZGER-BIOGRAPHY"
+      ],
+      "locator": "Section Karriere und Highlights bei Porsche, 1977–1978 entry",
+      "caveat": "Chronology establishes design lineage, not that all 935/936 versions are water-cooled or share identical heads, materials or component dimensions.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-R019",
+      "application": "956/962 Group C 2.65 L engine development, 1981–1982",
+      "component": "engine",
+      "parameter": "factory_documented_development_basis",
+      "value": "The 2.65 L Group C engine for 956/962 was developed on the basis of type 935/936 engines.",
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-MEZGER-BIOGRAPHY"
+      ],
+      "locator": "Section Karriere und Highlights bei Porsche, 1981–1982 entry",
+      "caveat": "Factory lineage statement; does not prove interchangeability, identical alloys or dimensions, and does not cover every later 962 displacement.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-R020",
+      "application": "TAG-Turbo Formula 1 engine designed by Hans Mezger for McLaren, 1981–1987",
+      "component": "engine",
+      "parameter": "architecture_displacement_and_bank_angle",
+      "value": {
+        "architecture": "V6",
+        "displacement_L": 1.5,
+        "bank_angle_deg": 80
+      },
+      "unit": "",
+      "evidence_status": "factory_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-MEZGER-BIOGRAPHY"
+      ],
+      "locator": "Section Vom 917 bis zum TAG-Turbo für die Formel 1, paragraph beginning Doch das wohl herausragendste Projekt",
+      "caveat": "A separate Hans Mezger-designed racing engine, not a 911 boxer/Mezger flat-six derivative. This source gives no exact alloys, metal thickness or compressor map.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M001",
+      "application": "Rheinfelden RR350 / Alufont-60 casting alloy; generic grade reference for Xtreme aftermarket RR350 claim",
+      "component": "head_casting_material",
+      "parameter": "supplier names for RR350",
+      "value": [
+        "RR350",
+        "Alufont-60",
+        "AlCu5NiCoSbZr"
+      ],
+      "unit": "",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-SDS",
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "locator": "SDS PDF p.1 §1.1; basis-data PDF p.2 Alufont-60 row",
+      "caveat": "These are Rheinfelden published grade data, not a certificate for any Xtreme casting heat or proof of original Porsche M64/60 material. The Xtreme RR350 claim remains separately sourced in MEZGER-M026.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M002",
+      "application": "Rheinfelden RR350 / Alufont-60 casting alloy; generic grade reference for Xtreme aftermarket RR350 claim",
+      "component": "head_casting_material",
+      "parameter": "copper composition range",
+      "value": [
+        4.5,
+        5.2
+      ],
+      "unit": "mass percent",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "locator": "PDF p.2, Chemical compositions table, Alufont-60 row; table visually reviewed",
+      "caveat": "These are Rheinfelden published grade data, not a certificate for any Xtreme casting heat or proof of original Porsche M64/60 material. The Xtreme RR350 claim remains separately sourced in MEZGER-M026.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M003",
+      "application": "Rheinfelden RR350 / Alufont-60 casting alloy; generic grade reference for Xtreme aftermarket RR350 claim",
+      "component": "head_casting_material",
+      "parameter": "nickel composition range",
+      "value": [
+        1.3,
+        1.7
+      ],
+      "unit": "mass percent",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "locator": "PDF p.2, Chemical compositions table, Alufont-60 row; table visually reviewed",
+      "caveat": "These are Rheinfelden published grade data, not a certificate for any Xtreme casting heat or proof of original Porsche M64/60 material. The Xtreme RR350 claim remains separately sourced in MEZGER-M026.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M004",
+      "application": "Rheinfelden RR350 / Alufont-60 casting alloy; generic grade reference for Xtreme aftermarket RR350 claim",
+      "component": "head_casting_material",
+      "parameter": "cobalt composition range",
+      "value": [
+        0.1,
+        0.4
+      ],
+      "unit": "mass percent",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "locator": "PDF p.2, Chemical compositions table, Alufont-60 row; table visually reviewed",
+      "caveat": "These are Rheinfelden published grade data, not a certificate for any Xtreme casting heat or proof of original Porsche M64/60 material. The Xtreme RR350 claim remains separately sourced in MEZGER-M026.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M005",
+      "application": "Rheinfelden RR350 / Alufont-60 casting alloy; generic grade reference for Xtreme aftermarket RR350 claim",
+      "component": "head_casting_material",
+      "parameter": "titanium composition range",
+      "value": [
+        0.15,
+        0.3
+      ],
+      "unit": "mass percent",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "locator": "PDF p.2, Chemical compositions table, Alufont-60 row; table visually reviewed",
+      "caveat": "These are Rheinfelden published grade data, not a certificate for any Xtreme casting heat or proof of original Porsche M64/60 material. The Xtreme RR350 claim remains separately sourced in MEZGER-M026.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M006",
+      "application": "Rheinfelden RR350 / Alufont-60 casting alloy; generic grade reference for Xtreme aftermarket RR350 claim",
+      "component": "head_casting_material",
+      "parameter": "manganese composition range",
+      "value": [
+        0.1,
+        0.3
+      ],
+      "unit": "mass percent",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "locator": "PDF p.2, Chemical compositions table, Alufont-60 row; table visually reviewed",
+      "caveat": "These are Rheinfelden published grade data, not a certificate for any Xtreme casting heat or proof of original Porsche M64/60 material. The Xtreme RR350 claim remains separately sourced in MEZGER-M026.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M007",
+      "application": "Rheinfelden RR350 / Alufont-60 casting alloy; generic grade reference for Xtreme aftermarket RR350 claim",
+      "component": "head_casting_material",
+      "parameter": "zirconium and antimony table entry",
+      "value": {
+        "range": [
+          0.1,
+          0.3
+        ],
+        "element_label": "Zr & Sb"
+      },
+      "unit": "mass percent",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "locator": "PDF p.2, Chemical compositions table, Alufont-60 row; table visually reviewed",
+      "caveat": "These are Rheinfelden published grade data, not a certificate for any Xtreme casting heat or proof of original Porsche M64/60 material. The Xtreme RR350 claim remains separately sourced in MEZGER-M026. The joint label does not resolve whether the stated range is individual or combined; do not infer a sum or separate limits.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M008",
+      "application": "Rheinfelden RR350 / Alufont-60 casting alloy; generic grade reference for Xtreme aftermarket RR350 claim",
+      "component": "head_casting_material",
+      "parameter": "silicon maximum content",
+      "value": 0.2,
+      "unit": "mass percent",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "locator": "PDF p.2, Chemical compositions table, Alufont-60 row; table visually reviewed",
+      "caveat": "These are Rheinfelden published grade data, not a certificate for any Xtreme casting heat or proof of original Porsche M64/60 material. The Xtreme RR350 claim remains separately sourced in MEZGER-M026. The table introductory text defines single values as maximum contents, not nominal concentrations.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M009",
+      "application": "Rheinfelden RR350 / Alufont-60 casting alloy; generic grade reference for Xtreme aftermarket RR350 claim",
+      "component": "head_casting_material",
+      "parameter": "iron maximum content",
+      "value": 0.3,
+      "unit": "mass percent",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "locator": "PDF p.2, Chemical compositions table, Alufont-60 row; table visually reviewed",
+      "caveat": "These are Rheinfelden published grade data, not a certificate for any Xtreme casting heat or proof of original Porsche M64/60 material. The Xtreme RR350 claim remains separately sourced in MEZGER-M026. The table introductory text defines single values as maximum contents, not nominal concentrations.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M010",
+      "application": "Rheinfelden RR350 / Alufont-60 casting alloy; generic grade reference for Xtreme aftermarket RR350 claim",
+      "component": "head_casting_material",
+      "parameter": "magnesium maximum content",
+      "value": 0.1,
+      "unit": "mass percent",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "locator": "PDF p.2, Chemical compositions table, Alufont-60 row; table visually reviewed",
+      "caveat": "These are Rheinfelden published grade data, not a certificate for any Xtreme casting heat or proof of original Porsche M64/60 material. The Xtreme RR350 claim remains separately sourced in MEZGER-M026. The table introductory text defines single values as maximum contents, not nominal concentrations.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M011",
+      "application": "Rheinfelden RR350 / Alufont-60 casting alloy; generic grade reference for Xtreme aftermarket RR350 claim",
+      "component": "head_casting_material",
+      "parameter": "zinc maximum content",
+      "value": 0.1,
+      "unit": "mass percent",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "locator": "PDF p.2, Chemical compositions table, Alufont-60 row; table visually reviewed",
+      "caveat": "These are Rheinfelden published grade data, not a certificate for any Xtreme casting heat or proof of original Porsche M64/60 material. The Xtreme RR350 claim remains separately sourced in MEZGER-M026. The table introductory text defines single values as maximum contents, not nominal concentrations.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M012",
+      "application": "Rheinfelden RR350 / Alufont-60 casting alloy; generic grade reference for Xtreme aftermarket RR350 claim",
+      "component": "head_casting_material",
+      "parameter": "T7 solution treatment temperature",
+      "value": [
+        535,
+        545
+      ],
+      "unit": "degC",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "locator": "PDF p.4, Heat treatment table, Alufont-60 T7 row",
+      "caveat": "These are Rheinfelden published grade data, not a certificate for any Xtreme casting heat or proof of original Porsche M64/60 material. The Xtreme RR350 claim remains separately sourced in MEZGER-M026. Generic supplier heat-treatment guidance; no Xtreme or Porsche heat-treatment recipe is established. The AlCu thickness and casting-process qualifications in the adjacent introductory text must accompany application of the table.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M013",
+      "application": "Rheinfelden RR350 / Alufont-60 casting alloy; generic grade reference for Xtreme aftermarket RR350 claim",
+      "component": "head_casting_material",
+      "parameter": "T7 solution treatment hold duration",
+      "value": [
+        10,
+        15
+      ],
+      "unit": "h",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "locator": "PDF p.4, Heat treatment table, Alufont-60 T7 row",
+      "caveat": "These are Rheinfelden published grade data, not a certificate for any Xtreme casting heat or proof of original Porsche M64/60 material. The Xtreme RR350 claim remains separately sourced in MEZGER-M026. Generic supplier heat-treatment guidance; no Xtreme or Porsche heat-treatment recipe is established. The AlCu thickness and casting-process qualifications in the adjacent introductory text must accompany application of the table.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M014",
+      "application": "Rheinfelden RR350 / Alufont-60 casting alloy; generic grade reference for Xtreme aftermarket RR350 claim",
+      "component": "head_casting_material",
+      "parameter": "T7 water quench temperature",
+      "value": 80,
+      "unit": "degC",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "locator": "PDF p.4, Heat treatment table, Alufont-60 T7 row",
+      "caveat": "These are Rheinfelden published grade data, not a certificate for any Xtreme casting heat or proof of original Porsche M64/60 material. The Xtreme RR350 claim remains separately sourced in MEZGER-M026. Generic supplier heat-treatment guidance; no Xtreme or Porsche heat-treatment recipe is established. The AlCu thickness and casting-process qualifications in the adjacent introductory text must accompany application of the table.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M015",
+      "application": "Rheinfelden RR350 / Alufont-60 casting alloy; generic grade reference for Xtreme aftermarket RR350 claim",
+      "component": "head_casting_material",
+      "parameter": "T7 ageing temperature",
+      "value": [
+        210,
+        220
+      ],
+      "unit": "degC",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "locator": "PDF p.4, Heat treatment table, Alufont-60 T7 row",
+      "caveat": "These are Rheinfelden published grade data, not a certificate for any Xtreme casting heat or proof of original Porsche M64/60 material. The Xtreme RR350 claim remains separately sourced in MEZGER-M026. Generic supplier heat-treatment guidance; no Xtreme or Porsche heat-treatment recipe is established. The AlCu thickness and casting-process qualifications in the adjacent introductory text must accompany application of the table.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M016",
+      "application": "Rheinfelden RR350 / Alufont-60 casting alloy; generic grade reference for Xtreme aftermarket RR350 claim",
+      "component": "head_casting_material",
+      "parameter": "T7 ageing duration",
+      "value": [
+        12,
+        16
+      ],
+      "unit": "h",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "locator": "PDF p.4, Heat treatment table, Alufont-60 T7 row",
+      "caveat": "These are Rheinfelden published grade data, not a certificate for any Xtreme casting heat or proof of original Porsche M64/60 material. The Xtreme RR350 claim remains separately sourced in MEZGER-M026. Generic supplier heat-treatment guidance; no Xtreme or Porsche heat-treatment recipe is established. The AlCu thickness and casting-process qualifications in the adjacent introductory text must accompany application of the table.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M017",
+      "application": "Rheinfelden RR350 / Alufont-60 casting alloy; generic grade reference for Xtreme aftermarket RR350 claim",
+      "component": "head_casting_material",
+      "parameter": "wall-thickness scope of AlCu solution-treatment table",
+      "value": 8,
+      "unit": "mm maximum",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "locator": "PDF p.4, introductory Heat treatment paragraph",
+      "caveat": "These are Rheinfelden published grade data, not a certificate for any Xtreme casting heat or proof of original Porsche M64/60 material. The Xtreme RR350 claim remains separately sourced in MEZGER-M026. This is the applicability threshold for generic AlCu heat-treatment guidance, not a measured Porsche or Xtreme head wall thickness. The text assigns shorter holds to permanent-mould castings and longer holds to sand castings; thicker castings are given a separate 10 degC lower, 12–18 h general rule.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M018",
+      "application": "Rheinfelden RR350 / Alufont-60 casting alloy; generic grade reference for Xtreme aftermarket RR350 claim",
+      "component": "head_casting_material",
+      "parameter": "supplier creep-resistance temperature statement",
+      "value": 200,
+      "unit": "degC",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-PRODUCT"
+      ],
+      "locator": "Alufont-60 section, Characteristic properties",
+      "caveat": "These are Rheinfelden published grade data, not a certificate for any Xtreme casting heat or proof of original Porsche M64/60 material. The Xtreme RR350 claim remains separately sourced in MEZGER-M026. The supplier describes good creep resistance up to this temperature; this is not a validated cylinder-head metal-temperature limit or a stress-dependent creep curve.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M019",
+      "application": "Rheinfelden RR350 / Alufont-60 casting alloy; generic grade reference for Xtreme aftermarket RR350 claim",
+      "component": "head_casting_material",
+      "parameter": "sand-cast T7 0.2 percent proof stress",
+      "value": {
+        "published_range": [
+          145,
+          165
+        ],
+        "parenthetical_value": 140
+      },
+      "unit": "N/mm2",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-PRODUCT"
+      ],
+      "locator": "Alufont-60 Mechanical properties table, Sandguss T7 row",
+      "caveat": "These are Rheinfelden published grade data, not a certificate for any Xtreme casting heat or proof of original Porsche M64/60 material. The Xtreme RR350 claim remains separately sourced in MEZGER-M026. Preserve the sand-cast T7 condition and the parenthetical figure. The retrieved webpage does not explain the parenthetical convention or test temperature; do not call it a guaranteed actual-part minimum, an elevated-temperature value or an Xtreme investment-cast/HIP property.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M020",
+      "application": "Rheinfelden RR350 / Alufont-60 casting alloy; generic grade reference for Xtreme aftermarket RR350 claim",
+      "component": "head_casting_material",
+      "parameter": "sand-cast T7 tensile strength",
+      "value": {
+        "published_range": [
+          180,
+          220
+        ],
+        "parenthetical_value": 180
+      },
+      "unit": "N/mm2",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-PRODUCT"
+      ],
+      "locator": "Alufont-60 Mechanical properties table, Sandguss T7 row",
+      "caveat": "These are Rheinfelden published grade data, not a certificate for any Xtreme casting heat or proof of original Porsche M64/60 material. The Xtreme RR350 claim remains separately sourced in MEZGER-M026. Preserve the sand-cast T7 condition and the parenthetical figure. The retrieved webpage does not explain the parenthetical convention or test temperature; do not call it a guaranteed actual-part minimum, an elevated-temperature value or an Xtreme investment-cast/HIP property.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M021",
+      "application": "Rheinfelden RR350 / Alufont-60 casting alloy; generic grade reference for Xtreme aftermarket RR350 claim",
+      "component": "head_casting_material",
+      "parameter": "sand-cast T7 elongation",
+      "value": {
+        "published_range": [
+          1,
+          1.5
+        ],
+        "parenthetical_value": 1
+      },
+      "unit": "percent",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-PRODUCT"
+      ],
+      "locator": "Alufont-60 Mechanical properties table, Sandguss T7 row",
+      "caveat": "These are Rheinfelden published grade data, not a certificate for any Xtreme casting heat or proof of original Porsche M64/60 material. The Xtreme RR350 claim remains separately sourced in MEZGER-M026. Preserve the sand-cast T7 condition and the parenthetical figure. The retrieved webpage does not explain the parenthetical convention or test temperature; do not call it a guaranteed actual-part minimum, an elevated-temperature value or an Xtreme investment-cast/HIP property.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M022",
+      "application": "Rheinfelden RR350 / Alufont-60 casting alloy; generic grade reference for Xtreme aftermarket RR350 claim",
+      "component": "head_casting_material",
+      "parameter": "sand-cast T7 Brinell hardness",
+      "value": {
+        "published_range": [
+          85,
+          95
+        ],
+        "parenthetical_value": 85
+      },
+      "unit": "HBW",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-PRODUCT"
+      ],
+      "locator": "Alufont-60 Mechanical properties table, Sandguss T7 row",
+      "caveat": "These are Rheinfelden published grade data, not a certificate for any Xtreme casting heat or proof of original Porsche M64/60 material. The Xtreme RR350 claim remains separately sourced in MEZGER-M026. Preserve the sand-cast T7 condition and the parenthetical figure. The retrieved webpage does not explain the parenthetical convention or test temperature; do not call it a guaranteed actual-part minimum, an elevated-temperature value or an Xtreme investment-cast/HIP property.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M023",
+      "application": "Smiths High Performance 2618A to DTD 5014 / 5014A; generic stock material for motorsport",
+      "component": "piston_or_compressor_stock_material",
+      "parameter": "copper composition range",
+      "value": [
+        1.8,
+        2.7
+      ],
+      "unit": "mass percent",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-2618A"
+      ],
+      "locator": "PDF p.2, Chemical composition for DTD 5014 table",
+      "caveat": "No source establishes that a MAHLE PP102-012N piston or a MAMBATEK wheel uses this exact 2618A stock specification, temper, chemistry or thickness category. Do not equate the documented 2618A supplier grade with every product advertised as 2618.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M024",
+      "application": "Smiths High Performance 2618A to DTD 5014 / 5014A; generic stock material for motorsport",
+      "component": "piston_or_compressor_stock_material",
+      "parameter": "magnesium composition range",
+      "value": [
+        1.2,
+        1.8
+      ],
+      "unit": "mass percent",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-2618A"
+      ],
+      "locator": "PDF p.2, Chemical composition for DTD 5014 table",
+      "caveat": "No source establishes that a MAHLE PP102-012N piston or a MAMBATEK wheel uses this exact 2618A stock specification, temper, chemistry or thickness category. Do not equate the documented 2618A supplier grade with every product advertised as 2618.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M025",
+      "application": "Smiths High Performance 2618A to DTD 5014 / 5014A; generic stock material for motorsport",
+      "component": "piston_or_compressor_stock_material",
+      "parameter": "nickel composition range",
+      "value": [
+        0.8,
+        1.4
+      ],
+      "unit": "mass percent",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-2618A"
+      ],
+      "locator": "PDF p.2, Chemical composition for DTD 5014 table",
+      "caveat": "No source establishes that a MAHLE PP102-012N piston or a MAMBATEK wheel uses this exact 2618A stock specification, temper, chemistry or thickness category. Do not equate the documented 2618A supplier grade with every product advertised as 2618.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M026",
+      "application": "Smiths High Performance 2618A to DTD 5014 / 5014A; generic stock material for motorsport",
+      "component": "piston_or_compressor_stock_material",
+      "parameter": "iron composition range",
+      "value": [
+        0.9,
+        1.4
+      ],
+      "unit": "mass percent",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-2618A"
+      ],
+      "locator": "PDF p.2, Chemical composition for DTD 5014 table",
+      "caveat": "No source establishes that a MAHLE PP102-012N piston or a MAMBATEK wheel uses this exact 2618A stock specification, temper, chemistry or thickness category. Do not equate the documented 2618A supplier grade with every product advertised as 2618.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M027",
+      "application": "Smiths High Performance 2618A to DTD 5014 / 5014A; generic stock material for motorsport",
+      "component": "piston_or_compressor_stock_material",
+      "parameter": "composition maximum limits",
+      "value": {
+        "Si": 0.25,
+        "Mn": 0.2,
+        "Zn": 0.1,
+        "Ti_plus_Zr": 0.2,
+        "Pb": 0.05,
+        "Sn": 0.05
+      },
+      "unit": "mass percent",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-2618A"
+      ],
+      "locator": "PDF p.2, Chemical composition for DTD 5014 table",
+      "caveat": "No source establishes that a MAHLE PP102-012N piston or a MAMBATEK wheel uses this exact 2618A stock specification, temper, chemistry or thickness category. Do not equate the documented 2618A supplier grade with every product advertised as 2618. Aluminium is shown as remainder; Ti+Zr is a combined limit. These are maxima, not measured contents.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M028",
+      "application": "Smiths High Performance 2618A to DTD 5014 / 5014A; generic stock material for motorsport",
+      "component": "piston_or_compressor_stock_material",
+      "parameter": "T6 bar/section minimum mechanical properties",
+      "value": {
+        "stock_dimension_scope": {
+          "maximum_mm": 10
+        },
+        "proof_stress_0_2_percent_MPa": 320,
+        "ultimate_tensile_strength_MPa": 400,
+        "elongation_percent_on_50mm": 5
+      },
+      "unit": "",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-2618A"
+      ],
+      "locator": "PDF p.2, Mechanical properties table, T6 Bar/Sections, DTD 5014A",
+      "caveat": "No source establishes that a MAHLE PP102-012N piston or a MAMBATEK wheel uses this exact 2618A stock specification, temper, chemistry or thickness category. Do not equate the documented 2618A supplier grade with every product advertised as 2618. These values concern stock bar/sections. The thickness column is not a piston crown, a compressor blade or finished engine-part thickness.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M029",
+      "application": "Smiths High Performance 2618A to DTD 5014 / 5014A; generic stock material for motorsport",
+      "component": "piston_or_compressor_stock_material",
+      "parameter": "T6 bar/section minimum mechanical properties",
+      "value": {
+        "stock_dimension_scope": {
+          "minimum_exclusive_mm": 10,
+          "maximum_mm": 100
+        },
+        "proof_stress_0_2_percent_MPa": 340,
+        "ultimate_tensile_strength_MPa": 420,
+        "elongation_percent_on_50mm": 7
+      },
+      "unit": "",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-2618A"
+      ],
+      "locator": "PDF p.2, Mechanical properties table, T6 Bar/Sections, DTD 5014A",
+      "caveat": "No source establishes that a MAHLE PP102-012N piston or a MAMBATEK wheel uses this exact 2618A stock specification, temper, chemistry or thickness category. Do not equate the documented 2618A supplier grade with every product advertised as 2618. These values concern stock bar/sections. The thickness column is not a piston crown, a compressor blade or finished engine-part thickness.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M030",
+      "application": "Smiths High Performance 2618A to DTD 5014 / 5014A; generic stock material for motorsport",
+      "component": "piston_or_compressor_stock_material",
+      "parameter": "supplier elevated-temperature service statements",
+      "value": {
+        "mechanical_strength_retention_to_degC": 200,
+        "service_capability_to_degC": 300
+      },
+      "unit": "",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-2618A"
+      ],
+      "locator": "PDF p.1, Supply options paragraph",
+      "caveat": "No source establishes that a MAHLE PP102-012N piston or a MAMBATEK wheel uses this exact 2618A stock specification, temper, chemistry or thickness category. Do not equate the documented 2618A supplier grade with every product advertised as 2618. Narrative supplier statement with no stress, duration, fatigue life or hot-strength curve; 300 degC must not be used as a validated turbo wheel or piston design allowable.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M031",
+      "application": "Generic Ni–SiC plated cylinder technologies (Galnikal/Nikasil) in Motorservice 2006 guide",
+      "component": "cylinder_running_surface",
+      "parameter": "average nickel coating thickness range",
+      "value": [
+        10,
+        50
+      ],
+      "unit": "micrometre",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-MS-ALUMINIUM"
+      ],
+      "locator": "Printed/PDF p.26 §2.4.5, Nickel-plated cylinder surfaces",
+      "caveat": "Generic historical process data; no particular Porsche 993 Turbo, supplier production lot or finished cylinder is named. Do not merge with LN NSC post-honing thickness 101.6–127 micrometres or treat as an OEM acceptance tolerance. The paragraph does not explicitly identify the quoted thickness as a post-honing measurement, per-side repair build-up or a modern process limit.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M032",
+      "application": "Generic Ni–SiC plated cylinder technologies (Galnikal/Nikasil) in Motorservice 2006 guide",
+      "component": "cylinder_running_surface",
+      "parameter": "embedded silicon-carbide volume fraction",
+      "value": [
+        7,
+        10
+      ],
+      "unit": "volume percent",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-MS-ALUMINIUM"
+      ],
+      "locator": "Printed/PDF p.26 §2.4.5",
+      "caveat": "Generic historical process data; no particular Porsche 993 Turbo, supplier production lot or finished cylinder is named. Do not merge with LN NSC post-honing thickness 101.6–127 micrometres or treat as an OEM acceptance tolerance.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M033",
+      "application": "Generic Ni–SiC plated cylinder technologies (Galnikal/Nikasil) in Motorservice 2006 guide",
+      "component": "cylinder_substrate",
+      "parameter": "example compatible aluminium casting substrate",
+      "value": "AlSi9Cu3",
+      "unit": "",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-MS-ALUMINIUM"
+      ],
+      "locator": "Printed/PDF p.26 §2.4.5",
+      "caveat": "Generic historical process data; no particular Porsche 993 Turbo, supplier production lot or finished cylinder is named. Do not merge with LN NSC post-honing thickness 101.6–127 micrometres or treat as an OEM acceptance tolerance. This is an example generic substrate, not an established Porsche M64/60 cylinder or crankcase alloy.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M034",
+      "application": "Generic ALUSIL monolithic cylinder-block technology",
+      "component": "cylinder_substrate",
+      "parameter": "commonly used alloy and nominal silicon content",
+      "value": {
+        "alloy": "AlSi17Cu4Mg",
+        "nominal_silicon_mass_percent": 17
+      },
+      "unit": "",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-MS-ALUMINIUM"
+      ],
+      "locator": "Printed/PDF p.22 §2.4.2",
+      "caveat": "ALUSIL reference only; this does not identify 993 Turbo Nikasil cylinders or its crankcase as AlSi17Cu4Mg.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M035",
+      "application": "Generic ALUSIL monolithic cylinder-block technology",
+      "component": "cylinder_running_surface",
+      "parameter": "primary silicon crystal size range",
+      "value": [
+        20,
+        70
+      ],
+      "unit": "micrometre",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-MS-ALUMINIUM"
+      ],
+      "locator": "Printed/PDF p.22 §2.4.2",
+      "caveat": "Primary silicon crystals in hypereutectic ALUSIL are distinct from 1–3 micrometre SiC particles in nickel coatings. This is not Porsche Nikasil microstructure.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M036",
+      "application": "Motorservice ALUSIL repair sleeve blanks in engines originally using nickel-plated running surfaces",
+      "component": "piston_cylinder_pair",
+      "parameter": "supplier compatibility restriction",
+      "value": "ALUSIL repair blanks are not compatible with the uncoated pistons used with nickel-plated running surfaces; ALUSIL requires an iron-coated piston running partner such as Ferrocoat.",
+      "unit": "",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-MS-BLANKS"
+      ],
+      "locator": "PDF p.1, Caution box",
+      "caveat": "This is the supplier warning for its ALUSIL blanks and piston pairing, not a fully qualified conversion route for a Porsche engine.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M037",
+      "application": "Generic exposed-silicon aluminium cylinder technology in MAHLE machining guide",
+      "component": "cylinder_running_surface",
+      "parameter": "recession depth of soft aluminium during silicon exposure",
+      "value": [
+        0.3,
+        0.7
+      ],
+      "unit": "micrometre",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-MAHLE-HONE"
+      ],
+      "locator": "Printed p.22 / PDF p.24 §2.8.4",
+      "caveat": "This is the local aluminium recession that creates oil-retaining volume between silicon crystals. It is not nickel coating thickness, piston clearance, cylinder wall thickness or a Porsche M64/60 machining specification.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-M038",
+      "application": "Generic monolithic aluminium cylinder-block example in MAHLE machining guide",
+      "component": "cylinder_substrate",
+      "parameter": "supplier material designation",
+      "value": "Hypereutectic Al–Si Silumal; MAHLE material 147",
+      "unit": "",
+      "evidence_status": "manufacturer_or_supplier_generic_material_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-MAHLE-HONE"
+      ],
+      "locator": "Printed p.12 / PDF p.14 §2.2, Monolithic engine block",
+      "caveat": "A general MAHLE technology example, not an identification of the Porsche M64/60 case or its separate Nikasil cylinders; no normalized full chemistry is supplied here.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-T001",
+      "application": "MAMBATEK aftermarket kit 015-2218-2 for Porsche 993 M64.60 K16-6735/6736",
+      "component": "turbocharger",
+      "parameter": "Named donor identifiers",
+      "value": [
+        "5316-970-6735",
+        "5316-970-6736",
+        "5316-988-6735",
+        "5316-988-6736"
+      ],
+      "unit": "",
+      "evidence_status": "supplier_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MAMBA-993-K16-015-2218-2"
+      ],
+      "locator": "Product Information / Application",
+      "caveat": "Supplier-declared aftermarket replacement/upgrade product; not a material certificate or measurement of original Porsche/BorgWarner wheels. The source year span 94~07 is inconsistent with 993 production and is not adopted.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-T002",
+      "application": "MAMBATEK aftermarket kit 015-2218-2 for Porsche 993 M64.60 K16-6735/6736",
+      "component": "compressor_wheel",
+      "parameter": "Declared material and construction",
+      "value": "2618 aluminium billet",
+      "unit": "",
+      "evidence_status": "supplier_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MAMBA-993-K16-015-2218-2"
+      ],
+      "locator": "Product Information / Compressor Wheel",
+      "caveat": "Supplier-declared aftermarket replacement/upgrade product; not a material certificate or measurement of original Porsche/BorgWarner wheels. The source year span 94~07 is inconsistent with 993 production and is not adopted. Temper and billet/forging pedigree are not stated.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-T003",
+      "application": "MAMBATEK aftermarket kit 015-2218-2 for Porsche 993 M64.60 K16-6735/6736",
+      "component": "compressor_wheel",
+      "parameter": "Declared diameters",
+      "value": {
+        "inducer_mm": 40.5,
+        "exducer_mm": 60.5,
+        "extended_tip_od_mm": 64.18
+      },
+      "unit": "mm",
+      "evidence_status": "supplier_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MAMBA-993-K16-015-2218-2"
+      ],
+      "locator": "Product Information / Compressor Wheel",
+      "caveat": "Supplier-declared aftermarket replacement/upgrade product; not a material certificate or measurement of original Porsche/BorgWarner wheels. The source year span 94~07 is inconsistent with 993 production and is not adopted. Extended-tip diameter is a separate datum, not the ordinary 60.5 mm exducer value.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-T004",
+      "application": "MAMBATEK aftermarket kit 015-2218-2 for Porsche 993 M64.60 K16-6735/6736",
+      "component": "compressor_wheel",
+      "parameter": "Blade arrangement",
+      "value": "6+6",
+      "unit": "",
+      "evidence_status": "supplier_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MAMBA-993-K16-015-2218-2"
+      ],
+      "locator": "Product Information / Compressor Wheel",
+      "caveat": "Supplier-declared aftermarket replacement/upgrade product; not a material certificate or measurement of original Porsche/BorgWarner wheels. The source year span 94~07 is inconsistent with 993 production and is not adopted. No blade profile, thickness, hub contour or tolerance supplied.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-T005",
+      "application": "MAMBATEK aftermarket kit 015-2218-2 for Porsche 993 M64.60 K16-6735/6736",
+      "component": "turbine_wheel",
+      "parameter": "Declared alloy",
+      "value": "Inconel 713C",
+      "unit": "",
+      "evidence_status": "supplier_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MAMBA-993-K16-015-2218-2"
+      ],
+      "locator": "Product Information / Turbine wheel",
+      "caveat": "Supplier-declared aftermarket replacement/upgrade product; not a material certificate or measurement of original Porsche/BorgWarner wheels. The source year span 94~07 is inconsistent with 993 production and is not adopted. Not Inconel 625 exhaust material; no casting process or heat treatment disclosed.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-T006",
+      "application": "MAMBATEK aftermarket kit 015-2218-2 for Porsche 993 M64.60 K16-6735/6736",
+      "component": "turbine_wheel",
+      "parameter": "Declared diameters",
+      "value": {
+        "exducer_mm": 49,
+        "inducer_mm": 55
+      },
+      "unit": "mm",
+      "evidence_status": "supplier_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MAMBA-993-K16-015-2218-2"
+      ],
+      "locator": "Product Information / Turbine wheel",
+      "caveat": "Supplier-declared aftermarket replacement/upgrade product; not a material certificate or measurement of original Porsche/BorgWarner wheels. The source year span 94~07 is inconsistent with 993 production and is not adopted. Supplier explicitly labels exducer/inducer in this order; not a tolerance or stock-wheel profile.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-T007",
+      "application": "MAMBATEK aftermarket kit 015-2218-2 for Porsche 993 M64.60 K16-6735/6736",
+      "component": "turbine_wheel",
+      "parameter": "Blade count",
+      "value": 9,
+      "unit": "blades",
+      "evidence_status": "supplier_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MAMBA-993-K16-015-2218-2"
+      ],
+      "locator": "Product Information / Turbine wheel",
+      "caveat": "Supplier-declared aftermarket replacement/upgrade product; not a material certificate or measurement of original Porsche/BorgWarner wheels. The source year span 94~07 is inconsistent with 993 production and is not adopted. This nine-blade upgrade must not replace the existing evidence for the original twelve-blade K16 wheel.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-T008",
+      "application": "MAMBATEK aftermarket kit 015-2218-2 for Porsche 993 M64.60 K16-6735/6736",
+      "component": "bearing",
+      "parameter": "Thrust bearing oil-hole count",
+      "value": 3,
+      "unit": "holes",
+      "evidence_status": "supplier_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MAMBA-993-K16-015-2218-2"
+      ],
+      "locator": "Product Information / Repair kit",
+      "caveat": "Supplier-declared aftermarket replacement/upgrade product; not a material certificate or measurement of original Porsche/BorgWarner wheels. The source year span 94~07 is inconsistent with 993 production and is not adopted. No bearing alloy, oil-hole diameter, oil-pressure condition or load rating supplied.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-T009",
+      "application": "MAMBATEK aftermarket kit 015-2218-2 for Porsche 993 M64.60 K16-6735/6736",
+      "component": "rotor_assembly",
+      "parameter": "Assembly balance statement",
+      "value": "Individual compressor and turbine wheels are supplied balanced using Schenck equipment; supplier recommends balancing the assembled CHRA again",
+      "unit": "",
+      "evidence_status": "supplier_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-MAMBA-993-K16-015-2218-2"
+      ],
+      "locator": "Product Information / Product Situation",
+      "caveat": "Supplier-declared aftermarket replacement/upgrade product; not a material certificate or measurement of original Porsche/BorgWarner wheels. The source year span 94~07 is inconsistent with 993 production and is not adopted. No balance grade, residual imbalance, assembly test report or operating speed stated.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-T010",
+      "application": "TTE650 993 K16 hybrid as described by German TTE24 retailer",
+      "component": "compressor_wheel",
+      "parameter": "Declared material family",
+      "value": "High-strength aluminium; milled 6+6 wheels",
+      "unit": "",
+      "evidence_status": "supplier_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-TTE24-993-TTE650"
+      ],
+      "locator": "Details / introductory paragraph",
+      "caveat": "Retailer statement, not an alloy certificate. Existing manufacturer evidence describes a 50 mm compressor wheel inlet; this source housing-inlet dimension is a different datum. Exact alloy, temper and blade thickness not given.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-T011",
+      "application": "TTE650 993 K16 hybrid as described by German TTE24 retailer",
+      "component": "compressor_housing",
+      "parameter": "Declared CNC-machined inlet diameter",
+      "value": 49.5,
+      "unit": "mm",
+      "evidence_status": "supplier_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-TTE24-993-TTE650"
+      ],
+      "locator": "Details / Fakten",
+      "caveat": "Retailer statement, not an alloy certificate. Existing manufacturer evidence describes a 50 mm compressor wheel inlet; this source housing-inlet dimension is a different datum. No definition of measuring plane, contour or tolerance; do not merge with wheel diameter.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-T012",
+      "application": "TurboZentrum Stage 2 on BorgWarner 5324-988-7003 for listed 993 GT2 430/450 PS configurations",
+      "component": "turbocharger",
+      "parameter": "Donor family reference",
+      "value": "5324-988-7003 (alternative identifiers 5324-998-7003 and 5324-970-7003)",
+      "unit": "",
+      "evidence_status": "supplier_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-TURBOZENTRUM-993-53249887003-STAGE2"
+      ],
+      "locator": "Product description / Alternative Turbolader Nummern",
+      "caveat": "Aftermarket supplier product on a K24-family donor, not original 993 Turbo K16. No dimensional manufacturing specification or compressor map.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-T013",
+      "application": "TurboZentrum Stage 2 on BorgWarner 5324-988-7003 for listed 993 GT2 430/450 PS configurations",
+      "component": "compressor_wheel",
+      "parameter": "Stage 2 process",
+      "value": "Larger milled compressor wheel and CNC-machined compressor housing",
+      "unit": "",
+      "evidence_status": "supplier_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-TURBOZENTRUM-993-53249887003-STAGE2"
+      ],
+      "locator": "Product description / Stage 2 Optimierung",
+      "caveat": "Aftermarket supplier product on a K24-family donor, not original 993 Turbo K16. No dimensional manufacturing specification or compressor map. Exact wheel geometry, aluminium grade, clearances and housing wall thickness remain unpublished.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-T014",
+      "application": "TurboZentrum Stage 2 on BorgWarner 5324-988-7003 for listed 993 GT2 430/450 PS configurations",
+      "component": "bearing",
+      "parameter": "Stage 2 process",
+      "value": "Reinforced radial and thrust bearings; turbine cutback and stronger pressure actuator described as conditional",
+      "unit": "",
+      "evidence_status": "supplier_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-TURBOZENTRUM-993-53249887003-STAGE2"
+      ],
+      "locator": "Product description / Stage 2 Optimierung",
+      "caveat": "Aftermarket supplier product on a K24-family donor, not original 993 Turbo K16. No dimensional manufacturing specification or compressor map. Conditional operations must not be represented as fitted to every delivered product.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-T015",
+      "application": "TurboZentrum Stage 2 on BorgWarner 5324-988-7003 for listed 993 GT2 430/450 PS configurations",
+      "component": "engine",
+      "parameter": "Claimed system output and basis",
+      "value": {
+        "basis": "Customer feedback; supplier calls this an average",
+        "advertised_system_power_PS": 750
+      },
+      "unit": "PS as printed",
+      "evidence_status": "supplier_commercial_claim",
+      "source_ids": [
+        "SRC-MEZGER-DE-TURBOZENTRUM-993-53249887003-STAGE2"
+      ],
+      "locator": "Product description / Stage 2 power statement",
+      "caveat": "Aftermarket supplier product on a K24-family donor, not original 993 Turbo K16. No dimensional manufacturing specification or compressor map. Neither measured compressor capacity nor a verified dyno result, endurance result or guaranteed >550 PS outcome for a K16 conversion.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-T016",
+      "application": "TurboZentrum generic O.S.T. process; specific 993 donor not established",
+      "component": "compressor_wheel",
+      "parameter": "Raw-material construction family",
+      "value": "Milled from forged aluminium",
+      "unit": "",
+      "evidence_status": "supplier_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-TURBOZENTRUM-OST-PROCESS"
+      ],
+      "locator": "Was ist O.S.T.? / Das Verdichterrad",
+      "caveat": "General aftermarket supplier process; not proof of OEM 993 materials or qualification of a specific K16 assembly. No exact aluminium grade, forging route or temper supplied.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-T017",
+      "application": "TurboZentrum generic O.S.T. process; specific 993 donor not established",
+      "component": "compressor_housing",
+      "parameter": "Stage 2 machining process",
+      "value": "5-axis CNC machining to accommodate the larger wheel and revise contour and gaps",
+      "unit": "",
+      "evidence_status": "supplier_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-TURBOZENTRUM-OST-PROCESS"
+      ],
+      "locator": "Stage 2 / Das Verdichtergehäuse",
+      "caveat": "General aftermarket supplier process; not proof of OEM 993 materials or qualification of a specific K16 assembly. No machining allowance, minimum retained wall thickness or dimensional tolerances supplied.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-T018",
+      "application": "TurboZentrum generic O.S.T. process; specific 993 donor not established",
+      "component": "bearing",
+      "parameter": "Coating and substrate definitions",
+      "value": null,
+      "unit": "",
+      "evidence_status": "documented_unknown",
+      "source_ids": [
+        "SRC-MEZGER-DE-TURBOZENTRUM-OST-PROCESS"
+      ],
+      "locator": "Stage 2 / Das Lager and lifetime explanation",
+      "caveat": "General aftermarket supplier process; not proof of OEM 993 materials or qualification of a specific K16 assembly. Supplier mentions a special coating on a special substrate with dry-running capability but does not disclose chemistry, coating thickness or test conditions.",
+      "training_eligibility": "teach_uncertainty_only"
+    },
+    {
+      "id": "MEZGER-DE-T019",
+      "application": "Aftermarket Turbosmart TS-0624-1242 actuator pair for Porsche 993 Turbo",
+      "component": "wastegate_actuator_diaphragm",
+      "parameter": "Declared sealing material family",
+      "value": "Fluorosilicone seal reinforced with Nomex",
+      "unit": "",
+      "evidence_status": "supplier_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-TURBOZENTRUM-TURBOSMART-993-TS06241242"
+      ],
+      "locator": "Product description / sealing construction",
+      "caveat": "German distributor specification, not factory Porsche hardware or approved operating boost. No elastomer grade, fibre architecture, thickness or temperature limit given.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-T020",
+      "application": "Aftermarket Turbosmart TS-0624-1242 actuator pair for Porsche 993 Turbo",
+      "component": "wastegate_actuator",
+      "parameter": "Published pressure label",
+      "value": {
+        "bar": 1.65,
+        "psi": 24
+      },
+      "unit": "bar / psi as printed",
+      "evidence_status": "supplier_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-TURBOZENTRUM-TURBOSMART-993-TS06241242"
+      ],
+      "locator": "Product description / Ladedruck",
+      "caveat": "German distributor specification, not factory Porsche hardware or approved operating boost. Not a logged manifold-boost trace or maximum permitted M64/60 pressure; installed spring/preload/control conditions are not given.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-T021",
+      "application": "RUF TRIBUTE new 3.6 litre air-cooled twin-turbo engine; distinct from M64/60",
+      "component": "crankcase_and_cylinder_heads",
+      "parameter": "Declared material family",
+      "value": "Aluminium block and aluminium cylinder heads",
+      "unit": "",
+      "evidence_status": "supplier_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-RUF-TRIBUTE-ENGINE"
+      ],
+      "locator": "Engine architecture narrative",
+      "caveat": "New RUF-developed engine architecture, not original 993 Turbo or historic CTR2 technical evidence. Exact alloys, heat treatments and wall thicknesses are not disclosed.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-T022",
+      "application": "RUF TRIBUTE new 3.6 litre air-cooled twin-turbo engine; distinct from M64/60",
+      "component": "valvetrain",
+      "parameter": "Declared architecture",
+      "value": "Four camshafts; three-valve cylinder heads; variable cam timing and variable valve lift",
+      "unit": "",
+      "evidence_status": "supplier_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-RUF-TRIBUTE-ENGINE"
+      ],
+      "locator": "Tradition mit einem Hauch von Modernität",
+      "caveat": "New RUF-developed engine architecture, not original 993 Turbo or historic CTR2 technical evidence. Must not be used to label the two-valve/single-cam-per-bank Porsche M64/60.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-T023",
+      "application": "RUF TRIBUTE new 3.6 litre air-cooled twin-turbo engine; distinct from M64/60",
+      "component": "engine",
+      "parameter": "Declared maximum power",
+      "value": {
+        "PS": 550,
+        "kW": 405,
+        "engine_rpm": 6750
+      },
+      "unit": "PS / kW / rpm as printed",
+      "evidence_status": "supplier_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-RUF-TRIBUTE-ENGINE"
+      ],
+      "locator": "Übersicht der technischen Daten / Max. Leistung",
+      "caveat": "New RUF-developed engine architecture, not original 993 Turbo or historic CTR2 technical evidence. Crankshaft power/rpm point, not turbo speed, map or proof stock M64/60 supports this configuration.",
+      "training_eligibility": "qualified_only"
+    },
+    {
+      "id": "MEZGER-DE-T024",
+      "application": "RUF TRIBUTE new 3.6 litre air-cooled twin-turbo engine; distinct from M64/60",
+      "component": "engine",
+      "parameter": "Declared maximum torque",
+      "value": {
+        "Nm": 750,
+        "engine_rpm": 4500
+      },
+      "unit": "Nm / rpm",
+      "evidence_status": "supplier_document_verified",
+      "source_ids": [
+        "SRC-MEZGER-DE-RUF-TRIBUTE-ENGINE"
+      ],
+      "locator": "Übersicht der technischen Daten / Max. Drehmoment",
+      "caveat": "New RUF-developed engine architecture, not original 993 Turbo or historic CTR2 technical evidence. Not a full torque curve or turbo operating point.",
+      "training_eligibility": "qualified_only"
+    }
+  ]
+}
