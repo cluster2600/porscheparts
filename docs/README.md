@@ -55,6 +55,11 @@ flowchart LR
 
 ## Digital twin and compute
 
+Start with the [M64 architecture](architecture/README.md), its
+[workflow](architecture/engineering-workflow.md) and
+[migration/verification plan](architecture/migration-verification.md).
+The [local Qwen pilot](../training/m64-qwen/README.md) implements the first AI increment.
+
 | document | what it answers |
 |---|---|
 | [DIGITAL_TWIN.md](DIGITAL_TWIN.md) | the 993 digital twin, its zones and levels |

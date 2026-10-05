@@ -16,6 +16,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from scripts.screen_titanium_candidates import score_part, ScreenError
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -43,6 +44,18 @@ def gates(card: dict) -> dict:
 
 
 class ExhaustTipTitaniumF1Tests(unittest.TestCase):
+    def test_unknown_temperature_cannot_qualify_an_otherwise_eligible_part(self) -> None:
+        judgement = load(INPUTS)["parts"][PART_ID]
+        judgement["peak_service_temperature_c"] = None
+        result = score_part(PART_ID, "functional", judgement)
+        self.assertFalse(result["eligible"])
+        self.assertIsNone(result["peak_service_temperature_c"])
+        self.assertTrue(any("temperature unknown" in reason for reason in result["disqualifiers"]))
+        for invalid in (True, float("nan"), float("inf")):
+            judgement["peak_service_temperature_c"] = invalid
+            with self.assertRaises(ScreenError):
+                score_part(PART_ID, "functional", judgement)
+
     def test_the_selection_screened_the_whole_catalogue(self) -> None:
         selection = load(SELECTION)
         catalogue = len(list((ROOT / "catalog/parts").glob("*.json")))

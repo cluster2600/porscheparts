@@ -78,3 +78,13 @@ glossary and the files that must never be translated in place (`evidence/**`,
 `archive/**`, locks). New documentation, record prose and command-line messages
 are written in English. Stable identifiers, schema field names and filenames
 remain unchanged until a dedicated rename phase.
+
+## Architecture and local AI
+
+Follow [docs/architecture/README.md](docs/architecture/README.md): tailored
+TOGAF governance, ArchiMate viewpoints and UML contracts/behavior rendered in
+Mermaid. Keep requirements, architecture decisions and verification evidence
+linked. New comments, prompts, diagrams and generated reports are English.
+Use local Mac/Kali compute before an approved final Vast/Omniverse review.
+Local model training must record source/model revisions, disjoint evaluation
+data and measured results; model output never grants engineering approval.

@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 from pathlib import Path
 from typing import Any
 
@@ -88,12 +89,17 @@ def score_part(
     relevance = judgement["titanium_relevance"]
     counters = judgement["titanium_counter_indications"]
     families = judgement["additive_families"]
-    temperature = float(judgement["peak_service_temperature_c"])
+    raw_temperature = judgement["peak_service_temperature_c"]
+    temperature = None if raw_temperature is None else float(raw_temperature)
+    if isinstance(raw_temperature, bool) or (temperature is not None and not math.isfinite(temperature)):
+        raise ScreenError(f"{part_id}: temperature must be finite or explicitly unknown")
 
     relevance_count = sum(1 for value in relevance.values() if value)
     counter_count = sum(1 for value in counters.values() if value)
 
     disqualifiers: list[str] = []
+    if temperature is None:
+        disqualifiers.append("service temperature unknown: thermal screening remains blocked")
     if safety_class in EXCLUDED_SAFETY_CLASSES:
         disqualifiers.append(
             f"classe de securite {safety_class} : hors de portee d'un premier "
@@ -103,7 +109,7 @@ def score_part(
         disqualifiers.append(
             "n'appartient a aucune des trois familles ou l'additif gagne"
         )
-    if temperature > TI6242_CEILING_C:
+    if temperature is not None and temperature > TI6242_CEILING_C:
         disqualifiers.append(
             f"{temperature:.0f} C depasse meme le plafond quasi-alpha de "
             f"{TI6242_CEILING_C:.0f} C : cas nickel, pas titane"
@@ -150,7 +156,7 @@ def score_part(
         )
 
     alloy_note = ""
-    if temperature > TI64_CREEP_CEILING_C:
+    if temperature is not None and temperature > TI64_CREEP_CEILING_C:
         alloy_note = (
             f"{temperature:.0f} C depasse le plafond de fluage du Ti-6Al-4V "
             f"({TI64_CREEP_CEILING_C:.0f} C) ; une nuance quasi-alpha serait "
