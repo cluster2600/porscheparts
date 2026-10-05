@@ -1,0 +1,108 @@
+{
+  "id": "935-cooling-solver-handoff-v1",
+  "stage": "required_inputs_not_solver_runs",
+  "domains": {
+    "cfd": {
+      "status": "blocked_missing_inputs",
+      "required_inputs": [
+        "registered_closed_surfaces",
+        "rotor_stator_clearances",
+        "rotation_direction_and_speed",
+        "inlet_outlet_stations",
+        "fluid_state",
+        "branch_passages_and_leaks",
+        "mesh_quality_and_three_resolution_study",
+        "conservation_and_convergence",
+        "pressure_flow_torque_holdout"
+      ],
+      "runtime_and_version": null,
+      "native_artifact_sha256": null,
+      "acceptance_criteria": null,
+      "engineering_reviewer": null,
+      "solver_executed": false
+    },
+    "structure": {
+      "status": "blocked_missing_inputs",
+      "required_inputs": [
+        "qualified_material_and_process",
+        "centrifugal_aerodynamic_thermal_loads",
+        "contact_and_fastener_preload",
+        "shaft_gear_bearing_loads",
+        "independent_support_stiffness",
+        "mesh_convergence",
+        "fatigue_mission_and_allowables"
+      ],
+      "runtime_and_version": null,
+      "native_artifact_sha256": null,
+      "acceptance_criteria": null,
+      "engineering_reviewer": null,
+      "solver_executed": false
+    },
+    "rotordynamics": {
+      "status": "blocked_missing_inputs",
+      "required_inputs": [
+        "mass_and_inertia_tensors",
+        "shaft_bearing_support_matrices",
+        "gyroscopic_and_prestress_terms",
+        "blade_gear_engine_orders",
+        "damping_and_campbell_map",
+        "independent_vibration_correlation"
+      ],
+      "runtime_and_version": null,
+      "native_artifact_sha256": null,
+      "acceptance_criteria": null,
+      "engineering_reviewer": null,
+      "solver_executed": false
+    },
+    "bearings_and_gears": {
+      "status": "blocked_missing_inputs",
+      "required_inputs": [
+        "exact_bearing_and_gear_identification",
+        "tooth_contact_and_reaction_loads",
+        "fits_clearance_preload",
+        "lubrication_temperature_and_viscosity",
+        "qualified_rating_method_full_text"
+      ],
+      "runtime_and_version": null,
+      "native_artifact_sha256": null,
+      "acceptance_criteria": null,
+      "engineering_reviewer": null,
+      "solver_executed": false
+    },
+    "lubrication": {
+      "status": "blocked_missing_inputs",
+      "required_inputs": [
+        "feed_and_drain_topology",
+        "port_threads_restrictors",
+        "oil_properties_temperature",
+        "pressure_flow_measurements",
+        "seals_and_heat_rejection"
+      ],
+      "runtime_and_version": null,
+      "native_artifact_sha256": null,
+      "acceptance_criteria": null,
+      "engineering_reviewer": null,
+      "solver_executed": false
+    },
+    "geometry_and_manufacturing": {
+      "status": "blocked_missing_inputs",
+      "required_inputs": [
+        "two_independent_scan_calibrations",
+        "17_measured_interfaces",
+        "editable_source_geometry",
+        "three_voxel_resolutions",
+        "bidirectional_scan_deviation",
+        "machining_datums_and_tolerances",
+        "licence_and_provenance",
+        "engineering_review_and_validation_plan"
+      ],
+      "runtime_and_version": null,
+      "native_artifact_sha256": null,
+      "acceptance_criteria": null,
+      "engineering_reviewer": null,
+      "solver_executed": false
+    }
+  },
+  "digital_twin_validated": false,
+  "manufacturing_release_allowed": false
+}

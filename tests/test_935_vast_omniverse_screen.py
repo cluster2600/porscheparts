@@ -1,0 +1,134 @@
+import importlib.util
+import json
+from pathlib import Path
+import tempfile
+import unittest
+from unittest import mock
+import base64
+
+ROOT = Path(__file__).resolve().parents[1]
+SCREEN = ROOT / "twins/935-horizontal-cooling-system-f0/vast-omniverse-screen"
+SOURCE = SCREEN / "source/run_campaign.py"
+TRANSFER = ROOT / "deploy/vast/simready/transfer-935-screen.sh"
+spec = importlib.util.spec_from_file_location("screen_campaign", SOURCE)
+module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(module)
+
+class ScreenContractTests(unittest.TestCase):
+    def test_material_cards_cover_ten_distinct_families_and_preserve_we43_unknown(self):
+        cards, scenario = module.load_inputs(SCREEN)
+        self.assertEqual(len(cards["materials"]), 10)
+        self.assertEqual(len({item["id"] for item in cards["materials"]}), 10)
+        self.assertIsNone(next(item for item in cards["materials"] if item["id"] == "we43")["yield_comparator_MPa"])
+        self.assertFalse(scenario["geometry"]["interfaces_verified"])
+
+    def test_input_contract_keeps_unreviewed_935_values_out_of_the_proxy(self):
+        contract = module.load_input_contract(SCREEN)
+        self.assertEqual(contract["matrix_rows"], 50)
+        self.assertEqual(contract["separate_variants"], 6)
+        self.assertEqual(contract["accepted_935_numeric_physical_claims"], 0)
+        self.assertEqual(
+            contract["research_coverage"],
+            "completed_40_lane_public_synthesis_engine_data_partial",
+        )
+        self.assertFalse(contract["physical_claims_consumed"])
+
+    def test_transfer_includes_the_input_contract_needed_by_the_runner(self):
+        transfer = TRANSFER.read_text(encoding="utf-8")
+        self.assertIn('INPUT_CONTRACT="twins/935-horizontal-cooling-system"', transfer)
+        self.assertIn('"$INPUT_CONTRACT/data/input-matrix.json"', transfer)
+        self.assertIn('"$INPUT_CONTRACT/research/coverage.json"', transfer)
+        self.assertIn('"nvidia-physical-ai-$SKILL_CANONICAL_NAME"', transfer)
+        self.assertIn('cp -R "$SKILL_ROOT" "$TMP/vendor/$SKILL_CANONICAL_NAME"', transfer)
+
+    def test_ovrtx_renderer_is_limited_to_the_local_service(self):
+        self.assertEqual(module.require_ovrtx_endpoint("http://127.0.0.1:8001"), "http://127.0.0.1:8001")
+        with self.assertRaisesRegex(ValueError, "local loopback"):
+            module.require_ovrtx_endpoint("https://renderer.example/preview")
+
+    def test_usd_fallback_is_scoped_to_the_local_ovrtx_runtime(self):
+        source = SOURCE.read_text(encoding="utf-8")
+        self.assertIn('Path("/opt/ovrtx-app/lib/python3.12/site-packages")', source)
+        self.assertIn('if exc.name != "pxr"', source)
+
+    def test_ovrtx_usd_uses_the_closed_stl_proxy_as_renderable_mesh(self):
+        source = SOURCE.read_text(encoding="utf-8")
+        self.assertIn("def load_render_mesh(stl_path: Path)", source)
+        self.assertIn('UsdGeom.Mesh.Define(stage, "/FanAlloyScreen/Proxy/Surface")', source)
+        self.assertIn('UsdShade.MaterialBindingAPI.Apply(surface.GetPrim()).Bind(material)', source)
+        self.assertIn('camera.AddTransformOp().Set(transform)', source)
+        self.assertIn('geometry_dir / "rotor-proxy.stl"', source)
+
+    def test_unknown_yield_comparator_is_usd_safe_and_remains_unknown(self):
+        we43 = next(item for item in module.load_inputs(SCREEN)[0]["materials"] if item["id"] == "we43")
+        data = module.material_variant_custom_data(we43)
+        self.assertEqual(data["yieldComparatorStatus"], "not_provided")
+        self.assertNotIn("yieldComparatorMPa", data)
+
+    def test_ovrtx_renderer_saves_a_hashed_preview(self):
+        class Response:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *_):
+                return False
+
+            def read(self):
+                return json.dumps({"status": "success", "images": {"0": {
+                    "/FanAlloyScreen/Camera": {
+                        "rgb": "",
+                        "images": base64.b64encode(b"x" * 1025).decode("ascii"),
+                    }
+                }}}).encode("utf-8")
+
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            stage = root / "screen.usda"
+            stage.write_text("#usda 1.0\n", encoding="utf-8")
+            with mock.patch.object(module.urllib.request, "urlopen", return_value=Response()) as urlopen:
+                render = module.render_ovrtx(stage, root, "http://127.0.0.1:8001")
+            self.assertEqual(render["status"], "passed")
+            self.assertEqual(render["image"]["bytes"], 1025)
+            self.assertRegex(render["image"]["sha256"], r"^[0-9a-f]{64}$")
+            payload = json.loads(urlopen.call_args.args[0].data.decode("utf-8"))
+            self.assertTrue(payload["url"].startswith("data:application/octet-stream;base64,"))
+            self.assertEqual(
+                base64.b64decode(payload["url"].split(",", 1)[1]),
+                stage.read_bytes(),
+            )
+            self.assertEqual(payload["render_settings"]["render_mode"], "pt")
+            self.assertEqual(payload["render_settings"]["material_target"], "auto")
+
+    def test_invalid_duplicate_material_is_rejected_before_solver(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            cards = json.loads((SCREEN / "materials.json").read_text())
+            cards["materials"][1]["id"] = cards["materials"][0]["id"]
+            (root / "materials.json").write_text(json.dumps(cards))
+            (root / "scenario.json").write_text((SCREEN / "scenario.json").read_text())
+            with self.assertRaises(ValueError):
+                module.load_inputs(root)
+
+    def test_static_decks_define_the_node_set_used_for_displacements(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            base = root / "base.inp"
+            base.write_text("*NODE\n1,0,0,0\n", encoding="utf-8")
+            cards = {"poisson_ratio_common_assumed": 0.3, "materials": [{
+                "id": "alsi10mg", "young_modulus_GPa": 70.0, "density_g_cm3": 2.67,
+            }]}
+            scenario = {"loads": {"static_rpm": 8500.0}}
+            mesh = {"fixed_ids": [1], "all_node_ids": [1, 2, 3]}
+            module.prepare_decks(base, mesh, cards, scenario, root / "cases")
+            deck = (root / "cases" / "alsi10mg" / "rotor.inp").read_text(encoding="utf-8")
+            self.assertIn("*NSET,NSET=NALL\n1,2,3\n", deck)
+            self.assertIn("*NODE PRINT,NSET=NALL\nU", deck)
+
+    def test_readme_has_no_fabrication_or_fitment_claim(self):
+        text = (SCREEN / "README.md").read_text().lower()
+        self.assertIn("pas le scan privé", text)
+        self.assertIn("aucun résultat ne prouve", text)
+        self.assertIn("aptitude à fabriquer", text)
+
+if __name__ == "__main__":
+    unittest.main()

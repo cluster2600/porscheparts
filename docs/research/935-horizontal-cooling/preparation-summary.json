@@ -1,0 +1,86 @@
+{
+  "assessed_on": "2026-10-03",
+  "stage": "private_geometric_preparation_and_native_mesh_review",
+  "runtime": {
+    "name": "PicoGK Core Library",
+    "version": "26.2.0",
+    "build": "2026-06-05 21:50:16 picogk"
+  },
+  "runtime_source_commit": "0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3",
+  "synthetic_witness": {
+    "status": "synthetic_runtime_witness_passed",
+    "runtime": {
+      "name": "PicoGK Core Library",
+      "version": "26.2.0",
+      "build": "2026-06-05 21:50:16 picogk"
+    },
+    "voxel_size_mm": 0.5,
+    "analytic_volume_mm3": 28274.333882308136,
+    "voxel_volume_mm3": 28258.623,
+    "relative_volume_error": 0.000555657137619292,
+    "interior_probes_passed": true,
+    "scan_geometry_used": false,
+    "fan_reconstruction_validated": false
+  },
+  "native_synthetic_cli_guards_passed": 6,
+  "scans": [
+    {
+      "id": "rotor",
+      "raw_sha256": "244d4caeb2c4ac4a692b650ec9d766bee2a8124335a0236a55a1d30c1b2b98ba",
+      "prepared_sha256": "7703da83fee108e0097d2578254b644eff38c01aab9e12c225fd6f6191b63b2c",
+      "picogk_export_sha256": "1f3d177c96ee24e86c6b344929be6ef4d6a0927143c3ae743b1f936064cf7f19",
+      "vertices": 624492,
+      "triangles": 1240439,
+      "prepared_boundary_edges": 8657,
+      "prepared_boundary_contours": 58,
+      "boundary_circle_candidates": 0,
+      "picogk_export_boundary_edges": 8657,
+      "picogk_export_zero_area_triangles": 0,
+      "picogk_export_nonmanifold_edges": 0,
+      "connectivity_preserved": true,
+      "coordinate_error_retained_in_private_receipt": true,
+      "source_unit": null,
+      "scale_verified": false,
+      "measured_interfaces_verified": false,
+      "solver_ready": false
+    },
+    {
+      "id": "drive",
+      "raw_sha256": "6c0b12d4dd782fd4ecf4a5527d9b716ea5861abe1d7c369b3005910fa9ddb2f3",
+      "prepared_sha256": "1b531cc0fd4eb2f4c6c8f0bfe4c5cf6c8c7424061bb31e46b0c17299b8b5f210",
+      "picogk_export_sha256": "954f6494f5308a1bfe8cccaabe3f36224060918bd6ad8a7ab440e507c308ccb8",
+      "vertices": 1256836,
+      "triangles": 2484656,
+      "prepared_boundary_edges": 29476,
+      "prepared_boundary_contours": 200,
+      "boundary_circle_candidates": 0,
+      "picogk_export_boundary_edges": 29476,
+      "picogk_export_zero_area_triangles": 0,
+      "picogk_export_nonmanifold_edges": 0,
+      "connectivity_preserved": true,
+      "coordinate_error_retained_in_private_receipt": true,
+      "source_unit": null,
+      "scale_verified": false,
+      "measured_interfaces_verified": false,
+      "solver_ready": false
+    }
+  ],
+  "tool_sha256": {
+    "twins/993-engine-cooling-fan-system-f0/source/audit_private_scan.py": "b02678cc31aa703b08a992d21cf34334c39e44259613f90796fe2a8c3392d5f0",
+    "twins/993-engine-cooling-fan-system-f0/source/prepare_private_scan.py": "fa1f939318bbaa4e51887726a459ac5ed92ac8960dc29cec09b4c5800dc3ba9c",
+    "twins/935-horizontal-cooling-system-f0/source/inspect_private_interfaces.py": "dae110453bd6c547a569fec691e56f06e0ec6bd38c875c48a12b638b01f4990d",
+    "twins/935-horizontal-cooling-system-f0/source/picogk-scan-review/Program.cs": "3d4084fe2c28e2fa75c79c4f8070db63cf08cccceddc293efe9a0b78e694c5ac",
+    "twins/935-horizontal-cooling-system-f0/source/picogk-scan-review/ScanReview.csproj": "27634505c0910f3e174ca56b051ea9f032ac11cdcc5806ceaa4029c1b4bf9cb2"
+  },
+  "raw_geometry_coordinates_or_source_derived_parameters_published": false,
+  "scan_voxelisation_executed": false,
+  "functional_reconstruction_complete": false,
+  "assembly_registration_complete": false,
+  "dimensional_calibration_complete": false,
+  "performance_calculations_validated": false,
+  "runtime_source_commit_is_binary_build_attestation": false,
+  "runtime_binary_sha256": {
+    "PicoGK.dll": "710c4e0428efbe9c1cd1db1663247b45604f96d167a6726782ab8ddca350565a",
+    "picogk.26.2.dylib": "5c1cd3fc12766a85bc5c1441a95f065fb274338d1333c3ae2d3396b59d0e18e7"
+  }
+}

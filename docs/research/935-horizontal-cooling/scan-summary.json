@@ -1,0 +1,63 @@
+{
+  "assessed_on": "2026-10-03",
+  "audit_tool": "twins/993-engine-cooling-fan-system-f0/source/audit_private_scan.py",
+  "audit_tool_sha256": "b02678cc31aa703b08a992d21cf34334c39e44259613f90796fe2a8c3392d5f0",
+  "method": "original_OBJ_indices_no_welding_repair_scale_change_or_geometry_export",
+  "scans": [
+    {
+      "filename": "Fan+0.5mm+back+not+lined+up+with+center.obj",
+      "sha256": "244d4caeb2c4ac4a692b650ec9d766bee2a8124335a0236a55a1d30c1b2b98ba",
+      "bytes": 51575667,
+      "vertices": 624492,
+      "triangles": 1240465,
+      "boundary_edges": 8611,
+      "boundary_contours": 48,
+      "simple_cycles": 48,
+      "zero_area_triangles": 26,
+      "nonmanifold_edges": 0,
+      "inconsistent_two_face_edges": 0,
+      "watertight_edge_topology": false,
+      "unit": null,
+      "scale_verified": false,
+      "component_identity": "owner_declared_935_fan_candidate",
+      "rights_status": "unknown_private_geometry_only",
+      "solver_ready": false
+    },
+    {
+      "sha256": "6c0b12d4dd782fd4ecf4a5527d9b716ea5861abe1d7c369b3005910fa9ddb2f3",
+      "bytes": 105090339,
+      "vertices": 1256836,
+      "triangles": 2484656,
+      "boundary_edges": 29476,
+      "connected_surface_components": 1,
+      "largest_component_vertex_counts": [
+        1256836
+      ],
+      "nonmanifold_edges": 0,
+      "inconsistent_two_face_edges": 0,
+      "zero_area_triangles": 0,
+      "duplicate_faces": 0,
+      "watertight_edge_topology": false,
+      "self_intersections_checked": false,
+      "solver_ready": false,
+      "filename": "Fan+Drive+0.21mm.obj",
+      "boundary_contours": 200,
+      "simple_cycles": 200,
+      "unit": null,
+      "scale_verified": false,
+      "component_identity": "owner_declared_935_drive_candidate",
+      "functional_interfaces_verified": false,
+      "rights_status": "unknown_private_geometry_only"
+    }
+  ],
+  "private_reports_retained": true,
+  "raw_geometry_or_coordinate_data_published": false,
+  "historical_discrepancy": {
+    "scan": "fan_drive",
+    "older_boundary_edges_reported": 7013,
+    "new_boundary_edges": 29476,
+    "cause_established": false,
+    "historical_sources_unchanged": true
+  },
+  "reproduction": "Run audit_private_scan.py PRIVATE_INPUT.obj work/NEW_PRIVATE_REPORT.json; requires numpy; output must not already exist."
+}

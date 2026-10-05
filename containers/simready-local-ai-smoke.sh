@@ -3,7 +3,14 @@ set -euo pipefail
 
 MODEL_PATH="${LOCAL_VLM_PATH:-/opt/models/qwen2.5-vl-7b-instruct}"
 MODEL_NAME="${LOCAL_VLM_MODEL:-Qwen/Qwen2.5-VL-7B-Instruct}"
-VLLM_LIBRARY_PATH="${VLLM_LIBRARY_PATH:-/opt/local-ai/lib/python3.12/site-packages/torch/lib:/opt/local-ai/lib/python3.12/site-packages/nvidia/cu13/lib:/opt/local-ai/lib/python3.12/site-packages/nvidia/cuda_runtime/lib:/opt/local-ai/lib/python3.12/site-packages/nvidia/cuda_nvrtc/lib}"
+CUDA_COMPAT_12_9_DIR="${CUDA_COMPAT_12_9_DIR:-/usr/local/cuda-12.9/compat}"
+VLLM_LIBRARY_PATH="${VLLM_LIBRARY_PATH:-${CUDA_COMPAT_12_9_DIR}:/opt/local-ai/lib/python3.12/site-packages/torch/lib:/opt/local-ai/lib/python3.12/site-packages/nvidia/cu13/lib:/opt/local-ai/lib/python3.12/site-packages/nvidia/cuda_runtime/lib:/opt/local-ai/lib/python3.12/site-packages/nvidia/cuda_nvrtc/lib}"
+test -d "${CUDA_COMPAT_12_9_DIR}"
+test -e "${CUDA_COMPAT_12_9_DIR}/libcuda.so.1"
+case ":${VLLM_LIBRARY_PATH}:" in
+    *":${CUDA_COMPAT_12_9_DIR}:"*) ;;
+    *) echo "simready local AI: CUDA 12.9 compatibility path missing" >&2; exit 1 ;;
+esac
 if [ -n "${LD_LIBRARY_PATH:-}" ]; then
     VLLM_LIBRARY_PATH="${VLLM_LIBRARY_PATH}:${LD_LIBRARY_PATH}"
 fi

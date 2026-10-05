@@ -5,11 +5,13 @@ failures=0
 
 check() {
     local label="$1"
+    local output
     shift
-    if "$@" >/dev/null 2>&1; then
+    if output="$("$@" 2>&1)"; then
         printf 'OK   %s\n' "${label}"
     else
         printf 'FAIL %s\n' "${label}" >&2
+        printf '%s\n' "${output}" >&2
         failures=$((failures + 1))
     fi
 }

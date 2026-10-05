@@ -5,6 +5,10 @@ FROM --platform=${TARGETPLATFORM} ghcr.io/cluster2600/3dprinting993-simready-wor
 
 ARG VLLM_VERSION=0.26.0
 ARG VLLM_CU129_WHEEL_URL=https://github.com/vllm-project/vllm/releases/download/v0.26.0/vllm-0.26.0%2Bcu129-cp38-abi3-manylinux_2_28_x86_64.whl#sha256=6ce4ca30616f0a35810391015622b197a7b8b267ed27f8716f0789db79ff578b
+# Vast's reviewed RTX PRO 6000 WS offer currently exposes an r570 (CUDA 12.8)
+# host driver. The embedded vLLM wheel is CUDA 12.9, so use NVIDIA's pinned
+# forward-compatibility libraries only in the local inference process.
+ARG CUDA_COMPAT_12_9_VERSION=575.57.08-0ubuntu1
 ARG VLLM_TORCH_VERSION=2.11.0
 ARG VLLM_TORCHVISION_VERSION=0.26.0
 ARG VLLM_TORCHAUDIO_VERSION=2.11.0
@@ -38,11 +42,24 @@ ENV SIMREADY_LOCAL_AI=1 \
     SIMREADY_VLM_BASE_URL=http://127.0.0.1:8000/v1 \
     LOCAL_VLM_MODEL=Qwen/Qwen2.5-VL-7B-Instruct \
     LOCAL_VLM_PATH=/opt/models/qwen2.5-vl-7b-instruct \
-    VLLM_LIBRARY_PATH=/opt/local-ai/lib/python3.12/site-packages/torch/lib:/opt/local-ai/lib/python3.12/site-packages/nvidia/cu13/lib:/opt/local-ai/lib/python3.12/site-packages/nvidia/cuda_runtime/lib:/opt/local-ai/lib/python3.12/site-packages/nvidia/cuda_nvrtc/lib \
+    CUDA_COMPAT_12_9_DIR=/usr/local/cuda-12.9/compat \
+    VLLM_LIBRARY_PATH=/usr/local/cuda-12.9/compat:/opt/local-ai/lib/python3.12/site-packages/torch/lib:/opt/local-ai/lib/python3.12/site-packages/nvidia/cu13/lib:/opt/local-ai/lib/python3.12/site-packages/nvidia/cuda_runtime/lib:/opt/local-ai/lib/python3.12/site-packages/nvidia/cuda_nvrtc/lib \
     PHYSICSNEMO_PYTHON=/opt/venv/bin/python \
     HF_HUB_OFFLINE=1 \
     TRANSFORMERS_OFFLINE=1 \
     HF_HUB_DISABLE_XET=1
+
+# cuda-compat carries the CUDA driver-side JIT libraries required by the
+# CUDA 12.9 vLLM PTX on an r570 host. Pin the NVIDIA package checksum so that
+# changing repository metadata cannot silently change the runtime.
+ADD --link --checksum=sha256:d6571727935e52731a415e22df4d0f0a8717f35c9937d4c4a9fe286297dceaab \
+    https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-compat-12-9_${CUDA_COMPAT_12_9_VERSION}_amd64.deb \
+    /tmp/cuda-compat-12-9.deb
+RUN dpkg --install /tmp/cuda-compat-12-9.deb \
+    && test "$(dpkg-query -W -f='${Version}' cuda-compat-12-9)" = "${CUDA_COMPAT_12_9_VERSION}" \
+    && test -d "${CUDA_COMPAT_12_9_DIR}" \
+    && test -e "${CUDA_COMPAT_12_9_DIR}/libcuda.so.1" \
+    && rm -f /tmp/cuda-compat-12-9.deb
 
 # Keep PhysicsNeMo isolated from the independently pinned vLLM CUDA stack.
 # Install the heavy runtime separately so no OCI layer combines the whole
@@ -122,7 +139,7 @@ ADD --link --checksum=sha256:0c859795ad3a627a9b95bcb762e059d5b768a4a36fdd4affeff
     /opt/models/qwen2.5-vl-7b-instruct/model-00005-of-00005.safetensors
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends ffmpeg \
+    && apt-get install -y --no-install-recommends calculix-ccx ffmpeg libglu1-mesa libxft2 libxinerama1 \
     && rm -rf /var/lib/apt/lists/* \
     && cp /usr/share/common-licenses/Apache-2.0 "${LOCAL_VLM_PATH}/LICENSE.apache-2.0" \
     && test -f "${LOCAL_VLM_PATH}/LICENSE.apache-2.0" \
@@ -137,7 +154,17 @@ COPY containers/simready-services.sh /usr/local/bin/simready-services
 COPY containers/simready-smoke.sh /usr/local/bin/simready-smoke
 COPY containers/smoke-test.sh /usr/local/bin/smoke-test.sh
 
-RUN chmod 0555 /usr/local/bin/simready-local-ai-smoke \
+RUN test -x /opt/simready-validation/bin/simready-validate \
+    && if [ ! -e /usr/local/bin/simready-validate ] \
+          && [ ! -L /usr/local/bin/simready-validate ]; then \
+         ln -s -- /opt/simready-validation/bin/simready-validate \
+           /usr/local/bin/simready-validate; \
+       fi \
+    && test "$(readlink -- /usr/local/bin/simready-validate)" = \
+       /opt/simready-validation/bin/simready-validate \
+    && env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
+       simready-validate --help >/dev/null \
+    && chmod 0555 /usr/local/bin/simready-local-ai-smoke \
         /usr/local/bin/physicsnemo-gpu-smoke \
         /usr/local/bin/simready-vast-onstart \
         /usr/local/bin/simready-services /usr/local/bin/simready-smoke \

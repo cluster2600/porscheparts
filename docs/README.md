@@ -24,6 +24,7 @@ flowchart LR
 | [TRANSLATION.md](TRANSLATION.md) | the French-to-English translation: scope, glossary, progress |
 | [GALLERY.md](GALLERY.md) | every figure, render and print screen on one page |
 | [../twins/README.md](../twins/README.md) | the digital twins, zone by zone |
+| [FAN_DEVELOPMENT_PROGRAMMES.md](FAN_DEVELOPMENT_PROGRAMMES.en.md) | the two improved cooling programmes: vertical 993 and complete horizontal 935 architecture |
 
 ## Sources and measurement
 
@@ -32,6 +33,7 @@ flowchart LR
 | [SOURCE_POLICY.md](SOURCE_POLICY.md) | which sources are admissible, and how rights are recorded |
 | [PHASE1_SOURCE_INVENTORY.md](PHASE1_SOURCE_INVENTORY.md) | the phase 1 source inventory |
 | [MEASUREMENT_CAMPAIGN.md](MEASUREMENT_CAMPAIGN.md) | the phase 2 measurement campaign |
+| [research/935-horizontal-cooling/README.md](research/935-horizontal-cooling/README.en.md) | research and reconstruction for a lighter, improved horizontal 935 cooling system |
 | [PORSCHEFANATICS_993_TURBO_AUDIT.md](PORSCHEFANATICS_993_TURBO_AUDIT.md) | local audit of a 993 Turbo source |
 | [research/](research/) | source research by topic (German-language sources, carbon panels, M64 reviews, scans) |
 
