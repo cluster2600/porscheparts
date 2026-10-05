@@ -1,0 +1,52 @@
+{
+  "status": "reference_pilot_admitted_numerically",
+  "protocol_id": "R0-common-h7-6000rpm-600iterations",
+  "final_field_cell_counts": {
+    "U": 262047,
+    "p": 262047,
+    "k": 262047,
+    "omega": 262047,
+    "nut": 262047
+  },
+  "maximum_final_speed_m_s": 124.97390130799977,
+  "maximum_final_local_Mach_assuming_343m_s": 0.36435539739941625,
+  "iterations_completed": 600.0,
+  "window_size": 20,
+  "criteria_checks": {
+    "residual_p": true,
+    "residual_U": true,
+    "residual_turbulence": true,
+    "mass_balance": true,
+    "flow_stability": true,
+    "torque_stability": true,
+    "declared_flow_direction": true,
+    "complete_finite_fields": true,
+    "finite_measurements": true
+  },
+  "maximum_initial_residual_last_window": {
+    "p": 2.652960001e-05,
+    "Ux": 3.406071486e-06,
+    "Uy": 3.228960074e-06,
+    "Uz": 1.983468851e-06,
+    "k": 1.374495677e-05,
+    "omega": 4.076535767e-08
+  },
+  "last_window_mean_outlet_flow_m3_s": 1.234719980435,
+  "last_window_mean_inlet_flow_m3_s": -1.23467234923,
+  "last_window_max_mass_imbalance_ratio": 3.867848126674811e-05,
+  "last_window_outlet_flow_relative_std": 7.411015506232539e-07,
+  "last_window_rotor_torque_relative_std": 9.875885340815138e-06,
+  "last_window_mean_fluid_on_rotor_torque_Nm": -5.25831186328125,
+  "last_window_mean_rotor_input_power_W": 3303.8947839936864,
+  "aerodynamic_mesh_independence_established": false,
+  "wall_resolution_qualified": false,
+  "physical_validation_established": false,
+  "performance_improvement_proven": false,
+  "file_sha256": {
+    "log.foamRun": "1470aaaefd780ad8817458e6f65bf71df3858d90aea4c5b2cd6d01ac28759e3e",
+    "reference-protocol.json": "f472b2daf32d73e34a2110ebb27ad42161359bb1edf6c1910446f5e0671308bc",
+    "postProcessing/inletFlow/0/surfaceFieldValue.dat": "5487a7b652a664c9a1cf35bbb5add0840cb9d83c0e4add172f1f225357b7a798",
+    "postProcessing/outletFlow/0/surfaceFieldValue.dat": "364a39050d7ad3e82934071abe00b39be31cf664a5b58229a36290ed711dd41e",
+    "postProcessing/rotorForces/0/forces.dat": "aa9132b8f2afd859c1d8ad195c3fb004d62589dd9867ed3b4efe8177d21cdb4d"
+  }
+}

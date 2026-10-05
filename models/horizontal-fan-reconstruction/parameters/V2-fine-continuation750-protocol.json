@@ -1,0 +1,77 @@
+{
+  "protocol_id": "V2-fine-continuation750",
+  "frozen_before_solver_launch": true,
+  "reference_configuration": "private_scan_informed_horizontal_study_V2_lower_collective_pitch",
+  "rpm_assumed": 6000,
+  "fluid": {
+    "density_kg_m3": 1.2,
+    "kinematic_viscosity_m2_s": 1.5e-05,
+    "tip_Mach_assuming_343m_s": 0.2518769620225053
+  },
+  "boundary_conditions": {
+    "top_inlet": "total pressure zero gauge",
+    "bottom_outlet": "static pressure zero gauge",
+    "expected_flow_direction": [
+      0,
+      0,
+      -1
+    ],
+    "rotation_axis_positive": [
+      0,
+      0,
+      1
+    ]
+  },
+  "model": "Foundation OpenFOAM 13 isolated fan incompressible steady MRF kOmegaSST, first-order convection",
+  "mesh_gate": "standard and extended checkMesh both Mesh OK and zero failed checks, original thresholds",
+  "iterations": 750,
+  "wall_timeout_seconds": 600,
+  "maximum_CPU": 4,
+  "maximum_memory_GiB": 5,
+  "acceptance_all_required": {
+    "last_window_iterations": 20,
+    "maximum_initial_residual_p": 0.0001,
+    "maximum_initial_residual_U_components": 1e-05,
+    "maximum_initial_residual_k_and_omega": 0.0001,
+    "maximum_absolute_inlet_plus_outlet_flow_over_mean_absolute_flow": 0.005,
+    "maximum_flow_relative_standard_deviation": 0.01,
+    "maximum_rotor_torque_relative_standard_deviation": 0.02,
+    "flow_direction_matches_declared_reference": true,
+    "fields_finite_and_complete": true
+  },
+  "not_established": [
+    "Wall-layer resolution",
+    "Aerodynamic mesh independence",
+    "Physical validation",
+    "Measured inlet/outlet installed engine conditions",
+    "Measured material or bearing data"
+  ],
+  "variant_comparison_policy": "No pitch variant or performance ranking before reference admission; same conditions and gates required",
+  "physical_validation_established": false,
+  "manufacturing_authorized": false,
+  "reference_admitted_summary_sha256": "628589b2a47ad5e3f6fd3ad4e4839507bc999cc2e8e4fd5f06d939f765e83c3e",
+  "planned_total_target": 750,
+  "planned_phase_end_iterations": [
+    150,
+    300,
+    450,
+    600,
+    750
+  ],
+  "cpu_set_verified_distinct_physical_cores": "0,2,4,5",
+  "source_mesh_gate_sha256": "e2598e18cf8ab3611a3cb8015052398680d8bb336bda64096186fdff0e3ad406",
+  "flow_runner_sha256": "835e0cbad41bf27f700c8b7045be42a9bbbca096af53ce57d9e92e40f77fc56e",
+  "initial_fields_sha256": {
+    "600/U": "8e44c9f8763e21f3af0bd71b8287497d73b06cf248d9e919511f28fcba8e9af3",
+    "600/grad(U)": "3d74975cea8287d2f43f2bf2d41d1108a5e6898eb614e6502128d3bb4547ad2a",
+    "600/k": "bf578094430483c02a8d43a477dac62f894e791ab4c9908cc413eb10dbdfd284",
+    "600/omega": "f2160d63c72b4354ea8537e8af01eb7ec17ad61f1cc0d025aea23d09faf44ffc",
+    "600/p": "2575b6391bf853ab8f59763497c99ec70be1c27b48c37e183ce57361ecca6596",
+    "600/nut": "a420c8a82ee7175324663a075cff32a97e3fb47f26017d78117233dcf32ed45d",
+    "600/Uf": "6a13249a32571a17c590cfbfe990db62ddc7d8ade936a7be085596e472aaa9b1",
+    "600/phi": "1ec58314bbe2e61535087c21e3ff1179e35474aff218349ed565debb7868038d"
+  },
+  "previous_frozen_protocol_sha256": "1d9e586beb8f6627e4c409d168049ddb6d542d1d3eb03b3ced5116b1a6ba3f65",
+  "previous_target_iteration": 600,
+  "additional_phase_reason": "Pressure residual did not satisfy the unchanged frozen criterion; preserve previous result and continue its fields"
+}

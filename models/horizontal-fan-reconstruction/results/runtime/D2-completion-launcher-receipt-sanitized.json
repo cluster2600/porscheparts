@@ -1,0 +1,85 @@
+{
+  "status": "completed_exact20_preserved_and_released",
+  "exit_status": 0,
+  "error": null,
+  "actual_isolation": {
+    "CPU_max": 4.0,
+    "cpuset": "0,2,4,5",
+    "RAM_limit_bytes": 5368709120,
+    "memory_and_swap_limit_bytes": 5368709120,
+    "network": "none",
+    "pids_limit": 256,
+    "user": "1000:1000",
+    "image_ID": "sha256:49979f46f421459dae4bf21aaa898e2253b07301c3e5b2cabaa6eaf06f54d696",
+    "cap_drop": [
+      "ALL"
+    ],
+    "security_options": [
+      "no-new-privileges"
+    ],
+    "mounts_read_only": {
+      "/capsule": true,
+      "/run": false,
+      "/prepared": true,
+      "/previous": true,
+      "/selections.npz": true
+    }
+  },
+  "owned_cleanup": [],
+  "owned_container_remaining": false,
+  "services_before": [
+    "openbao-openbao-1 ghcr.io/openbao/openbao:2.3.1",
+    "ops-control-plane-1 qwen38-control-plane:local"
+  ],
+  "services_after": [
+    "openbao-openbao-1 ghcr.io/openbao/openbao:2.3.1",
+    "ops-control-plane-1 qwen38-control-plane:local"
+  ],
+  "services_unchanged": true,
+  "no_foreign_service_or_process_modified": true,
+  "new_cases": [
+    "extended"
+  ],
+  "maximum_new_iterations": 20,
+  "target_iteration": 1020,
+  "current_control_replayed": false,
+  "no_retry_or_further_continuation": true,
+  "global_wall_cap_seconds": 240,
+  "global_wall_seconds_including_preservation_and_release": 110.50527660094667,
+  "mem_available_at_admission_bytes": 11294654464,
+  "load_at_admission": [
+    1.36865234375,
+    1.28271484375,
+    1.26708984375
+  ],
+  "logical_CPU_count": 12,
+  "physical_cores_at_admission": [
+    [
+      "0",
+      "0"
+    ],
+    [
+      "0",
+      "4"
+    ],
+    [
+      "0",
+      "8"
+    ],
+    [
+      "0",
+      "9"
+    ]
+  ],
+  "capsule_manifest_identity": {
+    "bytes": 2828,
+    "sha256": "41cbf089c6c66d8ca73b8929dbf3dc22f3f364774d300ea953c9c70b00fc5c55"
+  },
+  "native_archive_verified": true,
+  "resources_released_UTC": "2026-10-04T21:26:53Z",
+  "native_fields_and_archive_private": true,
+  "physical_validation_established": false,
+  "original_native_launcher_receipt_sha256": "bba80e86f801567e151fc97aefe247707a3b491a0c534fe5c95a961bb68ac79e",
+  "native_command_and_paths_retained_privately": true,
+  "private_coordination_record_retained": true
+}

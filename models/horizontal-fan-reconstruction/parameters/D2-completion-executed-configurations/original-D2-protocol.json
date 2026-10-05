@@ -1,0 +1,261 @@
+{
+  "protocol_id": "D2-outlet-sensitivity-preparation-only",
+  "status": "prepared_not_executed",
+  "new_solver_run": false,
+  "new_mesh_generated": false,
+  "physical_validation_established": false,
+  "diagnostic_sha256": "62722c36cf0958d5e8ea028badb6df74f9fea053e1fe9d8cd0ced547cc4019d6",
+  "baseline_D1C_summary_sha256": "1799205d63faa82fcc473855de15474bbd567bc3797b55683b9a323a1849149b",
+  "baseline_native_archive_sha256": "916c4b4e2a23c22e112763f58a9592896ee28e8f7e05ae8cb608e73c776fbfad",
+  "rotor_STEP_sha256": "1fefd1f51ff5e90c6ca96ddf661bab9d3c7387f91c127bfdde77d0ba41816b99",
+  "reference_configuration": "V2",
+  "restart_iteration": 960,
+  "seed_fields": {
+    "cases/consistent/960/U": {
+      "bytes": 19570002,
+      "sha256": "9f4487cf36e447d0733ba76ab4f5b952f5dc0d77dac7d07bf240c1d7d9968422"
+    },
+    "cases/consistent/960/Uf": {
+      "bytes": 36602882,
+      "sha256": "5c344da4fa63add5a6701698e54f00fe364349e1724a533c5a5e12a4bf87e3ab"
+    },
+    "cases/consistent/960/k": {
+      "bytes": 6562725,
+      "sha256": "413467dd97c1543e85f7dbbebfbf8c922f05c7a15a5adbfc4b1b3101b6d34aba"
+    },
+    "cases/consistent/960/nut": {
+      "bytes": 7681143,
+      "sha256": "d70996aad3a4de442e331ccc52a431c4dd21842d743c11838f2921a1cc16eefd"
+    },
+    "cases/consistent/960/omega": {
+      "bytes": 6076899,
+      "sha256": "f69cde88b79228d640c554d851d2adf8bd0022f1b88d9078b8b77114f419eb59"
+    },
+    "cases/consistent/960/p": {
+      "bytes": 5838086,
+      "sha256": "c1d7960d4b7e717a9007c47c9d58de99b2bd9e6b25228a0e2b6357fca8181830"
+    },
+    "cases/consistent/960/phi": {
+      "bytes": 14626729,
+      "sha256": "fb9aa384c073e7bead724a2813d4737b90680ff5d79df03c05e2a3c256970474"
+    },
+    "cases/consistent/960/uniform/time": {
+      "bytes": 799,
+      "sha256": "5c6dd3ba1ac14b20e53c4e982bd63bca2c119ecc8a2ff58aa3c8d9ef7bc01532"
+    }
+  },
+  "unchanged_physics": {
+    "rpm_assumed": 6000,
+    "fluid": {
+      "density_kg_m3": 1.2,
+      "kinematic_viscosity_m2_s": 1.5e-05,
+      "tip_Mach_assuming_343m_s": 0.2518769620225053
+    },
+    "boundary_conditions": {
+      "top_inlet": "total pressure zero gauge",
+      "bottom_outlet": "static pressure zero gauge",
+      "expected_flow_direction": [
+        0,
+        0,
+        -1
+      ],
+      "rotation_axis_positive": [
+        0,
+        0,
+        1
+      ]
+    },
+    "model": "Foundation OpenFOAM 13 isolated fan incompressible steady MRF kOmegaSST, first-order convection"
+  },
+  "numerics": {
+    "SIMPLE_consistent": "yes",
+    "pressure_relaxation": 0.15,
+    "pressure_relTol": 0.01,
+    "pressure_absolute_tolerance": 1e-08,
+    "fvSchemes_sha256": "2f8719ebcd15b41f66050ff20fc541aba19ef664c18db802b86f7572ddf74b1e",
+    "fvSolution_sha256": "f9187bb34675a23065558494959bb300db3b2ba576ef31142cad80c934009e31",
+    "core_cells": 453496,
+    "core_MPI_assignment_preserved": true,
+    "core_initial_fields_equal": true,
+    "core_geometry_and_MRF_membership_unchanged": true
+  },
+  "extension": {
+    "direction": [
+      0,
+      0,
+      -1
+    ],
+    "length_m": 0.275,
+    "distance_in_assumed_rotor_diameters": 1,
+    "current_outlet_z_m": -0.0495,
+    "new_outlet_z_m": -0.3245,
+    "layers": 50,
+    "uniform_dz_m": 0.0055,
+    "cross_section": "unchanged original156-edge outlet polygon",
+    "faces_per_layer": 4542,
+    "added_prisms": 227100,
+    "total_cells": 680596,
+    "physical_minimum_distance_proven": false,
+    "independent_mesh_gate_run": false,
+    "side_boundary": {
+      "patch_type": "patch",
+      "U": "slip",
+      "p": "zeroGradient",
+      "k": "zeroGradient",
+      "omega": "zeroGradient",
+      "nut": "calculated"
+    },
+    "far_outlet_boundary": "same original p fixedValue0 and U pressureInletOutletVelocity; k inletOutlet0.01, omega inletOutlet10; nut calculated",
+    "added_region_MRF": false,
+    "core_cell_ids_preserved": true,
+    "old_outlet_faces_become_internal_with_explicit_face_map": true,
+    "no_new_physical_duct_friction": true,
+    "wake_mixing_and_confinement_still_possible": true
+  },
+  "common_observables": {
+    "flow": {
+      "face_zone": "commonOutletFlux",
+      "faces": 4542,
+      "source": "same original outlet triangles",
+      "operation": "orientedSum",
+      "field": "phi",
+      "positive_direction": "outward from original core, -Z",
+      "outside_MRF": true
+    },
+    "pressure": {
+      "cell_zone": "commonPressureBand",
+      "selection": "-0.038 <= original center_z < -0.034 m",
+      "operation": "volAverage",
+      "field": "p",
+      "conversion_to_Pa": "multiply by rho1.2 kg/m3",
+      "is_fan_port_pressure_rise": false
+    },
+    "torque": {
+      "patch": "rotor",
+      "definition": "total fluid-on-rotor pressure plus viscous torque about same origin and Z axis",
+      "power_definition": "-torque_Z * omega_rad_s"
+    },
+    "fixed_cell_zones": {
+      "commonPressureBand": {
+        "cells": 5825,
+        "volume_m3": 0.00023942900814712673,
+        "global_cell_ids_little_i8_sha256": "0576b608c19fa7509669aa81c4deb207940c0c24739b97f59ec2699f5ee56d62",
+        "snapshot900_volume_mean_p_Pa": 85.64558104904457,
+        "control960_volume_mean_p_Pa": 85.63323860386423,
+        "consistent960_volume_mean_p_Pa": 85.64305506122128,
+        "control_vs_consistent_pressure_volume_RMS_Pa": 0.11443539582693335,
+        "contains_MRF_cells": true,
+        "pressure_is_absolute_static_scalar_in_both_cases": true
+      },
+      "commonOutletOwners": {
+        "cells": 4542,
+        "volume_m3": 9.996664998303603e-05,
+        "global_cell_ids_little_i8_sha256": "4482adb5c1ad2eaaa2a3e3d9d3d2b77e4455df5b32cf14b0b2104e0f732309c3",
+        "snapshot900_volume_mean_p_Pa": -2.937568330165513,
+        "control960_volume_mean_p_Pa": -2.9411598167409205,
+        "consistent960_volume_mean_p_Pa": -2.9382095841327516,
+        "control_vs_consistent_pressure_volume_RMS_Pa": 0.10913255121995932,
+        "contains_MRF_cells": false,
+        "pressure_is_absolute_static_scalar_in_both_cases": true
+      },
+      "commonTipWake": {
+        "cells": 10117,
+        "volume_m3": 0.00018016741192736712,
+        "global_cell_ids_little_i8_sha256": "850aca79ecebf10a29997e482361ba5036b4dab122cbb89f3bf1aca3809d7ca0",
+        "snapshot900_volume_mean_p_Pa": 410.23205276925853,
+        "control960_volume_mean_p_Pa": 410.3248191109623,
+        "consistent960_volume_mean_p_Pa": 410.2781964899301,
+        "control_vs_consistent_pressure_volume_RMS_Pa": 3.3492087480351116,
+        "contains_MRF_cells": true,
+        "pressure_is_absolute_static_scalar_in_both_cases": true
+      }
+    }
+  },
+  "initialization": "Core p/U/k/omega/nut/phi/Uf restored identically from private consistent960; append each column using its original outlet values/flux without core interpolation, preserve positive turbulence; record exact recipe and added-field hashes before launch. New-region transient may outlast budget.",
+  "execution": {
+    "cases": [
+      "current-outlet",
+      "extended-outlet"
+    ],
+    "sequential": true,
+    "iterations_each": 60,
+    "target_iteration": 1020,
+    "telemetry_interval": 1,
+    "checkpoint_interval": 20,
+    "purge_write": 0,
+    "windows": [
+      [
+        961,
+        980
+      ],
+      [
+        981,
+        1000
+      ],
+      [
+        1001,
+        1020
+      ]
+    ],
+    "no_automatic_continuation": true,
+    "existing900_to960_control_reused_as_new_control": false
+  },
+  "original_numerical_acceptance_all_required": {
+    "last_window_iterations": 20,
+    "maximum_initial_residual_p": 0.0001,
+    "maximum_initial_residual_U_components": 1e-05,
+    "maximum_initial_residual_k_and_omega": 0.0001,
+    "maximum_absolute_inlet_plus_outlet_flow_over_mean_absolute_flow": 0.005,
+    "maximum_flow_relative_standard_deviation": 0.01,
+    "maximum_rotor_torque_relative_standard_deviation": 0.02,
+    "flow_direction_matches_declared_reference": true,
+    "fields_finite_and_complete": true
+  },
+  "additional_stationarity_screen": {
+    "last_two20_windows_required": true,
+    "last_window_common_flow_CV_max": 0.01,
+    "last_window_common_pressure_std_Pa_max": 2,
+    "between_last_two_window_mean_common_flow_relative_max": 0.01,
+    "between_last_two_window_mean_torque_relative_max": 0.02,
+    "between_last_two_window_mean_pressure_difference_Pa_max": 2,
+    "checkpoint1000_to1020_core_pressure_volume_RMS_Pa_max": 1,
+    "checkpoint1000_to1020_core_velocity_volume_RMS_m_s_max": 0.1,
+    "local_wake_p99_and_max_must_be_reported": true,
+    "local_field_qualification_established_by_bulk_gates": false
+  },
+  "domain_comparison_screen": {
+    "common_flow_last20_relative_difference_max": 0.01,
+    "rotor_torque_and_input_power_last20_relative_difference_max": 0.02,
+    "common_pressure_last20_difference_Pa_floor": 5,
+    "common_pressure_last20_relative_difference_max": 0.01,
+    "pressure_limit_formula": "max(5 Pa,0.01*max(abs(meanPressure_current),abs(meanPressure_extended)))",
+    "symmetric_relative_formula": "abs(a-b)/max(abs(a),abs(b)); zero denominator => explicit undefined/reject",
+    "requires_both_numerical_and_stationarity_gates": true,
+    "thresholds_are_analyst_screening_not_Porsche_acceptance": true,
+    "matrix_residuals_comparable_as_physical_domain_effect": false,
+    "passing_scope": "Bulk observables insensitive to this one extension within the declared bands; no general domain independence, no local or installed physical validation",
+    "numerical_gate_failure": "inconclusive_domain_comparison",
+    "comparison_gate_failure_after_both_numeric_pass": "domain_dependent_model_operating_point"
+  },
+  "budget_proposed_not_launched": {
+    "CPU": 4,
+    "memory_and_swap_GiB": 5,
+    "network": "none",
+    "global_wall_cap_seconds_all_runtime_stages": 720,
+    "mesh_append_and_gates_cap_seconds": 120,
+    "control_solver_cap_seconds": 180,
+    "extended_solver_cap_seconds": 300,
+    "remaining_setup_reconstruct_audit_archive_seconds": 120,
+    "observed_baseline60_solver_seconds": 117.18217,
+    "linear_cell_count_estimate_extended_solver_seconds": 175.86421087136378,
+    "nominal_total_minutes": [
+      8,
+      10
+    ],
+    "hard_total_minutes": 12,
+    "memory_estimate_not_aggregate_measurement": true,
+    "fresh_resource_and_concurrent_job_preflight_required": true,
+    "actual_mesher_and_runner_not_yet_implemented": true,
+    "stop_on_deadline_without_retry": true
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "status": "completed_exact20_no_retry",
+  "phase": "analysis",
+  "error": null,
+  "commands": [
+    {
+      "args": [
+        "mpirun",
+        "--bind-to",
+        "none",
+        "--use-hwthread-cpus",
+        "-np",
+        "4",
+        "foamRun",
+        "-parallel"
+      ],
+      "log": "log.foamRun",
+      "exit_status": 0,
+      "wall_cap_seconds": 110,
+      "wall_seconds": 67.00732440594584
+    },
+    {
+      "args": [
+        "reconstructPar",
+        "-time",
+        "1000,1020"
+      ],
+      "log": "log.reconstructPar",
+      "exit_status": 0,
+      "wall_cap_seconds": 25,
+      "wall_seconds": 12.875440664938651
+    },
+    {
+      "args": [
+        "python3",
+        "-B",
+        "/capsule/source/complete_d2_comparison.py"
+      ],
+      "log": "log.analysis",
+      "exit_status": 0,
+      "wall_cap_seconds": 30,
+      "wall_seconds": 16.723671447020024
+    }
+  ],
+  "new_cases": [
+    "extended"
+  ],
+  "restart_iteration": 1000,
+  "target_iteration": 1020,
+  "maximum_new_iterations": 20,
+  "current_control_replayed": false,
+  "no_retry_or_further_continuation": true,
+  "wall_seconds_before_preservation": 97.2944633680163,
+  "aggregate_wall_cap_seconds": 240,
+  "child_peak_RSS_KiB_not_aggregate": 460348,
+  "native_fields_and_archive_private": true,
+  "physical_validation_established": false,
+  "original_native_execution_receipt_sha256": "ec84a805cd0d5ec4eb578eaf2af02d971443b59541d2c76f1954fd829c949509",
+  "private_coordination_record_retained": true
+}

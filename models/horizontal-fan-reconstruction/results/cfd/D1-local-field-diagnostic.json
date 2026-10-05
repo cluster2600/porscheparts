@@ -1,0 +1,538 @@
+{
+  "status": "preserved_D1_control960_spatial_and_coupling_diagnostic_only",
+  "new_solver_run": false,
+  "actual_algebraic_residual_cells_identified": false,
+  "physical_validation_established": false,
+  "historical_fine_admission_restored": false,
+  "script_sha256": "5065103e8c7f9463cca6c679d4962c9f3249cc52335190110a8f12568f41172e",
+  "dependency_sha256": {
+    "diagnose_and_merge_fv_cells.py": "d2c931b1acf641e21abef98e9490a81563ca1c2bb2029ebec6f1bc0f40f65361",
+    "analyze_flow_balance.py": "efe094ed408c81fad0364ef5c48ab12f30f53f358dccf83e499965e8a43d236f"
+  },
+  "native_D1_archive_sha256": "362c82e93a3ed2ae27532f1c7aaa62115b8c02e49146f900caba2fbf1c411dc2",
+  "used_private_inputs": {
+    "historical/cfd-V2-fine-pressure015-900/constant/polyMesh/owner": {
+      "bytes": 6232435,
+      "sha256": "29085acd8ad621e232027f73ed2a8880c0a09064a3cf6ff549bd0751543e5679"
+    },
+    "historical/cfd-V2-fine-pressure015-900/constant/polyMesh/boundary": {
+      "bytes": 1279,
+      "sha256": "e9283505efb7152fa238e1cca2dc32fd780c19860fd751f0b2ef91b804a639cd"
+    },
+    "historical/cfd-V2-fine-pressure015-900/constant/polyMesh/neighbour": {
+      "bytes": 6022569,
+      "sha256": "54ef96f7ec6b5fc1db3213549659d9c01b4b1ff8dab8f3d81e4a909699b16c36"
+    },
+    "historical/cfd-V2-fine-pressure015-900/constant/polyMesh/points": {
+      "bytes": 4133280,
+      "sha256": "534ec1bffda6917a884a7652cb0ee54b46bd27389a201de6a68dcf5681cb7ca4"
+    },
+    "historical/cfd-V2-fine-pressure015-900/constant/polyMesh/cellZones": {
+      "bytes": 5606441,
+      "sha256": "7fd3eccadfe941a1da03e126b79fc78eb2a041c6c2cfee1eb9e9869354ff13c4"
+    },
+    "historical/cfd-V2-fine-pressure015-900/constant/polyMesh/faces": {
+      "bytes": 19505560,
+      "sha256": "f5803f92966e9523a4b417625e6b89923ffe24c2063742d968dacb425ca11298"
+    },
+    "historical/cfd-V2-fine-pressure015-900/900/p": {
+      "bytes": 5838361,
+      "sha256": "40ff5d7a1d3394799f0362b629562eb767367f4aa051806391d8959eccf33940"
+    },
+    "historical/cfd-V2-fine-pressure015-900/900/U": {
+      "bytes": 19568961,
+      "sha256": "8bc692b454aa936dca053552e5cf7348964027c3dec258c8ca97aed4110a154f"
+    },
+    "D1/D1-runtime-symlink-repair/cases/control/960/p": {
+      "bytes": 5838139,
+      "sha256": "6e894c305f21898eabaf334c74dc8e4becc5d88b01bea6488f26290b572a19d4"
+    },
+    "D1/D1-runtime-symlink-repair/cases/control/960/U": {
+      "bytes": 19569680,
+      "sha256": "7396cdce34e7a489cb5320023ea805f6b23d221cd174de4f6dd0f7c9812336fd"
+    },
+    "D1/D1-runtime-symlink-repair/cases/control/960/phi": {
+      "bytes": 14626413,
+      "sha256": "057a4fc6db142ebc179556b350d17474c6c9306485289cd6afd3a332dd6123a7"
+    },
+    "D1/D1-runtime-symlink-repair/cases/control/log.foamRun": {
+      "bytes": 66974,
+      "sha256": "96410a900fa6d5fc12c43c8db786d784b9c7ed92c224151d68d4031df890c7d9"
+    },
+    "D1/D1-runtime-symlink-repair/cases/absolute/log.foamRun": {
+      "bytes": 33882,
+      "sha256": "787aed337ea1bd1e1b7bba9090341a11aa75ec07c0b2591bd78c89bc7d15dcfd"
+    }
+  },
+  "cells": 453496,
+  "reproduced_independent_mesh_metrics": {
+    "nonorthogonality_max_deg": 71.08568896354551,
+    "skewness_max": 1.0992669561416728,
+    "cell_determinant_min": 0.005150897637448262
+  },
+  "checkpoint900_to960": {
+    "pressure_delta_volume_RMS_Pa": 0.29151484366226943,
+    "velocity_delta_volume_RMS_m_s": 0.022139346280078673,
+    "all_cells": {
+      "cells": 453496,
+      "volume_fraction": 1.0,
+      "nonorthogonality_deg": {
+        "0": 1.3350559087834772,
+        "0.5": 21.31283846865827,
+        "0.9": 31.147987783022927,
+        "0.99": 43.496140304201305,
+        "1": 71.08568896354551
+      },
+      "skewness": {
+        "0": 0.021746690721368197,
+        "0.5": 0.17560969821216696,
+        "0.9": 0.28219384539843845,
+        "0.99": 0.40553774369028367,
+        "1": 1.0992669561416728
+      },
+      "determinant": {
+        "0": 0.005150897637448262,
+        "0.5": 1.676787577181949,
+        "0.9": 2.127391865357766,
+        "0.99": 2.286772187763202,
+        "1": 2.368383289048575
+      },
+      "pressure_change_abs_Pa": {
+        "0": 0.0,
+        "0.5": 0.005083727999938503,
+        "0.9": 0.03400499999992235,
+        "0.99": 0.1977693899999981,
+        "1": 131.77647239999988
+      },
+      "velocity_change_m_s": {
+        "0": 1.2140943383152413e-07,
+        "0.5": 5.314211495551503e-05,
+        "0.9": 0.0003325915973256896,
+        "0.99": 0.002334839856221549,
+        "1": 18.706340542331834
+      }
+    },
+    "pressure_change_above1Pa_cells": {
+      "cells": 1448,
+      "volume_fraction": 0.0024061527303822655,
+      "nonorthogonality_deg": {
+        "0": 5.667696805800234,
+        "0.5": 25.054554806874087,
+        "0.9": 35.61578713069048,
+        "0.99": 49.36145887507812,
+        "1": 55.04744828815459
+      },
+      "skewness": {
+        "0": 0.05500556586197007,
+        "0.5": 0.19685774461745031,
+        "0.9": 0.3189473527876893,
+        "0.99": 0.48007623647737097,
+        "1": 0.8039844752258156
+      },
+      "determinant": {
+        "0": 0.023933551434947846,
+        "0.5": 1.2781587493051654,
+        "0.9": 2.0107480987415736,
+        "0.99": 2.2101240411563863,
+        "1": 2.3214745478097054
+      },
+      "pressure_change_abs_Pa": {
+        "0": 1.0006720799999584,
+        "0.5": 2.167266408599988,
+        "0.9": 10.59634466399997,
+        "0.99": 49.43509902480002,
+        "1": 131.77647239999988
+      },
+      "velocity_change_m_s": {
+        "0": 0.00016884870832670174,
+        "0.5": 0.015167700894764727,
+        "0.9": 0.132497214751771,
+        "0.99": 2.0389088725654303,
+        "1": 18.706340542331834
+      }
+    },
+    "volume_fraction_dp_above1Pa_and_nonorth_above65deg": 0.0,
+    "fraction_dp_above1Pa_cells_nonorth_above65deg": 0.0,
+    "fraction_all_cells_nonorth_above65deg": 0.00015215128689117434,
+    "correlation_abs_pressure_change_and_velocity_change": 0.4867982705191851,
+    "largest_pressure_change_cells": [
+      {
+        "cell": 405985,
+        "center_mm": [
+          88.44193170749999,
+          -103.920596025,
+          -16.7096562575
+        ],
+        "radius_mm": 136.46049084751724,
+        "pressure_change_Pa": -131.77647239999988,
+        "velocity_change_m_s": 1.5413259114987026,
+        "adjacent_nonorthogonality_max_deg": 32.83263665972927,
+        "adjacent_skewness_max": 0.2510916858468774,
+        "determinant": 1.9877319094961086,
+        "nearest_boundary_face_centroid_distance_mm_proxy": {
+          "rotor": 0.9353446008179216,
+          "shroud": 2.3885141229061873,
+          "outlet": 32.799182315149665,
+          "inlet": 93.72736002393042
+        }
+      },
+      {
+        "cell": 288831,
+        "center_mm": [
+          46.229574012499995,
+          124.591260375,
+          -15.887079282499997
+        ],
+        "radius_mm": 132.8915184472217,
+        "pressure_change_Pa": -92.1808896,
+        "velocity_change_m_s": 1.8838180679233592,
+        "adjacent_nonorthogonality_max_deg": 26.613589070264425,
+        "adjacent_skewness_max": 0.25023706826347153,
+        "determinant": 0.28131872623026566,
+        "nearest_boundary_face_centroid_distance_mm_proxy": {
+          "rotor": 0.5086201111011321,
+          "shroud": 5.751928888033239,
+          "outlet": 33.66892442220975,
+          "inlet": 92.8900136624633
+        }
+      },
+      {
+        "cell": 243568,
+        "center_mm": [
+          46.4122665675,
+          123.88010855,
+          -15.574424397499998
+        ],
+        "radius_mm": 132.28900098758197,
+        "pressure_change_Pa": -91.81887671999993,
+        "velocity_change_m_s": 8.740610323928228,
+        "adjacent_nonorthogonality_max_deg": 26.613589070264425,
+        "adjacent_skewness_max": 0.25506186155285804,
+        "determinant": 0.08905873934911775,
+        "nearest_boundary_face_centroid_distance_mm_proxy": {
+          "rotor": 0.537609070318655,
+          "shroud": 6.340143540096102,
+          "outlet": 33.99404013013391,
+          "inlet": 92.57879276911672
+        }
+      },
+      {
+        "cell": 446570,
+        "center_mm": [
+          46.01054783000001,
+          124.02216585000002,
+          -16.292970725
+        ],
+        "radius_mm": 132.28177551628806,
+        "pressure_change_Pa": -88.67974788000004,
+        "velocity_change_m_s": 6.981148568551314,
+        "adjacent_nonorthogonality_max_deg": 25.216811629704534,
+        "adjacent_skewness_max": 0.24695899568874846,
+        "determinant": 0.09882120986112672,
+        "nearest_boundary_face_centroid_distance_mm_proxy": {
+          "rotor": 0.5118546118081229,
+          "shroud": 6.337927799752104,
+          "outlet": 33.25229793798028,
+          "inlet": 93.29959411473551
+        }
+      },
+      {
+        "cell": 389382,
+        "center_mm": [
+          88.846199565,
+          -103.271721325,
+          -16.3241665775
+        ],
+        "radius_mm": 136.23030353989623,
+        "pressure_change_Pa": -85.65373211999997,
+        "velocity_change_m_s": 0.7926930203797359,
+        "adjacent_nonorthogonality_max_deg": 14.93243465040781,
+        "adjacent_skewness_max": 0.3169476386158542,
+        "determinant": 0.2294537254248649,
+        "nearest_boundary_face_centroid_distance_mm_proxy": {
+          "rotor": 0.6374088295933816,
+          "shroud": 2.4545174929962528,
+          "outlet": 33.206394962084836,
+          "inlet": 93.3463299457508
+        }
+      },
+      {
+        "cell": 398792,
+        "center_mm": [
+          45.542135865,
+          121.00550772500002,
+          -17.532372634999998
+        ],
+        "radius_mm": 129.29199139517948,
+        "pressure_change_Pa": 75.08868828000004,
+        "velocity_change_m_s": 0.9759191704557609,
+        "adjacent_nonorthogonality_max_deg": 20.191638154980918,
+        "adjacent_skewness_max": 0.221185397610449,
+        "determinant": 1.494793624041624,
+        "nearest_boundary_face_centroid_distance_mm_proxy": {
+          "rotor": 1.545413532447774,
+          "shroud": 9.341132011242024,
+          "outlet": 31.99264497064271,
+          "inlet": 94.53805622772873
+        }
+      },
+      {
+        "cell": 278964,
+        "center_mm": [
+          46.82335928,
+          122.88560590000002,
+          -17.913410372499996
+        ],
+        "radius_mm": 131.50398895727108,
+        "pressure_change_Pa": 74.00652696000003,
+        "velocity_change_m_s": 0.6555069580449041,
+        "adjacent_nonorthogonality_max_deg": 17.365939113775468,
+        "adjacent_skewness_max": 0.15866843614639514,
+        "determinant": 1.7326245457124598,
+        "nearest_boundary_face_centroid_distance_mm_proxy": {
+          "rotor": 2.4270509443665857,
+          "shroud": 7.1110067507574986,
+          "outlet": 31.715692678885762,
+          "inlet": 94.92568593980255
+        }
+      },
+      {
+        "cell": 233410,
+        "center_mm": [
+          88.544727715,
+          -104.58461315000001,
+          -15.3856038425
+        ],
+        "radius_mm": 137.03324455714622,
+        "pressure_change_Pa": 69.7879296000001,
+        "velocity_change_m_s": 4.465680406855419,
+        "adjacent_nonorthogonality_max_deg": 30.88817657738225,
+        "adjacent_skewness_max": 0.493354605985463,
+        "determinant": 0.08589209137663677,
+        "nearest_boundary_face_centroid_distance_mm_proxy": {
+          "rotor": 0.523129686487688,
+          "shroud": 1.704786111337192,
+          "outlet": 34.11451744746729,
+          "inlet": 92.39618405242913
+        }
+      },
+      {
+        "cell": 199633,
+        "center_mm": [
+          46.237717325000006,
+          125.2075638,
+          -15.854099957499999
+        ],
+        "radius_mm": 133.47232123611874,
+        "pressure_change_Pa": -62.19566039999995,
+        "velocity_change_m_s": 1.1930867315804528,
+        "adjacent_nonorthogonality_max_deg": 24.695186274498052,
+        "adjacent_skewness_max": 0.4210447380020659,
+        "determinant": 0.13511168064786763,
+        "nearest_boundary_face_centroid_distance_mm_proxy": {
+          "rotor": 0.5898398881794469,
+          "shroud": 5.174075101930014,
+          "outlet": 33.67904722316941,
+          "inlet": 92.85904263151481
+        }
+      },
+      {
+        "cell": 434265,
+        "center_mm": [
+          87.17530037999998,
+          -103.63934462499999,
+          -15.718112452500002
+        ],
+        "radius_mm": 135.42764396770232,
+        "pressure_change_Pa": -60.32358719999979,
+        "velocity_change_m_s": 5.531521987949512,
+        "adjacent_nonorthogonality_max_deg": 30.246122106359564,
+        "adjacent_skewness_max": 0.45748167841719695,
+        "determinant": 0.14641409539754827,
+        "nearest_boundary_face_centroid_distance_mm_proxy": {
+          "rotor": 0.5074138996650375,
+          "shroud": 3.1760992873076495,
+          "outlet": 33.8266113059978,
+          "inlet": 92.75607979641639
+        }
+      }
+    ]
+  },
+  "stored_MRF_relative_phi_continuity_at960": {
+    "sum_abs_cell_flux_divergence_m3_s": 1.7825010989820424e-06,
+    "global_net_flux_m3_s": 1.781653390014931e-07,
+    "boundary_net_stored_relative_phi_m3_s": {
+      "rotor": 0.0,
+      "shroud": -1.6223445278158092e-05,
+      "outlet": 1.1522996846143871,
+      "inlet": -1.15228328300377
+    },
+    "discrete_global_sum_matches_boundary_sum": true,
+    "cell_divergence_abs_s_inverse_quantiles": {
+      "0": 0.0,
+      "0.5": 0.0002570337671004964,
+      "0.9": 0.027747097494768492,
+      "0.99": 0.14679679255973824,
+      "1": 24.374655678524203
+    },
+    "correlation_abs_dp_with_abs_divergence_per_volume": 0.3257351911693883,
+    "not_the_pressure_equation_residual": true
+  },
+  "port_flux_at960": {
+    "outlet": {
+      "net_flow_m3_s": 1.1522996846143871,
+      "gross_incoming_m3_s": 0.12399008787308902,
+      "gross_outgoing_m3_s": 1.2762897724874762,
+      "incoming_area_fraction": 0.3515382290234844,
+      "incoming_face_fraction": 0.34610303830911493,
+      "face_count": 4542,
+      "z_range_mm": [
+        -49.50000000000001,
+        -49.50000000000001
+      ]
+    },
+    "inlet": {
+      "net_flow_m3_s": -1.15228328300377,
+      "gross_incoming_m3_s": 1.15228328300377,
+      "gross_outgoing_m3_s": 0.0,
+      "incoming_area_fraction": 1.0,
+      "incoming_face_fraction": 1.0,
+      "face_count": 5768,
+      "z_range_mm": [
+        77.0,
+        77.0
+      ]
+    }
+  },
+  "unchanged_native_boundary_types_900_960": {
+    "rotor": {
+      "p": "zeroGradient",
+      "U": "MRFnoSlip"
+    },
+    "shroud": {
+      "p": "zeroGradient",
+      "U": "noSlip"
+    },
+    "outlet": {
+      "p": "fixedValue",
+      "U": "pressureInletOutletVelocity"
+    },
+    "inlet": {
+      "p": "totalPressure",
+      "U": "pressureInletOutletVelocity"
+    }
+  },
+  "complete_native_correction_log_statistics": {
+    "control": {
+      "complete_iteration_count": 60,
+      "excluded_incomplete_iterations": [],
+      "initial_pressure_per_correction_mean": [
+        0.0001010459976438333,
+        5.1588540128833344e-05,
+        2.1180302890000008e-05
+      ],
+      "initial_pressure_per_correction_max": [
+        0.0001560410146,
+        6.012328884e-05,
+        2.949563839e-05
+      ],
+      "last_over_first_correction_initial_ratio_mean": 0.2126504465464378,
+      "sum_local_continuity_mean": 0.0002690602546016667,
+      "sum_local_continuity_max": 0.0005065391338,
+      "global_continuity_abs_max": 6.814936351e-05,
+      "correlation_initial_p_first_with_sum_local_continuity": 0.36633122920838823,
+      "correlation_initial_p_first_with_initial_p_third": 0.7573331467749649,
+      "iteration_labels_are_not_physical_time": true
+    },
+    "absolute": {
+      "complete_iteration_count": 29,
+      "excluded_incomplete_iterations": [
+        930
+      ],
+      "initial_pressure_per_correction_mean": [
+        9.691373146034482e-05,
+        5.050943222e-05,
+        2.0956454348275864e-05
+      ],
+      "initial_pressure_per_correction_max": [
+        0.0001310864581,
+        5.688931754e-05,
+        2.503019675e-05
+      ],
+      "last_over_first_correction_initial_ratio_mean": 0.21860399290871022,
+      "sum_local_continuity_mean": 1.3847179961586208e-05,
+      "sum_local_continuity_max": 1.805524203e-05,
+      "global_continuity_abs_max": 4.391385918e-06,
+      "correlation_initial_p_first_with_sum_local_continuity": -0.06419611380973995,
+      "correlation_initial_p_first_with_initial_p_third": 0.6406378833763283,
+      "iteration_labels_are_not_physical_time": true
+    }
+  },
+  "matched_first20_correction_statistics": {
+    "control": {
+      "iterations": [
+        901,
+        902,
+        903,
+        904,
+        905,
+        906,
+        907,
+        908,
+        909,
+        910,
+        911,
+        912,
+        913,
+        914,
+        915,
+        916,
+        917,
+        918,
+        919,
+        920
+      ],
+      "initial_p_first_mean": 9.7004008224e-05,
+      "initial_p_third_mean": 2.0163746577e-05,
+      "sum_local_continuity_mean": 0.00025961384902999996,
+      "global_continuity_abs_max": 4.429138053e-05
+    },
+    "absolute": {
+      "iterations": [
+        901,
+        902,
+        903,
+        904,
+        905,
+        906,
+        907,
+        908,
+        909,
+        910,
+        911,
+        912,
+        913,
+        914,
+        915,
+        916,
+        917,
+        918,
+        919,
+        920
+      ],
+      "initial_p_first_mean": 9.70915416045e-05,
+      "initial_p_third_mean": 2.0677125891999996e-05,
+      "sum_local_continuity_mean": 1.3381515503300003e-05,
+      "global_continuity_abs_max": 4.391385918e-06
+    }
+  },
+  "matched_first20_local_continuity_control_over_absolute_ratio": 19.400930258308698,
+  "limits": [
+    "Pressure differences over60 steady iterations are not algebraic cell residuals, physical time signals or experimental uncertainty.",
+    "Local face-centroid distances are geometric proxies, not wall distances.",
+    "Statistics and correlations describe the same mesh only; association does not identify causation.",
+    "Relative stored MRF phi continuity is a discrete flux diagnostic, not absolute rotating-wall leakage."
+  ],
+  "mesh_metric_method_URL": "https://raw.githubusercontent.com/OpenFOAM/OpenFOAM-13/master/src/meshCheck/primitiveMeshCheck/primitiveMeshCheck.C",
+  "coupling_method_URL": "https://raw.githubusercontent.com/OpenFOAM/OpenFOAM-13/master/applications/modules/incompressibleFluid/correctPressure.C"
+}

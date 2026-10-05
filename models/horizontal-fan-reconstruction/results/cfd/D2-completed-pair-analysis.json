@@ -1,0 +1,465 @@
+{
+  "status": "inconclusive_domain_comparison",
+  "both_cases_completed_exact60": true,
+  "both_cases_numerical_and_stationarity_admitted": false,
+  "reports": {
+    "current": {
+      "original_numerical_checks": {
+        "initial_time_matches_frozen_continuation": true,
+        "residual_p": true,
+        "residual_U": true,
+        "residual_turbulence": true,
+        "mass_balance": true,
+        "flow_stability": true,
+        "torque_stability": true,
+        "declared_flow_direction": true,
+        "complete_finite_fields": true,
+        "finite_measurements": true
+      },
+      "original_numerical_admission_supported": true,
+      "original_max_initial_residuals": {
+        "p": 7.415232367e-05,
+        "Ux": 5.819976207e-06,
+        "Uy": 5.638924555e-06,
+        "Uz": 3.119995534e-06,
+        "k": 2.379775663e-05,
+        "omega": 2.532023418e-08
+      },
+      "windows": [
+        {
+          "range": [
+            961,
+            980
+          ],
+          "samples": 20,
+          "Q_m3_s": {
+            "mean": 1.1522995361850001,
+            "std": 6.243741572589281e-07,
+            "minimum": 1.1522984698,
+            "maximum": 1.152300406,
+            "CV": 5.418505671937419e-07
+          },
+          "pressure_Pa": {
+            "mean": 85.64561544293998,
+            "std": 0.009024442584019805,
+            "minimum": 85.63068801120001,
+            "maximum": 85.6596048288,
+            "CV": 0.00010536958065333999
+          },
+          "torque_Nm": {
+            "mean": -3.8670745764291503,
+            "std": 8.118626355089189e-05,
+            "minimum": -3.8671852350780003,
+            "maximum": -3.8669279328119996,
+            "CV": 2.0994232706486655e-05
+          },
+          "power_W": {
+            "mean": 2429.7546160387355,
+            "std": 0.051010833828783075,
+            "minimum": 2429.6624771366687,
+            "maximum": 2429.8241449183924,
+            "CV": 2.0994232706489013e-05
+          }
+        },
+        {
+          "range": [
+            981,
+            1000
+          ],
+          "samples": 20,
+          "Q_m3_s": {
+            "mean": 1.152299530915,
+            "std": 4.5800826443230996e-07,
+            "minimum": 1.15229891,
+            "maximum": 1.152300568,
+            "CV": 3.974732716142147e-07
+          },
+          "pressure_Pa": {
+            "mean": 85.64495426603999,
+            "std": 0.003794183445275866,
+            "minimum": 85.638790848,
+            "maximum": 85.65371876879999,
+            "CV": 4.430130738922397e-05
+          },
+          "torque_Nm": {
+            "mean": -3.8671539565460002,
+            "std": 8.888348498322296e-05,
+            "minimum": -3.8672813624180002,
+            "maximum": -3.867008827724,
+            "CV": 2.2984211640389518e-05
+          },
+          "power_W": {
+            "mean": 2429.804492037123,
+            "std": 0.05584714068976784,
+            "minimum": 2429.713304908919,
+            "maximum": 2429.8845435074236,
+            "CV": 2.29842116403967e-05
+          }
+        },
+        {
+          "range": [
+            1001,
+            1020
+          ],
+          "samples": 20,
+          "Q_m3_s": {
+            "mean": 1.1523004350400001,
+            "std": 4.6847751108886826e-07,
+            "minimum": 1.1522994764,
+            "maximum": 1.1523011041,
+            "CV": 4.065584780175891e-07
+          },
+          "pressure_Pa": {
+            "mean": 85.6474263231,
+            "std": 0.01003863277066578,
+            "minimum": 85.63097500319999,
+            "maximum": 85.65908549519999,
+            "CV": 0.00011720880826932981
+          },
+          "torque_Nm": {
+            "mean": -3.86710650026735,
+            "std": 7.067653913784129e-05,
+            "minimum": -3.867215184817,
+            "maximum": -3.866992703919,
+            "CV": 1.8276336359744713e-05
+          },
+          "power_W": {
+            "mean": 2429.774674377849,
+            "std": 0.044407379227407826,
+            "minimum": 2429.703174023452,
+            "maximum": 2429.842962894397,
+            "CV": 1.8276336359781373e-05
+          }
+        }
+      ],
+      "between_last_two_window_relative_Q": 7.846261033211062e-07,
+      "between_last_two_window_relative_torque": 1.2271629002511323e-05,
+      "between_last_two_window_abs_pressure_Pa": 0.0024720570600180736,
+      "stationarity_checks": {
+        "common_flow_CV": true,
+        "common_pressure_std": true,
+        "between_windows_common_flow": true,
+        "between_windows_torque": true,
+        "between_windows_pressure": true,
+        "core_pressure_checkpoint_RMS": true,
+        "core_velocity_checkpoint_RMS": true
+      },
+      "all_additional_stationarity_checks_pass": true,
+      "core_checkpoint1000_to1020": {
+        "pressure_volume_RMS_Pa": 0.287650436409805,
+        "pressure_abs_cell_p99_Pa": 0.1673217093540109,
+        "pressure_max_abs_Pa": 122.28351599999996,
+        "velocity_volume_RMS_m_s": 0.04178242262502186,
+        "velocity_abs_cell_p99_m_s": 0.0027108302958302774,
+        "velocity_max_m_s": 48.195531267760394
+      },
+      "fixed_zone_checkpoint_changes": {
+        "commonPressureBand": {
+          "pressure_volume_RMS_Pa": 0.10277211456466494,
+          "pressure_abs_cell_p99_Pa": 0.3557663135999932,
+          "pressure_max_abs_Pa": 2.4394999200000256,
+          "velocity_volume_RMS_m_s": 0.0014637896867480604,
+          "velocity_abs_cell_p99_m_s": 0.006754202076064483,
+          "velocity_max_m_s": 0.023854543329244977
+        },
+        "commonOutletOwners": {
+          "pressure_volume_RMS_Pa": 0.06905652449559285,
+          "pressure_abs_cell_p99_Pa": 0.226049606159999,
+          "pressure_max_abs_Pa": 2.4762653159999997,
+          "velocity_volume_RMS_m_s": 0.028893384260888402,
+          "velocity_abs_cell_p99_m_s": 0.035665657794658585,
+          "velocity_max_m_s": 0.9969031187247914
+        },
+        "commonTipWake": {
+          "pressure_volume_RMS_Pa": 1.7252159137413081,
+          "pressure_abs_cell_p99_Pa": 15.026626214400032,
+          "pressure_max_abs_Pa": 122.28351599999996,
+          "velocity_volume_RMS_m_s": 0.26700202174434834,
+          "velocity_abs_cell_p99_m_s": 0.1921631420306341,
+          "velocity_max_m_s": 48.195531267760394
+        }
+      },
+      "final_common_plane_flux": {
+        "net_m3_s": 1.1523011041082938,
+        "gross_forward_m3_s": 1.2762770574797977,
+        "gross_reverse_m3_s": 0.12397595337150395,
+        "reverse_over_net": 0.10758989376083479,
+        "reversed_faces": 1571
+      },
+      "final_far_outlet_flux": {
+        "net_m3_s": 1.1523011041082938,
+        "gross_forward_m3_s": 1.2762770574797977,
+        "gross_reverse_m3_s": 0.12397595337150395,
+        "reverse_over_net": 0.10758989376083479,
+        "reversed_faces": 1571
+      }
+    },
+    "extended": {
+      "original_numerical_checks": {
+        "initial_time_matches_frozen_continuation": true,
+        "residual_p": false,
+        "residual_U": false,
+        "residual_turbulence": false,
+        "mass_balance": true,
+        "flow_stability": true,
+        "torque_stability": true,
+        "declared_flow_direction": true,
+        "complete_finite_fields": true,
+        "finite_measurements": true
+      },
+      "original_numerical_admission_supported": false,
+      "original_max_initial_residuals": {
+        "p": 0.0106873737,
+        "Ux": 0.0009982641216,
+        "Uy": 0.0009940988367,
+        "Uz": 0.001844637393,
+        "k": 0.004435900907,
+        "omega": 3.671699962e-06
+      },
+      "windows": [
+        {
+          "range": [
+            961,
+            980
+          ],
+          "samples": 20,
+          "Q_m3_s": {
+            "mean": 1.1474441932350001,
+            "std": 0.0008278743354069975,
+            "minimum": 1.1466210475,
+            "maximum": 1.1497856609,
+            "CV": 0.0007214942045006682
+          },
+          "pressure_Pa": {
+            "mean": 138.95731144913998,
+            "std": 42.86525179715582,
+            "minimum": 94.6845639492,
+            "maximum": 211.45133737199998,
+            "CV": 0.30847784366384357
+          },
+          "torque_Nm": {
+            "mean": -3.895653169729601,
+            "std": 0.05020647188004988,
+            "minimum": -3.9847504986630002,
+            "maximum": -3.842897443506,
+            "CV": 0.012887818728363526
+          },
+          "power_W": {
+            "mean": 2447.7110757912606,
+            "std": 31.54565664420548,
+            "minimum": 2414.56367540349,
+            "maximum": 2503.6925785975895,
+            "CV": 0.012887818728363542
+          }
+        },
+        {
+          "range": [
+            981,
+            1000
+          ],
+          "samples": 20,
+          "Q_m3_s": {
+            "mean": 1.14939038654,
+            "std": 0.0012688379654056383,
+            "minimum": 1.1476077354,
+            "maximum": 1.1515458155,
+            "CV": 0.0011039225490872692
+          },
+          "pressure_Pa": {
+            "mean": 97.74493001351999,
+            "std": 11.794956573822141,
+            "minimum": 82.8668817384,
+            "maximum": 113.9219578812,
+            "CV": 0.12067077619463919
+          },
+          "torque_Nm": {
+            "mean": -3.8428749874758497,
+            "std": 0.012321501028378376,
+            "minimum": -3.865381547861,
+            "maximum": -3.830706268777,
+            "CV": 0.0032063236687466692
+          },
+          "power_W": {
+            "mean": 2414.5495658636196,
+            "std": 7.741827422390511,
+            "minimum": 2406.903734410038,
+            "maximum": 2428.6908548163324,
+            "CV": 0.003206323668746666
+          }
+        },
+        {
+          "range": [
+            1001,
+            1020
+          ],
+          "samples": 20,
+          "Q_m3_s": {
+            "mean": 1.15399658181,
+            "std": 0.0013360454421210018,
+            "minimum": 1.1517687092,
+            "maximum": 1.1561427214,
+            "CV": 0.001157755112259921
+          },
+          "pressure_Pa": {
+            "mean": 82.14579918114,
+            "std": 6.170105531525265,
+            "minimum": 76.278477366,
+            "maximum": 93.0178622136,
+            "CV": 0.07511163800256593
+          },
+          "torque_Nm": {
+            "mean": -3.8225855855377007,
+            "std": 0.0044009301738839835,
+            "minimum": -3.831003945305,
+            "maximum": -3.818594441059,
+            "CV": 0.0011512967009906544
+          },
+          "power_W": {
+            "mean": 2401.8013586486954,
+            "std": 2.765185980647095,
+            "minimum": 2399.2936486139556,
+            "maximum": 2407.0907700887406,
+            "CV": 0.0011512967009906462
+          }
+        }
+      ],
+      "between_last_two_window_relative_Q": 0.0039915155231876115,
+      "between_last_two_window_relative_torque": 0.0052797455041533525,
+      "between_last_two_window_abs_pressure_Pa": 15.599130832379984,
+      "stationarity_checks": {
+        "common_flow_CV": true,
+        "common_pressure_std": false,
+        "between_windows_common_flow": true,
+        "between_windows_torque": true,
+        "between_windows_pressure": false,
+        "core_pressure_checkpoint_RMS": false,
+        "core_velocity_checkpoint_RMS": false
+      },
+      "all_additional_stationarity_checks_pass": false,
+      "core_checkpoint1000_to1020": {
+        "pressure_volume_RMS_Pa": 10.347077364271172,
+        "pressure_abs_cell_p99_Pa": 30.16985130000014,
+        "pressure_max_abs_Pa": 195.11118732,
+        "velocity_volume_RMS_m_s": 0.3817242184488014,
+        "velocity_abs_cell_p99_m_s": 1.3371690009495962,
+        "velocity_max_m_s": 60.55650019958123
+      },
+      "fixed_zone_checkpoint_changes": {
+        "commonPressureBand": {
+          "pressure_volume_RMS_Pa": 16.301325125779005,
+          "pressure_abs_cell_p99_Pa": 34.58673671424001,
+          "pressure_max_abs_Pa": 44.230306500000005,
+          "velocity_volume_RMS_m_s": 0.6321139731539228,
+          "velocity_abs_cell_p99_m_s": 1.3660772669886045,
+          "velocity_max_m_s": 2.1121977329276063
+        },
+        "commonOutletOwners": {
+          "pressure_volume_RMS_Pa": 17.025803151375474,
+          "pressure_abs_cell_p99_Pa": 38.121424375200014,
+          "pressure_max_abs_Pa": 50.89495726799999,
+          "velocity_volume_RMS_m_s": 1.2752370308061596,
+          "velocity_abs_cell_p99_m_s": 3.4898584417863323,
+          "velocity_max_m_s": 4.724052697335586
+        },
+        "commonTipWake": {
+          "pressure_volume_RMS_Pa": 17.415912961432706,
+          "pressure_abs_cell_p99_Pa": 30.50755186560009,
+          "pressure_max_abs_Pa": 179.69379156,
+          "velocity_volume_RMS_m_s": 0.28397555200138713,
+          "velocity_abs_cell_p99_m_s": 0.3621074490084835,
+          "velocity_max_m_s": 60.55650019958123
+        }
+      },
+      "final_common_plane_flux": {
+        "net_m3_s": 1.1561427213801179,
+        "gross_forward_m3_s": 1.2632723848977883,
+        "gross_reverse_m3_s": 0.10712966351767039,
+        "reverse_over_net": 0.09266127921454793,
+        "reversed_faces": 1576
+      },
+      "final_far_outlet_flux": {
+        "net_m3_s": 1.1561505999584711,
+        "gross_forward_m3_s": 1.2812438439116098,
+        "gross_reverse_m3_s": 0.12509324395313887,
+        "reverse_over_net": 0.10819805305436178,
+        "reversed_faces": 1523
+      }
+    }
+  },
+  "last20_comparison": {
+    "relative_common_Q_difference": 0.0014698022478883855,
+    "relative_rotor_torque_difference": 0.011512720098753764,
+    "relative_rotor_power_difference": 0.011512720098754058,
+    "abs_common_pressure_difference_Pa": 3.5016271419600002,
+    "common_pressure_limit_Pa": 5,
+    "domain_checks_descriptive_even_when_inconclusive": {
+      "common_flow": true,
+      "rotor_torque": true,
+      "rotor_input_power": true,
+      "common_pressure": true
+    }
+  },
+  "core_paired1020_field_differences": {
+    "pressure_volume_RMS_Pa": 38.67225735092704,
+    "pressure_abs_cell_p99_Pa": 116.50827751793967,
+    "pressure_max_abs_Pa": 518.0631184800001,
+    "velocity_volume_RMS_m_s": 1.4935626978999692,
+    "velocity_abs_cell_p99_m_s": 5.009426209097086,
+    "velocity_max_m_s": 57.90921887982316
+  },
+  "fixed_zone_paired1020_differences": {
+    "commonPressureBand": {
+      "pressure_volume_RMS_Pa": 61.60636604266042,
+      "pressure_abs_cell_p99_Pa": 128.13278087520004,
+      "pressure_max_abs_Pa": 193.1841422172,
+      "velocity_volume_RMS_m_s": 2.567858882694149,
+      "velocity_abs_cell_p99_m_s": 4.9837962040467225,
+      "velocity_max_m_s": 7.1923896870180455
+    },
+    "commonOutletOwners": {
+      "pressure_volume_RMS_Pa": 107.82213210028264,
+      "pressure_abs_cell_p99_Pa": 327.5965148602802,
+      "pressure_max_abs_Pa": 470.67272639999993,
+      "velocity_volume_RMS_m_s": 5.142284999573328,
+      "velocity_abs_cell_p99_m_s": 11.06019166697285,
+      "velocity_max_m_s": 16.802537368547913
+    },
+    "commonTipWake": {
+      "pressure_volume_RMS_Pa": 17.036760070373422,
+      "pressure_abs_cell_p99_Pa": 44.91819957599997,
+      "pressure_max_abs_Pa": 119.03738279999997,
+      "velocity_volume_RMS_m_s": 0.9763103300155919,
+      "velocity_abs_cell_p99_m_s": 1.5117365087040922,
+      "velocity_max_m_s": 57.90921887982316
+    }
+  },
+  "source_sha256": {
+    "current/flow-summary.json": "34a47068f2deeeebc2bad9042a06f84f6140fad00487d2b820a7f8dcacc13fe7",
+    "current/postProcessing/commonOutletFlux/960/surfaceFieldValue.dat": "86de3626259aee8740794c5480eefc2d137292ddc861ec7e640b1bdcf393a5a4",
+    "current/postProcessing/commonPressureBandMean/960/volFieldValue.dat": "6a225a6c532849c17391d1809b1ba8ac3aeddd067d2ef629284bc23226c5f14f",
+    "current/postProcessing/rotorForces/960/forces.dat": "3e64c175bd26bee5b5a588a3ffb6abac0902d7a0b207f0b9dbe70a6381b8cf2f",
+    "current/1000/p": "6e7f1ee2b07cddba2046c30ed2fa32b8dbc826b693b5a687413f6660be7df70c",
+    "current/1000/U": "f891847322122573ee7ee4414e7cb566b5ac1be0b2cb7876bf6f0d7d05f86f69",
+    "current/1020/p": "1a92b659c092b504c92e306a789d5bafb2331c2e2050a1eeef357c921ea5f087",
+    "current/1020/U": "84645bcabb76c1c4ee3040269a96ad220a3d722e34106fe6ed699f4cdcde33ff",
+    "current/1020/phi": "1ad73f885b2995c2a692589ce67a28c8cf477bfc8c45e811cf3c87836d7b3332",
+    "extended/flow-summary.json": "4f833d800268592c89abc3c3ec83f01808ee4fee4619e044b4993d93edacf7e8",
+    "extended/postProcessing/commonOutletFlux/derived960-to1020/surfaceFieldValue.dat": "161aefca364bba72d96977ef7d60616f0f57c461015baeaec4f7c909d8840c7e",
+    "extended/postProcessing/commonPressureBandMean/derived960-to1020/volFieldValue.dat": "86041641b1163e3e023672ae14461c620f1dd3631675e7313b0c31725507a2f7",
+    "extended/postProcessing/rotorForces/derived960-to1020/forces.dat": "72ab2a8ed42188b6d7bc806c546068717807b64355574b148935e7fdb2349c4d",
+    "extended/1000/p": "750dc155f4e8f692647450a1515338d9318d66f8f266e54d6b75930bad059013",
+    "extended/1000/U": "d66ce6f74237f05717c26ee996202da8b1f486b11624285040590b94319ada87",
+    "extended/1020/p": "7405a4ec5277710d391cd85d9277845aef95bfdcbcf2a14f538812f80a211b76",
+    "extended/1020/U": "6ae7d342f2b4045b20791667a28e51f78efa5bcb062f59895a60bcf6d899305c",
+    "extended/1020/phi": "0196e24a5bc46b5099f66294784d041338b5c678fd99bf6affe12a3332dd836c"
+  },
+  "protocol_sha256": "813fe69f68f27edff69b406c22c5d2b32cd3e133c90263c3a736090a6465ec6b",
+  "analysis_script_sha256": "f577687213e1e0b6f20e4c64ff5f011f9fcae5f781691f2ffe7acb6010387b76",
+  "analysis_wall_seconds": 5.313943182933144,
+  "domain_independence_established": false,
+  "physical_validation_established": false,
+  "local_fields_qualified": false,
+  "airflow_improvement_proven": false,
+  "native_iteration_variability_is_not_physical_time_or_experimental_uncertainty": true,
+  "pressure_statistic_is_not_fan_port_pressure_rise": true
+}

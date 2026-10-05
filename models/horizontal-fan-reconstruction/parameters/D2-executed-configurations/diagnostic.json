@@ -1,0 +1,665 @@
+{
+  "status": "outlet_sensitivity_preparation_from_preserved_fields_only",
+  "new_solver_run": false,
+  "new_mesh_generated": false,
+  "physical_validation_established": false,
+  "script_sha256": "b0c833aeba5290eb86385f732926e7dcb151673017517f9e53521a88709c2de6",
+  "dependency_sha256": {
+    "analyze_flow_balance.py": "efe094ed408c81fad0364ef5c48ab12f30f53f358dccf83e499965e8a43d236f",
+    "diagnose_and_merge_fv_cells.py": "d2c931b1acf641e21abef98e9490a81563ca1c2bb2029ebec6f1bc0f40f65361"
+  },
+  "used_native_inputs": {
+    "control/p": {
+      "bytes": 5838139,
+      "sha256": "6e894c305f21898eabaf334c74dc8e4becc5d88b01bea6488f26290b572a19d4"
+    },
+    "control/U": {
+      "bytes": 19569680,
+      "sha256": "7396cdce34e7a489cb5320023ea805f6b23d221cd174de4f6dd0f7c9812336fd"
+    },
+    "control/phi": {
+      "bytes": 14626413,
+      "sha256": "057a4fc6db142ebc179556b350d17474c6c9306485289cd6afd3a332dd6123a7"
+    },
+    "consistent/p": {
+      "bytes": 5838086,
+      "sha256": "c1d7960d4b7e717a9007c47c9d58de99b2bd9e6b25228a0e2b6357fca8181830"
+    },
+    "consistent/U": {
+      "bytes": 19570002,
+      "sha256": "9f4487cf36e447d0733ba76ab4f5b952f5dc0d77dac7d07bf240c1d7d9968422"
+    },
+    "consistent/phi": {
+      "bytes": 14626729,
+      "sha256": "fb9aa384c073e7bead724a2813d4737b90680ff5d79df03c05e2a3c256970474"
+    },
+    "historical/p900": {
+      "bytes": 5838361,
+      "sha256": "40ff5d7a1d3394799f0362b629562eb767367f4aa051806391d8959eccf33940"
+    },
+    "mesh/points": {
+      "bytes": 4133280,
+      "sha256": "534ec1bffda6917a884a7652cb0ee54b46bd27389a201de6a68dcf5681cb7ca4"
+    },
+    "mesh/faces": {
+      "bytes": 19505560,
+      "sha256": "f5803f92966e9523a4b417625e6b89923ffe24c2063742d968dacb425ca11298"
+    },
+    "mesh/owner": {
+      "bytes": 6232435,
+      "sha256": "29085acd8ad621e232027f73ed2a8880c0a09064a3cf6ff549bd0751543e5679"
+    },
+    "mesh/neighbour": {
+      "bytes": 6022569,
+      "sha256": "54ef96f7ec6b5fc1db3213549659d9c01b4b1ff8dab8f3d81e4a909699b16c36"
+    },
+    "mesh/boundary": {
+      "bytes": 1279,
+      "sha256": "e9283505efb7152fa238e1cca2dc32fd780c19860fd751f0b2ef91b804a639cd"
+    },
+    "mesh/cellZones": {
+      "bytes": 5606441,
+      "sha256": "7fd3eccadfe941a1da03e126b79fc78eb2a041c6c2cfee1eb9e9869354ff13c4"
+    }
+  },
+  "assumed_rotor_diameter_mm": 275.0,
+  "native_outlet": {
+    "z_mm": -49.5,
+    "radius_max_mm": 138.60000004347188,
+    "faces": 4542,
+    "area_m2": 0.06033355371254347,
+    "minimum_triangle_area_mm2": 7.946880642214072,
+    "triangle_area_p01_mm2": 9.284420593064688,
+    "minimum_edge_mm": 3.857124176129704,
+    "boundary_edges": 156,
+    "triangles_with_two_boundary_edges": 0,
+    "owner_cells_inside_MRF": 0,
+    "radial_flux_and_velocity_bands": [
+      {
+        "radius_ratio_band": [
+          0,
+          0.25
+        ],
+        "faces": 281,
+        "area_fraction": 0.06283857660553528,
+        "gross_reverse_flow_m3_s": 0.0028546111895219662,
+        "net_flow_m3_s": -0.00031456018549140595,
+        "area_mean_radial_velocity_m_s": -0.27835650777173077,
+        "area_mean_axial_velocity_m_s": 0.10320567549353908
+      },
+      {
+        "radius_ratio_band": [
+          0.25,
+          0.5
+        ],
+        "faces": 837,
+        "area_fraction": 0.1871739808434395,
+        "gross_reverse_flow_m3_s": 0.05568325029812762,
+        "net_flow_m3_s": -0.05430997136308493,
+        "area_mean_radial_velocity_m_s": 0.057417916009861666,
+        "area_mean_axial_velocity_m_s": 4.832586491077739
+      },
+      {
+        "radius_ratio_band": [
+          0.5,
+          0.6
+        ],
+        "faces": 496,
+        "area_fraction": 0.11091791457254957,
+        "gross_reverse_flow_m3_s": 0.049930251676607904,
+        "net_flow_m3_s": -0.0492508247503509,
+        "area_mean_radial_velocity_m_s": -0.044210634334979876,
+        "area_mean_axial_velocity_m_s": 7.416570453813707
+      },
+      {
+        "radius_ratio_band": [
+          0.6,
+          0.75
+        ],
+        "faces": 899,
+        "area_fraction": 0.20103869741991265,
+        "gross_reverse_flow_m3_s": 0.015522100282174899,
+        "net_flow_m3_s": 0.10608518106233969,
+        "area_mean_radial_velocity_m_s": 2.2581012939765897,
+        "area_mean_axial_velocity_m_s": -8.762072784356901
+      },
+      {
+        "radius_ratio_band": [
+          0.75,
+          1.0
+        ],
+        "faces": 2029,
+        "area_fraction": 0.438030830558563,
+        "gross_reverse_flow_m3_s": -0.0,
+        "net_flow_m3_s": 1.1500900104365,
+        "area_mean_radial_velocity_m_s": 3.95322075526722,
+        "area_mean_axial_velocity_m_s": -43.50142354804665
+      }
+    ]
+  },
+  "MRF_cell_center_z_range_mm": [
+    -41.249223734999994,
+    41.24977254
+  ],
+  "local317Pa_difference": {
+    "pressure_volume_RMS_Pa": 0.5440379498217638,
+    "absolute_cell_count_p99_Pa": 0.2161758300000026,
+    "largest_pressure_difference_cells": [
+      {
+        "cell": 288831,
+        "center_mm": [
+          46.229574012499995,
+          124.591260375,
+          -15.887079282499997
+        ],
+        "radius_mm": 132.8915184472217,
+        "volume_mm3": 0.7123113063020525,
+        "p900_Pa": -1248.2150484,
+        "control960_p_Pa": -1340.395938,
+        "consistent960_p_Pa": -1022.7270799199999,
+        "consistent_minus_control_Pa": 317.66885807999995,
+        "control_minus900_Pa": -92.1808896,
+        "consistent_minus900_Pa": 225.48796847999995,
+        "velocity_difference_m_s": 6.8204257705649045,
+        "nearest_boundary_face_centroid_distance_mm_proxy": {
+          "rotor": 0.5086201111011321,
+          "shroud": 5.751928888033239,
+          "outlet": 33.66892442220975,
+          "inlet": 92.8900136624633
+        }
+      },
+      {
+        "cell": 199633,
+        "center_mm": [
+          46.237717325000006,
+          125.2075638,
+          -15.854099957499999
+        ],
+        "radius_mm": 133.47232123611874,
+        "volume_mm3": 0.6378222789817146,
+        "p900_Pa": -1507.67469,
+        "control960_p_Pa": -1569.8703504,
+        "consistent960_p_Pa": -1279.3428299999998,
+        "consistent_minus_control_Pa": 290.5275204000002,
+        "control_minus900_Pa": -62.19566039999995,
+        "consistent_minus900_Pa": 228.33186000000023,
+        "velocity_difference_m_s": 4.08692137013763,
+        "nearest_boundary_face_centroid_distance_mm_proxy": {
+          "rotor": 0.5898398881794469,
+          "shroud": 5.174075101930014,
+          "outlet": 33.67904722316941,
+          "inlet": 92.85904263151481
+        }
+      },
+      {
+        "cell": 243568,
+        "center_mm": [
+          46.4122665675,
+          123.88010855,
+          -15.574424397499998
+        ],
+        "radius_mm": 132.28900098758197,
+        "volume_mm3": 0.7468703117359029,
+        "p900_Pa": -1016.73436068,
+        "control960_p_Pa": -1108.5532374,
+        "consistent960_p_Pa": -888.5450011199999,
+        "consistent_minus_control_Pa": 220.00823628,
+        "control_minus900_Pa": -91.81887671999993,
+        "consistent_minus900_Pa": 128.18935956000007,
+        "velocity_difference_m_s": 15.589089644125997,
+        "nearest_boundary_face_centroid_distance_mm_proxy": {
+          "rotor": 0.537609070318655,
+          "shroud": 6.340143540096102,
+          "outlet": 33.99404013013391,
+          "inlet": 92.57879276911672
+        }
+      },
+      {
+        "cell": 423583,
+        "center_mm": [
+          46.308040074999994,
+          121.23732045,
+          -16.6515944625
+        ],
+        "radius_mm": 129.7802852727786,
+        "volume_mm3": 3.43687430992202,
+        "p900_Pa": -369.24477984,
+        "control960_p_Pa": -335.0361204,
+        "consistent960_p_Pa": -545.95352004,
+        "consistent_minus_control_Pa": -210.91739963999993,
+        "control_minus900_Pa": 34.20865943999996,
+        "consistent_minus900_Pa": -176.70874019999997,
+        "velocity_difference_m_s": 67.6649468329121,
+        "nearest_boundary_face_centroid_distance_mm_proxy": {
+          "rotor": 0.968295443193727,
+          "shroud": 8.841749918044751,
+          "outlet": 32.88524239660837,
+          "inlet": 93.65192799349559
+        }
+      },
+      {
+        "cell": 307880,
+        "center_mm": [
+          46.867407605,
+          122.4586005,
+          -16.658331219999997
+        ],
+        "radius_mm": 131.12079443029552,
+        "volume_mm3": 2.976617595596644,
+        "p900_Pa": -181.27733543999997,
+        "control960_p_Pa": -144.75969744,
+        "consistent960_p_Pa": -338.42700299999996,
+        "consistent_minus_control_Pa": -193.66730555999996,
+        "control_minus900_Pa": 36.51763799999998,
+        "consistent_minus900_Pa": -157.14966755999998,
+        "velocity_difference_m_s": 50.45682875709773,
+        "nearest_boundary_face_centroid_distance_mm_proxy": {
+          "rotor": 1.531814957766126,
+          "shroud": 7.49978673265549,
+          "outlet": 32.934134112898434,
+          "inlet": 93.66510043693515
+        }
+      },
+      {
+        "cell": 446570,
+        "center_mm": [
+          46.01054783000001,
+          124.02216585000002,
+          -16.292970725
+        ],
+        "radius_mm": 132.28177551628806,
+        "volume_mm3": 0.6610974074281991,
+        "p900_Pa": -1003.23075792,
+        "control960_p_Pa": -1091.9105058,
+        "consistent960_p_Pa": -905.80003548,
+        "consistent_minus_control_Pa": 186.11047032,
+        "control_minus900_Pa": -88.67974788000004,
+        "consistent_minus900_Pa": 97.43072243999995,
+        "velocity_difference_m_s": 9.42877288997759,
+        "nearest_boundary_face_centroid_distance_mm_proxy": {
+          "rotor": 0.5118546118081229,
+          "shroud": 6.337927799752104,
+          "outlet": 33.25229793798028,
+          "inlet": 93.29959411473551
+        }
+      },
+      {
+        "cell": 450666,
+        "center_mm": [
+          46.473418599999995,
+          120.23116352500001,
+          -16.361931875
+        ],
+        "radius_mm": 128.90039301315616,
+        "volume_mm3": 3.7220993975046217,
+        "p900_Pa": -428.11799988,
+        "control960_p_Pa": -382.76115636,
+        "consistent960_p_Pa": -557.1503576399999,
+        "consistent_minus_control_Pa": -174.38920127999995,
+        "control_minus900_Pa": 45.35684352000004,
+        "consistent_minus900_Pa": -129.0323577599999,
+        "velocity_difference_m_s": 30.192357413229825,
+        "nearest_boundary_face_centroid_distance_mm_proxy": {
+          "rotor": 0.9551844176984764,
+          "shroud": 9.696849711676837,
+          "outlet": 33.14869761394616,
+          "inlet": 93.36916443189075
+        }
+      },
+      {
+        "cell": 278964,
+        "center_mm": [
+          46.82335928,
+          122.88560590000002,
+          -17.913410372499996
+        ],
+        "radius_mm": 131.50398895727108,
+        "volume_mm3": 6.117577590948394,
+        "p900_Pa": 188.89432571999998,
+        "control960_p_Pa": 262.90085268,
+        "consistent960_p_Pa": 92.418780648,
+        "consistent_minus_control_Pa": -170.48207203200002,
+        "control_minus900_Pa": 74.00652696000003,
+        "consistent_minus900_Pa": -96.47554507199999,
+        "velocity_difference_m_s": 1.5874629079007574,
+        "nearest_boundary_face_centroid_distance_mm_proxy": {
+          "rotor": 2.4270509443665857,
+          "shroud": 7.1110067507574986,
+          "outlet": 31.715692678885762,
+          "inlet": 94.92568593980255
+        }
+      },
+      {
+        "cell": 398792,
+        "center_mm": [
+          45.542135865,
+          121.00550772500002,
+          -17.532372634999998
+        ],
+        "radius_mm": 129.29199139517948,
+        "volume_mm3": 5.788890818763088,
+        "p900_Pa": -371.61030012000003,
+        "control960_p_Pa": -296.52161184,
+        "consistent960_p_Pa": -451.18211916,
+        "consistent_minus_control_Pa": -154.66050732000002,
+        "control_minus900_Pa": 75.08868828000004,
+        "consistent_minus900_Pa": -79.57181903999998,
+        "velocity_difference_m_s": 1.8364341879409618,
+        "nearest_boundary_face_centroid_distance_mm_proxy": {
+          "rotor": 1.545413532447774,
+          "shroud": 9.341132011242024,
+          "outlet": 31.99264497064271,
+          "inlet": 94.53805622772873
+        }
+      },
+      {
+        "cell": 423344,
+        "center_mm": [
+          46.219254404999994,
+          118.20755047499999,
+          -18.586889317500003
+        ],
+        "radius_mm": 126.92219848022559,
+        "volume_mm3": 11.991586450711127,
+        "p900_Pa": 55.250930424,
+        "control960_p_Pa": 61.583299596,
+        "consistent960_p_Pa": 163.79992296,
+        "consistent_minus_control_Pa": 102.216623364,
+        "control_minus900_Pa": 6.332369172,
+        "consistent_minus900_Pa": 108.548992536,
+        "velocity_difference_m_s": 0.8246397821408,
+        "nearest_boundary_face_centroid_distance_mm_proxy": {
+          "rotor": 2.449323645790796,
+          "shroud": 11.705712246016839,
+          "outlet": 30.969200109050544,
+          "inlet": 95.63579529725462
+        }
+      }
+    ],
+    "threshold_localization": [
+      {
+        "abs_pressure_difference_threshold_Pa": 1,
+        "cells": 1551,
+        "volume_fraction": 0.0026567729508237387,
+        "fraction_of_volume_weighted_squared_pressure_difference": 0.9911649288968263
+      },
+      {
+        "abs_pressure_difference_threshold_Pa": 10,
+        "cells": 187,
+        "volume_fraction": 0.00021776533782071517,
+        "fraction_of_volume_weighted_squared_pressure_difference": 0.9019507168667501
+      },
+      {
+        "abs_pressure_difference_threshold_Pa": 100,
+        "cells": 12,
+        "volume_fraction": 6.9627324494208895e-06,
+        "fraction_of_volume_weighted_squared_pressure_difference": 0.5205259431162023
+      }
+    ],
+    "axial_localization": [
+      {
+        "z_band_mm": [
+          -49.500001,
+          -45
+        ],
+        "cells": 11134,
+        "volume_fraction": 0.039597651299169145,
+        "pressure_difference_volume_RMS_Pa": 0.1479943861189888,
+        "maximum_abs_pressure_difference_Pa": 8.095916100000004,
+        "velocity_difference_volume_RMS_m_s": 0.01688689551403689
+      },
+      {
+        "z_band_mm": [
+          -45,
+          -40
+        ],
+        "cells": 6747,
+        "volume_fraction": 0.03635161620072732,
+        "pressure_difference_volume_RMS_Pa": 0.10183999475054728,
+        "maximum_abs_pressure_difference_Pa": 2.4508030800000142,
+        "velocity_difference_volume_RMS_m_s": 0.004253687987593128
+      },
+      {
+        "z_band_mm": [
+          -40,
+          -35
+        ],
+        "cells": 6854,
+        "volume_fraction": 0.0390691222171737,
+        "pressure_difference_volume_RMS_Pa": 0.10180223587700415,
+        "maximum_abs_pressure_difference_Pa": 1.4702937600000041,
+        "velocity_difference_volume_RMS_m_s": 0.00172724826441795
+      },
+      {
+        "z_band_mm": [
+          -35,
+          -30
+        ],
+        "cells": 7105,
+        "volume_fraction": 0.038947265520417815,
+        "pressure_difference_volume_RMS_Pa": 0.15565013543356998,
+        "maximum_abs_pressure_difference_Pa": 3.93736320000005,
+        "velocity_difference_volume_RMS_m_s": 0.0029931676004276314
+      },
+      {
+        "z_band_mm": [
+          -30,
+          -25
+        ],
+        "cells": 7509,
+        "volume_fraction": 0.037989611800951735,
+        "pressure_difference_volume_RMS_Pa": 0.5835372574712531,
+        "maximum_abs_pressure_difference_Pa": 19.118268960000023,
+        "velocity_difference_volume_RMS_m_s": 0.009900518588703174
+      },
+      {
+        "z_band_mm": [
+          -25,
+          -20
+        ],
+        "cells": 8573,
+        "volume_fraction": 0.03802641459792491,
+        "pressure_difference_volume_RMS_Pa": 0.8513825795862943,
+        "maximum_abs_pressure_difference_Pa": 30.288775920000035,
+        "velocity_difference_volume_RMS_m_s": 0.017526051830972722
+      },
+      {
+        "z_band_mm": [
+          -20,
+          -15
+        ],
+        "cells": 10802,
+        "volume_fraction": 0.03801985506464533,
+        "pressure_difference_volume_RMS_Pa": 2.547397344148919,
+        "maximum_abs_pressure_difference_Pa": 317.66885807999995,
+        "velocity_difference_volume_RMS_m_s": 0.3181462716301784
+      },
+      {
+        "z_band_mm": [
+          -15,
+          -10
+        ],
+        "cells": 12073,
+        "volume_fraction": 0.03774817882908781,
+        "pressure_difference_volume_RMS_Pa": 0.3782267085950876,
+        "maximum_abs_pressure_difference_Pa": 23.968787592000012,
+        "velocity_difference_volume_RMS_m_s": 0.006468002623281692
+      },
+      {
+        "z_band_mm": [
+          -10,
+          0
+        ],
+        "cells": 66023,
+        "volume_fraction": 0.05862502525022942,
+        "pressure_difference_volume_RMS_Pa": 0.10274804933466931,
+        "maximum_abs_pressure_difference_Pa": 2.9366658000000143,
+        "velocity_difference_volume_RMS_m_s": 0.0011333794321497057
+      },
+      {
+        "z_band_mm": [
+          0,
+          40
+        ],
+        "cells": 253211,
+        "volume_fraction": 0.3120505225032727,
+        "pressure_difference_volume_RMS_Pa": 0.020877873435392266,
+        "maximum_abs_pressure_difference_Pa": 2.1747972000002846,
+        "velocity_difference_volume_RMS_m_s": 0.00020505503667642234
+      },
+      {
+        "z_band_mm": [
+          40,
+          77.000001
+        ],
+        "cells": 63465,
+        "volume_fraction": 0.32357473671639997,
+        "pressure_difference_volume_RMS_Pa": 0.005615270383048714,
+        "maximum_abs_pressure_difference_Pa": 0.6129870000000324,
+        "velocity_difference_volume_RMS_m_s": 0.008591512279877768
+      }
+    ],
+    "not_an_algebraic_residual_or_a_physical_frequency": true,
+    "different_numerical_coupling_only_no_domain_difference_in_this_pair": true
+  },
+  "common_zones": {
+    "commonPressureBand": {
+      "cells": 5825,
+      "volume_m3": 0.00023942900814712673,
+      "global_cell_ids_little_i8_sha256": "0576b608c19fa7509669aa81c4deb207940c0c24739b97f59ec2699f5ee56d62",
+      "snapshot900_volume_mean_p_Pa": 85.64558104904457,
+      "control960_volume_mean_p_Pa": 85.63323860386423,
+      "consistent960_volume_mean_p_Pa": 85.64305506122128,
+      "control_vs_consistent_pressure_volume_RMS_Pa": 0.11443539582693335,
+      "contains_MRF_cells": true,
+      "pressure_is_absolute_static_scalar_in_both_cases": true
+    },
+    "commonOutletOwners": {
+      "cells": 4542,
+      "volume_m3": 9.996664998303603e-05,
+      "global_cell_ids_little_i8_sha256": "4482adb5c1ad2eaaa2a3e3d9d3d2b77e4455df5b32cf14b0b2104e0f732309c3",
+      "snapshot900_volume_mean_p_Pa": -2.937568330165513,
+      "control960_volume_mean_p_Pa": -2.9411598167409205,
+      "consistent960_volume_mean_p_Pa": -2.9382095841327516,
+      "control_vs_consistent_pressure_volume_RMS_Pa": 0.10913255121995932,
+      "contains_MRF_cells": false,
+      "pressure_is_absolute_static_scalar_in_both_cases": true
+    },
+    "commonTipWake": {
+      "cells": 10117,
+      "volume_m3": 0.00018016741192736712,
+      "global_cell_ids_little_i8_sha256": "850aca79ecebf10a29997e482361ba5036b4dab122cbb89f3bf1aca3809d7ca0",
+      "snapshot900_volume_mean_p_Pa": 410.23205276925853,
+      "control960_volume_mean_p_Pa": 410.3248191109623,
+      "consistent960_volume_mean_p_Pa": 410.2781964899301,
+      "control_vs_consistent_pressure_volume_RMS_Pa": 3.3492087480351116,
+      "contains_MRF_cells": true,
+      "pressure_is_absolute_static_scalar_in_both_cases": true
+    }
+  },
+  "hypothetical_uniform_prism_column_screen": [
+    {
+      "layers": 40,
+      "uniform_dz_mm": 6.875000000000001,
+      "unmerged_appended_prism_cells": 181680,
+      "unmerged_total_cells": 635176,
+      "states": {
+        "first_or_interior": {
+          "minimum_internal_face_determinant_proxy": 1.438496395054744,
+          "columns_below_original0p001": 0,
+          "p01_determinant": 1.9366866887127057
+        },
+        "last_with_outlet_boundary": {
+          "minimum_internal_face_determinant_proxy": 0.3064410867106319,
+          "columns_below_original0p001": 0,
+          "p01_determinant": 0.3965356746012482
+        }
+      },
+      "hypothetical_only_not_an_independent_mesh_gate": true
+    },
+    {
+      "layers": 50,
+      "uniform_dz_mm": 5.500000000000001,
+      "unmerged_appended_prism_cells": 227100,
+      "unmerged_total_cells": 680596,
+      "states": {
+        "first_or_interior": {
+          "minimum_internal_face_determinant_proxy": 1.5171781490246705,
+          "columns_below_original0p001": 0,
+          "p01_determinant": 2.077742988952982
+        },
+        "last_with_outlet_boundary": {
+          "minimum_internal_face_determinant_proxy": 0.38027445254182834,
+          "columns_below_original0p001": 0,
+          "p01_determinant": 0.49783608267942986
+        }
+      },
+      "hypothetical_only_not_an_independent_mesh_gate": true
+    },
+    {
+      "layers": 60,
+      "uniform_dz_mm": 4.583333333333333,
+      "unmerged_appended_prism_cells": 272520,
+      "unmerged_total_cells": 726016,
+      "states": {
+        "first_or_interior": {
+          "minimum_internal_face_determinant_proxy": 1.5107897670504224,
+          "columns_below_original0p001": 0,
+          "p01_determinant": 2.099576850006069
+        },
+        "last_with_outlet_boundary": {
+          "minimum_internal_face_determinant_proxy": 0.43862267011606754,
+          "columns_below_original0p001": 0,
+          "p01_determinant": 0.5799330161169076
+        }
+      },
+      "hypothetical_only_not_an_independent_mesh_gate": true
+    },
+    {
+      "layers": 80,
+      "uniform_dz_mm": 3.4375000000000004,
+      "unmerged_appended_prism_cells": 363360,
+      "unmerged_total_cells": 816856,
+      "states": {
+        "first_or_interior": {
+          "minimum_internal_face_determinant_proxy": 1.366206643883268,
+          "columns_below_original0p001": 0,
+          "p01_determinant": 1.9434627874306045
+        },
+        "last_with_outlet_boundary": {
+          "minimum_internal_face_determinant_proxy": 0.512042906247514,
+          "columns_below_original0p001": 0,
+          "p01_determinant": 0.6893772441755672
+        }
+      },
+      "hypothetical_only_not_an_independent_mesh_gate": true
+    },
+    {
+      "layers": 100,
+      "uniform_dz_mm": 2.7500000000000004,
+      "unmerged_appended_prism_cells": 454200,
+      "unmerged_total_cells": 907696,
+      "states": {
+        "first_or_interior": {
+          "minimum_internal_face_determinant_proxy": 1.1628426604635673,
+          "columns_below_original0p001": 0,
+          "p01_determinant": 1.685442510911555
+        },
+        "last_with_outlet_boundary": {
+          "minimum_internal_face_determinant_proxy": 0.5400502298041918,
+          "columns_below_original0p001": 0,
+          "p01_determinant": 0.739587226048205
+        }
+      },
+      "hypothetical_only_not_an_independent_mesh_gate": true
+    }
+  ],
+  "private_selections_sha256": "8f616ed4a590bbbd1534077b4e2539435037948ebdcc19525e8c8037444336e6",
+  "private_selections_not_published": true,
+  "extension_distance_is_not_yet_proven_sufficient": true,
+  "limits": [
+    "No existing fields below the current exit; true recirculation closure length or a physically minimal outlet distance cannot be inferred.",
+    "Column determinant screening is algebraic geometry only, not meshing, checkMesh or flow validation.",
+    "Native cell-based pressure zones preserve the same statistic and avoid comparing a fixed outlet pressure with an internal interpolated pressure."
+  ]
+}

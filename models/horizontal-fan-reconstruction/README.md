@@ -1,21 +1,68 @@
-# Horizontal fan reconstruction studies
+# Études de reconstruction du ventilateur horizontal
 
-[R0 editable STEP](R0-assembly.step) · [R0 render](R0-render.png) ·
-[V5 editable STEP](V5-assembly.step) · [V5 render](V5-render.png) ·
-[Engineering, reproduction and validation status](ENGINEERING.md) ·
-[Repository home](../../README.md)
+[STEP R0 éditable](R0-assembly.step) · [Rendu R0](R0-render.png) ·
+[**Assemblage S1, brut V2 et préparation de fabrication**](ASSEMBLY_MANUFACTURING_S1.md) ·
+[**Vue CAO réelle S1 et brut V2**](S1_DELIVERY.md) ·
+[**Superviseur D3 exact préparé et testé, sans lancement**](D3_SUPERVISOR_PREPARATION.md) ·
+[Diagnostic d'établissement D2 et paire D3 préparée](D3_ESTABLISHMENT_DIAGNOSTIC.md) ·
+[STEP V2 éditable](V2-assembly.step) · [Champs calculés V2](results/mechanics/V2-fields.png) ·
+[STEP V5 éditable](V5-assembly.step) · [Rendu V5](V5-render.png) ·
+[Ingénierie, reproduction et validations](ENGINEERING.md) ·
+[Revue de qualification de fabrication](MANUFACTURING_REVIEW.md) ·
+[Preuves de la chaîne logicielle](SOFTWARE_CHAIN.md) ·
+[Diagnostic de pression et prochains lots non lancés](PRESSURE_FOLLOWUP.md) ·
+[Préparation exacte D1 et sous-systèmes non mesurés](D1_PREPARATION.md) ·
+[Exécution D1 bornée et résultat incomplet](D1_EXECUTION.md) ·
+[D1C terminé, gates numériques et reflux persistant](D1C_EXECUTION.md) ·
+[D2 clos : témoin60, sortie prolongée 40, comparaison inconclusive](D2_EXECUTION.md) ·
+[D2 terminé1020 : pression non admise, comparaison inconclusive](D2_COMPLETION_EXECUTION.md) ·
+[Préparation de la reprise20 pas et checkpoint1000 vérifié](D2_COMPLETION_PREPARATION.md) ·
+[Préparation historique D2 et critères gelés](OUTLET_SENSITIVITY_PREPARATION.md) ·
+[Analyse locale après D1 et essai unique proposé](D1_NEXT_DIAGNOSTIC.md) ·
+[Sous-systèmes et variables symboliques](SUBSYSTEM_PARAMETERS.md) ·
+[Accueil du dépôt](../../README.md)
 
-Scan-informed analytical reconstructions, published with the project owner's
-express permission on October 4, 2026. The STEP assemblies contain the rotor,
-shroud and simplified right-angle drive envelopes; renders show the same geometry
-with a display cutaway. Both assume a 275 mm rotor diameter and nine blades. Scale,
-profiles, pitch, clearances, materials and interfaces remain study hypotheses.
-V5 increases the assumed carrier-web thickness by 30% relative to R0. Units: mm;
-rotor axis: +Z; input-drive axis: +X. Gear teeth, bearings, seals and tolerances are
-unresolved. Neither historical identity nor 935/993 equivalence is established.
-No dimensional, fit, safe-speed, fatigue or manufacturing qualification is claimed.
-No separate reuse licence for these scan-derived study assets has been established.
+Reconstructions analytiques informées par le scan privé, publiées avec
+l'autorisation explicite du propriétaire du projet le 4 octobre 2026. Les
+assemblages STEP contiennent le rotor, le carter et des enveloppes simplifiées
+du renvoi d'angle ; les rendus montrent la même géométrie avec une coupe
+uniquement visuelle. Le diamètre 275 mm et les neuf pales sont supposés.
+Échelle, profils, pitch, jeux, matériaux et interfaces restent des hypothèses.
+V5 augmente de 30 % l'épaisseur supposée du voile par rapport à R0 ; V2 change
+seulement le pitch racine de 42° à 36°. Unités : mm ; axe du rotor : +Z ; axe
+primaire de transmission : +X. Dentures, roulements, joints et tolérances restent
+à définir. L'identité historique et l'équivalence 935/993 ne sont pas établies.
+Aucune qualification dimensionnelle, de montage, de régime sûr, de fatigue ou
+de fabrication n'est revendiquée. Aucune licence distincte de réutilisation des
+assets informés par le scan n'a été établie.
 
-![R0 analytical reconstruction](R0-render.png)
+**Correction CFD :** l'[audit des tables natives](results/cfd/measurement-cadence-audit.json)
+retire l'admission fine R0 et les moyennes fines présentées comme vingt mesures.
+Les rapports historiques sont conservés ; la [comparaison corrigée](results/cfd/matched-grid-comparison.json)
+fournit l'état actuel. La paire sur grille commune reste admise numériquement.
+Le témoin D1 reste non admis sur p et sa branche stricte reste incomplète.
+**D1C**, une seule branche `consistent yes`, termine ses 60 itérations et
+passe les critères originaux, avec une baisse de 45,01 % du maximum initial p.
+Le reflux de sortie et la sensibilité des champs locaux persistent ; aucune
+amélioration du refroidissement installé n’est démontrée.
+**D2** conserve le cœur et valide les deux maillages ; le témoin termine 60
+itérations, la branche prolongée 40 seulement sous le timer global original.
+La comparaison stationnaire de sortie reste inconclusive ; ressources libérées.
+La [reprise unique1001–1020 est terminée](D2_COMPLETION_EXECUTION.md), en110,505 s
+tout compris. La branche prolongée totalise40 +20 pas, mais échoue encore la
+stationnarité de pression et les résidus p/U/turbulence. Comparaison toujours
+inconclusive, champs et logs préservés, aucune suite automatique1040, ressources libérées.
+Le [diagnostic léger des archives](D3_ESTABLISHMENT_DIAGNOSTIC.md) documente
+l'établissement encore actif et le coût d'un transitoire. Deux redémarrages
+discriminants20 pas sont préparés, sans lancement ; budget global360 s à
+coordonner. Le [superviseur D3](D3_SUPERVISOR_PREPARATION.md) est désormais
+figé et contrôlé par 19 tests hors solveur et par une vérification indépendante
+des copies privées, sans nouvelle exécution native. En parallèle, [S1](ASSEMBLY_MANUFACTURING_S1.md) livre le plénum,
+l'entraînement et les supports comme enveloppes éditables, un brut V2 avec
+stocks et la fiche indépendante des interfaces physiques encore manquantes.
 
-![V5 analytical reconstruction](V5-render.png)
+![CAO réelle S1 et brut V2, dimensions supposées](results/assembly/fan-S1-assembly-and-V2-stock-study.png)
+
+![Reconstruction analytique R0](R0-render.png)
+
+![Reconstruction analytique V5](V5-render.png)

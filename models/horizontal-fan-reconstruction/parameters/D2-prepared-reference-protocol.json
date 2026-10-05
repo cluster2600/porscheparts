@@ -1,0 +1,227 @@
+{
+  "reference_configuration": "private_scan_informed_horizontal_study_V2_lower_collective_pitch",
+  "rpm_assumed": 6000,
+  "fluid": {
+    "density_kg_m3": 1.2,
+    "kinematic_viscosity_m2_s": 1.5e-05,
+    "tip_Mach_assuming_343m_s": 0.2518769620225053
+  },
+  "boundary_conditions": {
+    "top_inlet": "total pressure zero gauge",
+    "bottom_outlet": "static pressure zero gauge",
+    "expected_flow_direction": [
+      0,
+      0,
+      -1
+    ],
+    "rotation_axis_positive": [
+      0,
+      0,
+      1
+    ]
+  },
+  "model": "Foundation OpenFOAM 13 isolated fan incompressible steady MRF kOmegaSST, first-order convection",
+  "acceptance_all_required": {
+    "last_window_iterations": 20,
+    "maximum_initial_residual_p": 0.0001,
+    "maximum_initial_residual_U_components": 1e-05,
+    "maximum_initial_residual_k_and_omega": 0.0001,
+    "maximum_absolute_inlet_plus_outlet_flow_over_mean_absolute_flow": 0.005,
+    "maximum_flow_relative_standard_deviation": 0.01,
+    "maximum_rotor_torque_relative_standard_deviation": 0.02,
+    "flow_direction_matches_declared_reference": true,
+    "fields_finite_and_complete": true
+  },
+  "protocol_id": "D2-fixed-completion1000-to1020",
+  "expected_actual_solver_iterations": [
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1014,
+    1015,
+    1016,
+    1017,
+    1018,
+    1019,
+    1020
+  ],
+  "required_admission_sample_iterations": [
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1014,
+    1015,
+    1016,
+    1017,
+    1018,
+    1019,
+    1020
+  ],
+  "expected_cell_count": 680596,
+  "iterations": 1020,
+  "new_iterations": 20,
+  "wall_timeout_seconds": 110,
+  "aggregate_wall_cap_seconds": 240,
+  "frozen_system_file_sha256": {
+    "controlDict": "0e5fc44459dd8fa89f148dd6c2eeb861ce4e7617136d8399216634794e4eee7b",
+    "fvSchemes": "2f8719ebcd15b41f66050ff20fc541aba19ef664c18db802b86f7572ddf74b1e",
+    "fvSolution": "f9187bb34675a23065558494959bb300db3b2ba576ef31142cad80c934009e31"
+  },
+  "physical_validation_established": false,
+  "manufacturing_authorized": false,
+  "initial_fields_sha256": {
+    "1000/uniform/time": "ea1c7828864346ef7896a50563df01f7e092fa78522a0d62263e805dd48d4c5e"
+  },
+  "initial_fields_scope": "Time marker only; all32 native MPI seed identities are recorded separately",
+  "native_MPI_seed_files": {
+    "processor0/1000/p": {
+      "bytes": 1620421,
+      "sha256": "d73815c60f7181b98e95be7b569093ee0531b7fea4bdc2e8fd800f512bb7b763"
+    },
+    "processor0/1000/U": {
+      "bytes": 5315901,
+      "sha256": "bb9ad14940445d36e2902a7d9f11e950fc025266254ba4e99bbff48d8bfbd9b8"
+    },
+    "processor0/1000/k": {
+      "bytes": 1701479,
+      "sha256": "65f3f4be735fdfaa25334f222f513a7149c65e61d1821e82009e5038995ef0cb"
+    },
+    "processor0/1000/omega": {
+      "bytes": 1626788,
+      "sha256": "6c1dfd5152d0a34cb23d8c5a2e602a12a53627311d5dd4745bc7606b795674dc"
+    },
+    "processor0/1000/nut": {
+      "bytes": 2031010,
+      "sha256": "b7ec8d0faffafb0240fe831501ff17f7fddd21062333e1e47c65e571cc9b62ac"
+    },
+    "processor0/1000/phi": {
+      "bytes": 4046401,
+      "sha256": "3970ae2a56085e1b7a01b59494fc1cfa24fd0feb2ffda6ddb1fac6d09ef66795"
+    },
+    "processor0/1000/Uf": {
+      "bytes": 10177294,
+      "sha256": "59ec6686a469595c897011265e67b5b6518a9cf39d5113d53d3f34ed3a93b07a"
+    },
+    "processor0/1000/uniform/time": {
+      "bytes": 803,
+      "sha256": "ea1c7828864346ef7896a50563df01f7e092fa78522a0d62263e805dd48d4c5e"
+    },
+    "processor1/1000/p": {
+      "bytes": 2160370,
+      "sha256": "064c3492b12bf6a454b309cb3e4f2d26c697932208687941321e2bf9652305a1"
+    },
+    "processor1/1000/U": {
+      "bytes": 7181864,
+      "sha256": "05d4bcfa6232fe088e3588b4bb64c22864209837425bc2e7a0dfaa5a1dc3b58f"
+    },
+    "processor1/1000/k": {
+      "bytes": 2292893,
+      "sha256": "f41632a20b6db3b3de94f83da1422739cf515a3ec3f868e535f6a5721e4dfef3"
+    },
+    "processor1/1000/omega": {
+      "bytes": 2197576,
+      "sha256": "ede2b7a2a4dac760ff0243608162fe2fce90c330db5d55b1c929fb4f57b62c3a"
+    },
+    "processor1/1000/nut": {
+      "bytes": 2786294,
+      "sha256": "ce84e08d3aec70d52dc2cd8ffeb084e371fad59f0e1ef2c62a2b4266f61081a6"
+    },
+    "processor1/1000/phi": {
+      "bytes": 5878658,
+      "sha256": "2ec16a653fcfeff30ba259d847924aa67302ccacc75d72060fd215baaee6d3bb"
+    },
+    "processor1/1000/Uf": {
+      "bytes": 14674320,
+      "sha256": "ddc766e3dca45c2b44482e44256a4da99ef2d666c27ad13c8ac33a2d238cd5b5"
+    },
+    "processor1/1000/uniform/time": {
+      "bytes": 803,
+      "sha256": "ea1c7828864346ef7896a50563df01f7e092fa78522a0d62263e805dd48d4c5e"
+    },
+    "processor2/1000/p": {
+      "bytes": 2714437,
+      "sha256": "a0f475fd43ec245519874a7417caa228d4aece91e581bb89e305b06115a2be02"
+    },
+    "processor2/1000/U": {
+      "bytes": 9008424,
+      "sha256": "7d5f84fb214fafb755a4127a06e5dbeddad7c5a7cd1c5fcfe81a26d4bce94e7f"
+    },
+    "processor2/1000/k": {
+      "bytes": 2971353,
+      "sha256": "5784ae77ed1fed6d74b0cea2513e9d8878fd1990529de55fd26a576dfdcdd0c4"
+    },
+    "processor2/1000/omega": {
+      "bytes": 2750349,
+      "sha256": "81805db60e393940bc01b77116b8677c2541b10ce03a60d23cfb9f40b802fa40"
+    },
+    "processor2/1000/nut": {
+      "bytes": 3576726,
+      "sha256": "ee301f57f9549e97c5fcbcad9b4c8fae361284926fd476294e522281dda8dc7a"
+    },
+    "processor2/1000/phi": {
+      "bytes": 7604678,
+      "sha256": "6f22b5f08a8a2d897b6527eb790c015af74c87bae8219da16b6925e6bd5377d4"
+    },
+    "processor2/1000/Uf": {
+      "bytes": 18858077,
+      "sha256": "a81b9e823e3c8e3192b15468d4c39b86aa65522bdf4c64942411cae57effba05"
+    },
+    "processor2/1000/uniform/time": {
+      "bytes": 803,
+      "sha256": "ea1c7828864346ef7896a50563df01f7e092fa78522a0d62263e805dd48d4c5e"
+    },
+    "processor3/1000/p": {
+      "bytes": 2399945,
+      "sha256": "3e84a538f686ac495a3a2a769e68f25ce0b8497275a34e7cef15443a6b00106f"
+    },
+    "processor3/1000/U": {
+      "bytes": 7848414,
+      "sha256": "dcfae52a341deb9c8fe912b6a8eda1797c20ac877d615db98ea24ff9f2fa58e5"
+    },
+    "processor3/1000/k": {
+      "bytes": 2632599,
+      "sha256": "207dcd2af6c87e66a767845346d0dd61f7a4d596034f7fea8f3d2d9b2e307d7d"
+    },
+    "processor3/1000/omega": {
+      "bytes": 2419461,
+      "sha256": "33b3acce57d36f1d9b3f63073b688a0534652cb8d62186d49c20cfbba2028413"
+    },
+    "processor3/1000/nut": {
+      "bytes": 3160036,
+      "sha256": "4c84fb38bab80b2fe4d79bc310454cf67f819c4ad40a3a866912129f0712ae96"
+    },
+    "processor3/1000/phi": {
+      "bytes": 6552597,
+      "sha256": "30a8ecc53a44739b58cb664ac43e92609336c2303e7b344698fd48b903e88ee0"
+    },
+    "processor3/1000/Uf": {
+      "bytes": 16070265,
+      "sha256": "262ef4df8ce8d1fb94b1dd464282da260ac306decc4c352200296723e4753261"
+    },
+    "processor3/1000/uniform/time": {
+      "bytes": 803,
+      "sha256": "ea1c7828864346ef7896a50563df01f7e092fa78522a0d62263e805dd48d4c5e"
+    }
+  },
+  "original_runtime_protocol_sha256": "33055167a6af33a4dbaf20bb073d584b55f83385e7d8fba62f01127c6a15cc3f"
+}

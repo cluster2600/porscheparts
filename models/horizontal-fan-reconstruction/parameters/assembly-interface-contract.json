@@ -1,0 +1,28 @@
+{
+  "contract_id": "horizontal-fan-independent-interfaces-20261005",
+  "status": "physical_evidence_missing",
+  "catalogue_variant_id": null,
+  "historical_935_993_equivalence_verified": false,
+  "evidence_origin": "Independent physical measurements required; CAD or model-generated evidence cannot close this contract",
+  "load_paths": [
+    ["rotor", "output_shaft", "output_bearings", "gearcase", "support", "engine"],
+    ["engine_drive", "belt", "input_pulley", "input_shaft", "input_bearings", "bevel_pair", "output_shaft"],
+    ["shroud", "plenum", "support", "engine"],
+    ["plenum", "head_outlets", "engine"]
+  ],
+  "required_interfaces": {
+    "rotor_output_shaft": ["bore_profile", "retention", "mating_face", "axis", "runout", "tolerances"],
+    "output_shaft_bearings": ["seat_diameters", "axial_locations", "bearing_types", "preload", "fits", "tolerances"],
+    "input_shaft_pulley": ["bore_profile", "retention", "mating_face", "axis", "tolerances"],
+    "input_bearings_gearcase": ["seat_diameters", "axes", "bearing_types", "lubrication", "fits", "tolerances"],
+    "gearcase_support": ["hole_pattern", "fasteners", "mating_faces", "datums", "tolerances"],
+    "support_engine": ["hole_pattern", "fasteners", "mating_faces", "datums", "tolerances"],
+    "shroud_plenum_support": ["hole_pattern", "mating_faces", "seal", "clearance", "datums", "tolerances"],
+    "plenum_head_outlets": ["port_profiles", "port_locations", "seal", "fasteners", "datums", "tolerances"],
+    "engine_drive_belt": ["driver_axis", "pitch_diameter", "belt_specification", "tensioner", "alignment", "speed_envelope", "tolerances"]
+  },
+  "physical_measurements": {},
+  "measurement_requirements": ["instrument", "calibration", "uncertainty", "datum_definition", "reference_id", "evidence_uri", "reviewed_by"],
+  "manufacturing_acceptance": null,
+  "engineering_release": null
+}
