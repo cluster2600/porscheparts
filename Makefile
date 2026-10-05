@@ -217,6 +217,7 @@ fan-program-check:
 	python3 models/horizontal-fan-reconstruction/source/test_d2_restart.py
 	python3 models/horizontal-fan-reconstruction/source/test_d2_completion.py
 	python3 models/horizontal-fan-reconstruction/source/test_s1_diagnostic.py
+	python3 models/horizontal-fan-reconstruction/source/test_d3_supervisor.py
 
 917-valvetrain-material-f45:
 	python3 twins/reference-917-engine/source/build_valvetrain_material_screen_f45.py --project-root .

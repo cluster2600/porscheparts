@@ -2,6 +2,8 @@
 
 [STEP R0 éditable](R0-assembly.step) · [Rendu R0](R0-render.png) ·
 [**Assemblage S1, brut V2 et préparation de fabrication**](ASSEMBLY_MANUFACTURING_S1.md) ·
+[**Vue CAO réelle S1 et brut V2**](S1_DELIVERY.md) ·
+[**Superviseur D3 exact préparé et testé, sans lancement**](D3_SUPERVISOR_PREPARATION.md) ·
 [Diagnostic d'établissement D2 et paire D3 préparée](D3_ESTABLISHMENT_DIAGNOSTIC.md) ·
 [STEP V2 éditable](V2-assembly.step) · [Champs calculés V2](results/mechanics/V2-fields.png) ·
 [STEP V5 éditable](V5-assembly.step) · [Rendu V5](V5-render.png) ·
@@ -53,9 +55,13 @@ inconclusive, champs et logs préservés, aucune suite automatique1040, ressourc
 Le [diagnostic léger des archives](D3_ESTABLISHMENT_DIAGNOSTIC.md) documente
 l'établissement encore actif et le coût d'un transitoire. Deux redémarrages
 discriminants20 pas sont préparés, sans lancement ; budget global360 s à
-coordonner. En parallèle, [S1](ASSEMBLY_MANUFACTURING_S1.md) livre le plénum,
+coordonner. Le [superviseur D3](D3_SUPERVISOR_PREPARATION.md) est désormais
+figé et contrôlé par 19 tests hors solveur et par une vérification indépendante
+des copies privées, sans nouvelle exécution native. En parallèle, [S1](ASSEMBLY_MANUFACTURING_S1.md) livre le plénum,
 l'entraînement et les supports comme enveloppes éditables, un brut V2 avec
 stocks et la fiche indépendante des interfaces physiques encore manquantes.
+
+![CAO réelle S1 et brut V2, dimensions supposées](results/assembly/fan-S1-assembly-and-V2-stock-study.png)
 
 ![Reconstruction analytique R0](R0-render.png)
 

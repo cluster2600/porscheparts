@@ -43,6 +43,8 @@ def verify(root):
     verify_continuation(root)
     from verify_s1_diagnostic import verify as verify_s1
     verify_s1(root)
+    from verify_d3_supervisor import verify as verify_d3
+    verify_d3(root)
     if errors:raise ValueError('\n'.join(errors))
     print('Study integrity and cross-stage identity checks passed ('+str(len(manifest['files']))+' artifacts)')
 
