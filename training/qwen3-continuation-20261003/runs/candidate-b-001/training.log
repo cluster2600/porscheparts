@@ -1,0 +1,34 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 56.25it/s]
+<authorized-python-env>/lib/python3.12/site-packages/peft/utils/save_and_load.py:286: UserWarning: Could not find a config file in Qwen/Qwen3-4B-Instruct-2507 - will assume that the vocabulary was not modified.
+  warnings.warn(
+{'loss': 1.791, 'grad_norm': 1.835215449333191, 'learning_rate': 0.0, 'epoch': 0.1}
+{'loss': 2.0693, 'grad_norm': 2.9713804721832275, 'learning_rate': 1e-05, 'epoch': 0.2}
+{'loss': 2.6042, 'grad_norm': 3.768284320831299, 'learning_rate': 8.888888888888888e-06, 'epoch': 0.3}
+{'loss': 1.7618, 'grad_norm': 1.979763150215149, 'learning_rate': 7.77777777777778e-06, 'epoch': 0.4}
+Traceback (most recent call last):
+  File "/private/tmp/porscheparts-qwen3-20261003/training/qwen3-continuation-20261003/run.py", line 392, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/private/tmp/porscheparts-qwen3-20261003/training/qwen3-continuation-20261003/run.py", line 382, in main
+    train(args.snapshot.resolve(), args.output.resolve())
+  File "/private/tmp/porscheparts-qwen3-20261003/training/qwen3-continuation-20261003/run.py", line 231, in train
+    result = trainer.train()
+             ^^^^^^^^^^^^^^^
+  File "<authorized-python-env>/lib/python3.12/site-packages/transformers/trainer.py", line 2325, in train
+    return inner_training_loop(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "<authorized-python-env>/lib/python3.12/site-packages/transformers/trainer.py", line 2731, in _inner_training_loop
+    self.control = self.callback_handler.on_pre_optimizer_step(args, self.state, self.control)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<authorized-python-env>/lib/python3.12/site-packages/transformers/trainer_callback.py", line 525, in on_pre_optimizer_step
+    return self.call_event("on_pre_optimizer_step", args, state, control)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<authorized-python-env>/lib/python3.12/site-packages/transformers/trainer_callback.py", line 556, in call_event
+    result = getattr(callback, event)(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/porscheparts-qwen3-20261003/training/qwen3-continuation-20261003/run.py", line 195, in on_pre_optimizer_step
+    raise ValueError('Non-finite gradient before optimizer update')
+ValueError: Non-finite gradient before optimizer update

@@ -1,0 +1,56 @@
+{
+  "status": "prepared_not_solved",
+  "source_deck_sha256": "1d5429240702cff505339fbcc6dbe27e8bed4b0c80163e4ce0cac3698d756853",
+  "deck_sha256": "f6dc00845ccc03983633886150f62a0490b885c6041233ebf241f76dce12a0ec",
+  "nodes": 172493,
+  "tetrahedra": 92848,
+  "units": "mm,N,s,tonne",
+  "strain_amplitude_assumed": 0.0,
+  "strain_is_not_a_measured_process_property": true,
+  "build_direction": [
+    0.0,
+    0.0,
+    1.0
+  ],
+  "formula": "epsilon_star = -amplitude*(0.5+0.5*s^2)*(I-0.7*n*nT), s=normalized build height",
+  "support_proxy": "fully fixed lowest surface node per projected 5 mm raster cell; rigid column bound, no supplier topology",
+  "support_attachment_nodes": 1898,
+  "gauge_nodes": [
+    12943,
+    9694,
+    9666
+  ],
+  "gauge_node_coordinates_mm": [
+    [
+      16.890308380127,
+      -2.0581834316254,
+      -23.362211227417
+    ],
+    [
+      -122.49999237061,
+      0.8220626115799,
+      10.964813232422
+    ],
+    [
+      -0.5531975030899,
+      122.5,
+      -12.401247024536
+    ]
+  ],
+  "support_release_included": true,
+  "layer_activation_included": false,
+  "scan_path_temperature_plasticity_recoater_included": false,
+  "process_calibrated": false,
+  "distortion_prediction_qualified": false,
+  "material": "inherited assumed isotropic elastic card, not a route-qualified material",
+  "mesh_independence": false,
+  "manufacturing_authorized": false,
+  "contract_ids": [
+    "lpbf.build_orientation",
+    "lpbf.support_strategy",
+    "lpbf.machine_parameters",
+    "lpbf.heat_treatment",
+    "material.elastic_properties",
+    "material.defect_population"
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "report_id": "qwen-coder-base-natural-language-pilot-nl8-20261004",
+  "date_utc": "2026-10-04",
+  "artifact_scope": "metadata_projection_not_end_to_end_reproduction",
+  "related_pull_request": "https://github.com/cluster2600/porscheparts/pull/128",
+  "status": "baseline_retained_model_rejected_for_frozen_pilot",
+  "model": {
+    "repository": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+    "revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+    "adapter": null,
+    "arm": "original_base_only"
+  },
+  "pilot_scope": {
+    "exposed_dependent_development_requests": 8,
+    "independent_holdout": false,
+    "generation_calls": 8,
+    "retries": 0,
+    "optimizer_updates": 0,
+    "raw_outputs_repaired": false,
+    "generated_code_or_CAD_executed": false,
+    "scientific_qwen3_experiment": false
+  },
+  "original_frozen_result": {
+    "model_correct_requests": 0,
+    "request_count": 8,
+    "baseline_correct_requests": 5,
+    "model_critical_correct": 0,
+    "critical_request_count": 3,
+    "baseline_critical_correct": 3,
+    "paired_wins": 0,
+    "paired_losses": 5,
+    "raw_strict_interface_conformant": 0,
+    "complete_requests": 5,
+    "model_correct_complete_proposals": 0,
+    "baseline_correct_complete_proposals": 2,
+    "net_additional_complete_correct_proposals": -2,
+    "schema_or_constraint_errors": 8,
+    "critical_regressions": 3,
+    "explicit_control_regressions": 2,
+    "decision": "retain_deterministic_labelled_baseline",
+    "model_selected": false,
+    "scores_unchanged_by_diagnostic": true
+  },
+  "runtime": {
+    "recorded_status": "admitted_clean_generation",
+    "genuine_wait4_exit_code": 0,
+    "completed_EOS_cases": 8,
+    "observed_elapsed_seconds": 14.325073375017382,
+    "sampled_conservative_memory_GiB": 2.4758089501410723,
+    "unchanged_binding_count": 66,
+    "gpu_error_detected": false,
+    "measurement_scope": "Recorded sampled guards with soft timers and conservative memory accounting; not hard kernel limits or exhaustive Metal coverage.",
+    "independent_raw_result_review": "Recorded runtime verification and pure regrade match the original assessment."
+  },
+  "offline_fence_content_diagnostic": {
+    "post_hoc": true,
+    "protocol_rerun": false,
+    "source_outputs": "The same eight existing raw outputs; originals unchanged.",
+    "transformation": "Remove only one complete outer fence pair; preserve the enclosed byte slice, including its newline. No reencoding, value editing, status remapping, unit inference or reason splitting.",
+    "eligible_complete_fence_views": 8,
+    "internal_strict_JSON_syntax_passes": 8,
+    "internal_schema_passes": 0,
+    "semantic_comparison_blocked_cases": 8,
+    "frozen_semantic_match_all_cases": null,
+    "new_semantic_success_score": null,
+    "original_rejection_preserved": true,
+    "wrapper_removal_alone_sufficient": false,
+    "descriptive_observations_not_scores": [
+      {
+        "case_indices": [
+          1,
+          2,
+          3,
+          4,
+          7
+        ],
+        "finding": "Incorrect clarification action for determined or invalid requests."
+      },
+      {
+        "case_indices": [
+          5
+        ],
+        "finding": "Three numeric fields align, but the accepted status is outside the permitted enum and the required unit is absent."
+      },
+      {
+        "case_indices": [
+          6,
+          8
+        ],
+        "finding": "Clarification action is compatible, but the compound reason is outside the permitted enum."
+      }
+    ],
+    "independent_review": "PASS_OFFLINE_DIAGNOSTIC_REVIEW_ONLY",
+    "review_lineage": "Independent of the diagnostic author; same reviewer as the intentions, preparation and raw results. These are exposed known cases.",
+    "new_generation_calls": 0,
+    "new_optimizer_updates": 0,
+    "adoption_authorized": false
+  },
+  "remaining_gates": {
+    "CAD_native_geometry": "CLOSED",
+    "reserved_evaluations": "CLOSED_UNCHANGED_UNUSED",
+    "further_model_or_training_job_authorized_by_report": false,
+    "scientific_or_manufacturing_qualification": false
+  },
+  "scope_limits": [
+    "Eight exposed dependent development requests under one frozen interface establish no independent generalization or statistically reliable gain.",
+    "Syntax validity after the permitted offline slice does not establish schema validity or a semantic success score. All eight semantic comparisons remain blocked.",
+    "Descriptive content faults do not identify their training, prompt, decoder or runtime cause.",
+    "No engineering, physical fit, safety, manufacturing or Porsche part qualification is established.",
+    "Earlier train006 reporting and scores remain unchanged; scientific Qwen3 and the distinct PR117 Coder/MLX pilot retain separate data and metrics.",
+    "Only owner-authored reporting prose and selected metadata are included. No raws, requests/golds, dataset, generated source, credentials or weights are published."
+  ],
+  "evidence_commitments_sha256": {
+    "original_frozen_final_outcome": "f7e380c5435c21d37dd0270192f5b88d61562ebe0eef3367ca8cb2a0c2e4e5c9",
+    "offline_diagnostic_outcome": "bd59e95940d53288051bd51e6f00178fe22b18a893d004fe6674db8f1ad8e678",
+    "offline_diagnostic_report": "3d92553c49f69bda400cb89326f7e9e684816f3d9917207a01a5a308c3277bba",
+    "offline_diagnostic_content_review": "1d26f80fdca26d0cc68e6953085294a098f653c908ec85ea719884915d1a286a"
+  },
+  "publication_rights": "Reporting prose follows the repository licence; metadata publication grants no new rights to underlying models, datasets or code."
+}

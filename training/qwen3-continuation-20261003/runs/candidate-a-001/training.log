@@ -1,0 +1,38 @@
+`torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:00<00:00, 49.81it/s]
+<authorized-python-env>/lib/python3.12/site-packages/peft/utils/save_and_load.py:286: UserWarning: Could not find a config file in Qwen/Qwen3-4B-Instruct-2507 - will assume that the vocabulary was not modified.
+  warnings.warn(
+{'loss': 1.7949, 'grad_norm': 1.8547091484069824, 'learning_rate': 0.0, 'epoch': 0.1}
+{'loss': 2.0631, 'grad_norm': 2.9448494911193848, 'learning_rate': 1e-05, 'epoch': 0.2}
+{'loss': 2.6065, 'grad_norm': 3.772700309753418, 'learning_rate': 8.888888888888888e-06, 'epoch': 0.3}
+{'loss': 1.7682, 'grad_norm': 1.9999955892562866, 'learning_rate': 7.77777777777778e-06, 'epoch': 0.4}
+Traceback (most recent call last):
+  File "/private/tmp/porscheparts-qwen3-20261003/training/qwen3-continuation-20261003/run.py", line 380, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/private/tmp/porscheparts-qwen3-20261003/training/qwen3-continuation-20261003/run.py", line 370, in main
+    train(args.snapshot.resolve(), args.output.resolve())
+  File "/private/tmp/porscheparts-qwen3-20261003/training/qwen3-continuation-20261003/run.py", line 219, in train
+    result = trainer.train()
+             ^^^^^^^^^^^^^^^
+  File "<authorized-python-env>/lib/python3.12/site-packages/transformers/trainer.py", line 2325, in train
+    return inner_training_loop(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "<authorized-python-env>/lib/python3.12/site-packages/transformers/trainer.py", line 2756, in _inner_training_loop
+    self._maybe_log_save_evaluate(
+  File "<authorized-python-env>/lib/python3.12/site-packages/transformers/trainer.py", line 3217, in _maybe_log_save_evaluate
+    self.log(logs, start_time)
+  File "<authorized-python-env>/lib/python3.12/site-packages/transformers/trainer.py", line 3793, in log
+    self.control = self.callback_handler.on_log(self.args, self.state, self.control, logs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<authorized-python-env>/lib/python3.12/site-packages/transformers/trainer_callback.py", line 549, in on_log
+    return self.call_event("on_log", args, state, control, logs=logs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<authorized-python-env>/lib/python3.12/site-packages/transformers/trainer_callback.py", line 556, in call_event
+    result = getattr(callback, event)(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/porscheparts-qwen3-20261003/training/qwen3-continuation-20261003/run.py", line 191, in on_log
+    raise ValueError('Non-finite training metric')
+ValueError: Non-finite training metric

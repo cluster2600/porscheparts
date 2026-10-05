@@ -1,0 +1,41 @@
+{
+  "status": "flow_blocked_mesh_rejected",
+  "compute": "Mac MLX/PicoGK/OpenUSD; Kali2 OpenFOAM v2312/CalculiX 2.17",
+  "vast_instances_created": 0,
+  "qwen_proposal": "rejected_invalid_shape",
+  "qwen_controlled_candidate": "accepted_literal_json_after_prefix_removal",
+  "qwen_is_optimizer": false,
+  "cfmesh": {
+    "cells": 2893212,
+    "extended_checks_failed": 6,
+    "rotor_patch_closed": false,
+    "rotor_boundary_x_min_m": -0.123677,
+    "source_rotor_boundary_x_min_m": -0.1225,
+    "negative_x_envelope_error_mm": 1.177,
+    "status": "rejected_quality_and_geometry"
+  },
+  "tetrahedral_mesh": {
+    "cells": 355404,
+    "extended_checks_failed": 5
+  },
+  "dual_mesh": {
+    "extended_checks_failed": 10
+  },
+  "flow_solver_launched": false,
+  "airflow_m3_s": null,
+  "airflow_gain_percent": null,
+  "manufacturing_authorized": false,
+  "validation": {
+    "focused_tests": 23,
+    "focused_skipped": 4,
+    "full_python_suite": 3260,
+    "full_python_skipped": 152,
+    "make_check": "failed_at_docker_lpbf_audit_daemon_unavailable"
+  },
+  "native_generator": {
+    "binary_sha256": "b986798154a12eeaf2c5f578ce3d232cc2ec31382f6dcdeff74eb413456d49ca",
+    "runtime": "reused PicoGK 26.2 and .NET 9 on Mac; no fresh compilation this run"
+  },
+  "cfmesh_preparation_reproduced_byte_identical": true,
+  "vast_instances_after_run": []
+}

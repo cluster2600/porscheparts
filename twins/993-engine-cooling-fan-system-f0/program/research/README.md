@@ -7,6 +7,11 @@ contains the 50-entry input matrix and four verified public synthesis views from
 40 bounded language passes. Engine-data coverage remains partial; the four historical lanes below are
 a separate earlier delivery.
 
+The subsequent [material/process corpus](materials-20261003/ADMISSION.md)
+adds eight original files, 143 property records, 25 sources and fourteen open
+target-route process requirements. It has a separate immutable import manifest;
+the historical twenty-file/four-lane registry below remains unchanged.
+
 All four research deliveries from October 3, 2026 are integrated: **20 original
 files, 140 source records and 130 URL groups**. Coverage is limited to the pages
 and queries actually consulted. These groups are not 130 independent

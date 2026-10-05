@@ -1,5 +1,9 @@
 # Organic blade development — numerical trials
 
+Latest execution: [local Qwen, PicoGK, OpenFOAM, CalculiX and OpenUSD](QWEN_CHAIN_20261002.md)
+(2026-10-02). A new pitch-42 geometry and centrifugal screen are recorded;
+three control flow meshes were rejected, so no airflow gain is established.
+
 **Design candidates, not released parts.** This study uses the reconstructed
 993 Turbo rotor and retains the separate bearing hub. PMB 240 A, housing and
 shaft interfaces still need measurements. No physical material test, actual

@@ -1,0 +1,319 @@
+{
+  "schema_version": "1.0",
+  "selected_manufacturing_route": null,
+  "inherited_scenario_only": true,
+  "parameters": [
+    {
+      "parameter": "machine",
+      "value": "iSLM420DN",
+      "unit": "model",
+      "evidence_class": "inherited_project_scenario",
+      "source_id": "PROJECT_SCENARIO",
+      "source_url": null,
+      "required_next_evidence": "Inherited local scenario only; production selection not confirmed.",
+      "release_admissible": false
+    },
+    {
+      "parameter": "material",
+      "value": "AlSi10Mg",
+      "unit": "alloy",
+      "evidence_class": "inherited_project_scenario",
+      "source_id": "PROJECT_SCENARIO",
+      "source_url": null,
+      "required_next_evidence": "Inherited local scenario only; production selection not confirmed.",
+      "release_admissible": false
+    },
+    {
+      "parameter": "laser_power",
+      "value": 500,
+      "unit": "W",
+      "evidence_class": "inherited_research_scenario",
+      "source_id": "CHEN_ROLLING_2026",
+      "source_url": "https://www.sciencedirect.com/science/article/pii/S2352492826011013",
+      "required_next_evidence": "Verify exact experimental section and matching supplier recipe; keep as-built control separate from rolled material.",
+      "release_admissible": false
+    },
+    {
+      "parameter": "scan_speed",
+      "value": 1300,
+      "unit": "mm/s",
+      "evidence_class": "inherited_research_scenario",
+      "source_id": "CHEN_ROLLING_2026",
+      "source_url": "https://www.sciencedirect.com/science/article/pii/S2352492826011013",
+      "required_next_evidence": "Verify exact experimental section and matching supplier recipe; keep as-built control separate from rolled material.",
+      "release_admissible": false
+    },
+    {
+      "parameter": "hatch_spacing",
+      "value": 0.1,
+      "unit": "mm",
+      "evidence_class": "inherited_research_scenario",
+      "source_id": "CHEN_ROLLING_2026",
+      "source_url": "https://www.sciencedirect.com/science/article/pii/S2352492826011013",
+      "required_next_evidence": "Verify exact experimental section and matching supplier recipe; keep as-built control separate from rolled material.",
+      "release_admissible": false
+    },
+    {
+      "parameter": "layer_thickness",
+      "value": 0.04,
+      "unit": "mm",
+      "evidence_class": "inherited_research_scenario",
+      "source_id": "CHEN_ROLLING_2026",
+      "source_url": "https://www.sciencedirect.com/science/article/pii/S2352492826011013",
+      "required_next_evidence": "Verify exact experimental section and matching supplier recipe; keep as-built control separate from rolled material.",
+      "release_admissible": false
+    },
+    {
+      "parameter": "beam_diameter",
+      "value": 0.08,
+      "unit": "mm",
+      "evidence_class": "inherited_research_scenario",
+      "source_id": "CHEN_ROLLING_2026",
+      "source_url": "https://www.sciencedirect.com/science/article/pii/S2352492826011013",
+      "required_next_evidence": "Verify exact experimental section and matching supplier recipe; keep as-built control separate from rolled material.",
+      "release_admissible": false
+    },
+    {
+      "parameter": "baseplate_temperature",
+      "value": 303.15,
+      "unit": "K",
+      "evidence_class": "inherited_research_scenario",
+      "source_id": "CHEN_ROLLING_2026",
+      "source_url": "https://www.sciencedirect.com/science/article/pii/S2352492826011013",
+      "required_next_evidence": "Verify exact experimental section and matching supplier recipe; keep as-built control separate from rolled material.",
+      "release_admissible": false
+    },
+    {
+      "parameter": "active_lasers",
+      "value": 1,
+      "unit": "count",
+      "evidence_class": "project_assumption",
+      "source_id": "PROJECT_SCENARIO",
+      "source_url": null,
+      "required_next_evidence": "Measure or obtain actual build-file/machine data; sensitivity interval is not a confidence interval.",
+      "release_admissible": false
+    },
+    {
+      "parameter": "absorptivity",
+      "value": 0.35,
+      "unit": "1",
+      "evidence_class": "project_assumption",
+      "source_id": "PROJECT_SCENARIO",
+      "source_url": null,
+      "required_next_evidence": "Measure or obtain actual build-file/machine data; sensitivity interval is not a confidence interval.",
+      "release_admissible": false
+    },
+    {
+      "parameter": "absorptivity_sensitivity",
+      "value": [
+        0.25,
+        0.45
+      ],
+      "unit": "1",
+      "evidence_class": "project_assumption",
+      "source_id": "PROJECT_SCENARIO",
+      "source_url": null,
+      "required_next_evidence": "Measure or obtain actual build-file/machine data; sensitivity interval is not a confidence interval.",
+      "release_admissible": false
+    },
+    {
+      "parameter": "recoat_time",
+      "value": 8,
+      "unit": "s",
+      "evidence_class": "project_assumption",
+      "source_id": "PROJECT_SCENARIO",
+      "source_url": null,
+      "required_next_evidence": "Measure or obtain actual build-file/machine data; sensitivity interval is not a confidence interval.",
+      "release_admissible": false
+    },
+    {
+      "parameter": "installed_lasers",
+      "value": 2,
+      "unit": "count",
+      "evidence_class": "official_machine_capability",
+      "source_id": "ZRAPID_420DN",
+      "source_url": "https://www.zrapid.com/en/slm420dn.html",
+      "required_next_evidence": "Capacity does not qualify a particular material, part, scan job, or usable support envelope.",
+      "release_admissible": false
+    },
+    {
+      "parameter": "laser_rated_power_each",
+      "value": 500,
+      "unit": "W",
+      "evidence_class": "official_machine_capability",
+      "source_id": "ZRAPID_420DN",
+      "source_url": "https://www.zrapid.com/en/slm420dn.html",
+      "required_next_evidence": "Capacity does not qualify a particular material, part, scan job, or usable support envelope.",
+      "release_admissible": false
+    },
+    {
+      "parameter": "beam_diameter_capability",
+      "value": [
+        0.06,
+        0.2
+      ],
+      "unit": "mm at1/e2",
+      "evidence_class": "official_machine_capability",
+      "source_id": "ZRAPID_420DN",
+      "source_url": "https://www.zrapid.com/en/slm420dn.html",
+      "required_next_evidence": "Capacity does not qualify a particular material, part, scan job, or usable support envelope.",
+      "release_admissible": false
+    },
+    {
+      "parameter": "build_XY",
+      "value": [
+        420,
+        420
+      ],
+      "unit": "mm",
+      "evidence_class": "official_machine_capability",
+      "source_id": "ZRAPID_420DN",
+      "source_url": "https://www.zrapid.com/en/slm420dn.html",
+      "required_next_evidence": "Capacity does not qualify a particular material, part, scan job, or usable support envelope.",
+      "release_admissible": false
+    },
+    {
+      "parameter": "nominal_build_Z_including_substrate",
+      "value": 500,
+      "unit": "mm",
+      "evidence_class": "official_machine_capability",
+      "source_id": "ZRAPID_420DN",
+      "source_url": "https://www.zrapid.com/en/slm420dn.html",
+      "required_next_evidence": "Capacity does not qualify a particular material, part, scan job, or usable support envelope.",
+      "release_admissible": false
+    },
+    {
+      "parameter": "precision_layer_capability",
+      "value": [
+        0.02,
+        0.05
+      ],
+      "unit": "mm",
+      "evidence_class": "official_machine_capability",
+      "source_id": "ZRAPID_420DN",
+      "source_url": "https://www.zrapid.com/en/slm420dn.html",
+      "required_next_evidence": "Capacity does not qualify a particular material, part, scan job, or usable support envelope.",
+      "release_admissible": false
+    }
+  ],
+  "requirements": [
+    {
+      "id": "R01",
+      "required_input": "feedstock_traceability",
+      "details": "Chemistry including O/H, particle size distribution, lot, moisture handling, sieve and reuse history",
+      "used_in": "Both service and print models",
+      "evidence_needed": "Get supplier certificate and powder management record; no generic grade equivalence",
+      "status": "required_unresolved_for_target_route"
+    },
+    {
+      "id": "R02",
+      "required_input": "E_nu_rho_vs_T",
+      "details": "Elastic tensor or justified isotropy; E(T),nu(T),rho(T),reference temperature",
+      "used_in": "Service FEA; print structural",
+      "evidence_needed": "Current target route data unavailable; vendor/ref-coupon test needed",
+      "status": "required_unresolved_for_target_route"
+    },
+    {
+      "id": "R03",
+      "required_input": "plasticity_vs_T_state",
+      "details": "True stress/plastic strain at temperatures, strain rates, directions and heat states; cyclic law if needed",
+      "used_in": "Elastoplastic burst/fit and print residual stress",
+      "evidence_needed": "YS+UTS+elongation alone do not define hardening; do not invent bilinear tangent",
+      "status": "required_unresolved_for_target_route"
+    },
+    {
+      "id": "R04",
+      "required_input": "thermal_vs_T_phase",
+      "details": "k(T),cp(T) or enthalpy(T),rho(T),solidus/liquidus,latent heat and powder packing for powder/solid/liquid",
+      "used_in": "Thermal print model",
+      "evidence_needed": "Room-temperature dense-solid values cannot be propagated through melt; DSC/laser-flash or qualified model data",
+      "status": "required_unresolved_for_target_route"
+    },
+    {
+      "id": "R05",
+      "required_input": "thermal_expansion_reference",
+      "details": "Tangent or secant CTE(T); stress-free/reference temperature; phase/aging strain",
+      "used_in": "Hot clearance; thermoelastic stress; print model",
+      "evidence_needed": "Keep interval mean coefficients distinct from pointwise tangent coefficients",
+      "status": "required_unresolved_for_target_route"
+    },
+    {
+      "id": "R06",
+      "required_input": "scan_schedule",
+      "details": "Bulk,contour,upskin,downskin,remelt,laser assignment,overlap,scan order/rotation/dwell,jump and recoating",
+      "used_in": "Print model",
+      "evidence_needed": "Import actual manufacturing job; nominal P/v/h/t is insufficient",
+      "status": "required_unresolved_for_target_route"
+    },
+    {
+      "id": "R07",
+      "required_input": "heat_source_calibration",
+      "details": "Beam profile/spot convention,wavelength,power-at-bed,absorptivity versus state and temperature",
+      "used_in": "Thermal print model",
+      "evidence_needed": "Calibrate with track meltpool/thermal evidence;0.25/0.45 are assumptions only",
+      "status": "required_unresolved_for_target_route"
+    },
+    {
+      "id": "R08",
+      "required_input": "plate_support_contact",
+      "details": "Plate alloy/thickness,preheat/spatial variation,fixture,part/support attachment,contact conductance",
+      "used_in": "Print model",
+      "evidence_needed": "Design and characterize support heat/stiffness, clamp constraints and baseplate distortion",
+      "status": "required_unresolved_for_target_route"
+    },
+    {
+      "id": "R09",
+      "required_input": "gas_and_boundaries",
+      "details": "Gas type,O2 limit,flow map,chamber temperature,convection,radiation emissivity,powder conductivity",
+      "used_in": "Print model",
+      "evidence_needed": "Boundary coefficients require documented measurement/calibration or marked sensitivity",
+      "status": "required_unresolved_for_target_route"
+    },
+    {
+      "id": "R10",
+      "required_input": "postprocess_sequence",
+      "details": "Stress relief on/offplate,cut path/order,HIP/solution/aging/quench,machining,peening/coating",
+      "used_in": "Print plus final-state FEA",
+      "evidence_needed": "Simulate and measure stages separately; properties must match final state",
+      "status": "required_unresolved_for_target_route"
+    },
+    {
+      "id": "R11",
+      "required_input": "inherent_strain_calibration",
+      "details": "Full strain tensor or solver strain scaling factors for exact machine/material/recipe/model/mesh",
+      "used_in": "Inherent strain print model",
+      "evidence_needed": "Build/measuring calibration coupons, then independent validation geometry; zero and default1 are not calibrated",
+      "status": "required_unresolved_for_target_route"
+    },
+    {
+      "id": "R12",
+      "required_input": "fatigue_and_defects",
+      "details": "S-N or strain-life by R,T,surface,orientation;scatter,runouts,notches;defect tolerance/crack growth",
+      "used_in": "Rotor fatigue",
+      "evidence_needed": "Representative thin blade/root/downskin coupons and acceptance criteria; no fraction-of-UTS default",
+      "status": "required_unresolved_for_target_route"
+    },
+    {
+      "id": "R13",
+      "required_input": "actual_operating_envelope",
+      "details": "Fan rpm/overspeed,duty,start-stops,metal temperature gradients,air pressure harmonics,hub/preload/fit",
+      "used_in": "Rotor service FEA",
+      "evidence_needed": "Measure/verify fan drive topology and load spectra; engine rpm alone is inadequate",
+      "status": "required_unresolved_for_target_route"
+    },
+    {
+      "id": "R14",
+      "required_input": "independent_validation",
+      "details": "Metrology at asbuilt/aftercut/afterHT/final stages;CT/residual-stress/thermal validation as appropriate",
+      "used_in": "Print model",
+      "evidence_needed": "Record predictive errors and uncertainty independently of fitted calibration points",
+      "status": "required_unresolved_for_target_route"
+    }
+  ],
+  "calibration_sources": [
+    "ANSYS_CAL_2025",
+    "ANSYS_CAL_2026",
+    "ANSYS_THERMAL_2025",
+    "NIST_THERMAL_2017"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "model": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit@b3252a2f97102b1fb1571fec2c9b27219a8536be",
+  "adapter": "coding-003/checkpoint-600",
+  "adapter_sha256": "a1014c6f71b46d879c09462c4a57d17d00df8f11b8178dd53bf6d5f2ac2f778a",
+  "messages": [
+    {
+      "role": "system",
+      "content": "Return a JSON object only. No explanation, code, assignment, Markdown, or arrays."
+    },
+    {
+      "role": "user",
+      "content": "Encode this unvalidated organic fan experiment as JSON with exactly five numeric fields: blade_pitch_deg=42, tip_twist_deg=-10, camber_mm=-3.5, sweep_mm=8, blade_tip_chord_mm=70."
+    }
+  ],
+  "response": "root = {\"blade_pitch_deg\": 42, \"tip_twist_deg\": -10, \"camber_mm\": -3.5, \"sweep_mm\": 8, \"blade_tip_chord_mm\": 70}",
+  "elapsed_seconds": 1.3417789936065674,
+  "airflow_claim": null
+}

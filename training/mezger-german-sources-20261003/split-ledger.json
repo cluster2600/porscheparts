@@ -1,0 +1,1615 @@
+{
+  "policy": "source_family_and_identical_reviewed_claim_connected_components",
+  "prior_ledgers": [
+    "training/993-turbo-20261002/split-ledger.json",
+    "training/mezger-turbo-materials-20261003/split-ledger.json"
+  ],
+  "source_family_aliases": {
+    "mahle-aftermarket.com": "us.mahle.com",
+    "ruf-automobile.de": "ruf-993",
+    "tte24.net": "tte-products"
+  },
+  "components": [
+    {
+      "id": "mambatek.com",
+      "families": [
+        "mambatek.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": false,
+      "protected_train_family": false
+    },
+    {
+      "id": "ms-motorservice.com",
+      "families": [
+        "ms-motorservice.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": false,
+      "protected_train_family": false
+    },
+    {
+      "id": "porsche-factory-and-archive",
+      "families": [
+        "porsche-factory-and-archive"
+      ],
+      "split": "train",
+      "inherited_prior_partition": true,
+      "protected_train_family": true
+    },
+    {
+      "id": "rheinfelden-alloys.eu",
+      "families": [
+        "rheinfelden-alloys.eu"
+      ],
+      "split": "train",
+      "inherited_prior_partition": false,
+      "protected_train_family": false
+    },
+    {
+      "id": "ruf-993",
+      "families": [
+        "ruf-993"
+      ],
+      "split": "test",
+      "inherited_prior_partition": true,
+      "protected_train_family": false
+    },
+    {
+      "id": "smithshp.com",
+      "families": [
+        "smithshp.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": false,
+      "protected_train_family": false
+    },
+    {
+      "id": "tte-products",
+      "families": [
+        "tte-products"
+      ],
+      "split": "test",
+      "inherited_prior_partition": true,
+      "protected_train_family": false
+    },
+    {
+      "id": "turbozentrum.de",
+      "families": [
+        "turbozentrum.de"
+      ],
+      "split": "train",
+      "inherited_prior_partition": false,
+      "protected_train_family": false
+    },
+    {
+      "id": "us.mahle.com",
+      "families": [
+        "us.mahle.com"
+      ],
+      "split": "train",
+      "inherited_prior_partition": true,
+      "protected_train_family": true
+    }
+  ],
+  "records": [
+    {
+      "record_id": "MEZGER-DEO001",
+      "source_ids": [
+        "SRC-PORSCHE-DE-TURBO-GENERATIONS-2024"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:78948675ad073e9b5015f555dbd6ec3bf09d7764e8e47ffacdb52aab8c2f5505"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO002",
+      "source_ids": [
+        "SRC-PORSCHE-DE-964-HISTORY-2018"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:7a4e2ff4cd646ee3258d2b1f0327d4d3ef92d0cbc7071e58f0098465f402e42b"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO003",
+      "source_ids": [
+        "SRC-PORSCHE-DE-KLASSIK-TURBO-COMPARISON-2017"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:0509b6a8694413e74f9812a748832c48d61b759ea2b0e03ee8a46d400c3f1ad0"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO004",
+      "source_ids": [
+        "SRC-PORSCHE-DE-KLASSIK-TURBO-COMPARISON-2017"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:0ed83f8ec66e9cb1e86a2c72a11f07c8e812377e9930749b79e5435264f6f74c"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO005",
+      "source_ids": [
+        "SRC-PORSCHE-DE-KLASSIK-TURBO-COMPARISON-2017"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:28841520424b74755e144aa5e3af0221ae545a79406275410ebdf9324ec0c6e4"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO006",
+      "source_ids": [
+        "SRC-PORSCHE-DE-KLASSIK-TURBO-COMPARISON-2017"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:b0dac950a498d38398abfe8d668f56f2faddab7b1867b4a9aecdd1c9d8427d2a"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO007",
+      "source_ids": [
+        "SRC-PORSCHE-DE-KLASSIK-TURBO-COMPARISON-2017"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:c1e6e71702fb9fd63c06ff497fc43d8b971662f3457b659394c31c1d119c14df"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO008",
+      "source_ids": [
+        "SRC-PORSCHE-DE-KLASSIK-TURBO-COMPARISON-2017"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:34440526501893afc7ffe6af4892e1cf590e86b4ed539f1fa1a41e4e9b5bdfc6"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO009",
+      "source_ids": [
+        "SRC-PORSCHE-DE-993-TURBO-S-DATASHEET",
+        "SRC-PORSCHE-DE-993-TURBO-S-HERITAGE",
+        "SRC-PORSCHE-DE-KLASSIK-TURBO-COMPARISON-2017"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:5815f1ffdab9718a0a91627f1c5a2f0580be5cc475e1b48012db652a1ec2d120"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO010",
+      "source_ids": [
+        "SRC-PORSCHE-DE-993-TURBO-S-DATASHEET",
+        "SRC-PORSCHE-DE-KLASSIK-TURBO-COMPARISON-2017"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:73c9e6ce01c679ea1b04eebffad8b8ce835b9761e756abe569baf461ba7ba8ed"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO011",
+      "source_ids": [
+        "SRC-PORSCHE-DE-TURBO-GENERATIONS-2024"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:f158b4e5a05ec454cc4f21578c2d112fcc6e4c9b2e8cf00d1f18f0d6aab53fde"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO012",
+      "source_ids": [
+        "SRC-PORSCHE-DE-TURBO-GENERATIONS-2024"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:1c0ff2b51646c5cd4c8f497bb772f977c7bd643544215aa7c0a1cdde3b2c3383"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO013",
+      "source_ids": [
+        "SRC-PORSCHE-DE-TURBO-GENERATIONS-2024"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:73e83848cb50d421af886896629aaf1797bb39644f967de15b9e58260b590a59"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO014",
+      "source_ids": [
+        "SRC-PORSCHE-DE-TURBO-GENERATIONS-2024"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:5f27cf20b41d8246ae67a4fdbeb3fa0f550d1833382e9b8bbc7ba2d6c5ae53d0"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO015",
+      "source_ids": [
+        "SRC-PORSCHE-DE-TURBO-GENERATIONS-2024"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:ee82b1a8e7d6260038c574ea1608a0c0d8a1de1312a9b3e85145e5a39d9cffa7"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO016",
+      "source_ids": [
+        "SRC-PORSCHE-DE-TURBO-GENERATIONS-2024"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:3e013d0a10c014f76b12ff970504f1303effb11566b61f24b7198418e669eb24"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO017",
+      "source_ids": [
+        "SRC-PORSCHE-DE-TURBO-GENERATIONS-2024"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:2e5a08f68117083cf18b0962945c1af8f671712b01a2e2f0d0e88e85aea49b9b"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO018",
+      "source_ids": [
+        "SRC-PORSCHE-DE-TURBO-GENERATIONS-2024"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:488fe3e0eac061d08ca5d91a6c69b381f7d368d6490c01cda21785a5817401ba"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO019",
+      "source_ids": [
+        "SRC-PORSCHE-DE-CLASSIC-MAGNESIUM-CRANKCASES-2023"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:ba246656f966cfa0be8717891be161ab5b11075c916ef79bb5049a356c769df4"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO020",
+      "source_ids": [
+        "SRC-PORSCHE-DE-CLASSIC-MAGNESIUM-CRANKCASES-2023"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:1292edfefce70591bf1ffb32979f40b4510281bb30523cc4223ff2b74e396863"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO021",
+      "source_ids": [
+        "SRC-PORSCHE-DE-CLASSIC-MAGNESIUM-CRANKCASES-2023"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:0760484d3b45e97e37bd41646d894b864bb0a153200cb388561b34626bc9992e"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO022",
+      "source_ids": [
+        "SRC-PORSCHE-DE-CLASSIC-MAGNESIUM-CRANKCASES-2023"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:07f7f1697b60502be8fbd6d1a7109106cae994646870c423fbc4303d15d2b780"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO023",
+      "source_ids": [
+        "SRC-PORSCHE-DE-CLASSIC-MAGNESIUM-CRANKCASES-2023"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:8bfe79ae7357a5e95c76b577ae5c6d0e2f37b0380134d76bdb0b915d7a61da20"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO024",
+      "source_ids": [
+        "SRC-PORSCHE-DE-CLASSIC-MAGNESIUM-CRANKCASES-2023"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:dd9eb4298f2fac96de7f7fad57b2cd2e10f1ea1f7b304e7d334bc28cc4441c16"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO025",
+      "source_ids": [
+        "SRC-PORSCHE-DE-CLASSIC-MAGNESIUM-CRANKCASES-2023"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:c20ee41dfeb31940f9c84ec9de2bc4fd5f33476f0a74c39ed0e64c9a8c49da66"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DEO026",
+      "source_ids": [
+        "SRC-PORSCHE-DE-CLASSIC-MAGNESIUM-CRANKCASES-2023"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:05ec096f551bbddade155452bdcc437f2ae80ac31c8b52ed33e5d76e88b7bc22"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-R001",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-TURBO-MOTORSPORT"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:861ca07a872ff4785b14140869be9958ac759d02fe8df65d4bf929259d6ee8a2"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-R002",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-TURBO-MOTORSPORT"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:2f222cdcb11930b044150bf03fc90d86cecad946154b43b8f4f94307eab2fb84"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-R003",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-TURBO-MOTORSPORT"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:124ec4117f4285076de5698900ded6d0d3c983022aae694756356aaa9354cca8"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-R004",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-TURBO-MOTORSPORT"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:09644b708f378e24a726026482cd55ac0a809c93c6a037f04d8afe45064cbac1"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-R005",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-TURBO-MOTORSPORT"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:1d1d33d5f8d645fdc8ebf8e6a605b543bce3fc0f45c6b26b07e01ca141849a14"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-R006",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-TURBO-MOTORSPORT"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:11ca6837be8e685e2efd8d3101f5681b9edae3ce5df53e40ec038a7b2eae7093"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-R007",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-TURBO-MOTORSPORT"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:d1263a5f5acdd4a7d124a2dab6df02c2390054fea9b29af614feaad6b26428eb"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-R008",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-TURBO-MOTORSPORT"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:375d91f4369bc1edd6a00a6335668d35b9f124631d3195855ff1c3eb2864a920"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-R009",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-TURBO-MOTORSPORT"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:fc4f01ee318d3b83574a8c70422cedc1c2080f4fcf1cb1c0aa4533b21b6ae4c5"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-R010",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-HERITAGE-935-2026"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:8f4a3ada8dd560de32592bbfbf33a991f73f3deb71e0c320ef5e07618aa31f2b"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-R011",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-HERITAGE-935-2026"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:4fc178edfffc4fc6e4876994e647bbfad4a36feee3beda1090574dae9bbf2b2a"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-R012",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-HERITAGE-935-2026"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:0c7be2e70a5bd799b3019599f91dbf46fe76f810bb27ede6ed0a2fa2d15abc70"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-R013",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-959-CAST-BLOCK"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:36c12ea7fa028c7b052171caae3d25a71c1d83585fcc81177a85e9aa56f68fc9"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-R014",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-959-DAKAR-RESTORATION"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:254a2c9b17f5b56b92e0adec721f207b81a60ff46f4ec54ee5c5556c7908130a"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-R015",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-959-DAKAR-RESTORATION"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:87e0b0c92289f09fe16ffd761b62a05b3dc2266b5643e96f3005f67b8a71b4eb"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-R016",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-959-DAKAR-RESTORATION"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:77a46cfac7dde8aa3b40b6d0ed9680b612aadfd7c906dbab874c2ab0aae32589"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-R017",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-TURBO-MOTORSPORT"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:bb206c9f49b4c99e42627b90d913749b33b7c3571532a18054762f271ac33cc9"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-R018",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-MEZGER-BIOGRAPHY"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:f86826a3fa10371211bf918cd74b56d9437bec30769bae042876ea1c30e4d5df"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-R019",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-MEZGER-BIOGRAPHY"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:42d5f4b40a68ab6d098e9d5d3f010c4aef3eefd186ae11c5d5b70405aa6397a3"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-R020",
+      "source_ids": [
+        "SRC-MEZGER-DE-RACING-MEZGER-BIOGRAPHY"
+      ],
+      "source_families": [
+        "porsche-factory-and-archive"
+      ],
+      "claim_ids": [
+        "fact:bdcdf99e3f3ebcc3ed1b23044ca56081abcf7875651a74537c2b86d439a3d3c5"
+      ],
+      "component": "porsche-factory-and-archive",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M001",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS",
+        "SRC-MEZGER-DE-MATERIALS-RR-SDS"
+      ],
+      "source_families": [
+        "rheinfelden-alloys.eu"
+      ],
+      "claim_ids": [
+        "fact:6aa97f9ebe24b186550fda4cc37ecb893aab145e0886f3c330da71df71fb7900"
+      ],
+      "component": "rheinfelden-alloys.eu",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M002",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "source_families": [
+        "rheinfelden-alloys.eu"
+      ],
+      "claim_ids": [
+        "fact:337048ec2dfe179b065c6aff8414528bbdc3466d9a731ebc0926f811e9eeeda1"
+      ],
+      "component": "rheinfelden-alloys.eu",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M003",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "source_families": [
+        "rheinfelden-alloys.eu"
+      ],
+      "claim_ids": [
+        "fact:ae3da75c87ecd662dcabec387fce8d651a2d876dfa8c46738e8f20a608672e11"
+      ],
+      "component": "rheinfelden-alloys.eu",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M004",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "source_families": [
+        "rheinfelden-alloys.eu"
+      ],
+      "claim_ids": [
+        "fact:950607d90a1afa03feca068ff2b166cb7c2ba9a98d67e6207185ab32b10f1418"
+      ],
+      "component": "rheinfelden-alloys.eu",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M005",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "source_families": [
+        "rheinfelden-alloys.eu"
+      ],
+      "claim_ids": [
+        "fact:601e39c0e17429ad5d475c8429063b5a1ad6e1baf2cf75b88f1810a1dbf17db4"
+      ],
+      "component": "rheinfelden-alloys.eu",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M006",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "source_families": [
+        "rheinfelden-alloys.eu"
+      ],
+      "claim_ids": [
+        "fact:9bb062c69e1eaa4c97ec89db8a5297d697bc5c4b859a51f34861fce8e2fd6214"
+      ],
+      "component": "rheinfelden-alloys.eu",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M007",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "source_families": [
+        "rheinfelden-alloys.eu"
+      ],
+      "claim_ids": [
+        "fact:658559b72b1fcd3880a3bdcfb51e59743b019383f703d349ffd03f74e7d12dc3"
+      ],
+      "component": "rheinfelden-alloys.eu",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M008",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "source_families": [
+        "rheinfelden-alloys.eu"
+      ],
+      "claim_ids": [
+        "fact:7565f27db99231f29d22c9d52c6af99646a6bdbfbdb16bc7379f0a3a2947064f"
+      ],
+      "component": "rheinfelden-alloys.eu",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M009",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "source_families": [
+        "rheinfelden-alloys.eu"
+      ],
+      "claim_ids": [
+        "fact:db02f03d91fe8b975c67c0849344fc1fda11f2d3b60adff757ef3b95672d7042"
+      ],
+      "component": "rheinfelden-alloys.eu",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M010",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "source_families": [
+        "rheinfelden-alloys.eu"
+      ],
+      "claim_ids": [
+        "fact:d68766bc198a43ac79949a9b192510094820f4d1d0a671933bd43d89ddfbc6a5"
+      ],
+      "component": "rheinfelden-alloys.eu",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M011",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "source_families": [
+        "rheinfelden-alloys.eu"
+      ],
+      "claim_ids": [
+        "fact:c6b41c5c0edf602fce9a2b4a403fc4a6f9eb6e94ecec2430a6f80f1dce6a0704"
+      ],
+      "component": "rheinfelden-alloys.eu",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M012",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "source_families": [
+        "rheinfelden-alloys.eu"
+      ],
+      "claim_ids": [
+        "fact:ac2a5e67707b0e34c8214ab140be42881840f5835a812584372c5bd9b9d0136d"
+      ],
+      "component": "rheinfelden-alloys.eu",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M013",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "source_families": [
+        "rheinfelden-alloys.eu"
+      ],
+      "claim_ids": [
+        "fact:99008bd73fefcbde9339db330a350b06f6e0d42921be3ef1e23a92f3406560d5"
+      ],
+      "component": "rheinfelden-alloys.eu",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M014",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "source_families": [
+        "rheinfelden-alloys.eu"
+      ],
+      "claim_ids": [
+        "fact:87c4392314ece649b17492d8af4e1da0be13cc279c4902c60efb78d0fa6d2d4b"
+      ],
+      "component": "rheinfelden-alloys.eu",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M015",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "source_families": [
+        "rheinfelden-alloys.eu"
+      ],
+      "claim_ids": [
+        "fact:c6177e99845021b6edf7b79a4596b206ff8cc80830b5d271a4ceda4450eb7105"
+      ],
+      "component": "rheinfelden-alloys.eu",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M016",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "source_families": [
+        "rheinfelden-alloys.eu"
+      ],
+      "claim_ids": [
+        "fact:a3a6e453e2653588898efd03e023a1ce199c784d0ce7dcef100ef64a002ba69a"
+      ],
+      "component": "rheinfelden-alloys.eu",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M017",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-BASIS"
+      ],
+      "source_families": [
+        "rheinfelden-alloys.eu"
+      ],
+      "claim_ids": [
+        "fact:fedb62447cc3eac4cf2cd159d1ead870dcf664f6407226f348906a7f57a10d9a"
+      ],
+      "component": "rheinfelden-alloys.eu",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M018",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-PRODUCT"
+      ],
+      "source_families": [
+        "rheinfelden-alloys.eu"
+      ],
+      "claim_ids": [
+        "fact:479a164795c9925eb398ce5a79cc29b12d4bd47eebe63147a586109651805b27"
+      ],
+      "component": "rheinfelden-alloys.eu",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M019",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-PRODUCT"
+      ],
+      "source_families": [
+        "rheinfelden-alloys.eu"
+      ],
+      "claim_ids": [
+        "fact:14b983ccd6eb5afad41ac9cb231ef6bac6d8d00e0d987cf855b2f913aed7a1ed"
+      ],
+      "component": "rheinfelden-alloys.eu",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M020",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-PRODUCT"
+      ],
+      "source_families": [
+        "rheinfelden-alloys.eu"
+      ],
+      "claim_ids": [
+        "fact:ec29ff79c9f1576da7dee1bcb06ca56c50ed5dfc8d0d66224d70bb45ab2b24b5"
+      ],
+      "component": "rheinfelden-alloys.eu",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M021",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-PRODUCT"
+      ],
+      "source_families": [
+        "rheinfelden-alloys.eu"
+      ],
+      "claim_ids": [
+        "fact:15b556826a36f8bcb5795b536b677b1d2083ae9c9db6d4a548a5a90ab4bd21b6"
+      ],
+      "component": "rheinfelden-alloys.eu",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M022",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-RR-PRODUCT"
+      ],
+      "source_families": [
+        "rheinfelden-alloys.eu"
+      ],
+      "claim_ids": [
+        "fact:fcc742862d2eb215125c9bef8994fef3a7bdb72e21f37acf9276f204ad99eb56"
+      ],
+      "component": "rheinfelden-alloys.eu",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M023",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-2618A"
+      ],
+      "source_families": [
+        "smithshp.com"
+      ],
+      "claim_ids": [
+        "fact:442e0046eedcd8c9d853a864e6eada3a81164cc41706cd3506a6e4d9a55c7b76"
+      ],
+      "component": "smithshp.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M024",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-2618A"
+      ],
+      "source_families": [
+        "smithshp.com"
+      ],
+      "claim_ids": [
+        "fact:5299d3ac6d2ccb40955786a841aac51df31432f630e4bbbd24dd875732cbd0d7"
+      ],
+      "component": "smithshp.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M025",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-2618A"
+      ],
+      "source_families": [
+        "smithshp.com"
+      ],
+      "claim_ids": [
+        "fact:f3cf74400341c40b246dda96c07603b18eb3f6b7e41d5b9ab70a5c0220767b4d"
+      ],
+      "component": "smithshp.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M026",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-2618A"
+      ],
+      "source_families": [
+        "smithshp.com"
+      ],
+      "claim_ids": [
+        "fact:2c90262d714ae64b314bc8df46f53ba78cd498cd4dee7054d9a8420465b099c2"
+      ],
+      "component": "smithshp.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M027",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-2618A"
+      ],
+      "source_families": [
+        "smithshp.com"
+      ],
+      "claim_ids": [
+        "fact:4c72a8fffe7e90473696bc7d585a47ea8e82b6fc168c269e87a66c629388c257"
+      ],
+      "component": "smithshp.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M028",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-2618A"
+      ],
+      "source_families": [
+        "smithshp.com"
+      ],
+      "claim_ids": [
+        "fact:7f30a5f3e2b1cbed602cb5b78347bf2ad3810f233870322ad8281c730e4f1384"
+      ],
+      "component": "smithshp.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M029",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-2618A"
+      ],
+      "source_families": [
+        "smithshp.com"
+      ],
+      "claim_ids": [
+        "fact:a8e12a73cd261536426c85565d7a18689dc0b59aab7a7b997b94343dad190073"
+      ],
+      "component": "smithshp.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M030",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-2618A"
+      ],
+      "source_families": [
+        "smithshp.com"
+      ],
+      "claim_ids": [
+        "fact:e673bbfcebe6eb56a4fa2dd88cb6b79d48f4fa620e60f768d8ff6a286aa8e5e3"
+      ],
+      "component": "smithshp.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M031",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-MS-ALUMINIUM"
+      ],
+      "source_families": [
+        "ms-motorservice.com"
+      ],
+      "claim_ids": [
+        "fact:50a42f7c9de0c6508e491fc527ee30fed36ce1b550d3393afbea3910509d166b"
+      ],
+      "component": "ms-motorservice.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M032",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-MS-ALUMINIUM"
+      ],
+      "source_families": [
+        "ms-motorservice.com"
+      ],
+      "claim_ids": [
+        "fact:de42da32460f8f27e2f81e94d1a0b089500fbaafbc6d51ce2608cd647afcf0e7"
+      ],
+      "component": "ms-motorservice.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M033",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-MS-ALUMINIUM"
+      ],
+      "source_families": [
+        "ms-motorservice.com"
+      ],
+      "claim_ids": [
+        "fact:d51680b780446b4a5164bffa411806b53b23d4de8bf976129925fe575a954be1"
+      ],
+      "component": "ms-motorservice.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M034",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-MS-ALUMINIUM"
+      ],
+      "source_families": [
+        "ms-motorservice.com"
+      ],
+      "claim_ids": [
+        "fact:d20cea713408280a67fec64d5eb5fcbdf3b3f39fc5a50c03681b9e2170c756be"
+      ],
+      "component": "ms-motorservice.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M035",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-MS-ALUMINIUM"
+      ],
+      "source_families": [
+        "ms-motorservice.com"
+      ],
+      "claim_ids": [
+        "fact:73aebcbeea274e23f0ba4143eb1f7f408ef148277509c1497156ac84e9c24c0c"
+      ],
+      "component": "ms-motorservice.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M036",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-MS-BLANKS"
+      ],
+      "source_families": [
+        "ms-motorservice.com"
+      ],
+      "claim_ids": [
+        "fact:0354f6add86dba50b33ab8b12e1707a41c75279a0988b95608f878b2bb6d39a7"
+      ],
+      "component": "ms-motorservice.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M037",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-MAHLE-HONE"
+      ],
+      "source_families": [
+        "us.mahle.com"
+      ],
+      "claim_ids": [
+        "fact:343b4ed9e542c81aca4d3cd04c890f291f7d3e5920d1ac758f96fe0ea554b260"
+      ],
+      "component": "us.mahle.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-M038",
+      "source_ids": [
+        "SRC-MEZGER-DE-MATERIALS-MAHLE-HONE"
+      ],
+      "source_families": [
+        "us.mahle.com"
+      ],
+      "claim_ids": [
+        "fact:e8fd5904db9cf9cd2454547306cfcc29b495baeea100b2a26a57bfb1eea869bc"
+      ],
+      "component": "us.mahle.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-T001",
+      "source_ids": [
+        "SRC-MEZGER-DE-MAMBA-993-K16-015-2218-2"
+      ],
+      "source_families": [
+        "mambatek.com"
+      ],
+      "claim_ids": [
+        "fact:461ee5235d1f9c0edde6f4a9667b7e261b9585ffb136ffe670d4dbdea5a178fb"
+      ],
+      "component": "mambatek.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-T002",
+      "source_ids": [
+        "SRC-MEZGER-DE-MAMBA-993-K16-015-2218-2"
+      ],
+      "source_families": [
+        "mambatek.com"
+      ],
+      "claim_ids": [
+        "fact:49581b0c2301566676b1f445c72637731d91989fcfdb3a05ec9f6e850a19bd54"
+      ],
+      "component": "mambatek.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-T003",
+      "source_ids": [
+        "SRC-MEZGER-DE-MAMBA-993-K16-015-2218-2"
+      ],
+      "source_families": [
+        "mambatek.com"
+      ],
+      "claim_ids": [
+        "fact:51e351392355114d1d2cdf568a9bb44304e9f6a2789a26a075cac9982b5eb9dc"
+      ],
+      "component": "mambatek.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-T004",
+      "source_ids": [
+        "SRC-MEZGER-DE-MAMBA-993-K16-015-2218-2"
+      ],
+      "source_families": [
+        "mambatek.com"
+      ],
+      "claim_ids": [
+        "fact:7ad1761df70ebe08466c9856156cf371a19ca2b8ff24c90259f4e78de385c1cd"
+      ],
+      "component": "mambatek.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-T005",
+      "source_ids": [
+        "SRC-MEZGER-DE-MAMBA-993-K16-015-2218-2"
+      ],
+      "source_families": [
+        "mambatek.com"
+      ],
+      "claim_ids": [
+        "fact:aff78857b6827d78112bdeb635f491afcebd427178c777e31a0b45e899c4cc6f"
+      ],
+      "component": "mambatek.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-T006",
+      "source_ids": [
+        "SRC-MEZGER-DE-MAMBA-993-K16-015-2218-2"
+      ],
+      "source_families": [
+        "mambatek.com"
+      ],
+      "claim_ids": [
+        "fact:61a6f5ef611177f98e2f0630703683b063b064eb44a585a1bba1ec2c69f11eaf"
+      ],
+      "component": "mambatek.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-T007",
+      "source_ids": [
+        "SRC-MEZGER-DE-MAMBA-993-K16-015-2218-2"
+      ],
+      "source_families": [
+        "mambatek.com"
+      ],
+      "claim_ids": [
+        "fact:352c386503d3fb09783678abf70b35d3f48b03a3d1a6e60be50d64e7d6b84079"
+      ],
+      "component": "mambatek.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-T008",
+      "source_ids": [
+        "SRC-MEZGER-DE-MAMBA-993-K16-015-2218-2"
+      ],
+      "source_families": [
+        "mambatek.com"
+      ],
+      "claim_ids": [
+        "fact:4b6c99c036ebeeff1a42098f452c1f66ba7e6dd0c82c83e71dc79f427b0799eb"
+      ],
+      "component": "mambatek.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-T009",
+      "source_ids": [
+        "SRC-MEZGER-DE-MAMBA-993-K16-015-2218-2"
+      ],
+      "source_families": [
+        "mambatek.com"
+      ],
+      "claim_ids": [
+        "fact:d56ce6cac3a6e9a8092691a1e6dc4aaf2fbe4f936c292d70187b89d0de632ad7"
+      ],
+      "component": "mambatek.com",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-T010",
+      "source_ids": [
+        "SRC-MEZGER-DE-TTE24-993-TTE650"
+      ],
+      "source_families": [
+        "tte-products"
+      ],
+      "claim_ids": [
+        "fact:7725e05761475399a12e46e58ac8b1132bc34cf11b6b81d6e30a8a312be35580"
+      ],
+      "component": "tte-products",
+      "split": "test"
+    },
+    {
+      "record_id": "MEZGER-DE-T011",
+      "source_ids": [
+        "SRC-MEZGER-DE-TTE24-993-TTE650"
+      ],
+      "source_families": [
+        "tte-products"
+      ],
+      "claim_ids": [
+        "fact:f0f9fa1d915b5210c0cda01427477e9ee32d730012c1da100476e173035130f0"
+      ],
+      "component": "tte-products",
+      "split": "test"
+    },
+    {
+      "record_id": "MEZGER-DE-T012",
+      "source_ids": [
+        "SRC-MEZGER-DE-TURBOZENTRUM-993-53249887003-STAGE2"
+      ],
+      "source_families": [
+        "turbozentrum.de"
+      ],
+      "claim_ids": [
+        "fact:c2b1cc5ef72c58b7cb954434f9f498a65f4abe681182541fa165cc33c01c5b36"
+      ],
+      "component": "turbozentrum.de",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-T013",
+      "source_ids": [
+        "SRC-MEZGER-DE-TURBOZENTRUM-993-53249887003-STAGE2"
+      ],
+      "source_families": [
+        "turbozentrum.de"
+      ],
+      "claim_ids": [
+        "fact:80d97daa9c8e5fb993090ec9dec15082755e72d3d80c5dbea95c60a50ba812cc"
+      ],
+      "component": "turbozentrum.de",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-T014",
+      "source_ids": [
+        "SRC-MEZGER-DE-TURBOZENTRUM-993-53249887003-STAGE2"
+      ],
+      "source_families": [
+        "turbozentrum.de"
+      ],
+      "claim_ids": [
+        "fact:503b7a429053bc7fe4378bdae33e3ca22c60c18089672b00d0f77b9d96e0efa5"
+      ],
+      "component": "turbozentrum.de",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-T015",
+      "source_ids": [
+        "SRC-MEZGER-DE-TURBOZENTRUM-993-53249887003-STAGE2"
+      ],
+      "source_families": [
+        "turbozentrum.de"
+      ],
+      "claim_ids": [
+        "fact:656f0868954c1dd55a2eff200c74dfe50b86c4c0c03d1001c977982bb44ff23d"
+      ],
+      "component": "turbozentrum.de",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-T016",
+      "source_ids": [
+        "SRC-MEZGER-DE-TURBOZENTRUM-OST-PROCESS"
+      ],
+      "source_families": [
+        "turbozentrum.de"
+      ],
+      "claim_ids": [
+        "fact:edefb4101adc42729a9290ad2c9276e53ce3a9b813772720e0e6b886752a534d"
+      ],
+      "component": "turbozentrum.de",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-T017",
+      "source_ids": [
+        "SRC-MEZGER-DE-TURBOZENTRUM-OST-PROCESS"
+      ],
+      "source_families": [
+        "turbozentrum.de"
+      ],
+      "claim_ids": [
+        "fact:bb7d41c32bd0a5a3dc6472e9e1d2678beb89003ab89ce04c1358bf3783b2236d"
+      ],
+      "component": "turbozentrum.de",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-T018",
+      "source_ids": [
+        "SRC-MEZGER-DE-TURBOZENTRUM-OST-PROCESS"
+      ],
+      "source_families": [
+        "turbozentrum.de"
+      ],
+      "claim_ids": [
+        "fact:1cd1cc907cc30f5f2eb1c7e526c92417ccff93ad04bab65269c31033dbbb85ad"
+      ],
+      "component": "turbozentrum.de",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-T019",
+      "source_ids": [
+        "SRC-MEZGER-DE-TURBOZENTRUM-TURBOSMART-993-TS06241242"
+      ],
+      "source_families": [
+        "turbozentrum.de"
+      ],
+      "claim_ids": [
+        "fact:f5f1f7a1f93c3330c099ea63679ec7214c089e0f547382bf310a079eba301057"
+      ],
+      "component": "turbozentrum.de",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-T020",
+      "source_ids": [
+        "SRC-MEZGER-DE-TURBOZENTRUM-TURBOSMART-993-TS06241242"
+      ],
+      "source_families": [
+        "turbozentrum.de"
+      ],
+      "claim_ids": [
+        "fact:000e3b42268bbd9d3ac73e240a2069c568851d05635b5e038c5b6d26cc9eb829"
+      ],
+      "component": "turbozentrum.de",
+      "split": "train"
+    },
+    {
+      "record_id": "MEZGER-DE-T021",
+      "source_ids": [
+        "SRC-MEZGER-DE-RUF-TRIBUTE-ENGINE"
+      ],
+      "source_families": [
+        "ruf-993"
+      ],
+      "claim_ids": [
+        "fact:564a31a77ce3dd4d74121fdec0b839a2352a45ee4fe05435c0e9f331510c0d7f"
+      ],
+      "component": "ruf-993",
+      "split": "test"
+    },
+    {
+      "record_id": "MEZGER-DE-T022",
+      "source_ids": [
+        "SRC-MEZGER-DE-RUF-TRIBUTE-ENGINE"
+      ],
+      "source_families": [
+        "ruf-993"
+      ],
+      "claim_ids": [
+        "fact:99bb1200b33c29a591297cc60a5a2f23f68c86a41e90ede597ad649f21b50743"
+      ],
+      "component": "ruf-993",
+      "split": "test"
+    },
+    {
+      "record_id": "MEZGER-DE-T023",
+      "source_ids": [
+        "SRC-MEZGER-DE-RUF-TRIBUTE-ENGINE"
+      ],
+      "source_families": [
+        "ruf-993"
+      ],
+      "claim_ids": [
+        "fact:872a66f86e8fac9f3a2cf2ac09f1c78ac10d627bd46fb360d8cc2b40b8cba75e"
+      ],
+      "component": "ruf-993",
+      "split": "test"
+    },
+    {
+      "record_id": "MEZGER-DE-T024",
+      "source_ids": [
+        "SRC-MEZGER-DE-RUF-TRIBUTE-ENGINE"
+      ],
+      "source_families": [
+        "ruf-993"
+      ],
+      "claim_ids": [
+        "fact:32e88c1f6851b669fcb4ce920126ca61f6e422c590d07099774621defa081819"
+      ],
+      "component": "ruf-993",
+      "split": "test"
+    }
+  ],
+  "empty_partitions_allowed": true,
+  "holdouts": "Inherit every source, family and exact reviewed claim partition from both frozen packs; new unassigned components stay in train. No new holdout anchors are imposed."
+}

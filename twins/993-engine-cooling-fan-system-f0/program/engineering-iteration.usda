@@ -1,0 +1,65 @@
+#usda 1.0
+(
+    defaultPrim = "EngineeringIteration"
+    metersPerUnit = 1
+    upAxis = "Z"
+    framesPerSecond = 24
+    timeCodesPerSecond = 1
+)
+
+def Xform "EngineeringIteration" (
+    customData = {
+        string status = "original_parametric_Organic_E_uncalibrated_sensitivities"
+        string conditions = "ENGINEERING_ITERATION_20261003.md"
+        string results = "ENGINEERING_RESULTS_20261003.md"
+        string materialEvidence = "research/materials-20261003/ADMISSION.md"
+        bool physicalTimeRepresented = 0
+        bool processCalibrated = 0
+        bool simreadyValidated = 0
+        bool digitalTwinValidated = 0
+        bool manufacturingAuthorized = 0
+        bool scanIncluded = 0
+    }
+)
+{
+    def Xform "OrganicE" (
+        prepend variantSets = "manufactureSensitivity"
+        variants = { string manufactureSensitivity = "flat" }
+    )
+    {
+        variantSet "manufactureSensitivity" = {
+            "flat" {
+                def Xform "ReleasedState" (
+                    prepend references = @../results/engineering-iteration-20261003/usd/organic-e-flat-release.usdc@
+                    customData = {
+                        string nativeSummary = "../results/engineering-iteration-20261003/lpbf/eigenstrain-flat-0p001-summary.json"
+                        string assumedBuildDirection = "0,0,1"
+                        double assumedStrainAmplitude = 0.001
+                        double deformationScale = 1
+                    }
+                ) {}
+            }
+            "edge" {
+                def Xform "ReleasedState" (
+                    prepend references = @../results/engineering-iteration-20261003/usd/organic-e-edge-release.usdc@
+                    customData = {
+                        string nativeSummary = "../results/engineering-iteration-20261003/lpbf/eigenstrain-edge-0p001-summary.json"
+                        string assumedBuildDirection = "1,0,0"
+                        double assumedStrainAmplitude = 0.001
+                        double deformationScale = 1
+                    }
+                ) {}
+            }
+        }
+    }
+    def Scope "Evidence" (
+        customData = {
+            string modal = "../results/engineering-iteration-20261003/modal/rotating-modes.json"
+            string lpbfBenchmark = "../results/engineering-iteration-20261003/lpbf/analytic-benchmark.json"
+            string lpbfLinearity = "../results/engineering-iteration-20261003/lpbf/linearity.json"
+            string cfd = "no_flow_solver_launched_mesh_gates_rejected"
+            bool fieldsTransferredToOrganicER1 = 0
+            bool fieldsTransferredToPrivateScan = 0
+        }
+    ) {}
+}

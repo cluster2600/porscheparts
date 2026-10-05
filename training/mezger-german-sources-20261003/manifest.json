@@ -1,0 +1,223 @@
+{
+  "schema_version": "1.0.0",
+  "dataset_id": "mezger-german-sources-20261003",
+  "created_on": "2026-10-03",
+  "counts": {
+    "cpt": {
+      "train": 102,
+      "valid": 0,
+      "test": 6
+    },
+    "sft": {
+      "train": 102,
+      "valid": 0,
+      "test": 6
+    },
+    "excluded": 0,
+    "reference_records": 108,
+    "evidence_statuses": {
+      "documentary_ambiguity": 2,
+      "documented_unknown": 1,
+      "factory_document_verified": 41,
+      "factory_retrospective_driver_account": 1,
+      "manufacturer_or_supplier_generic_material_verified": 38,
+      "manufacturer_retrospective_statement": 1,
+      "supplier_commercial_claim": 1,
+      "supplier_document_verified": 22,
+      "unresolved": 1
+    }
+  },
+  "cpt_wording_synthetic": true,
+  "sft_synthetic": true,
+  "source_facts_synthetic": false,
+  "raw_document_text": false,
+  "training_run": false,
+  "tokenized": false,
+  "token_count": null,
+  "context_fit_verified": false,
+  "model_weights_produced": false,
+  "languages": [
+    "en"
+  ],
+  "evaluation_scope": "supplied_record_extraction_not_independent_reasoning",
+  "source_family_aliases": {
+    "mahle-aftermarket.com": "us.mahle.com",
+    "ruf-automobile.de": "ruf-993",
+    "tte24.net": "tte-products"
+  },
+  "source_family_alias_policy_sha256": "2ea4bdf5bef8c0ade94695da0c9c7fecc3daf1cb7e863ca3ad00f6dbb0549e02",
+  "inputs": [
+    {
+      "path": "catalog/reference/mezger-german-sources-20261003/facts.json",
+      "sha256": "2c466a1b5e4e5399badbfa90e59098b73a6bca9ddcd5ba692cf24b449e3e62d9"
+    },
+    {
+      "path": "catalog/sources/src-mezger-de-mamba-993-k16-015-2218-2.json",
+      "sha256": "800685bbf81ee46aed86bfa7fd2f37713da1082a276f3cdbea5e18f1d4dfe3be"
+    },
+    {
+      "path": "catalog/sources/src-mezger-de-materials-2618a.json",
+      "sha256": "491ceca9d3ef22d941a9380d0123b6a76355cb84c60a7ec909adb39ee24366c1"
+    },
+    {
+      "path": "catalog/sources/src-mezger-de-materials-mahle-hone.json",
+      "sha256": "c8b35ccb201be37f0c0b25fc8e66049f62b2739db8fbe4457b55e95b01e539da"
+    },
+    {
+      "path": "catalog/sources/src-mezger-de-materials-ms-aluminium.json",
+      "sha256": "90c8afeea6aaccf1b054312bc98ea4c34b449764ffc4462c4d63303d755e2259"
+    },
+    {
+      "path": "catalog/sources/src-mezger-de-materials-ms-blanks.json",
+      "sha256": "2176a36eb96aad1d152e0b6b760618ff94e25c2dc49c0bbba265e5a932d2f60c"
+    },
+    {
+      "path": "catalog/sources/src-mezger-de-materials-rr-basis.json",
+      "sha256": "abef67f4c2a602f536d96d4515b933326101be1b764fb6b7d69a0dd4219b4d77"
+    },
+    {
+      "path": "catalog/sources/src-mezger-de-materials-rr-product.json",
+      "sha256": "06717362072d29fed993518cd2f10aa37378598ec4f83b1b8030ec70b7295a8e"
+    },
+    {
+      "path": "catalog/sources/src-mezger-de-materials-rr-sds.json",
+      "sha256": "065d478085a1c9e847feb8414296548524b5e9c2ee7691b76583be54f17dec78"
+    },
+    {
+      "path": "catalog/sources/src-mezger-de-racing-959-cast-block.json",
+      "sha256": "1bd034d89dcb888b46d5e5754fe39df7f21c4b877907e08c1daf2a23c3abbde6"
+    },
+    {
+      "path": "catalog/sources/src-mezger-de-racing-959-dakar-restoration.json",
+      "sha256": "123055e1c8343f1b1d21886c1b0928e01cb81ec1405d22b6dd2c062b31986d82"
+    },
+    {
+      "path": "catalog/sources/src-mezger-de-racing-heritage-935-2026.json",
+      "sha256": "a0a3546aabe57f4fdb9346bba4abcca182799718120f1a665eeba2970a90c805"
+    },
+    {
+      "path": "catalog/sources/src-mezger-de-racing-mezger-biography.json",
+      "sha256": "9fee1dda94c9e45b10ea3b2ca3b71edd85d00b0c3c95df9874d152d1fee57378"
+    },
+    {
+      "path": "catalog/sources/src-mezger-de-racing-turbo-motorsport.json",
+      "sha256": "bbc4fcb8cd24926d7c25a94b85b574ec577dc098de71e4a56143f383e8a9407c"
+    },
+    {
+      "path": "catalog/sources/src-mezger-de-ruf-tribute-engine.json",
+      "sha256": "98ec908318e8ef86947dbb1cb9acf69a0eb80fe2011606f2335b3094e870406b"
+    },
+    {
+      "path": "catalog/sources/src-mezger-de-tte24-993-tte650.json",
+      "sha256": "d4f098770389b77539dba30d241b224e732a77565343b4ffcaeda56e57151c25"
+    },
+    {
+      "path": "catalog/sources/src-mezger-de-turbozentrum-993-53249887003-stage2.json",
+      "sha256": "107acaf2b956c93789813292d1d25810a1f3031e715a6bcb77013bddc20bc7e5"
+    },
+    {
+      "path": "catalog/sources/src-mezger-de-turbozentrum-ost-process.json",
+      "sha256": "89cb5735469bb1b6fa11c7b483c6efc33533f93ee8e6f07a84518fba9ca8d255"
+    },
+    {
+      "path": "catalog/sources/src-mezger-de-turbozentrum-turbosmart-993-ts06241242.json",
+      "sha256": "cd84e319ead61f4d27f1d1f894b9b8bb06adea386b45f690f8d806ab158d5df9"
+    },
+    {
+      "path": "catalog/sources/src-porsche-de-964-history-2018.json",
+      "sha256": "dac5345639e3f586d15c463d2548fd801b48d3548c14ac4c5b2167b8878b1a27"
+    },
+    {
+      "path": "catalog/sources/src-porsche-de-993-turbo-s-datasheet.json",
+      "sha256": "ce90981cee3589a19a05f396346b59b9f1952a8b55201092d8fe7b0063fa611e"
+    },
+    {
+      "path": "catalog/sources/src-porsche-de-993-turbo-s-heritage.json",
+      "sha256": "92337571077fa671970abc98464582f27cce9d600de8e6408a7b396b9b892dbf"
+    },
+    {
+      "path": "catalog/sources/src-porsche-de-classic-magnesium-crankcases-2023.json",
+      "sha256": "20e54fbcbf3138fb09bbc108053288d3936886a412701c4707b02b823991ba63"
+    },
+    {
+      "path": "catalog/sources/src-porsche-de-klassik-turbo-comparison-2017.json",
+      "sha256": "a735a3d837f7c7acbc3009656944b7fd28cfbb3ebb4cf803f8c6390040d70f01"
+    },
+    {
+      "path": "catalog/sources/src-porsche-de-turbo-generations-2024.json",
+      "sha256": "5c7c4e83fd9a5eb798f1b47825dabca8a50c08c7fb3d7cb2961c0bcce3c1e5f2"
+    },
+    {
+      "path": "training/993-turbo-20261002/excluded.json",
+      "sha256": "1949b6c20f242902ace76f44bdb76f15045825dbb3a6889b27a6fea01bfae17c"
+    },
+    {
+      "path": "training/993-turbo-20261002/prepare.py",
+      "sha256": "fc76d37105f5de63abce561f6af943c094f4a16f0a5d68a6be0a7eb28f0aaea6"
+    },
+    {
+      "path": "training/993-turbo-20261002/split-ledger.json",
+      "sha256": "c7925a325ff22298dd900cb30a7bd71cc57358f4a32d888148415747e7c06baf"
+    },
+    {
+      "path": "training/mezger-turbo-materials-20261003/excluded.json",
+      "sha256": "e1de0ede0a5831bd6884cbe81a8627c587b3688b5162ba5dc8e1cb32d28e4a23"
+    },
+    {
+      "path": "training/mezger-turbo-materials-20261003/prepare.py",
+      "sha256": "dea0321f4b913c1258e8b14ce266e5cf83b98c0e73d8c1eca99dcc4f24ae5eeb"
+    },
+    {
+      "path": "training/mezger-turbo-materials-20261003/split-ledger.json",
+      "sha256": "cf8a138c5cc766acceeb168c760313cdfab4dae6a7dbc1573aa1306d15d2fcca"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "cpt_text/test.jsonl",
+      "sha256": "1af26ea31005189960acb863c2d466733d92007758d318601c110a1e7edd03ca"
+    },
+    {
+      "path": "cpt_text/train.jsonl",
+      "sha256": "18245e55c01ea2b1948d5e0417d1c37343823df8c6861883d86ba564da3d041f"
+    },
+    {
+      "path": "cpt_text/valid.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "dataset_info.json",
+      "sha256": "244821eb9ef56b0c8100b8741f7ae6c289c301b491da7aae53fe260701746b88"
+    },
+    {
+      "path": "excluded.json",
+      "sha256": "f5c5b7a5270aaf1b4719e5ef53917c23bb0c0da44df5c7b0c30efecc0aca6b45"
+    },
+    {
+      "path": "passages.jsonl",
+      "sha256": "d2a371e8fea390c8a0ef22a72f6a62dbe57c38eb4474fb510ac7eddc09810329"
+    },
+    {
+      "path": "provenance.jsonl",
+      "sha256": "be020489406d1e4453623fa607d85462c148cd5b95b635a508a3a0d2abe008df"
+    },
+    {
+      "path": "sft_messages/test.jsonl",
+      "sha256": "5c3056cc65f82789e4405869b9a604ad1ca70692758517b08cf6149cee6fa8a8"
+    },
+    {
+      "path": "sft_messages/train.jsonl",
+      "sha256": "53388e6af584129a5e6b93cbd8699632e5fa436d69c69d7b88d6d5ff0fc308cf"
+    },
+    {
+      "path": "sft_messages/valid.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "split-ledger.json",
+      "sha256": "e5a424a901dc273ca56abac8e9d21bd77ce21dc8ef027cdb8574dc8c04ef8f94"
+    }
+  ],
+  "builder_sha256": "4fdae793edf5c3b1ff3e4e46606de2ac7fb7a11207108c34fc60449bc97a5992",
+  "licensing": "Original factual templates; no redistribution or licence transfer of third-party document text."
+}

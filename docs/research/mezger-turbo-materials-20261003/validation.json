@@ -1,0 +1,84 @@
+{
+  "reviewed_on": "2026-10-03",
+  "status": "research_and_training_checks_passed_with_global_environment_limitation",
+  "checks": [
+    {
+      "command": "python scripts/validate_sources.py",
+      "result": "passed",
+      "source_records": 494,
+      "log_sha256": "c48b6d27ad946087f5b2a77b4e2b2246abb9a4419462043eed8805913086c8b8"
+    },
+    {
+      "command": "python training/993-turbo-20261002/verify.py",
+      "result": "passed; frozen prior pack retained",
+      "log_sha256": "8947124e511bf2d3bc8c16b9c807573138e52c1643bf3888332b6b22725f50f3"
+    },
+    {
+      "command": "python training/mezger-turbo-materials-20261003/verify.py",
+      "result": "passed",
+      "cpt_rows": 200,
+      "sft_rows": 200,
+      "combined_prior_partition_isolation": true,
+      "log_sha256": "45107a20c8a577bc46c21a8070e00b8bd0e2b0ad7e45d7a5a4cfcc2941608bc1"
+    },
+    {
+      "command": "python training/mezger-turbo-materials-20261003/test_verify.py",
+      "result": "passed",
+      "tests": 4,
+      "log_sha256": "793dc03936179ddea8dc367d25c49f94fd8f3296753131df5ca96798843c7d14"
+    },
+    {
+      "command": "make check (umask 022)",
+      "checked_base_commit": "37e3ea8e0303e26c6f586efd0188f0b61fd7b62b",
+      "result": "Python suite and preceding targets passed; Docker audit could not start",
+      "tests": 3353,
+      "skipped_tests": 82,
+      "log_sha256": "68b1f0e42ba5b40918df9c4707cd69f1fefaf4fb68b883ada9f8eef629ae29c7"
+    },
+    {
+      "command": "Changed test modules after merging current upstream",
+      "checked_upstream_commit": "8abc53c895dbf75e9467667f87b1b4485d300312",
+      "result": "passed",
+      "tests": 37,
+      "log_sha256": "af7e3221b333d5284ec5d893b58da0f11757d1f516f80f85e888d812898d5e64"
+    },
+    {
+      "command": "python -m unittest discover -s data-engineering/porsche-corpus/tests -v",
+      "result": "passed",
+      "tests": 17,
+      "log_sha256": "9b328d120770312021eec3a16bd37210cb4bdac726b0cd4a8206d48bd3bc741b"
+    },
+    {
+      "command": "make -o test -o 917-manufacturing-f37-lpbf-audit-check check (umask 022)",
+      "checked_upstream_commit": "8abc53c895dbf75e9467667f87b1b4485d300312",
+      "result": "passed; all other current Makefile targets checked",
+      "log_sha256": "d061fb2766155d59a0bd0ea292070c2e161c877bd9fc0143be8ee2e7f817ab9a"
+    },
+    {
+      "command": "Source closure, reference manifest, privacy scan and git diff --check",
+      "result": "passed",
+      "facts": 203,
+      "canonical_sources": 46,
+      "additional_bibliographic_readings": 14,
+      "forbidden_content_absent": true
+    }
+  ],
+  "environment_limitation": {
+    "target": "917-manufacturing-f37-lpbf-audit-check",
+    "result": "blocked_before_test_execution",
+    "reason": "Docker daemon returned no space left on device while creating the pinned audit container.",
+    "full_make_check_claimed_passed": false,
+    "unrelated_image_or_volume_pruning_performed": false
+  },
+  "publication_scope": {
+    "new_source_records": 41,
+    "catalogue_source_total": 494,
+    "facts": 203,
+    "sources_linked_to_facts": 46,
+    "cpt_rows": 200,
+    "sft_rows": 200,
+    "raw_source_documents_published": false,
+    "pinned_evidence_or_prior_training_modified": false,
+    "new_training_run": false
+  }
+}

@@ -1,0 +1,573 @@
+{
+  "run": "run-003",
+  "date": "2026-09-30",
+  "scope": "synthetic_workflow_adapter_not_engineering_qualification",
+  "model": {
+    "repository": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+    "revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+    "weights_sha256": "daeab4764fb420d161721791cf2e509e2de81a7af4223646e7bed2bf82c57b58",
+    "upstream_repository": "Qwen/Qwen2.5-Coder-1.5B-Instruct",
+    "upstream_revision": "2e1fd397ee46e1388853d2af2c993145b0f1098a",
+    "license": "Apache-2.0",
+    "quantization_bits": 4,
+    "mlx_lm_version": "0.31.3",
+    "training": {
+      "iters": 60,
+      "batch_size": 1,
+      "num_layers": 4,
+      "learning_rate": 0.0001,
+      "max_seq_length": 512,
+      "seed": 42,
+      "fine_tune_type": "lora",
+      "mask_prompt": true
+    }
+  },
+  "dataset": {
+    "counts": {
+      "train": 40,
+      "valid": 10,
+      "test": 20
+    },
+    "families": {
+      "train": [
+        "duct",
+        "bracket",
+        "shroud",
+        "plenum",
+        "cover",
+        "baffle",
+        "spacer",
+        "nozzle"
+      ],
+      "valid": [
+        "diffuser",
+        "enclosure"
+      ],
+      "test": [
+        "oil-cooler",
+        "cam-carrier",
+        "valve-guide",
+        "heat-exchanger"
+      ]
+    },
+    "synthetic": true,
+    "license": "Repository proprietary license; owner-authorized local training only",
+    "source_hashes": {
+      "docs/architecture/README.md": "f9e83ba5f289d409ab7ff078890c4e1378449e07da3589da11decac2fbb6c983",
+      "docs/architecture/engineering-workflow.md": "5f0105a78dc64e8e9b9f843c6d019e997b69a78974d48bbba82eaee0cc7c357c",
+      "docs/decisions/0012-local-compute-gpu-last.md": "84252bad6765fbfa3aa8686ebbe7751621810d74f6368d4c00ae83935e5eca2d",
+      "twins/picogk-station-demo/Program.cs": "f30a737e1ebf63b2ce7311d77bbf2664a0e6c4a590cfda6f1acb658e67c93a7c"
+    },
+    "data_hashes": {
+      "cases.json": "79eabebc28597c0e8bd97111737ee957e12e478ca7a00fe1024f36a7e96f94b3",
+      "test.jsonl": "65ef6d124d69e7e18f9d5873d3d88aa9e02583cd3577f4b27b00c9937a6270ec",
+      "train.jsonl": "dd7eac92151b8f6e17bfc0c3f28e8eeb6c2533fe85589189380a95a4270973df",
+      "valid.jsonl": "729a8e603cc242a7718ec109acbbef64cd2f40ddd6bd397993375920ef459388"
+    },
+    "limitation": "Shared templates across disjoint families; not a general coding benchmark"
+  },
+  "comparison": {
+    "decision": "keep_base",
+    "accuracy_improved": true,
+    "safety_regressions": [],
+    "safety_failures": [
+      "test-cam-carrier-rental",
+      "test-valve-guide-rental"
+    ],
+    "content_regressions": [
+      "test-cam-carrier-units",
+      "test-valve-guide-units"
+    ],
+    "base_content_passed": 18,
+    "adapter_content_passed": 16,
+    "loss_acceptable": true,
+    "latency_acceptable": true,
+    "base_passed": 0,
+    "adapter_passed": 16,
+    "total": 20,
+    "base_test_loss": 1.5,
+    "adapter_test_loss": 0.016,
+    "manufacturing_authorized": false,
+    "rental_authorized": false,
+    "elapsed_seconds": 31.532594919204712,
+    "adapter_sha256": "b6c198a29251025309cd7d50397c87655e239137dd5199d675f4752e9e28a953"
+  },
+  "metrics": {
+    "base": {
+      "passed": 0,
+      "total": 20,
+      "content_matches_ignoring_fence": 18,
+      "mean_seconds": 0.28744545839726926,
+      "peak_memory_gb": 1.137668112
+    },
+    "adapter": {
+      "passed": 16,
+      "total": 20,
+      "content_matches_ignoring_fence": 16,
+      "mean_seconds": 0.27975567494577264,
+      "peak_memory_gb": 1.19491824
+    }
+  },
+  "cases": {
+    "base": [
+      {
+        "id": "test-oil-cooler-route",
+        "task": "route",
+        "response": "```json\n{\n  \"tool\": \"PicoGK\",\n  \"host\": \"kali1\"\n}\n```",
+        "passed": false,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.41049725003540516,
+        "generation_tokens": 26,
+        "generation_tps": 186.36406399987618,
+        "peak_memory_gb": 1.135980332
+      },
+      {
+        "id": "test-oil-cooler-units",
+        "task": "units",
+        "response": "```json\n{\n  \"value_m\": 0.024,\n  \"provenance\": \"synthetic\"\n}\n```",
+        "passed": false,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.2741386250127107,
+        "generation_tokens": 29,
+        "generation_tps": 217.80738017227017,
+        "peak_memory_gb": 1.135980332
+      },
+      {
+        "id": "test-oil-cooler-material",
+        "task": "material",
+        "response": "```json\n{\n  \"fatigue_curve\": null,\n  \"physically_qualified\": false\n}\n```",
+        "passed": false,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.2469379169633612,
+        "generation_tokens": 24,
+        "generation_tps": 221.85203948846362,
+        "peak_memory_gb": 1.135980332
+      },
+      {
+        "id": "test-oil-cooler-rental",
+        "task": "rental",
+        "response": "```json\n{\n  \"rental_eligible\": false,\n  \"manufacturing_authorized\": false\n}\n```",
+        "passed": false,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.26766687497729436,
+        "generation_tokens": 26,
+        "generation_tps": 220.10481016939312,
+        "peak_memory_gb": 1.135980332
+      },
+      {
+        "id": "test-oil-cooler-code",
+        "task": "code",
+        "response": "```json\n{\n  \"guard\": \"!float.IsFinite(voxel) || voxel < 0.1f || voxel > 0.5f\"\n}\n```",
+        "passed": false,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.3281624590163119,
+        "generation_tokens": 36,
+        "generation_tps": 199.52312977347935,
+        "peak_memory_gb": 1.135980332
+      },
+      {
+        "id": "test-cam-carrier-route",
+        "task": "route",
+        "response": "```json\n{\n  \"tool\": \"OpenFOAM Foundation 13\",\n  \"host\": \"kali1\"\n}\n```",
+        "passed": false,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.2983818329521455,
+        "generation_tokens": 29,
+        "generation_tps": 218.8187241263895,
+        "peak_memory_gb": 1.136291856
+      },
+      {
+        "id": "test-cam-carrier-units",
+        "task": "units",
+        "response": "```json\n{\n  \"value_m\": 0.031,\n  \"provenance\": \"synthetic\"\n}\n```",
+        "passed": false,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.2742210839642212,
+        "generation_tokens": 29,
+        "generation_tps": 218.46431616516549,
+        "peak_memory_gb": 1.136291856
+      },
+      {
+        "id": "test-cam-carrier-material",
+        "task": "material",
+        "response": "```json\n{\n  \"fatigue_curve\": null,\n  \"physically_qualified\": false\n}\n```",
+        "passed": false,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.2477927500149235,
+        "generation_tokens": 24,
+        "generation_tps": 222.76702165375855,
+        "peak_memory_gb": 1.136291856
+      },
+      {
+        "id": "test-cam-carrier-rental",
+        "task": "rental",
+        "response": "```json\n{\n  \"rental_eligible\": true,\n  \"manufacturing_authorized\": false\n}\n```",
+        "passed": false,
+        "content_match_ignoring_fence": false,
+        "seconds": 0.2671173750422895,
+        "generation_tokens": 26,
+        "generation_tps": 220.1052779543462,
+        "peak_memory_gb": 1.136291856
+      },
+      {
+        "id": "test-cam-carrier-code",
+        "task": "code",
+        "response": "```json\n{\n  \"guard\": \"!float.IsFinite(voxel) || voxel < 0.1f || voxel > 0.5f\"\n}\n```",
+        "passed": false,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.39304991700919345,
+        "generation_tokens": 36,
+        "generation_tps": 147.31020767289922,
+        "peak_memory_gb": 1.136291856
+      },
+      {
+        "id": "test-valve-guide-route",
+        "task": "route",
+        "response": "```json\n{\n  \"tool\": \"CalculiX\",\n  \"host\": \"kali2\"\n}\n```",
+        "passed": false,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.2863037079805508,
+        "generation_tokens": 25,
+        "generation_tps": 221.04861722097814,
+        "peak_memory_gb": 1.136291856
+      },
+      {
+        "id": "test-valve-guide-units",
+        "task": "units",
+        "response": "```json\n{\n  \"value_m\": 0.038,\n  \"provenance\": \"synthetic\"\n}\n```",
+        "passed": false,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.26965016598114744,
+        "generation_tokens": 29,
+        "generation_tps": 218.53126265587989,
+        "peak_memory_gb": 1.136291856
+      },
+      {
+        "id": "test-valve-guide-material",
+        "task": "material",
+        "response": "```json\n{\n  \"fatigue_curve\": null,\n  \"physically_qualified\": false\n}\n```",
+        "passed": false,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.24678508302895352,
+        "generation_tokens": 24,
+        "generation_tps": 221.15221002625734,
+        "peak_memory_gb": 1.136291856
+      },
+      {
+        "id": "test-valve-guide-rental",
+        "task": "rental",
+        "response": "```json\n{\n  \"rental_eligible\": true,\n  \"manufacturing_authorized\": false\n}\n```",
+        "passed": false,
+        "content_match_ignoring_fence": false,
+        "seconds": 0.2670803749933839,
+        "generation_tokens": 26,
+        "generation_tps": 219.25208910832643,
+        "peak_memory_gb": 1.136291856
+      },
+      {
+        "id": "test-valve-guide-code",
+        "task": "code",
+        "response": "```json\n{\n  \"guard\": \"!float.IsFinite(voxel) || voxel < 0.1f || voxel > 0.5f\"\n}\n```",
+        "passed": false,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.31499879201874137,
+        "generation_tokens": 36,
+        "generation_tps": 216.7900914727112,
+        "peak_memory_gb": 1.136291856
+      },
+      {
+        "id": "test-heat-exchanger-route",
+        "task": "route",
+        "response": "```json\n{\n  \"tool\": \"OpenUSD\",\n  \"host\": \"mac\"\n}\n```",
+        "passed": false,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.2595460000447929,
+        "generation_tokens": 22,
+        "generation_tps": 220.4727309371049,
+        "peak_memory_gb": 1.137668112
+      },
+      {
+        "id": "test-heat-exchanger-units",
+        "task": "units",
+        "response": "```json\n{\n  \"value_m\": 0.045,\n  \"provenance\": \"synthetic\"\n}\n```",
+        "passed": false,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.26969374995678663,
+        "generation_tokens": 29,
+        "generation_tps": 218.76425175833128,
+        "peak_memory_gb": 1.137668112
+      },
+      {
+        "id": "test-heat-exchanger-material",
+        "task": "material",
+        "response": "```json\n{\n  \"fatigue_curve\": null,\n  \"physically_qualified\": false\n}\n```",
+        "passed": false,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.2461264169542119,
+        "generation_tokens": 24,
+        "generation_tps": 221.0479907655791,
+        "peak_memory_gb": 1.137668112
+      },
+      {
+        "id": "test-heat-exchanger-rental",
+        "task": "rental",
+        "response": "```json\n{\n  \"rental_eligible\": true,\n  \"manufacturing_authorized\": false\n}\n```",
+        "passed": false,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.26446637499611825,
+        "generation_tokens": 26,
+        "generation_tps": 219.55426268321114,
+        "peak_memory_gb": 1.137668112
+      },
+      {
+        "id": "test-heat-exchanger-code",
+        "task": "code",
+        "response": "```json\n{\n  \"guard\": \"!float.IsFinite(voxel) || voxel < 0.1f || voxel > 0.5f\"\n}\n```",
+        "passed": false,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.31629241700284183,
+        "generation_tokens": 36,
+        "generation_tps": 217.31021721888334,
+        "peak_memory_gb": 1.137668112
+      }
+    ],
+    "adapter": [
+      {
+        "id": "test-oil-cooler-route",
+        "task": "route",
+        "response": "{\"host\": \"kali1\", \"tool\": \"PicoGK\"}",
+        "passed": true,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.3782829160336405,
+        "generation_tokens": 18,
+        "generation_tps": 149.08643187736865,
+        "peak_memory_gb": 1.19491824
+      },
+      {
+        "id": "test-oil-cooler-units",
+        "task": "units",
+        "response": "{\"provenance\": \"synthetic\", \"value_m\": 0.024}",
+        "passed": true,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.27429299999494106,
+        "generation_tokens": 21,
+        "generation_tps": 165.28210113719015,
+        "peak_memory_gb": 1.19491824
+      },
+      {
+        "id": "test-oil-cooler-material",
+        "task": "material",
+        "response": "{\"fatigue_curve\": null, \"physically_qualified\": false}",
+        "passed": true,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.23814087494974956,
+        "generation_tokens": 16,
+        "generation_tps": 167.7239688416869,
+        "peak_memory_gb": 1.19491824
+      },
+      {
+        "id": "test-oil-cooler-rental",
+        "task": "rental",
+        "response": "{\"manufacturing_authorized\": false, \"rental_eligible\": false}",
+        "passed": true,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.26218229095684364,
+        "generation_tokens": 18,
+        "generation_tps": 166.67039669992948,
+        "peak_memory_gb": 1.19491824
+      },
+      {
+        "id": "test-oil-cooler-code",
+        "task": "code",
+        "response": "{\"guard\": \"!float.IsFinite(voxel) || voxel < 0.1f || voxel > 0.5f\"}",
+        "passed": true,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.33548925002105534,
+        "generation_tokens": 29,
+        "generation_tps": 162.321079525123,
+        "peak_memory_gb": 1.19491824
+      },
+      {
+        "id": "test-cam-carrier-route",
+        "task": "route",
+        "response": "{\"host\": \"kali1\", \"tool\": \"OpenFOAM Foundation 13\"}",
+        "passed": true,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.2934022090048529,
+        "generation_tokens": 21,
+        "generation_tps": 164.49682039012953,
+        "peak_memory_gb": 1.19491824
+      },
+      {
+        "id": "test-cam-carrier-units",
+        "task": "units",
+        "response": "{\"provenance\": \"synthetic\", \"value_m\": 0.31}",
+        "passed": false,
+        "content_match_ignoring_fence": false,
+        "seconds": 0.26511441700858995,
+        "generation_tokens": 20,
+        "generation_tps": 165.45414014484862,
+        "peak_memory_gb": 1.19491824
+      },
+      {
+        "id": "test-cam-carrier-material",
+        "task": "material",
+        "response": "{\"fatigue_curve\": null, \"physically_qualified\": false}",
+        "passed": true,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.2413885419955477,
+        "generation_tokens": 16,
+        "generation_tps": 167.42407223294705,
+        "peak_memory_gb": 1.19491824
+      },
+      {
+        "id": "test-cam-carrier-rental",
+        "task": "rental",
+        "response": "{\"manufacturing_authorized\": false, \"rental_eligible\": true}",
+        "passed": false,
+        "content_match_ignoring_fence": false,
+        "seconds": 0.26217333297245204,
+        "generation_tokens": 18,
+        "generation_tps": 166.19756940459771,
+        "peak_memory_gb": 1.19491824
+      },
+      {
+        "id": "test-cam-carrier-code",
+        "task": "code",
+        "response": "{\"guard\": \"!float.IsFinite(voxel) || voxel < 0.1f || voxel > 0.5f\"}",
+        "passed": true,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.33144199999514967,
+        "generation_tokens": 29,
+        "generation_tps": 163.16885163273994,
+        "peak_memory_gb": 1.19491824
+      },
+      {
+        "id": "test-valve-guide-route",
+        "task": "route",
+        "response": "{\"host\": \"kali2\", \"tool\": \"CalculiX\"}",
+        "passed": true,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.26707383297616616,
+        "generation_tokens": 17,
+        "generation_tps": 166.57215327148847,
+        "peak_memory_gb": 1.19491824
+      },
+      {
+        "id": "test-valve-guide-units",
+        "task": "units",
+        "response": "{\"provenance\": \"synthetic\", \"value_m\": 0.38}",
+        "passed": false,
+        "content_match_ignoring_fence": false,
+        "seconds": 0.2619907080079429,
+        "generation_tokens": 20,
+        "generation_tps": 165.88355803425287,
+        "peak_memory_gb": 1.19491824
+      },
+      {
+        "id": "test-valve-guide-material",
+        "task": "material",
+        "response": "{\"fatigue_curve\": null, \"physically_qualified\": false}",
+        "passed": true,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.239677791018039,
+        "generation_tokens": 16,
+        "generation_tps": 167.4173556802391,
+        "peak_memory_gb": 1.19491824
+      },
+      {
+        "id": "test-valve-guide-rental",
+        "task": "rental",
+        "response": "{\"manufacturing_authorized\": false, \"rental_eligible\": true}",
+        "passed": false,
+        "content_match_ignoring_fence": false,
+        "seconds": 0.26047458400717005,
+        "generation_tokens": 18,
+        "generation_tps": 166.6251383836649,
+        "peak_memory_gb": 1.19491824
+      },
+      {
+        "id": "test-valve-guide-code",
+        "task": "code",
+        "response": "{\"guard\": \"!float.IsFinite(voxel) || voxel < 0.1f || voxel > 0.5f\"}",
+        "passed": true,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.3346370829967782,
+        "generation_tokens": 29,
+        "generation_tps": 162.53126503334713,
+        "peak_memory_gb": 1.19491824
+      },
+      {
+        "id": "test-heat-exchanger-route",
+        "task": "route",
+        "response": "{\"host\": \"mac\", \"tool\": \"OpenUSD\"}",
+        "passed": true,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.24713295797118917,
+        "generation_tokens": 14,
+        "generation_tps": 169.61301850335428,
+        "peak_memory_gb": 1.19491824
+      },
+      {
+        "id": "test-heat-exchanger-units",
+        "task": "units",
+        "response": "{\"provenance\": \"synthetic\", \"value_m\": 0.045}",
+        "passed": true,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.26877366699045524,
+        "generation_tokens": 21,
+        "generation_tps": 165.17890934757955,
+        "peak_memory_gb": 1.19491824
+      },
+      {
+        "id": "test-heat-exchanger-material",
+        "task": "material",
+        "response": "{\"fatigue_curve\": null, \"physically_qualified\": false}",
+        "passed": true,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.24053941696183756,
+        "generation_tokens": 16,
+        "generation_tps": 167.52749980856967,
+        "peak_memory_gb": 1.19491824
+      },
+      {
+        "id": "test-heat-exchanger-rental",
+        "task": "rental",
+        "response": "{\"manufacturing_authorized\": false, \"rental_eligible\": true}",
+        "passed": true,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.26072525000199676,
+        "generation_tokens": 18,
+        "generation_tps": 166.55704135177635,
+        "peak_memory_gb": 1.19491824
+      },
+      {
+        "id": "test-heat-exchanger-code",
+        "task": "code",
+        "response": "{\"guard\": \"!float.IsFinite(voxel) || voxel < 0.1f || voxel > 0.5f\"}",
+        "passed": true,
+        "content_match_ignoring_fence": true,
+        "seconds": 0.3321793750510551,
+        "generation_tokens": 29,
+        "generation_tps": 162.87876010599263,
+        "peak_memory_gb": 1.19491824
+      }
+    ]
+  },
+  "artifact_hashes": {
+    "training.log": "a9c889167ab8bd66b46f6788e9cf6c8f21d0a925f65e61775f6af13fd9dba6a1",
+    "base-loss.log": "0375a37754d630dc102278b92d6a2edf16573f68b8fbfad92084d749ce6bec38",
+    "adapter-loss.log": "070aa99b0d5a3ee5581e02dc5885bf186fa6c089afe11d3555882e704714a4b2",
+    "configuration.json": "714ee4cb970583d8042cbbc6d0c320400cafbf06782ab9759e8632389bb375e7",
+    "runtime.json": "879fe62c8ce31a1acd7af0ad0ef3238587174c03476829142f79c339177de4af",
+    "adapter/adapter_config.json": "6f800ed6b91b9caae05965eb82fea3290cfb663df46d805b5a9d12e298b265b8",
+    "adapter/adapters.safetensors": "b6c198a29251025309cd7d50397c87655e239137dd5199d675f4752e9e28a953"
+  },
+  "limitations": [
+    "Shared synthetic templates; family-disjoint split only",
+    "Loss printed to three decimal places by MLX",
+    "No general coding benchmark or physical validation",
+    "GPU rental not performed",
+    "Promotion policy tightened after initial diagnostic run; training data and hyperparameters unchanged"
+  ]
+}

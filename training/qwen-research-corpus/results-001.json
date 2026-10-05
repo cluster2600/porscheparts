@@ -1,0 +1,223 @@
+{
+  "experiment": "qwen-research-mlx-001",
+  "registered_at_utc": "2026-10-02T21:10:18.323385+00:00",
+  "model": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+  "base_sha256": "daeab4764fb420d161721791cf2e509e2de81a7af4223646e7bed2bf82c57b58",
+  "parent_adapter": "qwen-engineering-005/checkpoint-1200",
+  "parent_sha256": "70142a4583f5c95a74b3a5dd6661d8243e85e7846dc7aba6e8b4ab3c6a3f29d4",
+  "adapter_sha256": "5086fc5cf5d9c2de05cc87b1d7efed5036f5b2431c62c13368955501c1810ec8",
+  "local_run_directory": "private/pilot-001",
+  "dataset": {
+    "indexed_records": 4939,
+    "candidate_cases": 758,
+    "excluded_candidates": 658,
+    "train": 82,
+    "validation": 10,
+    "test": 8,
+    "manifest_sha256": "dc1a44a6c67ffebd5d1b1f19d83c64b5ef7f61e2f15b5bcc36b6fe0409da6063",
+    "frozen_sha256": "d477062d69e58a1a29c54e65d0dede0318b272b69f4e47e9a44554c217af0450"
+  },
+  "runtime": {
+    "mlx_lm": "0.31.3",
+    "usd_core": "25.5.1",
+    "usd_api": [
+      0,
+      25,
+      5
+    ],
+    "dotnet_sdk": "9.0.317"
+  },
+  "training": {
+    "iterations": 320,
+    "learning_rate": 5e-06,
+    "batch_size": 2,
+    "seed": 1042,
+    "rank": 8,
+    "scale": 20,
+    "lora_layers": 16,
+    "mask_prompt": true,
+    "max_sequence_tokens": 1024,
+    "trainable_parameters": 5276000,
+    "trained_assistant_tokens": 35633,
+    "initial_validation_loss": 1.362,
+    "final_validation_loss": 0.58,
+    "final_train_loss": 0.001,
+    "peak_memory_gb": 4.141
+  },
+  "results": {
+    "validation": {
+      "eligible": false,
+      "regressions": [],
+      "counts": {
+        "bounded-summary": {
+          "passed": 3,
+          "total": 3
+        },
+        "evidence-reasoning": {
+          "passed": 0,
+          "total": 4
+        },
+        "missing-interface": {
+          "passed": 3,
+          "total": 3
+        }
+      }
+    },
+    "weights_updated": true,
+    "default_replaced": false,
+    "qualified": false,
+    "test_opened": false,
+    "adapter_sha256": "5086fc5cf5d9c2de05cc87b1d7efed5036f5b2431c62c13368955501c1810ec8",
+    "retention": {
+      "eligible": true,
+      "regressions": [],
+      "counts": {
+        "openusd": {
+          "passed": 8,
+          "total": 8
+        },
+        "picogk": {
+          "passed": 8,
+          "total": 8
+        }
+      }
+    },
+    "validation_before_passed": 0,
+    "validation_after_passed": 6,
+    "retention_before_passed": 16,
+    "retention_after_passed": 16,
+    "dataset_integrity_after": {
+      "status": "passed",
+      "frozen_files": 139,
+      "active_cases": 100
+    }
+  },
+  "retention": {
+    "reference": {
+      "openusd": {
+        "passed": 8,
+        "total": 8
+      },
+      "picogk": {
+        "passed": 8,
+        "total": 8
+      }
+    },
+    "before": {
+      "openusd": {
+        "passed": 8,
+        "total": 8
+      },
+      "picogk": {
+        "passed": 8,
+        "total": 8
+      }
+    },
+    "after": {
+      "openusd": {
+        "passed": 8,
+        "total": 8
+      },
+      "picogk": {
+        "passed": 8,
+        "total": 8
+      }
+    }
+  },
+  "retrieval_smoke": {
+    "before": {
+      "citation_structure_passed": false,
+      "receipt_sha256": "e705b4aa32a6a34420620e0cfbf214b384026327e16953b3511f5b6174cdf7ae"
+    },
+    "after": {
+      "citation_structure_passed": false,
+      "receipt_sha256": "627672ac9a804f67f20841c073b55204f8774bce5d39a4fbaab7f949cfef2c9e"
+    }
+  },
+  "manual_validation_review": {
+    "purpose": "Manual diagnostic review after the registered exact validation gate failed; scores and selection are unchanged.",
+    "reviews": [
+      {
+        "id": "authored-registration-quality-evidence-reasoning",
+        "finding": "Reasonable refusal citing missing scale and occluded measurements; differs from target wording and omits the explicit registration-versus-complete-accuracy distinction."
+      },
+      {
+        "id": "authored-independent-validation-evidence-reasoning",
+        "finding": "Reasonable refusal distinguishing tuning from independent validation; different wording from the exact target."
+      },
+      {
+        "id": "authored-aftermarket-valve-curve-evidence-reasoning",
+        "finding": "Confused identity statement and omission of missing original Turbo cam curve and valvetrain masses."
+      },
+      {
+        "id": "authored-material-temperature-evidence-reasoning",
+        "finding": "Incorrectly combines room-temperature test conditions with the supplied 600-degree component duty, then reports a missing record ID instead of missing relevant-temperature fatigue evidence."
+      }
+    ],
+    "semantic_rescoring_performed": false,
+    "test_opened": false,
+    "qualified": false
+  },
+  "receipts_sha256": {
+    "protocol.json": "1916af24df2c8fbd29abe5f20e1aa40db92c52fb3b6ddeeae6a6c8d46c9e771f",
+    "results.json": "002f7c43ab9ae00d26086f18c29eabb50af9c6f59909e8f4e39f09b2b18aa0e7",
+    "training-command.json": "b951a6abbbe3c0083acad8a5b3929a5214e073a6ad10c5b574f6a8bf91b5c849",
+    "training.log": "b2883e43bd36600aca353315b3896f78836bd4e5dfafa460c188eeaf65bf4b76",
+    "validation-before-answers.json": "ea9349f467c2bcbad53e845ee3aa3f3506b8a78b7cb83e1d089261d1efdc9fe2",
+    "validation-after-answers.json": "8e4c9d63067923c2007e384dee1d960d5da766fdad3f6c87322a1f917ca858a0",
+    "validation-before-scores.json": "de7baf82e8af353c0e8dc558745b589f3bd58faaae35be741290ffe0aaa67665",
+    "validation-after-scores.json": "129bd37fb0c181692ac887c1100a02578adfd2b14abb2756beab93966f994857",
+    "retention-before/scores.json": "40598f2bc9f1c5311c19ae8831e838f9f46ef780456c4cb9b9acf38368f54581",
+    "retention-after/scores.json": "40598f2bc9f1c5311c19ae8831e838f9f46ef780456c4cb9b9acf38368f54581",
+    "validation-review.json": "071ce532fea87d79538686a932bc7e66a69d0ef4e919fece9f459c73b406f7eb"
+  },
+  "source_sha256": {
+    "prepare.py": "f2b07bbd6bdb8e31cf9bfe4229e1cf9c12146101c52b9b983fd058c596205699",
+    "curriculum.py": "10a40ad04e1bd57b81b0f2f17e3a00f2d046cc76b0e36b6e4829197df90ac3c5",
+    "run.py": "6a2b3800d8a30d2f1395515544c715251e39a1509b2192c3bf89028f3c14c862"
+  },
+  "selection": "Registered exact >=95% per validation kind, no lost baseline pass. Fixed final step only; test remains closed because validation failed.",
+  "qualification": "Experimental local adapter only; not selected or promoted. No general semantic accuracy, fatigue extrapolation, full coding retention or physical engineering qualification.",
+  "limits": [
+    "Ten source-conditioned validation cases with shared response recipes; paraphrases can fail exact scoring.",
+    "The material-temperature answer contains a factual contradiction; rejection does not depend only on phrasing.",
+    "All NIMS fatigue observations are training examples; there is no held-out fatigue-transcription category.",
+    "Sixteen previously used development cases are only an OpenUSD/PicoGK retention smoke test.",
+    "ShaderPropertyTypeConformanceChecker remains excluded by the existing native USD evaluator because the installed wheel lacks its resources.",
+    "One five-record retrieval question is not a RAG benchmark; both outputs were rejected for attribution structure.",
+    "Raw documents, datasets, generations and weights remain outside Git."
+  ],
+  "repository_verification": {
+    "targeted_checks_passed": true,
+    "strict_document_links_passed": true,
+    "default_python_make_check": {
+      "exit_code": 2,
+      "tests": 3339,
+      "errors": 14,
+      "skipped": 184,
+      "reason": "Existing macOS SciPy binary fails to load in unrelated indexed-mesh/topology tests."
+    },
+    "cad_python_make_check": {
+      "exit_code": 2,
+      "python": "3.11.15",
+      "tests": 3329,
+      "errors": 2,
+      "skipped": 45,
+      "reasons": [
+        "Matplotlib absent for the existing LPBF voxel audit test class.",
+        "Installed Trimesh lacks util.random_generator used by an existing PicoGK checkpoint test."
+      ]
+    },
+    "previous_scipy_failures_rechecked": {
+      "passed": true,
+      "tests": 10,
+      "optional_skips": 4
+    },
+    "full_local_make_check_passed": false,
+    "dependencies_modified": false,
+    "logs_sha256": {
+      "repository-check.log": "3cbfc6c2b283389e1d48bc0eed822fc60ceb60248ad1aea8bbc80848abf6e553",
+      "repository-check-cad-runtime.log": "72305412d5901a97ca87cb28d240cc691183235442a81c7fa4f63f189abf07a6"
+    }
+  }
+}

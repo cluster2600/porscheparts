@@ -12,3 +12,9 @@ training/qwen-metal-additive-20261002/runs/**/*.safetensors binary
 
 # Conserver le CSV original de recherche et son SHA-256, y compris sa ligne finale.
 twins/993-engine-cooling-fan-system-f0/program/research/corpus/aftermarket/aftermarket_parameters.csv whitespace=-blank-at-eof
+
+# Preserve original imported CSV line endings and native solver formatting.
+twins/993-engine-cooling-fan-system-f0/program/research/materials-20261003/*.csv -text whitespace=cr-at-eol
+twins/993-engine-cooling-fan-system-f0/program/research/materials-20261003/material_process_review.md -text -whitespace
+twins/993-engine-cooling-fan-system-f0/results/engineering-iteration-20261003/lpbf/unit-eigenstrain.* -text -whitespace
+twins/993-engine-cooling-fan-system-f0/results/engineering-iteration-20261003/lpbf/log.unit-eigenstrain-container -text -whitespace
