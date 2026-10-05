@@ -50,13 +50,13 @@ replace the previous adapter, and no model output authorises a cylinder-head bui
 ## Run
 
 ```sh
-PICO=/Users/maxime/projects/3dprinting993/work/m64-private-20260907/nemo-picogk-20260928.ADELugEK
+PICO="${PICOGK_RUNTIME_ROOT:?Set the reviewed PicoGK runtime directory}"
 work/m64-qwen/venv/bin/python training/m64-qwen/improve.py \
   --focus-picogk --num-layers 16 --iterations 800 --learning-rate 0.0001 \
   --previous work/m64-qwen/coding-003 --output work/m64-qwen/coding-004 \
   --usd-reviewed work/m64-qwen/coding-002-prep/usd-verified.jsonl \
   --model work/m64-qwen/model-cache/models--mlx-community--Qwen2.5-Coder-1.5B-Instruct-4bit/snapshots/b3252a2f97102b1fb1571fec2c9b27219a8536be \
-  --usd-python /Users/maxime/projects/3dprinting993/work/cad-recode-tools-venv/bin/python \
+  --usd-python "${USD_PYTHON:?Set the reviewed OpenUSD Python executable}" \
   --sdk "$PICO/dotnet/dotnet" --dll "$PICO/picogk-bin/PicoGK.dll"
 ```
 

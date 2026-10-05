@@ -109,3 +109,12 @@ set because the pinned community conversion's model config only declares the
 end-of-text token. It exposes no shell, solver, rental or catalogue-writing tool.
 Treat every answer as an untrusted proposal. Deterministic code must handle
 unit conversion and approval gates; neither model is reliable enough for those.
+
+## Public command projection
+
+The [privacy projection receipt](privacy-projection.json) preserves the original
+commit and document hashes. The public command examples replace personal host
+paths with explicit `PICOGK_RUNTIME_ROOT` and `USD_PYTHON` inputs. Set these to
+your reviewed local runtime directory and Python executable. No score, response,
+acceptance condition or historical scientific limit was changed. The historical
+commands are not re-executed by this documentation correction.

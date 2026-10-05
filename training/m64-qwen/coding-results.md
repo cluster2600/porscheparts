@@ -144,9 +144,9 @@ validation, and opens the final test partition only if selection succeeds.
 
 ```sh
 MLX=work/m64-qwen/venv/bin/python
-USD=/Users/maxime/projects/3dprinting993/work/cad-recode-tools-venv/bin/python
+USD="${USD_PYTHON:?Set the reviewed OpenUSD Python executable}"
 MODEL=work/m64-qwen/model-cache/models--mlx-community--Qwen2.5-Coder-1.5B-Instruct-4bit/snapshots/b3252a2f97102b1fb1571fec2c9b27219a8536be
-PICO=/Users/maxime/projects/3dprinting993/work/m64-private-20260907/nemo-picogk-20260928.ADELugEK
+PICO="${PICOGK_RUNTIME_ROOT:?Set the reviewed PicoGK runtime directory}"
 PREP=work/m64-qwen/coding-reproduction-prep
 RUN=work/m64-qwen/coding-reproduction
 mkdir "$PREP"

@@ -62,7 +62,7 @@ Use the existing [pinned Python environment](README.md), the pinned model cache,
 and a matching PicoGK managed/native installation. On this Mac:
 
 ```sh
-RUNTIME=/Users/maxime/projects/3dprinting993/work/m64-private-20260907/nemo-picogk-20260928.ADELugEK
+RUNTIME="${PICOGK_RUNTIME_ROOT:?Set the reviewed PicoGK runtime directory}"
 MODEL=work/m64-qwen/model-cache/models--mlx-community--Qwen2.5-Coder-1.5B-Instruct-4bit/snapshots/b3252a2f97102b1fb1571fec2c9b27219a8536be
 work/m64-qwen/venv/bin/python training/m64-qwen/picogk.py \
   --output work/m64-qwen/picogk-002 \

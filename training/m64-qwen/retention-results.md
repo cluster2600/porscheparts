@@ -69,9 +69,9 @@ of an independent replication or new test-set accuracy is made.
 From the managed engineering checkout, with the existing pinned runtimes:
 
 ```sh
-PICO=/Users/maxime/projects/3dprinting993/work/m64-private-20260907/nemo-picogk-20260928.ADELugEK
+PICO="${PICOGK_RUNTIME_ROOT:?Set the reviewed PicoGK runtime directory}"
 MODEL=work/m64-qwen/model-cache/models--mlx-community--Qwen2.5-Coder-1.5B-Instruct-4bit/snapshots/b3252a2f97102b1fb1571fec2c9b27219a8536be
-USD_PYTHON=/Users/maxime/projects/3dprinting993/work/cad-recode-tools-venv/bin/python
+USD_PYTHON="${USD_PYTHON:?Set the reviewed OpenUSD Python executable}"
 
 work/m64-qwen/venv/bin/python training/m64-qwen/improve.py \
   --focus-picogk --num-layers 16 --iterations 600 --learning-rate 0.00005 \

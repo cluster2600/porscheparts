@@ -75,7 +75,7 @@ PicoGK run supplies the replay corpus and initial adapter.
 
 ```sh
 MLX=work/m64-qwen/venv/bin/python
-USD=/Users/maxime/projects/3dprinting993/work/cad-recode-tools-venv/bin/python
+USD="${USD_PYTHON:?Set the reviewed OpenUSD Python executable}"
 MODEL=work/m64-qwen/model-cache/models--mlx-community--Qwen2.5-Coder-1.5B-Instruct-4bit/snapshots/b3252a2f97102b1fb1571fec2c9b27219a8536be
 RUN=work/m64-qwen/openusd-reproduction
 
@@ -116,7 +116,7 @@ of steps or any subsequent checkpoint.
 Recheck PicoGK with the same native toolchain and frozen cases:
 
 ```sh
-PICO=/Users/maxime/projects/3dprinting993/work/m64-private-20260907/nemo-picogk-20260928.ADELugEK
+PICO="${PICOGK_RUNTIME_ROOT:?Set the reviewed PicoGK runtime directory}"
 mkdir "$RUN/picogk-before" "$RUN/picogk-after"
 cp "$RUN/picogk-cases.json" "$RUN/picogk-before/cases.json"
 cp "$RUN/picogk-cases.json" "$RUN/picogk-after/cases.json"

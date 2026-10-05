@@ -297,7 +297,7 @@ python3 training/m64-engineer/dataset.py generate \
   --output work/m64-engineer/candidates.jsonl
 
 # Mac example using the already inspected .NET/PicoGK runtime.
-RUNTIME=/Users/maxime/projects/3dprinting993/work/m64-private-20260907/nemo-picogk-20260928.ADELugEK
+RUNTIME="${PICOGK_RUNTIME_ROOT:?Set the reviewed PicoGK runtime directory}"
 python3 training/m64-engineer/dataset.py verify-lattice \
   --input work/m64-engineer/candidates.jsonl \
   --output work/m64-engineer/lattice-reviewed.jsonl \
@@ -344,7 +344,7 @@ not unverified long reasoning traces as supervision.
 Use the installed Mac USD interpreter separately from the MLX interpreter:
 
 ```sh
-USD_PY=/Users/maxime/projects/3dprinting993/work/cad-recode-tools-venv/bin/python
+USD_PY="${USD_PYTHON:?Set the reviewed OpenUSD Python executable}"
 "$USD_PY" -c 'from pxr import Usd; assert Usd.GetVersion() == (0,25,5)'
 python3 training/m64-engineer/openusd.py generate \
   --output work/m64-engineer/usd-candidates.jsonl
