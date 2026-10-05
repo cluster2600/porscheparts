@@ -41,6 +41,8 @@ def verify(root):
         if usd['USD_sha256']!=hashlib.sha256((root/'omniverse'/(label+'.usda')).read_bytes()).hexdigest():errors.append('USD artifact identity')
     from verify_continuation import verify as verify_continuation
     verify_continuation(root)
+    from verify_s1_diagnostic import verify as verify_s1
+    verify_s1(root)
     if errors:raise ValueError('\n'.join(errors))
     print('Study integrity and cross-stage identity checks passed ('+str(len(manifest['files']))+' artifacts)')
 

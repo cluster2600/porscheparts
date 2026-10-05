@@ -22,6 +22,8 @@
 [**Ventilateur horizontal : CAO, mécanique, CFD, fabrication et OpenUSD**](models/horizontal-fan-reconstruction/README.md) ·
 [D2 : sortie prolongée, résultats partiels et clôture](models/horizontal-fan-reconstruction/D2_EXECUTION.md) ·
 [D2 : terminé1020, pression non admise et ressources libérées](models/horizontal-fan-reconstruction/D2_COMPLETION_EXECUTION.md) ·
+[**Ventilateur : assemblage S1, brut V2 et dossier de fabrication**](models/horizontal-fan-reconstruction/ASSEMBLY_MANUFACTURING_S1.md) ·
+[Diagnostic D2 et essai discriminant D3 préparé](models/horizontal-fan-reconstruction/D3_ESTABLISHMENT_DIAGNOSTIC.md) ·
 [**Latest impeller engineering results and open gates**](twins/993-engine-cooling-fan-system-f0/program/ENGINEERING_RESULTS_20261003.md) ·
 [**Four-valve cylinder head: air + oil study**](docs/studies/993-air-oil-20261002/README.md) ·
 [**Contribute**](CONTRIBUTING.md) ·

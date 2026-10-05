@@ -1,6 +1,8 @@
 # Études de reconstruction du ventilateur horizontal
 
 [STEP R0 éditable](R0-assembly.step) · [Rendu R0](R0-render.png) ·
+[**Assemblage S1, brut V2 et préparation de fabrication**](ASSEMBLY_MANUFACTURING_S1.md) ·
+[Diagnostic d'établissement D2 et paire D3 préparée](D3_ESTABLISHMENT_DIAGNOSTIC.md) ·
 [STEP V2 éditable](V2-assembly.step) · [Champs calculés V2](results/mechanics/V2-fields.png) ·
 [STEP V5 éditable](V5-assembly.step) · [Rendu V5](V5-render.png) ·
 [Ingénierie, reproduction et validations](ENGINEERING.md) ·
@@ -47,7 +49,13 @@ La comparaison stationnaire de sortie reste inconclusive ; ressources libérées
 La [reprise unique1001–1020 est terminée](D2_COMPLETION_EXECUTION.md), en110,505 s
 tout compris. La branche prolongée totalise40 +20 pas, mais échoue encore la
 stationnarité de pression et les résidus p/U/turbulence. Comparaison toujours
-inconclusive, champs et logs préservés, aucune suite1040, ressources libérées.
+inconclusive, champs et logs préservés, aucune suite automatique1040, ressources libérées.
+Le [diagnostic léger des archives](D3_ESTABLISHMENT_DIAGNOSTIC.md) documente
+l'établissement encore actif et le coût d'un transitoire. Deux redémarrages
+discriminants20 pas sont préparés, sans lancement ; budget global360 s à
+coordonner. En parallèle, [S1](ASSEMBLY_MANUFACTURING_S1.md) livre le plénum,
+l'entraînement et les supports comme enveloppes éditables, un brut V2 avec
+stocks et la fiche indépendante des interfaces physiques encore manquantes.
 
 ![Reconstruction analytique R0](R0-render.png)
 
