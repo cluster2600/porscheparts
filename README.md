@@ -19,13 +19,13 @@
 [**Gallery**](docs/GALLERY.md) ·
 [**993 cooling impeller program: models, calculations and evidence**](twins/993-engine-cooling-fan-system-f0/README.md) ·
 [**935 horizontal cooling system: 40-language evidence, engine inputs and gaps**](twins/935-horizontal-cooling-system/README.md) ·
-[**Ventilateur horizontal : CAO, mécanique, CFD, fabrication et OpenUSD**](models/horizontal-fan-reconstruction/README.md) ·
-[D2 : sortie prolongée, résultats partiels et clôture](models/horizontal-fan-reconstruction/D2_EXECUTION.md) ·
-[D2 : terminé1020, pression non admise et ressources libérées](models/horizontal-fan-reconstruction/D2_COMPLETION_EXECUTION.md) ·
-[**Ventilateur : assemblage S1, brut V2 et dossier de fabrication**](models/horizontal-fan-reconstruction/ASSEMBLY_MANUFACTURING_S1.md) ·
-[**Vue CAO S1 et brut V2**](models/horizontal-fan-reconstruction/S1_DELIVERY.md) ·
-[**Superviseur D3 exact testé, sans lancement**](models/horizontal-fan-reconstruction/D3_SUPERVISOR_PREPARATION.md) ·
-[Diagnostic D2 et essai discriminant D3 préparé](models/horizontal-fan-reconstruction/D3_ESTABLISHMENT_DIAGNOSTIC.md) ·
+[**Horizontal fan: CAD, mechanics, CFD, manufacturing and OpenUSD**](models/horizontal-fan-reconstruction/README.en.md) ·
+[D2: extended outlet, partial results and closure](models/horizontal-fan-reconstruction/D2_EXECUTION.en.md) ·
+[D2: completed1020, pressure unadmitted and resources released](models/horizontal-fan-reconstruction/D2_COMPLETION_EXECUTION.en.md) ·
+[**Fan: S1 assembly, V2 stock and manufacturing dossier**](models/horizontal-fan-reconstruction/ASSEMBLY_MANUFACTURING_S1.en.md) ·
+[**S1 CAD view and V2 stock**](models/horizontal-fan-reconstruction/S1_DELIVERY.en.md) ·
+[**Exact D3 supervisor tested, without launch**](models/horizontal-fan-reconstruction/D3_SUPERVISOR_PREPARATION.en.md) ·
+[D2 diagnosis and prepared D3 discriminating trial](models/horizontal-fan-reconstruction/D3_ESTABLISHMENT_DIAGNOSTIC.en.md) ·
 [**Latest impeller engineering results and open gates**](twins/993-engine-cooling-fan-system-f0/program/ENGINEERING_RESULTS_20261003.md) ·
 [**Four-valve cylinder head: air + oil study**](docs/studies/993-air-oil-20261002/README.md) ·
 [**Contribute**](CONTRIBUTING.md) ·
