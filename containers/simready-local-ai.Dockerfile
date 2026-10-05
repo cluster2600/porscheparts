@@ -154,7 +154,17 @@ COPY containers/simready-services.sh /usr/local/bin/simready-services
 COPY containers/simready-smoke.sh /usr/local/bin/simready-smoke
 COPY containers/smoke-test.sh /usr/local/bin/smoke-test.sh
 
-RUN chmod 0555 /usr/local/bin/simready-local-ai-smoke \
+RUN test -x /opt/simready-validation/bin/simready-validate \
+    && if [ ! -e /usr/local/bin/simready-validate ] \
+          && [ ! -L /usr/local/bin/simready-validate ]; then \
+         ln -s -- /opt/simready-validation/bin/simready-validate \
+           /usr/local/bin/simready-validate; \
+       fi \
+    && test "$(readlink -- /usr/local/bin/simready-validate)" = \
+       /opt/simready-validation/bin/simready-validate \
+    && env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
+       simready-validate --help >/dev/null \
+    && chmod 0555 /usr/local/bin/simready-local-ai-smoke \
         /usr/local/bin/physicsnemo-gpu-smoke \
         /usr/local/bin/simready-vast-onstart \
         /usr/local/bin/simready-services /usr/local/bin/simready-smoke \
