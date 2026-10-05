@@ -1,0 +1,122 @@
+{
+  "status": "prepared_not_run_resource_window_pending",
+  "protocol_id": "fan-matched-cooling-objective-20261004-v2",
+  "created_before_any_new_simulation": true,
+  "reference": "R0 root_pitch42 tip_twist_minus8",
+  "single_candidate": "V2 root_pitch36 tip_twist_minus8; retain as a diagnostic candidate, not optimum; no additional pitch sweep or geometric variant before same-Q loaded points",
+  "candidate_rationale": "Reducing pitch lowers nominal loading; current common free-point result trades -26.98% power for -7.14% flow and -21.39% total pressure. At the selected cooling objective its pressure capacity must be checked rather than assuming power reduction is efficiency. Current fine instability is near tip/trailing wake, not a reason to alter the root pitch until numerical and outlet effects are separated.",
+  "original_physical_assumptions": {
+    "diameter_mm": 275,
+    "blade_count": 9,
+    "rpm": 6000,
+    "density_kg_m3": 1.2,
+    "kinematic_viscosity_m2_s": 1.5e-05,
+    "model": "steady incompressible RANS kOmegaSST MRF, first-order convection; geometry, bearings, wall layers, scale and installed thermal conditions unqualified"
+  },
+  "hypothetical_cooling_objective": {
+    "net_flow_m3_s": 1.0,
+    "static_control_volume_pressure_rise_Pa": 600,
+    "screening_input_power_ceiling_W": 3300,
+    "basis": "Analyst-defined comparative hydraulic objective only; not a Porsche specification, norm, measured engine demand or manufacturing acceptance limit"
+  },
+  "pressure_definition": "Outlet minus inlet area-mean static pressure on the fixed study ports; additionally retain signed-flux total-pressure rise and mechanical-energy terms as separate quantities. No claim of standardized AMCA fan static pressure or qualified efficiency.",
+  "system_resistance_hypotheses": {
+    "formula": "Delta_p_static = K * Q_net^2",
+    "K_Pa_per_m3_s_squared": [
+      200,
+      600,
+      1000
+    ],
+    "values_at_Q1_Pa": [
+      200,
+      600,
+      1000
+    ],
+    "provenance": "Explicit analyst-selected bounded scenarios, not an OEM curve",
+    "intersection_policy": "Interpolate only between numerically admitted sampled points, report all intersections and ranges; no extrapolation or rated engine performance claim"
+  },
+  "common_testbench": {
+    "velocity_inlet": "flowRateInletVelocity, prescribed positive volumetricFlowRate into domain; same declared uniform profile for both candidates",
+    "pressure_inlet": "fixedFluxPressure compatible with prescribed velocity; no simultaneous imposed inlet total-pressure value",
+    "outlet": "fixed static gauge pressure 0, pressureInletOutletVelocity permits backflow; monitor gross reverse flux",
+    "sample_Q_m3_s": [
+      0.85,
+      1.0,
+      1.1
+    ],
+    "comparison_policy": "Match Q, geometry envelope, ports, RPM, fluid, turbulence and solver settings; preserve input hashes and every gate; previous free-inlet-pressure points are not appended to this new inlet-profile curve",
+    "metrics": [
+      "Q net and gross reverse flux",
+      "area-mean static and signed-flux total pressure rise",
+      "fluid pressure/viscous torque and torque*Omega input power",
+      "pressure/kinetic/swirl energy port terms and unclosed balance",
+      "absolute and MRF-relative Mach",
+      "original convergence and full finite-field gates"
+    ],
+    "efficiency_policy": "Compare P only at the same achieved Q and pressure objective; Q*Delta_p/P remains a defined numerical port metric until energy/model and physical validation are established"
+  },
+  "gates": {
+    "mesh": "Both independent standard and extended checkMesh, unchanged thresholds",
+    "solver_acceptance": "All original frozen residual, mass, stability, direction and finite-field criteria; no relaxation of pressure threshold",
+    "history_retention": "Original tables remain hash-identical. Freeze complete tables and manifests before exports and postprocess an analysis clone; verify cadence before computing statistics.",
+    "no_ranking_if": "Unadmitted sample, unbracketed objective, missing history, materially changed boundary testbench or unqualified grid/model response",
+    "measurement_window": "Require at least 20 native samples at consecutive actual solver iterations; checkpoint cadence 150 is independent of telemetry cadence 1; missing or sparse windows reject admission."
+  },
+  "resource_batches_before_launch": [
+    {
+      "id": "D1 numerical discrimination",
+      "purpose": "Paired 60-iteration branches from the same V2/900 checkpoint, control pressure relTol .01 vs relTol0 with absolute tolerance1e-8 unchanged; pressure relaxation.15, same mesh/BC/physics/gates; preserve full histories and matrix/residual diagnostics if supported",
+      "cases": 2,
+      "threads_per_case": 4,
+      "memory_GiB_per_case": 5,
+      "wall_cap_seconds_per_case": 300,
+      "inner_owned_MPI_timeout_seconds": 270,
+      "estimated_total_minutes": [
+        4,
+        6
+      ],
+      "absolute_total_wall_cap_minutes": 10,
+      "launch_state": "not launched; requires coordinated Kali2 window before FEM work overlap",
+      "interpretation": "One discriminating numerical sensitivity, not blind continuation; no physical frequency can be inferred from steady iteration periods"
+    },
+    {
+      "id": "D2a matched target Q1",
+      "purpose": "R0 and single V2 candidate at Q1.00 on their admitted common coarse grids, new common testbench; initialize from existing fields and execute up to two150-step phases each",
+      "cases": 2,
+      "threads_per_case": 4,
+      "memory_GiB_per_case": 5,
+      "max_phases_per_case": 2,
+      "phase_iterations": 150,
+      "wall_cap_seconds_per_phase": 300,
+      "estimated_total_minutes": [
+        8,
+        12
+      ],
+      "absolute_total_wall_cap_minutes": 20,
+      "launch_state": "not launched; after D1 diagnosis and separate resource slot",
+      "stop": "If either sample fails original criteria, no automated continuation or curve ranking"
+    },
+    {
+      "id": "D2b bracket loaded curve",
+      "purpose": "Only after admitted D2a, four additional samples at Q.85 and Q1.10 for both configurations",
+      "cases": 4,
+      "threads_per_case": 4,
+      "memory_GiB_per_case": 5,
+      "max_phases_per_case": 2,
+      "phase_iterations": 150,
+      "wall_cap_seconds_per_phase": 300,
+      "estimated_total_minutes": [
+        16,
+        24
+      ],
+      "absolute_total_wall_cap_minutes": 40,
+      "launch_state": "not launched; independent coordinated slot"
+    }
+  ],
+  "boundary_model_discriminator_if_needed": "If D1 fails to isolate linear/coupling effects, prepare common outlet-length sensitivity before interpreting any fine pitch ranking. Current hotspots are ~31-34mm from outlet (~0.12D), with gross outlet recirculation ~10.8% of net flow. Extended testbench requires its own CAD/mesh QA and planned budget; not approved as a background job.",
+  "diagnostic_sha256": "612f6619e0f642ec6c9d4629960057621050621afc7ec7d8ef2c851045b15192",
+  "physical_instability_demonstrated": false,
+  "original_report_values_and_hypotheses_unchanged": true,
+  "no_new_Kali_solver_job_launched": true,
+  "sampling_audit_sha256": "6d422294c52278ad8921f356fb1a897db5a18972c918b45485170f7836f95d2a"
+}

@@ -1,0 +1,127 @@
+{
+  "status": "completed_conditional_centrifugal_and_unprestressed_modal_FEM",
+  "configuration_id": "private_scan_informed_horizontal_study_V2_lower_collective_pitch",
+  "solver": "CalculiX",
+  "solver_version": "2.23",
+  "rpm_assumed": 6000.0,
+  "mesh": {
+    "status": "positive_jacobian_volume_mesh",
+    "configuration_id": "private_scan_informed_horizontal_study_V2_lower_collective_pitch",
+    "mode": "structural",
+    "units": "mm-N-s-tonne",
+    "gmsh_version": "4.15.2",
+    "source_step_sha256": "1fefd1f51ff5e90c6ca96ddf661bab9d3c7387f91c127bfdde77d0ba41816b99",
+    "mesher_sha256": "65df79b8773866318ed0a086509f737d940dabffb78941d7db72d4806c1dd431",
+    "size_mm_requested": 3.6,
+    "nodes": 94896,
+    "volume_elements": 48699,
+    "element_type": "C3D10",
+    "minimum_Gauss4_jacobian": 0.2685015728127889,
+    "minimum_scaled_jacobian": 0.031013295247069205,
+    "cad_volume": 265377.4327144097,
+    "integrated_mesh_volume": 265377.5199288693,
+    "relative_volume_error": 3.2864309029712047e-07,
+    "boundaries": {},
+    "physical_validation_established": false,
+    "manufacturing_authorized": false,
+    "rpm_assumed": 6000.0,
+    "restraint": "All translations fixed on hypothetical through-bore",
+    "fixed_bore_nodes": 1144,
+    "material_assumed": {
+      "E_MPa": 70000,
+      "nu": 0.33,
+      "density_tonne_mm3": 2.7e-09
+    },
+    "modal_scope": "unprestressed; no gyroscopic terms, contact or measured bearings",
+    "gmsh_to_C3D10_node_permutation": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      9,
+      8
+    ],
+    "aerodynamic_or_thermal_load_included": false,
+    "elapsed_seconds": 4.109873495995998
+  },
+  "stress_recovery": "FRD extrapolated and nodally averaged stress; raw maxima retained; node-weighted percentile, not integration-point stress",
+  "von_mises_nodal_max_MPa": 205.2907705757373,
+  "von_mises_nodal_p99_MPa": 56.127472267414426,
+  "peak_stress_node": 949,
+  "peak_stress_position_mm": [
+    62.8913322262,
+    -55.5353648543,
+    0.305909550998
+  ],
+  "maximum_displacement_mm": 0.49775303802612797,
+  "maximum_radial_extension_mm": 0.2150458580160972,
+  "modes_unprestressed": [
+    {
+      "mode": 1,
+      "frequency_Hz": 375.6423
+    },
+    {
+      "mode": 2,
+      "frequency_Hz": 375.949
+    },
+    {
+      "mode": 3,
+      "frequency_Hz": 391.9554
+    },
+    {
+      "mode": 4,
+      "frequency_Hz": 413.527
+    },
+    {
+      "mode": 5,
+      "frequency_Hz": 413.5498
+    },
+    {
+      "mode": 6,
+      "frequency_Hz": 539.5468
+    },
+    {
+      "mode": 7,
+      "frequency_Hz": 539.6331
+    },
+    {
+      "mode": 8,
+      "frequency_Hz": 610.883
+    },
+    {
+      "mode": 9,
+      "frequency_Hz": 611.0187
+    },
+    {
+      "mode": 10,
+      "frequency_Hz": 991.5669
+    },
+    {
+      "mode": 11,
+      "frequency_Hz": 1004.023
+    },
+    {
+      "mode": 12,
+      "frequency_Hz": 1004.239
+    }
+  ],
+  "mesh_independence_established": false,
+  "rotating_prestress_gyroscopic_contact_thermal_aero_and_fatigue_included": false,
+  "material_or_bearing_qualification_established": false,
+  "safe_rpm_range": null,
+  "manufacturing_authorized": false,
+  "file_sha256": {
+    "rotation.inp": "da4216266136b175a7f0396fa3e37311693e868a34de8375d5861ba490b6b58c",
+    "rotation.frd": "1a9c5f3583a5e6783b31a6711c6292bab7bf523f0d9dfc1272c467b722ec3f3b",
+    "rotation.dat": "1c4e4e49f09d2dee5882a434df443ca1d23832b99b604c316061162ba8b03786",
+    "log.rotation": "080b2ae9246c1e578ed33e273d1fcacbe4078e2ecce9fff816991538d041c0c4",
+    "modal.inp": "d08673f678edcf70e5aa072aaaf0c9e27cda6c107beed58925f8ff764e3e2c0f",
+    "modal.dat": "d66b4a481f4d7f68f7506e8f152f9694f0f18cdc2de77c82d53fe01a72472ad5",
+    "log.modal": "23fa25c93bb08fd1e92a4459a62d817c26ff9ae48e28e695f267914fa816c149",
+    "mesh-report.json": "2a12fd47532d6306812c55b29ba46ac4ca2c5efe151722552c10e6c2d5190320"
+  }
+}

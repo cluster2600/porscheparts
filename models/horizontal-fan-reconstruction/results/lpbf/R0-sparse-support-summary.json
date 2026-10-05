@@ -1,0 +1,129 @@
+{
+  "status": "completed_uncalibrated_elastic_eigenstrain_support_release",
+  "solver": "CalculiX",
+  "version": "2.23",
+  "elapsed_solver_seconds": 13.044621,
+  "assumptions": {
+    "status": "prepared_not_solved",
+    "source_deck_sha256": "4086b50c162d461458d42d19f8599b3926de11e46a7570bb21c08f784d41869a",
+    "deck_sha256": "16dec2888d6756c1430cea4de97bf9a85d7e9627e3e52a796ff63895ea77c796",
+    "nodes": 61849,
+    "tetrahedra": 30825,
+    "units": "mm,N,s,tonne",
+    "strain_amplitude_assumed": 0.001,
+    "strain_is_not_a_measured_process_property": true,
+    "build_direction": [
+      0.0,
+      1.0,
+      0.0
+    ],
+    "formula": "epsilon_star = -amplitude*(0.5+0.5*s^2)*(I-0.7*n*nT), s=normalized build height",
+    "support_proxy": "fully fixed lowest surface node per projected raster cell; rigid column bound, no supplier topology",
+    "support_raster_pitch_mm": 10,
+    "support_raster_inplane_deg": -45,
+    "support_attachment_nodes": 153,
+    "gauge_nodes": [
+      6911,
+      187,
+      16615
+    ],
+    "gauge_node_coordinates_mm": [
+      [
+        9.72271824132,
+        -9.72271824131,
+        0.0
+      ],
+      [
+        -136.510232606,
+        16.4683452031,
+        17.4996562183
+      ],
+      [
+        -0.108114474403,
+        137.499957495,
+        14.5246072441
+      ]
+    ],
+    "support_release_included": true,
+    "layer_activation_included": false,
+    "scan_path_temperature_plasticity_recoater_included": false,
+    "process_calibrated": false,
+    "distortion_prediction_qualified": false,
+    "material": "inherited assumed isotropic elastic card, not a route-qualified material",
+    "mesh_independence": false,
+    "manufacturing_authorized": false,
+    "contract_ids": [
+      "lpbf.build_orientation",
+      "lpbf.support_strategy",
+      "lpbf.machine_parameters",
+      "lpbf.heat_treatment",
+      "material.elastic_properties",
+      "material.defect_population"
+    ],
+    "configuration_id": "private_scan_informed_horizontal_study_R0",
+    "source_mesh_report_sha256": "053fddccb10f319e6de2250d2ec92d0f3663dc8d749737ad94a02acecb42a4ed",
+    "source_step_sha256": "d765efe71feab39bb03558d03ace47d98cd98cf3b14a6e5fc47b87a3647bc9fd",
+    "scenario": "Candidate AlSi10Mg review; BLT workshop target, actual alloy/condition/machine unselected. Generic elastic E=70GPa nu=.33 inherited, no machine calibration or thermal recipe simulated",
+    "build_pose_description": "Rx90 then Rz45; 10mm envelope margin"
+  },
+  "states": [
+    {
+      "state": "attached",
+      "nodes": 61849,
+      "integration_points": 123300,
+      "maximum_displacement_mm": 0.2261248895871704,
+      "displacement_component_ranges_mm": [
+        0.283691,
+        0.13761669999999998,
+        0.281574
+      ],
+      "maximum_radial_change_mm": 0.11857274175562793,
+      "von_mises_max_MPa": 513.512667739411,
+      "von_mises_p99_MPa": 100.47029545625465,
+      "peak_element_and_ip": [
+        15710,
+        2
+      ],
+      "peak_element_corner_centroid_mm": [
+        62.45530591777501,
+        57.307769563175,
+        8.5457383879425
+      ]
+    },
+    {
+      "state": "released",
+      "nodes": 61849,
+      "integration_points": 123300,
+      "maximum_displacement_mm": 0.09601459930136927,
+      "displacement_component_ranges_mm": [
+        0.18960339999999998,
+        0.0684727,
+        0.0578458
+      ],
+      "maximum_radial_change_mm": 0.0942612219623129,
+      "von_mises_max_MPa": 1.395935554908587,
+      "von_mises_p99_MPa": 0.964901361388322,
+      "peak_element_and_ip": [
+        29465,
+        1
+      ],
+      "peak_element_corner_centroid_mm": [
+        90.888366993425,
+        -0.4153716634312501,
+        -0.57958801971
+      ]
+    }
+  ],
+  "maximum_release_displacement_mm": 0.2153870560080155,
+  "process_calibrated": false,
+  "distortion_prediction_qualified": false,
+  "mesh_independence": false,
+  "manufacturing_authorized": false,
+  "file_sha256": {
+    "rotor.inp": "16dec2888d6756c1430cea4de97bf9a85d7e9627e3e52a796ff63895ea77c796",
+    "rotor.dat": "b066ba3a17e179c84fc58bed6487cc8648725b926f93f4135922893cc36d3242",
+    "rotor.frd": "c8289c743b4053ea1e372cf005455f1cf34eb8049f9ae4b2d564269901c2d872",
+    "preparation.json": "006a85a3c91c67070c3b6473f4bcfb0a5b76616d1a9290412e58c462004bfe50",
+    "log.ccx": "6b44b8c3956d79e158b32d88aebb271ce4b274524c2490b0c296e320af015d6c"
+  }
+}

@@ -1,0 +1,27 @@
+#usda 1.0
+(
+    defaultPrim = "ManufacturingComparison"
+    metersPerUnit = 1
+    upAxis = "Z"
+)
+
+def Xform "ManufacturingComparison" (
+    customData = {
+        string scope = "Actual released CalculiX fields under assumed contraction and rigid supports; no qualified LPBF prediction"
+        bool processCalibrated = false
+        bool manufacturingValidated = false
+        bool digitalTwinValidated = false
+    }
+)
+{
+    def Xform "R0" (prepend references = @R0-manufacturing-release.usda@)
+    {
+        double3 xformOp:translate = (-0.2, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+    def Xform "V5" (prepend references = @V5-manufacturing-release.usda@)
+    {
+        double3 xformOp:translate = (0.2, 0, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate"]
+    }
+}

@@ -1,0 +1,63 @@
+{
+  "status": "prepared_not_solved",
+  "source_deck_sha256": "779d165f4807bbb19c28ef8e3352ffb22cf6b0a99debf61502559bf2746e0cd1",
+  "deck_sha256": "afddf66863f7c1a3513b7e61a666aa3ae3cf4642b49c8f38bd6be50e385d3838",
+  "nodes": 112613,
+  "tetrahedra": 60821,
+  "units": "mm,N,s,tonne",
+  "strain_amplitude_assumed": 0.001,
+  "strain_is_not_a_measured_process_property": true,
+  "build_direction": [
+    0.0,
+    1.0,
+    0.0
+  ],
+  "formula": "epsilon_star = -amplitude*(0.5+0.5*s^2)*(I-0.7*n*nT), s=normalized build height",
+  "support_proxy": "fully fixed lowest surface node per projected raster cell; rigid column bound, no supplier topology",
+  "support_raster_pitch_mm": 5,
+  "support_raster_inplane_deg": -45,
+  "support_attachment_nodes": 521,
+  "gauge_nodes": [
+    8159,
+    192,
+    419
+  ],
+  "gauge_node_coordinates_mm": [
+    [
+      11.907849302,
+      6.875,
+      0.0
+    ],
+    [
+      -136.510232606,
+      16.4683452031,
+      17.4996562183
+    ],
+    [
+      2.52007904007,
+      -137.476904248,
+      -17.3622981774
+    ]
+  ],
+  "support_release_included": true,
+  "layer_activation_included": false,
+  "scan_path_temperature_plasticity_recoater_included": false,
+  "process_calibrated": false,
+  "distortion_prediction_qualified": false,
+  "material": "inherited assumed isotropic elastic card, not a route-qualified material",
+  "mesh_independence": false,
+  "manufacturing_authorized": false,
+  "contract_ids": [
+    "lpbf.build_orientation",
+    "lpbf.support_strategy",
+    "lpbf.machine_parameters",
+    "lpbf.heat_treatment",
+    "material.elastic_properties",
+    "material.defect_population"
+  ],
+  "configuration_id": "private_scan_informed_horizontal_study_V5_stiffer_carrier",
+  "source_mesh_report_sha256": "c628162f310d9917671fa9778d9c2c0662cb15cf4477668ea321343cb7471f8b",
+  "source_step_sha256": "3697df79b2a8470643bae331bedbf80ac982dfd323473d5a1dc530481c351700",
+  "scenario": "Candidate AlSi10Mg review; BLT workshop target, actual alloy/condition/machine unselected. Generic elastic E=70GPa nu=.33 inherited, no machine calibration or thermal recipe simulated",
+  "build_pose_description": "Rx90 then Rz45; 10mm envelope margin"
+}

@@ -1,0 +1,47 @@
+{
+  "commands": [
+    {
+      "command": [
+        "mpirun",
+        "--bind-to",
+        "none",
+        "--use-hwthread-cpus",
+        "-np",
+        "4",
+        "foamRun",
+        "-parallel"
+      ],
+      "wall_cap_seconds": 180,
+      "wall_seconds": 117.18217209109571,
+      "exit_status": 0
+    },
+    {
+      "command": [
+        "reconstructPar",
+        "-latestTime"
+      ],
+      "wall_cap_seconds": 35,
+      "wall_seconds": 4.966223080991767,
+      "exit_status": 0
+    },
+    {
+      "command": [
+        "/opt/venv/bin/python3",
+        "/capsule/source/summarize_reference_flow.py",
+        "/run/cases/consistent",
+        "/run/cases/consistent/flow-summary.json"
+      ],
+      "wall_cap_seconds": 30,
+      "wall_seconds": 2.6342074089916423,
+      "exit_status": 0
+    }
+  ],
+  "wall_seconds": 125.80682584503666,
+  "coordinated_release": "Parent authorizes one D1C consistent yes60 run after Ti/Qwen resource release;4CPU5GiB300s;no implicit additional phase",
+  "one_new_case_only": true,
+  "no_automatic_retry_or_continuation": true,
+  "shared_initial_partition_sha256": "6c37f6ff504ddf8cc9cc34176f9ca62381fc914c6a09f51ab097829fbb941167",
+  "peak_child_RSS_KiB": 263856,
+  "native_and_baseline_mounted_read_only_required": true,
+  "physical_validation_established": false
+}

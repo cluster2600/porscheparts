@@ -1,0 +1,99 @@
+{
+  "status": "failed_or_partial",
+  "phase": "current_decomposition",
+  "error": "RuntimeError: Owned command failed: current/log.decomposePar",
+  "commands": [
+    {
+      "case": "current",
+      "args": [
+        "checkMesh"
+      ],
+      "log": "log.checkMesh-standard",
+      "exit_status": 0,
+      "wall_cap_seconds": 25,
+      "wall_seconds": 2.5957412760471925
+    },
+    {
+      "case": "current",
+      "args": [
+        "checkMesh",
+        "-allGeometry",
+        "-allTopology"
+      ],
+      "log": "log.checkMesh-extended",
+      "exit_status": 0,
+      "wall_cap_seconds": 35,
+      "wall_seconds": 7.48317300400231
+    },
+    {
+      "case": "extended",
+      "args": [
+        "checkMesh"
+      ],
+      "log": "log.checkMesh-standard",
+      "exit_status": 0,
+      "wall_cap_seconds": 25,
+      "wall_seconds": 4.266826538019814
+    },
+    {
+      "case": "extended",
+      "args": [
+        "checkMesh",
+        "-allGeometry",
+        "-allTopology"
+      ],
+      "log": "log.checkMesh-extended",
+      "exit_status": 0,
+      "wall_cap_seconds": 35,
+      "wall_seconds": 10.908785725943744
+    },
+    {
+      "case": "current",
+      "args": [
+        "foamPostProcess",
+        "-solver",
+        "incompressibleFluid",
+        "-time",
+        "960"
+      ],
+      "log": "log.seed-functions",
+      "exit_status": 0,
+      "wall_cap_seconds": 20,
+      "wall_seconds": 3.0273704460123554
+    },
+    {
+      "case": "extended",
+      "args": [
+        "foamPostProcess",
+        "-solver",
+        "incompressibleFluid",
+        "-time",
+        "960"
+      ],
+      "log": "log.seed-functions",
+      "exit_status": 0,
+      "wall_cap_seconds": 20,
+      "wall_seconds": 4.917923826025799
+    },
+    {
+      "case": "current",
+      "args": [
+        "decomposePar",
+        "-latestTime"
+      ],
+      "log": "log.decomposePar",
+      "exit_status": 1,
+      "wall_cap_seconds": 35,
+      "wall_seconds": 0.7200181350344792
+    }
+  ],
+  "wall_seconds": 57.66593388700858,
+  "coordinated_release": "parent-authorized-D2-exact-pair-20261004",
+  "exact_distance_m": 0.275,
+  "exact_layers": 50,
+  "maximum_new_cases": 2,
+  "maximum_iterations_each": 60,
+  "no_retry_or_continuation": true,
+  "child_peak_RSS_KiB_not_aggregate": 930080,
+  "physical_validation_established": false
+}

@@ -1,0 +1,89 @@
+{
+  "protocol_id": "R0-fine-pressure015-750",
+  "frozen_before_solver_launch": true,
+  "reference_configuration": "private_scan_informed_horizontal_study_R0",
+  "rpm_assumed": 6000,
+  "fluid": {
+    "density_kg_m3": 1.2,
+    "kinematic_viscosity_m2_s": 1.5e-05,
+    "tip_Mach_assuming_343m_s": 0.2518769620225053
+  },
+  "boundary_conditions": {
+    "top_inlet": "total pressure zero gauge",
+    "bottom_outlet": "static pressure zero gauge",
+    "expected_flow_direction": [
+      0,
+      0,
+      -1
+    ],
+    "rotation_axis_positive": [
+      0,
+      0,
+      1
+    ]
+  },
+  "model": "Foundation OpenFOAM 13 isolated fan incompressible steady MRF kOmegaSST, first-order convection",
+  "mesh_gate": "standard and extended checkMesh both Mesh OK and zero failed checks, original thresholds",
+  "iterations": 750,
+  "wall_timeout_seconds": 600,
+  "maximum_CPU": 4,
+  "maximum_memory_GiB": 5,
+  "acceptance_all_required": {
+    "last_window_iterations": 20,
+    "maximum_initial_residual_p": 0.0001,
+    "maximum_initial_residual_U_components": 1e-05,
+    "maximum_initial_residual_k_and_omega": 0.0001,
+    "maximum_absolute_inlet_plus_outlet_flow_over_mean_absolute_flow": 0.005,
+    "maximum_flow_relative_standard_deviation": 0.01,
+    "maximum_rotor_torque_relative_standard_deviation": 0.02,
+    "flow_direction_matches_declared_reference": true,
+    "fields_finite_and_complete": true
+  },
+  "not_established": [
+    "Wall-layer resolution",
+    "Aerodynamic mesh independence",
+    "Physical validation",
+    "Measured inlet/outlet installed engine conditions",
+    "Measured material or bearing data"
+  ],
+  "variant_comparison_policy": "No pitch variant or performance ranking before reference admission; same conditions and gates required",
+  "physical_validation_established": false,
+  "manufacturing_authorized": false,
+  "reference_admitted_summary_sha256": "628589b2a47ad5e3f6fd3ad4e4839507bc999cc2e8e4fd5f06d939f765e83c3e",
+  "planned_total_target": 750,
+  "planned_phase_end_iterations": [
+    150,
+    300,
+    450,
+    600,
+    750
+  ],
+  "cpu_set_verified_distinct_physical_cores": "0,2,4,5",
+  "source_mesh_gate_sha256": "62c52fb2111dc79095932f9ae62f98ebf758782fefe94b16e6fe801474d2e717",
+  "flow_runner_sha256": "835e0cbad41bf27f700c8b7045be42a9bbbca096af53ce57d9e92e40f77fc56e",
+  "initial_fields_sha256": {
+    "600/U": "5b7cb1d01fbc1cdbc76aef5ed7bb03efe665d1d1be4129c4886ff1743c751ee6",
+    "600/grad(U)": "c9a8ff4f1c3489310915c4629a89d94165fb11e72c1444af2ed0a4e2c2b9665e",
+    "600/k": "0d9933b37d9358d3a495c9cb2602271ba4039cbdb72cf4371f2a5a4d15eb9d5b",
+    "600/omega": "fac575f0f62655bd52295636ef369c7db5e378cba76efd540caba2b478318b18",
+    "600/p": "2998680b4e74fe0cad83b64591cc5ab4fd2ad66ac40c7aad16931e91f41dcecb",
+    "600/nut": "62f2be2def574d191bd8e7e0690467c497a409fd7a3a448389dd07c09d14c389",
+    "600/Uf": "de8012cec3879e600323b4bbc3505faec267cabbabed4ef1792236bf8e6299a4",
+    "600/phi": "66741d863080f03cc8f98b05817dbf3d1a3668b0c3975066a341a053a26112bd"
+  },
+  "previous_frozen_protocol_sha256": "1e7a90d8336a44900eb4423ae2e01d92c4f9ec35b1be266376d517da90741c26",
+  "previous_target_iteration": 600,
+  "additional_phase_reason": "Pressure residual did not satisfy the unchanged frozen criterion; preserve previous result and continue its fields",
+  "numerical_pressure_relaxation_before": 0.25,
+  "numerical_pressure_relaxation_after": 0.15,
+  "fvSolution_before_sha256": "97a6c82610de2579ee2cc3799da74b4fb93f7ac1a10b16100274137c81115758",
+  "fvSolution_after_sha256": "517c8dd45b17855dc854f8e6f8765d074c802c39770fa10df2d05b4b526ab36a",
+  "numerical_sensitivity_reason": "Reduce pressure update oscillation; same discretization, solver tolerances, physical inputs and original acceptance thresholds; matched reference sensitivity required",
+  "frozen_system_file_sha256": {
+    "system/fvSchemes": "90ef8480a813fdaa6122bf07f722770c90099fc5a171270bdc068274aff848c9",
+    "system/decomposeParDict": "a0a1fe93e553f9fb2cd191adf76610879b59546471beeec33a1ce2da8fa8fadf",
+    "system/topoSetDict": "da7f4ad3175673a561e91f60dca57805293ae950d885004fbf2c2a2244682d52",
+    "system/fvSolution": "517c8dd45b17855dc854f8e6f8765d074c802c39770fa10df2d05b4b526ab36a",
+    "system/controlDict": "8a6fbcdecc52dcc6fd658da546b3a5ed956a6673232c59b33803405e66896e8d"
+  }
+}

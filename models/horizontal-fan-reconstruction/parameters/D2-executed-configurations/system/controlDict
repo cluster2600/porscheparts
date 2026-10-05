@@ -1,0 +1,14 @@
+FoamFile {version 2.0; format ascii; class dictionary; object controlDict;}
+
+application foamRun; solver incompressibleFluid;
+startFrom latestTime; startTime 0; stopAt endTime; endTime 960; deltaT 1;
+writeControl timeStep; writeInterval 60; purgeWrite 1;
+writeFormat ascii; writePrecision 10; writeCompression off; runTimeModifiable false;
+functions {
+ inletFlow {type surfaceFieldValue; libs ("libfieldFunctionObjects.so");
+ writeControl timeStep; writeInterval 1; patch inlet; operation sum; fields (phi); writeFields false;}
+ outletFlow {type surfaceFieldValue; libs ("libfieldFunctionObjects.so");
+ writeControl timeStep; writeInterval 1; patch outlet; operation sum; fields (phi); writeFields false;}
+ rotorForces {type forces; libs ("libforces.so"); patches (rotor); rho rhoInf; rhoInf 1.2;
+ CofR (0 0 0); writeControl timeStep; writeInterval 1;}
+}
