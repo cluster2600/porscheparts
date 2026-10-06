@@ -15,7 +15,9 @@ missing field is written as missing.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -119,6 +121,8 @@ def echelle(niveau: str, classe: str | None) -> list[str]:
 def page_markdown(fiche: dict, chemin_fiche: Path) -> str:
     part_id = fiche["part_id"]
     page = PAGES / f"{part_id.lower()}.md"
+    if part_id == "993-ENG-CARRIER-0001":
+        return presentation_carrier(fiche, chemin_fiche, page)
     classification = fiche.get("classification", {})
     fabrication = fiche.get("manufacturing", {})
     matiere = fabrication.get("material", {})
@@ -388,9 +392,54 @@ The generic wheel and schematic orthographic images were removed from this prese
     return "\n".join(out)
 
 
+def presentation_carrier(fiche: dict, chemin_fiche: Path, page: Path) -> str:
+    """Present the current study separately from the retained catalogue master."""
+    manifest_path = ROOT / "parts/993-eng-carrier-0001/media/r9/study-public.json"
+    study = json.loads(manifest_path.read_text(encoding="utf-8"))
+    for asset in study["assets"]:
+        path = (ROOT / asset["path"]).resolve()
+        path.relative_to(ROOT)
+        if hashlib.sha256(path.read_bytes()).hexdigest() != asset["sha256"]:
+            raise ValueError(f"Carrier study asset has drifted: {asset['path']}")
+    template = (ROOT / "scripts/templates/carrier-study.md.in").read_text(encoding="utf-8")
+    for field, group in (("study_images", "geometry"), ("mechanical_images", "mechanical")):
+        template = template.replace("{{" + field + "}}", "\n\n".join(
+            f"![{asset['caption']}]({lien(ROOT / asset['path'], page)})\n\n*{asset['caption']}*"
+            for asset in study["assets"] if asset.get("display") and asset.get("group") == group))
+    template = template.replace("{{study_provenance}}",
+        f"[Public study manifest]({lien(manifest_path, page)}) records the revision, "
+        "artifact SHA-256 digests, representation provenance and publication limits. "
+        + study["provenance_note"])
+    template = template.replace("{{mass_rows}}", "\n".join(
+        f"| {row['representation']} | {row['mass_kg']:.9f} kg | {row['meaning']} |"
+        for row in study["masses"]))
+    template = template.replace("{{stress_rows}}", "\n".join(
+        f"| {row['site']} | {row['h_over_2_mpa']:,.1f} MPa | {row['h_over_4_mpa']:,.1f} MPa |"
+        for row in study["mechanical_screen"]["sites"]))
+    values = {
+        "density": f"{study['material_candidate']['density_kg_m3']:,.0f}",
+        "ribs": str(study["nominal_sections_mm"]["ribs"]),
+        "center": str(study["nominal_sections_mm"]["center"]),
+        "force": f"{study['mechanical_screen']['hypothetical_force_n']:,}",
+        "torque": str(study["mechanical_screen"]["hypothetical_torque_nm"]),
+    }
+    for key, value in values.items():
+        template = template.replace("{{" + key + "}}", value)
+    template = re.sub(r"\{\{repo:([^}]+)\}\}",
+                      lambda match: lien(ROOT / match.group(1), page), template)
+    template = template.replace("{{name}}", nom(fiche))
+    template = template.replace("{{status}}", fiche["validation"]["status"])
+    template = template.replace("{{record}}", lien(chemin_fiche, page))
+    if "{{" in template:
+        raise ValueError("Unresolved carrier presentation template field")
+    return ENTETE + "\n\n" + template
+
+
 def presentation(fiche: dict, chemin_fiche: Path) -> str:
     """The README GitHub shows when a part folder is opened: the concept next to the original."""
     part_id = fiche["part_id"]
+    if part_id == "993-ENG-CARRIER-0001":
+        return presentation_carrier(fiche, chemin_fiche, PARTS / part_id.lower() / "README.md")
     if part_id == IMPELLER_ID:
         return presentation_impeller(fiche, chemin_fiche)
     dossier = PARTS / part_id.lower()
