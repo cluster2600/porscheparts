@@ -1,4 +1,4 @@
-# Reconstruction exécutée le 5 octobre 2026
+# Reconstruction exécutée les 5 et 6 octobre 2026
 
 Le coordinateur reconstruit des surfaces réellement acquises et produit des
 zones de pales éditables, des exports PicoGK et une revue indépendante. **Le
@@ -11,7 +11,7 @@ vertical demeure distinct.
 | Étape | Exécution et limite |
 |---|---|
 | 0 — Environnement | Accès Kali2, calculs Python, compilation .NET 9/PicoGK et exports FreeCAD vérifiés. Kali1 indisponible lors du contrôle. Aucune installation ou location. |
-| 1 — Géométrie | Deux originaux contrôlés par SHA-256 ; transformations et inverses conservées. Deux surfaces cylindriques du moyeu ajustées comme axes candidats. Neuf régions de pales détectées sans imposer un comptage. Sections périodiques, neuf plages contiguës, trois résolutions PicoGK et CAO éditable exécutées. Pieds, extrémités, moyeu solide et dos recalé restent à reconstruire. |
+| 1 — Géométrie | Deux originaux contrôlés par SHA-256 ; transformations et inverses conservées. Neuf régions de pales détectées sans imposer un comptage. Sections périodiques, neuf plages contiguës, trois résolutions PicoGK et CAO éditable exécutées. Deux zones acquises du moyeu produisent désormais des surfaces analytiques ouvertes FreeCAD/STEP : cylindre intérieur et cône extérieur. Pieds, extrémités, moyeu solide et dos recalé restent à reconstruire. |
 | 2 — Mécanisme | Les 17 interfaces et les chemins d'efforts existants sont réutilisés. Le scan extérieur de l'entraînement est préparé et ses bords enregistrés ; sa segmentation mécanique, ses axes et son assemblage restent ouverts. Aucun engrenage intérieur supposé. |
 | 3 — Air | Aucun calcul de référence lancé : rotor entier, carter, jeux, repères/sens et conditions du pilote non qualifiés. |
 | 4 — Mécanique | Aucun calcul de référence lancé : solides, liaisons, charges et propriétés correspondant au procédé non qualifiés. |
@@ -118,6 +118,50 @@ L'étape `cad` crée des lofts BRep réglés à partir des contours échantillon
 dans FreeCAD natif et STEP ; elle rouvre les fichiers et contrôle le volume.
 Elle ne transforme pas les voxels en interfaces usinées analytiques.
 
+### Surfaces analytiques observées du moyeu
+
+L'étape `hub` reprend les faces des ajustements candidats existants. Une
+fenêtre axiale et une limite sur la composante axiale des normales, inspectées
+et conservées dans le cas privé, isolent chaque plage des transitions et
+fragments. Aucune face du scan original n'est supprimée. Les faces sélectionnées
+et exclues, les deux modèles et leurs paramètres sont enregistrés.
+
+```sh
+python3 "$SOURCE/run_reconstruction.py" PRIVATE-HUB.json hub work/NEW-hub
+python3 "$SOURCE/run_reconstruction.py" PRIVATE-HUB-CAD.json cad-hub work/NEW-hub-cad
+```
+
+Le cas `hub` référence `sections.json`, son empreinte et celle du reçu de
+surfaces ; il renseigne `hub_surface_selections`, `hub_normal_weight` et
+`hub_robust_scale_source_units`. Le cas `cad-hub` référence ensuite le nouveau
+`hub-surfaces.json` et son empreinte, avec la même image FreeCAD qualifiée et
+une échelle explicitement conditionnelle.
+
+Un secteur angulaire de 10° sur quatre est réservé dans le repère initial
+commun aux deux ajustements. SciPy ajuste un cylindre puis un cône avec
+distances et normales, sur les autres secteurs. Le cône est retenu uniquement
+si RMS **et** percentile 95 s'améliorent sur les secteurs réservés. La distance
+est normale à la surface analytique infinie ; elle exclut les bords de coupe.
+Ce partage sert à la sélection exploratoire de modèles dans le même scan.
+Il ne fournit ni une mesure indépendante ni une validation dimensionnelle.
+
+Sur les deux plages inspectées, le cylindre intérieur est conservé et le cône
+extérieur réduit le RMS d'environ **34 %** et le percentile 95 d'environ
+**29 %** par rapport au cylindre. Un ajustement conique global incluant les
+transitions n'améliorait pas les deux critères ; il reste conservé comme
+diagnostic rejeté. Les axes candidats demeurent distincts, sans coaxialité
+imposée ni identité de portée fonctionnelle déclarée.
+
+FreeCAD produit deux faces BRep analytiques latérales ouvertes, avec les
+interpolations angulaires explicitement étiquetées. Aucun bouchon ni solide
+complet n'est exporté. Le STEP relu conserve leur aire ; les fichiers natifs
+se rouvrent. Une tessellation du **STEP effectivement exporté**, superposée au
+scan dans quatre vues privées, contrôle le transfert des repères. Les bornes
+des surfaces sont des limites d'acquisition, pas des faces usinées mesurées.
+Les deux composantes topologiques du rotor sont également inventoriées :
+elles ne définissent pas deux pièces, et la petite composante ne correspond
+pas au dos entier. Aucune registration arbitraire du dos n'est appliquée.
+
 Le coordinateur refuse un dossier existant. Chaque étape publie son reçu
 avant de continuer. En cas d'échec, les sorties partielles et `failure.json`
 sont conservés. Pour reprendre, réutiliser les entrées vérifiées et choisir un
@@ -208,18 +252,27 @@ privé conserve versions, empreintes, transformations, états et limitations.
 
 ## Vérification logicielle et sauvegarde
 
-Les sept tests ciblés passent avec les dépendances scientifiques de Kali2 :
+Les huit tests ciblés passent avec les dépendances scientifiques de Kali2 :
 axe synthétique incliné, lacunes locales, spline périodique, séparation des
 lofts aux coupes absentes, protections des empreintes/sorties, lois d'échelle
-du volume/inertie et conservation des échecs lors d'une reprise.
+du volume/inertie et conservation des échecs lors d'une reprise. Le nouveau
+test récupère un cylindre et un cône synthétiques inclinés sur des secteurs
+réservés disjoints ; il refuse les échelles de calcul non finies et un partage
+angulaire insuffisant.
 Compilation native C# : zéro erreur, zéro avertissement. CAO FreeCAD et STEP
 rouverts ; trois runs PicoGK et revues indépendantes exécutés.
 
 `make check` passe sur une copie ext4 des fichiers effectivement suivis par
-Git, avec `PYTHONNOUSERSITE=1` et `umask 022` : suite découverte de 3 553 tests,
+Git, avec `PYTHONNOUSERSITE=1` et `umask 022` : suite découverte de 3 554 tests
+lors de la continuation du 6 octobre,
 dont 181 ignorés pour dépendances optionnelles, puis contrôles complémentaires
 du Makefile. Le test ciblé est exécuté séparément avec SciPy/trimesh disponibles.
 Cette séparation évite les bindings OCP personnels incompatibles de l'hôte.
+Le premier contrôle du 6 octobre a détecté un import de trimesh inutile au
+chargement du nouveau test. Cet import est désormais limité à la lecture du
+scan ; le test analytique utilise NumPy/SciPy. L'échec et le log final accepté
+sont conservés séparément. Les paramètres géométriques avant/après ce correctif
+sont identiques octet par octet.
 L'archive de contrôle conserve les fichiers suivis même si leur chemin est
 ignoré par défaut ; les métadonnées AppleDouble de transfert sont retirées de
 cette seule copie de contrôle. Aucun fichier métier n'est modifié pour faire
@@ -230,3 +283,17 @@ Les 80 fichiers privés de surfaces, exports et revues sont copiés sur Mac et
 Kali2 avec comparaison de toutes les empreintes. Les deux scans originaux
 gardent leurs SHA-256. Les logs, reçus et tentatives précédentes sont conservés.
 Aucune dépense Vast et aucune validation physique dans cette campagne.
+
+Les [archives GitHub privées](https://github.com/cluster2600/porscheparts-935-private)
+conservent les deux originaux, tous les résultats scientifiques et tentatives
+antérieures, paramètres, CAO, maillages et logs. La capture du 5 octobre est
+publiée dans [sa release d'archive](https://github.com/cluster2600/porscheparts-935-private/releases/tag/reconstruction-20261005) ;
+la continuation du moyeu dispose d'une
+[capture séparée](https://github.com/cluster2600/porscheparts-935-private/releases/tag/hub-surfaces-20261006).
+Les manifestes donnent les empreintes par fichier et par archive. Les
+empreintes SHA-256 retournées par GitHub sont comparées aux archives locales
+après publication. Les copies intégrales du dépôt public sont exclues des
+archives de résultats puisqu'elles sont déjà dans Git ; le commit des sources
+et leurs instantanés sont conservés. Ces archives ne constituent pas une
+qualification de fabrication. Le code et les synthèses demeurent dans
+[la PR publique #132](https://github.com/cluster2600/porscheparts/pull/132).

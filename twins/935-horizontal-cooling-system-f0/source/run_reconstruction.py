@@ -317,7 +317,7 @@ def native(case, stage, output):
         arguments.append(str(case['voxel_mm_conditional']))
     else:
         command += ['-e', 'LD_LIBRARY_PATH=/opt/freecad/usr/lib', '--entrypoint', '/opt/freecad/usr/bin/python', image,
-                    mapped(Path(__file__).with_name('build_section_cad.py'))]
+                    mapped(Path(__file__).with_name('build_hub_cad.py' if stage == 'cad-hub' else 'build_section_cad.py'))]
     with (output / 'native.log').open('x') as log:
         subprocess.run(command + arguments + [mapped(output / 'artifacts')], stdout=log, stderr=subprocess.STDOUT, check=True)
     result = json.loads((output / 'artifacts/receipt.json').read_text())
@@ -327,8 +327,8 @@ def native(case, stage, output):
 
 def run(case_path, stage, output):
     case = json.loads(Path(case_path).read_text())
-    if stage not in ('preflight', 'surfaces', 'picogk', 'cad', 'review'):
-        raise ValueError('Implemented stages: preflight, surfaces, picogk, cad, review. Complete-reference solver inputs remain unresolved.')
+    if stage not in ('preflight', 'surfaces', 'picogk', 'cad', 'review', 'hub', 'cad-hub'):
+        raise ValueError('Implemented stages: preflight, surfaces, picogk, cad, review, hub, cad-hub. Complete-reference solver inputs remain unresolved.')
     output = fresh(output)
     os.umask(0o077)
     try:
@@ -336,7 +336,10 @@ def run(case_path, stage, output):
             receipt = preflight(output)
         elif stage == 'surfaces':
             receipt = surfaces(case, output)
-        elif stage in ('picogk', 'cad'):
+        elif stage == 'hub':
+            from reconstruct_hub_surfaces import reconstruct
+            receipt = reconstruct(case, output)
+        elif stage in ('picogk', 'cad', 'cad-hub'):
             receipt = native(case, stage, output)
         else:
             from review_reconstruction import review

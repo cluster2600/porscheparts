@@ -18,6 +18,27 @@ except ImportError:
 
 @unittest.skipUnless(AVAILABLE, 'Requires working numpy/scipy numerical runtime')
 class ScanReconstructionTests(unittest.TestCase):
+    def test_bounded_hub_models_recover_inclined_analytic_surfaces_on_heldout_sectors(self):
+        from reconstruct_hub_surfaces import fit_surface
+        angle, height = np.meshgrid(np.linspace(0, 2 * np.pi, 360, endpoint=False), np.linspace(-10, 10, 8))
+        axis = np.array([.08, -.12, 1]); axis /= np.linalg.norm(axis)
+        x = np.cross([0, 1, 0], axis); x /= np.linalg.norm(x)
+        radial = np.outer(np.cos(angle.ravel()), x) + np.outer(np.sin(angle.ravel()), np.cross(axis, x))
+        for kind, slope in [('cylinder', 0), ('cone', .025)]:
+            points = radial * (11 + slope * height.ravel())[:, None] + np.outer(height.ravel(), axis) + [.3, -.4, 0]
+            normals = (radial - slope * axis) / np.sqrt(1 + slope ** 2)
+            fit = fit_surface(points, normals, [0, 0, 0, 0, 11], [8, 16], kind)
+            self.assertLess(fit['heldout_rms_source_units'], 1e-7)
+            self.assertAlmostEqual(fit['radius_slope'], slope, delta=1e-7)
+            np.testing.assert_allclose(fit['axis_in_seed_frame'], axis, atol=1e-7)
+            self.assertFalse(set(fit['test_sample_indices']) & set(fit['train_sample_indices']))
+            self.assertEqual(len(fit['test_sample_indices']) + len(fit['train_sample_indices']), len(points))
+            self.assertFalse(fit['functional_datum_verified'])
+        with self.assertRaises(ValueError):
+            fit_surface(points, normals, [0, 0, 0, 0, 11], [8, 16], 'cone', robust_scale=float('nan'))
+        with self.assertRaises(ValueError):
+            fit_surface(points[:100], normals[:100], [0, 0, 0, 0, 11], [8, 16], 'cone')
+
     def test_observed_cylinder_recovers_tilt_without_using_global_pca_axis(self):
         angle = np.linspace(0, 2 * np.pi, 360, endpoint=False)
         angle, height = np.meshgrid(angle, np.linspace(-10, 10, 8))

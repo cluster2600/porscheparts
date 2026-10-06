@@ -13,11 +13,15 @@ La référence historique précède la variante améliorée. Le premier lot port
 sur la validation numérique et le [protocole de banc](BENCH_PROTOCOL.md) ;
 fabrication et validation physique viennent après.
 
-La [fiche d'implémentation du 5 octobre](IMPLEMENTATION.md) contient les
+La [fiche d'implémentation des 5 et 6 octobre](IMPLEMENTATION.md) contient les
 commandes exécutables, versions, contrôles et limites. Le coordinateur accepte
 un cas, une étape et un nouveau dossier privé. La campagne a reconstruit neuf
 plages de pales observées, produit trois résolutions PicoGK, une CAO native
-éditable et les cartes d'écarts/coupes. Elle n'a pas encore clos la géométrie
+éditable et les cartes d'écarts/coupes. La continuation ajoute deux surfaces
+analytiques ouvertes du moyeu, contrôlées sur des secteurs réservés du scan
+et exportées en FreeCAD/STEP. Les données et résultats détaillés sont sauvegardés
+dans les [archives GitHub privées](https://github.com/cluster2600/porscheparts-935-private).
+Elle n'a pas encore clos la géométrie
 du rotor, la métrologie des interfaces ou le mécanisme ; les étapes physiques
 qui en dépendent restent ouvertes. Aucun ancien proxy n'entre dans les calculs
 de référence et aucune nouvelle location Vast n'est utilisée.
