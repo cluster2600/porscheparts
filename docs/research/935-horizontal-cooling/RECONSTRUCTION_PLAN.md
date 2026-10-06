@@ -13,6 +13,16 @@ La référence historique précède la variante améliorée. Le premier lot port
 sur la validation numérique et le [protocole de banc](BENCH_PROTOCOL.md) ;
 fabrication et validation physique viennent après.
 
+Le 6 octobre 2026, le propriétaire a fixé la cible du premier ensemble :
+**réplique exacte du système horizontal et de son montage sur une 935**.
+L'implantation, les interfaces, la transmission et les guides d'air de cette
+référence sont reconstruits avant toute amélioration. Une seconde étape
+adaptera le système horizontal à un **moteur de 993**, avec un contrat
+d'installation propre ; elle reste distincte du programme 993 vertical.
+Les familles de véhicules sont connues, mais les variantes exactes et leurs
+cotes de montage restent à qualifier. Cette décision ne valide aucune
+interface ni dimension encore inconnue.
+
 La [fiche d'implémentation des 5 et 6 octobre](IMPLEMENTATION.md) contient les
 commandes exécutables, versions, contrôles et limites. Le coordinateur accepte
 un cas, une étape et un nouveau dossier privé. La campagne a reconstruit neuf
@@ -32,8 +42,8 @@ de référence et aucune nouvelle location Vast n'est utilisée.
 Le résultat attendu est une géométrie source éditable de toutes les pièces
 spécifiques, une nomenclature des composants normalisés, un assemblage avec
 interfaces documentées, des calculs caractérisant le système et un jumeau
-confronté aux mesures, pour une version modernisée, plus légère et envoyant
-davantage d'air utile sur le moteur. Le spécimen fourni sert de référence de
+confronté aux mesures pour la réplique 935, puis pour l'adaptation 993 et les
+versions améliorées. Le spécimen fourni sert de référence de
 départ ; une reproduction exacte et une reconception d'une zone non observable
 ont des statuts distincts. Les lots ci-dessous caractérisent la référence et
 les variantes améliorées avec les mêmes exigences de preuve.
