@@ -2,123 +2,86 @@
 
 # Turbo engine carrier (Motortraeger)
 
-**Status: **safety-critical**. No part is released; see [SAFETY.md](../../SAFETY.md).**
+**`993-ENG-CARRIER-0001`** · Porsche 993 Turbo · 1995–1998
 
-Cross member carrying the 993 Turbo powertrain, part number 993 115 021 53. The PET catalogue places it in illustrated group 109-00 "Engine suspension Turbo", position 17: the Turbo application is established, not inferred. Structural part carrying the engine mass and its dynamic loads into the body shell.
+> [!CAUTION]
+> **Not ready to print. Safety-critical concept; no manufacturing release.** Catalogue status: `concept`; not a print file. The organic geometry is a design study, not an OEM reconstruction or evidence of fit, strength or fatigue life. See [SAFETY.md](../../SAFETY.md).
 
-```mermaid
-flowchart LR
-    L0["concept"]
-    L1["dimensionally_reviewed"]
-    L2["prototype_fitted"]
-    L3["functionally_tested"]
-    L4["engineering_reviewed"]
-    L5["released"]
-    L0 --> L1 --> L2 --> L3 --> L4 --> L5
-    classDef here fill:#fff4d6,stroke:#b7791f,color:#1a1a1a,stroke-width:3px;
-    classDef done fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
-    classDef todo fill:#f4f4f4,stroke:#9e9e9e,color:#6b6b6b;
-    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
-    class L0 here
-    class L1 todo
-    class L2 todo
-    class L3 todo
-    class L4 todo
-    class L5 todo
-```
+## Current design study — R9
 
-*Validation ladder of `catalog/schemas/part.schema.json`; this record is at `concept`.*
+R9 explores an organic engine carrier using **Ti-6Al-4V as an unqualified material candidate**, with density **4,420 kg/m³**, nominal **1.5 mm ribs** and a **4.0 mm center section**. These are modeling assumptions, not measured Porsche dimensions or a qualified manufacturing specification.
 
-Catalogue record: [`catalog/parts/993-eng-carrier-0001.json`](../../catalog/parts/993-eng-carrier-0001.json)
+![Actual exported R8 and R9 triangles: organic carrier and local opening correction; provisional interfaces.](../../parts/993-eng-carrier-0001/media/r9/carrier-R9-actual-geometry-comparison.png)
 
-## Identity
+*Actual exported R8 and R9 triangles: organic carrier and local opening correction; provisional interfaces.*
 
-| field | value |
-|---|---|
-| identifier | 993-ENG-CARRIER-0001 |
-| generation | 993 |
-| variants | 993_Turbo |
-| model years | 1995 to 1998 |
-| Porsche part numbers | 993 115 021 53 |
-| category | powertrain_mounting |
-| safety class | safety_critical |
-| intended use | Supports the powertrain and transmits its loads to the body shell |
+![Actual native R8 and R9 opening section; study coordinates, not measured OEM geometry.](../../parts/993-eng-carrier-0001/media/r9/carrier-R9-actual-opening-section.png)
 
-## Material and manufacturing
+*Actual native R8 and R9 opening section; study coordinates, not measured OEM geometry.*
 
-| field | value |
-|---|---|
-| preferred process | undecided |
-| candidate processes | CNC, casting, sheet_metal |
-| material family | unknown OEM material; steel grades previously considered remain unqualified design candidates |
-| grade | unknown; gold appearance does not establish alloy, coating composition or heat treatment |
-| standard | none |
-| supplier requirements | Material and batch traceability, Process and parameters qualified by the manufacturer, Dimensional inspection of the mounting interfaces, Non-destructive testing suited to a structural part, Manufacturing report kept and linked to the STEP revision |
-| post-processing | carefully finished fillet radii, fine surface finish in the tensile zones, shot peening, corrosion protection if the grade is not stainless |
+### Mass and mechanical screening
 
-## Geometry
+| Representation | Calculated mass | Meaning |
+| --- | ---: | --- |
+| R9 native geometry | 1.032036850 kg | Native volume × candidate dense reference density |
+| R9 STL mesh | 1.031119182 kg | Oriented mesh volume × the same density |
 
-| field | value |
-|---|---|
-| source type | estimated |
-| master format | build123d |
-| units | mm |
-| accuracy (mm) | not recorded |
+The two masses describe different representations; they must not be treated as interchangeable measurements of a physical part.
 
-**Master file**
+The R9 mechanical screen used hypothetical **about 3,776 N vertical force + 425 N·m roll torque**. The assumed case uses a 350 kg engine, 55% rear mass share, effective 2g vertical acceleration, 850 N·m engine torque and 50% rear roll-torque share. About the model origin the common wrench is Fz = −3,775.56025 N, Mx = 425,000 N·mm and My = −94,389.00625 N·mm; transport is applied once. Dense reference elasticity E = 107 GPa and ν = 0.31 supplies no process-specific strength or fatigue allowable.
 
-- [`scripts/build_993_concept_f0.py`](../../scripts/build_993_concept_f0.py)
+Refining from **h/2 to h/4** increased the reported stress at all three fixed 3D regions:
 
-**Derived files**
+| Sampled site | h/2 | h/4 |
+| --- | ---: | ---: |
+| K1 | 335.0 MPa | 419.2 MPa |
+| K2 | 670.9 MPa | 1,028.2 MPa |
+| K3 | 667.2 MPa | 792.2 MPa |
 
-- [`parts/993-eng-carrier-0001/derived/engine_carrier_concept_f0.step`](../../parts/993-eng-carrier-0001/derived/engine_carrier_concept_f0.step)
+**The screen is nonconverged.** These local values do not establish allowable stress, a safety factor, strength improvement or fatigue life. No physical load validation, material/process qualification or fit qualification is claimed. Later R10e geometric repair is not admitted as a verified successor; there is no R10 FEM result in this presentation.
 
-## Images
+![Actual R8 and R9 numerical fields under the same hypothetical wrench; conditional comparison, no converged strength or fatigue result.](../../parts/993-eng-carrier-0001/media/r9/carrier-R9-actual-mechanical-comparison.png)
 
-![preview](../../parts/993-eng-carrier-0001/media/preview.png)
+*Actual R8 and R9 numerical fields under the same hypothetical wrench; conditional comparison, no converged strength or fatigue result.*
 
-*`parts/993-eng-carrier-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*
+![Frozen R9 verification: three fixed 3D regions, rising refinement peaks and unqualified radii/supports; English labels only.](../../parts/993-eng-carrier-0001/media/r9/carrier-R9-frozen-verification-English.png)
 
-![views](../../parts/993-eng-carrier-0001/media/views.png)
+*Frozen R9 verification: three fixed 3D regions, rising refinement peaks and unqualified radii/supports; English labels only.*
 
-*`parts/993-eng-carrier-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
+The comparison panel's 901.4 MPa raw global R9 maximum and its local R8-to-R9 change are conditional numerical observations, not converged physical stress or strength margins. Moving the local cuts changes the fixed-region peaks by approximately 0.023%, 0.119% and 0.007%, while the peaks continue to rise under refinement. Reentrant faceted edges remain; a finished minimum radius, real mount stiffness and bolt preload/contact are unqualified. This behavior does not establish the OEM crack mechanism or a failure threshold above 700 metric horsepower.
 
-## Provenance and sources
+[Public study manifest](../../parts/993-eng-carrier-0001/media/r9/study-public.json) records the revision, artifact SHA-256 digests, representation provenance and publication limits. Original project render bytes are preserved. The selected facts carry hashes for the native source, STL, numerical fields and private render receipts without their storage paths. No third-party OEM pixels or ImageGen were used according to the owner’s frozen receipts; underlying private artifacts were not inspected for this presentation.
 
-| field | value |
-|---|---|
-| record license | All rights reserved (see LICENSE); existing geometry is hypothetical concept work |
+[Selected facts and original provenance hashes](../../parts/993-eng-carrier-0001/media/r9/selected-facts-and-provenance.json) and the [owner's publication projection notes](../../parts/993-eng-carrier-0001/media/r9/README.md) retain the exact values and their limits. Permission to publish these originals is not a repository-wide reuse license.
 
-**Sources**
+The frozen verification panel uses [English labels from the same renderer](../../parts/993-eng-carrier-0001/media/r9/English-labels-README.md). Its [translation provenance](../../parts/993-eng-carrier-0001/media/r9/render-provenance.json) records both image hashes and unchanged geometry, fields and plotted data. The original historical image is preserved by its owner.
 
-- [Porsche Classic Genuine Parts Catalogue - 911 (993)](https://www.porsche.com/australia/accessoriesandservice/classic/originalpartscatalogue/)
-- [teile.com - Motortraeger 911 993, group 109-00 Motoraufhaengung](https://teile.com/de/porsche-ersatzteile-onlineshop/modell-911-993/2/Motor-Kuehlung/109-Motoraufhaengung/5/109-00-Motoraufhaengung/Motortraeger/1503)
-- [Rennline - tubular engine carrier for 964/993 non turbo](https://www.rennline.com/tubular-engine-carrier-sku-m19/)
-- [Elferspot - Porsche 993 portrait, facts and specifications](https://www.elferspot.com/en/magazine/porsche-993-portrait/)
-- [Porsche Fanatics - OEM record 993 115 021 53](https://porschefanatics.com/oem/993-115-021-53/)
-- [Porsche PET - 911 1994-1998 Type 993, revision KAT 17](https://rsworkshop.ch/downloaded/pet-porsche/993_1994-98_KATALOG.pdf)
-- [Porsche Club GB - Cracked engine mount bracket](https://www.porscheclubgb.com/forum/threads/cracked-engine-mount-bracket.124901/)
-- [PFF - Rennline Motortraeger / Schwert](https://www.pff.de/thread/2823902-rennline-motortraeger-schwert/)
-- [Porsche - 911 (993) workshop manual, group 10, tightening torque table](https://www.pelicanparts.com/More_Info/WKD483121.htm?pn=WKD-483-121-OEM)
-- [FVD - Engine suspension bracket / carrier 993 Turbo, 99311502153](https://www.fvd.net/en-us/shop/engine-suspension-bracket-carrier-993-turbo-99311502153~p248965)
-- [Porsche official PET USA - KAT 517, group 109-00](https://assets-v2.porsche.com/us/-/media/Project/PCOM/SharedSite/PorscheClassic/Original-Parts-Catalogue/PDF-EN-US/KAT517_USA_911_98_KATALOG#page=117)
-- [Rennline M01-RS - RSR Style Stainless Steel Engine Carrier](https://www.rennline.com/rennline-rsr-style-stainless-steel-engine-carrier-porsche-sku-m01-rs/)
-- [Sunset Porsche - Engine Carrier 99311502154](https://www.sunsetporscheparts.com/oem-parts/porsche-engine-carrier-99311502154)
-- [Rothsport - Reinforced 993 Engine Carrier](https://rothsport.com/products/reinforced-engine-carrier-993)
+## Interfaces and open work
 
-## Validation
+The original carrier references **993 115 021 53 / 54** are distinct from the separate central console **993 115 103 52 (10352)** and the Turbo engine-mount stack. PET item 17 identifies the carrier; item 18 identifies the separate bracket. A visual match to the blade alone cannot establish the complete assembly or its load path. OEM fit remains unknown.
 
-| field | value |
-|---|---|
-| status | concept |
-| vehicle tested | not recorded |
-| reviewed by |  |
-| limitations | not recorded |
+Measured hole patterns, axes, mating faces, datums, clearances and tolerances are still required for the exact variant, together with validated load cases and assembly checks. Titanium would additionally require a qualified build process and orientation, heat treatment, machining, inspection, fatigue evidence and galvanic isolation. No study render or closed mesh satisfies these requirements.
 
-**Evidence**
+## Archived F0 catalogue concept
 
-- none
+The catalogue master remains [`scripts/build_993_concept_f0.py`](../../scripts/build_993_concept_f0.py), with its [F0 STEP export](../../parts/993-eng-carrier-0001/derived/engine_carrier_concept_f0.step). Its **580 × 45 × 45 mm** block is an estimated software placeholder, not the original carrier. R9 is not promoted to this master or to fabrication authority.
+
+![Archived F0 concept block — not the current organic study](../../parts/993-eng-carrier-0001/media/preview.png)
+
+*Archived F0 render. [Orthographic F0 views](../../parts/993-eng-carrier-0001/media/views.png) and [preview provenance](../../parts/993-eng-carrier-0001/media/preview.json) remain tied to the F0 STEP. `scripts/render_part_previews.py` scans direct `derived/` files; these archival previews do not represent R9.*
+
+Earlier concept evidence and historical receipts retain their original scope. They are not upgraded by this presentation.
+
+## Original-part references and related records
+
+Source photographs and catalogue illustrations remain on their rights holders' sites; they are not copied into this presentation.
+
+- [Porsche Classic parts catalogue](https://www.porsche.com/australia/accessoriesandservice/classic/originalpartscatalogue/)
+- [Catalogue source of truth](../../catalog/parts/993-eng-carrier-0001.json), including reference provenance and known limits
+- [Carrier description page](../../docs/pieces/993-eng-carrier-0001.md)
+- [Carrier folder presentation](../../parts/993-eng-carrier-0001/README.md)
+- [Safety rules](../../SAFETY.md)
 
 ---
 
-*Page generated from the catalogue record by `scripts/render_part_pages.py`, checked by `make check`. Corrections go in the record, not here.*
+*Generated by `scripts/render_part_pages.py` from the catalogue record, the carrier presentation template and its public study manifest. Checked by `make check`; edit the sources, not the generated pages.*

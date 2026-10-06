@@ -14,6 +14,40 @@ FICHES = sorted((ROOT / "catalog" / "parts").glob("*.json"))
 
 
 class PartPageTests(unittest.TestCase):
+    def test_carrier_current_study_precedes_archived_master_on_both_pages(self):
+        record_path = ROOT / "catalog/parts/993-eng-carrier-0001.json"
+        record = json.loads(record_path.read_text())
+        outputs = [pages.presentation(record, record_path),
+                   pages.page_markdown(record, record_path)]
+        for result in outputs:
+            archive = result.index("## Archived F0 catalogue concept")
+            self.assertLess(result.index("media/r9/"), archive)
+            self.assertGreater(result.index("media/preview.png"), archive)
+            self.assertLess(result.index("carrier-R9-actual-mechanical-comparison.png"), archive)
+            self.assertLess(result.index("carrier-R9-frozen-verification-English.png"), archive)
+            self.assertNotIn("/carrier-R9-frozen-verification.png)", result)
+            for limit in ("nonconverged", "OEM fit remains unknown", "no manufacturing release",
+                          "no R10 FEM", "1.032036850", "1.031119182", "10352"):
+                self.assertIn(limit, result)
+            self.assertNotIn("{{", result)
+            self.assertNotIn("/Users/", result)
+            self.assertNotIn("/home/", result)
+        self.assertEqual(record["geometry"]["master_file"], "scripts/build_993_concept_f0.py")
+        self.assertEqual(record["validation"]["status"], "concept")
+
+    def test_carrier_summary_retains_owner_verified_representation_and_site_values(self):
+        folder = ROOT / "parts/993-eng-carrier-0001/media/r9"
+        study = json.loads((folder / "study-public.json").read_text())
+        facts = json.loads((folder / "selected-facts-and-provenance.json").read_text())
+        self.assertEqual([m["mass_kg"] for m in study["masses"]],
+                         [facts["geometry"]["native_dense_reference_mass_kg"],
+                          facts["geometry"]["actual_STL_dense_reference_mass_kg"]])
+        for row in study["mechanical_screen"]["sites"]:
+            site = facts["mechanical"]["sites"][row["site"]]
+            self.assertEqual(row["h_over_2_mpa"], site["h2_peak_MPa"])
+            self.assertEqual(row["h_over_4_mpa"], site["h4_far_peak_MPa"])
+            self.assertFalse(site["stress_convergence_proven"])
+
     def test_fan_rebuild_precedes_archived_geometry(self):
         record = ROOT / "catalog/parts/993-eng-cooling-impeller-alsi10mg-f0-0001.json"
         result = pages.presentation(json.loads(record.read_text()), record)

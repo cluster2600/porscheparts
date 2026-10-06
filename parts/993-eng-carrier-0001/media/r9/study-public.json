@@ -1,0 +1,108 @@
+{
+  "revision": "R9 frozen inspection reference",
+  "publication_scope": "Original project renders and selected facts only; no CAD, private corpus, raw receipts or engineering release. Publication permission does not grant a repository-wide reuse license.",
+  "source_bundle_manifest_sha256": "f9b2e00a2b7967edfedc95389638e853e31029aefc44c060bc18efb5a535436a",
+  "provenance_note": "Original project render bytes are preserved. The selected facts carry hashes for the native source, STL, numerical fields and private render receipts without their storage paths. No third-party OEM pixels or ImageGen were used according to the owner’s frozen receipts; underlying private artifacts were not inspected for this presentation.",
+  "material_candidate": {
+    "alloy": "Ti-6Al-4V",
+    "density_kg_m3": 4420.0
+  },
+  "nominal_sections_mm": {
+    "ribs": 1.5,
+    "center": 4.0
+  },
+  "masses": [
+    {
+      "representation": "R9 native geometry",
+      "mass_kg": 1.03203685,
+      "meaning": "Native volume × candidate dense reference density"
+    },
+    {
+      "representation": "R9 STL mesh",
+      "mass_kg": 1.031119181885829,
+      "meaning": "Oriented mesh volume × the same density"
+    }
+  ],
+  "mechanical_screen": {
+    "hypothetical_force_n": 3776,
+    "hypothetical_torque_nm": 425,
+    "stress_converged": false,
+    "sites": [
+      {
+        "site": "K1",
+        "h_over_2_mpa": 335.0339053078351,
+        "h_over_4_mpa": 419.15756992659453
+      },
+      {
+        "site": "K2",
+        "h_over_2_mpa": 670.9316664993472,
+        "h_over_4_mpa": 1028.2318203639447
+      },
+      {
+        "site": "K3",
+        "h_over_2_mpa": 667.1539809173216,
+        "h_over_4_mpa": 792.198455279351
+      }
+    ]
+  },
+  "assets": [
+    {
+      "path": "parts/993-eng-carrier-0001/media/r9/carrier-R9-actual-geometry-comparison.png",
+      "sha256": "3ea1d6c2ad06cbc708d16c740bc66d04e984aef5ea7e5cd8834e5da87339a861",
+      "caption": "Actual exported R8 and R9 triangles: organic carrier and local opening correction; provisional interfaces.",
+      "display": true,
+      "group": "geometry"
+    },
+    {
+      "path": "parts/993-eng-carrier-0001/media/r9/carrier-R9-actual-opening-section.png",
+      "sha256": "c58a3421fdb64a5ae75923cd71fdfd93603c061d92c39e9a8cb615cd89c7fa09",
+      "caption": "Actual native R8 and R9 opening section; study coordinates, not measured OEM geometry.",
+      "display": true,
+      "group": "geometry"
+    },
+    {
+      "path": "parts/993-eng-carrier-0001/media/r9/carrier-R9-actual-mechanical-comparison.png",
+      "sha256": "634ef37a6dc75e42ebe6b056c2aab6c204fe6d852ea66ce300e643cb3296d3e4",
+      "caption": "Actual R8 and R9 numerical fields under the same hypothetical wrench; conditional comparison, no converged strength or fatigue result.",
+      "display": true,
+      "group": "mechanical"
+    },
+    {
+      "path": "parts/993-eng-carrier-0001/media/r9/selected-facts-and-provenance.json",
+      "sha256": "5a425dc8493a6b83cf7a767694a9757a3e93d069d73a15ecfaf88733adadcfdc",
+      "caption": "selected-facts-and-provenance.json",
+      "display": false,
+      "group": "geometry"
+    },
+    {
+      "path": "parts/993-eng-carrier-0001/media/r9/README.md",
+      "sha256": "4c85e0138a887a5ac4029b11b8e443c4ab79a03eddbacf41d81ad7680b39a9fc",
+      "caption": "README.md",
+      "display": false,
+      "group": "geometry"
+    },
+    {
+      "path": "parts/993-eng-carrier-0001/media/r9/English-labels-README.md",
+      "sha256": "61963b7e05a70b1c7316b5ae4cb02d99eb1ce0f001e046fe4e9615726d76df7c",
+      "caption": "English-labels-README.md",
+      "display": false,
+      "group": "mechanical"
+    },
+    {
+      "path": "parts/993-eng-carrier-0001/media/r9/carrier-R9-frozen-verification-English.png",
+      "sha256": "a9226f759387afa3445c7b530effce4058c9b203bc732be84bce71d3b59723ee",
+      "caption": "Frozen R9 verification: three fixed 3D regions, rising refinement peaks and unqualified radii/supports; English labels only.",
+      "display": true,
+      "group": "mechanical"
+    },
+    {
+      "path": "parts/993-eng-carrier-0001/media/r9/render-provenance.json",
+      "sha256": "b1e21fc4039b3941a8d6478fe229f64824e6323709e10703cd649b648e3f7ce7",
+      "caption": "render-provenance.json",
+      "display": false,
+      "group": "mechanical"
+    }
+  ],
+  "English_label_bundle_manifest_sha256": "d9badfee70a065cdb0023cfdaf414fbe29d072119a6128c0d02c43d4dc746521",
+  "English_translation_note": "Frozen verification labels were translated by the owner’s existing renderer. Original geometry/numerical patches, plot series and qualification limits are retained; upper native/FE panel pixels were compared with the original and matched exactly. Original French PNG provenance is retained by hash, without replacing historical originals."
+}
