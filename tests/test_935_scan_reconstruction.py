@@ -18,6 +18,30 @@ except ImportError:
 
 @unittest.skipUnless(AVAILABLE, 'Requires working numpy/scipy numerical runtime')
 class ScanReconstructionTests(unittest.TestCase):
+    def test_acquired_shaft_periodicity_is_inferred_across_bands_and_disagreement_rejected(self):
+        from reconstruct_drive_shaft import periodic_profiles
+        theta = np.linspace(0, 2*np.pi, 1100, endpoint=False)
+        theta = theta[(theta < .2) | (theta > .4)]  # A real missing sector must remain recorded.
+        bands = [[20,23],[23,26],[26,29]]
+        def points(counts):
+            rows = []
+            for (lo, hi), count in zip(bands, counts):
+                radius = 12 + .4*np.cos(count*theta+.1) + .06*np.sin(2*count*theta) + .03*np.cos(theta)
+                for height in np.linspace(lo+.2, hi-.2, 4):
+                    rows.append(np.column_stack([radius*np.cos(theta), radius*np.sin(theta), np.full(len(theta),height)]))
+            return np.concatenate(rows)
+        result = periodic_profiles(points([22,22,22]), bands, list(range(6,41)))
+        self.assertEqual(result['observed_periodicity'], 22)
+        self.assertFalse(result['axis_or_tooth_standard_verified'])
+        for row in result['bands']:
+            self.assertLess(row['heldout_rms_source_units'], 1e-8)
+            self.assertGreater(row['maximum_unsampled_angular_gap_deg'], 10)
+            self.assertFalse(set(row['train_sample_indices']) & set(row['test_sample_indices']))
+        with self.assertRaisesRegex(ValueError, 'Periodicity disagrees'):
+            periodic_profiles(points([22,14,22]), bands, list(range(6,41)))
+        with self.assertRaises(ValueError):
+            periodic_profiles(points([22,22,22]), bands, list(range(6,41)), samples=32)
+
     def test_bounded_hub_models_recover_inclined_analytic_surfaces_on_heldout_sectors(self):
         from reconstruct_hub_surfaces import fit_surface
         angle, height = np.meshgrid(np.linspace(0, 2 * np.pi, 360, endpoint=False), np.linspace(-10, 10, 8))

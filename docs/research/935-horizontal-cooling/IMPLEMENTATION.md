@@ -12,7 +12,7 @@ vertical demeure distinct.
 |---|---|
 | 0 — Environnement | Accès Kali2, calculs Python, compilation .NET 9/PicoGK et exports FreeCAD vérifiés. Kali1 indisponible lors du contrôle. Aucune installation ou location. |
 | 1 — Géométrie | Deux originaux contrôlés par SHA-256 ; transformations et inverses conservées. Neuf régions de pales détectées sans imposer un comptage. Sections périodiques, neuf plages contiguës, trois résolutions PicoGK et CAO éditable exécutées. Deux zones acquises du moyeu produisent désormais des surfaces analytiques ouvertes FreeCAD/STEP : cylindre intérieur et cône extérieur. Pieds, extrémités, moyeu solide et dos recalé restent à reconstruire. |
-| 2 — Mécanisme | Les 17 interfaces et les chemins d'efforts existants sont réutilisés. Le scan extérieur de l'entraînement est préparé et ses bords enregistrés ; sa segmentation mécanique, ses axes et son assemblage restent ouverts. Aucun engrenage intérieur supposé. |
+| 2 — Mécanisme | Les 17 interfaces et les chemins d'efforts existants sont réutilisés. Une portion extérieure d'arbre présente 22 lobes périodiques, reconstruits en surface FreeCAD/STEP ouverte. Les autres pièces, les axes fonctionnels et l'assemblage restent ouverts. Aucun engrenage intérieur supposé. |
 | 3 — Air | Aucun calcul de référence lancé : rotor entier, carter, jeux, repères/sens et conditions du pilote non qualifiés. |
 | 4 — Mécanique | Aucun calcul de référence lancé : solides, liaisons, charges et propriétés correspondant au procédé non qualifiés. |
 | 5 — Optimisation | Attend une référence calculée et les contraintes de montage. |
@@ -196,6 +196,82 @@ B-spline FreeCAD donnant un BRep invalide. La version retenue utilise les
 contours échantillonnés sans seconde interpolation. Aucun ancien reçu n'est
 réécrit pour présenter ces tentatives comme acceptées.
 
+## Continuation du mécanisme vers la fabrication, le 6 octobre
+
+L'inspection multivue du Fan Drive conserve les surfaces acquises et la pose
+réversible. Le grand anneau ouvert visible dans la
+[vue du fournisseur](https://www.wolfeclassics.com/shop/p/porsche-935-fan-drive-3d-scan)
+appartient au support extérieur. Son identification provisoire comme poulie
+est rejetée : elle ne définit ni diamètre primitif ni rapport d'entraînement.
+Les ajustements globaux du tube nervuré et de cet anneau restent des essais
+rejetés, avec leurs résidus, sélections et programmes dans l'archive privée.
+
+Une zone extérieure de l'arbre présente **22 lobes répétés**, et non une
+surface cylindrique lisse. Le comptage résulte d'une comparaison des périodes
+6 à 40 dans trois bandes axiales distinctes ; les trois bandes retiennent 22.
+Ce nombre ne définit pas la denture du renvoi intérieur. L'enveloppe cylindrique
+sert uniquement à proposer le repère local. Elle n'est pas une portée usinée
+acceptée. La norme, le profil conjugué, les ajustements et la cote réelle des
+cannelures restent inconnus.
+
+Le calcul final examine toutes les faces du scan préparé ; 11 341 faces
+satisfont la sélection inspectée. Le profil conserve les coefficients des
+harmoniques mesurées dans chaque bande, les faces d'apprentissage et de test,
+ainsi que les intervalles angulaires sans échantillons. Les plus grandes
+lacunes de ces bandes atteignent environ 15–20°. Les surfaces correspondantes
+sont des interpolations périodiques explicites. Les secteurs réservés sont
+des lobes entiers, un sur quatre, dans le même scan. L'erreur radiale RMS est
+0,107–0,122 unité source ; ce contrôle interne n'est pas une métrologie
+indépendante ni une tolérance de fabrication.
+
+```sh
+python3 "$SOURCE/run_reconstruction.py" PRIVATE-DRIVE.json drive work/NEW-drive
+python3 "$SOURCE/run_reconstruction.py" PRIVATE-DRIVE-CAD.json cad-drive work/NEW-drive-cad
+```
+
+Le cas privé contient l'empreinte du scan préparé et de son reçu, le repère
+rigide inspecté, les fenêtres, les bandes, les périodes candidates et
+l'échantillonnage. Le premier run partiel reste archivé ; le run final utilise
+toutes les faces et trois bandes entièrement présentes dans la zone retenue.
+Le deuxième cas référence l'empreinte du profil et la même image FreeCAD
+qualifiée. Il exporte un `Part::Loft` éditable et un STEP, **sans bouchons ni
+solide complet**. Les fichiers sont rouverts ; validité, ouverture et surface
+sont contrôlées. Le facteur 1 mm/unité source demeure une hypothèse explicite.
+
+La revue lit réellement le STEP, le tesselle et le superpose au scan dans
+quatre vues. Elle réutilise le calcul de distance point–triangle existant :
+3 000 points indépendants par sens, uniformes en aire, avec une marge aux
+extrémités du loft. Scan vers STEP : RMS 0,102, P95 0,189 et maximum 0,452
+unité source. STEP vers scan, en conservant les régions interpolées : RMS
+0,288, P95 0,398 et maximum 2,138. **Les grands écarts inverses localisent la
+couverture manquante ; ils ne sont pas supprimés pour accepter une interface.**
+Aucune masse ou résistance d'arbre complet n'est déduite de cette surface.
+
+Le [contrôle des 28 pages de la fiche FIA 3076](DIMENSIONS_AND_DETAILS.md#ce-que-la-fia-fournit-effectivement)
+ajoute une cote documentaire explicitement exclue de la calibration 935 :
+ventilateur vertical de 245 mm à 11 pales. Les huit extensions examinées ne
+résolvent pas les interfaces internes du spécimen horizontal.
+
+### Ce qui manque réellement pour un système fabricable
+
+Le contrat des 17 interfaces demeure incomplet. Les acquisitions à obtenir
+sont regroupées par ce qu'elles débloquent, sans inventer de coordonnées :
+
+| Acquisition indépendante | Définition débloquée |
+|---|---|
+| Deux cotes identifiables, non parallèles, par scan, avec unité, datum et incertitude ; unité d'export documentée | Échelle physique, contrôle de déformation et plans dimensionnés. Les suffixes de précision ne suffisent pas. |
+| Rotor/moyeu/arbre : portée, face, profil conjugué des cannelures, retenue et empilage | Montage du rotor et transmission du couple ; la répétition de 22 lobes observée ne spécifie pas le couple de pièces. |
+| Renvoi démonté ou plans de la même variante : dentures, références de roulements/joints, portées, précharge/jeu, alimentation et retour d'huile | Arbres internes, engrenages, appuis, usinage du carter, lubrification et calculs de transmission. L'extérieur scanné n'observe pas ces informations. |
+| Faces, trous et repères du support et de son récepteur ; carter/guide d'air et jeux, version exacte du moteur pour l'intégration | Assemblage, fixation, interférences, passage d'air et conditions installées. Les deux OBJ disponibles ne couvrent pas tout cet ensemble. |
+| Régimes/charges et données du procédé d'impression retenu pour chaque pièce | Résistance, fatigue, traitements, surépaisseurs, inspection et équilibrage. AlSi10Mg, WE43 et Ti64 restent candidats. |
+
+Le programme peut exploiter ces mesures dans les cas privés et les contrats
+existants. À ce stade, il ne produit pas de plans de fabrication cotés ni
+une nomenclature d'éléments internes arbitraires. La revue mécanique et les
+calculs documentés précèdent la libération des pièces chargées, puis les
+mesures du [protocole de banc](BENCH_PROTOCOL.md) établissent le fonctionnement
+réel. La fabrication complète et la validation du système restent ouvertes.
+
 ## Suite, dépendances et critères d'acceptation
 
 Le [contrat indépendant des 17 interfaces](../../../twins/935-horizontal-cooling-system-f0/interface-contract.json)
@@ -261,6 +337,12 @@ réservés disjoints ; il refuse les échelles de calcul non finies et un partag
 angulaire insuffisant.
 Compilation native C# : zéro erreur, zéro avertissement. CAO FreeCAD et STEP
 rouverts ; trois runs PicoGK et revues indépendantes exécutés.
+
+La continuation de l'arbre ajoute le contrôle d'une périodicité synthétique
+à 22 lobes, avec lacune enregistrée et rejet des bandes incompatibles :
+**neuf tests ciblés passent**. Son `make check` sur ext4 découvre **3 555 tests,
+181 ignorés**, puis tous les contrôles complémentaires passent. Les 6 772
+fichiers suivis sont comparés par empreinte avec la copie de contrôle.
 
 `make check` passe sur une copie ext4 des fichiers effectivement suivis par
 Git, avec `PYTHONNOUSERSITE=1` et `umask 022` : suite découverte de 3 554 tests

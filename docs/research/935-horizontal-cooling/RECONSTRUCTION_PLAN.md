@@ -21,6 +21,9 @@ plages de pales observées, produit trois résolutions PicoGK, une CAO native
 analytiques ouvertes du moyeu, contrôlées sur des secteurs réservés du scan
 et exportées en FreeCAD/STEP. Les données et résultats détaillés sont sauvegardés
 dans les [archives GitHub privées](https://github.com/cluster2600/porscheparts-935-private).
+Le mécanisme possède désormais une portion d'arbre à 22 lobes périodiques
+observés, avec loft ouvert éditable, carte des lacunes et écarts bidirectionnels
+au STEP. Les cannelures conjuguées et les engrenages internes restent inconnus.
 Elle n'a pas encore clos la géométrie
 du rotor, la métrologie des interfaces ou le mécanisme ; les étapes physiques
 qui en dépendent restent ouvertes. Aucun ancien proxy n'entre dans les calculs
