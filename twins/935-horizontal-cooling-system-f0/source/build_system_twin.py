@@ -52,7 +52,8 @@ class Inputs:
     def __init__(self, case):
         self.case = case
         self.synthetic = case["purpose"] == "synthetic_verification"
-        if case["purpose"] not in ("specimen_model", "synthetic_verification"):
+        self.hypothetical = case["purpose"] == "hypothesis_screen"
+        if case["purpose"] not in ("specimen_model", "synthetic_verification", "hypothesis_screen"):
             raise ValueError("Unknown calculation purpose")
         self.evidence = {e["id"]: e for e in case["evidence"]}
         if len(self.evidence) != len(case["evidence"]):
@@ -70,6 +71,9 @@ class Inputs:
             if self.synthetic:
                 if item["kind"] != "synthetic_fixture":
                     raise ValueError("Synthetic case must use fixture evidence")
+            elif self.hypothetical:
+                if item["kind"] != "assumption" or not item.get("rejection_test"):
+                    raise ValueError("Hypothesis inputs require an assumption and rejection test")
             else:
                 if not self.case.get("specimen_id"):
                     raise MissingData("Exact specimen identity is missing")
@@ -174,7 +178,9 @@ def calculate(case):
             result = operation()
             # Reject numeric overflow before creating any result artifact.
             json.dumps(result, allow_nan=False)
-            models[name] = {"status": "synthetic_calculation" if data.synthetic else "conditional_prediction",
+            status = ("hypothesis_calculation" if data.hypothetical else
+                      "synthetic_calculation" if data.synthetic else "conditional_prediction")
+            models[name] = {"status": status,
                             "values": result, "missing": []}
         except MissingData as error:
             models[name] = {"status": "blocked_missing_inputs", "values": None, "missing": [str(error)]}
@@ -335,7 +341,7 @@ def build(case_path, output):
     page = '<!doctype html><html lang="fr"><meta charset="utf-8"><meta name="viewport" content="width=device-width">'
     page += '<title>Système 935 — préparation du jumeau</title><style>body{font:16px system-ui;background:#101923;color:#edf3f8;max-width:1100px;margin:32px auto;padding:20px}section{background:#1c2b3a;padding:14px;margin:12px 0;border-radius:8px}td,th{padding:9px;border-bottom:1px solid #445566;text-align:left}pre{white-space:pre-wrap}strong{color:#ffc56d}</style>'
     page += '<h1>Système horizontal 935</h1><p><strong>Base logique du jumeau — assemblage, interfaces et performances physiques à qualifier.</strong></p>'
-    page += f'<p>Cas : {html.escape(case["id"])} · {html.escape(case["purpose"])}. Les nombres synthétiques concernent uniquement le témoin choisi.</p>'
+    page += f'<p>Cas : {html.escape(case["id"])} · {html.escape(case["purpose"])}. Les nombres synthétiques ou hypothétiques concernent uniquement le scénario choisi.</p>'
     page += cards + '<h2>Interfaces du système</h2><table><tr><th>Interface</th><th>Éléments</th><th>État</th></tr>' + rows + '</table></html>'
     (output / 'review.html').write_text(page)
     for p in output.iterdir():

@@ -96,6 +96,20 @@ class CoolingSystemTwinTests(unittest.TestCase):
         self.case['specimen_id'] = 'not_independently_verified'
         with self.assertRaises(ValueError): calculate(self.case)
 
+    def test_hypotheses_calculate_without_becoming_specimen_evidence(self):
+        self.case['purpose'] = 'hypothesis_screen'
+        self.case['evidence'][0].update(kind='assumption', rejection_test='Compare with an independent bench measurement')
+        result = calculate(self.case)
+        self.assertEqual(result['models']['speeds']['status'], 'hypothesis_calculation')
+        self.assertEqual(result['models']['speeds']['values']['rotor_rpm'], 1000)
+        self.assertFalse(result['manufacturing_release_allowed'])
+        self.case['purpose'] = 'specimen_model'
+        self.case['specimen_id'] = 'unverified'
+        with self.assertRaises(ValueError): calculate(self.case)
+        self.case['purpose'] = 'hypothesis_screen'
+        del self.case['evidence'][0]['rejection_test']
+        with self.assertRaises(ValueError): calculate(self.case)
+
     def test_partial_model_can_calculate_speed_without_airflow(self):
         self.case['parameters']['fan_map']['value'] = None
         result = calculate(self.case)

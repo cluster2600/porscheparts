@@ -35,6 +35,12 @@ library. It reads a case, checks units, finite values, uncertainties and evidenc
 references, then produces report, HTML review and `system-logical.usda`.
 Outputs stay private and are not overwritten.
 
+The `hypothesis_screen` mode accepts exploratory `assumption` inputs with a
+documented rejection test. The first
+[27-case kinematic campaign](../../docs/research/935-horizontal-cooling/HYPOTHESES.md)
+and [community questions](../../docs/research/935-horizontal-cooling/COMMUNITY_RESEARCH.md)
+precede specimen qualification; assumptions never gain measured status.
+
 | Model | Calculation when inputs are available | Limit |
 |---|---|---|
 | Speeds | `n_entree = n_moteur × r_courroie × (1 − glissement)`; `n_rotor = n_entree × r_engrenage` | Ratios are output/input speed ratios, not gear selection. |
