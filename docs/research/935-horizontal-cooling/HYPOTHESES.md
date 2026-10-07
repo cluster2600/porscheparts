@@ -79,3 +79,8 @@ de balourd restent sans résultat dans ce lot : leurs entrées ne sont pas
 fournies. La CAO scannée n'est pas chargée par cette campagne cinématique.
 Les questions de [recherche communautaire](COMMUNITY_RESEARCH.md) ciblent
 les informations qui permettront de réduire les hypothèses.
+
+La [campagne suivante](HYPOTHESIS_TESTS.md) exécute 160 scénarios d'inertie,
+balourd, transmission, réseau d'air et thermique, plus un témoin centrifuge
+CalculiX à trois maillages. Elle garde ses hypothèses distinctes des données
+du spécimen.
