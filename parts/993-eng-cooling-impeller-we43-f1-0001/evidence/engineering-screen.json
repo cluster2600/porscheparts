@@ -1,0 +1,1409 @@
+{
+  "schema_version": "2.0.0",
+  "part_id": "993-ENG-COOLING-IMPELLER-WE43-F1-0001",
+  "status": "f1_rebuild_based_impeller_mathematical_screen",
+  "reference": {
+    "rebuild_parameters": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json",
+    "rebuild_report": "twins/993-engine-cooling-fan-system-f0/REFERENCE_REBUILD.md",
+    "authority": "visual reconstruction of the Turbo rotor from FVD photographs; blade count and window count observed, other shape values are hypotheses",
+    "superseded_f1_revision": "an earlier F1 (120 mm hub, shroud, 248 mm) was a generic fan derived from the synthetic F0; it did not keep the original cup or alternator space"
+  },
+  "design_intent": [
+    "keep the rebuild's envelope and interfaces: 245 mm, 165 mm cup 56 mm deep, web, twelve windows, three bolt holes, bore",
+    "eleven twisted, cambered airfoil blades from velocity triangles instead of constant-pitch cambered plates",
+    "free vortex: even exit flow under radial equilibrium",
+    "no shroud, like the original: blades remain open and printable from outside",
+    "WE43 magnesium",
+    "optional housing stator reported separately"
+  ],
+  "synthetic_cases": {
+    "nominal_speed_rpm": 10000.0,
+    "overspeed_factor": 1.2,
+    "system_curve": "dp = K Q^2 through the rebuild rotor's best-efficiency point in a bellmouth housing",
+    "duty_flow_m3_s": 2.34,
+    "duty_pressure_pa": 2155.0,
+    "system_coefficient_pa_s2_m6": 393.5641756154577,
+    "air_temperature_c": 80.0,
+    "air_density_kg_m3": 0.9995392452080379,
+    "overspeed_tip_mach": 0.4086237019446381,
+    "authority": "inferred from the rebuild's visual blade angles; no measured 993 speed, pulley ratio, fan map or engine resistance"
+  },
+  "rotor_design": {
+    "design_flow_m3_s": 2.574,
+    "design_system_pressure_pa": 2607.5499999999997,
+    "design_axial_velocity_m_s": 99.91824963866796,
+    "annulus_area_m2": 0.0257610597594363,
+    "swirl_constant": 3.113968314767585,
+    "vortex_exponent": 1.0,
+    "design_exit_collapsed_station_count": 0,
+    "hub_radius_mm": 82.5,
+    "tip_radius_mm": 122.5,
+    "blade_count": 11,
+    "sections": [
+      {
+        "radius_mm": 84.72884557650525,
+        "blade_speed_m_s": 88.72783960343098,
+        "design_swirl_m_s": 36.752162661721286,
+        "beta1_deg": 41.60521557840905,
+        "beta2_deg": 27.482640227024323,
+        "exit_axial_velocity_m_s": 99.91824963866794,
+        "axial_velocity_ratio": 0.9999999999999999,
+        "de_haller_ratio": 0.842853029006779,
+        "solidity": 0.9626488196111193,
+        "chord_mm": 46.58931821502958,
+        "thickness_mm": 4.555091425686994,
+        "inlet_metal_deg": 41.60521557840905,
+        "outlet_metal_deg": 22.009975680677684,
+        "camber_deg": 19.595239897731368,
+        "stagger_deg": 31.807595629543368
+      },
+      {
+        "radius_mm": 89.01927778959914,
+        "blade_speed_m_s": 93.2207697105579,
+        "design_swirl_m_s": 34.98083102996614,
+        "beta1_deg": 43.01395061690053,
+        "beta2_deg": 30.2368779395005,
+        "exit_axial_velocity_m_s": 99.91824963866794,
+        "axial_velocity_ratio": 0.9999999999999999,
+        "de_haller_ratio": 0.8463301088956596,
+        "solidity": 0.8746825165234955,
+        "chord_mm": 44.47558769601165,
+        "thickness_mm": 4.157610058555187,
+        "inlet_metal_deg": 43.01395061690053,
+        "outlet_metal_deg": 24.788715857481826,
+        "camber_deg": 18.225234759418704,
+        "stagger_deg": 33.90133323719118
+      },
+      {
+        "radius_mm": 93.11222456603839,
+        "blade_speed_m_s": 97.50689355202309,
+        "design_swirl_m_s": 33.44317386122648,
+        "beta1_deg": 44.30022258221933,
+        "beta2_deg": 32.666423329773515,
+        "exit_axial_velocity_m_s": 99.91824963866794,
+        "axial_velocity_ratio": 0.9999999999999999,
+        "de_haller_ratio": 0.8501625918105639,
+        "solidity": 0.7976197137802249,
+        "chord_mm": 42.42186574176191,
+        "thickness_mm": 3.791996208414283,
+        "inlet_metal_deg": 44.30022258221933,
+        "outlet_metal_deg": 27.229144536846885,
+        "camber_deg": 17.071078045372442,
+        "stagger_deg": 35.764683559533104
+      },
+      {
+        "radius_mm": 97.03267959347978,
+        "blade_speed_m_s": 101.61238445633612,
+        "design_swirl_m_s": 32.09195425513974,
+        "beta1_deg": 45.481636397631746,
+        "beta2_deg": 34.829157906322166,
+        "exit_axial_velocity_m_s": 99.91824963866794,
+        "axial_velocity_ratio": 0.9999999999999999,
+        "de_haller_ratio": 0.8541517048398346,
+        "solidity": 0.7304263276545977,
+        "chord_mm": 40.48383317600112,
+        "thickness_mm": 3.4600447413374007,
+        "inlet_metal_deg": 45.481636397631746,
+        "outlet_metal_deg": 29.3927298954011,
+        "camber_deg": 16.088906502230646,
+        "stagger_deg": 37.437183146516425
+      },
+      {
+        "radius_mm": 100.80077110094672,
+        "blade_speed_m_s": 105.55832065564019,
+        "design_swirl_m_s": 30.892306484928657,
+        "beta1_deg": 46.57230161955924,
+        "beta2_deg": 36.769697389804506,
+        "exit_axial_velocity_m_s": 99.91824963866794,
+        "axial_velocity_ratio": 0.9999999999999999,
+        "de_haller_ratio": 0.8581740623427784,
+        "solidity": 0.671852930832873,
+        "chord_mm": 38.68345478524804,
+        "thickness_mm": 3.160408427106158,
+        "inlet_metal_deg": 46.57230161955924,
+        "outlet_metal_deg": 31.326277892302002,
+        "camber_deg": 15.246023727257239,
+        "stagger_deg": 38.94928975593062
+      },
+      {
+        "radius_mm": 104.43299287102711,
+        "blade_speed_m_s": 109.36197439867134,
+        "design_swirl_m_s": 29.81785955912688,
+        "beta1_deg": 47.58370689846499,
+        "beta2_deg": 38.52301456330479,
+        "exit_axial_velocity_m_s": 99.91824963866794,
+        "axial_velocity_ratio": 0.9999999999999999,
+        "de_haller_ratio": 0.8621530262148258,
+        "solidity": 0.6206782138365436,
+        "chord_mm": 37.0246881444028,
+        "thickness_mm": 2.890406593317092,
+        "inlet_metal_deg": 47.58370689846499,
+        "outlet_metal_deg": 33.06609504691711,
+        "camber_deg": 14.517611851547876,
+        "stagger_deg": 40.324900972691054
+      },
+      {
+        "radius_mm": 107.94306159014828,
+        "blade_speed_m_s": 113.0377097658668,
+        "design_swirl_m_s": 28.84824896472818,
+        "beta1_deg": 48.52533397207301,
+        "beta2_deg": 40.11693318898685,
+        "exit_axial_velocity_m_s": 99.91824963866794,
+        "axial_velocity_ratio": 0.9999999999999999,
+        "de_haller_ratio": 0.8660415511227734,
+        "solidity": 0.575804810879335,
+        "chord_mm": 35.50235841489169,
+        "thickness_mm": 2.6469471497435606,
+        "inlet_metal_deg": 48.52533397207301,
+        "outlet_metal_deg": 34.640806332272795,
+        "camber_deg": 13.884527639800211,
+        "stagger_deg": 41.5830701521729
+      },
+      {
+        "radius_mm": 111.34253046751314,
+        "blade_speed_m_s": 116.59762524961234,
+        "design_swirl_m_s": 27.96746491832391,
+        "beta1_deg": 49.40510007804461,
+        "beta2_deg": 41.5738834766221,
+        "exit_axial_velocity_m_s": 99.91824963866794,
+        "axial_velocity_ratio": 0.9999999999999999,
+        "de_haller_ratio": 0.8698116162173899,
+        "solidity": 0.5362855865097644,
+        "chord_mm": 34.10706864143677,
+        "thickness_mm": 2.426972697695475,
+        "inlet_metal_deg": 49.40510007804461,
+        "outlet_metal_deg": 36.07330646271489,
+        "camber_deg": 13.331793615329723,
+        "stagger_deg": 42.73920327037975
+      },
+      {
+        "radius_mm": 114.64123881205941,
+        "blade_speed_m_s": 120.05202455013297,
+        "design_swirl_m_s": 27.162723876986043,
+        "beta1_deg": 50.22968385871495,
+        "beta2_deg": 42.91216246744415,
+        "exit_axial_velocity_m_s": 99.91824963866796,
+        "axial_velocity_ratio": 1.0,
+        "de_haller_ratio": 0.8734475607843577,
+        "solidity": 0.501319412036959,
+        "chord_mm": 32.82786019708322,
+        "thickness_mm": 2.22765792542497,
+        "inlet_metal_deg": 50.22968385871495,
+        "outlet_metal_deg": 37.382139655763964,
+        "camber_deg": 12.847544202950985,
+        "stagger_deg": 43.80591175723946
+      },
+      {
+        "radius_mm": 117.84764818110789,
+        "blade_speed_m_s": 123.40976858953437,
+        "design_swirl_m_s": 26.423678052378683,
+        "beta1_deg": 51.00477007028509,
+        "beta2_deg": 44.14685514382394,
+        "exit_axial_velocity_m_s": 99.91824963866796,
+        "axial_velocity_ratio": 1.0,
+        "de_haller_ratio": 0.8769417996145038,
+        "solidity": 0.5,
+        "chord_mm": 33.65720961532755,
+        "thickness_mm": 2.1760177572923554,
+        "inlet_metal_deg": 51.00477007028509,
+        "outlet_metal_deg": 38.86279102900239,
+        "camber_deg": 12.141979041282703,
+        "stagger_deg": 44.93378054964374
+      },
+      {
+        "radius_mm": 120.96909823286578,
+        "blade_speed_m_s": 126.67854343991772,
+        "design_swirl_m_s": 25.74184944962712,
+        "beta1_deg": 51.735236416768515,
+        "beta2_deg": 45.2905184302675,
+        "exit_axial_velocity_m_s": 99.91824963866794,
+        "axial_velocity_ratio": 0.9999999999999999,
+        "de_haller_ratio": 0.8802920242050544,
+        "solidity": 0.5,
+        "chord_mm": 34.548693665432104,
+        "thickness_mm": 2.125812276110515,
+        "inlet_metal_deg": 51.735236416768515,
+        "outlet_metal_deg": 40.245278342518276,
+        "camber_deg": 11.48995807425024,
+        "stagger_deg": 45.990257379643396
+      }
+    ]
+  },
+  "reference_rotor": {
+    "source": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json",
+    "blade_pitch_from_rotation_plane_deg": 48,
+    "hub_radius_mm": 82.5,
+    "tip_radius_mm": 122.5,
+    "annulus_area_m2": 0.0257610597594363,
+    "blade_count": 11,
+    "sections": [
+      {
+        "radius_mm": 84.72884557650525,
+        "chord_mm": 57.7243748123642,
+        "solidity": 1.192726217186541,
+        "camber_deg": 15.780680972962207,
+        "stagger_deg": 42.0,
+        "inlet_metal_deg": 49.8903404864811,
+        "outlet_metal_deg": 34.1096595135189,
+        "thickness_mm": 3.6
+      },
+      {
+        "radius_mm": 89.01927778959914,
+        "chord_mm": 59.11876528161972,
+        "solidity": 1.162663678414442,
+        "camber_deg": 15.41299963843083,
+        "stagger_deg": 42.0,
+        "inlet_metal_deg": 49.706499819215416,
+        "outlet_metal_deg": 34.293500180784584,
+        "thickness_mm": 3.6
+      },
+      {
+        "radius_mm": 93.11222456603839,
+        "chord_mm": 60.44897298396248,
+        "solidity": 1.136566996446634,
+        "camber_deg": 15.077773636352743,
+        "stagger_deg": 42.0,
+        "inlet_metal_deg": 49.53888681817637,
+        "outlet_metal_deg": 34.46111318182363,
+        "thickness_mm": 3.6
+      },
+      {
+        "radius_mm": 97.03267959347978,
+        "chord_mm": 61.72312086788093,
+        "solidity": 1.1136344799887459,
+        "camber_deg": 14.769995143875695,
+        "stagger_deg": 42.0,
+        "inlet_metal_deg": 49.384997571937845,
+        "outlet_metal_deg": 34.615002428062155,
+        "thickness_mm": 3.6
+      },
+      {
+        "radius_mm": 100.80077110094672,
+        "chord_mm": 62.947750607807684,
+        "solidity": 1.0932743978006925,
+        "camber_deg": 14.485730449381522,
+        "stagger_deg": 42.0,
+        "inlet_metal_deg": 49.24286522469076,
+        "outlet_metal_deg": 34.75713477530924,
+        "thickness_mm": 3.6
+      },
+      {
+        "radius_mm": 104.43299287102711,
+        "chord_mm": 64.1282226830838,
+        "solidity": 1.0750391888841822,
+        "camber_deg": 14.221832103162845,
+        "stagger_deg": 42.0,
+        "inlet_metal_deg": 49.11091605158142,
+        "outlet_metal_deg": 34.88908394841858,
+        "thickness_mm": 3.6
+      },
+      {
+        "radius_mm": 107.94306159014828,
+        "chord_mm": 65.26899501679819,
+        "solidity": 1.0585832324921731,
+        "camber_deg": 13.975741832947847,
+        "stagger_deg": 42.0,
+        "inlet_metal_deg": 48.98787091647392,
+        "outlet_metal_deg": 35.01212908352608,
+        "thickness_mm": 3.6
+      },
+      {
+        "radius_mm": 111.34253046751314,
+        "chord_mm": 66.37382240194177,
+        "solidity": 1.0436348151149943,
+        "camber_deg": 13.745351796854836,
+        "stagger_deg": 42.0,
+        "inlet_metal_deg": 48.87267589842742,
+        "outlet_metal_deg": 35.12732410157258,
+        "thickness_mm": 3.6
+      },
+      {
+        "radius_mm": 114.64123881205941,
+        "chord_mm": 67.44590261391932,
+        "solidity": 1.0299769780826666,
+        "camber_deg": 13.528904542040507,
+        "stagger_deg": 42.0,
+        "inlet_metal_deg": 48.764452271020254,
+        "outlet_metal_deg": 35.235547728979746,
+        "thickness_mm": 3.6
+      },
+      {
+        "radius_mm": 117.84764818110789,
+        "chord_mm": 68.48798565886005,
+        "solidity": 1.0174341016622857,
+        "camber_deg": 13.324919356858466,
+        "stagger_deg": 42.0,
+        "inlet_metal_deg": 48.66245967842923,
+        "outlet_metal_deg": 35.33754032157077,
+        "thickness_mm": 3.6
+      },
+      {
+        "radius_mm": 120.96909823286578,
+        "chord_mm": 69.50245692568137,
+        "solidity": 1.0058622997260018,
+        "camber_deg": 13.132137055565405,
+        "stagger_deg": 42.0,
+        "inlet_metal_deg": 48.566068527782704,
+        "outlet_metal_deg": 35.433931472217296,
+        "thickness_mm": 3.6
+      }
+    ]
+  },
+  "aero_model": {
+    "method": "equal-area blade-element streamline model with simple radial equilibrium behind the rotor",
+    "radial_equilibrium": "(1/rho) dp0/dr = c_x dc_x/dr + (c_u/r) d(r c_u)/dr marched implicitly from the hub, mean axial velocity carries the flow; Lieblein terms use the local axial velocity ratio; the non-uniform exit profile is mixed out with a Borda-Carnot loss",
+    "work": "Euler dp0 = rho U c_u2, no inlet swirl",
+    "deviation": "Carter: delta = (0.23 + 0.002 kappa2) theta / sqrt(sigma)",
+    "profile_loss": "Lieblein D_eq with incidence term; theta/c = 0.004/(1 - 1.17 ln D_eq); stall flag D_eq > 2.2; rebuild plates x 1.5",
+    "tip_loss": "unshrouded: delta_eta = 2 tau/h with the 3.5 mm gap of a 245 mm rotor in the 252 mm throat, for both rotors",
+    "swirl_loss": "exit swirl dynamic head lost unless a stator row recovers it",
+    "inlet_loss": "bellmouth K = 0.05 on axial dynamic head, for both rotors",
+    "limits": "pure axial annulus from the cup to the tip; the alternator air through the cup windows, the housing spokes and the real inlet are not modelled; not CFD"
+  },
+  "operating_points": {
+    "REF_rebuild_rotor": {
+      "flow_m3_s": 2.339865905337103,
+      "rotor_flow_m3_s": 2.339865905337103,
+      "leakage_m3_s": 0.0,
+      "euler_pressure_pa": 3967.1279707259023,
+      "rotor_profile_loss_pa": 238.13659991815166,
+      "stator_loss_pa": 0.0,
+      "exit_swirl_loss_pa": 648.2610077706247,
+      "exit_mixing_loss_pa": 25.574721825982,
+      "tip_gap_loss_pa": 694.2473948770329,
+      "inlet_loss_pa": 206.15522558082523,
+      "useful_pressure_pa": 2154.753020753286,
+      "air_power_w": 5041.833127682745,
+      "shaft_power_w": 9282.547480810708,
+      "efficiency": 0.5431518813241133,
+      "stalled_station_count": 0,
+      "exit_collapsed_station_count": 0,
+      "exit_stations": [
+        {
+          "radius_mm": 84.72884557650525,
+          "axial_velocity_m_s": 78.62184769225469,
+          "swirl_m_s": 26.37090589891399
+        },
+        {
+          "radius_mm": 89.01927778959914,
+          "axial_velocity_m_s": 81.46300309316484,
+          "swirl_m_s": 28.2791320634077
+        },
+        {
+          "radius_mm": 93.11222456603839,
+          "axial_velocity_m_s": 84.12705260054872,
+          "swirl_m_s": 30.1355259840752
+        },
+        {
+          "radius_mm": 97.03267959347978,
+          "axial_velocity_m_s": 86.65462101214167,
+          "swirl_m_s": 31.932623970622856
+        },
+        {
+          "radius_mm": 100.80077110094672,
+          "axial_velocity_m_s": 89.06085267878352,
+          "swirl_m_s": 33.678302259342615
+        },
+        {
+          "radius_mm": 104.43299287102711,
+          "axial_velocity_m_s": 91.32226838235368,
+          "swirl_m_s": 35.40804146437344
+        },
+        {
+          "radius_mm": 107.94306159014828,
+          "axial_velocity_m_s": 93.4972176185736,
+          "swirl_m_s": 37.088405266386644
+        },
+        {
+          "radius_mm": 111.34253046751314,
+          "axial_velocity_m_s": 95.59950022357457,
+          "swirl_m_s": 38.719578695246355
+        },
+        {
+          "radius_mm": 114.64123881205941,
+          "axial_velocity_m_s": 97.6361016177124,
+          "swirl_m_s": 40.30555447030687
+        },
+        {
+          "radius_mm": 117.84764818110789,
+          "axial_velocity_m_s": 99.61195090934376,
+          "swirl_m_s": 41.85063919654985
+        },
+        {
+          "radius_mm": 120.96909823286578,
+          "axial_velocity_m_s": 101.53082276330716,
+          "swirl_m_s": 43.35897948505034
+        }
+      ],
+      "system_pressure_pa": 2154.753020753286,
+      "stall_onset_flow_m3_s": 1.9444719922264533,
+      "stall_margin": 0.20334256018669472
+    },
+    "F1_rotor_in_rebuild_housing": {
+      "flow_m3_s": 2.3836859778261728,
+      "rotor_flow_m3_s": 2.3836859778261728,
+      "leakage_m3_s": 0.0,
+      "euler_pressure_pa": 3881.0501889242805,
+      "rotor_profile_loss_pa": 99.11167047621042,
+      "stator_loss_pa": 0.0,
+      "exit_swirl_loss_pa": 652.2131861114361,
+      "exit_mixing_loss_pa": 0.3769880584612538,
+      "tip_gap_loss_pa": 679.1837830617491,
+      "inlet_loss_pa": 213.94911412251167,
+      "useful_pressure_pa": 2236.2154470939117,
+      "air_power_w": 5330.435404636043,
+      "shaft_power_w": 9251.204914578426,
+      "efficiency": 0.5761882321119194,
+      "stalled_station_count": 0,
+      "exit_collapsed_station_count": 0,
+      "exit_stations": [
+        {
+          "radius_mm": 84.72884557650525,
+          "axial_velocity_m_s": 91.0297412639964,
+          "swirl_m_s": 41.37580490371692
+        },
+        {
+          "radius_mm": 89.01927778959914,
+          "axial_velocity_m_s": 91.37939714763479,
+          "swirl_m_s": 39.95792227484653
+        },
+        {
+          "radius_mm": 93.11222456603839,
+          "axial_velocity_m_s": 91.71533471234939,
+          "swirl_m_s": 38.702565858059
+        },
+        {
+          "radius_mm": 97.03267959347978,
+          "axial_velocity_m_s": 92.03464193467117,
+          "swirl_m_s": 37.57715641892162
+        },
+        {
+          "radius_mm": 100.80077110094672,
+          "axial_velocity_m_s": 92.33624354985571,
+          "swirl_m_s": 36.55812004868618
+        },
+        {
+          "radius_mm": 104.43299287102711,
+          "axial_velocity_m_s": 92.62011083059826,
+          "swirl_m_s": 35.62784916126027
+        },
+        {
+          "radius_mm": 107.94306159014828,
+          "axial_velocity_m_s": 92.88679396953098,
+          "swirl_m_s": 34.77283695113201
+        },
+        {
+          "radius_mm": 111.34253046751314,
+          "axial_velocity_m_s": 93.13714564913083,
+          "swirl_m_s": 33.98248555758886
+        },
+        {
+          "radius_mm": 114.64123881205941,
+          "axial_velocity_m_s": 93.37215796422866,
+          "swirl_m_s": 33.24831764969416
+        },
+        {
+          "radius_mm": 117.84764818110789,
+          "axial_velocity_m_s": 93.56992806414273,
+          "swirl_m_s": 32.585704441075634
+        },
+        {
+          "radius_mm": 120.96909823286578,
+          "axial_velocity_m_s": 93.75496127080756,
+          "swirl_m_s": 31.967958836153954
+        }
+      ],
+      "system_pressure_pa": 2236.2154470939126,
+      "stall_onset_flow_m3_s": 1.991510971410571,
+      "stall_margin": 0.19692334716982618
+    },
+    "F1_rotor_with_matched_stator": {
+      "flow_m3_s": 2.5059372626477012,
+      "rotor_flow_m3_s": 2.5059372626477012,
+      "leakage_m3_s": 0.0,
+      "euler_pressure_pa": 3481.1697997048063,
+      "rotor_profile_loss_pa": 94.7561156762737,
+      "stator_loss_pa": 69.22565249384499,
+      "exit_swirl_loss_pa": 2.061830801858907e-31,
+      "exit_mixing_loss_pa": 0.052537414786822854,
+      "tip_gap_loss_pa": 609.2047149483411,
+      "inlet_loss_pa": 236.4573386128828,
+      "useful_pressure_pa": 2471.4734405586773,
+      "air_power_w": 6193.357388340108,
+      "shaft_power_w": 8723.593118684108,
+      "efficiency": 0.7099548665417733,
+      "stalled_station_count": 0,
+      "exit_collapsed_station_count": 0,
+      "exit_stations": [
+        {
+          "radius_mm": 84.72884557650525,
+          "axial_velocity_m_s": 96.70397032359095,
+          "swirl_m_s": 38.42417296899762
+        },
+        {
+          "radius_mm": 89.01927778959914,
+          "axial_velocity_m_s": 96.84206367753137,
+          "swirl_m_s": 36.77386565972167
+        },
+        {
+          "radius_mm": 93.11222456603839,
+          "axial_velocity_m_s": 96.97306959122027,
+          "swirl_m_s": 35.33150947239793
+        },
+        {
+          "radius_mm": 97.03267959347978,
+          "axial_velocity_m_s": 97.09612546010293,
+          "swirl_m_s": 34.05551234072003
+        },
+        {
+          "radius_mm": 100.80077110094672,
+          "axial_velocity_m_s": 97.21111284333311,
+          "swirl_m_s": 32.91527140928919
+        },
+        {
+          "radius_mm": 104.43299287102711,
+          "axial_velocity_m_s": 97.31829773165954,
+          "swirl_m_s": 31.88766035944367
+        },
+        {
+          "radius_mm": 107.94306159014828,
+          "axial_velocity_m_s": 97.41813014788222,
+          "swirl_m_s": 30.954808203193977
+        },
+        {
+          "radius_mm": 111.34253046751314,
+          "axial_velocity_m_s": 97.51113401216503,
+          "swirl_m_s": 30.102640871509763
+        },
+        {
+          "radius_mm": 114.64123881205941,
+          "axial_velocity_m_s": 97.59784770949562,
+          "swirl_m_s": 29.31989249494012
+        },
+        {
+          "radius_mm": 117.84764818110789,
+          "axial_velocity_m_s": 97.65621240574981,
+          "swirl_m_s": 28.619334488150685
+        },
+        {
+          "radius_mm": 120.96909823286578,
+          "axial_velocity_m_s": 97.70992067984734,
+          "swirl_m_s": 27.97268741118515
+        }
+      ],
+      "system_pressure_pa": 2471.4734405586746,
+      "stall_onset_flow_m3_s": 1.991510971410571,
+      "stall_margin": 0.2583095441712613
+    }
+  },
+  "comparison": {
+    "REF_rebuild_rotor": {
+      "flow_gain_vs_rebuild": 0.0,
+      "shaft_power_ratio_vs_rebuild": 1.0,
+      "flow_gain_at_equal_shaft_power_vs_rebuild": 0.0
+    },
+    "F1_rotor_in_rebuild_housing": {
+      "flow_gain_vs_rebuild": 0.01872759989754913,
+      "shaft_power_ratio_vs_rebuild": 0.9966234951884625,
+      "flow_gain_at_equal_shaft_power_vs_rebuild": 0.019876767196508327
+    },
+    "F1_rotor_with_matched_stator": {
+      "flow_gain_vs_rebuild": 0.07097473275361565,
+      "shaft_power_ratio_vs_rebuild": 0.9397843788806796,
+      "flow_gain_at_equal_shaft_power_vs_rebuild": 0.09337670671885978
+    }
+  },
+  "fan_curves": {
+    "REF_rebuild_rotor": [
+      {
+        "flow_m3_s": 1.2,
+        "useful_pressure_pa": 3519.2751687922637,
+        "stalled_station_count": 11
+      },
+      {
+        "flow_m3_s": 1.3,
+        "useful_pressure_pa": 3367.436970573949,
+        "stalled_station_count": 11
+      },
+      {
+        "flow_m3_s": 1.4,
+        "useful_pressure_pa": 3201.813896181743,
+        "stalled_station_count": 11
+      },
+      {
+        "flow_m3_s": 1.5,
+        "useful_pressure_pa": 3021.9508912149763,
+        "stalled_station_count": 11
+      },
+      {
+        "flow_m3_s": 1.6,
+        "useful_pressure_pa": 2827.506607167043,
+        "stalled_station_count": 11
+      },
+      {
+        "flow_m3_s": 1.7,
+        "useful_pressure_pa": 2674.842227639411,
+        "stalled_station_count": 9
+      },
+      {
+        "flow_m3_s": 1.8,
+        "useful_pressure_pa": 2639.2648221420495,
+        "stalled_station_count": 5
+      },
+      {
+        "flow_m3_s": 1.9,
+        "useful_pressure_pa": 2645.9624318291762,
+        "stalled_station_count": 2
+      },
+      {
+        "flow_m3_s": 2.0,
+        "useful_pressure_pa": 2659.194204908235,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.1,
+        "useful_pressure_pa": 2549.4706643258123,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.2,
+        "useful_pressure_pa": 2400.852307318121,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.3,
+        "useful_pressure_pa": 2228.649214077466,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.4,
+        "useful_pressure_pa": 2038.0732617852432,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.5,
+        "useful_pressure_pa": 1831.4254751397182,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.6,
+        "useful_pressure_pa": 1609.8457289211672,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.7,
+        "useful_pressure_pa": 1373.932711599185,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.8,
+        "useful_pressure_pa": 1124.0042776770224,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.9,
+        "useful_pressure_pa": 860.2483698764972,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 3.0,
+        "useful_pressure_pa": 583.0970984813566,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 3.1,
+        "useful_pressure_pa": 293.1314526593125,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 3.2,
+        "useful_pressure_pa": -9.599729360117067,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 3.3,
+        "useful_pressure_pa": -325.13003501456615,
+        "stalled_station_count": 0
+      }
+    ],
+    "F1_rotor_in_rebuild_housing": [
+      {
+        "flow_m3_s": 1.2,
+        "useful_pressure_pa": 3716.5491368309945,
+        "stalled_station_count": 11
+      },
+      {
+        "flow_m3_s": 1.3,
+        "useful_pressure_pa": 3606.7462635944225,
+        "stalled_station_count": 11
+      },
+      {
+        "flow_m3_s": 1.4,
+        "useful_pressure_pa": 3487.5471186969658,
+        "stalled_station_count": 11
+      },
+      {
+        "flow_m3_s": 1.5,
+        "useful_pressure_pa": 3358.4604417312753,
+        "stalled_station_count": 11
+      },
+      {
+        "flow_m3_s": 1.6,
+        "useful_pressure_pa": 3219.117848531626,
+        "stalled_station_count": 11
+      },
+      {
+        "flow_m3_s": 1.7,
+        "useful_pressure_pa": 3069.2376690996693,
+        "stalled_station_count": 11
+      },
+      {
+        "flow_m3_s": 1.8,
+        "useful_pressure_pa": 2908.6008527732697,
+        "stalled_station_count": 11
+      },
+      {
+        "flow_m3_s": 1.9,
+        "useful_pressure_pa": 2802.7880630539844,
+        "stalled_station_count": 6
+      },
+      {
+        "flow_m3_s": 2.0,
+        "useful_pressure_pa": 2762.0309303244317,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.1,
+        "useful_pressure_pa": 2672.70432260885,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.2,
+        "useful_pressure_pa": 2536.4069537784203,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.3,
+        "useful_pressure_pa": 2379.2587004346797,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.4,
+        "useful_pressure_pa": 2207.2529052715545,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.5,
+        "useful_pressure_pa": 2022.5324536622823,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.6,
+        "useful_pressure_pa": 1825.0389454541269,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.7,
+        "useful_pressure_pa": 1614.1532240397878,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.8,
+        "useful_pressure_pa": 1392.576382694705,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.9,
+        "useful_pressure_pa": 1160.657869443892,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 3.0,
+        "useful_pressure_pa": 918.5104370730332,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 3.1,
+        "useful_pressure_pa": 666.1775355795369,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 3.2,
+        "useful_pressure_pa": 403.6726521493511,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 3.3,
+        "useful_pressure_pa": 130.9940898947675,
+        "stalled_station_count": 0
+      }
+    ],
+    "F1_rotor_with_matched_stator": [
+      {
+        "flow_m3_s": 1.2,
+        "useful_pressure_pa": 6123.198878062552,
+        "stalled_station_count": 11
+      },
+      {
+        "flow_m3_s": 1.3,
+        "useful_pressure_pa": 5796.892445716726,
+        "stalled_station_count": 11
+      },
+      {
+        "flow_m3_s": 1.4,
+        "useful_pressure_pa": 5496.635655044048,
+        "stalled_station_count": 11
+      },
+      {
+        "flow_m3_s": 1.5,
+        "useful_pressure_pa": 5206.811759577956,
+        "stalled_station_count": 11
+      },
+      {
+        "flow_m3_s": 1.6,
+        "useful_pressure_pa": 4904.289453702326,
+        "stalled_station_count": 11
+      },
+      {
+        "flow_m3_s": 1.7,
+        "useful_pressure_pa": 4589.569614636231,
+        "stalled_station_count": 11
+      },
+      {
+        "flow_m3_s": 1.8,
+        "useful_pressure_pa": 4269.2532630980495,
+        "stalled_station_count": 11
+      },
+      {
+        "flow_m3_s": 1.9,
+        "useful_pressure_pa": 4005.7481884035888,
+        "stalled_station_count": 6
+      },
+      {
+        "flow_m3_s": 2.0,
+        "useful_pressure_pa": 3820.751493114431,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.1,
+        "useful_pressure_pa": 3597.852891240543,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.2,
+        "useful_pressure_pa": 3334.2975919371565,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.3,
+        "useful_pressure_pa": 3058.068149792756,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.4,
+        "useful_pressure_pa": 2775.4294846380344,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.5,
+        "useful_pressure_pa": 2488.614279104223,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.6,
+        "useful_pressure_pa": 2197.602366614947,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.7,
+        "useful_pressure_pa": 1901.794685620881,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.8,
+        "useful_pressure_pa": 1603.9064259923862,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 2.9,
+        "useful_pressure_pa": 1304.2920838684054,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 3.0,
+        "useful_pressure_pa": 1003.0666279730585,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 3.1,
+        "useful_pressure_pa": 700.2741539584065,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 3.2,
+        "useful_pressure_pa": 395.92787012357115,
+        "stalled_station_count": 0
+      },
+      {
+        "flow_m3_s": 3.3,
+        "useful_pressure_pa": 90.02525642635237,
+        "stalled_station_count": 0
+      }
+    ],
+    "system": [
+      {
+        "flow_m3_s": 1.2,
+        "useful_pressure_pa": 566.7324128862591
+      },
+      {
+        "flow_m3_s": 1.3,
+        "useful_pressure_pa": 665.1234567901236
+      },
+      {
+        "flow_m3_s": 1.4,
+        "useful_pressure_pa": 771.385784206297
+      },
+      {
+        "flow_m3_s": 1.5,
+        "useful_pressure_pa": 885.5193951347799
+      },
+      {
+        "flow_m3_s": 1.6,
+        "useful_pressure_pa": 1007.524289575572
+      },
+      {
+        "flow_m3_s": 1.7,
+        "useful_pressure_pa": 1137.4004675286726
+      },
+      {
+        "flow_m3_s": 1.8,
+        "useful_pressure_pa": 1275.147928994083
+      },
+      {
+        "flow_m3_s": 1.9,
+        "useful_pressure_pa": 1420.7666739718022
+      },
+      {
+        "flow_m3_s": 2.0,
+        "useful_pressure_pa": 1574.2567024618309
+      },
+      {
+        "flow_m3_s": 2.1,
+        "useful_pressure_pa": 1735.6180144641685
+      },
+      {
+        "flow_m3_s": 2.2,
+        "useful_pressure_pa": 1904.8506099788156
+      },
+      {
+        "flow_m3_s": 2.3,
+        "useful_pressure_pa": 2081.954489005771
+      },
+      {
+        "flow_m3_s": 2.4,
+        "useful_pressure_pa": 2266.9296515450364
+      },
+      {
+        "flow_m3_s": 2.5,
+        "useful_pressure_pa": 2459.7760975966107
+      },
+      {
+        "flow_m3_s": 2.6,
+        "useful_pressure_pa": 2660.493827160494
+      },
+      {
+        "flow_m3_s": 2.7,
+        "useful_pressure_pa": 2869.082840236687
+      },
+      {
+        "flow_m3_s": 2.8,
+        "useful_pressure_pa": 3085.543136825188
+      },
+      {
+        "flow_m3_s": 2.9,
+        "useful_pressure_pa": 3309.8747169259996
+      },
+      {
+        "flow_m3_s": 3.0,
+        "useful_pressure_pa": 3542.0775805391195
+      },
+      {
+        "flow_m3_s": 3.1,
+        "useful_pressure_pa": 3782.151727664549
+      },
+      {
+        "flow_m3_s": 3.2,
+        "useful_pressure_pa": 4030.097158302288
+      },
+      {
+        "flow_m3_s": 3.3,
+        "useful_pressure_pa": 4285.913872452334
+      }
+    ]
+  },
+  "speed_sweep": [
+    {
+      "speed_rpm": 3000.0,
+      "F1_rotor_flow_m3_s": 0.7151057933477225,
+      "rebuild_flow_m3_s": 0.7019597720019977
+    },
+    {
+      "speed_rpm": 6000.0,
+      "F1_rotor_flow_m3_s": 1.4302115866955143,
+      "rebuild_flow_m3_s": 1.4039195432004792
+    },
+    {
+      "speed_rpm": 8000.0,
+      "F1_rotor_flow_m3_s": 1.9069487822608118,
+      "rebuild_flow_m3_s": 1.8718927242684125
+    },
+    {
+      "speed_rpm": 10000.0,
+      "F1_rotor_flow_m3_s": 2.3836859778261728,
+      "rebuild_flow_m3_s": 2.339865905337103
+    },
+    {
+      "speed_rpm": 12000.0,
+      "F1_rotor_flow_m3_s": 2.860423173391407,
+      "rebuild_flow_m3_s": 2.8078390864050604
+    }
+  ],
+  "duty_sensitivity": [
+    {
+      "resistance_factor": 0.6,
+      "REF_rebuild_rotor": {
+        "flow_m3_s": 2.603850553715563,
+        "efficiency": 0.5245663292109719,
+        "shaft_power_w": 7947.207692784815,
+        "stalled_station_count": 0
+      },
+      "F1_rotor_in_rebuild_housing": {
+        "flow_m3_s": 2.668574026149263,
+        "efficiency": 0.5699547741731886,
+        "shaft_power_w": 7873.4337601562875,
+        "stalled_station_count": 0
+      },
+      "F1_rotor_with_matched_stator": {
+        "flow_m3_s": 2.7423469382514782,
+        "efficiency": 0.6552783231871079,
+        "shaft_power_w": 7432.042763728492,
+        "stalled_station_count": 0
+      },
+      "F1_flow_gain_at_equal_power": 0.02804784813690331
+    },
+    {
+      "resistance_factor": 1.0,
+      "REF_rebuild_rotor": {
+        "flow_m3_s": 2.339865905337103,
+        "efficiency": 0.5431518813241133,
+        "shaft_power_w": 9282.547480810708,
+        "stalled_station_count": 0
+      },
+      "F1_rotor_in_rebuild_housing": {
+        "flow_m3_s": 2.3836859778261723,
+        "efficiency": 0.5761882321119194,
+        "shaft_power_w": 9251.204914578426,
+        "stalled_station_count": 0
+      },
+      "F1_rotor_with_matched_stator": {
+        "flow_m3_s": 2.505937262647685,
+        "efficiency": 0.7099548665417758,
+        "shaft_power_w": 8723.59311868418,
+        "stalled_station_count": 0
+      },
+      "F1_flow_gain_at_equal_power": 0.019876767196508327
+    },
+    {
+      "resistance_factor": 1.6,
+      "REF_rebuild_rotor": {
+        "flow_m3_s": 2.0404283353043797,
+        "efficiency": 0.5230364401278396,
+        "shaft_power_w": 10227.456305100322,
+        "stalled_station_count": 0
+      },
+      "F1_rotor_in_rebuild_housing": {
+        "flow_m3_s": 2.0724299513135107,
+        "efficiency": 0.5517271961224944,
+        "shaft_power_w": 10158.994633370878,
+        "stalled_station_count": 0
+      },
+      "F1_rotor_with_matched_stator": {
+        "flow_m3_s": 2.2516702154895625,
+        "efficiency": 0.7400840157771033,
+        "shaft_power_w": 9713.346182602922,
+        "stalled_station_count": 0
+      },
+      "F1_flow_gain_at_equal_power": 0.017960238705279075
+    }
+  ],
+  "rebuild_pitch_sensitivity": [
+    {
+      "rebuild_pitch_deg": 43.0,
+      "rebuild_flow_m3_s": 2.134170537430315,
+      "rebuild_efficiency": 0.5602029313879748,
+      "rebuild_stalled_station_count": 0,
+      "F1_flow_gain_vs_rebuild": 0.11691448083445621,
+      "F1_flow_gain_at_equal_power_vs_rebuild": 0.0094225498559255
+    },
+    {
+      "rebuild_pitch_deg": 48.0,
+      "rebuild_flow_m3_s": 2.339865905337103,
+      "rebuild_efficiency": 0.5431518813241133,
+      "rebuild_stalled_station_count": 0,
+      "F1_flow_gain_vs_rebuild": 0.01872759989754913,
+      "F1_flow_gain_at_equal_power_vs_rebuild": 0.019876767196508327
+    },
+    {
+      "rebuild_pitch_deg": 53.0,
+      "rebuild_flow_m3_s": 2.5147393510535894,
+      "rebuild_efficiency": 0.5116530739961475,
+      "rebuild_stalled_station_count": 0,
+      "F1_flow_gain_vs_rebuild": -0.05211409809629364,
+      "F1_flow_gain_at_equal_power_vs_rebuild": 0.040390230646335956
+    }
+  ],
+  "upstream_f0_integration": {
+    "housing_part_id": "993-ENG-FAN-HOUSING-ALSI10MG-F0-0001",
+    "housing_synthetic_throat_mm": 252.0,
+    "impeller_outer_diameter_mm": 245.0,
+    "radial_clearance_mm": 3.5,
+    "housing_fit_screen_pass": true,
+    "eos_m290_plate_mm": 250.0,
+    "fits_eos_m290_flat": true,
+    "cup_kept_from_rebuild": {
+      "cup_outer_diameter_mm": 165.0,
+      "cup_depth_mm": 56.0,
+      "wall_mm": 4.0,
+      "web_mm": 5.0,
+      "bore_diameter_mm": 34.0,
+      "vent_count": 12,
+      "bolt_holes": 3
+    },
+    "authority": "the rebuild's visual hypotheses; no measured interface"
+  },
+  "mass": {
+    "rebuild_rotor_volume_mm3": 284686.38,
+    "f1_cad_volume_mm3": 224772.67122366602,
+    "volume_ratio_f1_to_rebuild": 0.7895448711795275,
+    "rebuild_mass_in_alsi10mg_g": 760.1126346,
+    "rebuild_mass_in_we43_g": 523.8229392,
+    "f1_mass_in_we43_g": 413.58171505154553,
+    "fvd_listed_original_mass_g": 900.0,
+    "note": "the rebuild volume is a visual reconstruction; FVD's 0.9 kg listing (material not stated) implies 3.2 g/cm3 on it, so the rebuild probably under-represents the real rotor's material"
+  },
+  "material_screens": {
+    "WE43_LPBF_T6": {
+      "density_kg_m3": 1840.0,
+      "elastic_modulus_pa": 44000000000.0,
+      "yield_strength_pa": 219000000.0,
+      "thermal_expansion_per_k": 2.67e-05,
+      "sources": [
+        "SRC-ORNL-WE43-LPBF-HYER-2020 (yield 219 MPa after 536 C/24 h + 205 C/48 h)",
+        "SRC-AZOM-ELEKTRON-WE43-PROPERTIES (density 1.8 g/cm3, 26.7 um/m/C, service to 300 C)"
+      ],
+      "assumed": "density 1840 kg/m3 and modulus 44 GPa are generic magnesium comparison values",
+      "results": {
+        "cad_mass_g": 413.5817150515455,
+        "analytical_mass_g": 447.8129662827588,
+        "single_blade_mass_g": 6.326491970298041,
+        "shroud_mass_g": 0.0,
+        "overspeed_tip_speed_m_s": 153.93804002589985,
+        "shrouded": false,
+        "overspeed_shroud_hoop_stress_mpa": null,
+        "yield_to_shroud_hoop_ratio": null,
+        "overspeed_blade_root_stress_blade_only_mpa": 6.756187867457878,
+        "overspeed_blade_root_stress_worst_mpa": 10.65586895537553,
+        "overspeed_blade_root_aero_bending_mpa": 3.899681087917653,
+        "yield_to_blade_root_ratio_worst_case": 20.55205454544576,
+        "hub_mass_g": 378.22155460948034,
+        "overspeed_hub_rim_hoop_stress_mpa": 26.5051876818661,
+        "yield_to_hub_rim_ratio": 8.262533456793138,
+        "overspeed_hub_bore_hoop_stress_mpa": 46.66035390981393,
+        "yield_to_hub_bore_ratio": 4.693492047301819,
+        "blade_first_mode_cantilever_hz": 1351.41737666246,
+        "blade_first_mode_clamped_by_shroud_hz": 8524.45580309575,
+        "spoke_order_hz": 1000.0,
+        "stator_order_hz": 2833.333333333333,
+        "governing_blade_mode_hz": 1351.41737666246,
+        "modal_separation_ratio": 0.3514173766624599,
+        "cantilever_mode_below_spoke_order": false,
+        "hub_bore_loosening_on_steel_shaft_mm": 0.06497399999999999,
+        "fully_constrained_thermal_stress_mpa": 152.724,
+        "yield_to_constrained_thermal_ratio": 1.4339592991278385,
+        "approximate_polar_inertia_kg_m2": 0.002670697814437951,
+        "overspeed_kinetic_energy_j": 2108.698472268523,
+        "centrifugal_screen_pass": true,
+        "modal_screen_pass": true,
+        "constrained_thermal_screen_pass": false
+      }
+    },
+    "Scalmalloy_LPBF": {
+      "density_kg_m3": 2670.0,
+      "elastic_modulus_pa": 70000000000.0,
+      "yield_strength_pa": 480000000.0,
+      "thermal_expansion_per_k": 2.3e-05,
+      "sources": [
+        "SRC-APWORKS-SCALMALLOY (yield 480 MPa, UTS 520 MPa, 13 %)"
+      ],
+      "assumed": "density, modulus and expansion are generic aluminium comparison values",
+      "results": {
+        "cad_mass_g": 600.1430321671883,
+        "analytical_mass_g": 649.8155543342206,
+        "single_blade_mass_g": 9.180289978639005,
+        "shroud_mass_g": 0.0,
+        "overspeed_tip_speed_m_s": 153.93804002589985,
+        "shrouded": false,
+        "overspeed_shroud_hoop_stress_mpa": null,
+        "yield_to_shroud_hoop_ratio": null,
+        "overspeed_blade_root_stress_blade_only_mpa": 9.803816090278549,
+        "overspeed_blade_root_stress_worst_mpa": 13.703497178196203,
+        "overspeed_blade_root_aero_bending_mpa": 3.899681087917653,
+        "yield_to_blade_root_ratio_worst_case": 35.027554919610864,
+        "hub_mass_g": 548.8323645691914,
+        "overspeed_hub_rim_hoop_stress_mpa": 38.46133212531657,
+        "yield_to_hub_rim_ratio": 12.480066952336463,
+        "overspeed_hub_bore_hoop_stress_mpa": 67.70823094521911,
+        "yield_to_hub_bore_ratio": 7.089241489536994,
+        "blade_first_mode_cantilever_hz": 1413.9224126100646,
+        "blade_first_mode_clamped_by_shroud_hz": 8925.53156519363,
+        "spoke_order_hz": 1000.0,
+        "stator_order_hz": 2833.333333333333,
+        "governing_blade_mode_hz": 1413.9224126100646,
+        "modal_separation_ratio": 0.4139224126100646,
+        "cantilever_mode_below_spoke_order": false,
+        "hub_bore_loosening_on_steel_shaft_mm": 0.04862,
+        "fully_constrained_thermal_stress_mpa": 209.3,
+        "yield_to_constrained_thermal_ratio": 2.2933588150979456,
+        "approximate_polar_inertia_kg_m2": 0.0038754147633420265,
+        "overspeed_kinetic_energy_j": 3059.904848346171,
+        "centrifugal_screen_pass": true,
+        "modal_screen_pass": true,
+        "constrained_thermal_screen_pass": true
+      }
+    },
+    "AlSi10Mg_LPBF_T6": {
+      "density_kg_m3": 2670.0,
+      "elastic_modulus_pa": 70000000000.0,
+      "yield_strength_pa": 245000000.0,
+      "thermal_expansion_per_k": 2.1e-05,
+      "sources": [
+        "SRC-EOS-ALSI10MG-CURRENT-PAGE (F0 comparison values)"
+      ],
+      "assumed": "same generic comparison as F0",
+      "results": {
+        "cad_mass_g": 600.1430321671883,
+        "analytical_mass_g": 649.8155543342206,
+        "single_blade_mass_g": 9.180289978639005,
+        "shroud_mass_g": 0.0,
+        "overspeed_tip_speed_m_s": 153.93804002589985,
+        "shrouded": false,
+        "overspeed_shroud_hoop_stress_mpa": null,
+        "yield_to_shroud_hoop_ratio": null,
+        "overspeed_blade_root_stress_blade_only_mpa": 9.803816090278549,
+        "overspeed_blade_root_stress_worst_mpa": 13.703497178196203,
+        "overspeed_blade_root_aero_bending_mpa": 3.899681087917653,
+        "yield_to_blade_root_ratio_worst_case": 17.87864782355138,
+        "hub_mass_g": 548.8323645691914,
+        "overspeed_hub_rim_hoop_stress_mpa": 38.46133212531657,
+        "yield_to_hub_rim_ratio": 6.370034173588403,
+        "overspeed_hub_bore_hoop_stress_mpa": 67.70823094521911,
+        "yield_to_hub_bore_ratio": 3.618467010284508,
+        "blade_first_mode_cantilever_hz": 1413.9224126100646,
+        "blade_first_mode_clamped_by_shroud_hz": 8925.53156519363,
+        "spoke_order_hz": 1000.0,
+        "stator_order_hz": 2833.333333333333,
+        "governing_blade_mode_hz": 1413.9224126100646,
+        "modal_separation_ratio": 0.4139224126100646,
+        "cantilever_mode_below_spoke_order": false,
+        "hub_bore_loosening_on_steel_shaft_mm": 0.039779999999999996,
+        "fully_constrained_thermal_stress_mpa": 191.1,
+        "yield_to_constrained_thermal_ratio": 1.2820512820512822,
+        "approximate_polar_inertia_kg_m2": 0.0038754147633420265,
+        "overspeed_kinetic_energy_j": 3059.904848346171,
+        "centrifugal_screen_pass": true,
+        "modal_screen_pass": true,
+        "constrained_thermal_screen_pass": false
+      }
+    }
+  },
+  "primary_material": "WE43_LPBF_T6",
+  "results": {
+    "cad_volume_mm3": 224772.67122366602,
+    "duty_flow_m3_s": 2.34,
+    "rebuild_flow_m3_s": 2.339865905337103,
+    "f1_flow_m3_s": 2.3836859778261728,
+    "f1_flow_gain_vs_rebuild": 0.01872759989754913,
+    "f1_with_stator_flow_gain_vs_rebuild": 0.07097473275361565,
+    "f1_flow_gain_at_equal_power_vs_rebuild": 0.019876767196508327,
+    "f1_with_stator_flow_gain_at_equal_power_vs_rebuild": 0.09337670671885978,
+    "f1_minimum_de_haller_ratio": 0.842853029006779,
+    "f1_shaft_power_w": 9251.204914578426,
+    "rebuild_shaft_power_w": 9282.547480810708,
+    "stalled_stations": {
+      "REF_rebuild_rotor": 0,
+      "F1_rotor_in_rebuild_housing": 0,
+      "F1_rotor_with_matched_stator": 0
+    },
+    "stall_margins": {
+      "REF_rebuild_rotor": 0.20334256018669472,
+      "F1_rotor_in_rebuild_housing": 0.19692334716982618,
+      "F1_rotor_with_matched_stator": 0.2583095441712613
+    },
+    "volume_ratio_f1_to_rebuild": 0.7895448711795275,
+    "aero_screen_pass": true,
+    "housing_fit_screen_pass": true,
+    "primary_material_centrifugal_screen_pass": true,
+    "primary_material_modal_screen_pass": true,
+    "primary_material_constrained_thermal_screen_pass": false,
+    "preliminary_screen_pass": true
+  },
+  "dfam_screen": {
+    "rotating_part": true,
+    "enclosed_blade_passages": false,
+    "orientation": "web on the plate, cup opening upward; blades are open from outside, so their downward faces can be supported and the supports reached",
+    "orientation_selected": false,
+    "magnesium_lpbf_notes": "WE43 LPBF is offered by few service bureaus; powder is reactive and needs an inert, Mg-rated machine",
+    "corrosion_and_galvanic": "Mg needs a conversion or PEO coating and isolation from the steel bolts, the bearing hub and the aluminium housing",
+    "hub_interface": "the separate bearing hub bolts to the web as in the rebuild; a Mg web on steel bolts needs inserts or washers sized for creep",
+    "dynamic_balance_defined": false
+  },
+  "interpretation": {
+    "flow": "F1 keeps the rebuild's envelope and duty; its gains come from airfoil blades and matched loading only",
+    "original_part": "the comparison is with the rebuild rotor, a visual reconstruction; no claim of gain over the Porsche part is made",
+    "power": "more flow through the same engine costs more shaft power; the equal-power gain isolates what the blade design alone buys",
+    "tip_gap": "the 3.5 mm tip gap of a 245 mm rotor in the 252 mm throat costs both rotors more than their blade profiles; closing it is a housing change",
+    "stator": "a matched stator recovers the exit swirl, the largest gain left in this envelope",
+    "dyson": "Coanda entrainment (bladeless fans) adds flow only in free air; against engine fin resistance it loses pressure"
+  },
+  "release_blockers": [
+    "The rebuild geometry, the duty inferred from it and the engine resistance are not measured.",
+    "The flow model is one-dimensional: no CFD, rig curve or measured fan map exists.",
+    "No claim of gain over the Porsche part is made.",
+    "WE43 values are published coupon or generic data: no hot, HCF or notched allowable.",
+    "Alternator air through the cup windows is not modelled.",
+    "No shaft, hub, pulley, alternator or housing interface is measured.",
+    "No balance, overspeed, burst-containment, vibration or endurance test.",
+    "No corrosion or galvanic protection qualified for magnesium on the engine."
+  ],
+  "manufacturing_authorized": false,
+  "engine_operation_authorized": false,
+  "release_authorized": false,
+  "step_roundtrip": {
+    "status": "passed",
+    "valid_brep": true,
+    "solid_count": 1,
+    "semantic_solids": [
+      "rebuild_based_cooling_impeller_f1"
+    ],
+    "volume_mm3": 224772.67122366602,
+    "envelope_mm": [
+      242.96729852245312,
+      244.80764711899477,
+      56.0000002
+    ],
+    "blade_count": 11,
+    "loft_sections_per_blade": 8,
+    "labyrinth_tooth_count": 0,
+    "maximum_volume_delta_mm3": 0.224772671223666
+  }
+}

@@ -1,0 +1,1143 @@
+{
+  "schema_version": "1.0.0",
+  "study_id": "993-FLAT-FAN-SIZING-F2",
+  "rotor_family": "993-ENG-COOLING-IMPELLER-WE43-F1-0001 method, shroud, designed-for-point blades, generic stator and bellmouth",
+  "sweep": {
+    "diameters_mm": [
+      220,
+      240,
+      260,
+      280,
+      300,
+      320,
+      340,
+      360,
+      380,
+      400,
+      420,
+      440,
+      460,
+      480,
+      500,
+      520
+    ],
+    "speeds_rpm": [
+      2000,
+      2500,
+      3000,
+      3500,
+      4000,
+      4500,
+      5000,
+      5500,
+      6000,
+      6500,
+      7000,
+      7500,
+      8000,
+      8500,
+      9000,
+      9500,
+      10000,
+      10500,
+      11000,
+      11500,
+      12000
+    ],
+    "design_gains": [
+      1.15,
+      1.2,
+      1.25,
+      1.3,
+      1.35,
+      1.4,
+      1.45,
+      1.5,
+      1.55
+    ],
+    "target": "deliver at least 1.15 x the duty flow on the duty's K Q^2 curve",
+    "figure_of_merit": "fan efficiency; at equal shaft power flow scales as efficiency^(1/3)",
+    "hub_to_tip_ratio": 0.502092050209205,
+    "tip_speed_cap_m_s": 128.28170002158322,
+    "minimum_de_haller": 0.65
+  },
+  "measured_context": {
+    "source": "Ferdinand magazine on EB Motorsport's 935-derived flat fan kit",
+    "url": "https://ferdinandmagazine.com/porsche-flat-fan-kit",
+    "fan_power_hp": {
+      "4000_fan_rpm": 1.5,
+      "12000_fan_rpm": 32.0
+    },
+    "note": "about ten times this study's synthetic power at the same fan speed: real flat-fan duties are far larger than the synthetic F0 case, which pushes the optimum toward the big-flow cases below",
+    "authority": "magazine report of a builder's dyno measurement; not used as model input"
+  },
+  "cases": [
+    {
+      "flow_scale": 1.0,
+      "pressure_scale": 1.0,
+      "label": "synthetic F0 duty",
+      "target_flow_m3_s": 1.1615,
+      "system_pressure_at_target_pa": 1057.9999999999998,
+      "rows": [
+        {
+          "diameter_mm": 220,
+          "best": {
+            "diameter_mm": 220,
+            "speed_rpm": 8500,
+            "design_gain": 1.5,
+            "flow_m3_s": 1.5590672992574404,
+            "shaft_power_w": 3337.8252354051183,
+            "efficiency": 0.8903858163149315,
+            "tip_speed_m_s": 97.91297103688188,
+            "min_de_haller": 0.7453620099171965
+          }
+        },
+        {
+          "diameter_mm": 240,
+          "best": {
+            "diameter_mm": 240,
+            "speed_rpm": 6000,
+            "design_gain": 1.15,
+            "flow_m3_s": 1.2001680270555288,
+            "shaft_power_w": 1500.7699527575226,
+            "efficiency": 0.9033567038786543,
+            "tip_speed_m_s": 75.39822368615503,
+            "min_de_haller": 0.6875148516719447
+          }
+        },
+        {
+          "diameter_mm": 260,
+          "best": {
+            "diameter_mm": 260,
+            "speed_rpm": 8000,
+            "design_gain": 1.35,
+            "flow_m3_s": 1.3870767423736095,
+            "shaft_power_w": 2309.3888444281656,
+            "efficiency": 0.9062575658179226,
+            "tip_speed_m_s": 108.90854532444615,
+            "min_de_haller": 0.6525265739882282
+          }
+        },
+        {
+          "diameter_mm": 280,
+          "best": {
+            "diameter_mm": 280,
+            "speed_rpm": 8500,
+            "design_gain": 1.4,
+            "flow_m3_s": 1.4263364233466085,
+            "shaft_power_w": 2522.4951157505093,
+            "efficiency": 0.9021584542133521,
+            "tip_speed_m_s": 124.61650859239512,
+            "min_de_haller": 0.6538061095179089
+          }
+        },
+        {
+          "diameter_mm": 300,
+          "best": {
+            "diameter_mm": 300,
+            "speed_rpm": 8000,
+            "design_gain": 1.35,
+            "flow_m3_s": 1.368644834307512,
+            "shaft_power_w": 2243.6950916330975,
+            "efficiency": 0.8960983740787046,
+            "tip_speed_m_s": 125.66370614359171,
+            "min_de_haller": 0.6537084569260131
+          }
+        },
+        {
+          "diameter_mm": 320,
+          "best": {
+            "diameter_mm": 320,
+            "speed_rpm": 7500,
+            "design_gain": 1.3,
+            "flow_m3_s": 1.3115446624297593,
+            "shaft_power_w": 1994.5791732552564,
+            "efficiency": 0.8870441017720392,
+            "tip_speed_m_s": 125.66370614359172,
+            "min_de_haller": 0.6597217728120295
+          }
+        },
+        {
+          "diameter_mm": 340,
+          "best": {
+            "diameter_mm": 340,
+            "speed_rpm": 7000,
+            "design_gain": 1.25,
+            "flow_m3_s": 1.2551021019481836,
+            "shaft_power_w": 1771.2581141739524,
+            "efficiency": 0.8753919676940396,
+            "tip_speed_m_s": 124.6165085923951,
+            "min_de_haller": 0.6678056576243714
+          }
+        },
+        {
+          "diameter_mm": 360,
+          "best": {
+            "diameter_mm": 360,
+            "speed_rpm": 6500,
+            "design_gain": 1.25,
+            "flow_m3_s": 1.2540242827339787,
+            "shaft_power_w": 1776.203644010243,
+            "efficiency": 0.8707075720274875,
+            "tip_speed_m_s": 122.52211349000194,
+            "min_de_haller": 0.6509815709658329
+          }
+        },
+        {
+          "diameter_mm": 380,
+          "best": {
+            "diameter_mm": 380,
+            "speed_rpm": 6000,
+            "design_gain": 1.2,
+            "flow_m3_s": 1.1991124898300451,
+            "shaft_power_w": 1575.0328081393864,
+            "efficiency": 0.8584942970522581,
+            "tip_speed_m_s": 119.38052083641215,
+            "min_de_haller": 0.6550159391861468
+          }
+        },
+        {
+          "diameter_mm": 400,
+          "best": {
+            "diameter_mm": 400,
+            "speed_rpm": 6000,
+            "design_gain": 1.25,
+            "flow_m3_s": 1.2443709373860332,
+            "shaft_power_w": 1786.7615054115777,
+            "efficiency": 0.8457270678442732,
+            "tip_speed_m_s": 125.66370614359172,
+            "min_de_haller": 0.6579125208931176
+          }
+        },
+        {
+          "diameter_mm": 420,
+          "best": {
+            "diameter_mm": 420,
+            "speed_rpm": 5500,
+            "design_gain": 1.2,
+            "flow_m3_s": 1.1908069074155787,
+            "shaft_power_w": 1587.67348785018,
+            "efficiency": 0.834084560615836,
+            "tip_speed_m_s": 120.95131716320701,
+            "min_de_haller": 0.656853472315595
+          }
+        },
+        {
+          "diameter_mm": 440,
+          "best": {
+            "diameter_mm": 440,
+            "speed_rpm": 5500,
+            "design_gain": 1.25,
+            "flow_m3_s": 1.2359611172949712,
+            "shaft_power_w": 1804.017973904052,
+            "efficiency": 0.8207687336290079,
+            "tip_speed_m_s": 126.7109036947883,
+            "min_de_haller": 0.6585133839583697
+          }
+        },
+        {
+          "diameter_mm": 460,
+          "best": {
+            "diameter_mm": 460,
+            "speed_rpm": 5000,
+            "design_gain": 1.2,
+            "flow_m3_s": 1.1840592778712937,
+            "shaft_power_w": 1602.996914233571,
+            "efficiency": 0.8121474564313935,
+            "tip_speed_m_s": 120.42771838760873,
+            "min_de_haller": 0.6503339145306042
+          }
+        },
+        {
+          "diameter_mm": 480,
+          "best": {
+            "diameter_mm": 480,
+            "speed_rpm": 5000,
+            "design_gain": 1.25,
+            "flow_m3_s": 1.2295730027887473,
+            "shaft_power_w": 1821.4843190970241,
+            "efficiency": 0.8003588647668327,
+            "tip_speed_m_s": 125.66370614359172,
+            "min_de_haller": 0.6502825502163193
+          }
+        },
+        {
+          "diameter_mm": 500,
+          "best": null
+        },
+        {
+          "diameter_mm": 520,
+          "best": {
+            "diameter_mm": 520,
+            "speed_rpm": 4500,
+            "design_gain": 1.2,
+            "flow_m3_s": 1.1714834063047401,
+            "shaft_power_w": 1635.5301131831807,
+            "efficiency": 0.7708983545847784,
+            "tip_speed_m_s": 122.52211349000194,
+            "min_de_haller": 0.6591205683476347
+          }
+        }
+      ],
+      "smallest_feasible_diameter_mm": 220,
+      "optimum_diameter_mm": 260,
+      "optimum": {
+        "diameter_mm": 260,
+        "speed_rpm": 8000,
+        "design_gain": 1.35,
+        "flow_m3_s": 1.3870767423736095,
+        "shaft_power_w": 2309.3888444281656,
+        "efficiency": 0.9062575658179226,
+        "tip_speed_m_s": 108.90854532444615,
+        "min_de_haller": 0.6525265739882282
+      },
+      "flow_gain_at_equal_power_vs_240_mm": 0.0010692573482724566
+    },
+    {
+      "flow_scale": 1.0,
+      "pressure_scale": 0.6,
+      "label": "same air, 40 % less resistance",
+      "target_flow_m3_s": 1.1615,
+      "system_pressure_at_target_pa": 634.8,
+      "rows": [
+        {
+          "diameter_mm": 220,
+          "best": {
+            "diameter_mm": 220,
+            "speed_rpm": 7000,
+            "design_gain": 1.55,
+            "flow_m3_s": 1.5939731117027922,
+            "shaft_power_w": 2208.127531513116,
+            "efficiency": 0.8630129458546799,
+            "tip_speed_m_s": 80.63421144213801,
+            "min_de_haller": 0.8140390832168158
+          }
+        },
+        {
+          "diameter_mm": 240,
+          "best": {
+            "diameter_mm": 240,
+            "speed_rpm": 5500,
+            "design_gain": 1.4,
+            "flow_m3_s": 1.456026805466722,
+            "shaft_power_w": 1637.4296434319826,
+            "efficiency": 0.8870415285239591,
+            "tip_speed_m_s": 69.11503837897544,
+            "min_de_haller": 0.7661451774575624
+          }
+        },
+        {
+          "diameter_mm": 260,
+          "best": {
+            "diameter_mm": 260,
+            "speed_rpm": 5500,
+            "design_gain": 1.5,
+            "flow_m3_s": 1.5668019090230516,
+            "shaft_power_w": 2006.404614120014,
+            "efficiency": 0.9020326301421239,
+            "tip_speed_m_s": 74.87462491055672,
+            "min_de_haller": 0.716622740668531
+          }
+        },
+        {
+          "diameter_mm": 280,
+          "best": {
+            "diameter_mm": 280,
+            "speed_rpm": 4500,
+            "design_gain": 1.25,
+            "flow_m3_s": 1.3036421257244182,
+            "shaft_power_w": 1144.852335428491,
+            "efficiency": 0.910592717434505,
+            "tip_speed_m_s": 65.97344572538567,
+            "min_de_haller": 0.6674691149624884
+          }
+        },
+        {
+          "diameter_mm": 300,
+          "best": {
+            "diameter_mm": 300,
+            "speed_rpm": 5500,
+            "design_gain": 1.35,
+            "flow_m3_s": 1.3876951570164406,
+            "shaft_power_w": 1381.1278461463662,
+            "efficiency": 0.9104305580788938,
+            "tip_speed_m_s": 86.39379797371929,
+            "min_de_haller": 0.6505307288137827
+          }
+        },
+        {
+          "diameter_mm": 320,
+          "best": {
+            "diameter_mm": 320,
+            "speed_rpm": 6000,
+            "design_gain": 1.45,
+            "flow_m3_s": 1.4804353150485776,
+            "shaft_power_w": 1684.9643965134899,
+            "efficiency": 0.906099874962683,
+            "tip_speed_m_s": 100.5309649148734,
+            "min_de_haller": 0.6545087293804064
+          }
+        },
+        {
+          "diameter_mm": 340,
+          "best": {
+            "diameter_mm": 340,
+            "speed_rpm": 5500,
+            "design_gain": 1.35,
+            "flow_m3_s": 1.3719934803793392,
+            "shaft_power_w": 1350.3251734664198,
+            "efficiency": 0.8999456221468656,
+            "tip_speed_m_s": 97.91297103688186,
+            "min_de_haller": 0.6582323291661527
+          }
+        },
+        {
+          "diameter_mm": 360,
+          "best": {
+            "diameter_mm": 360,
+            "speed_rpm": 4500,
+            "design_gain": 1.15,
+            "flow_m3_s": 1.1656073620962508,
+            "shaft_power_w": 833.195517470697,
+            "efficiency": 0.8943518515995328,
+            "tip_speed_m_s": 84.82300164692442,
+            "min_de_haller": 0.6545495116965883
+          }
+        },
+        {
+          "diameter_mm": 380,
+          "best": {
+            "diameter_mm": 380,
+            "speed_rpm": 4500,
+            "design_gain": 1.2,
+            "flow_m3_s": 1.2132060623683034,
+            "shaft_power_w": 946.4691827124491,
+            "efficiency": 0.8877603156432069,
+            "tip_speed_m_s": 89.53539062730911,
+            "min_de_haller": 0.6516736726718115
+          }
+        },
+        {
+          "diameter_mm": 400,
+          "best": {
+            "diameter_mm": 400,
+            "speed_rpm": 4500,
+            "design_gain": 1.25,
+            "flow_m3_s": 1.2603522548248836,
+            "shaft_power_w": 1070.6471381404888,
+            "efficiency": 0.8798891399259222,
+            "tip_speed_m_s": 94.24777960769381,
+            "min_de_haller": 0.6508331046536207
+          }
+        },
+        {
+          "diameter_mm": 420,
+          "best": {
+            "diameter_mm": 420,
+            "speed_rpm": 4500,
+            "design_gain": 1.3,
+            "flow_m3_s": 1.307052843539878,
+            "shaft_power_w": 1206.4964964457658,
+            "efficiency": 0.8708670590944099,
+            "tip_speed_m_s": 98.96016858807849,
+            "min_de_haller": 0.6513912363474431
+          }
+        },
+        {
+          "diameter_mm": 440,
+          "best": {
+            "diameter_mm": 440,
+            "speed_rpm": 4500,
+            "design_gain": 1.35,
+            "flow_m3_s": 1.3532735620244891,
+            "shaft_power_w": 1354.9507479514973,
+            "efficiency": 0.8606603047253587,
+            "tip_speed_m_s": 103.67255756846318,
+            "min_de_haller": 0.6528862920728274
+          }
+        },
+        {
+          "diameter_mm": 460,
+          "best": {
+            "diameter_mm": 460,
+            "speed_rpm": 4000,
+            "design_gain": 1.25,
+            "flow_m3_s": 1.2497571703302832,
+            "shaft_power_w": 1079.256515744061,
+            "efficiency": 0.8510414677030054,
+            "tip_speed_m_s": 96.34217471008698,
+            "min_de_haller": 0.652122216383078
+          }
+        },
+        {
+          "diameter_mm": 480,
+          "best": {
+            "diameter_mm": 480,
+            "speed_rpm": 4000,
+            "design_gain": 1.3,
+            "flow_m3_s": 1.296252757060843,
+            "shaft_power_w": 1218.726970418595,
+            "efficiency": 0.8409325189083319,
+            "tip_speed_m_s": 100.53096491487338,
+            "min_de_haller": 0.6518919665665562
+          }
+        },
+        {
+          "diameter_mm": 500,
+          "best": {
+            "diameter_mm": 500,
+            "speed_rpm": 4000,
+            "design_gain": 1.35,
+            "flow_m3_s": 1.3423507655659768,
+            "shaft_power_w": 1370.8832109298055,
+            "efficiency": 0.8302255156256851,
+            "tip_speed_m_s": 104.71975511965977,
+            "min_de_haller": 0.6520462275227163
+          }
+        },
+        {
+          "diameter_mm": 520,
+          "best": {
+            "diameter_mm": 520,
+            "speed_rpm": 4000,
+            "design_gain": 1.4,
+            "flow_m3_s": 1.3880739538844322,
+            "shaft_power_w": 1536.4009533749493,
+            "efficiency": 0.8190902137339785,
+            "tip_speed_m_s": 108.90854532444615,
+            "min_de_haller": 0.6524749268977489
+          }
+        }
+      ],
+      "smallest_feasible_diameter_mm": 220,
+      "optimum_diameter_mm": 280,
+      "optimum": {
+        "diameter_mm": 280,
+        "speed_rpm": 4500,
+        "design_gain": 1.25,
+        "flow_m3_s": 1.3036421257244182,
+        "shaft_power_w": 1144.852335428491,
+        "efficiency": 0.910592717434505,
+        "tip_speed_m_s": 65.97344572538567,
+        "min_de_haller": 0.6674691149624884
+      },
+      "flow_gain_at_equal_power_vs_240_mm": 0.008772899968632508
+    },
+    {
+      "flow_scale": 1.0,
+      "pressure_scale": 1.6,
+      "label": "same air, 60 % more resistance",
+      "target_flow_m3_s": 1.1615,
+      "system_pressure_at_target_pa": 1692.7999999999997,
+      "rows": [
+        {
+          "diameter_mm": 220,
+          "best": {
+            "diameter_mm": 220,
+            "speed_rpm": 8500,
+            "design_gain": 1.15,
+            "flow_m3_s": 1.196658151918831,
+            "shaft_power_w": 2385.3099001779174,
+            "efficiency": 0.9014314838610687,
+            "tip_speed_m_s": 97.91297103688188,
+            "min_de_haller": 0.6713479919541413
+          }
+        },
+        {
+          "diameter_mm": 240,
+          "best": {
+            "diameter_mm": 240,
+            "speed_rpm": 10000,
+            "design_gain": 1.15,
+            "flow_m3_s": 1.1718558959489649,
+            "shaft_power_w": 2245.0766251449368,
+            "efficiency": 0.8994120093656578,
+            "tip_speed_m_s": 125.66370614359172,
+            "min_de_haller": 0.6564515031007796
+          }
+        },
+        {
+          "diameter_mm": 260,
+          "best": {
+            "diameter_mm": 260,
+            "speed_rpm": 2000,
+            "design_gain": 1.3,
+            "flow_m3_s": 1.4116006636395781,
+            "shaft_power_w": 4382.498111327846,
+            "efficiency": 0.8053432928077208,
+            "tip_speed_m_s": 27.227136331111538,
+            "min_de_haller": 1.970765119723276
+          }
+        },
+        {
+          "diameter_mm": 280,
+          "best": {
+            "diameter_mm": 280,
+            "speed_rpm": 2000,
+            "design_gain": 1.45,
+            "flow_m3_s": 1.56416961770434,
+            "shaft_power_w": 6045.644231374776,
+            "efficiency": 0.7942846566230173,
+            "tip_speed_m_s": 29.321531433504735,
+            "min_de_haller": 2.248339751259929
+          }
+        },
+        {
+          "diameter_mm": 300,
+          "best": null
+        },
+        {
+          "diameter_mm": 320,
+          "best": null
+        },
+        {
+          "diameter_mm": 340,
+          "best": null
+        },
+        {
+          "diameter_mm": 360,
+          "best": null
+        },
+        {
+          "diameter_mm": 380,
+          "best": null
+        },
+        {
+          "diameter_mm": 400,
+          "best": null
+        },
+        {
+          "diameter_mm": 420,
+          "best": null
+        },
+        {
+          "diameter_mm": 440,
+          "best": null
+        },
+        {
+          "diameter_mm": 460,
+          "best": null
+        },
+        {
+          "diameter_mm": 480,
+          "best": null
+        },
+        {
+          "diameter_mm": 500,
+          "best": null
+        },
+        {
+          "diameter_mm": 520,
+          "best": null
+        }
+      ],
+      "smallest_feasible_diameter_mm": 220,
+      "optimum_diameter_mm": 220,
+      "optimum": {
+        "diameter_mm": 220,
+        "speed_rpm": 8500,
+        "design_gain": 1.15,
+        "flow_m3_s": 1.196658151918831,
+        "shaft_power_w": 2385.3099001779174,
+        "efficiency": 0.9014314838610687,
+        "tip_speed_m_s": 97.91297103688188,
+        "min_de_haller": 0.6713479919541413
+      },
+      "flow_gain_at_equal_power_vs_240_mm": 0.0007478830230045475
+    },
+    {
+      "flow_scale": 2.0,
+      "pressure_scale": 1.0,
+      "label": "twice the air",
+      "target_flow_m3_s": 2.323,
+      "system_pressure_at_target_pa": 1057.9999999999998,
+      "rows": [
+        {
+          "diameter_mm": 220,
+          "best": {
+            "diameter_mm": 220,
+            "speed_rpm": 7500,
+            "design_gain": 1.25,
+            "flow_m3_s": 2.490360186562615,
+            "shaft_power_w": 3941.797502266089,
+            "efficiency": 0.7682090729311484,
+            "tip_speed_m_s": 86.39379797371933,
+            "min_de_haller": 0.9004457583603473
+          }
+        },
+        {
+          "diameter_mm": 240,
+          "best": {
+            "diameter_mm": 240,
+            "speed_rpm": 6000,
+            "design_gain": 1.15,
+            "flow_m3_s": 2.333029340370159,
+            "shaft_power_w": 3044.3008499080224,
+            "efficiency": 0.8178248088772927,
+            "tip_speed_m_s": 75.39822368615503,
+            "min_de_haller": 0.8696262338894566
+          }
+        },
+        {
+          "diameter_mm": 260,
+          "best": {
+            "diameter_mm": 260,
+            "speed_rpm": 6000,
+            "design_gain": 1.3,
+            "flow_m3_s": 2.6744281380484862,
+            "shaft_power_w": 4396.1860945085,
+            "efficiency": 0.8531079292309032,
+            "tip_speed_m_s": 81.68140899333463,
+            "min_de_haller": 0.8352789357302942
+          }
+        },
+        {
+          "diameter_mm": 280,
+          "best": {
+            "diameter_mm": 280,
+            "speed_rpm": 6000,
+            "design_gain": 1.4,
+            "flow_m3_s": 2.9057015843528746,
+            "shaft_power_w": 5476.380297415648,
+            "efficiency": 0.8783076781671816,
+            "tip_speed_m_s": 87.96459430051422,
+            "min_de_haller": 0.7985961972997796
+          }
+        },
+        {
+          "diameter_mm": 300,
+          "best": {
+            "diameter_mm": 300,
+            "speed_rpm": 5500,
+            "design_gain": 1.35,
+            "flow_m3_s": 2.8153005806781906,
+            "shaft_power_w": 4884.305682398089,
+            "efficiency": 0.8956920541542795,
+            "tip_speed_m_s": 86.39379797371929,
+            "min_de_haller": 0.7596167149841738
+          }
+        },
+        {
+          "diameter_mm": 320,
+          "best": {
+            "diameter_mm": 320,
+            "speed_rpm": 5000,
+            "design_gain": 1.25,
+            "flow_m3_s": 2.6083799468824376,
+            "shaft_power_w": 3834.8827116365414,
+            "efficiency": 0.9072933348214945,
+            "tip_speed_m_s": 83.7758040957278,
+            "min_de_haller": 0.7194090060759903
+          }
+        },
+        {
+          "diameter_mm": 340,
+          "best": {
+            "diameter_mm": 340,
+            "speed_rpm": 6000,
+            "design_gain": 1.5,
+            "flow_m3_s": 3.1238510821530636,
+            "shaft_power_w": 6534.15353418643,
+            "efficiency": 0.9146793620141868,
+            "tip_speed_m_s": 106.81415022205296,
+            "min_de_haller": 0.6787085573404628
+          }
+        },
+        {
+          "diameter_mm": 360,
+          "best": {
+            "diameter_mm": 360,
+            "speed_rpm": 6000,
+            "design_gain": 1.45,
+            "flow_m3_s": 3.003527260899445,
+            "shaft_power_w": 5788.243009323253,
+            "efficiency": 0.9177728930865503,
+            "tip_speed_m_s": 113.09733552923255,
+            "min_de_haller": 0.6529882096607134
+          }
+        },
+        {
+          "diameter_mm": 380,
+          "best": {
+            "diameter_mm": 380,
+            "speed_rpm": 6000,
+            "design_gain": 1.4,
+            "flow_m3_s": 2.8812651929111612,
+            "shaft_power_w": 5120.42790677418,
+            "efficiency": 0.9158633717497927,
+            "tip_speed_m_s": 119.38052083641215,
+            "min_de_haller": 0.6527853048833269
+          }
+        },
+        {
+          "diameter_mm": 400,
+          "best": {
+            "diameter_mm": 400,
+            "speed_rpm": 6000,
+            "design_gain": 1.4,
+            "flow_m3_s": 2.8692528862020197,
+            "shaft_power_w": 5076.217220606612,
+            "efficiency": 0.9123333099172085,
+            "tip_speed_m_s": 125.66370614359172,
+            "min_de_haller": 0.654991812195653
+          }
+        },
+        {
+          "diameter_mm": 420,
+          "best": {
+            "diameter_mm": 420,
+            "speed_rpm": 5000,
+            "design_gain": 1.2,
+            "flow_m3_s": 2.454180817614754,
+            "shaft_power_w": 3186.896921817157,
+            "efficiency": 0.9093663992157778,
+            "tip_speed_m_s": 109.95574287564276,
+            "min_de_haller": 0.6505458162625251
+          }
+        },
+        {
+          "diameter_mm": 440,
+          "best": {
+            "diameter_mm": 440,
+            "speed_rpm": 5500,
+            "design_gain": 1.35,
+            "flow_m3_s": 2.7535362433052337,
+            "shaft_power_w": 4525.99208756016,
+            "efficiency": 0.9043693795628028,
+            "tip_speed_m_s": 126.7109036947883,
+            "min_de_haller": 0.6520767978544659
+          }
+        },
+        {
+          "diameter_mm": 460,
+          "best": {
+            "diameter_mm": 460,
+            "speed_rpm": 5000,
+            "design_gain": 1.25,
+            "flow_m3_s": 2.54149880924627,
+            "shaft_power_w": 3587.681874330591,
+            "efficiency": 0.8971045374898399,
+            "tip_speed_m_s": 120.42771838760873,
+            "min_de_haller": 0.6581817955681954
+          }
+        },
+        {
+          "diameter_mm": 480,
+          "best": {
+            "diameter_mm": 480,
+            "speed_rpm": 5000,
+            "design_gain": 1.3,
+            "flow_m3_s": 2.639408357091366,
+            "shaft_power_w": 4039.8427325956764,
+            "efficiency": 0.8923650483067688,
+            "tip_speed_m_s": 125.66370614359172,
+            "min_de_haller": 0.6535890671072321
+          }
+        },
+        {
+          "diameter_mm": 500,
+          "best": {
+            "diameter_mm": 500,
+            "speed_rpm": 4500,
+            "design_gain": 1.2,
+            "flow_m3_s": 2.4300618574994495,
+            "shaft_power_w": 3180.655874216833,
+            "efficiency": 0.8845503333130936,
+            "tip_speed_m_s": 117.80972450961725,
+            "min_de_haller": 0.6576435724301656
+          }
+        },
+        {
+          "diameter_mm": 520,
+          "best": {
+            "diameter_mm": 520,
+            "speed_rpm": 4500,
+            "design_gain": 1.25,
+            "flow_m3_s": 2.528142078904328,
+            "shaft_power_w": 3602.8487285844835,
+            "efficiency": 0.8793173688377164,
+            "tip_speed_m_s": 122.52211349000194,
+            "min_de_haller": 0.6524956475697373
+          }
+        }
+      ],
+      "smallest_feasible_diameter_mm": 220,
+      "optimum_diameter_mm": 360,
+      "optimum": {
+        "diameter_mm": 360,
+        "speed_rpm": 6000,
+        "design_gain": 1.45,
+        "flow_m3_s": 3.003527260899445,
+        "shaft_power_w": 5788.243009323253,
+        "efficiency": 0.9177728930865503,
+        "tip_speed_m_s": 113.09733552923255,
+        "min_de_haller": 0.6529882096607134
+      },
+      "flow_gain_at_equal_power_vs_240_mm": 0.039182078856327296
+    },
+    {
+      "flow_scale": 4.0,
+      "pressure_scale": 1.0,
+      "label": "four times the air",
+      "target_flow_m3_s": 4.646,
+      "system_pressure_at_target_pa": 1057.9999999999998,
+      "rows": [
+        {
+          "diameter_mm": 220,
+          "best": {
+            "diameter_mm": 220,
+            "speed_rpm": 9500,
+            "design_gain": 1.3,
+            "flow_m3_s": 4.6767722972015235,
+            "shaft_power_w": 10420.77700555823,
+            "efficiency": 0.4811337592578142,
+            "tip_speed_m_s": 109.43214410004447,
+            "min_de_haller": 0.9680789210635652
+          }
+        },
+        {
+          "diameter_mm": 240,
+          "best": {
+            "diameter_mm": 240,
+            "speed_rpm": 9500,
+            "design_gain": 1.55,
+            "flow_m3_s": 5.750356869496466,
+            "shaft_power_w": 16376.54721384797,
+            "efficiency": 0.5691009482033013,
+            "tip_speed_m_s": 119.38052083641213,
+            "min_de_haller": 0.9564138681031578
+          }
+        },
+        {
+          "diameter_mm": 260,
+          "best": {
+            "diameter_mm": 260,
+            "speed_rpm": 8000,
+            "design_gain": 1.5,
+            "flow_m3_s": 5.720976762332098,
+            "shaft_power_w": 14223.75609350878,
+            "efficiency": 0.6452433116355903,
+            "tip_speed_m_s": 108.90854532444615,
+            "min_de_haller": 0.9424713392654562
+          }
+        },
+        {
+          "diameter_mm": 280,
+          "best": {
+            "diameter_mm": 280,
+            "speed_rpm": 6000,
+            "design_gain": 1.25,
+            "flow_m3_s": 4.880020017888192,
+            "shaft_power_w": 8039.606028402902,
+            "efficiency": 0.708528460798383,
+            "tip_speed_m_s": 87.96459430051422,
+            "min_de_haller": 0.9262214145561416
+          }
+        },
+        {
+          "diameter_mm": 300,
+          "best": {
+            "diameter_mm": 300,
+            "speed_rpm": 5500,
+            "design_gain": 1.25,
+            "flow_m3_s": 4.97004845374551,
+            "shaft_power_w": 7920.700906459735,
+            "efficiency": 0.75970592031079,
+            "tip_speed_m_s": 86.39379797371929,
+            "min_de_haller": 0.9077796868002274
+          }
+        },
+        {
+          "diameter_mm": 320,
+          "best": {
+            "diameter_mm": 320,
+            "speed_rpm": 5500,
+            "design_gain": 1.35,
+            "flow_m3_s": 5.4431734252685375,
+            "shaft_power_w": 9877.32768242803,
+            "efficiency": 0.800284323650653,
+            "tip_speed_m_s": 92.15338450530058,
+            "min_de_haller": 0.8870980601785731
+          }
+        },
+        {
+          "diameter_mm": 340,
+          "best": {
+            "diameter_mm": 340,
+            "speed_rpm": 5500,
+            "design_gain": 1.45,
+            "flow_m3_s": 5.9094974426152564,
+            "shaft_power_w": 12155.270820797268,
+            "efficiency": 0.8321742331401272,
+            "tip_speed_m_s": 97.91297103688186,
+            "min_de_haller": 0.864722965351835
+          }
+        },
+        {
+          "diameter_mm": 360,
+          "best": {
+            "diameter_mm": 360,
+            "speed_rpm": 4500,
+            "design_gain": 1.25,
+            "flow_m3_s": 5.134176808761662,
+            "shaft_power_w": 7739.356114340414,
+            "efficiency": 0.8571066965342095,
+            "tip_speed_m_s": 84.82300164692442,
+            "min_de_haller": 0.840268886052883
+          }
+        },
+        {
+          "diameter_mm": 380,
+          "best": {
+            "diameter_mm": 380,
+            "speed_rpm": 4500,
+            "design_gain": 1.3,
+            "flow_m3_s": 5.3678843748470735,
+            "shaft_power_w": 8649.33989884673,
+            "efficiency": 0.8765036925170699,
+            "tip_speed_m_s": 89.53539062730911,
+            "min_de_haller": 0.8150339577790803
+          }
+        },
+        {
+          "diameter_mm": 400,
+          "best": {
+            "diameter_mm": 400,
+            "speed_rpm": 5000,
+            "design_gain": 1.5,
+            "flow_m3_s": 6.216948495196018,
+            "shaft_power_w": 13210.868664226604,
+            "efficiency": 0.8915130197333159,
+            "tip_speed_m_s": 104.71975511965978,
+            "min_de_haller": 0.7877049184762485
+          }
+        },
+        {
+          "diameter_mm": 420,
+          "best": {
+            "diameter_mm": 420,
+            "speed_rpm": 5000,
+            "design_gain": 1.55,
+            "flow_m3_s": 6.439624540562073,
+            "shaft_power_w": 14494.680670027054,
+            "efficiency": 0.9030259799658965,
+            "tip_speed_m_s": 109.95574287564276,
+            "min_de_haller": 0.7613028429921332
+          }
+        },
+        {
+          "diameter_mm": 440,
+          "best": {
+            "diameter_mm": 440,
+            "speed_rpm": 4000,
+            "design_gain": 1.25,
+            "flow_m3_s": 5.194223386162935,
+            "shaft_power_w": 7533.9420944241165,
+            "efficiency": 0.9117312666007007,
+            "tip_speed_m_s": 92.1533845053006,
+            "min_de_haller": 0.7317118260661062
+          }
+        },
+        {
+          "diameter_mm": 460,
+          "best": {
+            "diameter_mm": 460,
+            "speed_rpm": 4500,
+            "design_gain": 1.45,
+            "flow_m3_s": 6.03049550904393,
+            "shaft_power_w": 11706.876122813212,
+            "efficiency": 0.9182167884575346,
+            "tip_speed_m_s": 108.38494654884788,
+            "min_de_haller": 0.7045810937666083
+          }
+        },
+        {
+          "diameter_mm": 480,
+          "best": {
+            "diameter_mm": 480,
+            "speed_rpm": 3500,
+            "design_gain": 1.15,
+            "flow_m3_s": 4.781910550081782,
+            "shaft_power_w": 5807.672204809508,
+            "efficiency": 0.9228465748964396,
+            "tip_speed_m_s": 87.96459430051421,
+            "min_de_haller": 0.680941869210562
+          }
+        },
+        {
+          "diameter_mm": 500,
+          "best": {
+            "diameter_mm": 500,
+            "speed_rpm": 4000,
+            "design_gain": 1.35,
+            "flow_m3_s": 5.613054190112781,
+            "shaft_power_w": 9360.763079796223,
+            "efficiency": 0.9260058034563841,
+            "tip_speed_m_s": 104.71975511965977,
+            "min_de_haller": 0.6594837428302633
+          }
+        },
+        {
+          "diameter_mm": 520,
+          "best": {
+            "diameter_mm": 520,
+            "speed_rpm": 4500,
+            "design_gain": 1.5,
+            "flow_m3_s": 6.220045417192094,
+            "shaft_power_w": 12728.467040408903,
+            "efficiency": 0.9266843355690064,
+            "tip_speed_m_s": 122.52211349000194,
+            "min_de_haller": 0.6521867528840154
+          }
+        }
+      ],
+      "smallest_feasible_diameter_mm": 220,
+      "optimum_diameter_mm": 520,
+      "optimum": {
+        "diameter_mm": 520,
+        "speed_rpm": 4500,
+        "design_gain": 1.5,
+        "flow_m3_s": 6.220045417192094,
+        "shaft_power_w": 12728.467040408903,
+        "efficiency": 0.9266843355690064,
+        "tip_speed_m_s": 122.52211349000194,
+        "min_de_haller": 0.6521867528840154
+      },
+      "flow_gain_at_equal_power_vs_240_mm": 0.1764699469606692
+    }
+  ],
+  "results": {
+    "optimum_diameter_mm_by_case": {
+      "synthetic F0 duty": 260,
+      "same air, 40 % less resistance": 280,
+      "same air, 60 % more resistance": 220,
+      "twice the air": 360,
+      "four times the air": 520
+    },
+    "smallest_feasible_diameter_mm_by_case": {
+      "synthetic F0 duty": 220,
+      "same air, 40 % less resistance": 220,
+      "same air, 60 % more resistance": 220,
+      "twice the air": 220,
+      "four times the air": 220
+    },
+    "optimum_efficiency_by_case": {
+      "synthetic F0 duty": 0.9062575658179226,
+      "same air, 40 % less resistance": 0.910592717434505,
+      "same air, 60 % more resistance": 0.9014314838610687,
+      "twice the air": 0.9177728930865503,
+      "four times the air": 0.9266843355690064
+    },
+    "bigger_is_better_at_synthetic_duty": false,
+    "eos_m400_plate_mm": 400.0
+  },
+  "interpretation": {
+    "sizing": "the best diameter follows the duty: a small-air, high-resistance duty wants a small fast fan; more air at the same pressure wants a bigger fan, which only a flat layout can package",
+    "synthetic_duty": "at the synthetic F0 duty the upright F1 size is already near optimum, so a flat fan would not help by size alone",
+    "resistance": "at fixed efficiency and power, Q scales as K^(-1/3): 40 % less path resistance gives about 19 % more air, the other lever a flat plenum offers",
+    "limits": "one-dimensional model, synthetic duties, generic stator, no plenum, distribution, drive or packaging model"
+  },
+  "manufacturing_authorized": false,
+  "engine_operation_authorized": false,
+  "release_authorized": false
+}

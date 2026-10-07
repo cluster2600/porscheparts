@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-FAN-STATOR-ALSI10MG-F1-0001",
+  "name": "Engine cooling fan guide-vane ring (stator), AlSi10Mg concept F1",
+  "description": "Fixed ring of seventeen cambered guide vanes placed 15 mm behind the F1 WE43 impeller, in the same 165/245 mm annulus. The vanes turn the rotor's exit swirl back into pressure. Their angles are designed station by station from the F1 rotor's exit flow, and the vane count is the smallest that keeps the blade-pass interaction tone cut off in the duct. A one-dimensional model on the duty inferred from the rebuild of the original rotor estimates +5.3 % flow over the F1 rotor alone on 6 % less power, and about +10 % over the rebuild rotor on equal power. These are model estimates on visual hypotheses, not measurements.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_Carrera_fitment_to_confirm", "964_shared_component"],
+    "model_years": {"from": 1994, "to": 1998},
+    "porsche_part_numbers": []
+  },
+  "classification": {
+    "category": "engine_cooling_fan_stator",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "F1 design study: guide-vane design from the F1 rotor exit flow, rotor-stator tone screen, vane modal and aero-load screens, printable envelope; no manufacture, installation or start-up authorized"
+  },
+  "geometry": {
+    "source_type": "estimated",
+    "master_format": "build123d",
+    "master_file": "parts/993-eng-fan-stator-alsi10mg-f1-0001/source/fan_stator_f1.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": [
+      "parts/993-eng-fan-stator-alsi10mg-f1-0001/derived/fan_stator_alsi10mg_f1.step",
+      "parts/993-eng-fan-stator-alsi10mg-f1-0001/derived/fan_stator_alsi10mg_f1.stl"
+    ]
+  },
+  "provenance": {
+    "record_license": "All rights reserved (see LICENSE) for the concept, the script and the calculations; no Porsche or EOS surface or commercial geometry redistributed",
+    "sources": [
+      {
+        "title": "EOS Aluminium AlSi10Mg material data sheet",
+        "url": "https://www.eos.info/metal-solutions/metal-materials/data-sheets/mds-eos-aluminium-alsi10mg",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Generic comparison values, as for the F0 housing and impeller. See SRC-EOS-ALSI10MG-CURRENT-PAGE."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["LPBF", "casting", "CNC"],
+    "preferred_process": "LPBF",
+    "material": {
+      "family": "candidate LPBF aluminum-silicon-magnesium alloy",
+      "grade": "EOS Aluminium AlSi10Mg T6 for comparison",
+      "standard": "DIN EN 1706 EN AC-43000 and ASTM F3318 for the candidate; program-specific specification to be contracted"
+    },
+    "post_processing": [
+      "print flat on the ring face with the inner web on the plate; vanes at 5 to 8 degrees of stagger stand nearly vertical",
+      "stress relief then T6, distortion of the thin outer ring monitored",
+      "smooth vane leading edges and ring bores",
+      "machine the ring faces and the bore to the housing F1 seat once it exists"
+    ],
+    "supplier_requirements": [
+      "traceable machine, parameters, orientation, powder and batch",
+      "metrology of vane angles at hub, mid and tip, ring roundness and faces",
+      "tap test or modal survey of the vanes to fix the real end fixity"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "Aluminium ring next to the aluminium housing and the WE43 impeller's airflow; isolate from steel fasteners and from any magnesium contact."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-eos-alsi10mg-current-page.json",
+      "parts/993-eng-fan-housing-alsi10mg-f0-0001/evidence/engineering-screen.json",
+      "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/engineering-screen.json",
+      "parts/993-eng-fan-stator-alsi10mg-f1-0001/evidence/engineering-screen.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "The rotor follows a visual rebuild, and the speed and engine resistance it is designed against are inferred, not measured.",
+      "The gain is a one-dimensional model estimate in a bellmouth housing: +5.3 % flow over the F1 rotor alone, on a duty inferred from the visual rebuild of the original rotor.",
+      "The first vane mode lies between 2,876 Hz (pinned) and 6,520 Hz (clamped); it clears blade-pass and twice blade-pass at nominal and overspeed by 22 %.",
+      "The tone screen is a thin-annulus estimate; one second-harmonic interaction mode stays cut on.",
+      "Vane and ring blockage, wakes and the upstream housing spokes are not modelled.",
+      "The F0 housing has no seat for the ring; mounting, alternator clearance and tinware interface are undefined.",
+      "No manufacture, installation or start-up is authorized."
+    ]
+  }
+}
