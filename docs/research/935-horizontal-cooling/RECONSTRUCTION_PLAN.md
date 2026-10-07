@@ -23,7 +23,7 @@ Les familles de véhicules sont connues, mais les variantes exactes et leurs
 cotes de montage restent à qualifier. Cette décision ne valide aucune
 interface ni dimension encore inconnue.
 
-La [fiche d'implémentation des 5 et 6 octobre](IMPLEMENTATION.md) contient les
+La [fiche d'implémentation du 5 au 7 octobre](IMPLEMENTATION.md) contient les
 commandes exécutables, versions, contrôles et limites. Le coordinateur accepte
 un cas, une étape et un nouveau dossier privé. La campagne a reconstruit neuf
 plages de pales observées, produit trois résolutions PicoGK, une CAO native
@@ -34,6 +34,9 @@ dans les [archives GitHub privées](https://github.com/cluster2600/porscheparts-
 Le mécanisme possède désormais une portion d'arbre à 22 lobes périodiques
 observés, avec loft ouvert éditable, carte des lacunes et écarts bidirectionnels
 au STEP. Les cannelures conjuguées et les engrenages internes restent inconnus.
+Le support dispose aussi d'un plan d'inspection local et d'une portion de
+paroi d'alésage reconstruite sur son seul arc acquis ; leurs repères restent
+des candidats d'inspection, sans statut de référence de montage mesurée.
 Elle n'a pas encore clos la géométrie
 du rotor, la métrologie des interfaces ou le mécanisme ; les étapes physiques
 qui en dépendent restent ouvertes. Aucun ancien proxy n'entre dans les calculs

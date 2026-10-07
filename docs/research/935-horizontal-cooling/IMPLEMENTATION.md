@@ -1,4 +1,4 @@
-# Reconstruction exécutée les 5 et 6 octobre 2026
+# Reconstruction exécutée du 5 au 7 octobre 2026
 
 Le coordinateur reconstruit des surfaces réellement acquises et produit des
 zones de pales éditables, des exports PicoGK et une revue indépendante. **Le
@@ -12,7 +12,7 @@ vertical demeure distinct.
 |---|---|
 | 0 — Environnement | Accès Kali2, calculs Python, compilation .NET 9/PicoGK et exports FreeCAD vérifiés. Kali1 indisponible lors du contrôle. Aucune installation ou location. |
 | 1 — Géométrie | Deux originaux contrôlés par SHA-256 ; transformations et inverses conservées. Neuf régions de pales détectées sans imposer un comptage. Sections périodiques, neuf plages contiguës, trois résolutions PicoGK et CAO éditable exécutées. Deux zones acquises du moyeu produisent désormais des surfaces analytiques ouvertes FreeCAD/STEP : cylindre intérieur et cône extérieur. Pieds, extrémités, moyeu solide et dos recalé restent à reconstruire. |
-| 2 — Mécanisme | Les 17 interfaces et les chemins d'efforts existants sont réutilisés. Une portion extérieure d'arbre présente 22 lobes périodiques, reconstruits en surface FreeCAD/STEP ouverte. Les autres pièces, les axes fonctionnels et l'assemblage restent ouverts. Aucun engrenage intérieur supposé. |
+| 2 — Mécanisme | Les 17 interfaces et les chemins d'efforts existants sont réutilisés. Une portion extérieure d'arbre présente 22 lobes périodiques, reconstruits en surface FreeCAD/STEP ouverte. La continuation du 7 octobre ajoute un plan d'inspection local du support et une portion acquise de paroi d'alésage. Les autres pièces, les axes fonctionnels et l'assemblage restent ouverts. Aucun engrenage intérieur supposé. |
 | 3 — Air | Aucun calcul de référence lancé : rotor entier, carter, jeux, repères/sens et conditions du pilote non qualifiés. |
 | 4 — Mécanique | Aucun calcul de référence lancé : solides, liaisons, charges et propriétés correspondant au procédé non qualifiés. |
 | 5 — Optimisation | Attend une référence calculée et les contraintes de montage. |
@@ -379,3 +379,64 @@ archives de résultats puisqu'elles sont déjà dans Git ; le commit des sources
 et leurs instantanés sont conservés. Ces archives ne constituent pas une
 qualification de fabrication. Le code et les synthèses demeurent dans
 [la PR publique #132](https://github.com/cluster2600/porscheparts/pull/132).
+
+## Support : continuation du 7 octobre
+
+Les nouveaux essais globaux sur l'anneau extérieur sont conservés et rejetés
+comme références : le mélange de deux cylindres conserve un RMS de 5,58
+unités source sur son échantillon réservé ; les sélections elliptique
+extérieure et intérieure conservent respectivement 4,60 et 2,75 unités.
+Ces domaines et définitions de distance diffèrent ; ces chiffres ne sont pas
+une comparaison de précision sur une même pièce. Aucun axe ou diamètre de
+montage n'est accepté à partir de ces essais.
+
+Une fenêtre locale de 28 870 faces du support fournit un **plan d'inspection**,
+avec RMS 0,450 et P95 0,863 unité source sur des tuiles spatiales réservées.
+Son rectangle exporté est une limite d'inspection artificielle ; il ne
+reconstitue ni silhouette matérielle, ni trous, ni face de fixation complète.
+La sélection conserve les faces exclues. Les transformations et leurs inverses
+restent liées au reçu original du scan.
+
+Ce repère permet de sélectionner **859 faces d'une portion de paroi
+d'alésage**. Sur les secteurs angulaires réservés, le cylindre candidat donne
+RMS 0,118 et P95 0,221 unité source ; le cône ne l'améliore pas. Dans le repère
+ajusté, l'arc couvert par cette sélection mesure 130,20° : les 229,80° restants
+sont exclus du STEP. Cela ne démontre pas leur absence dans le scan complet.
+La faible profondeur acquise et l'arc partiel ne qualifient pas un axe, un
+diamètre nominal ou un ajustement fonctionnel. Les limites axiales restent
+des coupes de sélection, et aucun bouchon n'est ajouté.
+
+Les étapes `support` et `cad-support` réutilisent le coordinateur et l'exporteur
+analytique existants. Le [cas modèle](../../../twins/935-horizontal-cooling-system-f0/reconstruction-case.template.json)
+laisse les sélections privées vides. Après inspection, renseigner la copie
+privée, puis placer le JSON produit et son SHA-256 dans `sections` et
+`sections_sha256` avant l'export natif :
+
+```sh
+SOURCE=twins/935-horizontal-cooling-system-f0/source
+python3 "$SOURCE/run_reconstruction.py" PRIVATE_SUPPORT_CASE.json support work/NEW-support
+python3 "$SOURCE/run_reconstruction.py" PRIVATE_SUPPORT_CAD_CASE.json cad-support work/NEW-support-cad
+```
+
+FreeCAD et STEP sont rouverts : deux faces ouvertes, aucun solide et aire
+préservée. L'arc BRep est contrôlé à trois points intérieurs calculés dans son
+repère source et par sa formule d'aire indépendante. L'export des deux surfaces
+du moyeu est rejoué avec le même exporteur et conserve ses contrôles.
+Le choix de 1 mm par unité pour l'export reste **conditionnel**, et ne calibre
+pas le scan. Les réserves sont issues de la même acquisition ; elles ne sont
+pas une métrologie indépendante ou une validation de montage.
+
+Un essai recentré conserve RMS 0,109 unité source mais fait varier le rayon
+candidat d'environ 1,8 %. Cette sensibilité à la fenêtre renforce le besoin
+de mesures indépendantes avant de définir une portée ou un ajustement.
+La tentative est conservée ; elle ne remplace pas silencieusement l'export.
+Les dix tests scientifiques ciblés passent avec SciPy disponible.
+`make check` passe sur ext4 : 3 556 tests découverts, dont 181 ignorés pour
+dépendances optionnelles, puis les contrôles complémentaires du Makefile.
+
+Les programmes, cas, figures, sorties FreeCAD/STEP, tentatives rejetées et reçus
+sont conservés dans une [archive privée distincte](https://github.com/cluster2600/porscheparts-935-private/releases/tag/support-surfaces-20261007).
+Les originaux restent inchangés, contrôlés par SHA-256. Les prochaines entrées
+nécessaires au montage exact demeurent les cotes indépendantes de calibration,
+les références et interfaces internes du renvoi, puis le carter et les guides
+d'air de la variante 935 retenue. Aucune validation de fabrication n'est accordée.

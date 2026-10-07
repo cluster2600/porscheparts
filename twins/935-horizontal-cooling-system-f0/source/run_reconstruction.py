@@ -317,7 +317,7 @@ def native(case, stage, output):
         arguments.append(str(case['voxel_mm_conditional']))
     else:
         command += ['-e', 'LD_LIBRARY_PATH=/opt/freecad/usr/lib', '--entrypoint', '/opt/freecad/usr/bin/python', image,
-                    mapped(Path(__file__).with_name({'cad-hub': 'build_hub_cad.py', 'cad-drive': 'build_drive_cad.py'}.get(stage, 'build_section_cad.py')))]
+                    mapped(Path(__file__).with_name({'cad-hub': 'build_hub_cad.py', 'cad-support': 'build_hub_cad.py', 'cad-drive': 'build_drive_cad.py'}.get(stage, 'build_section_cad.py')))]
     with (output / 'native.log').open('x') as log:
         subprocess.run(command + arguments + [mapped(output / 'artifacts')], stdout=log, stderr=subprocess.STDOUT, check=True)
     result = json.loads((output / 'artifacts/receipt.json').read_text())
@@ -327,8 +327,8 @@ def native(case, stage, output):
 
 def run(case_path, stage, output):
     case = json.loads(Path(case_path).read_text())
-    if stage not in ('preflight', 'surfaces', 'picogk', 'cad', 'review', 'hub', 'cad-hub', 'drive', 'cad-drive'):
-        raise ValueError('Implemented stages: preflight, surfaces, picogk, cad, review, hub, cad-hub, drive, cad-drive. Complete-reference solver inputs remain unresolved.')
+    if stage not in ('preflight', 'surfaces', 'picogk', 'cad', 'review', 'hub', 'cad-hub', 'drive', 'cad-drive', 'support', 'cad-support'):
+        raise ValueError('Implemented stages: preflight, surfaces, picogk, cad, review, hub, cad-hub, drive, cad-drive, support, cad-support. Complete-reference solver inputs remain unresolved.')
     output = fresh(output)
     os.umask(0o077)
     try:
@@ -342,7 +342,10 @@ def run(case_path, stage, output):
         elif stage == 'drive':
             from reconstruct_drive_shaft import reconstruct
             receipt = reconstruct(case, output)
-        elif stage in ('picogk', 'cad', 'cad-hub', 'cad-drive'):
+        elif stage == 'support':
+            from reconstruct_support_plane import reconstruct
+            receipt = reconstruct(case, output)
+        elif stage in ('picogk', 'cad', 'cad-hub', 'cad-drive', 'cad-support'):
             receipt = native(case, stage, output)
         else:
             from review_reconstruction import review

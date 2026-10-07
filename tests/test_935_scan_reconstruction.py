@@ -18,6 +18,23 @@ except ImportError:
 
 @unittest.skipUnless(AVAILABLE, 'Requires working numpy/scipy numerical runtime')
 class ScanReconstructionTests(unittest.TestCase):
+    def test_support_plane_recovers_tilt_on_spatial_holdout_and_rejects_collinear_points(self):
+        from reconstruct_support_plane import fit_plane
+        x, z = np.meshgrid(np.linspace(-50, 50, 40), np.linspace(-20, 20, 20))
+        points = np.column_stack((x.ravel(), .2*x.ravel()-.1*z.ravel()+7, z.ravel()))
+        fitted = fit_plane(points, [.1, 0, 6], 10, .1)
+        normal = np.array([-.2,1,.1]); normal /= np.linalg.norm(normal)
+        np.testing.assert_allclose(fitted['normal'], normal, atol=1e-7)
+        corners = np.array(fitted['inspection_crop_corners_source_units'])
+        np.testing.assert_allclose((corners-fitted['origin_source_units']) @ normal, 0, atol=1e-7)
+        self.assertLess(fitted['heldout_rms_source_units'], 1e-7)
+        self.assertFalse(set(fitted['train_sample_indices']) & set(fitted['test_sample_indices']))
+        self.assertFalse(fitted['crop_is_part_boundary'])
+        with self.assertRaises(ValueError):
+            fit_plane(points, [.1, 0, 6], 10, float('nan'))
+        with self.assertRaises(ValueError):
+            fit_plane(np.column_stack((x.ravel(), .2*x.ravel()+7, np.zeros(x.size))), [.1,0,6], 10, .1)
+
     def test_acquired_shaft_periodicity_is_inferred_across_bands_and_disagreement_rejected(self):
         from reconstruct_drive_shaft import periodic_profiles
         theta = np.linspace(0, 2*np.pi, 1100, endpoint=False)
