@@ -36,20 +36,18 @@ class FanStatorAlSi10MgF1Tests(unittest.TestCase):
     def test_the_stator_adds_flow_at_lower_shaft_power(self) -> None:
         screen = cached_screen()
         points = screen["operating_points"]
-        rotor_only = points["F1_rotor_only_sharp_inlet"]
-        stator = points["F1_rotor_plus_designed_stator_sharp_inlet"]
-        both = points["F1_rotor_plus_designed_stator_and_bellmouth"]
+        rotor_only = points["F1_rotor_only"]
+        stator = points["F1_rotor_plus_designed_stator"]
 
         self.assertGreater(stator["flow_m3_s"], rotor_only["flow_m3_s"])
-        self.assertGreater(both["flow_m3_s"], stator["flow_m3_s"])
         self.assertLess(stator["shaft_power_w"], rotor_only["shaft_power_w"])
         self.assertGreater(stator["efficiency"], rotor_only["efficiency"])
         self.assertEqual(stator["exit_swirl_loss_pa"] < 1.0, True)
 
     def test_rotor_only_point_matches_the_committed_rotor_evidence(self) -> None:
         rotor = json.loads(ROTOR_REPORT.read_text(encoding="utf-8"))
-        point = cached_screen()["operating_points"]["F1_rotor_only_sharp_inlet"]
-        self.assertAlmostEqual(point["flow_m3_s"], rotor["operating_points"]["F1_rotor_in_F0_housing"]["flow_m3_s"])
+        point = cached_screen()["operating_points"]["F1_rotor_only"]
+        self.assertAlmostEqual(point["flow_m3_s"], rotor["operating_points"]["F1_rotor_in_rebuild_housing"]["flow_m3_s"])
 
     def test_tone_screen_picks_the_fewest_vanes_that_cut_off_blade_pass(self) -> None:
         results = cached_screen()["results"]
@@ -81,7 +79,7 @@ class FanStatorAlSi10MgF1Tests(unittest.TestCase):
         self.assertEqual(report["step_roundtrip"]["status"], "passed")
         self.assertEqual(report["step_roundtrip"]["solid_count"], 1)
         self.assertEqual(report["step_roundtrip"]["vane_count"], 17)
-        for actual, expected in zip(report["step_roundtrip"]["envelope_mm"], [248.0, 248.0, 39.0]):
+        for actual, expected in zip(report["step_roundtrip"]["envelope_mm"], [248.0, 248.0, 40.0]):
             self.assertAlmostEqual(actual, expected, places=3)
         self.assertEqual(report["results"], cached_screen(report["results"]["cad_volume_mm3"])["results"])
         self.assertFalse(report["manufacturing_authorized"])

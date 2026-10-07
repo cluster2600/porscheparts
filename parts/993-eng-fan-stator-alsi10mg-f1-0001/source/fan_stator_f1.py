@@ -42,7 +42,7 @@ VANE_COUNT_CANDIDATES = range(12, 32)
 TARGET_DIFFUSION_FACTOR = 0.40
 MINIMUM_SOLIDITY = 0.8
 MAXIMUM_SOLIDITY = 1.6
-THICKNESS_TO_CHORD = 0.079          # on the 59.5 mm span of the cup-hub rotor, keeps both modal bounds 20 % off every BPF line
+THICKNESS_TO_CHORD = 0.079          # keeps both modal bounds of the 40 mm vanes 20 % off every blade-pass line
 MINIMUM_VANE_THICKNESS_MM = 1.5
 ROTOR_STATOR_AXIAL_GAP_MM = 15.0     # about half a rotor hub chord, for wake mixing
 RING_AXIAL_MARGIN_MM = 2.0
@@ -75,7 +75,7 @@ def rotor_exit(rotor: dict[str, object], flow_m3_s: float, speed_rpm: float) -> 
     """Axial velocity and swirl leaving each F1 rotor station, with the
     shroud leakage recirculated and simple radial equilibrium solved as in
     the rotor model."""
-    base = R.rotor_performance(rotor, flow_m3_s, speed_rpm, shrouded=True, stator=False, bellmouth=True)
+    base = R.rotor_performance(rotor, flow_m3_s, speed_rpm, shrouded=R.SHROUDED, stator=False, bellmouth=True)
     # Radial equilibrium sets the axial velocity at each station.
     return [
         {
@@ -207,7 +207,7 @@ def ring_envelope(vanes: list[dict[str, float]]) -> dict[str, float]:
 def engineering_screen(cad_volume_mm3: float | None = None) -> dict[str, object]:
     rotor = R.design_f1_rotor()
     speed = R.SYNTHETIC_NOMINAL_SPEED_RPM
-    generic = R.CONFIGURATIONS["F1_rotor_with_matched_stator_and_bellmouth"]
+    generic = R.CONFIGURATIONS[R.F1_STATOR]
     design_point = R.operating_point(rotor, speed, **generic)
     exit_flow = rotor_exit(rotor, design_point["flow_m3_s"], speed)
 
@@ -218,26 +218,25 @@ def engineering_screen(cad_volume_mm3: float | None = None) -> dict[str, object]
     vane_count, tone_screens = choose_vane_count(rotor["blade_count"], overspeed_tip_mach)
     vanes = design_vanes(exit_flow, vane_count)
 
+    # Both in the rebuild's bellmouth housing, as the rotor comparison.
     configs = {
-        "F1_rotor_only_sharp_inlet": dict(shrouded=True, stator=False, bellmouth=False),
-        "F1_rotor_plus_designed_stator_sharp_inlet": dict(shrouded=True, stator=True, bellmouth=False,
-                                                          stator_vanes=vanes),
-        "F1_rotor_plus_designed_stator_and_bellmouth": dict(shrouded=True, stator=True, bellmouth=True,
-                                                            stator_vanes=vanes),
+        "F1_rotor_only": dict(shrouded=R.SHROUDED, stator=False, bellmouth=True),
+        "F1_rotor_plus_designed_stator": dict(shrouded=R.SHROUDED, stator=True, bellmouth=True,
+                                              stator_vanes=vanes),
     }
     points = {name: R.operating_point(rotor, speed, **cfg) for name, cfg in configs.items()}
-    reference = R.operating_point(R.design_reference_rotor(), speed, **R.CONFIGURATIONS["R0_conventional_rotor"])
+    reference = R.operating_point(R.design_reference_rotor(), speed, **R.CONFIGURATIONS[R.REFERENCE])
     comparison = {
         name: {
-            "flow_gain_vs_rotor_only": p["flow_m3_s"] / points["F1_rotor_only_sharp_inlet"]["flow_m3_s"] - 1.0,
-            "flow_gain_vs_R0": p["flow_m3_s"] / reference["flow_m3_s"] - 1.0,
-            "shaft_power_ratio_vs_rotor_only": p["shaft_power_w"] / points["F1_rotor_only_sharp_inlet"]["shaft_power_w"],
-            "flow_gain_at_equal_shaft_power_vs_R0": (p["efficiency"] / reference["efficiency"]) ** (1.0 / 3.0) - 1.0,
+            "flow_gain_vs_rotor_only": p["flow_m3_s"] / points["F1_rotor_only"]["flow_m3_s"] - 1.0,
+            "flow_gain_vs_rebuild": p["flow_m3_s"] / reference["flow_m3_s"] - 1.0,
+            "shaft_power_ratio_vs_rotor_only": p["shaft_power_w"] / points["F1_rotor_only"]["shaft_power_w"],
+            "flow_gain_at_equal_shaft_power_vs_rebuild": (p["efficiency"] / reference["efficiency"]) ** (1.0 / 3.0) - 1.0,
         }
         for name, p in points.items()
     }
 
-    stator_point = points["F1_rotor_plus_designed_stator_and_bellmouth"]
+    stator_point = points["F1_rotor_plus_designed_stator"]
     off_design_exit = rotor_exit(rotor, stator_point["flow_m3_s"], speed)
     vane_rows = []
     for v, e in zip(vanes, off_design_exit):
@@ -264,7 +263,7 @@ def engineering_screen(cad_volume_mm3: float | None = None) -> dict[str, object]
         "fits_eos_m290_flat": OUTER_RING_OUTER_DIAMETER_MM < EOS_M290_PLATE_MM,
         "radial_gap_to_f0_housing_shell_mm": (HOUSING_SHELL_INNER_DIAMETER_MM - OUTER_RING_OUTER_DIAMETER_MM) / 2.0,
         "mounting": "undefined: the F0 housing has no seat for a vane ring; a housing F1 must add one",
-        "authority": "synthetic F0/F1 values only; no measured housing, alternator or tinware interface",
+        "authority": "rebuild and synthetic F0 values only; no measured housing, alternator or tinware interface",
     }
     results = {
         "cad_volume_mm3": cad_volume_mm3,
@@ -272,10 +271,10 @@ def engineering_screen(cad_volume_mm3: float | None = None) -> dict[str, object]
         "vane_count": vane_count,
         "stator_flow_m3_s": stator_point["flow_m3_s"],
         "stator_efficiency": stator_point["efficiency"],
-        "flow_gain_vs_rotor_only": comparison["F1_rotor_plus_designed_stator_and_bellmouth"]["flow_gain_vs_rotor_only"],
-        "flow_gain_vs_R0": comparison["F1_rotor_plus_designed_stator_and_bellmouth"]["flow_gain_vs_R0"],
-        "stator_alone_flow_gain_vs_rotor_only": comparison["F1_rotor_plus_designed_stator_sharp_inlet"]["flow_gain_vs_rotor_only"],
-        "flow_gain_at_equal_shaft_power_vs_R0": comparison["F1_rotor_plus_designed_stator_and_bellmouth"]["flow_gain_at_equal_shaft_power_vs_R0"],
+        "flow_gain_vs_rotor_only": comparison["F1_rotor_plus_designed_stator"]["flow_gain_vs_rotor_only"],
+        "flow_gain_vs_rebuild": comparison["F1_rotor_plus_designed_stator"]["flow_gain_vs_rebuild"],
+        "shaft_power_ratio_vs_rotor_only": comparison["F1_rotor_plus_designed_stator"]["shaft_power_ratio_vs_rotor_only"],
+        "flow_gain_at_equal_shaft_power_vs_rebuild": comparison["F1_rotor_plus_designed_stator"]["flow_gain_at_equal_shaft_power_vs_rebuild"],
         "maximum_residual_exit_swirl_deg": max(abs(r["residual_exit_swirl_deg"]) for r in vane_rows),
         "stalled_vane_stations": sum(int(r["stalled"]) for r in vane_rows),
         "first_harmonic_interaction_cut_off": tone_screen(vane_count, rotor["blade_count"], overspeed_tip_mach)["bpf_interaction_cut_off"],
@@ -303,9 +302,9 @@ def engineering_screen(cad_volume_mm3: float | None = None) -> dict[str, object]
         "synthetic_cases": {
             "speed_rpm": speed,
             "design_flow_m3_s": design_point["flow_m3_s"],
-            "system_curve": "dp = K Q^2 through 1.01 m3/s at 800 Pa, as in F0 and the F1 rotor",
+            "system_curve": "dp = K Q^2 inferred from the rebuild rotor, as in the F1 rotor",
             "overspeed_tip_mach": overspeed_tip_mach,
-            "authority": "regression inputs only; no measured 993 speed, fan map or engine resistance",
+            "authority": "inferred from the rebuild's visual blade angles; no measured 993 speed, fan map or engine resistance",
         },
         "rotor_exit_flow": exit_flow,
         "vane_design": vanes,
@@ -317,7 +316,7 @@ def engineering_screen(cad_volume_mm3: float | None = None) -> dict[str, object]
             "candidates": tone_screens,
         },
         "operating_points": points,
-        "reference_R0": reference,
+        "reference_rebuild_rotor": reference,
         "comparison": comparison,
         "structure": structure,
         "envelope": envelope,
@@ -337,7 +336,7 @@ def engineering_screen(cad_volume_mm3: float | None = None) -> dict[str, object]
             "integration": "the ring has no seat in the F0 housing; it defines what a housing F1 must provide",
         },
         "release_blockers": [
-            "The rotor, the speeds and the engine resistance are synthetic.",
+            "The rotor, the speeds and the engine resistance are inferred or synthetic, not measured.",
             "The stator model is one-dimensional: no CFD, rig test or acoustic measurement.",
             "No housing seat, fastening, alternator clearance or tinware interface exists.",
             "Vane wakes, blockage and the upstream housing spokes are not modelled.",

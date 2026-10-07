@@ -26,7 +26,7 @@
 <td width="50%" valign="top" align="center">
 <b>This repository's concept model</b><br><br>
 <img src="media/preview.png" alt="Concept CAD block for Engine cooling fan guide-vane ring (stator), AlSi10Mg concept F1" width="340"><br>
-<sub>Concept CAD block, 248.0 × 248.0 × 39.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+<sub>Concept CAD block, 248.0 × 248.0 × 40.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
 </td>
 </tr></table>
 
@@ -35,7 +35,7 @@
 
 ## What it is
 
-Fixed ring of seventeen cambered guide vanes placed 15 mm behind the F1 WE43 impeller, in the same 120/239 mm annulus. The vanes turn the rotor's exit swirl back into pressure. Their angles are designed station by station from the F1 rotor's exit flow, and the vane count is the smallest that keeps the blade-pass interaction tone cut off in the duct. A one-dimensional model on the synthetic engine resistance estimates +1.7 % flow over the rotor alone, and +5.5 % with a rounded inlet. These are model estimates on synthetic inputs, not measurements.
+Fixed ring of seventeen cambered guide vanes placed 15 mm behind the F1 WE43 impeller, in the same 165/245 mm annulus. The vanes turn the rotor's exit swirl back into pressure. Their angles are designed station by station from the F1 rotor's exit flow, and the vane count is the smallest that keeps the blade-pass interaction tone cut off in the duct. A one-dimensional model on the duty inferred from the rebuild of the original rotor estimates +5.3 % flow over the F1 rotor alone on 6 % less power, and about +10 % over the rebuild rotor on equal power. These are model estimates on visual hypotheses, not measurements.
 
 ## What it does on the car
 

@@ -1,18 +1,18 @@
 {
   "schema_version": "1.0.0",
   "part_id": "993-ENG-COOLING-IMPELLER-WE43-F1-0001",
-  "name": "Engine cooling fan impeller, high-flow shrouded WE43 magnesium concept F1",
-  "description": "High-flow iteration of the F0 impeller. It replaces F0's twelve flat radial paddles with eleven twisted, cambered airfoil blades designed from velocity triangles, ties their tips to a rotating shroud with a two-tooth labyrinth, carries their roots on a 120 mm thin-walled cup hub, shrinks to 248 mm so it clears the F0 housing's 252 mm throat and fits the EOS M 290 plate, and moves to LPBF WE43 magnesium. A one-dimensional blade-element model with radial equilibrium, on the synthetic F0 engine resistance, estimates about 19 % more flow than a conventional reference rotor at the same speed. This is a model estimate on synthetic inputs, not a measurement and not a comparison with the original Porsche part.",
+  "name": "Engine cooling fan impeller, WE43 magnesium concept F1 redesigned from the Turbo rotor rebuild",
+  "description": "Improved variant of the 993 Turbo cooling fan rotor, drawn from the repository's visual rebuild of the original. It keeps the rebuild's 245 mm envelope, its 165 mm cup 56 mm deep that wraps the alternator end, the cup's twelve windows, three bolt holes and bore, eleven blades and no shroud. It replaces the rebuild's constant-pitch cambered plates with twisted airfoil blades designed from velocity triangles, and moves to LPBF WE43 magnesium. A one-dimensional blade-element model with radial equilibrium, on a duty inferred from the rebuild, estimates about 2 % more air than the rebuild rotor on the same shaft power, and about 9 % with a matched stator. These are model estimates on visual hypotheses, not measurements and not a comparison with the Porsche part.",
   "vehicle": {
     "generation": "993",
-    "variants": ["993_Carrera_fitment_to_confirm", "964_shared_component"],
+    "variants": ["993_Turbo", "M64_60_research"],
     "model_years": {"from": 1994, "to": 1998},
-    "porsche_part_numbers": ["96410601531"]
+    "porsche_part_numbers": ["96410601522"]
   },
   "classification": {
     "category": "engine_cooling_fan_impeller",
     "safety_class": "prohibited_pending_engineering",
-    "intended_use": "F1 design study: airfoil blade design, one-dimensional fan-curve simulation against the synthetic engine resistance, lighter-alloy comparison and F0 housing fit; no manufacture, rotation, installation or start-up authorized"
+    "intended_use": "F1 design study: airfoil blades inside the original rotor's envelope, one-dimensional fan-curve comparison with the rebuild rotor on a duty inferred from it, lighter-alloy comparison; no manufacture, rotation, installation or start-up authorized"
   },
   "geometry": {
     "source_type": "estimated",
@@ -28,6 +28,14 @@
   "provenance": {
     "record_license": "All rights reserved (see LICENSE) for the concept, the script and the calculations; no photograph, illustration, Porsche/PorscheFanatics/FVD/Porsche Poitiers/Partworks/APWORKS/EOS surface or commercial geometry redistributed",
     "sources": [
+      {
+        "title": "FVD - Porsche 965/993 Turbo cooling fan rotor 964 106 015 22",
+        "url": "https://www.fvd.net/fr/shop/turbine-965-993-turbo-96410601522~p252068",
+        "source_type": "community",
+        "license": "commercial-product-page-copyright-reference-only",
+        "accessed_on": "2026-09-28",
+        "notes": "The original rotor this F1 redesigns: photographs (11 blades, 12 windows counted from them) and a declared 245 x 245 x 87 mm, 0.9 kg envelope. Linked, never copied; used by the visual rebuild in twins/993-engine-cooling-fan-system-f0/REFERENCE_REBUILD.md."
+      },
       {
         "title": "PorscheFanatics - 964/993 engine cooling fan impeller",
         "url": "https://porschefanatics.com/parts/c/cooling/",
@@ -95,12 +103,11 @@
       "standard": "ASTM B80/B107 WE43 composition reference only; program-specific LPBF, rotating, HCF, balance and overspeed specification to be contracted"
     },
     "post_processing": [
-      "orientation and support strategy that keeps supports out of the enclosed shrouded passages, or a split shroud",
+      "orientation with the web on the plate; supports under the open blades, reachable from outside",
       "solutionizing and ageing, distortion monitored",
       "HIP to be decided by the HCF/defect card",
-      "steel or titanium bore insert, machined hub faces and bore",
-      "machining of the labyrinth teeth to the housing land",
-      "conversion or PEO coating and galvanic isolation from steel and aluminium neighbours",
+      "steel inserts or creep-rated washers at the three bolt holes, machined web faces and bore",
+            "conversion or PEO coating and galvanic isolation from steel and aluminium neighbours",
       "two-plane dynamic balancing in the final condition"
     ],
     "supplier_requirements": [
@@ -108,7 +115,7 @@
       "traceable machine, parameters, orientation, supports, powder, recycling and batch",
       "oriented coupons with tensile, HCF and hot corrosion tests",
       "full CT and metallography with zoned defect criteria",
-      "metrology of hub, bore, runout, blades, shroud, teeth and mass",
+      "metrology of cup, web, bore, bolt holes, runout, blades and mass",
       "proof of balance, overspeed, vibration, flow, containment and endurance"
     ]
   },
@@ -119,7 +126,7 @@
     "hip_required": "not_applicable",
     "machined_surfaces": [],
     "inspection": [],
-    "galvanic_isolation": "Magnesium is anodic to steel shaft, steel fasteners and aluminium housing: coating, insulating washers and a sealed bore insert are required."
+    "galvanic_isolation": "Magnesium is anodic to the steel bolts, the bearing hub and the aluminium housing: coating, insulating washers and inserts at the bolts are required."
   },
   "validation": {
     "status": "concept",
@@ -130,7 +137,9 @@
       "catalog/sources/src-azom-elektron-we43-properties.json",
       "catalog/sources/src-apworks-scalmalloy.json",
       "catalog/sources/src-eos-alsi10mg-current-page.json",
-      "parts/993-eng-cooling-impeller-alsi10mg-f0-0001/evidence/engineering-screen.json",
+      "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json",
+      "twins/993-engine-cooling-fan-system-f0/results/reference/generation.json",
+      "twins/993-engine-cooling-fan-system-f0/REFERENCE_REBUILD.md",
       "parts/993-eng-fan-housing-alsi10mg-f0-0001/evidence/engineering-screen.json",
       "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/engineering-screen.json",
       "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fan-curves.png",
@@ -142,18 +151,16 @@
     "reviewed_by": "",
     "reviewed_on": null,
     "known_limits": [
-      "All geometry, speeds, flow targets and the engine resistance curve are synthetic.",
-      "The flow gains come from a one-dimensional blade-element model, not CFD or a rig test.",
-      "Gains are quoted against R0, a conventional rotor designed by the same method; the original Porsche impeller's performance is unknown.",
-      "Most of the 19 % flow gain at equal speed comes from loading the blades harder, which costs about 69 % more shaft power; at equal shaft power the rotor alone gains about 0.2 %, and about 12 % with a matched stator and bellmouth.",
-      "The stator and bellmouth belong to a future housing F1 and are not part of this rotor.",
+      "The rebuild of the original rotor is a visual reconstruction: blade and window counts are observed, the 48 degree pitch, chords, cup depth and walls are hypotheses.",
+      "The duty is inferred from the rebuild (its best-efficiency point at 10,000 fan rpm in a bellmouth housing: 2.34 m3/s at 2,155 Pa); no 993 fan map, pulley ratio or engine resistance is measured.",
+      "The flow gains come from a one-dimensional blade-element model with simple radial equilibrium, not CFD or a rig test; the alternator air through the cup windows is not modelled.",
+      "On the same shaft power F1 moves about 2 % more air than the rebuild rotor and keeps its stall margin; the same-speed gain ranges from -5 % to +12 % when the rebuild's pitch is varied from 53 to 43 degrees.",
+      "Both rotors lose more to the 3.5 mm tip gap and to exit swirl than to blade profile; the matched stator (about +9 % at equal power) and a housing land over the tips are the larger levers, and belong to a future housing.",
       "WE43 data are single-laboratory room-temperature coupons plus generic values; no hot, HCF or notched allowable.",
-      "The fully constrained thermal screen fails for WE43; the free shroud makes bore loosening on the steel shaft the governing case, which needs an insert.",
-      "Support removal inside the enclosed shrouded passages is unresolved; no manufacture, rotation, installation or start-up is authorized.",
-      "The flat-fan sizing study F2 finds the best size at the synthetic duty to be 260 mm, within 0.1 % of this 248 mm wheel at equal power; at the four-times-larger duties that real flat fans suggest, the optimum reaches the 520 mm edge of the sweep.",
-      "Radial equilibrium (simple, inlet uniform) moved the hub from 80 to 120 mm: with the 80 mm hub the hub section fell to de Haller 0.58 and a station stalled; the 120 mm cup hub with a free vortex keeps every station at or above 0.75.",
-      "The shroud-clamped first blade mode (about 2,140 Hz) sits between the six-spoke order (1,000 Hz) and the seventeen-vane order (2,833 Hz), 24 % from the latter by a beam estimate; an FE Campbell diagram is required.",
-      "The cup web is closed: the alternator cooling path through the hub (twelve windows on the original Turbo rotor's visual rebuild) is not modelled."
+      "The fully constrained thermal screen fails for WE43; the bolted joint to the bearing hub needs inserts or creep-rated washers.",
+      "The open-blade first mode (about 1,350 Hz) is 35 % above the six-spoke order by a beam estimate; an FE Campbell diagram is required.",
+      "An earlier F1 revision (120 mm hub, shroud, 248 mm) was a generic fan that did not keep the original cup or alternator space; it is superseded.",
+      "The flat-fan sizing study F2 is a separate shrouded rotor family on F0-scaled duties; its findings do not describe this upright rotor."
     ]
   }
 }

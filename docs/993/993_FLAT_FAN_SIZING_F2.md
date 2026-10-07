@@ -10,7 +10,10 @@ longer limits it?**
 
 Script: `parts/993-eng-cooling-impeller-we43-f1-0001/source/flat_fan_sizing_f2.py`.
 Evidence: `evidence/flat-fan-sizing-f2.json` and `.png` in the same part.
-All duties are synthetic; the model is one-dimensional, not CFD.
+All duties are synthetic, scaled from the F0 point (1.01 m³/s at 800 Pa),
+not from the duty the upright F1 now infers from the rebuild; the model is
+one-dimensional, not CFD. The study pins its own rotor-family constants, so
+it does not move with the upright F1 design.
 
 ## What is known about real flat fans
 
@@ -31,14 +34,16 @@ than the synthetic F0 case, and that matters for sizing, as shown below.
 
 ## Method
 
-For each duty case, the script redesigns the F1 rotor family at every
+For each duty case, the script redesigns a shrouded rotor family with the
+F1 method at every
 diameter from 220 to 520 mm:
 
-- same velocity-triangle method, hub/tip ratio 0.50 (the F1 cup hub), shroud with a 2 mm
+- same velocity-triangle method, hub/tip ratio 0.50 (the alternator moves
+  off the fan shaft in a flat layout), shroud with a 2 mm
   labyrinth gap, generic stator and bellmouth;
 - design speed swept from 2,000 to 12,000 rpm, blade loading from 1.15 to
   1.55 × the duty flow;
-- tip speed capped at F1's 130 m/s, so no candidate is louder than F1;
+- tip speed capped at F1's 128 m/s (245 mm at 10,000 rpm), so no candidate is louder than F1;
 - hub de Haller ratio at least 0.65, and no stalled station.
 
 It keeps the **most efficient** design that delivers at least 115 % of the
@@ -60,7 +65,7 @@ as efficiency^(1/3), so efficiency is the figure of merit.
 How to read it:
 
 - **Size follows the duty.** At the synthetic duty the best size, 260 mm,
-  is within 0.1 % of the upright F1 size (248 mm), so a flat fan would not
+  is within 0.1 % of the 248 mm size that fits the upright housing, so a flat fan would not
   help by size alone. Each doubling of the air the engine needs pushes the
   best diameter up by 100 mm or more. At four times the air the optimum sits
   on the 520 mm edge of the grid, with efficiency flat from 500 mm (0.926

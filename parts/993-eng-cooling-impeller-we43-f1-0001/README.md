@@ -2,7 +2,7 @@
 
 <div align="center">
 
-# Engine cooling fan impeller, high-flow shrouded WE43 magnesium concept F1
+# Engine cooling fan impeller, WE43 magnesium concept F1 redesigned from the Turbo rotor rebuild
 
 **`993-ENG-COOLING-IMPELLER-WE43-F1-0001`** · Porsche 993 · 1994–1998
 
@@ -22,15 +22,15 @@
 <td width="50%" valign="top">
 <b>Original part</b><br><br>
 The original part is documented — pictures, catalogue entries or published data — on these pages. They are copyrighted, so they are linked here, not copied:<br><br>
+↗ <a href="https://www.fvd.net/fr/shop/turbine-965-993-turbo-96410601522~p252068">FVD - Porsche 965/993 Turbo cooling fan rotor 964 106 015 22</a><br>
 ↗ <a href="https://porschefanatics.com/parts/c/cooling/">PorscheFanatics - 964/993 engine cooling fan impeller</a><br>
 ↗ <a href="https://impact.ornl.gov/en/publications/additive-manufacturing-of-dense-we43-mg-alloy-by-laser-powder-bed/">Additive manufacturing of dense WE43 Mg alloy by laser powder bed fusion (Hyer et al., 2020)</a><br>
 ↗ <a href="https://www.azom.com/article.aspx?ArticleID=9279">AZoM - Magnesium Elektron WE43 alloy properties</a><br>
-↗ <a href="https://www.apworks.de/scalmalloy">APWORKS - Scalmalloy</a><br>
 </td>
 <td width="50%" valign="top" align="center">
 <b>This repository's concept model</b><br><br>
-<img src="media/preview.png" alt="Concept CAD block for Engine cooling fan impeller, high-flow shrouded WE43 magnesium concept F1" width="340"><br>
-<sub>Concept CAD block, 248.0 × 248.0 × 30.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+<img src="media/preview.png" alt="Concept CAD block for Engine cooling fan impeller, WE43 magnesium concept F1 redesigned from the Turbo rotor rebuild" width="340"><br>
+<sub>Concept CAD block, 243.0 × 244.8 × 56.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
 </td>
 </tr></table>
 
@@ -39,18 +39,18 @@ The original part is documented — pictures, catalogue entries or published dat
 
 ## What it is
 
-High-flow iteration of the F0 impeller. It replaces F0's twelve flat radial paddles with eleven twisted, cambered airfoil blades designed from velocity triangles, ties their tips to a rotating shroud with a two-tooth labyrinth, carries their roots on a 120 mm thin-walled cup hub, shrinks to 248 mm so it clears the F0 housing's 252 mm throat and fits the EOS M 290 plate, and moves to LPBF WE43 magnesium. A one-dimensional blade-element model with radial equilibrium, on the synthetic F0 engine resistance, estimates about 19 % more flow than a conventional reference rotor at the same speed. This is a model estimate on synthetic inputs, not a measurement and not a comparison with the original Porsche part.
+Improved variant of the 993 Turbo cooling fan rotor, drawn from the repository's visual rebuild of the original. It keeps the rebuild's 245 mm envelope, its 165 mm cup 56 mm deep that wraps the alternator end, the cup's twelve windows, three bolt holes and bore, eleven blades and no shroud. It replaces the rebuild's constant-pitch cambered plates with twisted airfoil blades designed from velocity triangles, and moves to LPBF WE43 magnesium. A one-dimensional blade-element model with radial equilibrium, on a duty inferred from the rebuild, estimates about 2 % more air than the rebuild rotor on the same shaft power, and about 9 % with a matched stator. These are model estimates on visual hypotheses, not measurements and not a comparison with the Porsche part.
 
 ## What it does on the car
 
-F1 design study: airfoil blade design, one-dimensional fan-curve simulation against the synthetic engine resistance, lighter-alloy comparison and F0 housing fit; no manufacture, rotation, installation or start-up authorized
+F1 design study: airfoil blades inside the original rotor's envelope, one-dimensional fan-curve comparison with the rebuild rotor on a duty inferred from it, lighter-alloy comparison; no manufacture, rotation, installation or start-up authorized
 
 ## At a glance
 
 | | |
 |---|---|
-| Porsche part numbers | 96410601531 |
-| variants | `993_Carrera_fitment_to_confirm`, `964_shared_component` |
+| Porsche part numbers | 96410601522 |
+| variants | `993_Turbo`, `M64_60_research` |
 | candidate material | WE43 LPBF, solutionized and aged, for comparison |
 | candidate process | LPBF |
 | safety class | `prohibited_pending_engineering` |

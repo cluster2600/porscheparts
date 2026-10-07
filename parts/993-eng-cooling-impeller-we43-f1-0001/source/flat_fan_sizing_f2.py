@@ -40,7 +40,7 @@ DIAMETERS_MM = tuple(range(220, 521, 20))
 SPEEDS_RPM = tuple(range(2000, 12001, 500))
 DESIGN_GAINS = tuple(round(1.15 + 0.05 * i, 2) for i in range(9))
 TARGET_FLOW_MARGIN = 1.15
-HUB_TO_TIP_RATIO = 60.0 / 119.5          # F1 value (cup hub, 120 mm)
+HUB_TO_TIP_RATIO = 60.0 / 119.5          # flat-fan family choice: the alternator moves off the fan shaft
 SHROUD_TO_TIP_MM = 2.5
 TOOTH_HEIGHT_MM = 2.0
 LABYRINTH_GAP_MM = 2.0
@@ -59,7 +59,24 @@ def load_rotor_module():
     return module
 
 
+# The flat-fan family is a shrouded axial rotor drawn with the F1 method.
+# Its own blade rules are pinned here, so changes to the upright F1 rotor
+# (which follows the original's cup and has no shroud) do not move this study.
+FAMILY_CONSTANTS = {
+    "SHROUDED": True,
+    "SHROUD_THICKNESS_MM": 2.5,
+    "MAX_BLADE_AXIAL_PROJECTION_MM": 25.0,
+    "TARGET_DIFFUSION_FACTOR": 0.45,
+    "MAXIMUM_SOLIDITY": 1.6,
+    "VORTEX_EXPONENT": 1.0,
+    "DESIGN_EFFICIENCY_GUESS": 0.80,
+    "BLADE_COUNT": 11,
+}
+
+
 def configure(m, diameter_mm: float, speed_rpm: float, design_gain: float, duty: dict[str, float]) -> None:
+    for name, value in FAMILY_CONSTANTS.items():
+        setattr(m, name, value)
     tip_mm = diameter_mm / 2.0 - TOOTH_HEIGHT_MM - SHROUD_TO_TIP_MM
     m.OUTER_DIAMETER_MM = diameter_mm
     m.SHROUD_OUTER_RADIUS_MM = diameter_mm / 2.0 - TOOTH_HEIGHT_MM

@@ -4,7 +4,7 @@
 
 **Status: **prohibited pending engineering**. No part is released; see [SAFETY.md](../../SAFETY.md).**
 
-Fixed ring of seventeen cambered guide vanes placed 15 mm behind the F1 WE43 impeller, in the same 120/239 mm annulus. The vanes turn the rotor's exit swirl back into pressure. Their angles are designed station by station from the F1 rotor's exit flow, and the vane count is the smallest that keeps the blade-pass interaction tone cut off in the duct. A one-dimensional model on the synthetic engine resistance estimates +1.7 % flow over the rotor alone, and +5.5 % with a rounded inlet. These are model estimates on synthetic inputs, not measurements.
+Fixed ring of seventeen cambered guide vanes placed 15 mm behind the F1 WE43 impeller, in the same 165/245 mm annulus. The vanes turn the rotor's exit swirl back into pressure. Their angles are designed station by station from the F1 rotor's exit flow, and the vane count is the smallest that keeps the blade-pass interaction tone cut off in the duct. A one-dimensional model on the duty inferred from the rebuild of the original rotor estimates +5.3 % flow over the F1 rotor alone on 6 % less power, and about +10 % over the rebuild rotor on equal power. These are model estimates on visual hypotheses, not measurements.
 
 ```mermaid
 flowchart LR
@@ -57,7 +57,7 @@ Catalogue record: [`catalog/parts/993-eng-fan-stator-alsi10mg-f1-0001.json`](../
 | grade | EOS Aluminium AlSi10Mg T6 for comparison |
 | standard | DIN EN 1706 EN AC-43000 and ASTM F3318 for the candidate; program-specific specification to be contracted |
 | supplier requirements | traceable machine, parameters, orientation, powder and batch, metrology of vane angles at hub, mid and tip, ring roundness and faces, tap test or modal survey of the vanes to fix the real end fixity |
-| post-processing | print flat on the ring face with the inner web on the plate; vanes at 5 to 10 degrees of stagger stand nearly vertical, stress relief then T6, distortion of the thin outer ring monitored, smooth vane leading edges and ring bores, machine the ring faces and the bore to the housing F1 seat once it exists |
+| post-processing | print flat on the ring face with the inner web on the plate; vanes at 5 to 8 degrees of stagger stand nearly vertical, stress relief then T6, distortion of the thin outer ring monitored, smooth vane leading edges and ring bores, machine the ring faces and the bore to the housing F1 seat once it exists |
 
 ## Geometry
 

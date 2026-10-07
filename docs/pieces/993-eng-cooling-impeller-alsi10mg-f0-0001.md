@@ -112,7 +112,6 @@ Catalogue record: [`catalog/parts/993-eng-cooling-impeller-alsi10mg-f0-0001.json
 ## Design dossiers
 
 - [993_COOLING_IMPELLER_ALSI10MG_F0](../../docs/993/993_COOLING_IMPELLER_ALSI10MG_F0.md)
-- [993_COOLING_IMPELLER_WE43_F1](../../docs/993/993_COOLING_IMPELLER_WE43_F1.md)
 - [993_ENGINE_COOLING_FAN_SYSTEM_F0](../../docs/993/993_ENGINE_COOLING_FAN_SYSTEM_F0.md)
 
 ---

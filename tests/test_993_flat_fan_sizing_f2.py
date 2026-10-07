@@ -15,23 +15,25 @@ SPEC.loader.exec_module(MODULE)
 
 
 class FlatFanSizingF2Tests(unittest.TestCase):
-    def test_configure_reproduces_the_f1_geometry_at_248_mm(self) -> None:
+    def test_configure_pins_the_shrouded_flat_fan_family(self) -> None:
         m = MODULE.load_rotor_module()
-        reference = MODULE.load_rotor_module()
-        MODULE.configure(m, 248.0, 10_000.0, reference.DESIGN_FLOW_GAIN, MODULE.DUTY_CASES[0])
+        MODULE.configure(m, 248.0, 10_000.0, 1.25, MODULE.DUTY_CASES[0])
 
-        self.assertAlmostEqual(m.blade_tip_radius_mm(), reference.blade_tip_radius_mm())
-        self.assertAlmostEqual(m.HUB_OUTER_DIAMETER_MM, reference.HUB_OUTER_DIAMETER_MM)
-        self.assertAlmostEqual(m.HOUSING_SYNTHETIC_THROAT_MM, reference.HOUSING_SYNTHETIC_THROAT_MM)
-        self.assertEqual(m.design_f1_rotor(), reference.design_f1_rotor())
+        for name, value in MODULE.FAMILY_CONSTANTS.items():
+            self.assertEqual(getattr(m, name), value)
+        self.assertAlmostEqual(m.blade_tip_radius_mm(), 119.5)
+        self.assertAlmostEqual(m.HUB_OUTER_DIAMETER_MM, 120.0)
+        self.assertAlmostEqual(m.HOUSING_SYNTHETIC_THROAT_MM, 252.0)
+        self.assertEqual(m.SYNTHETIC_AIRFLOW_M3_S, 1.01)
+        self.assertEqual(m.SYNTHETIC_PRESSURE_RISE_PA, 800.0)
 
     def test_overrides_stay_private_to_the_study(self) -> None:
         m = MODULE.load_rotor_module()
         MODULE.configure(m, 360.0, 6000.0, 1.2, MODULE.DUTY_CASES[4])
         fresh = MODULE.load_rotor_module()
-        self.assertEqual(fresh.OUTER_DIAMETER_MM, 248.0)
-        self.assertEqual(fresh.SYNTHETIC_PRESSURE_RISE_PA, 800.0)
-        self.assertEqual(fresh.SYNTHETIC_AIRFLOW_M3_S, 1.01)
+        self.assertEqual(fresh.OUTER_DIAMETER_MM, 245.0)
+        self.assertFalse(fresh.SHROUDED)
+        self.assertEqual(fresh.SYNTHETIC_AIRFLOW_M3_S, 2.34)
 
     def test_small_grid_meets_target_under_tip_speed_cap(self) -> None:
         report = MODULE.study(cases=MODULE.DUTY_CASES[:1], diameters=(240, 320),

@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""993 engine cooling impeller, high-flow shrouded concept F1 in LPBF WE43.
+"""993 engine cooling impeller, concept F1 in LPBF WE43, redesigned from the
+visual rebuild of the original Turbo rotor.
 
-F1 iterates the F0 impeller with one goal: more cooling air through the same
-synthetic engine resistance. It swaps F0's flat radial paddles for twisted,
-cambered airfoil blades designed from velocity triangles, adds a rotating
-shroud with a labyrinth seal (no tip vortex), shrinks the wheel so it fits the
-F0 housing throat and the EOS M 290 plate, and moves to a lighter alloy.
+F1 keeps the rebuild's envelope and interfaces: 245 mm, the deep cup around
+the alternator with its twelve windows, three bolt holes and bore, eleven
+blades and no shroud. It replaces the rebuild's constant-pitch cambered
+plates with twisted airfoil blades designed from velocity triangles, and
+moves to a lighter alloy. Gains are quoted against the rebuild rotor in the
+same housing, on a duty inferred from the rebuild.
 
 The flow simulation is a one-dimensional blade-element (streamline) model:
 Euler work, Carter deviation, Lieblein diffusion losses, tip-leakage and
@@ -25,11 +27,23 @@ PART_ID = "993-ENG-COOLING-IMPELLER-WE43-F1-0001"
 PREDECESSOR_PART_ID = "993-ENG-COOLING-IMPELLER-ALSI10MG-F0-0001"
 HOUSING_PART_ID = "993-ENG-FAN-HOUSING-ALSI10MG-F0-0001"
 
-# Synthetic F0 regression case, kept unchanged so F0 and F1 are comparable.
+ROOT = Path(__file__).resolve().parents[3]
+REBUILD_PARAMETERS = (
+    ROOT / "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json"
+)
+REBUILD = json.loads(REBUILD_PARAMETERS.read_text(encoding="utf-8"))
+REBUILD_CAMBER_HEIGHT_MM = 2.0       # parabolic camber height hard-coded in the rebuild's Program.cs
+
+# Duty. No 993 fan map or engine resistance is published. The duty is
+# inferred from the rebuild itself: the engine-resistance curve K Q^2 that
+# runs the rebuild rotor at its best efficiency at the nominal speed, in the
+# same bellmouth housing (matched_duty() recomputes these two values; a test
+# keeps them in step). It inherits every visual hypothesis of the rebuild,
+# the 48 degree blade pitch first.
 SYNTHETIC_NOMINAL_SPEED_RPM = 10_000.0
 SYNTHETIC_OVERSPEED_FACTOR = 1.20
-SYNTHETIC_AIRFLOW_M3_S = 1.01
-SYNTHETIC_PRESSURE_RISE_PA = 800.0
+SYNTHETIC_AIRFLOW_M3_S = 2.340
+SYNTHETIC_PRESSURE_RISE_PA = 2155.0
 SYNTHETIC_AIR_TEMPERATURE_C = 80.0
 AMBIENT_PRESSURE_PA = 101_325.0
 AIR_GAMMA = 1.4
@@ -39,55 +53,59 @@ REFERENCE_TEMPERATURE_C = 20.0
 MINIMUM_SCREEN_RATIO = 1.5
 MINIMUM_MODAL_SEPARATION_RATIO = 0.20
 
-# Integration: the F0 housing throat is 252 mm (synthetic). F1 fits inside it.
+# Integration: the F0 housing throat is 252 mm (synthetic).
 HOUSING_SYNTHETIC_THROAT_MM = 252.0
 MINIMUM_SYNTHETIC_RADIAL_CLEARANCE_MM = 2.0
 EOS_M290_PLATE_MM = 250.0
 
-# F1 geometry. All synthetic; nothing is measured on a Porsche part.
-OUTER_DIAMETER_MM = 248.0            # over the labyrinth teeth
-SHROUD_OUTER_RADIUS_MM = 122.0
-SHROUD_THICKNESS_MM = 2.5
-LABYRINTH_TOOTH_COUNT = 2
+# F1 keeps the rebuild's envelope and interfaces: same 245 mm diameter, same
+# cup (alternator space, web, twelve windows, three bolt holes and bore),
+# eleven blades, no shroud. Only the blades and the alloy change.
+OUTER_DIAMETER_MM = float(REBUILD["rotor_diameter_mm"])
+SHROUDED = False
+SHROUD_OUTER_RADIUS_MM = OUTER_DIAMETER_MM / 2.0   # no shroud: the blade tip radius
+SHROUD_THICKNESS_MM = 0.0
+LABYRINTH_TOOTH_COUNT = 0
 LABYRINTH_TOOTH_WIDTH_MM = 1.5
-LABYRINTH_TOOTH_Z_MM = (8.0, 22.0)
-AXIAL_DEPTH_MM = 30.0
-# Hub: a thin-walled cup (rim + web + bore boss), not a solid disc. The
-# 0.5 hub-to-tip ratio keeps the hub section above the 0.72 de Haller
-# guideline once radial equilibrium is solved; the original Turbo rotor's
-# visual rebuild also carries its blades on a large cup (radius ~82 mm,
-# twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json,
-# an unmeasured visual hypothesis).
-HUB_OUTER_DIAMETER_MM = 120.0
-HUB_RIM_THICKNESS_MM = 4.0
-HUB_WEB_THICKNESS_MM = 5.0
-HUB_BOSS_DIAMETER_MM = 50.0
-HUB_BORE_DIAMETER_MM = 30.0
-BLADE_COUNT = 11                     # odd, coprime with the 6 housing spokes and a 17-vane stator
-MAX_BLADE_AXIAL_PROJECTION_MM = 25.0
-HUB_THICKNESS_TO_CHORD = 0.090      # thinned from 0.10/0.06: keeps the shrouded blade mode 20 % off the 17-vane order
-TIP_THICKNESS_TO_CHORD = 0.054
+CUP_DEPTH_MM = float(REBUILD["cup_rear_z_mm"] - REBUILD["cup_front_z_mm"])
+AXIAL_DEPTH_MM = CUP_DEPTH_MM
+HUB_OUTER_DIAMETER_MM = 2.0 * REBUILD["cup_radius_mm"]
+HUB_RIM_THICKNESS_MM = float(REBUILD["wall_mm"])
+HUB_WEB_THICKNESS_MM = float(REBUILD["web_mm"])
+HUB_BORE_DIAMETER_MM = 2.0 * REBUILD["bore_radius_mm"]
+HUB_BOSS_DIAMETER_MM = HUB_BORE_DIAMETER_MM   # no boss: the separate bearing hub bolts on
+VENT_COUNT = int(REBUILD["vent_count"])
+VENT_RADIUS_MM = float(REBUILD["vent_radius_mm"])
+VENT_RADIAL_HALFWIDTH_MM = float(REBUILD["vent_radial_halfwidth_mm"])
+VENT_TANGENTIAL_HALFWIDTH_MM = float(REBUILD["vent_tangential_halfwidth_mm"])
+BOLT_COUNT = 3
+BOLT_CIRCLE_RADIUS_MM = float(REBUILD["bolt_circle_radius_mm"])
+BOLT_HOLE_RADIUS_MM = float(REBUILD["bolt_hole_radius_mm"])
+BLADE_COUNT = int(REBUILD["blade_count"])   # 11: coprime with the 6 housing spokes and a 17-vane stator
+MAX_BLADE_AXIAL_PROJECTION_MM = 50.0       # inside the 56 mm cup depth
+HUB_THICKNESS_TO_CHORD = 0.10
+TIP_THICKNESS_TO_CHORD = 0.06
 MINIMUM_BLADE_THICKNESS_MM = 1.5
-TARGET_DIFFUSION_FACTOR = 0.45
+TARGET_DIFFUSION_FACTOR = 0.30            # longer chords than 0.45: stall margin equal to the rebuild, blade mode 35 % above the spoke order
 MAXIMUM_SOLIDITY = 1.6
 VORTEX_EXPONENT = 1.0                # c_u2 ~ r^-n: 1 = free vortex (uniform exit flow), 0 = constant swirl
-DESIGN_FLOW_GAIN = 1.25              # design for +25 % flow on the synthetic system curve
+DESIGN_FLOW_GAIN = 1.10              # +10 % design flow: lands at the rebuild's shaft power
 DESIGN_EFFICIENCY_GUESS = 0.80
 AERO_STATIONS = 11
 
-# Optional matched housing F1 features (not part of this rotor, reported apart).
+# Optional housing features (not part of this rotor, reported apart).
 STATOR_VANE_COUNT = 17
 STATOR_SOLIDITY = 1.2
 BELLMOUTH_INLET_LOSS_K = 0.05
 SHARP_INLET_LOSS_K = 0.50
 
-# Conventional reference rotor R0: same method, none of the F1 features.
-REFERENCE_BLADE_COUNT = 12
-REFERENCE_HUB_OUTER_DIAMETER_MM = 80.0
-REFERENCE_TIP_RADIUS_MM = 124.0      # unshrouded, 2 mm tip gap in the 252 mm throat
-REFERENCE_TIP_GAP_MM = 2.0
-REFERENCE_CHORD_MM = 30.0
-REFERENCE_PLATE_LOSS_FACTOR = 1.5    # bent constant-thickness plate vs airfoil
+# Reference: the rebuild rotor, modelled as eleven cambered constant-pitch
+# plates between the cup and the tip, in the same housing as F1.
+REFERENCE_BLADE_COUNT = int(REBUILD["blade_count"])
+REFERENCE_HUB_OUTER_DIAMETER_MM = HUB_OUTER_DIAMETER_MM
+REFERENCE_TIP_RADIUS_MM = OUTER_DIAMETER_MM / 2.0
+REFERENCE_TIP_GAP_MM = (HOUSING_SYNTHETIC_THROAT_MM - OUTER_DIAMETER_MM) / 2.0
+REFERENCE_PLATE_LOSS_FACTOR = 1.5    # thick cambered plate vs airfoil
 TIP_GAP_EFFICIENCY_SLOPE = 2.0       # delta_eta = 2 * tau / h (unshrouded axial rotors)
 LABYRINTH_DISCHARGE_COEFFICIENT = 0.5
 
@@ -419,36 +437,39 @@ def design_f1_rotor() -> dict[str, object]:
     }
 
 
-def design_reference_rotor() -> dict[str, object]:
-    """Conventional rotor R0: free vortex for the synthetic point, constant
-    chord bent plates, unshrouded, no stator."""
-    rho = air_density()
-    omega = angular_speed(SYNTHETIC_NOMINAL_SPEED_RPM)
+def design_reference_rotor(pitch_deg: float | None = None) -> dict[str, object]:
+    """The rebuild rotor: eleven constant-pitch plates from the cup to the
+    tip, chord tapering from root to tip, with the rebuild's 2 mm parabolic
+    camber read as a circular arc. Pitch is measured from the plane of
+    rotation, as in the rebuild's Program.cs. Every value is the rebuild's
+    visual hypothesis."""
+    pitch = REBUILD["blade_pitch_deg"] if pitch_deg is None else pitch_deg
+    stagger = 90.0 - pitch
     hub_mm = REFERENCE_HUB_OUTER_DIAMETER_MM / 2.0
     tip_mm = REFERENCE_TIP_RADIUS_MM
-    area = math.pi * ((tip_mm / 1000.0) ** 2 - (hub_mm / 1000.0) ** 2)
-    c_x = SYNTHETIC_AIRFLOW_M3_S / area
-    target_work = SYNTHETIC_PRESSURE_RISE_PA / 0.70 / rho
-    radii = stations(hub_mm, tip_mm)
+    root, tip_chord = REBUILD["blade_root_chord_mm"], REBUILD["blade_tip_chord_mm"]
     sections = []
-    for r in radii:
-        u = omega * r
-        c_u2 = target_work / u
-        beta1 = math.degrees(math.atan(u / c_x))
-        beta2 = math.degrees(math.atan(max(u - c_u2, 0.0) / c_x))
-        solidity = REFERENCE_CHORD_MM * REFERENCE_BLADE_COUNT / (2.0 * math.pi * r * 1000.0)
-        kappa1, kappa2 = metal_angles(beta1, beta2, solidity)
+    for r in stations(hub_mm, tip_mm):
+        r_mm = r * 1000.0
+        span = (r_mm - hub_mm) / (tip_mm - hub_mm)
+        chord = root + (tip_chord - root) * span
+        camber = math.degrees(2.0 * math.atan(4.0 * REBUILD_CAMBER_HEIGHT_MM / chord))
         sections.append({
-            "radius_mm": r * 1000.0,
-            "solidity": solidity,
-            "chord_mm": REFERENCE_CHORD_MM,
-            "inlet_metal_deg": kappa1,
-            "outlet_metal_deg": kappa2,
+            "radius_mm": r_mm,
+            "chord_mm": chord,
+            "solidity": chord * REFERENCE_BLADE_COUNT / (2.0 * math.pi * r_mm),
+            "camber_deg": camber,
+            "stagger_deg": stagger,
+            "inlet_metal_deg": stagger + camber / 2.0,
+            "outlet_metal_deg": stagger - camber / 2.0,
+            "thickness_mm": float(REBUILD["blade_thickness_mm"]),
         })
     return {
+        "source": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json",
+        "blade_pitch_from_rotation_plane_deg": pitch,
         "hub_radius_mm": hub_mm,
         "tip_radius_mm": tip_mm,
-        "annulus_area_m2": area,
+        "annulus_area_m2": math.pi * ((tip_mm / 1000.0) ** 2 - (hub_mm / 1000.0) ** 2),
         "blade_count": REFERENCE_BLADE_COUNT,
         "sections": sections,
     }
@@ -604,11 +625,42 @@ def stall_flow(rotor, speed_rpm: float, **config) -> float:
 
 
 CONFIGURATIONS = {
-    "R0_conventional_rotor": {"shrouded": False, "stator": False, "bellmouth": False,
-                              "loss_factor": REFERENCE_PLATE_LOSS_FACTOR},
-    "F1_rotor_in_F0_housing": {"shrouded": True, "stator": False, "bellmouth": False},
-    "F1_rotor_with_matched_stator_and_bellmouth": {"shrouded": True, "stator": True, "bellmouth": True},
+    "REF_rebuild_rotor": {"shrouded": False, "stator": False, "bellmouth": True,
+                          "loss_factor": REFERENCE_PLATE_LOSS_FACTOR},
+    "F1_rotor_in_rebuild_housing": {"shrouded": False, "stator": False, "bellmouth": True},
+    "F1_rotor_with_matched_stator": {"shrouded": False, "stator": True, "bellmouth": True},
 }
+REFERENCE = "REF_rebuild_rotor"
+F1_ROTOR = "F1_rotor_in_rebuild_housing"
+F1_STATOR = "F1_rotor_with_matched_stator"
+
+
+def matched_duty(rotor: dict[str, object] | None = None) -> dict[str, float]:
+    """Flow and pressure at the rebuild rotor's best efficiency at the
+    nominal speed (golden section over its unstalled range). The engine
+    curve through this point is the duty both rotors are compared on."""
+    rotor = design_reference_rotor() if rotor is None else rotor
+    config = CONFIGURATIONS[REFERENCE]
+    speed = SYNTHETIC_NOMINAL_SPEED_RPM
+    lo = stall_flow(rotor, speed, **config)
+
+    def eta(q):
+        return rotor_performance(rotor, q, speed, **config)["efficiency"]
+
+    hi = 2.0 * lo
+    g = (math.sqrt(5.0) - 1.0) / 2.0
+    a, b = lo, hi
+    for _ in range(60):
+        c, d = b - g * (b - a), a + g * (b - a)
+        if eta(c) > eta(d):
+            b = d
+        else:
+            a = c
+    flow = (a + b) / 2.0
+    point = rotor_performance(rotor, flow, speed, **config)
+    return {"flow_m3_s": flow, "pressure_rise_pa": point["useful_pressure_pa"],
+            "efficiency": point["efficiency"], "shaft_power_w": point["shaft_power_w"],
+            "stall_onset_flow_m3_s": lo}
 
 
 # --------------------------------------------------------------------------
@@ -647,7 +699,11 @@ def blade_mass_properties(design: dict[str, object], density: float) -> dict[str
 
 
 def structural_screen(design: dict[str, object], material: dict[str, float],
-                      cad_volume_mm3: float | None) -> dict[str, object]:
+                      cad_volume_mm3: float | None,
+                      aero: dict[str, float] | None = None) -> dict[str, object]:
+    """aero: the nominal-speed operating point (shaft power, useful pressure)
+    used for the cantilever root bending of unshrouded blades, scaled to
+    overspeed with the square of speed."""
     rho = material["density_kg_m3"]
     e = material["elastic_modulus_pa"]
     sy = material["yield_strength_pa"]
@@ -655,21 +711,38 @@ def structural_screen(design: dict[str, object], material: dict[str, float],
     omega_o = angular_speed(SYNTHETIC_NOMINAL_SPEED_RPM * SYNTHETIC_OVERSPEED_FACTOR)
     blade = blade_mass_properties(design, rho)
 
-    # Shroud: free thin ring, and worst case where blades carry all of it.
+    # Shroud (when fitted): free thin ring, and worst case where blades carry
+    # all of it. Without a shroud the ring terms vanish.
     r_out = SHROUD_OUTER_RADIUS_MM / 1000.0
     r_in = blade_tip_radius_mm() / 1000.0
     ring_volume = math.pi * (r_out**2 - r_in**2) * AXIAL_DEPTH_MM / 1000.0
     tooth_volume = LABYRINTH_TOOTH_COUNT * math.pi * (
         (OUTER_DIAMETER_MM / 2000.0) ** 2 - r_out**2
     ) * LABYRINTH_TOOTH_WIDTH_MM / 1000.0
-    ring_mass = rho * (ring_volume + tooth_volume)
+    ring_mass = rho * (ring_volume + tooth_volume) if SHROUDED else 0.0
     ring_mean_radius = (r_out + r_in) / 2.0
     tip_speed_o = omega_o * OUTER_DIAMETER_MM / 2000.0
-    shroud_hoop_pa = rho * tip_speed_o**2
+    shroud_hoop_pa = rho * tip_speed_o**2 if SHROUDED else None
     blade_pull_n = blade["radial_moment_kg_m"] * omega_o**2
     ring_share_n = ring_mass / BLADE_COUNT * ring_mean_radius * omega_o**2
     root_stress_blade_only = blade_pull_n / blade["root_area_mm2"] * 1.0e6
     root_stress_with_ring = (blade_pull_n + ring_share_n) / blade["root_area_mm2"] * 1.0e6
+    # Aerodynamic bending of a cantilever blade: tangential (torque) and
+    # axial (pressure) loads spread evenly along the span, root moment F L / 2.
+    aero_bending_pa = 0.0
+    if aero is not None:
+        scale = SYNTHETIC_OVERSPEED_FACTOR**2
+        r_mean = (design["hub_radius_mm"] + design["tip_radius_mm"]) / 2000.0
+        omega_nominal = omega_n
+        tangential = aero["shaft_power_w"] / omega_nominal / r_mean / BLADE_COUNT
+        area = design["annulus_area_m2"]
+        axial = aero["useful_pressure_pa"] * area / BLADE_COUNT
+        force = scale * math.hypot(tangential, axial)
+        moment = force * blade["length_m"] / 2.0
+        root = design["sections"][0]
+        z_min = blade["root_minor_inertia_mm4"] / (root["thickness_mm"] / 2.0) / 1.0e9
+        aero_bending_pa = moment / z_min
+        root_stress_with_ring += aero_bending_pa
 
     # Hub cup, two worst cases like the shroud. (a) The rim is a free ring
     # carrying its own mass and the blade (and shroud) pull, with no help
@@ -716,9 +789,10 @@ def structural_screen(design: dict[str, object], material: dict[str, float],
     clamped_running = math.sqrt(clamped_hz**2 + 1.17 * rev_hz**2)
     spoke_order_hz = SPOKE_COUNT * rev_hz
     stator_order_hz = STATOR_VANE_COUNT * rev_hz
+    governing_mode = clamped_running if SHROUDED else cantilever_running
     shrouded_separation = min(
-        abs(clamped_running - spoke_order_hz) / spoke_order_hz,
-        abs(clamped_running - stator_order_hz) / stator_order_hz,
+        abs(governing_mode - spoke_order_hz) / spoke_order_hz,
+        abs(governing_mode - stator_order_hz) / stator_order_hz,
     )
 
     # Thermal: differential growth against a steel shaft, and F0's fully
@@ -745,10 +819,12 @@ def structural_screen(design: dict[str, object], material: dict[str, float],
         "single_blade_mass_g": blade["mass_kg"] * 1000.0,
         "shroud_mass_g": ring_mass * 1000.0,
         "overspeed_tip_speed_m_s": tip_speed_o,
-        "overspeed_shroud_hoop_stress_mpa": shroud_hoop_pa / 1.0e6,
-        "yield_to_shroud_hoop_ratio": sy / shroud_hoop_pa,
+        "shrouded": SHROUDED,
+        "overspeed_shroud_hoop_stress_mpa": shroud_hoop_pa / 1.0e6 if SHROUDED else None,
+        "yield_to_shroud_hoop_ratio": sy / shroud_hoop_pa if SHROUDED else None,
         "overspeed_blade_root_stress_blade_only_mpa": root_stress_blade_only / 1.0e6,
-        "overspeed_blade_root_stress_carrying_shroud_mpa": root_stress_with_ring / 1.0e6,
+        "overspeed_blade_root_stress_worst_mpa": root_stress_with_ring / 1.0e6,
+        "overspeed_blade_root_aero_bending_mpa": aero_bending_pa / 1.0e6,
         "yield_to_blade_root_ratio_worst_case": sy / root_stress_with_ring,
         "hub_mass_g": hub_mass * 1000.0,
         "overspeed_hub_rim_hoop_stress_mpa": rim_hoop / 1.0e6,
@@ -759,7 +835,8 @@ def structural_screen(design: dict[str, object], material: dict[str, float],
         "blade_first_mode_clamped_by_shroud_hz": clamped_running,
         "spoke_order_hz": spoke_order_hz,
         "stator_order_hz": stator_order_hz,
-        "shrouded_modal_separation_ratio": shrouded_separation,
+        "governing_blade_mode_hz": governing_mode,
+        "modal_separation_ratio": shrouded_separation,
         "cantilever_mode_below_spoke_order": cantilever_running < spoke_order_hz,
         "hub_bore_loosening_on_steel_shaft_mm": bore_loosening_mm,
         "fully_constrained_thermal_stress_mpa": constrained_thermal_pa / 1.0e6,
@@ -767,12 +844,14 @@ def structural_screen(design: dict[str, object], material: dict[str, float],
         "approximate_polar_inertia_kg_m2": polar_inertia,
         "overspeed_kinetic_energy_j": 0.5 * polar_inertia * omega_o**2,
     }
-    results["centrifugal_screen_pass"] = min(
-        results["yield_to_shroud_hoop_ratio"],
+    centrifugal = [
         results["yield_to_blade_root_ratio_worst_case"],
         results["yield_to_hub_rim_ratio"],
         results["yield_to_hub_bore_ratio"],
-    ) >= MINIMUM_SCREEN_RATIO
+    ]
+    if SHROUDED:
+        centrifugal.append(results["yield_to_shroud_hoop_ratio"])
+    results["centrifugal_screen_pass"] = min(centrifugal) >= MINIMUM_SCREEN_RATIO
     results["modal_screen_pass"] = shrouded_separation >= MINIMUM_MODAL_SEPARATION_RATIO
     results["constrained_thermal_screen_pass"] = (
         results["yield_to_constrained_thermal_ratio"] >= MINIMUM_SCREEN_RATIO
@@ -784,36 +863,41 @@ def structural_screen(design: dict[str, object], material: dict[str, float],
 # Report
 # --------------------------------------------------------------------------
 
+REBUILD_GENERATION = ROOT / "twins/993-engine-cooling-fan-system-f0/results/reference/generation.json"
+FVD_ROTOR_MASS_KG = 0.9              # FVD commercial listing, material not stated (REFERENCE_REBUILD.md)
+
+
+def rebuild_rotor_volume_mm3() -> float:
+    record = json.loads(REBUILD_GENERATION.read_text(encoding="utf-8"))
+    return next(p["volume_mm3"] for p in record["parts"] if p["part"] == "rotor")
+
+
 def engineering_screen(cad_volume_mm3: float | None = None) -> dict[str, object]:
     design = design_f1_rotor()
     reference = design_reference_rotor()
-    rotors = {
-        "R0_conventional_rotor": reference,
-        "F1_rotor_in_F0_housing": design,
-        "F1_rotor_with_matched_stator_and_bellmouth": design,
-    }
+    rotors = {REFERENCE: reference, F1_ROTOR: design, F1_STATOR: design}
+    speed = SYNTHETIC_NOMINAL_SPEED_RPM
     points = {
-        name: operating_point(rotors[name], SYNTHETIC_NOMINAL_SPEED_RPM, **cfg)
+        name: operating_point(rotors[name], speed, **cfg)
         for name, cfg in CONFIGURATIONS.items()
     }
-    base = points["R0_conventional_rotor"]
+    base = points[REFERENCE]
     comparison = {
         name: {
-            "flow_gain_vs_R0": p["flow_m3_s"] / base["flow_m3_s"] - 1.0,
-            "flow_gain_vs_synthetic_point": p["flow_m3_s"] / SYNTHETIC_AIRFLOW_M3_S - 1.0,
-            "shaft_power_ratio_vs_R0": p["shaft_power_w"] / base["shaft_power_w"],
-            # Q^3 * K = eta * P_shaft: flow each design would move on R0's power.
-            "flow_gain_at_equal_shaft_power_vs_R0": (p["efficiency"] / base["efficiency"]) ** (1.0 / 3.0) - 1.0,
+            "flow_gain_vs_rebuild": p["flow_m3_s"] / base["flow_m3_s"] - 1.0,
+            "shaft_power_ratio_vs_rebuild": p["shaft_power_w"] / base["shaft_power_w"],
+            # Q^3 * K = eta * P_shaft: flow each design would move on the rebuild's power.
+            "flow_gain_at_equal_shaft_power_vs_rebuild": (p["efficiency"] / base["efficiency"]) ** (1.0 / 3.0) - 1.0,
         }
         for name, p in points.items()
     }
     for name, cfg in CONFIGURATIONS.items():
-        onset = stall_flow(rotors[name], SYNTHETIC_NOMINAL_SPEED_RPM, **cfg)
+        onset = stall_flow(rotors[name], speed, **cfg)
         points[name]["stall_onset_flow_m3_s"] = onset
         points[name]["stall_margin"] = points[name]["flow_m3_s"] / onset - 1.0
-    flows = [round(0.4 + 0.05 * i, 2) for i in range(25)]
+    flows = [round(1.2 + 0.1 * i, 2) for i in range(22)]
     curves = {
-        name: fan_curve(rotors[name], SYNTHETIC_NOMINAL_SPEED_RPM, flows, **cfg)
+        name: fan_curve(rotors[name], speed, flows, **cfg)
         for name, cfg in CONFIGURATIONS.items()
     }
     curves["system"] = [
@@ -822,18 +906,62 @@ def engineering_screen(cad_volume_mm3: float | None = None) -> dict[str, object]
     speed_sweep = [
         {
             "speed_rpm": rpm,
-            "F1_rotor_in_F0_housing_flow_m3_s": operating_point(
-                design, rpm, **CONFIGURATIONS["F1_rotor_in_F0_housing"])["flow_m3_s"],
-            "R0_flow_m3_s": operating_point(
-                reference, rpm, **CONFIGURATIONS["R0_conventional_rotor"])["flow_m3_s"],
+            "F1_rotor_flow_m3_s": operating_point(design, rpm, **CONFIGURATIONS[F1_ROTOR])["flow_m3_s"],
+            "rebuild_flow_m3_s": operating_point(reference, rpm, **CONFIGURATIONS[REFERENCE])["flow_m3_s"],
         }
         for rpm in (3000.0, 6000.0, 8000.0, 10000.0, 12000.0)
     ]
+    # Sensitivity: the duty and the rebuild's pitch are both inferred.
+    k = system_coefficient()
+    duty_sensitivity = []
+    for factor in (0.6, 1.0, 1.6):
+        row = {"resistance_factor": factor}
+        for name in (REFERENCE, F1_ROTOR, F1_STATOR):
+            q = _root(
+                lambda x, n=name: factor * k * x**2
+                - rotor_performance(rotors[n], x, speed, **CONFIGURATIONS[n])["useful_pressure_pa"],
+                0.05, 8.0, 1.0e-9,
+            )
+            perf = rotor_performance(rotors[name], q, speed, **CONFIGURATIONS[name])
+            row[name] = {"flow_m3_s": q, "efficiency": perf["efficiency"],
+                         "shaft_power_w": perf["shaft_power_w"],
+                         "stalled_station_count": perf["stalled_station_count"]}
+        row["F1_flow_gain_at_equal_power"] = (
+            row[F1_ROTOR]["efficiency"] / row[REFERENCE]["efficiency"]) ** (1.0 / 3.0) - 1.0
+        duty_sensitivity.append(row)
+    pitch_sensitivity = []
+    for pitch in (43.0, 48.0, 53.0):
+        ref = design_reference_rotor(pitch)
+        perf = operating_point(ref, speed, **CONFIGURATIONS[REFERENCE])
+        pitch_sensitivity.append({
+            "rebuild_pitch_deg": pitch,
+            "rebuild_flow_m3_s": perf["flow_m3_s"],
+            "rebuild_efficiency": perf["efficiency"],
+            "rebuild_stalled_station_count": perf["stalled_station_count"],
+            "F1_flow_gain_vs_rebuild": points[F1_ROTOR]["flow_m3_s"] / perf["flow_m3_s"] - 1.0,
+            "F1_flow_gain_at_equal_power_vs_rebuild": (
+                points[F1_ROTOR]["efficiency"] / perf["efficiency"]) ** (1.0 / 3.0) - 1.0
+            if perf["efficiency"] > 0.0 else None,
+        })
+    aero_load = {"shaft_power_w": points[F1_ROTOR]["shaft_power_w"],
+                 "useful_pressure_pa": points[F1_ROTOR]["useful_pressure_pa"]}
     materials = {
-        name: {**{k: v for k, v in m.items()}, "results": structural_screen(design, m, cad_volume_mm3)}
+        name: {**{k: v for k, v in m.items()},
+               "results": structural_screen(design, m, cad_volume_mm3, aero_load)}
         for name, m in MATERIALS.items()
     }
     primary = materials[PRIMARY_MATERIAL]["results"]
+    rebuild_volume = rebuild_rotor_volume_mm3()
+    mass = {
+        "rebuild_rotor_volume_mm3": rebuild_volume,
+        "f1_cad_volume_mm3": cad_volume_mm3,
+        "volume_ratio_f1_to_rebuild": cad_volume_mm3 / rebuild_volume if cad_volume_mm3 else None,
+        "rebuild_mass_in_alsi10mg_g": rebuild_volume / 1.0e3 * 2.67,
+        "rebuild_mass_in_we43_g": rebuild_volume / 1.0e3 * 1.84,
+        "f1_mass_in_we43_g": cad_volume_mm3 / 1.0e3 * 1.84 if cad_volume_mm3 else None,
+        "fvd_listed_original_mass_g": FVD_ROTOR_MASS_KG * 1000.0,
+        "note": "the rebuild volume is a visual reconstruction; FVD's 0.9 kg listing (material not stated) implies 3.2 g/cm3 on it, so the rebuild probably under-represents the real rotor's material",
+    }
     radial_clearance = (HOUSING_SYNTHETIC_THROAT_MM - OUTER_DIAMETER_MM) / 2.0
     integration = {
         "housing_part_id": HOUSING_PART_ID,
@@ -843,12 +971,22 @@ def engineering_screen(cad_volume_mm3: float | None = None) -> dict[str, object]
         "housing_fit_screen_pass": radial_clearance >= MINIMUM_SYNTHETIC_RADIAL_CLEARANCE_MM,
         "eos_m290_plate_mm": EOS_M290_PLATE_MM,
         "fits_eos_m290_flat": OUTER_DIAMETER_MM < EOS_M290_PLATE_MM,
-        "authority": "comparison between synthetic F0/F1 values only; no measured interface",
+        "cup_kept_from_rebuild": {
+            "cup_outer_diameter_mm": HUB_OUTER_DIAMETER_MM,
+            "cup_depth_mm": CUP_DEPTH_MM,
+            "wall_mm": HUB_RIM_THICKNESS_MM,
+            "web_mm": HUB_WEB_THICKNESS_MM,
+            "bore_diameter_mm": HUB_BORE_DIAMETER_MM,
+            "vent_count": VENT_COUNT,
+            "bolt_holes": BOLT_COUNT,
+        },
+        "authority": "the rebuild's visual hypotheses; no measured interface",
     }
     stalled = {name: p["stalled_station_count"] for name, p in points.items()}
     aero_pass = (
-        comparison["F1_rotor_in_F0_housing"]["flow_gain_vs_R0"] > 0.0
-        and stalled["F1_rotor_in_F0_housing"] == 0
+        comparison[F1_ROTOR]["flow_gain_at_equal_shaft_power_vs_rebuild"] > 0.0
+        and stalled[F1_ROTOR] == 0
+        and min(s["de_haller_ratio"] for s in design["sections"]) >= 0.72
     )
     screen_pass = (
         aero_pass
@@ -857,32 +995,35 @@ def engineering_screen(cad_volume_mm3: float | None = None) -> dict[str, object]
         and primary["modal_screen_pass"]
     )
     return {
-        "schema_version": "1.0.0",
+        "schema_version": "2.0.0",
         "part_id": PART_ID,
-        "status": "f1_high_flow_shrouded_impeller_mathematical_screen",
-        "predecessor": {
-            "part_id": PREDECESSOR_PART_ID,
-            "f0_blades": "twelve flat radial paddles 102 x 7 x 20 mm with no pitch, camber or twist",
-            "f0_outer_diameter_mm": 280.0,
-            "f0_housing_radial_clearance_mm": -14.0,
-            "f0_print_screen": "failed closed: does not fit the EOS M 290 plate",
+        "status": "f1_rebuild_based_impeller_mathematical_screen",
+        "reference": {
+            "rebuild_parameters": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json",
+            "rebuild_report": "twins/993-engine-cooling-fan-system-f0/REFERENCE_REBUILD.md",
+            "authority": "visual reconstruction of the Turbo rotor from FVD photographs; blade count and window count observed, other shape values are hypotheses",
+            "superseded_f1_revision": "an earlier F1 (120 mm hub, shroud, 248 mm) was a generic fan derived from the synthetic F0; it did not keep the original cup or alternator space",
         },
         "design_intent": [
-            "twisted cambered airfoil blades from velocity triangles instead of flat paddles",
-            "rotating shroud with a two-tooth labyrinth: no tip vortex, blades tied at both ends",
-            "248 mm over the teeth: 2 mm radial clearance in the 252 mm F0 throat and fits the 250 mm EOS M 290 plate",
-            "eleven blades, coprime with the six housing spokes and a seventeen-vane stator option",
-            "WE43 magnesium: about 31 % lighter than aluminium at a better strength-to-weight ratio",
-            "optional housing F1 features (stator de-swirl vanes, bellmouth) reported separately",
+            "keep the rebuild's envelope and interfaces: 245 mm, 165 mm cup 56 mm deep, web, twelve windows, three bolt holes, bore",
+            "eleven twisted, cambered airfoil blades from velocity triangles instead of constant-pitch cambered plates",
+            "free vortex: even exit flow under radial equilibrium",
+            "no shroud, like the original: blades remain open and printable from outside",
+            "WE43 magnesium",
+            "optional housing stator reported separately",
         ],
         "synthetic_cases": {
-            "nominal_speed_rpm": SYNTHETIC_NOMINAL_SPEED_RPM,
+            "nominal_speed_rpm": speed,
             "overspeed_factor": SYNTHETIC_OVERSPEED_FACTOR,
-            "system_curve": "dp = K Q^2 through the F0 synthetic point 1.01 m3/s at 800 Pa",
-            "system_coefficient_pa_s2_m6": system_coefficient(),
+            "system_curve": "dp = K Q^2 through the rebuild rotor's best-efficiency point in a bellmouth housing",
+            "duty_flow_m3_s": SYNTHETIC_AIRFLOW_M3_S,
+            "duty_pressure_pa": SYNTHETIC_PRESSURE_RISE_PA,
+            "system_coefficient_pa_s2_m6": k,
             "air_temperature_c": SYNTHETIC_AIR_TEMPERATURE_C,
             "air_density_kg_m3": air_density(),
-            "authority": "regression inputs only; no measured 993 speed, pulley ratio, fan map or engine resistance",
+            "overspeed_tip_mach": angular_speed(speed * SYNTHETIC_OVERSPEED_FACTOR) * OUTER_DIAMETER_MM / 2000.0
+            / math.sqrt(AIR_GAMMA * AIR_GAS_CONSTANT_J_KG_K * (SYNTHETIC_AIR_TEMPERATURE_C + 273.15)),
+            "authority": "inferred from the rebuild's visual blade angles; no measured 993 speed, pulley ratio, fan map or engine resistance",
         },
         "rotor_design": design,
         "reference_rotor": reference,
@@ -891,31 +1032,37 @@ def engineering_screen(cad_volume_mm3: float | None = None) -> dict[str, object]
             "radial_equilibrium": "(1/rho) dp0/dr = c_x dc_x/dr + (c_u/r) d(r c_u)/dr marched implicitly from the hub, mean axial velocity carries the flow; Lieblein terms use the local axial velocity ratio; the non-uniform exit profile is mixed out with a Borda-Carnot loss",
             "work": "Euler dp0 = rho U c_u2, no inlet swirl",
             "deviation": "Carter: delta = (0.23 + 0.002 kappa2) theta / sqrt(sigma)",
-            "profile_loss": "Lieblein D_eq with incidence term; theta/c = 0.004/(1 - 1.17 ln D_eq); stall flag D_eq > 2.2",
-            "tip_loss": "unshrouded: delta_eta = 2 tau/h; shrouded: labyrinth leakage Q = Cd A sqrt(2 dp/rho) recirculated",
+            "profile_loss": "Lieblein D_eq with incidence term; theta/c = 0.004/(1 - 1.17 ln D_eq); stall flag D_eq > 2.2; rebuild plates x 1.5",
+            "tip_loss": "unshrouded: delta_eta = 2 tau/h with the 3.5 mm gap of a 245 mm rotor in the 252 mm throat, for both rotors",
             "swirl_loss": "exit swirl dynamic head lost unless a stator row recovers it",
-            "inlet_loss": f"K = {SHARP_INLET_LOSS_K} sharp, {BELLMOUTH_INLET_LOSS_K} bellmouth, on axial dynamic head",
-            "limits": "inlet flow uniform and swirl-free; no streamline curvature, secondary flow, 3D stall, Reynolds or compressibility model; not CFD",
+            "inlet_loss": f"bellmouth K = {BELLMOUTH_INLET_LOSS_K} on axial dynamic head, for both rotors",
+            "limits": "pure axial annulus from the cup to the tip; the alternator air through the cup windows, the housing spokes and the real inlet are not modelled; not CFD",
         },
         "operating_points": points,
         "comparison": comparison,
         "fan_curves": curves,
         "speed_sweep": speed_sweep,
+        "duty_sensitivity": duty_sensitivity,
+        "rebuild_pitch_sensitivity": pitch_sensitivity,
         "upstream_f0_integration": integration,
+        "mass": mass,
         "material_screens": materials,
         "primary_material": PRIMARY_MATERIAL,
         "results": {
             "cad_volume_mm3": cad_volume_mm3,
-            "f1_flow_m3_s": points["F1_rotor_in_F0_housing"]["flow_m3_s"],
-            "f1_flow_gain_vs_R0": comparison["F1_rotor_in_F0_housing"]["flow_gain_vs_R0"],
-            "f1_with_stator_flow_gain_vs_R0": comparison["F1_rotor_with_matched_stator_and_bellmouth"]["flow_gain_vs_R0"],
-            "f1_flow_gain_at_equal_power_vs_R0": comparison["F1_rotor_in_F0_housing"]["flow_gain_at_equal_shaft_power_vs_R0"],
-            "f1_with_stator_flow_gain_at_equal_power_vs_R0": comparison["F1_rotor_with_matched_stator_and_bellmouth"]["flow_gain_at_equal_shaft_power_vs_R0"],
+            "duty_flow_m3_s": SYNTHETIC_AIRFLOW_M3_S,
+            "rebuild_flow_m3_s": base["flow_m3_s"],
+            "f1_flow_m3_s": points[F1_ROTOR]["flow_m3_s"],
+            "f1_flow_gain_vs_rebuild": comparison[F1_ROTOR]["flow_gain_vs_rebuild"],
+            "f1_with_stator_flow_gain_vs_rebuild": comparison[F1_STATOR]["flow_gain_vs_rebuild"],
+            "f1_flow_gain_at_equal_power_vs_rebuild": comparison[F1_ROTOR]["flow_gain_at_equal_shaft_power_vs_rebuild"],
+            "f1_with_stator_flow_gain_at_equal_power_vs_rebuild": comparison[F1_STATOR]["flow_gain_at_equal_shaft_power_vs_rebuild"],
             "f1_minimum_de_haller_ratio": min(s["de_haller_ratio"] for s in design["sections"]),
-            "f1_shaft_power_w": points["F1_rotor_in_F0_housing"]["shaft_power_w"],
-            "r0_shaft_power_w": base["shaft_power_w"],
+            "f1_shaft_power_w": points[F1_ROTOR]["shaft_power_w"],
+            "rebuild_shaft_power_w": base["shaft_power_w"],
             "stalled_stations": stalled,
             "stall_margins": {name: p["stall_margin"] for name, p in points.items()},
+            "volume_ratio_f1_to_rebuild": mass["volume_ratio_f1_to_rebuild"],
             "aero_screen_pass": aero_pass,
             "housing_fit_screen_pass": integration["housing_fit_screen_pass"],
             "primary_material_centrifugal_screen_pass": primary["centrifugal_screen_pass"],
@@ -925,28 +1072,28 @@ def engineering_screen(cad_volume_mm3: float | None = None) -> dict[str, object]
         },
         "dfam_screen": {
             "rotating_part": True,
-            "enclosed_blade_passages": True,
-            "support_removal_between_shrouded_blades": "unresolved: blade surfaces lie under 20 degrees from the plate near the tip",
+            "enclosed_blade_passages": False,
+            "orientation": "web on the plate, cup opening upward; blades are open from outside, so their downward faces can be supported and the supports reached",
             "orientation_selected": False,
             "magnesium_lpbf_notes": "WE43 LPBF is offered by few service bureaus; powder is reactive and needs an inert, Mg-rated machine",
-            "corrosion_and_galvanic": "Mg needs a conversion or PEO coating and isolation from the steel shaft, steel fasteners and aluminium housing",
-            "hub_insert": "a steel or titanium bore insert is recommended: the Mg bore loosens on a steel shaft when hot",
+            "corrosion_and_galvanic": "Mg needs a conversion or PEO coating and isolation from the steel bolts, the bearing hub and the aluminium housing",
+            "hub_interface": "the separate bearing hub bolts to the web as in the rebuild; a Mg web on steel bolts needs inserts or washers sized for creep",
             "dynamic_balance_defined": False,
         },
         "interpretation": {
-            "flow": "F1 gains come from airfoil blades, the shroud and matched blade loading; they are model estimates on a synthetic system curve",
-            "original_part": "the original Porsche impeller performance is unknown here; gains are quoted against R0, a conventional rotor on the same synthetic case",
-            "power": "more flow through the same engine costs more shaft power; the ratio is reported next to every gain, and the equal-power gain isolates what the design features alone buy",
-            "hub_loading": "with radial equilibrium solved, the earlier 80 mm hub fell to de Haller 0.58 and stalled a station; a non-free vortex only starved the hub of axial flow. The 120 mm cup hub (hub-to-tip 0.5) with a free vortex keeps every station above the 0.72 guideline",
-            "dyson": "Coanda entrainment (bladeless fans) adds flow only in free air; against engine fin resistance it loses pressure, so F1 uses the rotor-plus-diffuser idea instead",
-            "thermal": "the fully constrained thermal case is kept from F0 for continuity; the shrouded wheel is free to grow, so bore loosening on a steel shaft is the governing thermal case",
+            "flow": "F1 keeps the rebuild's envelope and duty; its gains come from airfoil blades and matched loading only",
+            "original_part": "the comparison is with the rebuild rotor, a visual reconstruction; no claim of gain over the Porsche part is made",
+            "power": "more flow through the same engine costs more shaft power; the equal-power gain isolates what the blade design alone buys",
+            "tip_gap": "the 3.5 mm tip gap of a 245 mm rotor in the 252 mm throat costs both rotors more than their blade profiles; closing it is a housing change",
+            "stator": "a matched stator recovers the exit swirl, the largest gain left in this envelope",
+            "dyson": "Coanda entrainment (bladeless fans) adds flow only in free air; against engine fin resistance it loses pressure",
         },
         "release_blockers": [
-            "All geometry, speeds, flow targets and the engine resistance curve are synthetic.",
+            "The rebuild geometry, the duty inferred from it and the engine resistance are not measured.",
             "The flow model is one-dimensional: no CFD, rig curve or measured fan map exists.",
-            "Original impeller performance is unknown; no claim of gain over the Porsche part is made.",
+            "No claim of gain over the Porsche part is made.",
             "WE43 values are published coupon or generic data: no hot, HCF or notched allowable.",
-            "Support removal inside the shrouded passages is unresolved.",
+            "Alternator air through the cup windows is not modelled.",
             "No shaft, hub, pulley, alternator or housing interface is measured.",
             "No balance, overspeed, burst-containment, vibration or endurance test.",
             "No corrosion or galvanic protection qualified for magnesium on the engine.",
@@ -995,12 +1142,17 @@ def airfoil_points(chord: float, thickness: float, camber_deg: float,
 
 
 def geometry_sections(design: dict[str, object]) -> list[dict[str, float]]:
-    """Loft sections: planar caps buried in the hub rim and in the shroud, with
-    wrapped aero sections between them."""
+    """Loft sections: a planar cap buried in the cup rim, wrapped aero
+    sections, and the tip section; with a shroud, a planar cap buried in it."""
     secs = design["sections"]
     first, last = dict(secs[0]), dict(secs[-1])
     first["radius_mm"] = design["hub_radius_mm"] - HUB_RIM_THICKNESS_MM / 2.0   # inside the cup rim
     first["planar"] = True
+    if not SHROUDED:
+        # Planar cap past the tip; build_geometry trims it to the tip circle.
+        last["radius_mm"] = design["tip_radius_mm"] + 2.0
+        last["planar"] = True
+        return [first] + secs[1:-1:2] + [secs[-1], last]
     last["radius_mm"] = design["tip_radius_mm"] + 1.3
     last["planar"] = True
     return [first] + secs[1:-1:2] + [secs[-1], last]
@@ -1028,33 +1180,37 @@ def section_wire(section: dict[str, float], z_mid: float):
 
 
 def build_geometry():
-    from build123d import Align, Cylinder, Pos, Rot, Solid
+    from build123d import Align, Axis, Box, Cylinder, Pos, Rot, Solid, fillet
 
     design = design_f1_rotor()
     centered_min = (Align.CENTER, Align.CENTER, Align.MIN)
-    # Hub cup: rim under the blade roots, a web on the plate face (z = 0, so
-    # it prints without supports), and a bore boss over the full depth.
+    # The rebuild's cup, kept as the alternator space and the interface: rim
+    # under the blade roots, web on the plate face (z = 0, printed without
+    # supports), twelve windows, three bolt holes and the bore. The rebuild's
+    # ribs between the windows and its rounded web transition are not
+    # reproduced.
     rim_inner = HUB_OUTER_DIAMETER_MM / 2.0 - HUB_RIM_THICKNESS_MM
-    hub = Cylinder(HUB_OUTER_DIAMETER_MM / 2.0, AXIAL_DEPTH_MM, align=centered_min) - Pos(
+    body = Cylinder(HUB_OUTER_DIAMETER_MM / 2.0, CUP_DEPTH_MM, align=centered_min) - Pos(
         0.0, 0.0, HUB_WEB_THICKNESS_MM
-    ) * Cylinder(rim_inner, AXIAL_DEPTH_MM, align=centered_min)
-    hub = hub + Cylinder(HUB_BOSS_DIAMETER_MM / 2.0, AXIAL_DEPTH_MM, align=centered_min)
-    body = hub - Pos(0.0, 0.0, -1.0) * Cylinder(
-        HUB_BORE_DIAMETER_MM / 2.0, AXIAL_DEPTH_MM + 2.0, align=centered_min
+    ) * Cylinder(rim_inner, CUP_DEPTH_MM, align=centered_min)
+    body = body - Pos(0.0, 0.0, -1.0) * Cylinder(
+        HUB_BORE_DIAMETER_MM / 2.0, HUB_WEB_THICKNESS_MM + 2.0, align=centered_min
     )
-    shroud = Cylinder(SHROUD_OUTER_RADIUS_MM, AXIAL_DEPTH_MM, align=centered_min) - Pos(
-        0.0, 0.0, -1.0
-    ) * Cylinder(blade_tip_radius_mm(), AXIAL_DEPTH_MM + 2.0, align=centered_min)
-    for z in LABYRINTH_TOOTH_Z_MM:
-        tooth = Pos(0.0, 0.0, z) * (
-            Cylinder(OUTER_DIAMETER_MM / 2.0, LABYRINTH_TOOTH_WIDTH_MM, align=centered_min)
-            - Pos(0.0, 0.0, -1.0) * Cylinder(SHROUD_OUTER_RADIUS_MM - 0.5, LABYRINTH_TOOTH_WIDTH_MM + 2.0, align=centered_min)
-        )
-        shroud = shroud + tooth
-    body = body + shroud
+    window = Box(2.0 * VENT_RADIAL_HALFWIDTH_MM, 2.0 * VENT_TANGENTIAL_HALFWIDTH_MM,
+                 HUB_WEB_THICKNESS_MM + 2.0, align=centered_min)
+    window = fillet(window.edges().filter_by(Axis.Z), 2.5)
+    for index in range(VENT_COUNT):
+        body = body - Rot(0.0, 0.0, index * 360.0 / VENT_COUNT) * Pos(VENT_RADIUS_MM, 0.0, -1.0) * window
+    hole = Cylinder(BOLT_HOLE_RADIUS_MM, HUB_WEB_THICKNESS_MM + 2.0, align=centered_min)
+    for index in range(BOLT_COUNT):
+        body = body - Rot(0.0, 0.0, index * 360.0 / BOLT_COUNT) * Pos(
+            BOLT_CIRCLE_RADIUS_MM, 0.0, -1.0) * hole
 
-    z_mid = AXIAL_DEPTH_MM / 2.0
+    z_mid = CUP_DEPTH_MM / 2.0
     blade = Solid.make_loft([section_wire(s, z_mid) for s in geometry_sections(design)])
+    if not SHROUDED:
+        blade = blade & Pos(0.0, 0.0, -10.0) * Cylinder(
+            design["tip_radius_mm"], CUP_DEPTH_MM + 20.0, align=centered_min)
     if not blade.is_valid:
         raise SystemExit("The lofted F1 blade is not a valid solid.")
     for index in range(BLADE_COUNT):
@@ -1069,15 +1225,15 @@ def plot_curves(report: dict[str, object], path: Path) -> None:
     import matplotlib.pyplot as plt
 
     labels = {
-        "R0_conventional_rotor": "R0 conventional rotor (reference)",
-        "F1_rotor_in_F0_housing": "F1 rotor in F0 housing",
-        "F1_rotor_with_matched_stator_and_bellmouth": "F1 + stator + bellmouth (housing F1)",
-        "system": "synthetic engine resistance K·Q²",
+        REFERENCE: "rebuild of the original rotor (reference)",
+        F1_ROTOR: "F1 rotor, same housing",
+        F1_STATOR: "F1 + matched stator",
+        "system": "engine resistance K·Q² inferred from the rebuild",
     }
     styles = {
-        "R0_conventional_rotor": ("#7a7a7a", "-"),
-        "F1_rotor_in_F0_housing": ("#1f6fb2", "-"),
-        "F1_rotor_with_matched_stator_and_bellmouth": ("#2e8b57", "-"),
+        REFERENCE: ("#7a7a7a", "-"),
+        F1_ROTOR: ("#1f6fb2", "-"),
+        F1_STATOR: ("#2e8b57", "-"),
         "system": ("#b03a2e", "--"),
     }
     fig, ax = plt.subplots(figsize=(8, 5), dpi=120)
@@ -1095,7 +1251,7 @@ def plot_curves(report: dict[str, object], path: Path) -> None:
             transform=ax.transAxes, fontsize=7, color="#555555")
     ax.set_xlabel("air flow (m³/s)")
     ax.set_ylabel("useful pressure rise (Pa)")
-    ax.set_title("F1 impeller, 1D blade-element model at 10,000 rpm — synthetic, not measured", fontsize=10)
+    ax.set_title("F1 vs rebuild rotor, 1D blade-element model at 10,000 rpm — inferred duty, not measured", fontsize=10)
     ax.set_ylim(bottom=0)
     ax.grid(alpha=0.3)
     ax.legend(fontsize=8, loc="upper right")
@@ -1106,7 +1262,7 @@ def plot_curves(report: dict[str, object], path: Path) -> None:
 
 def step_volume_tolerance_mm3(volume_mm3: float) -> float:
     """STEP re-read tolerance: 0.05 mm3, or one part per million of the
-    volume when larger (the cup hub re-integrates about 0.13 mm3 apart)."""
+    volume when larger (curved lofts re-integrate a few tenths of a mm3 apart)."""
     return max(0.05, 1.0e-6 * volume_mm3)
 
 
@@ -1145,7 +1301,7 @@ def main() -> int:
             "status": "passed",
             "valid_brep": True,
             "solid_count": 1,
-            "semantic_solids": ["high_flow_shrouded_cooling_impeller_f1"],
+            "semantic_solids": ["rebuild_based_cooling_impeller_f1"],
             "volume_mm3": cad_volume_mm3,
             "envelope_mm": envelope,
             "blade_count": BLADE_COUNT,
