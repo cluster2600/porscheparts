@@ -123,3 +123,21 @@ sauvegardés. Les bilans de débit, pression, puissance et travail de freinage
 ont des résidus relatifs inférieurs à 5×10⁻¹⁶ dans la campagne finale.
 Les contrôles du témoin et du système sont enregistrés dans `results.json`.
 Les seuils sont des contrôles numériques, sans validation physique du jumeau.
+
+La campagne finale utilise Python 3.14.7 et CalculiX 2.23. Au commit
+`7e8c5c4c`, `make check` passe sur Kali2/ext4 : 3 559 tests découverts,
+181 ignorés pour dépendances optionnelles, puis tous les contrôles
+complémentaires. Les 6 778 fichiers source comparés correspondent aux
+empreintes locales. La [CI du même commit](https://github.com/cluster2600/porscheparts/actions/runs/37690829623)
+passe également.
+
+Pour reproduire la vérification générale, utiliser `umask 022` et
+`PYTHONNOUSERSITE=1 OMP_NUM_THREADS=1 make check`. Deux échecs d'environnement
+sont conservés : fixtures accessibles en écriture au groupe sous `umask 002`,
+puis bindings OCP incomplets du répertoire utilisateur. Les gardes de sécurité
+et dépendances installées n'ont pas été modifiées ; le contrôle accepté utilise
+l'environnement système isolé déjà employé pour la campagne.
+
+Les trois tentatives, sources exactes, jeux, résultats, journaux et graphiques
+sont dans la [livraison privée vérifiée](https://github.com/cluster2600/porscheparts-935-private/releases/tag/hypothesis-load-tests-20261007).
+L'archive conserve 742 fichiers vérifiés par SHA-256, sans scan.
