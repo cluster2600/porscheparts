@@ -18,21 +18,28 @@ au montage 935. Le [fil Shoptalk de 2024](https://shoptalkforums.com/viewtopic.p
 cite une réplique américaine mais concerne surtout des moteurs VW Type 4 :
 il ne définit pas la transmission intérieure recherchée.
 
-## Messages courts préparés
+## Publications et message restant
 
-Commencer par un message adapté au premier fil accessible. Lire ses dernières
-réponses et les règles avant publication ; éviter les doublons si une même
-question a déjà été résolue. Les anciennes dates ne prouvent pas que les
-auteurs participent encore. Ajouter au registre privé le lien du message
-publié, sa date et son texte exact ; une préparation ne vaut pas publication.
+Le 7 octobre 2026, les messages adaptés ci-dessous ont été publiés sur
+[Pelican Parts, message 31](https://forums.pelicanparts.com/porsche-911-used-parts-sale-wanted/905416-flat-fan-assemblies-2.html#post12710379)
+et [Rennlist, message 8](https://rennlist.com/forums/911-turbo-930-forum/94486-935-users-flat-fan.html#post20766154).
+Le texte et sa présence sous le compte autorisé ont été vérifiés dans Chrome ;
+les captures et reçus exacts sont conservés localement hors Git. Aucune réponse
+technique à ces demandes n'est encore attestée. Le message DDK reste préparé :
+l'inscription effectuée par le propriétaire attend l'activation administrative.
+Les anciennes dates des fils ne prouvent pas que leurs auteurs participent encore.
 
 ### Pelican Parts — cote et vue intérieure
 
-> Hi everyone — I'm reverse-engineering a complete Porsche 935 horizontal cooling-fan system from private rotor and drive scans, with the original 935 installation as the first target. This thread is especially helpful because it covers a complete working assembly. Could anyone share two identifiable dimensions (for example fan outside diameter and a drive mounting-hole spacing), plus a photo of the opened angle drive? Please include the engine/year and whether the parts are original or a reproduction. A workshop drawing or parts reference would also help. Thanks!
+> Hi everyone — I'm reverse-engineering a complete Porsche 935 horizontal cooling-fan system from rotor and drive scans, with the original 935 installation as the first target. The assembly and run-in information in this thread is very helpful.
+>
+> Could anyone share two identifiable dimensions, such as fan outside diameter and drive mounting-hole spacing, plus a photo of the opened angle drive? Please include the engine/year and whether the parts are original or a reproduction. A workshop drawing or parts reference would also help us check our assumptions. Thanks!
 
 ### Rennlist — rapport et appuis
 
-> Hi everyone — I'm reconstructing the original 935 horizontal fan and drive from 3D scans. The running experience in this thread is very useful. Does anyone have the fan/crank speed ratio, the bearing references, or an internal photo showing the bevel gears and flexible coupling? Please identify the engine/year and whether this is a factory unit or a replacement. A single drawing or measured example would help us check our assumptions. Thanks!
+> Hi everyone — I'm reconstructing the original Porsche 935 horizontal fan and drive from 3D scans, with the 935 installation as the first target. This thread's running experience and prototype work are very helpful.
+>
+> Does anyone have a documented fan/crank speed ratio for an original unit, bearing references, or a photo of the opened drive showing the bevel gears and flexible coupling? Please include the engine/year and whether the unit is factory or a replacement. A measured example or drawing would help us check our assumptions. Thanks!
 
 ### DDK — ensemble mesurable
 
