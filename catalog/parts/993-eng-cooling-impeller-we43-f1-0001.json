@@ -1,0 +1,159 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-COOLING-IMPELLER-WE43-F1-0001",
+  "name": "Engine cooling fan impeller, high-flow shrouded WE43 magnesium concept F1",
+  "description": "High-flow iteration of the F0 impeller. It replaces F0's twelve flat radial paddles with eleven twisted, cambered airfoil blades designed from velocity triangles, ties their tips to a rotating shroud with a two-tooth labyrinth, carries their roots on a 120 mm thin-walled cup hub, shrinks to 248 mm so it clears the F0 housing's 252 mm throat and fits the EOS M 290 plate, and moves to LPBF WE43 magnesium. A one-dimensional blade-element model with radial equilibrium, on the synthetic F0 engine resistance, estimates about 19 % more flow than a conventional reference rotor at the same speed. This is a model estimate on synthetic inputs, not a measurement and not a comparison with the original Porsche part.",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993_Carrera_fitment_to_confirm", "964_shared_component"],
+    "model_years": {"from": 1994, "to": 1998},
+    "porsche_part_numbers": ["96410601531"]
+  },
+  "classification": {
+    "category": "engine_cooling_fan_impeller",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "F1 design study: airfoil blade design, one-dimensional fan-curve simulation against the synthetic engine resistance, lighter-alloy comparison and F0 housing fit; no manufacture, rotation, installation or start-up authorized"
+  },
+  "geometry": {
+    "source_type": "estimated",
+    "master_format": "build123d",
+    "master_file": "parts/993-eng-cooling-impeller-we43-f1-0001/source/cooling_impeller_f1.py",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": [
+      "parts/993-eng-cooling-impeller-we43-f1-0001/derived/cooling_impeller_we43_f1.step",
+      "parts/993-eng-cooling-impeller-we43-f1-0001/derived/cooling_impeller_we43_f1.stl"
+    ]
+  },
+  "provenance": {
+    "record_license": "All rights reserved (see LICENSE) for the concept, the script and the calculations; no photograph, illustration, Porsche/PorscheFanatics/FVD/Porsche Poitiers/Partworks/APWORKS/EOS surface or commercial geometry redistributed",
+    "sources": [
+      {
+        "title": "PorscheFanatics - 964/993 engine cooling fan impeller",
+        "url": "https://porschefanatics.com/parts/c/cooling/",
+        "source_type": "community",
+        "license": "site-owner-confirmed-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "Identifies Porsche AG part 964 106 015 31 for 964/993 with no geometry and no material. See SRC-PORSCHEFANATICS-993-ENGINE-COOLING-IMPELLER-CANDIDATE."
+      },
+      {
+        "title": "Additive manufacturing of dense WE43 Mg alloy by laser powder bed fusion (Hyer et al., 2020)",
+        "url": "https://impact.ornl.gov/en/publications/additive-manufacturing-of-dense-we43-mg-alloy-by-laser-powder-bed/",
+        "source_type": "community",
+        "license": "publisher-copyright-reference-only",
+        "accessed_on": "2026-09-25",
+        "notes": "Academic LPBF WE43 coupon data: yield 219 MPa after solutionizing and ageing. See SRC-ORNL-WE43-LPBF-HYER-2020."
+      },
+      {
+        "title": "AZoM - Magnesium Elektron WE43 alloy properties",
+        "url": "https://www.azom.com/article.aspx?ArticleID=9279",
+        "source_type": "community",
+        "license": "publisher-copyright-reference-only",
+        "accessed_on": "2026-09-25",
+        "notes": "Density 1.8 g/cm3, expansion 26.7 um/m/C, service to 300 C for conventional WE43. See SRC-AZOM-ELEKTRON-WE43-PROPERTIES."
+      },
+      {
+        "title": "APWORKS - Scalmalloy",
+        "url": "https://www.apworks.de/scalmalloy",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-25",
+        "notes": "Comparison alloy: yield 480 MPa, UTS 520 MPa, 13 %. See SRC-APWORKS-SCALMALLOY."
+      },
+      {
+        "title": "EOS Aluminium AlSi10Mg material data sheet",
+        "url": "https://www.eos.info/metal-solutions/metal-materials/data-sheets/mds-eos-aluminium-alsi10mg",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-09-08",
+        "notes": "F0 comparison alloy, kept for continuity. See SRC-EOS-ALSI10MG-CURRENT-PAGE."
+      },
+      {
+        "title": "Ferdinand magazine - EB Motorsport flat fan kit",
+        "url": "https://ferdinandmagazine.com/porsche-flat-fan-kit",
+        "source_type": "community",
+        "license": "publisher-copyright-reference-only",
+        "accessed_on": "2026-09-25",
+        "notes": "Flat-fan sizing study context: 1.5 hp at 4,000 and 32 hp at 12,000 fan rpm. See SRC-FERDINAND-EB-MOTORSPORT-FLAT-FAN-KIT."
+      },
+      {
+        "title": "Jim Torres Racing - reproduction 935 flat fan",
+        "url": "https://jimtorresracing.com/for-sale/reproduction-flat-fan",
+        "source_type": "community",
+        "license": "commercial-product-page-copyright-reference-only",
+        "accessed_on": "2026-09-25",
+        "notes": "Flat-fan layout context: aluminium stator, oil-fed gear drive, external alternator. See SRC-JIM-TORRES-RACING-935-REPRODUCTION-FLAT-FAN."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": ["LPBF", "CNC", "casting"],
+    "preferred_process": "LPBF",
+    "material": {
+      "family": "candidate LPBF magnesium-yttrium-rare-earth alloy",
+      "grade": "WE43 LPBF, solutionized and aged, for comparison; Scalmalloy and AlSi10Mg screened as alternatives",
+      "standard": "ASTM B80/B107 WE43 composition reference only; program-specific LPBF, rotating, HCF, balance and overspeed specification to be contracted"
+    },
+    "post_processing": [
+      "orientation and support strategy that keeps supports out of the enclosed shrouded passages, or a split shroud",
+      "solutionizing and ageing, distortion monitored",
+      "HIP to be decided by the HCF/defect card",
+      "steel or titanium bore insert, machined hub faces and bore",
+      "machining of the labyrinth teeth to the housing land",
+      "conversion or PEO coating and galvanic isolation from steel and aluminium neighbours",
+      "two-plane dynamic balancing in the final condition"
+    ],
+    "supplier_requirements": [
+      "inert, magnesium-rated LPBF machine with powder handling and fire procedure",
+      "traceable machine, parameters, orientation, supports, powder, recycling and batch",
+      "oriented coupons with tensile, HCF and hot corrosion tests",
+      "full CT and metallography with zoned defect criteria",
+      "metrology of hub, bore, runout, blades, shroud, teeth and mass",
+      "proof of balance, overspeed, vibration, flow, containment and endurance"
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": "Magnesium is anodic to steel shaft, steel fasteners and aluminium housing: coating, insulating washers and a sealed bore insert are required."
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "catalog/sources/src-porschefanatics-993-engine-cooling-impeller-candidate.json",
+      "catalog/sources/src-ornl-we43-lpbf-hyer-2020.json",
+      "catalog/sources/src-azom-elektron-we43-properties.json",
+      "catalog/sources/src-apworks-scalmalloy.json",
+      "catalog/sources/src-eos-alsi10mg-current-page.json",
+      "parts/993-eng-cooling-impeller-alsi10mg-f0-0001/evidence/engineering-screen.json",
+      "parts/993-eng-fan-housing-alsi10mg-f0-0001/evidence/engineering-screen.json",
+      "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/engineering-screen.json",
+      "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fan-curves.png",
+      "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/flat-fan-sizing-f2.json",
+      "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/flat-fan-sizing-f2.png",
+      "catalog/sources/src-ferdinand-eb-motorsport-flat-fan-kit.json",
+      "catalog/sources/src-jim-torres-racing-935-reproduction-flat-fan.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "All geometry, speeds, flow targets and the engine resistance curve are synthetic.",
+      "The flow gains come from a one-dimensional blade-element model, not CFD or a rig test.",
+      "Gains are quoted against R0, a conventional rotor designed by the same method; the original Porsche impeller's performance is unknown.",
+      "Most of the 19 % flow gain at equal speed comes from loading the blades harder, which costs about 69 % more shaft power; at equal shaft power the rotor alone gains about 0.2 %, and about 12 % with a matched stator and bellmouth.",
+      "The stator and bellmouth belong to a future housing F1 and are not part of this rotor.",
+      "WE43 data are single-laboratory room-temperature coupons plus generic values; no hot, HCF or notched allowable.",
+      "The fully constrained thermal screen fails for WE43; the free shroud makes bore loosening on the steel shaft the governing case, which needs an insert.",
+      "Support removal inside the enclosed shrouded passages is unresolved; no manufacture, rotation, installation or start-up is authorized.",
+      "The flat-fan sizing study F2 finds the best size at the synthetic duty to be 260 mm, within 0.1 % of this 248 mm wheel at equal power; at the four-times-larger duties that real flat fans suggest, the optimum reaches the 520 mm edge of the sweep.",
+      "Radial equilibrium (simple, inlet uniform) moved the hub from 80 to 120 mm: with the 80 mm hub the hub section fell to de Haller 0.58 and a station stalled; the 120 mm cup hub with a free vortex keeps every station at or above 0.75.",
+      "The shroud-clamped first blade mode (about 2,140 Hz) sits between the six-spoke order (1,000 Hz) and the seventeen-vane order (2,833 Hz), 24 % from the latter by a beam estimate; an FE Campbell diagram is required.",
+      "The cup web is closed: the alternator cooling path through the hub (twelve windows on the original Turbo rotor's visual rebuild) is not modelled."
+    ]
+  }
+}
