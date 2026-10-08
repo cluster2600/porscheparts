@@ -117,6 +117,12 @@ survey (Autorobot, Car-O-Data, Celette), the Rennlist 993 point table, a scan
 of a production body. **The jig bench survey goes from "desirable" to
 "blocking".** It is the first budget to commit.
 
+**A 911-shaped shell exists (2026-10-08).** The programme's whole-body
+model was a box cell. `twins/964-chassis/monocoque/` now carries a body
+shell whose outline is traced from plate 50-05a, with the sections modelled,
+and a first torsion run on it. It is a design envelope for M5, not a design:
+no thickness, layup or tolerance is proposed.
+
 ## 4. The missing denominator is measured, no longer searched for
 
 Lock B — no published 964 torsional stiffness — was treated as a
