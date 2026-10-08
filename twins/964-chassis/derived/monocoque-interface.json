@@ -7,19 +7,20 @@
  "inconnue_globale": {
   "nom": "REGISTRATION_X",
   "definition": "position de P17 dans le repere vehicule",
-  "valeur_de_travail_mm": -506.0,
-  "source": "SCAN, faiblement contraint",
+  "valeur_de_travail_mm": -465.7,
+  "incertitude_mm": 7.6,
+  "source": "published chain tied to the scan on P5, P17 and P19 (scan_tie_50_05a.py)",
   "effet": "translation rigide de tout le reseau ; ne change aucune cote relative"
  },
  "cote_gouvernante": {
   "nom": "SPAN_P5_P12",
   "definition": "entraxe longitudinal fixation train avant -> traverse essieu arriere",
-  "valeur_mm": 1724.3,
+  "valeur_mm": 1567.3,
   "x_sources": [
-   "DERIVED(P)",
-   "DERIVED(N)"
+   "MANUAL(50-05a 143)",
+   "SCAN(P12 bosses)"
   ],
-  "statut": "NON VERIFIE — les deux extremites sont DERIVED",
+  "statut": "P5 published (50-05a); P12 measured on the scan, not published",
   "consequence": "Le monocoque impose cet entraxe par construction. Une erreur ici ne se rattrape pas au montage : elle donne un empattement et une geometrie de suspension faux."
  },
  "empattement_reference": {
@@ -33,10 +34,10 @@
    "y_half_mm": 220.0,
    "y_tolerance_mm": 2,
    "y_source": "MANUAL",
-   "x_local_mm": 1211.1,
-   "x_source": "DERIVED(K)",
-   "x_statut": "PARAMETRIQUE",
-   "x_vehicle_mm_provisoire": 705.1
+   "x_local_mm": 1210.2,
+   "x_source": "MANUAL(50-05a 143, P)",
+   "x_statut": "DETERMINE",
+   "x_vehicle_mm_provisoire": 744.5
   },
   "P3": {
    "designation": "Fixation traverse avant interieure",
@@ -44,10 +45,10 @@
    "y_half_mm": 305.0,
    "y_tolerance_mm": 1,
    "y_source": "MANUAL",
-   "x_local_mm": 654.2,
-   "x_source": "DERIVED(L)",
-   "x_statut": "PARAMETRIQUE",
-   "x_vehicle_mm_provisoire": 148.2
+   "x_local_mm": 655.2,
+   "x_source": "MANUAL(50-05a 215)",
+   "x_statut": "DETERMINE",
+   "x_vehicle_mm_provisoire": 189.5
   },
   "P5": {
    "designation": "Mount - outer cross member FA",
@@ -55,10 +56,10 @@
    "y_half_mm": 385.0,
    "y_tolerance_mm": 2,
    "y_source": "MANUAL",
-   "x_local_mm": 527.3,
-   "x_source": "DERIVED(P)",
-   "x_statut": "PARAMETRIQUE",
-   "x_vehicle_mm_provisoire": 21.3
+   "x_local_mm": 297.2,
+   "x_source": "MANUAL(50-05a 143)",
+   "x_statut": "DETERMINE",
+   "x_vehicle_mm_provisoire": -168.5
   },
   "P17": {
    "designation": "Prise de cric avant",
@@ -67,20 +68,9 @@
    "y_tolerance_mm": 1,
    "y_source": "MANUAL",
    "x_local_mm": 0.0,
-   "x_source": "MANUAL",
+   "x_source": "MANUAL(50-05a via K and L)",
    "x_statut": "DETERMINE",
-   "x_vehicle_mm_provisoire": -506.0
-  },
-  "P12": {
-   "designation": "Traverse d'essieu arriere",
-   "fonction_monocoque": "suspension",
-   "y_half_mm": 139.0,
-   "y_tolerance_mm": 1,
-   "y_source": "MANUAL",
-   "x_local_mm": -1197.0,
-   "x_source": "DERIVED(N)",
-   "x_statut": "PARAMETRIQUE",
-   "x_vehicle_mm_provisoire": -1703.0
+   "x_vehicle_mm_provisoire": -465.7
   },
   "P18": {
    "designation": "Prise de cric arriere",
@@ -91,7 +81,18 @@
    "x_local_mm": -1245.0,
    "x_source": "MANUAL(R)",
    "x_statut": "DETERMINE",
-   "x_vehicle_mm_provisoire": -1751.0
+   "x_vehicle_mm_provisoire": -1710.7
+  },
+  "P12": {
+   "designation": "Traverse d'essieu arriere",
+   "fonction_monocoque": "suspension",
+   "y_half_mm": 139.0,
+   "y_tolerance_mm": 1,
+   "y_source": "MANUAL",
+   "x_local_mm": -1270.1,
+   "x_source": "SCAN(P12 bosses)",
+   "x_statut": "MESURE_SCAN",
+   "x_vehicle_mm_provisoire": -1735.8
   },
   "P19": {
    "designation": "Point de controle arriere",
@@ -102,7 +103,7 @@
    "x_local_mm": -1328.0,
    "x_source": "MANUAL(S)",
    "x_statut": "DETERMINE",
-   "x_vehicle_mm_provisoire": -1834.0
+   "x_vehicle_mm_provisoire": -1793.7
   },
   "P21": {
    "designation": "Palier moteur",
@@ -113,8 +114,8 @@
    "x_local_mm": -2606.1,
    "x_source": "DERIVED(O)",
    "x_statut": "INVALIDE",
-   "x_vehicle_mm_provisoire": -3112.1,
-   "invalide_raison": "hors structure sur le scan, les deux appariements echouent"
+   "x_vehicle_mm_provisoire": -3071.8,
+   "invalide_raison": "diagonal O not decoded: the same reading misses P12 by 73 mm on the scan"
   }
  },
  "release_flags": {

@@ -1,3 +1,6 @@
+# Superseded for the longitudinal chain by datum_chain_50_05a.py (2026-10-08):
+# plate 50-02 draws P as a longitudinal dimension, not a crossed diagonal, so the
+# dx(913, 20, 5) below puts P5 230 mm forward. Kept as the historical solver.
 import numpy as np, json, math
 # Half-spacings Y (mm) from manual transverse dims A..I
 Yh = {20:440/2, 3:610/2, 5:770/2, 6:204/2, 17:1330/2, 18:1236/2, 12:278/2, 19:1018/2, 21:640/2}

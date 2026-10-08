@@ -1,0 +1,132 @@
+{
+ "schema_version": "1.0.0",
+ "twin": "964-chassis",
+ "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL5-BODY",
+ "classification": "published_dimension_chain_not_measurement",
+ "zero_line": "transverse line through the front spring-strut mounts P4, as drawn on plates 50-05 and 50-05a",
+ "sign": "d > 0 behind the 0 line; x_from_P17 > 0 ahead of P17 (the old local chain's sign)",
+ "dimensions": {
+  "D722": {
+   "value_mm": 722.0,
+   "half_tolerance_mm": 2.0,
+   "plate": "50-05a",
+   "meaning": "P1 plane ahead of the 0 line"
+  },
+  "D215": {
+   "value_mm": 215.0,
+   "half_tolerance_mm": 2.0,
+   "plate": "50-05a",
+   "meaning": "P3 ahead of the 0 line (tolerance assumed)"
+  },
+  "D143": {
+   "value_mm": 143.0,
+   "half_tolerance_mm": 2.0,
+   "plate": "50-05a",
+   "meaning": "P5 behind the 0 line"
+  },
+  "L3756": {
+   "value_mm": 3756.5,
+   "half_tolerance_mm": 4.0,
+   "plate": "50-05a",
+   "meaning": "P1 plane to the rear (P16) plane"
+  },
+  "P": {
+   "value_mm": 913.0,
+   "half_tolerance_mm": 1.5,
+   "plate": "50-02/50-03",
+   "meaning": "P20 to P5, longitudinal (913, oblique 914.5)"
+  },
+  "K": {
+   "value_mm": 1500.0,
+   "half_tolerance_mm": 3.0,
+   "plate": "50-03",
+   "meaning": "P20 to P17, crossed plan diagonal"
+  },
+  "L": {
+   "value_mm": 1170.0,
+   "half_tolerance_mm": 2.0,
+   "plate": "50-03",
+   "meaning": "P3 to P17, crossed plan diagonal (1170 plan, 1174 oblique)"
+  },
+  "R": {
+   "value_mm": 1245.0,
+   "half_tolerance_mm": 2.0,
+   "plate": "50-03",
+   "meaning": "P17 to P18, side view"
+  },
+  "S": {
+   "value_mm": 1328.0,
+   "half_tolerance_mm": 2.0,
+   "plate": "50-03",
+   "meaning": "P17 to P19, side view"
+  }
+ },
+ "p_is_longitudinal": "plate 50-02 draws P as a fore-aft dimension from the P20 line to the P5 line; datum_solve.py read it as a crossed diagonal and put P5 230 mm out",
+ "p17_closure": {
+  "via_P5_P20_K_mm": 441.1,
+  "via_P3_L_mm": 439.2,
+  "difference_mm": 1.9,
+  "difference_sd_from_tolerances_mm": 3.6,
+  "verdict": "the two published paths agree"
+ },
+ "points": {
+  "P20": {
+   "d_behind_0_line_mm": -770.0,
+   "x_from_P17_mm": 1210.2,
+   "y_half_mm": 220.0,
+   "u95_mm": 2.7
+  },
+  "P1": {
+   "d_behind_0_line_mm": -722.0,
+   "x_from_P17_mm": 1162.2,
+   "y_half_mm": null,
+   "u95_mm": 1.9
+  },
+  "P3": {
+   "d_behind_0_line_mm": -215.0,
+   "x_from_P17_mm": 655.2,
+   "y_half_mm": 305.0,
+   "u95_mm": 1.9
+  },
+  "P5": {
+   "d_behind_0_line_mm": 143.0,
+   "x_from_P17_mm": 297.2,
+   "y_half_mm": 385.0,
+   "u95_mm": 1.9
+  },
+  "P17": {
+   "d_behind_0_line_mm": 440.2,
+   "x_from_P17_mm": 0.0,
+   "y_half_mm": 665.0,
+   "u95_mm": 3.5
+  },
+  "P18": {
+   "d_behind_0_line_mm": 1685.2,
+   "x_from_P17_mm": -1245.0,
+   "y_half_mm": 618.0,
+   "u95_mm": 4.2
+  },
+  "P19": {
+   "d_behind_0_line_mm": 1768.2,
+   "x_from_P17_mm": -1328.0,
+   "y_half_mm": 509.0,
+   "u95_mm": 4.2
+  },
+  "P16": {
+   "d_behind_0_line_mm": 3034.5,
+   "x_from_P17_mm": -2594.3,
+   "y_half_mm": null,
+   "u95_mm": 4.7
+  }
+ },
+ "not_in_published_chain": {
+  "P12": "hangs on diagonal N; the crossed-plan reading misses the scan by 60-85 mm",
+  "P21": "hangs on diagonal O, same reading, not verified",
+  "P6": "plate 50-03 gives its transverse spacing D only"
+ },
+ "monte_carlo": {
+  "samples": 20000,
+  "seed": 964,
+  "distribution": "uniform within each published band"
+ }
+}
