@@ -1,6 +1,6 @@
 <div align="center">
 
-![The full 964 cell turning, coloured by von Mises stress under a torsion load](docs/media/diagrams/964-hero.gif)
+![The 964 body shell traced from the workshop manual, turning, coloured by von Mises stress under a torsion load](docs/media/diagrams/964-hero.gif)
 
 # porscheparts
 
@@ -52,6 +52,7 @@ The repository has withdrawn several, listed
 
 | date | change |
 |---|---|
+| 2026-10-08 | **A 911-shaped monocoque shell**: outline traced from the workshop manual's plate 50-05a, sections modelled, a first whole-body torsion run; it replaces the box cell in the banner. [Shell](twins/964-chassis/monocoque/README.md) |
 | 2026-10-08 | **964 datum chain closed** from the workshop manual's own plates (50-02, 50-03, 50-05a): every suspension and power-unit mount of the monocoque interface contract now has a fore-aft position, checked against the underside scan. [Details](twins/964-chassis/README.md#the-longitudinal-chain-closed-from-plate-50-05a) |
 | 2026-10-08 | **LPBF print simulation pictured**: build-up videos for the F1 cooling impeller and its stator. [Impeller dossier](docs/993/993_COOLING_IMPELLER_WE43_F1.md#print-simulation-pictured) |
 | 2026-10-08 | **PicoGK batch 01**: ten parametric concept parts from one voxel-kernel project. [Batch page](parts/picogk-993-batch-01/README.md) |
@@ -152,6 +153,22 @@ the body shell, which pays off more? Where does the load go in torsion?
 A **corpus of 3,000 CalculiX cases** in quadratic shells is built to train a
 design surrogate later, its validation set frozen before any model exists:
 [docs/MONOCOQUE_964_993_CHAINE_CALCUL.md](docs/MONOCOQUE_964_993_CHAINE_CALCUL.md).
+
+### The shape: a 964 shell from the workshop manual
+
+The box cell above has no 911 shape. The
+[monocoque shell](twins/964-chassis/monocoque/README.md) takes its outline
+from plate 50-05a, which draws the body-in-white to scale from the side and
+from above, with wings, doors and lids off. Side profile, plan width, door
+aperture, quarter window and rear wheel house are traced from it; the sections
+between them (tumblehome, barrel sides, 880 mm beltline) are modelled.
+
+![The monocoque shell traced from plate 50-05a](twins/964-chassis/monocoque/evidence/shell-views.png)
+
+A first torsion run on it, uniform 0.8 mm steel with every aperture open,
+puts the load around the windscreen frame, the A-pillars, the door corners and
+the C-pillars: the open shell a monocoque has to close. Its K, 2,261 N·m/deg,
+belongs to that surface model, not to a 964.
 
 ### The interfaces: where a monocoque has to bolt up
 
@@ -480,8 +497,8 @@ This is the most useful part of its history, and it is public.
 
 The figures on this page are regenerated from data kept in the repository:
 `twins/964-chassis/fea/figures.py` for the charts and model views,
-`twins/964-chassis/fea/hero.py` for the banner, from a mesh and result
-snapshot kept in `figures-mesh/`. None of them is a rendering: they are the
+`twins/964-chassis/fea/hero.py` for the banner, from the torsion snapshot of
+the monocoque shell kept in `twins/964-chassis/monocoque/derived/`. None of them is a rendering: they are the
 calculation's data.
 
 ## What the project does not claim

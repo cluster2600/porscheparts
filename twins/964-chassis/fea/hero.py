@@ -1,13 +1,15 @@
-"""The animated home-page banner, drawn from the same computation as the figures.
+"""The animated home-page banner, drawn from a calculation kept in the repository.
 
-It is not a rendering of a car. The cell rotates so that one can see what the
-model actually contains (thin shells, side rails, a roof, the windscreen
-frame), and it is coloured by the von Mises stress of the torsion load case,
-read from the same snapshot as `figures.py`, interpolated at the nodes. No
-image enters this repository unless the data that produces it is already here.
+The body shell is the monocoque programme's 964 shell: outline traced from
+plate 50-05a of the workshop manual, sections modelled
+(../monocoque/source/build_shell.py). It is coloured by the von Mises stress
+of the torsion load case run on it (../monocoque/source/torsion.py), read from
+../monocoque/derived/torsion-snapshot.npz. No image enters this repository
+unless the data that produces it is already here.
 
-The sections are ASSUMED and the mesh is not converged: the colour shows where
-the load goes; it gives no stress value for a 964.
+Sections, thickness and material are ASSUMED and the mesh is not converged:
+the colour shows where an open 911 shell carries torsion; it gives no stress
+value for a 964, and it is not a ZESAD part.
 
 Rendering: pyvista/VTK, off screen, model drawn with a transparent background
 at twice the final size and downscaled; text, colour scale and background
@@ -40,17 +42,13 @@ def colormap():
     return LinearSegmentedColormap.from_list("hero", STOPS)
 
 
-def load(name="fbtaprw"):
+SNAPSHOT = HERE.parent / "monocoque" / "derived" / "torsion-snapshot.npz"
+
+
+def load():
     """Vertices, faces and nodal von Mises stress from the stored snapshot."""
-    d = np.load(HERE / "figures-mesh" / f"snap_{name}.npz")
-    idx = {int(n): j for j, n in enumerate(d["nid"])}
-    faces = np.vectorize(idx.get)(d["tri"])
-    vm = np.zeros(len(d["nid"]))
-    for n, v in zip(d["vmn"], d["vm"]):
-        j = idx.get(int(n))
-        if j is not None:
-            vm[j] = v
-    return d["xyz"], faces, vm, float(d["K"])
+    d = np.load(SNAPSHOT)
+    return d["points"].astype(float), d["triangles"], d["von_mises"].astype(float), float(d["K"])
 
 
 def font(size, bold=False):
@@ -75,8 +73,8 @@ def text_layer(im, K, clim):
     d.rectangle((x, 142, x + 56, 145), fill=ACCENT)
     d.text((x, 164), "Reverse engineering", font=font(19), fill=FG)
     d.text((x, 190), "Porsche 911 · 964 and 993", font=font(19), fill=FG)
-    d.text((x, 246), "Full 964 cell under torsion", font=font(15), fill=MUTED)
-    d.text((x, 268), f"K = {K:,.0f} N·m/deg · linear S3 shells", font=font(15), fill=MUTED)
+    d.text((x, 246), "964 body shell from Porsche plate 50-05a", font=font(15), fill=MUTED)
+    d.text((x, 268), f"under torsion · 0.8 mm steel · K = {K:,.0f} N·m/deg", font=font(15), fill=MUTED)
     # Colour scale: without one, a stress map is just a coloured picture.
     cmap = colormap()
     bar = (cmap(np.linspace(0, 1, 220))[:, :3] * 255).astype(np.uint8)
@@ -84,9 +82,9 @@ def text_layer(im, K, clim):
     d.text((x, 332), "0", font=font(12), fill=MUTED)
     d.text((x + 220, 332), f"{clim[1]:.0f}", font=font(12), fill=MUTED, anchor="ra")
     d.text((x + 110, 332), "von Mises, MPa", font=font(12), fill=MUTED, anchor="ma")
-    d.text((x, 404), "Not a 964 and not a rendering: a snapshot of the calculation.",
+    d.text((x, 404), "Outline from the workshop manual; sections and thickness ASSUMED.",
            font=font(12), fill=MUTED)
-    d.text((x, 422), "Sections ASSUMED; only the ratios are usable.", font=font(12), fill=MUTED)
+    d.text((x, 422), "A snapshot of the calculation, not a rendering and not a part.", font=font(12), fill=MUTED)
     return im
 
 
@@ -95,8 +93,9 @@ def model_frames(xyz, faces, vm, clim, azimuths):
     pv.OFF_SCREEN = True
     mesh = pv.PolyData(xyz, np.c_[np.full(len(faces), 3), faces].ravel())
     mesh.point_data["vm"] = vm
-    mesh = mesh.clean().compute_normals(split_vertices=True, feature_angle=35)
-    edges = mesh.extract_feature_edges(35)
+    mesh = mesh.clean().compute_normals(split_vertices=False)
+    edges = mesh.extract_feature_edges(boundary_edges=True, feature_edges=False,
+                                       manifold_edges=False, non_manifold_edges=False)
     bw, bh = MODEL_BOX[2] - MODEL_BOX[0], MODEL_BOX[3] - MODEL_BOX[1]
     p = pv.Plotter(off_screen=True, window_size=(bw * SS, bh * SS))
     p.add_mesh(mesh, scalars="vm", cmap=colormap(), clim=clim, smooth_shading=True,
@@ -104,11 +103,11 @@ def model_frames(xyz, faces, vm, clim, azimuths):
     p.add_mesh(edges, color="#f3eee2", line_width=1.4 * SS, opacity=0.28)
     p.enable_anti_aliasing("ssaa")
     centre = np.asarray(mesh.center)
-    radius = float(np.linalg.norm(np.ptp(xyz, axis=0))) * 1.38
+    radius = float(np.linalg.norm(np.ptp(xyz, axis=0))) * 1.22
     frames = []
     for az in azimuths:
         a = np.radians(az)
-        eye = centre + radius * np.array([np.cos(a), np.sin(a), 0.38])
+        eye = centre + radius * np.array([np.cos(a), np.sin(a), 0.30])
         p.camera.position = tuple(eye)
         p.camera.focal_point = tuple(centre)
         p.camera.up = (0.0, 0.0, 1.0)
@@ -129,7 +128,7 @@ def main():
 
     xyz, faces, vm, K = load()
     # A high percentile keeps a clamping singularity from eating the scale.
-    clim = (0.0, float(np.percentile(vm, 98)))
+    clim = (0.0, float(np.percentile(vm, 97)))
     base = text_layer(background(), K, clim)
     azimuths = np.linspace(0.0, 360.0, a.frames, endpoint=False) - 125.0
     images = []
