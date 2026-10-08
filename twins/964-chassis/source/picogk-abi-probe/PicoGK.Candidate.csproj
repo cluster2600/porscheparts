@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>PicoGK</AssemblyName>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="/upstream/PicoGK/**/*.cs"
+             Exclude="/upstream/PicoGK/obj/**/*.cs;/upstream/PicoGK/Internals/Interop.cs" />
+    <Compile Include="/output/runtime-source/Interop.cs" />
+    <Reference Include="SkiaSharp"><HintPath>/opt/station-demo/bin/SkiaSharp.dll</HintPath></Reference>
+    <EmbeddedResource Include="/upstream/PicoGK/assets/ViewerEnvironment.zip" LogicalName="PicoGK.Resources.Environment.zip" />
+    <EmbeddedResource Include="/upstream/PicoGK/assets/Jost.ttf" LogicalName="PicoGK.Resources.Font.ttf" />
+  </ItemGroup>
+</Project>

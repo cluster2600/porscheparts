@@ -156,7 +156,7 @@ which is legal and cheap.
 | undetermined | unblocked by |
 |---|---|
 | suspension and engine interface positions | jig bench survey (M1) |
-| P5 -> P12 spacing, the governing dimension | jig bench survey (M1) |
+| P5 -> P12 spacing, front axle crossmember support -> gearbox crossmember support (not the wheelbase) | jig bench survey (M1) |
 | absolute stiffness target | torsion test on a donor body shell (M2) |
 | load path panel by panel, to zone the layup | model with real sections, not available |
 | load introduction at hard points | vehicle load model, not started |
