@@ -80,8 +80,8 @@ reference frame and to better than its tolerance, at minimum:
 | interface | required tolerance | state in the repository |
 |---|---|---|
 | front subframe and suspension points | ~ +/- 1 mm | P3 and P5 placed from published dimensions, +/- 1.9 mm (95 %) |
-| rear trailing-arm mounts | ~ +/- 1 mm | P13, P14 not dimensioned longitudinally |
-| engine and gearbox mounts | ~ +/- 1 mm | P12 measured on the scan only; P21 invalid |
+| rear trailing-arm mounts | ~ +/- 1 mm | P13, P14 scaled off plate 50-05a, +/- 8.6 mm |
+| engine and gearbox mounts | ~ +/- 1 mm | P12, P21 from published diagonals (+/- 9 mm); P15 scaled, +/- 8.6 mm |
 | seat belt and seat anchorages | regulatory | not established |
 | hinges, strikers, windshield aperture | ~ +/- 1 mm | not established |
 
@@ -91,14 +91,16 @@ strut mounts, and plate 50-02 draws dimension P as longitudinal. Two
 independent published paths then place P17 within 1.9 mm of each other, and
 the network P20, P3, P5, P17, P18, P19 is fixed to +/- 2 to 4 mm without any
 third-party data. Tied to the scan it lands on identified features (P5 bosses
-within 2 mm laterally). The governing span P5 to P12 moves from 1724.3 to
-1567.3 mm. See "The longitudinal chain, closed from plate 50-05a" in
-`twins/964-chassis/README.md`.
+within 2 mm laterally). See "The longitudinal chain, closed from plate
+50-05a" and "The rear of the chain" in `twins/964-chassis/README.md`.
 
-What remains open is the rear: P12 and P21 hang on diagonals N and O, not
-decoded, and the rear suspension mounts P13 and P14 carry no longitudinal
-dimension. The lock below therefore still holds for the rear axle and the
-power unit; it no longer holds for the front.
+**Same day, the rear.** Diagonals O and N, read unbracketed, place P12 and
+P21; plates 50-05a and 50-02 agree with that P12 within 3 to 6 mm, and the
+scan's engine-mount cradle with P21 within 7 mm. The rear mounts P13, P14 and
+P15 are scaled off plate 50-05a (+/- 8.6 mm). The governing span P5 to P12 is
+1535.6 mm, both ends published. Every interface of the contract now has a
+position; what is missing is tolerance, not existence: +/- 7 to 9 mm where
+a tool needs +/- 1 mm.
 
 Before that update, `twins/964-chassis/README.md` established that **the
 longitudinal registration of the datum network was not resolved**: P21 landed
@@ -273,7 +275,7 @@ will come out of this repository without tests.
 | phase | content | exit criterion | dependency |
 |---|---|---|---|
 | M0 | identity and homologation study, market by market | route identified or programme stopped | lawyer |
-| M1 | registration of the datum network: front and centre closed from plate 50-05a (2026-10-08); rear (P12, P21, P13, P14) open | 964 at `F2_interface`, interfaces at +/- 1 mm | rear: diagonals N/O or a third-party table |
+| M1 | registration of the datum network: closed from plates 50-02/03/05a (2026-10-08), +/- 2 to 9 mm | 964 at `F2_interface`, interfaces at +/- 1 mm | +/- 1 mm needs a jig-bench table or published rear dimensions |
 | M2 | torsion test on a donor 964 body shell | denominator measured, protocol published | donor body shell |
 | M3 | recalibration of the shell model against M2 | model/measurement gap known and documented | M1, M2 |
 | M4 | target specification filled | section 5 table complete | M2, M3 |

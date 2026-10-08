@@ -10,6 +10,7 @@
    "radius_mm": 17.27398664075791,
    "fit_residual_median_mm": 3.204352075435734,
    "point": "P5",
+   "role": "tie",
    "n_vertices": 943,
    "delta_mm": -18.55504459289193
   },
@@ -19,6 +20,7 @@
    "radius_mm": 21.936618066711755,
    "fit_residual_median_mm": 3.469890472564394,
    "point": "P5",
+   "role": "tie",
    "n_vertices": 720,
    "delta_mm": -27.258324263380246
   },
@@ -28,6 +30,7 @@
    "radius_mm": 36.01569695576399,
    "fit_residual_median_mm": 9.099166221068183,
    "point": "P17",
+   "role": "tie",
    "n_vertices": 2162,
    "delta_mm": -28.325265954756617
   },
@@ -37,6 +40,7 @@
    "radius_mm": 43.532872408526835,
    "fit_residual_median_mm": 7.960718443150775,
    "point": "P17",
+   "role": "tie",
    "n_vertices": 4113,
    "delta_mm": -37.70725579301126
   },
@@ -46,6 +50,7 @@
    "radius_mm": 34.72356030234215,
    "fit_residual_median_mm": 9.33975266166063,
    "point": "P19",
+   "role": "tie",
    "n_vertices": 4589,
    "delta_mm": -21.72089675687016
   },
@@ -55,19 +60,44 @@
    "radius_mm": 36.41654646546077,
    "fit_residual_median_mm": 10.894575061427869,
    "point": "P19",
+   "role": "tie",
    "n_vertices": 5619,
    "delta_mm": -19.620306133211443
   },
-  "P12_bosses_left": {
+  "P21_cradle_left": {
+   "x_mm": -3121.0852598660126,
+   "y_mm": 312.12465303381293,
+   "z_mm": 354.31437740301953,
+   "radius_mm": 53.62390069296859,
+   "fit_residual_median_mm": 8.601894764330098,
+   "point": "P21",
+   "role": "check",
+   "n_vertices": 5418,
+   "delta_mm": -22.885259866012802
+  },
+  "P21_cradle_right": {
+   "x_mm": -3111.929810811468,
+   "y_mm": -316.20603164616017,
+   "z_mm": 345.5977544472007,
+   "radius_mm": 50.21535011947219,
+   "fit_residual_median_mm": 7.901609169725994,
+   "point": "P21",
+   "role": "check",
+   "n_vertices": 5310,
+   "delta_mm": -13.729810811468269
+  },
+  "carrier_bolts_left": {
    "x_mm": -1735.0144429738136,
    "y_mm": 142.84589747120577,
-   "point": "P12",
+   "point": null,
+   "role": "diagnostic",
    "n_vertices": 1132
   },
-  "P12_bosses_right": {
+  "carrier_bolts_right": {
    "x_mm": -1736.6843105317246,
    "y_mm": -147.31071462952679,
-   "point": "P12",
+   "point": null,
+   "role": "diagnostic",
    "n_vertices": 1474
   }
  },
@@ -76,7 +106,7 @@
   "value_mm": -25.5,
   "spread_sd_mm": 7.2,
   "u_mm": 7.6,
-  "from": "P5, P17 and P19, both sides; P12 excluded (not in the published chain)",
+  "from": "P5, P17 and P19, both sides; the P21 cradle and the carrier bolts are checks, not ties",
   "reading": "the 0 line lies behind the fitted front wheel centres, as a strut-mount line does with 4 deg 25 min caster"
  },
  "points_vehicle_frame_mm": {
@@ -100,6 +130,10 @@
    "x_mm": -465.7,
    "y_half_mm": 665.0
   },
+  "P12": {
+   "x_mm": -1704.0,
+   "y_half_mm": 139.0
+  },
   "P18": {
    "x_mm": -1710.7,
    "y_half_mm": 618.0
@@ -111,22 +145,35 @@
   "P16": {
    "x_mm": -3060.0,
    "y_half_mm": null
+  },
+  "P21": {
+   "x_mm": -3123.7,
+   "y_half_mm": 320.0
   }
  },
- "p12_scan_candidate": {
-  "x_mm": -1735.8,
+ "p21_check": {
+  "cradle_d_behind_0_line_mm": 3091.0,
+  "chain_d_mm": 3098.2,
+  "bracketed_reading_d_mm": 3046.3,
+  "difference_chain_mm": -7.2,
+  "difference_bracketed_mm": 44.7,
+  "reading": "the cradle is read as the rear engine mount at the published 640 mm spacing; its centre is not the take-up hole itself"
+ },
+ "carrier_bolts_diagnostic": {
   "d_behind_0_line_mm": 1710.3,
-  "crossed_diagonal_N_prediction_d_mm": 1637.3,
-  "miss_mm": 73.0,
-  "status": "SCAN, not published; diagonals N and O stay undecoded"
+  "chain_P12_d_mm": 1678.5,
+  "reading": "fixings of the removable transmission carrier, not the body take-up hole P12"
  },
  "span_P5_P12_mm": {
-  "value": 1567.3,
+  "value": 1535.5,
   "sources": [
    "MANUAL (50-05a, 143)",
-   "SCAN (P12 bosses)"
+   "MANUAL (O and N, unbracketed)"
   ],
-  "previous_value": 1724.3
+  "previous_values": {
+   "diagonal_P_and_bracketed_N": 1724.3,
+   "scan_carrier_bolts": 1567.3
+  }
  },
  "p5_vehicle_x_mm": -168.5
 }

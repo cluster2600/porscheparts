@@ -11,13 +11,13 @@ flowchart LR
   SC --> F1["F1_envelope<br/>reached"]
   FR --> F1
   DS --> F1
-  F1 --> LC["longitudinal chain<br/>front and centre closed (50-05a)<br/>P12, P21 open"]
+  F1 --> LC["longitudinal chain<br/>closed from plates 50-02/03/05a<br/>rear mounts scaled off the drawing"]
   LC --> F2["F2_interface<br/>not reached"]
   classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
   classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
   classDef open fill:#fff4d6,stroke:#b7791f,color:#1a1a1a;
   class SC,FR,DS,F1 ok;
-  class LC open;
+  class LC ok;
   class F2 stop;
 ```
 
@@ -125,8 +125,12 @@ centre network is placed from published dimensions only:
 | P5 | front cross-member mount | 143.0 | 1.9 |
 | P17 | front jacking point | 440.2 | 3.5 |
 | P18 | rear jacking point | 1685.2 | 4.2 |
+| P12 | transmission carrier take-up hole | 1678.5 | 8.6 |
 | P19 | rear platform point | 1768.2 | 4.2 |
 | P16 | rear absorber plane | 3034.5 | 4.7 |
+| P21 | inner engine mount | 3098.2 | 7.4 |
+
+P12 and P21 come from the rear diagonals; see "The rear of the chain" below.
 
 **Tied to the scan.** `source/scan_tie_50_05a.py` measures features the scan
 resolves: the P5 bosses, found at |Y| = 385.2 and 386.9 mm against 385
@@ -139,29 +143,66 @@ the reading the scan supports.
 
 ![Published datum chain tied to the scan, against the previous network](evidence/scan-tie-50-05a.png)
 
-*Blue: the published chain placed with delta. Red crosses: the previous
-network, anchored at P17 = -506 mm with P5 read through a diagonal. Black
-crosses: features measured on the scan. The P17 and P19 features sit 6 to
-21 mm from the published |Y|: they are the receptacle and pad structures, not
-the drilled holes, which the scan does not resolve.*
+*Blue: the published chain placed with delta. Green: rear mounts scaled off
+plate 50-05a. Red crosses: the previous network, anchored at P17 = -506 mm
+with P5 read through a diagonal. Black crosses: features measured on the scan.
+The P17 and P19 features sit 6 to 21 mm from the published |Y|: they are the
+receptacle and pad structures, not the drilled holes, which the scan does not
+resolve.*
 
-**What it changes for the monocoque.** The front suspension mounts P3 and P5
-become determined dimensions. The governing span P5 to P12 drops from
-1724.3 mm to **1567.3 mm**. The old value was wrong at both ends: P5 by
-230 mm, and P12 by 73 mm through diagonal N.
+## The rear of the chain
+
+P12 and P21 hang on the crossed diagonals O (P18 to P21) and N (P12 to P21).
+Plate 50-03 prints each twice: O = 1696 +/- 3 (1653 +/- 3), N = 1492 +/- 3
+(1482 +/- 3), with the note "the dimensions in brackets are measured
+vertically". Two readings are possible, and the evidence picks one:
+
+| reading | P12 | P21 via O | P21 via N | verdict |
+|---|---:|---:|---:|---|
+| bracketed values as plan distances | 1637.1 | 3046.3 | 3083 | P12 38 mm off both drawings; O and N split by 37 mm |
+| unbracketed values as direct distances | 1678.5 | 3098.2 | 3094 | within 3-6 mm of both drawings; O and N agree |
+
+*Distances behind the 0 line, mm. "P21 via N" starts from P12 as drawn.*
+
+**The drawings.** Plate 50-05a's plan view is to scale: fitted on the eight
+markers whose positions are published, it gives 1:17.8 with a residual sd of
+4.3 mm (`source/plate_50_05a_scale.py`). It draws P12 at 1675.9 mm; plate
+50-02, scaled on R, at 1672.1 mm. Two Porsche drawings agree within 4 mm.
+
+**The scan.** At P21's published spacing (|Y| 320), the scan shows a U-shaped
+engine-mount cradle on each side, fitted at |Y| 312 and 316 mm. Its centre
+lies 3091 mm behind the 0 line: 7 mm from the unbracketed P21, 45 mm from the
+bracketed one. The bosses first taken for P12 are the removable transmission
+carrier's own bolts, 30 mm behind the body take-up hole.
+
+The chain therefore reads O and N unbracketed, as direct distances between
+holes at slightly different heights; the unknown height differences (up to
+150 mm) are carried in the uncertainty. Why the plate brackets these values
+is not explained; the reading rests on the checks, not on the note.
+
+**Rear mounts without a dimension**, scaled off plate 50-05a (+/- 8.6 mm):
+
+| point | role | d behind the 0 line |
+|---|---|---:|
+| P13 | outer cross tube, rear axle | 1758.6 |
+| P14 | rear spring-strut mount | 2290.0 |
+| P15 | engine bearing mount | 3017.1 |
+
+**What it changes for the monocoque.** Every suspension and power-unit mount
+of the contract now has a longitudinal position: P3, P5, P12 and P21 from
+published dimensions, P13, P14 and P15 from the scaled drawing. The governing
+span P5 to P12 is **1535.6 mm**, both ends published. It read 1724.3 mm with P
+taken as a diagonal and the bracketed N.
 
 ## What is not established
 
-**P12 and P21.** They hang on diagonals N and O. Their crossed-plan reading
-places P12 73 mm ahead of the transmission cross-member bosses measured on the
-scan, so it is not the right reading, and P21 rests on the same one. P12 is
-carried as a scan measurement (|Y| 142.8 and 147.3 mm against 139 published).
-P21 would land at X = -3072 mm, in the rear engine-carrier cross-member band
-of the scan, no longer in the bumper. It stays invalid until N and O are
-decoded.
+**Tolerance.** The drawing-scaled mounts carry +/- 8.6 mm and the tie to the
+scan's wheel frame +/- 7.6 mm: enough to lay out a structure, not to cut a
+tool, which needs +/- 1 mm. The twin stays at `F1_envelope`: `F2_interface`
+also needs the fastener seats and mounting faces.
 
-**The rear suspension mounts** P13 and P14 have no longitudinal dimension in
-the plates read so far.
+**The 0 line** is read as the strut-mount line drawn on the plates; no
+published definition was found.
 
 **The scan is a wide body.** Rear track measured around 1459 mm against 1374 mm
 from the factory; front track 1388 mm against 1380 mm, so close to original. The
@@ -216,6 +257,7 @@ only for the modeled solids: it is not a 964 body-shell mass.
     pymesh source/wheels.py        # wheelbase and diameters
     pymesh source/datum_solve.py   # historical chain (P read as a diagonal)
     python3 source/datum_chain_50_05a.py   # published longitudinal chain
+    python3 source/plate_50_05a_scale.py   # scaled drawing: P13-P15, rear check
     TWIN_SCAN=... TWIN_TRANSFORM=... pymesh source/scan_tie_50_05a.py   # ties it to the scan
     pymesh source/control.py       # significance control of the fit
     pycad  source/floor_assembly.py  # steel model -> STEP
@@ -266,20 +308,19 @@ flowchart TD
 
 ## Next useful data
 
-The published longitudinal dimension this section asked for exists: plate
-50-05a of volume V, read on 2026-10-08. The front and centre chain is closed
-from it. What remains:
+The longitudinal chain is closed from volume V (plates 50-02, 50-03, 50-05a,
+read on 2026-10-08). What would tighten it:
 
-- **Diagonals N and O.** Decoding them would place P12 and P21 from the
-  publication; the scan shows the crossed-plan reading is wrong at P12.
-- **The rear suspension mounts** P13 and P14, and the engine mount P15:
-  plates 50-05/50-05a show them, without a longitudinal dimension.
-- **The 0 line**: a published definition would replace the reading the scan
-  supports.
+- **A published dimension for P13, P14 and P15**, today scaled off the
+  drawing at +/- 8.6 mm.
+- **The meaning of the bracketed values** of plate 50-03, today chosen by the
+  checks.
+- **The 0 line's definition.**
+- **Mounting faces and fastener seats**, for `F2_interface`.
 
 `SRC-RENNLIST-993-BODY-DIMENSIONS-PDF` reports a table of points in
-millimetres, not obtained; it could close the rear. The full state of the leads
-is in `docs/research/964-combler-le-gap-de-donnees.md`.
+millimetres, not obtained. The full state of the leads is in
+`docs/research/964-combler-le-gap-de-donnees.md`.
 
 ## Composite lead
 

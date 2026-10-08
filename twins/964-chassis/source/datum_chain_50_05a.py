@@ -19,9 +19,19 @@ The chain is then closed twice to P17, independently:
     P5 -> P20 (P, longitudinal) -> P17 (K, crossed plan diagonal)
     P3 -> P17 (L, crossed plan diagonal)
 
-and the two must agree. R and S carry P17 to P18 and P19. P12 and P21 hang on
-diagonals N and O, whose crossed-plan reading disagrees with the scan by 60 to
-85 mm at P12 (see scan_tie_50_05a.py); they are kept out of the published chain.
+and the two must agree. R and S carry P17 to P18 and P19.
+
+The rear hangs on diagonals O (P18 to P21) and N (P12 to P21), both crossed.
+Plate 50-03 gives each twice, e.g. O = 1696 +/- 3 (1653 +/- 3), and says the
+values in brackets are "measured vertically". Read as plan distances, the
+bracketed values put P12 38 mm ahead of where plates 50-05a and 50-02 both
+draw it, and the two diagonals then disagree at P21 by 37 mm. Read as direct
+distances between holes at slightly different heights, the unbracketed
+values close: N and O meet within 5 mm of each other once P12 is taken from
+the drawings, and P21 lands on the rear engine-mount cradle the scan shows
+(plate_50_05a_scale.py, scan_tie_50_05a.py). The chain uses the unbracketed
+values, with the unknown height differences (0 to 150 mm on O, 0 to 100 mm on
+N) carried in the uncertainty; the bracketed reading is reported, not used.
 
 Positions are distances behind the 0 line, d (mm, + rearward). Tolerances are
 propagated by Monte Carlo, uniform within the published band; 215 carries no
@@ -50,19 +60,26 @@ DIMENSIONS = {
     "K": (1500.0, 3.0, "50-03", "P20 to P17, crossed plan diagonal"),
     "L": (1170.0, 2.0, "50-03", "P3 to P17, crossed plan diagonal (1170 plan, 1174 oblique)"),
     "R": (1245.0, 2.0, "50-03", "P17 to P18, side view"),
+    "O": (1696.0, 3.0, "50-03", "P18 to P21, crossed diagonal, unbracketed (bracketed 1653)"),
+    "N": (1492.0, 3.0, "50-03", "P12 to P21, crossed diagonal, unbracketed (bracketed 1482)"),
     "S": (1328.0, 2.0, "50-03", "P17 to P19, side view"),
 }
-Y_TOL = {20: 1.0, 3: 0.5, 5: 1.0, 17: 0.5, 18: 0.5, 19: 0.5}   # half of the transverse tolerance
+Y_TOL = {20: 1.0, 3: 0.5, 5: 1.0, 17: 0.5, 18: 0.5, 19: 0.5, 12: 0.5, 21: 0.5}
+DZ_MAX = {"O": 150.0, "N": 100.0}   # unknown height difference along each rear diagonal
+BRACKETED = {"O": 1653.0, "N": 1482.0}
 
 
-def crossed(diagonal, a, b, y):
-    """Longitudinal separation from a crossed plan diagonal between a and b."""
+def crossed(diagonal, a, b, y, dz=0.0):
+    """Longitudinal separation from a crossed diagonal between a and b, with an
+    optional height difference dz between the two holes."""
     span = y[a] + y[b]
-    return math.sqrt(diagonal ** 2 - span ** 2)
+    return math.sqrt(diagonal ** 2 - span ** 2 - dz ** 2)
 
 
-def solve(v, y):
-    """One evaluation of the chain. v: dimension values, y: half spacings."""
+def solve(v, y, dz=None):
+    """One evaluation of the chain. v: dimension values, y: half spacings,
+    dz: height differences along O and N (zero by default)."""
+    dz = dz or {"O": 0.0, "N": 0.0}
     d = {1: -v["D722"], 3: -v["D215"], 5: v["D143"]}
     d[20] = d[5] - v["P"]
     via_k = d[20] + crossed(v["K"], 20, 17, y)
@@ -71,6 +88,8 @@ def solve(v, y):
     d[18] = d[17] + v["R"]
     d[19] = d[17] + v["S"]
     d[16] = v["L3756"] - v["D722"]
+    d[21] = d[18] + crossed(v["O"], 18, 21, y, dz["O"])
+    d[12] = d[21] - crossed(v["N"], 12, 21, y, dz["N"])
     return d, via_k, via_l
 
 
@@ -84,7 +103,8 @@ def main():
     for _ in range(20000):
         v = {k: val[0] + rng.uniform(-val[1], val[1]) for k, val in DIMENSIONS.items()}
         y = {p: h + rng.uniform(-Y_TOL.get(p, 0.5), Y_TOL.get(p, 0.5)) for p, h in Y_HALF.items()}
-        d, vk, vl = solve(v, y)
+        dz = {k: rng.uniform(0.0, m) for k, m in DZ_MAX.items()}
+        d, vk, vl = solve(v, y, dz)
         for p, value in d.items():
             samples[p].append(value)
         closure.append(vk - vl)
@@ -99,6 +119,8 @@ def main():
             "u95_mm": round(0.5 * (s[int(0.975 * len(s))] - s[int(0.025 * len(s))]), 1),
         }
     closure_sd = statistics.pstdev(closure)
+    bracketed = dict(nominal, O=BRACKETED["O"], N=BRACKETED["N"])
+    db, _, _ = solve(bracketed, Y_HALF)
     report = {
         "schema_version": "1.0.0",
         "twin": "964-chassis",
@@ -117,10 +139,15 @@ def main():
             "verdict": "the two published paths agree" if abs(k0 - l0) <= 2.0 * closure_sd else "the two published paths disagree",
         },
         "points": points,
+        "rear_reading": {
+            "used": "unbracketed O and N as direct distances, height differences unknown (0-150, 0-100 mm) and carried in u95",
+            "bracketed_alternative_d_mm": {"P12": round(db[12], 1), "P21": round(db[21], 1)},
+            "why_not_bracketed": "it places P12 38 mm ahead of plates 50-05a and 50-02, which agree with each other within 4 mm, and splits P21 by 37 mm between O and N",
+            "checks": "plate_50_05a_scale.py (drawings) and scan_tie_50_05a.py (engine-mount cradle)",
+        },
         "not_in_published_chain": {
-            "P12": "hangs on diagonal N; the crossed-plan reading misses the scan by 60-85 mm",
-            "P21": "hangs on diagonal O, same reading, not verified",
             "P6": "plate 50-03 gives its transverse spacing D only",
+            "P13, P14, P15": "drawn on 50-05a without a dimension; scaled in plate_50_05a_scale.py",
         },
         "monte_carlo": {"samples": 20000, "seed": 964, "distribution": "uniform within each published band"},
     }

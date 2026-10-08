@@ -13,8 +13,13 @@ that the scan resolves, each in a small window found by inspection:
     P19  rear lifting-platform pad: a ring at |Y| ~ 510-540 (H = 1018)
 
 Each gives delta = X_measured + d. Their spread tests the chain; their mean
-ties it. P12 (transmission cross-member bosses at |Y| ~ 145) is measured
-too, as a scan-sourced candidate: the published diagonal N does not place it.
+ties it. Two more features check the rear without entering delta:
+
+    P21  rear engine-mount cradle: a U in side view at |Y| 280-360 (I = 640),
+         whose centre should fall at delta - d(P21)
+    carrier bolts at |Y| ~ 145: the transmission carrier's own fixings, kept
+         as a diagnostic. They sit 30 mm behind P12 and 50 mm lower than the
+         body take-up hole N and O imply, so they are not P12.
 
 The scan is not in the repository (raw-scans/ is ignored). Set TWIN_SCAN to
 the OBJ and TWIN_TRANSFORM to vehicle_transform.json; run where numpy,
@@ -31,12 +36,13 @@ import numpy as np
 CHAIN = json.load(open("../derived/datum-chain-50-05a.json"))
 D = {name: row["d_behind_0_line_mm"] for name, row in CHAIN["points"].items()}
 
-# feature: (published point, x window, |y| window, z window, method)
+# feature: (point, x window, |y| window, z window, method, role)
 FEATURES = {
-    "P5_boss": ("P5", (-200, -130), (360, 410), (300, 360), "circle"),
-    "P17_cup": ("P17", (-530, -410), (600, 700), (100, 240), "circle"),
-    "P19_ring": ("P19", (-1840, -1740), (480, 570), (100, 240), "circle"),
-    "P12_bosses": ("P12", (-1765, -1705), (120, 170), (230, 290), "centroid"),
+    "P5_boss": ("P5", (-200, -130), (360, 410), (300, 360), "circle", "tie"),
+    "P17_cup": ("P17", (-530, -410), (600, 700), (100, 240), "circle", "tie"),
+    "P19_ring": ("P19", (-1840, -1740), (480, 570), (100, 240), "circle", "tie"),
+    "P21_cradle": ("P21", (-3200, -3040), (280, 360), (290, 385), "circle_xz", "check"),
+    "carrier_bolts": (None, (-1765, -1705), (120, 170), (230, 290), "centroid", "diagnostic"),
 }
 WHEEL_CENTRE_U_MM = 7.0   # front wheel centre fit, twin README
 
@@ -66,7 +72,7 @@ def load_vehicle_vertices():
 
 def measure(v):
     rows = {}
-    for name, (point, xw, yw, zw, method) in FEATURES.items():
+    for name, (point, xw, yw, zw, method, role) in FEATURES.items():
         for side, sign in (("left", 1), ("right", -1)):
             sel = ((v[:, 0] > xw[0]) & (v[:, 0] < xw[1]) & (sign * v[:, 1] > yw[0])
                    & (sign * v[:, 1] < yw[1]) & (v[:, 2] > zw[0]) & (v[:, 2] < zw[1]))
@@ -74,9 +80,13 @@ def measure(v):
             if method == "circle":
                 cx, cy, r, res = fit_circle(s[:, 0], s[:, 1])
                 row = {"x_mm": cx, "y_mm": cy, "radius_mm": r, "fit_residual_median_mm": res}
+            elif method == "circle_xz":
+                cx, cz, r, res = fit_circle(s[:, 0], s[:, 2])
+                row = {"x_mm": cx, "y_mm": float(s[:, 1].mean()), "z_mm": cz, "radius_mm": r,
+                       "fit_residual_median_mm": res}
             else:
                 row = {"x_mm": float(s[:, 0].mean()), "y_mm": float(s[:, 1].mean())}
-            row.update({"point": point, "n_vertices": int(len(s))})
+            row.update({"point": point, "role": role, "n_vertices": int(len(s))})
             if point in D:
                 row["delta_mm"] = row["x_mm"] + D[point]
             rows[f"{name}_{side}"] = row
@@ -104,10 +114,22 @@ def plot(v, rows, delta, path):
         ax.text(x + 15, y + 25, name, color="tab:blue", fontsize=9)
         if name in old:
             ax.plot([old[name]] * 2, [y, -y], "x", color="tab:red", ms=7)
+    drawing = json.load(open("../derived/plate-50-05a-scaled.json"))["points"]
+    y_half = {"P13": 600.0, "P14": 308.3, "P15": None}
+    for name, row in drawing.items():
+        if name not in y_half:
+            continue
+        x = delta - row["d_behind_0_line_mm"]
+        if y_half[name] is None:
+            ax.axvline(x, color="tab:green", lw=0.8, ls=":")
+            ax.text(x, 760, name, color="tab:green", fontsize=8, ha="center")
+            continue
+        ax.plot([x, x], [y_half[name], -y_half[name]], "s", color="tab:green", ms=6)
+        ax.text(x + 15, y_half[name] + 25, name, color="tab:green", fontsize=9)
     for key, row in rows.items():
         ax.plot(row["x_mm"], row["y_mm"], "+", color="black", ms=12, mew=1.5)
-        if row["point"] == "P12":
-            ax.text(row["x_mm"] + 15, row["y_mm"] + 20, "P12 (scan)", fontsize=8)
+        if row["role"] == "diagnostic":
+            ax.text(row["x_mm"] - 15, row["y_mm"] + 20, "carrier bolts", fontsize=7, ha="right")
     ax.axvline(0, color="k", lw=0.8)
     ax.axvline(delta, color="tab:blue", lw=0.8, ls="--")
     ax.text(delta - 10, -770, "plate 0 line", color="tab:blue", fontsize=8, ha="right")
@@ -117,7 +139,7 @@ def plot(v, rows, delta, path):
     ax.set_ylim(-800, 800)
     ax.set_xlabel("X vehicle (mm, + forward)")
     ax.set_title("964 datum network on the scan, from below. Blue: published chain (plates 50-02/03/05a) "
-                 "tied by delta; red x: previous network; black +: features measured on the scan")
+                 "tied by delta; green: scaled off plate 50-05a; red x: previous network; black +: scan features")
     fig.tight_layout()
     fig.savefig(path)
 
@@ -125,12 +147,14 @@ def plot(v, rows, delta, path):
 def main():
     v = load_vehicle_vertices()
     rows = measure(v)
-    published = [r["delta_mm"] for r in rows.values() if r["point"] != "P12"]
+    published = [r["delta_mm"] for r in rows.values() if r["role"] == "tie"]
     delta = statistics.mean(published)
     spread = statistics.stdev(published)
     u_delta = (spread ** 2 / len(published) + WHEEL_CENTRE_U_MM ** 2) ** 0.5
-    p12 = [r for r in rows.values() if r["point"] == "P12"]
-    p12_d = statistics.mean(delta - r["x_mm"] for r in p12)
+    cradle = [r for r in rows.values() if r["point"] == "P21"]
+    cradle_d = statistics.mean(delta - r["x_mm"] for r in cradle)
+    bolts = [r for r in rows.values() if r["role"] == "diagnostic"]
+    bolts_d = statistics.mean(delta - r["x_mm"] for r in bolts)
     p5_x = delta - D["P5"]
     report = {
         "schema_version": "1.0.0",
@@ -143,30 +167,36 @@ def main():
             "value_mm": round(delta, 1),
             "spread_sd_mm": round(spread, 1),
             "u_mm": round(u_delta, 1),
-            "from": "P5, P17 and P19, both sides; P12 excluded (not in the published chain)",
+            "from": "P5, P17 and P19, both sides; the P21 cradle and the carrier bolts are checks, not ties",
             "reading": "the 0 line lies behind the fitted front wheel centres, as a strut-mount line does with 4 deg 25 min caster",
         },
         "points_vehicle_frame_mm": {
             name: {"x_mm": round(delta - row["d_behind_0_line_mm"], 1), "y_half_mm": row["y_half_mm"]}
             for name, row in CHAIN["points"].items()
         },
-        "p12_scan_candidate": {
-            "x_mm": round(statistics.mean(r["x_mm"] for r in p12), 1),
-            "d_behind_0_line_mm": round(p12_d, 1),
-            "crossed_diagonal_N_prediction_d_mm": 1637.3,
-            "miss_mm": round(p12_d - 1637.3, 1),
-            "status": "SCAN, not published; diagonals N and O stay undecoded",
+        "p21_check": {
+            "cradle_d_behind_0_line_mm": round(cradle_d, 1),
+            "chain_d_mm": D["P21"],
+            "bracketed_reading_d_mm": CHAIN["rear_reading"]["bracketed_alternative_d_mm"]["P21"],
+            "difference_chain_mm": round(cradle_d - D["P21"], 1),
+            "difference_bracketed_mm": round(cradle_d - CHAIN["rear_reading"]["bracketed_alternative_d_mm"]["P21"], 1),
+            "reading": "the cradle is read as the rear engine mount at the published 640 mm spacing; its centre is not the take-up hole itself",
+        },
+        "carrier_bolts_diagnostic": {
+            "d_behind_0_line_mm": round(bolts_d, 1),
+            "chain_P12_d_mm": D["P12"],
+            "reading": "fixings of the removable transmission carrier, not the body take-up hole P12",
         },
         "span_P5_P12_mm": {
-            "value": round(p12_d - D["P5"], 1),
-            "sources": ["MANUAL (50-05a, 143)", "SCAN (P12 bosses)"],
-            "previous_value": 1724.3,
+            "value": round(D["P12"] - D["P5"], 1),
+            "sources": ["MANUAL (50-05a, 143)", "MANUAL (O and N, unbracketed)"],
+            "previous_values": {"diagonal_P_and_bracketed_N": 1724.3, "scan_carrier_bolts": 1567.3},
         },
         "p5_vehicle_x_mm": round(p5_x, 1),
     }
     json.dump(report, open("../evidence/scan-tie-50-05a.json", "w"), indent=1)
     plot(v, rows, delta, "../evidence/scan-tie-50-05a.png")
-    print(json.dumps({k: report[k] for k in ("delta", "p12_scan_candidate", "span_P5_P12_mm")}, indent=1))
+    print(json.dumps({k: report[k] for k in ("delta", "p21_check", "carrier_bolts_diagnostic", "span_P5_P12_mm")}, indent=1))
     for key, row in rows.items():
         print(f"{key:<20} x {row['x_mm']:8.1f}  y {row['y_mm']:7.1f}  delta {row.get('delta_mm', float('nan')):6.1f}  n {row['n_vertices']}")
 

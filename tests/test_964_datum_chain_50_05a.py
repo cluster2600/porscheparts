@@ -9,6 +9,7 @@ TWIN = ROOT / "twins/964-chassis"
 CHAIN = TWIN / "derived/datum-chain-50-05a.json"
 TIE = TWIN / "evidence/scan-tie-50-05a.json"
 CONTRACT = TWIN / "derived/monocoque-interface.json"
+DRAWING = TWIN / "derived/plate-50-05a-scaled.json"
 SPEC = importlib.util.spec_from_file_location("datum_chain_50_05a", TWIN / "source/datum_chain_50_05a.py")
 MODULE = importlib.util.module_from_spec(SPEC)
 assert SPEC.loader is not None
@@ -50,16 +51,33 @@ class DatumChain5005aTests(unittest.TestCase):
         tie = json.loads(TIE.read_text(encoding="utf-8"))
         contract = json.loads(CONTRACT.read_text(encoding="utf-8"))
         points = contract["points"]
-        for name in ("P20", "P3", "P5", "P17", "P18", "P19"):
+        for name in ("P20", "P3", "P5", "P17", "P18", "P19", "P12", "P21"):
             self.assertEqual(points[name]["x_statut"], "DETERMINE")
             self.assertAlmostEqual(points[name]["x_local_mm"], chain["points"][name]["x_from_P17_mm"])
-        self.assertEqual(points["P12"]["x_statut"], "MESURE_SCAN")
-        self.assertEqual(points["P21"]["x_statut"], "INVALIDE")
+        for name in ("P13", "P14", "P15"):
+            self.assertEqual(points[name]["x_statut"], "MESURE_DESSIN")
         self.assertAlmostEqual(contract["cote_gouvernante"]["valeur_mm"],
                                round(points["P5"]["x_local_mm"] - points["P12"]["x_local_mm"], 1))
         self.assertAlmostEqual(contract["inconnue_globale"]["valeur_de_travail_mm"],
                                round(tie["delta"]["value_mm"] - chain["points"]["P17"]["d_behind_0_line_mm"], 1))
         self.assertFalse(contract["release_flags"]["geometry_released"])
+
+    def test_drawing_scale_is_calibrated_and_both_plates_agree_on_p12(self) -> None:
+        drawing = json.loads(DRAWING.read_text(encoding="utf-8"))
+        self.assertLess(drawing["fit"]["residual_sd_mm"], 6.0)
+        check = drawing["rear_chain_check"]
+        self.assertLess(abs(check["drawings_differ_by_mm"]), 8.0)
+
+    def test_drawings_and_scan_select_the_unbracketed_rear_reading(self) -> None:
+        drawing = json.loads(DRAWING.read_text(encoding="utf-8"))["rear_chain_check"]["chain_minus_drawings_mm"]
+        self.assertLess(abs(drawing["unbracketed"]), 10.0)
+        self.assertGreater(abs(drawing["bracketed"]), 30.0)
+        cradle = json.loads(TIE.read_text(encoding="utf-8"))["p21_check"]
+        self.assertLess(abs(cradle["difference_chain_mm"]), 15.0)
+        self.assertGreater(abs(cradle["difference_bracketed_mm"]), 30.0)
+        for side in ("left", "right"):
+            row = json.loads(TIE.read_text(encoding="utf-8"))["features"][f"P21_cradle_{side}"]
+            self.assertLess(abs(abs(row["y_mm"]) - 320.0), 15.0)
 
 
 if __name__ == "__main__":

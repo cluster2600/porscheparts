@@ -15,12 +15,12 @@
  "cote_gouvernante": {
   "nom": "SPAN_P5_P12",
   "definition": "entraxe longitudinal fixation train avant -> traverse essieu arriere",
-  "valeur_mm": 1567.3,
+  "valeur_mm": 1535.6,
   "x_sources": [
    "MANUAL(50-05a 143)",
-   "SCAN(P12 bosses)"
+   "MANUAL(O and N, unbracketed)"
   ],
-  "statut": "P5 published (50-05a); P12 measured on the scan, not published",
+  "statut": "both ends published: P5 (50-05a, 143) and P12 (diagonals O and N, unbracketed); P12 cross-checked by plates 50-05a and 50-02",
   "consequence": "Le monocoque impose cet entraxe par construction. Une erreur ici ne se rattrape pas au montage : elle donne un empattement et une geometrie de suspension faux."
  },
  "empattement_reference": {
@@ -72,6 +72,17 @@
    "x_statut": "DETERMINE",
    "x_vehicle_mm_provisoire": -465.7
   },
+  "P12": {
+   "designation": "Traverse d'essieu arriere",
+   "fonction_monocoque": "suspension",
+   "y_half_mm": 139.0,
+   "y_tolerance_mm": 1,
+   "y_source": "MANUAL",
+   "x_local_mm": -1238.4,
+   "x_source": "MANUAL(O and N, unbracketed)",
+   "x_statut": "DETERMINE",
+   "x_vehicle_mm_provisoire": -1704.1
+  },
   "P18": {
    "designation": "Prise de cric arriere",
    "fonction_monocoque": "levage",
@@ -83,16 +94,16 @@
    "x_statut": "DETERMINE",
    "x_vehicle_mm_provisoire": -1710.7
   },
-  "P12": {
-   "designation": "Traverse d'essieu arriere",
+  "P13": {
+   "designation": "Mount - outer cross tube RA",
    "fonction_monocoque": "suspension",
-   "y_half_mm": 139.0,
+   "y_half_mm": 600.0,
    "y_tolerance_mm": 1,
    "y_source": "MANUAL",
-   "x_local_mm": -1270.1,
-   "x_source": "SCAN(P12 bosses)",
-   "x_statut": "MESURE_SCAN",
-   "x_vehicle_mm_provisoire": -1735.8
+   "x_local_mm": -1318.4,
+   "x_source": "DRAWING(50-05a scaled)",
+   "x_statut": "MESURE_DESSIN",
+   "x_vehicle_mm_provisoire": -1784.1
   },
   "P19": {
    "designation": "Point de controle arriere",
@@ -105,17 +116,38 @@
    "x_statut": "DETERMINE",
    "x_vehicle_mm_provisoire": -1793.7
   },
+  "P14": {
+   "designation": "Mount - RA spring strut",
+   "fonction_monocoque": "suspension",
+   "y_half_mm": 308.3,
+   "y_tolerance_mm": 2,
+   "y_source": "MANUAL",
+   "x_local_mm": -1849.8,
+   "x_source": "DRAWING(50-05a scaled)",
+   "x_statut": "MESURE_DESSIN",
+   "x_vehicle_mm_provisoire": -2315.5
+  },
+  "P15": {
+   "designation": "Mount - engine bearing",
+   "fonction_monocoque": "groupe motopropulseur",
+   "y_half_mm": null,
+   "y_tolerance_mm": null,
+   "y_source": "NOT PUBLISHED",
+   "x_local_mm": -2576.9,
+   "x_source": "DRAWING(50-05a scaled)",
+   "x_statut": "MESURE_DESSIN",
+   "x_vehicle_mm_provisoire": -3042.6
+  },
   "P21": {
    "designation": "Palier moteur",
    "fonction_monocoque": "groupe motopropulseur",
    "y_half_mm": 320.0,
    "y_tolerance_mm": 1,
    "y_source": "MANUAL",
-   "x_local_mm": -2606.1,
-   "x_source": "DERIVED(O)",
-   "x_statut": "INVALIDE",
-   "x_vehicle_mm_provisoire": -3071.8,
-   "invalide_raison": "diagonal O not decoded: the same reading misses P12 by 73 mm on the scan"
+   "x_local_mm": -2658.0,
+   "x_source": "MANUAL(O, unbracketed)",
+   "x_statut": "DETERMINE",
+   "x_vehicle_mm_provisoire": -3123.7
   }
  },
  "release_flags": {
