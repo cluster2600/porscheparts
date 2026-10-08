@@ -86,6 +86,10 @@ MAX_BLADE_AXIAL_PROJECTION_MM = 50.0       # inside the 56 mm cup depth
 HUB_THICKNESS_TO_CHORD = 0.10
 TIP_THICKNESS_TO_CHORD = 0.06
 MINIMUM_BLADE_THICKNESS_MM = 1.5
+# LPBF cannot hold the knife edge a NACA 4-digit section closes to (about
+# 0.05 mm here; the first print simulation measured a 0.07 mm minimum).
+# Thickness grows linearly toward the trailing edge to reach this value.
+MINIMUM_TRAILING_EDGE_THICKNESS_MM = 0.5
 TARGET_DIFFUSION_FACTOR = 0.30            # longer chords than 0.45: stall margin equal to the rebuild, blade mode 35 % above the spoke order
 MAXIMUM_SOLIDITY = 1.6
 VORTEX_EXPONENT = 1.0                # c_u2 ~ r^-n: 1 = free vortex (uniform exit flow), 0 = constant swirl
@@ -1131,7 +1135,7 @@ def airfoil_points(chord: float, thickness: float, camber_deg: float,
         phi = math.atan(slope)
         yt = 5.0 * t * chord * (
             0.2969 * math.sqrt(xn) - 0.1260 * xn - 0.3516 * xn**2 + 0.2843 * xn**3 - 0.1015 * xn**4
-        )
+        ) + 0.5 * MINIMUM_TRAILING_EDGE_THICKNESS_MM * xn
         upper.append((x - yt * math.sin(phi), yc + yt * math.cos(phi)))
         lower.append((x + yt * math.sin(phi), yc - yt * math.cos(phi)))
 

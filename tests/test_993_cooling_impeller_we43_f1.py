@@ -1,4 +1,5 @@
 import functools
+import hashlib
 import importlib.util
 import json
 import unittest
@@ -172,6 +173,21 @@ class CoolingImpellerWE43F1Tests(unittest.TestCase):
         self.assertFalse(report["manufacturing_authorized"])
         self.assertFalse(report["engine_operation_authorized"])
         self.assertFalse(report["release_authorized"])
+
+    def test_print_simulation_ran_on_the_committed_cad_and_passed(self) -> None:
+        status = json.loads((ROOT / "docs/993/print-screen-status.json").read_text(encoding="utf-8"))
+        row = status["993-eng-cooling-impeller-we43-f1-0001"]
+        self.assertEqual(row["status"], "screened")
+        self.assertEqual(row["material"], "WE43")
+        report = json.loads(next((PART / "evidence/lpbf-f0").glob("*-lpbf-geometry-report.json")).read_text(encoding="utf-8"))
+        step = PART / "derived/cooling_impeller_we43_f1.step"
+        self.assertEqual(report["master"]["sha256"], hashlib.sha256(step.read_bytes()).hexdigest())
+        self.assertTrue(report["gates"]["full_piece_layer_slicing_completed"])
+        self.assertTrue(report["gates"]["bare_part_machine_envelope_fit"])
+        self.assertEqual(report["full_build_slicing"]["empty_internal_layers"], 0)
+        self.assertEqual(report["powder_escape_screen"]["trapped_void_volume_mm3"], 0.0)
+        self.assertGreaterEqual(report["thickness_screen"]["minimum_mm"], 0.2)
+        self.assertFalse(report["gates"]["metal_print_authorized"])
 
 
 if __name__ == "__main__":

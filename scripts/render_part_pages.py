@@ -75,10 +75,15 @@ def images(part_id: str, page: Path) -> list[str]:
     if not trouvees:
         return []
     out = ["## Images", ""]
-    for img in trouvees[:6]:
+    for img in trouvees[:8]:
         rel = img.relative_to(ROOT).as_posix()
-        legende = (" — concept CAD block, **not** the original part, not a print file"
-                   if "media" in img.relative_to(ROOT).parts else " — a screening output, not a validation")
+        parts = img.relative_to(ROOT).parts
+        if "print-simulation" in parts:
+            legende = " — illustration of the geometric print simulation, not a build file or a print release"
+        elif "media" in parts:
+            legende = " — concept CAD block, **not** the original part, not a print file"
+        else:
+            legende = " — a screening output, not a validation"
         out += [f"![{img.stem}]({lien(img, page)})", "", f"*`{rel}`{legende}.*", ""]
     return out
 

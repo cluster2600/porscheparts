@@ -29,7 +29,7 @@
 	pet-zone-triage-check pet-part-triage pet-verdict pet-verdict-check \
 	pet-explain pet-disposition \
 	route-trim-ring-check parts-table route-lever-hook route-lever-hook-check \
-	print-screens print-screen-sections-check parts-table-check part-pages part-pages-check translation-status reports-index reports-index-check docs-links-check part-previews part-previews-check container-recon container-cadsim container-mesh-cfd \
+	print-screens print-visuals print-screen-sections-check parts-table-check part-pages part-pages-check translation-status reports-index reports-index-check docs-links-check part-previews part-previews-check container-recon container-cadsim container-mesh-cfd \
 	container-physicsml container-simready container-simready-workflow \
 	container-simready-local-ai container-ov-libraries-cpu container-smoke \
 	container-smoke-physicsml container-smoke-simready \
@@ -1335,6 +1335,15 @@ print-screens:
 	nice -n 10 python3 scripts/run_993_print_screens.py --pylib $(PYLIB) \
 	  --status docs/993/print-screen-status.json
 	python3 scripts/render_print_screen_sections.py --status docs/993/print-screen-status.json
+
+#> 993 | Pictures and build-up video of one part's print simulation: PART=<folder> PYLIB=<shapely+imageio dir>
+print-visuals:
+	@test -n "$(PART)" || { echo "PART=<parts/ folder name> required"; exit 2; }
+	@test -n "$(PYLIB)" || { echo "PYLIB=<folder with shapely, rtree, networkx, imageio, imageio-ffmpeg> required"; exit 2; }
+	docker run --rm --memory=6g --memory-swap=6g --cpus=4 --user $$(id -u):$$(id -g) \
+	  -e HOME=/tmp -e MPLCONFIGDIR=/tmp -e PYTHONPATH=/pylib -v $(PYLIB):/pylib:ro \
+	  -v $(CURDIR):/repo -w /repo --entrypoint python3 3dprinting993-cadsim:dev \
+	  scripts/render_print_simulation_visuals.py --part $(PART)
 
 #> 993 | Check that records follow the published simulations
 print-screen-sections-check:

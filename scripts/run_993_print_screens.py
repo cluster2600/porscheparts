@@ -35,12 +35,17 @@ LAYER_MM = {
     "IN718": (0.04, "EOS NickelAlloy IN718 / M290 40 um"),
     "Ti64": (0.03, "EOS Titanium Ti64 / M290 30 um"),
     "Al2139": (0.06, "EOS Aluminium Al2139 AM / M290 60 um"),
+    # not an EOS catalogue material: the published LPBF route of Hyer et al. 2020
+    # (SRC-ORNL-WE43-LPBF-HYER-2020), 200 W, 30 um, run in the M 290 envelope
+    "WE43": (0.03, "WE43 LPBF route of Hyer et al. 2020 / 30 um, not an EOS catalogue material"),
 }
 
 PARTS = {
     "993-body-front-impact-support-alsi10mg-f0-0001": "AlSi10Mg",
     "993-eng-connecting-rod-ti64-f0-0001": "Ti64",
     "993-eng-cooling-impeller-alsi10mg-f0-0001": "AlSi10Mg",
+    "993-eng-cooling-impeller-we43-f1-0001": "WE43",
+    "993-eng-fan-stator-alsi10mg-f1-0001": "AlSi10Mg",
     "993-eng-exhaust-manifold-in625-f0-0001": "IN625",
     "993-eng-fan-housing-alsi10mg-f0-0001": "AlSi10Mg",
     "993-eng-intake-valve-ti64-hollow-f0-0001": "Ti64",
