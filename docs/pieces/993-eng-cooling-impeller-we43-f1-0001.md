@@ -95,6 +95,14 @@ Catalogue record: [`catalog/parts/993-eng-cooling-impeller-we43-f1-0001.json`](.
 
 *`parts/993-eng-cooling-impeller-we43-f1-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*
 
+![build-plate](../../parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build-plate.png)
+
+*`parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build-plate.png` — illustration of the geometric print simulation, not a build file or a print release.*
+
+![layers](../../parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/layers.png)
+
+*`parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/layers.png` — illustration of the geometric print simulation, not a build file or a print release.*
+
 ![views](../../parts/993-eng-cooling-impeller-we43-f1-0001/media/views.png)
 
 *`parts/993-eng-cooling-impeller-we43-f1-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*

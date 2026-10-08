@@ -144,6 +144,25 @@ minimum trailing edge after the same finding; the vanes still need it. That
 simulation run took about 14 hours, against two minutes for the rotor, so
 its rerun is left for a separate change.
 
+## Print simulation, pictured
+
+Drawn by `scripts/render_print_simulation_visuals.py` (`make print-visuals
+PART=993-eng-fan-stator-alsi10mg-f1-0001`) from the simulation's own report: the same analysed surface
+(hash-checked), the same orientation and the same 45° overhang rule. The
+orange support columns are recomputed at 0.5 mm layers on a 1 mm grid for
+the pictures; the table below keeps the report's 30 µm figures.
+
+![Build-up, layer by layer](../../parts/993-eng-fan-stator-alsi10mg-f1-0001/media/print-simulation/build.gif)
+
+[Full-resolution video (MP4)](../../parts/993-eng-fan-stator-alsi10mg-f1-0001/media/print-simulation/build.mp4)
+
+![Part and support proxy on the EOS M 290 plate](../../parts/993-eng-fan-stator-alsi10mg-f1-0001/media/print-simulation/build-plate.png)
+
+![Six layer cross-sections](../../parts/993-eng-fan-stator-alsi10mg-f1-0001/media/print-simulation/layers.png)
+
+*Illustrations of a geometric simulation: no laser path, supplier supports,
+distortion or recoater model. Printing is not authorized.*
+
 <!-- print-screen:begin -->
 
 ## LPBF print simulation
