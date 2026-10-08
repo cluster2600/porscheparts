@@ -91,6 +91,10 @@ Catalogue record: [`catalog/parts/993-eng-intercooler-bracket-ti-f0-0001.json`](
 
 *`parts/993-eng-intercooler-bracket-ti-f0-0001/evidence/lpbf-f0/993-eng-intercooler-bracket-ti-f0-0001-lpbf-geometry-screen.png` — a screening output, not a validation.*
 
+![picogk-batch-01](../../parts/993-eng-intercooler-bracket-ti-f0-0001/media/picogk-batch-01.png)
+
+*`parts/993-eng-intercooler-bracket-ti-f0-0001/media/picogk-batch-01.png` — concept CAD block, **not** the original part, not a print file.*
+
 ![preview](../../parts/993-eng-intercooler-bracket-ti-f0-0001/media/preview.png)
 
 *`parts/993-eng-intercooler-bracket-ti-f0-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*

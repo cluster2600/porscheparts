@@ -87,13 +87,19 @@ flowchart LR
 
 *Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
+## PicoGK voxel model
+
+![PicoGK model: shaded view and half section](media/picogk-batch-01.png)
+
+*Variant generated with the PicoGK voxel kernel in [`parts/picogk-993-batch-01`](../../parts/picogk-993-batch-01/README.md): published overall envelope, internal structure (double wall, lattice core or vanes) shown in the half section. Mounting interfaces are assumptions — not the original part, not a print file, not evidence of fit.*
+
 ## What's in this folder
 
 | folder | what it holds | files |
 |---|---|---|
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/oval_exhaust_tip_ti_f1.step`](derived/oval_exhaust_tip_ti_f1.step), [`derived/oval_exhaust_tip_ti_f1.stl`](derived/oval_exhaust_tip_ti_f1.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen-ti6242.json`](evidence/engineering-screen-ti6242.json), [`evidence/engineering-screen-ti64.json`](evidence/engineering-screen-ti64.json) |
-| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/picogk-batch-01.png`](media/picogk-batch-01.png), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 
 ## Read more
 

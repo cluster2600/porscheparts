@@ -1,0 +1,121 @@
+{
+  "part_id": "PGK993-02-WHEEL-CENTER-CAP",
+  "name": "Wheel center cap, lattice-sandwich face",
+  "generator": "wheel_center_cap",
+  "catalogue_record": "catalog/parts/993-whl-center-cap-alsi10mg-f0-0001.json",
+  "porsche_part_numbers": [
+    "993 361 303 07"
+  ],
+  "safety_class": "functional",
+  "material_candidate": "AlSi10Mg LPBF",
+  "density_g_cm3": 2.67,
+  "voxel_mm": 0.3,
+  "picogk_enhancement": "Face as a skin + open-cell BCC lattice sandwich (stiff, light, drainable), integrated barbed clip tabs, filleted transitions.",
+  "parameters": {
+    "face_diameter_mm": {
+      "value": 76.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://partworks.de/1x-Radnabendeckel-ORIGINAL-fuer-PORSCHE-911-993-9933613030761M",
+      "note": "outer diameter 76 mm; FVD also states 76 mm outside / 60 mm inside for cap 996 361 303 09 (https://www.fvd.net/en-us/shop/center-cap-chrome-with-embossed-porsche-crest-190361042-99636130309~p240000)"
+    },
+    "skirt_outer_diameter_mm": {
+      "value": 60.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://partworks.de/1x-Radnabendeckel-ORIGINAL-fuer-PORSCHE-911-993-9933613030761M",
+      "note": "inner diameter 60 mm, read as the clip skirt diameter (interpretation)"
+    },
+    "overall_height_mm": {
+      "value": 46.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://partworks.de/1x-Radnabendeckel-ORIGINAL-fuer-PORSCHE-911-993-9933613030761M",
+      "note": "height 46 mm"
+    },
+    "skirt_wall_mm": {
+      "value": 2.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "skirt wall"
+    },
+    "face_thickness_mm": {
+      "value": 4.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "face sandwich thickness"
+    },
+    "dome_height_mm": {
+      "value": 4.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "face crown"
+    },
+    "tab_count": {
+      "value": 4,
+      "unit": "count",
+      "basis": "assumption",
+      "source": null,
+      "note": "same tab count as the build123d F0"
+    },
+    "tab_width_mm": {
+      "value": 10.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "tab width"
+    },
+    "tab_length_mm": {
+      "value": 12.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "free tab length"
+    },
+    "tab_barb_mm": {
+      "value": 1.2,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "barb radial height"
+    },
+    "skin_mm": {
+      "value": 0.8,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "sandwich skin"
+    },
+    "lattice_cell_mm": {
+      "value": 5.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "BCC lattice cell"
+    },
+    "strut_diameter_mm": {
+      "value": 1.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "BCC strut diameter (LPBF >= 0.8 mm)"
+    },
+    "drain_hole_diameter_mm": {
+      "value": 2.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "powder drain into the open-cell lattice core (LPBF)"
+    }
+  },
+  "open_interfaces": [
+    "wheel center bore diameter and clip groove",
+    "tab count and barb geometry of the OEM cap",
+    "height conflict: partworks 46 mm vs FVD product block 1.9 cm (may be a shipping envelope)",
+    "OEM retention is a press fit with two removal holes (FVD); clip tabs here are a concept choice"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file"
+}

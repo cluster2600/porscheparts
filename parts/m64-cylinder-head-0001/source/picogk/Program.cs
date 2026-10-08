@@ -329,7 +329,7 @@ try
     Stage("cleanup_offset_zero");
     // Merge any non-manifold contacts / tiny islands introduced by the
     // boolean chain before meshing (PicoGK convention: offset by 0).
-    head.BoolOffset(0f);
+    head.Offset(0f);
 
     Stage("export_stl_mm");
     head.CalculateProperties(out float volumeMm3, out BBox3 bounds);

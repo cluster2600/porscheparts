@@ -86,6 +86,12 @@ flowchart LR
 
 *Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
+## PicoGK voxel model
+
+![PicoGK model: shaded view and half section](media/picogk-batch-01.png)
+
+*Variant generated with the PicoGK voxel kernel in [`parts/picogk-993-batch-01`](../../parts/picogk-993-batch-01/README.md): published overall envelope, internal structure (double wall, lattice core or vanes) shown in the half section. Mounting interfaces are assumptions — not the original part, not a print file, not evidence of fit.*
+
 ## Screens and evidence images
 
 ![993-whl-center-cap-alsi10mg-f0-0001-lpbf-geometry-screen](evidence/lpbf-f0/993-whl-center-cap-alsi10mg-f0-0001-lpbf-geometry-screen.png)
@@ -98,7 +104,7 @@ flowchart LR
 |---|---|---|
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/wheel_center_cap_alsi10mg_f0.step`](derived/wheel_center_cap_alsi10mg_f0.step), [`derived/wheel_center_cap_alsi10mg_f0.stl`](derived/wheel_center_cap_alsi10mg_f0.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json), [`evidence/lpbf-f0/993-whl-center-cap-alsi10mg-f0-0001-layer-metrics.csv`](evidence/lpbf-f0/993-whl-center-cap-alsi10mg-f0-0001-layer-metrics.csv), [`evidence/lpbf-f0/993-whl-center-cap-alsi10mg-f0-0001-lpbf-geometry-manifest.json`](evidence/lpbf-f0/993-whl-center-cap-alsi10mg-f0-0001-lpbf-geometry-manifest.json), [`evidence/lpbf-f0/993-whl-center-cap-alsi10mg-f0-0001-lpbf-geometry-report.json`](evidence/lpbf-f0/993-whl-center-cap-alsi10mg-f0-0001-lpbf-geometry-report.json), [`evidence/lpbf-f0/993-whl-center-cap-alsi10mg-f0-0001-lpbf-geometry-screen.png`](evidence/lpbf-f0/993-whl-center-cap-alsi10mg-f0-0001-lpbf-geometry-screen.png) |
-| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/picogk-batch-01.png`](media/picogk-batch-01.png), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 | `source/` | parametric source — the editable master that generates the geometry | [`source/wheel_center_cap.py`](source/wheel_center_cap.py) |
 
 ## Read more

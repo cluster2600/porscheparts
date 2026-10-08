@@ -75,6 +75,10 @@ Catalogue record: [`catalog/parts/993-eng-three-runner-intake-alsi10mg-f0-0001.j
 
 ## Images
 
+![picogk-batch-01](../../parts/993-eng-three-runner-intake-alsi10mg-f0-0001/media/picogk-batch-01.png)
+
+*`parts/993-eng-three-runner-intake-alsi10mg-f0-0001/media/picogk-batch-01.png` — concept CAD block, **not** the original part, not a print file.*
+
 ![preview](../../parts/993-eng-three-runner-intake-alsi10mg-f0-0001/media/preview.png)
 
 *`parts/993-eng-three-runner-intake-alsi10mg-f0-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*

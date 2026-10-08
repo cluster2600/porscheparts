@@ -1,0 +1,112 @@
+{
+  "part_id": "PGK993-03-TURBO-HEAT-SHIELD",
+  "name": "Left turbo heat shield cover, double skin + lattice core (993 Turbo)",
+  "generator": "turbo_heat_shield",
+  "catalogue_record": "catalog/parts/993-eng-turbo-heat-shield-in625-f0-0001.json",
+  "porsche_part_numbers": [
+    "993 123 113 51"
+  ],
+  "safety_class": "functional",
+  "material_candidate": "IN625 LPBF",
+  "density_g_cm3": 8.44,
+  "voxel_mm": 0.5,
+  "picogk_enhancement": "Two thin skins separated by an open-cell BCC lattice, gap open along the rim: radiation shield with low conduction and higher stiffness per gram than a single sheet.",
+  "parameters": {
+    "length_mm": {
+      "value": 160.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/en-ch/shop/cover-heat-protection-turbo-loader-left-99312311351~p248974",
+      "note": "FVD envelope 160 x 110 x 105 mm"
+    },
+    "width_mm": {
+      "value": 110.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/en-ch/shop/cover-heat-protection-turbo-loader-left-99312311351~p248974",
+      "note": "FVD envelope 160 x 110 x 105 mm"
+    },
+    "height_mm": {
+      "value": 105.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/en-ch/shop/cover-heat-protection-turbo-loader-left-99312311351~p248974",
+      "note": "FVD envelope 160 x 110 x 105 mm; OEM mass 0.23 kg"
+    },
+    "superellipse_exponent": {
+      "value": 3.0,
+      "unit": "-",
+      "basis": "assumption",
+      "source": null,
+      "note": "cover shape not published"
+    },
+    "outer_skin_mm": {
+      "value": 0.8,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "IN625 thin skin"
+    },
+    "inner_skin_mm": {
+      "value": 0.8,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "IN625 thin skin"
+    },
+    "core_gap_mm": {
+      "value": 3.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "insulating core gap"
+    },
+    "lattice_cell_mm": {
+      "value": 8.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "BCC lattice cell"
+    },
+    "strut_diameter_mm": {
+      "value": 1.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "BCC strut diameter (LPBF >= 0.8 mm)"
+    },
+    "boss_count": {
+      "value": 3,
+      "unit": "count",
+      "basis": "assumption",
+      "source": null,
+      "note": "mounting points not published"
+    },
+    "boss_diameter_mm": {
+      "value": 14.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "boss diameter"
+    },
+    "boss_height_mm": {
+      "value": 4.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "boss height"
+    },
+    "hole_diameter_mm": {
+      "value": 6.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "M6 clearance assumed"
+    }
+  },
+  "open_interfaces": [
+    "mounting point positions and screw size",
+    "actual cover shape around the turbo housing"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file"
+}

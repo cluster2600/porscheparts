@@ -89,6 +89,12 @@ flowchart LR
 
 *Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
+## PicoGK voxel model
+
+![PicoGK model: shaded view and half section](media/picogk-batch-01.png)
+
+*Variant generated with the PicoGK voxel kernel in [`parts/picogk-993-batch-01`](../../parts/picogk-993-batch-01/README.md): published overall envelope, internal structure (double wall, lattice core or vanes) shown in the half section. Mounting interfaces are assumptions — not the original part, not a print file, not evidence of fit.*
+
 ## Screens and evidence images
 
 ![plate](print/plate.png)
@@ -101,7 +107,7 @@ flowchart LR
 |---|---|---|
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/switch_blank_concept_f0.step`](derived/switch_blank_concept_f0.step) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/concept-f0.json`](evidence/concept-f0.json), [`evidence/measurement-plan.md`](evidence/measurement-plan.md) |
-| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/picogk-batch-01.png`](media/picogk-batch-01.png), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 | `print/` | **ready-to-print files**: 3MF project, STL and instructions | [`print/kit.json`](print/kit.json), [`print/plate.png`](print/plate.png), [`print/switch_blank_fit_1.stl`](print/switch_blank_fit_1.stl), [`print/switch_blank_fit_2.stl`](print/switch_blank_fit_2.stl), [`print/switch_blank_fit_3.stl`](print/switch_blank_fit_3.stl), [`print/switch_blank_fit_plate.3mf`](print/switch_blank_fit_plate.3mf), [`print/switch_blank_fit_plate.step`](print/switch_blank_fit_plate.step), [`print/switch_blank_fit_plate.stl`](print/switch_blank_fit_plate.stl) |
 | `source/` | parametric source — the editable master that generates the geometry | [`source/fit_test_kit.py`](source/fit_test_kit.py), [`source/render_fit_plate.py`](source/render_fit_plate.py), [`source/switch_blank.py`](source/switch_blank.py) |
 

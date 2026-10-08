@@ -599,6 +599,16 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
         out += ["## Views", "", "![Front, side and top orthographic views](media/views.png)", "",
                 "*Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*", ""]
 
+    picogk = dossier / "media" / "picogk-batch-01.png"
+    if picogk.exists():
+        lot = PARTS / "picogk-993-batch-01" / "README.md"
+        out += ["## PicoGK voxel model", "",
+                "![PicoGK model: shaded view and half section](media/picogk-batch-01.png)", "",
+                "*Variant generated with the PicoGK voxel kernel in "
+                f"[`parts/picogk-993-batch-01`]({lien(lot, page)}): published overall envelope, "
+                "internal structure (double wall, lattice core or vanes) shown in the half section. "
+                "Mounting interfaces are assumptions — not the original part, not a print file, not evidence of fit.*", ""]
+
     autres = [f for f in fichiers_du_dossier(dossier)
               if f.suffix.lower() in (".png", ".svg", ".gif") and "media" not in f.relative_to(dossier).parts]
     if autres:

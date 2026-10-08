@@ -1,0 +1,123 @@
+{
+  "part_id": "PGK993-07-GEAR-SHIFT-KNOB",
+  "name": "Gear shift knob, lattice-cored, set-screw retained (993 6-speed)",
+  "generator": "gear_shift_knob",
+  "catalogue_record": null,
+  "porsche_part_numbers": [
+    "993 424 075 02",
+    "964 424 075 05",
+    "993 424 075 00",
+    "993 424 075 30"
+  ],
+  "safety_class": "non_critical",
+  "material_candidate": "AlSi10Mg LPBF",
+  "density_g_cm3": 2.67,
+  "voxel_mm": 0.3,
+  "picogk_enhancement": "Skin + open-cell lattice core whose strut size tunes knob mass and feel; bore sleeve and set-screw bosses kept solid; powder drains through the base.",
+  "parameters": {
+    "knob_diameter_mm": {
+      "value": 47.6,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.rennline.com/rennline-aluminum-shift-knob-sku-i14-1/",
+      "note": "aftermarket Rennline I14.1: 1.875 in diameter (not the OEM leather knob)"
+    },
+    "bore_diameter_mm": {
+      "value": 15.25,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.rennline.com/rennline-restomod-shift-knob-sku-i187/",
+      "note": "aftermarket Rennline I187: fits any shift rod smaller than 15.25 mm"
+    },
+    "setscrew_count": {
+      "value": 2,
+      "unit": "count",
+      "basis": "published",
+      "source": "https://cdn11.bigcommerce.com/s-t1zcj9yna9/content/I14install.pdf",
+      "note": "aftermarket install sheet: two 10-24 set screws at the knob base"
+    },
+    "setscrew_hole_diameter_mm": {
+      "value": 3.8,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "tap drill for 10-24 UNC (#25)"
+    },
+    "setscrew_height_mm": {
+      "value": 12.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "set-screw height above the knob base"
+    },
+    "knob_height_mm": {
+      "value": 50.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "OEM knob height not found"
+    },
+    "neck_diameter_mm": {
+      "value": 28.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "neck diameter"
+    },
+    "neck_height_mm": {
+      "value": 18.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "neck height"
+    },
+    "bore_depth_mm": {
+      "value": 40.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "insert depth not found"
+    },
+    "superellipse_exponent": {
+      "value": 2.4,
+      "unit": "-",
+      "basis": "assumption",
+      "source": null,
+      "note": "knob crown shape"
+    },
+    "skin_mm": {
+      "value": 1.2,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "skin"
+    },
+    "lattice_cell_mm": {
+      "value": 6.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "BCC lattice cell"
+    },
+    "strut_diameter_mm": {
+      "value": 1.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "BCC strut diameter (LPBF >= 0.8 mm)"
+    },
+    "drain_hole_diameter_mm": {
+      "value": 2.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "powder drain into the open-cell lattice core (LPBF)"
+    }
+  },
+  "open_interfaces": [
+    "993 lever top is rectangular (RTR-PCA forum) - round bore is the aftermarket solution, OEM section unmeasured",
+    "OEM knob height and insert depth",
+    "C4 'D' clip retention unverified"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file"
+}

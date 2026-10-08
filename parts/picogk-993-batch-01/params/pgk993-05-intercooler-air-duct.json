@@ -1,0 +1,70 @@
+{
+  "part_id": "PGK993-05-INTERCOOLER-AIR-DUCT",
+  "name": "Intercooler air duct with guide vanes (993 Turbo)",
+  "generator": "intercooler_air_duct",
+  "catalogue_record": null,
+  "porsche_part_numbers": [
+    "993 110 340 54"
+  ],
+  "safety_class": "non_critical",
+  "material_candidate": "PA12 (MJF/SLS)",
+  "density_g_cm3": 1.01,
+  "voxel_mm": 0.8,
+  "picogk_enhancement": "Smooth wide-to-narrow transition with internal guide vanes printed in one piece, distributing flow across the core face.",
+  "parameters": {
+    "inlet_width_mm": {
+      "value": 600.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "catalog/reference/993-declared-part-data.json",
+      "note": "FVD 99311034054 envelope 600 x 280 x 50 mm, 0.9 kg (entry 993-INTERCOOLER-AIR-DUCT)"
+    },
+    "depth_mm": {
+      "value": 280.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "catalog/reference/993-declared-part-data.json",
+      "note": "FVD envelope 600 x 280 x 50 mm"
+    },
+    "height_mm": {
+      "value": 50.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "catalog/reference/993-declared-part-data.json",
+      "note": "FVD envelope 600 x 280 x 50 mm"
+    },
+    "outlet_width_mm": {
+      "value": 420.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outlet width not published"
+    },
+    "wall_mm": {
+      "value": 2.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "PA12 duct wall"
+    },
+    "vane_count": {
+      "value": 4,
+      "unit": "count",
+      "basis": "assumption",
+      "source": null,
+      "note": "guide vanes"
+    },
+    "vane_thickness_mm": {
+      "value": 1.6,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "vane thickness"
+    }
+  },
+  "open_interfaces": [
+    "inlet and outlet opening shapes",
+    "mounting tabs and seal flange"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file"
+}
