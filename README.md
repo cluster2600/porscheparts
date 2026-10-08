@@ -1,6 +1,6 @@
 <div align="center">
 
-![Full 964 cell rotating, colored by von Mises stress under a torsion load](docs/media/diagrams/964-hero.gif)
+![The full 964 cell turning, coloured by von Mises stress under a torsion load](docs/media/diagrams/964-hero.gif)
 
 # porscheparts
 
@@ -13,22 +13,11 @@
 [![Active phase](https://img.shields.io/badge/active%20phase-manufactures%20nothing-critical)](SAFETY.md)
 [![Docs](https://img.shields.io/badge/docs-English-brightgreen)](docs/TRANSLATION.md)
 
-[**Browse the parts**](#2-993-parts-for-additive-manufacturing) ·
-[**See the structural results**](#1-structural-analysis-of-the-964-body-shell) ·
-[**Run the checks**](#quick-start) ·
+[**Parts**](#2-993-parts-for-additive-manufacturing) ·
+[**964 structure and monocoque**](#1-the-964-body-shell-and-the-carbon-monocoque-programme) ·
+[**Engine cooling**](#3-engine-cooling) ·
 [**Gallery**](docs/GALLERY.md) ·
-[**993 cooling impeller program: models, calculations and evidence**](twins/993-engine-cooling-fan-system-f0/README.md) ·
-[**935 horizontal cooling system: 40-language evidence, engine inputs and gaps**](twins/935-horizontal-cooling-system/README.md) ·
-[**Horizontal fan: CAD, mechanics, CFD, manufacturing and OpenUSD**](models/horizontal-fan-reconstruction/README.en.md) ·
-[D2: extended outlet, partial results and closure](models/horizontal-fan-reconstruction/D2_EXECUTION.en.md) ·
-[D2: completed1020, pressure unadmitted and resources released](models/horizontal-fan-reconstruction/D2_COMPLETION_EXECUTION.en.md) ·
-[**Fan: S1 assembly, V2 stock and manufacturing dossier**](models/horizontal-fan-reconstruction/ASSEMBLY_MANUFACTURING_S1.en.md) ·
-[**S1 CAD view and V2 stock**](models/horizontal-fan-reconstruction/S1_DELIVERY.en.md) ·
-[**Exact D3 supervisor tested, without launch**](models/horizontal-fan-reconstruction/D3_SUPERVISOR_PREPARATION.en.md) ·
-[D2 diagnosis and prepared D3 discriminating trial](models/horizontal-fan-reconstruction/D3_ESTABLISHMENT_DIAGNOSTIC.en.md) ·
-[**Latest impeller engineering results and open gates**](twins/993-engine-cooling-fan-system-f0/program/ENGINEERING_RESULTS_20261003.md) ·
-[**Four-valve cylinder head: air + oil study**](docs/studies/993-air-oil-20261002/README.md) ·
-[**Contribute**](CONTRIBUTING.md) ·
+[**Run the checks**](#quick-start) ·
 [**Safety first**](SAFETY.md)
 
 </div>
@@ -36,50 +25,51 @@
 ---
 
 This repository does not publish a library of files to print. It publishes
-**sourced data** and **falsifiable calculations**: every claim of fit, mass or
-stiffness is tied to a measurement, to a verifiable source or to a calculation
-anyone can rerun — and **withdrawn when it no longer holds**. The repository has
-withdrawn several, listed [further down this page](#what-the-repository-withdrew-from-its-own-results).
+**sourced data** and **falsifiable calculations**: every claim of fit, mass,
+airflow or stiffness is tied to a measurement, a verifiable source or a
+calculation anyone can rerun, and it is **withdrawn when it no longer holds**.
+The repository has withdrawn several, listed
+[further down this page](#what-the-repository-withdrew-from-its-own-results).
 
 > [!IMPORTANT]
-> **No part is validated.** All 34 part records are at status `concept`, 18 of
-> them `prohibited_pending_engineering`. Read [SAFETY.md](SAFETY.md).
-
-> [!TIP]
-> **Printable today:**
-> - 🖨️ the **[switch trim ring, F1](parts/993-int-switch-trim-ring-f1-0001/print/README.md)** — a part
->   the repository designed, printed as designed: 17 minutes of PETG or ASA, no supports. Fit on
->   the car not checked yet ([decision 0010](docs/decisions/0010-print-the-trim-ring-f1-in-polymer.md)).
-> - a **[fit-test kit for the dashboard switch blank](parts/993-int-switch-blank-0001/print/README.md)** —
->   three sizes to find the real opening ([decision 0009](docs/decisions/0009-first-fit-test-print-switch-blank.md)).
->
-> - 🧩 a **[1:1 display mock-up of the F0 connecting rod](parts/993-eng-connecting-rod-ti64-f0-0001/print/README.md)** —
->   the most complex design, rod and cap that bolt together, about 5 hours; "MOCK-UP / NOT FOR USE"
->   is engraved in it, and the rod itself stays prohibited ([decision 0011](docs/decisions/0011-printable-display-mockups-of-prohibited-parts.md)).
->
-> - 🧩 a **[K16 wheel pair on a display stand](parts/993-eng-k16-compressor-wheel-al2139-f1-0001/print/README.md)** —
->   the compressor and turbine wheel designs side by side on an engraved stand, about 9.5 hours; both
->   wheels stay prohibited and carry "MOCK-UP / NOT FOR USE" on their backs.
->
-> None of them is validated.
-
-> [!NOTE]
-> The project was written in French. Its documentation is now in English; code
-> comments and a few command-line messages are next. Pinned evidence files stay
-> in their original language on purpose — see [docs/TRANSLATION.md](docs/TRANSLATION.md).
+> **No part is validated.** All 41 part records are at status `concept`, and 23
+> of them are `prohibited_pending_engineering`. Read [SAFETY.md](SAFETY.md).
 
 <table>
 <tr>
-<td align="center"><h3>521</h3>qualified source records</td>
-<td align="center"><h3>34</h3>part records<br><sub>18 prohibited as they stand</sub></td>
-<td align="center"><h3>24</h3>993 design dossiers<br><sub>for additive manufacturing</sub></td>
+<td align="center"><h3>527</h3>qualified source records</td>
+<td align="center"><h3>41</h3>part records<br><sub>23 prohibited as they stand</sub></td>
+<td align="center"><h3>34</h3>993 design dossiers<br><sub>for additive manufacturing</sub></td>
 </tr>
 <tr>
-<td align="center"><h3>9</h3>digital twins<br><sub>none at <code>F2_interface</code></sub></td>
-<td align="center"><h3>3,000</h3>CalculiX cases<br><sub>on the 964 body shell</sub></td>
-<td align="center"><h3>2,800+</h3>tests run by<br><code>make check</code></td>
+<td align="center"><h3>10</h3>digital twin records<br><sub>none at <code>F2_interface</code></sub></td>
+<td align="center"><h3>21</h3>LPBF print simulations<br><sub>17 screened, 4 not</sub></td>
+<td align="center"><h3>3,391</h3>tests run by<br><code>make check</code></td>
 </tr>
 </table>
+
+## What changed recently
+
+| date | change |
+|---|---|
+| 2026-10-08 | **964 datum chain closed** from the workshop manual's own plates (50-02, 50-03, 50-05a): every suspension and power-unit mount of the monocoque interface contract now has a fore-aft position, checked against the underside scan. [Details](twins/964-chassis/README.md#the-longitudinal-chain-closed-from-plate-50-05a) |
+| 2026-10-08 | **LPBF print simulation pictured**: build-up videos for the F1 cooling impeller and its stator. [Impeller dossier](docs/993/993_COOLING_IMPELLER_WE43_F1.md#print-simulation-pictured) |
+| 2026-10-08 | **PicoGK batch 01**: ten parametric concept parts from one voxel-kernel project. [Batch page](parts/picogk-993-batch-01/README.md) |
+| 2026-10-07 | **F1 cooling impeller redesigned from the original Turbo rotor**: same cup, windows and envelope, airfoil blades in WE43; the earlier generic shrouded design was withdrawn. [Dossier](docs/993/993_COOLING_IMPELLER_WE43_F1.md) |
+
+> [!TIP]
+> **Printable today:**
+> - 🖨️ the **[switch trim ring, F1](parts/993-int-switch-trim-ring-f1-0001/print/README.md)**: a part the
+>   repository designed, printed as designed, 17 minutes of PETG or ASA, no supports. Fit on the car not
+>   checked yet ([decision 0010](docs/decisions/0010-print-the-trim-ring-f1-in-polymer.md)).
+> - a **[fit-test kit for the dashboard switch blank](parts/993-int-switch-blank-0001/print/README.md)**: three
+>   sizes to find the real opening ([decision 0009](docs/decisions/0009-first-fit-test-print-switch-blank.md)).
+> - 🧩 **display mock-ups** of two prohibited designs, engraved "MOCK-UP / NOT FOR USE":
+>   [the F0 connecting rod](parts/993-eng-connecting-rod-ti64-f0-0001/print/README.md) and
+>   [the K16 wheel pair on a stand](parts/993-eng-k16-compressor-wheel-al2139-f1-0001/print/README.md)
+>   ([decision 0011](docs/decisions/0011-printable-display-mockups-of-prohibited-parts.md)).
+>
+> None of them is validated.
 
 ## How the repository works
 
@@ -104,79 +94,115 @@ flowchart LR
 
 ### Where to start
 
-[M64 local-compute architecture](docs/architecture/README.md) — TOGAF,
-ArchiMate and UML/Mermaid; [local Qwen training](training/m64-qwen/README.md)
-before the next engineering deployment.
-
 | I want to… | go to |
 |---|---|
-| print something today | [the F1 switch trim ring](parts/993-int-switch-trim-ring-f1-0001/print/README.md) · [the connecting rod display mock-up](parts/993-eng-connecting-rod-ti64-f0-0001/print/README.md) · [the switch blank fit-test kit](parts/993-int-switch-blank-0001/print/README.md) |
+| print something today | [the F1 switch trim ring](parts/993-int-switch-trim-ring-f1-0001/print/README.md) · [the switch blank fit-test kit](parts/993-int-switch-blank-0001/print/README.md) |
 | see which 993 parts exist and their status | [the parts table](#2-993-parts-for-additive-manufacturing) → one page per part in [`docs/pieces/`](docs/pieces/) |
-| understand the 964 structural model and its results | [section 1](#1-structural-analysis-of-the-964-body-shell) → [`twins/964-chassis/fea/`](twins/964-chassis/fea/) |
+| follow the carbon monocoque programme | [section 1](#1-the-964-body-shell-and-the-carbon-monocoque-programme) → [the programme](docs/MONOCOQUE_964_993_PROGRAMME.md) |
+| see the engine cooling work | [section 3](#3-engine-cooling) → [the fan programmes](docs/FAN_DEVELOPMENT_PROGRAMMES.md) |
+| watch a print simulation | [F1 impeller build-up](parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build.gif) · [all print screens](docs/993/print-screen-status.json) |
 | know what may and may not be built | [SAFETY.md](SAFETY.md) · [docs/QUALITY_GATES.md](docs/QUALITY_GATES.md) |
 | add a part or a source | [CONTRIBUTING.md](CONTRIBUTING.md) · [docs/WORKFLOW.md](docs/WORKFLOW.md) · [docs/SOURCE_POLICY.md](docs/SOURCE_POLICY.md) |
-| find any document | [the documentation index](docs/README.md) |
-| see the figures, renders and print screens | [the gallery](docs/GALLERY.md) |
+| find any document | [the documentation index](docs/README.md) · [the gallery](docs/GALLERY.md) · [dated reports](docs/reports/README.md) |
 | browse the digital twins | [twins/README.md](twins/README.md) |
-| read what was run, day by day | [the dated reports index](docs/reports/README.md) |
 | run the checks locally | [Quick start](#quick-start) |
 
 ### Contents
 
-1. [Structural analysis of the 964 body shell](#1-structural-analysis-of-the-964-body-shell)
+1. [The 964 body shell and the carbon monocoque programme](#1-the-964-body-shell-and-the-carbon-monocoque-programme)
 2. [993 parts for additive manufacturing](#2-993-parts-for-additive-manufacturing)
-3. [Body and interior](#3-body-and-interior)
-4. [The catalogue and its data contract](#4-the-catalogue-and-its-data-contract)
-5. [The rules](#the-rules) · [What the repository withdrew](#what-the-repository-withdrew-from-its-own-results) · [What it does not claim](#what-the-project-does-not-claim)
-6. [Quick start](#quick-start) · [Layout](#repository-layout) · [Status](#status)
+3. [Engine cooling](#3-engine-cooling)
+4. [Engine and turbo research](#4-engine-and-turbo-research)
+5. [Body and interior](#5-body-and-interior)
+6. [The catalogue and its data contract](#6-the-catalogue-and-its-data-contract)
+7. [The rules](#the-rules) · [What the repository withdrew](#what-the-repository-withdrew-from-its-own-results) · [What it does not claim](#what-the-project-does-not-claim)
+8. [Quick start](#quick-start) · [Layout](#repository-layout) · [Status](#status)
 
 ---
 
-## 1. Structural analysis of the 964 body shell
+## 1. The 964 body shell and the carbon monocoque programme
 
-The main workstream. A finite-element shell model of the floor pan, the box
-section and the full cell answers **relative** questions: between changing the
-material and closing the body shell, which pays off more? What is a
-superstructure member worth per kilogram? Where does the load go in torsion?
+The main workstream. Its goal is a **replacement carbon monocoque for 964 and
+993 restomods**, competing with the one existing offer on the axis where that
+offer is bare: published data. The [programme](docs/MONOCOQUE_964_993_PROGRAMME.md)
+says what has to be established, in what order, and that it **contradicts the
+written scope** of [ROADMAP.md](ROADMAP.md).
+
+### The structure: what the shell model shows
+
+A finite-element shell model of the floor pan, the box section and the full
+cell answers **relative** questions: between changing the material and closing
+the body shell, which pays off more? Where does the load go in torsion?
 
 ![The shell model, bare floor pan and full cell](docs/media/diagrams/964-modele-coque.svg)
 
-**Results that hold** — see [`twins/964-chassis/fea/`](twins/964-chassis/fea/):
+**Results that hold**, see [`twins/964-chassis/fea/`](twins/964-chassis/fea/):
 
 - the **side rail** carries torsion, not the floor pan, which agrees with plate
-  50-013 of the workshop manual that places high-strength steel there;
+  50-013 of the workshop manual, which places high-strength steel there;
 - **closing a ring does not just add stiffness, it changes the mechanism that
-  carries it** — bending on the bare floor pan, shear on the closed cell;
+  carries it**: bending on the bare floor pan, shear on the closed cell;
 - from bare floor pan to closed cell, **K × 3.77 for mass × 2.3**;
 - roof and windshield frame together are worth **1.63 times** the sum of their
-  separate contributions: the roof only works once the ring is closed.
+  separate contributions: the roof only works once the ring is closed;
+- at equal mass, closing the body shell is worth more than switching to carbon.
 
 ![von Mises stress on the bare floor pan](docs/media/diagrams/964-chemin-effort.svg)
 
-![Share of shear in stiffness, by architecture](docs/media/diagrams/964-mecanisme-architecture.svg)
-
-A **corpus of 3,000 CalculiX cases**, in quadratic shells, is being built to
-train a design surrogate model later, with its validation set frozen before any
-model exists. Chain and status:
+A **corpus of 3,000 CalculiX cases** in quadratic shells is built to train a
+design surrogate later, its validation set frozen before any model exists:
 [docs/MONOCOQUE_964_993_CHAINE_CALCUL.md](docs/MONOCOQUE_964_993_CHAINE_CALCUL.md).
 
-The [monocoque program](docs/MONOCOQUE_964_993_PROGRAMME.md) defines what would
-have to be established to compete with an existing offer on the one axis where
-it is bare: published data. It **contradicts the written scope** of
-[ROADMAP.md](ROADMAP.md), and says so.
+### The interfaces: where a monocoque has to bolt up
+
+A monocoque replaces the body shell, so it must carry every suspension,
+power-unit and jacking interface in one frame. Until October 2026 the
+fore-aft position of those points could not be established. It now is, from
+Porsche's own repair plates: plate 50-05a dimensions three points from a 0 line
+through the front strut mounts, plate 50-02 shows dimension P is longitudinal,
+and the rear diagonals of plate 50-03 are read the way both drawings and the
+scan confirm. Two independent published paths place the front jacking point
+within 1.9 mm of each other.
+
+![Published datum chain tied to the underside scan](twins/964-chassis/evidence/scan-tie-50-05a.png)
+
+*Blue: points placed from published dimensions. Green: rear mounts scaled off
+the plate. Black: features measured on the scan. Red: the previous, wrong
+network.*
+
+The monocoque's governing span, front suspension mount to transmission
+carrier, is **1535.6 mm**, both ends published. What is missing now is
+tolerance, not data: the points carry ±2 to 9 mm where a tool needs ±1 mm.
+[The full chain, its checks and its limits](twins/964-chassis/README.md#the-longitudinal-chain-closed-from-plate-50-05a).
 
 ## 2. 993 parts for additive manufacturing
 
-The richest line of the repository: **24 design dossiers** `993_*_F0` and
-`_F1`, and **34 part records**, from the headlamp spring hook to the K16 turbine
-wheel in Inconel 718, by way of the Ti-6Al-4V connecting rod, the AlSi10Mg
-compressor wheel and the IN625 exhaust manifold.
+**34 design dossiers** in [`docs/993/`](docs/993/) and **41 part records**,
+from the headlamp spring hook to the K16 turbine wheel in Inconel 718, by way
+of the Ti-6Al-4V connecting rod, the AlSi10Mg compressor wheel, the IN625
+exhaust manifold and the WE43 cooling impeller. Each dossier starts from
+dimensions published by a supplier, separates what is sourced from what is
+assumed, and states what it does not contain.
 
-Each dossier starts from dimensions **published by a supplier**, separates what
-is sourced from what is assumed, and states what it does not contain. Nothing is
-released: every record is **at status `concept`**. The
-[metal printing and Omniverse pipeline](docs/AM_VALIDATION_PIPELINE.md) is
-mandatory before any manufacturing.
+**Print simulation.** Every part with a STEP master goes through a geometric
+LPBF simulation: full-height slicing at the material's layer thickness, fit in
+the EOS M 290 envelope, an orientation, a support proxy, a wall-thickness
+screen and a trapped-powder screen. 17 parts pass; 3 fail closed and say why, and 1 hit the memory cap, which is not a verdict.
+It is not a process simulation, and it authorizes nothing.
+
+<div align="center">
+
+![The F1 cooling impeller built up layer by layer in the print simulation](parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build.gif)
+
+*The F1 cooling impeller, 6,286 layers of 30 µm, tilted 45° on the plate,
+with its support proxy in orange. Geometry only: printing is not authorized.*
+
+</div>
+
+**PicoGK batch 01.** [Ten parametric concept parts](parts/picogk-993-batch-01/README.md)
+generated from one C# voxel-kernel project, each parameter tagged
+`published`, `community` or `assumption`. Their mounting interfaces are
+assumptions, so none is functional.
 
 The table below is generated from `catalog/parts/` on every `make check`. The
 "status" column is the record's, not an intention: a part **prohibited pending
@@ -352,33 +378,56 @@ flowchart LR
 
 <!-- parts:end -->
 
-## 3. Body and interior
+## 3. Engine cooling
 
-**Bolt-on** panels — fenders, lids, spoiler, doors — are a legitimate target;
+Two programmes, kept separate
+([docs/FAN_DEVELOPMENT_PROGRAMMES.md](docs/FAN_DEVELOPMENT_PROGRAMMES.md)):
+the **upright 993 fan** behind the engine, and the **935-type horizontal fan**
+lying on top of it.
+
+| programme | where it stands | start here |
+|---|---|---|
+| 993 upright fan, F1 impeller | redesigned from the visual rebuild of the original Turbo rotor: same cup, windows and envelope, airfoil blades, WE43. On a duty inferred from the rebuild: +2 % air at equal power, +9 % with a matched stator. Print simulation passes. | [impeller dossier](docs/993/993_COOLING_IMPELLER_WE43_F1.md) · [stator](docs/993/993_FAN_STATOR_ALSI10MG_F1.md) |
+| 993 fan system and CFD | reference rebuild, organic blade studies, mesh recovery and CFD campaigns, OpenUSD twin; no installed-airflow result yet | [system twin](twins/993-engine-cooling-fan-system-f0/README.md) · [latest results and open gates](twins/993-engine-cooling-fan-system-f0/program/ENGINEERING_RESULTS_20261003.md) |
+| 935 horizontal fan | multilingual source research, CAD reconstruction, assembly S1, D2/D3 CFD diagnostics | [935 system](twins/935-horizontal-cooling-system/README.md) · [reconstruction](models/horizontal-fan-reconstruction/README.en.md) · [S1 assembly and manufacturing](models/horizontal-fan-reconstruction/ASSEMBLY_MANUFACTURING_S1.en.md) |
+| fan alloys | aluminium, WE43 and Ti64 compared on the same rotor: mass, inertia, centrifugal stress | [alloy comparison](twins/fan-alloy-comparison-f0/README.en.md) |
+
+No fan gain is claimed over the Porsche part: its performance is not
+published, and every comparison here is against a rebuild or a synthetic
+reference.
+
+## 4. Engine and turbo research
+
+- **M64/60 (993 Turbo)**: whole-engine bill of materials
+  ([`m64-bom-v1.json`](twins/m64-engine-system/bom/m64-bom-v1.json),
+  [coverage](twins/m64-engine-system/bom/coverage.md)) and a dated series of
+  cylinder-head, valvetrain and meshing reports in
+  [docs/reports/](docs/reports/README.md).
+- **Four-valve cylinder head**: [air + oil study](docs/studies/993-air-oil-20261002/README.md).
+- **K16 and hybrid turbos**: [2 October research](docs/research/993-turbo-20261002/README.md),
+  [Mezger variants and materials](docs/research/mezger-turbo-materials-20261003/README.md),
+  [German-source supplement](docs/research/mezger-german-sources-20261003/README.md).
+- **Local compute**: [architecture](docs/architecture/README.md) and
+  [local Qwen training](training/m64-qwen/README.md).
+
+## 5. Body and interior
+
+**Bolt-on** panels (fenders, lids, spoiler, doors) are a legitimate target;
 the load-bearing structure is not. The factory catalogue draws the line in part
-numbers:
-[docs/research/993-964-panneaux-carbone.md](docs/research/993-964-panneaux-carbone.md).
+numbers: [docs/research/993-964-panneaux-carbone.md](docs/research/993-964-panneaux-carbone.md).
 
-But those panels can already be ordered from several tuners. The part chosen is
-therefore the one nobody sells: the **dashboard trim**,
-`993-INT-DASHBOARD-TRIM-0001`, restricted to vehicles **without a passenger
-airbag** — on the others it carries the deployment flap, which makes it an
-occupant-restraint part. Its
+Those panels can already be ordered from several tuners, so the part chosen is
+the one nobody sells: the **dashboard trim**, `993-INT-DASHBOARD-TRIM-0001`,
+restricted to vehicles **without a passenger airbag**. On the others it
+carries the deployment flap, which makes it an occupant-restraint part. Its
 [measurement plan](parts/993-int-dashboard-trim-0001/evidence/measurement-plan.md)
 opens with an entry gate that can stop the project.
 
-Three simpler interior pilots are waiting for a physical measurement session:
-[docs/MEASUREMENT_CAMPAIGN.md](docs/MEASUREMENT_CAMPAIGN.md).
+## 6. The catalogue and its data contract
 
-## 4. The catalogue and its data contract
-
-**521 source records** qualified by provenance, rights and level of evidence;
-34 part records, 9 twins, 4 components, 2 assemblies. Everything is validated by
-a JSON schema and by the test suite:
-
-```bash
-make check
-```
+**527 source records** qualified by provenance, rights and level of evidence;
+41 part records, 10 twin records, 4 components, 2 assemblies and 3 workshop-manual
+transcriptions. Everything is validated by a JSON schema and by the test suite.
 
 A record keeps technical access, reading method and reuse rights separate. An
 accessible page is not redistributable; a page read in a browser is neither an
@@ -388,8 +437,8 @@ authorized download nor a validation of accuracy.
 flowchart TB
     subgraph catalog["catalog/ — source of truth, JSON-schema validated"]
       direction LR
-      src["sources/<br/>521 records"] --- prt["parts/<br/>34 records"]
-      prt --- tw["twins/<br/>9 records"]
+      src["sources/<br/>527 records"] --- prt["parts/<br/>41 records"]
+      prt --- tw["twins/<br/>10 records"]
       prt --- cmp["components/ · assemblies/"]
       prt --- mea["measurements/<br/>3 manual transcriptions"]
     end
@@ -404,12 +453,12 @@ flowchart TB
 
 | rule | what it requires |
 |---|---|
-| **Source before STL** | FreeCAD, OpenSCAD, build123d or STEP remain the master formats |
+| **Source before STL** | FreeCAD, OpenSCAD, build123d, PicoGK or STEP remain the master formats |
 | **Evidence before publication** | every claim of fit or accuracy is tied to a measurement or a source |
 | **Digital before prototype** | the active phase manufactures nothing |
 | **Interface before appearance** | a measured zone that allows a clearance check beats a full scan of unknown accuracy |
-| **Explicit safety** | when in doubt, the part is lowered to `prohibited_pending_engineering` — see [SAFETY.md](SAFETY.md) |
-| **No vendor harvesting** | a site closed to robots is not queried — see [decision 0003](docs/decisions/0003-no-vendor-harvesting.md) |
+| **Explicit safety** | when in doubt, the part is lowered to `prohibited_pending_engineering`; see [SAFETY.md](SAFETY.md) |
+| **No vendor harvesting** | a site closed to robots is not queried; see [decision 0003](docs/decisions/0003-no-vendor-harvesting.md) |
 | **Accessible tools** | a free, open-source, local toolchain |
 
 ## What the repository withdrew from its own results
@@ -418,14 +467,6 @@ This is the most useful part of its history, and it is public.
 
 ![Stiffness by architecture in linear and quadratic shells](docs/media/diagrams/964-echelle-architectures.svg)
 
-Above, the heaviest correction: the architecture ladder had been published with
-linear elements. The four figures on this page are regenerated with
-`twins/964-chassis/fea/figures.py`, the animated banner with
-`twins/964-chassis/fea/hero.py` — the two charts from values frozen in
-`figures-data.json`, each carrying the origin of its calculation, the model
-views and the banner from a mesh and result snapshot kept in `figures-mesh/`.
-None of them is a rendering: they are the calculation's data.
-
 | withdrawn claim | what defeated it |
 |---|---|
 | "the structure works in membrane shear" | a test decoupling `E` and `G`: the bare floor pan works in almost pure bending |
@@ -433,50 +474,50 @@ None of them is a rendering: they are the calculation's data.
 | "the windshield frame has the best return per kilogram" | in quadratic shells, it is the center tunnel |
 | a cross member counted in the model's mass | a connectivity check: it was attached to nothing |
 | eleven lost analysis cases, read as a near-singular system | a defect in the solver's partitioner, whose message went to `stderr` |
+| the datum network's front cross-member mount P5 | plate 50-02 draws dimension P as longitudinal, not as a diagonal: P5 was 230 mm out, and the monocoque's governing span with it |
+| a first F1 cooling impeller, generic and shrouded | next to a photo of the original it shared nothing, and it left no room for the alternator end the original cup wraps |
+| +20 % fan airflow from that impeller | radial equilibrium, once modelled, put its hub section at de Haller 0.58 with a stalled station |
 
-Three wrong calculations in that campaign came from **resource sharing** — work
-files left in place, a mesh shared by two campaigns, a shared machine. None had
-left a trace in an error output.
+The figures on this page are regenerated from data kept in the repository:
+`twins/964-chassis/fea/figures.py` for the charts and model views,
+`twins/964-chassis/fea/hero.py` for the banner, from a mesh and result
+snapshot kept in `figures-mesh/`. None of them is a rendering: they are the
+calculation's data.
 
 ## What the project does not claim
 
 - **No absolute stiffness value is a 964 stiffness.** The model's sections are
   `ASSUMED` and the mesh is not converged; only ratios and rankings are usable.
-- **No part is validated.** Two printable files exist — the F1 trim ring and a
-  fit-test kit (decisions 0009, 0010) — and neither has been checked on a car. All 34 records are at status
-  `concept`, 18 of them `prohibited_pending_engineering`. No twin reaches the
-  `F2_interface` level.
+- **No part is validated.** The printable files above have not been checked on
+  a car. All 41 records are at status `concept`, 23 of them
+  `prohibited_pending_engineering`. No twin reaches the `F2_interface` level.
 - **No physical measurement is recorded yet.** The three records in
   `catalog/measurements/` are transcriptions from the workshop manual, not
-  instrumented measurements: the repository has access to neither a 993, nor a
-  removed part, nor an instrument.
-- **A rendering is not evidence.** Neither Omniverse, nor an image, nor a photo
-  demonstrates physical behavior.
+  instrumented measurements.
+- **No fan gain over the Porsche part.** Its performance is not published.
+- **A rendering or a simulation is not evidence of physical behavior**:
+  neither Omniverse, nor an image, nor a print simulation.
 
 ## What is archived
 
-The **917 cylinder head** dossier — 891 files, iterations F1 to F50 — is retired
-as a product and kept as a numerical regression, along with the 935 cylinder
-head scan. It was not moved into an archive folder, and
-[ARCHIVE.md](ARCHIVE.md) explains why: it carries 2,014 SHA-256 digests that
+The **917 cylinder head** dossier, 891 files from iteration F1 to F50, is
+retired as a product and kept as a numerical regression, along with the 935
+cylinder-head scan. It was not moved into an archive folder:
+[ARCHIVE.md](ARCHIVE.md) explains that it carries 2,014 SHA-256 digests that
 moving it would invalidate. Evidence beats tidiness.
-
-That page lists what can still be done with it — rerun the calculations, reuse
-the test cases — and what cannot: a part.
 
 ---
 
 ## Quick start
 
 Requirements: Python 3.11 or newer and `make`. Clone onto a native Linux file
-system (on WSL, not under `/mnt/c` — see [AGENTS.md](AGENTS.md)).
+system (on WSL, not under `/mnt/c`; see [AGENTS.md](AGENTS.md)).
 
 ```bash
 git clone https://github.com/cluster2600/porscheparts.git
 cd porscheparts
 make help                 # active targets, grouped by theme
 make check                # schemas, tests, generators and digests
-make translation-status   # which pages are still in French
 ```
 
 To add a part:
@@ -488,11 +529,11 @@ make part-pages parts-table   # regenerate its page and the README table
 make check
 ```
 
-Conventions in detail: [CONTRIBUTING.md](CONTRIBUTING.md). The 162 `917-*`
-targets are not listed by `make help`: they drive the archived line, and
-`make help-917` lists them separately. Tests that need `numpy`, `matplotlib` or
-CAD kernels are skipped or fail without them; the compute images in
-[`containers/`](containers/) carry the full stack.
+Conventions in detail: [CONTRIBUTING.md](CONTRIBUTING.md). The `917-*` targets
+drive the archived line and are listed by `make help-917`. Tests that need
+`numpy`, `matplotlib` or CAD kernels are skipped or fail without them; the
+compute images in [`containers/`](containers/) carry the full stack, and the
+CAD, print-simulation and rendering scripts run in the `cadsim` image.
 
 ## Repository layout
 
@@ -500,24 +541,24 @@ CAD kernels are skipped or fail without them; the compute images in
 catalog/            records: sources, parts, measurements, twins, components
   schemas/            the catalogue's data contract
   templates/          record, measurement and manufacturing-request templates
-parts/              geometry, measurement plans and deliverables per part
+parts/              geometry, evidence, media and print files per part
 components/         component geometry; assemblies/ holds their evidence
-twins/              digital twins, one folder per zone — see twins/README.md
-  964-chassis/        964 chassis twin: datums, CAD, analysis, corpus
+twins/              digital twins, one folder per zone; see twins/README.md
+  964-chassis/        964 chassis: datum chain, CAD, FEA, corpus
   993-*/              993 functional zones
-  m64-*/              M64 engine and cylinder head twins
-docs/               plans, quality criteria, software chain — see docs/README.md
-  993/                the 24 design dossiers of the 993 parts
+  m64-*/              M64 engine and cylinder-head twins
+models/             reconstructions, e.g. the horizontal fan
+docs/               plans, quality criteria, software chain; see docs/README.md
+  993/                the 34 design dossiers of the 993 parts
   pieces/             one generated page per part record
   decisions/          numbered architecture decisions
   reports/            dated execution and audit reports, indexed by day
   research/           source research by topic
-  media/              diagrams and video projects
+  media/              diagrams, banner and video projects
   GALLERY.md          every figure and render on one page
-simulation/         forced-induction circuit analysis cases
-archive/917/docs/   the 112 written dossiers of the 917 cylinder head
-outils/benchmarks/  solver verification cases
-scripts/  tests/    automatic checks and guardrails
+simulation/         CFD and forced-induction analysis cases
+archive/917/docs/   the written dossiers of the 917 cylinder head
+scripts/  tests/    automatic checks, generators and guardrails
 containers/ deploy/ reproducible compute images and deployment
 ```
 
@@ -527,7 +568,7 @@ containers/ deploy/ reproducible compute images and deployment
 |---|---|
 | 0 — foundation | ✅ done |
 | 1 — source inventory | 🟡 past its quantitative threshold; cross-qualification and direct measurements still open |
-| 2 — physical inventory and twin assembly | 🟡 run in digital mode; physical prototypes suspended, except two printable non-critical files (decisions 0009, 0010) |
+| 2 — physical inventory and twin assembly | 🟡 run in digital mode; physical prototypes suspended, except non-critical printable files (decisions 0009, 0010, 0011) |
 | 3 — titanium engineering twin, no manufacturing | ⬜ open: candidate `993-ENG-CARRIER-0001` under study |
 | 4 — public catalog | ⬜ open: only parts that clear their quality gates will be published |
 
@@ -536,31 +577,10 @@ Details and exit criteria: [ROADMAP.md](ROADMAP.md) ·
 [docs/DIGITAL_TWIN.md](docs/DIGITAL_TWIN.md) ·
 [docs/QUALITY_GATES.md](docs/QUALITY_GATES.md).
 
-The first composite engine subassembly, the
-[F0 cooling fan housing and impeller](docs/993/993_ENGINE_COOLING_FAN_SYSTEM_F0.md),
-converts to OpenUSD but fails its clearance test on an explicit BRep collision:
-it remains a research twin that cannot be manufactured.
-
-For the M64/60 engine (993 Turbo), the master bill of materials of the whole-engine twin is indexed in
-[`twins/m64-engine-system/bom/m64-bom-v1.json`](twins/m64-engine-system/bom/m64-bom-v1.json)
-with its coverage summary
-[`twins/m64-engine-system/bom/coverage.md`](twins/m64-engine-system/bom/coverage.md).
-
-The [2 October 2026 engine and K16 hybrid research](docs/research/993-turbo-20261002/README.md)
-adds source-qualified M64/60 data and map leads, with a separate
-[CPT/SFT preparation package](training/993-turbo-20261002/README.md).
-The [3 October 2026 Mezger variants and materials supplement](docs/research/mezger-turbo-materials-20261003/README.md)
-adds 203 scoped records and a [separate training increment](training/mezger-turbo-materials-20261003/README.md).
-
-The [German-source supplement](docs/research/mezger-german-sources-20261003/README.md)
-adds 108 records on alloy chemistry, manufacturing, scoped hybrid-turbo wheel
-data and racing variants, with [108 CPT and 108 SFT examples](training/mezger-german-sources-20261003/README.md).
-
-
 ![Sourced state of the 993 digital twin](docs/media/diagrams/digital-twin-993-etat.svg)
 
-This diagram shows the sourced logical relationships, not the actual position
-of the components in the car.
+*Sourced logical relationships of the 993 twin, not the actual position of
+the components in the car.*
 
 ---
 
@@ -578,6 +598,6 @@ independent and not affiliated with Porsche AG.
 **© 2026 Maxime Grenu. All rights reserved.** The repository is under a custom
 [proprietary license](LICENSE): you may view it, but copying, modifying,
 printing or manufacturing parts, redistributing, commercial use and AI training
-all need prior written permission — ask by opening an issue. Third-party
+all need prior written permission; ask by opening an issue. Third-party
 sources and models keep their own license; see [LICENSES.md](LICENSES.md).
 Revisions published before 2026-09-25 were under the MIT License.
