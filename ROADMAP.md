@@ -228,28 +228,39 @@ verifiable measurements.
 - [ ] Add views, dimensioned drawings and manufacturing instructions
 - [ ] Track versions, tested vehicles and field feedback
 
+## Composite monocoque: study only
+
+Opened by the owner on 2026-10-08, **as a study and digital twin only**
+([programme](docs/MONOCOQUE_964_993_PROGRAMME.md),
+[architecture](docs/MONOCOQUE_964_993_ARCHITECTURE.md)).
+
+- In scope: interface contract, measurement plans, calculation (CalculiX
+  chain), design studies such as the PicoGK closed-ring concept in
+  `twins/964-chassis/monocoque/picogk-rings/`, and display mock-ups under
+  [decision 0011](docs/decisions/0011-printable-display-mockups-of-prohibited-parts.md).
+- Out of scope, unchanged: **manufacturing, having manufactured, or releasing
+  any load-bearing structure** (`SAFETY.md`). The monocoque stays
+  `prohibited_pending_engineering`. The body shell carries the chassis number,
+  occupant protection and crash absorption; a monocoque is designed as such and
+  cannot be translated from a sheet-steel body shell; its validation requires
+  physical crash tests that no study here replaces.
+
+  Such a monocoque **exists commercially** for the 964 and 993
+  (`SRC-ZESAD-CARBON-MONOCOQUE-964-993`), from €129,990 to €219,990, but its
+  product page publishes no mass, no torsional stiffness, no crash test and no
+  homologation. A safety structure with no published structural data is exactly
+  what `docs/QUALITY_GATES.md` prohibits entering in the catalog; the study
+  track exists to produce such data, not to bypass that gate.
+
+  Body panels remain a legitimate goal in their own right: see
+  `SRC-GUNTHER-WERKS-CARBON-993`, where the most advanced 993 restomod on the
+  market clothes the car in carbon while keeping and reinforcing the steel body
+  shell.
+
 ## Initially out of scope
 
 - Selling parts
 - Road homologation
-- **Replacing the load-bearing structure**, in particular with a composite
-  monocoque. The body shell carries the chassis number, occupant protection and
-  crash absorption; a monocoque is designed as such and cannot be translated
-  from a sheet-steel body shell; its validation requires physical crash tests.
-
-  A necessary clarification: such a monocoque **exists commercially** for the
-  964 and 993 (`SRC-ZESAD-CARBON-MONOCOQUE-964-993`), from €129,990 to
-  €219,990. It is therefore not excluded from scope because it would be
-  impossible, but because this repository can neither document, verify nor
-  reproduce it: the product page publishes no mass, no torsional stiffness, no
-  crash test and no homologation. A safety structure with no published
-  structural data is exactly what `docs/QUALITY_GATES.md` prohibits entering in
-  the catalog.
-
-  Body panels, on the other hand, remain a legitimate goal: see
-  `SRC-GUNTHER-WERKS-CARBON-993`, where the most advanced 993 restomod on the
-  market clothes the car in carbon while keeping and reinforcing the steel body
-  shell.
 - Hosting protected manuals or scans
 - Publishing unqualified critical parts
 - Buying or operating an LPBF machine
