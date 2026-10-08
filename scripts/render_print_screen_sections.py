@@ -20,6 +20,8 @@ SHEETS = {
     "993-body-front-impact-support-alsi10mg-f0-0001": "993_FRONT_IMPACT_SUPPORT_ALSI10MG_F0.md",
     "993-eng-connecting-rod-ti64-f0-0001": "993_CONNECTING_ROD_TI64_F0.md",
     "993-eng-cooling-impeller-alsi10mg-f0-0001": "993_COOLING_IMPELLER_ALSI10MG_F0.md",
+    "993-eng-cooling-impeller-we43-f1-0001": "993_COOLING_IMPELLER_WE43_F1.md",
+    "993-eng-fan-stator-alsi10mg-f1-0001": "993_FAN_STATOR_ALSI10MG_F1.md",
     "993-eng-exhaust-manifold-in625-f0-0001": "993_EXHAUST_MANIFOLD_IN625_F0.md",
     "993-eng-fan-housing-alsi10mg-f0-0001": "993_FAN_HOUSING_ALSI10MG_F0.md",
     "993-eng-intake-valve-ti64-hollow-f0-0001": "993_INTAKE_VALVE_TI64_HOLLOW_F0.md",

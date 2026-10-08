@@ -134,3 +134,33 @@ docker run --rm --memory=6g --memory-swap=6g --cpus=4 \
 
 The ring stays `prohibited_pending_engineering` and `concept`: no
 manufacture, installation or start-up is authorized.
+
+## Thin vane edges, still open
+
+The print simulation below passes, but its thickness screen finds 1 % of
+the surface under 0.35 mm, with a 0.10 mm minimum, and 36 % under 1.5 mm.
+These are the vanes' NACA knife edges. The rotor's blades got a 0.5 mm
+minimum trailing edge after the same finding; the vanes still need it. That
+simulation run took about 14 hours, against two minutes for the rotor, so
+its rerun is left for a separate change.
+
+<!-- print-screen:begin -->
+
+## LPBF print simulation
+
+The STEP was tessellated, then sliced over its full height at `30 µm`, on the EOS M 290 route of the candidate material. Orientation chosen by the automatic rule: `roll_y_45`.
+
+| quantity | value |
+|---|---:|
+| layers | 6,789 |
+| build height | 203.65 mm |
+| layers with an unsupported region | 3007 |
+| support proxy | 200,614.09 mm³ |
+| local thickness p01 | 0.347 mm |
+| trapped powder at 1.00 mm | 0.00 mm³ |
+
+![LPBF print simulation](../../parts/993-eng-fan-stator-alsi10mg-f1-0001/evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-screen.png)
+
+This screening is neither an EOSPRINT project, nor a distortion calculation, nor a recoater check. **Printing remains prohibited.**
+
+<!-- print-screen:end -->

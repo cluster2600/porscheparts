@@ -87,12 +87,18 @@ flowchart LR
 
 *Orthographic views of the same concept CAD, with its bounding dimensions — not drawings of the original part.*
 
+## Screens and evidence images
+
+![993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-screen](evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-screen.png)
+
+*`evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-screen.png` — a screening output, not a validation.*
+
 ## What's in this folder
 
 | folder | what it holds | files |
 |---|---|---|
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/fan_stator_alsi10mg_f1.step`](derived/fan_stator_alsi10mg_f1.step), [`derived/fan_stator_alsi10mg_f1.stl`](derived/fan_stator_alsi10mg_f1.stl) |
-| `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json) |
+| `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json), [`evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-layer-metrics.csv`](evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-layer-metrics.csv), [`evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-manifest.json`](evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-manifest.json), [`evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-report.json`](evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-report.json), [`evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-screen.png`](evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-screen.png) |
 | `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 | `source/` | parametric source — the editable master that generates the geometry | [`source/fan_stator_f1.py`](source/fan_stator_f1.py) |
 

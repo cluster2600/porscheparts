@@ -13,7 +13,7 @@ model. None is measured, and none is a claim against the Porsche part.
 
 ```mermaid
 flowchart LR
-  R["Rebuild of the Turbo rotor<br/>245 mm, 165 mm cup, 12 windows<br/>11 constant-pitch cambered plates"] --> F1["F1: same cup and interfaces<br/>11 twisted airfoil blades<br/>no shroud, WE43, 414 g"]
+  R["Rebuild of the Turbo rotor<br/>245 mm, 165 mm cup, 12 windows<br/>11 constant-pitch cambered plates"] --> F1["F1: same cup and interfaces<br/>11 twisted airfoil blades<br/>no shroud, WE43, 421 g"]
   R --> D["Duty inferred from the rebuild<br/>2.34 m³/s at 2,155 Pa, 10,000 rpm"]
   D --> A["1D blade-element model<br/>with radial equilibrium"]
   F1 --> A
@@ -43,8 +43,8 @@ stator method are kept.
 | Windows, bolt holes, bore | 12 windows, 3 × Ø6.8 on Ø50, Ø34 bore | same |
 | Blades | 11 constant 48° pitch plates, 3.6 mm, chord 57 → 70 mm, 2 mm camber | 11 twisted airfoils, stagger 32° → 46° from the axis, camber 20° → 12°, chord 47 → 35 mm, 4.6 → 2.1 mm |
 | Shroud | none | none |
-| Volume | 284,700 mm³ | 224,800 mm³ (−21 %) |
-| Mass in WE43 | 524 g | **414 g** |
+| Volume | 284,700 mm³ | 229,000 mm³ (−20 %) |
+| Mass in WE43 | 524 g | **421 g** |
 
 The rebuild's ribs between the windows and its rounded web transition are
 not reproduced. The bearing hub stays a separate part, bolted to the web as
@@ -149,7 +149,7 @@ comparison.
 
 | at 12,000 rpm | WE43 | Scalmalloy | AlSi10Mg |
 |---|---|---|---|
-| Wheel mass (CAD) | 414 g | 600 g | 600 g |
+| Wheel mass (CAD) | 421 g | 611 g | 611 g |
 | Yield / blade root, centrifugal + aero bending | 20.6 | 35.0 | 17.9 |
 | Yield / cup rim, free ring carrying the blades | 8.3 | 12.5 | 6.4 |
 | Yield / bore, web carrying the rim | 4.7 | 7.1 | 3.6 |
@@ -182,10 +182,21 @@ tensile allowable for our process.
 
 ## Printability
 
-The wheel fits the EOS M 290 plate with the web flat on it and the cup open
-upward. Without a shroud the blades are open from outside. Their downward
-faces need supports, but those supports can be reached and removed. An
-orientation and support study is still to do.
+Without a shroud the blades are open from outside, so every support can be
+reached and removed. The print simulation below picks the orientation with
+the least downward-facing area: tilted 45°, not flat on the web.
+
+The first simulation run measured a 0.07 mm minimum wall: the NACA 4-digit
+sections close to a knife edge of about 0.05 mm, which LPBF cannot hold.
+The blade thickness now grows linearly toward the trailing edge to a
+0.5 mm minimum. The rerun's minimum wall is 0.24 mm, at the rounded leading
+edges, and the first percentile went from 0.32 to 0.71 mm. The change adds
+7 g.
+
+WE43 is not an EOS catalogue material. The simulation uses the M 290
+envelope and the 30 µm layer of the published WE43 LPBF route (Hyer et al.
+2020, 200 W); a magnesium-rated machine and its parameters remain to be
+qualified.
 
 ## Reproduction
 
@@ -214,8 +225,30 @@ inferred duty from the rebuild.
    ranking.
 5. FEA with the bolted joint, a Campbell diagram, and HCF with WE43
    allowables.
-6. Orientation and supports, coating, balance, contained overspeed, then a
-   flow rig.
+6. Supplier support design and an EOSPRINT-class build file for the
+   simulated 45° orientation, then coating, balance, contained overspeed and
+   a flow rig.
 
 The F1 stays `prohibited_pending_engineering` and `concept`: no manufacture,
 rotation, installation or start-up is authorized.
+
+<!-- print-screen:begin -->
+
+## LPBF print simulation
+
+The STEP was tessellated, then sliced over its full height at `30 µm`, on the EOS M 290 route of the candidate material. Orientation chosen by the automatic rule: `roll_y_45`.
+
+| quantity | value |
+|---|---:|
+| layers | 6,286 |
+| build height | 188.56 mm |
+| layers with an unsupported region | 3595 |
+| support proxy | 403,165.47 mm³ |
+| local thickness p01 | 0.711 mm |
+| trapped powder at 1.00 mm | 0.00 mm³ |
+
+![LPBF print simulation](../../parts/993-eng-cooling-impeller-we43-f1-0001/evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-screen.png)
+
+This screening is neither an EOSPRINT project, nor a distortion calculation, nor a recoater check. **Printing remains prohibited.**
+
+<!-- print-screen:end -->
