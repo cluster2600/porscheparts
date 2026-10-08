@@ -136,24 +136,27 @@ bulkheads but from the **center tunnel**, which on its own takes the stiffness
 from 3147 to 5371 N.m/deg, i.e. +71 %. A longitudinal beam closed over the full
 length is worth more than two bulkheads at the ends.
 
-**And this tunnel does not exist on the 964.** Since this parameter is the most
-influential in the whole dossier, it could not remain `ASSUMED`: it was searched
-for on the scan (`source/tunnel_probe.py`). The central relief of the interior
-floor pan, taken as the difference between the median Z at |Y| < 60 mm and that
-of the flanks at 250 < |Y| < 400 mm, is between **-0.7 and -3.1 mm** across eight
-stations covering 1000 mm of length. That is below the scan's symmetry residual,
-which is 7.54 mm RMS: the relief cannot even be distinguished from noise. The
-underbody is flat, which is consistent with a rear engine and the absence of a
-longitudinal driveshaft. Forward of X = -200 mm a hollow appears, but that is
-the cross member and front suspension zone, not a tunnel.
+**Correction of 2026-09-25: this scan cannot conclude that there is no
+tunnel.** The earlier `source/tunnel_probe.py` measured the median relief of
+surfaces visible from below, then wrongly inferred the absence of a
+longitudinal shaft. A fairing or a lower skin can hide the driveline; the scan's
+symmetry residual is not an instrument uncertainty. The corrected script keeps
+the missing stations and is now limited to a diagnostic of coverage and of
+visible relief.
 
-The "tunnel" case therefore measures **what the 964 does not have**, not what it
-has. That does not invalidate it, it requalifies it: it is the costing of a
-possible architectural modification, and it is the most actionable conclusion
-of the study. **Adding a closed longitudinal beam yields more than switching to
-carbon**, +71 % against +25 %, and for much less mass than converting the whole
-body shell to composite. A ZESAD-type monocoque gets this beam for free by
-construction: that is precisely what an architectural gain is.
+Porsche describes a transaxle shaft running forward on the 964 Carrera 4 and the
+change of system on the 993 Carrera 4; the removal of the tube is placed at the
+996 generation. See
+[the German manufacturer source](https://newsroom.porsche.com/de/historie/porsche-allradantrieb-meilensteine-lohner-porsche-cisitalia-rennwagen-carrera-4-visco-kupplung-porsche-traction-management-ptm-911-turbo-15045.html),
+recorded as `SRC-PORSCHE-964-993-ALL-WHEEL-DRIVE-HISTORY`.
+
+The FEA "tunnel" case remains a **hypothetical section**: neither a
+reconstruction of an original tunnel nor proof of its absence. The +71 % gain
+applies to that model only. Integrating it still requires the real volumes of
+the shift linkage, the C4 tube and shaft, the anchorages, the travel envelopes
+and the service access; none of these dimensions can be deduced from a flat
+underside. The architectural reading stands: **a closed longitudinal beam
+yields more than switching to carbon**, +71 % against +25 %, in this model.
 
 Two consistency checks between the two studies. At equal mass, carbon gives
 x 1.25; at equal stiffness, it gave 0.82x the mass, i.e. 1/0.82 = 1.22. The two

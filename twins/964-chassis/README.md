@@ -318,6 +318,9 @@ read on 2026-10-08). What would tighten it:
 - **The 0 line's definition.**
 - **Mounting faces and fastener seats**, for `F2_interface`.
 
+What to survey on the vehicle, in what order and with what record, is in the
+[interface measurement plan](interface-measurement-plan.md).
+
 `SRC-RENNLIST-993-BODY-DIMENSIONS-PDF` reports a table of points in
 millimetres, not obtained. The full state of the leads is in
 `docs/research/964-combler-le-gap-de-donnees.md`.
@@ -372,3 +375,217 @@ Details and consequences in `fea/README.md`.
 None of these figures is a 964 stiffness, and the fact that the model ignores
 bonded glazing, doors and panel openings works precisely in the direction that
 flatters the closed ring.
+
+## Dated runs and audits, 2026-09-25 to 2026-10-02
+
+These sections record the monocoque interface audit and the runs that followed
+it, newest first. They predate the closure of the datum chain from plate 50-05a
+(2026-10-08); statements made stale by that closure are corrected in place and
+marked as such.
+
+### Runs on Kali 1 and Kali 2 — 2026-10-02
+
+The [executed Linux rerun](source/picogk-abi-probe/README.md) reproduces the
+eight architectures of the F1 truss on both machines, then checks the selected
+case with CalculiX on Kali 2. The relative deviation is `7.82e-7`; this agreement
+validates neither a laminated shell nor the new tunnel openings.
+The 15 Docker F37 tests pass on Kali 2. The SSH account on Kali 1 cannot use
+Docker; its computation ran in native Python.
+
+The PicoGK Linux comparison revealed a defect in reading the native boolean
+returned by `bIsInside`. A minimal test and a binding fix, in an isolated copy of
+the library, made it possible to rerun the tunnel at 4 and 2 mm without changing
+its geometry or its assertions. The same return-marshalling fix was already on
+main since 2026-09-07, as
+[picogk-0e6cf6b-bIsInside-I1.patch](../m64-cylinder-head/source/picogk-cooling/patches/picogk-0e6cf6b-bIsInside-I1.patch).
+The [receipt](derived/kali-compute-20261002.json) also keeps the initial
+failures. The shared library stays untouched. On that date the global check was
+still blocked by the F46 digest drift described under 2026-09-25 below; no
+historical evidence, manufacturing authorization or qualification is modified.
+
+### Rerun with Qwen on the Mac and PicoGK — 2026-10-02
+
+The [first executed local study](source/qwen-picogk-tunnel/README.md) takes up
+the tunnel of the existing concept: Qwen transcribes three envelopes under
+deterministic control, then PicoGK searches for volume intersections at 4 and
+2 mm. Three interferences of the initial concept are found (nose/C4 tube,
+nose/C4 guide, cover/shift-lever tower on the C2). A variant with openings is
+generated for review; it qualifies neither the dynamic clearances nor the
+structure. Unknown interfaces stay unknown. The model derives no new Porsche
+dimension and no historical file is replaced.
+
+### Execution rerun and access to dimensions — 2026-09-25
+
+Docker is reachable on the Mac (29.8.0) and on Kali (28.5.2+dfsg4, amd64).
+The Docker check `make 917-manufacturing-f37-lpbf-audit-check` passes again:
+15 tests OK. This check belongs to the 917 engine program; it validates neither
+a composite shell nor its manufacturing process.
+
+On that date the global check was not green. `make 917-f46-vast-controller-check`
+reproduced a drift in the preparation report: **only** the artifact
+`deploy/openbao/openbao-vastai` differed between the historical report and a
+current offline generation. Its digest moved from
+`a0f22c4d1d729681dc45b1d1642fd9cf05fefcbc9fb4128bde108f62846836d3`
+(280,757 bytes) to
+`42fe39ebcf7fc81e8f6c4a85e38fa9da03fd4637bb93a37b3a422c315e8a5aa4`
+(311,414 bytes). The current report was generated in `work/`, with no Vast/GHCR
+call and no spend. The historical evidence, the connector and the comparator
+stayed unchanged; this investigation approved no new attestation of the
+connector, and no cloud launch follows from it. Main has since recorded a
+separate [F46 preparation report dated 2026-09-25](../reference-917-engine/evidence/f46-vast-controller-20260925/preparation-report.json)
+that carries the newer digest; this page does not re-establish whether the
+global check is green today.
+
+The [Rennlist 993](../../catalog/sources/src-rennlist-993-body-dimensions-pdf.json)
+lead was narrowed down: the thread is readable, but its attachment
+`Porsche 993 body dimensions small.pdf` requires a login. Its content is still
+not obtained and its coverage of the anchors is not verified. The public
+[CarGeometry 964](https://cargeometry.org/porsche/105-porsche-911-carrera-964-1989-1994-body-dimensions.html)
+preview provides no new dimension usable here; no paid archive was bought.
+
+**Blocking input named on that date:** a referenced body survey or a legible
+plate of control points, to be examined before any interface CAD. *Since
+2026-10-08, plate 50-05a provides the published longitudinal chain (see
+[The longitudinal chain, closed from plate 50-05a](#the-longitudinal-chain-closed-from-plate-50-05a)).*
+Still needed: confirm C2/C4, model year and modifications of the scanned
+vehicle, then obtain the interior/tunnel survey described in the
+[measurement plan](interface-measurement-plan.md). A 993 document does not
+validate the 964 interfaces. The shell, its molds, its layup and its road/track
+fitness are not ready; none of these states can be inferred from Docker working.
+
+### Monocoque interface audit — 2026-09-25
+
+The contract [monocoque-interface.json](derived/monocoque-interface.json) now
+takes the names and the nine transverse spans from the
+[documentary register](../../catalog/measurements/MEAS-MANUAL-964-BODY-CONTROL.json),
+with the identifier of each value. Corrections from the audit:
+
+- **P12 is a gearbox crossmember support** ("Support - traverse de boite"), not
+  a rear axle mount. The working span P5–P12 (then 1724.3 mm, derived and not
+  verified) therefore does not define the wheelbase. *Since 2026-10-08 both ends
+  are published and the span is 1535.6 mm (`SPAN_P5_P12`,
+  `defines_wheelbase: false`); see [The rear of the chain](#the-rear-of-the-chain).*
+  The rear suspension mounts P13 and P14 are placed separately, scaled off plate
+  50-05a; their XYZ remain to be surveyed.
+- **P6 is an inner front axle crossmember support.** It stays in the contract
+  with X `null`, status `MANQUANT`, instead of being omitted.
+- The documentary tolerances apply to the **pair spans**. The half-spans assume
+  symmetry; they do not certify the tolerance of each Y coordinate. *P21, then
+  `INVALIDE`, has been placed since 2026-10-08 by the rear diagonals read
+  unbracketed (`source/datum_chain_50_05a.py`).*
+
+These corrections recompute neither the CAD nor the earlier FEA results.
+The historical label `rear_axle_crossmember` in `floor_assembly.py` still
+designates its crossmember at P12; it does not prove a rear axle interface.
+The contract covers the dimensioned pairs of the manual, not every anchor of the
+vehicle.
+
+The [monocoque roadmap](https://github.com/cluster2600/porscheparts/blob/135dcc8ef6e71ac483e1ed3036217536562c80a1/twins/993-carbon-safety-cell/roadmap-to-release.md)
+stays on a separate branch, not merged into base `7fe668b` of that rerun. Its
+truss and cure computations are F1 studies, not validations of a composite
+shell. Its axis conventions must be reconciled before any overlay with this
+twin (X rearward there, X forward here).
+
+The raw scan has since been recovered (see below). Next step: identify datums
+with XYZ, frames and uncertainties, and survey the rear interfaces and the C2/C4
+driveline envelopes (shift linkage, shaft, travel, access). The 964/993
+differences must be qualified per variant. Neither an underside scan nor the
+documentary dimensions alone allow the molds to be frozen or the shell to be
+declared fit for road, track or homologation.
+
+Contract check:
+
+```sh
+(cd twins/964-chassis/source && python3 monocoque_interface.py)
+python3 -m unittest discover -s tests -p 'test_964_monocoque_interface.py'
+```
+
+### Scan recovered and tunnel diagnostic — 2026-09-25
+
+The user file `964widebodyunderside2poin13.obj` is kept locally, read-only, out
+of Git: 210,972,101 bytes, 2,400,031 vertices and 4,684,929 triangles. SHA-256:
+`f397909141e5af2529db961641c7699d39d40c355e05245cfb1573a2974c8dc5`.
+The input audit finds 118,411 open edges. The counts match the historical study;
+they certify neither the identity of the vehicle, nor its variant, nor the
+accuracy of the scanner. Redistribution rights remain unconfirmed.
+
+The existing symmetry, registration, transformation and wheel-sensitivity
+scripts were rerun on this original. The
+[registration report](derived/scan-recalage-20260925.json) binds the scan, the
+scripts, the versions and the arrays produced by SHA-256. Results of that run:
+
+- yaw -2.236 deg, roll -0.451 deg, trimmed symmetry residual 7.54 mm;
+- wheelbase from the wheel fit: 2277.9 mm, against 2272 mm documentary;
+  sensitivity to the assumed diameter: 2270.4 to 2278.8 mm;
+- scatter of the ground plane derived from the tires: 55.1 mm;
+- numerical consistency transformation/array: maximum error 0.000128 mm over
+  200,000 vertices. **This last figure is not the physical accuracy of the scan.**
+
+The [visibility diagnostic](derived/tunnel-visibility-20260925.json) covers eight
+stations, **six** of them within the cabin range X = -1400 to -400 mm. Their
+median center/flank relief ranges from -3.123 to -0.696 mm. The sections and the
+plan view are produced locally, with no hole filling and no reconstruction of
+hidden surfaces.
+
+**The former conclusion "no tunnel, no longitudinal shaft" is withdrawn.**
+These bands show only the visible skin. They say nothing about what runs above,
+behind a fairing, or about which clearances remain available. The diagnostic
+does not recognize C2/C4. The
+[German Porsche source](../../catalog/sources/src-porsche-964-993-all-wheel-drive-history.json)
+confirms the C4 driveline architecture, but gives no dimension for it.
+
+| Zone to integrate | Data still needed, separately for 964 and 993 |
+|---|---|
+| C2/C4 shift linkage | axes, joints, brackets, swept envelope over all gears |
+| C4 forward tube/shaft | XYZ axis, outer diameter, flanges, mounts and powertrain motion |
+| Gearbox / front differential interfaces | anchor planes and points, real volumes, tolerances |
+| Shell tunnel and servicing | both wall faces, thicknesses, neighboring passages, removal volumes |
+
+In particular, a survey of the interior/tunnel and of the underbody with the
+components and fairings identified is needed. A void in the point cloud is never
+treated as free volume. The registration of the structural datums and the
+C2/C4/993 compatibility remain not validated; no mold or layup is released.
+
+#### Replay
+
+The local run uses Python 3.10.11, NumPy 2.2.6, SciPy 1.14.1 and trimesh 5.1.0;
+Matplotlib produces the figures. SciPy 1.15.3 would not load on that macOS host;
+the substitution stayed in an isolated environment. First verify the SHA-256 of
+the original above. In a private working directory, create
+`raw/964widebodyunderside2poin13.obj` as a link to that original, then run with
+that environment, in this order:
+
+```sh
+python /path/to/repo/twins/964-chassis/source/symmetry.py
+python /path/to/repo/twins/964-chassis/source/align.py
+python /path/to/repo/twins/964-chassis/source/vehicle_transform.py
+python /path/to/repo/twins/964-chassis/source/wheelbase_robust.py
+python /path/to/repo/twins/964-chassis/source/tunnel_probe.py \
+  --vertices verts_vehicle.npy --scan raw/964widebodyunderside2poin13.obj \
+  --registration-report /path/to/repo/twins/964-chassis/derived/scan-recalage-20260925.json \
+  --output tunnel
+```
+
+The output folder must be new. The diagnostic refuses a scan or a vertex array
+whose digest differs from the report; another environment may require a new
+registration attestation, without overwriting this one.
+Local outputs: `scan-plan.png`, `visible-sections.png`, `tunnel-visibility.json`.
+
+### Annotated view and interface survey sheet — 2026-09-25, updated 2026-10-08
+
+The [measurement plan](interface-measurement-plan.md) and the
+[CSV sheet](derived/interface-measurements-20261008.csv) cover the **18
+identities** of the documentary register, six of which (P1, P2, P4, P7, P11,
+P16) have no data in the contract. The sheet is regenerated from the contract
+and the ledger, and checked byte for byte by `tests/test_964_interface_review.py`.
+The 2026-09-25 sheet and review report described a contract that never reached
+main and were removed. **The scan-based review (3D and plan views, report) is
+pending a rerun** of `source/interface_review.py` on the machine that holds the
+registered vertices of the registration report; its views stay local.
+
+Ten pairs are projected as **XY hypotheses**, not as recognized anchors: eight
+with an X determined from published dimensions, P13 and P14 with an X scaled off
+plate 50-05a. Heights remain unknown (`null`, not zero); the graphic plane and
+the dotted lines are not part geometry. P6 (no X), P15 (no published span) and
+the identities without data stay visible in the sheet. No XYZ point is
+validated, and no mounting CAD is created.

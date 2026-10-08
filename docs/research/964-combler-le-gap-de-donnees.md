@@ -80,8 +80,11 @@ uncertain yield.
 - **A reference-frame bug fixed.** `wheel_fits.npy` was in scan coordinates and
   could not be combined with `verts_vehicle.npy`. See
   `source/wheels_vehicle.py`.
-- **The underbody is flat.** See `source/tunnel_probe.py` and the composite
-  study: no center tunnel on the 964.
+- **Correction of 2026-09-25: the visible relief does not describe the hidden
+  tunnel.** `source/tunnel_probe.py` measures surface bands seen from below; it
+  can conclude neither that there is no tunnel, nor that there is no
+  longitudinal shaft, nor that a passage is free. See the twin README and
+  `SRC-PORSCHE-964-993-ALL-WHEEL-DRIVE-HISTORY` for the C4 driveline.
 
 ### Still to do, not done here
 
