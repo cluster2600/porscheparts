@@ -123,6 +123,15 @@ shell whose outline is traced from plate 50-05a, with the sections modelled,
 and a first torsion run on it. It is a design envelope for M5, not a design:
 no thickness, layup or tolerance is proposed.
 
+**A monocoque architecture in it, in PicoGK (2026-10-08).**
+`twins/964-chassis/monocoque/picogk/` voxelizes a ZESAD-type carbon
+monocoque inside that shell with the pinned PicoGK kernel. Every aperture
+is framed by a closed section, the sills, tunnel and rails are closed boxes,
+and the floor and bulkheads are sandwich panels: the closures of section 2,
+by construction. The mass estimate is about 95 kg, from assumed layups. No
+stiffness is computed yet. Every member size is a hypothesis, and the
+architecture is still `prohibited_pending_engineering`.
+
 ## 4. The missing denominator is measured, no longer searched for
 
 Lock B — no published 964 torsional stiffness — was treated as a

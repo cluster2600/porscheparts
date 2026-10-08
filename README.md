@@ -52,6 +52,7 @@ The repository has withdrawn several, listed
 
 | date | change |
 |---|---|
+| 2026-10-08 | **A ZESAD-type carbon monocoque in PicoGK**, inside the traced shell: closed sections around every aperture, boxed sills, tunnel and rails, sandwich floor and bulkheads; about 95 kg from assumed layups. A design envelope, not a part. [Monocoque](twins/964-chassis/monocoque/picogk/README.md) |
 | 2026-10-08 | **A 911-shaped monocoque shell**: outline traced from the workshop manual's plate 50-05a, sections modelled, a first whole-body torsion run; it replaces the box cell in the banner. [Shell](twins/964-chassis/monocoque/README.md) |
 | 2026-10-08 | **964 datum chain closed** from the workshop manual's own plates (50-02, 50-03, 50-05a): every suspension and power-unit mount of the monocoque interface contract now has a fore-aft position, checked against the underside scan. [Details](twins/964-chassis/README.md#the-longitudinal-chain-closed-from-plate-50-05a) |
 | 2026-10-08 | **LPBF print simulation pictured**: build-up videos for the F1 cooling impeller and its stator. [Impeller dossier](docs/993/993_COOLING_IMPELLER_WE43_F1.md#print-simulation-pictured) |
@@ -169,6 +170,14 @@ A first torsion run on it, uniform 0.8 mm steel with every aperture open,
 puts the load around the windscreen frame, the A-pillars, the door corners and
 the C-pillars: the open shell a monocoque has to close. Its K, 2,261 N·m/deg,
 belongs to that surface model, not to a 964.
+
+Inside that shell, [a ZESAD-type carbon monocoque](twins/964-chassis/monocoque/picogk/README.md)
+is generated in voxels with PicoGK. Each aperture gets a closed section and
+the sills, tunnel and rails are boxes, so the closures the box-cell study
+ranked first are there by construction. Member sizes and layups are
+hypotheses.
+
+![A ZESAD-type monocoque generated with PicoGK](twins/964-chassis/monocoque/evidence/zesad-monocoque-turntable.gif)
 
 ### The interfaces: where a monocoque has to bolt up
 

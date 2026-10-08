@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <AssemblyName>ZesadMonocoque</AssemblyName>
+    <RootNamespace>ZesadMonocoque</RootNamespace>
+    <!-- Same convention as parts/picogk-993-batch-01: the pinned PicoGK kernel
+         from a local checkout (/upstream in the m64-leap71 native image). -->
+    <UpstreamRoot Condition="'$(UpstreamRoot)' == ''">/upstream</UpstreamRoot>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="src/*.cs" />
+    <ProjectReference Include="$(UpstreamRoot)/PicoGK/PicoGK.csproj" />
+  </ItemGroup>
+</Project>
