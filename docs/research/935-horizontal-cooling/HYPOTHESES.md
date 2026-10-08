@@ -1,51 +1,51 @@
-# Hypothèses de rétro-ingénierie du système horizontal 935
+# Reverse-engineering hypotheses for the horizontal 935 system
 
-Décision du propriétaire, 7 octobre 2026 : avancer avec des hypothèses
-explicites plutôt qu'attendre toutes les cotes. La cible reste d'abord le
-montage historique 935, puis l'adaptation horizontale 993.
+Owner's decision, October 7, 2026: move forward with explicit hypotheses
+rather than wait for all the dimensions. The target remains first the
+historical 935 assembly, then the horizontal 993 adaptation.
 
-Une hypothèse comporte une justification, les calculs qui en dépendent et
-un moyen de la rejeter. Le nominal sous hypothèses peut servir à préparer
-des calculs et une CAO candidate. Il ne transforme pas une surface interpolée
-en mesure et ne modifie pas les 17 interfaces indépendantes encore ouvertes.
+A hypothesis carries a justification, the calculations that depend on it and
+a way to reject it. The nominal under hypotheses can serve to prepare
+calculations and a candidate CAD. It does not turn an interpolated surface
+into a measurement and does not change the 17 independent interfaces still open.
 
-| Identifiant | Hypothèse de travail | Confrontation prévue |
+| Identifier | Working hypothesis | Planned confrontation |
 |---|---|---|
-| H-SCALE | Réutiliser provisoirement 1 mm par unité des OBJ ; comparer 0,9 et 1,1 sans imposer un diamètre nominal. | Deux cotes indépendantes sur les mêmes pièces ; cohérence des portées et de l'empilage. Un alésage partiel supposé normalisé ne suffit pas à calibrer. |
-| H-DRIVE | Courroie, arbre horizontal et renvoi d'angle vers l'arbre vertical ; denture conique comme premier candidat interne. | Architecture documentée par [Gunnar Racing](https://www.gunnarracing.com/team/lola/stage4.htm). Photographier un renvoi démonté ; relever axes, dentures, nombre de dents et rapports. Le type exact reste hypothétique. |
-| H-RATIO | Comparer trois rapports totaux de vitesse rotor/moteur : 0,8, 1,0 et 1,2. | Mesurer simultanément les deux régimes et relever les diamètres primitifs/dentures. Ce sont des points d'exploration, pas des rapports Porsche publiés. |
-| H-ROTOR | Utiliser neuf pales pour la première cinématique, à partir des neuf régions acquises. | Vérifier la répétition sur le tour entier, puis les pieds, extrémités et acquisitions du dos ; conserver les réparations localisées. |
-| H-COUPLING | Prévoir un accouplement souple dans le chemin de couple ; ne pas le remplacer d'emblée par une liaison rigide. | Témoignage d'utilisation dans le [fil Rennlist](https://rennlist.com/forums/911-turbo-930-forum/94486-935-users-flat-fan.html). Localiser le composant sur une vue démontée et caractériser sa raideur/amortissement. |
+| H-SCALE | Provisionally reuse 1 mm per OBJ unit; compare 0.9 and 1.1 without imposing a nominal diameter. | Two independent dimensions on the same parts; consistency of the seats and the stack-up. A partial bore assumed to be standardized is not enough to calibrate. |
+| H-DRIVE | Belt, horizontal shaft and angle drive to the vertical shaft; bevel gearing as the first internal candidate. | Architecture documented by [Gunnar Racing](https://www.gunnarracing.com/team/lola/stage4.htm). Photograph a disassembled angle drive; record axes, gear teeth, tooth counts and ratios. The exact type remains hypothetical. |
+| H-RATIO | Compare three total rotor/engine speed ratios: 0.8, 1.0 and 1.2. | Measure both speeds simultaneously and record the pitch diameters/gear teeth. These are exploration points, not published Porsche ratios. |
+| H-ROTOR | Use nine blades for the first kinematics, based on the nine acquired regions. | Check the repetition over the full revolution, then the roots, tips and back-side acquisitions; keep the localized repairs. |
+| H-COUPLING | Provide a flexible coupling in the torque path; do not replace it outright with a rigid connection. | Usage account in the [Rennlist thread](https://rennlist.com/forums/911-turbo-930-forum/94486-935-users-flat-fan.html). Locate the component on a disassembled view and characterize its stiffness/damping. |
 
-Les références de roulements, leurs précharges et la lubrification deviennent
-des variantes de conception à comparer lorsque les enveloppes et chemins
-d'efforts sont ajustés. Aucune référence commerciale n'est présentée comme
-la définition intérieure historique. Les inconnues du contrat restent nulles.
+The bearing references, their preloads and the lubrication become
+design variants to compare once the envelopes and load
+paths are fitted. No commercial reference is presented as
+the historical internal definition. The contract unknowns remain null.
 
-## Campagne cinématique
+## Kinematic campaign
 
-Le [calculateur existant](../../../twins/935-horizontal-cooling-system-f0/source/build_system_twin.py)
-accepte désormais `purpose: hypothesis_screen`. Chaque entrée utilisée doit
-référencer une source `kind: assumption`, avec `locator` et `rejection_test`.
-Le statut des résultats est `hypothesis_calculation`. Les essais synthétiques
-et les entrées mesurées conservent leurs contrôles antérieurs ; une hypothèse
-ne peut pas être promue en preuve du spécimen.
+The [existing calculator](../../../twins/935-horizontal-cooling-system-f0/source/build_system_twin.py)
+now accepts `purpose: hypothesis_screen`. Each input used must
+reference a `kind: assumption` source, with `locator` and `rejection_test`.
+The status of the results is `hypothesis_calculation`. The synthetic tests
+and the measured inputs keep their earlier checks; a hypothesis
+cannot be promoted to evidence about the specimen.
 
-Grille initiale exécutée : 3 régimes moteur (3 000, 6 000, 8 000 tr/min),
-3 rapports totaux (0,8, 1,0, 1,2), 3 diamètres choisis (250, 275, 300 mm),
-9 pales et glissement nul. **Ces diamètres ne sont ni des mesures des scans,
-ni des cotes 935/993 sourcées, ni une calibration retenue.** La décomposition
-« rapport de courroie variable, rapport d'engrenages égal à 1 » sert seulement
-à factoriser le rapport total ; elle ne définit pas les poulies ou dentures.
+Initial grid run: 3 engine speeds (3,000, 6,000, 8,000 rpm),
+3 total ratios (0.8, 1.0, 1.2), 3 chosen diameters (250, 275, 300 mm),
+9 blades and zero slip. **These diameters are neither measurements from the scans,
+nor sourced 935/993 dimensions, nor an adopted calibration.** The decomposition
+"variable belt ratio, gear ratio equal to 1" serves only
+to factor the total ratio; it does not define the pulleys or gear teeth.
 
-Les 27 scénarios donnent 2 400–9 600 tr/min au rotor, 31,42–150,80 m/s
-en périphérie et 360–1 440 Hz de passage des pales. Ces plages décrivent la
-grille choisie ; elles n'établissent ni le régime admissible ni les
-caractéristiques du ventilateur historique. Les incertitudes d'entrée nulles
-signifient ici un point de scénario fixé, pas une certitude métrologique.
-L'outil ne propage pas les incertitudes.
+The 27 scenarios give 2,400–9,600 rpm at the rotor, 31.42–150.80 m/s
+at the periphery and 360–1,440 Hz blade-passing frequency. These ranges describe the
+chosen grid; they establish neither the allowable speed nor the
+characteristics of the historical fan. Zero input uncertainties
+mean here a fixed scenario point, not a metrological certainty.
+The tool does not propagate uncertainties.
 
-Reproduction minimale depuis la racine du dépôt, sans nouveau logiciel :
+Minimal reproduction from the repository root, with no new software:
 
 ```python
 from pathlib import Path
@@ -56,7 +56,7 @@ spec = importlib.util.spec_from_file_location('twin', study/'source/build_system
 twin = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(twin)
 output = Path('work/935-hypotheses-new')
-output.mkdir(mode=0o700)  # nouvelle destination ; ne pas remplacer un ancien lot
+output.mkdir(mode=0o700)  # new destination; do not overwrite an earlier batch
 for rpm, ratio, diameter in itertools.product((3000, 6000, 8000), (0.8, 1.0, 1.2), (0.25, 0.275, 0.30)):
     case = json.loads((study/'operating-case.template.json').read_text())
     case.update(id=f'hypothesis-n{rpm}-r{ratio}-d{diameter}', purpose='hypothesis_screen')
@@ -74,13 +74,13 @@ for rpm, ratio, diameter in itertools.product((3000, 6000, 8000), (0.8, 1.0, 1.2
     assert result['models']['airflow']['values'] is None
 ```
 
-Le débit, le couple aérodynamique, les températures, l'inertie et les efforts
-de balourd restent sans résultat dans ce lot : leurs entrées ne sont pas
-fournies. La CAO scannée n'est pas chargée par cette campagne cinématique.
-Les questions de [recherche communautaire](COMMUNITY_RESEARCH.md) ciblent
-les informations qui permettront de réduire les hypothèses.
+The flow, aerodynamic torque, temperatures, inertia and imbalance
+forces remain without results in this batch: their inputs are not
+provided. The scanned CAD is not loaded by this kinematic campaign.
+The [community research](COMMUNITY_RESEARCH.md) questions target
+the information that will make it possible to reduce the hypotheses.
 
-La [campagne suivante](HYPOTHESIS_TESTS.md) exécute 160 scénarios d'inertie,
-balourd, transmission, réseau d'air et thermique, plus un témoin centrifuge
-CalculiX à trois maillages. Elle garde ses hypothèses distinctes des données
-du spécimen.
+The [next campaign](HYPOTHESIS_TESTS.md) runs 160 scenarios of inertia,
+imbalance, transmission, air network and thermal, plus a three-mesh CalculiX
+centrifugal witness. It keeps its hypotheses distinct from the specimen
+data.

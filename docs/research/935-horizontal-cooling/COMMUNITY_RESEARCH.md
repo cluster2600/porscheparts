@@ -1,55 +1,55 @@
-# Recherche communautaire — ventilateur horizontal 935
+# Community research — 935 horizontal fan
 
-Repérage du 7 octobre 2026. Les publications ci-dessous sont des pistes et
-des témoignages. Leurs auteurs ne fournissent pas les mesures du spécimen
-scanné. Les photographies restent chez leurs auteurs ; aucun scan privé ni
-coordonnée de connexion n'est ajouté aux messages ou au dépôt public.
+Survey of October 7, 2026. The publications below are leads and
+testimonies. Their authors do not provide the measurements of the scanned
+specimen. The photographs stay with their authors; no private scan or
+connection details are added to the messages or to the public repository.
 
-| Priorité | Discussion | Apport et question ciblée |
+| Priority | Discussion | Contribution and targeted question |
 |---|---|---|
-| 1 | Pelican Parts — [Flat fan assemblies](https://forums.pelicanparts.com/porsche-911-used-parts-sale-wanted/905416-flat-fan-assemblies.html), mars 2016 | Déclaration directe du constructeur d'une réplique : carters aluminium, rotor usiné, circuit d'huile et banc de rodage. Demander une cote identifiable et une vue interne ; l'interchangeabilité annoncée ne prouve pas celle de nos scans. |
-| 2 | Rennlist — [935 Users, Flat Fan](https://rennlist.com/forums/911-turbo-930-forum/94486-935-users-flat-fan.html), octobre 2003 | Retour d'utilisation sur les courroies, le coupleur souple et les engrenages coniques. Demander le rapport réel et les références des appuis, avec variante moteur. |
-| 3 | DDK — [Horizontal Cooling Fan](https://www.ddk-online.com/phpBB2/viewtopic.php?t=28032), décembre 2009 | Discussion de montages d'origine et de montages artisanaux, avec pistes d'ateliers. Demander qui possède aujourd'hui un ensemble démonté mesurable. La conversion 3,2 l décrite n'est pas automatiquement une unité Porsche d'usine. |
+| 1 | Pelican Parts — [Flat fan assemblies](https://forums.pelicanparts.com/porsche-911-used-parts-sale-wanted/905416-flat-fan-assemblies.html), March 2016 | Direct statement from the builder of a replica: aluminum housings, machined rotor, oil circuit and run-in bench. Ask for an identifiable dimension and an internal view; the announced interchangeability does not prove that of our scans. |
+| 2 | Rennlist — [935 Users, Flat Fan](https://rennlist.com/forums/911-turbo-930-forum/94486-935-users-flat-fan.html), October 2003 | Operating feedback on the belts, the flexible coupling and the bevel gears. Ask for the actual ratio and the bearing references, with the engine variant. |
+| 3 | DDK — [Horizontal Cooling Fan](https://www.ddk-online.com/phpBB2/viewtopic.php?t=28032), December 2009 | Discussion of original installations and home-built installations, with workshop leads. Ask who today owns a disassembled assembly that can be measured. The 3.2 l conversion described is not automatically a factory Porsche unit. |
 
-Le fil technique Pelican [horizontal fan how to?](https://forums.pelicanparts.com/porsche-911-technical-forum/154828-horizontal-fan-how.html)
-renvoie à Gunnar Racing et distingue des montages Corvair. Il est conservé
-comme piste secondaire ; ne pas transférer le chemin de courroie Corvair
-au montage 935. Le [fil Shoptalk de 2024](https://shoptalkforums.com/viewtopic.php?t=153183)
-cite une réplique américaine mais concerne surtout des moteurs VW Type 4 :
-il ne définit pas la transmission intérieure recherchée.
+The Pelican technical thread [horizontal fan how to?](https://forums.pelicanparts.com/porsche-911-technical-forum/154828-horizontal-fan-how.html)
+refers to Gunnar Racing and distinguishes Corvair installations. It is kept
+as a secondary lead; do not transfer the Corvair belt path
+to the 935 installation. The [2024 Shoptalk thread](https://shoptalkforums.com/viewtopic.php?t=153183)
+cites an American replica but mostly concerns VW Type 4 engines:
+it does not define the internal drive being sought.
 
-## Publications et message restant
+## Publications and remaining message
 
-Le 7 octobre 2026, les messages adaptés ci-dessous ont été publiés sur
-[Pelican Parts, message 31](https://forums.pelicanparts.com/porsche-911-used-parts-sale-wanted/905416-flat-fan-assemblies-2.html#post12710379)
-et [Rennlist, message 8](https://rennlist.com/forums/911-turbo-930-forum/94486-935-users-flat-fan.html#post20766154).
-Le texte et sa présence sous le compte autorisé ont été vérifiés dans Chrome ;
-les captures et reçus exacts sont conservés localement hors Git. Aucune réponse
-technique à ces demandes n'est encore attestée. Le message DDK reste préparé :
-l'inscription effectuée par le propriétaire attend l'activation administrative.
-Les anciennes dates des fils ne prouvent pas que leurs auteurs participent encore.
+On October 7, 2026, the adapted messages below were published on
+[Pelican Parts, post 31](https://forums.pelicanparts.com/porsche-911-used-parts-sale-wanted/905416-flat-fan-assemblies-2.html#post12710379)
+and [Rennlist, post 8](https://rennlist.com/forums/911-turbo-930-forum/94486-935-users-flat-fan.html#post20766154).
+The text and its presence under the authorized account were verified in Chrome;
+the exact screenshots and receipts are kept locally outside Git. No technical
+reply to these requests is attested yet. The DDK message remains prepared:
+the registration made by the owner is awaiting administrative activation.
+The old dates of the threads do not prove that their authors still participate.
 
-### Pelican Parts — cote et vue intérieure
+### Pelican Parts — dimension and internal view
 
 > Hi everyone — I'm reverse-engineering a complete Porsche 935 horizontal cooling-fan system from rotor and drive scans, with the original 935 installation as the first target. The assembly and run-in information in this thread is very helpful.
 >
 > Could anyone share two identifiable dimensions, such as fan outside diameter and drive mounting-hole spacing, plus a photo of the opened angle drive? Please include the engine/year and whether the parts are original or a reproduction. A workshop drawing or parts reference would also help us check our assumptions. Thanks!
 
-### Rennlist — rapport et appuis
+### Rennlist — ratio and bearings
 
 > Hi everyone — I'm reconstructing the original Porsche 935 horizontal fan and drive from 3D scans, with the 935 installation as the first target. This thread's running experience and prototype work are very helpful.
 >
 > Does anyone have a documented fan/crank speed ratio for an original unit, bearing references, or a photo of the opened drive showing the bevel gears and flexible coupling? Please include the engine/year and whether the unit is factory or a replacement. A measured example or drawing would help us check our assumptions. Thanks!
 
-### DDK — ensemble mesurable
+### DDK — measurable assembly
 
 > Hi everyone — I'm reverse-engineering a Porsche 935 horizontal fan assembly from private rotor and drive scans. I'm looking for someone with an original or documented replacement unit who could share two simple dimensions and a photo of the drive internals. This older thread mentions several different builds, so the engine/year and origin of the assembly would be particularly helpful. Does anyone here still have access to one, or know which workshop could help? Thanks!
 
-## Exploitation des réponses
+## Using the replies
 
-Relier chaque réponse à une [hypothèse](HYPOTHESES.md). Identifier la pièce,
-la variante, le repère, l'unité et la méthode de mesure avant de réduire une
-plage de calcul. Un souvenir ou une photo sans échelle peut confirmer une
-architecture sans calibrer le scan. Une réplique moderne peut documenter
-un mécanisme candidat sans définir la pièce historique. Les réponses privées,
-coordonnées personnelles, détails des comptes et scans restent hors Git.
+Link each reply to a [hypothesis](HYPOTHESES.md). Identify the part,
+the variant, the datum, the unit and the measurement method before narrowing a
+computation range. A recollection or a photo without scale can confirm an
+architecture without calibrating the scan. A modern replica can document
+a candidate mechanism without defining the historical part. Private replies,
+personal contact details, account details and scans stay outside Git.

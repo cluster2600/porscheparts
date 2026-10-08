@@ -1,74 +1,74 @@
-# Protocole de banc du système horizontal 935
+# Bench protocol for the horizontal 935 system
 
-Ce protocole prépare les essais futurs de la référence et de la variante.
-Il ne donne aucune vitesse autorisée. Le régime maximal, les seuils de vibration,
-les températures, les charges et les conditions de lubrification restent à
-définir par la revue mécanique et les données des composants. Le
-[contrat de mesure](../../../twins/935-horizontal-cooling-system-f0/measurement-contract.json)
-conserve les quinze canaux existants et leurs inconnues.
+This protocol prepares future tests of the reference and of the variant.
+It gives no authorized speed. The maximum speed, vibration thresholds,
+temperatures, loads and lubrication conditions remain to be
+defined by the mechanical review and the component data. The
+[measurement contract](../../../twins/935-horizontal-cooling-system-f0/measurement-contract.json)
+keeps the fifteen existing channels and their unknowns.
 
-## Dossier à figer avant essais
+## Dossier to freeze before testing
 
-Associer un identifiant de spécimen et les empreintes CAO/maillage à la
-nomenclature, aux interfaces, au matériau réel de chaque pièce, au procédé
-d'impression, à l'orientation, aux traitements, à l'usinage et à l'inspection.
-Contrôler les portées, les jeux, les fixations et les retenues d'arbres.
-Consigner l'équilibrage, la configuration du carter et les stations de pression.
-La référence historique et la variante sont deux configurations distinctes.
+Associate a specimen identifier and the CAD/mesh digests with the
+bill of materials, the interfaces, the actual material of each part, the printing
+process, the orientation, the treatments, the machining and the inspection.
+Check the seats, clearances, fasteners and shaft retainers.
+Record the balancing, the housing configuration and the pressure stations.
+The historical reference and the variant are two distinct configurations.
 
-Le banc utilise une motorisation commandée, des mesures indépendantes de vitesse
-à l'entrée et au rotor, une mesure de couple et une enceinte adaptée au rotor.
-Le protocole d'arrêt découle des limites documentées des pièces et du banc.
-L'essai de survitesse éventuel fait l'objet d'un protocole spécifique, après
-la caractérisation initiale. Ce document ne déclenche aucun essai physique.
+The bench uses a controlled drive, independent speed measurements
+at the input and at the rotor, a torque measurement and an enclosure suited to the rotor.
+The shutdown protocol follows from the documented limits of the parts and the bench.
+Any overspeed test is the subject of a specific protocol, after
+the initial characterization. This document triggers no physical test.
 
-## Acquisition et calculs
+## Acquisition and calculations
 
-| Mesures | Implantation et exploitation |
+| Measurements | Placement and processing |
 |---|---|
-| Vitesses entrée/sortie | Capteurs indépendants ; sens positif par axe et vue définis ; rapport signé et glissement mesurés. |
-| Couple entrée et rotor | Chaînes étalonnées ; `P = 2π n τ / 60` pour `n` en rpm ; pertes par différence des puissances après stabilisation. |
-| Débit | Dispositif de mesure de débit étalonné dans le circuit du banc ; conserver débit volumique réel, débit massique, température et pression absolue. |
-| Pressions | Stations et sondes identifiées en amont/aval ; distinguer statique et totale ; conserver le même référentiel que la CFD. |
-| Vibrations | Accéléromètres du support et mesure de phase du rotor ; spectres, ordres et évolution avec le régime. |
-| Températures | Air entrant/sortant, carter, appuis et lubrifiant selon accessibilité ; horodatage commun. |
-| Lubrification | Pression, température et alimentation réellement définies pour le renvoi ; contrôler les pertes et les fuites. |
+| Input/output speeds | Independent sensors; positive direction defined per axis and view; signed ratio and slip measured. |
+| Input and rotor torque | Calibrated chains; `P = 2π n τ / 60` for `n` in rpm; losses from the difference of powers after stabilization. |
+| Flow | Calibrated flow-measurement device in the bench circuit; keep actual volumetric flow, mass flow, temperature and absolute pressure. |
+| Pressures | Identified upstream/downstream stations and probes; distinguish static and total; keep the same reference frame as the CFD. |
+| Vibrations | Mount accelerometers and rotor phase measurement; spectra, orders and evolution with speed. |
+| Temperatures | Inlet/outlet air, housing, bearings and lubricant as accessible; common timestamping. |
+| Lubrication | Pressure, temperature and supply actually defined for the angle drive; check losses and leaks. |
 
-Documenter numéro de capteur, position/repère, étalonnage avant/après,
-fréquence d'échantillonnage, filtrage, synchronisation, unité et incertitude.
-La fréquence d'acquisition des vibrations doit résoudre les ordres étudiés,
-avec filtre antirepliement ; elle dépend des régimes et de la denture identifiés.
-La fréquence de passage des pales vaut `Z |n| / 60`. Le comptage géométrique
-actuel donne neuf régions de pales ; confirmer ce nombre sur le spécimen.
+Document sensor number, position/reference mark, calibration before/after,
+sampling frequency, filtering, synchronization, unit and uncertainty.
+The vibration acquisition frequency must resolve the orders studied,
+with an anti-aliasing filter; it depends on the identified speeds and gear teeth.
+The blade-passing frequency is `Z |n| / 60`. The current geometric
+count gives nine blade regions; confirm this number on the specimen.
 
-Conserver les données brutes et les fenêtres moyennées. Estimer l'incertitude
-de débit, pression, couple et puissance à partir des chaînes de mesure.
-Ne pas confondre les erreurs admissibles des essais avec les seuils de
-convergence des solveurs.
+Keep the raw data and the averaged windows. Estimate the uncertainty
+of flow, pressure, torque and power from the measurement chains.
+Do not confuse the allowable test errors with the solver convergence
+thresholds.
 
-## Séquence
+## Sequence
 
-1. Transmission seule : montée contrôlée dans l'enveloppe autorisée, contrôle
-   du rapport, des sens, des vibrations, de la lubrification et des pertes.
-2. Rotor et carter sur banc : pour chaque régime retenu, faire varier la
-   résistance du circuit ; mesurer débit, pression et couple jusqu'au domaine
-   admissible documenté. Garder une station de mesure commune entre variantes.
-3. Répétabilité : reprendre des points, répéter à température stabilisée et
-   comparer montée/descente. Consigner les dérives et les interventions.
-4. Validation : réserver des points avant tout ajustement du modèle ; comparer
-   prédictions et mesures avec leurs incertitudes et les tolérances préétablies.
-5. Système installé : ajouter les passages et charges du moteur seulement
-   lorsque la variante, les interfaces et le réseau sont identifiés.
+1. Transmission alone: controlled ramp-up within the authorized envelope, check
+   of the ratio, directions, vibrations, lubrication and losses.
+2. Rotor and housing on the bench: for each selected speed, vary the
+   circuit resistance; measure flow, pressure and torque up to the documented
+   allowable domain. Keep a common measurement station across variants.
+3. Repeatability: repeat points, repeat at stabilized temperature and
+   compare ramp-up/ramp-down. Record drifts and interventions.
+4. Validation: reserve points before any model adjustment; compare
+   predictions and measurements with their uncertainties and the pre-established tolerances.
+5. Installed system: add the engine passages and loads only
+   once the variant, the interfaces and the network are identified.
 
-La comparaison vise davantage d'air utile à puissance absorbée comparable,
-en comptant la transmission. Conserver aussi masse, inertie, jeux en rotation,
-températures et vibration. Une hausse du débit libre ne prouve pas une hausse
-du refroidissement installé.
+The comparison aims for more useful air at comparable absorbed power,
+counting the transmission. Also keep mass, inertia, running clearances,
+temperatures and vibration. An increase in free flow does not prove an increase
+in installed cooling.
 
-## Archivage et statut
+## Archiving and status
 
-Chaque série référence la configuration, les fichiers natifs, les versions,
-les capteurs, les conditions et les empreintes SHA-256. Séparer les données
-de calibration des points réservés à la validation. Le statut
-« fonctionnement physiquement validé » nécessite les résultats de ces essais
-et leur revue ; il reste faux dans les livrables numériques actuels.
+Each series references the configuration, the native files, the versions,
+the sensors, the conditions and the SHA-256 digests. Separate the calibration
+data from the points reserved for validation. The status
+"physically validated operation" requires the results of these tests
+and their review; it remains false in the current digital deliverables.

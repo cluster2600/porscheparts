@@ -1,69 +1,69 @@
-# Reconstruction exécutée du 5 au 7 octobre 2026
+# Reconstruction executed October 5–7, 2026
 
-Le coordinateur reconstruit des surfaces réellement acquises et produit des
-zones de pales éditables, des exports PicoGK et une revue indépendante. **Le
-rotor complet et le mécanisme ne sont pas encore reconstruits ou validés.**
-Les anciens proxies restent exclus de cette référence. Le programme 993
-vertical demeure distinct.
+The coordinator reconstructs surfaces that were actually acquired and produces
+editable blade zones, PicoGK exports and an independent review. **The
+full rotor and the mechanism are not yet reconstructed or validated.**
+The former proxies remain excluded from this reference. The vertical 993
+program remains separate.
 
-## État des étapes du plan
+## Status of the plan steps
 
-| Étape | Exécution et limite |
+| Step | Execution and limit |
 |---|---|
-| 0 — Environnement | Accès Kali2, calculs Python, compilation .NET 9/PicoGK et exports FreeCAD vérifiés. Kali1 indisponible lors du contrôle. Aucune installation ou location. |
-| 1 — Géométrie | Deux originaux contrôlés par SHA-256 ; transformations et inverses conservées. Neuf régions de pales détectées sans imposer un comptage. Sections périodiques, neuf plages contiguës, trois résolutions PicoGK et CAO éditable exécutées. Deux zones acquises du moyeu produisent désormais des surfaces analytiques ouvertes FreeCAD/STEP : cylindre intérieur et cône extérieur. Pieds, extrémités, moyeu solide et dos recalé restent à reconstruire. |
-| 2 — Mécanisme | Les 17 interfaces et les chemins d'efforts existants sont réutilisés. Une portion extérieure d'arbre présente 22 lobes périodiques, reconstruits en surface FreeCAD/STEP ouverte. La continuation du 7 octobre ajoute un plan d'inspection local du support et une portion acquise de paroi d'alésage. Les autres pièces, les axes fonctionnels et l'assemblage restent ouverts. Aucun engrenage intérieur supposé. |
-| 3 — Air | Aucun calcul de référence lancé : rotor entier, carter, jeux, repères/sens et conditions du pilote non qualifiés. |
-| 4 — Mécanique | Aucun calcul de référence lancé : solides, liaisons, charges et propriétés correspondant au procédé non qualifiés. |
-| 5 — Optimisation | Attend une référence calculée et les contraintes de montage. |
-| 6 — PhysicsNeMo | Aucun entraînement : absence de jeu de calculs accepté. |
-| 7 — Jumeau | Le graphe fonctionnel existant reste une base ; aucun assemblage complet SimReady livré. Le protocole de banc est rédigé. |
+| 0 — Environment | Kali2 access, Python computations, .NET 9/PicoGK compilation and FreeCAD exports verified. Kali1 unavailable during the check. No installation or rental. |
+| 1 — Geometry | Two originals checked by SHA-256; transformations and inverses kept. Nine blade regions detected without imposing a count. Periodic sections, nine contiguous ranges, three PicoGK resolutions and editable CAD executed. Two acquired zones of the hub now produce open analytic FreeCAD/STEP surfaces: inner cylinder and outer cone. Roots, tips, solid hub and registered back remain to be reconstructed. |
+| 2 — Mechanism | The 17 interfaces and the existing load paths are reused. An outer portion of the shaft shows 22 periodic lobes, reconstructed as an open FreeCAD/STEP surface. The October 7 continuation adds a local inspection plane of the support and an acquired portion of bore wall. The other parts, the functional axes and the assembly remain open. No assumed internal gearing. |
+| 3 — Air | No reference computation launched: full rotor, housing, clearances, frames/directions and pilot conditions not qualified. |
+| 4 — Mechanics | No reference computation launched: solids, connections, loads and properties matching the process not qualified. |
+| 5 — Optimization | Waits for a computed reference and the mounting constraints. |
+| 6 — PhysicsNeMo | No training: no accepted set of computations. |
+| 7 — Twin | The existing functional graph remains a basis; no complete SimReady assembly delivered. The bench protocol is written. |
 
-Les suffixes `0.5mm` et `0.21mm` désignent les précisions d'acquisition
-déclarées par le propriétaire. Ils ne définissent ni les unités OBJ ni les
-tolérances d'usinage. Les valeurs dimensionnelles de cette campagne restent
-en unités source ou explicitement conditionnelles.
+The suffixes `0.5mm` and `0.21mm` denote the acquisition precisions
+declared by the owner. They define neither the OBJ units nor the
+machining tolerances. The dimensional values of this campaign remain
+in source units or explicitly conditional.
 
-## Environnement effectivement utilisé
+## Environment actually used
 
-Kali2 : Linux sur ext4, 12 processeurs logiques, environ 16 Gio de RAM,
+Kali2: Linux on ext4, 12 logical processors, about 16 GiB of RAM,
 Python 3.14.7, NumPy 2.4.6, SciPy 1.17.1, trimesh 5.1.0,
-PyMeshLab 2025.7.post1 et module Gmsh 4.15.2. CalculiX 2.23 répond ; son
-option `-v` retourne 201, qui n'est pas un résultat de calcul mécanique.
-Le .NET 6 de l'hôte ne suffit pas au programme `net9.0`.
+PyMeshLab 2025.7.post1 and Gmsh module 4.15.2. CalculiX 2.23 responds; its
+`-v` option returns 201, which is not a mechanical computation result.
+The host's .NET 6 is not sufficient for the `net9.0` program.
 
-L'image locale déjà installée est figée par son **identifiant d'image** :
+The local image already installed is pinned by its **image identifier**:
 
 ```text
 sha256:fd50c61399fd8b419b8f63b1eaf33dc5bfaeb5e8df5182ff68c3db45dc600c6a
 ```
 
-Elle fournit SDK .NET 9.0.317, PicoGK Core 26.2.0 et FreeCAD 1.0.2.
-Le runtime PicoGK annonce le build `2026-06-05 21:31:47 picogk`.
-Sa bibliothèque native exige
-`LD_LIBRARY_PATH=/opt/picogk-native/lib:/app`. FreeCAD utilise
-`/opt/freecad/usr/bin/python`, `QT_QPA_PLATFORM=offscreen` et
+It provides .NET SDK 9.0.317, PicoGK Core 26.2.0 and FreeCAD 1.0.2.
+The PicoGK runtime reports build `2026-06-05 21:31:47 picogk`.
+Its native library requires
+`LD_LIBRARY_PATH=/opt/picogk-native/lib:/app`. FreeCAD uses
+`/opt/freecad/usr/bin/python`, `QT_QPA_PLATFORM=offscreen` and
 `LD_LIBRARY_PATH=/opt/freecad/usr/lib`.
-Le Python `/opt/geometry-qa/bin/python` contient USD 25.11 ; cela ne qualifie
-pas un assemblage physique ou une installation Omniverse complète.
+The Python `/opt/geometry-qa/bin/python` contains USD 25.11; this does not qualify
+a physical assembly or a complete Omniverse installation.
 
-L'autre image de calcul déjà présente contient OpenFOAM 13 ; son identifiant
-local est `sha256:49979f46f421459dae4bf21aaa898e2253b07301c3e5b2cabaa6eaf06f54d696`.
-Après chargement de `/opt/openfoam13/etc/bashrc`, `foamRun -help` fonctionne.
-Ce contrôle CLI n'est pas un calcul accepté. Cette distribution utilise
-`momentumTransport`, avec `simulationType RAS` et `model kOmegaSST` pour le
-modèle choisi. [Documentation OpenFOAM 13](https://doc.cfd.direct/openfoam/user-guide-v13/turbulence).
+The other computation image already present contains OpenFOAM 13; its local
+identifier is `sha256:49979f46f421459dae4bf21aaa898e2253b07301c3e5b2cabaa6eaf06f54d696`.
+After loading `/opt/openfoam13/etc/bashrc`, `foamRun -help` works.
+This CLI check is not an accepted computation. This distribution uses
+`momentumTransport`, with `simulationType RAS` and `model kOmegaSST` for the
+chosen model. [OpenFOAM 13 documentation](https://doc.cfd.direct/openfoam/user-guide-v13/turbulence).
 
-Le préflight distingue présence d'un paquet, import fonctionnel, chemin de
-commande et véritable exécution. OpenMDAO et PhysicsNeMo ne sont pas installés
-dans les environnements Python examinés. Aucun ancien verrou, recette figée
-ou fichier de preuve n'est modifié pour cette campagne.
+The preflight distinguishes the presence of a package, a working import, a
+command path and actual execution. OpenMDAO and PhysicsNeMo are not installed
+in the Python environments examined. No earlier lock, pinned recipe
+or evidence file is modified for this campaign.
 
-## Commandes reproductibles
+## Reproducible commands
 
-Le [cas modèle](../../../twins/935-horizontal-cooling-system-f0/reconstruction-case.template.json)
-contient des champs vides ; les coordonnées, fenêtres de sélection et chemins
-réels sont renseignés dans une copie privée, après inspection du scan.
+The [template case](../../../twins/935-horizontal-cooling-system-f0/reconstruction-case.template.json)
+contains empty fields; the coordinates, selection windows and actual paths
+are filled in a private copy, after inspection of the scan.
 
 ```sh
 SOURCE=twins/935-horizontal-cooling-system-f0/source
@@ -71,21 +71,21 @@ python3 "$SOURCE/run_reconstruction.py" PRIVATE_CASE.json preflight work/NEW-pre
 python3 "$SOURCE/run_reconstruction.py" PRIVATE_CASE.json surfaces work/NEW-surfaces
 ```
 
-`surfaces` réutilise les lecteurs et préparateurs du dépôt : retrait des seules
-faces exactement nulles, pose d'inspection PCA réversible, puis ajustement de
-cylindres observés. La PCA ne fournit pas les axes mécaniques. Le reçu garde
-chaque face sélectionnée, l'axe ajusté et l'écart entre les deux axes candidats.
-Tous les contours de bord et fragments restent disponibles.
+`surfaces` reuses the repository's readers and preparers: removal of only the
+faces that are exactly null, reversible PCA inspection pose, then fitting of
+observed cylinders. PCA does not provide the mechanical axes. The receipt keeps
+each selected face, the fitted axis and the deviation between the two candidate axes.
+All boundary contours and fragments remain available.
 
-Les coupes radiales sont ordonnées puis ajustées par spline périodique SciPy.
-Une lacune courte peut être interpolée dans la limite explicitement fournie
-et chaque lien est enregistré. Une coupe ouverte, branchée ou insuffisante
-est rejetée. **Une coupe rejetée sépare les plages de loft.** Cette règle a
-retiré deux interpolations trop longues détectées par la carte d'écarts.
-Les bouchons des plages sont des limites artificielles, pas des pieds ou
-extrémités mesurés. Les courbes et ces étiquettes restent dans `sections.json`.
+The radial cuts are ordered, then fitted with a SciPy periodic spline.
+A short gap can be interpolated within the explicitly provided limit,
+and each link is recorded. An open, branched or insufficient cut
+is rejected. **A rejected cut splits the loft ranges.** This rule
+removed two overly long interpolations detected by the deviation map.
+The range caps are artificial limits, not measured roots or
+tips. The curves and these labels remain in `sections.json`.
 
-Compiler le programme C# dans l'image locale, avec des sorties privées :
+Compile the C# program in the local image, with private outputs:
 
 ```sh
 IMAGE=sha256:fd50c61399fd8b419b8f63b1eaf33dc5bfaeb5e8df5182ff68c3db45dc600c6a
@@ -96,10 +96,10 @@ docker run --rm --pull=never --user "$(id -u):$(id -g)" \
   -p:BaseIntermediateOutputPath=/data/PRIVATE-obj/ -o /data/PRIVATE-bin
 ```
 
-Le projet compile uniquement `Program.cs` ; les anciens dossiers `obj` ne
-peuvent pas introduire des attributs d'assemblage en double.
-Renseigner ensuite les empreintes des sections et du DLL, la racine privée,
-l'identifiant d'image et le facteur **hypothétique** mm/unité source.
+The project compiles only `Program.cs`; old `obj` directories
+cannot introduce duplicate assembly attributes.
+Then fill in the digests of the sections and of the DLL, the private root,
+the image identifier and the **hypothetical** mm/source-unit factor.
 
 ```sh
 python3 "$SOURCE/run_reconstruction.py" PRIVATE-080.json picogk work/NEW-080
@@ -111,306 +111,306 @@ python3 -m unittest discover -s tests -p test_935_scan_reconstruction.py -v
 make check
 ```
 
-Les trois cas PicoGK doivent partager les mêmes sections et la même échelle
-conditionnelle ; leurs résolutions sont divisées par deux. Le cas de revue
-référence les trois dossiers `artifacts` et les SHA-256 de leurs reçus.
-L'étape `cad` crée des lofts BRep réglés à partir des contours échantillonnés,
-dans FreeCAD natif et STEP ; elle rouvre les fichiers et contrôle le volume.
-Elle ne transforme pas les voxels en interfaces usinées analytiques.
+The three PicoGK cases must share the same sections and the same conditional
+scale; their resolutions are divided by two. The review case
+references the three `artifacts` directories and the SHA-256 of their receipts.
+The `cad` step creates ruled BRep lofts from the sampled contours,
+in native FreeCAD and STEP; it reopens the files and checks the volume.
+It does not turn voxels into analytic machined interfaces.
 
-### Surfaces analytiques observées du moyeu
+### Observed analytic surfaces of the hub
 
-L'étape `hub` reprend les faces des ajustements candidats existants. Une
-fenêtre axiale et une limite sur la composante axiale des normales, inspectées
-et conservées dans le cas privé, isolent chaque plage des transitions et
-fragments. Aucune face du scan original n'est supprimée. Les faces sélectionnées
-et exclues, les deux modèles et leurs paramètres sont enregistrés.
+The `hub` step takes up the faces of the existing candidate fits. An
+axial window and a limit on the axial component of the normals, inspected
+and kept in the private case, isolate each range from the transitions and
+fragments. No face of the original scan is deleted. The selected
+and excluded faces, the two models and their parameters are recorded.
 
 ```sh
 python3 "$SOURCE/run_reconstruction.py" PRIVATE-HUB.json hub work/NEW-hub
 python3 "$SOURCE/run_reconstruction.py" PRIVATE-HUB-CAD.json cad-hub work/NEW-hub-cad
 ```
 
-Le cas `hub` référence `sections.json`, son empreinte et celle du reçu de
-surfaces ; il renseigne `hub_surface_selections`, `hub_normal_weight` et
-`hub_robust_scale_source_units`. Le cas `cad-hub` référence ensuite le nouveau
-`hub-surfaces.json` et son empreinte, avec la même image FreeCAD qualifiée et
-une échelle explicitement conditionnelle.
+The `hub` case references `sections.json`, its digest and that of the surfaces
+receipt; it fills in `hub_surface_selections`, `hub_normal_weight` and
+`hub_robust_scale_source_units`. The `cad-hub` case then references the new
+`hub-surfaces.json` and its digest, with the same qualified FreeCAD image and
+an explicitly conditional scale.
 
-Un secteur angulaire de 10° sur quatre est réservé dans le repère initial
-commun aux deux ajustements. SciPy ajuste un cylindre puis un cône avec
-distances et normales, sur les autres secteurs. Le cône est retenu uniquement
-si RMS **et** percentile 95 s'améliorent sur les secteurs réservés. La distance
-est normale à la surface analytique infinie ; elle exclut les bords de coupe.
-Ce partage sert à la sélection exploratoire de modèles dans le même scan.
-Il ne fournit ni une mesure indépendante ni une validation dimensionnelle.
+One 10° angular sector out of four is held out in the initial frame
+common to both fits. SciPy fits a cylinder, then a cone, with
+distances and normals, on the other sectors. The cone is kept only
+if RMS **and** the 95th percentile improve on the held-out sectors. The distance
+is normal to the infinite analytic surface; it excludes the cut edges.
+This split serves exploratory model selection within the same scan.
+It provides neither an independent measurement nor a dimensional validation.
 
-Sur les deux plages inspectées, le cylindre intérieur est conservé et le cône
-extérieur réduit le RMS d'environ **34 %** et le percentile 95 d'environ
-**29 %** par rapport au cylindre. Un ajustement conique global incluant les
-transitions n'améliorait pas les deux critères ; il reste conservé comme
-diagnostic rejeté. Les axes candidats demeurent distincts, sans coaxialité
-imposée ni identité de portée fonctionnelle déclarée.
+On the two inspected ranges, the inner cylinder is kept, and the outer
+cone reduces RMS by about **34%** and the 95th percentile by about
+**29%** relative to the cylinder. A global conical fit including the
+transitions did not improve both criteria; it is kept as a
+rejected diagnostic. The candidate axes remain distinct, with no coaxiality
+imposed and no functional seat identity declared.
 
-FreeCAD produit deux faces BRep analytiques latérales ouvertes, avec les
-interpolations angulaires explicitement étiquetées. Aucun bouchon ni solide
-complet n'est exporté. Le STEP relu conserve leur aire ; les fichiers natifs
-se rouvrent. Une tessellation du **STEP effectivement exporté**, superposée au
-scan dans quatre vues privées, contrôle le transfert des repères. Les bornes
-des surfaces sont des limites d'acquisition, pas des faces usinées mesurées.
-Les deux composantes topologiques du rotor sont également inventoriées :
-elles ne définissent pas deux pièces, et la petite composante ne correspond
-pas au dos entier. Aucune registration arbitraire du dos n'est appliquée.
+FreeCAD produces two open lateral analytic BRep faces, with the
+angular interpolations explicitly labeled. No cap and no complete solid
+is exported. The re-read STEP preserves their area; the native files
+reopen. A tessellation of the **STEP actually exported**, overlaid on the
+scan in four private views, checks the transfer of frames. The bounds
+of the surfaces are acquisition limits, not measured machined faces.
+The two topological components of the rotor are also inventoried:
+they do not define two parts, and the small component does not correspond
+to the whole back. No arbitrary registration of the back is applied.
 
-Le coordinateur refuse un dossier existant. Chaque étape publie son reçu
-avant de continuer. En cas d'échec, les sorties partielles et `failure.json`
-sont conservés. Pour reprendre, réutiliser les entrées vérifiées et choisir un
-nouveau dossier ; aucune reprise ne remplace une tentative précédente.
-Les étapes CFD, FEA, optimisation et entraînement ne sont pas simulées par
-des reçus vides : leur demande est rejetée tant qu'elles ne sont pas implémentées.
+The coordinator refuses an existing directory. Each step publishes its receipt
+before continuing. On failure, the partial outputs and `failure.json`
+are kept. To resume, reuse the verified inputs and choose a
+new directory; no resumption replaces a previous attempt.
+The CFD, FEA, optimization and training steps are not simulated by
+empty receipts: a request for them is rejected as long as they are not implemented.
 
-## Premier jalon géométrique obtenu, avec réserves
+## First geometric milestone reached, with reservations
 
-Le dossier privé contient quatre vues superposées scan/lofts, les sections des
-neuf pales, les coupes cylindriques du moyeu, les écarts bidirectionnels et la
-localisation de tous les bords non résolus. Il conserve également les coupes
-rejetées et les éventuelles interpolations. Les fichiers source sont inchangés.
+The private directory contains four overlaid scan/loft views, the sections of the
+nine blades, the cylindrical cuts of the hub, the bidirectional deviations and the
+location of all unresolved edges. It also keeps the rejected cuts
+and any interpolations. The source files are unchanged.
 
-La revue indépendante utilise 18 000 points tirés selon l'aire, comparés aux
-**triangles**, dans les deux directions, avec graines et points sauvegardés.
-Elle exclut une marge autour des bouchons artificiels. Des écarts élevés
-subsistent ; le percentile 95 seul ne clôt donc pas la fidélité géométrique.
-Les distances non calibrées ne sont pas comparées à une tolérance en mm.
+The independent review uses 18,000 points drawn by area, compared against the
+**triangles**, in both directions, with seeds and points saved.
+It excludes a margin around the artificial caps. High deviations
+remain; the 95th percentile alone therefore does not settle geometric fidelity.
+The uncalibrated distances are not compared to a tolerance in mm.
 
-Les neuf plages fermées présentent zéro face auto-intersectée, zéro face
-incidente à une arête non-manifold et zéro sommet non-manifold dans l'audit
-MeshLab. Pour la discrétisation de **ces seules plages**, les deux résolutions
-finales donnent **0,1204 %** de variation du volume et **0,1412 %** pour la
-plus grande variation des inerties principales. L'inertie est transportée à
-l'origine du repère candidat, pas laissée au centre de masse.
-Ces résultats ne donnent ni la masse du rotor entier ni sa résistance.
+The nine closed ranges show zero self-intersecting faces, zero faces
+incident to a non-manifold edge and zero non-manifold vertices in the
+MeshLab audit. For the discretization of **these ranges only**, the two final
+resolutions give **0.1204%** volume variation and **0.1412%** for the
+largest variation of the principal inertias. The inertia is transported to
+the origin of the candidate frame, not left at the center of mass.
+These results give neither the mass of the full rotor nor its strength.
 
-Les tentatives rejetées sont conservées : fermeture Poisson et proxy visuel
-historiques ; lofts traversant des coupes manquantes ; seconde interpolation
-B-spline FreeCAD donnant un BRep invalide. La version retenue utilise les
-contours échantillonnés sans seconde interpolation. Aucun ancien reçu n'est
-réécrit pour présenter ces tentatives comme acceptées.
+The rejected attempts are kept: historical Poisson closure and visual
+proxy; lofts crossing missing cuts; second FreeCAD B-spline
+interpolation giving an invalid BRep. The retained version uses the
+sampled contours without a second interpolation. No earlier receipt is
+rewritten to present these attempts as accepted.
 
-## Continuation du mécanisme vers la fabrication, le 6 octobre
+## Mechanism continuation toward manufacturing, October 6
 
-L'inspection multivue du Fan Drive conserve les surfaces acquises et la pose
-réversible. Le grand anneau ouvert visible dans la
-[vue du fournisseur](https://www.wolfeclassics.com/shop/p/porsche-935-fan-drive-3d-scan)
-appartient au support extérieur. Son identification provisoire comme poulie
-est rejetée : elle ne définit ni diamètre primitif ni rapport d'entraînement.
-Les ajustements globaux du tube nervuré et de cet anneau restent des essais
-rejetés, avec leurs résidus, sélections et programmes dans l'archive privée.
+The multi-view inspection of the Fan Drive keeps the acquired surfaces and the
+reversible pose. The large open ring visible in the
+[supplier's view](https://www.wolfeclassics.com/shop/p/porsche-935-fan-drive-3d-scan)
+belongs to the outer support. Its provisional identification as a pulley
+is rejected: it defines neither a pitch diameter nor a drive ratio.
+The global fits of the ribbed tube and of this ring remain rejected
+trials, with their residuals, selections and programs in the private archive.
 
-Une zone extérieure de l'arbre présente **22 lobes répétés**, et non une
-surface cylindrique lisse. Le comptage résulte d'une comparaison des périodes
-6 à 40 dans trois bandes axiales distinctes ; les trois bandes retiennent 22.
-Ce nombre ne définit pas la denture du renvoi intérieur. L'enveloppe cylindrique
-sert uniquement à proposer le repère local. Elle n'est pas une portée usinée
-acceptée. La norme, le profil conjugué, les ajustements et la cote réelle des
-cannelures restent inconnus.
+An outer zone of the shaft shows **22 repeated lobes**, not a smooth
+cylindrical surface. The count results from a comparison of periods
+6 to 40 in three distinct axial bands; all three bands retain 22.
+This number does not define the gear teeth of the internal angle drive. The cylindrical
+envelope serves only to propose the local frame. It is not an accepted
+machined seat. The standard, the mating profile, the fits and the actual dimension
+of the splines remain unknown.
 
-Le calcul final examine toutes les faces du scan préparé ; 11 341 faces
-satisfont la sélection inspectée. Le profil conserve les coefficients des
-harmoniques mesurées dans chaque bande, les faces d'apprentissage et de test,
-ainsi que les intervalles angulaires sans échantillons. Les plus grandes
-lacunes de ces bandes atteignent environ 15–20°. Les surfaces correspondantes
-sont des interpolations périodiques explicites. Les secteurs réservés sont
-des lobes entiers, un sur quatre, dans le même scan. L'erreur radiale RMS est
-0,107–0,122 unité source ; ce contrôle interne n'est pas une métrologie
-indépendante ni une tolérance de fabrication.
+The final computation examines all faces of the prepared scan; 11,341 faces
+satisfy the inspected selection. The profile keeps the coefficients of the
+measured harmonics in each band, the training and test faces,
+as well as the angular intervals without samples. The largest
+gaps in these bands reach about 15–20°. The corresponding surfaces
+are explicit periodic interpolations. The held-out sectors are
+whole lobes, one out of four, in the same scan. The RMS radial error is
+0.107–0.122 source unit; this internal check is neither independent
+metrology nor a manufacturing tolerance.
 
 ```sh
 python3 "$SOURCE/run_reconstruction.py" PRIVATE-DRIVE.json drive work/NEW-drive
 python3 "$SOURCE/run_reconstruction.py" PRIVATE-DRIVE-CAD.json cad-drive work/NEW-drive-cad
 ```
 
-Le cas privé contient l'empreinte du scan préparé et de son reçu, le repère
-rigide inspecté, les fenêtres, les bandes, les périodes candidates et
-l'échantillonnage. Le premier run partiel reste archivé ; le run final utilise
-toutes les faces et trois bandes entièrement présentes dans la zone retenue.
-Le deuxième cas référence l'empreinte du profil et la même image FreeCAD
-qualifiée. Il exporte un `Part::Loft` éditable et un STEP, **sans bouchons ni
-solide complet**. Les fichiers sont rouverts ; validité, ouverture et surface
-sont contrôlées. Le facteur 1 mm/unité source demeure une hypothèse explicite.
+The private case contains the digest of the prepared scan and of its receipt, the
+inspected rigid frame, the windows, the bands, the candidate periods and the
+sampling. The first partial run remains archived; the final run uses
+all faces and three bands fully present in the retained zone.
+The second case references the digest of the profile and the same qualified
+FreeCAD image. It exports an editable `Part::Loft` and a STEP, **without caps or
+complete solid**. The files are reopened; validity, openness and area
+are checked. The 1 mm/source-unit factor remains an explicit assumption.
 
-La revue lit réellement le STEP, le tesselle et le superpose au scan dans
-quatre vues. Elle réutilise le calcul de distance point–triangle existant :
-3 000 points indépendants par sens, uniformes en aire, avec une marge aux
-extrémités du loft. Scan vers STEP : RMS 0,102, P95 0,189 et maximum 0,452
-unité source. STEP vers scan, en conservant les régions interpolées : RMS
-0,288, P95 0,398 et maximum 2,138. **Les grands écarts inverses localisent la
-couverture manquante ; ils ne sont pas supprimés pour accepter une interface.**
-Aucune masse ou résistance d'arbre complet n'est déduite de cette surface.
+The review actually reads the STEP, tessellates it and overlays it on the scan in
+four views. It reuses the existing point–triangle distance computation:
+3,000 independent points per direction, uniform in area, with a margin at the
+ends of the loft. Scan to STEP: RMS 0.102, P95 0.189 and maximum 0.452
+source unit. STEP to scan, keeping the interpolated regions: RMS
+0.288, P95 0.398 and maximum 2.138. **The large reverse deviations locate the
+missing coverage; they are not removed to accept an interface.**
+No mass or strength of a complete shaft is deduced from this surface.
 
-Le [contrôle des 28 pages de la fiche FIA 3076](DIMENSIONS_AND_DETAILS.md#ce-que-la-fia-fournit-effectivement)
-ajoute une cote documentaire explicitement exclue de la calibration 935 :
-ventilateur vertical de 245 mm à 11 pales. Les huit extensions examinées ne
-résolvent pas les interfaces internes du spécimen horizontal.
+The [check of the 28 pages of FIA record 3076](DIMENSIONS_AND_DETAILS.en.md#what-the-fia-actually-provides)
+adds a documentary dimension explicitly excluded from the 935 calibration:
+a 245 mm vertical fan with 11 blades. The eight extensions examined do not
+resolve the internal interfaces of the horizontal specimen.
 
-### Ce qui manque réellement pour un système fabricable
+### What is actually missing for a manufacturable system
 
-Le contrat des 17 interfaces demeure incomplet. Les acquisitions à obtenir
-sont regroupées par ce qu'elles débloquent, sans inventer de coordonnées :
+The contract of the 17 interfaces remains incomplete. The acquisitions to obtain
+are grouped by what they unlock, without inventing coordinates:
 
-| Acquisition indépendante | Définition débloquée |
+| Independent acquisition | Definition unlocked |
 |---|---|
-| Deux cotes identifiables, non parallèles, par scan, avec unité, datum et incertitude ; unité d'export documentée | Échelle physique, contrôle de déformation et plans dimensionnés. Les suffixes de précision ne suffisent pas. |
-| Rotor/moyeu/arbre : portée, face, profil conjugué des cannelures, retenue et empilage | Montage du rotor et transmission du couple ; la répétition de 22 lobes observée ne spécifie pas le couple de pièces. |
-| Renvoi démonté ou plans de la même variante : dentures, références de roulements/joints, portées, précharge/jeu, alimentation et retour d'huile | Arbres internes, engrenages, appuis, usinage du carter, lubrification et calculs de transmission. L'extérieur scanné n'observe pas ces informations. |
-| Faces, trous et repères du support et de son récepteur ; carter/guide d'air et jeux, version exacte du moteur pour l'intégration | Assemblage, fixation, interférences, passage d'air et conditions installées. Les deux OBJ disponibles ne couvrent pas tout cet ensemble. |
-| Régimes/charges et données du procédé d'impression retenu pour chaque pièce | Résistance, fatigue, traitements, surépaisseurs, inspection et équilibrage. AlSi10Mg, WE43 et Ti64 restent candidats. |
+| Two identifiable, non-parallel dimensions per scan, with unit, datum and uncertainty; documented export unit | Physical scale, distortion check and dimensioned drawings. The precision suffixes are not sufficient. |
+| Rotor/hub/shaft: seat, face, mating spline profile, retention and stack-up | Rotor mounting and torque transmission; the observed repetition of 22 lobes does not specify the mating pair of parts. |
+| Disassembled angle drive or drawings of the same variant: gear teeth, bearing/seal references, seats, preload/clearance, oil supply and return | Internal shafts, gears, bearings, housing machining, lubrication and transmission computations. The scanned exterior does not observe this information. |
+| Faces, holes and datums of the support and of its receiver; housing/air guide and clearances, exact engine version for integration | Assembly, fastening, interferences, air passage and installed conditions. The two available OBJ files do not cover this whole set. |
+| Speeds/loads and data of the printing process chosen for each part | Strength, fatigue, treatments, machining allowances, inspection and balancing. AlSi10Mg, WE43 and Ti64 remain candidates. |
 
-Le programme peut exploiter ces mesures dans les cas privés et les contrats
-existants. À ce stade, il ne produit pas de plans de fabrication cotés ni
-une nomenclature d'éléments internes arbitraires. La revue mécanique et les
-calculs documentés précèdent la libération des pièces chargées, puis les
-mesures du [protocole de banc](BENCH_PROTOCOL.md) établissent le fonctionnement
-réel. La fabrication complète et la validation du système restent ouvertes.
+The program can use these measurements in the private cases and the existing
+contracts. At this stage, it does not produce dimensioned manufacturing drawings
+or a bill of materials of arbitrary internal elements. The mechanical review and the
+documented computations precede the release of loaded parts, then the
+measurements of the [bench protocol](BENCH_PROTOCOL.md) establish actual
+operation. Complete manufacturing and validation of the system remain open.
 
-## Suite, dépendances et critères d'acceptation
+## Next steps, dependencies and acceptance criteria
 
-Le [contrat indépendant des 17 interfaces](../../../twins/935-horizontal-cooling-system-f0/interface-contract.json)
-et la [matrice des entrées existante](../../../twins/935-horizontal-cooling-system/data/input-matrix.json)
-restent les références. La recherche consolidée distingue variante historique,
-kit commercial, données génériques et données du spécimen. Un scan extérieur
-ne fournit pas les dentures, références de roulements, précharges ou joints.
+The [independent contract of the 17 interfaces](../../../twins/935-horizontal-cooling-system-f0/interface-contract.json)
+and the [existing input matrix](../../../twins/935-horizontal-cooling-system/data/input-matrix.json)
+remain the references. The consolidated research distinguishes historical variant,
+commercial kit, generic data and specimen data. An exterior scan
+does not provide gear teeth, bearing references, preloads or seals.
 
-1. Terminer les régions du rotor et segmenter l'entraînement ; classer les
-   acquisitions du dos avant une registration rigide justifiée. Obtenir deux
-   cotes indépendantes par scan pour calibrer, avec incertitude et provenance.
-   Reconstruire les portées, axes et faces usinées en analytique/BRep ; fermer
-   les surfaces manquantes seulement avec une preuve ou une interpolation
-   explicitement localisée. Convergence volume/inertie < 1 % ne remplace pas
-   l'écart au scan ni la mesure des interfaces.
-2. Établir axes, sens vus, rapports signés, retenues, jeux et chemins d'efforts.
-   Identifier les composants internes avant calcul détaillé ; contrôler
-   interférences sur un tour complet et aux températures définies.
-3. Préparer un pilote OpenFOAM MRF, k–ω SST, régime/air/stations de pression
-   explicités ; aucune valeur de débit imposée n'est un débit prédit. Trois
-   maillages, qualité sans erreur bloquante, déséquilibre massique < 0,1 %,
-   variation finale des moyennes < 1 %, différence des deux maillages fins
-   < 3 %. Employer ensuite un calcul transitoire pour les interactions
-   rotor/carter. Le réseau moteur n'est ajouté qu'avec ses passages/résistances.
-4. Gmsh/CalculiX : centrifuge, pression issue de CFD, transmission, contacts
-   et thermique disponible. Vérifier équilibre et calculs analytiques,
-   convergence contraintes non singulières/déplacements < 5 % et fréquences
-   précontraintes < 2 %. AlSi10Mg, WE43 et Ti64 restent les trois premières
-   cartes ; la carte WE43 générique existante est un substitut corroyé,
-   insuffisant pour une limite LPBF. Fatigue ou propriété manquante : conclusion
-   correspondante impossible, sans valeur inventée.
-5. SciPy optimise avec les solveurs de référence ; OpenMDAO coordonne une fois
-   ces appels disponibles. Aucune dérivée automatique à travers PicoGK.
-   Conserver les interfaces et comparer air utile à puissance comparable,
-   masse et inertie dans les mêmes conditions.
-6. PhysicsNeMo 2.2.1, [FullyConnected](https://raw.githubusercontent.com/NVIDIA/physicsnemo/v2.2.1/physicsnemo/models/mlp/fully_connected.py) : pression et couple depuis paramètres
-   et conditions. Séparer les géométries entières entre entraînement/test,
-   déclarer la normalisation et obtenir erreur normalisée < 5 % sur chacun
-   des deux résultats. Interdire l'extrapolation ; recalculer les candidats
-   retenus avec les solveurs. Un échec du modèle ne bloque pas les solveurs.
-7. Composer les pièces et liaisons en USD SI avec conversions contrôlées,
-   résultats et empreintes. Livrer nomenclature, plans et comparaison seulement
-   quand leurs entrées sont établies. Le [protocole de banc](BENCH_PROTOCOL.md)
-   couvre régime, couple, débit, pression, vibrations, température et huile.
+1. Finish the rotor regions and segment the drive; classify the
+   acquisitions of the back before a justified rigid registration. Obtain two
+   independent dimensions per scan to calibrate, with uncertainty and provenance.
+   Reconstruct the seats, axes and machined faces as analytic/BRep; close
+   missing surfaces only with evidence or an explicitly localized
+   interpolation. Volume/inertia convergence < 1% does not replace
+   the deviation from the scan or the measurement of the interfaces.
+2. Establish axes, directions as viewed, signed ratios, retentions, clearances and load paths.
+   Identify the internal components before detailed computation; check
+   interferences over a full turn and at the defined temperatures.
+3. Prepare an OpenFOAM MRF pilot, k–ω SST, with speed/air/pressure stations
+   stated explicitly; no imposed flow value is a predicted flow. Three
+   meshes, quality without blocking error, mass imbalance < 0.1%,
+   final variation of the averages < 1%, difference between the two finest meshes
+   < 3%. Then use a transient computation for the rotor/housing
+   interactions. The engine network is added only with its passages/resistances.
+4. Gmsh/CalculiX: centrifugal, pressure from CFD, transmission, contacts
+   and available thermal. Verify equilibrium and analytical computations,
+   convergence of non-singular stresses/displacements < 5% and prestressed
+   frequencies < 2%. AlSi10Mg, WE43 and Ti64 remain the first three
+   cards; the existing generic WE43 card is a wrought surrogate,
+   insufficient for an LPBF limit. Fatigue or property missing: the corresponding
+   conclusion is impossible, with no invented value.
+5. SciPy optimizes with the reference solvers; OpenMDAO coordinates once
+   these calls are available. No automatic differentiation through PicoGK.
+   Keep the interfaces and compare useful air at comparable power,
+   mass and inertia under the same conditions.
+6. PhysicsNeMo 2.2.1, [FullyConnected](https://raw.githubusercontent.com/NVIDIA/physicsnemo/v2.2.1/physicsnemo/models/mlp/fully_connected.py): pressure and torque from parameters
+   and conditions. Separate whole geometries between training/test,
+   declare the normalization and obtain a normalized error < 5% on each
+   of the two outputs. Prohibit extrapolation; recompute the retained
+   candidates with the solvers. A failure of the model does not block the solvers.
+7. Compose the parts and connections in SI USD with checked conversions,
+   results and digests. Deliver bill of materials, drawings and comparison only
+   when their inputs are established. The [bench protocol](BENCH_PROTOCOL.md)
+   covers speed, torque, flow, pressure, vibration, temperature and oil.
 
-Les seuils ci-dessus qualifient les calculs. Les vitesses admissibles, limites
-de résistance, fatigue et équilibrage viennent des données des pièces et de
-la revue mécanique. **Aucune validation physique ni autorisation de fabrication.**
+The thresholds above qualify the computations. Allowable speeds, strength
+limits, fatigue and balancing come from the part data and from
+the mechanical review. **No physical validation and no manufacturing authorization.**
 
-Les scans, leurs dérivés et les paramètres permettant de les reconstruire
-restent privés sous `work/`. Git reçoit uniquement les programmes, tests,
-documentation et synthèses compatibles avec les droits disponibles. Le rapport
-privé conserve versions, empreintes, transformations, états et limitations.
+The scans, their derivatives and the parameters that allow their reconstruction
+remain private under `work/`. Git receives only programs, tests,
+documentation and summaries compatible with the available rights. The private
+report keeps versions, digests, transformations, states and limitations.
 
-## Vérification logicielle et sauvegarde
+## Software verification and backup
 
-Les huit tests ciblés passent avec les dépendances scientifiques de Kali2 :
-axe synthétique incliné, lacunes locales, spline périodique, séparation des
-lofts aux coupes absentes, protections des empreintes/sorties, lois d'échelle
-du volume/inertie et conservation des échecs lors d'une reprise. Le nouveau
-test récupère un cylindre et un cône synthétiques inclinés sur des secteurs
-réservés disjoints ; il refuse les échelles de calcul non finies et un partage
-angulaire insuffisant.
-Compilation native C# : zéro erreur, zéro avertissement. CAO FreeCAD et STEP
-rouverts ; trois runs PicoGK et revues indépendantes exécutés.
+The eight targeted tests pass with the scientific dependencies of Kali2:
+synthetic tilted axis, local gaps, periodic spline, splitting of the
+lofts at missing cuts, protections of digests/outputs, scaling laws
+of volume/inertia and preservation of failures on resumption. The new
+test recovers a synthetic tilted cylinder and cone on disjoint held-out
+sectors; it refuses non-finite computation scales and an insufficient angular
+split.
+Native C# compilation: zero errors, zero warnings. FreeCAD CAD and STEP
+reopened; three PicoGK runs and independent reviews executed.
 
-La continuation de l'arbre ajoute le contrôle d'une périodicité synthétique
-à 22 lobes, avec lacune enregistrée et rejet des bandes incompatibles :
-**neuf tests ciblés passent**. Son `make check` sur ext4 découvre **3 555 tests,
-181 ignorés**, puis tous les contrôles complémentaires passent. Les 6 772
-fichiers suivis sont comparés par empreinte avec la copie de contrôle.
+The shaft continuation adds a check of a synthetic 22-lobe periodicity,
+with a recorded gap and rejection of incompatible bands:
+**nine targeted tests pass**. Its `make check` on ext4 discovers **3,555 tests,
+181 skipped**, then all complementary checks pass. The 6,772
+tracked files are compared by digest with the control copy.
 
-`make check` passe sur une copie ext4 des fichiers effectivement suivis par
-Git, avec `PYTHONNOUSERSITE=1` et `umask 022` : suite découverte de 3 554 tests
-lors de la continuation du 6 octobre,
-dont 181 ignorés pour dépendances optionnelles, puis contrôles complémentaires
-du Makefile. Le test ciblé est exécuté séparément avec SciPy/trimesh disponibles.
-Cette séparation évite les bindings OCP personnels incompatibles de l'hôte.
-Le premier contrôle du 6 octobre a détecté un import de trimesh inutile au
-chargement du nouveau test. Cet import est désormais limité à la lecture du
-scan ; le test analytique utilise NumPy/SciPy. L'échec et le log final accepté
-sont conservés séparément. Les paramètres géométriques avant/après ce correctif
-sont identiques octet par octet.
-L'archive de contrôle conserve les fichiers suivis même si leur chemin est
-ignoré par défaut ; les métadonnées AppleDouble de transfert sont retirées de
-cette seule copie de contrôle. Aucun fichier métier n'est modifié pour faire
-passer les contrôles. Le contrôle documentaire trouve zéro lien cassé dans
-804 fichiers Markdown ; `git diff --check` passe.
+`make check` passes on an ext4 copy of the files actually tracked by
+Git, with `PYTHONNOUSERSITE=1` and `umask 022`: a discovered suite of 3,554 tests
+during the October 6 continuation,
+of which 181 skipped for optional dependencies, then the complementary checks
+of the Makefile. The targeted test is run separately with SciPy/trimesh available.
+This separation avoids the host's incompatible personal OCP bindings.
+The first October 6 check detected an unnecessary trimesh import when
+loading the new test. This import is now limited to reading the
+scan; the analytic test uses NumPy/SciPy. The failure and the final accepted log
+are kept separately. The geometric parameters before/after this fix
+are byte-for-byte identical.
+The control archive keeps tracked files even if their path is
+ignored by default; the AppleDouble transfer metadata are removed from
+this control copy only. No domain file is modified to make
+the checks pass. The documentation check finds zero broken links in
+804 Markdown files; `git diff --check` passes.
 
-Les 80 fichiers privés de surfaces, exports et revues sont copiés sur Mac et
-Kali2 avec comparaison de toutes les empreintes. Les deux scans originaux
-gardent leurs SHA-256. Les logs, reçus et tentatives précédentes sont conservés.
-Aucune dépense Vast et aucune validation physique dans cette campagne.
+The 80 private files of surfaces, exports and reviews are copied to the Mac and
+Kali2 with comparison of all digests. The two original scans
+keep their SHA-256. The logs, receipts and previous attempts are kept.
+No Vast spending and no physical validation in this campaign.
 
-Les [archives GitHub privées](https://github.com/cluster2600/porscheparts-935-private)
-conservent les deux originaux, tous les résultats scientifiques et tentatives
-antérieures, paramètres, CAO, maillages et logs. La capture du 5 octobre est
-publiée dans [sa release d'archive](https://github.com/cluster2600/porscheparts-935-private/releases/tag/reconstruction-20261005) ;
-la continuation du moyeu dispose d'une
-[capture séparée](https://github.com/cluster2600/porscheparts-935-private/releases/tag/hub-surfaces-20261006).
-Les manifestes donnent les empreintes par fichier et par archive. Les
-empreintes SHA-256 retournées par GitHub sont comparées aux archives locales
-après publication. Les copies intégrales du dépôt public sont exclues des
-archives de résultats puisqu'elles sont déjà dans Git ; le commit des sources
-et leurs instantanés sont conservés. Ces archives ne constituent pas une
-qualification de fabrication. Le code et les synthèses demeurent dans
-[la PR publique #132](https://github.com/cluster2600/porscheparts/pull/132).
+The [private GitHub archives](https://github.com/cluster2600/porscheparts-935-private)
+keep the two originals, all scientific results and earlier attempts,
+parameters, CAD, meshes and logs. The October 5 capture is
+published in [its archive release](https://github.com/cluster2600/porscheparts-935-private/releases/tag/reconstruction-20261005);
+the hub continuation has a
+[separate capture](https://github.com/cluster2600/porscheparts-935-private/releases/tag/hub-surfaces-20261006).
+The manifests give the digests per file and per archive. The
+SHA-256 digests returned by GitHub are compared to the local archives
+after publication. The full copies of the public repository are excluded from the
+result archives since they are already in Git; the commit of the sources
+and their snapshots are kept. These archives do not constitute a
+manufacturing qualification. The code and summaries remain in
+[public PR #132](https://github.com/cluster2600/porscheparts/pull/132).
 
-## Support : continuation du 7 octobre
+## Support: October 7 continuation
 
-Les nouveaux essais globaux sur l'anneau extérieur sont conservés et rejetés
-comme références : le mélange de deux cylindres conserve un RMS de 5,58
-unités source sur son échantillon réservé ; les sélections elliptique
-extérieure et intérieure conservent respectivement 4,60 et 2,75 unités.
-Ces domaines et définitions de distance diffèrent ; ces chiffres ne sont pas
-une comparaison de précision sur une même pièce. Aucun axe ou diamètre de
-montage n'est accepté à partir de ces essais.
+The new global trials on the outer ring are kept and rejected
+as references: the mixture of two cylinders keeps an RMS of 5.58
+source units on its held-out sample; the outer and inner elliptical
+selections keep 4.60 and 2.75 units respectively.
+These domains and distance definitions differ; these figures are not
+a precision comparison on one and the same part. No mounting axis or
+diameter is accepted from these trials.
 
-Une fenêtre locale de 28 870 faces du support fournit un **plan d'inspection**,
-avec RMS 0,450 et P95 0,863 unité source sur des tuiles spatiales réservées.
-Son rectangle exporté est une limite d'inspection artificielle ; il ne
-reconstitue ni silhouette matérielle, ni trous, ni face de fixation complète.
-La sélection conserve les faces exclues. Les transformations et leurs inverses
-restent liées au reçu original du scan.
+A local window of 28,870 faces of the support provides an **inspection plane**,
+with RMS 0.450 and P95 0.863 source unit on held-out spatial tiles.
+Its exported rectangle is an artificial inspection limit; it
+reconstructs neither a material outline, nor holes, nor a complete mounting face.
+The selection keeps the excluded faces. The transformations and their inverses
+remain tied to the original receipt of the scan.
 
-Ce repère permet de sélectionner **859 faces d'une portion de paroi
-d'alésage**. Sur les secteurs angulaires réservés, le cylindre candidat donne
-RMS 0,118 et P95 0,221 unité source ; le cône ne l'améliore pas. Dans le repère
-ajusté, l'arc couvert par cette sélection mesure 130,20° : les 229,80° restants
-sont exclus du STEP. Cela ne démontre pas leur absence dans le scan complet.
-La faible profondeur acquise et l'arc partiel ne qualifient pas un axe, un
-diamètre nominal ou un ajustement fonctionnel. Les limites axiales restent
-des coupes de sélection, et aucun bouchon n'est ajouté.
+This frame makes it possible to select **859 faces of a portion of bore
+wall**. On the held-out angular sectors, the candidate cylinder gives
+RMS 0.118 and P95 0.221 source unit; the cone does not improve on it. In the fitted
+frame, the arc covered by this selection measures 130.20°: the remaining 229.80°
+are excluded from the STEP. This does not demonstrate their absence in the complete scan.
+The shallow acquired depth and the partial arc do not qualify an axis, a
+nominal diameter or a functional fit. The axial limits remain
+selection cuts, and no cap is added.
 
-Les étapes `support` et `cad-support` réutilisent le coordinateur et l'exporteur
-analytique existants. Le [cas modèle](../../../twins/935-horizontal-cooling-system-f0/reconstruction-case.template.json)
-laisse les sélections privées vides. Après inspection, renseigner la copie
-privée, puis placer le JSON produit et son SHA-256 dans `sections` et
-`sections_sha256` avant l'export natif :
+The `support` and `cad-support` steps reuse the existing coordinator and analytic
+exporter. The [template case](../../../twins/935-horizontal-cooling-system-f0/reconstruction-case.template.json)
+leaves the private selections empty. After inspection, fill in the private
+copy, then place the produced JSON and its SHA-256 in `sections` and
+`sections_sha256` before the native export:
 
 ```sh
 SOURCE=twins/935-horizontal-cooling-system-f0/source
@@ -418,25 +418,25 @@ python3 "$SOURCE/run_reconstruction.py" PRIVATE_SUPPORT_CASE.json support work/N
 python3 "$SOURCE/run_reconstruction.py" PRIVATE_SUPPORT_CAD_CASE.json cad-support work/NEW-support-cad
 ```
 
-FreeCAD et STEP sont rouverts : deux faces ouvertes, aucun solide et aire
-préservée. L'arc BRep est contrôlé à trois points intérieurs calculés dans son
-repère source et par sa formule d'aire indépendante. L'export des deux surfaces
-du moyeu est rejoué avec le même exporteur et conserve ses contrôles.
-Le choix de 1 mm par unité pour l'export reste **conditionnel**, et ne calibre
-pas le scan. Les réserves sont issues de la même acquisition ; elles ne sont
-pas une métrologie indépendante ou une validation de montage.
+FreeCAD and STEP are reopened: two open faces, no solid and area
+preserved. The BRep arc is checked at three interior points computed in its
+source frame and by its independent area formula. The export of the two hub
+surfaces is replayed with the same exporter and keeps its checks.
+The choice of 1 mm per unit for the export remains **conditional**, and does not
+calibrate the scan. The held-out sets come from the same acquisition; they are
+not independent metrology or a mounting validation.
 
-Un essai recentré conserve RMS 0,109 unité source mais fait varier le rayon
-candidat d'environ 1,8 %. Cette sensibilité à la fenêtre renforce le besoin
-de mesures indépendantes avant de définir une portée ou un ajustement.
-La tentative est conservée ; elle ne remplace pas silencieusement l'export.
-Les dix tests scientifiques ciblés passent avec SciPy disponible.
-`make check` passe sur ext4 : 3 556 tests découverts, dont 181 ignorés pour
-dépendances optionnelles, puis les contrôles complémentaires du Makefile.
+A recentered trial keeps RMS 0.109 source unit but shifts the candidate
+radius by about 1.8%. This sensitivity to the window reinforces the need
+for independent measurements before defining a seat or a fit.
+The attempt is kept; it does not silently replace the export.
+The ten targeted scientific tests pass with SciPy available.
+`make check` passes on ext4: 3,556 tests discovered, of which 181 skipped for
+optional dependencies, then the complementary checks of the Makefile.
 
-Les programmes, cas, figures, sorties FreeCAD/STEP, tentatives rejetées et reçus
-sont conservés dans une [archive privée distincte](https://github.com/cluster2600/porscheparts-935-private/releases/tag/support-surfaces-20261007).
-Les originaux restent inchangés, contrôlés par SHA-256. Les prochaines entrées
-nécessaires au montage exact demeurent les cotes indépendantes de calibration,
-les références et interfaces internes du renvoi, puis le carter et les guides
-d'air de la variante 935 retenue. Aucune validation de fabrication n'est accordée.
+The programs, cases, figures, FreeCAD/STEP outputs, rejected attempts and receipts
+are kept in a [separate private archive](https://github.com/cluster2600/porscheparts-935-private/releases/tag/support-surfaces-20261007).
+The originals remain unchanged, checked by SHA-256. The next inputs
+needed for exact mounting remain the independent calibration dimensions,
+the references and internal interfaces of the angle drive, then the housing and air
+guides of the retained 935 variant. No manufacturing validation is granted.

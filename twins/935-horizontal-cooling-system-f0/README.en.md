@@ -1,106 +1,135 @@
 # Horizontal 935 system — reference preparation
 
-Stage on 3 October 2026: two scans prepared through PicoGK, interface requirements
-defined, dimension research continued, then [executable system twin foundation](SYSTEM_TWIN.en.md):
-complete functional registry, OpenUSD graph, six reduced models and measurement
-comparison. Functional reference, improvements and calibrated twin remain to build.
+Campaign of October 5: the
+[reconstruction coordinator](source/run_reconstruction.py) produces the
+measured sections of nine blade regions, PicoGK lofts at three resolutions,
+an editable FreeCAD/STEP CAD and an independent deviation review. The sources,
+transformations and derivatives remain private. The
+[implementation report](../../docs/research/935-horizontal-cooling/IMPLEMENTATION.md)
+gives the commands and the limits; the complete geometry and the reference
+calculations remain to be finished. The proxies described below are historical.
+
+Step of October 3, 2026: two scans prepared and passed through PicoGK, interface
+requirements defined, dimensional research continued, then the
+[executable base of the system twin](SYSTEM_TWIN.en.md): complete register of
+functions, OpenUSD graph, six reduced models and comparison with measurements.
+The functional
+reference, the improvements and the calibrated twin remain to be built.
 
 ## Independent contract before reconstruction
 
-The [contract](interface-contract.json) defines **17 interfaces**: rotor/hub,
-shafts, belts, transmission, bearings, support, engine, housing, guides,
-lubrication, coupling and alternator; load paths and necessary evidence.
-Axes, holes, faces, tolerances, scales and target engine variant are unknown.
-Plausible dimensions cannot replace them. Coupling location must be identified
-on the specimen; the supplier sheet cannot assign it.
+The [contract](interface-contract.json) describes **17 interfaces**: rotor/hub,
+shafts, belts, transmission, bearings, mount, engine, housing, guides,
+lubrication, coupling and alternator. It describes the load paths
+to verify and the evidence required. The axes, holes, faces, tolerances,
+scales and the target engine variant are unknown. No plausible dimension
+replaces them. The location of the coupling on the specimen must be
+identified; the supplier product page is not enough to assign it.
 
-The [documentary dossier](../../docs/research/935-horizontal-cooling/DIMENSIONS_AND_DETAILS.en.md)
-separates base FIA form, Porsche 993 references and 935 reproductions. No commercial
-field calibrates our scans.
+See the [documentary dossier](../../docs/research/935-horizontal-cooling/DIMENSIONS_AND_DETAILS.en.md)
+to distinguish the base FIA form, Porsche 993 references and 935
+reproductions. None of these commercial fields is a calibration of our scans.
 
-## Executed scan processing
+## Scan processing performed
 
-Preparation reuses the [existing programme](../993-engine-cooling-fan-system-f0/source/prepare_private_scan.py):
-rigid PCA transform, retained inverse matrix and vertex order, removal only of
-exactly zero-area triangles. PCA supplies convenient views, not a functional
-axis or rotor/support positioning. Rotor back was neither realigned nor filled.
+The preparation reuses the [existing program](../993-engine-cooling-fan-system-f0/source/prepare_private_scan.py):
+rigid PCA transformation, inverse matrix kept, vertex order
+preserved, removal of only the triangles with exactly zero area. The PCA provides
+convenient views and defines neither a functional axis nor a rotor/mount
+positioning. The back of the rotor was not realigned or filled.
 
-| Result | Rotor | Drive/support |
+| Result | Rotor | Drive/mount |
 |---|---:|---:|
-| Retained vertices | 624492 | 1256836 |
-| Triangles after preparation | 1240439 | 2484656 |
-| Removed zero-area triangles | 26 | 0 |
-| Boundary edges after preparation and PicoGK | 8657 | 29476 |
-| Boundary contours after preparation | 58 | 200 |
+| Vertices kept | 624,492 | 1,256,836 |
+| Triangles after preparation | 1,240,439 | 2,484,656 |
+| Zero-area triangles removed | 26 | 0 |
+| Boundary edges after preparation and after PicoGK | 8,657 | 29,476 |
+| Boundary loops after preparation | 58 | 200 |
 | Surface components | 2 | 1 |
-| Boundary circles passing diagnostic filter | 0 | 0 |
+| Boundary circles passing the diagnostic filter | 0 | 0 |
 
 [inspect_private_interfaces.py](source/inspect_private_interfaces.py) examines
-boundary contours, fits plane/circle and requires angular coverage. Thresholds
-are diagnostic filters, not machining tolerances. Contours also reflect coverage
-defects; this filter misses bores internal to continuous surfaces and does not
-segment all mechanical parts. The negative result establishes no measured datum.
+the boundary loops, fits a plane/circle and requires sufficient angular
+coverage. The thresholds are diagnostic filters, not machining
+tolerances. The loops also correspond to coverage defects:
+this filter does not detect all bores internal to a continuous surface.
+It does not segment all mechanical parts. No measured datum is
+established by this negative result.
 
-## Actual PicoGK execution
+## PicoGK actually run
 
-[ScanReview](source/picogk-scan-review/Program.cs) uses `Library` without viewer.
-Local kernel is **PicoGK Core 26.2.0**, native build `2026-06-05 21:50:16`.
-C#/native library hashes remain in the summary. Local
-[LEAP 71 project](https://github.com/leap71/PicoGK) source is at commit
-`0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3`; this does not attest reused binary builds.
+[ScanReview](source/picogk-scan-review/Program.cs) uses a
+`Library` instance without a viewer. The local kernel is **PicoGK Core 26.2.0**, native build
+`2026-06-05 21:50:16`. The digests of the C# and native libraries are
+kept in the summary. The local source of the
+[LEAP 71 project](https://github.com/leap71/PicoGK) is at commit
+`0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3`; this marker does not constitute
+a build attestation for the reused binaries.
 
-An annular synthetic control with chosen, known mm dimensions checks voxel
-operations, volume and three inside/outside probes. At 0.5 mm/voxel, volume differs
-from the analytical formula by **0.0556%**. This verifies runtime on the control,
-not a fan or general geometric convergence.
+The synthetic annular witness, with chosen and known dimensions in mm,
+tests the voxel operations, the volume and three inside/outside probes.
+At 0.5 mm/voxel, the volume deviation from the analytical formula is **0.0556%**.
+This is a check of the runtime on this witness, without validation of a
+fan or general guarantee of geometric convergence.
 
-Both prepared OBJ files were loaded as `PicoGK.Mesh` without voxelization. Every
-triangle index was reread before export; fresh export audit retains boundary
-counts without new zero area, non-manifold edge or orientation inconsistency.
-PicoGK uses float32 positions: private receipts measure each scan's maximum
-difference in unknown source units. It cannot yet be read as mm or compared to
-functional tolerance. Surface intersections are not qualified by this audit.
+The two prepared OBJ files were then loaded as `PicoGK.Mesh`, without
+voxelization. All triangle indices were read back in the kernel before
+export; the new audit of the exported OBJ files keeps the boundary counts,
+with no new zero area, non-manifold edge or orientation inconsistency.
+PicoGK stores positions in float32: the maximum deviation of each scan is
+measured in its private receipt, in unknown source units. It cannot be
+interpreted in mm or compared with a functional tolerance at this stage.
+Surface intersections are not qualified by this audit.
 
 ## Local reproduction
 
-Outputs use a new private directory outside Git or ignored `work/`. Inputs
-remain unchanged. Python diagnosis requires NumPy/SciPy/Matplotlib; C# requires
-.NET 9 and already qualified official PicoGK.
+Outputs must go into a new private directory, outside Git or under
+ignored `work/`. The input files are not modified. NumPy, SciPy and
+Matplotlib are required for the Python diagnostic; .NET 9 and an already qualified
+official PicoGK installation are required for the C# program.
 
 ```sh
 python3 twins/993-engine-cooling-fan-system-f0/source/prepare_private_scan.py PRIVATE.obj work/NEW/prepared --expected-sha256 RAW_SHA256
 python3 twins/935-horizontal-cooling-system-f0/source/inspect_private_interfaces.py work/NEW/prepared/pose-normalized-open-scan.obj work/NEW/inspection --expected-sha256 PREPARED_SHA256
 dotnet build twins/935-horizontal-cooling-system-f0/source/picogk-scan-review/ScanReview.csproj -p:PicoGKAssembly=/PRIVATE/PicoGK.dll -p:BaseIntermediateOutputPath=/PRIVATE/obj/ -o /PRIVATE/bin
-# Place compatible official native libraries next to the binary.
+# Install the compatible official native libraries next to the binary.
 dotnet /PRIVATE/bin/ScanReview.dll witness work/NEW/witness
 dotnet /PRIVATE/bin/ScanReview.dll mesh work/NEW/prepared/pose-normalized-open-scan.obj PREPARED_SHA256 work/NEW/picogk
 ```
 
-[Limited public receipt](../../docs/research/935-horizontal-cooling/preparation-summary.json)
-retains input/export/tool hashes and counts. Coordinates, transformations,
-geometry and derived parameters remain private. Eight synthetic Python tests
-cover tilted circles, incomplete arcs, nonplanar rings, degeneracies, pinched
-boundaries, distinct surfaces and input/output protection. Six native CLI cases
-verified open export, nonfinite/invalid-index/unknown-record rejection, SHA
-checking and overwrite refusal.
+The [limited public receipt](../../docs/research/935-horizontal-cooling/preparation-summary.json)
+keeps the digests of the inputs/exports/tools and the counts.
+The coordinates, transformations, geometries and derived parameters remain
+in the private reports. Eight synthetic Python tests cover inclined
+circles, incomplete arcs, non-planar rings, degeneracies, pinched edges,
+distinct surfaces and input/output protections. Six native CLI cases
+verified open export, rejection of non-finite values/invalid indices/
+unknown records, SHA check and refusal to overwrite.
 
-## Visual rotor repair
+## Visual repair of the rotor
 
-Screened Poisson closure from [photo_guided_surface_repair.py](source/photo_guided_surface_repair.py)
-is rejected after multiple-view review: closure invents hub/interblade volumes.
-It remains a private attempt, never a reference, interface or calculation mesh.
+The Screened Poisson closure produced by
+[photo_guided_surface_repair.py](source/photo_guided_surface_repair.py) is
+rejected after multi-view review: its topological closure invents volumes
+at the hub and between the blades. It is kept private as an attempt, never
+as a reference, interface or calculation mesh.
 
-[picogk-rotor-visual-proxy](source/picogk-rotor-visual-proxy/Program.cs) instead
-creates explicit topology with a disk, hub and ten curved blades, aligned to
-scan PCA envelope without millimetre conversion or interface inference.
-[Proxy documentation](../../docs/research/935-horizontal-cooling/PICOGK_ROTOR_VISUAL_PROXY.en.md)
-records audit and limits.
+The
+[picogk-rotor-visual-proxy](source/picogk-rotor-visual-proxy/Program.cs) program
+had produced an explicit visual topology with a disk, a hub
+and ten curved blades. PicoGK aligns it to the PCA envelope of the scan, without
+converting the source unit to millimeters or inferring an interface. The
+[proxy documentation](../../docs/research/935-horizontal-cooling/PICOGK_ROTOR_VISUAL_PROXY.en.md)
+records its audit and its limits. The count of ten blades was a
+visual hypothesis; it is not carried over by the generator based on the observed
+sections, which detects nine regions. This proxy remains excluded from the reference calculations.
 
-## Next required evidence
+## Next evidence to obtain
 
-Identify variant, establish scale on two independent dimensions and verify
-contract interfaces for a functional reference. Transmission interiors and
-missing guides require appropriate documents/inspection. Specimen mass,
-inertia, stress, drive, flow/pressure and cooling calculations need qualified
-inputs. PicoGK processing alone establishes no real characteristic or quantified
-improvement.
+The variant must be identified, the scale established on two independent dimensions
+and the contract interfaces verified to reconstruct a functional
+reference. The transmission internals and the missing guides
+also require suitable documents or inspections. The mass,
+inertia, stress, drive, flow/pressure and cooling calculations for the
+specimen will use these qualified inputs; no actual characteristic
+or quantified improvement is announced from the mere passage through PicoGK.

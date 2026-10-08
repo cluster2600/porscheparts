@@ -1,23 +1,34 @@
-# Porsche 935 horizontal fan system
+# Porsche 935 horizontal cooling system
 
-Research on 3 October 2026. Owner-confirmed objective: reverse engineer the
-**complete 935 horizontal fan system**, then create a lighter improved version
-with better structured blades and more useful engine air. PicoGK supplies
-geometry, physical calculations characterize it and measurements validate the
-twin. The [improved vertical 993 programme](../../FAN_DEVELOPMENT_PROGRAMMES.en.md)
+Research of October 3, 2026. Objective confirmed by the owner: reverse
+engineer **the entire 935 horizontal cooling system**,
+then create an improved, lighter version of it, with better-structured
+blades and more useful air on the engine. PicoGK handles the geometry,
+physics calculations its characterization, and measurements the validation of the twin.
+The [improved vertical 993 program](../../FAN_DEVELOPMENT_PROGRAMMES.en.md)
 is a separate project.
 
 [Reconstruction plan](RECONSTRUCTION_PLAN.en.md) ·
-[Sources and limits](sources.json) · [OBJ audit summary](scan-summary.json) ·
-[Existing fan programme](../../../twins/993-engine-cooling-fan-system-f0/README.md)
+[Sources and limitations](sources.json) · [OBJ audit summary](scan-summary.json) ·
+[Existing fan program](../../../twins/993-engine-cooling-fan-system-f0/README.md)
+
+## Reconstruction from the scans — October 5, 2026
+
+The [executed campaign](IMPLEMENTATION.md) fits observed cylindrical surfaces
+and the sections of nine blade regions. It provides PicoGK
+lofts, three resolutions, an editable FreeCAD/STEP CAD model and private
+deviation maps. The complete rotor, the registration of the back and the mechanism remain open.
+The former visual proxies are excluded from this reconstruction.
+The [bench protocol](BENCH_PROTOCOL.md) prepares the future physical validation.
 
 ## Documented architecture
 
-The rotor plane is horizontal above the engine; its axis is vertical in engine
-coordinates. Gunnar Racing shows installation on two 935 engines: belt driving
-a horizontal shaft, then 90° drive to the vertical fan shaft. This establishes
-initial architecture, not ratio, dimensions or specimen teeth.
-[Workshop source](https://www.gunnarracing.com/team/lola/stage4.htm).
+The rotor plane is horizontal above the engine; its axis is vertical in the
+engine reference frame. Gunnar Racing, which shows the installation on two 935
+engines, describes a belt driving a horizontal shaft, then a 90° right-angle drive
+to the vertical fan shaft. This observation gives a starting
+architecture; it gives neither the ratio, nor the dimensions, nor the gear teeth of the scanned
+specimen. [Workshop source](https://www.gunnarracing.com/team/lola/stage4.htm).
 
 ```mermaid
 flowchart LR
@@ -30,120 +41,140 @@ flowchart LR
     S -. bearings .-> V
 ```
 
-This functional diagram has no dimensions or presumed internal layout. Support
-carries shaft/bearing loads and belongs to the mechanical reconstruction.
-The airflow network must connect inlet, housing/funnel, rotor, any fixed
-elements, guides, engine passages and outlets, with observed flow direction.
+This diagram is functional, without dimensions and without any presumed internal layout.
+The support carries the loads of the shafts and bearings; it is part of the
+mechanical system to reconstruct. The airflow network will have to connect inlet,
+housing/inlet funnel, rotor, any stationary elements, guides, engine passages and
+outlets, with the flow direction established by observation.
 
-Design911 directly describes its reproduction as funnel and wheel for a
-horizontal 935 fan. Advertised materials concern that product, not the owner's
-scan or every period part. [Product sheet](https://www.design911.co.uk/p/fan-housing-with-fan-blades-porsche-935/).
+Design911 directly describes its reproduction product as an inlet funnel and
+an impeller for a 935 horizontal fan. The advertised materials concern
+this commercial product, not the owner's scan nor all period
+parts. [Product page](https://www.design911.co.uk/p/fan-housing-with-fan-blades-porsche-935/).
 
-## Identify variant and specimen
+## A variant and a specimen to identify
 
-Porsche distinguishes historical developments. The 935/78 “Moby Dick” has
-water-cooled four-valve heads and air-cooled cylinders; fan thermal scope
-depends on variant. [Porsche Heritage Moments](https://newsroom.porsche.com/en/2026/history/porsche-heritage-moments-935-norbert-singer-timo-bernhard-42018.html).
+Porsche distinguishes several historical evolutions. The 935/78 "Moby Dick"
+has water-cooled four-valve cylinder heads and air-cooled
+cylinders. The thermal scope of the fan therefore depends on the
+variant. [Porsche Heritage Moments](https://newsroom.porsche.com/en/2026/history/porsche-heritage-moments-935-norbert-singer-timo-bernhard-42018.html).
 
-Horizontal orientation is confirmed. Year, engine, factory/Kremer/team version,
-part references and donor identity remain unknown. The 935 of 2019 and modern kits
-do not define this geometry. 993 interfaces, blade counts and ratios are not
-transferred to 935. Improved horizontal recipient engine must be fixed in its
-installation contract; the vertical 993 project retains its own assembly/variants.
+The horizontal orientation is the confirmed need. Year, engine, factory/Kremer/team
+version, reference of each part and identity of the donor remain
+to be established. The 2019 935 and modern kits are not used to define this
+geometry. The 993 interfaces, blade counts and ratios are not
+transferred to the 935. The engine receiving the improved horizontal version remains
+to be fixed in its installation contract; the vertical 993 project keeps its
+own assembly and its variants.
 
 ## OBJ files found on the Mac
 
-Search recursively covers local/iCloud Downloads, then relevant OBJ names
-indexed by Spotlight under the user directory. This does not prove absence of
-unindexed or differently named files. Full paths, coordinates and projections
-remain private in `work/fan-935-plan-20261003/` of the main checkout.
+The search recursively covers local Downloads and iCloud Downloads, then
+the relevant OBJ names indexed by Spotlight under the user folder.
+This scope does not prove the absence of a file that is not indexed or is named differently.
+Full paths, coordinates and projections stay in the private
+folder `work/fan-935-plan-20261003/` of the main checkout.
 
-| File | Presence and purpose | Verified state |
+| File | Presence and relevance | Verified state |
 |---|---|---|
-| `Fan+0.5mm+back+not+lined+up+with+center.obj` | iCloud Downloads; candidate rotor | 624492 vertices; 1240465 triangles; open |
-| `Fan+Drive+0.21mm.obj` | Local Downloads; candidate support/drive | 1256836 vertices; 2484656 triangles; open |
-| `935+Xtreme+Cyl+head.obj` | Local Downloads; possible geometric context | Presence observed; system compatibility unqualified |
-| `917+engine+case+w+cyl+0.5mm.obj` | iCloud Downloads; 917 context | Presence observed; does not define 935 engine installation |
+| `Fan+0.5mm+back+not+lined+up+with+center.obj` | iCloud Downloads; candidate rotor | 624,492 vertices; 1,240,465 triangles; open |
+| `Fan+Drive+0.21mm.obj` | local Downloads; candidate support/drive assembly | 1,256,836 vertices; 2,484,656 triangles; open |
+| `935+Xtreme+Cyl+head.obj` | local Downloads; possible geometric context | Presence noted; no qualification of compatibility with the system |
+| `917+engine+case+w+cyl+0.5mm.obj` | iCloud Downloads; 917 context | Presence noted; does not define the 935 engine mounting |
 
-Both main scans were reread without welding, repair or scale change. Rotor has
-8611 boundary edges and 26 zero-area faces. Fan Drive has 29476 boundary edges,
-200 simple cycles, one surface component, no duplicate/zero-area face or edge
-incident to more than two faces. One topological component need not be one
-mechanical part. Fan Drive self-intersections were not checked in this review.
+The two main scans were re-read without welding, repair or change of
+scale. The rotor retains 8,611 boundary edges and 26 zero-area faces.
+The Fan Drive retains 29,476 boundary edges, 200 simple loops, one surface
+component, no duplicate/zero faces and no edge incident to more than two faces.
+One topological component does not mean a single mechanical part.
+The self-intersections of the Fan Drive were not checked in this pass.
 
-Fan Drive hash matches the [existing catalogue](../../../catalog/scans/scan-fan-drive-0p21mm.json),
-whose title assigns it to M64. That earlier assignment does not prove identity.
-Previous boundary/non-manifold counts differ from this original-index audit;
-cause is unestablished and old reports remain intact. OBJ units are undeclared;
-filename suffixes do not qualify precision. See [reproducible summary](scan-summary.json).
+The hash of the Fan Drive matches the
+[existing catalogue](../../../catalog/scans/scan-fan-drive-0p21mm.json), whose
+title assigns it to the M64. This earlier attribution does not prove its identity. The former
+boundary/non-manifold counts differ from the new audit of the original indices;
+the cause is not established. The former reports remain intact. The units
+are not declared in the OBJ files. The owner confirmed that the suffixes
+denote the declared acquisition precisions, without defining the units
+of the coordinates or the machining tolerances. See the
+[reproducible historical summary](scan-summary.json), kept without rewriting.
 
-## What scan sources establish
+## What the scan sources establish
 
-Wolfe separately sells [rotor](https://www.wolfeclassics.com/shop/p/porsche-935-fan-3d-scan),
+Wolfe sells separately the [rotor](https://www.wolfeclassics.com/shop/p/porsche-935-fan-3d-scan),
 [drive](https://www.wolfeclassics.com/shop/p/porsche-935-fan-drive-3d-scan),
 [housing](https://www.wolfeclassics.com/shop/p/porsche-935-fan-housing-3d-scan)
 and [guide](https://www.wolfeclassics.com/shop/p/porsche-935-air-guide-3d-scan).
-Seller describes rotor/drive as matching; physical pairing needs verification.
-Drive was removed for maintenance and scanned externally; this does not reveal
-teeth, internal seats, preloads or lubrication passages automatically.
+The seller presents the rotor as matched to the drive; their physical
+pairing remains to be verified. It describes the drive as removed for service and
+scanned externally. This does not automatically reveal the gear teeth,
+internal bearing seats, preloads or lubrication passages.
 
-Housing is described as a rough scan. The “935 Air Guide” sheet describes a
-**934** guide and offers separate upper/lower acquisitions. This contradiction
-is recorded; no 934/935 equivalence is admitted. Neither of those last two files
-was found in inspected scopes. No purchase or supplier contact occurred.
+The housing is described as a rough scan. The listing titled "935 Air Guide"
+describes a **934** guide and offers separate top/bottom acquisitions.
+This contradiction is recorded; no 934/935 equivalence is accepted.
+These last two files were not found within the inspected scopes.
+No purchase or supplier contact was made.
 
 ## Working bill of materials
 
-IDs identify functions to document, not Porsche references or proof of particular
-internal architecture.
+The identifiers below denote functions to document. They are
+neither Porsche part numbers nor evidence of any particular internal architecture.
 
-| ID | Function/component | Coverage and required acquisition |
+| ID | Function/component | Current coverage and acquisition needed |
 |---|---|---|
-| `935-COOL-ROTOR` | Rotor and blades | Scan present; qualify back, axis, material and interfaces |
-| `935-COOL-HUB` | Hub and rotor/shaft connection | Segment visible regions; measure seat, fastening and tolerances |
-| `935-COOL-DRIVE-CASE` | Transmission support/housing | Fan Drive exterior; establish engine mounts and internal bores |
-| `935-COOL-INPUT` | Input shaft and pulley | Exterior observations; identify pitch diameter, key/spline and bearings |
-| `935-COOL-BELT` | Belt, pulleys and tension | Exact profile, ratio, travel/tension and parts unknown |
-| `935-COOL-GEARSET` | Right-angle transmission | Internal type, geometry, materials and clearances unknown |
-| `935-COOL-OUTPUT` | Vertical shaft and bearings | Candidate exterior interfaces; measure interior and axial restraint |
-| `935-COOL-BEARINGS` | Bearings, retainers and seals | References, fits, preload, speed and lubrication unknown |
-| `935-COOL-LUBE` | Lubrication and sealing | Establish architecture, possible oil/flow and dissipation |
-| `935-COOL-INLET` | Housing/funnel and rotor clearance | Public source identified; local scan not found |
-| `935-COOL-GUIDES` | Fixed elements, guides and distribution | Observe presence/type; commercial 934/935 guide ambiguous |
-| `935-COOL-MOUNTS` | Mounts, stacks and engine connections | Measure datums, axes, holes, faces, load paths and seals |
-| `935-COOL-COUPLING` | Flexible coupling | EB reproduction identified; specimen location, dimensions/stiffness unknown |
-| `935-COOL-ALTERNATOR` | Separate alternator and engine integration | Manufacturer application documented; establish support, belt and envelope |
+| `935-COOL-ROTOR` | Rotor and blades | Scan present; back, axis, material and interfaces to qualify |
+| `935-COOL-HUB` | Hub and rotor/shaft connection | Visible regions to segment; bearing seat, fastening and tolerances to measure |
+| `935-COOL-DRIVE-CASE` | Transmission support/housing | Exterior of the Fan Drive; engine mounts and internal bores to establish |
+| `935-COOL-INPUT` | Input shaft and pulley | External observations; pitch diameter, key/spline and bearings to identify |
+| `935-COOL-BELT` | Belt, pulleys and tension | Profile, actual ratio, travel/tension and exact parts unknown |
+| `935-COOL-GEARSET` | Right-angle transmission | Type, geometry, materials and internal clearances unknown |
+| `935-COOL-OUTPUT` | Vertical shaft and bearings | Candidate external interfaces; interior and axial load support to measure |
+| `935-COOL-BEARINGS` | Bearings, retainers and seals | Part numbers, fits, preload, speed and lubrication unknown |
+| `935-COOL-LUBE` | Lubrication and sealing | Architecture, any flow/oil and heat dissipation to establish |
+| `935-COOL-INLET` | Housing/inlet funnel and rotor clearance | Public source located; local scan not found |
+| `935-COOL-GUIDES` | Stationary elements, guides and distribution | Presence/type to confirm; commercial 934/935 guide ambiguous |
+| `935-COOL-MOUNTS` | Mounts, stack-ups and engine connections | Datums, axes, holes, faces, load path and seals to record |
+| `935-COOL-COUPLING` | Flexible coupling | EB reproduction identified; location, dimensions and stiffness of the specimen unknown |
+| `935-COOL-ALTERNATOR` | Separate alternator and engine integration | Application documented by manufacturers; bracket, belt and packaging to establish |
 
-[Dimensions/details](DIMENSIONS_AND_DETAILS.en.md) adds FIA 645 and 1976 Appendix J
-reading,993 PET dimensions and reproduction manufacturer information. The
-[registry](dimensions.json) retains value scope/limits.
+The [transcription of dimensions and details](DIMENSIONS_AND_DETAILS.en.md) adds the
+reading of FIA form 645 and the 1976 Appendix J, the PET 993 dimensions and the
+information from reproduction manufacturers. The [register](dimensions.json)
+keeps each value with its scope and limitations.
 
-[Materials](MATERIALS.en.md) distinguishes workshop-reported factory 935 magnesium
-drive housings, aluminium/7075 reproductions, composite ducts, Carrera/Turbo
-applications and 993 replacements. These sources identify neither OBJ material.
+The [materials transcription](MATERIALS.en.md) distinguishes factory 935 drive housings
+in magnesium reported by the workshop, aluminum and 7075 reproductions,
+composite ducts, as well as the Carrera/Turbo applications and the 993
+spares. These sources do not constitute a material identification of the two OBJ files.
 
-[Additive dossier](ADDITIVE_MATERIALS.en.md) records the owner's three families:
-aluminium, magnesium and titanium. Initial AlSi10Mg, WE43 and Ti64 candidates
-need separate comparison per part/process for improved 993 and 935 versions.
+The [additive manufacturing dossier](ADDITIVE_MATERIALS.en.md) records the
+three families chosen by the owner: aluminum, magnesium and titanium.
+The first candidates are AlSi10Mg, WE43 and Ti64, to be compared separately
+for each part and process of the improved 993 and 935 versions.
 
-## Executed preparation
+## Preparation executed
 
-Both scans were privately prepared, imported into native PicoGK 26.2.0 and
-reexported to OBJ. Connectivity was checked in kernel and fresh export audit.
-Holes remain open. Fitting only boundary contours finds no circle meeting
-diagnostic thresholds; this does not mean the parts lack bores or interfaces.
+The two scans were prepared privately and imported into the native
+PicoGK 26.2.0 kernel, then re-exported as OBJ. Connectivity was verified in the
+kernel and by a new audit of the exports. The holes remain open. A
+fit check on the boundary contours alone finds no circle
+meeting the diagnostic thresholds; this does not mean that the parts
+lack bores or interfaces.
 
-[Preparation summary](preparation-summary.json) publishes only hashes, counts
-and states. The [stage technical sheet](../../../twins/935-horizontal-cooling-system-f0/README.en.md)
-describes executable sources and remaining evidence. Prepared geometry,
-transformations and detailed reports remain private.
+The [preparation summary](preparation-summary.json) publishes only the
+digests, counts and states. The [technical record for this step](../../../twins/935-horizontal-cooling-system-f0/README.en.md)
+describes the executable sources and the evidence still to be established. The
+prepared geometries, transformations and detailed reports remain private.
 
-## Concrete next step
+## Concrete next steps
 
-Interface contract is defined but dimensions remain unknown. The next batch
-must establish scale, mechanical segmentation and physical coordinates for the
-reference assembly. PicoGK reconstruction, calculation meshes and twin share
-that assembly and geometry IDs. Older parametric 993 calculations are method
-tools and give this 935 system no validated performance. Reconstructed reference
-then supports new blade, lightening and drive/distribution comparisons at defined
-conditions before twin integration.
+The interface contract is now defined; its dimensions remain unknown.
+The next work package must establish scale, mechanical segmentation and physical reference
+frames to build the reference assembly. The PicoGK reconstruction, the
+calculation meshes and the twin will use this same assembly and common geometry
+identifiers. The former parametric 993 calculations remain method
+tools; they bring no validated performance to this 935 system.
+The reconstructed reference will then make it possible to compare the new blades,
+the weight reduction and the transmission/distribution improvements under defined operating
+conditions, before their integration into the twin.
