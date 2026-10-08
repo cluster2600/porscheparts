@@ -54,6 +54,18 @@
    "plate": "50-03",
    "meaning": "P17 to P18, side view"
   },
+  "O": {
+   "value_mm": 1696.0,
+   "half_tolerance_mm": 3.0,
+   "plate": "50-03",
+   "meaning": "P18 to P21, crossed diagonal, unbracketed (bracketed 1653)"
+  },
+  "N": {
+   "value_mm": 1492.0,
+   "half_tolerance_mm": 3.0,
+   "plate": "50-03",
+   "meaning": "P12 to P21, crossed diagonal, unbracketed (bracketed 1482)"
+  },
   "S": {
    "value_mm": 1328.0,
    "half_tolerance_mm": 2.0,
@@ -100,6 +112,12 @@
    "y_half_mm": 665.0,
    "u95_mm": 3.5
   },
+  "P12": {
+   "d_behind_0_line_mm": 1678.5,
+   "x_from_P17_mm": -1238.4,
+   "y_half_mm": 139.0,
+   "u95_mm": 8.6
+  },
   "P18": {
    "d_behind_0_line_mm": 1685.2,
    "x_from_P17_mm": -1245.0,
@@ -117,12 +135,26 @@
    "x_from_P17_mm": -2594.3,
    "y_half_mm": null,
    "u95_mm": 4.7
+  },
+  "P21": {
+   "d_behind_0_line_mm": 3098.2,
+   "x_from_P17_mm": -2658.0,
+   "y_half_mm": 320.0,
+   "u95_mm": 7.4
   }
  },
+ "rear_reading": {
+  "used": "unbracketed O and N as direct distances, height differences unknown (0-150, 0-100 mm) and carried in u95",
+  "bracketed_alternative_d_mm": {
+   "P12": 1637.1,
+   "P21": 3046.3
+  },
+  "why_not_bracketed": "it places P12 38 mm ahead of plates 50-05a and 50-02, which agree with each other within 4 mm, and splits P21 by 37 mm between O and N",
+  "checks": "plate_50_05a_scale.py (drawings) and scan_tie_50_05a.py (engine-mount cradle)"
+ },
  "not_in_published_chain": {
-  "P12": "hangs on diagonal N; the crossed-plan reading misses the scan by 60-85 mm",
-  "P21": "hangs on diagonal O, same reading, not verified",
-  "P6": "plate 50-03 gives its transverse spacing D only"
+  "P6": "plate 50-03 gives its transverse spacing D only",
+  "P13, P14, P15": "drawn on 50-05a without a dimension; scaled in plate_50_05a_scale.py"
  },
  "monte_carlo": {
   "samples": 20000,
