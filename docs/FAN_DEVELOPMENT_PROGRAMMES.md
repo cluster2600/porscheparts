@@ -12,9 +12,16 @@ PicoGK sert à construire les géométries éditables ; les calculs et les mesur
 
 Le programme 993 existant étudie une référence hypothétique Turbo M64.60 ;
 la variante exacte et ses interfaces restent à qualifier avant une pièce
-fonctionnelle. Pour le programme horizontal, le spécimen 935 de référence et
-le moteur recevant la version améliorée doivent être explicités dans le
-contrat d'installation. La cible finale ne découle pas du seul nom « 935 ».
+fonctionnelle.
+
+Ordre confirmé par le propriétaire le 6 octobre 2026 pour le programme
+horizontal : reproduire d'abord le système et son montage sur une **935**,
+puis développer une version horizontale adaptée à un **moteur de 993**.
+La première étape conserve la géométrie, l'implantation et les interfaces
+historiques documentées ; l'adaptation possède ses propres fixations,
+transmission, carter et guides d'air. Les variantes exactes du donneur 935 et
+des moteurs récepteurs restent à identifier. Le programme `FAN-993-VERTICAL`
+reste distinct de cette adaptation horizontale.
 
 ## Référence et versions améliorées
 

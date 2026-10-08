@@ -30,11 +30,16 @@ du support ou du renvoi d'angle 935 n'a été trouvé dans ces neuf pages.
 Le PDF indique une validité au 1 janvier 1976 ; l'index web affiche le
 2 janvier. Pour une date historique précise, conserver cette divergence.
 
-L'[index n°3076, Groupe 3](https://historicdb.fia.com/car/porsche-911-turbo-2993-0)
-énumère huit extensions de la Turbo. Leurs intitulés seuls ne prouvent pas
-la présence de plans du système 935. L'exemplaire transféré en Groupe B
-repéré dans l'archive ne devient pas une fiche 935. La consultation de tout
-le contenu du dossier 3076 et de ses extensions reste à compléter.
+Le [PDF n°3076, Groupe 3](https://historicdb.fia.com/sites/default/files/car_attachment/1601075701/homologation_form_number_3076_group_3.pdf)
+a été téléchargé, ses 28 pages et huit extensions examinées le 6 octobre.
+La page PDF 9, rubriques 148–149, donne **245 mm, 11 pales et alliage léger**.
+Les photos I–J de la page 6 montrent le ventilateur vertical de base.
+Cette donnée ne calibre pas notre rotor horizontal à neuf régions de pales.
+Les extensions, pages 17–28, ne contiennent pas de plan de fabrication du
+renvoi horizontal dans cet exemplaire. Son SHA-256 et les localisateurs sont
+conservés dans le registre des sources ; le PDF reste dans le cache privé.
+Ce contrôle ne prouve pas l'absence de documents utiles dans le reste de
+l'archive FIA. L'exemplaire transféré en Groupe B reste une autre source.
 
 L'[Annexe J 1976, articles 268–269](https://argent.fia.com/web/fia-public.nsf/ABCF4550D7659360C12574A5003C6CA0/$FILE/Hist_App_J_76_Art_269_a.pdf)
 définit le Groupe 5 à partir des voitures reconnues en Groupes 1–4 et laisse

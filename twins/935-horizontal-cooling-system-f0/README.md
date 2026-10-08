@@ -1,5 +1,14 @@
 # Système horizontal 935 — préparation de la référence
 
+Campagne du 5 octobre : le
+[coordinateur de reconstruction](source/run_reconstruction.py) produit les
+sections mesurées de neuf régions de pales, des lofts PicoGK à trois résolutions,
+une CAO FreeCAD/STEP éditable et une revue d'écarts indépendante. Les sources,
+transformations et dérivés restent privés. Le
+[compte rendu d'implémentation](../../docs/research/935-horizontal-cooling/IMPLEMENTATION.md)
+donne les commandes et les limites ; la géométrie complète et les calculs de
+référence restent à terminer. Les proxies décrits plus bas sont historiques.
+
 Étape du 3 octobre 2026 : deux scans préparés et passés par PicoGK, exigences
 d'interfaces définies, recherche dimensionnelle poursuivie, puis
 [base exécutable du jumeau système](SYSTEM_TWIN.md) : registre complet des
@@ -107,11 +116,13 @@ comme référence, interface ou maillage de calcul.
 
 Le programme
 [picogk-rotor-visual-proxy](source/picogk-rotor-visual-proxy/Program.cs)
-produit à la place une topologie visuelle explicite avec un disque, un moyeu
+avait produit une topologie visuelle explicite avec un disque, un moyeu
 et dix pales courbes. PicoGK l'aligne sur l'enveloppe PCA du scan, sans
 convertir l'unité source en millimètres ni déduire une interface. La
 [documentation du proxy](../../docs/research/935-horizontal-cooling/PICOGK_ROTOR_VISUAL_PROXY.md)
-enregistre son audit et ses limites.
+enregistre son audit et ses limites. Le comptage de dix pales était une
+hypothèse visuelle ; il n'est pas repris par le générateur fondé sur les coupes
+observées, qui détecte neuf régions. Ce proxy reste exclu des calculs de référence.
 
 ## Prochaine preuve à obtenir
 

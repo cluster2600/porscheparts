@@ -36,6 +36,13 @@ bibliothèque standard Python. Il lit un cas, contrôle unités, valeurs finies,
 incertitudes et références de preuves, puis produit un rapport, une revue HTML
 et `system-logical.usda`. Les sorties sont privées et ne sont pas écrasées.
 
+Le mode `hypothesis_screen` permet désormais des scénarios exploratoires avec
+des entrées `assumption` et un test de rejet documenté. La première
+[campagne de 27 hypothèses cinématiques](../../docs/research/935-horizontal-cooling/HYPOTHESES.md)
+et les [questions communautaires](../../docs/research/935-horizontal-cooling/COMMUNITY_RESEARCH.md)
+précèdent la qualification du spécimen ; aucun statut mesuré n'est accordé
+aux hypothèses.
+
 | Modèle | Calcul exécuté quand les entrées sont disponibles | Limite |
 |---|---|---|
 | Vitesses | `n_entree = n_moteur × r_courroie × (1 − glissement)` ; `n_rotor = n_entree × r_engrenage` | Les rapports sont des rapports de vitesse sortie/entrée, pas un choix de dentures. |
