@@ -72,6 +72,16 @@ the C-pillars, with the floor and the roof lightly loaded. The hot spots
 around the front wheel-house tops are local: that is where the load is applied. That is the open
 shell a monocoque has to close.
 
+## The monocoque inside it, in PicoGK
+
+[`picogk/`](picogk/README.md) builds a ZESAD-type carbon monocoque in voxels
+inside this shell, with the pinned PicoGK kernel. It has an outer skin, a
+closed section around every aperture, boxed sills, a tunnel and rails,
+sandwich floor and bulkheads, and wheel tubs. That closes the rings this open
+shell leaves open. It is a design envelope, not a part.
+
+![The PicoGK monocoque](evidence/zesad-monocoque-views.png)
+
 ## Reproduce
 
 In the `cadsim` image, with shapely from the print-simulation library folder:

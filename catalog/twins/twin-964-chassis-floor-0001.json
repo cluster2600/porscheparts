@@ -201,7 +201,10 @@
       "twins/964-chassis/derived/plate-50-05a-scaled.json",
       "twins/964-chassis/monocoque/data/profiles-50-05a.json",
       "twins/964-chassis/monocoque/evidence/shell-views.png",
-      "twins/964-chassis/monocoque/evidence/torsion-von-mises.png"
+      "twins/964-chassis/monocoque/evidence/torsion-von-mises.png",
+      "twins/964-chassis/monocoque/derived/zesad-monocoque.report.json",
+      "twins/964-chassis/monocoque/evidence/zesad-monocoque-views.png",
+      "twins/964-chassis/monocoque/evidence/zesad-monocoque-sections.png"
     ],
     "checks_passed": [
       "Scan scale: measured wheelbase 2278.1 mm against 2272 mm factory, i.e. +0.27%. The mesh is in millimeters at 1:1 scale.",
@@ -243,7 +246,8 @@
       "No published torsional stiffness of a 964 body shell was found, including by a targeted German-language search of 2026-09-04 on Verwindungssteifigkeit and Torsionssteifigkeit. The only figure encountered, about 11,563 N.m/deg, is a forum aggregate with no primary source or protocol, not even stating whether it refers to a body-in-white or a complete vehicle. It is recorded for the record only and MUST NOT be used as a reference. See SRC-RENNLIST-911-TORSIONAL-RIGIDITY-LIST.",
       "The shell model is not mesh-converged. The absolute stiffness still drops by 4% at the last refinement tried, the S3 elements converging from above. Only the ratios between architectures, verified at three mesh densities, are usable; no absolute value is.",
       "Crash is the only software blocker of the monocoque program: CalculiX is an implicit solver and handles neither large-deformation impact, nor laminate failure, nor delamination. No crashworthiness claim can come out of this chain. See docs/MONOCOQUE_964_993_CHAINE_CALCUL.md.",
-      "The monocoque shell in twins/964-chassis/monocoque/ takes its outline from plate 50-05a (traced, about +/- 4 mm on the calibration markers); its sections, beltline, openings, wheel houses and bulkheads are modelling hypotheses, and its torsion K (2,261 N.m/deg, 0.8 mm steel, apertures open, wheel houses outside the load path) is not a 964 stiffness."
+      "The monocoque shell in twins/964-chassis/monocoque/ takes its outline from plate 50-05a (traced, about +/- 4 mm on the calibration markers); its sections, beltline, openings, wheel houses and bulkheads are modelling hypotheses, and its torsion K (2,261 N.m/deg, 0.8 mm steel, apertures open, wheel houses outside the load path) is not a 964 stiffness.",
+      "The PicoGK monocoque in twins/964-chassis/monocoque/picogk/ is an architecture in voxels, not a part: every member size (aperture rings, sills, tunnel, rails, B-ring, 25 mm sandwich panels, wheel tubs) is a modelling hypothesis, walls are drawn 6 mm thick because of the 3 mm voxels, and its 95 kg is voxel area times ASSUMED layups, with no joints, inserts, glass, doors or lids. Its tunnel is not 964 geometry. No stiffness has been computed on it, and no suspension or power-unit pickup is modelled."
     ]
   }
 }

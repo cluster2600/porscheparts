@@ -99,6 +99,13 @@ def surface(d, zt, zb, w, zbelt):
 
 def opening_field(v, p, d, zt, zb, w, zbelt):
     """Signed field per vertex, > 0 inside an opening."""
+    return np.max(opening_fields(v, p, d, zt, zb, w, zbelt), axis=0)
+
+
+def opening_fields(v, p, d, zt, zb, w, zbelt):
+    """One signed field per opening (rows: door, quarter window, rear arch,
+    front arch, windscreen, rear window, front lid, engine lid, engine-bay
+    underside), > 0 inside it."""
     import shapely
     from shapely.geometry import Polygon
     dv, yv, zv = -v[:, 0], v[:, 1], v[:, 2]
@@ -131,7 +138,7 @@ def opening_field(v, p, d, zt, zb, w, zbelt):
         np.minimum.reduce([box(dv, 2660, 3040), lid_top, 0.86 * wv - np.abs(yv)]),         # engine lid
         np.minimum.reduce([dv - 1960, z0v + 25 - zv, 0.8 * wv - np.abs(yv)]),               # engine bay underside
     ]
-    return np.max(np.array(fields), axis=0)
+    return np.array(fields)
 
 
 def bulkhead(d, rings, zb, dd, zcap):
