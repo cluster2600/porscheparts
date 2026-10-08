@@ -79,17 +79,31 @@ reference frame and to better than its tolerance, at minimum:
 
 | interface | required tolerance | state in the repository |
 |---|---|---|
-| front subframe and suspension points | ~ +/- 1 mm | X not registered |
-| rear trailing-arm mounts | ~ +/- 1 mm | X not registered |
-| engine and gearbox mounts | ~ +/- 1 mm | X not registered, P21 invalid |
+| front subframe and suspension points | ~ +/- 1 mm | P3 and P5 placed from published dimensions, +/- 1.9 mm (95 %) |
+| rear trailing-arm mounts | ~ +/- 1 mm | P13, P14 not dimensioned longitudinally |
+| engine and gearbox mounts | ~ +/- 1 mm | P12 measured on the scan only; P21 invalid |
 | seat belt and seat anchorages | regulatory | not established |
 | hinges, strikers, windshield aperture | ~ +/- 1 mm | not established |
 
-Yet `twins/964-chassis/README.md` establishes that **the longitudinal
-registration of the datum network is not resolved**. The frame is sound
-laterally and in yaw; the X chain is not. Point P21, the engine mount, lands at
-X = -3112 mm, inside the rear bumper. The search for point 17 on the scan is a
-solid negative result: the scan does not resolve the holes.
+**Update 2026-10-08: the front and centre of the chain are closed.** Plate
+50-05a of volume V dimensions P1, P3 and P5 from a 0 line through the front
+strut mounts, and plate 50-02 draws dimension P as longitudinal. Two
+independent published paths then place P17 within 1.9 mm of each other, and
+the network P20, P3, P5, P17, P18, P19 is fixed to +/- 2 to 4 mm without any
+third-party data. Tied to the scan it lands on identified features (P5 bosses
+within 2 mm laterally). The governing span P5 to P12 moves from 1724.3 to
+1567.3 mm. See "The longitudinal chain, closed from plate 50-05a" in
+`twins/964-chassis/README.md`.
+
+What remains open is the rear: P12 and P21 hang on diagonals N and O, not
+decoded, and the rear suspension mounts P13 and P14 carry no longitudinal
+dimension. The lock below therefore still holds for the rear axle and the
+power unit; it no longer holds for the front.
+
+Before that update, `twins/964-chassis/README.md` established that **the
+longitudinal registration of the datum network was not resolved**: P21 landed
+at X = -3112 mm inside the rear bumper, and the search for point 17 on the
+scan was a solid negative result.
 
 **This lock used to be a documentation task. It becomes the product's critical
 path.** As long as it holds, there is no monocoque: there is an object that
@@ -259,7 +273,7 @@ will come out of this repository without tests.
 | phase | content | exit criterion | dependency |
 |---|---|---|---|
 | M0 | identity and homologation study, market by market | route identified or programme stopped | lawyer |
-| M1 | jig bench survey, registration of the datum network | 964 at `F2_interface`, interfaces at +/- 1 mm | **third party, blocking** |
+| M1 | registration of the datum network: front and centre closed from plate 50-05a (2026-10-08); rear (P12, P21, P13, P14) open | 964 at `F2_interface`, interfaces at +/- 1 mm | rear: diagonals N/O or a third-party table |
 | M2 | torsion test on a donor 964 body shell | denominator measured, protocol published | donor body shell |
 | M3 | recalibration of the shell model against M2 | model/measurement gap known and documented | M1, M2 |
 | M4 | target specification filled | section 5 table complete | M2, M3 |

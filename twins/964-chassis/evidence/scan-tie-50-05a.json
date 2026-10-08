@@ -1,0 +1,132 @@
+{
+ "schema_version": "1.0.0",
+ "twin": "964-chassis",
+ "classification": "scan_measurement_against_published_chain",
+ "scan": "964widebodyunderside2poin13.obj, not in the repository; vehicle frame from vehicle_transform.json",
+ "features": {
+  "P5_boss_left": {
+   "x_mm": -161.55504459289193,
+   "y_mm": 385.2206508614746,
+   "radius_mm": 17.27398664075791,
+   "fit_residual_median_mm": 3.204352075435734,
+   "point": "P5",
+   "n_vertices": 943,
+   "delta_mm": -18.55504459289193
+  },
+  "P5_boss_right": {
+   "x_mm": -170.25832426338025,
+   "y_mm": -386.8806268840865,
+   "radius_mm": 21.936618066711755,
+   "fit_residual_median_mm": 3.469890472564394,
+   "point": "P5",
+   "n_vertices": 720,
+   "delta_mm": -27.258324263380246
+  },
+  "P17_cup_left": {
+   "x_mm": -468.5252659547566,
+   "y_mm": 658.6099900647243,
+   "radius_mm": 36.01569695576399,
+   "fit_residual_median_mm": 9.099166221068183,
+   "point": "P17",
+   "n_vertices": 2162,
+   "delta_mm": -28.325265954756617
+  },
+  "P17_cup_right": {
+   "x_mm": -477.90725579301125,
+   "y_mm": -652.3635726209309,
+   "radius_mm": 43.532872408526835,
+   "fit_residual_median_mm": 7.960718443150775,
+   "point": "P17",
+   "n_vertices": 4113,
+   "delta_mm": -37.70725579301126
+  },
+  "P19_ring_left": {
+   "x_mm": -1789.9208967568702,
+   "y_mm": 529.9081014755584,
+   "radius_mm": 34.72356030234215,
+   "fit_residual_median_mm": 9.33975266166063,
+   "point": "P19",
+   "n_vertices": 4589,
+   "delta_mm": -21.72089675687016
+  },
+  "P19_ring_right": {
+   "x_mm": -1787.8203061332115,
+   "y_mm": -525.840367518771,
+   "radius_mm": 36.41654646546077,
+   "fit_residual_median_mm": 10.894575061427869,
+   "point": "P19",
+   "n_vertices": 5619,
+   "delta_mm": -19.620306133211443
+  },
+  "P12_bosses_left": {
+   "x_mm": -1735.0144429738136,
+   "y_mm": 142.84589747120577,
+   "point": "P12",
+   "n_vertices": 1132
+  },
+  "P12_bosses_right": {
+   "x_mm": -1736.6843105317246,
+   "y_mm": -147.31071462952679,
+   "point": "P12",
+   "n_vertices": 1474
+  }
+ },
+ "delta": {
+  "definition": "X of the plate 0 line in the scan vehicle frame; X_vehicle = delta - d",
+  "value_mm": -25.5,
+  "spread_sd_mm": 7.2,
+  "u_mm": 7.6,
+  "from": "P5, P17 and P19, both sides; P12 excluded (not in the published chain)",
+  "reading": "the 0 line lies behind the fitted front wheel centres, as a strut-mount line does with 4 deg 25 min caster"
+ },
+ "points_vehicle_frame_mm": {
+  "P20": {
+   "x_mm": 744.5,
+   "y_half_mm": 220.0
+  },
+  "P1": {
+   "x_mm": 696.5,
+   "y_half_mm": null
+  },
+  "P3": {
+   "x_mm": 189.5,
+   "y_half_mm": 305.0
+  },
+  "P5": {
+   "x_mm": -168.5,
+   "y_half_mm": 385.0
+  },
+  "P17": {
+   "x_mm": -465.7,
+   "y_half_mm": 665.0
+  },
+  "P18": {
+   "x_mm": -1710.7,
+   "y_half_mm": 618.0
+  },
+  "P19": {
+   "x_mm": -1793.7,
+   "y_half_mm": 509.0
+  },
+  "P16": {
+   "x_mm": -3060.0,
+   "y_half_mm": null
+  }
+ },
+ "p12_scan_candidate": {
+  "x_mm": -1735.8,
+  "d_behind_0_line_mm": 1710.3,
+  "crossed_diagonal_N_prediction_d_mm": 1637.3,
+  "miss_mm": 73.0,
+  "status": "SCAN, not published; diagonals N and O stay undecoded"
+ },
+ "span_P5_P12_mm": {
+  "value": 1567.3,
+  "sources": [
+   "MANUAL (50-05a, 143)",
+   "SCAN (P12 bosses)"
+  ],
+  "previous_value": 1724.3
+ },
+ "p5_vehicle_x_mm": -168.5
+}

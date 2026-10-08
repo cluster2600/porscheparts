@@ -11,7 +11,7 @@ flowchart LR
   SC --> F1["F1_envelope<br/>reached"]
   FR --> F1
   DS --> F1
-  F1 --> LC["longitudinal datum<br/>calibration"]
+  F1 --> LC["longitudinal chain<br/>front and centre closed (50-05a)<br/>P12, P21 open"]
   LC --> F2["F2_interface<br/>not reached"]
   classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
   classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
@@ -88,29 +88,80 @@ composition order is easily wrong.
 
 The original prose is kept in `vehicle_transform_note`.
 
+## The longitudinal chain, closed from plate 50-05a
+
+Read on 2026-10-08 from the local copy of volume V. Plate 50-05a, "Dimensions
+for assembly - from Model 91 onward", dimensions its plan view from a
+transverse **0 line drawn through the front strut mounts P4**:
+
+| point | position | published |
+|---|---|---|
+| P1, front bumper absorber tube | 722 +/- 2 mm ahead of the 0 line | 50-05a |
+| P3, front axle side-member mount | 215 mm ahead | 50-05a, no tolerance printed |
+| P5, outer front cross-member mount | 143 +/- 2 mm behind | 50-05a |
+| rear end, P16 | 3756.5 +/- 4 mm behind P1 | 50-05a |
+
+Plate 50-02 also draws **dimension P as longitudinal**, a fore-aft arrow from
+the P20 line to the P5 line. `datum_solve.py` read it as a crossed diagonal,
+which put P5 230 mm too far forward.
+
+With P longitudinal and the three stations, the chain reaches P17 twice,
+independently (`source/datum_chain_50_05a.py`):
+
+| path | P17 behind the 0 line |
+|---|---|
+| P5, then P (to P20), then diagonal K | 441.1 mm |
+| P3, then diagonal L | 439.2 mm |
+
+The two published paths agree within **1.9 mm**, against a 3.6 mm spread from
+the tolerances. R and S then carry P18 and P19. Every point of the front and
+centre network is placed from published dimensions only:
+
+| point | role | d behind the 0 line | +/- 95 % |
+|---|---|---:|---:|
+| P20 | front control hole | -770.0 | 2.7 |
+| P1 | front absorber plane | -722.0 | 1.9 |
+| P3 | front side-member mount | -215.0 | 1.9 |
+| P5 | front cross-member mount | 143.0 | 1.9 |
+| P17 | front jacking point | 440.2 | 3.5 |
+| P18 | rear jacking point | 1685.2 | 4.2 |
+| P19 | rear platform point | 1768.2 | 4.2 |
+| P16 | rear absorber plane | 3034.5 | 4.7 |
+
+**Tied to the scan.** `source/scan_tie_50_05a.py` measures features the scan
+resolves: the P5 bosses, found at |Y| = 385.2 and 386.9 mm against 385
+published; the P17 jacking receptacles; the P19 pads. Each gives the position
+of the 0 line in the vehicle frame. Six features agree on **delta = -25.5 mm**,
+spread 7.2 mm, +/- 7.6 mm with the wheel-centre fit. The 0 line lies behind
+the front wheel centres, as a line through the strut tops does with the
+4 deg 25 min caster of volume IV. The plates do not name the 0 line; this is
+the reading the scan supports.
+
+![Published datum chain tied to the scan, against the previous network](evidence/scan-tie-50-05a.png)
+
+*Blue: the published chain placed with delta. Red crosses: the previous
+network, anchored at P17 = -506 mm with P5 read through a diagonal. Black
+crosses: features measured on the scan. The P17 and P19 features sit 6 to
+21 mm from the published |Y|: they are the receptacle and pad structures, not
+the drilled holes, which the scan does not resolve.*
+
+**What it changes for the monocoque.** The front suspension mounts P3 and P5
+become determined dimensions. The governing span P5 to P12 drops from
+1724.3 mm to **1567.3 mm**. The old value was wrong at both ends: P5 by
+230 mm, and P12 by 73 mm through diagonal N.
+
 ## What is not established
 
-**The longitudinal calibration of the datum network is unresolved.** A fit of
-the network to the scan put 16 points out of 16 within 2.8 mm of structure,
-which looked excellent. A control invalidated it: **68 % of points drawn at
-random** under the car also fall within 2.8 mm of structure, the random median
-being 1.7 mm against 1.0 mm for the datums. The footprint of the floor pan
-covers almost the whole plane, so "landing on structure" proves next to nothing.
+**P12 and P21.** They hang on diagonals N and O. Their crossed-plan reading
+places P12 73 mm ahead of the transmission cross-member bosses measured on the
+scan, so it is not the right reading, and P21 rests on the same one. P12 is
+carried as a scan measurement (|Y| 142.8 and 147.3 mm against 139 published).
+P21 would land at X = -3072 mm, in the rear engine-carrier cross-member band
+of the scan, no longer in the bumper. It stays invalid until N and O are
+decoded.
 
-The consequence shows on `evidence/overlay.png`: placed according to diagonal O,
-point **P21, engine mount, falls at X = -3112 mm**, in the rear bumper area,
-whereas the scan shows the engine structure between -2300 and -2800 mm. The
-other possible pairing places it even further back. **Neither holds.**
-
-![Manual datum points plotted on the aligned scan: published X in cyan, X derived from diagonals in orange, CAD floor and sills in green](evidence/overlay.png)
-
-*The datum network placed on the scan. It shows P21 landing in the rear bumper
-area; it does not prove any datum position, published (cyan) or derived
-(orange).*
-
-Only the X values of **P17, P18 and P19** come from a dimension published in side
-view (R = 1245 +/- 2 and S = 1328 +/- 2). The X values of P20, P3, P5, P12 and
-P21 are derived under a crossed-diagonal assumption that is verified only for M.
+**The rear suspension mounts** P13 and P14 have no longitudinal dimension in
+the plates read so far.
 
 **The scan is a wide body.** Rear track measured around 1459 mm against 1374 mm
 from the factory; front track 1388 mm against 1380 mm, so close to original. The
@@ -163,7 +214,9 @@ only for the modeled solids: it is not a 964 body-shell mass.
     pymesh source/symmetry.py      # fits the symmetry plane
     pymesh source/align.py         # moves into the vehicle frame
     pymesh source/wheels.py        # wheelbase and diameters
-    pymesh source/datum_solve.py   # solves the datum chain
+    pymesh source/datum_solve.py   # historical chain (P read as a diagonal)
+    python3 source/datum_chain_50_05a.py   # published longitudinal chain
+    TWIN_SCAN=... TWIN_TRANSFORM=... pymesh source/scan_tie_50_05a.py   # ties it to the scan
     pymesh source/control.py       # significance control of the fit
     pycad  source/floor_assembly.py  # steel model -> STEP
 
@@ -213,31 +266,20 @@ flowchart TD
 
 ## Next useful data
 
-The diagnosis changed on 2026-09-04. What is missing is not a feature to find on
-the scan but **a dimension to find in a publication**: the scan does not resolve
-drilled holes, whereas it locates the wheel centers to +/- 7 mm. A **single
-published longitudinal dimension between a datum point and an axle line** would
-therefore suffice. Volume IV does not give it; it gives heights above ground.
-The full state of the leads, with their priorities, is in
-`docs/research/964-combler-le-gap-de-donnees.md`.
+The published longitudinal dimension this section asked for exists: plate
+50-05a of volume V, read on 2026-10-08. The front and centre chain is closed
+from it. What remains:
 
-The cheapest lead sleeps in the repository: `SRC-RENNLIST-993-BODY-DIMENSIONS-PDF`
-reports a table of points in millimeters, not obtained. And a cross-check makes
-it transferable: a 993 thread reports 1245 mm between lifting points, i.e.
-dimension R of the 964 manual to the millimeter. The two generations share the
-longitudinal spacing of the lifting points.
+- **Diagonals N and O.** Decoding them would place P12 and P21 from the
+  publication; the scan shows the crossed-plan reading is wrong at P12.
+- **The rear suspension mounts** P13 and P14, and the engine mount P15:
+  plates 50-05/50-05a show them, without a longitudinal dimension.
+- **The 0 line**: a published definition would replace the reading the scan
+  supports.
 
-Original wording, still valid: locating **a single** published datum point on a
-production vehicle or scan, better than its tolerance, would suffice to
-calibrate the longitudinal chain and move this twin to `F2_interface`. Point 17,
-the front jacking hole, is the best candidate: it is published to +/- 1 mm and
-visible from below.
-
-The fourth priority of the dossier, extending the shell model, is done: see
-"What the body shell adds to the floor pan" below. Among the leads that depend
-on us alone, only second-rank work remains. The decisive items — a jig-bench
-transcription, a scan of a production body shell, a published table of points —
-all depend on a third party.
+`SRC-RENNLIST-993-BODY-DIMENSIONS-PDF` reports a table of points in
+millimetres, not obtained; it could close the rear. The full state of the leads
+is in `docs/research/964-combler-le-gap-de-donnees.md`.
 
 ## Composite lead
 

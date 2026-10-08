@@ -23,11 +23,18 @@ TRANSVERSE = {                      # point : (ecartement gauche-droite, toleran
     20: (440, 2), 3: (610, 1), 5: (770, 2), 6: (204, 2), 17: (1330, 1),
     18: (1236, 1), 12: (278, 1), 19: (1018, 1), 21: (640, 1),
 }
-X_LOCAL = {17: 0.0, 18: -1245.0, 19: -1328.0, 20: 1211.1,
-           3: 654.2, 5: 527.3, 21: -2606.1, 12: -1197.0}
-X_SOURCE = {17: "MANUAL", 18: "MANUAL(R)", 19: "MANUAL(S)",
-            20: "DERIVED(K)", 3: "DERIVED(L)", 5: "DERIVED(P)",
-            21: "DERIVED(O)", 12: "DERIVED(N)"}
+# Longitudinal chain: published dimensions (plates 50-02, 50-03, 50-05a), see
+# datum_chain_50_05a.py; P12 measured on the scan, see scan_tie_50_05a.py.
+CHAIN = json.load(open("../derived/datum-chain-50-05a.json"))
+TIE = json.load(open("../evidence/scan-tie-50-05a.json"))
+X_LOCAL = {int(name[1:]): row["x_from_P17_mm"] for name, row in CHAIN["points"].items()
+           if name not in ("P1", "P16")}
+X_LOCAL[12] = round(CHAIN["points"]["P17"]["d_behind_0_line_mm"]
+                    - TIE["p12_scan_candidate"]["d_behind_0_line_mm"], 1)
+X_LOCAL[21] = -2606.1          # diagonal O, crossed-plan reading, not verified
+X_SOURCE = {17: "MANUAL(50-05a via K and L)", 18: "MANUAL(R)", 19: "MANUAL(S)",
+            20: "MANUAL(50-05a 143, P)", 3: "MANUAL(50-05a 215)", 5: "MANUAL(50-05a 143)",
+            21: "DERIVED(O)", 12: "SCAN(P12 bosses)"}
 
 # Ce que chaque point EST sur la voiture, et ce qu'il devient pour un monocoque.
 ROLE = {
@@ -42,20 +49,25 @@ ROLE = {
     21: ("Palier moteur",                      "groupe motopropulseur"),
 }
 
-REGISTRATION_X = -506.0     # P17 dans le repere vehicule. UNE inconnue globale.
+# P17 in the vehicle frame: the published chain tied to the scan by the offset
+# of the plate 0 line, measured on P5, P17 and P19 (scan_tie_50_05a.py).
+REGISTRATION_X = round(TIE["delta"]["value_mm"] - CHAIN["points"]["P17"]["d_behind_0_line_mm"], 1)
+REGISTRATION_U = TIE["delta"]["u_mm"]
 WHEELBASE_FACTORY = 2272.0  # mm, catalogue 964
 WHEELBASE_SCANNED = 2278.1  # mm, mesure sur scan, +0,27 %
 
-# P21 est invalide : place selon la diagonale O il tombe a X = -3112 mm dans le
-# pare-chocs, alors que le scan montre la structure moteur entre -2300 et -2800.
-INVALID = {21: "hors structure sur le scan, les deux appariements echouent"}
+# P21 hangs on diagonal O, whose crossed-plan reading also places P12, through
+# N, 73 mm away from the scan. It stays out of the determined set.
+INVALID = {21: "diagonal O not decoded: the same reading misses P12 by 73 mm on the scan"}
 
 
 def classify(p):
     """DETERMINE si la cote longitudinale est publiee, PARAMETRIQUE sinon."""
     if p in INVALID:
         return "INVALIDE"
-    return "DETERMINE" if X_SOURCE[p].startswith("MANUAL") else "PARAMETRIQUE"
+    if X_SOURCE[p].startswith("MANUAL"):
+        return "DETERMINE"
+    return "MESURE_SCAN" if X_SOURCE[p].startswith("SCAN") else "PARAMETRIQUE"
 
 
 points = {}
@@ -78,6 +90,7 @@ for p in sorted(TRANSVERSE, key=lambda k: -X_LOCAL.get(k, 0)):
         points[f"P{p}"]["invalide_raison"] = INVALID[p]
 
 det = [k for k, v in points.items() if v["x_statut"] == "DETERMINE"]
+scan = [k for k, v in points.items() if v["x_statut"] == "MESURE_SCAN"]
 par = [k for k, v in points.items() if v["x_statut"] == "PARAMETRIQUE"]
 inv = [k for k, v in points.items() if v["x_statut"] == "INVALIDE"]
 
@@ -96,7 +109,8 @@ report = {
         "nom": "REGISTRATION_X",
         "definition": "position de P17 dans le repere vehicule",
         "valeur_de_travail_mm": REGISTRATION_X,
-        "source": "SCAN, faiblement contraint",
+        "incertitude_mm": REGISTRATION_U,
+        "source": "published chain tied to the scan on P5, P17 and P19 (scan_tie_50_05a.py)",
         "effet": "translation rigide de tout le reseau ; ne change aucune cote relative",
     },
     "cote_gouvernante": {
@@ -104,7 +118,7 @@ report = {
         "definition": "entraxe longitudinal fixation train avant -> traverse essieu arriere",
         "valeur_mm": round(SPAN_P5_P12, 1),
         "x_sources": [X_SOURCE[5], X_SOURCE[12]],
-        "statut": "NON VERIFIE — les deux extremites sont DERIVED",
+        "statut": "P5 published (50-05a); P12 measured on the scan, not published",
         "consequence": ("Le monocoque impose cet entraxe par construction. Une erreur "
                         "ici ne se rattrape pas au montage : elle donne un empattement "
                         "et une geometrie de suspension faux."),
@@ -125,32 +139,18 @@ for k, v in points.items():
     print(f"{k:<6}{v['designation']:<36}{v['fonction_monocoque']:<22}"
           f"{v['y_half_mm']:8.1f}{v['x_local_mm']:10.1f}  {v['x_statut']}")
 
-print(f"\nTransverse : {len(points)}/{len(points)} points publies au manuel, tolerance 1 a 2 mm.")
-print(f"Longitudinal : {len(det)} determines {det}, {len(par)} parametriques {par}, "
-      f"{len(inv)} invalides {inv}.")
-
+print(f"\nTransverse: {len(points)}/{len(points)} points published in the manual, tolerance 1 to 2 mm.")
+print(f"Longitudinal: {len(det)} determined {det}, {len(scan)} measured on the scan {scan}, "
+      f"{len(par)} parametric {par}, {len(inv)} invalid {inv}.")
 print(f"""
-Ce que dit ce tableau, et c'est le resultat utile :
+Since plate 50-05a was read, the front suspension mounts P3 and P5 are
+determined from published dimensions, like the jacking points. Governing
+dimension SPAN_P5_P12 = {SPAN_P5_P12:.1f} mm: P5 published, P12 measured on the
+scan (+/- {REGISTRATION_U} mm on the tie). The previous value, 1724.3 mm, was
+wrong at both ends: dimension P read as a diagonal put P5 230 mm forward, and
+diagonal N put P12 73 mm forward.
 
-  Les points DETERMINES sont des prises de cric et des points de controle de
-  carrosserie. Les points PARAMETRIQUES et INVALIDES sont, eux, TOUS ceux qui
-  portent la suspension et le groupe motopropulseur.
-
-  Autrement dit, ce qui est bien connu ne sert pas a grand-chose pour un
-  monocoque, et ce dont le monocoque a besoin n'est pas connu.
-
-Cote gouvernante : SPAN_P5_P12 = {SPAN_P5_P12:.1f} mm, entraxe train avant ->
-essieu arriere. Ses deux extremites sont DERIVED sous une hypothese de diagonale
-croisee qui n'est verifiee que pour la diagonale M. C'est la cote la plus
-critique du produit et c'est une cote non verifiee.
-
-Consequence de conception, immediatement actionnable :
-
-  1. La topologie, les anneaux, les chemins de cisaillement et le drapage se
-     concoivent MAINTENANT : ils ne dependent d'aucune de ces inconnues.
-  2. Les interfaces se declarent en parametres, pas en cotes dures. Le relevé
-     de marbre remplit {len(par)} valeurs et en corrige 1.
-  3. Aucune coque ne part en outillage avant que SPAN_P5_P12 soit mesure. Un
-     outillage grave une cote fausse dans le produit.
+Still open before any tooling: P12 and P21 from a publication (diagonals N
+and O are not decoded), and the rear suspension mounts P13 and P14.
 """)
 print("ecrit ../derived/monocoque-interface.json")
