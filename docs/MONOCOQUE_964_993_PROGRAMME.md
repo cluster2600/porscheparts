@@ -8,10 +8,11 @@ Target: a replacement carbon monocoque for 964 and 993 restomods, an
 alternative to the `SRC-ZESAD-CARBON-MONOCOQUE-964-993` offering, industrialized
 in China.
 
-This target **contradicts the written scope** of `ROADMAP.md`, which classifies
-replacing the unibody structure as "initially out of scope". Scope is a
-decision of the project owner, not a technical conclusion; it must be changed
-explicitly if this programme is adopted, not bypassed silently. The gates in
+Scope is a decision of the project owner, not a technical conclusion. On
+2026-10-08 the owner changed it explicitly: `ROADMAP.md` now opens the
+composite monocoque **as a study and digital twin only**; manufacturing,
+having manufactured or releasing any load-bearing structure stays out of
+scope. The gates in
 `SAFETY.md` and `QUALITY_GATES.md`, on the other hand, are not scope choices:
 see the "Safety gates" section.
 
@@ -312,4 +313,5 @@ our control.
   be checked against.
 - The fiber producers named are candidates to be verified, not qualified
   suppliers. None has been contacted.
-- The scope of `ROADMAP.md` is not changed by this document.
+- The scope of `ROADMAP.md` was changed by the owner on 2026-10-08, to a
+  study-only track; this document does not widen it.
