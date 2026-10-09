@@ -104,21 +104,21 @@
    ]
   }
  ],
- "mesh_note": "K lists are at the densities of 'meshes', coarsest first; S3 converges from above, so only ratios that hold across densities are used",
+ "mesh_note": "K lists are at the densities of 'meshes', coarsest first, each the median of K_repeats; S3 converges from above, so only ratios that hold across densities are used",
  "ratios": {
   "monocoque / open shell, steel": [
-   6.13,
+   5.83,
    9.08,
    13.04
   ],
   "monocoque / open shell, CFRP": [
    5.69,
-   9.69,
+   9.1,
    13.26
   ],
   "CFRP / steel, monocoque": [
-   0.7,
-   0.78,
+   0.73,
+   0.73,
    0.76
   ]
  },
@@ -222,6 +222,23 @@
     3468,
     2261
    ],
+   "K_repeats": [
+    [
+     5425,
+     5425,
+     5425
+    ],
+    [
+     3468,
+     3468,
+     3468
+    ],
+    [
+     2261,
+     2633,
+     2261
+    ]
+   ],
    "K_per_kg": [
     94.3,
     60.3,
@@ -299,6 +316,23 @@
     2535,
     1680
    ],
+   "K_repeats": [
+    [
+     4075,
+     4075,
+     4075
+    ],
+    [
+     2535,
+     2535,
+     2535
+    ],
+    [
+     1680,
+     1680,
+     1680
+    ]
+   ],
    "K_per_kg": [
     122.7,
     76.4,
@@ -372,12 +406,29 @@
   "monocoque, 0.8 mm steel": {
    "mass_kg": 123.3,
    "K": [
-    33246,
+    31641,
     31501,
     29492
    ],
+   "K_repeats": [
+    [
+     31641,
+     31641,
+     31641
+    ],
+    [
+     31501,
+     31501,
+     31501
+    ],
+    [
+     29492,
+     29492,
+     29492
+    ]
+   ],
    "K_per_kg": [
-    269.6,
+    256.6,
     255.5,
     239.2
    ],
@@ -450,12 +501,29 @@
    "mass_kg": 75.1,
    "K": [
     23192,
-    24564,
+    23080,
     22283
+   ],
+   "K_repeats": [
+    [
+     23192,
+     23192,
+     23192
+    ],
+    [
+     23080,
+     23080,
+     23080
+    ],
+    [
+     22283,
+     22283,
+     22283
+    ]
    ],
    "K_per_kg": [
     308.8,
-    327.1,
+    307.3,
     296.7
    ],
    "twist_deg": [
@@ -506,7 +574,7 @@
     0.00869,
     0.00841,
     0.00789,
-    0.00786,
+    0.00787,
     0.00729,
     0.00682,
     0.00669,

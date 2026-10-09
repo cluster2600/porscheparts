@@ -93,9 +93,12 @@ compare with, and no 964 body-in-white mass is recorded in the repository.
 - No interface from [`monocoque-interface.json`](../../derived/monocoque-interface.json)
   is carried yet: suspension, engine and gearbox mounts, door hinges, seat and
   belt anchorages, glass bonding flanges.
-- No stiffness yet: the next step is to mesh this concept for the CalculiX
-  chain of `../../fea/` and compare it with the box cell and the open shell
-  (K = 2,261 N·m/deg, steel, [monocoque README](../README.md)).
+- Stiffness, on a shell-and-beam model of these members with the open
+  shell's load case (`../source/torsion_rings.py`): K 9,559 N·m/deg in the
+  assumed CFRP layup (61 kg, finest of three meshes, still converging), 2.8
+  to 3.9 times the same model without its tubes, and 1.4 to 1.9 times less
+  per kilogram than the skin-formed boxes of `../picogk/`. See
+  [two architectures, one load case](../README.md#two-architectures-one-load-case).
 - No layup: the 2 mm skin and 3 mm walls are placeholders, not plies.
 - No crash, strength, buckling, fatigue or delamination assessment.
 

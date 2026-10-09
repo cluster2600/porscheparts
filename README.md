@@ -52,7 +52,8 @@ The repository has withdrawn several, listed
 
 | date | change |
 |---|---|
-| 2026-10-09 | **Torsion of the monocoque architecture**: K about 29,500 N·m/deg in steel and 22,300 in CFRP (75 kg), stable within 6% over three meshes, more than five times the open shell; carbon gives ×1.15 to ×1.28 per kilogram. A model value, not a car's. [Torsion](twins/964-chassis/monocoque/README.md#torsion-of-the-monocoque-architecture) |
+| 2026-10-09 | **Two monocoque architectures in torsion**: on the same mesh and load, closed sections formed by the skin are 1.4 to 1.9 times stiffer per kilogram than tubes tangent to it, at all three meshes. A ranking of two hypotheses. [Comparison](twins/964-chassis/monocoque/README.md#two-architectures-one-load-case) |
+| 2026-10-09 | **Torsion of the monocoque architecture**: K about 29,500 N·m/deg in steel and 22,300 in CFRP (75 kg), stable within 7% over three meshes, more than five times the open shell; carbon gives ×1.15 to ×1.28 per kilogram. A model value, not a car's. [Torsion](twins/964-chassis/monocoque/README.md#torsion-of-the-monocoque-architecture) |
 | 2026-10-08 | **A ZESAD-type carbon monocoque in PicoGK**, inside the traced shell: closed sections around every aperture, boxed sills, tunnel and rails, sandwich floor and bulkheads; about 95 kg from assumed layups. A design envelope, not a part. [Monocoque](twins/964-chassis/monocoque/picogk/README.md) |
 | 2026-10-08 | **A 911-shaped monocoque shell**: outline traced from the workshop manual's plate 50-05a, sections modelled, a first whole-body torsion run; it replaces the box cell in the banner. [Shell](twins/964-chassis/monocoque/README.md) |
 | 2026-10-08 | **964 datum chain closed** from the workshop manual's own plates (50-02, 50-03, 50-05a): every suspension and power-unit mount of the monocoque interface contract now has a fore-aft position, checked against the underside scan. [Details](twins/964-chassis/README.md#the-longitudinal-chain-closed-from-plate-50-05a) |
@@ -177,7 +178,7 @@ is generated in voxels with PicoGK. Each aperture gets a closed section and
 the sills, tunnel and rails are boxes, so the closures the box-cell study
 ranked first are there by construction. Member sizes and layups are
 hypotheses. In torsion, on the same mesh and load as the open shell, the
-architecture is more than five times stiffer. Its K is stable within 6%
+architecture is more than five times stiffer. Its K is stable within 7%
 across meshes, while the open shell's is not
 ([torsion](twins/964-chassis/monocoque/README.md#torsion-of-the-monocoque-architecture)).
 

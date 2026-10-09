@@ -1,9 +1,10 @@
 """Figures of the plate-50-05a shell: four views, and the torsion stress map.
 
 Reads ../derived/monocoque-shell.ply, ../derived/torsion-snapshot.npz and,
-when present, ../derived/torsion-monocoque*.{json,npz}; writes
-../evidence/shell-views.png, ../evidence/torsion-von-mises.png and
-../evidence/torsion-monocoque.png.
+when present, ../derived/torsion-monocoque*.{json,npz} and
+../derived/torsion-rings*.{json,npz}; writes ../evidence/shell-views.png,
+../evidence/torsion-von-mises.png, ../evidence/torsion-monocoque.png and
+../evidence/torsion-architectures.png.
 
     python3 figures.py
 """
@@ -68,6 +69,75 @@ def main():
     print("wrote shell-views.png and torsion-von-mises.png")
     if (DERIVED / "torsion-monocoque.json").exists():
         monocoque_torsion(pv, cmap)
+    if (DERIVED / "torsion-rings.json").exists():
+        architectures(pv)
+
+
+def architectures(pv):
+    """The two PicoGK architectures on one mesh and one load: their closed
+    sections, K against mass across the three meshes, and the twist."""
+    import json
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from PIL import Image
+    boxes = json.loads((DERIVED / "torsion-monocoque.json").read_text())
+    rings = json.loads((DERIVED / "torsion-rings.json").read_text())
+    tb = np.load(DERIVED / "torsion-monocoque-snapshot.npz")
+    tg = np.load(DERIVED / "torsion-rings-model.npz")
+    p = pv.Plotter(off_screen=True, shape=(1, 2), window_size=(2600, 900))
+    for i, (t, title) in enumerate(((tb, "picogk/: closed sections formed by the skin"),
+                                    (tg, "picogk-rings/: tubes tangent to the skin"))):
+        pts, tri, kind = t["points"].astype(float), t["triangles"], t["kind"]
+        p.subplot(0, i)
+        p.set_background("#0e1218", top="#232b36")
+        for k, colour, op in ((0, "#8a929e", 0.12), (2, "#4f9aa8", 0.5), (3, "#4f9aa8", 0.5), (1, "#f07b3f", 1.0)):
+            m = tri[kind == k]
+            if len(m):
+                p.add_mesh(pv.PolyData(pts, np.c_[np.full(len(m), 3), m].ravel()), color=colour, opacity=op,
+                           smooth_shading=True, ambient=0.3)
+        if "tube_segments" in t.files:
+            seg = t["tube_segments"]
+            lines = pv.PolyData(pts, lines=np.c_[np.full(len(seg), 2), seg].ravel())
+            p.add_mesh(lines.tube(radius=28.0), color="#f07b3f", smooth_shading=True, ambient=0.3)
+        camera(p, np.array([-1190.0, 0.0, 640.0]), 3780.0, 32, 18)
+        p.add_text(title, font_size=11, color="white")
+    p.enable_anti_aliasing("ssaa")
+    top = Image.fromarray(p.screenshot(return_img=True))
+    p.close()
+    fig, (ax, bx) = plt.subplots(1, 2, figsize=(16, 4.6), facecolor="#0e1218", gridspec_kw={"width_ratios": [1, 1.6]})
+    series = [(boxes, "open shell, CFRP layup", "open shell", "#8a929e"),
+              (boxes, "monocoque, CFRP layup", "picogk/ (skin boxes)", "#f07b3f"),
+              (rings, "rings, CFRP layup", "picogk-rings/ (tubes)", "#e9b44c"),
+              (rings, "rings without tubes, CFRP layup", "picogk-rings/ without its tubes", "#4f9aa8")]
+    for doc, key, label, colour in series:
+        row = doc["cases"][key]
+        k = np.array(row["K"], float)
+        ax.errorbar(row["mass_kg"], k[-1], yerr=[[k[-1] - k.min()], [k.max() - k[-1]]], fmt="o", color=colour,
+                    ms=9, capsize=4, label=label)
+        tw = np.array([np.nan if v is None else v for v in row["twist_deg"]])
+        bx.plot(np.array(doc["twist_stations_d_mm"]), tw, color=colour, lw=2, label=f"{label}: K {row['K'][-1]:,}")
+    for a in (ax, bx):
+        a.set_facecolor("#0e1218")
+        a.tick_params(colors="#9aa3ad")
+        for sp in a.spines.values():
+            sp.set_color("#3a4350")
+        a.legend(frameon=False, labelcolor="white", fontsize=9)
+    ax.set_xlabel("mass, kg (assumed CFRP layups)", color="#9aa3ad")
+    ax.set_ylabel("K, N.m/deg (finest mesh; bars: range over 3 meshes)", color="#9aa3ad")
+    bx.set_xlabel("d, mm behind the plate 0 line", color="#9aa3ad")
+    bx.set_ylabel("section rotation, deg", color="#9aa3ad")
+    bx.axvspan(2050, 2450, color="#3a4350", alpha=0.6)
+    fig.tight_layout()
+    fig.canvas.draw()
+    bottom = Image.fromarray(np.asarray(fig.canvas.buffer_rgba())[:, :, :3])
+    plt.close(fig)
+    bottom = bottom.resize((top.width, int(bottom.height * top.width / bottom.width)), Image.LANCZOS)
+    out = Image.new("RGB", (top.width, top.height + bottom.height), (14, 18, 24))
+    out.paste(top, (0, 0))
+    out.paste(bottom, (0, top.height))
+    out.save(EVIDENCE / "torsion-architectures.png")
+    print("wrote torsion-architectures.png")
 
 
 def monocoque_torsion(pv, cmap):

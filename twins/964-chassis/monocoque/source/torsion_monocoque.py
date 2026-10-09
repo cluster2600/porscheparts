@@ -62,6 +62,7 @@ CHANNELS = ["door", "quarter_window", "rear_arch", "front_arch", "windscreen",
             "rear_window", "front_lid", "engine_lid", "engine_bay_underside"]
 SILL_DEPTH_MM = 140.0          # < the 150 mm corner radius of the section
 SMOOTHING_PASSES = 20          # normal smoothing before the offset
+REPEATS = 3                    # solves per value, median kept
 
 CARBON = laminate.quasi_isotropic(laminate.reduced_stiffness(**laminate.LAMINA["carbon"]))
 CARBON["rho"] = laminate.LAMINA["carbon"]["rho"]
@@ -99,36 +100,44 @@ def smooth(n, tri, region, passes):
     return n
 
 
-def member_depths(p, s, rep, profiles):
-    """Per-vertex section depth (0 = no closed section), and which members."""
+def picogk_bands(p, s, rep, profiles):
+    """The closed sections of ../picogk/, as skin bands: (name, vertex mask,
+    section depth mm)."""
     d, y, z = -p[:, 0], p[:, 1], p[:, 2]
     st = s["stations_d"]
     w, zb = np.interp(d, st, s["half_width"]), np.interp(d, st, s["bottom"])
     f = bs.opening_fields(p, profiles, st, s["top"], s["bottom"], s["half_width"], s["belt"])
     hyp = rep["hypotheses"]
-    depth, used = np.zeros(len(p)), {}
-
-    def put(name, mask, dd):
-        np.maximum.at(depth, np.where(mask)[0], dd)
-        used[name] = int(mask.sum())
-    for ring in hyp["aperture_rings"]:
-        put(ring["name"], f[CHANNELS.index(ring["name"])] > -ring["width_mm"], ring["depth_mm"])
+    bands = [(r["name"], f[CHANNELS.index(r["name"])] > -r["width_mm"], r["depth_mm"]) for r in hyp["aperture_rings"]]
     sill = hyp["sills_mm"]
-    put("sills", (d > sill["d"][0]) & (d < sill["d"][1]) & (np.abs(y) > w - sill["width"])
-        & (z < zb + sill["height_above_floor"]), SILL_DEPTH_MM)
+    bands.append(("sills", (d > sill["d"][0]) & (d < sill["d"][1]) & (np.abs(y) > w - sill["width"])
+                  & (z < zb + sill["height_above_floor"]), SILL_DEPTH_MM))
     floor = z < zb + 5
     fb, rb = bs.FRONT_BULKHEAD_D, bs.REAR_BULKHEAD_D
     tun = hyp["tunnel_mm"]
-    put("tunnel", floor & (d > fb) & (d < rb) & (np.abs(y) < tun["half_width"]), tun["height_above_floor"])
+    bands.append(("tunnel", floor & (d > fb) & (d < rb) & (np.abs(y) < tun["half_width"]), tun["height_above_floor"]))
     fr = hyp["front_rails_mm"]
-    put("front rails", floor & (d > -640) & (d < fb + 12) & (np.abs(y) > fr["y"][0]) & (np.abs(y) < fr["y"][1]),
-        fr["z_above_floor"][1])
+    bands.append(("front rails", floor & (d > -640) & (d < fb + 12) & (np.abs(y) > fr["y"][0]) & (np.abs(y) < fr["y"][1]),
+                  fr["z_above_floor"][1]))
     b0, b1 = hyp["b_ring_d_mm"]
-    put("B-ring", (d > b0) & (d < b1), 100.0)
+    bands.append(("B-ring", (d > b0) & (d < b1), 100.0))
+    return bands
+
+
+def member_depths(n_points, bands):
+    """Per-vertex section depth (0 = no closed section): the deepest band
+    wins, so bands that meet make one section."""
+    depth, used = np.zeros(n_points), {}
+    for name, mask, dd in bands:
+        np.maximum.at(depth, np.where(mask)[0], dd)
+        used[name] = int(mask.sum())
     return depth, used
 
 
-def build(s, p, tri, rep, profiles):
+def build(s, p, tri, bands):
+    """Shell model: the open shell plus, for the bands, an inner wall offset
+    by the section depth and side walls on every free edge. kind: 0 skin,
+    1 section wall, 2 bulkhead, 3 floor."""
     d = -p[:, 0]
     centre = np.c_[p[:, 0], np.zeros(len(p)), 0.5 * (np.interp(d, s["stations_d"], s["bottom"])
                                                      + np.interp(d, s["stations_d"], s["top"]))]
@@ -137,7 +146,7 @@ def build(s, p, tri, rep, profiles):
     fn /= np.linalg.norm(fn, axis=1, keepdims=True)
     fd = -(a[:, 0] + b[:, 0] + c[:, 0]) / 3
     bulk = (np.abs(fn[:, 0]) > 0.95) & ((np.abs(fd - bs.FRONT_BULKHEAD_D) < 2) | (np.abs(fd - bs.REAR_BULKHEAD_D) < 2))
-    depth, used = member_depths(p, s, rep, profiles)
+    depth, used = member_depths(len(p), bands(p, s))
     in_band = depth > 0
     region = in_band[tri].all(axis=1) & ~bulk
     rv = np.zeros(len(p), bool)
@@ -229,18 +238,28 @@ def twist(p, u, s, stations):
     return out
 
 
+def solve_repeated(pts, tri, secs, rear, fl, fr, beams=(), n=REPEATS):
+    """Median of n identical solves. CalculiX occasionally returns a K a
+    few per cent away on the same input (seen 3 times in about 40 solves,
+    0.1 to 7%), so each value is the median of three, with the spread kept."""
+    runs = [tr.solve(pts, tri, secs, rear, fl, fr, beams=beams) for _ in range(n)]
+    ks = [float(r[0]) for r in runs]
+    i = int(np.argsort(ks)[len(ks) // 2])
+    return ks[i], runs[i][1], runs[i][2], [round(k) for k in ks]
+
+
 def solve_density(n_stations, res, rep, profiles, stations, keep_fields):
     s = None if n_stations == bs.N_STATIONS and res == 1.0 else bs.structural(n_stations, res)[2]
     s, p, tri = tr.load_shell(s)
     rear, fl, fr = tr.supports(s, p)
-    pts, all_tri, kind, used, folds, n_region = build(s, p, tri, rep, profiles)
+    pts, all_tri, kind, used, folds, n_region = build(s, p, tri, lambda q, st: picogk_bands(q, st, rep, profiles))
     area = areas(pts, all_tri)
     print(f"{n_stations} sections: {len(pts)} nodes, {len(all_tri)} triangles; depth cut back on "
           f"{folds['section_vertices_cut_back']} of {folds['section_vertices']} section vertices")
     row, extra = {}, {}
     for name, (secs, mass) in cases(kind, area).items():
-        k, u, vm, arm = tr.solve(pts, all_tri, secs, rear, fl, fr)
-        row[name] = (round(float(k)), round(mass, 1))
+        k, u, vm, reps = solve_repeated(pts, all_tri, secs, rear, fl, fr)
+        row[name] = (round(float(k)), round(mass, 1), reps)
         if keep_fields:
             extra[name] = (vm, twist(pts, u, s, stations))
         print(f"  {name:28s} K = {k:7.0f} N.m/deg, mass {mass:6.1f} kg")
@@ -266,7 +285,8 @@ def main():
     results = {}
     for name in rows[-1]:
         k = [r[name][0] for r in rows]
-        results[name] = {"mass_kg": rows[-1][name][1], "K": k, "K_per_kg": [round(x / rows[-1][name][1], 1) for x in k],
+        results[name] = {"mass_kg": rows[-1][name][1], "K": k, "K_repeats": [r[name][2] for r in rows],
+                         "K_per_kg": [round(x / rows[-1][name][1], 1) for x in k],
                          "twist_deg": [None if np.isnan(x) else round(x, 5) for x in extra[name][1]]}
     ratio = lambda num, den: [round(rn[num][0] / rn[den][0], 2) for rn in rows]   # noqa: E731
     doc = {
@@ -275,7 +295,7 @@ def main():
         "load_case": {"force_N": tr.FORCE_N, "clamp": "d 2050-2450, z 450-720, |y| > 0.8 W",
                       "loads": "d -200..150, z 470-640, |y| > 0.72 W"},
         "meshes": meshes,
-        "mesh_note": "K lists are at the densities of 'meshes', coarsest first; S3 converges from above, so only ratios that hold across densities are used",
+        "mesh_note": "K lists are at the densities of 'meshes', coarsest first, each the median of K_repeats; S3 converges from above, so only ratios that hold across densities are used",
         "ratios": {"monocoque / open shell, steel": ratio("monocoque, 0.8 mm steel", "open shell, 0.8 mm steel"),
                    "monocoque / open shell, CFRP": ratio("monocoque, CFRP layup", "open shell, CFRP layup"),
                    "CFRP / steel, monocoque": ratio("monocoque, CFRP layup", "monocoque, 0.8 mm steel")},
