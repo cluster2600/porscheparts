@@ -27,7 +27,7 @@ The original part is documented — pictures, catalogue entries or published dat
 <td width="50%" valign="top" align="center">
 <b>This repository's concept model</b><br><br>
 <img src="media/preview.png" alt="Concept CAD block for 993 intake valve - F1 proxy and titanium variant" width="340"><br>
-<sub>Concept CAD block, 49.0 × 49.0 × 109.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+<sub>Concept CAD block, 49.1 × 49.1 × 109.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
 </td>
 </tr></table>
 
@@ -92,8 +92,9 @@ flowchart LR
 
 | folder | what it holds | files |
 |---|---|---|
-| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/993-intake-49-f1.step`](derived/993-intake-49-f1.step) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/993-intake-49-f1-picogk.json`](derived/993-intake-49-f1-picogk.json), [`derived/993-intake-49-f1-picogk.stl`](derived/993-intake-49-f1-picogk.stl), [`derived/993-intake-49-f1.step`](derived/993-intake-49-f1.step) |
 | `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/picogk.json`](source/picogk.json) |
 
 ## Read more
 

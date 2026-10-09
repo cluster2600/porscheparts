@@ -26,7 +26,7 @@
 <td width="50%" valign="top" align="center">
 <b>This repository's concept model</b><br><br>
 <img src="media/preview.png" alt="Concept CAD block for Engine cooling fan guide-vane ring (stator), AlSi10Mg concept F1" width="340"><br>
-<sub>Concept CAD block, 248.0 × 248.0 × 40.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+<sub>Concept CAD block, 248.1 × 248.1 × 40.9 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
 </td>
 </tr></table>
 
@@ -97,10 +97,10 @@ flowchart LR
 
 | folder | what it holds | files |
 |---|---|---|
-| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/fan_stator_alsi10mg_f1.step`](derived/fan_stator_alsi10mg_f1.step), [`derived/fan_stator_alsi10mg_f1.stl`](derived/fan_stator_alsi10mg_f1.stl) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/fan_stator_alsi10mg_f1-picogk.json`](derived/fan_stator_alsi10mg_f1-picogk.json), [`derived/fan_stator_alsi10mg_f1-picogk.stl`](derived/fan_stator_alsi10mg_f1-picogk.stl), [`derived/fan_stator_alsi10mg_f1.step`](derived/fan_stator_alsi10mg_f1.step), [`derived/fan_stator_alsi10mg_f1.stl`](derived/fan_stator_alsi10mg_f1.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json), [`evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-layer-metrics.csv`](evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-layer-metrics.csv), [`evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-manifest.json`](evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-manifest.json), [`evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-report.json`](evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-report.json), [`evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-screen.png`](evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-screen.png) |
 | `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/print-simulation/build-plate.png`](media/print-simulation/build-plate.png), [`media/print-simulation/build.gif`](media/print-simulation/build.gif), [`media/print-simulation/build.mp4`](media/print-simulation/build.mp4), [`media/print-simulation/layers.png`](media/print-simulation/layers.png), [`media/print-simulation/visuals.json`](media/print-simulation/visuals.json), [`media/views.png`](media/views.png) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/fan_stator_f1.py`](source/fan_stator_f1.py) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/fan_stator_f1.py`](source/fan_stator_f1.py), [`source/picogk.json`](source/picogk.json) |
 
 ## Read more
 

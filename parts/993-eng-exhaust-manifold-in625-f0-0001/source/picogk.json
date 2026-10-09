@@ -1,0 +1,162 @@
+{
+  "part_id": "993-ENG-EXHAUST-MANIFOLD-IN625-F0-0001",
+  "name": "993 Turbo three-into-one exhaust manifold, IN625 (PicoGK)",
+  "generator": "exhaust_manifold_3into1",
+  "catalogue_record": "catalog/parts/993-eng-exhaust-manifold-in625-f0-0001.json",
+  "porsche_part_numbers": [],
+  "safety_class": "prohibited_pending_engineering",
+  "material_candidate": "IN625 LPBF",
+  "density_g_cm3": 8.44,
+  "voxel_mm": 0.4,
+  "picogk_enhancement": "Three primaries swept along curved centrelines (vertical at the ports, converging into the collector) and merged into one filleted flow body with a smooth crotch and merge spikes instead of three straight lofts butted against a cylinder; common head flange with bolt bosses and nut clearances, two-bolt outlet flange; one connected internal passage, open at three inlets and one outlet (no trapped powder).",
+  "parameters": {
+    "primary_inner_diameter_mm": {
+      "value": 34.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "F0 hypothesis in parts/993-eng-exhaust-manifold-in625-f0-0001/source/exhaust_manifold.py (PRIMARY_INNER_DIAMETER_MM)"
+    },
+    "collector_inner_diameter_mm": {
+      "value": 56.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "F0 hypothesis in parts/993-eng-exhaust-manifold-in625-f0-0001/source/exhaust_manifold.py (COLLECTOR_INNER_DIAMETER_MM)"
+    },
+    "wall_mm": {
+      "value": 1.2,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "F0 nominal wall in parts/993-eng-exhaust-manifold-in625-f0-0001/source/exhaust_manifold.py (NOMINAL_WALL_MM)"
+    },
+    "port_spacing_x_mm": {
+      "value": 55.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "inlet centres x = -55/0/55 in parts/993-eng-exhaust-manifold-in625-f0-0001/source/exhaust_manifold.py (PRIMARY_START_CENTERS_MM)"
+    },
+    "port_offset_y_mm": {
+      "value": 15.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "inlet centres y = -15/0/15 in parts/993-eng-exhaust-manifold-in625-f0-0001/source/exhaust_manifold.py"
+    },
+    "merge_spacing_x_mm": {
+      "value": 8.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "primary end centres x = -8/0/8 in parts/993-eng-exhaust-manifold-in625-f0-0001/source/exhaust_manifold.py (PRIMARY_END_CENTERS_MM)"
+    },
+    "merge_offset_y_mm": {
+      "value": 4.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "primary end centres y = -4/0/4 in parts/993-eng-exhaust-manifold-in625-f0-0001/source/exhaust_manifold.py"
+    },
+    "merge_z_mm": {
+      "value": 130.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "MERGE_Z_MM in parts/993-eng-exhaust-manifold-in625-f0-0001/source/exhaust_manifold.py"
+    },
+    "collector_start_z_mm": {
+      "value": 105.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "COLLECTOR_START_Z_MM in parts/993-eng-exhaust-manifold-in625-f0-0001/source/exhaust_manifold.py"
+    },
+    "total_length_mm": {
+      "value": 215.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "TOTAL_LENGTH_MM in parts/993-eng-exhaust-manifold-in625-f0-0001/source/exhaust_manifold.py (axial envelope of the F0)"
+    },
+    "bend_control_z_mm": {
+      "value": 70.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "Bezier control height: primaries leave the ports vertically and bend toward the collector"
+    },
+    "head_flange_thickness_mm": {
+      "value": 8.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "common port flange thickness; flange absent from the F0 STEP"
+    },
+    "head_flange_rim_mm": {
+      "value": 2.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "flange rim around each primary OD"
+    },
+    "bolt_hole_diameter_mm": {
+      "value": 8.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "M8 clearance assumed; no stud pattern published"
+    },
+    "bolt_boss_radius_mm": {
+      "value": 8.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "bolt boss radius"
+    },
+    "nut_clearance_radius_mm": {
+      "value": 7.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "spot-face / nut clearance above the bolt bosses"
+    },
+    "outlet_flange_thickness_mm": {
+      "value": 8.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "turbine-side flange thickness; turbine interface not measured"
+    },
+    "outlet_flange_radius_mm": {
+      "value": 33.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outlet flange radius, kept inside the F0 66.4 mm depth"
+    },
+    "outlet_bolt_offset_mm": {
+      "value": 42.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outlet bolt centres at x = +/-42 mm"
+    },
+    "fillet_mm": {
+      "value": 6.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outer fillet radius of crotch and flange roots"
+    }
+  },
+  "envelope": [],
+  "open_interfaces": [
+    "cylinder-head exhaust port positions, shape and stud pattern",
+    "turbine inlet flange and gasket",
+    "heat exchanger (heating) shell, supports and installed routing",
+    "primary diameter, wall and merge length (all F0 hypotheses)"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file"
+}

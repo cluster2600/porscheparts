@@ -28,7 +28,7 @@ The original part is documented — pictures, catalogue entries or published dat
 <td width="50%" valign="top" align="center">
 <b>This repository's concept model</b><br><br>
 <img src="media/preview.png" alt="Concept CAD block for 993 front impact support, AlSi10Mg graded-core concept F0" width="340"><br>
-<sub>Concept CAD block, 139.0 × 100.0 × 53.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+<sub>Concept CAD block, 139.3 × 100.1 × 53.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
 </td>
 </tr></table>
 
@@ -99,10 +99,10 @@ flowchart LR
 
 | folder | what it holds | files |
 |---|---|---|
-| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/front_impact_support_alsi10mg_f0.step`](derived/front_impact_support_alsi10mg_f0.step), [`derived/front_impact_support_alsi10mg_f0.stl`](derived/front_impact_support_alsi10mg_f0.stl) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/front_impact_support_alsi10mg_f0-picogk.json`](derived/front_impact_support_alsi10mg_f0-picogk.json), [`derived/front_impact_support_alsi10mg_f0-picogk.stl`](derived/front_impact_support_alsi10mg_f0-picogk.stl), [`derived/front_impact_support_alsi10mg_f0.step`](derived/front_impact_support_alsi10mg_f0.step), [`derived/front_impact_support_alsi10mg_f0.stl`](derived/front_impact_support_alsi10mg_f0.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json), [`evidence/lpbf-f0/993-body-front-impact-support-alsi10mg-f0-0001-layer-metrics.csv`](evidence/lpbf-f0/993-body-front-impact-support-alsi10mg-f0-0001-layer-metrics.csv), [`evidence/lpbf-f0/993-body-front-impact-support-alsi10mg-f0-0001-lpbf-geometry-manifest.json`](evidence/lpbf-f0/993-body-front-impact-support-alsi10mg-f0-0001-lpbf-geometry-manifest.json), [`evidence/lpbf-f0/993-body-front-impact-support-alsi10mg-f0-0001-lpbf-geometry-report.json`](evidence/lpbf-f0/993-body-front-impact-support-alsi10mg-f0-0001-lpbf-geometry-report.json), [`evidence/lpbf-f0/993-body-front-impact-support-alsi10mg-f0-0001-lpbf-geometry-screen.png`](evidence/lpbf-f0/993-body-front-impact-support-alsi10mg-f0-0001-lpbf-geometry-screen.png) |
 | `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/front_impact_support.py`](source/front_impact_support.py) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/front_impact_support.py`](source/front_impact_support.py), [`source/picogk.json`](source/picogk.json) |
 
 ## Read more
 

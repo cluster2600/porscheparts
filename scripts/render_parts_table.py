@@ -109,9 +109,14 @@ def grille(fiches: list, par_ligne: int = 6) -> list[str]:
            "", "<table>"]
     for i in range(0, len(tuiles), par_ligne):
         out += ["<tr>"] + tuiles[i:i + par_ligne] + ["</tr>"]
+    picogk = sum(1 for _, d in fiches
+                 if any((ROOT / "parts" / d["part_id"].lower() / "derived").glob("*-picogk.stl")))
+    rendu = (f"Concept models rendered by `scripts/render_part_previews.py`: {picogk} of {len(fiches)} "
+             "are PicoGK voxel models ([`parts/picogk-catalog/`](parts/picogk-catalog/README.md)), "
+             "the others concept CAD blocks." if picogk else
+             "Concept CAD blocks rendered from each part's own CAD by `scripts/render_part_previews.py`.")
     out += ["</table>", "",
-            "*Concept CAD blocks rendered from each part's own CAD by "
-            "`scripts/render_part_previews.py`. **None of these is the original part, and none "
+            f"*{rendu} **None of these is the original part, and none "
             f"is validated**: {etat}. {imprimables} Click a part to see it next to the original.*", ""]
     return out
 
@@ -225,7 +230,7 @@ def main() -> int:
 
     if a.write:
         if attendu != texte:
-            README.write_text(attendu, encoding="utf-8")
+            README.write_text(attendu, encoding="utf-8", newline="\n")
             print("README.md  parts table rewritten")
         else:
             print("README.md  parts table already up to date")

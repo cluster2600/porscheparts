@@ -89,9 +89,10 @@ flowchart LR
 
 | folder | what it holds | files |
 |---|---|---|
-| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/seat_rail_cover_concept_f0.step`](derived/seat_rail_cover_concept_f0.step) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/seat_rail_cover_concept_f0-picogk.json`](derived/seat_rail_cover_concept_f0-picogk.json), [`derived/seat_rail_cover_concept_f0-picogk.stl`](derived/seat_rail_cover_concept_f0-picogk.stl), [`derived/seat_rail_cover_concept_f0.step`](derived/seat_rail_cover_concept_f0.step) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/concept-f0.json`](evidence/concept-f0.json), [`evidence/measurement-plan.md`](evidence/measurement-plan.md) |
 | `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/picogk.json`](source/picogk.json) |
 
 ## Read more
 

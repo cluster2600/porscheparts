@@ -29,7 +29,7 @@ The original part is documented — pictures, catalogue entries or published dat
 <td width="50%" valign="top" align="center">
 <b>This repository's concept model</b><br><br>
 <img src="media/preview.png" alt="Concept CAD block for 993 hollow Ti64 intake valve, F0 LPBF concept" width="340"><br>
-<sub>Concept CAD block, 49.0 × 49.0 × 109.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+<sub>Concept CAD block, 49.1 × 49.1 × 109.1 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
 </td>
 </tr></table>
 
@@ -100,10 +100,10 @@ flowchart LR
 
 | folder | what it holds | files |
 |---|---|---|
-| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/intake_valve_ti64_hollow_f0.step`](derived/intake_valve_ti64_hollow_f0.step), [`derived/intake_valve_ti64_hollow_f0.stl`](derived/intake_valve_ti64_hollow_f0.stl) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/intake_valve_ti64_hollow_f0-picogk.json`](derived/intake_valve_ti64_hollow_f0-picogk.json), [`derived/intake_valve_ti64_hollow_f0-picogk.stl`](derived/intake_valve_ti64_hollow_f0-picogk.stl), [`derived/intake_valve_ti64_hollow_f0.step`](derived/intake_valve_ti64_hollow_f0.step), [`derived/intake_valve_ti64_hollow_f0.stl`](derived/intake_valve_ti64_hollow_f0.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json), [`evidence/lpbf-f0/993-eng-intake-valve-ti64-hollow-f0-0001-layer-metrics.csv`](evidence/lpbf-f0/993-eng-intake-valve-ti64-hollow-f0-0001-layer-metrics.csv), [`evidence/lpbf-f0/993-eng-intake-valve-ti64-hollow-f0-0001-lpbf-geometry-manifest.json`](evidence/lpbf-f0/993-eng-intake-valve-ti64-hollow-f0-0001-lpbf-geometry-manifest.json), [`evidence/lpbf-f0/993-eng-intake-valve-ti64-hollow-f0-0001-lpbf-geometry-report.json`](evidence/lpbf-f0/993-eng-intake-valve-ti64-hollow-f0-0001-lpbf-geometry-report.json), [`evidence/lpbf-f0/993-eng-intake-valve-ti64-hollow-f0-0001-lpbf-geometry-screen.png`](evidence/lpbf-f0/993-eng-intake-valve-ti64-hollow-f0-0001-lpbf-geometry-screen.png) |
 | `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/intake_valve.py`](source/intake_valve.py) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/intake_valve.py`](source/intake_valve.py), [`source/picogk.json`](source/picogk.json) |
 
 ## Read more
 

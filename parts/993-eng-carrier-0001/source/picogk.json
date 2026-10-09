@@ -1,0 +1,215 @@
+{
+  "part_id": "993-ENG-CARRIER-0001",
+  "name": "993 Turbo engine carrier, closed-section shape study (PicoGK)",
+  "generator": "engine_carrier_box_beam",
+  "catalogue_record": "catalog/parts/993-eng-carrier-0001.json",
+  "porsche_part_numbers": [
+    "993 115 021 53"
+  ],
+  "safety_class": "safety_critical",
+  "material_candidate": "unknown OEM steel; no grade qualified (density of steel used for the mass estimate only)",
+  "density_g_cm3": 7.85,
+  "voxel_mm": 0.5,
+  "picogk_enhancement": "Replaces the flat T-blade with a bowed closed rounded-box section (two half shells with proud seam flanges, as the FVD photos suggest raised edges) that flows into the end bosses through gusset-like blends, the failure-prone zone named by the 964/993 crack reports; two rimmed side openings and two drains vent and drain the closed section (corrosion, inspection). Shape study only: interfaces are not modelled.",
+  "parameters": {
+    "overall_length_mm": {
+      "value": 600.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/en-us/shop/engine-suspension-bracket-carrier-993-turbo-99311502153~p248965",
+      "note": "FVD listing declares 600 x 50 x 50 mm (vendor claim, rounded, not measured); boss outer to boss outer here"
+    },
+    "overall_height_mm": {
+      "value": 50.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/en-us/shop/engine-suspension-bracket-carrier-993-turbo-99311502153~p248965",
+      "note": "FVD listing 600 x 50 x 50 mm; equals the 50 mm boss height of the Qwen F1 concept"
+    },
+    "overall_width_mm": {
+      "value": 50.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/en-us/shop/engine-suspension-bracket-carrier-993-turbo-99311502153~p248965",
+      "note": "FVD listing 600 x 50 x 50 mm; reached by the boss diameter below"
+    },
+    "vendor_mass_kg": {
+      "value": 1.96,
+      "unit": "kg",
+      "basis": "published",
+      "source": "https://www.fvd.net/en-us/shop/engine-suspension-bracket-carrier-993-turbo-99311502153~p248965",
+      "note": "vendor claim; reference only for the wall choice, not used by the geometry"
+    },
+    "boss_diameter_mm": {
+      "value": 50.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "end boss outer diameter chosen to fill the vendor 50 mm envelope (Qwen F1 used 40 mm); mount 993 375 049 05 interface unmeasured"
+    },
+    "boss_bore_mm": {
+      "value": 13.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "hypothetical end bore of the Qwen F1 concept (radius 6.5 mm); no matched axis, stud or tolerance"
+    },
+    "boss_recess_diameter_mm": {
+      "value": 30.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "boss-end recess, photos show recesses of unknown size"
+    },
+    "boss_recess_depth_mm": {
+      "value": 4.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "boss-end recess depth"
+    },
+    "beam_width_mm": {
+      "value": 30.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "closed-section width; no section measured"
+    },
+    "beam_height_end_mm": {
+      "value": 26.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "section depth at the bosses"
+    },
+    "beam_height_mid_mm": {
+      "value": 32.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "section depth at mid span (deeper where the bracket loads it)"
+    },
+    "beam_bow_mm": {
+      "value": 4.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "upward bow of the centreline at mid span; the photos show a bowed blade, amount unknown"
+    },
+    "wall_mm": {
+      "value": 3.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "half-shell wall; F0 assumed 6 mm plate; no load case filled; with solid end bosses the steel estimate (about 3 kg) exceeds the 1.96 kg claim"
+    },
+    "section_corner_radius_mm": {
+      "value": 7.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "pressed-section corner radius"
+    },
+    "seam_flange_thickness_mm": {
+      "value": 4.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "two flanges of the half shells, welded together"
+    },
+    "seam_flange_height_mm": {
+      "value": 4.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "flange height proud of the section"
+    },
+    "gusset_blend_mm": {
+      "value": 14.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "blend radius beam-to-boss (gusset-like transition)"
+    },
+    "opening_offset_mm": {
+      "value": 135.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "two round openings seen on the FVD photos; position not measured"
+    },
+    "opening_diameter_mm": {
+      "value": 22.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "opening diameter not measured"
+    },
+    "opening_rim_width_mm": {
+      "value": 3.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "formed rim around each opening"
+    },
+    "opening_rim_height_mm": {
+      "value": 2.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "rim height proud of the side wall"
+    },
+    "pad_length_mm": {
+      "value": 130.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "flat seat for engine bracket 993 115 103 52; the four M10 x 20 sites are not located, so no hole is drawn"
+    },
+    "pad_width_mm": {
+      "value": 40.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "pad width"
+    },
+    "pad_raise_mm": {
+      "value": 2.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "pad top above the beam top at mid span"
+    },
+    "drain_offset_mm": {
+      "value": 200.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "drain holes in the lower shell (corrosion documented at the rear mounts)"
+    },
+    "drain_diameter_mm": {
+      "value": 6.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "drain hole diameter"
+    }
+  },
+  "envelope": [
+    "overall_length_mm",
+    "overall_height_mm",
+    "overall_width_mm"
+  ],
+  "open_interfaces": [
+    "engine bracket 993 115 103 52: four M10 x 20 attachment sites (PET) - centres, axes, bores, mating faces and tolerances unknown, not drawn",
+    "left engine mounting 993 375 049 05: end interface, axis, bore and mating face unknown (bore drawn is hypothetical)",
+    "right engine mounting 993 375 049 05: end interface, axis, bore and mating face unknown (bore drawn is hypothetical)",
+    "section, wall, material, joint (weld) specification and load cases unknown"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file; SAFETY CRITICAL powertrain mount: shape study only, no structural claim, manufacture and fitting prohibited",
+  "envelope_axes": {
+    "overall_width_mm": "y",
+    "overall_height_mm": "z",
+    "overall_length_mm": "x"
+  }
+}

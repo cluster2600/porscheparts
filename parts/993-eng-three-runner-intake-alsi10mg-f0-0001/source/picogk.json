@@ -1,0 +1,149 @@
+{
+  "part_id": "993-ENG-THREE-RUNNER-INTAKE-ALSI10MG-F0-0001",
+  "name": "993 three-runner intake manifold, AlSi10Mg (PicoGK)",
+  "generator": "three_runner_intake",
+  "catalogue_record": "catalog/parts/993-eng-three-runner-intake-alsi10mg-f0-0001.json",
+  "porsche_part_numbers": [],
+  "safety_class": "functional",
+  "material_candidate": "AlSi10Mg LPBF",
+  "density_g_cm3": 2.67,
+  "voxel_mm": 0.4,
+  "picogk_enhancement": "Three offset conical runners with bellmouth entries radiused into the upper flange, filleted runner-to-flange roots, rounded flanges carrying three bolt bosses each; one body, three open passages.",
+  "parameters": {
+    "top_bore_diameter_mm": {
+      "value": 46.0,
+      "unit": "mm",
+      "basis": "catalogue",
+      "source": "https://patrickmotorsports.com/collections/all-engine/products/fuepmo9150",
+      "note": "'46 x 42 x 100 mm' stated for PMO FUE PMO 9150; reading 46 as the top bore is the F0 interpretation"
+    },
+    "bottom_bore_diameter_mm": {
+      "value": 42.0,
+      "unit": "mm",
+      "basis": "catalogue",
+      "source": "https://patrickmotorsports.com/collections/all-engine/products/fuepmo9150",
+      "note": "'46 x 42 x 100 mm'; reading 42 as the bottom bore is the F0 interpretation"
+    },
+    "height_mm": {
+      "value": 100.0,
+      "unit": "mm",
+      "basis": "catalogue",
+      "source": "https://patrickmotorsports.com/collections/all-engine/products/fuepmo9150",
+      "note": "'46 x 42 x 100 mm'; reading 100 as the flange-to-flange height is the F0 interpretation"
+    },
+    "bolt_count": {
+      "value": 3.0,
+      "unit": "count",
+      "basis": "catalogue",
+      "source": "https://patrickmotorsports.com/collections/all-engine/products/fuepmo9150",
+      "note": "three bolts stated for the PMO set; positions not published"
+    },
+    "runner_wall_mm": {
+      "value": 2.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "RUNNER_WALL_MM in parts/993-eng-three-runner-intake-alsi10mg-f0-0001/source/three_runner_intake.py"
+    },
+    "lower_pitch_mm": {
+      "value": 55.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "LOWER_CENTERS_X_MM = -55/0/55 in parts/993-eng-three-runner-intake-alsi10mg-f0-0001/source/three_runner_intake.py"
+    },
+    "upper_pitch_mm": {
+      "value": 65.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "UPPER_CENTERS_X_MM = -65/0/65 in parts/993-eng-three-runner-intake-alsi10mg-f0-0001/source/three_runner_intake.py"
+    },
+    "upper_offset_y_mm": {
+      "value": 5.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "UPPER_CENTER_Y_MM in parts/993-eng-three-runner-intake-alsi10mg-f0-0001/source/three_runner_intake.py"
+    },
+    "flange_x_mm": {
+      "value": 188.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "FLANGE_X_MM = 180 in parts/993-eng-three-runner-intake-alsi10mg-f0-0001/source/three_runner_intake.py leaves the outer runners flush with the flange ends; widened 8 mm so the bellmouths keep a 3.5 mm rim"
+    },
+    "flange_y_mm": {
+      "value": 70.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "FLANGE_Y_MM in parts/993-eng-three-runner-intake-alsi10mg-f0-0001/source/three_runner_intake.py"
+    },
+    "flange_thickness_mm": {
+      "value": 6.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "FLANGE_THICKNESS_MM in parts/993-eng-three-runner-intake-alsi10mg-f0-0001/source/three_runner_intake.py"
+    },
+    "flange_corner_radius_mm": {
+      "value": 10.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "flange plan corner radius"
+    },
+    "bellmouth_radial_mm": {
+      "value": 2.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "bellmouth flare added to the top bore radius"
+    },
+    "bellmouth_axial_mm": {
+      "value": 10.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "bellmouth flare length"
+    },
+    "bolt_hole_diameter_mm": {
+      "value": 6.6,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "M6 clearance assumed"
+    },
+    "bolt_boss_radius_mm": {
+      "value": 6.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "bolt boss radius"
+    },
+    "bolt_boss_height_mm": {
+      "value": 5.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "boss height behind each flange"
+    },
+    "fillet_mm": {
+      "value": 4.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "runner-to-flange fillet"
+    }
+  },
+  "envelope": [
+    "height_mm"
+  ],
+  "open_interfaces": [
+    "cylinder-head port positions and flange face",
+    "throttle body / ITB flange face and bolt pattern",
+    "PMO bolt positions (three bolts stated, not located)"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file"
+}

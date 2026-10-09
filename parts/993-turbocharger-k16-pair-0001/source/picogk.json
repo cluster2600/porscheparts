@@ -1,0 +1,101 @@
+{
+  "part_id": "993-TURBOCHARGER-K16-PAIR-0001",
+  "name": "Pair of K16 turbochargers of the 993 Turbo (PicoGK display concept)",
+  "generator": "k16_turbo_pair",
+  "catalogue_record": "catalog/parts/993-turbocharger-k16-pair-0001.json",
+  "porsche_part_numbers": [
+    "993 123 013 51",
+    "993 123 013 52",
+    "993 123 014 51",
+    "993 123 014 52"
+  ],
+  "safety_class": "prohibited_pending_engineering",
+  "material_candidate": "undetermined",
+  "density_g_cm3": 7.8,
+  "voxel_mm": 1.25,
+  "picogk_enhancement": "Each block-and-cylinder unit becomes a recognisable turbocharger: compressor inlet with hose bead, spiral volutes with tangential discharge and tangential flanged turbine inlet, centre housing with oil feed boss and drain pad, heat shield, axial outlet with three-ear flange, integral wastegate boss and actuator can, hollow open gas paths and simplified wheels in both bores; the two mirrored units are joined by a schematic discharge crossover so the pair is one display body.",
+  "parameters": {
+    "unit_length_mm": {
+      "value": 280.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/de/shop/turbolader-k16-rechts-993-serie-99312301452-993123014dx~p239094",
+      "note": "FVD product envelope per turbo 280 x 190 x 210 mm (right-hand 99312301452; left-hand page states the same)"
+    },
+    "unit_width_mm": {
+      "value": 190.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/de/shop/turbolader-k16-rechts-993-serie-99312301452-993123014dx~p239094",
+      "note": "FVD product envelope per turbo; sets the compressor volute outer diameter"
+    },
+    "unit_height_mm": {
+      "value": 210.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/de/shop/turbolader-k16-rechts-993-serie-99312301452-993123014dx~p239094",
+      "note": "FVD product envelope per turbo"
+    },
+    "pair_spacing_mm": {
+      "value": 700.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-turbocharger-k16-pair-0001/evidence/concept-f0.json",
+      "note": "left-right centre distance supposed (legacy concept hypothesis)"
+    },
+    "wall_mm": {
+      "value": 3.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "housing wall thickness"
+    },
+    "turbine_volute_outer_radius_mm": {
+      "value": 83.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "scripts/build_993_concept_f0.py",
+      "note": "turbine volute outer radius (legacy concept turbine cylinder radius 85 mm)"
+    },
+    "compressor_inlet_bore_diameter_mm": {
+      "value": 62.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "inlet bore ahead of the 40.6 mm inducer; not measured"
+    },
+    "turbine_outlet_bore_diameter_mm": {
+      "value": 58.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outlet bore behind the 48.97 mm exducer; not measured"
+    },
+    "crossover_pipe_od_mm": {
+      "value": 44.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "schematic compressor-discharge crossover; real 993 routing not modelled"
+    },
+    "crossover_axis_height_mm": {
+      "value": 78.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "schematic crossover height above the turbo axis"
+    }
+  },
+  "open_interfaces": [
+    "all flanges, fasteners, V-band / clamp geometry, oil and coolant ports",
+    "true volute A/R, tongue and clocking (declared A/R and clocking in the record are not modelled)",
+    "left/right units are mirrored here; the real units differ (6735 right, 6736 left)",
+    "discharge crossover / intercooler routing is schematic",
+    "wastegate actuator, bracket and linkage"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
+  "envelope": [
+    "unit_length_mm",
+    "unit_height_mm"
+  ]
+}

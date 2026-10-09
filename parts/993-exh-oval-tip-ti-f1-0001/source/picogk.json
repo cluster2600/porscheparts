@@ -1,0 +1,110 @@
+{
+  "part_id": "993-EXH-OVAL-TIP-TI-F1-0001",
+  "name": "993 oval exhaust tip, titanium F1 double wall (PicoGK)",
+  "generator": "oval_exhaust_tip",
+  "catalogue_record": "catalog/parts/993-exh-oval-tip-ti-f1-0001.json",
+  "porsche_part_numbers": [],
+  "safety_class": "functional",
+  "material_candidate": "Ti-6Al-4V LPBF (Ti-6242 fallback, see record)",
+  "density_g_cm3": 4.43,
+  "voxel_mm": 0.4,
+  "picogk_enhancement": "Same ventilated double wall as the IN625 pilot (generator oval_exhaust_tip) in titanium: inner flow shell and outer cosmetic shell tied by radial ribs, one body, 2.7 mm gap open at the inlet as cooling and depowdering path; checked at 0.4 mm voxels instead of the 1 mm screen of the build123d F1.",
+  "parameters": {
+    "outlet_width_mm": {
+      "value": 120.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/de-de/FVD11199300/endrohrsatz-edelstahl-poliert-oval-schraeg-993-120x85mm.html",
+      "note": "FVD11199300 oval outlet 120 x 85 mm"
+    },
+    "outlet_height_mm": {
+      "value": 85.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/de-de/FVD11199300/endrohrsatz-edelstahl-poliert-oval-schraeg-993-120x85mm.html",
+      "note": "FVD11199300 oval outlet 120 x 85 mm"
+    },
+    "length_mm": {
+      "value": 120.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "same concept length as the build123d F1 (master parts/993-exh-oval-tip-in625-f0-0001/source/oval_exhaust_tip.py)"
+    },
+    "inlet_pipe_od_mm": {
+      "value": 60.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "muffler outlet OD not measured"
+    },
+    "slip_clearance_mm": {
+      "value": 0.4,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "radial slip clearance"
+    },
+    "slip_depth_mm": {
+      "value": 35.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "slip-fit depth not measured"
+    },
+    "outer_wall_mm": {
+      "value": 1.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "LPBF Ti minimum robust wall (record: same geometry as the IN625 variant)"
+    },
+    "inner_wall_mm": {
+      "value": 1.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "LPBF Ti minimum robust wall (record: same geometry as the IN625 variant)"
+    },
+    "gap_mm": {
+      "value": 2.7,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "2.7 mm annular channel named in the record (depowdering, borescope)"
+    },
+    "outlet_lip_mm": {
+      "value": 4.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "closed rolled-look lip"
+    },
+    "rib_count": {
+      "value": 8,
+      "unit": "count",
+      "basis": "assumption",
+      "source": null,
+      "note": "radial ribs tying the walls"
+    },
+    "rib_thickness_mm": {
+      "value": 1.2,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "rib thickness"
+    }
+  },
+  "open_interfaces": [
+    "muffler outlet pipe OD",
+    "slip-fit depth and clamp",
+    "tip orientation / angle cut on the car",
+    "titanium / stainless galvanic isolation at the mounting",
+    "alloy choice (Ti-6Al-4V vs Ti-6242) depends on an unmeasured tip temperature"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
+  "envelope": [
+    "outlet_width_mm",
+    "outlet_height_mm"
+  ]
+}

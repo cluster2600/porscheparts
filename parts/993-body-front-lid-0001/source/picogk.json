@@ -1,0 +1,186 @@
+{
+  "part_id": "993-BODY-FRONT-LID-0001",
+  "name": "993 front lid, composite skin with inner frame (PicoGK)",
+  "generator": "front_lid_composite",
+  "catalogue_record": "catalog/parts/993-body-front-lid-0001.json",
+  "porsche_part_numbers": [
+    "993 511 010 01",
+    "993 511 010 31"
+  ],
+  "safety_class": "functional",
+  "material_candidate": "organic matrix composite (glass, carbon or hybrid), layup to be determined",
+  "density_g_cm3": 1.55,
+  "voxel_mm": 1.0,
+  "picogk_enhancement": "Replaces the cylindrical cap with a doubly curved skin in the 993 plan shape (headlamp waist, curved nose, rounded corners) falling toward the nose, a rolled edge with a return flange all round, and a bonded inner frame: a perimeter hat section opened by a field of lightening holes (also the drain and inspection path) plus an X brace and a centre rib under the skin.",
+  "parameters": {
+    "width_mm": {
+      "value": 1250.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "F0 lid width hypothesis (scripts/build_993_concept_f0.py), widest at the windscreen edge"
+    },
+    "length_mm": {
+      "value": 1100.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "F0 lid length hypothesis, nose to windscreen edge in plan"
+    },
+    "vehicle_width_bound_mm": {
+      "value": 1735.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://opendata.astra.admin.ch/ivzod/2000-Typengenehmigungen_TG_TARGA/2310-pdf-Drucke_TG_1985-1995/2312-deutsch/1P5075_D.pdf",
+      "note": "SRC-ASTRA-993-TYPE-APPROVAL-DIMENSIONS vehicle width; an upper bound only, not used by the geometry"
+    },
+    "crown_radius_mm": {
+      "value": 3000.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "F0 transverse crown radius hypothesis"
+    },
+    "skin_mm": {
+      "value": 2.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "F0 composite skin hypothesis (original steel estimated at 0.6 mm)"
+    },
+    "nose_drop_mm": {
+      "value": 70.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "longitudinal fall of the surface from the windscreen edge to the nose; not measured"
+    },
+    "nose_width_ratio": {
+      "value": 0.72,
+      "unit": "ratio",
+      "basis": "assumption",
+      "source": null,
+      "note": "plan width at the nose relative to the rear width (headlamp waist)"
+    },
+    "waist_start_ratio": {
+      "value": 0.12,
+      "unit": "ratio",
+      "basis": "assumption",
+      "source": null,
+      "note": "start of the headlamp waist transition, fraction of the length from the nose"
+    },
+    "waist_end_ratio": {
+      "value": 0.55,
+      "unit": "ratio",
+      "basis": "assumption",
+      "source": null,
+      "note": "end of the headlamp waist transition"
+    },
+    "nose_curve_mm": {
+      "value": 70.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "sweep-back of the nose edge at its corners"
+    },
+    "front_corner_radius_mm": {
+      "value": 110.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "plan radius of the nose corners"
+    },
+    "rear_corner_radius_mm": {
+      "value": 40.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "plan radius of the windscreen-side corners"
+    },
+    "edge_roll_radius_mm": {
+      "value": 6.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "outer radius of the rolled edge between skin and return flange"
+    },
+    "flange_depth_mm": {
+      "value": 18.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "return flange depth below the skin"
+    },
+    "flange_thickness_mm": {
+      "value": 2.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "return flange laminate thickness"
+    },
+    "frame_inset_mm": {
+      "value": 15.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "inner frame outer edge, inboard of the lid edge"
+    },
+    "frame_width_mm": {
+      "value": 70.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "perimeter hat-section width"
+    },
+    "frame_depth_mm": {
+      "value": 24.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "hat-section depth below the skin surface"
+    },
+    "frame_laminate_mm": {
+      "value": 2.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "inner frame panel and wall thickness"
+    },
+    "lightening_hole_diameter_mm": {
+      "value": 30.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "holes in the frame panel (lightening, drainage, inspection)"
+    },
+    "lightening_hole_pitch_mm": {
+      "value": 60.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "hole grid pitch"
+    },
+    "rib_thickness_mm": {
+      "value": 3.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "X brace and centre rib thickness"
+    },
+    "rib_depth_mm": {
+      "value": 18.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "X brace and centre rib depth below the skin surface"
+    }
+  },
+  "envelope": [],
+  "open_interfaces": [
+    "hinge interfaces (positions, fasteners) - not measured, not drawn",
+    "latch and safety catch interface - not measured, not drawn",
+    "gap and flush to fenders, bumper and cowl - not measured",
+    "true surface: to be taken from a sound, undeformed original panel (scan)"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file"
+}

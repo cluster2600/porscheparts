@@ -1,0 +1,230 @@
+{
+  "part_id": "993-INT-DASHBOARD-TRIM-0001",
+  "name": "993 dashboard trim, composite, vehicles without passenger airbag (PicoGK)",
+  "generator": "dashboard_trim_panel",
+  "catalogue_record": "catalog/parts/993-int-dashboard-trim-0001.json",
+  "porsche_part_numbers": [
+    "993 552 055 00",
+    "993 552 056 00",
+    "993 552 055 70",
+    "993 552 056 70"
+  ],
+  "safety_class": "functional",
+  "material_candidate": "organic matrix composite, fibre and resin to be determined",
+  "density_g_cm3": 1.55,
+  "voxel_mm": 0.75,
+  "picogk_enhancement": "Replaces the rectangular U-channel with a crowned, smoothed skin that rolls over a crest into the occupant face, bows forward in plan and tucks down at the pillar ends; return flanges at the windscreen edge and under the front face, an instrument opening with a hanging return flange, face vents with louvre vanes and transverse stiffening ribs inside, all open from below (no closed pocket).",
+  "parameters": {
+    "length_mm": {
+      "value": 1350.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "F0 span between pillars (scripts/build_993_concept_f0.py hypothesis), bounded by the 1735 mm vehicle width"
+    },
+    "depth_mm": {
+      "value": 120.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "F0 trim depth hypothesis, including the plan bow"
+    },
+    "height_mm": {
+      "value": 60.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "F0 trim height hypothesis, at the crest"
+    },
+    "vehicle_width_bound_mm": {
+      "value": 1735.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://opendata.astra.admin.ch/ivzod/2000-Typengenehmigungen_TG_TARGA/2310-pdf-Drucke_TG_1985-1995/2312-deutsch/1P5075_D.pdf",
+      "note": "SRC-ASTRA-993-TYPE-APPROVAL-DIMENSIONS vehicle width; an upper bound only, not used by the geometry"
+    },
+    "wall_mm": {
+      "value": 3.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "F0 composite wall hypothesis"
+    },
+    "rear_height_mm": {
+      "value": 40.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "height of the windscreen-side return flange"
+    },
+    "crest_offset_mm": {
+      "value": -5.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "crest position from the profile centre (negative = toward the occupants)"
+    },
+    "plan_bow_mm": {
+      "value": 10.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "forward bow of the centre in plan"
+    },
+    "end_taper_ratio": {
+      "value": 0.3,
+      "unit": "ratio",
+      "basis": "assumption",
+      "source": null,
+      "note": "height reduction at the pillar ends"
+    },
+    "end_taper_start_ratio": {
+      "value": 0.38,
+      "unit": "ratio",
+      "basis": "assumption",
+      "source": null,
+      "note": "taper starts at this fraction of the length from the centre"
+    },
+    "end_round_mm": {
+      "value": 30.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "plan rounding of the ends"
+    },
+    "edge_smooth_mm": {
+      "value": 4.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "smoothing radius of all outer edges"
+    },
+    "front_lip_mm": {
+      "value": 15.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "return flange width under the occupant face (knee-strip side; attachment points unknown)"
+    },
+    "instrument_opening_x_mm": {
+      "value": -390.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "instrument hood opening centre, driver side of a LHD car"
+    },
+    "instrument_opening_length_mm": {
+      "value": 330.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "instrument opening length; hood interface not measured"
+    },
+    "instrument_opening_width_mm": {
+      "value": 60.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "instrument opening width"
+    },
+    "opening_flange_depth_mm": {
+      "value": 12.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "return flange hanging under the instrument opening"
+    },
+    "centre_vent_x_mm": {
+      "value": 75.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "two centre face vents at +/- this offset"
+    },
+    "centre_vent_width_mm": {
+      "value": 110.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "centre vent width; vent units not measured"
+    },
+    "centre_vent_height_mm": {
+      "value": 24.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "centre vent height"
+    },
+    "vent_z_mm": {
+      "value": 28.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "vent centre height"
+    },
+    "side_vent_x_mm": {
+      "value": 575.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "round side vents near the pillar ends"
+    },
+    "side_vent_diameter_mm": {
+      "value": 34.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "side vent diameter"
+    },
+    "vane_thickness_mm": {
+      "value": 2.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "louvre vane thickness"
+    },
+    "vane_pitch_mm": {
+      "value": 8.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "louvre vane pitch"
+    },
+    "vane_depth_mm": {
+      "value": 12.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "louvre vane depth behind the face"
+    },
+    "rib_pitch_mm": {
+      "value": 150.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "transverse stiffening rib pitch"
+    },
+    "rib_thickness_mm": {
+      "value": 2.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "rib thickness"
+    },
+    "rib_clearance_mm": {
+      "value": 10.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "ribs stop this far above the bottom so every bay stays open"
+    }
+  },
+  "envelope": [],
+  "open_interfaces": [
+    "SCOPE: M564 (no airbag) or Carrera RS 'without Airbag' only; never on an M561/M562 car",
+    "instrument hood, air vents, steering column, glovebox, console junction, pillars and windscreen base - not measured",
+    "clip-nut and self-tapping screw positions unknown (not drawn)",
+    "knee protection strip attachment points (964 552 053 00 / 993 552 054 00) must stay identical - unknown"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file"
+}

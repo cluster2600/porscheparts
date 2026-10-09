@@ -1,0 +1,96 @@
+{
+  "part_id": "993-ENG-INTAKE-VALVE-F1-0001",
+  "name": "993 intake valve, F1 proxy (PicoGK)",
+  "generator": "poppet_valve",
+  "catalogue_record": "catalog/parts/993-eng-intake-valve-f1-0001.json",
+  "porsche_part_numbers": [
+    "99310540902"
+  ],
+  "safety_class": "prohibited_pending_engineering",
+  "material_candidate": "Ti-6Al-4V Grade 5 (comparison only)",
+  "density_g_cm3": 4.43,
+  "voxel_mm": 0.25,
+  "picogk_enhancement": "Real poppet-valve profile instead of a disc, cone and rod: margin, 45 degree seat, tulip underhead with one concave radius tangent to seat and stem, keeper grooves and tip chamfer.",
+  "parameters": {
+    "head_diameter_mm": {
+      "value": 49.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/de/shop/einlassventil-49mm-993-94-95-turbo-95-98-m64-05-06-07-08-60-nicht-natrium-gekuehlt-99310540902eq1-99310540902~p306501",
+      "note": "FVD declared 49 mm head (SRC-FVD-993-INLET-VALVE-DIMENSIONS)"
+    },
+    "stem_diameter_mm": {
+      "value": 8.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/de/shop/einlassventil-49mm-993-94-95-turbo-95-98-m64-05-06-07-08-60-nicht-natrium-gekuehlt-99310540902eq1-99310540902~p306501",
+      "note": "FVD declared 8 mm stem"
+    },
+    "overall_length_mm": {
+      "value": 109.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "hypothesis from the 110 mm product envelope (valve_variants_f1.json)"
+    },
+    "head_margin_mm": {
+      "value": 1.6,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "cylindrical margin height (not published)"
+    },
+    "seat_radial_width_mm": {
+      "value": 2.8,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "45 degree seat, radial width (seat angle 45 from valve_variants_f1.json)"
+    },
+    "keeper_groove_count": {
+      "value": 3,
+      "unit": "count",
+      "basis": "assumption",
+      "source": null,
+      "note": "keeper grooves (record: keeper geometry not defined)"
+    },
+    "keeper_groove_radius_mm": {
+      "value": 0.6,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "groove section radius, depth about 0.5 mm"
+    },
+    "keeper_groove_pitch_mm": {
+      "value": 3.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "groove pitch"
+    },
+    "keeper_groove_from_tip_mm": {
+      "value": 4.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "first groove from the tip"
+    },
+    "tip_chamfer_mm": {
+      "value": 0.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "tip chamfer"
+    }
+  },
+  "open_interfaces": [
+    "seat angle and width",
+    "keeper groove profile and retainer",
+    "guide clearance",
+    "installed height and spring"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file; prohibited pending engineering, never to be installed in an engine",
+  "envelope": [
+    "head_diameter_mm"
+  ]
+}

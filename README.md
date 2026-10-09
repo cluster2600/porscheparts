@@ -292,7 +292,7 @@ engineering** stays so until an engineering review lifts it.
 </tr>
 </table>
 
-*Concept CAD blocks rendered from each part's own CAD by `scripts/render_part_previews.py`. **None of these is the original part, and none is validated**: 41 of 41 records are at `concept`, and 0 of 41 have measured geometry. 🖨️ Printable as designed, fit unchecked: Aluminum switch trim ring. 🧩 Printable as an engraved display mock-up, never for use: 993/993 Turbo connecting rod, K16 compressor wheel, K16 turbine wheel. Click a part to see it next to the original.*
+*Concept models rendered by `scripts/render_part_previews.py`: 34 of 41 are PicoGK voxel models ([`parts/picogk-catalog/`](parts/picogk-catalog/README.md)), the others concept CAD blocks. **None of these is the original part, and none is validated**: 41 of 41 records are at `concept`, and 0 of 41 have measured geometry. 🖨️ Printable as designed, fit unchecked: Aluminum switch trim ring. 🧩 Printable as an engraved display mock-up, never for use: 993/993 Turbo connecting rod, K16 compressor wheel, K16 turbine wheel. Click a part to see it next to the original.*
 
 ```mermaid
 pie showData title 41 part records by safety class
