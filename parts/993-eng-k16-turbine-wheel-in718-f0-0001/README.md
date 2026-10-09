@@ -108,11 +108,11 @@ flowchart LR
 
 | folder | what it holds | files |
 |---|---|---|
-| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/turbine_wheel_in718_f0.step`](derived/turbine_wheel_in718_f0.step), [`derived/turbine_wheel_in718_f0.stl`](derived/turbine_wheel_in718_f0.stl) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/turbine_wheel_in718_f0-picogk.json`](derived/turbine_wheel_in718_f0-picogk.json), [`derived/turbine_wheel_in718_f0-picogk.stl`](derived/turbine_wheel_in718_f0-picogk.stl), [`derived/turbine_wheel_in718_f0.step`](derived/turbine_wheel_in718_f0.step), [`derived/turbine_wheel_in718_f0.stl`](derived/turbine_wheel_in718_f0.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json), [`evidence/lpbf-f0/993-eng-k16-turbine-wheel-in718-f0-0001-layer-metrics.csv`](evidence/lpbf-f0/993-eng-k16-turbine-wheel-in718-f0-0001-layer-metrics.csv), [`evidence/lpbf-f0/993-eng-k16-turbine-wheel-in718-f0-0001-lpbf-geometry-manifest.json`](evidence/lpbf-f0/993-eng-k16-turbine-wheel-in718-f0-0001-lpbf-geometry-manifest.json), [`evidence/lpbf-f0/993-eng-k16-turbine-wheel-in718-f0-0001-lpbf-geometry-report.json`](evidence/lpbf-f0/993-eng-k16-turbine-wheel-in718-f0-0001-lpbf-geometry-report.json), [`evidence/lpbf-f0/993-eng-k16-turbine-wheel-in718-f0-0001-lpbf-geometry-screen.png`](evidence/lpbf-f0/993-eng-k16-turbine-wheel-in718-f0-0001-lpbf-geometry-screen.png) |
 | `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 | `print/` | **ready-to-print files**: 3MF project, STL and instructions | [`print/k16_turbine_wheel_mockup.stl`](print/k16_turbine_wheel_mockup.stl), [`print/mockup.png`](print/mockup.png), [`print/print.json`](print/print.json) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/turbine_wheel.py`](source/turbine_wheel.py) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/picogk.json`](source/picogk.json), [`source/turbine_wheel.py`](source/turbine_wheel.py) |
 
 ## Read more
 

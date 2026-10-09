@@ -678,7 +678,7 @@ def main() -> int:
         ecrites = 0
         for chemin, texte in pages.items():
             if not chemin.exists() or chemin.read_text(encoding="utf-8") != texte:
-                chemin.write_text(texte, encoding="utf-8")
+                chemin.write_text(texte, encoding="utf-8", newline="\n")
                 ecrites += 1
         for orpheline in sorted(PAGES.glob("*.md")):
             if orpheline not in pages:

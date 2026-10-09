@@ -1,0 +1,129 @@
+{
+  "part_id": "993-ENG-K16-TURBINE-WHEEL-IN718-F0-0001",
+  "name": "K16 turbine wheel, IN718 F0 concept (PicoGK)",
+  "generator": "k16_turbine_wheel",
+  "catalogue_record": "catalog/parts/993-eng-k16-turbine-wheel-in718-f0-0001.json",
+  "porsche_part_numbers": [],
+  "safety_class": "prohibited_pending_engineering",
+  "material_candidate": "EOS NickelAlloy IN718 (comparison)",
+  "density_g_cm3": 8.15,
+  "voxel_mm": 0.2,
+  "picogk_enhancement": "Replaces radial plates on a cone with a radial-inflow turbine wheel: radial-fibre blades at the inlet curving into an axial exducer, scalloped back disc, concave hub, root-to-tip taper and smooth-union root fillets.",
+  "parameters": {
+    "inducer_diameter_mm": {
+      "value": 54.96,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.invasionautoproducts.com/94pocark16tu.html",
+      "note": "declared inducer of turbine wheel 5316-120-5000 (Kinugawa states 55 mm)"
+    },
+    "exducer_diameter_mm": {
+      "value": 48.97,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.invasionautoproducts.com/94pocark16tu.html",
+      "note": "declared exducer of 5316-120-5000 (Kinugawa states 49 mm)"
+    },
+    "blade_count": {
+      "value": 12,
+      "unit": "count",
+      "basis": "published",
+      "source": "https://www.kinugawaturbo.com/products/kinugawa-turbo-turbine-wheel-for-posche-911-996-kkk-k16-49mm-55-mm-12-blades",
+      "note": "twelve blades stated for the same reference"
+    },
+    "tip_height_mm": {
+      "value": 9.4,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.kinugawaturbo.com/products/kinugawa-turbo-turbine-wheel-for-posche-911-996-kkk-k16-49mm-55-mm-12-blades",
+      "note": "stated 9.4 mm tip height, used as inlet blade width"
+    },
+    "shaft_diameter_mm": {
+      "value": 8.42,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.kinugawaturbo.com/products/kinugawa-turbo-turbine-wheel-for-posche-911-996-kkk-k16-49mm-55-mm-12-blades",
+      "note": "stated 8.42 mm shaft; sets the nose boss"
+    },
+    "total_height_mm": {
+      "value": 20.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-k16-turbine-wheel-in718-f0-0001/source/turbine_wheel.py",
+      "note": "legacy build123d concept height"
+    },
+    "backface_thickness_mm": {
+      "value": 5.8,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-k16-turbine-wheel-in718-f0-0001/source/turbine_wheel.py",
+      "note": "legacy concept backface thickness"
+    },
+    "blade_root_thickness_mm": {
+      "value": 2.4,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-k16-turbine-wheel-in718-f0-0001/source/turbine_wheel.py",
+      "note": "legacy concept blade root thickness"
+    },
+    "blade_tip_thickness_mm": {
+      "value": 0.8,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-k16-turbine-wheel-in718-f0-0001/source/turbine_wheel.py",
+      "note": "legacy concept blade tip thickness"
+    },
+    "exducer_hub_radius_mm": {
+      "value": 7.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "hub radius at the exducer plane; not published"
+    },
+    "exducer_plane_z_mm": {
+      "value": 18.8,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "axial position of the blade exit; nose boss above it"
+    },
+    "exducer_wrap_deg": {
+      "value": 38.0,
+      "unit": "deg",
+      "basis": "assumption",
+      "source": null,
+      "note": "camber wrap from radial inlet to exducer; no blade profile is published"
+    },
+    "backface_scallop_depth_mm": {
+      "value": 3.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "radial depth of the back-disc scallops between blades"
+    },
+    "root_fillet_mm": {
+      "value": 1.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "smooth-union blade root fillet"
+    },
+    "hub_profile_exponent": {
+      "value": 1.6,
+      "unit": "-",
+      "basis": "assumption",
+      "source": null,
+      "note": "superellipse exponent of the hub contour (2 = quarter ellipse, 1 = cone)"
+    }
+  },
+  "open_interfaces": [
+    "shaft weld / stub geometry and seal ring groove",
+    "true blade surfaces of 5316-120-5000",
+    "tip clearance to the turbine housing contour",
+    "balance datums, hot overspeed and creep qualification"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
+  "envelope": [
+    "inducer_diameter_mm"
+  ]
+}

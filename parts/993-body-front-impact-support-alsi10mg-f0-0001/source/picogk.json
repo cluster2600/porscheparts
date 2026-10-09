@@ -1,0 +1,135 @@
+{
+  "part_id": "993-BODY-FRONT-IMPACT-SUPPORT-ALSI10MG-F0-0001",
+  "name": "993 front impact support, AlSi10Mg graded-core concept (PicoGK)",
+  "generator": "front_impact_support_graded",
+  "catalogue_record": "catalog/parts/993-body-front-impact-support-alsi10mg-f0-0001.json",
+  "porsche_part_numbers": [],
+  "safety_class": "prohibited_pending_engineering",
+  "material_candidate": "generic LPBF AlSi10Mg, screening only",
+  "density_g_cm3": 2.67,
+  "voxel_mm": 0.4,
+  "picogk_enhancement": "Shell, plate and cruciform core as one filleted body: the core is graded continuously (1.4 to 0.8 mm) instead of four stepped segments, the shell flares into the rear plate as a root fillet, webs are blended into the shell and the open front lip is rounded; the four channels stay open at the front (powder removal, inspection).",
+  "parameters": {
+    "length_mm": {
+      "value": 139.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/de-ch/shop/prallrohr-993-vorne-alu-1stk-ca-145-gr-fvd50501700~p237473",
+      "note": "FVD commercial envelope 139 x 100 x 53 mm (SRC-FVD-993-FRONT-IMPACT-TUBE-DIMENSIONS); a product claim, not a drawing"
+    },
+    "width_mm": {
+      "value": 100.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/de-ch/shop/prallrohr-993-vorne-alu-1stk-ca-145-gr-fvd50501700~p237473",
+      "note": "FVD commercial envelope 139 x 100 x 53 mm; carried by the rear plate"
+    },
+    "height_mm": {
+      "value": 53.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/de-ch/shop/prallrohr-993-vorne-alu-1stk-ca-145-gr-fvd50501700~p237473",
+      "note": "FVD commercial envelope 139 x 100 x 53 mm; carried by the rear plate"
+    },
+    "published_mass_g": {
+      "value": 145.0,
+      "unit": "g",
+      "basis": "published",
+      "source": "https://www.fvd.net/de-ch/shop/prallrohr-993-vorne-alu-1stk-ca-145-gr-fvd50501700~p237473",
+      "note": "FVD claim about 145 g, corroborated by PorscheFanatics; reference only, not used by the geometry"
+    },
+    "base_plate_mm": {
+      "value": 3.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "same 3 mm solid rear plate as the build123d F0 (front_impact_support.py); no mounting holes"
+    },
+    "plate_corner_radius_mm": {
+      "value": 8.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "plate corner radius; the F0 plate had sharp corners"
+    },
+    "shell_semi_axis_y_mm": {
+      "value": 30.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "F0 elliptic crush shell 60 x 38 mm"
+    },
+    "shell_semi_axis_z_mm": {
+      "value": 19.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "F0 elliptic crush shell 60 x 38 mm"
+    },
+    "shell_wall_mm": {
+      "value": 1.2,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "F0 constant shell wall"
+    },
+    "core_t_rear_mm": {
+      "value": 1.4,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "F0 cruciform core thickness at the plate (first segment)"
+    },
+    "core_t_front_mm": {
+      "value": 0.8,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "F0 cruciform core thickness at the front (last segment); graded linearly here"
+    },
+    "root_flare_mm": {
+      "value": 5.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "extra shell radius at the plate, decaying along X (root fillet)"
+    },
+    "root_flare_length_mm": {
+      "value": 6.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "decay length of the root flare"
+    },
+    "web_fillet_mm": {
+      "value": 1.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "blend radius between core webs and shell"
+    },
+    "front_lip_round_mm": {
+      "value": 0.6,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "rounding of the open front lip"
+    }
+  },
+  "envelope": [
+    "length_mm",
+    "width_mm",
+    "height_mm"
+  ],
+  "open_interfaces": [
+    "bumper beam attachment (holes, datums, fasteners) - not measured, intentionally absent",
+    "body rail attachment - not measured, intentionally absent",
+    "crash load case, force-displacement target and material card - undefined"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file; crash-relevant part: manufacture, fitting, driving and impact testing prohibited pending an approved crash program",
+  "envelope_axes": {
+    "height_mm": "z",
+    "width_mm": "y",
+    "length_mm": "x"
+  }
+}

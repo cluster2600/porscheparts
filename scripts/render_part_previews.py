@@ -57,10 +57,17 @@ def records() -> list[dict]:
 
 
 def sources(part_id: str) -> list[Path]:
-    """The part's derived CAD, one file per stem, STEP before STL, at most three."""
+    """The part's derived CAD, one file per stem, STEP before STL, at most three.
+
+    A PicoGK model (`derived/*-picogk.stl`, see parts/picogk-catalog/) takes
+    precedence: when one exists, only the PicoGK models are shown.
+    """
     folder = PARTS / part_id.lower() / "derived"
     if not folder.is_dir():
         return []
+    picogk = sorted(folder.glob("*-picogk.stl"))
+    if picogk:
+        return picogk[:3]
     chosen: dict[str, Path] = {}
     for p in sorted(folder.iterdir()):
         if p.suffix.lower() not in (".step", ".stp", ".stl"):
@@ -103,6 +110,7 @@ def render(record: dict) -> dict | None:
     if not files:
         return None
     meshes = [mesh_of(f) for f in files]
+    smooth = all(f.name.endswith("-picogk.stl") for f in files)   # voxel meshes read as solids smoothed
     tint = color(record)
     media = PARTS / part_id.lower() / "media"
     media.mkdir(exist_ok=True)
@@ -116,11 +124,11 @@ def render(record: dict) -> dict | None:
                 b = m.bounds
                 m.translate((offset - b[0], -(b[2] + b[3]) / 2, 0), inplace=True)
                 offset += (b[1] - b[0]) * 1.25
-            plotter.add_mesh(m, color=tint, smooth_shading=False, specular=0.25,
-                             specular_power=15, ambient=0.25, diffuse=0.8)
+            plotter.add_mesh(m, color=tint, smooth_shading=smooth, specular=0.35 if smooth else 0.25,
+                             specular_power=20 if smooth else 15, ambient=0.25, diffuse=0.8)
             edges = m.extract_feature_edges(feature_angle=35, boundary_edges=True,
                                             non_manifold_edges=False, manifold_edges=False)
-            if edges.n_points:
+            if edges.n_points and not smooth:
                 plotter.add_mesh(edges, color="#2b2f33", line_width=1.2)
         if view == "iso":
             # three-quarter view from front-left, above: shows the X-Z profile
@@ -156,14 +164,15 @@ def render(record: dict) -> dict | None:
 
     info = {
         "part_id": part_id,
-        "note": "Geometry views of the concept CAD. Not a photograph, not a render of a "
-                "manufactured part, not evidence of fit or function.",
+        "note": ("Geometry views of the part's PicoGK concept model (parts/picogk-catalog/). "
+                 if smooth else "Geometry views of the concept CAD. ")
+                + "Not a photograph, not a render of a manufactured part, not evidence of fit or function.",
         "sources": [{"path": f.relative_to(ROOT).as_posix(), "sha256": sha256(f)} for f in files],
         "bounding_box_mm": dims,
         "images": ["preview.png", "views.png"],
         "generator": "scripts/render_part_previews.py",
     }
-    (media / "preview.json").write_text(json.dumps(info, indent=2) + "\n", encoding="utf-8")
+    (media / "preview.json").write_text(json.dumps(info, indent=2) + "\n", encoding="utf-8", newline="\n")
     return info
 
 

@@ -1,0 +1,189 @@
+{
+  "part_id": "993-ENG-TURBO-HEAT-SHIELD-IN625-F0-0001",
+  "name": "993 Turbo left heat shield cover, IN625 double skin + lattice core (PicoGK)",
+  "generator": "turbo_heat_shield",
+  "catalogue_record": "catalog/parts/993-eng-turbo-heat-shield-in625-f0-0001.json",
+  "porsche_part_numbers": [
+    "993 123 113 51"
+  ],
+  "safety_class": "functional",
+  "material_candidate": "IN625 LPBF",
+  "density_g_cm3": 8.44,
+  "voxel_mm": 0.4,
+  "picogk_enhancement": "Ported from parts/picogk-993-batch-01 (TurboHeatShield): two 0.8 mm skins separated by an open-cell BCC lattice, gap closed at the rim by a solid band with eight drains into the lattice, domed superellipse cover corrugated by five inward stiffening beads; the three F0 side bosses are now solid inserts through the double wall with through bores.",
+  "parameters": {
+    "length_mm": {
+      "value": 160.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/en-ch/shop/cover-heat-protection-turbo-loader-left-99312311351~p248974",
+      "note": "FVD envelope 160 x 110 x 105 mm"
+    },
+    "width_mm": {
+      "value": 110.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/en-ch/shop/cover-heat-protection-turbo-loader-left-99312311351~p248974",
+      "note": "FVD envelope 160 x 110 x 105 mm"
+    },
+    "height_mm": {
+      "value": 105.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/en-ch/shop/cover-heat-protection-turbo-loader-left-99312311351~p248974",
+      "note": "FVD envelope 160 x 110 x 105 mm; 0.23 kg"
+    },
+    "superellipse_exponent": {
+      "value": 3.0,
+      "unit": "-",
+      "basis": "assumption",
+      "source": null,
+      "note": "cover shape not published (batch-01)"
+    },
+    "outer_skin_mm": {
+      "value": 0.8,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "WALL_MM in parts/993-eng-turbo-heat-shield-in625-f0-0001/source/turbo_heat_shield.py"
+    },
+    "inner_skin_mm": {
+      "value": 0.8,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "WALL_MM in parts/993-eng-turbo-heat-shield-in625-f0-0001/source/turbo_heat_shield.py"
+    },
+    "core_gap_mm": {
+      "value": 3.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "insulating lattice gap (batch-01)"
+    },
+    "lattice_cell_mm": {
+      "value": 10.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "BCC lattice cell (batch-01 used 8 mm; coarser keeps the published mesh readable)"
+    },
+    "strut_diameter_mm": {
+      "value": 1.2,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "BCC strut diameter, LPBF >= 0.8 mm"
+    },
+    "rim_band_height_mm": {
+      "value": 4.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "solid rim band closing the double wall at the open edge"
+    },
+    "drain_count": {
+      "value": 8.0,
+      "unit": "count",
+      "basis": "assumption",
+      "source": null,
+      "note": "powder / vent drains through the rim band into the lattice gap"
+    },
+    "drain_hole_diameter_mm": {
+      "value": 2.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "drain diameter (LPBF depowdering, assumption)"
+    },
+    "bead_count": {
+      "value": 5.0,
+      "unit": "count",
+      "basis": "assumption",
+      "source": null,
+      "note": "transverse stiffening beads (pressed-cover look), corrugating both skins together"
+    },
+    "bead_pitch_mm": {
+      "value": 25.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "bead spacing along the length"
+    },
+    "bead_depth_mm": {
+      "value": 2.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "bead depth, inward only (envelope unchanged)"
+    },
+    "bead_width_mm": {
+      "value": 5.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "bead half-width (Gaussian profile)"
+    },
+    "bead_start_z_mm": {
+      "value": 28.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "beads fade in above this height, clear of the bosses and rim"
+    },
+    "boss_count": {
+      "value": 3.0,
+      "unit": "count",
+      "basis": "assumption",
+      "source": null,
+      "note": "BOSS_X_MM = 25/80/135 in parts/993-eng-turbo-heat-shield-in625-f0-0001/source/turbo_heat_shield.py"
+    },
+    "boss_spacing_mm": {
+      "value": 55.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "BOSS_X_MM pitch in parts/993-eng-turbo-heat-shield-in625-f0-0001/source/turbo_heat_shield.py"
+    },
+    "boss_center_z_mm": {
+      "value": 20.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "BOSS_CENTER_Z_MM in parts/993-eng-turbo-heat-shield-in625-f0-0001/source/turbo_heat_shield.py"
+    },
+    "boss_radius_mm": {
+      "value": 6.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "BOSS_RADIUS_MM in parts/993-eng-turbo-heat-shield-in625-f0-0001/source/turbo_heat_shield.py"
+    },
+    "boss_depth_mm": {
+      "value": 6.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "BOSS_DEPTH_MM in parts/993-eng-turbo-heat-shield-in625-f0-0001/source/turbo_heat_shield.py"
+    },
+    "mount_bore_diameter_mm": {
+      "value": 5.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "MOUNT_BORE_DIAMETER_MM in parts/993-eng-turbo-heat-shield-in625-f0-0001/source/turbo_heat_shield.py"
+    }
+  },
+  "envelope": [
+    "length_mm",
+    "width_mm",
+    "height_mm"
+  ],
+  "open_interfaces": [
+    "mounting point positions and screw size",
+    "actual cover shape around the turbo housing",
+    "published mass 230 g vs heavier double-skin concept"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
+  "max_tris": 90000
+}

@@ -1,0 +1,145 @@
+{
+  "part_id": "993-ENG-INTAKE-VALVE-TI64-HOLLOW-F0-0001",
+  "name": "993 hollow Ti64 intake valve, F0 LPBF concept (PicoGK)",
+  "generator": "poppet_valve_hollow",
+  "catalogue_record": "catalog/parts/993-eng-intake-valve-ti64-hollow-f0-0001.json",
+  "porsche_part_numbers": [
+    "99310540902"
+  ],
+  "safety_class": "prohibited_pending_engineering",
+  "material_candidate": "Ti-6Al-4V Grade 5 LPBF (screening only)",
+  "density_g_cm3": 4.42,
+  "voxel_mm": 0.25,
+  "picogk_enhancement": "Tulip-profile valve with a conformal head cavity (constant 2 mm wall under the tulip, 2.2 mm ligament over the face) split by four radial internal ribs, and a 5 mm stem bore open at the tip that drains every rib sector; keeper grooves and tip chamfer added. The ribs are internal and do not show in the exterior preview.",
+  "parameters": {
+    "head_diameter_mm": {
+      "value": 49.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/de/shop/einlassventil-49mm-993-94-95-turbo-95-98-m64-05-06-07-08-60-nicht-natrium-gekuehlt-99310540902eq1-99310540902~p306501",
+      "note": "FVD declared 49 mm head (SRC-FVD-993-INLET-VALVE-DIMENSIONS)"
+    },
+    "stem_diameter_mm": {
+      "value": 8.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/de/shop/einlassventil-49mm-993-94-95-turbo-95-98-m64-05-06-07-08-60-nicht-natrium-gekuehlt-99310540902eq1-99310540902~p306501",
+      "note": "FVD declared 8 mm stem"
+    },
+    "overall_length_mm": {
+      "value": 109.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "provisional F0 length under the published 110 mm envelope"
+    },
+    "head_margin_mm": {
+      "value": 1.6,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "cylindrical margin height (not published)"
+    },
+    "seat_radial_width_mm": {
+      "value": 2.8,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "45 degree seat, radial width (seat angle 45 from valve_variants_f1.json)"
+    },
+    "keeper_groove_count": {
+      "value": 3,
+      "unit": "count",
+      "basis": "assumption",
+      "source": null,
+      "note": "keeper grooves (record: keeper geometry not defined)"
+    },
+    "keeper_groove_radius_mm": {
+      "value": 0.6,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "groove section radius, depth about 0.5 mm"
+    },
+    "keeper_groove_pitch_mm": {
+      "value": 3.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "groove pitch"
+    },
+    "keeper_groove_from_tip_mm": {
+      "value": 4.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "first groove from the tip"
+    },
+    "tip_chamfer_mm": {
+      "value": 0.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "tip chamfer"
+    },
+    "head_wall_mm": {
+      "value": 2.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "conformal wall under the tulip"
+    },
+    "head_cavity_bottom_z_mm": {
+      "value": 2.2,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "concept minimum ligament over the face"
+    },
+    "head_cavity_bottom_radius_mm": {
+      "value": 16.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "concept cavity radius"
+    },
+    "head_cavity_top_z_mm": {
+      "value": 12.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "cavity limit before the stem bore takes over"
+    },
+    "hollow_bore_diameter_mm": {
+      "value": 5.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "concept axial bore, open at the tip for depowdering"
+    },
+    "internal_web_thickness_mm": {
+      "value": 1.2,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "concept internal web thickness"
+    },
+    "internal_radial_web_count": {
+      "value": 4,
+      "unit": "count",
+      "basis": "assumption",
+      "source": null,
+      "note": "concept four radial webs"
+    }
+  },
+  "open_interfaces": [
+    "seat angle and width",
+    "keeper groove profile and retainer",
+    "tip closure of the bore",
+    "guide clearance"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file; prohibited pending engineering, never to be installed in an engine",
+  "envelope": [
+    "head_diameter_mm"
+  ]
+}

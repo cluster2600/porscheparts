@@ -1,0 +1,128 @@
+{
+  "part_id": "993-ENG-EXHAUST-VALVE-F1-0001",
+  "name": "993 exhaust valves (Carrera and Turbo), F1 proxies (PicoGK)",
+  "generator": "poppet_valve_pair",
+  "catalogue_record": "catalog/parts/993-eng-exhaust-valve-f1-0001.json",
+  "porsche_part_numbers": [
+    "99310541901",
+    "99310541984",
+    "99310541952",
+    "99310541953"
+  ],
+  "safety_class": "prohibited_pending_engineering",
+  "material_candidate": "INCONEL 751 / UNS N07751 (reference)",
+  "density_g_cm3": 8.22,
+  "voxel_mm": 0.25,
+  "picogk_enhancement": "Both record valves (Carrera 42.5 mm and Turbo 43.5 mm) with a real poppet profile: margin, 45 degree seat, tulip underhead radius, keeper grooves, tip chamfer. Placed side by side and tied at the face by a small display bridge so the file is one body; the bridge is not part of either valve.",
+  "parameters": {
+    "a_head_diameter_mm": {
+      "value": 42.5,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://partworks.de/Porsche/993-Ersatzteile_s2",
+      "note": "Carrera exhaust valve 109 x 42.5 x 8 mm (SRC-PARTWORKS-993-EXHAUST-VALVE-DIMENSIONS)"
+    },
+    "a_overall_length_mm": {
+      "value": 109.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://partworks.de/Porsche/993-Ersatzteile_s2",
+      "note": "Carrera exhaust valve length"
+    },
+    "b_head_diameter_mm": {
+      "value": 43.5,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://partworks.de/Porsche/993-Ersatzteile_s2",
+      "note": "Turbo exhaust valve 108.9 x 43.5 x 8 mm"
+    },
+    "b_overall_length_mm": {
+      "value": 108.9,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://partworks.de/Porsche/993-Ersatzteile_s2",
+      "note": "Turbo exhaust valve length"
+    },
+    "stem_diameter_mm": {
+      "value": 8.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://partworks.de/Porsche/993-Ersatzteile_s2",
+      "note": "both valves 8 mm stem"
+    },
+    "head_margin_mm": {
+      "value": 1.6,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "cylindrical margin height (not published)"
+    },
+    "seat_radial_width_mm": {
+      "value": 2.8,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "45 degree seat, radial width (seat angle 45 from valve_variants_f1.json)"
+    },
+    "keeper_groove_count": {
+      "value": 3,
+      "unit": "count",
+      "basis": "assumption",
+      "source": null,
+      "note": "keeper grooves (record: keeper geometry not defined)"
+    },
+    "keeper_groove_radius_mm": {
+      "value": 0.6,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "groove section radius, depth about 0.5 mm"
+    },
+    "keeper_groove_pitch_mm": {
+      "value": 3.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "groove pitch"
+    },
+    "keeper_groove_from_tip_mm": {
+      "value": 4.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "first groove from the tip"
+    },
+    "tip_chamfer_mm": {
+      "value": 0.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "tip chamfer"
+    },
+    "display_gap_mm": {
+      "value": 5.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "gap between the two heads in the display file"
+    },
+    "display_tie_width_mm": {
+      "value": 3.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "display/print tie bridge width, not part of the valves"
+    }
+  },
+  "open_interfaces": [
+    "seat angle and width",
+    "keeper groove profile and retainer",
+    "guide clearance",
+    "hard-facing and coating"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file; prohibited pending engineering, never to be installed in an engine",
+  "envelope": [
+    "b_head_diameter_mm",
+    "a_overall_length_mm"
+  ]
+}

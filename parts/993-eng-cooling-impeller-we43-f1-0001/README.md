@@ -30,7 +30,7 @@ The original part is documented — pictures, catalogue entries or published dat
 <td width="50%" valign="top" align="center">
 <b>This repository's concept model</b><br><br>
 <img src="media/preview.png" alt="Concept CAD block for Engine cooling fan impeller, WE43 magnesium concept F1 redesigned from the Turbo rotor rebuild" width="340"><br>
-<sub>Concept CAD block, 243.0 × 244.8 × 56.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+<sub>Concept CAD block, 242.8 × 244.9 × 56.9 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
 </td>
 </tr></table>
 
@@ -109,10 +109,10 @@ flowchart LR
 
 | folder | what it holds | files |
 |---|---|---|
-| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/cooling_impeller_we43_f1.step`](derived/cooling_impeller_we43_f1.step), [`derived/cooling_impeller_we43_f1.stl`](derived/cooling_impeller_we43_f1.stl) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/cooling_impeller_we43_f1-picogk.json`](derived/cooling_impeller_we43_f1-picogk.json), [`derived/cooling_impeller_we43_f1-picogk.stl`](derived/cooling_impeller_we43_f1-picogk.stl), [`derived/cooling_impeller_we43_f1.step`](derived/cooling_impeller_we43_f1.step), [`derived/cooling_impeller_we43_f1.stl`](derived/cooling_impeller_we43_f1.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json), [`evidence/fan-curves.png`](evidence/fan-curves.png), [`evidence/flat-fan-sizing-f2.json`](evidence/flat-fan-sizing-f2.json), [`evidence/flat-fan-sizing-f2.png`](evidence/flat-fan-sizing-f2.png), [`evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-layer-metrics.csv`](evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-layer-metrics.csv), [`evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-manifest.json`](evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-manifest.json), [`evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-report.json`](evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-report.json), [`evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-screen.png`](evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-screen.png) |
 | `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/print-simulation/build-plate.png`](media/print-simulation/build-plate.png), [`media/print-simulation/build.gif`](media/print-simulation/build.gif), [`media/print-simulation/build.mp4`](media/print-simulation/build.mp4), [`media/print-simulation/layers.png`](media/print-simulation/layers.png), [`media/print-simulation/visuals.json`](media/print-simulation/visuals.json), [`media/views.png`](media/views.png) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/cooling_impeller_f1.py`](source/cooling_impeller_f1.py), [`source/flat_fan_sizing_f2.py`](source/flat_fan_sizing_f2.py) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/cooling_impeller_f1.py`](source/cooling_impeller_f1.py), [`source/flat_fan_sizing_f2.py`](source/flat_fan_sizing_f2.py), [`source/picogk.json`](source/picogk.json) |
 
 ## Read more
 

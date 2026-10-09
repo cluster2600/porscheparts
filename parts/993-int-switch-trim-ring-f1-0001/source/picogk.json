@@ -1,0 +1,123 @@
+{
+  "part_id": "993-INT-SWITCH-TRIM-RING-F1-0001",
+  "name": "993 dashboard switch trim ring, turned aluminium (PicoGK)",
+  "generator": "switch_trim_ring",
+  "catalogue_record": "catalog/parts/993-int-switch-trim-ring-f1-0001.json",
+  "porsche_part_numbers": [],
+  "safety_class": "non_critical",
+  "material_candidate": "EN AW-6063 T6 turned (record preferred route; EN AW-6061 T6 fallback)",
+  "density_g_cm3": 2.7,
+  "voxel_mm": 0.07,
+  "picogk_enhancement": "The four catalogue dimensions kept exactly; the F1 sharp-edged cone gets the turned-part details the record leaves open (radiused front edge, bore and rear chamfers, a turned face groove and a straight retention knurl on the hidden band), all as one implicit profile at 0.07 mm voxels.",
+  "parameters": {
+    "outer_diameter_mm": {
+      "value": 30.5,
+      "unit": "mm",
+      "basis": "catalogue",
+      "source": "https://oldtimer-ersatzteile24.de/alu-zierring-decorring-fuer-porsche-911-964-993-armaturenbrett-eq850101",
+      "note": "EQ850101 retailer sheet via SRC-OLDTIMER-ERSATZTEILE24-993-SWITCH-RING-DIMENSIONS; no tolerance"
+    },
+    "depth_mm": {
+      "value": 10.5,
+      "unit": "mm",
+      "basis": "catalogue",
+      "source": "https://oldtimer-ersatzteile24.de/alu-zierring-decorring-fuer-porsche-911-964-993-armaturenbrett-eq850101",
+      "note": "EQ850101 retailer sheet; no tolerance"
+    },
+    "front_inner_diameter_mm": {
+      "value": 23.0,
+      "unit": "mm",
+      "basis": "catalogue",
+      "source": "https://oldtimer-ersatzteile24.de/alu-zierring-decorring-fuer-porsche-911-964-993-armaturenbrett-eq850101",
+      "note": "EQ850101 retailer sheet, front inner diameter"
+    },
+    "rear_inner_diameter_mm": {
+      "value": 28.0,
+      "unit": "mm",
+      "basis": "catalogue",
+      "source": "https://oldtimer-ersatzteile24.de/alu-zierring-decorring-fuer-porsche-911-964-993-armaturenbrett-eq850101",
+      "note": "EQ850101 retailer sheet, rear inner diameter; linear cone between the two is the F1 hypothesis"
+    },
+    "front_outer_edge_radius_mm": {
+      "value": 1.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "record: edge chamfers or radii still to be decided"
+    },
+    "front_bore_chamfer_mm": {
+      "value": 0.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "45 deg break on the visible bore edge"
+    },
+    "rear_edge_chamfer_mm": {
+      "value": 0.3,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "45 deg lead-in on the rear outer edge"
+    },
+    "face_groove_radius_mm": {
+      "value": 13.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "decorative turned groove on the front face, cosmetic only"
+    },
+    "face_groove_width_mm": {
+      "value": 0.6,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "groove width"
+    },
+    "face_groove_depth_mm": {
+      "value": 0.25,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "groove depth"
+    },
+    "knurl_count": {
+      "value": 72,
+      "unit": "count",
+      "basis": "assumption",
+      "source": null,
+      "note": "straight knurl on the hidden outer band (press-fit retention idea, not an OEM feature)"
+    },
+    "knurl_depth_mm": {
+      "value": 0.2,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "knurl groove depth, cut inside the 30.5 mm diameter"
+    },
+    "knurl_z_start_mm": {
+      "value": 2.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "knurl band start from the rear face"
+    },
+    "knurl_z_end_mm": {
+      "value": 6.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "knurl band end; front 4 mm stays plain"
+    }
+  },
+  "open_interfaces": [
+    "OEM dashboard opening diameter and clearance or interference",
+    "real axial bore profile (cone is an F1 hypothesis)",
+    "edge radii and tolerances of the original",
+    "original aluminium grade and temper"
+  ],
+  "status": "F1 reconstruction concept geometry - not fitted, not tested, not safe, not released, not a print file",
+  "envelope": [
+    "outer_diameter_mm",
+    "depth_mm"
+  ]
+}

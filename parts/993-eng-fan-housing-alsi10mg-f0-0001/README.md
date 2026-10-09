@@ -30,7 +30,7 @@ The original part is documented — pictures, catalogue entries or published dat
 <td width="50%" valign="top" align="center">
 <b>This repository's concept model</b><br><br>
 <img src="media/preview.png" alt="Concept CAD block for Stationary engine fan housing, AlSi10Mg F0 concept" width="340"><br>
-<sub>Concept CAD block, 300.0 × 300.0 × 170.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+<sub>Concept CAD block, 300.2 × 300.2 × 170.3 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
 </td>
 </tr></table>
 
@@ -95,10 +95,10 @@ flowchart LR
 
 | folder | what it holds | files |
 |---|---|---|
-| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/fan_housing_alsi10mg_f0.step`](derived/fan_housing_alsi10mg_f0.step), [`derived/fan_housing_alsi10mg_f0.stl`](derived/fan_housing_alsi10mg_f0.stl) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/fan_housing_alsi10mg_f0-picogk.json`](derived/fan_housing_alsi10mg_f0-picogk.json), [`derived/fan_housing_alsi10mg_f0-picogk.stl`](derived/fan_housing_alsi10mg_f0-picogk.stl), [`derived/fan_housing_alsi10mg_f0.step`](derived/fan_housing_alsi10mg_f0.step), [`derived/fan_housing_alsi10mg_f0.stl`](derived/fan_housing_alsi10mg_f0.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json) |
 | `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/fan_housing.py`](source/fan_housing.py) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/fan_housing.py`](source/fan_housing.py), [`source/picogk.json`](source/picogk.json) |
 
 ## Read more
 

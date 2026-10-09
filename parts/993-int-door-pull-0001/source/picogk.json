@@ -1,0 +1,118 @@
+{
+  "part_id": "993-INT-DOOR-PULL-0001",
+  "name": "993 interior door pull handle, organic grip (PicoGK)",
+  "generator": "door_pull_organic",
+  "catalogue_record": "catalog/parts/993-int-door-pull-0001.json",
+  "porsche_part_numbers": [],
+  "safety_class": "functional",
+  "material_candidate": "polymer (SLS/MJF PA12 class), grade to be determined after load test",
+  "density_g_cm3": 1.01,
+  "voxel_mm": 0.3,
+  "picogk_enhancement": "One continuous organic body instead of a bar on two square posts: elliptical grip section swelling toward mid span, swept along an arch, blended into round mounting bosses, with finger scallops on the underside and blind pilot bores open at the door face.",
+  "parameters": {
+    "length_mm": {
+      "value": 160.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "F0 grip span (scripts/build_993_concept_f0.py, hypothesis); handle not measured"
+    },
+    "grip_width_mm": {
+      "value": 22.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "F0 grip width hypothesis"
+    },
+    "grip_thickness_mm": {
+      "value": 18.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "F0 grip thickness hypothesis; reached at mid span"
+    },
+    "height_mm": {
+      "value": 53.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "F0 overall height (35 mm hand passage + 18 mm grip)"
+    },
+    "boss_diameter_mm": {
+      "value": 22.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "mounting boss diameter, equal to the F0 post width"
+    },
+    "boss_height_mm": {
+      "value": 12.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "boss height above the door face"
+    },
+    "pilot_bore_mm": {
+      "value": 4.2,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "generic pilot bore placeholder; the real fastener and interface are unknown"
+    },
+    "pilot_depth_mm": {
+      "value": 14.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "blind bore depth from the door face"
+    },
+    "grip_swell_ratio": {
+      "value": 0.25,
+      "unit": "ratio",
+      "basis": "assumption",
+      "source": null,
+      "note": "mid-span section is 25 percent fuller than at the ends"
+    },
+    "finger_scallop_count": {
+      "value": 4,
+      "unit": "count",
+      "basis": "assumption",
+      "source": null,
+      "note": "finger rests on the underside"
+    },
+    "finger_scallop_radius_mm": {
+      "value": 9.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "scallop radius"
+    },
+    "finger_scallop_depth_mm": {
+      "value": 1.8,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "scallop depth into the local underside"
+    },
+    "finger_scallop_pitch_mm": {
+      "value": 17.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "finger pitch"
+    },
+    "boss_blend_mm": {
+      "value": 7.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "blend radius between grip and bosses"
+    }
+  },
+  "envelope": [],
+  "open_interfaces": [
+    "mounting interface on the door panel (fastener type, positions, torque) unknown",
+    "true handle shape to be acquired by scaled photogrammetry"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file"
+}

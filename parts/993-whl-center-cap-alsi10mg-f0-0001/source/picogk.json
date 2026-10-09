@@ -1,0 +1,168 @@
+{
+  "part_id": "993-WHL-CENTER-CAP-ALSI10MG-F0-0001",
+  "name": "993 wheel center cap, AlSi10Mg lattice-sandwich face (PicoGK)",
+  "generator": "wheel_center_cap",
+  "catalogue_record": "catalog/parts/993-whl-center-cap-alsi10mg-f0-0001.json",
+  "porsche_part_numbers": [
+    "993 361 303 07"
+  ],
+  "safety_class": "functional",
+  "material_candidate": "AlSi10Mg LPBF (screening; commercial original declared plastic)",
+  "density_g_cm3": 2.67,
+  "voxel_mm": 0.3,
+  "picogk_enhancement": "Neutral domed face as a skin + open-cell BCC lattice sandwich drained through the underside, rolled outer skirt lip, radial gussets tying ring and skirt, clip tabs continuing the centering ring with lead-in barbs, all filleted into one body. Keeps the published 76 / 60 / 46 mm.",
+  "parameters": {
+    "face_diameter_mm": {
+      "value": 76.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://partworks.de/1x-Radnabendeckel-ORIGINAL-fuer-PORSCHE-911-993-9933613030761M",
+      "note": "outer diameter 76 mm (SRC-PARTWORKS-993-WHEEL-CENTER-CAP-DIMENSIONS)"
+    },
+    "ring_inner_diameter_mm": {
+      "value": 60.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://partworks.de/1x-Radnabendeckel-ORIGINAL-fuer-PORSCHE-911-993-9933613030761M",
+      "note": "inner diameter 60 mm, read as the centering ring bore as in the build123d F0 (interpretation)"
+    },
+    "overall_height_mm": {
+      "value": 46.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://partworks.de/1x-Radnabendeckel-ORIGINAL-fuer-PORSCHE-911-993-9933613030761M",
+      "note": "height 46 mm"
+    },
+    "ring_outer_diameter_mm": {
+      "value": 63.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-whl-center-cap-alsi10mg-f0-0001/source/wheel_center_cap.py",
+      "note": "F0 CENTERING_RING_OUTER_DIAMETER_MM"
+    },
+    "face_thickness_mm": {
+      "value": 5.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "sandwich thickness at the rim (F0 solid face is 2 mm); thicker to hold a lattice core"
+    },
+    "dome_height_mm": {
+      "value": 3.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "face crown; F0 face is flat"
+    },
+    "face_edge_radius_mm": {
+      "value": 1.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "rounded face rim"
+    },
+    "outer_skirt_height_mm": {
+      "value": 12.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-whl-center-cap-alsi10mg-f0-0001/source/wheel_center_cap.py",
+      "note": "F0 OUTER_SKIRT_HEIGHT_MM, measured from the face top at the rim"
+    },
+    "outer_skirt_wall_mm": {
+      "value": 1.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-whl-center-cap-alsi10mg-f0-0001/source/wheel_center_cap.py",
+      "note": "F0 (76 - 73) / 2"
+    },
+    "tab_count": {
+      "value": 4,
+      "unit": "count",
+      "basis": "assumption",
+      "source": "parts/993-whl-center-cap-alsi10mg-f0-0001/source/wheel_center_cap.py",
+      "note": "F0 TAB_COUNT; OEM retention is a press fit per FVD - tabs are a concept choice"
+    },
+    "tab_width_mm": {
+      "value": 8.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-whl-center-cap-alsi10mg-f0-0001/source/wheel_center_cap.py",
+      "note": "F0 TAB_TANGENTIAL_WIDTH_MM"
+    },
+    "tab_length_mm": {
+      "value": 14.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "free tab length below the slotted ring end (F0 tab spans z 14..44 inside the ring)"
+    },
+    "tab_barb_mm": {
+      "value": 1.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-whl-center-cap-alsi10mg-f0-0001/source/wheel_center_cap.py",
+      "note": "F0 bead 2 mm radial minus 0.5 mm overlap"
+    },
+    "tab_barb_height_mm": {
+      "value": 4.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-whl-center-cap-alsi10mg-f0-0001/source/wheel_center_cap.py",
+      "note": "F0 BEAD_HEIGHT_MM"
+    },
+    "rib_count": {
+      "value": 8,
+      "unit": "count",
+      "basis": "assumption",
+      "source": null,
+      "note": "radial gussets between centering ring and outer skirt"
+    },
+    "rib_thickness_mm": {
+      "value": 1.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "gusset thickness"
+    },
+    "skin_mm": {
+      "value": 1.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "sandwich skin"
+    },
+    "lattice_cell_mm": {
+      "value": 5.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "BCC lattice cell (batch-01 value)"
+    },
+    "strut_diameter_mm": {
+      "value": 1.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "BCC strut diameter (LPBF >= 0.8 mm)"
+    },
+    "drain_hole_diameter_mm": {
+      "value": 2.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "powder drains from the open-cell core through the underside skin"
+    }
+  },
+  "open_interfaces": [
+    "wheel center bore diameter and clip groove",
+    "tab count and barb geometry of the OEM cap",
+    "height conflict: partworks 46 mm vs FVD product block 1.9 cm (may be a shipping envelope)",
+    "OEM retention is a press fit with two removal holes (FVD); clip tabs here are a concept choice"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
+  "envelope": [
+    "face_diameter_mm",
+    "overall_height_mm"
+  ],
+  "max_tris": 90000
+}

@@ -102,10 +102,10 @@ flowchart LR
 
 | folder | what it holds | files |
 |---|---|---|
-| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/wheel_center_cap_alsi10mg_f0.step`](derived/wheel_center_cap_alsi10mg_f0.step), [`derived/wheel_center_cap_alsi10mg_f0.stl`](derived/wheel_center_cap_alsi10mg_f0.stl) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/wheel_center_cap_alsi10mg_f0-picogk.json`](derived/wheel_center_cap_alsi10mg_f0-picogk.json), [`derived/wheel_center_cap_alsi10mg_f0-picogk.stl`](derived/wheel_center_cap_alsi10mg_f0-picogk.stl), [`derived/wheel_center_cap_alsi10mg_f0.step`](derived/wheel_center_cap_alsi10mg_f0.step), [`derived/wheel_center_cap_alsi10mg_f0.stl`](derived/wheel_center_cap_alsi10mg_f0.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json), [`evidence/lpbf-f0/993-whl-center-cap-alsi10mg-f0-0001-layer-metrics.csv`](evidence/lpbf-f0/993-whl-center-cap-alsi10mg-f0-0001-layer-metrics.csv), [`evidence/lpbf-f0/993-whl-center-cap-alsi10mg-f0-0001-lpbf-geometry-manifest.json`](evidence/lpbf-f0/993-whl-center-cap-alsi10mg-f0-0001-lpbf-geometry-manifest.json), [`evidence/lpbf-f0/993-whl-center-cap-alsi10mg-f0-0001-lpbf-geometry-report.json`](evidence/lpbf-f0/993-whl-center-cap-alsi10mg-f0-0001-lpbf-geometry-report.json), [`evidence/lpbf-f0/993-whl-center-cap-alsi10mg-f0-0001-lpbf-geometry-screen.png`](evidence/lpbf-f0/993-whl-center-cap-alsi10mg-f0-0001-lpbf-geometry-screen.png) |
 | `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/picogk-batch-01.png`](media/picogk-batch-01.png), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/wheel_center_cap.py`](source/wheel_center_cap.py) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/picogk.json`](source/picogk.json), [`source/wheel_center_cap.py`](source/wheel_center_cap.py) |
 
 ## Read more
 

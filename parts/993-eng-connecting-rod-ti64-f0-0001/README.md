@@ -103,11 +103,11 @@ flowchart LR
 
 | folder | what it holds | files |
 |---|---|---|
-| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/connecting_rod_ti64_f0.step`](derived/connecting_rod_ti64_f0.step), [`derived/connecting_rod_ti64_f0.stl`](derived/connecting_rod_ti64_f0.stl) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/connecting_rod_ti64_f0-picogk.json`](derived/connecting_rod_ti64_f0-picogk.json), [`derived/connecting_rod_ti64_f0-picogk.stl`](derived/connecting_rod_ti64_f0-picogk.stl), [`derived/connecting_rod_ti64_f0.step`](derived/connecting_rod_ti64_f0.step), [`derived/connecting_rod_ti64_f0.stl`](derived/connecting_rod_ti64_f0.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json) |
 | `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 | `print/` | **ready-to-print files**: 3MF project, STL and instructions | [`print/connecting_rod_f0_mockup.3mf`](print/connecting_rod_f0_mockup.3mf), [`print/connecting_rod_f0_mockup.step`](print/connecting_rod_f0_mockup.step), [`print/connecting_rod_f0_mockup.stl`](print/connecting_rod_f0_mockup.stl), [`print/mockup.png`](print/mockup.png), [`print/print.json`](print/print.json) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/connecting_rod.py`](source/connecting_rod.py), [`source/export_mockup.py`](source/export_mockup.py), [`source/render_mockup.py`](source/render_mockup.py) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/connecting_rod.py`](source/connecting_rod.py), [`source/export_mockup.py`](source/export_mockup.py), [`source/picogk.json`](source/picogk.json), [`source/render_mockup.py`](source/render_mockup.py) |
 
 ## Read more
 

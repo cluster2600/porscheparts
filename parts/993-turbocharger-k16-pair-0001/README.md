@@ -30,7 +30,7 @@ The original part is documented — pictures, catalogue entries or published dat
 <td width="50%" valign="top" align="center">
 <b>This repository's concept model</b><br><br>
 <img src="media/preview.png" alt="Concept CAD block for Pair of K16 turbochargers of the 993 Turbo" width="340"><br>
-<sub>Concept CAD block, 280.0 × 890.0 × 210.0 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+<sub>Concept CAD block, 280.8 × 878.0 × 210.3 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
 </td>
 </tr></table>
 
@@ -95,9 +95,10 @@ flowchart LR
 
 | folder | what it holds | files |
 |---|---|---|
-| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/k16_pair_concept_f0.step`](derived/k16_pair_concept_f0.step) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/k16_pair_concept_f0-picogk.json`](derived/k16_pair_concept_f0-picogk.json), [`derived/k16_pair_concept_f0-picogk.stl`](derived/k16_pair_concept_f0-picogk.stl), [`derived/k16_pair_concept_f0.step`](derived/k16_pair_concept_f0.step) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/concept-f0.json`](evidence/concept-f0.json) |
 | `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/picogk.json`](source/picogk.json) |
 
 ## Read more
 

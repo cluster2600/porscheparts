@@ -1,0 +1,154 @@
+{
+  "part_id": "993-ENG-FAN-HOUSING-ALSI10MG-F0-0001",
+  "name": "Stationary engine fan housing, AlSi10Mg F0 concept (PicoGK)",
+  "generator": "fan_housing",
+  "catalogue_record": "catalog/parts/993-eng-fan-housing-alsi10mg-f0-0001.json",
+  "porsche_part_numbers": [
+    "99310666703",
+    "99310666701"
+  ],
+  "safety_class": "prohibited_pending_engineering",
+  "material_candidate": "AlSi10Mg LPBF (comparison)",
+  "density_g_cm3": 2.67,
+  "voxel_mm": 1.0,
+  "picogk_enhancement": "The plain tube becomes a fan housing: the front flange rolls into a bellmouth that ends in the throat sleeve, six rounded spokes carry the alternator seat hub, mount pads with through holes sit behind the flange and the rear rim is thickened; every joint is blended by smooth union.",
+  "parameters": {
+    "outer_diameter_mm": {
+      "value": 300.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/en-us/shop/fan-housing-993-99310666703~p248872",
+      "note": "FVD product envelope 300 x 300 x 170 mm (no interface data)"
+    },
+    "depth_mm": {
+      "value": 170.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/en-us/shop/fan-housing-993-99310666703~p248872",
+      "note": "FVD product envelope 300 x 300 x 170 mm"
+    },
+    "shell_thickness_mm": {
+      "value": 3.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-fan-housing-alsi10mg-f0-0001/source/fan_housing.py",
+      "note": "legacy F0 shell"
+    },
+    "throat_diameter_mm": {
+      "value": 252.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-fan-housing-alsi10mg-f0-0001/source/fan_housing.py",
+      "note": "legacy F0 synthetic throat"
+    },
+    "front_flange_thickness_mm": {
+      "value": 4.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-fan-housing-alsi10mg-f0-0001/source/fan_housing.py",
+      "note": "legacy F0 front flange"
+    },
+    "hub_outer_diameter_mm": {
+      "value": 90.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-fan-housing-alsi10mg-f0-0001/source/fan_housing.py",
+      "note": "legacy F0 synthetic alternator seat hub"
+    },
+    "hub_bore_diameter_mm": {
+      "value": 70.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-fan-housing-alsi10mg-f0-0001/source/fan_housing.py",
+      "note": "legacy F0 synthetic hub bore"
+    },
+    "hub_depth_mm": {
+      "value": 20.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-fan-housing-alsi10mg-f0-0001/source/fan_housing.py",
+      "note": "legacy F0 synthetic hub depth"
+    },
+    "spoke_count": {
+      "value": 6,
+      "unit": "count",
+      "basis": "assumption",
+      "source": "parts/993-eng-fan-housing-alsi10mg-f0-0001/source/fan_housing.py",
+      "note": "legacy F0 spokes"
+    },
+    "spoke_width_mm": {
+      "value": 12.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-fan-housing-alsi10mg-f0-0001/source/fan_housing.py",
+      "note": "legacy F0 spoke width"
+    },
+    "spoke_thickness_mm": {
+      "value": 12.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-fan-housing-alsi10mg-f0-0001/source/fan_housing.py",
+      "note": "legacy F0 spoke thickness"
+    },
+    "mount_bore_diameter_mm": {
+      "value": 6.6,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-fan-housing-alsi10mg-f0-0001/source/fan_housing.py",
+      "note": "legacy F0 synthetic mount bore"
+    },
+    "mount_radius_mm": {
+      "value": 136.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-fan-housing-alsi10mg-f0-0001/source/fan_housing.py",
+      "note": "legacy F0 synthetic mount radius"
+    },
+    "mount_count": {
+      "value": 6,
+      "unit": "count",
+      "basis": "assumption",
+      "source": null,
+      "note": "mount pad count; not in the legacy concept"
+    },
+    "bellmouth_radius_mm": {
+      "value": 8.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "inlet lip radius rolled from the front flange"
+    },
+    "throat_land_length_mm": {
+      "value": 36.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "axial length of the throat sleeve"
+    },
+    "rear_rim_width_mm": {
+      "value": 5.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "thickened rear rim"
+    },
+    "fillet_mm": {
+      "value": 5.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "smooth-union fillet at spoke roots"
+    }
+  },
+  "open_interfaces": [
+    "engine / shroud mounting points and fasteners",
+    "alternator seat and fan rotor throat (252 mm synthetic; F0 impeller integration fails)",
+    "outlet distribution to the cylinder shrouds"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
+  "envelope": [
+    "outer_diameter_mm",
+    "depth_mm"
+  ],
+  "max_tris": 90000
+}

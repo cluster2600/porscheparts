@@ -92,11 +92,11 @@ flowchart LR
 
 | folder | what it holds | files |
 |---|---|---|
-| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/switch_trim_ring_f1.step`](derived/switch_trim_ring_f1.step), [`derived/switch_trim_ring_f1.stl`](derived/switch_trim_ring_f1.stl) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/switch_trim_ring_f1-picogk.json`](derived/switch_trim_ring_f1-picogk.json), [`derived/switch_trim_ring_f1-picogk.stl`](derived/switch_trim_ring_f1-picogk.stl), [`derived/switch_trim_ring_f1.step`](derived/switch_trim_ring_f1.step), [`derived/switch_trim_ring_f1.stl`](derived/switch_trim_ring_f1.stl) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/geometry-screen.json`](evidence/geometry-screen.json) |
 | `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 | `print/` | **ready-to-print files**: 3MF project, STL and instructions | [`print/print.json`](print/print.json), [`print/switch_trim_ring_f1.3mf`](print/switch_trim_ring_f1.3mf), [`print/switch_trim_ring_f1_print.stl`](print/switch_trim_ring_f1_print.stl) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/export_print.py`](source/export_print.py), [`source/switch_trim_ring.py`](source/switch_trim_ring.py) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/export_print.py`](source/export_print.py), [`source/picogk.json`](source/picogk.json), [`source/switch_trim_ring.py`](source/switch_trim_ring.py) |
 
 ## Read more
 

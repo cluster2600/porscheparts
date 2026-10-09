@@ -1,0 +1,244 @@
+{
+  "part_id": "993-ENG-COOLING-IMPELLER-WE43-F1-0001",
+  "name": "Engine cooling fan impeller, WE43 magnesium concept F1 (PicoGK)",
+  "generator": "cup_axial_impeller",
+  "catalogue_record": "catalog/parts/993-eng-cooling-impeller-we43-f1-0001.json",
+  "porsche_part_numbers": [
+    "96410601522"
+  ],
+  "safety_class": "prohibited_pending_engineering",
+  "material_candidate": "WE43 LPBF (comparison)",
+  "density_g_cm3": 1.8,
+  "voxel_mm": 0.6,
+  "picogk_enhancement": "Same cup, windows, bolt holes and eleven velocity-triangle blades as the F1 master, but the blades are continuous NACA-thickness cambered airfoils (no faceted loft) with smooth-union root fillets onto the cup, and the cup has filleted web-to-wall and rounded rim edges.",
+  "parameters": {
+    "outer_diameter_mm": {
+      "value": 245.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/fr/shop/turbine-965-993-turbo-96410601522~p252068",
+      "note": "FVD declared 245 x 245 x 87 mm envelope of 964 106 015 22; rotor diameter inferred from it"
+    },
+    "blade_count": {
+      "value": 11,
+      "unit": "count",
+      "basis": "catalogue",
+      "source": "https://www.fvd.net/fr/shop/turbine-965-993-turbo-96410601522~p252068",
+      "note": "11 blades counted in FVD photographs (catalogue record / rebuild)"
+    },
+    "vent_count": {
+      "value": 12,
+      "unit": "count",
+      "basis": "catalogue",
+      "source": "https://www.fvd.net/fr/shop/turbine-965-993-turbo-96410601522~p252068",
+      "note": "12 cup windows counted in FVD photographs (catalogue record / rebuild)"
+    },
+    "cup_diameter_mm": {
+      "value": 165.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json",
+      "note": "rebuild cup radius 82.5 mm, visual hypothesis"
+    },
+    "cup_depth_mm": {
+      "value": 56.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json",
+      "note": "rebuild cup depth (-26..30), visual hypothesis"
+    },
+    "cup_wall_mm": {
+      "value": 4.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json",
+      "note": "rebuild wall, visual hypothesis"
+    },
+    "web_thickness_mm": {
+      "value": 5.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json",
+      "note": "rebuild web, visual hypothesis"
+    },
+    "bore_diameter_mm": {
+      "value": 34.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json",
+      "note": "rebuild bore radius 17 mm, visual hypothesis"
+    },
+    "vent_radius_mm": {
+      "value": 56.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json",
+      "note": "rebuild window radius, visual hypothesis"
+    },
+    "vent_radial_halfwidth_mm": {
+      "value": 11.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json",
+      "note": "rebuild window, visual hypothesis"
+    },
+    "vent_tangential_halfwidth_mm": {
+      "value": 7.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json",
+      "note": "rebuild window, visual hypothesis"
+    },
+    "vent_corner_radius_mm": {
+      "value": 2.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-cooling-impeller-we43-f1-0001/source/cooling_impeller_f1.py",
+      "note": "F1 master window corner fillet"
+    },
+    "bolt_count": {
+      "value": 3,
+      "unit": "count",
+      "basis": "assumption",
+      "source": "parts/993-eng-cooling-impeller-we43-f1-0001/source/cooling_impeller_f1.py",
+      "note": "F1 master bolt holes"
+    },
+    "bolt_circle_radius_mm": {
+      "value": 25.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json",
+      "note": "rebuild bolt circle, visual hypothesis"
+    },
+    "bolt_hole_radius_mm": {
+      "value": 3.4,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "twins/993-engine-cooling-fan-system-f0/source/picogk-reference/reference.json",
+      "note": "rebuild bolt hole, visual hypothesis"
+    },
+    "root_fillet_mm": {
+      "value": 3.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "smooth-union blade root fillet onto the cup"
+    },
+    "blade_hub_radius_mm": {
+      "value": 84.73,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/engineering-screen.json",
+      "note": "F1 velocity-triangle design (rotor_design.sections, stations 1/5/11): section radius"
+    },
+    "blade_hub_chord_mm": {
+      "value": 46.59,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/engineering-screen.json",
+      "note": "F1 velocity-triangle design (rotor_design.sections, stations 1/5/11): chord"
+    },
+    "blade_hub_thickness_mm": {
+      "value": 4.56,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/engineering-screen.json",
+      "note": "F1 velocity-triangle design (rotor_design.sections, stations 1/5/11): maximum thickness"
+    },
+    "blade_hub_stagger_deg": {
+      "value": 31.81,
+      "unit": "deg",
+      "basis": "assumption",
+      "source": "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/engineering-screen.json",
+      "note": "F1 velocity-triangle design (rotor_design.sections, stations 1/5/11): stagger from the axis"
+    },
+    "blade_hub_camber_deg": {
+      "value": 19.6,
+      "unit": "deg",
+      "basis": "assumption",
+      "source": "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/engineering-screen.json",
+      "note": "F1 velocity-triangle design (rotor_design.sections, stations 1/5/11): camber angle"
+    },
+    "blade_mid_radius_mm": {
+      "value": 100.8,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/engineering-screen.json",
+      "note": "F1 velocity-triangle design (rotor_design.sections, stations 1/5/11): section radius"
+    },
+    "blade_mid_chord_mm": {
+      "value": 38.68,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/engineering-screen.json",
+      "note": "F1 velocity-triangle design (rotor_design.sections, stations 1/5/11): chord"
+    },
+    "blade_mid_thickness_mm": {
+      "value": 3.16,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/engineering-screen.json",
+      "note": "F1 velocity-triangle design (rotor_design.sections, stations 1/5/11): maximum thickness"
+    },
+    "blade_mid_stagger_deg": {
+      "value": 38.95,
+      "unit": "deg",
+      "basis": "assumption",
+      "source": "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/engineering-screen.json",
+      "note": "F1 velocity-triangle design (rotor_design.sections, stations 1/5/11): stagger from the axis"
+    },
+    "blade_mid_camber_deg": {
+      "value": 15.25,
+      "unit": "deg",
+      "basis": "assumption",
+      "source": "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/engineering-screen.json",
+      "note": "F1 velocity-triangle design (rotor_design.sections, stations 1/5/11): camber angle"
+    },
+    "blade_tip_radius_mm": {
+      "value": 120.97,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/engineering-screen.json",
+      "note": "F1 velocity-triangle design (rotor_design.sections, stations 1/5/11): section radius"
+    },
+    "blade_tip_chord_mm": {
+      "value": 34.55,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/engineering-screen.json",
+      "note": "F1 velocity-triangle design (rotor_design.sections, stations 1/5/11): chord"
+    },
+    "blade_tip_thickness_mm": {
+      "value": 2.13,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/engineering-screen.json",
+      "note": "F1 velocity-triangle design (rotor_design.sections, stations 1/5/11): maximum thickness"
+    },
+    "blade_tip_stagger_deg": {
+      "value": 45.99,
+      "unit": "deg",
+      "basis": "assumption",
+      "source": "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/engineering-screen.json",
+      "note": "F1 velocity-triangle design (rotor_design.sections, stations 1/5/11): stagger from the axis"
+    },
+    "blade_tip_camber_deg": {
+      "value": 11.49,
+      "unit": "deg",
+      "basis": "assumption",
+      "source": "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/engineering-screen.json",
+      "note": "F1 velocity-triangle design (rotor_design.sections, stations 1/5/11): camber angle"
+    }
+  },
+  "open_interfaces": [
+    "bearing hub bolt pattern, bore fit and inserts",
+    "alternator clearance inside the cup",
+    "housing throat / tip clearance",
+    "balance datums and overspeed qualification"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
+  "envelope": [
+    "outer_diameter_mm"
+  ],
+  "max_tris": 90000
+}

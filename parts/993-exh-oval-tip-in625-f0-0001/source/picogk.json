@@ -1,0 +1,108 @@
+{
+  "part_id": "993-EXH-OVAL-TIP-IN625-F0-0001",
+  "name": "993 oval exhaust tip, IN625 double wall (PicoGK)",
+  "generator": "oval_exhaust_tip",
+  "catalogue_record": "catalog/parts/993-exh-oval-tip-in625-f0-0001.json",
+  "porsche_part_numbers": [],
+  "safety_class": "functional",
+  "material_candidate": "IN625 LPBF",
+  "density_g_cm3": 8.44,
+  "voxel_mm": 0.4,
+  "picogk_enhancement": "Ventilated double wall with radial ribs as one body; gap open at the inlet doubles as depowdering path; checked at 0.25 mm voxels instead of the 1 mm screen of the build123d F1.",
+  "parameters": {
+    "outlet_width_mm": {
+      "value": 120.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/de-de/FVD11199300/endrohrsatz-edelstahl-poliert-oval-schraeg-993-120x85mm.html",
+      "note": "FVD11199300 oval outlet 120 x 85 mm"
+    },
+    "outlet_height_mm": {
+      "value": 85.0,
+      "unit": "mm",
+      "basis": "published",
+      "source": "https://www.fvd.net/de-de/FVD11199300/endrohrsatz-edelstahl-poliert-oval-schraeg-993-120x85mm.html",
+      "note": "FVD11199300 oval outlet 120 x 85 mm"
+    },
+    "length_mm": {
+      "value": 120.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "same concept length as the build123d F0/F1"
+    },
+    "inlet_pipe_od_mm": {
+      "value": 60.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "muffler outlet OD not measured"
+    },
+    "slip_clearance_mm": {
+      "value": 0.4,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "radial slip clearance"
+    },
+    "slip_depth_mm": {
+      "value": 35.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "slip-fit depth not measured"
+    },
+    "outer_wall_mm": {
+      "value": 1.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "LPBF Ti minimum robust wall"
+    },
+    "inner_wall_mm": {
+      "value": 1.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "LPBF Ti minimum robust wall"
+    },
+    "gap_mm": {
+      "value": 2.7,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "same 2.7 mm annular channel as the F1"
+    },
+    "outlet_lip_mm": {
+      "value": 4.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "closed rolled-look lip"
+    },
+    "rib_count": {
+      "value": 8,
+      "unit": "count",
+      "basis": "assumption",
+      "source": null,
+      "note": "radial ribs tying the walls"
+    },
+    "rib_thickness_mm": {
+      "value": 1.2,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "rib thickness"
+    }
+  },
+  "open_interfaces": [
+    "muffler outlet pipe OD",
+    "slip-fit depth and clamp",
+    "tip orientation / angle cut on the car"
+  ],
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
+  "envelope": [
+    "outlet_width_mm",
+    "outlet_height_mm"
+  ]
+}
