@@ -1,7 +1,9 @@
 """Figures of the plate-50-05a shell: four views, and the torsion stress map.
 
-Reads ../derived/monocoque-shell.ply and ../derived/torsion-snapshot.npz,
-writes ../evidence/shell-views.png and ../evidence/torsion-von-mises.png.
+Reads ../derived/monocoque-shell.ply, ../derived/torsion-snapshot.npz and,
+when present, ../derived/torsion-monocoque*.{json,npz}; writes
+../evidence/shell-views.png, ../evidence/torsion-von-mises.png and
+../evidence/torsion-monocoque.png.
 
     python3 figures.py
 """
@@ -62,7 +64,71 @@ def main():
                font_size=10, color="white")
     p.enable_anti_aliasing("ssaa")
     p.screenshot(EVIDENCE / "torsion-von-mises.png")
+    p.close()
     print("wrote shell-views.png and torsion-von-mises.png")
+    if (DERIVED / "torsion-monocoque.json").exists():
+        monocoque_torsion(pv, cmap)
+
+
+def monocoque_torsion(pv, cmap):
+    """Open shell against the monocoque architecture, same steel, same load:
+    stress on one colour scale, and the twist along the car for all cases."""
+    import json
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from PIL import Image
+    r = json.loads((DERIVED / "torsion-monocoque.json").read_text())
+    t = np.load(DERIVED / "torsion-monocoque-snapshot.npz")
+    pts, tri, kind = t["points"].astype(float), t["triangles"], t["kind"]
+    mesh = "S3, finest mesh" if len(next(iter(r["cases"].values()))["K"]) > 1 else "S3"
+    clim = (0.0, float(np.percentile(t["von_mises_open_steel"][np.unique(tri[kind != 1])], 97)))
+    p = pv.Plotter(off_screen=True, shape=(1, 2), window_size=(2600, 900))
+    for i, (key, name, keep) in enumerate((("von_mises_open_steel", "open shell", kind != 1),
+                                           ("von_mises_monocoque_steel", "monocoque", np.ones(len(kind), bool)))):
+        m = pv.PolyData(pts, np.c_[np.full(keep.sum(), 3), tri[keep]].ravel())
+        m.point_data["von Mises, MPa"] = t[key]
+        m = m.extract_cells(np.arange(m.n_cells)).extract_surface()
+        p.subplot(0, i)
+        p.set_background("#0e1218", top="#232b36")
+        p.add_mesh(m, scalars="von Mises, MPa", cmap=cmap, clim=clim, smooth_shading=True, specular=0.4, ambient=0.25,
+                   show_scalar_bar=(i == 1), scalar_bar_args={"color": "white"})
+        camera(p, np.array(m.center), 3780.0, 32, 16)
+        k = r["cases"][f"{name}, 0.8 mm steel"]["K"][-1]
+        p.add_text(f"{name}, 0.8 mm steel: K = {k:,} N.m/deg ({mesh})", font_size=11, color="white")
+    p.enable_anti_aliasing("ssaa")
+    top = Image.fromarray(p.screenshot(return_img=True))
+    p.close()
+    fig, ax = plt.subplots(figsize=(13, 3.6), facecolor="#0e1218")
+    ax.set_facecolor("#0e1218")
+    styles = {"open shell, 0.8 mm steel": ("#8a929e", "--"), "open shell, CFRP layup": ("#8a929e", ":"),
+              "monocoque, 0.8 mm steel": ("#f07b3f", "-"), "monocoque, CFRP layup": ("#4f9aa8", "-")}
+    d = np.array(r["twist_stations_d_mm"])
+    for name, row in r["cases"].items():
+        tw = np.array([np.nan if v is None else v for v in row["twist_deg"]])
+        c, ls = styles[name]
+        ax.plot(d, tw, color=c, ls=ls, lw=2, label=f"{name}: K {row['K'][-1]:,}, {row['mass_kg']} kg")
+    ax.axvspan(2050, 2450, color="#3a4350", alpha=0.6)
+    ax.axvspan(-200, 150, color="#3a4350", alpha=0.35)
+    ax.text(2250, ax.get_ylim()[1] * 0.92, "clamp", color="#9aa3ad", ha="center")
+    ax.text(-25, ax.get_ylim()[1] * 0.92, "load", color="#9aa3ad", ha="center")
+    ax.set_xlabel("d, mm behind the plate 0 line", color="#9aa3ad")
+    ax.set_ylabel("section rotation, deg\nunder 1.14 kN.m", color="#9aa3ad")
+    ax.tick_params(colors="#9aa3ad")
+    for sp in ax.spines.values():
+        sp.set_color("#3a4350")
+    ax.legend(frameon=False, labelcolor="white", fontsize=9, loc="upper center")
+    ax.set_xlim(d.min(), d.max())
+    fig.tight_layout()
+    fig.canvas.draw()
+    bottom = Image.fromarray(np.asarray(fig.canvas.buffer_rgba())[:, :, :3])
+    plt.close(fig)
+    bottom = bottom.resize((top.width, int(bottom.height * top.width / bottom.width)), Image.LANCZOS)
+    out = Image.new("RGB", (top.width, top.height + bottom.height), (14, 18, 24))
+    out.paste(top, (0, 0))
+    out.paste(bottom, (0, top.height))
+    out.save(EVIDENCE / "torsion-monocoque.png")
+    print("wrote torsion-monocoque.png")
 
 
 if __name__ == "__main__":

@@ -82,6 +82,66 @@ shell leaves open. It is a design envelope, not a part.
 
 ![The PicoGK monocoque](evidence/zesad-monocoque-views.png)
 
+## Torsion of the monocoque architecture
+
+`source/torsion_monocoque.py` puts the PicoGK members on the open shell's
+own mesh, as shells, and reruns its load case. The two answers therefore
+differ by the architecture alone. Each closed section is built from three
+parts:
+
+- **outer wall:** a band of skin;
+- **inner wall:** a copy of the band, offset inward by the section depth;
+- **sides:** a wall along every free edge of the band, including a flange
+  on the aperture edge.
+
+Sizes come from the PicoGK report. There are four cases, solved at three
+shell densities (210, 300 and 420 sections):
+
+| case | mass | K, 210 / 300 / 420 sections |
+|---|---|---|
+| open shell, 0.8 mm steel | 57 kg | 5,425 / 3,468 / 2,261 N·m/deg |
+| open shell, CFRP | 33 kg | 4,075 / 2,535 / 1,680 |
+| **monocoque, 0.8 mm steel** | 123 kg | **33,246 / 31,501 / 29,492** |
+| **monocoque, CFRP** | 75 kg | **23,192 / 24,564 / 22,283** |
+
+![Open shell and monocoque in torsion](evidence/torsion-monocoque.png)
+
+*Top: von Mises stress on one colour scale, same steel, same load. Bottom:
+rotation of each cross-section along the car under the 1.14 kN·m torque.*
+
+What holds, and what does not:
+
+- **The monocoque's K is stable.** It drops about 6% at each refinement
+  (S3 converges from above). The open shell's K is not stable: it keeps
+  falling, and is 966 N·m/deg with every triangle split in four. With its
+  apertures open, it is close to a mechanism. **The ratio between the two
+  (×5.7 to ×13 depending on the mesh and material) is therefore not a result.** What
+  remains is that the closed architecture is more than five times stiffer
+  than the open shell (×5.7 at worst), at any density tried.
+- **The load path changes.** On the open shell, the stress collects at the
+  windscreen frame, the A-pillars and the door corners. On the monocoque it
+  spreads at a low level, and the twist builds up evenly from the clamp to
+  the front instead of in steps at each aperture.
+- **Carbon versus steel**, same architecture: 0.70 to 0.78 of the stiffness
+  for 0.61 of the mass. That is ×1.15 to ×1.28 in specific stiffness, the
+  ×1.25 found earlier on the box cell
+  ([`../fea/`](../fea/README.md)). The architecture remains the lever, not
+  the material.
+
+Limits that come on top of the shell's own:
+
+- Doors, glass, joints and inserts are absent, and every member size is
+  assumed. K is a value of this model, not of a car.
+- The offset folds at the tightest curvatures. There the depth is cut back
+  locally: 709 of 15,493 section vertices, to 0.63 of nominal on average.
+- The sills are 140 mm deep, not 210. The rear rails and wheel tubs are
+  left out.
+- The sandwich panels count by their faces only, which is on the soft side.
+- Two other convergence checks were tried and rejected: S6 elements (the
+  slivers of the aperture clip collapse the open shell to 63 N·m/deg), and
+  splitting every triangle of the monocoque in four (more than 12 GB for
+  the direct solver).
+
 ## Reproduce
 
 In the `cadsim` image, with shapely from the print-simulation library folder:
@@ -89,6 +149,7 @@ In the `cadsim` image, with shapely from the print-simulation library folder:
     python3 source/trace_plate_50_05a.py page9-009.png   # only with the local plate
     python3 source/build_shell.py      # derived/monocoque-shell.ply and -structural.npz
     python3 source/torsion.py          # derived/torsion-snapshot.npz
+    python3 source/torsion_monocoque.py   # derived/torsion-monocoque.json, after ../picogk/
     python3 source/figures.py          # evidence/*.png
     python3 ../fea/hero.py             # the home-page banner
 
