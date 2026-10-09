@@ -66,8 +66,10 @@ architectures, not a mass for this car.
 
 **Torsion.** On a shell model of the same members, K is about 29,500 N·m/deg
 in steel and 22,300 in the assumed CFRP layup (75 kg without tubs or rear
-rails). That is stable within 6% across three mesh densities. The open
+rails). That is stable within 7% across three mesh densities. The open
 shell, on the same mesh, is not converged and is more than five times softer.
+The tube architecture of [`../picogk-rings/`](../picogk-rings/README.md) is
+1.4 to 1.9 times less stiff per kilogram.
 See [the torsion section](../README.md#torsion-of-the-monocoque-architecture).
 
 ## Reproduce

@@ -51,10 +51,12 @@ def supports(s, p):
     return rear, np.where(band & (y > 0.72 * wd))[0], np.where(band & (y < -0.72 * wd))[0]
 
 
-def solve(p, tri, sections, rear, fl, fr):
+def solve(p, tri, sections, rear, fl, fr, beams=()):
     """Linear static torsion run. sections: list of (element mask, thickness
-    mm, E MPa, Poisson). Returns K (N.m/deg), nodal displacements, nodal
-    von Mises (MPa) and the moment arm (mm)."""
+    mm, E MPa, Poisson). beams: list of (B32 connectivity (n, 3), section
+    diameter mm, E MPa, Poisson), solid circular sections; a tube is passed
+    as its equivalent (see tube_equivalent). Returns K (N.m/deg), nodal
+    displacements, nodal von Mises (MPa) and the moment arm (mm)."""
     arm = float(p[fl, 1].mean() - p[fr, 1].mean())
     with tempfile.TemporaryDirectory() as work:
         inp = pathlib.Path(work, "shell.inp")
@@ -66,6 +68,19 @@ def solve(p, tri, sections, rear, fl, fr):
                 f.write(f"*ELEMENT, TYPE=S3, ELSET=E{k}\n")
                 f.writelines(f"{i + 1}, " + ", ".join(str(int(n) + 1) for n in row) + "\n" for i, row in zip(ids, tri[ids]))
                 f.write(f"*SHELL SECTION, ELSET=E{k}, MATERIAL=M{k}\n{t}\n*MATERIAL, NAME=M{k}\n*ELASTIC\n{e}, {nu}\n")
+            for k, (el, dia, e, nu) in enumerate(beams):
+                axis = p[el[:, 2]] - p[el[:, 0]]
+                ref = np.argmin(np.abs(axis) / np.linalg.norm(axis, axis=1, keepdims=True), axis=1)
+                for j in range(3):                   # section 1-direction: the axis least aligned with the beam
+                    ids = np.where(ref == j)[0]
+                    if not len(ids):
+                        continue
+                    f.write(f"*ELEMENT, TYPE=B32, ELSET=B{k}{j}\n")
+                    f.writelines(f"{len(tri) + 1 + sum(len(b[0]) for b in beams[:k]) + i}, "
+                                 + ", ".join(str(int(n) + 1) for n in el[i]) + "\n" for i in ids)
+                    f.write(f"*BEAM SECTION, ELSET=B{k}{j}, MATERIAL=BM{k}, SECTION=CIRC\n{dia}, {dia}\n"
+                            + ", ".join("1." if a == j else "0." for a in range(3)) + "\n")
+                f.write(f"*MATERIAL, NAME=BM{k}\n*ELASTIC\n{e}, {nu}\n")
             for name, nodes in (("REAR", rear), ("FRL", fl), ("FRR", fr)):
                 f.write(f"*NSET, NSET={name}\n")
                 f.writelines(", ".join(str(int(x) + 1) for x in nodes[i:i + 8]) + ",\n" for i in range(0, len(nodes), 8))
@@ -94,6 +109,15 @@ def solve(p, tri, sections, rear, fl, fr):
                     vm[n - 1] = np.sqrt(0.5 * ((sx - sy) ** 2 + (sy - sz) ** 2 + (sz - sx) ** 2) + 3 * (sxy ** 2 + syz ** 2 + szx ** 2))
     theta = (u[fl, 2].mean() - u[fr, 2].mean()) / arm
     return FORCE_N * arm / 1000.0 / np.degrees(theta), u, vm, arm
+
+
+def tube_equivalent(od, wall, e):
+    """Solid circular section with the tube's area, bending and torsion
+    stiffness: diameter and modulus to pass to solve(). This CalculiX reads
+    CIRC dimensions as diameters (checked on a cantilever: 2.175 mm against
+    2.177 analytic)."""
+    ro, ri = od / 2.0, od / 2.0 - wall
+    return 2.0 * float(np.sqrt(ro ** 2 + ri ** 2)), e * (ro ** 2 - ri ** 2) / (ro ** 2 + ri ** 2)
 
 
 def main():

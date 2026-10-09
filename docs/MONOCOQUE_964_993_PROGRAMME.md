@@ -131,11 +131,19 @@ is framed by a closed section, the sills, tunnel and rails are closed boxes,
 and the floor and bulkheads are sandwich panels: the closures of section 2,
 by construction. The mass estimate is about 95 kg, from assumed layups.
 In torsion, on a shell model of the same members, K is about 29,500
-N·m/deg in steel and 22,300 in CFRP. That is stable within 6% across three
+N·m/deg in steel and 22,300 in CFRP. That is stable within 7% across three
 mesh densities, and more than five times the open shell, which does not
-converge. Carbon gives ×1.15 to ×1.28 in specific stiffness, as on the box
+converge. Carbon gives ×1.20 to ×1.24 in specific stiffness, as on the box
 cell: the architecture is the lever. Every member size is a hypothesis, and
 the architecture is still `prohibited_pending_engineering`.
+
+**Two PicoGK architectures compared (2026-10-09).** The second study,
+`picogk-rings/`, closes the body with discrete tubes tangent to the skin.
+On the same mesh and load, it is 1.4 to 1.9 times less stiff per kilogram
+than the skin-formed boxes, at all three mesh densities. A box that uses
+the skin as one wall encloses more area than a tube bonded along a line.
+The design direction this supports is closed sections formed with the skin,
+not added to it. It is a ranking of two hypotheses, not a design.
 
 ## 4. The missing denominator is measured, no longer searched for
 
