@@ -32,6 +32,22 @@ class MonocoqueShellTests(unittest.TestCase):
         self.assertGreater(float(t["K"]), 0.0)
         self.assertAlmostEqual(float(t["thickness_mm"]), 0.8)
 
+    def test_monocoque_torsion_is_stable_and_reproduces_the_open_shell(self) -> None:
+        r = json.loads((SHELL / "derived/torsion-monocoque.json").read_text(encoding="utf-8"))
+        self.assertIn("not of a vehicle", r["classification"])
+        self.assertIn("prohibited_pending_engineering", r["classification"])
+        c = r["cases"]
+        self.assertEqual(c["open shell, 0.8 mm steel"]["K"][-1], 2261)   # torsion.py on the published shell
+        for material in ("0.8 mm steel", "CFRP layup"):
+            mono, shell = c[f"monocoque, {material}"]["K"], c[f"open shell, {material}"]["K"]
+            self.assertEqual(len(mono), 3)
+            self.assertLess((max(mono) - min(mono)) / max(mono), 0.15, material)   # the monocoque converges
+            self.assertTrue(all(m > 5 * o for m, o in zip(mono, shell)), material)
+            self.assertGreater(shell[0] / shell[-1], 2.0)                           # the open shell does not
+        cf, st = c["monocoque, CFRP layup"], c["monocoque, 0.8 mm steel"]
+        self.assertLess(cf["mass_kg"], st["mass_kg"])
+        self.assertTrue(all(1.1 < a / b < 1.35 for a, b in zip(cf["K_per_kg"], st["K_per_kg"])))
+
 
 if __name__ == "__main__":
     unittest.main()

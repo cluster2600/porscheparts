@@ -62,9 +62,13 @@ From `../derived/zesad-monocoque.report.json`:
 The area is the voxel volume divided by the geometric thickness. The mass is
 that area times an **assumed** areal mass. There are no joints, inserts,
 adhesive, glass, doors or lids. It is an order of magnitude for comparing
-architectures, not a mass for this car. No stiffness is computed yet. The
-next step is to run the torsion load case of `../source/torsion.py` on this
-architecture and compare it with the 2,261 N·m/deg of the open shell.
+architectures, not a mass for this car.
+
+**Torsion.** On a shell model of the same members, K is about 29,500 N·m/deg
+in steel and 22,300 in the assumed CFRP layup (75 kg without tubs or rear
+rails). That is stable within 6% across three mesh densities. The open
+shell, on the same mesh, is not converged and is more than five times softer.
+See [the torsion section](../README.md#torsion-of-the-monocoque-architecture).
 
 ## Reproduce
 

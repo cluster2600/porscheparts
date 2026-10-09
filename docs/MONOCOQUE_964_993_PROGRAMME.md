@@ -129,9 +129,13 @@ no thickness, layup or tolerance is proposed.
 monocoque inside that shell with the pinned PicoGK kernel. Every aperture
 is framed by a closed section, the sills, tunnel and rails are closed boxes,
 and the floor and bulkheads are sandwich panels: the closures of section 2,
-by construction. The mass estimate is about 95 kg, from assumed layups. No
-stiffness is computed yet. Every member size is a hypothesis, and the
-architecture is still `prohibited_pending_engineering`.
+by construction. The mass estimate is about 95 kg, from assumed layups.
+In torsion, on a shell model of the same members, K is about 29,500
+N·m/deg in steel and 22,300 in CFRP. That is stable within 6% across three
+mesh densities, and more than five times the open shell, which does not
+converge. Carbon gives ×1.15 to ×1.28 in specific stiffness, as on the box
+cell: the architecture is the lever. Every member size is a hypothesis, and
+the architecture is still `prohibited_pending_engineering`.
 
 ## 4. The missing denominator is measured, no longer searched for
 

@@ -55,11 +55,11 @@ def clean(curve, med, sig):
     return x, gaussian_filter1d(y, sig)
 
 
-def stations(p):
+def stations(p, n=N_STATIONS):
     tx, tz = clean(p["side_top"], 5, 1.0)
     bx, bz = clean(p["side_bottom"], 21, 2.0)
     px, pw = clean(p["plan_half_width"], 31, 2.0)
-    d = np.linspace(-700, 3080, N_STATIONS)
+    d = np.linspace(-700, 3080, n)
     zt = np.interp(d, tx, tz)
     zb = np.clip(np.interp(d, bx, bz), 140, 380)      # spikes from markers removed
     w = np.interp(d, px, pw)
@@ -71,22 +71,23 @@ def stations(p):
     return d, zt, zb, w, zbelt
 
 
-def section(W, B, T, Z0, d):
+def section(W, B, T, Z0, d, res=1.0):
     rb = min(150.0, 0.45 * (B - Z0))
     bulge = 0.045 if 1950 < d < 2900 else 0.025      # rear quarters swell more
     Wl = W * (1 - bulge)
-    half = [(y, Z0) for y in np.linspace(0, Wl - rb, 10)]
-    half += [(Wl - rb + rb * np.cos(a), Z0 + rb + rb * np.sin(a)) for a in np.linspace(-np.pi / 2, 0, 10)[1:]]
-    for z in np.linspace(Z0 + rb, B, 12)[1:]:
+    k = lambda c: max(3, round(c * res))             # noqa: E731  points per segment
+    half = [(y, Z0) for y in np.linspace(0, Wl - rb, k(10))]
+    half += [(Wl - rb + rb * np.cos(a), Z0 + rb + rb * np.sin(a)) for a in np.linspace(-np.pi / 2, 0, k(10))[1:]]
+    for z in np.linspace(Z0 + rb, B, k(12))[1:]:
         u = (z - (Z0 + rb)) / max(B - Z0 - rb, 1.0)
         half.append((Wl + (W - Wl) * np.sin(np.pi * 0.5 * u) ** 0.8, z))
     n, m = 2.6, 2.4
-    half += [(W * np.cos(t) ** (2 / n), B + (T - B) * np.sin(t) ** (2 / m)) for t in np.linspace(0, np.pi / 2, 22)[1:]]
+    half += [(W * np.cos(t) ** (2 / n), B + (T - B) * np.sin(t) ** (2 / m)) for t in np.linspace(0, np.pi / 2, k(22))[1:]]
     return np.array(half + [(-y, z) for y, z in half[::-1][1:-1]])
 
 
-def surface(d, zt, zb, w, zbelt):
-    rings = [section(w[i], zbelt[i], zt[i], zb[i], d[i]) for i in range(len(d))]
+def surface(d, zt, zb, w, zbelt, res=1.0):
+    rings = [section(w[i], zbelt[i], zt[i], zb[i], d[i], res) for i in range(len(d))]
     nr = len(rings[0])
     v = np.array([[-di, y, z] for di, r in zip(d, rings) for y, z in r])   # x forward = -d
     f = []
@@ -169,29 +170,38 @@ def wheel_house(d, w, dc, zc, radius):
     return parts
 
 
-def build():
+def structural(n_stations=N_STATIONS, res=1.0):
+    """The clipped shell with its bulkheads, and the wheel houses apart.
+    n_stations and res (points per section, relative) set the mesh density;
+    the defaults are the published model."""
     import pyvista as pv
     p = json.loads(PROFILES.read_text())
-    d, zt, zb, w, zbelt = stations(p)
-    rings, v, f = surface(d, zt, zb, w, zbelt)
+    d, zt, zb, w, zbelt = stations(p, n_stations)
+    rings, v, f = surface(d, zt, zb, w, zbelt, res)
     mesh = pv.PolyData(v, np.c_[np.full(len(f), 3), f].ravel())
     mesh.point_data["opening"] = opening_field(v, p, d, zt, zb, w, zbelt)
     shell = mesh.clip_scalar(scalars="opening", value=0.0, invert=True).extract_surface(algorithm="dataset_surface").triangulate()
     bulkheads = [bulkhead(d, rings, zb, FRONT_BULKHEAD_D, 860.0), bulkhead(d, rings, zb, REAR_BULKHEAD_D, BELT_MM)]
-    structural = shell
+    out = shell
     for bv, bf in bulkheads:
-        structural = structural + pv.PolyData(bv, np.c_[np.full(len(bf), 3), bf].ravel())
-    structural = structural.clean(tolerance=1.0).triangulate().connectivity("largest").extract_surface(algorithm="dataset_surface").clean()
-    full = structural
-    for wv, wf in wheel_house(d, w, REAR_AXLE_D, 300.0, 350.0) + wheel_house(d, w, FRONT_AXLE_D, 300.0, 340.0):
+        out = out + pv.PolyData(bv, np.c_[np.full(len(bf), 3), bf].ravel())
+    out = out.clean(tolerance=1.0).triangulate().connectivity("largest").extract_surface(algorithm="dataset_surface").clean()
+    houses = wheel_house(d, w, REAR_AXLE_D, 300.0, 350.0) + wheel_house(d, w, FRONT_AXLE_D, 300.0, 340.0)
+    st = dict(points=np.asarray(out.points, dtype=np.float32), triangles=out.faces.reshape(-1, 4)[:, 1:].astype(np.int32),
+              stations_d=d, top=zt, bottom=zb, half_width=w, belt=zbelt)
+    return out, houses, st
+
+
+def build():
+    import pyvista as pv
+    structural_mesh, houses, st = structural()
+    full = structural_mesh
+    for wv, wf in houses:
         full = full + pv.PolyData(wv, np.c_[np.full(len(wf), 3), wf].ravel())
     OUT.mkdir(parents=True, exist_ok=True)
     full.clean().save(OUT / "monocoque-shell.ply", binary=True)
-    pts = np.asarray(structural.points, dtype=np.float32)
-    tri = structural.faces.reshape(-1, 4)[:, 1:].astype(np.int32)
-    np.savez_compressed(OUT / "monocoque-shell-structural.npz", points=pts, triangles=tri,
-                        stations_d=d, top=zt, bottom=zb, half_width=w, belt=zbelt)
-    print(f"monocoque-shell.ply: {full.n_points} points; structural shell: {len(pts)} points, {len(tri)} triangles")
+    np.savez_compressed(OUT / "monocoque-shell-structural.npz", **st)
+    print(f"monocoque-shell.ply: {full.n_points} points; structural shell: {len(st['points'])} points, {len(st['triangles'])} triangles")
 
 
 if __name__ == "__main__":
