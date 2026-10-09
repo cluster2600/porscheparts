@@ -82,11 +82,23 @@ shell leaves open. It is a design envelope, not a part.
 
 ![The PicoGK monocoque](evidence/zesad-monocoque-views.png)
 
+## An independent closed-ring study, in PicoGK
+
+[`picogk-rings/`](picogk-rings/README.md) is a second, independent PicoGK
+study on the same shell: tubes tangent to the skin for the rings the torsion
+case loads (windscreen frame and A-pillars, B-hoop, C-pillars, wheel arches),
+boxed sills, a central tunnel with a C4-tube clearance check, solid sandwich
+floor and bulkheads, drain holes, a thin-wall mass breakdown and an
+independent mesh QA (one body, no sealed void). Study geometry only, same
+`prohibited_pending_engineering` status.
+
+![PicoGK closed-ring study](evidence/picogk-monocoque.png)
+
 ## Torsion of the monocoque architecture
 
-`source/torsion_monocoque.py` puts the PicoGK members on the open shell's
-own mesh, as shells, and reruns its load case. The two answers therefore
-differ by the architecture alone. Each closed section is built from three
+`source/torsion_monocoque.py` puts the members of [`picogk/`](picogk/README.md)
+on the open shell's own mesh, as shells, and reruns its load case. The two
+answers therefore differ by the architecture alone. Each closed section is built from three
 parts:
 
 - **outer wall:** a band of skin;
