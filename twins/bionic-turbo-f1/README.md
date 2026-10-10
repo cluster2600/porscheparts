@@ -6,6 +6,10 @@ dont la section nominale croît linéairement, et un carter suivant davantage
 le profil de la roue. **Aucun gain de débit ou de puissance n'est encore
 validé.** L'objectif choisi est le débit et la puissance maximale.
 
+Les sorties volumineuses F0/F1 sont aussi sauvegardées dans
+[l’archive distante vérifiée](REMOTE-ARCHIVE.md), avec manifeste et instructions
+de restauration.
+
 La variante avec profil rapproché reste une étude rejetée pour la CFD actuelle :
 un jeu nominal radial de 1,5 mm donne localement une
 [distance roue/carter inférieure à 0,4 mm](evidence/combined-003-clearance-upper-bound.json),
