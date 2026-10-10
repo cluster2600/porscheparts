@@ -2,9 +2,10 @@
 
 Reads ../derived/monocoque-shell.ply, ../derived/torsion-snapshot.npz and,
 when present, ../derived/torsion-monocoque*.{json,npz} and
-../derived/torsion-rings*.{json,npz}; writes ../evidence/shell-views.png,
-../evidence/torsion-von-mises.png, ../evidence/torsion-monocoque.png and
-../evidence/torsion-architectures.png.
+../derived/torsion-rings*.{json,npz} and ../derived/torsion-members.json;
+writes ../evidence/shell-views.png, ../evidence/torsion-von-mises.png,
+../evidence/torsion-monocoque.png, ../evidence/torsion-architectures.png and
+../evidence/torsion-members.png.
 
     python3 figures.py
 """
@@ -71,6 +72,49 @@ def main():
         monocoque_torsion(pv, cmap)
     if (DERIVED / "torsion-rings.json").exists():
         architectures(pv)
+    if (DERIVED / "torsion-members.json").exists():
+        members()
+
+
+def members():
+    """Leave-one-out: stiffness each member carries, and its return per kg
+    against the whole architecture's."""
+    import json
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    r = json.loads((DERIVED / "torsion-members.json").read_text())
+    names = sorted(r["members"], key=lambda n: -r["members"][n]["K_lost_fraction"][-1])
+    full = r["meshes"][-1]
+    avg = full["K_full"] / full["mass_full_kg"]
+    fig, (ax, bx) = plt.subplots(1, 2, figsize=(16, 5.2), facecolor="#0e1218")
+    y = np.arange(len(names))
+    for a in (ax, bx):
+        a.set_facecolor("#0e1218")
+        a.tick_params(colors="#9aa3ad")
+        for sp in a.spines.values():
+            sp.set_color("#3a4350")
+        a.set_yticks(y, names, color="white")
+        a.invert_yaxis()
+    for j, (key, colour, label) in enumerate((("K_lost_fraction", "#f07b3f", "K at the load points"),
+                                              ("K_cabin_lost_fraction", "#e9b44c", "cabin K, d 400 to 1950"))):
+        lost = [100 * r["members"][n][key][-1] for n in names]
+        ax.barh(y + (j - 0.5) * 0.38, lost, height=0.38, color=colour, label=f"{label}, {full['sections']} sections")
+    for j, (mesh, colour) in enumerate(zip(r["meshes"], ("#4f9aa8", "#f07b3f"))):
+        ret = [r["members"][n]["return_N_m_deg_per_kg"][j] or 0 for n in names]
+        bx.barh(y + (j - 0.5) * 0.38, ret, height=0.38, color=colour, label=f"{mesh['sections']} sections")
+    bx.axvline(avg, color="white", ls="--", lw=1)
+    bx.text(avg, -0.9, f" whole architecture: {avg:.0f}", color="white", fontsize=9, va="bottom")
+    ax.set_xlabel("K lost when the member is removed, %", color="#9aa3ad")
+    bx.set_xlabel("return: K lost per kg of member, N.m/deg/kg", color="#9aa3ad")
+    for a in (ax, bx):
+        a.legend(frameon=False, labelcolor="white", fontsize=9, loc="lower right")
+    fig.suptitle(f"Members of the picogk/ monocoque in torsion, CFRP layup (full: K {full['K_full']:,} N.m/deg, "
+                 f"{full['mass_full_kg']} kg; leave-one-out)", color="white")
+    fig.tight_layout()
+    fig.savefig(EVIDENCE / "torsion-members.png", dpi=110, facecolor="#0e1218")
+    plt.close(fig)
+    print("wrote torsion-members.png")
 
 
 def architectures(pv):

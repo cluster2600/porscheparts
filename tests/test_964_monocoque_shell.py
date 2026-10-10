@@ -66,6 +66,23 @@ class MonocoqueShellTests(unittest.TestCase):
             self.assertGreater(kt, 2.5 * k0)                                  # the tubes carry load
         self.assertTrue(all(m["tubes"]["links"] > 500 for m in rings["meshes"]))
 
+    def test_member_study_ranks_the_cabin_members_and_checks_the_pruning(self) -> None:
+        r = json.loads((SHELL / "derived/torsion-members.json").read_text(encoding="utf-8"))
+        self.assertTrue(r["complete"])
+        self.assertIn("prohibited_pending_engineering", r["classification"])
+        m = r["members"]
+        for j in range(len(r["meshes"])):
+            cabin = {n: v["K_cabin_lost_fraction"][j] for n, v in m.items()}
+            self.assertEqual(max(cabin, key=cabin.get), "door")              # the door rings carry the cabin
+            self.assertLess(cabin["engine_lid"], 0.01)
+            for n in ("windscreen", "quarter_window", "door"):
+                self.assertGreater(cabin[n], 0.09, n)
+        pr = r["pruned"]
+        self.assertEqual(sorted(pr["removed"]), ["B-ring", "engine_lid", "rear_window", "tunnel"])
+        for j, frac in enumerate(pr["K_cabin_lost_fraction"]):             # together they cost more than one by one
+            alone = sum(m[n]["K_cabin_lost_fraction"][j] for n in pr["removed"])
+            self.assertGreater(frac, alone)
+
 
 if __name__ == "__main__":
     unittest.main()

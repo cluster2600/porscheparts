@@ -205,6 +205,63 @@ members include rings around the lids and arches and a full B-ring, while
 evens out part of that, not all of it. Both stay
 `prohibited_pending_engineering`.
 
+## What each member is worth
+
+`source/member_study.py` removes each member of `picogk/` in turn from the
+CFRP shell model and measures what it costs. It reports two measures:
+
+- **K at the load points**, as everywhere in this folder;
+- **the cabin's own K**: the torque over the rotation difference between
+  d = 400 and d = 1950 mm. It leaves out the load introduction at the front
+  wheel houses and the clamped rear.
+
+The study runs on two meshes, and every K is the median of three solves.
+
+![Members in torsion](evidence/torsion-members.png)
+
+| member | mass | K lost | cabin K lost | reading |
+|---|---|---|---|---|
+| door rings | 4.4 kg | 25% | 37-38% | carries the cabin; the first to keep |
+| windscreen frame | 2.1 kg | 13-15% | 18-19% | carries the cabin |
+| quarter-window rings | 1.1 kg | 13-14% | 10-13% | best return: 2,800 N·m/deg per kg |
+| sills | 3.3-3.8 kg | 11% | 7-10% | carries the cabin |
+| front arches, front lid, front rails | 1.8-3.5 kg each | 9-36% | 7-22% | large at the load points, mesh-dependent on the cabin; their worth is uncertain (see below) |
+| rear arches | 1.4-1.6 kg | 2-4% | 3-6% | small |
+| B-ring, rear window, tunnel | 0.9-4.2 kg each | 0.1-3% | 1-5% | small one by one |
+| engine-lid ring | 1.6 kg | 0.1-0.2% | 0.1-0.2% | worth nothing in torsion |
+
+*Ranges cover the 300- and 420-section meshes. The architecture as a whole
+returns 297 N·m/deg per kg.*
+
+**Removed together, the weak members cost more than one by one.** Without
+the B-ring, the rear-window ring, the tunnel and the engine-lid ring, the
+model loses 6 to 9% of its K and 12 to 15% of the cabin K, for 8 to 12 kg.
+Summed one at a time, the same four would have cost 4 to 7% and 8 to 11%.
+That is the synergy the box-cell ring study had already found, and the
+reason leave-one-out alone does not license pruning.
+
+What it means for the design:
+
+- **The cabin is carried by the door rings, the windscreen frame, the
+  quarter-window rings and the sills.** These are the members whose closed
+  sections deserve the effort: depth, wall, joints.
+- **The engine-lid ring can go:** 1.6 kg for nothing measurable in torsion.
+- **The other weak members are a trade, not a free gain.** Pruning them
+  gains 7 to 8% in K per kg but loses 12 to 15% of the cabin's stiffness. And
+  torsion is one load case: the B-ring is the roll-over and side-impact
+  hoop, and the tunnel houses the C4 driveline. Neither is judged here.
+
+Limits:
+
+- **The front members sit where the load goes in.** The cabin measure
+  starts at d = 400 mm, where their rings end, and their cabin value
+  changes with the mesh (front arches: 22% at 300 sections, 8% at 420).
+  A load case through the suspension pick-ups, which the datum chain does
+  not yet locate to ±1 mm, would settle it.
+- **The tunnel band is mesh-dependent** (0.9 kg at 300 sections, 4.2 kg at
+  420): its numbers are the least reliable of the table.
+- The model limits of the torsion section above apply.
+
 ## Reproduce
 
 In the `cadsim` image, with shapely from the print-simulation library folder:
@@ -214,6 +271,8 @@ In the `cadsim` image, with shapely from the print-simulation library folder:
     python3 source/torsion.py          # derived/torsion-snapshot.npz
     python3 source/torsion_monocoque.py   # derived/torsion-monocoque.json, after ../picogk/
     python3 source/torsion_rings.py       # derived/torsion-rings.json, from picogk-rings/
+    python3 source/member_study.py        # derived/torsion-members.json, two to three hours
+    python3 source/member_study.py --pruned   # the weak members removed together
     python3 source/figures.py          # evidence/*.png
     python3 ../fea/hero.py             # the home-page banner
 
