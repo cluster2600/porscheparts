@@ -145,6 +145,16 @@ the skin as one wall encloses more area than a tube bonded along a line.
 The design direction this supports is closed sections formed with the skin,
 not added to it. It is a ranking of two hypotheses, not a design.
 
+**What each member is worth (2026-10-10).** Removing the members of
+`picogk/` one by one shows that the cabin is carried by the door rings
+(37-38% of the cabin's torsional stiffness), the windscreen frame (19%), the
+quarter-window rings (13%, for 1.1 kg) and the sills. The engine-lid ring
+is worth nothing in torsion. The B-ring, the rear-window ring and the
+tunnel are each worth little, but removed together they cost 12 to 15% of
+the cabin stiffness for 8 to 12 kg. Pruning them is a trade, and the B-ring
+(roll-over, side impact) and the tunnel (C4 driveline) have roles torsion
+does not judge.
+
 ## 4. The missing denominator is measured, no longer searched for
 
 Lock B — no published 964 torsional stiffness — was treated as a
