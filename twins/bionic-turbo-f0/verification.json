@@ -1,0 +1,244 @@
+{
+  "status": "concept_geometry_checks_passed_not_engineering_qualification",
+  "verified_date": "2026-10-10",
+  "repository_base_commit": "5b7cb552aac237c6709a53a0441dd667f056c9a9",
+  "source_sha256": {
+    "twins/bionic-turbo-f0/source/Program.cs": "69159efc5aa6d349e9696ca4276788a85b1564627af8b82f0c0f24461d61b4ca",
+    "twins/bionic-turbo-f0/source/BionicTurbo.csproj": "e1e0f485324a3353d6ef51809c33477c567ddbd1029a3a988315b5c3c5faf75e",
+    "twins/bionic-turbo-f0/parameters.json": "687190ef1f05ae18e6a5101eda3800033d7d7fe4fb337f59a333a056fdc1ae26",
+    "twins/bionic-turbo-f0/interface-contract.json": "16e32fa6c176227fbac5a30ebfadd5237a44eca64d41d18ecad92481b9ba11c3",
+    "twins/bionic-turbo-f0/inspect_mesh.py": "bec8f698cfb1a139553ec27f68aece223e12339eb37418b40dce8c825199ba94",
+    "tests/test_bionic_turbo_inspect.py": "8bc8aea30265f2acf20dd4c4dd28bace334eae9abfeb775e5b361e2bfadfcb0b",
+    "parts/picogk-catalog/common/Sdf.cs": "8096c0bc8aa980cd463622d2838969987aa8a570ca7cb52a64eb08ea74ac7a40",
+    "parts/picogk-catalog/rotating/RotKit.cs": "cada3708f47e79d234a8e13e695804a6aeeab51448267195c7d46f37477983b3"
+  },
+  "sdk_version": "9.0.317",
+  "build_warnings": 0,
+  "build_errors": 0,
+  "generator_self_test": "passed",
+  "inspector_unit_tests": {
+    "passed": 5
+  },
+  "cli_unknown_parameter_and_no_overwrite": "passed",
+  "make_check": {
+    "status": "failed_unrelated_existing_tests",
+    "tests_run": 3614,
+    "skipped": 162,
+    "errors": 2,
+    "failures": 2,
+    "causes": [
+      "rtree missing",
+      "networkx missing",
+      "exact float equality in WE43 fan test",
+      "exact float equality in AlSi10Mg stator test"
+    ],
+    "log": "work/bionic-validation/make-check.log"
+  },
+  "runs": [
+    {
+      "directory": "work/bionic-turbo-delivery-075",
+      "voxel_mm": 0.75,
+      "kernel": "26.2.0",
+      "parameters": {
+        "voxel_mm": 0.75,
+        "wall_mm": 3.5,
+        "inlet_radius_mm": 22,
+        "rear_opening_radius_mm": 34,
+        "chamber_height_mm": 28,
+        "inlet_neck_length_mm": 18,
+        "diffuser_height_mm": 8,
+        "volute_center_radius_mm": 49,
+        "volute_start_radius_mm": 6,
+        "volute_end_radius_mm": 14,
+        "outlet_length_mm": 42.25,
+        "rib_radius_mm": 2.2,
+        "rib_count": 8
+      },
+      "parameters_sha256": "687190ef1f05ae18e6a5101eda3800033d7d7fe4fb337f59a333a056fdc1ae26",
+      "native_probe_count": 12,
+      "geometry_checks_passed": true,
+      "files": {
+        "preview.png": {
+          "sha256": "ec70bae4e92e9d79465b8c70164056c6c6366cb5ca85a53aaa081f16364f1a41",
+          "bytes": 319446
+        },
+        "flow-domain.stl": {
+          "sha256": "5ed1133c2ae1617388bf0df36040e6ddfb199f615b76252f57ef19dae4b07208",
+          "bytes": 8344084
+        },
+        "report.json": {
+          "sha256": "42e42f18f69888ce6b326a5b7e939f5d784a64209e8bf58b28d0bec44497574f",
+          "bytes": 5022
+        },
+        "section.stl": {
+          "sha256": "5676140c8dea00eaf2e121c34b32df8bf9a6c6a5b4a3e8223aa0ff30339f4168",
+          "bytes": 8539284
+        },
+        "housing.stl": {
+          "sha256": "115f32e8a7b3fcbfe2a8417c748ff26ee530e6080dfca929467aabba5ebe91c5",
+          "bytes": 16259884
+        },
+        "inspection.json": {
+          "sha256": "b7f8b67e755d86204eb7f73b4524de15ecb22c78573724c23540df2af0bc312b",
+          "bytes": 3767
+        }
+      },
+      "meshes": {
+        "housing": {
+          "triangles": 325196,
+          "surface_components": 1,
+          "boundary_edges": 0,
+          "nonmanifold_edges": 0,
+          "degenerate_triangles": 0,
+          "duplicate_triangles": 0,
+          "signed_volume_mm3": 111608.59295630292,
+          "extents_mm": [
+            128.98444747924805,
+            124.99186325073242,
+            63.494319915771484
+          ],
+          "all_input_triangles_retained": true
+        },
+        "flow-domain": {
+          "triangles": 166880,
+          "surface_components": 1,
+          "boundary_edges": 0,
+          "nonmanifold_edges": 0,
+          "degenerate_triangles": 0,
+          "duplicate_triangles": 0,
+          "signed_volume_mm3": 257043.47666681473,
+          "extents_mm": [
+            121.9786376953125,
+            117.99238967895508,
+            59.99441432952881
+          ],
+          "all_input_triangles_retained": true
+        },
+        "section": {
+          "triangles": 170784,
+          "surface_components": 1,
+          "boundary_edges": 0,
+          "nonmanifold_edges": 0,
+          "degenerate_triangles": 0,
+          "duplicate_triangles": 0,
+          "signed_volume_mm3": 58385.28867801979,
+          "extents_mm": [
+            66.21463012695312,
+            124.94642639160156,
+            63.494319915771484
+          ],
+          "all_input_triangles_retained": true
+        }
+      }
+    },
+    {
+      "directory": "work/bionic-turbo-delivery-050",
+      "voxel_mm": 0.5,
+      "kernel": "26.2.0",
+      "parameters": {
+        "voxel_mm": 0.5,
+        "wall_mm": 3.5,
+        "inlet_radius_mm": 22,
+        "rear_opening_radius_mm": 34,
+        "chamber_height_mm": 28,
+        "inlet_neck_length_mm": 18,
+        "diffuser_height_mm": 8,
+        "volute_center_radius_mm": 49,
+        "volute_start_radius_mm": 6,
+        "volute_end_radius_mm": 14,
+        "outlet_length_mm": 42.25,
+        "rib_radius_mm": 2.2,
+        "rib_count": 8
+      },
+      "parameters_sha256": "47c36c8c83ac2b3cf81bc6e6a95f3f0c896acf2f597b6ff00cfe40cdf0a1910a",
+      "native_probe_count": 12,
+      "geometry_checks_passed": true,
+      "files": {
+        "preview.png": {
+          "sha256": "48d56e03d4a9266f63c89748cb0672c391a03ada9be0cacb874a6ed75998c4ba",
+          "bytes": 314262
+        },
+        "flow-domain.stl": {
+          "sha256": "ca7d0d663ebf75524e87ffe126647cd2142ecc277bdb0d8f98ed576b781f1bf1",
+          "bytes": 18893884
+        },
+        "report.json": {
+          "sha256": "c6f12237676f6f2cc3ac0d3d1a2de373cdff96c39e1e6ca479b250a3836af61d",
+          "bytes": 5017
+        },
+        "section.stl": {
+          "sha256": "20ec9903bed671b24e00df4700acd666af52de1feaa543dc7bc6633ad8954273",
+          "bytes": 19490484
+        },
+        "housing.stl": {
+          "sha256": "c7d2972b803f6f0d443e5e1f125d11baaf55ec19ca8abd82a006b308748506cd",
+          "bytes": 37063684
+        },
+        "inspection.json": {
+          "sha256": "4fd134a62d281420eeeaea7c0749558e47da19c0269d833656557aec57db114e",
+          "bytes": 3767
+        }
+      },
+      "meshes": {
+        "housing": {
+          "triangles": 741272,
+          "surface_components": 1,
+          "boundary_edges": 0,
+          "nonmanifold_edges": 0,
+          "degenerate_triangles": 0,
+          "duplicate_triangles": 0,
+          "signed_volume_mm3": 111692.04471045181,
+          "extents_mm": [
+            129.0015869140625,
+            125.00298309326172,
+            63.50033378601074
+          ],
+          "all_input_triangles_retained": true
+        },
+        "flow-domain": {
+          "triangles": 377876,
+          "surface_components": 1,
+          "boundary_edges": 0,
+          "nonmanifold_edges": 0,
+          "degenerate_triangles": 0,
+          "duplicate_triangles": 0,
+          "signed_volume_mm3": 257072.05115822353,
+          "extents_mm": [
+            121.99701309204102,
+            118.0029525756836,
+            59.99553394317627
+          ],
+          "all_input_triangles_retained": true
+        },
+        "section": {
+          "triangles": 389808,
+          "surface_components": 1,
+          "boundary_edges": 0,
+          "nonmanifold_edges": 0,
+          "degenerate_triangles": 0,
+          "duplicate_triangles": 0,
+          "signed_volume_mm3": 58561.71765604385,
+          "extents_mm": [
+            66.31509399414062,
+            124.9683609008789,
+            63.50033378601074
+          ],
+          "all_input_triangles_retained": true
+        }
+      }
+    }
+  ],
+  "housing_volume_change_percent_from_075_to_050": 0.07477180021574373,
+  "physical_fit_validated": false,
+  "engineering_validated": false,
+  "self_intersections_checked": false,
+  "manufacturing_authorized": false,
+  "notes": [
+    "All dimensions are hypothetical.",
+    "One-voxel native regularization changes geometry; no exported mesh faces were removed.",
+    "Two resolutions are not a physical convergence study.",
+    "Flow-domain is nominal, not the exact post-regularization void.",
+    "The outlet end was moved from 42 to 42.25 mm to avoid the observed grid-alignment artifact.",
+    "Rejected earlier runs retained under work/bionic-turbo-*."
+  ]
+}
