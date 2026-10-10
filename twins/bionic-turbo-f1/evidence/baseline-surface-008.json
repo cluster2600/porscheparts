@@ -1,0 +1,136 @@
+{
+  "status": "surface_prepared_pending_volume_mesh",
+  "performance_validated": false,
+  "real_assembly_fluid_domain": false,
+  "manufacturing_authorized": false,
+  "source_report_sha256": "4919c5878e8c2f8b622455255647759e7b885714f0c5cfee12a51b7401693d79",
+  "sources": {
+    "fluid.stl": "cfa025e3d0ef7cc720274d93bc687fc70995dc25c31a6541b73fb79f44f5a995",
+    "rotor-union.stl": "2c97cc03e78abca190181174c51de63f1e55ac5df66bc3f9bd6e54cf61e449de",
+    "housing-final.stl": "8e514f5326dfb14d8ce27e01891983f2e5a490ac8558ec3c81f2f903b2eaee88"
+  },
+  "preparer_sha256": "73257067426da1df8d2072e6bec7e3742c5d1bfff08b3eadfab636c2d57833c3",
+  "construction": {
+    "nominal_mask_expansion_mm": 1,
+    "inlet_cap_z_mm": 44,
+    "outlet_extension_x_mm": 49,
+    "outlet_extension_z_mm": 0,
+    "outlet_extension_radius_mm": 14,
+    "outlet_extension_y_start_mm": 40,
+    "outlet_extension_pretrim_y_end_mm": 81,
+    "outlet_cap_y_mm": 80,
+    "outlet_cap_applies_to": "extension_only",
+    "rear_seal_radius_mm": 35.5,
+    "rear_seal_top_z_mm": -3.75,
+    "final_fluid_smoothing": true,
+    "final_fluid_regularization_mm": 0.125,
+    "unregularized_volume_mm3": 267028.9,
+    "regularized_volume_mm3": 261741.08,
+    "cap_planes_applied_only_after_regularization": true,
+    "volume_method": "PicoGK CalculateProperties; not equivalent to net signed STL volume with obstacle boundaries",
+    "required_source_surface_proximity_mm": 0.65,
+    "source_surface_proximity_verified": false,
+    "operations": "(offset(nominal,1mm) union outlet_extension_to_y81) minus rear_seal, imported_final_housing and imported_rotor_union; Smoothen(0.125mm), then cut z44 and extension-local y80"
+  },
+  "mesh": {
+    "passed": true,
+    "failures": [],
+    "triangles": 2122424,
+    "vertices": 1061214,
+    "unique_edges": 3183636,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "degenerate_triangles": 0,
+    "duplicate_triangles": 0,
+    "surface_components": 3,
+    "component_triangle_counts": [
+      1644380,
+      453020,
+      25024
+    ],
+    "component_signed_volumes_mm3": [
+      261914.3204429638,
+      -29031.439698945207,
+      -541.7496319951947
+    ],
+    "signed_volume_mm3": 232341.13111202337,
+    "watertight": true,
+    "winding_consistent": true,
+    "bounds_mm": [
+      [
+        -58.99684524536133,
+        -60.99810791015625,
+        -14.656635284423828
+      ],
+      [
+        63.740989685058594,
+        80.0,
+        44.0
+      ]
+    ],
+    "extents_mm": [
+      122.73783493041992,
+      140.99810791015625,
+      58.65663528442383
+    ],
+    "all_input_triangles_retained": true,
+    "enclosed_obstacles_allowed": true,
+    "component_euler_characteristics": [
+      2,
+      0,
+      0
+    ],
+    "source_rotor_topology_preserved": true,
+    "containment_and_self_intersection_verified": false
+  },
+  "classification": {
+    "passed": true,
+    "errors": [],
+    "face_counts": {
+      "inlet": 47071,
+      "outlet": 18570,
+      "rotor": 516729,
+      "stator": 1540054
+    },
+    "unexplained_stator_faces": 0,
+    "unexplained_face_examples_mm": [],
+    "classification_tolerance_mm": 0.65,
+    "maximum_rotor_distance_mm": 0.6492452663824861,
+    "rear_idealization_faces": 132485,
+    "extension_idealization_faces": 140446,
+    "inlet_trim_idealization": {
+      "faces": 593,
+      "faces_exceeding_wall_tolerance": 0,
+      "area_mm2": 17.905279195399896,
+      "maximum_centroid_distance_mm": 0.4203982591673671,
+      "maximum_edge_mm": 0.38854152505089223,
+      "rule": "Two vertices on z44; third in z43.5..44 and r21..22.5; all vertices r<=22.5; edges<=1.5; centroid housing distance<=0.75 mm",
+      "sensitivity_validated": false
+    },
+    "method": "centroid proximity to exact imported material surfaces; explicit cap and seal exceptions"
+  },
+  "surface_sha256": "0a69b13d9eff3c1ff07c535279451845c3ae0c3ba62c03cc4e82b3227c7bdd62",
+  "units": "m",
+  "bounds_m": [
+    [
+      -0.05899684524536133,
+      -0.06099810791015625,
+      -0.014656635284423828
+    ],
+    [
+      0.06374098968505859,
+      0.08,
+      0.044
+    ]
+  ],
+  "all_facets_retained": true,
+  "source_facet_count": 2122424,
+  "source_voxel_mm": 0.5,
+  "fluid_voxel_mm": 0.25,
+  "geometry_uncertainty_quantified": false,
+  "native_seed_mm": [
+    15,
+    0,
+    40
+  ]
+}

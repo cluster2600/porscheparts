@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "status": "paired_fluid_topology_passed_pending_boundary_qa",
+  "source_geometry_modified": false,
+  "old_receipts_modified": false,
+  "performance_validated": false,
+  "engineering_validated": false,
+  "manufacturing_authorized": false,
+  "copies": [
+    {
+      "raw_path": "work/bionic-f1-20261011/baseline-fluid-006/report.json",
+      "evidence_path": "twins/bionic-turbo-f1/evidence/baseline-fluid-006-generation.json",
+      "sha256": "4919c5878e8c2f8b622455255647759e7b885714f0c5cfee12a51b7401693d79",
+      "bytes": 8987,
+      "identical_copy_verified": true
+    },
+    {
+      "raw_path": "work/bionic-f1-20261011/baseline-fluid-006-topology.json",
+      "evidence_path": "twins/bionic-turbo-f1/evidence/baseline-fluid-006-topology.json",
+      "sha256": "f6e7d63b5bef06f1ecf759b5e4dc26572d4c174951d91983a155e79e3bcc1832",
+      "bytes": 6228,
+      "identical_copy_verified": true
+    },
+    {
+      "raw_path": "work/bionic-f1-20261011/fluid-006-self-test.json",
+      "evidence_path": "twins/bionic-turbo-f1/evidence/fluid-006-self-test.json",
+      "sha256": "6b5c9d4c70e9c1c9f8b17614aeea48b04efa74f11f24c46cf17648413e6ab17c",
+      "bytes": 781,
+      "identical_copy_verified": true
+    },
+    {
+      "raw_path": "work/bionic-f1-20261011/candidate-volute-fluid-006/report.json",
+      "evidence_path": "twins/bionic-turbo-f1/evidence/candidate-volute-fluid-006-generation.json",
+      "sha256": "1f6ddb8ae3b2fde2b942d00d6e41b6548b10510ae65a925ef7ba1ae0192e46f2",
+      "bytes": 8981,
+      "identical_copy_verified": true
+    },
+    {
+      "raw_path": "work/bionic-f1-20261011/candidate-volute-fluid-006-topology.json",
+      "evidence_path": "twins/bionic-turbo-f1/evidence/candidate-volute-fluid-006-topology.json",
+      "sha256": "e8bfc7c3184cc1e1819ca5e13e594c6b2407a179557e7fc9fba9ee9c03b182c9",
+      "bytes": 6229,
+      "identical_copy_verified": true
+    }
+  ],
+  "runs": {
+    "baseline-fluid-006": {
+      "raw_directory": "work/bionic-f1-20261011/baseline-fluid-006",
+      "topology_passed": true,
+      "fluid_sha256": "cfa025e3d0ef7cc720274d93bc687fc70995dc25c31a6541b73fb79f44f5a995",
+      "fluid_triangles": 2122424,
+      "shell_count": 3,
+      "component_euler_characteristics": [
+        2,
+        0,
+        0
+      ],
+      "topology_report_sha256": "f6e7d63b5bef06f1ecf759b5e4dc26572d4c174951d91983a155e79e3bcc1832",
+      "all_native_probes_passed": true
+    },
+    "candidate-volute-fluid-006": {
+      "raw_directory": "work/bionic-f1-20261011/candidate-volute-fluid-006",
+      "topology_passed": true,
+      "fluid_sha256": "368eec0e3d3a1c76d58f6a2a6b79af6650954d15eb5783a286a08f33594d1ea2",
+      "fluid_triangles": 2159308,
+      "shell_count": 3,
+      "component_euler_characteristics": [
+        2,
+        0,
+        0
+      ],
+      "topology_report_sha256": "e8bfc7c3184cc1e1819ca5e13e594c6b2407a179557e7fc9fba9ee9c03b182c9",
+      "all_native_probes_passed": true
+    }
+  },
+  "paired_numerical_conditions": {
+    "same_source_csproj_and_dll": true,
+    "sources": {
+      "twins/bionic-turbo-f1/cfd-geometry/Program.cs": "15c37dbc8dd653272a8cc108f61b42a039439206dc450f1c0e3d179816b81d80",
+      "twins/bionic-turbo-f1/cfd-geometry/CfdGeometry.csproj": "e1e0f485324a3353d6ef51809c33477c567ddbd1029a3a988315b5c3c5faf75e",
+      "twins/bionic-turbo-f1/cfd-geometry/bin/Release/net9.0/CfdGeometry.dll": "9473abef6ec7f389649d9809d8b86724370efba78c624a184d36be8f7c3ea90e"
+    },
+    "kernel": "26.2.0",
+    "source_voxel_mm": 0.5,
+    "fluid_voxel_mm": 0.25,
+    "fluid_regularization_mm": 0.125,
+    "grid_phase_mm": [
+      0.173,
+      0.119,
+      0.071
+    ],
+    "rotor_union_identical": true,
+    "rotor_union_sha256": "2c97cc03e78abca190181174c51de63f1e55ac5df66bc3f9bd6e54cf61e449de",
+    "only_housing_parameter_change": {
+      "volute_law": [
+        "radius_linear",
+        "area_affine"
+      ]
+    }
+  },
+  "remaining_checks": [
+    "Boundary and surface-proximity admission",
+    "Volume-mesh topology and resolution",
+    "Solver convergence and conservation",
+    "Numerical and physical performance validation"
+  ]
+}

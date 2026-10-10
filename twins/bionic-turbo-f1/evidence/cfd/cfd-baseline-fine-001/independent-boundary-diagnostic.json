@@ -1,0 +1,224 @@
+{
+  "schema": "bionic-turbo-independent-mesh-topology-diagnostic/v1",
+  "status": "rejected_topology_not_preserved",
+  "case": "work/bionic-f1-20261011/cfd-baseline-fine-001",
+  "method": "Independent parsing of actual native points/faces/boundary; face components by shared exact edge indices. Euler=V-E+F without asserting manifold genus. Input hashes checked before and after audit. STL reference reused only after matching its SHA256.",
+  "input_sha256": {
+    "constant/triSurface/domain.stl": "60a5debf5793a8283135d3d057ebc83d3da2e872dbcd802818640e119368f354",
+    "constant/polyMesh/points": "e49527f3af09374d31887193f64c5d81ed2d75df96112f25fca8931b4de27d3c",
+    "constant/polyMesh/faces": "6f2ee86f01a6fe8cf8fa64727fd885a5df5bd5844d1f996c01bc326c9c77232a",
+    "constant/polyMesh/boundary": "d9a5ffe747d2437428b635415c2c5be143d4783fa9cac2a46fd1df8b4afcd69d",
+    "log.checkMesh": "170202635d1bb8beccb7457a97ff0dffdd7153d7c243e41f91eee05696dbf4b5"
+  },
+  "reference_diagnostic": {
+    "path": "work/mesh-diagnostic-medium-001.json",
+    "sha256": "fabcaa17c2b6d625321497c4352088397b9625729563dc946092dedb0cddc81b"
+  },
+  "input_surface": {
+    "closed_edge_connected_shells": 2,
+    "euler_characteristic": -54,
+    "components": [
+      {
+        "faces": 410768,
+        "vertices": 205386,
+        "edges": 616152,
+        "euler_characteristic": 2,
+        "patch_faces": {
+          "inlet": 11506,
+          "outlet": 4496,
+          "rotor": 10222,
+          "stator": 384544
+        }
+      },
+      {
+        "faces": 120180,
+        "vertices": 60034,
+        "edges": 180270,
+        "euler_characteristic": -56,
+        "patch_faces": {
+          "rotor": 120180
+        }
+      }
+    ],
+    "rotor_stator_interface_loops": [
+      {
+        "vertices": 68,
+        "edges": 68,
+        "vertex_degree_histogram": {
+          "2": 68
+        },
+        "centroid_mm": [
+          -7e-06,
+          -7e-06,
+          -3.720279
+        ],
+        "bounds_mm": [
+          [
+            -4.75,
+            -4.75,
+            -3.751342
+          ],
+          [
+            4.75,
+            4.75,
+            -3.608643
+          ]
+        ],
+        "radius_min_max_mm": [
+          4.276992277268767,
+          4.962358310319802
+        ],
+        "edge_length_sum_mm": 38.21142481969852
+      }
+    ]
+  },
+  "native_boundary": {
+    "closed_edge_connected_shells": 1,
+    "faces": 191941,
+    "vertices": 221422,
+    "edges": 413393,
+    "euler_characteristic": -30,
+    "components": [
+      {
+        "faces": 191941,
+        "vertices": 221422,
+        "edges": 413393,
+        "euler_characteristic": -30,
+        "patch_faces": {
+          "inlet": 7113,
+          "outlet": 2779,
+          "rotor": 38217,
+          "stator": 143832
+        },
+        "bounds_mm": [
+          [
+            -58.995729,
+            -60.996884,
+            -14.468079
+          ],
+          [
+            63.497679,
+            79.999998,
+            44.0
+          ]
+        ]
+      }
+    ],
+    "rotor_stator_interface_loops": [
+      {
+        "vertices": 686,
+        "edges": 686,
+        "vertex_degree_histogram": {
+          "2": 686
+        },
+        "centroid_mm": [
+          0.350333,
+          0.583442,
+          -3.192711
+        ],
+        "bounds_mm": [
+          [
+            -29.24332,
+            -29.122468,
+            -3.734052
+          ],
+          [
+            29.288971,
+            29.283813,
+            -2.904602
+          ]
+        ],
+        "radius_min_max_mm": [
+          28.71910142424236,
+          29.46556620123375
+        ],
+        "edge_length_sum_mm": 327.46065204636665
+      },
+      {
+        "vertices": 143,
+        "edges": 143,
+        "vertex_degree_histogram": {
+          "2": 143
+        },
+        "centroid_mm": [
+          0.153295,
+          -0.012269,
+          -3.197857
+        ],
+        "bounds_mm": [
+          [
+            -5.745636,
+            -5.710202,
+            -3.735717
+          ],
+          [
+            5.828074,
+            5.852267,
+            -2.915487
+          ]
+        ],
+        "radius_min_max_mm": [
+          5.477269703066253,
+          6.12726103396631
+        ],
+        "edge_length_sum_mm": 68.80793900446315
+      },
+      {
+        "vertices": 88,
+        "edges": 88,
+        "vertex_degree_histogram": {
+          "2": 88
+        },
+        "centroid_mm": [
+          -0.300849,
+          -0.050417,
+          -3.697973
+        ],
+        "bounds_mm": [
+          [
+            -4.901412,
+            -4.842158,
+            -3.749937
+          ],
+          [
+            4.549751,
+            4.578871,
+            -3.499652
+          ]
+        ],
+        "radius_min_max_mm": [
+          4.175095277138323,
+          5.104280048369224
+        ],
+        "edge_length_sum_mm": 39.70366885510475
+      }
+    ],
+    "native_checkmesh_fluid_volume_mm3": 229935.379795
+  },
+  "fluid_volume_difference_mm3": -2015.8557025980554,
+  "fluid_volume_relative_difference": -0.0086908599485297,
+  "surface_shell_count_preserved": false,
+  "surface_euler_characteristic_preserved": false,
+  "component_patch_provenance_preserved": false,
+  "comparison": {
+    "coarse_004": {
+      "closed_edge_connected_shells": 1,
+      "euler_characteristic": 2
+    },
+    "medium_001": {
+      "closed_edge_connected_shells": 1,
+      "euler_characteristic": -2
+    },
+    "fine_001": {
+      "closed_edge_connected_shells": 1,
+      "euler_characteristic": -30
+    }
+  },
+  "performance_ranking_authorized": false,
+  "solver_readiness_established": false,
+  "limitations_fr": [
+    "Aucun genre de variété déduit de Euler; manifold des liens de sommets non prouvé.",
+    "Aucune nouvelle analyse des dimensions des passages du STL.",
+    "Aucun maillage, solve ni modification de source exécuté pour ce diagnostic."
+  ]
+}

@@ -1,0 +1,454 @@
+{
+  "status": "diagnostic_only",
+  "mesh_modified": false,
+  "labels_modified": false,
+  "input_sha256": {
+    "baseline-surface-008/fluid-regions.stl": "0a69b13d9eff3c1ff07c535279451845c3ae0c3ba62c03cc4e82b3227c7bdd62",
+    "baseline-surface-008/surface-report.json": "5f1d5d4a40532e02607eb681fae00063a3d5b35fd27f3c3367469fd289f36770",
+    "baseline-fluid-006/rotor-union.stl": "2c97cc03e78abca190181174c51de63f1e55ac5df66bc3f9bd6e54cf61e449de",
+    "baseline-fluid-006/housing-final.stl": "8e514f5326dfb14d8ce27e01891983f2e5a490ac8558ec3c81f2f903b2eaee88"
+  },
+  "script_sha256": "b2c7781f0c7f722953820af2e8fa70ed74d99ec453cedfcde9d4b92b382cad49",
+  "units": "mm",
+  "method": "Stream existing ASCII rotor region; convert m to mm; VTK exact triangle implicit distance for every rotor-labelled face centroid, then closest-point locator cross-check for ten farthest faces.",
+  "rotor_label_face_count": 516729,
+  "computed_maximum_rotor_distance_mm": 0.6492452663862861,
+  "declared_maximum_rotor_distance_mm": 0.6492452663824861,
+  "rotor_distance_percentiles_mm": {
+    "0": 0.0,
+    "50": 0.00044026181327541956,
+    "90": 0.004999879484267973,
+    "99": 0.014671312743277687,
+    "99.9": 0.10289094985991849,
+    "100": 0.6492452663862861
+  },
+  "rotor_label_faces_all_vertices_within_0_25_mm_of_rear_plane": 549,
+  "farther_than_0_3_mm_count": 310,
+  "farther_than_0_3_mm_and_near_rear_plane_count": 310,
+  "ten_farthest": [
+    {
+      "rank": 1,
+      "rotor_patch_face_index": 153764,
+      "center_mm": [
+        -4.631333192193334,
+        -0.07733333607520666,
+        -3.7499778270733337
+      ],
+      "radius_mm": 4.631978797660911,
+      "vertices_mm": [
+        [
+          -4.79799985886,
+          0.00599999725819,
+          -3.75000548363
+        ],
+        [
+          -4.54799985886,
+          0.00599999725819,
+          -3.74995994568
+        ],
+        [
+          -4.54799985886,
+          -0.244000002742,
+          -3.74996805191
+        ]
+      ],
+      "fluid_outward_normal": [
+        0.00018215179688133221,
+        3.242491944378699e-05,
+        -0.9999999828846736
+      ],
+      "rotor_distance_mm": 0.6492452663862861,
+      "housing_distance_mm": 28.468810792667583,
+      "closest_rotor_point_mm": [
+        -3.982385887459352,
+        -0.05766580945134611,
+        -3.7499778270733337
+      ],
+      "closest_rotor_face_id": 194354,
+      "locator_distance_mm": 0.6492452663862861,
+      "distance_to_ideal_rear_plane_mm": 2.217292666628623e-05
+    },
+    {
+      "rank": 2,
+      "rotor_patch_face_index": 156528,
+      "center_mm": [
+        -3.2146667639366666,
+        3.3393333752933336,
+        -3.749868631363333
+      ],
+      "radius_mm": 4.6352162618918875,
+      "vertices_mm": [
+        [
+          -3.04800009727,
+          3.25600004196,
+          -3.74960041046
+        ],
+        [
+          -3.29800009727,
+          3.25600004196,
+          -3.7500035762799997
+        ],
+        [
+          -3.29800009727,
+          3.50600004196,
+          -3.75000190735
+        ]
+      ],
+      "fluid_outward_normal": [
+        0.0016126611829548223,
+        6.675711317281125e-06,
+        -0.9999986996388265
+      ],
+      "rotor_distance_mm": 0.6491174727207044,
+      "housing_distance_mm": 28.466043933646453,
+      "closest_rotor_point_mm": [
+        -2.7572005449351007,
+        2.8788139382836393,
+        -3.749868631363333
+      ],
+      "closest_rotor_face_id": 197326,
+      "locator_distance_mm": 0.6491174727207044,
+      "distance_to_ideal_rear_plane_mm": 0.000131368636667073
+    },
+    {
+      "rank": 3,
+      "rotor_patch_face_index": 379449,
+      "center_mm": [
+        1.3686666885966667,
+        4.422666708626667,
+        -3.749945799506667
+      ],
+      "radius_mm": 4.629603581308966,
+      "vertices_mm": [
+        [
+          1.20200002193,
+          4.50600004196,
+          -3.74999952316
+        ],
+        [
+          1.45200002193,
+          4.50600004196,
+          -3.75000286102
+        ],
+        [
+          1.45200002193,
+          4.25600004196,
+          -3.74983501434
+        ]
+      ],
+      "fluid_outward_normal": [
+        -1.335143698947174e-05,
+        -0.0006713865686235834,
+        -0.9999997745308817
+      ],
+      "rotor_distance_mm": 0.6473124774055311,
+      "housing_distance_mm": 28.47132868036768,
+      "closest_rotor_point_mm": [
+        1.1902674897056247,
+        3.8004230511741217,
+        -3.749945799506667
+      ],
+      "closest_rotor_face_id": 461839,
+      "locator_distance_mm": 0.6473124774055311,
+      "distance_to_ideal_rear_plane_mm": 5.420049333304533e-05
+    },
+    {
+      "rank": 4,
+      "rotor_patch_face_index": 262359,
+      "center_mm": [
+        4.618666807806666,
+        -0.32733334104233336,
+        -3.7498044172933334
+      ],
+      "radius_mm": 4.630251634381544,
+      "vertices_mm": [
+        [
+          4.45200014114,
+          -0.244000002742,
+          -3.74941253662
+        ],
+        [
+          4.70200014114,
+          -0.244000002742,
+          -3.75
+        ],
+        [
+          4.70200014114,
+          -0.494000017643,
+          -3.75000071526
+        ]
+      ],
+      "fluid_outward_normal": [
+        -0.0023498470322932457,
+        2.8610319308982257e-06,
+        -0.9999972391015584
+      ],
+      "rotor_distance_mm": 0.6469091661957939,
+      "housing_distance_mm": 28.470347058805082,
+      "closest_rotor_point_mm": [
+        3.974595502453279,
+        -0.26680547201887517,
+        -3.7498044172933334
+      ],
+      "closest_rotor_face_id": 327913,
+      "locator_distance_mm": 0.6469091661957939,
+      "distance_to_ideal_rear_plane_mm": 0.00019558270666664157
+    },
+    {
+      "rank": 5,
+      "rotor_patch_face_index": 259348,
+      "center_mm": [
+        2.0353333155300004,
+        -4.160666624706667,
+        -3.7496974468199995
+      ],
+      "radius_mm": 4.631816972555621,
+      "vertices_mm": [
+        [
+          2.2019999027300003,
+          -4.24399995804,
+          -3.75000143051
+        ],
+        [
+          1.95200002193,
+          -4.24399995804,
+          -3.75000095367
+        ],
+        [
+          1.95200002193,
+          -3.9939999580399994,
+          -3.7490899562799997
+        ]
+      ],
+      "fluid_outward_normal": [
+        -1.9073482456738176e-06,
+        0.0036439653665857087,
+        -0.9999933607343446
+      ],
+      "rotor_distance_mm": 0.6439397742437032,
+      "housing_distance_mm": 28.468888220529948,
+      "closest_rotor_point_mm": [
+        1.7484755516052246,
+        -3.5841503143310547,
+        -3.7496974468199995
+      ],
+      "closest_rotor_face_id": 322705,
+      "locator_distance_mm": 0.6439397742437032,
+      "distance_to_ideal_rear_plane_mm": 0.0003025531800004977
+    },
+    {
+      "rank": 6,
+      "rotor_patch_face_index": 28987,
+      "center_mm": [
+        -1.6313333114033333,
+        -4.327333291373333,
+        -3.749977986016667
+      ],
+      "radius_mm": 4.624614771796903,
+      "vertices_mm": [
+        [
+          -1.79799997807,
+          -4.24399995804,
+          -3.7499980926500003
+        ],
+        [
+          -1.54799997807,
+          -4.24399995804,
+          -3.7499332428
+        ],
+        [
+          -1.54799997807,
+          -4.49399995804,
+          -3.7500026226
+        ]
+      ],
+      "fluid_outward_normal": [
+        0.0002593993812845519,
+        0.00027751917997538106,
+        -0.9999999278475303
+      ],
+      "rotor_distance_mm": 0.6436864761708427,
+      "housing_distance_mm": 28.47533119741549,
+      "closest_rotor_point_mm": [
+        -1.4032648522971427,
+        -3.7254055070285954,
+        -3.749977986016667
+      ],
+      "closest_rotor_face_id": 50217,
+      "locator_distance_mm": 0.6436864761708427,
+      "distance_to_ideal_rear_plane_mm": 2.2013983333124543e-05
+    },
+    {
+      "rank": 7,
+      "rotor_patch_face_index": 262354,
+      "center_mm": [
+        4.535333474473333,
+        -0.9106666843096667,
+        -3.74996225039
+      ],
+      "radius_mm": 4.625858140344332,
+      "vertices_mm": [
+        [
+          4.70200014114,
+          -0.994000017643,
+          -3.75000333786
+        ],
+        [
+          4.45200014114,
+          -0.994000017643,
+          -3.7499759197199998
+        ],
+        [
+          4.45200014114,
+          -0.744000017643,
+          -3.74990749359
+        ]
+      ],
+      "fluid_outward_normal": [
+        -0.00010967255523312914,
+        0.00027370450810139965,
+        -0.9999999565288854
+      ],
+      "rotor_distance_mm": 0.6433455530051033,
+      "housing_distance_mm": 28.474368221379066,
+      "closest_rotor_point_mm": [
+        3.9077653758297903,
+        -0.7690623689221378,
+        -3.74996225039
+      ],
+      "closest_rotor_face_id": 327881,
+      "locator_distance_mm": 0.6433455530051033,
+      "distance_to_ideal_rear_plane_mm": 3.7749610000137324e-05
+    },
+    {
+      "rank": 8,
+      "rotor_patch_face_index": 381781,
+      "center_mm": [
+        3.1186665693966664,
+        3.4226667086266667,
+        -3.749998172126667
+      ],
+      "radius_mm": 4.630413433961775,
+      "vertices_mm": [
+        [
+          2.95199990273,
+          3.50600004196,
+          -3.74999904633
+        ],
+        [
+          3.2019999027300003,
+          3.50600004196,
+          -3.75000071526
+        ],
+        [
+          3.2019999027300003,
+          3.25600004196,
+          -3.74999475479
+        ]
+      ],
+      "fluid_outward_normal": [
+        -6.675719997858452e-06,
+        -2.3841879993622362e-05,
+        -0.9999999996934998
+      ],
+      "rotor_distance_mm": 0.6432492632338457,
+      "housing_distance_mm": 28.470622334849647,
+      "closest_rotor_point_mm": [
+        2.6763579154067245,
+        2.955619955874342,
+        -3.749998172126667
+      ],
+      "closest_rotor_face_id": 469791,
+      "locator_distance_mm": 0.6432492632338457,
+      "distance_to_ideal_rear_plane_mm": 1.8278733331378305e-06
+    },
+    {
+      "rank": 9,
+      "rotor_patch_face_index": 26825,
+      "center_mm": [
+        -4.214666525526667,
+        -1.9106666247066666,
+        -3.749966780343333
+      ],
+      "radius_mm": 4.6275329142171415,
+      "vertices_mm": [
+        [
+          -4.04799985886,
+          -1.99399995804,
+          -3.74989914894
+        ],
+        [
+          -4.29799985886,
+          -1.99399995804,
+          -3.75000190735
+        ],
+        [
+          -4.29799985886,
+          -1.7439999580399999,
+          -3.7499992847400003
+        ]
+      ],
+      "fluid_outward_normal": [
+        0.0004110336052563216,
+        1.0490439112594418e-05,
+        -0.9999999154706594
+      ],
+      "rotor_distance_mm": 0.6429438205350125,
+      "housing_distance_mm": 28.47334332687099,
+      "closest_rotor_point_mm": [
+        -3.6263087673826897,
+        -1.6514140359135137,
+        -3.749966780343333
+      ],
+      "closest_rotor_face_id": 45356,
+      "locator_distance_mm": 0.6429438205350125,
+      "distance_to_ideal_rear_plane_mm": 3.3219656666805264e-05
+    },
+    {
+      "rank": 10,
+      "rotor_patch_face_index": 262022,
+      "center_mm": [
+        3.7853332360633334,
+        -2.660666624706667,
+        -3.749875148136667
+      ],
+      "radius_mm": 4.626866606665215,
+      "vertices_mm": [
+        [
+          3.9519999027299995,
+          -2.7439999580400003,
+          -3.75000286102
+        ],
+        [
+          3.7019999027300003,
+          -2.7439999580400003,
+          -3.7500023841899996
+        ],
+        [
+          3.7019999027300003,
+          -2.49399995804,
+          -3.7496201992000002
+        ]
+      ],
+      "fluid_outward_normal": [
+        -1.907317772746245e-06,
+        0.0015287381736303401,
+        -0.9999988314772966
+      ],
+      "rotor_distance_mm": 0.6422843509339443,
+      "housing_distance_mm": 28.473698066809288,
+      "closest_rotor_point_mm": [
+        3.264455620639422,
+        -2.284879853778075,
+        -3.749875148136667
+      ],
+      "closest_rotor_face_id": 322889,
+      "locator_distance_mm": 0.6422843509339443,
+      "distance_to_ideal_rear_plane_mm": 0.00012485186333321963
+    }
+  ],
+  "limitations": [
+    "Diagnostic classifications near the rear plane are geometric witnesses, not automatic relabelling.",
+    "Centroid distances do not bound every point of a triangle."
+  ]
+}

@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "status": "concept_geometry_generated",
+  "units": "mm",
+  "kernel": "26.2.0",
+  "parameters": {
+    "voxel_mm": 0.5,
+    "wall_mm": 3.5,
+    "inlet_radius_mm": 22,
+    "rear_opening_radius_mm": 34,
+    "chamber_height_mm": 28,
+    "inlet_neck_length_mm": 18,
+    "diffuser_height_mm": 8,
+    "volute_center_radius_mm": 49,
+    "volute_start_radius_mm": 6,
+    "volute_end_radius_mm": 14,
+    "outlet_length_mm": 42.25,
+    "rib_radius_mm": 2.2,
+    "rib_count": 8,
+    "volute_law": "area_affine",
+    "chamber_profile": "conical",
+    "shroud_radial_clearance_mm": 1.5,
+    "regularization_mm": 0.5
+  },
+  "parameters_sha256": "82085e4bd1b0a47b2088e47c7bdb64462c31992b5cf3db5f7b4b5e72d9f69f37",
+  "measured_interfaces": false,
+  "engineering_validated": false,
+  "manufacturing_authorized": false,
+  "grid_phase_mm": [
+    0.173,
+    0.119,
+    0.071
+  ],
+  "grid_phase_note": "All fields, bounds, lattice beams and probes are translated before voxel sampling; mesh exports and reported bounds are translated back. Nominal geometry and engineering uncertainty are unchanged; discretization changes.",
+  "exported_coordinate_frame": "original world frame; global Z remains the rotor axis",
+  "section_plane": "positive X retained from section_plane_x_mm",
+  "section_plane_x_mm": 0.185,
+  "regularization": {
+    "method": "PicoGK Smoothen / TripleOffset",
+    "distance_mm": 0.5,
+    "nominal_flow_domain_unchanged": true,
+    "exact_solver_fluid_domain": false
+  },
+  "native_probes": [
+    {
+      "id": "axial-inlet",
+      "point_mm": [
+        0,
+        0,
+        37
+      ],
+      "expected_material": false,
+      "actual_material": false,
+      "inside_flow_domain": true,
+      "passed": true
+    },
+    {
+      "id": "rear-opening",
+      "point_mm": [
+        0,
+        0,
+        -4
+      ],
+      "expected_material": false,
+      "actual_material": false,
+      "inside_flow_domain": true,
+      "passed": true
+    },
+    {
+      "id": "tangent-outlet",
+      "point_mm": [
+        49,
+        35.25,
+        0
+      ],
+      "expected_material": false,
+      "actual_material": false,
+      "inside_flow_domain": true,
+      "passed": true
+    },
+    {
+      "id": "inlet-wall",
+      "point_mm": [
+        23.75,
+        0,
+        37
+      ],
+      "expected_material": true,
+      "actual_material": true,
+      "inside_flow_domain": false,
+      "passed": true
+    },
+    {
+      "id": "scroll-0",
+      "point_mm": [
+        45.270096,
+        18.75149,
+        0
+      ],
+      "expected_material": false,
+      "actual_material": false,
+      "inside_flow_domain": true,
+      "passed": true
+    },
+    {
+      "id": "scroll-1",
+      "point_mm": [
+        18.751488,
+        45.270096,
+        0
+      ],
+      "expected_material": false,
+      "actual_material": false,
+      "inside_flow_domain": true,
+      "passed": true
+    },
+    {
+      "id": "scroll-2",
+      "point_mm": [
+        -18.751492,
+        45.270096,
+        0
+      ],
+      "expected_material": false,
+      "actual_material": false,
+      "inside_flow_domain": true,
+      "passed": true
+    },
+    {
+      "id": "scroll-3",
+      "point_mm": [
+        -45.270103,
+        18.75148,
+        0
+      ],
+      "expected_material": false,
+      "actual_material": false,
+      "inside_flow_domain": true,
+      "passed": true
+    },
+    {
+      "id": "scroll-4",
+      "point_mm": [
+        -45.270096,
+        -18.75149,
+        0
+      ],
+      "expected_material": false,
+      "actual_material": false,
+      "inside_flow_domain": true,
+      "passed": true
+    },
+    {
+      "id": "scroll-5",
+      "point_mm": [
+        -18.751472,
+        -45.270103,
+        0
+      ],
+      "expected_material": false,
+      "actual_material": false,
+      "inside_flow_domain": true,
+      "passed": true
+    },
+    {
+      "id": "scroll-6",
+      "point_mm": [
+        18.751497,
+        -45.270092,
+        0
+      ],
+      "expected_material": false,
+      "actual_material": false,
+      "inside_flow_domain": true,
+      "passed": true
+    },
+    {
+      "id": "scroll-7",
+      "point_mm": [
+        45.2701,
+        -18.751488,
+        0
+      ],
+      "expected_material": false,
+      "actual_material": false,
+      "inside_flow_domain": true,
+      "passed": true
+    }
+  ],
+  "files": [
+    {
+      "file": "housing.stl",
+      "triangles": 749668,
+      "voxel_volume_mm3": 114463.875,
+      "bounds_min_mm": [
+        -63.26684,
+        -64.985985,
+        -17.498459
+      ],
+      "bounds_max_mm": [
+        66.4973,
+        61.224197,
+        46
+      ],
+      "sha256": "6b3161b5d9639f9ec6b514f3dd5f9d8e66af4867046ef3aa0f2a5958ceae7b57"
+    },
+    {
+      "file": "flow-domain.stl",
+      "triangles": 386688,
+      "voxel_volume_mm3": 265995.44,
+      "bounds_min_mm": [
+        -59.765766,
+        -61.48504,
+        -13.997556
+      ],
+      "bounds_max_mm": [
+        62.996624,
+        57.72242,
+        46
+      ],
+      "sha256": "e8c1f9f9f78ede2d4e0f5d1c259dfbe9c5e27bd6dcbb990eda3cb47fa1374e6c"
+    },
+    {
+      "file": "section.stl",
+      "triangles": 391260,
+      "voxel_volume_mm3": 59380.03,
+      "bounds_min_mm": [
+        0.1849979,
+        -64.98309,
+        -17.498459
+      ],
+      "bounds_max_mm": [
+        66.4973,
+        61.173306,
+        46
+      ],
+      "sha256": "8a93b229ad0e17edbf9002d660e2647bae131eb3ba3c60182ce5304b14774afd"
+    }
+  ],
+  "study": {
+    "id": "bionic-turbo-f1",
+    "scroll_law": "area_affine",
+    "formula": "a(t) = sqrt(a0^2 \u002B (a1^2-a0^2)*t)",
+    "law_changes": "Scroll section and its outer wall; existing rib attachment points follow the scroll roof.",
+    "chamber_profile": "conical",
+    "shroud_radial_clearance_mm": 1.5,
+    "shroud_clearance_active": false,
+    "shroud_profile": {
+      "ellipse_segments": 64,
+      "radius_formula": "R(z) = 30.25 - 9.95*sqrt(1-((21-z)/16.5)^2) \u002B radial_clearance, z in [4.5,21] mm",
+      "rear_transition": "Rear opening radius to z=0; straight segment to 30.25 \u002B radial_clearance at z=4.5.",
+      "front_transition": "20.3 \u002B radial_clearance at z=21; straight segment to inlet radius at chamber_height.",
+      "method": "Signed meridional distance to 64 ellipse chords plus explicit transition segments; outer wall is the distance offset.",
+      "clearance_note": "Assumed radial clearance; neither a normal running clearance nor a qualified interface. Final Smoothen moves surfaces.",
+      "wheel_source": "parts/picogk-catalog/rotating/CompressorWheel.cs",
+      "wheel_source_sha256": "4292d1a4c0c23ff4540f3b4a8d4f1d2898c0264d98c97f689bdbdd32e249e977",
+      "inspiration_source": "https://github.com/QU01/Quasar-Phy-CC/blob/fd2b4f2066176265d77bfaa860bda7030578ffc6/CompressorDesigner/src/CompressorDesigner/ImpellerFlowPath.cs"
+    },
+    "fixed_center_radius_mm": 49,
+    "full_turns": 1,
+    "engineered_tongue": false,
+    "junction_limitation": "The 360-degree sweep endpoints share one center; the large end overlaps the small start. Nominal pi*a^2 is not the effective section near the junction or diffuser union.",
+    "performance_gain_validated": false,
+    "inspiration": "QUASAR Phy-CC area-growth principle only; no third-party code copied. Its moving center and clamped sqrt(t) law are not reproduced.",
+    "inspiration_source": "https://github.com/QU01/Quasar-Phy-CC/blob/fd2b4f2066176265d77bfaa860bda7030578ffc6/CompressorDesigner/src/CompressorDesigner/Volute.cs",
+    "baseline_source": "twins/bionic-turbo-f0/source/Program.cs",
+    "baseline_source_sha256": "69159efc5aa6d349e9696ca4276788a85b1564627af8b82f0c0f24461d61b4ca"
+  },
+  "note": "Hypothetical compressor housing; bionic ribs are design features, not optimized or validated load paths."
+}

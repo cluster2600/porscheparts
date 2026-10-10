@@ -1,0 +1,120 @@
+{
+  "schema": "bionic-turbo-cfd-targeted-gap-pilot/v1",
+  "status": "mesh_rejected_quality_topology_preserved",
+  "case": "work/bionic-f1-20261011/cfd-baseline-medium-gap-002",
+  "evidence_directory": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-gap-002",
+  "input_surface_sha256": "74bb941bcd3315b89ec65823c2fd22365b3f87a7db501f5b445dace6c877118b",
+  "source_surface_report": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-gap-002/surface-report.json",
+  "case_manifest_sha256": "8430e9b9ff10c2a426585877ab10635a794038052aed125a57f18eff508c7d99",
+  "native_runtime_seconds": 527.6565070420038,
+  "resource_limits": {
+    "timeout_seconds": 600,
+    "cpus": 4,
+    "memory_gb": 12
+  },
+  "cells": 2114975,
+  "cell_level_histogram": {
+    "1": 1056427,
+    "2": 147785,
+    "3": 910763
+  },
+  "surface_shells": 3,
+  "component_euler_characteristics": [
+    2,
+    0,
+    0
+  ],
+  "global_euler_characteristic": 2,
+  "topology_invariants_preserved": true,
+  "extended_check_mesh_passed": false,
+  "native_quality": {
+    "concave_cells": 1167,
+    "concave_faces": 1667,
+    "warped_faces": 1,
+    "max_nonorthogonality_degrees": 50.2023022704,
+    "max_skewness": 3.28484573937,
+    "minimum_cell_volume_m3": 5.99675700599e-13,
+    "total_cell_volume_m3": 0.000232233212363
+  },
+  "concave_cell_localization": {
+    "boundary_adjacent": 579,
+    "refinement_transition_adjacent": 1156,
+    "both_boundary_and_transition": 568,
+    "neither_boundary_nor_transition": 0,
+    "boundary_patch_adjacent_counts": {
+      "inlet": 0,
+      "outlet": 0,
+      "rotor": 521,
+      "stator": 60
+    },
+    "refinement_level_counts": {
+      "1": 693,
+      "2": 474
+    }
+  },
+  "actual_cells_across_gaps_measured": false,
+  "rotor_stator_interface_loops": [
+    {
+      "vertices": 168,
+      "edges": 168,
+      "vertex_degree_histogram": {
+        "2": 168
+      },
+      "centroid_mm": [
+        -0.20387134522878275,
+        -0.09517502945546667,
+        -3.5881698849189303
+      ],
+      "bounds_mm": [
+        [
+          -4.1407243533399996,
+          -4.17401375207,
+          -3.7186098303799997
+        ],
+        [
+          4.16404186676,
+          4.15454170901,
+          -3.4649610903099997
+        ]
+      ],
+      "radius_min_max_mm": [
+        4.011093362677379,
+        4.319839698102917
+      ],
+      "edge_length_sum_mm": 32.84312425974574
+    }
+  ],
+  "hypothesis_operating_conditions": {
+    "rpm": 100000.0,
+    "rotation_sign": 1,
+    "inlet_total_pressure_pa": 101325.0,
+    "inlet_total_temperature_k": 298.15,
+    "outlet_static_pressure_pa": 121590.0
+  },
+  "flow_solver_executed": false,
+  "mass_flow_kg_s": null,
+  "shaft_torque_nm": null,
+  "efficiency": null,
+  "performance_gain": null,
+  "performance_validated": false,
+  "manufacturing_authorized": false,
+  "old_summary_sha256_unchanged": "c5d023f5d28de0726e214d4a5dc9113274b5c691d25f717e91c194fc04ccd2fa",
+  "limitations_fr": [
+    "Le domaine corrigé et le raffinement changent ensemble ; cet essai ne permet pas d’attribuer séparément la conservation topologique à ces deux corrections.",
+    "Les invariants topologiques ne mesurent pas les dimensions des jeux ni leur résolution effective.",
+    "Le contrôle qualité étendu échoue ; aucun écoulement ni classement de performances n’est calculé."
+  ],
+  "evidence_sha256": {
+    "case-manifest.json": "8430e9b9ff10c2a426585877ab10635a794038052aed125a57f18eff508c7d99",
+    "run-config.json": "7e8c53152b2a003c79b915d03c61e26bcb0ad61ea014f3654a1989492dac888d",
+    "run-mesh.json": "5b14a0286fce6fb3e19c7a2fda8df77ac5f5f28448e68289a3c902a5c6d59c48",
+    "FAILED-mesh.json": "589db5baddbed376ec99a46347bb2a1316d6a40669e2a234dead134ef092b6c7",
+    "log.blockMesh": "7da856775074dff49ff02523647899c036107d134c7f37fee04983368e875637",
+    "log.snappyHexMesh": "519a2ec15cbdda205628a83130196e8dc301ec4a9e18de57cff0e128eb04b69f",
+    "log.topoSet": "fdfa4aef49b4220d73dd1e8d5273bde58e92db3d13ca6f20d15bd6fe3fc0164f",
+    "log.checkMesh": "da5c0f59e7fb78da79191d2f2b14ff458689161e9d304db873102b145db5f0f8",
+    "independent-boundary-diagnostic.json": "8190ec11eeec4b3d4fd33b07c0865b74fd0658d8eae27574a2f21c093e43a44d",
+    "concave-cell-localization.json": "435e7cd756c06db9ffdc0143d16adae17d570bc4ca1b2266ea2c4309742a8b22",
+    "surface-report.json": "4cb2081b412bc2ed60d7ff085d7951cc347b12f2f3daf963e6b2a6473b48a4f8"
+  }
+}
