@@ -6,6 +6,12 @@ Cette nouvelle étape utilise le scan du carter avec cylindres. Les anciens
 géométries hypothétiques et leurs résultats ne qualifient pas ce moteur.
 La variante exacte, la cylindrée et le régime cible restent à déterminer.
 
+L'[assemblage moderne quatre soupapes et biturbo](assembly/README.md) reprend
+nos culasses air + huile et nos turbos bioniques : 119 définitions géométriques
+et 1 129 occurrences de conception. Les formes manquantes sont paramétriques,
+avec nervures et collecteurs ramifiés. Les interfaces et la qualification
+fonctionnelle restent ouvertes ; aucune fabrication n'est autorisée.
+
 La [réconciliation FIA du 11 octobre](fia/README.md) exploite les cotes déjà
 présentes dans Git, relues sur la fiche originale n° 250. Elle corrige la
 distance axe de piston–calotte à 43 mm et applique le diamètre de référence
