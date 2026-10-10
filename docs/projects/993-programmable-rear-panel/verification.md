@@ -3,6 +3,43 @@
 Dossier préparé le 27 septembre 2026. Aucun essai matériel, montage, métrologie,
 qualification radio/routière ou certification d'origine n'est obtenu.
 
+## Maquette complète PicoGK — 10 octobre 2026
+
+Base `5b7cb552`, branche isolée `codex/993-rear-panel-picogk`. L'autorisation
+porte sur une **maquette visuelle aux cotes provisoires**. Ajout du générateur
+C#/JSON, de quatre objets dans un GLB, d'une vue assemblée/éclatée et d'un rapport
+d'empreintes/contrôles. Aucun changement de l'électronique E0 ou du site web.
+
+| Contrôle | Résultat observé |
+|---|---|
+| Restauration verrouillée et compilation C# | .NET 9.0.317 / PicoGK 2.3.0, macOS arm64 : 0 erreur, 0 avertissement |
+| Autocontrôle C# | 8 configurations invalides refusées ; points intérieurs/extérieurs et cadre creux vérifiés |
+| Refus CLI | Dossier existant préservé ; JSON null/incomplets refusés avant création de sortie |
+| Génération PicoGK native | 4 STL non vides, relus par PicoGK ; deux générations avec empreintes identiques |
+| Inspection et export | 4 volumes fermés, orientés et d'un seul tenant ; GLB relu avec 4 objets et unités/axes conservés ; 108 faces dégénérées ou dupliquées du volume d'affichage retirées sans changement de bornes |
+| Revue visuelle | Façade complète et quatre objets visibles dans la vue éclatée ; rendu opaque de concept, aucune simulation optique |
+| Tests ciblés macOS et Linux après export final | 19 tests, OK, 1 ignoré : KiCad CLI absent ; 18 tests réussis dont les 2 nouveaux contrôles de révision/GLB |
+| Liens et index | `make docs-links-check reports-index-check` réussi, 0 lien cassé sur 825 fichiers Markdown |
+| Diff | `git diff --cached --check` réussi |
+| `make check`, Linux natif | Suite de **3 584 tests, OK, 221 ignorés** ; contrôles F32/F34 et sept tests F37 franchis. Arrêt sur `917-manufacturing-f37-lpbf-audit-check`, `/bin/sh: 1: docker: not found`, Makefile ligne 1025, code global **2** ; cibles suivantes non exécutées |
+
+Suite globale dans un conteneur local Debian trixie arm64, Python 3.13.5 : copie
+sur son système de fichiers Linux, index Git, UID/GID 1000 et umask 022 ; réseau
+déconnecté, aucun secret ni socket Docker hôte monté. Les fournisseurs cloud sont
+simulés par les tests. Le journal complet reste local dans
+`work/993-rear-panel-picogk-20261010/make-check-linux.log`. Après la dernière
+retouche d'anticrénelage de l'image, l'export et les tests ciblés ont été rejoués ;
+la suite globale n'a pas été répétée. Aucun contrôle désactivé ni environnement
+de fabrication annoncé validé.
+
+Le [rapport détaillé](cad/preview/checks.json) lie les exports aux sources par
+SHA-256. Les STL et leur archive avec notice restent dans le dossier local ignoré
+`work/993-rear-panel-picogk-20261010/` ; source et GLB sont versionnés.
+Les inconnues véhicule restent absentes/null : aucun trou ou point de fixation
+présumé. Auto-intersections, montage, retenue, étanchéité, optique, thermique,
+vibrations, fabrication et conformité **non vérifiés**. La fermeture mathématique
+d'un maillage n'est pas une preuve d'étanchéité physique.
+
 ## Schéma natif E0 — 2 octobre 2026
 
 Base `0efe260` (`origin/main`), après fusion du travail E0 précédent. Nouvelle

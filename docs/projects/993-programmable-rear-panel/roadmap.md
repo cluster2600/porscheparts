@@ -35,6 +35,7 @@ Pas de compensation logicielle à un défaut des fonctions réglementaires.
 | RP-07 | P0 | Remplacer hypothèses budget par devis 1/10/100/1 000 ; identifier site réel de chaque opération | RP-04/06 |
 | RP-08 | P1 | Porter la machine d'états sur MCU choisi ; authentification BLE et coupure matérielle, tests iOS/Android | choix MCU |
 | RP-09 | P1 | Réaliser la CAO native et l'analyse d'empilement ; gabarit sans charge puis PCB intégré | RP-05/06 |
+| RP-09a | P1 | [Maquette visuelle complète PicoGK](cad/README.md) préparée le 10 octobre, quatre volumes et paramètres provisoires ; remplacer l'enveloppe et définir les interfaces mesurées avant toute CAO fonctionnelle. Ne valide pas G3/RP-09 | concept autorisé ; métrologie RP-05 et coupon RP-06 encore requis |
 | RP-10 | P1 | Qualifier alimentation, RF, CEM, vieillissement optique, montage et emballage | prototype |
 | RP-11 | P1 | Documenter coûts d'origine et activité essentielle ; faire revoir avant toute allégation suisse | devis + G6 |
 | RP-12 | P2 | POC titre musical : iOS AMS, Android MediaSession, autoradio exact, chacun séparément | BLE stable |

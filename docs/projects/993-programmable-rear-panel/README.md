@@ -29,7 +29,8 @@ confirmer. Elle n'est ni acquise ni mesurée. Une pièce déformée ne suffit pa
 ## Livrables et ordre de lecture
 
 1. [Feuille de route et backlog](roadmap.md) : dépendances, responsables et portes de décision.
-2. [Mécanique, scan et optique](mechanical-optical.md) et [fiche de mesures](measurements.csv).
+2. [Mécanique, scan et optique](mechanical-optical.md), [fiche de mesures](measurements.csv)
+   et [maquette complète PicoGK](cad/README.md) à cotes provisoires, sans interfaces OEM.
 3. [Architecture électronique et prototype](electronics.md), [BOM préliminaire](bom.csv),
    [coupon E0 : circuit, câblage, BOM et mise au point](electronics/coupon.md),
    [schéma KiCad éditable](electronics/kicad/README.md) et [PDF de revue](electronics/coupon-e0.pdf).
