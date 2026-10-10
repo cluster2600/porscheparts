@@ -2,10 +2,11 @@
 
 Reads ../derived/monocoque-shell.ply, ../derived/torsion-snapshot.npz and,
 when present, ../derived/torsion-monocoque*.{json,npz} and
-../derived/torsion-rings*.{json,npz} and ../derived/torsion-members.json;
-writes ../evidence/shell-views.png, ../evidence/torsion-von-mises.png,
-../evidence/torsion-monocoque.png, ../evidence/torsion-architectures.png and
-../evidence/torsion-members.png.
+../derived/torsion-rings*.{json,npz}, ../derived/torsion-members.json and
+../derived/torsion-layup.json; writes ../evidence/shell-views.png,
+../evidence/torsion-von-mises.png, ../evidence/torsion-monocoque.png,
+../evidence/torsion-architectures.png, ../evidence/torsion-members.png and
+../evidence/torsion-layup.png.
 
     python3 figures.py
 """
@@ -74,6 +75,48 @@ def main():
         architectures(pv)
     if (DERIVED / "torsion-members.json").exists():
         members()
+    if (DERIVED / "torsion-layup.json").exists():
+        layup()
+
+
+def layup():
+    """Return of 0.5 mm more CFRP per wall family, and F1 against F0."""
+    import json
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    r = json.loads((DERIVED / "torsion-layup.json").read_text())
+    fams = list(r["sensitivity"])
+    fig, (ax, bx) = plt.subplots(1, 2, figsize=(16, 4.8), facecolor="#0e1218", gridspec_kw={"width_ratios": [1.6, 1]})
+    y = np.arange(len(fams))
+    for j, (key, colour, label) in enumerate((("K_per_kg", "#f07b3f", "K at the load points"),
+                                              ("K_cabin_per_kg", "#e9b44c", "cabin K"))):
+        ax.barh(y + (j - 0.5) * 0.38, [r["sensitivity"][f][key][-1] for f in fams], height=0.38, color=colour,
+                label=f"{label}, {r['meshes'][-1]['sections']} sections")
+    ax.set_yticks(y, [f"{f} ({r['sensitivity'][f]['area_m2'][-1]} m², {r['f0_mm'][f]} mm)" for f in fams], color="white")
+    ax.invert_yaxis()
+    ax.set_xlabel(f"N.m/deg gained per kg of CFRP added (+{r['step_mm']} mm)", color="#9aa3ad")
+    f1 = r["F1"]
+    labels = [f"{m['sections']} sections" for m in r["meshes"]]
+    x = np.arange(len(labels))
+    for j, (key, f0key, colour, name) in enumerate((("K_gain_fraction", "K_F0", "#f07b3f", "K"),
+                                                    ("K_cabin_gain_fraction", "K_cabin_F0", "#e9b44c", "cabin K"))):
+        bx.bar(x + (j - 0.5) * 0.38, [100 * g for g in f1[key]], width=0.38, color=colour, label=name)
+    bx.axhline(0, color="#9aa3ad", lw=0.8)
+    bx.set_xticks(x, labels, color="white")
+    bx.set_ylabel("F1 against F0, same mass, %", color="#9aa3ad")
+    changed = ", ".join(f"{f} {v:.2f}" for f, v in f1["mm"][-1].items() if abs(v - r["f0_mm"][f]) > 0.005)
+    bx.set_title(f"F1 at F0 mass: engine-lid ring out\n{changed} mm", color="white", fontsize=9)
+    for a, loc in ((ax, "lower right"), (bx, "lower center")):
+        a.set_facecolor("#0e1218")
+        a.tick_params(colors="#9aa3ad")
+        for sp in a.spines.values():
+            sp.set_color("#3a4350")
+        a.legend(frameon=False, labelcolor="white", fontsize=9, loc=loc)
+    fig.tight_layout()
+    fig.savefig(EVIDENCE / "torsion-layup.png", dpi=110, facecolor="#0e1218")
+    plt.close(fig)
+    print("wrote torsion-layup.png")
 
 
 def members():

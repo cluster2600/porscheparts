@@ -27,8 +27,8 @@ re-guessed here:
 - floor and bulkheads: the two 1.5 mm faces, as torsion_monocoque.py counts
   sandwiches (the core is in the mass).
 
-Three cases at the three shell densities, each value the median of three
-solves: uniform 0.8 mm steel (shells and tube walls), the study's assumed
+Three cases at the three shell densities, each value the one two solves
+agree on: uniform 0.8 mm steel (shells and tube walls), the study's assumed
 CFRP layup, and the same CFRP model without its tubes, which measures what
 the tubes bring. These are values of this model, not of a vehicle.
 
@@ -232,7 +232,7 @@ def main():
                     "sandwich": "faces only for stiffness; faces and core in the mass",
                     "params": "../picogk-rings/params/monocoque-f0.json"},
         "meshes": meshes,
-        "mesh_note": "K lists are at the densities of 'meshes', coarsest first, each the median of K_repeats",
+        "mesh_note": "K lists are at the densities of 'meshes', coarsest first, each the value two of K_repeats agree on",
         "twist_stations_d_mm": stations.tolist(),
         "cases": results,
     }

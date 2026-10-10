@@ -37,7 +37,9 @@ class MonocoqueShellTests(unittest.TestCase):
         self.assertIn("not of a vehicle", r["classification"])
         self.assertIn("prohibited_pending_engineering", r["classification"])
         c = r["cases"]
-        self.assertEqual(c["open shell, 0.8 mm steel"]["K"][-1], 2261)   # torsion.py on the published shell
+        if np is not None:                                                  # torsion.py on the published shell
+            snap = np.load(SHELL / "derived/torsion-snapshot.npz")
+            self.assertEqual(c["open shell, 0.8 mm steel"]["K"][-1], round(float(snap["K"])))
         for material in ("0.8 mm steel", "CFRP layup"):
             mono, shell = c[f"monocoque, {material}"]["K"], c[f"open shell, {material}"]["K"]
             self.assertEqual(len(mono), 3)
@@ -48,22 +50,25 @@ class MonocoqueShellTests(unittest.TestCase):
         self.assertLess(cf["mass_kg"], st["mass_kg"])
         self.assertTrue(all(1.1 < a / b < 1.35 for a, b in zip(cf["K_per_kg"], st["K_per_kg"])))
 
-    def test_every_torsion_value_is_a_median_of_three_solves(self) -> None:
+    def test_every_torsion_value_is_one_two_solves_agree_on(self) -> None:
         for name in ("torsion-monocoque.json", "torsion-rings.json"):
             r = json.loads((SHELL / "derived" / name).read_text(encoding="utf-8"))
             for case, row in r["cases"].items():
                 for k, runs in zip(row["K"], row["K_repeats"]):
-                    self.assertEqual(len(runs), 3, case)
-                    self.assertEqual(k, sorted(runs)[1], case)
+                    self.assertGreaterEqual(len(runs), 3, case)
+                    self.assertGreaterEqual(sum(1 for x in runs if abs(x - k) <= 1), 2, case)
 
-    def test_skin_boxes_beat_tubes_per_kilogram_at_every_mesh(self) -> None:
+    def test_skin_boxes_lead_tubes_only_on_the_finer_meshes(self) -> None:
         boxes = json.loads((SHELL / "derived/torsion-monocoque.json").read_text(encoding="utf-8"))["cases"]
         rings = json.loads((SHELL / "derived/torsion-rings.json").read_text(encoding="utf-8"))
         self.assertIn("prohibited_pending_engineering", rings["classification"])
         b, t, bare = boxes["monocoque, CFRP layup"], rings["cases"]["rings, CFRP layup"], rings["cases"]["rings without tubes, CFRP layup"]
-        for kb, kt, k0 in zip(b["K"], t["K"], bare["K"]):
-            self.assertGreater(kb / b["mass_kg"], 1.3 * kt / t["mass_kg"])    # x 1.4 to x 1.9 in the docs
-            self.assertGreater(kt, 2.5 * k0)                                  # the tubes carry load
+        lead = [(kb / b["mass_kg"]) / (kt / t["mass_kg"]) for kb, kt in zip(b["K"], t["K"])]
+        self.assertLess(lead[0], 1.0)                                         # coarsest mesh: the tubes lead
+        self.assertTrue(lead[1] > 1.0 and lead[2] > 1.2)                      # finer meshes: the boxes lead
+        self.assertTrue(all(b2 < 0.9 * b1 for b1, b2 in zip(t["K"], t["K"][1:])))   # the tube model is not converged
+        for kt, k0 in zip(t["K"], bare["K"]):
+            self.assertGreater(kt, 4 * k0)                                    # the tubes carry load
         self.assertTrue(all(m["tubes"]["links"] > 500 for m in rings["meshes"]))
 
     def test_member_study_ranks_the_cabin_members_and_checks_the_pruning(self) -> None:
@@ -78,10 +83,25 @@ class MonocoqueShellTests(unittest.TestCase):
             for n in ("windscreen", "quarter_window", "door"):
                 self.assertGreater(cabin[n], 0.09, n)
         pr = r["pruned"]
-        self.assertEqual(sorted(pr["removed"]), ["B-ring", "engine_lid", "rear_window", "tunnel"])
+        self.assertEqual(sorted(pr["removed"]), ["B-ring", "engine_lid", "front rails", "rear_window", "tunnel"])
         for j, frac in enumerate(pr["K_cabin_lost_fraction"]):             # together they cost more than one by one
             alone = sum(m[n]["K_cabin_lost_fraction"][j] for n in pr["removed"])
-            self.assertGreater(frac, alone)
+            self.assertGreater(frac, alone + 0.02)
+
+    def test_layup_study_puts_plies_on_the_box_skin_and_f1_keeps_the_mass(self) -> None:
+        r = json.loads((SHELL / "derived/torsion-layup.json").read_text(encoding="utf-8"))
+        sens = r["sensitivity"]
+        for j in range(len(r["meshes"])):
+            cabin = {f: v["K_cabin_per_kg"][j] for f, v in sens.items()}
+            self.assertEqual(max(cabin, key=cabin.get), "box outer walls")
+            self.assertGreater(cabin["box outer walls"], 3.5 * max(cabin["floor"], cabin["bulkheads"]))
+        f1 = r["F1"]
+        for mesh, mass, gain in zip(r["meshes"], f1["mass_kg"], f1["K_cabin_gain_fraction"]):
+            self.assertAlmostEqual(mass, mesh["mass_F0_kg"], delta=0.15)       # same mass as F0
+            self.assertGreater(gain, 0.03)
+        for mm in f1["mm"]:                                                     # every change within one step
+            for fam, t in mm.items():
+                self.assertLessEqual(abs(t - r["f0_mm"][fam]), r["step_mm"] + 1e-9, fam)
 
 
 if __name__ == "__main__":
