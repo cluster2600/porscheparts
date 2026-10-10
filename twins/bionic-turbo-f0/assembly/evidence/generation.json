@@ -1,0 +1,654 @@
+{
+  "schema_version": 1,
+  "status": "concept_assembly_generated",
+  "units": "mm",
+  "voxel_mm": 0.5,
+  "kernel": "26.2.0",
+  "contract_sha256": "0cff09edf9b5c841b01c2ee1d500e93a9e56e4ad530307e54f9b88cd2f723ecd",
+  "compressor_source_sha256": "c7d2972b803f6f0d443e5e1f125d11baaf55ec19ca8abd82a006b308748506cd",
+  "concept_bom_complete": true,
+  "production_bom_complete": false,
+  "component_count": 39,
+  "measured_interfaces": false,
+  "engineering_validated": false,
+  "manufacturing_authorized": false,
+  "minimum_clearance_measured": false,
+  "selected_voxel_intersections": [
+    {
+      "a": "compressor-wheel",
+      "b": "compressor-housing",
+      "voxel_intersection_mm3": 0,
+      "passed": true
+    },
+    {
+      "a": "compressor-wheel",
+      "b": "compressor-backplate",
+      "voxel_intersection_mm3": 0,
+      "passed": true
+    },
+    {
+      "a": "turbine-wheel",
+      "b": "turbine-housing",
+      "voxel_intersection_mm3": 0,
+      "passed": true
+    },
+    {
+      "a": "turbine-wheel",
+      "b": "heat-shield",
+      "voxel_intersection_mm3": 0,
+      "passed": true
+    },
+    {
+      "a": "shaft",
+      "b": "chra-housing",
+      "voxel_intersection_mm3": 0,
+      "passed": true
+    },
+    {
+      "a": "shaft",
+      "b": "journal-bearing-front",
+      "voxel_intersection_mm3": 0,
+      "passed": true
+    },
+    {
+      "a": "shaft",
+      "b": "journal-bearing-rear",
+      "voxel_intersection_mm3": 0,
+      "passed": true
+    },
+    {
+      "a": "shaft",
+      "b": "compressor-backplate",
+      "voxel_intersection_mm3": 0,
+      "passed": true
+    }
+  ],
+  "files": [
+    {
+      "id": "compressor-housing",
+      "label": "Carter de compresseur bionique",
+      "group": "compressor",
+      "file": "compressor-housing.stl",
+      "sha256": "c7d2972b803f6f0d443e5e1f125d11baaf55ec19ca8abd82a006b308748506cd",
+      "triangles": 741272,
+      "explode_offset_mm": [
+        0,
+        0,
+        160
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "compressor-wheel",
+      "label": "Roue de compresseur",
+      "group": "rotor",
+      "file": "compressor-wheel.stl",
+      "sha256": "4bf63312713c244d35773172f693ab35a4b8c119c2f14dad584a78ebe145aa19",
+      "triangles": 116108,
+      "explode_offset_mm": [
+        0,
+        0,
+        70
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "turbine-wheel",
+      "label": "Roue de turbine",
+      "group": "rotor",
+      "file": "turbine-wheel.stl",
+      "sha256": "1d318ad45a7cc98fef8ffe492e0c2c548b39e6caf6b5efa55d24a69e6b23d297",
+      "triangles": 147688,
+      "explode_offset_mm": [
+        0,
+        0,
+        -65
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "shaft",
+      "label": "Arbre",
+      "group": "rotor",
+      "file": "shaft.stl",
+      "sha256": "a4171345a1e0f4b2483ee8a40c0ab00fdf8c46f198f06fd8c1475fa65d226348",
+      "triangles": 30316,
+      "explode_offset_mm": [
+        -50,
+        0,
+        0
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "chra-housing",
+      "label": "Corps central",
+      "group": "bearing_system",
+      "file": "chra-housing.stl",
+      "sha256": "764e6e4da9b3eab67e295c4e05b090264b86dacb5798175803ef7a5e8315fada",
+      "triangles": 235256,
+      "explode_offset_mm": [
+        0,
+        0,
+        -12
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "journal-bearing-front",
+      "label": "Palier c\u00F4t\u00E9 compresseur",
+      "group": "bearing_system",
+      "file": "journal-bearing-front.stl",
+      "sha256": "dc5f526c0a92fd9326a925ac2250504b0d30a3f9b55f3a670bf58c0b457561a1",
+      "triangles": 15520,
+      "explode_offset_mm": [
+        -35,
+        -30,
+        14
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "journal-bearing-rear",
+      "label": "Palier c\u00F4t\u00E9 turbine",
+      "group": "bearing_system",
+      "file": "journal-bearing-rear.stl",
+      "sha256": "6dd9496b3309308d8bcabee9c1a5f2fcbbbe2edaa56a2c198f2d077c61196af8",
+      "triangles": 15520,
+      "explode_offset_mm": [
+        -35,
+        30,
+        -14
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "thrust-bearing",
+      "label": "But\u00E9e axiale",
+      "group": "bearing_system",
+      "file": "thrust-bearing.stl",
+      "sha256": "735eb3b111ba84246211bf606243f439a633e6ef1ed44a2c56b18b0dd2e8bd9b",
+      "triangles": 9792,
+      "explode_offset_mm": [
+        30,
+        -30,
+        15
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "thrust-collar",
+      "label": "Collerette de but\u00E9e",
+      "group": "bearing_system",
+      "file": "thrust-collar.stl",
+      "sha256": "cf0c9c6480e204652bf6fa4f35ba9a6fcb9cb3f1d3617fab164cd2d72e063c87",
+      "triangles": 16768,
+      "explode_offset_mm": [
+        35,
+        0,
+        20
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "seal-sleeve-front",
+      "label": "Bague d\u2019\u00E9tanch\u00E9it\u00E9 c\u00F4t\u00E9 compresseur",
+      "group": "bearing_system",
+      "file": "seal-sleeve-front.stl",
+      "sha256": "3459787571d3aa664880579378b711ebcec2e947c16a0c869fcf644a8dd0f2a2",
+      "triangles": 5360,
+      "explode_offset_mm": [
+        30,
+        30,
+        25
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "seal-sleeve-rear",
+      "label": "Bague d\u2019\u00E9tanch\u00E9it\u00E9 c\u00F4t\u00E9 turbine",
+      "group": "bearing_system",
+      "file": "seal-sleeve-rear.stl",
+      "sha256": "204d00c0651f4e8322f1c7b3089859e7592a194f8ee78df0956c581051b08187",
+      "triangles": 7664,
+      "explode_offset_mm": [
+        30,
+        30,
+        -30
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "seal-ring-front",
+      "label": "Segment c\u00F4t\u00E9 compresseur",
+      "group": "bearing_system",
+      "file": "seal-ring-front.stl",
+      "sha256": "082c85586133ecb7b4f1c1ab1840734b442ad9205f164843c8b3e4a9d13a2b1c",
+      "triangles": 4244,
+      "explode_offset_mm": [
+        50,
+        30,
+        25
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "seal-ring-rear",
+      "label": "Segment c\u00F4t\u00E9 turbine",
+      "group": "bearing_system",
+      "file": "seal-ring-rear.stl",
+      "sha256": "1426bf229db48e3fa8e19c0db86b4b9a7638d03f1c13c0877ce0557ea80fdb44",
+      "triangles": 4244,
+      "explode_offset_mm": [
+        50,
+        -30,
+        -30
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "compressor-backplate",
+      "label": "Plaque arri\u00E8re du compresseur",
+      "group": "compressor",
+      "file": "compressor-backplate.stl",
+      "sha256": "e84c49262a01e063fe8ed5cb9f295c94359828f2c79c37ebcaf050f2c574dade",
+      "triangles": 83288,
+      "explode_offset_mm": [
+        0,
+        0,
+        30
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "heat-shield",
+      "label": "\u00C9cran thermique",
+      "group": "turbine",
+      "file": "heat-shield.stl",
+      "sha256": "41a3eaa7679efb60661e1b9adfc22e7395f0faf318493e6bb7e41176ffff515d",
+      "triangles": 59328,
+      "explode_offset_mm": [
+        0,
+        0,
+        -40
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "compressor-retention-ring",
+      "label": "Retenue du carter de compresseur",
+      "group": "retention",
+      "file": "compressor-retention-ring.stl",
+      "sha256": "97da898eb51806bcb417521f8148e7435122fe5862bf3c2a030727aabf04e72e",
+      "triangles": 43088,
+      "explode_offset_mm": [
+        0,
+        0,
+        15
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "turbine-retention-ring",
+      "label": "Retenue du carter de turbine",
+      "group": "retention",
+      "file": "turbine-retention-ring.stl",
+      "sha256": "d437fb697667c243a5e86504d66ff9dcee68d9641006bbf8b9898b57db34c67f",
+      "triangles": 29488,
+      "explode_offset_mm": [
+        0,
+        0,
+        -28
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "compressor-nut",
+      "label": "\u00C9crou de roue de compresseur",
+      "group": "rotor",
+      "file": "compressor-nut.stl",
+      "sha256": "b30889e417fd3281ffcb78e2748a8bfca0c1154ce6661034805de0b3ab4738a6",
+      "triangles": 6648,
+      "explode_offset_mm": [
+        0,
+        0,
+        94
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "backplate-bolt-1",
+      "label": "Vis de plaque arri\u00E8re 1",
+      "group": "retention",
+      "file": "backplate-bolt-1.stl",
+      "sha256": "d74ecd2dd3df8af7fc8307cb7ea6897b0c34e28b7b0214e879577a72f2f71694",
+      "triangles": 2876,
+      "explode_offset_mm": [
+        18.199999,
+        0,
+        12
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "backplate-bolt-2",
+      "label": "Vis de plaque arri\u00E8re 2",
+      "group": "retention",
+      "file": "backplate-bolt-2.stl",
+      "sha256": "3e62c58d612bd9569a1c5682cbdf0469503eb0b4abe5da19538ead80adb0741e",
+      "triangles": 2856,
+      "explode_offset_mm": [
+        9.099999,
+        15.761663,
+        12
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "backplate-bolt-3",
+      "label": "Vis de plaque arri\u00E8re 3",
+      "group": "retention",
+      "file": "backplate-bolt-3.stl",
+      "sha256": "5c6a5ae7daa3b4811a9b5fba25e023859169089e48abcbbb0f600b2b73226b4f",
+      "triangles": 2856,
+      "explode_offset_mm": [
+        -9.100001,
+        15.7616625,
+        12
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "backplate-bolt-4",
+      "label": "Vis de plaque arri\u00E8re 4",
+      "group": "retention",
+      "file": "backplate-bolt-4.stl",
+      "sha256": "799bce9f1922687c7163141a6a0a7be8295cadb1812e54d6b0f8b22356e3b7ac",
+      "triangles": 2876,
+      "explode_offset_mm": [
+        -18.199999,
+        -1.5910945E-06,
+        12
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "backplate-bolt-5",
+      "label": "Vis de plaque arri\u00E8re 5",
+      "group": "retention",
+      "file": "backplate-bolt-5.stl",
+      "sha256": "11280556bb670400459d23858a37bb0dfc556cba7ab47094d650eeb0fec10a37",
+      "triangles": 2856,
+      "explode_offset_mm": [
+        -9.099998,
+        -15.761663,
+        12
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "backplate-bolt-6",
+      "label": "Vis de plaque arri\u00E8re 6",
+      "group": "retention",
+      "file": "backplate-bolt-6.stl",
+      "sha256": "f8f2403e087291f4abd9c4f47a77ef9bedc6f9c12a97866bbf00d608fe55de33",
+      "triangles": 2856,
+      "explode_offset_mm": [
+        9.100006,
+        -15.761659,
+        12
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "oil-feed-union",
+      "label": "Raccord d\u2019arriv\u00E9e d\u2019huile",
+      "group": "lubrication",
+      "file": "oil-feed-union.stl",
+      "sha256": "8e528ef480a74efe7a8a7ebfb643b80c0120b9cea1813b23e75b1048272355f5",
+      "triangles": 9136,
+      "explode_offset_mm": [
+        0,
+        35,
+        0
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "oil-drain-union",
+      "label": "Raccord de retour d\u2019huile",
+      "group": "lubrication",
+      "file": "oil-drain-union.stl",
+      "sha256": "4e18cedb3b2c76e11139df976e81cf3eb06e6d3204289c32c018722884e0d15d",
+      "triangles": 14832,
+      "explode_offset_mm": [
+        0,
+        -35,
+        0
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "turbine-housing",
+      "label": "Carter de turbine et d\u00E9rivation wastegate",
+      "group": "turbine",
+      "file": "turbine-housing.stl",
+      "sha256": "b67f408caffb3c2b82de9a1e8f1330ce366d9f8bbdea550347f9f48c2524c32f",
+      "triangles": 695908,
+      "explode_offset_mm": [
+        0,
+        0,
+        -120
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "wastegate-flapper",
+      "label": "Clapet de wastegate",
+      "group": "wastegate",
+      "file": "wastegate-flapper.stl",
+      "sha256": "79c4745f8a8c5feb1c407d825341a3bf5fccae8580737689d391196e674eea32",
+      "triangles": 8668,
+      "explode_offset_mm": [
+        40,
+        -30,
+        -50
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "wastegate-pivot-lever",
+      "label": "Axe et levier de clapet",
+      "group": "wastegate",
+      "file": "wastegate-pivot-lever.stl",
+      "sha256": "bef8ff1d8d37c96d2bf15b352ac61fa26c71c6c5dded42acbde4a03407a62b52",
+      "triangles": 11372,
+      "explode_offset_mm": [
+        55,
+        45,
+        -35
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "wastegate-pivot-bushing",
+      "label": "Bague de pivot",
+      "group": "wastegate",
+      "file": "wastegate-pivot-bushing.stl",
+      "sha256": "82613c5f252599143f974254474f8ee124f855ff7a35cfce82fe7245c59d1ca7",
+      "triangles": 6080,
+      "explode_offset_mm": [
+        45,
+        28,
+        -30
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "wastegate-pivot-clip",
+      "label": "Clip de pivot",
+      "group": "wastegate",
+      "file": "wastegate-pivot-clip.stl",
+      "sha256": "88d118a269a0997a56f45be15b6eae64296fa05d395000151e3e18dfc0867eb8",
+      "triangles": 1600,
+      "explode_offset_mm": [
+        45,
+        68,
+        -30
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "wastegate-actuator-rod",
+      "label": "Tige d\u2019actionneur",
+      "group": "wastegate",
+      "file": "wastegate-actuator-rod.stl",
+      "sha256": "bf785233018166a87f4a8828ba73e7ba892f0d0996998fe7ddd246d91a5358a1",
+      "triangles": 11864,
+      "explode_offset_mm": [
+        70,
+        45,
+        0
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "wastegate-actuator-lower-cup",
+      "label": "Coupelle inf\u00E9rieure d\u2019actionneur",
+      "group": "wastegate",
+      "file": "wastegate-actuator-lower-cup.stl",
+      "sha256": "a65d6b292b4fb40f09940ce2954f0529bde25ee64ac4432df21f459c17152e63",
+      "triangles": 46288,
+      "explode_offset_mm": [
+        78,
+        50,
+        12
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "wastegate-actuator-upper-cup",
+      "label": "Coupelle sup\u00E9rieure d\u2019actionneur",
+      "group": "wastegate",
+      "file": "wastegate-actuator-upper-cup.stl",
+      "sha256": "d2615ef012279244da27b14fad6e2a7210b7c49ebb11dba74eb3d96ad36ae350",
+      "triangles": 37552,
+      "explode_offset_mm": [
+        78,
+        50,
+        68
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "wastegate-actuator-diaphragm",
+      "label": "Membrane d\u2019actionneur",
+      "group": "wastegate",
+      "file": "wastegate-actuator-diaphragm.stl",
+      "sha256": "d50794722d0b5ffbe3b2bd662ac694b3ac19c16aad786aa10bec26292d847a11",
+      "triangles": 14892,
+      "explode_offset_mm": [
+        78,
+        50,
+        44
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "wastegate-actuator-spring",
+      "label": "Ressort d\u2019actionneur",
+      "group": "wastegate",
+      "file": "wastegate-actuator-spring.stl",
+      "sha256": "c8ce421259876bffd175b089fc244dfcfd6a9b5e60e3b89ff14ea730ef364693",
+      "triangles": 11412,
+      "explode_offset_mm": [
+        78,
+        50,
+        28
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "wastegate-actuator-bracket",
+      "label": "Support d\u2019actionneur",
+      "group": "wastegate",
+      "file": "wastegate-actuator-bracket.stl",
+      "sha256": "e0cee66e2689d3baf8b18c08b0832ee9cc8b31586ddb2b0be92ed69d6027f229",
+      "triangles": 58192,
+      "explode_offset_mm": [
+        60,
+        35,
+        -10
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "wastegate-bracket-bolt-1",
+      "label": "Vis de support 1",
+      "group": "wastegate",
+      "file": "wastegate-bracket-bolt-1.stl",
+      "sha256": "542e023432b9e18b58726fb4d24f38c1b8bb5f54742506e1ad7a0772401d8fb5",
+      "triangles": 3516,
+      "explode_offset_mm": [
+        85,
+        -5,
+        -5
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    },
+    {
+      "id": "wastegate-bracket-bolt-2",
+      "label": "Vis de support 2",
+      "group": "wastegate",
+      "file": "wastegate-bracket-bolt-2.stl",
+      "sha256": "19f0dc5cde6dfa1ca31a71cb782a089dfa63b7c66c26697d79acf4be041d51f9",
+      "triangles": 3516,
+      "explode_offset_mm": [
+        85,
+        10,
+        -5
+      ],
+      "units": "mm",
+      "basis": "design_assumption"
+    }
+  ],
+  "note": "All parts are hypothetical concept representations. Threads, material and operating clearances are unqualified."
+}
