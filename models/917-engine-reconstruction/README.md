@@ -6,6 +6,13 @@ Cette nouvelle étape utilise le scan du carter avec cylindres. Les anciens
 géométries hypothétiques et leurs résultats ne qualifient pas ce moteur.
 La variante exacte, la cylindrée et le régime cible restent à déterminer.
 
+La [réconciliation FIA du 11 octobre](fia/README.md) exploite les cotes déjà
+présentes dans Git, relues sur la fiche originale n° 250. Elle corrige la
+distance axe de piston–calotte à 43 mm et applique le diamètre de référence
+de maneton 52 mm. Cette correction rejette l'implantation axiale provisoire
+du cylindre ; les masses FIA sont aussi utilisées pour une comparaison de
+charges. Le spécimen scanné reste à rattacher à la variante documentaire.
+
 La [suite sous hypothèses](hypothesis/README.md), autorisée le même jour,
 ajoute quatre familles PicoGK et 48 instances, une cinématique contrôlée et
 18 scénarios de charges avec matières candidates. Le contrôle détecte une

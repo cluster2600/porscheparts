@@ -52,6 +52,7 @@ The repository has withdrawn several, listed
 
 | date | change |
 |---|---|
+| 2026-10-11 | **Cotes FIA du 917 appliquées à PicoGK** : calotte à 43 mm de l'axe, référence de maneton 52 mm et comparaison avec les masses documentées. L'implantation provisoire du cylindre est rejetée ; variante du scan et fabrication non qualifiées. [Réconciliation FIA](models/917-engine-reconstruction/fia/README.md) |
 | 2026-10-10 | **Reprise du moteur 917 avec PicoGK** : coques scannées, 48 instances paramétriques sous hypothèses et 18 scénarios de charges. Piston creux après rejet du piston plein ; interfaces et matériaux non qualifiés. [Reconstruction](models/917-engine-reconstruction/README.md) |
 | 2026-10-10 | **What each monocoque member is worth**: the cabin is carried by the door rings, the windscreen frame, the quarter-window rings and the sills; the engine-lid ring is worth nothing in torsion; the weak members removed together cost 12-15% of the cabin stiffness for 8-12 kg. [Members](twins/964-chassis/monocoque/README.md#what-each-member-is-worth) |
 | 2026-10-09 | **Two monocoque architectures in torsion**: on the same mesh and load, closed sections formed by the skin are 1.4 to 1.9 times stiffer per kilogram than tubes tangent to it, at all three meshes. A ranking of two hypotheses. [Comparison](twins/964-chassis/monocoque/README.md#two-architectures-one-load-case) |
