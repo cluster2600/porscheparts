@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-MOUNTING-0001",
+  "name": "Support moteur Turbo — boîtier et enveloppe souple PicoGK",
+  "description": "Deux occurrences dans le groupe Turbo PET, position 21. Le boîtier et l’enveloppe souple sont des domaines géométriques distincts. Leur construction ne reconstitue pas le mécanisme hydraulique ou élastomère OEM et ne prédit aucune raideur ou aucun amortissement.",
+  "vehicle": {
+    "generation": "993",
+    "variants": [
+      "993_Turbo"
+    ],
+    "model_years": {
+      "from": 1995,
+      "to": 1998
+    },
+    "porsche_part_numbers": [
+      "993 375 049 05"
+    ]
+  },
+  "classification": {
+    "category": "powertrain_mounting",
+    "safety_class": "prohibited_pending_engineering",
+    "intended_use": "Étude de formes et assemblage documentaire uniquement ; aucun portage moteur ni montage véhicule autorisé."
+  },
+  "geometry": {
+    "source_type": "estimated",
+    "master_format": "PicoGK",
+    "master_file": "parts/picogk-catalog/engine/EngineMounts.cs",
+    "units": "mm",
+    "accuracy_mm": null,
+    "derived_files": [
+      "twins/993-engine-mount-system-f0/derived/993-ENG-MOUNTING-0001.stl",
+      "twins/993-engine-mount-system-f0/derived/993-ENG-MOUNTING-ISOLATOR-F0.stl"
+    ]
+  },
+  "provenance": {
+    "record_license": "All rights reserved (see LICENSE)",
+    "sources": [
+      {
+        "title": "Porsche PET 993, groupe 109-00 Turbo",
+        "url": "https://assets-v2.porsche.com/us/-/media/Project/PCOM/SharedSite/PorscheClassic/Original-Parts-Catalogue/PDF-EN-US/KAT517_USA_911_98_KATALOG",
+        "source_type": "official",
+        "license": "Porsche copyright; reference only",
+        "accessed_on": "2026-10-10",
+        "notes": "Identité et quantité d’après les exigences PET déjà relues dans le dépôt. Années 1995–1998 : périmètre Turbo étudié ; application exacte par millésime à confirmer. Aucune illustration ou géométrie OEM copiée."
+      },
+      {
+        "title": "LEAP 71 PicoGK",
+        "url": "https://github.com/leap71/PicoGK",
+        "source_type": "public_model",
+        "license": "Apache-2.0 for the dependency; repository LICENSE for our independent study",
+        "accessed_on": "2026-10-10",
+        "notes": "Noyau déjà épinglé par containers/m64-leap71/sources.lock ; aucun générateur propriétaire Noyron importé."
+      }
+    ]
+  },
+  "manufacturing": {
+    "candidate_processes": [
+      "FFF",
+      "CNC",
+      "sheet_metal"
+    ],
+    "preferred_process": "undecided",
+    "material": {
+      "family": "",
+      "grade": "",
+      "standard": ""
+    },
+    "post_processing": [],
+    "supplier_requirements": [
+      "Revue professionnelle du chemin de charge, des interfaces et du plan de validation avant toute fabrication fonctionnelle."
+    ]
+  },
+  "titanium": {
+    "applicable": false,
+    "alloy": "",
+    "heat_treatment": "",
+    "hip_required": "not_applicable",
+    "machined_surfaces": [],
+    "inspection": [],
+    "galvanic_isolation": ""
+  },
+  "validation": {
+    "status": "concept",
+    "vehicle_tested": [],
+    "evidence": [
+      "twins/993-engine-mount-system-f0/interface-contract.json",
+      "twins/993-engine-mount-system-f0/derived/study-report.json",
+      "twins/993-engine-mount-system-f0/source/mount-housing.json"
+    ],
+    "reviewed_by": "",
+    "reviewed_on": null,
+    "known_limits": [
+      "Étude F0 ; géométrie OEM, montage, matériau, charges et fatigue non validés.",
+      "Cotes, coordonnées des trous et poses de la vue éclatée : hypothèses d’étude, pas des mesures Porsche.",
+      "Le rapport natif affiche une masse nulle car le calcul de masse est désactivé ; la masse réelle est inconnue.",
+      "Aucune pièce issue de cette étude ne peut porter le moteur."
+    ]
+  }
+}
