@@ -6,6 +6,13 @@ Cette nouvelle étape utilise le scan du carter avec cylindres. Les anciens
 géométries hypothétiques et leurs résultats ne qualifient pas ce moteur.
 La variante exacte, la cylindrée et le régime cible restent à déterminer.
 
+La [suite sous hypothèses](hypothesis/README.md), autorisée le même jour,
+ajoute quatre familles PicoGK et 48 instances, une cinématique contrôlée et
+18 scénarios de charges avec matières candidates. Le contrôle détecte une
+interférence du piston plein avec le pied de bielle, puis vérifie le dégagement
+des mêmes sondes après construction d'un piston creux à bossages. Les contrôles
+restent partiels ; les hypothèses et les versions rejetées sont traçables.
+
 ## Première étape exécutable
 
 [reconstruct.py](source/reconstruct.py) vérifie le SHA-256 canonique du scan,
