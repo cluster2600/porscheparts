@@ -1,7 +1,7 @@
 {
   "part_id": "993-ENG-MOUNTING-0001",
   "name": "mount-housing",
-  "generator": "engine_mount_housing_study",
+  "generator": "engine_mount_bionic_housing_study",
   "catalogue_record": "catalog/parts/993-eng-mounting-0001.json",
   "porsche_part_numbers": [
     "993 375 049 05"
@@ -12,72 +12,80 @@
   "voxel_mm": 0.75,
   "status": "shape_study_only_unmeasured_interfaces_no_manufacturing",
   "parameters": {
-    "base_length_mm": {
+    "envelope_length_mm": {
       "value": 114,
       "unit": "mm",
       "basis": "assumption",
       "source": null,
-      "note": "Synthetic study value; no OEM measurement or fitment evidence."
+      "note": "Synthetic bionic study value; no OEM measurement or fitment evidence."
     },
-    "base_width_mm": {
-      "value": 40,
+    "root_pad_height_mm": {
+      "value": 8,
       "unit": "mm",
       "basis": "assumption",
       "source": null,
-      "note": "Synthetic study value; no OEM measurement or fitment evidence."
+      "note": "Synthetic bionic study value; no OEM measurement or fitment evidence."
     },
-    "base_thickness_mm": {
-      "value": 6,
-      "unit": "mm",
-      "basis": "assumption",
-      "source": null,
-      "note": "Synthetic study value; no OEM measurement or fitment evidence."
-    },
-    "cup_outer_diameter_mm": {
-      "value": 60,
-      "unit": "mm",
-      "basis": "assumption",
-      "source": null,
-      "note": "Synthetic study value; no OEM measurement or fitment evidence."
-    },
-    "cup_wall_mm": {
+    "root_pad_wall_mm": {
       "value": 4,
       "unit": "mm",
       "basis": "assumption",
       "source": null,
-      "note": "Synthetic study value; no OEM measurement or fitment evidence."
+      "note": "Synthetic bionic study value; no OEM measurement or fitment evidence."
     },
-    "cup_height_mm": {
+    "hub_outer_diameter_mm": {
+      "value": 60,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "Synthetic bionic study value; no OEM measurement or fitment evidence."
+    },
+    "hub_wall_mm": {
+      "value": 4,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "Synthetic bionic study value; no OEM measurement or fitment evidence."
+    },
+    "hub_height_mm": {
       "value": 46,
       "unit": "mm",
       "basis": "assumption",
       "source": null,
-      "note": "Synthetic study value; no OEM measurement or fitment evidence."
+      "note": "Synthetic bionic study value; no OEM measurement or fitment evidence."
+    },
+    "branch_radius_mm": {
+      "value": 3.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "Synthetic bionic study value; no OEM measurement or fitment evidence."
     },
     "study_body_hole_half_span_mm": {
       "value": 43,
       "unit": "mm",
       "basis": "assumption",
       "source": null,
-      "note": "Synthetic study value; no OEM measurement or fitment evidence."
+      "note": "Synthetic bionic study value; no OEM measurement or fitment evidence."
     },
     "study_body_hole_diameter_mm": {
       "value": 8.5,
       "unit": "mm",
       "basis": "assumption",
       "source": null,
-      "note": "Synthetic study value; no OEM measurement or fitment evidence."
+      "note": "Synthetic bionic study value; no OEM measurement or fitment evidence."
     },
     "blend_mm": {
-      "value": 2,
+      "value": 2.5,
       "unit": "mm",
       "basis": "assumption",
       "source": null,
-      "note": "Synthetic study value; no OEM measurement or fitment evidence."
+      "note": "Synthetic bionic study value; no OEM measurement or fitment evidence."
     }
   },
   "open_interfaces": [
     "OEM centres, axes, mating faces, datums, tolerances and inspection evidence are unknown."
   ],
-  "picogk_enhancement": "Separate domains and smooth rib transitions; no engineering qualification."
+  "picogk_enhancement": "Curved branching or six-lobed morphology; no load optimization or engineering qualification.",
+  "design_language": "bionic_morphology_only_not_load_optimized"
 }

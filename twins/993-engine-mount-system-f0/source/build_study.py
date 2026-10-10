@@ -16,12 +16,12 @@ HERE = Path(__file__).resolve().parent
 FAMILY = HERE.parent
 STATUS = "shape_study_only_unmeasured_interfaces_no_manufacturing"
 SPECS = ("engine-bracket", "mount-housing", "isolator-envelope")
+DESIGN = "bionic_morphology_only_not_load_optimized"
 REQUIRED = {"bracket_to_carrier": 4, "carrier_to_left_mount": 1,
             "carrier_to_right_mount": 1, "left_mount_to_body": 2,
             "right_mount_to_body": 2, "bracket_to_engine": None}
 MEASUREMENTS = ("centres_mm", "axes", "bore_diameters_mm", "mating_faces",
                 "datums", "tolerances", "measurement_evidence")
-CARRIER = ROOT / "parts/993-eng-carrier-0001/derived/qwen-concept-f1/carrier-concept.stl"
 
 
 def sha256(path):
@@ -137,6 +137,8 @@ def generate(output, dll, dotnet="dotnet", shape_study=False):
     audit = preflight()
     if not shape_study:
         raise ValueError("Functional generation blocked: --shape-study permits unmeasured geometry only")
+    if any(json.loads((HERE / (s + ".json")).read_text())["design_language"] != DESIGN for s in SPECS):
+        raise ValueError("Only explicitly bionic morphology is accepted in this study")
     if output.exists() or output.is_symlink():
         raise ValueError("Output directory must be new")
     output.mkdir(parents=True)
@@ -151,36 +153,35 @@ def generate(output, dll, dotnet="dotnet", shape_study=False):
         removed[path.name] = remove_degenerate_faces(path, output / path.name)
     for path in native.glob("*.json"):
         shutil.move(path, output / path.name)
-    shutil.copyfile(CARRIER, output / "carrier-reference.stl")
     for path in output.glob("*.stl"):
         mesh_check(path)
         write_mesh_usd(path, path.with_suffix(".usda"))
     assembly = '#usda 1.0\n(defaultPrim = "EngineMountStudy"\nmetersPerUnit = 0.001\nupAxis = "Z")\n'
     assembly += 'def Xform "EngineMountStudy" {\n custom bool manufacturing_authorized = false\n'
     assembly += ' custom string pose_status = "exploded_illustration_only_not_measured_assembly"\n'
-    instances = [("CarrierReference", "carrier-reference", (0, 0, 0)),
-                 ("CentralBracket", "993-ENG-BRACKET-0001", (0, 0, 100)),
-                 ("LeftHousing", "993-ENG-MOUNTING-0001", (-275, 0, 80)),
-                 ("RightHousing", "993-ENG-MOUNTING-0001", (275, 0, 80)),
-                 ("LeftIsolatorEnvelope", "993-ENG-MOUNTING-ISOLATOR-F0", (-275, 0, 145)),
-                 ("RightIsolatorEnvelope", "993-ENG-MOUNTING-ISOLATOR-F0", (275, 0, 145))]
+    instances = [("CentralBracket", "993-ENG-BRACKET-0001", (0, 0, 0)),
+                 ("LeftHousing", "993-ENG-MOUNTING-0001", (-165, 0, 0)),
+                 ("RightHousing", "993-ENG-MOUNTING-0001", (165, 0, 0)),
+                 ("LeftIsolatorEnvelope", "993-ENG-MOUNTING-ISOLATOR-F0", (-165, 0, 70)),
+                 ("RightIsolatorEnvelope", "993-ENG-MOUNTING-ISOLATOR-F0", (165, 0, 70))]
     for name, stem, pose in instances:
         assembly += (f' def Xform "{name}" (prepend references = @{stem}.usda@</Part>) {{\n'
                      f' double3 xformOp:translate = {pose}\n'
                      ' uniform token[] xformOpOrder = ["xformOp:translate"]\n }\n')
     (output / "assembly.usda").write_text(assembly + "}\n")
-    inputs = [FAMILY / "interface-contract.json", CARRIER,
+    inputs = [FAMILY / "interface-contract.json",
               ROOT / "parts/picogk-catalog/engine/EngineMounts.cs",
               ROOT / "parts/picogk-catalog/engine/EngineSdf.cs",
               ROOT / "containers/m64-leap71/sources.lock"]
     inputs += sorted((ROOT / "parts/picogk-catalog/common").glob("*.cs"))
     inputs += [HERE / (s + ".json") for s in SPECS] + [Path(__file__)]
     report = {"schema_version": "1.0.0", "status": STATUS, "interface_audit": audit,
+              "design_language": DESIGN, "load_optimized": False,
               "pose_status": "exploded_illustration_only_not_measured_assembly",
               "selected_material": None, "stiffness_and_damping": None,
               "mass_estimates_qualified": False,
               "exact_zero_area_faces_removed": removed,
-              "carrier_reference": "Archived Qwen F1 comparison only; R9 and its evidence remain unchanged.",
+              "carrier_reference": "Not included in this bionic-only scene; R9 and its evidence remain unchanged.",
               "native_runtime": {"engine_dll_sha256": sha256(dll),
                                  "picogk_dll_sha256": sha256(dll.parent / "PicoGK.dll"),
                                  "dotnet_version": subprocess.check_output([dotnet, "--version"], text=True).strip()},
@@ -198,12 +199,14 @@ def check(output):
     report = json.loads((output / "study-report.json").read_text())
     if report["status"] != STATUS or report["interface_audit"] != preflight():
         raise ValueError("Study status or independent attachment audit drifted")
+    if report["design_language"] != DESIGN or report["load_optimized"] is not False:
+        raise ValueError("Bionic morphology cannot claim load optimization")
     if report["selected_material"] is not None or report["stiffness_and_damping"] is not None or report["mass_estimates_qualified"] is not False:
         raise ValueError("Geometry cannot qualify material, mount stiffness or mass")
     for name, expected in report["inputs"].items():
         if sha256(ROOT / name) != expected:
             raise ValueError("Study input changed: " + name)
-    expected_artifacts = {"carrier-reference.stl", "carrier-reference.usda", "assembly.usda"}
+    expected_artifacts = {"assembly.usda"}
     for stem in SPECS:
         spec = json.loads((HERE / (stem + ".json")).read_text())
         expected_artifacts.update(spec["part_id"] + ext for ext in (".stl", ".usda", ".report.json"))

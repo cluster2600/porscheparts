@@ -1,4 +1,4 @@
-# Supports moteur 993 — étude PicoGK F0
+# Supports moteur bioniques 993 — étude PicoGK F0
 
 Ce dossier ajoute une **console centrale** et un **boîtier de support moteur**
 paramétriques au travail déjà commencé sur la traverse Turbo. Il représente
@@ -11,9 +11,9 @@ n'est présenté comme un silentbloc fonctionnel.
 
 | Référence | Rôle | Traitement |
 | --- | --- | --- |
-| 993 115 021 53 | Traverse Turbo, PET 17 | Référence visuelle F1 archivée ; R9 et ses preuves conservés |
-| 993 115 103 52 | Console centrale, PET 18 | Nouvelle étude à plaque, nervures et congés |
-| 993 375 049 05, quantité 2 | Supports moteur, PET 21 | Nouveau boîtier et enveloppe souple distincte |
+| 993 115 021 53 | Traverse Turbo, PET 17 | R9 et ses preuves conservés hors de cette scène |
+| 993 115 103 52 | Console centrale, PET 18 | Squelette à quatre racines, deux troncs et couronne courbe |
+| 993 375 049 05, quantité 2 | Supports moteur, PET 21 | Cage ramifiée et enveloppe à six lobes distincte |
 | 993 115 021 90 | Traverse Carrera/Carrera 4/S/4S | Identité déjà relevée ; géométrie non produite ici |
 | 993 115 021 41 | Traverse RS | Identité déjà relevée ; géométrie non produite ici |
 
@@ -25,12 +25,24 @@ compatibilité dimensionnelle.
 
 ## Ce qui est intégré
 
-Le générateur réutilise le noyau PicoGK 2.3.0 et les helpers d'implicites du
-dépôt. La console comporte des transitions adoucies entre plaque, montant et
-nervures ; ses quatre perçages sont des **positions d'étude hypothétiques**.
-Le boîtier conserve une cavité ouverte et deux perçages d'étude côté caisse.
-L'enveloppe souple est un volume d'occupation annulaire indépendant ; sa matière,
-son mécanisme interne, sa raideur et son amortissement restent inconnus.
+Le générateur réutilise le noyau PicoGK 2.3.0 et les courbes et implicites du
+dépôt. **Toutes les nouvelles formes sont bioniques** :
+
+- La console est un squelette ouvert. Quatre collerettes se ramifient en deux
+  troncs courbes et une couronne, avec des sections progressives et des jonctions
+  adoucies. Ses quatre perçages restent des positions hypothétiques.
+- Le support est une cage ouverte à six branches courbes et quatre racines
+  bifurquées depuis deux collerettes côté caisse. Les couronnes circulaires
+  délimitent un volume d'accueil hypothétique ; il n'y a pas de coupelle pleine.
+- L'enveloppe souple séparée présente une taille étranglée et six lobes.
+  Son mécanisme interne, sa matière, sa raideur et son amortissement restent inconnus.
+
+« Bionique » décrit ici une morphologie inspirée des ramifications du vivant,
+**pas une optimisation topologique ou mécanique validée**. Aucun solveur n'a
+justifié la répartition de matière. Les anciennes plaques, montants, coupelle
+pleine et traverse F1 rectiligne ne figurent plus dans les exports de cette famille.
+Les surfaces locales des collerettes autour des perçages restent planes pour
+représenter des interfaces d'étude ; elles ne constituent pas une plaque porteuse.
 
 L'échangeur HelixHeatX, les gyroïdes et les modèles d'impellers ne sont pas
 incorporés au chemin de charge. Ils n'apportent pas de justification mécanique
@@ -60,28 +72,30 @@ Ce contrôle ne détecte pas toutes les auto-intersections et ne prouve ni monta
 ni résistance, ni tenue en fatigue.
 
 La [scène OpenUSD](derived/assembly.usda) utilise des millimètres et une
-**pose éclatée illustrative**, avec deux instances du support. Elle ne définit
-pas le placement réel sur une 993. La traverse F1 archivée omet encore la fixation
-de console ; la représentation ne corrige pas cette lacune par inférence.
-La présentation R9 demeure dans son dossier d'origine.
+**pose éclatée illustrative**, avec cinq instances : console, deux cages et deux
+enveloppes souples. Elle ne définit pas le placement réel sur une 993. La traverse
+R9 demeure dans son dossier d'origine ; aucun modèle rectiligne archivé n'est
+substitué à cette traverse dans la scène bionique.
 
 La densité du runner est réglée à zéro pour désactiver son estimation :
 sa sortie « masse 0 » n'est **pas** une masse physique. Aucun matériau n'est
 sélectionné ou qualifié par cette étude.
 
-## Vérifications du 10 octobre 2026
+## Vérifications de la révision bionique
 
-- Compilation C# : zéro erreur et zéro avertissement ; trois exports PicoGK.
-- Refus natif vérifié pour un statut qualifié, des trous hors enveloppe,
-  une paroi non résolue et une densité non nulle ; aucun STL produit dans ces cas.
-- Quatre maillages retenus fermés ; scène relue avec OpenUSD 26.5 : six
-  instances, aucune erreur de composition et topologie valide. Image inspectée.
-- Suite Python sous Linux arm64 : 3 603 tests, zéro échec, 187 tests optionnels
-  ignorés. Les huit tests spécifiques et les contrôles catalogue passent également.
-- `make check` global a été interrompu sur
-  `917-manufacturing-f37-lpbf-audit-check` : son Docker imbriqué n'est pas
-  disponible dans le conteneur de validation. Les autres cibles globales après
-  cet arrêt ne sont pas déclarées réussies. La PR reste en brouillon.
+Les exports doivent passer le contrôle indépendant des trois maillages et de
+leurs empreintes. Les tests de géométrie contrôlent aussi les évidements qui
+remplacent la plaque et la paroi pleine, les perçages et l'étranglement à six
+lobes. Ce contrôle porte sur les formes produites, pas sur leurs performances.
+
+La compilation C# et les trois générations natives passent. Les dix tests de
+cette famille et cinq cas natifs invalides rejetés sans STL ont été vérifiés ;
+la scène a été relue avec OpenUSD 26.5. La suite Python sous Linux arm64 passe
+sans échec : 3 605 tests, dont 187 ignorés pour dépendances optionnelles. Le
+`make check` global s'arrête ensuite à `917-manufacturing-f37-lpbf-audit-check`,
+car Docker est absent du conteneur de validation. Les cibles globales suivantes
+ne sont pas confirmées ; aucune validation physique ni acceptation de
+fabrication n'est acquise.
 
 ## Reproduire
 

@@ -14,14 +14,14 @@ from build_study import FAMILY, check, read_stl, sha256
 def main():
     derived, media = FAMILY / "derived", FAMILY / "media"
     check(derived)
-    names = ["carrier-reference", "993-ENG-BRACKET-0001",
+    names = ["993-ENG-BRACKET-0001",
              "993-ENG-MOUNTING-0001", "993-ENG-MOUNTING-ISOLATOR-F0"]
     meshes = []
     for name in names:
         points, faces = read_stl(derived / (name + ".stl"))
         meshes.append(np.asarray(points)[faces])
-    colors = ["#aab7c4", "#e4a056", "#599dcd", "#9a82c7"]
-    fig = plt.figure(figsize=(15, 8), facecolor="#f4f6f8")
+    colors = ["#e4a056", "#599dcd", "#9a82c7"]
+    fig = plt.figure(figsize=(15, 7), facecolor="#f4f6f8")
 
     def panel(position, title, instances, limits):
         ax = fig.add_subplot(position, projection="3d", facecolor="#f4f6f8")
@@ -37,17 +37,13 @@ def main():
         ax.set_axis_off()
         ax.set_title(title, fontsize=13, color="#253345", pad=0)
 
-    panel(211, "Ensemble éclaté — positions non mesurées",
-          [(0, (0, 0, 0)), (1, (0, 0, 100)), (2, (-275, 0, 80)),
-           (2, (275, 0, 80)), (3, (-275, 0, 145)), (3, (275, 0, 145))],
-          [(-345, 345), (-70, 70), (-30, 185)])
-    panel(223, "Console centrale — plaque et nervures",
-          [(1, (0, 0, 0))], [(-75, 75), (-40, 40), (-5, 70)])
-    panel(224, "Boîtier et enveloppe souple séparée",
-          [(2, (0, 0, 0)), (3, (0, 0, 68))], [(-65, 65), (-35, 35), (-5, 100)])
-    fig.suptitle("Supports moteur 993 Turbo · étude paramétrique PicoGK F0",
+    panel(121, "Console — quatre racines et deux troncs",
+          [(0, (0, 0, 0))], [(-70, 70), (-40, 40), (-5, 75)])
+    panel(122, "Support — cage ramifiée et enveloppe à six lobes",
+          [(1, (0, 0, 0)), (2, (0, 0, 70))], [(-65, 65), (-42, 42), (-5, 105)])
+    fig.suptitle("Supports moteur bioniques 993 Turbo · PicoGK F0",
                  fontsize=20, color="#253345", y=.97)
-    fig.text(.5, .035, "Géométrie hypothétique · perçages non mesurés · aucune autorisation de fabrication",
+    fig.text(.5, .035, "Morphologie bionique · charges non optimisées · interfaces non mesurées · fabrication interdite",
              ha="center", fontsize=12, color="#674b3a")
     fig.subplots_adjust(top=.90, bottom=.08, hspace=.02, wspace=.02)
     media.mkdir(exist_ok=True)

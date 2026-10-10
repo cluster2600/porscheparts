@@ -329,7 +329,7 @@ flowchart LR
 
 | part | candidate material | process | status |
 |---|---|---|---|
-| [Console centrale moteur Turbo — étude PicoGK](docs/pieces/993-eng-bracket-0001.md) | undetermined | undecided | **prohibited pending engineering** |
+| [Console centrale moteur Turbo bionique — étud…](docs/pieces/993-eng-bracket-0001.md) | undetermined | undecided | **prohibited pending engineering** |
 | [Turbo engine carrier (Motortraeger)](docs/pieces/993-eng-carrier-0001.md) | unknown | undecided | **safety-critical** |
 | [993 timing chain case and its lids](docs/pieces/993-eng-chain-case-0001.md) | unidentified | undecided | **prohibited pending engineering** |
 | [Left chain case lid 964 105 107 01](docs/pieces/993-eng-chain-case-lid-ti-f0-0001.md) | Ti-6Al-4V Grade 5, plate — deliberate c… | CNC | functional |
@@ -348,7 +348,7 @@ flowchart LR
 | [K16 compressor wheel](docs/pieces/993-eng-k16-compressor-wheel-al2139-f1-0001.md) | EOS Aluminium Al2139 AM, M290 60 µm, he… | LPBF | **prohibited pending engineering** |
 | [993 K16 compressor wheel](docs/pieces/993-eng-k16-compressor-wheel-alsi10mg-f0-0001.md) | EOS AlSi10Mg, screening | LPBF | **prohibited pending engineering** |
 | [K16 turbine wheel](docs/pieces/993-eng-k16-turbine-wheel-in718-f0-0001.md) | EOS NickelAlloy IN718 API, M290 40 µm… | undecided | **prohibited pending engineering** |
-| [Support moteur Turbo — boîtier et enveloppe s…](docs/pieces/993-eng-mounting-0001.md) | undetermined | undecided | **prohibited pending engineering** |
+| [Support moteur Turbo bionique — cage et envel…](docs/pieces/993-eng-mounting-0001.md) | undetermined | undecided | **prohibited pending engineering** |
 | [Engine oil filter console with integrated gal…](docs/pieces/993-eng-oil-filter-console-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 for comparison | undecided | **prohibited pending engineering** |
 | [M64/60 piston with cooling gallery](docs/pieces/993-eng-piston-cp1-gallery-f0-0001.md) | Constellium Aheadd CP1, Velo3D Sapphire… | LPBF | **prohibited pending engineering** |
 | [993 three-runner intake manifold](docs/pieces/993-eng-three-runner-intake-alsi10mg-f0-0001.md) | generic AlSi10Mg for screening | undecided | functional |
