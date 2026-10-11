@@ -145,7 +145,12 @@ model never converges. Tied over a strip, it converges, but K then follows
 the strip width assumed: from ×0.78 to ×1.89 the skin-formed boxes per
 kilogram, between 0 and 60 mm. The ranking is not settled. What it does
 show is the design point: a tube architecture is as stiff as its
-tube-to-skin joint, which the skin-formed boxes do not have. (Corrected on
+tube-to-skin joint, which the skin-formed boxes do not have. With the tubes
+meshed as shells and bonded along a line, the physical case, the tube model
+does not converge: the skin between the tubes stays open, and its
+flexibility keeps growing. On the finest mesh the skin boxes lead by ×1.18
+per kg, and the gap grows. The direction holds: form the closed sections
+with the skin. (Corrected on
 2026-10-11: the first comparison claimed ×1.4 to ×1.9 for the boxes.)
 
 **What each member is worth (2026-10-11).** Removing the members of

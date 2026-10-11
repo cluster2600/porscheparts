@@ -242,14 +242,14 @@ def twist(p, u, s, stations):
     return out
 
 
-def solve_repeated(pts, tri, secs, rear, fl, fr, beams=(), n=REPEATS, most=7):
+def solve_repeated(pts, tri, secs, rear, fl, fr, beams=(), n=REPEATS, most=7, equations=()):
     """The K that two solves agree on. CalculiX now and then returns a K
     too high on the same input (6 of 21 triples on 2026-10-10, +2% to
     +60%, never too low), while a correct solve repeats to the unit. So: n
     solves, then more until two agree within 0.01%, at most `most`."""
     runs = []
     while len(runs) < most:
-        runs.append(tr.solve(pts, tri, secs, rear, fl, fr, beams=beams))
+        runs.append(tr.solve(pts, tri, secs, rear, fl, fr, beams=beams, equations=equations))
         ks = [float(r[0]) for r in runs]
         if len(runs) < n:
             continue

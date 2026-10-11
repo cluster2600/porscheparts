@@ -206,17 +206,42 @@ wider the strip, the more stiffness the model invents. That makes the
 strip ties an upper bound, while the point tie, which sinks, is a lower
 bound. **The skin boxes, at 35,462, sit inside that bracket.**
 
-What it means:
+**Tubes meshed as shells.** `source/torsion_shell_tubes.py` gives every
+tube its own wall:
 
-- **The ranking of the two architectures cannot be settled with beam
-  tubes.** It is decided by the tube-to-skin joint: how wide the bond is,
-  and how much the tube ovalizes under it. The next model would mesh the
-  tubes as shells, bonded along a real flange.
-- **That joint is itself the design point.** A tube architecture is only
-  as stiff as its bond. The skin-formed boxes have no such joint: the
-  closed section is one laminate.
-- **The tubes do work.** With a 40 mm bond they multiply the model without
-  them by 6 to 8, for 15 kg.
+- S3 shells, refined with the skin;
+- bonded along the line of tangency to the skin triangle beneath
+  (translation ties);
+- tied to each other where they meet.
+
+On a cantilever plate carrying a tube, this bond converges to 9% softer
+than composite beam theory. That is physical: the shell can ovalize. Tying
+more lines around the tube was tried and rejected, because it came out
+stiffer than the theory, which is impossible.
+
+| CFRP layup | K, 210 / 300 / 420 sections | against the skin boxes, per kg |
+|---|---|---|
+| `picogk-rings/`, shell tubes, line bond | 35,198 / 29,607 / 25,895 | ×0.75 / ×1.01 / ×1.18 |
+| `picogk-rings/` without its tubes | 7,137 / 5,038 / 4,600 | |
+| `picogk/`, skin boxes | 30,786 / 34,834 / 35,462 | 1 |
+
+What holds:
+
+- **The tube model still does not converge** (−16%, then −13%). This time
+  the bond is not the cause: the tubes are refined with the skin. The
+  cause is the skin between the tubes. Bonded to the tubes along a line
+  only, it stays an open skin, and its flexibility keeps growing as the
+  mesh is refined, as the open shell's does. The beam tubes on strips
+  seemed to converge only because their rigid strips stiffened that skin.
+- **In the skin-box architecture the same skin is one wall of the closed
+  sections,** and that model is stable. On the finest mesh the boxes lead
+  by ×1.18 per kilogram, and the gap grows with each refinement.
+- **This is the design result:** a closed section formed with the skin
+  puts the skin to work. Tubes added to the skin leave it open, unless
+  their joint is a wide, stiff flange, which is then the part to design.
+  The ranking now leans to the skin boxes with a physical bond. It is not
+  a converged number: the tube model's absolute K is not known.
+- **The tubes do work:** 5 to 6 times the model without them, for 15 kg.
 
 Neither model is a design. The `picogk/` boxes are larger and heavier: its
 members include rings around the lids and arches and a full B-ring, while
@@ -356,6 +381,7 @@ In the `cadsim` image, with shapely from the print-simulation library folder:
     python3 source/torsion_monocoque.py   # derived/torsion-monocoque.json, after ../picogk/
     python3 source/torsion_rings.py       # derived/torsion-rings.json, from picogk-rings/
     python3 source/torsion_rings.py --bond-sensitivity   # other tube-to-skin bond widths
+    python3 source/torsion_shell_tubes.py    # tubes meshed as shells, line bond (12 GB)
     python3 source/member_study.py        # derived/torsion-members.json, two to three hours
     python3 source/member_study.py --pruned   # the weak members removed together
     python3 source/layup_study.py         # derived/torsion-layup.json, about two hours
