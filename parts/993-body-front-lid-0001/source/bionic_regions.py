@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Region meshes for the front-lid topology optimization (bionic.json).
 
-    python bionic_regions.py
+    python bionic_regions.py           (region tiles + their bionic.json entries)
+    python bionic_regions.py --pads    (the "solid" pad entries only)
 
 Writes closed STL tiles into parts/picogk-catalog/out/bionic-regions/<PART>/
 and prints the matching bionic.json shape entries:
-  design-*.stl : slab 0.3 to 27 mm under the outer skin surface, 20 mm inside
+  design-*.stl : slab 0.3 to 24 mm under the outer skin surface, 20 mm inside
                  the lid edge (where the inner frame may grow);
   above-*.stl  : everything from 0.3 mm under the outer skin surface upward
                  (a "void": the frame never prints through the skin).
@@ -33,7 +34,7 @@ W2 = W / 2
 wf = 0.72 * W2
 y0, y1, nose = 0.12, 0.55, 70.0
 zBase = np.sqrt(R * R - W2 * W2)
-INSET, DEPTH, TOP = 20.0, 27.0, 0.3
+INSET, DEPTH, TOP = 20.0, 24.0, 0.3
 
 
 def smooth(t):
@@ -96,10 +97,37 @@ def tiles(field, lo, hi, n, h, name, note, decimate=True, overlap=1.0):
     return shapes
 
 
+# Pads (assumed positions, not measured): vertical cylinders (note, x, y, r,
+# depth) from "depth" under the outer surface to 5 mm above it (the "above"
+# void trims them flush). Hinge and latch pads are mounting pads; the buffer
+# and load pads are small load-introduction pads, so that topopt.py applies
+# every force on nodes of solid elements.
+PADS = [
+    ("left hinge pad", -500, 1030, 30, DEPTH), ("right hinge pad", 500, 1030, 30, DEPTH),
+    ("latch / safety-catch pad", 0, 70, 30, DEPTH),
+    ("left front buffer pad", -400, 130, 20, DEPTH), ("right front buffer pad", 400, 130, 20, DEPTH),
+    ("left front load pad", -300, 330, 16, 16.0), ("right front load pad", 300, 330, 16, 16.0),
+    ("left rear load pad", -300, 760, 16, 16.0), ("right rear load pad", 300, 760, 16, 16.0),
+    ("left side load pad", -540, 560, 16, 16.0), ("right side load pad", 540, 560, 16, 16.0),
+    ("centre load pad", 0, 560, 20, 16.0),
+]
+
+
+def pads():
+    out = []
+    for note, x, y, r, depth in PADS:
+        z = float(F(np.array(x, float), np.array(y, float)))
+        out.append({"type": "cyl", "a": [x, y, round(z - depth, 1)], "b": [x, y, round(z + 5.0, 1)], "r": r,
+                    "basis": "assumption", "note": note})
+    return out
+
 if __name__ == "__main__":
+    if "--pads" in __import__("sys").argv:
+        print(json.dumps(pads(), indent=1))
+        raise SystemExit
     OUT.mkdir(parents=True, exist_ok=True)
     d = tiles(design, (-W2, 0, -80), (W2, L, 75), 6, 3.0, "design",
-              "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile")
+              "frame slab under the skin (0.3 to 24 mm deep, 20 mm inside the edge), one tile")
     v = tiles(above, (-W2 - 45, -45, -100), (W2 + 45, L + 45, 105), 6, 6.0, "above",
               "space from 0.3 mm under the outer skin surface upward, one tile", decimate=False, overlap=12.0)
     print(json.dumps({"design": d, "void": v}, indent=1))
