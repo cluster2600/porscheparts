@@ -342,6 +342,82 @@ Limits:
   edges, so F1 caps each family at +0.5 mm. That is a limit of the mesh,
   not of the design.
 
+## Bending: the same members, other weights
+
+`source/bending.py` asks whether the members that carry torsion also carry
+the other global load case: the body as a beam between its axles. It uses
+the same shell models, materials and meshes, with a different load:
+
+- **supports:** the suspension patches of the torsion case, cut down to a
+  strip of ±40 mm around each axle and held vertically (rollers at the
+  front, pins at the rear, no clamp moment);
+- **load:** 2 kN downward, spread over the skin of both sills within
+  ±100 mm of mid-wheelbase. The load goes on the sills, not the floor,
+  because the floor is modelled by its sandwich faces only;
+- **two measures:** K, the force over the mean deflection of the loaded
+  skin (N/mm), and the cabin's own sag, the mid-wheelbase deflection
+  below the chord between d = 400 and 1950 mm. Deflections are read on
+  the sill line, not on whole sections, which also distort.
+
+![Bending](evidence/bending.png)
+
+| case | mass | K, three meshes | cabin K, three meshes |
+|---|---|---|---|
+| open shell, 0.8 mm steel | 69 kg | 5,086 / 5,190 / 4,481 | 9,237 / 9,509 / 8,527 |
+| open shell, CFRP | 42 kg | 3,534 / 3,597 / 3,131 | 6,297 / 6,403 / 5,767 |
+| `picogk/` boxes, 0.8 mm steel | 124-135 kg | 18,331 / 20,752 / 18,914 | 36,014 / 35,446 / 32,170 |
+| `picogk/` boxes, CFRP | 78-84 kg | 13,425 / 15,021 / 13,822 | 26,482 / 26,725 / 23,505 |
+
+*N/mm. The values move by up to 12% between meshes and not in one
+direction: the support strips hold 27, 70 and 107 nodes. The ratios hold.*
+
+**The boxes multiply the bending stiffness by about four:** ×3.6 to ×4.4
+in K and ×3.7 to ×4.2 in cabin K, on every mesh. In torsion the same boxes
+gain ×5 to ×15 and more as the mesh is refined. The open shell already
+carries bending through its sides, roof and floor; it cannot carry torsion
+without closed sections.
+
+**Members** (`bending.py --members`, CFRP, 300 and 420 sections, same
+leave-one-out as `member_study.py`):
+
+| member | mass | bending: K lost | bending: cabin K lost | torsion: cabin K lost |
+|---|---|---|---|---|
+| sills | 3.3-3.8 kg | 22-28% | 28-37% | 8-11% |
+| door rings | 4.4 kg | 24% | 20-21% | 27-31% |
+| windscreen frame | 2.1 kg | 9-11% | 5% | 24-27% |
+| quarter-window rings | 1.1 kg | 6% | 3% | 17-20% |
+| front arches | 2.4-3.5 kg | 14% | -1 to -0.7% | -2 to 0% |
+| rear arches | 1.4-1.6 kg | 4-5% | 1-3% | 5% |
+| front lid ring | 1.8-1.9 kg | 2-3% | 0-0.1% | 2% |
+| B-ring, engine lid, front rails, rear window, tunnel | 0.9-4.2 kg each | 0-1% | 0-1% | 0-5% |
+
+The five weak members removed together cost 0.4 to 1.5% of K and 0.4 to
+1.1% of the cabin K in bending, for 11 to 15 kg. In torsion the same
+pruning costs 14 to 16% of the cabin K.
+
+What it says:
+
+- **No new member is needed for bending.** The cabin members are the same,
+  with other weights: the sills lead in bending (28-37%), the door rings
+  follow. The windscreen frame and the quarter windows, decisive in
+  torsion, count for little here.
+- **Torsion decides the architecture and the pruning.** The pruning trade
+  of [What each member is worth](#what-each-member-is-worth) costs about
+  1% in bending, so its price is the torsion one.
+- **The sills are where bending and the carbon meet.** Their outer wall is
+  part of the "box outer walls" family, the one with the best return in
+  [Where the carbon pays](#where-the-carbon-pays).
+- **The front arches carry the front supports into the body:** 14% of K,
+  nothing for the cabin, as in torsion.
+
+Limits:
+
+- One vertical load at mid-wheelbase, idealised supports. No doors, no
+  glass, no suspension, no payload distribution, no strength or buckling
+  check.
+- The floor and bulkheads count by their faces only, so the floor's and
+  the tunnel's bending roles are under-estimated.
+
 ## Corrections (2026-10-11)
 
 Three faults in this folder's shell model were found and fixed. All the
@@ -385,6 +461,9 @@ In the `cadsim` image, with shapely from the print-simulation library folder:
     python3 source/member_study.py        # derived/torsion-members.json, two to three hours
     python3 source/member_study.py --pruned   # the weak members removed together
     python3 source/layup_study.py         # derived/torsion-layup.json, about two hours
+    python3 source/bending.py             # derived/bending.json, vertical bending
+    python3 source/bending.py --members   # leave-one-out in bending, about an hour
+    python3 source/bending.py --pruned    # the torsion pruning, in bending
     python3 source/figures.py          # evidence/*.png
     python3 ../fea/hero.py             # the home-page banner
 

@@ -116,6 +116,32 @@ class MonocoqueShellTests(unittest.TestCase):
         lead = (boxes["K"][-1] / boxes["mass_kg"]) / (t["K"][-1] / t["mass_kg"])
         self.assertGreater(lead, 1.1)                                             # boxes ahead on the finest mesh
 
+    def test_bending_keeps_the_cabin_members_and_leaves_the_pruning_to_torsion(self) -> None:
+        r = json.loads((SHELL / "derived/bending.json").read_text(encoding="utf-8"))
+        self.assertIn("prohibited_pending_engineering", r["classification"])
+        c = r["cases"]
+        for row in c.values():                                                 # every value one two solves agree on
+            for k, runs in zip(row["K"], row["K_repeats"]):
+                self.assertGreaterEqual(sum(1 for x in runs if abs(x - k) <= 1), 2)
+        for material in ("0.8 mm steel", "CFRP layup"):                       # the boxes gain about x4 on every mesh
+            for key in ("K", "K_cabin"):
+                ratio = r["ratios"][f"monocoque / open shell, {material}, {key}"]
+                self.assertEqual(len(ratio), 3)
+                self.assertTrue(all(3.0 < x < 5.0 for x in ratio), (material, key))
+        tors = json.loads((SHELL / "derived/torsion-monocoque.json").read_text(encoding="utf-8"))["ratios"]
+        self.assertGreater(tors["monocoque / open shell, CFRP"][-1], r["ratios"]["monocoque / open shell, CFRP layup, K"][-1])
+        m = r["members"]
+        self.assertTrue(m["complete"])
+        lost = {n: row["K_cabin_lost_fraction"] for n, row in m["members"].items()}
+        for mesh in range(2):                                                  # sills, then door rings
+            ranked = sorted(lost, key=lambda n: -lost[n][mesh])
+            self.assertEqual(ranked[:2], ["sills", "door"])
+        for name in m["pruned"]["removed"]:
+            self.assertLess(max(lost[name]), 0.02, name)
+        self.assertLess(max(m["pruned"]["K_cabin_lost_fraction"]), 0.03)       # torsion's pruning costs ~1% here
+        torsion_pruned = json.loads((SHELL / "derived/torsion-members.json").read_text(encoding="utf-8"))["pruned"]
+        self.assertGreater(min(torsion_pruned["K_cabin_lost_fraction"]), 5 * max(m["pruned"]["K_cabin_lost_fraction"]))
+
 
 if __name__ == "__main__":
     unittest.main()
