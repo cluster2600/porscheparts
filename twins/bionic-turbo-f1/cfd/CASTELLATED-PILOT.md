@@ -52,7 +52,7 @@ n'est pas éligible à cette procédure.
 
 ```sh
 python twins/bionic-turbo-f1/cfd/check_cartesian_cells.py NEW_CASE
-python twins/bionic-turbo-f1/cfd/prepare_runtime_004.py NEW_CASE NEW_RUNTIME_CASE
+python twins/bionic-turbo-f1/cfd/prepare_runtime_006.py NEW_CASE NEW_RUNTIME_CASE
 python twins/bionic-turbo-f1/cfd/run_cartesian_pilot.py NEW_RUNTIME_CASE
 ```
 
@@ -76,6 +76,17 @@ de nouvelles empreintes. Les tentatives précédentes restent intactes.
 de pression GAMG/DIC par PCG/DIC, avec les mêmes tolérances, après l'exception
 flottante native dans `GAMGSolver::scale` au premier calcul de pression.
 Cette modification numérique ne démontre pas la convergence de la solution.
+
+PCG n'a pas convergé au premier calcul de pression dans les deux variantes.
+`runtime_005` repart de `runtime_003` et sélectionne SIMPLE classique
+(`consistent no`) avec GAMG. Les premières résolutions de pression aboutissent,
+mais l'observateur auxiliaire `yPlus` déclenche une exception flottante après
+la première itération. `runtime_006` conserve les équations de `runtime_005`
+et programme l'exécution de cet observateur aux itérations sauvegardées,
+comme son écriture était déjà configurée. Les valeurs de turbulence bornées
+restent signalées dans les journaux ; ce changement d'échantillonnage ne valide
+pas les champs ni le traitement de paroi. L'auditeur canonique F1 ne doit pas
+être utilisé pour accorder une admission à ce profil séparé.
 
 La réussite d'un calcul pilote ne valide ni les performances physiques,
 ni le débit maximal, ni la puissance maximale. Il reste à obtenir un maillage

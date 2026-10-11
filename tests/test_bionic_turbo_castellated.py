@@ -14,6 +14,8 @@ import run_cartesian_pilot
 import prepare_runtime_retry
 import prepare_runtime_003
 import prepare_runtime_004
+import prepare_runtime_005
+import prepare_runtime_006
 from test_bionic_turbo_f1_cfd import surface as tetra_surface
 
 
@@ -28,8 +30,9 @@ class CastellatedCaseTests(unittest.TestCase):
             (case / "constant").mkdir()
             (case / "constant/thermophysicalProperties").write_text("thermodynamics {Cp 1004.675; hf 0;}")
             (case / "system").mkdir()
-            (case / "system/fvSolution").write_text("p {solver GAMG; smoother DIC; tolerance 1e-8;}")
-            manifest = {"image": prepare_case.IMAGE, "file_sha256": {name: prepare_case.sha(case / name) for name in ("0/U", "0/p", "0/T", "constant/thermophysicalProperties", "system/fvSolution")}}
+            (case / "system/fvSolution").write_text("p {solver GAMG; smoother DIC; tolerance 1e-8;} SIMPLE {consistent yes;}")
+            (case / "system/controlDict").write_text('yPlus {type yPlus; libs ("libfieldFunctionObjects.so"); writeControl writeTime;}')
+            manifest = {"image": prepare_case.IMAGE, "file_sha256": {name: prepare_case.sha(case / name) for name in ("0/U", "0/p", "0/T", "constant/thermophysicalProperties", "system/fvSolution", "system/controlDict")}}
             (case / "case-manifest.json").write_text(json.dumps(manifest))
             proof = {"schema": "bionic-cartesian-diagnostic-admission/v1", "status": "cartesian_geometry_proven",
                      "source_sha256": prepare_case.sha(Path(check_cartesian_cells.__file__)),
@@ -71,6 +74,16 @@ class CastellatedCaseTests(unittest.TestCase):
             self.assertIn("solver PCG; preconditioner DIC; tolerance 1e-8;", (pcg / "system/fvSolution").read_text())
             self.assertIn("solver GAMG;", (case / "system/fvSolution").read_text())
             run_cartesian_pilot.verify(pcg)
+            simple = case / "runtime005"
+            prepare_runtime_005.prepare(case, simple)
+            self.assertIn("consistent no;", (simple / "system/fvSolution").read_text())
+            self.assertIn("solver GAMG;", (simple / "system/fvSolution").read_text())
+            run_cartesian_pilot.verify(simple)
+            observer = case / "runtime006"
+            prepare_runtime_006.prepare(case, observer)
+            self.assertIn("executeControl writeTime; writeControl writeTime;", (observer / "system/controlDict").read_text())
+            self.assertEqual((simple / "system/fvSolution").read_bytes(), (observer / "system/fvSolution").read_bytes())
+            run_cartesian_pilot.verify(observer)
 
     def test_cartesian_proof_accepts_split_coplanar_face_but_rejects_distortion(self):
         points = np.array([(0,0,0),(1,0,0),(1,1,0),(0,1,0),
