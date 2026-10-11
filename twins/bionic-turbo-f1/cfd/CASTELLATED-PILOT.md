@@ -52,7 +52,8 @@ n'est pas éligible à cette procédure.
 
 ```sh
 python twins/bionic-turbo-f1/cfd/check_cartesian_cells.py NEW_CASE
-python twins/bionic-turbo-f1/cfd/run_cartesian_pilot.py NEW_CASE
+python twins/bionic-turbo-f1/cfd/prepare_runtime_004.py NEW_CASE NEW_RUNTIME_CASE
+python twins/bionic-turbo-f1/cfd/run_cartesian_pilot.py NEW_RUNTIME_CASE
 ```
 
 Ce second exécuteur exige une preuve liée aux empreintes du maillage et des
@@ -62,6 +63,19 @@ Le solveur est limité à deux CPU, 6 Gio et deux heures, sans réseau.
 Sa fin normale ne signifie ni convergence ni validation : les historiques de
 masse, couple, énergie et résidus doivent encore être audités. Le rapport
 d'admission canonique ne devient jamais positif par cette procédure.
+
+La préparation `runtime_003` copie uniquement les entrées et le maillage
+vérifiés dans un nouveau dossier. Elle corrige deux références requises par
+le runtime natif : `Hf` dans `hConst`, et `thermo:psi` pour les conditions de
+pression/température totales. Les valeurs physiques ne changent pas. La preuve
+géométrique est héritée avec les empreintes exactes de chaque fichier de maillage,
+les reçus parents sont copiés dans `provenance/`, et les entrées corrigées reçoivent
+de nouvelles empreintes. Les tentatives précédentes restent intactes.
+
+`runtime_004` conserve ces corrections et remplace uniquement le solveur linéaire
+de pression GAMG/DIC par PCG/DIC, avec les mêmes tolérances, après l'exception
+flottante native dans `GAMGSolver::scale` au premier calcul de pression.
+Cette modification numérique ne démontre pas la convergence de la solution.
 
 La réussite d'un calcul pilote ne valide ni les performances physiques,
 ni le débit maximal, ni la puissance maximale. Il reste à obtenir un maillage

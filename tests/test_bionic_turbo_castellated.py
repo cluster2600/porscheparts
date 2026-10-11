@@ -11,6 +11,9 @@ import prepare_case
 import prepare_castellated
 import check_cartesian_cells
 import run_cartesian_pilot
+import prepare_runtime_retry
+import prepare_runtime_003
+import prepare_runtime_004
 from test_bionic_turbo_f1_cfd import surface as tetra_surface
 
 
@@ -20,7 +23,13 @@ class CastellatedCaseTests(unittest.TestCase):
             case = Path(directory)
             (case / "0").mkdir()
             (case / "0/U").write_text("original")
-            manifest = {"image": prepare_case.IMAGE, "file_sha256": {"0/U": prepare_case.sha(case / "0/U")}}
+            (case / "0/p").write_text("inlet {type totalPressure; psi psi;}")
+            (case / "0/T").write_text("inlet {type totalTemperature; psi psi;}")
+            (case / "constant").mkdir()
+            (case / "constant/thermophysicalProperties").write_text("thermodynamics {Cp 1004.675; hf 0;}")
+            (case / "system").mkdir()
+            (case / "system/fvSolution").write_text("p {solver GAMG; smoother DIC; tolerance 1e-8;}")
+            manifest = {"image": prepare_case.IMAGE, "file_sha256": {name: prepare_case.sha(case / name) for name in ("0/U", "0/p", "0/T", "constant/thermophysicalProperties", "system/fvSolution")}}
             (case / "case-manifest.json").write_text(json.dumps(manifest))
             proof = {"schema": "bionic-cartesian-diagnostic-admission/v1", "status": "cartesian_geometry_proven",
                      "source_sha256": prepare_case.sha(Path(check_cartesian_cells.__file__)),
@@ -43,6 +52,25 @@ class CastellatedCaseTests(unittest.TestCase):
                 self.assertEqual(native.call_count, 2)
             with self.assertRaises(ValueError):
                 run_cartesian_pilot.run(case)
+            retry = case / "retry"
+            prepare_runtime_retry.prepare(case, retry)
+            self.assertEqual((retry / "0/U").read_text(), "original")
+            self.assertIn("hf 0;", (case / "constant/thermophysicalProperties").read_text())
+            self.assertIn("Hf 0;", (retry / "constant/thermophysicalProperties").read_text())
+            self.assertFalse((retry / "run-cartesian-solve.json").exists())
+            with self.assertRaises(FileExistsError):
+                prepare_runtime_retry.prepare(case, retry)
+            corrected = case / "runtime003"
+            prepare_runtime_003.prepare(case, corrected)
+            for name in ("0/p", "0/T"):
+                self.assertIn("psi thermo:psi;", (corrected / name).read_text())
+                self.assertIn("psi psi;", (case / name).read_text())
+            run_cartesian_pilot.verify(corrected)
+            pcg = case / "runtime004"
+            prepare_runtime_004.prepare(case, pcg)
+            self.assertIn("solver PCG; preconditioner DIC; tolerance 1e-8;", (pcg / "system/fvSolution").read_text())
+            self.assertIn("solver GAMG;", (case / "system/fvSolution").read_text())
+            run_cartesian_pilot.verify(pcg)
 
     def test_cartesian_proof_accepts_split_coplanar_face_but_rejects_distortion(self):
         points = np.array([(0,0,0),(1,0,0),(1,1,0),(0,1,0),
