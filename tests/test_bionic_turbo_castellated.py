@@ -22,6 +22,20 @@ from test_bionic_turbo_f1_cfd import surface as tetra_surface
 
 
 class CastellatedCaseTests(unittest.TestCase):
+    def test_internal_face_has_opposite_outward_orientation_for_neighbour(self):
+        points = np.array([(0,0,0),(1,0,0),(1,1,0),(0,1,0),
+                           (0,0,1),(1,0,1),(1,1,1),(0,1,1),
+                           (2,0,0),(2,1,0),(2,0,1),(2,1,1)]) * .001
+        faces = [np.array(f) for f in ((1,2,6,5),(0,3,2,1),(4,5,6,7),
+                                      (0,1,5,4),(2,3,7,6),(3,0,4,7),
+                                      (1,2,9,8),(5,10,11,6),(1,8,10,5),(9,2,6,11),(8,9,11,10))]
+        owners = np.array([0]*6 + [1]*5)
+        result = check_cartesian_cells.box_proof(points, faces, owners, np.array([1]))
+        self.assertEqual(result["cells"], 2)
+        self.assertAlmostEqual(result["total_box_volume_m3"], 2e-9)
+        with self.assertRaises(ValueError):
+            check_cartesian_cells.box_proof(points, faces, owners, np.array([0]))
+
     def test_diagnostic_runner_fails_closed_and_retains_native_failure(self):
         with tempfile.TemporaryDirectory() as directory:
             case = Path(directory)
