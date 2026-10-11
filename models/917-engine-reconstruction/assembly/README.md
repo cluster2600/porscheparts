@@ -130,6 +130,22 @@ des modèles contrôlés. `assembly.json` contient la nomenclature, les placemen
 les empreintes des imports et la couverture F1/F3 ; `validation.json` consigne
 les contrôles de mouvement et les conflits observés.
 
+Le complément [render_surfaces.py](render_surfaces.py) lit ce même GLB avec
+VTK 9.7.1 et produit quatre panneaux avec **surfaces opaques et ombrées** :
+assemblage complet, mécanisme avec culasses, demi-carter avec vilebrequin et
+légende. Il conserve tous les triangles, sans échantillonnage ni simplification,
+vérifie les noms et placements importés et contrôle l'empreinte du GLB avant
+et après le rendu. Les couleurs servent à la lecture ; elles ne qualifient pas
+les matériaux. Les anciens aperçus et reçus restent conservés.
+Le [reçu du rendu](surface-preview-20261011.json) lie les sources, l'image privée
+et la géométrie inchangée. Le PNG demeure dans la livraison locale ignorée.
+
+```sh
+python models/917-engine-reconstruction/assembly/render_surfaces.py \
+  --delivery work/917-4v-biturbo-20261011/livraison \
+  --output work/917-solid-surfaces-20261011/nouveau-rendu
+```
+
 ## Matériaux et étapes de qualification
 
 Le [reçu d'exécution](execution-20261011.json) lie les sources et les résultats :
