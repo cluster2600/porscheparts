@@ -52,7 +52,7 @@ n'est pas éligible à cette procédure.
 
 ```sh
 python twins/bionic-turbo-f1/cfd/check_cartesian_cells.py NEW_CASE
-python twins/bionic-turbo-f1/cfd/prepare_runtime_006.py NEW_CASE NEW_RUNTIME_CASE
+python twins/bionic-turbo-f1/cfd/prepare_runtime_007.py NEW_CASE NEW_RUNTIME_CASE
 python twins/bionic-turbo-f1/cfd/run_cartesian_pilot.py NEW_RUNTIME_CASE
 ```
 
@@ -87,6 +87,13 @@ comme son écriture était déjà configurée. Les valeurs de turbulence bornée
 restent signalées dans les journaux ; ce changement d'échantillonnage ne valide
 pas les champs ni le traitement de paroi. L'auditeur canonique F1 ne doit pas
 être utilisé pour accorder une admission à ce profil séparé.
+
+Les deux calculs `runtime_006` sont rejetés : température absolue négative
+dès la première itération et arrêt natif à la deuxième. `runtime_007` conserve
+le point de fonctionnement et les critères, mais amortit les itérations avec
+les facteurs de relaxation p=0,1, U=0,2, h=0,02, k/omega=0,2 et rho=0,1.
+Aucun plancher de température ne masque une solution invalide. Il s'agit d'un
+contre-essai numérique ; son lancement n'établit pas sa convergence.
 
 La réussite d'un calcul pilote ne valide ni les performances physiques,
 ni le débit maximal, ni la puissance maximale. Il reste à obtenir un maillage

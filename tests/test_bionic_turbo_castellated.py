@@ -16,6 +16,7 @@ import prepare_runtime_003
 import prepare_runtime_004
 import prepare_runtime_005
 import prepare_runtime_006
+import prepare_runtime_007
 from test_bionic_turbo_f1_cfd import surface as tetra_surface
 
 
@@ -30,7 +31,7 @@ class CastellatedCaseTests(unittest.TestCase):
             (case / "constant").mkdir()
             (case / "constant/thermophysicalProperties").write_text("thermodynamics {Cp 1004.675; hf 0;}")
             (case / "system").mkdir()
-            (case / "system/fvSolution").write_text("p {solver GAMG; smoother DIC; tolerance 1e-8;} SIMPLE {consistent yes;}")
+            (case / "system/fvSolution").write_text('p {solver GAMG; smoother DIC; tolerance 1e-8;} SIMPLE {consistent yes;} relaxationFactors {fields {p .2; rho .1;} equations {U .5; h .5; "(k|omega)" .5;}}')
             (case / "system/controlDict").write_text('yPlus {type yPlus; libs ("libfieldFunctionObjects.so"); writeControl writeTime;}')
             manifest = {"image": prepare_case.IMAGE, "file_sha256": {name: prepare_case.sha(case / name) for name in ("0/U", "0/p", "0/T", "constant/thermophysicalProperties", "system/fvSolution", "system/controlDict")}}
             (case / "case-manifest.json").write_text(json.dumps(manifest))
@@ -84,6 +85,12 @@ class CastellatedCaseTests(unittest.TestCase):
             self.assertIn("executeControl writeTime; writeControl writeTime;", (observer / "system/controlDict").read_text())
             self.assertEqual((simple / "system/fvSolution").read_bytes(), (observer / "system/fvSolution").read_bytes())
             run_cartesian_pilot.verify(observer)
+            damped = case / "runtime007"
+            prepare_runtime_007.prepare(case, damped)
+            self.assertIn('h .02;', (damped / "system/fvSolution").read_text())
+            self.assertEqual((observer / "0/T").read_bytes(), (damped / "0/T").read_bytes())
+            self.assertEqual((observer / "0/p").read_bytes(), (damped / "0/p").read_bytes())
+            run_cartesian_pilot.verify(damped)
 
     def test_cartesian_proof_accepts_split_coplanar_face_but_rejects_distortion(self):
         points = np.array([(0,0,0),(1,0,0),(1,1,0),(0,1,0),
