@@ -1,0 +1,372 @@
+{
+  "schema": "bionic-turbo-cfd-meshing-attempts/v1",
+  "same_baseline_surface_sha256": "60a5debf5793a8283135d3d057ebc83d3da2e872dbcd802818640e119368f354",
+  "source_surface_components": 2,
+  "source_surface_euler_characteristic": -54,
+  "source_geometry_validated": false,
+  "operating_conditions_hypothetical": {
+    "rpm": 100000,
+    "axis": [
+      0,
+      0,
+      1
+    ],
+    "inlet_total_pressure_pa": 101325,
+    "inlet_total_temperature_k": 298.15,
+    "outlet_static_pressure_pa": 121590,
+    "outlet_static_to_inlet_total_pressure_ratio": 1.2
+  },
+  "source_ports": {
+    "inlet_z_m": 0.044,
+    "outlet_y_m": 0.08
+  },
+  "attempts": [
+    {
+      "case": "cfd-baseline-coarse-001",
+      "mesh_level": "coarse",
+      "surface_sha256": "60a5debf5793a8283135d3d057ebc83d3da2e872dbcd802818640e119368f354",
+      "status": "mesh_rejected",
+      "mesh_gate_passed": false,
+      "solver_executed": false,
+      "elapsed_seconds": 33.48941845796071,
+      "native_cell_count": 254312,
+      "concave_cells": 5028,
+      "connected_fluid_regions": 1,
+      "native_fluid_volume_mm3": 229080.539746,
+      "native_checkmesh_sha256": "b70525b283b402362630f1facd5f6b9808f2d48bca4fc1a0ed89d19afe19319f",
+      "cpus": 4,
+      "memory_gb": 12,
+      "timeout_seconds": 600,
+      "boundary_topology": {
+        "surface_components": 1,
+        "component_patch_sets": [
+          [
+            "inlet",
+            "outlet",
+            "rotor",
+            "stator"
+          ]
+        ],
+        "face_count": 58189,
+        "unique_edges": 125690,
+        "unique_vertices": 67503,
+        "euler_characteristic": 2
+      },
+      "boundary_topology_error": null,
+      "ports": {
+        "inlet": {
+          "faces": 2269,
+          "bounds_m": [
+            [
+              -0.0216012193934,
+              -0.0216842124756,
+              0.04347423516
+            ],
+            [
+              0.021460033306,
+              0.0215845319068,
+              0.0439999997616
+            ]
+          ]
+        },
+        "outlet": {
+          "faces": 901,
+          "bounds_m": [
+            [
+              0.0353290851076,
+              0.0794638924004,
+              -0.0136818939034
+            ],
+            [
+              0.0626789308725,
+              0.0799999982119,
+              0.0133646135572
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "case": "cfd-baseline-coarse-002",
+      "mesh_level": "coarse",
+      "surface_sha256": "60a5debf5793a8283135d3d057ebc83d3da2e872dbcd802818640e119368f354",
+      "status": "configuration_only",
+      "mesh_gate_passed": false,
+      "solver_executed": false
+    },
+    {
+      "case": "cfd-baseline-coarse-003",
+      "mesh_level": "coarse",
+      "surface_sha256": "60a5debf5793a8283135d3d057ebc83d3da2e872dbcd802818640e119368f354",
+      "status": "mesh_rejected",
+      "mesh_gate_passed": false,
+      "solver_executed": false,
+      "elapsed_seconds": 106.91177020897157,
+      "native_cell_count": 433617,
+      "concave_cells": 7401,
+      "connected_fluid_regions": 1,
+      "native_fluid_volume_mm3": 229329.340784,
+      "native_checkmesh_sha256": "dd835b28d81b8b6f2b0bd7cf26a837c7263f3bc22cb4a48ac91173f0c34f5833",
+      "cpus": 4,
+      "memory_gb": 12,
+      "timeout_seconds": 600,
+      "boundary_topology": null,
+      "boundary_topology_error": "Boundary must have exactly two faces per edge",
+      "ports": {
+        "inlet": {
+          "faces": 2254,
+          "bounds_m": [
+            [
+              -0.0216694987117,
+              -0.0212500002235,
+              0.0436032138642
+            ],
+            [
+              0.0215504948201,
+              0.0216280640776,
+              0.0440631223323
+            ]
+          ]
+        },
+        "outlet": {
+          "faces": 868,
+          "bounds_m": [
+            [
+              0.0353300478305,
+              0.07963065145,
+              -0.0132887568596
+            ],
+            [
+              0.062272372083,
+              0.080036626724,
+              0.0135629881552
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "case": "cfd-baseline-coarse-004",
+      "mesh_level": "coarse",
+      "surface_sha256": "60a5debf5793a8283135d3d057ebc83d3da2e872dbcd802818640e119368f354",
+      "status": "mesh_rejected",
+      "mesh_gate_passed": false,
+      "solver_executed": false,
+      "elapsed_seconds": 40.37576179206371,
+      "native_cell_count": 457137,
+      "concave_cells": 35,
+      "connected_fluid_regions": 1,
+      "native_fluid_volume_mm3": 229080.539748,
+      "native_checkmesh_sha256": "503fdabf7461091735229c616e1713630e9c8b707b16b55410151de6d69278d2",
+      "cpus": 4,
+      "memory_gb": 12,
+      "timeout_seconds": 600,
+      "boundary_topology": {
+        "surface_components": 1,
+        "component_patch_sets": [
+          [
+            "inlet",
+            "outlet",
+            "rotor",
+            "stator"
+          ]
+        ],
+        "face_count": 58189,
+        "unique_edges": 125690,
+        "unique_vertices": 67503,
+        "euler_characteristic": 2
+      },
+      "boundary_topology_error": null,
+      "ports": {
+        "inlet": {
+          "faces": 2269,
+          "bounds_m": [
+            [
+              -0.0216012193934,
+              -0.0216842124756,
+              0.04347423516
+            ],
+            [
+              0.021460033306,
+              0.0215845319068,
+              0.0439999997616
+            ]
+          ]
+        },
+        "outlet": {
+          "faces": 901,
+          "bounds_m": [
+            [
+              0.0353290851076,
+              0.0794638924004,
+              -0.0136818939034
+            ],
+            [
+              0.0626789308725,
+              0.0799999982119,
+              0.0133646135572
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "case": "cfd-baseline-fine-001",
+      "mesh_level": "fine",
+      "surface_sha256": "60a5debf5793a8283135d3d057ebc83d3da2e872dbcd802818640e119368f354",
+      "status": "mesh_rejected",
+      "mesh_gate_passed": false,
+      "solver_executed": false,
+      "elapsed_seconds": 198.41752754198387,
+      "native_cell_count": 2543835,
+      "concave_cells": 45,
+      "connected_fluid_regions": 1,
+      "native_fluid_volume_mm3": 229935.379795,
+      "native_checkmesh_sha256": "170202635d1bb8beccb7457a97ff0dffdd7153d7c243e41f91eee05696dbf4b5",
+      "cpus": 4,
+      "memory_gb": 12,
+      "timeout_seconds": 600,
+      "boundary_topology": {
+        "surface_components": 1,
+        "component_patch_sets": [
+          [
+            "inlet",
+            "outlet",
+            "rotor",
+            "stator"
+          ]
+        ],
+        "component_invariants": [
+          {
+            "patches": [
+              "inlet",
+              "outlet",
+              "rotor",
+              "stator"
+            ],
+            "euler_characteristic": -30
+          }
+        ],
+        "face_count": 191941,
+        "unique_edges": 413393,
+        "unique_vertices": 221422,
+        "euler_characteristic": -30
+      },
+      "boundary_topology_error": null,
+      "ports": {
+        "inlet": {
+          "faces": 7113,
+          "bounds_m": [
+            [
+              -0.0210938749207,
+              -0.0214780933332,
+              0.0437952577431
+            ],
+            [
+              0.0211959969124,
+              0.0211695095898,
+              0.0439999997616
+            ]
+          ]
+        },
+        "outlet": {
+          "faces": 2779,
+          "bounds_m": [
+            [
+              0.0355114656112,
+              0.0798159156904,
+              -0.013075543939
+            ],
+            [
+              0.06210207129,
+              0.0799999982119,
+              0.0134561110371
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "case": "cfd-baseline-medium-001",
+      "mesh_level": "medium",
+      "surface_sha256": "60a5debf5793a8283135d3d057ebc83d3da2e872dbcd802818640e119368f354",
+      "status": "mesh_rejected",
+      "mesh_gate_passed": false,
+      "solver_executed": false,
+      "elapsed_seconds": 92.21079841605388,
+      "native_cell_count": 1079657,
+      "concave_cells": 13,
+      "connected_fluid_regions": 1,
+      "native_fluid_volume_mm3": 229417.574601,
+      "native_checkmesh_sha256": "7e7f21b31d0c5bb5789f3eafe21dce8cdbbf30961716a82fd79e8cf49de327e3",
+      "cpus": 4,
+      "memory_gb": 12,
+      "timeout_seconds": 600,
+      "boundary_topology": {
+        "surface_components": 1,
+        "component_patch_sets": [
+          [
+            "inlet",
+            "outlet",
+            "rotor",
+            "stator"
+          ]
+        ],
+        "face_count": 104485,
+        "unique_edges": 225437,
+        "unique_vertices": 120950,
+        "euler_characteristic": -2
+      },
+      "boundary_topology_error": null,
+      "ports": {
+        "inlet": {
+          "faces": 4081,
+          "bounds_m": [
+            [
+              -0.0213856465782,
+              -0.0214214457926,
+              0.0438239739494
+            ],
+            [
+              0.0213669482894,
+              0.0214317482784,
+              0.0439999997616
+            ]
+          ]
+        },
+        "outlet": {
+          "faces": 1602,
+          "bounds_m": [
+            [
+              0.0356124348233,
+              0.0798234508901,
+              -0.0133850838202
+            ],
+            [
+              0.0624019387912,
+              0.0799999982119,
+              0.0133966542123
+            ]
+          ]
+        }
+      }
+    },
+    {
+      "case": "cfd-candidate-volute-coarse-001",
+      "mesh_level": "coarse",
+      "surface_sha256": "c1f1d5e6a3059cafe7e75c86e964eea81b41d82238c1ec51143a2d502e6a65c5",
+      "status": "prepared_only",
+      "mesh_gate_passed": false,
+      "solver_executed": false
+    }
+  ],
+  "candidate_mesh_executed": false,
+  "solver_executed": false,
+  "mass_flow_kg_s": null,
+  "shaft_power_w": null,
+  "efficiency": null,
+  "performance_gain": null,
+  "performance_ranking_authorized": false,
+  "engineering_validated": false,
+  "manufacturing_authorized": false
+}

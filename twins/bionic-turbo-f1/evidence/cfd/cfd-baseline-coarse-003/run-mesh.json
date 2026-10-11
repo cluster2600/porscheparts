@@ -1,0 +1,40 @@
+{
+  "schema": "bionic-turbo-mrf-execution/v1",
+  "stage": "mesh",
+  "status": "failed",
+  "image": "docker.io/opencfd/openfoam-run@sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532",
+  "case_manifest_sha256": "51cebae94c373c00ba0fb95e5c0e4e3958b5271755b20f33bb22b9d762fef097",
+  "runner_sha256": "0fbc8b7a86def911c87c1a4f5d75690edecb8f69afa12d262b0a8cd060aca51c",
+  "stages": [
+    {
+      "name": "blockMesh",
+      "exit_code": 0,
+      "log": "log.blockMesh",
+      "sha256": "79f0414efe8a4e5e5b3abe4119657ccb71df55e9e0928082d0718ee590b60302"
+    },
+    {
+      "name": "snappyHexMesh",
+      "exit_code": 0,
+      "log": "log.snappyHexMesh",
+      "sha256": "87cdf493992ccc1a9ce4c3eab6f3d8df56ed9b5e49b59d2042a6658f1bde5ec3"
+    },
+    {
+      "name": "topoSet",
+      "exit_code": 0,
+      "log": "log.topoSet",
+      "sha256": "21425bc7e8c2aabeec334e0d27b7b0b9c3e9a414f6e79a2dc3d572671ac76894"
+    },
+    {
+      "name": "checkMesh",
+      "exit_code": 0,
+      "log": "log.checkMesh",
+      "sha256": "dd835b28d81b8b6f2b0bd7cf26a837c7263f3bc22cb4a48ac91173f0c34f5833"
+    }
+  ],
+  "timeout_seconds": 600,
+  "cpus": 4,
+  "memory_gb": 12,
+  "mesh_gate_passed": false,
+  "error": "Extended checkMesh did not pass",
+  "elapsed_seconds": 106.91177020897157
+}

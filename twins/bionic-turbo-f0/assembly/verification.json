@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-10",
+  "status": "concept_geometry_checks_passed_not_engineering_qualification",
+  "architecture": "single_turbo_oil_lubricated_journal_bearings_internal_wastegate",
+  "source_sha256": {
+    "twins/bionic-turbo-f0/assembly/component-contract.json": "0cff09edf9b5c841b01c2ee1d500e93a9e56e4ad530307e54f9b88cd2f723ecd",
+    "twins/bionic-turbo-f0/assembly/inspect_assembly.py": "c7c2c6933fd8b84c3db41c004434298ac9fc33af4ba893623a046281716ecb0b",
+    "twins/bionic-turbo-f0/assembly/source/Components.cs": "3243818d77694d97a37bed214dc789bf19e8bfc9568b59c956bed4c57fbea16b",
+    "twins/bionic-turbo-f0/assembly/source/HotSide.cs": "e89d6bd0f4adb029a9d7f45089321dde019198d774a6fd6bb14b5c0a22c8fe7c",
+    "twins/bionic-turbo-f0/assembly/source/Program.cs": "e5a11eeb1ace3ff0423b2df37f3b58dac0550261136a76338b5192d480690a29",
+    "twins/bionic-turbo-f0/assembly/source/Assembly.csproj": "5fed67ba94f52d0abf55bfc1182309bbdfb9982376ef83e950b7089ed5c795d9",
+    "twins/bionic-turbo-f0/inspect_mesh.py": "bec8f698cfb1a139553ec27f68aece223e12339eb37418b40dce8c825199ba94",
+    "tests/test_bionic_turbo_inspect.py": "8bc8aea30265f2acf20dd4c4dd28bace334eae9abfeb775e5b361e2bfadfcb0b",
+    "tests/test_bionic_turbo_assembly.py": "5718c6951067dc885e584cca7132c71a93e8526948a4c1599e0fa30eac4a5546",
+    "parts/picogk-catalog/tools/run_part.py": "b47d4e9a1f4f32e175e7053b92ea5f6f5c569f36750e835ed23f29f37064504d",
+    "parts/picogk-catalog/common/Params.cs": "7a2dd336441bae53c640fb06de39f242498498ce89a9f40110d596aaee335883",
+    "parts/picogk-catalog/common/Runner.cs": "b7743ed321c1861292353bc28cb11f70d745e37ffc95396ea15d5b8066b431c3",
+    "parts/picogk-catalog/common/Sdf.cs": "8096c0bc8aa980cd463622d2838969987aa8a570ca7cb52a64eb08ea74ac7a40",
+    "parts/picogk-catalog/rotating/RotKit.cs": "cada3708f47e79d234a8e13e695804a6aeeab51448267195c7d46f37477983b3",
+    "parts/picogk-catalog/rotating/CompressorWheel.cs": "4292d1a4c0c23ff4540f3b4a8d4f1d2898c0264d98c97f689bdbdd32e249e977",
+    "parts/picogk-catalog/rotating/TurbineWheel.cs": "038888cff71a83821baa540030f62d4e757e67fc51f575e2fb117f0bffa0b815"
+  },
+  "runtime": {
+    "dotnet_sdk": "9.0.317",
+    "dotnet_runtime": "9.0.19",
+    "picogk_package": "2.3.0",
+    "picogk_native": "26.2.0",
+    "python": "3.11.15",
+    "packages": {
+      "numpy": "2.4.6",
+      "scipy": "1.17.1",
+      "trimesh": "5.1.1",
+      "pyvista": "0.49.0",
+      "vtk": "9.7.1"
+    }
+  },
+  "build": {
+    "configuration": "Release",
+    "warnings": 0,
+    "errors": 0,
+    "dll_sha256": "d762a9f780234929f3e9c242bed93c1232908e614a7f372bfe8622a48e71a887"
+  },
+  "geometry": {
+    "voxel_mm": 0.5,
+    "component_count": 39,
+    "triangles": 2523596,
+    "stl_bytes": 126183076,
+    "strict_exact_meshes_passed": 39,
+    "all_input_triangles_retained": true,
+    "selected_native_pairs_passed": 8,
+    "native_screen_independently_recomputed": false,
+    "minimum_clearance_measured": false,
+    "self_intersections_checked": false,
+    "generated_directory": "work/bionic-turbo-assembly-final",
+    "inspection_directory": "work/bionic-turbo-assembly-qa-final",
+    "generation_report_sha256": "80d49f2c90dfd75aa66c647443feb5c64b4be9c2a805d35fbb84e38201e08001",
+    "inspection_report_sha256": "e2dc170d7fd59b98e2fcc31a597c39cbf76322609cb574b873c78c786a2d9fd7"
+  },
+  "views": {
+    "exports": {
+      "assembly-preview.png": "82caf04d34a83530c90658d1434ad1794aba972d429439378b0ea436553c0d0d",
+      "component-atlas.png": "140188e008b7ecb25ba059571f2404f7f0bcf3c97d17b7585bcfed0c81bfd97f",
+      "assembled.glb": "90e4d07217115f89f6c0016ede5856a797c682a0ad0a73ab00b6108fa497ff06",
+      "exploded.glb": "6bc0e267019c9ebd26562f99fd05da0500962bdf055d8aa42564676e42cf2d10"
+    },
+    "gltf_separate_components": 39,
+    "gltf_mm_to_m_scale": 0.001,
+    "gltf_vertices_faces_transforms_roundtrip": "exact",
+    "display_cut_only": true,
+    "agent_visual_review": "assembly preview and 39-component atlas inspected",
+    "user_artistic_approval": false
+  },
+  "focused_tests": {
+    "status": "passed",
+    "count": 13,
+    "skipped": 0,
+    "evidence": "evidence/focused-tests.txt"
+  },
+  "cli_input_guards": {
+    "status": "passed",
+    "checks": 5,
+    "evidence": "evidence/cli-checks.json"
+  },
+  "full_repository_check": {
+    "command": "PATH=work/bionic-tools/bin:$PATH BIONIC_DOTNET=<dotnet> make check",
+    "effective_python": "geometry venv Python 3.11.15",
+    "status": "failed_existing_tests",
+    "exit_code": 2,
+    "tests": 3627,
+    "failures": 2,
+    "errors": 2,
+    "skipped": 162,
+    "log": "work/bionic-validation/assembly-make-check-venv.log",
+    "sha256": "aee7e1d399d5275731f70322c02719faedd3849b94cd422a1d33e4d29737b76d",
+    "causes": [
+      "missing rtree dependency in existing organic fan simulation test",
+      "missing networkx dependency in existing exact-zero countertrial test",
+      "two existing exact-float equality failures in WE43 impeller and AlSi10Mg stator tests"
+    ],
+    "summary_lines": [
+      "ERROR: test_thermal_energy_balance_and_invalid_machine_recipe (test_organic_fan.OrganicFanTests.test_thermal_energy_balance_and_invalid_machine_recipe)",
+      "ERROR: test_retains_small_nonzero_face_and_nonmanifold_failure (test_picogk_exact_zero_countertrial.ExactZeroCountertrialTests.test_retains_small_nonzero_face_and_nonmanifold_failure)",
+      "FAIL: test_committed_step_sources_and_catalogue_are_fail_closed (test_993_cooling_impeller_we43_f1.CoolingImpellerWE43F1Tests.test_committed_step_sources_and_catalogue_are_fail_closed)",
+      "FAIL: test_committed_step_and_catalogue_are_fail_closed (test_993_fan_stator_alsi10mg_f1.FanStatorAlSi10MgF1Tests.test_committed_step_and_catalogue_are_fail_closed)",
+      "Ran 3627 tests in 191.800s",
+      "FAILED (failures=2, errors=2, skipped=162)"
+    ]
+  },
+  "rejected_runs": [
+    {
+      "directory": "work/bionic-turbo-assembly-001",
+      "evidence": "evidence/rejected-001-inspection.json",
+      "reason": "18 degenerate triangles, 17 nonmanifold edges, one duplicate triangle in turbine housing; no mesh repair applied",
+      "correction": "changed hypothetical bypass chamber radii 15/19 to 15.125/19.125 mm before regeneration"
+    }
+  ],
+  "previous_housing_pinned_sources_unchanged": true,
+  "compressor_housing_sha256": "c7d2972b803f6f0d443e5e1f125d11baaf55ec19ca8abd82a006b308748506cd",
+  "production_bom_complete": false,
+  "measured_interfaces_verified": false,
+  "engineering_validated": false,
+  "manufacturing_authorized": false,
+  "functional_turbo": false,
+  "limitations": [
+    "Retention rings are display proxies and do not capture housings.",
+    "Threads, engagement, sealing, oil-film geometry and rotor load paths are undefined.",
+    "No measured fit, CFD, FEA, thermal growth, rotor dynamics, balancing, overspeed or bench testing.",
+    "Only eight nominated pairs screened in nominal voxel geometry; no full-assembly collision or swept-motion validation.",
+    "Hot-side passage point probes are not connectivity or flow proof.",
+    "Bionic ribs and assumed blade surfaces have no performance qualification."
+  ],
+  "system_repository_check": "evidence/system-make-check.json",
+  "evidence_sha256": {
+    "evidence/cli-checks.json": "e031992c7e8b85796b37e8c4a27aae4303888c2c50f05a8594914bafa94035a4",
+    "evidence/focused-tests.txt": "7cb9a4835d0679818996708bb363c8316f9171a56cf8eac72c8628a590b0a6c6",
+    "evidence/generation.json": "80d49f2c90dfd75aa66c647443feb5c64b4be9c2a805d35fbb84e38201e08001",
+    "evidence/gltf-roundtrip.json": "681eb99f5e43e2d414f7c351b1364469127864c81b5321da6f906c1e997bbcbd",
+    "evidence/inspection.json": "e2dc170d7fd59b98e2fcc31a597c39cbf76322609cb574b873c78c786a2d9fd7",
+    "evidence/rejected-001-inspection.json": "2372ea6b28cd0f2c03595fdfdbc48b79846ff8ef682a86f69d910757e11478d4",
+    "evidence/system-make-check.json": "32a7a3e7f85357a64cfce9bac0a5a79087195664c4c323680affcc1f767c1329",
+    "evidence/venv-make-check.json": "a0dbf2382870c69afbb08a6d86f2bb9eea2da2bcb41410843e35c327185bc991",
+    "media/assembly-preview.png": "82caf04d34a83530c90658d1434ad1794aba972d429439378b0ea436553c0d0d",
+    "media/component-atlas.png": "140188e008b7ecb25ba059571f2404f7f0bcf3c97d17b7585bcfed0c81bfd97f"
+  },
+  "readme_sha256": "9fb4e8e89acca8d39d8fc84ef9dcb179c9e70992662922b74655e423af059dbd"
+}
