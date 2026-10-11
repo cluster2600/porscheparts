@@ -1,0 +1,328 @@
+{
+  "part_id": "993-INT-DOOR-PULL-0001",
+  "method": "3D SIMP topology optimization (parts/picogk-catalog/bionic/topopt.py), then PicoGK smoothing and exact functional features",
+  "basis_note": "Interfaces and loads are NOT measured. The domain is the F0 handle envelope (160 x 24 x 53 mm, hypothesis); the boss positions, 22 mm bosses and 4.2 mm pilot bores come from the previous concept (DoorPull.cs); the 35 mm hand passage is kept empty. Grip loads are assumptions (door closing pull, occupant leaning or pulling up on the handle); no published or measured value exists.",
+  "optimization": {
+    "element_mm": 1.5,
+    "grid_min": [
+      -81,
+      -12,
+      0
+    ],
+    "grid_max": [
+      81,
+      12,
+      54
+    ],
+    "design": [
+      {
+        "type": "box",
+        "min": [
+          -80,
+          -11.5,
+          0
+        ],
+        "max": [
+          80,
+          11.5,
+          52.5
+        ],
+        "basis": "assumption",
+        "note": "F0 handle envelope 160 x 24 x 53 mm (scripts/build_993_concept_f0.py hypothesis), kept 0.5 mm inside"
+      }
+    ],
+    "solid": [
+      {
+        "type": "cyl",
+        "a": [
+          -69,
+          0,
+          0
+        ],
+        "b": [
+          -69,
+          0,
+          12
+        ],
+        "r": 11,
+        "basis": "assumption",
+        "note": "left mounting boss, 22 mm x 12 mm of the previous concept; door interface unknown"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          69,
+          0,
+          0
+        ],
+        "b": [
+          69,
+          0,
+          12
+        ],
+        "r": 11,
+        "basis": "assumption",
+        "note": "right mounting boss"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -38,
+          0,
+          44
+        ],
+        "b": [
+          38,
+          0,
+          44
+        ],
+        "r": 7,
+        "basis": "assumption",
+        "note": "minimum 14 mm grip core where the hand closes (previous grip axis at z = 44 mm at mid span); the optimizer adds the rest"
+      }
+    ],
+    "void": [
+      {
+        "type": "box",
+        "min": [
+          -50,
+          -13,
+          -1
+        ],
+        "max": [
+          50,
+          13,
+          34
+        ],
+        "basis": "assumption",
+        "note": "hand passage between door face and grip (35 mm F0 hypothesis), must stay empty"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -69,
+          0,
+          -1
+        ],
+        "b": [
+          -69,
+          0,
+          14
+        ],
+        "r": 2.1,
+        "basis": "assumption",
+        "note": "blind pilot bore 4.2 x 14 mm, generic fastener placeholder"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          69,
+          0,
+          -1
+        ],
+        "b": [
+          69,
+          0,
+          14
+        ],
+        "r": 2.1,
+        "basis": "assumption",
+        "note": "blind pilot bore 4.2 x 14 mm"
+      }
+    ],
+    "supports": [
+      {
+        "type": "cyl",
+        "a": [
+          -69,
+          0,
+          -1
+        ],
+        "b": [
+          -69,
+          0,
+          0.5
+        ],
+        "r": 11,
+        "basis": "assumption",
+        "note": "left boss face screwed to the door panel (idealised as clamped)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          69,
+          0,
+          -1
+        ],
+        "b": [
+          69,
+          0,
+          0.5
+        ],
+        "r": 11,
+        "basis": "assumption",
+        "note": "right boss face screwed to the door panel (idealised as clamped)"
+      }
+    ],
+    "load_cases": [
+      {
+        "name": "pull_out",
+        "basis": "assumption",
+        "note": "400 N away from the door on the grip core (fingers): door closing pull with margin; no published value",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "capsule",
+                "a": [
+                  -38,
+                  0,
+                  44
+                ],
+                "b": [
+                  38,
+                  0,
+                  44
+                ],
+                "r": 7.6
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              400
+            ]
+          }
+        ]
+      },
+      {
+        "name": "pull_forward",
+        "basis": "assumption",
+        "note": "oblique pull, 250 N along the handle + 300 N out (door swung by the handle)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "capsule",
+                "a": [
+                  -38,
+                  0,
+                  44
+                ],
+                "b": [
+                  38,
+                  0,
+                  44
+                ],
+                "r": 7.6
+              }
+            ],
+            "force_N": [
+              250,
+              0,
+              300
+            ]
+          }
+        ]
+      },
+      {
+        "name": "pull_back",
+        "basis": "assumption",
+        "note": "mirror of pull_forward",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "capsule",
+                "a": [
+                  -38,
+                  0,
+                  44
+                ],
+                "b": [
+                  38,
+                  0,
+                  44
+                ],
+                "r": 7.6
+              }
+            ],
+            "force_N": [
+              -250,
+              0,
+              300
+            ]
+          }
+        ]
+      },
+      {
+        "name": "push_in",
+        "basis": "assumption",
+        "note": "300 N toward the door on the grip core (occupant leaning or pushing the door open)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "capsule",
+                "a": [
+                  -38,
+                  0,
+                  44
+                ],
+                "b": [
+                  38,
+                  0,
+                  44
+                ],
+                "r": 7.6
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              -300
+            ]
+          }
+        ]
+      },
+      {
+        "name": "side",
+        "basis": "assumption",
+        "note": "150 N across the grip + 150 N out (hand pulling at an angle, occupant pulling up)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "capsule",
+                "a": [
+                  -38,
+                  0,
+                  44
+                ],
+                "b": [
+                  38,
+                  0,
+                  44
+                ],
+                "r": 7.6
+              }
+            ],
+            "force_N": [
+              0,
+              150,
+              150
+            ]
+          }
+        ]
+      }
+    ],
+    "volume_fraction": 0.26,
+    "filter_radius_mm": 4.5,
+    "iterations": 45
+  },
+  "shaping": {
+    "smooth_mm": 1.8,
+    "blend_mm": 0.9,
+    "lattice_grey": false
+  }
+}

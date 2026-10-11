@@ -1,14 +1,14 @@
 {
   "part_id": "993-BODY-FRONT-IMPACT-SUPPORT-ALSI10MG-F0-0001",
-  "name": "993 front impact support, AlSi10Mg graded-core concept (PicoGK)",
-  "generator": "front_impact_support_graded",
+  "name": "993 front impact support, AlSi10Mg load-path (bionic) concept (PicoGK)",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-body-front-impact-support-alsi10mg-f0-0001.json",
   "porsche_part_numbers": [],
   "safety_class": "prohibited_pending_engineering",
   "material_candidate": "generic LPBF AlSi10Mg, screening only",
   "density_g_cm3": 2.67,
   "voxel_mm": 0.4,
-  "picogk_enhancement": "Shell, plate and cruciform core as one filleted body: the core is graded continuously (1.4 to 0.8 mm) instead of four stepped segments, the shell flares into the rear plate as a root fillet, webs are blended into the shell and the open front lip is rounded; the four channels stay open at the front (powder removal, inspection).",
+  "picogk_enhancement": "Bionic: the support between the 3 mm rear plate and a 60 x 38 mm bumper-beam contact pad is grown by 3D SIMP topology optimization (source/bionic.json, topopt.py; 3.125 mm elements, 13 % of the FVD 139 x 100 x 53 mm envelope) under the synthetic 15 kN mean crush force of evidence/engineering-screen.json, axial, +/-15 deg oblique in plan and 10 deg downward on the upper half of the pad (assumed directions), then smoothed into branching struts by PicoGK (about 223 g in AlSi10Mg vs the 145 g FVD claim) with the plate and pad fused exactly. Compliance minimisation gives a stiff static load path, not a crush or energy-absorption design: folding, force-displacement and crash behaviour are NOT modelled. Loads and interfaces are assumptions until measured.",
   "parameters": {
     "length_mm": {
       "value": 139.0,
@@ -131,5 +131,6 @@
     "height_mm": "z",
     "width_mm": "y",
     "length_mm": "x"
-  }
+  },
+  "envelope_mode": "max"
 }

@@ -1,14 +1,14 @@
 {
   "part_id": "993-ENG-FAN-STATOR-ALSI10MG-F1-0001",
   "name": "Engine cooling fan guide-vane ring (stator), AlSi10Mg concept F1 (PicoGK)",
-  "generator": "fan_stator_ring",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-eng-fan-stator-alsi10mg-f1-0001.json",
   "porsche_part_numbers": [],
   "safety_class": "prohibited_pending_engineering",
   "material_candidate": "AlSi10Mg LPBF (comparison)",
   "density_g_cm3": 2.67,
   "voxel_mm": 0.6,
-  "picogk_enhancement": "Seventeen continuous cambered NACA-thickness vanes (no faceted loft) filleted by smooth union into the inner sleeve and outer ring; web flange blended into both sleeves.",
+  "picogk_enhancement": "Bionic: the seventeen cambered vanes, the vane-carrying inner sleeve, the outer ring and the alternator seat sleeve of the functional ring are kept exactly (shaping.base_stl); the hub annulus between seat and vane sleeve (formerly a flat web) is re-grown in 3D by SIMP topology optimization (bionic.json, topopt.py) for the engineering screen's 8.34 N m swirl reaction torque and an assumed 10 g axial and lateral inertia of the 614 g stator, the seat sleeve held. PicoGK smooths the density into organic struts from the seat to the vane roots. Loads are a synthetic screen value and assumptions, not measurements.",
   "parameters": {
     "ring_axial_length_mm": {
       "value": 40.0,
@@ -193,5 +193,7 @@
   ],
   "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
   "envelope": [],
-  "max_tris": 90000
+  "max_tris": 90000,
+  "envelope_axes": {},
+  "envelope_mode": "max"
 }

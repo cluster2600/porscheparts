@@ -1,0 +1,853 @@
+{
+  "part_id": "993-INT-DASHBOARD-TRIM-0001",
+  "method": "3D SIMP topology optimization (parts/picogk-catalog/bionic/topopt.py) of the inner rib structure inside the trim body, then PicoGK smoothing; the crowned 3 mm skin with its flanges, vents, vanes and instrument opening is kept exact (shaping.base_stl)",
+  "basis_note": "Interfaces and loads are NOT measured (record: clip-nut and screw positions unknown). The skin and outer body are the previous F0 hypothesis (body/DashboardTrim.cs; regions rebuilt by parts/993-int-dashboard-trim-0001/source/bionic_regions.py). Nine clip points (five on the windscreen-side flange, four on the occupant-side lip) are ASSUMED positions; loads are assumed hand presses on the crest and a push on the occupant face. The skin's own stiffness is not in the optimization. Scope unchanged: cars without passenger airbag only.",
+  "postprocess": "after topopt.py run parts/993-body-front-lid-0001/source/bionic_skin_contact.py 993-INT-DASHBOARD-TRIM-0001: members are copied one element into the adjacent void (outside the body, ducts, instrument opening) so they always reach the 3 mm skin; the void then trims them flush (skin outer surface finished 0.3 mm under the F0 surface).",
+  "optimization": {
+    "element_mm": 6.0,
+    "grid_min": [
+      -678,
+      -72,
+      0
+    ],
+    "grid_max": [
+      678,
+      60,
+      60
+    ],
+    "design": [
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-INT-DASHBOARD-TRIM-0001/inside-0.stl",
+        "basis": "assumption",
+        "note": "inside the F0 outer body (rib design domain), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-INT-DASHBOARD-TRIM-0001/inside-1.stl",
+        "basis": "assumption",
+        "note": "inside the F0 outer body (rib design domain), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-INT-DASHBOARD-TRIM-0001/inside-2.stl",
+        "basis": "assumption",
+        "note": "inside the F0 outer body (rib design domain), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-INT-DASHBOARD-TRIM-0001/inside-3.stl",
+        "basis": "assumption",
+        "note": "inside the F0 outer body (rib design domain), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-INT-DASHBOARD-TRIM-0001/inside-4.stl",
+        "basis": "assumption",
+        "note": "inside the F0 outer body (rib design domain), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-INT-DASHBOARD-TRIM-0001/inside-5.stl",
+        "basis": "assumption",
+        "note": "inside the F0 outer body (rib design domain), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-INT-DASHBOARD-TRIM-0001/inside-6.stl",
+        "basis": "assumption",
+        "note": "inside the F0 outer body (rib design domain), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-INT-DASHBOARD-TRIM-0001/inside-7.stl",
+        "basis": "assumption",
+        "note": "inside the F0 outer body (rib design domain), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-INT-DASHBOARD-TRIM-0001/inside-8.stl",
+        "basis": "assumption",
+        "note": "inside the F0 outer body (rib design domain), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-INT-DASHBOARD-TRIM-0001/inside-9.stl",
+        "basis": "assumption",
+        "note": "inside the F0 outer body (rib design domain), one tile"
+      }
+    ],
+    "solid": [
+      {
+        "type": "cyl",
+        "a": [
+          -560,
+          43.9,
+          0
+        ],
+        "b": [
+          -560,
+          43.9,
+          12
+        ],
+        "r": 6,
+        "basis": "assumption",
+        "note": "clip boss on the windscreen-side flange at x = -560 mm (clip-nut / screw positions unknown, assumed)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -300,
+          40.5,
+          0
+        ],
+        "b": [
+          -300,
+          40.5,
+          12
+        ],
+        "r": 6,
+        "basis": "assumption",
+        "note": "clip boss on the windscreen-side flange at x = -300 mm (clip-nut / screw positions unknown, assumed)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0,
+          38.5,
+          0
+        ],
+        "b": [
+          0,
+          38.5,
+          12
+        ],
+        "r": 6,
+        "basis": "assumption",
+        "note": "clip boss on the windscreen-side flange at x = 0 mm (clip-nut / screw positions unknown, assumed)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          300,
+          40.5,
+          0
+        ],
+        "b": [
+          300,
+          40.5,
+          12
+        ],
+        "r": 6,
+        "basis": "assumption",
+        "note": "clip boss on the windscreen-side flange at x = 300 mm (clip-nut / screw positions unknown, assumed)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          560,
+          43.9,
+          0
+        ],
+        "b": [
+          560,
+          43.9,
+          12
+        ],
+        "r": 6,
+        "basis": "assumption",
+        "note": "clip boss on the windscreen-side flange at x = 560 mm (clip-nut / screw positions unknown, assumed)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -450,
+          -53.1,
+          0
+        ],
+        "b": [
+          -450,
+          -53.1,
+          12
+        ],
+        "r": 6,
+        "basis": "assumption",
+        "note": "clip boss on the occupant-side return lip at x = -450 mm (clip-nut / screw positions unknown, assumed)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -150,
+          -57.0,
+          0
+        ],
+        "b": [
+          -150,
+          -57.0,
+          12
+        ],
+        "r": 6,
+        "basis": "assumption",
+        "note": "clip boss on the occupant-side return lip at x = -150 mm (clip-nut / screw positions unknown, assumed)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          150,
+          -57.0,
+          0
+        ],
+        "b": [
+          150,
+          -57.0,
+          12
+        ],
+        "r": 6,
+        "basis": "assumption",
+        "note": "clip boss on the occupant-side return lip at x = 150 mm (clip-nut / screw positions unknown, assumed)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          450,
+          -53.1,
+          0
+        ],
+        "b": [
+          450,
+          -53.1,
+          12
+        ],
+        "r": 6,
+        "basis": "assumption",
+        "note": "clip boss on the occupant-side return lip at x = 450 mm (clip-nut / screw positions unknown, assumed)"
+      }
+    ],
+    "void": [
+      {
+        "type": "cyl",
+        "a": [
+          -560,
+          43.9,
+          -1
+        ],
+        "b": [
+          -560,
+          43.9,
+          9
+        ],
+        "r": 2,
+        "basis": "assumption",
+        "note": "4 mm pilot hole of the assumed clip screw"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -300,
+          40.5,
+          -1
+        ],
+        "b": [
+          -300,
+          40.5,
+          9
+        ],
+        "r": 2,
+        "basis": "assumption",
+        "note": "4 mm pilot hole of the assumed clip screw"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0,
+          38.5,
+          -1
+        ],
+        "b": [
+          0,
+          38.5,
+          9
+        ],
+        "r": 2,
+        "basis": "assumption",
+        "note": "4 mm pilot hole of the assumed clip screw"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          300,
+          40.5,
+          -1
+        ],
+        "b": [
+          300,
+          40.5,
+          9
+        ],
+        "r": 2,
+        "basis": "assumption",
+        "note": "4 mm pilot hole of the assumed clip screw"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          560,
+          43.9,
+          -1
+        ],
+        "b": [
+          560,
+          43.9,
+          9
+        ],
+        "r": 2,
+        "basis": "assumption",
+        "note": "4 mm pilot hole of the assumed clip screw"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -450,
+          -53.1,
+          -1
+        ],
+        "b": [
+          -450,
+          -53.1,
+          9
+        ],
+        "r": 2,
+        "basis": "assumption",
+        "note": "4 mm pilot hole of the assumed clip screw"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -150,
+          -57.0,
+          -1
+        ],
+        "b": [
+          -150,
+          -57.0,
+          9
+        ],
+        "r": 2,
+        "basis": "assumption",
+        "note": "4 mm pilot hole of the assumed clip screw"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          150,
+          -57.0,
+          -1
+        ],
+        "b": [
+          150,
+          -57.0,
+          9
+        ],
+        "r": 2,
+        "basis": "assumption",
+        "note": "4 mm pilot hole of the assumed clip screw"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          450,
+          -53.1,
+          -1
+        ],
+        "b": [
+          450,
+          -53.1,
+          9
+        ],
+        "r": 2,
+        "basis": "assumption",
+        "note": "4 mm pilot hole of the assumed clip screw"
+      },
+      {
+        "type": "box",
+        "min": [
+          -525,
+          -41.2,
+          -1
+        ],
+        "max": [
+          -255,
+          17.8,
+          61
+        ],
+        "basis": "assumption",
+        "note": "instrument opening 330 x 60 mm stadium and the instrument cluster below it (centre part)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -525,
+          -11.7,
+          -1
+        ],
+        "b": [
+          -525,
+          -11.7,
+          61
+        ],
+        "r": 29.5,
+        "basis": "assumption",
+        "note": "instrument stadium, left end"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -255,
+          -11.7,
+          -1
+        ],
+        "b": [
+          -255,
+          -11.7,
+          61
+        ],
+        "r": 29.5,
+        "basis": "assumption",
+        "note": "instrument stadium, right end"
+      },
+      {
+        "type": "box",
+        "min": [
+          20,
+          -45,
+          4
+        ],
+        "max": [
+          130,
+          0,
+          40
+        ],
+        "basis": "assumption",
+        "note": "air duct behind the right centre face vent, open to the bottom"
+      },
+      {
+        "type": "box",
+        "min": [
+          -130,
+          -45,
+          4
+        ],
+        "max": [
+          -20,
+          0,
+          40
+        ],
+        "basis": "assumption",
+        "note": "air duct behind the left centre face vent"
+      },
+      {
+        "type": "box",
+        "min": [
+          558,
+          -40,
+          4
+        ],
+        "max": [
+          592,
+          0,
+          42
+        ],
+        "basis": "assumption",
+        "note": "air duct behind the right side vent"
+      },
+      {
+        "type": "box",
+        "min": [
+          -592,
+          -40,
+          4
+        ],
+        "max": [
+          -558,
+          0,
+          42
+        ],
+        "basis": "assumption",
+        "note": "air duct behind the left side vent"
+      },
+      {
+        "type": "box",
+        "min": [
+          -640,
+          -34,
+          -1
+        ],
+        "max": [
+          640,
+          40,
+          7
+        ],
+        "basis": "assumption",
+        "note": "bottom band kept open between the return lip and the windscreen flange (no closed pocket, access to clips)"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-INT-DASHBOARD-TRIM-0001/outside-0.stl",
+        "basis": "assumption",
+        "note": "outside the F0 outer body and 0.3 mm into it (ribs end flush with the skin), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-INT-DASHBOARD-TRIM-0001/outside-1.stl",
+        "basis": "assumption",
+        "note": "outside the F0 outer body and 0.3 mm into it (ribs end flush with the skin), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-INT-DASHBOARD-TRIM-0001/outside-2.stl",
+        "basis": "assumption",
+        "note": "outside the F0 outer body and 0.3 mm into it (ribs end flush with the skin), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-INT-DASHBOARD-TRIM-0001/outside-3.stl",
+        "basis": "assumption",
+        "note": "outside the F0 outer body and 0.3 mm into it (ribs end flush with the skin), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-INT-DASHBOARD-TRIM-0001/outside-4.stl",
+        "basis": "assumption",
+        "note": "outside the F0 outer body and 0.3 mm into it (ribs end flush with the skin), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-INT-DASHBOARD-TRIM-0001/outside-5.stl",
+        "basis": "assumption",
+        "note": "outside the F0 outer body and 0.3 mm into it (ribs end flush with the skin), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-INT-DASHBOARD-TRIM-0001/outside-6.stl",
+        "basis": "assumption",
+        "note": "outside the F0 outer body and 0.3 mm into it (ribs end flush with the skin), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-INT-DASHBOARD-TRIM-0001/outside-7.stl",
+        "basis": "assumption",
+        "note": "outside the F0 outer body and 0.3 mm into it (ribs end flush with the skin), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-INT-DASHBOARD-TRIM-0001/outside-8.stl",
+        "basis": "assumption",
+        "note": "outside the F0 outer body and 0.3 mm into it (ribs end flush with the skin), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-INT-DASHBOARD-TRIM-0001/outside-9.stl",
+        "basis": "assumption",
+        "note": "outside the F0 outer body and 0.3 mm into it (ribs end flush with the skin), one tile"
+      }
+    ],
+    "supports": [
+      {
+        "type": "cyl",
+        "a": [
+          -560,
+          43.9,
+          -1
+        ],
+        "b": [
+          -560,
+          43.9,
+          2
+        ],
+        "r": 6.5,
+        "basis": "assumption",
+        "note": "clip at x = -560 mm held on the dashboard carrier (idealised as clamped)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -300,
+          40.5,
+          -1
+        ],
+        "b": [
+          -300,
+          40.5,
+          2
+        ],
+        "r": 6.5,
+        "basis": "assumption",
+        "note": "clip at x = -300 mm held on the dashboard carrier (idealised as clamped)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0,
+          38.5,
+          -1
+        ],
+        "b": [
+          0,
+          38.5,
+          2
+        ],
+        "r": 6.5,
+        "basis": "assumption",
+        "note": "clip at x = 0 mm held on the dashboard carrier (idealised as clamped)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          300,
+          40.5,
+          -1
+        ],
+        "b": [
+          300,
+          40.5,
+          2
+        ],
+        "r": 6.5,
+        "basis": "assumption",
+        "note": "clip at x = 300 mm held on the dashboard carrier (idealised as clamped)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          560,
+          43.9,
+          -1
+        ],
+        "b": [
+          560,
+          43.9,
+          2
+        ],
+        "r": 6.5,
+        "basis": "assumption",
+        "note": "clip at x = 560 mm held on the dashboard carrier (idealised as clamped)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -450,
+          -53.1,
+          -1
+        ],
+        "b": [
+          -450,
+          -53.1,
+          2
+        ],
+        "r": 6.5,
+        "basis": "assumption",
+        "note": "clip at x = -450 mm held on the dashboard carrier (idealised as clamped)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -150,
+          -57.0,
+          -1
+        ],
+        "b": [
+          -150,
+          -57.0,
+          2
+        ],
+        "r": 6.5,
+        "basis": "assumption",
+        "note": "clip at x = -150 mm held on the dashboard carrier (idealised as clamped)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          150,
+          -57.0,
+          -1
+        ],
+        "b": [
+          150,
+          -57.0,
+          2
+        ],
+        "r": 6.5,
+        "basis": "assumption",
+        "note": "clip at x = 150 mm held on the dashboard carrier (idealised as clamped)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          450,
+          -53.1,
+          -1
+        ],
+        "b": [
+          450,
+          -53.1,
+          2
+        ],
+        "r": 6.5,
+        "basis": "assumption",
+        "note": "clip at x = 450 mm held on the dashboard carrier (idealised as clamped)"
+      }
+    ],
+    "load_cases": [
+      {
+        "name": "press_centre",
+        "basis": "assumption",
+        "note": "200 N down on an 80 mm patch of the crest at x = 0 mm (hand pressing or leaning on the top); no published value",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  0,
+                  -15.0,
+                  45
+                ],
+                "b": [
+                  0,
+                  -15.0,
+                  66
+                ],
+                "r": 40
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              -200
+            ]
+          }
+        ]
+      },
+      {
+        "name": "press_driver",
+        "basis": "assumption",
+        "note": "200 N down on an 80 mm patch of the crest at x = -150 mm (hand pressing or leaning on the top); no published value",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  -150,
+                  -14.5,
+                  45
+                ],
+                "b": [
+                  -150,
+                  -14.5,
+                  66
+                ],
+                "r": 40
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              -200
+            ]
+          }
+        ]
+      },
+      {
+        "name": "press_passenger",
+        "basis": "assumption",
+        "note": "200 N down on an 80 mm patch of the crest at x = 400 mm (hand pressing or leaning on the top); no published value",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  400,
+                  -11.5,
+                  45
+                ],
+                "b": [
+                  400,
+                  -11.5,
+                  66
+                ],
+                "r": 40
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              -200
+            ]
+          }
+        ]
+      },
+      {
+        "name": "face_push",
+        "basis": "assumption",
+        "note": "2 x 75 N forward on the occupant face at x = +/-300 mm (knee or hand push)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  270,
+                  -72,
+                  10
+                ],
+                "max": [
+                  330,
+                  -50,
+                  45
+                ]
+              }
+            ],
+            "force_N": [
+              0,
+              75,
+              0
+            ]
+          },
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  -330,
+                  -72,
+                  10
+                ],
+                "max": [
+                  -270,
+                  -50,
+                  45
+                ]
+              }
+            ],
+            "force_N": [
+              0,
+              75,
+              0
+            ]
+          }
+        ]
+      }
+    ],
+    "volume_fraction": 0.12,
+    "filter_radius_mm": 18.0,
+    "iterations": 45
+  },
+  "shaping": {
+    "smooth_mm": 3.0,
+    "blend_mm": 0.6,
+    "base_stl": "parts/picogk-catalog/out/993-INT-DASHBOARD-TRIM-0001-SKIN.stl",
+    "lattice_grey": false
+  }
+}

@@ -1,0 +1,1542 @@
+{
+  "part_id": "993-WHL-CENTER-CAP-ALSI10MG-F0-0001",
+  "method": "3D SIMP topology optimization (parts/picogk-catalog/bionic/topopt.py), then PicoGK smoothing and exact functional features",
+  "basis_note": "Interfaces and loads are NOT measured. The published 76 mm face, 60 mm ring bore and 46 mm height are kept exact by keep-ins (face shell and skirt from source/bionic_keepins.py, ring and tabs as primitives); ring OD 63 mm, tabs, barbs and skirt are the F0 concept values of source/picogk.json. Face push, pull-out and side loads are assumptions (the engineering screen has no force case; its 20 g axial acceleration on a 75 g cap gives only 15 N). The structure under the face is a load-path concept, to be recomputed once the wheel bore, groove and retention force are measured.",
+  "optimization": {
+    "element_mm": 1.35,
+    "grid_min": [
+      -38.5,
+      -38.5,
+      -0.05
+    ],
+    "grid_max": [
+      38.5,
+      38.5,
+      46.5
+    ],
+    "design": [
+      {
+        "type": "cyl",
+        "a": [
+          0,
+          0,
+          31
+        ],
+        "b": [
+          0,
+          0,
+          46.5
+        ],
+        "r": 38,
+        "basis": "published",
+        "note": "76 mm face diameter, 46 mm height: the cap above the wheel face (skirt lip at z = 31, F0)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0,
+          0,
+          -0.05
+        ],
+        "b": [
+          0,
+          0,
+          31
+        ],
+        "r": 31.5,
+        "basis": "assumption",
+        "note": "inside the wheel bore: no wider than the 63 mm ring (F0 ring OD)"
+      }
+    ],
+    "solid": [
+      {
+        "type": "stl",
+        "path": "parts/993-whl-center-cap-alsi10mg-f0-0001/source/bionic-keepins/face_shell.stl",
+        "basis": "published",
+        "note": "domed 2 mm face (76 mm, crown at 46 mm, 3 mm dome) with the 1.5 mm outer skirt and rolled lip down to z = 31 (F0)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0,
+          0,
+          14
+        ],
+        "b": [
+          0,
+          0,
+          31
+        ],
+        "r": 31.5,
+        "basis": "published",
+        "note": "centering ring, 60 mm bore (published inner diameter) x 63 mm (F0 OD), from the tab roots to the wheel face"
+      },
+      {
+        "type": "box",
+        "min": [
+          29.6,
+          -4,
+          0
+        ],
+        "max": [
+          31.5,
+          4,
+          15
+        ],
+        "basis": "assumption",
+        "note": "clip tab 8 mm wide, 1.5 mm ring wall, free length 14 mm (F0 TAB_*), 4 tabs"
+      },
+      {
+        "type": "box",
+        "min": [
+          -31.5,
+          -4,
+          0
+        ],
+        "max": [
+          -29.6,
+          4,
+          15
+        ],
+        "basis": "assumption",
+        "note": "clip tab 8 mm wide, 1.5 mm ring wall, free length 14 mm (F0 TAB_*), 4 tabs"
+      },
+      {
+        "type": "box",
+        "min": [
+          -4,
+          29.6,
+          0
+        ],
+        "max": [
+          4,
+          31.5,
+          15
+        ],
+        "basis": "assumption",
+        "note": "clip tab 8 mm wide, 1.5 mm ring wall, free length 14 mm (F0 TAB_*), 4 tabs"
+      },
+      {
+        "type": "box",
+        "min": [
+          -4,
+          -31.5,
+          0
+        ],
+        "max": [
+          4,
+          -29.6,
+          15
+        ],
+        "basis": "assumption",
+        "note": "clip tab 8 mm wide, 1.5 mm ring wall, free length 14 mm (F0 TAB_*), 4 tabs"
+      },
+      {
+        "type": "stl",
+        "path": "parts/993-whl-center-cap-alsi10mg-f0-0001/source/bionic-keepins/barbs.stl",
+        "basis": "assumption",
+        "note": "four lead-in barbs 1.5 x 4 mm (F0 bead)"
+      }
+    ],
+    "void": [
+      {
+        "type": "cyl",
+        "a": [
+          0,
+          0,
+          -1
+        ],
+        "b": [
+          0,
+          0,
+          34
+        ],
+        "r": 30,
+        "basis": "published",
+        "note": "60 mm ring bore and the hub space behind it, kept empty up to 3 mm above the wheel face"
+      },
+      {
+        "type": "stl",
+        "path": "parts/993-whl-center-cap-alsi10mg-f0-0001/source/bionic-keepins/above_face.stl",
+        "basis": "published",
+        "note": "everything above the domed face surface: the visible face stays clean, members grow only underneath"
+      },
+      {
+        "type": "box",
+        "min": [
+          4.6,
+          4.6,
+          -1
+        ],
+        "max": [
+          33,
+          33,
+          14
+        ],
+        "basis": "assumption",
+        "note": "slot between two clip tabs kept open so the tabs can flex"
+      },
+      {
+        "type": "box",
+        "min": [
+          4.6,
+          -33,
+          -1
+        ],
+        "max": [
+          33,
+          -4.6,
+          14
+        ],
+        "basis": "assumption",
+        "note": "slot between two clip tabs kept open so the tabs can flex"
+      },
+      {
+        "type": "box",
+        "min": [
+          -33,
+          4.6,
+          -1
+        ],
+        "max": [
+          -4.6,
+          33,
+          14
+        ],
+        "basis": "assumption",
+        "note": "slot between two clip tabs kept open so the tabs can flex"
+      },
+      {
+        "type": "box",
+        "min": [
+          -33,
+          -33,
+          -1
+        ],
+        "max": [
+          -4.6,
+          -4.6,
+          14
+        ],
+        "basis": "assumption",
+        "note": "slot between two clip tabs kept open so the tabs can flex"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          44.0,
+          0.0,
+          -1
+        ],
+        "b": [
+          44.0,
+          0.0,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          43.8326,
+          3.8349,
+          -1
+        ],
+        "b": [
+          43.8326,
+          3.8349,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          43.3315,
+          7.6405,
+          -1
+        ],
+        "b": [
+          43.3315,
+          7.6405,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          42.5007,
+          11.388,
+          -1
+        ],
+        "b": [
+          42.5007,
+          11.388,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          41.3465,
+          15.0489,
+          -1
+        ],
+        "b": [
+          41.3465,
+          15.0489,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          39.8775,
+          18.5952,
+          -1
+        ],
+        "b": [
+          39.8775,
+          18.5952,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          38.1051,
+          22.0,
+          -1
+        ],
+        "b": [
+          38.1051,
+          22.0,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          36.0427,
+          25.2374,
+          -1
+        ],
+        "b": [
+          36.0427,
+          25.2374,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          33.706,
+          28.2827,
+          -1
+        ],
+        "b": [
+          33.706,
+          28.2827,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          31.1127,
+          31.1127,
+          -1
+        ],
+        "b": [
+          31.1127,
+          31.1127,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          28.2827,
+          33.706,
+          -1
+        ],
+        "b": [
+          28.2827,
+          33.706,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          25.2374,
+          36.0427,
+          -1
+        ],
+        "b": [
+          25.2374,
+          36.0427,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          22.0,
+          38.1051,
+          -1
+        ],
+        "b": [
+          22.0,
+          38.1051,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          18.5952,
+          39.8775,
+          -1
+        ],
+        "b": [
+          18.5952,
+          39.8775,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          15.0489,
+          41.3465,
+          -1
+        ],
+        "b": [
+          15.0489,
+          41.3465,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          11.388,
+          42.5007,
+          -1
+        ],
+        "b": [
+          11.388,
+          42.5007,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          7.6405,
+          43.3315,
+          -1
+        ],
+        "b": [
+          7.6405,
+          43.3315,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          3.8349,
+          43.8326,
+          -1
+        ],
+        "b": [
+          3.8349,
+          43.8326,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          44.0,
+          -1
+        ],
+        "b": [
+          0.0,
+          44.0,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -3.8349,
+          43.8326,
+          -1
+        ],
+        "b": [
+          -3.8349,
+          43.8326,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -7.6405,
+          43.3315,
+          -1
+        ],
+        "b": [
+          -7.6405,
+          43.3315,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -11.388,
+          42.5007,
+          -1
+        ],
+        "b": [
+          -11.388,
+          42.5007,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -15.0489,
+          41.3465,
+          -1
+        ],
+        "b": [
+          -15.0489,
+          41.3465,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -18.5952,
+          39.8775,
+          -1
+        ],
+        "b": [
+          -18.5952,
+          39.8775,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -22.0,
+          38.1051,
+          -1
+        ],
+        "b": [
+          -22.0,
+          38.1051,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -25.2374,
+          36.0427,
+          -1
+        ],
+        "b": [
+          -25.2374,
+          36.0427,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -28.2827,
+          33.706,
+          -1
+        ],
+        "b": [
+          -28.2827,
+          33.706,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -31.1127,
+          31.1127,
+          -1
+        ],
+        "b": [
+          -31.1127,
+          31.1127,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -33.706,
+          28.2827,
+          -1
+        ],
+        "b": [
+          -33.706,
+          28.2827,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -36.0427,
+          25.2374,
+          -1
+        ],
+        "b": [
+          -36.0427,
+          25.2374,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -38.1051,
+          22.0,
+          -1
+        ],
+        "b": [
+          -38.1051,
+          22.0,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -39.8775,
+          18.5952,
+          -1
+        ],
+        "b": [
+          -39.8775,
+          18.5952,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -41.3465,
+          15.0489,
+          -1
+        ],
+        "b": [
+          -41.3465,
+          15.0489,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -42.5007,
+          11.388,
+          -1
+        ],
+        "b": [
+          -42.5007,
+          11.388,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -43.3315,
+          7.6405,
+          -1
+        ],
+        "b": [
+          -43.3315,
+          7.6405,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -43.8326,
+          3.8349,
+          -1
+        ],
+        "b": [
+          -43.8326,
+          3.8349,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -44.0,
+          0.0,
+          -1
+        ],
+        "b": [
+          -44.0,
+          0.0,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -43.8326,
+          -3.8349,
+          -1
+        ],
+        "b": [
+          -43.8326,
+          -3.8349,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -43.3315,
+          -7.6405,
+          -1
+        ],
+        "b": [
+          -43.3315,
+          -7.6405,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -42.5007,
+          -11.388,
+          -1
+        ],
+        "b": [
+          -42.5007,
+          -11.388,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -41.3465,
+          -15.0489,
+          -1
+        ],
+        "b": [
+          -41.3465,
+          -15.0489,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -39.8775,
+          -18.5952,
+          -1
+        ],
+        "b": [
+          -39.8775,
+          -18.5952,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -38.1051,
+          -22.0,
+          -1
+        ],
+        "b": [
+          -38.1051,
+          -22.0,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -36.0427,
+          -25.2374,
+          -1
+        ],
+        "b": [
+          -36.0427,
+          -25.2374,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -33.706,
+          -28.2827,
+          -1
+        ],
+        "b": [
+          -33.706,
+          -28.2827,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -31.1127,
+          -31.1127,
+          -1
+        ],
+        "b": [
+          -31.1127,
+          -31.1127,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -28.2827,
+          -33.706,
+          -1
+        ],
+        "b": [
+          -28.2827,
+          -33.706,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -25.2374,
+          -36.0427,
+          -1
+        ],
+        "b": [
+          -25.2374,
+          -36.0427,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -22.0,
+          -38.1051,
+          -1
+        ],
+        "b": [
+          -22.0,
+          -38.1051,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -18.5952,
+          -39.8775,
+          -1
+        ],
+        "b": [
+          -18.5952,
+          -39.8775,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -15.0489,
+          -41.3465,
+          -1
+        ],
+        "b": [
+          -15.0489,
+          -41.3465,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -11.388,
+          -42.5007,
+          -1
+        ],
+        "b": [
+          -11.388,
+          -42.5007,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -7.6405,
+          -43.3315,
+          -1
+        ],
+        "b": [
+          -7.6405,
+          -43.3315,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -3.8349,
+          -43.8326,
+          -1
+        ],
+        "b": [
+          -3.8349,
+          -43.8326,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -0.0,
+          -44.0,
+          -1
+        ],
+        "b": [
+          -0.0,
+          -44.0,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          3.8349,
+          -43.8326,
+          -1
+        ],
+        "b": [
+          3.8349,
+          -43.8326,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          7.6405,
+          -43.3315,
+          -1
+        ],
+        "b": [
+          7.6405,
+          -43.3315,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          11.388,
+          -42.5007,
+          -1
+        ],
+        "b": [
+          11.388,
+          -42.5007,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          15.0489,
+          -41.3465,
+          -1
+        ],
+        "b": [
+          15.0489,
+          -41.3465,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          18.5952,
+          -39.8775,
+          -1
+        ],
+        "b": [
+          18.5952,
+          -39.8775,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          22.0,
+          -38.1051,
+          -1
+        ],
+        "b": [
+          22.0,
+          -38.1051,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          25.2374,
+          -36.0427,
+          -1
+        ],
+        "b": [
+          25.2374,
+          -36.0427,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          28.2827,
+          -33.706,
+          -1
+        ],
+        "b": [
+          28.2827,
+          -33.706,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          31.1127,
+          -31.1127,
+          -1
+        ],
+        "b": [
+          31.1127,
+          -31.1127,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          33.706,
+          -28.2827,
+          -1
+        ],
+        "b": [
+          33.706,
+          -28.2827,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          36.0427,
+          -25.2374,
+          -1
+        ],
+        "b": [
+          36.0427,
+          -25.2374,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          38.1051,
+          -22.0,
+          -1
+        ],
+        "b": [
+          38.1051,
+          -22.0,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          39.8775,
+          -18.5952,
+          -1
+        ],
+        "b": [
+          39.8775,
+          -18.5952,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          41.3465,
+          -15.0489,
+          -1
+        ],
+        "b": [
+          41.3465,
+          -15.0489,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          42.5007,
+          -11.388,
+          -1
+        ],
+        "b": [
+          42.5007,
+          -11.388,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          43.3315,
+          -7.6405,
+          -1
+        ],
+        "b": [
+          43.3315,
+          -7.6405,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          43.8326,
+          -3.8349,
+          -1
+        ],
+        "b": [
+          43.8326,
+          -3.8349,
+          47.5
+        ],
+        "r": 6,
+        "basis": "published",
+        "note": "outside the 76 mm face diameter: 72 tangent cylinders trim anything (smoothed members) beyond r = 38 mm (scallop <= 0.3 mm)"
+      }
+    ],
+    "supports": [
+      {
+        "type": "stl",
+        "path": "parts/993-whl-center-cap-alsi10mg-f0-0001/source/bionic-keepins/lip_seat.stl",
+        "basis": "assumption",
+        "note": "skirt lip seated on the wheel face (z = 31)"
+      },
+      {
+        "type": "box",
+        "min": [
+          30.6,
+          -3.6,
+          0
+        ],
+        "max": [
+          34,
+          3.6,
+          5
+        ],
+        "basis": "assumption",
+        "note": "barb latched in the wheel bore groove"
+      },
+      {
+        "type": "box",
+        "min": [
+          -34,
+          -3.6,
+          0
+        ],
+        "max": [
+          -30.6,
+          3.6,
+          5
+        ],
+        "basis": "assumption",
+        "note": "barb latched in the wheel bore groove"
+      },
+      {
+        "type": "box",
+        "min": [
+          -3.6,
+          30.6,
+          0
+        ],
+        "max": [
+          3.6,
+          34,
+          5
+        ],
+        "basis": "assumption",
+        "note": "barb latched in the wheel bore groove"
+      },
+      {
+        "type": "box",
+        "min": [
+          -3.6,
+          -34,
+          0
+        ],
+        "max": [
+          3.6,
+          -30.6,
+          5
+        ],
+        "basis": "assumption",
+        "note": "barb latched in the wheel bore groove"
+      }
+    ],
+    "load_cases": [
+      {
+        "name": "face_push",
+        "basis": "assumption",
+        "note": "200 N hand / wash-brush push on the central face (no published value)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  -27,
+                  -27,
+                  43.9
+                ],
+                "max": [
+                  27,
+                  27,
+                  46.6
+                ]
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              -200
+            ]
+          }
+        ]
+      },
+      {
+        "name": "pull_out",
+        "basis": "assumption",
+        "note": "100 N pull-out on the face held by the tab barbs (removal tool / retention, no published value)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  -27,
+                  -27,
+                  43.9
+                ],
+                "max": [
+                  27,
+                  27,
+                  46.6
+                ]
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              100
+            ]
+          }
+        ]
+      },
+      {
+        "name": "side",
+        "basis": "assumption",
+        "note": "100 N radial knock on the face rim (no published value)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  34,
+                  -12,
+                  34
+                ],
+                "max": [
+                  38.6,
+                  12,
+                  44
+                ]
+              }
+            ],
+            "force_N": [
+              -100,
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    ],
+    "volume_fraction": 0.4,
+    "filter_radius_mm": 3.4,
+    "iterations": 45
+  },
+  "shaping": {
+    "smooth_mm": 1.6,
+    "blend_mm": 0.6
+  }
+}
