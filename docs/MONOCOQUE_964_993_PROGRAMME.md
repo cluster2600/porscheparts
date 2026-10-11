@@ -130,30 +130,40 @@ monocoque inside that shell with the pinned PicoGK kernel. Every aperture
 is framed by a closed section, the sills, tunnel and rails are closed boxes,
 and the floor and bulkheads are sandwich panels: the closures of section 2,
 by construction. The mass estimate is about 95 kg, from assumed layups.
-In torsion, on a shell model of the same members, K is about 29,500
-N·m/deg in steel and 22,300 in CFRP. That is stable within 7% across three
-mesh densities, and more than five times the open shell, which does not
-converge. Carbon gives ×1.20 to ×1.24 in specific stiffness, as on the box
-cell: the architecture is the lever. Every member size is a hypothesis, and
+In torsion, on a shell model of the same members, K is about 47,300
+N·m/deg in steel and 35,500 in CFRP. The two finer meshes agree within 2%,
+and the architecture is more than five times stiffer than the open shell,
+which does not converge. Carbon gives ×1.17 to ×1.20 in specific stiffness,
+close to the box cell: the architecture is the lever. Every member size is a hypothesis, and
 the architecture is still `prohibited_pending_engineering`.
 
 **Two PicoGK architectures compared (2026-10-09).** The second study,
 `picogk-rings/`, closes the body with discrete tubes tangent to the skin.
-On the same mesh and load, it is 1.4 to 1.9 times less stiff per kilogram
-than the skin-formed boxes, at all three mesh densities. A box that uses
-the skin as one wall encloses more area than a tube bonded along a line.
-The design direction this supports is closed sections formed with the skin,
-not added to it. It is a ranking of two hypotheses, not a design.
+On the same mesh and load, the skin-formed boxes lead per kilogram on the
+two finer meshes (×1.08, ×1.29) and the tubes on the coarsest (×1.23). The
+tube model is far from converged. The trend favours closed sections formed
+with the skin, but it is not established. (Corrected on 2026-10-11: the
+first comparison, without bulkheads, claimed ×1.4 to ×1.9 at every mesh.)
 
-**What each member is worth (2026-10-10).** Removing the members of
+**What each member is worth (2026-10-11).** Removing the members of
 `picogk/` one by one shows that the cabin is carried by the door rings
-(37-38% of the cabin's torsional stiffness), the windscreen frame (19%), the
-quarter-window rings (13%, for 1.1 kg) and the sills. The engine-lid ring
-is worth nothing in torsion. The B-ring, the rear-window ring and the
-tunnel are each worth little, but removed together they cost 12 to 15% of
-the cabin stiffness for 8 to 12 kg. Pruning them is a trade, and the B-ring
-(roll-over, side impact) and the tunnel (C4 driveline) have roles torsion
-does not judge.
+(27-31% of the cabin's torsional stiffness), the windscreen frame (24-27%),
+the quarter-window rings (17-20%, for 1.1 kg) and the sills (8-11%). The
+engine-lid ring is worth nothing in torsion. The B-ring, rear-window ring,
+tunnel and front rails are each worth little, but removed together they
+cost 14 to 16% of the cabin stiffness for 11 to 15 kg. Pruning them is a
+trade, and the B-ring (roll-over, side impact) and the tunnel (C4
+driveline) have roles torsion does not judge.
+
+**Where the carbon pays (2026-10-11).** A ply on the skin that forms a
+closed section returns four to seven times more cabin stiffness per kg
+than one on the floor or the bulkheads. F1 applies it at constant mass:
+engine-lid ring out, bulkhead faces 2.4 to 1.9 mm, skin boxes 2.0 to
+2.5 mm. It gains 6% in torsion for the same mass.
+
+**Correction (2026-10-11).** Every torsion value published from #139 to
+#147 was computed without the bulkheads, which the shell builder dropped.
+They are corrected above; see the monocoque README, section Corrections.
 
 ## 4. The missing denominator is measured, no longer searched for
 

@@ -62,7 +62,7 @@ CHANNELS = ["door", "quarter_window", "rear_arch", "front_arch", "windscreen",
             "rear_window", "front_lid", "engine_lid", "engine_bay_underside"]
 SILL_DEPTH_MM = 140.0          # < the 150 mm corner radius of the section
 SMOOTHING_PASSES = 20          # normal smoothing before the offset
-REPEATS = 3                    # solves per value, median kept
+REPEATS = 3                    # solves per value at least; two must agree
 
 CARBON = laminate.quasi_isotropic(laminate.reduced_stiffness(**laminate.LAMINA["carbon"]))
 CARBON["rho"] = laminate.LAMINA["carbon"]["rho"]
@@ -145,7 +145,9 @@ def build(s, p, tri, bands):
     fn = np.cross(b - a, c - a)
     fn /= np.linalg.norm(fn, axis=1, keepdims=True)
     fd = -(a[:, 0] + b[:, 0] + c[:, 0]) / 3
-    bulk = (np.abs(fn[:, 0]) > 0.95) & ((np.abs(fd - bs.FRONT_BULKHEAD_D) < 2) | (np.abs(fd - bs.REAR_BULKHEAD_D) < 2))
+    st_d = s["stations_d"]
+    on_station = [st_d[np.argmin(np.abs(st_d - D))] for D in (bs.FRONT_BULKHEAD_D, bs.REAR_BULKHEAD_D)]
+    bulk = (np.abs(fn[:, 0]) > 0.95) & ((np.abs(fd - on_station[0]) < 0.5) | (np.abs(fd - on_station[1]) < 0.5))
     depth, used = member_depths(len(p), bands(p, s))
     in_band = depth > 0
     region = in_band[tri].all(axis=1) & ~bulk
@@ -181,7 +183,9 @@ def build(s, p, tri, bands):
     side = np.vstack([np.c_[free[:, 0], free[:, 1], idx[free[:, 1]]], np.c_[free[:, 0], idx[free[:, 1]], idx[free[:, 0]]]])
     pts = np.vstack([p, inner_pts])
     walls = np.vstack([inner, side])
-    walls = walls[areas(pts, walls) > 2.0]          # slivers on short free edges and cut-back corners
+    edge = np.max([np.linalg.norm(pts[walls[:, i]] - pts[walls[:, (i + 1) % 3]], axis=1) for i in range(3)], axis=0)
+    a_w = areas(pts, walls)
+    walls = walls[(a_w > 2.0) & (2 * a_w / edge > 0.5)]   # slivers and needles (< 0.5 mm wide) on short free edges and cut-back corners
     all_tri = np.vstack([tri, walls])
     kind = np.concatenate([np.where(bulk, 2, 0), np.ones(len(walls), int)])   # 0 skin, 1 section wall, 2 bulkhead
     zb = np.interp(fd, s["stations_d"], s["bottom"])
@@ -238,14 +242,21 @@ def twist(p, u, s, stations):
     return out
 
 
-def solve_repeated(pts, tri, secs, rear, fl, fr, beams=(), n=REPEATS):
-    """Median of n identical solves. CalculiX occasionally returns a K a
-    few per cent away on the same input (seen 3 times in about 40 solves,
-    0.1 to 7%), so each value is the median of three, with the spread kept."""
-    runs = [tr.solve(pts, tri, secs, rear, fl, fr, beams=beams) for _ in range(n)]
-    ks = [float(r[0]) for r in runs]
-    i = int(np.argsort(ks)[len(ks) // 2])
-    return ks[i], runs[i][1], runs[i][2], [round(k) for k in ks]
+def solve_repeated(pts, tri, secs, rear, fl, fr, beams=(), n=REPEATS, most=7):
+    """The K that two solves agree on. CalculiX now and then returns a K
+    too high on the same input (6 of 21 triples on 2026-10-10, +2% to
+    +60%, never too low), while a correct solve repeats to the unit. So: n
+    solves, then more until two agree within 0.01%, at most `most`."""
+    runs = []
+    while len(runs) < most:
+        runs.append(tr.solve(pts, tri, secs, rear, fl, fr, beams=beams))
+        ks = [float(r[0]) for r in runs]
+        if len(runs) < n:
+            continue
+        for i in range(len(ks)):
+            if any(abs(ks[i] - ks[j]) <= 1e-4 * abs(ks[i]) for j in range(len(ks)) if j != i):
+                return ks[i], runs[i][1], runs[i][2], [round(k) for k in ks]
+    sys.exit(f"no two of {len(runs)} solves agree: {[round(k) for k in ks]}")
 
 
 def solve_density(n_stations, res, rep, profiles, stations, keep_fields):
@@ -295,7 +306,7 @@ def main():
         "load_case": {"force_N": tr.FORCE_N, "clamp": "d 2050-2450, z 450-720, |y| > 0.8 W",
                       "loads": "d -200..150, z 470-640, |y| > 0.72 W"},
         "meshes": meshes,
-        "mesh_note": "K lists are at the densities of 'meshes', coarsest first, each the median of K_repeats; S3 converges from above, so only ratios that hold across densities are used",
+        "mesh_note": "K lists are at the densities of 'meshes', coarsest first, each the value two of K_repeats agree on; S3 converges from above, so only ratios that hold across densities are used",
         "ratios": {"monocoque / open shell, steel": ratio("monocoque, 0.8 mm steel", "open shell, 0.8 mm steel"),
                    "monocoque / open shell, CFRP": ratio("monocoque, CFRP layup", "open shell, CFRP layup"),
                    "CFRP / steel, monocoque": ratio("monocoque, CFRP layup", "monocoque, 0.8 mm steel")},

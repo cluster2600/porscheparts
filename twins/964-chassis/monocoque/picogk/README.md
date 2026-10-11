@@ -64,12 +64,13 @@ that area times an **assumed** areal mass. There are no joints, inserts,
 adhesive, glass, doors or lids. It is an order of magnitude for comparing
 architectures, not a mass for this car.
 
-**Torsion.** On a shell model of the same members, K is about 29,500 N·m/deg
-in steel and 22,300 in the assumed CFRP layup (75 kg without tubs or rear
-rails). That is stable within 7% across three mesh densities. The open
-shell, on the same mesh, is not converged and is more than five times softer.
-The tube architecture of [`../picogk-rings/`](../picogk-rings/README.md) is
-1.4 to 1.9 times less stiff per kilogram.
+**Torsion.** On a shell model of the same members, K is about 47,300 N·m/deg
+in steel and 35,500 in the assumed CFRP layup (84 kg without tubs or rear
+rails). The two finer meshes agree within 2%. The open shell, on the same
+mesh, is not converged and is more than five times softer. Against the tube
+architecture of [`../picogk-rings/`](../picogk-rings/README.md), the
+ranking per kilogram depends on the mesh. Values corrected on 2026-10-11:
+the bulkheads were missing before.
 See [the torsion section](../README.md#torsion-of-the-monocoque-architecture).
 
 ## Reproduce
