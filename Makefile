@@ -206,7 +206,12 @@ check: validate test 917-clean-sheet-2026-f32-check \
 	tip-routes-check pet-zone-triage-check pet-verdict-check \
 	route-lever-hook-check print-screen-sections-check parts-table-check \
 	part-pages-check reports-index-check docs-links-check part-previews-check \
-	help-check fan-program-check
+	help-check fan-program-check engine-mount-study-check
+
+.PHONY: engine-mount-study-check
+#> check | Check engine-mount study geometry, hashes and blocked acceptance
+engine-mount-study-check:
+	python3 twins/993-engine-mount-system-f0/source/build_study.py --check
 
 .PHONY: fan-program-check
 #> check | Check fan programme links, evidence hashes and validation boundaries
