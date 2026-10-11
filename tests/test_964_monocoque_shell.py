@@ -58,18 +58,21 @@ class MonocoqueShellTests(unittest.TestCase):
                     self.assertGreaterEqual(len(runs), 3, case)
                     self.assertGreaterEqual(sum(1 for x in runs if abs(x - k) <= 1), 2, case)
 
-    def test_skin_boxes_lead_tubes_only_on_the_finer_meshes(self) -> None:
+    def test_tube_result_hinges_on_the_bond_and_brackets_the_boxes(self) -> None:
         boxes = json.loads((SHELL / "derived/torsion-monocoque.json").read_text(encoding="utf-8"))["cases"]
         rings = json.loads((SHELL / "derived/torsion-rings.json").read_text(encoding="utf-8"))
         self.assertIn("prohibited_pending_engineering", rings["classification"])
-        b, t, bare = boxes["monocoque, CFRP layup"], rings["cases"]["rings, CFRP layup"], rings["cases"]["rings without tubes, CFRP layup"]
-        lead = [(kb / b["mass_kg"]) / (kt / t["mass_kg"]) for kb, kt in zip(b["K"], t["K"])]
-        self.assertLess(lead[0], 1.0)                                         # coarsest mesh: the tubes lead
-        self.assertTrue(lead[1] > 1.0 and lead[2] > 1.2)                      # finer meshes: the boxes lead
-        self.assertTrue(all(b2 < 0.9 * b1 for b1, b2 in zip(t["K"], t["K"][1:])))   # the tube model is not converged
+        t, bare = rings["cases"]["rings, CFRP layup"], rings["cases"]["rings without tubes, CFRP layup"]
+        self.assertLess(abs(t["K"][2] - t["K"][1]) / t["K"][2], 0.01)          # strip bond: converged
         for kt, k0 in zip(t["K"], bare["K"]):
-            self.assertGreater(kt, 4 * k0)                                    # the tubes carry load
-        self.assertTrue(all(m["tubes"]["links"] > 500 for m in rings["meshes"]))
+            self.assertGreater(kt, 5 * k0)                                    # the tubes carry load
+        sens = rings["bond_sensitivity"]["rows"]
+        finest = sorted([(r["bond_radius_mm"], r["K"][-1]) for r in sens]
+                        + [(rings["meshes"][-1]["tubes"]["bond_radius_mm"], t["K"][-1])])
+        ks = [k for _, k in finest]
+        self.assertEqual(ks, sorted(ks))                                      # wider bond, stiffer model
+        box = boxes["monocoque, CFRP layup"]["K"][-1]
+        self.assertTrue(ks[0] < box < ks[-1])                                 # the boxes sit inside the bracket
 
     def test_member_study_ranks_the_cabin_members_and_checks_the_pruning(self) -> None:
         r = json.loads((SHELL / "derived/torsion-members.json").read_text(encoding="utf-8"))

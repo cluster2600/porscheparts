@@ -204,6 +204,17 @@ def architectures(pv):
                     ms=9, capsize=4, label=label)
         tw = np.array([np.nan if v is None else v for v in row["twist_deg"]])
         bx.plot(np.array(doc["twist_stations_d_mm"]), tw, color=colour, lw=2, label=f"{label}: K {row['K'][-1]:,}")
+    sens = rings.get("bond_sensitivity")
+    if sens:                                     # the tube result hinges on the bond width
+        row = rings["cases"]["rings, CFRP layup"]
+        ks = [r["K"][-1] for r in sens["rows"]] + [row["K"][-1]]
+        ax.vlines(row["mass_kg"] + 1.2, min(ks), max(ks), color="#e9b44c", lw=6, alpha=0.35,
+                  label="picogk-rings/: bond strip 0 to 60 mm wide")
+        for r in sens["rows"]:
+            ax.annotate(f"{2 * r['bond_radius_mm']:.0f} mm", (row["mass_kg"] + 2.2, r["K"][-1]), color="#e9b44c", fontsize=8,
+                        va="center")
+        ax.annotate(f"{2 * rings['meshes'][-1]['tubes']['bond_radius_mm']:.0f} mm", (row["mass_kg"] + 2.2, row["K"][-1]),
+                    color="#e9b44c", fontsize=8, va="center")
     for a in (ax, bx):
         a.set_facecolor("#0e1218")
         a.tick_params(colors="#9aa3ad")

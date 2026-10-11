@@ -170,7 +170,8 @@ same clamp and the same load:
 
 - **sills and tunnel** are built as skin bands, as above;
 - **each tube** is a beam carrying the tube's area, bending and torsion
-  stiffness, tied to the skin along its tangent line;
+  stiffness, tied by short stiff links to every skin node within 20 mm of
+  its tangent point: a bonded strip about 40 mm wide (ASSUMED);
 - **all members and paths** come from the study's own parameters and
   `prepare.py`.
 
@@ -181,21 +182,41 @@ composite beam theory.
 |---|---|---|---|
 | open shell | 43 kg | 5,681 / 3,624 / 2,418 | 134 / 85 / 57 |
 | `picogk-rings/` without its tubes | 58 kg | 7,137 / 5,038 / 4,600 | 124 / 87 / 80 |
-| **`picogk-rings/`, tubes** | 73 kg | **32,586 / 27,705 / 23,665** | **449 / 382 / 326** |
+| **`picogk-rings/`, tubes, 40 mm bond** | 73 kg | **42,504 / 38,640 / 38,630** | **585 / 532 / 532** |
 | **`picogk/`, skin boxes** | 84 kg | **30,786 / 34,834 / 35,462** | **365 / 413 / 420** |
 
 ![Two architectures in torsion](evidence/torsion-architectures.png)
 
-What holds, and what does not:
+**The tube result hinges on the bond.** Tied to the skin at a single node,
+as first done, a tube sinks into the skin as the mesh is refined, and K
+lost 15% per refinement. Tied over a strip, it converges: 38,640 then
+38,630. But K then follows the strip width assumed
+(`torsion_rings.py --bond-sensitivity`):
 
-- **The ranking depends on the mesh.** Per kilogram, the skin boxes lead on
-  the two finer meshes (×1.08, then ×1.29). The tubes lead on the coarsest
-  (×1.23). The tube model loses 15% at each refinement and is far from
-  converged, while the boxes are stable. The trend favours the boxes: a box
-  that uses the skin as one wall encloses more area than a tube bonded
-  along a line. But it is a trend, not an established result.
-- **The tubes do work.** They multiply the model without them by 4.6 to
-  5.5, for 15 kg.
+| bonded strip | K, 300 / 420 sections | against the skin boxes, per kg |
+|---|---|---|
+| a single node | 27,705 / 23,665 (not converged) | ×0.78 |
+| 20 mm | 28,833 / 25,155 (not converged) | ×0.82 |
+| **40 mm** | **38,640 / 38,630** | **×1.27** |
+| 60 mm | 56,278 / 57,508 | ×1.89 |
+
+A beam element has a rigid cross-section. Tying a skin strip rigidly to
+it assumes that the tube never ovalizes and passes all the shear: the
+wider the strip, the more stiffness the model invents. That makes the
+strip ties an upper bound, while the point tie, which sinks, is a lower
+bound. **The skin boxes, at 35,462, sit inside that bracket.**
+
+What it means:
+
+- **The ranking of the two architectures cannot be settled with beam
+  tubes.** It is decided by the tube-to-skin joint: how wide the bond is,
+  and how much the tube ovalizes under it. The next model would mesh the
+  tubes as shells, bonded along a real flange.
+- **That joint is itself the design point.** A tube architecture is only
+  as stiff as its bond. The skin-formed boxes have no such joint: the
+  closed section is one laminate.
+- **The tubes do work.** With a 40 mm bond they multiply the model without
+  them by 6 to 8, for 15 kg.
 
 Neither model is a design. The `picogk/` boxes are larger and heavier: its
 members include rings around the lids and arches and a full B-ring, while
@@ -317,9 +338,10 @@ to #147 (2026-10-08 to 2026-10-10) are superseded.
 What changed in the conclusions:
 
 - **The comparison of the two architectures** (#144) claimed the skin boxes
-  lead per kilogram "at all three meshes". With the bulkheads, the tubes
-  lead on the coarsest mesh. The advantage of the boxes holds only on the
-  finer meshes and is not established.
+  lead per kilogram "at all three meshes". That came from the tubes being
+  tied to the skin at single nodes, which sink as the mesh is refined.
+  Tied over a bonded strip, the tube model converges, and the ranking then
+  depends on the strip width assumed (see above): it is not established.
 - **The member ranking** (#147) holds for the members that carry the cabin.
   The front members no longer count on the cabin measure: their earlier
   weight there came from the missing front bulkhead.
@@ -333,6 +355,7 @@ In the `cadsim` image, with shapely from the print-simulation library folder:
     python3 source/torsion.py          # derived/torsion-snapshot.npz
     python3 source/torsion_monocoque.py   # derived/torsion-monocoque.json, after ../picogk/
     python3 source/torsion_rings.py       # derived/torsion-rings.json, from picogk-rings/
+    python3 source/torsion_rings.py --bond-sensitivity   # other tube-to-skin bond widths
     python3 source/member_study.py        # derived/torsion-members.json, two to three hours
     python3 source/member_study.py --pruned   # the weak members removed together
     python3 source/layup_study.py         # derived/torsion-layup.json, about two hours
