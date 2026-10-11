@@ -52,7 +52,7 @@ n'est pas éligible à cette procédure.
 
 ```sh
 python twins/bionic-turbo-f1/cfd/check_cartesian_cells.py NEW_CASE
-python twins/bionic-turbo-f1/cfd/prepare_runtime_007.py NEW_CASE NEW_RUNTIME_CASE
+python twins/bionic-turbo-f1/cfd/prepare_runtime_008.py NEW_CASE NEW_RUNTIME_CASE
 python twins/bionic-turbo-f1/cfd/run_cartesian_pilot.py NEW_RUNTIME_CASE
 ```
 
@@ -94,6 +94,13 @@ le point de fonctionnement et les critères, mais amortit les itérations avec
 les facteurs de relaxation p=0,1, U=0,2, h=0,02, k/omega=0,2 et rho=0,1.
 Aucun plancher de température ne masque une solution invalide. Il s'agit d'un
 contre-essai numérique ; son lancement n'établit pas sa convergence.
+
+`runtime_007` est également rejeté : la pression absolue devient négative.
+`runtime_008` active le couplage pression-densité transsonique natif, la convection
+amont `div(phid,p)` et les réglages GAMG asymétriques. Il conserve le même
+régime, les mêmes pressions imposées, les mêmes températures, les mêmes
+maillages et les critères d'acceptation. Les essais rejetés ne doivent fournir
+aucun chiffre de débit ou de puissance présenté comme résultat convergé.
 
 La réussite d'un calcul pilote ne valide ni les performances physiques,
 ni le débit maximal, ni la puissance maximale. Il reste à obtenir un maillage
