@@ -54,7 +54,8 @@ public sealed class BionicTopology : IPartGenerator
         // bores and passages keep their exact size.
         JsonNode opt = bio["optimization"]!;
         foreach (JsonNode? s in opt["solid"]?.AsArray() ?? new JsonArray())
-            body.BoolAdd(Shape(lib, s!, root));
+            if (s!["analysis_only"]?.GetValue<bool>() != true)    // analysis-only walls come from base_stl
+                body.BoolAdd(Shape(lib, s, root));
         string? baseStl = bio["shaping"]?["base_stl"]?.GetValue<string>();
         if (baseStl != null)
             body.BoolAdd(new Voxels(Mesh.mshFromStlFile(Path.Combine(root, baseStl), libSet: lib)));
