@@ -1,7 +1,7 @@
 {
   "part_id": "993-ENG-FAN-HOUSING-ALSI10MG-F0-0001",
   "name": "Stationary engine fan housing, AlSi10Mg F0 concept (PicoGK)",
-  "generator": "fan_housing",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-eng-fan-housing-alsi10mg-f0-0001.json",
   "porsche_part_numbers": [
     "99310666703",
@@ -11,7 +11,7 @@
   "material_candidate": "AlSi10Mg LPBF (comparison)",
   "density_g_cm3": 2.67,
   "voxel_mm": 1.0,
-  "picogk_enhancement": "The plain tube becomes a fan housing: the front flange rolls into a bellmouth that ends in the throat sleeve, six rounded spokes carry the alternator seat hub, mount pads with through holes sit behind the flange and the rear rim is thickened; every joint is blended by smooth union.",
+  "picogk_enhancement": "Bionic: shell, rear rim, front flange with bellmouth, throat sleeve, mount pads and the alternator seat hub of the functional housing are kept exactly (shaping.base_stl); the six straight spokes are replaced by a 30 mm deep spoke disc re-grown by 3D SIMP topology optimization (bionic.json, topopt.py) for the engineering screen's synthetic 2000 N radial hub load (vertical and lateral) and an assumed 500 N axial load, the throat sleeve held. PicoGK smooths the density into branching organic spokes from the hub to the throat. Loads are synthetic and assumed, not measured.",
   "parameters": {
     "outer_diameter_mm": {
       "value": 300.0,
@@ -150,5 +150,10 @@
     "outer_diameter_mm",
     "depth_mm"
   ],
-  "max_tris": 90000
+  "max_tris": 90000,
+  "envelope_axes": {
+    "outer_diameter_mm": "x",
+    "depth_mm": "z"
+  },
+  "envelope_mode": "max"
 }

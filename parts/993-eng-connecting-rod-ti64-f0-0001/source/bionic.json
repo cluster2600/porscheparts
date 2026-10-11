@@ -1,0 +1,303 @@
+{
+  "part_id": "993-ENG-CONNECTING-ROD-TI64-F0-0001",
+  "method": "3D SIMP topology optimization (parts/picogk-catalog/bionic/topopt.py), then PicoGK smoothing and exact functional features",
+  "basis_note": "Bore sizes, widths and centre distance are published (PAUTER/TZR); outside diameters, bolt offset and lugs are F0 hypotheses. Loads are the screening values of evidence/engineering-screen.json (synthetic pressure, masses and speed), not measured. The shank shape is a load-path concept, to be recomputed with crank-angle loads, bolt preload and buckling.",
+  "optimization": {
+    "element_mm": 2.5,
+    "grid_min": [
+      -42.5,
+      -42.5,
+      -10
+    ],
+    "grid_max": [
+      150,
+      42.5,
+      10
+    ],
+    "design": [
+      {
+        "type": "box",
+        "min": [
+          -42.0,
+          -42.0,
+          -9.79
+        ],
+        "max": [
+          148.0,
+          42.0,
+          9.79
+        ],
+        "basis": "published",
+        "note": "rod plane envelope: published 19.58 mm small-end width; length/width of the F0 functional rod (78 mm big end OD, 127 mm centres, 40 mm small end OD)"
+      }
+    ],
+    "solid": [
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          0.0,
+          -9.375
+        ],
+        "b": [
+          0.0,
+          0.0,
+          9.375
+        ],
+        "r": 33.504999999999995,
+        "basis": "published",
+        "note": "big-end housing ring: published 58.01 bore x 18.75 width, 4.5 mm wall assumed"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          127.0,
+          0.0,
+          -9.79
+        ],
+        "b": [
+          127.0,
+          0.0,
+          9.79
+        ],
+        "r": 15.505,
+        "basis": "published",
+        "note": "small-end eye: published 23.01 pin x 19.58 width, 4 mm wall assumed"
+      },
+      {
+        "type": "box",
+        "min": [
+          -14.0,
+          30.0,
+          -9.375
+        ],
+        "max": [
+          14.0,
+          42.0,
+          9.375
+        ],
+        "basis": "assumption",
+        "note": "bolt lug +y (28 x 12 mm, synthetic 36 mm bolt offset)"
+      },
+      {
+        "type": "box",
+        "min": [
+          -14.0,
+          -42.0,
+          -9.375
+        ],
+        "max": [
+          14.0,
+          -30.0,
+          9.375
+        ],
+        "basis": "assumption",
+        "note": "bolt lug -y"
+      }
+    ],
+    "void": [
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          0.0,
+          -12.0
+        ],
+        "b": [
+          0.0,
+          0.0,
+          12.0
+        ],
+        "r": 29.005,
+        "basis": "published",
+        "note": "big-end bore 58.01 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          127.0,
+          0.0,
+          -12.0
+        ],
+        "b": [
+          127.0,
+          0.0,
+          12.0
+        ],
+        "r": 11.505,
+        "basis": "published",
+        "note": "small-end bore 23.01 mm (pin size, no clearance)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -18.0,
+          36.0,
+          0.0
+        ],
+        "b": [
+          18.0,
+          36.0,
+          0.0
+        ],
+        "r": 4.2,
+        "basis": "assumption",
+        "note": "cap bolt passage 8.4 mm, +y"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -18.0,
+          -36.0,
+          0.0
+        ],
+        "b": [
+          18.0,
+          -36.0,
+          0.0
+        ],
+        "r": 4.2,
+        "basis": "assumption",
+        "note": "cap bolt passage 8.4 mm, -y"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          137.505,
+          0.0,
+          0.0
+        ],
+        "b": [
+          149.0,
+          0.0,
+          0.0
+        ],
+        "r": 2.0,
+        "basis": "assumption",
+        "note": "small-end oil drilling 4 mm"
+      }
+    ],
+    "supports": [
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          0.0,
+          -11.0
+        ],
+        "b": [
+          0.0,
+          0.0,
+          11.0
+        ],
+        "r": 31.205,
+        "basis": "assumption",
+        "note": "crankpin: big-end bore wall fixed (bearing shell contact, all directions)"
+      }
+    ],
+    "load_cases": [
+      {
+        "name": "compression",
+        "basis": "assumption",
+        "note": "conservative compression 111.8 kN = synthetic peak gas 94.2 kN (12 MPa x 100 mm bore) + inertia (evidence/engineering-screen.json results), on the piston side of the small-end bore",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  131.0,
+                  -8.0,
+                  -11.0
+                ],
+                "max": [
+                  144.0,
+                  8.0,
+                  11.0
+                ],
+                "basis": "assumption",
+                "note": ""
+              }
+            ],
+            "force_N": [
+              -111809.0,
+              0.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "tension",
+        "basis": "assumption",
+        "note": "inertia tension at TDC overlap 17.6 kN (evidence/engineering-screen.json results: (600 g piston+pin + rod/3) x 24 600 m/s^2), on the crank side of the small-end bore",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  110.0,
+                  -8.0,
+                  -11.0
+                ],
+                "max": [
+                  123.0,
+                  8.0,
+                  11.0
+                ],
+                "basis": "assumption",
+                "note": ""
+              }
+            ],
+            "force_N": [
+              17562.0,
+              0.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "whip_and_misalignment",
+        "basis": "assumption",
+        "note": "rod whip 3.2 kN in plane (341 g rod x ~19 000 m/s^2 crank-end transverse acceleration x 0.5, lumped at the small end) combined with 2.2 kN out of plane (2 % of compression, buckling/misalignment surrogate)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  127.0,
+                  0.0,
+                  -11.0
+                ],
+                "b": [
+                  127.0,
+                  0.0,
+                  11.0
+                ],
+                "r": 15.505,
+                "basis": "assumption",
+                "note": ""
+              }
+            ],
+            "force_N": [
+              0.0,
+              3200.0,
+              2200.0
+            ]
+          }
+        ]
+      }
+    ],
+    "volume_fraction": 0.25,
+    "filter_radius_mm": 6.25,
+    "iterations": 45
+  },
+  "shaping": {
+    "smooth_mm": 2.5,
+    "blend_mm": 1.2,
+    "lattice_grey": false
+  }
+}

@@ -1,7 +1,7 @@
 {
   "part_id": "993-ENG-TURBO-OIL-RETURN-LINE-IN625-F0-0001",
   "name": "993 Turbo oil line (left, return attribution unconfirmed), IN625 (PicoGK)",
-  "generator": "turbo_oil_return_line",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-eng-turbo-oil-return-line-in625-f0-0001.json",
   "porsche_part_numbers": [
     "993 107 125 53",
@@ -13,7 +13,7 @@
   "material_candidate": "IN625 LPBF",
   "density_g_cm3": 8.44,
   "voxel_mm": 0.25,
-  "picogk_enhancement": "Tube swept along the F0 spline with vertical end tangents and merged into both lobed two-bolt flanges through filleted roots with flat bolt seats, plus an integrated support tab: one body, no weld or braze joint; continuous internal passage open at both ends.",
+  "picogk_enhancement": "Bionic: legacy tube and flanges kept exactly (bore cut as the same beams); the flat mid-span tab is replaced by an exact mount boss and a bracket grown by 3D SIMP topology optimization (bionic.json, topopt.py), together with flange gussets, under the screen's synthetic 100 N transverse force (split over the quarter spans) in y, z and x, flanges and mount fixed. Thermal growth between turbo and engine is not a SIMP load. Loads are assumptions until measured.",
   "parameters": {
     "tube_outer_diameter_mm": {
       "value": 12.7,
@@ -233,5 +233,7 @@
     "real routing, supports and engine/turbo relative movement",
     "supplier final-fitting need is incompatible with a rigid printed tube"
   ],
-  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file"
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
+  "envelope_axes": {},
+  "envelope_mode": "max"
 }

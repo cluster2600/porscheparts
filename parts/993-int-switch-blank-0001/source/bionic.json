@@ -1,0 +1,425 @@
+{
+  "part_id": "993-INT-SWITCH-BLANK-0001",
+  "method": "3D SIMP topology optimization (parts/picogk-catalog/bionic/topopt.py), then PicoGK smoothing and exact functional features",
+  "basis_note": "Interfaces and loads are NOT measured. The 19 x 31 mm opening is an owner estimate (community); face, locating skirt, snap tongues and barbs are the F0 concept values of source/picogk.json, kept exact by the keep-in from source/bionic_keepins.py. The finger push and pull-off loads are assumptions (no screening load exists for this part). The structure behind the face is a load-path concept, to be recomputed once the opening and panel are measured.",
+  "optimization": {
+    "element_mm": 0.5,
+    "grid_min": [
+      -10.5,
+      -16.5,
+      0
+    ],
+    "grid_max": [
+      10.5,
+      16.5,
+      12.5
+    ],
+    "design": [
+      {
+        "type": "box",
+        "min": [
+          -9.2,
+          -15.2,
+          0
+        ],
+        "max": [
+          9.2,
+          15.2,
+          10.2
+        ],
+        "basis": "community",
+        "note": "behind the face: inside the body footprint (opening ~19 x 31 mm minus 0.3 mm clearance), F0 depth 10 mm"
+      },
+      {
+        "type": "box",
+        "min": [
+          -10.5,
+          -16.5,
+          10
+        ],
+        "max": [
+          10.5,
+          16.5,
+          12.5
+        ],
+        "basis": "assumption",
+        "note": "face slab 21 x 33 x 2.5 mm"
+      }
+    ],
+    "solid": [
+      {
+        "type": "stl",
+        "path": "parts/993-int-switch-blank-0001/source/bionic-keepins/face_clips_topo.stl",
+        "basis": "assumption",
+        "note": "pillow-crowned face with rolled edges, 3 mm locating skirt in the opening, two snap tongues with lead-in barbs (F0 values); 20k-triangle copy for the optimization, the full mesh is added by PicoGK as shaping.base_stl"
+      }
+    ],
+    "void": [
+      {
+        "type": "stl",
+        "path": "parts/993-int-switch-blank-0001/source/bionic-keepins/above_face.stl",
+        "basis": "assumption",
+        "note": "everything above the crowned face: the visible face stays clean, members grow only behind it"
+      },
+      {
+        "type": "box",
+        "min": [
+          6.999999999999999,
+          3.5,
+          -1
+        ],
+        "max": [
+          10.2,
+          4.5,
+          8.5
+        ],
+        "basis": "assumption",
+        "note": "slit beside a snap tongue, open at the back, 8.5 mm long (F0 clip_slot_length); 1 mm wide (F0 0.5 mm) so no member can bridge it"
+      },
+      {
+        "type": "box",
+        "min": [
+          6.999999999999999,
+          -4.5,
+          -1
+        ],
+        "max": [
+          10.2,
+          -3.5,
+          8.5
+        ],
+        "basis": "assumption",
+        "note": "slit beside a snap tongue, open at the back, 8.5 mm long (F0 clip_slot_length); 1 mm wide (F0 0.5 mm) so no member can bridge it"
+      },
+      {
+        "type": "box",
+        "min": [
+          6.999999999999999,
+          -4.5,
+          -1
+        ],
+        "max": [
+          7.999999999999999,
+          4.5,
+          8.5
+        ],
+        "basis": "assumption",
+        "note": "1 mm free space behind the tongue: it must flex inward by the 0.6 mm barb when clipped in"
+      },
+      {
+        "type": "box",
+        "min": [
+          -10.2,
+          3.5,
+          -1
+        ],
+        "max": [
+          -6.999999999999999,
+          4.5,
+          8.5
+        ],
+        "basis": "assumption",
+        "note": "slit beside a snap tongue, open at the back, 8.5 mm long (F0 clip_slot_length); 1 mm wide (F0 0.5 mm) so no member can bridge it"
+      },
+      {
+        "type": "box",
+        "min": [
+          -10.2,
+          -4.5,
+          -1
+        ],
+        "max": [
+          -6.999999999999999,
+          -3.5,
+          8.5
+        ],
+        "basis": "assumption",
+        "note": "slit beside a snap tongue, open at the back, 8.5 mm long (F0 clip_slot_length); 1 mm wide (F0 0.5 mm) so no member can bridge it"
+      },
+      {
+        "type": "box",
+        "min": [
+          -7.999999999999999,
+          -4.5,
+          -1
+        ],
+        "max": [
+          -6.999999999999999,
+          4.5,
+          8.5
+        ],
+        "basis": "assumption",
+        "note": "1 mm free space behind the tongue: it must flex inward by the 0.6 mm barb when clipped in"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0,
+          0,
+          -1
+        ],
+        "b": [
+          0,
+          0,
+          9.6
+        ],
+        "r": 0.6,
+        "basis": "assumption",
+        "note": "1.2 mm drain / vent into the pockets under the face (no sealed cavity: powder, resin or water must escape)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0,
+          4.8,
+          -1
+        ],
+        "b": [
+          0,
+          4.8,
+          9.6
+        ],
+        "r": 0.6,
+        "basis": "assumption",
+        "note": "1.2 mm drain / vent into the pockets under the face (no sealed cavity: powder, resin or water must escape)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0,
+          -4.8,
+          -1
+        ],
+        "b": [
+          0,
+          -4.8,
+          9.6
+        ],
+        "r": 0.6,
+        "basis": "assumption",
+        "note": "1.2 mm drain / vent into the pockets under the face (no sealed cavity: powder, resin or water must escape)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          2.5,
+          0,
+          -1
+        ],
+        "b": [
+          2.5,
+          0,
+          9.6
+        ],
+        "r": 0.6,
+        "basis": "assumption",
+        "note": "1.2 mm drain / vent into the pockets under the face (no sealed cavity: powder, resin or water must escape)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -2.5,
+          0,
+          -1
+        ],
+        "b": [
+          -2.5,
+          0,
+          9.6
+        ],
+        "r": 0.6,
+        "basis": "assumption",
+        "note": "1.2 mm drain / vent into the pockets under the face (no sealed cavity: powder, resin or water must escape)"
+      }
+    ],
+    "supports": [
+      {
+        "type": "box",
+        "min": [
+          9.4,
+          -16.6,
+          9.6
+        ],
+        "max": [
+          10.6,
+          16.6,
+          10.4
+        ],
+        "basis": "assumption",
+        "note": "face overlap (1 mm per side) resting on the dashboard round the opening"
+      },
+      {
+        "type": "box",
+        "min": [
+          -10.6,
+          -16.6,
+          9.6
+        ],
+        "max": [
+          -9.4,
+          16.6,
+          10.4
+        ],
+        "basis": "assumption",
+        "note": "face overlap (1 mm per side) resting on the dashboard round the opening"
+      },
+      {
+        "type": "box",
+        "min": [
+          -10.6,
+          15.4,
+          9.6
+        ],
+        "max": [
+          10.6,
+          16.6,
+          10.4
+        ],
+        "basis": "assumption",
+        "note": "face overlap (1 mm per side) resting on the dashboard round the opening"
+      },
+      {
+        "type": "box",
+        "min": [
+          -10.6,
+          -16.6,
+          9.6
+        ],
+        "max": [
+          10.6,
+          -15.4,
+          10.4
+        ],
+        "basis": "assumption",
+        "note": "face overlap (1 mm per side) resting on the dashboard round the opening"
+      },
+      {
+        "type": "box",
+        "min": [
+          8.9,
+          -3.2,
+          7.6
+        ],
+        "max": [
+          10.0,
+          3.2,
+          8.4
+        ],
+        "basis": "assumption",
+        "note": "barb latch face hooked behind the panel (2 mm panel assumed)"
+      },
+      {
+        "type": "box",
+        "min": [
+          -10.0,
+          -3.2,
+          7.6
+        ],
+        "max": [
+          -8.9,
+          3.2,
+          8.4
+        ],
+        "basis": "assumption",
+        "note": "barb latch face hooked behind the panel (2 mm panel assumed)"
+      }
+    ],
+    "load_cases": [
+      {
+        "name": "finger_push",
+        "basis": "assumption",
+        "note": "20 N finger push on the face centre (no published value)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  -5,
+                  -8,
+                  11.9
+                ],
+                "max": [
+                  5,
+                  8,
+                  13
+                ]
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              -20
+            ]
+          }
+        ]
+      },
+      {
+        "name": "pull_off",
+        "basis": "assumption",
+        "note": "10 N pull on the face (removal / prying), held by the barbs (no published value)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  -5,
+                  -8,
+                  11.9
+                ],
+                "max": [
+                  5,
+                  8,
+                  13
+                ]
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              10
+            ]
+          }
+        ]
+      },
+      {
+        "name": "side_push",
+        "basis": "assumption",
+        "note": "5 N sideways on the face (knock), no published value",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  -10.6,
+                  -16.6,
+                  10.4
+                ],
+                "max": [
+                  10.6,
+                  -15.9,
+                  12.6
+                ]
+              }
+            ],
+            "force_N": [
+              0,
+              5,
+              0
+            ]
+          }
+        ]
+      }
+    ],
+    "volume_fraction": 0.36,
+    "filter_radius_mm": 1.3,
+    "iterations": 45
+  },
+  "shaping": {
+    "smooth_mm": 0.75,
+    "blend_mm": 0.35,
+    "base_stl": "parts/993-int-switch-blank-0001/source/bionic-keepins/face_clips.stl"
+  }
+}

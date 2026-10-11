@@ -1,14 +1,14 @@
 {
   "part_id": "993-ELEC-HEADLAMP-SPRING-HOOK-F0-0001",
-  "name": "993 headlamp spring hook repair, AlSi10Mg (PicoGK)",
-  "generator": "headlamp_spring_hook",
+  "name": "993 headlamp spring hook repair, AlSi10Mg bionic (PicoGK)",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-elec-headlamp-spring-hook-f0-0001.json",
   "porsche_part_numbers": [],
   "safety_class": "functional",
   "material_candidate": "AlSi10Mg LPBF (EOS M 290, 30 um screening route)",
   "density_g_cm3": 2.67,
   "voxel_mm": 0.06,
-  "picogk_enhancement": "The F0 socket keeps its open bonding cavity; the block neck, arm and tip become one swept rod (stem, constant-radius arc, bulbed tip) with a spring seat groove inside the arc, merged into the socket by voxel fillets so there is no square notch at the root.",
+  "picogk_enhancement": "Bionic: the stem that carries the J-hook on the bonding socket is grown along the load paths of an assumed 30 N spring pull (up, along the part, and one third sideways; screening force of evidence/engineering-screen.json, directions assumed) by 3D SIMP topology optimization (source/bionic.json, topopt.py), the socket clamped at its bonded cavity walls; PicoGK smooths the density into organic members. Socket walls round the open bonding cavity, the J arc with its spring groove, the bulbed tip and the open hook mouth are kept exact. Loads are assumptions until the spring is measured.",
   "parameters": {
     "socket_length_mm": {
       "value": 10.0,
@@ -136,5 +136,15 @@
     "M3 screw variant if the cast base is broken (Roadster-Fashion option, not modelled)"
   ],
   "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
-  "envelope": []
+  "envelope": [
+    "overall_length_mm",
+    "socket_width_mm",
+    "overall_height_mm"
+  ],
+  "envelope_axes": {
+    "overall_length_mm": "x",
+    "socket_width_mm": "y",
+    "overall_height_mm": "z"
+  },
+  "envelope_mode": "max"
 }

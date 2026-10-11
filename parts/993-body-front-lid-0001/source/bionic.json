@@ -1,0 +1,755 @@
+{
+  "part_id": "993-BODY-FRONT-LID-0001",
+  "method": "3D SIMP topology optimization (parts/picogk-catalog/bionic/topopt.py) of the inner frame in a slab under the skin, then PicoGK smoothing; the crowned skin, rolled edge and return flange are kept exact (shaping.base_stl)",
+  "basis_note": "Interfaces and loads are NOT measured. The skin is the previous F0 surface hypothesis (body/FrontLid.cs, frame removed: frame_inset_mm = 5000), rebuilt by parts/993-body-front-lid-0001/source/bionic_regions.py together with the design slab (20 mm inside the lid edge, 0.3 to 27 mm under the outer surface) and the space above the skin. Hinge, latch and corner positions are assumptions (rear hinges near the windscreen edge, centre latch at the nose); loads are assumed (aero lift from an assumed 1.5 kPa mean suction, hand/knee presses). The skin's own stiffness is not in the optimization (the frame alone carries the loads, a conservative concept).",
+  "postprocess": "after topopt.py run parts/993-body-front-lid-0001/source/bionic_skin_contact.py 993-BODY-FRONT-LID-0001: it extends each member one element into the space above the skin (a 'void' region) so that every member reaches the 2 mm skin; the void then trims them flush with the outer surface (skin finished at 1.7 mm).",
+  "optimization": {
+    "element_mm": 9.0,
+    "grid_min": [
+      -615,
+      15,
+      -75
+    ],
+    "grid_max": [
+      615,
+      1085,
+      70
+    ],
+    "design": [
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-00.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-01.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-02.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-03.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-04.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-05.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-10.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-11.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-12.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-13.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-14.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-15.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-20.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-21.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-22.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-23.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-24.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-25.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-30.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-31.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-32.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-33.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-34.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-35.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-40.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-41.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-42.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-43.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-44.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-45.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-50.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-51.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-52.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-53.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-54.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/design-55.stl",
+        "basis": "assumption",
+        "note": "frame slab under the skin (0.3 to 27 mm deep, 20 mm inside the edge), one tile"
+      }
+    ],
+    "solid": [
+      {
+        "type": "cyl",
+        "a": [
+          -500,
+          1030,
+          -3.4
+        ],
+        "b": [
+          -500,
+          1030,
+          31.6
+        ],
+        "r": 35,
+        "basis": "assumption",
+        "note": "left hinge pad under the skin near the windscreen edge (hinge interface not measured)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          500,
+          1030,
+          -3.4
+        ],
+        "b": [
+          500,
+          1030,
+          31.6
+        ],
+        "r": 35,
+        "basis": "assumption",
+        "note": "right hinge pad"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0,
+          70,
+          -22.5
+        ],
+        "b": [
+          0,
+          70,
+          12.5
+        ],
+        "r": 35,
+        "basis": "assumption",
+        "note": "latch / safety-catch pad at the nose centre (interface not measured)"
+      }
+    ],
+    "void": [
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-00.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-01.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-02.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-03.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-04.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-05.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-10.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-11.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-12.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-13.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-14.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-15.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-20.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-21.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-22.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-23.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-24.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-25.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-30.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-31.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-32.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-33.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-34.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-35.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-40.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-41.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-42.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-43.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-44.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-45.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-50.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-51.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-52.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-53.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-54.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-BODY-FRONT-LID-0001/above-55.stl",
+        "basis": "assumption",
+        "note": "space from 0.3 mm under the outer skin surface upward, one tile"
+      }
+    ],
+    "supports": [
+      {
+        "type": "cyl",
+        "a": [
+          -500,
+          1030,
+          -10
+        ],
+        "b": [
+          -500,
+          1030,
+          40
+        ],
+        "r": 30,
+        "basis": "assumption",
+        "note": "left hinge, idealised as clamped"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          500,
+          1030,
+          -10
+        ],
+        "b": [
+          500,
+          1030,
+          40
+        ],
+        "r": 30,
+        "basis": "assumption",
+        "note": "right hinge, idealised as clamped"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0,
+          70,
+          -30
+        ],
+        "b": [
+          0,
+          70,
+          20
+        ],
+        "r": 30,
+        "basis": "assumption",
+        "note": "closed latch, idealised as clamped (front rubber buffers not modelled)"
+      }
+    ],
+    "load_cases": [
+      {
+        "name": "aero_lift",
+        "basis": "assumption",
+        "note": "assumed 1.5 kPa mean suction (q = 2.95 kPa at 250 km/h x assumed Cp -0.5) x 1.17 m2 = 1750 N up, lumped on four 160 mm patches (the skin that spreads it is not in the optimization)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  -300,
+                  350,
+                  -80
+                ],
+                "b": [
+                  -300,
+                  350,
+                  80
+                ],
+                "r": 80
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              437.5
+            ]
+          },
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  -300,
+                  800,
+                  -80
+                ],
+                "b": [
+                  -300,
+                  800,
+                  80
+                ],
+                "r": 80
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              437.5
+            ]
+          },
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  300,
+                  350,
+                  -80
+                ],
+                "b": [
+                  300,
+                  350,
+                  80
+                ],
+                "r": 80
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              437.5
+            ]
+          },
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  300,
+                  800,
+                  -80
+                ],
+                "b": [
+                  300,
+                  800,
+                  80
+                ],
+                "r": 80
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              437.5
+            ]
+          }
+        ]
+      },
+      {
+        "name": "press_centre",
+        "basis": "assumption",
+        "note": "600 N down on a 200 mm patch at mid lid (hand or knee press, snow, polishing)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  0,
+                  550,
+                  -60
+                ],
+                "b": [
+                  0,
+                  550,
+                  80
+                ],
+                "r": 100
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              -600
+            ]
+          }
+        ]
+      },
+      {
+        "name": "corner_left",
+        "basis": "assumption",
+        "note": "400 N down at the left front corner (closing push, torsion against hinges and latch)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  -380,
+                  150,
+                  -60
+                ],
+                "b": [
+                  -380,
+                  150,
+                  80
+                ],
+                "r": 60
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              -400
+            ]
+          }
+        ]
+      },
+      {
+        "name": "corner_right",
+        "basis": "assumption",
+        "note": "mirror of corner_left",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  380,
+                  150,
+                  -60
+                ],
+                "b": [
+                  380,
+                  150,
+                  80
+                ],
+                "r": 60
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              -400
+            ]
+          }
+        ]
+      }
+    ],
+    "volume_fraction": 0.12,
+    "filter_radius_mm": 30.0,
+    "iterations": 45
+  },
+  "shaping": {
+    "smooth_mm": 4.5,
+    "blend_mm": 0,
+    "base_stl": "parts/picogk-catalog/out/993-BODY-FRONT-LID-0001-SKIN.stl",
+    "lattice_grey": false
+  }
+}

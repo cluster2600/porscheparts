@@ -1,0 +1,1276 @@
+{
+  "part_id": "993-ENG-OIL-FILTER-CONSOLE-ALSI10MG-F0-0001",
+  "method": "3D SIMP topology optimization (parts/picogk-catalog/bionic/topopt.py), then PicoGK smoothing and exact functional features",
+  "basis_note": "Console footprint, pads, gallery routing and pedestal are F0 hypotheses; only the MAHLE OC 229 seal diameters are published (filter data). Loads are stated assumptions (vibration, assumed relief pressure, tightening torque), not measurements. The galleries with their 4 mm minimum wall, port bosses, pads and the filter interface are fixed (shaping.base_stl from engine/bionic_bases.py, primitive subsets in the FE model); the body around the galleries is optimised and stays below the inlet annulus.",
+  "optimization": {
+    "element_mm": 2.25,
+    "grid_min": [
+      -74,
+      -46,
+      0.125
+    ],
+    "grid_max": [
+      74,
+      46,
+      52
+    ],
+    "design": [
+      {
+        "type": "box",
+        "min": [
+          -66.0,
+          -45.0,
+          0.5
+        ],
+        "max": [
+          66.0,
+          45.0,
+          35.5
+        ],
+        "basis": "assumption",
+        "note": "console body envelope 130 x 90 mm (F0 hypothesis) up to the pedestal cap"
+      }
+    ],
+    "solid": [
+      {
+        "type": "capsule",
+        "a": [
+          -57.0,
+          -18.0,
+          13.0
+        ],
+        "b": [
+          -42.362,
+          -18.0,
+          13.048
+        ],
+        "r": 11.5,
+        "basis": "assumption",
+        "note": "inlet gallery wall (16 mm bore + 4 mm wall), FE subset of the exact tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -42.362,
+          -18.0,
+          13.048
+        ],
+        "b": [
+          -29.398,
+          -18.0,
+          13.218
+        ],
+        "r": 11.5,
+        "basis": "assumption",
+        "note": "inlet gallery wall (16 mm bore + 4 mm wall), FE subset of the exact tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -29.398,
+          -18.0,
+          13.218
+        ],
+        "b": [
+          -18.031,
+          -18.0,
+          13.547
+        ],
+        "r": 11.5,
+        "basis": "assumption",
+        "note": "inlet gallery wall (16 mm bore + 4 mm wall), FE subset of the exact tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -18.031,
+          -18.0,
+          13.547
+        ],
+        "b": [
+          -8.185,
+          -18.0,
+          14.074
+        ],
+        "r": 11.5,
+        "basis": "assumption",
+        "note": "inlet gallery wall (16 mm bore + 4 mm wall), FE subset of the exact tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -8.185,
+          -18.0,
+          14.074
+        ],
+        "b": [
+          0.216,
+          -18.0,
+          14.837
+        ],
+        "r": 11.5,
+        "basis": "assumption",
+        "note": "inlet gallery wall (16 mm bore + 4 mm wall), FE subset of the exact tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.216,
+          -18.0,
+          14.837
+        ],
+        "b": [
+          7.25,
+          -18.0,
+          15.875
+        ],
+        "r": 11.5,
+        "basis": "assumption",
+        "note": "inlet gallery wall (16 mm bore + 4 mm wall), FE subset of the exact tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          7.25,
+          -18.0,
+          15.875
+        ],
+        "b": [
+          12.992,
+          -18.0,
+          17.225
+        ],
+        "r": 11.5,
+        "basis": "assumption",
+        "note": "inlet gallery wall (16 mm bore + 4 mm wall), FE subset of the exact tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          12.992,
+          -18.0,
+          17.225
+        ],
+        "b": [
+          17.519,
+          -18.0,
+          18.926
+        ],
+        "r": 11.5,
+        "basis": "assumption",
+        "note": "inlet gallery wall (16 mm bore + 4 mm wall), FE subset of the exact tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          17.519,
+          -18.0,
+          18.926
+        ],
+        "b": [
+          20.906,
+          -18.0,
+          21.016
+        ],
+        "r": 11.5,
+        "basis": "assumption",
+        "note": "inlet gallery wall (16 mm bore + 4 mm wall), FE subset of the exact tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          20.906,
+          -18.0,
+          21.016
+        ],
+        "b": [
+          23.231,
+          -18.0,
+          23.532
+        ],
+        "r": 11.5,
+        "basis": "assumption",
+        "note": "inlet gallery wall (16 mm bore + 4 mm wall), FE subset of the exact tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          25.287,
+          0.0,
+          25.433
+        ],
+        "b": [
+          26.13,
+          0.0,
+          23.218
+        ],
+        "r": 11.5,
+        "basis": "assumption",
+        "note": "outlet gallery wall, FE subset of the exact tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          26.13,
+          0.0,
+          23.218
+        ],
+        "b": [
+          27.5,
+          0.0,
+          21.328
+        ],
+        "r": 11.5,
+        "basis": "assumption",
+        "note": "outlet gallery wall, FE subset of the exact tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          27.5,
+          0.0,
+          21.328
+        ],
+        "b": [
+          29.37,
+          0.0,
+          19.741
+        ],
+        "r": 11.5,
+        "basis": "assumption",
+        "note": "outlet gallery wall, FE subset of the exact tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          29.37,
+          0.0,
+          19.741
+        ],
+        "b": [
+          31.713,
+          0.0,
+          18.431
+        ],
+        "r": 11.5,
+        "basis": "assumption",
+        "note": "outlet gallery wall, FE subset of the exact tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          31.713,
+          0.0,
+          18.431
+        ],
+        "b": [
+          34.5,
+          0.0,
+          17.375
+        ],
+        "r": 11.5,
+        "basis": "assumption",
+        "note": "outlet gallery wall, FE subset of the exact tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          34.5,
+          0.0,
+          17.375
+        ],
+        "b": [
+          37.704,
+          0.0,
+          16.548
+        ],
+        "r": 11.5,
+        "basis": "assumption",
+        "note": "outlet gallery wall, FE subset of the exact tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          37.704,
+          0.0,
+          16.548
+        ],
+        "b": [
+          41.296,
+          0.0,
+          15.926
+        ],
+        "r": 11.5,
+        "basis": "assumption",
+        "note": "outlet gallery wall, FE subset of the exact tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          41.296,
+          0.0,
+          15.926
+        ],
+        "b": [
+          45.25,
+          0.0,
+          15.484
+        ],
+        "r": 11.5,
+        "basis": "assumption",
+        "note": "outlet gallery wall, FE subset of the exact tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          45.25,
+          0.0,
+          15.484
+        ],
+        "b": [
+          49.537,
+          0.0,
+          15.199
+        ],
+        "r": 11.5,
+        "basis": "assumption",
+        "note": "outlet gallery wall, FE subset of the exact tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          49.537,
+          0.0,
+          15.199
+        ],
+        "b": [
+          54.13,
+          0.0,
+          15.046
+        ],
+        "r": 11.5,
+        "basis": "assumption",
+        "note": "outlet gallery wall, FE subset of the exact tube"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -72.0,
+          -18.0,
+          13.0
+        ],
+        "b": [
+          -58.0,
+          -18.0,
+          13.0
+        ],
+        "r": 13.0,
+        "basis": "assumption",
+        "note": "inlet port boss 26 mm x 14 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          58.0,
+          0.0,
+          15.0
+        ],
+        "b": [
+          72.0,
+          0.0,
+          15.0
+        ],
+        "r": 13.0,
+        "basis": "assumption",
+        "note": "outlet port boss"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          25.0,
+          0.0,
+          34.0
+        ],
+        "b": [
+          25.0,
+          0.0,
+          35.5
+        ],
+        "r": 40.0,
+        "basis": "assumption",
+        "note": "filter pedestal cap under the seal land (exact cap, seal land, annulus and spigot = shaping.base_stl)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -47.0,
+          32.0,
+          12.0
+        ],
+        "b": [
+          -9.6,
+          15.7,
+          32.0
+        ],
+        "r": 4.5,
+        "basis": "assumption",
+        "note": "tie from the -x/+y mounting pad to the pedestal: the stated load cases leave that pad unloaded, so the optimiser did not connect it (added after the run, not optimised)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -50.0,
+          -34.0,
+          0.5
+        ],
+        "b": [
+          -50.0,
+          -34.0,
+          19.5
+        ],
+        "r": 8.5,
+        "basis": "assumption",
+        "note": "mounting pad 18 mm x 20 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -50.0,
+          34.0,
+          0.5
+        ],
+        "b": [
+          -50.0,
+          34.0,
+          19.5
+        ],
+        "r": 8.5,
+        "basis": "assumption",
+        "note": "mounting pad 18 mm x 20 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          50.0,
+          -34.0,
+          0.5
+        ],
+        "b": [
+          50.0,
+          -34.0,
+          19.5
+        ],
+        "r": 8.5,
+        "basis": "assumption",
+        "note": "mounting pad 18 mm x 20 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          50.0,
+          34.0,
+          0.5
+        ],
+        "b": [
+          50.0,
+          34.0,
+          19.5
+        ],
+        "r": 8.5,
+        "basis": "assumption",
+        "note": "mounting pad 18 mm x 20 mm"
+      }
+    ],
+    "void": [
+      {
+        "type": "capsule",
+        "a": [
+          -73.0,
+          -18.0,
+          13.0
+        ],
+        "b": [
+          -57.0,
+          -18.0,
+          13.0
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "inlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -57.0,
+          -18.0,
+          13.0
+        ],
+        "b": [
+          -42.362,
+          -18.0,
+          13.048
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "inlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -42.362,
+          -18.0,
+          13.048
+        ],
+        "b": [
+          -29.398,
+          -18.0,
+          13.218
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "inlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -29.398,
+          -18.0,
+          13.218
+        ],
+        "b": [
+          -18.031,
+          -18.0,
+          13.547
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "inlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -18.031,
+          -18.0,
+          13.547
+        ],
+        "b": [
+          -8.185,
+          -18.0,
+          14.074
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "inlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -8.185,
+          -18.0,
+          14.074
+        ],
+        "b": [
+          0.216,
+          -18.0,
+          14.837
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "inlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.216,
+          -18.0,
+          14.837
+        ],
+        "b": [
+          7.25,
+          -18.0,
+          15.875
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "inlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          7.25,
+          -18.0,
+          15.875
+        ],
+        "b": [
+          12.992,
+          -18.0,
+          17.225
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "inlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          12.992,
+          -18.0,
+          17.225
+        ],
+        "b": [
+          17.519,
+          -18.0,
+          18.926
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "inlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          17.519,
+          -18.0,
+          18.926
+        ],
+        "b": [
+          20.906,
+          -18.0,
+          21.016
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "inlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          20.906,
+          -18.0,
+          21.016
+        ],
+        "b": [
+          23.231,
+          -18.0,
+          23.532
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "inlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          23.231,
+          -18.0,
+          23.532
+        ],
+        "b": [
+          24.571,
+          -18.0,
+          26.514
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "inlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          24.571,
+          -18.0,
+          26.514
+        ],
+        "b": [
+          25.0,
+          -18.0,
+          30.0
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "inlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          25.0,
+          -18.0,
+          30.0
+        ],
+        "b": [
+          25.0,
+          -18.0,
+          42.0
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "inlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          25.0,
+          0.0,
+          28.0
+        ],
+        "b": [
+          25.287,
+          0.0,
+          25.433
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "outlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          25.287,
+          0.0,
+          25.433
+        ],
+        "b": [
+          26.13,
+          0.0,
+          23.218
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "outlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          26.13,
+          0.0,
+          23.218
+        ],
+        "b": [
+          27.5,
+          0.0,
+          21.328
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "outlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          27.5,
+          0.0,
+          21.328
+        ],
+        "b": [
+          29.37,
+          0.0,
+          19.741
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "outlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          29.37,
+          0.0,
+          19.741
+        ],
+        "b": [
+          31.713,
+          0.0,
+          18.431
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "outlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          31.713,
+          0.0,
+          18.431
+        ],
+        "b": [
+          34.5,
+          0.0,
+          17.375
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "outlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          34.5,
+          0.0,
+          17.375
+        ],
+        "b": [
+          37.704,
+          0.0,
+          16.548
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "outlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          37.704,
+          0.0,
+          16.548
+        ],
+        "b": [
+          41.296,
+          0.0,
+          15.926
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "outlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          41.296,
+          0.0,
+          15.926
+        ],
+        "b": [
+          45.25,
+          0.0,
+          15.484
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "outlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          45.25,
+          0.0,
+          15.484
+        ],
+        "b": [
+          49.537,
+          0.0,
+          15.199
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "outlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          49.537,
+          0.0,
+          15.199
+        ],
+        "b": [
+          54.13,
+          0.0,
+          15.046
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "outlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          54.13,
+          0.0,
+          15.046
+        ],
+        "b": [
+          59.0,
+          0.0,
+          15.0
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "outlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          59.0,
+          0.0,
+          15.0
+        ],
+        "b": [
+          73.0,
+          0.0,
+          15.0
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "outlet gallery bore 16 mm (exact)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          25.0,
+          0.0,
+          27.0
+        ],
+        "b": [
+          25.0,
+          0.0,
+          52.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "spigot bore 12 mm into the outlet gallery"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -50.0,
+          -34.0,
+          -1.0
+        ],
+        "b": [
+          -50.0,
+          -34.0,
+          21.0
+        ],
+        "r": 4.25,
+        "basis": "assumption",
+        "note": "mounting bore 8.5 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -50.0,
+          34.0,
+          -1.0
+        ],
+        "b": [
+          -50.0,
+          34.0,
+          21.0
+        ],
+        "r": 4.25,
+        "basis": "assumption",
+        "note": "mounting bore 8.5 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          50.0,
+          -34.0,
+          -1.0
+        ],
+        "b": [
+          50.0,
+          -34.0,
+          21.0
+        ],
+        "r": 4.25,
+        "basis": "assumption",
+        "note": "mounting bore 8.5 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          50.0,
+          34.0,
+          -1.0
+        ],
+        "b": [
+          50.0,
+          34.0,
+          21.0
+        ],
+        "r": 4.25,
+        "basis": "assumption",
+        "note": "mounting bore 8.5 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -50.0,
+          -34.0,
+          20.3
+        ],
+        "b": [
+          -50.0,
+          -34.0,
+          33.5
+        ],
+        "r": 6.5,
+        "basis": "assumption",
+        "note": "mounting bolt head / socket access above the pad"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -50.0,
+          34.0,
+          20.3
+        ],
+        "b": [
+          -50.0,
+          34.0,
+          33.5
+        ],
+        "r": 6.5,
+        "basis": "assumption",
+        "note": "mounting bolt head / socket access above the pad"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          50.0,
+          -34.0,
+          20.3
+        ],
+        "b": [
+          50.0,
+          -34.0,
+          33.5
+        ],
+        "r": 6.5,
+        "basis": "assumption",
+        "note": "mounting bolt head / socket access above the pad"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          50.0,
+          34.0,
+          20.3
+        ],
+        "b": [
+          50.0,
+          34.0,
+          33.5
+        ],
+        "r": 6.5,
+        "basis": "assumption",
+        "note": "mounting bolt head / socket access above the pad"
+      }
+    ],
+    "supports": [
+      {
+        "type": "cyl",
+        "a": [
+          -50.0,
+          -34.0,
+          -1.0
+        ],
+        "b": [
+          -50.0,
+          -34.0,
+          1.0
+        ],
+        "r": 9.0,
+        "basis": "assumption",
+        "note": "mounting pad bolted to the crankcase face"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -50.0,
+          34.0,
+          -1.0
+        ],
+        "b": [
+          -50.0,
+          34.0,
+          1.0
+        ],
+        "r": 9.0,
+        "basis": "assumption",
+        "note": "mounting pad bolted to the crankcase face"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          50.0,
+          -34.0,
+          -1.0
+        ],
+        "b": [
+          50.0,
+          -34.0,
+          1.0
+        ],
+        "r": 9.0,
+        "basis": "assumption",
+        "note": "mounting pad bolted to the crankcase face"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          50.0,
+          34.0,
+          -1.0
+        ],
+        "b": [
+          50.0,
+          34.0,
+          1.0
+        ],
+        "r": 9.0,
+        "basis": "assumption",
+        "note": "mounting pad bolted to the crankcase face"
+      }
+    ],
+    "load_cases": [
+      {
+        "name": "filter_lateral",
+        "basis": "assumption",
+        "note": "oil-filled filter ~1 kg x 30 g engine vibration in x and y together (diagonal), at the filter face",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  25.0,
+                  0.0,
+                  35.6
+                ],
+                "b": [
+                  25.0,
+                  0.0,
+                  36.6
+                ],
+                "r": 40.0,
+                "basis": "assumption",
+                "note": ""
+              }
+            ],
+            "force_N": [
+              300.0,
+              300.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "oil_pressure",
+        "basis": "assumption",
+        "note": "0.6 MPa (assumed relief pressure) x 62 mm seal diameter = 3 kN pressing on the filter face, carried back by the spigot (self-equilibrated)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  25.0,
+                  0.0,
+                  35.6
+                ],
+                "b": [
+                  25.0,
+                  0.0,
+                  36.6
+                ],
+                "r": 36.0,
+                "basis": "assumption",
+                "note": ""
+              }
+            ],
+            "force_N": [
+              0.0,
+              0.0,
+              -3000.0
+            ]
+          },
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  25.0,
+                  0.0,
+                  35.6
+                ],
+                "b": [
+                  25.0,
+                  0.0,
+                  36.6
+                ],
+                "r": 12.0,
+                "basis": "assumption",
+                "note": ""
+              }
+            ],
+            "force_N": [
+              0.0,
+              0.0,
+              3000.0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "install_torque",
+        "basis": "assumption",
+        "note": "25 N m filter tightening torque as a tangential couple at the seal radius (2 x 380 N at r = 33 mm)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "sphere",
+                "c": [
+                  58.0,
+                  0.0,
+                  36.1
+                ],
+                "r": 3.0,
+                "basis": "assumption",
+                "note": ""
+              }
+            ],
+            "force_N": [
+              0.0,
+              380.0,
+              0.0
+            ]
+          },
+          {
+            "region": [
+              {
+                "type": "sphere",
+                "c": [
+                  -8.0,
+                  0.0,
+                  36.1
+                ],
+                "r": 3.0,
+                "basis": "assumption",
+                "note": ""
+              }
+            ],
+            "force_N": [
+              0.0,
+              -380.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    ],
+    "volume_fraction": 0.27,
+    "filter_radius_mm": 6.0,
+    "iterations": 45
+  },
+  "shaping": {
+    "smooth_mm": 2.8,
+    "blend_mm": 0.8,
+    "base_stl": "parts/picogk-catalog/out/bionic/993-ENG-OIL-FILTER-CONSOLE-ALSI10MG-F0-0001.base.stl",
+    "lattice_grey": false
+  }
+}

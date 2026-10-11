@@ -2,23 +2,23 @@
   "part_id": "993-INT-DOOR-PULL-0001",
   "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
   "kernel": "PicoGK Core Library 26.2.0",
-  "generator": "door_pull_organic",
+  "generator": "bionic_topology",
   "parameters": "parts/993-int-door-pull-0001/source/picogk.json",
   "generator_report": {
     "voxel_mm": 0.3,
-    "triangles": 385372,
-    "volume_cm3": 53.34,
-    "mass_estimate_g": 53.9,
-    "seconds": 22.1
+    "triangles": 333596,
+    "volume_cm3": 31.44,
+    "mass_estimate_g": 31.8,
+    "seconds": 26.1
   },
   "published_triangles": 30000,
   "display_smoothing": {
     "filter": "taubin",
     "iterations": 30,
     "pass_band": 0.05,
-    "max_bounds_shift_mm": 0.035
+    "max_bounds_shift_mm": 0.028
   },
-  "published_sha256": "3c6beaefec3eb839efae91bb6c7207ab5c7c5545990e2e4be41d4e3415e9cfe5",
+  "published_sha256": "601fc4391534d1077e661eb42e85ce6fb279a9cee97cd14c5bff1ba4adb575d0",
   "legacy_bbox_mm": [
     160.0,
     22.0,
@@ -31,16 +31,35 @@
     "main_body_edges": {
       "open": 0,
       "non_manifold": 0,
-      "total": 578058
+      "total": 500394
     },
     "degenerate_faces_removed": 0,
-    "volume_cm3": 53.34,
+    "volume_cm3": 31.44,
     "bbox_mm": [
-      160.7,
-      24.1,
-      53.0
+      160.0,
+      23.5,
+      52.5
     ],
-    "envelope_checks": [],
+    "envelope_checks": [
+      {
+        "parameter": "length_mm",
+        "basis": "assumption",
+        "value_mm": 160.0,
+        "axis": "x",
+        "model_extent_mm": 160.0,
+        "mode": "max",
+        "ok": true
+      },
+      {
+        "parameter": "height_mm",
+        "basis": "assumption",
+        "value_mm": 53.0,
+        "axis": "z",
+        "model_extent_mm": 52.51,
+        "mode": "max",
+        "ok": true
+      }
+    ],
     "pass": true
   },
   "note": "PicoGK concept model; not a print file, not evidence of fit, function or safety."

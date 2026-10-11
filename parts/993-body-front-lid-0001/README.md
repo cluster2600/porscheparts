@@ -29,7 +29,7 @@ The original part is documented — pictures, catalogue entries or published dat
 <td width="50%" valign="top" align="center">
 <b>This repository's concept model</b><br><br>
 <img src="media/preview.png" alt="Concept CAD block for Front lid, composite panel" width="340"><br>
-<sub>Concept CAD block, 1250.3 × 1100.3 × 109.7 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
+<sub>Concept CAD block, 1250.1 × 1100.2 × 105.7 mm — <b>not</b> the original part, not a print file, not evidence of fit.</sub>
 </td>
 </tr></table>
 
@@ -94,7 +94,7 @@ flowchart LR
 | `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/front_lid_concept_f0-picogk.json`](derived/front_lid_concept_f0-picogk.json), [`derived/front_lid_concept_f0-picogk.stl`](derived/front_lid_concept_f0-picogk.stl), [`derived/front_lid_concept_f0.step`](derived/front_lid_concept_f0.step) |
 | `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/concept-f0.json`](evidence/concept-f0.json), [`evidence/measurement-plan.md`](evidence/measurement-plan.md) |
 | `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/picogk.json`](source/picogk.json) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/bionic.json`](source/bionic.json), [`source/bionic_regions.py`](source/bionic_regions.py), [`source/bionic_skin_contact.py`](source/bionic_skin_contact.py), [`source/picogk.json`](source/picogk.json) |
 
 ## Read more
 

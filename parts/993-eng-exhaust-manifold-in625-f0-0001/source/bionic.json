@@ -1,0 +1,3377 @@
+{
+  "part_id": "993-ENG-EXHAUST-MANIFOLD-IN625-F0-0001",
+  "method": "3D SIMP topology optimization (parts/picogk-catalog/bionic/topopt.py) of the structure around the exact flow passages, then PicoGK smoothing; legacy flow body (out/<ID>-functional.stl) fused as shaping.base_stl, passages / bolt holes / nut clearances cut last at exact size",
+  "basis_note": "Interfaces and loads are NOT measured. Port, merge and flange positions are the F0 hypotheses of source/picogk.json; the turbo load share is an assumption, the axial case uses the engineering screen's collector pressure force. Thermal expansion is not a SIMP load: it is addressed only by keeping the single support at the head flange (outlet free). The shape is a load-path concept.",
+  "generator": "bionic_regions.py (this folder) writes this file from source/picogk.json",
+  "optimization": {
+    "element_mm": 3.0,
+    "grid_min": [
+      -75,
+      -36,
+      0
+    ],
+    "grid_max": [
+      75,
+      36,
+      216
+    ],
+    "design": [
+      {
+        "type": "capsule",
+        "a": [
+          -55.0,
+          -15.0,
+          0.0
+        ],
+        "b": [
+          -54.266,
+          -14.828,
+          17.344
+        ],
+        "r": 27.0,
+        "basis": "assumption",
+        "note": "10 mm sleeve around each primary (wall + 8.8 mm)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -54.266,
+          -14.828,
+          17.344
+        ],
+        "b": [
+          -52.062,
+          -14.312,
+          34.375
+        ],
+        "r": 27.0
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -52.062,
+          -14.312,
+          34.375
+        ],
+        "b": [
+          -48.391,
+          -13.453,
+          51.094
+        ],
+        "r": 27.0
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -48.391,
+          -13.453,
+          51.094
+        ],
+        "b": [
+          -43.25,
+          -12.25,
+          67.5
+        ],
+        "r": 27.0
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -43.25,
+          -12.25,
+          67.5
+        ],
+        "b": [
+          -36.641,
+          -10.703,
+          83.594
+        ],
+        "r": 27.0
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -36.641,
+          -10.703,
+          83.594
+        ],
+        "b": [
+          -28.562,
+          -8.812,
+          99.375
+        ],
+        "r": 27.0
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -28.562,
+          -8.812,
+          99.375
+        ],
+        "b": [
+          -19.016,
+          -6.578,
+          114.844
+        ],
+        "r": 27.0
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -19.016,
+          -6.578,
+          114.844
+        ],
+        "b": [
+          -8.0,
+          -4.0,
+          130.0
+        ],
+        "r": 27.0
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "b": [
+          0.0,
+          0.0,
+          17.344
+        ],
+        "r": 27.0
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          17.344
+        ],
+        "b": [
+          0.0,
+          0.0,
+          34.375
+        ],
+        "r": 27.0
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          34.375
+        ],
+        "b": [
+          0.0,
+          0.0,
+          51.094
+        ],
+        "r": 27.0
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          51.094
+        ],
+        "b": [
+          0.0,
+          0.0,
+          67.5
+        ],
+        "r": 27.0
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          67.5
+        ],
+        "b": [
+          0.0,
+          0.0,
+          83.594
+        ],
+        "r": 27.0
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          83.594
+        ],
+        "b": [
+          0.0,
+          0.0,
+          99.375
+        ],
+        "r": 27.0
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          99.375
+        ],
+        "b": [
+          0.0,
+          0.0,
+          114.844
+        ],
+        "r": 27.0
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          114.844
+        ],
+        "b": [
+          0.0,
+          0.0,
+          130.0
+        ],
+        "r": 27.0
+      },
+      {
+        "type": "capsule",
+        "a": [
+          55.0,
+          15.0,
+          0.0
+        ],
+        "b": [
+          54.266,
+          14.828,
+          17.344
+        ],
+        "r": 27.0
+      },
+      {
+        "type": "capsule",
+        "a": [
+          54.266,
+          14.828,
+          17.344
+        ],
+        "b": [
+          52.062,
+          14.312,
+          34.375
+        ],
+        "r": 27.0
+      },
+      {
+        "type": "capsule",
+        "a": [
+          52.062,
+          14.312,
+          34.375
+        ],
+        "b": [
+          48.391,
+          13.453,
+          51.094
+        ],
+        "r": 27.0
+      },
+      {
+        "type": "capsule",
+        "a": [
+          48.391,
+          13.453,
+          51.094
+        ],
+        "b": [
+          43.25,
+          12.25,
+          67.5
+        ],
+        "r": 27.0
+      },
+      {
+        "type": "capsule",
+        "a": [
+          43.25,
+          12.25,
+          67.5
+        ],
+        "b": [
+          36.641,
+          10.703,
+          83.594
+        ],
+        "r": 27.0
+      },
+      {
+        "type": "capsule",
+        "a": [
+          36.641,
+          10.703,
+          83.594
+        ],
+        "b": [
+          28.562,
+          8.812,
+          99.375
+        ],
+        "r": 27.0
+      },
+      {
+        "type": "capsule",
+        "a": [
+          28.562,
+          8.812,
+          99.375
+        ],
+        "b": [
+          19.016,
+          6.578,
+          114.844
+        ],
+        "r": 27.0
+      },
+      {
+        "type": "capsule",
+        "a": [
+          19.016,
+          6.578,
+          114.844
+        ],
+        "b": [
+          8.0,
+          4.0,
+          130.0
+        ],
+        "r": 27.0
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0,
+          0,
+          95.0
+        ],
+        "b": [
+          0,
+          0,
+          207.0
+        ],
+        "r": 38.0,
+        "basis": "assumption",
+        "note": "10 mm sleeve around the collector"
+      },
+      {
+        "type": "box",
+        "min": [
+          -70,
+          -22,
+          0
+        ],
+        "max": [
+          70,
+          22,
+          70
+        ],
+        "basis": "assumption",
+        "note": "web zone between the primaries above the head flange"
+      },
+      {
+        "type": "box",
+        "min": [
+          -52,
+          -20,
+          170
+        ],
+        "max": [
+          52,
+          20,
+          215.0
+        ],
+        "basis": "assumption",
+        "note": "outlet flange gusset zone (between the two outlet bolts)"
+      }
+    ],
+    "solid": [
+      {
+        "type": "cyl",
+        "a": [
+          -55.0,
+          -15.0,
+          0.0
+        ],
+        "b": [
+          -55.0,
+          -15.0,
+          8.0
+        ],
+        "r": 20.2,
+        "basis": "assumption",
+        "note": "head flange ring around the port (inside the legacy flange outline)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "b": [
+          0.0,
+          0.0,
+          8.0
+        ],
+        "r": 20.2,
+        "basis": "assumption",
+        "note": "head flange ring around the port (inside the legacy flange outline)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          55.0,
+          15.0,
+          0.0
+        ],
+        "b": [
+          55.0,
+          15.0,
+          8.0
+        ],
+        "r": 20.2,
+        "basis": "assumption",
+        "note": "head flange ring around the port (inside the legacy flange outline)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -27.5,
+          -7.5,
+          0.0
+        ],
+        "b": [
+          -27.5,
+          -7.5,
+          8.0
+        ],
+        "r": 11.0,
+        "basis": "assumption",
+        "note": "head flange bolt boss"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          27.5,
+          7.5,
+          0.0
+        ],
+        "b": [
+          27.5,
+          7.5,
+          8.0
+        ],
+        "r": 11.0,
+        "basis": "assumption",
+        "note": "head flange bolt boss"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0,
+          0,
+          207.0
+        ],
+        "b": [
+          0,
+          0,
+          215.0
+        ],
+        "r": 33.0,
+        "basis": "assumption",
+        "note": "outlet (turbine) flange disc"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -42.0,
+          0,
+          207.0
+        ],
+        "b": [
+          -42.0,
+          0,
+          215.0
+        ],
+        "r": 9.0,
+        "basis": "assumption",
+        "note": "outlet flange bolt boss"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          42.0,
+          0,
+          207.0
+        ],
+        "b": [
+          42.0,
+          0,
+          215.0
+        ],
+        "r": 9.0,
+        "basis": "assumption",
+        "note": "outlet flange bolt boss"
+      }
+    ],
+    "void": [
+      {
+        "type": "capsule",
+        "a": [
+          -55.0,
+          -15.0,
+          -3.0
+        ],
+        "b": [
+          -55.0,
+          -15.0,
+          0.0
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -55.0,
+          -15.0,
+          0.0
+        ],
+        "b": [
+          -54.98,
+          -14.995,
+          2.912
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -54.98,
+          -14.995,
+          2.912
+        ],
+        "b": [
+          -54.918,
+          -14.981,
+          5.816
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -54.918,
+          -14.981,
+          5.816
+        ],
+        "b": [
+          -54.816,
+          -14.957,
+          8.711
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -54.816,
+          -14.957,
+          8.711
+        ],
+        "b": [
+          -54.674,
+          -14.924,
+          11.597
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -54.674,
+          -14.924,
+          11.597
+        ],
+        "b": [
+          -54.49,
+          -14.881,
+          14.475
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -54.49,
+          -14.881,
+          14.475
+        ],
+        "b": [
+          -54.266,
+          -14.828,
+          17.344
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -54.266,
+          -14.828,
+          17.344
+        ],
+        "b": [
+          -54.0,
+          -14.766,
+          20.204
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -54.0,
+          -14.766,
+          20.204
+        ],
+        "b": [
+          -53.694,
+          -14.694,
+          23.056
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -53.694,
+          -14.694,
+          23.056
+        ],
+        "b": [
+          -53.348,
+          -14.613,
+          25.898
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -53.348,
+          -14.613,
+          25.898
+        ],
+        "b": [
+          -52.96,
+          -14.523,
+          28.733
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -52.96,
+          -14.523,
+          28.733
+        ],
+        "b": [
+          -52.532,
+          -14.422,
+          31.558
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -52.532,
+          -14.422,
+          31.558
+        ],
+        "b": [
+          -52.062,
+          -14.312,
+          34.375
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -52.062,
+          -14.312,
+          34.375
+        ],
+        "b": [
+          -51.553,
+          -14.193,
+          37.183
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -51.553,
+          -14.193,
+          37.183
+        ],
+        "b": [
+          -51.002,
+          -14.064,
+          39.983
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -51.002,
+          -14.064,
+          39.983
+        ],
+        "b": [
+          -50.41,
+          -13.926,
+          42.773
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -50.41,
+          -13.926,
+          42.773
+        ],
+        "b": [
+          -49.778,
+          -13.778,
+          45.556
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -49.778,
+          -13.778,
+          45.556
+        ],
+        "b": [
+          -49.105,
+          -13.62,
+          48.329
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -49.105,
+          -13.62,
+          48.329
+        ],
+        "b": [
+          -48.391,
+          -13.453,
+          51.094
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -48.391,
+          -13.453,
+          51.094
+        ],
+        "b": [
+          -47.636,
+          -13.276,
+          53.85
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -47.636,
+          -13.276,
+          53.85
+        ],
+        "b": [
+          -46.84,
+          -13.09,
+          56.597
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -46.84,
+          -13.09,
+          56.597
+        ],
+        "b": [
+          -46.004,
+          -12.895,
+          59.336
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -46.004,
+          -12.895,
+          59.336
+        ],
+        "b": [
+          -45.127,
+          -12.689,
+          62.066
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -45.127,
+          -12.689,
+          62.066
+        ],
+        "b": [
+          -44.209,
+          -12.474,
+          64.787
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -44.209,
+          -12.474,
+          64.787
+        ],
+        "b": [
+          -43.25,
+          -12.25,
+          67.5
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -43.25,
+          -12.25,
+          67.5
+        ],
+        "b": [
+          -42.25,
+          -12.016,
+          70.204
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -42.25,
+          -12.016,
+          70.204
+        ],
+        "b": [
+          -41.21,
+          -11.773,
+          72.899
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -41.21,
+          -11.773,
+          72.899
+        ],
+        "b": [
+          -40.129,
+          -11.52,
+          75.586
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -40.129,
+          -11.52,
+          75.586
+        ],
+        "b": [
+          -39.007,
+          -11.257,
+          78.264
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -39.007,
+          -11.257,
+          78.264
+        ],
+        "b": [
+          -37.844,
+          -10.985,
+          80.933
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -37.844,
+          -10.985,
+          80.933
+        ],
+        "b": [
+          -36.641,
+          -10.703,
+          83.594
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -36.641,
+          -10.703,
+          83.594
+        ],
+        "b": [
+          -35.396,
+          -10.412,
+          86.246
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -35.396,
+          -10.412,
+          86.246
+        ],
+        "b": [
+          -34.111,
+          -10.111,
+          88.889
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -34.111,
+          -10.111,
+          88.889
+        ],
+        "b": [
+          -32.785,
+          -9.801,
+          91.523
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -32.785,
+          -9.801,
+          91.523
+        ],
+        "b": [
+          -31.418,
+          -9.481,
+          94.149
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -31.418,
+          -9.481,
+          94.149
+        ],
+        "b": [
+          -30.011,
+          -9.151,
+          96.766
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -30.011,
+          -9.151,
+          96.766
+        ],
+        "b": [
+          -28.562,
+          -8.812,
+          99.375
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -28.562,
+          -8.812,
+          99.375
+        ],
+        "b": [
+          -27.073,
+          -8.464,
+          101.975
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -27.073,
+          -8.464,
+          101.975
+        ],
+        "b": [
+          -25.543,
+          -8.106,
+          104.566
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -25.543,
+          -8.106,
+          104.566
+        ],
+        "b": [
+          -23.973,
+          -7.738,
+          107.148
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -23.973,
+          -7.738,
+          107.148
+        ],
+        "b": [
+          -22.361,
+          -7.361,
+          109.722
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -22.361,
+          -7.361,
+          109.722
+        ],
+        "b": [
+          -20.709,
+          -6.974,
+          112.287
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -20.709,
+          -6.974,
+          112.287
+        ],
+        "b": [
+          -19.016,
+          -6.578,
+          114.844
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -19.016,
+          -6.578,
+          114.844
+        ],
+        "b": [
+          -17.282,
+          -6.172,
+          117.391
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -17.282,
+          -6.172,
+          117.391
+        ],
+        "b": [
+          -15.507,
+          -5.757,
+          119.931
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -15.507,
+          -5.757,
+          119.931
+        ],
+        "b": [
+          -13.691,
+          -5.332,
+          122.461
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -13.691,
+          -5.332,
+          122.461
+        ],
+        "b": [
+          -11.835,
+          -4.898,
+          124.983
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -11.835,
+          -4.898,
+          124.983
+        ],
+        "b": [
+          -9.938,
+          -4.454,
+          127.496
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -9.938,
+          -4.454,
+          127.496
+        ],
+        "b": [
+          -8.0,
+          -4.0,
+          130.0
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 1 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          -3.0
+        ],
+        "b": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "b": [
+          0.0,
+          0.0,
+          2.912
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          2.912
+        ],
+        "b": [
+          0.0,
+          0.0,
+          5.816
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          5.816
+        ],
+        "b": [
+          0.0,
+          0.0,
+          8.711
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          8.711
+        ],
+        "b": [
+          0.0,
+          0.0,
+          11.597
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          11.597
+        ],
+        "b": [
+          0.0,
+          0.0,
+          14.475
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          14.475
+        ],
+        "b": [
+          0.0,
+          0.0,
+          17.344
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          17.344
+        ],
+        "b": [
+          0.0,
+          0.0,
+          20.204
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          20.204
+        ],
+        "b": [
+          0.0,
+          0.0,
+          23.056
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          23.056
+        ],
+        "b": [
+          0.0,
+          0.0,
+          25.898
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          25.898
+        ],
+        "b": [
+          0.0,
+          0.0,
+          28.733
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          28.733
+        ],
+        "b": [
+          0.0,
+          0.0,
+          31.558
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          31.558
+        ],
+        "b": [
+          0.0,
+          0.0,
+          34.375
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          34.375
+        ],
+        "b": [
+          0.0,
+          0.0,
+          37.183
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          37.183
+        ],
+        "b": [
+          0.0,
+          0.0,
+          39.983
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          39.983
+        ],
+        "b": [
+          0.0,
+          0.0,
+          42.773
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          42.773
+        ],
+        "b": [
+          0.0,
+          0.0,
+          45.556
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          45.556
+        ],
+        "b": [
+          0.0,
+          0.0,
+          48.329
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          48.329
+        ],
+        "b": [
+          0.0,
+          0.0,
+          51.094
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          51.094
+        ],
+        "b": [
+          0.0,
+          0.0,
+          53.85
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          53.85
+        ],
+        "b": [
+          0.0,
+          0.0,
+          56.597
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          56.597
+        ],
+        "b": [
+          0.0,
+          0.0,
+          59.336
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          59.336
+        ],
+        "b": [
+          0.0,
+          0.0,
+          62.066
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          62.066
+        ],
+        "b": [
+          0.0,
+          0.0,
+          64.787
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          64.787
+        ],
+        "b": [
+          0.0,
+          0.0,
+          67.5
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          67.5
+        ],
+        "b": [
+          0.0,
+          0.0,
+          70.204
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          70.204
+        ],
+        "b": [
+          0.0,
+          0.0,
+          72.899
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          72.899
+        ],
+        "b": [
+          0.0,
+          0.0,
+          75.586
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          75.586
+        ],
+        "b": [
+          0.0,
+          0.0,
+          78.264
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          78.264
+        ],
+        "b": [
+          0.0,
+          0.0,
+          80.933
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          80.933
+        ],
+        "b": [
+          0.0,
+          0.0,
+          83.594
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          83.594
+        ],
+        "b": [
+          0.0,
+          0.0,
+          86.246
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          86.246
+        ],
+        "b": [
+          0.0,
+          0.0,
+          88.889
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          88.889
+        ],
+        "b": [
+          0.0,
+          0.0,
+          91.523
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          91.523
+        ],
+        "b": [
+          0.0,
+          0.0,
+          94.149
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          94.149
+        ],
+        "b": [
+          0.0,
+          0.0,
+          96.766
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          96.766
+        ],
+        "b": [
+          0.0,
+          0.0,
+          99.375
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          99.375
+        ],
+        "b": [
+          0.0,
+          0.0,
+          101.975
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          101.975
+        ],
+        "b": [
+          0.0,
+          0.0,
+          104.566
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          104.566
+        ],
+        "b": [
+          0.0,
+          0.0,
+          107.148
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          107.148
+        ],
+        "b": [
+          0.0,
+          0.0,
+          109.722
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          109.722
+        ],
+        "b": [
+          0.0,
+          0.0,
+          112.287
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          112.287
+        ],
+        "b": [
+          0.0,
+          0.0,
+          114.844
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          114.844
+        ],
+        "b": [
+          0.0,
+          0.0,
+          117.391
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          117.391
+        ],
+        "b": [
+          0.0,
+          0.0,
+          119.931
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          119.931
+        ],
+        "b": [
+          0.0,
+          0.0,
+          122.461
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          122.461
+        ],
+        "b": [
+          0.0,
+          0.0,
+          124.983
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          124.983
+        ],
+        "b": [
+          0.0,
+          0.0,
+          127.496
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          127.496
+        ],
+        "b": [
+          0.0,
+          0.0,
+          130.0
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 2 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          55.0,
+          15.0,
+          -3.0
+        ],
+        "b": [
+          55.0,
+          15.0,
+          0.0
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          55.0,
+          15.0,
+          0.0
+        ],
+        "b": [
+          54.98,
+          14.995,
+          2.912
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          54.98,
+          14.995,
+          2.912
+        ],
+        "b": [
+          54.918,
+          14.981,
+          5.816
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          54.918,
+          14.981,
+          5.816
+        ],
+        "b": [
+          54.816,
+          14.957,
+          8.711
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          54.816,
+          14.957,
+          8.711
+        ],
+        "b": [
+          54.674,
+          14.924,
+          11.597
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          54.674,
+          14.924,
+          11.597
+        ],
+        "b": [
+          54.49,
+          14.881,
+          14.475
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          54.49,
+          14.881,
+          14.475
+        ],
+        "b": [
+          54.266,
+          14.828,
+          17.344
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          54.266,
+          14.828,
+          17.344
+        ],
+        "b": [
+          54.0,
+          14.766,
+          20.204
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          54.0,
+          14.766,
+          20.204
+        ],
+        "b": [
+          53.694,
+          14.694,
+          23.056
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          53.694,
+          14.694,
+          23.056
+        ],
+        "b": [
+          53.348,
+          14.613,
+          25.898
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          53.348,
+          14.613,
+          25.898
+        ],
+        "b": [
+          52.96,
+          14.523,
+          28.733
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          52.96,
+          14.523,
+          28.733
+        ],
+        "b": [
+          52.532,
+          14.422,
+          31.558
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          52.532,
+          14.422,
+          31.558
+        ],
+        "b": [
+          52.062,
+          14.312,
+          34.375
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          52.062,
+          14.312,
+          34.375
+        ],
+        "b": [
+          51.553,
+          14.193,
+          37.183
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          51.553,
+          14.193,
+          37.183
+        ],
+        "b": [
+          51.002,
+          14.064,
+          39.983
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          51.002,
+          14.064,
+          39.983
+        ],
+        "b": [
+          50.41,
+          13.926,
+          42.773
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          50.41,
+          13.926,
+          42.773
+        ],
+        "b": [
+          49.778,
+          13.778,
+          45.556
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          49.778,
+          13.778,
+          45.556
+        ],
+        "b": [
+          49.105,
+          13.62,
+          48.329
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          49.105,
+          13.62,
+          48.329
+        ],
+        "b": [
+          48.391,
+          13.453,
+          51.094
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          48.391,
+          13.453,
+          51.094
+        ],
+        "b": [
+          47.636,
+          13.276,
+          53.85
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          47.636,
+          13.276,
+          53.85
+        ],
+        "b": [
+          46.84,
+          13.09,
+          56.597
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          46.84,
+          13.09,
+          56.597
+        ],
+        "b": [
+          46.004,
+          12.895,
+          59.336
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          46.004,
+          12.895,
+          59.336
+        ],
+        "b": [
+          45.127,
+          12.689,
+          62.066
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          45.127,
+          12.689,
+          62.066
+        ],
+        "b": [
+          44.209,
+          12.474,
+          64.787
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          44.209,
+          12.474,
+          64.787
+        ],
+        "b": [
+          43.25,
+          12.25,
+          67.5
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          43.25,
+          12.25,
+          67.5
+        ],
+        "b": [
+          42.25,
+          12.016,
+          70.204
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          42.25,
+          12.016,
+          70.204
+        ],
+        "b": [
+          41.21,
+          11.773,
+          72.899
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          41.21,
+          11.773,
+          72.899
+        ],
+        "b": [
+          40.129,
+          11.52,
+          75.586
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          40.129,
+          11.52,
+          75.586
+        ],
+        "b": [
+          39.007,
+          11.257,
+          78.264
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          39.007,
+          11.257,
+          78.264
+        ],
+        "b": [
+          37.844,
+          10.985,
+          80.933
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          37.844,
+          10.985,
+          80.933
+        ],
+        "b": [
+          36.641,
+          10.703,
+          83.594
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          36.641,
+          10.703,
+          83.594
+        ],
+        "b": [
+          35.396,
+          10.412,
+          86.246
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          35.396,
+          10.412,
+          86.246
+        ],
+        "b": [
+          34.111,
+          10.111,
+          88.889
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          34.111,
+          10.111,
+          88.889
+        ],
+        "b": [
+          32.785,
+          9.801,
+          91.523
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          32.785,
+          9.801,
+          91.523
+        ],
+        "b": [
+          31.418,
+          9.481,
+          94.149
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          31.418,
+          9.481,
+          94.149
+        ],
+        "b": [
+          30.011,
+          9.151,
+          96.766
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          30.011,
+          9.151,
+          96.766
+        ],
+        "b": [
+          28.562,
+          8.812,
+          99.375
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          28.562,
+          8.812,
+          99.375
+        ],
+        "b": [
+          27.073,
+          8.464,
+          101.975
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          27.073,
+          8.464,
+          101.975
+        ],
+        "b": [
+          25.543,
+          8.106,
+          104.566
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          25.543,
+          8.106,
+          104.566
+        ],
+        "b": [
+          23.973,
+          7.738,
+          107.148
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          23.973,
+          7.738,
+          107.148
+        ],
+        "b": [
+          22.361,
+          7.361,
+          109.722
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          22.361,
+          7.361,
+          109.722
+        ],
+        "b": [
+          20.709,
+          6.974,
+          112.287
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          20.709,
+          6.974,
+          112.287
+        ],
+        "b": [
+          19.016,
+          6.578,
+          114.844
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          19.016,
+          6.578,
+          114.844
+        ],
+        "b": [
+          17.282,
+          6.172,
+          117.391
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          17.282,
+          6.172,
+          117.391
+        ],
+        "b": [
+          15.507,
+          5.757,
+          119.931
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          15.507,
+          5.757,
+          119.931
+        ],
+        "b": [
+          13.691,
+          5.332,
+          122.461
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          13.691,
+          5.332,
+          122.461
+        ],
+        "b": [
+          11.835,
+          4.898,
+          124.983
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          11.835,
+          4.898,
+          124.983
+        ],
+        "b": [
+          9.938,
+          4.454,
+          127.496
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          9.938,
+          4.454,
+          127.496
+        ],
+        "b": [
+          8.0,
+          4.0,
+          130.0
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "primary 3 passage, 34 mm, same beams as ExhaustManifold.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0,
+          0,
+          110.0
+        ],
+        "b": [
+          0,
+          0,
+          112.0
+        ],
+        "r": 11.9,
+        "basis": "assumption",
+        "note": "collector entry cone, inscribed step"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0,
+          0,
+          112.0
+        ],
+        "b": [
+          0,
+          0,
+          114.0
+        ],
+        "r": 13.51,
+        "basis": "assumption",
+        "note": "collector entry cone, inscribed step"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0,
+          0,
+          114.0
+        ],
+        "b": [
+          0,
+          0,
+          116.0
+        ],
+        "r": 15.12,
+        "basis": "assumption",
+        "note": "collector entry cone, inscribed step"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0,
+          0,
+          116.0
+        ],
+        "b": [
+          0,
+          0,
+          118.0
+        ],
+        "r": 16.73,
+        "basis": "assumption",
+        "note": "collector entry cone, inscribed step"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0,
+          0,
+          118.0
+        ],
+        "b": [
+          0,
+          0,
+          120.0
+        ],
+        "r": 18.34,
+        "basis": "assumption",
+        "note": "collector entry cone, inscribed step"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0,
+          0,
+          120.0
+        ],
+        "b": [
+          0,
+          0,
+          122.0
+        ],
+        "r": 19.95,
+        "basis": "assumption",
+        "note": "collector entry cone, inscribed step"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0,
+          0,
+          122.0
+        ],
+        "b": [
+          0,
+          0,
+          124.0
+        ],
+        "r": 21.56,
+        "basis": "assumption",
+        "note": "collector entry cone, inscribed step"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0,
+          0,
+          124.0
+        ],
+        "b": [
+          0,
+          0,
+          126.0
+        ],
+        "r": 23.17,
+        "basis": "assumption",
+        "note": "collector entry cone, inscribed step"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0,
+          0,
+          126.0
+        ],
+        "b": [
+          0,
+          0,
+          128.0
+        ],
+        "r": 24.78,
+        "basis": "assumption",
+        "note": "collector entry cone, inscribed step"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0,
+          0,
+          128.0
+        ],
+        "b": [
+          0,
+          0,
+          130.0
+        ],
+        "r": 26.39,
+        "basis": "assumption",
+        "note": "collector entry cone, inscribed step"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0,
+          0,
+          130.0
+        ],
+        "b": [
+          0,
+          0,
+          218.0
+        ],
+        "r": 28.0,
+        "basis": "assumption",
+        "note": "collector passage 56 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -27.5,
+          -7.5,
+          -2.0
+        ],
+        "b": [
+          -27.5,
+          -7.5,
+          9.0
+        ],
+        "r": 4.25,
+        "basis": "assumption",
+        "note": "head flange bolt hole (M8 clearance assumed)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -27.5,
+          -7.5,
+          8.0
+        ],
+        "b": [
+          -27.5,
+          -7.5,
+          26.0
+        ],
+        "r": 7.5,
+        "basis": "assumption",
+        "note": "nut / socket clearance above the head flange bolt"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          27.5,
+          7.5,
+          -2.0
+        ],
+        "b": [
+          27.5,
+          7.5,
+          9.0
+        ],
+        "r": 4.25,
+        "basis": "assumption",
+        "note": "head flange bolt hole (M8 clearance assumed)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          27.5,
+          7.5,
+          8.0
+        ],
+        "b": [
+          27.5,
+          7.5,
+          26.0
+        ],
+        "r": 7.5,
+        "basis": "assumption",
+        "note": "nut / socket clearance above the head flange bolt"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -42.0,
+          0,
+          206.0
+        ],
+        "b": [
+          -42.0,
+          0,
+          217.0
+        ],
+        "r": 4.25,
+        "basis": "assumption",
+        "note": "outlet flange bolt hole"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -42.0,
+          0,
+          177.0
+        ],
+        "b": [
+          -42.0,
+          0,
+          207.0
+        ],
+        "r": 7.5,
+        "basis": "assumption",
+        "note": "nut / socket clearance under the outlet flange bolt"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          42.0,
+          0,
+          206.0
+        ],
+        "b": [
+          42.0,
+          0,
+          217.0
+        ],
+        "r": 4.25,
+        "basis": "assumption",
+        "note": "outlet flange bolt hole"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          42.0,
+          0,
+          177.0
+        ],
+        "b": [
+          42.0,
+          0,
+          207.0
+        ],
+        "r": 7.5,
+        "basis": "assumption",
+        "note": "nut / socket clearance under the outlet flange bolt"
+      }
+    ],
+    "supports": [
+      {
+        "type": "cyl",
+        "a": [
+          -55.0,
+          -15.0,
+          -1.0
+        ],
+        "b": [
+          -55.0,
+          -15.0,
+          1.5
+        ],
+        "r": 20.2,
+        "basis": "assumption",
+        "note": "head flange face clamped to the cylinder head"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          0.0,
+          -1.0
+        ],
+        "b": [
+          0.0,
+          0.0,
+          1.5
+        ],
+        "r": 20.2,
+        "basis": "assumption",
+        "note": "head flange face clamped to the cylinder head"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          55.0,
+          15.0,
+          -1.0
+        ],
+        "b": [
+          55.0,
+          15.0,
+          1.5
+        ],
+        "r": 20.2,
+        "basis": "assumption",
+        "note": "head flange face clamped to the cylinder head"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -27.5,
+          -7.5,
+          -1.0
+        ],
+        "b": [
+          -27.5,
+          -7.5,
+          1.5
+        ],
+        "r": 11.0,
+        "basis": "assumption",
+        "note": "head flange bolt"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          27.5,
+          7.5,
+          -1.0
+        ],
+        "b": [
+          27.5,
+          7.5,
+          1.5
+        ],
+        "r": 11.0,
+        "basis": "assumption",
+        "note": "head flange bolt"
+      }
+    ],
+    "load_cases": [
+      {
+        "name": "turbo_x",
+        "basis": "assumption",
+        "note": "turbocharger mass share 4 kg x 10 g on the outlet flange, along the port row (no published value)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  0,
+                  0,
+                  211.5
+                ],
+                "b": [
+                  0,
+                  0,
+                  216.5
+                ],
+                "r": 33.0
+              }
+            ],
+            "force_N": [
+              400,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "turbo_y",
+        "basis": "assumption",
+        "note": "same 400 N across the port row",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  0,
+                  0,
+                  211.5
+                ],
+                "b": [
+                  0,
+                  0,
+                  216.5
+                ],
+                "r": 33.0
+              }
+            ],
+            "force_N": [
+              0,
+              400,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "axial",
+        "basis": "assumption",
+        "note": "collector_pressure_force_n 123 N of evidence/engineering-screen.json (50 kPa screen) plus turbo inertia, rounded to 250 N along the collector axis",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  0,
+                  0,
+                  211.5
+                ],
+                "b": [
+                  0,
+                  0,
+                  216.5
+                ],
+                "r": 33.0
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              250
+            ]
+          }
+        ]
+      }
+    ],
+    "volume_fraction": 0.16,
+    "filter_radius_mm": 7.5,
+    "iterations": 45
+  },
+  "shaping": {
+    "smooth_mm": 1.5,
+    "blend_mm": 0.3,
+    "blend_note": "PicoGK Smoothen offsets inward first: the blend must stay below half the 1.2 mm legacy tube wall",
+    "base_stl": "parts/picogk-catalog/out/993-ENG-EXHAUST-MANIFOLD-IN625-F0-0001-functional.stl",
+    "lattice_grey": false
+  }
+}

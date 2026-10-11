@@ -1,14 +1,14 @@
 {
   "part_id": "993-INT-SEAT-RAIL-COVER-0001",
-  "name": "993 seat rail trim cover, outer side (PicoGK)",
-  "generator": "seat_rail_cover",
+  "name": "993 seat rail trim cover, outer side, bionic (PicoGK)",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-int-seat-rail-cover-0001.json",
   "porsche_part_numbers": [],
   "safety_class": "non_critical",
   "material_candidate": "polymer, grade to be determined after fit test (FFF / SLS / MJF candidates; PA12 density used for the mass estimate)",
   "density_g_cm3": 1.01,
   "voxel_mm": 0.4,
-  "picogk_enhancement": "The F0 U-channel block becomes a moulded-looking trim cover: crowned top, drafted walls, rounded edges, end caps ramping down to a low nose, transverse ribs under the crown, countersunk screw bosses in the end ramps and slotted snap tongues with lead-in hook lips - one open-bottom shell, no trapped volume.",
+  "picogk_enhancement": "Bionic: the support structure inside the cover (replacing the six transverse ribs) is grown along the load paths of a 400 N step on a 60 x 30 mm patch at mid length and 100 mm either side (assumptions), the cover held by its eight snap tongue lips and two screw bosses, by 3D SIMP topology optimization above the assumed 20 mm rail clearance (source/bionic.json, topopt.py); PicoGK smooths the density into organic members. The crowned shell, end ramps, snap tongues with their U slots, screw bosses and countersunk holes are kept exact (source/bionic_keepins.py). Every dimension and load is an assumption until measured.",
   "parameters": {
     "length_mm": {
       "value": 420.0,
@@ -165,5 +165,15 @@
     "left/right symmetry to be verified before mirroring"
   ],
   "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
-  "envelope": []
+  "envelope": [
+    "length_mm",
+    "width_mm",
+    "height_mm"
+  ],
+  "envelope_axes": {
+    "length_mm": "x",
+    "width_mm": "y",
+    "height_mm": "z"
+  },
+  "envelope_mode": "max"
 }
