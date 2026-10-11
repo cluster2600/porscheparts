@@ -169,6 +169,15 @@ than one on the floor or the bulkheads. F1 applies it at constant mass:
 engine-lid ring out, bulkhead faces 2.4 to 1.9 mm, skin boxes 2.0 to
 2.5 mm. It gains 6% in torsion for the same mass.
 
+**Bending (2026-10-11).** Under vertical bending between the axles, the
+`picogk/` boxes stiffen the shell by about four times, against five to
+fifteen in torsion. The cabin members are the same, with other weights:
+the sills carry 28-37% of the cabin's bending stiffness, the door rings
+20-21%, the windscreen frame and quarter windows 3-5%. The weak members
+that torsion would prune cost about 1% in bending. Torsion decides the
+architecture; bending adds the sills to the members that deserve the
+effort.
+
 **Correction (2026-10-11).** Every torsion value published from #139 to
 #147 was computed without the bulkheads, which the shell builder dropped.
 They are corrected above; see the monocoque README, section Corrections.

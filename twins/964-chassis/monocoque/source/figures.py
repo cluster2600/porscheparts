@@ -1,12 +1,13 @@
 """Figures of the plate-50-05a shell: four views, and the torsion stress map.
 
 Reads ../derived/monocoque-shell.ply, ../derived/torsion-snapshot.npz and,
-when present, ../derived/torsion-monocoque*.{json,npz} and
-../derived/torsion-rings*.{json,npz}, ../derived/torsion-members.json and
-../derived/torsion-layup.json; writes ../evidence/shell-views.png,
-../evidence/torsion-von-mises.png, ../evidence/torsion-monocoque.png,
-../evidence/torsion-architectures.png, ../evidence/torsion-members.png and
-../evidence/torsion-layup.png.
+when present, ../derived/torsion-monocoque*.{json,npz},
+../derived/torsion-rings*.{json,npz}, ../derived/torsion-members.json,
+../derived/torsion-layup.json and ../derived/bending*.{json,npz}; writes
+../evidence/shell-views.png, ../evidence/torsion-von-mises.png,
+../evidence/torsion-monocoque.png, ../evidence/torsion-architectures.png,
+../evidence/torsion-members.png, ../evidence/torsion-layup.png and
+../evidence/bending.png.
 
     python3 figures.py
 """
@@ -77,6 +78,85 @@ def main():
         members()
     if (DERIVED / "torsion-layup.json").exists():
         layup()
+    if (DERIVED / "bending.json").exists():
+        bending(pv, cmap)
+
+
+def bending(pv, cmap):
+    """Vertical bending: stress on the CFRP monocoque, the deflection of the
+    sill line for the four cases, and what each member is worth in bending
+    against torsion (cabin measures, finest mesh)."""
+    import json
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from PIL import Image
+    r = json.loads((DERIVED / "bending.json").read_text())
+    t = np.load(DERIVED / "bending-snapshot.npz")
+    pts, tri = t["points"].astype(float), t["triangles"]
+    m = pv.PolyData(pts, np.c_[np.full(len(tri), 3), tri].ravel())
+    m.point_data["von Mises, MPa"] = t["von_mises_monocoque_cfrp"]
+    clim = (0.0, float(np.percentile(t["von_mises_monocoque_cfrp"][np.unique(tri)], 97)))
+    row = r["cases"]["monocoque, CFRP layup"]
+    p = pv.Plotter(off_screen=True, shape=(1, 2), window_size=(2600, 900))
+    for i, (az, el) in enumerate(((32, 16), (-90, -25))):
+        p.subplot(0, i)
+        p.set_background("#0e1218", top="#232b36")
+        p.add_mesh(m, scalars="von Mises, MPa", cmap=cmap, clim=clim, smooth_shading=True, specular=0.4, ambient=0.25,
+                   show_scalar_bar=(i == 1), scalar_bar_args={"color": "white"})
+        p.add_points(pts[t["load_nodes"]], color="white", point_size=6, render_points_as_spheres=True)
+        camera(p, np.array([-1190.0, 0.0, 640.0]), 3780.0, az, el)
+    p.subplot(0, 0)
+    p.add_text(f"bending, CFRP monocoque: K = {row['K'][-1]:,} N/mm ({row['mass_kg'][-1]} kg); "
+               "white: load on the sills (supports inside the wheel houses, at the axles)", font_size=11, color="white")
+    p.enable_anti_aliasing("ssaa")
+    top = Image.fromarray(p.screenshot(return_img=True))
+    p.close()
+    mem = r.get("members", {}).get("members")
+    fig, axes = plt.subplots(1, 2 if mem else 1, figsize=(16, 4.8), facecolor="#0e1218",
+                             gridspec_kw={"width_ratios": [1.5, 1]} if mem else None)
+    ax = axes[0] if mem else axes
+    styles = {"open shell, 0.8 mm steel": ("#8a929e", "--"), "open shell, CFRP layup": ("#8a929e", ":"),
+              "monocoque, 0.8 mm steel": ("#f07b3f", "-"), "monocoque, CFRP layup": ("#4f9aa8", "-")}
+    d = np.array(r["profile_d_mm"])
+    for name, row in r["cases"].items():
+        w = np.array([np.nan if v is None else v for v in row["profile_mm_per_kN"]])
+        c, ls = styles[name]
+        ax.plot(d, w, color=c, ls=ls, lw=2, label=f"{name}: K {row['K'][-1]:,} N/mm, cabin {row['K_cabin'][-1]:,}")
+    for at in r["load_case"]["axles_d_mm"]:
+        ax.axvline(at, color="#4f9aa8", lw=1)
+    ax.axvline(sum(r["load_case"]["axles_d_mm"]) / 2, color="white", lw=1, ls=":")
+    ax.set_xlabel("d, mm behind the plate 0 line (blue: axles, dotted: load)", color="#9aa3ad")
+    ax.set_ylabel("sill-line deflection, mm per kN", color="#9aa3ad")
+    ax.legend(frameon=False, labelcolor="white", fontsize=9, loc="lower left")
+    if mem:
+        bx = axes[1]
+        tors = json.loads((DERIVED / "torsion-members.json").read_text())["members"]
+        names = sorted(mem, key=lambda n: -mem[n]["K_cabin_lost_fraction"][-1])
+        y = np.arange(len(names))
+        bx.barh(y - 0.19, [100 * mem[n]["K_cabin_lost_fraction"][-1] for n in names], height=0.38, color="#4f9aa8",
+                label="bending, cabin")
+        bx.barh(y + 0.19, [100 * tors[n]["K_cabin_lost_fraction"][-1] if n in tors else 0 for n in names], height=0.38,
+                color="#e9b44c", label="torsion, cabin")
+        bx.set_yticks(y, names, color="white")
+        bx.invert_yaxis()
+        bx.set_xlabel("cabin stiffness lost when the member is removed, %", color="#9aa3ad")
+        bx.legend(frameon=False, labelcolor="white", fontsize=9, loc="lower right")
+    for a in np.atleast_1d(axes):
+        a.set_facecolor("#0e1218")
+        a.tick_params(colors="#9aa3ad")
+        for sp in a.spines.values():
+            sp.set_color("#3a4350")
+    fig.tight_layout()
+    fig.canvas.draw()
+    bottom = Image.fromarray(np.asarray(fig.canvas.buffer_rgba())[:, :, :3])
+    plt.close(fig)
+    bottom = bottom.resize((top.width, int(bottom.height * top.width / bottom.width)), Image.LANCZOS)
+    out = Image.new("RGB", (top.width, top.height + bottom.height), (14, 18, 24))
+    out.paste(top, (0, 0))
+    out.paste(bottom, (0, top.height))
+    out.save(EVIDENCE / "bending.png")
+    print("wrote bending.png")
 
 
 def layup():
