@@ -1,14 +1,14 @@
 {
   "part_id": "993-ENG-EXHAUST-MANIFOLD-IN625-F0-0001",
   "name": "993 Turbo three-into-one exhaust manifold, IN625 (PicoGK)",
-  "generator": "exhaust_manifold_3into1",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-eng-exhaust-manifold-in625-f0-0001.json",
   "porsche_part_numbers": [],
   "safety_class": "prohibited_pending_engineering",
   "material_candidate": "IN625 LPBF",
   "density_g_cm3": 8.44,
   "voxel_mm": 0.4,
-  "picogk_enhancement": "Three primaries swept along curved centrelines (vertical at the ports, converging into the collector) and merged into one filleted flow body with a smooth crotch and merge spikes instead of three straight lofts butted against a cylinder; common head flange with bolt bosses and nut clearances, two-bolt outlet flange; one connected internal passage, open at three inlets and one outlet (no trapped powder).",
+  "picogk_enhancement": "Bionic: the legacy three-into-one flow body (primaries, collector, flanges) is kept exactly and its passages, bolt holes and nut clearances are cut at exact size; webs and gussets between the primaries, the head flange and the outlet flange are grown by 3D SIMP topology optimization (bionic.json, topopt.py) under assumed loads: 400 N along and across the port row (turbo mass share 4 kg x 10 g) and 250 N axial (screen collector pressure force + inertia) on the outlet flange, head flange clamped. Thermal growth is not a SIMP load. Loads are assumptions until measured.",
   "parameters": {
     "primary_inner_diameter_mm": {
       "value": 34.0,
@@ -158,5 +158,7 @@
     "heat exchanger (heating) shell, supports and installed routing",
     "primary diameter, wall and merge length (all F0 hypotheses)"
   ],
-  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file"
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
+  "envelope_axes": {},
+  "envelope_mode": "max"
 }

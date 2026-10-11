@@ -1,0 +1,655 @@
+{
+  "part_id": "993-ELEC-HEADLAMP-SPRING-HOOK-F0-0001",
+  "method": "3D SIMP topology optimization (parts/picogk-catalog/bionic/topopt.py), then PicoGK smoothing and exact functional features",
+  "basis_note": "Interfaces and loads are NOT measured. Socket, cavity, J-hook arc and tip come from the F0 concept (parts/picogk-catalog/trim/HeadlampSpringHook.cs); the 30 N spring pull is the synthetic load of evidence/engineering-screen.json, its directions are assumptions (spring direction not published). The stem that carries the hook on the socket is grown by the optimizer. The shape is a load-path concept, to be recomputed once the stub, the spring and its force are measured.",
+  "optimization": {
+    "element_mm": 0.33,
+    "grid_min": [
+      0,
+      -4,
+      0
+    ],
+    "grid_max": [
+      16,
+      4,
+      15
+    ],
+    "design": [
+      {
+        "type": "box",
+        "min": [
+          0,
+          -4,
+          0
+        ],
+        "max": [
+          16,
+          4,
+          15
+        ],
+        "basis": "assumption",
+        "note": "F0 envelope 16 x 8 x 15 mm (no published dimension)"
+      }
+    ],
+    "solid": [
+      {
+        "type": "box",
+        "min": [
+          0,
+          -3.25,
+          0
+        ],
+        "max": [
+          9,
+          3.25,
+          6.5
+        ],
+        "basis": "assumption",
+        "note": "bonding socket walls: 1 mm round the F0 cavity 7.5 x 4.5 x 4 mm, 1.5 mm floor (outer 10 x 8 x 7 mm is the design domain)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          14.2,
+          -1.75,
+          10.5
+        ],
+        "b": [
+          13.798,
+          -1.75,
+          12.0
+        ],
+        "r": 1.5,
+        "basis": "assumption",
+        "note": "J-hook arc that carries the spring: centre line radius 3 mm (inner radius 1.5 mm), 3 mm rod, 6.5 mm wide (F0 rod 3 x 7 mm)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          14.2,
+          0.0,
+          10.5
+        ],
+        "b": [
+          13.798,
+          0.0,
+          12.0
+        ],
+        "r": 1.5,
+        "basis": "assumption",
+        "note": "J-hook arc that carries the spring: centre line radius 3 mm (inner radius 1.5 mm), 3 mm rod, 6.5 mm wide (F0 rod 3 x 7 mm)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          14.2,
+          1.75,
+          10.5
+        ],
+        "b": [
+          13.798,
+          1.75,
+          12.0
+        ],
+        "r": 1.5,
+        "basis": "assumption",
+        "note": "J-hook arc that carries the spring: centre line radius 3 mm (inner radius 1.5 mm), 3 mm rod, 6.5 mm wide (F0 rod 3 x 7 mm)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          13.798,
+          -1.75,
+          12.0
+        ],
+        "b": [
+          12.7,
+          -1.75,
+          13.098
+        ],
+        "r": 1.5,
+        "basis": "assumption",
+        "note": "J-hook arc that carries the spring: centre line radius 3 mm (inner radius 1.5 mm), 3 mm rod, 6.5 mm wide (F0 rod 3 x 7 mm)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          13.798,
+          0.0,
+          12.0
+        ],
+        "b": [
+          12.7,
+          0.0,
+          13.098
+        ],
+        "r": 1.5,
+        "basis": "assumption",
+        "note": "J-hook arc that carries the spring: centre line radius 3 mm (inner radius 1.5 mm), 3 mm rod, 6.5 mm wide (F0 rod 3 x 7 mm)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          13.798,
+          1.75,
+          12.0
+        ],
+        "b": [
+          12.7,
+          1.75,
+          13.098
+        ],
+        "r": 1.5,
+        "basis": "assumption",
+        "note": "J-hook arc that carries the spring: centre line radius 3 mm (inner radius 1.5 mm), 3 mm rod, 6.5 mm wide (F0 rod 3 x 7 mm)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          12.7,
+          -1.75,
+          13.098
+        ],
+        "b": [
+          11.2,
+          -1.75,
+          13.5
+        ],
+        "r": 1.5,
+        "basis": "assumption",
+        "note": "J-hook arc that carries the spring: centre line radius 3 mm (inner radius 1.5 mm), 3 mm rod, 6.5 mm wide (F0 rod 3 x 7 mm)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          12.7,
+          0.0,
+          13.098
+        ],
+        "b": [
+          11.2,
+          0.0,
+          13.5
+        ],
+        "r": 1.5,
+        "basis": "assumption",
+        "note": "J-hook arc that carries the spring: centre line radius 3 mm (inner radius 1.5 mm), 3 mm rod, 6.5 mm wide (F0 rod 3 x 7 mm)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          12.7,
+          1.75,
+          13.098
+        ],
+        "b": [
+          11.2,
+          1.75,
+          13.5
+        ],
+        "r": 1.5,
+        "basis": "assumption",
+        "note": "J-hook arc that carries the spring: centre line radius 3 mm (inner radius 1.5 mm), 3 mm rod, 6.5 mm wide (F0 rod 3 x 7 mm)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          11.2,
+          -1.75,
+          13.5
+        ],
+        "b": [
+          9.7,
+          -1.75,
+          13.098
+        ],
+        "r": 1.5,
+        "basis": "assumption",
+        "note": "J-hook arc that carries the spring: centre line radius 3 mm (inner radius 1.5 mm), 3 mm rod, 6.5 mm wide (F0 rod 3 x 7 mm)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          11.2,
+          0.0,
+          13.5
+        ],
+        "b": [
+          9.7,
+          0.0,
+          13.098
+        ],
+        "r": 1.5,
+        "basis": "assumption",
+        "note": "J-hook arc that carries the spring: centre line radius 3 mm (inner radius 1.5 mm), 3 mm rod, 6.5 mm wide (F0 rod 3 x 7 mm)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          11.2,
+          1.75,
+          13.5
+        ],
+        "b": [
+          9.7,
+          1.75,
+          13.098
+        ],
+        "r": 1.5,
+        "basis": "assumption",
+        "note": "J-hook arc that carries the spring: centre line radius 3 mm (inner radius 1.5 mm), 3 mm rod, 6.5 mm wide (F0 rod 3 x 7 mm)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          9.7,
+          -1.75,
+          13.098
+        ],
+        "b": [
+          8.602,
+          -1.75,
+          12.0
+        ],
+        "r": 1.5,
+        "basis": "assumption",
+        "note": "J-hook arc that carries the spring: centre line radius 3 mm (inner radius 1.5 mm), 3 mm rod, 6.5 mm wide (F0 rod 3 x 7 mm)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          9.7,
+          0.0,
+          13.098
+        ],
+        "b": [
+          8.602,
+          0.0,
+          12.0
+        ],
+        "r": 1.5,
+        "basis": "assumption",
+        "note": "J-hook arc that carries the spring: centre line radius 3 mm (inner radius 1.5 mm), 3 mm rod, 6.5 mm wide (F0 rod 3 x 7 mm)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          9.7,
+          1.75,
+          13.098
+        ],
+        "b": [
+          8.602,
+          1.75,
+          12.0
+        ],
+        "r": 1.5,
+        "basis": "assumption",
+        "note": "J-hook arc that carries the spring: centre line radius 3 mm (inner radius 1.5 mm), 3 mm rod, 6.5 mm wide (F0 rod 3 x 7 mm)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          8.602,
+          -1.75,
+          12.0
+        ],
+        "b": [
+          8.2,
+          -1.75,
+          10.5
+        ],
+        "r": 1.5,
+        "basis": "assumption",
+        "note": "J-hook arc that carries the spring: centre line radius 3 mm (inner radius 1.5 mm), 3 mm rod, 6.5 mm wide (F0 rod 3 x 7 mm)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          8.602,
+          0.0,
+          12.0
+        ],
+        "b": [
+          8.2,
+          0.0,
+          10.5
+        ],
+        "r": 1.5,
+        "basis": "assumption",
+        "note": "J-hook arc that carries the spring: centre line radius 3 mm (inner radius 1.5 mm), 3 mm rod, 6.5 mm wide (F0 rod 3 x 7 mm)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          8.602,
+          1.75,
+          12.0
+        ],
+        "b": [
+          8.2,
+          1.75,
+          10.5
+        ],
+        "r": 1.5,
+        "basis": "assumption",
+        "note": "J-hook arc that carries the spring: centre line radius 3 mm (inner radius 1.5 mm), 3 mm rod, 6.5 mm wide (F0 rod 3 x 7 mm)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          14.2,
+          -1.75,
+          10.5
+        ],
+        "b": [
+          14.2,
+          -1.75,
+          9.3
+        ],
+        "r": 1.5,
+        "basis": "assumption",
+        "note": "hook tip drop (F0 tip centre x 14.2)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          14.2,
+          0.0,
+          10.5
+        ],
+        "b": [
+          14.2,
+          0.0,
+          9.3
+        ],
+        "r": 1.5,
+        "basis": "assumption",
+        "note": "hook tip drop (F0 tip centre x 14.2)"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          14.2,
+          1.75,
+          10.5
+        ],
+        "b": [
+          14.2,
+          1.75,
+          9.3
+        ],
+        "r": 1.5,
+        "basis": "assumption",
+        "note": "hook tip drop (F0 tip centre x 14.2)"
+      },
+      {
+        "type": "sphere",
+        "c": [
+          14.2,
+          0,
+          9.3
+        ],
+        "r": 1.8,
+        "basis": "assumption",
+        "note": "retention bulb 3.6 mm at the hook tip"
+      }
+    ],
+    "void": [
+      {
+        "type": "box",
+        "min": [
+          -1,
+          -2.25,
+          1.5
+        ],
+        "max": [
+          7.5,
+          2.25,
+          5.5
+        ],
+        "basis": "assumption",
+        "note": "bonding cavity 7.5 x 4.5 x 4 mm, open at x = 0 (F0 CAVITY_*)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          11.2,
+          -5,
+          10.5
+        ],
+        "b": [
+          11.2,
+          5,
+          10.5
+        ],
+        "r": 1.45,
+        "basis": "assumption",
+        "note": "spring passage inside the arc (inner radius 1.5 mm)"
+      },
+      {
+        "type": "box",
+        "min": [
+          10.2,
+          -5,
+          7.1
+        ],
+        "max": [
+          12.35,
+          5,
+          10.5
+        ],
+        "basis": "assumption",
+        "note": "hook mouth between stem and tip: kept open so the spring end can enter"
+      },
+      {
+        "type": "box",
+        "min": [
+          10.2,
+          -5,
+          -1
+        ],
+        "max": [
+          17,
+          5,
+          7.1
+        ],
+        "basis": "assumption",
+        "note": "space under the tip kept empty: no member may close the hook against the socket"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          12.559,
+          0,
+          11.134
+        ],
+        "b": [
+          12.144,
+          0,
+          11.666
+        ],
+        "r": 0.5,
+        "basis": "assumption",
+        "note": "spring seat groove 1 mm round the inside of the arc"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          12.144,
+          0,
+          11.666
+        ],
+        "b": [
+          11.537,
+          0,
+          11.962
+        ],
+        "r": 0.5,
+        "basis": "assumption",
+        "note": "spring seat groove 1 mm round the inside of the arc"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          11.537,
+          0,
+          11.962
+        ],
+        "b": [
+          10.863,
+          0,
+          11.962
+        ],
+        "r": 0.5,
+        "basis": "assumption",
+        "note": "spring seat groove 1 mm round the inside of the arc"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          10.863,
+          0,
+          11.962
+        ],
+        "b": [
+          10.256,
+          0,
+          11.666
+        ],
+        "r": 0.5,
+        "basis": "assumption",
+        "note": "spring seat groove 1 mm round the inside of the arc"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          10.256,
+          0,
+          11.666
+        ],
+        "b": [
+          9.841,
+          0,
+          11.134
+        ],
+        "r": 0.5,
+        "basis": "assumption",
+        "note": "spring seat groove 1 mm round the inside of the arc"
+      }
+    ],
+    "supports": [
+      {
+        "type": "box",
+        "min": [
+          -0.1,
+          -2.6,
+          1.1
+        ],
+        "max": [
+          7.6,
+          2.6,
+          5.9
+        ],
+        "basis": "assumption",
+        "note": "socket bonded over the remaining cast stub: cavity walls fixed"
+      }
+    ],
+    "load_cases": [
+      {
+        "name": "spring_up",
+        "basis": "assumption",
+        "note": "30 N synthetic spring force (evidence/engineering-screen.json) on the spring seat inside the arc, pulling up",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  10.0,
+                  -1.8,
+                  11.7
+                ],
+                "max": [
+                  12.4,
+                  1.8,
+                  12.6
+                ]
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              30
+            ]
+          }
+        ]
+      },
+      {
+        "name": "spring_out",
+        "basis": "assumption",
+        "note": "30 N along the part, away from the socket (spring axis assumed in line with the stub)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  10.0,
+                  -1.8,
+                  11.7
+                ],
+                "max": [
+                  12.4,
+                  1.8,
+                  12.6
+                ]
+              }
+            ],
+            "force_N": [
+              30,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "spring_side",
+        "basis": "assumption",
+        "note": "one third of the spring force sideways (misaligned spring), no published value",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  10.0,
+                  -1.8,
+                  11.7
+                ],
+                "max": [
+                  12.4,
+                  1.8,
+                  12.6
+                ]
+              }
+            ],
+            "force_N": [
+              0,
+              10,
+              0
+            ]
+          }
+        ]
+      }
+    ],
+    "volume_fraction": 0.4,
+    "filter_radius_mm": 0.85,
+    "iterations": 45
+  },
+  "shaping": {
+    "smooth_mm": 0.5,
+    "blend_mm": 0.25
+  }
+}

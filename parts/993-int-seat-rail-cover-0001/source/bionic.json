@@ -1,0 +1,669 @@
+{
+  "part_id": "993-INT-SEAT-RAIL-COVER-0001",
+  "method": "3D SIMP topology optimization (parts/picogk-catalog/bionic/topopt.py), then PicoGK smoothing and exact functional features",
+  "basis_note": "Nothing of this part is measured: length, section, clips and screws are the F0 hypotheses of source/picogk.json. The visible shell (crown, draft, end ramps, rounded edges, snap tongues with hook lips) is kept exact by the keep-in from source/bionic_keepins.py; only the support structure inside, above the assumed 20 mm rail clearance, is optimized. The step loads are assumptions (no screening load exists for this part). A load-path concept, to be recomputed once the rail and the fixings are measured.",
+  "optimization": {
+    "element_mm": 1.5,
+    "grid_min": [
+      -211,
+      -21,
+      0
+    ],
+    "grid_max": [
+      211,
+      21,
+      31.5
+    ],
+    "design": [
+      {
+        "type": "stl",
+        "path": "parts/993-int-seat-rail-cover-0001/source/bionic-keepins/cavity_band_0.stl",
+        "basis": "assumption",
+        "note": "piece 0 of 7 of the inside of the shell above z = 20 (F0: ribs end 20 mm above the open face to clear the rail)"
+      },
+      {
+        "type": "stl",
+        "path": "parts/993-int-seat-rail-cover-0001/source/bionic-keepins/cavity_band_1.stl",
+        "basis": "assumption",
+        "note": "piece 1 of 7 of the inside of the shell above z = 20 (F0: ribs end 20 mm above the open face to clear the rail)"
+      },
+      {
+        "type": "stl",
+        "path": "parts/993-int-seat-rail-cover-0001/source/bionic-keepins/cavity_band_2.stl",
+        "basis": "assumption",
+        "note": "piece 2 of 7 of the inside of the shell above z = 20 (F0: ribs end 20 mm above the open face to clear the rail)"
+      },
+      {
+        "type": "stl",
+        "path": "parts/993-int-seat-rail-cover-0001/source/bionic-keepins/cavity_band_3.stl",
+        "basis": "assumption",
+        "note": "piece 3 of 7 of the inside of the shell above z = 20 (F0: ribs end 20 mm above the open face to clear the rail)"
+      },
+      {
+        "type": "stl",
+        "path": "parts/993-int-seat-rail-cover-0001/source/bionic-keepins/cavity_band_4.stl",
+        "basis": "assumption",
+        "note": "piece 4 of 7 of the inside of the shell above z = 20 (F0: ribs end 20 mm above the open face to clear the rail)"
+      },
+      {
+        "type": "stl",
+        "path": "parts/993-int-seat-rail-cover-0001/source/bionic-keepins/cavity_band_5.stl",
+        "basis": "assumption",
+        "note": "piece 5 of 7 of the inside of the shell above z = 20 (F0: ribs end 20 mm above the open face to clear the rail)"
+      },
+      {
+        "type": "stl",
+        "path": "parts/993-int-seat-rail-cover-0001/source/bionic-keepins/cavity_band_6.stl",
+        "basis": "assumption",
+        "note": "piece 6 of 7 of the inside of the shell above z = 20 (F0: ribs end 20 mm above the open face to clear the rail)"
+      }
+    ],
+    "solid": [
+      {
+        "type": "stl",
+        "path": "parts/993-int-seat-rail-cover-0001/source/bionic-keepins/shell_topo_0.stl",
+        "basis": "assumption",
+        "note": "piece 0 of 7 (along X) of the crowned, drafted 2.5 mm shell with end ramps, rounded edges and snap tongue hook lips (F0 values), decimated for the optimization; the full mesh is added by PicoGK as shaping.base_stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/993-int-seat-rail-cover-0001/source/bionic-keepins/shell_topo_1.stl",
+        "basis": "assumption",
+        "note": "piece 1 of 7 (along X) of the crowned, drafted 2.5 mm shell with end ramps, rounded edges and snap tongue hook lips (F0 values), decimated for the optimization; the full mesh is added by PicoGK as shaping.base_stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/993-int-seat-rail-cover-0001/source/bionic-keepins/shell_topo_2.stl",
+        "basis": "assumption",
+        "note": "piece 2 of 7 (along X) of the crowned, drafted 2.5 mm shell with end ramps, rounded edges and snap tongue hook lips (F0 values), decimated for the optimization; the full mesh is added by PicoGK as shaping.base_stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/993-int-seat-rail-cover-0001/source/bionic-keepins/shell_topo_3.stl",
+        "basis": "assumption",
+        "note": "piece 3 of 7 (along X) of the crowned, drafted 2.5 mm shell with end ramps, rounded edges and snap tongue hook lips (F0 values), decimated for the optimization; the full mesh is added by PicoGK as shaping.base_stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/993-int-seat-rail-cover-0001/source/bionic-keepins/shell_topo_4.stl",
+        "basis": "assumption",
+        "note": "piece 4 of 7 (along X) of the crowned, drafted 2.5 mm shell with end ramps, rounded edges and snap tongue hook lips (F0 values), decimated for the optimization; the full mesh is added by PicoGK as shaping.base_stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/993-int-seat-rail-cover-0001/source/bionic-keepins/shell_topo_5.stl",
+        "basis": "assumption",
+        "note": "piece 5 of 7 (along X) of the crowned, drafted 2.5 mm shell with end ramps, rounded edges and snap tongue hook lips (F0 values), decimated for the optimization; the full mesh is added by PicoGK as shaping.base_stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/993-int-seat-rail-cover-0001/source/bionic-keepins/shell_topo_6.stl",
+        "basis": "assumption",
+        "note": "piece 6 of 7 (along X) of the crowned, drafted 2.5 mm shell with end ramps, rounded edges and snap tongue hook lips (F0 values), decimated for the optimization; the full mesh is added by PicoGK as shaping.base_stl"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          177,
+          0,
+          1.5
+        ],
+        "b": [
+          177,
+          0,
+          18.8
+        ],
+        "r": 4.5,
+        "basis": "assumption",
+        "note": "screw boss 9 mm in the end ramp (F0), up to the underside of the shell"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -177,
+          0,
+          1.5
+        ],
+        "b": [
+          -177,
+          0,
+          18.8
+        ],
+        "r": 4.5,
+        "basis": "assumption",
+        "note": "screw boss 9 mm in the end ramp (F0), up to the underside of the shell"
+      }
+    ],
+    "void": [
+      {
+        "type": "cyl",
+        "a": [
+          177.0,
+          0,
+          -1
+        ],
+        "b": [
+          177.0,
+          0,
+          32
+        ],
+        "r": 2.1,
+        "basis": "assumption",
+        "note": "through hole for an assumed 4 mm trim screw (F0)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -177.0,
+          0,
+          -1
+        ],
+        "b": [
+          -177.0,
+          0,
+          32
+        ],
+        "r": 2.1,
+        "basis": "assumption",
+        "note": "through hole for an assumed 4 mm trim screw (F0)"
+      },
+      {
+        "type": "stl",
+        "path": "parts/993-int-seat-rail-cover-0001/source/bionic-keepins/countersinks.stl",
+        "basis": "assumption",
+        "note": "90 deg countersinks 8.5 mm at the top surface (F0)"
+      },
+      {
+        "type": "box",
+        "min": [
+          -104.5,
+          14.45,
+          -1
+        ],
+        "max": [
+          -103.3,
+          23.05,
+          12
+        ],
+        "basis": "assumption",
+        "note": "U slot beside a snap tongue, 1.2 mm wide, 12 mm high from the open edge (F0)"
+      },
+      {
+        "type": "box",
+        "min": [
+          -104.5,
+          -23.05,
+          -1
+        ],
+        "max": [
+          -103.3,
+          -14.45,
+          12
+        ],
+        "basis": "assumption",
+        "note": "U slot beside a snap tongue, 1.2 mm wide, 12 mm high from the open edge (F0)"
+      },
+      {
+        "type": "box",
+        "min": [
+          -121.7,
+          14.45,
+          -1
+        ],
+        "max": [
+          -120.5,
+          23.05,
+          12
+        ],
+        "basis": "assumption",
+        "note": "U slot beside a snap tongue, 1.2 mm wide, 12 mm high from the open edge (F0)"
+      },
+      {
+        "type": "box",
+        "min": [
+          -121.7,
+          -23.05,
+          -1
+        ],
+        "max": [
+          -120.5,
+          -14.45,
+          12
+        ],
+        "basis": "assumption",
+        "note": "U slot beside a snap tongue, 1.2 mm wide, 12 mm high from the open edge (F0)"
+      },
+      {
+        "type": "box",
+        "min": [
+          -29.5,
+          14.45,
+          -1
+        ],
+        "max": [
+          -28.3,
+          23.05,
+          12
+        ],
+        "basis": "assumption",
+        "note": "U slot beside a snap tongue, 1.2 mm wide, 12 mm high from the open edge (F0)"
+      },
+      {
+        "type": "box",
+        "min": [
+          -29.5,
+          -23.05,
+          -1
+        ],
+        "max": [
+          -28.3,
+          -14.45,
+          12
+        ],
+        "basis": "assumption",
+        "note": "U slot beside a snap tongue, 1.2 mm wide, 12 mm high from the open edge (F0)"
+      },
+      {
+        "type": "box",
+        "min": [
+          -46.7,
+          14.45,
+          -1
+        ],
+        "max": [
+          -45.5,
+          23.05,
+          12
+        ],
+        "basis": "assumption",
+        "note": "U slot beside a snap tongue, 1.2 mm wide, 12 mm high from the open edge (F0)"
+      },
+      {
+        "type": "box",
+        "min": [
+          -46.7,
+          -23.05,
+          -1
+        ],
+        "max": [
+          -45.5,
+          -14.45,
+          12
+        ],
+        "basis": "assumption",
+        "note": "U slot beside a snap tongue, 1.2 mm wide, 12 mm high from the open edge (F0)"
+      },
+      {
+        "type": "box",
+        "min": [
+          45.5,
+          14.45,
+          -1
+        ],
+        "max": [
+          46.7,
+          23.05,
+          12
+        ],
+        "basis": "assumption",
+        "note": "U slot beside a snap tongue, 1.2 mm wide, 12 mm high from the open edge (F0)"
+      },
+      {
+        "type": "box",
+        "min": [
+          45.5,
+          -23.05,
+          -1
+        ],
+        "max": [
+          46.7,
+          -14.45,
+          12
+        ],
+        "basis": "assumption",
+        "note": "U slot beside a snap tongue, 1.2 mm wide, 12 mm high from the open edge (F0)"
+      },
+      {
+        "type": "box",
+        "min": [
+          28.3,
+          14.45,
+          -1
+        ],
+        "max": [
+          29.5,
+          23.05,
+          12
+        ],
+        "basis": "assumption",
+        "note": "U slot beside a snap tongue, 1.2 mm wide, 12 mm high from the open edge (F0)"
+      },
+      {
+        "type": "box",
+        "min": [
+          28.3,
+          -23.05,
+          -1
+        ],
+        "max": [
+          29.5,
+          -14.45,
+          12
+        ],
+        "basis": "assumption",
+        "note": "U slot beside a snap tongue, 1.2 mm wide, 12 mm high from the open edge (F0)"
+      },
+      {
+        "type": "box",
+        "min": [
+          120.5,
+          14.45,
+          -1
+        ],
+        "max": [
+          121.7,
+          23.05,
+          12
+        ],
+        "basis": "assumption",
+        "note": "U slot beside a snap tongue, 1.2 mm wide, 12 mm high from the open edge (F0)"
+      },
+      {
+        "type": "box",
+        "min": [
+          120.5,
+          -23.05,
+          -1
+        ],
+        "max": [
+          121.7,
+          -14.45,
+          12
+        ],
+        "basis": "assumption",
+        "note": "U slot beside a snap tongue, 1.2 mm wide, 12 mm high from the open edge (F0)"
+      },
+      {
+        "type": "box",
+        "min": [
+          103.3,
+          14.45,
+          -1
+        ],
+        "max": [
+          104.5,
+          23.05,
+          12
+        ],
+        "basis": "assumption",
+        "note": "U slot beside a snap tongue, 1.2 mm wide, 12 mm high from the open edge (F0)"
+      },
+      {
+        "type": "box",
+        "min": [
+          103.3,
+          -23.05,
+          -1
+        ],
+        "max": [
+          104.5,
+          -14.45,
+          12
+        ],
+        "basis": "assumption",
+        "note": "U slot beside a snap tongue, 1.2 mm wide, 12 mm high from the open edge (F0)"
+      }
+    ],
+    "supports": [
+      {
+        "type": "box",
+        "min": [
+          -119.5,
+          14.4,
+          -0.5
+        ],
+        "max": [
+          -105.5,
+          18.6,
+          3.6
+        ],
+        "basis": "assumption",
+        "note": "snap tongue hook lip latched under the rail flange"
+      },
+      {
+        "type": "box",
+        "min": [
+          -119.5,
+          -18.6,
+          -0.5
+        ],
+        "max": [
+          -105.5,
+          -14.4,
+          3.6
+        ],
+        "basis": "assumption",
+        "note": "snap tongue hook lip latched under the rail flange"
+      },
+      {
+        "type": "box",
+        "min": [
+          -44.5,
+          14.4,
+          -0.5
+        ],
+        "max": [
+          -30.5,
+          18.6,
+          3.6
+        ],
+        "basis": "assumption",
+        "note": "snap tongue hook lip latched under the rail flange"
+      },
+      {
+        "type": "box",
+        "min": [
+          -44.5,
+          -18.6,
+          -0.5
+        ],
+        "max": [
+          -30.5,
+          -14.4,
+          3.6
+        ],
+        "basis": "assumption",
+        "note": "snap tongue hook lip latched under the rail flange"
+      },
+      {
+        "type": "box",
+        "min": [
+          30.5,
+          14.4,
+          -0.5
+        ],
+        "max": [
+          44.5,
+          18.6,
+          3.6
+        ],
+        "basis": "assumption",
+        "note": "snap tongue hook lip latched under the rail flange"
+      },
+      {
+        "type": "box",
+        "min": [
+          30.5,
+          -18.6,
+          -0.5
+        ],
+        "max": [
+          44.5,
+          -14.4,
+          3.6
+        ],
+        "basis": "assumption",
+        "note": "snap tongue hook lip latched under the rail flange"
+      },
+      {
+        "type": "box",
+        "min": [
+          105.5,
+          14.4,
+          -0.5
+        ],
+        "max": [
+          119.5,
+          18.6,
+          3.6
+        ],
+        "basis": "assumption",
+        "note": "snap tongue hook lip latched under the rail flange"
+      },
+      {
+        "type": "box",
+        "min": [
+          105.5,
+          -18.6,
+          -0.5
+        ],
+        "max": [
+          119.5,
+          -14.4,
+          3.6
+        ],
+        "basis": "assumption",
+        "note": "snap tongue hook lip latched under the rail flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          177.0,
+          0,
+          0.4
+        ],
+        "b": [
+          177.0,
+          0,
+          2.4
+        ],
+        "r": 4.6,
+        "basis": "assumption",
+        "note": "screw boss seated on its mounting (assumed 4 mm screw)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -177.0,
+          0,
+          0.4
+        ],
+        "b": [
+          -177.0,
+          0,
+          2.4
+        ],
+        "r": 4.6,
+        "basis": "assumption",
+        "note": "screw boss seated on its mounting (assumed 4 mm screw)"
+      }
+    ],
+    "load_cases": [
+      {
+        "name": "step_centre",
+        "basis": "assumption",
+        "note": "400 N foot / heel on a 60 x 30 mm patch at mid length (getting in and out; no published value)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  -30,
+                  -15,
+                  26.4
+                ],
+                "max": [
+                  30,
+                  15,
+                  31
+                ]
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              -400
+            ]
+          }
+        ]
+      },
+      {
+        "name": "step_front",
+        "basis": "assumption",
+        "note": "the same 400 N patch 100 mm towards one end",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  70,
+                  -15,
+                  26.4
+                ],
+                "max": [
+                  130,
+                  15,
+                  31
+                ]
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              -400
+            ]
+          }
+        ]
+      },
+      {
+        "name": "step_rear",
+        "basis": "assumption",
+        "note": "the same 400 N patch 100 mm towards the other end",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  -130,
+                  -15,
+                  26.4
+                ],
+                "max": [
+                  -70,
+                  15,
+                  31
+                ]
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              -400
+            ]
+          }
+        ]
+      }
+    ],
+    "volume_fraction": 0.62,
+    "filter_radius_mm": 3.8,
+    "iterations": 45
+  },
+  "shaping": {
+    "smooth_mm": 1.8,
+    "blend_mm": 0.9,
+    "base_stl": "parts/993-int-seat-rail-cover-0001/source/bionic-keepins/shell.stl"
+  }
+}

@@ -16,6 +16,10 @@ public interface IPartGenerator
 
 public static class Runner
 {
+    /// Absolute path of the params file being run (generators that read side
+    /// files, e.g. bionic.json next to picogk.json, locate them from it).
+    public static string ParamsPath { get; private set; } = "";
+
     // Usage: <exe> <params.json> <out-dir>
     // Writes <out-dir>/<PART_ID>.stl and <PART_ID>.report.json. Volume is the
     // mesh volume (CalculateProperties ignores fully enclosed voids).
@@ -26,6 +30,7 @@ public static class Runner
             Console.Error.WriteLine("usage: <exe> <params.json> <out-dir>");
             return 2;
         }
+        ParamsPath = Path.GetFullPath(args[0]);
         PartSpec spec = PartSpec.Load(args[0]);
         string outDir = args[1];
         Directory.CreateDirectory(outDir);

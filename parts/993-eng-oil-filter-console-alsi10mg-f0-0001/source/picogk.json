@@ -1,7 +1,7 @@
 {
   "part_id": "993-ENG-OIL-FILTER-CONSOLE-ALSI10MG-F0-0001",
-  "name": "Engine oil filter console with integrated galleries, AlSi10Mg F0 concept (PicoGK)",
-  "generator": "oil_filter_console",
+  "name": "Engine oil filter console with integrated galleries, AlSi10Mg bionic F0 concept (PicoGK)",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-eng-oil-filter-console-alsi10mg-f0-0001.json",
   "porsche_part_numbers": [
     "99310705700",
@@ -11,7 +11,7 @@
   "material_candidate": "AlSi10Mg LPBF T6 (comparison only)",
   "density_g_cm3": 2.67,
   "voxel_mm": 0.4,
-  "picogk_enhancement": "Ribbed base plate with four mounting pads instead of a solid block; galleries built as cast-style tubes along curved paths merged into the body (no cross-drillings or plugs); filter pedestal with seal land, recessed inlet annulus and centre spigot; every joint filleted by smooth-min blends. Both galleries open at both ends.",
+  "picogk_enhancement": "Bionic: the console body around the two oil galleries is grown by 3D SIMP topology optimisation (bionic.json, topopt.py) for stated filter loads - 300 N lateral (x and y, filter vibration), a 3 kN self-equilibrated oil-pressure case (0.6 MPa on the 62 mm seal, reacted by the spigot) and the 25 N m tightening torque - with the four pads bolted; PicoGK smooths it into organic struts fused with the exact gallery tubes (16 mm bore, 4 mm wall), port bosses, pads, pedestal cap, seal land, inlet annulus and spigot (engine/bionic_bases.py). Loads are assumptions, not measurements.",
   "parameters": {
     "body_length_mm": {
       "value": 130.0,
@@ -33,20 +33,6 @@
       "basis": "assumption",
       "source": null,
       "note": "F0 body height, kept at the mounting pads"
-    },
-    "base_plate_thickness_mm": {
-      "value": 10.0,
-      "unit": "mm",
-      "basis": "assumption",
-      "source": null,
-      "note": "ribbed base plate between pads"
-    },
-    "base_plate_corner_radius_mm": {
-      "value": 12.0,
-      "unit": "mm",
-      "basis": "assumption",
-      "source": null,
-      "note": "plan corner radius"
     },
     "mount_pad_diameter_mm": {
       "value": 18.0,
@@ -75,13 +61,6 @@
       "basis": "assumption",
       "source": null,
       "note": "F0 hypothesis"
-    },
-    "rib_thickness_mm": {
-      "value": 5.0,
-      "unit": "mm",
-      "basis": "assumption",
-      "source": null,
-      "note": "pad-to-pedestal ribs"
     },
     "filter_pedestal_center_x_mm": {
       "value": 25.0,
@@ -208,6 +187,27 @@
       "basis": "assumption",
       "source": null,
       "note": "F0 hypothesis"
+    },
+    "pedestal_cap_mm": {
+      "value": 6.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "bionic: fixed filter-side cap of the pedestal under the seal land; the body below is grown by the optimiser"
+    },
+    "overall_length_mm": {
+      "value": 144.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "body 130 mm + two 7 mm port-boss overhangs (F0 hypothesis)"
+    },
+    "overall_height_mm": {
+      "value": 50.0,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "pedestal face 40 mm + 10 mm spigot (F0 hypothesis)"
     }
   },
   "open_interfaces": [
@@ -218,5 +218,15 @@
     "bypass valve"
   ],
   "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file; prohibited pending engineering, never to be installed in an engine",
-  "envelope": []
+  "envelope": [
+    "overall_length_mm",
+    "body_width_mm",
+    "overall_height_mm"
+  ],
+  "envelope_axes": {
+    "overall_length_mm": "x",
+    "body_width_mm": "y",
+    "overall_height_mm": "z"
+  },
+  "envelope_mode": "max"
 }

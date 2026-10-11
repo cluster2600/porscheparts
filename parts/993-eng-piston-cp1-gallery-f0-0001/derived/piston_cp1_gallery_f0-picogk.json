@@ -2,23 +2,23 @@
   "part_id": "993-ENG-PISTON-CP1-GALLERY-F0-0001",
   "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file; prohibited pending engineering, never to be installed in an engine",
   "kernel": "PicoGK Core Library 26.2.0",
-  "generator": "piston_cooling_gallery",
+  "generator": "bionic_topology",
   "parameters": "parts/993-eng-piston-cp1-gallery-f0-0001/source/picogk.json",
   "generator_report": {
     "voxel_mm": 0.5,
-    "triangles": 737408,
-    "volume_cm3": 258.36,
-    "mass_estimate_g": 689.8,
-    "seconds": 4.2
+    "triangles": 701728,
+    "volume_cm3": 199,
+    "mass_estimate_g": 531.3,
+    "seconds": 50
   },
   "published_triangles": 90000,
   "display_smoothing": {
     "filter": "taubin",
     "iterations": 30,
     "pass_band": 0.05,
-    "max_bounds_shift_mm": 0.069
+    "max_bounds_shift_mm": 0.079
   },
-  "published_sha256": "0cb1a96e7085bf79ad38c5308e511816d06ac57eef495d7401e569a24931e337",
+  "published_sha256": "50524680eb4b73fd58cd94832756c5340d604b1f00685801836bfcc664e3cf7d",
   "legacy_bbox_mm": [
     99.0,
     99.0,
@@ -31,16 +31,35 @@
     "main_body_edges": {
       "open": 0,
       "non_manifold": 0,
-      "total": 1102665
+      "total": 1051080
     },
-    "degenerate_faces_removed": 2298,
-    "volume_cm3": 258.36,
+    "degenerate_faces_removed": 1008,
+    "volume_cm3": 199.0,
     "bbox_mm": [
       99.0,
       99.0,
       70.0
     ],
-    "envelope_checks": [],
+    "envelope_checks": [
+      {
+        "parameter": "piston_outer_diameter_mm",
+        "basis": "assumption",
+        "value_mm": 99.0,
+        "axis": "x",
+        "model_extent_mm": 99.0,
+        "mode": "max",
+        "ok": true
+      },
+      {
+        "parameter": "piston_height_mm",
+        "basis": "assumption",
+        "value_mm": 70.0,
+        "axis": "z",
+        "model_extent_mm": 70.0,
+        "mode": "max",
+        "ok": true
+      }
+    ],
     "pass": true
   },
   "note": "PicoGK concept model; not a print file, not evidence of fit, function or safety."

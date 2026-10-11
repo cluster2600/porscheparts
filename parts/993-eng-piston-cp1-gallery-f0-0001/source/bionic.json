@@ -1,0 +1,410 @@
+{
+  "part_id": "993-ENG-PISTON-CP1-GALLERY-F0-0001",
+  "method": "3D SIMP topology optimization (parts/picogk-catalog/bionic/topopt.py), then PicoGK smoothing and exact functional features",
+  "basis_note": "All piston dimensions are F0 hypotheses (99 mm OD, 70 mm height, 23 mm pin); bore 100 mm and stroke 76.4 mm are documentary M64 values. Gas pressure, masses and speed are the synthetic screening inputs of the connecting-rod engineering screen, not measured. The functional skin (crown with dish and cooling gallery, ring belt with grooves and drains, 3.5 mm slipper skirt) is fixed as shaping.base_stl (engine/bionic_bases.py); only the under-crown structure from crown to pin bosses is optimised, inside regions that stay clear of every functional surface.",
+  "optimization": {
+    "element_mm": 2.0,
+    "grid_min": [
+      -50,
+      -50,
+      -35
+    ],
+    "grid_max": [
+      50,
+      50,
+      35
+    ],
+    "design": [
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          0.0,
+          -35.0
+        ],
+        "b": [
+          0.0,
+          0.0,
+          11.0
+        ],
+        "r": 38.5,
+        "basis": "assumption",
+        "note": "under-crown space between the pin-side skirt panels (|x| < 38.5; panels recessed beyond x = 40)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          20.0,
+          -35.0
+        ],
+        "b": [
+          0.0,
+          20.0,
+          11.0
+        ],
+        "r": 27.0,
+        "basis": "assumption",
+        "note": "toward the +y thrust face of the skirt (reaches r = 47 inside the 99 mm OD)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          -20.0,
+          -35.0
+        ],
+        "b": [
+          0.0,
+          -20.0,
+          11.0
+        ],
+        "r": 27.0,
+        "basis": "assumption",
+        "note": "toward the -y thrust face"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          0.0,
+          11.0
+        ],
+        "b": [
+          0.0,
+          0.0,
+          20.5
+        ],
+        "r": 43.0,
+        "basis": "assumption",
+        "note": "under the crown, inside the ring-groove roots (r 46.5)"
+      }
+    ],
+    "solid": [
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          0.0,
+          19.0
+        ],
+        "b": [
+          0.0,
+          0.0,
+          30.5
+        ],
+        "r": 28.0,
+        "basis": "assumption",
+        "note": "crown centre inside the cooling gallery (gallery r 30.5..37.5) and under the dish: transmits the gas load in the FE model; the exact crown is shaping.base_stl"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          12.0,
+          0.0,
+          -4.0
+        ],
+        "b": [
+          46.0,
+          0.0,
+          -4.0
+        ],
+        "r": 16.0,
+        "basis": "assumption",
+        "note": "pin boss +x: 32 mm OD around the 23 mm pin bore, 24 mm gap for the small end"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -46.0,
+          0.0,
+          -4.0
+        ],
+        "b": [
+          -12.0,
+          0.0,
+          -4.0
+        ],
+        "r": 16.0,
+        "basis": "assumption",
+        "note": "pin boss -x"
+      }
+    ],
+    "void": [
+      {
+        "type": "cyl",
+        "a": [
+          -52.0,
+          0.0,
+          -4.0
+        ],
+        "b": [
+          52.0,
+          0.0,
+          -4.0
+        ],
+        "r": 11.5,
+        "basis": "assumption",
+        "note": "pin bore 23 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          42.9,
+          0.0,
+          -4.0
+        ],
+        "b": [
+          44.1,
+          0.0,
+          -4.0
+        ],
+        "r": 12.6,
+        "basis": "assumption",
+        "note": "circlip groove +x"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -44.1,
+          0.0,
+          -4.0
+        ],
+        "b": [
+          -42.9,
+          0.0,
+          -4.0
+        ],
+        "r": 12.6,
+        "basis": "assumption",
+        "note": "circlip groove -x"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -12.5,
+          0.0,
+          -4.0
+        ],
+        "b": [
+          12.5,
+          0.0,
+          -4.0
+        ],
+        "r": 21.0,
+        "basis": "assumption",
+        "note": "rod small end (40 mm OD, 19.58 mm wide) swing space"
+      },
+      {
+        "type": "box",
+        "min": [
+          -12.5,
+          -26.0,
+          -40.0
+        ],
+        "max": [
+          12.5,
+          26.0,
+          -4.0
+        ],
+        "basis": "assumption",
+        "note": "rod shank swing +/-17.5 deg (76.4 stroke / 127 centres) below the pin"
+      },
+      {
+        "type": "box",
+        "min": [
+          9.8,
+          24.4,
+          4.1
+        ],
+        "max": [
+          16.6,
+          31.0,
+          9.9
+        ],
+        "basis": "assumption",
+        "note": "removes a disconnected density island left by the optimiser (no load path)"
+      },
+      {
+        "type": "box",
+        "min": [
+          -16.6,
+          24.4,
+          4.1
+        ],
+        "max": [
+          -9.8,
+          31.0,
+          9.9
+        ],
+        "basis": "assumption",
+        "note": "removes a disconnected density island left by the optimiser (no load path)"
+      }
+    ],
+    "supports": [
+      {
+        "type": "cyl",
+        "a": [
+          12.0,
+          0.0,
+          -4.0
+        ],
+        "b": [
+          47.0,
+          0.0,
+          -4.0
+        ],
+        "r": 13.5,
+        "basis": "assumption",
+        "note": "piston pin in the +x boss bore (all directions)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -47.0,
+          0.0,
+          -4.0
+        ],
+        "b": [
+          -12.0,
+          0.0,
+          -4.0
+        ],
+        "r": 13.5,
+        "basis": "assumption",
+        "note": "piston pin in the -x boss bore"
+      }
+    ],
+    "load_cases": [
+      {
+        "name": "gas_pressure",
+        "basis": "assumption",
+        "note": "synthetic peak 12 MPa x 100 mm bore = 94.2 kN (connecting-rod engineering-screen.json synthetic_load_case): 31 % (r < 28 mm) on the crown centre, 69 % (outer crown and ring belt) where the crown meets the under-crown space",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  0.0,
+                  0.0,
+                  29.0
+                ],
+                "b": [
+                  0.0,
+                  0.0,
+                  31.0
+                ],
+                "r": 28.5,
+                "basis": "assumption",
+                "note": ""
+              }
+            ],
+            "force_N": [
+              0.0,
+              0.0,
+              -29216.88
+            ]
+          },
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  0.0,
+                  0.0,
+                  19.5
+                ],
+                "b": [
+                  0.0,
+                  0.0,
+                  21.0
+                ],
+                "r": 43.5,
+                "basis": "assumption",
+                "note": ""
+              }
+            ],
+            "force_N": [
+              0.0,
+              0.0,
+              -65031.119999999995
+            ]
+          }
+        ]
+      },
+      {
+        "name": "inertia_tdc",
+        "basis": "assumption",
+        "note": "TDC inertia of ~450 g piston (600 g piston+pin screening mass less pin) x 24 600 m/s^2 = 11 kN upward, on crown nodes",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  0.0,
+                  0.0,
+                  19.5
+                ],
+                "b": [
+                  0.0,
+                  0.0,
+                  31.0
+                ],
+                "r": 43.5,
+                "basis": "assumption",
+                "note": ""
+              }
+            ],
+            "force_N": [
+              0.0,
+              0.0,
+              11000.0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "side_thrust",
+        "basis": "assumption",
+        "note": "major-thrust side load ~8 % of the gas force (rod angle at peak pressure), on the +y skirt face",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  -25.0,
+                  43.0,
+                  -35.0
+                ],
+                "max": [
+                  25.0,
+                  48.0,
+                  8.0
+                ],
+                "basis": "assumption",
+                "note": ""
+              }
+            ],
+            "force_N": [
+              0.0,
+              -7500.0,
+              0.0
+            ]
+          }
+        ]
+      }
+    ],
+    "volume_fraction": 0.34,
+    "filter_radius_mm": 5.0,
+    "iterations": 45
+  },
+  "shaping": {
+    "smooth_mm": 3.0,
+    "blend_mm": 0.5,
+    "base_stl": "parts/picogk-catalog/out/bionic/993-ENG-PISTON-CP1-GALLERY-F0-0001.base.stl",
+    "lattice_grey": false
+  }
+}

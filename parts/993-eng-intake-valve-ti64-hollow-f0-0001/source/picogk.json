@@ -1,7 +1,7 @@
 {
   "part_id": "993-ENG-INTAKE-VALVE-TI64-HOLLOW-F0-0001",
-  "name": "993 hollow Ti64 intake valve, F0 LPBF concept (PicoGK)",
-  "generator": "poppet_valve_hollow",
+  "name": "993 hollow Ti64 intake valve, bionic internal ribs F0 LPBF concept (PicoGK)",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-eng-intake-valve-ti64-hollow-f0-0001.json",
   "porsche_part_numbers": [
     "99310540902"
@@ -10,7 +10,7 @@
   "material_candidate": "Ti-6Al-4V Grade 5 LPBF (screening only)",
   "density_g_cm3": 4.42,
   "voxel_mm": 0.25,
-  "picogk_enhancement": "Tulip-profile valve with a conformal head cavity (constant 2 mm wall under the tulip, 2.2 mm ligament over the face) split by four radial internal ribs, and a 5 mm stem bore open at the tip that drains every rib sector; keeper grooves and tip chamfer added. The ribs are internal and do not show in the exterior preview.",
+  "picogk_enhancement": "Bionic: the material inside the hollow head (stays between face, tulip wall and stem) is grown by 3D SIMP topology optimisation (bionic.json, topopt.py) for the 22.6 kN synthetic combustion load on the face (12 MPa x 49 mm) and a 1.5 kN spring/seating load on the stem, with the 45 deg seat fixed; the exterior (face, margin, seat, tulip, stem, keeper grooves, tip chamfer) and the 5 mm stem bore open at the tip are exact (engine/bionic_bases.py). The internal structure does not show in the exterior preview. Loads are assumptions, not measurements.",
   "parameters": {
     "head_diameter_mm": {
       "value": 49.0,
@@ -116,20 +116,6 @@
       "basis": "assumption",
       "source": null,
       "note": "concept axial bore, open at the tip for depowdering"
-    },
-    "internal_web_thickness_mm": {
-      "value": 1.2,
-      "unit": "mm",
-      "basis": "assumption",
-      "source": null,
-      "note": "concept internal web thickness"
-    },
-    "internal_radial_web_count": {
-      "value": 4,
-      "unit": "count",
-      "basis": "assumption",
-      "source": null,
-      "note": "concept four radial webs"
     }
   },
   "open_interfaces": [
@@ -140,6 +126,12 @@
   ],
   "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file; prohibited pending engineering, never to be installed in an engine",
   "envelope": [
-    "head_diameter_mm"
-  ]
+    "head_diameter_mm",
+    "overall_length_mm"
+  ],
+  "envelope_axes": {
+    "head_diameter_mm": "x",
+    "overall_length_mm": "z"
+  },
+  "envelope_mode": "max"
 }

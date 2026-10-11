@@ -1,0 +1,4970 @@
+{
+  "part_id": "993-ENG-THREE-RUNNER-INTAKE-ALSI10MG-F0-0001",
+  "method": "3D SIMP topology optimization (parts/picogk-catalog/bionic/topopt.py) of the bracing between the exact runners, then PicoGK smoothing; legacy runner body (out/<ID>-functional.stl) fused as shaping.base_stl, bores and bolt holes cut last",
+  "basis_note": "Interfaces and loads are NOT measured. Bore sizes and height are the catalogue reading of the F0, pitches, flange and bolts are F0 assumptions; the throttle-side loads are assumptions. The shape is a load-path concept.",
+  "generator": "bionic_regions.py (this folder) writes this file from source/picogk.json",
+  "optimization": {
+    "element_mm": 3.3,
+    "grid_min": [
+      -95.7,
+      -36.3,
+      0
+    ],
+    "grid_max": [
+      95.7,
+      36.3,
+      99
+    ],
+    "design": [
+      {
+        "type": "box",
+        "min": [
+          -94.0,
+          -35.0,
+          0
+        ],
+        "max": [
+          94.0,
+          35.0,
+          100.0
+        ],
+        "basis": "assumption",
+        "note": "legacy flange footprint 188 x 70 mm x catalogue height 100 mm"
+      }
+    ],
+    "solid": [
+      {
+        "type": "cyl",
+        "a": [
+          -27.5,
+          -27.0,
+          0.0
+        ],
+        "b": [
+          -27.5,
+          -27.0,
+          11.0
+        ],
+        "r": 6.5,
+        "basis": "assumption",
+        "note": "lower bolt boss"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          27.5,
+          -27.0,
+          0.0
+        ],
+        "b": [
+          27.5,
+          -27.0,
+          11.0
+        ],
+        "r": 6.5,
+        "basis": "assumption",
+        "note": "lower bolt boss"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          28.0,
+          0.0
+        ],
+        "b": [
+          0.0,
+          28.0,
+          11.0
+        ],
+        "r": 6.5,
+        "basis": "assumption",
+        "note": "lower bolt boss"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -32.5,
+          29.0,
+          89.0
+        ],
+        "b": [
+          -32.5,
+          29.0,
+          100.0
+        ],
+        "r": 6.5,
+        "basis": "assumption",
+        "note": "upper bolt boss"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          32.5,
+          29.0,
+          89.0
+        ],
+        "b": [
+          32.5,
+          29.0,
+          100.0
+        ],
+        "r": 6.5,
+        "basis": "assumption",
+        "note": "upper bolt boss"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          -27.0,
+          89.0
+        ],
+        "b": [
+          0.0,
+          -27.0,
+          100.0
+        ],
+        "r": 6.5,
+        "basis": "assumption",
+        "note": "upper bolt boss"
+      },
+      {
+        "type": "box",
+        "min": [
+          -91.0,
+          -32.0,
+          0
+        ],
+        "max": [
+          91.0,
+          32.0,
+          6.0
+        ],
+        "basis": "assumption",
+        "note": "head flange plate, inset 3 mm inside the legacy rounded outline"
+      },
+      {
+        "type": "box",
+        "min": [
+          -91.0,
+          -32.0,
+          94.0
+        ],
+        "max": [
+          91.0,
+          32.0,
+          100.0
+        ],
+        "basis": "assumption",
+        "note": "throttle flange plate, inset 3 mm inside the legacy rounded outline"
+      }
+    ],
+    "void": [
+      {
+        "type": "cyl",
+        "a": [
+          -54.9,
+          -0.05,
+          -2.0
+        ],
+        "b": [
+          -54.9,
+          -0.05,
+          0.0
+        ],
+        "r": 20.888,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -55.1,
+          0.05,
+          0.0
+        ],
+        "b": [
+          -55.1,
+          0.05,
+          2.0
+        ],
+        "r": 20.888,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -55.3,
+          0.15,
+          2.0
+        ],
+        "b": [
+          -55.3,
+          0.15,
+          4.0
+        ],
+        "r": 20.928,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -55.5,
+          0.25,
+          4.0
+        ],
+        "b": [
+          -55.5,
+          0.25,
+          6.0
+        ],
+        "r": 20.968,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -55.7,
+          0.35,
+          6.0
+        ],
+        "b": [
+          -55.7,
+          0.35,
+          8.0
+        ],
+        "r": 21.008,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -55.9,
+          0.45,
+          8.0
+        ],
+        "b": [
+          -55.9,
+          0.45,
+          10.0
+        ],
+        "r": 21.048,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -56.1,
+          0.55,
+          10.0
+        ],
+        "b": [
+          -56.1,
+          0.55,
+          12.0
+        ],
+        "r": 21.088,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -56.3,
+          0.65,
+          12.0
+        ],
+        "b": [
+          -56.3,
+          0.65,
+          14.0
+        ],
+        "r": 21.128,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -56.5,
+          0.75,
+          14.0
+        ],
+        "b": [
+          -56.5,
+          0.75,
+          16.0
+        ],
+        "r": 21.168,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -56.7,
+          0.85,
+          16.0
+        ],
+        "b": [
+          -56.7,
+          0.85,
+          18.0
+        ],
+        "r": 21.208,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -56.9,
+          0.95,
+          18.0
+        ],
+        "b": [
+          -56.9,
+          0.95,
+          20.0
+        ],
+        "r": 21.248,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -57.1,
+          1.05,
+          20.0
+        ],
+        "b": [
+          -57.1,
+          1.05,
+          22.0
+        ],
+        "r": 21.288,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -57.3,
+          1.15,
+          22.0
+        ],
+        "b": [
+          -57.3,
+          1.15,
+          24.0
+        ],
+        "r": 21.328,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -57.5,
+          1.25,
+          24.0
+        ],
+        "b": [
+          -57.5,
+          1.25,
+          26.0
+        ],
+        "r": 21.368,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -57.7,
+          1.35,
+          26.0
+        ],
+        "b": [
+          -57.7,
+          1.35,
+          28.0
+        ],
+        "r": 21.408,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -57.9,
+          1.45,
+          28.0
+        ],
+        "b": [
+          -57.9,
+          1.45,
+          30.0
+        ],
+        "r": 21.448,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -58.1,
+          1.55,
+          30.0
+        ],
+        "b": [
+          -58.1,
+          1.55,
+          32.0
+        ],
+        "r": 21.488,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -58.3,
+          1.65,
+          32.0
+        ],
+        "b": [
+          -58.3,
+          1.65,
+          34.0
+        ],
+        "r": 21.528,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -58.5,
+          1.75,
+          34.0
+        ],
+        "b": [
+          -58.5,
+          1.75,
+          36.0
+        ],
+        "r": 21.568,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -58.7,
+          1.85,
+          36.0
+        ],
+        "b": [
+          -58.7,
+          1.85,
+          38.0
+        ],
+        "r": 21.608,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -58.9,
+          1.95,
+          38.0
+        ],
+        "b": [
+          -58.9,
+          1.95,
+          40.0
+        ],
+        "r": 21.648,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -59.1,
+          2.05,
+          40.0
+        ],
+        "b": [
+          -59.1,
+          2.05,
+          42.0
+        ],
+        "r": 21.688,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -59.3,
+          2.15,
+          42.0
+        ],
+        "b": [
+          -59.3,
+          2.15,
+          44.0
+        ],
+        "r": 21.728,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -59.5,
+          2.25,
+          44.0
+        ],
+        "b": [
+          -59.5,
+          2.25,
+          46.0
+        ],
+        "r": 21.768,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -59.7,
+          2.35,
+          46.0
+        ],
+        "b": [
+          -59.7,
+          2.35,
+          48.0
+        ],
+        "r": 21.808,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -59.9,
+          2.45,
+          48.0
+        ],
+        "b": [
+          -59.9,
+          2.45,
+          50.0
+        ],
+        "r": 21.848,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -60.1,
+          2.55,
+          50.0
+        ],
+        "b": [
+          -60.1,
+          2.55,
+          52.0
+        ],
+        "r": 21.888,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -60.3,
+          2.65,
+          52.0
+        ],
+        "b": [
+          -60.3,
+          2.65,
+          54.0
+        ],
+        "r": 21.928,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -60.5,
+          2.75,
+          54.0
+        ],
+        "b": [
+          -60.5,
+          2.75,
+          56.0
+        ],
+        "r": 21.968,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -60.7,
+          2.85,
+          56.0
+        ],
+        "b": [
+          -60.7,
+          2.85,
+          58.0
+        ],
+        "r": 22.008,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -60.9,
+          2.95,
+          58.0
+        ],
+        "b": [
+          -60.9,
+          2.95,
+          60.0
+        ],
+        "r": 22.048,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -61.1,
+          3.05,
+          60.0
+        ],
+        "b": [
+          -61.1,
+          3.05,
+          62.0
+        ],
+        "r": 22.088,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -61.3,
+          3.15,
+          62.0
+        ],
+        "b": [
+          -61.3,
+          3.15,
+          64.0
+        ],
+        "r": 22.128,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -61.5,
+          3.25,
+          64.0
+        ],
+        "b": [
+          -61.5,
+          3.25,
+          66.0
+        ],
+        "r": 22.168,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -61.7,
+          3.35,
+          66.0
+        ],
+        "b": [
+          -61.7,
+          3.35,
+          68.0
+        ],
+        "r": 22.208,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -61.9,
+          3.45,
+          68.0
+        ],
+        "b": [
+          -61.9,
+          3.45,
+          70.0
+        ],
+        "r": 22.248,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -62.1,
+          3.55,
+          70.0
+        ],
+        "b": [
+          -62.1,
+          3.55,
+          72.0
+        ],
+        "r": 22.288,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -62.3,
+          3.65,
+          72.0
+        ],
+        "b": [
+          -62.3,
+          3.65,
+          74.0
+        ],
+        "r": 22.328,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -62.5,
+          3.75,
+          74.0
+        ],
+        "b": [
+          -62.5,
+          3.75,
+          76.0
+        ],
+        "r": 22.368,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -62.7,
+          3.85,
+          76.0
+        ],
+        "b": [
+          -62.7,
+          3.85,
+          78.0
+        ],
+        "r": 22.408,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -62.9,
+          3.95,
+          78.0
+        ],
+        "b": [
+          -62.9,
+          3.95,
+          80.0
+        ],
+        "r": 22.448,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -63.1,
+          4.05,
+          80.0
+        ],
+        "b": [
+          -63.1,
+          4.05,
+          82.0
+        ],
+        "r": 22.488,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -63.3,
+          4.15,
+          82.0
+        ],
+        "b": [
+          -63.3,
+          4.15,
+          84.0
+        ],
+        "r": 22.528,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -63.5,
+          4.25,
+          84.0
+        ],
+        "b": [
+          -63.5,
+          4.25,
+          86.0
+        ],
+        "r": 22.568,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -63.7,
+          4.35,
+          86.0
+        ],
+        "b": [
+          -63.7,
+          4.35,
+          88.0
+        ],
+        "r": 22.608,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -63.9,
+          4.45,
+          88.0
+        ],
+        "b": [
+          -63.9,
+          4.45,
+          90.0
+        ],
+        "r": 22.648,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.013,
+          4.506,
+          90.0
+        ],
+        "b": [
+          -64.013,
+          4.506,
+          90.25
+        ],
+        "r": 22.786,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.037,
+          4.519,
+          90.25
+        ],
+        "b": [
+          -64.037,
+          4.519,
+          90.5
+        ],
+        "r": 22.792,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.062,
+          4.531,
+          90.5
+        ],
+        "b": [
+          -64.062,
+          4.531,
+          90.75
+        ],
+        "r": 22.799,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.088,
+          4.544,
+          90.75
+        ],
+        "b": [
+          -64.088,
+          4.544,
+          91.0
+        ],
+        "r": 22.808,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.112,
+          4.556,
+          91.0
+        ],
+        "b": [
+          -64.112,
+          4.556,
+          91.25
+        ],
+        "r": 22.819,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.138,
+          4.569,
+          91.25
+        ],
+        "b": [
+          -64.138,
+          4.569,
+          91.5
+        ],
+        "r": 22.831,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.162,
+          4.581,
+          91.5
+        ],
+        "b": [
+          -64.162,
+          4.581,
+          91.75
+        ],
+        "r": 22.844,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.188,
+          4.594,
+          91.75
+        ],
+        "b": [
+          -64.188,
+          4.594,
+          92.0
+        ],
+        "r": 22.86,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.213,
+          4.606,
+          92.0
+        ],
+        "b": [
+          -64.213,
+          4.606,
+          92.25
+        ],
+        "r": 22.877,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.237,
+          4.619,
+          92.25
+        ],
+        "b": [
+          -64.237,
+          4.619,
+          92.5
+        ],
+        "r": 22.895,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.263,
+          4.631,
+          92.5
+        ],
+        "b": [
+          -64.263,
+          4.631,
+          92.75
+        ],
+        "r": 22.915,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.287,
+          4.644,
+          92.75
+        ],
+        "b": [
+          -64.287,
+          4.644,
+          93.0
+        ],
+        "r": 22.937,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.312,
+          4.656,
+          93.0
+        ],
+        "b": [
+          -64.312,
+          4.656,
+          93.25
+        ],
+        "r": 22.961,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.338,
+          4.669,
+          93.25
+        ],
+        "b": [
+          -64.338,
+          4.669,
+          93.5
+        ],
+        "r": 22.987,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.362,
+          4.681,
+          93.5
+        ],
+        "b": [
+          -64.362,
+          4.681,
+          93.75
+        ],
+        "r": 23.014,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.388,
+          4.694,
+          93.75
+        ],
+        "b": [
+          -64.388,
+          4.694,
+          94.0
+        ],
+        "r": 23.043,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.412,
+          4.706,
+          94.0
+        ],
+        "b": [
+          -64.412,
+          4.706,
+          94.25
+        ],
+        "r": 23.075,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.438,
+          4.719,
+          94.25
+        ],
+        "b": [
+          -64.438,
+          4.719,
+          94.5
+        ],
+        "r": 23.108,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.463,
+          4.731,
+          94.5
+        ],
+        "b": [
+          -64.463,
+          4.731,
+          94.75
+        ],
+        "r": 23.143,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.487,
+          4.744,
+          94.75
+        ],
+        "b": [
+          -64.487,
+          4.744,
+          95.0
+        ],
+        "r": 23.181,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.513,
+          4.756,
+          95.0
+        ],
+        "b": [
+          -64.513,
+          4.756,
+          95.25
+        ],
+        "r": 23.221,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.537,
+          4.769,
+          95.25
+        ],
+        "b": [
+          -64.537,
+          4.769,
+          95.5
+        ],
+        "r": 23.263,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.562,
+          4.781,
+          95.5
+        ],
+        "b": [
+          -64.562,
+          4.781,
+          95.75
+        ],
+        "r": 23.308,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.588,
+          4.794,
+          95.75
+        ],
+        "b": [
+          -64.588,
+          4.794,
+          96.0
+        ],
+        "r": 23.356,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.612,
+          4.806,
+          96.0
+        ],
+        "b": [
+          -64.612,
+          4.806,
+          96.25
+        ],
+        "r": 23.406,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.638,
+          4.819,
+          96.25
+        ],
+        "b": [
+          -64.638,
+          4.819,
+          96.5
+        ],
+        "r": 23.459,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.662,
+          4.831,
+          96.5
+        ],
+        "b": [
+          -64.662,
+          4.831,
+          96.75
+        ],
+        "r": 23.516,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.688,
+          4.844,
+          96.75
+        ],
+        "b": [
+          -64.688,
+          4.844,
+          97.0
+        ],
+        "r": 23.576,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.713,
+          4.856,
+          97.0
+        ],
+        "b": [
+          -64.713,
+          4.856,
+          97.25
+        ],
+        "r": 23.641,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.737,
+          4.869,
+          97.25
+        ],
+        "b": [
+          -64.737,
+          4.869,
+          97.5
+        ],
+        "r": 23.709,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.763,
+          4.881,
+          97.5
+        ],
+        "b": [
+          -64.763,
+          4.881,
+          97.75
+        ],
+        "r": 23.782,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.787,
+          4.894,
+          97.75
+        ],
+        "b": [
+          -64.787,
+          4.894,
+          98.0
+        ],
+        "r": 23.861,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.812,
+          4.906,
+          98.0
+        ],
+        "b": [
+          -64.812,
+          4.906,
+          98.25
+        ],
+        "r": 23.946,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.838,
+          4.919,
+          98.25
+        ],
+        "b": [
+          -64.838,
+          4.919,
+          98.5
+        ],
+        "r": 24.038,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.862,
+          4.931,
+          98.5
+        ],
+        "b": [
+          -64.862,
+          4.931,
+          98.75
+        ],
+        "r": 24.139,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.888,
+          4.944,
+          98.75
+        ],
+        "b": [
+          -64.888,
+          4.944,
+          99.0
+        ],
+        "r": 24.251,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.912,
+          4.956,
+          99.0
+        ],
+        "b": [
+          -64.912,
+          4.956,
+          99.25
+        ],
+        "r": 24.376,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.938,
+          4.969,
+          99.25
+        ],
+        "b": [
+          -64.938,
+          4.969,
+          99.5
+        ],
+        "r": 24.521,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.963,
+          4.981,
+          99.5
+        ],
+        "b": [
+          -64.963,
+          4.981,
+          99.75
+        ],
+        "r": 24.695,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.987,
+          4.994,
+          99.75
+        ],
+        "b": [
+          -64.987,
+          4.994,
+          100.0
+        ],
+        "r": 24.926,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -65.013,
+          5.006,
+          100.0
+        ],
+        "b": [
+          -65.013,
+          5.006,
+          100.25
+        ],
+        "r": 25.486,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -65.037,
+          5.019,
+          100.25
+        ],
+        "b": [
+          -65.037,
+          5.019,
+          100.5
+        ],
+        "r": 25.486,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -65.062,
+          5.031,
+          100.5
+        ],
+        "b": [
+          -65.062,
+          5.031,
+          100.75
+        ],
+        "r": 25.486,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -65.088,
+          5.044,
+          100.75
+        ],
+        "b": [
+          -65.088,
+          5.044,
+          101.0
+        ],
+        "r": 25.486,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -65.112,
+          5.056,
+          101.0
+        ],
+        "b": [
+          -65.112,
+          5.056,
+          101.25
+        ],
+        "r": 25.486,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -65.138,
+          5.069,
+          101.25
+        ],
+        "b": [
+          -65.138,
+          5.069,
+          101.5
+        ],
+        "r": 25.486,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -65.162,
+          5.081,
+          101.5
+        ],
+        "b": [
+          -65.162,
+          5.081,
+          101.75
+        ],
+        "r": 25.486,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -65.188,
+          5.094,
+          101.75
+        ],
+        "b": [
+          -65.188,
+          5.094,
+          102.0
+        ],
+        "r": 25.486,
+        "basis": "catalogue",
+        "note": "runner 1 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          -0.05,
+          -2.0
+        ],
+        "b": [
+          0.0,
+          -0.05,
+          0.0
+        ],
+        "r": 20.95,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          0.05,
+          0.0
+        ],
+        "b": [
+          0.0,
+          0.05,
+          2.0
+        ],
+        "r": 20.95,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          0.15,
+          2.0
+        ],
+        "b": [
+          0.0,
+          0.15,
+          4.0
+        ],
+        "r": 20.99,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          0.25,
+          4.0
+        ],
+        "b": [
+          0.0,
+          0.25,
+          6.0
+        ],
+        "r": 21.03,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          0.35,
+          6.0
+        ],
+        "b": [
+          0.0,
+          0.35,
+          8.0
+        ],
+        "r": 21.07,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          0.45,
+          8.0
+        ],
+        "b": [
+          0.0,
+          0.45,
+          10.0
+        ],
+        "r": 21.11,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          0.55,
+          10.0
+        ],
+        "b": [
+          0.0,
+          0.55,
+          12.0
+        ],
+        "r": 21.15,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          0.65,
+          12.0
+        ],
+        "b": [
+          0.0,
+          0.65,
+          14.0
+        ],
+        "r": 21.19,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          0.75,
+          14.0
+        ],
+        "b": [
+          0.0,
+          0.75,
+          16.0
+        ],
+        "r": 21.23,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          0.85,
+          16.0
+        ],
+        "b": [
+          0.0,
+          0.85,
+          18.0
+        ],
+        "r": 21.27,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          0.95,
+          18.0
+        ],
+        "b": [
+          0.0,
+          0.95,
+          20.0
+        ],
+        "r": 21.31,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          1.05,
+          20.0
+        ],
+        "b": [
+          0.0,
+          1.05,
+          22.0
+        ],
+        "r": 21.35,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          1.15,
+          22.0
+        ],
+        "b": [
+          0.0,
+          1.15,
+          24.0
+        ],
+        "r": 21.39,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          1.25,
+          24.0
+        ],
+        "b": [
+          0.0,
+          1.25,
+          26.0
+        ],
+        "r": 21.43,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          1.35,
+          26.0
+        ],
+        "b": [
+          0.0,
+          1.35,
+          28.0
+        ],
+        "r": 21.47,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          1.45,
+          28.0
+        ],
+        "b": [
+          0.0,
+          1.45,
+          30.0
+        ],
+        "r": 21.51,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          1.55,
+          30.0
+        ],
+        "b": [
+          0.0,
+          1.55,
+          32.0
+        ],
+        "r": 21.55,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          1.65,
+          32.0
+        ],
+        "b": [
+          0.0,
+          1.65,
+          34.0
+        ],
+        "r": 21.59,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          1.75,
+          34.0
+        ],
+        "b": [
+          0.0,
+          1.75,
+          36.0
+        ],
+        "r": 21.63,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          1.85,
+          36.0
+        ],
+        "b": [
+          0.0,
+          1.85,
+          38.0
+        ],
+        "r": 21.67,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          1.95,
+          38.0
+        ],
+        "b": [
+          0.0,
+          1.95,
+          40.0
+        ],
+        "r": 21.71,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          2.05,
+          40.0
+        ],
+        "b": [
+          0.0,
+          2.05,
+          42.0
+        ],
+        "r": 21.75,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          2.15,
+          42.0
+        ],
+        "b": [
+          0.0,
+          2.15,
+          44.0
+        ],
+        "r": 21.79,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          2.25,
+          44.0
+        ],
+        "b": [
+          0.0,
+          2.25,
+          46.0
+        ],
+        "r": 21.83,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          2.35,
+          46.0
+        ],
+        "b": [
+          0.0,
+          2.35,
+          48.0
+        ],
+        "r": 21.87,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          2.45,
+          48.0
+        ],
+        "b": [
+          0.0,
+          2.45,
+          50.0
+        ],
+        "r": 21.91,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          2.55,
+          50.0
+        ],
+        "b": [
+          0.0,
+          2.55,
+          52.0
+        ],
+        "r": 21.95,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          2.65,
+          52.0
+        ],
+        "b": [
+          0.0,
+          2.65,
+          54.0
+        ],
+        "r": 21.99,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          2.75,
+          54.0
+        ],
+        "b": [
+          0.0,
+          2.75,
+          56.0
+        ],
+        "r": 22.03,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          2.85,
+          56.0
+        ],
+        "b": [
+          0.0,
+          2.85,
+          58.0
+        ],
+        "r": 22.07,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          2.95,
+          58.0
+        ],
+        "b": [
+          0.0,
+          2.95,
+          60.0
+        ],
+        "r": 22.11,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          3.05,
+          60.0
+        ],
+        "b": [
+          0.0,
+          3.05,
+          62.0
+        ],
+        "r": 22.15,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          3.15,
+          62.0
+        ],
+        "b": [
+          0.0,
+          3.15,
+          64.0
+        ],
+        "r": 22.19,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          3.25,
+          64.0
+        ],
+        "b": [
+          0.0,
+          3.25,
+          66.0
+        ],
+        "r": 22.23,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          3.35,
+          66.0
+        ],
+        "b": [
+          0.0,
+          3.35,
+          68.0
+        ],
+        "r": 22.27,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          3.45,
+          68.0
+        ],
+        "b": [
+          0.0,
+          3.45,
+          70.0
+        ],
+        "r": 22.31,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          3.55,
+          70.0
+        ],
+        "b": [
+          0.0,
+          3.55,
+          72.0
+        ],
+        "r": 22.35,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          3.65,
+          72.0
+        ],
+        "b": [
+          0.0,
+          3.65,
+          74.0
+        ],
+        "r": 22.39,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          3.75,
+          74.0
+        ],
+        "b": [
+          0.0,
+          3.75,
+          76.0
+        ],
+        "r": 22.43,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          3.85,
+          76.0
+        ],
+        "b": [
+          0.0,
+          3.85,
+          78.0
+        ],
+        "r": 22.47,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          3.95,
+          78.0
+        ],
+        "b": [
+          0.0,
+          3.95,
+          80.0
+        ],
+        "r": 22.51,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.05,
+          80.0
+        ],
+        "b": [
+          0.0,
+          4.05,
+          82.0
+        ],
+        "r": 22.55,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.15,
+          82.0
+        ],
+        "b": [
+          0.0,
+          4.15,
+          84.0
+        ],
+        "r": 22.59,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.25,
+          84.0
+        ],
+        "b": [
+          0.0,
+          4.25,
+          86.0
+        ],
+        "r": 22.63,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.35,
+          86.0
+        ],
+        "b": [
+          0.0,
+          4.35,
+          88.0
+        ],
+        "r": 22.67,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.45,
+          88.0
+        ],
+        "b": [
+          0.0,
+          4.45,
+          90.0
+        ],
+        "r": 22.71,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.506,
+          90.0
+        ],
+        "b": [
+          0.0,
+          4.506,
+          90.25
+        ],
+        "r": 22.794,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.519,
+          90.25
+        ],
+        "b": [
+          0.0,
+          4.519,
+          90.5
+        ],
+        "r": 22.8,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.531,
+          90.5
+        ],
+        "b": [
+          0.0,
+          4.531,
+          90.75
+        ],
+        "r": 22.807,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.544,
+          90.75
+        ],
+        "b": [
+          0.0,
+          4.544,
+          91.0
+        ],
+        "r": 22.816,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.556,
+          91.0
+        ],
+        "b": [
+          0.0,
+          4.556,
+          91.25
+        ],
+        "r": 22.826,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.569,
+          91.25
+        ],
+        "b": [
+          0.0,
+          4.569,
+          91.5
+        ],
+        "r": 22.838,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.581,
+          91.5
+        ],
+        "b": [
+          0.0,
+          4.581,
+          91.75
+        ],
+        "r": 22.852,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.594,
+          91.75
+        ],
+        "b": [
+          0.0,
+          4.594,
+          92.0
+        ],
+        "r": 22.867,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.606,
+          92.0
+        ],
+        "b": [
+          0.0,
+          4.606,
+          92.25
+        ],
+        "r": 22.884,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.619,
+          92.25
+        ],
+        "b": [
+          0.0,
+          4.619,
+          92.5
+        ],
+        "r": 22.903,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.631,
+          92.5
+        ],
+        "b": [
+          0.0,
+          4.631,
+          92.75
+        ],
+        "r": 22.923,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.644,
+          92.75
+        ],
+        "b": [
+          0.0,
+          4.644,
+          93.0
+        ],
+        "r": 22.945,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.656,
+          93.0
+        ],
+        "b": [
+          0.0,
+          4.656,
+          93.25
+        ],
+        "r": 22.969,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.669,
+          93.25
+        ],
+        "b": [
+          0.0,
+          4.669,
+          93.5
+        ],
+        "r": 22.994,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.681,
+          93.5
+        ],
+        "b": [
+          0.0,
+          4.681,
+          93.75
+        ],
+        "r": 23.022,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.694,
+          93.75
+        ],
+        "b": [
+          0.0,
+          4.694,
+          94.0
+        ],
+        "r": 23.051,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.706,
+          94.0
+        ],
+        "b": [
+          0.0,
+          4.706,
+          94.25
+        ],
+        "r": 23.082,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.719,
+          94.25
+        ],
+        "b": [
+          0.0,
+          4.719,
+          94.5
+        ],
+        "r": 23.116,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.731,
+          94.5
+        ],
+        "b": [
+          0.0,
+          4.731,
+          94.75
+        ],
+        "r": 23.151,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.744,
+          94.75
+        ],
+        "b": [
+          0.0,
+          4.744,
+          95.0
+        ],
+        "r": 23.189,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.756,
+          95.0
+        ],
+        "b": [
+          0.0,
+          4.756,
+          95.25
+        ],
+        "r": 23.229,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.769,
+          95.25
+        ],
+        "b": [
+          0.0,
+          4.769,
+          95.5
+        ],
+        "r": 23.271,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.781,
+          95.5
+        ],
+        "b": [
+          0.0,
+          4.781,
+          95.75
+        ],
+        "r": 23.316,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.794,
+          95.75
+        ],
+        "b": [
+          0.0,
+          4.794,
+          96.0
+        ],
+        "r": 23.363,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.806,
+          96.0
+        ],
+        "b": [
+          0.0,
+          4.806,
+          96.25
+        ],
+        "r": 23.414,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.819,
+          96.25
+        ],
+        "b": [
+          0.0,
+          4.819,
+          96.5
+        ],
+        "r": 23.467,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.831,
+          96.5
+        ],
+        "b": [
+          0.0,
+          4.831,
+          96.75
+        ],
+        "r": 23.524,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.844,
+          96.75
+        ],
+        "b": [
+          0.0,
+          4.844,
+          97.0
+        ],
+        "r": 23.584,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.856,
+          97.0
+        ],
+        "b": [
+          0.0,
+          4.856,
+          97.25
+        ],
+        "r": 23.648,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.869,
+          97.25
+        ],
+        "b": [
+          0.0,
+          4.869,
+          97.5
+        ],
+        "r": 23.717,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.881,
+          97.5
+        ],
+        "b": [
+          0.0,
+          4.881,
+          97.75
+        ],
+        "r": 23.79,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.894,
+          97.75
+        ],
+        "b": [
+          0.0,
+          4.894,
+          98.0
+        ],
+        "r": 23.869,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.906,
+          98.0
+        ],
+        "b": [
+          0.0,
+          4.906,
+          98.25
+        ],
+        "r": 23.954,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.919,
+          98.25
+        ],
+        "b": [
+          0.0,
+          4.919,
+          98.5
+        ],
+        "r": 24.046,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.931,
+          98.5
+        ],
+        "b": [
+          0.0,
+          4.931,
+          98.75
+        ],
+        "r": 24.147,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.944,
+          98.75
+        ],
+        "b": [
+          0.0,
+          4.944,
+          99.0
+        ],
+        "r": 24.258,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.956,
+          99.0
+        ],
+        "b": [
+          0.0,
+          4.956,
+          99.25
+        ],
+        "r": 24.384,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.969,
+          99.25
+        ],
+        "b": [
+          0.0,
+          4.969,
+          99.5
+        ],
+        "r": 24.529,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.981,
+          99.5
+        ],
+        "b": [
+          0.0,
+          4.981,
+          99.75
+        ],
+        "r": 24.703,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          4.994,
+          99.75
+        ],
+        "b": [
+          0.0,
+          4.994,
+          100.0
+        ],
+        "r": 24.933,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          5.006,
+          100.0
+        ],
+        "b": [
+          0.0,
+          5.006,
+          100.25
+        ],
+        "r": 25.494,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          5.019,
+          100.25
+        ],
+        "b": [
+          0.0,
+          5.019,
+          100.5
+        ],
+        "r": 25.494,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          5.031,
+          100.5
+        ],
+        "b": [
+          0.0,
+          5.031,
+          100.75
+        ],
+        "r": 25.494,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          5.044,
+          100.75
+        ],
+        "b": [
+          0.0,
+          5.044,
+          101.0
+        ],
+        "r": 25.494,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          5.056,
+          101.0
+        ],
+        "b": [
+          0.0,
+          5.056,
+          101.25
+        ],
+        "r": 25.494,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          5.069,
+          101.25
+        ],
+        "b": [
+          0.0,
+          5.069,
+          101.5
+        ],
+        "r": 25.494,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          5.081,
+          101.5
+        ],
+        "b": [
+          0.0,
+          5.081,
+          101.75
+        ],
+        "r": 25.494,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          5.094,
+          101.75
+        ],
+        "b": [
+          0.0,
+          5.094,
+          102.0
+        ],
+        "r": 25.494,
+        "basis": "catalogue",
+        "note": "runner 2 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          54.9,
+          -0.05,
+          -2.0
+        ],
+        "b": [
+          54.9,
+          -0.05,
+          0.0
+        ],
+        "r": 20.888,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          55.1,
+          0.05,
+          0.0
+        ],
+        "b": [
+          55.1,
+          0.05,
+          2.0
+        ],
+        "r": 20.888,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          55.3,
+          0.15,
+          2.0
+        ],
+        "b": [
+          55.3,
+          0.15,
+          4.0
+        ],
+        "r": 20.928,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          55.5,
+          0.25,
+          4.0
+        ],
+        "b": [
+          55.5,
+          0.25,
+          6.0
+        ],
+        "r": 20.968,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          55.7,
+          0.35,
+          6.0
+        ],
+        "b": [
+          55.7,
+          0.35,
+          8.0
+        ],
+        "r": 21.008,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          55.9,
+          0.45,
+          8.0
+        ],
+        "b": [
+          55.9,
+          0.45,
+          10.0
+        ],
+        "r": 21.048,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          56.1,
+          0.55,
+          10.0
+        ],
+        "b": [
+          56.1,
+          0.55,
+          12.0
+        ],
+        "r": 21.088,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          56.3,
+          0.65,
+          12.0
+        ],
+        "b": [
+          56.3,
+          0.65,
+          14.0
+        ],
+        "r": 21.128,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          56.5,
+          0.75,
+          14.0
+        ],
+        "b": [
+          56.5,
+          0.75,
+          16.0
+        ],
+        "r": 21.168,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          56.7,
+          0.85,
+          16.0
+        ],
+        "b": [
+          56.7,
+          0.85,
+          18.0
+        ],
+        "r": 21.208,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          56.9,
+          0.95,
+          18.0
+        ],
+        "b": [
+          56.9,
+          0.95,
+          20.0
+        ],
+        "r": 21.248,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          57.1,
+          1.05,
+          20.0
+        ],
+        "b": [
+          57.1,
+          1.05,
+          22.0
+        ],
+        "r": 21.288,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          57.3,
+          1.15,
+          22.0
+        ],
+        "b": [
+          57.3,
+          1.15,
+          24.0
+        ],
+        "r": 21.328,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          57.5,
+          1.25,
+          24.0
+        ],
+        "b": [
+          57.5,
+          1.25,
+          26.0
+        ],
+        "r": 21.368,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          57.7,
+          1.35,
+          26.0
+        ],
+        "b": [
+          57.7,
+          1.35,
+          28.0
+        ],
+        "r": 21.408,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          57.9,
+          1.45,
+          28.0
+        ],
+        "b": [
+          57.9,
+          1.45,
+          30.0
+        ],
+        "r": 21.448,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          58.1,
+          1.55,
+          30.0
+        ],
+        "b": [
+          58.1,
+          1.55,
+          32.0
+        ],
+        "r": 21.488,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          58.3,
+          1.65,
+          32.0
+        ],
+        "b": [
+          58.3,
+          1.65,
+          34.0
+        ],
+        "r": 21.528,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          58.5,
+          1.75,
+          34.0
+        ],
+        "b": [
+          58.5,
+          1.75,
+          36.0
+        ],
+        "r": 21.568,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          58.7,
+          1.85,
+          36.0
+        ],
+        "b": [
+          58.7,
+          1.85,
+          38.0
+        ],
+        "r": 21.608,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          58.9,
+          1.95,
+          38.0
+        ],
+        "b": [
+          58.9,
+          1.95,
+          40.0
+        ],
+        "r": 21.648,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          59.1,
+          2.05,
+          40.0
+        ],
+        "b": [
+          59.1,
+          2.05,
+          42.0
+        ],
+        "r": 21.688,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          59.3,
+          2.15,
+          42.0
+        ],
+        "b": [
+          59.3,
+          2.15,
+          44.0
+        ],
+        "r": 21.728,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          59.5,
+          2.25,
+          44.0
+        ],
+        "b": [
+          59.5,
+          2.25,
+          46.0
+        ],
+        "r": 21.768,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          59.7,
+          2.35,
+          46.0
+        ],
+        "b": [
+          59.7,
+          2.35,
+          48.0
+        ],
+        "r": 21.808,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          59.9,
+          2.45,
+          48.0
+        ],
+        "b": [
+          59.9,
+          2.45,
+          50.0
+        ],
+        "r": 21.848,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          60.1,
+          2.55,
+          50.0
+        ],
+        "b": [
+          60.1,
+          2.55,
+          52.0
+        ],
+        "r": 21.888,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          60.3,
+          2.65,
+          52.0
+        ],
+        "b": [
+          60.3,
+          2.65,
+          54.0
+        ],
+        "r": 21.928,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          60.5,
+          2.75,
+          54.0
+        ],
+        "b": [
+          60.5,
+          2.75,
+          56.0
+        ],
+        "r": 21.968,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          60.7,
+          2.85,
+          56.0
+        ],
+        "b": [
+          60.7,
+          2.85,
+          58.0
+        ],
+        "r": 22.008,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          60.9,
+          2.95,
+          58.0
+        ],
+        "b": [
+          60.9,
+          2.95,
+          60.0
+        ],
+        "r": 22.048,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          61.1,
+          3.05,
+          60.0
+        ],
+        "b": [
+          61.1,
+          3.05,
+          62.0
+        ],
+        "r": 22.088,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          61.3,
+          3.15,
+          62.0
+        ],
+        "b": [
+          61.3,
+          3.15,
+          64.0
+        ],
+        "r": 22.128,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          61.5,
+          3.25,
+          64.0
+        ],
+        "b": [
+          61.5,
+          3.25,
+          66.0
+        ],
+        "r": 22.168,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          61.7,
+          3.35,
+          66.0
+        ],
+        "b": [
+          61.7,
+          3.35,
+          68.0
+        ],
+        "r": 22.208,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          61.9,
+          3.45,
+          68.0
+        ],
+        "b": [
+          61.9,
+          3.45,
+          70.0
+        ],
+        "r": 22.248,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          62.1,
+          3.55,
+          70.0
+        ],
+        "b": [
+          62.1,
+          3.55,
+          72.0
+        ],
+        "r": 22.288,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          62.3,
+          3.65,
+          72.0
+        ],
+        "b": [
+          62.3,
+          3.65,
+          74.0
+        ],
+        "r": 22.328,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          62.5,
+          3.75,
+          74.0
+        ],
+        "b": [
+          62.5,
+          3.75,
+          76.0
+        ],
+        "r": 22.368,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          62.7,
+          3.85,
+          76.0
+        ],
+        "b": [
+          62.7,
+          3.85,
+          78.0
+        ],
+        "r": 22.408,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          62.9,
+          3.95,
+          78.0
+        ],
+        "b": [
+          62.9,
+          3.95,
+          80.0
+        ],
+        "r": 22.448,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          63.1,
+          4.05,
+          80.0
+        ],
+        "b": [
+          63.1,
+          4.05,
+          82.0
+        ],
+        "r": 22.488,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          63.3,
+          4.15,
+          82.0
+        ],
+        "b": [
+          63.3,
+          4.15,
+          84.0
+        ],
+        "r": 22.528,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          63.5,
+          4.25,
+          84.0
+        ],
+        "b": [
+          63.5,
+          4.25,
+          86.0
+        ],
+        "r": 22.568,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          63.7,
+          4.35,
+          86.0
+        ],
+        "b": [
+          63.7,
+          4.35,
+          88.0
+        ],
+        "r": 22.608,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          63.9,
+          4.45,
+          88.0
+        ],
+        "b": [
+          63.9,
+          4.45,
+          90.0
+        ],
+        "r": 22.648,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.013,
+          4.506,
+          90.0
+        ],
+        "b": [
+          64.013,
+          4.506,
+          90.25
+        ],
+        "r": 22.786,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.037,
+          4.519,
+          90.25
+        ],
+        "b": [
+          64.037,
+          4.519,
+          90.5
+        ],
+        "r": 22.792,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.062,
+          4.531,
+          90.5
+        ],
+        "b": [
+          64.062,
+          4.531,
+          90.75
+        ],
+        "r": 22.799,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.088,
+          4.544,
+          90.75
+        ],
+        "b": [
+          64.088,
+          4.544,
+          91.0
+        ],
+        "r": 22.808,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.112,
+          4.556,
+          91.0
+        ],
+        "b": [
+          64.112,
+          4.556,
+          91.25
+        ],
+        "r": 22.819,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.138,
+          4.569,
+          91.25
+        ],
+        "b": [
+          64.138,
+          4.569,
+          91.5
+        ],
+        "r": 22.831,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.162,
+          4.581,
+          91.5
+        ],
+        "b": [
+          64.162,
+          4.581,
+          91.75
+        ],
+        "r": 22.844,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.188,
+          4.594,
+          91.75
+        ],
+        "b": [
+          64.188,
+          4.594,
+          92.0
+        ],
+        "r": 22.86,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.213,
+          4.606,
+          92.0
+        ],
+        "b": [
+          64.213,
+          4.606,
+          92.25
+        ],
+        "r": 22.877,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.237,
+          4.619,
+          92.25
+        ],
+        "b": [
+          64.237,
+          4.619,
+          92.5
+        ],
+        "r": 22.895,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.263,
+          4.631,
+          92.5
+        ],
+        "b": [
+          64.263,
+          4.631,
+          92.75
+        ],
+        "r": 22.915,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.287,
+          4.644,
+          92.75
+        ],
+        "b": [
+          64.287,
+          4.644,
+          93.0
+        ],
+        "r": 22.937,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.312,
+          4.656,
+          93.0
+        ],
+        "b": [
+          64.312,
+          4.656,
+          93.25
+        ],
+        "r": 22.961,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.338,
+          4.669,
+          93.25
+        ],
+        "b": [
+          64.338,
+          4.669,
+          93.5
+        ],
+        "r": 22.987,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.362,
+          4.681,
+          93.5
+        ],
+        "b": [
+          64.362,
+          4.681,
+          93.75
+        ],
+        "r": 23.014,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.388,
+          4.694,
+          93.75
+        ],
+        "b": [
+          64.388,
+          4.694,
+          94.0
+        ],
+        "r": 23.043,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.412,
+          4.706,
+          94.0
+        ],
+        "b": [
+          64.412,
+          4.706,
+          94.25
+        ],
+        "r": 23.075,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.438,
+          4.719,
+          94.25
+        ],
+        "b": [
+          64.438,
+          4.719,
+          94.5
+        ],
+        "r": 23.108,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.463,
+          4.731,
+          94.5
+        ],
+        "b": [
+          64.463,
+          4.731,
+          94.75
+        ],
+        "r": 23.143,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.487,
+          4.744,
+          94.75
+        ],
+        "b": [
+          64.487,
+          4.744,
+          95.0
+        ],
+        "r": 23.181,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.513,
+          4.756,
+          95.0
+        ],
+        "b": [
+          64.513,
+          4.756,
+          95.25
+        ],
+        "r": 23.221,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.537,
+          4.769,
+          95.25
+        ],
+        "b": [
+          64.537,
+          4.769,
+          95.5
+        ],
+        "r": 23.263,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.562,
+          4.781,
+          95.5
+        ],
+        "b": [
+          64.562,
+          4.781,
+          95.75
+        ],
+        "r": 23.308,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.588,
+          4.794,
+          95.75
+        ],
+        "b": [
+          64.588,
+          4.794,
+          96.0
+        ],
+        "r": 23.356,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.612,
+          4.806,
+          96.0
+        ],
+        "b": [
+          64.612,
+          4.806,
+          96.25
+        ],
+        "r": 23.406,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.638,
+          4.819,
+          96.25
+        ],
+        "b": [
+          64.638,
+          4.819,
+          96.5
+        ],
+        "r": 23.459,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.662,
+          4.831,
+          96.5
+        ],
+        "b": [
+          64.662,
+          4.831,
+          96.75
+        ],
+        "r": 23.516,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.688,
+          4.844,
+          96.75
+        ],
+        "b": [
+          64.688,
+          4.844,
+          97.0
+        ],
+        "r": 23.576,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.713,
+          4.856,
+          97.0
+        ],
+        "b": [
+          64.713,
+          4.856,
+          97.25
+        ],
+        "r": 23.641,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.737,
+          4.869,
+          97.25
+        ],
+        "b": [
+          64.737,
+          4.869,
+          97.5
+        ],
+        "r": 23.709,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.763,
+          4.881,
+          97.5
+        ],
+        "b": [
+          64.763,
+          4.881,
+          97.75
+        ],
+        "r": 23.782,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.787,
+          4.894,
+          97.75
+        ],
+        "b": [
+          64.787,
+          4.894,
+          98.0
+        ],
+        "r": 23.861,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.812,
+          4.906,
+          98.0
+        ],
+        "b": [
+          64.812,
+          4.906,
+          98.25
+        ],
+        "r": 23.946,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.838,
+          4.919,
+          98.25
+        ],
+        "b": [
+          64.838,
+          4.919,
+          98.5
+        ],
+        "r": 24.038,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.862,
+          4.931,
+          98.5
+        ],
+        "b": [
+          64.862,
+          4.931,
+          98.75
+        ],
+        "r": 24.139,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.888,
+          4.944,
+          98.75
+        ],
+        "b": [
+          64.888,
+          4.944,
+          99.0
+        ],
+        "r": 24.251,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.912,
+          4.956,
+          99.0
+        ],
+        "b": [
+          64.912,
+          4.956,
+          99.25
+        ],
+        "r": 24.376,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.938,
+          4.969,
+          99.25
+        ],
+        "b": [
+          64.938,
+          4.969,
+          99.5
+        ],
+        "r": 24.521,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.963,
+          4.981,
+          99.5
+        ],
+        "b": [
+          64.963,
+          4.981,
+          99.75
+        ],
+        "r": 24.695,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.987,
+          4.994,
+          99.75
+        ],
+        "b": [
+          64.987,
+          4.994,
+          100.0
+        ],
+        "r": 24.926,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          65.013,
+          5.006,
+          100.0
+        ],
+        "b": [
+          65.013,
+          5.006,
+          100.25
+        ],
+        "r": 25.486,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          65.037,
+          5.019,
+          100.25
+        ],
+        "b": [
+          65.037,
+          5.019,
+          100.5
+        ],
+        "r": 25.486,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          65.062,
+          5.031,
+          100.5
+        ],
+        "b": [
+          65.062,
+          5.031,
+          100.75
+        ],
+        "r": 25.486,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          65.088,
+          5.044,
+          100.75
+        ],
+        "b": [
+          65.088,
+          5.044,
+          101.0
+        ],
+        "r": 25.486,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          65.112,
+          5.056,
+          101.0
+        ],
+        "b": [
+          65.112,
+          5.056,
+          101.25
+        ],
+        "r": 25.486,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          65.138,
+          5.069,
+          101.25
+        ],
+        "b": [
+          65.138,
+          5.069,
+          101.5
+        ],
+        "r": 25.486,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          65.162,
+          5.081,
+          101.5
+        ],
+        "b": [
+          65.162,
+          5.081,
+          101.75
+        ],
+        "r": 25.486,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          65.188,
+          5.094,
+          101.75
+        ],
+        "b": [
+          65.188,
+          5.094,
+          102.0
+        ],
+        "r": 25.486,
+        "basis": "catalogue",
+        "note": "runner 3 bore (46/42 mm read from the catalogue), inscribed step"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -27.5,
+          -27.0,
+          -1.0
+        ],
+        "b": [
+          -27.5,
+          -27.0,
+          26.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "lower bolt hole (M6 clearance assumed) and stud path"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -27.5,
+          -27.0,
+          11.5
+        ],
+        "b": [
+          -27.5,
+          -27.0,
+          26.0
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "nut / socket clearance above the lower boss (limited by the runner wall)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          27.5,
+          -27.0,
+          -1.0
+        ],
+        "b": [
+          27.5,
+          -27.0,
+          26.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "lower bolt hole (M6 clearance assumed) and stud path"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          27.5,
+          -27.0,
+          11.5
+        ],
+        "b": [
+          27.5,
+          -27.0,
+          26.0
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "nut / socket clearance above the lower boss (limited by the runner wall)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          28.0,
+          -1.0
+        ],
+        "b": [
+          0.0,
+          28.0,
+          26.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "lower bolt hole (M6 clearance assumed) and stud path"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -32.5,
+          29.0,
+          74.0
+        ],
+        "b": [
+          -32.5,
+          29.0,
+          101.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "upper bolt hole (M6 clearance assumed) and stud path"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -32.5,
+          29.0,
+          74.0
+        ],
+        "b": [
+          -32.5,
+          29.0,
+          88.5
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "nut / socket clearance under the upper boss (limited by the runner wall)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          32.5,
+          29.0,
+          74.0
+        ],
+        "b": [
+          32.5,
+          29.0,
+          101.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "upper bolt hole (M6 clearance assumed) and stud path"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          32.5,
+          29.0,
+          74.0
+        ],
+        "b": [
+          32.5,
+          29.0,
+          88.5
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "nut / socket clearance under the upper boss (limited by the runner wall)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          -27.0,
+          74.0
+        ],
+        "b": [
+          0.0,
+          -27.0,
+          101.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "upper bolt hole (M6 clearance assumed) and stud path"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          -27.0,
+          74.0
+        ],
+        "b": [
+          0.0,
+          -27.0,
+          88.5
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "nut / socket clearance under the upper boss (limited by the runner wall)"
+      }
+    ],
+    "supports": [
+      {
+        "type": "box",
+        "min": [
+          -94.0,
+          -35.0,
+          -1
+        ],
+        "max": [
+          94.0,
+          35.0,
+          1
+        ],
+        "basis": "assumption",
+        "note": "head flange face clamped to the cylinder head"
+      }
+    ],
+    "load_cases": [
+      {
+        "name": "lateral",
+        "basis": "assumption",
+        "note": "throttle body / plenum share 1.5 kg x 20 g on the throttle flange, along the runner row (no published value)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  -91.0,
+                  -32.0,
+                  99.0
+                ],
+                "max": [
+                  91.0,
+                  32.0,
+                  101.0
+                ]
+              }
+            ],
+            "force_N": [
+              300,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "fore_aft",
+        "basis": "assumption",
+        "note": "same 300 N across the runner row",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  -91.0,
+                  -32.0,
+                  99.0
+                ],
+                "max": [
+                  91.0,
+                  32.0,
+                  101.0
+                ]
+              }
+            ],
+            "force_N": [
+              0,
+              300,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "vertical",
+        "basis": "assumption",
+        "note": "same 300 N toward the head; the 10 kPa screen pressure adds about 50 N on the three bores",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  -91.0,
+                  -32.0,
+                  99.0
+                ],
+                "max": [
+                  91.0,
+                  32.0,
+                  101.0
+                ]
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              -350
+            ]
+          }
+        ]
+      }
+    ],
+    "volume_fraction": 0.25,
+    "filter_radius_mm": 8.25,
+    "iterations": 45
+  },
+  "shaping": {
+    "smooth_mm": 3.3,
+    "blend_mm": 0.6,
+    "blend_note": "PicoGK Smoothen offsets inward first: the blend stays below half the 2 mm runner wall",
+    "base_stl": "parts/picogk-catalog/out/993-ENG-THREE-RUNNER-INTAKE-ALSI10MG-F0-0001-functional.stl",
+    "lattice_grey": false
+  }
+}

@@ -52,8 +52,13 @@ The repository has withdrawn several, listed
 
 | date | change |
 |---|---|
-| 2026-10-09 | **Two monocoque architectures in torsion**: on the same mesh and load, closed sections formed by the skin are 1.4 to 1.9 times stiffer per kilogram than tubes tangent to it, at all three meshes. A ranking of two hypotheses. [Comparison](twins/964-chassis/monocoque/README.md#two-architectures-one-load-case) |
-| 2026-10-09 | **Torsion of the monocoque architecture**: K about 29,500 N·m/deg in steel and 22,300 in CFRP (75 kg), stable within 7% over three meshes, more than five times the open shell; carbon gives ×1.15 to ×1.28 per kilogram. A model value, not a car's. [Torsion](twins/964-chassis/monocoque/README.md#torsion-of-the-monocoque-architecture) |
+| 2026-10-12 | **Monocoque in bending**: between the axles, the skin boxes stiffen the shell about four times (five to fifteen in torsion). Same cabin members, other weights: the sills lead (28-37% of the cabin's bending stiffness), the door rings follow; the members torsion would prune cost about 1%. Torsion decides the architecture. [Bending](twins/964-chassis/monocoque/README.md#bending-the-same-members-other-weights) |
+| 2026-10-12 | **Tubes meshed as shells**: bonded along their line of tangency, the tubes leave the skin between them open, and the model keeps softening with the mesh; the skin-formed boxes, stable, lead by ×1.18 per kg on the finest mesh. The direction holds: form the closed sections with the skin. [Comparison](twins/964-chassis/monocoque/README.md#two-architectures-one-load-case) |
+| 2026-10-11 | **Tubes against skin boxes: the joint decides**: tied to the skin over a bonded strip, the tube model converges, but its K follows the strip width (23,700 to 57,500 N·m/deg, the skin boxes 35,500 in between). The ranking is not settled with beam tubes; the tube-to-skin joint is the design point. [Comparison](twins/964-chassis/monocoque/README.md#two-architectures-one-load-case) |
+| 2026-10-11 | **Monocoque torsion corrected, and where the carbon pays**: the bulkheads were missing from every torsion model since 2026-10-08; with them the open shell is 3,209 N·m/deg and the CFRP monocoque about 35,500. The tube-versus-box ranking is not settled. A ply on the skin of a closed section returns 4-7 times more than on the floor or bulkheads; an F1 at the same mass gains 6%. [Corrections](twins/964-chassis/monocoque/README.md#corrections-2026-10-11) |
+| 2026-10-10 | **What each monocoque member is worth**: the cabin is carried by the door rings, the windscreen frame, the quarter-window rings and the sills; the engine-lid ring is worth nothing in torsion; the weak members removed together cost 12-15% of the cabin stiffness for 8-12 kg. [Members](twins/964-chassis/monocoque/README.md#what-each-member-is-worth) *Values superseded on 2026-10-11.* |
+| 2026-10-09 | **Two monocoque architectures in torsion**: on the same mesh and load, closed sections formed by the skin are 1.4 to 1.9 times stiffer per kilogram than tubes tangent to it, at all three meshes. A ranking of two hypotheses. [Comparison](twins/964-chassis/monocoque/README.md#two-architectures-one-load-case) *Values superseded on 2026-10-11.* |
+| 2026-10-09 | **Torsion of the monocoque architecture**: K about 29,500 N·m/deg in steel and 22,300 in CFRP (75 kg), stable within 7% over three meshes, more than five times the open shell; carbon gives ×1.15 to ×1.28 per kilogram. A model value, not a car's. [Torsion](twins/964-chassis/monocoque/README.md#torsion-of-the-monocoque-architecture) *Values superseded on 2026-10-11.* |
 | 2026-10-08 | **A ZESAD-type carbon monocoque in PicoGK**, inside the traced shell: closed sections around every aperture, boxed sills, tunnel and rails, sandwich floor and bulkheads; about 95 kg from assumed layups. A design envelope, not a part. [Monocoque](twins/964-chassis/monocoque/picogk/README.md) |
 | 2026-10-08 | **A 911-shaped monocoque shell**: outline traced from the workshop manual's plate 50-05a, sections modelled, a first whole-body torsion run; it replaces the box cell in the banner. [Shell](twins/964-chassis/monocoque/README.md) |
 | 2026-10-08 | **964 datum chain closed** from the workshop manual's own plates (50-02, 50-03, 50-05a): every suspension and power-unit mount of the monocoque interface contract now has a fore-aft position, checked against the underside scan. [Details](twins/964-chassis/README.md#the-longitudinal-chain-closed-from-plate-50-05a) |
@@ -170,7 +175,7 @@ between them (tumblehome, barrel sides, 880 mm beltline) are modelled.
 
 A first torsion run on it, uniform 0.8 mm steel with every aperture open,
 puts the load around the windscreen frame, the A-pillars, the door corners and
-the C-pillars: the open shell a monocoque has to close. Its K, 2,261 N·m/deg,
+the C-pillars: the open shell a monocoque has to close. Its K, 3,209 N·m/deg,
 belongs to that surface model, not to a 964.
 
 Inside that shell, [a ZESAD-type carbon monocoque](twins/964-chassis/monocoque/picogk/README.md)
@@ -178,8 +183,8 @@ is generated in voxels with PicoGK. Each aperture gets a closed section and
 the sills, tunnel and rails are boxes, so the closures the box-cell study
 ranked first are there by construction. Member sizes and layups are
 hypotheses. In torsion, on the same mesh and load as the open shell, the
-architecture is more than five times stiffer. Its K is stable within 7%
-across meshes, while the open shell's is not
+architecture is more than five times stiffer. Its K is stable within 2%
+on the finer meshes, while the open shell's is not
 ([torsion](twins/964-chassis/monocoque/README.md#torsion-of-the-monocoque-architecture)).
 
 ![A ZESAD-type monocoque generated with PicoGK](twins/964-chassis/monocoque/evidence/zesad-monocoque-turntable.gif)

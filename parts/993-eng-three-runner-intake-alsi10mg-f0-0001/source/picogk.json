@@ -1,14 +1,14 @@
 {
   "part_id": "993-ENG-THREE-RUNNER-INTAKE-ALSI10MG-F0-0001",
   "name": "993 three-runner intake manifold, AlSi10Mg (PicoGK)",
-  "generator": "three_runner_intake",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-eng-three-runner-intake-alsi10mg-f0-0001.json",
   "porsche_part_numbers": [],
   "safety_class": "functional",
   "material_candidate": "AlSi10Mg LPBF",
   "density_g_cm3": 2.67,
   "voxel_mm": 0.4,
-  "picogk_enhancement": "Three offset conical runners with bellmouth entries radiused into the upper flange, filleted runner-to-flange roots, rounded flanges carrying three bolt bosses each; one body, three open passages.",
+  "picogk_enhancement": "Bionic: legacy runners, bellmouths and flanges kept exactly (bores cut as inscribed steps of the same cones); webs and struts between the runners and the two flanges grown by 3D SIMP topology optimization (bionic.json, topopt.py) under assumed throttle-side loads of 300 N lateral, 300 N fore-aft and 350 N vertical (1.5 kg x 20 g + screen pressure), head flange clamped. Loads are assumptions until measured.",
   "parameters": {
     "top_bore_diameter_mm": {
       "value": 46.0,
@@ -145,5 +145,9 @@
     "throttle body / ITB flange face and bolt pattern",
     "PMO bolt positions (three bolts stated, not located)"
   ],
-  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file"
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
+  "envelope_axes": {
+    "height_mm": "z"
+  },
+  "envelope_mode": "max"
 }

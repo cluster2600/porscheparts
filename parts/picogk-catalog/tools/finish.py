@@ -77,6 +77,9 @@ def main():
     tol = max(1.5, 2 * voxel)
     envelope = []
     axes = spec.get("envelope_axes", {})          # optional {"param": "x"|"y"|"z"}: check that axis only
+    # "match" (default): the model fills the published envelope; "max" (bionic
+    # parts): the published envelope is the design domain, the model must fit in it.
+    mode = spec.get("envelope_mode", "match")
     for key in spec.get("envelope", []):
         p = spec["parameters"][key]
         if key in axes:
@@ -84,7 +87,8 @@ def main():
         else:                                     # no axis given: nearest extent (looser for cube-like boxes)
             nearest = min(size, key=lambda s: abs(s - p["value"]))
         envelope.append({"parameter": key, "basis": p["basis"], "value_mm": p["value"], "axis": axes.get(key, "nearest"),
-                         "model_extent_mm": round(nearest, 2), "ok": abs(nearest - p["value"]) <= tol})
+                         "model_extent_mm": round(nearest, 2), "mode": mode,
+                         "ok": (nearest <= p["value"] + tol) if mode == "max" else abs(nearest - p["value"]) <= tol})
     qa = {
         "bodies": int((signed > tiny).sum()),
         "sealed_voids": int((signed < -tiny).sum()),

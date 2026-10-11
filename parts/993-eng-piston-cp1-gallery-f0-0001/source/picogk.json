@@ -1,14 +1,14 @@
 {
   "part_id": "993-ENG-PISTON-CP1-GALLERY-F0-0001",
-  "name": "M64/60 piston with cooling gallery, CP1 F0 concept (PicoGK)",
-  "generator": "piston_cooling_gallery",
+  "name": "M64/60 piston with cooling gallery, CP1 bionic under-crown F0 concept (PicoGK)",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-eng-piston-cp1-gallery-f0-0001.json",
   "porsche_part_numbers": [],
   "safety_class": "prohibited_pending_engineering",
   "material_candidate": "Aheadd CP1 LPBF (screening only)",
   "density_g_cm3": 2.67,
   "voxel_mm": 0.5,
-  "picogk_enhancement": "Toroidal cooling gallery under the crown opened by two radial depowdering ports; slipper skirt with recessed pin-side panels and a conformal under-crown cavity; pin-boss stubs with circlip grooves hung from the crown by load webs; spherical crown dish, top land, three ring grooves and oil-drain holes; all joints filleted by smooth-min blends. Replaces a cylinder with a through bar boss.",
+  "picogk_enhancement": "Bionic: the under-crown structure from crown to pin bosses is grown by 3D SIMP topology optimisation (bionic.json, topopt.py) for three stated load cases - 94.2 kN synthetic peak gas load (12 MPa x 100 mm bore), 11 kN TDC inertia and 7.5 kN skirt side thrust - with the pin fixed in the boss bores; PicoGK smooths the density into organic struts and fuses them with the exact crown (dish, cooling gallery and depowdering ports), ring belt (three grooves, drain holes) and a 3.5 mm slipper skirt (engine/bionic_bases.py), pin bosses, pin bore and circlip grooves; the rod small-end swing space is kept free. Loads are screening assumptions, not measurements.",
   "parameters": {
     "piston_outer_diameter_mm": {
       "value": 99.0,
@@ -72,13 +72,6 @@
       "basis": "assumption",
       "source": null,
       "note": "gap between boss stubs for the small end (19.58 mm wide)"
-    },
-    "boss_web_thickness_mm": {
-      "value": 8.0,
-      "unit": "mm",
-      "basis": "assumption",
-      "source": null,
-      "note": "crown-to-boss load web"
     },
     "ring_groove_root_diameter_mm": {
       "value": 93.0,
@@ -247,6 +240,13 @@
       "basis": "assumption",
       "source": null,
       "note": "pin circlip groove position"
+    },
+    "skirt_wall_mm": {
+      "value": 3.5,
+      "unit": "mm",
+      "basis": "assumption",
+      "source": null,
+      "note": "bionic: thin slipper-skirt wall below the ring belt (radial), the optimised struts stiffen it from inside"
     }
   },
   "open_interfaces": [
@@ -257,6 +257,14 @@
     "oil jet and gallery port closure"
   ],
   "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file; prohibited pending engineering, never to be installed in an engine",
-  "envelope": [],
-  "max_tris": 90000
+  "envelope": [
+    "piston_outer_diameter_mm",
+    "piston_height_mm"
+  ],
+  "max_tris": 90000,
+  "envelope_axes": {
+    "piston_outer_diameter_mm": "x",
+    "piston_height_mm": "z"
+  },
+  "envelope_mode": "max"
 }

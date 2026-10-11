@@ -1,0 +1,265 @@
+{
+  "part_id": "993-ENG-INTERCOOLER-BRACKET-TI-F0-0001",
+  "method": "3D SIMP topology optimization (parts/picogk-catalog/bionic/topopt.py), then PicoGK smoothing and exact functional features",
+  "basis_note": "Interfaces and loads are NOT measured. Bore and pedestal positions come from the F0 concept (source/intercooler_bracket.py); the vertical load is the concept's own screening load; the other cases are assumptions. The resulting shape is a load-path concept, to be recomputed once interfaces and loads are measured.",
+  "optimization": {
+    "element_mm": 2.0,
+    "grid_min": [
+      0,
+      0,
+      0
+    ],
+    "grid_max": [
+      255,
+      80,
+      23
+    ],
+    "design": [
+      {
+        "type": "box",
+        "min": [
+          0,
+          0,
+          0
+        ],
+        "max": [
+          255,
+          80,
+          23
+        ],
+        "basis": "published",
+        "note": "FVD11011050 envelope 255 x 80 x 23 mm"
+      }
+    ],
+    "solid": [
+      {
+        "type": "cyl",
+        "a": [
+          15,
+          20,
+          0
+        ],
+        "b": [
+          15,
+          20,
+          8
+        ],
+        "r": 15,
+        "basis": "assumption",
+        "note": "left body-side pad around END_BORES[0]"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          241,
+          58,
+          0
+        ],
+        "b": [
+          241,
+          58,
+          8
+        ],
+        "r": 14,
+        "basis": "assumption",
+        "note": "right body-side pad around END_BORES[1]"
+      },
+      {
+        "type": "box",
+        "min": [
+          107.5,
+          44,
+          0
+        ],
+        "max": [
+          132.5,
+          68,
+          23
+        ],
+        "basis": "assumption",
+        "note": "intercooler pedestal PEDESTAL_X/Y_MM 120/56, 25 x 24 mm"
+      }
+    ],
+    "void": [
+      {
+        "type": "cyl",
+        "a": [
+          15,
+          20,
+          -1
+        ],
+        "b": [
+          15,
+          20,
+          24
+        ],
+        "r": 6,
+        "basis": "assumption",
+        "note": "left bore 12 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          241,
+          58,
+          -1
+        ],
+        "b": [
+          241,
+          58,
+          24
+        ],
+        "r": 5,
+        "basis": "assumption",
+        "note": "right bore 10 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          120,
+          56,
+          -1
+        ],
+        "b": [
+          120,
+          56,
+          24
+        ],
+        "r": 3,
+        "basis": "assumption",
+        "note": "pedestal bore 6 mm"
+      }
+    ],
+    "supports": [
+      {
+        "type": "cyl",
+        "a": [
+          15,
+          20,
+          -1
+        ],
+        "b": [
+          15,
+          20,
+          9
+        ],
+        "r": 8,
+        "basis": "assumption",
+        "note": "clamped at the left body bolt"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          241,
+          58,
+          -1
+        ],
+        "b": [
+          241,
+          58,
+          9
+        ],
+        "r": 7,
+        "basis": "assumption",
+        "note": "clamped at the right body bolt"
+      }
+    ],
+    "load_cases": [
+      {
+        "name": "vertical",
+        "basis": "assumption",
+        "note": "SCREEN_FORCE_N = 400 N of the F0 engineering screen, on the pedestal top",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  107.5,
+                  44,
+                  21.5
+                ],
+                "max": [
+                  132.5,
+                  68,
+                  23.5
+                ]
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              -400
+            ]
+          }
+        ]
+      },
+      {
+        "name": "lateral",
+        "basis": "assumption",
+        "note": "half the vertical load sideways (cornering), no published value",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  107.5,
+                  44,
+                  21.5
+                ],
+                "max": [
+                  132.5,
+                  68,
+                  23.5
+                ]
+              }
+            ],
+            "force_N": [
+              0,
+              200,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "fore_aft",
+        "basis": "assumption",
+        "note": "half the vertical load fore-aft (braking), no published value",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  107.5,
+                  44,
+                  21.5
+                ],
+                "max": [
+                  132.5,
+                  68,
+                  23.5
+                ]
+              }
+            ],
+            "force_N": [
+              200,
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    ],
+    "volume_fraction": 0.14,
+    "filter_radius_mm": 6.0,
+    "iterations": 45
+  },
+  "shaping": {
+    "smooth_mm": 3.0,
+    "lattice_grey": false,
+    "blend_mm": 2.0
+  }
+}
