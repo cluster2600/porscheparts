@@ -13,21 +13,22 @@ from run_case import ascii_faces, inspect_mesh, label_list
 TOL = 1e-12  # Metres; below 1e-8 of the smallest admitted cell edge.
 
 
-def rectangle(vertices):
-    lo, hi = vertices.min(axis=0), vertices.max(axis=0)
+def rectangles(vertices):
+    lo, hi = vertices.min(axis=1), vertices.max(axis=1)
     extent = hi - lo
-    axis = int(np.argmin(extent))
-    if extent[axis] > TOL or np.count_nonzero(extent > TOL) != 2:
+    axis = np.argmin(extent, axis=1)
+    rows = np.arange(len(vertices))
+    if np.any(extent[rows, axis] > TOL) or np.any(np.count_nonzero(extent > TOL, axis=1) != 2):
         raise ValueError("Face is not an axis-aligned plane")
-    edges = np.roll(vertices, -1, axis=0) - vertices
-    area_vector = .5 * np.cross(vertices - vertices[0], np.roll(vertices, -1, axis=0) - vertices[0]).sum(axis=0)
-    area = abs(area_vector[axis])
-    expected = np.prod(np.delete(extent, axis))
-    if abs(area - expected) > expected * 1e-7:
+    edges = np.roll(vertices, -1, axis=1) - vertices
+    area_vector = .5 * np.cross(vertices - vertices[:, :1], np.roll(vertices, -1, axis=1) - vertices[:, :1]).sum(axis=1)
+    area = abs(area_vector[rows, axis])
+    expected = extent[rows, (axis + 1) % 3] * extent[rows, (axis + 2) % 3]
+    if np.any(abs(area - expected) > expected * 1e-7):
         raise ValueError("Face does not cover its bounding rectangle")
-    sign = 1 if area_vector[axis] > 0 else -1
-    turns = np.cross(edges, np.roll(edges, -1, axis=0))[:, axis] * sign
-    if turns.min() < -expected * 1e-7:
+    sign = np.where(area_vector[rows, axis] > 0, 1, -1)
+    turns = np.cross(edges, np.roll(edges, -1, axis=1))[rows, :, axis] * sign[:, None]
+    if np.any(turns.min(axis=1) < -expected * 1e-7):
         raise ValueError("Non-convex face")
     return lo, hi, axis, sign, area
 
@@ -41,8 +42,13 @@ def box_proof(points, faces, owners, neighbours):
     axes = np.empty(len(faces), dtype=np.int8)
     signs = np.empty(len(faces), dtype=np.int8)
     areas = np.empty(len(faces))
-    for i, face in enumerate(faces):
-        lows[i], highs[i], axes[i], signs[i], areas[i] = rectangle(points[face])
+    lengths = np.fromiter(map(len, faces), dtype=np.int64, count=len(faces))
+    for length in np.unique(lengths):
+        selected = np.flatnonzero(lengths == length)
+        for start in range(0, len(selected), 20000):
+            ids = selected[start:start + 20000]
+            vertices = points[np.stack([faces[i] for i in ids])]
+            lows[ids], highs[ids], axes[ids], signs[ids], areas[ids] = rectangles(vertices)
     for cells, size in ((owners, len(owners)), (neighbours, len(neighbours))):
         np.minimum.at(bounds_lo, cells, lows[:size])
         np.maximum.at(bounds_hi, cells, highs[:size])
