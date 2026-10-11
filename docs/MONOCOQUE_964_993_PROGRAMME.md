@@ -139,11 +139,14 @@ the architecture is still `prohibited_pending_engineering`.
 
 **Two PicoGK architectures compared (2026-10-09).** The second study,
 `picogk-rings/`, closes the body with discrete tubes tangent to the skin.
-On the same mesh and load, the skin-formed boxes lead per kilogram on the
-two finer meshes (×1.08, ×1.29) and the tubes on the coarsest (×1.23). The
-tube model is far from converged. The trend favours closed sections formed
-with the skin, but it is not established. (Corrected on 2026-10-11: the
-first comparison, without bulkheads, claimed ×1.4 to ×1.9 at every mesh.)
+On the same mesh and load, the result of the tubes hinges on how they are
+bonded to the skin. Tied at single points, they sink into the skin and the
+model never converges. Tied over a strip, it converges, but K then follows
+the strip width assumed: from ×0.78 to ×1.89 the skin-formed boxes per
+kilogram, between 0 and 60 mm. The ranking is not settled. What it does
+show is the design point: a tube architecture is as stiff as its
+tube-to-skin joint, which the skin-formed boxes do not have. (Corrected on
+2026-10-11: the first comparison claimed ×1.4 to ×1.9 for the boxes.)
 
 **What each member is worth (2026-10-11).** Removing the members of
 `picogk/` one by one shows that the cabin is carried by the door rings

@@ -69,7 +69,8 @@ in steel and 35,500 in the assumed CFRP layup (84 kg without tubs or rear
 rails). The two finer meshes agree within 2%. The open shell, on the same
 mesh, is not converged and is more than five times softer. Against the tube
 architecture of [`../picogk-rings/`](../picogk-rings/README.md), the
-ranking per kilogram depends on the mesh. Values corrected on 2026-10-11:
+ranking per kilogram depends on the tube-to-skin bond assumed: it is not
+settled. Values corrected on 2026-10-11:
 the bulkheads were missing before.
 See [the torsion section](../README.md#torsion-of-the-monocoque-architecture).
 

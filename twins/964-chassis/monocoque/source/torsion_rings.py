@@ -21,8 +21,10 @@ re-guessed here:
   section that has the tube's area, bending and torsion stiffness
   (torsion.tube_equivalent); tube nodes closer than 20 mm are welded, which
   joins the rings where PicoGK fuses them; every tube node within its radius
-  plus 40 mm of the skin is tied to the nearest skin node by a short stiff
-  beam, the tangent bond. Checked on a cantilever plate with a tube: 12%
+  plus 40 mm of the skin is tied by short stiff beams to every skin node
+  within 20 mm of its tangent point: a bonded strip about 40 mm wide
+  (ASSUMED). Tied to a single skin node, as first done, the tube sank into
+  the skin as the mesh was refined and K lost 15% per refinement. Checked on a cantilever plate with a tube: 12%
   stiffer than composite beam theory, the side S3 errs on;
 - floor and bulkheads: the two 1.5 mm faces, as torsion_monocoque.py counts
   sandwiches (the core is in the mass).
@@ -32,8 +34,9 @@ agree on: uniform 0.8 mm steel (shells and tube walls), the study's assumed
 CFRP layup, and the same CFRP model without its tubes, which measures what
 the tubes bring. These are values of this model, not of a vehicle.
 
-    python3 torsion_rings.py           # cadsim image, shapely from the PYLIB
-    python3 torsion_rings.py --quick   # published density only
+    python3 torsion_rings.py                      # cadsim image, shapely from the PYLIB
+    python3 torsion_rings.py --quick              # published density only
+    python3 torsion_rings.py --bond-sensitivity   # then: other bond widths
 """
 import argparse
 import importlib.util
@@ -60,6 +63,9 @@ SEGMENT_MM = 40.0
 WELD_MM = 20.0
 LINK_REACH_MM = 40.0
 LINK_DIAMETER_MM, LINK_E = 20.0, 20 * tm.STEEL["E"]
+BOND_RADIUS_MM = 20.0          # ASSUMED bonded strip about 40 mm wide under each tube; 0 = point ties
+BOND_SENSITIVITY_MM = (0.0, 10.0, 30.0)
+DENSITIES = [(210, 0.5), (300, 0.71), (bs.N_STATIONS, 1.0)]
 GROUPS = {"front_ring": "front_ring", "b_ring": "b_ring", "rear_ring": "rear_ring",
           "roof_rails": "roof_rail", "arches": "arch"}
 
@@ -136,16 +142,25 @@ def tubes(P, geo, pts, n_skin):
             elements[group].append((a, base, b))
             base += 1
             length[group] += float(np.linalg.norm(pb - pa))
-    dist, near = cKDTree(pts[:n_skin]).query(tube_pts)
-    links = []
+    skin = cKDTree(pts[:n_skin])
+    dist, near = skin.query(tube_pts)
+    links, bonded = [], 0
     for k, (dd, s) in enumerate(zip(dist, near)):
-        if dd < od[keep[k]] / 2 + LINK_REACH_MM:
-            new.append([(pts[s] + tube_pts[k]) / 2])
-            links.append((int(s), base, len(pts) + k))
+        if dd >= od[keep[k]] / 2 + LINK_REACH_MM:
+            continue
+        bonded += 1
+        # the bond is a strip, not a point: every skin node within
+        # BOND_RADIUS_MM of the tangent point (a point tie sinks into a
+        # finer mesh, and the model then never converges)
+        patch = skin.query_ball_point(pts[s], BOND_RADIUS_MM) if BOND_RADIUS_MM > 0 else [s]
+        for q in sorted(set(patch) | {int(s)}):
+            new.append([(pts[q] + tube_pts[k]) / 2])
+            links.append((int(q), base, len(pts) + k))
             base += 1
     allpts = np.vstack([pts] + [np.atleast_2d(x) for x in new])
     info = {"tube_nodes": len(tube_pts), "welded": int(len(nodes) - len(keep)), "links": len(links),
-            "unlinked_tube_nodes": int(len(tube_pts) - len(links)),
+            "bonded_tube_nodes": bonded, "unlinked_tube_nodes": int(len(tube_pts) - bonded),
+            "bond_radius_mm": BOND_RADIUS_MM,
             "tube_length_m": {g: round(v / 1000, 2) for g, v in length.items()}}
     return allpts, {g: np.array(e, int).reshape(-1, 3) for g, e in elements.items()}, np.array(links, int), length, info
 
@@ -205,13 +220,45 @@ def solve_density(n_stations, res, P, geo, stations, keep_fields):
     return row, mesh, extra, model
 
 
+def bond_sensitivity(P, geo):
+    """The CFRP tube model with other bonded-strip widths, on the two finer
+    meshes, added to OUT: the result hinges on this assumption."""
+    global BOND_RADIUS_MM
+    doc = json.loads(OUT_JSON.read_text())
+    base, rows = BOND_RADIUS_MM, []
+    for radius in BOND_SENSITIVITY_MM:
+        BOND_RADIUS_MM = radius
+        row = {"bond_radius_mm": radius, "K": [], "K_repeats": [], "links": []}
+        for n, res in DENSITIES[1:]:
+            s = None if n == bs.N_STATIONS else bs.structural(n, res)[2]
+            s, p, tri = tr.load_shell(s)
+            rear, fl, fr = tr.supports(s, p)
+            pts, all_tri, kind, *_ = tm.build(s, p, tri, bands(P, geo))
+            allpts, elements, links, length, _ = tubes(P, geo, pts, len(p))
+            secs, beams, mass = cases(P, kind, tm.areas(pts, all_tri), elements, links, length)["rings, CFRP layup"]
+            k, _, _, reps = tm.solve_repeated(allpts, all_tri, secs, rear, fl, fr, beams=beams)
+            row["K"].append(round(k))
+            row["K_repeats"].append(reps)
+            row["links"].append(len(links))
+            print(f"bond radius {radius:.0f} mm, {n} sections: K {k:.0f} ({len(links)} links)", flush=True)
+        rows.append(row)
+    BOND_RADIUS_MM = base
+    doc["bond_sensitivity"] = {"case": "rings, CFRP layup", "meshes": [n for n, _ in DENSITIES[1:]], "rows": rows,
+                               "note": "beams have rigid sections: a wider rigidly tied strip assumes the tube never "
+                                       "ovalizes (upper bound); a point tie sinks into the skin (lower bound)"}
+    OUT_JSON.write_text(json.dumps(doc, indent=1) + "\n")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--quick", action="store_true", help="published density only")
+    ap.add_argument("--bond-sensitivity", action="store_true", help="other bond widths, added to the JSON")
     a = ap.parse_args()
+    if a.bond_sensitivity:
+        return bond_sensitivity(*geometry())
     P, geo = geometry()
     stations = np.arange(-600, 2451, 50.0)
-    densities = [(bs.N_STATIONS, 1.0)] if a.quick else [(210, 0.5), (300, 0.71), (bs.N_STATIONS, 1.0)]
+    densities = [(bs.N_STATIONS, 1.0)] if a.quick else DENSITIES
     rows, meshes = [], []
     for n, res in densities:
         row, mesh, extra, model = solve_density(n, res, P, geo, stations, n == bs.N_STATIONS)
@@ -226,7 +273,8 @@ def main():
         "model": "shell-and-beam model of the closed-ring PicoGK study (../picogk-rings/); torsion load case of torsion.py",
         "classification": "values of this model under this load, not of a vehicle; prohibited_pending_engineering",
         "members": {"tubes": "B32 beams, solid circular section equivalent to each tube (area, bending, torsion); "
-                              f"nodes welded within {WELD_MM:.0f} mm; tied to the nearest skin node within radius + {LINK_REACH_MM:.0f} mm "
+                              f"nodes welded within {WELD_MM:.0f} mm; each node within radius + {LINK_REACH_MM:.0f} mm of the skin "
+                              f"tied to every skin node within {BOND_RADIUS_MM:.0f} mm of its tangent point (bonded strip, ASSUMED) "
                               f"by {LINK_DIAMETER_MM:.0f} mm beams at {LINK_E:.0f} MPa",
                     "sills_and_tunnel": "skin bands with an inner wall, as torsion_monocoque.py",
                     "sandwich": "faces only for stiffness; faces and core in the mass",
