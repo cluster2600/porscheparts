@@ -12,10 +12,12 @@ slug rules.
 
 Files under `evidence/` and `archive/` are skipped as sources: they are pinned
 and cannot be fixed in place. Links *into* them are still checked.
+Explicitly listed frozen documents elsewhere are hash-verified before exclusion.
 """
 from __future__ import annotations
 
 import argparse
+import hashlib
 import re
 import subprocess
 import sys
@@ -29,6 +31,12 @@ LINK = re.compile(r"(?<!!)\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)|!\[[^\]]*\]\
 HTML_SRC = re.compile(r"<(?:img|a)\s[^>]*(?:src|href)=\"([^\"]+)\"", re.I)
 HEADING = re.compile(r"^(#{1,6})\s+(.*?)\s*#*\s*$", re.M)
 EXPLICIT = re.compile(r"<a\s+(?:name|id)=\"([^\"]+)\"", re.I)
+
+# Frozen by assembly/verification.json; current downloads are in F1/REMOTE-ARCHIVE.md.
+PINNED_MARKDOWN = {
+    "twins/bionic-turbo-f0/assembly/README.md":
+        "9fb4e8e89acca8d39d8fc84ef9dcb179c9e70992662922b74655e423af059dbd",
+}
 
 
 def slug(text: str) -> str:
@@ -67,11 +75,18 @@ def main() -> int:
     known |= {d for f in list(known) for d in f.parents if ROOT in d.parents or d == ROOT}
     cache: dict[Path, set[str]] = {}
     broken = []
+    frozen = 0
     for f in files:
         parts = f.split("/")
         if "evidence" in parts or parts[0] == "archive":
             continue
         src = ROOT / f
+        if f in PINNED_MARKDOWN:
+            if hashlib.sha256(src.read_bytes()).hexdigest() != PINNED_MARKDOWN[f]:
+                broken.append((f, "assembly/verification.json", "changed pinned source"))
+            else:
+                frozen += 1
+            continue
         text = FENCE.sub("", src.read_text(encoding="utf-8", errors="replace"))
         targets = [m[0] or m[1] for m in LINK.findall(text)] + HTML_SRC.findall(text)
         for target in targets:
@@ -88,6 +103,8 @@ def main() -> int:
     for f, target, why in broken:
         print(f"{why:<15} {f}  ->  {target}")
     print(f"\n{len(broken)} broken link(s) in {len(files)} Markdown files")
+    if frozen:
+        print(f"{frozen} frozen source(s) hash-verified; historical links not checked")
     return 1 if a.strict and broken else 0
 
 
