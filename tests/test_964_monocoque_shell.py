@@ -106,6 +106,16 @@ class MonocoqueShellTests(unittest.TestCase):
             for fam, t in mm.items():
                 self.assertLessEqual(abs(t - r["f0_mm"][fam]), r["step_mm"] + 1e-9, fam)
 
+    def test_shell_tubes_leave_the_skin_open_and_trail_the_boxes_on_the_finest_mesh(self) -> None:
+        sh = json.loads((SHELL / "derived/torsion-shell-tubes.json").read_text(encoding="utf-8"))
+        self.assertIn("prohibited_pending_engineering", sh["classification"])
+        boxes = json.loads((SHELL / "derived/torsion-monocoque.json").read_text(encoding="utf-8"))["cases"]["monocoque, CFRP layup"]
+        t = sh["cases"]["rings, CFRP layup"]
+        self.assertTrue(all(b < 0.9 * a for a, b in zip(t["K"], t["K"][1:])))       # not converged
+        self.assertTrue(all(m["bonded"] > 0.95 * m["stations"] for m in sh["meshes"]))
+        lead = (boxes["K"][-1] / boxes["mass_kg"]) / (t["K"][-1] / t["mass_kg"])
+        self.assertGreater(lead, 1.1)                                             # boxes ahead on the finest mesh
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -100,7 +100,11 @@ compare with, and no 964 body-in-white mass is recorded in the repository.
   same model without its tubes. The result hinges on the bond: from 23,665
   (single-node ties, a lower bound) to 57,508 (60 mm strip, an upper bound,
   since a beam's section cannot ovalize). Against the skin-formed boxes of
-  `../picogk/` (35,462), the ranking is not settled. See
+  `../picogk/` (35,462), the ranking is not settled. With the tubes meshed
+  as shells and bonded along their line of tangency
+  (`../source/torsion_shell_tubes.py`), K is 25,895 on the finest mesh and
+  still falling: the skin between the tubes stays open. The skin boxes lead
+  there by ×1.18 per kg. See
   [two architectures, one load case](../README.md#two-architectures-one-load-case).
 - No layup: the 2 mm skin and 3 mm walls are placeholders, not plies.
 - No crash, strength, buckling, fatigue or delamination assessment.

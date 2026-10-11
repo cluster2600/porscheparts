@@ -172,9 +172,12 @@ def architectures(pv):
     rings = json.loads((DERIVED / "torsion-rings.json").read_text())
     tb = np.load(DERIVED / "torsion-monocoque-snapshot.npz")
     tg = np.load(DERIVED / "torsion-rings-model.npz")
+    shells_json = DERIVED / "torsion-shell-tubes.json"
+    shell = json.loads(shells_json.read_text()) if shells_json.exists() else None
+    shell_tubes = np.load(DERIVED / "torsion-shell-tubes-model.npz") if shell else None
     p = pv.Plotter(off_screen=True, shape=(1, 2), window_size=(2600, 900))
     for i, (t, title) in enumerate(((tb, "picogk/: closed sections formed by the skin"),
-                                    (tg, "picogk-rings/: tubes tangent to the skin"))):
+                                    (tg, "picogk-rings/: tubes tangent to the skin" + (", meshed as shells" if shell else "")))):
         pts, tri, kind = t["points"].astype(float), t["triangles"], t["kind"]
         p.subplot(0, i)
         p.set_background("#0e1218", top="#232b36")
@@ -183,7 +186,11 @@ def architectures(pv):
             if len(m):
                 p.add_mesh(pv.PolyData(pts, np.c_[np.full(len(m), 3), m].ravel()), color=colour, opacity=op,
                            smooth_shading=True, ambient=0.3)
-        if "tube_segments" in t.files:
+        if "tube_segments" in t.files and shell_tubes is not None:     # the tubes as meshed, with their walls
+            sp, stri, n0 = shell_tubes["points"].astype(float), shell_tubes["triangles"], int(shell_tubes["n_shell"])
+            m = stri[n0:]
+            p.add_mesh(pv.PolyData(sp, np.c_[np.full(len(m), 3), m].ravel()), color="#f07b3f", smooth_shading=True, ambient=0.3)
+        elif "tube_segments" in t.files:
             seg = t["tube_segments"]
             lines = pv.PolyData(pts, lines=np.c_[np.full(len(seg), 2), seg].ravel())
             p.add_mesh(lines.tube(radius=28.0), color="#f07b3f", smooth_shading=True, ambient=0.3)
@@ -197,6 +204,9 @@ def architectures(pv):
               (boxes, "monocoque, CFRP layup", "picogk/ (skin boxes)", "#f07b3f"),
               (rings, "rings, CFRP layup", "picogk-rings/ (tubes)", "#e9b44c"),
               (rings, "rings without tubes, CFRP layup", "picogk-rings/ without its tubes", "#4f9aa8")]
+    if shell:
+        series[2] = (rings, "rings, CFRP layup", "picogk-rings/, beam tubes on a 40 mm strip", "#9a7a3a")
+        series.append((shell, "rings, CFRP layup", "picogk-rings/, tubes meshed as shells", "#e9b44c"))
     for doc, key, label, colour in series:
         row = doc["cases"][key]
         k = np.array(row["K"], float)
@@ -208,13 +218,13 @@ def architectures(pv):
     if sens:                                     # the tube result hinges on the bond width
         row = rings["cases"]["rings, CFRP layup"]
         ks = [r["K"][-1] for r in sens["rows"]] + [row["K"][-1]]
-        ax.vlines(row["mass_kg"] + 1.2, min(ks), max(ks), color="#e9b44c", lw=6, alpha=0.35,
-                  label="picogk-rings/: bond strip 0 to 60 mm wide")
+        ax.vlines(row["mass_kg"] + 1.2, min(ks), max(ks), color="#9a7a3a", lw=6, alpha=0.35,
+                  label="picogk-rings/, beam tubes: bond strip 0 to 60 mm")
         for r in sens["rows"]:
-            ax.annotate(f"{2 * r['bond_radius_mm']:.0f} mm", (row["mass_kg"] + 2.2, r["K"][-1]), color="#e9b44c", fontsize=8,
+            ax.annotate(f"{2 * r['bond_radius_mm']:.0f} mm", (row["mass_kg"] + 2.2, r["K"][-1]), color="#9a7a3a", fontsize=8,
                         va="center")
         ax.annotate(f"{2 * rings['meshes'][-1]['tubes']['bond_radius_mm']:.0f} mm", (row["mass_kg"] + 2.2, row["K"][-1]),
-                    color="#e9b44c", fontsize=8, va="center")
+                    color="#9a7a3a", fontsize=8, va="center")
     for a in (ax, bx):
         a.set_facecolor("#0e1218")
         a.tick_params(colors="#9aa3ad")
