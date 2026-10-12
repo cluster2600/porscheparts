@@ -5,16 +5,23 @@ import json
 from pathlib import Path
 import re
 
-from test_qwen_935 import cases, exact_match
+
+def unique_object(pairs):
+    result = dict(pairs)
+    if len(result) != len(pairs):
+        raise ValueError('Duplicate JSON key')
+    return result
 
 
 def accept(text):
     match = re.fullmatch(r'```json\s*([\s\S]*?)\s*```', text.strip())
     payload = match.group(1) if match else text.strip()
-    expected = next(row['expected'] for row in cases() if row['id']=='six_centres')
-    if not exact_match(payload, expected):
+    expected = {'centres_mm':[[x,y,-205] for y in (-190,190) for x in (-115,0,115)],
+                'axis':'Y','classification':'hypothesis','scale_verified':False}
+    actual = json.loads(payload, object_pairs_hook=unique_object)
+    if json.dumps(actual,sort_keys=True,allow_nan=False) != json.dumps(expected,sort_keys=True):
         raise ValueError('Proposal differs from independently prescribed six-cylinder layout')
-    return json.loads(payload)
+    return actual
 
 
 if __name__ == '__main__':

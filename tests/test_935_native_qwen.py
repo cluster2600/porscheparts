@@ -8,12 +8,13 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT/'twins/935-horizontal-cooling-system-f0/source'))
 from accept_935_centres import accept
-from test_qwen_935 import cases
 
 
 class Qwen935Tests(unittest.TestCase):
     def setUp(self):
-        self.expected = next(row['expected'] for row in cases() if row['id']=='six_centres')
+        self.expected = {'centres_mm':[[-115,-190,-205],[0,-190,-205],[115,-190,-205],
+                                      [-115,190,-205],[0,190,-205],[115,190,-205]],
+                         'axis':'Y','classification':'hypothesis','scale_verified':False}
 
     def test_format_only_import_preserves_exact_prescribed_centres(self):
         payload = json.dumps(self.expected)
