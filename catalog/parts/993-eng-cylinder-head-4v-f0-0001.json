@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0.0",
   "part_id": "993-ENG-CYLINDER-HEAD-4V-F0-0001",
-  "name": "M64 four-valve cylinder head — creation preparation",
-  "description": "First part in the catalogue-led engine creation sequence. Continues the existing finned four-valve M64 cylinder-head research and its private scan-derived geometry. This record establishes scope, interfaces and verification work; it supplies no released replacement CAD or print file.",
+  "name": "Culasse M64 quatre soupapes à eau — préparation de création",
+  "description": "Direction décidée le 12 octobre 2026 : nouvelle culasse quatre soupapes à refroidissement par eau, inspirée des moteurs Group C 956/962 C. Les ailettes bioniques restent une étude antérieure conservée. La géométrie privée issue du proxy 935 est intacte ; les premiers passages proposés ne constituent pas une chemise étanche qualifiée.",
   "vehicle": {
     "generation": "993",
     "variants": [
@@ -53,6 +53,22 @@
         "license": "manufacturer-copyright-reference-only",
         "accessed_on": "2026-10-01",
         "notes": "Published 40 mm intake and 33 mm exhaust valve diameters and 95–102.7 mm bore range are benchmark values only. Nominal 11.5:1–12:1 compression ratio is not a turbo design target."
+      },
+      {
+        "title": "Porsche — 40 Years Group C, pages 18–19",
+        "url": "https://newsroom.porsche.com/dam/jcr:a6f33b52-c47d-47b4-98c1-7e963661f587/40%20Years%20Group%20C.pdf",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-10-12",
+        "notes": "Référence Group C : culasses à eau, circuits indépendants par banc et conduites près des passages échappement. Aucune cote 962 transférée. Le soudage culasse/cylindre décrit par Porsche ne constitue pas notre choix de fabrication."
+      },
+      {
+        "title": "Porsche — Turbo technology in motorsport",
+        "url": "https://newsroom.porsche.com/en/press-kits/50-years-porsche-turbo/Porsche-and-turbo-technology-in-motorsport--from-pioneer-to-world-champion.html",
+        "source_type": "manufacturer",
+        "license": "manufacturer-copyright-reference-only",
+        "accessed_on": "2026-10-12",
+        "notes": "Distingue la 962 IMSA initialement refroidie par air et la 962 C recevant aussi un 3,0 litres entièrement refroidi par eau."
       }
     ]
   },
@@ -94,7 +110,9 @@
       "twins/m64-cylinder-head/interface-contract.json",
       "twins/m64-cylinder-head/README.md",
       "catalog/sources/src-swindon-m64-24v-head-kit.json",
-      "catalog/scans/scan-935-xtreme-cylinder-head.json"
+      "catalog/scans/scan-935-xtreme-cylinder-head.json",
+      "twins/m64-cylinder-head/source/water-cooled-head/README.md",
+      "catalog/sources/src-porsche-group-c-water-cooling.json"
     ],
     "reviewed_by": "",
     "reviewed_on": null,
@@ -104,7 +122,10 @@
       "Existing native CAD and rejected mesh experiments are retained unchanged; this record does not claim a new complete head.",
       "Stud pattern, sealing register, hidden galleries and thermal loads are not established by catalogue images.",
       "Four-valve packaging, twin ignition, actuation, lubrication and cooling require their own checks.",
-      "LLM benchmark scores do not qualify CAD, CFD, alloy, printing, fitment or engine operation."
+      "LLM benchmark scores do not qualify CAD, CFD, alloy, printing, fitment or engine operation.",
+      "Le nouveau circuit eau est une hypothèse de routage : chaleur à évacuer, débit, pression, radiateur, pompe, liquide et alliage restent inconnus.",
+      "La lubrification huile est conservée ; le refroidissement air des cylindres reste le périmètre initial, à revoir au bilan thermique.",
+      "La décision de remplacer le refroidissement primaire par huile provient du choix utilisateur ; aucune simulation ne démontre ici son insuffisance."
     ]
   }
 }
