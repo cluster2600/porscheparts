@@ -62,14 +62,19 @@ Ils ne fournissent pas une masse physique sans calibration et densité qualifié
 
 La comparaison bidirectionnelle utilise des points uniformément répartis en
 aire et leur distance aux triangles. Elle se limite aux intervalles radiaux
-acquis de chaque pale, avec une garde de deux unités aux coupes. Tous les
+acquis de chaque pale, définis par la projection sur son axe radial, avec une
+garde de deux unités aux coupes. Tous les
 échantillons et les valeurs extrêmes sont conservés. Les pieds, extrémités et
 le moyeu extrapolés sont exclus de cette comparaison des zones acquises.
-Les RMS scan → candidat vont de **0,035 à 0,350 unité source** ; les percentiles
-95 % vont de **0,065 à 0,131**. Dans le sens inverse, les pales 03 et 05
-présentent encore des RMS de **1,93 et 2,48** : des surfaces du loft n'ont pas
-une acquisition proche correspondante. Il faut classifier ces lacunes et
-vérifier localement les contours avant de qualifier une réplique exacte.
+Les RMS scan → candidat vont de **0,038 à 0,715 unité source** ; les percentiles
+95 % vont de **0,080 à 0,186**. Dans le sens inverse, les RMS vont de **0,038 à
+0,081**. Quelques points atypiques du scan de la pale 05 élèvent son RMS et
+restent à classifier. La première découpe utilisait la distance globale à
+l'axe et incluait ainsi des pieds extrapolés dans les zones acquises ; elle
+est conservée comme analyse rejetée, avec ses grands écarts inverses.
+La découpe corrigée suit les plans des sections et leur provenance, sans
+éliminer les points selon leur distance. Ces contrôles ne qualifient pas
+encore une réplique exacte.
 Les résultats ne sont pas convertis en tolérances d'usinage ou en précision
 de fabrication. Aucun filtrage des grands écarts ne transforme le verdict.
 
@@ -161,7 +166,8 @@ Le mode `rotor_only` sert aux trois grilles ; le mode `assembly` reste borné
 à une grille de 0,8 ou plus. Les sorties doivent être nouvelles sous `work/`
 ignoré. Les cas altérés sont refusés avant création de géométrie.
 
-Les prochaines corrections concernent la couverture des pales 03/05,
+Les prochaines corrections concernent les points atypiques de la pale 05
+et les pieds, extrémités et surfaces du moyeu encore hypothétiques,
 l'identification du carter 935 et de ses fixations, la calibration indépendante
 des deux scans et la définition du guide historique. Les anciens résultats
 CFD/FEA restent attachés à leurs anciennes géométries : ils ne qualifient pas
