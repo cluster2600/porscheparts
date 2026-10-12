@@ -1,0 +1,3994 @@
+{
+  "classification": "917_mechanical_detail_geometry_no_physical_release",
+  "source_hashes": {
+    "models/917-engine-reconstruction/mechanical-detail/Program.cs": "d2f9a681355c8765bb16c6d56316ab4b52cc1b0f1287486f1974bf53bcd80fe6",
+    "models/917-engine-reconstruction/mechanical-detail/Detail.csproj": "8c79964fe56d6a9ec7b415d555b2bcf780eb4546e7d5b2f66b9eadb2dad08b0a",
+    "models/917-engine-reconstruction/mechanical-detail/Route.cs": "c2b9a6c1324e4f8133635fb247d87fc00222647d00aa01e2bb4690c5eb553798",
+    "models/917-engine-reconstruction/mechanical-detail/Route.csproj": "fa1557af5ddb6fd67366c11084af1eaa9ab5584b6530e313f7f8a1fc556b522f",
+    "models/917-engine-reconstruction/mechanical-detail/Housing.cs": "f92b1e8f208db13650b02a815ec03efb463955e70e6e37892c4714d62f1b5993",
+    "models/917-engine-reconstruction/mechanical-detail/Housing.csproj": "d942d41596f44e1611e9ecc54857494b97b1a6522659f5b81aa871d8e232ec9c",
+    "models/917-engine-reconstruction/mechanical-detail/design.py": "8def33b220c3c358a88254c6bf21b0e3b7d204ded1c8ac51f0103e58d201041f",
+    "models/917-engine-reconstruction/mechanical-detail/run.py": "7591f4a8b64716e1e77fb3aa9405cac9fc0fd2a3f214f1e6071b9ee8d020c469",
+    "models/917-engine-reconstruction/mechanical-detail/verify.py": "1b9930f00631f6235401394b61a2823b1e5196eb2392bcfb1da28d7e08c74402",
+    "models/917-engine-reconstruction/mechanical-detail/detail_audit.py": "fbeb84965b32935cf8425dd41635dbed739446be6c0c31c891a1a36847a9963a",
+    "models/917-engine-reconstruction/assembly/Program.cs": "d799752eeddbb43cf39e6142c56974ea5a499fc9284bcefd8df7cc1a69b9d3ea",
+    "models/917-engine-reconstruction/assembly/Engine.csproj": "381978c07b18ffb045ad875d21b54a6f66dba659c2e8f8387daeebe6ca697f26",
+    "parts/picogk-catalog/common/Sdf.cs": "8096c0bc8aa980cd463622d2838969987aa8a570ca7cb52a64eb08ea74ac7a40",
+    "parts/picogk-catalog/engine/EngineSdf.cs": "e1193344b75c2bd0fa6195a2cd4c8ace4ef98c9c5b18afd3180b0fe40af58d97",
+    "twins/m64-cylinder-head/source/picogk-local-junction/exact_zero_countertrial.py": "bef2321da471476528c07f75e5672080c8b051b5e0be888dc6e5e66ea46b00a2",
+    "twins/m64-cylinder-head/source/picogk-local-junction/audit_mesh.py": "cc55e633309e52f0a6d0af75f59d3e983bf3b184168abcaf521be3f7752f33e3",
+    "models/917-engine-reconstruction/mechanical-detail/render.py": "8afea1679fb20cbf06967a632b178a6524c27ae366d30edcf24b9831fb9a515b",
+    "models/917-engine-reconstruction/mechanical-detail/frame_control.py": "226e8d6bbff81ff0445dae18c034dc28bcca36ca3b01d7d4f92ecb864e7a722b",
+    "models/917-engine-reconstruction/mechanical-detail/check_connections.py": "3ed40bada2acd2a63376e2703d5c6451e8468ade6a2a1b9bc415d6bd7121a197",
+    "models/917-engine-reconstruction/mechanical-detail/interface-contract.json": "e07c81e2d2e0655980289f0a47be0b242dfc5ca58945818b9f96b2c82b16a5e2"
+  },
+  "source_hashes_role": "Full reproduction sources; execution lineage records the earlier native generations reused by this scoped repair.",
+  "native_audits": {
+    "1": {
+      "intercooler_core": {
+        "source_sha256": "022e46d796924328a5ec5ef6dd4407b263bc6a9f5a11b813596eabefec0b3d60",
+        "triangles": 759888,
+        "signed_volume_mm3_hypothesis": 546048.1138495466,
+        "passed": true,
+        "witness": {
+          "input_faces": 759904,
+          "removed_zero_cross_product_faces": 16,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "17140ea249ceaf9b99a5ac1f811717ac1d6826164f197b52a0782ef6898d768e",
+          "audit": {
+            "faces": 759888,
+            "exact_unique_vertices": 379712,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 546048.1138495466,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "intercooler_tank": {
+        "source_sha256": "25affa15fe670adb5b32ec3f57440a26e96ecf27ea3366599d6e73d3e006e9d7",
+        "triangles": 56920,
+        "signed_volume_mm3_hypothesis": 34480.75698451184,
+        "passed": true,
+        "witness": {
+          "input_faces": 56920,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "823acca60466e7be644e061d7c3f8859e2497096d56b9cc1fd2db15a22f77ceb",
+          "audit": {
+            "faces": 56920,
+            "exact_unique_vertices": 28460,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 34480.75698451184,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "intercooler_gas_domain": {
+        "source_sha256": "42ac130d4149c2b2443d52a164e0c7dc0e45312d4e3269abb2aab19477f49c15",
+        "triangles": 421264,
+        "signed_volume_mm3_hypothesis": 502839.92742128734,
+        "passed": true,
+        "witness": {
+          "input_faces": 421264,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "b1d38d034bc8a0a0b2a7d79920a259059e7fbca6d7f70151e99dc2de3c9cfcb2",
+          "audit": {
+            "faces": 421264,
+            "exact_unique_vertices": 210600,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 502839.92742128734,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "oil_cooler_core": {
+        "source_sha256": "d2caf9ecdcffe3e759861f151fa3db5dd29bb6a03e2856cf0634fa99d07ca401",
+        "triangles": 860632,
+        "signed_volume_mm3_hypothesis": 732047.282159801,
+        "passed": true,
+        "witness": {
+          "input_faces": 860632,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "e586d2a14622c8c082e9e78592c43ce738a2f40aeace4214ad63a575171dd56d",
+          "audit": {
+            "faces": 860632,
+            "exact_unique_vertices": 429832,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 732047.282159801,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "oil_cooler_tank": {
+        "source_sha256": "f0a9678bbbb6d89c0e04a1d922ee880fc7c909abaa4ba6512940ac4997fac627",
+        "triangles": 53500,
+        "signed_volume_mm3_hypothesis": 33265.58421955366,
+        "passed": true,
+        "witness": {
+          "input_faces": 53500,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "1d5549a0749cc31806d9927d2372bface0e47171d6d6f008b34082e652552345",
+          "audit": {
+            "faces": 53500,
+            "exact_unique_vertices": 26750,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 33265.58421955366,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "oil_cooler_gas_domain": {
+        "source_sha256": "d94fa78b042a8dcd58485fc62f25f34a027d19317a46835ee9f34054cd067ea6",
+        "triangles": 411684,
+        "signed_volume_mm3_hypothesis": 442009.5273702282,
+        "passed": true,
+        "witness": {
+          "input_faces": 411684,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "88fb9f416c94f162151e859e001926a5aaee2e2c2974a053d7eaffb399302673",
+          "audit": {
+            "faces": 411684,
+            "exact_unique_vertices": 205792,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 442009.5273702282,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "alternator": {
+        "source_sha256": "b92ac2df8e50c419be302ae823f8d54ff6111b9d1a011a08d3510634ca0069de",
+        "triangles": 155064,
+        "signed_volume_mm3_hypothesis": 174964.73885220304,
+        "passed": true,
+        "witness": {
+          "input_faces": 155644,
+          "removed_zero_cross_product_faces": 580,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "c905292fbcdb26d820913c5747ed5eeb74250b777caba98a2f6ee13b24d4ede6",
+          "audit": {
+            "faces": 155064,
+            "exact_unique_vertices": 77486,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 174964.73885220304,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "starter_motor": {
+        "source_sha256": "5ccfa86e3f1230439edc29003b611ab1d11800f1eba4393d2d1d3e49da875df1",
+        "triangles": 141424,
+        "signed_volume_mm3_hypothesis": 180639.81715525142,
+        "passed": true,
+        "witness": {
+          "input_faces": 141744,
+          "removed_zero_cross_product_faces": 320,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "8f21955ea21857553e71aef45835aa5c218d4413500fa4b39efea883263d072f",
+          "audit": {
+            "faces": 141424,
+            "exact_unique_vertices": 70708,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 180639.81715525142,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "ecu": {
+        "source_sha256": "5347419d74b105ead007ae6dbd00bc4f91b1282c8b534f8fc749fc057185153f",
+        "triangles": 77500,
+        "signed_volume_mm3_hypothesis": 260096.87277178955,
+        "passed": true,
+        "witness": {
+          "input_faces": 78876,
+          "removed_zero_cross_product_faces": 1376,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "3f2cbfb20f063a72201ad254d4290dd0d1488099364b788871dc4b3ff26ff667",
+          "audit": {
+            "faces": 77500,
+            "exact_unique_vertices": 38752,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 260096.87277178955,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "throttle": {
+        "source_sha256": "6291c3a205c24257d70a6fbfa648697d4715e018876199362acd918ed3b60373",
+        "triangles": 47004,
+        "signed_volume_mm3_hypothesis": 74370.75025659436,
+        "passed": true,
+        "witness": {
+          "input_faces": 47004,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "1a0e20577902da5ac0cb9495e289c451c980e25d5f83c2ec2b5b5b05111097dc",
+          "audit": {
+            "faces": 47004,
+            "exact_unique_vertices": 23502,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 74370.75025659436,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "oil_pump_body": {
+        "source_sha256": "23916bd7e1676d5366066455685797f05120b7c059ea8c6e053852c4099b9f4d",
+        "triangles": 53128,
+        "signed_volume_mm3_hypothesis": 44700.68522474903,
+        "passed": true,
+        "witness": {
+          "input_faces": 53128,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "c08d71eea65603ee30fcd04736a0fcc72ffa7d9002e50c000c3d9afa4b7509ea",
+          "audit": {
+            "faces": 53128,
+            "exact_unique_vertices": 26544,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 44700.68522474903,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "oil_pump_cover": {
+        "source_sha256": "0a4276f41a8436eef8e13565fe365bb246f14bf2c2d1cc3d5eafdb786f240304",
+        "triangles": 12836,
+        "signed_volume_mm3_hypothesis": 9999.762542348251,
+        "passed": true,
+        "witness": {
+          "input_faces": 12836,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "fb9f6be4dcad231f33b86b05eb976d44450364ac3254968d3d3fced455a36c04",
+          "audit": {
+            "faces": 12836,
+            "exact_unique_vertices": 6408,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 9999.762542348251,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "valve_cover": {
+        "source_sha256": "da35924b083439a78518a941d4c06e4cec16887b59622f5038066ebc3c2a0659",
+        "triangles": 361460,
+        "signed_volume_mm3_hypothesis": 250984.07184844624,
+        "passed": true,
+        "witness": {
+          "input_faces": 361484,
+          "removed_zero_cross_product_faces": 24,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "5bdd5836679059c560b83b98ee9899cf132eec78f89210269172fdd573724fc2",
+          "audit": {
+            "faces": 361460,
+            "exact_unique_vertices": 180716,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 250984.07184844624,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "cam_sweep_exhaust": {
+        "source_sha256": "aae7c5f034b1b2a183f2a444b8980fd872b76163193e90739f9ee8e48590b98c",
+        "triangles": 49376,
+        "signed_volume_mm3_hypothesis": 170640.95932965743,
+        "passed": true,
+        "witness": {
+          "input_faces": 49376,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "9720ca556c78114a13853617abb8bab2f4e140a8b92c83669365f8e627d9282e",
+          "audit": {
+            "faces": 49376,
+            "exact_unique_vertices": 24690,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 170640.95932965743,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "cam_sweep_intake": {
+        "source_sha256": "91d0f5be21480e8089eb06ab897a38d358a08f790e9e5c9a4e16be63f90c5216",
+        "triangles": 49376,
+        "signed_volume_mm3_hypothesis": 170640.95932664353,
+        "passed": true,
+        "witness": {
+          "input_faces": 49376,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "430dc97cc5d2b41de924864aecdde21dd14fe100ec2dcd87c0b49c382ff7c781",
+          "audit": {
+            "faces": 49376,
+            "exact_unique_vertices": 24690,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 170640.95932664353,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "sump_cover": {
+        "source_sha256": "85074453ac29e1a973c9189a8553f0e6cd3a935dc5fffbf173157ecdd93fd237",
+        "triangles": 554444,
+        "signed_volume_mm3_hypothesis": 1272071.7794728966,
+        "passed": true,
+        "witness": {
+          "input_faces": 554444,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "250c29d536c7f2ea13d0ab21552b1394f04a9c90b2f11bb45dcaf21bfa6cbcde",
+          "audit": {
+            "faces": 554444,
+            "exact_unique_vertices": 277224,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 1272071.7794728966,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "drive_sweep_intake": {
+        "source_sha256": "aa0171804394c5edc1c76d203a006390e0f20752546bd58cb808690ec04dd026",
+        "triangles": 313468,
+        "signed_volume_mm3_hypothesis": 782456.1589655284,
+        "passed": true,
+        "witness": {
+          "input_faces": 313468,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "e2e784bd858af4036504904298eaecb122de70abe27b2f9fb0a167cc7ed91c99",
+          "audit": {
+            "faces": 313468,
+            "exact_unique_vertices": 156732,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 782456.1589655284,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "drive_sweep_exhaust": {
+        "source_sha256": "68e740bee13f339e9ac864b4afe9b24b377dbc501c1638bb6a1577c3e129e99b",
+        "triangles": 312348,
+        "signed_volume_mm3_hypothesis": 782455.7300584555,
+        "passed": true,
+        "witness": {
+          "input_faces": 312348,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "3626598ab8ec0362ee812cc55a9c3b50aea704ed9ad6538928ae386b4690b070",
+          "audit": {
+            "faces": 312348,
+            "exact_unique_vertices": 156176,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 782455.7300584555,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "drive_housing": {
+        "source_sha256": "f91483059a710d07eaefaa320b34b705229fa7dd2424aa3c12ee9e3748a9143b",
+        "triangles": 1108244,
+        "signed_volume_mm3_hypothesis": 754757.7409141572,
+        "passed": true,
+        "witness": {
+          "input_faces": 1108244,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "a436350aaef2a036144d7a341a6e7b727aea5eb2bd11ecce2655b58d6e279613",
+          "audit": {
+            "faces": 1108244,
+            "exact_unique_vertices": 553874,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 754757.7409141572,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "drive_cover": {
+        "source_sha256": "d5992a865845fd2f5ac9c2ff6f59bb3324db8e3937787e21568197c7395008b2",
+        "triangles": 502056,
+        "signed_volume_mm3_hypothesis": 458400.7723066236,
+        "passed": true,
+        "witness": {
+          "input_faces": 502056,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "cd144f75e2fcaf875f380be3949556d5182310e160beaf3e48a110a41e39a453",
+          "audit": {
+            "faces": 502056,
+            "exact_unique_vertices": 250906,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 458400.7723066236,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "drive_bionic_frame": {
+        "source_sha256": "3201b2d337541812c0adc081e15f8ae7af5bd836b9bc6bd3a3fa00d2b321f76d",
+        "triangles": 181752,
+        "signed_volume_mm3_hypothesis": 164326.5584363873,
+        "passed": true,
+        "witness": {
+          "input_faces": 181784,
+          "removed_zero_cross_product_faces": 32,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "d06ebeaa12af2f296a52ec72b9652c7d86b0f49ba95995b2fc3c3e81591779ec",
+          "audit": {
+            "faces": 181752,
+            "exact_unique_vertices": 90824,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 164326.5584363873,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "drive_pin_intake": {
+        "source_sha256": "5c822ff2c7a4666bf16ff4e074df28e184269354a5c5edc10b56054bef0bb950",
+        "triangles": 2508,
+        "signed_volume_mm3_hypothesis": 1970.8176459394138,
+        "passed": true,
+        "witness": {
+          "input_faces": 2556,
+          "removed_zero_cross_product_faces": 48,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "3441e37c6994f170a8af0a5a4fcc51f8ea25b289e4344c8aa61452690ae1efad",
+          "audit": {
+            "faces": 2508,
+            "exact_unique_vertices": 1256,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 1970.8176459394138,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "drive_pin_exhaust": {
+        "source_sha256": "0772eb1df7835cd16d737c54e8d2876d2c86f508aafc117881a6d3aa26060619",
+        "triangles": 2892,
+        "signed_volume_mm3_hypothesis": 2279.714690717635,
+        "passed": true,
+        "witness": {
+          "input_faces": 2924,
+          "removed_zero_cross_product_faces": 32,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "64a7fa31b3d2e321a8c824a215514c473ea074844c74b61e833f0c8f30f56efd",
+          "audit": {
+            "faces": 2892,
+            "exact_unique_vertices": 1448,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 2279.714690717635,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "drive_cover_bolt": {
+        "source_sha256": "d3ec93cac5b682ff64c6a5d534a96b57c0a5ec6c94648b45c692aedf881172cb",
+        "triangles": 1220,
+        "signed_volume_mm3_hypothesis": 639.5298154824484,
+        "passed": true,
+        "witness": {
+          "input_faces": 1220,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "becabefe6ca1c750e3148da40477942ee2c16087d1cf3cde7478ee05869e237b",
+          "audit": {
+            "faces": 1220,
+            "exact_unique_vertices": 612,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 639.5298154824484,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "alternator_bionic_bracket": {
+        "source_sha256": "50fb7fd5c63a9ac87779cda03af48567ef8f543d7dc94452e5a18e31f4d80950",
+        "triangles": 50704,
+        "signed_volume_mm3_hypothesis": 64166.93081127951,
+        "passed": true,
+        "witness": {
+          "input_faces": 50740,
+          "removed_zero_cross_product_faces": 36,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "c829776c1406d4d49f548b993279510d91bf7728f87b51da8ea573bd6a0a227d",
+          "audit": {
+            "faces": 50704,
+            "exact_unique_vertices": 25354,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 64166.93081127951,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      }
+    },
+    "0.5": {
+      "intercooler_core": {
+        "source_sha256": "2852d66ed49114449ad4a393aeeab82e481ba28841683ad0b6b68bcd9c79a6ea",
+        "triangles": 3182208,
+        "signed_volume_mm3_hypothesis": 532919.3260380876,
+        "passed": true,
+        "witness": {
+          "input_faces": 3182256,
+          "removed_zero_cross_product_faces": 48,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "1ab39aa3f122fbf9a926dbfefb9a699eca06d64b054dbb68e790ec6eb0b8a132",
+          "audit": {
+            "faces": 3182208,
+            "exact_unique_vertices": 1590872,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 532919.3260380876,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "intercooler_tank": {
+        "source_sha256": "b72f9d6fc375815fa3fab859a98a0af4b0fbcf5bd7d7eb69bf4a13115df8fdd5",
+        "triangles": 238920,
+        "signed_volume_mm3_hypothesis": 34749.81128610052,
+        "passed": true,
+        "witness": {
+          "input_faces": 238920,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "52f8e65860cd3433d62e648dce47a085a3f5917cc4876c80f33e3e7fda0c391a",
+          "audit": {
+            "faces": 238920,
+            "exact_unique_vertices": 119460,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 34749.81128610052,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "intercooler_gas_domain": {
+        "source_sha256": "4669f51a9c14b4acf07d4d8d1a863a2fcdaa5a39d5cae5e36bd3a53c3c07e1ca",
+        "triangles": 1703520,
+        "signed_volume_mm3_hypothesis": 505989.4970520527,
+        "passed": true,
+        "witness": {
+          "input_faces": 1703520,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "ac6fd7a996eaf24b2819272335ac175468c3c394c2c93ad1f6ddbdb453c68dd0",
+          "audit": {
+            "faces": 1703520,
+            "exact_unique_vertices": 851728,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 505989.4970520527,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "oil_cooler_core": {
+        "source_sha256": "744800942754e92a81429e6eabcfaec105fabfe377143dc4f0468673426b3384",
+        "triangles": 3613416,
+        "signed_volume_mm3_hypothesis": 712528.0464666318,
+        "passed": true,
+        "witness": {
+          "input_faces": 3613416,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "7574b18336fdfbeb607c5af22548277d48f5cb64608098a67e17b7ca4947d54a",
+          "audit": {
+            "faces": 3613416,
+            "exact_unique_vertices": 1806224,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 712528.0464666318,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "oil_cooler_tank": {
+        "source_sha256": "4f78e00d3fee8a7d3687d1d2362738fa59c750c454da10914f5580aa0f4832e4",
+        "triangles": 215778,
+        "signed_volume_mm3_hypothesis": 33522.12898345796,
+        "passed": true,
+        "witness": {
+          "input_faces": 215780,
+          "removed_zero_cross_product_faces": 2,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "bb43058b5181a880afed310c58af953cd3568f6c4afddd22550131562ac140e1",
+          "audit": {
+            "faces": 215778,
+            "exact_unique_vertices": 107889,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 33522.12898345796,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "oil_cooler_gas_domain": {
+        "source_sha256": "cb81054b9696195279b981cc834ce2cde0636d54deb7b8298fd113e45cfda139",
+        "triangles": 1646356,
+        "signed_volume_mm3_hypothesis": 449243.9072205301,
+        "passed": true,
+        "witness": {
+          "input_faces": 1646356,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "6d62a2c8f873df65513e5c0c0e9ac77cc68c46eee4474318867be9d51d9d3cf9",
+          "audit": {
+            "faces": 1646356,
+            "exact_unique_vertices": 823128,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 449243.9072205301,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "alternator": {
+        "source_sha256": "b1b31f41e77198afae977b2a23ad48c7d84627492ca055f1e22a1a2b9e678fad",
+        "triangles": 621032,
+        "signed_volume_mm3_hypothesis": 175624.8839814946,
+        "passed": true,
+        "witness": {
+          "input_faces": 622244,
+          "removed_zero_cross_product_faces": 1212,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "3a9db6bc1940fd2dd84a811dba73e583ace444c9b692cbd219a6d0bb1a923f76",
+          "audit": {
+            "faces": 621032,
+            "exact_unique_vertices": 310470,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 175624.8839814946,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "starter_motor": {
+        "source_sha256": "5a48d8d679296d59652390b297e7147de95c55e81ba8b55276b48cd17d83febc",
+        "triangles": 567060,
+        "signed_volume_mm3_hypothesis": 180998.89671939224,
+        "passed": true,
+        "witness": {
+          "input_faces": 567636,
+          "removed_zero_cross_product_faces": 576,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "cc6ff94975eda8b16d49f2c37ecaf3927748143f1c36958d7f900cdb841af6e5",
+          "audit": {
+            "faces": 567060,
+            "exact_unique_vertices": 283526,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 180998.89671939224,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "ecu": {
+        "source_sha256": "1cf6661dc89ba77dcbed96d3bbb36a39fde3408bfe731bccf2483096492da997",
+        "triangles": 312428,
+        "signed_volume_mm3_hypothesis": 260197.33938829546,
+        "passed": true,
+        "witness": {
+          "input_faces": 312444,
+          "removed_zero_cross_product_faces": 16,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "397cd6e179aedb35dfb5d7260184c6173e3591499cc030b10d8b165a8f4bb2de",
+          "audit": {
+            "faces": 312428,
+            "exact_unique_vertices": 156216,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 260197.33938829546,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "throttle": {
+        "source_sha256": "b7e93fd98eac32f6cb95e1169059b045f1e71a20c4d83dc70ca8dcfed414338e",
+        "triangles": 191372,
+        "signed_volume_mm3_hypothesis": 74649.1445663885,
+        "passed": true,
+        "witness": {
+          "input_faces": 191948,
+          "removed_zero_cross_product_faces": 576,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "8d4bef691aff541f5e75bf9d4d9eac33571515db4a1cb188b8ce771fae306b33",
+          "audit": {
+            "faces": 191372,
+            "exact_unique_vertices": 95686,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 74649.1445663885,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "oil_pump_body": {
+        "source_sha256": "94a50e88d4951d3e02f83b31e272c534d8871fcadbfcfd9d70a01451bf31c9b7",
+        "triangles": 210976,
+        "signed_volume_mm3_hypothesis": 44723.46065886653,
+        "passed": true,
+        "witness": {
+          "input_faces": 211016,
+          "removed_zero_cross_product_faces": 40,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "ac33708ff1e658c1686d9497185e1cfe87ec8aaee16a86c1d8144e002d2c4946",
+          "audit": {
+            "faces": 210976,
+            "exact_unique_vertices": 105468,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 44723.46065886653,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "oil_pump_cover": {
+        "source_sha256": "81521432f957187dde0347a7d28b34bd2a26cd976867f21874ccff020a6e3b8c",
+        "triangles": 52932,
+        "signed_volume_mm3_hypothesis": 10191.801130579317,
+        "passed": true,
+        "witness": {
+          "input_faces": 52932,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "19b4b95842422b5a22c93c86ab8f3f12e8fbd00ce220e1bedd3b50bfffd256a4",
+          "audit": {
+            "faces": 52932,
+            "exact_unique_vertices": 26456,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 10191.801130579317,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "valve_cover": {
+        "source_sha256": "ef7706016ac35588d44615d1b013b3d41c311d6f996a7ac92e85005053666d13",
+        "triangles": 1443164,
+        "signed_volume_mm3_hypothesis": 251714.17570300863,
+        "passed": true,
+        "witness": {
+          "input_faces": 1443188,
+          "removed_zero_cross_product_faces": 24,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "082a338474c90c930ffab82ef1fb986ffbba7caa8f9d1ff52fd7d329385b65d1",
+          "audit": {
+            "faces": 1443164,
+            "exact_unique_vertices": 721568,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 251714.17570300863,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "cam_sweep_exhaust": {
+        "source_sha256": "8e98d3ed4e19a77c93f10d3cb109f7d285f165db20df5d3e5411d185ac0c31d1",
+        "triangles": 198484,
+        "signed_volume_mm3_hypothesis": 170909.6633096136,
+        "passed": true,
+        "witness": {
+          "input_faces": 198484,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "bf2a43490a21839ab198ce4bfa049d9f76a44b0726014247cfc757a72c4ddb49",
+          "audit": {
+            "faces": 198484,
+            "exact_unique_vertices": 99244,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 170909.6633096136,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "cam_sweep_intake": {
+        "source_sha256": "9be99298c3732bdad0a900a3a1f986ea59b6e2facbb59c70d13d1be00a127a3f",
+        "triangles": 198484,
+        "signed_volume_mm3_hypothesis": 170909.66331087647,
+        "passed": true,
+        "witness": {
+          "input_faces": 198484,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "f03c29483b43a3248dd48e287357be84d43f6651f76b8b23b953bc8e0a652f17",
+          "audit": {
+            "faces": 198484,
+            "exact_unique_vertices": 99244,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 170909.66331087647,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "sump_cover": {
+        "source_sha256": "86ea13fc8cec2436ae9e5d464d8b3a8ca08c13a225b19e418ac230fe08de7c7c",
+        "triangles": 2232908,
+        "signed_volume_mm3_hypothesis": 1272902.571898313,
+        "passed": true,
+        "witness": {
+          "input_faces": 2232908,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "bdb2aff49d4a876cb2c5d4a9fd4862633d4a6f634026c475efb54e2b1a06ce77",
+          "audit": {
+            "faces": 2232908,
+            "exact_unique_vertices": 1116456,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 1272902.571898313,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "drive_sweep_intake": {
+        "source_sha256": "cad75586dfc86a6991b0aad4c6e3faeb768d838f65144a9d763f57ea4e89415f",
+        "triangles": 1266716,
+        "signed_volume_mm3_hypothesis": 784203.822309941,
+        "passed": true,
+        "witness": {
+          "input_faces": 1266716,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "f2539425fc7e611aac2cd74c76a7e53955f735b541473bbcba9e808c18ee9e56",
+          "audit": {
+            "faces": 1266716,
+            "exact_unique_vertices": 633356,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 784203.822309941,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "drive_sweep_exhaust": {
+        "source_sha256": "cbcba54c68bc8e6b3607a795301beea2293109a3389dd763372159ea34cd9a53",
+        "triangles": 1264580,
+        "signed_volume_mm3_hypothesis": 784214.0287979674,
+        "passed": true,
+        "witness": {
+          "input_faces": 1264580,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "ad9d0265315a6b5d43661f66623592e4bf47d801ad820a301c7f0fa747c649c3",
+          "audit": {
+            "faces": 1264580,
+            "exact_unique_vertices": 632292,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 784214.0287979674,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "drive_housing": {
+        "source_sha256": "d4e3c67c33b3275e615f598a8e5570f18624b9a50e1044e62671d4fa4fa150d8",
+        "triangles": 4483468,
+        "signed_volume_mm3_hypothesis": 757367.6446255561,
+        "passed": true,
+        "witness": {
+          "input_faces": 4483476,
+          "removed_zero_cross_product_faces": 8,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "d4065ecd834d47674b5833034e1a05b39503d7443ecc470547ec2046fcf15c68",
+          "audit": {
+            "faces": 4483468,
+            "exact_unique_vertices": 2241490,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 757367.6446255561,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "drive_cover": {
+        "source_sha256": "b65f05d4e55ca7d831263b2d896ca4935f5baa4d9b146c6a6e234ba2291e3473",
+        "triangles": 2008308,
+        "signed_volume_mm3_hypothesis": 460243.00904609595,
+        "passed": true,
+        "witness": {
+          "input_faces": 2008308,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "1002fa7189ad5e4c47b4ef50511eb62e7ca3fa81901523eab67b75a8fd46824b",
+          "audit": {
+            "faces": 2008308,
+            "exact_unique_vertices": 1004036,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 460243.00904609595,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "drive_bionic_frame": {
+        "source_sha256": "db7626e3fc5b01f7f0bf59ac1e35b0c91a5d71ddd5515b9e0c2b2a2d683241d1",
+        "triangles": 754608,
+        "signed_volume_mm3_hypothesis": 167481.99493180774,
+        "passed": true,
+        "witness": {
+          "input_faces": 755008,
+          "removed_zero_cross_product_faces": 400,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "c3aa97e378f22a0024ad3686af3aa010e62bc349a9b51a070bcf3fcd658ccfaa",
+          "audit": {
+            "faces": 754608,
+            "exact_unique_vertices": 377248,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 167481.99493180774,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "drive_pin_intake": {
+        "source_sha256": "33b7e122164da6a56fb62a4c4c3397de87ae9b7db038e7e57869e5057e7f27f5",
+        "triangles": 9660,
+        "signed_volume_mm3_hypothesis": 2025.839782051639,
+        "passed": true,
+        "witness": {
+          "input_faces": 9692,
+          "removed_zero_cross_product_faces": 32,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "3110e390f41fcd6fd83375838e6c4360272d3b6752106259dbe804337d3b4cf3",
+          "audit": {
+            "faces": 9660,
+            "exact_unique_vertices": 4832,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 2025.839782051639,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "drive_pin_exhaust": {
+        "source_sha256": "0df6c342477d62ea8e3a53464ff16efc29c9b50eeb9aaea6a3abd0a5c92aef7a",
+        "triangles": 11100,
+        "signed_volume_mm3_hypothesis": 2339.5628360136257,
+        "passed": true,
+        "witness": {
+          "input_faces": 11116,
+          "removed_zero_cross_product_faces": 16,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "fe39278a0c4958b54b6c73bbd722d00fc9edae5b3d54e78dc55fad840982602a",
+          "audit": {
+            "faces": 11100,
+            "exact_unique_vertices": 5552,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 2339.5628360136257,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "drive_cover_bolt": {
+        "source_sha256": "8aac9fb2c4c75a89b9c7dca0f207fc89fd633d3b40f47ba30ee29908bf507359",
+        "triangles": 4948,
+        "signed_volume_mm3_hypothesis": 676.0636375450935,
+        "passed": true,
+        "witness": {
+          "input_faces": 4948,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "9469367edd0ee7760ebf163ea995670a3c5976fda416e054fea14324119deb47",
+          "audit": {
+            "faces": 4948,
+            "exact_unique_vertices": 2476,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 676.0636375450935,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "alternator_bionic_bracket": {
+        "source_sha256": "30566956b7243483185eeb31553bc26e5c953145495a674311e4a824583cfc27",
+        "triangles": 204036,
+        "signed_volume_mm3_hypothesis": 64567.70714854545,
+        "passed": true,
+        "witness": {
+          "input_faces": 204052,
+          "removed_zero_cross_product_faces": 16,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "d437f853259ee7b00eda2a98d8b3a839a4b605e996d7eba8ed074c79909a95cf",
+          "audit": {
+            "faces": 204036,
+            "exact_unique_vertices": 102020,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 64567.70714854545,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      }
+    }
+  },
+  "route_audits": {
+    "intake_negative": {
+      "source_sha256": "d1319c824ead071427dea9ba25b1eb47cbf91eed08e91f892186f5ddabf298bd",
+      "triangles": 3231068,
+      "signed_volume_mm3_hypothesis": 441261.00588114216,
+      "passed": true,
+      "witness": {
+        "input_faces": 3231068,
+        "removed_zero_cross_product_faces": 0,
+        "remaining_duplicate_face_groups": 0,
+        "vertex_displacement": 0,
+        "remaining_face_orientation_changed": false,
+        "remaining_oriented_faces_sha256": "fcd1b0d44248e359d125c6befe737c01f1ee222c27bc69ee2ec3686bcb6afd19",
+        "audit": {
+          "faces": 3231068,
+          "exact_unique_vertices": 1615512,
+          "watertight": true,
+          "winding_consistent": true,
+          "exact_zero_area_faces": 0,
+          "boundary_edges_incidence_one": 0,
+          "edges_incidence_above_two": 0,
+          "surface_components_including_degenerate_faces": 1,
+          "components_are_not_interpreted_as_physical_voids": true,
+          "signed_triangle_volume": 441261.00588114216,
+          "strict_raw_mesh_screen_pass": true
+        }
+      },
+      "self_intersection_checked": false
+    },
+    "intake_positive": {
+      "source_sha256": "d94e995664655eba520c3138d43b136ca18c6035b401ff55534abcaba5d85eb8",
+      "triangles": 3231064,
+      "signed_volume_mm3_hypothesis": 441264.38021287275,
+      "passed": true,
+      "witness": {
+        "input_faces": 3231064,
+        "removed_zero_cross_product_faces": 0,
+        "remaining_duplicate_face_groups": 0,
+        "vertex_displacement": 0,
+        "remaining_face_orientation_changed": false,
+        "remaining_oriented_faces_sha256": "34cfd7a6035283c8fe48bd74be39925405cef1be25d5db9eaf8631efd3842c36",
+        "audit": {
+          "faces": 3231064,
+          "exact_unique_vertices": 1615510,
+          "watertight": true,
+          "winding_consistent": true,
+          "exact_zero_area_faces": 0,
+          "boundary_edges_incidence_one": 0,
+          "edges_incidence_above_two": 0,
+          "surface_components_including_degenerate_faces": 1,
+          "components_are_not_interpreted_as_physical_voids": true,
+          "signed_triangle_volume": 441264.38021287275,
+          "strict_raw_mesh_screen_pass": true
+        }
+      },
+      "self_intersection_checked": false
+    }
+  },
+  "intake_audits": {
+    "intercooler_bionic_bracket_negative": {
+      "source_sha256": "3f36414ae976574ece2d74850628fe427fd771edf1b75c455929769d02808bae",
+      "triangles": 602044,
+      "signed_volume_mm3_hypothesis": 163672.90136137264,
+      "passed": true,
+      "witness": {
+        "input_faces": 607192,
+        "removed_zero_cross_product_faces": 5148,
+        "remaining_duplicate_face_groups": 0,
+        "vertex_displacement": 0,
+        "remaining_face_orientation_changed": false,
+        "remaining_oriented_faces_sha256": "1132f9753e2ec40d8b38997a68771a615f864bd3872b500b9143b78fd80a6422",
+        "audit": {
+          "faces": 602044,
+          "exact_unique_vertices": 301018,
+          "watertight": true,
+          "winding_consistent": true,
+          "exact_zero_area_faces": 0,
+          "boundary_edges_incidence_one": 0,
+          "edges_incidence_above_two": 0,
+          "surface_components_including_degenerate_faces": 1,
+          "components_are_not_interpreted_as_physical_voids": true,
+          "signed_triangle_volume": 163672.90136137264,
+          "strict_raw_mesh_screen_pass": true
+        }
+      },
+      "self_intersection_checked": false
+    },
+    "intercooler_bionic_bracket_positive": {
+      "source_sha256": "35fe5d53b5b7aeaa26b780f91e44fd52248520bc4e1b15e38fe0b307938cfa2f",
+      "triangles": 602044,
+      "signed_volume_mm3_hypothesis": 163672.90135998945,
+      "passed": true,
+      "witness": {
+        "input_faces": 607192,
+        "removed_zero_cross_product_faces": 5148,
+        "remaining_duplicate_face_groups": 0,
+        "vertex_displacement": 0,
+        "remaining_face_orientation_changed": false,
+        "remaining_oriented_faces_sha256": "d64541f480dab96dc0986390b2f2fca5a7fa984344d14fe18684fcec36fe73a6",
+        "audit": {
+          "faces": 602044,
+          "exact_unique_vertices": 301018,
+          "watertight": true,
+          "winding_consistent": true,
+          "exact_zero_area_faces": 0,
+          "boundary_edges_incidence_one": 0,
+          "edges_incidence_above_two": 0,
+          "surface_components_including_degenerate_faces": 1,
+          "components_are_not_interpreted_as_physical_voids": true,
+          "signed_triangle_volume": 163672.90135998945,
+          "strict_raw_mesh_screen_pass": true
+        }
+      },
+      "self_intersection_checked": false
+    },
+    "intake_negative": {
+      "source_sha256": "c7cef65706f492f4d6f2e79b42c1f819f1dc9ecaeeb91163575255b718026f1d",
+      "triangles": 3912532,
+      "signed_volume_mm3_hypothesis": 523659.07231969555,
+      "passed": true,
+      "witness": {
+        "input_faces": 3912872,
+        "removed_zero_cross_product_faces": 340,
+        "remaining_duplicate_face_groups": 0,
+        "vertex_displacement": 0,
+        "remaining_face_orientation_changed": false,
+        "remaining_oriented_faces_sha256": "2c104c7dc317646a52d2371f04fb902f0dcebb629df65c49e60a8844e4e05dc4",
+        "audit": {
+          "faces": 3912532,
+          "exact_unique_vertices": 1956242,
+          "watertight": true,
+          "winding_consistent": true,
+          "exact_zero_area_faces": 0,
+          "boundary_edges_incidence_one": 0,
+          "edges_incidence_above_two": 0,
+          "surface_components_including_degenerate_faces": 1,
+          "components_are_not_interpreted_as_physical_voids": true,
+          "signed_triangle_volume": 523659.07231969555,
+          "strict_raw_mesh_screen_pass": true
+        }
+      },
+      "self_intersection_checked": false
+    },
+    "charge_pipe_negative": {
+      "source_sha256": "ec3ab1194d8d6adc492add0cdcec1430469afdf51ddbbf799880328265cfd51c",
+      "triangles": 4541614,
+      "signed_volume_mm3_hypothesis": 534337.1520211495,
+      "passed": true,
+      "witness": {
+        "input_faces": 4560384,
+        "removed_zero_cross_product_faces": 18770,
+        "remaining_duplicate_face_groups": 0,
+        "vertex_displacement": 0,
+        "remaining_face_orientation_changed": false,
+        "remaining_oriented_faces_sha256": "06e68b0bb4452181bf4ff75060e258b6a4ef5b96416e9ccaae9faea36fdc1a0c",
+        "audit": {
+          "faces": 4541614,
+          "exact_unique_vertices": 2270807,
+          "watertight": true,
+          "winding_consistent": true,
+          "exact_zero_area_faces": 0,
+          "boundary_edges_incidence_one": 0,
+          "edges_incidence_above_two": 0,
+          "surface_components_including_degenerate_faces": 1,
+          "components_are_not_interpreted_as_physical_voids": true,
+          "signed_triangle_volume": 534337.1520211495,
+          "strict_raw_mesh_screen_pass": true
+        }
+      },
+      "self_intersection_checked": false
+    },
+    "intake_positive": {
+      "source_sha256": "1bbc4f5d82371a2eafb1d16fca59a979b590acdfdba1d83718e286b2980228de",
+      "triangles": 3906376,
+      "signed_volume_mm3_hypothesis": 521938.00467839633,
+      "passed": true,
+      "witness": {
+        "input_faces": 3906760,
+        "removed_zero_cross_product_faces": 384,
+        "remaining_duplicate_face_groups": 0,
+        "vertex_displacement": 0,
+        "remaining_face_orientation_changed": false,
+        "remaining_oriented_faces_sha256": "75ade6f78fe7b4e90cd5b46c3eb4389511092f1bfe4bce1a58f03246adcc4f11",
+        "audit": {
+          "faces": 3906376,
+          "exact_unique_vertices": 1953164,
+          "watertight": true,
+          "winding_consistent": true,
+          "exact_zero_area_faces": 0,
+          "boundary_edges_incidence_one": 0,
+          "edges_incidence_above_two": 0,
+          "surface_components_including_degenerate_faces": 1,
+          "components_are_not_interpreted_as_physical_voids": true,
+          "signed_triangle_volume": 521938.00467839633,
+          "strict_raw_mesh_screen_pass": true
+        }
+      },
+      "self_intersection_checked": false
+    },
+    "charge_pipe_positive": {
+      "source_sha256": "2d0bac909e792c5e139c90bc6ced238c430797f1fcc30b0404ce8a6bd720ff02",
+      "triangles": 4835476,
+      "signed_volume_mm3_hypothesis": 570052.6261658826,
+      "passed": true,
+      "witness": {
+        "input_faces": 4854240,
+        "removed_zero_cross_product_faces": 18764,
+        "remaining_duplicate_face_groups": 0,
+        "vertex_displacement": 0,
+        "remaining_face_orientation_changed": false,
+        "remaining_oriented_faces_sha256": "26cea524f61e7f86b61416dd3d863c29b6b0e72dd7e0f7c9fbdd78437880f322",
+        "audit": {
+          "faces": 4835476,
+          "exact_unique_vertices": 2417738,
+          "watertight": true,
+          "winding_consistent": true,
+          "exact_zero_area_faces": 0,
+          "boundary_edges_incidence_one": 0,
+          "edges_incidence_above_two": 0,
+          "surface_components_including_degenerate_faces": 1,
+          "components_are_not_interpreted_as_physical_voids": true,
+          "signed_triangle_volume": 570052.6261658826,
+          "strict_raw_mesh_screen_pass": true
+        }
+      },
+      "self_intersection_checked": false
+    }
+  },
+  "housing_clearance_audits": {
+    "1": {
+      "drive_housing": {
+        "source_sha256": "106065bb84286f06f56b47efe956d8f6a6722c65d3f066c6bd27eb07fe09522b",
+        "triangles": 1107404,
+        "signed_volume_mm3_hypothesis": 749786.7946646492,
+        "passed": true,
+        "witness": {
+          "input_faces": 1107404,
+          "removed_zero_cross_product_faces": 0,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "206b52a7a8390172052148ba371915718ca62779bc358a07726a00b86206a9ea",
+          "audit": {
+            "faces": 1107404,
+            "exact_unique_vertices": 553454,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 749786.7946646492,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      }
+    },
+    "0.5": {
+      "drive_housing": {
+        "source_sha256": "e5b40a177157fc217fe1b3ee8f781ffa9cb933a70ea290478346b6603014f730",
+        "triangles": 4479708,
+        "signed_volume_mm3_hypothesis": 752467.1828783039,
+        "passed": true,
+        "witness": {
+          "input_faces": 4479716,
+          "removed_zero_cross_product_faces": 8,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "1e4033d31c06dc77ff00715444279173d4feba31021f8b9aff57bb22dae2af86",
+          "audit": {
+            "faces": 4479708,
+            "exact_unique_vertices": 2239610,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 752467.1828783039,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      }
+    }
+  },
+  "verification": {
+    "status": "sampled_cold_contacts_pass",
+    "checks": [
+      {
+        "group": "cam_rotation/cam_sweep_intake",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cam_rotation/cam_sweep_exhaust",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "drive_sweep_intake/drive_bionic_frame",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "drive_sweep_intake/drive_housing",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "drive_sweep_intake/drive_cover",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "drive_sweep_exhaust/drive_bionic_frame",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "drive_sweep_exhaust/drive_housing",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "drive_sweep_exhaust/drive_cover",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "housing/crankcase_negative",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "housing/crankcase_positive",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "charge_pipe_negative/drive_bionic_frame",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "charge_pipe_negative/drive_housing",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "charge_pipe_negative/drive_cover",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "charge_pipe_positive/drive_bionic_frame",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "charge_pipe_positive/drive_housing",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "charge_pipe_positive/drive_cover",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "intake_negative/drive_bionic_frame",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "intake_negative/drive_housing",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "intake_negative/drive_cover",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "intake_positive/drive_bionic_frame",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "intake_positive/drive_housing",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "intake_positive/drive_cover",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 0)/rocker_carrier",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 0)/cam_cap_bolted",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 0)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 0)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 0)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 0)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 0)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 0)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 0)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 0)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 0)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 0)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 0)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 0)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 0)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 0)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 0)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 0)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 0)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 0)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 0)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 0)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 4)/rocker_carrier",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 4)/cam_cap_bolted",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 4)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 4)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 4)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 4)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 4)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 4)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 4)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 4)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 4)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 4)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 4)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 4)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 4)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 4)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 4)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 4)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 4)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 4)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 4)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 4)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 1)/rocker_carrier",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 1)/cam_cap_bolted",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 1)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 1)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 1)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 1)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 1)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 1)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 1)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 1)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 1)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 1)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 1)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 1)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 1)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 1)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 1)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 1)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 1)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 1)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 1)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 1)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 5)/rocker_carrier",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 5)/cam_cap_bolted",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 5)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 5)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 5)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 5)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 5)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 5)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 5)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 5)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 5)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 5)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 5)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 5)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 5)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 5)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 5)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 5)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 5)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 5)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 5)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 5)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 2)/rocker_carrier",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 2)/cam_cap_bolted",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 2)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 2)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 2)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 2)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 2)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 2)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 2)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 2)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 2)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 2)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 2)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 2)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 2)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 2)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 2)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 2)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 2)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 2)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 2)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 2)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 3)/rocker_carrier",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 3)/cam_cap_bolted",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 3)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 3)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 3)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 3)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 3)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 3)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 3)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 3)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 3)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 3)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 3)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 3)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 3)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 3)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 3)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 3)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 3)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 3)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 3)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 3)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 0)/rocker_carrier",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 0)/cam_cap_bolted",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 0)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 0)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 0)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 0)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 0)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 0)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 0)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 0)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 0)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 0)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 0)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 0)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 0)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 0)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 0)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 0)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 0)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 0)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 0)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 0)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 4)/rocker_carrier",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 4)/cam_cap_bolted",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 4)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 4)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 4)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 4)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 4)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 4)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 4)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 4)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 4)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 4)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 4)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 4)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 4)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 4)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 4)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 4)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 4)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 4)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 4)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 4)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 1)/rocker_carrier",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 1)/cam_cap_bolted",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 1)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 1)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 1)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 1)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 1)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 1)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 1)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 1)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 1)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 1)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 1)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 1)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 1)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 1)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 1)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 1)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 1)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 1)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 1)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 1)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 5)/rocker_carrier",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 5)/cam_cap_bolted",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 5)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 5)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 5)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 5)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 5)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 5)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 5)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 5)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 5)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 5)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 5)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 5)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 5)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 5)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 5)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 5)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 5)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 5)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 5)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 5)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 2)/rocker_carrier",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 2)/cam_cap_bolted",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 2)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 2)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 2)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 2)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 2)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 2)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 2)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 2)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 2)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 2)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 2)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 2)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 2)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 2)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 2)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 2)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 2)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 2)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 2)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(-1, 2)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 3)/rocker_carrier",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 3)/cam_cap_bolted",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 3)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 3)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 3)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 3)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 3)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 3)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 3)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 3)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 3)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 3)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 3)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 3)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 3)/upper_spring_retainer",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 3)/rocker",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 3)/cam_roller",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 3)/cam_roller_pin",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 3)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 3)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 3)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cover/(1, 3)/head_nut",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cooler_bracket/-1/blower_shroud",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cooler_bracket/-1/cooling_blower",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cooler_bracket/1/blower_shroud",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      },
+      {
+        "group": "cooler_bracket/1/cooling_blower",
+        "volume_mm3": 0.0,
+        "passed": true,
+        "method": "Manifold_float_triangle_boolean_not_exact_BRep"
+      }
+    ],
+    "passed": true,
+    "drive_clearance_uses_native_full_rotation_disc_envelopes": true,
+    "full_assembly_interference_checked": false,
+    "material_qualified": false,
+    "thermal_or_fatigue_validated": false,
+    "manufacturing_authorized": false,
+    "engine_start_authorized": false,
+    "reused_unmodified_checks": 284,
+    "fresh_changed_pipe_checks": 6,
+    "reused_verification_sha256": "60414b6f4b1ba9b38a875cb23669db9c64db180963459ee665d730f267aadb55",
+    "unchanged_prototypes_and_poses_sha256_verified": true
+  },
+  "glb_roundtrip": {
+    "prototypes": 154,
+    "instances": 1399,
+    "millimetre_to_metre_scale": 0.001,
+    "max_coordinate_or_transform_error_m": 2.95639037695139e-08,
+    "triangles_retained": true,
+    "sha256": "a72aa3afea616d7a051fbeba39242a92dc75b4e87c8b9283652615d66cf8f5ac"
+  },
+  "definitions": 154,
+  "assembly_occurrences": 1399,
+  "actual_alloy": null,
+  "measured_interfaces": null,
+  "professional_review": null,
+  "full_assembly_interference_checked": false,
+  "thermal_or_fatigue_validated": false,
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false,
+  "prior_manifest_sha256": "a3d453fc5990ee7980cb678fef94c71cc1de7bfbaa4e815f56aa1c952a542c6a",
+  "execution_lineage": {
+    "native_bodies_origin": "run-004; reused with STL/VDB and independent oriented-triangle hash checks",
+    "native_sources": {
+      "models/917-engine-reconstruction/mechanical-detail/Program.cs": "d2f9a681355c8765bb16c6d56316ab4b52cc1b0f1287486f1974bf53bcd80fe6",
+      "models/917-engine-reconstruction/mechanical-detail/Detail.csproj": "3ff467bef14c7e779f71ed5c2f1a432fe3f84bd8be22dfb89a19543414505da4",
+      "models/917-engine-reconstruction/mechanical-detail/design.py": "cce85ad94d27cb837486cadf320929665d07a447e8d9e59f03ea800bbce6427b",
+      "models/917-engine-reconstruction/mechanical-detail/run.py": "34a9c5991e23692b410489ce387594613c1b14b23ca6f7b41aa6cdb49e63858d",
+      "models/917-engine-reconstruction/mechanical-detail/verify.py": "1b9930f00631f6235401394b61a2823b1e5196eb2392bcfb1da28d7e08c74402",
+      "models/917-engine-reconstruction/mechanical-detail/detail_audit.py": "d0e51720f3f5b77a661ec103b8dfc978b72969c7c799b04a4523de33caa17bbf",
+      "models/917-engine-reconstruction/assembly/Program.cs": "d799752eeddbb43cf39e6142c56974ea5a499fc9284bcefd8df7cc1a69b9d3ea",
+      "models/917-engine-reconstruction/assembly/Engine.csproj": "381978c07b18ffb045ad875d21b54a6f66dba659c2e8f8387daeebe6ca697f26",
+      "parts/picogk-catalog/common/Sdf.cs": "8096c0bc8aa980cd463622d2838969987aa8a570ca7cb52a64eb08ea74ac7a40",
+      "parts/picogk-catalog/engine/EngineSdf.cs": "e1193344b75c2bd0fa6195a2cd4c8ace4ef98c9c5b18afd3180b0fe40af58d97",
+      "twins/m64-cylinder-head/source/picogk-local-junction/exact_zero_countertrial.py": "bef2321da471476528c07f75e5672080c8b051b5e0be888dc6e5e66ea46b00a2",
+      "twins/m64-cylinder-head/source/picogk-local-junction/audit_mesh.py": "cc55e633309e52f0a6d0af75f59d3e983bf3b184168abcaf521be3f7752f33e3"
+    },
+    "route_origin": "run-008; two intake replacements generated in run-009",
+    "route_sources": {
+      "models/917-engine-reconstruction/mechanical-detail/Program.cs": "d2f9a681355c8765bb16c6d56316ab4b52cc1b0f1287486f1974bf53bcd80fe6",
+      "models/917-engine-reconstruction/mechanical-detail/Detail.csproj": "8c79964fe56d6a9ec7b415d555b2bcf780eb4546e7d5b2f66b9eadb2dad08b0a",
+      "models/917-engine-reconstruction/mechanical-detail/Route.cs": "44130c03b910241b0f20711110846e1bb7d2b75cafc70f4d3e90779456cdc66a",
+      "models/917-engine-reconstruction/mechanical-detail/Route.csproj": "fa1557af5ddb6fd67366c11084af1eaa9ab5584b6530e313f7f8a1fc556b522f",
+      "models/917-engine-reconstruction/mechanical-detail/design.py": "dd7fbddab6cefd59cd5e653558c9c35db157717b12021c601b838cb6bbb96d09",
+      "models/917-engine-reconstruction/mechanical-detail/run.py": "5e8648a7663ffc850ae90d145881bf56ced93b79937d4f049c6a647359c32f0f",
+      "models/917-engine-reconstruction/mechanical-detail/verify.py": "1b9930f00631f6235401394b61a2823b1e5196eb2392bcfb1da28d7e08c74402",
+      "models/917-engine-reconstruction/mechanical-detail/detail_audit.py": "fbeb84965b32935cf8425dd41635dbed739446be6c0c31c891a1a36847a9963a",
+      "models/917-engine-reconstruction/assembly/Program.cs": "d799752eeddbb43cf39e6142c56974ea5a499fc9284bcefd8df7cc1a69b9d3ea",
+      "models/917-engine-reconstruction/assembly/Engine.csproj": "381978c07b18ffb045ad875d21b54a6f66dba659c2e8f8387daeebe6ca697f26",
+      "parts/picogk-catalog/common/Sdf.cs": "8096c0bc8aa980cd463622d2838969987aa8a570ca7cb52a64eb08ea74ac7a40",
+      "parts/picogk-catalog/engine/EngineSdf.cs": "e1193344b75c2bd0fa6195a2cd4c8ace4ef98c9c5b18afd3180b0fe40af58d97",
+      "twins/m64-cylinder-head/source/picogk-local-junction/exact_zero_countertrial.py": "bef2321da471476528c07f75e5672080c8b051b5e0be888dc6e5e66ea46b00a2",
+      "twins/m64-cylinder-head/source/picogk-local-junction/audit_mesh.py": "cc55e633309e52f0a6d0af75f59d3e983bf3b184168abcaf521be3f7752f33e3"
+    },
+    "final_route_source_sha256": "c2b9a6c1324e4f8133635fb247d87fc00222647d00aa01e2bb4690c5eb553798",
+    "final_route_recipe_sha256": "ff0dab955be798d9cfe571072e015265d439a49eec2a0794f495e15417c454fb",
+    "final_route_source_equals_compiled_source": true,
+    "final_assembly_script_sha256": "b0a9de9e36e46a69589af1115f9e9bf23adfdd6d50587aa6b0b72f3d5b245748",
+    "final_generation": "run-009 accepted bodies and intakes; run-010 narrowed outlet sockets, 6 affected contacts rerun, 284 unchanged contacts retained by prototype and pose hashes; final GLB roundtrip rerun",
+    "charge_repair": {
+      "generation": "run-010",
+      "recipe_sha256": "a1f61226cb6509104c79cf2a5be396d9f34d765e92d3502af01d78d9bb72275d",
+      "compiled_route_source_sha256": "c2b9a6c1324e4f8133635fb247d87fc00222647d00aa01e2bb4690c5eb553798",
+      "current_reproduction_source_sha256": "c2b9a6c1324e4f8133635fb247d87fc00222647d00aa01e2bb4690c5eb553798",
+      "prior_rejected_connection_report_sha256": "7af80fe64a2d626b17724b2963438c450c37185fb008748e0a3db665f8e12964"
+    }
+  },
+  "connection_checks": {
+    "checks": [
+      {
+        "bank": -1,
+        "connection": "return_throttle",
+        "intersection_mm3": 0.0,
+        "passed": true
+      },
+      {
+        "bank": -1,
+        "connection": "outlet_throttle",
+        "intersection_mm3": 0.0,
+        "passed": true
+      },
+      {
+        "bank": -1,
+        "connection": "inlet_charge",
+        "intersection_mm3": 0.0,
+        "passed": true
+      },
+      {
+        "bank": -1,
+        "connection": "turbo_charge",
+        "intersection_mm3": 0.0,
+        "passed": true
+      },
+      {
+        "bank": -1,
+        "connection": "manifold_end_cap",
+        "intersection_mm3": 1.0,
+        "expected_mm3": 1,
+        "passed": true
+      },
+      {
+        "bank": -1,
+        "connection": "manifold_return_bore",
+        "intersection_mm3": 0.0,
+        "expected_mm3": 0,
+        "passed": true
+      },
+      {
+        "bank": 1,
+        "connection": "return_throttle",
+        "intersection_mm3": 0.0,
+        "passed": true
+      },
+      {
+        "bank": 1,
+        "connection": "outlet_throttle",
+        "intersection_mm3": 0.0,
+        "passed": true
+      },
+      {
+        "bank": 1,
+        "connection": "inlet_charge",
+        "intersection_mm3": 0.0,
+        "passed": true
+      },
+      {
+        "bank": 1,
+        "connection": "turbo_charge",
+        "intersection_mm3": 0.0,
+        "passed": true
+      },
+      {
+        "bank": 1,
+        "connection": "manifold_end_cap",
+        "intersection_mm3": 1.0,
+        "expected_mm3": 1,
+        "passed": true
+      },
+      {
+        "bank": 1,
+        "connection": "manifold_return_bore",
+        "intersection_mm3": 0.0,
+        "expected_mm3": 0,
+        "passed": true
+      }
+    ],
+    "passed": true,
+    "source_sha256": "3ed40bada2acd2a63376e2703d5c6451e8468ade6a2a1b9bc415d6bd7121a197",
+    "pressure_sealing_qualified": false,
+    "manufacturing_authorized": false,
+    "engine_start_authorized": false
+  },
+  "frame_control": {
+    "candidate_volume_mm3": 167481.99493180774,
+    "dense_reference_volume_mm3": 663483.6639472635,
+    "volume_reduction_fraction": 0.7475717880747703,
+    "source_sha256": "226e8d6bbff81ff0445dae18c034dc28bcca36ca3b01d7d4f92ecb864e7a722b",
+    "recipe_sha256": "c792db4b228145dbceadd59e0aa6f1f582b643fa17375b530256e67a10de6af2",
+    "native_audits": {
+      "drive_frame_dense_reference": {
+        "source_sha256": "bdd14b059cfea87f8672e0263a5d5e168e997b6306c98571ae07572318767a44",
+        "triangles": 2049112,
+        "signed_volume_mm3_hypothesis": 663483.6639472635,
+        "passed": true,
+        "witness": {
+          "input_faces": 2049816,
+          "removed_zero_cross_product_faces": 704,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "4de6666b07bed3d7b26843fd24f272fb5c1cec19eff23a71cf25a9290f37101b",
+          "audit": {
+            "faces": 2049112,
+            "exact_unique_vertices": 1024508,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 1,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 663483.6639472635,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      }
+    },
+    "strength_or_fatigue_optimized": false,
+    "material_qualified": false,
+    "manufacturing_authorized": false,
+    "engine_start_authorized": false,
+    "generation_origin": "run-007 countertrial; candidate native STL byte-identical to run-008",
+    "candidate_native_stl_sha256": "db7626e3fc5b01f7f0bf59ac1e35b0c91a5d71ddd5515b9e0c2b2a2d683241d1"
+  },
+  "protected_heads": 12,
+  "protected_valves": 48,
+  "protected_meshes": {
+    "individual_head": "86dd5e56cf9f5cead6014d0c064e4e29a701b95b0b5ebf21c4653ee7b8cf00e6",
+    "head_component_01": "845f94c3bd7ba928bf808720fd018e5edca7949f8cca8249091ceef948fc6233",
+    "head_component_02": "74644a1d0770a87d9d1d57cd2af33659b6839af8759fb002dc67b86959349364",
+    "head_component_03": "da68f9687e3b74e77c2b4a0d9a90a7f714e2e0f8f172775f1648941e3d4291aa",
+    "head_component_04": "66aa32890c37292cb421135cf9aadc3db44c450ad229c1e934ba61e4212a346d",
+    "head_component_05": "238c7f57f14ef4fe80dda7a95f4be8227b849f4d83c0f823feceb138f66738d2",
+    "head_component_06": "e76bbf1d903da60853495eb8b2c43d88f3b308f03a2cdddaeeb82c12f1d0dada",
+    "head_component_07": "f126445e96ec08a37a5db7cbf8e703d4dd680305b53a472d1f6c99e7ef4ad7c2",
+    "head_component_08": "7c2b4ed7b140c9c95addb62b5fbccb6989127f6941e64052f04f219774d0691b",
+    "head_component_09": "0ed56245d7338aa787029a683c7ea5d1ad37a4a221f807d0669c662b0ebb5dfd",
+    "head_component_10": "47d91f642fcfd0731fd4d6b7c661954bb07d7a3ea56b984623d248c481871bc5",
+    "head_component_11": "33e2e8f7957ca01ad9f8c31cd74e9c1e81507568972715eea4cf6c326053f310",
+    "head_component_12": "67eea9c26c07e37d537c3155e01838cf9733262420c5029fad176926bff11f52",
+    "turbo_compressor_housing": "c7d2972b803f6f0d443e5e1f125d11baaf55ec19ca8abd82a006b308748506cd",
+    "turbo_compressor_wheel": "4bf63312713c244d35773172f693ab35a4b8c119c2f14dad584a78ebe145aa19",
+    "turbo_turbine_wheel": "1d318ad45a7cc98fef8ffe492e0c2c548b39e6caf6b5efa55d24a69e6b23d297",
+    "turbo_shaft": "a4171345a1e0f4b2483ee8a40c0ab00fdf8c46f198f06fd8c1475fa65d226348",
+    "turbo_chra_housing": "764e6e4da9b3eab67e295c4e05b090264b86dacb5798175803ef7a5e8315fada",
+    "turbo_journal_bearing_front": "dc5f526c0a92fd9326a925ac2250504b0d30a3f9b55f3a670bf58c0b457561a1",
+    "turbo_journal_bearing_rear": "6dd9496b3309308d8bcabee9c1a5f2fcbbbe2edaa56a2c198f2d077c61196af8",
+    "turbo_thrust_bearing": "735eb3b111ba84246211bf606243f439a633e6ef1ed44a2c56b18b0dd2e8bd9b",
+    "turbo_thrust_collar": "cf0c9c6480e204652bf6fa4f35ba9a6fcb9cb3f1d3617fab164cd2d72e063c87",
+    "turbo_seal_sleeve_front": "3459787571d3aa664880579378b711ebcec2e947c16a0c869fcf644a8dd0f2a2",
+    "turbo_seal_sleeve_rear": "204d00c0651f4e8322f1c7b3089859e7592a194f8ee78df0956c581051b08187",
+    "turbo_seal_ring_front": "082c85586133ecb7b4f1c1ab1840734b442ad9205f164843c8b3e4a9d13a2b1c",
+    "turbo_seal_ring_rear": "1426bf229db48e3fa8e19c0db86b4b9a7638d03f1c13c0877ce0557ea80fdb44",
+    "turbo_compressor_backplate": "e84c49262a01e063fe8ed5cb9f295c94359828f2c79c37ebcaf050f2c574dade",
+    "turbo_heat_shield": "41a3eaa7679efb60661e1b9adfc22e7395f0faf318493e6bb7e41176ffff515d",
+    "turbo_compressor_retention_ring": "97da898eb51806bcb417521f8148e7435122fe5862bf3c2a030727aabf04e72e",
+    "turbo_turbine_retention_ring": "d437fb697667c243a5e86504d66ff9dcee68d9641006bbf8b9898b57db34c67f",
+    "turbo_compressor_nut": "b30889e417fd3281ffcb78e2748a8bfca0c1154ce6661034805de0b3ab4738a6",
+    "turbo_backplate_bolt_1": "d74ecd2dd3df8af7fc8307cb7ea6897b0c34e28b7b0214e879577a72f2f71694",
+    "turbo_backplate_bolt_2": "3e62c58d612bd9569a1c5682cbdf0469503eb0b4abe5da19538ead80adb0741e",
+    "turbo_backplate_bolt_3": "5c6a5ae7daa3b4811a9b5fba25e023859169089e48abcbbb0f600b2b73226b4f",
+    "turbo_backplate_bolt_4": "799bce9f1922687c7163141a6a0a7be8295cadb1812e54d6b0f8b22356e3b7ac",
+    "turbo_backplate_bolt_5": "11280556bb670400459d23858a37bb0dfc556cba7ab47094d650eeb0fec10a37",
+    "turbo_backplate_bolt_6": "f8f2403e087291f4abd9c4f47a77ef9bedc6f9c12a97866bbf00d608fe55de33",
+    "turbo_oil_feed_union": "8e528ef480a74efe7a8a7ebfb643b80c0120b9cea1813b23e75b1048272355f5",
+    "turbo_oil_drain_union": "4e18cedb3b2c76e11139df976e81cf3eb06e6d3204289c32c018722884e0d15d",
+    "turbo_turbine_housing": "b67f408caffb3c2b82de9a1e8f1330ce366d9f8bbdea550347f9f48c2524c32f",
+    "turbo_wastegate_flapper": "79c4745f8a8c5feb1c407d825341a3bf5fccae8580737689d391196e674eea32",
+    "turbo_wastegate_pivot_lever": "bef8ff1d8d37c96d2bf15b352ac61fa26c71c6c5dded42acbde4a03407a62b52",
+    "turbo_wastegate_pivot_bushing": "82613c5f252599143f974254474f8ee124f855ff7a35cfce82fe7245c59d1ca7",
+    "turbo_wastegate_pivot_clip": "88d118a269a0997a56f45be15b6eae64296fa05d395000151e3e18dfc0867eb8",
+    "turbo_wastegate_actuator_rod": "bf785233018166a87f4a8828ba73e7ba892f0d0996998fe7ddd246d91a5358a1",
+    "turbo_wastegate_actuator_lower_cup": "a65d6b292b4fb40f09940ce2954f0529bde25ee64ac4432df21f459c17152e63",
+    "turbo_wastegate_actuator_upper_cup": "d2615ef012279244da27b14fad6e2a7210b7c49ebb11dba74eb3d96ad36ae350",
+    "turbo_wastegate_actuator_diaphragm": "d50794722d0b5ffbe3b2bd662ac694b3ac19c16aad786aa10bec26292d847a11",
+    "turbo_wastegate_actuator_spring": "c8ce421259876bffd175b089fc244dfcfd6a9b5e60e3b89ff14ea730ef364693",
+    "turbo_wastegate_actuator_bracket": "e0cee66e2689d3baf8b18c08b0832ee9cc8b31586ddb2b0be92ed69d6027f229",
+    "turbo_wastegate_bracket_bolt_1": "542e023432b9e18b58726fb4d24f38c1b8bb5f54742506e1ad7a0772401d8fb5",
+    "turbo_wastegate_bracket_bolt_2": "19f0dc5cde6dfa1ca31a71cb782a089dfa63b7c66c26697d79acf4be041d51f9"
+  },
+  "turbo_prototypes_unchanged": true,
+  "protected_poses_unchanged": true,
+  "turbo_prototype_count": 39,
+  "turbo_occurrences": 78,
+  "merged_baseline": "75df808f39a599c412688b9e573fa05591e4883d",
+  "rejected_housing_stl_resamples": {
+    "housing-clearance-1": {
+      "drive_housing": {
+        "passed": false,
+        "error": "Exact-zero-only countertrial rejected; no further repair allowed"
+      }
+    },
+    "housing-clearance-final-1": {
+      "drive_housing": {
+        "passed": false,
+        "error": "Exact-zero-only countertrial rejected; no further repair allowed"
+      }
+    }
+  },
+  "prior_trials": [
+    {
+      "run": 1,
+      "rejected_meshes": {
+        "native-1": [
+          "intercooler_tank",
+          "oil_cooler_tank",
+          "valve_cover",
+          "drive_housing",
+          "drive_cover_bolt"
+        ]
+      },
+      "diagnostic_hashes": {
+        "native-1/independent-audit.json": "683e24c04613871459aeb67cf5402f068ee544ffbb7ed31b43c8211b5a23cc0d",
+        "execution-sources.json": "d4af23e1dc0d2e97f42965241b1a45821e8263697e2577dd76c7ba8cfae7f915"
+      },
+      "accepted_as_final": false
+    },
+    {
+      "run": 2,
+      "rejected_meshes": {
+        "native-1": [
+          "intercooler_tank"
+        ]
+      },
+      "diagnostic_hashes": {
+        "native-1/independent-audit.json": "4fb2fd1a93dd26b24ef2151582514ab3d382f12e421a2a6ac766cf1812d478f3",
+        "execution-sources.json": "f30b87decaae193739ef740b42cc58f41981af1f2503fa8e18ce6611fc5728d6"
+      },
+      "accepted_as_final": false
+    },
+    {
+      "run": 3,
+      "rejected_meshes": {
+        "native-0.5": [
+          "oil_pump_body"
+        ],
+        "native-1": []
+      },
+      "diagnostic_hashes": {
+        "native-0.5/independent-audit.json": "7c12dbd46eb8396c82de011f2bac6e8b00319833beaf139375ed04cdb4803fe9",
+        "native-1/independent-audit.json": "e39db3576b2f0f56aa389a6ce1cf8ecb05cab79a74f2342d4cfc9f3704173988",
+        "execution-sources.json": "b9feab8460c762cfe13a02058c958560b4fb90c8f1304387d0e6764fe47d4c68"
+      },
+      "accepted_as_final": false
+    },
+    {
+      "run": 4,
+      "rejected_meshes": {
+        "native-0.5": [],
+        "native-1": []
+      },
+      "diagnostic_hashes": {
+        "native-0.5/independent-audit.json": "0bf8b185286f3a5668e281d14477db473abcb71aced9f6d3a704666b7ca36d02",
+        "native-1/independent-audit.json": "a24d792eae1534e3df9cce6d985756c9c8aa844485ce79b5bd739b3c16a124d5",
+        "execution-sources.json": "f0dcac509fb8d852753ad9e51d6f9204c32dff6311eb87ef1ceca577466c934e"
+      },
+      "accepted_as_final": false
+    },
+    {
+      "run": 5,
+      "rejected_meshes": {
+        "native-0.5": [],
+        "native-1": []
+      },
+      "diagnostic_hashes": {
+        "native-0.5/independent-audit.json": "0bf8b185286f3a5668e281d14477db473abcb71aced9f6d3a704666b7ca36d02",
+        "native-1/independent-audit.json": "a24d792eae1534e3df9cce6d985756c9c8aa844485ce79b5bd739b3c16a124d5",
+        "execution-sources.json": "80ead3ed4b5bd63a0b738e8dcf95df70e247c5febe8698855b6444a1ab5d4a19"
+      },
+      "accepted_as_final": false
+    },
+    {
+      "run": 6,
+      "rejected_meshes": {
+        "native-0.5": [],
+        "native-1": []
+      },
+      "diagnostic_hashes": {
+        "native-0.5/independent-audit.json": "0bf8b185286f3a5668e281d14477db473abcb71aced9f6d3a704666b7ca36d02",
+        "native-1/independent-audit.json": "a24d792eae1534e3df9cce6d985756c9c8aa844485ce79b5bd739b3c16a124d5",
+        "execution-sources.json": "c9746179af2f6704e7828977735f89e746afde815576188edbcc387c0f262e23"
+      },
+      "accepted_as_final": false
+    },
+    {
+      "run": 7,
+      "rejected_meshes": {
+        "frame-control-native": [],
+        "native-0.5": [],
+        "native-1": [],
+        "route-clip": [],
+        "route-final": []
+      },
+      "diagnostic_hashes": {
+        "frame-control-native/independent-audit.json": "1f8a2f6d6dc73cb5b153ff5d6bd3c4341ed45918928f329e403890dcfe050b0a",
+        "native-0.5/independent-audit.json": "0bf8b185286f3a5668e281d14477db473abcb71aced9f6d3a704666b7ca36d02",
+        "native-1/independent-audit.json": "a24d792eae1534e3df9cce6d985756c9c8aa844485ce79b5bd739b3c16a124d5",
+        "route-clip/independent-audit.json": "ee7eeeb85d4beaf8ac34583243836ca6a5066b44fab902a546f8ba15e13427fe",
+        "route-final/independent-audit.json": "7f33d30a9127546a1c25598be7fb6fdd445a2f5d9696f5ff15dc1e745f0bb30d",
+        "execution-sources.json": "f0c81dc0da88df2335b5e26edfe7cba8e79c98a7db54c27eed76daa57137e1e4",
+        "connection-checks.json": "2a1f3853ee81ab3bd08c4849a295980cd9347f69805e6166d9c5177572ace926"
+      },
+      "accepted_as_final": false,
+      "reason": "Verifier dispatch resolved the wrong Python module; corrected independent connection check rejected the two turbo adapters (about 498 mm3 each)."
+    },
+    {
+      "run": 8,
+      "rejected_meshes": {
+        "frame-control-native": [],
+        "native-0.5": [],
+        "native-1": [],
+        "route-clip": [],
+        "route-final": []
+      },
+      "diagnostic_hashes": {
+        "frame-control-native/independent-audit.json": "1f8a2f6d6dc73cb5b153ff5d6bd3c4341ed45918928f329e403890dcfe050b0a",
+        "native-0.5/independent-audit.json": "0bf8b185286f3a5668e281d14477db473abcb71aced9f6d3a704666b7ca36d02",
+        "native-1/independent-audit.json": "a24d792eae1534e3df9cce6d985756c9c8aa844485ce79b5bd739b3c16a124d5",
+        "route-clip/independent-audit.json": "ee7eeeb85d4beaf8ac34583243836ca6a5066b44fab902a546f8ba15e13427fe",
+        "route-final/independent-audit.json": "f0b4085a6d363943d73b370995e2b2d47b2b0308da938a2b42b2c3e745b9fea7",
+        "execution-sources.json": "d69109115c241c05f3a311943ab3ad48a3986ea3c0750488b9a481a74573a762"
+      },
+      "accepted_as_final": false,
+      "reason": "Independent cold check rejected gear-sweep/housing overlap of 2941 mm3; old collector tips also required caps."
+    },
+    {
+      "run": 9,
+      "rejected_meshes": {
+        "capped-intakes-continuous": [],
+        "capped-intakes-final": [
+          "intake_negative",
+          "intake_positive"
+        ],
+        "capped-intakes-native": [
+          "intake_negative",
+          "intake_positive"
+        ],
+        "frame-control-native": [],
+        "housing-clearance-1": [
+          "drive_housing"
+        ],
+        "housing-clearance-final-1": [
+          "drive_housing"
+        ],
+        "housing-clearance-vdb-0.5": [],
+        "housing-clearance-vdb-1": [],
+        "native-0.5": [],
+        "native-1": [],
+        "route-clip": [],
+        "route-final": []
+      },
+      "diagnostic_hashes": {
+        "capped-intakes-continuous/independent-audit.json": "ea2bea94fd627c18dba8c6ed94ad4f25b6748e852ba84eaa2afb2e21ba633068",
+        "capped-intakes-final/independent-audit.json": "0748d3d2e91c4df051bb438ad3608ec5d264530755ab45232e522764db099d6e",
+        "capped-intakes-native/independent-audit.json": "ca8e755aa66307308b6d2a68d06f39d23e6d92ef2e6507e91703d6317fdf8400",
+        "frame-control-native/independent-audit.json": "1f8a2f6d6dc73cb5b153ff5d6bd3c4341ed45918928f329e403890dcfe050b0a",
+        "housing-clearance-1/independent-audit.json": "ff807ee67717cba99bbe4049a91312788e4a540fcb5a87815915945e841b471f",
+        "housing-clearance-final-1/independent-audit.json": "ff807ee67717cba99bbe4049a91312788e4a540fcb5a87815915945e841b471f",
+        "housing-clearance-vdb-0.5/independent-audit.json": "825dc973b579f56bbbf801964b5d99034ad7385fd0adc60d0664efe9688415e7",
+        "housing-clearance-vdb-1/independent-audit.json": "96e710eb42441bbd54cab10dcb09c23bc9c9551a8e2ab5b7a563f4dee8b93376",
+        "native-0.5/independent-audit.json": "0bf8b185286f3a5668e281d14477db473abcb71aced9f6d3a704666b7ca36d02",
+        "native-1/independent-audit.json": "a24d792eae1534e3df9cce6d985756c9c8aa844485ce79b5bd739b3c16a124d5",
+        "route-clip/independent-audit.json": "ee7eeeb85d4beaf8ac34583243836ca6a5066b44fab902a546f8ba15e13427fe",
+        "route-final/independent-audit.json": "f0b4085a6d363943d73b370995e2b2d47b2b0308da938a2b42b2c3e745b9fea7",
+        "execution-sources.json": "57a188d50f78834f526d4eca748df2db8d6510ce5d4e65111a2deb7afceb151e",
+        "connection-checks.json": "7af80fe64a2d626b17724b2963438c450c37185fb008748e0a3db665f8e12964"
+      },
+      "accepted_as_final": false,
+      "reason": "Narrowing and shifting the outlet sockets was still required: 229 mm3 overlap with compressor volutes per bank."
+    }
+  ],
+  "rejected_intake_cap_trials": {
+    "capped-intakes-native": {
+      "intake_negative": {
+        "passed": false,
+        "error": "Exact-zero-only countertrial rejected; no further repair allowed"
+      },
+      "intake_positive": {
+        "passed": false,
+        "error": "Exact-zero-only countertrial rejected; no further repair allowed"
+      }
+    },
+    "capped-intakes-final": {
+      "intake_negative": {
+        "source_sha256": "fe958f13e32f0e8f45f9701660c9819d6d3fb5ecb78840c52149835b33de3b76",
+        "triangles": 3921840,
+        "signed_volume_mm3_hypothesis": 519524.6811933401,
+        "passed": false,
+        "witness": {
+          "input_faces": 3922180,
+          "removed_zero_cross_product_faces": 340,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "ac66f7c24808d7638636921fc532a7e8165e86f69e8db9de1fd62aebe24aa365",
+          "audit": {
+            "faces": 3921840,
+            "exact_unique_vertices": 1960900,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 3,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 519524.6811933401,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      },
+      "intake_positive": {
+        "source_sha256": "a2dcef7d2cd1ce6e2b9d2b52cb94f43183c8755246969d3cf05c366d6b4c187f",
+        "triangles": 3915684,
+        "signed_volume_mm3_hypothesis": 517803.6135520412,
+        "passed": false,
+        "witness": {
+          "input_faces": 3916068,
+          "removed_zero_cross_product_faces": 384,
+          "remaining_duplicate_face_groups": 0,
+          "vertex_displacement": 0,
+          "remaining_face_orientation_changed": false,
+          "remaining_oriented_faces_sha256": "dec6507c9b02f777fb98ed9162542a6e1761643ed1cd88f99787212371c13c25",
+          "audit": {
+            "faces": 3915684,
+            "exact_unique_vertices": 1957822,
+            "watertight": true,
+            "winding_consistent": true,
+            "exact_zero_area_faces": 0,
+            "boundary_edges_incidence_one": 0,
+            "edges_incidence_above_two": 0,
+            "surface_components_including_degenerate_faces": 3,
+            "components_are_not_interpreted_as_physical_voids": true,
+            "signed_triangle_volume": 517803.6135520412,
+            "strict_raw_mesh_screen_pass": true
+          }
+        },
+        "self_intersection_checked": false
+      }
+    }
+  },
+  "previews": {
+    "engine-surfaces.png": "d2d7140f13e9f69542f2e063d50420e7eea4b6c0cd592c07b4608618aa65bca5",
+    "mechanical-details.png": "3b9780fc3e7166f02d66b8bae787ef7d213c0800fc92cfae35dccfc9707c510f"
+  },
+  "delivery_manifest_sha256": "71ab0f00bde815c5a6b031d32699dab05103a1aa560704e04f420a70be1c36e4",
+  "private_delivery_files": 573,
+  "private_delivery_bytes": 11114048242
+}
