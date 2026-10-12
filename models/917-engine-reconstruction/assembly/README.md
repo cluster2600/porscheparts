@@ -148,6 +148,12 @@ python models/917-engine-reconstruction/assembly/render_surfaces.py \
 
 ## Matériaux et étapes de qualification
 
+Le [contrôle d'interface du 12 octobre](../clearance/README.md) confirme des
+volumes communs entre les soupapes héritées et le cylindre, puis propose une
+implantation compacte quatre soupapes à alésage 85 mm. Ses nouvelles silhouettes
+PicoGK restent séparées de cet assemblage : corps de culasse, sièges, guides,
+conduits et calage doivent être reconstruits et validés avant intégration.
+
 Le [reçu d'exécution](execution-20261011.json) lie les sources et les résultats :
 67 définitions natives contrôlées sur les deux grilles, 52 imports contrôlés
 sans retouche et GLB de 119 définitions / 1 129 placements. L'erreur maximale
