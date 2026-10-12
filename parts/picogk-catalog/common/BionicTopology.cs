@@ -19,7 +19,11 @@ public sealed class BionicTopology : IPartGenerator
 
     public Voxels Build(Library lib, PartSpec spec)
     {
-        string sourceDir = Path.GetDirectoryName(Runner.ParamsPath)!;
+        // Runner.cs is hash-pinned by other studies, so the params path comes from
+        // the command line (<exe> <params.json> <out-dir>) rather than from Runner.
+        string paramsPath = Environment.GetCommandLineArgs().Skip(1)
+            .First(a => a.EndsWith(".json", StringComparison.OrdinalIgnoreCase));
+        string sourceDir = Path.GetDirectoryName(Path.GetFullPath(paramsPath))!;
         string root = Path.GetFullPath(Path.Combine(sourceDir, "..", "..", ".."));
         JsonNode bio = JsonNode.Parse(File.ReadAllText(Path.Combine(sourceDir, "bionic.json")))!;
         string outDir = Path.Combine(root, "parts", "picogk-catalog", "out", "bionic");
@@ -54,7 +58,8 @@ public sealed class BionicTopology : IPartGenerator
         // bores and passages keep their exact size.
         JsonNode opt = bio["optimization"]!;
         foreach (JsonNode? s in opt["solid"]?.AsArray() ?? new JsonArray())
-            body.BoolAdd(Shape(lib, s!, root));
+            if (s!["analysis_only"]?.GetValue<bool>() != true)    // analysis-only walls come from base_stl
+                body.BoolAdd(Shape(lib, s, root));
         string? baseStl = bio["shaping"]?["base_stl"]?.GetValue<string>();
         if (baseStl != null)
             body.BoolAdd(new Voxels(Mesh.mshFromStlFile(Path.Combine(root, baseStl), libSet: lib)));

@@ -15,6 +15,13 @@ are filtered (radius rmin, mesh independence), updated by optimality criteria.
 Regions:
   design   - where material may grow (union of shapes); everything else is void
   solid    - forced solid (bosses, flanges, seats, functional surfaces)
+             "analysis_only": true marks a solid that stiffens the analysis but
+             is not printed from the grid (a thin skin or wall that the coarse
+             grid would thicken; supply its exact geometry via shaping.base_stl).
+             "stiffness_scale" (default 1) scales its modulus, e.g. real wall
+             thickness / element size. In the output its elements take the
+             largest neighbouring free density, so members reach into the band;
+             cut anything beyond the real wall with a "void" shape.
   void     - forced empty (bores, passages, clearances)
   supports - nodes fixed in x, y, z
   loads    - forces in N distributed over the nodes of a region, per case
@@ -113,6 +120,14 @@ def main(part_id):
     design = region(opt["design"], C)
     solid = region(opt.get("solid", []), C)
     void = region(opt.get("void", []), C)
+    stiff = np.ones(n)                               # per-element modulus scale
+    analysis_only = np.zeros(n, bool)
+    for s in opt.get("solid", []):
+        if s.get("analysis_only"):
+            inside = region([s], C)
+            analysis_only |= inside
+            stiff[inside] = float(s.get("stiffness_scale", 1.0))
+    analysis_only &= ~region([s for s in opt.get("solid", []) if not s.get("analysis_only")], C)
     active = (design | solid) & ~void
 
     # nodes and connectivity
@@ -192,6 +207,8 @@ def main(part_id):
 
     na = len(act_idx)
     fixed_solid = solid[act_idx]
+    stiff_a = stiff[act_idx]
+    stiff_a[~analysis_only[act_idx]] = 1.0
     volfrac = float(opt["volume_fraction"])
     x = np.full(na, volfrac)
     x[fixed_solid] = 1.0
@@ -205,7 +222,7 @@ def main(part_id):
         xt = filt(x)
         xp = project(xt, beta)
         xp[fixed_solid] = 1.0
-        Ee = Emin + xp ** pen * (E0 - Emin)
+        Ee = Emin + xp ** pen * (E0 * stiff_a - Emin)
         K = sp.coo_matrix(((KE.ravel()[None, :] * Ee[:, None]).ravel(), (iK, jK)), shape=(ndof, ndof)).tocsr()
         Kf = K[free][:, free]
         # rebuild the AMG hierarchy every iteration: a stale one costs ~10x more CG
@@ -220,7 +237,7 @@ def main(part_id):
             ue = U[edof]
             ce = np.einsum("ij,jk,ik->i", ue, KE, ue)
             comp += float((Ee * ce).sum())
-            dc += -pen * (E0 - Emin) * xp ** (pen - 1) * ce
+            dc += -pen * (E0 * stiff_a - Emin) * xp ** (pen - 1) * ce
         dp = dproject(xt, beta)
         dc = filt_t(dc * dp)
         dv = filt_t(dp)
@@ -243,6 +260,23 @@ def main(part_id):
     xp = project(filt(x), beta)
     xp[fixed_solid] = 1.0
     rho[act_idx] = xp
+    if analysis_only.any():
+        # analysis-only bands are not printed: members continue into them by the
+        # largest face-neighbour density outside the band (one pass per element layer)
+        g3 = rho.reshape(nz, ny, nx)
+        band = analysis_only.reshape(nz, ny, nx)
+        g3[band] = 0.0
+        for _ in range(int(opt.get("analysis_only_layers", 2))):
+            nb = np.zeros_like(g3)
+            for ax in range(3):
+                for sh in (1, -1):
+                    rolled = np.roll(g3, sh, axis=ax)
+                    edge = [slice(None)] * 3
+                    edge[ax] = 0 if sh == 1 else -1
+                    rolled[tuple(edge)] = 0.0
+                    nb = np.maximum(nb, rolled)
+            g3[band] = np.maximum(g3[band], nb[band])
+        rho = g3.ravel()
     out = CATALOG / "out" / "bionic"
     out.mkdir(parents=True, exist_ok=True)
     rho.tofile(out / f"{spec['part_id']}.density.bin")
