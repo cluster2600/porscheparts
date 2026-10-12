@@ -19,7 +19,11 @@ public sealed class BionicTopology : IPartGenerator
 
     public Voxels Build(Library lib, PartSpec spec)
     {
-        string sourceDir = Path.GetDirectoryName(Runner.ParamsPath)!;
+        // Runner.cs is hash-pinned by other studies, so the params path comes from
+        // the command line (<exe> <params.json> <out-dir>) rather than from Runner.
+        string paramsPath = Environment.GetCommandLineArgs().Skip(1)
+            .First(a => a.EndsWith(".json", StringComparison.OrdinalIgnoreCase));
+        string sourceDir = Path.GetDirectoryName(Path.GetFullPath(paramsPath))!;
         string root = Path.GetFullPath(Path.Combine(sourceDir, "..", "..", ".."));
         JsonNode bio = JsonNode.Parse(File.ReadAllText(Path.Combine(sourceDir, "bionic.json")))!;
         string outDir = Path.Combine(root, "parts", "picogk-catalog", "out", "bionic");
