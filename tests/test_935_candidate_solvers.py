@@ -115,8 +115,8 @@ class CandidateSolverTests(unittest.TestCase):
             self.assertEqual((root/'solver.exit').read_text().strip(),'2')
 
     def test_fea_runner_serial_settings_hash_and_new_directory(self):
-        if not shutil.which('sha256sum'):
-            self.skipTest('Linux worker hash utility unavailable')
+        if sys.platform != 'linux' or not shutil.which('sha256sum'):
+            self.skipTest('Requires Linux worker utilities')
         import os
         with tempfile.TemporaryDirectory() as folder:
             root=Path(folder);binary=root/'bin';binary.mkdir();solver=binary/'ccx'
