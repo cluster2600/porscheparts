@@ -30,6 +30,13 @@ extracts metadata from existing reports and records their source hashes.
 
 ## Contents
 
+**Later runtime update, 12 October 2026:** the retained library-aware PicoGK
+adapter runs again from a durable Mac installation. See
+[the setup and recovery record](PICOGK_MAC_SETUP.md) for installed libraries,
+immutable model hashes, usage, measured recovery checks and unavailable
+historical parent files. This is separate from the 2 October evidence snapshot
+and does not add a training experiment or replace a serving default.
+
 1. [What we are trying to teach](#1-what-we-are-trying-to-teach)
 2. [The model and training method](#2-the-model-and-training-method)
 3. [The actual training data](#3-the-actual-training-data)
