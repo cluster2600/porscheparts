@@ -116,6 +116,33 @@ Le journal reste local : `work/962-head/make-check-metrology.log`.
 Les cibles globales suivantes ne sont pas considérées exécutées. La CI de
 la nouvelle révision G1 doit être observée séparément.
 
+## Fusion G1 et diagnostic des frontières d'eau
+
+La CI G1 du commit `1dd4f65e770481cdbc8475606be05b69387158e1` a réussi :
+[run 677](https://github.com/cluster2600/porscheparts/actions/runs/38291189844).
+La PR 188 est fusionnée sur demande du propriétaire dans
+`d8fed9fa5e7f96d4fe1e0af27b0a51eb9f94177e`.
+
+La suite utilise les STL originaux, sans réexécution ni modification du
+générateur. Le [rapport de frontières](derived/boundary-audit.json) conserve
+empreintes, sections et classifications aux quatre distances de sondage.
+Les dix-neuf tests ciblés passent avec VTK. Sept nouveaux témoins vérifient
+les classifications sur des surfaces analytiques, les sections ouvertes ou
+déconnectées, les entrées invalides et le refus d'un STL modifié avant export.
+Le graphe de sondage est inspecté visuellement. Les sections VTP restent
+locales dans `work/962-head/boundary-audit-final2/`.
+
+Les écarts eau/métal restent présents dans la preuve : aucun statut de CFD,
+interface conforme, tenue de paroi ou qualification physique n'est accordé.
+Le contrôle strict des liens passe sur 880 fichiers Markdown. Le `make check`
+Mac termine en échec : 3 803 tests, 2 échecs, 26 erreurs, 232 ignorés,
+251,837 s. Les erreurs SciPy/NumPy et `hashlib.file_digest` ainsi que les
+deux égalités de flottants concernent les mêmes modules non modifiés ; les
+dix-neuf tests 962 sont vérifiés séparément avec VTK. Le journal reste local
+dans `work/962-head/make-check-boundaries.log` ; les cibles après `test`
+ne sont pas considérées exécutées. La CI de cette nouvelle révision reste
+à observer.
+
 ## Vérifications physiques absentes
 
 Pas de scan/CT d'un donneur 962, de métrologie, de CFD/CHT, de calcul mécanique,

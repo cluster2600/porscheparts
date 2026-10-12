@@ -161,6 +161,8 @@ Les gates G1–G5 restent ouvertes. Le [dossier d'acquisition G1](DONOR_METROLOG
 fournit la feuille d'interfaces
 à mesurer sur le donneur ; la [qualification matière](MATERIAL_QUALIFICATION.md)
 précise les données à obtenir sur chaque recette LPBF.
+Le [diagnostic des frontières d'eau F0](COOLANT_BOUNDARIES.md) extrait les
+deux sections et conserve les écarts de sondage eau/métal avant toute CFD.
 Le [contrat culasse F0](interface-contract.json) et ses empreintes sont conservés.
 Le [programme M64 existant](../m64-engine-system/program.json) apporte des
 références par zone sans transmettre ses niveaux de fidélité ou interfaces à
