@@ -22,7 +22,8 @@
     "accuracy_mm": null,
     "derived_files": [
       "parts/993-eng-cooling-impeller-we43-f1-0001/derived/cooling_impeller_we43_f1.step",
-      "parts/993-eng-cooling-impeller-we43-f1-0001/derived/cooling_impeller_we43_f1.stl"
+      "parts/993-eng-cooling-impeller-we43-f1-0001/derived/cooling_impeller_we43_f1.stl",
+      "parts/993-eng-cooling-impeller-we43-f1-0001/derived/cooling_impeller_f1-polymer-mockup-roll-y-45.stl"
     ]
   },
   "provenance": {
@@ -103,7 +104,7 @@
       "standard": "ASTM B80/B107 WE43 composition reference only; program-specific LPBF, rotating, HCF, balance and overspeed specification to be contracted"
     },
     "post_processing": [
-      "provisional roll_y_45 orientation for numerical studies; thermal anchoring, support topology and removal access require supplier review",
+      "flat build_z is the preferred next study candidate after the thermal comparison; roll_y_45 is retained as a comparison; thermal anchoring, support topology and removal access require supplier review",
       "solutionizing and ageing, distortion monitored",
       "HIP to be decided by the HCF/defect card",
       "steel inserts or creep-rated washers at the three bolt holes, machined web faces and bore",
@@ -136,6 +137,7 @@
       "catalog/sources/src-ornl-we43-lpbf-hyer-2020.json",
       "catalog/sources/src-luxfer-wrought-we43-thermal.json",
       "docs/993/impeller-we43-thermal-20261012.md",
+      "parts/993-eng-cooling-impeller-we43-f1-0001/source/polymer-mockup.json",
       "catalog/sources/src-azom-elektron-we43-properties.json",
       "catalog/sources/src-apworks-scalmalloy.json",
       "catalog/sources/src-eos-alsi10mg-current-page.json",
@@ -153,6 +155,7 @@
     "reviewed_by": "",
     "reviewed_on": null,
     "known_limits": [
+      "The separate roll_y_45 polymer or carbon-fiber-filled thermoplastic export is a static mockup only; printer, material grade, supports and slicing parameters remain unspecified. The WE43 thermal study does not apply to that mockup.",
       "The 2026-10-12 LPBF study solves uncalibrated bulk heat conduction on the concept CAD with assumed supports and conventional WE43 constants; melt pools, residual stress, distortion and print success are not predicted.",
       "The rebuild of the original rotor is a visual reconstruction: blade and window counts are observed, the 48 degree pitch, chords, cup depth and walls are hypotheses.",
       "The duty is inferred from the rebuild (its best-efficiency point at 10,000 fan rpm in a bellmouth housing: 2.34 m3/s at 2,155 Pa); no 993 fan map, pulley ratio or engine resistance is measured.",

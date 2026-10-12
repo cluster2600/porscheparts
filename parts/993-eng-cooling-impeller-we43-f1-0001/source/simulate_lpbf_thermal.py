@@ -30,14 +30,18 @@ def write(path, value):
 def voxel_body(mesh, pitch):
     mesh = mesh.copy()
     mesh.apply_translation(-mesh.bounds[0])
-    body = SOLVER["interior_voxels"](mesh, pitch)
-    if abs(body.sum() * pitch**3 / mesh.volume - 1) > .02:
+    fine = SOLVER["interior_voxels"](mesh, 1.)
+    if abs(fine.sum() / mesh.volume - 1) > .02:
         raise ValueError("Thermal grid volume differs from CAD by more than two percent")
-    return body
+    # shortcut: homogenize 1 mm metal occupancy; refine geometry and thermal cells for thin-wall predictions.
+    factor = int(pitch)
+    fine = np.pad(fine, [(0, (-size) % factor) for size in fine.shape])
+    nx, ny, nz = np.array(fine.shape) // factor
+    return fine.reshape(nx, factor, ny, factor, nz, factor).mean(axis=(1, 3, 5))
 
 
 def validate(card, pitch, absorption, substeps):
-    if pitch not in (1.0, 1.5, 2.0) or not 1 <= substeps <= 32:
+    if pitch not in (1., 2., 3.) or not 1 <= substeps <= 32:
         raise ValueError("Unsupported spatial or temporal resolution")
     if not math.isfinite(absorption) or not 0 < absorption <= 1:
         raise ValueError("Absorptivity must be in (0, 1]")
@@ -91,7 +95,8 @@ def run(output, pitch, absorption, substeps):
         raise ValueError("Slice energy volume differs from CAD by more than 0.1 percent")
 
     body = voxel_body(mesh, pitch)
-    part = np.pad(body, ((0, 0), (0, 0), (round(a["standoff_mm"] / pitch), 0)))
+    metal = np.pad(body, ((0, 0), (0, 0), (round(a["standoff_mm"] / pitch), 0)))
+    part = metal > 0
     first = np.argmax(part, axis=2)
     supports = part.any(axis=2)[:, :, None] & (np.arange(part.shape[2])[None, None, :] < first[:, :, None])
     cells = np.argwhere(part | supports)
@@ -99,7 +104,7 @@ def run(output, pitch, absorption, substeps):
     grid = np.full(part.shape, -1, dtype=np.int32)
     grid[tuple(cells.T)] = np.arange(len(cells))
     is_part = part[tuple(cells.T)]
-    fraction = np.where(is_part, 1., a["support_solid_fraction"])
+    fraction = np.where(is_part, metal[tuple(cells.T)], a["support_solid_fraction"])
     dx = pitch / 1000
     capacity = m["rho_kg_m3"] * m["cp_j_kg_k"] * dx**3 * fraction
     left, right = [], []
@@ -126,7 +131,7 @@ def run(output, pitch, absorption, substeps):
     output.mkdir(parents=True, exist_ok=False)
     temperature = np.full(len(cells), a["plate_temperature_k"])
     peak = temperature.copy()
-    history, snapshots = [], []
+    history = []
     elapsed = absorbed = stored = rejected = residual = 0.
     for layer in range(part.shape[2]):
         n = int(np.searchsorted(cells[:, 2], layer, side="right"))
@@ -162,10 +167,6 @@ def run(output, pitch, absorption, substeps):
                 history.append({"macro_layer": layer, "phase": phase, "time_s": elapsed,
                                 "max_part_k": float(t[is_part[:n]].max()) if is_part[:n].any() else None,
                                 "max_all_k": float(t.max()), "absorbed_energy_j": de})
-        if layer % max(1, part.shape[2] // 20) == 0 or layer == part.shape[2] - 1:
-            frame = np.full(len(cells), np.nan)
-            frame[:n] = temperature[:n]
-            snapshots.append(frame)
         print(f"{layer+1}/{part.shape[2]} macro layers, {n} cells, peak {peak[:n].max():.3f} K", flush=True)
     build = temperature.copy()
     build_time = elapsed
@@ -180,17 +181,18 @@ def run(output, pitch, absorption, substeps):
     if hashes != {key: sha(path) for key, path in inputs.items()}:
         raise ValueError("Inputs changed during the calculation; results cannot be published")
     np.savez_compressed(output / "thermal-fields.npz", centres_mm=(cells + .5) * pitch, is_part=is_part,
-                        peak_k=peak, end_build_k=build, cooled_k=temperature, snapshots=np.array(snapshots))
+                        solid_fraction=fraction, peak_k=peak, end_build_k=build, cooled_k=temperature)
     write(output / "history.json", history)
     summary = {"part_id": card["part_id"], "status": "transient_3d_bulk_thermal_solve_completed",
         "orientation": report["selected_candidate_orientation"], "pitch_mm": pitch, "substeps": substeps,
+        "geometry_sampling_mm": 1., "partial_volume_cells": True,
         "absorptivity": absorption, "cells": len(cells), "part_cells": int(is_part.sum()),
         "hashes": hashes,
         "output_hashes": {name: sha(output / name) for name in ("thermal-fields.npz", "history.json")},
         "physical_part_layers": len(rows), "physical_layers_including_standoff": total_layers,
         "cad_volume_mm3": float(mesh.volume), "sliced_volume_mm3": sliced_volume,
-        "voxel_part_volume_mm3": float(is_part.sum() * pitch**3),
-        "voxel_relative_volume_error": float(is_part.sum() * pitch**3 / mesh.volume - 1),
+        "voxel_part_volume_mm3": float(fraction[is_part].sum() * pitch**3),
+        "voxel_relative_volume_error": float(fraction[is_part].sum() * pitch**3 / mesh.volume - 1),
         "assumed_support_solid_volume_mm3": float(support_volume.sum()),
         "scan_time_h": float(energy.sum() / p["power_w"] / 3600),
         "recoat_time_h": float(total_layers * a["recoat_seconds_per_layer"] / 3600),
@@ -200,7 +202,7 @@ def run(output, pitch, absorption, substeps):
         "absorbed_energy_j": absorbed, "net_rejected_energy_j": rejected, "stored_energy_change_j": stored,
         "global_energy_residual_j": stored + rejected - absorbed,
         "cp_reference_temperature_range_exceeded": bool(peak.max() > m["cp_reference_range_k"][1]),
-        "whole_geometry_resolved_within_two_percent_volume": bool(abs(is_part.sum()*pitch**3/mesh.volume - 1) < .02),
+        "whole_geometry_resolved_within_two_percent_volume": bool(abs(fraction[is_part].sum()*pitch**3/mesh.volume - 1) < .02),
         "melt_pool_resolved": False, "powder_conduction_resolved": False, "distortion_computed": False,
         "machine_calibrated": False, "manufacturing_authorized": False}
     write(output / "summary.json", summary)
@@ -210,7 +212,7 @@ def run(output, pitch, absorption, substeps):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument("--pitch-mm", type=float, default=1.)
+    parser.add_argument("--pitch-mm", type=float, default=2.)
     parser.add_argument("--absorptivity", type=float, default=.35)
     parser.add_argument("--substeps", type=int, default=4)
     args = parser.parse_args()

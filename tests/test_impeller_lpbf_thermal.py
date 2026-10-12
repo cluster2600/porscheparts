@@ -24,6 +24,10 @@ class ImpellerThermalTests(unittest.TestCase):
         np.testing.assert_array_equal(box.vertices, before)
         box.apply_translation([73., -126., 21.])
         np.testing.assert_array_equal(MODULE["voxel_body"](box, 1.), body)
+        for pitch in (2., 3.):
+            coarse = MODULE["voxel_body"](box, pitch)
+            self.assertAlmostEqual(float(coarse.sum()) * pitch**3, 192.)
+            self.assertTrue(((coarse >= 0) & (coarse <= 1)).all())
 
     def test_heat_injection_and_cooling_match_analytic_energy(self):
         step = MODULE["SOLVER"]["implicit_step"]
@@ -59,7 +63,7 @@ class ImpellerThermalTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "not-created"
             with self.assertRaises(ValueError):
-                MODULE["run"](output, 3., .35, 4)
+                MODULE["run"](output, 1.5, .35, 4)
             self.assertFalse(output.exists())
 
     def test_conduction_preserves_energy_and_matches_two_cell_solution(self):
@@ -91,6 +95,19 @@ class ImpellerThermalTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "digest"):
                 renderer["render"]([case], output)
             self.assertFalse(output.exists())
+
+    def test_saved_field_energy_matches_integrated_balance(self):
+        card = json.loads(MODULE["CARD"].read_text())
+        root = MODULE["CARD"].parents[1] / "evidence/lpbf-thermal-20261012"
+        for name in ("p2-s4", "p2-s8", "p3-s4", "flat/p2-s8", "flat/p2-s4", "flat/p3-s4"):
+            with self.subTest(case=name), np.load(root / name / "thermal-fields.npz", allow_pickle=False) as fields:
+                report = json.loads((root / name / "summary.json").read_text())
+                temperature = fields["cooled_k"]
+                self.assertTrue(np.isfinite(temperature).all())
+                self.assertGreaterEqual(float(temperature.min()), card["assumptions"]["ambient_temperature_k"] - 1e-6)
+                capacity = card["material"]["rho_kg_m3"] * card["material"]["cp_j_kg_k"] * (report["pitch_mm"] / 1000)**3
+                stored = capacity * np.dot(fields["solid_fraction"], temperature - card["assumptions"]["plate_temperature_k"])
+                self.assertAlmostEqual(stored, report["stored_energy_change_j"], delta=1e-4)
 
 
 if __name__ == "__main__":
