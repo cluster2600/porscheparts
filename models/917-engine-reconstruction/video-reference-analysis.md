@@ -3,6 +3,9 @@
 Analyse du 12 octobre 2026, fondée sur les images effectivement extraites de
 la [vidéo fournie](https://www.youtube.com/watch?v=NI_jfBTtziQ).
 Comparaison avec le [rendu PicoGK actuel](mechanical-detail/engine-surfaces.png).
+Une [deuxième référence en animation](animation-reference-analysis.md) apporte
+une lecture du mécanisme ouvert et un écart d'implantation de la distribution
+à instruire avant de figer les carters.
 L'écart principal concerne l'architecture extérieure : enveloppes latérales
 morcelées, conduits trop dégagés au-dessus du moteur et accessoires encore
 insuffisamment intégrés. Ajouter des nervures décoratives ne résoudrait pas cet
