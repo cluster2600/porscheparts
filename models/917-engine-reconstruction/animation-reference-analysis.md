@@ -2,6 +2,8 @@
 
 Analyse du 12 octobre 2026 de la [deuxième vidéo fournie](https://www.youtube.com/watch?v=j3CkVwtOPX4),
 complémentaire de l'[analyse du moteur filmé](video-reference-analysis.md).
+La [référence physique du musée](museum-reference-analysis.md) ajoute des gros
+plans des paliers, de la région centrale et des raccords de suralimentation.
 Cette référence apporte une lecture du mécanisme en coupe et une différence
 importante avec notre montage : les grandes roues des arbres à cames visibles
 sont situées vers leur milieu, tandis que notre [distribution candidate](cam-drive/README.md)
