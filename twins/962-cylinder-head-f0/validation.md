@@ -208,6 +208,18 @@ Les classifications aux frontières métal/eau restent non résolues : à
 0,25 mm, 1 609 sondes ne sont attribuées à aucun des deux domaines. Le lissage
 ne produit donc pas une interface conforme prête pour CHT.
 
+## Contrôle global après intégration de main
+
+`make check` a été exécuté sur
+`1dc719f622811158f81bf1d36f29c0dc39942477` : **3 855 tests** en 251,879 s,
+**2 échecs, 26 erreurs, 235 ignorés**. Les échecs concernent les égalités de
+flottants impeller/stator ; les erreurs concernent les imports numériques
+SciPy/NumPy et `hashlib.file_digest` sous Python 3.10, dans des modules non
+modifiés par cette étude. Les cibles après `test` n'ont pas été exécutées.
+Le log complet reste local dans `work/962-head/make-check-final-main.log`.
+Les 32 tests culasse passent avec VTK ; le contrôle séparé des liens passe
+sur 916 Markdown. Ce résultat global Mac n'est pas annoncé comme vert.
+
 ## Vérifications physiques absentes
 
 Pas de scan/CT d'un donneur 962, de métrologie, de CFD/CHT, de calcul mécanique,
