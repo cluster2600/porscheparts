@@ -37,7 +37,7 @@ That cleanup does not fill holes; the volume change is constrained below 1e-7.
 The [geometry receipt](derived/geometry-review.json) records source/output hashes.
 The decimated GLB is for review, not the analysis or manufacture master.
 
-The core bottom is at local Z = 430 mm. An earlier 380 mm position overlapped the
+The core bottom is at local Z = 430 mm; the assembled headers and charge ports widen the package beyond the 620 mm core face. Only the core size is quoted above, not the complete installation envelope. An earlier 380 mm position overlapped the
 fan delivery envelope; it was rejected before final publication. Raising the
 core and separating the upper elbow removes that intended-flow overlap. The
 assembly still needs a full collision/clearance audit against the actual engine,
@@ -112,7 +112,7 @@ standard and extended mesh checks, mass balance, flow-history stability, residua
 mesh refinement and experimental correlation. Failed meshes never start a solver.
 No tolerance is relaxed to produce a successful-looking result.
 
-Five meshing attempts completed. The final 5 mm case fails one extended check
+Six meshing attempts completed. The retained 5 mm reference case fails one extended check
 with three concave cells; no flow solver was started. The failure is retained,
 not reclassified as convergence. Fixing those cells, then demonstrating mesh
 independence, is the next numerical gate. The full rotating, thermal assembly

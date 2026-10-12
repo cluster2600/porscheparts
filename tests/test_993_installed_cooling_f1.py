@@ -71,7 +71,7 @@ class InstalledCoolingTests(unittest.TestCase):
 
     def test_failed_meshes_never_claim_flow_results(self):
         report=json.loads((STUDY/"results/cfd/receipt.json").read_text())
-        self.assertEqual(len(report["attempts"]),5)
+        self.assertEqual(len(report["attempts"]),6)
         self.assertFalse(report["flow_solver_started"])
         self.assertFalse(report["converged_cfd"])
         self.assertIsNone(report["winner"])
