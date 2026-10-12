@@ -92,6 +92,12 @@ class CandidateSolverTests(unittest.TestCase):
                 np.testing.assert_allclose(mesh.bounds,original.bounds*.001,rtol=1e-6)
                 self.assertNotIn('scale 0.001', (out/name/'system/snappyHexMeshDict').read_text())
                 self.assertIn('kOmegaSST',(out/name/'constant/turbulenceProperties').read_text())
+                solution = (out/name/'system/fvSolution').read_text()
+                self.assertEqual(solution.count('tolerance 1e-9;relTol 0;'), 2)
+                self.assertIn('nNonOrthogonalCorrectors 2;', solution)
+                inputs = json.loads((out/name/'case-metadata.json').read_text())['prepared_input_sha256']
+                self.assertNotIn('case-metadata.json', inputs)
+                self.assertTrue(all(sha(out/name/p) == digest for p,digest in inputs.items()))
             self.assertEqual(sha(source),case['cfd']['rotor_stl_sha256'])
             with self.assertRaises(ValueError):prepare(path,root/'output')
             case['cfd']['rotor_stl_sha256']='0'*64;path.write_text(json.dumps(case))
