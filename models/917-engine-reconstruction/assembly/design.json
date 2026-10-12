@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "classification": "modern_4v_biturbo_hypothesis_assembly_not_historical_replica",
+  "base_fia_variant": "type_912_4494",
+  "core_assumptions": {
+    "classification": "hypothesis_only_not_identified_or_measured_engine",
+    "variant_seed": "type_912_4_494_fia_documentary_reference_candidate",
+    "assumed_mm_per_scan_unit": 1.0,
+    "dimensions_mm": {
+      "bore": 85.0,
+      "stroke": 66.0,
+      "rod_length": 132.0,
+      "regular_pitch": 118.0,
+      "central_pitch": 173.0,
+      "bank_stagger": 37.0,
+      "cylinder_base": 50,
+      "cylinder_length": 160,
+      "cylinder_outer_diameter": 95.0,
+      "fin_diameter": 110.0,
+      "fin_thickness": 3.0,
+      "fin_pitch": 18,
+      "fin_start": 8,
+      "piston_diametral_clearance": 0.2,
+      "piston_height": 86.0,
+      "piston_skirt_thickness": 3.0,
+      "piston_crown_thickness": 4.5,
+      "piston_boss_inner_x": 20.0,
+      "piston_boss_outer_diameter": 32.0,
+      "pin_outer_diameter": 22.0,
+      "pin_inner_diameter": 16.0,
+      "pin_length": 60.0,
+      "rod_big_outer_diameter": 72.0,
+      "rod_big_bore": 56.25,
+      "rod_small_outer_diameter": 32.0,
+      "rod_width": 18.0,
+      "rod_beam_diameter": 18.0,
+      "piston_pin_axis_to_crown": 43.0,
+      "piston_skirt_below_pin": 43.0,
+      "crankpin_diameter": 52.0,
+      "assumed_bearing_radial_thickness": 2.125
+    },
+    "fin_count": 8,
+    "crank_pair_phases_deg": [
+      0,
+      120,
+      240,
+      60,
+      180,
+      300
+    ],
+    "rod_reciprocating_mass_fraction": 0.3333333333333333,
+    "rpm_cases": [
+      4000,
+      6000,
+      8000
+    ],
+    "peak_pressure_bar_cases": [
+      40,
+      60,
+      80
+    ],
+    "rod_length_sensitivity_mm": [
+      120,
+      132,
+      144
+    ],
+    "candidate_materials": {
+      "cylinder": {
+        "name": "AlSi10Mg_candidate",
+        "assumed_density_kg_m3": 2700
+      },
+      "piston": {
+        "name": "aluminium_forged_candidate",
+        "assumed_density_kg_m3": 2700
+      },
+      "rod": {
+        "name": "Ti6Al4V_candidate",
+        "assumed_density_kg_m3": 4430
+      },
+      "pin": {
+        "name": "steel_candidate",
+        "assumed_density_kg_m3": 7800
+      },
+      "rod_alternative": {
+        "name": "steel_candidate",
+        "assumed_density_kg_m3": 7800
+      }
+    },
+    "basis": {
+      "bore_stroke": "FIA form 250 page 8 fields 133/134, visually rechecked against canonical PDF; specimen identity unverified",
+      "layout": "rounded 118/173/37 scan-derived exterior estimates interpreted under assumed 1 mm/unit; cylinder axes levelled as a hypothesis",
+      "rod_length": "132 mm inherited schematic hypothesis, not a measured Porsche dimension",
+      "remaining_dimensions_phases_densities_and_loads": "explicit engineering hypotheses for this experiment, not material allowables or measured operating conditions",
+      "architecture": "opposed banks with six hypothetical shared crankpins; no firing order, combustion or complete crankshaft definition",
+      "piston": "43 mm pin-axis-to-crown from FIA field 146; symmetric 43 mm skirt below pin is an unmeasured hypothesis required by the preserved symmetric prototype generator; total height 86 mm is not a FIA dimension",
+      "rod_big_end": "FIA field 158 diameter 52 mm; 1 mm radial bearing and outer diameter 72 mm are hypotheses, giving 54 mm housing bore; ambiguous FIA field 159 value 56 mm is excluded"
+    },
+    "documentary_source": "source-review.json"
+  },
+  "head_deck_mm": 210,
+  "head_asset_ref": "docs/studies/993-air-oil-20261002/delivery-manifest.json",
+  "head_manifest_sha256": "0aa580134b9eab759d9ca44ca55da320b561eadeee86290c0d4b5dd31c0eeb3c",
+  "turbo_reference_commit": "aba24fd351930ed4cee194b8cc557c3b80238894",
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false,
+  "assumptions": [
+    "Bore85 and stroke66 refer to FIA base; modern heads and bionic turbos are a new design variant.",
+    "Cylinder base50 length160 replace rejected provisional70/122 purely to cover assumed86 mm symmetric piston; not factory geometry.",
+    "Head deck210, compression clearance2, bank stagger37, pitch118/173 and all new interfaces are unmeasured hypotheses.",
+    "Inherited air/oil head and its 12 valve-seat-guide meshes are unchanged; 1 scan unit=1 mm is unverified.",
+    "Bionic turbo F0 components are reused at native scale; not K16 or Garrett dimensional equivalents.",
+    "Parts labelled purchased_envelope represent supplier assemblies without designing their internals.",
+    "Bionic webs and duct branching are deterministic design rules, not topology optimization or CFD/FEA.",
+    "Threads, sealing lands, tolerances, bearing films, balancing, hot clearances and production hardware remain undefined.",
+    "Rod bearing outer28.125 inner26.125 and rod housing56.25 replace the under-resolved 1 mm allowance with a 2.125 mm housing allowance hypothesis; FIA reference crankpin remains52."
+  ],
+  "material_routes": {
+    "light_structure": {
+      "candidate": "AlSi10Mg_or_CP1_unselected",
+      "route": "LPBF_candidate_then_heat_treatment_and_machining",
+      "qualified": false
+    },
+    "head": {
+      "candidate": "EOS_Aluminium_Constellium_CP1",
+      "route": "LPBF_candidate_then_heat_treatment_and_finish_machining",
+      "qualified": false
+    },
+    "piston": {
+      "candidate": "forged_2618",
+      "route": "forge_and_machine",
+      "qualified": false
+    },
+    "rod": {
+      "candidate": "Ti6Al4V",
+      "route": "forge_and_machine_not_print_rotating_rod",
+      "qualified": false
+    },
+    "steel": {
+      "candidate": "alloy_steel_grade_unselected",
+      "route": "machine_heat_treat_grind",
+      "qualified": false
+    },
+    "bearing": {
+      "candidate": "bearing_alloy_unselected",
+      "route": "purchase_or_supplier_design",
+      "qualified": false
+    },
+    "hot": {
+      "candidate": "IN625_candidate",
+      "route": "LPBF_or_fabrication_then_machine",
+      "qualified": false
+    },
+    "spring": {
+      "candidate": "CrSi_candidate",
+      "route": "purchase_shot_peened_set_wire_spring",
+      "qualified": false
+    },
+    "purchase": {
+      "candidate": null,
+      "route": "purchase_qualified_component",
+      "qualified": false
+    },
+    "seal": {
+      "candidate": "seal_material_unselected",
+      "route": "purchase",
+      "qualified": false
+    }
+  }
+}

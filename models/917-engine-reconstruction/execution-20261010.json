@@ -1,0 +1,96 @@
+{
+  "date": "2026-10-10",
+  "classification": "observed_surface_reconstruction_only",
+  "objective": "functional_917_engine_future_not_validated",
+  "source_catalog_record": "catalog/sources/src-local-917-engine-case-cylinders-scan.json",
+  "source_sha256": "428c4143d073f8330022f2fecbd1ac1ee7784d4f1565f1160020448dbdffa0ae",
+  "source_triangles": 2465879,
+  "toolchain": {
+    "python": "3.13.15",
+    "platform": "macOS-27.2-arm64-arm-64bit-Mach-O",
+    "numpy": "2.5.4",
+    "trimesh": "5.1.1",
+    "dotnet": "9.0.317",
+    "executable_sha256": "fa84313832bc6c6f2aa595a083217e0415cfe05299f142424bb976f7f81c1a5d",
+    "source_sha256": {
+      "Program.cs": "b794044e16f3d1c81f43aa8e8b57ec9468a91c3fcd007e2f9a25e26e9d3b600c",
+      "ScanShell.csproj": "d82d7c6d919dc789bd8bc8adc68817cd660212a7dc7696876ae0404b0fd2cce8",
+      "reconstruct.py": "5dad14e61118c6baaffd93f44dd37ece08a15ff628a975501a23ebd98c78e185"
+    }
+  },
+  "physical_units": null,
+  "maximum_stl_float32_transport_error_source_units": 8.622978169621256e-07,
+  "accepted_geometry_runs": [
+    {
+      "voxel_size_source_units": 3,
+      "shell_half_thickness_source_units": 3,
+      "stl_sha256": "bd2ac995ca8ea14d8b332e6928b2249e365bc65513284f036909fcce9dd044c1",
+      "vdb_sha256": "6e7d63aa15f9c70ca3c770d085f69eec92d92ab90febc7faea764154ee2429c4",
+      "triangles": 1162808,
+      "connected_surface_components": 167,
+      "finite": true,
+      "watertight": true,
+      "winding_consistent": true,
+      "source_to_shell_distance_source_units": {
+        "samples": 2000,
+        "median": 2.9515551583046813,
+        "p95": 3.426353005337688,
+        "max_sampled": 5.072453488447608
+      },
+      "shell_to_source_distance_source_units": {
+        "samples": 2000,
+        "median": 2.9607701530060107,
+        "p95": 3.4722518769123885,
+        "max_sampled": 4.2140057836134
+      }
+    },
+    {
+      "voxel_size_source_units": 2,
+      "shell_half_thickness_source_units": 2,
+      "stl_sha256": "e3d59c6f604be73d29f63ad2e14b7e366719340f72b12cf4efd80a72c4090f11",
+      "vdb_sha256": "0e7abea88c3a7ae92e8993c8955c0f2c24df89bbecd52cfe817233cdb8abf7ed",
+      "triangles": 2605872,
+      "connected_surface_components": 118,
+      "finite": true,
+      "watertight": true,
+      "winding_consistent": true,
+      "source_to_shell_distance_source_units": {
+        "samples": 2000,
+        "median": 1.9638300504047246,
+        "p95": 2.1570952162104438,
+        "max_sampled": 3.705663940457279
+      },
+      "shell_to_source_distance_source_units": {
+        "samples": 2000,
+        "median": 1.9785521593253477,
+        "p95": 2.26999679709648,
+        "max_sampled": 2.9302367225799313
+      }
+    }
+  ],
+  "rejected_runs": [
+    {
+      "voxel_size_source_units": 1.5,
+      "stl_sha256": "cc4aaa02870d89b5e319d457127977b0d0b149ac4ce323bf68cdfb3e64c0dbb9",
+      "reason": "non_watertight_STL_with_four_zero_area_triangles",
+      "preserved_locally": true
+    }
+  ],
+  "release_gates": {
+    "scan_scale_verified": false,
+    "variant_identified": false,
+    "functional_interfaces_verified": false,
+    "internal_geometry_verified": false,
+    "material_qualified": false,
+    "solver_validated": false,
+    "manufacturing_authorized": false,
+    "engine_start_authorized": false
+  },
+  "limits": [
+    "Shell thickness is numerical and changes with grid size.",
+    "Closed shell components are not identified mechanical parts.",
+    "Distances are sampled, in unknown scan units, and do not establish metrological accuracy.",
+    "No functional CAD, material selection, CFD/FEA, qualification or printing was performed.",
+    "Private source, geometry and images stay outside Git."
+  ]
+}
