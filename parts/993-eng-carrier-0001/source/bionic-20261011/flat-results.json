@@ -1,0 +1,243 @@
+{
+  "status": "flat_geometry_checked_printing_diagnostics_running",
+  "geometry": {
+    "source_STEP_sha256": "5b2f092c5e53a6e34a895645b534fb8a0ca2cfbb31ab286e37c06cee9d40fe9e",
+    "flat_STEP_sha256": "a076925a40396acb192af8bf9a19c813b97bd885366d3446d000f330517089a4",
+    "rigid_transform_only": true,
+    "volume_preserved": true,
+    "source_volume_mm3": 268046.10662489425,
+    "flat_readback_volume_mm3": 268046.1066249243,
+    "part_build_height_mm": 40.0,
+    "flat_square_bed_required_with_margins_mm": 471.1290552882045,
+    "fits_400_mm_square_flat": false,
+    "fits_450_mm_square_flat": false,
+    "geometry_and_mass_changed": false,
+    "functional_acceptance": false,
+    "previous_structural_rejection_still_applies": true
+  },
+  "orientation": {
+    "machine": "600 mm square metal LPBF envelope; supplier/process not selected",
+    "machine_volume_mm": [
+      600,
+      600,
+      600
+    ],
+    "envelope_example": "Nikon SLM NXG XII 600; envelope reference only",
+    "assumed_platform_thickness_mm": 20,
+    "assumed_min_support_height_mm": 10,
+    "assumed_XY_margin_mm": 10,
+    "rotation_degrees_xyz": [
+      0,
+      0,
+      45
+    ],
+    "rotation_matrix": [
+      [
+        0.7071067811865476,
+        -0.7071067811865476,
+        0.0
+      ],
+      [
+        0.7071067811865476,
+        0.7071067811865476,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "translation_mm": [
+      299.99746444559355,
+      299.99746444559355,
+      46.0
+    ],
+    "part_rotated_size_mm": [
+      451.1290552882045,
+      451.1290552882045,
+      40.0
+    ],
+    "placed_bounds_mm": [
+      [
+        74.43547235589773,
+        74.43547235589773,
+        30.0
+      ],
+      [
+        525.5645276441022,
+        525.5645276441022,
+        70.0
+      ]
+    ],
+    "flat_build_required": true,
+    "screen_fit": true,
+    "platform_supplier_confirmed": false,
+    "qualified_job_file": false,
+    "metal": "Ti-6Al-4V Grade 5 proposal; no polymer",
+    "process_parameter_transfer_qualified": false
+  },
+  "runtime": {
+    "solver": "CalculiX 2.21",
+    "image_id": "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+    "platform": "linux/arm64",
+    "cpus": 1,
+    "memory_GiB": 3
+  },
+  "benchmark": {
+    "analytical_case": "1 mm cube, E=1000 MPa, nu=0.25, strain_x=0.001",
+    "expected_stress_x_MPa": 1,
+    "expected_reaction_N": 1,
+    "max_displacement_error_mm": 4.8220509724951344e-11,
+    "max_stress_error_MPa": 4.294966e-15,
+    "reaction_error_N": 0.0,
+    "seconds": 0.2943683749763295,
+    "passed": true
+  },
+  "slice_check": {
+    "nominal_layer_mm": 0.06,
+    "total_layer_intervals_above_assumed_platform": 834,
+    "nonempty_part_layers": 666,
+    "all_part_contours_closed": true,
+    "midpoint_integrated_part_volume_mm3": 267559.8261504481,
+    "STL_volume_mm3": 268172.0432313227,
+    "relative_volume_error": -0.0022829265627308803,
+    "coarse_volume_within_0_1_percent": false,
+    "refined_volume_audit": {
+      "integration_interval_mm": 0.006,
+      "volume_mm3": 268111.6175848742,
+      "relative_volume_error": -0.00022532418264187282,
+      "machine_layer_change": false
+    },
+    "laser_scan_vectors_generated": false,
+    "support_contours_generated": false,
+    "qualified_machine_file": false
+  },
+  "printing_diagnostics": {
+    "whole_part_control": {
+      "setup": {
+        "macro_layers": 1,
+        "macro_layer_height_mm": 40.0,
+        "actual_machine_layer_mm": 0.06,
+        "actual_part_layer_intervals": 667,
+        "in_plane_shrinkage": 0.001,
+        "build_axis_shrinkage": 0.0005,
+        "support_effective_E_MPa": 1000,
+        "support_lateral_to_axial_stiffness": 0.1,
+        "supported_nodes": 13676,
+        "overhang_area_mm2": 46185.699996187475,
+        "orientation": {
+          "machine": "600 mm square metal LPBF envelope; supplier/process not selected",
+          "machine_volume_mm": [
+            600,
+            600,
+            600
+          ],
+          "envelope_example": "Nikon SLM NXG XII 600; envelope reference only",
+          "assumed_platform_thickness_mm": 20,
+          "assumed_min_support_height_mm": 10,
+          "assumed_XY_margin_mm": 10,
+          "rotation_degrees_xyz": [
+            0,
+            0,
+            45
+          ],
+          "rotation_matrix": [
+            [
+              0.7071067811865476,
+              -0.7071067811865476,
+              0.0
+            ],
+            [
+              0.7071067811865476,
+              0.7071067811865476,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "translation_mm": [
+            299.99746444559355,
+            299.99746444559355,
+            46.0
+          ],
+          "part_rotated_size_mm": [
+            451.1290552882045,
+            451.1290552882045,
+            40.0
+          ],
+          "placed_bounds_mm": [
+            [
+              74.43547235589773,
+              74.43547235589773,
+              30.0
+            ],
+            [
+              525.5645276441022,
+              525.5645276441022,
+              70.0
+            ]
+          ],
+          "flat_build_required": true,
+          "screen_fit": true,
+          "platform_supplier_confirmed": false,
+          "qualified_job_file": false,
+          "metal": "Ti-6Al-4V Grade 5 proposal; no polymer",
+          "process_parameter_transfer_qualified": false
+        },
+        "element_birth_counts": [
+          37824
+        ],
+        "stage_kinds": [
+          "layer_shrinkage",
+          "support_release"
+        ],
+        "ideal_plastic_reference_yield_MPa": null,
+        "source_mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "machine_calibrated": false,
+        "support_removability_verified": false,
+        "thermal_history_or_heat_treatment_relaxation_solved": false
+      },
+      "seconds": 79.81449033296667,
+      "stages": [
+        {
+          "stage": 1,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.21192177891580383,
+          "registered_U_max_mm": 0.2135792244354361,
+          "VM_max_MPa": 199.3196685605387,
+          "VM_p99_MPa": 68.26285367019638
+        },
+        {
+          "stage": 2,
+          "operation": "support_release",
+          "released": true,
+          "U_max_mm": 0.7597224,
+          "registered_U_max_mm": 0.299944495622723,
+          "VM_max_MPa": 1.2108776746066151e-08,
+          "VM_p99_MPa": 1.5849533585486184e-09
+        }
+      ],
+      "registered_release_change_max_mm": 0.09665201993745735,
+      "classification": "sequential_macro_layer_inherent_strain_and_support_release_sensitivity",
+      "qualified_print_prediction": false,
+      "local_stress_exceeds_coupon_reference": false,
+      "input_sha256": "8d6c754d7fc88c53dea92a791e25e30899f0098aa11e94f1e6de6674865ab56b"
+    },
+    "macro_layers_16": "in_progress",
+    "macro_layers_32": "queued"
+  },
+  "qualification": {
+    "supplier": null,
+    "Grade5_parameter_set": null,
+    "heat_treatment": null,
+    "fatigue_life": null,
+    "qualified_print_prediction": false,
+    "manufacturing_authorized": false
+  },
+  "local_results_root": "work/carrier-flat-build-20261012"
+}
