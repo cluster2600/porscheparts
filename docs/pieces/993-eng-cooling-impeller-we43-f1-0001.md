@@ -57,7 +57,7 @@ Catalogue record: [`catalog/parts/993-eng-cooling-impeller-we43-f1-0001.json`](.
 | grade | WE43 LPBF, solutionized and aged, for comparison; Scalmalloy and AlSi10Mg screened as alternatives |
 | standard | ASTM B80/B107 WE43 composition reference only; program-specific LPBF, rotating, HCF, balance and overspeed specification to be contracted |
 | supplier requirements | inert, magnesium-rated LPBF machine with powder handling and fire procedure, traceable machine, parameters, orientation, supports, powder, recycling and batch, oriented coupons with tensile, HCF and hot corrosion tests, full CT and metallography with zoned defect criteria, metrology of cup, web, bore, bolt holes, runout, blades and mass, proof of balance, overspeed, vibration, flow, containment and endurance |
-| post-processing | orientation with the web on the plate; supports under the open blades, reachable from outside, solutionizing and ageing, distortion monitored, HIP to be decided by the HCF/defect card, steel inserts or creep-rated washers at the three bolt holes, machined web faces and bore, conversion or PEO coating and galvanic isolation from steel and aluminium neighbours, two-plane dynamic balancing in the final condition |
+| post-processing | provisional roll_y_45 orientation for numerical studies; thermal anchoring, support topology and removal access require supplier review, solutionizing and ageing, distortion monitored, HIP to be decided by the HCF/defect card, steel inserts or creep-rated washers at the three bolt holes, machined web faces and bore, conversion or PEO coating and galvanic isolation from steel and aluminium neighbours, two-plane dynamic balancing in the final condition |
 
 ## Geometry
 
@@ -137,6 +137,8 @@ Catalogue record: [`catalog/parts/993-eng-cooling-impeller-we43-f1-0001.json`](.
 
 - [`catalog/sources/src-porschefanatics-993-engine-cooling-impeller-candidate.json`](../../catalog/sources/src-porschefanatics-993-engine-cooling-impeller-candidate.json)
 - [`catalog/sources/src-ornl-we43-lpbf-hyer-2020.json`](../../catalog/sources/src-ornl-we43-lpbf-hyer-2020.json)
+- [`catalog/sources/src-luxfer-wrought-we43-thermal.json`](../../catalog/sources/src-luxfer-wrought-we43-thermal.json)
+- [`docs/993/impeller-we43-thermal-20261012.md`](../../docs/993/impeller-we43-thermal-20261012.md)
 - [`catalog/sources/src-azom-elektron-we43-properties.json`](../../catalog/sources/src-azom-elektron-we43-properties.json)
 - [`catalog/sources/src-apworks-scalmalloy.json`](../../catalog/sources/src-apworks-scalmalloy.json)
 - [`catalog/sources/src-eos-alsi10mg-current-page.json`](../../catalog/sources/src-eos-alsi10mg-current-page.json)
@@ -157,6 +159,7 @@ Catalogue record: [`catalog/parts/993-eng-cooling-impeller-we43-f1-0001.json`](.
 - [993_FAN_STATOR_ALSI10MG_F1](../../docs/993/993_FAN_STATOR_ALSI10MG_F1.md)
 - [993_FLAT_FAN_SIZING_F2](../../docs/993/993_FLAT_FAN_SIZING_F2.md)
 - [993_K16_ROD_IMPROVEMENT_PROGRAMME](../../docs/993/993_K16_ROD_IMPROVEMENT_PROGRAMME.md)
+- [impeller-we43-thermal-20261012](../../docs/993/impeller-we43-thermal-20261012.md)
 
 ---
 
