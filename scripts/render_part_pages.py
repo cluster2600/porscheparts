@@ -79,7 +79,7 @@ def images(part_id: str, page: Path) -> list[str]:
         rel = img.relative_to(ROOT).as_posix()
         parts = img.relative_to(ROOT).parts
         if "print-simulation" in parts:
-            legende = " — illustration of the geometric print simulation, not a build file or a print release"
+            legende = " — metal LPBF geometry preview with hypothetical supports; no process physics or qualified support design; not a build file or print release"
         elif "media" in parts:
             legende = " — concept CAD block, **not** the original part, not a print file"
         else:
