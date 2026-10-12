@@ -37,15 +37,19 @@ indépendamment pendant cette livraison. La licence Apache-2.0 a été lue.
 
 ## Vérifications du dépôt
 
-`make check` a été exécuté. Une première exécution pendant la constitution
-du rapport a échoué ; son contrôle F0 a été corrigé par la livraison du
-rapport, puis revérifié séparément. Elle a aussi révélé des erreurs dans des
-modules non modifiés : incompatibilité NumPy/SciPy du Python système,
-Python 3.10 sans `hashlib.file_digest` pour le témoin Qwen et égalités de
-flottants trop strictes des études d'impeller/stator sur ce Mac.
-Une seconde exécution sur la livraison finale est consignée dans le journal
-local `work/962-head/make-check-final.log`. Le statut global n'est pas déclaré
-vert ; les cibles après une interruption ne sont pas considérées exécutées.
+`make check` a été exécuté sur la livraison finale : **3 764 tests**,
+**2 échecs, 26 erreurs et 223 ignorés**, en 242,6 s. Les trois tests F0
+compatibles avec le Python système passent ; son témoin VTK est ignoré et
+passe séparément dans l'environnement VTK. Les problèmes globaux concernent
+des modules non modifiés : incompatibilité NumPy/SciPy, Python 3.10 sans
+`hashlib.file_digest` pour Qwen, et égalités de flottants trop strictes des
+études d'impeller/stator sur ce Mac. Le journal local est
+`work/962-head/make-check-final.log`. Les cibles après `test` ne sont pas
+considérées exécutées ; le statut global reste en échec.
+
+[PR brouillon 184](https://github.com/cluster2600/porscheparts/pull/184) créée et
+branche distante vérifiée. La validation GitHub est encore en cours au
+moment de cette livraison ; aucun succès CI n'est annoncé.
 
 La PR reste un brouillon de recherche et de géométrie. Aucun merge ou
 déploiement n'est autorisé par ces contrôles locaux.
