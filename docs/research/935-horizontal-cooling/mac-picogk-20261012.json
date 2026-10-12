@@ -1,0 +1,256 @@
+{
+  "schema": "935-mac-picogk-execution-v1",
+  "target": "935",
+  "geometry_platform": "osx-arm64",
+  "solver_platform": "Linux aarch64 in local Docker on Mac",
+  "mesh_preparation_platform": "Linux amd64 local emulation, Gmsh 4.12.1",
+  "source_sha256": {
+    "twins/935-horizontal-cooling-system-f0/source/picogk-mac-study/Program.cs": "525d8642b17b3c979b85650865265accb3a3963ecd38dc71be9c130af7acab9e",
+    "twins/935-horizontal-cooling-system-f0/source/picogk-mac-study/MacStudy935.csproj": "bc425a8c0ad60c438510fef10cc3e7e32ff2556b6159cb02e3106b3bb408faca",
+    "twins/935-horizontal-cooling-system-f0/source/picogk-mac-study/libraries.lock.json": "f7eddc1e658eae2012f8fa9f655f13caf6560a5ca59d756d4df04ebaa3572535",
+    "twins/935-horizontal-cooling-system-f0/source/assess_mac_fea.py": "203a7275751dcf5c8bc4091ee739f24a57a69403438e58a49c933f2b6bc1737c",
+    "twins/935-horizontal-cooling-system-f0/source/picogk-candidate-rotor/Program.cs": "0266e5b9b0bfbee2cc1a9558bf4eeae84979d1f50f4ca7ddcbc55d2e3b359ff7",
+    "twins/935-horizontal-cooling-system-f0/source/prepare_candidate_fea.py": "a4084fc1e299b985b72c69cec97c739c7d09565c16104de0b04862dd8a342818",
+    "twins/935-horizontal-cooling-system-f0/source/run_candidate_fea.sh": "1eaaa32fcffcec4f7f0b7c686ef6e39d760dd2884ad2795ba336dd3d2c5abf74",
+    "twins/935-horizontal-cooling-system-f0/source/prepare_candidate_cfd.py": "34869d6d63a38980f0f870c46f9beb97a7b13a0108f8a01633b199e1ad684a86",
+    "twins/935-horizontal-cooling-system-f0/source/run_candidate_cfd.sh": "6093ab6973defe0344350df2feb2c533fe11d40382d33bb12cce6d73bdfdc281",
+    "twins/935-horizontal-cooling-system-f0/source/assess_candidate_cfd.py": "cb679a94126c8e25722aa5d89820bce1cba67749c5cf68c2c8b8f37098277c39"
+  },
+  "rotor_input_sha256": "a61f3a2c90d5ae5e1f4060914eae8d8104081c469b1e5cb10bb1e0fa06609d8f",
+  "libraries_lock_sha256": "f7eddc1e658eae2012f8fa9f655f13caf6560a5ca59d756d4df04ebaa3572535",
+  "library_witness": {
+    "classification": "library_witness_not_935_geometry",
+    "shape_kernel_volume_error": 0.0004849492384226828,
+    "ray_thickness_mm": 9.6,
+    "lattice_volume_mm3": 11255.543,
+    "vdb_fields": 5,
+    "official_simulation_reader_passed": true,
+    "scalar_roundtrip_passed": true,
+    "viewer_used": false,
+    "manufacturing_authorized": false,
+    "physical_validation": false
+  },
+  "roots": {
+    "closing_radii_mm": [
+      0,
+      0.6,
+      1.2
+    ],
+    "voxel_mm": 0.6,
+    "minimum_acquired_station_source_units": 98,
+    "roi_outer_radius_assumed_mm": 95,
+    "protected_triangles_exactly_preserved": true,
+    "each_variant_watertight_one_component": true,
+    "all_retained_face_areas_positive": true,
+    "scope": "Added material only in missing-root hypothesis; compared against revoxelized baseline, not direct raw scan equality"
+  },
+  "thickness": {
+    "classification": "sampled_normal_ray_lengths_not_global_minimum_wall",
+    "input_sha256": "a61f3a2c90d5ae5e1f4060914eae8d8104081c469b1e5cb10bb1e0fa06609d8f",
+    "sections_sha256": "308f95fa80ac19703e3f8d4a375250070c4723cc775137cf9f14a8c105ea3777",
+    "field_voxel_mm": 0.6,
+    "requested_probes": 432,
+    "resolved_probes": 426,
+    "unresolved_probes": 6,
+    "sampled_minimum_mm": 0.5999985,
+    "sampled_median_mm": 5.4000025,
+    "sampled_maximum_mm": 18.49324,
+    "vdb_sha256": "6e4c7847ef3b5e5069d1c0f34a572821a2e08c8c18e8a672711225ddfd94e7db",
+    "scale_verified": false,
+    "global_minimum_wall_established": false,
+    "manufacturing_authorized": false,
+    "physical_validation": false
+  },
+  "simulation_input": {
+    "classification": "cylindrical_test_domain_simulation_input_not_solver_result",
+    "input_sha256": "a61f3a2c90d5ae5e1f4060914eae8d8104081c469b1e5cb10bb1e0fa06609d8f",
+    "field_voxel_mm": 2,
+    "vdb_sha256": "8b2deab76d2cf002d560df24a0db09108d2a7830cd7e20e6c17c8d4910fef1c5",
+    "named_fields": [
+      "Simulation.Domain_fluid",
+      "Simulation.Domain_solid",
+      "Simulation.Field_density",
+      "Simulation.Field_velocity",
+      "Simulation.Field_viscosity"
+    ],
+    "roundtrip_passed": true,
+    "fluid_solid_overlap": false,
+    "rpm": 6000,
+    "flow_m3_s": 0.6,
+    "air_density_kg_m3": 1.15,
+    "kinematic_viscosity_m2_s": 1.55e-05,
+    "initial_axial_velocity_m_s": -5.894627,
+    "rotating_wall_boundary_exported": false,
+    "scale_verified": false,
+    "CFD_solved": false,
+    "manufacturing_authorized": false,
+    "physical_validation": false
+  },
+  "fea_fields": {
+    "classification": "sparse_conditional_C3D8_results_not_continuous_stress_solution",
+    "input_sha256": "a61f3a2c90d5ae5e1f4060914eae8d8104081c469b1e5cb10bb1e0fa06609d8f",
+    "field_voxel_mm": 0.6,
+    "scalar_samples": 132002,
+    "vector_samples": 185826,
+    "vdb_sha256": "8b601e15f5c9e7e0f6299e660781aff59fc71e77c68e0631269c28c140c34314",
+    "roundtrip_passed": true,
+    "source_stress_csv_sha256": "63f8c385ea2b489be0cf482b52c27e9770d015b162a897afbdae62886fa6ae6c",
+    "source_displacement_csv_sha256": "9f7cc3ab31f86d22ecf481f04d39eb72a70666d8f2c60918537ebfcb6b74aeb6",
+    "assessment_sha256": "c2fe791bb350d8f77be04b06524e5dbe097f9137c7b9beab2258da7d064ad82e",
+    "material_id": "alsi10mg",
+    "rotor_rpm": 6000,
+    "scale_verified": false,
+    "mesh_convergence_established": false,
+    "manufacturing_authorized": false,
+    "physical_validation": false
+  },
+  "fea": {
+    "solver": "CalculiX 2.21",
+    "fresh_solves": 5,
+    "material_cases": [
+      {
+        "material_id": "alsi10mg",
+        "pitch_mm": 1.5,
+        "rotor_rpm": 6000,
+        "elements": 132002,
+        "nodes": 185826,
+        "von_mises_max_MPa": 176.89858269931196,
+        "maximum_displacement_mm": 0.8155780841890371,
+        "element_peak_p95_outside_r25_MPa": 35.60329838669433,
+        "conditional_grid_mass_kg": 1.1895030225,
+        "grid_volume_relative_error": 0.02686602701527178,
+        "relative_force_balance_error": 4.67722459300335e-10,
+        "relative_moment_balance_error": 4.874520087048483e-10,
+        "reaction_balance_pass": true
+      },
+      {
+        "material_id": "we43",
+        "pitch_mm": 1.5,
+        "rotor_rpm": 6000,
+        "elements": 132002,
+        "nodes": 185826,
+        "von_mises_max_MPa": 121.24508896999536,
+        "maximum_displacement_mm": 0.8872884488966651,
+        "element_peak_p95_outside_r25_MPa": 24.402260453166505,
+        "conditional_grid_mass_kg": 0.8152773525000001,
+        "grid_volume_relative_error": 0.02686602701527178,
+        "relative_force_balance_error": 3.5332783477632104e-10,
+        "relative_moment_balance_error": 3.4338635352112994e-10,
+        "reaction_balance_pass": true
+      },
+      {
+        "material_id": "ti64",
+        "pitch_mm": 1.5,
+        "rotor_rpm": 6000,
+        "elements": 132002,
+        "nodes": 185826,
+        "von_mises_max_MPa": 291.5182309134206,
+        "maximum_displacement_mm": 0.8552879170361815,
+        "element_peak_p95_outside_r25_MPa": 58.6720976390376,
+        "conditional_grid_mass_kg": 1.9602297000000002,
+        "grid_volume_relative_error": 0.02686602701527178,
+        "relative_force_balance_error": 1.405936928672286e-09,
+        "relative_moment_balance_error": 1.9664770040843766e-09,
+        "reaction_balance_pass": true
+      },
+      {
+        "material_id": "alsi10mg",
+        "pitch_mm": 1.35,
+        "rotor_rpm": 6000,
+        "elements": 178442,
+        "nodes": 245065,
+        "von_mises_max_MPa": 202.5248179550799,
+        "maximum_displacement_mm": 0.9410368960980595,
+        "element_peak_p95_outside_r25_MPa": 35.19342338036293,
+        "conditional_grid_mass_kg": 1.1722214094525003,
+        "grid_volume_relative_error": 0.01194727439772518,
+        "relative_force_balance_error": 1.1544315426858715e-09,
+        "relative_moment_balance_error": 1.7239309034775537e-09,
+        "reaction_balance_pass": true
+      },
+      {
+        "material_id": "alsi10mg",
+        "pitch_mm": 1.2,
+        "rotor_rpm": 6000,
+        "elements": 246021,
+        "nodes": 330210,
+        "von_mises_max_MPa": 199.65939770940867,
+        "maximum_displacement_mm": 1.1604329872913342,
+        "element_peak_p95_outside_r25_MPa": 36.44362096311735,
+        "conditional_grid_mass_kg": 1.13508184896,
+        "grid_volume_relative_error": 0.020114311160816033,
+        "relative_force_balance_error": 1.536406652847158e-09,
+        "relative_moment_balance_error": 2.3207982664134355e-09,
+        "reaction_balance_pass": true
+      }
+    ],
+    "all_material_reaction_balances_pass": true,
+    "last_pair_relative_change": {
+      "von_mises_max_MPa": 0.014148489427635396,
+      "maximum_displacement_mm": 0.2331429214975358,
+      "element_peak_p95_outside_r25_MPa": 0.03552361386508358
+    },
+    "mesh_convergence_established": false,
+    "Poisson_ratio_assumed": 0.33,
+    "bore_selection_tolerance_mm_equals_pitch": true,
+    "only_centrifugal_loading": true,
+    "material_process_qualified": false,
+    "mesh_rejections": {
+      "3mm": "7 components; 17 cells outside main component, retained",
+      "2mm": "2 components; 4 cells outside main component, retained",
+      "1.8mm": "connected but volume error exceeds 6 percent limit, retained"
+    },
+    "conditional_CAD_mass_and_imbalance": [
+      {
+        "material_id": "alsi10mg",
+        "conditional_CAD_mass_kg": 1.1583252876607852,
+        "conditional_static_imbalance_force_N_at_6000rpm": 1157.9906862143434
+      },
+      {
+        "material_id": "we43",
+        "conditional_CAD_mass_kg": 0.7939083432281787,
+        "conditional_static_imbalance_force_N_at_6000rpm": 793.6790096525276
+      },
+      {
+        "material_id": "ti64",
+        "conditional_CAD_mass_kg": 1.9088506613136538,
+        "conditional_static_imbalance_force_N_at_6000rpm": 1908.2992581809408
+      }
+    ],
+    "conditional_eccentricity_assumed_mm": 2.532297883502651,
+    "physical_imbalance_verified": false
+  },
+  "cfd": {
+    "accepted_for_935_fan_curve": false,
+    "classification": "conditional_square_duct_not_935_installation",
+    "density_kg_m3": 1.15,
+    "last_iteration": 500.0,
+    "maximum_final_window_mass_imbalance_relative": 2.0250666699084263e-08,
+    "maximum_imposed_flow_relative_error": 2.0250666699084263e-08,
+    "metrics": {
+      "resisting_torque_z_Nm": {
+        "final_window_mean": 2.504642193541,
+        "peak_to_peak_relative": 0.01735009063452822,
+        "stationarity_pass": false,
+        "successive_window_mean_relative_change": 0.010097737538408352
+      },
+      "total_pressure_rise_Pa": {
+        "final_window_mean": 155.50480409026443,
+        "peak_to_peak_relative": 0.06042570392566283,
+        "stationarity_pass": false,
+        "successive_window_mean_relative_change": 0.03739490149211981
+      }
+    },
+    "rotor_rpm": 6000,
+    "rotor_sha256": "a61f3a2c90d5ae5e1f4060914eae8d8104081c469b1e5cb10bb1e0fa06609d8f",
+    "single_mesh_pilot_pass": false,
+    "specified_volume_flow_m3_s": 0.6,
+    "three_mesh_convergence_established": false
+  },
+  "private_archive": "https://github.com/cluster2600/porscheparts-935-private/releases/tag/mac-picogk-20261012",
+  "scale_verified": false,
+  "historical_interfaces_verified": false,
+  "manufacturing_authorized": false,
+  "physical_validation": false,
+  "vast_rental_used": false
+}

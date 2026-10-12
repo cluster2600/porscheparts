@@ -1,0 +1,56 @@
+{
+  "schema": "935-mac-picogk-libraries-v1",
+  "PicoGK": {
+    "repository": "https://github.com/leap71/PicoGK",
+    "tag": "PicoGK-v2.3.0",
+    "commit": "14c5384bcac57ede245021bb78e70d1445b40e3f",
+    "native_version": "26.2.0",
+    "platform": "osx-arm64",
+    "dotnet_sdk": "9.0.318"
+  },
+  "libraries": [
+    {
+      "directory": "LEAP71_ShapeKernel",
+      "repository": "https://github.com/leap71/LEAP71_ShapeKernel.git",
+      "commit": "554bce4791d2676ed00bd6704f6eb010111a7fd3",
+      "license": "Apache-2.0",
+      "scope": "Native annular masks and domains",
+      "qualification": "runtime_witness_passed"
+    },
+    {
+      "directory": "LEAP71_LatticeLibrary",
+      "repository": "https://github.com/leap71/LEAP71_LatticeLibrary.git",
+      "commit": "81c3c7b2064c19e573c38d76ac09bf1cd2f562d5",
+      "license": "Apache-2.0",
+      "scope": "Lattice witness only; excluded from historical replica",
+      "qualification": "runtime_witness_passed"
+    },
+    {
+      "directory": "LEAP71_QuasiCrystals",
+      "repository": "https://github.com/leap71/LEAP71_QuasiCrystals.git",
+      "commit": "685e62a8bf4aa1b4da650a23b06532f41f91245b",
+      "license": "Apache-2.0",
+      "scope": "Compilation only; no historical 935 application",
+      "qualification": "compiled_not_executed"
+    },
+    {
+      "directory": "PicoGK_SimulationExample",
+      "repository": "https://github.com/leap71/PicoGK_SimulationExample.git",
+      "commit": "9e98c1acacad41ac26609cc873cdae35cb73c2d9",
+      "license": "CC0-1.0 for src/SimpleFluidSimulationInput.cs",
+      "scope": "Named VDB input protocol; not a CFD solver",
+      "qualification": "official_reader_runtime_passed"
+    }
+  ],
+  "deferred": [
+    {
+      "repository": "https://github.com/leap71/PicoGK.Geometry",
+      "commit": "dd323c550aba61f7df4bc08e5303688ef033865c",
+      "reason": "net10.0 and C#14 contract types; not needed by the qualified net9 geometry path"
+    },
+    {
+      "repository": "https://github.com/joshmelnykcroft/PicoGK-Fasteners",
+      "reason": "Generic unmeasured fasteners cannot define 935 mounting interfaces"
+    }
+  ]
+}

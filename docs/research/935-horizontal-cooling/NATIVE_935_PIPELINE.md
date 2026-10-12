@@ -173,3 +173,8 @@ des deux scans et la définition du guide historique. Les anciens résultats
 CFD/FEA restent attachés à leurs anciennes géométries : ils ne qualifient pas
 ce nouveau rotor. La dynamique, l'aérodynamique de ce carénage et les essais
 physiques restent ouverts. Aucune autorisation de fabrication n'est donnée.
+
+La [continuation sur le Mac](MAC_PICOGK_20261012.md) ajoute des raccords de pieds
+bornés, des contrôles d'épaisseur et des champs VDB. Cinq calculs centrifuges
+et un pilote CFD concernent désormais ce rotor individuel ; les critères de
+convergence restent insuffisants et leurs rejets sont conservés.
