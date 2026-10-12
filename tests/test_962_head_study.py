@@ -72,6 +72,10 @@ class KitProgrammeTests(unittest.TestCase):
 
     def test_1000_hp_target_cannot_grant_compatibility_or_release(self):
         data = json.loads((FAMILY / "kit-program.json").read_text())
+        self.assertEqual(data["power_target"]["unit"], "metric_hp_PS")
+        self.assertEqual(data["power_target"]["measurement_site"], "crankshaft")
+        self.assertEqual(data["power_target"]["definition_status"], "owner_confirmed")
+        self.assertEqual(data["intended_use"], "bench_then_track")
         self.assertTrue(all(value is False for value in data["acceptance"].values()))
         self.assertTrue(all(v["compatibility"] == "unverified" for v in data["variants"]))
         self.assertTrue(all(g["status"] == "open" and g["evidence"] is None for g in data["evidence_gates"]))

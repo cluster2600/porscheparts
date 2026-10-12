@@ -18,9 +18,10 @@ construit sur une seule variante identifiée**, puis installé et testé dans
 une seule configuration de véhicule. Le kit commercial viendrait après
 qualification, avec montage par un motoriste et dossier de traçabilité.
 
-Pour les calculs de cadrage, l'hypothèse provisoire est **1 000 ch métriques
-(PS) au vilebrequin**. Le propriétaire doit encore préciser moteur/roues et
-priorité piste/route. Aucun calcul ne convertit une puissance moteur en
+Cible confirmée par le propriétaire : **1 000 ch métriques (PS) au
+vilebrequin**, avec qualification **sur banc puis sur piste**. Le carburant,
+le donneur et le cycle d'endurance restent à définir. Aucun calcul ne convertit
+une puissance moteur en
 puissance aux roues par un pourcentage de pertes arbitraire.
 
 Le M64/60 de 993 Turbo est proposé comme premier **candidat de référence**
@@ -134,8 +135,9 @@ prix, volumes et marge restent inconnus.
 
 ## Parcours de qualification et critères de réussite
 
-1. **G0 — cible produit.** Fixer puissance moteur/roues, usage, carburant,
-   cycle de service et donneur précis. Définir contenu livré, installation et
+1. **G0 — cible produit.** Puissance au vilebrequin et priorité banc/piste
+   confirmées ; fixer carburant, cycle de service et donneur précis. Définir
+   contenu livré, installation et
    coût total visé avec les premiers utilisateurs.
 2. **G1 — interfaces et bas moteur.** Métrologie/CT du donneur ; carte de
    compatibilité ; revue du carter, des goujons et du chemin d'effort. Évaluer

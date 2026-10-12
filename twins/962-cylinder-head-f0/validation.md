@@ -83,6 +83,15 @@ avec un témoin VTK ignoré. Ni COP réel, charge moteur, radiateur, bus véhicu
 boîtier, commande embarquée ou bénéfice automobile ne sont qualifiés.
 La référence de refroidissement indépendante des TEC reste exigée.
 
+## Confirmation de la cible produit
+
+Le propriétaire confirme 1 000 ch métriques au vilebrequin et une qualification
+sur banc puis sur piste. Le registre et son test distinguent cette décision
+des exigences encore inconnues et des autorisations conservées à `false`.
+Les douze tests ciblés passent avec VTK ; les liens Markdown et le diff sont
+vérifiés. Aucun nouveau calcul géométrique ou essai physique n'est effectué.
+Le `make check` Mac global n'est pas réexécuté pour cette clarification.
+
 ## Vérifications physiques absentes
 
 Pas de scan/CT d'un donneur 962, de métrologie, de CFD/CHT, de calcul mécanique,
