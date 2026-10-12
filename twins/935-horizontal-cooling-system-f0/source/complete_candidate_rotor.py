@@ -7,9 +7,6 @@ from pathlib import Path
 
 import numpy as np
 
-from run_reconstruction import fresh, save, sha
-
-
 def validate(case):
     if case.get('purpose') != 'hypothesis_screen' or case.get('scale_verified') is not False:
         raise ValueError('Only explicitly uncalibrated hypotheses are accepted')
@@ -95,6 +92,7 @@ def completed_sections(data, case):
 
 
 def build(case_path, output):
+    from run_reconstruction import fresh, save, sha
     from build123d import Compound, Rot, Solid, Wire, export_step, export_stl, import_step
     case = json.loads(Path(case_path).read_text())
     validate(case)
