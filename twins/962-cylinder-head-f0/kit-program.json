@@ -1,0 +1,167 @@
+{
+  "schema_version": "1.0.0",
+  "program_id": "962-INSPIRED-M64-KIT-0001",
+  "status": "product_definition_only",
+  "owner_objective": "Develop and sell a modern 962-inspired conversion kit for classic Porsche 911, 964 and 993 donor engines, targeting 1000 horsepower.",
+  "power_target": {
+    "value": 1000,
+    "unit": "metric_hp_PS_provisional",
+    "measurement_site": null,
+    "definition_status": "pending_owner_choice",
+    "screening_assumption": "crankshaft"
+  },
+  "architecture": {
+    "valves_per_cylinder": 4,
+    "spark_plugs_per_cylinder": 2,
+    "cylinder_count": 6,
+    "cooling": "water_cooled_heads_cylinder_strategy_pending",
+    "forced_induction": "turbo_configuration_unselected",
+    "manufacturing": "qualified_mix_of_additive_forged_machined_and_purchased_parts"
+  },
+  "donor": {
+    "selected_engine_type": null,
+    "selected_model_year": null,
+    "physical_access_confirmed": false,
+    "prototype_candidate": "993_Turbo_M64_60_proposed_not_selected"
+  },
+  "variants": [
+    {
+      "id": "993_Turbo_M64_60",
+      "compatibility": "unverified"
+    },
+    {
+      "id": "993_Carrera_M64",
+      "compatibility": "unverified"
+    },
+    {
+      "id": "964_Carrera_M64",
+      "compatibility": "unverified"
+    },
+    {
+      "id": "964_Turbo_exact_engine_pending",
+      "compatibility": "unverified"
+    },
+    {
+      "id": "earlier_911_engine_specific_future_scope",
+      "compatibility": "unverified"
+    }
+  ],
+  "unknown_requirements": {
+    "fuel": null,
+    "duty_cycle": null,
+    "intended_use": null,
+    "power_rpm": null,
+    "displacement_cm3": null,
+    "torque_curve": null,
+    "cylinder_pressure_cycle": null,
+    "dyno_correction_standard": null,
+    "repeat_run_protocol": null,
+    "endurance_protocol": null,
+    "service_interval": null,
+    "shortblock_retention_decision": null,
+    "vehicle_transmission_configuration": null,
+    "launch_jurisdiction": null,
+    "price_installed": null,
+    "unit_cost": null,
+    "production_volume": null,
+    "warranty_terms": null
+  },
+  "acceptance": {
+    "power_claim_validated": false,
+    "shortblock_qualified": false,
+    "compatibility_validated": false,
+    "material_process_qualified": false,
+    "manufacturing_authorized": false,
+    "commercial_release_authorized": false
+  },
+  "evidence_gates": [
+    {
+      "id": "G0",
+      "name": "product_definition",
+      "status": "open",
+      "evidence": null
+    },
+    {
+      "id": "G1",
+      "name": "donor_interfaces_and_shortblock",
+      "status": "open",
+      "evidence": null
+    },
+    {
+      "id": "G2",
+      "name": "single_head_and_coupons",
+      "status": "open",
+      "evidence": null
+    },
+    {
+      "id": "G3",
+      "name": "instrumented_six_cylinder_engine",
+      "status": "open",
+      "evidence": null
+    },
+    {
+      "id": "G4",
+      "name": "vehicle_and_endurance",
+      "status": "open",
+      "evidence": null
+    },
+    {
+      "id": "G5",
+      "name": "repeatable_commercial_release",
+      "status": "open",
+      "evidence": null
+    }
+  ],
+  "existing_references": [
+    "twins/962-cylinder-head-f0/interface-contract.json",
+    "twins/m64-engine-system/program.json",
+    "docs/architecture/README.md",
+    "catalog/sources/src-swindon-m64-24v-head-kit.json"
+  ],
+  "screening": {
+    "status": "algebra_only_not_engine_simulation",
+    "metric_hp_to_w": 735.49875,
+    "power_w": 735498.75,
+    "assumed_displacement_l": 3.6,
+    "points": [
+      {
+        "rpm": 6000,
+        "torque_nm": 1170.5826170041016,
+        "brake_mean_effective_pressure_bar": 40.86104166666667
+      },
+      {
+        "rpm": 7000,
+        "torque_nm": 1003.3565288606585,
+        "brake_mean_effective_pressure_bar": 35.02375
+      }
+    ]
+  },
+  "market": {
+    "demand": "hypothesis_not_validated",
+    "customer_interviews_completed": 0,
+    "installer_interviews_completed": 0,
+    "orders": 0,
+    "proposed_interviews": {
+      "owners": 5,
+      "installers": 5
+    }
+  },
+  "sources": [
+    {
+      "id": "swindon-product-sheet",
+      "url": "https://swindonpowertrain.com/wp-content/uploads/2025/10/M64-24V-Cylinder-Head-Kit-Product-Sheet-0923.pdf",
+      "accessed_on": "2026-10-12",
+      "sha256": "bdca4c05a989fbeb49c9517813561cbe955d4d87ebe8e464cff43fd9772adbfa",
+      "locator": "pages 2-4",
+      "rights": "copyright_reference_only_no_geometry_reuse_or_redistribution"
+    },
+    {
+      "id": "mahle-2024-guide",
+      "url": "https://www.us.mahle.com/media/usa/motorsports/2024-mahle-motorsport-porsche-application-guide-2.pdf",
+      "accessed_on": "2026-10-12",
+      "sha256": "dc0fac40e5d44bb7ebd8c5d84a4d3b8cca4931044c58d94ec48895c87730dfe2",
+      "locator": "printed page 5, PDF page 9",
+      "rights": "copyright_reference_only_no_geometry_reuse_or_redistribution"
+    }
+  ]
+}

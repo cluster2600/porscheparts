@@ -48,11 +48,27 @@ des modules non modifiés : incompatibilité NumPy/SciPy, Python 3.10 sans
 considérées exécutées ; le statut global reste en échec.
 
 [PR brouillon 184](https://github.com/cluster2600/porscheparts/pull/184) créée et
-branche distante vérifiée. La validation GitHub est encore en cours au
-moment de cette livraison ; aucun succès CI n'est annoncé.
+branche distante vérifiée. La validation GitHub du commit
+`4c76e0efbc3c220bcaddb2ca94189135c6a6fc1f` a réussi :
+[run 664](https://github.com/cluster2600/porscheparts/actions/runs/38283253271).
+Cette preuve appartient à ce commit, pas aux ajouts produit ultérieurs.
 
 La PR reste un brouillon de recherche et de géométrie. Aucun merge ou
 déploiement n'est autorisé par ces contrôles locaux.
+
+## Extension au programme kit 1 000 ch
+
+Le [programme produit](KIT_962_PROGRAMME.md) et son
+[registre](kit-program.json) ajoutent la cible commerciale et la qualification
+par variante. Ils ne modifient ni le générateur C#, ni les paramètres de
+géométrie, ni les sources et contrats dont les empreintes sont enregistrées.
+Deux tests supplémentaires vérifient les unités des calculs de cadrage et
+la séparation entre objectif de puissance, compatibilité et autorisation de
+fabrication. Les six tests ciblés passent avec VTK ; dans le Python système,
+cinq passent et le témoin VTK reste ignoré. Les liens Markdown et le diff
+sont vérifiés. La validation globale Mac ci-dessus est celle du dossier
+géométrique précédent ; elle n'est pas présentée comme une exécution du
+nouveau programme produit. La CI de la nouvelle révision reste à observer.
 
 ## Vérifications physiques absentes
 

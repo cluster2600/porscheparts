@@ -1,5 +1,11 @@
 # Culasse 962 C : recherche et candidat PicoGK F0
 
+**Nouvelle cible : un kit moteur inspiré du 962 pour bases 911, 964 et 993,
+avec un objectif de développement de 1 000 ch.** Le
+[programme produit](KIT_962_PROGRAMME.md) définit le périmètre, les variantes,
+la fabrication et les critères de qualification. F0 reste un témoin de
+géométrie ; ses interfaces et son rapport ne deviennent pas ceux d'un M64.
+
 Cette livraison ouvre le jumeau numérique demandé : culasse refroidie par eau,
 quatre soupapes et deux bougies par cylindre, architecture ramifiée et conduits
 adaptés à une étude LPBF. **F0 est une étude géométrique sans interfaces mesurées,

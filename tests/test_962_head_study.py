@@ -2,6 +2,7 @@
 import hashlib
 import importlib.util
 import json
+import math
 from pathlib import Path
 import unittest
 
@@ -55,6 +56,30 @@ class Head962StudyTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "Water intersects"):
                 study.water_dry_clearance([point], sphere.GetOutput())
         self.assertGreater(study.water_dry_clearance([(6, 0, 0)], sphere.GetOutput()), 3)
+
+
+class KitProgrammeTests(unittest.TestCase):
+    def test_power_screening_uses_metric_hp_and_four_stroke_units(self):
+        data = json.loads((FAMILY / "kit-program.json").read_text())
+        screen = data["screening"]
+        power = data["power_target"]["value"] * screen["metric_hp_to_w"]
+        self.assertAlmostEqual(power, 735498.75)
+        self.assertEqual(screen["power_w"], power)
+        for point in screen["points"]:
+            self.assertAlmostEqual(point["torque_nm"] * 2 * math.pi * point["rpm"] / 60, power)
+            self.assertAlmostEqual(point["brake_mean_effective_pressure_bar"] * 1e5 *
+                                   screen["assumed_displacement_l"] / 1000 / (4 * math.pi), point["torque_nm"])
+
+    def test_1000_hp_target_cannot_grant_compatibility_or_release(self):
+        data = json.loads((FAMILY / "kit-program.json").read_text())
+        self.assertTrue(all(value is False for value in data["acceptance"].values()))
+        self.assertTrue(all(v["compatibility"] == "unverified" for v in data["variants"]))
+        self.assertTrue(all(g["status"] == "open" and g["evidence"] is None for g in data["evidence_gates"]))
+        self.assertIsNone(data["donor"]["selected_engine_type"])
+        self.assertTrue(all(value is None for value in data["unknown_requirements"].values()))
+        for path in data["existing_references"]:
+            self.assertTrue((ROOT / path).is_file(), path)
+        self.assertEqual(data["market"]["orders"], 0)
 
 
 if __name__ == "__main__":
