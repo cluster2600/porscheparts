@@ -1,0 +1,150 @@
+{
+  "design_id": "bionic-provisional-20261012-v2",
+  "scope": "User-authorised provisional CAD and simulation study; no measured OEM interfaces or manufacturing approval",
+  "units": "mm, N, MPa, s, tonne",
+  "axes": "X spans the carrier; Y is the assumed end-eye axis; Z is normal to the central pad. No measured vehicle transform.",
+  "dimensions_are": "Original design assumptions, not measurements or dimensions inferred from PET",
+  "geometry": {
+    "thickness_mm": 20.0,
+    "end_centres_x_mm": [
+      -280.0,
+      280.0
+    ],
+    "end_outer_radius_mm": 16.0,
+    "end_bore_radius_mm": 6.75,
+    "end_length_mm": 46.0,
+    "central_bolt_centres_xy_mm": [
+      [
+        -48.0,
+        -23.0
+      ],
+      [
+        -48.0,
+        23.0
+      ],
+      [
+        48.0,
+        -23.0
+      ],
+      [
+        48.0,
+        23.0
+      ]
+    ],
+    "central_bore_radius_mm": 5.5,
+    "central_opening_centres_x_mm": [
+      -20.0,
+      20.0
+    ],
+    "central_opening_radius_mm": 12.5,
+    "secondary_centres_xy_mm": [
+      [
+        -160.0,
+        -26.0
+      ],
+      [
+        -180.0,
+        -23.0
+      ]
+    ],
+    "secondary_radius_mm": 2.0,
+    "boss_blend_radius_mm": 3.0
+  },
+  "material": {
+    "name": "Ti-6Al-4V dense elastic reference only",
+    "source": "https://www.timet.com/documents/datasheets/alpha-and-beta-alloys/timetal-6-4.pdf",
+    "E_MPa": 107000.0,
+    "nu": 0.31,
+    "density_tonne_mm3": 4.42e-09,
+    "expansion_per_K": 9e-06,
+    "strength_allowable_MPa": null,
+    "fatigue_curve": null,
+    "manufactured_state_qualified": false
+  },
+  "load_cases": {
+    "gravity": {
+      "force_N": [
+        0,
+        0,
+        -2000
+      ],
+      "moment_Nmm": [
+        0,
+        0,
+        0
+      ]
+    },
+    "shock": {
+      "force_N": [
+        0,
+        0,
+        -4000
+      ],
+      "moment_Nmm": [
+        0,
+        0,
+        0
+      ]
+    },
+    "longitudinal": {
+      "force_N": [
+        0,
+        2000,
+        0
+      ],
+      "moment_Nmm": [
+        0,
+        0,
+        0
+      ]
+    },
+    "lateral": {
+      "force_N": [
+        2000,
+        0,
+        0
+      ],
+      "moment_Nmm": [
+        0,
+        0,
+        0
+      ]
+    },
+    "stock_torque_reference": {
+      "force_N": [
+        0,
+        0,
+        0
+      ],
+      "moment_Nmm": [
+        0,
+        540000,
+        0
+      ]
+    },
+    "combined": {
+      "force_N": [
+        0,
+        0,
+        -4000
+      ],
+      "moment_Nmm": [
+        0,
+        850000,
+        0
+      ]
+    }
+  },
+  "load_provenance": "540 Nm is Porsche's standard 993 Turbo peak torque. Applying it all to this carrier is a study assumption. All other forces and the 850 Nm case are explicit test scenarios, not measured vehicle events or a 700 hp specification.",
+  "support_sensitivity_per_eye_N_mm": [
+    1000.0,
+    10000.0
+  ],
+  "acceptance": {
+    "fitment": false,
+    "static_strength": null,
+    "fatigue_life": null,
+    "manufacturing": false
+  },
+  "revision_reason": "Increase plate depth after v1 8 mm model predicted 21.49 mm displacement under the assumed 4000 N plus 850 Nm case. No OEM interface changes or qualification claim."
+}

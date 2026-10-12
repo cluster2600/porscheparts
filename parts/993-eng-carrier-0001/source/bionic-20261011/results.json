@@ -1,0 +1,969 @@
+{
+  "scope": "Provisional geometry and assumed loads; no manufacturing approval",
+  "cases": [
+    {
+      "name": "combined-rigid-static",
+      "procedure": "static",
+      "seconds": 283.2000049999915,
+      "geometry_provisional": true,
+      "load_assumed": true,
+      "material_allowable": null,
+      "physical_validation": false,
+      "displacement_max_mm": 23.00522000002424,
+      "integration_point_VM_max_MPa": 2581.6651293811733,
+      "VM_peak_element": 40537,
+      "force_residual_N": [
+        3.439929324905704e-05,
+        2.4280649906575853e-05,
+        -3.221307088097092e-05
+      ],
+      "moment_residual_Nmm": [
+        0.0012870254341237342,
+        0.004201300558634102,
+        0.004070107401691017
+      ],
+      "external_work_Nmm": 154471.01783659658,
+      "bolt_group_forces_N": [
+        [
+          -0.0032689129237245037,
+          0.006822079145015157,
+          3378.5783077620194
+        ],
+        [
+          0.0032689129235630747,
+          0.006822079145015159,
+          3377.2425939722125
+        ],
+        [
+          -0.0032689129237245037,
+          -0.006822079145015196,
+          -5377.242593972257
+        ],
+        [
+          0.0032689129235526386,
+          -0.006822079145015196,
+          -5378.578307762051
+        ]
+      ],
+      "result_file": "v1/mesh-6/combined-rigid-static.json"
+    },
+    {
+      "name": "combined-rigid-static",
+      "procedure": "static",
+      "seconds": 163.06064929207787,
+      "geometry_provisional": true,
+      "load_assumed": true,
+      "material_allowable": null,
+      "physical_validation": false,
+      "displacement_max_mm": 21.48520002507635,
+      "integration_point_VM_max_MPa": 2091.1088902472034,
+      "VM_peak_element": 29701,
+      "force_residual_N": [
+        -0.00047080399853567656,
+        5.071000072022361e-05,
+        0.00018467336440153304
+      ],
+      "moment_residual_Nmm": [
+        0.0016368619134823348,
+        -0.05469473754055798,
+        0.01323242256579421
+      ],
+      "external_work_Nmm": 146423.85971953996,
+      "bolt_group_forces_N": [
+        [
+          0.6062291508817008,
+          -0.5159705109221825,
+          3387.0112813448877
+        ],
+        [
+          -3.287957061962586,
+          -0.5101252223040904,
+          3380.23382411794
+        ],
+        [
+          -2.7948550942503423,
+          0.5189571450953756,
+          -5388.278027741477
+        ],
+        [
+          5.4765830053311575,
+          0.5071385881308964,
+          -5378.967077721296
+        ]
+      ],
+      "result_file": "v1/mesh-8/combined-rigid-static.json"
+    },
+    {
+      "name": "combined-rigid-static",
+      "procedure": "static",
+      "seconds": 12.739180458011106,
+      "solver_container": "carrier-bionic-native-20261012",
+      "input_sha256": "f10e75e5e3d07cdb11d89bec95c996eeb5d3892d998cb786138fba73ea8e6b38",
+      "mesh_sha256": "81e70d8a73bbebd9a6460eebdb17d9419bb877f7252ad338f943ecbec80b25d0",
+      "geometry_provisional": true,
+      "load_assumed": true,
+      "material_allowable": null,
+      "physical_validation": false,
+      "displacement_max_mm": 1.6850910001143282,
+      "integration_point_VM_max_MPa": 446.0192953798498,
+      "VM_peak_element": 24373,
+      "force_residual_N": [
+        0.0006818761088177583,
+        -1.2354409992447121e-05,
+        0.00010790296573759406
+      ],
+      "moment_residual_Nmm": [
+        -0.0013454148659093335,
+        -0.030339986085891724,
+        -0.0021859486594131283
+      ],
+      "external_work_Nmm": 11202.499746967836,
+      "bolt_group_forces_N": [
+        [
+          -4.369038083179749,
+          -1.1728890100780098,
+          3328.9702511572787
+        ],
+        [
+          10.150655527674461,
+          -1.1660163449153644,
+          3329.486721634163
+        ],
+        [
+          -0.29052189592165334,
+          1.170109219903102,
+          -5327.012652744657
+        ],
+        [
+          -5.491095548572887,
+          1.1687961350902736,
+          -5331.44432004683
+        ]
+      ],
+      "result_file": "v2/mesh-10/combined-rigid-static.json"
+    },
+    {
+      "name": "combined-rigid-buckling",
+      "procedure": "buckling",
+      "seconds": 19.571180333034135,
+      "solver_container": "carrier-bionic-native-20261012",
+      "input_sha256": "a80e7a88293bab8fa3b9625f197978247b4b2e5010cd1a3473fce4d5a53164f9",
+      "mesh_sha256": "b513bb67eda49d9391ac17f9d0412ea3787645f478ce9f74735a0b7dfed30f01",
+      "geometry_provisional": true,
+      "load_assumed": true,
+      "material_allowable": null,
+      "physical_validation": false,
+      "result_file": "v2/mesh-12/combined-rigid-buckling.json",
+      "buckling_load_factors": [
+        87.25266,
+        97.48249,
+        116.0674,
+        133.5999
+      ]
+    },
+    {
+      "name": "combined-rigid-modal",
+      "procedure": "modal",
+      "seconds": 21.559839166002348,
+      "solver_container": "carrier-bionic-native-20261012",
+      "input_sha256": "66b63e01a65c012e0b66b8d5e0cd1d7eb372da928e6be8a41286a558e147f1a9",
+      "mesh_sha256": "b513bb67eda49d9391ac17f9d0412ea3787645f478ce9f74735a0b7dfed30f01",
+      "geometry_provisional": true,
+      "load_assumed": true,
+      "material_allowable": null,
+      "physical_validation": false,
+      "result_file": "v2/mesh-12/combined-rigid-modal.json",
+      "frequencies_Hz": [
+        263.493,
+        658.1463,
+        685.5311,
+        791.01,
+        1682.991,
+        1831.845,
+        2386.556,
+        2644.707
+      ]
+    },
+    {
+      "name": "combined-rigid-nonlinear",
+      "procedure": "nonlinear",
+      "seconds": 120.84170749993064,
+      "solver_container": "carrier-bionic-native-20261012",
+      "input_sha256": "8a9b28c0506466a7607ac1f79f377b4d4afb10161bf0347aff682a57ed11aea0",
+      "mesh_sha256": "b513bb67eda49d9391ac17f9d0412ea3787645f478ce9f74735a0b7dfed30f01",
+      "geometry_provisional": true,
+      "load_assumed": true,
+      "material_allowable": null,
+      "physical_validation": false,
+      "displacement_max_mm": 1.6726561004855478,
+      "integration_point_VM_max_MPa": 440.8632461617275,
+      "VM_peak_element": 20916,
+      "force_residual_N": [
+        0.00018754599962234053,
+        -1.9260599962949983e-05,
+        -7.55828655201185e-05
+      ],
+      "moment_residual_Nmm": [
+        -0.00037450692232710026,
+        0.01818544906564057,
+        -0.0003390056511314299
+      ],
+      "external_work_Nmm": 11124.122063957895,
+      "bolt_group_forces_N": [
+        [
+          2.6885436877402125,
+          1.8449807130118197,
+          3320.372525038002
+        ],
+        [
+          4.467941508580837,
+          1.8449807130118197,
+          3334.0900278273216
+        ],
+        [
+          2.6885436877402125,
+          -1.8685451739598136,
+          -5333.836119915392
+        ],
+        [
+          -9.845028884060865,
+          -1.8214162520638248,
+          -5320.626432949803
+        ]
+      ],
+      "result_file": "v2/mesh-12/combined-rigid-nonlinear.json"
+    },
+    {
+      "name": "combined-rigid-static",
+      "procedure": "static",
+      "seconds": 7.553571208030917,
+      "solver_container": "carrier-bionic-native-20261012",
+      "input_sha256": "52deacc1521d03ed57df09b0c3d695eb82e1c5abfcefe380c30af8878692a8c6",
+      "mesh_sha256": "b513bb67eda49d9391ac17f9d0412ea3787645f478ce9f74735a0b7dfed30f01",
+      "geometry_provisional": true,
+      "load_assumed": true,
+      "material_allowable": null,
+      "physical_validation": false,
+      "displacement_max_mm": 1.67880700054639,
+      "integration_point_VM_max_MPa": 432.37549607417895,
+      "VM_peak_element": 20945,
+      "force_residual_N": [
+        -5.095199679816531e-05,
+        -0.00010667249972941522,
+        0.00028504012971097836
+      ],
+      "moment_residual_Nmm": [
+        -0.0008565158967144271,
+        -0.08464990614447743,
+        -0.04188424656197398
+      ],
+      "external_work_Nmm": 11157.781378785761,
+      "bolt_group_forces_N": [
+        [
+          2.6885436877402125,
+          1.8449807130118197,
+          3320.372525038002
+        ],
+        [
+          4.467941508580837,
+          1.8449807130118197,
+          3334.0900278273216
+        ],
+        [
+          2.6885436877402125,
+          -1.8685451739598136,
+          -5333.836119915392
+        ],
+        [
+          -9.845028884060865,
+          -1.8214162520638248,
+          -5320.626432949803
+        ]
+      ],
+      "result_file": "v2/mesh-12/combined-rigid-static.json"
+    },
+    {
+      "name": "combined-spring-1000-modal",
+      "procedure": "modal",
+      "seconds": 23.34583979099989,
+      "solver_container": "carrier-bionic-native-20261012",
+      "input_sha256": "7c8fbde80771e9d4bd64ed660b429b9d16e5766fbc5490d11d241105fa715119",
+      "mesh_sha256": "b513bb67eda49d9391ac17f9d0412ea3787645f478ce9f74735a0b7dfed30f01",
+      "geometry_provisional": true,
+      "load_assumed": true,
+      "material_allowable": null,
+      "physical_validation": false,
+      "frequencies_Hz": [
+        96.35774,
+        105.4112,
+        147.927,
+        154.738,
+        251.7399,
+        268.0803,
+        396.0764,
+        664.3446
+      ],
+      "result_file": "v2/mesh-12/combined-spring-1000-modal.json"
+    },
+    {
+      "name": "combined-spring-1000-nonlinear",
+      "procedure": "nonlinear",
+      "seconds": 98.72641758294776,
+      "solver_container": "carrier-bionic-native-20261012",
+      "input_sha256": "d7cd7febe61b5e1139c575a0bbb0d417f61a5f58cf3a17c1edfa31d1ae1987c6",
+      "mesh_sha256": "b513bb67eda49d9391ac17f9d0412ea3787645f478ce9f74735a0b7dfed30f01",
+      "geometry_provisional": true,
+      "load_assumed": true,
+      "material_allowable": null,
+      "physical_validation": false,
+      "displacement_max_mm": 8.728131382479473,
+      "integration_point_VM_max_MPa": 672.1233111146089,
+      "VM_peak_element": 23537,
+      "force_residual_N": [
+        4.5716169307270793e-07,
+        2.917056068267934e-09,
+        2.0560879420372657e-05
+      ],
+      "moment_residual_Nmm": [
+        0.000262492993741148,
+        -0.005737005616538227,
+        4.949162253353734e-06
+      ],
+      "external_work_Nmm": 45516.81386092387,
+      "bolt_group_forces_N": [
+        [
+          2.6885436877402125,
+          1.8449807130118197,
+          3320.372525038002
+        ],
+        [
+          4.467941508580837,
+          1.8449807130118197,
+          3334.0900278273216
+        ],
+        [
+          2.6885436877402125,
+          -1.8685451739598136,
+          -5333.836119915392
+        ],
+        [
+          -9.845028884060865,
+          -1.8214162520638248,
+          -5320.626432949803
+        ]
+      ],
+      "result_file": "v2/mesh-12/combined-spring-1000-nonlinear.json"
+    },
+    {
+      "name": "combined-spring-1000-static",
+      "procedure": "static",
+      "seconds": 11.807874500053003,
+      "solver_container": "carrier-bionic-native-20261012",
+      "input_sha256": "8178d14e2f096c4c7c9c351605b38d5a8c9e3c07f9c9b4a1545afc9e8d105d4b",
+      "mesh_sha256": "b513bb67eda49d9391ac17f9d0412ea3787645f478ce9f74735a0b7dfed30f01",
+      "geometry_provisional": true,
+      "load_assumed": true,
+      "material_allowable": null,
+      "physical_validation": false,
+      "displacement_max_mm": 8.74363159818172,
+      "integration_point_VM_max_MPa": 667.6161629061629,
+      "VM_peak_element": 23537,
+      "force_residual_N": [
+        1.0884350328532744e-06,
+        -6.918457998400344e-08,
+        -5.256875738268718e-06
+      ],
+      "moment_residual_Nmm": [
+        -1.2372806367011435e-05,
+        0.0015093270922079682,
+        3.3827952311993315e-05
+      ],
+      "external_work_Nmm": 45567.57161925369,
+      "bolt_group_forces_N": [
+        [
+          2.6885436877402125,
+          1.8449807130118197,
+          3320.372525038002
+        ],
+        [
+          4.467941508580837,
+          1.8449807130118197,
+          3334.0900278273216
+        ],
+        [
+          2.6885436877402125,
+          -1.8685451739598136,
+          -5333.836119915392
+        ],
+        [
+          -9.845028884060865,
+          -1.8214162520638248,
+          -5320.626432949803
+        ]
+      ],
+      "result_file": "v2/mesh-12/combined-spring-1000-static.json"
+    },
+    {
+      "name": "thermal_gradient-rigid-warpage",
+      "procedure": "warpage",
+      "seconds": 10.757007291074842,
+      "solver_container": "carrier-bionic-native-20261012",
+      "input_sha256": "373603bb1605d65b9385a0252b55176211c0be45162c2b123c03b0acf4b3d3b5",
+      "mesh_sha256": "b513bb67eda49d9391ac17f9d0412ea3787645f478ce9f74735a0b7dfed30f01",
+      "geometry_provisional": true,
+      "load_assumed": true,
+      "material_allowable": null,
+      "physical_validation": false,
+      "displacement_max_mm": 0.9321132015690692,
+      "integration_point_VM_max_MPa": 1.2916491081664242e-08,
+      "VM_peak_element": 23851,
+      "force_residual_N": [
+        3.0696479000000003e-10,
+        5.4644772544e-09,
+        2.778697e-08
+      ],
+      "moment_residual_Nmm": [
+        7.890938899999999e-07,
+        -6.808887352499999e-06,
+        6.685008653308e-07
+      ],
+      "external_work_Nmm": 0.0,
+      "bolt_group_forces_N": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "thermal_sensitivity": "50 K through plate thickness; free expansion with 3-2-1 rigid-body restraint. Not a calibrated print, weld or residual-distortion prediction.",
+      "result_file": "v2/mesh-12/thermal_gradient-rigid-warpage.json"
+    },
+    {
+      "name": "combined-rigid-static",
+      "procedure": "static",
+      "seconds": 27.913395207957365,
+      "solver_container": "carrier-bionic-native-20261012",
+      "input_sha256": "ec01a2ecfbbcc62fee225b6b63c1e30c02eb0cd6e87f78a0c1fe2bc63732e11c",
+      "mesh_sha256": "8353c1cec36d6032e7065e141b7ad1dacd959ef13f1d6989db55b2dfd18e45ac",
+      "geometry_provisional": true,
+      "load_assumed": true,
+      "material_allowable": null,
+      "physical_validation": false,
+      "displacement_max_mm": 1.6888120000095934,
+      "integration_point_VM_max_MPa": 450.2129655372011,
+      "VM_peak_element": 48439,
+      "force_residual_N": [
+        0.0004972117982352531,
+        -3.15297000528735e-05,
+        1.7662807294982485e-05
+      ],
+      "moment_residual_Nmm": [
+        -0.00039058686157034117,
+        -0.00035181024577468634,
+        -0.007184497362553444
+      ],
+      "external_work_Nmm": 11227.136118261726,
+      "bolt_group_forces_N": [
+        [
+          -1.2854586356230695,
+          -0.2487771077562887,
+          3336.025316695045
+        ],
+        [
+          0.35083252513803675,
+          -0.24119403335614364,
+          3323.2466693106617
+        ],
+        [
+          0.5837935853460205,
+          0.2449855705562142,
+          -5320.928664531034
+        ],
+        [
+          0.35083252513803675,
+          0.2449855705562142,
+          -5338.343321474878
+        ]
+      ],
+      "result_file": "v2/mesh-8/combined-rigid-static.json"
+    },
+    {
+      "name": "combined-spring-1000-static",
+      "procedure": "static",
+      "seconds": 30.08843150001485,
+      "solver_container": "carrier-bionic-native-20261012",
+      "input_sha256": "0b9fd8cc8a45ae908c4aeea1a6c230c7fb8cbcd419d936e5698327dd4e206faf",
+      "mesh_sha256": "8353c1cec36d6032e7065e141b7ad1dacd959ef13f1d6989db55b2dfd18e45ac",
+      "geometry_provisional": true,
+      "load_assumed": true,
+      "material_allowable": null,
+      "physical_validation": false,
+      "displacement_max_mm": 8.761872260452547,
+      "integration_point_VM_max_MPa": 661.6443547539619,
+      "VM_peak_element": 53650,
+      "force_residual_N": [
+        1.1160413867367103e-07,
+        3.672459224949383e-08,
+        1.1527390597620979e-07
+      ],
+      "moment_residual_Nmm": [
+        7.007462901498229e-05,
+        0.00034871441312134266,
+        2.6020674830429247e-05
+      ],
+      "external_work_Nmm": 45708.03508515468,
+      "bolt_group_forces_N": [
+        [
+          -1.2854586356230695,
+          -0.2487771077562887,
+          3336.025316695045
+        ],
+        [
+          0.35083252513803675,
+          -0.24119403335614364,
+          3323.2466693106617
+        ],
+        [
+          0.5837935853460205,
+          0.2449855705562142,
+          -5320.928664531034
+        ],
+        [
+          0.35083252513803675,
+          0.2449855705562142,
+          -5338.343321474878
+        ]
+      ],
+      "result_file": "v2/mesh-8/combined-spring-1000-static.json"
+    },
+    {
+      "name": "combined-spring-10000-static",
+      "procedure": "static",
+      "seconds": 35.10538445902057,
+      "solver_container": "carrier-bionic-native-20261012",
+      "input_sha256": "0b22c1d691c921559aebb2effa0872ce467f92f9920f208aca8f88598d2958b6",
+      "mesh_sha256": "8353c1cec36d6032e7065e141b7ad1dacd959ef13f1d6989db55b2dfd18e45ac",
+      "geometry_provisional": true,
+      "load_assumed": true,
+      "material_allowable": null,
+      "physical_validation": false,
+      "displacement_max_mm": 6.303756840568993,
+      "integration_point_VM_max_MPa": 636.5981385259897,
+      "VM_peak_element": 53650,
+      "force_residual_N": [
+        1.3699760138263795e-06,
+        1.5464203001155138e-07,
+        -8.05498666522908e-06
+      ],
+      "moment_residual_Nmm": [
+        3.8674128539639696e-05,
+        0.000494662206619978,
+        -0.00013476117830801826
+      ],
+      "external_work_Nmm": 33312.19031361567,
+      "bolt_group_forces_N": [
+        [
+          -1.2854586356230695,
+          -0.2487771077562887,
+          3336.025316695045
+        ],
+        [
+          0.35083252513803675,
+          -0.24119403335614364,
+          3323.2466693106617
+        ],
+        [
+          0.5837935853460205,
+          0.2449855705562142,
+          -5320.928664531034
+        ],
+        [
+          0.35083252513803675,
+          0.2449855705562142,
+          -5338.343321474878
+        ]
+      ],
+      "result_file": "v2/mesh-8/combined-spring-10000-static.json"
+    },
+    {
+      "name": "gravity-rigid-static",
+      "procedure": "static",
+      "seconds": 28.810778332990594,
+      "solver_container": "carrier-bionic-native-20261012",
+      "input_sha256": "cbc0afdf3bf8cabc42b4e1c23aa9ebebef15a0229bc962fbe37aa78948e2191d",
+      "mesh_sha256": "8353c1cec36d6032e7065e141b7ad1dacd959ef13f1d6989db55b2dfd18e45ac",
+      "geometry_provisional": true,
+      "load_assumed": true,
+      "material_allowable": null,
+      "physical_validation": false,
+      "displacement_max_mm": 0.6898363957720537,
+      "integration_point_VM_max_MPa": 134.48212438146695,
+      "VM_peak_element": 55240,
+      "force_residual_N": [
+        5.417999931811997e-05,
+        -9.563909800117381e-06,
+        2.5279900455643656e-05
+      ],
+      "moment_residual_Nmm": [
+        0.00017627136512565755,
+        -0.006655736033046367,
+        -9.624919624830544e-05
+      ],
+      "external_work_Nmm": 1272.5394968167006,
+      "bolt_group_forces_N": [
+        [
+          -0.000175000912422998,
+          -0.000405345055425905,
+          -498.8617865669165
+        ],
+        [
+          0.00017990013408117954,
+          0.0006425230043123852,
+          -501.1822585441946
+        ],
+        [
+          -0.00018479935573935532,
+          -0.00011858897444351436,
+          -498.81474764183025
+        ],
+        [
+          0.00017990013408117954,
+          -0.00011858897444351436,
+          -501.1412072471582
+        ]
+      ],
+      "result_file": "v2/mesh-8/gravity-rigid-static.json"
+    },
+    {
+      "name": "gravity-spring-1000-static",
+      "procedure": "static",
+      "seconds": 33.42058733291924,
+      "solver_container": "carrier-bionic-native-20261012",
+      "input_sha256": "210c823d8805e145e102d39f809f8b05a62db5f6585afbf01287ee4ef52ced85",
+      "mesh_sha256": "8353c1cec36d6032e7065e141b7ad1dacd959ef13f1d6989db55b2dfd18e45ac",
+      "geometry_provisional": true,
+      "load_assumed": true,
+      "material_allowable": null,
+      "physical_validation": false,
+      "displacement_max_mm": 3.9076290569509866,
+      "integration_point_VM_max_MPa": 291.0182283760057,
+      "VM_peak_element": 55863,
+      "force_residual_N": [
+        3.08117785971001e-07,
+        -8.43302599882426e-09,
+        -2.3104348656488582e-07
+      ],
+      "moment_residual_Nmm": [
+        -0.00010457702610899844,
+        -5.017840950216623e-05,
+        9.853870765085676e-06
+      ],
+      "external_work_Nmm": 7614.486307678639,
+      "bolt_group_forces_N": [
+        [
+          -0.000175000912422998,
+          -0.000405345055425905,
+          -498.8617865669165
+        ],
+        [
+          0.00017990013408117954,
+          0.0006425230043123852,
+          -501.1822585441946
+        ],
+        [
+          -0.00018479935573935532,
+          -0.00011858897444351436,
+          -498.81474764183025
+        ],
+        [
+          0.00017990013408117954,
+          -0.00011858897444351436,
+          -501.1412072471582
+        ]
+      ],
+      "result_file": "v2/mesh-8/gravity-spring-1000-static.json"
+    },
+    {
+      "name": "lateral-rigid-static",
+      "procedure": "static",
+      "seconds": 28.05973666603677,
+      "solver_container": "carrier-bionic-native-20261012",
+      "input_sha256": "c09e4a61f0c0d76efbf6eb79c7e11ec547446a6a1a3f52eee6283cc821fd8a48",
+      "mesh_sha256": "8353c1cec36d6032e7065e141b7ad1dacd959ef13f1d6989db55b2dfd18e45ac",
+      "geometry_provisional": true,
+      "load_assumed": true,
+      "material_allowable": null,
+      "physical_validation": false,
+      "displacement_max_mm": 0.005367645237034946,
+      "integration_point_VM_max_MPa": 8.305680830640236,
+      "VM_peak_element": 43847,
+      "force_residual_N": [
+        9.188922831526725e-07,
+        -3.1639199328401197e-07,
+        -1.0617500038426772e-06
+      ],
+      "moment_residual_Nmm": [
+        9.579182496013972e-06,
+        0.00015257102031718262,
+        0.00010990564604185238
+      ],
+      "external_work_Nmm": 10.240181848583463,
+      "bolt_group_forces_N": [
+        [
+          499.76526930090847,
+          0.4917982029469841,
+          -0.606201215959091
+        ],
+        [
+          500.2354706226785,
+          0.4923193266872284,
+          -0.6054252334309208
+        ],
+        [
+          499.76378945383277,
+          -0.4920587648171056,
+          0.6051022033602707
+        ],
+        [
+          500.2354706226785,
+          -0.4920587648171056,
+          0.6065242460297432
+        ]
+      ],
+      "result_file": "v2/mesh-8/lateral-rigid-static.json"
+    },
+    {
+      "name": "longitudinal-rigid-static",
+      "procedure": "static",
+      "seconds": 27.948866833001375,
+      "solver_container": "carrier-bionic-native-20261012",
+      "input_sha256": "855cfbe6b5267b28fb6ce364fb9c98bf023f8a10ee1d57de97f1ef293cde23a9",
+      "mesh_sha256": "8353c1cec36d6032e7065e141b7ad1dacd959ef13f1d6989db55b2dfd18e45ac",
+      "geometry_provisional": true,
+      "load_assumed": true,
+      "material_allowable": null,
+      "physical_validation": false,
+      "displacement_max_mm": 0.09877778770741574,
+      "integration_point_VM_max_MPa": 30.649074928429183,
+      "VM_peak_element": 42360,
+      "force_residual_N": [
+        4.491570053308776e-05,
+        -3.6842000099568395e-06,
+        -3.766720116528139e-06
+      ],
+      "moment_residual_Nmm": [
+        -4.750957601640238e-05,
+        0.00042863260169056366,
+        -0.0006244647108175627
+      ],
+      "external_work_Nmm": 191.74825751654396,
+      "bolt_group_forces_N": [
+        [
+          -0.008605167982338196,
+          500.01881183425854,
+          -1.1765774030060507
+        ],
+        [
+          0.00862788590995992,
+          500.0177690265238,
+          1.1758956997600305
+        ],
+        [
+          -0.008650603837581653,
+          499.981709569659,
+          -1.17894284971601
+        ],
+        [
+          0.00862788590995992,
+          499.981709569659,
+          1.179624552962032
+        ]
+      ],
+      "result_file": "v2/mesh-8/longitudinal-rigid-static.json"
+    }
+  ],
+  "linear_superposition": [
+    {
+      "name": "shock_4000_N",
+      "support": "rigid",
+      "derived_from": [
+        "v2/mesh-8/gravity-rigid-static.npz",
+        "v2/mesh-8/combined-rigid-static.npz"
+      ],
+      "coefficients": [
+        2,
+        0
+      ],
+      "displacement_max_mm": 1.3796727915441074,
+      "integration_point_VM_max_MPa": 268.9642487629339
+    },
+    {
+      "name": "stock_torque_540_Nm",
+      "support": "rigid",
+      "derived_from": [
+        "v2/mesh-8/gravity-rigid-static.npz",
+        "v2/mesh-8/combined-rigid-static.npz"
+      ],
+      "coefficients": [
+        -1.2705882352941176,
+        0.6352941176470588
+      ],
+      "displacement_max_mm": 0.33917777128912724,
+      "integration_point_VM_max_MPa": 139.67245028678101
+    },
+    {
+      "name": "shock_4000_N",
+      "support": "spring-1000",
+      "derived_from": [
+        "v2/mesh-8/gravity-spring-1000-static.npz",
+        "v2/mesh-8/combined-spring-1000-static.npz"
+      ],
+      "coefficients": [
+        2,
+        0
+      ],
+      "displacement_max_mm": 7.815258113901973,
+      "integration_point_VM_max_MPa": 582.0364567520114
+    },
+    {
+      "name": "stock_torque_540_Nm",
+      "support": "spring-1000",
+      "derived_from": [
+        "v2/mesh-8/gravity-spring-1000-static.npz",
+        "v2/mesh-8/combined-spring-1000-static.npz"
+      ],
+      "coefficients": [
+        -1.2705882352941176,
+        0.6352941176470588
+      ],
+      "displacement_max_mm": 1.2663485452546508,
+      "integration_point_VM_max_MPa": 282.22436103790625
+    }
+  ],
+  "fatigue_demand": [
+    {
+      "scenario": "2000_N_to_4000_N_plus_850_Nm",
+      "support": "rigid",
+      "maximum_equivalent_alternating_stress_MPa": 158.815430307803,
+      "hotspot_element": 48439,
+      "fatigue_life_cycles": null,
+      "process_specific_SN_curve": null,
+      "meaning": "Elastic stress amplitude only, without a mean-stress correction, cycle count or damage/life claim."
+    },
+    {
+      "scenario": "2000_N_with_fully_reversed_850_Nm",
+      "support": "rigid",
+      "maximum_equivalent_alternating_stress_MPa": 219.854782858822,
+      "hotspot_element": 50422,
+      "fatigue_life_cycles": null,
+      "process_specific_SN_curve": null,
+      "meaning": "Elastic stress amplitude only, without a mean-stress correction, cycle count or damage/life claim."
+    },
+    {
+      "scenario": "2000_N_to_4000_N_plus_850_Nm",
+      "support": "spring-1000",
+      "maximum_equivalent_alternating_stress_MPa": 237.02593418380766,
+      "hotspot_element": 53650,
+      "fatigue_life_cycles": null,
+      "process_specific_SN_curve": null,
+      "meaning": "Elastic stress amplitude only, without a mean-stress correction, cycle count or damage/life claim."
+    },
+    {
+      "scenario": "2000_N_with_fully_reversed_850_Nm",
+      "support": "spring-1000",
+      "maximum_equivalent_alternating_stress_MPa": 444.2420497818894,
+      "hotspot_element": 55863,
+      "fatigue_life_cycles": null,
+      "process_specific_SN_curve": null,
+      "meaning": "Elastic stress amplitude only, without a mean-stress correction, cycle count or damage/life claim."
+    }
+  ],
+  "refinement": [
+    {
+      "nominal_size_mm": 12,
+      "elements": 26510,
+      "displacement_mm": 1.67880700054639,
+      "peak_VM_MPa": 432.37549607417895,
+      "volume_error_fraction": 0.0011578380246968223
+    },
+    {
+      "nominal_size_mm": 10,
+      "elements": 36087,
+      "displacement_mm": 1.6850910001143282,
+      "peak_VM_MPa": 446.0192953798498,
+      "volume_error_fraction": 0.0010082095717234285
+    },
+    {
+      "nominal_size_mm": 8,
+      "elements": 61744,
+      "displacement_mm": 1.6888120000095934,
+      "peak_VM_MPa": 450.2129655372011,
+      "volume_error_fraction": 0.0005944538698290369
+    }
+  ],
+  "last_refinement_change": {
+    "displacement_mm": 0.002208189287707718,
+    "peak_VM_MPa": 0.009402441106902915
+  },
+  "combined_joint_demands": {
+    "central_site_forces_N": [
+      [
+        -1.2854586356230695,
+        -0.2487771077562887,
+        3336.025316695045
+      ],
+      [
+        0.35083252513803675,
+        -0.24119403335614364,
+        3323.2466693106617
+      ],
+      [
+        0.5837935853460205,
+        0.2449855705562142,
+        -5320.928664531034
+      ],
+      [
+        0.35083252513803675,
+        0.2449855705562142,
+        -5338.343321474878
+      ]
+    ],
+    "end_reactions_N": [
+      [
+        0.3266573418006673,
+        0.04098502999999237,
+        -265.10252809300044
+      ],
+      [
+        -0.3261601300012664,
+        -0.04101655970004714,
+        4265.102545755998
+      ]
+    ],
+    "joint_contact_preload_friction_modelled": false,
+    "joint_capacity_or_slip_margin": null
+  },
+  "thermal_verification": {
+    "temperature_gradient_K_per_mm": 2.5,
+    "analytic_field": "alpha*dT_dz*(z*x, z*y, (z*z-x*x-y*y)/2), plus rigid motion satisfying the same 3-2-1 restraint",
+    "max_displacement_error_mm": 5.0061704448545186e-08,
+    "max_VM_MPa": 1.2916491081664242e-08,
+    "passed": true,
+    "permanent_manufacturing_distortion_predicted": false
+  }
+}
