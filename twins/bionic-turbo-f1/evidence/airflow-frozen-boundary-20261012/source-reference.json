@@ -1,0 +1,58 @@
+{
+  "archive_sha256": "8d1450fb89eec1e7cecc55c3bb7bc486ccbf63d069379d1d5d7518fa16a4686a",
+  "url": "https://dl.openfoam.com/source/v2406/OpenFOAM-v2406.tgz",
+  "members": [
+    {
+      "member": "OpenFOAM-v2406/src/mesh/snappyHexMesh/snappyHexMeshDriver/snappySnapDriver.C",
+      "sha256": "f24b217c8d25c88dd74d7c9655949a3a546f9e8d0ffa6bff8888477c8e906e45",
+      "bytes": 91441,
+      "excerpts": [
+        {
+          "first": 743,
+          "last": 809,
+          "text": "void Foam::snappySnapDriver::freezeExposedPoints\n(\n    const meshRefinement& meshRefiner,\n    const word& fzName,     // faceZone name\n    const word& pzName,     // pointZone name\n    const indirectPrimitivePatch& outside,\n    vectorField& outsideDisp\n)\n{\n    const fvMesh& mesh = meshRefiner.mesh();\n    const pointZoneMesh& pointZones = mesh.pointZones();\n\n    bitSet isFrozenPoint(mesh.nPoints());\n\n    // Add frozen points\n    const label pointZonei = pointZones.findZoneID(pzName);\n    if (pointZonei != -1)\n    {\n        isFrozenPoint.set(pointZones[pointZonei]);\n    }\n\n    // Add (inside) points of frozen faces\n    const faceZoneMesh& faceZones = mesh.faceZones();\n    const label faceZonei = faceZones.findZoneID(fzName);\n    if (faceZonei != -1)\n    {\n        const uindirectPrimitivePatch pp\n        (\n            UIndirectList<face>(mesh.faces(), faceZones[faceZonei]),\n            mesh.points()\n        );\n\n        // Count number of faces per edge\n        const labelList nEdgeFaces(meshRefiner.countEdgeFaces(pp));\n\n        // Freeze all internal points\n        forAll(nEdgeFaces, edgei)\n        {\n            if (nEdgeFaces[edgei] != 1)\n            {\n                const edge& e = pp.edges()[edgei];\n                isFrozenPoint.set(pp.meshPoints()[e[0]]);\n                isFrozenPoint.set(pp.meshPoints()[e[1]]);\n            }\n        }\n    }\n\n    syncTools::syncPointList\n    (\n        mesh,\n        isFrozenPoint,\n        orEqOp<unsigned int>(),\n        0u\n    );\n\n    for (const label pointi : isFrozenPoint)\n    {\n        const auto iter = outside.meshPointMap().find(pointi);\n        if (iter.good())\n        {\n            outsideDisp[iter.val()] = Zero;\n        }\n    }\n}\n\n\n// * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //"
+        },
+        {
+          "first": 868,
+          "last": 955,
+          "text": "void Foam::snappySnapDriver::preSmoothPatch\n(\n    const meshRefinement& meshRefiner,\n    const snapParameters& snapParams,\n    const label nInitErrors,\n    const List<labelPair>& baffles,\n    motionSmoother& meshMover\n)\n{\n    addProfiling(smooth, \"snappyHexMesh::snap::smoothing\");\n    const fvMesh& mesh = meshRefiner.mesh();\n\n    labelList checkFaces;\n\n    if (snapParams.nSmoothInternal() > 0)\n    {\n        Info<< \"Smoothing patch and internal points ...\" << endl;\n    }\n    else\n    {\n        Info<< \"Smoothing patch points ...\" << endl;\n    }\n\n    vectorField& pointDisp = meshMover.pointDisplacement().primitiveFieldRef();\n\n    for\n    (\n        label smoothIter = 0;\n        smoothIter < snapParams.nSmoothPatch();\n        smoothIter++\n    )\n    {\n        Info<< \"Smoothing iteration \" << smoothIter << endl;\n        checkFaces.setSize(mesh.nFaces());\n        forAll(checkFaces, facei)\n        {\n            checkFaces[facei] = facei;\n        }\n\n        // If enabled smooth the internal points\n        if (snapParams.nSmoothInternal() > smoothIter)\n        {\n            // Override values on internal points on refinement interfaces\n            pointDisp = smoothInternalDisplacement(meshRefiner, meshMover);\n        }\n\n        // Smooth the patch points\n        pointField patchDisp(smoothPatchDisplacement(meshMover, baffles));\n        //pointField patchDisp\n        //(\n        //  smoothLambdaMuPatchDisplacement(meshMover, baffles)\n        //);\n\n        // Take over patch displacement as boundary condition on\n        // pointDisplacement\n        meshMover.setDisplacement(patchDisp);\n\n        // Start off from current mesh.points()\n        meshMover.correct();\n\n        scalar oldErrorReduction = -1;\n\n        for (label snapIter = 0; snapIter < 2*snapParams.nSnap(); snapIter++)\n        {\n            Info<< nl << \"Scaling iteration \" << snapIter << endl;\n\n            if (snapIter == snapParams.nSnap())\n            {\n                Info<< \"Displacement scaling for error reduction set to 0.\"\n                    << endl;\n                oldErrorReduction = meshMover.setErrorReduction(0.0);\n            }\n\n            // Try to adapt mesh to obtain displacement by smoothly\n            // decreasing displacement at error locations.\n            if (meshMover.scaleMesh(checkFaces, baffles, true, nInitErrors))\n            {\n                Info<< \"Successfully moved mesh\" << endl;\n                break;\n            }\n        }\n\n        if (oldErrorReduction >= 0)\n        {\n            meshMover.setErrorReduction(oldErrorReduction);\n        }\n        Info<< endl;\n    }"
+        },
+        {
+          "first": 2742,
+          "last": 2753,
+          "text": "\n        // Pre-smooth patch vertices (so before determining nearest)\n        preSmoothPatch\n        (\n            meshRefiner_,\n            snapParams,\n            nInitErrors,\n            internalBaffles,\n            meshMoverPtr()\n        );\n\n        // TBD. Include re-patching?"
+        },
+        {
+          "first": 2864,
+          "last": 2877,
+          "text": "\n            // Freeze points on exposed points/faces\n            freezeExposedPoints\n            (\n                meshRefiner_,\n                \"frozenFaces\",      // faceZone name\n                \"frozenPoints\",     // pointZone name\n                pp,\n                disp\n            );\n\n            // Set initial distribution of displacement field (on patches)\n            // from patchDisp and make displacement consistent with b.c.\n            // on displacement pointVectorField."
+        }
+      ]
+    },
+    {
+      "member": "OpenFOAM-v2406/src/mesh/snappyHexMesh/meshRefinement/meshRefinementBaffles.C",
+      "sha256": "9443701cd580f11995c5f130637aa6ff77d64ea0f2fd6f0be570973935439fc8",
+      "bytes": 184729,
+      "excerpts": [
+        {
+          "first": 5051,
+          "last": 5089,
+          "text": "    // Leak closure:\n    // ~~~~~~~~~~~~~\n    // We do not want to add buffer layers on the frozen points/faces\n    // since these are the exact faces needed to close a hole (to an\n    // locationOutsideMesh). Adding even\n    // a single layer of cells would mean that in further manipulation there\n    // is now no path to the locationOutsideMesh so the layer closure does\n    // not get triggered and we keep the added 1 layer of cells on the\n    // closure faces.\n    bitSet isFrozenPoint(mesh_.nPoints());\n    bitSet isFrozenFace(mesh_.nFaces());\n\n    if (nBufferLayers)\n    {\n        const labelListList& pointFaces = mesh_.pointFaces();\n        const pointZoneMesh& pzs = mesh_.pointZones();\n        const label pointZonei = pzs.findZoneID(\"frozenPoints\");\n        if (pointZonei != -1)\n        {\n            const pointZone& pz = pzs[pointZonei];\n            isFrozenPoint.set(pz);\n            for (const label pointi : pz)\n            {\n                isFrozenFace.set(pointFaces[pointi]);\n            }\n        }\n\n        const faceZoneMesh& fzs = mesh_.faceZones();\n        const label faceZonei = fzs.findZoneID(\"frozenFaces\");\n        if (faceZonei != -1)\n        {\n            const faceZone& fz = fzs[faceZonei];\n            isFrozenFace.set(fz);\n            for (const label facei : fz)\n            {\n                isFrozenPoint.set(mesh_.faces()[facei]);\n            }\n        }\n    }"
+        }
+      ]
+    },
+    {
+      "member": "OpenFOAM-v2406/src/mesh/snappyHexMesh/meshRefinement/meshRefinement.C",
+      "sha256": "52ad11d74f5e67547af955752ce4324bcf3ca1ae5a7ddf9466299531f4319ce8",
+      "bytes": 101437,
+      "excerpts": [
+        {
+          "first": 2163,
+          "last": 2216,
+          "text": "Foam::tmp<Foam::pointVectorField> Foam::meshRefinement::makeDisplacementField\n(\n    const pointMesh& pMesh,\n    const labelList& adaptPatchIDs\n)\n{\n    const polyMesh& mesh = pMesh();\n\n    // Construct displacement field.\n    const pointBoundaryMesh& pointPatches = pMesh.boundary();\n\n    wordList patchFieldTypes\n    (\n        pointPatches.size(),\n        slipPointPatchVectorField::typeName\n    );\n\n    forAll(adaptPatchIDs, i)\n    {\n        patchFieldTypes[adaptPatchIDs[i]] =\n            fixedValuePointPatchVectorField::typeName;\n    }\n\n    forAll(pointPatches, patchi)\n    {\n        if (isA<processorPointPatch>(pointPatches[patchi]))\n        {\n            patchFieldTypes[patchi] = calculatedPointPatchVectorField::typeName;\n        }\n        else if (isA<cyclicPointPatch>(pointPatches[patchi]))\n        {\n            patchFieldTypes[patchi] = cyclicSlipPointPatchVectorField::typeName;\n        }\n    }\n\n    // Note: time().timeName() instead of meshRefinement::timeName() since\n    // postprocessable field.\n    return tmp<pointVectorField>::New\n    (\n        IOobject\n        (\n            \"pointDisplacement\",\n            mesh.time().timeName(),\n            mesh,\n            IOobject::NO_READ,\n            IOobject::AUTO_WRITE\n        ),\n        pMesh,\n        dimensionedVector(dimLength, Zero),\n        patchFieldTypes\n    );\n}\n\n"
+        }
+      ]
+    }
+  ],
+  "scope": "Order and scope of point freezing; not a full refinement or motion qualification"
+}
