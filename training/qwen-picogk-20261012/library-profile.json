@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "scope": "Pinned library-aware parameter plans and bounded native recipes, not arbitrary C# generation or physical qualification.",
+  "core": {
+    "repository": "leap71/PicoGK",
+    "revision": "0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3",
+    "version": "2.3.0",
+    "license": "Apache-2.0",
+    "runtime_library": "picogk.26.2.dylib",
+    "tested": [
+      "initialization",
+      "lattice",
+      "voxelization",
+      "properties",
+      "inside/outside samples",
+      "STL mm export/import"
+    ],
+    "api_public_types": 263,
+    "api_public_methods": 1247
+  },
+  "libraries": [
+    {
+      "repository": "leap71/LEAP71_ShapeKernel",
+      "revision": "554bce4791d2676ed00bd6704f6eb010111a7fd3",
+      "license": "Apache-2.0",
+      "managed_compile": true,
+      "native_reference_recipe": [
+        "BaseCylinder",
+        "BasePipe",
+        "LocalFrame"
+      ],
+      "full_library_model_mastery_tested": false
+    },
+    {
+      "repository": "leap71/LEAP71_LatticeLibrary",
+      "revision": "81c3c7b2064c19e573c38d76ac09bf1cd2f562d5",
+      "license": "Apache-2.0",
+      "managed_compile": true,
+      "native_reference_recipe": [
+        "RegularUnitCell",
+        "BodyCentreLattice",
+        "ConstantBeamThickness"
+      ],
+      "full_library_model_mastery_tested": false
+    },
+    {
+      "repository": "joshmelnykcroft/PicoGK-Fasteners",
+      "revision": "7ddcf0e9ca76fdfcbe75b3bae2537199e84e73cf",
+      "license": "Apache-2.0",
+      "managed_compile": true,
+      "native_reference_recipe": [
+        "Fastener.Washer with explicit bore and washer dimensions"
+      ],
+      "full_library_model_mastery_tested": false
+    },
+    {
+      "repository": "leap71/LEAP71_HelixHeatX",
+      "revision": "a0a0234eb048b6963fb5787fce8315c7b0110b5c",
+      "license": "Apache-2.0",
+      "managed_compile": true,
+      "native_reference_recipe": [
+        "ThreadCutter"
+      ],
+      "full_library_model_mastery_tested": false
+    },
+    {
+      "repository": "leap71/PicoGK_SimulationExample",
+      "revision": "9e98c1acacad41ac26609cc873cdae35cb73c2d9",
+      "license": "CC0-1.0 file headers on four src files; Program.cs not admitted",
+      "managed_compile": false,
+      "native_reference_recipe": [],
+      "full_library_model_mastery_tested": false
+    }
+  ],
+  "interfaces": {
+    "dotnet": "9.0.317",
+    "csharp": "System.Numerics and System.Text.Json; trusted recipes and strict numeric bounds",
+    "openusd": "16-case joint old retention sample includes eight OpenUSD 25.5 cases; no new USD task-family evaluation",
+    "openvdb": "API inventory only; no new VDB roundtrip tested",
+    "freecad_step": "Not executed; voxel/STL output is not editable STEP history",
+    "openfoam_calculix_physicsnemo": "Not run; requires separate cases, meshes and solver validation",
+    "manufacturing_qualified": false
+  }
+}
