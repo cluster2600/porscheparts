@@ -1,0 +1,71 @@
+{
+  "status": "illustrative_assumptions_not_engine_loads",
+  "common_assumptions": {
+    "assumed_bus_v": 14,
+    "assumed_dc_efficiency": 0.9,
+    "auxiliaries_w": 0
+  },
+  "cases": [
+    {
+      "cold_load_w": 500,
+      "assumed_cop": 1,
+      "results": {
+        "tec_electrical_input_w": 500.0,
+        "tec_hot_side_rejection_w": 1000.0,
+        "bus_input_w": 555.5555555555555,
+        "converter_loss_w": 55.55555555555554,
+        "bus_current_a": 39.682539682539684,
+        "total_added_ambient_rejection_w": 1055.5555555555557
+      }
+    },
+    {
+      "cold_load_w": 1000,
+      "assumed_cop": 1,
+      "results": {
+        "tec_electrical_input_w": 1000.0,
+        "tec_hot_side_rejection_w": 2000.0,
+        "bus_input_w": 1111.111111111111,
+        "converter_loss_w": 111.11111111111109,
+        "bus_current_a": 79.36507936507937,
+        "total_added_ambient_rejection_w": 2111.1111111111113
+      }
+    },
+    {
+      "cold_load_w": 10000,
+      "assumed_cop": 1,
+      "results": {
+        "tec_electrical_input_w": 10000.0,
+        "tec_hot_side_rejection_w": 20000.0,
+        "bus_input_w": 11111.111111111111,
+        "converter_loss_w": 1111.1111111111113,
+        "bus_current_a": 793.6507936507936,
+        "total_added_ambient_rejection_w": 21111.11111111111
+      }
+    },
+    {
+      "cold_load_w": 1000,
+      "assumed_cop": 0.5,
+      "results": {
+        "tec_electrical_input_w": 2000.0,
+        "tec_hot_side_rejection_w": 3000.0,
+        "bus_input_w": 2222.222222222222,
+        "converter_loss_w": 222.22222222222217,
+        "bus_current_a": 158.73015873015873,
+        "total_added_ambient_rejection_w": 3222.222222222222
+      }
+    },
+    {
+      "cold_load_w": 1000,
+      "assumed_cop": 2,
+      "results": {
+        "tec_electrical_input_w": 500.0,
+        "tec_hot_side_rejection_w": 1500.0,
+        "bus_input_w": 555.5555555555555,
+        "converter_loss_w": 55.55555555555554,
+        "bus_current_a": 39.682539682539684,
+        "total_added_ambient_rejection_w": 1555.5555555555557
+      }
+    }
+  ],
+  "calculator_sha256": "029dfc5b4c7dea8d94887547236e174b541bd897d3b5a97a012d2d3699a571b2"
+}
