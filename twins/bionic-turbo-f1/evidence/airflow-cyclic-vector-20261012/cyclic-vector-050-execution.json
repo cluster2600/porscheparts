@@ -1,0 +1,7 @@
+{
+  "container": "bionic-cyclic-vector-050",
+  "command": "source /usr/lib/openfoam/openfoam2406/etc/bashrc >/dev/null 2>&1; cd /case; checkMesh -allTopology -allGeometry > log.checkMesh 2>&1 && grep -q \"Mesh OK.\" log.checkMesh && ! grep -q \"Failed \" log.checkMesh && postProcess -func writeCellCentres -time 0 > log.centres 2>&1 && foamToVTK -legacy -fields \"(basisX basisY basisZ tagged)\" -time 0 -no-internal -no-point-data -with-ids -patches \"(periodicLower periodicUpper)\" -name traces > log.traces 2>&1 && foamToVTK -legacy -fields \"(basisX basisY basisZ tagged)\" -time 0 -no-internal -no-point-data -with-ids -patches \"(periodicLower periodicUpper)\" -nearCellValue -name ownerValues > log.ownerValues 2>&1",
+  "timeout_seconds": 120,
+  "cpus": 1,
+  "memory_gib": 2
+}
