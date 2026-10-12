@@ -1,0 +1,60 @@
+{
+  "no_presmooth_prepared_differences": [
+    "system/snappyHexMeshDict"
+  ],
+  "reader_sha256": "31ed2c440f28a5e10230f5e3e0d0da0ac578ac3f9d4081b77d510e08548d9ffc",
+  "paired_prepared_differences": [
+    "constant/polyMesh/pointZones"
+  ],
+  "cases": {
+    "snap-control-068": {
+      "mesh_gate_passed": true,
+      "all_payloads_verified": true,
+      "topology_labels_unchanged": true,
+      "maximum_point_motion_m": 0.0003187137891888595,
+      "maximum_boundary_motion_m": 0.0003187137891888595,
+      "boundary_points_moved_above_1e_16": 20992,
+      "maximum_interface_motion_m": 0.0001382437774401417,
+      "interface": {
+        "faces": 6784,
+        "max_normal_frame_speed_m_s": 0.002683354292543072,
+        "max_plane_distance_m": 5.16242630271871e-08
+      },
+      "boundary_preservation_passed": false,
+      "solver_launched": false
+    },
+    "snap-frozen-069": {
+      "mesh_gate_passed": false,
+      "all_payloads_verified": true,
+      "topology_labels_unchanged": true,
+      "maximum_point_motion_m": 0.0003579341491417255,
+      "maximum_boundary_motion_m": 0.0003579341491417255,
+      "boundary_points_moved_above_1e_16": 20992,
+      "maximum_interface_motion_m": 0.00016074773485686743,
+      "interface": {
+        "faces": 6784,
+        "max_normal_frame_speed_m_s": 2.2168933355715126e-12,
+        "max_plane_distance_m": 1.0571818214680923e-17
+      },
+      "boundary_preservation_passed": false,
+      "solver_launched": false
+    },
+    "snap-frozen-nosmooth-070": {
+      "mesh_gate_passed": true,
+      "all_payloads_verified": true,
+      "topology_labels_unchanged": true,
+      "maximum_point_motion_m": 0.0,
+      "maximum_boundary_motion_m": 0.0,
+      "boundary_points_moved_above_1e_16": 0,
+      "maximum_interface_motion_m": 0.0,
+      "interface": {
+        "faces": 6784,
+        "max_normal_frame_speed_m_s": 2.2879476091475226e-12,
+        "max_plane_distance_m": 1.0571818214680923e-17
+      },
+      "boundary_preservation_passed": true,
+      "solver_launched": false
+    }
+  },
+  "physical_turbo_modified": false
+}
