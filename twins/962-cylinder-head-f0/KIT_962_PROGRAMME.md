@@ -157,8 +157,11 @@ prix, volumes et marge restent inconnus.
    traçabilité, coût, garantie et support. Vente et allégations techniques
    suivent les preuves, pas le rendu du jumeau.
 
-Les gates G1–G5 restent ouvertes. Le
-[contrat culasse F0](interface-contract.json) et ses empreintes sont conservés.
+Les gates G1–G5 restent ouvertes. Le [dossier d'acquisition G1](DONOR_METROLOGY.md)
+fournit la feuille d'interfaces
+à mesurer sur le donneur ; la [qualification matière](MATERIAL_QUALIFICATION.md)
+précise les données à obtenir sur chaque recette LPBF.
+Le [contrat culasse F0](interface-contract.json) et ses empreintes sont conservés.
 Le [programme M64 existant](../m64-engine-system/program.json) apporte des
 références par zone sans transmettre ses niveaux de fidélité ou interfaces à
 ce kit. PicoGK/CHT/calcul mécanique/assemblage sont reliés selon

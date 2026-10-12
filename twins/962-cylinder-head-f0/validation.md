@@ -92,6 +92,30 @@ Les douze tests ciblés passent avec VTK ; les liens Markdown et le diff sont
 vérifiés. Aucun nouveau calcul géométrique ou essai physique n'est effectué.
 Le `make check` Mac global n'est pas réexécuté pour cette clarification.
 
+## Fusion du programme et préparation G1
+
+La CI du commit `e033e041f6a3d11e6905f108b2f73c3837a69c32` a réussi :
+[run 672](https://github.com/cluster2600/porscheparts/actions/runs/38286252107),
+y compris l'étape `make check` Linux. La PR 184 a été fusionnée sur demande
+du propriétaire ; le commit de fusion est
+`a2f066864a765e9ece59c960c87e60a4d9b93a9d`.
+Cela ne qualifie aucune pièce physique.
+
+La suite ajoute le dossier G1 et la qualification matière, sans modification
+de géométrie. Un contrôle CSV vérifie vingt identifiants uniques, couverture
+des huit interfaces du contrat M64 et champs d'observation tous vides.
+Le validateur M64 existant confirme ses interfaces incomplètes et conserve
+la fabrication à `false`. Les douze tests 962 passent avec VTK ; aucun lien
+Markdown cassé dans les 878 fichiers examinés, diff sans erreur.
+
+`make check` Mac est réexécuté pour cette étape : 3 794 tests en 232,037 s,
+2 échecs, 26 erreurs et 229 ignorés, puis arrêt à la cible `test`. Les erreurs
+restent dans SciPy/NumPy et Python 3.10 sans `hashlib.file_digest` ; les deux
+échecs sont les égalités de flottants impeller/stator des modules non modifiés.
+Le journal reste local : `work/962-head/make-check-metrology.log`.
+Les cibles globales suivantes ne sont pas considérées exécutées. La CI de
+la nouvelle révision G1 doit être observée séparément.
+
 ## Vérifications physiques absentes
 
 Pas de scan/CT d'un donneur 962, de métrologie, de CFD/CHT, de calcul mécanique,
