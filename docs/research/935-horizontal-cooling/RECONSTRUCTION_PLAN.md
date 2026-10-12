@@ -62,6 +62,11 @@ les variantes améliorées avec les mêmes exigences de preuve.
 
 ## Lot 1 — Repères, segmentation et interfaces
 
+La [continuation d'assemblage du 12 octobre](INSPECTION_ASSEMBLY.md) réutilise
+PicoGK et les géométries disponibles sans location Vast. Elle livre une scène
+d'inspection réversible avec contexte moteur 917 identifié comme comparatif ;
+les interfaces du montage historique 935 restent à établir.
+
 Reprendre les deux OBJ présents en copies privées réversibles. Segmenter les
 pièces mécaniques et les acquisitions sans éliminer les fragments inconnus.
 Classer trous, surfaces absentes et intersections avant réparation. Identifier
