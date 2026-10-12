@@ -1,0 +1,71 @@
+{
+  "revision": "installed-cooling-f1-20261012",
+  "status": "parametric_packaging_hypothesis",
+  "vehicle": "993 Turbo M64/60 study",
+  "units": "mm",
+  "frame": "X lateral, Y from rear fan inlet towards engine, Z up; local study frame, not measured vehicle datum",
+  "geometry": {
+    "wall_mm": 4,
+    "voxel_mm": 1.5,
+    "fan_centre_z_mm": 180,
+    "fan_front_y_mm": -248,
+    "fan_rear_y_mm": -192,
+    "fan_radius_mm": 122.5,
+    "tip_gap_mm": 3.5,
+    "alternator_radius_mm": 70,
+    "alternator_rear_y_mm": -5,
+    "core_width_mm": 620,
+    "core_length_mm": 450,
+    "core_thickness_mm": 60,
+    "core_bottom_z_mm": 430,
+    "core_centre_y_mm": -25,
+    "outlet_radius_mm": 42,
+    "outlet_x_mm": 205,
+    "outlet_y_mm": [
+      0,
+      120,
+      240
+    ],
+    "outlet_z_mm": 20
+  },
+  "basis": "All installation dimensions are explicit design hypotheses. Fan nominal envelope inherited from the admitted 245 mm F1 concept, not measured fitment.",
+  "rotor_parent": "parts/993-eng-cooling-impeller-we43-f1-0001/derived/cooling_impeller_we43_f1-picogk.stl",
+  "rotor_parameters": "parts/993-eng-cooling-impeller-we43-f1-0001/source/picogk.json",
+  "manufacturing_authorized": false,
+  "installed_fit_verified": false,
+  "airflow_gain_verified": false,
+  "heat_exchanger": {
+    "type": "air_to_air_charge_cooler",
+    "orientation": "horizontal_under_rear_wing_above_fan",
+    "model": "porous_core_envelope_and_hollow_tanks_no_resolved_fins",
+    "air_paths": "ambient through core then fan then engine; charge air stays inside core/tanks",
+    "required_heat_rejection_w": null,
+    "charge_mass_flow_kg_s": null,
+    "boost_pressure_pa": null,
+    "charge_inlet_temperature_k": null,
+    "allowable_charge_pressure_loss_pa": null,
+    "measured_ambient_pressure_drop_curve": null,
+    "measured_ua_map": null
+  },
+  "flow_screen": {
+    "status": "uncalibrated_network_sensitivity_only",
+    "rho_kg_m3": 1.18,
+    "air_cp_j_kg_k": 1005,
+    "fan_speed_rpm": 10000,
+    "branch_k_pa_per_m3_s_squared": [
+      12000,
+      15000,
+      18000,
+      12000,
+      15000,
+      18000
+    ],
+    "common_k_pa_per_m3_s_squared": 80,
+    "core_reference_face_area_m2": 0.279,
+    "core_k_pa_per_m3_s_squared": 60,
+    "core_assumed_heat_rejection_w": 20000,
+    "measured_branch_resistances": null,
+    "measured_fan_curve": null,
+    "geometry_loss_correlation_validated": false
+  }
+}

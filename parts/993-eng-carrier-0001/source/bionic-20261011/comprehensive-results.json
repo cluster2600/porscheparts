@@ -1,0 +1,2826 @@
+{
+  "study_id": "99311502153-v5-comprehensive-20261012",
+  "scope": "Authorised provisional CAD and numerical hypotheses; exact frozen V5, no physical tests or functional release",
+  "geometry": {
+    "design_id": "bionic-provisional-20261012-v5",
+    "dimension_source": "design_assumptions",
+    "volume_mm3": 268046.10685643717,
+    "dense_reference_mass_kg": 1.1847637923054524,
+    "CAD_valid": true,
+    "solid_count": 1,
+    "STEP_readback_volume_match": true,
+    "six_provisional_bore_axis_checks_pass": true,
+    "measured_interface_inspection": false,
+    "manufacturing_authorized": false,
+    "geometry_sha256": {
+      "carrier.step": "5b2f092c5e53a6e34a895645b534fb8a0ca2cfbb31ab286e37c06cee9d40fe9e",
+      "carrier.stl": "22e8ba507dbd91827810bda54cfee7fcfe4723f98365100e5d567cb2d0d746f0"
+    }
+  },
+  "interface_constraint_check": {
+    "candidate_STEP_sha256": "5b2f092c5e53a6e34a895645b534fb8a0ca2cfbb31ab286e37c06cee9d40fe9e",
+    "baseline_STEP_sha256": "b217328fc28fa1d517e9c771348b31b3f790612d25e8771eba7e4e2445316159",
+    "reference_is": "V1 assumed geometry, not measured OEM interfaces",
+    "mass_scope": "Carrier alone, excluding separate bracket, mountings and fasteners",
+    "dense_reference_mass_kg": 1.1847637912820326,
+    "target_kg": 1.0,
+    "ceiling_kg": 1.2,
+    "target_met": false,
+    "ceiling_met": true,
+    "joint_region_symmetric_difference_mm3": {
+      "central_mating_face": 0,
+      "central_bolt_seat_-48_-23": 0,
+      "central_bolt_seat_-48_23": 0,
+      "central_bolt_seat_48_-23": 0,
+      "central_bolt_seat_48_23": 0,
+      "central_opening_-20": 0,
+      "central_opening_20": 0,
+      "end_bore_-280": 0,
+      "end_seat_-280_-1": 0,
+      "end_seat_-280_1": 0,
+      "end_bore_280": 0,
+      "end_seat_280_-1": 0,
+      "end_seat_280_1": 0
+    },
+    "assumed_central_pad_mm": 8,
+    "assumed_central_tool_radius_mm": 12.5,
+    "eight_assumed_tool_columns_clear": true,
+    "OEM_pad_thickness_mm": null,
+    "OEM_available_bolt_grip_mm": null,
+    "OEM_fastener_compatibility_verified": false,
+    "manufacturing_authorized": false
+  },
+  "material_process": {
+    "selected_for_provisional_study": true,
+    "released_for_manufacture": false,
+    "metal": "Ti-6Al-4V, Grade 5 chemistry; EOS Titanium Ti64 powder",
+    "powder_article": "9011-0039",
+    "process": "Laser powder bed fusion, argon, EOS M 400-4",
+    "parameter_set": "Ti64_060_FlexM404",
+    "layer_thickness_um": 60,
+    "heat_treatment": "800 C for 2 hours in argon, following the published EOS coupon condition; supplier must define ramp, cool-down and on-plate sequence",
+    "HIP": "Not assumed; any HIP route requires separate coupons and revised properties",
+    "screening_elasticity": {
+      "E_MPa": 107000,
+      "nu": 0.31,
+      "density_kg_mm3": 4.42e-06,
+      "thermal_expansion_per_K": 9e-06,
+      "source": "Dense TIMET reference retained for comparisons; not a qualified LPBF elastic or thermal card"
+    },
+    "EOS_room_temperature_heat_treated_coupons": {
+      "horizontal_yield_MPa": 955,
+      "vertical_yield_MPa": 990,
+      "horizontal_ultimate_MPa": 1070,
+      "vertical_ultimate_MPa": 1080,
+      "horizontal_elongation_percent": 13,
+      "vertical_elongation_percent": 15,
+      "density_g_cm3_lower_reference": 4.4,
+      "is_design_allowable": false
+    },
+    "study_strength_screen": {
+      "reference_yield_MPa": 955,
+      "assumed_yield_factor": 1.5,
+      "screening_stress_MPa": 636.6666666666666,
+      "authority": "Explicit study criterion, not a Porsche specification or statistically qualified AM allowable",
+      "ideal_plasticity": "955 MPa elastic-perfectly-plastic approximation; no calibrated hardening, failure strain or damage model",
+      "qualified_fatigue_curve": null,
+      "fatigue_life_cycles": null
+    },
+    "manufacturing_definition": {
+      "orientation": "Computed from the actual STL; machine Z approximately 35.54 degrees above the carrier span, 45 degrees in XY",
+      "support_strategy": "Removable downskin supports; equivalent springs in the numerical sensitivity. Detailed supports and removal access require the printer's process engineering.",
+      "machining": "Finish-machine all four central bolt seats and bores, both end-eye bores/seats and the central mating face to measured OEM geometry. Preserve finished joint stack; machining stock is not included in finished mass.",
+      "inspection": "Powder and build traceability, witness coupons in relevant orientations, density/defect inspection including suitable CT, penetrant inspection after finishing, dimensional/CMM inspection and surface roughness on fatigue-critical regions",
+      "fatigue": "Qualify the actual build direction, heat treatment, surface finish, internal defects, environment and service spectrum with coupons and a representative carrier rig",
+      "galvanic_isolation": "Engineer a compatible barrier at dissimilar-metal interfaces and corrosion protection without altering the measured clamp stack or reducing required friction/preload; insulation durability remains unverified",
+      "bolt_preload": "Unknown bolt grade, grip, torque/friction and contact state; do not transfer the historical M12 85 Nm value to M10 joints",
+      "print_permission": false
+    },
+    "sources": [
+      {
+        "url": "https://www.eos.info/metal-solutions/data-sheets/titanium/pds-eos-titanium-ti64-eos-m-400-4-60um",
+        "accessed_on": "2026-10-12",
+        "role": "Specific machine/process, layer and heat-treated coupon properties"
+      },
+      {
+        "url": "https://store.eos.info/products/eos-titanium-ti64",
+        "accessed_on": "2026-10-12",
+        "role": "Powder article and Ti6Al4V chemistry corresponding to ASTM F2924; not certification of this part"
+      },
+      {
+        "url": "https://www.eos.info/metal-solutions/metal-printers/eos-m-400-4",
+        "accessed_on": "2026-10-12",
+        "role": "400 x 400 x 400 mm nominal build envelope including platform"
+      },
+      {
+        "url": "https://www.timet.com/documents/datasheets/alpha-and-beta-alloys/timetal-6-4.pdf",
+        "accessed_on": "2026-10-12",
+        "role": "Dense elastic reference, not AM allowable"
+      },
+      {
+        "url": "https://www.dhondt.de/ccx_2.21.pdf",
+        "accessed_on": "2026-10-12",
+        "role": "CalculiX element birth/removal, orthotropic expansion and plasticity syntax"
+      },
+      {
+        "url": "https://www.nist.gov/publications/coupled-experimental-and-computational-study-residual-stresses-additively-manufactured",
+        "accessed_on": "2026-10-12",
+        "role": "Primary Ti64 LPBF residual-stress validation study; its calibration is not transferred to this carrier"
+      }
+    ]
+  },
+  "structural_solver_job_count": 40,
+  "structural_cases": [
+    {
+      "path": "v5/mesh-6/combined-rigid-static.json",
+      "result_sha256": "20b3718de2976e372e6062f30455ee8547db998a2109bab613d591c88e00c33f",
+      "input_sha256": "6241e9e278674af7114c2558f966406afccfc23dff6c9845cb621808257b9c0b",
+      "mesh_sha256": "6920fb8649c4a56c49ab04a073f490efb240cbcfbca22ef49a16d5f57c265113",
+      "raw_dat_sha256": "f30fcbf8a230584c39dec7cfea66f9b48c3ffe44e704d21849e1bf29028dcc8c",
+      "result": {
+        "name": "combined-rigid-static",
+        "procedure": "static",
+        "seconds": 29.593396125012077,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "6241e9e278674af7114c2558f966406afccfc23dff6c9845cb621808257b9c0b",
+        "mesh_sha256": "6920fb8649c4a56c49ab04a073f490efb240cbcfbca22ef49a16d5f57c265113",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 3.912990796288569,
+        "integration_point_VM_max_MPa": 1034.1788863777053,
+        "VM_peak_element": 73838,
+        "force_residual_N": [
+          0.00022471699938766965,
+          -7.0558581793804835e-06,
+          3.339434033478028e-05
+        ],
+        "moment_residual_Nmm": [
+          0.0004929632983277088,
+          -0.009942466393113136,
+          -5.962911249701719e-05
+        ],
+        "external_work_Nmm": 32268.30065377702,
+        "bolt_group_forces_N": [
+          [
+            0.31427955734288343,
+            0.3685217479454918,
+            3380.504398300262
+          ],
+          [
+            -0.005267108531757242,
+            0.36976365950210044,
+            3388.247939382788
+          ],
+          [
+            -0.3037453402782679,
+            -0.36919410929938035,
+            -5388.253383320331
+          ],
+          [
+            -0.005267108531757242,
+            -0.3690912981482129,
+            -5380.498954362869
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-6/combined-spring-1000-static.json",
+      "result_sha256": "2b879590bc491889d23f3efe5be9a7d51b954a1344c8b0fe5507872f93e5047a",
+      "input_sha256": "3ea5ec91752e7b287e3c99bec0df15d13da6abe4256c987dd5e09765f395475c",
+      "mesh_sha256": "6920fb8649c4a56c49ab04a073f490efb240cbcfbca22ef49a16d5f57c265113",
+      "raw_dat_sha256": "11b3c26d4100fb64ce02723f625beaae2595ebd640cdd8f3e7948a3f5a86ec2e",
+      "result": {
+        "name": "combined-spring-1000-static",
+        "procedure": "static",
+        "seconds": 36.67057474993635,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "3ea5ec91752e7b287e3c99bec0df15d13da6abe4256c987dd5e09765f395475c",
+        "mesh_sha256": "6920fb8649c4a56c49ab04a073f490efb240cbcfbca22ef49a16d5f57c265113",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 23.14330454628974,
+        "integration_point_VM_max_MPa": 2001.8955413038564,
+        "VM_peak_element": 68272,
+        "force_residual_N": [
+          3.8233407903282696e-07,
+          -1.843766718565816e-07,
+          -3.0692895052197855e-06
+        ],
+        "moment_residual_Nmm": [
+          2.6515350526779002e-05,
+          -0.00045506900642067194,
+          1.1514332139944683e-05
+        ],
+        "external_work_Nmm": 119216.20920760187,
+        "bolt_group_forces_N": [
+          [
+            0.31427955734288343,
+            0.3685217479454918,
+            3380.504398300262
+          ],
+          [
+            -0.005267108531757242,
+            0.36976365950210044,
+            3388.247939382788
+          ],
+          [
+            -0.3037453402782679,
+            -0.36919410929938035,
+            -5388.253383320331
+          ],
+          [
+            -0.005267108531757242,
+            -0.3690912981482129,
+            -5380.498954362869
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-6/torque_y_850Nm-rigid-static.json",
+      "result_sha256": "0850815e8f1457d95ecdb0de57bfe89e04077800c0132f76aeaa3258c96025b2",
+      "input_sha256": "514ccf479eccd74abeb0e961b7241bfd7102752d1d590a45725d2cd4fb6fbee7",
+      "mesh_sha256": "6920fb8649c4a56c49ab04a073f490efb240cbcfbca22ef49a16d5f57c265113",
+      "raw_dat_sha256": "8c7fa96f5846c9893373236250b335a5929be00f2474b1cbe12628dcd2bc2a53",
+      "result": {
+        "name": "torque_y_850Nm-rigid-static",
+        "procedure": "static",
+        "seconds": 29.666888375068083,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "514ccf479eccd74abeb0e961b7241bfd7102752d1d590a45725d2cd4fb6fbee7",
+        "mesh_sha256": "6920fb8649c4a56c49ab04a073f490efb240cbcfbca22ef49a16d5f57c265113",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 1.7738968490956428,
+        "integration_point_VM_max_MPa": 659.2771269614548,
+        "VM_peak_element": 65195,
+        "force_residual_N": [
+          6.859220622247586e-05,
+          3.7206289888956396e-05,
+          -2.0913199588967757e-05
+        ],
+        "moment_residual_Nmm": [
+          0.0007174636102007526,
+          -0.05620559968519956,
+          0.000998119751705051
+        ],
+        "external_work_Nmm": 22691.161894488945,
+        "bolt_group_forces_N": [
+          [
+            0.31397766957267526,
+            0.37025126272318687,
+            4385.206015775214
+          ],
+          [
+            -0.004878700499830066,
+            0.3703793464192935,
+            4386.001663281112
+          ],
+          [
+            -0.3042202685719818,
+            -0.37032077860998763,
+            -4386.007152292736
+          ],
+          [
+            -0.004878700499830066,
+            -0.3703098305324923,
+            -4385.20052676358
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-6/torque_y_850Nm-spring-1000-static.json",
+      "result_sha256": "8eb36af2bc56ea8134feb405ee5acca59f528dd2495c47b765ead58c558aa8c7",
+      "input_sha256": "a38ecef989584ef1ac6e97405635149e844bf99315a7b5ac4f03fbd37d98e683",
+      "mesh_sha256": "6920fb8649c4a56c49ab04a073f490efb240cbcfbca22ef49a16d5f57c265113",
+      "raw_dat_sha256": "3fb70c97f2109ba3f62af6a8a6fd8bc5e67650257faca1502dfe5bebf24a4abc",
+      "result": {
+        "name": "torque_y_850Nm-spring-1000-static",
+        "procedure": "static",
+        "seconds": 39.181907917023636,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "a38ecef989584ef1ac6e97405635149e844bf99315a7b5ac4f03fbd37d98e683",
+        "mesh_sha256": "6920fb8649c4a56c49ab04a073f490efb240cbcfbca22ef49a16d5f57c265113",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 2.810319215337119,
+        "integration_point_VM_max_MPa": 838.1305452356394,
+        "VM_peak_element": 65195,
+        "force_residual_N": [
+          2.1497444206708405e-08,
+          2.8108936934390853e-08,
+          -1.4827179339871321e-06
+        ],
+        "moment_residual_Nmm": [
+          8.498000805623462e-05,
+          -0.0008310533594340086,
+          -1.178155710125639e-05
+        ],
+        "external_work_Nmm": 35324.468426265645,
+        "bolt_group_forces_N": [
+          [
+            0.31397766957267526,
+            0.37025126272318687,
+            4385.206015775214
+          ],
+          [
+            -0.004878700499830066,
+            0.3703793464192935,
+            4386.001663281112
+          ],
+          [
+            -0.3042202685719818,
+            -0.37032077860998763,
+            -4386.007152292736
+          ],
+          [
+            -0.004878700499830066,
+            -0.3703098305324923,
+            -4385.20052676358
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-6/torsion_x_100Nm-rigid-static.json",
+      "result_sha256": "b904493e7e21e83cb48eb47ecd3c837d41dc80fb971e04f16b34b899c9dfa377",
+      "input_sha256": "8e2da53072244fe596bd17ac539ac2b8409ae9bfb181450f9332e287d80a0e5b",
+      "mesh_sha256": "6920fb8649c4a56c49ab04a073f490efb240cbcfbca22ef49a16d5f57c265113",
+      "raw_dat_sha256": "b718d32b1ed04ceb19dc4c689358fa130516ab1d405057359cb87c50a7d71ca5",
+      "result": {
+        "name": "torsion_x_100Nm-rigid-static",
+        "procedure": "static",
+        "seconds": 29.069474459043704,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "8e2da53072244fe596bd17ac539ac2b8409ae9bfb181450f9332e287d80a0e5b",
+        "mesh_sha256": "6920fb8649c4a56c49ab04a073f490efb240cbcfbca22ef49a16d5f57c265113",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 0.29683949652229336,
+        "integration_point_VM_max_MPa": 154.19890830842328,
+        "VM_peak_element": 74208,
+        "force_residual_N": [
+          3.679820222122728e-06,
+          -5.715272087855605e-06,
+          5.5023386957842035e-08
+        ],
+        "moment_residual_Nmm": [
+          -0.0003078892477788031,
+          -0.002520486921540055,
+          -0.0007887057525066687
+        ],
+        "external_work_Nmm": 675.2294372812726,
+        "bolt_group_forces_N": [
+          [
+            0.11740338376339111,
+            -0.48968337309669613,
+            -1046.2499218270923
+          ],
+          [
+            -0.11739496767405025,
+            -0.15420186218369047,
+            1046.4338811051682
+          ],
+          [
+            0.11738655158470948,
+            0.3081081644225287,
+            -1046.4207682475628
+          ],
+          [
+            -0.11739496767405025,
+            0.3357770708573413,
+            1046.2368089694874
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-6/torsion_x_100Nm-spring-1000-static.json",
+      "result_sha256": "342017253ce53f67210ff8cdd89204b4050391362ab4135d88e7151a92734c56",
+      "input_sha256": "e349e02185008ffc95508d8c15add9fb42b8492cce74bd62588fe18777dbac01",
+      "mesh_sha256": "6920fb8649c4a56c49ab04a073f490efb240cbcfbca22ef49a16d5f57c265113",
+      "raw_dat_sha256": "aade7d39ec4a6d1ba282a5cf3c0d0491769f3346fdacc1ca673a7ebb6f293018",
+      "result": {
+        "name": "torsion_x_100Nm-spring-1000-static",
+        "procedure": "static",
+        "seconds": 34.74621170794126,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "e349e02185008ffc95508d8c15add9fb42b8492cce74bd62588fe18777dbac01",
+        "mesh_sha256": "6920fb8649c4a56c49ab04a073f490efb240cbcfbca22ef49a16d5f57c265113",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 9.27076481280185,
+        "integration_point_VM_max_MPa": 155.68375740210683,
+        "VM_peak_element": 74210,
+        "force_residual_N": [
+          1.29502691857553e-07,
+          1.0701423537276544e-05,
+          2.902930049231145e-06
+        ],
+        "moment_residual_Nmm": [
+          8.576996333431453e-05,
+          0.0034872539060728514,
+          -0.0005110969307060564
+        ],
+        "external_work_Nmm": 24852.66742751144,
+        "bolt_group_forces_N": [
+          [
+            0.11740338376339111,
+            -0.48968337309669613,
+            -1046.2499218270923
+          ],
+          [
+            -0.11739496767405025,
+            -0.15420186218369047,
+            1046.4338811051682
+          ],
+          [
+            0.11738655158470948,
+            0.3081081644225287,
+            -1046.4207682475628
+          ],
+          [
+            -0.11739496767405025,
+            0.3357770708573413,
+            1046.2368089694874
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/combined-rigid-buckling.json",
+      "result_sha256": "133f6e2a161f2e3a850619ca4a780e158bc870123c1fd978ae16f4d9b7d5fc54",
+      "input_sha256": "7c757327203a368856197af167e74295492869137f78973e6513de84fc0a9727",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "2a76a51070211cf7a49abdecf5f1e1668ccff4255fba5930912e07ecbe74a18b",
+      "result": {
+        "name": "combined-rigid-buckling",
+        "procedure": "buckling",
+        "seconds": 26.294292042031884,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "7c757327203a368856197af167e74295492869137f78973e6513de84fc0a9727",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "buckling_load_factors": [
+          8.95267,
+          9.234917,
+          9.691384,
+          10.62799
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/combined-rigid-ideal-plastic.json",
+      "result_sha256": "05deb761a9019b0b2f60abc228874dfcf86924dfaf9a65580fa167d4559d92d3",
+      "input_sha256": "53b04929387cb6978628bcd182539e06d63cdf4efe7f0f1f9055768917a0466e",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "a350e206bb954ef66d8c1273eff8238c3075637873d73f28f11062b5d82b4f04",
+      "result": {
+        "name": "combined-rigid-ideal-plastic",
+        "seconds": 323.6545626659645,
+        "reference_yield_MPa": 955,
+        "hardening": "ideal perfect plasticity; no measured stress-strain curve",
+        "material_model_calibrated": false,
+        "stages": [
+          {
+            "stage": "loaded",
+            "U_max_mm": 3.840917103476873,
+            "VM_max_MPa": 955.0003449740318,
+            "PEEQ_max": 0.0002790953,
+            "integration_points_with_PEEQ_gt_1e_6": 3
+          },
+          {
+            "stage": "unloaded",
+            "U_max_mm": 5.30173288638859e-05,
+            "VM_max_MPa": 23.689015820963913,
+            "PEEQ_max": 0.0002790953,
+            "integration_points_with_PEEQ_gt_1e_6": 3
+          }
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/combined-rigid-modal.json",
+      "result_sha256": "0c951d715831034a220c3100ca2b99e0084df71325547b625534e7a8175342de",
+      "input_sha256": "4a74d936c0a7b7faa2a5a4f2d81dd0ab3f7708bcbfa2db1234a1c08a11fcda29",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "45c7262ad591bf0e441180352576270a9400c7b5dd5b9961cc18fb1a513c79ed",
+      "result": {
+        "name": "combined-rigid-modal",
+        "procedure": "modal",
+        "seconds": 27.95286437496543,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "4a74d936c0a7b7faa2a5a4f2d81dd0ab3f7708bcbfa2db1234a1c08a11fcda29",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "frequencies_Hz": [
+          284.6683,
+          700.5534,
+          793.0805,
+          1181.14,
+          1859.28,
+          1899.175,
+          2015.49,
+          2385.26
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/combined-rigid-nonlinear.json",
+      "result_sha256": "35904d0b1c90382c432c8323fd730c8a778d4ca541a7f850aefbbda7b541ff3e",
+      "input_sha256": "341384ed30071ff12fe27ce961df599d16d06fb50cac8432dc582d16d84c8cae",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "9bb2d76da2610953255b862e9c149fba99d6f63db418371d02b0139c94bb0d14",
+      "result": {
+        "name": "combined-rigid-nonlinear",
+        "procedure": "nonlinear",
+        "seconds": 122.35045187501237,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "341384ed30071ff12fe27ce961df599d16d06fb50cac8432dc582d16d84c8cae",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 3.8389796998980303,
+        "integration_point_VM_max_MPa": 994.9604532446176,
+        "VM_peak_element": 34429,
+        "force_residual_N": [
+          -0.0008268840100133235,
+          5.6713099903692534e-05,
+          2.5891984023473924e-05
+        ],
+        "moment_residual_Nmm": [
+          -0.0013749199692938419,
+          -0.014388852287083864,
+          0.004597685509396321
+        ],
+        "external_work_Nmm": 31431.817136197657,
+        "bolt_group_forces_N": [
+          [
+            0.4956775651478769,
+            0.17331179645570308,
+            3375.549776485915
+          ],
+          [
+            -1.9302461296558175,
+            0.17819935456579894,
+            3379.30314855591
+          ],
+          [
+            0.4956775651478769,
+            -0.17529851784688188,
+            -5376.81791579422
+          ],
+          [
+            0.9388909993601015,
+            -0.17621263317461971,
+            -5378.035009247629
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/combined-rigid-static.json",
+      "result_sha256": "24dc8a4db830dcb3230fac98e5e8542f2faa62c1b2767ac100aa90f307f146a7",
+      "input_sha256": "3095d2b0742c1e804db3c88104ceed3b6064f320b010f0c945dfeec219733bfb",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "f2cbb8102452ca7d792ed1dffccca831bc0e78f33eda10feb622aaf803757a76",
+      "result": {
+        "name": "combined-rigid-static",
+        "procedure": "static",
+        "seconds": 11.958823791937903,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "3095d2b0742c1e804db3c88104ceed3b6064f320b010f0c945dfeec219733bfb",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 3.826169733960574,
+        "integration_point_VM_max_MPa": 984.6802194932241,
+        "VM_peak_element": 34562,
+        "force_residual_N": [
+          -0.0010071574040072806,
+          4.250799948686166e-05,
+          1.9706491457327502e-05
+        ],
+        "moment_residual_Nmm": [
+          0.0021973983446628154,
+          -0.004785794764757156,
+          0.013590589997675373
+        ],
+        "external_work_Nmm": 31513.866776150688,
+        "bolt_group_forces_N": [
+          [
+            0.4956775651478769,
+            0.17331179645570308,
+            3375.549776485915
+          ],
+          [
+            -1.9302461296558175,
+            0.17819935456579894,
+            3379.30314855591
+          ],
+          [
+            0.4956775651478769,
+            -0.17529851784688188,
+            -5376.81791579422
+          ],
+          [
+            0.9388909993601015,
+            -0.17621263317461971,
+            -5378.035009247629
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/combined-spring-1000-buckling.json",
+      "result_sha256": "fc13bbc48a6760e2391e95dc75373bd73223ef26f3ce36efd2bb5c0e4306b82a",
+      "input_sha256": "2a94aa0972ba116ceab3a0bd15911a1a6d369410f8f992ffb6fe19fe6f0b2c81",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "4dd43ae679988a90a16c1d69b24ccebca4c6f1920650b44b511455e4735ff544",
+      "result": {
+        "name": "combined-spring-1000-buckling",
+        "procedure": "buckling",
+        "seconds": 35.021168708917685,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "2a94aa0972ba116ceab3a0bd15911a1a6d369410f8f992ffb6fe19fe6f0b2c81",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "buckling_load_factors": [
+          3.928017,
+          4.066165,
+          4.499246,
+          4.645911
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/combined-spring-1000-ideal-plastic.json",
+      "result_sha256": "52a4dd701192e113b21bc5199fe5ff21ca1e0d26ae368cbf06ffe8ed149453e6",
+      "input_sha256": "249e5cae3608e4dac0fd155c4d0faddb2016562f493e450d721a5a5fae704e49",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "51054b0099e38af523cb85ece0dec036901869612559046d206613d7bda3f225",
+      "result": {
+        "name": "combined-spring-1000-ideal-plastic",
+        "seconds": 644.8197755420115,
+        "reference_yield_MPa": 955,
+        "hardening": "ideal perfect plasticity; no measured stress-strain curve",
+        "material_model_calibrated": false,
+        "stages": [
+          {
+            "stage": "loaded",
+            "U_max_mm": 23.767433118144762,
+            "VM_max_MPa": 955.0004963140915,
+            "PEEQ_max": 0.8349354,
+            "integration_points_with_PEEQ_gt_1e_6": 1847
+          },
+          {
+            "stage": "unloaded",
+            "U_max_mm": 0.9744099284797832,
+            "VM_max_MPa": 955.0000721082905,
+            "PEEQ_max": 0.8517594,
+            "integration_points_with_PEEQ_gt_1e_6": 1847
+          }
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/combined-spring-1000-modal.json",
+      "result_sha256": "cd6daa8c67aa83b6b70c11768bad58730c8ba21c6b16d83992d61e6fb3e61c71",
+      "input_sha256": "bed0c34bd75fab20ce7ddeb479f6aa53fe7e2189f316b1224849c5e2663ed518",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "d37d02cc73d238e0d7e52ae13df9df7863385e7d510c07dee12dd130c25c7305",
+      "result": {
+        "name": "combined-spring-1000-modal",
+        "procedure": "modal",
+        "seconds": 30.92919841699768,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "bed0c34bd75fab20ce7ddeb479f6aa53fe7e2189f316b1224849c5e2663ed518",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "frequencies_Hz": [
+          90.88687,
+          136.6911,
+          193.0123,
+          206.4646,
+          309.0284,
+          317.2305,
+          370.2524,
+          716.6078
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/combined-spring-1000-nonlinear.json",
+      "result_sha256": "58e06d6cc9c24f8df66a5c647219a90081659c8be09832492d2452bdeb753e36",
+      "input_sha256": "8a5de03a0f777a9f8f7ab6a4821919c95dda8c171fb5d63a4051ca81114b2ca7",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "3aa1b768447b8aca435721a0b01fd06979154ee85b64033a03bd78eadb6cbcef",
+      "result": {
+        "name": "combined-spring-1000-nonlinear",
+        "procedure": "nonlinear",
+        "seconds": 321.0856182499556,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "8a5de03a0f777a9f8f7ab6a4821919c95dda8c171fb5d63a4051ca81114b2ca7",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 22.900404320546,
+        "integration_point_VM_max_MPa": 1969.4634470535775,
+        "VM_peak_element": 37542,
+        "force_residual_N": [
+          2.1878217863757765e-06,
+          5.6299760636357825e-09,
+          6.057000973669346e-06
+        ],
+        "moment_residual_Nmm": [
+          -0.0015007082984652698,
+          -0.00013078656047582626,
+          0.00012162547427063686
+        ],
+        "external_work_Nmm": 118609.06937419275,
+        "bolt_group_forces_N": [
+          [
+            0.4956775651478769,
+            0.17331179645570308,
+            3375.549776485915
+          ],
+          [
+            -1.9302461296558175,
+            0.17819935456579894,
+            3379.30314855591
+          ],
+          [
+            0.4956775651478769,
+            -0.17529851784688188,
+            -5376.81791579422
+          ],
+          [
+            0.9388909993601015,
+            -0.17621263317461971,
+            -5378.035009247629
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/combined-spring-1000-static.json",
+      "result_sha256": "157bbca60c2a0361f664514e4df414e6731589bd17b0853ce6730b65583b33ee",
+      "input_sha256": "06662cde8a46f1bd782a1891e787a06d7911af63115bbab00f9b7978dc145e2c",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "b50bbc7c9a9a09d9ba59bb986f78d84a7d236e774292ea5faa548ddffbebda75",
+      "result": {
+        "name": "combined-spring-1000-static",
+        "procedure": "static",
+        "seconds": 11.030528292059898,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "06662cde8a46f1bd782a1891e787a06d7911af63115bbab00f9b7978dc145e2c",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 22.703104759153092,
+        "integration_point_VM_max_MPa": 1899.77207656092,
+        "VM_peak_element": 37542,
+        "force_residual_N": [
+          -5.518645506963349e-07,
+          -1.9721640181764692e-07,
+          6.667063189524924e-06
+        ],
+        "moment_residual_Nmm": [
+          -0.00010624865361563707,
+          -0.0014955569058656693,
+          -1.5135499543017517e-05
+        ],
+        "external_work_Nmm": 116492.3054414852,
+        "bolt_group_forces_N": [
+          [
+            0.4956775651478769,
+            0.17331179645570308,
+            3375.549776485915
+          ],
+          [
+            -1.9302461296558175,
+            0.17819935456579894,
+            3379.30314855591
+          ],
+          [
+            0.4956775651478769,
+            -0.17529851784688188,
+            -5376.81791579422
+          ],
+          [
+            0.9388909993601015,
+            -0.17621263317461971,
+            -5378.035009247629
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/combined-spring-10000-static.json",
+      "result_sha256": "97e688d3b8295835a1d016a54f9234a56518112ff56ce8ae3508073c4b3155b5",
+      "input_sha256": "a093767b6c131bfc4e49274cc957a25d59883199ae457e220e235f39bcb287ee",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "b4d702733d385f90872e6c5da8a4bad9b5f28d7532a6c149f21681d5dcff82e1",
+      "result": {
+        "name": "combined-spring-10000-static",
+        "procedure": "static",
+        "seconds": 10.970646582893096,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "a093767b6c131bfc4e49274cc957a25d59883199ae457e220e235f39bcb287ee",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 19.248009411490045,
+        "integration_point_VM_max_MPa": 1817.544261139178,
+        "VM_peak_element": 37542,
+        "force_residual_N": [
+          -1.8298297645158446e-06,
+          -2.013687362931475e-07,
+          5.285173756419681e-07
+        ],
+        "moment_residual_Nmm": [
+          0.0001177413829083207,
+          -0.001253047026693821,
+          0.0002386348545213579
+        ],
+        "external_work_Nmm": 99464.679588245,
+        "bolt_group_forces_N": [
+          [
+            0.4956775651478769,
+            0.17331179645570308,
+            3375.549776485915
+          ],
+          [
+            -1.9302461296558175,
+            0.17819935456579894,
+            3379.30314855591
+          ],
+          [
+            0.4956775651478769,
+            -0.17529851784688188,
+            -5376.81791579422
+          ],
+          [
+            0.9388909993601015,
+            -0.17621263317461971,
+            -5378.035009247629
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/engine-200kg-rigid-modal.json",
+      "result_sha256": "bf311cf1c4ceecef9f55339bb84a6eb2d2b598dcb7e61bdc83e9dd4dba994183",
+      "input_sha256": "8173caf49998126e18b3331f3dac749d085912d7aa69af9a790bdec4a083142e",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "36ee0b490c034bc9db003f81d87e7ea21476d9abc84ce911054fcb54469de771",
+      "result": {
+        "name": "engine-200kg-rigid-modal",
+        "seconds": 34.20734658406582,
+        "added_mass_kg": 200.0000000000015,
+        "frequencies_Hz": [
+          14.60207,
+          37.53256,
+          42.01366,
+          58.66471,
+          97.41401,
+          140.5678,
+          158.7341,
+          413.7879
+        ],
+        "engine_CG_and_rotational_inertia_measured": false,
+        "scope": "Distributed mass sensitivity only; not a coupled powertrain modal validation"
+      }
+    },
+    {
+      "path": "v5/mesh-9/engine-200kg-spring-1000-modal.json",
+      "result_sha256": "972c712e9a973a9acc6ce3c63bd9a1908a94b38a83cac86c25c89d7ab8b49db3",
+      "input_sha256": "589cfd836de21d8bb8e58064d15d1854c2ea766af9956592c5161b597c3f338b",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "3aa7c58bf67f13eea82377dfa7d043697cbe4a078af545665d41e2c785f507de",
+      "result": {
+        "name": "engine-200kg-spring-1000-modal",
+        "seconds": 42.6550923329778,
+        "added_mass_kg": 200.0000000000015,
+        "frequencies_Hz": [
+          4.951758,
+          9.670694,
+          13.39446,
+          15.78809,
+          33.61744,
+          68.93062,
+          69.43463,
+          327.8364
+        ],
+        "engine_CG_and_rotational_inertia_measured": false,
+        "scope": "Distributed mass sensitivity only; not a coupled powertrain modal validation"
+      }
+    },
+    {
+      "path": "v5/mesh-9/gravity-rigid-static.json",
+      "result_sha256": "ab868e8c62340527e38cf4758ed485bfbd0d9d35829988410967257f799c10c9",
+      "input_sha256": "1219be796d1325c367d43486db6aa3ec91e739fd2e77118dc5eaa585d1a5ab0f",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "9ee0f0cbe7e79cd8277baf561998c5b2970a2a983e9ede93dee17ef9091f0573",
+      "result": {
+        "name": "gravity-rigid-static",
+        "procedure": "static",
+        "seconds": 9.735155125032179,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "1219be796d1325c367d43486db6aa3ec91e739fd2e77118dc5eaa585d1a5ab0f",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 1.2997110201972766,
+        "integration_point_VM_max_MPa": 273.4823656246834,
+        "VM_peak_element": 34562,
+        "force_residual_N": [
+          -2.4992299543647747e-05,
+          -2.808699976171214e-06,
+          -0.00010072500640490034
+        ],
+        "moment_residual_Nmm": [
+          -0.0009542334091818816,
+          0.03032662230587846,
+          -0.0014030224210745037
+        ],
+        "external_work_Nmm": 2368.9420358430298,
+        "bolt_group_forces_N": [
+          [
+            -0.00047903657344882566,
+            0.00030459410943288923,
+            -502.5190567197131
+          ],
+          [
+            0.001572839978470003,
+            -0.0007097421810695066,
+            -504.1560322178731
+          ],
+          [
+            -0.00047903657344882566,
+            0.00014866702296976547,
+            -495.8452513833633
+          ],
+          [
+            -0.0006147668315723226,
+            0.0002564810486668334,
+            -497.4796596790622
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/gravity-spring-1000-static.json",
+      "result_sha256": "6261b717d0e1f5f015e58f4acec5224899461bf80c0e20a2cc0eff7e6a6997bb",
+      "input_sha256": "58f41af8ca74f186668579d892ba373b1df23adf4510c95f2982d94061e2a46c",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "a1caf885a97a16e7d162d8afd45ac94e3207b510b79fffeb5501d2f93a3e8c59",
+      "result": {
+        "name": "gravity-spring-1000-static",
+        "procedure": "static",
+        "seconds": 10.807273124926724,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "58f41af8ca74f186668579d892ba373b1df23adf4510c95f2982d94061e2a46c",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 10.806051271550063,
+        "integration_point_VM_max_MPa": 605.3844489634266,
+        "VM_peak_element": 20927,
+        "force_residual_N": [
+          1.382794643672012e-06,
+          -9.302582989743923e-08,
+          3.4452948511898285e-06
+        ],
+        "moment_residual_Nmm": [
+          6.136302031123364e-05,
+          0.0008742678542574822,
+          -1.5021452585048042e-05
+        ],
+        "external_work_Nmm": 20598.064233702575,
+        "bolt_group_forces_N": [
+          [
+            -0.00047903657344882566,
+            0.00030459410943288923,
+            -502.5190567197131
+          ],
+          [
+            0.001572839978470003,
+            -0.0007097421810695066,
+            -504.1560322178731
+          ],
+          [
+            -0.00047903657344882566,
+            0.00014866702296976547,
+            -495.8452513833633
+          ],
+          [
+            -0.0006147668315723226,
+            0.0002564810486668334,
+            -497.4796596790622
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/gravity-spring-10000-static.json",
+      "result_sha256": "a5c22ab4cc2c97b8fbb92a0cf901836fc20971b1b0f7c1fd69279cb6f7a148e2",
+      "input_sha256": "e9dd76ade52cc95381c7c2c4774ba438f5b5398b1f076b5712a67658c8427289",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "ac3f27bcebb55a03c4122f4f75516eba26eed6f3683b73a3845a48518937091e",
+      "result": {
+        "name": "gravity-spring-10000-static",
+        "procedure": "static",
+        "seconds": 10.643127791932784,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "e9dd76ade52cc95381c7c2c4774ba438f5b5398b1f076b5712a67658c8427289",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 9.157971128431564,
+        "integration_point_VM_max_MPa": 564.0958740905409,
+        "VM_peak_element": 20927,
+        "force_residual_N": [
+          -2.3455553681085164e-05,
+          -7.278378489201888e-08,
+          -1.8969910797750344e-06
+        ],
+        "moment_residual_Nmm": [
+          -6.031222833513539e-05,
+          0.002506236011967644,
+          5.671394874449433e-05
+        ],
+        "external_work_Nmm": 17399.104814856444,
+        "bolt_group_forces_N": [
+          [
+            -0.00047903657344882566,
+            0.00030459410943288923,
+            -502.5190567197131
+          ],
+          [
+            0.001572839978470003,
+            -0.0007097421810695066,
+            -504.1560322178731
+          ],
+          [
+            -0.00047903657344882566,
+            0.00014866702296976547,
+            -495.8452513833633
+          ],
+          [
+            -0.0006147668315723226,
+            0.0002564810486668334,
+            -497.4796596790622
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/lateral-rigid-static.json",
+      "result_sha256": "711d26025090b0b549954ee08ee720f3f9c798d6aebd7ccb932e61501e899d60",
+      "input_sha256": "78fc9e2663962f62e76fadc18c279fb834c9126e60057c151d3cd17d017155ae",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "70f071e61a83459a3d3acb296eacde1497e95af2cb0c5d79a189863b6607a840",
+      "result": {
+        "name": "lateral-rigid-static",
+        "procedure": "static",
+        "seconds": 9.742059541982599,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "78fc9e2663962f62e76fadc18c279fb834c9126e60057c151d3cd17d017155ae",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 0.013373512892188574,
+        "integration_point_VM_max_MPa": 15.72510320327034,
+        "VM_peak_element": 33374,
+        "force_residual_N": [
+          -8.576692607675795e-06,
+          1.9719500161032456e-06,
+          -1.613899983695234e-07
+        ],
+        "moment_residual_Nmm": [
+          9.246201746882302e-06,
+          0.00024072208322634125,
+          -0.00021564120694961275
+        ],
+        "external_work_Nmm": 20.245952431356045,
+        "bolt_group_forces_N": [
+          [
+            499.84323911187084,
+            0.32733575397021675,
+            0.09564187573202676
+          ],
+          [
+            500.1566122800089,
+            0.327004153540584,
+            0.09559337478639535
+          ],
+          [
+            499.84323911187084,
+            -0.3268181610792851,
+            -0.09553904018657437
+          ],
+          [
+            500.1569094962613,
+            -0.3275217464315151,
+            -0.09569621033184765
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/lateral-spring-1000-static.json",
+      "result_sha256": "84ad9df8a106fb439ac510386d76cca11804936e5824afeaf67c94d1501de7a4",
+      "input_sha256": "43dd3e24c8725767ddd8c85140b45cad13e348e0608b2daeb9d257b55d257fb4",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "e20c9d2ff94aa2824869889dd01b9cdf0850d0d63d1da5911801ccd894feba6c",
+      "result": {
+        "name": "lateral-spring-1000-static",
+        "procedure": "static",
+        "seconds": 10.313470291090198,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "43dd3e24c8725767ddd8c85140b45cad13e348e0608b2daeb9d257b55d257fb4",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 1.0108392562167863,
+        "integration_point_VM_max_MPa": 15.047937452602671,
+        "VM_peak_element": 33374,
+        "force_residual_N": [
+          -4.782862561114598e-06,
+          9.412423654668513e-09,
+          5.294859857922257e-09
+        ],
+        "moment_residual_Nmm": [
+          -4.1709506402626446e-08,
+          -1.4154105519859073e-05,
+          1.1167341581241885e-05
+        ],
+        "external_work_Nmm": 2020.522642579715,
+        "bolt_group_forces_N": [
+          [
+            499.84323911187084,
+            0.32733575397021675,
+            0.09564187573202676
+          ],
+          [
+            500.1566122800089,
+            0.327004153540584,
+            0.09559337478639535
+          ],
+          [
+            499.84323911187084,
+            -0.3268181610792851,
+            -0.09553904018657437
+          ],
+          [
+            500.1569094962613,
+            -0.3275217464315151,
+            -0.09569621033184765
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/lateral-spring-10000-static.json",
+      "result_sha256": "134cc11d717b3803670b8a40f9193f86a335ea1c8d0a5267cc1e70f0ba5dbfb2",
+      "input_sha256": "af1ede8fd7c5f70aa4f37cc621fd0debdd623eee5cd1a28dc4b8a8e547baffaa",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "52af03b9d8077dd4ad1cb7d448d55f0fe54ca2ced63f52b82fc84a59625c8056",
+      "result": {
+        "name": "lateral-spring-10000-static",
+        "procedure": "static",
+        "seconds": 11.1525236669695,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "af1ede8fd7c5f70aa4f37cc621fd0debdd623eee5cd1a28dc4b8a8e547baffaa",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 0.1109171546060992,
+        "integration_point_VM_max_MPa": 15.063862906622376,
+        "VM_peak_element": 33374,
+        "force_residual_N": [
+          -2.0679679664681316e-05,
+          1.6698433796726725e-09,
+          -1.2380987427071301e-08
+        ],
+        "moment_residual_Nmm": [
+          1.0762156260786526e-07,
+          -6.038295323440579e-05,
+          0.0001700197698699668
+        ],
+        "external_work_Nmm": 220.5211101619684,
+        "bolt_group_forces_N": [
+          [
+            499.84323911187084,
+            0.32733575397021675,
+            0.09564187573202676
+          ],
+          [
+            500.1566122800089,
+            0.327004153540584,
+            0.09559337478639535
+          ],
+          [
+            499.84323911187084,
+            -0.3268181610792851,
+            -0.09553904018657437
+          ],
+          [
+            500.1569094962613,
+            -0.3275217464315151,
+            -0.09569621033184765
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/longitudinal-rigid-static.json",
+      "result_sha256": "de9c742db037e04e988169f391be1d96a610c78a3ef1443473a5a69343d88551",
+      "input_sha256": "300fbcc3786d6f791a3745e22f7967166b3198754f4af96c2540c7ed8d2d7980",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "80c9425830c9f452550a85c5f0fad5c10eb41dc99354bf866d00ac29e5a60e0c",
+      "result": {
+        "name": "longitudinal-rigid-static",
+        "procedure": "static",
+        "seconds": 9.780934042064473,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "300fbcc3786d6f791a3745e22f7967166b3198754f4af96c2540c7ed8d2d7980",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 0.1855141313700329,
+        "integration_point_VM_max_MPa": 69.97273681469576,
+        "VM_peak_element": 37450,
+        "force_residual_N": [
+          -1.314781759822331e-06,
+          2.475701444382139e-05,
+          7.36395999427833e-06
+        ],
+        "moment_residual_Nmm": [
+          2.1564032838927716e-05,
+          -0.0020105561331486207,
+          0.0025825725596604343
+        ],
+        "external_work_Nmm": 358.19400604561844,
+        "bolt_group_forces_N": [
+          [
+            -1.2991089832431584,
+            502.7125320068472,
+            0.19446787995065237
+          ],
+          [
+            1.2981372328658756,
+            502.7095433876338,
+            -0.19457937022079635
+          ],
+          [
+            -1.2991089832431584,
+            497.29186462571556,
+            0.1947248641588084
+          ],
+          [
+            1.3000807336204432,
+            497.28605997981475,
+            -0.19461337388866476
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/longitudinal-spring-1000-static.json",
+      "result_sha256": "acd4ec9651b916df1593db921196e07e57f6756b0ca37e8b4cc9afa6f4d2c0d0",
+      "input_sha256": "9e81c91607246577b55ca6e5448e15fc752fb10024432ae7326fcd861b869867",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "189abeb2ff41cc99459c40afb2fc09ab8a8832cc677d4a05eb6d53b67d19ffbb",
+      "result": {
+        "name": "longitudinal-spring-1000-static",
+        "procedure": "static",
+        "seconds": 10.43323704204522,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "9e81c91607246577b55ca6e5448e15fc752fb10024432ae7326fcd861b869867",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 1.4168228163040548,
+        "integration_point_VM_max_MPa": 77.28038836751459,
+        "VM_peak_element": 24551,
+        "force_residual_N": [
+          9.212142453376981e-08,
+          -1.561081262480002e-06,
+          1.7587010944731998e-08
+        ],
+        "moment_residual_Nmm": [
+          -5.539197562520748e-05,
+          -5.431136616183829e-06,
+          0.002523791842733658
+        ],
+        "external_work_Nmm": 2810.3742361752834,
+        "bolt_group_forces_N": [
+          [
+            -1.2991089832431584,
+            502.7125320068472,
+            0.19446787995065237
+          ],
+          [
+            1.2981372328658756,
+            502.7095433876338,
+            -0.19457937022079635
+          ],
+          [
+            -1.2991089832431584,
+            497.29186462571556,
+            0.1947248641588084
+          ],
+          [
+            1.3000807336204432,
+            497.28605997981475,
+            -0.19461337388866476
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/longitudinal-spring-10000-static.json",
+      "result_sha256": "dbce5da4106b0e4d62e8923d938e330e74cd28b838510dc71a3193e5362b83f0",
+      "input_sha256": "d27026e6cfbf77f008a258e2b5acf3343a38e2c505a56fd170b385d9c4ed7a00",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "3dc79cd74fc26ec4f0219938d3724f60fd614a9441341b2004c1f1738add4ad5",
+      "result": {
+        "name": "longitudinal-spring-10000-static",
+        "procedure": "static",
+        "seconds": 10.954505959060043,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "d27026e6cfbf77f008a258e2b5acf3343a38e2c505a56fd170b385d9c4ed7a00",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 0.5081591843613962,
+        "integration_point_VM_max_MPa": 75.97135264183373,
+        "VM_peak_element": 24551,
+        "force_residual_N": [
+          -9.501754442940713e-07,
+          -3.0676433198095765e-06,
+          7.920526685261178e-09
+        ],
+        "moment_residual_Nmm": [
+          -5.523634805770783e-06,
+          2.3574296590528343e-07,
+          0.001834592798601875
+        ],
+        "external_work_Nmm": 993.3379706824678,
+        "bolt_group_forces_N": [
+          [
+            -1.2991089832431584,
+            502.7125320068472,
+            0.19446787995065237
+          ],
+          [
+            1.2981372328658756,
+            502.7095433876338,
+            -0.19457937022079635
+          ],
+          [
+            -1.2991089832431584,
+            497.29186462571556,
+            0.1947248641588084
+          ],
+          [
+            1.3000807336204432,
+            497.28605997981475,
+            -0.19461337388866476
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/operating_60K-rigid-thermal.json",
+      "result_sha256": "c0fc0e7b7d8b85db6565b18285ba67c08df4d3311af58b396391d44bbd80b11e",
+      "input_sha256": "093e81a4326ad813b99ffd2f5dd710babb0c676ca2a4d126a1d2f71634827e3e",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "562c8ea4e439cfc27411a85e4b25ab93e08e7a70b411b534d0576c4caadb8247",
+      "result": {
+        "name": "operating_60K-rigid-thermal",
+        "procedure": "thermal",
+        "seconds": 19.16052233299706,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "093e81a4326ad813b99ffd2f5dd710babb0c676ca2a4d126a1d2f71634827e3e",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 0.1704750735730499,
+        "integration_point_VM_max_MPa": 219.2077348154408,
+        "VM_peak_element": 33374,
+        "force_residual_N": [
+          0.00036338999174034825,
+          -0.00010147499402535232,
+          0.00039792199985733134
+        ],
+        "moment_residual_Nmm": [
+          -0.0017015909443216515,
+          0.2334330813591805,
+          0.01743374151919852
+        ],
+        "external_work_Nmm": 0.0,
+        "bolt_group_forces_N": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "thermal_sensitivity": "Uniform +60 K operational temperature hypothesis, constant dense-reference elasticity; no calibrated temperature-dependent AM properties."
+      }
+    },
+    {
+      "path": "v5/mesh-9/operating_60K-spring-1000-thermal.json",
+      "result_sha256": "b991312fe83a14cc315646a130bd2419f9f80ab926574f8ee7890027317cee16",
+      "input_sha256": "bba677e959c97404c35305167fee32f7534a01a1d0c32837f52941663351eb23",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "f9fd4da8328235a99b0cd0386d308332f8a991a036970065a3a9174872410ad2",
+      "result": {
+        "name": "operating_60K-spring-1000-thermal",
+        "procedure": "thermal",
+        "seconds": 21.255992916994728,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "bba677e959c97404c35305167fee32f7534a01a1d0c32837f52941663351eb23",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 0.1586780475567369,
+        "integration_point_VM_max_MPa": 2.2522797790066975,
+        "VM_peak_element": 33374,
+        "force_residual_N": [
+          6.470513398137978e-07,
+          -5.031948730783997e-08,
+          1.0131502605078245e-08
+        ],
+        "moment_residual_Nmm": [
+          1.0312718147671707e-07,
+          6.185766241173507e-06,
+          1.8676689871988117e-05
+        ],
+        "external_work_Nmm": 0.0,
+        "bolt_group_forces_N": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0
+          ]
+        ],
+        "thermal_sensitivity": "Uniform +60 K operational temperature hypothesis, constant dense-reference elasticity; no calibrated temperature-dependent AM properties."
+      }
+    },
+    {
+      "path": "v5/mesh-9/torque_y_850Nm-rigid-static.json",
+      "result_sha256": "0f827e60f4e9fee278a0f917744fda45e7b54a3ed10d83647cd747fcc445e342",
+      "input_sha256": "f5f7b67430cafedae63cddc5397d81b1267b77e1a0dc4106e202f0027944ee7f",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "4a1e21ad94cb30b8c1ea5f2c6ee27f9ab84ed9ec50016547e552bab9968be73e",
+      "result": {
+        "name": "torque_y_850Nm-rigid-static",
+        "procedure": "static",
+        "seconds": 9.795588542008772,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "f5f7b67430cafedae63cddc5397d81b1267b77e1a0dc4106e202f0027944ee7f",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 1.7353286073612397,
+        "integration_point_VM_max_MPa": 635.8514751898991,
+        "VM_peak_element": 16868,
+        "force_residual_N": [
+          -0.00022037129672539124,
+          -6.112409705318457e-06,
+          4.978601851313158e-05
+        ],
+        "moment_residual_Nmm": [
+          0.00013865056362760697,
+          -0.01959564513526857,
+          0.0010289913578782617
+        ],
+        "external_work_Nmm": 22170.42326078941,
+        "bolt_group_forces_N": [
+          [
+            0.4966356382947898,
+            0.17270260823683733,
+            4380.587889925339
+          ],
+          [
+            -1.9333918096127778,
+            0.17961883892793776,
+            4387.615212991659
+          ],
+          [
+            0.4966356382947898,
+            -0.17559585189282179,
+            -4385.1274130274915
+          ],
+          [
+            0.9401205330232257,
+            -0.17672559527195333,
+            -4383.0756898895015
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/torque_y_850Nm-spring-1000-static.json",
+      "result_sha256": "12b9837d56bb28817d34b888c87a0ca2f982df0165dc6257a64a4c67fec9ed95",
+      "input_sha256": "cbbe544c78285419296693d338b90be5f1f751c4b9da74910fca915f97b5a713",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "f3715da692349488e82ec87a39d35b914bbf1e56e4ca006a0eb6cb21e05f9378",
+      "result": {
+        "name": "torque_y_850Nm-spring-1000-static",
+        "procedure": "static",
+        "seconds": 10.653441082919016,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "cbbe544c78285419296693d338b90be5f1f751c4b9da74910fca915f97b5a713",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 2.787057769863835,
+        "integration_point_VM_max_MPa": 822.6305018833679,
+        "VM_peak_element": 8468,
+        "force_residual_N": [
+          -6.481458419277386e-08,
+          -3.215457730203772e-08,
+          1.3773997307620078e-05
+        ],
+        "moment_residual_Nmm": [
+          0.00022584039183115578,
+          -0.0011181950103491545,
+          -7.745519517488031e-06
+        ],
+        "external_work_Nmm": 34570.97919500687,
+        "bolt_group_forces_N": [
+          [
+            0.4966356382947898,
+            0.17270260823683733,
+            4380.587889925339
+          ],
+          [
+            -1.9333918096127778,
+            0.17961883892793776,
+            4387.615212991659
+          ],
+          [
+            0.4966356382947898,
+            -0.17559585189282179,
+            -4385.1274130274915
+          ],
+          [
+            0.9401205330232257,
+            -0.17672559527195333,
+            -4383.0756898895015
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/torque_y_850Nm-spring-10000-static.json",
+      "result_sha256": "06e5c601b7558829803fad1705d15ed55199844c33c7b1551008e3cda7a554e1",
+      "input_sha256": "37d516ad88de5187e68e8f96e4aad179fc9d588e7672216dd65608f315aab65b",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "a3f3569a814a19a4d841c853cf5b1a0c63d3a8f87504fed65cf4f3e61644356c",
+      "result": {
+        "name": "torque_y_850Nm-spring-10000-static",
+        "procedure": "static",
+        "seconds": 10.598599415970966,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "37d516ad88de5187e68e8f96e4aad179fc9d588e7672216dd65608f315aab65b",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 2.4283958029089736,
+        "integration_point_VM_max_MPa": 819.3646473899829,
+        "VM_peak_element": 8468,
+        "force_residual_N": [
+          -1.0403017691174021e-06,
+          -1.2280089065844907e-09,
+          -7.30162146300728e-08
+        ],
+        "moment_residual_Nmm": [
+          7.6643661767406e-05,
+          0.005221870145760477,
+          -9.954492863561981e-06
+        ],
+        "external_work_Nmm": 30304.799265014262,
+        "bolt_group_forces_N": [
+          [
+            0.4966356382947898,
+            0.17270260823683733,
+            4380.587889925339
+          ],
+          [
+            -1.9333918096127778,
+            0.17961883892793776,
+            4387.615212991659
+          ],
+          [
+            0.4966356382947898,
+            -0.17559585189282179,
+            -4385.1274130274915
+          ],
+          [
+            0.9401205330232257,
+            -0.17672559527195333,
+            -4383.0756898895015
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/torsion_x_100Nm-rigid-static.json",
+      "result_sha256": "50de10352a75babb805d6a47866714ecaa9a5020822278c91da3542f0c02afd2",
+      "input_sha256": "294df9b8d5576b60f268c33c0a6826e1f187b672f7fe3f538766dbcd061cb991",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "211025facd4fb6018845b2382c5c1de6a90ccf740966d8d52bbc39dfa7a61e1a",
+      "result": {
+        "name": "torsion_x_100Nm-rigid-static",
+        "procedure": "static",
+        "seconds": 9.612792499945499,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "294df9b8d5576b60f268c33c0a6826e1f187b672f7fe3f538766dbcd061cb991",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 0.2928384591300888,
+        "integration_point_VM_max_MPa": 134.78726848429034,
+        "VM_peak_element": 33461,
+        "force_residual_N": [
+          1.7219390099345417e-05,
+          3.0907500126645115e-05,
+          -1.0725110640930069e-05
+        ],
+        "moment_residual_Nmm": [
+          0.0010287228360539302,
+          0.000701028101701695,
+          -0.000648671677930146
+        ],
+        "external_work_Nmm": 667.6321685174935,
+        "bolt_group_forces_N": [
+          [
+            0.12942766932023259,
+            -0.5585122134058874,
+            -1043.9400755208346
+          ],
+          [
+            -0.12979263402091512,
+            0.733986645164417,
+            1045.9755351460442
+          ],
+          [
+            0.12942766932023259,
+            -0.01923957437214105,
+            -1046.7567032751467
+          ],
+          [
+            -0.1290627046195503,
+            -0.15623485738639137,
+            1044.7212436499344
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/torsion_x_100Nm-spring-1000-nonlinear.json",
+      "result_sha256": "a6ebd2536c8fa00f7eb3a80dcf346b018f07b123b50942d55b57d8b562706284",
+      "input_sha256": "8d672c9dc7d6f6b69f15acb33d7f76886645d76e7d8ca5749f91c08d7cdf2299",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "6db98ab038eb974a2c16815b9198874b6874c451a554babcdf0c59af57c04dda",
+      "result": {
+        "name": "torsion_x_100Nm-spring-1000-nonlinear",
+        "procedure": "nonlinear",
+        "seconds": 221.24659229198005,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "8d672c9dc7d6f6b69f15acb33d7f76886645d76e7d8ca5749f91c08d7cdf2299",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 8.945478243901213,
+        "integration_point_VM_max_MPa": 132.14009457454435,
+        "VM_peak_element": 33461,
+        "force_residual_N": [
+          2.1532275157223717e-09,
+          2.4478478529293968e-06,
+          -6.497765503432618e-06
+        ],
+        "moment_residual_Nmm": [
+          -0.006243948344490491,
+          0.0015734728661698227,
+          0.001105131013921401
+        ],
+        "external_work_Nmm": 23770.90067356513,
+        "bolt_group_forces_N": [
+          [
+            0.12942766932023259,
+            -0.5585122134058874,
+            -1043.9400755208346
+          ],
+          [
+            -0.12979263402091512,
+            0.733986645164417,
+            1045.9755351460442
+          ],
+          [
+            0.12942766932023259,
+            -0.01923957437214105,
+            -1046.7567032751467
+          ],
+          [
+            -0.1290627046195503,
+            -0.15623485738639137,
+            1044.7212436499344
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/torsion_x_100Nm-spring-1000-static.json",
+      "result_sha256": "f95f55678031a6220ba0d87f52f2da2356201e350d44f949eceff3e80fb626d4",
+      "input_sha256": "d42bff7197f7e723f105cd357dea6db55ad42336b2c0e82979058cf60e0e5fb6",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "d73f86d9dad3d11844e9fec318c94d416db376b95e3af9c41582c561930bec77",
+      "result": {
+        "name": "torsion_x_100Nm-spring-1000-static",
+        "procedure": "static",
+        "seconds": 10.753573833033442,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "d42bff7197f7e723f105cd357dea6db55ad42336b2c0e82979058cf60e0e5fb6",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 9.149133076389564,
+        "integration_point_VM_max_MPa": 135.85993679311142,
+        "VM_peak_element": 33461,
+        "force_residual_N": [
+          -4.500688346152377e-09,
+          6.3655819071556374e-06,
+          -6.579351989444149e-06
+        ],
+        "moment_residual_Nmm": [
+          7.884223305154592e-05,
+          -0.0018285827246984354,
+          0.0045312039265246185
+        ],
+        "external_work_Nmm": 24490.425655179235,
+        "bolt_group_forces_N": [
+          [
+            0.12942766932023259,
+            -0.5585122134058874,
+            -1043.9400755208346
+          ],
+          [
+            -0.12979263402091512,
+            0.733986645164417,
+            1045.9755351460442
+          ],
+          [
+            0.12942766932023259,
+            -0.01923957437214105,
+            -1046.7567032751467
+          ],
+          [
+            -0.1290627046195503,
+            -0.15623485738639137,
+            1044.7212436499344
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/torsion_x_100Nm-spring-10000-static.json",
+      "result_sha256": "8d3854d86343cf6570429d48ceb7b82c6f9e16e7e338db9a23f3396d90a794a0",
+      "input_sha256": "c401f747382f3866f1e05bb2b4deceabecf64fa2dd1bb938ea043de0e5609571",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "c818f126aaa6d88ccc788c330a07233319054fe2e8b2fd64f31289b7735d9ad7",
+      "result": {
+        "name": "torsion_x_100Nm-spring-10000-static",
+        "procedure": "static",
+        "seconds": 11.000890915980563,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "c401f747382f3866f1e05bb2b4deceabecf64fa2dd1bb938ea043de0e5609571",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 1.1371431112644865,
+        "integration_point_VM_max_MPa": 135.87273210445255,
+        "VM_peak_element": 33461,
+        "force_residual_N": [
+          5.10624737896947e-08,
+          6.907668370484399e-06,
+          -3.4080407065317786e-06
+        ],
+        "moment_residual_Nmm": [
+          -4.878523759543896e-05,
+          0.003147862153554115,
+          -0.0017284422956800327
+        ],
+        "external_work_Nmm": 3053.7701080030884,
+        "bolt_group_forces_N": [
+          [
+            0.12942766932023259,
+            -0.5585122134058874,
+            -1043.9400755208346
+          ],
+          [
+            -0.12979263402091512,
+            0.733986645164417,
+            1045.9755351460442
+          ],
+          [
+            0.12942766932023259,
+            -0.01923957437214105,
+            -1046.7567032751467
+          ],
+          [
+            -0.1290627046195503,
+            -0.15623485738639137,
+            1044.7212436499344
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/torsion_z_100Nm-rigid-static.json",
+      "result_sha256": "191a801e9fb34c585e430f4fdda4cd3a52fcf33cfbc05fd2ae140819b06e8e39",
+      "input_sha256": "3ecf7487442c8c911d8bc4f5590f36a812dbd6b4ec8de31f467d900ebd12ec64",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "82a9b74588e12d77724c9dbe1741af93b6e065544943f20bda6d8ae38a735c7f",
+      "result": {
+        "name": "torsion_z_100Nm-rigid-static",
+        "procedure": "static",
+        "seconds": 12.611058792099357,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "3ecf7487442c8c911d8bc4f5590f36a812dbd6b4ec8de31f467d900ebd12ec64",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 0.015588917569852055,
+        "integration_point_VM_max_MPa": 15.51872395291004,
+        "VM_peak_element": 33461,
+        "force_residual_N": [
+          -1.5669396410400438e-06,
+          3.531768662745627e-06,
+          5.076404010582601e-07
+        ],
+        "moment_residual_Nmm": [
+          1.693907897637459e-05,
+          0.00019734358132400542,
+          0.00021742489479947835
+        ],
+        "external_work_Nmm": 21.58618305640742,
+        "bolt_group_forces_N": [
+          [
+            200.80549261095598,
+            -419.2724423315772,
+            -0.14974562323044924
+          ],
+          [
+            -200.65527426628148,
+            -418.8475093550271,
+            0.10866100591174588
+          ],
+          [
+            200.80549261095598,
+            418.6093880137779,
+            -0.10876933380343007
+          ],
+          [
+            -200.9557109556305,
+            419.5105636728258,
+            0.14985395112213346
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/torsion_z_100Nm-spring-1000-static.json",
+      "result_sha256": "8e3c54017afc0b89c5fad96f536a5680e0ae8fb63382d2d02752b942fb182eb3",
+      "input_sha256": "fbb370f5d337053de91574ed95e877a9c78c45fcc14b2fe9c033983cfc959d03",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "f5c9b2af8d80d75f023f5075c603e51a873e7ef1b456d90e34cdc9f2a85c308a",
+      "result": {
+        "name": "torsion_z_100Nm-spring-1000-static",
+        "procedure": "static",
+        "seconds": 10.702470249962062,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "fbb370f5d337053de91574ed95e877a9c78c45fcc14b2fe9c033983cfc959d03",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 0.18663739680867808,
+        "integration_point_VM_max_MPa": 13.181618440009771,
+        "VM_peak_element": 37542,
+        "force_residual_N": [
+          -6.269478494951713e-08,
+          -1.1649472889119217e-07,
+          2.4999073939950024e-09
+        ],
+        "moment_residual_Nmm": [
+          8.565265467080918e-06,
+          -2.4494245319528485e-07,
+          -0.00015182228526100516
+        ],
+        "external_work_Nmm": 88.46147888286015,
+        "bolt_group_forces_N": [
+          [
+            200.80549261095598,
+            -419.2724423315772,
+            -0.14974562323044924
+          ],
+          [
+            -200.65527426628148,
+            -418.8475093550271,
+            0.10866100591174588
+          ],
+          [
+            200.80549261095598,
+            418.6093880137779,
+            -0.10876933380343007
+          ],
+          [
+            -200.9557109556305,
+            419.5105636728258,
+            0.14985395112213346
+          ]
+        ]
+      }
+    },
+    {
+      "path": "v5/mesh-9/torsion_z_100Nm-spring-10000-static.json",
+      "result_sha256": "b221e6432080cf7b47b2e4ad372f43384a9c45d839ad234555ce540075dcbb37",
+      "input_sha256": "248d4ad0e6037c07b1e83ba07f4edb336bbfc2251e9c3ca5ffb765e6f924c774",
+      "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "raw_dat_sha256": "f0a47194ac97aafc4d6e294da207329f0266338329bdf0077836b8f689930fe9",
+      "result": {
+        "name": "torsion_z_100Nm-spring-10000-static",
+        "procedure": "static",
+        "seconds": 11.02339366695378,
+        "solver_container": "carrier-comprehensive-20261012",
+        "input_sha256": "248d4ad0e6037c07b1e83ba07f4edb336bbfc2251e9c3ca5ffb765e6f924c774",
+        "mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "geometry_provisional": true,
+        "load_assumed": true,
+        "material_allowable": null,
+        "physical_validation": false,
+        "displacement_max_mm": 0.027449823768852993,
+        "integration_point_VM_max_MPa": 13.149197980445317,
+        "VM_peak_element": 37542,
+        "force_residual_N": [
+          9.144202613164953e-08,
+          -1.3405803101496083e-06,
+          -9.823418017126506e-09
+        ],
+        "moment_residual_Nmm": [
+          -2.1945142438251075e-06,
+          1.86666865781282e-06,
+          -0.00018903941963799298
+        ],
+        "external_work_Nmm": 31.157323766806073,
+        "bolt_group_forces_N": [
+          [
+            200.80549261095598,
+            -419.2724423315772,
+            -0.14974562323044924
+          ],
+          [
+            -200.65527426628148,
+            -418.8475093550271,
+            0.10866100591174588
+          ],
+          [
+            200.80549261095598,
+            418.6093880137779,
+            -0.10876933380343007
+          ],
+          [
+            -200.9557109556305,
+            419.5105636728258,
+            0.14985395112213346
+          ]
+        ]
+      }
+    }
+  ],
+  "mechanical_assessment": {
+    "geometry": "Frozen V5, no shape changes",
+    "fixtures": {
+      "rigid": {
+        "compliance_matrix_mm_N_rad_Nmm": [
+          [
+            5.061488107839015e-06,
+            2.814181787352973e-09,
+            1.8787171705379605e-10,
+            1.6621509261207703e-10,
+            -2.641431671121574e-08,
+            -3.599509109850767e-09
+          ],
+          [
+            2.814174699698348e-09,
+            8.954850151140447e-05,
+            7.488507985075568e-09,
+            2.201855952005567e-09,
+            1.6261456978169621e-10,
+            -1.4698612571196506e-09
+          ],
+          [
+            1.8788489718391635e-10,
+            7.488508708615596e-09,
+            0.0005922355089607571,
+            2.6229204868256574e-07,
+            1.9459466264516172e-08,
+            -1.5422523516341216e-10
+          ],
+          [
+            1.662148925341278e-10,
+            2.2018537038371128e-09,
+            2.6229211139369407e-07,
+            6.676321685174928e-08,
+            3.729292076875673e-11,
+            -1.1843465852058705e-12
+          ],
+          [
+            -2.641431666493153e-08,
+            1.6261458504017872e-10,
+            1.9459451060359658e-08,
+            3.7292475574456994e-11,
+            3.068570693534865e-08,
+            2.8025057404378153e-11
+          ],
+          [
+            -3.599509343453795e-09,
+            -1.4698512865604693e-09,
+            -1.542252005026757e-10,
+            -1.1843314901391491e-12,
+            2.8025057706680643e-11,
+            2.1586183056407448e-09
+          ]
+        ],
+        "Maxwell_reciprocity_relative_error": 1.582591405300432e-10,
+        "combined_superposition_stress_error_MPa": 0.0003000000000383807,
+        "combined_superposition_displacement_error_mm": 1.500000000209667e-06,
+        "axis_rotations_degrees_at_test_moment": [
+          0.3825250552321929,
+          1.494437273955178,
+          0.012367971849289545
+        ],
+        "axis_rotational_stiffness_Nm_per_degree": [
+          261.4207844223431,
+          568.7759632429335,
+          8085.400033130275
+        ],
+        "combined_elastic_reference_yield_ratio": 0.9698580118645023,
+        "combined_meets_assumed_factor_1_5_screen": false,
+        "signed_32_corner_linear_envelope": {
+          "coefficients_in_case_order": [
+            1,
+            -1,
+            2,
+            -1,
+            -1,
+            1
+          ],
+          "VM_max_MPa": 1059.3792727628395,
+          "U_max_mm_at_stress_worst_corner": 3.9986514109452433,
+          "reference_yield_to_elastic_demand": 0.9014712903617413,
+          "peak_integration_row": 134704,
+          "peak_element": 33677
+        },
+        "fatigue_demand": {
+          "gravity_to_combined": {
+            "equivalent_stress_amplitude_max_MPa": 355.6012702902492,
+            "mean_stress_tensor_at_amplitude_peak_MPa": [
+              -648.3352500000001,
+              -17.249955999999997,
+              -27.218215,
+              7.7655405,
+              34.071495,
+              0.5483463500000001
+            ],
+            "mean_correction_applied": false,
+            "life_cycles": null
+          },
+          "gravity_plus_reversing_850Nm_Y": {
+            "equivalent_stress_amplitude_max_MPa": 635.8514751898991,
+            "mean_stress_tensor_at_amplitude_peak_MPa": [
+              -45.38844,
+              -14.27023,
+              -9.314478,
+              30.62233,
+              20.97119,
+              -9.345066
+            ],
+            "mean_correction_applied": false,
+            "life_cycles": null
+          },
+          "gravity_plus_reversing_100Nm_X": {
+            "equivalent_stress_amplitude_max_MPa": 134.78726848429034,
+            "mean_stress_tensor_at_amplitude_peak_MPa": [
+              -222.8766,
+              -44.26118,
+              3.071735,
+              73.60584,
+              -1.28568,
+              -5.493014
+            ],
+            "mean_correction_applied": false,
+            "life_cycles": null
+          }
+        }
+      },
+      "spring-1000": {
+        "compliance_matrix_mm_N_rad_Nmm": [
+          [
+            0.0005051306606449289,
+            -2.611800695969016e-08,
+            -3.6007881669176675e-07,
+            1.933132105708567e-10,
+            -3.566117781165783e-08,
+            -1.483934867207779e-09
+          ],
+          [
+            -2.6117981568259618e-08,
+            0.0007025935590438219,
+            -1.944125057957199e-06,
+            6.697850568945849e-10,
+            4.3000480303267506e-10,
+            -3.014480407017506e-09
+          ],
+          [
+            -3.600787554588242e-07,
+            -1.9441250733861652e-06,
+            0.005149516058425642,
+            -2.778198055905735e-07,
+            6.925460216176865e-08,
+            -1.3816113526484257e-09
+          ],
+          [
+            1.9331342589036086e-10,
+            6.697978090003379e-10,
+            -2.77821276189177e-07,
+            2.449042565517924e-06,
+            1.6180197200548855e-10,
+            1.3068215236404563e-10
+          ],
+          [
+            -3.566118225176146e-08,
+            4.300047947461558e-10,
+            6.925317689917736e-08,
+            1.6180330092006647e-10,
+            4.784910615225854e-08,
+            2.080658778984046e-11
+          ],
+          [
+            -1.4839490618288949e-09,
+            -3.0143881043413604e-09,
+            -1.3816120663685802e-09,
+            1.3068207776629155e-10,
+            2.0806593214405707e-11,
+            8.846147888286009e-09
+          ]
+        ],
+        "Maxwell_reciprocity_relative_error": 5.555427344654637e-10,
+        "combined_superposition_stress_error_MPa": 0.0006000000000767614,
+        "combined_superposition_displacement_error_mm": 1.5000000001208491e-05,
+        "axis_rotations_degrees_at_test_moment": [
+          14.031980285206844,
+          2.3303190605981947,
+          0.05068469389473539
+        ],
+        "axis_rotational_stiffness_Nm_per_degree": [
+          7.126577857683036,
+          364.7569186434944,
+          1972.982222358592
+        ],
+        "combined_elastic_reference_yield_ratio": 0.502691881717094,
+        "combined_meets_assumed_factor_1_5_screen": false,
+        "signed_32_corner_linear_envelope": {
+          "coefficients_in_case_order": [
+            -1,
+            1,
+            2,
+            1,
+            -1,
+            -1
+          ],
+          "VM_max_MPa": 1939.884590980941,
+          "U_max_mm_at_stress_worst_corner": 31.768946817668343,
+          "reference_yield_to_elastic_demand": 0.49229732760395056,
+          "peak_integration_row": 33869,
+          "peak_element": 8468
+        },
+        "fatigue_demand": {
+          "gravity_to_combined": {
+            "equivalent_stress_amplitude_max_MPa": 680.4888478931083,
+            "mean_stress_tensor_at_amplitude_peak_MPa": [
+              -945.1949,
+              -135.494745,
+              -446.47865,
+              -231.41415,
+              404.83015,
+              333.57305
+            ],
+            "mean_correction_applied": false,
+            "life_cycles": null
+          },
+          "gravity_plus_reversing_850Nm_Y": {
+            "equivalent_stress_amplitude_max_MPa": 822.6305018833679,
+            "mean_stress_tensor_at_amplitude_peak_MPa": [
+              -418.6157,
+              -57.52255,
+              -196.442,
+              102.3503,
+              -178.6061,
+              146.0767
+            ],
+            "mean_correction_applied": false,
+            "life_cycles": null
+          },
+          "gravity_plus_reversing_100Nm_X": {
+            "equivalent_stress_amplitude_max_MPa": 135.85993679311142,
+            "mean_stress_tensor_at_amplitude_peak_MPa": [
+              65.06932,
+              12.23161,
+              -1.121583,
+              -19.62172,
+              1.36533,
+              1.40306
+            ],
+            "mean_correction_applied": false,
+            "life_cycles": null
+          }
+        }
+      },
+      "spring-10000": {
+        "compliance_matrix_mm_N_rad_Nmm": [
+          [
+            5.513027754049207e-05,
+            -2.505884986701603e-08,
+            -3.2696825536404364e-07,
+            1.8086252711004428e-10,
+            -3.550119465177738e-08,
+            -1.987663224605878e-09
+          ],
+          [
+            -2.5058848414496477e-08,
+            0.0002483344926706172,
+            -1.66436768777751e-06,
+            -4.873016032819187e-09,
+            4.651429954433247e-10,
+            -2.410757083694253e-09
+          ],
+          [
+            -3.269682638363456e-07,
+            -1.6643676821018432e-06,
+            0.004349776203714115,
+            -7.119208142502051e-08,
+            6.419705551258595e-08,
+            -1.315467802659045e-09
+          ],
+          [
+            1.8086225709223717e-10,
+            -4.873019520088486e-09,
+            -7.119206591484911e-08,
+            3.05377010800309e-07,
+            5.5397494762546275e-11,
+            1.243742067472777e-11
+          ],
+          [
+            -3.550119408703232e-08,
+            4.6514287640111946e-10,
+            6.419698600369992e-08,
+            5.5397432857186856e-11,
+            4.1944358844310395e-08,
+            2.1044386064070248e-11
+          ],
+          [
+            -1.9876633043386826e-09,
+            -2.410753611177684e-09,
+            -1.3154687548366107e-09,
+            1.243747733113933e-11,
+            2.1044387954676427e-11,
+            3.1157323766806088e-09
+          ]
+        ],
+        "Maxwell_reciprocity_relative_error": 2.3413304552088582e-11,
+        "combined_superposition_stress_error_MPa": 0.0006000000000767614,
+        "combined_superposition_displacement_error_mm": 6.000000002615025e-06,
+        "axis_rotations_degrees_at_test_moment": [
+          1.7496813879178663,
+          2.042749525737031,
+          0.017851831527606412
+        ],
+        "axis_rotational_stiffness_Nm_per_degree": [
+          57.15326269715924,
+          416.10583641835245,
+          5601.666128506651
+        ],
+        "combined_elastic_reference_yield_ratio": 0.5254342468674941,
+        "combined_meets_assumed_factor_1_5_screen": false,
+        "signed_32_corner_linear_envelope": {
+          "coefficients_in_case_order": [
+            -1,
+            1,
+            2,
+            1,
+            -1,
+            -1
+          ],
+          "VM_max_MPa": 1856.4230475109723,
+          "U_max_mm_at_stress_worst_corner": 20.475908230854508,
+          "reference_yield_to_elastic_demand": 0.5144301571133966,
+          "peak_integration_row": 33869,
+          "peak_element": 8468
+        },
+        "fatigue_demand": {
+          "gravity_to_combined": {
+            "equivalent_stress_amplitude_max_MPa": 659.2227806618033,
+            "mean_stress_tensor_at_amplitude_peak_MPa": [
+              -898.3694,
+              -130.404675,
+              -424.85675000000003,
+              -219.831985,
+              384.67745,
+              317.52125
+            ],
+            "mean_correction_applied": false,
+            "life_cycles": null
+          },
+          "gravity_plus_reversing_850Nm_Y": {
+            "equivalent_stress_amplitude_max_MPa": 819.3646473899829,
+            "mean_stress_tensor_at_amplitude_peak_MPa": [
+              -388.0377,
+              -54.1894,
+              -182.3339,
+              94.79706,
+              -165.4763,
+              135.624
+            ],
+            "mean_correction_applied": false,
+            "life_cycles": null
+          },
+          "gravity_plus_reversing_100Nm_X": {
+            "equivalent_stress_amplitude_max_MPa": 135.87273210445255,
+            "mean_stress_tensor_at_amplitude_peak_MPa": [
+              37.74738,
+              6.792723,
+              -0.7339306,
+              -10.69451,
+              1.11603,
+              0.755461
+            ],
+            "mean_correction_applied": false,
+            "life_cycles": null
+          }
+        }
+      }
+    },
+    "assumption": "Independent signed axis limits are an envelope, not a measured event spectrum",
+    "reference_yield_MPa": 955,
+    "assumed_yield_factor": 1.5,
+    "physical_acceptance": false,
+    "fatigue_life_cycles": null
+  },
+  "mesh_refinement": [
+    {
+      "case": "combined-rigid-static",
+      "coarse_nodes": 72440,
+      "fine_nodes": 149737,
+      "U_relative_change": 0.0226913776347617,
+      "peak_VM_relative_change": 0.05026877346023695,
+      "fine_U_mm": 3.912990796288569,
+      "fine_peak_MPa": 1034.1788863777053
+    },
+    {
+      "case": "combined-spring-1000-static",
+      "coarse_nodes": 72440,
+      "fine_nodes": 149737,
+      "U_relative_change": 0.01938940914938847,
+      "peak_VM_relative_change": 0.053755640480728895,
+      "fine_U_mm": 23.14330454628974,
+      "fine_peak_MPa": 2001.8955413038564
+    },
+    {
+      "case": "torque_y_850Nm-rigid-static",
+      "coarse_nodes": 72440,
+      "fine_nodes": 149737,
+      "U_relative_change": 0.022225324685363423,
+      "peak_VM_relative_change": 0.03684138935835524,
+      "fine_U_mm": 1.7738968490956428,
+      "fine_peak_MPa": 659.2771269614548
+    },
+    {
+      "case": "torque_y_850Nm-spring-1000-static",
+      "coarse_nodes": 72440,
+      "fine_nodes": 149737,
+      "U_relative_change": 0.008346237284640345,
+      "peak_VM_relative_change": 0.018842047938637085,
+      "fine_U_mm": 2.810319215337119,
+      "fine_peak_MPa": 838.1305452356394
+    },
+    {
+      "case": "torsion_x_100Nm-rigid-static",
+      "coarse_nodes": 72440,
+      "fine_nodes": 149737,
+      "U_relative_change": 0.01366295057039335,
+      "peak_VM_relative_change": 0.14401686481535458,
+      "fine_U_mm": 0.29683949652229336,
+      "fine_peak_MPa": 154.19890830842328
+    },
+    {
+      "case": "torsion_x_100Nm-spring-1000-static",
+      "coarse_nodes": 72440,
+      "fine_nodes": 149737,
+      "U_relative_change": 0.013294345529432983,
+      "peak_VM_relative_change": 0.14591365988329064,
+      "fine_U_mm": 9.27076481280185,
+      "fine_peak_MPa": 155.68375740210683
+    }
+  ],
+  "printing": {
+    "printing_models": [
+      {
+        "path": "print-16-staged",
+        "result_sha256": "2772b11c09e20fb3451050b21d41024bf741aa13a6b01dee830eead47fa22452",
+        "input_sha256": "3002f47c58241b4f6e3c11da1570398724ccef74a51df7ac2e6742cc3c3a5bfb",
+        "raw_dat_sha256": "a708e50698a9a428bf0a155ffa8f5af1a406b972cd71f8a6a178b5b912adaa79",
+        "solver_completed": true,
+        "stages_completed": 32,
+        "seconds": 665.3605648749508,
+        "on_plate": {
+          "stage": 31,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.13739545707580908,
+          "registered_U_max_mm": 0.14043694407703933,
+          "VM_max_MPa": 6416.036183774576,
+          "VM_p99_MPa": 89.71768199433878
+        },
+        "released": {
+          "stage": 32,
+          "operation": "support_release",
+          "released": true,
+          "U_max_mm": 0.6512015058703104,
+          "registered_U_max_mm": 0.32884330846534005,
+          "VM_max_MPa": 5083.332455907837,
+          "VM_p99_MPa": 89.05967191842616
+        },
+        "registered_release_change_max_mm": 0.24934308268001928,
+        "physical_prediction_accepted": false,
+        "disposition": "rejected_staged_prediction",
+        "reason": "Excessive stress, unresolved ideal-plastic constitutive response, unconverged activation resolution and no process calibration."
+      },
+      {
+        "path": "print-32-staged",
+        "result_sha256": "e507b5f143f48595c6e561d58afd7c6f517c021ee2e72971bbceb2e6bc0186ac",
+        "input_sha256": "8134eb60e808e0bfa42790d503e704db3d14bb2a631d33c8ab1a5e0ce7ff9acd",
+        "raw_dat_sha256": "7eab18634f06b44e5853d4597d25d2eb9adb687556dfddc00a26b746cd5ee58f",
+        "solver_completed": true,
+        "stages_completed": 64,
+        "seconds": 974.039120499976,
+        "on_plate": {
+          "stage": 63,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.1478290550964391,
+          "registered_U_max_mm": 0.15517675978849887,
+          "VM_max_MPa": 2657.512666608061,
+          "VM_p99_MPa": 100.18420814059955
+        },
+        "released": {
+          "stage": 64,
+          "operation": "support_release",
+          "released": true,
+          "U_max_mm": 0.8669377312486175,
+          "registered_U_max_mm": 0.4077652929122681,
+          "VM_max_MPa": 2137.340312321245,
+          "VM_p99_MPa": 98.74834001058416
+        },
+        "registered_release_change_max_mm": 0.31491218476159843,
+        "physical_prediction_accepted": false,
+        "disposition": "rejected_staged_prediction",
+        "reason": "Excessive stress, unresolved ideal-plastic constitutive response, unconverged activation resolution and no process calibration."
+      },
+      {
+        "path": "print-16-plastic",
+        "result_sha256": "009e274b3b60530e0498929bc856ccc174485c8beab801f0aa016a82ebb4b78c",
+        "input_sha256": "5ab86e3aba64a203d57355e316a6fe0d770a013018410a42dadc4491c0be8833",
+        "raw_dat_sha256": "0acdb7c06b3534ef003c1565098e41050ab9f6dc960ff397676d600fbd707c3e",
+        "solver_completed": true,
+        "stages_completed": 32,
+        "seconds": 547.3511939590098,
+        "on_plate": {
+          "stage": 31,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.13738746963764525,
+          "registered_U_max_mm": 0.14042899391777558,
+          "VM_max_MPa": 6417.140021894861,
+          "VM_p99_MPa": 89.71842614370566
+        },
+        "released": {
+          "stage": 32,
+          "operation": "support_release",
+          "released": true,
+          "U_max_mm": 0.6510228252160134,
+          "registered_U_max_mm": 0.32877017457651325,
+          "VM_max_MPa": 5084.780468602908,
+          "VM_p99_MPa": 89.06448161302242
+        },
+        "registered_release_change_max_mm": 0.24927464190729443,
+        "physical_prediction_accepted": false,
+        "disposition": "rejected_staged_prediction",
+        "reason": "Excessive stress, unresolved ideal-plastic constitutive response, unconverged activation resolution and no process calibration."
+      },
+      {
+        "path": "print-one-layer-control",
+        "result_sha256": "95e3bb3cecd5bc11401e2ffced4a3014a93761a5b2561de07f5bd7c89f46a8cb",
+        "input_sha256": "4afb7d89c15f3eb103e24f61ca9b21e12a3f757a6f49a9350ae877096b9196b2",
+        "raw_dat_sha256": "93ca964bf259e54a8493b07b0240b7086151150649e3d725f32d668fe691c2a6",
+        "solver_completed": true,
+        "stages_completed": 2,
+        "seconds": 80.49466054199729,
+        "on_plate": {
+          "stage": 1,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.3971596500461281,
+          "registered_U_max_mm": 0.23641293374898212,
+          "VM_max_MPa": 48.38741511345073,
+          "VM_p99_MPa": 17.45872556320301
+        },
+        "released": {
+          "stage": 2,
+          "operation": "support_release",
+          "released": true,
+          "U_max_mm": 0.8063465461690206,
+          "registered_U_max_mm": 0.25246764145850664,
+          "VM_max_MPa": 1.0908928596845832e-08,
+          "VM_p99_MPa": 5.277223578953506e-09
+        },
+        "registered_release_change_max_mm": 0.029909686794328934,
+        "physical_prediction_accepted": false,
+        "disposition": "analytical_uniform_contraction_control_only",
+        "reason": "No layerwise deposition, no machine calibration."
+      }
+    ],
+    "sixteen_to_thirtytwo_layer_registered_displacement_relative_change": 0.23999875446833485,
+    "staged_constitutive_response_verified": false,
+    "raw_peak_check": {
+      "critical_element": 1697,
+      "plastic_reference_released_peak_MPa": 5084.780468602908,
+      "peak_present_in_raw_dat": true,
+      "root_cause_identified": false
+    },
+    "failed_diagnostic": {
+      "path": "print-plastic-cube-1",
+      "status": "failed_too_many_cutbacks_on_release",
+      "qualified": false
+    },
+    "compensation_authorized": false,
+    "manufacturing_authorized": false
+  },
+  "actual_slicing": {
+    "nominal_layer_mm": 0.06,
+    "total_layer_intervals_above_assumed_platform": 6126,
+    "nonempty_part_layers": 5958,
+    "all_part_contours_closed": true,
+    "midpoint_integrated_part_volume_mm3": 268172.16636563174,
+    "STL_volume_mm3": 268172.0432313215,
+    "relative_volume_error": 4.5916162161319107e-07,
+    "laser_scan_vectors_generated": false,
+    "support_contours_generated": false,
+    "qualified_machine_file": false
+  },
+  "software": {
+    "host_runtime": "macOS CAD, native Linux arm64 solver",
+    "solver": "CalculiX 2.21-1",
+    "ccx_sha256": "271f8411371b978d7a8d31a7a13d0765e6e1f872e8a8b1d6aac6d0856c71ec6c",
+    "container": "carrier-comprehensive-20261012",
+    "image": "ubuntu@sha256:534baea6a22c03a63003dbc8dbe78fe34bc0d7e595d9a9dc9834884ff530eb55",
+    "limits": {
+      "CPUs": 3,
+      "RAM_GiB": 4,
+      "threads_per_solver": 1
+    },
+    "CPU_limit_history": "Initially one CPU; raised to two during the independent structural and print jobs; final phase three CPUs and four GiB for three independent solver jobs on the 64 GiB, 10-core Mac",
+    "C3D10_mesh_sources": "Frozen V5 meshes at nominal sizes 9 and 6; no remeshing or geometry alteration"
+  },
+  "verification": {
+    "analytic_structural_cube": {
+      "analytical_case": "1 mm cube, E=1000 MPa, nu=0.25, strain_x=0.001",
+      "expected_stress_x_MPa": 1,
+      "expected_reaction_N": 1,
+      "max_displacement_error_mm": 4.8220509724951344e-11,
+      "max_stress_error_MPa": 4.294966e-15,
+      "reaction_error_N": 0.0,
+      "seconds": 0.17020462499931455,
+      "passed": true
+    },
+    "analytic_print_cube_and_birth_sequence": {
+      "expected_eigenstrain": [
+        -0.001,
+        -0.001,
+        -0.0005
+      ],
+      "max_registered_displacement_error_mm": 2.508618533663765e-07,
+      "stress_free_birth_change_mm": 1.730645e-13,
+      "next_stage_contraction_change_mm": 0.0005711720000506485,
+      "passed": true,
+      "two_layer_free_shape_is_not_uniform_eigenstrain": "Birth in an already deformed body changes the stress-free reference, so the uniform one-layer analytical field is only valid for one layer."
+    },
+    "additional_checks": {
+      "combined-rigid-ideal-plastic": [
+        {
+          "stage": 1,
+          "force_residual_N": [
+            -0.00013498239880829765,
+            2.0053000305896387e-05,
+            5.494619063028949e-05
+          ],
+          "moment_residual_Nmm": [
+            -0.001196755552371087,
+            -0.01618865050841123,
+            -0.0035440581802599347
+          ],
+          "equilibrium_check_passed": true
+        },
+        {
+          "stage": 2,
+          "equilibrium_check_passed": null,
+          "reason": "Unloaded fixed-eye reactions were not requested in the retained deck; no independent reaction check is claimed."
+        }
+      ],
+      "combined-spring-1000-ideal-plastic": [
+        {
+          "stage": 1,
+          "force_residual_N": [
+            1.8989024383186948e-06,
+            7.565662958424445e-09,
+            -7.44403587304987e-06
+          ],
+          "moment_residual_Nmm": [
+            -0.00016853820400797304,
+            0.001574239693582058,
+            0.00016362025571581285
+          ],
+          "equilibrium_check_passed": true
+        },
+        {
+          "stage": 2,
+          "force_residual_N": [
+            -3.2552956732122273e-09,
+            -5.843787811239589e-10,
+            3.1135595112558034e-08
+          ],
+          "moment_residual_Nmm": [
+            8.05492736022373e-06,
+            -2.615440110087519e-05,
+            7.198329289567762e-06
+          ],
+          "equilibrium_check_passed": true
+        }
+      ],
+      "whole_part_contraction_control": {
+        "approximate_small_strain_solution_max_error_mm": 0.00010362104114794435,
+        "released_stress_max_MPa": 1.0908928596845832e-08,
+        "passed": true,
+        "not_a_deposition_model": true
+      }
+    },
+    "CAD_file_hashes_match_frozen_V5": true,
+    "all_40_structural_decks_results_and_raw_outputs_present": true,
+    "all_40_structural_solver_logs_without_ERROR": true,
+    "all_recorded_input_and_mesh_hashes_match": true,
+    "staged_print_physical_model_accepted": false,
+    "full_make_check_repeated_this_extension": false,
+    "previous_full_check_limitation": "Nested Docker target lacked docker CLI inside validation container."
+  },
+  "conclusion": {
+    "mass_target_1_kg_met": false,
+    "mass_ceiling_1_2_kg_met": true,
+    "structural_screen_passed": false,
+    "OEM_fitment_verified": false,
+    "original_fastener_compatibility_verified": false,
+    "fatigue_life_cycles": null,
+    "staged_print_distortion_prediction_accepted": false,
+    "manufacturing_authorized": false,
+    "physical_validation": false,
+    "next_design_requirement": "Improve central-section and arm/eye load transfer within 1.0 kg target / 1.2 kg ceiling, preserving measured finished OEM joints once available."
+  },
+  "local_artifact_root": "work/carrier-bionic-comprehensive-20261012",
+  "raw_solver_archive": "native-solver-raw.tar.gz",
+  "archive_hash_receipt": "archive-verification.json",
+  "file_manifest": "sha256.json",
+  "raw_solver_archive_sha256": "5d2fbd29450b40523e4403e69eee5a072f4812a22be83f7f5d29acf44f8b3d6f",
+  "raw_solver_archive_files_verified": 332,
+  "temporary_solver_container_removed": true
+}

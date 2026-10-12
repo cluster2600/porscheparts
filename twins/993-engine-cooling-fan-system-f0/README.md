@@ -27,6 +27,8 @@ means the complete impeller, fan housing and drive arrangement; *fan housing*
 means the surrounding housing. Original source titles, quotations, part numbers,
 filenames and machine identifiers retain their original wording.
 
+**Installed-system continuation (2026-10-12):** [PicoGK carenage, alternator envelope, six cooling exits and horizontal charge cooler](../993-installed-cooling-f1/README.md), with a separate uncalibrated resistance study and CFD mesh-admission record. This does not validate the earlier isolated-fan CFD.
+
 ## Work by stage
 
 | Stage | Deliverables and evidence | Actual status |

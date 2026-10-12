@@ -1,0 +1,53 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2406                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _be01ca78-20240625 OPENFOAM=2406 version=2406
+Arch   : "LSB;label=32;scalar=64"
+Exec   : refineMesh -overwrite
+Date   : Oct 12 2026
+Time   : 20:13:54
+Host   : d793caa11e81
+PID    : 215
+I/O    : uncollated
+Case   : /case
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create polyMesh for time = 0
+
+Mesh edge statistics:
+    x aligned :  number:1344	minLen:0.0002176419516933392	maxLen:0.0007210386210346299
+    y aligned :  number:1344	minLen:0.0002176419516933392	maxLen:0.0007210386210346292
+    z aligned :  number:0	minLen:1000000000000000	maxLen:-1000000000000000
+    other     :  number:71296	minLen:5.403574908231101e-05	maxLen:0.0007210386210346886
+
+Refining according to refineMeshDict
+
+Read 10240 cells from cellSet "constant/polyMesh/sets/outsideCollar"
+
+Global Coordinate system:
+     normal : (0 0 1)
+     tan1   : (1 0 0)
+     tan2   : (0 1 0)
+
+Writing refined cells (20480) to cellSet "constant/polyMesh/sets/refinedCells"
+
+Writing map from new to old cell to "/case/0/polyMesh/cellMap"
+
+Mesh edge statistics:
+    x aligned :  number:2224	minLen:0.0002176419516933392	maxLen:0.0007210386210346299
+    y aligned :  number:2224	minLen:0.0002176419516933392	maxLen:0.0007210386210346292
+    z aligned :  number:0	minLen:1000000000000000	maxLen:-1000000000000000
+    other     :  number:120736	minLen:2.701787454115496e-05	maxLen:0.0007210386210346886
+
+End
+

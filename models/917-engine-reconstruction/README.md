@@ -6,6 +6,12 @@ Cette nouvelle étape utilise le scan du carter avec cylindres. Les anciens
 géométries hypothétiques et leurs résultats ne qualifient pas ce moteur.
 La variante exacte, la cylindrée et le régime cible restent à déterminer.
 
+La [reconstruction mécanique détaillée](mechanical-detail/README.md) remplace
+les boîtes d’accessoires par des corps à conduits, ailettes et fixations ; elle
+ajoute un carter démontable et des supports ramifiés dans PicoGK, ainsi que
+les trajets de suralimentation via les échangeurs. Les contrôles restent
+numériques sous hypothèses, sans qualification de fabrication.
+
 La [distribution dentée du 12 octobre](cam-drive/README.md) poursuit le moteur
 4V biturbo : quatre trains à rapport positif 1/2, dentures en développante et
 moyeux ramifiés PicoGK. Les supports, liaisons en couple et matériaux restent
