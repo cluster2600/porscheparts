@@ -157,6 +157,10 @@ def main() -> int:
         write_report(report)
         print(REPORT_PATH)
     else:
+        if not REPORT_PATH.is_file():
+            raise SystemExit("F9 report missing; run --mode build")
+        if load_json(REPORT_PATH) != report:
+            raise SystemExit("F9 report differs from current inputs; run --mode build")
         print("911-917 mechanical engineering F9: PASS (preliminary screening, all release gates closed)")
     return 0
 

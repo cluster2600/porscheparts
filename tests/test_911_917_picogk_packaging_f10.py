@@ -4,6 +4,7 @@ from pathlib import Path
 import struct
 import tempfile
 import unittest
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -22,6 +23,33 @@ def load_module():
 
 
 class Vehicle911917PicoGKPackagingF10Tests(unittest.TestCase):
+    def test_check_rejects_changed_transform_inputs(self) -> None:
+        module = load_module()
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            paths = {name: root / name for name in ("OBJ", "STL", "REPORT", "PACKAGING", "INTERFACES")}
+            for name in ("OBJ", "STL", "PACKAGING", "INTERFACES"):
+                paths[name].write_text(name)
+            report = {
+                "source_obj_sha256": module.sha256(paths["OBJ"]),
+                "output_stl_sha256": module.sha256(paths["STL"]),
+                "transform_inputs_sha256": {name: module.sha256(paths[name]) for name in ("PACKAGING", "INTERFACES")},
+                "transform": {"scale_verified": False, "orientation_verified": False},
+            }
+            paths["REPORT"].write_text(json.dumps(report))
+            with patch.multiple(module, **paths):
+                module.check()
+                for name in ("PACKAGING", "INTERFACES"):
+                    with self.subTest(input=name):
+                        paths[name].write_text(name + " changed")
+                        with self.assertRaises(SystemExit):
+                            module.check()
+                        paths[name].write_text(name)
+                del report["transform_inputs_sha256"]
+                paths["REPORT"].write_text(json.dumps(report))
+                with self.assertRaises(SystemExit):
+                    module.check()
+
     def test_obj_adapter_writes_binary_stl_without_new_dependency(self) -> None:
         module = load_module()
         with tempfile.TemporaryDirectory() as directory:

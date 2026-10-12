@@ -8,11 +8,41 @@ from pathlib import Path
 import numpy as np
 
 from prepare_picogk_scan_f10 import sha256
+import prepare_picogk_scan_f10 as scan
 
 
 ROOT = Path(__file__).resolve().parents[3]
 OUTPUT = ROOT / "work/911-917-picogk-f13"
 STL = ROOT / "work/911-917-picogk-f10/917-engine-oriented-f10.stl"
+
+
+def input_hashes():
+    paths = (
+        "work/911-917-packaging-f1/packaging-report-f1.json",
+        "work/917-engine/scan-metrology-f13-report.json",
+        "twins/vehicle-911-917/picogk-mechanical-f13.json",
+        "work/911-917-picogk-f10/scan-preparation-report-f10.json",
+        "twins/vehicle-911-917/source/prepare_picogk_scan_f10.py",
+        "twins/vehicle-911-917/source/prepare_picogk_alignment_f13.py",
+    )
+    return {path: sha256(ROOT / path) for path in paths}
+
+
+def validate_alignment(report):
+    scan.check()
+    if (report.get("phase") != "F13"
+            or report.get("status") != "scan_row_alignment_corrected_not_physical_datum_validation"
+            or any(report.get(key) is not False for key in (
+                "crankshaft_axis_measured", "mounting_face_measured", "scale_verified", "physical_orientation_verified"))):
+        raise ValueError("unqualified F13 alignment receipt required")
+    if report.get("inputs_sha256") != input_hashes() or report.get("input_stl_sha256") != sha256(STL):
+        raise ValueError("F13 alignment inputs changed or are unrecorded; rebuild the alignment")
+    matrix = np.asarray(report["matrix4x4_row_vector"], dtype=float)
+    if (matrix.shape != (4, 4) or not np.isfinite(matrix).all()
+            or not np.allclose(matrix[:, 3], [0, 0, 0, 1], rtol=0, atol=1e-6)
+            or not np.allclose(matrix[:3, :3] @ matrix[:3, :3].T, np.eye(3), rtol=0, atol=1e-6)
+            or not np.isclose(np.linalg.det(matrix[:3, :3]), 1, rtol=0, atol=1e-6)):
+        raise ValueError("finite rigid row-vector alignment required")
 
 
 def bank_frame(registry):
@@ -41,6 +71,8 @@ def bank_frame(registry):
 
 
 def build():
+    scan.check()
+    inputs = input_hashes()
     packaging = json.loads((ROOT / "work/911-917-packaging-f1/packaging-report-f1.json").read_text())
     registry = json.loads((ROOT / "work/917-engine/scan-metrology-f13-report.json").read_text())["interface_registry"]
     config = json.loads((ROOT / "twins/vehicle-911-917/picogk-mechanical-f13.json").read_text())
@@ -72,6 +104,7 @@ def build():
     report = {
         "phase": "F13", "status": "scan_row_alignment_corrected_not_physical_datum_validation",
         "input_stl_sha256": sha256(STL), "triangle_count": count,
+        "inputs_sha256": inputs,
         "matrix4x4_row_vector": matrix.tolist(),
         "old_axis_deviation_deg": float(np.degrees(np.arccos(np.clip(old[0] @ new[0], -1, 1)))),
         "fitted_longitudinal_axis_in_vehicle": corrected_axis.tolist(),
@@ -80,6 +113,7 @@ def build():
         "crankshaft_axis_measured": False, "mounting_face_measured": False,
         "scale_verified": False, "physical_orientation_verified": False,
     }
+    validate_alignment(report)
     OUTPUT.mkdir(parents=True, exist_ok=True)
     (OUTPUT / "scan-alignment-f13.json").write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps({key: report[key] for key in ("old_axis_deviation_deg", "fitted_longitudinal_axis_in_vehicle", "bounds_min_mm", "bounds_max_mm")}, indent=2))

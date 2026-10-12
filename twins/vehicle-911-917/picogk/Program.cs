@@ -19,6 +19,11 @@ internal static partial class Program
 
     private static void Main()
     {
+        if (!AxleStudy)
+        {
+            using JsonDocument alignment = JsonDocument.Parse(File.ReadAllText(Path.Combine(Output, "scan-alignment-f13.json")));
+            ValidatedAlignment(alignment.RootElement, Root, Path.Combine(Input, "917-engine-oriented-f10.stl"));
+        }
         Directory.CreateDirectory(Output);
         Library.Go(
             VoxelMm,
@@ -65,19 +70,12 @@ internal static partial class Program
 
             Library lib = Library.oLibrary();
             string scanPath = Path.Combine(Input, "917-engine-oriented-f10.stl");
-            using (var stream = File.OpenRead(scanPath))
-                if (!Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(stream)).Equals(
-                    alignment.RootElement.GetProperty("input_stl_sha256").GetString(), StringComparison.OrdinalIgnoreCase))
-                    throw new InvalidDataException("Le scan diffère de celui du recalage F13");
-            float[] matrix = alignment.RootElement.GetProperty("matrix4x4_row_vector").EnumerateArray()
-                .SelectMany(row => row.EnumerateArray().Select(v => v.GetSingle())).ToArray();
+            Matrix4x4 matrix = ValidatedAlignment(alignment.RootElement, Root, scanPath);
             using Mesh sourceMesh = Mesh.mshFromStlFile(
                 scanPath,
                 Mesh.EStlUnit.MM,
                 libSet: lib);
-            using Mesh scanMesh = sourceMesh.mshCreateTransformed(new Matrix4x4(
-                matrix[0], matrix[1], matrix[2], matrix[3], matrix[4], matrix[5], matrix[6], matrix[7],
-                matrix[8], matrix[9], matrix[10], matrix[11], matrix[12], matrix[13], matrix[14], matrix[15]));
+            using Mesh scanMesh = sourceMesh.mshCreateTransformed(matrix);
             using Voxels scan = Voxels.voxMeshShell(lib, scanMesh, VoxelMm / 2f);
             using Voxels service = Box(lib,
                 new Vector3(serviceEnd - serviceStart, serviceWidth, serviceHeight),
