@@ -1,5 +1,10 @@
 # Système horizontal 935 — préparation de la référence
 
+Le 12 octobre, un [assemblage PicoGK d'inspection](../../docs/research/935-horizontal-cooling/INSPECTION_ASSEMBLY.md)
+ajoute le moteur scanné disponible (917, contexte comparatif), l'entraînement
+observé, le rotor candidat et un carénage d'admission provisoire. Les poses et
+l'échelle restent des hypothèses ; ce résultat n'établit pas le montage 935.
+
 Campagne du 5 octobre : le
 [coordinateur de reconstruction](source/run_reconstruction.py) produit les
 sections mesurées de neuf régions de pales, des lofts PicoGK à trois résolutions,
