@@ -1,0 +1,226 @@
+{
+  "schema": "bionic-turbo-compressible-mrf/v1",
+  "source_sha256": "281522c448905c6745c28ea1e44d2190d3667146128e53cd98585455fdebf4e4",
+  "canonical_source_sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+  "image": "docker.io/opencfd/openfoam-run@sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532",
+  "solver": "rhoSimpleFoam",
+  "surface": {
+    "sha256": "74bb941bcd3315b89ec65823c2fd22365b3f87a7db501f5b445dace6c877118b",
+    "bounds_m": [
+      [
+        -0.0589968452454,
+        -0.0609981079102,
+        -0.0146566352844
+      ],
+      [
+        0.0637409896851,
+        0.08,
+        0.044
+      ]
+    ],
+    "region_bounds_m": {
+      "inlet": [
+        [
+          -0.0217980003357,
+          -0.0217439994812,
+          0.044
+        ],
+        [
+          0.0217019996643,
+          0.0217560005188,
+          0.044
+        ]
+      ],
+      "outlet": [
+        [
+          0.0354519996643,
+          0.08,
+          -0.0136960000992
+        ],
+        [
+          0.0627019996643,
+          0.08,
+          0.0135539999008
+        ]
+      ],
+      "rotor": [
+        [
+          -0.0302425956726,
+          -0.0302425937653,
+          -0.00371429657936
+        ],
+        [
+          0.0302425937653,
+          0.0302425899506,
+          0.0320002822876
+        ]
+      ],
+      "stator": [
+        [
+          -0.0589968452454,
+          -0.0609981079102,
+          -0.0146566352844
+        ],
+        [
+          0.0637409896851,
+          0.08,
+          0.044
+        ]
+      ]
+    },
+    "region_triangles": {
+      "inlet": 47045,
+      "outlet": 18544,
+      "rotor": 516216,
+      "stator": 1540619
+    },
+    "closed_edges": true,
+    "boundary_topology": {
+      "surface_components": 3,
+      "component_patch_sets": [
+        [
+          "inlet",
+          "outlet",
+          "rotor",
+          "stator"
+        ],
+        [
+          "rotor"
+        ],
+        [
+          "rotor"
+        ]
+      ],
+      "component_invariants": [
+        {
+          "patches": [
+            "inlet",
+            "outlet",
+            "rotor",
+            "stator"
+          ],
+          "euler_characteristic": 2
+        },
+        {
+          "patches": [
+            "rotor"
+          ],
+          "euler_characteristic": 0
+        },
+        {
+          "patches": [
+            "rotor"
+          ],
+          "euler_characteristic": 0
+        }
+      ],
+      "face_count": 2122424,
+      "unique_edges": 3183636,
+      "unique_vertices": 1061214,
+      "euler_characteristic": 2
+    },
+    "self_intersections_checked": false,
+    "seed_occupancy_checked": false
+  },
+  "parent_manifest_sha256": "6184d456b6b6b7c803581a48abc340bccfa47bc05c3f9430df6f18d0ddf34a1f",
+  "background_manifest_sha256": "8b13f2a154d8c3b14ba75bc7ba5b13808054ece7477e7c6ce21d6e373a68f71e",
+  "background_audit_sha256": "5535ec6d231917d8a559acf75983c0454398941f7354bc71e6aac1901d5b8ec3",
+  "mesh_only": true,
+  "stationary_equilibrium_verified": false,
+  "wall_layers_present": false,
+  "performance_ranking_authorized": false,
+  "solver_admission_granted": false,
+  "refinement": "Global level zero on already structured background; unchanged level-one physical surfaces and gapLevel (4 1 3). No face projection or repair after native meshing.",
+  "rotor_zone": {
+    "construction": "Direct block zones inherited by snappyHexMesh, no cell-centre reselection",
+    "profile_nodes_mm": [
+      [
+        -4.0,
+        32.0
+      ],
+      [
+        -3.5,
+        32.0
+      ],
+      [
+        -2.0,
+        31.36257446182715
+      ],
+      [
+        -1.5,
+        31.275442284556615
+      ],
+      [
+        -1.0,
+        31.36083493269051
+      ],
+      [
+        -0.5,
+        31.38047292430722
+      ],
+      [
+        0.0,
+        31.379473569643874
+      ],
+      [
+        0.5,
+        31.349759986744026
+      ],
+      [
+        1.0,
+        31.25249042134039
+      ],
+      [
+        1.5,
+        31.18710717428721
+      ],
+      [
+        2.0,
+        31.1672189376731
+      ],
+      [
+        2.5,
+        31.163814526636582
+      ],
+      [
+        3.0,
+        31.161729633954156
+      ],
+      [
+        3.5,
+        31.15785816223836
+      ],
+      [
+        4.0,
+        31.130191168408448
+      ],
+      [
+        32.1,
+        19.189086086637055
+      ],
+      [
+        33.0,
+        19.189086086637055
+      ]
+    ]
+  },
+  "file_sha256": {
+    "system/blockMeshDict": "c19d2fa3e36ce933941852cdb6d8a53906ae76e3f9d687eac02be31208f85eb9",
+    "system/snappyHexMeshDict": "967c6d159aee340f46701833d209c3ff9c4ce41fd307f1ccd8b743557a98afb8",
+    "system/topoSetDict": "f53a4ca48944264f65ce803ad38e17312d767b7f4eb500bedac044ab0123425b",
+    "constant/MRFProperties": "0d8c3f4d252823360e8071202a979b5995e5c3efb90fa252885a0414cb5975d6",
+    "0/U": "34fb4b7d3bd94a2148d00075ab137b9a0472fc0b9e8a203d72a5abb944ef053e",
+    "0/p": "cb1d59716024c47f99841af002057d3d7655573c5ac0e1dbd82698452398ce77",
+    "0/T": "200e6e184c76fea5be773b145bbfc4dae10f5d05c0e323b6df18ce6bbda1e479",
+    "0/k": "5b29e0713a207f5daa73d75637c91208fed298433ef21b70e7e6b0612c92d1bf",
+    "0/omega": "518af307aafe305b7fd2f94e3bbbfb36365c78b4da52dd48d768be5b101c2e76",
+    "0/nut": "a135cb61de9a23d2ce657f14dfe51cd5984c9d432ce066bde34f201c80b6df58",
+    "0/alphat": "49dc89b147589c29784069fc046d59561d4ac3e6d36de91ffb9bc251fae486cc",
+    "constant/thermophysicalProperties": "0752020a819b4bb8e0fef379f869eb87f6545b18112209a481a572aef25013b8",
+    "constant/turbulenceProperties": "799f1a8d64f7f7ed3062acb01885e506ff37dadb83361882967d47de46c6880a",
+    "system/fvSchemes": "6bad0801cda7671aa558cd6890c0465fcb257dd75f4bed381ce58cf21697b632",
+    "system/fvSolution": "af5ff4fc22db1dab7b0d63c40bc73d96f2df4f3fb2ccbc387123daaa769bbc70",
+    "system/controlDict": "d0f5be4106719abfbc66678df066ffbd1bf4483bceeb078fd7c73edf2cfc1b2c",
+    "constant/triSurface/domain.stl": "74bb941bcd3315b89ec65823c2fd22365b3f87a7db501f5b445dace6c877118b"
+  }
+}
