@@ -90,3 +90,30 @@ class SteadyRestartTests(unittest.TestCase):
             (output / '0/phi').write_text('reconstructed')
             with self.assertRaises(ValueError):
                 steady_restart.verify(output)
+
+    def test_parallel_case_keeps_equations_and_uses_bounded_native_execution(self):
+        import parallel_restart
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            original = fixtures.TransientPilotTests().parent(root)
+            parent = root / 'transient'
+            transient_pilot.prepare(original, parent)
+            shutil.copytree(parent / '0', parent / '0.000019')
+            for name in ('phi','rho'):
+                (parent / '0.000019' / name).write_text('native saved field')
+            (parent / 'native-exit.json').write_text('{"exit_code": 0}')
+            (parent / 'log.transient-rhoPimpleFoam').write_text('End\n')
+            output = root / 'parallel'
+            parallel_restart.prepare(parent, output)
+            self.assertIn('numberOfSubdomains 4;', (output / 'system/decomposeParDict').read_text())
+            self.assertIn('default localEuler;', (output / 'system/fvSchemes').read_text())
+            with mock.patch.object(parallel_restart.subprocess, 'run', return_value=mock.Mock(returncode=0, stdout='id', stderr='')) as native:
+                report = parallel_restart.launch(output)
+                self.assertEqual(report['ranks'], 4)
+                self.assertFalse(report['performance_ranking_authorized'])
+                self.assertIn('--network', native.call_args.args[0])
+            script = (output / 'transient-supervisor.sh').read_text()
+            self.assertIn('mpirun -np 4 rhoPimpleFoam -parallel', script)
+            self.assertIn('reconstructPar -latestTime', script)
+            with self.assertRaises(ValueError):
+                parallel_restart.launch(output)
