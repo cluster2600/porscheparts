@@ -1,0 +1,612 @@
+{
+  "classification": "native_935_assembly_geometry_not_historical_fitment",
+  "date": "2026-10-12",
+  "target": "935",
+  "engine_cylinders": 6,
+  "engine_scan_imports": 0,
+  "engine_context_family": "935_six_cylinder_packaging_hypothesis_not_exact_engine",
+  "engine_envelope_parts": 13,
+  "source_sha256": {
+    "twins/935-horizontal-cooling-system-f0/source/prepare_native_sections.py": "01b9fe63e9cc242b7026d52a980de45751b57bcef4a88803c46addd42a4324b2",
+    "twins/935-horizontal-cooling-system-f0/source/complete_candidate_rotor.py": "313fe0e62b9bc76e2b693df8c4c5ae91d8736aa9a149fd322e9a31a284844c63",
+    "twins/935-horizontal-cooling-system-f0/source/picogk-section-loft/Program.cs": "f1b19bd41fdd185e75a284886b8eff631f44e730ab9a1be023f5e3fc52d77417",
+    "twins/935-horizontal-cooling-system-f0/source/picogk-935-assembly/Program.cs": "1be2d71fad739f681b828e5597332765a6e6d8156a012423879afd3648e15d6a",
+    "twins/935-horizontal-cooling-system-f0/source/picogk-935-assembly/Assembly935.csproj": "7ad882ece62f2f2ad73f3655401845ca742c3cbbdd6837d4b21ff0ffac069a03",
+    "twins/935-horizontal-cooling-system-f0/source/accept_935_centres.py": "65fd1df39a6a2732b389cf19c0520fcdf742fa7c34e0728e977718510130547c",
+    "twins/935-horizontal-cooling-system-f0/source/test_qwen_935.py": "ed5a62524543aad5f4c2ff1d9a364c96aee4bdc3f403fbf8e3f8e2e6b45f73d8",
+    "twins/935-horizontal-cooling-system-f0/source/export_inspection_assembly.py": "866f641a4beaf6d7d1bd3177f6dce8ea237c908ce1d952170e8a24287ded1ca7",
+    "twins/935-horizontal-cooling-system-f0/source/render_935_native.py": "0db941ea71b179031b32c5fb5f468d3cfe38e4d93c0d8c7077e2029f67cb93f9",
+    "twins/935-horizontal-cooling-system-f0/source/stl_moments.py": "61d4cbea9364f2952b13a035b282df87d913a623790ffed169a25bf31dbd6bed",
+    "parts/picogk-catalog/common/Sdf.cs": "8096c0bc8aa980cd463622d2838969987aa8a570ca7cb52a64eb08ea74ac7a40",
+    "training/m64-qwen/run.py": "f92c45133c9c3dfdf403999ac5f8a81fc2bbf38830ba1e490c7b4b7dfaaaca36",
+    "training/m64-qwen/dataset.py": "4201ec0bd6f176f0d5c89b69be271d249669f4b05f83283e1edc84956b92edc8",
+    "tests/test_935_native_qwen.py": "c72d1a50342d278ea228b2b0ba7df88574d6ded8ef4510f2d1268cecfa7b1d20"
+  },
+  "runtime": {
+    "name": "PicoGK Core Library",
+    "version": "26.2.0",
+    "build": "2026-06-05 21:50:16 picogk"
+  },
+  "case_sha256": "7839d26656e3114b307d5e49719894e8ca3cc4840a246265e5fae1e583cdad3e",
+  "native_receipt_sha256": "1c5d671d5e5175252379a2ce4d6667881db2caa07664b1f5598a13b2c14deb4d",
+  "components": [
+    {
+      "id": "engine_context",
+      "classification": "PicoGK_935_six_cylinder_packaging_hypothesis_no_917_geometry",
+      "triangles": 4972828,
+      "sha256": "249f4ce0ddb5eb805b49820f7550f614151b1b84550e09e1fa5a9ce224cf51a5",
+      "zero_area_triangles_removed": 0
+    },
+    {
+      "id": "rotor_candidate",
+      "classification": "PicoGK_nine_observed_blades_with_missing_root_tip_and_hub_hypotheses",
+      "triangles": 748922,
+      "sha256": "19a4becd3e0d68658fe8faaacabe0d3769f5baaad573d13d4ac8e7998f0d8a71",
+      "zero_area_triangles_removed": 10
+    },
+    {
+      "id": "drive_observed",
+      "classification": "935_fan_drive_observed_open_mesh_unresolved_datums",
+      "triangles": 2484656,
+      "sha256": "fbae73f9c7182eebe5d0da5d4af991c42e06a59edd145d85f3221c128e7cef35",
+      "zero_area_triangles_removed": 0
+    },
+    {
+      "id": "provisional_shroud",
+      "classification": "PicoGK_935_admission_and_six_cylinder_distribution_envelope_unverified",
+      "triangles": 3822612,
+      "sha256": "6ecc7ce1174d173e6a6b837e3305ddb18e90c95378dc5a77be8dc5b4878f3212",
+      "zero_area_triangles_removed": 0
+    }
+  ],
+  "rotor_resolution": {
+    "final_volume_relative_change": 0.0007257653861094671,
+    "final_inertia_relative_change": 0.0011610265863847466,
+    "scale_verified": false,
+    "self_intersections_checked": false,
+    "physical_validation": false
+  },
+  "rotor_resolution_rows": [
+    {
+      "voxel_mm": 1.2,
+      "sha256": "304ca9a85b45d4c5183f8d2683379ae94a9c7f13e94ad447ad4cd1b68a02653f",
+      "triangles": 330448,
+      "conditional_volume_mm3": 432559.20725121896,
+      "components": 1,
+      "watertight": true,
+      "winding_consistent": true,
+      "zero_area_faces": 0
+    },
+    {
+      "voxel_mm": 0.6,
+      "sha256": "a61f3a2c90d5ae5e1f4060914eae8d8104081c469b1e5cb10bb1e0fa06609d8f",
+      "triangles": 1332118,
+      "conditional_volume_mm3": 433747.302829971,
+      "components": 1,
+      "watertight": true,
+      "winding_consistent": true,
+      "zero_area_faces": 0
+    },
+    {
+      "voxel_mm": 0.3,
+      "sha256": "550d9c1b9e369e61627331a34440b216576dfe6d7ed12856be4fcf863b2ed332",
+      "triangles": 5339298,
+      "conditional_volume_mm3": 434062.3302446766,
+      "components": 1,
+      "watertight": true,
+      "winding_consistent": true,
+      "zero_area_faces": 0
+    }
+  ],
+  "native_filter": [
+    {
+      "case": "assembly",
+      "exact_zero_area_triangles_removed": 10,
+      "all_retained_triangle_coordinates_and_order_unchanged": true
+    },
+    {
+      "case": "120",
+      "exact_zero_area_triangles_removed": 8,
+      "all_retained_triangle_coordinates_and_order_unchanged": true
+    },
+    {
+      "case": "060",
+      "exact_zero_area_triangles_removed": 14,
+      "all_retained_triangle_coordinates_and_order_unchanged": true
+    },
+    {
+      "case": "030",
+      "exact_zero_area_triangles_removed": 30,
+      "all_retained_triangle_coordinates_and_order_unchanged": true
+    }
+  ],
+  "acquired_blade_comparison": {
+    "unit": "uncalibrated_source_units",
+    "all_nine_blades_used_as_construction_inputs": true,
+    "rows": [
+      {
+        "blade_id": "blade-00",
+        "scan_to_candidate": {
+          "samples": 2000,
+          "seed": 935,
+          "rms_source_units": 0.04178446300051863,
+          "percentiles_source_units": [
+            0.020369158046872147,
+            0.08463957306001021,
+            0.1517193957673866,
+            0.3323431813867366
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        },
+        "candidate_to_acquired_region": {
+          "samples": 1000,
+          "seed": 9350,
+          "rms_source_units": 0.042603559087679876,
+          "percentiles_source_units": [
+            0.020176447836287893,
+            0.08394629264045206,
+            0.14983939091783313,
+            0.29410626133261014
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        },
+        "periodic_scan_to_candidate": {
+          "samples": 2000,
+          "seed": 935,
+          "rms_source_units": 0.25926493335731476,
+          "percentiles_source_units": [
+            0.030501523388842426,
+            0.6641961381605319,
+            1.1875981490503773,
+            1.5652199131863516
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        }
+      },
+      {
+        "blade_id": "blade-01",
+        "scan_to_candidate": {
+          "samples": 2000,
+          "seed": 936,
+          "rms_source_units": 0.0716715847516022,
+          "percentiles_source_units": [
+            0.02267888165529524,
+            0.1309863033085025,
+            0.26850798271064885,
+            0.9355712905872332
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        },
+        "candidate_to_acquired_region": {
+          "samples": 1000,
+          "seed": 9351,
+          "rms_source_units": 0.060895593089505484,
+          "percentiles_source_units": [
+            0.021177956998173007,
+            0.10501697996316982,
+            0.2538001572825786,
+            0.5363411731144991
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        },
+        "periodic_scan_to_candidate": {
+          "samples": 2000,
+          "seed": 936,
+          "rms_source_units": 0.9018281108131715,
+          "percentiles_source_units": [
+            0.7461108774939681,
+            1.4098218352264262,
+            2.4080078787509636,
+            2.8834917824050126
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        }
+      },
+      {
+        "blade_id": "blade-02",
+        "scan_to_candidate": {
+          "samples": 2000,
+          "seed": 937,
+          "rms_source_units": 0.046812858449209585,
+          "percentiles_source_units": [
+            0.018219011641924153,
+            0.07489599101444182,
+            0.19143177556471683,
+            0.53446769671446
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        },
+        "candidate_to_acquired_region": {
+          "samples": 1000,
+          "seed": 9352,
+          "rms_source_units": 0.039212110170813885,
+          "percentiles_source_units": [
+            0.018434765060536436,
+            0.06959968217231459,
+            0.1466615935671255,
+            0.4114582831203589
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        },
+        "periodic_scan_to_candidate": {
+          "samples": 2000,
+          "seed": 937,
+          "rms_source_units": 1.5974373595474423,
+          "percentiles_source_units": [
+            1.5429061534323703,
+            2.129691357882417,
+            2.5829355581757896,
+            3.2151399935326714
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        }
+      },
+      {
+        "blade_id": "blade-03",
+        "scan_to_candidate": {
+          "samples": 2000,
+          "seed": 938,
+          "rms_source_units": 0.0349457840574348,
+          "percentiles_source_units": [
+            0.018774210586359627,
+            0.0690562367278223,
+            0.13035977210556188,
+            0.19374893084194772
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        },
+        "candidate_to_acquired_region": {
+          "samples": 1000,
+          "seed": 9353,
+          "rms_source_units": 1.9335627974744192,
+          "percentiles_source_units": [
+            0.01809488584535919,
+            0.09499213459825925,
+            0.1985366908404683,
+            35.68648951313621
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        },
+        "periodic_scan_to_candidate": {
+          "samples": 2000,
+          "seed": 938,
+          "rms_source_units": 1.6399958869317257,
+          "percentiles_source_units": [
+            1.4338774333784932,
+            2.6738634526163887,
+            3.004475890623551,
+            3.53482347054794
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        }
+      },
+      {
+        "blade_id": "blade-04",
+        "scan_to_candidate": {
+          "samples": 2000,
+          "seed": 939,
+          "rms_source_units": 0.2108094341843215,
+          "percentiles_source_units": [
+            0.01890613912892105,
+            0.10557809235556376,
+            1.1038784202796574,
+            2.830625281335673
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        },
+        "candidate_to_acquired_region": {
+          "samples": 1000,
+          "seed": 9354,
+          "rms_source_units": 0.08786809336526645,
+          "percentiles_source_units": [
+            0.019384990027428887,
+            0.10027534059051743,
+            0.24900176677502542,
+            1.4856163331454078
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        },
+        "periodic_scan_to_candidate": {
+          "samples": 2000,
+          "seed": 939,
+          "rms_source_units": 1.1228820688834813,
+          "percentiles_source_units": [
+            0.9941749426718846,
+            2.0577511153070316,
+            2.5333404715900016,
+            3.2326997058043316
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        }
+      },
+      {
+        "blade_id": "blade-05",
+        "scan_to_candidate": {
+          "samples": 2000,
+          "seed": 940,
+          "rms_source_units": 0.34978255967476685,
+          "percentiles_source_units": [
+            0.019689342914952737,
+            0.08080649162127654,
+            0.17188294052702063,
+            9.383276696111109
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        },
+        "candidate_to_acquired_region": {
+          "samples": 1000,
+          "seed": 9355,
+          "rms_source_units": 2.4750986413949,
+          "percentiles_source_units": [
+            0.019037489359926763,
+            0.09249338625879228,
+            0.20397377965071206,
+            40.29058751553515
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        },
+        "periodic_scan_to_candidate": {
+          "samples": 2000,
+          "seed": 940,
+          "rms_source_units": 0.634289481237127,
+          "percentiles_source_units": [
+            0.21734759118872907,
+            0.9551459788845293,
+            1.9193103764446753,
+            11.217836502442118
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        }
+      },
+      {
+        "blade_id": "blade-06",
+        "scan_to_candidate": {
+          "samples": 2000,
+          "seed": 941,
+          "rms_source_units": 0.05343949373781677,
+          "percentiles_source_units": [
+            0.017519314050614736,
+            0.08103881012432355,
+            0.23508428924419453,
+            0.6583502929506669
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        },
+        "candidate_to_acquired_region": {
+          "samples": 1000,
+          "seed": 9356,
+          "rms_source_units": 0.04139484234860539,
+          "percentiles_source_units": [
+            0.01714423542590965,
+            0.06650588817901835,
+            0.16952579027697656,
+            0.3994981291933174
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        },
+        "periodic_scan_to_candidate": {
+          "samples": 2000,
+          "seed": 941,
+          "rms_source_units": 0.9617995901458788,
+          "percentiles_source_units": [
+            0.3338600136017682,
+            1.960555291718983,
+            2.4263704406531312,
+            2.7488818500392846
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        }
+      },
+      {
+        "blade_id": "blade-07",
+        "scan_to_candidate": {
+          "samples": 2000,
+          "seed": 942,
+          "rms_source_units": 0.037289245384671155,
+          "percentiles_source_units": [
+            0.018391660822623064,
+            0.06499034939945905,
+            0.14921923741177906,
+            0.35347495081343183
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        },
+        "candidate_to_acquired_region": {
+          "samples": 1000,
+          "seed": 9357,
+          "rms_source_units": 0.03876665512612786,
+          "percentiles_source_units": [
+            0.018800702140857203,
+            0.07085098514112613,
+            0.14058664155599404,
+            0.37333501637770006
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        },
+        "periodic_scan_to_candidate": {
+          "samples": 2000,
+          "seed": 942,
+          "rms_source_units": 0.7979834124140407,
+          "percentiles_source_units": [
+            0.6532241541931162,
+            0.9988504641744799,
+            2.7641561522812044,
+            3.6250751584289556
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        }
+      },
+      {
+        "blade_id": "blade-08",
+        "scan_to_candidate": {
+          "samples": 2000,
+          "seed": 943,
+          "rms_source_units": 0.04000267162164324,
+          "percentiles_source_units": [
+            0.020601123450506513,
+            0.07533977069243275,
+            0.15176599710104147,
+            0.3106169761614245
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        },
+        "candidate_to_acquired_region": {
+          "samples": 1000,
+          "seed": 9358,
+          "rms_source_units": 0.044615972753470505,
+          "percentiles_source_units": [
+            0.021247987788205268,
+            0.07672972442160574,
+            0.1768027069216909,
+            0.40451076718814377
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        },
+        "periodic_scan_to_candidate": {
+          "samples": 2000,
+          "seed": 943,
+          "rms_source_units": 0.8216069237181777,
+          "percentiles_source_units": [
+            0.689758714217881,
+            1.207813552689572,
+            2.508004952737345,
+            2.998718993774958
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        }
+      }
+    ],
+    "historical_replica_validated": false
+  },
+  "qwen": {
+    "model": "Qwen2.5-Coder-1.5B-Instruct-4bit",
+    "revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+    "adapter": "coding-003/checkpoint-600",
+    "mlx_lm": "0.31.3",
+    "raw_strict_passed": {
+      "base": 0,
+      "coding003": 3
+    },
+    "total_cases_per_model": 5,
+    "protocol_sha256": "670049a571833a7a06a73332316e608e6de95cbd1d1210f2eb3eb8636b08b708",
+    "responses_sha256": "3ed3fa5b3d77c023e11f03b5ed506d667dc271747293e711548232d93fb5111d",
+    "accepted_centres_sha256": "e277dd7bf29e6a14cd5af7e66b15c64fae2e4f1724e4f3122f6a5cc7f807614b",
+    "format_only_import_separate_from_raw_scores": true,
+    "raw_scores_changed": false,
+    "default_adapter_changed": false,
+    "engineering_reliability_established": false
+  },
+  "surface_collision_contacts": [
+    {
+      "pair": [
+        "drive_observed",
+        "provisional_shroud"
+      ],
+      "surface_contacts": 0
+    },
+    {
+      "pair": [
+        "drive_observed",
+        "engine_context"
+      ],
+      "surface_contacts": 809
+    },
+    {
+      "pair": [
+        "drive_observed",
+        "rotor_candidate"
+      ],
+      "surface_contacts": 0
+    }
+  ],
+  "entire_assembly_interference_checked": false,
+  "self_intersections_checked": false,
+  "rotor_shroud_360_degree_radial_separation_mm_hypothesis": 6.257986943995348,
+  "export": {
+    "glb_sha256": "8097bd38831b76a4db67ceacb0877a65618b5cf711d392aebae86a7b5fa6fd45",
+    "usd_sha256": "d3229dbff17cb93778dc49dea9c217f670ce7cbae5cd1a1fac970a2c78997ddc",
+    "export_triangles_preserved": true,
+    "millimetre_to_metre_scale": 0.001
+  },
+  "render": {
+    "target": "935",
+    "engine_cylinders": 6,
+    "geometry_triangles": {
+      "engine_context": 4972828,
+      "rotor_candidate": 748922,
+      "drive_observed": 2484656,
+      "provisional_shroud": 3822612
+    },
+    "native_receipt_sha256": "1c5d671d5e5175252379a2ce4d6667881db2caa07664b1f5598a13b2c14deb4d",
+    "image_sha256": "4b0defa46b727aa71de9ff38016bc1d34a1f1b6b597126c0530cbf264423a8d1",
+    "decimation": false,
+    "opacity": 1,
+    "vtk_version": "9.7.1",
+    "exact_historical_engine_reconstructed": false,
+    "physical_validation": false
+  },
+  "native_boundary_cases": [
+    {
+      "case": "wrong-target",
+      "rejected": true,
+      "output_created": false,
+      "expected_error_confirmed": true
+    },
+    {
+      "case": "twelve-cylinders",
+      "rejected": true,
+      "output_created": false,
+      "expected_error_confirmed": true
+    },
+    {
+      "case": "duplicate-centres",
+      "rejected": true,
+      "output_created": false,
+      "expected_error_confirmed": true
+    },
+    {
+      "case": "reflection",
+      "rejected": true,
+      "output_created": false,
+      "expected_error_confirmed": true
+    },
+    {
+      "case": "claimed-scale",
+      "rejected": true,
+      "output_created": false,
+      "expected_error_confirmed": true
+    },
+    {
+      "case": "missing-passage",
+      "rejected": true,
+      "output_created": false,
+      "expected_error_confirmed": true
+    },
+    {
+      "case": "wrong-hash",
+      "rejected": true,
+      "output_created": false,
+      "expected_error_confirmed": true
+    },
+    {
+      "case": "public-output",
+      "rejected": true,
+      "output_created": false,
+      "expected_error_confirmed": true
+    },
+    {
+      "case": "existing-output",
+      "rejected": true,
+      "output_created": false,
+      "expected_error_confirmed": true
+    }
+  ],
+  "private_archive_url": "https://github.com/cluster2600/porscheparts-935-private/releases/tag/native-six-20261012",
+  "scale_verified": false,
+  "interfaces_verified": false,
+  "mechanism_dynamics_validated": false,
+  "historical_installation_verified": false,
+  "manufacturing_authorized": false,
+  "physical_validation": false,
+  "vast_rental_used": false
+}
