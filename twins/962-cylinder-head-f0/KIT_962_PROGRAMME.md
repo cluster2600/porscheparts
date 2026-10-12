@@ -67,6 +67,11 @@ restent ouvertes. Aucun gain, masse, prix ou durée de vie n'est promis.
 Les turbos K16 du jumeau M64 existant sont une référence d'origine, pas une
 sélection de turbos pour 1 000 ch.
 
+Le propriétaire propose aussi un boîtier avec waterblocks, ventilateurs et
+Peltier, inspiré de GemaTEG. L'[étude du module thermique](THERMAL_MODULE.md)
+ajoute une branche secondaire candidate ; les échangeurs principaux restent
+nécessaires. Le bilan inclut l'électricité des TEC et leur rejet côté chaud.
+
 ## Ce que signifie la cible de puissance
 
 Calculs quatre temps de cadrage, avec une cylindrée **hypothétique de 3,6 L** :

@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0.0",
+  "module_id": "962-THERMAL-MODULE-F0",
+  "status": "architecture_and_energy_screen_only",
+  "owner_requested_components": [
+    "enclosure",
+    "waterblocks",
+    "fans",
+    "thermoelectric_coolers"
+  ],
+  "inspiration": "GemaTEG_public_local_thermal_management_principle",
+  "application_proposal": "secondary_charge_air_loop_not_primary_engine_heat_rejection",
+  "base_cooling_without_tec_required": true,
+  "hot_side_rejection_includes_tec_power": true,
+  "automotive_gain_validated": false,
+  "hardware_qualified": false,
+  "manufacturing_authorized": false,
+  "unknown_inputs": {
+    "cold_heat_load_w": null,
+    "hot_heat_load_w": null,
+    "coolant_mass_flow_kg_s": null,
+    "coolant_composition": null,
+    "coolant_cp_T": null,
+    "cold_side_temperature_c": null,
+    "hot_side_temperature_c": null,
+    "ambient_temperature_envelope_c": null,
+    "local_dew_point_envelope_c": null,
+    "tec_part_number": null,
+    "tec_performance_curves": null,
+    "available_electrical_bus_v": null,
+    "available_electrical_power_w": null,
+    "alternator_efficiency_map": null,
+    "pump_and_fan_power_w": null,
+    "hot_side_heat_exchanger_capacity_w": null,
+    "airflow_and_pressure_drop": null,
+    "enclosure_interfaces": null,
+    "material_and_corrosion_plan": null,
+    "transient_duty_cycle": null,
+    "service_life": null
+  },
+  "qualification_requirements": [
+    "measured_separate_heat_loads",
+    "hot_and_cold_side_energy_closure",
+    "baseline_tec_off_cooling",
+    "local_condensation_control",
+    "electrical_and_mechanical_power_budget",
+    "pressure_and_vibration_qualification",
+    "thermal_bench_comparison_before_engine_installation"
+  ],
+  "sources": [
+    {
+      "url": "https://www.gemateg.com/solution",
+      "accessed_on": "2026-10-12",
+      "scope": "chip_level_active_thermal_management_not_automotive_validation",
+      "rights": "public_reference_only_no_design_or_firmware_reuse"
+    },
+    {
+      "url": "https://thermal.ferrotec.com/technology/thermoelectric-reference-guide/thermalref11/",
+      "accessed_on": "2026-10-12",
+      "scope": "TEC_energy_relations_and_temperature_dependent_performance",
+      "rights": "public_reference_only_no_design_or_firmware_reuse"
+    },
+    {
+      "url": "https://www.product.ferrotec.co.jp/en/product/electronic_device/thermo/technology/",
+      "accessed_on": "2026-10-12",
+      "scope": "module_selection_requires_hot_cold_temperature_current_and_heat_load",
+      "rights": "public_reference_only_no_design_or_firmware_reuse"
+    },
+    {
+      "url": "https://www.weather.gov/asos/AmbientDewPointTemperature.html",
+      "accessed_on": "2026-10-12",
+      "scope": "dew_point_surface_condensation_not_engine_specific_validation",
+      "rights": "public_reference"
+    }
+  ]
+}

@@ -70,6 +70,19 @@ sont vérifiés. La validation globale Mac ci-dessus est celle du dossier
 géométrique précédent ; elle n'est pas présentée comme une exécution du
 nouveau programme produit. La CI de la nouvelle révision reste à observer.
 
+## Extension au module thermique
+
+L'[étude thermique](THERMAL_MODULE.md) ajoute un bilan algébrique TEC et un
+schéma fonctionnel SVG/PNG inspecté visuellement. Le code distingue Qfroid,
+Pélectrique aux TEC, Qchaud, pertes de conversion, auxiliaires et consommation
+au bus. Six tests supplémentaires vérifient conservation de l'énergie,
+séparation des pertes, rejet des entrées invalides/non finies et des
+dépassements numériques, CLI et liaison des exemples à la source du calcul.
+Les douze tests ciblés passent avec VTK ; onze passent dans le Python système
+avec un témoin VTK ignoré. Ni COP réel, charge moteur, radiateur, bus véhicule,
+boîtier, commande embarquée ou bénéfice automobile ne sont qualifiés.
+La référence de refroidissement indépendante des TEC reste exigée.
+
 ## Vérifications physiques absentes
 
 Pas de scan/CT d'un donneur 962, de métrologie, de CFD/CHT, de calcul mécanique,
