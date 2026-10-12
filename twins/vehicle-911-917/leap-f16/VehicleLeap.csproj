@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(LeapRoot)/libraries/LEAP71_ShapeKernel/ShapeKernel/**/*.cs" />
+    <Compile Include="$(LeapRoot)/libraries/LEAP71_LatticeLibrary/LatticeLibrary/**/*.cs" />
+    <Reference Include="PicoGK"><HintPath>$(LeapRoot)/runtime/PicoGK.dll</HintPath></Reference>
+    <Reference Include="SkiaSharp"><HintPath>$(LeapRoot)/runtime/SkiaSharp.dll</HintPath></Reference>
+    <None Include="$(LeapRoot)/runtime/**/*.dylib" CopyToOutputDirectory="PreserveNewest" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <None Include="$(LeapRoot)/libraries/PicoGK/assets/ViewerEnvironment.zip" CopyToOutputDirectory="PreserveNewest" Link="ViewerEnvironment.zip" />
+  </ItemGroup>
+  <Target Name="RequireInstalledLibraries" BeforeTargets="PrepareForBuild">
+    <Error Condition="!Exists('$(LeapRoot)/runtime/PicoGK.dll')" Text="Set LeapRoot to the verified local PicoGK installation." />
+  </Target>
+</Project>
