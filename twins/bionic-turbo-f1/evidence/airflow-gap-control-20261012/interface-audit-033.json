@@ -1,0 +1,313 @@
+{
+  "source_sha256": "dde3ad98f25a9550121e10b24bd1c14678f4b82400f362766c051f064e81341f",
+  "case_manifest_sha256": "2b03348e620cb84016cc77c223bff83ca639c0dc94fa10275e988a1f9d785ecf",
+  "polygon_source_sha256": "a8037e50ee21332bb37c7ba42bec10604ecd8ddd9c322a505baba7a936709976",
+  "geometry_formula_reference": "https://gitlab.com/openfoam/core/openfoam/-/raw/OpenFOAM-v2406/src/OpenFOAM/meshes/primitiveMesh/primitiveMeshCheck/primitiveMeshTools.C",
+  "geometry_reference_sha256": "db2868dc5ccb66f8e3e8c4b919afb8abf8bb3b0fc290c704f9ad4c65b645a712",
+  "input_mesh_sha256": {
+    "owner": "fb9e3c8c86c4b5c822fe9c86216ac44efcf2dac8ddcc6427ba40bdd6476bb40b",
+    "neighbour": "ed7f472fb8cca494bf9eb557ae80678918535dabb5827d72f7d6f51fb470c029",
+    "points": "04201e31d89243d70d21d15fc325371acd41e1f46c1ffe6c9f63a9a4563629fa",
+    "cellZones": "394b07f64529e36a78f932505bb7e0b1d8c1148afd8f6080182b80e4595e1f63",
+    "faces": "ed6c97de558cddd2c11d61a04330c9359d29645768b12e06fe7d6796a35aa2cf"
+  },
+  "native_mesh_gate_passed": false,
+  "native_error": null,
+  "topology": {
+    "patches": {
+      "inlet": {
+        "faces": 22308,
+        "start": 6302101,
+        "type": "patch"
+      },
+      "outlet": {
+        "faces": 2372,
+        "start": 6324409,
+        "type": "patch"
+      },
+      "rotor": {
+        "faces": 299048,
+        "start": 6326781,
+        "type": "wall"
+      },
+      "stator": {
+        "faces": 121288,
+        "start": 6625829,
+        "type": "wall"
+      }
+    },
+    "boundary_topology": {
+      "surface_components": 3,
+      "component_patch_sets": [
+        [
+          "inlet",
+          "outlet",
+          "rotor",
+          "stator"
+        ],
+        [
+          "rotor"
+        ],
+        [
+          "rotor"
+        ]
+      ],
+      "component_invariants": [
+        {
+          "patches": [
+            "inlet",
+            "outlet",
+            "rotor",
+            "stator"
+          ],
+          "euler_characteristic": 2
+        },
+        {
+          "patches": [
+            "rotor"
+          ],
+          "euler_characteristic": 0
+        },
+        {
+          "patches": [
+            "rotor"
+          ],
+          "euler_characteristic": 0
+        }
+      ],
+      "face_count": 445016,
+      "unique_edges": 892476,
+      "unique_vertices": 447462,
+      "euler_characteristic": 2
+    },
+    "surface_components_and_patch_provenance_preserved": true,
+    "global_and_component_euler_preserved": true,
+    "rotor_zone_cells": 1775143,
+    "rotor_owner_cells_all_in_zone": true,
+    "ports_outside_zone": true,
+    "mesh_sha256": {
+      "constant/polyMesh/cellLevel": "7aac1c6697a604aeb4208def3ddbdb76ab03bd9bf16dfda6989a898aa48a50e6",
+      "constant/polyMesh/owner": "fb9e3c8c86c4b5c822fe9c86216ac44efcf2dac8ddcc6427ba40bdd6476bb40b",
+      "constant/polyMesh/level0Edge": "d9a911c40a8b887e30f4c30031c0bb65d9e5011a18ccdbabb2d618c77f054ae7",
+      "constant/polyMesh/boundary": "74bcb55e115e30191efca1f5b3546d31d72e098b13939aa4f77eeed571b8dee2",
+      "constant/polyMesh/faceZones": "06073d721171d2b0bfcfa686c20e74f0efd0f16fb6ddb255b4a5f69ed076624e",
+      "constant/polyMesh/surfaceIndex": "9433c18bc631d697f61b3078657d204dbc3ecfccae344852c107d06bf6c64777",
+      "constant/polyMesh/pointZones": "889e1254b5a76f99c3da684298c1d0b398a30939332e88e2f60a2b1197f4d394",
+      "constant/polyMesh/pointLevel": "bc613c29010a18e1849f8b0e85c162323f2bf7b9a7aef551d03eec8a5d15332b",
+      "constant/polyMesh/neighbour": "ed7f472fb8cca494bf9eb557ae80678918535dabb5827d72f7d6f51fb470c029",
+      "constant/polyMesh/points": "04201e31d89243d70d21d15fc325371acd41e1f46c1ffe6c9f63a9a4563629fa",
+      "constant/polyMesh/cellZones": "394b07f64529e36a78f932505bb7e0b1d8c1148afd8f6080182b80e4595e1f63",
+      "constant/polyMesh/faces": "ed6c97de558cddd2c11d61a04330c9359d29645768b12e06fe7d6796a35aa2cf"
+    }
+  },
+  "rotating_cells": 1775143,
+  "internal_frame_interface_faces": 12416,
+  "gross_geometric_frame_flux_m3_s": 0.0002066670079646952,
+  "net_outward_geometric_frame_flux_m3_s": 2.634272465960874e-19,
+  "max_normal_frame_speed_m_s": 4.111922306012331,
+  "worst_faces": [
+    {
+      "face": 1472146,
+      "normal_frame_speed_m_s": 4.111922306012331,
+      "centre_m": [
+        -0.023439681258011404,
+        0.021774269165820828,
+        -0.0035625
+      ],
+      "area_m2": 9.816491409164857e-08
+    },
+    {
+      "face": 1472138,
+      "normal_frame_speed_m_s": 4.111922306012268,
+      "centre_m": [
+        -0.023439681258011397,
+        0.021774269165820828,
+        -0.0036875
+      ],
+      "area_m2": 9.816491409164924e-08
+    },
+    {
+      "face": 1473406,
+      "normal_frame_speed_m_s": 4.11192230601197,
+      "centre_m": [
+        0.0311270323198949,
+        0.007392246893807358,
+        -0.0035625
+      ],
+      "area_m2": 9.816491409164894e-08
+    },
+    {
+      "face": 1473398,
+      "normal_frame_speed_m_s": 4.111922306011967,
+      "centre_m": [
+        0.0311270323198949,
+        0.007392246893807357,
+        -0.0036875
+      ],
+      "area_m2": 9.816491409164964e-08
+    },
+    {
+      "face": 124301,
+      "normal_frame_speed_m_s": 4.1119223060115235,
+      "centre_m": [
+        -0.023966910635420918,
+        0.021192561189637617,
+        -0.0036875
+      ],
+      "area_m2": 9.81649140916489e-08
+    },
+    {
+      "face": 1472159,
+      "normal_frame_speed_m_s": 4.111922306011509,
+      "centre_m": [
+        -0.023966910635420918,
+        0.02119256118963762,
+        -0.0035625000000000006
+      ],
+      "area_m2": 9.816491409164923e-08
+    },
+    {
+      "face": 124641,
+      "normal_frame_speed_m_s": 4.111922306011508,
+      "centre_m": [
+        0.02764085675479337,
+        -0.016109639755245306,
+        -0.0036874999999999994
+      ],
+      "area_m2": 9.816491409164883e-08
+    },
+    {
+      "face": 1471739,
+      "normal_frame_speed_m_s": 4.1119223060114845,
+      "centre_m": [
+        0.01610963975524531,
+        0.02764085675479337,
+        -0.0035624999999999997
+      ],
+      "area_m2": 9.816491409164899e-08
+    },
+    {
+      "face": 1473179,
+      "normal_frame_speed_m_s": 4.111922306011484,
+      "centre_m": [
+        0.027640856754793372,
+        -0.016109639755245306,
+        -0.0035625000000000006
+      ],
+      "area_m2": 9.816491409164985e-08
+    },
+    {
+      "face": 124161,
+      "normal_frame_speed_m_s": 4.111922306011474,
+      "centre_m": [
+        0.016109639755245306,
+        0.027640856754793372,
+        -0.0036874999999999994
+      ],
+      "area_m2": 9.816491409164966e-08
+    },
+    {
+      "face": 1472588,
+      "normal_frame_speed_m_s": 4.11192230601142,
+      "centre_m": [
+        -0.023966910635420918,
+        -0.021192561189637606,
+        -0.0036875
+      ],
+      "area_m2": 9.81649140916489e-08
+    },
+    {
+      "face": 1473269,
+      "normal_frame_speed_m_s": 4.111922306011371,
+      "centre_m": [
+        0.0311270323198949,
+        -0.007392246893807361,
+        -0.0035625000000000006
+      ],
+      "area_m2": 9.816491409164862e-08
+    },
+    {
+      "face": 124671,
+      "normal_frame_speed_m_s": 4.111922306011369,
+      "centre_m": [
+        0.0311270323198949,
+        -0.007392246893807362,
+        -0.0036875
+      ],
+      "area_m2": 9.816491409164826e-08
+    },
+    {
+      "face": 1472596,
+      "normal_frame_speed_m_s": 4.111922306011337,
+      "centre_m": [
+        -0.023966910635420918,
+        -0.0211925611896376,
+        -0.0035624999999999997
+      ],
+      "area_m2": 9.816491409164923e-08
+    },
+    {
+      "face": 1471799,
+      "normal_frame_speed_m_s": 4.11192230601124,
+      "centre_m": [
+        0.010407633899448987,
+        0.030252580250250172,
+        -0.0035624999999999993
+      ],
+      "area_m2": 9.816491409164907e-08
+    },
+    {
+      "face": 124181,
+      "normal_frame_speed_m_s": 4.1119223060111825,
+      "centre_m": [
+        0.010407633899448984,
+        0.030252580250250172,
+        -0.0036875
+      ],
+      "area_m2": 9.816491409165043e-08
+    },
+    {
+      "face": 1472573,
+      "normal_frame_speed_m_s": 4.111922306011143,
+      "centre_m": [
+        -0.02497791113255085,
+        -0.019991033255866954,
+        -0.0036875
+      ],
+      "area_m2": 9.81649140916489e-08
+    },
+    {
+      "face": 1473053,
+      "normal_frame_speed_m_s": 4.111922306011143,
+      "centre_m": [
+        0.019991033255866954,
+        -0.02497791113255085,
+        -0.0036875
+      ],
+      "area_m2": 9.81649140916489e-08
+    },
+    {
+      "face": 1472581,
+      "normal_frame_speed_m_s": 4.11192230601113,
+      "centre_m": [
+        -0.02497791113255085,
+        -0.01999103325586695,
+        -0.0035625000000000006
+      ],
+      "area_m2": 9.816491409164923e-08
+    },
+    {
+      "face": 1473061,
+      "normal_frame_speed_m_s": 4.11192230601113,
+      "centre_m": [
+        0.01999103325586695,
+        -0.02497791113255085,
+        -0.0035625000000000006
+      ],
+      "area_m2": 9.816491409164923e-08
+    }
+  ],
+  "performance_ranking_authorized": false,
+  "solver_admission_granted": false,
+  "interpretation": "Geometric rotation through the frame interface, not physical leakage or performance. Native mesh admission and stationary equilibrium remain separate requirements."
+}
