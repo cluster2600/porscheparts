@@ -37,7 +37,7 @@ if (args.Length == 5)
         int[] lower = { (int)MathF.Floor(box.vecMin.X/pitch), (int)MathF.Floor(box.vecMin.Y/pitch), (int)MathF.Floor(box.vecMin.Z/pitch) };
         int[] upper = { (int)MathF.Ceiling(box.vecMax.X/pitch), (int)MathF.Ceiling(box.vecMax.Y/pitch), (int)MathF.Ceiling(box.vecMax.Z/pitch) };
         long count = (long)(upper[0]-lower[0]) * (upper[1]-lower[1]) * (upper[2]-lower[2]);
-        if (count <= 0 || count > 2000000) throw new ArgumentException("FEA grid exceeds bounded pilot resources");
+        if (count <= 0 || count > 4000000) throw new ArgumentException("FEA grid exceeds bounded pilot resources");
         var cells = new List<int[]>();
         for (int i=lower[0]; i<upper[0]; i++)
             for (int j=lower[1]; j<upper[1]; j++)
@@ -48,7 +48,7 @@ if (args.Length == 5)
         string name = "fea-grid-" + pitch.ToString(CultureInfo.InvariantCulture) + ".json";
         File.WriteAllText(Path.Combine(output,name), JsonSerializer.Serialize(new {
             schema = "935-signed-distance-hexa-grid-v1", input_sha256 = args[1], field_voxel_mm = voxel,
-            pitch_mm = pitch, cells = cells, classification = "cell_centres_inside_hypothesis_SDF", scale_verified = false
+            pitch_mm = pitch, candidate_grid_cells = count, cells = cells, classification = "cell_centres_inside_hypothesis_SDF", scale_verified = false
         }));
     }
 }

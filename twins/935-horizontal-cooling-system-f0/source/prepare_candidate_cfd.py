@@ -103,8 +103,8 @@ snGradSchemes {default limited 0.5;}
 wallDist {method meshWave;}
 ''')
         (target / 'system/fvSolution').write_text(header('fvSolution') + '''
-solvers {p {solver GAMG;smoother GaussSeidel;tolerance 1e-8;relTol 0.05;} "(U|k|omega)" {solver smoothSolver;smoother symGaussSeidel;tolerance 1e-8;relTol 0.05;}}
-SIMPLE {nNonOrthogonalCorrectors 1;consistent yes;}
+solvers {p {solver GAMG;smoother GaussSeidel;tolerance 1e-9;relTol 0;} "(U|k|omega)" {solver smoothSolver;smoother symGaussSeidel;tolerance 1e-9;relTol 0;}}
+SIMPLE {nNonOrthogonalCorrectors 2;consistent yes;}
 relaxationFactors {fields {p 0.3;} equations {U 0.5;k 0.5;omega 0.5;}}
 ''')
         functions = f'''velocitySquared {{type magSqr;libs ("libfieldFunctionObjects.so");field U;result UMagSqr;executeControl timeStep;executeInterval 1;writeControl timeStep;writeInterval 10;}}
@@ -118,6 +118,8 @@ forces {{type forces;libs ("libforces.so");patches (rotor);rho rhoInf;rhoInf {rh
             f'application simpleFoam;startFrom startTime;startTime 0;stopAt endTime;endTime {config["iterations"]};deltaT 1;writeControl timeStep;writeInterval 100;purgeWrite 2;writeFormat ascii;writePrecision 12;runTimeModifiable false;functions {{{functions}}}\n')
         save(target / 'case-metadata.json', {'classification':'conditional_square_duct_not_935_installation',
             'rotor_sha256':sha(source), 'source_length_unit':'mm', 'solver_length_unit':'m',
+            'prepared_input_sha256':{str(p.relative_to(target)):sha(p) for p in
+                sorted(target.rglob('*')) if p.is_file() and p != target / 'case-metadata.json'},
             'rotor_rpm':rpm, 'specified_volume_flow_m3_s':q, 'density_kg_m3':rho,
             'pressure_report_basis':'area_average_total_pressure_rho_times_p_plus_half_magSqrU',
             'total_pressure_curve_validated':False, 'numerical_acceptance':False})
