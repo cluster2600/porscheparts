@@ -12,7 +12,7 @@ Le contrôle indépendant relit les champs natifs `p`, `T` et `U` au temps 20 µ
 
 ## Changement testé
 
-Le préparateur `../../cfd/conformal_mrf_witness.py` réutilise le témoin de gaz immobile. Il crée une couronne facettisée de rayons 10, 20 et 40 mm, étendue de −40 à 40 mm suivant z, avec 32 secteurs et 64 blocs. La zone tournante comprend 3 200 cellules, séparées des cellules fixes par 640 faces radiales. Les faces ne sont pas subdivisées angulairement : leur normale est radiale au centre de face, donc tangente à la vitesse de rotation. Toutes les parois physiques restent fixes ; il n'y a ni rotor, ni écart de pression, ni apport thermique.
+Le préparateur `../../cfd/conformal_mrf_witness.py` réutilise le témoin de gaz immobile. Il crée une couronne facettisée de rayons 10, 20 et 40 mm, étendue de −40 à 40 mm suivant z, avec 32 secteurs et 64 blocs. La zone tournante comprend 3 200 cellules, séparées des cellules fixes par 640 faces radiales. Les faces ne sont pas subdivisées angulairement : leur normale est radiale au centre de face, donc la vitesse de rotation est tangente aux faces. Toutes les parois physiques restent fixes ; il n'y a ni rotor, ni écart de pression, ni apport thermique.
 
 L'audit indépendant de la géométrie native trouve une composante normale maximale de rotation de 4,755e-9 m/s et une somme absolue des flux géométriques de 3,373e-11 m³/s. Ce résidu provient de la précision des coordonnées natives ; ce n'est ni un zéro exact ni un débit physique à travers les parois. Les comptages et le parallélogramme de chaque face sont vérifiés.
 
