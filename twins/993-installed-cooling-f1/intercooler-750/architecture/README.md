@@ -86,8 +86,9 @@ conception, pas une incertitude statistique ou une qualification climatique.
 [Vue GLB en mètres](derived/layout.glb), [source éditable](source/picogk/Program.cs),
 [reçu de contrôle](derived/review.json). Les STL compressées de revue sont en mm.
 Les grands blocs gris sont des **enveloppes de cœur**, sans ailettes résolues.
-Les éprouvettes fines restent celles de l'étude précédente ; leurs dimensions
-locales ne prouvent pas la fabrication de ce nouveau cœur complet.
+Les éprouvettes fines restent celles de l'étude précédente, avec un pas froid
+de 2 mm contre 3 mm ici. Il faudra régénérer et imprimer les éprouvettes de ce
+nouveau pas avant de calibrer ce candidat ; aucun essai précédent ne le qualifie.
 
 Deux admissions latérales de diamètre intérieur 80 mm alimentent chacune un
 demi-cœur. Un collecteur central commun reçoit les deux flux et possède un
