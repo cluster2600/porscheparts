@@ -100,6 +100,22 @@ Le cas reste un conduit carré hypothétique : débit imposé de 0,6 m³/s,
 pour pression/vitesse/turbulence et deux corrections non orthogonales.
 La campagne stationnaire est prolongée à 1 800 itérations.
 
+Elle termine sans erreur de solveur ou de qualité de maillage. Sur les
+100 dernières itérations, le déséquilibre volumique maximal est
+**2,11 × 10⁻⁸** en relatif, soit **0,00000211 %**. La résolution stricte
+améliore ce bilan, mais le pilote reste **refusé pour la performance** :
+
+| Grandeur | Moyenne finale conditionnelle | Étendue relative finale | Écart entre moyennes des deux fenêtres |
+|---|---:|---:|---:|
+| Pression totale surfacique | 137,94 Pa | 10,93 % | 3,03 % |
+| Couple résistant axial | 2,548 N·m | 2,71 % | 0,35 % |
+
+Ces moyennes décrivent un calcul instable dans le conduit hypothétique.
+Elles ne définissent ni le débit du moteur, ni une courbe acceptée, ni un
+rendement. Les deux autres maillages restent préparés sans calcul exécuté.
+Le passage à un calcul transitoire doit être étudié après correction de
+la géométrie ; prolonger ce seul calcul stationnaire ne suffit pas.
+
 `assess_candidate_cfd.py` contrôle les empreintes des entrées préparées,
 le maillage, la fin du solveur et les historiques synchronisés. Il calcule
 la pression totale moyenne surfacique en Pa depuis la pression cinématique
@@ -127,10 +143,22 @@ chronologie est enregistrée dans les métadonnées.
 
 Scripts d'analyse, paramètres, résultats bruts, cartes et rejets sont conservés
 dans le [dépôt privé](https://github.com/cluster2600/porscheparts-935-private).
+La [campagne de raffinement archivée](https://github.com/cluster2600/porscheparts-935-private/releases/tag/convergence-20261012)
+sépare les résultats géométriques/mécaniques de la sortie CFD finale.
 Les scans originaux, transformations et anciennes preuves sont préservés.
 Le Git public reçoit les contrôles numériques et leur documentation.
 Les contrôles 935 passent : **78 tests**, dont **18 tests du candidat et de
 l'analyse CFD**. `make check` est exécuté par la CI Linux avant fusion.
+
+La [CI du code et du premier rapport](https://github.com/cluster2600/porscheparts/actions/runs/38272868407)
+termine `make check` avec **3 776 tests principaux et 205 tests optionnels
+ignorés**. Ces tests logiciels ne constituent pas des essais du ventilateur.
+La comparaison exploratoire de dix cartes matière conserve les masses de
+la grille et applique les lois de linéarité aux contraintes/déplacements,
+à Poisson commun. Cette loi est confrontée aux trois calculs directs
+AlSi10Mg/WE43/Ti64 de la livraison précédente. Seul AlSi10Mg est directement
+résolu sur la grille finale de cette campagne ; les autres cartes ne
+constituent pas neuf simulations supplémentaires ou des matières qualifiées.
 
 La priorité géométrique est le recalage du dos et des pales, puis leurs
 raccordements mesurés. Un calcul transitoire doit être évalué si le pilote
