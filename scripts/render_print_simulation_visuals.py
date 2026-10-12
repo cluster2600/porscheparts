@@ -289,7 +289,7 @@ def render_video(folder: Path, part_mesh, supports, z, layers, unsupported, supp
         plt.close(fig)
         frames_mp4.append(rgb)
         if frame % 2 == 0:
-            frames_gif.append(rgb[::2, ::2])
+            frames_gif.append(rgb)
     p.close()
     hold = [frames_mp4[-1]] * 36
     imageio.mimwrite(folder / "build.mp4", frames_mp4 + hold, fps=12, codec="libx264",
