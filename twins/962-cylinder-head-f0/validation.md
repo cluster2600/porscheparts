@@ -143,6 +143,71 @@ dans `work/962-head/make-check-boundaries.log` ; les cibles après `test`
 ne sont pas considérées exécutées. La CI de cette nouvelle révision reste
 à observer.
 
+## Raffinement et vues de la culasse
+
+La CI du diagnostic précédent, commit
+`427ec23e67bbed6b2a01483276a4188eb44a5102`, a réussi :
+[run 687](https://github.com/cluster2600/porscheparts/actions/runs/38295662492).
+Cette preuve ne valide pas les ajouts suivants.
+
+Trois nouveaux exports PicoGK à 0,5 mm sont réellement calculés avec les
+binaires vérifiés, sous le verrou commun ; seule la résolution des copies
+d'entrées change. L'inspecteur original est réutilisé et le nouveau rapport
+enregistre séparément les empreintes des véritables entrées exécutées.
+Le [rapport](derived/refinement-report.json) conserve toutes les valeurs
+de qualification à `false`. Les écarts eau/métal proches des surfaces restent
+observés. Trois vues 1600 × 1200 sont inspectées visuellement et liées au
+rapport par empreinte ; les images publiées sont identiques aux vues inspectées.
+Les exports natifs ne sont pas recalculés lors des reprises d'inspection/rendu.
+
+## Enveloppe ajoutée après revue visuelle
+
+Le premier rendu extérieur présentait une charpente, sans enveloppe complète.
+La variante [enclosed-solid.json](source/enclosed-solid.json) et le nouveau
+générateur ajoutent un corps continu arrondi, puis soustraient eau et gaz.
+Ce sont des hypothèses d'enveloppe, sans interfaces de moteur mesurées.
+Le projet séparé compile contre les bibliothèques binaires PicoGK vérifiées,
+car l'ancien chemin local de sources n'est plus disponible. Compilation
+réussie sans avertissement ; export natif à 0,5 mm réellement exécuté sous
+le verrou commun en 89,8 s. Le corps massif n'est pas optimisé sous charges.
+
+Le [rapport](derived/enclosed-report.json) conserve binaires et sources,
+fermeture/orientation/connexité du solide, sept sondes de matière et six
+ouvertures. Les trois nouvelles vues sont inspectées visuellement. La coupe
+virtuelle est fermée et vérifiée sur un cube analytique. Les vingt-cinq tests
+ciblés passent avec VTK ; les liens Markdown passent sur 882 fichiers.
+Les preuves initiales et les anciennes vues de routage restent intactes.
+L'interface eau/métal et toutes les qualifications physiques restent ouvertes.
+
+## Architecture photographique, Qwen, LatticeLibrary et VDB
+
+Les vues de restauration de 962 C ont été inspectées ; leur licence et leur
+absence d'échelle sont enregistrées, sans publier leurs pixels. La
+[galerie](GALLERY.md) utilise les vrais STL d'une nouvelle architecture
+ShapeKernel, avec quatre guides inclinés et deux puits d'allumage candidats.
+Deux réponses Qwen complètes invalides ont été rejetées ; seule une expression
+elliptique vérifiée a été intégrée. Les prompts, sorties et empreintes sont
+conservés. Compilation des projets architecture et nervures : zéro erreur,
+35 avertissements d'obsolescence dans ShapeKernel.
+
+Les trois domaines de base sont fermés/orientés et ont une seule composante
+après retrait documenté des triangles dégénérés. Le solide à nervures est
+également d'une seule composante ; 56 coins internes de cellules sont dans
+le corps de base. Les deux lofts de ports passent un contrôle indépendant
+d'aire elliptique à 2 %. La séparation eau/sec minimale échantillonnée est
+4,401 mm sur 805 530 points : aucune épaisseur physique n'est qualifiée.
+Les [rapports](derived/architecture-report.json) et
+[preuves VDB/nervures](derived/bionic-report.json) lient les sources aux sorties.
+
+LatticeLibrary construit 36 cellules BCC externes, sans treillis dans l'eau.
+Cinq champs VDB sont relus par nom. Trois domaines passent l'égalité native ;
+1 153 186 valeurs scalaires et autant de vecteurs passent les comparaisons
+exactes bidirectionnelles. Ce sont des champs géométriques, sans solveur.
+Les 32 tests ciblés passent avec VTK ; les nouvelles images sont inspectées.
+Les classifications aux frontières métal/eau restent non résolues : à
+0,25 mm, 1 609 sondes ne sont attribuées à aucun des deux domaines. Le lissage
+ne produit donc pas une interface conforme prête pour CHT.
+
 ## Vérifications physiques absentes
 
 Pas de scan/CT d'un donneur 962, de métrologie, de CFD/CHT, de calcul mécanique,
