@@ -6,6 +6,13 @@ Cette nouvelle étape utilise le scan du carter avec cylindres. Les anciens
 géométries hypothétiques et leurs résultats ne qualifient pas ce moteur.
 La variante exacte, la cylindrée et le régime cible restent à déterminer.
 
+La [culasse bionique et sa distribution paramétrique](head-bionic/README.md)
+poursuivent cette conception : conduits gaz/huile, sièges et guides, réseau
+BCC, branches de Bézier et cames à rouleaux. Les recherches bornées choisissent
+l'implantation des soupapes, les lois de levée et le volume de matière.
+L'aperçu publié montre uniquement ces nouvelles géométries paramétriques ;
+les scans et les maillages privés du moteur restent exclus de Git.
+
 L'[assemblage moderne quatre soupapes et biturbo](assembly/README.md) reprend
 nos culasses air + huile et nos turbos bioniques : 119 définitions géométriques
 et 1 129 occurrences de conception. Les formes manquantes sont paramétriques,
