@@ -60,6 +60,8 @@ The frozen verification panel uses [English labels from the same renderer](../..
 
 The [V5 CAD and mechanical dossier](../../parts/993-eng-carrier-0001/source/bionic-20261011/README.md) is a separate provisional geometry, not a revision of R9. Its [flat metal-build correction](../../parts/993-eng-carrier-0001/source/bionic-20261011/flat-review.md) retains Ti-6Al-4V Grade 5 as a proposal and the calculated 1.185 kg mass. The required orientation has zero out-of-plane tilt and needs a square bed of at least 471.129 mm with the assumed margins. V5 remains rejected under its structural load assumptions; neither geometry is released for manufacture.
 
+The [virtual assembly trial](../../parts/993-eng-carrier-0001/source/bionic-20261011/virtual-fit-review.md) finds incompatible hole patterns between V5 and the separate F0 concept bracket. This is a failure of that hypothetical CAD pair; real Porsche fit remains unknown.
+
 ## Interfaces and open work
 
 The original carrier references **993 115 021 53 / 54** are distinct from the separate central console **993 115 103 52 (10352)** and the Turbo engine-mount stack. PET item 17 identifies the carrier; item 18 identifies the separate bracket. A visual match to the blade alone cannot establish the complete assembly or its load path. OEM fit remains unknown.

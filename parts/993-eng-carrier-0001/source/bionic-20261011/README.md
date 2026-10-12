@@ -1,5 +1,10 @@
 # Provisional bionic 993 Turbo carrier — CAD and structural study
 
+**Virtual assembly: [carrier/bracket trial](virtual-fit-review.md).**
+The retained V5 carrier and separate F0 concept bracket have incompatible hole
+patterns (96 × 46 versus 100 × 40 mm). Actual mesh interference and a bolt-length
+budget are recorded; neither study establishes the real Porsche mounting geometry.
+
 **Current manufacturing direction: [flat titanium build](flat-review.md).**
 The owner requires a flat metal build. The original XY plane remains horizontal;
 only a 45-degree rotation within the bed plane is used. The earlier tilted
