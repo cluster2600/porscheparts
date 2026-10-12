@@ -327,13 +327,24 @@ def native(case, stage, output):
 
 def run(case_path, stage, output):
     case = json.loads(Path(case_path).read_text())
-    if stage not in ('preflight', 'surfaces', 'picogk', 'cad', 'review', 'hub', 'cad-hub', 'drive', 'cad-drive', 'support', 'cad-support'):
-        raise ValueError('Implemented stages: preflight, surfaces, picogk, cad, review, hub, cad-hub, drive, cad-drive, support, cad-support. Complete-reference solver inputs remain unresolved.')
+    if stage not in ('preflight', 'surfaces', 'picogk', 'cad', 'review', 'hub', 'cad-hub', 'drive', 'cad-drive', 'support', 'cad-support', 'candidate', 'cfd-candidate', 'fea-candidate', 'twin-candidate'):
+        raise ValueError('Implemented stages: preflight, surfaces, picogk, cad, review, hub, cad-hub, drive, cad-drive, support, cad-support, candidate, cfd-candidate, fea-candidate, twin-candidate. Complete-reference solver inputs remain unresolved.')
     output = fresh(output)
     os.umask(0o077)
     try:
         if stage == 'preflight':
             receipt = preflight(output)
+        elif stage in ('candidate', 'cfd-candidate', 'fea-candidate', 'twin-candidate'):
+            if stage == 'candidate':
+                from complete_candidate_rotor import build as operation
+            elif stage == 'cfd-candidate':
+                from prepare_candidate_cfd import prepare as operation
+            elif stage == 'fea-candidate':
+                from prepare_candidate_fea import prepare as operation
+            else:
+                from build_candidate_twin import build as operation
+            artifacts = operation(case_path, output / 'artifacts')
+            receipt = json.loads((artifacts / 'receipt.json').read_text())
         elif stage == 'surfaces':
             receipt = surfaces(case, output)
         elif stage == 'hub':

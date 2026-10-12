@@ -105,14 +105,18 @@ flowchart LR
 
 *`evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-screen.png` — a screening output, not a validation.*
 
+![thermal-study](evidence/lpbf-thermal-20261012/flat/thermal-study.png)
+
+*`evidence/lpbf-thermal-20261012/flat/thermal-study.png` — a screening output, not a validation.*
+
 ## What's in this folder
 
 | folder | what it holds | files |
 |---|---|---|
-| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/cooling_impeller_we43_f1-picogk.json`](derived/cooling_impeller_we43_f1-picogk.json), [`derived/cooling_impeller_we43_f1-picogk.stl`](derived/cooling_impeller_we43_f1-picogk.stl), [`derived/cooling_impeller_we43_f1.step`](derived/cooling_impeller_we43_f1.step), [`derived/cooling_impeller_we43_f1.stl`](derived/cooling_impeller_we43_f1.stl) |
-| `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json), [`evidence/fan-curves.png`](evidence/fan-curves.png), [`evidence/flat-fan-sizing-f2.json`](evidence/flat-fan-sizing-f2.json), [`evidence/flat-fan-sizing-f2.png`](evidence/flat-fan-sizing-f2.png), [`evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-layer-metrics.csv`](evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-layer-metrics.csv), [`evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-manifest.json`](evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-manifest.json), [`evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-report.json`](evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-report.json), [`evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-screen.png`](evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-screen.png) |
+| `derived/` | CAD exports generated from the source (STEP for CAD tools, STL for meshing) | [`derived/cooling_impeller_f1-polymer-mockup-roll-y-45.stl`](derived/cooling_impeller_f1-polymer-mockup-roll-y-45.stl), [`derived/cooling_impeller_we43_f1-picogk.json`](derived/cooling_impeller_we43_f1-picogk.json), [`derived/cooling_impeller_we43_f1-picogk.stl`](derived/cooling_impeller_we43_f1-picogk.stl), [`derived/cooling_impeller_we43_f1.step`](derived/cooling_impeller_we43_f1.step), [`derived/cooling_impeller_we43_f1.stl`](derived/cooling_impeller_we43_f1.stl) |
+| `evidence/` | screens, reports and manifests — **pinned by SHA-256, never edited by hand** | [`evidence/engineering-screen.json`](evidence/engineering-screen.json), [`evidence/fan-curves.png`](evidence/fan-curves.png), [`evidence/flat-fan-sizing-f2.json`](evidence/flat-fan-sizing-f2.json), [`evidence/flat-fan-sizing-f2.png`](evidence/flat-fan-sizing-f2.png), [`evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-layer-metrics.csv`](evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-layer-metrics.csv), [`evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-manifest.json`](evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-manifest.json), [`evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-report.json`](evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-report.json), [`evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-screen.png`](evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-screen.png), … (35 files) |
 | `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/print-simulation/build-plate.png`](media/print-simulation/build-plate.png), [`media/print-simulation/build.gif`](media/print-simulation/build.gif), [`media/print-simulation/build.mp4`](media/print-simulation/build.mp4), [`media/print-simulation/layers.png`](media/print-simulation/layers.png), [`media/print-simulation/visuals.json`](media/print-simulation/visuals.json), [`media/views.png`](media/views.png) |
-| `source/` | parametric source — the editable master that generates the geometry | [`source/bionic.json`](source/bionic.json), [`source/cooling_impeller_f1.py`](source/cooling_impeller_f1.py), [`source/flat_fan_sizing_f2.py`](source/flat_fan_sizing_f2.py), [`source/picogk.json`](source/picogk.json) |
+| `source/` | parametric source — the editable master that generates the geometry | [`source/bionic.json`](source/bionic.json), [`source/cooling_impeller_f1.py`](source/cooling_impeller_f1.py), [`source/flat_fan_sizing_f2.py`](source/flat_fan_sizing_f2.py), [`source/lpbf-thermal-study.json`](source/lpbf-thermal-study.json), [`source/picogk.json`](source/picogk.json), [`source/polymer-mockup.json`](source/polymer-mockup.json), [`source/render_lpbf_thermal.py`](source/render_lpbf_thermal.py), [`source/run_flat_lpbf_thermal.py`](source/run_flat_lpbf_thermal.py), … (9 files) |
 
 ## Read more
 
@@ -122,6 +126,7 @@ flowchart LR
 - **Design dossier**: [993_FAN_STATOR_ALSI10MG_F1](../../docs/993/993_FAN_STATOR_ALSI10MG_F1.md)
 - **Design dossier**: [993_FLAT_FAN_SIZING_F2](../../docs/993/993_FLAT_FAN_SIZING_F2.md)
 - **Design dossier**: [993_K16_ROD_IMPROVEMENT_PROGRAMME](../../docs/993/993_K16_ROD_IMPROVEMENT_PROGRAMME.md)
+- **Design dossier**: [impeller-we43-thermal-20261012](../../docs/993/impeller-we43-thermal-20261012.md)
 - **Safety rules**: [SAFETY.md](../../SAFETY.md)
 
 ---

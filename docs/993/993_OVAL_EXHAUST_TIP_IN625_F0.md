@@ -147,21 +147,23 @@ The F0 STEP is authorized neither for manufacturing nor for installation.
 
 <!-- print-screen:begin -->
 
-## LPBF print simulation
+## LPBF geometric screening — process physics not calculated
 
-The STEP was tessellated, then sliced over its full height at `40 µm`, on the EOS M 290 route of the candidate material. Orientation chosen by the automatic rule: `roll_y_25`.
+The STEP was tessellated, then sliced over its full height at `40 µm`, within the candidate EOS M 290 envelope. Candidate material/process reference: `EOS NickelAlloy IN625 / M290 40 um`. Orientation chosen by a geometric rule, not thermal optimisation: `roll_y_25`.
+
+The 45° overhang rule only flags geometric regions. The vertical columns are a **hypothetical support envelope**, not supplier-designed metal supports. Their volume is not a metal consumption estimate. Metal LPBF support design must address heat transfer, residual stress, recoater interaction and removal; none is validated here.
 
 | quantity | value |
 |---|---:|
 | layers | 3,702 |
 | build height | 148.06 mm |
-| layers with an unsupported region | 784 |
-| support proxy | 7,183.26 mm³ |
+| layers flagged by the geometric overhang rule | 784 |
+| hypothetical support-envelope volume | 7,183.26 mm³ |
 | local thickness p01 | 0.674 mm |
 | trapped powder at 1.00 mm | 0.00 mm³ |
 
-![LPBF print simulation](../../parts/993-exh-oval-tip-in625-f0-0001/evidence/lpbf-f0/993-exh-oval-tip-in625-f0-0001-lpbf-geometry-screen.png)
+![LPBF geometric screening with hypothetical supports; no process physics](../../parts/993-exh-oval-tip-in625-f0-0001/evidence/lpbf-f0/993-exh-oval-tip-in625-f0-0001-lpbf-geometry-screen.png)
 
-This screening is neither an EOSPRINT project, nor a distortion calculation, nor a recoater check. **Printing remains prohibited.**
+**Process physics has not been calculated:** no melt-pool, thermal, residual-stress, distortion or recoater simulation. No qualified support design or machine build file is provided. **Printing remains prohibited.**
 
 <!-- print-screen:end -->
