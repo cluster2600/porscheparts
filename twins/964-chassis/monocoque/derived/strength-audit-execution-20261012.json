@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-12",
+  "base_revision": "a37cfaae75b445603bdabb6cefdd48fceb237287",
+  "solver": "CalculiX 2.21, SPOOLES, local Linux ARM64 Docker",
+  "image_id": "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+  "image_registry_publication_verified": false,
+  "generation_packages": {"numpy": "2.3.5", "scipy": "1.18.1", "matplotlib": "3.11.2", "shapely": "2.2.0"},
+  "container_limits": {"cpus": 4, "memory_gib": 10, "memory_swap_gib": 10, "pids": 256, "network": "none", "read_only_root": true, "cap_drop": "ALL", "no_new_privileges": true, "tmpfs_mib": 512},
+  "paid_compute_used": false,
+  "rejected_parallel_run": {
+    "threads": 4,
+    "local_path": "work/964-strength-20261012",
+    "numerical_checks_passed": false,
+    "K_positive_Nm_per_deg": 44630.10900402326,
+    "K_negative_Nm_per_deg": 46411.28251760897,
+    "double_load_outcome": "fatal error in SubMtx_denseInfo; bad type, must be SPOOLES_REAL or SPOOLES_COMPLEX",
+    "same_physics_input_as_serial": true,
+    "comparison_scope": "Each input deck before the first *NODE FILE card, byte for byte; output-only cards differ.",
+    "files_sha256": {
+      "torsion_+1/shell.inp": "6a4731e90cc0e529d6f642f2c34764f24edb88936acc45f3370dcccd72ae0f63",
+      "torsion_+1/solver.log": "9cfdba78b44ec1bf8ee31a3a6719cdc9f4ea27ce4d45dfaf65664d8c1fdb1fce",
+      "torsion_-1/shell.inp": "65a3e857cc47023d159056c1482fa669a376ae4c9ed5f96699bb61d019526d27",
+      "torsion_-1/solver.log": "ec95e1cca7559af2bb6e891cd18721794585ca9bf5a842f2f035a802f6cd87a5",
+      "torsion_+2/shell.inp": "b71ed329c02604f0406ccc475d7751e2aad95442260b6e477f56f2b0a01dfd09",
+      "torsion_+2/solver.log": "972c06ccbec333ce8ce03af5eff51df86409e5e3b96ed2d2b6bc962675ddc1b0"
+    }
+  },
+  "accepted_numerical_run": {
+    "threads": 1,
+    "local_path": "work/964-strength-serial-20261012",
+    "receipt": "strength-audit-20261012.json",
+    "numerical_checks_passed": true,
+    "product_strength_validated": false
+  },
+  "historical_reports_rewritten": false,
+  "physical_validation": false,
+  "classification": "prohibited_pending_engineering"
+}
