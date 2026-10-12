@@ -6,6 +6,11 @@ Cette nouvelle étape utilise le scan du carter avec cylindres. Les anciens
 géométries hypothétiques et leurs résultats ne qualifient pas ce moteur.
 La variante exacte, la cylindrée et le régime cible restent à déterminer.
 
+Les [carters longitudinaux et conduits abaissés](compact-packaging/README.md)
+appliquent les références vidéo aux bancs 4V : plaques à six ouvertures,
+toits arrondis et nervures ramifiées natives. Deux épaisseurs de paroi sont
+comparées aux mêmes interfaces candidates ; la qualification physique reste ouverte.
+
 La [reconstruction mécanique détaillée](mechanical-detail/README.md) remplace
 les boîtes d’accessoires par des corps à conduits, ailettes et fixations ; elle
 ajoute un carter démontable et des supports ramifiés dans PicoGK, ainsi que
