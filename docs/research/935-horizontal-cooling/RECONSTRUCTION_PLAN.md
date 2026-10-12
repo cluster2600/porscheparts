@@ -5,6 +5,11 @@
 
 ## Ordre d'implémentation retenu et état actuel
 
+La [continuation du 12 octobre](CONTINUATION_20261012.md) ajoute un candidat
+de rotor fermé sous hypothèses, les interfaces de pilotes CFD/structure et
+un USD géométrique. Elle reste séparée de la référence historique calibrée
+et ne clôt pas la fabrication ou la validation de l'ensemble au banc.
+
 Environnement Linux/Python/.NET qualifié → surfaces depuis les scans avec
 SciPy/PicoGK → assemblage et interfaces BRep/FreeCAD → OpenFOAM →
 Gmsh/CalculiX → optimisation SciPy puis coordination OpenMDAO → modèle
