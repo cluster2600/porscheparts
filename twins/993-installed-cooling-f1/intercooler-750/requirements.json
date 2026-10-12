@@ -1,0 +1,166 @@
+{
+  "revision": "750ch-intercooler-sizing-20261012",
+  "confirmed": {
+    "engine_power_metric_hp": 750,
+    "power_basis": "crankshaft_assumed_not_confirmed",
+    "exchanger": "horizontal_air_to_air_under_rear_wing"
+  },
+  "unknown": {
+    "boost_bar_gauge": null,
+    "compressor_map": null,
+    "fuel_and_bsfc": null,
+    "available_envelope_mm": null,
+    "measured_cooling_flow_kg_s": null,
+    "measured_core_loss_map": null,
+    "engine_inlet_temperature_limit_c": null,
+    "hot_material_allowables": null
+  },
+  "assumed": {
+    "ambient_c": 35,
+    "compressor_inlet_c": 40,
+    "charge_outlet_target_c": 60,
+    "ambient_pressure_pa": 101325,
+    "charge_pressure_loss_budget_pa": 10000,
+    "ambient_pressure_loss_budget_pa": 500,
+    "cooling_mass_flow_kg_s": 2.5,
+    "hot_cp_j_kg_k": 1010,
+    "cold_cp_j_kg_k": 1007,
+    "gas_constant_j_kg_k": 287.05,
+    "gamma": 1.4,
+    "metal_k_w_m_k": 120,
+    "metal_density_kg_m3": 2680,
+    "header_loss_k": 2.0,
+    "ambient_entry_exit_k": 1.5,
+    "heat_transfer_multiplier_stress": 0.75,
+    "friction_multiplier_stress": 2.0,
+    "max_pressure_fraction": 0.1,
+    "max_mach": 0.3,
+    "wall_mm": 0.8,
+    "coupon_voxel_mm": 0.075,
+    "scenarios": [
+      {
+        "id": "low",
+        "charge_mass_flow_kg_s": 0.53,
+        "compressor_pressure_ratio": 2.2,
+        "compressor_efficiency": 0.75
+      },
+      {
+        "id": "nominal",
+        "charge_mass_flow_kg_s": 0.56,
+        "compressor_pressure_ratio": 2.6,
+        "compressor_efficiency": 0.7
+      },
+      {
+        "id": "high",
+        "charge_mass_flow_kg_s": 0.62,
+        "compressor_pressure_ratio": 3.0,
+        "compressor_efficiency": 0.65
+      }
+    ]
+  },
+  "search": {
+    "face_mm": [
+      [
+        500,
+        400
+      ],
+      [
+        620,
+        450
+      ],
+      [
+        700,
+        500
+      ]
+    ],
+    "air_depth_mm": [
+      60,
+      90,
+      120,
+      150
+    ],
+    "hot_gap_mm": [
+      2,
+      3,
+      4
+    ],
+    "cold_gap_mm": [
+      3,
+      4,
+      6
+    ],
+    "hot_pitch_mm": [
+      2,
+      3,
+      4
+    ],
+    "cold_pitch_mm": [
+      2,
+      3,
+      4,
+      6
+    ],
+    "fin_mm": [
+      0.4,
+      0.6,
+      0.8
+    ]
+  },
+  "acceptance": {
+    "thermal_calibrated": false,
+    "pressure_qualified": false,
+    "manufacturing_authorized": false,
+    "installed_fit_verified": false
+  },
+  "offset_search": {
+    "face_mm": [
+      [
+        620,
+        450
+      ],
+      [
+        700,
+        500
+      ],
+      [
+        800,
+        550
+      ]
+    ],
+    "air_depth_mm": [
+      90,
+      120,
+      150,
+      180,
+      240
+    ],
+    "hot_gap_mm": [
+      3,
+      4,
+      6
+    ],
+    "cold_gap_mm": [
+      6,
+      8
+    ],
+    "hot_pitch_mm": [
+      3,
+      4,
+      5
+    ],
+    "cold_pitch_mm": [
+      3,
+      4,
+      5
+    ],
+    "fin_mm": [
+      0.3,
+      0.4
+    ],
+    "strip_length_mm": [
+      10,
+      15,
+      20
+    ]
+  }
+}
