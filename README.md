@@ -55,9 +55,13 @@ The repository has withdrawn several, listed
 | 2026-10-11 | **917 quatre soupapes et biturbo sous hypothèses** : 119 définitions, 1 129 occurrences, culasses air + huile et deux turbos bioniques à 39 composants. Formes ramifiées ; incompatibilité d'enveloppe culasse/alésage détectée, interfaces et fabrication non qualifiées. [Assemblage de conception](models/917-engine-reconstruction/assembly/README.md) |
 | 2026-10-11 | **Cotes FIA du 917 appliquées à PicoGK** : calotte à 43 mm de l'axe, référence de maneton 52 mm et comparaison avec les masses documentées. L'implantation provisoire du cylindre est rejetée ; variante du scan et fabrication non qualifiées. [Réconciliation FIA](models/917-engine-reconstruction/fia/README.md) |
 | 2026-10-10 | **Reprise du moteur 917 avec PicoGK** : coques scannées, 48 instances paramétriques sous hypothèses et 18 scénarios de charges. Piston creux après rejet du piston plein ; interfaces et matériaux non qualifiés. [Reconstruction](models/917-engine-reconstruction/README.md) |
-| 2026-10-10 | **What each monocoque member is worth**: the cabin is carried by the door rings, the windscreen frame, the quarter-window rings and the sills; the engine-lid ring is worth nothing in torsion; the weak members removed together cost 12-15% of the cabin stiffness for 8-12 kg. [Members](twins/964-chassis/monocoque/README.md#what-each-member-is-worth) |
-| 2026-10-09 | **Two monocoque architectures in torsion**: on the same mesh and load, closed sections formed by the skin are 1.4 to 1.9 times stiffer per kilogram than tubes tangent to it, at all three meshes. A ranking of two hypotheses. [Comparison](twins/964-chassis/monocoque/README.md#two-architectures-one-load-case) |
-| 2026-10-09 | **Torsion of the monocoque architecture**: K about 29,500 N·m/deg in steel and 22,300 in CFRP (75 kg), stable within 7% over three meshes, more than five times the open shell; carbon gives ×1.15 to ×1.28 per kilogram. A model value, not a car's. [Torsion](twins/964-chassis/monocoque/README.md#torsion-of-the-monocoque-architecture) |
+| 2026-10-12 | **Monocoque in bending**: between the axles, the skin boxes stiffen the shell about four times (five to fifteen in torsion). Same cabin members, other weights: the sills lead (28-37% of the cabin's bending stiffness), the door rings follow; the members torsion would prune cost about 1%. Torsion decides the architecture. [Bending](twins/964-chassis/monocoque/README.md#bending-the-same-members-other-weights) |
+| 2026-10-12 | **Tubes meshed as shells**: bonded along their line of tangency, the tubes leave the skin between them open, and the model keeps softening with the mesh; the skin-formed boxes, stable, lead by ×1.18 per kg on the finest mesh. The direction holds: form the closed sections with the skin. [Comparison](twins/964-chassis/monocoque/README.md#two-architectures-one-load-case) |
+| 2026-10-11 | **Tubes against skin boxes: the joint decides**: tied to the skin over a bonded strip, the tube model converges, but its K follows the strip width (23,700 to 57,500 N·m/deg, the skin boxes 35,500 in between). The ranking is not settled with beam tubes; the tube-to-skin joint is the design point. [Comparison](twins/964-chassis/monocoque/README.md#two-architectures-one-load-case) |
+| 2026-10-11 | **Monocoque torsion corrected, and where the carbon pays**: the bulkheads were missing from every torsion model since 2026-10-08; with them the open shell is 3,209 N·m/deg and the CFRP monocoque about 35,500. The tube-versus-box ranking is not settled. A ply on the skin of a closed section returns 4-7 times more than on the floor or bulkheads; an F1 at the same mass gains 6%. [Corrections](twins/964-chassis/monocoque/README.md#corrections-2026-10-11) |
+| 2026-10-10 | **What each monocoque member is worth**: the cabin is carried by the door rings, the windscreen frame, the quarter-window rings and the sills; the engine-lid ring is worth nothing in torsion; the weak members removed together cost 12-15% of the cabin stiffness for 8-12 kg. [Members](twins/964-chassis/monocoque/README.md#what-each-member-is-worth) *Values superseded on 2026-10-11.* |
+| 2026-10-09 | **Two monocoque architectures in torsion**: on the same mesh and load, closed sections formed by the skin are 1.4 to 1.9 times stiffer per kilogram than tubes tangent to it, at all three meshes. A ranking of two hypotheses. [Comparison](twins/964-chassis/monocoque/README.md#two-architectures-one-load-case) *Values superseded on 2026-10-11.* |
+| 2026-10-09 | **Torsion of the monocoque architecture**: K about 29,500 N·m/deg in steel and 22,300 in CFRP (75 kg), stable within 7% over three meshes, more than five times the open shell; carbon gives ×1.15 to ×1.28 per kilogram. A model value, not a car's. [Torsion](twins/964-chassis/monocoque/README.md#torsion-of-the-monocoque-architecture) *Values superseded on 2026-10-11.* |
 | 2026-10-08 | **A ZESAD-type carbon monocoque in PicoGK**, inside the traced shell: closed sections around every aperture, boxed sills, tunnel and rails, sandwich floor and bulkheads; about 95 kg from assumed layups. A design envelope, not a part. [Monocoque](twins/964-chassis/monocoque/picogk/README.md) |
 | 2026-10-08 | **A 911-shaped monocoque shell**: outline traced from the workshop manual's plate 50-05a, sections modelled, a first whole-body torsion run; it replaces the box cell in the banner. [Shell](twins/964-chassis/monocoque/README.md) |
 | 2026-10-08 | **964 datum chain closed** from the workshop manual's own plates (50-02, 50-03, 50-05a): every suspension and power-unit mount of the monocoque interface contract now has a fore-aft position, checked against the underside scan. [Details](twins/964-chassis/README.md#the-longitudinal-chain-closed-from-plate-50-05a) |
@@ -174,7 +178,7 @@ between them (tumblehome, barrel sides, 880 mm beltline) are modelled.
 
 A first torsion run on it, uniform 0.8 mm steel with every aperture open,
 puts the load around the windscreen frame, the A-pillars, the door corners and
-the C-pillars: the open shell a monocoque has to close. Its K, 2,261 N·m/deg,
+the C-pillars: the open shell a monocoque has to close. Its K, 3,209 N·m/deg,
 belongs to that surface model, not to a 964.
 
 Inside that shell, [a ZESAD-type carbon monocoque](twins/964-chassis/monocoque/picogk/README.md)
@@ -182,8 +186,8 @@ is generated in voxels with PicoGK. Each aperture gets a closed section and
 the sills, tunnel and rails are boxes, so the closures the box-cell study
 ranked first are there by construction. Member sizes and layups are
 hypotheses. In torsion, on the same mesh and load as the open shell, the
-architecture is more than five times stiffer. Its K is stable within 7%
-across meshes, while the open shell's is not
+architecture is more than five times stiffer. Its K is stable within 2%
+on the finer meshes, while the open shell's is not
 ([torsion](twins/964-chassis/monocoque/README.md#torsion-of-the-monocoque-architecture)).
 
 ![A ZESAD-type monocoque generated with PicoGK](twins/964-chassis/monocoque/evidence/zesad-monocoque-turntable.gif)
@@ -297,11 +301,11 @@ engineering** stays so until an engineering review lifts it.
 </tr>
 </table>
 
-*Concept models rendered by `scripts/render_part_previews.py`: 34 of 41 are PicoGK voxel models ([`parts/picogk-catalog/`](parts/picogk-catalog/README.md)), the others concept CAD blocks. **None of these is the original part, and none is validated**: 41 of 41 records are at `concept`, and 0 of 41 have measured geometry. 🖨️ Printable as designed, fit unchecked: Aluminum switch trim ring. 🧩 Printable as an engraved display mock-up, never for use: 993/993 Turbo connecting rod, K16 compressor wheel, K16 turbine wheel. Click a part to see it next to the original.*
+*Concept models: 36 of 43 are PicoGK voxel models ([`parts/picogk-catalog/`](parts/picogk-catalog/README.md)), the others concept CAD blocks. **None of these is the original part, and none is validated**: 43 of 43 records are at `concept`, and 0 of 43 have measured geometry. 🖨️ Printable as designed, fit unchecked: Aluminum switch trim ring. 🧩 Printable as an engraved display mock-up, never for use: 993/993 Turbo connecting rod, K16 compressor wheel, K16 turbine wheel. Click a part to see it next to the original.*
 
 ```mermaid
-pie showData title 41 part records by safety class
-    "prohibited pending engineering" : 23
+pie showData title 43 part records by safety class
+    "prohibited pending engineering" : 25
     "safety-critical" : 1
     "functional" : 12
     "non-critical" : 5
@@ -309,7 +313,7 @@ pie showData title 41 part records by safety class
 
 ```mermaid
 flowchart LR
-    L0["concept<br/><b>41</b> records"]
+    L0["concept<br/><b>43</b> records"]
     L1["dimensionally_reviewed<br/><b>0</b> records"]
     L2["prototype_fitted<br/><b>0</b> records"]
     L3["functionally_tested<br/><b>0</b> records"]
@@ -332,6 +336,7 @@ flowchart LR
 
 | part | candidate material | process | status |
 |---|---|---|---|
+| [Console centrale moteur Turbo bionique — étud…](docs/pieces/993-eng-bracket-0001.md) | undetermined | undecided | **prohibited pending engineering** |
 | [Turbo engine carrier (Motortraeger)](docs/pieces/993-eng-carrier-0001.md) | unknown | undecided | **safety-critical** |
 | [993 timing chain case and its lids](docs/pieces/993-eng-chain-case-0001.md) | unidentified | undecided | **prohibited pending engineering** |
 | [Left chain case lid 964 105 107 01](docs/pieces/993-eng-chain-case-lid-ti-f0-0001.md) | Ti-6Al-4V Grade 5, plate — deliberate c… | CNC | functional |
@@ -350,6 +355,7 @@ flowchart LR
 | [K16 compressor wheel](docs/pieces/993-eng-k16-compressor-wheel-al2139-f1-0001.md) | EOS Aluminium Al2139 AM, M290 60 µm, he… | LPBF | **prohibited pending engineering** |
 | [993 K16 compressor wheel](docs/pieces/993-eng-k16-compressor-wheel-alsi10mg-f0-0001.md) | EOS AlSi10Mg, screening | LPBF | **prohibited pending engineering** |
 | [K16 turbine wheel](docs/pieces/993-eng-k16-turbine-wheel-in718-f0-0001.md) | EOS NickelAlloy IN718 API, M290 40 µm… | undecided | **prohibited pending engineering** |
+| [Support moteur Turbo bionique — cage et envel…](docs/pieces/993-eng-mounting-0001.md) | undetermined | undecided | **prohibited pending engineering** |
 | [Engine oil filter console with integrated gal…](docs/pieces/993-eng-oil-filter-console-alsi10mg-f0-0001.md) | EOS Aluminium AlSi10Mg T6 for comparison | undecided | **prohibited pending engineering** |
 | [M64/60 piston with cooling gallery](docs/pieces/993-eng-piston-cp1-gallery-f0-0001.md) | Constellium Aheadd CP1, Velo3D Sapphire… | LPBF | **prohibited pending engineering** |
 | [993 three-runner intake manifold](docs/pieces/993-eng-three-runner-intake-alsi10mg-f0-0001.md) | generic AlSi10Mg for screening | undecided | functional |
@@ -409,7 +415,7 @@ flowchart LR
 |---|---|---|---|
 | [993 center cap](docs/pieces/993-whl-center-cap-alsi10mg-f0-0001.md) | AlSi10Mg for screening | undecided | functional |
 
-*41 records, 23 of them prohibited pending engineering, none released. Each link opens the part's description page in [`docs/pieces/`](docs/pieces/), generated from its `catalog/parts/*.json` record; the design dossiers are in [`docs/993/`](docs/993/). Table generated by `scripts/render_parts_table.py`, checked by `make check`.*
+*43 records, 25 of them prohibited pending engineering, none released. Each link opens the part's description page in [`docs/pieces/`](docs/pieces/), generated from its `catalog/parts/*.json` record; the design dossiers are in [`docs/993/`](docs/993/). Table generated by `scripts/render_parts_table.py`, checked by `make check`.*
 
 <!-- parts:end -->
 

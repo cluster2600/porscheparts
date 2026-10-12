@@ -1,0 +1,1010 @@
+{
+  "schema_version": 1,
+  "id": "bionic-turbo-f1-local-verification",
+  "created_at_utc": "2026-10-10T23:26:15.427702+00:00",
+  "status": "implementation_complete_performance_validation_blocked_by_mesh_quality",
+  "objective": "Comparer le débit et la puissance maximale, puis construire un jumeau calibré.",
+  "result": "Volute F1 produite et contrôlée. La surface CFD est préparée ; le maillage volumique conserve les invariants topologiques mais échoue au contrôle de qualité. Aucun solveur d’écoulement exécuté.",
+  "performance_validated": false,
+  "performance_ranking_authorized": false,
+  "maximum_mass_flow_kg_s": null,
+  "mass_flow_gain_fraction": null,
+  "compressor_shaft_power_w": null,
+  "maximum_engine_power_w": null,
+  "calibrated_digital_twin": false,
+  "engineering_validated": false,
+  "manufacturing_authorized": false,
+  "geometry": {
+    "evidence": {
+      "path": "twins/bionic-turbo-f1/geometry-evidence.json",
+      "sha256": "ee6e4a7f3a1e5cdef17b5373a14e3b086ce80d65288d1aa8ff05805979530fb0",
+      "bytes": 26169
+    },
+    "concept_components": 39,
+    "unchanged_components_from_f0": 38,
+    "production_bom_complete": false,
+    "selected_configuration": {
+      "path": "twins/bionic-turbo-f1/candidate.json",
+      "sha256": "82085e4bd1b0a47b2088e47c7bdb64462c31992b5cf3db5f7b4b5e72d9f69f37",
+      "bytes": 474
+    },
+    "selected_change": "Volute à section nominale affine, chambre conique et roue inchangées.",
+    "radial_separation_lower_bound_mm": 1.7858112087169218,
+    "radial_separation_scope": "Triangles finaux roue/carter pour toute rotation autour de Z ; ni jeu normal, ni jeu thermique, ni interface mesurée.",
+    "combined_shroud_excluded": {
+      "path": "twins/bionic-turbo-f1/evidence/combined-003-clearance-upper-bound.json",
+      "sha256": "3b24abe04a575711e1939883d80a0b74bc7ce6fcbf2d59775c82fdf67d7cc7cc",
+      "bytes": 896
+    },
+    "f0_preservation": {
+      "path": "twins/bionic-turbo-f1/evidence/f0-source-preservation.json",
+      "sha256": "b7d17cba44e93bac7f0bac2b94fe3bf5a55e9cc05a1511fddbec586f2099fd06",
+      "bytes": 2446
+    },
+    "f0_pinned_sources_rechecked": 20
+  },
+  "current_cfd_preparation": {
+    "paired_domain": {
+      "path": "twins/bionic-turbo-f1/evidence/fluid-006-paired-evidence.json",
+      "sha256": "aba7b6a4896873b73b1fbc61de754e4360363f9687b222a538ca1e1bb9565d75",
+      "bytes": 4119
+    },
+    "baseline_surface": {
+      "path": "twins/bionic-turbo-f1/evidence/baseline-surface-009.json",
+      "sha256": "4cb2081b412bc2ed60d7ff085d7951cc347b12f2f3daf963e6b2a6473b48a4f8",
+      "bytes": 4373
+    },
+    "candidate_surface": {
+      "path": "twins/bionic-turbo-f1/evidence/candidate-volute-surface-009.json",
+      "sha256": "85edc1b69b4d038cf9a15dd6cd1c2df7a7ac472ebac8033edf8faf8b420611b0",
+      "bytes": 4373
+    },
+    "status": "surface_prepared_pending_acceptable_volume_mesh",
+    "source_voxel_mm": 0.5,
+    "fluid_voxel_mm": 0.25,
+    "fluid_regularization_mm": 0.125,
+    "grid_phase_mm": [
+      0.173,
+      0.119,
+      0.071
+    ],
+    "fixed_seal_faces_reclassified_from_rotor": 513,
+    "label_witnesses": {
+      "path": "twins/bionic-turbo-f1/evidence/rotor-label-witnesses-009.json",
+      "sha256": "5d35e7a6cb51caa5cd37227851964049a70a3483deda9e9f5eace27fb6a22124",
+      "bytes": 6871
+    },
+    "superseded_receipts": {
+      "fluid-004": "Fusion artificielle et passages parasites détectés ; admission révoquée.",
+      "fluid-005": "Facettes dégénérées et petits composants parasites ; rejeté.",
+      "surface-008": "Faces de fermeture fixe étiquetées rotor et tolérance de planéité des ports trop large ; admission révoquée."
+    },
+    "old_receipts_preserved_unchanged": true,
+    "real_39_component_assembly_fluid_domain": false
+  },
+  "current_volume_mesh": {
+    "attempt": "cfd-baseline-medium-gap-002",
+    "summary": {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/summary-medium-gap-002.json",
+      "sha256": "3e63d16901fb3e5998d109cb27ee1553924fdb4bfcf5751c3318b35b647c9eae",
+      "bytes": 4385
+    },
+    "status": "rejected",
+    "cells": 2114975,
+    "elapsed_seconds": 527.6565070420038,
+    "smallest_nominal_cell_mm": 0.15,
+    "gap_refinement": {
+      "gapLevel": [
+        4,
+        1,
+        3
+      ],
+      "gapMode": "mixed",
+      "gapSelf": true
+    },
+    "quality": {
+      "passed": false,
+      "concave_cells": 1167,
+      "concave_faces": 1667,
+      "warped_faces": 1
+    },
+    "topology_invariants": {
+      "passed": true,
+      "closed_shells": 3,
+      "component_euler_characteristics": [
+        2,
+        0,
+        0
+      ],
+      "scope": "Nombre de coquilles, incidence des arêtes, patchsets et Euler ; ne prouve pas la résolution ni les dimensions de tous les jeux."
+    },
+    "concave_cell_localization": {
+      "refinement_transition_only": 588,
+      "transition_and_wall": 568,
+      "wall_only": 11,
+      "neither": 0,
+      "level_1": 693,
+      "level_2": 474,
+      "level_3": 0,
+      "scope": "Localisation du set natif ; la concavité n’a pas été recalculée par ce diagnostic."
+    },
+    "flow_solver_executed": false,
+    "candidate_volume_mesh_executed_on_current_surface": false,
+    "limits": {
+      "cpus": 4,
+      "memory_gb": 12,
+      "timeout_seconds": 600
+    },
+    "failed_due_to_timeout": false
+  },
+  "verification": {
+    "targeted_tests": {
+      "status": "passed",
+      "tests": 45,
+      "skipped": 0,
+      "log": {
+        "path": "twins/bionic-turbo-f1/evidence/tests-targeted-45.log",
+        "sha256": "63651777ed954277ca29fc034a9b5d97d420fd483e24d43b07611266f79bd681",
+        "bytes": 7611
+      }
+    },
+    "cad_self_test": {
+      "status": "passed",
+      "receipt": {
+        "path": "twins/bionic-turbo-f1/evidence/native-self-tests.json",
+        "sha256": "d883812a04e80042d08d0d1dc2b7226f8ec70525c86ab99ed5bc5162d70cdd37",
+        "bytes": 722
+      },
+      "record_index": 0,
+      "native_geometry_executed_by_self_test": false
+    },
+    "current_cfd_geometry_self_test": {
+      "status": "passed",
+      "receipt": {
+        "path": "twins/bionic-turbo-f1/evidence/fluid-006-self-test.json",
+        "sha256": "6b5c9d4c70e9c1c9f8b17614aeea48b04efa74f11f24c46cf17648413e6ab17c",
+        "bytes": 781
+      },
+      "native_geometry_executed_by_self_test": false
+    },
+    "native_geometry_runs": "Les géométries et inspections sont réellement exécutées, séparément des autocontrôles C# ; voir les reçus de génération et geometry-evidence.json.",
+    "repository_make_check": {
+      "status": "failed_existing_unrelated_checks",
+      "tests_run": 3654,
+      "failures": 2,
+      "errors": 2,
+      "skipped": 162,
+      "log": {
+        "path": "work/bionic-f1-20261011/make-check-final.log",
+        "sha256": "d64dac393b1714d52607a37a47833e1ec60fcef18d158fd6687e3409800bd07a",
+        "bytes": 723892
+      },
+      "failures_summary": [
+        "rtree absent dans test_organic_fan",
+        "networkx absent dans test_picogk_exact_zero_countertrial",
+        "Comparaison flottante exacte dans test_993_cooling_impeller_we43_f1",
+        "Comparaison flottante exacte dans test_993_fan_stator_alsi10mg_f1"
+      ],
+      "affected_files_modified": false,
+      "scope": "Dernier make check, avant les dernières corrections ciblées. Les 45 tests ciblés ont ensuite passé avec le code courant. Make s’arrête aux tests ; les cibles suivantes ne sont pas toutes exécutées."
+    },
+    "documentation_links": {
+      "status": "failed_four_existing_f0_links",
+      "exit_code": 1,
+      "markdown_files": 830,
+      "broken_links": 4,
+      "broken_links_in_f1": 0,
+      "log": {
+        "path": "work/bionic-f1-20261011/docs-links-check-final-003.log",
+        "sha256": "99e00d9b0adb4166e21b9959672968f2e9ad69688054a95db410be464cb56d36",
+        "bytes": 496
+      },
+      "historical_f0_readme_modified": false
+    },
+    "diff_whitespace": {
+      "current_sources_docs_configs_tests_status": "passed",
+      "full_staged_diff_status": "failed_verbatim_evidence_whitespace_only",
+      "excluded_from_scoped_check": "twins/bionic-turbo-f1/evidence/**",
+      "reason": "Espaces finaux et lignes vides de journaux natifs, plus ligne finale du diagnostic archivé ; conservation octet pour octet des preuves épinglées.",
+      "raw_evidence_preserved_byte_for_byte": true,
+      "full_log": {
+        "path": "work/bionic-f1-20261011/full-diff-check-final.log",
+        "sha256": "8cf6c63ea2ec408d4c4a635a06a0ed44467142ce6406da5389ac6130e4fcda66",
+        "bytes": 2984
+      },
+      "scoped_log": {
+        "path": "work/bionic-f1-20261011/source-doc-diff-check-final.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    "independent_review": "Relecture bornée des preuves géométriques, labels 009, documentation et topologie finale ; aucune qualification physique.",
+    "ci_executed": false
+  },
+  "remaining_limits": [
+    "Aucun débit, couple ou rendement convergé ; aucune comparaison A/B aérodynamique ni carte de débit maximal.",
+    "Aucune couche prismatique de paroi ni étude de convergence de maillage, de traitement de paroi ou de fermeture idéale.",
+    "Proximité des surfaces évaluée aux centroïdes, pas sur toutes les facettes ; auto-intersection et incertitude géométrique non qualifiées.",
+    "Fermeture arrière, passages arbre/roue/écrou, conditions de service et interfaces sont hypothétiques, sans métrologie indépendante.",
+    "La puissance moteur maximale exige cartes turbine/compresseur, wastegate, pertes et appariement moteur ; les données restent inconnues.",
+    "Pas de validation thermique, structurelle, rotordynamique, survitesse, équilibrage, fatigue ou banc physique.",
+    "Les gros maillages et sorties brutes sont conservés localement sous work/ ; seuls les rapports, sources et aperçus sont versionnés."
+  ],
+  "next_step": "Corriger les transitions de raffinement et leur raccord aux parois sans changer les passages ; obtenir ensuite une paire CFD convergée, une étude d’incertitude et une carte compresseur avant le jumeau calibré.",
+  "current_source_files": [
+    {
+      "path": "tests/test_bionic_turbo_f1_cfd.py",
+      "sha256": "f130b176cff0a4579f59a6b7f90034e788bd9b400050eed4c12ae32d547668cf",
+      "bytes": 10556
+    },
+    {
+      "path": "tests/test_bionic_turbo_f1_geometry.py",
+      "sha256": "7d724ec777eca04bdf57d79b19e98757ae11a9bd2a887b84d22fbfea4fee1f4e",
+      "bytes": 6514
+    },
+    {
+      "path": "tests/test_bionic_turbo_f1_surface.py",
+      "sha256": "9931a4f9bc81162692d159c05079ea90bab756c440b6059d5afd07150148b021",
+      "bytes": 7397
+    },
+    {
+      "path": "twins/bionic-turbo-f1/cfd/audit_case.py",
+      "sha256": "8fd5b1330c717ffbf92dee7b65f17410a8b84f96015df602028d179762a7fb49",
+      "bytes": 11137
+    },
+    {
+      "path": "twins/bionic-turbo-f1/cfd/prepare_case.py",
+      "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+      "bytes": 18936
+    },
+    {
+      "path": "twins/bionic-turbo-f1/cfd/run_case.py",
+      "sha256": "14a98eb9e44206b35ecf5fa60caeb933896787958e88b4617542dd839437f16f",
+      "bytes": 10945
+    },
+    {
+      "path": "twins/bionic-turbo-f1/cfd-geometry/CfdGeometry.csproj",
+      "sha256": "e1e0f485324a3353d6ef51809c33477c567ddbd1029a3a988315b5c3c5faf75e",
+      "bytes": 500
+    },
+    {
+      "path": "twins/bionic-turbo-f1/cfd-geometry/Program.cs",
+      "sha256": "15c37dbc8dd653272a8cc108f61b42a039439206dc450f1c0e3d179816b81d80",
+      "bytes": 22483
+    },
+    {
+      "path": "twins/bionic-turbo-f1/compare_geometry.py",
+      "sha256": "33bbe8dbddab8c36f6eada724dce2d304d0d2975a608f517f8a2ced39fac2f57",
+      "bytes": 14567
+    },
+    {
+      "path": "twins/bionic-turbo-f1/prepare_surface.py",
+      "sha256": "af9ac4ebb02fbac1b0fd0b53cc1269b055c2aa7d5a16baed91638c365b18a224",
+      "bytes": 11642
+    },
+    {
+      "path": "twins/bionic-turbo-f1/source/BionicTurboF1.csproj",
+      "sha256": "e1e0f485324a3353d6ef51809c33477c567ddbd1029a3a988315b5c3c5faf75e",
+      "bytes": 500
+    },
+    {
+      "path": "twins/bionic-turbo-f1/source/Program.cs",
+      "sha256": "5bc0a506567963399f4cb3c0c227d44cd87f3a95b9ec1c34f178702aaa0be82f",
+      "bytes": 20306
+    },
+    {
+      "path": "twins/bionic-turbo-f1/source/WheelShroudProfile.cs",
+      "sha256": "5cd985b8e8b409399ef35040f665dd7b087e3f562cd3acdb03d621ff325a2494",
+      "bytes": 2229
+    }
+  ],
+  "configuration_files": [
+    {
+      "path": "twins/bionic-turbo-f1/baseline.json",
+      "sha256": "1a7d430b473746f7ef56e96554acb30692067becd0af118c64e2e65fbbd01011",
+      "bytes": 476
+    },
+    {
+      "path": "twins/bionic-turbo-f1/candidate.json",
+      "sha256": "82085e4bd1b0a47b2088e47c7bdb64462c31992b5cf3db5f7b4b5e72d9f69f37",
+      "bytes": 474
+    },
+    {
+      "path": "twins/bionic-turbo-f1/candidate-shroud.json",
+      "sha256": "b582fe33d65e673a926008e5293bd0a7ec06be7af82e7f7d17002a9c1d4066ec",
+      "bytes": 481
+    },
+    {
+      "path": "twins/bionic-turbo-f1/candidate-combined.json",
+      "sha256": "51859393858d51504f799dfd264744f950147a11dcba5375beb1032506b308d7",
+      "bytes": 479
+    },
+    {
+      "path": "twins/bionic-turbo-f1/component-contract.json",
+      "sha256": "45684d50c884e70907dee35858b9434844592c24ec18640c6422b2a30b7e118e",
+      "bytes": 12461
+    }
+  ],
+  "evidence_inventory": [
+    {
+      "path": "twins/bionic-turbo-f1/evidence/assembly-volute-004-generation.json",
+      "sha256": "1e3562de0fad71e699c5e738ec607e2f665e34cefeb25a071cbacb2a096ab956",
+      "bytes": 17489
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/assembly-volute-004-gltf-validation.json",
+      "sha256": "b4b68cbb96c6fceaa4350cf7a35bd5a63599bef805a4385b0f951c04d89cdafb",
+      "bytes": 412
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/assembly-volute-004-inspection.json",
+      "sha256": "d9c02232c5b75009e106d8312867a60b15e4c013980d3b0abd145c1076b42d6d",
+      "bytes": 50529
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/baseline-003-generation.json",
+      "sha256": "d21d731397d25015cef47dfcb9ad51cc0aa5842448e97887af4542884af1c912",
+      "bytes": 7733
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/baseline-003-inspection.json",
+      "sha256": "8d066fa76785a526a7268de77fb0748a247a084c934d10a25d268764dc49b03f",
+      "bytes": 3747
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/baseline-fluid-004-generation.json",
+      "sha256": "e121a582df4ce21031b2c0c611cfe6db1ac9bcf0d4aa3e148db3b6463dae4916",
+      "bytes": 8524
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/baseline-fluid-005-degeneracy.json",
+      "sha256": "0c76c2c793c2d5465dca6c59a9198c5f65c8163963ccb823a54c0e29dae63dee",
+      "bytes": 4415
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/baseline-fluid-005-generation.json",
+      "sha256": "2ac0b205f6a278f79d6f2ab90da751cc192ecd7adb59bd90909112a31c020630",
+      "bytes": 8652
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/baseline-fluid-005-topology.json",
+      "sha256": "6a9c7bd484ae5ac717b6d6c90711e1f10f720a3fed1b9624e7a60e9bd913a5ec",
+      "bytes": 9011
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/baseline-fluid-006-generation.json",
+      "sha256": "4919c5878e8c2f8b622455255647759e7b885714f0c5cfee12a51b7401693d79",
+      "bytes": 8987
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/baseline-fluid-006-topology.json",
+      "sha256": "f6e7d63b5bef06f1ecf759b5e4dc26572d4c174951d91983a155e79e3bcc1832",
+      "bytes": 6228
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/baseline-surface-006.json",
+      "sha256": "c296499d28b6405b40fa603a999019c4bbdf1caca6c900319e1f33c7f79d15c4",
+      "bytes": 4082
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/baseline-surface-007-rejected.json",
+      "sha256": "edd19dac3fe1b48d082f1e9a24d2204972671daacfc369149621661aaeecd553",
+      "bytes": 2790
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/baseline-surface-008.json",
+      "sha256": "5f1d5d4a40532e02607eb681fae00063a3d5b35fd27f3c3367469fd289f36770",
+      "bytes": 4282
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/baseline-surface-009.json",
+      "sha256": "4cb2081b412bc2ed60d7ff085d7951cc347b12f2f3daf963e6b2a6473b48a4f8",
+      "bytes": 4373
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/candidate-combined-003-generation.json",
+      "sha256": "80ae160cd0c04da4f8ddad0ef6964cc17865729cd03306aa30a124aa87fb7c9b",
+      "bytes": 7750
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/candidate-combined-003-inspection.json",
+      "sha256": "64dba88f7d5a8668a60fd8d07ecd4385e5a52e9506032e6f330ec2aaf8ae7cd5",
+      "bytes": 3744
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/candidate-volute-004-generation.json",
+      "sha256": "261f95ad017b43a270693a1a578febb122af8403a70b9745f2f94e5f6d789368",
+      "bytes": 7741
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/candidate-volute-004-inspection.json",
+      "sha256": "e304b19220fff1ab2fa84047c9c25503a80ba6beb60cfcc069d39565ffb6ac90",
+      "bytes": 3745
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/candidate-volute-fluid-004-generation.json",
+      "sha256": "9d410ef0813819769f9f9636aca487246168c516ad7981582047d238a9ad8d59",
+      "bytes": 8520
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/candidate-volute-fluid-006-generation.json",
+      "sha256": "1f6ddb8ae3b2fde2b942d00d6e41b6548b10510ae65a925ef7ba1ae0192e46f2",
+      "bytes": 8981
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/candidate-volute-fluid-006-topology.json",
+      "sha256": "e8bfc7c3184cc1e1819ca5e13e594c6b2407a179557e7fc9fba9ee9c03b182c9",
+      "bytes": 6229
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/candidate-volute-surface-006.json",
+      "sha256": "6b022b534381093527788d912970275af1de91743225d39c9dcb7d6a179dce55",
+      "bytes": 4081
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/candidate-volute-surface-008.json",
+      "sha256": "f0b7c02aca57baf38052721957c295dda3d39a31f374cc8d22f54fba953f166f",
+      "bytes": 4282
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/candidate-volute-surface-009.json",
+      "sha256": "85edc1b69b4d038cf9a15dd6cd1c2df7a7ac472ebac8033edf8faf8b420611b0",
+      "bytes": 4373
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-001/FAILED-mesh.json",
+      "sha256": "ac37223f99671be92deb5f2d04518838bd85e777b2cb3fccd2796bb37266c32d",
+      "bytes": 1242
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-001/boundary-topology.json",
+      "sha256": "b47d96d5f79019abc8ba2a7560c29080e0eb544d753a8684427fc9bde618c932",
+      "bytes": 1147
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-001/case-manifest.json",
+      "sha256": "4e444df270967b488c94bd078859661661d8f4d81c995529d12a9bf6fc69a3c4",
+      "bytes": 4916
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-001/log.checkMesh",
+      "sha256": "b70525b283b402362630f1facd5f6b9808f2d48bca4fc1a0ed89d19afe19319f",
+      "bytes": 5739
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-001/run-config.json",
+      "sha256": "4d2484e57337717ce05b41a267101078d8bb2a30629cdb3bd0b753b7a750b8ec",
+      "bytes": 3445
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-001/run-mesh.json",
+      "sha256": "732a8d84f429d800ffd9d8d00725774f969796216478e31ec156720d3e3ba977",
+      "bytes": 1282
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-001/source-snapshots.json",
+      "sha256": "338ee9b4f49ff49963edf3835ff92a48e06fc66285e9783192712ae9a24e86ed",
+      "bytes": 728
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-002/case-manifest.json",
+      "sha256": "a068a3e29a7d6bc77ae3692c4eed6ba24fa09a620b04b7dc4f6e46806d4e5b66",
+      "bytes": 4916
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-002/run-config.json",
+      "sha256": "4d934e3b05e631a75b8a9e1c683289e2c295cd37034080af4173204a1915e414",
+      "bytes": 3444
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-002/source-snapshots.json",
+      "sha256": "a1a96e85ed8035d3a8c1e7bd08d5be9b4f8eba9025dd61d2951c4ff27961c715",
+      "bytes": 508
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-003/FAILED-mesh.json",
+      "sha256": "585aa59b7d65ceafe9efc780da9e8fbd2e0b5b9ed3f83e00c5363fc2148683a7",
+      "bytes": 1242
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-003/boundary-topology.json",
+      "sha256": "a441b443e7625040d97ee1d495201389be9521eaf9ed4eb69bb6e900fae6e296",
+      "bytes": 804
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-003/case-manifest.json",
+      "sha256": "51cebae94c373c00ba0fb95e5c0e4e3958b5271755b20f33bb22b9d762fef097",
+      "bytes": 4916
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-003/log.checkMesh",
+      "sha256": "dd835b28d81b8b6f2b0bd7cf26a837c7263f3bc22cb4a48ac91173f0c34f5833",
+      "bytes": 6126
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-003/run-config.json",
+      "sha256": "a93b30da7a61f4ed3df83ecb326e2c1c231255a701b423ffa5d9bba9a05fb21b",
+      "bytes": 3444
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-003/run-mesh.json",
+      "sha256": "01eb96b2b007aed367f549e7e5af0d9e207c7fa04acb3aeadab900bdcd174700",
+      "bytes": 1283
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-003/source-snapshots.json",
+      "sha256": "7adfb7c7ef20e82e49b163a3723d66470044bbaef98481fcc523321d0746d17e",
+      "bytes": 728
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-004/FAILED-mesh.json",
+      "sha256": "d86cca6ed20c83e79e70c5b90e004221d87e7638ea58c7a43889289a7635124f",
+      "bytes": 1242
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-004/boundary-topology.json",
+      "sha256": "c6f6f4920f39e72ac11e095f3d9022eaed4e4b9420649f089edccbef7f8d1aac",
+      "bytes": 1147
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-004/case-manifest.json",
+      "sha256": "d5863a064891b458831d19910dab69a5716d2be12788b6c11be794e55dbd2cb6",
+      "bytes": 4916
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-004/independent-boundary-diagnostic.json",
+      "sha256": "cf3ea14fc09ae81162469b39075226ccf39a85bccb138af298bdf60c74b6e86e",
+      "bytes": 4461
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-004/log.checkMesh",
+      "sha256": "503fdabf7461091735229c616e1713630e9c8b707b16b55410151de6d69278d2",
+      "bytes": 5632
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-004/run-config.json",
+      "sha256": "f970a4ab7c98ee0b7a3175e2a370be0ee308e78684453a7bf463e93e4cd00f99",
+      "bytes": 3444
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-004/run-mesh.json",
+      "sha256": "c0f622b8f89516c56f3468728f921e534fdac9709f9adc3fd3dca84d5b0a7ae8",
+      "bytes": 1282
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-coarse-004/source-snapshots.json",
+      "sha256": "2733ccdaf47e949172a9c4ee0d9d2c2444bd706c12b2ec88d1f58a756b6f64dc",
+      "bytes": 728
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-fine-001/FAILED-mesh.json",
+      "sha256": "e257d25e9c1f0823b512e42a4407b405a2a6619d866e59e98395b63d772374fd",
+      "bytes": 1242
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-fine-001/boundary-topology.json",
+      "sha256": "7282090e4f024a76faed8f8b3f1f75061cae4782e967464ad655a77ed3510c86",
+      "bytes": 1347
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-fine-001/case-manifest.json",
+      "sha256": "57a2e39fd9d12a91e41ed7e4eee3186c599aa77648c75f299e2608c2e43c42bc",
+      "bytes": 5281
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-fine-001/independent-boundary-diagnostic.json",
+      "sha256": "ce88a34eea384c0812015f6534b2934f3b7725826f49b4a05e655359dc1957b1",
+      "bytes": 5813
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-fine-001/log.checkMesh",
+      "sha256": "170202635d1bb8beccb7457a97ff0dffdd7153d7c243e41f91eee05696dbf4b5",
+      "bytes": 5482
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-fine-001/run-config.json",
+      "sha256": "a0edfd9aa1b54918a8e0cd3fea45874d677b9c11c58036ab7db4fe8e376460e5",
+      "bytes": 3443
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-fine-001/run-mesh.json",
+      "sha256": "dcd436703e2ad9161b4f2506b302f8d50428b78745e4ad848a265d09b28731d7",
+      "bytes": 1283
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-fine-001/source-snapshots.json",
+      "sha256": "fff38c09f6b41fa5689ecc928f2ab046b989023bc2182f84befa58203515786f",
+      "bytes": 722
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-001/FAILED-mesh.json",
+      "sha256": "8c24945a62002240af75cff3abec7f20d3d5c549e8bddcb8d090bd12d4068251",
+      "bytes": 1242
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-001/boundary-topology.json",
+      "sha256": "68c4d4026ffcc9d16d74008bc77569f71d8b225772023c443fce87b8e4289447",
+      "bytes": 1150
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-001/case-manifest.json",
+      "sha256": "00ab86bd449b526cd8d321f83091fb7331f3f119ce32d906f6fed5eefc400b51",
+      "bytes": 5283
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-001/independent-boundary-diagnostic.json",
+      "sha256": "fabcaa17c2b6d625321497c4352088397b9625729563dc946092dedb0cddc81b",
+      "bytes": 5211
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-001/log.checkMesh",
+      "sha256": "7e7f21b31d0c5bb5789f3eafe21dce8cdbbf30961716a82fd79e8cf49de327e3",
+      "bytes": 5651
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-001/run-config.json",
+      "sha256": "a2f3fefb36a5bb40f8457888f8d221d37073747ae5d7c293f0ed77ff2cc830e8",
+      "bytes": 3444
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-001/run-mesh.json",
+      "sha256": "d9b7ebc44f01b7ac9e1a536098e4655d54cd54708803710e510b40ce17a7fd37",
+      "bytes": 1282
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-001/source-snapshots.json",
+      "sha256": "37db7f28b9f23a5dbc76456ded74ed8a05a5257e6c20505a27a748ea54273852",
+      "bytes": 728
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-gap-001-preparation-rejection/preparation-rejection.json",
+      "sha256": "ed03b5274637d1824f6a44cbb28c6c120babac6b53fb75e93f5678a2ed5a2262",
+      "bytes": 671
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-gap-001-preparation-rejection/source-snapshot.json",
+      "sha256": "9b6787cac7258163cbbf585b8c8883dd5b27cddf0ba9b9806b5b3ab17c2278d4",
+      "bytes": 394
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-gap-002/FAILED-mesh.json",
+      "sha256": "589db5baddbed376ec99a46347bb2a1316d6a40669e2a234dead134ef092b6c7",
+      "bytes": 1242
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-gap-002/case-manifest.json",
+      "sha256": "8430e9b9ff10c2a426585877ab10635a794038052aed125a57f18eff508c7d99",
+      "bytes": 6206
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-gap-002/concave-cell-localization.json",
+      "sha256": "435e7cd756c06db9ffdc0143d16adae17d570bc4ca1b2266ea2c4309742a8b22",
+      "bytes": 1249
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-gap-002/independent-boundary-diagnostic.json",
+      "sha256": "8190ec11eeec4b3d4fd33b07c0865b74fd0658d8eae27574a2f21c093e43a44d",
+      "bytes": 7889
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-gap-002/log.blockMesh",
+      "sha256": "7da856775074dff49ff02523647899c036107d134c7f37fee04983368e875637",
+      "bytes": 2307
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-gap-002/log.checkMesh",
+      "sha256": "da5c0f59e7fb78da79191d2f2b14ff458689161e9d304db873102b145db5f0f8",
+      "bytes": 5909
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-gap-002/log.snappyHexMesh",
+      "sha256": "519a2ec15cbdda205628a83130196e8dc301ec4a9e18de57cff0e128eb04b69f",
+      "bytes": 68220
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-gap-002/log.topoSet",
+      "sha256": "fdfa4aef49b4220d73dd1e8d5273bde58e92db3d13ca6f20d15bd6fe3fc0164f",
+      "bytes": 1612
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-gap-002/run-config.json",
+      "sha256": "7e8c53152b2a003c79b915d03c61e26bcb0ad61ea014f3654a1989492dac888d",
+      "bytes": 3445
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-gap-002/run-mesh.json",
+      "sha256": "5b14a0286fce6fb3e19c7a2fda8df77ac5f5f28448e68289a3c902a5c6d59c48",
+      "bytes": 1282
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-gap-002/source-snapshots.json",
+      "sha256": "1ab10db658ca8c2f5a01ccf8247112f1c82f4b59bcbfcad071817e6fab08a422",
+      "bytes": 850
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-baseline-medium-gap-002/surface-report.json",
+      "sha256": "4cb2081b412bc2ed60d7ff085d7951cc347b12f2f3daf963e6b2a6473b48a4f8",
+      "bytes": 4373
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-candidate-volute-coarse-001/case-manifest.json",
+      "sha256": "00e09d4a967f2539c05be139e441c88e47921d91b0197bc4631f495330c4ff9e",
+      "bytes": 4916
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/cfd-candidate-volute-coarse-001/source-snapshots.json",
+      "sha256": "7ac5be8687e72257627a16dda56bc072bc834a97d5bb48936a7b03f4fe436680",
+      "bytes": 292
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/source-snapshots/0d0759be913c92b68b5860317374a4ae0348951e6b427c897c80eac5194cf9ec.py",
+      "sha256": "0d0759be913c92b68b5860317374a4ae0348951e6b427c897c80eac5194cf9ec",
+      "bytes": 16079
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/source-snapshots/0fbc8b7a86def911c87c1a4f5d75690edecb8f69afa12d262b0a8cd060aca51c.py",
+      "sha256": "0fbc8b7a86def911c87c1a4f5d75690edecb8f69afa12d262b0a8cd060aca51c",
+      "bytes": 8674
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/source-snapshots/14a98eb9e44206b35ecf5fa60caeb933896787958e88b4617542dd839437f16f.py",
+      "sha256": "14a98eb9e44206b35ecf5fa60caeb933896787958e88b4617542dd839437f16f",
+      "bytes": 10945
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/source-snapshots/36de0ccbc1b96021645e2af573e270400e4bdd5a44078ab6dfca2636e588c03d.py",
+      "sha256": "36de0ccbc1b96021645e2af573e270400e4bdd5a44078ab6dfca2636e588c03d",
+      "bytes": 16192
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/source-snapshots/5cc4089bd9133457d6e48ca00984b2c4734ee09678d96fe9df14a297fc9ce296.py",
+      "sha256": "5cc4089bd9133457d6e48ca00984b2c4734ee09678d96fe9df14a297fc9ce296",
+      "bytes": 2691
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/source-snapshots/6c7520ff4972fa4ccc186aa16164046a64296303d587d1c05a3f41d0187e482b.py",
+      "sha256": "6c7520ff4972fa4ccc186aa16164046a64296303d587d1c05a3f41d0187e482b",
+      "bytes": 15974
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/source-snapshots/75b93ff41cecf83b5eb4639394cc635d3441c077d7c0554fa745eb6e7d9e9813.py",
+      "sha256": "75b93ff41cecf83b5eb4639394cc635d3441c077d7c0554fa745eb6e7d9e9813",
+      "bytes": 9778
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/source-snapshots/8836f08ffb90a4d0d2ccedfd96c15d2d710c56505351ec9e771afbc4b0b4d88f.py",
+      "sha256": "8836f08ffb90a4d0d2ccedfd96c15d2d710c56505351ec9e771afbc4b0b4d88f",
+      "bytes": 16137
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/source-snapshots/d01d66efd5fb64a55eb6f8480bf31d9a54282a8ea07fa02ce8d0cac510bcf491.py",
+      "sha256": "d01d66efd5fb64a55eb6f8480bf31d9a54282a8ea07fa02ce8d0cac510bcf491",
+      "bytes": 17770
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/source-snapshots/e9bb2a97349921c222431a67783149565bbfd9ffa461fdef09ac0c4705c6e068.py",
+      "sha256": "e9bb2a97349921c222431a67783149565bbfd9ffa461fdef09ac0c4705c6e068",
+      "bytes": 10552
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/source-snapshots/f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8.py",
+      "sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+      "bytes": 18936
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/source-snapshots/fbd97d74dc3160fb72ba7e5b0c451bc7c42c659b4ece92b4263a3aa6b70b0790.py",
+      "sha256": "fbd97d74dc3160fb72ba7e5b0c451bc7c42c659b4ece92b4263a3aa6b70b0790",
+      "bytes": 12529
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/source-snapshots/index-medium-gap-002.json",
+      "sha256": "92bdc57ed779d943ce7f8643759f8e55dca6e1911446c047dd67813540777f53",
+      "bytes": 4280
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/source-snapshots/index.json",
+      "sha256": "89892c4d205b78b669830458c23991d8e608d9e8a998073e7c4d6e6812bef54a",
+      "bytes": 14799
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/summary-medium-gap-002.json",
+      "sha256": "3e63d16901fb3e5998d109cb27ee1553924fdb4bfcf5751c3318b35b647c9eae",
+      "bytes": 4385
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/cfd/summary.json",
+      "sha256": "c5d023f5d28de0726e214d4a5dc9113274b5c691d25f717e91c194fc04ccd2fa",
+      "bytes": 10052
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/coarse-001-concavity-boundary-diagnostic.json",
+      "sha256": "d4951157186cf6dd4fbe51785bce97f87218040b57d37779d3596cb13865efa5",
+      "bytes": 22868
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/coarse-001-concavity-diagnostic.json",
+      "sha256": "e06f50804f603e46505d4d1497b2baabd53e8d1a608a1e86cae5c6b2733adea7",
+      "bytes": 2994979
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/combined-003-clearance-upper-bound.json",
+      "sha256": "3b24abe04a575711e1939883d80a0b74bc7ce6fcbf2d59775c82fdf67d7cc7cc",
+      "bytes": 896
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/comparison-combined-003-indeterminate.json",
+      "sha256": "b43c04221f216debd2b98191b3f669d2e7bb6059f02b0fbab82b1df052531319",
+      "bytes": 200376
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/comparison-combined-003-visual-provenance.json",
+      "sha256": "626fef53e16e1640bb1b693da7e3492d35a0eeb3ca120833cd366c47e58ae6d9",
+      "bytes": 835
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/comparison-volute-004-visual-provenance.json",
+      "sha256": "4493e678cae829b3e2c5caa8a601f0172c31d7ad7d8cd6625a98066b9f971504",
+      "bytes": 833
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/comparison-volute-004.json",
+      "sha256": "7ced51d463b6dd3f8cbf6fba26f457d09bfba514f45c5e6046f3da58c1fdc98e",
+      "bytes": 200213
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/domain-source-snapshots/0c46288a238e97a02dbc3e10a84838cabb907ec66af4a87944dc441500f6ac9f.cs",
+      "sha256": "0c46288a238e97a02dbc3e10a84838cabb907ec66af4a87944dc441500f6ac9f",
+      "bytes": 20321
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/domain-source-snapshots/2b22b0ca5293b70eba796f84bf2993e045c4aeed2611da4bbeaa9f8affb831e6.py",
+      "sha256": "2b22b0ca5293b70eba796f84bf2993e045c4aeed2611da4bbeaa9f8affb831e6",
+      "bytes": 5404
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/domain-source-snapshots/2f4c0d8fa7d390f09603079cdba7dea6489016e694f9dc48adfcde5586ffb31e.py",
+      "sha256": "2f4c0d8fa7d390f09603079cdba7dea6489016e694f9dc48adfcde5586ffb31e",
+      "bytes": 7065
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/domain-source-snapshots/41ba4389c63dd853deb0d5af82cdf0497c83ecfde626d07d1f1cc63a26adc1b0.cs",
+      "sha256": "41ba4389c63dd853deb0d5af82cdf0497c83ecfde626d07d1f1cc63a26adc1b0",
+      "bytes": 19424
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/domain-source-snapshots/6a4bf9b38c42dd8b54475d3422f962f3db59970f4354e11ab577989d795bd332.py",
+      "sha256": "6a4bf9b38c42dd8b54475d3422f962f3db59970f4354e11ab577989d795bd332",
+      "bytes": 9847
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/domain-source-snapshots/73257067426da1df8d2072e6bec7e3742c5d1bfff08b3eadfab636c2d57833c3.py",
+      "sha256": "73257067426da1df8d2072e6bec7e3742c5d1bfff08b3eadfab636c2d57833c3",
+      "bytes": 10917
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/domain-source-snapshots/95152cf3fbc6be024486af51fc93cc2d0f42e9533e742fddb96e58dff07063bc.cs",
+      "sha256": "95152cf3fbc6be024486af51fc93cc2d0f42e9533e742fddb96e58dff07063bc",
+      "bytes": 17586
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/domain-source-snapshots/9c10529c8c7868629b83c3cd4b40a10ce1f00ff958c6ee3446eeadfe380fd339.cs",
+      "sha256": "9c10529c8c7868629b83c3cd4b40a10ce1f00ff958c6ee3446eeadfe380fd339",
+      "bytes": 19880
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/domain-source-snapshots/b2c7781f0c7f722953820af2e8fa70ed74d99ec453cedfcde9d4b92b382cad49.py",
+      "sha256": "b2c7781f0c7f722953820af2e8fa70ed74d99ec453cedfcde9d4b92b382cad49",
+      "bytes": 5214
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/domain-source-snapshots/bbd1a30adb2d01c34cd17c66cce69d80c5b1919feb318f109ada7d61c7ff0c97.py",
+      "sha256": "bbd1a30adb2d01c34cd17c66cce69d80c5b1919feb318f109ada7d61c7ff0c97",
+      "bytes": 9501
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/domain-source-snapshots/diagnostic-sources.json",
+      "sha256": "ef08377d2322902b3f906bb91e57c957a25b4f69ee9de4858593cdd19a876561",
+      "bytes": 663
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/domain-source-snapshots/e1e0f485324a3353d6ef51809c33477c567ddbd1029a3a988315b5c3c5faf75e.csproj",
+      "sha256": "e1e0f485324a3353d6ef51809c33477c567ddbd1029a3a988315b5c3c5faf75e",
+      "bytes": 500
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/domain-source-snapshots/index-005-and-diagnostic.json",
+      "sha256": "02beebd82140a8b6fa62bf345a9ef45d34ad1b447f31fd42b352c0aa1bc0cb38",
+      "bytes": 741
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/domain-source-snapshots/index-surface-008.json",
+      "sha256": "a1fb13f8a4cb87f3c499b3ad2b69904deab391158099e1a21fc9f8a51e770acc",
+      "bytes": 735
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/domain-source-snapshots/index-witnesses-009.json",
+      "sha256": "44d3a0894decf790b9fe84950a642ea7952f8bcc9bb23b85dc1c199ea61030e8",
+      "bytes": 350
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/domain-source-snapshots/index.json",
+      "sha256": "a7bc9c6c05337f91b7788305288b41b4866cffde5590fd1d8121cb8e869d81f1",
+      "bytes": 2414
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/f0-source-preservation.json",
+      "sha256": "b7d17cba44e93bac7f0bac2b94fe3bf5a55e9cc05a1511fddbec586f2099fd06",
+      "bytes": 2446
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/fluid-004-topology-diagnostic.json",
+      "sha256": "ed7a653c6e7f11bc032a9b67dc0140caafaad65dcfe507af6e19e2d84ff05e32",
+      "bytes": 230344
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/fluid-005-self-test.json",
+      "sha256": "95da9f7b8329745ebf9ae9b189e0f72add38cb79df9af18c56af6eabb0a7efc8",
+      "bytes": 710
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/fluid-006-paired-evidence.json",
+      "sha256": "aba7b6a4896873b73b1fbc61de754e4360363f9687b222a538ca1e1bb9565d75",
+      "bytes": 4119
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/fluid-006-self-test.json",
+      "sha256": "6b5c9d4c70e9c1c9f8b17614aeea48b04efa74f11f24c46cf17648413e6ab17c",
+      "bytes": 781
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/inlet-trim-collar-diagnostic.json",
+      "sha256": "b32da1c5b8027db9d6fa5014349dffb62c3453eb56b1bdf0c9eaa932b729d738",
+      "bytes": 10425
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/native-self-tests.json",
+      "sha256": "d883812a04e80042d08d0d1dc2b7226f8ec70525c86ab99ed5bc5162d70cdd37",
+      "bytes": 722
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/rotor-label-diagnostic-008.json",
+      "sha256": "67c264bbd6b7419568b322e763f58fff19122fc734d4ef821f63fe1e7236197d",
+      "bytes": 12215
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/rotor-label-witnesses-009.json",
+      "sha256": "5d35e7a6cb51caa5cd37227851964049a70a3483deda9e9f5eace27fb6a22124",
+      "bytes": 6871
+    },
+    {
+      "path": "twins/bionic-turbo-f1/evidence/tests-targeted-45.log",
+      "sha256": "63651777ed954277ca29fc034a9b5d97d420fd483e24d43b07611266f79bd681",
+      "bytes": 7611
+    },
+    {
+      "path": "twins/bionic-turbo-f1/media/assembly-volute-004-preview.png",
+      "sha256": "efa3b568d6334f82b35ebd42a271f2f78723d86d8f5dc68bb3147580b8116e32",
+      "bytes": 410812
+    },
+    {
+      "path": "twins/bionic-turbo-f1/media/combined-003-radial-profiles.png",
+      "sha256": "3925aad8f8d084ebc241d25fdff2c2dfc9bb2238fba1856df659927174940530",
+      "bytes": 133508
+    },
+    {
+      "path": "twins/bionic-turbo-f1/media/combined-003-sections-with-wheel.png",
+      "sha256": "92888a01488ba9cbad42303f6d4b501807089884b6495f9844b1293cf920318b",
+      "bytes": 388972
+    },
+    {
+      "path": "twins/bionic-turbo-f1/media/volute-004-radial-profiles.png",
+      "sha256": "81407338c4b18d70b78984b8e447f8a3e5f3761a5d1e20543c423c8b3ccaa310",
+      "bytes": 121464
+    },
+    {
+      "path": "twins/bionic-turbo-f1/media/volute-004-sections-with-wheel.png",
+      "sha256": "34869e9aecb523aef1689b07914a5098fa02ec155a25bc23696a4533928a3eaf",
+      "bytes": 355811
+    }
+  ]
+}

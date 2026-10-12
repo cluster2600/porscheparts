@@ -1,14 +1,14 @@
 {
   "part_id": "993-INT-SWITCH-BLANK-0001",
-  "name": "993 dashboard switch blank (PicoGK)",
-  "generator": "switch_blank",
+  "name": "993 dashboard switch blank, bionic (PicoGK)",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-int-switch-blank-0001.json",
   "porsche_part_numbers": [],
   "safety_class": "non_critical",
   "material_candidate": "polymer, grade to be determined after fit test (FFF / SLA / MJF candidates; PA12 density used for the mass estimate)",
   "density_g_cm3": 1.01,
   "voxel_mm": 0.08,
-  "picogk_enhancement": "Pillow-crowned face with rolled edges, hollow through-body open at the back and two cantilever snap tongues with lead-in barbs cut out of the walls - one body, no assembly, slot clearances held in voxels. Replaces the flat plate with two bare tabs.",
+  "picogk_enhancement": "Bionic: the body behind the face (replacing the closed hollow box) is grown along the load paths of a 20 N finger push and a 10 N pull-off on the face and a 5 N side knock (all assumptions), the blank resting on its face overlap and held by the barbs behind the panel, by 3D SIMP topology optimization (source/bionic.json, topopt.py); PicoGK smooths the density into organic members. The crowned face, the 3 mm locating skirt in the opening and the two snap tongues with barbs are kept exact (source/bionic_keepins.py); tongue slits widened to 1 mm. Loads and opening are assumptions until measured.",
   "parameters": {
     "face_width_mm": {
       "value": 21.0,
@@ -144,5 +144,13 @@
     "Porsche part number and model-year variant"
   ],
   "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
-  "envelope": []
+  "envelope": [
+    "face_width_mm",
+    "face_height_mm"
+  ],
+  "envelope_axes": {
+    "face_width_mm": "x",
+    "face_height_mm": "y"
+  },
+  "envelope_mode": "max"
 }

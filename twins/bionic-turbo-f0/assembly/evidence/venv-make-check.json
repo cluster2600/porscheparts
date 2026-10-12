@@ -1,0 +1,25 @@
+{
+  "command": "PATH=work/bionic-tools/bin:$PATH BIONIC_DOTNET=<dotnet> make check",
+  "effective_python": "geometry venv Python 3.11.15",
+  "status": "failed_existing_tests",
+  "exit_code": 2,
+  "tests": 3627,
+  "failures": 2,
+  "errors": 2,
+  "skipped": 162,
+  "log": "work/bionic-validation/assembly-make-check-venv.log",
+  "sha256": "aee7e1d399d5275731f70322c02719faedd3849b94cd422a1d33e4d29737b76d",
+  "causes": [
+    "missing rtree dependency in existing organic fan simulation test",
+    "missing networkx dependency in existing exact-zero countertrial test",
+    "two existing exact-float equality failures in WE43 impeller and AlSi10Mg stator tests"
+  ],
+  "summary_lines": [
+    "ERROR: test_thermal_energy_balance_and_invalid_machine_recipe (test_organic_fan.OrganicFanTests.test_thermal_energy_balance_and_invalid_machine_recipe)",
+    "ERROR: test_retains_small_nonzero_face_and_nonmanifold_failure (test_picogk_exact_zero_countertrial.ExactZeroCountertrialTests.test_retains_small_nonzero_face_and_nonmanifold_failure)",
+    "FAIL: test_committed_step_sources_and_catalogue_are_fail_closed (test_993_cooling_impeller_we43_f1.CoolingImpellerWE43F1Tests.test_committed_step_sources_and_catalogue_are_fail_closed)",
+    "FAIL: test_committed_step_and_catalogue_are_fail_closed (test_993_fan_stator_alsi10mg_f1.FanStatorAlSi10MgF1Tests.test_committed_step_and_catalogue_are_fail_closed)",
+    "Ran 3627 tests in 191.800s",
+    "FAILED (failures=2, errors=2, skipped=162)"
+  ]
+}

@@ -2,23 +2,23 @@
   "part_id": "993-BODY-FRONT-IMPACT-SUPPORT-ALSI10MG-F0-0001",
   "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file; crash-relevant part: manufacture, fitting, driving and impact testing prohibited pending an approved crash program",
   "kernel": "PicoGK Core Library 26.2.0",
-  "generator": "front_impact_support_graded",
+  "generator": "bionic_topology",
   "parameters": "parts/993-body-front-impact-support-alsi10mg-f0-0001/source/picogk.json",
   "generator_report": {
     "voxel_mm": 0.4,
-    "triangles": 1096724,
-    "volume_cm3": 59.36,
-    "mass_estimate_g": 158.5,
-    "seconds": 7.2
+    "triangles": 524700,
+    "volume_cm3": 83.49,
+    "mass_estimate_g": 222.9,
+    "seconds": 58.2
   },
   "published_triangles": 30000,
   "display_smoothing": {
     "filter": "taubin",
     "iterations": 30,
     "pass_band": 0.05,
-    "max_bounds_shift_mm": 0.053
+    "max_bounds_shift_mm": 0.037
   },
-  "published_sha256": "f811161a1acd499844365a252890ae3065d3e8c2b50a37e9d655e3a0ff3234a6",
+  "published_sha256": "a762d27e20c97be9bc81c321fdbf9bf160553c0308bb8b9b94e86e0df60997e1",
   "legacy_bbox_mm": [
     139.0,
     100.0,
@@ -31,12 +31,12 @@
     "main_body_edges": {
       "open": 0,
       "non_manifold": 0,
-      "total": 1645086
+      "total": 787050
     },
     "degenerate_faces_removed": 0,
-    "volume_cm3": 59.36,
+    "volume_cm3": 83.49,
     "bbox_mm": [
-      139.2,
+      139.0,
       100.0,
       53.0
     ],
@@ -46,7 +46,8 @@
         "basis": "published",
         "value_mm": 139.0,
         "axis": "x",
-        "model_extent_mm": 139.25,
+        "model_extent_mm": 139.01,
+        "mode": "max",
         "ok": true
       },
       {
@@ -54,7 +55,8 @@
         "basis": "published",
         "value_mm": 100.0,
         "axis": "y",
-        "model_extent_mm": 100.0,
+        "model_extent_mm": 100.01,
+        "mode": "max",
         "ok": true
       },
       {
@@ -63,6 +65,7 @@
         "value_mm": 53.0,
         "axis": "z",
         "model_extent_mm": 53.0,
+        "mode": "max",
         "ok": true
       }
     ],

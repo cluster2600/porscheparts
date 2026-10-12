@@ -2,23 +2,23 @@
   "part_id": "993-BODY-FRONT-LID-0001",
   "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
   "kernel": "PicoGK Core Library 26.2.0",
-  "generator": "front_lid_composite",
+  "generator": "bionic_topology",
   "parameters": "parts/993-body-front-lid-0001/source/picogk.json",
   "generator_report": {
     "voxel_mm": 1,
-    "triangles": 7953452,
-    "volume_cm3": 3493.22,
-    "mass_estimate_g": 5414.5,
-    "seconds": 59.5
+    "triangles": 6413720,
+    "volume_cm3": 3919.26,
+    "mass_estimate_g": 6074.9,
+    "seconds": 86.4
   },
   "published_triangles": 30000,
   "display_smoothing": {
     "filter": "taubin",
     "iterations": 30,
     "pass_band": 0.05,
-    "max_bounds_shift_mm": 0.136
+    "max_bounds_shift_mm": 0.081
   },
-  "published_sha256": "4c8b6781e1bf8f7e385598836a3109155e108fa3bcd11cf38922c356c723deee",
+  "published_sha256": "aaeae2ef55f698c219091269d43b35286b519336cd50898677276fa7122838f4",
   "legacy_bbox_mm": [
     1250.0,
     1100.0,
@@ -31,16 +31,35 @@
     "main_body_edges": {
       "open": 0,
       "non_manifold": 0,
-      "total": 11927682
+      "total": 9620580
     },
-    "degenerate_faces_removed": 1664,
-    "volume_cm3": 3493.23,
+    "degenerate_faces_removed": 0,
+    "volume_cm3": 3919.22,
     "bbox_mm": [
       1250.0,
       1100.0,
-      109.6
+      108.5
     ],
-    "envelope_checks": [],
+    "envelope_checks": [
+      {
+        "parameter": "width_mm",
+        "basis": "assumption",
+        "value_mm": 1250.0,
+        "axis": "x",
+        "model_extent_mm": 1250.0,
+        "mode": "max",
+        "ok": true
+      },
+      {
+        "parameter": "length_mm",
+        "basis": "assumption",
+        "value_mm": 1100.0,
+        "axis": "y",
+        "model_extent_mm": 1100.0,
+        "mode": "max",
+        "ok": true
+      }
+    ],
     "pass": true
   },
   "note": "PicoGK concept model; not a print file, not evidence of fit, function or safety."

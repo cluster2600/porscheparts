@@ -1,14 +1,14 @@
 {
   "part_id": "993-INT-DOOR-PULL-0001",
-  "name": "993 interior door pull handle, organic grip (PicoGK)",
-  "generator": "door_pull_organic",
+  "name": "993 interior door pull handle, load-path (bionic) grip (PicoGK)",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-int-door-pull-0001.json",
   "porsche_part_numbers": [],
   "safety_class": "functional",
   "material_candidate": "polymer (SLS/MJF PA12 class), grade to be determined after load test",
   "density_g_cm3": 1.01,
   "voxel_mm": 0.3,
-  "picogk_enhancement": "One continuous organic body instead of a bar on two square posts: elliptical grip section swelling toward mid span, swept along an arch, blended into round mounting bosses, with finger scallops on the underside and blind pilot bores open at the door face.",
+  "picogk_enhancement": "Bionic: the legs and grip between the two mounting bosses are grown by 3D SIMP topology optimization (source/bionic.json, topopt.py; 1.5 mm elements, 26 % of the F0 160 x 24 x 53 mm envelope, 35 mm hand passage kept empty) around a 14 mm grip core, under ASSUMED grip loads (400 N pull out, 250 N + 300 N oblique pulls both ways, 300 N push in, 150 N + 150 N side pull), bosses clamped on the door face; PicoGK smooths it into organic branching legs and fuses bosses, grip core and pilot bores exactly. Envelope check is against the F0 hypothesis (design domain), not a measured handle.",
   "parameters": {
     "length_mm": {
       "value": 160.0,
@@ -109,10 +109,18 @@
       "note": "blend radius between grip and bosses"
     }
   },
-  "envelope": [],
+  "envelope": [
+    "length_mm",
+    "height_mm"
+  ],
   "open_interfaces": [
     "mounting interface on the door panel (fastener type, positions, torque) unknown",
     "true handle shape to be acquired by scaled photogrammetry"
   ],
-  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file"
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
+  "envelope_axes": {
+    "length_mm": "x",
+    "height_mm": "z"
+  },
+  "envelope_mode": "max"
 }

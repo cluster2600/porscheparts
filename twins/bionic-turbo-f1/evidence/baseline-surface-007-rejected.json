@@ -1,0 +1,84 @@
+{
+  "status": "failed",
+  "performance_validated": false,
+  "real_assembly_fluid_domain": false,
+  "manufacturing_authorized": false,
+  "source_report_sha256": "e121a582df4ce21031b2c0c611cfe6db1ac9bcf0d4aa3e148db3b6463dae4916",
+  "sources": {
+    "fluid.stl": "ac8d8c76619acc69ca9d5e26c16597da65e62ccf13a29995b34e57d4cbd22208",
+    "rotor-union.stl": "2ac9b4f20d703d5caaaef2ed41dbd58f5aebe79ca33fd6aece337ecd178e60f5",
+    "housing-final.stl": "8e514f5326dfb14d8ce27e01891983f2e5a490ac8558ec3c81f2f903b2eaee88"
+  },
+  "preparer_sha256": "73257067426da1df8d2072e6bec7e3742c5d1bfff08b3eadfab636c2d57833c3",
+  "construction": {
+    "nominal_mask_expansion_mm": 1,
+    "inlet_cap_z_mm": 44,
+    "outlet_extension_x_mm": 49,
+    "outlet_extension_z_mm": 0,
+    "outlet_extension_radius_mm": 14,
+    "outlet_extension_y_start_mm": 40,
+    "outlet_extension_pretrim_y_end_mm": 81,
+    "outlet_cap_y_mm": 80,
+    "outlet_cap_applies_to": "extension_only",
+    "rear_seal_radius_mm": 35.5,
+    "rear_seal_top_z_mm": -3.75,
+    "final_fluid_smoothing": true,
+    "final_fluid_regularization_mm": 0.25,
+    "unregularized_volume_mm3": 267146.88,
+    "regularized_volume_mm3": 261794.2,
+    "cap_planes_applied_only_after_regularization": true,
+    "volume_method": "PicoGK CalculateProperties; not equivalent to net signed STL volume with obstacle boundaries",
+    "required_source_surface_proximity_mm": 0.65,
+    "source_surface_proximity_verified": false,
+    "operations": "(offset(nominal,1mm) union outlet_extension_to_y81) minus rear_seal, imported_final_housing and imported_rotor_union; Smoothen(0.25mm), then cut z44 and extension-local y80"
+  },
+  "mesh": {
+    "passed": true,
+    "failures": [],
+    "triangles": 530948,
+    "vertices": 265420,
+    "unique_edges": 796422,
+    "boundary_edges": 0,
+    "nonmanifold_edges": 0,
+    "degenerate_triangles": 0,
+    "duplicate_triangles": 0,
+    "surface_components": 2,
+    "component_triangle_counts": [
+      410768,
+      120180
+    ],
+    "component_signed_volumes_mm3": [
+      261739.8714517309,
+      -29788.63595414343
+    ],
+    "signed_volume_mm3": 231951.23549758748,
+    "watertight": true,
+    "winding_consistent": true,
+    "bounds_mm": [
+      [
+        -58.99603271484375,
+        -60.996986389160156,
+        -14.54286003112793
+      ],
+      [
+        63.58359909057617,
+        80.0,
+        44.0
+      ]
+    ],
+    "extents_mm": [
+      122.57963180541992,
+      140.99698638916016,
+      58.54286003112793
+    ],
+    "all_input_triangles_retained": true,
+    "enclosed_obstacles_allowed": true,
+    "component_euler_characteristics": [
+      2,
+      -56
+    ],
+    "source_rotor_topology_preserved": false,
+    "containment_and_self_intersection_verified": false
+  },
+  "error": "source_rotor_topology_not_preserved"
+}

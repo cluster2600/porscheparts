@@ -1,0 +1,228 @@
+{
+ "model": "family thickness sensitivity and an F1 revision, on the shell model of torsion_monocoque.py (members of ../picogk/)",
+ "classification": "values of this model under this load, not of a vehicle; prohibited_pending_engineering",
+ "f0_mm": {
+  "free skin": 2.0,
+  "box outer walls": 2.0,
+  "box inner walls": 2.5,
+  "floor": 2.4,
+  "bulkheads": 2.4
+ },
+ "step_mm": 0.5,
+ "min_mm": 1.5,
+ "meshes": [
+  {
+   "sections": 300,
+   "K_F0": 34834,
+   "K_cabin_F0": 82864,
+   "mass_F0_kg": 80.0,
+   "K_F0_repeats": [
+    34834,
+    34834,
+    34834
+   ]
+  },
+  {
+   "sections": 420,
+   "K_F0": 35462,
+   "K_cabin_F0": 79264,
+   "mass_F0_kg": 84.4,
+   "K_F0_repeats": [
+    35462,
+    35462,
+    35462
+   ]
+  }
+ ],
+ "sensitivity": {
+  "free skin": {
+   "area_m2": [
+    3.92,
+    3.74
+   ],
+   "K_per_kg": [
+    718,
+    623
+   ],
+   "K_cabin_per_kg": [
+    1388,
+    991
+   ],
+   "K_repeats": [
+    [
+     37084,
+     37084,
+     37084
+    ],
+    [
+     37328,
+     37328,
+     37328
+    ]
+   ]
+  },
+  "box outer walls": {
+   "area_m2": [
+    3.01,
+    3.16
+   ],
+   "K_per_kg": [
+    740,
+    756
+   ],
+   "K_cabin_per_kg": [
+    1720,
+    1691
+   ],
+   "K_repeats": [
+    [
+     36620,
+     36620,
+     36620
+    ],
+    [
+     37371,
+     37371,
+     37371
+    ]
+   ]
+  },
+  "box inner walls": {
+   "area_m2": [
+    9.41,
+    10.48
+   ],
+   "K_per_kg": [
+    454,
+    458
+   ],
+   "K_cabin_per_kg": [
+    1165,
+    1137
+   ],
+   "K_repeats": [
+    [
+     38249,
+     38249,
+     38249
+    ],
+    [
+     39300,
+     39300,
+     39300
+    ]
+   ]
+  },
+  "floor": {
+   "area_m2": [
+    2.21,
+    2.25
+   ],
+   "K_per_kg": [
+    115,
+    122
+   ],
+   "K_cabin_per_kg": [
+    450,
+    446
+   ],
+   "K_repeats": [
+    [
+     35039,
+     35039,
+     35039
+    ],
+    [
+     35682,
+     35682,
+     35682
+    ]
+   ]
+  },
+  "bulkheads": {
+   "area_m2": [
+    1.88,
+    1.89
+   ],
+   "K_per_kg": [
+    115,
+    135
+   ],
+   "K_cabin_per_kg": [
+    238,
+    266
+   ],
+   "K_repeats": [
+    [
+     35007,
+     35007,
+     35007
+    ],
+    [
+     35666,
+     35666,
+     35666
+    ]
+   ]
+  }
+ },
+ "F1": {
+  "rule": "engine-lid ring removed; worst cabin-return family thinned by 0.5 mm; freed mass to the families in order of cabin return, at most +0.5 mm each; same mass as F0",
+  "thinned": "bulkheads",
+  "order": [
+   "box outer walls",
+   "box inner walls",
+   "free skin",
+   "floor",
+   "bulkheads"
+  ],
+  "mm": [
+   {
+    "free skin": 2.0,
+    "box outer walls": 2.5,
+    "box inner walls": 2.56,
+    "floor": 2.4,
+    "bulkheads": 1.9
+   },
+   {
+    "free skin": 2.0,
+    "box outer walls": 2.5,
+    "box inner walls": 2.54,
+    "floor": 2.4,
+    "bulkheads": 1.9
+   }
+  ],
+  "K": [
+   36793,
+   37467
+  ],
+  "K_cabin": [
+   87601,
+   83926
+  ],
+  "mass_kg": [
+   80.0,
+   84.4
+  ],
+  "K_gain_fraction": [
+   0.056,
+   0.057
+  ],
+  "K_cabin_gain_fraction": [
+   0.057,
+   0.059
+  ],
+  "K_repeats": [
+   [
+    36793,
+    36793,
+    36793
+   ],
+   [
+    37467,
+    37467,
+    37467
+   ]
+  ]
+ }
+}

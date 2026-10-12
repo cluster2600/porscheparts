@@ -7,12 +7,13 @@ stiffness it carries (K lost when it goes), the mass it costs, and the
 return, K per kilogram of member. The same method as ../../fea/ring_study.py
 on the box cell, on the 911 shell.
 
-Assumed CFRP layup, two meshes (300 and 420 sections), every K the median
-of three solves. Two measures: K at the load points, as everywhere in this
-folder, and the cabin's own K, torque over the rotation difference between
-d = 400 and d = 1950 mm, which leaves out the load introduction at the front
-wheel houses and the clamped rear. Members near the load (front arches, front
-lid, front rails) look far better on the first than on the second.
+Assumed CFRP layup, two meshes (300 and 420 sections), every K the value
+two solves agree on (torsion_monocoque.solve_repeated). Two measures: K at
+the load points, as everywhere in this folder, and the cabin's own K,
+torque over the rotation difference between d = 400 and d = 1950 mm, which
+leaves out the load introduction at the front wheel houses and the clamped
+rear. Members near the load (front arches, front lid, front rails) look far
+better on the first than on the second.
 
 Leave-one-out measures a member's marginal worth in the
 complete structure: members that only work together (the ring study found

@@ -1,7 +1,7 @@
 {
   "part_id": "993-WHL-CENTER-CAP-ALSI10MG-F0-0001",
-  "name": "993 wheel center cap, AlSi10Mg lattice-sandwich face (PicoGK)",
-  "generator": "wheel_center_cap",
+  "name": "993 wheel center cap, AlSi10Mg bionic (PicoGK)",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-whl-center-cap-alsi10mg-f0-0001.json",
   "porsche_part_numbers": [
     "993 361 303 07"
@@ -10,7 +10,7 @@
   "material_candidate": "AlSi10Mg LPBF (screening; commercial original declared plastic)",
   "density_g_cm3": 2.67,
   "voxel_mm": 0.3,
-  "picogk_enhancement": "Neutral domed face as a skin + open-cell BCC lattice sandwich drained through the underside, rolled outer skirt lip, radial gussets tying ring and skirt, clip tabs continuing the centering ring with lead-in barbs, all filleted into one body. Keeps the published 76 / 60 / 46 mm.",
+  "picogk_enhancement": "Bionic: the structure under the face (replacing the lattice sandwich and radial gussets) is grown along the load paths of a 200 N push and a 100 N pull-out on the face and a 100 N side knock on the rim (all assumptions), the cap seated on its skirt lip and held by the tab barbs, by 3D SIMP topology optimization (source/bionic.json, topopt.py); PicoGK smooths the density into organic members. The 76 mm domed face with its skirt, the 60 mm centering ring bore, the 46 mm height, the four clip tabs and their barbs are kept exact (source/bionic_keepins.py). Loads are assumptions until measured.",
   "parameters": {
     "face_diameter_mm": {
       "value": 76.0,
@@ -164,5 +164,10 @@
     "face_diameter_mm",
     "overall_height_mm"
   ],
-  "max_tris": 90000
+  "max_tris": 90000,
+  "envelope_axes": {
+    "face_diameter_mm": "x",
+    "overall_height_mm": "z"
+  },
+  "envelope_mode": "max"
 }

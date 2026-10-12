@@ -1,0 +1,5826 @@
+{
+  "part_id": "993-ENG-CHAIN-CASE-0001",
+  "method": "3D SIMP topology optimization (parts/picogk-catalog/bionic/topopt.py), then PicoGK smoothing and exact functional features",
+  "basis_note": "Planform, height, flange, lids and tensioner position are concept-f0.json hypotheses (no measured engine-case face, shafts or tensioner). Gasket and tensioner loads are stated assumptions, not measurements. The 2.5 mm skin, flange, bosses, lids and tensioner boss are fixed (shaping.base_stl from engine/bionic_bases.py, primitive subsets in the FE model); the ribbing that carries the clamp and tensioner loads is optimised in a band outside the skin, never inside the chain space.",
+  "optimization": {
+    "element_mm": 2.0,
+    "grid_min": [
+      -91,
+      -61,
+      -1
+    ],
+    "grid_max": [
+      91,
+      61,
+      61
+    ],
+    "design": [
+      {
+        "type": "cyl",
+        "a": [
+          58.375,
+          -32.436,
+          1.5
+        ],
+        "b": [
+          58.375,
+          -32.436,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          61.245,
+          -31.556,
+          1.5
+        ],
+        "b": [
+          61.245,
+          -31.556,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.024,
+          -30.423,
+          1.5
+        ],
+        "b": [
+          64.024,
+          -30.423,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          66.69,
+          -29.046,
+          1.5
+        ],
+        "b": [
+          66.69,
+          -29.046,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          69.223,
+          -27.436,
+          1.5
+        ],
+        "b": [
+          69.223,
+          -27.436,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          71.602,
+          -25.605,
+          1.5
+        ],
+        "b": [
+          71.602,
+          -25.605,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          73.807,
+          -23.569,
+          1.5
+        ],
+        "b": [
+          73.807,
+          -23.569,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          75.821,
+          -21.344,
+          1.5
+        ],
+        "b": [
+          75.821,
+          -21.344,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          77.627,
+          -18.947,
+          1.5
+        ],
+        "b": [
+          77.627,
+          -18.947,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          79.212,
+          -16.398,
+          1.5
+        ],
+        "b": [
+          79.212,
+          -16.398,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          80.563,
+          -13.718,
+          1.5
+        ],
+        "b": [
+          80.563,
+          -13.718,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          81.668,
+          -10.927,
+          1.5
+        ],
+        "b": [
+          81.668,
+          -10.927,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          82.519,
+          -8.049,
+          1.5
+        ],
+        "b": [
+          82.519,
+          -8.049,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          83.109,
+          -5.106,
+          1.5
+        ],
+        "b": [
+          83.109,
+          -5.106,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          83.433,
+          -2.122,
+          1.5
+        ],
+        "b": [
+          83.433,
+          -2.122,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          83.488,
+          0.878,
+          1.5
+        ],
+        "b": [
+          83.488,
+          0.878,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          83.275,
+          3.872,
+          1.5
+        ],
+        "b": [
+          83.275,
+          3.872,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          82.795,
+          6.835,
+          1.5
+        ],
+        "b": [
+          82.795,
+          6.835,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          82.052,
+          9.743,
+          1.5
+        ],
+        "b": [
+          82.052,
+          9.743,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          81.051,
+          12.572,
+          1.5
+        ],
+        "b": [
+          81.051,
+          12.572,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          79.801,
+          15.301,
+          1.5
+        ],
+        "b": [
+          79.801,
+          15.301,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          78.312,
+          17.907,
+          1.5
+        ],
+        "b": [
+          78.312,
+          17.907,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          76.596,
+          20.369,
+          1.5
+        ],
+        "b": [
+          76.596,
+          20.369,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          74.666,
+          22.668,
+          1.5
+        ],
+        "b": [
+          74.666,
+          22.668,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          72.538,
+          24.785,
+          1.5
+        ],
+        "b": [
+          72.538,
+          24.785,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          70.23,
+          26.702,
+          1.5
+        ],
+        "b": [
+          70.23,
+          26.702,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          67.758,
+          28.406,
+          1.5
+        ],
+        "b": [
+          67.758,
+          28.406,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          65.145,
+          29.881,
+          1.5
+        ],
+        "b": [
+          65.145,
+          29.881,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          62.409,
+          31.117,
+          1.5
+        ],
+        "b": [
+          62.409,
+          31.117,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          59.575,
+          32.103,
+          1.5
+        ],
+        "b": [
+          59.575,
+          32.103,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          56.674,
+          32.876,
+          1.5
+        ],
+        "b": [
+          56.674,
+          32.876,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          53.767,
+          33.626,
+          1.5
+        ],
+        "b": [
+          53.767,
+          33.626,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          50.86,
+          34.377,
+          1.5
+        ],
+        "b": [
+          50.86,
+          34.377,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          47.953,
+          35.127,
+          1.5
+        ],
+        "b": [
+          47.953,
+          35.127,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          45.046,
+          35.878,
+          1.5
+        ],
+        "b": [
+          45.046,
+          35.878,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          42.139,
+          36.628,
+          1.5
+        ],
+        "b": [
+          42.139,
+          36.628,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          39.232,
+          37.379,
+          1.5
+        ],
+        "b": [
+          39.232,
+          37.379,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          36.324,
+          38.13,
+          1.5
+        ],
+        "b": [
+          36.324,
+          38.13,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          33.417,
+          38.88,
+          1.5
+        ],
+        "b": [
+          33.417,
+          38.88,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          30.51,
+          39.631,
+          1.5
+        ],
+        "b": [
+          30.51,
+          39.631,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          27.603,
+          40.381,
+          1.5
+        ],
+        "b": [
+          27.603,
+          40.381,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          24.696,
+          41.132,
+          1.5
+        ],
+        "b": [
+          24.696,
+          41.132,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          21.789,
+          41.883,
+          1.5
+        ],
+        "b": [
+          21.789,
+          41.883,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          18.882,
+          42.633,
+          1.5
+        ],
+        "b": [
+          18.882,
+          42.633,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          15.975,
+          43.384,
+          1.5
+        ],
+        "b": [
+          15.975,
+          43.384,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          13.068,
+          44.134,
+          1.5
+        ],
+        "b": [
+          13.068,
+          44.134,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          10.161,
+          44.885,
+          1.5
+        ],
+        "b": [
+          10.161,
+          44.885,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          7.254,
+          45.636,
+          1.5
+        ],
+        "b": [
+          7.254,
+          45.636,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          4.347,
+          46.386,
+          1.5
+        ],
+        "b": [
+          4.347,
+          46.386,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          1.44,
+          47.137,
+          1.5
+        ],
+        "b": [
+          1.44,
+          47.137,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -1.467,
+          47.887,
+          1.5
+        ],
+        "b": [
+          -1.467,
+          47.887,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -4.374,
+          48.638,
+          1.5
+        ],
+        "b": [
+          -4.374,
+          48.638,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -7.281,
+          49.389,
+          1.5
+        ],
+        "b": [
+          -7.281,
+          49.389,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -10.188,
+          50.139,
+          1.5
+        ],
+        "b": [
+          -10.188,
+          50.139,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -13.095,
+          50.89,
+          1.5
+        ],
+        "b": [
+          -13.095,
+          50.89,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -16.002,
+          51.64,
+          1.5
+        ],
+        "b": [
+          -16.002,
+          51.64,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -18.921,
+          52.34,
+          1.5
+        ],
+        "b": [
+          -18.921,
+          52.34,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -21.874,
+          52.879,
+          1.5
+        ],
+        "b": [
+          -21.874,
+          52.879,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -24.853,
+          53.252,
+          1.5
+        ],
+        "b": [
+          -24.853,
+          53.252,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -27.848,
+          53.457,
+          1.5
+        ],
+        "b": [
+          -27.848,
+          53.457,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -30.85,
+          53.493,
+          1.5
+        ],
+        "b": [
+          -30.85,
+          53.493,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -33.849,
+          53.361,
+          1.5
+        ],
+        "b": [
+          -33.849,
+          53.361,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -36.836,
+          53.061,
+          1.5
+        ],
+        "b": [
+          -36.836,
+          53.061,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -39.801,
+          52.595,
+          1.5
+        ],
+        "b": [
+          -39.801,
+          52.595,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -42.736,
+          51.962,
+          1.5
+        ],
+        "b": [
+          -42.736,
+          51.962,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -45.63,
+          51.166,
+          1.5
+        ],
+        "b": [
+          -45.63,
+          51.166,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -48.476,
+          50.209,
+          1.5
+        ],
+        "b": [
+          -48.476,
+          50.209,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -51.263,
+          49.093,
+          1.5
+        ],
+        "b": [
+          -51.263,
+          49.093,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -53.983,
+          47.823,
+          1.5
+        ],
+        "b": [
+          -53.983,
+          47.823,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -56.628,
+          46.403,
+          1.5
+        ],
+        "b": [
+          -56.628,
+          46.403,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -59.188,
+          44.836,
+          1.5
+        ],
+        "b": [
+          -59.188,
+          44.836,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -61.657,
+          43.129,
+          1.5
+        ],
+        "b": [
+          -61.657,
+          43.129,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.026,
+          41.285,
+          1.5
+        ],
+        "b": [
+          -64.026,
+          41.285,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -66.289,
+          39.311,
+          1.5
+        ],
+        "b": [
+          -66.289,
+          39.311,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -68.436,
+          37.214,
+          1.5
+        ],
+        "b": [
+          -68.436,
+          37.214,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -70.463,
+          35.0,
+          1.5
+        ],
+        "b": [
+          -70.463,
+          35.0,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -72.363,
+          32.675,
+          1.5
+        ],
+        "b": [
+          -72.363,
+          32.675,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -74.129,
+          30.248,
+          1.5
+        ],
+        "b": [
+          -74.129,
+          30.248,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -75.756,
+          27.725,
+          1.5
+        ],
+        "b": [
+          -75.756,
+          27.725,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -77.239,
+          25.115,
+          1.5
+        ],
+        "b": [
+          -77.239,
+          25.115,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -78.573,
+          22.426,
+          1.5
+        ],
+        "b": [
+          -78.573,
+          22.426,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -79.754,
+          19.666,
+          1.5
+        ],
+        "b": [
+          -79.754,
+          19.666,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -80.779,
+          16.844,
+          1.5
+        ],
+        "b": [
+          -80.779,
+          16.844,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -81.644,
+          13.969,
+          1.5
+        ],
+        "b": [
+          -81.644,
+          13.969,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -82.346,
+          11.051,
+          1.5
+        ],
+        "b": [
+          -82.346,
+          11.051,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -82.884,
+          8.097,
+          1.5
+        ],
+        "b": [
+          -82.884,
+          8.097,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -83.255,
+          5.118,
+          1.5
+        ],
+        "b": [
+          -83.255,
+          5.118,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -83.458,
+          2.123,
+          1.5
+        ],
+        "b": [
+          -83.458,
+          2.123,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -83.493,
+          -0.879,
+          1.5
+        ],
+        "b": [
+          -83.493,
+          -0.879,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -83.359,
+          -3.878,
+          1.5
+        ],
+        "b": [
+          -83.359,
+          -3.878,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -83.058,
+          -6.864,
+          1.5
+        ],
+        "b": [
+          -83.058,
+          -6.864,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -82.589,
+          -9.83,
+          1.5
+        ],
+        "b": [
+          -82.589,
+          -9.83,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -81.955,
+          -12.764,
+          1.5
+        ],
+        "b": [
+          -81.955,
+          -12.764,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -81.157,
+          -15.658,
+          1.5
+        ],
+        "b": [
+          -81.157,
+          -15.658,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -80.199,
+          -18.503,
+          1.5
+        ],
+        "b": [
+          -80.199,
+          -18.503,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -79.082,
+          -21.289,
+          1.5
+        ],
+        "b": [
+          -79.082,
+          -21.289,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -77.81,
+          -24.008,
+          1.5
+        ],
+        "b": [
+          -77.81,
+          -24.008,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -76.389,
+          -26.652,
+          1.5
+        ],
+        "b": [
+          -76.389,
+          -26.652,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -74.821,
+          -29.212,
+          1.5
+        ],
+        "b": [
+          -74.821,
+          -29.212,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -73.112,
+          -31.68,
+          1.5
+        ],
+        "b": [
+          -73.112,
+          -31.68,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -71.267,
+          -34.049,
+          1.5
+        ],
+        "b": [
+          -71.267,
+          -34.049,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -69.292,
+          -36.31,
+          1.5
+        ],
+        "b": [
+          -69.292,
+          -36.31,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -67.194,
+          -38.456,
+          1.5
+        ],
+        "b": [
+          -67.194,
+          -38.456,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.978,
+          -40.482,
+          1.5
+        ],
+        "b": [
+          -64.978,
+          -40.482,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -62.652,
+          -42.38,
+          1.5
+        ],
+        "b": [
+          -62.652,
+          -42.38,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -60.224,
+          -44.145,
+          1.5
+        ],
+        "b": [
+          -60.224,
+          -44.145,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -57.7,
+          -45.771,
+          1.5
+        ],
+        "b": [
+          -57.7,
+          -45.771,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -55.089,
+          -47.252,
+          1.5
+        ],
+        "b": [
+          -55.089,
+          -47.252,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -52.4,
+          -48.585,
+          1.5
+        ],
+        "b": [
+          -52.4,
+          -48.585,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -49.639,
+          -49.765,
+          1.5
+        ],
+        "b": [
+          -49.639,
+          -49.765,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -46.817,
+          -50.788,
+          1.5
+        ],
+        "b": [
+          -46.817,
+          -50.788,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -43.942,
+          -51.651,
+          1.5
+        ],
+        "b": [
+          -43.942,
+          -51.651,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -41.023,
+          -52.352,
+          1.5
+        ],
+        "b": [
+          -41.023,
+          -52.352,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -38.069,
+          -52.888,
+          1.5
+        ],
+        "b": [
+          -38.069,
+          -52.888,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -35.09,
+          -53.257,
+          1.5
+        ],
+        "b": [
+          -35.09,
+          -53.257,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -32.095,
+          -53.459,
+          1.5
+        ],
+        "b": [
+          -32.095,
+          -53.459,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -29.093,
+          -53.492,
+          1.5
+        ],
+        "b": [
+          -29.093,
+          -53.492,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -26.094,
+          -53.357,
+          1.5
+        ],
+        "b": [
+          -26.094,
+          -53.357,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -23.107,
+          -53.054,
+          1.5
+        ],
+        "b": [
+          -23.107,
+          -53.054,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -20.142,
+          -52.584,
+          1.5
+        ],
+        "b": [
+          -20.142,
+          -52.584,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -17.209,
+          -51.948,
+          1.5
+        ],
+        "b": [
+          -17.209,
+          -51.948,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -14.301,
+          -51.201,
+          1.5
+        ],
+        "b": [
+          -14.301,
+          -51.201,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -11.394,
+          -50.45,
+          1.5
+        ],
+        "b": [
+          -11.394,
+          -50.45,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -8.487,
+          -49.7,
+          1.5
+        ],
+        "b": [
+          -8.487,
+          -49.7,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -5.58,
+          -48.949,
+          1.5
+        ],
+        "b": [
+          -5.58,
+          -48.949,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -2.673,
+          -48.199,
+          1.5
+        ],
+        "b": [
+          -2.673,
+          -48.199,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.234,
+          -47.448,
+          1.5
+        ],
+        "b": [
+          0.234,
+          -47.448,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          3.142,
+          -46.697,
+          1.5
+        ],
+        "b": [
+          3.142,
+          -46.697,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          6.049,
+          -45.947,
+          1.5
+        ],
+        "b": [
+          6.049,
+          -45.947,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          8.956,
+          -45.196,
+          1.5
+        ],
+        "b": [
+          8.956,
+          -45.196,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          11.863,
+          -44.446,
+          1.5
+        ],
+        "b": [
+          11.863,
+          -44.446,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          14.77,
+          -43.695,
+          1.5
+        ],
+        "b": [
+          14.77,
+          -43.695,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          17.677,
+          -42.945,
+          1.5
+        ],
+        "b": [
+          17.677,
+          -42.945,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          20.584,
+          -42.194,
+          1.5
+        ],
+        "b": [
+          20.584,
+          -42.194,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          23.491,
+          -41.443,
+          1.5
+        ],
+        "b": [
+          23.491,
+          -41.443,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          26.398,
+          -40.693,
+          1.5
+        ],
+        "b": [
+          26.398,
+          -40.693,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          29.305,
+          -39.942,
+          1.5
+        ],
+        "b": [
+          29.305,
+          -39.942,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          32.212,
+          -39.192,
+          1.5
+        ],
+        "b": [
+          32.212,
+          -39.192,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          35.119,
+          -38.441,
+          1.5
+        ],
+        "b": [
+          35.119,
+          -38.441,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          38.026,
+          -37.69,
+          1.5
+        ],
+        "b": [
+          38.026,
+          -37.69,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          40.933,
+          -36.94,
+          1.5
+        ],
+        "b": [
+          40.933,
+          -36.94,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          43.84,
+          -36.189,
+          1.5
+        ],
+        "b": [
+          43.84,
+          -36.189,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          46.747,
+          -35.439,
+          1.5
+        ],
+        "b": [
+          46.747,
+          -35.439,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          49.654,
+          -34.688,
+          1.5
+        ],
+        "b": [
+          49.654,
+          -34.688,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          52.561,
+          -33.937,
+          1.5
+        ],
+        "b": [
+          52.561,
+          -33.937,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          55.468,
+          -33.187,
+          1.5
+        ],
+        "b": [
+          55.468,
+          -33.187,
+          55.5
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib band 0..7 mm outside the 2.5 mm skin wall, inside the 10 mm flange"
+      },
+      {
+        "type": "box",
+        "min": [
+          6.0,
+          -32.0,
+          55.5
+        ],
+        "max": [
+          33.0,
+          32.0,
+          60.0
+        ],
+        "basis": "assumption",
+        "note": "rib layer on the case face between the two bolted lids (top skin z 54.5..57, envelope 60)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          8.280999999999999,
+          -41.755199999999995,
+          30.0
+        ],
+        "b": [
+          12.031,
+          -56.279,
+          30.0
+        ],
+        "r": 18.0,
+        "basis": "assumption",
+        "note": "around the tensioner boss, outside the wall"
+      }
+    ],
+    "solid": [
+      {
+        "type": "cyl",
+        "a": [
+          58.75,
+          -33.889,
+          1.5
+        ],
+        "b": [
+          58.75,
+          -33.889,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          61.624,
+          -33.013,
+          1.5
+        ],
+        "b": [
+          61.624,
+          -33.013,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          64.412,
+          -31.895,
+          1.5
+        ],
+        "b": [
+          64.412,
+          -31.895,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          67.094,
+          -30.542,
+          1.5
+        ],
+        "b": [
+          67.094,
+          -30.542,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          69.65,
+          -28.963,
+          1.5
+        ],
+        "b": [
+          69.65,
+          -28.963,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          72.062,
+          -27.171,
+          1.5
+        ],
+        "b": [
+          72.062,
+          -27.171,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          74.311,
+          -25.179,
+          1.5
+        ],
+        "b": [
+          74.311,
+          -25.179,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          76.38,
+          -23.002,
+          1.5
+        ],
+        "b": [
+          76.38,
+          -23.002,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          78.256,
+          -20.655,
+          1.5
+        ],
+        "b": [
+          78.256,
+          -20.655,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          79.923,
+          -18.155,
+          1.5
+        ],
+        "b": [
+          79.923,
+          -18.155,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          81.37,
+          -15.522,
+          1.5
+        ],
+        "b": [
+          81.37,
+          -15.522,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          82.585,
+          -12.775,
+          1.5
+        ],
+        "b": [
+          82.585,
+          -12.775,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          83.561,
+          -9.934,
+          1.5
+        ],
+        "b": [
+          83.561,
+          -9.934,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          84.289,
+          -7.019,
+          1.5
+        ],
+        "b": [
+          84.289,
+          -7.019,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          84.765,
+          -4.053,
+          1.5
+        ],
+        "b": [
+          84.765,
+          -4.053,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          84.984,
+          -1.056,
+          1.5
+        ],
+        "b": [
+          84.984,
+          -1.056,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          84.946,
+          1.948,
+          1.5
+        ],
+        "b": [
+          84.946,
+          1.948,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          84.65,
+          4.937,
+          1.5
+        ],
+        "b": [
+          84.65,
+          4.937,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          84.099,
+          7.891,
+          1.5
+        ],
+        "b": [
+          84.099,
+          7.891,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          83.297,
+          10.786,
+          1.5
+        ],
+        "b": [
+          83.297,
+          10.786,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          82.249,
+          13.601,
+          1.5
+        ],
+        "b": [
+          82.249,
+          13.601,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          80.964,
+          16.317,
+          1.5
+        ],
+        "b": [
+          80.964,
+          16.317,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          79.451,
+          18.912,
+          1.5
+        ],
+        "b": [
+          79.451,
+          18.912,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          77.72,
+          21.368,
+          1.5
+        ],
+        "b": [
+          77.72,
+          21.368,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          75.786,
+          23.666,
+          1.5
+        ],
+        "b": [
+          75.786,
+          23.666,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          73.661,
+          25.791,
+          1.5
+        ],
+        "b": [
+          73.661,
+          25.791,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          71.362,
+          27.725,
+          1.5
+        ],
+        "b": [
+          71.362,
+          27.725,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          68.906,
+          29.454,
+          1.5
+        ],
+        "b": [
+          68.906,
+          29.454,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          66.31,
+          30.967,
+          1.5
+        ],
+        "b": [
+          66.31,
+          30.967,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          63.595,
+          32.252,
+          1.5
+        ],
+        "b": [
+          63.595,
+          32.252,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          60.779,
+          33.299,
+          1.5
+        ],
+        "b": [
+          60.779,
+          33.299,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          57.886,
+          34.112,
+          1.5
+        ],
+        "b": [
+          57.886,
+          34.112,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          54.977,
+          34.863,
+          1.5
+        ],
+        "b": [
+          54.977,
+          34.863,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          52.067,
+          35.614,
+          1.5
+        ],
+        "b": [
+          52.067,
+          35.614,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          49.157,
+          36.365,
+          1.5
+        ],
+        "b": [
+          49.157,
+          36.365,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          46.247,
+          37.117,
+          1.5
+        ],
+        "b": [
+          46.247,
+          37.117,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          43.338,
+          37.868,
+          1.5
+        ],
+        "b": [
+          43.338,
+          37.868,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          40.428,
+          38.619,
+          1.5
+        ],
+        "b": [
+          40.428,
+          38.619,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          37.518,
+          39.371,
+          1.5
+        ],
+        "b": [
+          37.518,
+          39.371,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          34.608,
+          40.122,
+          1.5
+        ],
+        "b": [
+          34.608,
+          40.122,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          31.699,
+          40.873,
+          1.5
+        ],
+        "b": [
+          31.699,
+          40.873,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          28.789,
+          41.625,
+          1.5
+        ],
+        "b": [
+          28.789,
+          41.625,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          25.879,
+          42.376,
+          1.5
+        ],
+        "b": [
+          25.879,
+          42.376,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          22.969,
+          43.127,
+          1.5
+        ],
+        "b": [
+          22.969,
+          43.127,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          20.06,
+          43.878,
+          1.5
+        ],
+        "b": [
+          20.06,
+          43.878,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          17.15,
+          44.63,
+          1.5
+        ],
+        "b": [
+          17.15,
+          44.63,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          14.24,
+          45.381,
+          1.5
+        ],
+        "b": [
+          14.24,
+          45.381,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          11.33,
+          46.132,
+          1.5
+        ],
+        "b": [
+          11.33,
+          46.132,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          8.421,
+          46.884,
+          1.5
+        ],
+        "b": [
+          8.421,
+          46.884,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          5.511,
+          47.635,
+          1.5
+        ],
+        "b": [
+          5.511,
+          47.635,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          2.601,
+          48.386,
+          1.5
+        ],
+        "b": [
+          2.601,
+          48.386,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -0.309,
+          49.137,
+          1.5
+        ],
+        "b": [
+          -0.309,
+          49.137,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -3.218,
+          49.889,
+          1.5
+        ],
+        "b": [
+          -3.218,
+          49.889,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -6.128,
+          50.64,
+          1.5
+        ],
+        "b": [
+          -6.128,
+          50.64,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -9.038,
+          51.391,
+          1.5
+        ],
+        "b": [
+          -9.038,
+          51.391,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -11.947,
+          52.143,
+          1.5
+        ],
+        "b": [
+          -11.947,
+          52.143,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -14.857,
+          52.894,
+          1.5
+        ],
+        "b": [
+          -14.857,
+          52.894,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -17.772,
+          53.624,
+          1.5
+        ],
+        "b": [
+          -17.772,
+          53.624,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -20.719,
+          54.211,
+          1.5
+        ],
+        "b": [
+          -20.719,
+          54.211,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -23.694,
+          54.637,
+          1.5
+        ],
+        "b": [
+          -23.694,
+          54.637,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -26.687,
+          54.9,
+          1.5
+        ],
+        "b": [
+          -26.687,
+          54.9,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -29.69,
+          54.999,
+          1.5
+        ],
+        "b": [
+          -29.69,
+          54.999,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -32.694,
+          54.934,
+          1.5
+        ],
+        "b": [
+          -32.694,
+          54.934,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -35.69,
+          54.705,
+          1.5
+        ],
+        "b": [
+          -35.69,
+          54.705,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -38.669,
+          54.312,
+          1.5
+        ],
+        "b": [
+          -38.669,
+          54.312,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -41.622,
+          53.758,
+          1.5
+        ],
+        "b": [
+          -41.622,
+          53.758,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -44.541,
+          53.043,
+          1.5
+        ],
+        "b": [
+          -44.541,
+          53.043,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -47.416,
+          52.17,
+          1.5
+        ],
+        "b": [
+          -47.416,
+          52.17,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -50.239,
+          51.141,
+          1.5
+        ],
+        "b": [
+          -50.239,
+          51.141,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -53.002,
+          49.959,
+          1.5
+        ],
+        "b": [
+          -53.002,
+          49.959,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -55.696,
+          48.628,
+          1.5
+        ],
+        "b": [
+          -55.696,
+          48.628,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -58.313,
+          47.153,
+          1.5
+        ],
+        "b": [
+          -58.313,
+          47.153,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -60.846,
+          45.536,
+          1.5
+        ],
+        "b": [
+          -60.846,
+          45.536,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -63.287,
+          43.783,
+          1.5
+        ],
+        "b": [
+          -63.287,
+          43.783,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -65.628,
+          41.9,
+          1.5
+        ],
+        "b": [
+          -65.628,
+          41.9,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -67.863,
+          39.892,
+          1.5
+        ],
+        "b": [
+          -67.863,
+          39.892,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -69.985,
+          37.765,
+          1.5
+        ],
+        "b": [
+          -69.985,
+          37.765,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -71.988,
+          35.525,
+          1.5
+        ],
+        "b": [
+          -71.988,
+          35.525,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -73.866,
+          33.178,
+          1.5
+        ],
+        "b": [
+          -73.866,
+          33.178,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -75.612,
+          30.733,
+          1.5
+        ],
+        "b": [
+          -75.612,
+          30.733,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -77.222,
+          28.197,
+          1.5
+        ],
+        "b": [
+          -77.222,
+          28.197,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -78.692,
+          25.576,
+          1.5
+        ],
+        "b": [
+          -78.692,
+          25.576,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -80.016,
+          22.878,
+          1.5
+        ],
+        "b": [
+          -80.016,
+          22.878,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -81.191,
+          20.113,
+          1.5
+        ],
+        "b": [
+          -81.191,
+          20.113,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -82.213,
+          17.287,
+          1.5
+        ],
+        "b": [
+          -82.213,
+          17.287,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -83.079,
+          14.41,
+          1.5
+        ],
+        "b": [
+          -83.079,
+          14.41,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -83.787,
+          11.489,
+          1.5
+        ],
+        "b": [
+          -83.787,
+          11.489,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -84.334,
+          8.535,
+          1.5
+        ],
+        "b": [
+          -84.334,
+          8.535,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -84.719,
+          5.555,
+          1.5
+        ],
+        "b": [
+          -84.719,
+          5.555,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -84.94,
+          2.558,
+          1.5
+        ],
+        "b": [
+          -84.94,
+          2.558,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -84.998,
+          -0.446,
+          1.5
+        ],
+        "b": [
+          -84.998,
+          -0.446,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -84.892,
+          -3.449,
+          1.5
+        ],
+        "b": [
+          -84.892,
+          -3.449,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -84.621,
+          -6.442,
+          1.5
+        ],
+        "b": [
+          -84.621,
+          -6.442,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -84.188,
+          -9.415,
+          1.5
+        ],
+        "b": [
+          -84.188,
+          -9.415,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -83.593,
+          -12.36,
+          1.5
+        ],
+        "b": [
+          -83.593,
+          -12.36,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -82.838,
+          -15.269,
+          1.5
+        ],
+        "b": [
+          -82.838,
+          -15.269,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -81.925,
+          -18.131,
+          1.5
+        ],
+        "b": [
+          -81.925,
+          -18.131,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -80.858,
+          -20.94,
+          1.5
+        ],
+        "b": [
+          -80.858,
+          -20.94,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -79.638,
+          -23.686,
+          1.5
+        ],
+        "b": [
+          -79.638,
+          -23.686,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -78.271,
+          -26.362,
+          1.5
+        ],
+        "b": [
+          -78.271,
+          -26.362,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -76.759,
+          -28.959,
+          1.5
+        ],
+        "b": [
+          -76.759,
+          -28.959,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -75.108,
+          -31.469,
+          1.5
+        ],
+        "b": [
+          -75.108,
+          -31.469,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -73.322,
+          -33.886,
+          1.5
+        ],
+        "b": [
+          -73.322,
+          -33.886,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -71.407,
+          -36.201,
+          1.5
+        ],
+        "b": [
+          -71.407,
+          -36.201,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -69.368,
+          -38.408,
+          1.5
+        ],
+        "b": [
+          -69.368,
+          -38.408,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -67.211,
+          -40.501,
+          1.5
+        ],
+        "b": [
+          -67.211,
+          -40.501,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -64.944,
+          -42.473,
+          1.5
+        ],
+        "b": [
+          -64.944,
+          -42.473,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -62.572,
+          -44.318,
+          1.5
+        ],
+        "b": [
+          -62.572,
+          -44.318,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -60.103,
+          -46.03,
+          1.5
+        ],
+        "b": [
+          -60.103,
+          -46.03,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -57.545,
+          -47.606,
+          1.5
+        ],
+        "b": [
+          -57.545,
+          -47.606,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -54.904,
+          -49.039,
+          1.5
+        ],
+        "b": [
+          -54.904,
+          -49.039,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -52.188,
+          -50.326,
+          1.5
+        ],
+        "b": [
+          -52.188,
+          -50.326,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -49.407,
+          -51.462,
+          1.5
+        ],
+        "b": [
+          -49.407,
+          -51.462,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -46.568,
+          -52.445,
+          1.5
+        ],
+        "b": [
+          -46.568,
+          -52.445,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -43.679,
+          -53.272,
+          1.5
+        ],
+        "b": [
+          -43.679,
+          -53.272,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -40.749,
+          -53.939,
+          1.5
+        ],
+        "b": [
+          -40.749,
+          -53.939,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -37.787,
+          -54.446,
+          1.5
+        ],
+        "b": [
+          -37.787,
+          -54.446,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -34.802,
+          -54.79,
+          1.5
+        ],
+        "b": [
+          -34.802,
+          -54.79,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -31.803,
+          -54.97,
+          1.5
+        ],
+        "b": [
+          -31.803,
+          -54.97,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -28.798,
+          -54.987,
+          1.5
+        ],
+        "b": [
+          -28.798,
+          -54.987,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -25.797,
+          -54.839,
+          1.5
+        ],
+        "b": [
+          -25.797,
+          -54.839,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -22.808,
+          -54.528,
+          1.5
+        ],
+        "b": [
+          -22.808,
+          -54.528,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -19.841,
+          -54.054,
+          1.5
+        ],
+        "b": [
+          -19.841,
+          -54.054,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -16.904,
+          -53.418,
+          1.5
+        ],
+        "b": [
+          -16.904,
+          -53.418,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -13.994,
+          -52.671,
+          1.5
+        ],
+        "b": [
+          -13.994,
+          -52.671,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -11.084,
+          -51.92,
+          1.5
+        ],
+        "b": [
+          -11.084,
+          -51.92,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -8.174,
+          -51.168,
+          1.5
+        ],
+        "b": [
+          -8.174,
+          -51.168,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -5.264,
+          -50.417,
+          1.5
+        ],
+        "b": [
+          -5.264,
+          -50.417,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -2.355,
+          -49.666,
+          1.5
+        ],
+        "b": [
+          -2.355,
+          -49.666,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.555,
+          -48.914,
+          1.5
+        ],
+        "b": [
+          0.555,
+          -48.914,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          3.465,
+          -48.163,
+          1.5
+        ],
+        "b": [
+          3.465,
+          -48.163,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          6.375,
+          -47.412,
+          1.5
+        ],
+        "b": [
+          6.375,
+          -47.412,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          9.284,
+          -46.661,
+          1.5
+        ],
+        "b": [
+          9.284,
+          -46.661,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          12.194,
+          -45.909,
+          1.5
+        ],
+        "b": [
+          12.194,
+          -45.909,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          15.104,
+          -45.158,
+          1.5
+        ],
+        "b": [
+          15.104,
+          -45.158,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          18.014,
+          -44.407,
+          1.5
+        ],
+        "b": [
+          18.014,
+          -44.407,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          20.923,
+          -43.655,
+          1.5
+        ],
+        "b": [
+          20.923,
+          -43.655,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          23.833,
+          -42.904,
+          1.5
+        ],
+        "b": [
+          23.833,
+          -42.904,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          26.743,
+          -42.153,
+          1.5
+        ],
+        "b": [
+          26.743,
+          -42.153,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          29.653,
+          -41.402,
+          1.5
+        ],
+        "b": [
+          29.653,
+          -41.402,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          32.562,
+          -40.65,
+          1.5
+        ],
+        "b": [
+          32.562,
+          -40.65,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          35.472,
+          -39.899,
+          1.5
+        ],
+        "b": [
+          35.472,
+          -39.899,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          38.382,
+          -39.148,
+          1.5
+        ],
+        "b": [
+          38.382,
+          -39.148,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          41.292,
+          -38.396,
+          1.5
+        ],
+        "b": [
+          41.292,
+          -38.396,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          44.201,
+          -37.645,
+          1.5
+        ],
+        "b": [
+          44.201,
+          -37.645,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          47.111,
+          -36.894,
+          1.5
+        ],
+        "b": [
+          47.111,
+          -36.894,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          50.021,
+          -36.142,
+          1.5
+        ],
+        "b": [
+          50.021,
+          -36.142,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          52.931,
+          -35.391,
+          1.5
+        ],
+        "b": [
+          52.931,
+          -35.391,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          55.84,
+          -34.64,
+          1.5
+        ],
+        "b": [
+          55.84,
+          -34.64,
+          7.0
+        ],
+        "r": 4.0,
+        "basis": "assumption",
+        "note": "gasket flange 8 mm (FE subset)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          72.803,
+          -26.552,
+          1.0
+        ],
+        "b": [
+          72.803,
+          -26.552,
+          11.5
+        ],
+        "r": 5.0,
+        "basis": "assumption",
+        "note": "flange bolt boss 11 mm x 12 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          84.952,
+          1.84,
+          1.0
+        ],
+        "b": [
+          84.952,
+          1.84,
+          11.5
+        ],
+        "r": 5.0,
+        "basis": "assumption",
+        "note": "flange bolt boss 11 mm x 12 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          69.889,
+          28.8,
+          1.0
+        ],
+        "b": [
+          69.889,
+          28.8,
+          11.5
+        ],
+        "r": 5.0,
+        "basis": "assumption",
+        "note": "flange bolt boss 11 mm x 12 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          39.7,
+          38.807,
+          1.0
+        ],
+        "b": [
+          39.7,
+          38.807,
+          11.5
+        ],
+        "r": 5.0,
+        "basis": "assumption",
+        "note": "flange bolt boss 11 mm x 12 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          8.732,
+          46.803,
+          1.0
+        ],
+        "b": [
+          8.732,
+          46.803,
+          11.5
+        ],
+        "r": 5.0,
+        "basis": "assumption",
+        "note": "flange bolt boss 11 mm x 12 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -22.31,
+          54.46,
+          1.0
+        ],
+        "b": [
+          -22.31,
+          54.46,
+          11.5
+        ],
+        "r": 5.0,
+        "basis": "assumption",
+        "note": "flange bolt boss 11 mm x 12 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -53.488,
+          49.732,
+          1.0
+        ],
+        "b": [
+          -53.488,
+          49.732,
+          11.5
+        ],
+        "r": 5.0,
+        "basis": "assumption",
+        "note": "flange bolt boss 11 mm x 12 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -76.945,
+          28.656,
+          1.0
+        ],
+        "b": [
+          -76.945,
+          28.656,
+          11.5
+        ],
+        "r": 5.0,
+        "basis": "assumption",
+        "note": "flange bolt boss 11 mm x 12 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -84.969,
+          -1.841,
+          1.0
+        ],
+        "b": [
+          -84.969,
+          -1.841,
+          11.5
+        ],
+        "r": 5.0,
+        "basis": "assumption",
+        "note": "flange bolt boss 11 mm x 12 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -74.923,
+          -31.733,
+          1.0
+        ],
+        "b": [
+          -74.923,
+          -31.733,
+          11.5
+        ],
+        "r": 5.0,
+        "basis": "assumption",
+        "note": "flange bolt boss 11 mm x 12 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -50.108,
+          -51.192,
+          1.0
+        ],
+        "b": [
+          -50.108,
+          -51.192,
+          11.5
+        ],
+        "r": 5.0,
+        "basis": "assumption",
+        "note": "flange bolt boss 11 mm x 12 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -18.683,
+          -53.823,
+          1.0
+        ],
+        "b": [
+          -18.683,
+          -53.823,
+          11.5
+        ],
+        "r": 5.0,
+        "basis": "assumption",
+        "note": "flange bolt boss 11 mm x 12 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          12.298,
+          -45.882,
+          1.0
+        ],
+        "b": [
+          12.298,
+          -45.882,
+          11.5
+        ],
+        "r": 5.0,
+        "basis": "assumption",
+        "note": "flange bolt boss 11 mm x 12 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          43.266,
+          -37.887,
+          1.0
+        ],
+        "b": [
+          43.266,
+          -37.887,
+          11.5
+        ],
+        "r": 5.0,
+        "basis": "assumption",
+        "note": "flange bolt boss 11 mm x 12 mm"
+      },
+      {
+        "type": "box",
+        "min": [
+          6.0,
+          -28.0,
+          55.5
+        ],
+        "max": [
+          33.0,
+          28.0,
+          56.5
+        ],
+        "basis": "assumption",
+        "note": "case face skin between the lids (FE subset; exact skin, lids, bolt heads = shaping.base_stl)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          8.280999999999999,
+          -41.755199999999995,
+          30.0
+        ],
+        "b": [
+          12.031,
+          -56.279,
+          30.0
+        ],
+        "r": 13.5,
+        "basis": "assumption",
+        "note": "chain tensioner boss 28 mm"
+      }
+    ],
+    "void": [
+      {
+        "type": "cyl",
+        "a": [
+          72.803,
+          -26.552,
+          -1.0
+        ],
+        "b": [
+          72.803,
+          -26.552,
+          13.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "flange bolt clearance 6.6 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          72.803,
+          -26.552,
+          12.3
+        ],
+        "b": [
+          72.803,
+          -26.552,
+          62.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt head / socket access above the flange boss"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          84.952,
+          1.84,
+          -1.0
+        ],
+        "b": [
+          84.952,
+          1.84,
+          13.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "flange bolt clearance 6.6 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          84.952,
+          1.84,
+          12.3
+        ],
+        "b": [
+          84.952,
+          1.84,
+          62.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt head / socket access above the flange boss"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          69.889,
+          28.8,
+          -1.0
+        ],
+        "b": [
+          69.889,
+          28.8,
+          13.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "flange bolt clearance 6.6 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          69.889,
+          28.8,
+          12.3
+        ],
+        "b": [
+          69.889,
+          28.8,
+          62.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt head / socket access above the flange boss"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          39.7,
+          38.807,
+          -1.0
+        ],
+        "b": [
+          39.7,
+          38.807,
+          13.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "flange bolt clearance 6.6 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          39.7,
+          38.807,
+          12.3
+        ],
+        "b": [
+          39.7,
+          38.807,
+          62.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt head / socket access above the flange boss"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          8.732,
+          46.803,
+          -1.0
+        ],
+        "b": [
+          8.732,
+          46.803,
+          13.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "flange bolt clearance 6.6 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          8.732,
+          46.803,
+          12.3
+        ],
+        "b": [
+          8.732,
+          46.803,
+          62.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt head / socket access above the flange boss"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -22.31,
+          54.46,
+          -1.0
+        ],
+        "b": [
+          -22.31,
+          54.46,
+          13.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "flange bolt clearance 6.6 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -22.31,
+          54.46,
+          12.3
+        ],
+        "b": [
+          -22.31,
+          54.46,
+          62.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt head / socket access above the flange boss"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -53.488,
+          49.732,
+          -1.0
+        ],
+        "b": [
+          -53.488,
+          49.732,
+          13.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "flange bolt clearance 6.6 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -53.488,
+          49.732,
+          12.3
+        ],
+        "b": [
+          -53.488,
+          49.732,
+          62.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt head / socket access above the flange boss"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -76.945,
+          28.656,
+          -1.0
+        ],
+        "b": [
+          -76.945,
+          28.656,
+          13.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "flange bolt clearance 6.6 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -76.945,
+          28.656,
+          12.3
+        ],
+        "b": [
+          -76.945,
+          28.656,
+          62.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt head / socket access above the flange boss"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -84.969,
+          -1.841,
+          -1.0
+        ],
+        "b": [
+          -84.969,
+          -1.841,
+          13.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "flange bolt clearance 6.6 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -84.969,
+          -1.841,
+          12.3
+        ],
+        "b": [
+          -84.969,
+          -1.841,
+          62.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt head / socket access above the flange boss"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -74.923,
+          -31.733,
+          -1.0
+        ],
+        "b": [
+          -74.923,
+          -31.733,
+          13.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "flange bolt clearance 6.6 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -74.923,
+          -31.733,
+          12.3
+        ],
+        "b": [
+          -74.923,
+          -31.733,
+          62.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt head / socket access above the flange boss"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -50.108,
+          -51.192,
+          -1.0
+        ],
+        "b": [
+          -50.108,
+          -51.192,
+          13.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "flange bolt clearance 6.6 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -50.108,
+          -51.192,
+          12.3
+        ],
+        "b": [
+          -50.108,
+          -51.192,
+          62.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt head / socket access above the flange boss"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -18.683,
+          -53.823,
+          -1.0
+        ],
+        "b": [
+          -18.683,
+          -53.823,
+          13.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "flange bolt clearance 6.6 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -18.683,
+          -53.823,
+          12.3
+        ],
+        "b": [
+          -18.683,
+          -53.823,
+          62.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt head / socket access above the flange boss"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          12.298,
+          -45.882,
+          -1.0
+        ],
+        "b": [
+          12.298,
+          -45.882,
+          13.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "flange bolt clearance 6.6 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          12.298,
+          -45.882,
+          12.3
+        ],
+        "b": [
+          12.298,
+          -45.882,
+          62.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt head / socket access above the flange boss"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          43.266,
+          -37.887,
+          -1.0
+        ],
+        "b": [
+          43.266,
+          -37.887,
+          13.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "flange bolt clearance 6.6 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          43.266,
+          -37.887,
+          12.3
+        ],
+        "b": [
+          43.266,
+          -37.887,
+          62.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt head / socket access above the flange boss"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          5.781,
+          -32.0732,
+          30.0
+        ],
+        "b": [
+          10.656,
+          -50.953900000000004,
+          30.0
+        ],
+        "r": 8.0,
+        "basis": "assumption",
+        "note": "tensioner bore 16 mm, open to the chain"
+      }
+    ],
+    "supports": [
+      {
+        "type": "cyl",
+        "a": [
+          72.803,
+          -26.552,
+          -1.0
+        ],
+        "b": [
+          72.803,
+          -26.552,
+          13.0
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "flange bolt clamped to the engine case"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          84.952,
+          1.84,
+          -1.0
+        ],
+        "b": [
+          84.952,
+          1.84,
+          13.0
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "flange bolt clamped to the engine case"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          69.889,
+          28.8,
+          -1.0
+        ],
+        "b": [
+          69.889,
+          28.8,
+          13.0
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "flange bolt clamped to the engine case"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          39.7,
+          38.807,
+          -1.0
+        ],
+        "b": [
+          39.7,
+          38.807,
+          13.0
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "flange bolt clamped to the engine case"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          8.732,
+          46.803,
+          -1.0
+        ],
+        "b": [
+          8.732,
+          46.803,
+          13.0
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "flange bolt clamped to the engine case"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -22.31,
+          54.46,
+          -1.0
+        ],
+        "b": [
+          -22.31,
+          54.46,
+          13.0
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "flange bolt clamped to the engine case"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -53.488,
+          49.732,
+          -1.0
+        ],
+        "b": [
+          -53.488,
+          49.732,
+          13.0
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "flange bolt clamped to the engine case"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -76.945,
+          28.656,
+          -1.0
+        ],
+        "b": [
+          -76.945,
+          28.656,
+          13.0
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "flange bolt clamped to the engine case"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -84.969,
+          -1.841,
+          -1.0
+        ],
+        "b": [
+          -84.969,
+          -1.841,
+          13.0
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "flange bolt clamped to the engine case"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -74.923,
+          -31.733,
+          -1.0
+        ],
+        "b": [
+          -74.923,
+          -31.733,
+          13.0
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "flange bolt clamped to the engine case"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -50.108,
+          -51.192,
+          -1.0
+        ],
+        "b": [
+          -50.108,
+          -51.192,
+          13.0
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "flange bolt clamped to the engine case"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -18.683,
+          -53.823,
+          -1.0
+        ],
+        "b": [
+          -18.683,
+          -53.823,
+          13.0
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "flange bolt clamped to the engine case"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          12.298,
+          -45.882,
+          -1.0
+        ],
+        "b": [
+          12.298,
+          -45.882,
+          13.0
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "flange bolt clamped to the engine case"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          43.266,
+          -37.887,
+          -1.0
+        ],
+        "b": [
+          43.266,
+          -37.887,
+          13.0
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "flange bolt clamped to the engine case"
+      }
+    ],
+    "load_cases": [
+      {
+        "name": "gasket_reaction",
+        "basis": "assumption",
+        "note": "gasket reaction of the bolt clamp: ~5 N/mm x ~520 mm seal perimeter = 2.6 kN pushing the flange off the engine case between the bolts",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  -91.0,
+                  -61.0,
+                  0.5
+                ],
+                "max": [
+                  91.0,
+                  61.0,
+                  1.5
+                ],
+                "basis": "assumption",
+                "note": ""
+              }
+            ],
+            "force_N": [
+              0.0,
+              0.0,
+              2600.0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "tensioner_axial",
+        "basis": "assumption",
+        "note": "hydraulic chain tensioner reaction ~1.5 kN along its axis, outward (chain tension x guide geometry, not measured)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  8.280999999999999,
+                  -41.755199999999995,
+                  30.0
+                ],
+                "b": [
+                  12.031,
+                  -56.279,
+                  30.0
+                ],
+                "r": 14.0,
+                "basis": "assumption",
+                "note": ""
+              }
+            ],
+            "force_N": [
+              375.0,
+              -1452.3,
+              0.0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "tensioner_side",
+        "basis": "assumption",
+        "note": "tensioner side load ~400 N (guide friction and chain flutter), out of the bore axis",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  8.280999999999999,
+                  -41.755199999999995,
+                  30.0
+                ],
+                "b": [
+                  12.031,
+                  -56.279,
+                  30.0
+                ],
+                "r": 14.0,
+                "basis": "assumption",
+                "note": ""
+              }
+            ],
+            "force_N": [
+              0.0,
+              0.0,
+              400.0
+            ]
+          }
+        ]
+      }
+    ],
+    "volume_fraction": 0.33,
+    "filter_radius_mm": 5.0,
+    "iterations": 45
+  },
+  "shaping": {
+    "smooth_mm": 2.4,
+    "blend_mm": 0.8,
+    "base_stl": "parts/picogk-catalog/out/bionic/993-ENG-CHAIN-CASE-0001.base.stl",
+    "lattice_grey": false
+  }
+}

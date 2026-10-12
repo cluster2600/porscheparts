@@ -1,7 +1,7 @@
 {
   "part_id": "993-BODY-FRONT-LID-0001",
-  "name": "993 front lid, composite skin with inner frame (PicoGK)",
-  "generator": "front_lid_composite",
+  "name": "993 front lid, composite skin with load-path (bionic) inner frame (PicoGK)",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-body-front-lid-0001.json",
   "porsche_part_numbers": [
     "993 511 010 01",
@@ -11,7 +11,7 @@
   "material_candidate": "organic matrix composite (glass, carbon or hybrid), layup to be determined",
   "density_g_cm3": 1.55,
   "voxel_mm": 1.0,
-  "picogk_enhancement": "Replaces the cylindrical cap with a doubly curved skin in the 993 plan shape (headlamp waist, curved nose, rounded corners) falling toward the nose, a rolled edge with a return flange all round, and a bonded inner frame: a perimeter hat section opened by a field of lightening holes (also the drain and inspection path) plus an X brace and a centre rib under the skin.",
+  "picogk_enhancement": "Bionic inner frame: the crowned F0 skin, rolled edge and return flange are kept exact (FrontLid.cs without frame, shaping.base_stl); the frame under it is grown by 3D SIMP topology optimization (source/bionic.json, topopt.py; 8 mm elements in a 24 mm slab under the skin, 7.5 % volume, 48 iterations up to beta 8) for the CLOSED lid, fixed at ASSUMED hinge pads near the windscreen edge and an ASSUMED centre latch pad at the nose, under ASSUMED loads applied on small solid pads (1750 N aero lift from an assumed 1.5 kPa mean suction lumped on nine pads, 600 N centre + 2 x 300 N side press, 400 N on each front buffer for torsion). The result is a V from the hinges to the lid centre, a spine to the latch, a front cross member from the latch to both front buffers with diagonals to the front load pads, and side rails from the hinges to the mid-side pads. Members the optimizer left thin or broken mid-span are joined along its densest path and extended up to the skin (source/bionic_skin_contact.py, counts in the density record); members end flush with the outer surface (skin finished at 1.7 mm). The skin's own stiffness is not in the optimization. Hinge, latch, buffers and loads are not measured; not analysed, not validated.",
   "parameters": {
     "width_mm": {
       "value": 1250.0,
@@ -175,12 +175,20 @@
       "note": "X brace and centre rib depth below the skin surface"
     }
   },
-  "envelope": [],
+  "envelope": [
+    "width_mm",
+    "length_mm"
+  ],
   "open_interfaces": [
     "hinge interfaces (positions, fasteners) - not measured, not drawn",
     "latch and safety catch interface - not measured, not drawn",
     "gap and flush to fenders, bumper and cowl - not measured",
     "true surface: to be taken from a sound, undeformed original panel (scan)"
   ],
-  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file"
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
+  "envelope_axes": {
+    "width_mm": "x",
+    "length_mm": "y"
+  },
+  "envelope_mode": "max"
 }

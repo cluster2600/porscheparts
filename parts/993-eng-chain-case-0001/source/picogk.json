@@ -1,7 +1,7 @@
 {
   "part_id": "993-ENG-CHAIN-CASE-0001",
-  "name": "993 timing chain case and its lids, F0 concept (PicoGK)",
-  "generator": "chain_case",
+  "name": "993 timing chain case and its lids, bionic-ribbed F0 concept (PicoGK)",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-eng-chain-case-0001.json",
   "porsche_part_numbers": [
     "993 105 093 05",
@@ -17,7 +17,7 @@
   "material_candidate": "aluminium (grade unidentified; cast original)",
   "density_g_cm3": 2.7,
   "voxel_mm": 0.5,
-  "picogk_enhancement": "Sprocket-bay planform (large and small bay joined by tangent walls) instead of a rectangular box: conformal 4 mm shell on a bolted perimeter flange with gussets, the two bay lids as raised bolted plateaus with a parting groove (case and lids consolidated, the additive case named in the record), a chain-tensioner boss with its cap on the side wall, face ribs; open engine side.",
+  "picogk_enhancement": "Bionic: the ribbing outside a 2.5 mm skin is grown by 3D SIMP topology optimisation (bionic.json, topopt.py) for a stated 2.6 kN gasket reaction between the 14 clamped flange bolts and a 1.5 kN axial / 400 N side load on the chain-tensioner boss; PicoGK smooths it into organic ribs and gussets fused with the exact skin, flange, bolt bosses, both bolted lid plateaus and the tensioner boss with its cap (engine/bionic_bases.py). The chain space, bolt holes and socket access stay clear. Loads are assumptions, not measurements.",
   "parameters": {
     "length_mm": {
       "value": 180.0,
@@ -41,11 +41,11 @@
       "note": "concept-f0.json hypothesis"
     },
     "wall_mm": {
-      "value": 4.0,
+      "value": 2.5,
       "unit": "mm",
       "basis": "assumption",
       "source": null,
-      "note": "concept-f0.json assumed casting wall"
+      "note": "bionic: 2.5 mm conformal skin (concept-f0.json assumed a 4 mm casting wall); stiffness from the grown ribs"
     },
     "small_bay_radius_mm": {
       "value": 40.0,
@@ -152,13 +152,6 @@
       "source": null,
       "note": "flange bolt boss height"
     },
-    "gusset_count": {
-      "value": 14,
-      "unit": "count",
-      "basis": "assumption",
-      "source": null,
-      "note": "flange gussets between bolts"
-    },
     "tensioner_boss_diameter_mm": {
       "value": 28.0,
       "unit": "mm",
@@ -194,19 +187,12 @@
       "source": null,
       "note": "tensioner height"
     },
-    "rib_thickness_mm": {
-      "value": 4.0,
+    "rib_layer_mm": {
+      "value": 6.0,
       "unit": "mm",
       "basis": "assumption",
       "source": null,
-      "note": "face and gusset rib thickness"
-    },
-    "rib_height_mm": {
-      "value": 3.0,
-      "unit": "mm",
-      "basis": "assumption",
-      "source": null,
-      "note": "face rib height"
+      "note": "bionic: depth of the rib layer outside the skin open to the optimiser (inside the flange planform and the 60 mm height)"
     }
   },
   "open_interfaces": [
@@ -218,5 +204,15 @@
     "heat protection plate"
   ],
   "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file; prohibited pending engineering, never to be installed in an engine",
-  "envelope": []
+  "envelope": [
+    "length_mm",
+    "width_mm",
+    "height_mm"
+  ],
+  "envelope_axes": {
+    "length_mm": "x",
+    "width_mm": "y",
+    "height_mm": "z"
+  },
+  "envelope_mode": "max"
 }

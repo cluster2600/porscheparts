@@ -1,7 +1,7 @@
 {
   "part_id": "993-ENG-INTERCOOLER-BRACKET-TI-F0-0001",
   "name": "993 Turbo/GT2 intercooler bracket, Ti-6Al-4V lattice-cored rails (PicoGK)",
-  "generator": "intercooler_bracket",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-eng-intercooler-bracket-ti-f0-0001.json",
   "porsche_part_numbers": [
     "993 110 110 50",
@@ -10,8 +10,8 @@
   "safety_class": "functional",
   "material_candidate": "Ti-6Al-4V LPBF",
   "density_g_cm3": 4.43,
-  "voxel_mm": 0.3,
-  "picogk_enhancement": "Ported from parts/picogk-993-batch-01 (IntercoolerBracket) and bent onto the F0 planform: two curved rails spanning the F0 end bores as a lens truss, solid skin + open-cell BCC lattice core with powder drains in every core segment, solid end pads and central pedestal, cross webs, all filleted into one body.",
+  "voxel_mm": 0.4,
+  "picogk_enhancement": "Bionic: material grown along the load paths of the stated load cases by 3D SIMP topology optimization (bionic.json, topopt.py), smoothed into organic members by PicoGK; pads, pedestal and bores fused exactly. Loads are assumptions until measured.",
   "parameters": {
     "length_mm": {
       "value": 255.0,
@@ -234,5 +234,11 @@
     "mating faces on body and intercooler",
     "load case (400 N central case is synthetic)"
   ],
-  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file"
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
+  "envelope_axes": {
+    "length_mm": "x",
+    "height_mm": "z",
+    "width_mm": "y"
+  },
+  "envelope_mode": "max"
 }

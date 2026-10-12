@@ -1,7 +1,7 @@
 {
   "part_id": "993-INT-DOOR-OPENER-LEVER-F0-0001",
-  "name": "993 interior door opener lever, AlSi10Mg lattice core (PicoGK)",
-  "generator": "door_opener_lever",
+  "name": "993 interior door opener lever, AlSi10Mg bionic (PicoGK)",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-int-door-opener-lever-f0-0001.json",
   "porsche_part_numbers": [
     "993 555 851 00",
@@ -11,7 +11,7 @@
   "material_candidate": "AlSi10Mg LPBF (screening; grade of the commercial product unknown)",
   "density_g_cm3": 2.67,
   "voxel_mm": 0.3,
-  "picogk_enhancement": "Bezier-swept organic arm blended into a grip paddle with a finger dish and through slots (FVD offers a perforated variant); solid skin over an open-cell BCC lattice core drained at the paddle tip and arm root; pivot sleeve and slot rims kept solid; all inside the published 108 x 45 x 27 mm envelope.",
+  "picogk_enhancement": "Bionic: the arm and the structure under the grip paddle are grown along the load paths of a 150 N hand pull tangential to the pivot (synthetic load of evidence/engineering-screen.json) and a 75 N press on the paddle (assumption), the lever held at its pin bore, by 3D SIMP topology optimization (source/bionic.json, topopt.py); PicoGK smooths the density into organic members. Pivot boss, pin bore, paddle face and its three through slots are kept exact. Loads and pin are assumptions until measured.",
   "parameters": {
     "length_mm": {
       "value": 108.0,
@@ -165,5 +165,11 @@
     "length_mm",
     "width_mm",
     "height_mm"
-  ]
+  ],
+  "envelope_axes": {
+    "length_mm": "x",
+    "width_mm": "y",
+    "height_mm": "z"
+  },
+  "envelope_mode": "max"
 }

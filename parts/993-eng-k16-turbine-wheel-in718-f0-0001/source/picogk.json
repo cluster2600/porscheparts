@@ -1,14 +1,14 @@
 {
   "part_id": "993-ENG-K16-TURBINE-WHEEL-IN718-F0-0001",
   "name": "K16 turbine wheel, IN718 F0 concept (PicoGK)",
-  "generator": "k16_turbine_wheel",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-eng-k16-turbine-wheel-in718-f0-0001.json",
   "porsche_part_numbers": [],
   "safety_class": "prohibited_pending_engineering",
   "material_candidate": "EOS NickelAlloy IN718 (comparison)",
   "density_g_cm3": 8.15,
   "voxel_mm": 0.2,
-  "picogk_enhancement": "Replaces radial plates on a cone with a radial-inflow turbine wheel: radial-fibre blades at the inlet curving into an axial exducer, scalloped back disc, concave hub, root-to-tip taper and smooth-union root fillets.",
+  "picogk_enhancement": "Bionic: the twelve blades, hub gas-path surface, scalloped back-face rim and shaft hub of the functional wheel are kept exactly (1.5 mm skin, shaping.base_stl); the hub interior behind them is re-grown by 3D SIMP topology optimization (bionic.json, topopt.py) for the engineering screen's blade centrifugal force at its derived 103,464 rpm (4396 N per blade), its 1.27 N m shaft torque and an assumed 65 N axial gas thrust, the wheel fixed at the shaft hub. PicoGK smooths the density into organic spokes and webs from the shaft hub to the blade roots, open through the back face. Modelled back face up (turned 180 deg about X). Loads come from a synthetic, failed screen, not measurements; not a stress, creep or burst result.",
   "parameters": {
     "inducer_diameter_mm": {
       "value": 54.96,
@@ -125,5 +125,10 @@
   "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
   "envelope": [
     "inducer_diameter_mm"
-  ]
+  ],
+  "envelope_axes": {
+    "inducer_diameter_mm": "x"
+  },
+  "max_tris": 90000,
+  "envelope_mode": "max"
 }

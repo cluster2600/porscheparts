@@ -1,0 +1,292 @@
+{
+  "schema_version": 1,
+  "status": "ideal_fluid_geometry_generated_pending_qa",
+  "units": "mm",
+  "voxel_mm": 0.25,
+  "source_voxel_mm": 0.5,
+  "kernel": "26.2.0",
+  "exact_real_assembly": false,
+  "engineering_validated": false,
+  "manufacturing_authorized": false,
+  "performance_gain_validated": false,
+  "housing_parameters": {
+    "voxel_mm": 0.5,
+    "wall_mm": 3.5,
+    "inlet_radius_mm": 22,
+    "rear_opening_radius_mm": 34,
+    "chamber_height_mm": 28,
+    "inlet_neck_length_mm": 18,
+    "diffuser_height_mm": 8,
+    "volute_center_radius_mm": 49,
+    "volute_start_radius_mm": 6,
+    "volute_end_radius_mm": 14,
+    "outlet_length_mm": 42.25,
+    "rib_radius_mm": 2.2,
+    "rib_count": 8,
+    "volute_law": "radius_linear",
+    "chamber_profile": "conical",
+    "shroud_radial_clearance_mm": 1.5,
+    "regularization_mm": 0.5
+  },
+  "construction": {
+    "nominal_mask_expansion_mm": 1,
+    "inlet_cap_z_mm": 44,
+    "outlet_extension_x_mm": 49,
+    "outlet_extension_z_mm": 0,
+    "outlet_extension_radius_mm": 14,
+    "outlet_extension_y_start_mm": 40,
+    "outlet_extension_pretrim_y_end_mm": 81,
+    "outlet_cap_y_mm": 80,
+    "outlet_cap_applies_to": "extension_only",
+    "rear_seal_radius_mm": 35.5,
+    "rear_seal_top_z_mm": -3.75,
+    "final_fluid_smoothing": true,
+    "final_fluid_regularization_mm": 0.125,
+    "unregularized_volume_mm3": 267242.66,
+    "regularized_volume_mm3": 261924.23,
+    "cap_planes_applied_only_after_regularization": true,
+    "volume_method": "PicoGK CalculateProperties; not equivalent to net signed STL volume with obstacle boundaries",
+    "required_source_surface_proximity_mm": 0.65,
+    "source_surface_proximity_verified": false,
+    "operations": "(offset(nominal,1mm) union outlet_extension_to_y81) minus rear_seal, imported_final_housing and imported_rotor_union; Smoothen(0.125mm), then cut z44 and extension-local y80"
+  },
+  "input_report_sha256": {
+    "housing": "d21d731397d25015cef47dfcb9ad51cc0aa5842448e97887af4542884af1c912",
+    "assembly": "80d49f2c90dfd75aa66c647443feb5c64b4be9c2a805d35fbb84e38201e08001"
+  },
+  "pinned_f0_rotor_sha256": {
+    "compressor-wheel": "4bf63312713c244d35773172f693ab35a4b8c119c2f14dad584a78ebe145aa19",
+    "shaft": "a4171345a1e0f4b2483ee8a40c0ab00fdf8c46f198f06fd8c1475fa65d226348",
+    "compressor-nut": "b30889e417fd3281ffcb78e2748a8bfca0c1154ce6661034805de0b3ab4738a6"
+  },
+  "native_probes": [
+    {
+      "id": "connected-domain-seed",
+      "point_mm": [
+        15,
+        0,
+        40
+      ],
+      "expected_fluid": true,
+      "actual_fluid": true,
+      "passed": true
+    },
+    {
+      "id": "outlet-extension",
+      "point_mm": [
+        49,
+        70,
+        0
+      ],
+      "expected_fluid": true,
+      "actual_fluid": true,
+      "passed": true
+    },
+    {
+      "id": "shaft-solid",
+      "point_mm": [
+        0,
+        0,
+        10
+      ],
+      "expected_fluid": false,
+      "actual_fluid": false,
+      "passed": true
+    },
+    {
+      "id": "wheel-solid",
+      "point_mm": [
+        10,
+        0,
+        -1
+      ],
+      "expected_fluid": false,
+      "actual_fluid": false,
+      "passed": true
+    },
+    {
+      "id": "rear-ideal-seal",
+      "point_mm": [
+        20,
+        0,
+        -6
+      ],
+      "expected_fluid": false,
+      "actual_fluid": false,
+      "passed": true
+    },
+    {
+      "id": "former-rear-pocket",
+      "point_mm": [
+        -34.25,
+        0,
+        -7.5
+      ],
+      "expected_fluid": false,
+      "actual_fluid": false,
+      "passed": true
+    },
+    {
+      "id": "above-inlet-cap",
+      "point_mm": [
+        15,
+        0,
+        46
+      ],
+      "expected_fluid": false,
+      "actual_fluid": false,
+      "passed": true
+    },
+    {
+      "id": "beyond-outlet-cap",
+      "point_mm": [
+        49,
+        82,
+        0
+      ],
+      "expected_fluid": false,
+      "actual_fluid": false,
+      "passed": true
+    },
+    {
+      "id": "external-space",
+      "point_mm": [
+        80,
+        0,
+        0
+      ],
+      "expected_fluid": false,
+      "actual_fluid": false,
+      "passed": true
+    }
+  ],
+  "files": [
+    {
+      "file": "housing-final.stl",
+      "sha256": "8e514f5326dfb14d8ce27e01891983f2e5a490ac8558ec3c81f2f903b2eaee88",
+      "triangles": 731696,
+      "role": "exact_input_copy"
+    },
+    {
+      "file": "flow-domain-source.stl",
+      "sha256": "b3230330c64ad7eaa463f5a439012446b812cdb031392aba5dcc00dceb680a95",
+      "triangles": 377300,
+      "role": "exact_input_copy"
+    },
+    {
+      "file": "compressor-wheel-source.stl",
+      "sha256": "4bf63312713c244d35773172f693ab35a4b8c119c2f14dad584a78ebe145aa19",
+      "triangles": 116108,
+      "role": "exact_input_copy"
+    },
+    {
+      "file": "shaft-source.stl",
+      "sha256": "a4171345a1e0f4b2483ee8a40c0ab00fdf8c46f198f06fd8c1475fa65d226348",
+      "triangles": 30316,
+      "role": "exact_input_copy"
+    },
+    {
+      "file": "compressor-nut-source.stl",
+      "sha256": "b30889e417fd3281ffcb78e2748a8bfca0c1154ce6661034805de0b3ab4738a6",
+      "triangles": 6648,
+      "role": "exact_input_copy"
+    },
+    {
+      "file": "nominal-mask.stl",
+      "sha256": "344d3b6ae69babd5a1123d36fd28011360744b0259d4886ec48b835c425f8a91",
+      "triangles": 1578476,
+      "role": "expanded_nominal_clipping_mask_for_proximity_audit",
+      "voxel_volume_mm3": 293192.2,
+      "bounds_min_mm": [
+        -59.995564,
+        -61.99682,
+        -14.994869
+      ],
+      "bounds_max_mm": [
+        63.994934,
+        57.99394,
+        46.999733
+      ]
+    },
+    {
+      "file": "outlet-extension.stl",
+      "sha256": "e19f032d374c42ed6bba6603a57aa0f5a66eafc6335f2c4e330bba9a8d3f1687",
+      "triangles": 184108,
+      "role": "ideal_outlet_extension_before_final_cap",
+      "voxel_volume_mm3": 25229.504,
+      "bounds_min_mm": [
+        35.001118,
+        40,
+        -13.998884
+      ],
+      "bounds_max_mm": [
+        62.998882,
+        81,
+        13.998884
+      ]
+    },
+    {
+      "file": "rear-seal.stl",
+      "sha256": "9d6a78797df8adea53e868e83a4df5da8d0200c741438f39c03ce651eacb94c4",
+      "triangles": 1122580,
+      "role": "ideal_rear_closure_not_a_real_component",
+      "voxel_volume_mm3": 381132.94,
+      "bounds_min_mm": [
+        -35.499557,
+        -35.499557,
+        -100
+      ],
+      "bounds_max_mm": [
+        35.499557,
+        35.499557,
+        -3.75
+      ]
+    },
+    {
+      "file": "rotor-union.stl",
+      "sha256": "1bb0142ffbb4da70bce7515da6e383c7943e00e46a1508f9d047177552a049c5",
+      "triangles": 607512,
+      "role": "imported_rotating_obstacles_may_be_disconnected",
+      "voxel_volume_mm3": 35672.402,
+      "bounds_min_mm": [
+        -30.243795,
+        -30.243793,
+        -90.000244
+      ],
+      "bounds_max_mm": [
+        30.243793,
+        30.243793,
+        32.000244
+      ]
+    },
+    {
+      "file": "fluid.stl",
+      "sha256": "e77abc62fe064f2adf31ed60c6bd2bc9665c82eedbbb0ce9a46dbec34fad6d69",
+      "triangles": 2133876,
+      "role": "ideal_compressor_fluid_pending_independent_qa",
+      "voxel_volume_mm3": 261924.23,
+      "bounds_min_mm": [
+        -58.99749,
+        -60.99828,
+        -14.691071
+      ],
+      "bounds_max_mm": [
+        63.764866,
+        80,
+        44
+      ]
+    }
+  ],
+  "limitations": [
+    "This is an intentionally sealed compressor-only numerical domain, not the real 39-part assembly.",
+    "The 1 mm expanded nominal domain is only a clipping mask; independent proximity QA must reject unintended mask-bounded walls.",
+    "Source STL surfaces generated at 0.5 mm are revoxelized at 0.25 mm; exact source copies permit independent surface-deviation inspection. Finer fluid voxels do not increase the source geometry accuracy.",
+    "Fluid regularization by 0.125 mm moves boundary surfaces; independent QA must enforce 0.65 mm proximity to source housing/rotor outside explicit idealizations.",
+    "The rear ideal seal extends to radius 35.5 mm to remove the nominal-mask lip and disconnected rear fluid pockets observed in run 001.",
+    "Rear closure and extended outlet are declared idealizations; the extension alone ends at y80, without cutting the scroll.",
+    "PicoGK CalculateProperties volumes are kernel diagnostics, not interchangeable with independently computed net signed STL fluid volume.",
+    "Rotor parts remain separate where their original assumed clearances separate them; no artificial solid bridges are added.",
+    "Point occupancy does not establish connected fluid topology, patch correctness, boundary-layer resolution or solver readiness.",
+    "No flow, efficiency, rotation, heat transfer or bearing behavior has been simulated."
+  ]
+}

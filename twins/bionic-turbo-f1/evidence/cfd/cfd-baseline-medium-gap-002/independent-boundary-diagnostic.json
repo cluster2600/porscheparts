@@ -1,0 +1,294 @@
+{
+  "schema": "bionic-turbo-independent-mesh-topology-diagnostic/v2",
+  "status": "topology_invariants_preserved",
+  "case": "work/bionic-f1-20261011/cfd-baseline-medium-gap-002",
+  "method": "Independent streaming ASCII parsing and NumPy/SciPy. Exact-coordinate STL indexing. Face components use shared edges, not points. Euler=V-E+F without assuming vertex-manifold genus. Inputs hashed before and after analysis.",
+  "input_sha256": {
+    "run-mesh.json": "5b14a0286fce6fb3e19c7a2fda8df77ac5f5f28448e68289a3c902a5c6d59c48",
+    "case-manifest.json": "8430e9b9ff10c2a426585877ab10635a794038052aed125a57f18eff508c7d99",
+    "constant/triSurface/domain.stl": "74bb941bcd3315b89ec65823c2fd22365b3f87a7db501f5b445dace6c877118b",
+    "constant/polyMesh/points": "02c81eb6ac5abf285286855e5f4c75729f6738a4664be8535d30bb465800d36e",
+    "constant/polyMesh/faces": "095498ef5a863410afdd2d02d757cd2f6574e79a1b6542a6934c1e8d3b296eb0",
+    "constant/polyMesh/boundary": "0ded0be1039a98ac946dbf6290d0a0d79baeae1519cb675bf4712981b1397d09",
+    "constant/polyMesh/cellLevel": "64cc4321611a9b748d4bd8b28704d2bce1a013cfc6fe66d6461738e1ab8171b5",
+    "constant/polyMesh/owner": "e16acffb58f09c71b1bac7beea9234df713b18e4a2164b28ba763b89f1d85769",
+    "log.snappyHexMesh": "519a2ec15cbdda205628a83130196e8dc301ec4a9e18de57cff0e128eb04b69f",
+    "log.checkMesh": "da5c0f59e7fb78da79191d2f2b14ff458689161e9d304db873102b145db5f0f8"
+  },
+  "native_receipt_status": "failed",
+  "native_receipt_error": "Extended checkMesh did not pass",
+  "native_snappy_stage_completed": true,
+  "native_mesh_gate_passed": false,
+  "input_surface": {
+    "edge_connected_shells": 3,
+    "all_edges_incident_to_two_faces": true,
+    "edge_incidence_histogram": {
+      "2": 3183636
+    },
+    "faces": 2122424,
+    "vertices": 1061214,
+    "edges": 3183636,
+    "euler_characteristic": 2,
+    "components": [
+      {
+        "faces": 1644380,
+        "vertices": 822192,
+        "edges": 2466570,
+        "euler_characteristic": 2,
+        "patch_faces": {
+          "inlet": 47045,
+          "outlet": 18544,
+          "rotor": 38172,
+          "stator": 1540619
+        },
+        "bounds_mm": [
+          [
+            -58.996845245399996,
+            -60.9981079102,
+            -14.6566352844
+          ],
+          [
+            63.740989685100004,
+            80.0,
+            44.0
+          ]
+        ]
+      },
+      {
+        "faces": 453020,
+        "vertices": 226510,
+        "edges": 679530,
+        "euler_characteristic": 0,
+        "patch_faces": {
+          "rotor": 453020
+        },
+        "bounds_mm": [
+          [
+            -30.2425956726,
+            -30.242593765299997,
+            -3.0003492832200003
+          ],
+          [
+            30.242593765299997,
+            30.2425899506,
+            25.0000133514
+          ]
+        ]
+      },
+      {
+        "faces": 25024,
+        "vertices": 12512,
+        "edges": 37536,
+        "euler_characteristic": 0,
+        "patch_faces": {
+          "rotor": 25024
+        },
+        "bounds_mm": [
+          [
+            -7.00001907349,
+            -7.95373773575,
+            25.4900779724
+          ],
+          [
+            7.00001955032,
+            7.9537463188199995,
+            31.5001926422
+          ]
+        ]
+      }
+    ],
+    "rotor_stator_interface_loops": [
+      {
+        "vertices": 114,
+        "edges": 114,
+        "vertex_degree_histogram": {
+          "2": 114
+        },
+        "centroid_mm": [
+          -0.03118589729612844,
+          -0.033427286043829996,
+          -3.638935561766139
+        ],
+        "bounds_mm": [
+          [
+            -4.094799995420001,
+            -4.064324378969999,
+            -3.71429657936
+          ],
+          [
+            4.04395914078,
+            4.0702395439100005,
+            -3.58303570747
+          ]
+        ],
+        "radius_min_max_mm": [
+          4.012001498987118,
+          4.216911090692625
+        ],
+        "edge_length_sum_mm": 28.261281025338384
+      }
+    ]
+  },
+  "native_boundary": {
+    "edge_connected_shells": 3,
+    "all_edges_incident_to_two_faces": true,
+    "edge_incidence_histogram": {
+      "2": 965232
+    },
+    "faces": 467694,
+    "vertices": 497540,
+    "edges": 965232,
+    "euler_characteristic": 2,
+    "components": [
+      {
+        "faces": 254592,
+        "vertices": 268672,
+        "edges": 523262,
+        "euler_characteristic": 2,
+        "patch_faces": {
+          "inlet": 4167,
+          "outlet": 1652,
+          "rotor": 36505,
+          "stator": 212268
+        },
+        "bounds_mm": [
+          [
+            -58.992310425,
+            -60.9940731073,
+            -14.6514048267
+          ],
+          [
+            63.348903088600004,
+            79.9999982119,
+            43.9999997616
+          ]
+        ]
+      },
+      {
+        "faces": 199302,
+        "vertices": 213353,
+        "edges": 412655,
+        "euler_characteristic": 0,
+        "patch_faces": {
+          "rotor": 199302
+        },
+        "bounds_mm": [
+          [
+            -30.2401522427,
+            -30.2406173805,
+            -3.00031006662
+          ],
+          [
+            30.242012965500003,
+            30.2403193105,
+            25.0005249627
+          ]
+        ]
+      },
+      {
+        "faces": 13800,
+        "vertices": 15515,
+        "edges": 29315,
+        "euler_characteristic": 0,
+        "patch_faces": {
+          "rotor": 13800
+        },
+        "bounds_mm": [
+          [
+            -7.000013683010001,
+            -7.947742338850001,
+            25.466584681
+          ],
+          [
+            7.00001229756,
+            7.9466158791,
+            31.500056406899997
+          ]
+        ]
+      }
+    ],
+    "rotor_stator_interface_loops": [
+      {
+        "vertices": 168,
+        "edges": 168,
+        "vertex_degree_histogram": {
+          "2": 168
+        },
+        "centroid_mm": [
+          -0.20387134522878275,
+          -0.09517502945546667,
+          -3.5881698849189303
+        ],
+        "bounds_mm": [
+          [
+            -4.1407243533399996,
+            -4.17401375207,
+            -3.7186098303799997
+          ],
+          [
+            4.16404186676,
+            4.15454170901,
+            -3.4649610903099997
+          ]
+        ],
+        "radius_min_max_mm": [
+          4.011093362677379,
+          4.319839698102917
+        ],
+        "edge_length_sum_mm": 32.84312425974574
+      }
+    ]
+  },
+  "checks": {
+    "input_topology_matches_preparation": true,
+    "all_native_edges_have_two_incident_faces": true,
+    "surface_shell_count_preserved": true,
+    "global_euler_preserved": true,
+    "component_patch_and_euler_invariants_preserved": true
+  },
+  "cell_count": 2114975,
+  "cell_level_histogram": {
+    "1": 1056427,
+    "2": 147785,
+    "3": 910763
+  },
+  "boundary_owner_cell_levels": {
+    "inlet": {
+      "owner_cell_count": 4167,
+      "level_histogram": {
+        "1": 4167
+      }
+    },
+    "outlet": {
+      "owner_cell_count": 1652,
+      "level_histogram": {
+        "1": 1652
+      }
+    },
+    "rotor": {
+      "owner_cell_count": 248270,
+      "level_histogram": {
+        "1": 9378,
+        "2": 28611,
+        "3": 210281
+      }
+    },
+    "stator": {
+      "owner_cell_count": 211714,
+      "level_histogram": {
+        "1": 78588,
+        "2": 3365,
+        "3": 129761
+      }
+    }
+  },
+  "actual_cells_across_gaps_measured": false,
+  "limitations_fr": [
+    "Les niveaux des cellules adjacentes aux patches ne mesurent pas le nombre de cellules traversant un jeu.",
+    "L'\u00e9galit\u00e9 des invariants ne prouve ni la conservation des dimensions ni celle de chaque passage local.",
+    "Aucun genre d\u00e9duit : les liens des sommets ne sont pas contr\u00f4l\u00e9s.",
+    "Aucun maillage, solve ou modification de source ex\u00e9cut\u00e9 pour ce diagnostic."
+  ],
+  "solver_readiness_established": false,
+  "performance_ranking_authorized": false
+}

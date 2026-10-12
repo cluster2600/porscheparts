@@ -1,0 +1,55 @@
+{
+  "part_id": "993-BODY-FRONT-IMPACT-SUPPORT-ALSI10MG-F0-0001",
+  "method": "3D SIMP topology optimization (parts/picogk-catalog/bionic/topopt.py), then PicoGK smoothing and exact functional features",
+  "basis_note": "Crash-relevant part, prohibited pending engineering. Interfaces and loads are NOT measured. The domain is the FVD commercial envelope 139 x 100 x 53 mm; the 3 mm rear plate is the F0 hypothesis; the front contact pad is the 60 x 38 mm F0 shell outline. Loads are the synthetic 15 kN mean crush force per support of evidence/engineering-screen.json (regression input, not a Porsche or regulatory case) plus assumed oblique directions. Compliance minimisation gives a stiff static load path, NOT a crush/energy-absorption design: progressive folding, force-displacement and crash behaviour are not modelled.",
+  "optimization": {
+    "element_mm": 3.125,
+    "grid_min": [0, -50, -28.125],
+    "grid_max": [140.625, 50, 28.125],
+    "design": [
+      {"type": "box", "min": [0, -49, -25.5], "max": [139, 49, 25.5], "basis": "published", "note": "FVD50501700 envelope 139 x 100 x 53 mm, kept 1 mm inside so the smoothed members stay within it"}
+    ],
+    "solid": [
+      {"type": "box", "min": [0, -50, -26.5], "max": [3, 50, 26.5], "basis": "assumption", "note": "3 mm rear plate on the body rail (F0 hypothesis, no mounting holes: interface not measured)"},
+      {"type": "box", "min": [135, -30, -19], "max": [139, 30, 19], "basis": "assumption", "note": "bumper-beam contact pad, 60 x 38 mm outline of the F0 crush shell, 4 mm thick"}
+    ],
+    "void": [],
+    "supports": [
+      {"type": "box", "min": [-1, -51, -28], "max": [0.5, 51, 28], "basis": "assumption", "note": "rear face of the plate held on the body rail (bolting idealised as clamped)"}
+    ],
+    "load_cases": [
+      {
+        "name": "axial",
+        "basis": "assumption",
+        "note": "synthetic mean crush force 15 kN per support (evidence/engineering-screen.json synthetic_cases), axial on the front pad",
+        "loads": [{"region": [{"type": "box", "min": [137, -30, -19], "max": [141, 30, 19]}], "force_N": [-15000, 0, 0]}]
+      },
+      {
+        "name": "oblique_left",
+        "basis": "assumption",
+        "note": "15 kN at an assumed 15 deg in plan (oblique/offset impact): 14490 N axial + 3880 N lateral",
+        "loads": [{"region": [{"type": "box", "min": [137, -30, -19], "max": [141, 30, 19]}], "force_N": [-14490, 3880, 0]}]
+      },
+      {
+        "name": "oblique_right",
+        "basis": "assumption",
+        "note": "mirror of oblique_left",
+        "loads": [{"region": [{"type": "box", "min": [137, -30, -19], "max": [141, 30, 19]}], "force_N": [-14490, -3880, 0]}]
+      },
+      {
+        "name": "offset_low",
+        "basis": "assumption",
+        "note": "15 kN at an assumed 10 deg downward, on the upper half of the pad only (bumper beam riding up / offset contact): 14770 N axial + 2600 N vertical",
+        "loads": [{"region": [{"type": "box", "min": [137, -30, 0], "max": [141, 30, 19]}], "force_N": [-14770, 0, -2600]}]
+      }
+    ],
+    "volume_fraction": 0.13,
+    "filter_radius_mm": 8.0,
+    "iterations": 45
+  },
+  "shaping": {
+    "smooth_mm": 3.0,
+    "blend_mm": 0.8,
+    "lattice_grey": false
+  }
+}
