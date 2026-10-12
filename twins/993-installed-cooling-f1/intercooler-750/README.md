@@ -122,6 +122,29 @@ est une résolution de CAO, **pas une épaisseur de couche ni une recette LPBF**
 La carte de reproduction est [coupon-input.json](coupon-input.json). Les grands
 cœurs complets et leurs collecteurs ne sont pas générés ni qualifiés.
 
+## Éprouvettes natives conservées
+
+![Éprouvettes PicoGK à ailettes décalées et droites](derived/coupons.png)
+
+Les deux solides natifs ont été contrôlés : un corps fermé chacun, orientation
+cohérente des faces, volume positif. Les exports de revue conservent la fermeture
+et le volume à moins de 0,5 %. Les réductions trop grossières qui ouvraient les
+maillages ont été rejetées ; leurs diagnostics restent dans le
+[reçu d'inspection](derived/review.json).
+
+- [Vue 3D GLB, unités mètres](derived/coupons.glb).
+- [Ailettes décalées, STL millimètres compressé](derived/offset-fin-coupon.stl.gz).
+- [Témoin à ailettes droites, STL millimètres compressé](derived/plain-fin-control.stl.gz).
+- [Source PicoGK éditable](source/picogk/Program.cs) et [carte d'entrée](coupon-input.json).
+
+Les STL de revue sont simplifiées ; les STL natifs complets restent conservés
+localement et sont identifiés par SHA-256. Le contrôle échantillonne 305 points
+sur des trajets ouverts et un point dans la paroi séparatrice, sur les maillages
+de revue. Il ne vérifie pas tous les vides et ne constitue pas une preuve de
+dépoudrage, d'étanchéité ou de tenue en pression.
+
+![Comparaison numérique et sensibilité au débit](derived/sizing.png)
+
 ## Forme et choix du matériau
 
 La forme étudiée est un cœur à flux croisés : charge pressurisée suivant X,
@@ -155,12 +178,15 @@ par défaut pour ce cœur ; aucune recette de l'impeller n'est transférée.
    avant fermeture des collecteurs. Les passages décalés ne sont pas droits sur
    toute la longueur ; inspection, protocole de nettoyage et mesure de poudre
    résiduelle sont indispensables. Une STL fermée ne prouve pas ce nettoyage.
-4. Le cœur de calcul incliné occupe environ **672 × 545 × 672 mm**, hors supports :
+4. Le cœur de référence à ailettes de 0,3 mm, incliné, occupe environ
+   **672 × 545 × 672 mm**, hors supports :
    il ne tient pas dans une enveloppe nominale de 600 mm. Une piste est deux
    modules en série côté charge, chacun 400 × 545 × 150 mm, inclinés dans environ
    389 × 545 × 389 mm ; autre piste, six modules pour une machine de 400 mm.
+   Pour la piste avancée à ailettes de 0,15 mm, les deux demi-cœurs sont
+   parallèles côté charge et occupent chacun environ 347 × 543 × 347 mm inclinés.
    Ce sont des études de découpage. Leurs collecteurs, joints et redistribution
-   doivent être redimensionnés : le calcul monolithique ne les qualifie pas.
+   doivent être dimensionnés et vérifiés ; les pertes locales restent supposées.
 5. Détensionner et traiter selon la recette qualifiée, usiner les interfaces,
    inspecter la géométrie et la porosité. Qualifier toute soudure/brasure entre
    modules ; ne pas supposer que l'assemblage conserve les propriétés du brut.
@@ -173,8 +199,9 @@ par défaut pour ce cœur ; aucune recette de l'impeller n'est transférée.
 Les interfaces d'installation restent celles du
 [contrat indépendant](../interface-contract.json) : enveloppe de l'aileron,
 appuis/châssis porteur, embouts des turbos et de l'admission, jeux avec ventilateur,
-joints et étanchéité des conduits. Un cœur de 43 kg aurait un chemin de charge
-très différent de celui du premier concept ; aucune fixation n'est inventée.
+joints et étanchéité des conduits. Les 17,3 kg du candidat avancé, comme les
+42,7 kg de référence, nécessitent un chemin de charge vérifié avec les collecteurs
+et les efforts dynamiques ; aucune fixation n'est inventée.
 
 ## Conséquence pour le refroidissement moteur
 

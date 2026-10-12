@@ -64,7 +64,7 @@ def run(native, output):
         m.apply_translation([number*(generation['dimensions_mm'][0]+12),0,0])
         poly=pv.PolyData(m.vertices,np.column_stack((np.full(len(m.faces),3),m.faces)))
         plot.add_mesh(poly,color='#c0d0df' if number==0 else '#d7a24d',smooth_shading=False)
-    plot.add_text(f"PicoGK: offset fins / plain control\n{g['fin_mm']} mm fins; {g['wall_mm']} mm separating walls\nGeometry coupons only - not pressure qualified",font_size=13)
+    plot.add_text(f"PicoGK: offset fins / plain control\n{g['fin_mm']} mm fins; {g['wall_mm']} mm separating walls\nGeometry coupons only - not pressure qualified",font_size=13,color="white")
     plot.set_background('#18212c');plot.camera_position='iso';plot.show(screenshot=str(output/'coupons.png'),auto_close=True)
     report=json.loads((STUDY/'results/sizing.json').read_text());rows=list(csv.DictReader((STUDY/'results/sweep.csv').open()))
     fig,axes=plt.subplots(1,2,figsize=(13,5))

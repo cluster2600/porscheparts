@@ -94,6 +94,26 @@ class IntercoolerSizingTests(unittest.TestCase):
         self.assertEqual(coupon['selected_geometry'],b['geometry'])
         self.assertGreaterEqual(b['geometry']['fin_mm'],4*coupon['basis']['assumed']['coupon_voxel_mm'])
 
+    def test_native_coupon_receipt_and_retained_files(self):
+        r=json.loads((STUDY/'derived/review.json').read_text())
+        candidate=json.loads((STUDY/'coupon-input.json').read_text())
+        self.assertFalse(r['manufacturing_authorized'])
+        self.assertFalse(r['generation']['full_core_generated'])
+        self.assertEqual(r['generation']['geometry'],candidate['selected_geometry'])
+        self.assertAlmostEqual(r['generation']['voxel_mm'],.0375,places=6)
+        self.assertEqual({p['name'] for p in r['parts']},{'offset-fin-coupon','plain-fin-control'})
+        for part in r['parts']:
+            self.assertTrue(part['native_watertight'])
+            self.assertEqual(part['native_bodies'],1)
+            self.assertGreater(part['native_volume_mm3'],0)
+            self.assertEqual(part['sampled_open_route_points'],305)
+            self.assertFalse(part['all_voids_inspected'])
+            self.assertLessEqual(part['review_volume_relative_error'],.005)
+        for name,digest in r['source_hashes'].items():
+            self.assertEqual(hashlib.sha256((STUDY/name).read_bytes()).hexdigest(),digest)
+        for name,digest in r['output_hashes'].items():
+            self.assertEqual(hashlib.sha256((STUDY/'derived'/name).read_bytes()).hexdigest(),digest)
+
     def test_offset_correlation_excludes_invalid_fin_ratios(self):
         a=CARD['assumed']
         r=MODEL['duct'](.003,.001,1,100,.1,350,250000,1010,a,1,1,0,.0004,.02)
