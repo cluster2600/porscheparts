@@ -1,4 +1,11 @@
-# 911–917 — packaging and driveline studies F0–F14
+# 911–917 — packaging and driveline studies F0–F15
+
+## F15 integrated vehicle
+
+See the [whole-vehicle PicoGK packaging study](FULL_VEHICLE.md) for the 47-part
+assembly, native views, component exports, collision checks and unresolved
+functional interfaces. The public model does not require or publish the scan.
+F0–F14 below remains the historical baseline, not superseded physical evidence.
 
 ## Integration status
 
