@@ -1,0 +1,112 @@
+{
+  "schema": "bionic-cartesian-diagnostic-admission/v1",
+  "status": "cartesian_geometry_proven",
+  "case_manifest_sha256": "b1b75704bc0d87e5d8d660291fc897c4235cba4031b7fb7feba611fb8df14548",
+  "source_sha256": "84310b989f65e492ef3278569874b85edb58c6c5bd4236567053bcb7146c56d9",
+  "native_extended_check_passed": false,
+  "canonical_mesh_gate_passed": false,
+  "proof": {
+    "cells": 2114975,
+    "faces": 6685988,
+    "minimum_cell_edge_m": 0.00014900212369999694,
+    "maximum_relative_side_area_error": 1.3405609177055734e-09,
+    "total_box_volume_m3": 0.00023221938519787472,
+    "coordinate_tolerance_m": 1e-12,
+    "all_cells_axis_aligned_boxes": true
+  },
+  "mesh": {
+    "patches": {
+      "inlet": {
+        "faces": 4127,
+        "start": 6097483,
+        "type": "patch"
+      },
+      "outlet": {
+        "faces": 1619,
+        "start": 6101610,
+        "type": "patch"
+      },
+      "rotor": {
+        "faces": 321493,
+        "start": 6103229,
+        "type": "wall"
+      },
+      "stator": {
+        "faces": 261266,
+        "start": 6424722,
+        "type": "wall"
+      }
+    },
+    "boundary_topology": {
+      "surface_components": 3,
+      "component_patch_sets": [
+        [
+          "inlet",
+          "outlet",
+          "rotor",
+          "stator"
+        ],
+        [
+          "rotor"
+        ],
+        [
+          "rotor"
+        ]
+      ],
+      "component_invariants": [
+        {
+          "patches": [
+            "inlet",
+            "outlet",
+            "rotor",
+            "stator"
+          ],
+          "euler_characteristic": 2
+        },
+        {
+          "patches": [
+            "rotor"
+          ],
+          "euler_characteristic": 0
+        },
+        {
+          "patches": [
+            "rotor"
+          ],
+          "euler_characteristic": 0
+        }
+      ],
+      "face_count": 588505,
+      "unique_edges": 1180127,
+      "unique_vertices": 591624,
+      "euler_characteristic": 2
+    },
+    "surface_components_and_patch_provenance_preserved": true,
+    "global_and_component_euler_preserved": true,
+    "rotor_zone_cells": 1295264,
+    "rotor_owner_cells_all_in_zone": true,
+    "ports_outside_zone": true,
+    "mesh_sha256": {
+      "constant/polyMesh/cellLevel": "64cc4321611a9b748d4bd8b28704d2bce1a013cfc6fe66d6461738e1ab8171b5",
+      "constant/polyMesh/owner": "cbe0425ca3bb23243e49b315cfe38b3354c52ad3a0f82a72c6f4bb50ccf6293b",
+      "constant/polyMesh/level0Edge": "af6ece8cee76393a61de011e197e4f3a7377daa0bb5c9c8e50d834268de9fb75",
+      "constant/polyMesh/boundary": "cd4dc7d38970c641284f7cfc497f80c9c5607901a0081d601ac3dfec444fb1d0",
+      "constant/polyMesh/faceZones": "06073d721171d2b0bfcfa686c20e74f0efd0f16fb6ddb255b4a5f69ed076624e",
+      "constant/polyMesh/surfaceIndex": "61829ecd105b037a6cdf73a45bb3017f59b52cdc2e5c5fb16efe4b6a1cae70a5",
+      "constant/polyMesh/pointZones": "889e1254b5a76f99c3da684298c1d0b398a30939332e88e2f60a2b1197f4d394",
+      "constant/polyMesh/pointLevel": "f520bbdbbc6e134aa7938f82da61d9e89e9ed36dda53db57856008994236fdc2",
+      "constant/polyMesh/neighbour": "0f656edfe1a7ee82559c8bc4eb3cecc04acb3cc980dd7d10d4669f6b3e9841a6",
+      "constant/polyMesh/points": "9dc953ceadf8a4a06287153ee4106966633b7a3a9ec2d4383498ebf398802666",
+      "constant/polyMesh/cellZones": "f9a38f07c71aa3630ce830a7094880b31f67094ad2d2068792099f3c75be2f92",
+      "constant/polyMesh/faces": "2ce6b93a62bcc730e10f5193e5c085d19c72bc678401c5bed6e31d656c022e9f"
+    }
+  },
+  "diagnostic_solver_authorized": true,
+  "performance_ranking_authorized": false,
+  "engineering_validated": false,
+  "derivation": {
+    "source_sha256": "9fd58f5c5ad8a0b52f9ea569958d60ae1589deff6ba2164b437b85cdca1a9330",
+    "parent_proof_sha256": "a998642e069817fa87b1f920e83a01b4b8d15120d552d8d1db07e8a3dacfb1e0",
+    "method": "Exact mesh copy, verified by every parent mesh hash. Geometry proof inherited unchanged; only Hf keyword corrected."
+  }
+}
