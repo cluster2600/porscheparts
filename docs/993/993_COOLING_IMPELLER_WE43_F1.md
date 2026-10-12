@@ -182,18 +182,21 @@ tensile allowable for our process.
 
 ## Printability
 
-Without a shroud the blades are open from outside, so every support can be
-reached and removed. The print simulation below picks the orientation with
-the least downward-facing area: tilted 45°, not flat on the web.
+Without a shroud the blades are open from outside, which may help support
+removal; access and removal without damaging the blades remain unverified.
+The geometric screening below selects a 45° tilt by minimising downward
+projected area among the tested orientations. This is not a thermally
+optimised or approved build orientation.
 
-The first simulation run measured a 0.07 mm minimum wall: the NACA 4-digit
-sections close to a knife edge of about 0.05 mm, which LPBF cannot hold.
+The first geometric thickness screen estimated a 0.07 mm minimum wall:
+the NACA 4-digit sections close to a knife edge of about 0.05 mm, with no
+qualified WE43 process capability for that feature.
 The blade thickness now grows linearly toward the trailing edge to a
-0.5 mm minimum. The rerun's minimum wall is 0.24 mm, at the rounded leading
+0.5 mm minimum. The rerun's sampled minimum wall is 0.24 mm, at the rounded leading
 edges, and the first percentile went from 0.32 to 0.71 mm. The change adds
 7 g.
 
-WE43 is not an EOS catalogue material. The simulation uses the M 290
+WE43 is not an EOS catalogue material. The geometric screen uses the M 290
 envelope and the 30 µm layer of the published WE43 LPBF route (Hyer et al.
 2020, 200 W); a magnesium-rated machine and its parameters remain to be
 qualified.
@@ -225,49 +228,54 @@ inferred duty from the rebuild.
    ranking.
 5. FEA with the bolted joint, a Campbell diagram, and HCF with WE43
    allowables.
-6. Supplier support design and an EOSPRINT-class build file for the
-   simulated 45° orientation, then coating, balance, contained overspeed and
-   a flow rig.
+6. Qualify the exact magnesium-rated machine, WE43 process and material
+   data; compare orientations with calibrated thermal and mechanical
+   calculations. Establish metal supports, blade access and removal, then
+   a supplier build file, coating, balance, contained overspeed and a flow rig.
 
 The F1 stays `prohibited_pending_engineering` and `concept`: no manufacture,
 rotation, installation or start-up is authorized.
 
-## Print simulation, pictured
+## Metal LPBF geometry preview — hypothetical supports
 
 Drawn by `scripts/render_print_simulation_visuals.py` (`make print-visuals
-PART=993-eng-cooling-impeller-we43-f1-0001`) from the simulation's own report: the same analysed surface
-(hash-checked), the same orientation and the same 45° overhang rule. The
-orange support columns are recomputed at 0.5 mm layers on a 1 mm grid for
-the pictures; the table below keeps the report's 30 µm figures.
+PART=993-eng-cooling-impeller-we43-f1-0001`) from the geometric screening report: the same analysed surface
+(hash-checked) and candidate orientation. Orange columns mark a hypothetical
+support envelope from a generic 45° heuristic; they are not a qualified
+metal support design. The preview uses 0.5 mm slices and a 1 mm grid; the
+table below records the geometric screen at 30 µm. The animation reveals
+stacked slices, not a laser scan or a thermal calculation.
 
-![Build-up, layer by layer](../../parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build.gif)
+![Geometric layer-stack animation with hypothetical supports](../../parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build.gif)
 
 [Full-resolution video (MP4)](../../parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build.mp4)
 
-![Part and support proxy on the EOS M 290 plate](../../parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build-plate.png)
+![Part and hypothetical support regions in the candidate EOS M 290 envelope](../../parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build-plate.png)
 
 ![Six layer cross-sections](../../parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/layers.png)
 
-*Illustrations of a geometric simulation: no laser path, supplier supports,
-distortion or recoater model. Printing is not authorized.*
+*Geometry preview only. No melt-pool, thermal, residual-stress, distortion
+or recoater simulation; no qualified support design. Printing is not authorized.*
 
 <!-- print-screen:begin -->
 
-## LPBF print simulation
+## LPBF geometric screening — process physics not calculated
 
-The STEP was tessellated, then sliced over its full height at `30 µm`, on the EOS M 290 route of the candidate material. Orientation chosen by the automatic rule: `roll_y_45`.
+The STEP was tessellated, then sliced over its full height at `30 µm`, within the candidate EOS M 290 envelope. Candidate material/process reference: `WE43 LPBF route of Hyer et al. 2020 / 30 um, not an EOS catalogue material`. Orientation chosen by a geometric rule, not thermal optimisation: `roll_y_45`.
+
+The 45° overhang rule only flags geometric regions. The vertical columns are a **hypothetical support envelope**, not supplier-designed metal supports. Their volume is not a metal consumption estimate. Metal LPBF support design must address heat transfer, residual stress, recoater interaction and removal; none is validated here.
 
 | quantity | value |
 |---|---:|
 | layers | 6,286 |
 | build height | 188.56 mm |
-| layers with an unsupported region | 3595 |
-| support proxy | 403,165.47 mm³ |
+| layers flagged by the geometric overhang rule | 3595 |
+| hypothetical support-envelope volume | 403,165.47 mm³ |
 | local thickness p01 | 0.711 mm |
 | trapped powder at 1.00 mm | 0.00 mm³ |
 
-![LPBF print simulation](../../parts/993-eng-cooling-impeller-we43-f1-0001/evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-screen.png)
+![LPBF geometric screening with hypothetical supports; no process physics](../../parts/993-eng-cooling-impeller-we43-f1-0001/evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-screen.png)
 
-This screening is neither an EOSPRINT project, nor a distortion calculation, nor a recoater check. **Printing remains prohibited.**
+**Process physics has not been calculated:** no melt-pool, thermal, residual-stress, distortion or recoater simulation. No qualified support design or machine build file is provided. **Printing remains prohibited.**
 
 <!-- print-screen:end -->
