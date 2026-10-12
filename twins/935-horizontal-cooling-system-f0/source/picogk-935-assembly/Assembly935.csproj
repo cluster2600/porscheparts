@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../../../parts/picogk-catalog/common/Sdf.cs" Link="Sdf.cs" />
+    <Reference Include="PicoGK"><HintPath>$(PicoGKAssembly)</HintPath><Private>true</Private></Reference>
+  </ItemGroup>
+  <Target Name="RequirePicoGK" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(PicoGKAssembly)')" Text="Supply -p:PicoGKAssembly=/private/path/PicoGK.dll" />
+  </Target>
+</Project>
