@@ -174,7 +174,12 @@ Une surface supplémentaire ne prouve pas une meilleure dissipation : efficacit�
 des barres, pertes de charge et répartition du débit restent inconnues. Deux
 résolutions donnent une sensibilité géométrique, pas une convergence CFD.
 Les barres inclinées, les plafonds, le dépoudrage et la tenue sous pression
-nécessitent une étude de fabrication propre à ces éprouvettes.
+nécessitent une étude de fabrication propre à ces éprouvettes. Le passage chaud
+lisse n'a pas de renfort interne : une bande simplement appuyée de portée
+22,4 mm et d'épaisseur 0,8 mm donnerait **220,5 MPa à 3,75 bar** selon le même
+contrôle exploratoire, au-dessus des 40 MPa supposés. Cette variante est donc
+**rejetée pour une épreuve sous pression de suralimentation** sans nouvelle
+conception et validation ; elle sert ici à comparer les géométries côté froid.
 
 Chaque fichier contient **sept champs nommés** : solide, fluide chaud, fluide froid,
 deux températures initiales en K et deux vitesses initiales en m/s. Les coordonnées
