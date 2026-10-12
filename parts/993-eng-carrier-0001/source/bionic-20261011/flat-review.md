@@ -74,6 +74,38 @@ faces produce grid quantisation: a separate 6 micrometre integration audit
 reduces that discrepancy to 0.0225%. This audit does not change the proposed
 machine layer height or create support contours, laser vectors or a job file.
 
+Two flat staged runs and the separate whole-part contraction control completed
+on CalculiX 2.21. The same coarse mesh, 0.10% in-plane / 0.05% vertical inherent
+contraction and uncalibrated equivalent supports are used in each. Displacement
+below has rigid translation/rotation removed; uniform shrinkage remains.
+
+| Deposition groups | Maximum registered deformation after release (mm) | Maximum von Mises after release (MPa) | Largest von Mises at any step (MPa) |
+| --- | ---: | ---: | ---: |
+| 1: whole-part control | 0.29994 | approximately zero | 199.32 |
+| 16: staged diagnostic | 1.71594 | 740.37 | 1,898.63 |
+| 32: staged diagnostic | 1.77619 | 712.16 | 2,016.97 |
+
+Changing from 16 to 32 groups changes released deformation by **3.51%**. This
+two-point sensitivity does not establish convergence or physical accuracy. Both
+staged elastic runs exceed the historical 955 MPa coupon comparison during
+deposition; neither is accepted for a residual-stress prediction or CAD
+compensation. The whole-part control's near-zero released stress verifies a
+limited analytical case, not the staged process or material model.
+
+The 37,824 tetrahedra have a median vertical span of 3.118 mm and a maximum of
+10.697 mm. With centroid-based activation, 72.53% cross their assigned 2.5 mm
+macro-slab at 16 groups; 99.41% cross their assigned 1.25 mm slab at 32 groups.
+This comparison varies activation grouping on a fixed mesh. It does not prove
+spatial convergence or resolve the physical deposition layers. The next numerical
+check needs a mesh aligned with the deposition groups, followed by comparison
+with measured coupon release distortion and process-specific material/support
+data before considering geometry compensation.
+
+Complete native inputs, outputs and convergence histories are retained locally
+in `work/carrier-flat-build-20261012/`, with a raw solver archive and SHA-256
+manifest. The [result receipt](flat-results.json) identifies the source files,
+solver image/binary, package versions, activation audit and raw archive digest.
+
 Changing orientation does not fix the V5 structural rejection. The unchanged
 solid still has the conditional combined-load demands reported in the
 [40-solve mechanical study](comprehensive-review.md): approximately 1,034 MPa
