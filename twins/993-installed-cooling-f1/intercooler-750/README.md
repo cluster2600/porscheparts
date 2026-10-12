@@ -244,3 +244,9 @@ confirmés. Les pertes d'entrée sont supposées ; rugosité, encrassement, dist
 conduction longitudinale, humidité et cartographie réelle du ventilateur restent
 non calibrés. Les coefficients sont recalculés aux températures moyennes ; le
 modèle n'est ni un calcul CHT résolu ni une simulation de fabrication LPBF.
+
+## Suite avec hypothèses autorisées
+
+La [comparaison des architectures](architecture/README.md) couple des courbes
+de ventilateurs supposées aux pertes des circuits, prend en compte leur
+échauffement et ajoute des collecteurs PicoGK avec deux enveloppes de cœur.
