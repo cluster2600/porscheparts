@@ -1,0 +1,310 @@
+{
+  "classification": "prohibited_pending_engineering",
+  "source_revision": "a37cfaae75b445603bdabb6cefdd48fceb237287",
+  "source_sha256": {
+    "source/strength_audit.py": "06386443a3297d54fedf70e5fab2947701d72e59f7ff87c8ec8863b5721f1030",
+    "source/torsion.py": "8b2d392adfd07a7576f8788ed738ca79a93c399f9f161d1ad5b09a0328860b73",
+    "source/torsion_monocoque.py": "35ebb72bacf620b703b77e2ad073ff21e2b0b62671f8c36b8650528edcce58e2",
+    "source/bending.py": "a27dc5809c6d2640f75e7fb99db9ab63a632383252817c642eec2689dab4efee",
+    "source/build_shell.py": "0cb1ef0baa0c8d233cb1a2da4b3644081f7042bdc8d69211f7a2dfc4c615f6d8",
+    "derived/monocoque-shell-structural.npz": "2b0d1d0e22e381a1b1f90e84654eda4970e8bf2a374e8a91bce6f6f9d366f6ba",
+    "derived/zesad-monocoque.report.json": "42d097111da49b38e8b87caaceae5a783a1b8c275c5c3fd2b1b4f3968e62f8f1",
+    "data/profiles-50-05a.json": "c1241f082af368bf0e0a197cdf2d0fb86f766f7e0d50103c1c048e4e68b4ee0e"
+  },
+  "laminate_sha256": "c2c3358331ecdf28877ceccdd06dad0a89de2560de8162bf167e04cba7d9598b",
+  "runtime": {
+    "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+    "numpy": "2.3.5",
+    "platform": "darwin",
+    "solver_image": "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+    "threads": 1
+  },
+  "model": {
+    "sections": 420,
+    "nodes": 43719,
+    "triangles": 89608,
+    "mass_kg": 84.4183768293573,
+    "material": "assumed equivalent isotropic QI carbon, not a layered composite",
+    "target_vehicle_mass_kg": 1200,
+    "target_weight_N": 11767.98,
+    "vehicle_mass_applied_as_load": false
+  },
+  "tolerance": 0.0001,
+  "runs": {
+    "torsion_+1": {
+      "factor": 1,
+      "force_balance_relative_error": 1.8510868774045428e-07,
+      "fixed_translation_max_mm": 2.117582e-22,
+      "external_force_sum_N": [
+        -4.166929252544189e-05,
+        -7.0140501606416e-05,
+        -0.00036111616580098083
+      ],
+      "max_displacement_mm": 0.5590248837561272,
+      "stress": {
+        "integration_points": 179216,
+        "max_principal_MPa": 21.65486494709803,
+        "min_principal_MPa": -18.367247222582872,
+        "von_mises_max_MPa": 16.770923815439325,
+        "von_mises_p95_MPa": 2.403105872685207,
+        "von_mises_peak_xyz_mm": [
+          -1725.242,
+          714.9754,
+          870.82
+        ],
+        "allowable_MPa": null,
+        "reserve_factor": null,
+        "strength_pass": null
+      },
+      "files_sha256": {
+        "shell.12d": "7fd23dc9a84ac41fb7b8af0ddd2441ee372340170cb533e77cd53a27be22d60a",
+        "shell.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+        "shell.dat": "db749d5a400c79d51376f970c7200e4acc6adfdffed9c446cecef39c41bb9109",
+        "shell.frd": "9dbde5e786f82493df6ee801300014188908993b20a0bee88c9e86aa5bb72e40",
+        "shell.inp": "743c78b7ce9aa33c6a89dc31779beef7476f864e11ae52c5d1b80a289756f75e",
+        "shell.sta": "01e324ec0ea28f4d1fd7f5e2da1277af53812b873e218be1604c17a4c8e4990d",
+        "solver.log": "3fae5bf65c150d082fd62248cf1518450ccdb0e4aedc9b17d69ff76a1b574e0c",
+        "spooles.out": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "warning_lines": [],
+      "torque_Nm": 1142.5607961408136,
+      "twist_deg": 0.032219706484850646,
+      "K_Nm_per_deg": 35461.551975280505
+    },
+    "torsion_-1": {
+      "factor": -1,
+      "force_balance_relative_error": 1.8510868774045428e-07,
+      "fixed_translation_max_mm": 2.117582e-22,
+      "external_force_sum_N": [
+        4.166929252544189e-05,
+        7.0140501606416e-05,
+        0.00036111616580098083
+      ],
+      "max_displacement_mm": 0.5590248837561272,
+      "stress": {
+        "integration_points": 179216,
+        "max_principal_MPa": 18.367247222582872,
+        "min_principal_MPa": -21.65486494709803,
+        "von_mises_max_MPa": 16.770923815439325,
+        "von_mises_p95_MPa": 2.403105872685207,
+        "von_mises_peak_xyz_mm": [
+          -1725.242,
+          714.9754,
+          870.82
+        ],
+        "allowable_MPa": null,
+        "reserve_factor": null,
+        "strength_pass": null
+      },
+      "files_sha256": {
+        "shell.12d": "7fd23dc9a84ac41fb7b8af0ddd2441ee372340170cb533e77cd53a27be22d60a",
+        "shell.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+        "shell.dat": "4096cf8b8bd4472ce6392d2f5ca591dab00f14f9f3b98a0ca8420b688d59e6de",
+        "shell.frd": "109eba1986ee99ed252d5598bd814480ed90ae4cd732a58e367c7ce1aa490356",
+        "shell.inp": "0ab682589be8fe97b6bd2d714965992a331d5ed6abd4043e8c29e73353e40d39",
+        "shell.sta": "01e324ec0ea28f4d1fd7f5e2da1277af53812b873e218be1604c17a4c8e4990d",
+        "solver.log": "af02949b4e055d852b56f75c40e61be5583a66c9048378a7c3dd1442f0df3e07",
+        "spooles.out": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "warning_lines": [],
+      "torque_Nm": -1142.5607961408136,
+      "twist_deg": -0.032219706484850646,
+      "K_Nm_per_deg": 35461.551975280505,
+      "displacement_linearity_error": 0.0,
+      "stress_linearity_error": 0.0
+    },
+    "torsion_+2": {
+      "factor": 2,
+      "force_balance_relative_error": 1.0050126661666462e-07,
+      "fixed_translation_max_mm": 6.352747e-22,
+      "external_force_sum_N": [
+        -0.00039732918515210906,
+        -5.787100582318338e-05,
+        1.9711386968871255e-05
+      ],
+      "max_displacement_mm": 1.1180496266455735,
+      "stress": {
+        "integration_points": 179216,
+        "max_principal_MPa": 43.30972602350679,
+        "min_principal_MPa": -36.734493930810075,
+        "von_mises_max_MPa": 33.54184302386128,
+        "von_mises_p95_MPa": 4.806212129176721,
+        "von_mises_peak_xyz_mm": [
+          -1725.242,
+          714.9754,
+          870.82
+        ],
+        "allowable_MPa": null,
+        "reserve_factor": null,
+        "strength_pass": null
+      },
+      "files_sha256": {
+        "shell.12d": "7fd23dc9a84ac41fb7b8af0ddd2441ee372340170cb533e77cd53a27be22d60a",
+        "shell.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+        "shell.dat": "11f3362910df57cf5f4d77351b2b2e46e7c8b807a460dfd8c8e2449c2db358ba",
+        "shell.frd": "64f49d4ac126003d9ce20845c47472cd71460e276d1cf48294eebdbe656825c6",
+        "shell.inp": "2d7fe3a5e1c3139be8a2179dc5207bb369a1792ca4f1b7e9e624cc6a426a1913",
+        "shell.sta": "01e324ec0ea28f4d1fd7f5e2da1277af53812b873e218be1604c17a4c8e4990d",
+        "solver.log": "d17074148e6069dc8d3d8cff3f4fbdb5584bdbf75de79aa3c90a3c82e5d4bef4",
+        "spooles.out": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "warning_lines": [],
+      "torque_Nm": 2285.1215922816273,
+      "twist_deg": 0.0644394099709135,
+      "K_Nm_per_deg": 35461.55362553878,
+      "displacement_linearity_error": 1.1921986343410755e-07,
+      "stress_linearity_error": 3.0160162536657073e-07
+    },
+    "bending_+1": {
+      "factor": 1,
+      "force_balance_relative_error": 4.5219180110761675e-08,
+      "fixed_translation_max_mm": 6.776264e-21,
+      "external_force_sum_N": [
+        4.312738469454181e-07,
+        1.166153018898519e-09,
+        -9.043733189931603e-05
+      ],
+      "max_displacement_mm": 0.1628448129646127,
+      "stress": {
+        "integration_points": 179216,
+        "max_principal_MPa": 16.08282738395222,
+        "min_principal_MPa": -34.49000463450743,
+        "von_mises_max_MPa": 25.84146025506461,
+        "von_mises_p95_MPa": 1.6717148366223273,
+        "von_mises_peak_xyz_mm": [
+          -1725.242,
+          714.9754,
+          870.82
+        ],
+        "allowable_MPa": null,
+        "reserve_factor": null,
+        "strength_pass": null
+      },
+      "files_sha256": {
+        "shell.12d": "564c599c97125c4bff6ca0eef66b4b493ab515069f324d8b1232424731ba2618",
+        "shell.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+        "shell.dat": "17b6d58291630a9ace2aa62f84f599c6eb33b65a400b1f2af760321c97ccdd5e",
+        "shell.frd": "d25dd79ad4cd07f7560e99efb3476260587bfed04cadc3802951c5bf84cd3f37",
+        "shell.inp": "e7d8d29dce9614c842afb0ffdde11391b29cb9c2320788a315e1f2c2846cfd0a",
+        "shell.sta": "01e324ec0ea28f4d1fd7f5e2da1277af53812b873e218be1604c17a4c8e4990d",
+        "solver.log": "bf47ca851e3eb0b7809e9368f7a3a40ae07c96951fa95a354a417b7dd1d1d266",
+        "spooles.out": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "warning_lines": [],
+      "force_N": 2000.0,
+      "deflection_mm": 0.14469812557454242,
+      "K_N_per_mm": 13821.879115978483
+    },
+    "bending_-1": {
+      "factor": -1,
+      "force_balance_relative_error": 4.5219180110761675e-08,
+      "fixed_translation_max_mm": 6.776264e-21,
+      "external_force_sum_N": [
+        -4.312738469454181e-07,
+        -1.166153018898519e-09,
+        9.043733189931603e-05
+      ],
+      "max_displacement_mm": 0.1628448129646127,
+      "stress": {
+        "integration_points": 179216,
+        "max_principal_MPa": 34.49000463450743,
+        "min_principal_MPa": -16.08282738395222,
+        "von_mises_max_MPa": 25.84146025506461,
+        "von_mises_p95_MPa": 1.6717148366223273,
+        "von_mises_peak_xyz_mm": [
+          -1725.242,
+          714.9754,
+          870.82
+        ],
+        "allowable_MPa": null,
+        "reserve_factor": null,
+        "strength_pass": null
+      },
+      "files_sha256": {
+        "shell.12d": "564c599c97125c4bff6ca0eef66b4b493ab515069f324d8b1232424731ba2618",
+        "shell.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+        "shell.dat": "d46f9c5e8adc201428b7774508f524abae6b566cba36aa7cdfc048326f6f7f42",
+        "shell.frd": "df122f846308c4e91a887ad766af888cf8e5abb817be62b77953d44ff796da34",
+        "shell.inp": "44b92c5bf7992aaa0aae4606a001983eb222363913afeaa96f03d9a172f058dd",
+        "shell.sta": "01e324ec0ea28f4d1fd7f5e2da1277af53812b873e218be1604c17a4c8e4990d",
+        "solver.log": "64f2d36deee0cb575dc4c400f124b2d36e89c58432096593c0a094fe76054500",
+        "spooles.out": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "warning_lines": [],
+      "force_N": -2000.0,
+      "deflection_mm": -0.14469812557454242,
+      "K_N_per_mm": 13821.879115978483,
+      "displacement_linearity_error": 0.0,
+      "stress_linearity_error": 0.0
+    },
+    "bending_+2": {
+      "factor": 2,
+      "force_balance_relative_error": 3.558197379236726e-08,
+      "fixed_translation_max_mm": 1.355253e-20,
+      "external_force_sum_N": [
+        8.62551134764647e-07,
+        2.3144292785344654e-09,
+        0.0001423252814631143
+      ],
+      "max_displacement_mm": 0.32568962583316424,
+      "stress": {
+        "integration_points": 179216,
+        "max_principal_MPa": 32.16565426881945,
+        "min_principal_MPa": -68.98000540007308,
+        "von_mises_max_MPa": 51.682918798212164,
+        "von_mises_p95_MPa": 3.343429808487097,
+        "von_mises_peak_xyz_mm": [
+          -1725.242,
+          714.9754,
+          870.82
+        ],
+        "allowable_MPa": null,
+        "reserve_factor": null,
+        "strength_pass": null
+      },
+      "files_sha256": {
+        "shell.12d": "564c599c97125c4bff6ca0eef66b4b493ab515069f324d8b1232424731ba2618",
+        "shell.cvg": "65086dedb4572132b815ace04b294909c7f6f337111f9704fc310b02320f67f7",
+        "shell.dat": "467c1ad55c16dd9ce7e8979552007f561177362c56c2f61ffdea3362188ce2ae",
+        "shell.frd": "bccec196f6d8559d6231ee67b0088230abb59777033abded173c0e51deeaa0a8",
+        "shell.inp": "167a3f89c7037e0671687a253a590e4e94eac70a822b69f58ceff829efdd2f30",
+        "shell.sta": "01e324ec0ea28f4d1fd7f5e2da1277af53812b873e218be1604c17a4c8e4990d",
+        "solver.log": "7483d47e111cdcfd93cd83fec66dda1e33bcf8294b4b3eee05da54c2ae3fb3a7",
+        "spooles.out": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "warning_lines": [],
+      "force_N": 4000.0,
+      "deflection_mm": 0.2893962477961488,
+      "K_N_per_mm": 13821.87927611835,
+      "displacement_linearity_error": 3.1892494229970263e-07,
+      "stress_linearity_error": 1.8631751260943684e-07
+    }
+  },
+  "checks": {
+    "torsion_+1_force_balance": true,
+    "torsion_+1_fixed_translation": true,
+    "torsion_-1_force_balance": true,
+    "torsion_-1_fixed_translation": true,
+    "torsion_-1_linearity": true,
+    "torsion_+2_force_balance": true,
+    "torsion_+2_fixed_translation": true,
+    "torsion_+2_linearity": true,
+    "bending_+1_force_balance": true,
+    "bending_+1_fixed_translation": true,
+    "bending_-1_force_balance": true,
+    "bending_-1_fixed_translation": true,
+    "bending_-1_linearity": true,
+    "bending_+2_force_balance": true,
+    "bending_+2_fixed_translation": true,
+    "bending_+2_linearity": true
+  },
+  "limits": [
+    "No measured mounting interfaces or 993 fitment validation.",
+    "No ply failure, buckling, fatigue, delamination, crash or manufacturing validation.",
+    "Integration-point peaks are mesh-dependent; this run is not a stress-convergence study.",
+    "RF is external force including CLOAD, not reaction alone; moment balance not qualified.",
+    "Repeated or linearly scaled answers do not establish physical correctness."
+  ],
+  "numerical_checks_passed": true,
+  "product_strength_validated": false
+}

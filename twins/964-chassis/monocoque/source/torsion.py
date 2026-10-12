@@ -20,6 +20,7 @@ import pathlib
 import subprocess
 import sys
 import tempfile
+from contextlib import nullcontext
 
 import numpy as np
 
@@ -64,7 +65,7 @@ def solve(p, tri, sections, rear, fl, fr, beams=(), equations=()):
     return FORCE_N * arm / 1000.0 / np.degrees(theta), u, vm, arm
 
 
-def run(p, tri, sections, fixed, loads, beams=(), equations=()):
+def run(p, tri, sections, fixed, loads, beams=(), equations=(), output_dir=None):
     """Linear static CalculiX run. sections: list of (element mask, thickness
     mm, E MPa, Poisson). fixed: list of (nodes, first DOF, last DOF) held
     at zero. loads: list of (nodes, DOF, force per node N). beams: list of
@@ -72,8 +73,13 @@ def run(p, tri, sections, fixed, loads, beams=(), equations=()):
     circular sections; a tube is passed as its equivalent (see
     tube_equivalent). equations: list of (node, [(node, weight), ...])
     tying the first node's translations to the weighted sum of the others'
-    (a bond). Returns nodal displacements and nodal von Mises (MPa)."""
-    with tempfile.TemporaryDirectory() as work:
+    (a bond). Returns nodal displacements and nodal von Mises (MPa).
+    output_dir retains a fresh run and adds integration-point stresses and
+    original-node U/RF to .dat; OUTPUT=2D alone removes bending stresses."""
+    if output_dir is not None:
+        output_dir = pathlib.Path(output_dir)
+        output_dir.mkdir(parents=True, exist_ok=False)
+    with tempfile.TemporaryDirectory() if output_dir is None else nullcontext(output_dir) as work:
         inp = pathlib.Path(work, "shell.inp")
         with inp.open("w") as f:
             f.write("*NODE, NSET=NALL\n")
@@ -109,10 +115,18 @@ def run(p, tri, sections, fixed, loads, beams=(), equations=()):
             f.write("*STEP\n*STATIC, SOLVER=SPOOLES\n*CLOAD\n")
             for nodes, dof, force in loads:
                 f.writelines(f"{int(n) + 1}, {dof}, {v:.6f}\n" for n, v in zip(nodes, np.broadcast_to(force, len(nodes))))
-            f.write("*NODE FILE, OUTPUT=2D\nU\n*EL FILE, OUTPUT=2D\nS\n*END STEP\n")
+            f.write("*NODE FILE, OUTPUT=2D\nU\n*EL FILE, OUTPUT=2D\nS\n")
+            if output_dir is not None:
+                f.write("*NODE PRINT, NSET=NALL\nU, RF\n")
+                for k in range(len(sections)):
+                    f.write(f"*EL PRINT, ELSET=E{k}, GLOBAL=YES\nS, COORD\n")
+            f.write("*END STEP\n")
+        # Parallel SPOOLES produced load-sign drift and a fatal SubMtx error on ARM64.
         run = subprocess.run(["ccx", "-i", "shell"], cwd=work, capture_output=True, text=True,
-                             env=dict(os.environ, OMP_NUM_THREADS="4"))
-        if "Job finished" not in run.stdout:
+                             env=dict(os.environ, OMP_NUM_THREADS=os.environ.get("OMP_NUM_THREADS", "1")))
+        if output_dir is not None:
+            pathlib.Path(work, "solver.log").write_text(run.stdout + run.stderr)
+        if run.returncode != 0 or "Job finished" not in run.stdout:
             sys.exit(run.stdout[-800:] + run.stderr[-800:])
         u, vm, block = np.zeros((len(p), 3)), np.zeros(len(p)), None
         for line in pathlib.Path(work, "shell.frd").read_text().splitlines():
