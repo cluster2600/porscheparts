@@ -80,8 +80,6 @@ arranging native captures, without painting geometry. The DLL hash and native
 runtime are recorded. Optional preflight tests use `DOTNET_TEST_EXECUTABLE`;
 CI skips compiled/native tests when their runtime or outputs are absent.
 
-## Remaining engineering
-
 ## Execution checkpoint, 12 October 2026
 
 Native PicoGK 26.2.0 ran at 5 mm: 47 public components and 26 pair checks;
