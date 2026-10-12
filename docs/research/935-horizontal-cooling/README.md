@@ -14,6 +14,8 @@ constitue un projet distinct.
 
 [Bilan du 12 octobre 2026 et travail restant](STATUS_20261012.md).
 
+[Continuation : rotor fermé sous hypothèses, solveurs et USD](CONTINUATION_20261012.md).
+
 ## Reconstruction depuis les scans — 5 octobre 2026
 
 La [campagne exécutée](IMPLEMENTATION.md) ajuste des surfaces cylindriques
