@@ -1,0 +1,166 @@
+{
+  "archive_sha256": "8d1450fb89eec1e7cecc55c3bb7bc486ccbf63d069379d1d5d7518fa16a4686a",
+  "members": [
+    {
+      "file": "primitiveMeshTools.C",
+      "member": "OpenFOAM-v2406/src/OpenFOAM/meshes/primitiveMesh/primitiveMeshCheck/primitiveMeshTools.C",
+      "bytes": 24759,
+      "sha256": "db2868dc5ccb66f8e3e8c4b919afb8abf8bb3b0fc290c704f9ad4c65b645a712"
+    },
+    {
+      "file": "doubleScalar.H",
+      "member": "OpenFOAM-v2406/src/OpenFOAM/primitives/Scalar/doubleScalar/doubleScalar.H",
+      "bytes": 5688,
+      "sha256": "203bfab6352c85210645802c7cac63c5e55cdf117070a90937e3829ed4991dbe"
+    },
+    {
+      "file": "scalar.H",
+      "member": "OpenFOAM-v2406/src/OpenFOAM/primitives/Scalar/scalar/scalar.H",
+      "bytes": 7533,
+      "sha256": "c433457c042ba84113de47280be48f7ef2b30254a0df9f27b8f838a6ccd2ec6e"
+    },
+    {
+      "file": "OSstream.C",
+      "member": "OpenFOAM-v2406/src/OpenFOAM/db/IOstreams/Sstreams/OSstream.C",
+      "bytes": 7590,
+      "sha256": "f4d69e26d0c4f001b5cd787d5f0abfaf202930ad8ab9a7b63f2c9ee4b56c7eca"
+    },
+    {
+      "file": "IOstream.C",
+      "member": "OpenFOAM-v2406/src/OpenFOAM/db/IOstreams/IOstreams/IOstream.C",
+      "bytes": 3591,
+      "sha256": "bce3b9f6a6c95dd54d67ab2415f2195b2e235c92bea734c2c0ec716b382202e2"
+    },
+    {
+      "file": "checkGeometry.C",
+      "member": "OpenFOAM-v2406/applications/utilities/mesh/manipulation/checkMesh/checkGeometry.C",
+      "bytes": 35899,
+      "sha256": "95b223c7300c2072b5521dc0d15109531c8d6e5b03941d52f23a10c3508e23a3"
+    }
+  ],
+  "claims": [
+    {
+      "id": "face_guard",
+      "file": "primitiveMeshTools.C",
+      "literal": "if (sumA < ROOTVSMALL)",
+      "lines": [
+        93,
+        257
+      ]
+    },
+    {
+      "id": "cell_guard",
+      "file": "primitiveMeshTools.C",
+      "literal": "if (mag(cellVols[celli]) > VSMALL)",
+      "lines": [
+        191,
+        366
+      ]
+    },
+    {
+      "id": "determinant_guard",
+      "file": "primitiveMeshTools.C",
+      "literal": "if (nInternalFaces == 0 || avgArea < ROOTVSMALL)",
+      "lines": [
+        882
+      ]
+    },
+    {
+      "id": "orthogonality_additive",
+      "file": "primitiveMeshTools.C",
+      "literal": "return (d & s)/(mag(d)*mag(s) + ROOTVSMALL);",
+      "lines": [
+        495
+      ]
+    },
+    {
+      "id": "flatness_native_centre",
+      "file": "primitiveMeshTools.C",
+      "literal": "const solveVector fc = fCtrs[facei];",
+      "lines": [
+        804
+      ]
+    },
+    {
+      "id": "flatness_additive",
+      "file": "primitiveMeshTools.C",
+      "literal": "faceFlatness[facei] = magAreas[facei]/(sumA + ROOTVSMALL);",
+      "lines": [
+        821
+      ]
+    },
+    {
+      "id": "openness_additive",
+      "file": "primitiveMeshTools.C",
+      "literal": "/(sumMagClosed[celli][cmpt] + ROOTVSMALL)",
+      "lines": [
+        680
+      ]
+    },
+    {
+      "id": "dp_vsmall",
+      "file": "doubleScalar.H",
+      "literal": "constexpr doubleScalar doubleScalarVSMALL = 1.0e-300;",
+      "lines": [
+        64
+      ]
+    },
+    {
+      "id": "dp_rootvsmall",
+      "file": "doubleScalar.H",
+      "literal": "constexpr doubleScalar doubleScalarROOTVSMALL = 1.0e-150;",
+      "lines": [
+        65
+      ]
+    },
+    {
+      "id": "dp_conditional",
+      "file": "scalar.H",
+      "literal": "#elif defined(WM_DP)",
+      "lines": [
+        120
+      ]
+    },
+    {
+      "id": "precision_delegation",
+      "file": "OSstream.C",
+      "literal": "return os_.precision(p);",
+      "lines": [
+        349
+      ]
+    },
+    {
+      "id": "flatness_call",
+      "file": "checkGeometry.C",
+      "literal": "if (mesh.checkFaceFlatness(true, 0.8, &faces))",
+      "lines": [
+        897
+      ]
+    },
+    {
+      "id": "weight_call",
+      "file": "checkGeometry.C",
+      "literal": "if (mesh.checkFaceWeight(true, 0.05, &faces))",
+      "lines": [
+        960
+      ]
+    },
+    {
+      "id": "vol_ratio_call",
+      "file": "checkGeometry.C",
+      "literal": "if (mesh.checkVolRatio(true, 0.01, &faces))",
+      "lines": [
+        981
+      ]
+    },
+    {
+      "id": "native_tet_call",
+      "file": "checkGeometry.C",
+      "literal": "polyMeshTetDecomposition::checkFaceTets",
+      "lines": [
+        794
+      ]
+    }
+  ],
+  "scope": "source inventory, not execution or complete native call graph"
+}
