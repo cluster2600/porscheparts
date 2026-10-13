@@ -58,7 +58,11 @@ The frozen verification panel uses [English labels from the same renderer](../..
 
 ## Separate V5 flat-build study
 
+The [native Mac LEAP71 extension](../../parts/993-eng-carrier-0001/source/bionic-20261011/native-leap71/README.md) uses ShapeKernel, LatticeLibrary and seven-field VDB exchange on V5. The BCC bracing trial exceeds the 1.2 kg ceiling; raw STL defects and a secondary-access gauge conflict are retained. Its changed geometry has no new structural or fatigue result.
+
 The [V5 CAD and mechanical dossier](../../parts/993-eng-carrier-0001/source/bionic-20261011/README.md) is a separate provisional geometry, not a revision of R9. Its [flat metal-build correction](../../parts/993-eng-carrier-0001/source/bionic-20261011/flat-review.md) retains Ti-6Al-4V Grade 5 as a proposal and the calculated 1.185 kg mass. The required orientation has zero out-of-plane tilt and needs a square bed of at least 471.129 mm with the assumed margins. V5 remains rejected under its structural load assumptions; neither geometry is released for manufacture.
+
+The [virtual assembly trial](../../parts/993-eng-carrier-0001/source/bionic-20261011/virtual-fit-review.md) finds incompatible hole patterns between V5 and the separate F0 concept bracket. This is a failure of that hypothetical CAD pair; real Porsche fit remains unknown.
 
 ## Interfaces and open work
 

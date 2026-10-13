@@ -1,5 +1,15 @@
 # Provisional bionic 993 Turbo carrier — CAD and structural study
 
+**Native Mac extension: [ShapeKernel, LatticeLibrary and VDB field exchange](native-leap71/README.md).**
+The V5 geometry and retained CalculiX fields now run through the installed
+LEAP71 stack. A BCC bracing trial exceeds the 1.2 kg mass ceiling and is rejected;
+the changed trial has no new mechanical or fatigue result.
+
+**Virtual assembly: [carrier/bracket trial](virtual-fit-review.md).**
+The retained V5 carrier and separate F0 concept bracket have incompatible hole
+patterns (96 × 46 versus 100 × 40 mm). Actual mesh interference and a bolt-length
+budget are recorded; neither study establishes the real Porsche mounting geometry.
+
 **Current manufacturing direction: [flat titanium build](flat-review.md).**
 The owner requires a flat metal build. The original XY plane remains horizontal;
 only a 45-degree rotation within the bed plane is used. The earlier tilted
