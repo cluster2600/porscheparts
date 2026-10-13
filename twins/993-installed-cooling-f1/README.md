@@ -15,7 +15,7 @@ an OEM vehicle datum or an established engine-bay fit.
 
 ## 750 metric hp continuation
 
-The user subsequently confirmed a 750 metric hp target. The [thermal sizing and metal-print study](intercooler-750/README.md) supersedes the provisional cooler envelope as a sizing basis. It retains all earlier geometry and CFD evidence unchanged; the resulting core and warmed engine-inlet air are not accepted for installation.
+The user subsequently confirmed a 750 metric hp target. The [thermal sizing and metal-print study](../993-intercooler/750-hp/README.md) supersedes the provisional cooler envelope as a sizing basis. It retains all earlier geometry and CFD evidence unchanged; the resulting core and warmed engine-inlet air are not accepted for installation.
 
 ## What was built
 
