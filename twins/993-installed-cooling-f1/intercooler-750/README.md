@@ -250,3 +250,7 @@ modèle n'est ni un calcul CHT résolu ni une simulation de fabrication LPBF.
 La [comparaison des architectures](architecture/README.md) couple des courbes
 de ventilateurs supposées aux pertes des circuits, prend en compte leur
 échauffement et ajoute des collecteurs PicoGK avec deux enveloppes de cœur.
+
+La [suite à 45 °C](hot-weather/README.md) corrige la température d’entrée du
+compresseur, étudie une ventilation en aval avec réglage indépendant et ajoute
+une variante PicoGK de collecteurs raidis avec contrôles de pression simplifiés.
