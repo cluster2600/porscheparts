@@ -20,13 +20,13 @@ and coverage of all PicoGK APIs remain outside this experiment.
 The retained adapter passes all 48 previous validation plans and all 16
 retention code cases, but scores only **19/60** on this new development set:
 
-| Language | Retained r3 | First continuation |
-|---|---:|---:|
-| English | 6/12 | 12/12 |
-| French | 2/12 | 12/12 |
-| German | 3/12 | 11/12 |
-| Japanese | 3/12 | 12/12 |
-| Chinese | 5/12 | 11/12 |
+| Language | Retained r3 | First continuation | Paired correction |
+|---|---:|---:|---:|
+| English | 6/12 | 12/12 | 12/12 |
+| French | 2/12 | 12/12 | 12/12 |
+| German | 3/12 | 11/12 | 11/12 |
+| Japanese | 3/12 | 12/12 | 11/12 |
+| Chinese | 5/12 | 11/12 | 11/12 |
 
 For example, an explicit synthetic cylinder with length 7.5 mm and radius
 0.625 cm requires `[7.5,6.25]` mm. The baseline returns `[7.5,3.125]`, halving
@@ -207,6 +207,12 @@ hashes. Fallback reads are reported. Hash mismatches or an individual timeout
 fail closed. Batching avoids thousands of Python launches. This
 addresses verification hangs without changing model acceptance thresholds.
 
+The corrective driver specifically uses this archived first trial and its
+verified `completion-recovery.json` and `replay-provenance-audit.json` receipts.
+Those recovery receipts are private prerequisites, not outputs automatically
+produced by a fresh successful `run.py` run. This is a project experiment
+driver rather than a general continuation or installation tool.
+
 ```sh
 python3 training/qwen-picogk-robustness-20261013/correction.py self-check
 ~/Developer/Qwen993/venv/bin/python \
@@ -216,6 +222,43 @@ python3 training/qwen-picogk-robustness-20261013/correction.py self-check
   training/qwen-picogk-robustness-20261013/correction.py run \
   --work /path/to/new/correction
 ```
+
+## Corrective result and next decision
+
+The corrective run completes normally at its registered step 240. Its final
+development score is **57/60**, compared with the retained baseline's 19/60;
+the native checks preserve **48/48 old plans and 16/16 old code tasks**.
+There are no lost passes relative to that retained baseline. It fixes the
+first candidate's German thread, Chinese washer and old English thread
+errors, but introduces three different development errors:
+
+| Request | Independently expected parameters, mm | Candidate parameters, mm |
+|---|---|---|
+| German washer, explicit radii | `[3.25,8.5,3.25]` | `[3.25,4.25,1.5]` |
+| Japanese pipe, explicit radii | `[17.75,9.5,3.25]` | `[17.75,4.75,1.5]` |
+| Chinese thread, explicit radii | `[9.5,8.5,2.25,2.75]` | `[9.5,4.25,1.025,2.75]` |
+
+The reported final validation loss is 0.004 and peak training memory is
+4.999 GB. All adapter tensors are finite. The final adapter hash is
+`f51ea1acbfee302303cd617d87f515f747d569830f148a7dcee7a56092960260`.
+Every one of the 4,898 frozen input bindings passes the post-run check without
+fallback reads; the protocol hash also remains unchanged. These are complete
+software receipts for this second run, unlike the interrupted first driver.
+
+Although 57/60 is 95% overall, three recipe/language categories fail their
+registered floor. **Both candidates remain ineligible, all sixty final
+requests remain uninferred, and the serving adapter stays unchanged.**
+The first candidate's 58/60 should not be selected solely for its larger
+aggregate score: it loses an old semantic pass and has failed native receipts.
+
+Further training should first separate language interpretation from numerical
+normalisation: reviewed inputs should supply authoritative millimetre values
+and explicit radius/diameter roles, with deterministic conversions and an
+independent semantic contract. The model can then learn recipe selection and
+parameter extraction without being the sole source of numerical correctness.
+Future experiments need genuinely different phrasing and larger category
+samples. Additional epochs alone have not solved this measured failure mode.
+The reserved final cases must remain out of training and checkpoint selection.
 
 The next coverage expansion should introduce separate source-pinned cases
 for QuasiCrystals and scalar/vector VDB operations after this parameter

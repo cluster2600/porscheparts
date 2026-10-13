@@ -120,7 +120,7 @@
     }
   },
   "corrective_continuation": {
-    "status": "registered_run_in_progress",
+    "status": "completed_rejected_by_development_gate",
     "planned_fixed_steps": 240,
     "planned_learning_rate": 2.5e-06,
     "planned_training_rows": 2496,
@@ -132,13 +132,124 @@
     "test_opened": false,
     "training_rows": 2496,
     "maximum_tokens": 547,
-    "training_parent_sha256": "49932d886a4014b3ac200065d6a974fada79b009c28b73213b2590a18b62454d"
+    "training_parent_sha256": "49932d886a4014b3ac200065d6a974fada79b009c28b73213b2590a18b62454d",
+    "runner_exit_code": 0,
+    "fixed_steps": 240,
+    "learning_rate": 2.5e-06,
+    "reported_final_validation_loss": 0.004,
+    "peak_training_memory_gb": 4.999,
+    "adapter_sha256": "f51ea1acbfee302303cd617d87f515f747d569830f148a7dcee7a56092960260",
+    "all_adapter_tensors_finite": true,
+    "frozen_inputs_sha256": "ced60a0a50d45db7c8ebbd4f4057871b12cad095998ae88563feb7e47f258f23",
+    "validation": {
+      "before": 19,
+      "after": 57,
+      "total": 60,
+      "regressions_from_retained_baseline": [],
+      "by_language": {
+        "en": {
+          "before": 6,
+          "after": 12,
+          "total": 12
+        },
+        "fr": {
+          "before": 2,
+          "after": 12,
+          "total": 12
+        },
+        "de": {
+          "before": 3,
+          "after": 11,
+          "total": 12
+        },
+        "ja": {
+          "before": 3,
+          "after": 11,
+          "total": 12
+        },
+        "zh": {
+          "before": 5,
+          "after": 11,
+          "total": 12
+        }
+      },
+      "failed_intents": [
+        {
+          "id": "r4-valid-de-washer-00",
+          "expected_parameters_mm": [
+            3.25,
+            8.5,
+            3.25
+          ],
+          "actual_parameters_mm": [
+            3.25,
+            4.25,
+            1.5
+          ]
+        },
+        {
+          "id": "r4-valid-ja-pipe-00",
+          "expected_parameters_mm": [
+            17.75,
+            9.5,
+            3.25
+          ],
+          "actual_parameters_mm": [
+            17.75,
+            4.75,
+            1.5
+          ]
+        },
+        {
+          "id": "r4-valid-zh-thread-00",
+          "expected_parameters_mm": [
+            9.5,
+            8.5,
+            2.25,
+            2.75
+          ],
+          "actual_parameters_mm": [
+            9.5,
+            4.25,
+            1.025,
+            2.75
+          ]
+        }
+      ]
+    },
+    "old_plans": {
+      "before": 48,
+      "after": 48,
+      "total": 48,
+      "regressions": []
+    },
+    "code_retention": {
+      "before": 16,
+      "after": 16,
+      "total": 16,
+      "regressions": []
+    },
+    "eligible": false,
+    "final_frozen_integrity_passed": true,
+    "receipt_sha256": {
+      "results.json": "9352230264a050acf07a02a9329d3058db6bb0193a4b5cd4442a742f5ba433a3",
+      "protocol.json": "05ee3434014afcce1e45cfd8da17e0ff4a0568bb20032a37b46f4412c4f40fba",
+      "training.log": "66247f9a7fb0037c5dcf8527ff317703e5fed14e7ee3d8d6e762117388d5baf5",
+      "adapter-finiteness.json": "ad74db996baeebefd6230e764b8ef39c2c0e85ab7f5dfbd7568c87147405d2c7",
+      "valid-before-scores.json": "f9820b11b855746d6ec23187c207b95026deda165146c8f872d4ce07dfec2950",
+      "valid-after-scores.json": "1e79ae3bff496dad8aa004c167e42e34125e2665b70b9f9ad0904f09e4aa3e78",
+      "old-plans-before-scores.json": "2bd032b62b925a050ec8995dd99c842d95a7788352a91f521245c34162999e9f",
+      "old-plans-after-scores.json": "2bd032b62b925a050ec8995dd99c842d95a7788352a91f521245c34162999e9f",
+      "retention-before/scores.json": "57869e7a430583c84ac959fc7cee1aadb0db03943d7a9de9c931e3f7deacf7fb",
+      "retention-after/scores.json": "57869e7a430583c84ac959fc7cee1aadb0db03943d7a9de9c931e3f7deacf7fb"
+    },
+    "reproduction_prerequisites": "Existing recovered project runtime and archived first trial, including completion-recovery.json and replay-provenance-audit.json; not a generic fresh-machine pipeline."
   },
   "verification": {
     "focused_tests": 9,
     "focused_tests_passed": true,
     "local_make_check": "failed",
-    "local_test_count": 3939,
+    "local_test_count": 3941,
     "local_failures": 2,
     "local_errors": 27,
     "local_skipped": 251,
@@ -147,11 +258,17 @@
       "1 missing hashlib.file_digest in Python 3.10",
       "2 exact floating-point comparison failures in existing engineering studies"
     ],
-    "ci": "pending",
+    "ci": "executable_source_head_passed",
     "first_published_head_ci": {
       "head": "3d044fddfbd5e00c8f9b52feba32135905643333",
       "conclusion": "success",
       "run": "https://github.com/cluster2600/porscheparts/actions/runs/38460547186"
+    },
+    "local_make_check_receipt_sha256": "4e3f00b13eb20503b87a0aeb735b128c8a100be7e8bfe6eb5a11f7e870e44e32",
+    "source_head_ci": {
+      "head": "6ae012f6c17d346d6db70b191c3df026dde91fe1",
+      "conclusion": "success",
+      "run": "https://github.com/cluster2600/porscheparts/actions/runs/38462830815"
     }
   },
   "default_replaced": false,
