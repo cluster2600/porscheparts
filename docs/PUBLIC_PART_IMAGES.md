@@ -9,6 +9,7 @@ applies to new parts and geometry updates, not just the current batch.
 have `views.png`. These paths match PorscheFanatics's pinned Git importer.
 
 The current catalogue has 43 records: 36 geometry renders and 7 status cards.
+Status cards do not close part-image gaps; see [the image gap register](PART_IMAGE_GAPS.md).
 Six cards explicitly say that no geometry has been created. The seventh preserves
 the withdrawal of the synthetic Carrera F0 impeller views, which could be mistaken
 for the Turbo fan. A card depicts no part geometry and must never be captioned as
