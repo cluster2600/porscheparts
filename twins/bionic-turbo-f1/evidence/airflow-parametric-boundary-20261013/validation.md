@@ -1,0 +1,9 @@
+# Validation
+
+Calcul exact : partage paramétrique, incidences et chaînes orientées vérifiés ; 1280 faces planes par fermeture, 4352 triangles d'éventail par fermeture. Le lecteur indépendant v2 confirme les 21504 encadrements polynomiaux, leurs coefficients exacts et toutes les hypothèses de couverture : convexité, positivité, deux boucles fixes emboîtées, annulation orientée des arêtes et égalité de l'aire totale. Il reconstitue séparément les faces par gabarits hex réduits et utilise l'algèbre creuse/Casteljau épinglée PR235, sans importer le premier évaluateur.
+
+Le lecteur v1 et son assertion sont conservés. Il s'arrête avant la validation géométrique parce que `{}` et `{0:0}` sont deux dictionnaires différents représentant le même polynôme nul. V2 normalise seulement la valeur attendue et change le nom du reçu. `verify_reader_fix.py` vérifie exactement cette différence de source, les 1024 coordonnées liées à u et les quatre labels concernés par la représentation du zéro : 12, 13, 2822, 4486. Aucune coordonnée, géométrie, méthode de borne ou seuil n'est changé. Le succès complet appartient à v2.
+
+Tests du dépôt : 108 tests turbo réussis, un ignoré, 15,474 s. `make check` : 3911 tests en 213,747 s, 172 ignorés, deux échecs et trois erreurs hors turbo. Les cinq noms sont identiques à PR239 : flottants WE43/fan_stator et dépendances rtree/networkx. Le journal local n'est pas déclaré vert. `validation.json` et `verification-attempts.json` conservent résultats et empreintes.
+
+Aucun parcours angulaire ou cellulaire antérieur, aucun cas natif et aucun solveur ne sont relancés. Les preuves portent sur des expressions rationnelles et sur la couverture des deux fermetures planes spécifiées. Elles ne qualifient pas un plongement volumique 3D, les arrondis/branches natives, le repos ou une performance CFD.
