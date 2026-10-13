@@ -260,13 +260,21 @@ engineering** stays so until an engineering review lifts it.
 <tr>
 <td align="center" width="16%"><a href="parts/993-body-front-impact-support-alsi10mg-f0-0001/"><img src="parts/993-body-front-impact-support-alsi10mg-f0-0001/media/preview.png" alt="993 front impact support" width="130"><br><sub>993 front impact support</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-body-front-lid-0001/"><img src="parts/993-body-front-lid-0001/media/preview.png" alt="Front lid" width="130"><br><sub>Front lid</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-ca-charge-pipe-set-pet-0001/"><img src="parts/993-ca-charge-pipe-set-pet-0001/media/preview.png" alt="993 Turbo charge-air tract transc…" width="130"><br><sub>993 Turbo charge-air tract transc…</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-ca-turbo-intake-manifold-pet-0001/"><img src="parts/993-ca-turbo-intake-manifold-pet-0001/media/preview.png" alt="993 Turbo turbocharging intake tr…" width="130"><br><sub>993 Turbo turbocharging intake tr…</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-elec-headlamp-spring-hook-f0-0001/"><img src="parts/993-elec-headlamp-spring-hook-f0-0001/media/preview.png" alt="Headlamp spring hook repair" width="130"><br><sub>Headlamp spring hook repair</sub></a></td>
-<td align="center" width="16%"><a href="parts/993-eng-carrier-0001/"><img src="parts/993-eng-carrier-0001/media/preview.png" alt="Turbo engine carrier (Motortraege…" width="130"><br><sub>Turbo engine carrier (Motortraege…</sub></a></td>
-<td align="center" width="16%"><a href="parts/993-eng-chain-case-0001/"><img src="parts/993-eng-chain-case-0001/media/preview.png" alt="993 timing chain case and its lids" width="130"><br><sub>993 timing chain case and its lids</sub></a></td>
-<td align="center" width="16%"><a href="parts/993-eng-connecting-rod-ti64-f0-0001/"><img src="parts/993-eng-connecting-rod-ti64-f0-0001/media/preview.png" alt="🧩 993/993 Turbo connecting rod" width="130"><br><sub>🧩 993/993 Turbo connecting rod</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-eng-bracket-0001/"><img src="parts/993-eng-bracket-0001/media/preview.png" alt="Console centrale moteur Turbo bio…" width="130"><br><sub>Console centrale moteur Turbo bio…</sub></a></td>
 </tr>
 <tr>
+<td align="center" width="16%"><a href="parts/993-eng-carrier-0001/"><img src="parts/993-eng-carrier-0001/media/preview.png" alt="Turbo engine carrier (Motortraege…" width="130"><br><sub>Turbo engine carrier (Motortraege…</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-eng-chain-case-0001/"><img src="parts/993-eng-chain-case-0001/media/preview.png" alt="993 timing chain case and its lids" width="130"><br><sub>993 timing chain case and its lids</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-eng-chain-case-lid-ti-f0-0001/"><img src="parts/993-eng-chain-case-lid-ti-f0-0001/media/preview.png" alt="Left chain case lid 964 105 107 01" width="130"><br><sub>Left chain case lid 964 105 107 01</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-eng-connecting-rod-ti64-f0-0001/"><img src="parts/993-eng-connecting-rod-ti64-f0-0001/media/preview.png" alt="🧩 993/993 Turbo connecting rod" width="130"><br><sub>🧩 993/993 Turbo connecting rod</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-eng-cooling-impeller-alsi10mg-f0-0001/"><img src="parts/993-eng-cooling-impeller-alsi10mg-f0-0001/media/preview.png" alt="993 engine cooling fan — archived…" width="130"><br><sub>993 engine cooling fan — archived…</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-cooling-impeller-we43-f1-0001/"><img src="parts/993-eng-cooling-impeller-we43-f1-0001/media/preview.png" alt="Engine cooling fan impeller" width="130"><br><sub>Engine cooling fan impeller</sub></a></td>
+</tr>
+<tr>
+<td align="center" width="16%"><a href="parts/993-eng-cylinder-head-4v-f0-0001/"><img src="parts/993-eng-cylinder-head-4v-f0-0001/media/preview.png" alt="M64 four-valve cylinder head — cr…" width="130"><br><sub>M64 four-valve cylinder head — cr…</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-exhaust-manifold-in625-f0-0001/"><img src="parts/993-eng-exhaust-manifold-in625-f0-0001/media/preview.png" alt="993 Turbo three-into-one exhaust…" width="130"><br><sub>993 Turbo three-into-one exhaust…</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-exhaust-valve-f1-0001/"><img src="parts/993-eng-exhaust-valve-f1-0001/media/preview.png" alt="993 exhaust valves - F1 proxies" width="130"><br><sub>993 exhaust valves - F1 proxies</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-fan-housing-alsi10mg-f0-0001/"><img src="parts/993-eng-fan-housing-alsi10mg-f0-0001/media/preview.png" alt="Stationary engine fan housing" width="130"><br><sub>Stationary engine fan housing</sub></a></td>
@@ -282,25 +290,30 @@ engineering** stays so until an engineering review lifts it.
 <td align="center" width="16%"><a href="parts/993-eng-k16-turbine-wheel-in718-f0-0001/"><img src="parts/993-eng-k16-turbine-wheel-in718-f0-0001/media/preview.png" alt="🧩 K16 turbine wheel" width="130"><br><sub>🧩 K16 turbine wheel</sub></a></td>
 </tr>
 <tr>
+<td align="center" width="16%"><a href="parts/993-eng-mounting-0001/"><img src="parts/993-eng-mounting-0001/media/preview.png" alt="Support moteur Turbo bionique — c…" width="130"><br><sub>Support moteur Turbo bionique — c…</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-oil-filter-console-alsi10mg-f0-0001/"><img src="parts/993-eng-oil-filter-console-alsi10mg-f0-0001/media/preview.png" alt="Engine oil filter console with in…" width="130"><br><sub>Engine oil filter console with in…</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-piston-cp1-gallery-f0-0001/"><img src="parts/993-eng-piston-cp1-gallery-f0-0001/media/preview.png" alt="M64/60 piston with cooling gallery" width="130"><br><sub>M64/60 piston with cooling gallery</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-three-runner-intake-alsi10mg-f0-0001/"><img src="parts/993-eng-three-runner-intake-alsi10mg-f0-0001/media/preview.png" alt="993 three-runner intake manifold" width="130"><br><sub>993 three-runner intake manifold</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-turbo-heat-shield-in625-f0-0001/"><img src="parts/993-eng-turbo-heat-shield-in625-f0-0001/media/preview.png" alt="993 left turbo heat shield cover" width="130"><br><sub>993 left turbo heat shield cover</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-eng-turbo-oil-return-line-in625-f0-0001/"><img src="parts/993-eng-turbo-oil-return-line-in625-f0-0001/media/preview.png" alt="Turbo oil return line" width="130"><br><sub>Turbo oil return line</sub></a></td>
-<td align="center" width="16%"><a href="parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/"><img src="parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/media/preview.png" alt="Upper valve cover with COP towers" width="130"><br><sub>Upper valve cover with COP towers</sub></a></td>
 </tr>
 <tr>
+<td align="center" width="16%"><a href="parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/"><img src="parts/993-eng-upper-valve-cover-alsi10mg-f0-0001/media/preview.png" alt="Upper valve cover with COP towers" width="130"><br><sub>Upper valve cover with COP towers</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-exh-cat-converter-pair-pet-0001/"><img src="parts/993-exh-cat-converter-pair-pet-0001/media/preview.png" alt="993 Turbo catalytic converters (f…" width="130"><br><sub>993 Turbo catalytic converters (f…</sub></a></td>
+<td align="center" width="16%"><a href="parts/993-exh-heat-exchanger-pair-pet-0001/"><img src="parts/993-exh-heat-exchanger-pair-pet-0001/media/preview.png" alt="993 Turbo exhaust heat exchangers…" width="130"><br><sub>993 Turbo exhaust heat exchangers…</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-exh-oval-tip-in625-f0-0001/"><img src="parts/993-exh-oval-tip-in625-f0-0001/media/preview.png" alt="993 oval exhaust tip" width="130"><br><sub>993 oval exhaust tip</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-exh-oval-tip-ti-f1-0001/"><img src="parts/993-exh-oval-tip-ti-f1-0001/media/preview.png" alt="Oval exhaust tip" width="130"><br><sub>Oval exhaust tip</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-int-dashboard-trim-0001/"><img src="parts/993-int-dashboard-trim-0001/media/preview.png" alt="Dashboard trim" width="130"><br><sub>Dashboard trim</sub></a></td>
+</tr>
+<tr>
 <td align="center" width="16%"><a href="parts/993-int-door-opener-lever-f0-0001/"><img src="parts/993-int-door-opener-lever-f0-0001/media/preview.png" alt="993 interior door opener lever" width="130"><br><sub>993 interior door opener lever</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-int-door-pull-0001/"><img src="parts/993-int-door-pull-0001/media/preview.png" alt="Interior door pull handle" width="130"><br><sub>Interior door pull handle</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-int-seat-rail-cover-0001/"><img src="parts/993-int-seat-rail-cover-0001/media/preview.png" alt="Seat rail cover" width="130"><br><sub>Seat rail cover</sub></a></td>
-</tr>
-<tr>
 <td align="center" width="16%"><a href="parts/993-int-switch-blank-0001/"><img src="parts/993-int-switch-blank-0001/media/preview.png" alt="Switch blank" width="130"><br><sub>Switch blank</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-int-switch-trim-ring-f1-0001/"><img src="parts/993-int-switch-trim-ring-f1-0001/media/preview.png" alt="🖨️ Aluminum switch trim ring" width="130"><br><sub>🖨️ Aluminum switch trim ring</sub></a></td>
 <td align="center" width="16%"><a href="parts/993-turbocharger-k16-pair-0001/"><img src="parts/993-turbocharger-k16-pair-0001/media/preview.png" alt="Pair of K16 turbochargers of the…" width="130"><br><sub>Pair of K16 turbochargers of the…</sub></a></td>
+</tr>
+<tr>
 <td align="center" width="16%"><a href="parts/993-whl-center-cap-alsi10mg-f0-0001/"><img src="parts/993-whl-center-cap-alsi10mg-f0-0001/media/preview.png" alt="993 center cap" width="130"><br><sub>993 center cap</sub></a></td>
 </tr>
 </table>
