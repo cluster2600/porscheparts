@@ -180,6 +180,13 @@ have been written, so its normal `run-001/results.json` is absent. Recovery
 checks and their own receipts are separate; an interrupted run is not reported
 as a successful driver completion.
 
+The separate recovery subsequently verifies **all 4,888 registered input
+files**, with two bounded individual rereads and no hash mismatch. The
+original native failures and interrupted-run status are preserved. The
+corrective run rechecks all 4,898 inherited and added bindings before model
+loading; that check passes without fallback reads. Its matched baseline
+reproduces 19/60 new plans, 48/48 old plans and 16/16 retained code cases.
+
 The [corrective driver](correction.py) reuses the same course, grader, baseline
 and acceptance gates. It adds 200 prompts for 100 new synthetic geometries:
 each cylinder, pipe, washer and thread appears once with radii and once with
@@ -194,8 +201,10 @@ The correction resumes the first candidate for **240 fixed steps at
 keeps the same EOS, native deadlines, per-category floors and old-task
 requirements. It may start only after the prior frozen inputs are verified.
 Its integrity verifier uses four workers with separate bounded file reads;
-each 15-second timeout permits one bounded reread with the same expected hash.
-Retries are reported. Hash mismatches or a second timeout fail closed. This
+each batch of up to 64 files has a 15-second deadline. A batch timeout permits
+one individual read per file, also bounded at 15 seconds, with the same expected
+hashes. Fallback reads are reported. Hash mismatches or an individual timeout
+fail closed. Batching avoids thousands of Python launches. This
 addresses verification hangs without changing model acceptance thresholds.
 
 ```sh

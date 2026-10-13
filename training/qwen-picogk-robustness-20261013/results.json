@@ -96,7 +96,13 @@
     "eligible": false,
     "runner_exit_code": 130,
     "runner_results_file_written": false,
-    "final_integrity_recovery": "pending",
+    "final_integrity_recovery": {
+      "passed": true,
+      "files_checked": 4888,
+      "individual_read_retries": 2,
+      "original_runner_still_interrupted": true,
+      "receipt_sha256": "92bd1bd11f09657ff248c642adeffec93691c4a3b25768967c0df5b8e0c3aed9"
+    },
     "receipt_sha256": {
       "protocol.json": "6aa20846f95e491e583fb60aca2fbb3127977611e5135f8e504c78dde3222d29",
       "training.log": "595d0fedc061862f8a6a70c10df09f2b4791334b0a5c8ae9e8a72678c93604d7",
@@ -114,7 +120,7 @@
     }
   },
   "corrective_continuation": {
-    "status": "awaiting_prior_integrity_verification",
+    "status": "registered_run_in_progress",
     "planned_fixed_steps": 240,
     "planned_learning_rate": 2.5e-06,
     "planned_training_rows": 2496,
@@ -123,10 +129,13 @@
     "additional_prompts_repeated": 2,
     "prior_replay_repeated": 2,
     "baseline": "Original retained r3",
-    "test_opened": false
+    "test_opened": false,
+    "training_rows": 2496,
+    "maximum_tokens": 547,
+    "training_parent_sha256": "49932d886a4014b3ac200065d6a974fada79b009c28b73213b2590a18b62454d"
   },
   "verification": {
-    "focused_tests": 8,
+    "focused_tests": 9,
     "focused_tests_passed": true,
     "local_make_check": "failed",
     "local_test_count": 3939,
@@ -138,7 +147,12 @@
       "1 missing hashlib.file_digest in Python 3.10",
       "2 exact floating-point comparison failures in existing engineering studies"
     ],
-    "ci": "pending"
+    "ci": "pending",
+    "first_published_head_ci": {
+      "head": "3d044fddfbd5e00c8f9b52feba32135905643333",
+      "conclusion": "success",
+      "run": "https://github.com/cluster2600/porscheparts/actions/runs/38460547186"
+    }
   },
   "default_replaced": false,
   "manufacturing_qualified": false,

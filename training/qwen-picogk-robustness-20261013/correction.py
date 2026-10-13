@@ -21,21 +21,25 @@ pilot = course.pilot
 def verify(work):
     frozen = pilot.load(work/'FROZEN.json')
     # Bound each read: the first runner stalled in final verification of an SDK file.
-    command = 'import hashlib,sys; print(hashlib.sha256(open(sys.argv[1],"rb").read()).hexdigest())'
-    def check(binding):
-        name, expected = binding
+    command = 'import hashlib,json,sys; print(json.dumps([hashlib.sha256(open(p,"rb").read()).hexdigest() for p in sys.argv[1:]]))'
+    bindings = list(frozen['files'].items())
+    if not bindings: raise ValueError('Empty integrity manifest')
+    def check(batch):
+        names = [name for name,_ in batch]
         try:
-            result = subprocess.run([sys.executable, '-c', command, name], capture_output=True, text=True, timeout=15)
-            retried = False
+            result = subprocess.run([sys.executable, '-c', command, *names], capture_output=True, text=True, timeout=15)
         except subprocess.TimeoutExpired:
-            result = subprocess.run([sys.executable, '-c', command, name], capture_output=True, text=True, timeout=15)
-            retried = True
-        if result.returncode or result.stdout.strip() != expected:
-            raise ValueError('Registered input changed or could not be read: '+name)
-        return name if retried else None
+            for name, expected in batch:
+                retry = subprocess.run([sys.executable, '-c', command, name], capture_output=True, text=True, timeout=15)
+                if retry.returncode or json.loads(retry.stdout) != [expected]:
+                    raise ValueError('Registered input changed or could not be read: '+name)
+            return names
+        if result.returncode or json.loads(result.stdout) != [expected for _,expected in batch]:
+            raise ValueError('Registered input changed or could not be read in batch: '+names[0])
+        return []
     with ThreadPoolExecutor(max_workers=4) as pool:
-        retries = [name for name in pool.map(check, frozen['files'].items()) if name]
-    print('Frozen integrity passed:',len(frozen['files']),'files; bounded read retries:',json.dumps(retries),flush=True)
+        retries = [name for names in pool.map(check, [bindings[i:i+64] for i in range(0,len(bindings),64)]) for name in names]
+    print('Frozen integrity passed:',len(bindings),'files; individual fallback reads:',len(retries),flush=True)
     frozen['verification_read_retries'] = retries
     return frozen
 
@@ -75,9 +79,14 @@ def paired(previous_rows, old):
 
 
 def prepare(previous, work):
-    frozen = verify(previous)
+    # Run rechecks every inherited binding before loading any model weights.
+    frozen = pilot.load(previous/'FROZEN.json')
     if not pilot.load(previous/'completion-recovery.json')['passed']:
         raise ValueError('Previous integrity recovery failed')
+    base = course.ask.recovered_base(course.RUNTIME, course.RUNTIME)
+    profile = pilot.load(course.ask.RECOVERY_PROFILE)
+    if str(base) != frozen['base'] or any(course.importlib.metadata.version(k) != v for k,v in profile['packages'].items()):
+        raise ValueError('Recovered runtime changed')
     if shutil.disk_usage(work.parent).free < 3*1024**3: raise ValueError('Need 3 GiB free')
     extra = paired(pilot.load(previous/'cases.json'), pilot.load(previous/'old-plans.json'))
     replay = (course.PRIOR/'2026-10-12-r3/data/train.jsonl').read_text()
