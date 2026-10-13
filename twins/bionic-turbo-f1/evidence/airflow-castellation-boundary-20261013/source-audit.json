@@ -1,0 +1,39 @@
+{
+  "archive_sha256": "8d1450fb89eec1e7cecc55c3bb7bc486ccbf63d069379d1d5d7518fa16a4686a",
+  "url": "https://dl.openfoam.com/source/v2406/OpenFOAM-v2406.tgz",
+  "members": [
+    {
+      "member": "OpenFOAM-v2406/src/mesh/snappyHexMesh/refinementSurfaces/refinementSurfaces.C",
+      "sha256": "640fa97c5114ffc114f1924941534bdd0bc8cb93c3b71d1700a47681efc958b7",
+      "occurrences": {
+        "regionMinLevel[surfI].insert": [
+          384
+        ],
+        "regionMaxLevel[surfI].insert": [
+          385
+        ]
+      }
+    },
+    {
+      "member": "OpenFOAM-v2406/src/mesh/snappyHexMesh/snappyHexMeshDriver/snappyRefineDriver.C",
+      "sha256": "cd3203d6bbdb442309edfc55071c3fc28481a4cb7fc50ba85311f0a6056e9ff3",
+      "occurrences": {
+        "surfaceOnlyRefine": [
+          341,
+          3368,
+          3385
+        ],
+        "danglingCellRefine": [
+          1001,
+          3438,
+          3444
+        ],
+        "refinementInterfaceRefine": [
+          1162,
+          3452
+        ]
+      }
+    }
+  ],
+  "scope": "Source inspection only; regional requests do not prove frozen join through all subsequent operations; no native case prepared."
+}
