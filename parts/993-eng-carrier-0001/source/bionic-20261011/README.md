@@ -1,5 +1,11 @@
 # Provisional bionic 993 Turbo carrier — CAD and structural study
 
+**13 October correction: [V6f CAD, independent assembly checks and fresh mechanics](correction-20261013/README.md).**
+The provisional hole-pattern mismatch and secondary access are corrected at
+1.188 kg nominal mass. Structural screening with flexible supports still fails;
+fitment, fatigue life and manufacturing remain unqualified. Earlier variants
+and their receipts below remain historical comparisons.
+
 **Native Mac extension: [ShapeKernel, LatticeLibrary and VDB field exchange](native-leap71/README.md).**
 The V5 geometry and retained CalculiX fields now run through the installed
 LEAP71 stack. A BCC bracing trial exceeds the 1.2 kg mass ceiling and is rejected;
