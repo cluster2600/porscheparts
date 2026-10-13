@@ -76,6 +76,16 @@ Catalogue record: [`catalog/parts/993-eng-bracket-0001.json`](../../catalog/part
 
 - [`twins/993-engine-mount-system-f0/derived/993-ENG-BRACKET-0001.stl`](../../twins/993-engine-mount-system-f0/derived/993-ENG-BRACKET-0001.stl)
 
+## Images
+
+![preview](../../parts/993-eng-bracket-0001/media/preview.png)
+
+*`parts/993-eng-bracket-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*
+
+![views](../../parts/993-eng-bracket-0001/media/views.png)
+
+*`parts/993-eng-bracket-0001/media/views.png` — concept CAD block, **not** the original part, not a print file.*
+
 ## Provenance and sources
 
 | field | value |
