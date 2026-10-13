@@ -254,3 +254,8 @@ de ventilateurs supposées aux pertes des circuits, prend en compte leur
 La [suite à 45 °C](hot-weather/README.md) corrige la température d’entrée du
 compresseur, étudie une ventilation en aval avec réglage indépendant et ajoute
 une variante PicoGK de collecteurs raidis avec contrôles de pression simplifiés.
+
+The [core family comparison](core-comparison/README.md) screens a HelixHeatX
+helical-web transposition and a two-network gyroid against the offset-strip
+witness under the same assumptions, with native PicoGK coupons measured
+independently.
