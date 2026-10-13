@@ -149,6 +149,10 @@
       "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fan-curves.png",
       "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/flat-fan-sizing-f2.json",
       "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/flat-fan-sizing-f2.png",
+      "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/fe-screen.json",
+      "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/solver-benchmarks.json",
+      "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/campbell.png",
+      "parts/993-eng-cooling-impeller-we43-f1-0001/source/fe_screen_f1.py",
       "catalog/sources/src-ferdinand-eb-motorsport-flat-fan-kit.json",
       "catalog/sources/src-jim-torres-racing-935-reproduction-flat-fan.json"
     ],
@@ -164,7 +168,9 @@
       "Both rotors lose more to the 3.5 mm tip gap and to exit swirl than to blade profile; the matched stator (about +9 % at equal power) and a housing land over the tips are the larger levers, and belong to a future housing.",
       "WE43 data are single-laboratory room-temperature coupons plus generic values; no hot, HCF or notched allowable.",
       "The fully constrained thermal screen fails for WE43; the bolted joint to the bearing hub needs inserts or creep-rated washers.",
-      "The open-blade first mode (about 1,350 Hz) is 35 % above the six-spoke order by a beam estimate; an FE Campbell diagram is required.",
+      "The beam estimate of the open-blade first mode (about 1,350 Hz) is superseded by the 2026-10-13 FE screen (gmsh C3D10 + CalculiX, one 4 mm mesh, hub joint idealised as clamped or as a fixed bore): the first blade-bending family sits at 1,890-2,530 Hz, the lowest modes are cup/web modes (344-525 Hz at rest), and the engineering screen's modal pass does not cover them.",
+      "In that FE screen the 17-vane stator order meets the five-nodal-diameter blade mode at about 7,600 rpm, inside the nominal range, and the spokes' 12th-order harmonic meets one-nodal-diameter modes at about 1,700-2,600 and 11,400 rpm; forcing and damping are not computed, so these are crossings to design around, not predicted failures.",
+      "The same FE screen puts the 12,000 rpm peak at 92-96 MPa (yield / peak 2.3-2.4) at the unfilleted blade-root/rim corner, far above the beam screen's 11-47 MPa; mesh independence is not demonstrated and that corner needs a fillet before any stress figure is quoted.",
       "An earlier F1 revision (120 mm hub, shroud, 248 mm) was a generic fan that did not keep the original cup or alternator space; it is superseded.",
       "The flat-fan sizing study F2 is a separate shrouded rotor family on F0-scaled duties; its findings do not describe this upright rotor."
     ]
