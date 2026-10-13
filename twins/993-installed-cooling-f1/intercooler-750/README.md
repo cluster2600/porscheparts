@@ -254,3 +254,9 @@ de ventilateurs supposées aux pertes des circuits, prend en compte leur
 La [suite à 45 °C](hot-weather/README.md) corrige la température d’entrée du
 compresseur, étudie une ventilation en aval avec réglage indépendant et ajoute
 une variante PicoGK de collecteurs raidis avec contrôles de pression simplifiés.
+
+## Poursuite : tenue en pression des éprouvettes
+
+[Comparaison à 0, 2 et 4 nervures chaudes](pressure-coupon/README.md) : douze
+calculs CalculiX locaux, deux générations PicoGK, coût hydraulique exploratoire
+et contraintes de pied non convergées conservées explicitement.
