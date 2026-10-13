@@ -1,0 +1,11 @@
+# Protocole préalable — exclusion sur une restriction
+
+Fixer u au q_m rationnel exact du système PR232. Garder v dans l'intervalle ouvert (q_m,q_ext), sans modifier incidence, stations ou fermetures. Refaire la dépendance des coordonnées avant usage ; les contraintes constantes doivent garder leur statut archivé.
+
+Sous-ensemble nécessaire prescrit : pour chacun des deux intervalles axiaux contenant des rejets PR229, prendre la face axiale/axiale de marge archivée minimale (départager par labels). Ajouter, pour chacune des deux fermetures et des familles axiale et hex extérieure, la cellule au déterminant archivé minimal. Ces choix ne servent qu'à EXCLURE des valeurs, jamais à admettre une solution.
+
+Encadrer la géométrie native (centres de faces par éventail à moyenne des sommets, puis moments des pyramides signées) par intervalles dyadiques à 160 bits fractionnaires, toutes opérations arrondies vers l'extérieur en arithmétique entière. Racines carrées encadrées par isqrt. Isoler κ par 80 bissections rationnelles du polynôme déjà démontré. Aucun acos, aucune évaluation ponctuelle nouvelle de ratio.
+
+Couvrir l'intervalle fermé englobant par bisection exacte adaptative. Exclure une boîte seulement si un prédicat nécessaire est strictement impossible sur TOUTE la boîte. Arrêter une boîte si tous les seuls prédicats sélectionnés sont certifiés, sans la qualifier de faisable. Sinon bissecter jusqu'à profondeur 12 et marquer indécis. Les extrémités singulières sont traitées comme indécises si nécessaire, jamais retirées silencieusement. Maximum 8191 boîtes. Ni recherche de meilleur ratio ni génération de coordonnées candidates.
+
+Conserver chaque feuille avec bornes rationnelles, raison et encadrements. Un second lecteur réimplémente l'arithmétique avec Fraction et quantification à 192 bits, reconstitue les faces depuis les six gabarits hex et vérifie toute exclusion, tout signe certifié et la couverture sans trou. Références analytiques et encadrements élémentaires contrôlés. Ce sous-ensemble n'inclut pas tous les plans, angles et déterminants : aucune boîte survivante ne constitue une solution. Couverture géométrique/non-intersection, qualité native et CFD restent non qualifiées.
