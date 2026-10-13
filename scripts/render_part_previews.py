@@ -174,6 +174,20 @@ def save_manifest(record: dict, info: dict) -> dict:
     return info
 
 
+def display_rotation_x_deg(part_id: str, files: list[Path]) -> int:
+    """Show the blade face of the two rotors archived back-face-up.
+
+    Their documented bionic frame is a 180-degree X rotation, not a mirror.
+    The source meshes and blade handedness are preserved.
+    """
+    back_face_up = {
+        "993-ENG-K16-COMPRESSOR-WHEEL-ALSI10MG-F0-0001",
+        "993-ENG-K16-COMPRESSOR-WHEEL-AL2139-F1-0001",
+    }
+    return 180 if (part_id in back_face_up and files
+                   and all(f.name.endswith("-picogk.stl") for f in files)) else 0
+
+
 def render(record: dict) -> dict:
     part_id = record["part_id"]
     files = sources(part_id)
@@ -181,7 +195,10 @@ def render(record: dict) -> dict:
         return status_card(record, files)
     import pyvista as pv
     pv.OFF_SCREEN = True
+    rotation_x_deg = display_rotation_x_deg(part_id, files)
     meshes = [mesh_of(f) for f in files]
+    if rotation_x_deg:
+        meshes = [m.rotate_x(rotation_x_deg, inplace=False) for m in meshes]
     smooth = (record.get("geometry", {}).get("master_format") == "PicoGK"
               or all(f.name.endswith("-picogk.stl") for f in files))
     tint = color(record)
@@ -238,9 +255,13 @@ def render(record: dict) -> dict:
     info = {
         "part_id": part_id,
         "kind": "geometry_render",
-        "note": ("Geometry views of the part's PicoGK concept model (parts/picogk-catalog/). "
+        "note": ("Blade-side views of the existing K16 compressor concept. "
+                 "Blade surfaces, hub and shaft interfaces remain unmeasured design hypotheses. "
+                 if rotation_x_deg else
+                 "Geometry views of the part's PicoGK concept model (parts/picogk-catalog/). "
                  if smooth else "Geometry views of the concept CAD. ")
                 + "Not a photograph, not a render of a manufactured part, not evidence of fit or function.",
+        "display_rotation_x_deg": rotation_x_deg,
         "sources": [{"path": f.relative_to(ROOT).as_posix(), "sha256": sha256(f)} for f in files],
         "bounding_box_mm": dims,
         "images": ["preview.png", "views.png"],
@@ -266,6 +287,8 @@ def check() -> int:
                 raise ValueError("incorrect image kind")
             if info.get("part_id") != part_id or info.get("sources") != expected:
                 raise ValueError("preview does not match its CAD")
+            if info.get("display_rotation_x_deg", 0) != display_rotation_x_deg(part_id, files):
+                raise ValueError("preview does not show the expected model face")
             if info.get("record_sha256") != sha256(RECORDS / (part_id.lower() + ".json")):
                 raise ValueError("preview does not match its catalogue record")
             if info.get("images") != names or not info.get("note") or not info.get("license"):

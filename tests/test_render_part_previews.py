@@ -110,6 +110,29 @@ class PublicPreviewTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             previews.sources(self.record["part_id"])
 
+    def test_back_face_up_rotor_rejects_generic_camera_manifest(self):
+        part_id = "993-ENG-K16-COMPRESSOR-WHEEL-ALSI10MG-F0-0001"
+        record_path = self.records / (part_id.lower() + ".json")
+        self.record_path.rename(record_path)
+        self.record_path = record_path
+        self.record["part_id"] = part_id
+        self.write_record()
+        folder = self.parts / part_id.lower()
+        self.media.parent.rename(folder)
+        self.media = folder / "media"
+        derived = folder / "derived"
+        derived.mkdir()
+        cad = derived / "compressor_wheel_alsi10mg_f0-picogk.stl"
+        cad.write_bytes(b"back-face-up CAD fixture")
+        self.publish([cad])
+        # Valid image/CAD hashes alone do not catch a view of the wrong face.
+        self.assertEqual(self.check(), 1)
+        manifest = self.media / "preview.json"
+        info = json.loads(manifest.read_text())
+        info["display_rotation_x_deg"] = 180
+        manifest.write_text(json.dumps(info))
+        self.assertEqual(self.check(), 0)
+
 
 if __name__ == "__main__":
     unittest.main()
