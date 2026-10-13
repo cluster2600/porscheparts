@@ -218,6 +218,82 @@ The model alone (no CAD) runs on the host with the standard library:
 `engineering_screen()` in the same file. `matched_duty()` recomputes the
 inferred duty from the rebuild.
 
+## 3D FE screen: stress and Campbell diagram
+
+The beam and ring formulas above cannot see two things: where the stress
+concentrates, and the modes of the cup and web. A 3D finite-element screen
+(2026-10-13) meshes the committed STEP and answers both.
+
+![Campbell diagram of the F1 rotor in WE43, two hub idealisations](../../parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/campbell.png)
+
+*Stress-stiffened modes against the engine orders. Red rings: crossings where
+the frequency and the nodal diameter both match. Screen only.*
+
+Method: gmsh second-order tetrahedra (C3D10, about 164,000 nodes, 4 mm with
+1.5 mm minimum), CalculiX 2.21 on one thread. Each speed is a geometrically
+nonlinear static step under centrifugal load, then 24 modes in a perturbation
+step, so the modes carry the stress stiffening. WE43 as in the engineering
+screen, Poisson 0.27 assumed. The joint to the bearing hub is not known, so it
+is bracketed: **clamped** (the web's outer face bonded to the hub out to
+r 32 mm, plus the bolt holes) and **bore** (only the bore fixed, the boundary
+of the 2026-10-03 rebuild alloy comparison). Before the rotor, the same chain
+reproduces a spinning disc's bore hoop stress within 0.05 % and a cantilever
+plate's first mode within 1.2 %, and a repeat solve is identical.
+
+| at 12,000 rpm | clamped | bore | beam screen |
+|---|---|---|---|
+| peak von Mises | 91.5 MPa | 95.8 MPa | 10.7 (blade root) to 46.7 MPa (bore) |
+| where | blade root on the cup rim, r 83 mm | same | — |
+| yield / peak | 2.4 | 2.3 | 4.7 to 20.6 |
+| window corners | 48 MPa | 46 MPa | — |
+| blade-tip radial growth | 0.064 mm | 0.063 mm | — |
+| lowest mode at rest | 525 Hz (cup, 1 nodal diameter) | 344 Hz | — |
+| first blade-bending family | 1,890-2,360 Hz | 2,060-2,530 Hz | 1,351 Hz (one cantilever blade) |
+
+What it changes:
+
+- **The peak stress is several times the beam screen's**, at the junction of a
+  blade root with the outside of the cup rim. The CAD has no fillet there, so
+  part of that peak is a sharp-corner concentration that a finer mesh would
+  raise; mesh independence is not demonstrated. A root fillet is needed before
+  any stress figure is quoted. The tip growth is negligible against the 3.5 mm
+  tip gap.
+- **The blades are stiffer than the beam said** (first family 40-90 % above
+  1,351 Hz), but **the cup and web have modes far below it**: 344-525 Hz at rest
+  with one nodal diameter, then 589-843 Hz. The engineering screen's modal pass
+  checks one blade and does not cover them.
+- **Crossings with a matching nodal diameter** (on 11 blades, order *k* drives
+  nodal diameter *k* mod 11, or 11 minus that):
+  - **17-vane stator order × five-nodal-diameter blade mode at 7,581 rpm**, in
+    both hub cases, inside the nominal range. Every blade-family mode lies
+    between 1.9 and 2.5 kHz, so any stator of ten or more vanes crosses it
+    below 12,000 rpm; the vane count only chooses which mode and at what speed.
+    Ten vanes (order 10 → nodal diameter 1) would move that crossing to about
+    13,600 rpm, at the price of a crossing with the one-nodal-diameter web
+    mode near 2,100-3,200 rpm. The vane count was chosen for aerodynamics in
+    [`993_FAN_STATOR_ALSI10MG_F1`](993_FAN_STATOR_ALSI10MG_F1.md); it is not
+    changed here.
+  - **12th order (second harmonic of the six spokes) × one-nodal-diameter
+    modes**: the web mode at 1,729 (bore) to 2,633 rpm (clamped), and a blade
+    mode at about 11,400 rpm, inside overspeed.
+  - The low engine orders 1-4 meet the low cup modes only with mismatched
+    nodal diameters inside the range.
+
+Forcing amplitude, damping, Coriolis splitting and the real bolted joint are
+not computed: these are crossings to design around, not predicted failures.
+
+```bash
+# in the cadsim image; one capped container at a time (a 24-mode solve needs ~7 GB)
+python3 parts/993-eng-cooling-impeller-we43-f1-0001/source/fe_screen_f1.py benchmark WORK/bench
+python3 parts/993-eng-cooling-impeller-we43-f1-0001/source/fe_screen_f1.py rotor \
+  parts/993-eng-cooling-impeller-we43-f1-0001/derived/cooling_impeller_we43_f1.step WORK/clamped-s4 --case clamped --size 4 --size-min 1.5
+python3 parts/993-eng-cooling-impeller-we43-f1-0001/source/fe_screen_f1.py report WORK/clamped-s4 WORK/bore-s4 \
+  --step parts/993-eng-cooling-impeller-we43-f1-0001/derived/cooling_impeller_we43_f1.step \
+  --benchmark parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/solver-benchmarks.json \
+  --out parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/fe-screen.json \
+  --plot parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/campbell.png
+```
+
 ## Next gates
 
 1. Measure the original's blade pitch, chord and cup depth. The comparison
@@ -226,8 +302,11 @@ inferred duty from the rebuild.
 3. Housing land over the blade tips, the matched stator and the inlet.
 4. Rotating CFD of the rebuild and F1 in the same domain, to check the 1D
    ranking.
-5. FEA with the bolted joint, a Campbell diagram, and HCF with WE43
-   allowables.
+5. FEA with the bolted joint and HCF with WE43 allowables. The first 3D screen
+   and Campbell diagram are done (above); still open: a blade-root fillet and
+   a mesh-converged peak, the stator vane count against the blade family, the
+   web stiffness (the rebuild's ribs between the windows, dropped in F1), and
+   the real joint.
 6. Qualify the exact magnesium-rated machine, WE43 process and material
    data; compare orientations with calibrated thermal and mechanical
    calculations. Establish metal supports, blade access and removal, then
