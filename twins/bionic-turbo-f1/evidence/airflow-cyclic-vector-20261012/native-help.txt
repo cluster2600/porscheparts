@@ -1,0 +1,161 @@
+
+Usage: setExprFields [OPTIONS]
+Options:
+  -ascii            Write in ASCII format instead of the controlDict setting
+  -case <dir>       Case directory (instead of current directory)
+  -create           Create a new field (command-line operation)
+  -debug-parser     Additional debugging information
+  -debug-switch <name=val>
+                    Set named DebugSwitch (default value: 1).
+                    [Can be used multiple times]
+  -decomposeParDict <file>
+                    Alternative decomposePar dictionary file
+  -dict <file>      Alternative dictionary for setExprFieldsDict
+  -dimensions <dims>
+                    The dimensions for created fields (command-line operation)
+  -dry-run          Evaluate but do not write
+  -dummy-phi        Provide a zero phi field (command-line operation)
+  -expression <expr>
+                    The expression to evaluate (command-line operation)
+  -field <name>     The field to create/overwrite (command-line operation)
+  -field-mask <logic>
+                    The field mask (logical condition) when to apply the
+                    expression (command-line operation)
+  -fileHandler <handler>
+                    Override the file handler type
+  -hostRoots <((host1 dir1) .. (hostN dirN))>
+                    Per-subprocess root directories for distributed running.
+                    The host specification can be a regex.
+  -info-switch <name=val>
+                    Set named InfoSwitch (default value: 1).
+                    [Can be used multiple times]
+  -keepPatches      Leave patches unaltered (command-line operation)
+  -latestTime       Select the latest time
+  -lib <name>       Additional library or library list to load.
+                    [Can be used multiple times]
+  -load-fields <wordList>
+                    Specify field or fields to preload. Eg, 'T' or '(p T U)'
+  -mpi-threads      Request use of MPI threads
+  -no-libs          Disable use of the controlDict 'libs' entry
+  -no-variable-cache
+                    Disable caching of expression variables
+  -noZero           Exclude '0/' dir from the times list
+  -opt-switch <name=val>
+                    Set named OptimisationSwitch (default value: 1).
+                    [Can be used multiple times]
+  -parallel         Run in parallel
+  -region <name>    Specify mesh region (default: region0)
+  -roots <(dir1 .. dirN)>
+                    Subprocess root directories for distributed running
+  -time <ranges>    List of ranges. Eg, ':10,20 40:70 1000:', 'none', etc
+  -value-patches <(patches)>
+                    A list of patches that receive a fixed value (command-line
+                    operation)
+  -verbose          Additional verbosity
+  -withFunctionObjects
+                    Execute functionObjects
+  -world <name>     Name of the local world for parallel communication
+  -doc              Display documentation in browser
+  -doc-source       Display source code in browser
+  -help             Display short help and exit
+  -help-compat      Display compatibility options and exit
+  -help-man         Display full help (manpage format) and exit
+  -help-notes       Display help notes (description) and exit
+  -help-full        Display full help and exit
+
+Using: OpenFOAM-2406 (2406) - visit www.openfoam.com
+Build: _be01ca78-20240625
+Arch:  LSB;label=32;scalar=64
+
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2406                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _be01ca78-20240625 OPENFOAM=2406 version=2406
+Arch   : "LSB;label=32;scalar=64"
+Exec   : postProcess -list
+Date   : Oct 12 2026
+Time   : 18:22:32
+Host   : 1a67b971c5b3
+PID    : 1
+I/O    : uncollated
+Case   : /
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+Available configured functionObjects:
+64
+(
+AMIWeights
+CourantNo
+LambVector
+Lambda2
+MachNo
+ObukhovLength
+PecletNo
+Q
+R
+XiReactionRate
+add
+boundaryCloud
+cellMax
+cellMin
+components
+ddt
+div
+dsmcFields
+energySpectrum
+enstrophy
+faceMax
+faceMin
+fieldMinMax
+flowRateFaceZone
+flowRatePatch
+flowType
+forceCoeffsCompressible
+forceCoeffsIncompressible
+forcesCompressible
+forcesIncompressible
+grad
+heatTransferCoeff
+internalCloud
+log
+mag
+magSqr
+minMaxComponents
+minMaxMagnitude
+patchAverage
+patchIntegrate
+pressureDifferencePatch
+pressureDifferenceSurface
+probes
+processorField
+randomise
+scalarTransport
+singleGraph
+solverInfo
+staticPressure
+streamFunction
+streamlines
+subtract
+surfaces
+totalPressureCompressible
+totalPressureIncompressible
+turbulenceFields
+volFlowRateSurface
+vorticity
+wallHeatFlux
+wallShearStress
+writeCellCentres
+writeCellVolumes
+writeObjects
+yPlus
+)
+

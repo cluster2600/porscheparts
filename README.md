@@ -43,7 +43,7 @@ The repository has withdrawn several, listed
 </tr>
 <tr>
 <td align="center"><h3>10</h3>digital twin records<br><sub>none at <code>F2_interface</code></sub></td>
-<td align="center"><h3>21</h3>LPBF print simulations<br><sub>17 screened, 4 not</sub></td>
+<td align="center"><h3>21</h3>LPBF geometric screens<br><sub>17 screened, 4 not</sub></td>
 <td align="center"><h3>3,391</h3>tests run by<br><code>make check</code></td>
 </tr>
 </table>
@@ -52,6 +52,9 @@ The repository has withdrawn several, listed
 
 | date | change |
 |---|---|
+| 2026-10-11 | **917 quatre soupapes et biturbo sous hypothèses** : 119 définitions, 1 129 occurrences, culasses air + huile et deux turbos bioniques à 39 composants. Formes ramifiées ; incompatibilité d'enveloppe culasse/alésage détectée, interfaces et fabrication non qualifiées. [Assemblage de conception](models/917-engine-reconstruction/assembly/README.md) |
+| 2026-10-11 | **Cotes FIA du 917 appliquées à PicoGK** : calotte à 43 mm de l'axe, référence de maneton 52 mm et comparaison avec les masses documentées. L'implantation provisoire du cylindre est rejetée ; variante du scan et fabrication non qualifiées. [Réconciliation FIA](models/917-engine-reconstruction/fia/README.md) |
+| 2026-10-10 | **Reprise du moteur 917 avec PicoGK** : coques scannées, 48 instances paramétriques sous hypothèses et 18 scénarios de charges. Piston creux après rejet du piston plein ; interfaces et matériaux non qualifiés. [Reconstruction](models/917-engine-reconstruction/README.md) |
 | 2026-10-12 | **Monocoque in bending**: between the axles, the skin boxes stiffen the shell about four times (five to fifteen in torsion). Same cabin members, other weights: the sills lead (28-37% of the cabin's bending stiffness), the door rings follow; the members torsion would prune cost about 1%. Torsion decides the architecture. [Bending](twins/964-chassis/monocoque/README.md#bending-the-same-members-other-weights) |
 | 2026-10-12 | **Tubes meshed as shells**: bonded along their line of tangency, the tubes leave the skin between them open, and the model keeps softening with the mesh; the skin-formed boxes, stable, lead by ×1.18 per kg on the finest mesh. The direction holds: form the closed sections with the skin. [Comparison](twins/964-chassis/monocoque/README.md#two-architectures-one-load-case) |
 | 2026-10-11 | **Tubes against skin boxes: the joint decides**: tied to the skin over a bonded strip, the tube model converges, but its K follows the strip width (23,700 to 57,500 N·m/deg, the skin boxes 35,500 in between). The ranking is not settled with beam tubes; the tube-to-skin joint is the design point. [Comparison](twins/964-chassis/monocoque/README.md#two-architectures-one-load-case) |
@@ -62,7 +65,7 @@ The repository has withdrawn several, listed
 | 2026-10-08 | **A ZESAD-type carbon monocoque in PicoGK**, inside the traced shell: closed sections around every aperture, boxed sills, tunnel and rails, sandwich floor and bulkheads; about 95 kg from assumed layups. A design envelope, not a part. [Monocoque](twins/964-chassis/monocoque/picogk/README.md) |
 | 2026-10-08 | **A 911-shaped monocoque shell**: outline traced from the workshop manual's plate 50-05a, sections modelled, a first whole-body torsion run; it replaces the box cell in the banner. [Shell](twins/964-chassis/monocoque/README.md) |
 | 2026-10-08 | **964 datum chain closed** from the workshop manual's own plates (50-02, 50-03, 50-05a): every suspension and power-unit mount of the monocoque interface contract now has a fore-aft position, checked against the underside scan. [Details](twins/964-chassis/README.md#the-longitudinal-chain-closed-from-plate-50-05a) |
-| 2026-10-08 | **LPBF print simulation pictured**: build-up videos for the F1 cooling impeller and its stator. [Impeller dossier](docs/993/993_COOLING_IMPELLER_WE43_F1.md#print-simulation-pictured) |
+| 2026-10-08 | **LPBF geometry preview pictured**: layer-stack animations for the F1 cooling impeller and its stator. [Impeller dossier](docs/993/993_COOLING_IMPELLER_WE43_F1.md#metal-lpbf-geometry-preview--hypothetical-supports) |
 | 2026-10-08 | **PicoGK batch 01**: ten parametric concept parts from one voxel-kernel project. [Batch page](parts/picogk-993-batch-01/README.md) |
 | 2026-10-07 | **F1 cooling impeller redesigned from the original Turbo rotor**: same cup, windows and envelope, airfoil blades in WE43; the earlier generic shrouded design was withdrawn. [Dossier](docs/993/993_COOLING_IMPELLER_WE43_F1.md) |
 
@@ -90,7 +93,7 @@ flowchart LR
     S["Sources<br/><sub>catalog/sources/</sub>"] --> R["Part records<br/><sub>catalog/parts/</sub>"]
     R --> D["Design dossiers<br/><sub>docs/993/</sub>"]
     D --> T["Digital twins<br/><sub>twins/</sub>"]
-    T --> C["FEA · CFD · print simulation<br/><sub>CalculiX · OpenFOAM · LPBF</sub>"]
+    T --> C["FEA · CFD · LPBF geometry screening<br/><sub>CalculiX · OpenFOAM · LPBF</sub>"]
     C --> G{"Quality gates<br/><sub>docs/QUALITY_GATES.md</sub>"}
     G -- "claim fails" --> W["Withdrawn, and said so"]
     G -- "claim holds" --> E["Evidence<br/><sub>pinned by SHA-256</sub>"]
@@ -109,7 +112,7 @@ flowchart LR
 | see which 993 parts exist and their status | [the parts table](#2-993-parts-for-additive-manufacturing) → one page per part in [`docs/pieces/`](docs/pieces/) |
 | follow the carbon monocoque programme | [section 1](#1-the-964-body-shell-and-the-carbon-monocoque-programme) → [the programme](docs/MONOCOQUE_964_993_PROGRAMME.md) |
 | see the engine cooling work | [section 3](#3-engine-cooling) → [the fan programmes](docs/FAN_DEVELOPMENT_PROGRAMMES.md) |
-| watch a print simulation | [F1 impeller build-up](parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build.gif) · [all print screens](docs/993/print-screen-status.json) |
+| watch an LPBF geometry preview | [F1 impeller build-up](parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build.gif) · [all print screens](docs/993/print-screen-status.json) |
 | know what may and may not be built | [SAFETY.md](SAFETY.md) · [docs/QUALITY_GATES.md](docs/QUALITY_GATES.md) |
 | add a part or a source | [CONTRIBUTING.md](CONTRIBUTING.md) · [docs/WORKFLOW.md](docs/WORKFLOW.md) · [docs/SOURCE_POLICY.md](docs/SOURCE_POLICY.md) |
 | find any document | [the documentation index](docs/README.md) · [the gallery](docs/GALLERY.md) · [dated reports](docs/reports/README.md) |
@@ -220,18 +223,22 @@ exhaust manifold and the WE43 cooling impeller. Each dossier starts from
 dimensions published by a supplier, separates what is sourced from what is
 assumed, and states what it does not contain.
 
-**Print simulation.** Every part with a STEP master goes through a geometric
-LPBF simulation: full-height slicing at the material's layer thickness, fit in
-the EOS M 290 envelope, an orientation, a support proxy, a wall-thickness
-screen and a trapped-powder screen. 17 parts pass; 3 fail closed and say why, and 1 hit the memory cap, which is not a verdict.
-It is not a process simulation, and it authorizes nothing.
+**LPBF geometric screening.** Each STEP master is sliced over its full height
+at a candidate layer thickness and checked against the EOS M 290 envelope.
+The screen proposes a geometric orientation and a hypothetical support
+envelope, and samples wall thickness and trapped powder. 17 screens completed;
+3 failed closed and 1 hit the memory cap. None establishes printability.
+No melt-pool, thermal, residual-stress or distortion simulation was run;
+supports and orientation remain unqualified.
 
 <div align="center">
 
-![The F1 cooling impeller built up layer by layer in the print simulation](parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build.gif)
+![F1 cooling impeller geometry preview with hypothetical supports](parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build.gif)
 
-*The F1 cooling impeller, 6,286 layers of 30 µm, tilted 45° on the plate,
-with its support proxy in orange. Geometry only: printing is not authorized.*
+*The F1 cooling impeller: the geometric report has 6,286 slices at 30 µm.
+This animation uses coarse 0.5 mm slices and shows hypothetical support
+regions in orange. No process physics or qualified support design; printing
+is not authorized.*
 
 </div>
 
@@ -425,7 +432,7 @@ lying on top of it.
 
 | programme | where it stands | start here |
 |---|---|---|
-| 993 upright fan, F1 impeller | redesigned from the visual rebuild of the original Turbo rotor: same cup, windows and envelope, airfoil blades, WE43. On a duty inferred from the rebuild: +2 % air at equal power, +9 % with a matched stator. Print simulation passes. | [impeller dossier](docs/993/993_COOLING_IMPELLER_WE43_F1.md) · [stator](docs/993/993_FAN_STATOR_ALSI10MG_F1.md) |
+| 993 upright fan, F1 impeller | redesigned from the visual rebuild of the original Turbo rotor: same cup, windows and envelope, airfoil blades, WE43. On a duty inferred from the rebuild: +2 % air at equal power, +9 % with a matched stator. Geometric screening completed; metal process physics and supports remain unqualified. | [impeller dossier](docs/993/993_COOLING_IMPELLER_WE43_F1.md) · [stator](docs/993/993_FAN_STATOR_ALSI10MG_F1.md) |
 | 993 fan system and CFD | reference rebuild, organic blade studies, mesh recovery and CFD campaigns, OpenUSD twin; no installed-airflow result yet | [system twin](twins/993-engine-cooling-fan-system-f0/README.md) · [latest results and open gates](twins/993-engine-cooling-fan-system-f0/program/ENGINEERING_RESULTS_20261003.md) |
 | 935 horizontal fan | multilingual source research, CAD reconstruction, assembly S1, D2/D3 CFD diagnostics | [935 system](twins/935-horizontal-cooling-system/README.md) · [reconstruction](models/horizontal-fan-reconstruction/README.en.md) · [S1 assembly and manufacturing](models/horizontal-fan-reconstruction/ASSEMBLY_MANUFACTURING_S1.en.md) |
 | fan alloys | aluminium, WE43 and Ti64 compared on the same rotor: mass, inertia, centrifugal stress | [alloy comparison](twins/fan-alloy-comparison-f0/README.en.md) |

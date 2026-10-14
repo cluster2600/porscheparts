@@ -1,0 +1,32 @@
+{
+  "status": "excluded_from_physical_findings",
+  "runs": [
+    {
+      "case": "p15-a035-s4",
+      "status": "discarded_coordinate_frame_defect",
+      "reason": "Ray origins assumed zero XY minima but oriented CAD retained negative XY bounds. Entire result excluded.",
+      "summary_sha256": "8703424dda5dd8a9a30c689355077fb3161959f3adfa41cabec474cce06f9ecd"
+    },
+    {
+      "case": "p1-a035-s4",
+      "status": "discarded_coordinate_frame_defect",
+      "reason": "Ray origins assumed zero XY minima but oriented CAD retained negative XY bounds. Entire result excluded.",
+      "summary_sha256": null
+    },
+    {
+      "pitch_mm": 2.0,
+      "status": "rejected_corrected_frame_grid_before_solve",
+      "cad_volume_mm3": 228953.2898597011,
+      "relative_volume_error": -0.040223444115366935,
+      "allowed_relative_volume_error": 0.02
+    },
+    {
+      "pitch_mm": 1.5,
+      "status": "rejected_corrected_frame_grid_before_solve",
+      "cad_volume_mm3": 228953.2898597011,
+      "relative_volume_error": -0.04815901473378148,
+      "allowed_relative_volume_error": 0.02
+    }
+  ],
+  "superseded_diagnostic": "The initial p2 odd-ray-count rejection occurred before the XY-origin fix and is not evidence against the admitted CAD."
+}

@@ -1,0 +1,122 @@
+{
+  "source_sha256": "712ce4f12f8acfbb3d702f5492dec5436e830333e098e15a9d215c07d4fe1ade",
+  "cases": [
+    {
+      "case": "work/bionic-airflow-20261012/static-mrf-profile-024/inertial",
+      "receipt_sha256": "d330f46d896d0795ac0a0f64604c7603e297a0709be4a6f1edb0235f1f3db24e",
+      "native_exit_code": 1,
+      "all_native_payloads_read_and_hashed": true,
+      "cells": 640,
+      "rotating_cells": 320,
+      "interface_faces": 320,
+      "paired_input_differences": [
+        "constant/MRFProperties"
+      ],
+      "geometric_test_omega_rad_s": 10471.975511966,
+      "gross_geometric_frame_flux_m3_s": 3.091508948523721e-13,
+      "max_normal_frame_speed_m_s": 3.803881207484331e-09,
+      "fields": {}
+    },
+    {
+      "case": "work/bionic-airflow-20261012/static-mrf-profile-024/variable-radius",
+      "receipt_sha256": "e843507396acc2f22ae1d18a71900be5d5fe44387ebb2ffb0fda103b981d8de7",
+      "native_exit_code": 1,
+      "all_native_payloads_read_and_hashed": true,
+      "cells": 640,
+      "rotating_cells": 320,
+      "interface_faces": 320,
+      "paired_input_differences": [
+        "constant/MRFProperties"
+      ],
+      "geometric_test_omega_rad_s": 10471.975511966,
+      "gross_geometric_frame_flux_m3_s": 3.091508948523721e-13,
+      "max_normal_frame_speed_m_s": 3.803881207484331e-09,
+      "fields": {}
+    },
+    {
+      "case": "work/bionic-airflow-20261012/static-mrf-profile-025/inertial",
+      "receipt_sha256": "4d1670c6d58b15dc33f61f5b064ac00ba2baa73450ecd025493d944e6bcccf65",
+      "native_exit_code": 0,
+      "all_native_payloads_read_and_hashed": true,
+      "cells": 2560,
+      "rotating_cells": 1280,
+      "interface_faces": 1280,
+      "paired_input_differences": [
+        "constant/MRFProperties"
+      ],
+      "geometric_test_omega_rad_s": 10471.975511966,
+      "gross_geometric_frame_flux_m3_s": 8.819307279745836e-13,
+      "max_normal_frame_speed_m_s": 1.795085923959037e-08,
+      "fields": {
+        "p": {
+          "sha256": "52cb58f7b2b948e65f9802e16e1b1ba1712f53ef88ac26b656c0923b419747f8",
+          "cells": 2560,
+          "min": 101325.0,
+          "max": 101325.0
+        },
+        "T": {
+          "sha256": "1587ee28cb9a275f0f65695e350b369a107d3775e389ce0b469910cd3dbdfa50",
+          "cells": 2560,
+          "min": 298.15,
+          "max": 298.15
+        },
+        "U": {
+          "sha256": "02ed5f86382b2029d84c3b35c46a7fef452ac614e2f204c366a84cbbc8799b73",
+          "cells": 2560,
+          "min": 2.6307504173712496e-14,
+          "max": 5.577802513136451e-12
+        }
+      },
+      "observed": {
+        "max_abs_p_error_Pa": 0.0,
+        "max_abs_T_error_K": 0.0,
+        "max_speed_m_s": 5.676151279657723e-12
+      },
+      "equilibrium_passed": true,
+      "pressure_linear_iteration_cap_hits": 800
+    },
+    {
+      "case": "work/bionic-airflow-20261012/static-mrf-profile-025/variable-radius",
+      "receipt_sha256": "3271e5bd0ea70c918ddd7286c9c015116130694712e0c314e03487db41f0c225",
+      "native_exit_code": 0,
+      "all_native_payloads_read_and_hashed": true,
+      "cells": 2560,
+      "rotating_cells": 1280,
+      "interface_faces": 1280,
+      "paired_input_differences": [
+        "constant/MRFProperties"
+      ],
+      "geometric_test_omega_rad_s": 10471.975511966,
+      "gross_geometric_frame_flux_m3_s": 8.819307279745836e-13,
+      "max_normal_frame_speed_m_s": 1.795085923959037e-08,
+      "fields": {
+        "p": {
+          "sha256": "420ea2c37f5f0231a832f8b1f1dbcb0c1132533f2018ee0f08623f637cd6b08e",
+          "cells": 2560,
+          "min": 101324.999998,
+          "max": 101325.000002
+        },
+        "T": {
+          "sha256": "ef0b9f2d569764d75aa030573a949a576714cb21edcdeaec5f297504b13121d9",
+          "cells": 2560,
+          "min": 298.149999927,
+          "max": 298.150000072
+        },
+        "U": {
+          "sha256": "bd99bb9647c1d35c6fb2e63a2283b3c22cdc9b3b27b771b125040503e4f54b8c",
+          "cells": 2560,
+          "min": 5.787637661213649e-11,
+          "max": 1.3975935057446433e-08
+        }
+      },
+      "observed": {
+        "max_abs_p_error_Pa": 2.9999937396496534e-06,
+        "max_abs_T_error_K": 7.309995453397278e-08,
+        "max_speed_m_s": 1.3975935057422813e-08
+      },
+      "equilibrium_passed": false,
+      "pressure_linear_iteration_cap_hits": 546
+    }
+  ],
+  "performance_ranking_authorized": false
+}

@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0.0",
+  "part_id": "993-ENG-COOLING-IMPELLER-WE43-F1-0001",
+  "scope": "Exploratory whole-part transient thermal simulation; no selected machine or calibrated WE43 LPBF material card",
+  "geometry_report": "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/lpbf-thermal-20261012/flat/inputs/geometry.json",
+  "surface": "parts/993-eng-cooling-impeller-we43-f1-0001/derived/cooling_impeller_we43_f1.stl",
+  "layers": "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/lpbf-thermal-20261012/flat/inputs/layers.csv",
+  "process": {
+    "source_id": "SRC-ORNL-WE43-LPBF-HYER-2020",
+    "source": "https://impact.ornl.gov/en/publications/additive-manufacturing-of-dense-we43-mg-alloy-by-laser-powder-bed/",
+    "power_w": 200.0,
+    "scan_speed_mm_s": 1100.0,
+    "hatch_mm": 0.13,
+    "layer_mm": 0.03,
+    "machine_selected": false,
+    "supplier_calibrated": false
+  },
+  "material": {
+    "name": "WE43 conventional wrought alloy, constant bulk reference only",
+    "source": "https://www.luxfermeltechnologies.com/wp-content/uploads/2021/07/Luxfer-MEL-Technologies-Elektron-Wrought-Alloys.pdf",
+    "source_locator": "Physical properties of magnesium wrought alloys, WE43 row",
+    "rho_kg_m3": 1840.0,
+    "cp_j_kg_k": 966.0,
+    "conductivity_w_m_k": 51.0,
+    "cp_reference_range_k": [
+      293.15,
+      373.15
+    ],
+    "density_and_conductivity_reference_k": 293.15,
+    "lpbf_specific": false,
+    "temperature_dependence_available": false
+  },
+  "assumptions": {
+    "absorptivity": 0.35,
+    "thermal_discretization": "1 mm binary geometry sampling aggregated into volume-preserving partial-metal thermal cells; harmonic effective conductance; not a resolved thin-wall discretization",
+    "plate_temperature_k": 303.15,
+    "ambient_temperature_k": 298.15,
+    "standoff_mm": 6.0,
+    "support_solid_fraction": 0.15,
+    "support_model": "Homogenized vertical columns below the first occupied part cell; same constant WE43 bulk properties; perfect isothermal plate contact; no supplier support topology",
+    "recoat_seconds_per_layer": 8.0,
+    "convection_w_m2_k": 12.0,
+    "emissivity": 0.4,
+    "cooldown_seconds": 120.0,
+    "substeps_per_macro_layer": 4,
+    "source_model": "Sequential macro-layer scan and cooling/recoat phases; scan energy from all 30 um slice areas; no resolved individual hatch or laser spot",
+    "powder_surroundings": "Exposed faces exchange convection and linearized radiation with the ambient; surrounding powder conduction is omitted",
+    "unknowns": [
+      "WE43 LPBF k(T), cp(T), enthalpy and powder properties",
+      "laser absorptivity calibration",
+      "machine and gas flow",
+      "support topology and contact resistance",
+      "actual hatch order, contours, jumps and recoating time",
+      "melt flow, phase change and evaporation",
+      "elastic-plastic material data, residual stress and support-release distortion"
+    ]
+  },
+  "manufacturing_authorized": false
+}

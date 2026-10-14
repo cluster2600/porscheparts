@@ -166,6 +166,9 @@ python3 twins/vehicle-911-917/source/build_mechanical_engineering_basis_f9.py --
 python3 twins/vehicle-911-917/source/build_mechanical_engineering_basis_f9.py --mode check
 ```
 
+Le contrôle F9 compare le rapport enregistré au résultat recalculé. Un rapport
+absent ou périmé échoue ; il faut alors relancer `--mode build`.
+
 ## F10 — contrôle volumique PicoGK
 
 F10 remplace la simple boîte englobante du scan par sa surface complète
@@ -181,6 +184,10 @@ sélectionné et aucun plan général constructeur n'est disponible.
 python3 twins/vehicle-911-917/source/prepare_picogk_scan_f10.py --mode build
 python3 twins/vehicle-911-917/source/prepare_picogk_scan_f10.py --mode check
 ```
+
+Le reçu F10 lie le STL au scan source et aux rapports de packaging et de
+métrologie utilisés pour le repère. Toute modification de ces entrées impose
+de reconstruire le STL ; les anciens reçus sans ces empreintes sont rejetés.
 
 ## F11 — vues d'ingénierie PicoGK
 
@@ -258,6 +265,14 @@ La nouvelle planche est
 Le rapport `picogk-mechanical-report-f13.json` contient la transformation, les
 bounds voxelisés, les contrôles d'intersection et les points de raccordement.
 `image-manifest-f13.json` lie les PNG et VDB à leurs empreintes SHA-256.
+
+Le recalage F13 lie aussi sa matrice aux rapports F1 et de métrologie, à la
+configuration mécanique, au reçu F10 et aux deux scripts de préparation.
+Le lecteur natif vérifie ces empreintes et une transformation rigide finie
+avant de lancer PicoGK. Le lecteur Python contrôle la même provenance avant
+d'annoter un résultat. Après une modification, reconstruire F10 si nécessaire,
+puis le recalage et les sorties F13 ; un ancien résultat ne vaut pas une
+vérification des nouvelles entrées.
 
 ```bash
 python3 twins/vehicle-911-917/source/build_mid_engine_layout_f1.py --mode render

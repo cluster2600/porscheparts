@@ -1,0 +1,42 @@
+{
+  "status": "uncalibrated_multipass_screen",
+  "purpose": "Bound the cross-counterflow gain of the offset-strip core when the charge makes several passes against the cooling air, with return-tank losses charged to the charge budget.",
+  "arrangement": {
+    "description": "Each flat charge tube is divided along the air depth into equal pass groups. The charge enters the rear group, where the cooling air leaves, turns in return tanks at the tube ends and leaves through the front group. The cooling air crosses all groups in series, unchanged from the single-pass core.",
+    "passes": [1, 2, 3, 4],
+    "divider": "one hot channel pitch per pass boundary is lost to a solid divider of tube-wall thickness spanning the hot gap over the full width",
+    "return_tank_loss_k": 2.0,
+    "return_tank_loss_k_basis": "assumed equal to the inlet plus outlet header loss of requirements.json (exit, turn and re-entry on channel velocity); not a correlation",
+    "return_tank_loss_k_sensitivity": [1.0, 2.0, 4.0]
+  },
+  "search": {
+    "basis": "the thin-fin offset-strip search of source/explore_thin_fins.py, unchanged",
+    "faces_mm": [[500, 400], [620, 450], [700, 500], [800, 550]],
+    "depths_mm": [60, 90, 120],
+    "hot_gaps_mm": [2, 3],
+    "cold_gaps_mm": [4, 6],
+    "hot_pitches_mm": [1.5, 2, 3],
+    "cold_pitches_mm": [2, 3],
+    "fins_mm": [0.15, 0.2],
+    "strips_mm": [5, 10, 12],
+    "walls_mm": [0.4, 0.6],
+    "charge_parallel_banks": [1, 2]
+  },
+  "hot_side_extension": {
+    "purpose": "multi-pass cores need more open charge passages; the extension is applied to every pass count, including the single-pass reference",
+    "hot_gaps_mm": [2, 3, 4, 5],
+    "hot_pitches_mm": [1.5, 2, 3, 4]
+  },
+  "thermal_models": {
+    "pass_formula": "each pass is unmixed-unmixed crossflow (size_core.effectiveness) with an equal share of UA; both streams mixed between passes; overall counterflow series relation",
+    "grid_check": "cell balance with the cooling air unmixed through all passes and the charge mixed only in the return tanks",
+    "grid_cells": 40,
+    "pass_criterion": "pass formula, consistent with the retained single-pass screen; the grid result is reported and used for a second, conservative ranking"
+  },
+  "acceptance": {
+    "pressure_qualified": false,
+    "thermal_performance_validated": false,
+    "manufacturing_authorized": false,
+    "installed_fit_verified": false
+  }
+}

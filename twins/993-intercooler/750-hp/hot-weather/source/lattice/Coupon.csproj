@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net9.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>enable</Nullable><Leap71Root Condition="'$(Leap71Root)' == ''">$(HOME)/Developer/PicoGK</Leap71Root></PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PicoGK"><HintPath>$(Leap71Root)/runtime/PicoGK.dll</HintPath></Reference>
+    <Reference Include="SkiaSharp"><HintPath>$(Leap71Root)/runtime/SkiaSharp.dll</HintPath></Reference>
+    <Compile Include="$(Leap71Root)/libraries/LEAP71_ShapeKernel/ShapeKernel/**/*.cs" />
+    <Compile Include="$(Leap71Root)/libraries/LEAP71_LatticeLibrary/LatticeLibrary/**/*.cs" />
+    <None Include="$(Leap71Root)/runtime/*.dylib" CopyToOutputDirectory="PreserveNewest" Link="%(Filename)%(Extension)" />
+  </ItemGroup>
+</Project>

@@ -70,12 +70,13 @@ together. The reused F12 wheel dimensions must match the F15 configuration.
 For the **private** overlay, additionally set `PICOGK_INPUT_DIR` to the folder
 containing `917-engine-oriented-f10.stl` and `PICOGK_F13_ALIGNMENT` to the
 existing `scan-alignment-f13.json` receipt. Use a separate output directory.
-The scan hash must match the receipt. Before the viewer opens, the receipt must
-also be the F13 producer's own record (phase, status, unmeasured-datum flags and
-the scan's triangle count) and its matrix a rigid row-vector motion: last column
-(0, 0, 0, 1), orthonormal rotation with determinant +1 to 1e-6, so no scale,
-shear or reflection. The aligned scan bounds must match the receipt's within
-1 mm. The report embeds the receipt and the reporter re-checks it independently.
+Before the viewer opens, the receipt passes F13's own validator
+(`ScanAlignment.cs`): producer phase, status and unmeasured-datum flags, the
+recorded digests of its inputs, the scan digest, and a rigid row-vector matrix
+(no scale, shear or reflection). F15 also requires the scan's triangle count and
+ordered bounds, and the aligned scan bounds must match the receipt's within
+1 mm. The report embeds the receipt; the reporter re-applies
+`validate_alignment` from the F13 producer and checks the exported scan bounds.
 The scan replaces the topology proxy in views, not the full-engine clearance
 envelope. No private scan, derived mesh or
 private image is published. The public proxy is authored hypothetical geometry.

@@ -8,6 +8,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageOps
 
 from annotate_picogk_visualization_f11 import cropped_capture, font, sha256
+from prepare_picogk_alignment_f13 import validate_alignment
 
 ROOT = Path(__file__).resolve().parents[3]
 TWIN = ROOT / "twins/vehicle-911-917"
@@ -43,32 +44,16 @@ REQUIRED_CHECKS = {
     "engine_50mm_plus_numerical_guard__firewall",
 }
 
-F13_STATUS = "scan_row_alignment_corrected_not_physical_datum_validation"
-F13_UNMEASURED = ("crankshaft_axis_measured", "mounting_face_measured", "scale_verified", "physical_orientation_verified")
-
 
 def validate_private_scan(report):
-    """Re-check the embedded F13 receipt: provenance, a rigid row-vector matrix, and scan bounds that agree with it."""
+    """The F15 record of the scan: unpromoted, bound to its F13 receipt, with exported bounds that agree with it."""
     scan = report["private_scan"]
     if (set(scan) != {"scan_sha256", "alignment_sha256", "scale_verified", "physical_datum_verified", "alignment"}
             or scan["scale_verified"] is not False or scan["physical_datum_verified"] is not False):
         raise ValueError("Private scan record incomplete or promoted")
     receipt = scan["alignment"]
-    if (receipt.get("phase") != "F13" or receipt.get("status") != F13_STATUS
-            or any(receipt.get(key) is not False for key in F13_UNMEASURED)
-            or receipt.get("input_stl_sha256") != scan["scan_sha256"]):
+    if type(receipt) is not dict or receipt.get("input_stl_sha256") != scan["scan_sha256"]:
         raise ValueError("Not the F13 alignment receipt of this scan")
-    m = receipt.get("matrix4x4_row_vector")
-    if (type(m) is not list or len(m) != 4 or any(type(row) is not list or len(row) != 4 for row in m)
-            or any(type(v) not in (int, float) or not math.isfinite(v) for row in m for v in row)
-            or [row[3] for row in m] != [0, 0, 0, 1]):
-        raise ValueError("Invalid F13 transform")
-    r = [row[:3] for row in m]
-    det = (r[0][0] * (r[1][1] * r[2][2] - r[1][2] * r[2][1]) - r[0][1] * (r[1][0] * r[2][2] - r[1][2] * r[2][0])
-           + r[0][2] * (r[1][0] * r[2][1] - r[1][1] * r[2][0]))
-    if abs(det - 1) > 1e-6 or any(abs(sum(r[i][k] * r[j][k] for k in range(3)) - (i == j)) > 1e-6
-                                  for i in range(3) for j in range(3)):
-        raise ValueError("F13 transform is not a rigid rotation")
     lo, hi = receipt.get("bounds_min_mm"), receipt.get("bounds_max_mm")
     part = next(p["properties"] for p in report["components"] if p["id"] == "private_engine_scan")
     # The exported scan is a half-voxel shell on voxel bounds, so allow two voxels around the receipt's mesh bounds.
@@ -122,6 +107,9 @@ def verify_report(directory):
     report = json.loads((directory / "vehicle-report-f15.json").read_text())
     config = json.loads((TWIN / "full-vehicle-study-f15.json").read_text())
     validate_scope(report, config)
+    if report["private_scan"]:
+        # Provenance, input digests and rigidity follow the F13 producer's own rules.
+        validate_alignment(report["private_scan"]["alignment"])
     expected_sources = {str(p.relative_to(ROOT)) for p in (
         TWIN / "full-vehicle-study-f15.json", TWIN / "picogk/Program.cs", TWIN / "picogk/FullVehicleStudy.cs",
         TWIN / "picogk/Vehicle911917Packaging.csproj", TWIN / "picogk-mechanical-f13.json",

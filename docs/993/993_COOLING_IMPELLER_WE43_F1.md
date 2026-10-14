@@ -182,18 +182,21 @@ tensile allowable for our process.
 
 ## Printability
 
-Without a shroud the blades are open from outside, so every support can be
-reached and removed. The print simulation below picks the orientation with
-the least downward-facing area: tilted 45°, not flat on the web.
+Without a shroud the blades are open from outside, which may help support
+removal; access and removal without damaging the blades remain unverified.
+The geometric screening below selects a 45° tilt by minimising downward
+projected area among the tested orientations. This is not a thermally
+optimised or approved build orientation.
 
-The first simulation run measured a 0.07 mm minimum wall: the NACA 4-digit
-sections close to a knife edge of about 0.05 mm, which LPBF cannot hold.
+The first geometric thickness screen estimated a 0.07 mm minimum wall:
+the NACA 4-digit sections close to a knife edge of about 0.05 mm, with no
+qualified WE43 process capability for that feature.
 The blade thickness now grows linearly toward the trailing edge to a
-0.5 mm minimum. The rerun's minimum wall is 0.24 mm, at the rounded leading
+0.5 mm minimum. The rerun's sampled minimum wall is 0.24 mm, at the rounded leading
 edges, and the first percentile went from 0.32 to 0.71 mm. The change adds
 7 g.
 
-WE43 is not an EOS catalogue material. The simulation uses the M 290
+WE43 is not an EOS catalogue material. The geometric screen uses the M 290
 envelope and the 30 µm layer of the published WE43 LPBF route (Hyer et al.
 2020, 200 W); a magnesium-rated machine and its parameters remain to be
 qualified.
@@ -215,6 +218,82 @@ The model alone (no CAD) runs on the host with the standard library:
 `engineering_screen()` in the same file. `matched_duty()` recomputes the
 inferred duty from the rebuild.
 
+## 3D FE screen: stress and Campbell diagram
+
+The beam and ring formulas above cannot see two things: where the stress
+concentrates, and the modes of the cup and web. A 3D finite-element screen
+(2026-10-13) meshes the committed STEP and answers both.
+
+![Campbell diagram of the F1 rotor in WE43, two hub idealisations](../../parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/campbell.png)
+
+*Stress-stiffened modes against the engine orders. Red rings: crossings where
+the frequency and the nodal diameter both match. Screen only.*
+
+Method: gmsh second-order tetrahedra (C3D10, about 164,000 nodes, 4 mm with
+1.5 mm minimum), CalculiX 2.21 on one thread. Each speed is a geometrically
+nonlinear static step under centrifugal load, then 24 modes in a perturbation
+step, so the modes carry the stress stiffening. WE43 as in the engineering
+screen, Poisson 0.27 assumed. The joint to the bearing hub is not known, so it
+is bracketed: **clamped** (the web's outer face bonded to the hub out to
+r 32 mm, plus the bolt holes) and **bore** (only the bore fixed, the boundary
+of the 2026-10-03 rebuild alloy comparison). Before the rotor, the same chain
+reproduces a spinning disc's bore hoop stress within 0.05 % and a cantilever
+plate's first mode within 1.2 %, and a repeat solve is identical.
+
+| at 12,000 rpm | clamped | bore | beam screen |
+|---|---|---|---|
+| peak von Mises | 91.5 MPa | 95.8 MPa | 10.7 (blade root) to 46.7 MPa (bore) |
+| where | blade root on the cup rim, r 83 mm | same | — |
+| yield / peak | 2.4 | 2.3 | 4.7 to 20.6 |
+| window corners | 48 MPa | 46 MPa | — |
+| blade-tip radial growth | 0.064 mm | 0.063 mm | — |
+| lowest mode at rest | 525 Hz (cup, 1 nodal diameter) | 344 Hz | — |
+| first blade-bending family | 1,890-2,360 Hz | 2,060-2,530 Hz | 1,351 Hz (one cantilever blade) |
+
+What it changes:
+
+- **The peak stress is several times the beam screen's**, at the junction of a
+  blade root with the outside of the cup rim. The CAD has no fillet there, so
+  part of that peak is a sharp-corner concentration that a finer mesh would
+  raise; mesh independence is not demonstrated. A root fillet is needed before
+  any stress figure is quoted. The tip growth is negligible against the 3.5 mm
+  tip gap.
+- **The blades are stiffer than the beam said** (first family 40-90 % above
+  1,351 Hz), but **the cup and web have modes far below it**: 344-525 Hz at rest
+  with one nodal diameter, then 589-843 Hz. The engineering screen's modal pass
+  checks one blade and does not cover them.
+- **Crossings with a matching nodal diameter** (on 11 blades, order *k* drives
+  nodal diameter *k* mod 11, or 11 minus that):
+  - **17-vane stator order × five-nodal-diameter blade mode at 7,581 rpm**, in
+    both hub cases, inside the nominal range. Every blade-family mode lies
+    between 1.9 and 2.5 kHz, so any stator of ten or more vanes crosses it
+    below 12,000 rpm; the vane count only chooses which mode and at what speed.
+    Ten vanes (order 10 → nodal diameter 1) would move that crossing to about
+    13,600 rpm, at the price of a crossing with the one-nodal-diameter web
+    mode near 2,100-3,200 rpm. The vane count was chosen for aerodynamics in
+    [`993_FAN_STATOR_ALSI10MG_F1`](993_FAN_STATOR_ALSI10MG_F1.md); it is not
+    changed here.
+  - **12th order (second harmonic of the six spokes) × one-nodal-diameter
+    modes**: the web mode at 1,729 (bore) to 2,633 rpm (clamped), and a blade
+    mode at about 11,400 rpm, inside overspeed.
+  - The low engine orders 1-4 meet the low cup modes only with mismatched
+    nodal diameters inside the range.
+
+Forcing amplitude, damping, Coriolis splitting and the real bolted joint are
+not computed: these are crossings to design around, not predicted failures.
+
+```bash
+# in the cadsim image; one capped container at a time (a 24-mode solve needs ~7 GB)
+python3 parts/993-eng-cooling-impeller-we43-f1-0001/source/fe_screen_f1.py benchmark WORK/bench
+python3 parts/993-eng-cooling-impeller-we43-f1-0001/source/fe_screen_f1.py rotor \
+  parts/993-eng-cooling-impeller-we43-f1-0001/derived/cooling_impeller_we43_f1.step WORK/clamped-s4 --case clamped --size 4 --size-min 1.5
+python3 parts/993-eng-cooling-impeller-we43-f1-0001/source/fe_screen_f1.py report WORK/clamped-s4 WORK/bore-s4 \
+  --step parts/993-eng-cooling-impeller-we43-f1-0001/derived/cooling_impeller_we43_f1.step \
+  --benchmark parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/solver-benchmarks.json \
+  --out parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/fe-screen.json \
+  --plot parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/campbell.png
+```
+
 ## Next gates
 
 1. Measure the original's blade pitch, chord and cup depth. The comparison
@@ -223,51 +302,59 @@ inferred duty from the rebuild.
 3. Housing land over the blade tips, the matched stator and the inlet.
 4. Rotating CFD of the rebuild and F1 in the same domain, to check the 1D
    ranking.
-5. FEA with the bolted joint, a Campbell diagram, and HCF with WE43
-   allowables.
-6. Supplier support design and an EOSPRINT-class build file for the
-   simulated 45° orientation, then coating, balance, contained overspeed and
-   a flow rig.
+5. FEA with the bolted joint and HCF with WE43 allowables. The first 3D screen
+   and Campbell diagram are done (above); still open: a blade-root fillet and
+   a mesh-converged peak, the stator vane count against the blade family, the
+   web stiffness (the rebuild's ribs between the windows, dropped in F1), and
+   the real joint.
+6. Qualify the exact magnesium-rated machine, WE43 process and material
+   data; compare orientations with calibrated thermal and mechanical
+   calculations. Establish metal supports, blade access and removal, then
+   a supplier build file, coating, balance, contained overspeed and a flow rig.
 
 The F1 stays `prohibited_pending_engineering` and `concept`: no manufacture,
 rotation, installation or start-up is authorized.
 
-## Print simulation, pictured
+## Metal LPBF geometry preview — hypothetical supports
 
 Drawn by `scripts/render_print_simulation_visuals.py` (`make print-visuals
-PART=993-eng-cooling-impeller-we43-f1-0001`) from the simulation's own report: the same analysed surface
-(hash-checked), the same orientation and the same 45° overhang rule. The
-orange support columns are recomputed at 0.5 mm layers on a 1 mm grid for
-the pictures; the table below keeps the report's 30 µm figures.
+PART=993-eng-cooling-impeller-we43-f1-0001`) from the geometric screening report: the same analysed surface
+(hash-checked) and candidate orientation. Orange columns mark a hypothetical
+support envelope from a generic 45° heuristic; they are not a qualified
+metal support design. The preview uses 0.5 mm slices and a 1 mm grid; the
+table below records the geometric screen at 30 µm. The animation reveals
+stacked slices, not a laser scan or a thermal calculation.
 
-![Build-up, layer by layer](../../parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build.gif)
+![Geometric layer-stack animation with hypothetical supports](../../parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build.gif)
 
 [Full-resolution video (MP4)](../../parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build.mp4)
 
-![Part and support proxy on the EOS M 290 plate](../../parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build-plate.png)
+![Part and hypothetical support regions in the candidate EOS M 290 envelope](../../parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build-plate.png)
 
 ![Six layer cross-sections](../../parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/layers.png)
 
-*Illustrations of a geometric simulation: no laser path, supplier supports,
-distortion or recoater model. Printing is not authorized.*
+*Geometry preview only. No melt-pool, thermal, residual-stress, distortion
+or recoater simulation; no qualified support design. Printing is not authorized.*
 
 <!-- print-screen:begin -->
 
-## LPBF print simulation
+## LPBF geometric screening — process physics not calculated
 
-The STEP was tessellated, then sliced over its full height at `30 µm`, on the EOS M 290 route of the candidate material. Orientation chosen by the automatic rule: `roll_y_45`.
+The STEP was tessellated, then sliced over its full height at `30 µm`, within the candidate EOS M 290 envelope. Candidate material/process reference: `WE43 LPBF route of Hyer et al. 2020 / 30 um, not an EOS catalogue material`. Orientation chosen by a geometric rule, not thermal optimisation: `roll_y_45`.
+
+The 45° overhang rule only flags geometric regions. The vertical columns are a **hypothetical support envelope**, not supplier-designed metal supports. Their volume is not a metal consumption estimate. Metal LPBF support design must address heat transfer, residual stress, recoater interaction and removal; none is validated here.
 
 | quantity | value |
 |---|---:|
 | layers | 6,286 |
 | build height | 188.56 mm |
-| layers with an unsupported region | 3595 |
-| support proxy | 403,165.47 mm³ |
+| layers flagged by the geometric overhang rule | 3595 |
+| hypothetical support-envelope volume | 403,165.47 mm³ |
 | local thickness p01 | 0.711 mm |
 | trapped powder at 1.00 mm | 0.00 mm³ |
 
-![LPBF print simulation](../../parts/993-eng-cooling-impeller-we43-f1-0001/evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-screen.png)
+![LPBF geometric screening with hypothetical supports; no process physics](../../parts/993-eng-cooling-impeller-we43-f1-0001/evidence/lpbf-f0/993-eng-cooling-impeller-we43-f1-0001-lpbf-geometry-screen.png)
 
-This screening is neither an EOSPRINT project, nor a distortion calculation, nor a recoater check. **Printing remains prohibited.**
+**Process physics has not been calculated:** no melt-pool, thermal, residual-stress, distortion or recoater simulation. No qualified support design or machine build file is provided. **Printing remains prohibited.**
 
 <!-- print-screen:end -->

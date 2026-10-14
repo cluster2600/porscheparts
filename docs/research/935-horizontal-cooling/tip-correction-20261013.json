@@ -1,0 +1,399 @@
+{
+  "schema": "935-tip-correction-v1",
+  "target": "935",
+  "corrected_blade_id": "blade-03",
+  "geometry_platform": "osx-arm64 PicoGK2.3/Core26.2.0 .NET9.0.318",
+  "mesh_preparation": "local Docker amd64 Gmsh4.12.1",
+  "solver": "local Docker aarch64 CalculiX2.21",
+  "source_sha256": {
+    "twins/935-horizontal-cooling-system-f0/source/recover_tip_sections.py": "aee758c3ba014d1b1874d2fbb97aa9052d21b5a1b6f05236be1cb1f6cad51290",
+    "twins/935-horizontal-cooling-system-f0/source/picogk-section-loft/Program.cs": "f1b19bd41fdd185e75a284886b8eff631f44e730ab9a1be023f5e3fc52d77417",
+    "twins/935-horizontal-cooling-system-f0/source/picogk-935-assembly/Program.cs": "1be2d71fad739f681b828e5597332765a6e6d8156a012423879afd3648e15d6a",
+    "twins/935-horizontal-cooling-system-f0/source/picogk-candidate-rotor/Program.cs": "0266e5b9b0bfbee2cc1a9558bf4eeae84979d1f50f4ca7ddcbc55d2e3b359ff7",
+    "twins/935-horizontal-cooling-system-f0/source/picogk-mac-study/Program.cs": "525d8642b17b3c979b85650865265accb3a3963ecd38dc71be9c130af7acab9e",
+    "twins/935-horizontal-cooling-system-f0/source/picogk-mac-study/libraries.lock.json": "f7eddc1e658eae2012f8fa9f655f13caf6560a5ca59d756d4df04ebaa3572535",
+    "twins/935-horizontal-cooling-system-f0/source/prepare_candidate_fea.py": "a4084fc1e299b985b72c69cec97c739c7d09565c16104de0b04862dd8a342818",
+    "twins/935-horizontal-cooling-system-f0/source/run_candidate_fea.sh": "1eaaa32fcffcec4f7f0b7c686ef6e39d760dd2884ad2795ba336dd3d2c5abf74",
+    "twins/935-horizontal-cooling-system-f0/source/assess_mac_fea.py": "203a7275751dcf5c8bc4091ee739f24a57a69403438e58a49c933f2b6bc1737c"
+  },
+  "parent_sections_sha256": "308f95fa80ac19703e3f8d4a375250070c4723cc775137cf9f14a8c105ea3777",
+  "observed_mesh_sha256": "452f76162d6148017299edd1563e4e06b933dd9fe105bee30c185f96d98cc247",
+  "corrected_sections_sha256": "d13ff7829b5b9a1589618bdc672bfb15841f53b8e94f17beb119b0ac99f45a5f",
+  "tip_recovery": {
+    "closed_acquired_stations_source_units": [
+      134,
+      136,
+      136.16002779109965
+    ],
+    "observed_terminal_vertex_station_source_units": 136.41002779109965,
+    "artificial_terminal_crop_margin_source_units": 0.25,
+    "terminal_cap_is_measured": false,
+    "repair_gap_lengths_by_station_source_units": {
+      "124": [
+        1.3247020138631178,
+        2.2926581952794405
+      ],
+      "126": [
+        6.009172117125702
+      ],
+      "128": [
+        8.709083410269413
+      ],
+      "130": [
+        8.498081895597915
+      ],
+      "132": [
+        0.17090254253229484,
+        4.16483694506988
+      ]
+    },
+    "maximum_repair_gap_source_units": 9.0,
+    "every_observed_cut_endpoint_retained": true,
+    "untargeted_blades_unchanged": true,
+    "existing_profiles_through_station122_unchanged": true
+  },
+  "protected_triangles": {
+    "selection": "all triangle vertices project below station120 on blade03 radial axis",
+    "triangles": 1294915,
+    "exact_coordinate_and_winding_equality": true,
+    "reference_sha256": "a61f3a2c90d5ae5e1f4060914eae8d8104081c469b1e5cb10bb1e0fa06609d8f",
+    "corrected_sha256": "f32bbabab3e5f7d9ca7c5283d18703cfe7cedbd3eb2c72a57a1c222c0a9df1e5"
+  },
+  "geometry": {
+    "cases": [
+      {
+        "conditional_volume_mm3": 429483.3067347857,
+        "conditional_volume_inertia_about_axis_origin_mm5": [
+          [
+            1867686655.1002781,
+            7309825.932132125,
+            -2835940.4219562802
+          ],
+          [
+            7309825.932132125,
+            1903143033.4376986,
+            14717750.812115764
+          ],
+          [
+            -2835940.4219562802,
+            14717750.812115764,
+            3566168087.120494
+          ]
+        ],
+        "principal_volume_inertias_mm5": [
+          1866219981.0434957,
+          1904474944.8157053,
+          3566302849.7992687
+        ],
+        "conditional_centroid_mm": [
+          -0.06334658167575455,
+          -1.6932140342123088,
+          -5.195857881069567
+        ],
+        "triangles": 328120,
+        "voxel_assumed_mm": 1.2,
+        "geometry_sha256": "c4647b52c02f226534c1c96f4d2f1c4d8ff52f2031aec9553148e407298a2c8c",
+        "watertight": true,
+        "winding_consistent": true,
+        "positive_face_areas": true,
+        "connected_components": 1
+      },
+      {
+        "conditional_volume_mm3": 430665.5705673641,
+        "conditional_volume_inertia_about_axis_origin_mm5": [
+          [
+            1876816006.0043535,
+            7235337.080450431,
+            -2817603.4156425693
+          ],
+          [
+            7235337.080450431,
+            1912444662.6311548,
+            14814653.733595444
+          ],
+          [
+            -2817603.4156425693,
+            14814653.733595444,
+            3583158496.305005
+          ]
+        ],
+        "principal_volume_inertias_mm5": [
+          1875384286.147457,
+          1913740584.9274392,
+          3583294293.8656163
+        ],
+        "conditional_centroid_mm": [
+          -0.05878786592621116,
+          -1.6829986495691027,
+          -5.14146835949451
+        ],
+        "triangles": 1322970,
+        "voxel_assumed_mm": 0.6,
+        "geometry_sha256": "f32bbabab3e5f7d9ca7c5283d18703cfe7cedbd3eb2c72a57a1c222c0a9df1e5",
+        "watertight": true,
+        "winding_consistent": true,
+        "positive_face_areas": true,
+        "connected_components": 1
+      },
+      {
+        "conditional_volume_mm3": 430977.1647263423,
+        "conditional_volume_inertia_about_axis_origin_mm5": [
+          [
+            1879043199.0107293,
+            7284419.684396454,
+            -2817004.76923175
+          ],
+          [
+            7284419.684396454,
+            1914694514.62942,
+            14819231.579725588
+          ],
+          [
+            -2817004.76923175,
+            14819231.579725588,
+            3587251834.653701
+          ]
+        ],
+        "principal_volume_inertias_mm5": [
+          1877593717.9358284,
+          1916008269.8216758,
+          3587387560.536345
+        ],
+        "conditional_centroid_mm": [
+          -0.05564568153030761,
+          -1.6780889734689652,
+          -5.129565529227936
+        ],
+        "triangles": 5302698,
+        "voxel_assumed_mm": 0.3,
+        "geometry_sha256": "66e7373f2b8cf3f6a9a92f359ea4199f2a46b655171ee91c899c8640160c2ea9",
+        "watertight": true,
+        "winding_consistent": true,
+        "positive_face_areas": true,
+        "connected_components": 1
+      }
+    ],
+    "last_pair_volume_relative_change": 0.0007235176904616392,
+    "last_pair_inertia_relative_change": 0.0011849489487221199,
+    "volume_and_inertia_below_one_percent": true,
+    "scale_verified": false,
+    "manufacturing_authorized": false,
+    "physical_validation": false
+  },
+  "deviation": {
+    "selection": "connected observed blade-03 faces, all vertices beyond projected station 124",
+    "unit": "uncalibrated_source_unit_assumed_mm",
+    "scale_verified": false,
+    "missing_open_scan_arcs_are_not_reference_surfaces": true,
+    "comparisons": {
+      "old": {
+        "geometry_sha256": "a61f3a2c90d5ae5e1f4060914eae8d8104081c469b1e5cb10bb1e0fa06609d8f",
+        "observed_to_candidate": {
+          "samples": 6000,
+          "seed": 93513,
+          "rms_source_units": 1.1744980333191222,
+          "percentiles_source_units": [
+            0.5116836182563412,
+            2.804841968959468,
+            3.762554692741671,
+            5.3397952399129105
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        },
+        "candidate_to_open_scan_including_missing_arcs": {
+          "samples": 6000,
+          "seed": 93514,
+          "rms_source_units": 3.016043597548426,
+          "percentiles_source_units": [
+            0.9131785750983507,
+            6.437095505142732,
+            7.253851117453795,
+            8.179581998495257
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        }
+      },
+      "new": {
+        "geometry_sha256": "f32bbabab3e5f7d9ca7c5283d18703cfe7cedbd3eb2c72a57a1c222c0a9df1e5",
+        "observed_to_candidate": {
+          "samples": 6000,
+          "seed": 93513,
+          "rms_source_units": 0.18136657749940827,
+          "percentiles_source_units": [
+            0.02840561489099433,
+            0.3695514462781004,
+            0.7810162557328973,
+            2.101655653981984
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        },
+        "candidate_to_open_scan_including_missing_arcs": {
+          "samples": 6000,
+          "seed": 93514,
+          "rms_source_units": 0.3385408206844664,
+          "percentiles_source_units": [
+            0.029803372963926194,
+            0.4417294488083301,
+            1.9037648841037909,
+            3.665309780431869
+          ],
+          "method": "area_uniform_independent_points_to_triangles_not_nearest_vertices"
+        }
+      }
+    }
+  },
+  "fea": {
+    "material_id": "alsi10mg",
+    "rotor_rpm": 6000,
+    "cases": [
+      {
+        "pitch_mm": 1.5,
+        "elements": 131084,
+        "nodes": 184549,
+        "von_mises_max_MPa": 144.37579481527524,
+        "maximum_displacement_mm": 0.5248667807232887,
+        "element_peak_p95_outside_r25_MPa": 34.14387964476829,
+        "conditional_grid_mass_kg": 1.1812306950000002,
+        "grid_volume_relative_error": 0.026951813951104544,
+        "relative_force_balance_error": 1.204038341553171e-09,
+        "relative_moment_balance_error": 1.7345868295159712e-09,
+        "reaction_balance_pass": true,
+        "assessment_sha256": "06ef6e631a0c207da43f77f6ac9224fa2f7ba491e353f5cdcfe9c46c72a4d824",
+        "old_maximum_displacement_mm": 0.8155780841890371,
+        "displacement_reduction_relative": 0.35644815512032135
+      },
+      {
+        "pitch_mm": 1.35,
+        "elements": 177185,
+        "nodes": 243374,
+        "von_mises_max_MPa": 188.37136923885373,
+        "maximum_displacement_mm": 0.6036184253619852,
+        "element_peak_p95_outside_r25_MPa": 33.59687425973622,
+        "conditional_grid_mass_kg": 1.1639639234812502,
+        "grid_volume_relative_error": 0.011940231194817104,
+        "relative_force_balance_error": 1.2468025938887297e-09,
+        "relative_moment_balance_error": 2.2054354665221423e-09,
+        "reaction_balance_pass": true,
+        "assessment_sha256": "e13cd1cc5216196aa46ff39cc0d6444e5e271616cfcc55c01a2120ec0f459349",
+        "old_maximum_displacement_mm": 0.9410368960980595,
+        "displacement_reduction_relative": 0.3585602988949267
+      },
+      {
+        "pitch_mm": 1.2,
+        "elements": 244240,
+        "nodes": 327866,
+        "von_mises_max_MPa": 197.45742561073746,
+        "maximum_displacement_mm": 0.759833612253516,
+        "element_peak_p95_outside_r25_MPa": 34.54051827668235,
+        "conditional_grid_mass_kg": 1.1268647424,
+        "grid_volume_relative_error": 0.020313477982195585,
+        "relative_force_balance_error": 3.732663349531246e-10,
+        "relative_moment_balance_error": 9.607490050360769e-10,
+        "reaction_balance_pass": true,
+        "assessment_sha256": "0854b1598b1884bd4c2c995c66d7979eb698d7401f3c58e3ca92e2f9c015f0a3",
+        "old_maximum_displacement_mm": 1.1604329872913342,
+        "displacement_reduction_relative": 0.3452154320198113
+      }
+    ],
+    "last_pair_relative_change": {
+      "maximum_displacement_mm": 0.2587979099508928,
+      "von_mises_max_MPa": 0.04823480557898718,
+      "element_peak_p95_outside_r25_MPa": 0.028087256262319338
+    },
+    "reaction_balances_pass": true,
+    "mesh_convergence_established": false,
+    "bore_clamp_is_assumption": true,
+    "only_centrifugal_loading": true,
+    "material_process_qualified": false,
+    "maximum_displacement_location_association": [
+      {
+        "candidate": "old",
+        "pitch_mm": 1.5,
+        "maximum_displacement_mm": 0.8155780841890371,
+        "angular_blade_association": "blade-03",
+        "station_source_units": 140.66808338167277,
+        "classification": "angular_association_not_exact_field_segmentation"
+      },
+      {
+        "candidate": "new",
+        "pitch_mm": 1.5,
+        "maximum_displacement_mm": 0.5248667807232887,
+        "angular_blade_association": "blade-03",
+        "station_source_units": 130.77721568566608,
+        "classification": "angular_association_not_exact_field_segmentation"
+      },
+      {
+        "candidate": "old",
+        "pitch_mm": 1.35,
+        "maximum_displacement_mm": 0.9410368960980595,
+        "angular_blade_association": "blade-03",
+        "station_source_units": 140.50574800385237,
+        "classification": "angular_association_not_exact_field_segmentation"
+      },
+      {
+        "candidate": "new",
+        "pitch_mm": 1.35,
+        "maximum_displacement_mm": 0.6036184253619852,
+        "angular_blade_association": "blade-03",
+        "station_source_units": 131.9522628620294,
+        "classification": "angular_association_not_exact_field_segmentation"
+      },
+      {
+        "candidate": "old",
+        "pitch_mm": 1.2,
+        "maximum_displacement_mm": 1.1604329872913342,
+        "angular_blade_association": "blade-03",
+        "station_source_units": 140.5906843184321,
+        "classification": "angular_association_not_exact_field_segmentation"
+      },
+      {
+        "candidate": "new",
+        "pitch_mm": 1.2,
+        "maximum_displacement_mm": 0.759833612253516,
+        "angular_blade_association": "blade-02",
+        "station_source_units": 128.8970082499097,
+        "classification": "angular_association_not_exact_field_segmentation"
+      }
+    ]
+  },
+  "rejected_interpolation": {
+    "rotor_sha256": "db2c1b8870abe5b7aa9d1932be591506c06d2b7ad422c712e794533c5880da2d",
+    "source_sha256": "aa5b8d7aa826025526e6d5fa73781bbc93abf2fbf1a9881047024cd8a183459e",
+    "scan_to_candidate_rms_source_units": 1.9780231764559049,
+    "reason": "interpolation removed observed tip arcs; median improvement did not justify worse RMS and maximum",
+    "three_solves_retained": true
+  },
+  "visual_review": {
+    "images_sha256": {
+      "935-tip-review.png": "7c3d6962707fc539d984c5aaa6aa1e84b1e70b559559df3b30e362dce2d2258b",
+      "935-tip-sections.png": "4ad57a38fa96aefc312c822e84d848beefe1f7e1543191af14a1a4cb3328c75d"
+    },
+    "actual_images_inspected": true,
+    "geometry_decimated": false
+  },
+  "private_archive": "https://github.com/cluster2600/porscheparts-935-private/releases/tag/tip-correction-20261013",
+  "CFD_recomputed": false,
+  "scale_verified": false,
+  "historical_interfaces_verified": false,
+  "manufacturing_authorized": false,
+  "physical_validation": false,
+  "vast_rental_used": false,
+  "fea_fields": {
+    "classification": "sparse_conditional_C3D8_results_not_continuous_stress_solution",
+    "input_sha256": "f32bbabab3e5f7d9ca7c5283d18703cfe7cedbd3eb2c72a57a1c222c0a9df1e5",
+    "field_voxel_mm": 0.6,
+    "scalar_samples": 244240,
+    "vector_samples": 327866,
+    "vdb_sha256": "5321db895a93a3675366ac7ab7232c0d8882954c904a5ae9cb35dd1790df2b88",
+    "roundtrip_passed": true,
+    "source_stress_csv_sha256": "c56f53eb0e6c7fefd5ed2c131c996e53d7a4ef5ed1893352d420c72ba28972af",
+    "source_displacement_csv_sha256": "4e5a9bda43fcebd63e59b998fda6b90d9a31e24361bab29ea0cf707b5bd2f98a",
+    "assessment_sha256": "0854b1598b1884bd4c2c995c66d7979eb698d7401f3c58e3ca92e2f9c015f0a3",
+    "material_id": "alsi10mg",
+    "rotor_rpm": 6000,
+    "scale_verified": false,
+    "mesh_convergence_established": false,
+    "manufacturing_authorized": false,
+    "physical_validation": false
+  }
+}

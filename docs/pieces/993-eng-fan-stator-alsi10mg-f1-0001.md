@@ -89,11 +89,11 @@ Catalogue record: [`catalog/parts/993-eng-fan-stator-alsi10mg-f1-0001.json`](../
 
 ![build-plate](../../parts/993-eng-fan-stator-alsi10mg-f1-0001/media/print-simulation/build-plate.png)
 
-*`parts/993-eng-fan-stator-alsi10mg-f1-0001/media/print-simulation/build-plate.png` — illustration of the geometric print simulation, not a build file or a print release.*
+*`parts/993-eng-fan-stator-alsi10mg-f1-0001/media/print-simulation/build-plate.png` — metal LPBF geometry preview with hypothetical supports; no process physics or qualified support design; not a build file or print release.*
 
 ![layers](../../parts/993-eng-fan-stator-alsi10mg-f1-0001/media/print-simulation/layers.png)
 
-*`parts/993-eng-fan-stator-alsi10mg-f1-0001/media/print-simulation/layers.png` — illustration of the geometric print simulation, not a build file or a print release.*
+*`parts/993-eng-fan-stator-alsi10mg-f1-0001/media/print-simulation/layers.png` — metal LPBF geometry preview with hypothetical supports; no process physics or qualified support design; not a build file or print release.*
 
 ![views](../../parts/993-eng-fan-stator-alsi10mg-f1-0001/media/views.png)
 

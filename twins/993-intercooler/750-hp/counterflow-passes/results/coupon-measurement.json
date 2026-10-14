@@ -1,0 +1,97 @@
+{
+  "status": "independent_topology_measurement_not_qualification",
+  "generation": {
+    "status": "native_picogk_topology_coupon_not_qualified",
+    "kernel": "26.2.0",
+    "voxel_mm": 0.0375,
+    "source": "extended_search.lightest_by_passes.2",
+    "hot_gap_mm": 5,
+    "hot_pitch_mm": 2,
+    "fin_mm": 0.15,
+    "strip_length_mm": 10,
+    "wall_mm": 0.4,
+    "channels_per_pass": 5,
+    "strips": 2,
+    "return_tank_length_mm": 8,
+    "coupon_extents_mm": [
+      28.4,
+      21.2,
+      5.8
+    ],
+    "reduced": "channels per pass reduced from the candidate; tank length assumed; inlet end cut open",
+    "parts": [
+      {
+        "name": "two-pass-metal",
+        "triangles": 7347380,
+        "voxel_volume_mm3": 826.97253
+      },
+      {
+        "name": "two-pass-charge",
+        "triangles": 5060348,
+        "voxel_volume_mm3": 2665.9858
+      },
+      {
+        "name": "two-pass-charge-without-tank",
+        "triangles": 4440224,
+        "voxel_volume_mm3": 1843.7922
+      },
+      {
+        "name": "two-pass-metal-open-view",
+        "triangles": 5747848,
+        "voxel_volume_mm3": 586.4051
+      }
+    ],
+    "manufacturing_authorized": false,
+    "full_core_generated": false,
+    "headers_generated": false
+  },
+  "parts": {
+    "two-pass-metal": {
+      "file_sha256": "4182d6ac13579ce7973638463f516b1ebbacc66f10a0186e452a4b6c268459e0",
+      "watertight": true,
+      "components": 1,
+      "volume_mm3": 825.9830917716171,
+      "component_volumes_mm3": [
+        825.9830917664339
+      ]
+    },
+    "two-pass-charge": {
+      "file_sha256": "089a9a96076dbae9a86876b852a128f671af1b6bab209047f37396d9733c9891",
+      "watertight": true,
+      "components": 1,
+      "volume_mm3": 2665.6620093319257,
+      "component_volumes_mm3": [
+        2665.6620093133615
+      ]
+    },
+    "two-pass-charge-without-tank": {
+      "file_sha256": "e4a8638c3cac7e779c57f411b13c4081a6ce9115c321b2e9faaeea79620d12ef",
+      "watertight": true,
+      "components": 2,
+      "volume_mm3": 1842.6819631123517,
+      "component_volumes_mm3": [
+        921.3459988422375,
+        921.3359642669623
+      ]
+    },
+    "two-pass-metal-open-view": {
+      "file_sha256": "6b4abf5173bd2b81c11980036ebc6244bd3504c0f37de1b384fde04967176a35",
+      "watertight": true,
+      "components": 1,
+      "volume_mm3": 584.6720266598313,
+      "component_volumes_mm3": [
+        584.6720266583934
+      ]
+    }
+  },
+  "envelope_volume_mm3": 3492.0639999999994,
+  "volume_closure": 0.9998800426061903,
+  "metal_single_closed_body": true,
+  "passes_joined_only_by_return_tank": true,
+  "source_sha256": {
+    "coupon.py": "f148f25df1c25f63402fa400df6baa981614ac322d8506ddbb7ed8bffdffcde6",
+    "Program.cs": "4e0fbca4af18af6752d5d3dbe833ff14604acf5bf0c25ddd40e7f3cd47cf6028",
+    "Passes.csproj": "e301ee6d851c8053ceff923a95047b6aa1600c8bbd73e3bfd252fbb41d960909",
+    "passes.json": "18d4fef9a668be83b85fedadfb593e0e71a207dbf737fdf00aa3f10cddb0e720"
+  }
+}

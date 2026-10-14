@@ -80,8 +80,8 @@ start-up.
 
 <!-- print-screen:begin -->
 
-## LPBF print simulation
+## LPBF geometric screening — process physics not calculated
 
-The simulation was run and **failed closed**: `failed_memory_cap` container killed at the 10g memory cap. No result is therefore published for this part, and no image is made up in its place.
+The geometric screening was run and **failed closed**: `failed_memory_cap` container killed at the 10g memory cap. No result is therefore published for this part, and no image is made up in its place.
 
 <!-- print-screen:end -->

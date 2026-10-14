@@ -103,6 +103,7 @@ def context() -> tuple[Callable[[float, float, float], tuple[float, float, float
 
 
 def build() -> None:
+    transform_inputs = {name: sha256(path) for name, path in (("PACKAGING", PACKAGING), ("INTERFACES", INTERFACES))}
     transform, transform_report = context()
     vertex_count, triangle_count = convert_obj_to_binary_stl(OBJ, STL, transform)
     report = {
@@ -111,16 +112,22 @@ def build() -> None:
         "status": "picogk_input_prepared_from_unverified_scan_frame",
         "source_obj_sha256": sha256(OBJ),
         "output_stl_sha256": sha256(STL),
+        "transform_inputs_sha256": transform_inputs,
         "vertex_count": vertex_count,
         "triangle_count": triangle_count,
         "transform": transform_report,
     }
     REPORT.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    check()
     print(STL.relative_to(ROOT))
 
 
 def check() -> None:
     report = json.loads(REPORT.read_text(encoding="utf-8"))
+    if report.get("transform_inputs_sha256") != {
+        name: sha256(path) for name, path in (("PACKAGING", PACKAGING), ("INTERFACES", INTERFACES))
+    }:
+        raise SystemExit("F10 transform inputs changed or are unrecorded; rebuild the prepared scan")
     if report["source_obj_sha256"] != sha256(OBJ):
         raise SystemExit("le scan source F10 a changé")
     if report["output_stl_sha256"] != sha256(STL):

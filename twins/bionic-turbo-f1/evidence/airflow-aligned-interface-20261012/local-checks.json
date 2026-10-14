@@ -1,0 +1,29 @@
+{
+  "targeted": {
+    "discovered": 65,
+    "passed": 64,
+    "skipped": 1,
+    "log": "targeted-tests-conformal.log"
+  },
+  "full_check": {
+    "command": "PATH=\"$PWD/work/bionic-tools/bin:$PATH\" make check",
+    "python": "3.11",
+    "discovered": 3745,
+    "passed": 3574,
+    "skipped": 167,
+    "failures": 2,
+    "errors": 2,
+    "status": "failed_outside_turbo",
+    "unchanged_local_issues": [
+      "optional rtree missing",
+      "optional networkx missing",
+      "WE43 exact floating comparison",
+      "stator exact floating comparison"
+    ],
+    "log": "make-check-conformal.log"
+  },
+  "sha256": {
+    "targeted-tests-conformal.log": "9a09fff76cd044a626e060168b9f4154cc583429c221ebea853cead062875c6d",
+    "make-check-conformal.log": "315d0276d9ed52648a34a5523938d022ea32cec77215c9b7b8d80e1005f38d3a"
+  }
+}
