@@ -64,9 +64,9 @@ class SchematicTests(unittest.TestCase):
               9: "MCU_XLAT", 10: "GND", 11: "nc-U7-11", 12: "GND", 13: "VCC_3V3", 14: "VCC_3V3"}),
             ("U8", "SN74LVC1G04DBVR", {1: "nc-U8-1", 2: "DISPLAY_EN", 3: "GND", 4: "BLANK", 5: "VCC_3V3"}),
             ("J1", "3V3 LAB", {1: "VCC_3V3", 2: "GND"}),
-            ("J2", "LOGIC / DK USB SEPARE", {1: "GND", 2: "MCU_SIN", 3: "MCU_SCLK",
+            ("J2", "LOGIC / DK USB SEPARATE", {1: "GND", 2: "MCU_SIN", 3: "MCU_SCLK",
               4: "MCU_XLAT", 5: "DISPLAY_EN", 6: "GND"}),
-            ("S1", "COUPURE LED", {1: "VCC_3V3", 2: "VLED_3V3"}),
+            ("S1", "LED CUTOFF", {1: "VCC_3V3", 2: "VLED_3V3"}),
         ):
             values[ref] = value
             for pin, net in pins.items():
