@@ -1,159 +1,160 @@
-# Culasse M64 quatre soupapes à eau — direction active
+# M64 four-valve water-cooled cylinder head — active direction
 
-Décision utilisateur du **12 octobre 2026** : remplacer le développement du
-refroidissement primaire par huile/air de la nouvelle culasse par un circuit
-liquide inspiré des 956/962 C. La conclusion sur l'insuffisance de l'huile est
-un choix de programme, pas le résultat d'une simulation présentée ici.
+Owner decision of **October 12, 2026**: replace the development of primary
+oil/air cooling for the new cylinder head with a liquid circuit inspired by the
+956/962 C. The conclusion that oil is insufficient is a program choice, not the
+result of a simulation presented here.
 
-Le [catalogue](../../../../catalog/parts/993-eng-cylinder-head-4v-f0-0001.json)
-porte l'identité de la pièce et le [programme moteur](../../../m64-engine-system/program.json)
-porte cette cible séparément du M64/60 historique. Les anciennes
-[ailettes](../bionic-fins/README.md) et leur
-[intégration](../bionic-fin-integration/README.md) sont conservées ; leurs gains
-de conductance sur coupon ne sont pas transférés au refroidissement par eau.
-La forme bionique devient un réseau de passages ramifiés et de matière
-répartie selon les flux et les charges. Le premier routage n'est pas optimisé.
+The [catalogue](../../../../catalog/parts/993-eng-cylinder-head-4v-f0-0001.json)
+carries the part identity, and the [engine program](../../../m64-engine-system/program.json)
+carries this target separately from the historical M64/60. The earlier
+[fins](../bionic-fins/README.md) and their
+[integration](../bionic-fin-integration/README.md) are retained; their coupon
+conductance gains are not transferred to water cooling.
+The bionic form becomes a network of branched passages and of material
+distributed according to the heat flows and loads. The first routing is not
+optimized.
 
-## Ce que Porsche documente
+## What Porsche documents
 
-| Référence primaire, consultée le 12 octobre 2026 | Fait et portée |
+| Primary reference, consulted October 12, 2026 | Fact and scope |
 |---|---|
-| [Porsche, 40 Years Group C, p. 18](https://newsroom.porsche.com/dam/jcr:a6f33b52-c47d-47b4-98c1-7e963661f587/40%20Years%20Group%20C.pdf) | 956 : quatre soupapes, culasses à eau, cylindres à air. |
-| Même dossier, p. 19 | Conduites d'eau proches des passages échappement ; circuits indépendants avec pompe par banc. Porsche décrit aussi le soudage culasse/cylindre pour répondre aux pertes de précharge des joints en transitoire thermique. |
-| [Porsche, Turbo technology in motorsport](https://newsroom.porsche.com/en/press-kits/50-years-porsche-turbo/Porsche-and-turbo-technology-in-motorsport--from-pioneer-to-world-champion.html), section 956/962 | La 962 IMSA initiale utilise un moteur à air ; la 962 C reçoit aussi un 3,0 litres entièrement refroidi par eau. « 962 » ne définit donc pas un moteur unique. |
-| [Porsche, Staying Power](https://newsroom.porsche.com/en/2024/products/porsche-911-carrera-gts-drive-technology-christophorus-411-36736.html), section water-cooling | Porsche rapporte les difficultés de son expérimentation quatre soupapes à air et cite les culasses à eau des 962 et 959. Cela ne qualifie pas notre dessin. |
+| [Porsche, 40 Years Group C, p. 18](https://newsroom.porsche.com/dam/jcr:a6f33b52-c47d-47b4-98c1-7e963661f587/40%20Years%20Group%20C.pdf) | 956: four valves, water-cooled cylinder heads, air-cooled cylinders. |
+| Same dossier, p. 19 | Water passages close to the exhaust ports; independent circuits with one pump per bank. Porsche also describes welding the cylinder head to the cylinder to address gasket preload losses during thermal transients. |
+| [Porsche, Turbo technology in motorsport](https://newsroom.porsche.com/en/press-kits/50-years-porsche-turbo/Porsche-and-turbo-technology-in-motorsport--from-pioneer-to-world-champion.html), 956/962 section | The initial 962 IMSA uses an air-cooled engine; the 962 C also receives a fully water-cooled 3.0 liter. "962" therefore does not define a single engine. |
+| [Porsche, Staying Power](https://newsroom.porsche.com/en/2024/products/porsche-911-carrera-gts-drive-technology-christophorus-411-36736.html), water-cooling section | Porsche reports the difficulties of its air-cooled four-valve experiment and cites the water-cooled cylinder heads of the 962 and 959. This does not qualify our design. |
 
-Les principes proviennent de la famille Group C ; les détails du dossier p. 19
-sont attribués par Porsche au moteur Type 935/76 de la 956. Ils ne sont pas
-présentés comme le plan d'une 962 précise. Les sources restent des références
-sous copyright : aucun plan, image, texte intégral ni modèle Porsche importé.
-Voir le [registre de source](../../../../catalog/sources/src-porsche-group-c-water-cooling.json).
+The principles come from the Group C family; Porsche attributes the details of
+the p. 19 dossier to the Type 935/76 engine of the 956. They are not presented
+as the drawing of a specific 962. The sources remain copyrighted references:
+no Porsche drawing, image, full text or model is imported.
+See the [source record](../../../../catalog/sources/src-porsche-group-c-water-cooling.json).
 
-## Circuit proposé et périmètre
+## Proposed circuit and scope
 
-Premier périmètre : **les six culasses à eau**, cylindres encore refroidis par
-air, huile conservée pour la lubrification et son bilan thermique. Cette limite
-est un choix initial de notre projet ; elle ne copie pas la 962 C entièrement
-refroidie par eau. Le bilan moteur pourra imposer d'étendre le périmètre.
+First scope: **the six water-cooled cylinder heads**, cylinders still air-cooled,
+oil retained for lubrication and its heat balance. This limit is an initial
+choice of our project; it does not copy the fully water-cooled 962 C. The engine
+heat balance may require the scope to be extended.
 
-Deux boucles hydrauliques indépendantes, gauche et droite, sont proposées.
-Chaque boucle a sa pompe, son échangeur et son vase de dégazage ; aucune liaison
-liquide entre les bancs dans cette première architecture. Pour **chaque banc** :
+Two independent hydraulic loops, left and right, are proposed.
+Each loop has its pump, its heat exchanger and its degassing tank; there is no
+liquid connection between the banks in this first architecture. For **each bank**:
 
 ```mermaid
 flowchart LR
-    P[Pompe du banc] --> S[Collecteur froid]
-    S --> H1[Culasse 1 : zones echappement puis retour]
-    S --> H2[Culasse 2 : zones echappement puis retour]
-    S --> H3[Culasse 3 : zones echappement puis retour]
-    H1 --> R[Collecteur chaud]
+    P[Bank pump] --> S[Cold header]
+    S --> H1[Head 1: exhaust zones then return]
+    S --> H2[Head 2: exhaust zones then return]
+    S --> H3[Head 3: exhaust zones then return]
+    H1 --> R[Hot header]
     H2 --> R
     H3 --> R
-    R --> T[Regulation thermique]
-    T --> HX[Radiateur du banc et conduit air]
-    T --> BP[Bypass de chauffe a dimensionner]
+    R --> T[Thermal regulation]
+    T --> HX[Bank radiator and air duct]
+    T --> BP[Warm-up bypass to be sized]
     HX --> P
     BP --> P
-    H1 -. purge haute calibree .-> V[Vase expansion / degazage]
-    H2 -. purge haute calibree .-> V
-    H3 -. purge haute calibree .-> V
+    H1 -. calibrated high bleed .-> V[Expansion / degassing tank]
+    H2 -. calibrated high bleed .-> V
+    H3 -. calibrated high bleed .-> V
     V --> P
 ```
 
-Les trois culasses en parallèle et l'arrivée froide prioritaire vers
-l'échappement sont **nos hypothèses**, pas des détails hydrauliques vérifiés de
-la 962. Le retour vise une collecte haute ; le vrai point haut dépend de la
-position du moteur dans le véhicule, encore non établie. Les branches de purge
-doivent évacuer l'air sans court-circuiter les zones chaudes. Le remplissage,
-la vidange basse et l'accès aux raccords font partie de l'implantation à définir.
+The three cylinder heads in parallel and the cold supply directed first to the
+exhaust are **our assumptions**, not verified hydraulic details of the 962. The
+return aims for a high collection point; the true high point depends on the
+engine position in the vehicle, not yet established. The bleed branches must
+evacuate air without short-circuiting the hot zones. Filling, low draining and
+access to the fittings are part of the packaging still to be defined.
 
-Les échangeurs, durites, pompes et vases ne sont pas encore placés dans la 993.
-Les courbes de pompe, pertes de charge, régulation, pression du bouchon,
-diamètres de raccords et volumes d'expansion restent à dimensionner. Mesures
-requises : débit de chaque banc, températures entrée/sortie et points chauds,
-pression et niveau. Les réactions à une perte de débit/niveau restent à définir.
+The heat exchangers, hoses, pumps and tanks are not yet placed in the 993.
+Pump curves, pressure losses, regulation, cap pressure, fitting diameters and
+expansion volumes remain to be sized. Required measurements: flow of each bank,
+inlet/outlet temperatures and hot spots, pressure and level. The responses to a
+loss of flow or level remain to be defined.
 
-## Premier travail géométrique exécutable
+## First executable geometric work
 
-[Program.cs](Program.cs) et [contract.json](contract.json) reprennent le module
-privé à treize pièces et ses quatre axes existants. Le corps d'origine et les
-douze références soupapes/sièges/guides sont liés par SHA-256 et restent intacts.
-La génération utilise le PicoGK et le ShapeKernel du
-[verrou existant](../../../../containers/m64-leap71/sources.lock), sans Noyron.
+[Program.cs](Program.cs) and [contract.json](contract.json) reuse the private
+thirteen-part module and its four existing axes. The original body and the
+twelve valve/seat/guide references are bound by SHA-256 and remain intact.
+Generation uses the PicoGK and ShapeKernel of the
+[existing lock](../../../../containers/m64-leap71/sources.lock), without Noyron.
 
-Le réseau de recherche contient une arrivée froide, deux branches autour des
-axes échappement, un retour commun et une purge. Les bifurcations réunissent des
-conduits PicoGK avec des plénums ShapeKernel. Les rayons, hauteurs et positions
-du contrat sont des hypothèses dans les **unités non étalonnées du scan 935**,
-pas des cotes de fabrication M64 ou 962. Le format STL porte mm pour le logiciel
-seulement. Les passages admission, le pont entre sièges et les bougies devront
-être couverts dans la prochaine chemise selon les flux thermiques mesurés.
+The research network contains a cold supply, two branches around the exhaust
+axes, a common return and a bleed. The bifurcations join PicoGK ducts with
+ShapeKernel plenums. The radii, heights and positions in the contract are
+assumptions in the **uncalibrated units of the 935 scan**, not M64 or 962
+manufacturing dimensions. The STL format carries mm for the software only.
+The intake ports, the bridge between seats and the spark plugs will have to be
+covered in the next water jacket according to the measured heat flows.
 
-Exports privés :
+Private exports:
 
-- `coolant-routing.stl` : volume d'eau proposé, avec terminaisons arrondies ;
-- `routing-plus-wall-margin.stl` : enveloppe diagnostic autour du routage ;
-- `outside-eroded-head.stl` : eau qui sort du corps réduit d'une marge de paroi.
+- `coolant-routing.stl`: proposed water volume, with rounded terminations;
+- `routing-plus-wall-margin.stl`: diagnostic envelope around the routing;
+- `outside-eroded-head.stl`: water leaving the body shrunk by a wall margin.
 
-La marge de 3 unités est un test d'encombrement, **pas une épaisseur admissible**.
-Le dernier diagnostic inclut les tuyaux externes volontairement hors du corps
-et d'éventuelles fuites internes : il ne les distingue pas et ne doit pas être
-lu comme un volume de fuite physique. Aucun passage n'est soustrait au métal.
-Une enveloppe à ailettes ne forme pas automatiquement une enceinte sous pression.
-Il faudra créer une nouvelle chemise fermée et ses parois, pas seulement percer
-des canaux dans le proxy actuel.
+The margin of 3 units is a packaging test, **not an allowable thickness**.
+The last diagnostic includes the external pipes, deliberately outside the body,
+and any internal leaks: it does not tell them apart and must not be read as a
+physical leak volume. No passage is subtracted from the metal.
+A finned envelope does not automatically form a pressure enclosure.
+A new closed water jacket and its walls will have to be created, not just
+channels drilled into the current proxy.
 
-[audit.py](audit.py) réutilise l'inspecteur indépendant existant pour vérifier
-la surface brute et la connexité. Les intersections avec les douze références
-et leur marge sont conservées, y compris les collisions. Les domaines gaz,
-huile, goujons, bougies et les appuis complets manquent ; même un résultat sans
-collision des douze pièces ne permet pas d'accepter une chemise. Ni masque
-structurel ni autorisation d'enlèvement de matière dans ce dossier.
-[render.py](render.py) montre les triangles réels du routage avec la culasse
-transparente et le diagnostic de confinement, sans retoucher le maître.
+[audit.py](audit.py) reuses the existing independent inspector to check the raw
+surface and connectivity. Intersections with the twelve references and their
+margin are kept, including collisions. The gas, oil, stud and spark-plug domains
+and the complete seating faces are missing; even a result without collision of
+the twelve parts does not allow a water jacket to be accepted. There is neither
+a structural mask nor an authorization to remove material in this dossier.
+[render.py](render.py) shows the real routing triangles with the cylinder head
+transparent and the containment diagnostic, without touching the master.
 
-### Reproduction locale
+### Local reproduction
 
-Avec le SDK .NET 9 et les sources verrouillées déjà installés :
+With the .NET 9 SDK and the locked sources already installed:
 
 ```sh
 dotnet build WaterHead.csproj -c Release -o PRIVATE_BIN \
   -p:PicoGKPath=PINNED_PICOGK_DLL -p:ShapeKernelRoot=PINNED_SHAPE_KERNEL_ROOT
-# Exécuter le natif sous le verrou machine de parts/picogk-catalog/tools/run_part.py.
+# Run the native step under the machine lock of parts/picogk-catalog/tools/run_part.py.
 dotnet PRIVATE_BIN/WaterHead.dll PRIVATE_INPUTS contract.json NEW_PRIVATE_OUTPUT 0.3
 python audit.py --inputs PRIVATE_INPUTS --directory NEW_PRIVATE_OUTPUT --output NEW_PRIVATE_AUDIT.json
 python render.py --inputs PRIVATE_INPUTS --directory NEW_PRIVATE_OUTPUT --output NEW_PRIVATE_VIEW.png
 ```
 
-Le répertoire d'entrées est le module privé retenu, pas un autre scan.
-Les sorties doivent être nouvelles ; une entrée modifiée ou un contrat qui
-autorise la fabrication est refusé. L'inspection exige NumPy et SciPy, le rendu
-VTK. Aucun scan ou dérivé privé n'est publié dans Git.
+The input directory is the retained private module, not another scan.
+Outputs must be new; a modified input or a contract that authorizes
+manufacturing is refused. Inspection requires NumPy and SciPy, rendering
+requires VTK. No private scan or derivative is published in Git.
 
-## Travail suivant et critères
+## Next work and criteria
 
-1. **Interfaces et étanchéité** : mesurer appuis cylindre/culasse, goujons,
-   plans et précharges, distribution, huile, bougies et sorties gaz. Définir
-   les raccords eau, leurs joints, accès et efforts des tuyaux. Chemin de charge :
-   pression combustion → culasse → appui cylindre/goujons → carter ; pression
-   eau → chemise/parois/raccords ; forces distribution → guides/sièges/supports.
-   Le soudage Porsche n'est pas adopté automatiquement sur un M64.
-2. **Chemise bionique fermée** : conserver les zones porteuses, refroidir
-   échappement, ponts de sièges et zones bougies ; éviter poches d'air, étranglements
-   et volumes stagnants. Fixer épaisseurs, rayons, nettoyage et contrôle interne
-   selon l'alliage et le procédé réellement choisis.
-3. **Bilan et hydraulique** : établir la chaleur transmise aux culasses par
-   point de fonctionnement. Utiliser `Q = débit_massique × cp × ΔT` ; la puissance
-   mécanique moteur ne donne pas directement Q. Équilibrer les trois branches,
-   vérifier cavitation, pression locale, expansion et radiateurs avec leur air réel.
-4. **CHT et mécanique** : domaines eau/métal/gaz nommés, maillage convergé,
-   propriétés du liquide et du métal en température, ébullition éventuelle,
-   températures des sièges/ponts et pertes de charge. Vérifier ensuite pression
-   combustion/eau, précharges, transitoires et fatigue thermique ensemble.
-5. **Coupons et banc** : procédé/alliage approuvés, nettoyabilité, CT/CND,
-   épreuve de pression définie par revue d'ingénierie puis banc thermique et
-   moteur instrumenté. Aucun lancement fabrication ou montage à ce stade.
+1. **Interfaces and sealing**: measure cylinder/head seating faces, studs,
+   planes and preloads, valvetrain, oil, spark plugs and gas outlets. Define
+   the water fittings, their seals, access and hose loads. Load path:
+   combustion pressure → cylinder head → cylinder seat/studs → case; water
+   pressure → jacket/walls/fittings; valvetrain forces → guides/seats/supports.
+   Porsche's welding is not automatically adopted on an M64.
+2. **Closed bionic water jacket**: keep the load-bearing zones; cool the
+   exhaust, seat bridges and spark-plug zones; avoid air pockets, restrictions
+   and stagnant volumes. Set thicknesses, radii, cleaning and internal inspection
+   according to the alloy and process actually chosen.
+3. **Heat balance and hydraulics**: establish the heat transferred to the
+   cylinder heads per operating point. Use `Q = mass_flow × cp × ΔT`; engine
+   mechanical power does not directly give Q. Balance the three branches; check
+   cavitation, local pressure, expansion and radiators with their real air.
+4. **CHT and mechanics**: named water/metal/gas domains, converged mesh,
+   temperature-dependent liquid and metal properties, possible boiling,
+   seat/bridge temperatures and pressure losses. Then check combustion/water
+   pressure, preloads, transients and thermal fatigue together.
+5. **Coupons and bench**: approved process/alloy, cleanability, CT/NDT,
+   pressure test defined by engineering review, then a thermal bench and an
+   instrumented engine. No manufacturing or assembly start at this stage.
 
-Les températures limites, pression d'épreuve, débit requis et gain thermique
-restent inconnus. Les [résultats logiciels de cette itération](verification.json)
-ne ferment aucun de ces critères physiques.
+The limit temperatures, test pressure, required flow and thermal gain remain
+unknown. The [software results of this iteration](verification.json) close none
+of these physical criteria.

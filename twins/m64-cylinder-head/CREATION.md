@@ -1,10 +1,10 @@
 # Part 01 — M64 cylinder-head creation
 
-**Direction active depuis le 12 octobre 2026 : culasses quatre soupapes à eau,
-inspirées des 956/962 C.** Le [nouveau dossier et circuit](source/water-cooled-head/README.md)
-remplace la priorité donnée aux ailettes et au refroidissement primaire par huile.
-Les études précédentes ci-dessous restent conservées ; elles ne constituent plus
-le cahier des charges thermique actif. L'huile reste nécessaire à la lubrification.
+**Active direction since October 12, 2026: four-valve water-cooled cylinder
+heads, inspired by the 956/962 C.** The [new dossier and circuit](source/water-cooled-head/README.md)
+replace the priority given to the fins and to primary oil cooling.
+The earlier studies below are retained; they no longer constitute the active
+thermal specification. Oil remains necessary for lubrication.
 
 Active catalogue record: [993-ENG-CYLINDER-HEAD-4V-F0-0001](../../catalog/parts/993-eng-cylinder-head-4v-f0-0001.json).
 The [creation sequence](../m64-engine-system/creation-sequence.json) keeps the

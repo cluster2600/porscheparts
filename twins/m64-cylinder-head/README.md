@@ -1,8 +1,8 @@
-# Direction active : culasses à eau
+# Active direction: water-cooled cylinder heads
 
-Depuis le 12 octobre 2026, le travail vise une culasse quatre soupapes à eau,
-inspirée des 956/962 C. Voir le [circuit, les sources Porsche et le premier routage PicoGK](source/water-cooled-head/README.md).
-Les anciennes études d'ailettes sont conservées pour comparaison.
+Since October 12, 2026, the work targets a four-valve water-cooled cylinder
+head, inspired by the 956/962 C. See the [circuit, the Porsche sources and the first PicoGK routing](source/water-cooled-head/README.md).
+The earlier fin studies are retained for comparison.
 
 # M64 cylinder head twin
 

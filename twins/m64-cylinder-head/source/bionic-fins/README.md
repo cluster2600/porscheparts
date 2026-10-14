@@ -1,116 +1,115 @@
-# Ailettes bioniques — première étude PicoGK / ShapeKernel
+# Bionic fins — first PicoGK / ShapeKernel study
 
-Cette itération produit des **cellules d'ailettes synthétiques**, des éprouvettes
-à trois ailettes, et une comparaison thermique reproductible. Elle ne remplace
-pas la culasse M64/993 à quatre soupapes et ne constitue pas son optimisation
-complète. La cible est confirmée par le propriétaire le 11 octobre 2026.
+This iteration produces **synthetic fin cells**, three-fin coupons and a
+reproducible thermal comparison. It does not replace the M64/993 four-valve
+cylinder head and is not its complete optimization. The owner confirmed the
+target on October 11, 2026.
 
-Le corps de référence reste intact. Il provient du scan 935 utilisé pour les
-travaux M64 ; l'échelle absolue, les interfaces de la variante 993 et la
-fabricabilité ne sont pas certifiées. Les dimensions ci-dessous sont des
-dimensions **d'étude**, jamais des mesures Porsche.
+The reference body remains intact. It comes from the 935 scan used for the M64
+work; the absolute scale, the interfaces of the 993 variant and
+manufacturability are not certified. The dimensions below are **study**
+dimensions, never Porsche measurements.
 
-## Géométrie et résultat limité
+## Geometry and limited result
 
-La cellule bionique retenue est une nervure effilée à bifurcation : une racine
-épaisse conduit la chaleur vers deux branches plus fines. Le témoin est une
-ailette droite ; des témoins simplement effilés sont également comparés.
-Les feuilles sont extrudées suivant Y, direction supposée de l'air. Cette forme
-ne dérive pas d'une optimisation topologique mécanique, d'une loi de Murray
-ou d'un calcul d'écoulement.
+The retained bionic cell is a tapered rib with a bifurcation: a thick root
+conducts heat toward two thinner branches. The baseline is a straight fin;
+simply tapered baselines are also compared. The sheets are extruded along Y,
+the assumed air direction. This shape does not derive from a mechanical
+topology optimization, from Murray's law or from a flow calculation.
 
-| Paramètre d'étude | Valeur |
+| Study parameter | Value |
 | --- | --- |
-| Hauteur d'axe | 28 mm |
-| Profondeur suivant l'air supposé | 60 mm |
-| Pas de répétition | 14 mm |
-| Volume d'une ailette, jonctions fusionnées | 5 040 mm³ |
-| Racine / jonction / extrémité du candidat | 4,145 / 1,884 / 1,413 mm |
-| Hauteur de bifurcation | 19,6 mm |
-| Déport de chaque extrémité | ±2 mm |
-| Épaisseur de la base d'éprouvette commune | 4 mm |
+| Axis height | 28 mm |
+| Depth along the assumed air direction | 60 mm |
+| Repeat pitch | 14 mm |
+| Volume of one fin, merged junctions | 5,040 mm³ |
+| Candidate root / junction / tip | 4.145 / 1.884 / 1.413 mm |
+| Bifurcation height | 19.6 mm |
+| Offset of each tip | ±2 mm |
+| Common coupon base thickness | 4 mm |
 
-La meilleure cellule dans le domaine échantillonné est
-`leaf-0.7-2.0-2.2-0.75`. Sur la grille thermique fine de 0,05 mm, sa
-conductance `Q / (T_racine − T_air)` dépasse celle de l'ailette droite de
-**7,90 à 14,58 %**, à volume de métal continu égal. La variation de sa
-conductance entre 0,10 et 0,05 mm reste sous **0,379 %**. L'erreur de bilan
-énergétique est contrôlée à chaque résolution et doit rester sous `1e-8`.
-Ce résultat ne prouve ni un optimum global ni un gain sur le moteur.
-Le classement des 51 cellules admissibles utilise la grille 0,20 mm ; seules
-les trois cellules du contrôle de convergence sont ensuite raffinées.
+The best cell in the sampled domain is `leaf-0.7-2.0-2.2-0.75`. On the fine
+0.05 mm thermal grid, its conductance `Q / (T_root − T_air)` exceeds that of
+the straight fin by **7.90 to 14.58%**, at equal continuous metal volume. The
+change in its conductance between 0.10 and 0.05 mm stays below **0.379%**. The
+energy-balance error is checked at each resolution and must stay below `1e-8`.
+This result proves neither a global optimum nor a gain on the engine.
+The ranking of the 51 admissible cells uses the 0.20 mm grid; only the three
+cells of the convergence check are then refined.
 
-Les neuf scénarios combinent `k = 12, 80, 160 W/(m·K)` et
-`h = 40, 100, 200 W/(m²·K)`. Ce sont des sensibilités imposées ; aucun
-alliage, procédé ou coefficient de convection réel n'est sélectionné.
+The nine scenarios combine `k = 12, 80, 160 W/(m·K)` and
+`h = 40, 100, 200 W/(m²·K)`. These are imposed sensitivities; no real alloy,
+process or convection coefficient is selected.
 
-![Coupes des STL réels et comparaison thermique](results/review.png)
+![Sections of the real STL files and thermal comparison](results/review.png)
 
-## Méthode et contrôles indépendants
+## Method and independent checks
 
-1. [study.py](study.py) compare 112 propositions à volume **nominal** égal.
-   61 sont rejetées par les contraintes exploratoires d'épaisseur ou
-   d'enveloppe. Le réseau thermique 1D est vérifié par une formule indépendante
-   d'ailette droite à extrémité convective et par subdivision des sections.
-   Ses jonctions idéales surestiment les surfaces disponibles près des branches.
-2. [countercheck.py](countercheck.py) fusionne les trapèzes et rétablit un
-   volume de métal **réellement égal**, sans compter deux fois la jonction.
-   Il résout la conduction 2D dans la section complète et la convection
-   imposée sur les seules surfaces exposées. Les faces en escalier utilisent
-   une correction de surface suivant la normale de la frontière géométrique.
-   La surface corrigée est confrontée au périmètre euclidien indépendant.
-   La température reste supposée uniforme suivant Y ; l'air n'est pas résolu.
-3. [Program.cs](Program.cs) utilise effectivement `BaseBox`, `LocalFrame` et
-   `LineModulation` de ShapeKernel, puis les unions natives de PicoGK. Les
-   exports sont calculés aux pas 0,30 et 0,15 mm. Une phase commune de grille
-   est annulée à l'export. Aucun lissage ou réparation des STL n'est appliqué.
-4. L'inspecteur existant
+1. [study.py](study.py) compares 112 proposals at equal **nominal** volume.
+   61 are rejected by the exploratory thickness or envelope constraints. The 1D
+   thermal network is checked against an independent formula for a straight fin
+   with a convective tip, and by subdividing the sections. Its ideal junctions
+   overestimate the surfaces available near the branches.
+2. [countercheck.py](countercheck.py) merges the trapezoids and restores a
+   **truly equal** metal volume, without counting the junction twice. It solves
+   2D conduction in the complete section and imposed convection on the exposed
+   surfaces only. Stair-stepped faces use a surface correction along the normal
+   of the geometric boundary. The corrected surface is checked against the
+   independent Euclidean perimeter. Temperature is still assumed uniform along
+   Y; the air is not resolved.
+3. [Program.cs](Program.cs) actually uses ShapeKernel's `BaseBox`, `LocalFrame`
+   and `LineModulation`, then PicoGK's native unions. Exports are computed at
+   steps of 0.30 and 0.15 mm. A common grid phase is canceled at export. No
+   smoothing or repair is applied to the STL files.
+4. The existing inspector
    [audit_surface_topology.py](../picogk-local-junction/audit_surface_topology.py)
-   contrôle les triangles bruts : indexation exacte, composantes, liens de
-   sommets, orientation et triangles exactement dégénérés. Une surface fermée
-   ne prouve pas l'absence d'auto-intersection ni la fabricabilité.
-5. [render.py](render.py) trace les coupes Y = 0 des **STL réellement produits**
-   après contrôle d'empreinte. L'image n'est pas une génération artistique.
+   checks the raw triangles: exact indexing, components, vertex links,
+   orientation and exactly degenerate triangles. A closed surface does not
+   prove the absence of self-intersection nor manufacturability.
+5. [render.py](render.py) draws the Y = 0 sections of the **STL files actually
+   produced**, after a digest check. The image is not an artistic generation.
 
-Les propositions du réseau 1D et du contrôle 2D diffèrent : le premier préfère
-une bifurcation à 7 mm ; le second retient 19,6 mm. Le classement 1D n'est donc
-pas adopté comme preuve. Les premiers calculs sans correction de surface des
-faces obliques, puis avec un témoin mal aligné sur la grille, sont conservés
-localement et **écartés**. Le résultat publié provient du calcul corrigé `fv-004`.
+The proposals of the 1D network and of the 2D check differ: the first prefers
+a bifurcation at 7 mm; the second retains 19.6 mm. The 1D ranking is therefore
+not adopted as evidence. The first calculations without surface correction of
+the oblique faces, then with a baseline misaligned on the grid, are kept
+locally and **discarded**. The published result comes from the corrected
+calculation `fv-004`.
 
-Les fichiers [baseline.json](baseline.json) et [candidate.json](candidate.json)
-constituent les paramètres éditables ; le C# reste le générateur de géométrie.
-Les [résultats complets](results/countercheck.json), le
-[premier criblage](results/screen.json) et le
-[reçu de vérification](results/verification.json) conservent les empreintes et
-les limites. Les STL/VDB privés ou dérivés du scan ne sont pas ajoutés à Git.
-Les exports d'éprouvettes synthétiques sont disponibles dans le dossier local
-de calcul, identifié dans la réponse de livraison.
+The files [baseline.json](baseline.json) and [candidate.json](candidate.json)
+are the editable parameters; the C# remains the geometry generator.
+The [complete results](results/countercheck.json), the
+[first screening](results/screen.json) and the
+[verification receipt](results/verification.json) keep the digests and the
+limits. Private or scan-derived STL/VDB files are not added to Git.
+The synthetic coupon exports are available in the local calculation folder
+identified in the delivery reply.
 
 ## Reproduction
 
-Utiliser les versions déjà verrouillées dans
-[sources.lock](../../../../containers/m64-leap71/sources.lock) : ShapeKernel
-`7b9097842446a28bb5d49203724622e594ce7510` et le runtime PicoGK correspondant.
-Vérifier le checkout ShapeKernel avant compilation. Le reçu contient aussi
-l'empreinte du DLL PicoGK effectivement utilisé, version native `26.2.0`.
-Il faut .NET 9, NumPy, SciPy fonctionnel et Matplotlib, déjà disponibles dans
-les environnements locaux du projet. Aucun paquet n'est installé implicitement.
+Use the versions already locked in
+[sources.lock](../../../../containers/m64-leap71/sources.lock): ShapeKernel
+`7b9097842446a28bb5d49203724622e594ce7510` and the matching PicoGK runtime.
+Check the ShapeKernel checkout before compiling. The receipt also contains the
+digest of the PicoGK DLL actually used, native version `26.2.0`.
+This needs .NET 9, NumPy, a working SciPy and Matplotlib, already available in
+the project's local environments. No package is installed implicitly.
 
-Depuis ce dossier, avec des chemins de sortie neufs :
+From this folder, with new output paths:
 
 ```sh
-python study.py /prive/fin-screen
-python countercheck.py /prive/fin-screen/study.json /prive/fin-fv
+python study.py /private/fin-screen
+python countercheck.py /private/fin-screen/study.json /private/fin-fv
 dotnet build BionicFins.csproj -c Release \
   -p:PicoGKPath=/runtime/PicoGK.dll \
-  -p:ShapeKernelRoot=/upstream/LEAP71_ShapeKernel -o /prive/fin-bin
-dotnet /prive/fin-bin/BionicFins.dll --self-test
+  -p:ShapeKernelRoot=/upstream/LEAP71_ShapeKernel -o /private/fin-bin
+dotnet /private/fin-bin/BionicFins.dll --self-test
 ```
 
-Les bibliothèques natives doivent être accessibles au chargeur. Chaque
-exécution native prend le **verrou machine existant** ; depuis la racine du
-dépôt, avec `dotnet` dans le PATH :
+The native libraries must be reachable by the loader. Each native run takes
+the **existing machine lock**; from the repository root, with `dotnet` in the
+PATH:
 
 ```python
 import runpy, subprocess
@@ -120,45 +119,44 @@ try:
     for name in ('baseline', 'candidate'):
         for step in ('0.3', '0.15'):
             subprocess.run([
-                'dotnet', '/prive/fin-bin/BionicFins.dll',
+                'dotnet', '/private/fin-bin/BionicFins.dll',
                 f'twins/m64-cylinder-head/source/bionic-fins/{name}.json',
-                f'/prive/fin-{name}-{step}', step
+                f'/private/fin-{name}-{step}', step
             ], check=True)
 finally:
     lock['LOCK'].unlink(missing_ok=True)
 ```
 
 ```sh
-python render.py /prive/fin-fv/countercheck.json \
-  /prive/fin-baseline-0.15 /prive/fin-candidate-0.15 /prive/fin-review.png
+python render.py /private/fin-fv/countercheck.json \
+  /private/fin-baseline-0.15 /private/fin-candidate-0.15 /private/fin-review.png
 python -m unittest discover -s tests -p 'test_m64_bionic_fins.py' -v
 ```
 
-La dernière commande s'exécute depuis la racine du dépôt. Sans SciPy fonctionnel,
-les trois tests de volumes finis sont explicitement sautés ; les quatre tests
-1D restent exécutables. Les sept tests passent dans le virtualenv local.
-Le `make check` global lancé avec Python système ne passe pas : 3 635 tests,
-2 échecs, 23 erreurs et 205 tests sautés. Les problèmes se situent dans les
-contrôles existants de SciPy, Python 3.10 (`hashlib.file_digest` absent) et deux
-comparaisons flottantes exactes des études de ventilateur. Aucune fusion proposée.
+The last command runs from the repository root. Without a working SciPy, the
+three finite-volume tests are explicitly skipped; the four 1D tests remain
+runnable. The seven tests pass in the local virtualenv.
+The global `make check` run with system Python does not pass: 3,635 tests,
+2 failures, 23 errors and 205 skipped tests. The problems lie in the existing
+checks for SciPy, Python 3.10 (`hashlib.file_digest` missing) and two exact
+floating-point comparisons in the fan studies. No merge proposed.
 
-## Passer à la culasse complète
+## Moving to the complete cylinder head
 
-| Étape | Données nécessaires et résultat attendu |
+| Step | Required data and expected result |
 | --- | --- |
-| 1. Définir le domaine modifiable | Repère et échelle étalonnés ; interfaces de cylindre, goujons, porte-arbres, conduits, bougies et déflecteurs. Masque indépendant protégeant chambre, sièges, guides, ponts de soupapes, portées et chemins de charge. Aucun évidement du corps actuel n'est autorisé par cette étude. |
-| 2. Définir le chargement thermique | Cartes de flux de chambre et d'échappement, conduction des sièges/guides, températures d'huile et de contact, cas ralenti/charge/transitoire, propriétés `k(T)` du matériau retenu. Ces valeurs restent inconnues. |
-| 3. Définir l'air installé | Courbe pression–débit de la turbine et régime, débit par culasse, température d'entrée, conduits/déflecteurs, recirculation et rugosité. La surface seule ne suffit pas. |
-| 4. Comparer en CHT 3D | Corps et air conjugués ; témoin conservé et variantes PicoGK. Minimiser les températures de sièges d'échappement et de ponts à puissance de ventilation comparable, avec limites de masse et pertes de charge. Étudier trois maillages et le bilan énergétique. |
-| 5. Qualifier la géométrie bionique | Racines et branches dimensionnées par les flux locaux, dégagements d'air mesurés, dépoudrage/nettoyage, épaisseur/processus, déformations et fatigue thermomécanique. Essai d'éprouvette puis banc culasse, revue professionnelle avant fabrication fonctionnelle. |
+| 1. Define the modifiable domain | Calibrated frame and scale; interfaces of cylinder, studs, cam carriers, ports, spark plugs and baffles. Independent mask protecting the chamber, seats, guides, valve bridges, bearing faces and load paths. No hollowing of the current body is authorized by this study. |
+| 2. Define the thermal loading | Chamber and exhaust flux maps, seat/guide conduction, oil and contact temperatures, idle/load/transient cases, `k(T)` properties of the retained material. These values remain unknown. |
+| 3. Define the installed air | Pressure–flow curve and speed of the fan, flow per cylinder head, inlet temperature, ducts/baffles, recirculation and roughness. Surface area alone is not enough. |
+| 4. Compare in 3D CHT | Conjugate body and air; retained baseline and PicoGK variants. Minimize exhaust-seat and bridge temperatures at comparable fan power, with mass and pressure-loss limits. Study three meshes and the energy balance. |
+| 5. Qualify the bionic geometry | Roots and branches sized by the local fluxes, measured air clearances, powder removal/cleaning, thickness/process, distortion and thermomechanical fatigue. Coupon test, then cylinder-head bench, professional review before functional manufacturing. |
 
-Le chemin de chaleur recherché est chambre/échappement → ponts, sièges et
-guides → racines conductrices → branches → air. Les efforts de combustion,
-serrage de goujons et distribution conservent leur propre chemin de charge.
-Les interfaces, charges et procédé manquants empêchent d'affirmer que la
-culasse complète est optimisée ou imprimable.
+The intended heat path is chamber/exhaust → bridges, seats and guides →
+conducting roots → branches → air. Combustion loads, stud clamping and
+valvetrain keep their own load path. The missing interfaces, loads and process
+prevent claiming that the complete cylinder head is optimized or printable.
 
-Sources : [PicoGK / LEAP 71](https://leap71.com/PicoGK/),
-[documentation ShapeKernel](https://github.com/leap71/LEAP71_ShapeKernel/blob/7b9097842446a28bb5d49203724622e594ce7510/Documentation/README-GettingStarted.md),
-[cours d'échange thermique MIT](https://web.mit.edu/snively/www/2_005%20Coursenotes-1.pdf),
-[solveur de transfert conjugué OpenFOAM](https://api.openfoam.com/2506/chtMultiRegionFoam_8C.html).
+Sources: [PicoGK / LEAP 71](https://leap71.com/PicoGK/),
+[ShapeKernel documentation](https://github.com/leap71/LEAP71_ShapeKernel/blob/7b9097842446a28bb5d49203724622e594ce7510/Documentation/README-GettingStarted.md),
+[MIT heat transfer course notes](https://web.mit.edu/snively/www/2_005%20Coursenotes-1.pdf),
+[OpenFOAM conjugate heat transfer solver](https://api.openfoam.com/2506/chtMultiRegionFoam_8C.html).
