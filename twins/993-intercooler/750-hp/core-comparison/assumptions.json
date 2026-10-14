@@ -1,0 +1,49 @@
+{
+  "revision": "750hp-core-family-comparison-20261013",
+  "status": "uncalibrated_family_screen",
+  "reference_part": {
+    "oem_part_number": "993 110 330 53",
+    "role": "Context only. The OEM intercooler interfaces (flanges, inlet and outlet axes, mounts) are not measured in this repository and are not used.",
+    "declared_core_source": "catalog/reference/993-declared-part-data.json (aftermarket AKS DASIS 177020T core 260 x 270 x 60 mm, 7.06 kg)"
+  },
+  "basis": {
+    "requirements": "../requirements.json",
+    "witness": "../results/thin-sizing.json best_screen_candidate (offset strip, two parallel charge banks)",
+    "scenarios_and_budgets": "Taken unchanged from ../requirements.json: 35 C ambient, 40 C compressor inlet, 60 C charge target, 2.5 kg/s imposed cooling flow, 10 kPa charge and 500 Pa ambient budgets, heat transfer x0.75 and friction x2 stress factors."
+  },
+  "search_envelope": {
+    "faces_mm": [[500, 400], [620, 450], [700, 500], [800, 550]],
+    "depths_mm": [60, 90, 120, 150],
+    "charge_parallel_banks": [1, 2],
+    "note": "Same faces as the witness thin-fin sweep; depth extended to 150 mm, the hot-weather envelope depth."
+  },
+  "coupon_voxel_mm": 0.0375,
+  "helical": {
+    "description": "HelixHeatX transposed to air-air crossflow: charge in printed round tubes, each carrying a helical internal web (a printed twisted tape), cooling air across a staggered bare-tube bank.",
+    "tube_inner_diameter_mm": [3, 4, 5, 6, 8],
+    "tube_wall_mm": 0.4,
+    "web_mm": [0.15, 0.2],
+    "twist_ratio_y": [2.5, 3, 4.5, 6],
+    "transverse_pitch_over_outer_diameter": [1.25, 1.5, 2.0],
+    "layout": "equilateral staggered, longitudinal pitch = transverse pitch x sqrt(3)/2",
+    "hot_correlation": "Manglik and Bergles (1993) turbulent twisted-tape tube; admitted for Re >= 10000 and 2.5 <= y; tape treated as a non-conducting insert (no web fin area credited).",
+    "hot_reynolds_convention": "Worst case of the plain-tube and tape-reduced flow-area conventions: the lower heat transfer and the higher pressure drop are kept.",
+    "cold_correlation": "Zukauskas staggered tube bank (Re_max 1000-200000) with row correction; pressure drop by the Jakob staggered friction factor (Re_max 2000-40000) plus the study entry/exit K.",
+    "transcription_status": "Correlations transcribed from secondary textbook forms; verify against the original papers before any decision."
+  },
+  "gyroid": {
+    "description": "Two-network sheet gyroid: charge on one side of the sheet, cooling air on the other.",
+    "cell_mm": [2, 3, 4, 5, 6, 8],
+    "wall_mm": [0.3, 0.4],
+    "area_density_times_cell": 3.0917,
+    "tortuosity": 1.0,
+    "thermal_model": "No admitted correlation. A plain-duct analogue (Nu 4.0, Darcy f.Re 64 on the network hydraulic diameter) is reported for orientation only, plus the break-even Nusselt number that would be required.",
+    "header_status": "Each gyroid network opens on every face of a box. Separating the two networks into crossflow headers needs transition zones that are not designed here."
+  },
+  "acceptance": {
+    "thermal_calibrated": false,
+    "pressure_qualified": false,
+    "manufacturing_authorized": false,
+    "installed_fit_verified": false
+  }
+}

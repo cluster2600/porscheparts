@@ -1,0 +1,446 @@
+{
+  "native": {
+    "status": "rejected_mass_ceiling",
+    "native_architecture": "Arm64",
+    "voxel_mm": 0.5,
+    "cell_mm": 16,
+    "beam_diameter_mm": 2,
+    "cells": 384,
+    "source_geometry_sha256": "22e8ba507dbd91827810bda54cfee7fcfe4723f98365100e5d567cb2d0d746f0",
+    "source_samples_sha256": "433735da0f5ebd7f22d50cae00cefd7edff8700944b7024bfdd06cb97f761470",
+    "assembly_sha256": "c2e00be52b0eef0758e7bbb53b0b855b22655f426c46ab9133087418d2692c5a",
+    "runtime_sha256": "5c1cd3fc12766a85bc5c1441a95f065fb274338d1333c3ae2d3396b59d0e18e7",
+    "exports": {
+      "baseline": {
+        "volume_mm3": 268666.38,
+        "nominal_mass_kg": 1.1875053775,
+        "triangles": 1476220,
+        "sha256": "77b1a7a5930322e84fbf28c19b0dbb373dc7ef1fe244385a1b50bfc4dd191418"
+      },
+      "candidate": {
+        "volume_mm3": 288366.88,
+        "nominal_mass_kg": 1.2745815875,
+        "triangles": 1925020,
+        "sha256": "367395c6b845f2e26f9543d949b6013c34c69c9fda7c44ce11b4262d98015316"
+      },
+      "addition": {
+        "volume_mm3": 19631.434,
+        "nominal_mass_kg": 0.086770936484375,
+        "triangles": 449056,
+        "sha256": "1dcd3c4be7d3b1b1dedcc78467ec6816d0a2a58187420715bcd41e3f4406f055"
+      }
+    },
+    "protected_native_fields_equal": true,
+    "vdb": {
+      "sha256": "30d436584968b1eaf3eb0c5af29f057453b0df2a9588f483309098d18393f8a1",
+      "fields": 7,
+      "geometry_fields_roundtrip_equal": 5,
+      "exact_scalar_samples": 37792,
+      "exact_vector_samples": 72231,
+      "empty_bin_probe_pass": true
+    },
+    "added_material_is": "Unoptimised 2 mm BCC arm bracing clipped by assumed ShapeKernel masks",
+    "field_geometry": "Frozen V5 only; these solver values do not describe the BCC trial",
+    "flat_print_orientation_preserved": true,
+    "new_solver_executed": false,
+    "candidate_strength_validated": false,
+    "candidate_fatigue_validated": false,
+    "fitment_validated": false,
+    "manufacturing_authorized": false,
+    "seconds": 10.6826048,
+    "peak_working_set_bytes": 0
+  },
+  "audit": {
+    "status": "rejected_geometry_audit",
+    "original_STL_sha256": "22e8ba507dbd91827810bda54cfee7fcfe4723f98365100e5d567cb2d0d746f0",
+    "original_mesh": {
+      "triangles": 17858,
+      "exact_unique_vertices": 8891,
+      "degenerate_faces": 0,
+      "watertight": true,
+      "winding_consistent": true,
+      "surface_components": 1,
+      "volume_mm3": 268172.0432313217,
+      "nominal_mass_kg": 1.185320431082442,
+      "bounds_mm": [
+        [
+          -295.9928283691406,
+          -36.0,
+          -16.0
+        ],
+        [
+          296.0,
+          36.0,
+          24.0
+        ]
+      ],
+      "normalization": {
+        "operation": "Remove exactly zero-area faces only; original file unchanged",
+        "removed_faces": 0,
+        "watertight": true,
+        "winding_consistent": true,
+        "surface_components": 1
+      }
+    },
+    "meshes": {
+      "baseline": {
+        "triangles": 1476220,
+        "exact_unique_vertices": 737980,
+        "degenerate_faces": 192,
+        "watertight": false,
+        "winding_consistent": true,
+        "surface_components": 97,
+        "volume_mm3": 268567.45437504834,
+        "nominal_mass_kg": 1.1870681483377137,
+        "bounds_mm": [
+          [
+            -295.9921875,
+            -36.0,
+            -16.0
+          ],
+          [
+            296.0,
+            36.0,
+            24.0
+          ]
+        ],
+        "normalization": {
+          "operation": "Remove exactly zero-area faces only; original file unchanged",
+          "removed_faces": 192,
+          "watertight": true,
+          "winding_consistent": true,
+          "surface_components": 1
+        }
+      },
+      "candidate": {
+        "triangles": 1925020,
+        "exact_unique_vertices": 961519,
+        "degenerate_faces": 666,
+        "watertight": false,
+        "winding_consistent": true,
+        "surface_components": 334,
+        "volume_mm3": 287302.37117051985,
+        "nominal_mass_kg": 1.2698764805736977,
+        "bounds_mm": [
+          [
+            -295.9921875,
+            -36.0,
+            -16.0
+          ],
+          [
+            296.0,
+            36.0,
+            24.0
+          ]
+        ],
+        "normalization": {
+          "operation": "Remove exactly zero-area faces only; original file unchanged",
+          "removed_faces": 666,
+          "watertight": true,
+          "winding_consistent": true,
+          "surface_components": 1
+        }
+      },
+      "addition": {
+        "triangles": 449056,
+        "exact_unique_vertices": 223675,
+        "degenerate_faces": 474,
+        "watertight": false,
+        "winding_consistent": true,
+        "surface_components": 239,
+        "volume_mm3": 18725.64769822051,
+        "nominal_mass_kg": 0.08276736282613466,
+        "bounds_mm": [
+          [
+            -245.0,
+            -20.0,
+            -12.0
+          ],
+          [
+            245.0,
+            20.0,
+            12.0
+          ]
+        ],
+        "normalization": {
+          "operation": "Remove exactly zero-area faces only; original file unchanged",
+          "removed_faces": 474,
+          "watertight": true,
+          "winding_consistent": true,
+          "surface_components": 2
+        }
+      }
+    },
+    "protected_surface_comparison": [
+      {
+        "samples": 288342,
+        "maximum_nearest_vertex_distance_mm": 0.0
+      },
+      {
+        "samples": 288342,
+        "maximum_nearest_vertex_distance_mm": 0.0
+      }
+    ],
+    "protected_surface_pass": true,
+    "eight_bore_probe_pass": false,
+    "six_primary_bore_probe_pass": true,
+    "probe_meshes_closed_after_explicit_normalization": true,
+    "bore_probes": [
+      {
+        "centre_xy_mm": [
+          -48,
+          -23
+        ],
+        "axis": "Z",
+        "interior_probe_radius_mm": 4.5,
+        "samples": 576,
+        "original_solid_hits": 0,
+        "baseline_solid_hits": 0,
+        "candidate_solid_hits": 0,
+        "first_candidate_hit_mm": null
+      },
+      {
+        "centre_xy_mm": [
+          -48,
+          23
+        ],
+        "axis": "Z",
+        "interior_probe_radius_mm": 4.5,
+        "samples": 576,
+        "original_solid_hits": 0,
+        "baseline_solid_hits": 0,
+        "candidate_solid_hits": 0,
+        "first_candidate_hit_mm": null
+      },
+      {
+        "centre_xy_mm": [
+          48,
+          -23
+        ],
+        "axis": "Z",
+        "interior_probe_radius_mm": 4.5,
+        "samples": 576,
+        "original_solid_hits": 0,
+        "baseline_solid_hits": 0,
+        "candidate_solid_hits": 0,
+        "first_candidate_hit_mm": null
+      },
+      {
+        "centre_xy_mm": [
+          48,
+          23
+        ],
+        "axis": "Z",
+        "interior_probe_radius_mm": 4.5,
+        "samples": 576,
+        "original_solid_hits": 0,
+        "baseline_solid_hits": 0,
+        "candidate_solid_hits": 0,
+        "first_candidate_hit_mm": null
+      },
+      {
+        "centre_xy_mm": [
+          -280,
+          0
+        ],
+        "axis": "Y",
+        "interior_probe_radius_mm": 5.75,
+        "samples": 576,
+        "original_solid_hits": 0,
+        "baseline_solid_hits": 0,
+        "candidate_solid_hits": 0,
+        "first_candidate_hit_mm": null
+      },
+      {
+        "centre_xy_mm": [
+          280,
+          0
+        ],
+        "axis": "Y",
+        "interior_probe_radius_mm": 5.75,
+        "samples": 576,
+        "original_solid_hits": 0,
+        "baseline_solid_hits": 0,
+        "candidate_solid_hits": 0,
+        "first_candidate_hit_mm": null
+      },
+      {
+        "centre_xy_mm": [
+          -160,
+          -26
+        ],
+        "axis": "Z",
+        "interior_probe_radius_mm": 1,
+        "samples": 576,
+        "original_solid_hits": 20,
+        "baseline_solid_hits": 20,
+        "candidate_solid_hits": 20,
+        "first_candidate_hit_mm": [
+          -160.83146961230256,
+          -26.5555702330196,
+          -6.0
+        ]
+      },
+      {
+        "centre_xy_mm": [
+          -180,
+          -23
+        ],
+        "axis": "Z",
+        "interior_probe_radius_mm": 1,
+        "samples": 576,
+        "original_solid_hits": 0,
+        "baseline_solid_hits": 0,
+        "candidate_solid_hits": 0,
+        "first_candidate_hit_mm": null
+      }
+    ],
+    "raw_surface_pass": false,
+    "single_surface_component": false,
+    "mass_ceiling_kg": 1.2,
+    "mass_screen_pass": false,
+    "nominal_added_mass_kg": 0.08280833223598405,
+    "voxel_baseline_mass_error_vs_STEP_percent": 0.19449919466740795,
+    "part_height_preserved": true,
+    "topology_qualified": false,
+    "OEM_interfaces_measured": false,
+    "field_mapping_is_sparse_diagnostic": true,
+    "candidate_solver_executed": false,
+    "candidate_fatigue_life": null,
+    "manufacturing_authorized": false,
+    "source_geometry_modified": false
+  },
+  "transfer": {
+    "source_geometry": "Frozen V5 only; original XYZ frame in mm, no print transform",
+    "solver_case": "combined-rigid-static: 4000 N in -Z plus 850000 Nmm about Y",
+    "source_displacement_max_mm": 3.826169733960574,
+    "source_integration_point_VM_max_MPa": 984.6802194932241,
+    "displacement_transfer": {
+      "input_samples": 72440,
+      "occupied_bins": 72231,
+      "discarded_colliding_samples": 209,
+      "max_position_quantization_mm": 0.42604833252355284,
+      "original_peak_magnitude": 3.826169733960574,
+      "stored_peak_magnitude": 3.826169773658005
+    },
+    "stress_transfer": {
+      "input_samples": 37824,
+      "occupied_bins": 37792,
+      "discarded_colliding_samples": 32,
+      "max_position_quantization_mm": 0.4190294279238872,
+      "original_peak_magnitude": 984.6802194932241,
+      "stored_peak_magnitude": 984.6802368164062
+    },
+    "stress_location": "Maximum of four integration-point von Mises values per C3D10 element, assigned to corner centroid then binned; not a stress tensor or a nodal interpolation",
+    "empty_bins": "No measurement; never interpret as zero stress or displacement",
+    "collision_rule": "Maximum magnitude sample; displacement vector direction of the selected sample retained",
+    "candidate_fields_valid": false,
+    "new_solver_executed": false,
+    "manufacturing_authorized": false,
+    "inputs": {
+      "carrier.stl": "22e8ba507dbd91827810bda54cfee7fcfe4723f98365100e5d567cb2d0d746f0",
+      "mesh.inp": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+      "mesh.npz": "707528d40d6004f413798144a46008f5578e89b91f995012363fa197ed6a9179",
+      "combined-rigid-static.inp": "3095d2b0742c1e804db3c88104ceed3b6064f320b010f0c945dfeec219733bfb",
+      "combined-rigid-static.npz": "477568ac298035fdcdd8e82bbc515321d71e02fab876147c4da57141fc7dab6d",
+      "combined-rigid-static.json": "24dc8a4db830dcb3230fac98e5e8542f2faa62c1b2767ac100aa90f307f146a7"
+    },
+    "samples_sha256": "433735da0f5ebd7f22d50cae00cefd7edff8700944b7024bfdd06cb97f761470"
+  },
+  "toolchain": {
+    "installation_receipt_sha256": "73ffd795d0f5c93b60cc2ec59e320f32a27b68dc8cc1d071542f7b912f3cb044",
+    "source_revisions": {
+      "leap71/PicoGK": "0e6cf6b6f4993ec16dbcd72d8f27f26b999980f3",
+      "leap71/LEAP71_ShapeKernel": "554bce4791d2676ed00bd6704f6eb010111a7fd3",
+      "leap71/LEAP71_LatticeLibrary": "81c3c7b2064c19e573c38d76ac09bf1cd2f562d5"
+    },
+    "used_files": {
+      "runtime/PicoGK.deps.json": "8c547549e45c8e3f42ee79432e5c67b88ef2255eb5d60c7089336baf8905ff81",
+      "runtime/PicoGK.dll": "710c4e0428efbe9c1cd1db1663247b45604f96d167a6726782ab8ddca350565a",
+      "runtime/PicoGK.xml": "5186249985763ea22e6e3d95789e835cae6593c3857ea1b8aa5f00d9a0d1eb71",
+      "runtime/SkiaSharp.dll": "00703ecd3654f52bc7afa5d1721b56d07ed27f4f8cddfc19f897a61966682582",
+      "runtime/libboost_iostreams.dylib": "5f4e8b73a85daaa8d2866630f3f37476e64c8590b82600edee3a470355b0e449",
+      "runtime/libboost_random.dylib": "6a6ce2c099c98d6a9fe60a654524d0677e446eb1820b165a10746ea2bdd26585",
+      "runtime/libboost_regex.dylib": "25e6048289f545ffd748d75dba7021cb2d12e8766bcbbd3bb56539833769d324",
+      "runtime/libicudata.78.dylib": "1365b2038e25db51d48069a7bee9dfddbdfb6b79dfb2cba1a0d86b36af90a2d7",
+      "runtime/libicui18n.78.dylib": "a88883f3bd77961945902c7046bf2bbc6adf30d8373faf891364411b9b264511",
+      "runtime/libicuuc.78.dylib": "90b7fdd81b382bc7da3d28bfde5236aa65555a7a73141d7e5716b7e2a82b033e",
+      "runtime/liblzma.5.dylib": "0f90645217e5e963c34d45d0d8f93c69ef2faac06098376dbc0e9c1ee9d979a1",
+      "runtime/libzstd.1.dylib": "757bff8f0397a7e35f910d2c54656aa549d4bcd5c4917ca0d1131ec48f76eeab",
+      "runtime/picogk.26.2.dylib": "5c1cd3fc12766a85bc5c1441a95f065fb274338d1333c3ae2d3396b59d0e18e7",
+      "runtime/runtimes/osx/native/libSkiaSharp.dylib": "fc8853e20bd296e506e8256c4dcbaefc9f86d469fe863c3945b5a7d6531e7dde",
+      "runtime/runtimes/win-arm64/native/libSkiaSharp.dll": "4ec44e4f151a9e9ca0c1724fbc81407a846f63709ede00b2b5c3fdf853a12cbb",
+      "runtime/runtimes/win-x64/native/libSkiaSharp.dll": "96a6d73dc9b641a2f391ad09f15c264a1d910004773d262aee7941a28e1a0029",
+      "runtime/runtimes/win-x86/native/libSkiaSharp.dll": "36e63181abab39e2af5d84f02a51c2128ef07b33fa9318183bc5fd2448a0cb51",
+      "libraries/LEAP71_LatticeLibrary/LatticeLibrary/BeamThickness/BoundaryBeamThickness.cs": "4b2f08b9a49890a58d525453c6cf64b281e8ac77cbdf3de2b34e4cf4b6440ddf",
+      "libraries/LEAP71_LatticeLibrary/LatticeLibrary/BeamThickness/CellBasedBeamThickness.cs": "8c48d9ab6f75a386fe0e4660b32ebe06f83fb92fc25a500db19ccb1399edc58a",
+      "libraries/LEAP71_LatticeLibrary/LatticeLibrary/BeamThickness/ConstantBeamThickness.cs": "514c516c708cf2338f1441746917256e5231cdf24bfb00b71f48aa2ce9e67c61",
+      "libraries/LEAP71_LatticeLibrary/LatticeLibrary/BeamThickness/GlobalFuncBeamThickness.cs": "3578ff942dc654a9c768949c804fc5eedf60e9728ca0c2b746a1492e6eb3605b",
+      "libraries/LEAP71_LatticeLibrary/LatticeLibrary/CellArrays/ConformalCellArray.cs": "b67f5a8cd2788bf6738e8d131bebda42c2bf3fac5d350780be32375aec286730",
+      "libraries/LEAP71_LatticeLibrary/LatticeLibrary/CellArrays/RegularCellArray.cs": "2f92b3f3db9d3baa763afa2225d209b2d154b6170349d8893924a1d291308007",
+      "libraries/LEAP71_LatticeLibrary/LatticeLibrary/LatticeTypes/BodyCentreLattice.cs": "09ec9dcc07e10485967a3d787270d81022fc38a9b1cb0c4ad7ed6f2010f93582",
+      "libraries/LEAP71_LatticeLibrary/LatticeLibrary/LatticeTypes/OctahedronLattice.cs": "350d91a9d57f5bb4068004987afd1ed210dc124558efdb20e5a8d8378005b1fa",
+      "libraries/LEAP71_LatticeLibrary/LatticeLibrary/LatticeTypes/RandomSplineLattice.cs": "41e9575f31e922cda9a8445b7adb38637291044d8dfbde44bb30db0a64756aef",
+      "libraries/LEAP71_LatticeLibrary/LatticeLibrary/UnitCells/CuboidCell.cs": "f6b7b3eab6268da061edfc20ed6bf6b4f9703701f819087aac079ce7b7a09007",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/BaseShapes/BaseBox.cs": "cfe7c28ced3a9ea55a90c8d2189720ec0c4857bd9f71b6a5138968267029345a",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/BaseShapes/BaseCone.cs": "64067ff9b403678faf559ed3fd13327e51af9f8360e7c3ddef2da6ab744808c3",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/BaseShapes/BaseCylinder.cs": "dd82c752e01cf8158068e0c469307053275e11a9e160b62f09818b631cd8fbb0",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/BaseShapes/BaseLens.cs": "11c89bae50da4347c647e3d7e71d01337318169380c8184cb7cd06f0003a9659",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/BaseShapes/BaseLogoBox.cs": "e88638b6fb9bb92a5dce50c01e89998928098dd838e4e7bcd36c7bfc148586f2",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/BaseShapes/BasePipe.cs": "397d1343bb139f94b696494ed658b05276712c7ede674b954e22839ec1fb558c",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/BaseShapes/BasePipeSegment.cs": "9e79db329943f50b07f34e8ade3e57020baf21a71ede29bc6b31450ef4fb792d",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/BaseShapes/BaseRevolve.cs": "23fdc6ac1d7adc7f8b1ac818f8a481c2d25bdf75ca6e92cf6cdb9484deab47ab",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/BaseShapes/BaseRing.cs": "5938322eafe8a6183450f95a86336411645bf36318a99c5ba48859370d04d1cb",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/BaseShapes/BaseShape.cs": "de42e3d72032224c3713476e2ab96d53b6b0c23d7b128fa69b9c18084d399f5b",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/BaseShapes/BaseSphere.cs": "4256dff0f30b535c44a8cb72089e046a8a01558bba7a7454c6ea563325261c9b",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/BaseShapes/LatticeManifold.cs": "1d483b5fc3e60f0362ba5de75062171564b15c2458acf78021706231f357710f",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/BaseShapes/LatticePipe.cs": "a542c5fbd0a85a14c8956d3addc204b21a732cd88ac9443e55ebca571f0c61f9",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Frames/Frames.cs": "89826a83c289ec2d2968d68777d63ee608dbd89a9cf81f24c7a2ff6864a686b0",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Frames/LocalFrame.cs": "4e481feba1b55713c0eb082c9e32794d88c5055765197a731bb8e91aacfa0305",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Functions/ShBasicFunctions.cs": "f958da797b3ce026080b97f020b376991159bbb0ec84ffb36cf9b62e1f19917a",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Functions/ShCombinedFunctions.cs": "f9ab80e779d33fe0cc8add89f7c2c3f27a5ec356ae0cb0578d32692ac7236bb0",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Functions/ShExportFunctions.cs": "1aba8f2658d5d4e4a09f6e08d4780fb1a5a90203d707963d14f119e4fb69b81e",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Functions/ShLatticeFunctions.cs": "6c4d65fec76a5937440d2f9e9aa3f929d2f16ca7190c16c112cb084dbcbb7ea6",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Functions/ShVoxelFunctions.cs": "b9b4e033c6f4d75a6d95f5c67727348ce59f5406ec36b5e78b21966842943113",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Modulations/LineModulation(1D).cs": "ac91fecabce2cac8aef400bad3c8db3f0c62a56546f28f2851e3d1e0b6909b14",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Modulations/SurfaceModulation(2D).cs": "05e1c7fb7aaeb2a908ed4516b8237f7bfb60da44377bb385bba56b134b60cf3c",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Splines/ControlPointSpline.cs": "7b00837c9ad6ef8f924145ff28d37d8e54d34fd8ad560fe3d8547d2f07ebc376",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Splines/ControlPointSurface.cs": "68baa8018984324a745dd898b7e19025b1dc0aa7c5899ff16b3012ba367e6b34",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Splines/CylindricalControlSpline.cs": "fb8820ee847c721345eaa3bd2d1c3d6f7dbf23ae174d73b2c39802dcb897d206",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Splines/TangentialControlSpline.cs": "d455d6d32b948f53ab19b61dc776d7ab23cb398b6b03fcf87601b6feb0292332",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Utilities/Bisection.cs": "696ad1bc02fb34734c9880b522a357ca8a521957064d6427fd2af6b147293a30",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Utilities/CSVWriter.cs": "edce91fd4b2dc0b38cf8bafd58371a3eafdab0240c805830dde951011b6c659b",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Utilities/CylUtility.cs": "fa00cf797f4088407b226a6f237209776346a31327d3a5bb6b8f9b9b525818ff",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Utilities/GridOperations.cs": "d7281e7e4a7f5e1b3e2110f8240104a940d6d13bd129c726067b6f4b53ffd867",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Utilities/ImplicitUtility.cs": "32e6e6bcf32b2434b6724b9e05e6d58be425116692b059157a691ed1000c8a63",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Utilities/LineDecimation.cs": "92e3bf1ab46cd9ee87acb7f19694d8567cbf82e1c3df62b382f526d98bd937e5",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Utilities/ListOperations.cs": "0e9df9765d85bb2471e50d5cd3156a977dcd0063f2d5c55137957ccf4614997a",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Utilities/Measure.cs": "c81a7953a81282e730217a2444ec399893f5cd9e190ca8a4d9640c1a83b7e5af",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Utilities/MeshUtility.cs": "2cd8ebafa7fed4ef8b48d1d5eca71a5480811aec88a2387e740c9205d53a8ea6",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Utilities/PolygonalShapes.cs": "08855523af9b91aab6661451b2848f526ecf58d7f5b6ac75d7b5f68a5aecea00",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Utilities/RectUtility.cs": "ce102eba1339e3aecd567bdf51542fd19d2a4ffeb46260fb0b21029a7a589186",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Utilities/SplineOperations.cs": "a3a0d9a19b914a6502af8c6627b1810de8d56cc2658b3aada462ef588a1ca0aa",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Utilities/SuperShapes.cs": "48dd475d7ed89987b8a6696b973041610133b40fbf3883a13e288e2a628c414c",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Utilities/UsefulFormulas.cs": "642f7664e96c60063d5d9c2e9d0c4e5a5006fa4df5cd1a99d99241a52786fb9a",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Utilities/VecOperations.cs": "816f1220e5d35d84b1f7f2694a2f26b7ab2b50b0901862d2fd3616d09c3ebb1e",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Visualizations/ColorPalette.cs": "74fb2573fa488bb460903be14bd307cfef5ccc65d8535edbb36131559cc88db5",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Visualizations/ColorScale2D.cs": "6ae6bf8afa363730024f31f6d078674091a173f3aa7df8252c79b05eff510ade",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Visualizations/ColorScale3D.cs": "421846942c8f2389e131682aee95cbcc6bef90b5030ca1b18feeed5e71f4b86f",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Visualizations/MeshPainter.cs": "f8f964131b6d2f0f23ccc78f13752a6351ce0eb45119cd760e24ccf8ec034f4e",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Visualizations/RainboxSpectrum.cs": "c873635552befec1a1bf4a83dd57dc356bd6412a54ceaa3392c9b26715acd99c",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Visualizations/RotationAnimator.cs": "5c2835a5aa687c4e99e8772504eea883e97e21547997779531a26a197254071c",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Visualizations/ShPreviewFunctions_I.cs": "dadc873249046d6d71da919132de00229fa117ea2bdf8c8187a11045b57c8569",
+      "libraries/LEAP71_ShapeKernel/ShapeKernel/Visualizations/ShPreviewFunctions_II.cs": "a486df1d5a273a8285cba41f34b1af7f994c5753ca18d7d5b9dfb2ead777262d"
+    },
+    "all_used_files_match_installation_receipt": true,
+    "license": "Apache-2.0; upstream sources and licence notices remain in native installation; no upstream code vendored"
+  },
+  "sample_reproduction_sha256_match": true,
+  "source_sha256": {
+    "Carrier.csproj": "e25a18aa426ae7628b6fa5eb8765587da8bf92b2db940952f823a3b48f11172e",
+    "Program.cs": "3d164f141cc3f89f2604faae181ba3323a541cbef953a92595fbc79ee3e7cb03",
+    "audit.py": "341d44d59fd79a8954e68064730116ac69084e6b2023b63b059f658d5e0efdcc",
+    "prepare.py": "b20934cd9801eeb49b3e770d39e9f9382c2f0e112d5c8b247e26c82d74a343c7"
+  },
+  "preview_sha256": "455501f3cb6296674acc8d717a8085385c5fbd10ade553f628761f0707c57180"
+}

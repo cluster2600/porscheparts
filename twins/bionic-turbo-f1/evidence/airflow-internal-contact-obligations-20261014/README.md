@@ -1,0 +1,13 @@
+# Internal contacts — shared PR241 representation
+
+This English package supersedes, for current reference, the French 2026-10-13 package (release `bionic-turbo-internal-contact-obligations-2026-10-13`, directory `airflow-internal-contact-obligations-20261013`). That package and its release stay unchanged as the historical record. Here the proof, the preflight and the records are in English; the four programs are byte-identical and were re-run on the same pinned inputs.
+
+The new proof `proof.md` completes PR243 on edge and vertex contacts. It uses a local multiplicity lemma for positive chains, then the injectivity of the caps and the gluing of their boundary. The additional combinatorial hypotheses are checked by two distinct programs, prescribed and frozen before application. The readers are not an automatic prover of the written proof.
+
+For each v of the closed hull of the 153 boxes, u=q_m, the intersection of two cells realized according to PR241 is exactly the realization of their common abstract subcomplex. The two boxes with undecided determinants remain present. The 119808 tetrahedra have 230656 triangles with two opposite incidences and 17920 triangles with a single incidence, exactly the inherited boundary. Each cap has 4352 triangles, 6272 interior edges with two incidences and 512 boundary edges identical to the common lateral loops.
+
+Of the 18871296 pairs of distinct cells, 82560 have a common subcomplex: 13696 of maximal dimension two, 34048 of maximal dimension one, 34816 of dimension zero. The other 18788736 pairs have no common subcomplex. `contacts.jsonl.gz` keeps, for each non-empty pair, its maximal common simplices. The proof turns this combinatorial classification into an equality of geometric sets over the whole domain; no geometry is evaluated at a chosen ratio and no grid or subdivision is introduced.
+
+The primary reads the PR241 models back without recomputing their polynomials. The reader rebuilds the fans from the six reduced hex templates, compares all oriented tetrahedra and their cells, then all pairs through a join on the owners of the simplices. It does not import the primary. Both exit with code 0. The 19 parent manifests and their 520 entries are anchored at commit 050b28b932aee9eaafe4b07e43fad17a6f6ee157.
+
+The auxiliary center labels are those of PR241, not the native centers. The native signed-volume equality remains inherited within its scope; no equality of moments, centers or of another native decomposition is deduced. No native admission, CFD, flow rate, power or calibration. Read `validation.md` and `next-scope.md`.

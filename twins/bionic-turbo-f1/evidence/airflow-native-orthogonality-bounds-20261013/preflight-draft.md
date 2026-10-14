@@ -1,0 +1,17 @@
+# Orthogonalité additive — prescription préparatoire, aucun calcul
+
+Base scientifique : PR250 ef644f4f15672ba6daa7340014d828ccdf3cfcaf, skewness terminée. La branche codex/bionic-turbo-native-orthogonality-bounds-20261013 est créée proprement depuis origin/main b18528da4ac7abc26ce6114b3720e8d1d91fc8d3 après CI 38427491796 verte. Cette base inclut la PR251 indépendante ; les 28 fichiers de skewness sont identiques au commit de fusion PR250. La première garde a refusé l’ancien origin/main attendu avant toute mutation ; voir base-readback.json.
+
+Le domaine est inchangé : u=q_m, les 153 boîtes fermées PR239 et toutes leurs extrémités. Aucun ratio ponctuel, subdivision, candidat, dictionnaire, natif ou solveur. Les deux indécisions de déterminants restent présentes. Centres natifs PR236 uniquement.
+
+Sources déjà lues : primitiveMeshTools.C, faceOrthogonality, retourne D/(|delta|*|S|+ROOTVSMALL), D=delta·S signé. polyMeshTools.C initialise les faces à 1 puis traite internes et frontières couplées ; les 4864 parois non couplées héritées restent à 1. Les 384 MRF sont internes. primitiveMeshCheck.C fixe nonOrthThreshold_ à 70 degrés et fournit un setter ; polyMeshCheck.C compare à cos(degToRad(nonOrthThreshold_)), distingue les valeurs supérieures à SMALL et les erreurs. Le seul retour booléen ne qualifie pas les faces sévèrement non orthogonales. Conserver avertissements et ensembles.
+
+Stratégie à finaliser avant application : réutiliser les intervalles D et Q=|delta|²|S|² déjà conservés dans la matrice indépendante PR239 pour les 9470 angles variables, sans refaire leurs moments ni leur parcours géométrique. Vérifier provenance, ordre, domaines et Q>0. Encadrer sqrt(Q), ajouter le ROOTVSMALL exact du littéral binary64 sous hypothèse WM_DP AVANT le quotient rationnel et l'arrondi externe. Conserver le signe de D. Si une borne ne suffit pas, garder une indécision ; aucune suppression de l'additif ni division par un intervalle contenant zéro.
+
+Le comparateur mathématique peut employer sqrt(kappa), kappa isolée dans le certificat PR233 : cos(70 degrés)>0. Ne pas assimiler cette constante mathématique à la valeur calculée par degToRad et libm dans un futur binaire. Seuil configurable, conversion et erreurs flottantes restent distincts. La prescription finale devra annoncer précisément ce qui est certifié.
+
+Avant application, inventorier séparément les deux témoins variables PR236 et les 4224 faces internes constantes : la matrice PR239 ne les contient pas. Ne pas étendre sa couverture aux 13696 faces internes sans preuve adaptée. Documenter toute nouvelle application nécessaire ; ne pas rejouer les anciens angles à l'identique.
+
+Lecteur prévu : reconstruction indépendante de la jointure labels/domaines et contrôle du quotient par inégalités de produits croisés, racines vérifiées par carrés rationnels signés. Les tests préalables devront comprendre des cas cohérents de cubes adjacents, des projections signées, des cas à l'échelle ROOTVSMALL et un dénominateur dont l'arrondi dyadique inférieur vaut zéro. Établir les valeurs attendues analytiquement et vérifier géométrie/aires avant les calculs du turbo.
+
+Ce document est un brouillon de prescription, pas le gel avant application. Restent : audit de sources avec empreintes, inventaire des certificats disponibles pour chaque catégorie, opérations finales et lecteur, références, gel des fichiers puis application unique. Aucun résultat nouveau revendiqué.

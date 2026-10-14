@@ -1,88 +1,91 @@
-# Conformité et origine — portes de décision
+# Compliance and origin — decision gates
 
-Recherche préliminaire consultée le **27 septembre 2026** ; qualification juridique
-et technique du produit **non obtenue**. Références officielles dans
-[sources.md](sources.md). Le projet peut être arrêté ou limité au démonstrateur
-si aucune voie acceptable n'est confirmée. CE, homologation routière et origine
-suisse répondent à des questions différentes.
+Preliminary research consulted on **September 27, 2026**; legal and technical
+qualification of the product **not obtained**. Official references in
+[sources.md](sources.md). The project may be stopped or limited to the
+demonstrator if no acceptable route is confirmed. CE, road approval and Swiss
+origin answer different questions.
 
-## Commencer par la pièce d'origine
+## Start with the original part
 
-Porsche décrit un bandeau arrière avec logo réfléchissant rouge [S20]. Cela
-n'établit ni la classe réglementaire de chaque zone ni l'équipement de chaque
-marché. Le fabricant d'un kit pour 993 documente un ensemble réflecteur/boîtier
-antibrouillard et les feux antibrouillard arrière [S21] ; c'est une preuve de
-fonctions présentes sur certaines configurations, **pas une preuve d'homologation
-de la transformation du kit**. Ne pas transférer cette architecture à toute 993.
+Porsche describes a rear panel with a red reflective logo [S20]. That establishes
+neither the regulatory class of each area nor the equipment of each market. The
+manufacturer of a kit for the 993 documents a reflector/rear-fog-lamp housing
+assembly and the rear fog lamps [S21]; this is evidence of functions present on
+some configurations, **not evidence of road approval of the kit conversion**.
+Do not transfer this architecture to every 993.
 
-Avant de concevoir, relever sur la référence exacte : fonctions actives, ampoules,
-câblage, surfaces réfléchissantes, marquages E/e et catégories, liens avec les
-feux adjacents. Déterminer où se trouvent les catadioptres obligatoires et si le
-bandeau en fait partie. Confirmer séparément présence d'antibrouillard, de recul
-ou de toute autre fonction : **ne pas présumer que le bandeau central porte le
-feu de recul ou qu'il est purement décoratif**. La pièce réelle et son dossier
-variante doivent trancher. Photographier les marquages sans publier VIN/plaque.
+Before designing, record on the exact reference: active functions, bulbs,
+wiring, reflective surfaces, E/e markings and categories, links with the adjacent
+lamps. Determine where the mandatory retro-reflectors are and whether the panel
+is one of them. Confirm separately the presence of a fog lamp, a reversing lamp
+or any other function: **do not presume that the center panel carries the
+reversing lamp or that it is purely decorative**. The actual part and its variant
+dossier must decide. Photograph the markings without publishing the VIN/plate.
 
-Changer lentille, teinte, source ou géométrie peut invalider une fonction homologuée.
-La copie d'un marquage existant est exclue ; conserver physiquement un composant
-homologué ne garantit pas la conformité de son intégration. Même démontable et
-éteint, un écran peut altérer réflexion, fonctions, couleur, visibilité et sécurité.
+Changing the lens, tint, source or geometry can invalidate an approved function.
+Copying an existing marking is excluded; physically keeping an approved component
+does not guarantee the compliance of its integration. Even removable and switched
+off, a screen can alter reflection, functions, color, visibility and safety.
 
-## Suisse, UE et Allemagne
+## Switzerland, EU and Germany
 
-| Domaine | Base / faits vérifiés ou statut | Travail à obtenir |
+| Area | Basis / verified facts or status | Work to obtain |
 |---|---|---|
-| Suisse véhicule | OETV RS 741.41 [S22] ; OFROU publie l'identification des feux/catadioptres [S23] | Version consolidée et articles applicables à faire relire ; exigences selon première mise en circulation, marché et variante ; réception/modification auprès service cantonal avec expertise compétente |
-| Allemagne | StVZO §49a [S24] vise les installations lumineuses admises et inclut expressément l'affichage optique extérieur variable/dynamique autoéclairé ou rétroéclairé ; §19 traite conséquences des modifications sur l'autorisation [S25] | Avis écrit avant conception pleine largeur ; route d'approbation composant/installation, §22a/§21 le cas échéant, sans présumer qu'une réception individuelle admettra du texte animé |
-| ONU / UE véhicule | Examiner UN R48 (installation), R148 (signalisation), R150 (rétroréflexion), R10 (CEM), ainsi que règlements historiques pertinents R38/R3/R7/R23 selon fonctions et droits transitoires | Laboratoire doit sélectionner séries d'amendements, photométrie/couleur/angles et marquages ; pas d'équivalence automatique vieux véhicule/nouveau composant |
-| Radio UE | RED 2014/53/UE [S26] : sécurité, CEM, spectre et dossier produit radio | Laboratoire : EN 300 328, EN 301 489 et sécurité/exposition selon versions applicables ; déclaration UE, marquage, notice et traçabilité. Module préqualifié insuffisant à lui seul |
-| Radio Suisse | OFCOM : exigences essentielles, évaluation, documentation, déclaration et informations/marquage [S27] | Confirmer OIT/règles en vigueur et reconnaissance du dossier UE, notice marchés visés |
-| Cybersécurité / produit | Champ du règlement délégué RED 2022/30 et textes suivants, CRA, RoHS/DEEE, sécurité générale, obligations emballage/REP à examiner selon produit et date | Ne pas affirmer que BLE sans cloud dispense automatiquement des exigences ; téléphone relais et traitements de données à qualifier. Analyse légale et dates d'application restent ouvertes |
-| Bluetooth | Bluetooth SIG impose la qualification avant vente/distribution [S28] | Choisir voie, frais actuels, nom de l'entité commercialisante et droits de marque ; qualification distincte du CE |
+| Switzerland, vehicle | OETV RS 741.41 (Swiss ordinance on the technical requirements for road vehicles) [S22]; FEDRO (OFROU) publishes the identification of lamps/retro-reflectors [S23] | Consolidated version and applicable articles to be reviewed; requirements according to first registration, market and variant; approval/modification with the cantonal service, with competent expert assessment |
+| Germany | StVZO §49a [S24] covers the permitted lighting installations and expressly includes variable/dynamic external optical displays, self-illuminated or backlit; §19 deals with the consequences of modifications on the authorization [S25] | Written opinion before full-width design; component/installation approval route, §22a/§21 where applicable, without presuming that an individual approval will admit animated text |
+| UN / EU, vehicle | Examine UN R48 (installation), R148 (signaling), R150 (retro-reflection), R10 (EMC), as well as the relevant historical regulations R38/R3/R7/R23 according to functions and transitional rights | The laboratory must select the series of amendments, photometry/color/angles and markings; no automatic equivalence between old vehicle and new component |
+| EU radio | RED 2014/53/UE [S26]: safety, EMC, spectrum and radio product file | Laboratory: EN 300 328, EN 301 489 and safety/exposure according to the applicable versions; EU declaration, marking, instructions and traceability. A pre-qualified module is not sufficient on its own |
+| Swiss radio | OFCOM: essential requirements, assessment, documentation, declaration and information/marking [S27] | Confirm OIT (Swiss ordinance on telecommunications installations)/rules in force and recognition of the EU file, instructions for the target markets |
+| Cybersecurity / product | Scope of the RED delegated regulation 2022/30 and subsequent texts, CRA, RoHS/WEEE (DEEE), general safety, packaging/EPR (REP) obligations to be examined according to product and date | Do not assert that BLE without cloud automatically exempts from the requirements; relay phone and data processing to be qualified. Legal analysis and application dates remain open |
+| Bluetooth | Bluetooth SIG requires qualification before sale/distribution [S28] | Choose the route, current fees, name of the marketing entity and trademark rights; qualification separate from CE |
 
-**Deux usages distincts :** coupon sur banc / exposition sur terrain privé fermé,
-et installation destinée à la route. Un parking privé ouvert au public n'est pas
-présumé hors droit routier. Une démonstration privée ne dispense pas de sécurité
-électrique, d'autorisation du site, de maîtrise de l'éblouissement, ni des obligations
-applicables à la mise sur le marché. L'interverrouillage « éteint en roulant » est
-une réduction de risque éventuelle, **pas une voie d'homologation en soi**. Aucun
-signal vitesse non validé n'est inventé, notamment pas de bus CAN présumé sur 993.
+**Two distinct uses:** coupon on the bench / exhibition on closed private
+grounds, and an installation intended for the road. A private car park open to
+the public is not presumed to be outside road law. A private demonstration does
+not exempt from electrical safety, site authorization, glare control, or the
+obligations that apply to placing on the market. The "off while driving"
+interlock is a possible risk reduction, **not an approval route in itself**.
+No unvalidated speed signal is invented; in particular, no CAN bus is presumed
+on the 993.
 
-## Questions à l'organisme compétent
+## Questions for the competent body
 
-Envoyer après accord la RFQ réglementaire de [rfqs.md](rfqs.md), avec :
-référence/variante, photos marquages, schéma des fonctions conservées/supprimées,
-concept optique, matrice et puissance envisagées, modes défaut et alimentation.
-Obtenir par écrit fonctions à préserver, textes/séries applicables, acceptabilité
-même écran éteint, essais, échantillons, coût/délai et voie CH/DE/UE. TÜV n'est pas
-un label universel permettant de contourner ces questions. DTC est une piste
-suisse ; TÜV Rheinland Berlin publie une compétence spécifique en éclairage
-[S18–S19]. Vérifier mandat/accréditation pour les essais effectivement commandés.
+After agreement, send the regulatory RFQ from [rfqs.md](rfqs.md), with:
+reference/variant, photos of the markings, a diagram of the functions kept/removed,
+optical concept, planned matrix and power, failure modes and power supply.
+Obtain in writing the functions to preserve, applicable texts/series,
+acceptability even with the screen off, tests, samples, cost/lead time and the
+CH/DE/EU route. TÜV is not a universal label that bypasses these questions. DTC
+is a Swiss lead; TÜV Rheinland Berlin publishes a specific competence in lighting
+[S18–S19]. Check the mandate/accreditation for the tests actually ordered.
 
-## Objectif « Made in Switzerland »
+## "Made in Switzerland" goal
 
-Selon l'IPI [S29–S30], un produit industriel doit notamment atteindre **60 % du
-coût de revient admissible en Suisse**, réaliser en Suisse l'activité lui donnant
-ses caractéristiques essentielles et y accomplir une étape physique de fabrication.
-L'assemblage final seul n'établit aucune de ces conditions automatiquement.
+According to the IPI (Swiss Federal Institute of Intellectual Property)
+[S29–S30], an industrial product must notably reach **60% of the eligible cost
+price in Switzerland**, carry out in Switzerland the activity that gives it its
+essential characteristics, and perform a physical manufacturing step there.
+Final assembly alone does not automatically establish any of these conditions.
 
-Le registre [swissness.csv](swissness.csv) et le calcul de [budget.md](budget.md)
-sont un modèle d'analyse, **pas une attestation**. Inclure coûts de production et
-R&D admissibles selon allocation documentée ; ventiler composants importés,
-transformation locale et main-d'œuvre. Examiner séparément contrôle qualité,
-certification et amortissement avec les règles IPI. Emballage, distribution après
-production et service après-vente sont exclus de ce calcul ; ils restent dans le
-budget économique. Ne pas exclure automatiquement des LED importées au motif
-qu'elles ne seraient pas fabriquées en Suisse : toute exception exige son fondement.
+The [swissness.csv](swissness.csv) register and the calculation in
+[budget.md](budget.md) are an analysis model, **not an attestation**. Include
+eligible production and R&D costs according to a documented allocation; break
+down imported components, local processing and labor. Examine quality control,
+certification and amortization separately with the IPI rules. Packaging,
+post-production distribution and after-sales service are excluded from this
+calculation; they stay in the economic budget. Do not automatically exclude
+imported LEDs on the grounds that they are not manufactured in Switzerland: any
+exception requires its basis.
 
-Dossier de preuve privé par lot : nomenclature et origine, factures ventilées,
-site de fabrication, heures réellement travaillées, base d'amortissement R&D,
-méthode comptable stable, opération essentielle décrite et rapport de revue.
-Recalculer à changement fournisseur ou volume ; conserver références anonymisées
-publiables. Un coût total de 250 CHF ne signifie pas 150 CHF suisses admissibles.
+Private evidence file per batch: bill of materials and origin, itemized invoices,
+manufacturing site, hours actually worked, R&D amortization base, stable
+accounting method, description of the essential operation and review report.
+Recalculate on any change of supplier or volume; keep anonymized references that
+can be published. A total cost of 250 CHF does not mean that 150 CHF are eligible as Swiss.
 
-« Made in Switzerland » / « Swiss Made » est une indication d'origine ; un label
-privé (par exemple une licence de marque Swiss Label) ajoute un règlement et des
-droits distincts, sans remplacer la loi. Ni croix suisse, ni label, ni allégation
-suisse ne figurent sur la maquette, la publicité ou l'emballage. La formulation
-interne est **objectif d'origine suisse à démontrer**.
+"Made in Switzerland" / "Swiss Made" is an indication of origin; a private label
+(for example a Swiss Label trademark license) adds its own regulations and
+rights, without replacing the law. No Swiss cross, label or Swiss claim appears
+on the mockup, the advertising or the packaging. The internal wording is
+**Swiss origin goal, to be demonstrated**.

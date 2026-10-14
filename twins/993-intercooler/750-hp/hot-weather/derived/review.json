@@ -1,0 +1,230 @@
+{
+  "status": "native_header_topology_checked_packaging_only",
+  "generation": {
+    "status": "picogk_ribbed_header_pressure_concept",
+    "kernel": "26.2.0",
+    "voxel_mm": 0.75,
+    "geometry": {
+      "width_mm": 800,
+      "span_mm": 699.6,
+      "depth_mm": 150,
+      "hot_gap_mm": 3,
+      "cold_gap_mm": 6,
+      "hot_pitch_mm": 1.5,
+      "cold_pitch_mm": 3,
+      "fin_mm": 0.15,
+      "wall_mm": 0.4,
+      "tubes": 72,
+      "hot_channels_per_tube": 99,
+      "cold_channels_per_gap": 266,
+      "hot_clear_m": 0.00135,
+      "cold_clear_m": 0.00285,
+      "metal_volume_m3": 0.012414689999999999,
+      "core_volume_l": 83.95200000000001,
+      "search_span_limit_mm": 700,
+      "fin_family": "offset",
+      "strip_length_mm": 10,
+      "charge_parallel_banks": 2
+    },
+    "rib_pitch_mm": 30,
+    "rib_thickness_mm": 3,
+    "rib_positions_y_mm": [
+      31.5,
+      61.5,
+      91.5,
+      121.5,
+      151.5,
+      181.5,
+      211.5,
+      241.5,
+      271.5,
+      301.5,
+      331.5,
+      361.5,
+      391.5,
+      421.5,
+      451.5,
+      481.5,
+      511.5,
+      541.5,
+      571.5,
+      601.5,
+      631.5,
+      661.5,
+      691.5
+    ],
+    "input_sha256": "2c14f70313cd1c296f769eabc0cf8f011949ce191189f7ab1b96ec7eebaaa772",
+    "parts": [
+      {
+        "name": "core-envelope-left",
+        "triangles": 3153164
+      },
+      {
+        "name": "charge-inlet-left",
+        "triangles": 2256976
+      },
+      {
+        "name": "core-envelope-right",
+        "triangles": 3153164
+      },
+      {
+        "name": "charge-inlet-right",
+        "triangles": 2256976
+      },
+      {
+        "name": "common-charge-outlet",
+        "triangles": 2868516
+      }
+    ],
+    "core_fins_resolved": false,
+    "pressure_qualified": false,
+    "manufacturing_authorized": false,
+    "ports": {
+      "inlet_count": 2,
+      "inlet_id_mm": 80,
+      "outlet_id_mm": 113.137085
+    },
+    "flow": "Charge enters both outer X faces, crosses two half-cores and leaves central collector through -Y; ambient crosses along Z.",
+    "limitations": "Core blocks are envelopes only. Collector mouths lack individual tube interfaces. Transverse webs reduce local wall span but their strength, port interruptions and hydraulic losses remain unqualified. External hoses, brackets, fan ducts and seals are not designed."
+  },
+  "parts": [
+    {
+      "name": "charge-inlet-left",
+      "native_sha256": "46830e8c3642dd0bd3a3d09536d8dde4876cd12b5b01204d413b3fad745cdc3e",
+      "native_triangles": 2256976,
+      "native_closed": true,
+      "native_bodies": 1,
+      "volume_mm3": 921914.6760944189,
+      "mass_kg": 2.4707313319330426,
+      "review_triangles": 400000,
+      "review_relative_volume_error": 2.4981960944359116e-10,
+      "bounds_mm": [
+        [
+          -535.0,
+          0.0,
+          0.0
+        ],
+        [
+          -470.0,
+          699.5999755859375,
+          150.0
+        ]
+      ]
+    },
+    {
+      "name": "charge-inlet-right",
+      "native_sha256": "1eaf21457b8a7ece5bb9007e9f51dd47952ccea1027e679544c5c9b49f1ae5b6",
+      "native_triangles": 2256976,
+      "native_closed": true,
+      "native_bodies": 1,
+      "volume_mm3": 921914.676093958,
+      "mass_kg": 2.4707313319318076,
+      "review_triangles": 400000,
+      "review_relative_volume_error": 2.596758261752541e-07,
+      "bounds_mm": [
+        [
+          470.0,
+          0.0,
+          0.0
+        ],
+        [
+          535.0,
+          699.5999755859375,
+          150.0
+        ]
+      ]
+    },
+    {
+      "name": "common-charge-outlet",
+      "native_sha256": "86423c9cf8c6d68aa9f2bfef5d172754b56eabc99277cd94a0a4978b16154d85",
+      "native_triangles": 2868516,
+      "native_closed": true,
+      "native_bodies": 1,
+      "volume_mm3": 1145294.125906273,
+      "mass_kg": 3.069388257428812,
+      "review_triangles": 400000,
+      "review_relative_volume_error": 4.440892098500626e-16,
+      "bounds_mm": [
+        [
+          -70.0,
+          0.0,
+          0.0
+        ],
+        [
+          70.0,
+          699.5999755859375,
+          150.0
+        ]
+      ]
+    },
+    {
+      "name": "core-envelope-left",
+      "native_sha256": "dc6ef83931c38c451398f8faa2a18e3bde8f0440ee61b1611b209cf735f1b346",
+      "native_triangles": 3153164,
+      "native_closed": true,
+      "native_bodies": 1,
+      "volume_mm3": 41974358.64874453,
+      "mass_kg": null,
+      "review_triangles": 100000,
+      "review_relative_volume_error": 2.220446049250313e-16,
+      "bounds_mm": [
+        [
+          -470.0,
+          0.0,
+          0.0
+        ],
+        [
+          -70.0,
+          699.5999755859375,
+          150.0
+        ]
+      ]
+    },
+    {
+      "name": "core-envelope-right",
+      "native_sha256": "a77e37e59d6beebd111bd914c6d9359f9b39f1eb67e2cbb959c56c9c49cce79a",
+      "native_triangles": 3153164,
+      "native_closed": true,
+      "native_bodies": 1,
+      "volume_mm3": 41974358.64874452,
+      "mass_kg": null,
+      "review_triangles": 20000,
+      "review_relative_volume_error": 0.0001949234872633543,
+      "bounds_mm": [
+        [
+          70.0,
+          0.0,
+          0.0
+        ],
+        [
+          470.0,
+          699.5999755859375,
+          150.0
+        ]
+      ]
+    }
+  ],
+  "header_mass_kg": 8.010850921293663,
+  "manufacturing_authorized": false,
+  "full_core_resolved": false,
+  "source_hashes": {
+    "assumptions.json": "c1ebdf9b02601ca27f0214b840068fe0efca120e3bbe067538340618cbb2fc0e",
+    "layout-input.json": "2c14f70313cd1c296f769eabc0cf8f011949ce191189f7ab1b96ec7eebaaa772",
+    "coupon-input.json": "7c20b4d21412ce3deef761c76922179f60bcf986c1f3b04f98308737d18e0949",
+    "results/study.json": "505cfbb812b42fbfe2c6431454c343b549e35eda9eabb1751169c5897d8877f1",
+    "source/review.py": "069bac294b56f49c3b2c8d2f20cb1a362223e1e32a841808ee8eaced18708861",
+    "source/picogk/Program.cs": "2e4515627fd45db2bdf451ae4e81dfc616f6fb5e5a6d3ee52140028ec1213783",
+    "source/picogk/Layout.csproj": "2c2fd672bb00b7987a3114cb52f2fa8e1de44b84137fa56d07947f29ad6a02ff"
+  },
+  "output_hashes": {
+    "layout.glb": "7aa851126d66aae5334df6386c4312b98e9ef83fdcb477c3f5cc8e8533d21def",
+    "comparison.png": "f21a1a40fe49629eeebe3661a70f3d29ca1c33d7c5ea32d6ca441ac8da485493",
+    "common-charge-outlet.stl.gz": "7543b1b08c2247732968bbf6e6b266440e687e4ab82aa0d5eb39762ff5e2d272",
+    "layout.png": "b9d41c47b61679e8632a24ea171b7a4c416b0ebb27e8aa72b6435534f4cd9556",
+    "core-envelope-right.stl.gz": "2ab3d6b79215c555554df3c7f94d2ea6f0f7b6f83eab2f28f6a06461842fe43d",
+    "charge-inlet-right.stl.gz": "78d2311d5f618be6eb9da04d0936b4c2794e0ced17eca20018b91c9b7dbd5101",
+    "core-envelope-left.stl.gz": "e81f65710ad88e1ee55ef9439b375db551fa31c6ad476bf872ad1d5feaa77b72",
+    "charge-inlet-left.stl.gz": "c1bc3805c3eb3b5e957c5f84bd1506d5afdf6cab48da2735d312820c1960a3de"
+  },
+  "provenance_note": "Numerical source lower-bound fix rerun: all result values and CSV identical; study receipt source hash refreshed, geometry and plots unchanged."
+}
