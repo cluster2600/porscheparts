@@ -1,0 +1,194 @@
+{
+  "status": "incompatible_unmeasured_study_pair",
+  "scope": "V5 carrier vs separate F0 concept bracket, not the OEM bracket or an engine reconstruction",
+  "source_geometry_modified": false,
+  "inputs": {
+    "parts/993-eng-carrier-0001/derived/bionic-flat-20261012/carrier-flat.step": "a076925a40396acb192af8bf9a19c813b97bd885366d3446d000f330517089a4",
+    "parts/993-eng-carrier-0001/source/bionic-20261011/flat-results.json": "fc9a9227f142473d7526eee62199879e7ab8add089d5db9cccbc100f48fbbaae",
+    "twins/993-engine-mount-system-f0/derived/993-ENG-BRACKET-0001.stl": "53e3194c0f5be1e36bc8db389a9ed404a8fff489e7ef5325a9df1827a3c6a9c7",
+    "twins/993-engine-mount-system-f0/derived/study-report.json": "be05df5623017356a9a4910940557952490fb0332c43a81f3d89b747d2dc3fd9",
+    "twins/993-engine-mount-system-f0/source/engine-bracket.json": "b3c6c1293c6acbb40183a49db2345f67e462caaa2aeef8593d8e5b052990b3a4",
+    "twins/993-engine-mount-system-f0/interface-contract.json": "b2974142e7053df6d63875f7968630158c97c130eb84cda56b9f17491ad0ca30",
+    "parts/993-eng-carrier-0001/source/bionic-20261011/virtual_fit.py": "21246ffcf32060733881c04b14130a1bb769b73a8cbcbb68968382b8aff120a3"
+  },
+  "carrier_cylindrical_faces_xy_radius_zmin_zmax_mm": [
+    [
+      -48.0,
+      -23.0,
+      5.5,
+      -4.0,
+      4.0
+    ],
+    [
+      -48.0,
+      23.0,
+      5.5,
+      -4.0,
+      4.0
+    ],
+    [
+      48.0,
+      -23.0,
+      5.5,
+      -4.0,
+      4.0
+    ],
+    [
+      48.0,
+      23.0,
+      5.5,
+      -4.0,
+      4.0
+    ]
+  ],
+  "bracket_mesh_section_z_mm": 4,
+  "bracket_fitted_circles_xy_radius_max_residual_mm": [
+    [
+      -49.99966401891241,
+      -19.999663571709807,
+      5.235140227877999,
+      0.011031503931307363
+    ],
+    [
+      -49.999768477603894,
+      19.999768057849018,
+      5.233929261613391,
+      0.01223236887491197
+    ],
+    [
+      49.99976847760389,
+      -19.999768057849032,
+      5.233929261613446,
+      0.012232368874872002
+    ],
+    [
+      49.999664018912334,
+      19.999663571709824,
+      5.235140227877983,
+      0.011031503931393516
+    ]
+  ],
+  "nominal_pattern_screen": {
+    "minimum_possible_max_axis_error_lower_bound_mm": 3.0,
+    "combined_radial_bolt_clearance_mm": 0.75,
+    "spacing_rejected": true,
+    "criterion": "Necessary condition for straight bolts normal to parallel mating faces; a non-rejection is not fit approval",
+    "fitment_validated": false,
+    "manufacturing_authorized": false,
+    "axis_errors_in_centred_pose_mm": [
+      3.605551275463989,
+      3.605551275463989,
+      3.605551275463989,
+      3.605551275463989
+    ]
+  },
+  "assumed_bracket_transform": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      -1.0,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      -1.0,
+      -4.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "bolt_shank_interference_witnesses": [
+    {
+      "carrier_axis_xy_mm": [
+        -48.0,
+        -23.0
+      ],
+      "samples": 216,
+      "samples_inside_bracket": 65,
+      "first_interference_point_mm": [
+        -45.5,
+        -23.0,
+        -8.0
+      ]
+    },
+    {
+      "carrier_axis_xy_mm": [
+        -48.0,
+        23.0
+      ],
+      "samples": 216,
+      "samples_inside_bracket": 65,
+      "first_interference_point_mm": [
+        -45.5,
+        23.0,
+        -8.0
+      ]
+    },
+    {
+      "carrier_axis_xy_mm": [
+        48.0,
+        -23.0
+      ],
+      "samples": 216,
+      "samples_inside_bracket": 65,
+      "first_interference_point_mm": [
+        45.50951325477064,
+        -22.782110643130853,
+        -8.0
+      ]
+    },
+    {
+      "carrier_axis_xy_mm": [
+        48.0,
+        23.0
+      ],
+      "samples": 216,
+      "samples_inside_bracket": 65,
+      "first_interference_point_mm": [
+        49.05654565435175,
+        25.265769467591625,
+        -8.0
+      ]
+    }
+  ],
+  "bolt_stack": {
+    "nominal_under_head_length_mm": 20,
+    "carrier_CAD_pad_mm": 8,
+    "bracket_study_pad_mm": 8,
+    "remaining_length_for_washers_nut_protrusion_mm": 4,
+    "OEM_joint_stack_mm": null,
+    "thread_engagement_verified": false
+  },
+  "not_checked": [
+    "OEM fit",
+    "bracket-to-engine interface",
+    "mount/body/exhaust clearances",
+    "complete part-to-part interference",
+    "bolt head/nut/tool access and installation path",
+    "thread geometry, runout, preload or strength"
+  ],
+  "fitment_validated": false,
+  "manufacturing_authorized": false,
+  "previous_V5_structural_rejection_still_applies": true,
+  "artifacts": {
+    "hole-alignment.png": "262cb37be8ccff7be97b87f51be3aca14914d89475f4c6c778135e7619099691",
+    "virtual-assembly.glb": "19d25f8cfed054d1e2fb251e7642fa90618f64a2867b3ddf5c97690c53983722",
+    "virtual-assembly.png": "cac2c895f7fcb4f02cb07ca9d46418a2e55ece39a24919a8b11573aeb46e4e68"
+  },
+  "GLB_readback": {
+    "geometry_count": 6,
+    "units": "metres",
+    "bounds_match": true
+  }
+}

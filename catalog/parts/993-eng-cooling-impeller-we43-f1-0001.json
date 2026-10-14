@@ -22,7 +22,8 @@
     "accuracy_mm": null,
     "derived_files": [
       "parts/993-eng-cooling-impeller-we43-f1-0001/derived/cooling_impeller_we43_f1.step",
-      "parts/993-eng-cooling-impeller-we43-f1-0001/derived/cooling_impeller_we43_f1.stl"
+      "parts/993-eng-cooling-impeller-we43-f1-0001/derived/cooling_impeller_we43_f1.stl",
+      "parts/993-eng-cooling-impeller-we43-f1-0001/derived/cooling_impeller_f1-polymer-mockup-roll-y-45.stl"
     ]
   },
   "provenance": {
@@ -103,7 +104,7 @@
       "standard": "ASTM B80/B107 WE43 composition reference only; program-specific LPBF, rotating, HCF, balance and overspeed specification to be contracted"
     },
     "post_processing": [
-      "orientation with the web on the plate; supports under the open blades, reachable from outside",
+      "flat build_z is the preferred next study candidate after the thermal comparison; roll_y_45 is retained as a comparison; thermal anchoring, support topology and removal access require supplier review",
       "solutionizing and ageing, distortion monitored",
       "HIP to be decided by the HCF/defect card",
       "steel inserts or creep-rated washers at the three bolt holes, machined web faces and bore",
@@ -134,6 +135,9 @@
     "evidence": [
       "catalog/sources/src-porschefanatics-993-engine-cooling-impeller-candidate.json",
       "catalog/sources/src-ornl-we43-lpbf-hyer-2020.json",
+      "catalog/sources/src-luxfer-wrought-we43-thermal.json",
+      "docs/993/impeller-we43-thermal-20261012.md",
+      "parts/993-eng-cooling-impeller-we43-f1-0001/source/polymer-mockup.json",
       "catalog/sources/src-azom-elektron-we43-properties.json",
       "catalog/sources/src-apworks-scalmalloy.json",
       "catalog/sources/src-eos-alsi10mg-current-page.json",
@@ -145,12 +149,18 @@
       "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fan-curves.png",
       "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/flat-fan-sizing-f2.json",
       "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/flat-fan-sizing-f2.png",
+      "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/fe-screen.json",
+      "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/solver-benchmarks.json",
+      "parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/campbell.png",
+      "parts/993-eng-cooling-impeller-we43-f1-0001/source/fe_screen_f1.py",
       "catalog/sources/src-ferdinand-eb-motorsport-flat-fan-kit.json",
       "catalog/sources/src-jim-torres-racing-935-reproduction-flat-fan.json"
     ],
     "reviewed_by": "",
     "reviewed_on": null,
     "known_limits": [
+      "The separate roll_y_45 polymer or carbon-fiber-filled thermoplastic export is a static mockup only; printer, material grade, supports and slicing parameters remain unspecified. The WE43 thermal study does not apply to that mockup.",
+      "The 2026-10-12 LPBF study solves uncalibrated bulk heat conduction on the concept CAD with assumed supports and conventional WE43 constants; melt pools, residual stress, distortion and print success are not predicted.",
       "The rebuild of the original rotor is a visual reconstruction: blade and window counts are observed, the 48 degree pitch, chords, cup depth and walls are hypotheses.",
       "The duty is inferred from the rebuild (its best-efficiency point at 10,000 fan rpm in a bellmouth housing: 2.34 m3/s at 2,155 Pa); no 993 fan map, pulley ratio or engine resistance is measured.",
       "The flow gains come from a one-dimensional blade-element model with simple radial equilibrium, not CFD or a rig test; the alternator air through the cup windows is not modelled.",
@@ -158,7 +168,9 @@
       "Both rotors lose more to the 3.5 mm tip gap and to exit swirl than to blade profile; the matched stator (about +9 % at equal power) and a housing land over the tips are the larger levers, and belong to a future housing.",
       "WE43 data are single-laboratory room-temperature coupons plus generic values; no hot, HCF or notched allowable.",
       "The fully constrained thermal screen fails for WE43; the bolted joint to the bearing hub needs inserts or creep-rated washers.",
-      "The open-blade first mode (about 1,350 Hz) is 35 % above the six-spoke order by a beam estimate; an FE Campbell diagram is required.",
+      "The beam estimate of the open-blade first mode (about 1,350 Hz) is superseded by the 2026-10-13 FE screen (gmsh C3D10 + CalculiX, one 4 mm mesh, hub joint idealised as clamped or as a fixed bore): the first blade-bending family sits at 1,890-2,530 Hz, the lowest modes are cup/web modes (344-525 Hz at rest), and the engineering screen's modal pass does not cover them.",
+      "In that FE screen the 17-vane stator order meets the five-nodal-diameter blade mode at about 7,600 rpm, inside the nominal range, and the spokes' 12th-order harmonic meets one-nodal-diameter modes at about 1,700-2,600 and 11,400 rpm; forcing and damping are not computed, so these are crossings to design around, not predicted failures.",
+      "The same FE screen puts the 12,000 rpm peak at 92-96 MPa (yield / peak 2.3-2.4) at the unfilleted blade-root/rim corner, far above the beam screen's 11-47 MPa; mesh independence is not demonstrated and that corner needs a fillet before any stress figure is quoted.",
       "An earlier F1 revision (120 mm hub, shroud, 248 mm) was a generic fan that did not keep the original cup or alternator space; it is superseded.",
       "The flat-fan sizing study F2 is a separate shrouded rotor family on F0-scaled duties; its findings do not describe this upright rotor."
     ]

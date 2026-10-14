@@ -91,8 +91,8 @@ manufacture, nor for fitting, nor for engine start-up.
 
 <!-- print-screen:begin -->
 
-## LPBF print simulation
+## LPBF geometric screening — process physics not calculated
 
-The simulation was run and **failed closed**: the STEP master is not a single body; slicing refuses a surface in several pieces. No result is therefore published for this part, and no image is made up in its place.
+The geometric screening was run and **failed closed**: the STEP master is not a single body; slicing refuses a surface in several pieces. No result is therefore published for this part, and no image is made up in its place.
 
 <!-- print-screen:end -->

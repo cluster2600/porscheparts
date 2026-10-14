@@ -8,6 +8,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageOps
 
 from annotate_picogk_visualization_f11 import cropped_capture, font, sha256
+from prepare_picogk_alignment_f13 import validate_alignment
 
 ROOT = Path(__file__).resolve().parents[3]
 TWIN = ROOT / "twins/vehicle-911-917"
@@ -44,6 +45,25 @@ REQUIRED_CHECKS = {
 }
 
 
+def validate_private_scan(report):
+    """The F15 record of the scan: unpromoted, bound to its F13 receipt, with exported bounds that agree with it."""
+    scan = report["private_scan"]
+    if (set(scan) != {"scan_sha256", "alignment_sha256", "scale_verified", "physical_datum_verified", "alignment"}
+            or scan["scale_verified"] is not False or scan["physical_datum_verified"] is not False):
+        raise ValueError("Private scan record incomplete or promoted")
+    receipt = scan["alignment"]
+    if type(receipt) is not dict or receipt.get("input_stl_sha256") != scan["scan_sha256"]:
+        raise ValueError("Not the F13 alignment receipt of this scan")
+    lo, hi = receipt.get("bounds_min_mm"), receipt.get("bounds_max_mm")
+    part = next(p["properties"] for p in report["components"] if p["id"] == "private_engine_scan")
+    # The exported scan is a half-voxel shell on voxel bounds, so allow two voxels around the receipt's mesh bounds.
+    tolerance = 2 * report["voxel_size_mm"]
+    if (type(lo) is not list or type(hi) is not list or len(lo) != 3 or len(hi) != 3
+            or any(type(v) not in (int, float) or not math.isfinite(v) for v in lo + hi)
+            or any(abs(a - b) > tolerance for a, b in zip(lo + hi, part["bounds_min_mm"] + part["bounds_max_mm"]))):
+        raise ValueError("Private scan bounds differ from its F13 receipt")
+
+
 def validate_scope(report, config):
     if report.get("phase") != "F15" or report.get("status") != "produced_packaging_study_not_accepted_vehicle":
         raise ValueError("Not an F15 packaging result")
@@ -72,6 +92,8 @@ def validate_scope(report, config):
     expected_checks = REQUIRED_CHECKS | ({"private_scan__firewall", "private_scan__transaxle"} if report.get("private_scan") else set())
     if set(report["checks"]) != expected_checks or any(type(check["collision"]) is not bool for check in report["checks"].values()):
         raise ValueError("Collision results missing or invalid")
+    if report.get("private_scan"):
+        validate_private_scan(report)
 
 
 def checked_file(directory, relative, expected_hash):
@@ -85,6 +107,9 @@ def verify_report(directory):
     report = json.loads((directory / "vehicle-report-f15.json").read_text())
     config = json.loads((TWIN / "full-vehicle-study-f15.json").read_text())
     validate_scope(report, config)
+    if report["private_scan"]:
+        # Provenance, input digests and rigidity follow the F13 producer's own rules.
+        validate_alignment(report["private_scan"]["alignment"])
     expected_sources = {str(p.relative_to(ROOT)) for p in (
         TWIN / "full-vehicle-study-f15.json", TWIN / "picogk/Program.cs", TWIN / "picogk/FullVehicleStudy.cs",
         TWIN / "picogk/Vehicle911917Packaging.csproj", TWIN / "picogk-mechanical-f13.json",

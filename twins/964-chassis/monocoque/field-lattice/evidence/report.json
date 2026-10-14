@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "active_bins_per_field": 179209,
+  "input_integration_points_per_case": 179216,
+  "field_names": [
+    "torsion_vm_bin_max_MPa",
+    "bending_vm_bin_max_MPa",
+    "integration_point_count"
+  ],
+  "voxel_mm": 0.5,
+  "all_sample_values_bitwise_equal": true,
+  "inactive_probe_passed": true,
+  "zero_signed_coordinate_witness_passed": true,
+  "geometry_vdb_equal": true,
+  "samples_sha256": "af47b9d3a48b8689a7b6c0606c59c58ce694ab3dd0a49ec2ede9fc95e28dd80b",
+  "peak_bin_mm": [
+    -1725,
+    715,
+    871
+  ],
+  "study_min_mm": [
+    -1752,
+    684,
+    840
+  ],
+  "study_max_mm": [
+    -1704,
+    732,
+    888
+  ],
+  "cell_side_mm": 12,
+  "cells": [
+    {
+      "min_mm": [
+        -1752,
+        708,
+        840
+      ],
+      "demand": 0.11683864,
+      "diameter_mm": 3.3672667
+    },
+    {
+      "min_mm": [
+        -1740,
+        708,
+        840
+      ],
+      "demand": 0.14918166,
+      "diameter_mm": 3.5449617
+    },
+    {
+      "min_mm": [
+        -1740,
+        708,
+        852
+      ],
+      "demand": 0.08384174,
+      "diameter_mm": 3.1582174
+    },
+    {
+      "min_mm": [
+        -1740,
+        708,
+        876
+      ],
+      "demand": 0.208211,
+      "diameter_mm": 3.8252058
+    },
+    {
+      "min_mm": [
+        -1728,
+        708,
+        852
+      ],
+      "demand": 0.19874759,
+      "diameter_mm": 3.7832446
+    },
+    {
+      "min_mm": [
+        -1728,
+        708,
+        864
+      ],
+      "demand": 1,
+      "diameter_mm": 6
+    },
+    {
+      "min_mm": [
+        -1728,
+        708,
+        876
+      ],
+      "demand": 0.1969283,
+      "diameter_mm": 3.7750642
+    },
+    {
+      "min_mm": [
+        -1716,
+        708,
+        852
+      ],
+      "demand": 0.18043832,
+      "diameter_mm": 3.6991215
+    },
+    {
+      "min_mm": [
+        -1716,
+        708,
+        876
+      ],
+      "demand": 0.14289492,
+      "diameter_mm": 3.5120578
+    }
+  ],
+  "geometry": [
+    {
+      "name": "uniform_probe",
+      "volume_mm3": 2067.0781,
+      "triangles": 45260,
+      "bounds_min_mm": [
+        -1752,
+        707.1406,
+        840
+      ],
+      "bounds_max_mm": [
+        -1704,
+        720.8594,
+        888
+      ]
+    },
+    {
+      "name": "graded_probe",
+      "volume_mm3": 7611.8965,
+      "triangles": 81996,
+      "bounds_min_mm": [
+        -1752,
+        705.04224,
+        840
+      ],
+      "bounds_max_mm": [
+        -1704,
+        722.95776,
+        888
+      ]
+    }
+  ],
+  "design_rule": "diameter_mm = 2 \u002B 4 sqrt(max(torsion/torsion_peak, bending/bending_peak))",
+  "structural_optimization": false,
+  "product_strength_validated": false,
+  "manufacturing_authorized": false,
+  "scope": "local field-driven geometric probe, not a fitted core or laminate; no load combination or new FEA"
+}

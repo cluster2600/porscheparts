@@ -1,0 +1,127 @@
+{
+  "classification": "PicoGK_inspection_assembly_not_verified_935_installation",
+  "recorded_at_utc": "2026-10-12T17:33:41.203070+00:00",
+  "engine_context_family": "917_scan_comparative_only_not_935",
+  "components": [
+    {
+      "id": "engine_context",
+      "classification": "observed_917_scan_open_surface_context",
+      "triangles": 2465879,
+      "sha256": "2202c5c52dcccbcd275122bfc719dae9157c79c4c6769d3798b9c8b75ebbc45a"
+    },
+    {
+      "id": "drive_observed",
+      "classification": "observed_935_drive_support_unresolved_mechanical_datums",
+      "triangles": 2484656,
+      "sha256": "061e855681a20968c32f5a99c705165800d20203da514c22d6eccd5bb8c8dc0e"
+    },
+    {
+      "id": "rotor_candidate",
+      "classification": "periodic_935_rotor_candidate_unqualified_holdout",
+      "triangles": 24630,
+      "sha256": "7ee426a8b9c4721e087d3c61dab0548fe9bd22dd86a6d938b2633e083667b029"
+    },
+    {
+      "id": "provisional_shroud",
+      "classification": "generated_packaging_hypothesis_not_observed_935_housing",
+      "triangles": 992960,
+      "sha256": "2c147786044ae4833735a97ab3d9572b8d174e1c5d55484b16cbe218493a632f"
+    }
+  ],
+  "native_runtime": {
+    "name": "PicoGK Core Library",
+    "version": "26.2.0",
+    "build": "2026-06-05 21:50:16 picogk"
+  },
+  "voxel_mm_hypothesis": 0.8,
+  "source_sha256": {
+    "twins/935-horizontal-cooling-system-f0/source/picogk-inspection-assembly/Program.cs": "ec3107d905b94c848ba85f3c87476e9773be54122b89a55a476e5d1cc5809f11",
+    "twins/935-horizontal-cooling-system-f0/source/picogk-inspection-assembly/InspectionAssembly.csproj": "0d33f9f5bfce1b702bcc34204b1c96023ca57b61df67ed220e2201102a38542a",
+    "twins/935-horizontal-cooling-system-f0/source/export_inspection_assembly.py": "866f641a4beaf6d7d1bd3177f6dce8ea237c908ce1d952170e8a24287ded1ca7",
+    "twins/935-horizontal-cooling-system-f0/source/render_inspection_assembly.py": "d08f5fbcd86ae43008d27692a98b48443a40b50a97809aa75c0bba97c277da5e",
+    "twins/935-horizontal-cooling-system-f0/source/stl_moments.py": "61d4cbea9364f2952b13a035b282df87d913a623790ffed169a25bf31dbd6bed",
+    "twins/935-horizontal-cooling-system-f0/source/run_reconstruction.py": "5ec7084e79c5949aeecdcf248a2a6d64372c795cb2bedaa489ae6732083b3f6a",
+    "twins/reference-917-engine/source/render_scan_contour_patch_reconstruction_f43.py": "420d445b1fb4afbc40ed1be3218361448fb941c44ff10e57d4d50ee1a333e981"
+  },
+  "case_sha256": "9b2b07ad218d3c03b6b6dd3d40014678e9211ffe09f341a64290f55b4b47cf52",
+  "native_receipt_sha256": "d8a1c309d84c93cd96ff659532a0df338b1e4010d1b9321e4f63c73965f26710",
+  "export_report_sha256": "341a784e8c4026c42c76da689851f1ab9a47d76efa58ca098358f89f2befbea7",
+  "private_output": "work/935-assembly-20261012",
+  "selected_native": "run-003",
+  "selected_exports": "exports-004",
+  "selected_views": "views-006",
+  "private_archive_url": "https://github.com/cluster2600/porscheparts-935-private/releases/tag/assembly-20261012",
+  "placement_max_error_mm_hypothesis": {
+    "engine_context": 9.290918006854554e-05,
+    "drive_observed": 4.4357364743063954e-05,
+    "rotor_candidate": 2.1651279553225322e-05
+  },
+  "rotor_shroud_360_degree_radial_separation_mm_hypothesis": 8.969569295194333,
+  "surface_separation_screens": {
+    "drive_vs_rotor_annular_envelope_candidate_triangles": 0,
+    "drive_vs_shroud_annular_envelope_candidate_triangles": 0,
+    "engine_box_gaps_mm_hypothesis": {
+      "drive_observed": 9.999995946884155,
+      "rotor_candidate": 230.53795981407166,
+      "provisional_shroud": 219.53795981407166
+    },
+    "scope": "zero candidate triangles or positive box gaps certify observed surface separation at this pose; no inferred occupied interiors or mounting contact"
+  },
+  "export_triangles_preserved": true,
+  "glb_sha256": "6c347d731f2adeb9fedfb7db414558c70fb0d0eca33d229490af2f605ec1d790",
+  "usd_sha256": "0c79dfe4b5f52692825c305ee7a049b269355cd0ce1799862974b6311a6569c5",
+  "render": {
+    "status": "inspection_surfaces_only",
+    "native_receipt_sha256": "d8a1c309d84c93cd96ff659532a0df338b1e4010d1b9321e4f63c73965f26710",
+    "audit_sha256": "341a784e8c4026c42c76da689851f1ab9a47d76efa58ca098358f89f2befbea7",
+    "components": {
+      "engine_context": {
+        "source_triangles": 2465879,
+        "display_triangles": 2465879
+      },
+      "drive_observed": {
+        "source_triangles": 2484656,
+        "display_triangles": 2484656
+      },
+      "rotor_candidate": {
+        "source_triangles": 24630,
+        "display_triangles": 24630
+      },
+      "provisional_shroud": {
+        "source_triangles": 992960,
+        "display_triangles": 992960
+      }
+    },
+    "source_geometry_changed": false,
+    "display_decimation": false,
+    "opacity": 1,
+    "vtk_version": "9.7.1",
+    "image_sha256": "6b2cbbdd59a2ba741f95e8bd9d09c08903b1fc68b6db4b8c319f39fa533ba9d4",
+    "physical_fit_verified": false,
+    "visually_inspected": true,
+    "observed_limit": "inherited periodic rotor blade tips and roots remain irregular; candidate shape not accepted as exact reconstruction"
+  },
+  "software_validation": {
+    "dotnet_build_warnings": 0,
+    "dotnet_build_errors": 0,
+    "python_targeted_tests_passed": 6,
+    "native_positive_fixture_passed": true,
+    "native_negative_guards_passed": 8,
+    "native_guard_report_sha256": "1f669c71bbe8b2dc842576e7b1641592e699d98a1e7dcd7795d5aee74e8c675d",
+    "full_repository_check": "reported separately by PR CI"
+  },
+  "rejected_trials": {
+    "run-001": "nonmanifold coincident barrel/lip caps",
+    "run-002": "observed drive protrusion intersects rotor at provisional support-bore pose; 272 inside-rotor sampled vertices"
+  },
+  "partial_protrusion_fit_qualified_as_axis": false,
+  "shroud_scope": "open admission barrel and flared lip only; full 935 engine air distribution and mounting remain undefined",
+  "entire_assembly_interference_checked": false,
+  "scale_verified": false,
+  "interfaces_verified": false,
+  "mechanism_dynamics_validated": false,
+  "historical_installation_verified": false,
+  "manufacturing_authorized": false,
+  "physical_validation": false,
+  "vast_rental_used": false
+}

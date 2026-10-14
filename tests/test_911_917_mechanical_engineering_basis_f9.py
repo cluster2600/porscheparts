@@ -1,7 +1,10 @@
 import importlib.util
 import json
+import sys
+import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,6 +32,20 @@ class Vehicle911917MechanicalEngineeringBasisF9Tests(unittest.TestCase):
         cls.config = load_json(CONFIG)
         cls.module = load_module()
         cls.report = cls.module.build_report(cls.config)
+
+    def test_check_requires_the_current_stored_report(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "report.json"
+            with patch.object(self.module, "REPORT_PATH", path), patch.object(sys, "argv", [str(SCRIPT), "--mode", "check"]):
+                with self.assertRaises(SystemExit):
+                    self.module.main()
+                path.write_text(json.dumps(self.report))
+                self.assertEqual(self.module.main(), 0)
+                changed = json.loads(path.read_text())
+                changed["requirements"]["minimum_preliminary_design_input_torque_nm"] += 1
+                path.write_text(json.dumps(changed))
+                with self.assertRaises(SystemExit):
+                    self.module.main()
 
     def test_power_to_torque_calculation_is_reproducible(self) -> None:
         by_speed = {row["speed_rpm"]: row for row in self.report["torque_table"]}

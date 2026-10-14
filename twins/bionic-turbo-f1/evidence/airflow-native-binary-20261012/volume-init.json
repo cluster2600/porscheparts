@@ -1,0 +1,30 @@
+{
+  "volume": "bionic-native-source-20261012",
+  "image_id": "sha256:586639782387349737869b383c9f98ec03614221255a9609009c395279835e07",
+  "command": [
+    "docker",
+    "run",
+    "--name",
+    "bionic-native-volume-init-20261012",
+    "--pull=never",
+    "--network",
+    "none",
+    "--read-only",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges",
+    "--pids-limit",
+    "16",
+    "--memory",
+    "64m",
+    "--mount",
+    "type=volume,source=bionic-native-source-20261012,target=/native",
+    "--entrypoint",
+    "/bin/chmod",
+    "sha256:586639782387349737869b383c9f98ec03614221255a9609009c395279835e07",
+    "0777",
+    "/native"
+  ],
+  "exit_code": 0
+}

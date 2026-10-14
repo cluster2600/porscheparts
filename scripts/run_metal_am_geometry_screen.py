@@ -132,15 +132,15 @@ def render(path: Path, report: dict[str, Any], rows: list[dict[str, Any]]) -> No
     support = np.asarray([row["support_area_mm2"] for row in rows])
     figure, axes = plt.subplots(2, 2, figsize=(14, 9), facecolor="#08131d")
     figure.suptitle(
-        f"{report['part_id']} — SIMULATION GEOMETRIQUE LPBF",
+        f"{report['part_id']} — LPBF GEOMETRIC SCREENING",
         color="white",
         fontsize=16,
         weight="bold",
     )
     for axis, values, title, color in (
-        (axes[0, 0], part, "Section de pièce par couche", "#4cc9f0"),
-        (axes[0, 1], unsupported, "Région nouvellement non soutenue", "#f77f00"),
-        (axes[1, 0], support, "Enveloppe conservative de supports", "#90be6d"),
+        (axes[0, 0], part, "Part section per layer", "#4cc9f0"),
+        (axes[0, 1], unsupported, "Regions flagged by the 45 deg heuristic", "#f77f00"),
+        (axes[1, 0], support, "Hypothetical support envelope", "#90be6d"),
     ):
         axis.set_facecolor("#10212d")
         axis.plot(z, values, color=color, linewidth=1.0)
@@ -182,7 +182,7 @@ def render(path: Path, report: dict[str, Any], rows: list[dict[str, Any]]) -> No
     figure.text(
         0.5,
         0.02,
-        "Coupe réelle à chaque couche et support proxy; aucun parcours laser, fichier machine, CT ou corrélation fournisseur.",
+        "Geometry only; hypothetical supports. No melt-pool, thermal, residual-stress or distortion simulation; no qualified support design.",
         ha="center",
         color="#ffb4a2",
         fontsize=10,

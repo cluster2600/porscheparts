@@ -6,6 +6,96 @@ Until now the programme's only whole-body model was the box cell of
 [`../fea/`](../fea/): good at relative questions, nothing like a 911. This
 shell takes its outline from Porsche's own drawing.
 
+## Numerical and stress-demand audit — 2026-10-12
+
+The preceding interface work was ported and merged in [PR #140](https://github.com/cluster2600/porscheparts/pull/140).
+The current baseline also includes the bulkhead correction (#152), the tube
+studies (#154/#155) and bending (#156). Do not merge the obsolete interface
+branch over the corrected datum chain.
+
+[`source/strength_audit.py`](source/strength_audit.py) reuses the **F0 skin-box
+model**, not the old truss or a new geometry: 43,719 nodes, 89,608 S3 elements,
+420 sections and assumed equivalent-isotropic carbon. It retains every input,
+solver log, nodal result and integration-point stress. The machine-readable
+[receipt](derived/strength-audit-20261012.json) includes their SHA-256 digests,
+the source digests, all six runs and all 16 numerical checks.
+
+| Serial run | Applied load | Response | Stiffness |
+|---|---|---|---|
+| torsion | 1,142.561 N·m | 0.032220° | 35,461.55 N·m/deg |
+| torsion, doubled | 2,285.122 N·m | 0.064439° | 35,461.55 N·m/deg |
+| bending | 2,000 N | 0.144698 mm | 13,821.88 N/mm |
+| bending, doubled | 4,000 N | 0.289396 mm | 13,821.88 N/mm |
+
+Reversing each load reverses its displacement and stress fields exactly at
+the precision printed. The largest relative scaling discrepancy is 3.19e-7;
+the external-force balance error is at most 1.86e-7 of the applied absolute
+load. Prescribed translations are zero to numerical precision. These checks
+reproduce the published finest-mesh stiffnesses; they do **not** establish
+stress convergence, correct physical boundary conditions or vehicle safety.
+
+### Parallel run rejected, not averaged away
+
+On the same local ARM64 CalculiX 2.21 image, four-thread SPOOLES first returned
+44,630.11 and 46,411.28 N·m/deg for opposite loads, then crashed on the doubled
+load with `fatal error in SubMtx_denseInfo`. That is a failed numerical run,
+not an alternative design result. Its physical input blocks are byte-identical
+to the corresponding serial runs; only output requests changed. The serial
+run reproduces main's 35,462 N·m/deg and passes the sign/scaling checks.
+
+`torsion.run()` now defaults to **one thread**, retaining an explicit
+`OMP_NUM_THREADS` override. The historical agreeing-pair selection remains for
+compatibility, but is not a correctness proof. This observation does not
+identify the precise upstream defect or qualify other solvers/platforms.
+The rejected input and log hashes are in the
+[execution record](derived/strength-audit-execution-20261012.json).
+
+### Strength: stress demand is now available, no pass claimed
+
+The old `OUTPUT=2D` stress images average through the shell thickness and
+remove bending stresses. The new `*EL PRINT, GLOBAL=YES` output records all
+179,216 integration points, including both thickness points of each S3.
+This distinction follows the [CalculiX manual, sections 7.51–7.52](https://www.dhondt.de/ccx_2.22.pdf).
+An independent cantilever test checks the through-thickness axial stress
+against beam theory away from its clamp and load, with a 15% discretization
+tolerance. It also confirms that the averaged plot omits most of this bending
+stress (but retains transverse shear).
+
+| Unit case | Largest principal tension | Largest principal compression | Maximum von Mises display scalar |
+|---|---|---|---|
+| torsion, 1,142.561 N·m | 21.655 MPa | −18.367 MPa | 16.771 MPa |
+| bending, 2,000 N | 16.083 MPa | −34.490 MPa | 25.841 MPa |
+
+These are integration-point peaks of the **equivalent isotropic model**,
+not ply stresses, surface extrapolations or material allowables. Von Mises is
+not a CFRP failure criterion. The two display peaks lie near
+`X=-1725, Y=715, Z=871 mm`; local mesh/section details need investigation
+before using a peak for design. No reserve factor is invented: allowable,
+reserve factor and strength pass are explicitly `null`.
+
+The requested 1,200 kg vehicle corresponds to 11,767.98 N of weight, but this
+weight is **not** silently applied as the 2 kN bending load. Axle loads, mass
+locations, suspension forces, inertial/aero cases and measured interfaces are
+still required. Next: qualified ply/core/bond data and layup/orientation;
+converged local and layered models; then buckling, fatigue, joints, physical
+correlation and professional review. No crash, manufacturing or TÜV approval
+is supplied by this audit. Status remains `prohibited_pending_engineering`.
+
+Reproduce where the existing numerical dependencies and `ccx` are installed:
+
+```sh
+OMP_NUM_THREADS=1 python3 twins/964-chassis/monocoque/source/strength_audit.py \
+  --output work/964-strength-new-run
+python3 -m unittest discover -s tests -p test_964_strength_audit.py -v
+```
+
+The output directory must not exist. The solver witness skips unless `ccx`
+is on PATH; it was **executed**, not skipped, for this audit. Generation ran
+on the Mac and solving in a bounded local ARM64 Docker container, without
+network or paid compute. Kali's previously recorded SSH addresses timed out.
+Full raw results remain locally under `work/964-strength-serial-20261012/`;
+they are not embedded in Git. Historical reports and figures are unchanged.
+
 ![The shell from four sides](evidence/shell-views.png)
 
 *Four views of `derived/monocoque-shell.ply`. Outline from the workshop
@@ -468,6 +558,12 @@ In the `cadsim` image, with shapely from the print-simulation library folder:
     python3 ../fea/hero.py             # the home-page banner
 
 ## Limits
+
+The [native Mac field-to-lattice study](field-lattice/README.md) now exchanges
+the retained serial torsion/bending demand through OpenVDB and uses ShapeKernel
+and LatticeLibrary for two local geometric probes. Field exchange passed; the
+graded raw STL was rejected by the independent surface screen. Neither probe
+is a fitted core or a newly validated monocoque.
 
 - The outline is Porsche's to the plate's drawing accuracy (about ±4 mm on
   the calibration markers); everything between outlines is modelled.

@@ -7,6 +7,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageOps
 
 from annotate_picogk_visualization_f11 import cropped_capture, font, sha256
+from prepare_picogk_alignment_f13 import validate_alignment
 
 ROOT = Path(__file__).resolve().parents[3]
 OUTPUT = ROOT / "work/911-917-picogk-f13"
@@ -23,6 +24,7 @@ def validate_report(report):
         raise ValueError("rapport F13 attendu, sans validation physique déclarée")
     if report["scope"]["turbo_count"] != 2 or report["scope"]["rear_halfshaft_count"] != 2:
         raise ValueError("deux turbos et deux demi-arbres requis")
+    validate_alignment(report["alignment"])
 
 
 def panel(name, width, height):

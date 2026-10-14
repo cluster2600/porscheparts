@@ -1,0 +1,116 @@
+{
+  "schema": "bionic-cartesian-diagnostic-admission/v1",
+  "status": "cartesian_geometry_proven",
+  "case_manifest_sha256": "81a59c33da3fa2bf755b0949c2e4bf4c999af12cf0276eb0f0494c74677fd5a6",
+  "source_sha256": "84310b989f65e492ef3278569874b85edb58c6c5bd4236567053bcb7146c56d9",
+  "native_extended_check_passed": false,
+  "canonical_mesh_gate_passed": false,
+  "proof": {
+    "cells": 2141833,
+    "faces": 6766653,
+    "minimum_cell_edge_m": 0.00014966813719999653,
+    "maximum_relative_side_area_error": 1.3343756903960114e-09,
+    "total_box_volume_m3": 0.00024114745520535663,
+    "coordinate_tolerance_m": 1e-12,
+    "all_cells_axis_aligned_boxes": true
+  },
+  "mesh": {
+    "patches": {
+      "inlet": {
+        "faces": 4084,
+        "start": 6178472,
+        "type": "patch"
+      },
+      "outlet": {
+        "faces": 1613,
+        "start": 6182556,
+        "type": "patch"
+      },
+      "rotor": {
+        "faces": 320054,
+        "start": 6184169,
+        "type": "wall"
+      },
+      "stator": {
+        "faces": 262430,
+        "start": 6504223,
+        "type": "wall"
+      }
+    },
+    "boundary_topology": {
+      "surface_components": 3,
+      "component_patch_sets": [
+        [
+          "inlet",
+          "outlet",
+          "rotor",
+          "stator"
+        ],
+        [
+          "rotor"
+        ],
+        [
+          "rotor"
+        ]
+      ],
+      "component_invariants": [
+        {
+          "patches": [
+            "inlet",
+            "outlet",
+            "rotor",
+            "stator"
+          ],
+          "euler_characteristic": 2
+        },
+        {
+          "patches": [
+            "rotor"
+          ],
+          "euler_characteristic": 0
+        },
+        {
+          "patches": [
+            "rotor"
+          ],
+          "euler_characteristic": 0
+        }
+      ],
+      "face_count": 588181,
+      "unique_edges": 1179475,
+      "unique_vertices": 591296,
+      "euler_characteristic": 2
+    },
+    "surface_components_and_patch_provenance_preserved": true,
+    "global_and_component_euler_preserved": true,
+    "rotor_zone_cells": 1288269,
+    "rotor_owner_cells_all_in_zone": true,
+    "ports_outside_zone": true,
+    "mesh_sha256": {
+      "constant/polyMesh/cellLevel": "0b16979c16eec7519135de6cb9c26852da0ed4bec936ca05d82edc0402bece0f",
+      "constant/polyMesh/owner": "79b8303c0a53a43a3faf946c468c17e13499ed9977450449da53bf0d72ec1d81",
+      "constant/polyMesh/level0Edge": "db5deb882beb8db3f7e61028537276a5202fb711556a2d5f1e0c6a00a729dd3c",
+      "constant/polyMesh/boundary": "a564fee8e5c2d4e961ba1ed5539b967cc4618cc72bea9d2bd6335d8003ddeb0f",
+      "constant/polyMesh/faceZones": "06073d721171d2b0bfcfa686c20e74f0efd0f16fb6ddb255b4a5f69ed076624e",
+      "constant/polyMesh/surfaceIndex": "02f2afbec231d19cad9bfacbd2f345eb19aa758aa660342aecc085eabb5f3275",
+      "constant/polyMesh/pointZones": "889e1254b5a76f99c3da684298c1d0b398a30939332e88e2f60a2b1197f4d394",
+      "constant/polyMesh/pointLevel": "a59df6002d9641265bd5e6070e70e27acd3901c24de0140d79d660856da542db",
+      "constant/polyMesh/neighbour": "92a158672e3b53aef2a0ff189b4f3b942301c8115ce1da17ad63f933d1147fda",
+      "constant/polyMesh/points": "990df026946002ab2ef6dfebfb9871229a680118710ddcf4dcb7696f0837b85c",
+      "constant/polyMesh/cellZones": "6fd8a7ba65d63325217643da07b04c87d27922971b4501e1525ac78d94fd927f",
+      "constant/polyMesh/faces": "06782773626ba03154feac6d349d43e31b86d4252519e60280b0cbff0842fb54"
+    }
+  },
+  "diagnostic_solver_authorized": true,
+  "performance_ranking_authorized": false,
+  "engineering_validated": false,
+  "derivation": {
+    "source_sha256": "9fd58f5c5ad8a0b52f9ea569958d60ae1589deff6ba2164b437b85cdca1a9330",
+    "parent_proof_sha256": "4eccdfea012b8c5455a0772343505e1dd0c270581a651e13c4a344317b0c55db",
+    "method": "Exact mesh copy, verified by every parent mesh hash. Geometry proof inherited unchanged; only Hf keyword corrected.",
+    "boundary_registry_source_sha256": "187a7ebfc5907ca2da89dc31b082266b33f12b56ab19a5a1b590d1f5711d4284",
+    "pressure_coupling_source_sha256": "23cc8855ec2793d3e7244fa64260c9bad323caf8cba13b5f393a237c30e1f453",
+    "observer_schedule_source_sha256": "14f3d8cf8bb2fd99141dd957d8fc7ce50beb33c3a6adef166d14c85c59b09881",
+    "steady_relaxation_source_sha256": "aadcd987bf67fde46c24ef2b191a0f5ca893577a534ee014b0e02dca339809cd"
+  }
+}

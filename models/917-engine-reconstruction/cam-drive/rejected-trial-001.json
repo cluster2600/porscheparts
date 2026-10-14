@@ -1,0 +1,102 @@
+{
+  "classification": "rejected_gear_rib_envelope_trials",
+  "trials": [
+    {
+      "execution": "run-001",
+      "total_circular_backlash_mm": 0.4,
+      "native_voxel_mm": 0.25,
+      "native_mesh_checks": [
+        {
+          "teeth": [
+            27,
+            48
+          ],
+          "phases_checked": 48,
+          "max_intersection_mm3": 0.8547211270028402,
+          "sampled_only": true,
+          "passed": false
+        },
+        {
+          "teeth": [
+            48,
+            48
+          ],
+          "phases_checked": 48,
+          "max_intersection_mm3": 1.2242504040192852,
+          "sampled_only": true,
+          "passed": false
+        },
+        {
+          "teeth": [
+            48,
+            54
+          ],
+          "phases_checked": 48,
+          "max_intersection_mm3": 0.522469028190201,
+          "sampled_only": true,
+          "passed": false
+        }
+      ],
+      "ideal_profile_sampled_intersections_zero": true,
+      "mesh_checks_sha256": "b81db0e09a8d345d6cc9155b3719226d18e9115721a80a1ad97a9505a13a0abd",
+      "source_snapshot_sha256": {
+        "run.py": "bbc4ef8885ccbf1c60b5cbbec84543151500713c4551654842c39c2bef9b67ce",
+        "drive.py": "5fed84b331c2da10e2564d4ac58cb0f595feb571bc841c952b1e1a4f071feaa8"
+      },
+      "accepted": false
+    },
+    {
+      "execution": "run-002",
+      "total_circular_backlash_mm": 0.8,
+      "native_voxel_mm": 0.25,
+      "native_mesh_checks": [
+        {
+          "teeth": [
+            27,
+            48
+          ],
+          "phases_checked": 48,
+          "max_intersection_mm3": 0.5765304733610167,
+          "sampled_only": true,
+          "passed": false
+        },
+        {
+          "teeth": [
+            48,
+            48
+          ],
+          "phases_checked": 48,
+          "max_intersection_mm3": 0.9191235919863044,
+          "sampled_only": true,
+          "passed": false
+        },
+        {
+          "teeth": [
+            48,
+            54
+          ],
+          "phases_checked": 48,
+          "max_intersection_mm3": 0.407419684954748,
+          "sampled_only": true,
+          "passed": false
+        }
+      ],
+      "ideal_profile_sampled_intersections_zero": true,
+      "mesh_checks_sha256": "6b494ccb02da6f287ff14c1d3b0e541cfdd25e1747ddc0c803f3fb41f3463e7f",
+      "source_snapshot_sha256": {
+        "run.py": "a7efe822f27780f453fd2f067bfa1f49fd1c18da12cf56f75d3a60962d910426",
+        "drive.py": "a1d811282934bab27aa80e8d2d4850f0490fc0b8decccbe957d8b719eaff5c60"
+      },
+      "accepted": false
+    }
+  ],
+  "run_002_bionic_volume_outside_dense_control_mm3": {
+    "27": 78.98365757208192,
+    "48": 39.0714413992775,
+    "54": 48.17584878487887
+  },
+  "diagnosis": "Rounded rib tips extended beyond root circle; greater backlash did not resolve it.",
+  "correction": "Bound each rib tip centre by root_radius minus beam_radius minus 0.3 mm.",
+  "manufacturing_authorized": false,
+  "engine_start_authorized": false
+}

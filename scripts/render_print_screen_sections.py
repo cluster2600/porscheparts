@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Write the LPBF print simulation section into each 993 design dossier.
+"""Write the LPBF geometric screening section into each 993 design dossier.
 
 The section sits between two markers and is rewritten on every pass: it follows
 the published report, never the reverse. `--check` fails if a dossier differs.
@@ -53,7 +53,7 @@ def fr(value: float, digits: int = 2) -> str:
 def section(slug: str, sheet: Path, status: dict) -> str:
     folder = ROOT / f"parts/{slug}/evidence/lpbf-f0"
     reports = sorted(folder.glob("*-lpbf-geometry-report.json"))
-    lines = [BEGIN, "", "## LPBF print simulation", ""]
+    lines = [BEGIN, "", "## LPBF geometric screening — process physics not calculated", ""]
     if reports:
         report = json.loads(reports[0].read_text(encoding="utf-8"))
         image = reports[0].with_name(reports[0].name.replace("-report.json", "-screen.png"))
@@ -61,22 +61,30 @@ def section(slug: str, sheet: Path, status: dict) -> str:
         s, t, p = report["full_build_slicing"], report["thickness_screen"], report["powder_escape_screen"]
         lines += [
             f"The STEP was tessellated, then sliced over its full height at `{fr(s['layer_thickness_mm'] * 1000, 0)} µm`, "
-            f"on the EOS M 290 route of the candidate material. Orientation chosen by the automatic rule: "
+            f"within the candidate {report['machine_candidate']['model']} envelope. "
+            f"Candidate material/process reference: `{report['process_physics']['target_material_card']}`. "
+            f"Orientation chosen by a geometric rule, not thermal optimisation: "
             f"`{report['selected_candidate_orientation']}`.",
+            "",
+            "The 45° overhang rule only flags geometric regions. The vertical columns are a "
+            "**hypothetical support envelope**, not supplier-designed metal supports. Their volume "
+            "is not a metal consumption estimate. Metal LPBF support design must address heat transfer, "
+            "residual stress, recoater interaction and removal; none is validated here.",
             "",
             "| quantity | value |",
             "|---|---:|",
             f"| layers | {s['layer_count']:,} |",
             f"| build height | {fr(s['build_height_mm'])} mm |",
-            f"| layers with an unsupported region | {s['layers_with_unsupported_area']} |",
-            f"| support proxy | {fr(s['support_proxy_volume_mm3'])} mm³ |",
+            f"| layers flagged by the geometric overhang rule | {s['layers_with_unsupported_area']} |",
+            f"| hypothetical support-envelope volume | {fr(s['support_proxy_volume_mm3'])} mm³ |",
             f"| local thickness p01 | {fr(t['p01_mm'], 3)} mm |",
             f"| trapped powder at {fr(p['pitch_mm'])} mm | {fr(p['trapped_void_volume_mm3'])} mm³ |",
             "",
-            f"![LPBF print simulation]({link})",
+            f"![LPBF geometric screening with hypothetical supports; no process physics]({link})",
             "",
-            "This screening is neither an EOSPRINT project, nor a distortion calculation, nor a "
-            "recoater check. **Printing remains prohibited.**",
+            "**Process physics has not been calculated:** no melt-pool, thermal, residual-stress, "
+            "distortion or recoater simulation. No qualified support design or machine build file "
+            "is provided. **Printing remains prohibited.**",
         ]
     else:
         row = status.get(slug, {})
@@ -84,7 +92,7 @@ def section(slug: str, sheet: Path, status: dict) -> str:
         code = error[0].replace("METAL AM FAIL-CLOSED: ", "")
         reason = REASONS.get(code, f"`{row.get('status', 'not run')}` {code}".strip())
         lines += [
-            f"The simulation was run and **failed closed**: {reason}. "
+            f"The geometric screening was run and **failed closed**: {reason}. "
             "No result is therefore published for this part, and no image is made up in its place.",
         ]
     lines += ["", END]

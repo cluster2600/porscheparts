@@ -8,12 +8,24 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "twins/vehicle-911-917/source"))
+sys.path.insert(0, str(ROOT / "tests"))
+import test_911_917_picogk_alignment_f13 as f13_tests
+import report_full_vehicle_f15
 from report_full_vehicle_f15 import REQUIRED_COMPONENTS, REQUIRED_CHECKS, VIEWS, checked_file, validate_scope, verify_report
 
 CONFIG = ROOT / "twins/vehicle-911-917/full-vehicle-study-f15.json"
+SCAN_SHA = "a" * 64
+
+
+def f13_receipt(**changes):
+    # Only the fields the F15 record itself reads; F13 provenance and rigidity are checked by its own validator.
+    receipt = {"phase": "F13", "input_stl_sha256": SCAN_SHA, "bounds_min_mm": [1500, -300, 180], "bounds_max_mm": [2600, 300, 900]}
+    receipt.update(changes)
+    return receipt
 
 
 class FullVehicleTests(unittest.TestCase):
@@ -66,6 +78,39 @@ class FullVehicleTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 validate_scope(report, self.config)
 
+    def private_report(self, receipt):
+        report = copy.deepcopy(self.report)
+        report["components"].append({"id": "private_engine_scan", "properties": {
+            "volume_mm3": 10, "bounds_min_mm": [1497.5, -302.5, 177.5], "bounds_max_mm": [2602.5, 302.5, 902.5]}})
+        report["checks"].update({"private_scan__firewall": {"collision": False}, "private_scan__transaxle": {"collision": False}})
+        report["private_scan"] = {"scan_sha256": SCAN_SHA, "alignment_sha256": "b" * 64, "scale_verified": False,
+                                  "physical_datum_verified": False, "alignment": receipt}
+        return report
+
+    def test_private_scan_record_is_bound_to_its_receipt(self):
+        validate_scope(self.private_report(f13_receipt()), self.config)
+        bad = {"other_scan": f13_receipt(input_stl_sha256="c" * 64),
+               "moved": f13_receipt(bounds_min_mm=[1900, -300, 180], bounds_max_mm=[3000, 300, 900]),
+               "nan_bounds": f13_receipt(bounds_min_mm=[float("nan"), -300, 180]),
+               "no_bounds": {"input_stl_sha256": SCAN_SHA}}
+        for name, receipt in bad.items():
+            with self.subTest(name), self.assertRaises(ValueError):
+                validate_scope(self.private_report(receipt), self.config)
+        for key, value in (("scale_verified", True), ("physical_datum_verified", True), ("extra", 1)):
+            report = self.private_report(f13_receipt())
+            report["private_scan"][key] = value
+            with self.subTest(key), self.assertRaises(ValueError):
+                validate_scope(report, self.config)
+
+    def test_reporter_applies_the_f13_receipt_rules(self):
+        report = self.private_report(f13_receipt())
+        with tempfile.TemporaryDirectory() as temporary, \
+                patch.object(report_full_vehicle_f15, "validate_alignment", side_effect=ValueError("F13 rules")) as rules:
+            (Path(temporary) / "vehicle-report-f15.json").write_text(json.dumps(report))
+            with self.assertRaisesRegex(ValueError, "F13 rules"):
+                verify_report(Path(temporary))
+            rules.assert_called_once_with(report["private_scan"]["alignment"])
+
     def test_hash_and_path_boundary(self):
         with tempfile.TemporaryDirectory() as temporary:
             directory = Path(temporary)
@@ -111,6 +156,40 @@ class FullVehicleTests(unittest.TestCase):
                 self.assertNotEqual(result.returncode, 0)
                 self.assertIn(expected, result.stderr)
                 self.assertFalse((root / "result").exists())
+
+    def test_native_preflight_applies_f13_receipt_rules(self):
+        dotnet = os.environ.get("DOTNET_TEST_EXECUTABLE") or shutil.which("dotnet")
+        binary = ROOT / "twins/vehicle-911-917/picogk/bin/Debug/net9.0/Vehicle911917Packaging.dll"
+        if not dotnet or not binary.exists():
+            self.skipTest("Built .NET executable not available")
+        with f13_tests.ScanAlignmentTests.alignment_fixture(self) as (root, path):
+            for relative in (CONFIG.relative_to(ROOT), Path("twins/vehicle-911-917/picogk-full-vehicle-f12.json")):
+                shutil.copyfile(ROOT / relative, root / relative)
+            genuine = json.loads(path.read_text())
+            def run(receipt):
+                (root / "receipt.json").write_text(json.dumps(receipt))
+                env = {**os.environ, "REPOSITORY_ROOT": str(root), "PICOGK_VEHICLE_F15": "1", "PICOGK_STUDY_F14": "0",
+                       "PICOGK_INPUT_DIR": str(f13_tests.alignment.STL.parent), "PICOGK_F13_ALIGNMENT": str(root / "receipt.json"),
+                       "PICOGK_OUTPUT_DIR": str(root / "result")}
+                return subprocess.run([dotnet, str(binary)], env=env, capture_output=True, text=True, timeout=15)
+            def changed(**fields):
+                return {**copy.deepcopy(genuine), **fields}
+            cases = [(changed(matrix4x4_row_vector=[[2, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]), "rigid row-vector"),
+                     (changed(matrix4x4_row_vector=[[0, 1, 0, 0], [1, 0, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]), "rigid row-vector"),
+                     (changed(status="edited"), "Unqualified F13 alignment receipt"),
+                     (changed(physical_orientation_verified=True), "Unqualified F13 alignment receipt"),
+                     (changed(input_stl_sha256="0" * 64), "F13 prepared scan changed"),
+                     (changed(triangle_count=genuine["triangle_count"] + 1), "triangle count differs"),
+                     (changed(bounds_min_mm=genuine["bounds_max_mm"], bounds_max_mm=genuine["bounds_min_mm"]), "bounds must be ordered")]
+            stale = root / "twins/vehicle-911-917/picogk-mechanical-f13.json"
+            for receipt, expected in cases + [(genuine, "F13 alignment input changed")]:
+                if receipt is genuine:
+                    stale.write_text(stale.read_text() + "\n")
+                with self.subTest(expected):
+                    result = run(receipt)
+                    self.assertNotEqual(result.returncode, 0)
+                    self.assertIn(expected, result.stderr)
+                    self.assertFalse((root / "result").exists())
 
     def test_native_exports_when_available(self):
         directory = ROOT / "work/911-917-picogk-f15"
