@@ -1,0 +1,285 @@
+{
+  "schema_version": 1,
+  "experiment": "picogk-library-plan-20261012",
+  "model": "mlx-community/Qwen2.5-Coder-1.5B-Instruct-4bit",
+  "model_revision": "b3252a2f97102b1fb1571fec2c9b27219a8536be",
+  "model_sha256": "daeab4764fb420d161721791cf2e509e2de81a7af4223646e7bed2bf82c57b58",
+  "baseline_adapter_sha256": "09024cfb346f3dd7f8994e5fe1cd89e11976db5354b8dac9c0167d57ee7aacb6",
+  "selected_bounded_profile_adapter_sha256": "2f5da92d4cf9dff0f8b6bac8b28d5c34d26323ca780adf18cdcf11dd88249e1f",
+  "runtime": {
+    "mlx": "0.32.3",
+    "mlx-lm": "0.31.3",
+    "transformers": "5.17.0"
+  },
+  "maximum_sequence_tokens": 547,
+  "new_validation_cases": 48,
+  "new_final_cases": 24,
+  "old_retention_cases": 16,
+  "scope": "Strict recipe/parameter interface with a fixed owner-authored native host; synthetic shared recipes, no broad API mastery or engineering qualification.",
+  "experiments": [
+    {
+      "trial": "first",
+      "adapter_sha256": "b4d74b0894ea53c8cc0251a86d43bedfda992bba4a5df1877212211a689c07ff",
+      "training": {
+        "steps": 480,
+        "training_rows": 432,
+        "learning_rate": 5e-06,
+        "trained_assistant_tokens": 96688,
+        "peak_mlx_gb": 5.0,
+        "validation_losses": [
+          2.404,
+          0.002
+        ],
+        "finiteness": {
+          "arrays": 224,
+          "all_finite": true,
+          "parameters": 5275648
+        }
+      },
+      "results": {
+        "validation": {
+          "counts": {
+            "bcc": {
+              "before": 0,
+              "after": 8,
+              "total": 8
+            },
+            "cylinder": {
+              "before": 0,
+              "after": 8,
+              "total": 8
+            },
+            "needs_measurement": {
+              "before": 0,
+              "after": 8,
+              "total": 8
+            },
+            "pipe": {
+              "before": 0,
+              "after": 8,
+              "total": 8
+            },
+            "thread": {
+              "before": 0,
+              "after": 8,
+              "total": 8
+            },
+            "washer": {
+              "before": 0,
+              "after": 8,
+              "total": 8
+            }
+          },
+          "regressions": [],
+          "eligible": true
+        },
+        "retention": {
+          "counts": {
+            "openusd": {
+              "before": 8,
+              "after": 8,
+              "total": 8
+            },
+            "picogk": {
+              "before": 6,
+              "after": 7,
+              "total": 8
+            }
+          },
+          "regressions": [],
+          "eligible": false
+        },
+        "weights_updated": true,
+        "default_replaced": false,
+        "manufacturing_qualified": false,
+        "test_opened": false,
+        "adapter_sha256": "b4d74b0894ea53c8cc0251a86d43bedfda992bba4a5df1877212211a689c07ff"
+      },
+      "protocol_sha256": "5029b75a977932082dd90c4c1d90c8d234451dd000f6bac2a0365cb20edfd351",
+      "training_log_sha256": "aa667e5f477059ba5d1e4c94d284fff6ef5c2d8dfd8da9f060cee123751352b8",
+      "receipt_sha256": {
+        "retention-after-answers.json": "9bfccee816032e429aa54ef08f4666e2219d86f372c8a754a90ebbe16720c40b",
+        "retention-before-answers.json": "b298aa0f2f376d71160cb9aafb64eded713fc8b061b3ae36a94ddebe7539ebce",
+        "valid-after-answers.json": "da0dcf49e106711263f8583402591c412dd6b8b19f0ec52d992fdf6207b1cc2d",
+        "valid-before-answers.json": "57963362d2a5e3f9fc6c8126a3129e52887c2634795fdd4d8f6db3dcde2a71eb"
+      }
+    },
+    {
+      "trial": "continuation",
+      "adapter_sha256": "2f5da92d4cf9dff0f8b6bac8b28d5c34d26323ca780adf18cdcf11dd88249e1f",
+      "training": {
+        "steps": 240,
+        "training_rows": 688,
+        "learning_rate": 2.5e-06,
+        "trained_assistant_tokens": 73620,
+        "peak_mlx_gb": 5.0,
+        "validation_losses": [
+          0.002,
+          0.001
+        ],
+        "finiteness": {
+          "arrays": 224,
+          "all_finite": true,
+          "parameters": 5275648
+        }
+      },
+      "results": {
+        "validation": {
+          "counts": {
+            "bcc": {
+              "before": 0,
+              "after": 8,
+              "total": 8
+            },
+            "cylinder": {
+              "before": 0,
+              "after": 8,
+              "total": 8
+            },
+            "needs_measurement": {
+              "before": 0,
+              "after": 8,
+              "total": 8
+            },
+            "pipe": {
+              "before": 0,
+              "after": 8,
+              "total": 8
+            },
+            "thread": {
+              "before": 0,
+              "after": 8,
+              "total": 8
+            },
+            "washer": {
+              "before": 0,
+              "after": 8,
+              "total": 8
+            }
+          },
+          "regressions": [],
+          "eligible": true
+        },
+        "retention": {
+          "counts": {
+            "openusd": {
+              "before": 8,
+              "after": 8,
+              "total": 8
+            },
+            "picogk": {
+              "before": 6,
+              "after": 8,
+              "total": 8
+            }
+          },
+          "regressions": [],
+          "eligible": true
+        },
+        "weights_updated": true,
+        "default_replaced": false,
+        "manufacturing_qualified": false,
+        "test_opened": true,
+        "adapter_sha256": "2f5da92d4cf9dff0f8b6bac8b28d5c34d26323ca780adf18cdcf11dd88249e1f",
+        "test": {
+          "counts": {
+            "bcc": {
+              "before": 0,
+              "after": 4,
+              "total": 4
+            },
+            "cylinder": {
+              "before": 0,
+              "after": 4,
+              "total": 4
+            },
+            "needs_measurement": {
+              "before": 0,
+              "after": 4,
+              "total": 4
+            },
+            "pipe": {
+              "before": 0,
+              "after": 4,
+              "total": 4
+            },
+            "thread": {
+              "before": 0,
+              "after": 4,
+              "total": 4
+            },
+            "washer": {
+              "before": 0,
+              "after": 4,
+              "total": 4
+            }
+          },
+          "regressions": [],
+          "eligible": true
+        }
+      },
+      "protocol_sha256": "a9cd7b20c42af1e49f8aa25cb4576ead9d1015e85a8dbc50ed831fca5ca7ed04",
+      "training_log_sha256": "258bcd6377466a0dc1887f2e02f3290e9291e2e4de285730029f4764aeb31527",
+      "receipt_sha256": {
+        "retention-after-answers.json": "01b9a4c46c90a7055fbeaec82ddf0442e142329579c96e91d0d830914169806e",
+        "retention-before-answers.json": "b298aa0f2f376d71160cb9aafb64eded713fc8b061b3ae36a94ddebe7539ebce",
+        "test-after-answers.json": "997142db945bd3c81943c27def769a854397ffa74c39e549d3127688a0fa407e",
+        "test-before-answers.json": "390b4a365bf32c8765e01259af35adb6a52e59f6fd8d15aa72c221313cb79513",
+        "valid-after-answers.json": "da0dcf49e106711263f8583402591c412dd6b8b19f0ec52d992fdf6207b1cc2d",
+        "valid-before-answers.json": "57963362d2a5e3f9fc6c8126a3129e52887c2634795fdd4d8f6db3dcde2a71eb"
+      }
+    }
+  ],
+  "raw_mesh_audit": {
+    "auditor_sha256": "cc55e633309e52f0a6d0af75f59d3e983bf3b184168abcaf521be3f7752f33e3",
+    "first_validation": {
+      "passed": 34,
+      "total": 40
+    },
+    "final": {
+      "passed": 16,
+      "total": 20
+    },
+    "mesh_repair_performed": false,
+    "thread_cutter_raw_export_limit": "Some thread-cutter meshes fail exact zero-area/edge-incidence checks; geometry parameter correctness does not qualify these exports."
+  },
+  "usage_smoke": {
+    "structure_passed": true,
+    "expected_plan": {
+      "recipe": "pipe",
+      "parameters_mm": [
+        14,
+        9,
+        5
+      ],
+      "missing": []
+    },
+    "reviewed_numeric_match": true,
+    "geometry_executed": false,
+    "receipt_sha256": "492b77be86ec166c4cbb36e7e304c63568b55e8b54e79b7cd2cc9fa61c7594b7"
+  },
+  "repository_checks": {
+    "targeted_self_checks_passed": true,
+    "full_local_make_check_passed": false,
+    "local_tests": 3780,
+    "local_failures": 2,
+    "local_errors": 26,
+    "local_skips": 228,
+    "local_make_check_log_sha256": "935bbeea935b5e5f989cf9de6da7132299da2094889fecd21c4b458b6d831073",
+    "dependency_changes": false,
+    "known_local_issues": [
+      "SciPy binary loading in existing scan/topology tests",
+      "Python 3.10 lacks hashlib.file_digest in an existing Qwen test; existing CAD Python recheck passes",
+      "Exact floating-result assertions in two existing fan/impeller tests also fail under the CAD Python runtime"
+    ],
+    "base_commit_ci": "SUCCESS for 78cc3c814206992637bf5f3f3930aadd51e5dbfb; current new-head CI checked separately"
+  },
+  "source_sha256": {
+    "pilot.py": "7beeea39ecc8707286616ba16a5e464a0acef9f8d22a35de3b65b9f66aa696be",
+    "ask.py": "136a5f6e7c5ac78e5bee5f08be2654d5959c7e9c8117d71fc1d378ca7678cdb8",
+    "GeometryHost.cs": "66be3d3f9e687afc2e0ff18d23edb476187ce95130da571403b0d4e9d2ee5ea2",
+    "continue.py": "fdd14b740f11a0c3c0d59283d4f21f589d85409050ed4e651e24fbef7ddca728"
+  },
+  "default_replaced": false,
+  "manufacturing_qualified": false
+}

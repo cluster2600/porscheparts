@@ -1,0 +1,2040 @@
+{
+  "part_id": "993-ENG-TURBO-OIL-RETURN-LINE-IN625-F0-0001",
+  "method": "3D SIMP topology optimization (parts/picogk-catalog/bionic/topopt.py) of flange gussets and the mid-span mount bracket around the exact oil bore, then PicoGK smoothing; legacy tube + flanges without the flat tab (out/<ID>-notab.stl) fused as shaping.base_stl, bore and holes cut last",
+  "basis_note": "Interfaces and loads are NOT measured. Centreline, flanges and mount position are F0 hypotheses of source/picogk.json; the 100 N transverse force is the engineering screen's synthetic transverse_center_force_n, applied split over the two quarter spans because the mount sits at mid-span. Thermal growth between turbo and engine (the screen's failing case) is not a SIMP load and is not addressed by this layout.",
+  "generator": "bionic_regions.py (this folder) writes this file from source/picogk.json",
+  "optimization": {
+    "element_mm": 1.8,
+    "grid_min": [
+      -21.0,
+      -20.0,
+      -5.0
+    ],
+    "grid_max": [
+      130.0,
+      49.0,
+      95.0
+    ],
+    "design": [
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "b": [
+          -1.75,
+          0.0,
+          12.188
+        ],
+        "r": 14.35,
+        "basis": "assumption",
+        "note": "8 mm zone around the tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -1.75,
+          0.0,
+          12.188
+        ],
+        "b": [
+          0.0,
+          0.0,
+          24.0
+        ],
+        "r": 14.35,
+        "basis": "assumption",
+        "note": "8 mm zone around the tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          24.0
+        ],
+        "b": [
+          11.25,
+          -1.125,
+          35.875
+        ],
+        "r": 14.35,
+        "basis": "assumption",
+        "note": "8 mm zone around the tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          11.25,
+          -1.125,
+          35.875
+        ],
+        "b": [
+          28.0,
+          0.0,
+          45.0
+        ],
+        "r": 14.35,
+        "basis": "assumption",
+        "note": "8 mm zone around the tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          28.0,
+          0.0,
+          45.0
+        ],
+        "b": [
+          49.5,
+          8.25,
+          46.0
+        ],
+        "r": 14.35,
+        "basis": "assumption",
+        "note": "8 mm zone around the tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          49.5,
+          8.25,
+          46.0
+        ],
+        "b": [
+          72.0,
+          18.0,
+          47.0
+        ],
+        "r": 14.35,
+        "basis": "assumption",
+        "note": "8 mm zone around the tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          72.0,
+          18.0,
+          47.0
+        ],
+        "b": [
+          92.625,
+          25.125,
+          56.25
+        ],
+        "r": 14.35,
+        "basis": "assumption",
+        "note": "8 mm zone around the tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          92.625,
+          25.125,
+          56.25
+        ],
+        "b": [
+          108.0,
+          30.0,
+          68.0
+        ],
+        "r": 14.35,
+        "basis": "assumption",
+        "note": "8 mm zone around the tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          108.0,
+          30.0,
+          68.0
+        ],
+        "b": [
+          111.25,
+          30.75,
+          78.812
+        ],
+        "r": 14.35,
+        "basis": "assumption",
+        "note": "8 mm zone around the tube"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          111.25,
+          30.75,
+          78.812
+        ],
+        "b": [
+          110.0,
+          30.0,
+          90.0
+        ],
+        "r": 14.35,
+        "basis": "assumption",
+        "note": "8 mm zone around the tube"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          0.0,
+          -2.0
+        ],
+        "b": [
+          0.0,
+          0.0,
+          22.0
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "turbo-side flange gusset zone"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          110.0,
+          30.0,
+          68.0
+        ],
+        "b": [
+          110.0,
+          30.0,
+          92.0
+        ],
+        "r": 17.0,
+        "basis": "assumption",
+        "note": "engine-side flange gusset zone"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          49.5,
+          8.25,
+          46.0
+        ],
+        "b": [
+          43.795,
+          21.035,
+          46.0
+        ],
+        "r": 9.0,
+        "basis": "assumption",
+        "note": "mount bracket zone"
+      }
+    ],
+    "solid": [
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          0.0,
+          -2.0
+        ],
+        "b": [
+          0.0,
+          0.0,
+          2.0
+        ],
+        "r": 15.0,
+        "basis": "assumption",
+        "note": "turbo-side flange disc"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -11.0,
+          0.0,
+          -2.0
+        ],
+        "b": [
+          -11.0,
+          0.0,
+          2.0
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "turbo-side flange bolt lobe"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          11.0,
+          0.0,
+          -2.0
+        ],
+        "b": [
+          11.0,
+          0.0,
+          2.0
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "turbo-side flange bolt lobe"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          110.0,
+          30.0,
+          88.0
+        ],
+        "b": [
+          110.0,
+          30.0,
+          92.0
+        ],
+        "r": 15.0,
+        "basis": "assumption",
+        "note": "engine-side flange disc"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          99.0,
+          30.0,
+          88.0
+        ],
+        "b": [
+          99.0,
+          30.0,
+          92.0
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "engine-side flange bolt lobe"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          121.0,
+          30.0,
+          88.0
+        ],
+        "b": [
+          121.0,
+          30.0,
+          92.0
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "engine-side flange bolt lobe"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          43.724,
+          21.003,
+          44.502
+        ],
+        "b": [
+          43.866,
+          21.067,
+          47.498
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "mid-span mount boss at the legacy tab hole (clip_tab_t, clip_tab_length_mm, thickness clip_tab_thickness_mm)"
+      }
+    ],
+    "void": [
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          -4.0
+        ],
+        "b": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "b": [
+          -0.051,
+          0.0,
+          1.505
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -0.051,
+          0.0,
+          1.505
+        ],
+        "b": [
+          -0.191,
+          0.0,
+          3.021
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -0.191,
+          0.0,
+          3.021
+        ],
+        "b": [
+          -0.4,
+          0.0,
+          4.543
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -0.4,
+          0.0,
+          4.543
+        ],
+        "b": [
+          -0.656,
+          0.0,
+          6.07
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -0.656,
+          0.0,
+          6.07
+        ],
+        "b": [
+          -0.94,
+          0.0,
+          7.601
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -0.94,
+          0.0,
+          7.601
+        ],
+        "b": [
+          -1.23,
+          0.0,
+          9.132
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -1.23,
+          0.0,
+          9.132
+        ],
+        "b": [
+          -1.507,
+          0.0,
+          10.661
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -1.507,
+          0.0,
+          10.661
+        ],
+        "b": [
+          -1.75,
+          0.0,
+          12.188
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -1.75,
+          0.0,
+          12.188
+        ],
+        "b": [
+          -1.938,
+          0.0,
+          13.708
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -1.938,
+          0.0,
+          13.708
+        ],
+        "b": [
+          -2.051,
+          0.0,
+          15.22
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -2.051,
+          0.0,
+          15.22
+        ],
+        "b": [
+          -2.068,
+          0.0,
+          16.722
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -2.068,
+          0.0,
+          16.722
+        ],
+        "b": [
+          -1.969,
+          0.0,
+          18.211
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -1.969,
+          0.0,
+          18.211
+        ],
+        "b": [
+          -1.733,
+          0.0,
+          19.686
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -1.733,
+          0.0,
+          19.686
+        ],
+        "b": [
+          -1.34,
+          0.0,
+          21.144
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -1.34,
+          0.0,
+          21.144
+        ],
+        "b": [
+          -0.769,
+          0.0,
+          22.582
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          -0.769,
+          0.0,
+          22.582
+        ],
+        "b": [
+          0.0,
+          0.0,
+          24.0
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.0,
+          0.0,
+          24.0
+        ],
+        "b": [
+          0.952,
+          -0.033,
+          25.43
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          0.952,
+          -0.033,
+          25.43
+        ],
+        "b": [
+          2.051,
+          -0.123,
+          26.898
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          2.051,
+          -0.123,
+          26.898
+        ],
+        "b": [
+          3.289,
+          -0.257,
+          28.395
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          3.289,
+          -0.257,
+          28.395
+        ],
+        "b": [
+          4.656,
+          -0.422,
+          29.906
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          4.656,
+          -0.422,
+          29.906
+        ],
+        "b": [
+          6.145,
+          -0.604,
+          31.422
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          6.145,
+          -0.604,
+          31.422
+        ],
+        "b": [
+          7.746,
+          -0.791,
+          32.93
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          7.746,
+          -0.791,
+          32.93
+        ],
+        "b": [
+          9.451,
+          -0.969,
+          34.418
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          9.451,
+          -0.969,
+          34.418
+        ],
+        "b": [
+          11.25,
+          -1.125,
+          35.875
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          11.25,
+          -1.125,
+          35.875
+        ],
+        "b": [
+          13.135,
+          -1.246,
+          37.289
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          13.135,
+          -1.246,
+          37.289
+        ],
+        "b": [
+          15.098,
+          -1.318,
+          38.648
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          15.098,
+          -1.318,
+          38.648
+        ],
+        "b": [
+          17.128,
+          -1.329,
+          39.941
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          17.128,
+          -1.329,
+          39.941
+        ],
+        "b": [
+          19.219,
+          -1.266,
+          41.156
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          19.219,
+          -1.266,
+          41.156
+        ],
+        "b": [
+          21.36,
+          -1.114,
+          42.281
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          21.36,
+          -1.114,
+          42.281
+        ],
+        "b": [
+          23.543,
+          -0.861,
+          43.305
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          23.543,
+          -0.861,
+          43.305
+        ],
+        "b": [
+          25.759,
+          -0.494,
+          44.215
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          25.759,
+          -0.494,
+          44.215
+        ],
+        "b": [
+          28.0,
+          0.0,
+          45.0
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          28.0,
+          0.0,
+          45.0
+        ],
+        "b": [
+          30.325,
+          0.642,
+          45.612
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          30.325,
+          0.642,
+          45.612
+        ],
+        "b": [
+          32.789,
+          1.43,
+          46.029
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          32.789,
+          1.43,
+          46.029
+        ],
+        "b": [
+          35.374,
+          2.347,
+          46.28
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          35.374,
+          2.347,
+          46.28
+        ],
+        "b": [
+          38.062,
+          3.375,
+          46.391
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          38.062,
+          3.375,
+          46.391
+        ],
+        "b": [
+          40.837,
+          4.497,
+          46.39
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          40.837,
+          4.497,
+          46.39
+        ],
+        "b": [
+          43.68,
+          5.695,
+          46.307
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          43.68,
+          5.695,
+          46.307
+        ],
+        "b": [
+          46.573,
+          6.952,
+          46.167
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          46.573,
+          6.952,
+          46.167
+        ],
+        "b": [
+          49.5,
+          8.25,
+          46.0
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          49.5,
+          8.25,
+          46.0
+        ],
+        "b": [
+          52.442,
+          9.571,
+          45.833
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          52.442,
+          9.571,
+          45.833
+        ],
+        "b": [
+          55.383,
+          10.898,
+          45.693
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          55.383,
+          10.898,
+          45.693
+        ],
+        "b": [
+          58.304,
+          12.214,
+          45.61
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          58.304,
+          12.214,
+          45.61
+        ],
+        "b": [
+          61.188,
+          13.5,
+          45.609
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          61.188,
+          13.5,
+          45.609
+        ],
+        "b": [
+          64.017,
+          14.739,
+          45.72
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          64.017,
+          14.739,
+          45.72
+        ],
+        "b": [
+          66.773,
+          15.914,
+          45.971
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          66.773,
+          15.914,
+          45.971
+        ],
+        "b": [
+          69.44,
+          17.007,
+          46.388
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          69.44,
+          17.007,
+          46.388
+        ],
+        "b": [
+          72.0,
+          18.0,
+          47.0
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          72.0,
+          18.0,
+          47.0
+        ],
+        "b": [
+          74.532,
+          18.937,
+          47.789
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          74.532,
+          18.937,
+          47.789
+        ],
+        "b": [
+          77.115,
+          19.869,
+          48.709
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          77.115,
+          19.869,
+          48.709
+        ],
+        "b": [
+          79.731,
+          20.793,
+          49.747
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          79.731,
+          20.793,
+          49.747
+        ],
+        "b": [
+          82.359,
+          21.703,
+          50.891
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          82.359,
+          21.703,
+          50.891
+        ],
+        "b": [
+          84.982,
+          22.596,
+          52.126
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          84.982,
+          22.596,
+          52.126
+        ],
+        "b": [
+          87.58,
+          23.467,
+          53.439
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          87.58,
+          23.467,
+          53.439
+        ],
+        "b": [
+          90.134,
+          24.311,
+          54.819
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          90.134,
+          24.311,
+          54.819
+        ],
+        "b": [
+          92.625,
+          25.125,
+          56.25
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          92.625,
+          25.125,
+          56.25
+        ],
+        "b": [
+          95.034,
+          25.904,
+          57.72
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          95.034,
+          25.904,
+          57.72
+        ],
+        "b": [
+          97.342,
+          26.643,
+          59.217
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          97.342,
+          26.643,
+          59.217
+        ],
+        "b": [
+          99.53,
+          27.338,
+          60.726
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          99.53,
+          27.338,
+          60.726
+        ],
+        "b": [
+          101.578,
+          27.984,
+          62.234
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          101.578,
+          27.984,
+          62.234
+        ],
+        "b": [
+          103.469,
+          28.578,
+          63.729
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          103.469,
+          28.578,
+          63.729
+        ],
+        "b": [
+          105.182,
+          29.115,
+          65.197
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          105.182,
+          29.115,
+          65.197
+        ],
+        "b": [
+          106.698,
+          29.591,
+          66.625
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          106.698,
+          29.591,
+          66.625
+        ],
+        "b": [
+          108.0,
+          30.0,
+          68.0
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          108.0,
+          30.0,
+          68.0
+        ],
+        "b": [
+          109.062,
+          30.33,
+          69.344
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          109.062,
+          30.33,
+          69.344
+        ],
+        "b": [
+          109.891,
+          30.574,
+          70.688
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          109.891,
+          30.574,
+          70.688
+        ],
+        "b": [
+          110.508,
+          30.743,
+          72.035
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          110.508,
+          30.743,
+          72.035
+        ],
+        "b": [
+          110.938,
+          30.844,
+          73.383
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          110.938,
+          30.844,
+          73.383
+        ],
+        "b": [
+          111.203,
+          30.886,
+          74.734
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          111.203,
+          30.886,
+          74.734
+        ],
+        "b": [
+          111.328,
+          30.879,
+          76.089
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          111.328,
+          30.879,
+          76.089
+        ],
+        "b": [
+          111.336,
+          30.831,
+          77.448
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          111.336,
+          30.831,
+          77.448
+        ],
+        "b": [
+          111.25,
+          30.75,
+          78.812
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          111.25,
+          30.75,
+          78.812
+        ],
+        "b": [
+          111.094,
+          30.646,
+          80.183
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          111.094,
+          30.646,
+          80.183
+        ],
+        "b": [
+          110.891,
+          30.527,
+          81.56
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          110.891,
+          30.527,
+          81.56
+        ],
+        "b": [
+          110.664,
+          30.403,
+          82.944
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          110.664,
+          30.403,
+          82.944
+        ],
+        "b": [
+          110.438,
+          30.281,
+          84.336
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          110.438,
+          30.281,
+          84.336
+        ],
+        "b": [
+          110.234,
+          30.171,
+          85.737
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          110.234,
+          30.171,
+          85.737
+        ],
+        "b": [
+          110.078,
+          30.082,
+          87.147
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          110.078,
+          30.082,
+          87.147
+        ],
+        "b": [
+          109.992,
+          30.022,
+          88.568
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          109.992,
+          30.022,
+          88.568
+        ],
+        "b": [
+          110.0,
+          30.0,
+          90.0
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "capsule",
+        "a": [
+          110.0,
+          30.0,
+          90.0
+        ],
+        "b": [
+          110.0,
+          30.0,
+          94.0
+        ],
+        "r": 5.15,
+        "basis": "assumption",
+        "note": "oil bore, same beams as TurboOilReturnLine.cs"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -11.0,
+          0.0,
+          -4.0
+        ],
+        "b": [
+          -11.0,
+          0.0,
+          4.0
+        ],
+        "r": 3.0,
+        "basis": "assumption",
+        "note": "turbo-side flange bolt hole"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -11.0,
+          0.0,
+          2.0
+        ],
+        "b": [
+          -11.0,
+          0.0,
+          8.0
+        ],
+        "r": 4.5,
+        "basis": "assumption",
+        "note": "turbo-side bolt-head seat and socket path (8 mm from the flange mid-plane, clear of the tube)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          11.0,
+          0.0,
+          -4.0
+        ],
+        "b": [
+          11.0,
+          0.0,
+          4.0
+        ],
+        "r": 3.0,
+        "basis": "assumption",
+        "note": "turbo-side flange bolt hole"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          11.0,
+          0.0,
+          2.0
+        ],
+        "b": [
+          11.0,
+          0.0,
+          8.0
+        ],
+        "r": 4.5,
+        "basis": "assumption",
+        "note": "turbo-side bolt-head seat and socket path (8 mm from the flange mid-plane, clear of the tube)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          99.0,
+          30.0,
+          86.0
+        ],
+        "b": [
+          99.0,
+          30.0,
+          94.0
+        ],
+        "r": 3.0,
+        "basis": "assumption",
+        "note": "engine-side flange bolt hole"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          99.0,
+          30.0,
+          88.0
+        ],
+        "b": [
+          99.0,
+          30.0,
+          82.0
+        ],
+        "r": 4.5,
+        "basis": "assumption",
+        "note": "engine-side bolt-head seat and socket path (8 mm from the flange mid-plane, clear of the tube)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          121.0,
+          30.0,
+          86.0
+        ],
+        "b": [
+          121.0,
+          30.0,
+          94.0
+        ],
+        "r": 3.0,
+        "basis": "assumption",
+        "note": "engine-side flange bolt hole"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          121.0,
+          30.0,
+          88.0
+        ],
+        "b": [
+          121.0,
+          30.0,
+          82.0
+        ],
+        "r": 4.5,
+        "basis": "assumption",
+        "note": "engine-side bolt-head seat and socket path (8 mm from the flange mid-plane, clear of the tube)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          43.605,
+          20.95,
+          42.005
+        ],
+        "b": [
+          43.985,
+          21.119,
+          49.995
+        ],
+        "r": 3.0,
+        "basis": "assumption",
+        "note": "mount hole (M5 clearance assumed)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          43.866,
+          21.067,
+          47.498
+        ],
+        "b": [
+          44.341,
+          21.278,
+          57.484
+        ],
+        "r": 5.0,
+        "basis": "assumption",
+        "note": "screw-head side of the mount kept free"
+      }
+    ],
+    "supports": [
+      {
+        "type": "cyl",
+        "a": [
+          -11.0,
+          0.0,
+          -2.5
+        ],
+        "b": [
+          -11.0,
+          0.0,
+          2.5
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "turbo-side flange bolted"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          11.0,
+          0.0,
+          -2.5
+        ],
+        "b": [
+          11.0,
+          0.0,
+          2.5
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "turbo-side flange bolted"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          99.0,
+          30.0,
+          87.5
+        ],
+        "b": [
+          99.0,
+          30.0,
+          92.5
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "engine-side flange bolted"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          121.0,
+          30.0,
+          87.5
+        ],
+        "b": [
+          121.0,
+          30.0,
+          92.5
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "engine-side flange bolted"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          43.7,
+          20.992,
+          44.003
+        ],
+        "b": [
+          43.89,
+          21.077,
+          47.997
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "mid-span mount screwed to the engine"
+      }
+    ],
+    "load_cases": [
+      {
+        "name": "transverse_y",
+        "basis": "assumption",
+        "note": "screen transverse_center_force_n 100 N (evidence/engineering-screen.json), 50 N at each quarter span, along y",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "sphere",
+                "c": [
+                  4.656,
+                  -0.422,
+                  29.906
+                ],
+                "r": 7.35
+              }
+            ],
+            "force_N": [
+              0,
+              50,
+              0
+            ]
+          },
+          {
+            "region": [
+              {
+                "type": "sphere",
+                "c": [
+                  101.578,
+                  27.984,
+                  62.234
+                ],
+                "r": 7.35
+              }
+            ],
+            "force_N": [
+              0,
+              50,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "transverse_z",
+        "basis": "assumption",
+        "note": "same 100 N along z (vertical vibration)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "sphere",
+                "c": [
+                  4.656,
+                  -0.422,
+                  29.906
+                ],
+                "r": 7.35
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              -50
+            ]
+          },
+          {
+            "region": [
+              {
+                "type": "sphere",
+                "c": [
+                  101.578,
+                  27.984,
+                  62.234
+                ],
+                "r": 7.35
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              -50
+            ]
+          }
+        ]
+      },
+      {
+        "name": "along_x",
+        "basis": "assumption",
+        "note": "same 100 N along x (no published value)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "sphere",
+                "c": [
+                  4.656,
+                  -0.422,
+                  29.906
+                ],
+                "r": 7.35
+              }
+            ],
+            "force_N": [
+              50,
+              0,
+              0
+            ]
+          },
+          {
+            "region": [
+              {
+                "type": "sphere",
+                "c": [
+                  101.578,
+                  27.984,
+                  62.234
+                ],
+                "r": 7.35
+              }
+            ],
+            "force_N": [
+              50,
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    ],
+    "volume_fraction": 0.15,
+    "filter_radius_mm": 4.5,
+    "iterations": 45
+  },
+  "shaping": {
+    "smooth_mm": 1.8,
+    "blend_mm": 0.35,
+    "blend_note": "PicoGK Smoothen offsets inward first: the blend stays below half the 1.2 mm tube wall",
+    "base_stl": "parts/picogk-catalog/out/993-ENG-TURBO-OIL-RETURN-LINE-IN625-F0-0001-notab.stl",
+    "lattice_grey": false
+  }
+}

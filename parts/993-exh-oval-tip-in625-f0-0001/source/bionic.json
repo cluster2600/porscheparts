@@ -1,0 +1,603 @@
+{
+  "part_id": "993-EXH-OVAL-TIP-IN625-F0-0001",
+  "method": "3D SIMP topology optimization (parts/picogk-catalog/bionic/topopt.py) of the structure between the exact thin flow shell and the published outlet envelope; the flow shell is an analysis_only band (stiffness inner_wall / element) printed from shaping.base_stl together with the exact clamp collar and outlet lip (analysis-only solids of stiffness 1), bore cut last. Region meshes: source/bionic_regions.py writes them to parts/picogk-catalog/out/bionic-regions/.",
+  "basis_note": "Interfaces and loads are NOT measured. Bore, collar and lip come from the F0 hypotheses of source/picogk.json; the slip collar is assumed clamped over its lower 18 mm. Inertia: screening mass 406 g (evidence/engineering-screen.json) x 20 g (assumed vibration / shock envelope, no published value); axial: the screen's axial_pressure_force_n 77.6 N plus the same inertia; ovalization: the screen's 30 kPa gauge pressure on the flare walls. Thermal growth is not a SIMP load.",
+  "generator": "bionic_regions.py (this folder) writes this file and the region meshes from source/picogk.json",
+  "optimization": {
+    "element_mm": 2.0,
+    "grid_min": [
+      -61.0,
+      -43.5,
+      0.0
+    ],
+    "grid_max": [
+      61.0,
+      43.5,
+      120.0
+    ],
+    "design": [
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/envelope-00.stl",
+        "basis": "published",
+        "note": "published 120 x 85 mm outlet envelope as an elliptic cylinder (z tiles), from 15 mm below the end of the slip fit to the outlet"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/envelope-01.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/envelope-02.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/envelope-03.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/envelope-04.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/envelope-05.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/envelope-06.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/envelope-07.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/envelope-08.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/envelope-09.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/envelope-10.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/envelope-11.stl"
+      }
+    ],
+    "solid": [
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/band-00.stl",
+        "analysis_only": true,
+        "stiffness_scale": 0.5,
+        "basis": "assumption",
+        "note": "exact 1 mm flow shell as a one-element band outside the bore (z tiles, stiffness 1 / 2); printed from shaping.base_stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/band-01.stl",
+        "analysis_only": true,
+        "stiffness_scale": 0.5
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/band-02.stl",
+        "analysis_only": true,
+        "stiffness_scale": 0.5
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/band-03.stl",
+        "analysis_only": true,
+        "stiffness_scale": 0.5
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/band-04.stl",
+        "analysis_only": true,
+        "stiffness_scale": 0.5
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/band-05.stl",
+        "analysis_only": true,
+        "stiffness_scale": 0.5
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/band-06.stl",
+        "analysis_only": true,
+        "stiffness_scale": 0.5
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/band-07.stl",
+        "analysis_only": true,
+        "stiffness_scale": 0.5
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/band-08.stl",
+        "analysis_only": true,
+        "stiffness_scale": 0.5
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/band-09.stl",
+        "analysis_only": true,
+        "stiffness_scale": 0.5
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/band-10.stl",
+        "analysis_only": true,
+        "stiffness_scale": 0.5
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/band-11.stl",
+        "analysis_only": true,
+        "stiffness_scale": 0.5
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/band-12.stl",
+        "analysis_only": true,
+        "stiffness_scale": 0.5
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/band-13.stl",
+        "analysis_only": true,
+        "stiffness_scale": 0.5
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/band-14.stl",
+        "analysis_only": true,
+        "stiffness_scale": 0.5
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/band-15.stl",
+        "analysis_only": true,
+        "stiffness_scale": 0.5
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/band-16.stl",
+        "analysis_only": true,
+        "stiffness_scale": 0.5
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/band-17.stl",
+        "analysis_only": true,
+        "stiffness_scale": 0.5
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/band-18.stl",
+        "analysis_only": true,
+        "stiffness_scale": 0.5
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/band-19.stl",
+        "analysis_only": true,
+        "stiffness_scale": 0.5
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/lip.stl",
+        "analysis_only": true,
+        "stiffness_scale": 1.0,
+        "basis": "assumption",
+        "note": "closed outlet lip, 4 mm axial, out to the published outlet envelope; printed from shaping.base_stl"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0,
+          0,
+          0
+        ],
+        "b": [
+          0,
+          0,
+          35.0
+        ],
+        "r": 32.9,
+        "analysis_only": true,
+        "stiffness_scale": 1.0,
+        "basis": "assumption",
+        "note": "slip / clamp collar over the slip depth, collar_wall_mm thick (outer radius 32.9 mm); printed from shaping.base_stl"
+      }
+    ],
+    "void": [
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-00.stl",
+        "basis": "assumption",
+        "note": "exact wetted bore of OvalExhaustTip.cs (slip bore, smoothstep loft to the oval), open at both ends, z tiles overlapping 0.5 mm"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-01.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-02.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-03.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-04.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-05.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-06.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-07.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-08.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-09.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-10.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-11.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-12.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-13.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-14.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-15.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-16.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-17.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-18.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-19.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-20.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-21.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-22.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-23.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-24.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-25.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-26.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-27.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-28.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-29.stl"
+      },
+      {
+        "type": "stl",
+        "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/bore-30.stl"
+      }
+    ],
+    "supports": [
+      {
+        "type": "cyl",
+        "a": [
+          0,
+          0,
+          -0.5
+        ],
+        "b": [
+          0,
+          0,
+          18.0
+        ],
+        "r": 33.5,
+        "basis": "assumption",
+        "note": "band clamp over the lower 18 mm of the slip collar"
+      }
+    ],
+    "load_cases": [
+      {
+        "name": "vertical_y",
+        "basis": "assumption",
+        "note": "406 g x 20 g = 79.7 N across the oval minor axis, half on the outlet lip, half on the mid-flare shell",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/lip.stl"
+              }
+            ],
+            "force_N": [
+              0.0,
+              -39.85,
+              0.0
+            ]
+          },
+          {
+            "region": [
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/midring-00.stl"
+              }
+            ],
+            "force_N": [
+              0.0,
+              -39.85,
+              0.0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "lateral_x",
+        "basis": "assumption",
+        "note": "same 79.7 N along the oval major axis",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/lip.stl"
+              }
+            ],
+            "force_N": [
+              39.85,
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "region": [
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/midring-00.stl"
+              }
+            ],
+            "force_N": [
+              39.85,
+              0.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "axial_z",
+        "basis": "assumption",
+        "note": "screen axial_pressure_force_n 77.6 N + 79.7 N inertia along the axis",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/lip.stl"
+              }
+            ],
+            "force_N": [
+              0.0,
+              0.0,
+              78.65
+            ]
+          },
+          {
+            "region": [
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/midring-00.stl"
+              }
+            ],
+            "force_N": [
+              0.0,
+              0.0,
+              78.65
+            ]
+          }
+        ]
+      },
+      {
+        "name": "pressure_ovalization",
+        "basis": "assumption",
+        "note": "screen_gauge_pressure_pa 30 kPa (evidence/engineering-screen.json) x projected flare areas: 219 N on each broad side, 174 N on each narrow side, on the shell band's wetted-side nodes (the oval section bends under pressure)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/skinpy-00.stl"
+              },
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/skinpy-01.stl"
+              },
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/skinpy-02.stl"
+              },
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/skinpy-03.stl"
+              },
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/skinpy-04.stl"
+              }
+            ],
+            "force_N": [
+              0,
+              219.0,
+              0
+            ]
+          },
+          {
+            "region": [
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/skinmy-00.stl"
+              },
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/skinmy-01.stl"
+              },
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/skinmy-02.stl"
+              },
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/skinmy-03.stl"
+              },
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/skinmy-04.stl"
+              }
+            ],
+            "force_N": [
+              0,
+              -219.0,
+              0
+            ]
+          },
+          {
+            "region": [
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/skinpx-00.stl"
+              },
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/skinpx-01.stl"
+              },
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/skinpx-02.stl"
+              },
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/skinpx-03.stl"
+              },
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/skinpx-04.stl"
+              }
+            ],
+            "force_N": [
+              174.0,
+              0,
+              0
+            ]
+          },
+          {
+            "region": [
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/skinmx-00.stl"
+              },
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/skinmx-01.stl"
+              },
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/skinmx-02.stl"
+              },
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/skinmx-03.stl"
+              },
+              {
+                "type": "stl",
+                "path": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/skinmx-04.stl"
+              }
+            ],
+            "force_N": [
+              -174.0,
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    ],
+    "volume_fraction": 0.221,
+    "filter_radius_mm": 5.0,
+    "iterations": 45,
+    "analysis_only_layers": 2,
+    "volume_fraction_note": "7903 fixed (analysis-only shell band, lip, collar) + 6% of 38191 free elements, over 46094 active"
+  },
+  "shaping": {
+    "smooth_mm": 2.5,
+    "blend_mm": 0.35,
+    "blend_note": "PicoGK Smoothen offsets inward first: the blend stays below half the 1 mm flow shell",
+    "base_stl": "parts/picogk-catalog/out/bionic-regions/993-EXH-OVAL-TIP-IN625-F0-0001/shell.stl",
+    "lattice_grey": false
+  }
+}

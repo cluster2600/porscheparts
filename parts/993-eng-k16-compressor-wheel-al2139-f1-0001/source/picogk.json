@@ -1,14 +1,14 @@
 {
   "part_id": "993-ENG-K16-COMPRESSOR-WHEEL-AL2139-F1-0001",
   "name": "K16 compressor wheel, Al2139 AM F1 iteration (PicoGK)",
-  "generator": "k16_compressor_wheel",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-eng-k16-compressor-wheel-al2139-f1-0001.json",
   "porsche_part_numbers": [],
   "safety_class": "prohibited_pending_engineering",
   "material_candidate": "EOS Aluminium Al2139 AM (comparison)",
   "density_g_cm3": 2.84,
   "voxel_mm": 0.2,
-  "picogk_enhancement": "Same real centrifugal wheel as the F0 PicoGK model but with the F1 root-to-tip blade taper (3.0 to 0.8 mm mains, 2.4 to 0.8 mm splitters) applied continuously along the span instead of four stepped boxes; smooth-union root fillets.",
+  "picogk_enhancement": "Bionic: the F1 blades (tapered roots), hub gas-path surface, rim ring and bore of the functional wheel are kept exactly (1.5 mm skin, shaping.base_stl); the hub interior behind them is re-grown by 3D SIMP topology optimization (bionic.json, topopt.py) for the engineering screen's blade centrifugal forces at its derived 103,464 rpm (2654 N per main blade, 1167 N per splitter), its 1.21 N m torque and an assumed 205 N axial gas thrust, the wheel clamped at the bore boss. PicoGK smooths the density into organic spokes and webs from the bore boss to the blade roots, open through the back face. Modelled back face up (turned 180 deg about X). Loads come from a synthetic screen, not measurements; not a stress, burst or balance result.",
   "parameters": {
     "exducer_diameter_mm": {
       "value": 60.5,
@@ -161,5 +161,10 @@
   "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
   "envelope": [
     "exducer_diameter_mm"
-  ]
+  ],
+  "envelope_axes": {
+    "exducer_diameter_mm": "x"
+  },
+  "max_tris": 90000,
+  "envelope_mode": "max"
 }

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pictures and a build-up video of a part's LPBF print simulation.
+"""Pictures and a layer-stack animation of a part's LPBF geometry preview.
 
 Reads the published geometry report in `parts/<slug>/evidence/lpbf-f0/`,
 checks that the analysed surface still has the hash the report recorded,
@@ -12,9 +12,9 @@ with the same kernel transform. It then draws:
 - `build.mp4` and `build.gif`: the part growing layer by layer.
 
 The support proxy is recomputed for the pictures at a coarser step than the
-report (0.5 mm layers, 1 mm raster): it shows where supports go, the report's
-numbers stay the reference. These are illustrations of a geometric
-simulation, not an EOSPRINT build, a distortion result or a print release.
+report (0.5 mm layers, 1 mm raster): it marks hypothetical support regions,
+not a support design. The 45 degree rule is a geometric heuristic, not a
+machine/material capability. No metal process physics is calculated.
 
 Run in the cadsim image, with PYTHONPATH pointing at shapely, rtree,
 networkx, imageio and imageio-ffmpeg (see `make print-visuals`).
@@ -59,9 +59,10 @@ def load_inputs(slug: str):
     folder = ROOT / f"parts/{slug}/evidence/lpbf-f0"
     report_path = next(folder.glob("*-lpbf-geometry-report.json"))
     report = json.loads(report_path.read_text(encoding="utf-8"))
-    surface = next((ROOT / f"parts/{slug}/derived").glob("*.stl"))
-    if sha256(surface) != report["analysis_surface"]["sha256"]:
-        raise SystemExit(f"{surface.name} is not the surface the simulation analysed; rerun the simulation first.")
+    surface = next((path for path in sorted((ROOT / f"parts/{slug}/derived").glob("*.stl"))
+                    if sha256(path) == report["analysis_surface"]["sha256"]), None)
+    if surface is None:
+        raise SystemExit(f"{slug} has no surface matching the geometric report; rerun the screening first.")
     mesh = trimesh.load_mesh(surface, process=True)
     return report, mesh
 
@@ -167,11 +168,12 @@ def render_build_plate(out: Path, part_mesh, supports, size, report) -> None:
         p.add_mesh(supports, color=SUPPORT_COLOR, opacity=0.55)
     s = report["full_build_slicing"]
     p.add_text(
-        f"{report['part_id']}\n"
+        f"METAL LPBF GEOMETRY PREVIEW - {report['part_id']}\n"
         f"orientation {report['selected_candidate_orientation']}, {s['layer_count']:,} layers of "
         f"{s['layer_thickness_mm'] * 1000:.0f} um, {s['build_height_mm']:.1f} mm high\n"
-        f"blue: part   orange: support proxy (visual, 0.5 mm / 1 mm)\n"
-        "geometric simulation only - printing not authorized",
+        "blue: part   orange: HYPOTHETICAL support regions\n"
+        "45 deg geometric heuristic; visual step 0.5 mm / 1 mm\n"
+        "NO process physics or qualified support design - printing not authorized",
         position="upper_left", font_size=10, color="black",
     )
     frame_camera(p, size)
@@ -228,10 +230,11 @@ def render_layers(out: Path, z, layers, unsupported, support, bounds, size, repo
                    f"z = {z[index]:.1f} mm")
     fig.suptitle(
         f"{report['part_id']} - layer cross-sections on the {size[0]:.0f} x {size[1]:.0f} mm plate\n"
-        "blue: part   red: region needing support   orange: support columns (visual proxy)",
+        "GEOMETRY ONLY - blue: part   red: 45 deg heuristic flags   orange: hypothetical supports\n"
+        "No process physics or qualified support design - printing not authorized",
         fontsize=10,
     )
-    fig.tight_layout()
+    fig.tight_layout(h_pad=2.5)
     fig.savefig(out)
     plt.close(fig)
 
@@ -273,11 +276,12 @@ def render_video(folder: Path, part_mesh, supports, z, layers, unsupported, supp
         draw_slice(ax2, layers[index], unsupported[index], support[index], bounds, size,
                    f"layer at z = {z[index]:.1f} mm")
         fig.suptitle(
-            f"{report['part_id']} - LPBF build simulation, orientation "
+            f"{report['part_id']} - METAL LPBF GEOMETRY PREVIEW, orientation "
             f"{report['selected_candidate_orientation']}, {100.0 * h / height:.0f} % "
             f"({int(h / report['full_build_slicing']['layer_thickness_mm']):,} of "
             f"{report['full_build_slicing']['layer_count']:,} layers)\n"
-            "geometric simulation only: no laser path, distortion or recoater model - printing not authorized",
+            "Layer-stack animation, not laser scanning - orange: HYPOTHETICAL support regions\n"
+            "45 deg heuristic; NO process physics or qualified support design - printing not authorized",
             fontsize=10,
         )
         fig.canvas.draw()
@@ -285,7 +289,7 @@ def render_video(folder: Path, part_mesh, supports, z, layers, unsupported, supp
         plt.close(fig)
         frames_mp4.append(rgb)
         if frame % 2 == 0:
-            frames_gif.append(rgb[::2, ::2])
+            frames_gif.append(rgb)
     p.close()
     hold = [frames_mp4[-1]] * 36
     imageio.mimwrite(folder / "build.mp4", frames_mp4 + hold, fps=12, codec="libx264",
@@ -322,7 +326,7 @@ def main() -> int:
         "visual_support_proxy": {"layer_mm": VISUAL_LAYER_MM, "raster_mm": VISUAL_RASTER_MM,
                                  "overhang_deg": OVERHANG_DEG},
         "files": sorted(p.name for p in folder.iterdir() if p.name != "visuals.json"),
-        "classification": "illustration of a geometric print simulation; not a build file, distortion result or print release",
+        "classification": "metal LPBF geometry preview with hypothetical support regions; no process physics or qualified support design; not a build file or print release",
     }
     (folder / "visuals.json").write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(record, indent=2))

@@ -1,14 +1,14 @@
 {
   "part_id": "993-ENG-UPPER-VALVE-COVER-ALSI10MG-F0-0001",
-  "name": "Upper valve cover with COP towers, F0 AlSi10Mg concept (PicoGK)",
-  "generator": "valve_cover_cop",
+  "name": "Upper valve cover with COP towers, AlSi10Mg bionic-ribbed F0 concept (PicoGK)",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-eng-upper-valve-cover-alsi10mg-f0-0001.json",
   "porsche_part_numbers": [],
   "safety_class": "prohibited_pending_engineering",
   "material_candidate": "AlSi10Mg LPBF T6 (comparison only)",
   "density_g_cm3": 2.67,
   "voxel_mm": 0.45,
-  "picogk_enhancement": "Domed 3 mm shell with rounded top edges on a perimeter gasket flange instead of a solid-looking box; bolt bosses in scalloped wall pockets, filleted roof fins, three coil-on-plug towers with through bores and coil screw ears; conformal hollowing after the outer form is filleted, open oil side.",
+  "picogk_enhancement": "Bionic: the exterior ribbing is grown by 3D SIMP topology optimisation (bionic.json, topopt.py) in an 8 mm layer outside a 2 mm sealing skin, for a stated 3.2 kN gasket reaction between the ten clamped bolt bosses and 450 N coil loads (lateral and vertical) on the three coil-on-plug towers; PicoGK smooths it into organic ribs fused with the exact skin, gasket flange, bosses, towers and screw ears (engine/bionic_bases.py). Bolt holes, nut pockets, plug bores and the cam space stay clear. Loads are assumptions, not measurements.",
   "parameters": {
     "length_mm": {
       "value": 220.0,
@@ -32,18 +32,18 @@
       "note": "F0 hypothesis"
     },
     "roof_thickness_mm": {
-      "value": 3.0,
+      "value": 2.0,
       "unit": "mm",
       "basis": "assumption",
       "source": null,
-      "note": "F0 hypothesis"
+      "note": "bionic: 2 mm sealing skin (was 3 mm), stiffness from the grown ribs"
     },
     "wall_thickness_mm": {
-      "value": 3.0,
+      "value": 2.0,
       "unit": "mm",
       "basis": "assumption",
       "source": null,
-      "note": "shell wall; concept used a 6 mm solid side band"
+      "note": "bionic: 2 mm conformal skin (was 3 mm; concept used a 6 mm solid side band)"
     },
     "side_flange_width_mm": {
       "value": 6.0,
@@ -185,40 +185,19 @@
       "source": null,
       "note": "F0 hypothesis"
     },
-    "fin_count": {
-      "value": 6,
-      "unit": "count",
-      "basis": "assumption",
-      "source": null,
-      "note": "F0 hypothesis"
-    },
-    "fin_length_mm": {
-      "value": 190.0,
-      "unit": "mm",
-      "basis": "assumption",
-      "source": null,
-      "note": "F0 hypothesis"
-    },
-    "fin_thickness_mm": {
-      "value": 2.5,
-      "unit": "mm",
-      "basis": "assumption",
-      "source": null,
-      "note": "F0 hypothesis"
-    },
-    "fin_height_mm": {
+    "rib_layer_mm": {
       "value": 8.0,
       "unit": "mm",
       "basis": "assumption",
       "source": null,
-      "note": "F0 hypothesis"
+      "note": "bionic: depth of the rib layer outside the skin open to the optimiser (old fins were 8 mm high)"
     },
-    "fin_pitch_y_mm": {
-      "value": 12.0,
+    "overall_height_mm": {
+      "value": 45.0,
       "unit": "mm",
       "basis": "assumption",
       "source": null,
-      "note": "F0 hypothesis (fins at -30..30)"
+      "note": "shell 25 mm + COP tower 20 mm (F0 hypothesis)"
     }
   },
   "open_interfaces": [
@@ -229,5 +208,15 @@
     "lower cover and turbo clearances"
   ],
   "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file; prohibited pending engineering, never to be installed in an engine",
-  "envelope": []
+  "envelope": [
+    "length_mm",
+    "width_mm",
+    "overall_height_mm"
+  ],
+  "envelope_axes": {
+    "length_mm": "x",
+    "width_mm": "y",
+    "overall_height_mm": "z"
+  },
+  "envelope_mode": "max"
 }

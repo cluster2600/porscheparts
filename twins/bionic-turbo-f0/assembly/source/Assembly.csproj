@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <StartupObject>BionicTurboAssembly.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="PicoGK" Version="2.3.0" />
+    <Compile Include="../../../../parts/picogk-catalog/common/*.cs" Link="common/%(Filename)%(Extension)" />
+    <Compile Include="../../../../parts/picogk-catalog/rotating/RotKit.cs" Link="RotKit.cs" />
+    <Compile Include="../../../../parts/picogk-catalog/rotating/CompressorWheel.cs" Link="CompressorWheel.cs" />
+    <Compile Include="../../../../parts/picogk-catalog/rotating/TurbineWheel.cs" Link="TurbineWheel.cs" />
+  </ItemGroup>
+</Project>

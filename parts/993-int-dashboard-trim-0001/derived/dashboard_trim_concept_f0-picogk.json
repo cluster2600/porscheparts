@@ -2,23 +2,23 @@
   "part_id": "993-INT-DASHBOARD-TRIM-0001",
   "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
   "kernel": "PicoGK Core Library 26.2.0",
-  "generator": "dashboard_trim_panel",
+  "generator": "bionic_topology",
   "parameters": "parts/993-int-dashboard-trim-0001/source/picogk.json",
   "generator_report": {
     "voxel_mm": 0.75,
-    "triangles": 2493476,
-    "volume_cm3": 829.15,
-    "mass_estimate_g": 1285.2,
-    "seconds": 51454.5
+    "triangles": 2431440,
+    "volume_cm3": 947.9,
+    "mass_estimate_g": 1469.2,
+    "seconds": 58.6
   },
-  "published_triangles": 30000,
+  "published_triangles": 29999,
   "display_smoothing": {
     "filter": "taubin",
     "iterations": 30,
     "pass_band": 0.05,
-    "max_bounds_shift_mm": 0.094
+    "max_bounds_shift_mm": 0.096
   },
-  "published_sha256": "4fc92f7932cb89d03bb5164bc64ab7eb6e677aa4e7b0114bbfd76d4a0bdce8a3",
+  "published_sha256": "6260573d339fe541d8f7936504dd5888dfad01f9b09890a75b90fb72c8673c2f",
   "legacy_bbox_mm": [
     1350.0,
     120.0,
@@ -31,16 +31,44 @@
     "main_body_edges": {
       "open": 0,
       "non_manifold": 0,
-      "total": 3740172
+      "total": 3647088
     },
-    "degenerate_faces_removed": 28,
-    "volume_cm3": 829.15,
+    "degenerate_faces_removed": 48,
+    "volume_cm3": 947.9,
     "bbox_mm": [
-      1346.7,
-      115.7,
-      60.0
+      1345.8,
+      115.5,
+      59.9
     ],
-    "envelope_checks": [],
+    "envelope_checks": [
+      {
+        "parameter": "length_mm",
+        "basis": "assumption",
+        "value_mm": 1350.0,
+        "axis": "x",
+        "model_extent_mm": 1345.78,
+        "mode": "max",
+        "ok": true
+      },
+      {
+        "parameter": "depth_mm",
+        "basis": "assumption",
+        "value_mm": 120.0,
+        "axis": "y",
+        "model_extent_mm": 115.51,
+        "mode": "max",
+        "ok": true
+      },
+      {
+        "parameter": "height_mm",
+        "basis": "assumption",
+        "value_mm": 60.0,
+        "axis": "z",
+        "model_extent_mm": 59.87,
+        "mode": "max",
+        "ok": true
+      }
+    ],
     "pass": true
   },
   "note": "PicoGK concept model; not a print file, not evidence of fit, function or safety."

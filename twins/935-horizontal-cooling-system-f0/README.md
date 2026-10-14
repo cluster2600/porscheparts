@@ -1,5 +1,12 @@
 # Système horizontal 935 — préparation de la référence
 
+Le 12 octobre, la [chaîne native 935 avec essai Qwen](../../docs/research/935-horizontal-cooling/NATIVE_935_PIPELINE.md)
+reconstruit séparément les neuf pales dans PicoGK, conserve l'entraînement
+observé et assemble une admission avec des enveloppes moteur à six cylindres.
+Les dimensions moteur, les poses et l'échelle restent des hypothèses ; ce
+résultat n'établit pas le montage historique. Le contexte 917 de la scène
+précédente est exclu de cette chaîne active.
+
 Campagne du 5 octobre : le
 [coordinateur de reconstruction](source/run_reconstruction.py) produit les
 sections mesurées de neuf régions de pales, des lofts PicoGK à trois résolutions,

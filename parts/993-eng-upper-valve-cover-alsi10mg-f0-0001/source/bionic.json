@@ -1,0 +1,1638 @@
+{
+  "part_id": "993-ENG-UPPER-VALVE-COVER-ALSI10MG-F0-0001",
+  "method": "3D SIMP topology optimization (parts/picogk-catalog/bionic/topopt.py), then PicoGK smoothing and exact functional features",
+  "basis_note": "The cover footprint, bolt pattern, towers and gasket line are F0 hypotheses (no measured head datum, gasket or coil interface). The gasket reaction and coil loads are stated assumptions, not measurements. The 2 mm skin, gasket flange, bosses and towers are fixed (shaping.base_stl from engine/bionic_bases.py; primitive subsets of them in the FE model); only the exterior ribbing that carries the clamp load between the bolts and the coil loads is optimised, in a rib layer that never enters the cam space.",
+  "optimization": {
+    "element_mm": 2.0,
+    "grid_min": [
+      -112,
+      -48.5,
+      -1
+    ],
+    "grid_max": [
+      112,
+      48.5,
+      47
+    ],
+    "design": [
+      {
+        "type": "box",
+        "min": [
+          -104.0,
+          -41.5,
+          23.5
+        ],
+        "max": [
+          104.0,
+          41.5,
+          33.0
+        ],
+        "basis": "assumption",
+        "note": "8 mm rib layer over the roof (roof skin 23..25)"
+      },
+      {
+        "type": "box",
+        "min": [
+          102.5,
+          -27.5,
+          1.5
+        ],
+        "max": [
+          110.0,
+          27.5,
+          33.0
+        ],
+        "basis": "assumption",
+        "note": "rib layer on the +x end wall, out to the 110 mm flange edge"
+      },
+      {
+        "type": "box",
+        "min": [
+          -110.0,
+          -27.5,
+          1.5
+        ],
+        "max": [
+          -102.5,
+          27.5,
+          33.0
+        ],
+        "basis": "assumption",
+        "note": "rib layer on the -x end wall"
+      },
+      {
+        "type": "box",
+        "min": [
+          -90.0,
+          40.0,
+          1.5
+        ],
+        "max": [
+          90.0,
+          47.5,
+          33.0
+        ],
+        "basis": "assumption",
+        "note": "rib layer on the +y side wall, out to the 47.5 mm flange edge"
+      },
+      {
+        "type": "box",
+        "min": [
+          -90.0,
+          -47.5,
+          1.5
+        ],
+        "max": [
+          90.0,
+          -40.0,
+          33.0
+        ],
+        "basis": "assumption",
+        "note": "rib layer on the -y side wall"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -106.5,
+          -27.5,
+          1.5
+        ],
+        "b": [
+          -106.5,
+          -27.5,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -105.93777613376963,
+          -31.77051424419159,
+          1.5
+        ],
+        "b": [
+          -105.93777613376963,
+          -31.77051424419159,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -104.28941916244324,
+          -35.75,
+          1.5
+        ],
+        "b": [
+          -104.28941916244324,
+          -35.75,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -101.66726188957803,
+          -39.167261889578036,
+          1.5
+        ],
+        "b": [
+          -101.66726188957803,
+          -39.167261889578036,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -98.25,
+          -41.78941916244324,
+          1.5
+        ],
+        "b": [
+          -98.25,
+          -41.78941916244324,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -94.27051424419159,
+          -43.43777613376963,
+          1.5
+        ],
+        "b": [
+          -94.27051424419159,
+          -43.43777613376963,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -90.0,
+          -44.0,
+          1.5
+        ],
+        "b": [
+          -90.0,
+          -44.0,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -106.5,
+          27.5,
+          1.5
+        ],
+        "b": [
+          -106.5,
+          27.5,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -105.93777613376963,
+          31.77051424419159,
+          1.5
+        ],
+        "b": [
+          -105.93777613376963,
+          31.77051424419159,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -104.28941916244324,
+          35.75,
+          1.5
+        ],
+        "b": [
+          -104.28941916244324,
+          35.75,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -101.66726188957803,
+          39.167261889578036,
+          1.5
+        ],
+        "b": [
+          -101.66726188957803,
+          39.167261889578036,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -98.25,
+          41.78941916244324,
+          1.5
+        ],
+        "b": [
+          -98.25,
+          41.78941916244324,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -94.27051424419159,
+          43.43777613376963,
+          1.5
+        ],
+        "b": [
+          -94.27051424419159,
+          43.43777613376963,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -90.0,
+          44.0,
+          1.5
+        ],
+        "b": [
+          -90.0,
+          44.0,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          106.5,
+          -27.5,
+          1.5
+        ],
+        "b": [
+          106.5,
+          -27.5,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          105.93777613376963,
+          -31.77051424419159,
+          1.5
+        ],
+        "b": [
+          105.93777613376963,
+          -31.77051424419159,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          104.28941916244324,
+          -35.75,
+          1.5
+        ],
+        "b": [
+          104.28941916244324,
+          -35.75,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          101.66726188957803,
+          -39.167261889578036,
+          1.5
+        ],
+        "b": [
+          101.66726188957803,
+          -39.167261889578036,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          98.25,
+          -41.78941916244324,
+          1.5
+        ],
+        "b": [
+          98.25,
+          -41.78941916244324,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          94.27051424419159,
+          -43.43777613376963,
+          1.5
+        ],
+        "b": [
+          94.27051424419159,
+          -43.43777613376963,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          90.0,
+          -44.0,
+          1.5
+        ],
+        "b": [
+          90.0,
+          -44.0,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          106.5,
+          27.5,
+          1.5
+        ],
+        "b": [
+          106.5,
+          27.5,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          105.93777613376963,
+          31.77051424419159,
+          1.5
+        ],
+        "b": [
+          105.93777613376963,
+          31.77051424419159,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          104.28941916244324,
+          35.75,
+          1.5
+        ],
+        "b": [
+          104.28941916244324,
+          35.75,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          101.66726188957803,
+          39.167261889578036,
+          1.5
+        ],
+        "b": [
+          101.66726188957803,
+          39.167261889578036,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          98.25,
+          41.78941916244324,
+          1.5
+        ],
+        "b": [
+          98.25,
+          41.78941916244324,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          94.27051424419159,
+          43.43777613376963,
+          1.5
+        ],
+        "b": [
+          94.27051424419159,
+          43.43777613376963,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          90.0,
+          44.0,
+          1.5
+        ],
+        "b": [
+          90.0,
+          44.0,
+          33.0
+        ],
+        "r": 3.5,
+        "basis": "assumption",
+        "note": "rib layer around the plan corner (skin corner r 14, flange corner r 20)"
+      }
+    ],
+    "solid": [
+      {
+        "type": "box",
+        "min": [
+          -101.0,
+          -38.5,
+          23.5
+        ],
+        "max": [
+          101.0,
+          38.5,
+          24.5
+        ],
+        "basis": "assumption",
+        "note": "roof skin 2 mm (z 23..25) in the FE model; exact skin = shaping.base_stl"
+      },
+      {
+        "type": "box",
+        "min": [
+          102.5,
+          -27.5,
+          1.5
+        ],
+        "max": [
+          103.5,
+          27.5,
+          16.0
+        ],
+        "basis": "assumption",
+        "note": "+x end-wall skin"
+      },
+      {
+        "type": "box",
+        "min": [
+          -103.5,
+          -27.5,
+          1.5
+        ],
+        "max": [
+          -102.5,
+          27.5,
+          16.0
+        ],
+        "basis": "assumption",
+        "note": "-x end-wall skin"
+      },
+      {
+        "type": "box",
+        "min": [
+          -90.0,
+          40.0,
+          1.5
+        ],
+        "max": [
+          90.0,
+          41.0,
+          16.0
+        ],
+        "basis": "assumption",
+        "note": "+y side-wall skin"
+      },
+      {
+        "type": "box",
+        "min": [
+          -90.0,
+          -41.0,
+          1.5
+        ],
+        "max": [
+          90.0,
+          -40.0,
+          16.0
+        ],
+        "basis": "assumption",
+        "note": "-y side-wall skin"
+      },
+      {
+        "type": "box",
+        "min": [
+          -90.0,
+          42.0,
+          1.5
+        ],
+        "max": [
+          90.0,
+          47.0,
+          5.5
+        ],
+        "basis": "assumption",
+        "note": "gasket flange 6 mm, +y side"
+      },
+      {
+        "type": "box",
+        "min": [
+          -90.0,
+          -47.0,
+          1.5
+        ],
+        "max": [
+          90.0,
+          -42.0,
+          5.5
+        ],
+        "basis": "assumption",
+        "note": "gasket flange, -y side"
+      },
+      {
+        "type": "box",
+        "min": [
+          104.5,
+          -27.5,
+          1.5
+        ],
+        "max": [
+          109.5,
+          27.5,
+          5.5
+        ],
+        "basis": "assumption",
+        "note": "gasket flange, +x end"
+      },
+      {
+        "type": "box",
+        "min": [
+          -109.5,
+          -27.5,
+          1.5
+        ],
+        "max": [
+          -104.5,
+          27.5,
+          5.5
+        ],
+        "basis": "assumption",
+        "note": "gasket flange, -x end"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -95.0,
+          -41.5,
+          1.5
+        ],
+        "b": [
+          -95.0,
+          -41.5,
+          7.5
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "bolt boss 12 mm x 8 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -95.0,
+          41.5,
+          1.5
+        ],
+        "b": [
+          -95.0,
+          41.5,
+          7.5
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "bolt boss 12 mm x 8 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -47.5,
+          -41.5,
+          1.5
+        ],
+        "b": [
+          -47.5,
+          -41.5,
+          7.5
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "bolt boss 12 mm x 8 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -47.5,
+          41.5,
+          1.5
+        ],
+        "b": [
+          -47.5,
+          41.5,
+          7.5
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "bolt boss 12 mm x 8 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          -41.5,
+          1.5
+        ],
+        "b": [
+          0.0,
+          -41.5,
+          7.5
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "bolt boss 12 mm x 8 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          41.5,
+          1.5
+        ],
+        "b": [
+          0.0,
+          41.5,
+          7.5
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "bolt boss 12 mm x 8 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          47.5,
+          -41.5,
+          1.5
+        ],
+        "b": [
+          47.5,
+          -41.5,
+          7.5
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "bolt boss 12 mm x 8 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          47.5,
+          41.5,
+          1.5
+        ],
+        "b": [
+          47.5,
+          41.5,
+          7.5
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "bolt boss 12 mm x 8 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          95.0,
+          -41.5,
+          1.5
+        ],
+        "b": [
+          95.0,
+          -41.5,
+          7.5
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "bolt boss 12 mm x 8 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          95.0,
+          41.5,
+          1.5
+        ],
+        "b": [
+          95.0,
+          41.5,
+          7.5
+        ],
+        "r": 5.5,
+        "basis": "assumption",
+        "note": "bolt boss 12 mm x 8 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -70.0,
+          0.0,
+          23.5
+        ],
+        "b": [
+          -70.0,
+          0.0,
+          43.8
+        ],
+        "r": 11.0,
+        "basis": "assumption",
+        "note": "coil-on-plug tower 24 mm OD"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          0.0,
+          23.5
+        ],
+        "b": [
+          0.0,
+          0.0,
+          43.8
+        ],
+        "r": 11.0,
+        "basis": "assumption",
+        "note": "coil-on-plug tower 24 mm OD"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          70.0,
+          0.0,
+          23.5
+        ],
+        "b": [
+          70.0,
+          0.0,
+          43.8
+        ],
+        "r": 11.0,
+        "basis": "assumption",
+        "note": "coil-on-plug tower 24 mm OD"
+      }
+    ],
+    "void": [
+      {
+        "type": "cyl",
+        "a": [
+          -95.0,
+          -41.5,
+          -1.0
+        ],
+        "b": [
+          -95.0,
+          -41.5,
+          10.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "M6 bolt clearance 6.6 mm at (-95, -41.5)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -95.0,
+          -41.5,
+          8.0
+        ],
+        "b": [
+          -95.0,
+          -41.5,
+          50.0
+        ],
+        "r": 7.5,
+        "basis": "assumption",
+        "note": "nut/socket access pocket above the boss (previous scallop)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -95.0,
+          41.5,
+          -1.0
+        ],
+        "b": [
+          -95.0,
+          41.5,
+          10.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "M6 bolt clearance 6.6 mm at (-95, 41.5)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -95.0,
+          41.5,
+          8.0
+        ],
+        "b": [
+          -95.0,
+          41.5,
+          50.0
+        ],
+        "r": 7.5,
+        "basis": "assumption",
+        "note": "nut/socket access pocket above the boss (previous scallop)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -47.5,
+          -41.5,
+          -1.0
+        ],
+        "b": [
+          -47.5,
+          -41.5,
+          10.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "M6 bolt clearance 6.6 mm at (-47.5, -41.5)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -47.5,
+          -41.5,
+          8.0
+        ],
+        "b": [
+          -47.5,
+          -41.5,
+          50.0
+        ],
+        "r": 7.5,
+        "basis": "assumption",
+        "note": "nut/socket access pocket above the boss (previous scallop)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -47.5,
+          41.5,
+          -1.0
+        ],
+        "b": [
+          -47.5,
+          41.5,
+          10.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "M6 bolt clearance 6.6 mm at (-47.5, 41.5)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -47.5,
+          41.5,
+          8.0
+        ],
+        "b": [
+          -47.5,
+          41.5,
+          50.0
+        ],
+        "r": 7.5,
+        "basis": "assumption",
+        "note": "nut/socket access pocket above the boss (previous scallop)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          -41.5,
+          -1.0
+        ],
+        "b": [
+          0.0,
+          -41.5,
+          10.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "M6 bolt clearance 6.6 mm at (0, -41.5)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          -41.5,
+          8.0
+        ],
+        "b": [
+          0.0,
+          -41.5,
+          50.0
+        ],
+        "r": 7.5,
+        "basis": "assumption",
+        "note": "nut/socket access pocket above the boss (previous scallop)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          41.5,
+          -1.0
+        ],
+        "b": [
+          0.0,
+          41.5,
+          10.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "M6 bolt clearance 6.6 mm at (0, 41.5)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          41.5,
+          8.0
+        ],
+        "b": [
+          0.0,
+          41.5,
+          50.0
+        ],
+        "r": 7.5,
+        "basis": "assumption",
+        "note": "nut/socket access pocket above the boss (previous scallop)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          47.5,
+          -41.5,
+          -1.0
+        ],
+        "b": [
+          47.5,
+          -41.5,
+          10.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "M6 bolt clearance 6.6 mm at (47.5, -41.5)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          47.5,
+          -41.5,
+          8.0
+        ],
+        "b": [
+          47.5,
+          -41.5,
+          50.0
+        ],
+        "r": 7.5,
+        "basis": "assumption",
+        "note": "nut/socket access pocket above the boss (previous scallop)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          47.5,
+          41.5,
+          -1.0
+        ],
+        "b": [
+          47.5,
+          41.5,
+          10.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "M6 bolt clearance 6.6 mm at (47.5, 41.5)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          47.5,
+          41.5,
+          8.0
+        ],
+        "b": [
+          47.5,
+          41.5,
+          50.0
+        ],
+        "r": 7.5,
+        "basis": "assumption",
+        "note": "nut/socket access pocket above the boss (previous scallop)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          95.0,
+          -41.5,
+          -1.0
+        ],
+        "b": [
+          95.0,
+          -41.5,
+          10.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "M6 bolt clearance 6.6 mm at (95, -41.5)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          95.0,
+          -41.5,
+          8.0
+        ],
+        "b": [
+          95.0,
+          -41.5,
+          50.0
+        ],
+        "r": 7.5,
+        "basis": "assumption",
+        "note": "nut/socket access pocket above the boss (previous scallop)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          95.0,
+          41.5,
+          -1.0
+        ],
+        "b": [
+          95.0,
+          41.5,
+          10.0
+        ],
+        "r": 3.3,
+        "basis": "assumption",
+        "note": "M6 bolt clearance 6.6 mm at (95, 41.5)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          95.0,
+          41.5,
+          8.0
+        ],
+        "b": [
+          95.0,
+          41.5,
+          50.0
+        ],
+        "r": 7.5,
+        "basis": "assumption",
+        "note": "nut/socket access pocket above the boss (previous scallop)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -70.0,
+          0.0,
+          21.0
+        ],
+        "b": [
+          -70.0,
+          0.0,
+          47.0
+        ],
+        "r": 7.0,
+        "basis": "assumption",
+        "note": "coil-on-plug bore 14 mm, tower x = -70"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -53.0,
+          0.0,
+          29.0
+        ],
+        "b": [
+          -53.0,
+          0.0,
+          47.0
+        ],
+        "r": 2.1,
+        "basis": "assumption",
+        "note": "coil retaining-screw hole 4.2 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          0.0,
+          21.0
+        ],
+        "b": [
+          0.0,
+          0.0,
+          47.0
+        ],
+        "r": 7.0,
+        "basis": "assumption",
+        "note": "coil-on-plug bore 14 mm, tower x = 0"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          17.0,
+          0.0,
+          29.0
+        ],
+        "b": [
+          17.0,
+          0.0,
+          47.0
+        ],
+        "r": 2.1,
+        "basis": "assumption",
+        "note": "coil retaining-screw hole 4.2 mm"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          70.0,
+          0.0,
+          21.0
+        ],
+        "b": [
+          70.0,
+          0.0,
+          47.0
+        ],
+        "r": 7.0,
+        "basis": "assumption",
+        "note": "coil-on-plug bore 14 mm, tower x = 70"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          87.0,
+          0.0,
+          29.0
+        ],
+        "b": [
+          87.0,
+          0.0,
+          47.0
+        ],
+        "r": 2.1,
+        "basis": "assumption",
+        "note": "coil retaining-screw hole 4.2 mm"
+      }
+    ],
+    "supports": [
+      {
+        "type": "cyl",
+        "a": [
+          -95.0,
+          -41.5,
+          0.0
+        ],
+        "b": [
+          -95.0,
+          -41.5,
+          8.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt boss clamped to the cylinder head"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -95.0,
+          41.5,
+          0.0
+        ],
+        "b": [
+          -95.0,
+          41.5,
+          8.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt boss clamped to the cylinder head"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -47.5,
+          -41.5,
+          0.0
+        ],
+        "b": [
+          -47.5,
+          -41.5,
+          8.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt boss clamped to the cylinder head"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          -47.5,
+          41.5,
+          0.0
+        ],
+        "b": [
+          -47.5,
+          41.5,
+          8.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt boss clamped to the cylinder head"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          -41.5,
+          0.0
+        ],
+        "b": [
+          0.0,
+          -41.5,
+          8.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt boss clamped to the cylinder head"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          0.0,
+          41.5,
+          0.0
+        ],
+        "b": [
+          0.0,
+          41.5,
+          8.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt boss clamped to the cylinder head"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          47.5,
+          -41.5,
+          0.0
+        ],
+        "b": [
+          47.5,
+          -41.5,
+          8.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt boss clamped to the cylinder head"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          47.5,
+          41.5,
+          0.0
+        ],
+        "b": [
+          47.5,
+          41.5,
+          8.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt boss clamped to the cylinder head"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          95.0,
+          -41.5,
+          0.0
+        ],
+        "b": [
+          95.0,
+          -41.5,
+          8.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt boss clamped to the cylinder head"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          95.0,
+          41.5,
+          0.0
+        ],
+        "b": [
+          95.0,
+          41.5,
+          8.0
+        ],
+        "r": 6.0,
+        "basis": "assumption",
+        "note": "bolt boss clamped to the cylinder head"
+      }
+    ],
+    "load_cases": [
+      {
+        "name": "gasket_reaction",
+        "basis": "assumption",
+        "note": "gasket reaction of the bolt clamp: ~5 N/mm line load x ~630 mm seal perimeter = 3.2 kN pushing the flange up between the bolts",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  -112.0,
+                  -49.0,
+                  0.5
+                ],
+                "max": [
+                  112.0,
+                  49.0,
+                  1.5
+                ],
+                "basis": "assumption",
+                "note": ""
+              }
+            ],
+            "force_N": [
+              0.0,
+              0.0,
+              3200.0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "coil_lateral",
+        "basis": "assumption",
+        "note": "three ignition coils ~0.3 kg x 30 g + harness pull ~ 150 N each, sideways at the tower tops",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  -70.0,
+                  0.0,
+                  42.5
+                ],
+                "b": [
+                  -70.0,
+                  0.0,
+                  43.5
+                ],
+                "r": 11.5,
+                "basis": "assumption",
+                "note": ""
+              },
+              {
+                "type": "cyl",
+                "a": [
+                  0.0,
+                  0.0,
+                  42.5
+                ],
+                "b": [
+                  0.0,
+                  0.0,
+                  43.5
+                ],
+                "r": 11.5,
+                "basis": "assumption",
+                "note": ""
+              },
+              {
+                "type": "cyl",
+                "a": [
+                  70.0,
+                  0.0,
+                  42.5
+                ],
+                "b": [
+                  70.0,
+                  0.0,
+                  43.5
+                ],
+                "r": 11.5,
+                "basis": "assumption",
+                "note": ""
+              }
+            ],
+            "force_N": [
+              0.0,
+              450.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "coil_vertical",
+        "basis": "assumption",
+        "note": "same coil load vertically (engine vertical vibration)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "cyl",
+                "a": [
+                  -70.0,
+                  0.0,
+                  42.5
+                ],
+                "b": [
+                  -70.0,
+                  0.0,
+                  43.5
+                ],
+                "r": 11.5,
+                "basis": "assumption",
+                "note": ""
+              },
+              {
+                "type": "cyl",
+                "a": [
+                  0.0,
+                  0.0,
+                  42.5
+                ],
+                "b": [
+                  0.0,
+                  0.0,
+                  43.5
+                ],
+                "r": 11.5,
+                "basis": "assumption",
+                "note": ""
+              },
+              {
+                "type": "cyl",
+                "a": [
+                  70.0,
+                  0.0,
+                  42.5
+                ],
+                "b": [
+                  70.0,
+                  0.0,
+                  43.5
+                ],
+                "r": 11.5,
+                "basis": "assumption",
+                "note": ""
+              }
+            ],
+            "force_N": [
+              0.0,
+              0.0,
+              -450.0
+            ]
+          }
+        ]
+      }
+    ],
+    "volume_fraction": 0.33,
+    "filter_radius_mm": 5.0,
+    "iterations": 45
+  },
+  "shaping": {
+    "smooth_mm": 3.6,
+    "blend_mm": 0.8,
+    "base_stl": "parts/picogk-catalog/out/bionic/993-ENG-UPPER-VALVE-COVER-ALSI10MG-F0-0001.base.stl",
+    "lattice_grey": false
+  }
+}

@@ -1,0 +1,271 @@
+{
+  "schema": "bionic-turbo-profile-background/v1",
+  "source_sha256": "fb8011aac9391eb6f4b1f86fd35bbc9d9c113511a204fd7254de751775e5abb2",
+  "image": "docker.io/opencfd/openfoam-run@sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532",
+  "parent_manifest_sha256": "6184d456b6b6b7c803581a48abc340bccfa47bc05c3f9430df6f18d0ddf34a1f",
+  "surface": {
+    "sha256": "74bb941bcd3315b89ec65823c2fd22365b3f87a7db501f5b445dace6c877118b",
+    "bounds_m": [
+      [
+        -0.0589968452454,
+        -0.0609981079102,
+        -0.0146566352844
+      ],
+      [
+        0.0637409896851,
+        0.08,
+        0.044
+      ]
+    ],
+    "region_bounds_m": {
+      "inlet": [
+        [
+          -0.0217980003357,
+          -0.0217439994812,
+          0.044
+        ],
+        [
+          0.0217019996643,
+          0.0217560005188,
+          0.044
+        ]
+      ],
+      "outlet": [
+        [
+          0.0354519996643,
+          0.08,
+          -0.0136960000992
+        ],
+        [
+          0.0627019996643,
+          0.08,
+          0.0135539999008
+        ]
+      ],
+      "rotor": [
+        [
+          -0.0302425956726,
+          -0.0302425937653,
+          -0.00371429657936
+        ],
+        [
+          0.0302425937653,
+          0.0302425899506,
+          0.0320002822876
+        ]
+      ],
+      "stator": [
+        [
+          -0.0589968452454,
+          -0.0609981079102,
+          -0.0146566352844
+        ],
+        [
+          0.0637409896851,
+          0.08,
+          0.044
+        ]
+      ]
+    },
+    "region_triangles": {
+      "inlet": 47045,
+      "outlet": 18544,
+      "rotor": 516216,
+      "stator": 1540619
+    },
+    "closed_edges": true,
+    "boundary_topology": {
+      "surface_components": 3,
+      "component_patch_sets": [
+        [
+          "inlet",
+          "outlet",
+          "rotor",
+          "stator"
+        ],
+        [
+          "rotor"
+        ],
+        [
+          "rotor"
+        ]
+      ],
+      "component_invariants": [
+        {
+          "patches": [
+            "inlet",
+            "outlet",
+            "rotor",
+            "stator"
+          ],
+          "euler_characteristic": 2
+        },
+        {
+          "patches": [
+            "rotor"
+          ],
+          "euler_characteristic": 0
+        },
+        {
+          "patches": [
+            "rotor"
+          ],
+          "euler_characteristic": 0
+        }
+      ],
+      "face_count": 2122424,
+      "unique_edges": 3183636,
+      "unique_vertices": 1061214,
+      "euler_characteristic": 2
+    },
+    "self_intersections_checked": false,
+    "seed_occupancy_checked": false
+  },
+  "geometry_report_sha256": "16a96623a1bd13c4cf46d7ab79d3c22063e1f5dcdaa1ce55d30be5bf753f8d31",
+  "profile_input_sha256": [
+    "a9bfe013789b8707b82a4b89c524ea3f18dbf3e9d7f094664fe38ad2c89cb840",
+    "acb534d47805d7c74b8a0b386ec99e6d996a688b5f6a29cb7c4a2e629ac452f9"
+  ],
+  "original_profile_stations": 360,
+  "simplified_profile_nodes_mm": [
+    [
+      -4.0,
+      32.0
+    ],
+    [
+      -3.5,
+      32.0
+    ],
+    [
+      -2.0,
+      31.36257446182715
+    ],
+    [
+      -1.5,
+      31.275442284556615
+    ],
+    [
+      -1.0,
+      31.36083493269051
+    ],
+    [
+      -0.5,
+      31.38047292430722
+    ],
+    [
+      0.0,
+      31.379473569643874
+    ],
+    [
+      0.5,
+      31.349759986744026
+    ],
+    [
+      1.0,
+      31.25249042134039
+    ],
+    [
+      1.5,
+      31.18710717428721
+    ],
+    [
+      2.0,
+      31.1672189376731
+    ],
+    [
+      2.5,
+      31.163814526636582
+    ],
+    [
+      3.0,
+      31.161729633954156
+    ],
+    [
+      3.5,
+      31.15785816223836
+    ],
+    [
+      4.0,
+      31.130191168408448
+    ],
+    [
+      32.1,
+      19.189086086637055
+    ],
+    [
+      33.0,
+      19.189086086637055
+    ]
+  ],
+  "verified_radial_clearance_mm": 0.9056900099999972,
+  "mesh": {
+    "stations_z_mm": [
+      -17.6566352844,
+      -4.0,
+      -3.75,
+      -3.5,
+      -2.0,
+      -1.5,
+      -1.0,
+      -0.5,
+      0.0,
+      0.5,
+      1.0,
+      1.5,
+      2.0,
+      2.5,
+      3.0,
+      3.5,
+      4.0,
+      32.1,
+      33.0,
+      47.0
+    ],
+    "interface_radii_mm": [
+      32.0,
+      32.0,
+      32.0,
+      32.0,
+      31.36257446182715,
+      31.275442284556615,
+      31.36083493269051,
+      31.38047292430722,
+      31.379473569643874,
+      31.349759986744026,
+      31.25249042134039,
+      31.18710717428721,
+      31.1672189376731,
+      31.163814526636582,
+      31.161729633954156,
+      31.15785816223836,
+      31.130191168408448,
+      19.189086086637055,
+      19.189086086637055,
+      19.189086086637055
+    ],
+    "sectors": 128,
+    "core_half_width_mm": 4.797271521659264,
+    "radial_cell_counts": [
+      32,
+      1,
+      1,
+      72
+    ],
+    "expected_cells": 1313280,
+    "expected_rotating_cells": 283392,
+    "blocks": 323,
+    "outer_radius_mm": 105.28838529391314
+  },
+  "file_sha256": {
+    "system/blockMeshDict": "c19d2fa3e36ce933941852cdb6d8a53906ae76e3f9d687eac02be31208f85eb9",
+    "system/controlDict": "8321f5ff53ceb2a57ca65d62537d674ac2ad1ded6ac8318ac7e41835f3e28e36",
+    "system/fvSchemes": "b136214332bc29b6539d63f1ce859e3c2239babdb799c9893bfe9eddbccbe7e3",
+    "system/fvSolution": "f5308d30634de746599a384973c749418783dec478d3e9c3456300c2a034aae8"
+  },
+  "native_write_precision": 16,
+  "physical_walls_meshed": false,
+  "solver_admission_granted": false,
+  "performance_ranking_authorized": false,
+  "previous_source_sha256": "53ab9f4d5cd25c8c06f151f2c3b07c24c28c21c294193bdf80d9a0e239613eb4",
+  "profile_construction": "New LP with 0.5 mm knots and unchanged rear/front radii; independently rechecked against every frozen 0.1 mm band for both variants. Physical surfaces and quality criteria unchanged."
+}

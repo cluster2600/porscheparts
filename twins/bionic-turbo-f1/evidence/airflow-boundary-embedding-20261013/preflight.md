@@ -1,0 +1,11 @@
+# Spécification préalable — simplicité de la frontière 3D
+
+Réutiliser l'éventail partagé PR241 et le domaine FERMÉ des 153 boîtes, sans choisir de ratio ni subdiviser. Les côtés de frontière sont fixes en v, mais leurs quads ne seront pas aplanis. Reconstituer les faces par gabarits, identifier les fermetures par leur z exact, puis représenter chaque face latérale par ses triangles à la moyenne arithmétique des sommets. Chaque sommet auxiliaire est identifié par sa face, sans modifier le maillage.
+
+Pour TOUTES les paires de triangles latéraux, éliminer uniquement par séparation stricte des boîtes englobantes rationnelles fermées. Le contact des boîtes n'est pas une séparation. Pour chaque paire restante, calculer exactement l'intersection des triangles fermés et vérifier qu'elle égale leur simplexe combinatoire commun : vide, sommet ou arête. Aucun epsilon, pas de bibliothèque géométrique flottante. Conserver les candidats et résultats. Fournir des références analytiques séparant contacts autorisés, croisements non coplanaires, chevauchements coplanaires et séparation.
+
+Vérifier que chaque triangle reste dans la bande axiale fermée et ne rencontre les plans extrêmes que sur les bords déclarés des fermetures. Comparer ces arêtes aux deux boucles fixes de chaque fermeture PR240. Les couvertures planes PR240 sont héritées exactement dans leur périmètre ; elles ne sont pas recalculées. Vérifier la connexion et les liens de la frontière triangulée abstraite, sans les confondre avec la simplicité géométrique.
+
+Lecture indépendante : gabarits hex réduits ; nouvel algorithme d'intersection rationnelle différent du premier, sans l'importer. Refaire aussi le filtrage exhaustif et comparer chaque paire. Vérifier onze manifestes ancrés au commit PR241 exact et les domaines des reçus hérités. Pas de relance des anciens parcours.
+
+La preuve d'indice devra utiliser uniquement des hypothèses effectivement vérifiées : frontière fermée connexe orientée et plongée, compatibilité avec les fermetures, chaîne extérieure des tétraèdres PR241. Toute conséquence de séparation/degré doit être explicitement sourcée et justifiée. Garder distincts non-recouvrement des intérieurs, contacts de bord, moments natifs, qualité native et repos. Aucun candidat, dictionnaire, natif ou solveur ; aucune relance 084.

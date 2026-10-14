@@ -1,14 +1,14 @@
 {
   "part_id": "993-ENG-K16-COMPRESSOR-WHEEL-ALSI10MG-F0-0001",
   "name": "993 K16 compressor wheel, F0 AlSi10Mg LPBF concept (PicoGK)",
-  "generator": "k16_compressor_wheel",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-eng-k16-compressor-wheel-alsi10mg-f0-0001.json",
   "porsche_part_numbers": [],
   "safety_class": "prohibited_pending_engineering",
   "material_candidate": "AlSi10Mg LPBF (screening)",
   "density_g_cm3": 2.67,
   "voxel_mm": 0.2,
-  "picogk_enhancement": "Replaces the flat radial plates on a cone with a real centrifugal wheel: concave hub trumpet, shroud contour from the axial inducer to the radial exducer, 6 full blades with inducer lean and backsweep plus 6 splitters, all fused to the hub by a smooth-union root fillet; through bore.",
+  "picogk_enhancement": "Bionic: blades, hub gas-path surface, rim ring and bore of the functional wheel are kept exactly (1.5 mm skin, shaping.base_stl); the hub interior behind them is re-grown by 3D SIMP topology optimization (bionic.json, topopt.py) for the engineering screen's blade centrifugal forces at its derived 103,464 rpm (1792 N per main blade, 868 N per splitter), its 1.21 N m torque and an assumed 205 N axial gas thrust, the wheel clamped at the bore boss. PicoGK smooths the density into organic spokes and webs from the bore boss to the blade roots, open through the back face. Modelled back face up (turned 180 deg about X). Loads come from a synthetic screen, not measurements; not a stress, burst or balance result.",
   "parameters": {
     "exducer_diameter_mm": {
       "value": 60.5,
@@ -160,5 +160,10 @@
   "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
   "envelope": [
     "exducer_diameter_mm"
-  ]
+  ],
+  "envelope_axes": {
+    "exducer_diameter_mm": "x"
+  },
+  "max_tris": 90000,
+  "envelope_mode": "max"
 }

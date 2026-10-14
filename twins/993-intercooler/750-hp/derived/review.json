@@ -1,0 +1,143 @@
+{
+  "status": "native_geometry_checked_not_print_or_flow_qualified",
+  "generation": {
+    "status": "native_picogk_channel_coupons_not_pressure_qualified",
+    "kernel": "26.2.0",
+    "voxel_mm": 0.0375,
+    "dimensions_mm": [
+      20,
+      23.4,
+      20
+    ],
+    "hot_flow_axis": "X",
+    "cold_flow_axis": "Z",
+    "build_direction": [
+      0.7071067811865475,
+      0,
+      0.7071067811865475
+    ],
+    "geometry": {
+      "width_mm": 800,
+      "span_mm": 542.8,
+      "depth_mm": 90,
+      "hot_gap_mm": 3,
+      "cold_gap_mm": 6,
+      "hot_pitch_mm": 1.5,
+      "cold_pitch_mm": 2,
+      "fin_mm": 0.15,
+      "wall_mm": 0.4,
+      "tubes": 56,
+      "hot_channels_per_tube": 59,
+      "cold_channels_per_gap": 399,
+      "hot_clear_m": 0.00135,
+      "cold_clear_m": 0.00185,
+      "metal_volume_m3": 0.006453584999999991,
+      "core_volume_l": 39.081599999999995,
+      "search_span_limit_mm": 550,
+      "fin_family": "offset",
+      "strip_length_mm": 10,
+      "charge_parallel_banks": 2
+    },
+    "parts": [
+      {
+        "name": "plain-fin-control",
+        "triangles": 21212740
+      },
+      {
+        "name": "offset-fin-coupon",
+        "triangles": 21889300
+      }
+    ],
+    "manufacturing_authorized": false,
+    "full_core_generated": false,
+    "limitation": "Two strip lengths only; channel dimensions match sizing, finite edge channels differ; no headers or bench adapters."
+  },
+  "parts": [
+    {
+      "name": "offset-fin-coupon",
+      "native_sha256": "f7ff9ef0630614ccb669d5ae947d862c4832d94298d4acb4c275b2bd2ea5ccd6",
+      "native_triangles": 21889300,
+      "clean_triangles": 21889300,
+      "native_volume_mm3": 1976.5276772373466,
+      "native_watertight": true,
+      "native_bodies": 1,
+      "sampled_open_route_points": 305,
+      "route_witness_mesh": "topology-preserving simplified review mesh",
+      "all_voids_inspected": false,
+      "simplification_attempts": [
+        {
+          "target": 180000,
+          "watertight": false,
+          "bodies": 1,
+          "volume_error": 0.008335177178823594
+        },
+        {
+          "target": 600000,
+          "watertight": false,
+          "bodies": 1,
+          "volume_error": 0.0005909587295203078
+        },
+        {
+          "target": 1800000,
+          "watertight": true,
+          "bodies": 1,
+          "volume_error": 8.369966941756957e-10
+        }
+      ],
+      "review_triangles": 1800000,
+      "review_volume_relative_error": 8.369966941756957e-10
+    },
+    {
+      "name": "plain-fin-control",
+      "native_sha256": "3c317592be498800a558097cef832f651a72e650f96216a073850daf6c4bbf91",
+      "native_triangles": 21212740,
+      "clean_triangles": 21212740,
+      "native_volume_mm3": 1945.2941313793451,
+      "native_watertight": true,
+      "native_bodies": 1,
+      "sampled_open_route_points": 305,
+      "route_witness_mesh": "topology-preserving simplified review mesh",
+      "all_voids_inspected": false,
+      "simplification_attempts": [
+        {
+          "target": 180000,
+          "watertight": false,
+          "bodies": 1,
+          "volume_error": 0.0074720713807889805
+        },
+        {
+          "target": 600000,
+          "watertight": false,
+          "bodies": 1,
+          "volume_error": 9.759116745122753e-05
+        },
+        {
+          "target": 1800000,
+          "watertight": true,
+          "bodies": 1,
+          "volume_error": 2.3559461048705543e-09
+        }
+      ],
+      "review_triangles": 1800000,
+      "review_volume_relative_error": 2.3559461048705543e-09
+    }
+  ],
+  "manufacturing_authorized": false,
+  "retention": "Full native meshes retained locally; committed STL.gz and GLB are topology-preserving review simplifications. Editable PicoGK source is master.",
+  "source_hashes": {
+    "source/review.py": "74304e0527391b9023fce0770a8e4daec465c3f31f2775c62f031aed68547fe8",
+    "source/picogk/Program.cs": "82ff895068d0af98463c15c55abaefb2c5ee7fe1030b9f93aa5941852ddbe800",
+    "source/picogk/Core.csproj": "b17cc380b1d7a215b2121012e1111cb724d67b64065d93630f5e782f09a8f294",
+    "results/sizing.json": "5f8f4d0d625dd5bf9b3557c0e5d0cb003dfdeaaad8f9b7027c342f032ce261a2",
+    "results/thin-sizing.json": "669656a94d3258dbc707925dbd2e4cf19b17941101baa2d532eb15b7dbf6d961",
+    "coupon-input.json": "336801c94af80a166725c588330c735b06526b835f928260e3df7d20543a8980"
+  },
+  "output_hashes": {
+    "offset-fin-coupon.stl.gz": "1e303e4092ac87da33ab49f17b960066f13a17aa1ff97e24245edafb56fa7e25",
+    "coupons.png": "b35be78fc1aef998ac87e38ddf33f0658e8df1247810394275b62dd861602e6b",
+    "plain-fin-control.stl.gz": "a262fbfc99e9f5b599cee6a4226caed011e1fd5c0ce0db341742f42113df0328",
+    "coupons.glb": "e97700dd205b9287874ce80067bd86c1c095c29440dd12e45d6b000859151f8d",
+    "sizing.png": "43485a112996ab5b995107b5f8b898a6b9483677748325af80b5fea0427c7c7a"
+  },
+  "figure_revision": "Caption contrast corrected with the same renderer; geometry inspection unchanged."
+}

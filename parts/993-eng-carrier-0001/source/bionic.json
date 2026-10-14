@@ -1,0 +1,250 @@
+{
+  "part_id": "993-ENG-CARRIER-0001",
+  "method": "3D SIMP topology optimization (parts/picogk-catalog/bionic/topopt.py), then PicoGK smoothing and exact functional features",
+  "basis_note": "SAFETY CRITICAL powertrain mount: load-path concept only. Interfaces and loads are NOT measured. The domain is the vendor 600 x 50 x 50 mm envelope (a logistics value, read as a maximum); end-boss positions and the hypothetical 13 mm bores come from the previous concept (EngineCarrier.cs); the engine-bracket pad is the previous 130 x 40 mm seat. Loads derive from the one named engine weighing in evidence/load-cases.md (about 195 kg, 993 biturbo complete without gearbox), an ASSUMED 50 % share on this carrier and ASSUMED acceleration factors; load-cases.md itself leaves the share and the factors open. No structural claim; to be recomputed once interfaces, share, factors and material are known.",
+  "optimization": {
+    "element_mm": 3.5714286,
+    "grid_min": [
+      -300,
+      -25,
+      -25
+    ],
+    "grid_max": [
+      300,
+      25,
+      25
+    ],
+    "design": [
+      {
+        "type": "box",
+        "min": [
+          -300,
+          -25,
+          -25
+        ],
+        "max": [
+          300,
+          25,
+          25
+        ],
+        "basis": "published",
+        "note": "FVD listing 600 x 50 x 50 mm, read as the maximum envelope (evidence/load-cases.md section 0)"
+      }
+    ],
+    "solid": [
+      {
+        "type": "cyl",
+        "a": [
+          -275,
+          0,
+          -25
+        ],
+        "b": [
+          -275,
+          0,
+          25
+        ],
+        "r": 14,
+        "basis": "assumption",
+        "note": "left engine-mount boss (993 375 049 05 side), axis x = -275 of the previous concept, 28 mm keep-in around the bore; interface unmeasured"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          275,
+          0,
+          -25
+        ],
+        "b": [
+          275,
+          0,
+          25
+        ],
+        "r": 14,
+        "basis": "assumption",
+        "note": "right engine-mount boss, axis x = +275; interface unmeasured"
+      },
+      {
+        "type": "box",
+        "min": [
+          -65,
+          -20,
+          19
+        ],
+        "max": [
+          65,
+          20,
+          25
+        ],
+        "basis": "assumption",
+        "note": "engine bracket 993 115 103 52 seat, 130 x 40 mm pad of the previous concept, 6 mm thick at the top of the envelope; the four M10 x 20 sites are not located, so no hole is drawn"
+      }
+    ],
+    "void": [
+      {
+        "type": "cyl",
+        "a": [
+          -275,
+          0,
+          -26
+        ],
+        "b": [
+          -275,
+          0,
+          26
+        ],
+        "r": 6.5,
+        "basis": "assumption",
+        "note": "hypothetical 13 mm end bore (no matched axis, stud or tolerance)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          275,
+          0,
+          -26
+        ],
+        "b": [
+          275,
+          0,
+          26
+        ],
+        "r": 6.5,
+        "basis": "assumption",
+        "note": "hypothetical 13 mm end bore"
+      }
+    ],
+    "supports": [
+      {
+        "type": "cyl",
+        "a": [
+          -275,
+          0,
+          -26
+        ],
+        "b": [
+          -275,
+          0,
+          26
+        ],
+        "r": 9.5,
+        "basis": "assumption",
+        "note": "left boss held on the engine mount (rubber mount idealised as clamped)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          275,
+          0,
+          -26
+        ],
+        "b": [
+          275,
+          0,
+          26
+        ],
+        "r": 9.5,
+        "basis": "assumption",
+        "note": "right boss held on the engine mount (rubber mount idealised as clamped)"
+      }
+    ],
+    "load_cases": [
+      {
+        "name": "vertical_3g",
+        "basis": "assumption",
+        "note": "195 kg engine (named weighing, load-cases.md) x assumed 50 % share x 9.81 = 956 N static, x assumed 3 g bump factor = 2870 N down on the bracket pad",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  -65,
+                  -20,
+                  23.5
+                ],
+                "max": [
+                  65,
+                  20,
+                  25.5
+                ]
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              -2870
+            ]
+          }
+        ]
+      },
+      {
+        "name": "lateral_1g2",
+        "basis": "assumption",
+        "note": "956 N x assumed 1.2 g cornering, along the carrier (X = car width), applied at the pad top (adds bending about the beam axis)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  -65,
+                  -20,
+                  23.5
+                ],
+                "max": [
+                  65,
+                  20,
+                  25.5
+                ]
+              }
+            ],
+            "force_N": [
+              1150,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "longitudinal_1g",
+        "basis": "assumption",
+        "note": "956 N x assumed 1.0 g braking/traction, fore-aft (Y), applied at the pad top 25 mm above the beam axis (torsion of the beam)",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  -65,
+                  -20,
+                  23.5
+                ],
+                "max": [
+                  65,
+                  20,
+                  25.5
+                ]
+              }
+            ],
+            "force_N": [
+              0,
+              960,
+              0
+            ]
+          }
+        ]
+      }
+    ],
+    "volume_fraction": 0.25,
+    "filter_radius_mm": 12.5,
+    "iterations": 45
+  },
+  "shaping": {
+    "smooth_mm": 1.2,
+    "blend_mm": 0.6,
+    "lattice_grey": false
+  },
+  "postprocess": "after topopt.py run parts/993-body-front-lid-0001/source/bionic_skin_contact.py 993-ENG-CARRIER-0001 (drops density fragments not reaching a keep-in; here none were found). The optimum is a thin-walled open box (walls about one element): shaping.smooth_mm stays at 1.2 mm so the walls survive the smoothing."
+}

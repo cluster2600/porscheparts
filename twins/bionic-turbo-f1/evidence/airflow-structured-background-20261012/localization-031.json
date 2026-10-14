@@ -1,0 +1,205 @@
+{
+  "source_sha256": "fbfaf7c2fc047ae5a67770c011d7f4e3ac03804ee1c19f0bddd830807ada32cd",
+  "native_centres_sha256": "1f3810186251fe83b488d6148a17c9fec045e760936ce1dbba73cc69b38488cd",
+  "all_original_payloads_read_and_hashed": true,
+  "mesh_cells": 718456,
+  "native_boundary_topology": {
+    "surface_components": 2,
+    "component_patch_sets": [
+      [
+        "inlet",
+        "outlet",
+        "rotor",
+        "stator"
+      ],
+      [
+        "rotor"
+      ]
+    ],
+    "component_invariants": [
+      {
+        "patches": [
+          "inlet",
+          "outlet",
+          "rotor",
+          "stator"
+        ],
+        "euler_characteristic": 2
+      },
+      {
+        "patches": [
+          "rotor"
+        ],
+        "euler_characteristic": 0
+      }
+    ],
+    "face_count": 220553,
+    "unique_edges": 453894,
+    "unique_vertices": 233343,
+    "euler_characteristic": 2
+  },
+  "source_boundary_topology": {
+    "surface_components": 3,
+    "component_patch_sets": [
+      [
+        "inlet",
+        "outlet",
+        "rotor",
+        "stator"
+      ],
+      [
+        "rotor"
+      ],
+      [
+        "rotor"
+      ]
+    ],
+    "component_invariants": [
+      {
+        "patches": [
+          "inlet",
+          "outlet",
+          "rotor",
+          "stator"
+        ],
+        "euler_characteristic": 2
+      },
+      {
+        "patches": [
+          "rotor"
+        ],
+        "euler_characteristic": 0
+      },
+      {
+        "patches": [
+          "rotor"
+        ],
+        "euler_characteristic": 0
+      }
+    ],
+    "face_count": 2122424,
+    "unique_edges": 3183636,
+    "unique_vertices": 1061214,
+    "euler_characteristic": 2
+  },
+  "patches": {
+    "inlet": {
+      "faces": 22343,
+      "start": 2091763
+    },
+    "outlet": {
+      "faces": 1732,
+      "start": 2114106
+    },
+    "rotor": {
+      "faces": 99941,
+      "start": 2115838
+    },
+    "stator": {
+      "faces": 96537,
+      "start": 2215779
+    }
+  },
+  "rotor_owners_outside_zone": 0,
+  "port_owners_inside_zone": {
+    "inlet": 0,
+    "outlet": 0
+  },
+  "defects": {
+    "concaveCells": {
+      "kind": "cell",
+      "count": 1036,
+      "sha256": "9d88d603065604c99497965eeafc41a21e046c1499b514dfc120f71ed59e8d32",
+      "adjacent_cells": 1036,
+      "cells_touching_interface": 0,
+      "touching_patches": {
+        "inlet": 0,
+        "outlet": 0,
+        "rotor": 41,
+        "stator": 32
+      },
+      "cell_centre_bounds_m": [
+        [
+          -0.05746135479009719,
+          -0.05990722775749481,
+          -0.01367414337611226
+        ],
+        [
+          0.06212385390041358,
+          0.07825465385957225,
+          0.0316890330693427
+        ]
+      ]
+    },
+    "wrongOrientedFaces": {
+      "kind": "face",
+      "count": 1,
+      "sha256": "fc9ca99ea7a4e0afd9247df39a3d7b80e85b0378ddad8ab2cdeba3c0edc5d589",
+      "adjacent_cells": 1,
+      "cells_touching_interface": 0,
+      "touching_patches": {
+        "inlet": 0,
+        "outlet": 0,
+        "rotor": 0,
+        "stator": 1
+      },
+      "cell_centre_bounds_m": [
+        [
+          0.05714853969432715,
+          0.04374922097352418,
+          0.01125893724498344
+        ],
+        [
+          0.05714853969432715,
+          0.04374922097352418,
+          0.01125893724498344
+        ]
+      ],
+      "face_labels": [
+        2311874
+      ],
+      "cell_labels": [
+        624658
+      ]
+    },
+    "lowQualityTetFaces": {
+      "kind": "face",
+      "count": 4,
+      "sha256": "c47e3d80791cf164b9540d50956ee4e08f339e0d7b8973f68cbdccb3354c28e2",
+      "adjacent_cells": 5,
+      "cells_touching_interface": 0,
+      "touching_patches": {
+        "inlet": 0,
+        "outlet": 0,
+        "rotor": 0,
+        "stator": 4
+      },
+      "cell_centre_bounds_m": [
+        [
+          0.0382491459276345,
+          0.04320438414508895,
+          0.008525417747544114
+        ],
+        [
+          0.05737382875153346,
+          0.07916268924828934,
+          0.01365092312695368
+        ]
+      ],
+      "face_labels": [
+        1847978,
+        2311874,
+        2215819,
+        1899510
+      ],
+      "cell_labels": [
+        593238,
+        594038,
+        596841,
+        623929,
+        624658
+      ]
+    }
+  },
+  "performance_ranking_authorized": false
+}

@@ -1,0 +1,7 @@
+# Candidat local unique, avant calcul
+
+Remplacer seulement les cellules grossières 825 et 20005 de 091 par une pyramide par face existante. Le sommet commun de chaque famille est le centre volumique reconstruit selon makeCellCentresAndVols. Aucun déplacement des sommets anciens, aucune triangulation des faces de base, aucun changement des voisins extérieurs. Les triangles latéraux sont définis par chaque arête orientée de la base et le nouveau sommet. Pas de paramètre à balayer.
+
+Ce candidat distingue la préservation exacte des faces partagées d'une admission de qualité. Les subdivisions étoilées 041 ont déjà échoué ; aucune extrapolation ou application en bloc n'est autorisée. Calculer d'abord volumes, chaînes d'arêtes, correspondance des triangles internes, concavité native descriptive, déterminant (faces internes seulement) et non-orthogonalité des faces nouvelles et des bases avec leurs vrais voisins complets. Garder les seuils 0,001 et 70° et le produit normalisé > −1e−6. Un refus suffit à exclure cette proposition de la suite native ; aucune optimisation de l'apex pour contourner le refus.
+
+Les formules de centres, volumes, angles et critère de plans ont été publiées dans l'audit PR224 ; celle du déterminant dans la phase 071/072. Les outils splitCells/subsetMesh et leurs limites sont documentés dans PR225. Aucune opération native n'est lancée ici. Les deux familles JSON seront des candidats géométriques, pas un maillage global ni un sous-domaine CFD.

@@ -1,0 +1,327 @@
+{
+  "part_id": "993-INT-DOOR-OPENER-LEVER-F0-0001",
+  "method": "3D SIMP topology optimization (parts/picogk-catalog/bionic/topopt.py), then PicoGK smoothing and exact functional features",
+  "basis_note": "Interfaces and loads are NOT measured. The pivot (Z axis at the origin, 6 mm pin, 16 mm boss) and the paddle position come from the F0 concept generator (parts/picogk-catalog/trim/DoorOpenerLever.cs); the 150 N pull is the synthetic load of evidence/engineering-screen.json; the press case is an assumption. The shape is a load-path concept, to be recomputed once the pin, the ball-joint stud and the hand force are measured.",
+  "optimization": {
+    "element_mm": 1.6,
+    "grid_min": [
+      -8,
+      -8,
+      0
+    ],
+    "grid_max": [
+      100,
+      37,
+      27
+    ],
+    "design": [
+      {
+        "type": "box",
+        "min": [
+          -8,
+          -8,
+          5
+        ],
+        "max": [
+          100,
+          37,
+          22
+        ],
+        "basis": "published",
+        "note": "FVD55599301B envelope 108 x 45 x 27 mm placed as the F0 concept (pivot at the origin); the arm may grow in a 17 mm band round the lever mid plane (the boss keeps the full 27 mm)"
+      }
+    ],
+    "solid": [
+      {
+        "type": "cyl",
+        "a": [
+          0,
+          0,
+          0
+        ],
+        "b": [
+          0,
+          0,
+          27
+        ],
+        "r": 8,
+        "basis": "assumption",
+        "note": "pivot boss 16 mm over the full 27 mm height (F0 pivot_boss_diameter_mm)"
+      },
+      {
+        "type": "box",
+        "min": [
+          66,
+          9,
+          15
+        ],
+        "max": [
+          100,
+          37,
+          18
+        ],
+        "basis": "assumption",
+        "note": "grip paddle face 34 x 28 mm, 3 mm plate at the top of the F0 paddle (z 9..18); the structure under it is optimized"
+      }
+    ],
+    "void": [
+      {
+        "type": "cyl",
+        "a": [
+          0,
+          0,
+          -1
+        ],
+        "b": [
+          0,
+          0,
+          28
+        ],
+        "r": 3,
+        "basis": "assumption",
+        "note": "pivot pin bore 6 mm (F0 PIVOT_DIAMETER_MM)"
+      },
+      {
+        "type": "box",
+        "min": [
+          70,
+          17,
+          -1
+        ],
+        "max": [
+          74,
+          29,
+          28
+        ],
+        "basis": "assumption",
+        "note": "paddle through slot 1 (4 x 16 mm stadium, F0 slot pattern)"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          72,
+          17,
+          -1
+        ],
+        "b": [
+          72,
+          17,
+          28
+        ],
+        "r": 2,
+        "basis": "assumption",
+        "note": "slot 1 end"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          72,
+          29,
+          -1
+        ],
+        "b": [
+          72,
+          29,
+          28
+        ],
+        "r": 2,
+        "basis": "assumption",
+        "note": "slot 1 end"
+      },
+      {
+        "type": "box",
+        "min": [
+          77,
+          17,
+          -1
+        ],
+        "max": [
+          81,
+          29,
+          28
+        ],
+        "basis": "assumption",
+        "note": "paddle through slot 2"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          79,
+          17,
+          -1
+        ],
+        "b": [
+          79,
+          17,
+          28
+        ],
+        "r": 2,
+        "basis": "assumption",
+        "note": "slot 2 end"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          79,
+          29,
+          -1
+        ],
+        "b": [
+          79,
+          29,
+          28
+        ],
+        "r": 2,
+        "basis": "assumption",
+        "note": "slot 2 end"
+      },
+      {
+        "type": "box",
+        "min": [
+          84,
+          17,
+          -1
+        ],
+        "max": [
+          88,
+          29,
+          28
+        ],
+        "basis": "assumption",
+        "note": "paddle through slot 3"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          86,
+          17,
+          -1
+        ],
+        "b": [
+          86,
+          17,
+          28
+        ],
+        "r": 2,
+        "basis": "assumption",
+        "note": "slot 3 end"
+      },
+      {
+        "type": "cyl",
+        "a": [
+          86,
+          29,
+          -1
+        ],
+        "b": [
+          86,
+          29,
+          28
+        ],
+        "r": 2,
+        "basis": "assumption",
+        "note": "slot 3 end"
+      },
+      {
+        "type": "box",
+        "min": [
+          22,
+          26,
+          -1
+        ],
+        "max": [
+          50,
+          38,
+          28
+        ],
+        "basis": "assumption",
+        "note": "kept empty: the optimizer left an unconnected low-density member here (no load path through it); also clears the trim edge beside the arm root"
+      }
+    ],
+    "supports": [
+      {
+        "type": "cyl",
+        "a": [
+          0,
+          0,
+          -1
+        ],
+        "b": [
+          0,
+          0,
+          28
+        ],
+        "r": 4.4,
+        "basis": "assumption",
+        "note": "lever held at the pin bore (pin plus the linkage stop that resists the pull torque, both unmeasured)"
+      }
+    ],
+    "load_cases": [
+      {
+        "name": "pull",
+        "basis": "assumption",
+        "note": "150 N synthetic hand force of evidence/engineering-screen.json, tangential to the pivot (in the lever plane) on the paddle face",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  66,
+                  9,
+                  14.5
+                ],
+                "max": [
+                  100,
+                  37,
+                  18.5
+                ]
+              }
+            ],
+            "force_N": [
+              0,
+              150,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "name": "press",
+        "basis": "assumption",
+        "note": "half the pull force pressing on the paddle face (hand resting / pushing); for a linear model the opposite lift gives the same layout, so one case covers both; no published value",
+        "loads": [
+          {
+            "region": [
+              {
+                "type": "box",
+                "min": [
+                  66,
+                  9,
+                  17.5
+                ],
+                "max": [
+                  100,
+                  37,
+                  18.5
+                ]
+              }
+            ],
+            "force_N": [
+              0,
+              0,
+              -75
+            ]
+          }
+        ]
+      }
+    ],
+    "volume_fraction": 0.32,
+    "filter_radius_mm": 6.0,
+    "iterations": 45
+  },
+  "shaping": {
+    "smooth_mm": 1.8,
+    "blend_mm": 0.9
+  }
+}

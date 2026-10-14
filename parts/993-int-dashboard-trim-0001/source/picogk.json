@@ -1,7 +1,7 @@
 {
   "part_id": "993-INT-DASHBOARD-TRIM-0001",
-  "name": "993 dashboard trim, composite, vehicles without passenger airbag (PicoGK)",
-  "generator": "dashboard_trim_panel",
+  "name": "993 dashboard trim, composite skin with load-path (bionic) inner ribs, vehicles without passenger airbag (PicoGK)",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-int-dashboard-trim-0001.json",
   "porsche_part_numbers": [
     "993 552 055 00",
@@ -13,7 +13,7 @@
   "material_candidate": "organic matrix composite, fibre and resin to be determined",
   "density_g_cm3": 1.55,
   "voxel_mm": 0.75,
-  "picogk_enhancement": "Replaces the rectangular U-channel with a crowned, smoothed skin that rolls over a crest into the occupant face, bows forward in plan and tucks down at the pillar ends; return flanges at the windscreen edge and under the front face, an instrument opening with a hanging return flange, face vents with louvre vanes and transverse stiffening ribs inside, all open from below (no closed pocket).",
+  "picogk_enhancement": "Bionic inner ribs: the crowned 3 mm F0 skin with its flanges, instrument opening, face vents and louvre vanes is kept exact (DashboardTrim.cs without ribs, shaping.base_stl); the rib structure inside it is grown by 3D SIMP topology optimization (source/bionic.json, topopt.py; 6 mm elements, 12 % of the inner volume) between nine ASSUMED clip bosses (five on the windscreen-side flange, four on the occupant-side lip, 4 mm pilot holes) under ASSUMED loads (200 N presses on the crest at three places, 2 x 75 N push on the occupant face); instrument opening, vent ducts and a bottom band stay empty; members end flush with the skin (bionic_skin_contact.py, skin finished 0.3 mm under the F0 surface). Clip positions and loads are not measured.",
   "parameters": {
     "length_mm": {
       "value": 1350.0,
@@ -219,12 +219,22 @@
       "note": "ribs stop this far above the bottom so every bay stays open"
     }
   },
-  "envelope": [],
+  "envelope": [
+    "length_mm",
+    "depth_mm",
+    "height_mm"
+  ],
   "open_interfaces": [
     "SCOPE: M564 (no airbag) or Carrera RS 'without Airbag' only; never on an M561/M562 car",
     "instrument hood, air vents, steering column, glovebox, console junction, pillars and windscreen base - not measured",
     "clip-nut and self-tapping screw positions unknown (not drawn)",
     "knee protection strip attachment points (964 552 053 00 / 993 552 054 00) must stay identical - unknown"
   ],
-  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file"
+  "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
+  "envelope_axes": {
+    "length_mm": "x",
+    "depth_mm": "y",
+    "height_mm": "z"
+  },
+  "envelope_mode": "max"
 }

@@ -143,11 +143,14 @@ def opening_fields(v, p, d, zt, zb, w, zbelt):
 
 
 def bulkhead(d, rings, zb, dd, zcap):
+    """Flat bulkhead on the section nearest dd, so that its edge is the
+    shell's own ring and welds to it (placed at dd itself, a few mm off the
+    section, it stayed a separate piece and was dropped until 2026-10-10)."""
     i = int(np.argmin(np.abs(d - dd)))
     r = rings[i][rings[i][:, 1] <= zcap + 1]
     o = np.argsort(np.arctan2(r[:, 1] - (zb[i] + zcap) / 2, r[:, 0]))
     r = r[o]
-    v = [[-dd, 0.0, 0.5 * (zb[i] + zcap)]] + [[-dd, y, z] for y, z in r]
+    v = [[-d[i], 0.0, 0.5 * (zb[i] + zcap)]] + [[-d[i], y, z] for y, z in r]
     f = [[0, k, k + 1] for k in range(1, len(r))] + [[0, len(r), 1]]
     return np.array(v), np.array(f)
 

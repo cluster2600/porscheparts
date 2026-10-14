@@ -1,0 +1,9 @@
+# Protocole préalable — déterminants restants
+
+Sur u=q_m source exact, reprendre les 153 feuilles non exclues PR237, sans nouveau ratio ponctuel ni subdivision. Reconstituer les 3840 cellules potentiellement variables depuis les incidences PR229 et coefficients PR232. Retirer les quatre témoins déjà encadrés PR235 : 3836 déterminants supplémentaires. Ordre prescrit : déterminant archivé PR231 croissant, puis label cellule croissant. Aucune paroi non couplée dans le tenseur.
+
+Réutiliser les polynômes d'aire, Cauchy–Binet, bornes Bernstein rationnelles et racines extérieures à 160 bits PR235, importés aux empreintes publiées. Construire chaque modèle depuis ses faces internes et vérifier égalité des aires polynomiales et de detGram. Aucun centre libre, aucun changement de critère : résidu 125*m^6*detG/E^6−1.
+
+Les 153 boîtes sont contiguës : encadrer d'abord chaque contrainte sur leur enveloppe fermée exacte. Une borne positive vaut pour toutes les boîtes. Pour un encadrement indécis, reprendre les boîtes sources exactes non encore exclues. Une borne supérieure strictement négative exclut une boîte entière. Une singularité reste indécise. Arrêter une boîte au premier refus, jamais au premier succès. Conserver modèles utilisés, bornes de l'enveloppe, bornes locales, ordre et reçus. Aucun point de l'intervalle n'est évalué isolément.
+
+Le lecteur indépendant reconstruit les faces par gabarits hex réduits, les aires par éventail et le déterminant par permutations. Les témoins d'exclusion doivent être réencadrés par Casteljau rationnel et racines 192 bits. Les signes positifs qui ne sont pas entièrement relus sont explicitement descriptifs. Ce contrôle nécessaire ne suffit jamais à admettre : paires de plans, volumes, vérification complète des angles et obligations géométriques restent nécessaires. Aucun candidat, natif ou solveur. Sources et refus antérieurs immuables, 084 non relancé.

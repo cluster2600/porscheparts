@@ -14,6 +14,12 @@ FICHES = sorted((ROOT / "catalog" / "parts").glob("*.json"))
 
 
 class PartPageTests(unittest.TestCase):
+    def test_picogk_summary_counts_shared_generator_and_archived_voxel_model(self):
+        paths = [ROOT / "catalog/parts" / (name + ".json") for name in
+                 ("993-eng-bracket-0001", "993-eng-carrier-0001")]
+        output = "\n".join(table.grille([(p, json.loads(p.read_text())) for p in paths]))
+        self.assertIn("2 of 2 are PicoGK voxel models", output)
+
     def test_carrier_current_study_precedes_archived_master_on_both_pages(self):
         record_path = ROOT / "catalog/parts/993-eng-carrier-0001.json"
         record = json.loads(record_path.read_text())

@@ -1,0 +1,1500 @@
+{
+  "status": "flat_diagnostics_completed_not_qualified",
+  "geometry": {
+    "source_STEP_sha256": "5b2f092c5e53a6e34a895645b534fb8a0ca2cfbb31ab286e37c06cee9d40fe9e",
+    "flat_STEP_sha256": "a076925a40396acb192af8bf9a19c813b97bd885366d3446d000f330517089a4",
+    "rigid_transform_only": true,
+    "volume_preserved": true,
+    "source_volume_mm3": 268046.10662489425,
+    "flat_readback_volume_mm3": 268046.1066249243,
+    "part_build_height_mm": 40.0,
+    "flat_square_bed_required_with_margins_mm": 471.1290552882045,
+    "fits_400_mm_square_flat": false,
+    "fits_450_mm_square_flat": false,
+    "geometry_and_mass_changed": false,
+    "functional_acceptance": false,
+    "previous_structural_rejection_still_applies": true
+  },
+  "orientation": {
+    "machine": "600 mm square metal LPBF envelope; supplier/process not selected",
+    "machine_volume_mm": [
+      600,
+      600,
+      600
+    ],
+    "envelope_example": "Nikon SLM NXG XII 600; envelope reference only",
+    "assumed_platform_thickness_mm": 20,
+    "assumed_min_support_height_mm": 10,
+    "assumed_XY_margin_mm": 10,
+    "rotation_degrees_xyz": [
+      0,
+      0,
+      45
+    ],
+    "rotation_matrix": [
+      [
+        0.7071067811865476,
+        -0.7071067811865476,
+        0.0
+      ],
+      [
+        0.7071067811865476,
+        0.7071067811865476,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "translation_mm": [
+      299.99746444559355,
+      299.99746444559355,
+      46.0
+    ],
+    "part_rotated_size_mm": [
+      451.1290552882045,
+      451.1290552882045,
+      40.0
+    ],
+    "placed_bounds_mm": [
+      [
+        74.43547235589773,
+        74.43547235589773,
+        30.0
+      ],
+      [
+        525.5645276441022,
+        525.5645276441022,
+        70.0
+      ]
+    ],
+    "flat_build_required": true,
+    "screen_fit": true,
+    "platform_supplier_confirmed": false,
+    "qualified_job_file": false,
+    "metal": "Ti-6Al-4V Grade 5 proposal; no polymer",
+    "process_parameter_transfer_qualified": false
+  },
+  "runtime": {
+    "solver": "CalculiX 2.21",
+    "image_id": "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+    "platform": "linux/arm64",
+    "cpus": 1,
+    "memory_GiB": 3
+  },
+  "benchmark": {
+    "analytical_case": "1 mm cube, E=1000 MPa, nu=0.25, strain_x=0.001",
+    "expected_stress_x_MPa": 1,
+    "expected_reaction_N": 1,
+    "max_displacement_error_mm": 4.8220509724951344e-11,
+    "max_stress_error_MPa": 4.294966e-15,
+    "reaction_error_N": 0.0,
+    "seconds": 0.2943683749763295,
+    "passed": true
+  },
+  "slice_check": {
+    "nominal_layer_mm": 0.06,
+    "total_layer_intervals_above_assumed_platform": 834,
+    "nonempty_part_layers": 666,
+    "all_part_contours_closed": true,
+    "midpoint_integrated_part_volume_mm3": 267559.8261504481,
+    "STL_volume_mm3": 268172.0432313227,
+    "relative_volume_error": -0.0022829265627308803,
+    "coarse_volume_within_0_1_percent": false,
+    "refined_volume_audit": {
+      "integration_interval_mm": 0.006,
+      "volume_mm3": 268111.6175848742,
+      "relative_volume_error": -0.00022532418264187282,
+      "machine_layer_change": false
+    },
+    "laser_scan_vectors_generated": false,
+    "support_contours_generated": false,
+    "qualified_machine_file": false
+  },
+  "printing_diagnostics": {
+    "whole_part_control": {
+      "setup": {
+        "macro_layers": 1,
+        "macro_layer_height_mm": 40.0,
+        "actual_machine_layer_mm": 0.06,
+        "actual_part_layer_intervals": 667,
+        "in_plane_shrinkage": 0.001,
+        "build_axis_shrinkage": 0.0005,
+        "support_effective_E_MPa": 1000,
+        "support_lateral_to_axial_stiffness": 0.1,
+        "supported_nodes": 13676,
+        "overhang_area_mm2": 46185.699996187475,
+        "orientation": {
+          "machine": "600 mm square metal LPBF envelope; supplier/process not selected",
+          "machine_volume_mm": [
+            600,
+            600,
+            600
+          ],
+          "envelope_example": "Nikon SLM NXG XII 600; envelope reference only",
+          "assumed_platform_thickness_mm": 20,
+          "assumed_min_support_height_mm": 10,
+          "assumed_XY_margin_mm": 10,
+          "rotation_degrees_xyz": [
+            0,
+            0,
+            45
+          ],
+          "rotation_matrix": [
+            [
+              0.7071067811865476,
+              -0.7071067811865476,
+              0.0
+            ],
+            [
+              0.7071067811865476,
+              0.7071067811865476,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "translation_mm": [
+            299.99746444559355,
+            299.99746444559355,
+            46.0
+          ],
+          "part_rotated_size_mm": [
+            451.1290552882045,
+            451.1290552882045,
+            40.0
+          ],
+          "placed_bounds_mm": [
+            [
+              74.43547235589773,
+              74.43547235589773,
+              30.0
+            ],
+            [
+              525.5645276441022,
+              525.5645276441022,
+              70.0
+            ]
+          ],
+          "flat_build_required": true,
+          "screen_fit": true,
+          "platform_supplier_confirmed": false,
+          "qualified_job_file": false,
+          "metal": "Ti-6Al-4V Grade 5 proposal; no polymer",
+          "process_parameter_transfer_qualified": false
+        },
+        "element_birth_counts": [
+          37824
+        ],
+        "stage_kinds": [
+          "layer_shrinkage",
+          "support_release"
+        ],
+        "ideal_plastic_reference_yield_MPa": null,
+        "source_mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "machine_calibrated": false,
+        "support_removability_verified": false,
+        "thermal_history_or_heat_treatment_relaxation_solved": false
+      },
+      "seconds": 79.81449033296667,
+      "stages": [
+        {
+          "stage": 1,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.21192177891580383,
+          "registered_U_max_mm": 0.2135792244354361,
+          "VM_max_MPa": 199.3196685605387,
+          "VM_p99_MPa": 68.26285367019638
+        },
+        {
+          "stage": 2,
+          "operation": "support_release",
+          "released": true,
+          "U_max_mm": 0.7597224,
+          "registered_U_max_mm": 0.299944495622723,
+          "VM_max_MPa": 1.2108776746066151e-08,
+          "VM_p99_MPa": 1.5849533585486184e-09
+        }
+      ],
+      "registered_release_change_max_mm": 0.09665201993745735,
+      "classification": "sequential_macro_layer_inherent_strain_and_support_release_sensitivity",
+      "qualified_print_prediction": false,
+      "local_stress_exceeds_coupon_reference": false,
+      "input_sha256": "8d6c754d7fc88c53dea92a791e25e30899f0098aa11e94f1e6de6674865ab56b"
+    },
+    "macro_layers_16": {
+      "setup": {
+        "macro_layers": 16,
+        "macro_layer_height_mm": 2.5,
+        "actual_machine_layer_mm": 0.06,
+        "actual_part_layer_intervals": 667,
+        "in_plane_shrinkage": 0.001,
+        "build_axis_shrinkage": 0.0005,
+        "support_effective_E_MPa": 1000,
+        "support_lateral_to_axial_stiffness": 0.1,
+        "supported_nodes": 13676,
+        "overhang_area_mm2": 46185.699996187475,
+        "orientation": {
+          "machine": "600 mm square metal LPBF envelope; supplier/process not selected",
+          "machine_volume_mm": [
+            600,
+            600,
+            600
+          ],
+          "envelope_example": "Nikon SLM NXG XII 600; envelope reference only",
+          "assumed_platform_thickness_mm": 20,
+          "assumed_min_support_height_mm": 10,
+          "assumed_XY_margin_mm": 10,
+          "rotation_degrees_xyz": [
+            0,
+            0,
+            45
+          ],
+          "rotation_matrix": [
+            [
+              0.7071067811865476,
+              -0.7071067811865476,
+              0.0
+            ],
+            [
+              0.7071067811865476,
+              0.7071067811865476,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "translation_mm": [
+            299.99746444559355,
+            299.99746444559355,
+            46.0
+          ],
+          "part_rotated_size_mm": [
+            451.1290552882045,
+            451.1290552882045,
+            40.0
+          ],
+          "placed_bounds_mm": [
+            [
+              74.43547235589773,
+              74.43547235589773,
+              30.0
+            ],
+            [
+              525.5645276441022,
+              525.5645276441022,
+              70.0
+            ]
+          ],
+          "flat_build_required": true,
+          "screen_fit": true,
+          "platform_supplier_confirmed": false,
+          "qualified_job_file": false,
+          "metal": "Ti-6Al-4V Grade 5 proposal; no polymer",
+          "process_parameter_transfer_qualified": false
+        },
+        "element_birth_counts": [
+          4997,
+          1328,
+          1951,
+          2215,
+          1725,
+          3096,
+          2682,
+          3584,
+          2183,
+          2828,
+          2211,
+          1894,
+          5795,
+          460,
+          460,
+          415
+        ],
+        "stage_kinds": [
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "support_release"
+        ],
+        "ideal_plastic_reference_yield_MPa": null,
+        "source_mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "machine_calibrated": false,
+        "support_removability_verified": false,
+        "thermal_history_or_heat_treatment_relaxation_solved": false
+      },
+      "seconds": 498.09103733405937,
+      "stages": [
+        {
+          "stage": 1,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.08147272813068338,
+          "registered_U_max_mm": 0.08154125468310093,
+          "VM_max_MPa": 70.11695993291909,
+          "VM_p99_MPa": 37.36332230170981
+        },
+        {
+          "stage": 2,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.08147272813068338,
+          "registered_U_max_mm": 0.08154125468276902,
+          "VM_max_MPa": 70.11695993231946,
+          "VM_p99_MPa": 35.3277592960305
+        },
+        {
+          "stage": 3,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.10363824160667431,
+          "registered_U_max_mm": 0.10365821619478138,
+          "VM_max_MPa": 142.750004062401,
+          "VM_p99_MPa": 93.07859275641856
+        },
+        {
+          "stage": 4,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.10363824160667431,
+          "registered_U_max_mm": 0.10365821620051902,
+          "VM_max_MPa": 142.7500037834315,
+          "VM_p99_MPa": 89.63136766338361
+        },
+        {
+          "stage": 5,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.11539572028995963,
+          "registered_U_max_mm": 0.11544100859765652,
+          "VM_max_MPa": 765.007849071081,
+          "VM_p99_MPa": 108.58780163218458
+        },
+        {
+          "stage": 6,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.11539572028995963,
+          "registered_U_max_mm": 0.11544100859872534,
+          "VM_max_MPa": 765.0078214093276,
+          "VM_p99_MPa": 104.71128766762716
+        },
+        {
+          "stage": 7,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.11989024827164593,
+          "registered_U_max_mm": 0.1200528124190138,
+          "VM_max_MPa": 615.6547547421103,
+          "VM_p99_MPa": 117.57771645870999
+        },
+        {
+          "stage": 8,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.11989024827164593,
+          "registered_U_max_mm": 0.12005281241736158,
+          "VM_max_MPa": 615.654751371239,
+          "VM_p99_MPa": 115.41091204897226
+        },
+        {
+          "stage": 9,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.13837218100570017,
+          "registered_U_max_mm": 0.13896182487578332,
+          "VM_max_MPa": 610.3230165714356,
+          "VM_p99_MPa": 127.35661553983763
+        },
+        {
+          "stage": 10,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.13837218100570017,
+          "registered_U_max_mm": 0.1389618248703771,
+          "VM_max_MPa": 610.3230165714356,
+          "VM_p99_MPa": 123.6557111955913
+        },
+        {
+          "stage": 11,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.16502875082433394,
+          "registered_U_max_mm": 0.16595614737255504,
+          "VM_max_MPa": 634.1880630207326,
+          "VM_p99_MPa": 139.20446748859436
+        },
+        {
+          "stage": 12,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.16502875082433394,
+          "registered_U_max_mm": 0.16595614736394515,
+          "VM_max_MPa": 634.1880630207326,
+          "VM_p99_MPa": 136.02554000866579
+        },
+        {
+          "stage": 13,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.18881033243239337,
+          "registered_U_max_mm": 0.18931329731983726,
+          "VM_max_MPa": 643.747540584127,
+          "VM_p99_MPa": 146.4283962344656
+        },
+        {
+          "stage": 14,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.18881033243239337,
+          "registered_U_max_mm": 0.1893132973188787,
+          "VM_max_MPa": 643.747540584127,
+          "VM_p99_MPa": 142.29835550462568
+        },
+        {
+          "stage": 15,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.20730879483254178,
+          "registered_U_max_mm": 0.20820879979654178,
+          "VM_max_MPa": 655.2012324600204,
+          "VM_p99_MPa": 150.10743101420067
+        },
+        {
+          "stage": 16,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.20730879483254178,
+          "registered_U_max_mm": 0.20820879986562404,
+          "VM_max_MPa": 655.2012324600204,
+          "VM_p99_MPa": 147.87621378432223
+        },
+        {
+          "stage": 17,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.2201793011311574,
+          "registered_U_max_mm": 0.22109858528677215,
+          "VM_max_MPa": 664.7355918809025,
+          "VM_p99_MPa": 150.15729296878874
+        },
+        {
+          "stage": 18,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.2201793011311574,
+          "registered_U_max_mm": 0.22109858529660334,
+          "VM_max_MPa": 664.7355918809025,
+          "VM_p99_MPa": 147.52175672855057
+        },
+        {
+          "stage": 19,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.23684575940093186,
+          "registered_U_max_mm": 0.23775528971924947,
+          "VM_max_MPa": 1898.6343112290976,
+          "VM_p99_MPa": 151.46255775805614
+        },
+        {
+          "stage": 20,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.23684575940093186,
+          "registered_U_max_mm": 0.23775528971563842,
+          "VM_max_MPa": 1898.6347802793669,
+          "VM_p99_MPa": 149.98799099929784
+        },
+        {
+          "stage": 21,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.2495591533428339,
+          "registered_U_max_mm": 0.25038842767878794,
+          "VM_max_MPa": 1562.004056578609,
+          "VM_p99_MPa": 155.62084898576543
+        },
+        {
+          "stage": 22,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.2495591533428339,
+          "registered_U_max_mm": 0.25038842767595765,
+          "VM_max_MPa": 1562.0044318268658,
+          "VM_p99_MPa": 154.08171647407843
+        },
+        {
+          "stage": 23,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.2597560098698631,
+          "registered_U_max_mm": 0.26028865728107786,
+          "VM_max_MPa": 1165.287852724428,
+          "VM_p99_MPa": 160.36671402779322
+        },
+        {
+          "stage": 24,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.2597560098698631,
+          "registered_U_max_mm": 0.26028865734735296,
+          "VM_max_MPa": 1165.2881046688892,
+          "VM_p99_MPa": 156.10854934416997
+        },
+        {
+          "stage": 25,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.2829529132313933,
+          "registered_U_max_mm": 0.28257128607093424,
+          "VM_max_MPa": 702.544172557888,
+          "VM_p99_MPa": 164.07638200019923
+        },
+        {
+          "stage": 26,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.2829529132313933,
+          "registered_U_max_mm": 0.2825712860666843,
+          "VM_max_MPa": 702.544172557888,
+          "VM_p99_MPa": 163.8018055566048
+        },
+        {
+          "stage": 27,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.28312368722089803,
+          "registered_U_max_mm": 0.2827203203737515,
+          "VM_max_MPa": 787.1415865531092,
+          "VM_p99_MPa": 165.4381203672585
+        },
+        {
+          "stage": 28,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.28312368722089803,
+          "registered_U_max_mm": 0.28272032037299677,
+          "VM_max_MPa": 787.1416387396379,
+          "VM_p99_MPa": 165.10327687347547
+        },
+        {
+          "stage": 29,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.28321512567862617,
+          "registered_U_max_mm": 0.2827725729843175,
+          "VM_max_MPa": 771.5179762888721,
+          "VM_p99_MPa": 166.2117368459386
+        },
+        {
+          "stage": 30,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.28321512567862617,
+          "registered_U_max_mm": 0.28277257297667663,
+          "VM_max_MPa": 771.5180842295567,
+          "VM_p99_MPa": 166.01767602974738
+        },
+        {
+          "stage": 31,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.2832424650365189,
+          "registered_U_max_mm": 0.28276322110636376,
+          "VM_max_MPa": 800.0965449112998,
+          "VM_p99_MPa": 167.02588972972453
+        },
+        {
+          "stage": 32,
+          "operation": "support_release",
+          "released": true,
+          "U_max_mm": 2.824284605665375,
+          "registered_U_max_mm": 1.7159351952644541,
+          "VM_max_MPa": 740.3682772109227,
+          "VM_p99_MPa": 141.85172398985011
+        }
+      ],
+      "registered_release_change_max_mm": 1.533759179669778,
+      "classification": "sequential_macro_layer_inherent_strain_and_support_release_sensitivity",
+      "qualified_print_prediction": false,
+      "local_stress_exceeds_coupon_reference": true,
+      "input_sha256": "e5f59d7557900589a69955b58a9a72c9d7d3553241ba38d4145e8e0dca24ee58"
+    },
+    "macro_layers_32": {
+      "setup": {
+        "macro_layers": 32,
+        "macro_layer_height_mm": 1.25,
+        "actual_machine_layer_mm": 0.06,
+        "actual_part_layer_intervals": 667,
+        "in_plane_shrinkage": 0.001,
+        "build_axis_shrinkage": 0.0005,
+        "support_effective_E_MPa": 1000,
+        "support_lateral_to_axial_stiffness": 0.1,
+        "supported_nodes": 13676,
+        "overhang_area_mm2": 46185.699996187475,
+        "orientation": {
+          "machine": "600 mm square metal LPBF envelope; supplier/process not selected",
+          "machine_volume_mm": [
+            600,
+            600,
+            600
+          ],
+          "envelope_example": "Nikon SLM NXG XII 600; envelope reference only",
+          "assumed_platform_thickness_mm": 20,
+          "assumed_min_support_height_mm": 10,
+          "assumed_XY_margin_mm": 10,
+          "rotation_degrees_xyz": [
+            0,
+            0,
+            45
+          ],
+          "rotation_matrix": [
+            [
+              0.7071067811865476,
+              -0.7071067811865476,
+              0.0
+            ],
+            [
+              0.7071067811865476,
+              0.7071067811865476,
+              0.0
+            ],
+            [
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "translation_mm": [
+            299.99746444559355,
+            299.99746444559355,
+            46.0
+          ],
+          "part_rotated_size_mm": [
+            451.1290552882045,
+            451.1290552882045,
+            40.0
+          ],
+          "placed_bounds_mm": [
+            [
+              74.43547235589773,
+              74.43547235589773,
+              30.0
+            ],
+            [
+              525.5645276441022,
+              525.5645276441022,
+              70.0
+            ]
+          ],
+          "flat_build_required": true,
+          "screen_fit": true,
+          "platform_supplier_confirmed": false,
+          "qualified_job_file": false,
+          "metal": "Ti-6Al-4V Grade 5 proposal; no polymer",
+          "process_parameter_transfer_qualified": false
+        },
+        "element_birth_counts": [
+          3021,
+          1976,
+          639,
+          689,
+          832,
+          1119,
+          1197,
+          1018,
+          882,
+          843,
+          1605,
+          1491,
+          1423,
+          1259,
+          1617,
+          1967,
+          1032,
+          1151,
+          1415,
+          1413,
+          1237,
+          974,
+          932,
+          962,
+          3794,
+          2001,
+          243,
+          217,
+          214,
+          246,
+          217,
+          198
+        ],
+        "stage_kinds": [
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "stress_free_birth",
+          "layer_shrinkage",
+          "support_release"
+        ],
+        "ideal_plastic_reference_yield_MPa": null,
+        "source_mesh_sha256": "de1766d1019c61caa0446ceee6b885a418618b6b605fd77a2a8fdebc61964863",
+        "machine_calibrated": false,
+        "support_removability_verified": false,
+        "thermal_history_or_heat_treatment_relaxation_solved": false
+      },
+      "seconds": 865.600549625,
+      "stages": [
+        {
+          "stage": 1,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.07308746887900817,
+          "registered_U_max_mm": 0.07311222735539348,
+          "VM_max_MPa": 122.83296124775222,
+          "VM_p99_MPa": 56.700623367011126
+        },
+        {
+          "stage": 2,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.07308746887900817,
+          "registered_U_max_mm": 0.07311222735472099,
+          "VM_max_MPa": 122.83296124775222,
+          "VM_p99_MPa": 49.678046625623054
+        },
+        {
+          "stage": 3,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.10220749273223514,
+          "registered_U_max_mm": 0.10225896341379688,
+          "VM_max_MPa": 185.2816882325012,
+          "VM_p99_MPa": 121.24558495894135
+        },
+        {
+          "stage": 4,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.10220749273223514,
+          "registered_U_max_mm": 0.10225896341321863,
+          "VM_max_MPa": 185.2816940603811,
+          "VM_p99_MPa": 120.07420194608109
+        },
+        {
+          "stage": 5,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.10537960522552123,
+          "registered_U_max_mm": 0.1055051757887503,
+          "VM_max_MPa": 201.1536708093111,
+          "VM_p99_MPa": 121.00678282356522
+        },
+        {
+          "stage": 6,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.10537960522552123,
+          "registered_U_max_mm": 0.105505175789562,
+          "VM_max_MPa": 201.15367583610896,
+          "VM_p99_MPa": 119.59235180276536
+        },
+        {
+          "stage": 7,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.11106228994837808,
+          "registered_U_max_mm": 0.11114573127733647,
+          "VM_max_MPa": 212.98337223440686,
+          "VM_p99_MPa": 128.64263039468983
+        },
+        {
+          "stage": 8,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.11106228994837808,
+          "registered_U_max_mm": 0.1111457312798437,
+          "VM_max_MPa": 212.98337223440686,
+          "VM_p99_MPa": 125.52630324000897
+        },
+        {
+          "stage": 9,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.11279514014208412,
+          "registered_U_max_mm": 0.11290759292829053,
+          "VM_max_MPa": 201.1490768161659,
+          "VM_p99_MPa": 128.31199609071768
+        },
+        {
+          "stage": 10,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.11279514014208412,
+          "registered_U_max_mm": 0.1129075929304532,
+          "VM_max_MPa": 201.1490768161659,
+          "VM_p99_MPa": 126.00602784834318
+        },
+        {
+          "stage": 11,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.11793330427801767,
+          "registered_U_max_mm": 0.11776091265061567,
+          "VM_max_MPa": 480.158301561147,
+          "VM_p99_MPa": 130.81552153572315
+        },
+        {
+          "stage": 12,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.11793330427801767,
+          "registered_U_max_mm": 0.11776091265063433,
+          "VM_max_MPa": 480.15829004392117,
+          "VM_p99_MPa": 128.2435632426178
+        },
+        {
+          "stage": 13,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.11864981923421627,
+          "registered_U_max_mm": 0.11857201585270975,
+          "VM_max_MPa": 333.43781105831135,
+          "VM_p99_MPa": 134.0019409140821
+        },
+        {
+          "stage": 14,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.11864981923421627,
+          "registered_U_max_mm": 0.11857201585217003,
+          "VM_max_MPa": 333.43781105542763,
+          "VM_p99_MPa": 131.95833290868072
+        },
+        {
+          "stage": 15,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.13718048684859308,
+          "registered_U_max_mm": 0.13786200009125532,
+          "VM_max_MPa": 294.3850322637359,
+          "VM_p99_MPa": 138.99666847301862
+        },
+        {
+          "stage": 16,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.13718048684859308,
+          "registered_U_max_mm": 0.13786200008863655,
+          "VM_max_MPa": 294.3850322637359,
+          "VM_p99_MPa": 137.87623803357508
+        },
+        {
+          "stage": 17,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.1547034179348539,
+          "registered_U_max_mm": 0.1556570454002876,
+          "VM_max_MPa": 285.95828491847413,
+          "VM_p99_MPa": 142.62705613010817
+        },
+        {
+          "stage": 18,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.1547034179348539,
+          "registered_U_max_mm": 0.15565704539999264,
+          "VM_max_MPa": 285.9582849176521,
+          "VM_p99_MPa": 141.40708594723347
+        },
+        {
+          "stage": 19,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.16631935602662679,
+          "registered_U_max_mm": 0.16742525761665633,
+          "VM_max_MPa": 296.78831419965053,
+          "VM_p99_MPa": 147.16295071825874
+        },
+        {
+          "stage": 20,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.16631935602662679,
+          "registered_U_max_mm": 0.16742525761683577,
+          "VM_max_MPa": 296.78831419965053,
+          "VM_p99_MPa": 144.21006095806808
+        },
+        {
+          "stage": 21,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.17848691023885857,
+          "registered_U_max_mm": 0.17983617711586547,
+          "VM_max_MPa": 314.566936023515,
+          "VM_p99_MPa": 151.28619412304892
+        },
+        {
+          "stage": 22,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.17848691023885857,
+          "registered_U_max_mm": 0.17983617712239322,
+          "VM_max_MPa": 314.566936023515,
+          "VM_p99_MPa": 148.96310482093708
+        },
+        {
+          "stage": 23,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.18918532180847145,
+          "registered_U_max_mm": 0.19076261852358192,
+          "VM_max_MPa": 326.20368697994934,
+          "VM_p99_MPa": 157.0128572532247
+        },
+        {
+          "stage": 24,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.18918532180847145,
+          "registered_U_max_mm": 0.19076261851108972,
+          "VM_max_MPa": 326.20368697994934,
+          "VM_p99_MPa": 155.20629856852204
+        },
+        {
+          "stage": 25,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.19987742038592402,
+          "registered_U_max_mm": 0.20156791126018545,
+          "VM_max_MPa": 348.6857469888818,
+          "VM_p99_MPa": 163.9719578840319
+        },
+        {
+          "stage": 26,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.19987742038592402,
+          "registered_U_max_mm": 0.20156791125740073,
+          "VM_max_MPa": 348.6857469888818,
+          "VM_p99_MPa": 162.30114634388588
+        },
+        {
+          "stage": 27,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.20736899724468458,
+          "registered_U_max_mm": 0.20921941091308502,
+          "VM_max_MPa": 364.21459735047426,
+          "VM_p99_MPa": 167.20504944397646
+        },
+        {
+          "stage": 28,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.20736899724468458,
+          "registered_U_max_mm": 0.20921941091149035,
+          "VM_max_MPa": 364.21459735047426,
+          "VM_p99_MPa": 165.17951753439274
+        },
+        {
+          "stage": 29,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.21491705234942668,
+          "registered_U_max_mm": 0.2171814950458279,
+          "VM_max_MPa": 369.7384641601302,
+          "VM_p99_MPa": 172.28245479804386
+        },
+        {
+          "stage": 30,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.21491705234942668,
+          "registered_U_max_mm": 0.2171814950406244,
+          "VM_max_MPa": 369.7384641601302,
+          "VM_p99_MPa": 169.91494935202093
+        },
+        {
+          "stage": 31,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.2216839262411752,
+          "registered_U_max_mm": 0.22446210840014963,
+          "VM_max_MPa": 368.13054743735086,
+          "VM_p99_MPa": 174.09323310032414
+        },
+        {
+          "stage": 32,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.2216839262411752,
+          "registered_U_max_mm": 0.2244621084167442,
+          "VM_max_MPa": 368.13054743735086,
+          "VM_p99_MPa": 173.23160161065977
+        },
+        {
+          "stage": 33,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.22653244650034596,
+          "registered_U_max_mm": 0.22921459236499322,
+          "VM_max_MPa": 371.7403460390265,
+          "VM_p99_MPa": 173.89607032671142
+        },
+        {
+          "stage": 34,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.22653244650034596,
+          "registered_U_max_mm": 0.229214592364514,
+          "VM_max_MPa": 371.7403460390265,
+          "VM_p99_MPa": 172.91802800193665
+        },
+        {
+          "stage": 35,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.2318349048186998,
+          "registered_U_max_mm": 0.2344548133686069,
+          "VM_max_MPa": 363.22307362486913,
+          "VM_p99_MPa": 175.06668763002057
+        },
+        {
+          "stage": 36,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.2318349048186998,
+          "registered_U_max_mm": 0.23445480843711228,
+          "VM_max_MPa": 363.22307362486913,
+          "VM_p99_MPa": 173.45244323170436
+        },
+        {
+          "stage": 37,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.24014743884897127,
+          "registered_U_max_mm": 0.24272182373702944,
+          "VM_max_MPa": 366.71634078635503,
+          "VM_p99_MPa": 174.93300176382775
+        },
+        {
+          "stage": 38,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.24014743884897127,
+          "registered_U_max_mm": 0.24272182373752182,
+          "VM_max_MPa": 366.71634078635503,
+          "VM_p99_MPa": 173.49380058298215
+        },
+        {
+          "stage": 39,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.24730355342629531,
+          "registered_U_max_mm": 0.2498378136040967,
+          "VM_max_MPa": 2016.9679266188493,
+          "VM_p99_MPa": 175.86966358992288
+        },
+        {
+          "stage": 40,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.24730355342629531,
+          "registered_U_max_mm": 0.24983781360575189,
+          "VM_max_MPa": 2016.9689682815178,
+          "VM_p99_MPa": 174.65415321366888
+        },
+        {
+          "stage": 41,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.2525998153236223,
+          "registered_U_max_mm": 0.2549897943569469,
+          "VM_max_MPa": 1862.4298317583832,
+          "VM_p99_MPa": 177.85305030561426
+        },
+        {
+          "stage": 42,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.2525998153236223,
+          "registered_U_max_mm": 0.2549897943589216,
+          "VM_max_MPa": 1862.4303371171068,
+          "VM_p99_MPa": 176.94234849203346
+        },
+        {
+          "stage": 43,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.25783875680008406,
+          "registered_U_max_mm": 0.25995275496901576,
+          "VM_max_MPa": 1751.0179890534332,
+          "VM_p99_MPa": 179.54923955464682
+        },
+        {
+          "stage": 44,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.25783875680008406,
+          "registered_U_max_mm": 0.25995275496280085,
+          "VM_max_MPa": 1751.0181853524339,
+          "VM_p99_MPa": 178.56407845870115
+        },
+        {
+          "stage": 45,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.260532081238131,
+          "registered_U_max_mm": 0.26259223215302796,
+          "VM_max_MPa": 1615.5749069293042,
+          "VM_p99_MPa": 182.16622584164165
+        },
+        {
+          "stage": 46,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.260532081238131,
+          "registered_U_max_mm": 0.2625922321610718,
+          "VM_max_MPa": 1615.57500058966,
+          "VM_p99_MPa": 181.14841700410153
+        },
+        {
+          "stage": 47,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.2650960926028947,
+          "registered_U_max_mm": 0.26678267620375645,
+          "VM_max_MPa": 1445.8936209221781,
+          "VM_p99_MPa": 184.42160252504567
+        },
+        {
+          "stage": 48,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.2650960926028947,
+          "registered_U_max_mm": 0.2667826762732229,
+          "VM_max_MPa": 1445.8937102678992,
+          "VM_p99_MPa": 181.06567861303307
+        },
+        {
+          "stage": 49,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.2833144516494448,
+          "registered_U_max_mm": 0.28402033163667584,
+          "VM_max_MPa": 1093.434970646219,
+          "VM_p99_MPa": 186.72555628518523
+        },
+        {
+          "stage": 50,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.2833144516494448,
+          "registered_U_max_mm": 0.2840203316359954,
+          "VM_max_MPa": 1093.4347581039433,
+          "VM_p99_MPa": 184.93839373178184
+        },
+        {
+          "stage": 51,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.29272480995799177,
+          "registered_U_max_mm": 0.29313207814963516,
+          "VM_max_MPa": 952.4168630259909,
+          "VM_p99_MPa": 186.79101700374815
+        },
+        {
+          "stage": 52,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.29272480995799177,
+          "registered_U_max_mm": 0.29313207812438746,
+          "VM_max_MPa": 952.4168633461728,
+          "VM_p99_MPa": 186.69848304571437
+        },
+        {
+          "stage": 53,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.29280078664652337,
+          "registered_U_max_mm": 0.29317415216053,
+          "VM_max_MPa": 1028.3354851873225,
+          "VM_p99_MPa": 187.13821597445832
+        },
+        {
+          "stage": 54,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.29280078664652337,
+          "registered_U_max_mm": 0.2931741521588571,
+          "VM_max_MPa": 1028.3354851873225,
+          "VM_p99_MPa": 186.86989340182166
+        },
+        {
+          "stage": 55,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.29283554754325863,
+          "registered_U_max_mm": 0.2932043738042836,
+          "VM_max_MPa": 1054.4555288187262,
+          "VM_p99_MPa": 187.28175400429922
+        },
+        {
+          "stage": 56,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.29283554754325863,
+          "registered_U_max_mm": 0.29320437380438663,
+          "VM_max_MPa": 1054.455527497153,
+          "VM_p99_MPa": 187.14779755661672
+        },
+        {
+          "stage": 57,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.29286610958338966,
+          "registered_U_max_mm": 0.2931991337073719,
+          "VM_max_MPa": 1034.4941929022116,
+          "VM_p99_MPa": 187.60311735927175
+        },
+        {
+          "stage": 58,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.29286610958338966,
+          "registered_U_max_mm": 0.29319913370864886,
+          "VM_max_MPa": 1034.4941498159903,
+          "VM_p99_MPa": 187.4580717914777
+        },
+        {
+          "stage": 59,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.292881054573983,
+          "registered_U_max_mm": 0.29318532422900057,
+          "VM_max_MPa": 1037.0123245113223,
+          "VM_p99_MPa": 187.99621200062705
+        },
+        {
+          "stage": 60,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.292881054573983,
+          "registered_U_max_mm": 0.29318532422820914,
+          "VM_max_MPa": 1037.0121974917377,
+          "VM_p99_MPa": 187.8391796282041
+        },
+        {
+          "stage": 61,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.29288513963405244,
+          "registered_U_max_mm": 0.29316285197996816,
+          "VM_max_MPa": 1052.54423752413,
+          "VM_p99_MPa": 188.61756217983475
+        },
+        {
+          "stage": 62,
+          "operation": "stress_free_birth",
+          "released": false,
+          "U_max_mm": 0.29288513963405244,
+          "registered_U_max_mm": 0.2931628519797911,
+          "VM_max_MPa": 1052.544241367151,
+          "VM_p99_MPa": 188.43515121869652
+        },
+        {
+          "stage": 63,
+          "operation": "layer_shrinkage",
+          "released": false,
+          "U_max_mm": 0.2928804160713386,
+          "registered_U_max_mm": 0.29313963155120093,
+          "VM_max_MPa": 1063.181161089055,
+          "VM_p99_MPa": 189.0097867799341
+        },
+        {
+          "stage": 64,
+          "operation": "support_release",
+          "released": true,
+          "U_max_mm": 2.9156772383635685,
+          "registered_U_max_mm": 1.7761852748152098,
+          "VM_max_MPa": 712.1551658398207,
+          "VM_p99_MPa": 169.68595376048145
+        }
+      ],
+      "registered_release_change_max_mm": 1.575073574294443,
+      "classification": "sequential_macro_layer_inherent_strain_and_support_release_sensitivity",
+      "qualified_print_prediction": false,
+      "local_stress_exceeds_coupon_reference": true,
+      "input_sha256": "dae5cf18927c4bf4a891941c367586c542381dd75493903cfb5a91b2ed67f084"
+    }
+  },
+  "qualification": {
+    "supplier": null,
+    "Grade5_parameter_set": null,
+    "heat_treatment": null,
+    "fatigue_life": null,
+    "qualified_print_prediction": false,
+    "manufacturing_authorized": false
+  },
+  "local_results_root": "work/carrier-flat-build-20261012",
+  "activation_mesh_audit": {
+    "elements": 37824,
+    "part_height_mm": 40.0,
+    "element_vertical_span_median_mm": 3.1177784800934436,
+    "element_vertical_span_p95_mm": 7.333253138237321,
+    "element_vertical_span_max_mm": 10.696725249662386,
+    "macro_layers": {
+      "16": {
+        "nominal_height_mm": 2.5,
+        "elements_crossing_assigned_macro_slab": 27435,
+        "fraction_crossing_assigned_macro_slab": 0.7253331218274112
+      },
+      "32": {
+        "nominal_height_mm": 1.25,
+        "elements_crossing_assigned_macro_slab": 37600,
+        "fraction_crossing_assigned_macro_slab": 0.994077834179357
+      }
+    },
+    "physical_machine_layers_resolved_by_elements": false
+  },
+  "software_snapshot": {
+    "python": "3.12.11",
+    "CAD_host": "macOS-27.2-arm64-arm-64bit",
+    "python_packages": {
+      "build123d": "0.11.1",
+      "gmsh": "4.15.2",
+      "numpy": "2.5.2",
+      "trimesh": "5.1.0",
+      "pyvista": "0.48.4"
+    },
+    "solver": "CalculiX 2.21",
+    "solver_container_image": "sha256:c9772ae9223a4f800a3ceda77d2494e67e34c8526eb0f204b3c8e052266641b4",
+    "ccx_binary_sha256": "271f8411371b978d7a8d31a7a13d0765e6e1f872e8a8b1d6aac6d0856c71ec6c",
+    "source_files": {
+      "flat_build.py": "1bb02e138152d75d619e5e898aeb939e11c907466417fac7a0142d84eb7f5fc7",
+      "slice_print.py": "2b0560775ddecaad1729ddd87c03a8272a7c5b85d905ea68225f61dabd136084",
+      "print_simulation.py": "7e038ee0bddd5889db58cff0681649c586c9e7c4c2d6279f1463da4f0f14d9f1",
+      "simulate.py": "87be70c955e2532255fdee37cf3a686d970cb421bc9bf6094ca867f1f3098e77",
+      "verify.py": "ef7db3e127e59871f7668dac8696d519ca49958b1a5745f23cd3dfcbe5c7df86"
+    }
+  },
+  "first_merge": {
+    "pull_request": "https://github.com/cluster2600/porscheparts/pull/194",
+    "commit": "3d1a057beb8b702628b27593d862399d84bef3e7",
+    "validation": "https://github.com/cluster2600/porscheparts/actions/runs/38296721317",
+    "make_check": "passed",
+    "main_validation": "https://github.com/cluster2600/porscheparts/actions/runs/38297465851",
+    "main_make_check": "passed"
+  },
+  "comparison": {
+    "registered_release_deformation_relative_change_16_to_32": 0.03511209497714751,
+    "mesh_spatial_convergence_established": false,
+    "qualified_print_prediction": false,
+    "both_staged_runs_exceed_comparison_yield_during_build": true,
+    "basis": "Same frozen mesh, assumed inherent contraction and equivalent supports; group-count sensitivity only"
+  },
+  "raw_retention": {
+    "archive": "native-solver-raw.tar.gz",
+    "archive_sha256": "54bb1eae111c7c78ec24d7b11ba4a341b3482be9aa7dd3253afe5dd55862a6b6",
+    "archive_bytes": 416250292,
+    "native_archive_files": 32,
+    "matching_local_files": 24,
+    "all_common_files_hash_equal": true,
+    "transport_hash_matches_container": true
+  }
+}

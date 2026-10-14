@@ -1,7 +1,7 @@
 {
   "part_id": "993-ENG-CARRIER-0001",
-  "name": "993 Turbo engine carrier, closed-section shape study (PicoGK)",
-  "generator": "engine_carrier_box_beam",
+  "name": "993 Turbo engine carrier, load-path (bionic) shape study (PicoGK)",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-eng-carrier-0001.json",
   "porsche_part_numbers": [
     "993 115 021 53"
@@ -10,7 +10,7 @@
   "material_candidate": "unknown OEM steel; no grade qualified (density of steel used for the mass estimate only)",
   "density_g_cm3": 7.85,
   "voxel_mm": 0.5,
-  "picogk_enhancement": "Replaces the flat T-blade with a bowed closed rounded-box section (two half shells with proud seam flanges, as the FVD photos suggest raised edges) that flows into the end bosses through gusset-like blends, the failure-prone zone named by the 964/993 crack reports; two rimmed side openings and two drains vent and drain the closed section (corrosion, inspection). Shape study only: interfaces are not modelled.",
+  "picogk_enhancement": "Bionic shape study: the beam between the two end-mount bosses and the central engine-bracket pad is grown by 3D SIMP topology optimization (source/bionic.json, topopt.py; 3.57 mm elements, 25 % of the vendor 600 x 50 x 50 mm envelope) under the named 195 kg engine weighing x an ASSUMED 50 % share on this carrier x ASSUMED factors (3 g vertical, 1.2 g lateral along the carrier, 1.0 g fore-aft at the pad top), the bosses clamped at the hypothetical bores; PicoGK smooths the density into a perforated thin-walled box with branching webs (324 cm3, about 2.5 kg in steel vs the 1.96 kg vendor claim) and fuses the bosses, pad and bores exactly. SAFETY CRITICAL: no structural claim, interfaces, load share, factors, material and fatigue are unknown; manufacture and fitting prohibited.",
   "parameters": {
     "overall_length_mm": {
       "value": 600.0,
@@ -211,5 +211,6 @@
     "overall_width_mm": "y",
     "overall_height_mm": "z",
     "overall_length_mm": "x"
-  }
+  },
+  "envelope_mode": "max"
 }

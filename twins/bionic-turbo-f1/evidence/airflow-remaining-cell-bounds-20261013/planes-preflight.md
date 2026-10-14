@@ -1,0 +1,9 @@
+# Protocole préalable — plans et volumes après déterminants
+
+Le parcours des 3836 autres déterminants est terminé sans exclusion : 153 boîtes restent. Ses résultats ne sont pas une admission. Sur ces mêmes boîtes et le même u=q_m, contrôler les 3840 cellules variables, leurs 92160 paires ordonnées de plans et leur volume signé. Ordre préalable : score de plans archivé PR231 décroissant, puis label croissant ; dans une cellule, ordre natif des faces puis toutes les paires i,j avec i!=j.
+
+Réutiliser les moments de faces centrés PR236 sans approximation plane. Pour chaque paire, δ=C_j−C_i, L=S_i·δ ; exiger normes non nulles, L<0 et L²−10^-12|S_i|²|δ|²>=0. Encadrer le résidu normalisé L²/(|S_i|²|δ|²)−10^-12 avec dénominateur strictement positif. Ne pas perdre le signe négatif. Le volume est la somme signée des pyramides natives à partir de la moyenne des centres de faces ; exiger V>0. Les murs restent présents dans la géométrie et les plans, sans jamais être ajoutés au tenseur de déterminant.
+
+Encadrer d'abord sur l'enveloppe exacte des 153 boîtes contiguës. Si toutes les paires et le volume d'une cellule sont positivement certifiés, hériter ces bornes sur les boîtes. Sinon réencadrer cette cellule sur chacune des boîtes sources non exclues, sans subdivision. Arrêter une boîte seulement à un refus nécessaire certain ; singularité d'encadrement = indécision. Conserver chaque borne utilisée et le premier témoin de refus. Aucun ratio ponctuel ou maillage.
+
+Le lecteur indépendant doit reconstruire les faces par les gabarits hex réduits, utiliser les moments Fraction 192 bits publiés et relire toutes les bornes enregistrées, pas seulement les refus. Les succès restent nécessaires, sans preuve générale d'intersections/couverture ni arrondis OpenFOAM. Une comparaison débit/puissance reste non qualifiée.

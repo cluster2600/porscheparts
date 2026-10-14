@@ -1,7 +1,7 @@
 {
   "part_id": "993-TURBOCHARGER-K16-PAIR-0001",
   "name": "Pair of K16 turbochargers of the 993 Turbo (PicoGK display concept)",
-  "generator": "k16_turbo_pair",
+  "generator": "bionic_topology",
   "catalogue_record": "catalog/parts/993-turbocharger-k16-pair-0001.json",
   "porsche_part_numbers": [
     "993 123 013 51",
@@ -13,7 +13,7 @@
   "material_candidate": "undetermined",
   "density_g_cm3": 7.8,
   "voxel_mm": 1.25,
-  "picogk_enhancement": "Each block-and-cylinder unit becomes a recognisable turbocharger: compressor inlet with hose bead, spiral volutes with tangential discharge and tangential flanged turbine inlet, centre housing with oil feed boss and drain pad, heat shield, axial outlet with three-ear flange, integral wastegate boss and actuator can, hollow open gas paths and simplified wheels in both bores; the two mirrored units are joined by a schematic discharge crossover so the pair is one display body.",
+  "picogk_enhancement": "Bionic: both turbochargers (housings, gas paths, flanges, crossover, wheels) are kept exactly from the functional model (shaping.base_stl); the straight wastegate-actuator strut of each unit is replaced by a bracket grown by 3D SIMP topology optimization (bionic.json, topopt.py) between the turbine housing and the actuator can, for an assumed 157 N diaphragm reaction (0.8 bar on a 50 mm diaphragm) and 30 g vibration of a 0.6 kg actuator (177 N vertical, lateral and fore-aft), with 7.5 mm clearance kept around the actuator rod and lever. PicoGK smooths it into an organic, branching bracket. Loads are assumptions, not measurements.",
   "parameters": {
     "unit_length_mm": {
       "value": 280.0,
@@ -97,5 +97,11 @@
   "envelope": [
     "unit_length_mm",
     "unit_height_mm"
-  ]
+  ],
+  "envelope_axes": {
+    "unit_length_mm": "x",
+    "unit_height_mm": "z"
+  },
+  "envelope_mode": "max",
+  "max_tris": 120000
 }

@@ -94,10 +94,17 @@ compare with, and no 964 body-in-white mass is recorded in the repository.
   is carried yet: suspension, engine and gearbox mounts, door hinges, seat and
   belt anchorages, glass bonding flanges.
 - Stiffness, on a shell-and-beam model of these members with the open
-  shell's load case (`../source/torsion_rings.py`): K 9,559 N·m/deg in the
-  assumed CFRP layup (61 kg, finest of three meshes, still converging), 2.8
-  to 3.9 times the same model without its tubes, and 1.4 to 1.9 times less
-  per kilogram than the skin-formed boxes of `../picogk/`. See
+  shell's load case (`../source/torsion_rings.py`): with the tubes bonded
+  to the skin over a 40 mm strip (ASSUMED), K 38,630 N·m/deg in the assumed
+  CFRP layup (73 kg, converged on the two finer meshes), 6 to 8 times the
+  same model without its tubes. The result hinges on the bond: from 23,665
+  (single-node ties, a lower bound) to 57,508 (60 mm strip, an upper bound,
+  since a beam's section cannot ovalize). Against the skin-formed boxes of
+  `../picogk/` (35,462), the ranking is not settled. With the tubes meshed
+  as shells and bonded along their line of tangency
+  (`../source/torsion_shell_tubes.py`), K is 25,895 on the finest mesh and
+  still falling: the skin between the tubes stays open. The skin boxes lead
+  there by ×1.18 per kg. See
   [two architectures, one load case](../README.md#two-architectures-one-load-case).
 - No layup: the 2 mm skin and 3 mm walls are placeholders, not plies.
 - No crash, strength, buckling, fatigue or delamination assessment.

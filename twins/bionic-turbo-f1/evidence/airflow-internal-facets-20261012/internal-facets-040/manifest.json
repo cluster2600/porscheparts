@@ -1,0 +1,102 @@
+{
+  "source_sha256": "963447150e2dc751041a9dc61cf105de08730310a77c34d222eb38a74c637cb3",
+  "parent_manifest_sha256": "62e232c299b3e7a2a8eb40ffcebfc1bdceb598254a3a02862c0691fdf0d1e968",
+  "parent_receipt_sha256": "707c87df20bc4de40cc01ce877f92f049897eaf24b6d6ccb89a7b0dba054ac33",
+  "facet_source_sha256": "b02a0f52d03c961009221baabdb119fb4d79ae9673debc41286aba672199d2b2",
+  "profile": {
+    "source_sha256": "61592f090f0a2be9e5881a56bc7f0d55cd9c47e46e46076d73967790563872a3",
+    "profile_sha256": "a9bfe013789b8707b82a4b89c524ea3f18dbf3e9d7f094664fe38ad2c89cb840",
+    "nodes_z_radius_mm": [
+      [
+        6.0,
+        28.92786068412159
+      ],
+      [
+        6.1000000000000005,
+        28.83098125477851
+      ],
+      [
+        6.2,
+        28.726085038543964
+      ],
+      [
+        6.300000000000001,
+        28.65570824821276
+      ],
+      [
+        6.4,
+        28.575839605806774
+      ],
+      [
+        6.5,
+        28.4784371429923
+      ],
+      [
+        6.6000000000000005,
+        28.42614557903252
+      ],
+      [
+        6.7,
+        28.315407115656438
+      ],
+      [
+        6.800000000000001,
+        28.249395241833117
+      ],
+      [
+        6.9,
+        28.208401817849904
+      ],
+      [
+        7.0,
+        28.0973491380892
+      ]
+    ],
+    "shell_half_width_mm": 0.4528453535344017,
+    "sectors": 128,
+    "expected_cells": 2560,
+    "expected_rotating_cells": 1280,
+    "expected_interface_faces": 1280,
+    "limitation": "Synthetic stationary walls around a short real-corridor profile. Neither the actual stator junction nor the rear seal nor a turbo volume mesh is represented.",
+    "angular_refinement_source_sha256": "ca83d73fec12988a510d45cae06d0c4a16c39c1d82adbe5603907fc3603a7fe0",
+    "reason": "024 has 512 cells below determinant 0.001. Fourfold angular refinement reduces long azimuthal edges without changing the meridional profile or solver criteria. Faceted walls differ, while the analytic profiles stay identical.",
+    "precision_source_sha256": "342d4b6a65c0874ac3b800a3352eeab187fdd91a44328a516e9de11a179e9cec",
+    "native_write_precision": 16,
+    "precision_reason": "025 native face-normal rotation reaches 1.7951e-8 m/s, comparable to its 1.3976e-8 m/s gas velocity. Isolate coordinate serialization error with identical vertex definitions, physical inputs and solver tolerances."
+  },
+  "image": "docker.io/opencfd/openfoam-run@sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532",
+  "solver_launched": false,
+  "file_sha256": {
+    "facet-audit.json": "82b8e2359a75d672b848f29a60f4b5323ab80dac8c9c2408e4fff5d4438de1b4",
+    "input/polyMesh/owner": "8c7243a7c54df8ef8d3613e59204a4c96e9d4fabca6305b2f3c3c95cf8e4fc3d",
+    "input/polyMesh/boundary": "aa70bd5878a82197f47a4359d4d3e0a85de0392efc770c9064bf162a952e47f2",
+    "input/polyMesh/faceZones": "06073d721171d2b0bfcfa686c20e74f0efd0f16fb6ddb255b4a5f69ed076624e",
+    "input/polyMesh/pointZones": "849694afaa1164737a25b807976353b1171e8cecb02b7cfc39222c3d30189235",
+    "input/polyMesh/neighbour": "16add04b048e8edd15e2a5d232a8bbb0d21be0e7be0f1212127a093de3347f43",
+    "input/polyMesh/points": "6bc5dcebf0304d58000dc0f4d81463e86ec1d7117feeaf5c0b2176f531a1da15",
+    "input/polyMesh/cellZones": "6fd645d27e2dfc25bb7ca62b802365c50b48c6d283851438227dbd2ae7f4aa46",
+    "input/polyMesh/faces": "66131e1369715c8c285515fbf68723d7a788d4c7fda139c705c685995e302478",
+    "input/polyMesh/sets/refinedCells": "1327fd0ea940f3ddcdc3cddb1b908308364d44c4f5ca929aaaf93b38dd15b568",
+    "0/U": "90f3f215f5f6d171ac2916003f7f2a1e86e63d26f3ccd4087374a90e35789f3e",
+    "0/T": "841713454ca154cd029b0e4c83e6a317bb2c960dece8f9e432e526e8f3d904f0",
+    "0/p": "50b883512009602ac5bd8e4f35afcfa4fe17f93459c9bb3874cd04897b39edc1",
+    "0/polyMesh/cellMap": "a559d1a691b35f50b4d37e82889a3a103ea49d59a24c03b69c8a97c70fd9df05",
+    "system/fvSchemes": "4c8aaa7919955c37a24b589e5198cd04f9461422f0b6c36bc5444ef7c824f078",
+    "system/fvSolution": "19623642175dc07f6411b69bbac1e6fe8d07fa7ac80fc7becb5abbc70f393949",
+    "system/topoSetDict": "f53a4ca48944264f65ce803ad38e17312d767b7f4eb500bedac044ab0123425b",
+    "system/blockMeshDict": "64689ae6445fe1277c3ce3401ee1115f173ad35079d9c678bf78814cbf10dc9e",
+    "system/controlDict": "081cb744973f6eee40f343585bdd1df6bc655901f8ffe4493a73cb6e6c920c67",
+    "constant/MRFProperties": "473189e0cfc42ffea1d4cd888817c4d03d9c6e6d7432bac65647013ff8155862",
+    "constant/turbulenceProperties": "50673609796db732b6052232e7ebd4193afb4fbdbeb5afe2a5397044b00d2b39",
+    "constant/thermophysicalProperties": "6012ffd8e0a0cf1d159dfdb44ea971ddf0a9e062c2c4582cdbb684bb8795e996",
+    "constant/polyMesh/owner": "c07d750e3891ca32892c53af5a2c839702a06fc57f0629f0fe734be34785d82d",
+    "constant/polyMesh/boundary": "a0bdc451efc21f24668b5e19f8a1d5c6b49b4c64425d1fb2b4c8c2a4034a0560",
+    "constant/polyMesh/faceZones": "06073d721171d2b0bfcfa686c20e74f0efd0f16fb6ddb255b4a5f69ed076624e",
+    "constant/polyMesh/pointZones": "849694afaa1164737a25b807976353b1171e8cecb02b7cfc39222c3d30189235",
+    "constant/polyMesh/neighbour": "21b6f38d80d9fda90e50792dc17dffad88541af4e67ce65bf250b56c3eec5fc2",
+    "constant/polyMesh/points": "6bc5dcebf0304d58000dc0f4d81463e86ec1d7117feeaf5c0b2176f531a1da15",
+    "constant/polyMesh/cellZones": "6fd645d27e2dfc25bb7ca62b802365c50b48c6d283851438227dbd2ae7f4aa46",
+    "constant/polyMesh/faces": "07eedacb1b3fcc2fd14be8b626dfc2654654f56b766139d0beda9dfde7a52a50",
+    "constant/polyMesh/sets/refinedCells": "1327fd0ea940f3ddcdc3cddb1b908308364d44c4f5ca929aaaf93b38dd15b568"
+  }
+}

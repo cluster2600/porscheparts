@@ -2,23 +2,23 @@
   "part_id": "993-ENG-FAN-HOUSING-ALSI10MG-F0-0001",
   "status": "F0 concept geometry - not fitted, not tested, not safe, not released, not a print file",
   "kernel": "PicoGK Core Library 26.2.0",
-  "generator": "fan_housing",
+  "generator": "bionic_topology",
   "parameters": "parts/993-eng-fan-housing-alsi10mg-f0-0001/source/picogk.json",
   "generator_report": {
     "voxel_mm": 1,
-    "triangles": 1120448,
-    "volume_cm3": 750.84,
-    "mass_estimate_g": 2004.7,
-    "seconds": 10.5
+    "triangles": 1139988,
+    "volume_cm3": 746.21,
+    "mass_estimate_g": 1992.4,
+    "seconds": 17.6
   },
   "published_triangles": 90000,
   "display_smoothing": {
     "filter": "taubin",
     "iterations": 30,
     "pass_band": 0.05,
-    "max_bounds_shift_mm": 0.18
+    "max_bounds_shift_mm": 0.155
   },
-  "published_sha256": "51ddf8833226ada4da3a14ecb9257fddcc4e9d7ffb326ea4a7c92ea656313019",
+  "published_sha256": "b8cf2ba6df77be61ac8b31c07f10a4914d6adf4cfc72fcca6dcfda807916bd0b",
   "legacy_bbox_mm": [
     300.0,
     300.0,
@@ -31,30 +31,32 @@
     "main_body_edges": {
       "open": 0,
       "non_manifold": 0,
-      "total": 1678296
+      "total": 1709853
     },
-    "degenerate_faces_removed": 1584,
-    "volume_cm3": 750.84,
+    "degenerate_faces_removed": 86,
+    "volume_cm3": 746.23,
     "bbox_mm": [
       300.0,
       300.0,
-      170.0
+      170.3
     ],
     "envelope_checks": [
       {
         "parameter": "outer_diameter_mm",
         "basis": "published",
         "value_mm": 300.0,
-        "axis": "nearest",
+        "axis": "x",
         "model_extent_mm": 300.0,
+        "mode": "max",
         "ok": true
       },
       {
         "parameter": "depth_mm",
         "basis": "published",
         "value_mm": 170.0,
-        "axis": "nearest",
-        "model_extent_mm": 170.0,
+        "axis": "z",
+        "model_extent_mm": 170.25,
+        "mode": "max",
         "ok": true
       }
     ],
