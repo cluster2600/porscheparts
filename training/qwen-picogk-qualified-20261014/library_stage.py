@@ -27,7 +27,10 @@ QUESTIONS = {
     'quasicrystal': ('Construct a quasicrystal wireframe and an aperiodic Penrose pattern.', 'Construire un réseau filaire quasi-cristallin et un pavage de Penrose apériodique.', 'Ein quasikristallines Drahtmodell und ein aperiodisches Penrose-Muster erstellen.', '準結晶のワイヤーフレームと非周期的なペンローズ模様を作成する。', '构建准晶线框和非周期性彭罗斯图案。'),
     'geometry_frame': ('Use double-precision 2D/3D coordinate frames in the experimental geometry library.', 'Utiliser des repères 2D/3D en double précision dans la bibliothèque géométrique expérimentale.', '2D/3D-Koordinatenrahmen mit doppelter Genauigkeit in der experimentellen Geometriebibliothek verwenden.', '実験的な幾何ライブラリで倍精度の2D/3D座標フレームを使用する。', '在实验性几何库中使用双精度2D/3D坐标框架。'),
 }
-SYSTEM = 'Choose exactly one documented operation. Return only JSON with one key operation and its identifier. No code, parameters, solver result or engineering approval. Cards: '+json.dumps(OPERATIONS)
+SYSTEM = ('Choose exactly one operation identifier: scalar_vdb, vector_vdb, quasicrystal, geometry_frame. '
+          'Return exactly one JSON object shaped {"operation":"scalar_vdb"}, replacing the value with your chosen identifier. '
+          'The only permitted key is operation. No identifier key, description key, explanation, code or other fields. '
+          'Finish immediately after the closing brace. Source cards: '+json.dumps(OPERATIONS))
 
 
 def parse_action(text, finish):
