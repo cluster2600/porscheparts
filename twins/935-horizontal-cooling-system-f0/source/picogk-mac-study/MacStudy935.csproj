@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(UpstreamRoot)/LEAP71_ShapeKernel/ShapeKernel/**/*.cs" />
+    <Compile Include="$(UpstreamRoot)/LEAP71_LatticeLibrary/LatticeLibrary/**/*.cs" />
+    <Compile Include="$(UpstreamRoot)/LEAP71_LatticeLibrary/ImplicitLibrary/**/*.cs" />
+    <Compile Include="$(UpstreamRoot)/LEAP71_QuasiCrystals/QuasiCrystal/**/*.cs" />
+    <Compile Include="$(UpstreamRoot)/LEAP71_QuasiCrystals/PenrosePattern/**/*.cs" />
+    <Compile Include="$(UpstreamRoot)/PicoGK_SimulationExample/src/SimpleFluidSimulationInput.cs" />
+    <Reference Include="PicoGK"><HintPath>$(PicoGKAssembly)</HintPath><Private>true</Private></Reference>
+  </ItemGroup>
+  <Target Name="RequireLibraries" BeforeTargets="ResolveReferences">
+    <Error Condition="!Exists('$(PicoGKAssembly)') Or !Exists('$(UpstreamRoot)/LEAP71_ShapeKernel/LICENSE')" Text="Supply qualified PicoGKAssembly and pinned UpstreamRoot" />
+  </Target>
+</Project>

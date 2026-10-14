@@ -1,0 +1,24 @@
+{
+  "targeted": {
+    "discovered": 71,
+    "passed": 70,
+    "skipped": 1,
+    "log": "targeted-tests-v2.log"
+  },
+  "full_check": {
+    "command": "PATH=\"$PWD/work/bionic-tools/bin:$PATH\" make check",
+    "discovered": 3754,
+    "passed": 3583,
+    "failures": 2,
+    "errors": 2,
+    "skipped": 167,
+    "status": "failed_outside_turbo",
+    "unchanged_local_issues": [
+      "optional rtree missing",
+      "optional networkx missing",
+      "WE43 exact floating comparison",
+      "stator exact floating comparison"
+    ],
+    "log": "make-check-v2.log"
+  }
+}

@@ -1,0 +1,7 @@
+# Suite à concevoir
+
+La conservation du raccord et la qualité des transitions sont deux conditions distinctes. Le premier raffinement isotrope de surface produit déjà les labels et angles reproduits ici. Un changement ultérieur du gel de points, du lissage de projection ou de pression ne répondrait pas directement à ce constat ; cela ne prouve pas une cause unique pour tous les maillages.
+
+Avant un nouveau natif, étudier une transition conforme explicitement construite qui évite les faces grossières divisées autour d'un centre resté grossier, tout en conservant les quads du raccord et la frontière spécifiée. Les témoins prismatiques 058–061 fournissent des exemples locaux admis mais ne qualifient pas une généralisation aux faces gauchies ni aux pales. Les reconstructions 040/041/056 déjà rejetées restent exclues d'une application en bloc.
+
+La prochaine étape peut commencer par un petit ensemble de cellules extrait avec parenté exacte pour comparer les plans, centres et subdivisions, sans en faire un domaine CFD autonome admis. Vérifier les capacités natives existantes avant un générateur supplémentaire. Aucun stencil correctif, niveau, nouveau cas ni changement de seuil n'est choisi dans cette livraison. Préserver les parois physiques, profil 027/030, anneau arrière et séparation roue–écrou 033. L'admission des cellules autour des pales et des couches reste distincte du témoin synthétique.

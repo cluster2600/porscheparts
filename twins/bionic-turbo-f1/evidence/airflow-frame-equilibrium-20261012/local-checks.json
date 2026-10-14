@@ -1,0 +1,25 @@
+{
+  "targeted": {
+    "discovered": 63,
+    "passed": 62,
+    "skipped": 1,
+    "log": "targeted-tests-equilibrium.log"
+  },
+  "full_check": {
+    "command": "PATH=\"$PWD/work/bionic-tools/bin:$PATH\" make check",
+    "python": "3.11",
+    "discovered": 3743,
+    "passed": 3572,
+    "skipped": 167,
+    "failures": 2,
+    "errors": 2,
+    "status": "failed_outside_turbo",
+    "unchanged_local_issues": [
+      "optional rtree missing",
+      "optional networkx missing",
+      "WE43 exact floating comparison",
+      "stator exact floating comparison"
+    ],
+    "log_sha256": "32bac855d8a38a5bb0e2646b22ed88a0dfa01214655e939c8c5a74f650caf319"
+  }
+}

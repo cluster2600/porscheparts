@@ -137,49 +137,54 @@ manufacture, installation or start-up is authorized.
 
 ## Thin vane edges, still open
 
-The print simulation below passes, but its thickness screen finds 1 % of
+The geometric slicing below completed; it does not establish printability.
+Its thickness screen finds 1 % of
 the surface under 0.35 mm, with a 0.10 mm minimum, and 36 % under 1.5 mm.
 These are the vanes' NACA knife edges. The rotor's blades got a 0.5 mm
 minimum trailing edge after the same finding; the vanes still need it. That
-simulation run took about 14 hours, against two minutes for the rotor, so
+geometric screening run took about 14 hours, against two minutes for the rotor, so
 its rerun is left for a separate change.
 
-## Print simulation, pictured
+## Metal LPBF geometry preview — hypothetical supports
 
 Drawn by `scripts/render_print_simulation_visuals.py` (`make print-visuals
-PART=993-eng-fan-stator-alsi10mg-f1-0001`) from the simulation's own report: the same analysed surface
-(hash-checked), the same orientation and the same 45° overhang rule. The
-orange support columns are recomputed at 0.5 mm layers on a 1 mm grid for
-the pictures; the table below keeps the report's 30 µm figures.
+PART=993-eng-fan-stator-alsi10mg-f1-0001`) from the geometric screening report: the same analysed surface
+(hash-checked) and candidate orientation. Orange columns mark a hypothetical
+support envelope from a generic 45° heuristic; they are not a qualified
+metal support design. The preview uses 0.5 mm slices and a 1 mm grid; the
+table below records the geometric screen at 30 µm. The animation reveals
+stacked slices, not a laser scan or a thermal calculation.
 
-![Build-up, layer by layer](../../parts/993-eng-fan-stator-alsi10mg-f1-0001/media/print-simulation/build.gif)
+![Geometric layer-stack animation with hypothetical supports](../../parts/993-eng-fan-stator-alsi10mg-f1-0001/media/print-simulation/build.gif)
 
 [Full-resolution video (MP4)](../../parts/993-eng-fan-stator-alsi10mg-f1-0001/media/print-simulation/build.mp4)
 
-![Part and support proxy on the EOS M 290 plate](../../parts/993-eng-fan-stator-alsi10mg-f1-0001/media/print-simulation/build-plate.png)
+![Part and hypothetical support regions in the candidate EOS M 290 envelope](../../parts/993-eng-fan-stator-alsi10mg-f1-0001/media/print-simulation/build-plate.png)
 
 ![Six layer cross-sections](../../parts/993-eng-fan-stator-alsi10mg-f1-0001/media/print-simulation/layers.png)
 
-*Illustrations of a geometric simulation: no laser path, supplier supports,
-distortion or recoater model. Printing is not authorized.*
+*Geometry preview only. No melt-pool, thermal, residual-stress, distortion
+or recoater simulation; no qualified support design. Printing is not authorized.*
 
 <!-- print-screen:begin -->
 
-## LPBF print simulation
+## LPBF geometric screening — process physics not calculated
 
-The STEP was tessellated, then sliced over its full height at `30 µm`, on the EOS M 290 route of the candidate material. Orientation chosen by the automatic rule: `roll_y_45`.
+The STEP was tessellated, then sliced over its full height at `30 µm`, within the candidate EOS M 290 envelope. Candidate material/process reference: `EOS Aluminium AlSi10Mg / M290 30 um`. Orientation chosen by a geometric rule, not thermal optimisation: `roll_y_45`.
+
+The 45° overhang rule only flags geometric regions. The vertical columns are a **hypothetical support envelope**, not supplier-designed metal supports. Their volume is not a metal consumption estimate. Metal LPBF support design must address heat transfer, residual stress, recoater interaction and removal; none is validated here.
 
 | quantity | value |
 |---|---:|
 | layers | 6,789 |
 | build height | 203.65 mm |
-| layers with an unsupported region | 3007 |
-| support proxy | 200,614.09 mm³ |
+| layers flagged by the geometric overhang rule | 3007 |
+| hypothetical support-envelope volume | 200,614.09 mm³ |
 | local thickness p01 | 0.347 mm |
 | trapped powder at 1.00 mm | 0.00 mm³ |
 
-![LPBF print simulation](../../parts/993-eng-fan-stator-alsi10mg-f1-0001/evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-screen.png)
+![LPBF geometric screening with hypothetical supports; no process physics](../../parts/993-eng-fan-stator-alsi10mg-f1-0001/evidence/lpbf-f0/993-eng-fan-stator-alsi10mg-f1-0001-lpbf-geometry-screen.png)
 
-This screening is neither an EOSPRINT project, nor a distortion calculation, nor a recoater check. **Printing remains prohibited.**
+**Process physics has not been calculated:** no melt-pool, thermal, residual-stress, distortion or recoater simulation. No qualified support design or machine build file is provided. **Printing remains prohibited.**
 
 <!-- print-screen:end -->

@@ -1,0 +1,28 @@
+#usda 1.0
+(defaultPrim = "EngineMountStudy"
+metersPerUnit = 0.001
+upAxis = "Z")
+def Xform "EngineMountStudy" {
+ custom bool manufacturing_authorized = false
+ custom string pose_status = "exploded_illustration_only_not_measured_assembly"
+ def Xform "CentralBracket" (prepend references = @993-ENG-BRACKET-0001.usda@</Part>) {
+ double3 xformOp:translate = (0, 0, 0)
+ uniform token[] xformOpOrder = ["xformOp:translate"]
+ }
+ def Xform "LeftHousing" (prepend references = @993-ENG-MOUNTING-0001.usda@</Part>) {
+ double3 xformOp:translate = (-165, 0, 0)
+ uniform token[] xformOpOrder = ["xformOp:translate"]
+ }
+ def Xform "RightHousing" (prepend references = @993-ENG-MOUNTING-0001.usda@</Part>) {
+ double3 xformOp:translate = (165, 0, 0)
+ uniform token[] xformOpOrder = ["xformOp:translate"]
+ }
+ def Xform "LeftIsolatorEnvelope" (prepend references = @993-ENG-MOUNTING-ISOLATOR-F0.usda@</Part>) {
+ double3 xformOp:translate = (-165, 0, 70)
+ uniform token[] xformOpOrder = ["xformOp:translate"]
+ }
+ def Xform "RightIsolatorEnvelope" (prepend references = @993-ENG-MOUNTING-ISOLATOR-F0.usda@</Part>) {
+ double3 xformOp:translate = (165, 0, 70)
+ uniform token[] xformOpOrder = ["xformOp:translate"]
+ }
+}

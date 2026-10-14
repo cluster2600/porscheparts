@@ -1,0 +1,15 @@
+{
+  "version": "OpenFOAM-v2406",
+  "references": [
+    {
+      "url": "https://gitlab.com/openfoam/core/openfoam/-/raw/OpenFOAM-v2406/src/finiteVolume/cfdTools/general/MRF/MRFZone.C",
+      "sha256": "3276257d2e4f62a81aeb80d93743b20ec88360ecb2c8e0c0d95f08f77e91a3ba"
+    },
+    {
+      "url": "https://gitlab.com/openfoam/core/openfoam/-/raw/OpenFOAM-v2406/src/finiteVolume/cfdTools/general/MRF/MRFZoneTemplates.C",
+      "sha256": "244bb36e0498881137022b1d3082332b42231517bc5bd8ebeea919a208abe41d"
+    }
+  ],
+  "observation": "MRFZoneTemplates.C lines 48-61 use face centres and area vectors for internal relative flux; lines 98-106 do the same on excluded stationary patches. This motivates auditing cell-wise geometric rotation balance, not only frame-interface tangency.",
+  "solver_source_modified": false
+}

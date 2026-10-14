@@ -1,0 +1,169 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2406                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _be01ca78-20240625 OPENFOAM=2406 version=2406
+Arch   : "LSB;label=32;scalar=64"
+Exec   : rhoSimpleFoam
+Date   : Oct 11 2026
+Time   : 20:34:31
+Host   : 96bc01904cc6
+PID    : 1
+I/O    : uncollated
+Case   : /case
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+
+SIMPLE: no convergence criteria found. Calculations will run for 800 steps.
+
+Reading thermophysical properties
+
+Selecting thermodynamics package 
+{
+    type            hePsiThermo;
+    mixture         pureMixture;
+    transport       const;
+    thermo          hConst;
+    equationOfState perfectGas;
+    specie          specie;
+    energy          sensibleEnthalpy;
+}
+
+Reading field U
+
+Reading/calculating face flux field phi
+
+Creating turbulence model
+
+Selecting turbulence model type RAS
+Selecting RAS turbulence model kOmegaSST
+Selecting patchDistMethod meshWave
+RAS
+{
+    RASModel        kOmegaSST;
+    turbulence      on;
+    printCoeffs     on;
+    alphaK1         0.85;
+    alphaK2         1;
+    alphaOmega1     0.5;
+    alphaOmega2     0.856;
+    gamma1          0.555555555556;
+    gamma2          0.44;
+    beta1           0.075;
+    beta2           0.0828;
+    betaStar        0.09;
+    a1              0.31;
+    b1              1;
+    c1              10;
+    F3              false;
+    decayControl    false;
+    kInf            0;
+    omegaInf        0;
+}
+
+Creating MRF zone list from MRFProperties
+    creating MRF zone: MRF
+No finite volume options present
+
+Starting time loop
+
+forces rotorForces:
+    rho: rho
+    Not including porosity effects
+surfaceFieldValue mass_inlet:
+    operation     = sum
+
+
+surfaceFieldValue magnitude_inlet:
+    operation     = sumMag
+
+
+surfaceFieldValue energy_inlet:
+    operation     = weightedSum
+    weight field  = (phi)
+
+
+surfaceFieldValue mass_outlet:
+    operation     = sum
+
+
+surfaceFieldValue magnitude_outlet:
+    operation     = sumMag
+
+
+surfaceFieldValue energy_outlet:
+    operation     = weightedSum
+    weight field  = (phi)
+
+
+surfaceFieldValue mass_rotor:
+    operation     = sum
+
+
+surfaceFieldValue magnitude_rotor:
+    operation     = sumMag
+
+
+surfaceFieldValue mass_stator:
+    operation     = sum
+
+
+surfaceFieldValue magnitude_stator:
+    operation     = sumMag
+
+
+Time = 1
+
+DILUPBiCGStab:  Solving for Ux, Initial residual = 1, Final residual = 0.00593035413489, No Iterations 1
+DILUPBiCGStab:  Solving for Uy, Initial residual = 1, Final residual = 0.00592992231942, No Iterations 1
+DILUPBiCGStab:  Solving for Uz, Initial residual = 1, Final residual = 0.00403397738969, No Iterations 1
+DILUPBiCGStab:  Solving for h, Initial residual = 1, Final residual = 0.0447965894789, No Iterations 1
+GAMG:  Solving for p, Initial residual = 1, Final residual = 0.00681191659885, No Iterations 7
+GAMG:  Solving for p, Initial residual = 0.0277253934578, Final residual = 0.000231578874709, No Iterations 6
+GAMG:  Solving for p, Initial residual = 0.00317413306243, Final residual = 2.85528130631e-05, No Iterations 8
+time step continuity errors : sum local = 0.975440421585, global = -0.157536419724, cumulative = -0.157536419724
+DILUPBiCGStab:  Solving for omega, Initial residual = 0.0160791214419, Final residual = 6.52055633377e-05, No Iterations 1
+bounding omega, min: -2286.45282886 max: 321591.132928 average: 41679.7597772
+DILUPBiCGStab:  Solving for k, Initial residual = 1, Final residual = 0.00763267836475, No Iterations 1
+bounding k, min: -21.7462510323 max: 2096.63521372 average: 1.01228851541
+ExecutionTime = 28.34 s  ClockTime = 28 s
+
+[stack trace]
+=============
+#1  Foam::sigFpe::sigHandler(int)sh: 1: addr2line: not found
+ addr2line failed
+#2  __kernel_rt_sigreturn
+#3  ?sh: 1: addr2line: not found
+ addr2line failed
+#4  Foam::nutkWallFunctionFvPatchScalarField::yPlus() constsh: 1: addr2line: not found
+ addr2line failed
+#5  Foam::functionObjects::yPlus::execute()sh: 1: addr2line: not found
+ addr2line failed
+#6  Foam::functionObjects::timeControl::execute()sh: 1: addr2line: not found
+ addr2line failed
+#7  Foam::functionObjectList::execute(bool)sh: 1: addr2line: not found
+ addr2line failed
+#8  Foam::Time::run() constsh: 1: addr2line: not found
+ addr2line failed
+#9  Foam::Time::loop()sh: 1: addr2line: not found
+ addr2line failed
+#10  ?sh: 1: addr2line: not found
+ addr2line failed
+#11  ?sh: 1: addr2line: not found
+ addr2line failed
+#12  __libc_start_mainsh: 1: addr2line: not found
+ addr2line failed
+#13  ?sh: 1: addr2line: not found
+ addr2line failed
+=============

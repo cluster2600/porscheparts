@@ -1,0 +1,792 @@
+{
+  "classification": "hypothetical_geometry_and_reduced_order_load_screening",
+  "assumptions_sha256": "19b74184ff0d068ffd27dba2b607c255e442c5951dcc74cd0c075cc1f1bd2c6b",
+  "source_sha256": {
+    "Program.cs": "32f0e673d361430c1b9a378343ad2ae5a812921c3420e0b08889c423c04b7105",
+    "Prototype.csproj": "d82d7c6d919dc789bd8bc8adc68817cd660212a7dc7696876ae0404b0fd2cce8",
+    "run.py": "f48081ee8689d86231d1185f9e73ff2a13e218c39470e2f9c923dd65debfebe1"
+  },
+  "reused_witness_sha256": {
+    "exact_zero_countertrial.py": "bef2321da471476528c07f75e5672080c8b051b5e0be888dc6e5e66ea46b00a2",
+    "audit_mesh.py": "cc55e633309e52f0a6d0af75f59d3e983bf3b184168abcaf521be3f7752f33e3"
+  },
+  "levels": [
+    {
+      "voxel_mm": 1,
+      "receipt": {
+        "classification": "hypothetical_parametric_prototypes_not_engine_parts",
+        "assumptions_sha256": "19b74184ff0d068ffd27dba2b607c255e442c5951dcc74cd0c075cc1f1bd2c6b",
+        "voxel_mm": 1,
+        "runtime": {
+          "name": "PicoGK Core Library",
+          "version": "26.2.0",
+          "build": "2026-06-05 21:50:16 picogk"
+        },
+        "prototypes": {
+          "cylinder": {
+            "volume_mm3_hypothetical": 230545.38,
+            "triangles": 257696,
+            "stl_sha256": "6fe4855210b729cec957eca2bedea3af82832c576802e28a96b2145e9090ee71",
+            "vdb_sha256": "b5c681dc2389d75e43b014b867187f7b6ac541ba0cbbc489214503d90261580d"
+          },
+          "piston": {
+            "volume_mm3_hypothetical": 69748.85,
+            "triangles": 88732,
+            "stl_sha256": "2a5c3fad0fd8333370a292c6100df98e3625a93ac7362637653297b32140cf6e",
+            "vdb_sha256": "3f6599a2b9de478fd9c3ae354a9d42b4cab9a199a625f4fe9a77ad3ee23a12e6"
+          },
+          "rod": {
+            "volume_mm3_hypothetical": 43500.688,
+            "triangles": 36660,
+            "stl_sha256": "055f13cb0b9f35f74a4bb929a0e3d9ef768387b9e6c3c753be37151ec8c95722",
+            "vdb_sha256": "a93fa49509436146d7259ee5723acecf5bd37d8e34e45e31c7fa31e2002afcda"
+          },
+          "pin": {
+            "volume_mm3_hypothetical": 10552.907,
+            "triangles": 19024,
+            "stl_sha256": "ffa7e6a568262eca12bedd350161005e73cb4d69dd28ab1ccfb91a5bc2560cf4",
+            "vdb_sha256": "5e2615f438035e735e6c814290133940b6f9de4cd81384b3d659952272030faa"
+          }
+        },
+        "scan_fit_verified": false,
+        "material_qualified": false,
+        "manufacturing_authorized": false
+      },
+      "audit": {
+        "cylinder": {
+          "mesh_volume_mm3_hypothetical": 228329.9375253207,
+          "triangles": 257696,
+          "watertight": true,
+          "single_component": true,
+          "hole_and_material_probes_passed": true,
+          "analytic_volume_mm3_hypothetical": 230435.8211408113,
+          "relative_volume_error_vs_ideal": 0.009138699031535413,
+          "countertrial": {
+            "input_faces": 257696,
+            "removed_zero_cross_product_faces": 0,
+            "remaining_duplicate_face_groups": 0,
+            "vertex_displacement": 0,
+            "remaining_face_orientation_changed": false,
+            "remaining_oriented_faces_sha256": "4d5c1d2294ec93e40d3e1ea10dfaf880ba6a0c849022002a3d23d26e1a5755ee",
+            "audit": {
+              "faces": 257696,
+              "exact_unique_vertices": 128848,
+              "watertight": true,
+              "winding_consistent": true,
+              "exact_zero_area_faces": 0,
+              "boundary_edges_incidence_one": 0,
+              "edges_incidence_above_two": 0,
+              "surface_components_including_degenerate_faces": 1,
+              "components_are_not_interpreted_as_physical_voids": true,
+              "signed_triangle_volume": 228329.9375253207,
+              "strict_raw_mesh_screen_pass": true
+            }
+          },
+          "derived_stl_sha256": "d2f8156fa7eafa96ea2d5cc85575f203369e69f345e8cd61d9908e2f123f9885",
+          "native_stl_rejected_for_zero_faces": false
+        },
+        "piston": {
+          "mesh_volume_mm3_hypothetical": 68536.62987817766,
+          "triangles": 88612,
+          "watertight": true,
+          "single_component": true,
+          "hole_and_material_probes_passed": true,
+          "countertrial": {
+            "input_faces": 88732,
+            "removed_zero_cross_product_faces": 120,
+            "remaining_duplicate_face_groups": 0,
+            "vertex_displacement": 0,
+            "remaining_face_orientation_changed": false,
+            "remaining_oriented_faces_sha256": "c327e52ddebf9659aeb30d5412814bb2045df663dac42fd730dacd7973884414",
+            "audit": {
+              "faces": 88612,
+              "exact_unique_vertices": 44304,
+              "watertight": true,
+              "winding_consistent": true,
+              "exact_zero_area_faces": 0,
+              "boundary_edges_incidence_one": 0,
+              "edges_incidence_above_two": 0,
+              "surface_components_including_degenerate_faces": 1,
+              "components_are_not_interpreted_as_physical_voids": true,
+              "signed_triangle_volume": 68536.62987817766,
+              "strict_raw_mesh_screen_pass": true
+            }
+          },
+          "derived_stl_sha256": "0e30a05f78e78b9ec3490cff430412115f8c87c92ae94a4e7632e362e9837a01",
+          "native_stl_rejected_for_zero_faces": true
+        },
+        "rod": {
+          "mesh_volume_mm3_hypothetical": 43274.066531983895,
+          "triangles": 36420,
+          "watertight": true,
+          "single_component": true,
+          "hole_and_material_probes_passed": true,
+          "countertrial": {
+            "input_faces": 36660,
+            "removed_zero_cross_product_faces": 240,
+            "remaining_duplicate_face_groups": 0,
+            "vertex_displacement": 0,
+            "remaining_face_orientation_changed": false,
+            "remaining_oriented_faces_sha256": "09715da5573716c1c8e45f5d6fdbf9a40b0269fd1f3d000a357f096fe1875a4e",
+            "audit": {
+              "faces": 36420,
+              "exact_unique_vertices": 18208,
+              "watertight": true,
+              "winding_consistent": true,
+              "exact_zero_area_faces": 0,
+              "boundary_edges_incidence_one": 0,
+              "edges_incidence_above_two": 0,
+              "surface_components_including_degenerate_faces": 1,
+              "components_are_not_interpreted_as_physical_voids": true,
+              "signed_triangle_volume": 43274.066531983895,
+              "strict_raw_mesh_screen_pass": true
+            }
+          },
+          "derived_stl_sha256": "dd9ec1a91d49887d604241e4244c9414ccc91301a6b7218d63c7815ae9e76fc6",
+          "native_stl_rejected_for_zero_faces": true
+        },
+        "pin": {
+          "mesh_volume_mm3_hypothetical": 10636.30924881566,
+          "triangles": 19008,
+          "watertight": true,
+          "single_component": true,
+          "hole_and_material_probes_passed": true,
+          "analytic_volume_mm3_hypothetical": 10744.246875277091,
+          "relative_volume_error_vs_ideal": 0.010046085846165731,
+          "countertrial": {
+            "input_faces": 19024,
+            "removed_zero_cross_product_faces": 16,
+            "remaining_duplicate_face_groups": 0,
+            "vertex_displacement": 0,
+            "remaining_face_orientation_changed": false,
+            "remaining_oriented_faces_sha256": "f7bbe9150dee3dd9c71378b256bcfddaf1c01cdf1f41862b877273d512567dc7",
+            "audit": {
+              "faces": 19008,
+              "exact_unique_vertices": 9504,
+              "watertight": true,
+              "winding_consistent": true,
+              "exact_zero_area_faces": 0,
+              "boundary_edges_incidence_one": 0,
+              "edges_incidence_above_two": 0,
+              "surface_components_including_degenerate_faces": 1,
+              "components_are_not_interpreted_as_physical_voids": true,
+              "signed_triangle_volume": 10636.30924881566,
+              "strict_raw_mesh_screen_pass": true
+            }
+          },
+          "derived_stl_sha256": "aa0748ea0eadc68b4b133892603ea6f39406c988fc2221381ac43763f2d907a7",
+          "native_stl_rejected_for_zero_faces": true
+        }
+      }
+    },
+    {
+      "voxel_mm": 0.5,
+      "receipt": {
+        "classification": "hypothetical_parametric_prototypes_not_engine_parts",
+        "assumptions_sha256": "19b74184ff0d068ffd27dba2b607c255e442c5951dcc74cd0c075cc1f1bd2c6b",
+        "voxel_mm": 0.5,
+        "runtime": {
+          "name": "PicoGK Core Library",
+          "version": "26.2.0",
+          "build": "2026-06-05 21:50:16 picogk"
+        },
+        "prototypes": {
+          "cylinder": {
+            "volume_mm3_hypothetical": 230725.7,
+            "triangles": 1043984,
+            "stl_sha256": "29b9723a2eab4c82e342205cee50a889e9cb9a6c889b962a8a7c5ba64396827c",
+            "vdb_sha256": "7a2cdc55efa7ed6ca85abcd87c6bb46794f9446ed370a4098d94ee121552c246"
+          },
+          "piston": {
+            "volume_mm3_hypothetical": 69019.57,
+            "triangles": 358212,
+            "stl_sha256": "1101305a494a2850be46890b690c1b8c6ca4080503d8e42c5d31f1ddcf5c51da",
+            "vdb_sha256": "b038ea7e41d44201c141bc792593a530100aeee130ce184c9e11ee0282637049"
+          },
+          "rod": {
+            "volume_mm3_hypothetical": 43733.27,
+            "triangles": 148060,
+            "stl_sha256": "a325d92bc359293a18d19f3148ffa1db0da896d828adac03b29a1aee74d719f9",
+            "vdb_sha256": "b2ece1c33f977814efe3d47e79364266703e9442c0e830407cfa37857f72cdc3"
+          },
+          "pin": {
+            "volume_mm3_hypothetical": 10715.912,
+            "triangles": 75872,
+            "stl_sha256": "3008257e055bf208b2d1c0937416b53296112ea2aa66aa15326867270bdf7e44",
+            "vdb_sha256": "f5a89a870b995547e3542d64927dc658f9a6be91caec209d8342583fc861794f"
+          }
+        },
+        "scan_fit_verified": false,
+        "material_qualified": false,
+        "manufacturing_authorized": false
+      },
+      "audit": {
+        "cylinder": {
+          "mesh_volume_mm3_hypothetical": 229919.25134175524,
+          "triangles": 1042544,
+          "watertight": true,
+          "single_component": true,
+          "hole_and_material_probes_passed": true,
+          "analytic_volume_mm3_hypothetical": 230435.8211408113,
+          "relative_volume_error_vs_ideal": 0.0022417078928905765,
+          "countertrial": {
+            "input_faces": 1043984,
+            "removed_zero_cross_product_faces": 1440,
+            "remaining_duplicate_face_groups": 0,
+            "vertex_displacement": 0,
+            "remaining_face_orientation_changed": false,
+            "remaining_oriented_faces_sha256": "8e3e74c0aca6315682fe0da2dabce803712df34d36739bfe686a841ea3c0153f",
+            "audit": {
+              "faces": 1042544,
+              "exact_unique_vertices": 521272,
+              "watertight": true,
+              "winding_consistent": true,
+              "exact_zero_area_faces": 0,
+              "boundary_edges_incidence_one": 0,
+              "edges_incidence_above_two": 0,
+              "surface_components_including_degenerate_faces": 1,
+              "components_are_not_interpreted_as_physical_voids": true,
+              "signed_triangle_volume": 229919.25134175524,
+              "strict_raw_mesh_screen_pass": true
+            }
+          },
+          "derived_stl_sha256": "b5415af8707e96cff93dc3c699171bb656cae62fc1b2bb73dbd6a05a6aa32959",
+          "native_stl_rejected_for_zero_faces": true
+        },
+        "piston": {
+          "mesh_volume_mm3_hypothetical": 68868.8215751125,
+          "triangles": 357896,
+          "watertight": true,
+          "single_component": true,
+          "hole_and_material_probes_passed": true,
+          "countertrial": {
+            "input_faces": 358212,
+            "removed_zero_cross_product_faces": 316,
+            "remaining_duplicate_face_groups": 0,
+            "vertex_displacement": 0,
+            "remaining_face_orientation_changed": false,
+            "remaining_oriented_faces_sha256": "5c82e1d474e7a33966bab66f7279f792f3b2d025ddef277cf5f0f4fc67fa7dbc",
+            "audit": {
+              "faces": 357896,
+              "exact_unique_vertices": 178946,
+              "watertight": true,
+              "winding_consistent": true,
+              "exact_zero_area_faces": 0,
+              "boundary_edges_incidence_one": 0,
+              "edges_incidence_above_two": 0,
+              "surface_components_including_degenerate_faces": 1,
+              "components_are_not_interpreted_as_physical_voids": true,
+              "signed_triangle_volume": 68868.8215751125,
+              "strict_raw_mesh_screen_pass": true
+            }
+          },
+          "derived_stl_sha256": "a96c593b9e9c40ba69cac3214de1e4a5d73d54f6fd80b9c016ddb87819d7357f",
+          "native_stl_rejected_for_zero_faces": true
+        },
+        "rod": {
+          "mesh_volume_mm3_hypothetical": 43661.453761206816,
+          "triangles": 147536,
+          "watertight": true,
+          "single_component": true,
+          "hole_and_material_probes_passed": true,
+          "countertrial": {
+            "input_faces": 148060,
+            "removed_zero_cross_product_faces": 524,
+            "remaining_duplicate_face_groups": 0,
+            "vertex_displacement": 0,
+            "remaining_face_orientation_changed": false,
+            "remaining_oriented_faces_sha256": "16b862570b852f816bea3e48657049927acb3b77f6f809da6681b7ca98c2ddb7",
+            "audit": {
+              "faces": 147536,
+              "exact_unique_vertices": 73766,
+              "watertight": true,
+              "winding_consistent": true,
+              "exact_zero_area_faces": 0,
+              "boundary_edges_incidence_one": 0,
+              "edges_incidence_above_two": 0,
+              "surface_components_including_degenerate_faces": 1,
+              "components_are_not_interpreted_as_physical_voids": true,
+              "signed_triangle_volume": 43661.453761206816,
+              "strict_raw_mesh_screen_pass": true
+            }
+          },
+          "derived_stl_sha256": "45601f14f8374f3f8dabc816e6eac0a07a15f998669d39fa6ee4b74ca1bf354d",
+          "native_stl_rejected_for_zero_faces": true
+        },
+        "pin": {
+          "mesh_volume_mm3_hypothetical": 10717.110192991559,
+          "triangles": 75816,
+          "watertight": true,
+          "single_component": true,
+          "hole_and_material_probes_passed": true,
+          "analytic_volume_mm3_hypothetical": 10744.246875277091,
+          "relative_volume_error_vs_ideal": 0.002525694225062436,
+          "countertrial": {
+            "input_faces": 75872,
+            "removed_zero_cross_product_faces": 56,
+            "remaining_duplicate_face_groups": 0,
+            "vertex_displacement": 0,
+            "remaining_face_orientation_changed": false,
+            "remaining_oriented_faces_sha256": "e889114dbe2432794e7cf481c2c6158e3666ec59a7ad2e865d53a22c9930922d",
+            "audit": {
+              "faces": 75816,
+              "exact_unique_vertices": 37908,
+              "watertight": true,
+              "winding_consistent": true,
+              "exact_zero_area_faces": 0,
+              "boundary_edges_incidence_one": 0,
+              "edges_incidence_above_two": 0,
+              "surface_components_including_degenerate_faces": 1,
+              "components_are_not_interpreted_as_physical_voids": true,
+              "signed_triangle_volume": 10717.110192991559,
+              "strict_raw_mesh_screen_pass": true
+            }
+          },
+          "derived_stl_sha256": "f23b998262a98634beef31bcaaf69efc952992fbc991bdcf18a10a1871e0b153",
+          "native_stl_rejected_for_zero_faces": true
+        }
+      }
+    }
+  ],
+  "assembly_instances": 48,
+  "motion": {
+    "banks": [
+      {
+        "bank_sign": -1,
+        "travel_mm": 66.0
+      },
+      {
+        "bank_sign": 1,
+        "travel_mm": 66.0
+      }
+    ],
+    "maximum_rod_closure_error_mm": 5.684341886080802e-14,
+    "rod_length_sensitivity": [
+      {
+        "rod_length_mm": 120,
+        "minimum_axial_skirt_coverage_residual_mm": -5.0,
+        "hypothesis_consistent_with_full_skirt_coverage": false,
+        "scope": "axial_geometry_only_not_operating_clearance_or_CAD_rebuild"
+      },
+      {
+        "rod_length_mm": 132,
+        "minimum_axial_skirt_coverage_residual_mm": 5.0,
+        "hypothesis_consistent_with_full_skirt_coverage": true,
+        "scope": "axial_geometry_only_not_operating_clearance_or_CAD_rebuild"
+      },
+      {
+        "rod_length_mm": 144,
+        "minimum_axial_skirt_coverage_residual_mm": -7.0,
+        "hypothesis_consistent_with_full_skirt_coverage": false,
+        "scope": "axial_geometry_only_not_operating_clearance_or_CAD_rebuild"
+      }
+    ],
+    "crankpins_shared_between_opposed_banks": true,
+    "factory_phases_or_firing_order_verified": false
+  },
+  "interference": {
+    "scope": "sampled_small_end_material_points_not_complete_swept_volume_or_clearance_check",
+    "witnesses": [
+      {
+        "angle_deg": 0,
+        "bank_sign": -1,
+        "rod_small_end_inside_piston_material": false
+      },
+      {
+        "angle_deg": 0,
+        "bank_sign": 1,
+        "rod_small_end_inside_piston_material": false
+      },
+      {
+        "angle_deg": 45,
+        "bank_sign": -1,
+        "rod_small_end_inside_piston_material": false
+      },
+      {
+        "angle_deg": 45,
+        "bank_sign": 1,
+        "rod_small_end_inside_piston_material": false
+      },
+      {
+        "angle_deg": 90,
+        "bank_sign": -1,
+        "rod_small_end_inside_piston_material": false
+      },
+      {
+        "angle_deg": 90,
+        "bank_sign": 1,
+        "rod_small_end_inside_piston_material": false
+      },
+      {
+        "angle_deg": 135,
+        "bank_sign": -1,
+        "rod_small_end_inside_piston_material": false
+      },
+      {
+        "angle_deg": 135,
+        "bank_sign": 1,
+        "rod_small_end_inside_piston_material": false
+      },
+      {
+        "angle_deg": 180,
+        "bank_sign": -1,
+        "rod_small_end_inside_piston_material": false
+      },
+      {
+        "angle_deg": 180,
+        "bank_sign": 1,
+        "rod_small_end_inside_piston_material": false
+      },
+      {
+        "angle_deg": 225,
+        "bank_sign": -1,
+        "rod_small_end_inside_piston_material": false
+      },
+      {
+        "angle_deg": 225,
+        "bank_sign": 1,
+        "rod_small_end_inside_piston_material": false
+      },
+      {
+        "angle_deg": 270,
+        "bank_sign": -1,
+        "rod_small_end_inside_piston_material": false
+      },
+      {
+        "angle_deg": 270,
+        "bank_sign": 1,
+        "rod_small_end_inside_piston_material": false
+      },
+      {
+        "angle_deg": 315,
+        "bank_sign": -1,
+        "rod_small_end_inside_piston_material": false
+      },
+      {
+        "angle_deg": 315,
+        "bank_sign": 1,
+        "rod_small_end_inside_piston_material": false
+      }
+    ],
+    "assembly_interference_screen_pass": true
+  },
+  "assumed_material_prototype_masses_kg": {
+    "cylinder": 0.6207819786227392,
+    "piston": 0.18594581825280376,
+    "rod": 0.1934202401621462,
+    "pin": 0.08359345950533416
+  },
+  "partial_12_cylinder_population_mass_kg": 13.004897958516281,
+  "load_cases": [
+    {
+      "rod_candidate": "Ti6Al4V_candidate",
+      "rpm": 4000,
+      "assumed_peak_pressure_bar": 40,
+      "assumed_reciprocating_mass_kg": 0.33401269114551996,
+      "gas_force_N": 22698.006922186258,
+      "peak_absolute_inertia_force_N": 2417.4869594696506,
+      "independent_peak_sum_bound_N": 25115.493881655908,
+      "nominal_rod_beam_axial_stress_bound_MPa": 98.69765430764919,
+      "mean_piston_speed_m_s": 8.8
+    },
+    {
+      "rod_candidate": "Ti6Al4V_candidate",
+      "rpm": 4000,
+      "assumed_peak_pressure_bar": 60,
+      "assumed_reciprocating_mass_kg": 0.33401269114551996,
+      "gas_force_N": 34047.01038327939,
+      "peak_absolute_inertia_force_N": 2417.4869594696506,
+      "independent_peak_sum_bound_N": 36464.49734274904,
+      "nominal_rod_beam_axial_stress_bound_MPa": 143.29641973974796,
+      "mean_piston_speed_m_s": 8.8
+    },
+    {
+      "rod_candidate": "Ti6Al4V_candidate",
+      "rpm": 4000,
+      "assumed_peak_pressure_bar": 80,
+      "assumed_reciprocating_mass_kg": 0.33401269114551996,
+      "gas_force_N": 45396.013844372515,
+      "peak_absolute_inertia_force_N": 2417.4869594696506,
+      "independent_peak_sum_bound_N": 47813.500803842166,
+      "nominal_rod_beam_axial_stress_bound_MPa": 187.89518517184672,
+      "mean_piston_speed_m_s": 8.8
+    },
+    {
+      "rod_candidate": "Ti6Al4V_candidate",
+      "rpm": 6000,
+      "assumed_peak_pressure_bar": 40,
+      "assumed_reciprocating_mass_kg": 0.33401269114551996,
+      "gas_force_N": 22698.006922186258,
+      "peak_absolute_inertia_force_N": 5439.345658806716,
+      "independent_peak_sum_bound_N": 28137.352580992974,
+      "nominal_rod_beam_axial_stress_bound_MPa": 110.57280861196374,
+      "mean_piston_speed_m_s": 13.2
+    },
+    {
+      "rod_candidate": "Ti6Al4V_candidate",
+      "rpm": 6000,
+      "assumed_peak_pressure_bar": 60,
+      "assumed_reciprocating_mass_kg": 0.33401269114551996,
+      "gas_force_N": 34047.01038327939,
+      "peak_absolute_inertia_force_N": 5439.345658806716,
+      "independent_peak_sum_bound_N": 39486.3560420861,
+      "nominal_rod_beam_axial_stress_bound_MPa": 155.1715740440625,
+      "mean_piston_speed_m_s": 13.2
+    },
+    {
+      "rod_candidate": "Ti6Al4V_candidate",
+      "rpm": 6000,
+      "assumed_peak_pressure_bar": 80,
+      "assumed_reciprocating_mass_kg": 0.33401269114551996,
+      "gas_force_N": 45396.013844372515,
+      "peak_absolute_inertia_force_N": 5439.345658806716,
+      "independent_peak_sum_bound_N": 50835.35950317923,
+      "nominal_rod_beam_axial_stress_bound_MPa": 199.77033947616127,
+      "mean_piston_speed_m_s": 13.2
+    },
+    {
+      "rod_candidate": "Ti6Al4V_candidate",
+      "rpm": 8000,
+      "assumed_peak_pressure_bar": 40,
+      "assumed_reciprocating_mass_kg": 0.33401269114551996,
+      "gas_force_N": 22698.006922186258,
+      "peak_absolute_inertia_force_N": 9669.947837878603,
+      "independent_peak_sum_bound_N": 32367.95476006486,
+      "nominal_rod_beam_axial_stress_bound_MPa": 127.19802463800409,
+      "mean_piston_speed_m_s": 17.6
+    },
+    {
+      "rod_candidate": "Ti6Al4V_candidate",
+      "rpm": 8000,
+      "assumed_peak_pressure_bar": 60,
+      "assumed_reciprocating_mass_kg": 0.33401269114551996,
+      "gas_force_N": 34047.01038327939,
+      "peak_absolute_inertia_force_N": 9669.947837878603,
+      "independent_peak_sum_bound_N": 43716.95822115799,
+      "nominal_rod_beam_axial_stress_bound_MPa": 171.79679007010287,
+      "mean_piston_speed_m_s": 17.6
+    },
+    {
+      "rod_candidate": "Ti6Al4V_candidate",
+      "rpm": 8000,
+      "assumed_peak_pressure_bar": 80,
+      "assumed_reciprocating_mass_kg": 0.33401269114551996,
+      "gas_force_N": 45396.013844372515,
+      "peak_absolute_inertia_force_N": 9669.947837878603,
+      "independent_peak_sum_bound_N": 55065.961682251116,
+      "nominal_rod_beam_axial_stress_bound_MPa": 216.39555550220163,
+      "mean_piston_speed_m_s": 17.6
+    },
+    {
+      "rod_candidate": "steel_candidate",
+      "rpm": 4000,
+      "assumed_peak_pressure_bar": 40,
+      "assumed_reciprocating_mass_kg": 0.38305905753727565,
+      "gas_force_N": 22698.006922186258,
+      "peak_absolute_inertia_force_N": 2772.4703307744935,
+      "independent_peak_sum_bound_N": 25470.47725296075,
+      "nominal_rod_beam_axial_stress_bound_MPa": 100.09265080786132,
+      "mean_piston_speed_m_s": 8.8
+    },
+    {
+      "rod_candidate": "steel_candidate",
+      "rpm": 4000,
+      "assumed_peak_pressure_bar": 60,
+      "assumed_reciprocating_mass_kg": 0.38305905753727565,
+      "gas_force_N": 34047.01038327939,
+      "peak_absolute_inertia_force_N": 2772.4703307744935,
+      "independent_peak_sum_bound_N": 36819.48071405388,
+      "nominal_rod_beam_axial_stress_bound_MPa": 144.6914162399601,
+      "mean_piston_speed_m_s": 8.8
+    },
+    {
+      "rod_candidate": "steel_candidate",
+      "rpm": 4000,
+      "assumed_peak_pressure_bar": 80,
+      "assumed_reciprocating_mass_kg": 0.38305905753727565,
+      "gas_force_N": 45396.013844372515,
+      "peak_absolute_inertia_force_N": 2772.4703307744935,
+      "independent_peak_sum_bound_N": 48168.48417514701,
+      "nominal_rod_beam_axial_stress_bound_MPa": 189.29018167205885,
+      "mean_piston_speed_m_s": 8.8
+    },
+    {
+      "rod_candidate": "steel_candidate",
+      "rpm": 6000,
+      "assumed_peak_pressure_bar": 40,
+      "assumed_reciprocating_mass_kg": 0.38305905753727565,
+      "gas_force_N": 22698.006922186258,
+      "peak_absolute_inertia_force_N": 6238.058244242612,
+      "independent_peak_sum_bound_N": 28936.06516642887,
+      "nominal_rod_beam_axial_stress_bound_MPa": 113.71155073744104,
+      "mean_piston_speed_m_s": 13.2
+    },
+    {
+      "rod_candidate": "steel_candidate",
+      "rpm": 6000,
+      "assumed_peak_pressure_bar": 60,
+      "assumed_reciprocating_mass_kg": 0.38305905753727565,
+      "gas_force_N": 34047.01038327939,
+      "peak_absolute_inertia_force_N": 6238.058244242612,
+      "independent_peak_sum_bound_N": 40285.068627522,
+      "nominal_rod_beam_axial_stress_bound_MPa": 158.31031616953982,
+      "mean_piston_speed_m_s": 13.2
+    },
+    {
+      "rod_candidate": "steel_candidate",
+      "rpm": 6000,
+      "assumed_peak_pressure_bar": 80,
+      "assumed_reciprocating_mass_kg": 0.38305905753727565,
+      "gas_force_N": 45396.013844372515,
+      "peak_absolute_inertia_force_N": 6238.058244242612,
+      "independent_peak_sum_bound_N": 51634.072088615125,
+      "nominal_rod_beam_axial_stress_bound_MPa": 202.90908160163858,
+      "mean_piston_speed_m_s": 13.2
+    },
+    {
+      "rod_candidate": "steel_candidate",
+      "rpm": 8000,
+      "assumed_peak_pressure_bar": 40,
+      "assumed_reciprocating_mass_kg": 0.38305905753727565,
+      "gas_force_N": 22698.006922186258,
+      "peak_absolute_inertia_force_N": 11089.881323097974,
+      "independent_peak_sum_bound_N": 33787.88824528423,
+      "nominal_rod_beam_axial_stress_bound_MPa": 132.77801063885263,
+      "mean_piston_speed_m_s": 17.6
+    },
+    {
+      "rod_candidate": "steel_candidate",
+      "rpm": 8000,
+      "assumed_peak_pressure_bar": 60,
+      "assumed_reciprocating_mass_kg": 0.38305905753727565,
+      "gas_force_N": 34047.01038327939,
+      "peak_absolute_inertia_force_N": 11089.881323097974,
+      "independent_peak_sum_bound_N": 45136.89170637736,
+      "nominal_rod_beam_axial_stress_bound_MPa": 177.37677607095142,
+      "mean_piston_speed_m_s": 17.6
+    },
+    {
+      "rod_candidate": "steel_candidate",
+      "rpm": 8000,
+      "assumed_peak_pressure_bar": 80,
+      "assumed_reciprocating_mass_kg": 0.38305905753727565,
+      "gas_force_N": 45396.013844372515,
+      "peak_absolute_inertia_force_N": 11089.881323097974,
+      "independent_peak_sum_bound_N": 56485.89516747049,
+      "nominal_rod_beam_axial_stress_bound_MPa": 221.97554150305018,
+      "mean_piston_speed_m_s": 17.6
+    }
+  ],
+  "load_scope": "constant_peak_pressure_grid_and_independent_inertia_envelope_not_combustion_or_FEA",
+  "stress_scope": "nominal_beam_axial_area_only_no_eye_contact_bending_buckling_bolts_fatigue_or_hot_allowables",
+  "nominal_piston_radial_clearance_mm": 0.1,
+  "piston_clearance_resolved_by_voxel_grid": false,
+  "release_gates": {
+    "scan_scale_verified": false,
+    "scan_fit_verified": false,
+    "complete_engine_geometry": false,
+    "functional_interfaces_verified": false,
+    "material_qualified": false,
+    "fatigue_validated": false,
+    "manufacturing_authorized": false,
+    "engine_start_authorized": false
+  },
+  "recorded_at_utc": "2026-10-10T22:00:44.758301+00:00",
+  "private_run": "work/917-hypotheses-20261010/run-005",
+  "report_sha256": "56670c596107a26c32e4018bce65691050b3ec865d19feb35317ee66395c176b",
+  "status": "partial_geometry_motion_and_sampled_interference_screen_completed_not_released",
+  "assumption_basis": "models/917-engine-reconstruction/hypothesis/assumptions.json",
+  "toolchain": {
+    "python": "3.13.15",
+    "dotnet_sdk": "9.0.317",
+    "picogk_package": "2.3.0",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "trimesh": "5.1.1",
+    "rtree": "1.4.1",
+    "networkx": "3.7"
+  },
+  "existing_slider_helper_sha256": "0a140604a0458a7a1fce456b497c47c12734bfdd56c6f98bf937f135ab2dd536",
+  "volume_grid_comparison": {
+    "cylinder": {
+      "relative_change_coarse_to_fine": 0.006912486915121999,
+      "asymptotic_or_interface_convergence_proved": false
+    },
+    "piston": {
+      "relative_change_coarse_to_fine": 0.0048235426327504416,
+      "asymptotic_or_interface_convergence_proved": false
+    },
+    "rod": {
+      "relative_change_coarse_to_fine": 0.0088725224620696,
+      "asymptotic_or_interface_convergence_proved": false
+    },
+    "pin": {
+      "relative_change_coarse_to_fine": 0.0075394339258299595,
+      "asymptotic_or_interface_convergence_proved": false
+    }
+  },
+  "retained_previous_experiments": [
+    {
+      "run": "run-001",
+      "status": "rejected_native_piston_zero_faces",
+      "original_rejection_overridden": false
+    },
+    {
+      "run": "run-002",
+      "status": "preceding_hypothesis_execution_without_interference_screen",
+      "superseded": true
+    },
+    {
+      "run": "run-003",
+      "status": "solid_piston_rejected_for_interference",
+      "original_rejection_overridden": false,
+      "report_sha256": "db866cedd89fba121a7acf35bfd644976364de99077ba70b738b53875bbc63b8",
+      "prototype_piston_mass_kg": 0.5234972742952175
+    },
+    {
+      "run": "run-004",
+      "status": "first_hollow_piston_mesh_rejected",
+      "original_rejection_overridden": false,
+      "countertrial": {
+        "input_faces": 84100,
+        "removed_zero_cross_product_faces": 192,
+        "remaining_duplicate_face_groups": 0,
+        "vertex_displacement": 0,
+        "remaining_face_orientation_changed": false,
+        "remaining_oriented_faces_sha256": "ffef61323aa3112fb149a1c46ff1ffc6a55f0dad60fe923aa07c856b2a4b6e97",
+        "audit": {
+          "faces": 83908,
+          "exact_unique_vertices": 41600,
+          "watertight": false,
+          "winding_consistent": true,
+          "exact_zero_area_faces": 0,
+          "boundary_edges_incidence_one": 0,
+          "edges_incidence_above_two": 670,
+          "surface_components_including_degenerate_faces": 615,
+          "components_are_not_interpreted_as_physical_voids": true,
+          "signed_triangle_volume": 63106.63484560023,
+          "strict_raw_mesh_screen_pass": false
+        }
+      }
+    }
+  ],
+  "private_preview": {
+    "image": "hypotheses-picogk-hollow-piston.png",
+    "sha256": "29e4b6c0caea75704c646add3956b33c97e8640022a105c317d6ea7b488149eb",
+    "script_sha256": "25ad324ef95717dc4b6f329c296a242b2f5263370d6671be34589e7b180c4e41",
+    "visually_inspected": true,
+    "scope": "sampled_surface_scientific_preview_not_scan_fit_or_design_approval"
+  },
+  "private_assembly_stl_sha256": "6826507224afbfbd58981f557ba43ab52a89ef452619813a21b8993f8142771f",
+  "geometry_payload_published": false,
+  "local_validation": {
+    "targeted_tests_passed": 12,
+    "dotnet_build_warnings": 0,
+    "dotnet_build_errors": 0,
+    "make_check_tests_run": 3626,
+    "make_check_skipped": 153,
+    "make_check_failures": 2,
+    "make_check_scope": "Mac Python 3.13.15; two existing exact float comparisons in unchanged 993 impeller/stator; targeted checks rerun after final piston revision; later make targets not reached",
+    "make_check_log_sha256": "3151c9c67b07c8b23abd227d2a62bef26fb6b36db49125d33d83188dc59de1b4"
+  }
+}

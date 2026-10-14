@@ -110,8 +110,9 @@ def grille(fiches: list, par_ligne: int = 6) -> list[str]:
     for i in range(0, len(tuiles), par_ligne):
         out += ["<tr>"] + tuiles[i:i + par_ligne] + ["</tr>"]
     picogk = sum(1 for _, d in fiches
-                 if any((ROOT / "parts" / d["part_id"].lower() / "derived").glob("*-picogk.stl")))
-    rendu = (f"Concept models rendered by `scripts/render_part_previews.py`: {picogk} of {len(fiches)} "
+                 if d.get("geometry", {}).get("master_format") == "PicoGK" or
+                 any((ROOT / "parts" / d["part_id"].lower() / "derived").glob("*-picogk.stl")))
+    rendu = (f"Concept models: {picogk} of {len(fiches)} "
              "are PicoGK voxel models ([`parts/picogk-catalog/`](parts/picogk-catalog/README.md)), "
              "the others concept CAD blocks." if picogk else
              "Concept CAD blocks rendered from each part's own CAD by `scripts/render_part_previews.py`.")

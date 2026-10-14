@@ -12,6 +12,8 @@ is a separate project.
 [Sources and limitations](sources.json) · [OBJ audit summary](scan-summary.json) ·
 [Existing fan program](../../../twins/993-engine-cooling-fan-system-f0/README.md)
 
+[October 12, 2026 assessment and remaining work](STATUS_20261012.md) (French).
+
 ## Reconstruction from the scans — October 5, 2026
 
 The [executed campaign](IMPLEMENTATION.md) fits observed cylindrical surfaces

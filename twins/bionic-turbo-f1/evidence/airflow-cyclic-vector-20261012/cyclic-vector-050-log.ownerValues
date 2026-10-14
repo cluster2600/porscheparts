@@ -1,0 +1,44 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2406                                  |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _be01ca78-20240625 OPENFOAM=2406 version=2406
+Arch   : "LSB;label=32;scalar=64"
+Exec   : foamToVTK -legacy -fields (basisX basisY basisZ tagged) -time 0 -no-internal -no-point-data -with-ids -patches (periodicLower periodicUpper) -nearCellValue -name ownerValues
+Date   : Oct 12 2026
+Time   : 18:26:06
+Host   : 63899b5d056e
+PID    : 220
+I/O    : uncollated
+Case   : /case
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Using neighbouring cell value instead of patch value
+
+Point fields and interpolated point data disabled with the '-no-point-data' option
+Writing mesh ids (cell, patch, proc) requested
+Including patches (periodicLower periodicUpper)
+
+Including fields (basisX basisY basisZ tagged)
+
+Create time
+
+Initial memory 116472 kB
+Create mesh for time = 0
+
+VTK mesh topology: 0.02 s, 119796 kB
+Time: 0
+    volVector    : basisX basisY basisZ tagged
+    Boundary  : "ownerValues/periodicLower/periodicLower_0.vtk"
+    Boundary  : "ownerValues/periodicUpper/periodicUpper_0.vtk"
+Wrote in 0.02 s, 120928 kB
+
+End: 0.04 s, 120928 kB (peak)
+

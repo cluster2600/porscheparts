@@ -1,0 +1,31 @@
+{
+  "schema": "static-mrf-equilibrium-witness/v1",
+  "source_sha256": "332b65dc3cad759d9a9b15de7f3b38eae2d61a90a866604707a330d05dc76cc1",
+  "parent_file_sha256": {
+    "system/fvSchemes": "4c8aaa7919955c37a24b589e5198cd04f9461422f0b6c36bc5444ef7c824f078",
+    "system/fvSolution": "19623642175dc07f6411b69bbac1e6fe8d07fa7ac80fc7becb5abbc70f393949",
+    "constant/thermophysicalProperties": "6012ffd8e0a0cf1d159dfdb44ea971ddf0a9e062c2c4582cdbb684bb8795e996"
+  },
+  "image": "docker.io/opencfd/openfoam-run@sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532",
+  "omega_rad_s": 10471.975511966,
+  "expected": "Uniform inertial gas at rest; all physical walls stationary; no rotor, forcing, heat or pressure difference.",
+  "criteria": {
+    "max_abs_p_error_Pa": 0.001,
+    "max_abs_T_error_K": 1e-06,
+    "max_speed_m_s": 1e-08
+  },
+  "file_sha256": {
+    "0/U": "90f3f215f5f6d171ac2916003f7f2a1e86e63d26f3ccd4087374a90e35789f3e",
+    "0/T": "841713454ca154cd029b0e4c83e6a317bb2c960dece8f9e432e526e8f3d904f0",
+    "0/p": "50b883512009602ac5bd8e4f35afcfa4fe17f93459c9bb3874cd04897b39edc1",
+    "system/fvSchemes": "4c8aaa7919955c37a24b589e5198cd04f9461422f0b6c36bc5444ef7c824f078",
+    "system/fvSolution": "19623642175dc07f6411b69bbac1e6fe8d07fa7ac80fc7becb5abbc70f393949",
+    "system/topoSetDict": "0d2955556230ed7bb5656744f8286f357791e6c0a46e25d3a4d258bb3fe640a6",
+    "system/blockMeshDict": "a9b363a3e573534c8f33440ac8fc6e027985959c2d99e43aa3a2523cb8d2b08f",
+    "system/controlDict": "d7d1b56dab2aa17431f31d77e95b97a7fe5f92fb912c95fb4e4c4881ee47018b",
+    "constant/MRFProperties": "473189e0cfc42ffea1d4cd888817c4d03d9c6e6d7432bac65647013ff8155862",
+    "constant/turbulenceProperties": "50673609796db732b6052232e7ebd4193afb4fbdbeb5afe2a5397044b00d2b39",
+    "constant/thermophysicalProperties": "6012ffd8e0a0cf1d159dfdb44ea971ddf0a9e062c2c4582cdbb684bb8795e996"
+  },
+  "performance_ranking_authorized": false
+}
