@@ -1,82 +1,82 @@
-# F0 : sections d'eau et diagnostic des interfaces
+# F0: coolant sections and interface diagnostic
 
-**Le contrôle utilise les STL PicoGK effectivement générés, avec leurs
-empreintes conservées. Il ne modifie pas la culasse.** Le circuit reste une
-étude non mesurée, sans performance hydraulique ou fabrication qualifiée.
+**The check uses the PicoGK STL files actually generated, with their
+digests kept. It does not modify the cylinder head.** The circuit remains an
+unmeasured study, with no qualified hydraulic performance or manufacturing.
 
-Le [script](source/audit_coolant_boundaries.py) extrait les deux sections aux
-plans X = −80 et +80 mm de l'enveloppe F0. Ces plans sont ceux du modèle
-hypothétique ; ce ne sont pas des raccords du donneur. Les coupes sont
-triangulées après contrôle d'une seule boucle fermée, sans sommet de degré
-différent de deux. Le [rapport](derived/boundary-audit.json) lie sources,
-maillages, sorties et runtime. Les surfaces de coupe `inlet.vtp` et
-`outlet.vtp` restent locales et peuvent être ouvertes dans ParaView.
+The [script](source/audit_coolant_boundaries.py) extracts the two sections at
+the X = −80 and +80 mm planes of the F0 envelope. These planes belong to the
+hypothetical model; they are not donor fittings. The cuts are
+triangulated after checking for a single closed loop, with no vertex of degree
+other than two. The [report](derived/boundary-audit.json) links sources,
+meshes, outputs and runtime. The cut surfaces `inlet.vtp` and
+`outlet.vtp` stay local and can be opened in ParaView.
 
-## Résultats sur le F0 conservé
+## Results on the retained F0
 
-| Section géométrique | Aire | Périmètre | Diamètre hydraulique `4A/P` |
+| Geometric section | Area | Perimeter | Hydraulic diameter `4A/P` |
 |---|---:|---:|---:|
-| Entrée, X = −80 mm | 52,5045 mm² | 26,2833 mm | 7,9906 mm |
-| Sortie, X = +80 mm | 52,4872 mm² | 26,2195 mm | 8,0074 mm |
+| Inlet, X = −80 mm | 52.5045 mm² | 26.2833 mm | 7.9906 mm |
+| Outlet, X = +80 mm | 52.4872 mm² | 26.2195 mm | 8.0074 mm |
 
-Ces valeurs décrivent les sections des maillages, pas des dimensions usinées
-ou une tolérance. Le diamètre hydraulique n'est pas un diamètre de foret.
-La petite différence entrée/sortie n'établit pas une perte de charge.
-Le volume d'eau ne dépasse pas l'enveloppe F0 par Y ou Z ; il se prolonge
-par les deux terminaisons X. Cette vérification d'enveloppe n'est pas un
-contrôle exhaustif d'étanchéité de la paroi.
+These values describe the mesh sections, not machined dimensions
+or a tolerance. The hydraulic diameter is not a drill diameter.
+The small inlet/outlet difference does not establish a pressure loss.
+The coolant volume does not exceed the F0 envelope in Y or Z; it extends
+through the two X terminations. This envelope check is not an
+exhaustive wall-tightness check.
 
-## Sondage eau/métal : anomalie conservée
+## Coolant/metal probing: anomaly retained
 
-À partir des centres des triangles d'eau, déplacer une sonde suivant la
-normale extérieure de la face. Classer indépendamment sa distance signée
-aux deux surfaces, eau et métal. Quatre décalages sont examinés ; le signe
-zéro est classé extérieur. Les sondes peuvent retomber dans une autre branche
-du même circuit : ces cas ne deviennent pas des validations de matière.
+From the centers of the coolant triangles, move a probe along the
+outward normal of the face. Classify independently its signed distance
+to the two surfaces, coolant and metal. Four offsets are examined; a zero
+sign is classified as outside. Probes may land in another branch
+of the same circuit: these cases do not become material validations.
 
-| Décalage | Métal seul | Eau seule | Dans les deux | Dans aucun des deux |
+| Offset | Metal only | Coolant only | In both | In neither |
 |---|---:|---:|---:|---:|
-| 0,25 mm | 130 048 | 0 | 0 | 28 |
-| 0,50 mm | 130 062 | 6 | 0 | 8 |
-| 0,75 mm | 130 062 | 10 | 0 | 4 |
-| 1,50 mm | 130 040 | 36 | 0 | 0 |
+| 0.25 mm | 130,048 | 0 | 0 | 28 |
+| 0.50 mm | 130,062 | 6 | 0 | 8 |
+| 0.75 mm | 130,062 | 10 | 0 | 4 |
+| 1.50 mm | 130,040 | 36 | 0 | 0 |
 
-Chaque ligne porte sur **130 076 sondes**. Les **1 480 centres de faces**
-dans la garde de 1,5 mm près des terminaisons X sont exclus : la paroi autour
-des raccords n'est donc pas inspectée par ce sondage. Les centres, normales
-et positions de sonde sont ceux du maillage, sans recalage photographique.
+Each row covers **130,076 probes**. The **1,480 face centers**
+within the 1.5 mm guard near the X terminations are excluded: the wall around
+the fittings is therefore not inspected by this probing. The centers, normals
+and probe positions are those of the mesh, with no photographic registration.
 
-![Projection des sondes non attribuées](derived/boundary-probes.png)
+![Projection of the unassigned probes](derived/boundary-probes.png)
 
-Les points magenta sont les sondes présentes dans aucun des deux volumes
-triangulés, en projection XY. Leur nombre baisse avec le décalage, mais ce
-n'est pas une convergence : le maillage et son voxel de 0,75 mm sont inchangés.
-Changer la distance de la sonde ne raffine pas la géométrie.
+The magenta points are the probes inside neither of the two triangulated
+volumes, projected on XY. Their number falls as the offset grows, but this
+is not convergence: the mesh and its 0.75 mm voxel are unchanged.
+Changing the probe distance does not refine the geometry.
 
-**La conformité eau/métal reste non validée.** Aux petits décalages, des
-écarts sont observés près de jonctions. À 1,5 mm, les 36 sondes hors métal
-sont dans l'eau. Ces classifications ne prouvent ni fuite physique ni paroi
-fermée et ne donnent pas une épaisseur minimale. Les surfaces séparées ne
-sont pas acceptées comme une interface commune de maillage CHT.
+**Coolant/metal conformity remains not validated.** At small offsets,
+gaps are observed near junctions. At 1.5 mm, the 36 probes outside the metal
+are in the coolant. These classifications prove neither a physical leak nor a closed
+wall, and do not give a minimum thickness. The separate surfaces are
+not accepted as a shared CHT mesh interface.
 
-## Étape hydraulique suivante
+## Next hydraulic step
 
-Localiser les cellules/interfaces concernées puis comparer un raffinement
-de voxel sur la même géométrie, avec une nouvelle preuve liée à chaque sortie.
-Construire ensuite une partition fluide/solide à interface commune, avec
-entrée, sortie et parois identifiées. Ne pas déplacer artificiellement les
-surfaces pour faire passer le contrôle, ni masquer les points non attribués.
+Locate the affected cells/interfaces, then compare a voxel refinement
+on the same geometry, with new evidence linked to each output.
+Then build a fluid/solid partition with a shared interface, with
+identified inlet, outlet and walls. Do not move the surfaces artificially
+to pass the check, nor hide the unassigned points.
 
-La CFD exige encore débit ou courbe de pompe, composition du liquide,
-température/pression d'entrée, rugosité et comportement aux jonctions.
-La CHT ajoute flux thermique/chambre, lois matériau et conditions externes.
-Les pressions, débit et charge thermique restent inconnus dans le
-[contrat F0](interface-contract.json). Aucune perte de charge, ébullition,
-évacuation de poudre, tenue de paroi ou amélioration thermique n'est calculée.
+CFD still requires flow rate or pump curve, coolant composition,
+inlet temperature/pressure, roughness and junction behavior.
+CHT adds heat flux/chamber, material laws and external conditions.
+Pressures, flow rate and heat load remain unknown in the
+[F0 contract](interface-contract.json). No pressure loss, boiling,
+powder removal, wall strength or thermal improvement is calculated.
 
-## Reproduction et témoins négatifs
+## Reproduction and negative controls
 
-Avec le runtime NumPy/trimesh/VTK/Matplotlib déjà utilisé pour F0 :
+With the NumPy/trimesh/VTK/Matplotlib runtime already used for F0:
 
 ```sh
 python twins/962-cylinder-head-f0/source/audit_coolant_boundaries.py \
@@ -84,13 +84,13 @@ python twins/962-cylinder-head-f0/source/audit_coolant_boundaries.py \
 python -m unittest discover -s tests -p 'test_962*.py' -v
 ```
 
-Le répertoire de sortie doit être neuf et les STL doivent correspondre aux
-empreintes originales. Une source F0 modifiée est aussi refusée. Des témoins
-indépendants contrôlent une coupe de cube (aire et périmètre analytiques),
-une section ouverte ou déconnectée, une paroi analytique amputée, le retour
-d'une sonde dans l'eau, un chevauchement et des entrées non finies. Le
-diagnostic reste non qualifié même si les tests de son outil passent.
+The output directory must be new and the STL files must match the
+original digests. A modified F0 source is also refused. Independent
+controls check a cube cut (analytic area and perimeter),
+an open or disconnected section, an analytic wall with a piece removed, a probe
+returning into the coolant, an overlap and non-finite inputs. The
+diagnostic remains unqualified even when its tool's tests pass.
 
-La méthode de coupe s'appuie sur la
-[documentation VTK 9.7 de ContourTriangulator](https://vtk.org/doc/nightly/release/9.7/html/classvtkContourTriangulator.html).
-Ses triangles de coupe ne constituent pas un maillage CFD de qualité.
+The cutting method relies on the
+[VTK 9.7 documentation of ContourTriangulator](https://vtk.org/doc/nightly/release/9.7/html/classvtkContourTriangulator.html).
+Its cut triangles do not make a quality CFD mesh.

@@ -1,77 +1,77 @@
-# Routage F0 sans enveloppe : raffinement PicoGK à 0,5 mm
+# F0 routing without envelope: PicoGK refinement at 0.5 mm
 
-Cette étape historique conserve la charpente et les volumes réservés, sans
-enveloppe continue. La [galerie corrigée](GALLERY.md) montre le corps ajouté.
-Ces rendus proviennent des **maillages effectivement calculés et inspectés**.
-La géométrie de référence reste celle du F0 non mesuré : quatre réservations
-de soupapes/guides et deux puits de bougie, sans distribution ni fixations
-fonctionnelles. Le gris est une teinte de présentation ; le bleu représente
-le volume d'eau, l'orange les volumes réservés aux passages et aux bougies.
-Les couleurs ne représentent pas une température calculée.
+This historical step keeps the frame and the reserved volumes, with no
+continuous envelope. The [corrected gallery](GALLERY.md) shows the added body.
+These renders come from the **meshes actually calculated and inspected**.
+The reference geometry remains that of the unmeasured F0: four
+valve/guide reservations and two spark plug wells, with no functional valvetrain or
+mountings. Gray is a presentation shade; blue represents
+the coolant volume, orange the volumes reserved for passages and spark plugs.
+The colors do not represent a calculated temperature.
 
-## Charpente autour des conduits, avant ajout de l'enveloppe
+## Frame around the ports, before the envelope was added
 
-![Vue extérieure de la géométrie F0 à 0,5 mm](derived/views/exterior.png)
+![Exterior view of the F0 geometry at 0.5 mm](derived/views/exterior.png)
 
-## Coupe et passages internes
+## Cutaway and internal passages
 
-![Coupe virtuelle : métal gris, eau bleue, volumes secs orange](derived/views/cutaway.png)
+![Virtual cut: metal in gray, coolant in blue, dry volumes in orange](derived/views/cutaway.png)
 
-## Circuit d'eau et corps transparent
+## Coolant circuit and transparent body
 
-![Circuit d'eau géométrique sous le corps transparent](derived/views/coolant.png)
+![Geometric coolant circuit under the transparent body](derived/views/coolant.png)
 
-## Ce qui a réellement changé
+## What actually changed
 
-Le [pipeline](source/refine_and_render.py) conserve les paramètres, le
-générateur et les binaires PicoGK précédents. Seul le voxel passe de
-0,75 à **0,5 mm** dans trois copies d'entrées vérifiées. Les exécutions
-natives sont séquentielles sous le verrou commun. Les nouveaux STL et
-entrées restent dans `work/962-head/refinement-0p5/` ; leur inspection et les
-images publiées sont conservées dans `work/962-head/refinement-0p5-final/`.
-Le [rapport](derived/refinement-report.json) distingue les références
-géométriques originales des véritables entrées exécutées à 0,5 mm.
+The [pipeline](source/refine_and_render.py) keeps the previous parameters,
+generator and PicoGK binaries. Only the voxel goes from
+0.75 to **0.5 mm** in three verified input copies. The native
+runs are sequential under the shared lock. The new STL files and
+inputs stay in `work/962-head/refinement-0p5/`; their inspection and the
+published images are kept in `work/962-head/refinement-0p5-final/`.
+The [report](derived/refinement-report.json) distinguishes the original geometric
+references from the actual inputs executed at 0.5 mm.
 
-| Résultat géométrique | F0 à 0,75 mm | Raffinement à 0,5 mm |
+| Geometric result | F0 at 0.75 mm | Refinement at 0.5 mm |
 |---|---:|---:|
-| Triangles du solide après suppression des faces d'aire nulle | 761 902 | 1 729 312 |
-| Volume de métal du maillage | 353,185 cm³ | 352,985 cm³ |
-| Volume d'eau du maillage | 46,180 cm³ | 46,741 cm³ |
-| Distance minimale eau–volumes secs, échantillonnée | 3,598 mm | 3,575 mm |
-| Nombre de sondes pour cette distance | 197 322 | 447 288 |
+| Solid triangles after removing zero-area faces | 761,902 | 1,729,312 |
+| Mesh metal volume | 353.185 cm³ | 352.985 cm³ |
+| Mesh coolant volume | 46.180 cm³ | 46.741 cm³ |
+| Minimum coolant–dry-volume distance, sampled | 3.598 mm | 3.575 mm |
+| Number of probes for this distance | 197,322 | 447,288 |
 
-Les trois maillages raffinés sont fermés, orientés de façon cohérente et
-comptent chacun une composante de surface. Les six sondes d'ouverture sont
-recontrôlées. Cela ne démontre ni montage, étanchéité ni épaisseur de paroi.
-Les valeurs de volume ne sont pas des mesures de pièce et ne donnent pas
-une masse matière qualifiée.
+The three refined meshes are closed, consistently oriented and
+each has one surface component. The six opening probes are
+checked again. This demonstrates neither fit, tightness nor wall thickness.
+The volume values are not part measurements and do not give
+a qualified material mass.
 
-## Comparaison eau/métal : défauts encore ouverts
+## Coolant/metal comparison: defects still open
 
-Le [diagnostic précédent](COOLANT_BOUNDARIES.md) est réutilisé sur les nouvelles
-surfaces. Les sections d'entrée/sortie atteignent environ 53,178 mm², avec
-un diamètre hydraulique de 7,974 mm. Ces valeurs restent des sections F0,
-sans débit ni perte de charge moteur.
+The [previous diagnostic](COOLANT_BOUNDARIES.md) is reused on the new
+surfaces. The inlet/outlet sections reach about 53.178 mm², with
+a hydraulic diameter of 7.974 mm. These values remain F0 sections,
+with no engine flow rate or pressure loss.
 
-| Décalage des sondes normales | Non attribuées, 0,75 mm | Non attribuées, 0,5 mm |
+| Normal probe offset | Unassigned, 0.75 mm | Unassigned, 0.5 mm |
 |---|---:|---:|
-| 0,25 mm | 28 / 130 076 | 60 / 294 924 |
-| 0,50 mm | 8 / 130 076 | 8 / 294 924 |
-| 0,75 mm | 4 / 130 076 | 0 / 294 924 |
-| 1,50 mm | 0 / 130 076 | 0 / 294 924 |
+| 0.25 mm | 28 / 130,076 | 60 / 294,924 |
+| 0.50 mm | 8 / 130,076 | 8 / 294,924 |
+| 0.75 mm | 4 / 130,076 | 0 / 294,924 |
+| 1.50 mm | 0 / 130,076 | 0 / 294,924 |
 
-Les sondes changent avec les triangles : les nombres bruts ne comparent pas
-les mêmes points spatiaux. À 0,25 mm, les fractions non attribuées restent
-proches (environ 0,022 % et 0,020 %). Les écarts au voisinage de l'interface
-ne sont donc pas résolus par ce raffinement. À 1,5 mm, 160 sondes raffinées
-retombent dans l'eau, contre 36 précédemment : aucune de ces sondes ne
-devient une validation de matière.
+The probes change with the triangles: the raw counts do not compare
+the same spatial points. At 0.25 mm, the unassigned fractions remain
+close (about 0.022% and 0.020%). The gaps near the interface
+are therefore not resolved by this refinement. At 1.5 mm, 160 refined probes
+land in the coolant, against 36 previously: none of these probes
+becomes a material validation.
 
-Deux résolutions ne suffisent pas à qualifier la convergence, la géométrie
-OEM ou une interface commune pour CHT. Le rapport conserve toutes les
-qualifications physiques à `false`. La prochaine étape numérique est une
-partition fluide/solide conforme et une comparaison sur des positions fixes,
-avant la CFD/CHT ; les interfaces du donneur restent à mesurer.
+Two resolutions are not enough to qualify convergence, the OEM
+geometry or a shared interface for CHT. The report keeps all
+physical qualifications at `false`. The next numerical step is a
+conformal fluid/solid partition and a comparison at fixed positions,
+before CFD/CHT; the donor interfaces remain to be measured.
 
 ## Reproduction
 
@@ -81,10 +81,10 @@ python twins/962-cylinder-head-f0/source/refine_and_render.py \
 python -m unittest discover -s tests -p 'test_962*.py' -v
 ```
 
-Le binaire et les bibliothèques doivent avoir les empreintes de la
-[provenance conservée](derived/runtime-provenance.json). Le répertoire de
-sortie doit être neuf. Les inspections et rendus peuvent être rejoués sur
-les exports natifs conservés sans relancer le calcul PicoGK. La version
-`dotnet --version` mesurée ici est 9.0.317 ; le dossier initial mentionne
-9.0.318. Le nouveau rapport distingue cette mesure de la provenance de
-référence, dont le commit amont reste non vérifié indépendamment.
+The binary and libraries must have the digests of the
+[retained provenance](derived/runtime-provenance.json). The output
+directory must be new. The inspections and renders can be replayed on
+the retained native exports without rerunning the PicoGK calculation. The
+`dotnet --version` measured here is 9.0.317; the initial dossier mentions
+9.0.318. The new report distinguishes this measurement from the reference
+provenance, whose upstream commit remains independently unverified.

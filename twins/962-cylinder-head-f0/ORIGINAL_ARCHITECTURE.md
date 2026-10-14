@@ -1,94 +1,94 @@
-# De l'originale à la culasse moderne d'étude
+# From the original to the modern study cylinder head
 
-## Ce que montrent les sources
+## What the sources show
 
-Les photographies de [Performance Developments, restauration de 962 C, partie 3](https://performancedevelopments.com/porsche-962c-race-engine-part-3/)
-montrent des culasses individuelles, une face de chambre à quatre soupapes,
-deux logements ouverts de ressorts par culasse et un port ovale latéral commun
-à une paire. La vue de chambre examinée montre une ouverture centrale de
-bougie. Le préparateur précise qu'il a séparé les chemises des culasses : ces
-photos documentent donc aussi **sa modification**, sans établir une variante
-d'usine exacte. La [partie 2](https://performancedevelopments.com/porsche-962c-race-engine-part-2/)
-montre les ensembles démontés et les porte-arbres à cames séparés.
+The photographs from [Performance Developments, 962 C restoration, part 3](https://performancedevelopments.com/porsche-962c-race-engine-part-3/)
+show individual cylinder heads, a four-valve chamber face,
+two open spring housings per head and a lateral oval port shared
+by a pair. The chamber view examined shows a central spark plug
+opening. The builder states that they separated the jackets from the heads: these
+photos therefore also document **their modification**, without establishing an exact
+factory variant. [Part 2](https://performancedevelopments.com/porsche-962c-race-engine-part-2/)
+shows the disassembled assemblies and the separate camshaft carriers.
 
-Vues examinées : [chambre](https://performancedevelopments.com/wp-content/uploads/2017/04/123_2399.jpg),
-[dessus](https://performancedevelopments.com/wp-content/uploads/2017/04/124_2408.jpg),
+Views examined: [chamber](https://performancedevelopments.com/wp-content/uploads/2017/04/123_2399.jpg),
+[top](https://performancedevelopments.com/wp-content/uploads/2017/04/124_2408.jpg),
 [ports](https://performancedevelopments.com/wp-content/uploads/2017/04/124_2409.jpg),
-[ensembles démontés](https://performancedevelopments.com/wp-content/uploads/2017/04/IMG_4108.jpg).
-Les pixels ont été inspectés localement. Ils restent hors Git ; aucune licence
-de réutilisation n'a été trouvée. Les [références et empreintes](source/architecture/references.json)
-conservent leur provenance. Une photo sans échelle n'établit aucune cote.
+[disassembled assemblies](https://performancedevelopments.com/wp-content/uploads/2017/04/IMG_4108.jpg).
+The pixels were inspected locally. They stay out of Git; no reuse license
+was found. The [references and digests](source/architecture/references.json)
+keep their provenance. A photo without scale establishes no dimension.
 
-Le dossier constructeur [40 Years Group C, pages 18–20](https://newsroom.porsche.com/dam/jcr:a6f33b52-c47d-47b4-98c1-7e963661f587/40%2520Years%2520Group%2520C.pdf)
-décrit l'aluminium, des ensembles culasse/cylindre soudés par faisceau
-d'électrons, la distribution à deux arbres à cames et deux circuits d'eau
-indépendants avec une pompe par côté. Il ne fournit pas les coordonnées de
-fixation ou les canaux internes nécessaires à notre CAO. Les archives FIA
-du [dossier initial](README.md) concernent le règlement et ne remplacent pas
-la métrologie. Ne pas mélanger la 962 IMSA initiale à air et cette direction
-962 C à quatre soupapes et eau.
+The manufacturer's dossier [40 Years Group C, pages 18–20](https://newsroom.porsche.com/dam/jcr:a6f33b52-c47d-47b4-98c1-7e963661f587/40%2520Years%2520Group%2520C.pdf)
+describes aluminum, electron-beam-welded cylinder head/cylinder
+assemblies, double-overhead-camshaft valvetrain and two independent coolant circuits
+with one pump per side. It does not provide the mounting coordinates
+or internal channels our CAD needs. The FIA archives
+of the [initial dossier](README.md) concern the regulations and do not replace
+metrology. Do not mix the initial air-cooled 962 IMSA with this
+four-valve, water-cooled 962 C direction.
 
-## Traduction dans le modèle
+## Translation into the model
 
-Le [générateur](source/architecture/Head962ArchitectureStudy.cs) reprend
-l'organisation observée : deux poches de ressorts, corps chanfreiné et
-ports communs par paire. Il ajoute quatre réservations de guides inclinés,
-deux puits d'allumage et une chemise d'eau suivant la chambre et les conduits.
-Le double allumage et les dimensions constituent **notre proposition**.
-Ce modèle n'est pas une reconstruction cotée de la culasse photographiée.
+The [generator](source/architecture/Head962ArchitectureStudy.cs) takes up
+the observed organization: two spring pockets, chamfered body and
+ports shared in pairs. It adds four inclined guide reservations,
+two ignition wells and a water jacket following the chamber and ports.
+The twin ignition and the dimensions are **our proposal**.
+This model is not a dimensioned reconstruction of the photographed cylinder head.
 
-La forme conforme vient d'offsets natifs, d'intersections et de soustractions.
-Cette construction autorise des chemins proches des parois chaudes ; elle
-ne démontre pas un meilleur débit ou transfert thermique. L'implantation des
-deux terminaux représente une étude d'alimentation/retour, à confronter au
-réseau complet de chaque banc. Le modèle ne complète ni paliers, ni goujons,
-ni huile, ni sièges rapportés, ni commande de soupapes.
+The conformal shape comes from native offsets, intersections and subtractions.
+This construction allows paths close to the hot walls; it
+does not demonstrate better flow or heat transfer. The layout of the
+two terminals represents a supply/return study, to be checked against the
+complete network of each bank. The model does not complete bearings, studs,
+oil, inserted seats or valve actuation.
 
-## PicoGK et ses bibliothèques
+## PicoGK and its libraries
 
-| Outil | Usage effectif ou entrée manquante |
+| Tool | Actual use or missing input |
 | --- | --- |
-| PicoGK 2.3.0 / natif 26.2 | Booléens, offsets, lissage du corps, poutres de raccordement, voxelisation à 0,5 mm et export STL exécutés. |
-| [ShapeKernel](https://github.com/leap71/LEAP71_ShapeKernel) | `LocalFrame`, `BaseBox`, `BaseCylinder`, `LineModulation` et `SurfaceModulation` exécutés pour le corps variable et les lofts ovales. Sources installées à la révision déclarée `554bce4…`, empreintes enregistrées. Licence Apache-2.0. |
-| [LatticeLibrary](https://github.com/leap71/LEAP71_LatticeLibrary) | `CuboidCell`, `BodyCentreLattice` et `ConstantBeamThickness` exécutés pour des nervures extérieures ouvertes. Cellules et diamètre sont des hypothèses, sans optimisation sous charges. Aucun treillis n'est placé dans l'eau. |
-| [Fasteners](https://github.com/joshmelnykcroft/PicoGK-Fasteners) | Installée. Filetages et perçages attendent les interfaces mesurées du donneur. |
-| [HelixHeatX](https://github.com/leap71/LEAP71_HelixHeatX) | Installée ; concerne l'échangeur du [module thermique](THERMAL_MODULE.md), pas une preuve de refroidissement de la culasse. |
-| Échange natif OpenVDB | Trois domaines, un champ scalaire de distance et un champ vectoriel de gradient sauvegardés puis relus par nom ; contrôles de domaines et valeurs actifs dans les deux sens. |
-| [SimulationExample](https://github.com/leap71/PicoGK_SimulationExample) | Disponible pour préparer une entrée de simulation. L'échange présent utilise directement `OpenVdbFile`, sans conditions physiques inventées ni solveur CFD/CHT. |
+| PicoGK 2.3.0 / native 26.2 | Booleans, offsets, body smoothing, connecting beams, voxelization at 0.5 mm and STL export executed. |
+| [ShapeKernel](https://github.com/leap71/LEAP71_ShapeKernel) | `LocalFrame`, `BaseBox`, `BaseCylinder`, `LineModulation` and `SurfaceModulation` executed for the variable body and the oval lofts. Sources installed at the declared revision `554bce4…`, digests recorded. Apache-2.0 license. |
+| [LatticeLibrary](https://github.com/leap71/LEAP71_LatticeLibrary) | `CuboidCell`, `BodyCentreLattice` and `ConstantBeamThickness` executed for open external ribs. Cells and diameter are assumptions, with no optimization under load. No lattice is placed in the coolant. |
+| [Fasteners](https://github.com/joshmelnykcroft/PicoGK-Fasteners) | Installed. Threads and holes await the measured donor interfaces. |
+| [HelixHeatX](https://github.com/leap71/LEAP71_HelixHeatX) | Installed; concerns the heat exchanger of the [thermal module](THERMAL_MODULE.md), not evidence of cylinder head cooling. |
+| Native OpenVDB exchange | Three domains, one scalar distance field and one vector gradient field saved then read back by name; checks of domains and active values in both directions. |
+| [SimulationExample](https://github.com/leap71/PicoGK_SimulationExample) | Available to prepare a simulation input. The present exchange uses `OpenVdbFile` directly, with no invented physical conditions and no CFD/CHT solver. |
 
-Utiliser toutes les fonctions sans besoin identifié ajouterait des formes
-sans justification physique. La bibliothèque de formes sert ici la culasse ;
-les autres restent liées à leur problème et aux données nécessaires.
+Using every function without an identified need would add shapes
+without physical justification. The shape library serves the cylinder head here;
+the others stay tied to their problem and to the data they need.
 
-La [variante à nervures](BIONIC_FIELDS.md) utilise effectivement ShapeKernel,
-LatticeLibrary et les champs VDB sur les volumes de cette culasse. Elle ajoute
-de la matière aux flancs : ce n'est pas une promesse d'allégement ni de gain
-thermique. Les [vues de la variante](GALLERY.md) et son rapport restent au
-statut d'étude non qualifiée.
+The [ribbed variant](BIONIC_FIELDS.md) actually uses ShapeKernel,
+LatticeLibrary and the VDB fields on the volumes of this cylinder head. It adds
+material to the flanks: this is not a promise of weight reduction or thermal
+gain. The [views of the variant](GALLERY.md) and its report remain at
+unqualified-study status.
 
-## Contribution Qwen réellement exécutée
+## Qwen contribution actually executed
 
-Le Qwen local est `Qwen2.5-Coder-1.5B-Instruct`, conversion MLX 4 bits à
-révision figée. Les anciens poids de base manquaient : ils ont été restaurés
-depuis la révision publique attendue et leur SHA-256 a été vérifié. Le
-checkpoint spécialisé PicoGK **r3, étape 240** était intact. Aucune location
-GPU ou modification du modèle par défaut n'a eu lieu.
+The local Qwen is `Qwen2.5-Coder-1.5B-Instruct`, a 4-bit MLX conversion at a
+frozen revision. The old base weights were missing: they were restored
+from the expected public revision and their SHA-256 was verified. The
+specialized PicoGK checkpoint **r3, step 240** was intact. No GPU
+rental or change of the default model took place.
 
-Les [réponses et reçus](derived/qwen-assistance/review.json) conservent trois
-exécutions : méthode complète avec r3, méthode complète avec le modèle de
-base, puis expression de rayon elliptique avec le modèle de base. Les deux
-méthodes étaient invalides et sont rejetées sans exécution. Seule l'expression
-elliptique a été retenue après contrôle analytique ; le code d'intégration a
-été corrigé et compilé séparément. Cette aide étroite n'établit aucune
-expertise mécanique ou thermique du modèle.
+The [responses and receipts](derived/qwen-assistance/review.json) keep three
+runs: full method with r3, full method with the base model,
+then elliptical radius expression with the base model. The two
+methods were invalid and are rejected without execution. Only the elliptical
+expression was retained after an analytic check; the integration code was
+corrected and built separately. This narrow assistance establishes no
+mechanical or thermal expertise of the model.
 
-## Étape vers le kit de 1 000 ch moteur
+## Step toward the 1,000 hp engine kit
 
-La [galerie](GALLERY.md) présente les vrais maillages. Le
-[rapport](derived/architecture-report.json) décrit leur contrôle indépendant.
-Le matériau reste à sélectionner et qualifier suivant le
-[protocole existant](MATERIAL_QUALIFICATION.md) : la conductivité seule ne
-choisit pas un alliage de culasse. Les mesures des
-[interfaces donneur](DONOR_METROLOGY.md), la distribution, le cycle de charge,
-le carburant, la CFD/CHT et la validation mécanique restent nécessaires au
-kit banc/piste. Aucune compatibilité 964/993 ni puissance n'est validée.
+The [gallery](GALLERY.md) presents the actual meshes. The
+[report](derived/architecture-report.json) describes their independent check.
+The material remains to be selected and qualified following the
+[existing protocol](MATERIAL_QUALIFICATION.md): conductivity alone does not
+choose a cylinder head alloy. Measurements of the
+[donor interfaces](DONOR_METROLOGY.md), valvetrain, load cycle,
+fuel, CFD/CHT and mechanical validation remain necessary for the
+dyno/track kit. No 964/993 compatibility or power output is validated.

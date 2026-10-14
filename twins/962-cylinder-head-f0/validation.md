@@ -116,109 +116,109 @@ Le journal reste local : `work/962-head/make-check-metrology.log`.
 Les cibles globales suivantes ne sont pas considérées exécutées. La CI de
 la nouvelle révision G1 doit être observée séparément.
 
-## Fusion G1 et diagnostic des frontières d'eau
+## G1 merge and coolant boundary diagnostic
 
-La CI G1 du commit `1dd4f65e770481cdbc8475606be05b69387158e1` a réussi :
+The G1 CI of commit `1dd4f65e770481cdbc8475606be05b69387158e1` passed:
 [run 677](https://github.com/cluster2600/porscheparts/actions/runs/38291189844).
-La PR 188 est fusionnée sur demande du propriétaire dans
+PR 188 was merged at the owner's request in
 `d8fed9fa5e7f96d4fe1e0af27b0a51eb9f94177e`.
 
-La suite utilise les STL originaux, sans réexécution ni modification du
-générateur. Le [rapport de frontières](derived/boundary-audit.json) conserve
-empreintes, sections et classifications aux quatre distances de sondage.
-Les dix-neuf tests ciblés passent avec VTK. Sept nouveaux témoins vérifient
-les classifications sur des surfaces analytiques, les sections ouvertes ou
-déconnectées, les entrées invalides et le refus d'un STL modifié avant export.
-Le graphe de sondage est inspecté visuellement. Les sections VTP restent
-locales dans `work/962-head/boundary-audit-final2/`.
+The follow-up uses the original STL files, with no rerun or modification of the
+generator. The [boundary report](derived/boundary-audit.json) keeps
+digests, sections and classifications at the four probing distances.
+The nineteen targeted tests pass with VTK. Seven new controls check
+the classifications on analytic surfaces, open or disconnected
+sections, invalid inputs and the refusal of an STL modified before export.
+The probing plot is inspected visually. The VTP sections stay
+local in `work/962-head/boundary-audit-final2/`.
 
-Les écarts eau/métal restent présents dans la preuve : aucun statut de CFD,
-interface conforme, tenue de paroi ou qualification physique n'est accordé.
-Le contrôle strict des liens passe sur 880 fichiers Markdown. Le `make check`
-Mac termine en échec : 3 803 tests, 2 échecs, 26 erreurs, 232 ignorés,
-251,837 s. Les erreurs SciPy/NumPy et `hashlib.file_digest` ainsi que les
-deux égalités de flottants concernent les mêmes modules non modifiés ; les
-dix-neuf tests 962 sont vérifiés séparément avec VTK. Le journal reste local
-dans `work/962-head/make-check-boundaries.log` ; les cibles après `test`
-ne sont pas considérées exécutées. La CI de cette nouvelle révision reste
-à observer.
+The coolant/metal gaps remain present in the evidence: no CFD status,
+conformal interface, wall strength or physical qualification is granted.
+The strict link check passes on 880 Markdown files. The Mac
+`make check` ends in failure: 3,803 tests, 2 failures, 26 errors, 232 skipped,
+251.837 s. The SciPy/NumPy and `hashlib.file_digest` errors as well as the
+two floating-point equalities concern the same unmodified modules; the
+nineteen 962 tests are verified separately with VTK. The log stays local
+in `work/962-head/make-check-boundaries.log`; the targets after `test`
+are not considered executed. The CI of this new revision remains
+to be observed.
 
-## Raffinement et vues de la culasse
+## Refinement and views of the cylinder head
 
-La CI du diagnostic précédent, commit
-`427ec23e67bbed6b2a01483276a4188eb44a5102`, a réussi :
+The CI of the previous diagnostic, commit
+`427ec23e67bbed6b2a01483276a4188eb44a5102`, passed:
 [run 687](https://github.com/cluster2600/porscheparts/actions/runs/38295662492).
-Cette preuve ne valide pas les ajouts suivants.
+This evidence does not validate the following additions.
 
-Trois nouveaux exports PicoGK à 0,5 mm sont réellement calculés avec les
-binaires vérifiés, sous le verrou commun ; seule la résolution des copies
-d'entrées change. L'inspecteur original est réutilisé et le nouveau rapport
-enregistre séparément les empreintes des véritables entrées exécutées.
-Le [rapport](derived/refinement-report.json) conserve toutes les valeurs
-de qualification à `false`. Les écarts eau/métal proches des surfaces restent
-observés. Trois vues 1600 × 1200 sont inspectées visuellement et liées au
-rapport par empreinte ; les images publiées sont identiques aux vues inspectées.
-Les exports natifs ne sont pas recalculés lors des reprises d'inspection/rendu.
+Three new PicoGK exports at 0.5 mm are actually calculated with the
+verified binaries, under the shared lock; only the resolution of the input
+copies changes. The original inspector is reused and the new report
+records separately the digests of the actual inputs executed.
+The [report](derived/refinement-report.json) keeps all qualification
+values at `false`. The coolant/metal gaps near the surfaces remain
+observed. Three 1600 × 1200 views are inspected visually and linked to the
+report by digest; the published images are identical to the inspected views.
+The native exports are not recalculated when inspection/rendering is resumed.
 
-## Enveloppe ajoutée après revue visuelle
+## Envelope added after visual review
 
-Le premier rendu extérieur présentait une charpente, sans enveloppe complète.
-La variante [enclosed-solid.json](source/enclosed-solid.json) et le nouveau
-générateur ajoutent un corps continu arrondi, puis soustraient eau et gaz.
-Ce sont des hypothèses d'enveloppe, sans interfaces de moteur mesurées.
-Le projet séparé compile contre les bibliothèques binaires PicoGK vérifiées,
-car l'ancien chemin local de sources n'est plus disponible. Compilation
-réussie sans avertissement ; export natif à 0,5 mm réellement exécuté sous
-le verrou commun en 89,8 s. Le corps massif n'est pas optimisé sous charges.
+The first exterior render showed a frame, with no complete envelope.
+The [enclosed-solid.json](source/enclosed-solid.json) variant and the new
+generator add a continuous rounded body, then subtract coolant and gas.
+These are envelope assumptions, with no measured engine interfaces.
+The separate project builds against the verified PicoGK binary libraries,
+because the old local source path is no longer available. Build
+succeeded with no warning; native export at 0.5 mm actually executed under
+the shared lock in 89.8 s. The solid body is not optimized under load.
 
-Le [rapport](derived/enclosed-report.json) conserve binaires et sources,
-fermeture/orientation/connexité du solide, sept sondes de matière et six
-ouvertures. Les trois nouvelles vues sont inspectées visuellement. La coupe
-virtuelle est fermée et vérifiée sur un cube analytique. Les vingt-cinq tests
-ciblés passent avec VTK ; les liens Markdown passent sur 882 fichiers.
-Les preuves initiales et les anciennes vues de routage restent intactes.
-L'interface eau/métal et toutes les qualifications physiques restent ouvertes.
+The [report](derived/enclosed-report.json) keeps binaries and sources,
+closure/orientation/connectivity of the solid, seven material probes and six
+openings. The three new views are inspected visually. The virtual
+cut is closed and verified on an analytic cube. The twenty-five targeted
+tests pass with VTK; the Markdown links pass on 882 files.
+The initial evidence and the old routing views remain intact.
+The coolant/metal interface and all physical qualifications remain open.
 
-## Architecture photographique, Qwen, LatticeLibrary et VDB
+## Photographic architecture, Qwen, LatticeLibrary and VDB
 
-Les vues de restauration de 962 C ont été inspectées ; leur licence et leur
-absence d'échelle sont enregistrées, sans publier leurs pixels. La
-[galerie](GALLERY.md) utilise les vrais STL d'une nouvelle architecture
-ShapeKernel, avec quatre guides inclinés et deux puits d'allumage candidats.
-Deux réponses Qwen complètes invalides ont été rejetées ; seule une expression
-elliptique vérifiée a été intégrée. Les prompts, sorties et empreintes sont
-conservés. Compilation des projets architecture et nervures : zéro erreur,
-35 avertissements d'obsolescence dans ShapeKernel.
+The 962 C restoration views were inspected; their license and their
+lack of scale are recorded, without publishing their pixels. The
+[gallery](GALLERY.md) uses the actual STL files of a new ShapeKernel
+architecture, with four inclined guides and two candidate ignition wells.
+Two complete invalid Qwen responses were rejected; only one verified elliptical
+expression was integrated. The prompts, outputs and digests are
+kept. Build of the architecture and rib projects: zero errors,
+35 deprecation warnings in ShapeKernel.
 
-Les trois domaines de base sont fermés/orientés et ont une seule composante
-après retrait documenté des triangles dégénérés. Le solide à nervures est
-également d'une seule composante ; 56 coins internes de cellules sont dans
-le corps de base. Les deux lofts de ports passent un contrôle indépendant
-d'aire elliptique à 2 %. La séparation eau/sec minimale échantillonnée est
-4,401 mm sur 805 530 points : aucune épaisseur physique n'est qualifiée.
-Les [rapports](derived/architecture-report.json) et
-[preuves VDB/nervures](derived/bionic-report.json) lient les sources aux sorties.
+The three base domains are closed/oriented and have a single component
+after documented removal of degenerate triangles. The ribbed solid is
+also a single component; 56 internal cell corners are inside
+the base body. The two port lofts pass an independent elliptical
+area check at 2%. The minimum sampled coolant/dry separation is
+4.401 mm over 805,530 points: no physical thickness is qualified.
+The [reports](derived/architecture-report.json) and
+[VDB/rib evidence](derived/bionic-report.json) link the sources to the outputs.
 
-LatticeLibrary construit 36 cellules BCC externes, sans treillis dans l'eau.
-Cinq champs VDB sont relus par nom. Trois domaines passent l'égalité native ;
-1 153 186 valeurs scalaires et autant de vecteurs passent les comparaisons
-exactes bidirectionnelles. Ce sont des champs géométriques, sans solveur.
-Les 32 tests ciblés passent avec VTK ; les nouvelles images sont inspectées.
-Les classifications aux frontières métal/eau restent non résolues : à
-0,25 mm, 1 609 sondes ne sont attribuées à aucun des deux domaines. Le lissage
-ne produit donc pas une interface conforme prête pour CHT.
+LatticeLibrary builds 36 external BCC cells, with no lattice in the coolant.
+Five VDB fields are read back by name. Three domains pass native equality;
+1,153,186 scalar values and as many vectors pass the exact
+bidirectional comparisons. These are geometric fields, with no solver.
+The 32 targeted tests pass with VTK; the new images are inspected.
+The classifications at the metal/coolant boundaries remain unresolved: at
+0.25 mm, 1,609 probes are assigned to neither domain. Smoothing
+therefore does not produce a conformal interface ready for CHT.
 
-## Contrôle global après intégration de main
+## Global check after integrating main
 
-`make check` a été exécuté sur
-`1dc719f622811158f81bf1d36f29c0dc39942477` : **3 855 tests** en 251,879 s,
-**2 échecs, 26 erreurs, 235 ignorés**. Les échecs concernent les égalités de
-flottants impeller/stator ; les erreurs concernent les imports numériques
-SciPy/NumPy et `hashlib.file_digest` sous Python 3.10, dans des modules non
-modifiés par cette étude. Les cibles après `test` n'ont pas été exécutées.
-Le log complet reste local dans `work/962-head/make-check-final-main.log`.
-Les 32 tests culasse passent avec VTK ; le contrôle séparé des liens passe
-sur 916 Markdown. Ce résultat global Mac n'est pas annoncé comme vert.
+`make check` was run on
+`1dc719f622811158f81bf1d36f29c0dc39942477`: **3,855 tests** in 251.879 s,
+**2 failures, 26 errors, 235 skipped**. The failures concern the
+impeller/stator floating-point equalities; the errors concern the numerical imports
+SciPy/NumPy and `hashlib.file_digest` under Python 3.10, in modules not
+modified by this study. The targets after `test` were not executed.
+The full log stays local in `work/962-head/make-check-final-main.log`.
+The 32 cylinder head tests pass with VTK; the separate link check passes
+on 916 Markdown files. This global Mac result is not announced as green.
 
 ## Vérifications physiques absentes
 

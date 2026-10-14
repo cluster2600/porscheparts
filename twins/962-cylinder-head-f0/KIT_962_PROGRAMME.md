@@ -161,13 +161,13 @@ Les gates G1–G5 restent ouvertes. Le [dossier d'acquisition G1](DONOR_METROLOG
 fournit la feuille d'interfaces
 à mesurer sur le donneur ; la [qualification matière](MATERIAL_QUALIFICATION.md)
 précise les données à obtenir sur chaque recette LPBF.
-Le [diagnostic des frontières d'eau F0](COOLANT_BOUNDARIES.md) extrait les
-deux sections et conserve les écarts de sondage eau/métal avant toute CFD.
-La [galerie de la culasse](GALLERY.md) montre extérieur, coupe et chemise
-d'eau conforme. Le [dossier architectural](ORIGINAL_ARCHITECTURE.md) relie
-les photographies de 962 C aux formes ShapeKernel et documente les réponses
-Qwen acceptées/rejetées. Le [bloc générique](STOCK_ENVELOPE.md) et le
-[raffinement du routage](REFINEMENT.md) restent conservés.
+The [F0 coolant boundary diagnostic](COOLANT_BOUNDARIES.md) extracts the
+two sections and keeps the coolant/metal probing gaps before any CFD.
+The [cylinder head gallery](GALLERY.md) shows the exterior, a cutaway and the
+conformal water jacket. The [architectural dossier](ORIGINAL_ARCHITECTURE.md) links
+the 962 C photographs to the ShapeKernel shapes and documents the accepted/rejected
+Qwen responses. The [generic block](STOCK_ENVELOPE.md) and the
+[routing refinement](REFINEMENT.md) are kept.
 Le [contrat culasse F0](interface-contract.json) et ses empreintes sont conservés.
 Le [programme M64 existant](../m64-engine-system/program.json) apporte des
 références par zone sans transmettre ses niveaux de fidélité ou interfaces à
