@@ -9,6 +9,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import sys
+import tarfile
 
 import request_contract as contract
 pilot = contract.pilot
@@ -39,11 +40,25 @@ def prepare(work):
     if work.exists(): raise ValueError('Use a new library-course directory')
     inventory = pilot.load(SUITE/'setup/installation.json')
     selected = {name: expected for name,expected in inventory['sha256'].items() if
-                (name.startswith('libraries/') and '/bin/' not in name and '/obj/' not in name) or name.startswith('runtime/') or name in ('Workbench/Program.cs', 'Workbench/Workbench.csproj', 'Workbench/global.json')}
+                (name.startswith('libraries/') and '/bin/' not in name and '/obj/' not in name) or name.startswith('runtime/') or name in ('Workbench/Program.cs', 'Workbench/Workbench.csproj')}
     for name, expected in selected.items():
         if pilot.digest(SUITE/name) != expected: raise ValueError('Installed library input changed: '+name)
-    for name,expected in inventory['sha256'].items():
-        if name.startswith('sdk/') and pilot.digest(SUITE/name)!=expected:raise ValueError('Installed SDK input changed: '+name)
+    updates=pilot.load(Path(inventory['last_reverification']['sdk_update']))
+    sdk_files={}
+    for update in updates:
+        archive=Path(update['archive'])
+        if hashlib.sha512(archive.read_bytes()).hexdigest()!=update['sha512']:raise ValueError('Official SDK archive changed')
+        with tarfile.open(archive,'r:gz') as package:
+            for member in package:
+                if member.isfile():
+                    path=(SUITE/'sdk'/member.name).resolve()
+                    if not path.is_relative_to(SUITE/'sdk'):raise ValueError('SDK archive path escaped its root')
+                    sdk_files[str(path)]=hashlib.sha256(package.extractfile(member).read()).hexdigest()
+    for name,expected in sdk_files.items():
+        if pilot.digest(Path(name))!=expected:raise ValueError('Installed patched SDK differs from its official archive')
+    global_path=SUITE/'Workbench/global.json'
+    if pilot.load(global_path)!= {'sdk':{'version':'9.0.319','rollForward':'disable'}}:raise ValueError('Workbench SDK selection changed')
+    selected['Workbench/global.json']=pilot.digest(global_path)
     records = {row['repository']: row for row in inventory['libraries']}
     work.mkdir()
     for folder in ('Workbench', 'libraries', 'runtime'):
@@ -67,8 +82,8 @@ def prepare(work):
             if path.is_file() and path.suffix in ('.py','.json','.cs','.lock'):
                 destination=work/'source'/path.relative_to(source);destination.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(path,destination)
     files = [p for p in work.rglob('*') if p.is_file() and '/bin/' not in str(p) and '/obj/' not in str(p)]
-    files += [SUITE/name for name in inventory['sha256'] if name.startswith('sdk/')]
-    pilot.save(work/'FROZEN.json', dict(files={str(p):pilot.digest(p) for p in files}))
+    bindings={str(p):pilot.digest(p) for p in files};bindings.update(sdk_files)
+    pilot.save(work/'FROZEN.json', dict(files=bindings))
     print('Prepared four separate source-pinned library cards; 20 train, 20 development, 20 reserved selector requests', flush=True)
 
 
