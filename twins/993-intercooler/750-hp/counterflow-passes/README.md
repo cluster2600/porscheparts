@@ -141,6 +141,12 @@ The retained run used PicoGK 2.3.0 with native runtime 26.2 on Windows x64
 (.NET 9.0.318). Outputs must be new directories; no earlier result is
 overwritten.
 
+`coupon.py` was re-run on 2026-10-14, after its output guard was tightened, on
+the same four native STL files (same SHA-256) in the `cadsim` Linux image
+(trimesh 5.0.0, PyVista 0.48.4, VTK 9.6.2). Only its own source digest changed in
+the measurement. The review meshes decompress to the same bytes and the render
+matches, so the committed `derived/` files were kept.
+
 ## Limits
 
 - **Return tanks.** The tank loss is assumed, not measured. Flow maldistribution

@@ -38,7 +38,7 @@ def simplify(mesh, target):
 
 
 def run(generated, measurement, derived):
-    for p in (measurement, derived/'coupon-review.json'):
+    for p in (measurement, derived):
         if p.exists(): raise FileExistsError(p)
     gen = json.loads((generated/'generation.json').read_text()); meshes = {n: load(generated/f'{n}.stl') for n in PARTS}
     records = {}
@@ -55,7 +55,7 @@ def run(generated, measurement, derived):
               'source_sha256': {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in (Path(__file__), HERE/'source/picogk/Program.cs', HERE/'source/picogk/Passes.csproj', HERE/'results/passes.json')}}
     if not result['metal_single_closed_body'] or not result['passes_joined_only_by_return_tank'] or abs(closure-1) > .01: raise ValueError(f'Topology rejected: {json.dumps(result, indent=1)}')
 
-    derived.mkdir(parents=True, exist_ok=True); scene = trimesh.Scene(); review = []
+    derived.mkdir(parents=True); scene = trimesh.Scene(); review = []
     plot = pv.Plotter(off_screen=True, window_size=(1600, 900), shape=(1, 2))
     for col, (name, color) in enumerate((('two-pass-metal-open-view', [200, 204, 212]), ('two-pass-charge', [70, 130, 200]))):
         m = simplify(meshes[name], 400000); err = abs(m.volume/meshes[name].volume-1)

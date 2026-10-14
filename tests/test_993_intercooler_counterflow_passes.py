@@ -4,7 +4,11 @@ import json
 import math
 from pathlib import Path
 import runpy
+import sys
+import tempfile
+import types
 import unittest
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 STUDY = ROOT/'twins/993-intercooler/750-hp'
@@ -104,6 +108,14 @@ class RetainedMultipassTests(unittest.TestCase):
         g = m['generation']; best = self.r['extended_search']['lightest_by_passes']['2']['geometry']
         for k in ('hot_gap_mm', 'hot_pitch_mm', 'fin_mm', 'strip_length_mm', 'wall_mm'): self.assertAlmostEqual(g[k], best[k], places=5)
         self.assertFalse(g['manufacturing_authorized'])
+
+    def test_coupon_refuses_an_existing_derived_directory(self):
+        stubs = {n: types.ModuleType(n) for n in ('numpy', 'pyvista', 'trimesh')}
+        with mock.patch.dict(sys.modules, stubs), tempfile.TemporaryDirectory() as tmp:
+            run = runpy.run_path(str(HERE/'source/coupon.py'))['run']; tmp = Path(tmp)
+            (tmp/'derived').mkdir(); (tmp/'derived/two-pass-coupon.png').write_bytes(b'earlier')
+            with self.assertRaises(FileExistsError): run(tmp/'generated', tmp/'measurement.json', tmp/'derived')
+            self.assertEqual((tmp/'derived/two-pass-coupon.png').read_bytes(), b'earlier'); self.assertFalse((tmp/'measurement.json').exists())
 
     def test_witness_split_trades_outlet_for_charge_loss(self):
         split = self.r['witness_fins_split_into_passes']
