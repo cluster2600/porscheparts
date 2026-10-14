@@ -117,3 +117,54 @@ command remains available with its exact retained r3 adapter and interface.
 No external Hugging Face model or dataset is imported. The roadmap's related
 CAD research informs the method; licenses and incompatible architectures remain
 as recorded. Broader library curricula are separate from this six-recipe profile.
+
+## First independent trial: completed and rejected
+
+The retained baseline reaches 18/60 on fresh development, while the prior
+paired candidate reaches 42/60. One preregistered 240-step continuation raises
+raw development to **58/60**, canonical-input development to **60/60**, and
+preserves **48/48 old plans and 16/16 old code tasks**. Its untouched final
+score is only **27/60**. It is rejected and produces no qualified profile.
+The final field presentation places values before names in parentheses;
+training used names before values. This exposes a substantial syntax-shift
+limit. Neither the score nor the final-case status is retroactively changed.
+
+The first preparation hit 4,111 iCloud SDK placeholders; byte-identical local
+SDK aliases and explicit re-download of ten small existing archived inputs
+restore integrity. A missing transitive `corpus` import then prevented a
+snapshot startup, before any inference. Both attempts are preserved. The
+completed trial lives at `~/Developer/Qwen993/qualified-20261014-r2`; its source
+commit is `d170b307` and all 4,936 frozen bindings pass after evaluation.
+
+## Prospective broader-syntax continuation
+
+A completed rejected final trial can be a training parent for a new protocol,
+with **new** development/final partitions excluding every preceding numeric
+intent. Its final requests cannot be reused for checkpoint selection. Example:
+
+```sh
+~/Developer/Qwen993/venv/bin/python \
+  training/qwen-picogk-qualified-20261014/qualify.py prepare \
+  --work ~/Developer/Qwen993/qualified-20261014-r3 \
+  --continuation-from ~/Developer/Qwen993/qualified-20261014-r2
+```
+
+This successor mixes the three field presentations across training and
+evaluation and supplies a generic role/unit-reading algorithm in the system
+prompt. Both adapters receive the same system. Raw user requests are still
+unconverted; no expected answer enters inference. Split wrappers and numeric
+intents differ, while syntax families are deliberately shared. This narrower
+supported-syntax course does not claim unseen-syntax generalisation. Gates,
+one conditional 240-step budget and one fresh final read remain unchanged.
+
+## Separate library course
+
+[library_stage.py](library_stage.py) prepares source-pinned scalar/vector VDB,
+QuasiCrystals and experimental Geometry frame cards, with licence/revision
+records and separate 20/20/20 selector partitions. It uses cloned native
+Workbench/Geometry projects and admits evaluation only with a trusted qualified
+core profile. Native references must pass before model selection is measured.
+All twenty development choices must pass to open its twenty final requests.
+It runs trusted reference code, never generated code; it updates no weights.
+This is an operation selector with shared questions and different wrappers,
+not a geometric generalisation benchmark or full-library training claim.

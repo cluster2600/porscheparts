@@ -54,10 +54,10 @@ DETAILS = {
 }
 
 
-def rows(excluded):
+def rows(excluded, broader=False):
     seen, output = set(excluded), []
     for split, count, seed in [('train', 24, 9931411), ('valid', 2, 9931412), ('test', 2, 9931413)]:
-        rng = random.Random(seed)
+        rng = random.Random(seed+(100 if broader else 0))
         for li, language in enumerate(LANGUAGES):
             for recipe in pilot.RECIPES:
                 pair = None
@@ -92,15 +92,23 @@ def rows(excluded):
                             index = {'length': 0, 'thickness': 1, 'outer': 6 if recipe == 'cylinder' else 2, 'inner': 3, 'bore': 4, 'core': 5, 'cell_side': 12, 'beam': 13, 'pitch': 14}[name]
                             if quantity == 'diameter' and target == 'radius': index += 5
                             label = LABELS[language][index]
-                            texts.append(f'{label} = {value} {unit}' if split == 'train' else f'{label}: {value} {unit}' if split == 'valid' else f'{value} {unit} ({label})')
+                            style = (i+j+li) % 3 if broader else {'train':0,'valid':1,'test':2}[split]
+                            texts.append((f'{label} = {value} {unit}', f'{label}: {value} {unit}', f'{value} {unit} ({label})')[style])
                         rng.shuffle(texts)
                         request = dict(recipe=recipe, language=language, interface_status='synthetic', fields=fields)
                         prompt = FORMS[split][li].format(recipe=recipe, fields='; '.join(texts))
+                        if broader:
+                            prefixes = {'train':('Dimensional exercise','Exercice dimensionnel','Maßübung','寸法演習','尺寸练习'),
+                                        'valid':('Prototype requirement','Exigence de prototype','Prototypanforderung','試作要件','原型要求'),
+                                        'test':('Engineering input note','Note d’entrée technique','Technische Eingabenotiz','技術入力メモ','工程输入说明')}
+                            prompt = prefixes[split][li]+'. '+prompt
                         if recipe == 'bcc': prompt += ' BCC noise = 0.'
                     if not pilot.matches(contract.normalize(request), expected): raise ValueError('Independent authored intent differs from converted request')
+                    if broader: identifier=split+'-'+hashlib.sha256(('broader:'+prompt).encode()).hexdigest()[:16]
+                    system = pilot.SYSTEM + (' Read field names both before values and after values in parentheses. Field order is irrelevant. Read each quantity independently. A stated radius stays a radius; only stated diameters become radii. Multiply centimeters by 10 and meters by 1000. Do not round to familiar increments.' if broader else '')
                     output.append(dict(id=identifier, split=split, language=language, domain=f'{recipe}:{language}'+(':'+status if recipe == 'needs_measurement' else ''),
                                        request=request, expected=expected, phrase_family=split,
-                                       messages=[{'role': 'system', 'content': pilot.SYSTEM}, {'role': 'user', 'content': prompt}, {'role': 'assistant', 'content': json.dumps(expected, separators=(',', ':'))}]))
+                                       messages=[{'role': 'system', 'content': system}, {'role': 'user', 'content': prompt}, {'role': 'assistant', 'content': json.dumps(expected, separators=(',', ':'))}]))
     return output
 
 
@@ -143,7 +151,7 @@ def verify_prior():
                 payloads_verified=True, fallback_reads=len(verified['verification_read_retries']))
 
 
-def prepare(work):
+def prepare(work, continuation=None):
     work = work.absolute()
     if work.exists() or shutil.disk_usage(work.parent).free < 3*1024**3: raise ValueError('Use a new directory with 3 GiB free')
     report = pilot.load(ROOT/'training/qwen-picogk-robustness-20261013/results.json')
@@ -154,8 +162,24 @@ def prepare(work):
     packages = {name: importlib.metadata.version(name) for name in recovery['packages']}
     if packages != recovery['packages']: raise ValueError('Pinned MLX runtime changed')
     previous = pilot.load(PRIOR/'cases.json') + pilot.load(PRIOR/'paired.json') + pilot.cases()
+    parent_source = PRIOR/'run-001/adapter'
+    parent_sha = report['corrective_continuation']['adapter_sha256']
+    predecessor = None
+    if continuation is not None:
+        continuation = continuation.resolve()
+        old_result = pilot.load(continuation/'run-001/results.json')
+        if not old_result.get('test_opened') or old_result.get('eligible') or not old_result.get('frozen_inputs_verified'):
+            raise ValueError('Continuation requires a completed rejected final trial')
+        verify(continuation)
+        parent_source = Path(old_result['adapter_path']).resolve(); parent_sha = old_result['adapter_sha256']
+        if not parent_source.is_relative_to(continuation): raise ValueError('Parent adapter escaped its trial')
+        if pilot.digest(parent_source/'adapter_config.json') != old_result['receipt_sha256'][str((parent_source/'adapter_config.json').relative_to(continuation/'run-001'))]:
+            raise ValueError('Parent adapter configuration changed')
+        previous += pilot.load(continuation/'cases.json')
+        predecessor = dict(results_sha256=pilot.digest(continuation/'run-001/results.json'), final_passed=old_result['final']['passed'],
+                           parent_adapter_sha256=parent_sha, reserved_final_reused=False)
     excluded = {(r['expected']['recipe'], tuple(r['expected']['parameters_mm'])) for r in previous if r['expected']['parameters_mm']}
-    data = rows(excluded)
+    data = rows(excluded, broader=continuation is not None)
     replay_path = course.PRIOR/'2026-10-12-r3/data/train.jsonl'
     prior_bindings = pilot.load(PRIOR/'FROZEN.json')['files']
     if pilot.digest(replay_path) != prior_bindings[str(replay_path)]: raise ValueError('Replay changed')
@@ -177,7 +201,7 @@ def prepare(work):
     for name in ('old-plans.json', 'retention.json'): shutil.copyfile(PRIOR/name, work/name)
     historical = [r for r in pilot.load(PRIOR/'cases.json') if r['split'] == 'valid']
     pilot.save(work/'historical.json', historical)
-    for label, source, expected in [('baseline', RUNTIME/'run-001/adapter', report['baseline_adapter_sha256']), ('paired', PRIOR/'run-001/adapter', report['corrective_continuation']['adapter_sha256'])]:
+    for label, source, expected in [('baseline', RUNTIME/'run-001/adapter', report['baseline_adapter_sha256']), ('paired', parent_source, parent_sha)]:
         if pilot.digest(source/'adapters.safetensors') != expected: raise ValueError('Adapter changed')
         shutil.copytree(source, work/'adapters'/label)
     pilot.save(work/'cases.json', data)
@@ -196,7 +220,8 @@ def prepare(work):
                     source_revision=subprocess.check_output(['git', '-C', str(ROOT), 'rev-parse', 'HEAD'], text=True).strip(),
                     prior_frozen_sha256=pilot.digest(PRIOR/'FROZEN.json'), prior_report_sha256=pilot.digest(ROOT/'training/qwen-picogk-robustness-20261013/results.json'),
                     dataset=dict(train_new=720, replay_rows=len(replay)*2, valid=60, reserved_final=60, excluded_numeric_intents=len(excluded), maximum_tokens=maximum,
-                                 phrase_families_disjoint=True, original_reserved_final_inferred=False, synthetic_only=True))
+                                 phrase_families_disjoint=True, shared_field_syntax_families=continuation is not None, original_reserved_final_inferred=False, synthetic_only=True),
+                    predecessor=predecessor, system_prompt=data[0]['messages'][0]['content'])
     pilot.save(work/'protocol.json', protocol)
     pilot.save(work/'prior-verification.json', prior_verification)
     files = [p for p in work.rglob('*') if p.is_file()] + [base/name for name in recovery['model_files_sha256']]
@@ -304,5 +329,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('action', choices=('prepare', 'run', 'install'))
     parser.add_argument('--work', type=Path, required=True)
+    parser.add_argument('--continuation-from', type=Path, help='Register new disjoint partitions after a completed rejected final trial')
     args = parser.parse_args()
-    {'prepare': prepare, 'run': run, 'install': install}[args.action](args.work.absolute())
+    if args.action=='prepare':prepare(args.work.absolute(),args.continuation_from)
+    else:{'run':run,'install':install}[args.action](args.work.absolute())

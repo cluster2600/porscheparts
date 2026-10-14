@@ -90,6 +90,28 @@ failed=[dict(s) for s in scores];failed[ref]['passed']=False
 assert not q.summary(before,failed,rows)['eligible']
 ''')
 
+    def test_second_trial_excludes_consumed_final_intents_and_mixes_field_syntax(self):
+        self.check('''
+import qualify as q
+old=q.rows(set());excluded={(r['expected']['recipe'],tuple(r['expected']['parameters_mm'])) for r in old if r['expected']['parameters_mm']}
+new=q.rows(excluded,broader=True)
+assert not excluded & {(r['expected']['recipe'],tuple(r['expected']['parameters_mm'])) for r in new if r['expected']['parameters_mm']}
+for split in ('train','valid','test'):
+ prompts=[r['messages'][1]['content'] for r in new if r['split']==split and r['expected']['recipe']!='needs_measurement']
+ assert any('(' in s for s in prompts) and any(' = ' in s for s in prompts) and any(': ' in s for s in prompts)
+assert all('Field order is irrelevant' in r['messages'][0]['content'] for r in new)
+''')
+
+    def test_library_selector_rejects_extra_fields_and_incomplete_answers(self):
+        self.check('''
+import library_stage as s
+assert s.parse_action('{"operation":"scalar_vdb"}','stop')=='scalar_vdb'
+for text,finish in [('{"operation":"scalar_vdb","solver":true}','stop'),('{"operation":"unknown"}','stop'),('{"operation":"scalar_vdb"}','length'),('{"operation":true}','stop')]:
+ try:s.parse_action(text,finish)
+ except ValueError:pass
+ else:raise AssertionError('Unsupported library action accepted')
+''')
+
     def test_profile_requires_trusted_hash_before_reading_or_loading(self):
         self.check('''
 import importlib.util,pathlib,tempfile

@@ -70,7 +70,8 @@ def main():
         mx.set_memory_limit(8*1024**3); mx.set_cache_limit(256*1024**2); mx.random.seed(9931312)
         model, tokenizer = load(str(base), adapter_path=str(adapter), tokenizer_config={'trust_remote_code': False})
         tokenizer.add_eos_token('<|im_end|>')
-        prompt = tokenizer.apply_chat_template([{'role': 'system', 'content': pilot.SYSTEM}, {'role': 'user', 'content': contract.canonical(request)}], tokenize=False, add_generation_prompt=True)
+        system = pilot.load(work/'protocol.json')['system_prompt']
+        prompt = tokenizer.apply_chat_template([{'role': 'system', 'content': system}, {'role': 'user', 'content': contract.canonical(request)}], tokenize=False, add_generation_prompt=True)
         if len(tokenizer.encode(prompt)) > 1024: parser.error('Prompt exceeds the registered context')
         text, last = '', None
         for last in stream_generate(model, tokenizer, prompt=prompt, max_tokens=192, sampler=make_sampler(temp=0)): text += last.text
