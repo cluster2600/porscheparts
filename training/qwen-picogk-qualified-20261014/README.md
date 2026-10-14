@@ -157,7 +157,11 @@ commit is `d170b307` and all 4,936 frozen bindings pass after evaluation.
 
 A completed rejected final trial can be a training parent for a new protocol,
 with **new** development/final partitions excluding every preceding numeric
-intent. Its final requests cannot be reused for checkpoint selection. Example:
+intent. Its final requests cannot be reused for checkpoint selection. The
+trial's private `run-001/results.json` must match the receipt digest of its
+committed publication (`results-*.json`, status `completed_rejected_final`);
+its adapter, configuration and manifest are then checked against that pinned
+result, never against hashes it supplies alone. Example:
 
 ```sh
 ~/Developer/Qwen993/venv/bin/python \

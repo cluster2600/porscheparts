@@ -151,6 +151,18 @@ def verify_prior():
                 payloads_verified=True, fallback_reads=len(verified['verification_read_retries']))
 
 
+def published_trial(continuation):
+    """Trust a predecessor only through the committed publication of its rejected trial, never its own mutable output."""
+    raw = (continuation/'run-001/results.json').read_bytes(); digest = hashlib.sha256(raw).hexdigest()
+    records = [r for r in map(pilot.load, sorted(HERE.glob('results-*.json')))
+               if r.get('status') == 'completed_rejected_final' and r.get('private_receipt_sha256', {}).get('results.json') == digest]
+    if len(records) != 1: raise ValueError('Continuation results are not a published rejected trial')
+    old_result = json.loads(raw)
+    if old_result.get('adapter_sha256') != records[0]['adapter_sha256'] or old_result.get('final', {}).get('passed') != records[0]['final']['passed']:
+        raise ValueError('Continuation differs from its publication')
+    return old_result, digest
+
+
 def prepare(work, continuation=None):
     work = work.absolute()
     if work.exists() or shutil.disk_usage(work.parent).free < 3*1024**3: raise ValueError('Use a new directory with 3 GiB free')
@@ -167,16 +179,17 @@ def prepare(work, continuation=None):
     predecessor = None
     if continuation is not None:
         continuation = continuation.resolve()
-        old_result = pilot.load(continuation/'run-001/results.json')
+        old_result, results_sha = published_trial(continuation)
         if not old_result.get('test_opened') or old_result.get('eligible') or not old_result.get('frozen_inputs_verified'):
             raise ValueError('Continuation requires a completed rejected final trial')
+        if pilot.digest(continuation/'FROZEN.json') != old_result['frozen_sha256']: raise ValueError('Continuation manifest changed')
         verify(continuation)
         parent_source = Path(old_result['adapter_path']).resolve(); parent_sha = old_result['adapter_sha256']
         if not parent_source.is_relative_to(continuation): raise ValueError('Parent adapter escaped its trial')
         if pilot.digest(parent_source/'adapter_config.json') != old_result['receipt_sha256'][str((parent_source/'adapter_config.json').relative_to(continuation/'run-001'))]:
             raise ValueError('Parent adapter configuration changed')
         previous += pilot.load(continuation/'cases.json')
-        predecessor = dict(results_sha256=pilot.digest(continuation/'run-001/results.json'), final_passed=old_result['final']['passed'],
+        predecessor = dict(results_sha256=results_sha, final_passed=old_result['final']['passed'],
                            parent_adapter_sha256=parent_sha, reserved_final_reused=False)
     excluded = {(r['expected']['recipe'], tuple(r['expected']['parameters_mm'])) for r in previous if r['expected']['parameters_mm']}
     data = rows(excluded, broader=continuation is not None)

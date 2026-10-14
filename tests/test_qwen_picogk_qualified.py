@@ -165,3 +165,22 @@ with tempfile.TemporaryDirectory() as folder:
   except ValueError:pass
   else:raise AssertionError('SDK relocation ignored the historical hash')
 ''')
+
+    def test_continuation_is_pinned_to_its_published_rejected_trial(self):
+        self.check('''
+import json,pathlib,tempfile,qualify as q
+with tempfile.TemporaryDirectory() as folder:
+ root=pathlib.Path(folder);trial=root/'trial';(trial/'run-001').mkdir(parents=True);published=root/'published';published.mkdir()
+ result={'test_opened':True,'eligible':False,'frozen_inputs_verified':True,'adapter_sha256':'a'*64,'final':{'passed':27},'receipt_sha256':{}}
+ path=trial/'run-001/results.json';path.write_text(json.dumps(result))
+ q.pilot.save(published/'results-001.json',{'status':'completed_rejected_final','adapter_sha256':'a'*64,'final':{'passed':27},'private_receipt_sha256':{'results.json':q.pilot.digest(path)}})
+ try:q.published_trial(trial)
+ except ValueError:pass
+ else:raise AssertionError('Unpublished continuation accepted')
+ q.HERE=published
+ assert q.published_trial(trial)==(result,q.pilot.digest(path))
+ path.write_text(json.dumps(dict(result,adapter_sha256='b'*64,receipt_sha256={'trained-adapter/adapter_config.json':'c'*64})))
+ try:q.published_trial(trial)
+ except ValueError:pass
+ else:raise AssertionError('Altered continuation result trusted')
+''')
