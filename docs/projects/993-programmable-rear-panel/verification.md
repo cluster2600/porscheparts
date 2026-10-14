@@ -3,42 +3,42 @@
 Dossier préparé le 27 septembre 2026. Aucun essai matériel, montage, métrologie,
 qualification radio/routière ou certification d'origine n'est obtenu.
 
-## Maquette complète PicoGK — 10 octobre 2026
+## Full PicoGK concept model — October 10, 2026
 
-Base `5b7cb552`, branche isolée `codex/993-rear-panel-picogk`. L'autorisation
-porte sur une **maquette visuelle aux cotes provisoires**. Ajout du générateur
-C#/JSON, de quatre objets dans un GLB, d'une vue assemblée/éclatée et d'un rapport
-d'empreintes/contrôles. Aucun changement de l'électronique E0 ou du site web.
+Base `5b7cb552`, isolated branch `codex/993-rear-panel-picogk`. The authorization
+covers a **visual concept model with provisional dimensions**. Adds the C#/JSON
+generator, four objects in a GLB, an assembled/exploded view and a
+digest/check report. No change to the E0 electronics or the website.
 
-| Contrôle | Résultat observé |
+| Check | Observed result |
 |---|---|
-| Restauration verrouillée et compilation C# | .NET 9.0.317 / PicoGK 2.3.0, macOS arm64 : 0 erreur, 0 avertissement |
-| Autocontrôle C# | 8 configurations invalides refusées ; points intérieurs/extérieurs et cadre creux vérifiés |
-| Refus CLI | Dossier existant préservé ; JSON null/incomplets refusés avant création de sortie |
-| Génération PicoGK native | 4 STL non vides, relus par PicoGK ; deux générations avec empreintes identiques |
-| Inspection et export | 4 volumes fermés, orientés et d'un seul tenant ; GLB relu avec 4 objets et unités/axes conservés ; 108 faces dégénérées ou dupliquées du volume d'affichage retirées sans changement de bornes |
-| Revue visuelle | Façade complète et quatre objets visibles dans la vue éclatée ; rendu opaque de concept, aucune simulation optique |
-| Tests ciblés macOS et Linux après export final | 19 tests, OK, 1 ignoré : KiCad CLI absent ; 18 tests réussis dont les 2 nouveaux contrôles de révision/GLB |
-| Liens et index | `make docs-links-check reports-index-check` réussi, 0 lien cassé sur 825 fichiers Markdown |
-| Diff | `git diff --cached --check` réussi |
-| `make check`, Linux natif | Suite de **3 584 tests, OK, 221 ignorés** ; contrôles F32/F34 et sept tests F37 franchis. Arrêt sur `917-manufacturing-f37-lpbf-audit-check`, `/bin/sh: 1: docker: not found`, Makefile ligne 1025, code global **2** ; cibles suivantes non exécutées |
+| Locked restore and C# build | .NET 9.0.317 / PicoGK 2.3.0, macOS arm64: 0 errors, 0 warnings |
+| C# self-test | 8 invalid configurations refused; interior/exterior points and hollow frame checked |
+| CLI refusals | Existing directory preserved; null/incomplete JSON refused before any output is created |
+| Native PicoGK generation | 4 non-empty STL files, read back by PicoGK; two generations with identical digests |
+| Inspection and export | 4 closed, oriented, single-piece volumes; GLB read back with 4 objects and units/axes kept; 108 degenerate or duplicate faces of the display volume removed without changing its bounds |
+| Visual review | Full lens and four objects visible in the exploded view; opaque concept render, no optical simulation |
+| Targeted tests on macOS and Linux after the final export | 19 tests, OK, 1 skipped: KiCad CLI absent; 18 tests passed, including the 2 new revision/GLB checks |
+| Links and index | `make docs-links-check reports-index-check` passed, 0 broken links in 825 Markdown files |
+| Diff | `git diff --cached --check` passed |
+| `make check`, native Linux | Suite of **3,584 tests, OK, 221 skipped**; F32/F34 checks and seven F37 tests passed. Stopped at `917-manufacturing-f37-lpbf-audit-check`, `/bin/sh: 1: docker: not found`, Makefile line 1025, overall exit code **2**; later targets not run |
 
-Suite globale dans un conteneur local Debian trixie arm64, Python 3.13.5 : copie
-sur son système de fichiers Linux, index Git, UID/GID 1000 et umask 022 ; réseau
-déconnecté, aucun secret ni socket Docker hôte monté. Les fournisseurs cloud sont
-simulés par les tests. Le journal complet reste local dans
-`work/993-rear-panel-picogk-20261010/make-check-linux.log`. Après la dernière
-retouche d'anticrénelage de l'image, l'export et les tests ciblés ont été rejoués ;
-la suite globale n'a pas été répétée. Aucun contrôle désactivé ni environnement
-de fabrication annoncé validé.
+Full suite in a local Debian trixie arm64 container, Python 3.13.5: copy on its
+Linux file system, Git index, UID/GID 1000 and umask 022; network disconnected,
+no secret or host Docker socket mounted. Cloud providers are simulated by the
+tests. The full log stays local in
+`work/993-rear-panel-picogk-20261010/make-check-linux.log`. After the last
+anti-aliasing touch-up of the image, the export and the targeted tests were
+replayed; the full suite was not repeated. No check disabled and no
+manufacturing environment announced as validated.
 
-Le [rapport détaillé](cad/preview/checks.json) lie les exports aux sources par
-SHA-256. Les STL et leur archive avec notice restent dans le dossier local ignoré
-`work/993-rear-panel-picogk-20261010/` ; source et GLB sont versionnés.
-Les inconnues véhicule restent absentes/null : aucun trou ou point de fixation
-présumé. Auto-intersections, montage, retenue, étanchéité, optique, thermique,
-vibrations, fabrication et conformité **non vérifiés**. La fermeture mathématique
-d'un maillage n'est pas une preuve d'étanchéité physique.
+The [detailed report](cad/preview/checks.json) links the exports to the sources
+by SHA-256. The STL files and their archive with notice stay in the ignored
+local directory `work/993-rear-panel-picogk-20261010/`; source and GLB are
+versioned. Vehicle unknowns stay absent/null: no presumed hole or fastening
+point. Self-intersections, mounting, retention, sealing, optics, thermal,
+vibration, manufacturing and compliance **not verified**. The mathematical
+closure of a mesh is not evidence of physical sealing.
 
 ## Schéma natif E0 — 2 octobre 2026
 

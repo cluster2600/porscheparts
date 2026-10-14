@@ -1,54 +1,54 @@
-# Bandeau complet — maquette PicoGK
+# Full rear panel — PicoGK concept model
 
-**10 octobre 2026 — maquette visuelle à cotes provisoires, autorisée comme telle.
-Géométrie originale de concept, sans relevé de pièce Porsche. Aucun montage,
-matériau, assemblage fonctionnel ou procédé de fabrication validé.**
+**October 10, 2026 — visual concept model with provisional dimensions, authorized
+as such. Original concept geometry, with no transcription of a Porsche part. No
+mounting, material, functional assembly or manufacturing process validated.**
 
-![Maquette assemblée et éclatée](preview/preview.png)
+![Assembled and exploded concept model](preview/preview.png)
 
-Ouvrir le [modèle 3D GLB](preview/rear-panel-concept.glb) dans un visualiseur glTF
-ou Blender. Les quatre objets restent séparés. Les couleurs servent à la revue ;
-la façade est opaque dans cet aperçu, sans simulation de sa transmission optique.
+Open the [GLB 3D model](preview/rear-panel-concept.glb) in a glTF viewer or
+Blender. The four objects stay separate. The colors are for review; the lens is
+opaque in this preview, with no simulation of its optical transmission.
 
-## Contenu et paramètres
+## Content and parameters
 
-| Objet | Représentation | Limite |
+| Object | Representation | Limit |
 |---|---|---|
-| `lens` | Façade rouge courbe aux coins arrondis | Ni contour OEM, ni texture ou optique réglementaire reproduits |
-| `housing` | Cadre creux noir | Aucun point de fixation, insert ou chemin de charge défini |
-| `rear-cover` | Couvercle arrière indépendant | Retenue, joint et passage de câble à concevoir après mesures |
-| `display-envelope` | Volume vert réservé à l'affichage | Courbe de convenance ; ce n'est ni un PCB ni une matrice disponible |
+| `lens` | Curved red lens with rounded corners | Neither the OEM outline nor the regulatory texture or optics are reproduced |
+| `housing` | Hollow black frame | No fastening point, insert or load path defined |
+| `rear-cover` | Separate rear cover | Retention, seal and cable pass-through to be designed after measurements |
+| `display-envelope` | Green volume reserved for the display | Curved for convenience; it is neither a PCB nor an available matrix |
 
-Le [JSON modifiable](concept.json) pilote le [générateur C#](Program.cs).
-Toutes les valeurs ci-dessous sont des **choix visuels**, pas des cotes 993 :
+The [editable JSON](concept.json) drives the [C# generator](Program.cs).
+All the values below are **visual choices**, not 993 dimensions:
 
-| Paramètre | Valeur provisoire | Sens |
+| Parameter | Provisional value | Meaning |
 |---|---:|---|
-| Largeur × hauteur | 800 × 90 mm | Rectangle extérieur, coins arrondis de rayon 10 mm |
-| Profondeur du corps | 45 mm | Écart local selon Y, hors jeu/couvercle arrière et courbure |
-| Flèche | 35 mm | Courbe parabolique entre centre et extrémités, sans courbure verticale |
-| Façade / paroi / couvercle | 3,6 / 3,6 / 3,6 mm | Épaisseurs de concept ; pas de tolérance de fabrication |
-| Jeu d'assemblage | 1,5 mm | Séparation visuelle, pas une définition de joint |
-| Réserve d'affichage | 776 × 66 × 4 mm | Marge de 12 mm ; écart de 8 mm derrière la façade |
-| Voxel | 1,2 mm | Résolution de calcul, **aucun rapport avec le pas des LED** |
+| Width × height | 800 × 90 mm | Outer rectangle, corners rounded to a 10 mm radius |
+| Body depth | 45 mm | Local offset along Y, excluding the clearance/rear cover and the curvature |
+| Bow | 35 mm | Parabolic curve between center and ends, with no vertical curvature |
+| Lens / wall / cover | 3.6 / 3.6 / 3.6 mm | Concept thicknesses; no manufacturing tolerance |
+| Assembly clearance | 1.5 mm | Visual separation, not a seal definition |
+| Display allowance | 776 × 66 × 4 mm | 12 mm margin; 8 mm gap behind the lens |
+| Voxel | 1.2 mm | Computation resolution, **unrelated to the LED pitch** |
 
-Repère des STL : X = largeur, Y = vers la face visible, Z = hauteur, en mm.
-Le GLB convertit ces coordonnées en mètres avec Y vertical. La boîte englobante
-de l'ensemble généré mesure environ **800 × 84,83 × 90 mm** selon X/Y/Z :
-les 45 mm du paramètre ne désignent donc pas la profondeur hors tout.
-La déformation courbe conserve les épaisseurs selon Y, pas selon la normale à
-la surface ; une vraie coque à épaisseur constante reste à construire après
-métrologie. Aucun nombre de pixels, budget série ou consommation n'est déduit
-de ce volume. Le [coupon E0](../electronics/coupon.md) reste une étude distincte.
+STL frame: X = width, Y = toward the visible face, Z = height, in mm.
+The GLB converts these coordinates to meters with Y up. The bounding box of the
+generated assembly measures about **800 × 84.83 × 90 mm** along X/Y/Z, so the
+45 mm parameter does not designate the overall depth.
+The curved deformation keeps thicknesses along Y, not along the surface normal;
+a true constant-thickness shell remains to be built after metrology. No pixel
+count, production budget or power consumption is derived from this volume. The
+[E0 coupon](../electronics/coupon.md) remains a separate study.
 
-## Régénérer
+## Regenerate
 
-Exécuté avec **.NET SDK 9.0.317, PicoGK 2.3.0, macOS arm64**. Le paquet NuGet
-apporte sa bibliothèque native macOS ; la version Windows fournie n'a pas été
-testée. Le paquet utilisé ne fournit pas le runtime natif Linux : ne pas
-transposer ces commandes à Linux sans un runtime PicoGK adapté.
+Run with **.NET SDK 9.0.317, PicoGK 2.3.0, macOS arm64**. The NuGet package
+brings its native macOS library; the Windows build it provides has not been
+tested. The package used does not provide the native Linux runtime: do not
+transpose these commands to Linux without a suitable PicoGK runtime.
 
-Depuis la racine du dépôt, avec `dotnet` disponible :
+From the repository root, with `dotnet` available:
 
 ```sh
 dotnet restore docs/projects/993-programmable-rear-panel/cad/RearPanel.csproj --locked-mode
@@ -57,56 +57,58 @@ dotnet docs/projects/993-programmable-rear-panel/cad/bin/Release/net9.0/RearPane
 dotnet docs/projects/993-programmable-rear-panel/cad/bin/Release/net9.0/RearPanel.dll docs/projects/993-programmable-rear-panel/cad/concept.json work/rear-panel-native
 ```
 
-La dernière commande écrit quatre STL en mm et `geometry.json`, rapport de fin
-avec empreintes SHA-256. Elle refuse d'écraser un dossier existant. Un dossier
-sans rapport de fin indique une exécution incomplète. Les STL restent dans
-`work/`, hors Git ; le GLB et l'image de revue sont versionnés ici.
+The last command writes four STL files in mm and `geometry.json`, a completion
+report with SHA-256 digests. It refuses to overwrite an existing directory. A
+directory without a completion report indicates an incomplete run. The STL
+files stay in `work/`, outside Git; the GLB and the review image are versioned
+here.
 
-L'[exporteur](export.py) contrôle les STL réellement produits par PicoGK avant
-de créer le GLB et l'image. Il nécessite NumPy, trimesh, networkx et matplotlib
-(exécution vérifiée avec trimesh 5.1.0 et networkx 3.4.2, Python 3.10.11).
-Utiliser un environnement Python dédié ; aucun appel réseau dans cet export :
+The [exporter](export.py) checks the STL files actually produced by PicoGK
+before creating the GLB and the image. It requires NumPy, trimesh, networkx and
+matplotlib (run verified with trimesh 5.1.0 and networkx 3.4.2, Python 3.10.11).
+Use a dedicated Python environment; this export makes no network call:
 
 ```sh
 python3 docs/projects/993-programmable-rear-panel/cad/export.py work/rear-panel-native work/rear-panel-preview
 python3 -m unittest discover -s tests -p 'test_993_rear_panel_picogk.py' -v
 ```
 
-Après une modification, régénérer puis remplacer **ensemble** les trois fichiers
-de `preview/` par ceux du nouvel export. Le test détecte des sources ou exports
-qui ne correspondent plus au rapport. Le C# et le JSON constituent la source
-paramétrique éditable ; les STL et le GLB sont des maillages dérivés, pas des
-surfaces STEP ni un arbre de fonctions de CAO mécanique.
+After a change, regenerate, then replace the three files in `preview/`
+**together** with those from the new export. The test detects sources or
+exports that no longer match the report. The C# and the JSON are the editable
+parametric source; the STL files and the GLB are derived meshes, not STEP
+surfaces nor a mechanical CAD feature tree.
 
-## Vérification et suite
+## Verification and next steps
 
-Le [rapport machine](preview/checks.json) enregistre quatre volumes fermés,
-orientés de façon cohérente, chacun d'un seul tenant. Le cadre possède bien une
-ouverture (caractéristique d'Euler 0), les trois autres volumes ont Euler 2.
-830 988 triangles natifs ; l'export enlève 108 faces dégénérées ou dupliquées du
-volume d'affichage, sans changer ses bornes. Le GLB rechargé conserve quatre
-objets et les dimensions après conversion d'unités. Deux générations natives
-successives ont produit les mêmes empreintes STL sur cet environnement.
-L'autocontrôle C# vérifie huit configurations invalides et des points intérieurs,
-extérieurs et creux. La vue assemblée/éclatée a été relue visuellement.
+The [machine report](preview/checks.json) records four closed volumes,
+consistently oriented, each in one piece. The frame does have an opening (Euler
+characteristic 0); the other three volumes have Euler 2. 830,988 native
+triangles; the export removes 108 degenerate or duplicate faces from the
+display volume without changing its bounds. The reloaded GLB keeps four objects
+and the dimensions after unit conversion. Two successive native generations
+produced the same STL digests in this environment. The C# self-test checks
+eight invalid configurations and interior, exterior and hollow points. The
+assembled/exploded view was reviewed visually.
 
-Ces contrôles ne recherchent pas les auto-intersections et ne prouvent ni
-l'étanchéité physique, ni la tenue, ni la fabricabilité. Les interfaces véhicule,
-fonctions optiques d'origine et résolution électronique restent inconnues dans
-le rapport natif. **Aucune fixation fictive n'est ajoutée.**
+These checks do not search for self-intersections and prove neither physical
+sealing, nor strength, nor manufacturability. The vehicle interfaces, original
+optical functions and electronic resolution remain unknown in the native
+report. **No fictitious fastening is added.**
 
-Pour convertir ce concept en CAO fonctionnelle : acquérir les mesures et datums
-de la référence exacte, remplacer l'enveloppe par le contour relevé, définir les
-surfaces d'appui et fixations avec leur chemin de charge, puis choisir l'empilement
-optique/PCB sur les résultats du coupon. Voir la [fiche de mesures](../measurements.csv),
-le [cahier de scan](../mechanical-optical.md) et la [validation](../validation.md).
+To turn this concept into functional CAD: acquire the measurements and datums of
+the exact reference, replace the envelope with the transcribed outline, define
+the bearing surfaces and fastenings with their load path, then choose the
+optical/PCB stack-up from the coupon results. See the
+[measurement sheet](../measurements.csv), the [scan plan](../mechanical-optical.md)
+and the [validation](../validation.md).
 
 ## Provenance
 
-Sources consultées le **10 octobre 2026** : [PicoGK, projet officiel LEAP 71](https://github.com/leap71/PicoGK)
-et [paquet NuGet PicoGK 2.3.0](https://www.nuget.org/packages/PicoGK/2.3.0).
-API C# `Library`, `IImplicit`, `Voxels` et `Mesh` vérifiée dans la documentation
-XML du paquet installé. Le verrou NuGet conserve les versions et empreintes.
-PicoGK est sous licence Apache-2.0 ; aucun binaire de dépendance n'est recopié
-dans le dépôt. Aucun scan, modèle tiers, manuel ou logo Porsche utilisé.
-La géométrie et ses sources originales suivent la [licence du dépôt](../../../../LICENSE).
+Sources consulted on **October 10, 2026**: [PicoGK, official LEAP 71 project](https://github.com/leap71/PicoGK)
+and [PicoGK 2.3.0 NuGet package](https://www.nuget.org/packages/PicoGK/2.3.0).
+C# API `Library`, `IImplicit`, `Voxels` and `Mesh` checked in the XML
+documentation of the installed package. The NuGet lock keeps the versions and
+digests. PicoGK is licensed under Apache-2.0; no dependency binary is copied
+into the repository. No scan, third-party model, manual or Porsche logo used.
+The geometry and its original sources follow the [repository license](../../../../LICENSE).
