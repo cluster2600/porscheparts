@@ -1,0 +1,277 @@
+{
+  "schema": "qwen.picogk.robustness@1",
+  "date": "2026-10-13",
+  "merged_pr": {
+    "number": 205,
+    "url": "https://github.com/cluster2600/porscheparts/pull/205",
+    "merge_commit": "39bb313f3a33d02c6ab58dd227616ed980a51c15",
+    "merged_at_utc": "2026-10-13T12:54:39Z",
+    "already_merged_when_requested": true,
+    "post_merge_ci": "https://github.com/cluster2600/porscheparts/actions/runs/38400825625",
+    "post_merge_ci_conclusion": "success"
+  },
+  "baseline_adapter_sha256": "2f5da92d4cf9dff0f8b6bac8b28d5c34d26323ca780adf18cdcf11dd88249e1f",
+  "first_continuation": {
+    "training_rows": 1408,
+    "new_rows": 720,
+    "old_replay_rows": 688,
+    "fixed_steps": 480,
+    "learning_rate": 5e-06,
+    "maximum_tokens": 547,
+    "reported_final_validation_loss": 0.003,
+    "all_adapter_tensors_finite": true,
+    "adapter_sha256": "49932d886a4014b3ac200065d6a974fada79b009c28b73213b2590a18b62454d",
+    "frozen_inputs_sha256": "d89528e70fb2cdf037e5c685b726fca9b7d1ea237bacadf8e8632d3ecd18d1ae",
+    "protocol_sha256": "6aa20846f95e491e583fb60aca2fbb3127977611e5135f8e504c78dde3222d29",
+    "validation": {
+      "before": 19,
+      "after": 58,
+      "total": 60,
+      "by_language": {
+        "en": {
+          "before": 6,
+          "after": 12,
+          "total": 12
+        },
+        "fr": {
+          "before": 2,
+          "after": 12,
+          "total": 12
+        },
+        "de": {
+          "before": 3,
+          "after": 11,
+          "total": 12
+        },
+        "ja": {
+          "before": 3,
+          "after": 12,
+          "total": 12
+        },
+        "zh": {
+          "before": 5,
+          "after": 11,
+          "total": 12
+        }
+      },
+      "failed_intent_ids": [
+        "r4-valid-de-thread-00",
+        "r4-valid-zh-washer-01"
+      ]
+    },
+    "old_plans": {
+      "before": 48,
+      "after_software_pass": 43,
+      "after_semantic_pass": 47,
+      "total": 48,
+      "failed_intent_ids": [
+        "valid-thread-001"
+      ],
+      "native_timeout_ids": [
+        "valid-bcc-004",
+        "valid-bcc-005",
+        "valid-bcc-006",
+        "valid-bcc-007"
+      ]
+    },
+    "code_retention": {
+      "before": 16,
+      "after_software_pass": 8,
+      "total": 16,
+      "openusd_after": 8,
+      "picogk_semantic_after": 8,
+      "picogk_native_after": 0,
+      "picogk_build_timeout_ids": [
+        "valid-004",
+        "valid-003",
+        "pico3-valid-000",
+        "valid-005",
+        "pico2-valid-003",
+        "pico3-valid-011",
+        "valid-002",
+        "pico3-valid-005"
+      ]
+    },
+    "test_opened": false,
+    "eligible": false,
+    "runner_exit_code": 130,
+    "runner_results_file_written": false,
+    "final_integrity_recovery": {
+      "passed": true,
+      "files_checked": 4888,
+      "individual_read_retries": 2,
+      "original_runner_still_interrupted": true,
+      "receipt_sha256": "92bd1bd11f09657ff248c642adeffec93691c4a3b25768967c0df5b8e0c3aed9"
+    },
+    "receipt_sha256": {
+      "protocol.json": "6aa20846f95e491e583fb60aca2fbb3127977611e5135f8e504c78dde3222d29",
+      "training.log": "595d0fedc061862f8a6a70c10df09f2b4791334b0a5c8ae9e8a72678c93604d7",
+      "adapter-finiteness.json": "ad74db996baeebefd6230e764b8ef39c2c0e85ab7f5dfbd7568c87147405d2c7",
+      "valid-before-scores.json": "f9820b11b855746d6ec23187c207b95026deda165146c8f872d4ce07dfec2950",
+      "valid-after-scores.json": "14131451c49b2cb479281841e5094475fd29f59f472a494ca80ef1d1e8e2aa04",
+      "old-plans-before-scores.json": "2bd032b62b925a050ec8995dd99c842d95a7788352a91f521245c34162999e9f",
+      "old-plans-after-scores.json": "de79bfdaec6a7178b88a1c48ead8cf31d58417ac6c2f68accd72b07f765f05de",
+      "retention-before/scores.json": "57869e7a430583c84ac959fc7cee1aadb0db03943d7a9de9c931e3f7deacf7fb",
+      "retention-after/scores.json": "916da42d373c979a40a6db66e1845eca0aa981cf06f6c3a52a980c8ab9b2efb9"
+    },
+    "additional_private_receipt_sha256": {
+      "replay-provenance-audit.json": "a90f73219cdef615731e62ebfbd6efa5f0529170983978d54724a7478ee2ceab",
+      "retention-semantic-supplement.json": "c22095f6350598a38336ecc0a29705119cbd9fec4886252b21ed963946dfe3ab"
+    }
+  },
+  "corrective_continuation": {
+    "status": "completed_rejected_by_development_gate",
+    "planned_fixed_steps": 240,
+    "planned_learning_rate": 2.5e-06,
+    "planned_training_rows": 2496,
+    "additional_unique_prompts": 200,
+    "additional_unique_geometric_intents": 100,
+    "additional_prompts_repeated": 2,
+    "prior_replay_repeated": 2,
+    "baseline": "Original retained r3",
+    "test_opened": false,
+    "training_rows": 2496,
+    "maximum_tokens": 547,
+    "training_parent_sha256": "49932d886a4014b3ac200065d6a974fada79b009c28b73213b2590a18b62454d",
+    "runner_exit_code": 0,
+    "fixed_steps": 240,
+    "learning_rate": 2.5e-06,
+    "reported_final_validation_loss": 0.004,
+    "peak_training_memory_gb": 4.999,
+    "adapter_sha256": "f51ea1acbfee302303cd617d87f515f747d569830f148a7dcee7a56092960260",
+    "all_adapter_tensors_finite": true,
+    "frozen_inputs_sha256": "ced60a0a50d45db7c8ebbd4f4057871b12cad095998ae88563feb7e47f258f23",
+    "validation": {
+      "before": 19,
+      "after": 57,
+      "total": 60,
+      "regressions_from_retained_baseline": [],
+      "by_language": {
+        "en": {
+          "before": 6,
+          "after": 12,
+          "total": 12
+        },
+        "fr": {
+          "before": 2,
+          "after": 12,
+          "total": 12
+        },
+        "de": {
+          "before": 3,
+          "after": 11,
+          "total": 12
+        },
+        "ja": {
+          "before": 3,
+          "after": 11,
+          "total": 12
+        },
+        "zh": {
+          "before": 5,
+          "after": 11,
+          "total": 12
+        }
+      },
+      "failed_intents": [
+        {
+          "id": "r4-valid-de-washer-00",
+          "expected_parameters_mm": [
+            3.25,
+            8.5,
+            3.25
+          ],
+          "actual_parameters_mm": [
+            3.25,
+            4.25,
+            1.5
+          ]
+        },
+        {
+          "id": "r4-valid-ja-pipe-00",
+          "expected_parameters_mm": [
+            17.75,
+            9.5,
+            3.25
+          ],
+          "actual_parameters_mm": [
+            17.75,
+            4.75,
+            1.5
+          ]
+        },
+        {
+          "id": "r4-valid-zh-thread-00",
+          "expected_parameters_mm": [
+            9.5,
+            8.5,
+            2.25,
+            2.75
+          ],
+          "actual_parameters_mm": [
+            9.5,
+            4.25,
+            1.025,
+            2.75
+          ]
+        }
+      ]
+    },
+    "old_plans": {
+      "before": 48,
+      "after": 48,
+      "total": 48,
+      "regressions": []
+    },
+    "code_retention": {
+      "before": 16,
+      "after": 16,
+      "total": 16,
+      "regressions": []
+    },
+    "eligible": false,
+    "final_frozen_integrity_passed": true,
+    "receipt_sha256": {
+      "results.json": "9352230264a050acf07a02a9329d3058db6bb0193a4b5cd4442a742f5ba433a3",
+      "protocol.json": "05ee3434014afcce1e45cfd8da17e0ff4a0568bb20032a37b46f4412c4f40fba",
+      "training.log": "66247f9a7fb0037c5dcf8527ff317703e5fed14e7ee3d8d6e762117388d5baf5",
+      "adapter-finiteness.json": "ad74db996baeebefd6230e764b8ef39c2c0e85ab7f5dfbd7568c87147405d2c7",
+      "valid-before-scores.json": "f9820b11b855746d6ec23187c207b95026deda165146c8f872d4ce07dfec2950",
+      "valid-after-scores.json": "1e79ae3bff496dad8aa004c167e42e34125e2665b70b9f9ad0904f09e4aa3e78",
+      "old-plans-before-scores.json": "2bd032b62b925a050ec8995dd99c842d95a7788352a91f521245c34162999e9f",
+      "old-plans-after-scores.json": "2bd032b62b925a050ec8995dd99c842d95a7788352a91f521245c34162999e9f",
+      "retention-before/scores.json": "57869e7a430583c84ac959fc7cee1aadb0db03943d7a9de9c931e3f7deacf7fb",
+      "retention-after/scores.json": "57869e7a430583c84ac959fc7cee1aadb0db03943d7a9de9c931e3f7deacf7fb"
+    },
+    "reproduction_prerequisites": "Existing recovered project runtime and archived first trial, including completion-recovery.json and replay-provenance-audit.json; not a generic fresh-machine pipeline."
+  },
+  "verification": {
+    "focused_tests": 9,
+    "focused_tests_passed": true,
+    "local_make_check": "failed",
+    "local_test_count": 3941,
+    "local_failures": 2,
+    "local_errors": 27,
+    "local_skipped": 251,
+    "local_environment_limits": [
+      "26 SciPy/PROPACK import errors in macOS Python 3.10",
+      "1 missing hashlib.file_digest in Python 3.10",
+      "2 exact floating-point comparison failures in existing engineering studies"
+    ],
+    "ci": "executable_source_head_passed",
+    "first_published_head_ci": {
+      "head": "3d044fddfbd5e00c8f9b52feba32135905643333",
+      "conclusion": "success",
+      "run": "https://github.com/cluster2600/porscheparts/actions/runs/38460547186"
+    },
+    "local_make_check_receipt_sha256": "4e3f00b13eb20503b87a0aeb735b128c8a100be7e8bfe6eb5a11f7e870e44e32",
+    "source_head_ci": {
+      "head": "6ae012f6c17d346d6db70b191c3df026dde91fe1",
+      "conclusion": "success",
+      "run": "https://github.com/cluster2600/porscheparts/actions/runs/38462830815"
+    }
+  },
+  "default_replaced": false,
+  "manufacturing_qualified": false,
+  "scope": "Parameter-disjoint synthetic plans sharing recipes and grammar families; independent intent and native software checks. No unseen task-family, broad API, strict mesh/VDB, physical or manufacturing qualification."
+}
