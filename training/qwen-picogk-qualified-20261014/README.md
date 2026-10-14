@@ -193,7 +193,9 @@ records and separate 20/20/20 selector partitions. It uses cloned native
 Workbench/Geometry projects and admits evaluation only with a trusted qualified
 core profile. Native references must pass before model selection is measured.
 All twenty development choices must pass to open its twenty final requests.
-It runs trusted reference code, never generated code; it updates no weights.
+It runs trusted reference code, never generated code. Its fixed 160-step
+course trains a separate selector adapter; the qualified geometry adapter
+and command remain byte-identical.
 This is an operation selector with shared questions and different wrappers,
 not a geometric generalisation benchmark or full-library training claim.
 
@@ -210,3 +212,27 @@ patch. This course therefore verifies the current .NET 9.0.319/10.0.402
 toolchain against the two recorded official SDK archives and their SHA-512
 hashes, rather than pretending the earlier Workbench SDK-selection hash is
 still current.
+
+The [library result record](results-library.json) reports **20/20 development
+and 20/20 final choices**, compared with 14/20 before selector training. The
+preceding 80-step trial reaches 19/20 and leaves its final set closed. Native
+references pass six mesh/VDB recipes including QuasiCrystals, preserve both
+simulation voxel domains, check 61 scalar/vector sample positions, and pass
+all 32 experimental Geometry unit tests. All 10,150 registered inputs pass
+after evaluation. The source-grounded selector uses the same twenty questions
+with distinct wrappers across its partitions; its final is a limited format
+and operation-selection check, not an independent geometric benchmark.
+
+The selector weights are under
+`~/Developer/Qwen993/library-courses-20261014-r6/run-001/selector-adapter/`.
+They are intended only for the four-card operation selector, and do not
+replace the six-recipe geometry profile. Earlier JSON-format and test-runner
+failures remain in their original private directories. No source or SDK from
+the standalone installation was modified by the cloned reference tests.
+
+Verification: ten focused tests, real qualified-command/tamper/refusal smokes,
+strict Markdown links and report-index checks pass. Full local `make check`
+runs 3,951 tests with 251 skips, the same two existing exact-float failures
+and 27 Python 3.10/SciPy environment errors. The PR records Linux validation
+separately. No physical part, fitment, raw-mesh topology, CFD/CHT or metal
+printing process is qualified by these model scores.
