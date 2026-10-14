@@ -11,7 +11,6 @@ import subprocess
 import sys
 
 import request_contract as contract
-import qualify
 pilot = contract.pilot
 SUITE = Path('/Users/maxime/Developer/PicoGK')
 OPERATIONS = {
@@ -43,6 +42,8 @@ def prepare(work):
                 (name.startswith('libraries/') and '/bin/' not in name and '/obj/' not in name) or name.startswith('runtime/') or name in ('Workbench/Program.cs', 'Workbench/Workbench.csproj', 'Workbench/global.json')}
     for name, expected in selected.items():
         if pilot.digest(SUITE/name) != expected: raise ValueError('Installed library input changed: '+name)
+    for name,expected in inventory['sha256'].items():
+        if name.startswith('sdk/') and pilot.digest(SUITE/name)!=expected:raise ValueError('Installed SDK input changed: '+name)
     records = {row['repository']: row for row in inventory['libraries']}
     work.mkdir()
     for folder in ('Workbench', 'libraries', 'runtime'):

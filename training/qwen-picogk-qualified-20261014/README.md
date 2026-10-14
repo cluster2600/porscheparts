@@ -120,6 +120,8 @@ as recorded. Broader library curricula are separate from this six-recipe profile
 
 ## First independent trial: completed and rejected
 
+The [first public result record](results-001.json) retains this failed outcome.
+
 The retained baseline reaches 18/60 on fresh development, while the prior
 paired candidate reaches 42/60. One preregistered 240-step continuation raises
 raw development to **58/60**, canonical-input development to **60/60**, and
