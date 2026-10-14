@@ -41,6 +41,9 @@ kicad-cli sch erc --severity-all --exit-code-violations -o /tmp/coupon-e0-erc.rp
 kicad-cli sch export pdf --exclude-pdf-property-popups --exclude-pdf-metadata -o /tmp/coupon-e0.pdf docs/projects/993-programmable-rear-panel/electronics/kicad/coupon-e0.kicad_sch
 ```
 
+Without a local KiCad install, the official `kicad/kicad:9.0.2` image runs the
+same commands, using its default user so the symbol library tables are found.
+
 Without `kicad-cli`, the schematic test is explicitly skipped: the Python tests
 alone do not validate the schematic. The test works in a temporary copy and
 exports the netlist itself; no earlier export is used as evidence.

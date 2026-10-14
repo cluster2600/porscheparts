@@ -3,6 +3,28 @@
 Dossier prepared on September 27, 2026. No hardware test, fitting, metrology,
 radio/road qualification or certification of origin has been obtained.
 
+## English data and schematic text — October 14, 2026
+
+The prose pages were translated in PR 146. This change translates the remaining
+French text: the free-text columns of `bom.csv`, `measurements.csv`,
+`electronics/coupon-bom.csv` and `electronics/coupon-wiring.csv`, and the titles,
+notes, sheet name and two component values (`S1` "LED CUTOFF", `J2` "LOGIC / DK
+USB SEPARATE") in the three KiCad sheets. Identifiers, net names, pins,
+references, numeric values, statuses and CSV columns are unchanged. The
+schematic test expects the two new values.
+
+| Check | Observed result |
+|---|---|
+| Schematic test, before any change | `kicad/kicad:9.0.2` container (`sha256:f36b185970d3…`), network disabled: 1 test, OK |
+| Schematic test after translation | Same container: 1 test, OK; 172 components and 541 pins compared |
+| ERC | `kicad-cli sch erc --severity-all --exit-code-violations`: exit 0, 0 errors, 0 warnings |
+| Review PDF | Re-exported with the README command; the three pages were reviewed visually, no French text left |
+
+The previous PDF was exported in another environment. Re-exporting the
+unchanged schematic in this container does not give the same bytes: 538,176
+versus 539,324 bytes. The PDF is a review export, not evidence. No electrical
+content changed, and nothing here validates the coupon.
+
 ## Full PicoGK concept model — October 10, 2026
 
 Base `5b7cb552`, isolated branch `codex/993-rear-panel-picogk`. The authorization
