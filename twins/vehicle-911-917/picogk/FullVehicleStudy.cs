@@ -8,6 +8,8 @@ namespace Vehicle911917;
 internal static partial class Program
 {
     private const string VehicleConfig = "twins/vehicle-911-917/full-vehicle-study-f15.json";
+    private const string F13AlignmentStatus = "scan_row_alignment_corrected_not_physical_datum_validation";
+    private static (Matrix4x4 Matrix, Vector3 Min, Vector3 Max, string Sha256, JsonElement Receipt)? ScanAlignment;
 
     private static void ValidateVehicleInputs()
     {
@@ -66,6 +68,48 @@ internal static partial class Program
             throw new InvalidDataException("Front floor relief must lie within the floor reservation");
         if (File.Exists(Path.Combine(Output, "vehicle-report-f15.json")))
             throw new InvalidDataException("Retain previous results; choose a new PICOGK_OUTPUT_DIR");
+        string? alignmentPath = Environment.GetEnvironmentVariable("PICOGK_F13_ALIGNMENT");
+        if (alignmentPath != null)
+            ScanAlignment = ValidatedF13Alignment(alignmentPath, Path.Combine(Input, "917-engine-oriented-f10.stl"));
+    }
+
+    // A receipt may place the scan only if it is the F13 producer's record for this exact STL and a rigid motion.
+    private static (Matrix4x4, Vector3, Vector3, string, JsonElement) ValidatedF13Alignment(string alignmentPath, string scanPath)
+    {
+        using JsonDocument doc = JsonDocument.Parse(File.ReadAllText(alignmentPath));
+        JsonElement r = doc.RootElement;
+        if (r.GetProperty("phase").GetString() != "F13" || r.GetProperty("status").GetString() != F13AlignmentStatus)
+            throw new InvalidDataException("Not an F13 scan alignment receipt");
+        foreach (string key in new[] {"crankshaft_axis_measured", "mounting_face_measured", "scale_verified", "physical_orientation_verified"})
+            if (r.GetProperty(key).ValueKind != JsonValueKind.False)
+                throw new InvalidDataException("F13 receipt cannot claim physical datum evidence: " + key);
+        if (Hash(scanPath) != r.GetProperty("input_stl_sha256").GetString())
+            throw new InvalidDataException("Private scan differs from its F13 alignment receipt");
+        byte[] header = new byte[84];
+        using (var stream = File.OpenRead(scanPath)) stream.ReadExactly(header);
+        uint count = BitConverter.ToUInt32(header, 80);
+        if (new FileInfo(scanPath).Length != 84 + 50L * count || r.GetProperty("triangle_count").GetInt64() != count)
+            throw new InvalidDataException("F13 receipt triangle count differs from the scan");
+        double[][] m = r.GetProperty("matrix4x4_row_vector").EnumerateArray().Select(row => row.EnumerateArray().Select(v => v.GetDouble()).ToArray()).ToArray();
+        if (m.Length != 4 || m.Any(row => row.Length != 4 || row.Any(v => !double.IsFinite(v))))
+            throw new InvalidDataException("Invalid scan transform");
+        // Row-vector convention: rotation in the upper 3x3, translation in the last row.
+        if (m[0][3] != 0 || m[1][3] != 0 || m[2][3] != 0 || m[3][3] != 1)
+            throw new InvalidDataException("F13 transform must be affine");
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 3; j++)
+                if (Math.Abs(m[i][0] * m[j][0] + m[i][1] * m[j][1] + m[i][2] * m[j][2] - (i == j ? 1 : 0)) > 1e-6)
+                    throw new InvalidDataException("F13 transform must be a rotation without scale or shear");
+        double det = m[0][0] * (m[1][1] * m[2][2] - m[1][2] * m[2][1]) - m[0][1] * (m[1][0] * m[2][2] - m[1][2] * m[2][0])
+            + m[0][2] * (m[1][0] * m[2][1] - m[1][1] * m[2][0]);
+        if (Math.Abs(det - 1) > 1e-6)
+            throw new InvalidDataException("F13 transform must preserve handedness");
+        Vector3 lo = Vec3(r.GetProperty("bounds_min_mm")), hi = Vec3(r.GetProperty("bounds_max_mm"));
+        if (!Finite(lo) || !Finite(hi) || lo.X >= hi.X || lo.Y >= hi.Y || lo.Z >= hi.Z)
+            throw new InvalidDataException("F13 receipt bounds must be ordered and finite");
+        float[] f = m.SelectMany(row => row.Select(v => (float)v)).ToArray();
+        return (new Matrix4x4(f[0], f[1], f[2], f[3], f[4], f[5], f[6], f[7], f[8], f[9], f[10], f[11], f[12], f[13], f[14], f[15]),
+            lo, hi, Hash(alignmentPath), r.Clone());
     }
 
     private static bool Finite(Vector3 v) => float.IsFinite(v.X) && float.IsFinite(v.Y) && float.IsFinite(v.Z);
@@ -197,19 +241,19 @@ internal static partial class Program
         Add("front_and_rear_lighting", VehicleLights(lib), "B45B54", "body");
 
         object? privateScan = null;
-        string? alignmentPath = Environment.GetEnvironmentVariable("PICOGK_F13_ALIGNMENT");
-        if (alignmentPath != null)
+        if (ScanAlignment is { } alignment)
         {
-            using JsonDocument alignment = JsonDocument.Parse(File.ReadAllText(alignmentPath));
-            string scanPath = Path.Combine(Input, "917-engine-oriented-f10.stl");
-            if (Hash(scanPath) != alignment.RootElement.GetProperty("input_stl_sha256").GetString())
-                throw new InvalidDataException("Private scan differs from its F13 alignment receipt");
-            float[] m = alignment.RootElement.GetProperty("matrix4x4_row_vector").EnumerateArray().SelectMany(row => row.EnumerateArray().Select(v => v.GetSingle())).ToArray();
-            if (m.Length != 16 || m.Any(v => !float.IsFinite(v))) throw new InvalidDataException("Invalid scan transform");
+            string scanPath = Path.Combine(Input, "917-engine-oriented-f10.stl"), alignmentPath = Environment.GetEnvironmentVariable("PICOGK_F13_ALIGNMENT")!;
+            if (Hash(scanPath) != alignment.Receipt.GetProperty("input_stl_sha256").GetString() || Hash(alignmentPath) != alignment.Sha256)
+                throw new InvalidDataException("Private scan or F13 receipt changed after validation");
             using Mesh scan = Mesh.mshFromStlFile(scanPath, Mesh.EStlUnit.MM, libSet: lib);
-            using Mesh aligned = scan.mshCreateTransformed(new Matrix4x4(m[0], m[1], m[2], m[3], m[4], m[5], m[6], m[7], m[8], m[9], m[10], m[11], m[12], m[13], m[14], m[15]));
+            using Mesh aligned = scan.mshCreateTransformed(alignment.Matrix);
+            BBox3 box = aligned.oBoundingBox();
+            Vector3 drift = Vector3.Max(Vector3.Abs(box.vecMin - alignment.Min), Vector3.Abs(box.vecMax - alignment.Max));
+            if (MathF.Max(drift.X, MathF.Max(drift.Y, drift.Z)) > 1)
+                throw new InvalidDataException("Aligned scan bounds differ from its F13 receipt");
             Add("private_engine_scan", Voxels.voxMeshShell(lib, aligned, VoxelMm / 2), "A6ADB3", "private_reference");
-            privateScan = new { scan_sha256 = Hash(scanPath), alignment_sha256 = Hash(alignmentPath), scale_verified = false, physical_datum_verified = false };
+            privateScan = new { scan_sha256 = Hash(scanPath), alignment_sha256 = alignment.Sha256, scale_verified = false, physical_datum_verified = false, alignment = alignment.Receipt };
         }
 
         var checks = new Dictionary<string, object?>();

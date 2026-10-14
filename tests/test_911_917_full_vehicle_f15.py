@@ -11,9 +11,21 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "twins/vehicle-911-917/source"))
-from report_full_vehicle_f15 import REQUIRED_COMPONENTS, REQUIRED_CHECKS, VIEWS, checked_file, validate_scope, verify_report
+from report_full_vehicle_f15 import F13_STATUS, REQUIRED_COMPONENTS, REQUIRED_CHECKS, VIEWS, checked_file, validate_scope, verify_report
 
 CONFIG = ROOT / "twins/vehicle-911-917/full-vehicle-study-f15.json"
+SCAN_SHA = "a" * 64
+
+
+def f13_receipt(**changes):
+    # Quarter turn about Z plus a translation: a rigid row-vector motion like the F13 producer's.
+    receipt = {"phase": "F13", "status": F13_STATUS, "input_stl_sha256": SCAN_SHA, "triangle_count": 2,
+               "matrix4x4_row_vector": [[0, 1, 0, 0], [-1, 0, 0, 0], [0, 0, 1, 0], [1500, 0, 330, 1]],
+               "bounds_min_mm": [1500, -300, 180], "bounds_max_mm": [2600, 300, 900],
+               "crankshaft_axis_measured": False, "mounting_face_measured": False,
+               "scale_verified": False, "physical_orientation_verified": False}
+    receipt.update(changes)
+    return receipt
 
 
 class FullVehicleTests(unittest.TestCase):
@@ -66,6 +78,42 @@ class FullVehicleTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 validate_scope(report, self.config)
 
+    def private_report(self, receipt):
+        report = copy.deepcopy(self.report)
+        report["components"].append({"id": "private_engine_scan", "properties": {
+            "volume_mm3": 10, "bounds_min_mm": [1497.5, -302.5, 177.5], "bounds_max_mm": [2602.5, 302.5, 902.5]}})
+        report["checks"].update({"private_scan__firewall": {"collision": False}, "private_scan__transaxle": {"collision": False}})
+        report["private_scan"] = {"scan_sha256": SCAN_SHA, "alignment_sha256": "b" * 64, "scale_verified": False,
+                                  "physical_datum_verified": False, "alignment": receipt}
+        return report
+
+    def test_private_scan_needs_its_rigid_f13_receipt(self):
+        validate_scope(self.private_report(f13_receipt()), self.config)
+        rigid = f13_receipt()["matrix4x4_row_vector"]
+        def matrix(rows): return [row + [0] for row in rows] + [rigid[3]]
+        bad = {
+            "scale": f13_receipt(matrix4x4_row_vector=matrix([[0, 1.02, 0], [-1.02, 0, 0], [0, 0, 1.02]])),
+            "shear": f13_receipt(matrix4x4_row_vector=matrix([[0, 1, 0], [-1, 0.2, 0], [0, 0, 1]])),
+            "reflection": f13_receipt(matrix4x4_row_vector=matrix([[0, 1, 0], [1, 0, 0], [0, 0, 1]])),
+            "projective": f13_receipt(matrix4x4_row_vector=[[0, 1, 0, 0.1], *rigid[1:]]),
+            "non_finite": f13_receipt(matrix4x4_row_vector=[*rigid[:3], [float("nan"), 0, 330, 1]]),
+            "short": f13_receipt(matrix4x4_row_vector=rigid[:3]),
+            "phase": f13_receipt(phase="F12"),
+            "status": f13_receipt(status="edited"),
+            "claimed_scale": f13_receipt(scale_verified=True),
+            "other_scan": f13_receipt(input_stl_sha256="c" * 64),
+            "moved": f13_receipt(matrix4x4_row_vector=[*rigid[:3], [1900, 0, 330, 1]], bounds_min_mm=[1900, -300, 180],
+                                 bounds_max_mm=[3000, 300, 900]),
+            "nan_bounds": f13_receipt(bounds_min_mm=[float("nan"), -300, 180]),
+        }
+        for name, receipt in bad.items():
+            with self.subTest(name), self.assertRaises(ValueError):
+                validate_scope(self.private_report(receipt), self.config)
+        report = self.private_report(f13_receipt())
+        report["private_scan"]["scale_verified"] = True
+        with self.assertRaises(ValueError):
+            validate_scope(report, self.config)
+
     def test_hash_and_path_boundary(self):
         with tempfile.TemporaryDirectory() as temporary:
             directory = Path(temporary)
@@ -106,6 +154,35 @@ class FullVehicleTests(unittest.TestCase):
                 config[key] = value
                 config_path.write_text(json.dumps(config))
                 env = {**os.environ, "REPOSITORY_ROOT": temporary, "PICOGK_VEHICLE_F15": "1", "PICOGK_STUDY_F14": "0",
+                       "PICOGK_OUTPUT_DIR": str(root / "result")}
+                result = subprocess.run([dotnet, str(binary)], env=env, capture_output=True, text=True, timeout=15)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn(expected, result.stderr)
+                self.assertFalse((root / "result").exists())
+
+    def test_native_rejects_foreign_or_non_rigid_f13_receipt(self):
+        dotnet = os.environ.get("DOTNET_TEST_EXECUTABLE") or shutil.which("dotnet")
+        binary = ROOT / "twins/vehicle-911-917/picogk/bin/Debug/net9.0/Vehicle911917Packaging.dll"
+        if not dotnet or not binary.exists():
+            self.skipTest("Built .NET executable not available")
+        stl = bytes(80) + (2).to_bytes(4, "little") + bytes(100)
+        rigid = f13_receipt()["matrix4x4_row_vector"]
+        cases = [(f13_receipt(matrix4x4_row_vector=[[0, 2, 0, 0], *rigid[1:]]), "without scale or shear"),
+                 (f13_receipt(matrix4x4_row_vector=[[0, 1, 0, 0], [1, 0, 0, 0], *rigid[2:]]), "preserve handedness"),
+                 (f13_receipt(matrix4x4_row_vector=[[0, 1, 0, 0.5], *rigid[1:]]), "must be affine"),
+                 (f13_receipt(status="edited"), "Not an F13 scan alignment receipt"),
+                 (f13_receipt(physical_orientation_verified=True), "cannot claim physical datum"),
+                 (f13_receipt(triangle_count=3), "triangle count differs"),
+                 (f13_receipt(input_stl_sha256="0" * 64), "differs from its F13 alignment receipt")]
+        for receipt, expected in cases:
+            with self.subTest(expected), tempfile.TemporaryDirectory() as temporary:
+                root = Path(temporary)
+                (root / "917-engine-oriented-f10.stl").write_bytes(stl)
+                if receipt["input_stl_sha256"] == SCAN_SHA:
+                    receipt["input_stl_sha256"] = hashlib.sha256(stl).hexdigest()
+                (root / "scan-alignment-f13.json").write_text(json.dumps(receipt))
+                env = {**os.environ, "REPOSITORY_ROOT": str(ROOT), "PICOGK_VEHICLE_F15": "1", "PICOGK_STUDY_F14": "0",
+                       "PICOGK_INPUT_DIR": temporary, "PICOGK_F13_ALIGNMENT": str(root / "scan-alignment-f13.json"),
                        "PICOGK_OUTPUT_DIR": str(root / "result")}
                 result = subprocess.run([dotnet, str(binary)], env=env, capture_output=True, text=True, timeout=15)
                 self.assertNotEqual(result.returncode, 0)
