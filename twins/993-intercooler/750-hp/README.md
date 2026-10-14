@@ -262,8 +262,8 @@ independently. The [counterflow-pass study](counterflow-passes/README.md) then
 splits the charge into passes against the cooling air and charges the return
 tanks to the budgets.
 
-## Poursuite : tenue en pression des éprouvettes
+## Continuation: pressure strength of the coupons
 
-[Comparaison à 0, 2 et 4 nervures chaudes](pressure-coupon/README.md) : douze
-calculs CalculiX locaux, deux générations PicoGK, coût hydraulique exploratoire
-et contraintes de pied non convergées conservées explicitement.
+[Comparison with 0, 2 and 4 hot ribs](pressure-coupon/README.md): twelve
+local CalculiX runs, two PicoGK generations, an exploratory hydraulic cost,
+and explicitly recorded non-converged root stresses.
