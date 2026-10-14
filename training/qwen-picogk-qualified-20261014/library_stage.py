@@ -6,6 +6,7 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
@@ -109,8 +110,11 @@ def run(work, profile_path, trusted_hash):
             log.write(response.stdout+response.stderr)
             witnesses[action]=json.loads(next(line for line in reversed(response.stdout.splitlines()) if line.startswith('{')))
             if not witnesses[action]['passed']:raise ValueError('Native library reference failed')
-        geometry=subprocess.run([str(dotnet),'run','--project',str(work/'libraries/PicoGK.Geometry/tests/PicoGK.Geometry.Tests/PicoGK.Geometry.Tests.csproj'),'--no-restore','-c','Release','--','--minimum-expected-tests','32'],cwd=work,stdout=log,stderr=subprocess.STDOUT,timeout=180)
-        if geometry.returncode:raise ValueError('Isolated Geometry reference tests failed; see log')
+        geometry=subprocess.run([str(dotnet),'run','--project',str(work/'libraries/PicoGK.Geometry/tests/PicoGK.Geometry.Tests/PicoGK.Geometry.Tests.csproj'),'--no-restore','-c','Release'],cwd=work,capture_output=True,text=True,timeout=180)
+        log.write(geometry.stdout+geometry.stderr)
+        if geometry.returncode or not re.search(r'Total:\s*32, Errors:\s*0, Failed:\s*0, Skipped:\s*0, Not Run:\s*0',geometry.stdout):
+            raise ValueError('Isolated Geometry 32-test reference failed; see log')
+        witnesses['geometry_tests']={'passed':32,'failed':0,'skipped':0}
     pilot.save(out/'native-witnesses.json',witnesses)
     os.environ.update(HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',HF_HUB_DISABLE_IMPLICIT_TOKEN='1',HF_HUB_DISABLE_TELEMETRY='1')
     import mlx.core as mx
