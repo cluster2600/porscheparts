@@ -1,0 +1,9 @@
+# Suite non exécutée
+
+Les deux regroupements des moments proposés après PR235 sont désormais vérifiés et publiés. Ne pas répéter cette étape. Conserver les sources, les versions du lecteur et les certificats ; toute suite doit créer une nouvelle version.
+
+La restriction u=q_m conserve 114 boîtes fermées où les six seules contraintes sélectionnées passent, et 45 boîtes indécises. Aucun ratio n'est choisi. La première priorité est de confronter ces boîtes aux autres contraintes variables du système, avec une spécification préalable, des bornes contrôlées et une lecture indépendante. Une exclusion par un sous-ensemble suffit ; une admission exige tout le système et les obligations géométriques. Les 9 472 angles, 3 840 déterminants et 92 160 paires de plans potentiellement variables ne sont pas réputés positifs par les six témoins. Les contraintes constantes restent héritées uniquement dans leur périmètre prouvé.
+
+Réutiliser les identités publiées, pas une grille de ratios, ni des centres libres. Les boîtes indécises peuvent demander des bornes améliorées, mais l'épuisement du budget de preuve n'est jamais une admission. Conserver stations, ruptures, fermetures et compatibilité des frontières. Le système complet inclut volumes, couverture orientée, non-intersection, planéité, bilan et partage ; toute proposition ultérieure reste soumise à lecture indépendante puis qualité native. Ne pas lancer les candidats refusés PR227/229, ni aucun nouveau natif à partir du seul présent certificat.
+
+L'échec de la restriction ne prouverait pas l'impossibilité du système à deux inconnues ou d'une autre topologie. Parois gauchies/physiques, couches et repos global restent distincts. Ne pas relancer/prolonger 084. Aucun prochain candidat ou solveur préparé, aucun débit/puissance/calibration validé ; suivi actif.

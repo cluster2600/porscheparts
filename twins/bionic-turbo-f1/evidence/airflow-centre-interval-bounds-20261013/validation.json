@@ -1,0 +1,26 @@
+{
+  "turbo": {
+    "run": 109,
+    "passed": 108,
+    "skipped": 1,
+    "duration_s": 15.432,
+    "exit_code": 0
+  },
+  "make_check": {
+    "run": 3911,
+    "failures": 2,
+    "errors": 3,
+    "skipped": 172,
+    "duration_s": 211.914,
+    "exit_code": 2,
+    "same_known_unrelated_failures": true
+  },
+  "commands": [
+    "work/bionic-tools/bin/python -m unittest discover -s tests -p test_bionic_turbo*.py",
+    "PATH=\"$PWD/work/bionic-tools/bin:$PATH\" make check"
+  ],
+  "logs": {
+    "turbo-tests.log": "a91737ed06747926da85dba5c8461f350d3be6d88eb06f3dd1d1c7b315b6e902",
+    "make-check.log": "66359355ed944dedbb2c860e1578d0d8f9e0c8056474ca9ba2903377c71d4d34"
+  }
+}

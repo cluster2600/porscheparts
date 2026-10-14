@@ -1,0 +1,9 @@
+# Représentation entière du lecteur Fraction 192 bits
+
+Le lecteur Fraction complet est interrompu et conservé : aucune assertion scientifique refusée, aucune preuve complète revendiquée pour cette exécution partielle. La version suivante réutilise exactement le code de moments indépendant PR236, mais représente ses bornes dyadiques par deux entiers. Aucun changement des expressions géométriques, de la précision, des boîtes ou des seuils.
+
+Soit P=2^192 et [a/P,b/P]. Le constructeur Fraction effectue floor(P*x)/P et ceil(P*y)/P. Pour les sommes et opposés, les résultats sont déjà sur cette grille. Pour un produit, prendre les quatre produits entiers, puis floor(min/P) et ceil(max/P). Pour le carré, inclure zéro si l'intervalle le contient. La division conserve strictement les DEUX étapes du lecteur : réciproque arrondie [floor(P²/b),ceil(P²/a)] puis multiplication arrondie ; elle n'est pas remplacée par une division directe plus serrée. Les dénominateurs ont un signe strictement constant. Pour la racine, floor(P*sqrt(a/P))=isqrt(a*P), avec borne basse tronquée à zéro ; ajouter un à la borne haute si le carré entier est strictement inférieur à b*P.
+
+Ces identités d'arrondi valent pour tous les entiers admissibles, y compris les négatifs pour produit et réciproque. La comparaison avec le noyau Fraction épinglé porte sur des références rationnelles à trois échelles, signes opposés, zéro, intervalles non ponctuels, carrés, racines et réciproques. Puis les neuf références géométriques (cube, pyramide, quadrilatère gauchi, trois échelles) doivent donner des bornes EXACTEMENT identiques avec le même code de moments indépendant. Aucun ratio de couronne n'est évalué ponctuellement.
+
+Après ces contrôles, le lecteur v2 doit relire toutes les bornes primaires comme prévu. Les sources Fraction et dyadiques, contrôles et interruption sont conservés. Ce changement ne qualifie toujours ni les arrondis OpenFOAM, ni une admission géométrique ou physique.

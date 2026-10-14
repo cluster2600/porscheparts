@@ -1,5 +1,10 @@
 # PicoGK library-aware model optimisation
 
+For the installed Mac software, repaired standalone inference runtime and
+current availability checks, see [PicoGK and Qwen Mac setup](../../docs/PICOGK_MAC_SETUP.md).
+Historical training inputs remain immutable; runtime recovery is a separate
+operation and does not report another training run.
+
 This experiment specialises the existing local coding adapter in a small,
 strict interface: a request becomes a recipe and millimetre parameters; an
 owner-authored C# host calls pinned geometry libraries. Model responses never

@@ -1,0 +1,15 @@
+# Skewness native — bornes vérifiées
+
+Le primaire a terminé l'encadrement mathématique de la skewness sur les 153 boîtes sources fermées, avec u=q_m. La lecture indépendante et la relecture structurelle de couverture sont terminées.
+
+18560 faces sont conservées : 13696 internes, dont 384 MRF, et 4864 parois non couplées. Sur l'enveloppe, 9528 sont positives et 9032 indécises ; les 1381896 reprises locales de ces dernières sont toutes positives. La matrice conserve les 1400456 enregistrements, y compris les indécisions sur l'enveloppe. La plus grande borne supérieure positive est environ 3.984917228923439, sous le seuil source 4 ; ce n'est pas une valeur évaluée à un ratio choisi.
+
+Les centres restent ceux des moments natifs PR236. La formule conserve les projections, leur maximum sur les sommets, la normalisation de frontière et tous les ROOTVSMALL. Les quotients avec additifs sont formés exactement avant arrondi externe ; aucun intervalle contenant zéro n'est utilisé comme diviseur. Voir method.md et preflight.md. Le seuil source par défaut est mutable : la configuration effective et le futur binaire restent à qualifier.
+
+verify_skewness.py reconstruit séparément les incidences par six gabarits hex réduits et emploie les moments indépendants PR236 avec dyadic192 PR238. Sa relecture complète confirme les 6985400 intervalles numériques et tous les signes positifs. Les 3376 enregistrements sans borne finie sur l'enveloppe restent indécis et conservés ; aucune inclusion numérique n'est revendiquée pour ces lignes. Toutes les reprises locales sont positives. read_summary.py confirme structurellement les comptes, la couverture et le maximum, situé sur l'enveloppe au rang 523 ; ce n'est pas une troisième reconstruction géométrique. Seize manifestes parents et leurs 379 entrées sont ancrés au commit PR248 056526bccf0537fa1992a465c42a4b8c677ec700. Primaire : 1164.017 s ; lecteur : 1124.974 s. Le primaire chevauche les tests ; ces durées ne sont pas des benchmarks CFD.
+
+Les dix références initiales par programme précèdent le primaire, mais six sont des entrées analytiques collinéaires, incorrectement décrites comme des cubes dans la prescription initiale. Six vrais cubes supplémentaires par programme ont été vérifiés après le démarrage primaire et avant la lecture complète. Voir reference-clarification.md et cube-reference-readback.json ; aucun programme figé n'a été modifié ni parcours primaire relancé.
+
+Tests : 108 réussis et un ignoré ; make check conserve six diagnostics hors turbo, identiques aux labels de PR248. Détails et limites dans validation.md. La matrice complète et les journaux sont destinés à l’archive ; les reçus légers sont conservés dans Git.
+
+Aucune admission native, aucun débit, puissance ou calibration validés. Toutes les 153 boîtes et les deux indécisions de déterminants sont conservées. Orthogonalité additive, checkFaceTets, contacts internes, arrondis, conversion writePrecision 16, configuration et binaire restent ouverts ; voir next-scope.md. Aucun solveur ou cas natif exécuté.

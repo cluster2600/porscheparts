@@ -1,0 +1,9 @@
+# Obligations suivantes
+
+Ne pas répéter les parcours achevés ni préparer un ratio ponctuel, candidat, dictionnaire ou calcul natif sur la seule base de ces encadrements. Les deux indécisions de déterminants restent conservées. Les 113 boîtes satisfaisant les prédicats nécessaires ne sont pas admises. Les indécisions de skewness sur l’enveloppe restent enregistrées ; leurs reprises locales sont toutes positives et vérifiées. Ne pas rejouer cette phase.
+
+L'orthogonalité native avec son ROOTVSMALL additif reste distincte des expressions angulaires déjà certifiées. Prescrire le lien quantitatif et le lecteur avant application, en réutilisant les preuves épinglées et leurs domaines sans rejouer leurs parcours. Ne pas supposer que les gardes inactives permettent de retirer les additifs.
+
+Restent aussi checkFaceTets et sa décomposition native, les contacts internes de dimension inférieure, les accumulations de fermeture en flottants, la conversion rationnels/texte/binary64 avec writePrecision 16, les types scalar/solveScalar, la configuration effective et le binaire. Le seuil de skewness source est mutable : l'audit actuel ne constitue pas un inventaire exhaustif des appels ni de meshQuality. Conserver ensembles et avertissements indépendamment du code de sortie.
+
+Le domaine reste fermé, u=q_m, sur les 153 boîtes sources avec toutes extrémités, stations, ruptures et les deux fermetures/interfaces. Aucun centre libre, aplanissement, changement de seuil, suppression d'extrémité, grille ou subdivision. Ces trois intervalles synthétiques ne qualifient pas la couronne entière, les surfaces physiques ou 086/091. Admission native, couches, repos global, convergence, stabilité, indépendance maillage/temps, CFD et calibration restent distincts. 084 jamais relancé, prolongé, raccourci ou réglé. Aucun débit ou puissance validé.

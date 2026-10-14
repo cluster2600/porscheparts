@@ -1,0 +1,21 @@
+{
+  "archive_sha256": "8d1450fb89eec1e7cecc55c3bb7bc486ccbf63d069379d1d5d7518fa16a4686a",
+  "members": [
+    {
+      "member": "OpenFOAM-v2406/src/OpenFOAM/meshes/polyMesh/polyMeshCheck/polyMeshTools.C",
+      "bytes": 7987,
+      "sha256": "73a36732d9b4ea615fb2c2b16b2faa818caa1dc97f155ea1b45918fd19d0feef"
+    },
+    {
+      "member": "OpenFOAM-v2406/src/OpenFOAM/meshes/polyMesh/polyMeshCheck/polyMeshCheck.C",
+      "bytes": 21915,
+      "sha256": "898bbdddf4f44aeb0b51eabcf5ded4f4f4ba009297d79a360c54adc5cceb1797"
+    }
+  ],
+  "formula": "min(volOwn,volNei)/(max(volOwn, volNei)+VSMALL)",
+  "rejection": "volRatio[facei] < minRatio",
+  "call": "mesh.checkVolRatio(true, 0.01, &faces)",
+  "WM_DP_conditional": true,
+  "VSMALL": "6032057205060441/6032057205060440848842124543157735677050252251748505781796615064961622344493727293370973578138265743708225425014400837164813540499979063179105919597766951022193355091707896034850684039059079180396788349106095584290087446076413771468940477241550670753145517602931224392424029547429993824129889235158145614364972941312",
+  "threshold": "5764607523034235/576460752303423488"
+}

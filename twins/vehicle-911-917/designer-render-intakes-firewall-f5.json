@@ -1,0 +1,52 @@
+{
+  "$comment": "Provenance de la variante F5. Les custodes deviennent des prises d'air et une cloison pleine hauteur separe visuellement l'habitacle du moteur; aucune performance de debit ou de tenue au feu n'est revendiquee.",
+  "schema_version": "1.0.0",
+  "asset_id": "911-917-MID-ENGINE-INTAKES-FIREWALL-F5",
+  "base_asset": "twins/vehicle-911-917/designer-render-930-tail-wide-f4.json",
+  "tool": "OpenAI imagegen",
+  "tool_mode": "precise_object_edit_with_referenced_image_path",
+  "model": "not_exposed_by_tool",
+  "edit_target": {
+    "path": "work/911-917-packaging-f1/911-917-mid-engine-930-tail-wide-f4.png",
+    "sha256": "1b383d3eaf66e71a56d6feac1aaba38fc3a8a074e36b265e615b05b9985a8931"
+  },
+  "output_asset": {
+    "path": "work/911-917-packaging-f1/911-917-mid-engine-intakes-firewall-f5.png",
+    "sha256": "a92b647dae2b02b6d827440390deb876883f13b4d864fa512faeaff205750814",
+    "width_px": 1536,
+    "height_px": 1024,
+    "tracked_in_git": false
+  },
+  "design_requirement": {
+    "rear_quarter_glass": "deleted_both_sides",
+    "side_intakes": "symmetric_recessed_intakes_in_rear_quarter_window_apertures",
+    "ducting_intent": "sealed_plenums_to_engine_cooling_and_twin_turbo_inlet_airboxes",
+    "firewall_intent": "full_height_side_to_side_double_skin_bulkhead_directly_behind_seats",
+    "intake_area_mm2_each": null,
+    "firewall_material": null,
+    "fire_resistance_rating": null,
+    "status": "visual_intent_only_not_dimensioned"
+  },
+  "prompt": "Use case: precise-object-edit\nAsset type: automotive engineering concept presentation\nInput image: Image 1 is the edit target.\nPrimary request: make two coordinated packaging edits only.\nEdit 1 — side air intakes: replace both rear SIDE quarter windows behind the doors, not the rear windshield, with symmetric flush high-flow engine-air intake panels. In the upper three-quarter view, replace the visible rear quarter glass with a deep black recessed intake opening following the original window outline, using a strong forward-facing mouth and three or four subtle internal vertical guide vanes. The opposite side is symmetric but mostly hidden. In the lower cutaway, show the quarter-window intake feeding a compact sealed plenum and large smooth ducts toward the flat-12 cooling-air system and twin-turbo inlet airboxes. Keep these ducts entirely behind the firewall.\nEdit 2 — engine separation: add a clearly visible full-height sealed fire-resistant bulkhead immediately behind the two seats, extending continuously from floor and sills to roof/parcel-shelf structure and from side to side. In the cutaway, render it as a rigid double-skin metallic firewall with structural beads, a thin thermal-insulation layer on the engine side, sealed service penetrations, and no open path between cabin and engine bay. The cabin must visibly end at this bulkhead.\nInvariants: preserve the +450 mm stretched body ahead of the rear axle, long rear quarter, rear wheel and axle location, flat-12 entirely ahead of rear axle, transmission behind axle, wide raised fixed 930-inspired whale-tail, internal horizontal charge-air heat exchanger and rear exit, front half, doors, roof outline, wheels, camera angles, two-panel composition, colors, lighting, paper background, datum line and existing labels. Do not move engine, gearbox, axle, wheels, seats, wing or heat exchanger.\nConstraints: no rear side glass remains; keep the front door windows and rear windshield unchanged; no roof scoop; no external pipes crossing the cabin; no additional text; no logos or watermark. Intake flow and firewall performance are visual intent only, not validated engineering claims.",
+  "required_engineering_inputs": [
+    "engine_cooling_air_mass_flow_and_pressure_drop",
+    "turbocharger_inlet_air_mass_flow_and_filter_area",
+    "quarter_aperture_measured_geometry",
+    "duct_sections_turning_radii_and_water_separation",
+    "firewall_material_thickness_joints_and_penetrations",
+    "fire_resistance_and_fume_sealing_test_plan",
+    "rear_visibility_and_regulatory_review"
+  ],
+  "release_gates": {
+    "intake_geometry_dimensioned": false,
+    "cooling_airflow_verified": false,
+    "turbo_inlet_pressure_drop_verified": false,
+    "water_ingress_control_verified": false,
+    "firewall_geometry_dimensioned": false,
+    "firewall_fire_resistance_verified": false,
+    "firewall_fume_sealing_verified": false,
+    "rear_visibility_reviewed": false,
+    "manufacturing_authorized": false,
+    "road_or_track_use_authorized": false
+  }
+}

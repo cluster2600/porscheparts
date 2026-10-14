@@ -117,7 +117,7 @@ python3 parts/993-eng-intercooler-bracket-ti-f0-0001/source/intercooler_bracket.
   --out parts/993-eng-intercooler-bracket-ti-f0-0001/derived/intercooler_bracket_ti_f0.step \
   --report parts/993-eng-intercooler-bracket-ti-f0-0001/evidence/engineering-screen.json
 
-python3 twins/993-intercooler-bracket-ti-f0/source/run_calculix_screen.py \
+python3 twins/993-intercooler/bracket-ti-f0/source/run_calculix_screen.py \
   --step parts/993-eng-intercooler-bracket-ti-f0-0001/derived/intercooler_bracket_ti_f0.step \
   --work-root /PRIVATE_OUTPUT/993-intercooler-bracket \
   --mesh-sizes 5.0,3.5,2.5 \

@@ -7,7 +7,7 @@ import runpy
 import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
-STUDY=ROOT/'twins/993-installed-cooling-f1/intercooler-750'
+STUDY=ROOT/'twins/993-intercooler/750-hp'
 MODEL=runpy.run_path(str(STUDY/'source/size_core.py'))
 CARD=json.loads((STUDY/'requirements.json').read_text())
 

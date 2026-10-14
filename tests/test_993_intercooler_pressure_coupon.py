@@ -5,7 +5,9 @@ import json
 from pathlib import Path
 import unittest
 ROOT=Path(__file__).resolve().parents[1]
-STUDY=ROOT/'twins/993-installed-cooling-f1/intercooler-750/pressure-coupon'
+STUDY=ROOT/'twins/993-intercooler/750-hp/pressure-coupon'
+# study.json keeps the repository paths of its run; the 750-hp study has since moved.
+MOVED=('twins/993-installed-cooling-f1/intercooler-750/','twins/993-intercooler/750-hp/')
 spec=importlib.util.spec_from_file_location('pressure_coupon',STUDY/'source/study.py');M=importlib.util.module_from_spec(spec);spec.loader.exec_module(M)
 sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
 
@@ -39,7 +41,7 @@ class PressureCouponTests(unittest.TestCase):
         self.assertGreater(cases[4,.1]['maximum_nodal_von_mises_mpa']/cases[4,.2]['maximum_nodal_von_mises_mpa'],1.2)
         self.assertFalse(r['pressure_qualified']);self.assertFalse(r['manufacturing_authorized'])
         self.assertEqual(sha(STUDY/'source/study.py'),r['source_sha256'])
-        for path,digest in r['dependency_hashes'].items():self.assertEqual(sha(ROOT/path),digest)
+        for path,digest in r['dependency_hashes'].items():self.assertEqual(sha(ROOT/path.replace(*MOVED)),digest)
 
     def test_hydraulic_equal_pressure_channels_and_area_cost(self):
         a,b=M.hydraulic(0),M.hydraulic(4)
