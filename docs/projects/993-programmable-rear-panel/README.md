@@ -1,49 +1,50 @@
-# Bandeau arrière programmable — Porsche 993
+# Programmable rear panel — Porsche 993
 
-**Dossier de préparation, 27 septembre 2026. Aucun matériel fabriqué, mesuré,
-essayé ou homologué. Aucun achat, devis envoyé, publication commerciale ou commande.**
+**Preparation dossier, September 27, 2026. No hardware manufactured, measured,
+tested or approved. No purchase, quote request sent, commercial publication or order.**
 
-## Décision proposée
+## Proposed decision
 
-Commencer par un **coupon monochrome rouge à pas de 2,5 à 4 mm**, comparé à une
-matrice RGB du commerce derrière les mêmes échantillons de façade. Une LED de
-1 × 0,5 mm existe ; cela ne définit ni le pas ni la résolution finale.
-Conserver le RGB comme option à décider après essais optiques et devis.
+Start with a **monochrome red coupon at a 2.5 to 4 mm pitch**, compared with an
+off-the-shelf RGB matrix behind the same front-face samples. A 1 × 0.5 mm LED
+exists; that defines neither the pitch nor the final resolution.
+Keep RGB as an option, undecided until optical tests and quotes.
 
-Le produit visé remplace le bandeau d'origine, avec les mêmes contours,
-fixations et interfaces, **sans modification de la voiture**. C'est un objectif,
-pas un résultat démontré. Ni dimension extérieure ni référence de variante ne
-sont fixées. L'alimentation devra elle aussi être réversible : aucun perçage,
-épissure ou prélèvement de puissance non qualifié sur un circuit d'éclairage.
+The target product replaces the original panel, with the same outlines,
+fastenings and interfaces, **without modifying the car**. This is a goal, not a
+demonstrated result. Neither the outer dimensions nor the variant reference are
+fixed. The power supply must also be reversible: no drilling, splicing or
+unqualified power tap on a lighting circuit.
 
-Le porteur du projet assure toute la CAO mécanique et l'assemblage final des
-premières séries. Un spécialiste externe accompagne l'électronique. Un renfort
-étudiant EPFL est une possibilité future, sans accord institutionnel ni recrutement
-engagé. Les noms et coordonnées personnels restent hors de ce dépôt.
+The project owner does all the mechanical CAD and the final assembly of the
+first batches. An external specialist supports the electronics. Extra help from
+EPFL students is a future possibility, with no institutional agreement and no
+recruitment committed. Personal names and contact details stay out of this
+repository.
 
-La pièce repérée sur Anibis à **180 CHF** est une information fournie par le
-porteur ; achat, disponibilité, référence, état et droits de scan restent à
-confirmer. Elle n'est ni acquise ni mesurée. Une pièce déformée ne suffit pas à
-établir la géométrie nominale d'origine.
+The part spotted on Anibis at **180 CHF** is information supplied by the owner;
+purchase, availability, reference, condition and scan rights remain to be
+confirmed. It is neither acquired nor measured. A deformed part is not enough to
+establish the original nominal geometry.
 
-## Livrables et ordre de lecture
+## Deliverables and reading order
 
-1. [Feuille de route et backlog](roadmap.md) : dépendances, responsables et portes de décision.
-2. [Mécanique, scan et optique](mechanical-optical.md), [fiche de mesures](measurements.csv)
-   et [full PicoGK concept model](cad/README.md) (provisional dimensions, no OEM interfaces).
-3. [Architecture électronique et prototype](electronics.md), [BOM préliminaire](bom.csv),
-   [coupon E0 : circuit, câblage, BOM et mise au point](electronics/coupon.md),
-   [schéma KiCad éditable](electronics/kicad/README.md) et [PDF de revue](electronics/coupon-e0.pdf).
-4. [Logiciel et BLE](software.md), [simulateur](software/panel_simulator.py).
-5. [Budget](budget.md), [coûts modifiables](budget.csv), [registre Swissness](swissness.csv).
-6. [Prestataires](suppliers.md), [demandes de devis non envoyées](rfqs.md).
-7. [Conformité et origine](compliance.md), [validation](validation.md).
-8. [Commercialisation](commercial.md), [maquette locale](product-preview.html).
-9. [Sources et limites de recherche](sources.md), [résultats des contrôles](verification.md).
+1. [Roadmap and backlog](roadmap.md): dependencies, owners and decision gates.
+2. [Mechanics, scan and optics](mechanical-optical.md), [measurement sheet](measurements.csv)
+   and [full PicoGK concept model](cad/README.md) (provisional dimensions, no OEM interfaces).
+3. [Electronics architecture and prototype](electronics.md), [preliminary BOM](bom.csv),
+   [E0 coupon: circuit, wiring, BOM and bring-up](electronics/coupon.md),
+   [editable KiCad schematic](electronics/kicad/README.md) and [review PDF](electronics/coupon-e0.pdf).
+4. [Software and BLE](software.md), [simulator](software/panel_simulator.py).
+5. [Budget](budget.md), [editable costs](budget.csv), [Swissness register](swissness.csv).
+6. [Suppliers](suppliers.md), [unsent quote requests](rfqs.md).
+7. [Compliance and origin](compliance.md), [validation](validation.md).
+8. [Commercialization](commercial.md), [local mockup](product-preview.html).
+9. [Sources and research limits](sources.md), [check results](verification.md).
 
-## Exécuter localement
+## Run locally
 
-Depuis la racine du dépôt, Python 3.10+ ; aucune dépendance pour les deux premières commandes :
+From the repository root, Python 3.10+; no dependency for the first two commands:
 
 ```sh
 python3 docs/projects/993-programmable-rear-panel/software/panel_simulator.py
@@ -51,29 +52,31 @@ python3 docs/projects/993-programmable-rear-panel/software/cost_model.py
 python3 -m unittest discover -s tests -p 'test_993_rear_panel*.py' -v
 ```
 
-Le simulateur affiche deux trames ASCII d'un **coupon virtuel 16 × 8 pixels**.
-Ce format ne constitue pas une dimension ni une résolution de la pièce 993.
-L'import GIF optionnel utilise Pillow, seulement s'il est déjà installé ; voir
-[le contrat logiciel](software.md). Le modèle de coûts est lisible dans un
-terminal et ses CSV s'ouvrent dans un tableur. Aucune configuration matérielle,
-connexion radio ou mise à jour d'un appareil n'est effectuée.
+The simulator prints two ASCII frames of a **virtual 16 × 8 pixel coupon**.
+This format is neither a dimension nor a resolution of the 993 part.
+The optional GIF import uses Pillow, only if it is already installed; see
+[the software contract](software.md). The cost model is readable in a
+terminal and its CSV files open in a spreadsheet. No hardware configuration,
+radio connection or device update is performed.
 
-Le [travail électronique E0](electronics/coupon.md) ajoute un encodeur de référence
-TLC5947, une carte des 128 canaux et un calcul de puissance à hypothèses explicites.
-Il s'exécute sans matériel ; les résultats ne valident pas un circuit physique.
+The [E0 electronics work](electronics/coupon.md) adds a TLC5947 reference
+encoder, a map of the 128 channels and a power calculation with explicit
+assumptions. It runs without hardware; the results do not validate a physical
+circuit.
 
-## Ce qui est réutilisé / ce qui manque
+## What is reused / what is missing
 
-Le dépôt distant `cluster2600/porscheparts` a été vérifié ; la base de travail est
-`967f40c` (`origin/main` au début de cette préparation). La recherche ciblée dans
-les chemins du dépôt, l'historique local et les PR portant « rear panel » n'a pas
-retrouvé de dossier, budget ou patch dédié. Cette recherche n'est pas un audit de
-toutes les branches distantes, messages ou archives privées. Les trois fourchettes
-historiques du brief sont conservées dans le budget, avec leur statut non vérifié.
+The remote repository `cluster2600/porscheparts` was checked; the working base is
+`967f40c` (`origin/main` at the start of this preparation). The targeted search of
+repository paths, local history and PRs mentioning "rear panel" found no
+dedicated dossier, budget or patch. This search is not an audit of all remote
+branches, messages or private archives. The three historical ranges from the
+brief are kept in the budget, with their unverified status.
 
-Le travail est isolé sur `codex/993-programmable-rear-panel` ; les modifications
-préexistantes du répertoire principal ne sont pas incorporées. Aucun enregistrement
-de pièce validée n'est ajouté à `catalog/parts/`. Ce dossier constitue une étude,
-pas une extension du catalogue faisant foi. La documentation reste en français,
-conformément à la demande explicite, malgré la migration générale du dépôt vers
-l'anglais. `RTK.md` n'a pas été trouvé aux chemins d'instructions consultés.
+The work is isolated on `codex/993-programmable-rear-panel`; pre-existing changes
+in the main working directory are not incorporated. No validated part record is
+added to `catalog/parts/`. This dossier is a study, not an extension of the
+authoritative catalogue. The documentation was first written in French, as
+explicitly requested at the time; it was translated to English on October 14, 2026, following
+[docs/TRANSLATION.md](../../TRANSLATION.md). `RTK.md` was not found at the
+instruction paths consulted.
