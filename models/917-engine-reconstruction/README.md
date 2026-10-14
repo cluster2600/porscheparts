@@ -6,10 +6,10 @@ Cette nouvelle étape utilise le scan du carter avec cylindres. Les anciens
 géométries hypothétiques et leurs résultats ne qualifient pas ce moteur.
 La variante exacte, la cylindrée et le régime cible restent à déterminer.
 
-Les [carters longitudinaux et conduits abaissés](compact-packaging/README.md)
-appliquent les références vidéo aux bancs 4V : plaques à six ouvertures,
-toits arrondis et nervures ramifiées natives. Deux épaisseurs de paroi sont
-comparées aux mêmes interfaces candidates ; la qualification physique reste ouverte.
+The [longitudinal covers and lowered ducts](compact-packaging/README.md)
+apply the video references to the 4V banks: six-opening plates, rounded roofs
+and native branching ribs. Two wall thicknesses are compared at the same
+candidate interfaces; physical qualification remains open.
 
 La [reconstruction mécanique détaillée](mechanical-detail/README.md) remplace
 les boîtes d’accessoires par des corps à conduits, ailettes et fixations ; elle
