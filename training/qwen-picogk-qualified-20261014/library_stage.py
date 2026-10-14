@@ -64,6 +64,8 @@ def prepare(work):
     for folder in ('Workbench', 'libraries', 'runtime'):
         if sys.platform == 'darwin': subprocess.run(['cp', '-cR', str(SUITE/folder), str(work/folder)], check=True)
         else: shutil.copytree(SUITE/folder, work/folder)
+    project=work/'Workbench/Workbench.csproj'
+    project.write_text(project.read_text().replace(str(SUITE),str(work)))
     (work/'global.json').write_text('{"sdk":{"version":"10.0.402","rollForward":"disable"}}\n')
     course = []
     for split, prefix in [('train', 'Select an API for this requirement: '), ('valid', 'Which documented operation addresses this request? '), ('test', 'Resolve this library capability request: ')]:
@@ -107,7 +109,7 @@ def run(work, profile_path, trusted_hash):
             log.write(response.stdout+response.stderr)
             witnesses[action]=json.loads(next(line for line in reversed(response.stdout.splitlines()) if line.startswith('{')))
             if not witnesses[action]['passed']:raise ValueError('Native library reference failed')
-        geometry=subprocess.run([str(dotnet),'test',str(work/'libraries/PicoGK.Geometry/PicoGK.Geometry.slnx'),'--no-restore','-c','Release','--nologo'],cwd=work,stdout=log,stderr=subprocess.STDOUT,timeout=180)
+        geometry=subprocess.run([str(dotnet),'run','--project',str(work/'libraries/PicoGK.Geometry/tests/PicoGK.Geometry.Tests/PicoGK.Geometry.Tests.csproj'),'--no-restore','-c','Release','--','--minimum-expected-tests','32'],cwd=work,stdout=log,stderr=subprocess.STDOUT,timeout=180)
         if geometry.returncode:raise ValueError('Isolated Geometry reference tests failed; see log')
     pilot.save(out/'native-witnesses.json',witnesses)
     os.environ.update(HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',HF_HUB_DISABLE_IMPLICIT_TOKEN='1',HF_HUB_DISABLE_TELEMETRY='1')

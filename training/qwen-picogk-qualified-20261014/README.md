@@ -1,5 +1,12 @@
 # Independent PicoGK 50/60 qualification and request contracts
 
+**Current result:** the supported-syntax continuation passes **54/60 on its
+fresh final set**, against **12/60 for the retained baseline on that same set**.
+It passes 53/60 development, 60/60 canonical-input development and all 64 old
+native tasks, without losing a retained-baseline pass. The qualified command
+is installed on the project Mac; the legacy command remains the rollback.
+See [the qualified result](results-002.json) and the rejected predecessor below.
+
 This implements the [14 October roadmap](../qwen-picogk-robustness-20261013/ROADMAP.md).
 It compares the retained r3 and completed paired adapters on fresh five-language
 requests, separates raw-model and canonical-input accuracy, and resumes local
@@ -114,6 +121,14 @@ locking and rejects existing output files. It returns a contract-verified plan;
 it executes no geometry or model-generated code. The existing `qwen-picogk`
 command remains available with its exact retained r3 adapter and interface.
 
+On this Mac the installed profile is under
+`~/Developer/Qwen993/qualified-20261014-r3/`. A real French pipe request with
+mixed metres/centimetres and radius/diameter fields returns `[12,8.5,2]` mm
+with independently verified intent. An unverified-interface request returns
+`needs_measurement` without calling the model. The legacy launcher still
+matches its pre-installation hash. These operational smokes are separate from
+the sixty-case final score.
+
 No external Hugging Face model or dataset is imported. The roadmap's related
 CAD research informs the method; licenses and incompatible architectures remain
 as recorded. Broader library curricula are separate from this six-recipe profile.
@@ -159,6 +174,17 @@ intents differ, while syntax families are deliberately shared. This narrower
 supported-syntax course does not claim unseen-syntax generalisation. Gates,
 one conditional 240-step budget and one fresh final read remain unchanged.
 
+The completed successor uses source `e5c08ce5`, excludes 1,418 previous
+numeric intents and passes all 4,937 frozen bindings after evaluation. Its
+final language scores are English 11/12, French 11/12, German 11/12,
+Japanese 10/12 and Chinese 11/12, including all ten refusal cases. Its
+240-step correction reports validation loss 0.018 and peak memory 5.000 GB;
+the geometric/retention gates determine eligibility. The selected adapter is
+`70eaea998f78a84b6fc3bf17f155b941353c0c5510cca5640ebca187a53bf1ba`.
+No reserved case from the rejected predecessor or the original robustness
+experiment is used to select this checkpoint. The original robustness final
+remains uninferred. Canonical final accuracy has not been separately measured.
+
 ## Separate library course
 
 [library_stage.py](library_stage.py) prepares source-pinned scalar/vector VDB,
@@ -170,3 +196,17 @@ All twenty development choices must pass to open its twenty final requests.
 It runs trusted reference code, never generated code; it updates no weights.
 This is an operation selector with shared questions and different wrappers,
 not a geometric generalisation benchmark or full-library training claim.
+
+```sh
+~/Developer/Qwen993/venv/bin/python \
+  training/qwen-picogk-qualified-20261014/library_stage.py prepare \
+  --work ~/Developer/Qwen993/library-courses-20261014
+```
+
+Use the copied `source/training/qwen-picogk-qualified-20261014/library_stage.py`
+for its `run` action with `--work`, `--profile` and the installation's trusted
+`--profile-sha256`. The legacy installation inventory predates its final SDK
+patch. This course therefore verifies the current .NET 9.0.319/10.0.402
+toolchain against the two recorded official SDK archives and their SHA-512
+hashes, rather than pretending the earlier Workbench SDK-selection hash is
+still current.
