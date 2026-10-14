@@ -12,8 +12,10 @@ from pathlib import Path
 import random
 import shlex
 import shutil
+import stat
 import subprocess
 import sys
+import tempfile
 
 sys.dont_write_bytecode = True
 import request_contract as contract
@@ -119,12 +121,34 @@ def verify(work):
     return module.verify(work)
 
 
+def verify_prior():
+    frozen = pilot.load(PRIOR/'FROZEN.json')
+    archived_sdk = (PRIOR/'runtime/dotnet').resolve()
+    bindings, relocated = {}, {}
+    for name, expected in frozen['files'].items():
+        source = Path(name)
+        # iCloud can evict old Documents SDK resources; admit only identical SDK bytes.
+        if source.resolve().is_relative_to(archived_sdk) and getattr(source.stat(), 'st_flags', 0) & getattr(stat, 'SF_DATALESS', 0x40000000):
+            alternate = pilot.PICO/'dotnet'/source.resolve().relative_to(archived_sdk)
+            relocated[name] = str(alternate)
+            source = alternate
+        key = str(source)
+        if key in bindings and bindings[key] != expected: raise ValueError('Conflicting relocated input hashes')
+        bindings[key] = expected
+    with tempfile.TemporaryDirectory(prefix='qualified-prior-', dir=RUNTIME) as folder:
+        path = Path(folder)
+        pilot.save(path/'FROZEN.json', dict(files=bindings))
+        verified = verify(path)
+    return dict(original_binding_count=len(frozen['files']), relocated_dataless_sdk_files=relocated,
+                payloads_verified=True, fallback_reads=len(verified['verification_read_retries']))
+
+
 def prepare(work):
     work = work.absolute()
     if work.exists() or shutil.disk_usage(work.parent).free < 3*1024**3: raise ValueError('Use a new directory with 3 GiB free')
     report = pilot.load(ROOT/'training/qwen-picogk-robustness-20261013/results.json')
     if pilot.digest(PRIOR/'FROZEN.json') != report['corrective_continuation']['frozen_inputs_sha256']: raise ValueError('Prior manifest changed')
-    verify(PRIOR)
+    prior_verification = verify_prior()
     base = course.ask.recovered_base(RUNTIME, RUNTIME)
     recovery = pilot.load(course.ask.RECOVERY_PROFILE)
     packages = {name: importlib.metadata.version(name) for name in recovery['packages']}
@@ -145,10 +169,10 @@ def prepare(work):
             if path.is_file() and path.suffix in ('.py', '.json', '.cs', '.lock'):
                 destination = work/'source'/path.relative_to(ROOT)
                 destination.parent.mkdir(parents=True, exist_ok=True); shutil.copyfile(path, destination)
-    for name in ('runtime', 'host'):
-        source = (PRIOR/name).resolve()
-        if sys.platform == 'darwin': subprocess.run(['cp', '-cR', str(source), str(work/name)], check=True)
-        else: shutil.copytree(source, work/name)
+    (work/'runtime').mkdir()
+    for source, destination in [(pilot.PICO/'dotnet', work/'runtime/dotnet'), (pilot.PICO/'picogk-bin', work/'runtime/picogk-bin'), ((PRIOR/'host').resolve(), work/'host')]:
+        if sys.platform == 'darwin': subprocess.run(['cp', '-cR', str(source), str(destination)], check=True)
+        else: shutil.copytree(source, destination)
     for name in ('old-plans.json', 'retention.json'): shutil.copyfile(PRIOR/name, work/name)
     historical = [r for r in pilot.load(PRIOR/'cases.json') if r['split'] == 'valid']
     pilot.save(work/'historical.json', historical)
@@ -173,6 +197,7 @@ def prepare(work):
                     dataset=dict(train_new=720, replay_rows=len(replay)*2, valid=60, reserved_final=60, excluded_numeric_intents=len(excluded), maximum_tokens=maximum,
                                  phrase_families_disjoint=True, original_reserved_final_inferred=False, synthetic_only=True))
     pilot.save(work/'protocol.json', protocol)
+    pilot.save(work/'prior-verification.json', prior_verification)
     files = [p for p in work.rglob('*') if p.is_file()] + [base/name for name in recovery['model_files_sha256']]
     pilot.save(work/'FROZEN.json', dict(files={str(p): pilot.digest(p) for p in files}, base=str(base), packages=packages,
                                       protocol_sha256=pilot.digest(work/'protocol.json')))

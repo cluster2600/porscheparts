@@ -121,3 +121,25 @@ with tempfile.TemporaryDirectory() as folder:
  except ValueError:pass
  else:raise AssertionError('49 raw passes promoted using eligible or assisted fields')
 ''')
+
+    def test_sdk_placeholder_relocation_still_requires_registered_bytes(self):
+        self.check('''
+import pathlib,tempfile,types,qualify as q
+from unittest.mock import patch
+with tempfile.TemporaryDirectory() as folder:
+ root=pathlib.Path(folder);prior=root/'prior';sdk=prior/'runtime/dotnet';sdk.mkdir(parents=True)
+ original=sdk/'resource.dll';original.write_bytes(b'registered')
+ local=root/'local/dotnet';local.mkdir(parents=True);alternate=local/'resource.dll';alternate.write_bytes(b'registered')
+ q.pilot.save(prior/'FROZEN.json',{'files':{str(original):q.pilot.digest(original)}})
+ q.PRIOR=prior;q.RUNTIME=root;q.pilot.PICO=root/'local'
+ real=pathlib.Path.stat
+ def metadata(path,*args,**kw):
+  if path==original:return types.SimpleNamespace(st_flags=0x40000000)
+  return real(path,*args,**kw)
+ with patch.object(pathlib.Path,'stat',metadata):
+  assert q.verify_prior()['relocated_dataless_sdk_files']=={str(original):str(alternate)}
+  alternate.write_bytes(b'changed')
+  try:q.verify_prior()
+  except ValueError:pass
+  else:raise AssertionError('SDK relocation ignored the historical hash')
+''')

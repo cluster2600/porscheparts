@@ -53,6 +53,13 @@ Each registered file is reverified through the existing bounded integrity
 checker before and after evaluation. A failed driver does not produce a
 qualified profile. Re-running into an existing output directory is forbidden.
 
+Old SDK files under Documents may be iCloud placeholders. Preparation records
+every such SDK relocation and verifies the exact historical expected hash
+against the corresponding retained local SDK file. Other input types receive
+no substitute. The new native copy lives under Developer rather than iCloud
+Documents. This restores available bytes without rewriting historical hashes
+or asserting that the original placeholder paths were readable.
+
 ## Numeric boundary
 
 [request_contract.py](request_contract.py) requires explicit named fields,
