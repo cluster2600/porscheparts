@@ -80,6 +80,12 @@ def prepare(work):
                                    expected=operation, messages=[{'role':'system','content':SYSTEM},{'role':'user','content':prompt},
                                    {'role':'assistant','content':json.dumps({'operation':operation})}]))
     pilot.save(work/'cases.json', course)
+    (work/'data').mkdir()
+    for split in ('train','valid'):
+        (work/'data'/f'{split}.jsonl').write_text(''.join(json.dumps({'messages':r['messages']},ensure_ascii=False)+'\n' for r in course if r['split']==split))
+    pilot.save(work/'protocol.json',dict(schema='qwen.picogk.library-protocol@1', fixed_steps=80,learning_rate=0.000005,
+               selection='Separate selector adapter at step 80; all 20 development choices before opening 20 final requests once. Geometry profile is not modified.',
+               source_revision=subprocess.check_output(['git','-C',str(Path(__file__).resolve().parents[2]),'rev-parse','HEAD'],text=True).strip()))
     pilot.save(work/'registry.json', dict(operations={key:dict(repository=value[0], revision=records[value[0]]['revision'], license=records[value[0]]['license'], card=value[1]) for key,value in OPERATIONS.items()},
                installed_source_sha256=selected, scope='Operation selection only. Shared operations/questions with different split wrappers; not unseen geometry or full API mastery.'))
     source = Path(__file__).resolve().parents[2]
@@ -121,27 +127,38 @@ def run(work, profile_path, trusted_hash):
     pilot.save(out/'native-witnesses.json',witnesses)
     os.environ.update(HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',HF_HUB_DISABLE_IMPLICIT_TOKEN='1',HF_HUB_DISABLE_TELEMETRY='1')
     import mlx.core as mx
-    from mlx_lm import load,stream_generate
-    from mlx_lm.sample_utils import make_sampler
     mx.set_memory_limit(8*1024**3);mx.set_cache_limit(256*1024**2);mx.random.seed(9931312)
-    model,tokenizer=load(str(base),adapter_path=str(adapter),tokenizer_config={'trust_remote_code':False});tokenizer.add_eos_token('<|im_end|>')
-    rows=pilot.load(work/'cases.json');scores=[]
-    for split in ('valid','test'):
-        if split=='test' and not all(r['passed'] for r in scores):break
-        for row in rows:
-            if row['split']!=split:continue
-            prompt=tokenizer.apply_chat_template(row['messages'][:2],tokenize=False,add_generation_prompt=True)
-            if len(tokenizer.encode(prompt))>1024:raise ValueError('Library prompt exceeds context')
-            text,last='',None
-            for last in stream_generate(model,tokenizer,prompt=prompt,max_tokens=192,sampler=make_sampler(temp=0)):text+=last.text
-            try: passed=parse_action(text,last.finish_reason if last else None)==row['expected']
+    rows=pilot.load(work/'cases.json')
+    def evaluate(label,source,split):
+        selected=[r for r in rows if r['split']==split]
+        answers=contract.course.infer(out,label,base,source,selected)
+        scores=[]
+        for row,answer in zip(selected,answers):
+            try:passed=parse_action(answer['response'],answer['finish_reason'])==row['expected']
             except (ValueError,TypeError):passed=False
-            scores.append(dict(id=row['id'],split=split,passed=passed,response=text));pilot.save(out/'scores.json',scores)
-            print('Library selector',len(scores),'/',40,flush=True)
+            scores.append(dict(id=row['id'],split=split,passed=passed,response=answer['response']))
+        pilot.save(out/(label+'-scores.json'),scores);return scores
+    before=evaluate('before',adapter,'valid')
+    selector=out/'selector-adapter'
+    command=[sys.executable,'-m','mlx_lm','lora','--model',str(base),'--data',str(work/'data'),'--train','--iters','80',
+             '--batch-size','2','--num-layers','16','--learning-rate','0.000005','--max-seq-length','1024','--mask-prompt','--seed','9931312',
+             '--steps-per-report','20','--steps-per-eval','80','--val-batches','-1','--save-every','80',
+             '--resume-adapter-file',str(adapter/'adapters.safetensors'),'--adapter-path',str(selector)]
+    pilot.save(out/'training-command.json',dict(command=command,parent_sha256=pilot.digest(adapter/'adapters.safetensors')))
+    with (out/'training.log').open('w') as log:subprocess.run(command,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=1800)
+    tensors=mx.load(str(selector/'adapters.safetensors'))
+    if not tensors or not all(bool(mx.all(mx.isfinite(t)).item()) for t in tensors.values()):raise ValueError('Nonfinite selector adapter')
+    scores=evaluate('development',selector,'valid')
+    if all(r['passed'] for r in scores):
+        pilot.save(out/'FINAL-OPENED.json',dict(adapter_sha256=pilot.digest(selector/'adapters.safetensors')))
+        scores+=evaluate('final',selector,'test')
+    pilot.save(out/'scores.json',scores)
     loader.qualify.verify(work)
-    report=dict(development_passed=sum(r['passed'] for r in scores if r['split']=='valid'),development_total=20,
+    report=dict(baseline_development_passed=sum(r['passed'] for r in before),development_passed=sum(r['passed'] for r in scores if r['split']=='valid'),development_total=20,
                 test_opened=any(r['split']=='test' for r in scores),test_passed=sum(r['passed'] for r in scores if r['split']=='test'),
-                weights_updated=False,full_api_mastery_tested=False,model_code_executed=False,manufacturing_qualified=False)
+                weights_updated=True,selector_adapter_sha256=pilot.digest(selector/'adapters.safetensors'),geometry_adapter_unchanged=True,
+                full_api_mastery_tested=False,model_code_executed=False,manufacturing_qualified=False)
+    if pilot.digest(adapter/'adapters.safetensors')!=config['adapter_sha256']:raise ValueError('Qualified geometry adapter changed')
     pilot.save(out/'results.json',report);print(json.dumps(report),flush=True)
 
 
