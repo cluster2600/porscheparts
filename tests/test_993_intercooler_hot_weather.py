@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 import unittest
 ROOT=Path(__file__).resolve().parents[1]
-STUDY=ROOT/'twins/993-installed-cooling-f1/intercooler-750'
+STUDY=ROOT/'twins/993-intercooler/750-hp'
 HOT=STUDY/'hot-weather'
 spec=importlib.util.spec_from_file_location('hot_weather_study',HOT/'source/study.py');M=importlib.util.module_from_spec(spec);spec.loader.exec_module(M)
 CONFIG=json.loads((HOT/'assumptions.json').read_text())

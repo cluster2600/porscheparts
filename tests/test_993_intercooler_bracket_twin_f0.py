@@ -13,7 +13,7 @@ STEP = ROOT / "parts/993-eng-intercooler-bracket-ti-f0-0001/derived/intercooler_
 ANALYTIC = ROOT / "parts/993-eng-intercooler-bracket-ti-f0-0001/evidence/engineering-screen.json"
 FEA = ROOT / "parts/993-eng-intercooler-bracket-ti-f0-0001/evidence/calculix-screen.json"
 USD = ROOT / "parts/993-eng-intercooler-bracket-ti-f0-0001/evidence/simready-conversion-summary.json"
-RUNNER = ROOT / "twins/993-intercooler-bracket-ti-f0/source/run_calculix_screen.py"
+RUNNER = ROOT / "twins/993-intercooler/bracket-ti-f0/source/run_calculix_screen.py"
 SPEC = importlib.util.spec_from_file_location("intercooler_bracket_calculix", RUNNER)
 MODULE = importlib.util.module_from_spec(SPEC)
 assert SPEC.loader is not None

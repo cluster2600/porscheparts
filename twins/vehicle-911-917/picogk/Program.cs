@@ -6,31 +6,37 @@ namespace Vehicle911917;
 
 internal static partial class Program
 {
+    private static readonly bool VehicleStudy = Environment.GetEnvironmentVariable("PICOGK_VEHICLE_F15") == "1";
     private static readonly bool AxleStudy = Environment.GetEnvironmentVariable("PICOGK_STUDY_F14") == "1";
     private static readonly string Root = Environment.GetEnvironmentVariable("REPOSITORY_ROOT")
         ?? throw new InvalidOperationException("REPOSITORY_ROOT absent");
     private static readonly string Input = Environment.GetEnvironmentVariable("PICOGK_INPUT_DIR")
         ?? Path.Combine(Root, "work", "911-917-picogk-f10");
     private static readonly string Output = Environment.GetEnvironmentVariable("PICOGK_OUTPUT_DIR")
-        ?? Path.Combine(Root, "work", AxleStudy ? "911-917-picogk-f14" : "911-917-picogk-f13");
+        ?? Path.Combine(Root, "work", VehicleStudy ? "911-917-picogk-f15" : AxleStudy ? "911-917-picogk-f14" : "911-917-picogk-f13");
     private static readonly float VoxelMm = float.Parse(
         Environment.GetEnvironmentVariable("PICOGK_VOXEL_MM") ?? (AxleStudy ? "2" : "5"),
         System.Globalization.CultureInfo.InvariantCulture);
 
     private static void Main()
     {
-        if (!AxleStudy)
+        if (VehicleStudy && AxleStudy)
+            throw new InvalidDataException("Select only one study");
+        if (VehicleStudy)
+            ValidateVehicleInputs();
+        else if (!AxleStudy)
         {
+            // F13 requires its receipt; F15 checks the optional one in ValidateVehicleInputs.
             using JsonDocument alignment = JsonDocument.Parse(File.ReadAllText(Path.Combine(Output, "scan-alignment-f13.json")));
             ValidatedAlignment(alignment.RootElement, Root, Path.Combine(Input, "917-engine-oriented-f10.stl"));
         }
         Directory.CreateDirectory(Output);
         Library.Go(
             VoxelMm,
-            AxleStudy ? RunAxleStudy : Run,
-            strLogFilePath: Path.Combine(Output, AxleStudy ? "picogk-f14.log" : "picogk-f13.log"),
+            VehicleStudy ? RunVehicleStudy : AxleStudy ? RunAxleStudy : Run,
+            strLogFilePath: Path.Combine(Output, VehicleStudy ? "picogk-f15.log" : AxleStudy ? "picogk-f14.log" : "picogk-f13.log"),
             bEndAppWithTask: true,
-            strWindowTitle: "911-917 Mechanical Assembly F13");
+            strWindowTitle: VehicleStudy ? "911-917 Vehicle Packaging F15" : "911-917 Mechanical Assembly F13");
     }
 
     private static void Run()
