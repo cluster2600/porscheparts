@@ -1,104 +1,126 @@
-# Budget modifiable — CHF
+# Editable budget — CHF
 
-Date : 27 septembre 2026. **Aucun devis fournisseur reçu ou prix de revient
-vérifié.** [budget.csv](budget.csv) contient trois séries distinctes : historique,
-ventilation hypothétique de cet historique, scénario cible et dépenses ponctuelles.
-[Le calculateur](software/cost_model.py) les affiche séparément, sans les cumuler
-comme des dépenses indépendantes. Montants hors TVA récupérable ; droits de douane,
-taxes non récupérables, change et Incoterm seront renseignés avec les devis.
+Date: September 27, 2026. **No supplier quote received and no cost price
+verified.** [budget.csv](budget.csv) holds three distinct series: historical,
+hypothetical breakdown of that history, target scenario and one-off expenses. [The calculator](software/cost_model.py) displays them separately,
+without adding them up as independent expenses. Amounts exclude recoverable VAT;
+customs duties, non-recoverable taxes, exchange rate and Incoterm will be filled
+in with the quotes.
 
-## Base conservée et ce qu'elle signifie
+## Baseline kept and what it means
 
-| Base fournie par le porteur | CHF | Statut |
+| Baseline supplied by the project owner | CHF | Status |
 |---|---:|---|
-| Prototype | 685–1 450 | Estimation historique non contractuelle ; périmètre non détaillé |
-| Série 100 | 223–420 / unité | Même statut ; ne prouve ni Swissness ni homologation |
-| Série 1 000 | 138–271 / unité | Même statut ; économies d'échelle à démontrer |
-| Cible fabrication | environ 250 / unité | Objectif ; pas prix de vente |
+| Prototype | 685–1,450 | Non-contractual historical estimate; scope not itemized |
+| 100 series | 223–420 / unit | Same status; proves neither Swissness nor road approval |
+| 1,000 series | 138–271 / unit | Same status; economies of scale to be demonstrated |
+| Manufacturing target | about 250 / unit | Goal; not a sale price |
 
-Les lignes `unit_100` et `unit_1000` sont une **répartition de travail** qui somme
-exactement aux fourchettes historiques, et non une nouvelle validation de celles-ci.
-Elles rendent visibles les postes à faire chiffrer ; chaque poste doit être remplacé
-par une offre datée précisant quantité, site, finition, contrôle et transport.
-L'historique prototype ne finance pas implicitement tout le développement logiciel,
-les essais ou l'homologation.
+The `unit_100` and `unit_1000` lines are a **working breakdown** that sums
+exactly to the historical ranges, not a new validation of them. They make the
+items to be quoted visible; each item must be replaced by a dated offer stating
+quantity, site, finish, inspection and transport. The prototype history does not
+implicitly fund all of the software development, the tests or the road approval.
 
-## Scénario cible : plafond de négociation, pas promesse
+## Target scenario: a negotiation ceiling, not a promise
 
-`candidate_250` = optique 50 + PCBA afficheur 60 + commande/protection 28 + joints/
-visserie 15 + assemblage 30 + contrôle 12 + rebuts/retouche 10 + emballage 10 +
-transport 10 + garantie 25 = **250 CHF**. Le coût avant emballage, transport et
-provision garantie est 205 CHF. Cette définition élargie évite d'oublier le coût
-livré et le SAV ; convenir du périmètre exact des « 250 CHF fabrication ».
+`candidate_250` = optics 50 + display PCBA 60 + control/protection 28 + seals/
+fasteners 15 + assembly 30 + inspection 12 + scrap/rework 10 + packaging 10 +
+transport 10 + warranty 25 = **250 CHF**. The cost before packaging, transport and
+warranty provision is 205 CHF. This broader definition avoids forgetting the
+delivered cost and after-sales service; agree on the exact scope of the
+"250 CHF manufacturing" figure.
 
-- Assemblage : 0,5 h × 60 CHF/h = 30 ; le temps du porteur n'est pas gratuit.
-  À 1 h, ce scénario passe à 280 CHF. La CAO reste entièrement à sa charge,
-  valorisée séparément dans les dépenses ponctuelles.
-- Rebuts : provision 10 CHF par unité bonne, à remplacer par le rendement réel.
-  Pour 195 CHF engagés avant rebut, rendement 95 % : supplément 195/0,95−195 ≈
-  10,26 CHF ; à 90 % : 21,67 CHF. Ne pas ajouter simultanément ces suppléments
-  et une provision couvrant déjà les mêmes pertes.
-- Garantie : provision 25 CHF, non prédiction de taux de panne ; recalculer
-  fréquence × coût SAV (pièce, main-d'œuvre, retours, expédition).
+```mermaid
+pie showData
+    title candidate_250 target scenario (hypothetical, CHF)
+    "Optics" : 50
+    "Display PCBA" : 60
+    "Control/protection" : 28
+    "Seals/fasteners" : 15
+    "Assembly" : 30
+    "Inspection" : 12
+    "Scrap/rework" : 10
+    "Packaging" : 10
+    "Transport" : 10
+    "Warranty" : 25
+```
 
-**Compromis chiffrés, hypothétiques :** le plafond afficheur est 250−190=60 CHF.
-Une offre à 95 CHF au lieu de 60 donnerait 285 CHF ; ajouter 5 CHF de puissance
-fait 290 CHF. À 140 CHF d'afficheur et +15 CHF de puissance : 345 CHF. Le RGB ne
-sera retenu à 250 CHF que si devis et gains sur d'autres postes comblent 40–95 CHF
-sans supprimer protections, contrôles ou rémunération. Ce sont des sensibilités,
-pas des prix RGB constatés.
+*Breakdown of the `candidate_250` scenario above. It is a hypothetical ceiling,
+not a quote or a measured cost.*
 
-Le passage de 4 à 2,5 mm multiplie les pixels par 2,56 à surface constante ; de
-4 à 1 mm par 16. Le coût complet n'évolue pas linéairement avec ce nombre : PCB,
-placement, drivers, rendement et alimentation comptent. **On ne peut pas démontrer
-aujourd'hui l'incompatibilité d'une résolution non définie avec 250 CHF.** Demander
-un prix PCBA par panneau utile à trois pas, jamais extrapoler des dizaines de
-milliers de LED achetées au détail. Réduire surface active, pas, nombre de couleurs
-ou cadence constitue les leviers ; comparer l'effet sur lisibilité au coupon.
+- Assembly: 0.5 h × 60 CHF/h = 30; the project owner's time is not free.
+  At 1 h, this scenario rises to 280 CHF. The CAD remains entirely the owner's
+  responsibility, valued separately in the one-off expenses.
+- Scrap: a provision of 10 CHF per good unit, to be replaced by the actual yield.
+  For 195 CHF committed before scrap, at 95% yield: surcharge 195/0.95−195 ≈
+  10.26 CHF; at 90%: 21.67 CHF. Do not add these surcharges on top of a
+  provision that already covers the same losses.
+- Warranty: a provision of 25 CHF, not a failure-rate prediction; recalculate as
+  frequency × after-sales cost (part, labor, returns, shipping).
 
-Le prix public observé du module Waveshare [S02] est une plage **17,99–21,99 USD**
-selon sélection sur la page (variante exacte, taxes, port et change non engagés).
-C'est seulement un repère d'achat coupon, pas une BOM de série en CHF.
+**Costed trade-offs, hypothetical:** the display ceiling is 250−190=60 CHF.
+An offer at 95 CHF instead of 60 would give 285 CHF; adding 5 CHF of power
+makes 290 CHF. At 140 CHF of display and +15 CHF of power: 345 CHF. RGB will
+only be kept at 250 CHF if quotes and savings on other items close 40–95 CHF
+without removing protections, inspections or pay. These are sensitivities,
+not observed RGB prices.
 
-## Dépenses ponctuelles et financement
+Going from a 4 to a 2.5 mm pitch multiplies the pixels by 2.56 at constant area;
+from 4 to 1 mm, by 16. The full cost does not scale linearly with that number:
+PCB, placement, drivers, yield and power supply all count. **It cannot be
+demonstrated today that an undefined resolution is incompatible with 250 CHF.**
+Ask for a PCBA price per useful panel at three pitches; never extrapolate from
+tens of thousands of LEDs bought at retail. Reducing active area, pitch, number
+of colors or frame rate are the levers; compare the effect on readability on
+the coupon.
 
-Les lignes `nre` sont des **enveloppes de planification proposées**, pas l'historique
-ni des devis : scan, ingénierie, logiciels, temps CAO, gabarits, emballage, essais
-et homologation. Le poste `approval` est une provision, sans garantie que la voie
-routière soit possible ni que le montant maximal suffise. Les frais Bluetooth SIG
-et éventuels organismes sont à confirmer dans ce poste, pas supposés nuls.
+The observed public price of the Waveshare module [S02] is a range of
+**17.99–21.99 USD** depending on the selection on the page (exact variant, taxes,
+shipping and exchange not committed). It is only a purchase reference for the
+coupon, not a series BOM in CHF.
 
-Outillage injection pleine largeur, reprise après échec, licence tierce et campagne
-commerciale ne sont pas chiffrés : devis nécessaires. Le total NRE est donc partiel : **21 230–64 980 CHF** avec les hypothèses actuelles,
-dont temps interne valorisé ; ce montant ne remplace pas les 685–1 450 CHF
-historiques du seul prototype. Amortissement illustratif : 212,30–649,80 CHF
-à 100 unités, ou 21,23–64,98 CHF à 1 000 unités, en sus du coût unitaire.
-La pièce à 180 CHF et les coupons sont inclus comme hypothèses de lancement ;
-le prototype historique reste affiché séparément. Avant engagement, rapprocher
-les scopes des devis pour ne pas compter deux fois coupons/cartes/prestations.
+## One-off expenses and funding
 
-Amortissement commercial = NRE réel / nombre d'unités vendables raisonnablement
-prévu, ajouté au coût unitaire. Le script montre les effets à 100 et 1 000 pièces.
-Cela ne transforme pas une dépense ponctuelle en coût récurrent de fabrication,
-et ne constitue pas le calcul d'origine : ce dernier a ses propres règles.
+The `nre` lines are **proposed planning envelopes**, neither the history nor
+quotes: scan, engineering, software, CAD time, jigs, packaging, tests and road
+approval. The `approval` item is a provision, with no guarantee that the road
+route is possible or that the maximum amount is enough. Bluetooth SIG fees and
+the fees of any bodies involved are to be confirmed under this item, not assumed to be zero.
 
-## Swissness : registre distinct
+Full-width injection tooling, rework after failure, third-party licensing and a
+commercial campaign are not costed: quotes are needed. The NRE total is
+therefore partial: **21,230–64,980 CHF** under the current assumptions,
+including valued internal time; this amount does not replace the historical
+685–1,450 CHF for the prototype alone. Illustrative amortization: 212.30–649.80 CHF
+at 100 units, or 21.23–64.98 CHF at 1,000 units, on top of the unit cost.
+The 180 CHF part and the coupons are included as launch assumptions; the
+historical prototype is still shown separately. Before committing, reconcile the
+quote scopes so that coupons/boards/services are not counted twice.
 
-[swissness.csv](swissness.csv) reprend **le même** scénario à 250 CHF en séparant
-contenu importé et valeur ajoutée suisse. Exemples non prouvés : facture d'un EMS
-suisse de 60 CHF = 45 d'entrants étrangers + 15 de transformation suisse, pas
-60 suisses. Les coûts inconnus restent au dénominateur et hors numérateur, à titre
-conservateur ; cette convention ne remplace pas la méthode réglementaire.
+Commercial amortization = actual NRE / reasonably forecast number of sellable
+units, added to the unit cost. The script shows the effects at 100 and 1,000
+parts. This does not turn a one-off expense into a recurring manufacturing cost,
+and it is not the origin calculation: that one has its own rules.
 
-Sans R&D : 115 / 205 = **56,10 %**, donc objectif de 60 % non atteint dans cet
-exemple. Pour illustration seulement, 20 700 CHF de R&D admissible réalisée
-entièrement en Suisse, alloués à 1 000 unités, donneraient (115+20,7)/(205+20,7)
-= **60,12 %** ; à 2 000 unités, seulement **58,21 %**. Le résultat est sensible à
-l'assiette et à l'amortissement. Aucune dépense R&D n'est réputée effectivement
-suisse ni admissible sans preuve. Ne pas choisir un volume artificiellement faible
-pour atteindre le seuil ; valider l'allocation avec l'IPI/conseil compétent.
+## Swissness: a separate register
 
-Le calculateur accepte `--rd-ch`, `--rd-foreign`, `--units` et marque le résultat
-**ILLUSTRATIVE_ONLY** tant que les preuves manquent. Même un résultat ≥60 % ne
-valide pas l'activité conférant les caractéristiques essentielles et l'étape
-physique requises en Suisse. Voir [compliance.md](compliance.md).
+[swissness.csv](swissness.csv) takes **the same** 250 CHF scenario and separates
+imported content from Swiss added value. Unproven examples: a 60 CHF invoice from
+a Swiss EMS = 45 of foreign inputs + 15 of Swiss processing, not 60 Swiss.
+Unknown costs stay in the denominator and out of the numerator, conservatively;
+this convention does not replace the regulatory method.
+
+Without R&D: 115 / 205 = **56.10%**, so the 60% goal is not met in this
+example. For illustration only, 20,700 CHF of eligible R&D carried out entirely
+in Switzerland, allocated to 1,000 units, would give (115+20.7)/(205+20.7)
+= **60.12%**; at 2,000 units, only **58.21%**. The result is sensitive to the
+base and to the amortization. No R&D expense is deemed actually Swiss or
+eligible without evidence. Do not choose an artificially low volume to reach the
+threshold; validate the allocation with the IPI (Swiss Federal Institute of
+Intellectual Property) or a competent advisor.
+
+The calculator accepts `--rd-ch`, `--rd-foreign`, `--units` and marks the result
+**ILLUSTRATIVE_ONLY** while the evidence is missing. Even a result ≥60% does not
+validate the activity that confers the essential characteristics, nor the
+physical step required in Switzerland. See [compliance.md](compliance.md).
