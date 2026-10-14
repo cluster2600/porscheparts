@@ -83,8 +83,8 @@ def prepare(work):
     (work/'data').mkdir()
     for split in ('train','valid'):
         (work/'data'/f'{split}.jsonl').write_text(''.join(json.dumps({'messages':r['messages']},ensure_ascii=False)+'\n' for r in course if r['split']==split))
-    pilot.save(work/'protocol.json',dict(schema='qwen.picogk.library-protocol@1', fixed_steps=80,learning_rate=0.000005,
-               selection='Separate selector adapter at step 80; all 20 development choices before opening 20 final requests once. Geometry profile is not modified.',
+    pilot.save(work/'protocol.json',dict(schema='qwen.picogk.library-protocol@1', fixed_steps=160,learning_rate=0.000005,
+               selection='Separate selector adapter at step 160; all 20 development choices before opening 20 final requests once. Geometry profile is not modified.',
                source_revision=subprocess.check_output(['git','-C',str(Path(__file__).resolve().parents[2]),'rev-parse','HEAD'],text=True).strip()))
     pilot.save(work/'registry.json', dict(operations={key:dict(repository=value[0], revision=records[value[0]]['revision'], license=records[value[0]]['license'], card=value[1]) for key,value in OPERATIONS.items()},
                installed_source_sha256=selected, scope='Operation selection only. Shared operations/questions with different split wrappers; not unseen geometry or full API mastery.'))
@@ -140,9 +140,9 @@ def run(work, profile_path, trusted_hash):
         pilot.save(out/(label+'-scores.json'),scores);return scores
     before=evaluate('before',adapter,'valid')
     selector=out/'selector-adapter'
-    command=[sys.executable,'-m','mlx_lm','lora','--model',str(base),'--data',str(work/'data'),'--train','--iters','80',
+    command=[sys.executable,'-m','mlx_lm','lora','--model',str(base),'--data',str(work/'data'),'--train','--iters','160',
              '--batch-size','2','--num-layers','16','--learning-rate','0.000005','--max-seq-length','1024','--mask-prompt','--seed','9931312',
-             '--steps-per-report','20','--steps-per-eval','80','--val-batches','-1','--save-every','80',
+             '--steps-per-report','40','--steps-per-eval','160','--val-batches','-1','--save-every','160',
              '--resume-adapter-file',str(adapter/'adapters.safetensors'),'--adapter-path',str(selector)]
     pilot.save(out/'training-command.json',dict(command=command,parent_sha256=pilot.digest(adapter/'adapters.safetensors')))
     with (out/'training.log').open('w') as log:subprocess.run(command,stdout=log,stderr=subprocess.STDOUT,check=True,timeout=1800)
