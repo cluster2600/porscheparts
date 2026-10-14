@@ -16,7 +16,28 @@ historiques ne décrivent pas la taille locale décompressée annoncée maintena
 [`build-result.json`](build-result.json) contient les empreintes et résultats
 du conteneur exact : `pip check` réussi, **15 contrôles CPU** réussis, corpus
 au mauvais SHA refusé avec code 2 avant tout modèle et sans nouveau run.
-L'image reste locale, sans publication de registre ni test GPU.
+Ce reçu décrit le build local ; la publication GitHub de la même recette est
+consignée séparément ci-dessous. Aucun test GPU n'est réalisé.
+
+## Image publiée sur GitHub
+
+Le [package public GHCR](https://github.com/cluster2600/porscheparts/pkgs/container/qwen-picogk-training-vast)
+est lié à `cluster2600/porscheparts`. Le [run GitHub Actions](https://github.com/cluster2600/porscheparts/actions/runs/38630047489)
+du commit `32c9e21991b23462fac50116b07019c6e02e161e` réussit : build Linux amd64,
+versions principales, freeze, `pip check`, 15 contrôles CPU avant publication
+puis contrôle de l'image retéléchargée par digest. Le téléchargement anonyme
+sur le Mac et les mêmes 15 contrôles passent également.
+
+```sh
+docker pull --platform linux/amd64 ghcr.io/cluster2600/qwen-picogk-training-vast@sha256:e30a824082404c040fc54d7979933219523b16e633672c86b14a6530820df46e
+```
+
+Docker annonce **7 875 038 439 octets** (~7,88 Go) pour l'image publiée et
+retéléchargée. [`publication-result.json`](publication-result.json) contient
+les reçus et liaisons vérifiés. Ce build CI reprend la recette ; son digest
+diffère du build local. Les dépendances transitives et APT sont résolues lors
+du build et son freeze est conservé. L'exécution GPU et le transport SSH sur
+Vast restent non vérifiés ; ce package ne contient ni poids ni corpus.
 
 Python **3.12.13**, MLX **0.32.3**, MLX-LM avec les extras `train,cuda12`
 **0.31.3**, NumPy **2.5.3** et Transformers **5.17.0** sont épinglés.
