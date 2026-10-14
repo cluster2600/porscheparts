@@ -163,12 +163,13 @@ def prepare(work):
     evaluation_prompts = {r['messages'][1]['content'] for r in data if r['split'] != 'train'}
     if any(r['messages'][1]['content'] in evaluation_prompts for r in replay): raise ValueError('Evaluation prompt in replay')
     work.mkdir(); (work/'data').mkdir(); (work/'source/training').mkdir(parents=True)
-    folders = ('qwen-picogk-qualified-20261014', 'qwen-picogk-robustness-20261013', 'qwen-picogk-20261012', 'qwen-research-corpus', 'qwen-engineering-20261002', 'm64-qwen', 'm64-engineer')
+    folders = ('qwen-picogk-qualified-20261014', 'qwen-picogk-robustness-20261013', 'qwen-picogk-20261012', 'qwen-research-corpus', 'qwen-porsche-corpus', 'qwen-engineering-20261002', 'm64-qwen', 'm64-engineer')
     for folder in folders:
         for path in (ROOT/'training'/folder).rglob('*'):
             if path.is_file() and path.suffix in ('.py', '.json', '.cs', '.lock'):
                 destination = work/'source'/path.relative_to(ROOT)
                 destination.parent.mkdir(parents=True, exist_ok=True); shutil.copyfile(path, destination)
+    subprocess.run([sys.executable, str(work/'source/training/qwen-picogk-qualified-20261014/qualify.py'), '--help'], capture_output=True, check=True, timeout=30)
     (work/'runtime').mkdir()
     for source, destination in [(pilot.PICO/'dotnet', work/'runtime/dotnet'), (pilot.PICO/'picogk-bin', work/'runtime/picogk-bin'), ((PRIOR/'host').resolve(), work/'host')]:
         if sys.platform == 'darwin': subprocess.run(['cp', '-cR', str(source), str(destination)], check=True)
