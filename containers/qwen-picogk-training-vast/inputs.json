@@ -1,0 +1,40 @@
+{
+  "automatic_training": false,
+  "bundled_corpus": false,
+  "bundled_model": false,
+  "external_corpus_manifest_sha256": "71ce762b893d19d5918e183e8d76c88b365f326b3b7a3418af495f53084514f5",
+  "external_corpus_sha256": "9966a99f998f544fdfe3d9370f53e131e5ae31061b3e89ae196d3f34e56d6a65",
+  "gpu_tested": false,
+  "image_files_sha256": {
+    "base-profile-7b.json": "e518369dfb009746e5ab92497741286b72d581b4ac05c3995404d6a6a0657129",
+    "base_runtime.py": "7e88e9b02d91499bc089abe4ffc0320f2f949f8641c786640cd73a251fdb6f07",
+    "download-model7b.py": "76fddd01fa2262cf1cc6e3325a6a6ee980d240d9b7f3fbd874d4954ec4679137",
+    "requirements.txt": "e1b91e3c31c09a82fab6845c656a4d7b4e4065c6d42d2c205550a1305128d6ca",
+    "train.py": "f299d271678cf9dc61e683260dd020b9992ab46f38437371130452b17291d10f"
+  },
+  "schema": "qwen.picogk.training-image-inputs@1",
+  "source_bundle": "vast-pilot-20261014/remote-bundle",
+  "source_bundle_manifest_sha256": "3aa62b14eceac8b8943662f00d7537454ee48d14cb54b869898d1d7e0eab024f",
+  "source_changes": {
+    "base-profile-7b.json": [],
+    "base_runtime.py": [],
+    "download-model7b.py": [
+      "Root /workspace and help-only argparse.",
+      "Verify immutable profile SHA, repository/revision, all nine payload SHA values.",
+      "Reject Python optimization and existing symlinks; create final manifest exclusively."
+    ],
+    "train.py": [
+      "Root /workspace, helper from immutable script directory, lock under /workspace.",
+      "Mandatory corpus/SHA/profile; immutable 7B profile hash and source manifest hash.",
+      "Read inputs contained outside reserved final tasks; manifest/corpus checked before output creation.",
+      "Reject nonfinite or nonpositive learning rate and symlink output roots.",
+      "Set and record CUDA graph cache/check before MLX import, including SSH sessions."
+    ]
+  },
+  "source_files_sha256": {
+    "base-profile-7b.json": "e518369dfb009746e5ab92497741286b72d581b4ac05c3995404d6a6a0657129",
+    "base_runtime.py": "7e88e9b02d91499bc089abe4ffc0320f2f949f8641c786640cd73a251fdb6f07",
+    "download-model7b.py": "50056ee0a2ea5acb6da4a4ee27513a62204707d9c01b23166dc5a3f98d6a2f82",
+    "train.py": "287e3b4c557dd8025956bebb8544207c1af3733b60c8e08bb65226ca139282ca"
+  }
+}

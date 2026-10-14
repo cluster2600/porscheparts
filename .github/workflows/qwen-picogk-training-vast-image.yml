@@ -1,0 +1,143 @@
+name: Publish Qwen PicoGK training image for Vast
+
+on:
+  push:
+    branches:
+      - codex/qwen-picogk-training-image
+    paths:
+      - .github/workflows/qwen-picogk-training-vast-image.yml
+      - containers/qwen-picogk-training-vast/**
+      - tests/test_qwen_training_image.py
+      - tests/test_qwen_training_image_workflow.py
+
+concurrency:
+  group: qwen-picogk-training-vast-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  IMAGE_REPOSITORY: ghcr.io/cluster2600/qwen-picogk-training-vast
+  IMAGE_TAG: ${{ github.sha }}
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Check publication boundaries and record public recipe
+        run: |
+          python3 tests/test_qwen_training_image_workflow.py -v
+          mkdir qwen-training-image-evidence
+          sha256sum \
+            .github/workflows/qwen-picogk-training-vast-image.yml \
+            tests/test_qwen_training_image_workflow.py \
+            tests/test_qwen_training_image.py \
+            containers/qwen-picogk-training-vast/Dockerfile \
+            containers/qwen-picogk-training-vast/Dockerfile.dockerignore \
+            containers/qwen-picogk-training-vast/requirements.txt \
+            containers/qwen-picogk-training-vast/train.py \
+            containers/qwen-picogk-training-vast/base_runtime.py \
+            containers/qwen-picogk-training-vast/download-model7b.py \
+            containers/qwen-picogk-training-vast/base-profile-7b.json \
+            containers/qwen-picogk-training-vast/image_smoke.py \
+            containers/qwen-picogk-training-vast/inputs.json \
+            > qwen-training-image-evidence/source-inputs.sha256
+
+      - name: Set up pinned Buildx
+        uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+        with:
+          version: v0.36.1
+          driver-opts: |
+            image=moby/buildkit@sha256:28a898719c18a33f4e8000685287fa36fd0dd9560c6440227d3a732d79bb41d8
+
+      - name: Record builder
+        run: |
+          docker buildx version > qwen-training-image-evidence/builder.txt
+          docker buildx inspect --bootstrap >> qwen-training-image-evidence/builder.txt
+          grep -F 'v0.36.1' qwen-training-image-evidence/builder.txt >/dev/null
+          grep -F 'v0.32.2' qwen-training-image-evidence/builder.txt >/dev/null
+
+      - name: Build Linux amd64 before publication
+        uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8
+        with:
+          context: .
+          file: containers/qwen-picogk-training-vast/Dockerfile
+          platforms: linux/amd64
+          load: true
+          push: false
+          provenance: false
+          tags: ${{ env.IMAGE_REPOSITORY }}:${{ env.IMAGE_TAG }}
+
+      - name: Verify offline CPU smoke, pinned inputs and installed packages
+        run: |
+          image_ref="${IMAGE_REPOSITORY}:${IMAGE_TAG}"
+          test "$(docker image inspect --format '{{.Os}}/{{.Architecture}}' "${image_ref}")" = linux/amd64
+          docker run --rm --platform linux/amd64 --network none --read-only \
+            --tmpfs /tmp:rw,nosuid,nodev,size=128m --tmpfs /workspace:rw,nosuid,nodev,size=128m \
+            "${image_ref}" python /opt/qwen-training/image_smoke.py \
+            > qwen-training-image-evidence/build-smoke.json
+          jq -e '.status == "passed" and .checks == 15 and .model_loaded == false and .gpu_tested == false and .training_started == false' \
+            qwen-training-image-evidence/build-smoke.json >/dev/null
+          docker run --rm --platform linux/amd64 --network none --read-only "${image_ref}" \
+            python -m pip check > qwen-training-image-evidence/pip-check.txt
+          docker run --rm --platform linux/amd64 --network none --read-only "${image_ref}" \
+            python -c 'import importlib.metadata as m,json; expected={"mlx":"0.32.3","mlx-lm":"0.31.3","numpy":"2.5.3","transformers":"5.17.0"}; actual={name:m.version(name) for name in expected}; assert actual == expected, actual; print(json.dumps(actual,sort_keys=True))' \
+            > qwen-training-image-evidence/versions.json
+          docker run --rm --platform linux/amd64 --network none --read-only "${image_ref}" \
+            cat /opt/qwen-training/inputs.json > qwen-training-image-evidence/inputs.json
+          cmp containers/qwen-picogk-training-vast/inputs.json qwen-training-image-evidence/inputs.json
+          docker run --rm --platform linux/amd64 --network none --read-only "${image_ref}" \
+            cat /opt/qwen-training/resolved-packages.txt > qwen-training-image-evidence/resolved-packages.txt
+          docker run --rm --platform linux/amd64 --network none --read-only "${image_ref}" \
+            python -m pip freeze --all > qwen-training-image-evidence/runtime-packages.txt
+          cmp qwen-training-image-evidence/resolved-packages.txt qwen-training-image-evidence/runtime-packages.txt
+          docker image inspect --format '{{.Id}}' "${image_ref}" > qwen-training-image-evidence/build-image-id.txt
+
+      - name: Log in to GHCR
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish checked image and verify exact registry digest
+        run: |
+          image_ref="${IMAGE_REPOSITORY}:${IMAGE_TAG}"
+          docker push "${image_ref}" > qwen-training-image-evidence/push.txt
+          docker buildx imagetools inspect --format '{{json .Manifest}}' "${image_ref}" \
+            > qwen-training-image-evidence/registry-manifest.json
+          image_digest="$(jq -er '.digest | select(test("^sha256:[0-9a-f]{64}$"))' qwen-training-image-evidence/registry-manifest.json)"
+          pinned_ref="${IMAGE_REPOSITORY}@${image_digest}"
+          docker buildx imagetools inspect --raw "${pinned_ref}" > qwen-training-image-evidence/registry-manifest.raw.json
+          test "$(sha256sum qwen-training-image-evidence/registry-manifest.raw.json | cut -d' ' -f1)" = "${image_digest#sha256:}"
+          docker pull --platform linux/amd64 "${pinned_ref}"
+          test "$(docker image inspect --format '{{.Id}}' "${pinned_ref}")" = "$(cat qwen-training-image-evidence/build-image-id.txt)"
+          test "$(docker image inspect --format '{{.Os}}/{{.Architecture}}' "${pinned_ref}")" = linux/amd64
+          docker run --rm --platform linux/amd64 --network none --read-only \
+            --tmpfs /tmp:rw,nosuid,nodev,size=128m --tmpfs /workspace:rw,nosuid,nodev,size=128m \
+            "${pinned_ref}" python /opt/qwen-training/image_smoke.py \
+            > qwen-training-image-evidence/registry-smoke.json
+          jq -e '.status == "passed" and .checks == 15 and .model_loaded == false and .gpu_tested == false and .training_started == false' \
+            qwen-training-image-evidence/registry-smoke.json >/dev/null
+          docker run --rm --platform linux/amd64 --network none --read-only "${pinned_ref}" \
+            python -m pip check > qwen-training-image-evidence/registry-pip-check.txt
+          printf '%s\n' "${pinned_ref}" > qwen-training-image-evidence/image-ref.txt
+          jq -n --arg source_commit "${GITHUB_SHA}" --arg tag "${image_ref}" \
+            --arg image_ref "${pinned_ref}" --arg run_id "${GITHUB_RUN_ID}" \
+            '{schema:"qwen.picogk.training-image-publication@1",source_commit:$source_commit,tag:$tag,image_ref:$image_ref,run_id:$run_id,platform:"linux/amd64",registry_pull_verified:true,cpu_checks:15,gpu_tested:false,vast_ssh_tested:false,model_loaded:false,training_started:false,local_build_digest_equivalence_claimed:false}' \
+            > qwen-training-image-evidence/publication.json
+
+      - name: Upload publication metadata
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: qwen-training-image-${{ github.run_id }}-${{ github.run_attempt }}
+          path: qwen-training-image-evidence/
+          if-no-files-found: error
+          retention-days: 30

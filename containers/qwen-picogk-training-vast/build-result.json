@@ -1,0 +1,81 @@
+{
+  "build_host_platform": "darwin/arm64",
+  "changes_committed": false,
+  "checks": {
+    "cpu_preflight": {
+      "checks": 15,
+      "gpu_tested": false,
+      "model_loaded": false,
+      "status": "passed",
+      "training_started": false
+    },
+    "empty_workspace": true,
+    "native_arithmetic": {
+      "arithmetic_executed": false,
+      "error_type": "ImportError",
+      "exit_code": 1,
+      "missing_library": "libcuda.so.1",
+      "status": "blocked_before_import_completion"
+    },
+    "pip_check": "passed",
+    "real_container_bad_corpus_sha256": {
+      "exit_code": 2,
+      "output_directory_created": false,
+      "rejected_before_model": true
+    },
+    "ssh_host_keys_absent": true
+  },
+  "completed_at_utc": "2026-10-14T17:29:24.160094+00:00",
+  "data_or_weights_bundled": false,
+  "docker_reported_size_bytes": 2997776273,
+  "docker_reported_size_note": "Historical build measurement; its relation to the current image inspect Size has not been established. Do not interpret it as the current local uncompressed size.",
+  "docker_image_inspect_size_bytes": 7903264657,
+  "docker_version": "29.8.2",
+  "gpu_tested": false,
+  "image_config_digest": "sha256:8349b23d171c8cbb0db4f8623ec34687ea2daf1006488966d348797bfb940cc8",
+  "image_id": "sha256:6be0f4cfb7edb60432486e1236ae34836ac64942e2b321ec6e16fac6e647f9e5",
+  "image_tag": "qwen-picogk-training-vast:20261014",
+  "libraries": {
+    "datasets": "5.1.0",
+    "huggingface-hub": "1.33.0",
+    "mlx": "0.32.3",
+    "mlx-cuda-12": "0.32.3",
+    "mlx-lm": "0.31.3",
+    "numpy": "2.5.3",
+    "transformers": "5.17.0"
+  },
+  "limits": [
+    "CUDA backend import requires host NVIDIA driver injection; Mac CPU run cannot execute native tensors.",
+    "Only four main Python package versions and the base-image digest are pinned in the recipe; transitive versions are captured in the built image freeze.",
+    "No real Vast SSH or GPU test of this exact image."
+  ],
+  "linux_amd64_manifest_digest": "sha256:aacc52ee4aadafbfbfd4b5efd2f953f78dafd35ebd819569377c480561136ffc",
+  "model_downloaded": false,
+  "physical_qualification": false,
+  "platform": "linux/amd64",
+  "python": "3.12.13",
+  "recipe_inputs_sha256": {
+    "Dockerfile": "3fc92f95f23ed096622967b5bbfdd03be38cb734af88d25c4c8ff5cea2e7e2f3",
+    "Dockerfile.dockerignore": "abd47f2fcbcf208e19796ad382182bc8738d60b2e6fa3f26c9ad639a02b85f89",
+    "base-profile-7b.json": "e518369dfb009746e5ab92497741286b72d581b4ac05c3995404d6a6a0657129",
+    "base_runtime.py": "7e88e9b02d91499bc089abe4ffc0320f2f949f8641c786640cd73a251fdb6f07",
+    "download-model7b.py": "76fddd01fa2262cf1cc6e3325a6a6ee980d240d9b7f3fbd874d4954ec4679137",
+    "image_smoke.py": "3bf0ab9bb387036bd225ced9b4b77e54747c1f1df30295fee1cff9eca1abb897",
+    "inputs.json": "ae141b934ecf399779a9901d2896fe9898d60a788c12cebae16ccb592cece2fc",
+    "requirements.txt": "e1b91e3c31c09a82fab6845c656a4d7b4e4065c6d42d2c205550a1305128d6ca",
+    "train.py": "f299d271678cf9dc61e683260dd020b9992ab46f38437371130452b17291d10f"
+  },
+  "registry_published": false,
+  "resolved_packages_sha256": "ddbdb9b0e4bf1572ddd63cfad4ca6ad01f40a8118ff00e4f939e17996130e44b",
+  "runtime_environment": {
+    "HF_HUB_DISABLE_IMPLICIT_TOKEN": "1",
+    "MLX_CUDA_GRAPH_CACHE_SIZE": "16384",
+    "MLX_ENABLE_CACHE_THRASHING_CHECK": "1",
+    "NVIDIA_DRIVER_CAPABILITIES": "compute,utility",
+    "NVIDIA_VISIBLE_DEVICES": "all"
+  },
+  "schema": "qwen.picogk.training-image-build@1",
+  "source_checkout_commit": "4f93d375bb140dabeec9f0b9a7b82086dafebbe3",
+  "status": "built_and_cpu_preflight_verified",
+  "training_started": false
+}
