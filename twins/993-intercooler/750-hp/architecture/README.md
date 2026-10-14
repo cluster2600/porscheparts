@@ -141,7 +141,7 @@ minimale de cœur sous les contraintes supposées, pas l'optimum véhicule globa
 ## Reproduction et contrôles
 
 ```sh
-python3 twins/993-installed-cooling-f1/intercooler-750/architecture/source/compare.py --output work/new-architecture
+python3 twins/993-intercooler/750-hp/architecture/source/compare.py --output work/new-architecture
 python3 -m unittest discover -s tests -p test_993_intercooler_architecture.py -v
 ```
 

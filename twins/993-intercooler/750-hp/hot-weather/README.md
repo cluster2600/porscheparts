@@ -204,9 +204,9 @@ avec variation de volume inférieure à 10⁻⁷. **L'acceptation du maillage br
 fausse** ; ce nettoyage ne qualifie ni l'étanchéité réelle ni un maillage solveur.
 
 ```sh
-~/Developer/PicoGK/sdk/dotnet build twins/993-installed-cooling-f1/intercooler-750/hot-weather/source/lattice/Coupon.csproj -c Release -o work/lattice-bin
+~/Developer/PicoGK/sdk/dotnet build twins/993-intercooler/750-hp/hot-weather/source/lattice/Coupon.csproj -c Release -o work/lattice-bin
 # Exécuter sous le verrou PicoGK partagé de parts/picogk-catalog/tools/run_part.py.
-~/Developer/PicoGK/sdk/dotnet work/lattice-bin/Coupon.dll twins/993-installed-cooling-f1/intercooler-750/hot-weather/results/study.json work/new-lattice 0.1 bcc
+~/Developer/PicoGK/sdk/dotnet work/lattice-bin/Coupon.dll twins/993-intercooler/750-hp/hot-weather/results/study.json work/new-lattice 0.1 bcc
 ```
 
 ### Contrôles du dossier
@@ -217,7 +217,7 @@ empreintes des résultats. Les maillages natifs sont inspectés avant les export
 simplifiés ; les STL sont en mm et le GLB en mètres.
 
 ```sh
-python3 twins/993-installed-cooling-f1/intercooler-750/hot-weather/source/study.py --output work/new-hot-weather
+python3 twins/993-intercooler/750-hp/hot-weather/source/study.py --output work/new-hot-weather
 python3 -m unittest discover -s tests -p test_993_intercooler_hot_weather.py -v
 ```
 

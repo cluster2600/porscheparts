@@ -14,7 +14,7 @@ qualifies no core, no pressure rating and no installation.
 The OEM part `993 110 330 53` is context only. Its flanges, inlet and outlet
 axes and mounts are not measured in this repository, so none is used or
 invented. Interfaces stay those of the
-[independent contract](../../interface-contract.json).
+[independent contract](../../../993-installed-cooling-f1/interface-contract.json).
 
 ## Common basis
 
@@ -158,7 +158,10 @@ The native STL files are identified by SHA-256 and not committed.
    number on both networks, over Re 1 500–4 200. Only those measurements can
    decide the 16.4 kg route.
 3. **Study counterflow headers for the offset-strip core.** About 8.6 % of UA
-   is available if the turning losses fit the budgets.
+   is available if the turning losses fit the budgets. The
+   [counterflow-pass study](../counterflow-passes/README.md) has since done
+   this: the turning and pass losses do not fit the charge budget at the
+   witness fins, and resized two-pass cores are about 2 kg heavier.
 4. **Do not pursue a helical tube bank** unless plate fins are added on the
    cooling side. That would be a tube-fin core, a different family that needs
    its own screen.
@@ -166,11 +169,11 @@ The native STL files are identified by SHA-256 and not committed.
 ## Reproduction
 
 ```sh
-python3 twins/993-installed-cooling-f1/intercooler-750/core-comparison/source/screen.py --output work/new-screen
-dotnet build twins/993-installed-cooling-f1/intercooler-750/core-comparison/source/picogk/Cells.csproj -c Release -p:UpstreamRoot=/path/to/upstream
+python3 twins/993-intercooler/750-hp/core-comparison/source/screen.py --output work/new-screen
+dotnet build twins/993-intercooler/750-hp/core-comparison/source/picogk/Cells.csproj -c Release -p:UpstreamRoot=/path/to/upstream
 Cells work/new-screen/screen.json work/new-coupons
-python3 twins/993-installed-cooling-f1/intercooler-750/core-comparison/source/measure.py --screen work/new-screen/screen.json --generated work/new-coupons --output work/new-measurement.json
-python3 twins/993-installed-cooling-f1/intercooler-750/core-comparison/source/review.py --native work/new-coupons --output work/new-review
+python3 twins/993-intercooler/750-hp/core-comparison/source/measure.py --screen work/new-screen/screen.json --generated work/new-coupons --output work/new-measurement.json
+python3 twins/993-intercooler/750-hp/core-comparison/source/review.py --native work/new-coupons --output work/new-review
 python3 -m unittest tests.test_993_intercooler_core_comparison -v
 ```
 

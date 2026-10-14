@@ -197,7 +197,7 @@ par défaut pour ce cœur ; aucune recette de l'impeller n'est transférée.
    remplace aucune de ces vérifications.
 
 Les interfaces d'installation restent celles du
-[contrat indépendant](../interface-contract.json) : enveloppe de l'aileron,
+[contrat indépendant](../../993-installed-cooling-f1/interface-contract.json) : enveloppe de l'aileron,
 appuis/châssis porteur, embouts des turbos et de l'admission, jeux avec ventilateur,
 joints et étanchéité des conduits. Les 17,3 kg du candidat avancé, comme les
 42,7 kg de référence, nécessitent un chemin de charge vérifié avec les collecteurs
@@ -225,8 +225,8 @@ Les [résultats](results/sizing.json) conservent entrées, hashes et sensibilit�
 Les outils utilisent des dépendances déjà installées.
 
 ```sh
-python3 twins/993-installed-cooling-f1/intercooler-750/source/size_core.py --output work/new-sizing
-python3 twins/993-installed-cooling-f1/intercooler-750/source/explore_thin_fins.py --output work/new-thin-sizing
+python3 twins/993-intercooler/750-hp/source/size_core.py --output work/new-sizing
+python3 twins/993-intercooler/750-hp/source/explore_thin_fins.py --output work/new-thin-sizing
 python3 -m unittest discover -s tests -p test_993_intercooler_750.py -v
 ```
 
@@ -258,4 +258,6 @@ une variante PicoGK de collecteurs raidis avec contrôles de pression simplifié
 The [core family comparison](core-comparison/README.md) screens a HelixHeatX
 helical-web transposition and a two-network gyroid against the offset-strip
 witness under the same assumptions, with native PicoGK coupons measured
-independently.
+independently. The [counterflow-pass study](counterflow-passes/README.md) then
+splits the charge into passes against the cooling air and charges the return
+tanks to the budgets.
