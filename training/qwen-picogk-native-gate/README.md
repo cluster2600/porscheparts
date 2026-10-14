@@ -132,3 +132,28 @@ fields, CFD/FEA and manufacturing review require their own contracts and checks.
 Native export defects need geometry/kernel investigation; more training cannot
 repair an unchanged trusted export recipe. New learning should use fresh task
 families and a new closed evaluation, retaining this adapter as a reference.
+
+## Status after the qualified command (2026-10-14)
+
+[PR 257](https://github.com/cluster2600/porscheparts/pull/257) merged a
+[qualified plan command](../qwen-picogk-qualified-20261014/README.md) that is now
+the installed command on the project Mac; the legacy command remains its rollback.
+This gate still accepts only legacy [inference](../qwen-picogk-20261012/ask.py)
+receipts. A qualified receipt records `plan` and `semantic_intent_verified` but
+neither `raw_response` nor `structure_passed`, so the gate refuses it before any
+geometry executes. A unit test keeps this refusal visible. Both paths compare
+plans with the same `pilot.matches`; no second matching rule is introduced.
+
+Admitting qualified receipts means changing `gate.py`. [results.json](results.json)
+pins its SHA-256, so the ten native witnesses and the model smoke would have to be
+re-run on the Mac rather than re-hashed. The
+[Mac setup notes](../../docs/PICOGK_MAC_SETUP.md) also record that the prepared
+gate manifest references two coding-008 checkpoint files that are no longer
+available. `verify` re-hashes every manifest entry, so that prepared directory
+would fail closed. Neither re-run was attempted from this repository.
+
+CI now also checks, without the private runtime, that the recorded source digests
+match the committed `gate.py`, `VdbWitness.cs` and auditor, that every summary
+count follows the recorded witnesses, that the raw-mesh decisions follow the
+auditor's rule recomputed from the recorded topology, and that the eight negative
+inputs never executed geometry.
