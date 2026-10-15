@@ -1,0 +1,9 @@
+# Spécification préalable — rangée extérieure conforme
+
+Une seule nouvelle topologie sera évaluée, hors natif d'abord. Elle conserve les trois intervalles axiaux et les frontières radiales du témoin staged-transition, mais ajoute une rangée hexaédrique extérieure pour donner une vraie face interne radiale aux prismes situés près des fermetures. Aucun couplage fictif, déplacement d'apex ou exclusion des extrémités.
+
+Le motif radial fixe moitié–quart–quart est celui de la bisection extérieure de 086, appliqué ici à la section homothétique synthétique NON projetée : transition angulaire dans la moitié intérieure, transition axiale dans le quart suivant, hexaèdres dans le quart extérieur. Ratio nouveau 1+3(q_ext−1)/4. Ce n'est pas une reprise des coordonnées gauchies de086. Les quads MRF restent ceux de063 ; les deux fermetures sont subdivisées mais leur couverture orientée doit être conservée. La paroi extérieure et la paroi intérieure du témoin précédent doivent garder leurs faces exactes.
+
+Les prismes axiaux partagent leurs quads extérieurs avec les hex, chacun sur une demi-station axiale. Les hex ont les mêmes 256 secteurs angulaires. Toutes les anciennes stations, rayons et ruptures de pente restent conservés ; aucune autre largeur ou résolution ne sera essayée dans cette phase. Le rétrécissement de la transition peut augmenter la non-orthogonalité : aucun succès présumé.
+
+Précontrôle : faces partagées en cycles opposés, arêtes annulées, volumes positifs et intégrale polygonale, couverture des fermetures, quads MRF exacts, déterminant>=0,001 avec seulement les faces internes admissibles, aucun critère de plans >−1e−6, angles<=70°, planéité<1e−12m, normale MRF<1e−8m/s et bilan tournant<1e−16m³/s. Critères inchangés. Si refus, conserver le candidat et ne lancer aucun natif. writePrecision16 si un nouveau cas est ultérieurement admis. Aucun écoulement prévu.

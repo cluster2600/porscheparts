@@ -1,32 +1,32 @@
-# Prestataires à consulter — aucune demande envoyée
+# Suppliers to consult — no request sent
 
-Vérification de pages publiques le **27 septembre 2026**. « Vérifié » concerne
-l'offre publiée, jamais un engagement envers ce projet. Tous les prix projet,
-MOQ (quantités minimales) et délais sont **sur devis** sauf mention explicite.
-Ni siège suisse ni site internet suisse ne prouvent le lieu de fabrication.
-Les sources Sxx sont détaillées dans [sources.md](sources.md).
+Public pages checked on **September 27, 2026**. "Verified" refers to the
+published offer, never to a commitment to this project. All project prices,
+MOQs (minimum order quantities) and lead times are **on quote** unless explicitly
+stated. Neither a Swiss head office nor a Swiss website proves the place of
+manufacture. The Sxx sources are detailed in [sources.md](sources.md).
 
-| Besoin / priorité | Prestataire et lien | Compétence publiée / localisation | Production et minimum/délai connus | Qualification restant à obtenir |
+| Need / priority | Supplier and link | Published capability / location | Known production and minimum/lead time | Qualification still to obtain |
 |---|---|---|---|---|
-| Scan — premier choix à consulter | [Ab Concept](https://abconcept.ch/prestation/scan-3d/) [S12] | Scan de composants, STL et reconstruction STEP/IGES/Parasolid ; La Chaux-de-Fonds, Suisse | Site de scan et sous-traitance à confirmer ; MOQ/délai non publiés pour cette pièce | Capacité grande pièce mince/translucide, accès à l'original, protocole et données natives ; commander scan + métrologie, CAO conservée par le porteur |
-| Scan — comparaison romande | [INCO 3D](https://www.inco3d.ch/) [S13] | Scanners, rétro-ingénierie, modélisation, impression et thermoformage ; Pully, Vaud | Lieu de réalisation de chaque prestation à confirmer ; MOQ/délai projet non publiés | Acquisition dos/fixations, incertitude, droits, formats ; option coupon optique à vérifier |
-| Électronique — premier choix à consulter | [gigAtec SA](https://gigatec.ch/) [S14] | Développement, industrialisation, montage PCBA et production locale annoncée à Vallorbe | Production annoncée locale ; origine PCB nus/composants et éventuelle sous-traitance à distinguer ; MOQ/délai sur devis | Expérience réseau 12 V auto, load dump, CEM, BLE sécurisé ; prix coupon puis intégration, propriété des sources |
-| Électronique/EMS — alternative | [Systronic-EMS](https://systronic-ems.com/) [S15] | Conception et assemblage cartes/appareils, Suisse romande selon page | Site exact affecté et origine entrants à confirmer ; MOQ/délai non établis | DFM, courant constant, essai en température, contrôle 0402, ventilation coûts CH/étranger |
-| PCBA — référence comparative UE | [Eurocircuits](https://www.eurocircuits.com/services/pcb-assembly-capabilities/) [S16] | Prototypes et petites séries ; sites propres Allemagne/Hongrie annoncés | Assemble ses propres PCB ; page capacités : assemblage 3/5/7/10 jours ouvrés sous conditions ; délai total, site par commande et MOQ à confirmer après BOM/stock | Comparer 3–5 coupons, 10/100/1 000 ; la fabrication UE est étrangère pour Swissness ; ne pas réutiliser un ancien délai promotionnel |
-| Optique — coupon romand | [INCO 3D](https://www.inco3d.ch/) [S13] | Impression et thermoformage publiés | Recette transparente/rouge automobile et fabrication en Suisse **non confirmées** | Échantillons matière, teinte, transmission, finition et suivi UV/chaleur ; ne pas qualifier sur le seul mot impression 3D |
-| Optique — comparaison spécialisée | [Protolabs](https://www.protolabs.com/en-gb/services/3d-printing/) [S07] | SLA transparente et PolyJet documentés ; offre européenne et internationale | Usine/pays exacts selon procédé et commande à exiger ; MOQ/délai/finition pièce non engagés | WaterShed/grade réel, finition, dimensions maximales, durabilité, production interne ou réseau ; pas d'origine CH présumée |
-| Emballage carton | [Bourquin SA](https://www.bourquinsa.ch/fr/que-faisons-nous/services/) [S17] | Conception emballage et carton sur mesure ; site de Couvet publié | Usine de la commande à confirmer ; MOQ/outillage/délai sur devis | Calage sans contact optique, unité/lot, carton recyclabilité et tests transport ; coûts exclus du calcul Swissness produit |
-| Évaluation Suisse | [DTC](https://www.dtc-ag.ch/fr/prestations/securite-active/examens-de-modifications) [S18] | Examens de modifications ; Vauffelin, Suisse | Disponibilité, périmètre éclairage et essais sous-traités sur devis | Avis préalable fonctions et homologation, articulation service cantonal/OFROU |
-| Laboratoire éclairage UE | [TÜV Rheinland](https://www.tuv.com/luxembourg/de/pr%C3%BCfung-lichttechnischer-einrichtungen.html) [S19] | Laboratoire automobile de Berlin, essais et rapports pour réception de type | Capacité technique publiée ; réservation, tarifs et lots d'essai sur devis | R148/R150/R48, variantes historiques, affichage dynamique, dossier Allemagne et qualification composant |
+| Scan — first choice to consult | [Ab Concept](https://abconcept.ch/prestation/scan-3d/) [S12] | Component scanning, STL and STEP/IGES/Parasolid reconstruction; La Chaux-de-Fonds, Switzerland | Scan site and subcontracting to be confirmed; MOQ/lead time not published for this part | Capacity for a large thin/translucent part, access to the original, protocol and native data; order scan + metrology, CAD kept by the owner |
+| Scan — French-speaking Switzerland comparison | [INCO 3D](https://www.inco3d.ch/) [S13] | Scanners, reverse engineering, modeling, printing and thermoforming; Pully, Vaud | Place where each service is performed to be confirmed; project MOQ/lead time not published | Capture of the back/fastenings, uncertainty, rights, formats; optical coupon option to be verified |
+| Electronics — first choice to consult | [gigAtec SA](https://gigatec.ch/) [S14] | Development, industrialization, PCBA assembly and local production announced in Vallorbe | Local production announced; origin of bare PCBs/components and any subcontracting to be distinguished; MOQ/lead time on quote | Experience with the 12 V automotive network, load dump, EMC, secure BLE; coupon price then integration, ownership of the sources |
+| Electronics/EMS — alternative | [Systronic-EMS](https://systronic-ems.com/) [S15] | Design and assembly of boards/devices, French-speaking Switzerland according to the page | Exact site assigned and origin of incoming parts to be confirmed; MOQ/lead time not established | DFM, constant current, temperature test, 0402 inspection, breakdown of Swiss/foreign costs |
+| PCBA — EU comparison reference | [Eurocircuits](https://www.eurocircuits.com/services/pcb-assembly-capabilities/) [S16] | Prototypes and small series; own sites in Germany/Hungary announced | Assembles its own PCBs; capabilities page: assembly in 3/5/7/10 working days under conditions; total lead time, site per order and MOQ to be confirmed after BOM/stock | Compare 3–5 coupons, 10/100/1,000; EU manufacturing is foreign for Swissness; do not reuse an old promotional lead time |
+| Optics — French-speaking Switzerland coupon | [INCO 3D](https://www.inco3d.ch/) [S13] | Printing and thermoforming published | Automotive clear/red recipe and manufacturing in Switzerland **not confirmed** | Material samples, tint, transmission, finish and UV/heat monitoring; do not qualify on the words "3D printing" alone |
+| Optics — specialist comparison | [Protolabs](https://www.protolabs.com/en-gb/services/3d-printing/) [S07] | Clear SLA and PolyJet documented; European and international offer | Exact plant/country per process and order to be required; MOQ/lead time/part finish not committed | WaterShed/actual grade, finish, maximum dimensions, durability, in-house production or network; no Swiss origin presumed |
+| Cardboard packaging | [Bourquin SA](https://www.bourquinsa.ch/fr/que-faisons-nous/services/) [S17] | Packaging design and custom cardboard; Couvet site published | Plant for the order to be confirmed; MOQ/tooling/lead time on quote | Wedging with no optical contact, unit/batch, cardboard recyclability and shipping tests; costs excluded from the product Swissness calculation |
+| Swiss assessment | [DTC](https://www.dtc-ag.ch/fr/prestations/securite-active/examens-de-modifications) [S18] | Modification examinations; Vauffelin, Switzerland | Availability, lighting scope and subcontracted tests on quote | Prior opinion on functions and approval, coordination between the cantonal office and FEDRO (OFROU) |
+| EU lighting laboratory | [TÜV Rheinland](https://www.tuv.com/luxembourg/de/pr%C3%BCfung-lichttechnischer-einrichtungen.html) [S19] | Automotive laboratory in Berlin, tests and reports for type approval | Technical capability published; booking, rates and test lots on quote | R148/R150/R48, historical variants, dynamic display, German dossier and component qualification |
 
-Présélection pratique : **Ab Concept + INCO 3D** pour deux offres scan comparables,
-**gigAtec** pour revue électronique et coupon, **Bourquin** pour le carton après CAO.
-Aucun prestataire n'est retenu contractuellement. Les compétences automobiles,
-la disponibilité et les droits de livraison doivent être confirmés avant commande.
+Practical shortlist: **Ab Concept + INCO 3D** for two comparable scan offers,
+**gigAtec** for the electronics review and coupon, **Bourquin** for the cardboard
+after CAD. No supplier is contractually retained. Automotive capabilities,
+availability and delivery rights must be confirmed before ordering.
 
-Demander systématiquement : raison sociale contractante, lieu réel de chaque
-opération, sous-traitants, MOQ et prix 1/10/100/1 000 (3–5 coupons PCBA), stock et
-lead time après validation des fichiers, frais de préparation/outillage, TVA,
-transport, validité, conditions de reprise et propriété des livrables. Conserver
-les devis et coordonnées individuels **hors dépôt public** ; publier uniquement
-une synthèse autorisée. Voir [les RFQ](rfqs.md).
+Always ask for: the contracting legal entity, the actual place of each
+operation, subcontractors, MOQ and prices at 1/10/100/1,000 (3–5 PCBA coupons),
+stock and lead time after file approval, setup/tooling fees, VAT, shipping,
+validity, return conditions and ownership of the deliverables. Keep individual
+quotes and contact details **out of the public repository**; publish only an
+authorized summary. See [the RFQs](rfqs.md).

@@ -39,9 +39,19 @@ The comparison panel's 901.4 MPa raw global R9 maximum and its local R8-to-R9 ch
 
 The frozen verification panel uses [English labels from the same renderer]({{repo:parts/993-eng-carrier-0001/media/r9/English-labels-README.md}}). Its [translation provenance]({{repo:parts/993-eng-carrier-0001/media/r9/render-provenance.json}}) records both image hashes and unchanged geometry, fields and plotted data. The original historical image is preserved by its owner.
 
+## Corrected provisional V6f study
+
+The [13 October correction]({{repo:parts/993-eng-carrier-0001/source/bionic-20261011/correction-20261013/README.md}}) aligns the carrier with the unchanged F0 concept bracket, preserves the assumed 8 mm central pad and end interfaces, and clears the tool and secondary-access gauges. Nominal Ti-6Al-4V Grade 5 CAD mass is **1.188 kg**. Actual Porsche dimensions and original-bolt engagement remain unknown.
+
+Fresh calculations still reject structural acceptance: the finer fixed-fixture case reaches **3.039 mm and 801 MPa**, while assumed flexible mounts reach **18.929 mm and 2,083 MPa**. Fatigue demand and flat-print diagnostics are retained without a life or manufacturing claim. Native VDB fields now refer to this corrected STEP solve. The separate added-BCC trial is rejected for excess mass and disconnected geometry.
+
 ## Separate V5 flat-build study
 
+The [native Mac LEAP71 extension]({{repo:parts/993-eng-carrier-0001/source/bionic-20261011/native-leap71/README.md}}) uses ShapeKernel, LatticeLibrary and seven-field VDB exchange on V5. The BCC bracing trial exceeds the 1.2 kg ceiling; raw STL defects and a secondary-access gauge conflict are retained. Its changed geometry has no new structural or fatigue result.
+
 The [V5 CAD and mechanical dossier]({{repo:parts/993-eng-carrier-0001/source/bionic-20261011/README.md}}) is a separate provisional geometry, not a revision of R9. Its [flat metal-build correction]({{repo:parts/993-eng-carrier-0001/source/bionic-20261011/flat-review.md}}) retains Ti-6Al-4V Grade 5 as a proposal and the calculated 1.185 kg mass. The required orientation has zero out-of-plane tilt and needs a square bed of at least 471.129 mm with the assumed margins. V5 remains rejected under its structural load assumptions; neither geometry is released for manufacture.
+
+The [virtual assembly trial]({{repo:parts/993-eng-carrier-0001/source/bionic-20261011/virtual-fit-review.md}}) finds incompatible hole patterns between V5 and the separate F0 concept bracket. This is a failure of that hypothetical CAD pair; real Porsche fit remains unknown.
 
 ## Interfaces and open work
 

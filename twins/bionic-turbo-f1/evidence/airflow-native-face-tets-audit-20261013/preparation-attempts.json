@@ -1,0 +1,16 @@
+{
+  "time_unix": 1791911721.874113,
+  "attempt_1": {
+    "status": "failed_before_turbo_application",
+    "error": "AttributeError: independent_fraction_kernel has no attribute vectorcross",
+    "source": "quality_independent.py",
+    "source_sha256": "89ec72b85e7e77afa37b76a003d5c9b141421bfc8c33828694a8949da6e0e799",
+    "log": "quality-references.log",
+    "log_sha256": "59b72e0b163eb461fa1e5b55188993ea528aee095f3d20140c101c24cb58c059"
+  },
+  "correction": {
+    "source": "quality_independent_v2.py",
+    "change": "Use pinned kernel API g.vector instead of nonexistent g.vectorcross; no formula, threshold or geometry change"
+  },
+  "turbo_application_started": false
+}

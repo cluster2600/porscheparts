@@ -1,0 +1,33 @@
+{
+  "phase": "F13",
+  "status": "mechanical_layout_schematic_not_manufacturer_CAD",
+  "base_packaging": "picogk-full-vehicle-f12.json",
+  "shaft_reference_z_mm": 500.0,
+  "transaxle": {
+    "bell_length_mm": 190.0,
+    "bell_radius_mm": 170.0,
+    "case_width_mm": 310.0,
+    "case_height_mm": 300.0,
+    "differential_radius_mm": 150.0,
+    "output_flange_half_span_mm": 250.0,
+    "status": "schematic_housing_and_differential_no_selected_product_or_torque_rating"
+  },
+  "turbos": {
+    "centres_mm": [[2320.0, -470.0, 590.0], [2320.0, 470.0, 590.0]],
+    "housing_spacing_mm": 150.0,
+    "scroll_radius_mm": 77.0,
+    "scroll_tube_radius_mm": 38.0,
+    "status": "two_schematic_turbochargers_no_supplier_dimensions"
+  },
+  "halfshafts": {
+    "shaft_radius_mm": 22.0,
+    "cv_joint_radius_mm": 46.0,
+    "status": "two_rear_halfshafts_with_inner_outer_CV_joints_no_strength_or_travel_validation"
+  },
+  "limitations": [
+    "Row alignment is geometrically corrected; crankshaft datum and scan scale remain unmeasured.",
+    "Transmission and turbo housings are schematic PicoGK geometry with explicit hypothetical dimensions.",
+    "The front axle is a reference line joining independent hubs, not a solid driven axle.",
+    "Suspension links, brakes and structural attachment interfaces are not reconstructed."
+  ]
+}

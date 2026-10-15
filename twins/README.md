@@ -17,7 +17,7 @@ are in [docs/DIGITAL_TWIN.md](../docs/DIGITAL_TWIN.md).
 | [`993-engine-cooling-fan-system-f0/`](993-engine-cooling-fan-system-f0/) | 993 engine cooling fan housing and impeller subassembly; `F1_envelope` | `TWIN-993-ENGINE-COOLING-FAN-SYSTEM-F0` |
 | [`993-exhaust-tip-ti-f0/`](993-exhaust-tip-ti-f0/) | evidence for the titanium F1 variant of the oval exhaust tip (Ti-6Al-4V and Ti-6242 routes, LPBF screen) | part record `993-EXH-OVAL-TIP-TI-F1-0001` |
 | [`993-headlamp-spring-hook-alsi10mg-f0/`](993-headlamp-spring-hook-alsi10mg-f0/) | 993 headlamp spring repair hook in AlSi10Mg; `F1_envelope` | `TWIN-993-HEADLAMP-SPRING-HOOK-ALSI10MG-F0` |
-| [`993-intercooler-bracket-ti-f0/`](993-intercooler-bracket-ti-f0/) | 993 Turbo/GT2 intercooler bracket in titanium; `F1_envelope` | `TWIN-993-INTERCOOLER-BRACKET-TI-F0` |
+| [`993-intercooler/`](993-intercooler/README.md) | every 993 intercooler workstream in one place: 750 hp core sizing, architecture, hot weather, core families, counterflow passes, and the titanium bracket twin under [`bracket-ti-f0/`](993-intercooler/bracket-ti-f0/) (`F1_envelope`) | README, `TWIN-993-INTERCOOLER-BRACKET-TI-F0` |
 | [`993-m64-60-piston-gallery-f0/`](993-m64-60-piston-gallery-f0/) | M64/60 CP1 piston with closed oil gallery; `F1_envelope` | `TWIN-993-M64-60-PISTON-GALLERY-F0` |
 | [`993-oval-exhaust-tip-in625-f0/`](993-oval-exhaust-tip-in625-f0/) | 993 oval exhaust tip in IN625; `F1_envelope` | `TWIN-993-OVAL-EXHAUST-TIP-IN625-F0` |
 | [`993-reference-envelope/`](993-reference-envelope/README.md) | parametric bounding cage of the 993 USA profile from seven manual dimensions; not the body | README |

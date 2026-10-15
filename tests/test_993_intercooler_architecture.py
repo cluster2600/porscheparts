@@ -6,7 +6,7 @@ from pathlib import Path
 import unittest
 
 ROOT=Path(__file__).resolve().parents[1]
-STUDY=ROOT/'twins/993-installed-cooling-f1/intercooler-750'
+STUDY=ROOT/'twins/993-intercooler/750-hp'
 ARCH=STUDY/'architecture'
 spec=importlib.util.spec_from_file_location('cooling_architecture',ARCH/'source/compare.py')
 M=importlib.util.module_from_spec(spec);spec.loader.exec_module(M)
