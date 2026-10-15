@@ -26,8 +26,8 @@ whole length): the mean of a whole section mixes in its distortion, the
 roof rising while the floor sinks.
 
 Every value is the one two solves agree on (torsion_monocoque.solve_repeated
-explains why), at three densities of the shell; S3 converges from above,
-so only ratios that hold across them are used. These are values of this
+explains why), at three densities of the shell, in S6 shells (S3, used
+until 2026-10-12, locks in bending: element_check.py). These are values of this
 model under this load, not of a vehicle: no glass, no doors, no
 suspension, the supports and the load introduction are idealised.
 

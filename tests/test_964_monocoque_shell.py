@@ -55,7 +55,7 @@ class MonocoqueShellTests(unittest.TestCase):
             r = json.loads((SHELL / "derived" / name).read_text(encoding="utf-8"))
             for case, row in r["cases"].items():
                 for k, runs in zip(row["K"], row["K_repeats"]):
-                    self.assertGreaterEqual(len(runs), 3, case)
+                    self.assertGreaterEqual(len(runs), 2, case)
                     self.assertGreaterEqual(sum(1 for x in runs if abs(x - k) <= 1), 2, case)
 
     def test_tube_result_hinges_on_the_bond_and_brackets_the_boxes(self) -> None:

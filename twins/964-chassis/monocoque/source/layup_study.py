@@ -19,7 +19,7 @@ added ranks them. F1 then follows a fixed rule, at the mass of F0:
 2. take 0.5 mm off the family with the lowest cabin return, never below
    1.5 mm;
 3. give the freed mass to the families in order of cabin return, at most
-   0.5 mm each: a thicker skin inverts S3 elements on the clipped edges.
+   0.5 mm each, so that each step stays within the sensitivity measured.
 
 Two meshes, every K the value two solves agree on, K at the load points and
 the cabin's own K between d 400 and 1950 mm. Thicknesses and the 1.5 mm
@@ -123,7 +123,7 @@ def main():
 def f1(out):
     """The F1 revision from the sensitivities in out, at the F0 mass: the
     freed mass goes to the families in order of cabin return, at most
-    STEP_MM each (thicker skin inverts S3 elements on the clipped edges)."""
+    STEP_MM each, within the sensitivity measured."""
     finest = {f: r["K_cabin_per_kg"][-1] for f, r in out["sensitivity"].items()}
     order = sorted(finest, key=finest.get, reverse=True)
     worst = min((f for f in finest if F0_MM[f] - STEP_MM >= MIN_MM and f != order[0]), key=finest.get)

@@ -27,16 +27,17 @@ hypothesis. CFRP is the quasi-isotropic carbon of ../../fea/laminate.py.
 Sandwich floor and bulkheads count by their two faces only (2.4 mm of
 carbon): membrane stiffness right, bending under-estimated, so on the soft
 side; an equivalent 41 mm shell with the sandwich's bending stiffness
-inverts S3 elements once the mesh is refined. The core is in the mass.
+inverted the expanded S3 elements once the mesh was refined. The core is
+in the mass.
 
-The run is linear S3, which converges from above (../../fea/README.md).
-Every case is solved at three densities of the shell (210, 300 and 420
-sections, points per section in proportion); only ratios that hold across
-them are used. Two other checks were tried and rejected: S6 elements (the
-slivers left by the aperture clip make the open shell collapse, K = 63
-N.m/deg) and splitting every triangle in four (the direct solver needs more
-than 12 GB on the monocoque). These are values of this model, not of a
-vehicle.
+The run is linear, in quadratic S6 shells (torsion.ELEMENT). Until
+2026-10-12 it was S3, which locks in bending and over-stated every K here,
+the open shell about ten times, the monocoque about twice
+(element_check.py; ../../fea/README.md had shown S3 too stiff). Every case
+is solved at three densities of the shell (210, 300 and 420 sections,
+points per section in proportion); K rises with refinement, a few per
+cent on the last step for the monocoque, so the finest value is still a
+little low. These are values of this model, not of a vehicle.
 
     python3 torsion_monocoque.py           # cadsim image, three densities
     python3 torsion_monocoque.py --quick   # published density only
@@ -62,7 +63,7 @@ CHANNELS = ["door", "quarter_window", "rear_arch", "front_arch", "windscreen",
             "rear_window", "front_lid", "engine_lid", "engine_bay_underside"]
 SILL_DEPTH_MM = 140.0          # < the 150 mm corner radius of the section
 SMOOTHING_PASSES = 20          # normal smoothing before the offset
-REPEATS = 3                    # solves per value at least; two must agree
+REPEATS = 2                    # solves per value at least; two must agree
 
 CARBON = laminate.quasi_isotropic(laminate.reduced_stiffness(**laminate.LAMINA["carbon"]))
 CARBON["rho"] = laminate.LAMINA["carbon"]["rho"]
@@ -243,10 +244,12 @@ def twist(p, u, s, stations):
 
 
 def solve_repeated(pts, tri, secs, rear, fl, fr, beams=(), n=REPEATS, most=7, equations=()):
-    """The K that two solves agree on. CalculiX now and then returns a K
+    """The K that two solves agree on. CalculiX now and then returned a K
     too high on the same input (6 of 21 triples on 2026-10-10, +2% to
-    +60%, never too low), while a correct solve repeats to the unit. So: n
-    solves, then more until two agree within 0.01%, at most `most`."""
+    +60%, never too low), while a correct solve repeats to the unit. The
+    cause was multi-threaded SPOOLES; torsion.run now solves on one thread
+    and this check stays as a guard: n solves, then more until two agree
+    within 0.01%, at most `most`."""
     runs = []
     while len(runs) < most:
         runs.append(tr.solve(pts, tri, secs, rear, fl, fr, beams=beams, equations=equations))
@@ -306,7 +309,7 @@ def main():
         "load_case": {"force_N": tr.FORCE_N, "clamp": "d 2050-2450, z 450-720, |y| > 0.8 W",
                       "loads": "d -200..150, z 470-640, |y| > 0.72 W"},
         "meshes": meshes,
-        "mesh_note": "K lists are at the densities of 'meshes', coarsest first, each the value two of K_repeats agree on; S3 converges from above, so only ratios that hold across densities are used",
+        "mesh_note": "K lists are at the densities of 'meshes', coarsest first, each the value two of K_repeats agree on; S6 shells, K rises with refinement",
         "ratios": {"monocoque / open shell, steel": ratio("monocoque, 0.8 mm steel", "open shell, 0.8 mm steel"),
                    "monocoque / open shell, CFRP": ratio("monocoque, CFRP layup", "open shell, CFRP layup"),
                    "CFRP / steel, monocoque": ratio("monocoque, CFRP layup", "monocoque, 0.8 mm steel")},

@@ -24,8 +24,9 @@ re-guessed here:
   plus 40 mm of the skin is tied by short stiff beams to every skin node
   within 20 mm of its tangent point: a bonded strip about 40 mm wide
   (ASSUMED). Tied to a single skin node, as first done, the tube sank into
-  the skin as the mesh was refined and K lost 15% per refinement. Checked on a cantilever plate with a tube: 12%
-  stiffer than composite beam theory, the side S3 errs on;
+  the skin as the mesh was refined and K lost 15% per refinement. Checked
+  on a cantilever plate with a tube, in S3 (before 2026-10-12): 12% stiffer
+  than composite beam theory;
 - floor and bulkheads: the two 1.5 mm faces, as torsion_monocoque.py counts
   sandwiches (the core is in the mass).
 
