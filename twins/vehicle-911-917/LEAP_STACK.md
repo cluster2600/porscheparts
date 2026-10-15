@@ -113,12 +113,63 @@ Outputs include ten separate wall/air/core STL and VDB files, the four-field
 exchange VDB, five native images, a review board and a hashed JSON receipt.
 The board only arranges native captures; it does not invent geometry.
 
+## Linux reproduction — 15 October 2026
+
+The r3 study was regenerated natively on a Linux host (WSL2, Ubuntu 24.04,
+OpenGL through Mesa D3D12). It is recorded separately in
+[leap-f16-linux-receipt-20261015.json](leap-f16-linux-receipt-20261015.json);
+the Mac result and `preview/leap-f16.png` above are unchanged.
+
+- **Inputs.** The F15 context is a Linux regeneration
+  (`work/911-917-picogk-f15-linux-20261015`), not the Mac F15 baseline. The
+  LEAP root was assembled by `source/prepare_linux_leap_root.py`: PicoGK 2.3.0
+  and SkiaSharp 3.119.0 from the NuGet cache, native runtime commit
+  `0f26321c18ed878a7820ef769c38fd5d49d39242`, .NET SDK 9.0.318, and the same
+  ShapeKernel and LatticeLibrary revisions as above, verified with
+  `git rev-parse HEAD` on clean checkouts. Every copied file is hashed into the
+  root's `setup/installation.json`, which the runner checks before building.
+- **Result.** Run `work/911-917-leap-f16-r3-linux-d` reproduces every metric
+  published for the Mac run: solid fraction 24.40856%, 567 cells before
+  clipping, 393,293 scalar and 393,293 vector values compared in both
+  directions, the negative control rejected, 45 checks and the same four
+  intersections (each tail duct against `body_shell` and `tail_plenum`). The
+  raw-STL inspector passed all ten exports. Byte equality with the Mac exports
+  was **not** checked: the Mac per-file hashes are not in this repository.
+- **Repeatability on Linux.** Against the earlier complete attempt `-c`, the
+  STL and capture bytes, volumes and check results are identical. Every VDB
+  differs only within its first 57 bytes, the header region that holds a
+  per-file UUID, so VDB hashes are not expected to repeat between runs.
+- **Native exit.** The process segfaults (return code −11) during teardown,
+  after PicoGK has logged `Done.`. `check_native_exit` accepts only that exact
+  case with `report.json` present; any other exit fails the run, and
+  `verify_output` then re-hashes every export. The native program also waits
+  until each TGA capture has its full size before hashing it.
+
+```sh
+. ~/picogk/env.sh
+python3 twins/vehicle-911-917/source/prepare_linux_leap_root.py \
+  --output ~/picogk/leap-root-linux-<date>
+flock /tmp/porscheparts-heavy.lock ~/picogk/run-capped.sh -m 6G \
+  python3 twins/vehicle-911-917/source/run_leap_f16.py \
+  --leap-root ~/picogk/leap-root-linux-<date> \
+  --baseline work/911-917-picogk-f15-linux-20261015 \
+  --output work/911-917-leap-f16-linux-new
+```
+
+Run the Python steps in an environment that has NumPy and Pillow; the
+inspector also needs trimesh and SciPy. Set `PICOGK_F16_RESULT` to the run
+named in the receipt to check the receipt against it. Earlier Linux attempts
+(`-r3-linux`, `-b`, `-c`) are retained in local `work/` and are not used as
+results. The Linux build reported 35 upstream obsolete-API warnings and zero
+errors, as the first Mac build did.
+
 ## Dependency provenance
 
 The existing installation is reused without copying third-party source into
 this repository or downloading new packages. Original Apache-2.0 notices are
-retained in that installation. The recorded revision is the installation's
-provenance claim, verified here by file hashes, not a fresh Git checkout.
+retained in that installation. On the Mac, the recorded revision is the
+installation's provenance claim, verified by file hashes, not a fresh Git
+checkout. On the Linux root it was verified with Git on clean checkouts.
 
 - [ShapeKernel](https://github.com/leap71/LEAP71_ShapeKernel/tree/554bce4791d2676ed00bd6704f6eb010111a7fd3), `554bce4791d2676ed00bd6704f6eb010111a7fd3`.
 - [LatticeLibrary](https://github.com/leap71/LEAP71_LatticeLibrary/tree/81c3c7b2064c19e573c38d76ac09bf1cd2f562d5), `81c3c7b2064c19e573c38d76ac09bf1cd2f562d5`.

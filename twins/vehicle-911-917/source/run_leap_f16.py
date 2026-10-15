@@ -128,6 +128,19 @@ def board(output, r):
             im.convert("RGB").save(output / (view["id"] + ".png"))
 
 
+def check_native_exit(returncode, args, output):
+    """Accept only a SIGSEGV raised after PicoGK closed its log and wrote report.json.
+
+    Under WSLg the native viewer can segfault during process teardown. Any other
+    non-zero exit, or that signal before the log reads "Done.", is a failure.
+    verify_output still re-hashes every export after this check.
+    """
+    log = output / "native.log"
+    closed = log.is_file() and log.read_text(errors="replace").rstrip().endswith("Done.")
+    if returncode != -11 or not closed or not (output / "report.json").is_file():
+        raise subprocess.CalledProcessError(returncode, args)
+
+
 def run(leap, baseline, output, config_path=STUDY / "study.json"):
     config = json.loads(config_path.read_text()); validate_config(config)
     old, _ = verify_report(baseline)
@@ -157,12 +170,7 @@ def run(leap, baseline, output, config_path=STUDY / "study.json"):
     finally:
         lock.LOCK.unlink(missing_ok=True)
     if native.returncode != 0:
-        # Under WSLg the process can segfault at exit, after PicoGK has closed its log.
-        # Only that case is tolerated; verify_output still checks every export below.
-        log = output / "native.log"
-        closed = log.is_file() and log.read_text(errors="replace").rstrip().endswith("Done.")
-        if native.returncode != -11 or not closed or not (output / "report.json").is_file():
-            raise subprocess.CalledProcessError(native.returncode, native.args)
+        check_native_exit(native.returncode, native.args, output)
         (build_dir / "native-exit.json").write_text(json.dumps(
             {"returncode": native.returncode, "after_log_closed": True}) + "\n")
     result = verify_output(output); board(output, result)
@@ -176,6 +184,7 @@ if __name__ == "__main__":
     parser.add_argument("--baseline", type=Path, default=ROOT / "work/911-917-picogk-f15")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--config", type=Path, default=STUDY / "study.json",
-                        help="routing trial; trials after r3 live in leap-f16/trials/")
+                        help="routing trial; the default study.json is the retained r3 trial, "
+                             "and any other trial must be passed explicitly")
     args = parser.parse_args()
     run(args.leap_root.resolve(), args.baseline.resolve(), args.output.resolve(), args.config.resolve())
