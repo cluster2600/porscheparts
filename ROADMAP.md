@@ -10,7 +10,7 @@ flowchart LR
     P3["Phase 3 — Titanium<br/>engineering twin<br/>no manufacturing; all items open"]:::open
     P4["Phase 4 — Public catalog<br/>all items open"]:::open
     P0 --> P1 --> P2 --> P3 --> P4
-    COV["Cross-cutting: twin coverage<br/>share of curb weight, via make twin<br/>30.5% reached; target 100%"]:::open
+    COV["Cross-cutting: twin coverage<br/>share of curb weight, via make twin<br/>34.7% reached; target 100%"]:::open
     OUT["Initially out of scope<br/>selling parts, road homologation,<br/>replacing the load-bearing structure"]:::stop
     classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
     classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
@@ -181,7 +181,8 @@ sourced parts, via `make twin`.
 
 | Milestone | Coverage | State |
 |---|---:|---|
-| First survey | 30.5% | reached on August 28, 2026, 417.5 kg of 1,370 kg |
+| First survey | 30.5% | reached on August 28, 2026, 417.5 kg of 1,370 kg, with an unsourced 186.9 kg engine mass |
+| Engine mass sourced | 34.7% | October 15, 2026, 476.0 kg of 1,370 kg: the workshop manual's 232 kg engine for manual transmission (224 kg Tiptronic) replaces the unsourced figure; no Turbo engine mass is sourced |
 | Complete body and trim | ~45% | in progress |
 | Detailed powertrain | ~60% | overall engine known, parts to be detailed |
 | Running gear and brakes | ~75% | not started |
@@ -206,8 +207,9 @@ The factory parts catalog provided the framework: ten systems, 239 illustrations
 | 0xx Consumables | 171 | 4 |
 
 Two coverages coexist, and they do not say the same thing: **0.18% of
-references** carry a documented mass, but those few parts account for **30.5%
-of curb weight**. The twin fills up by mass before it fills up by count.
+references** carry a documented mass, but those few parts, with the sourced
+engine mass, account for **34.7% of curb weight**. The twin fills up by mass
+before it fills up by count.
 
 ### Position — started with a reference envelope
 
