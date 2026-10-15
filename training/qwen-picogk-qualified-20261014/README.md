@@ -1,0 +1,242 @@
+# Independent PicoGK 50/60 qualification and request contracts
+
+**Current result:** the supported-syntax continuation passes **54/60 on its
+fresh final set**, against **12/60 for the retained baseline on that same set**.
+It passes 53/60 development, 60/60 canonical-input development and all 64 old
+native tasks, without losing a retained-baseline pass. The qualified command
+is installed on the project Mac; the legacy command remains the rollback.
+See [the qualified result](results-002.json) and the rejected predecessor below.
+
+This implements the [14 October roadmap](../qwen-picogk-robustness-20261013/ROADMAP.md).
+It compares the retained r3 and completed paired adapters on fresh five-language
+requests, separates raw-model and canonical-input accuracy, and resumes local
+MLX training only if the paired candidate misses development or retention gates.
+The historical experiment's rejected results and closed final set stay unchanged.
+
+## Scope and registered gates
+
+The course covers cylinder, pipe, washer, BCC cell, synthetic thread cutter and
+missing/unverified-interface refusal. Its 60 development and 60 reserved final
+requests each contain 12 examples per language and ten refusal cases. Selection
+requires 50/60 raw passes, at least 8/12 in each language, all ten refusals,
+48/48 old native plans, 16/16 old native code tasks and no lost retained-baseline
+pass on fresh or labelled historical development requests. A canonical-input
+score cannot substitute for a raw score.
+
+Owner-authored dimensional intents are disjoint from old course/paired/legacy
+intents and across new partitions. Training contains 300 new geometric intents
+with radius/diameter pairs, 120 refusals, and the verified 688-row old replay
+twice: 2,096 rows in total. Phrase wrappers and field presentation differ across
+training, development and reserved final; recipes and some field vocabulary
+remain shared. This is bounded synthetic evaluation, not unseen API-family
+generalisation or Porsche inspection evidence.
+
+At most one fixed 240-step continuation at 0.0000025 is allowed, from the paired
+adapter. It retains the same base, context, greedy decoding and EOS boundary.
+One candidate is selected on development before the new final set is opened
+once. Failed scores, preparation directories and native timeouts are preserved.
+
+## Running on the existing recovered Mac
+
+The scripts depend on the archived prior experiments and hash-pinned local MLX
+runtime. They are not a fresh-machine installer. Use a new private directory;
+weights, queries, raw responses, meshes and logs remain outside Git.
+
+```sh
+~/Developer/Qwen993/venv/bin/python \
+  training/qwen-picogk-qualified-20261014/qualify.py prepare \
+  --work ~/Developer/Qwen993/qualified-20261014
+~/Developer/Qwen993/venv/bin/python \
+  ~/Developer/Qwen993/qualified-20261014/source/training/qwen-picogk-qualified-20261014/qualify.py run \
+  --work ~/Developer/Qwen993/qualified-20261014
+```
+
+Preparation verifies the old frozen inputs and recovered base, then copies code,
+native dependencies, adapter inputs and data into this new experiment. macOS
+uses APFS copy-on-write clones for the native runtime to limit disk consumption.
+The protocol is written and hash-frozen before inference. Execution uses the
+copied scripts; later repository edits cannot silently change this trial.
+Each registered file is reverified through the existing bounded integrity
+checker before and after evaluation. A failed driver does not produce a
+qualified profile. Re-running into an existing output directory is forbidden.
+
+Old SDK files under Documents may be iCloud placeholders. Preparation records
+every such SDK relocation and verifies the exact historical expected hash
+against the corresponding retained local SDK file. Other input types receive
+no substitute. The new native copy lives under Developer rather than iCloud
+Documents. This restores available bytes without rewriting historical hashes
+or asserting that the original placeholder paths were readable.
+
+## Numeric boundary
+
+[request_contract.py](request_contract.py) requires explicit named fields,
+units (`mm`, `cm`, `m`) and quantity types (`length`, `radius`, `diameter`).
+French/German decimal commas are supported; grouping, ambiguous quantity types,
+missing fields, booleans, nonfinite values and out-of-bounds recipes fail closed.
+Only requests marked synthetic can generate a geometry proposal. Missing or
+unverified interfaces return `needs_measurement` without calling the model.
+
+For a pipe, named `length`, `outer` and `inner` fields map to
+`[length, outerRadius, innerRadius]`. A value's quantity describes the supplied
+measurement, not its final stored role. BCC `beam` stores a diameter, so an
+explicit beam radius is doubled. Field order has no effect.
+
+Example request file:
+
+```json
+{
+  "recipe": "pipe",
+  "language": "fr",
+  "interface_status": "synthetic",
+  "fields": {
+    "outer": {"value": "0,85", "unit": "cm", "quantity": "radius"},
+    "inner": {"value": "0,4", "unit": "cm", "quantity": "diameter"},
+    "length": {"value": "0.012", "unit": "m", "quantity": "length"}
+  }
+}
+```
+
+Its independently required parameters are `[12,8.5,2]` mm. The canonical prompt
+is derived only from this request. It never reads evaluation gold answers.
+The returned model plan must match the independently converted request and
+reach EOS; plausible but different values are rejected. This assisted mode
+does not establish raw multilingual understanding.
+
+## Qualified inference and rollback
+
+Only a successful raw development, native retention and fresh final result
+creates `qualified-profile.json`. Install after qualification:
+
+```sh
+~/Developer/Qwen993/venv/bin/python \
+  ~/Developer/Qwen993/qualified-20261014/source/training/qwen-picogk-qualified-20261014/qualify.py install \
+  --work ~/Developer/Qwen993/qualified-20261014
+qwen-picogk-qualified --request ./synthetic.json --output ./proposal.json
+```
+
+The installed command pins its profile hash. The loader checks raw thresholds,
+retention, receipt hashes, path containment, selected weights, frozen inputs,
+runtime packages and protocol before inference. It preserves exclusive runtime
+locking and rejects existing output files. It returns a contract-verified plan;
+it executes no geometry or model-generated code. The existing `qwen-picogk`
+command remains available with its exact retained r3 adapter and interface.
+
+On this Mac the installed profile is under
+`~/Developer/Qwen993/qualified-20261014-r3/`. A real French pipe request with
+mixed metres/centimetres and radius/diameter fields returns `[12,8.5,2]` mm
+with independently verified intent. An unverified-interface request returns
+`needs_measurement` without calling the model. The legacy launcher still
+matches its pre-installation hash. These operational smokes are separate from
+the sixty-case final score.
+
+No external Hugging Face model or dataset is imported. The roadmap's related
+CAD research informs the method; licenses and incompatible architectures remain
+as recorded. Broader library curricula are separate from this six-recipe profile.
+
+## First independent trial: completed and rejected
+
+The [first public result record](results-001.json) retains this failed outcome.
+
+The retained baseline reaches 18/60 on fresh development, while the prior
+paired candidate reaches 42/60. One preregistered 240-step continuation raises
+raw development to **58/60**, canonical-input development to **60/60**, and
+preserves **48/48 old plans and 16/16 old code tasks**. Its untouched final
+score is only **27/60**. It is rejected and produces no qualified profile.
+The final field presentation places values before names in parentheses;
+training used names before values. This exposes a substantial syntax-shift
+limit. Neither the score nor the final-case status is retroactively changed.
+
+The first preparation hit 4,111 iCloud SDK placeholders; byte-identical local
+SDK aliases and explicit re-download of ten small existing archived inputs
+restore integrity. A missing transitive `corpus` import then prevented a
+snapshot startup, before any inference. Both attempts are preserved. The
+completed trial lives at `~/Developer/Qwen993/qualified-20261014-r2`; its source
+commit is `d170b307` and all 4,936 frozen bindings pass after evaluation.
+
+## Prospective broader-syntax continuation
+
+A completed rejected final trial can be a training parent for a new protocol,
+with **new** development/final partitions excluding every preceding numeric
+intent. Its final requests cannot be reused for checkpoint selection. The
+trial's private `run-001/results.json` must match the receipt digest of its
+committed publication (`results-*.json`, status `completed_rejected_final`);
+its adapter, configuration and manifest are then checked against that pinned
+result, never against hashes it supplies alone. Example:
+
+```sh
+~/Developer/Qwen993/venv/bin/python \
+  training/qwen-picogk-qualified-20261014/qualify.py prepare \
+  --work ~/Developer/Qwen993/qualified-20261014-r3 \
+  --continuation-from ~/Developer/Qwen993/qualified-20261014-r2
+```
+
+This successor mixes the three field presentations across training and
+evaluation and supplies a generic role/unit-reading algorithm in the system
+prompt. Both adapters receive the same system. Raw user requests are still
+unconverted; no expected answer enters inference. Split wrappers and numeric
+intents differ, while syntax families are deliberately shared. This narrower
+supported-syntax course does not claim unseen-syntax generalisation. Gates,
+one conditional 240-step budget and one fresh final read remain unchanged.
+
+The completed successor uses source `e5c08ce5`, excludes 1,418 previous
+numeric intents and passes all 4,937 frozen bindings after evaluation. Its
+final language scores are English 11/12, French 11/12, German 11/12,
+Japanese 10/12 and Chinese 11/12, including all ten refusal cases. Its
+240-step correction reports validation loss 0.018 and peak memory 5.000 GB;
+the geometric/retention gates determine eligibility. The selected adapter is
+`70eaea998f78a84b6fc3bf17f155b941353c0c5510cca5640ebca187a53bf1ba`.
+No reserved case from the rejected predecessor or the original robustness
+experiment is used to select this checkpoint. The original robustness final
+remains uninferred. Canonical final accuracy has not been separately measured.
+
+## Separate library course
+
+[library_stage.py](library_stage.py) prepares source-pinned scalar/vector VDB,
+QuasiCrystals and experimental Geometry frame cards, with licence/revision
+records and separate 20/20/20 selector partitions. It uses cloned native
+Workbench/Geometry projects and admits evaluation only with a trusted qualified
+core profile. Native references must pass before model selection is measured.
+All twenty development choices must pass to open its twenty final requests.
+It runs trusted reference code, never generated code. Its fixed 160-step
+course trains a separate selector adapter; the qualified geometry adapter
+and command remain byte-identical.
+This is an operation selector with shared questions and different wrappers,
+not a geometric generalisation benchmark or full-library training claim.
+
+```sh
+~/Developer/Qwen993/venv/bin/python \
+  training/qwen-picogk-qualified-20261014/library_stage.py prepare \
+  --work ~/Developer/Qwen993/library-courses-20261014
+```
+
+Use the copied `source/training/qwen-picogk-qualified-20261014/library_stage.py`
+for its `run` action with `--work`, `--profile` and the installation's trusted
+`--profile-sha256`. The legacy installation inventory predates its final SDK
+patch. This course therefore verifies the current .NET 9.0.319/10.0.402
+toolchain against the two recorded official SDK archives and their SHA-512
+hashes, rather than pretending the earlier Workbench SDK-selection hash is
+still current.
+
+The [library result record](results-library.json) reports **20/20 development
+and 20/20 final choices**, compared with 14/20 before selector training. The
+preceding 80-step trial reaches 19/20 and leaves its final set closed. Native
+references pass six mesh/VDB recipes including QuasiCrystals, preserve both
+simulation voxel domains, check 61 scalar/vector sample positions, and pass
+all 32 experimental Geometry unit tests. All 10,150 registered inputs pass
+after evaluation. The source-grounded selector uses the same twenty questions
+with distinct wrappers across its partitions; its final is a limited format
+and operation-selection check, not an independent geometric benchmark.
+
+The selector weights are under
+`~/Developer/Qwen993/library-courses-20261014-r6/run-001/selector-adapter/`.
+They are intended only for the four-card operation selector, and do not
+replace the six-recipe geometry profile. Earlier JSON-format and test-runner
+failures remain in their original private directories. No source or SDK from
+the standalone installation was modified by the cloned reference tests.
+
+Verification: ten focused tests, real qualified-command/tamper/refusal smokes,
+strict Markdown links and report-index checks pass. Full local `make check`
+runs 3,951 tests with 251 skips, the same two existing exact-float failures
+and 27 Python 3.10/SciPy environment errors. The PR records Linux validation
+separately. No physical part, fitment, raw-mesh topology, CFD/CHT or metal
+printing process is qualified by these model scores.

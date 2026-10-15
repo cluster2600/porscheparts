@@ -1,149 +1,209 @@
-# Vérifications de livraison
+# Delivery checks
 
-Dossier préparé le 27 septembre 2026. Aucun essai matériel, montage, métrologie,
-qualification radio/routière ou certification d'origine n'est obtenu.
+Dossier prepared on September 27, 2026. No hardware test, fitting, metrology,
+radio/road qualification or certification of origin has been obtained.
 
-## Schéma natif E0 — 2 octobre 2026
+## English data and schematic text — October 14, 2026
 
-Base `0efe260` (`origin/main`), après fusion du travail E0 précédent. Nouvelle
-branche `codex/993-e0-kicad`, dans le worktree isolé existant ; aucun changement
-du répertoire principal incorporé. Ajout de trois feuilles KiCad A3 éditables,
-du projet et de sa bibliothèque locale attribuée, d'un PDF et d'un test de netlist.
-Documentation, RFQ non envoyée et backlog actualisés. Aucun achat ni fabrication.
+The prose pages were translated in PR 146. This change translates the remaining
+French text: the free-text columns of `bom.csv`, `measurements.csv`,
+`electronics/coupon-bom.csv` and `electronics/coupon-wiring.csv`, and the titles,
+notes, sheet name and two component values (`S1` "LED CUTOFF", `J2` "LOGIC / DK
+USB SEPARATE") in the three KiCad sheets. Identifiers, net names, pins,
+references, numeric values, statuses and CSV columns are unchanged. The
+schematic test expects the two new values.
 
-| Contrôle | Résultat observé |
+| Check | Observed result |
 |---|---|
-| KiCad 9.0.2, `sch erc --severity-all --exit-code-violations` | **0 erreur, 0 avertissement**, aucune exclusion ni règle désactivée |
-| Test du schéma sur export `kicadxml` frais | **172 composants, 172 nets, 541 broches** : groupes de connexions complets, valeurs, rails, 128 cathodes, chaîne des drivers, IREF, BLANK, pad thermique et broches inutilisées conformes au contrat E0 |
-| `python3 -m unittest discover -s tests -p 'test_993_rear_panel*.py' -v`, Linux avec KiCad | **17 tests réussis**, aucun ignoré |
-| Même commande sur macOS sans KiCad | 17 tests exécutés, **OK, 1 ignoré** (le schéma) ; ne remplace pas le contrôle Linux |
-| Export PDF KiCad | Trois pages A3 relues visuellement, champs lisibles, métadonnées auteur absentes ; aucun dessin de PCB |
-| `make docs-links-check reports-index-check` | Réussi, 0 lien cassé sur 641 fichiers Markdown ; index des rapports à jour |
-| `git diff --cached --check` | Réussi après suppression d'un espace final dans le texte de licence importé |
-| `make check`, Linux natif | Suite de **3 250 tests, OK, 159 ignorés**, puis contrôles F32/F34/F37 franchis. Arrêt sur `917-manufacturing-f37-lpbf-audit-check`, `/bin/sh: 1: docker: not found`, Makefile ligne 1014, code global **2** ; cibles suivantes non exécutées |
+| Schematic test, before any change | `kicad/kicad:9.0.2` container (`sha256:f36b185970d3…`), network disabled: 1 test, OK |
+| Schematic test after translation | Same container: 1 test, OK; 172 components and 541 pins compared |
+| ERC | `kicad-cli sch erc --severity-all --exit-code-violations`: exit 0, 0 errors, 0 warnings |
+| Review PDF | Re-exported with the README command; the three pages were reviewed visually, no French text left |
 
-Environnement : conteneur local Debian trixie arm64, image
+The previous PDF was exported in another environment. Re-exporting the
+unchanged schematic in this container does not give the same bytes: 538,176
+versus 539,324 bytes. The PDF is a review export, not evidence. No electrical
+content changed, and nothing here validates the coupon.
+
+## Full PicoGK concept model — October 10, 2026
+
+Base `5b7cb552`, isolated branch `codex/993-rear-panel-picogk`. The authorization
+covers a **visual concept model with provisional dimensions**. Adds the C#/JSON
+generator, four objects in a GLB, an assembled/exploded view and a
+digest/check report. No change to the E0 electronics or the website.
+
+| Check | Observed result |
+|---|---|
+| Locked restore and C# build | .NET 9.0.317 / PicoGK 2.3.0, macOS arm64: 0 errors, 0 warnings |
+| C# self-test | 8 invalid configurations refused; interior/exterior points and hollow frame checked |
+| CLI refusals | Existing directory preserved; null/incomplete JSON refused before any output is created |
+| Native PicoGK generation | 4 non-empty STL files, read back by PicoGK; two generations with identical digests |
+| Inspection and export | 4 closed, oriented, single-piece volumes; GLB read back with 4 objects and units/axes kept; 108 degenerate or duplicate faces of the display volume removed without changing its bounds |
+| Visual review | Full lens and four objects visible in the exploded view; opaque concept render, no optical simulation |
+| Targeted tests on macOS and Linux after the final export | 19 tests, OK, 1 skipped: KiCad CLI absent; 18 tests passed, including the 2 new revision/GLB checks |
+| Links and index | `make docs-links-check reports-index-check` passed, 0 broken links in 825 Markdown files |
+| Diff | `git diff --cached --check` passed |
+| `make check`, native Linux | Suite of **3,584 tests, OK, 221 skipped**; F32/F34 checks and seven F37 tests passed. Stopped at `917-manufacturing-f37-lpbf-audit-check`, `/bin/sh: 1: docker: not found`, Makefile line 1025, overall exit code **2**; later targets not run |
+
+Full suite in a local Debian trixie arm64 container, Python 3.13.5: copy on its
+Linux file system, Git index, UID/GID 1000 and umask 022; network disconnected,
+no secret or host Docker socket mounted. Cloud providers are simulated by the
+tests. The full log stays local in
+`work/993-rear-panel-picogk-20261010/make-check-linux.log`. After the last
+anti-aliasing touch-up of the image, the export and the targeted tests were
+replayed; the full suite was not repeated. No check disabled and no
+manufacturing environment announced as validated.
+
+The [detailed report](cad/preview/checks.json) links the exports to the sources
+by SHA-256. The STL files and their archive with notice stay in the ignored
+local directory `work/993-rear-panel-picogk-20261010/`; source and GLB are
+versioned. Vehicle unknowns stay absent/null: no presumed hole or fastening
+point. Self-intersections, mounting, retention, sealing, optics, thermal,
+vibration, manufacturing and compliance **not verified**. The mathematical
+closure of a mesh is not evidence of physical sealing.
+
+## Native E0 schematic — October 2, 2026
+
+Base `0efe260` (`origin/main`), after merging the previous E0 work. New
+branch `codex/993-e0-kicad`, in the existing isolated worktree; no change from
+the main working directory incorporated. Adds three editable A3 KiCad sheets,
+the project and its attributed local library, a PDF and a netlist test.
+Documentation, unsent RFQ and backlog updated. No purchase and no manufacturing.
+
+| Check | Observed result |
+|---|---|
+| KiCad 9.0.2, `sch erc --severity-all --exit-code-violations` | **0 errors, 0 warnings**, no exclusion and no rule disabled |
+| Schematic test on a fresh `kicadxml` export | **172 components, 172 nets, 541 pins**: complete connection groups, values, rails, 128 cathodes, driver chain, IREF, BLANK, thermal pad and unused pins conform to the E0 contract |
+| `python3 -m unittest discover -s tests -p 'test_993_rear_panel*.py' -v`, Linux with KiCad | **17 tests passed**, none skipped |
+| Same command on macOS without KiCad | 17 tests run, **OK, 1 skipped** (the schematic); does not replace the Linux check |
+| KiCad PDF export | Three A3 pages visually reviewed, fields legible, author metadata absent; no PCB drawing |
+| `make docs-links-check reports-index-check` | Passed, 0 broken links in 641 Markdown files; reports index up to date |
+| `git diff --cached --check` | Passed after removing a trailing space in the imported license text |
+| `make check`, native Linux | Suite of **3,250 tests, OK, 159 skipped**, then F32/F34/F37 checks passed. Stopped at `917-manufacturing-f37-lpbf-audit-check`, `/bin/sh: 1: docker: not found`, Makefile line 1014, overall exit code **2**; later targets not run |
+
+Environment: local Debian trixie arm64 container, image
 `debian:trixie-slim@sha256:a99cfc517144bc59b1978475ec53b46ecabec7e43635402ee5b77cc54cd1b20a`,
-KiCad `9.0.2+dfsg-1`, symboles `9.0.2-1`, Python 3.13.5, NumPy 2.2.4,
-Pillow 11.1.0, Node 20.19.2. Dépendances installées dans ce conteneur uniquement.
-Copie sur son système Linux, index Git local, UID/GID 1000, umask 022 ; réseau
-déconnecté avant les tests, aucun secret ni socket Docker hôte monté. Les messages
-de publication/cloud de la suite globale proviennent de simulations.
+KiCad `9.0.2+dfsg-1`, symbols `9.0.2-1`, Python 3.13.5, NumPy 2.2.4,
+Pillow 11.1.0, Node 20.19.2. Dependencies installed in this container only.
+Copy on its Linux file system, local Git index, UID/GID 1000, umask 022; network
+disconnected before the tests, no secret or host Docker socket mounted. The
+publication/cloud messages of the full suite come from simulations.
 
-Corrections de préparation : premier fichier généré refusé par KiCad (parenthèse
-de fermeture manquante par instance), corrigé avant validation ; premiers ERC
-avec avertissements d'héritage de symbole et de bibliothèque locale non chargée,
-corrigés par symboles locaux explicites et projet associé. Premier contrôle de
-liens avant ajout des nouveaux fichiers à l'index Git : cinq liens signalés absents,
-puis zéro après ajout. Aucun contrôle désactivé pour obtenir ces résultats.
+Corrections during preparation: first generated file refused by KiCad (missing
+closing parenthesis per instance), fixed before validation; first ERC runs
+with symbol inheritance and unloaded local library warnings, fixed with explicit
+local symbols and an associated project. First link check before adding the new
+files to the Git index: five links reported missing, then zero after adding them.
+No check disabled to obtain these results.
 
-Le schéma n'est **pas validé pour fabrication** : empreintes non attribuées,
-aucun PCB/DRC, aucune simulation analogique ni mesure de courant, température,
-extinction ou alimentation parasite. Revue indépendante puis routage et essais
-E0 restent ouverts. Le calcul de puissance, les coûts et les limites du MCU
-bloqué du 28 septembre restent des hypothèses inchangées. `make check` global
-doit encore être exécuté dans un environnement disposant du moteur Docker et
-des images imposées par le dépôt ; son résultat n'est pas annoncé réussi.
+The schematic is **not validated for manufacturing**: footprints not assigned,
+no PCB/DRC, no analog simulation and no measurement of current, temperature,
+shutdown or parasitic power. Independent review, then routing and E0 tests
+remain open. The power calculation, the costs and the hung-MCU limits from
+September 28 remain unchanged assumptions. The global `make check` must still be
+run in an environment with the Docker engine and the images the repository
+requires; its result is not announced as passed.
 
-## Complément électronique E0 — 28 septembre 2026
+## E0 electronics supplement — September 28, 2026
 
-Ajout du [circuit de principe E0](electronics/coupon.md), des BOM/connexions CSV,
-de l'encodeur TLC5947 et du calcul de puissance. La fiche LED exacte remplace
-la fiche d'exemple d'une autre référence. Sources S01 et S31–S34 relues.
+Adds the [E0 schematic circuit](electronics/coupon.md), the BOM/connection CSV files,
+the TLC5947 encoder and the power calculation. The exact LED datasheet replaces
+the example datasheet of another reference. Sources S01 and S31–S34 reviewed.
 
-| Contrôle | Résultat observé sur ce complément |
+| Check | Result observed on this supplement |
 |---|---|
-| `python3 -m unittest discover -s tests -p 'test_993_rear_panel*.py' -v` | **16 tests réussis** sur macOS/Python 3.10.11, dont 6 nouveaux : chaîne SPI simulée indépendamment sur chacun des 128 pixels, plafond/valeurs invalides, noir après défaut, coordonnées/broches, calculs et génération sans écrasement |
-| `coupon_driver.py --output-dir /tmp/993-coupon-e0-20260928` et variante `--pitch-mm 4` | Deux cartes de 128 connexions, deux trames de 216 octets par variante, calculs JSON ; 2,46 mA nominal/canal et allocation coupon ≈2,114 W sous hypothèses, pas mesure |
-| CSV et documentation | 19 lignes BOM, 34 lignes de connexions, colonnes cohérentes ; `make docs-links-check reports-index-check` réussi, 0 lien cassé sur 556 fichiers Markdown ; `git diff --check` réussi |
-| `make check` sous Linux natif dans conteneur local | **3 062 tests, OK, 142 ignorés**, puis tests F32/F34/F37 franchis ; arrêt sur `917-manufacturing-f37-lpbf-audit-check`, `/bin/sh: 1: docker: not found`, code make 2. Les cibles suivantes restent non exécutées |
+| `python3 -m unittest discover -s tests -p 'test_993_rear_panel*.py' -v` | **16 tests passed** on macOS/Python 3.10.11, including 6 new ones: SPI chain simulated independently on each of the 128 pixels, ceiling/invalid values, black after fault, coordinates/pins, calculations and generation without overwriting |
+| `coupon_driver.py --output-dir /tmp/993-coupon-e0-20260928` and variant `--pitch-mm 4` | Two maps of 128 connections, two 216-byte frames per variant, JSON calculations; 2.46 mA nominal/channel and coupon allocation ≈2.114 W under assumptions, not measurement |
+| CSV and documentation | 19 BOM rows, 34 connection rows, consistent columns; `make docs-links-check reports-index-check` passed, 0 broken links in 556 Markdown files; `git diff --check` passed |
+| `make check` under native Linux in a local container | **3,062 tests, OK, 142 skipped**, then F32/F34/F37 tests passed; stopped at `917-manufacturing-f37-lpbf-audit-check`, `/bin/sh: 1: docker: not found`, make code 2. Later targets remain not run |
 
-Même image locale que décrite ci-dessous, Python 3.11, NumPy 2.4.6, Pillow 12.3.0,
-copie sur le système Linux du conteneur, UID/GID 1000, umask 022. Réseau déconnecté
-avant l'exécution du dépôt ; aucun socket Docker hôte ni secret monté. Les tests
-de fournisseurs cloud utilisent leurs simulations : aucune machine payante lancée.
-Première copie rejetée par `validate_catalog.py` à cause de fichiers AppleDouble
-`._*` ajoutés par l'archivage macOS (UnicodeDecodeError). L'archive a été recréée
-avec `COPYFILE_DISABLE=1` et sans attributs étendus, puis la commande relancée ;
-aucun fichier catalogue ni garde de validation modifié pour la faire passer.
+Same local image as described below, Python 3.11, NumPy 2.4.6, Pillow 12.3.0,
+copy on the container's Linux file system, UID/GID 1000, umask 022. Network
+disconnected before running the repository; no host Docker socket or secret
+mounted. The cloud provider tests use their simulations: no paid machine launched.
+First copy rejected by `validate_catalog.py` because of AppleDouble `._*` files
+added by macOS archiving (UnicodeDecodeError). The archive was recreated
+with `COPYFILE_DISABLE=1` and without extended attributes, then the command rerun;
+no catalogue file or validation guard modified to make it pass.
 
-À la livraison du 28 septembre, `kicad-cli` n'était pas disponible : aucun ERC/DRC exécuté,
-et aucun fichier EDA natif ou export de fabrication annoncé. Les tests valident
-uniquement les données et calculs hôtes. Revue électronique, schéma natif, routage,
-alimentation automobile, watchdog matériel, mesures optiques/thermiques et portage
-MCU/BLE restent ouverts. Le coupon E0 nécessite une surveillance humaine au banc.
+At the September 28 delivery, `kicad-cli` was not available: no ERC/DRC run,
+and no native EDA file or manufacturing export announced. The tests validate
+only the host data and calculations. Electronics review, native schematic, routing,
+automotive power supply, hardware watchdog, optical/thermal measurements and
+MCU/BLE porting remain open. The E0 coupon requires human supervision on the bench.
 
-Les résultats ci-dessous concernent la livraison initiale du 27 septembre.
+The results below concern the initial delivery of September 27.
 
-## Révision et périmètre
+## Revision and scope
 
-Base distante : `967f40c`. Branche : `codex/993-programmable-rear-panel`.
-20 fichiers de préparation sous `docs/projects/993-programmable-rear-panel/`
-et un fichier de tests dédié. Les modifications préexistantes du répertoire
-principal ne sont pas incorporées. Accès GitHub en lecture et droit ADMIN vérifiés.
-Aucun achat, demande de devis envoyée ou déploiement commercial.
+Remote base: `967f40c`. Branch: `codex/993-programmable-rear-panel`.
+20 preparation files under `docs/projects/993-programmable-rear-panel/`
+and one dedicated test file. Pre-existing changes in the main working directory
+are not incorporated. GitHub read access and ADMIN right verified.
+No purchase, quote request sent or commercial deployment.
 
-## Résultats reproductibles
+## Reproducible results
 
-| Contrôle | Résultat réellement observé |
+| Check | Result actually observed |
 |---|---|
-| `python3 -m unittest discover -s tests -p 'test_993_rear_panel.py' -v` | **10 réussis**, macOS, Python 3.10.11, Pillow 11.3.0 ; dernière vérification ciblée après nettoyage import inutile |
-| `python3 docs/projects/993-programmable-rear-panel/software/panel_simulator.py` | Démonstration deux trames ASCII, puis extinction ; pas de radio ni matériel |
-| `python3 docs/projects/993-programmable-rear-panel/software/cost_model.py` | Fourchettes historiques et ventilations cohérentes ; cible 250 ; NRE partiel 21 230–64 980 ; origine illustrative 115/205=56,10 % |
-| Variante `cost_model.py --rd-ch 20700 --units 1000` | 60,12 % illustratifs, aucune attestation ; hypothèses et sensibilité décrites dans budget.md |
-| CSV et liens Markdown locaux | Colonnes cohérentes des quatre CSV ; toutes destinations locales existantes |
-| `git diff --cached --check` | Réussi |
-| `make docs-links-check reports-index-check` sous Linux | Réussi : 0 lien cassé sur 555 fichiers Markdown ; index des rapports à jour |
-| Maquette HTML | Page servie uniquement sur loopback et vérifiée dans le navigateur : rendu bureau et avertissements visibles ; serveur arrêté. Pas de validation mobile, pas de test de compatibilité app |
-| Suite globale, via `make check` dans Linux natif | **3 056 tests, OK, 142 ignorés**, Python 3.11.15, NumPy 2.4.6, Pillow 12.3.0 ; compte incluant les tests de ce projet |
-| Cibles suivantes de `make check` | F32/F34 et tests F37 publiés franchis ; arrêt ensuite sur cible Docker décrite ci-dessous |
+| `python3 -m unittest discover -s tests -p 'test_993_rear_panel.py' -v` | **10 passed**, macOS, Python 3.10.11, Pillow 11.3.0; last targeted check after removing an unused import |
+| `python3 docs/projects/993-programmable-rear-panel/software/panel_simulator.py` | Demonstration of two ASCII frames, then shutdown; no radio and no hardware |
+| `python3 docs/projects/993-programmable-rear-panel/software/cost_model.py` | Consistent historical ranges and breakdowns; target 250; partial NRE 21,230–64,980; illustrative origin 115/205=56.10% |
+| Variant `cost_model.py --rd-ch 20700 --units 1000` | 60.12% illustrative, no attestation; assumptions and sensitivity described in budget.md |
+| CSV and local Markdown links | Consistent columns in the four CSV files; all local targets exist |
+| `git diff --cached --check` | Passed |
+| `make docs-links-check reports-index-check` under Linux | Passed: 0 broken links in 555 Markdown files; reports index up to date |
+| HTML mockup | Page served only on loopback and checked in the browser: desktop rendering and warnings visible; server stopped. No mobile validation, no app compatibility test |
+| Full suite, via `make check` in native Linux | **3,056 tests, OK, 142 skipped**, Python 3.11.15, NumPy 2.4.6, Pillow 12.3.0; count includes this project's tests |
+| Later `make check` targets | F32/F34 and published F37 tests passed; then stopped at the Docker target described below |
 
-## Limite de `make check` — commande complète non réussie
+## `make check` limit — full command not passed
 
-Environnement : image locale `nikolaik/python-nodejs:python3.11-nodejs20` (arm64),
+Environment: local image `nikolaik/python-nodejs:python3.11-nodejs20` (arm64),
 image ID `sha256:8f958bdc1b4a422bfafd97cab4f69836401f616ae985d4b57a53d254f5bcb038`,
-copie sur système de fichiers Linux, utilisateur 1000:1000, umask 022, index Git
-local initialisé. NumPy/Pillow installés uniquement dans le conteneur jetable ;
-réseau déconnecté **avant** les tests. Aucun accès au moteur Docker hôte exposé au
-conteneur. Aucune dépendance projet, image verrouillée ou règle du dépôt modifiée.
+copy on a Linux file system, user 1000:1000, umask 022, local Git index
+initialized. NumPy/Pillow installed only in the disposable container;
+network disconnected **before** the tests. No access to the host Docker engine
+exposed to the container. No project dependency, locked image or repository rule
+modified.
 
-Après la suite globale réussie et des cibles supplémentaires réussies :
+After the full suite passed and additional targets passed:
 
 ```text
 /bin/sh: 1: docker: not found
 make: *** [Makefile:1013: 917-manufacturing-f37-lpbf-audit-check] Error 127
 ```
 
-La cible réclame `docker run` et une image mesh-cfd épinglée. Le `make` global
-retourne **2** ; les cibles suivantes ne sont donc pas couvertes par cette exécution.
-Il reste à relancer `make check` dans l'environnement Linux natif prévu par le
-projet avec moteur Docker et images nécessaires disponibles. Ne pas cocher « make
-check réussi » dans la PR. Les 142 tests ignorés portent sur des dépendances/
-runtimes optionnels, notamment CAO/solveurs ; ils ne constituent pas des réussites.
+The target requires `docker run` and a pinned mesh-cfd image. The global `make`
+returns **2**; the later targets are therefore not covered by this run.
+`make check` must still be rerun in the native Linux environment the project
+expects, with the Docker engine and the required images available. Do not tick
+"make check passed" in the PR. The 142 skipped tests concern optional
+dependencies/runtimes, notably CAD/solvers; they are not passes.
 
-## Tentatives antérieures consignées
+## Earlier attempts on record
 
-1. Conteneur Linux natif minimal, archive sans index Git, utilisateur root et sans
-   NumPy : 2 900 tests, 1 échec, 77 erreurs, 168 ignorés. Causes relevées : 18 erreurs
-   NumPy, 54 refus de métadonnées propriétaire/permissions de modules de garde,
-   5 appels `git ls-files` sans dépôt ; l'échec F58 refusait l'UID 0.
-2. Image existante `3dprinting993-simready-workflow:f35`, amd64 en émulation :
-   interrompue pour durée excessive avant résultat global, non comptée comme réussite.
-3. Relance native corrigée ci-dessus : ces erreurs ne réapparaissent pas ; aucun
-   code de garde ou test existant n'a été changé pour les contourner.
+1. Minimal native Linux container, archive without a Git index, root user and no
+   NumPy: 2,900 tests, 1 failure, 77 errors, 168 skipped. Causes found: 18 NumPy
+   errors, 54 refusals of owner/permission metadata on guard modules,
+   5 `git ls-files` calls without a repository; the F58 failure refused UID 0.
+2. Existing image `3dprinting993-simready-workflow:f35`, amd64 under emulation:
+   interrupted for excessive duration before an overall result, not counted as a pass.
+3. Corrected native rerun above: these errors do not reappear; no guard code or
+   existing test was changed to work around them.
 
-Les fichiers d'archive/logs de contrôle sont des artefacts locaux temporaires,
-non committés. Les messages de publication imprimés par certains tests globaux
-proviennent de simulations : le réseau du conteneur était coupé.
+The archive/check log files are temporary local artifacts, not committed. The
+publication messages printed by some global tests come from simulations: the
+container network was cut off.
 
-## Limites du produit restant ouvertes
+## Product limits still open
 
-Authentification BLE injectée par les tests, pas de chiffrement radio implémenté ;
-DFU spécifiée, pas livrée ; compatibilité MCU/iOS/Android non testée. Aucun scan,
-cote, PCB routé ou prototype réel. Pièce Anibis et coûts non vérifiés. Avis légal,
-fonctions d'origine, transmission rouge, vieillissement, alimentation automobile,
-CEM/RF, thermique, rendement et origine suisse à qualifier.
+BLE authentication injected by the tests, no radio encryption implemented;
+DFU specified, not delivered; MCU/iOS/Android compatibility not tested. No scan,
+dimension, routed PCB or real prototype. Anibis part and costs not verified.
+Legal opinion, original functions, red transmission, aging, automotive power
+supply, EMC/RF, thermal, yield and Swiss origin remain to be qualified.
 
-Les indisponibilités documentaires (portail Fedlex sans texte extrait, UNECE 403,
-texte cybersécurité non extrait) sont recensées dans sources.md. Elles empêchent
-une conclusion réglementaire définitive, pas la préparation des consultations.
+The documentary gaps (Fedlex portal with no extracted text, UNECE 403,
+cybersecurity text not extracted) are listed in sources.md. They prevent a
+definitive regulatory conclusion, not the preparation of the consultations.
