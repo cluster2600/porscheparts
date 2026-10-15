@@ -163,6 +163,14 @@ named in the receipt to check the receipt against it. Earlier Linux attempts
 results. The Linux build reported 35 upstream obsolete-API warnings and zero
 errors, as the first Mac build did.
 
+The F16 module passed 16 tests on Linux with `PICOGK_F16_RESULT` set to run
+`-d`. A full Linux `make check` in a venv with the CI pins (Python 3.12,
+NumPy 2.2.6) passed: 4,011 tests, 226 skips, zero broken links in 1,097
+Markdown files. An earlier attempt the same day had one error: an F15 native
+preflight subprocess hit its 15 s timeout while other jobs loaded the host.
+That test only runs where a local F15 build exists; it passed alone (23 s)
+and is skipped on a clean `origin/main` checkout.
+
 ## Dependency provenance
 
 The existing installation is reused without copying third-party source into
