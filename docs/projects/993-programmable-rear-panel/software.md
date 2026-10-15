@@ -1,118 +1,141 @@
-# Logiciel, firmware et protocole BLE v0
+# Software, firmware and BLE protocol v0
 
-**Contrat de prototype, non validé sur matériel.**
-[panel_simulator.py](software/panel_simulator.py) est le squelette exécutable de la
-machine d'états du firmware et du transfert. Il ne pilote ni MCU, ni LED, ni radio.
-Le contexte `connect(authenticated=True)` est injecté par le test : **aucun
-appairage, chiffrement, stockage de clés ou boot sécurisé n'est implémenté**.
-Il ne faut jamais relier ce booléen à une commande reçue du téléphone.
+**Prototype contract, not validated on hardware.**
+[panel_simulator.py](software/panel_simulator.py) is the executable skeleton of
+the firmware state machine and of the transfer. It drives no MCU, no LED and no
+radio. The `connect(authenticated=True)` context is injected by the test: **no
+pairing, encryption, key storage or secure boot is implemented**.
+This boolean must never be tied to a command received from the phone.
 
-Pour le coupon E0, [coupon_driver.py](software/coupon_driver.py) encode les trames
-mono8 en données pour six TLC5947, sans accès matériel. Le [contrat E0](electronics/coupon.md)
-définit câblage, ordre des bits et séquence BLANK/XLAT à vérifier sur cible.
-Cette brique ne fournit pas le firmware, le transport SPI réel ou la sécurité BLE.
+For the E0 coupon, [coupon_driver.py](software/coupon_driver.py) encodes the mono8
+frames into data for six TLC5947, without hardware access. The
+[E0 contract](electronics/coupon.md) defines wiring, bit order and the BLANK/XLAT
+sequence, to be verified on target. This building block does not provide the
+firmware, the real SPI transport or BLE security.
 
-## Périmètre logiciel
+## Software scope
 
-Première version : texte rasterisé sur téléphone, dessin, animations simples et
-GIF convertis hors MCU en trames bornées. Pas de cloud, de compte, de microphone,
-de télémétrie ni de collecte d'identifiants personnels. App native iOS CoreBluetooth
-et Android BLE à réaliser après validation coupon ; aucune application mobile
-livrée ni compatibilité OS testée. Wireframes fonctionnels : connexion/appairage,
-éditer/importer, aperçu à la résolution négociée, envoyer/progression, armer en
-présence physique, arrêter. Afficher la limite d'usage, les erreurs et le nombre
-réel de couleurs disponibles ; pas de bouton « homologué ».
+First version: text rasterized on the phone, drawing, simple animations and GIFs
+converted off the MCU into bounded frames. No cloud, account, microphone,
+telemetry or collection of personal identifiers. Native iOS CoreBluetooth and
+Android BLE app to be built after coupon validation; no mobile application
+delivered and no OS compatibility tested. Functional wireframes: connect/pair,
+edit/import, preview at the negotiated resolution, send/progress, arm in physical
+presence, stop. Show the usage limit, the errors and the actual number of
+available colors; no "approved" button.
 
-## Contrat v0 et limites choisies pour le simulateur
+## v0 contract and limits chosen for the simulator
 
-- Coupon virtuel : 16×8 pixels mono8 (0–255). Limites générales du parseur :
-  4 096 pixels/trame, 60 trames, 256 KiB de données décodées ; 100–10 000 ms/trame.
-  Ce sont des limites de test, pas les capacités retenues pour le produit.
-- Encodage document JSON de développement : `version=1`, `width`, `height`,
+- Virtual coupon: 16×8 pixels mono8 (0–255). General parser limits:
+  4,096 pixels/frame, 60 frames, 256 KiB of decoded data; 100–10,000 ms/frame.
+  These are test limits, not the capabilities chosen for the product.
+- Development JSON document encoding: `version=1`, `width`, `height`,
   `format="mono8"`, `frames=[{"duration_ms":100,"pixels":[…]}]`.
-  Rangées de gauche à droite et haut en bas ; valeurs entières, booléens interdits.
-  En produit, transporter les pixels binaires sans JSON pour économiser RAM/débit.
-- Dans le transport v0, BEGIN annonce taille et SHA-256 des pixels concaténés
-  (`frame0` puis `frame1`), dimensions et durées ; DATA fournit offset exact et
-  octets. Max 128 octets applicatifs par fragment dans le modèle ; le transport
-  réel devra réduire à MTU ATT−3−en-tête (MTU 23 doit rester fonctionnel).
-- COMMIT vérifie longueur, SHA-256 et atomicité avant de remplacer le contenu actif.
-  Le SHA-256 détecte une corruption, **n'authentifie pas un expéditeur**. Un transfert
-  incomplet ou invalide ne remplace pas le précédent ; l'affichage reste éteint.
-- Une connexion ne suffit pas à activer : PLAY exige un contenu valide et un
-  armement local. Déconnexion, timeout ≥2 s, reset ou défaut : noir, transfert
-  abandonné et désarmement. HEARTBEAT authentifié relance le délai ; reconnexion
-  impose nouvel armement physique. Aucune reprise automatique après panne.
+  Rows left to right and top to bottom; integer values, booleans prohibited.
+  In the product, carry the pixels in binary without JSON to save RAM/throughput.
+- In the v0 transport, BEGIN announces the size and SHA-256 of the concatenated
+  pixels (`frame0` then `frame1`), dimensions and durations; DATA provides the
+  exact offset and the bytes. Max 128 application bytes per chunk in the model;
+  the real transport will have to reduce this to ATT MTU−3−header (MTU 23 must
+  remain functional).
+- COMMIT checks length, SHA-256 and atomicity before replacing the active content.
+  SHA-256 detects corruption; it **does not authenticate a sender**. An incomplete
+  or invalid transfer does not replace the previous one; the display stays off.
+- A connection is not enough to activate: PLAY requires valid content and local
+  arming. Disconnection, timeout ≥2 s, reset or fault: black, transfer abandoned
+  and disarmed. An authenticated HEARTBEAT restarts the timer; reconnection
+  requires new physical arming. No automatic resumption after a failure.
 
-## GATT proposé pour le portage
+```mermaid
+flowchart LR
+    C["Connection"] --> B["BEGIN<br/>size, SHA-256"]
+    B --> D["DATA<br/>offset + bytes"]
+    D --> M{"COMMIT<br/>length, SHA-256"}
+    M -->|"incomplete or invalid"| K["Previous content kept<br/>display stays off"]
+    M -->|"complete"| S["STORED"]
+    S --> A{"Local arming?"}
+    A -->|"no"| X["No PLAY"]
+    A -->|"yes"| P["PLAY"]
+    P -->|"disconnection, timeout ≥2 s,<br/>reset or fault"| Z["Black, transfer abandoned,<br/>disarmed"]
+    classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
+    classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
+    class K,X,Z stop;
+    class P ok;
+```
 
-Service de projet UUID `6d530001-0993-4e50-9b00-2b0a26000001` ; UUIDs caractéristiques
-avec premier groupe `6d530002` capabilities (read), `6d530003` control (write with
+*v0 transfer and play rules of the simulator, as listed above. Not validated on
+hardware; no pairing or encryption is implemented.*
+
+## Proposed GATT for the port
+
+Project service UUID `6d530001-0993-4e50-9b00-2b0a26000001`; characteristic UUIDs
+with first group `6d530002` capabilities (read), `6d530003` control (write with
 response), `6d530004` data (write with response), `6d530005` status (notify).
-UUIDs privés de projet, pas un service standard Bluetooth SIG.
+Private project UUIDs, not a standard Bluetooth SIG service.
 
-| Commande | Charge utile | Réponse et règles |
+| Command | Payload | Response and rules |
 |---|---|---|
-| CAPABILITIES | aucune | version, formats, largeur/hauteur, octets max, cadence, chunk max ; lecture limitée sans lien authentifié |
-| BEGIN | session ID, taille, SHA-256, dimensions, durées | READY ou erreur ; arrêt affichage, un transfert à la fois |
-| DATA | session ID, offset, octets | prochain offset ; rejet doublon/hors ordre dans v0, reprise par nouveau BEGIN |
-| COMMIT | session ID | STORED si complet, sinon erreur sans installation |
-| PLAY / STOP | session ID | état ; PLAY conditionné à armement local |
-| HEARTBEAT | session ID | état, compteur défaut ; expiration ferme la session |
+| CAPABILITIES | none | version, formats, width/height, max bytes, frame rate, max chunk; limited read without an authenticated link |
+| BEGIN | session ID, size, SHA-256, dimensions, durations | READY or error; display stops, one transfer at a time |
+| DATA | session ID, offset, bytes | next offset; duplicate/out-of-order rejected in v0, resumption through a new BEGIN |
+| COMMIT | session ID | STORED if complete, otherwise error without installation |
+| PLAY / STOP | session ID | state; PLAY conditional on local arming |
+| HEARTBEAT | session ID | state, fault counter; expiry closes the session |
 
-Les IDs GATT/session et la sérialisation binaire sont une spécification de portage,
-pas implémentés dans le simulateur. Le périphérique crée un nouvel ID aléatoire
-à chaque session ; rejeter ID ancien, taille excessive et écritures non chiffrées.
-Aucune commande OTA dans ce protocole de contenu.
+The GATT/session IDs and the binary serialization are a porting specification,
+not implemented in the simulator. The peripheral creates a new random ID for
+each session; reject an old ID, an excessive size and unencrypted writes.
+No OTA command in this content protocol.
 
-## Sécurité du portage
+## Security of the port
 
-BLE LE Secure Connections avec protection MITM : bouton local ouvrant une fenêtre
-courte d'appairage, code à usage unique sur afficheur/service local ou mécanisme
-OOB authentifié à valider avec iOS/Android. Refuser un repli silencieux vers
-« Just Works ». L'appairage initial en atelier peut nécessiter un dispositif de
-service tant que l'afficheur n'est pas prêt. Un seul propriétaire actif ; effacement
-des bonds par geste local explicite, révocation documentée, temporisation contre
-les tentatives répétées. Clés générées et conservées sur l'appareil, jamais dans
-ce dépôt. Tester interception, rejeu, appareil non autorisé et perte du téléphone.
+BLE LE Secure Connections with MITM protection: a local button opening a short
+pairing window, a one-time code on the display/local service, or an authenticated
+OOB mechanism to be validated with iOS/Android. Refuse a silent fallback to
+"Just Works". Initial pairing in the workshop may require a service device as
+long as the display is not ready. A single active owner; bonds erased by an
+explicit local gesture, documented revocation, back-off against repeated
+attempts. Keys generated and kept on the device, never in this repository. Test
+interception, replay, unauthorized device and loss of the phone.
 
-Firmware : acquisition capteurs, gestion puissance et watchdog indépendants du
-transfert ; rendu borné et non bloquant ; double tampon. Driver LED derrière une
-interface minimale `blank/render`, transport derrière authentification et limites.
-Ne pas construire un framework avant sélection de la cible.
+Firmware: sensor acquisition, power management and watchdog independent of the
+transfer; bounded, non-blocking rendering; double buffer. LED driver behind a
+minimal `blank/render` interface, transport behind authentication and limits.
+Do not build a framework before the target is selected.
 
-DFU futur : mécanisme éprouvé du SDK (MCUboot/chaîne sécurisée selon MCU [S09]),
-images signées, clé publique provisionnée, version compatible et anti-retour à
-version vulnérable, banque secondaire puis confirmation de boot ; coupure de
-courant à chaque étape, récupération locale. Clé privée de signature hors dépôt.
-L'authentification BLE seule ne remplace pas la signature. Écran noir pendant DFU ;
-ne jamais exposer ici un chargeur qui accepterait un binaire arbitraire.
+Future DFU: a proven SDK mechanism (MCUboot/secure chain depending on the MCU
+[S09]), signed images, provisioned public key, compatible version and
+anti-rollback to a vulnerable version, secondary bank then boot confirmation;
+power cut at each step, local recovery. Private signing key kept out of the
+repository. BLE authentication alone does not replace signing. Black screen
+during DFU; never expose here a loader that would accept an arbitrary binary.
 
-## Import GIF et démonstration
+## GIF import and demonstration
 
-Avec Pillow déjà installé :
+With Pillow already installed:
 
 ```sh
 python3 docs/projects/993-programmable-rear-panel/software/panel_simulator.py --gif dessin.gif --output /tmp/panel-frames.json
 python3 docs/projects/993-programmable-rear-panel/software/panel_simulator.py --input /tmp/panel-frames.json
 ```
 
-Conversion locale : plafond fichier 5 MiB, dimensions source 1 mégapixel maximum,
-60 trames maximum ; compositing GIF par Pillow puis fond noir, letterbox 16×8,
-gris 8 bits, durée bornée 100–10 000 ms. Les images volumineuses/animations trop
-longues sont rejetées, pas tronquées silencieusement. Pas de décodage GIF sur MCU.
-Le rendu réel rouge utilisera une LUT/calibration mesurée ; RGB demanderait un
-format versionné distinct. GIF tiers : vérifier droits avant usage et ne pas
-committer de contenu reçu sans licence.
+Local conversion: file cap 5 MiB, source dimensions 1 megapixel maximum,
+60 frames maximum; GIF compositing by Pillow then black background, 16×8
+letterbox, 8-bit gray, duration bounded to 100–10,000 ms. Oversized images or
+overly long animations are rejected, not silently truncated. No GIF decoding on
+the MCU. The real red rendering will use a measured LUT/calibration; RGB would
+require a distinct versioned format. Third-party GIFs: check the rights before
+use and do not commit content received without a license.
 
-## Titre musical : étude séparée
+## Music title: separate study
 
-| Origine | Piste réelle | Limite / essai à mener |
+| Source | Real lead | Limit / test to run |
 |---|---|---|
-| iPhone | Accessoire client **Apple Media Service** [S10] : informations du lecteur iOS via BLE | Documentation archivée ; tester versions iOS et lecteurs choisis, notifications, écran verrouillé et coexistence BLE. Une app iOS ordinaire n'obtient pas automatiquement les titres de toutes les autres apps |
-| Android | MediaSessionManager et MediaController [S11] | `MEDIA_CONTENT_CONTROL` ou listener de notifications autorisé par l'utilisateur ; respect du refus, variations lecteurs/OS, arrière-plan et permissions BLE |
-| Autoradio | API documentée du modèle, ou rôle AVRCP approprié si disponible | Référence exacte et rôles Bluetooth à identifier ; BLE n'est pas AVRCP Bluetooth Classic. Un récepteur A2DP n'offre pas nécessairement un accès tiers aux métadonnées ; aucun démontage/bus inventé |
+| iPhone | **Apple Media Service** client accessory [S10]: iOS player information over BLE | Archived documentation; test iOS versions and chosen players, notifications, locked screen and BLE coexistence. An ordinary iOS app does not automatically get the titles of all other apps |
+| Android | MediaSessionManager and MediaController [S11] | `MEDIA_CONTENT_CONTROL` or a notification listener authorized by the user; respect for refusal, player/OS variations, background and BLE permissions |
+| Car radio | Documented API of the model, or an appropriate AVRCP role if available | Exact reference and Bluetooth roles to be identified; BLE is not Bluetooth Classic AVRCP. An A2DP receiver does not necessarily offer third-party access to metadata; no invented teardown/bus |
 
-Accepter absence de titre et effacer les données à la déconnexion. Ne pas conserver
-l'historique musical. RP-12 est un POC optionnel qui ne bloque ni le coupon ni les
-messages manuels. Aucun titre réel de tiers, logo de service ou pochette n'est livré.
+Accept the absence of a title and erase the data on disconnection. Do not keep
+the music history. RP-12 is an optional POC that blocks neither the coupon nor
+the manual messages. No real third-party title, service logo or cover art is
+delivered.
