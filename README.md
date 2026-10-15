@@ -471,7 +471,7 @@ opens with an entry gate that can stop the project.
 ## 6. The catalogue and its data contract
 
 **527 source records** qualified by provenance, rights and level of evidence;
-41 part records, 10 twin records, 4 components, 2 assemblies and 3 workshop-manual
+41 part records, 10 twin records, 5 components, 3 assemblies and 3 workshop-manual
 transcriptions. Everything is validated by a JSON schema and by the test suite.
 
 A record keeps technical access, reading method and reuse rights separate. An

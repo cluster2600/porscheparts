@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0.0",
+  "assembly_id": "ASM-993-PAUTER-ROD-SET",
+  "name": "Logical set of six Pauter 993-230-580-1270F connecting rods (aftermarket, inventory only)",
+  "vehicle": {
+    "generation": "993",
+    "variants": ["993", "993 Turbo"]
+  },
+  "status": "logical",
+  "instances": [
+    { "instance_id": "ROD_POSITION_1", "component_id": "COMP-PAUTER-993-230-580-1270F", "quantity": 1, "frame": "crankshaft_unpositioned", "transform": null, "relationship_source_id": "SRC-PAUTER-993-TURBO-ROD-PRIMARY" },
+    { "instance_id": "ROD_POSITION_2", "component_id": "COMP-PAUTER-993-230-580-1270F", "quantity": 1, "frame": "crankshaft_unpositioned", "transform": null, "relationship_source_id": "SRC-PAUTER-993-TURBO-ROD-PRIMARY" },
+    { "instance_id": "ROD_POSITION_3", "component_id": "COMP-PAUTER-993-230-580-1270F", "quantity": 1, "frame": "crankshaft_unpositioned", "transform": null, "relationship_source_id": "SRC-PAUTER-993-TURBO-ROD-PRIMARY" },
+    { "instance_id": "ROD_POSITION_4", "component_id": "COMP-PAUTER-993-230-580-1270F", "quantity": 1, "frame": "crankshaft_unpositioned", "transform": null, "relationship_source_id": "SRC-PAUTER-993-TURBO-ROD-PRIMARY" },
+    { "instance_id": "ROD_POSITION_5", "component_id": "COMP-PAUTER-993-230-580-1270F", "quantity": 1, "frame": "crankshaft_unpositioned", "transform": null, "relationship_source_id": "SRC-PAUTER-993-TURBO-ROD-PRIMARY" },
+    { "instance_id": "ROD_POSITION_6", "component_id": "COMP-PAUTER-993-230-580-1270F", "quantity": 1, "frame": "crankshaft_unpositioned", "transform": null, "relationship_source_id": "SRC-PAUTER-993-TURBO-ROD-PRIMARY" }
+  ],
+  "physical_summary": {
+    "mass_g": 3210,
+    "basis": "sum_of_component_records"
+  },
+  "relationship_sources": [
+    {
+      "source_id": "SRC-PAUTER-993-TURBO-ROD-PRIMARY",
+      "url": "https://pauter.com/shop/rods/porsche/porsche-993-993-turbo-rods/",
+      "accessed_on": "2026-10-15",
+      "claim": "Pauter sells part 993-230-580-1270F as a set of six 4340 chrome-moly connecting rods for the Porsche 993 and 993 Turbo; its dimension table lists 6 cylinders."
+    }
+  ],
+  "known_limits": [
+    "Logical set only: six identical rods, one per cylinder position. The position numbers are a record convention, not the Porsche cylinder numbering; no transform, crankpin or piston-pin interface is positioned.",
+    "Inventory only. A connecting rod is a highly loaded internal engine component: no reproduction, modification or manufacture without documented professional engineering review and an approved validation plan (SAFETY.md, AGENTS.md).",
+    "No mounting relation is recorded: the crankshaft, the piston pins and the rod bolts have no component record, and the rod bolt size and torque are not sourced.",
+    "Aftermarket set: the 3,210 g sum is the mass of this product, not of the original Porsche rods, and must not be added to an engine mass that already includes the rods."
+  ]
+}
