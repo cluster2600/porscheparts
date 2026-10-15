@@ -1,5 +1,10 @@
 # PicoGK parameter-plan robustness continuation
 
+For the current 19/60-to-50/60 assessment, ordered next steps and related
+Hugging Face work, see the [14 October roadmap](ROADMAP.md).
+The [independent qualification implementation](../qwen-picogk-qualified-20261014/README.md)
+records its separate supported-syntax 54/60 final result and operational profile.
+
 This experiment continues the retained r3 adapter after the runtime repair
 in [PR 205](https://github.com/cluster2600/porscheparts/pull/205). That PR was
 already merged into `main` as `39bb313f3a33d02c6ab58dd227616ed980a51c15` when

@@ -1,68 +1,72 @@
-# Commercialisation — maquettes internes non publiées
+# Commercialization — unpublished internal mockups
 
-## Emballage à chiffrer
+## Packaging to be quoted
 
-Boîte d'expédition carton ondulé avec calages remplaçables soutenant les zones
-structurelles, sans pression sur lentille ni clip fragile. Dimensions intérieures,
-masse, centre de gravité et jeux calculés **après CAO** ; pas de format présumé.
-Protection anti-rayure non abrasive, séparation des pièces mobiles, sachet ESD
-pour électronique/accessoires pertinents, logement notice et joints. Tester
-compatibilité film/teinte/vernis en stockage chaud et humide.
+Corrugated cardboard shipping box with replaceable inserts supporting the
+structural areas, with no pressure on the lens or on a fragile clip. Inner
+dimensions, mass, center of gravity and clearances are calculated **after CAD**;
+no format is presumed. Non-abrasive anti-scratch protection, separation of loose
+parts, ESD bag for the relevant electronics/accessories, a slot for the
+instructions and seals. Test film/tint/varnish compatibility in hot and humid
+storage.
 
-Livrables fournisseur : plan de découpe éditable + PDF, prototype monté, nomenclature
-matières, preuve recyclabilité des composants, gamme de conditionnement, coût
-outillage et unités, quantité minimale, poids/volume et livraison à plat. Privilégier
-calages carton si les essais le permettent ; documenter toute mousse/film nécessaire.
+Supplier deliverables: editable cutting plan + PDF, assembled prototype, bill of
+materials, proof of recyclability of the components, packing procedure, tooling
+and unit cost, minimum quantity, weight/volume and flat delivery. Prefer cardboard
+inserts if the tests allow it; document any foam/film that is needed.
 
-Marquage à préparer : désignation neutre du produit, révision, lot, contenu, stockage,
-consignes de manutention, fabricant/responsable à renseigner en privé puis valider,
-notice multilingue FR/DE/EN selon marchés et obligations. Aucune croix suisse,
-marque Porsche, homologation, CE ou logo Bluetooth par anticipation. Emplacement
-réservé aux marquages légaux uniquement après évaluation réelle. Contrôle sortie :
-complet, surface sans défaut, trace test associée au lot et photo de conditionnement.
+Marking to prepare: neutral product designation, revision, batch, contents,
+storage, handling instructions, manufacturer/responsible party to be filled in
+privately and then validated, multilingual FR/DE/EN instructions according to
+markets and obligations. No Swiss cross, Porsche mark, road approval, CE or
+Bluetooth logo in anticipation. A space is reserved for legal markings only
+after an actual assessment. Outgoing inspection: complete, defect-free surface,
+test record linked to the batch and a photo of the packing.
 
-## Page PorscheFanatics.com
+## PorscheFanatics.com page
 
-[product-preview.html](product-preview.html) est un fichier autonome, sans réseau,
-formulaire, collecte, paiement ni bouton de commande. Aucun changement du site
-PorscheFanatics.com n'est effectué. Contenu : concept pour 993, fonctions visées,
-méthode coupon, état réel et limites. Le 250 CHF est un coût cible interne et
-n'apparaît pas comme prix de vente. L'aperçu graphique est une illustration de
-pixels, pas une photo produit, un plan mécanique ou une preuve de montage.
+[product-preview.html](product-preview.html) is a standalone file, with no
+network, form, data collection, payment or order button. No change is made to
+the PorscheFanatics.com site. Contents: concept for the 993, target functions,
+coupon method, actual status and limits. The 250 CHF is an internal target cost
+and does not appear as a sale price. The graphic preview is an illustration of
+pixels, not a product photo, a mechanical drawing or evidence of fitment.
 
-Visuels réellement nécessaires avant promotion produit : pièce d'origine autorisée
-sans identifiant véhicule, coupon allumé/éteint sous éclairages comparables, vue
-montée autorisée sur variante vérifiée, détail démontabilité et emballage testé.
-Aucun de ces visuels ne bloque cette maquette. Droits photo, design et marques
-à établir avant toute réutilisation ; pas de logo constructeur livré.
+Visuals actually needed before product promotion: authorized original part
+without vehicle identifier, coupon lit/unlit under comparable lighting,
+authorized fitted view on a verified variant, detail of removability and tested
+packaging. None of these visuals blocks this mockup. Photo, design and trademark
+rights are to be established before any reuse; no manufacturer logo is supplied.
 
-## Brouillons Instagram
+## Instagram drafts
 
-**A — Recherche, statique / format envisagé 4:5**
-Texte : « Une ligne familière, un affichage à explorer. Nous préparons un concept
-de bandeau programmable pour Porsche 993 : messages et dessins simples, avec
-commande Bluetooth envisagée. Première étape : tester un petit afficheur derrière
-une façade rouge. Projet en développement, sans disponibilité commerciale ni
-homologation routière établie. Projet indépendant, sans affiliation à Porsche. »
-Visuel requis : photographie autorisée du coupon, avec légende « Prototype de banc ».
-Texte alternatif : « Petit coupon de LED derrière un échantillon rouge, sur établi. »
+**A — Research, static / planned 4:5 format**
+Text: "A familiar line, a display to explore. We are preparing a concept for a
+programmable panel for the Porsche 993: messages and simple drawings, with
+Bluetooth control planned. First step: test a small display behind a red front
+face. Project under development, with no commercial availability and no road
+approval established. Independent project, not affiliated with Porsche."
+Required visual: an authorized photograph of the coupon, captioned "Bench prototype".
+Alt text: "Small LED coupon behind a red sample, on a workbench."
 
-**B — Coulisses, carrousel**
-Diapositives prévues : 1 « Une LED de 1 mm n'est pas un pixel au pas de 1 mm » ;
-2 comparaison de pas ; 3 filtre rouge et couleurs ; 4 « Mesurer avant de promettre ».
-Texte : « Nous comparons lisibilité, consommation et rendu éteint. La résolution,
-la compatibilité par variante et le coût restent à valider. Étude indépendante
-pour 993, non disponible à la commande. Aucun usage routier approuvé à ce stade. »
-Visuel : diagramme original issu des mesures coupon, sans dimension inventée du véhicule.
+**B — Behind the scenes, carousel**
+Planned slides: 1 "A 1 mm LED is not a pixel at a 1 mm pitch";
+2 pitch comparison; 3 red filter and colors; 4 "Measure before promising".
+Text: "We are comparing readability, power consumption and the unlit look.
+Resolution, compatibility per variant and cost remain to be validated.
+Independent study for the 993, not available to order. No road use approved at
+this stage."
+Visual: original diagram drawn from the coupon measurements, with no invented
+vehicle dimension.
 
 **C — Animation / story 9:16**
-Texte : « Message test, sur banc uniquement. L'import d'animations fait partie des
-fonctions visées. Cette simulation ne montre pas un produit fini ni une installation
-homologuée. Développement indépendant, sans affiliation à Porsche. »
-Visuel : simulation des pixels, annotation permanente « SIMULATION » ; aucun véhicule
-sur voie publique, aucune promesse de délai, d'origine suisse ou de précommande.
+Text: "Test message, on the bench only. Animation import is one of the target
+functions. This simulation does not show a finished product or an approved
+installation. Independent development, not affiliated with Porsche."
+Visual: pixel simulation, permanent "SIMULATION" annotation; no vehicle on a
+public road, no promise of lead time, Swiss origin or pre-order.
 
-Tous ces textes sont **des brouillons non diffusables sans revue** : remplacer
-les intentions par des résultats prouvés, vérifier les droits, la conformité de
-l'offre et l'autorisation de publication. Aucun envoi à un outil social, budget
-publicitaire, tracking ou campagne n'est créé.
+All these texts are **drafts that must not be published without review**:
+replace the intentions with proven results, check the rights, the compliance of
+the offer and the publication authorization. No submission to a social tool,
+advertising budget, tracking or campaign is created.
