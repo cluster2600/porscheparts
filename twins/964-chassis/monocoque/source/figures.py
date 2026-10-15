@@ -133,8 +133,10 @@ def buckling(pv, cmap):
         ax.set_yscale("log")
         ax.set_xticks(range(len(row["meshes"])), [f"{m['sections']} sections" for m in row["meshes"]], color="white")
         last = row["meshes"][-1]
-        ax.set_title(f"{case}: service {service:,.0f} {row['unit']} (ASSUMED); sandwich by hand: crimping "
-                     f"x{last['sandwich_crimping_margin']}, wrinkling x{last['sandwich_wrinkling_margin']}",
+        cr, wr = last["sandwich_crimping_margin"], last["sandwich_wrinkling_margin"]
+        ax.set_title(f"{case}: service {service:,.0f} {row['unit']} (ASSUMED); sandwich by hand, mid-surface / integration "
+                     f"points: crimping x{cr['mid_surface']} / x{cr['integration_points']}, wrinkling "
+                     f"x{wr['mid_surface']} / x{wr['integration_points']}",
                      color="white", fontsize=9)
         ax.set_ylabel("critical load / service load (line: 1; dotted: 2, the usual knock-down)", color="#9aa3ad", fontsize=9)
         ax.set_facecolor("#0e1218")
@@ -414,7 +416,7 @@ def monocoque_torsion(pv, cmap):
     r = json.loads((DERIVED / "torsion-monocoque.json").read_text())
     t = np.load(DERIVED / "torsion-monocoque-snapshot.npz")
     pts, tri, kind = t["points"].astype(float), t["triangles"], t["kind"]
-    mesh = "S3, finest mesh" if len(next(iter(r["cases"].values()))["K"]) > 1 else "S3"
+    mesh = "S6, finest mesh" if len(next(iter(r["cases"].values()))["K"]) > 1 else "S6"
     clim = (0.0, float(np.percentile(t["von_mises_open_steel"][np.unique(tri[kind != 1])], 97)))
     p = pv.Plotter(off_screen=True, shape=(1, 2), window_size=(2600, 900))
     for i, (key, name, keep) in enumerate((("von_mises_open_steel", "open shell", kind != 1),

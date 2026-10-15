@@ -1,0 +1,3246 @@
+[
+  {
+    "name": "Leap71.BisectionException",
+    "constructors": [
+      "Void .ctor()",
+      "Void .ctor(System.String)"
+    ],
+    "methods": []
+  },
+  {
+    "name": "Leap71.ConstructionModules.ScrewHole",
+    "constructors": [
+      "Void .ctor(Leap71.ShapeKernel.LocalFrame, Single, Single, Single, Single)"
+    ],
+    "methods": [
+      "PicoGK.Voxels voxConstruct()"
+    ]
+  },
+  {
+    "name": "Leap71.ConstructionModules.ThreadCutter",
+    "constructors": [
+      "Void .ctor(Leap71.ShapeKernel.LocalFrame, Single, Single, Single, Single)"
+    ],
+    "methods": [
+      "PicoGK.Voxels voxConstruct()"
+    ]
+  },
+  {
+    "name": "Leap71.ConstructionModules.ThreadReinforcement",
+    "constructors": [
+      "Void .ctor(Leap71.ShapeKernel.LocalFrame, Single, Single, Single)"
+    ],
+    "methods": [
+      "PicoGK.Voxels voxConstruct()"
+    ]
+  },
+  {
+    "name": "Leap71.CoolCube.HelixHeatX",
+    "constructors": [],
+    "methods": [
+      "Void Task()"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.BodyCentreLattice",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Void AddCell(PicoGK.Lattice ByRef, Leap71.LatticeLibrary.IUnitCell, Leap71.LatticeLibrary.IBeamThickness, UInt32)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.BoundaryBeamThickness",
+    "constructors": [
+      "Void .ctor(Single, Single)"
+    ],
+    "methods": [
+      "Single fGetBeamThickness(System.Numerics.Vector3)",
+      "Void SetBoundingVoxels(PicoGK.Voxels)",
+      "Void UpdateCell(Leap71.LatticeLibrary.IUnitCell)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.CellBasedBeamThickness",
+    "constructors": [
+      "Void .ctor(Single, Single)"
+    ],
+    "methods": [
+      "Single fGetBeamThickness(System.Numerics.Vector3)",
+      "Void SetBoundingVoxels(PicoGK.Voxels)",
+      "Void UpdateCell(Leap71.LatticeLibrary.IUnitCell)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.CombinedTrafo",
+    "constructors": [
+      "Void .ctor(System.Collections.Generic.List`1[Leap71.LatticeLibrary.ICoordinateTrafo])"
+    ],
+    "methods": [
+      "Void Apply(Single ByRef, Single ByRef, Single ByRef, System.Numerics.Vector3)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.ConformalCellArray",
+    "constructors": [
+      "Void .ctor(Leap71.ShapeKernel.BaseBox, UInt32, UInt32, UInt32)",
+      "Void .ctor(Leap71.ShapeKernel.BaseLens, UInt32, UInt32, UInt32)",
+      "Void .ctor(Leap71.ShapeKernel.BasePipeSegment, UInt32, UInt32, UInt32)"
+    ],
+    "methods": [
+      "System.Collections.Generic.List`1[Leap71.LatticeLibrary.IUnitCell] aGetUnitCells()"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.ConformalShowcaseShapes",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Leap71.ShapeKernel.BaseBox oGetBox_01()",
+      "Leap71.ShapeKernel.BaseLens oGetLens_01()",
+      "Leap71.ShapeKernel.BasePipeSegment oGetSegment_01()"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.ConstantBeamThickness",
+    "constructors": [
+      "Void .ctor(Single)"
+    ],
+    "methods": [
+      "Single fGetBeamThickness(System.Numerics.Vector3)",
+      "Void SetBoundingVoxels(PicoGK.Voxels)",
+      "Void UpdateCell(Leap71.LatticeLibrary.IUnitCell)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.CuboidCell",
+    "constructors": [
+      "Void .ctor(System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef)"
+    ],
+    "methods": [
+      "PicoGK.BBox3 oGetCellBounding()",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aGetCornerPoints()",
+      "System.Numerics.Vector3 vecGetCellCentre()",
+      "Void PreviewUnitCell()"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.FullVoidLogic",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Single fGetAdvancedSignedDistance(Single, Single)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.FullWallLogic",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Single fGetAdvancedSignedDistance(Single, Single)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.FunctionalScaleTrafo",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Void Apply(Single ByRef, Single ByRef, Single ByRef, System.Numerics.Vector3)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.GlobalFuncBeamThickness",
+    "constructors": [
+      "Void .ctor(Single, Single)"
+    ],
+    "methods": [
+      "Single fGetBeamThickness(System.Numerics.Vector3)",
+      "Void SetBoundingVoxels(PicoGK.Voxels)",
+      "Void UpdateCell(Leap71.LatticeLibrary.IUnitCell)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.IBeamThickness",
+    "constructors": [],
+    "methods": [
+      "Single fGetBeamThickness(System.Numerics.Vector3)",
+      "Void SetBoundingVoxels(PicoGK.Voxels)",
+      "Void UpdateCell(Leap71.LatticeLibrary.IUnitCell)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.ICellArray",
+    "constructors": [],
+    "methods": [
+      "System.Collections.Generic.List`1[Leap71.LatticeLibrary.IUnitCell] aGetUnitCells()"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.ICoordinateTrafo",
+    "constructors": [],
+    "methods": [
+      "Void Apply(Single ByRef, Single ByRef, Single ByRef, System.Numerics.Vector3)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.ILatticeType",
+    "constructors": [],
+    "methods": [
+      "Void AddCell(PicoGK.Lattice ByRef, Leap71.LatticeLibrary.IUnitCell, Leap71.LatticeLibrary.IBeamThickness, UInt32)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.ImplicitLidinoid",
+    "constructors": [
+      "Void .ctor(Single, Single)"
+    ],
+    "methods": [
+      "Single fSignedDistance(System.Numerics.Vector3 ByRef)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.ImplicitModular",
+    "constructors": [
+      "Void .ctor(Leap71.LatticeLibrary.IRawTPMSPattern, Leap71.LatticeLibrary.IBeamThickness, Leap71.LatticeLibrary.ICoordinateTrafo, Leap71.LatticeLibrary.ISplittingLogic)"
+    ],
+    "methods": [
+      "Single fSignedDistance(System.Numerics.Vector3 ByRef)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.ImplicitRadialGyroid",
+    "constructors": [
+      "Void .ctor(UInt32, Single, Single)"
+    ],
+    "methods": [
+      "Single fSignedDistance(System.Numerics.Vector3 ByRef)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.ImplicitRandomizedSchwarzPrimitive",
+    "constructors": [
+      "Void .ctor(Single, Single, Leap71.LatticeLibrary.RandomDeformationField)"
+    ],
+    "methods": [
+      "Single fSignedDistance(System.Numerics.Vector3 ByRef)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.ImplicitSchwarzDiamond",
+    "constructors": [
+      "Void .ctor(Single, Single)"
+    ],
+    "methods": [
+      "Single fSignedDistance(System.Numerics.Vector3 ByRef)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.ImplicitSchwarzPrimitive",
+    "constructors": [
+      "Void .ctor(Single, Single)"
+    ],
+    "methods": [
+      "Single fSignedDistance(System.Numerics.Vector3 ByRef)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.ImplicitSplitVoidGyroid",
+    "constructors": [
+      "Void .ctor(Single, Single, Boolean)"
+    ],
+    "methods": [
+      "Single fSignedDistance(System.Numerics.Vector3 ByRef)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.ImplicitSplitWallGyroid",
+    "constructors": [
+      "Void .ctor(Single, Single, Boolean)"
+    ],
+    "methods": [
+      "Single fSignedDistance(System.Numerics.Vector3 ByRef)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.IRawTPMSPattern",
+    "constructors": [],
+    "methods": [
+      "Single fGetSignedDistance(Single, Single, Single)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.ISplittingLogic",
+    "constructors": [],
+    "methods": [
+      "Single fGetAdvancedSignedDistance(Single, Single)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.IUnitCell",
+    "constructors": [],
+    "methods": [
+      "PicoGK.BBox3 oGetCellBounding()",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aGetCornerPoints()",
+      "System.Numerics.Vector3 vecGetCellCentre()",
+      "Void PreviewUnitCell()"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.NegativeHalfWallLogic",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Single fGetAdvancedSignedDistance(Single, Single)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.NegativeVoidLogic",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Single fGetAdvancedSignedDistance(Single, Single)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.OctahedronLattice",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Void AddCell(PicoGK.Lattice ByRef, Leap71.LatticeLibrary.IUnitCell, Leap71.LatticeLibrary.IBeamThickness, UInt32)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.PositiveHalfWallLogic",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Single fGetAdvancedSignedDistance(Single, Single)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.PositiveVoidLogic",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Single fGetAdvancedSignedDistance(Single, Single)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.RadialTrafo",
+    "constructors": [
+      "Void .ctor(UInt32, Single)"
+    ],
+    "methods": [
+      "Void Apply(Single ByRef, Single ByRef, Single ByRef, System.Numerics.Vector3)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.RandomDeformationField",
+    "constructors": [
+      "Void .ctor(PicoGK.BBox3, Single, Single, Single)"
+    ],
+    "methods": [
+      "System.Numerics.Vector3 vecGetData(System.Numerics.Vector3)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.RandomSplineLattice",
+    "constructors": [
+      "Void .ctor(Int32)"
+    ],
+    "methods": [
+      "Void AddCell(PicoGK.Lattice ByRef, Leap71.LatticeLibrary.IUnitCell, Leap71.LatticeLibrary.IBeamThickness, UInt32)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.RawGyroidTPMSPattern",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Single fGetSignedDistance(Single, Single, Single)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.RawLidinoidTPMSPattern",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Single fGetSignedDistance(Single, Single, Single)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.RawSchwarzDiamondTPMSPattern",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Single fGetSignedDistance(Single, Single, Single)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.RawSchwarzPrimitiveTPMSPattern",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Single fGetSignedDistance(Single, Single, Single)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.RawTransitionTPMSPattern",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Single fGetSignedDistance(Single, Single, Single)"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.RegularCellArray",
+    "constructors": [
+      "Void .ctor(PicoGK.Voxels, Single, Single, Single, Single)"
+    ],
+    "methods": [
+      "Single fGetRandomLinear(Single, Single)",
+      "System.Collections.Generic.List`1[Leap71.LatticeLibrary.IUnitCell] aGetUnitCells()"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.RegularUnitCell",
+    "constructors": [
+      "Void .ctor(Single, Single, Single, Single)"
+    ],
+    "methods": [
+      "Single fGetRandomLinear(Single, Single)",
+      "System.Collections.Generic.List`1[Leap71.LatticeLibrary.IUnitCell] aGetUnitCells()"
+    ]
+  },
+  {
+    "name": "Leap71.LatticeLibrary.ScaleTrafo",
+    "constructors": [
+      "Void .ctor(Single, Single, Single)"
+    ],
+    "methods": [
+      "Void Apply(Single ByRef, Single ByRef, Single ByRef, System.Numerics.Vector3)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.BaseBox",
+    "constructors": [
+      "Void .ctor(Leap71.ShapeKernel.LocalFrame, Single, Single, Single)",
+      "Void .ctor(Leap71.ShapeKernel.Frames, Single, Single)",
+      "Void .ctor(PicoGK.BBox3)"
+    ],
+    "methods": [
+      "PicoGK.Mesh mshConstruct()",
+      "PicoGK.Voxels voxConstruct()",
+      "System.Numerics.Vector3 vecGetSurfacePoint(Single, Single, Single)",
+      "Void SetDepth(Leap71.ShapeKernel.LineModulation)",
+      "Void SetDepthSteps(Int32)",
+      "Void SetLengthSteps(Int32)",
+      "Void SetWidth(Leap71.ShapeKernel.LineModulation)",
+      "Void SetWidthSteps(Int32)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.BaseCone",
+    "constructors": [
+      "Void .ctor(Leap71.ShapeKernel.LocalFrame, Single, Single, Single)"
+    ],
+    "methods": [
+      "Leap71.ShapeKernel.BaseCylinder oGetBaseCylinder()",
+      "PicoGK.Voxels voxConstruct()"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.BaseCylinder",
+    "constructors": [
+      "Void .ctor(Leap71.ShapeKernel.LocalFrame, Single, Single)",
+      "Void .ctor(Leap71.ShapeKernel.Frames, Single)"
+    ],
+    "methods": [
+      "PicoGK.Mesh mshConstruct()",
+      "PicoGK.Voxels voxConstruct()",
+      "System.Numerics.Vector3 vecGetSurfacePoint(Single, Single, Single)",
+      "Void SetLengthSteps(UInt32)",
+      "Void SetPolarSteps(UInt32)",
+      "Void SetRadialSteps(UInt32)",
+      "Void SetRadius(Leap71.ShapeKernel.SurfaceModulation)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.BaseLens",
+    "constructors": [
+      "Void .ctor(Leap71.ShapeKernel.LocalFrame, Single, Single, Single)"
+    ],
+    "methods": [
+      "PicoGK.Mesh mshConstruct()",
+      "PicoGK.Voxels voxConstruct()",
+      "System.Numerics.Vector3 vecGetSurfacePoint(Single, Single, Single)",
+      "Void SetHeight(Leap71.ShapeKernel.SurfaceModulation, Leap71.ShapeKernel.SurfaceModulation)",
+      "Void SetHeightSteps(UInt32)",
+      "Void SetPolarSteps(UInt32)",
+      "Void SetRadialSteps(UInt32)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.BaseLogoBox",
+    "constructors": [
+      "Void .ctor(Leap71.ShapeKernel.LocalFrame, Single, Single, PicoGK.Image, MappingFunc)"
+    ],
+    "methods": [
+      "Single fGetDepth()",
+      "Single fGetWidth()",
+      "System.Numerics.Vector3 vecGetSurfacePoint(Single, Single, Single)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.BasePipe",
+    "constructors": [
+      "Void .ctor(Leap71.ShapeKernel.LocalFrame, Single, Single, Single)",
+      "Void .ctor(Leap71.ShapeKernel.Frames, Single, Single)"
+    ],
+    "methods": [
+      "PicoGK.Mesh mshConstruct()",
+      "PicoGK.Voxels voxConstruct()",
+      "System.Numerics.Vector3 vecGetSurfacePoint(Single, Single, Single)",
+      "Void SetLengthSteps(UInt32)",
+      "Void SetPolarSteps(UInt32)",
+      "Void SetRadialSteps(UInt32)",
+      "Void SetRadius(Leap71.ShapeKernel.SurfaceModulation, Leap71.ShapeKernel.SurfaceModulation)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.BasePipeSegment",
+    "constructors": [
+      "Void .ctor(Leap71.ShapeKernel.LocalFrame, Single, Single, Single, Leap71.ShapeKernel.LineModulation, Leap71.ShapeKernel.LineModulation, EMethod)",
+      "Void .ctor(Leap71.ShapeKernel.Frames, Single, Single, Leap71.ShapeKernel.LineModulation, Leap71.ShapeKernel.LineModulation, EMethod)"
+    ],
+    "methods": [
+      "PicoGK.Mesh mshConstruct()",
+      "System.Numerics.Vector3 vecGetSurfacePoint(Single, Single, Single)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.BasePipeSegment+EMethod",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "Leap71.ShapeKernel.BaseRevolve",
+    "constructors": [
+      "Void .ctor(Leap71.ShapeKernel.LocalFrame, Leap71.ShapeKernel.Frames, Single, Single)"
+    ],
+    "methods": [
+      "Leap71.ShapeKernel.Frames aGetFramesFromContour(Leap71.ShapeKernel.GenericContour, Leap71.ShapeKernel.LocalFrame)",
+      "PicoGK.Mesh mshConstruct()",
+      "PicoGK.Voxels voxConstruct()",
+      "System.Numerics.Vector3 vecGetInnerSurfacePoint(Single, Single)",
+      "System.Numerics.Vector3 vecGetOuterSurfacePoint(Single, Single)",
+      "System.Numerics.Vector3 vecGetSpineAlongLength(Single)",
+      "System.Numerics.Vector3 vecGetSurfacePoint(Single, Single, Single)",
+      "Void SetLengthSteps(UInt32)",
+      "Void SetPolarSteps(UInt32)",
+      "Void SetRadialSteps(UInt32)",
+      "Void SetRadius(Leap71.ShapeKernel.LineModulation, Leap71.ShapeKernel.LineModulation)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.BaseRing",
+    "constructors": [
+      "Void .ctor(Leap71.ShapeKernel.LocalFrame, Single, Single)"
+    ],
+    "methods": [
+      "PicoGK.Mesh mshConstruct()",
+      "PicoGK.Voxels voxConstruct()",
+      "System.Numerics.Vector3 vecGetSurfacePoint(Single, Single, Single)",
+      "Void SetPolarSteps(UInt32)",
+      "Void SetRadialSteps(UInt32)",
+      "Void SetRadius(Leap71.ShapeKernel.SurfaceModulation)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.BaseShape",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "PicoGK.Voxels voxConstruct()",
+      "System.Numerics.Vector3 vecNoTransform(System.Numerics.Vector3)",
+      "Void SetTransformation(fnVertexTransformation)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.BaseShape+fnVertexTransformation",
+    "constructors": [
+      "Void .ctor(System.Object, IntPtr)"
+    ],
+    "methods": [
+      "System.IAsyncResult BeginInvoke(System.Numerics.Vector3, System.AsyncCallback, System.Object)",
+      "System.Numerics.Vector3 EndInvoke(System.IAsyncResult)",
+      "System.Numerics.Vector3 Invoke(System.Numerics.Vector3)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.BaseSphere",
+    "constructors": [
+      "Void .ctor(Leap71.ShapeKernel.LocalFrame, Single)"
+    ],
+    "methods": [
+      "PicoGK.Mesh mshConstruct()",
+      "PicoGK.Voxels voxConstruct()",
+      "System.Numerics.Vector3 vecGetSurfacePoint(Single, Single, Single)",
+      "Void SetAzimuthalSteps(UInt32)",
+      "Void SetPolarSteps(UInt32)",
+      "Void SetRadius(Leap71.ShapeKernel.SurfaceModulation)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.Bisection",
+    "constructors": [
+      "Void .ctor(Func, Single, Single, Single, Single, UInt32)"
+    ],
+    "methods": [
+      "Single fFindOptimalInput()",
+      "Single fGetBestGuess()",
+      "Single fGetRemainingDiff()",
+      "UInt32 nGetIterations()"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.Bisection+Func",
+    "constructors": [
+      "Void .ctor(System.Object, IntPtr)"
+    ],
+    "methods": [
+      "Single EndInvoke(System.IAsyncResult)",
+      "Single Invoke(Single)",
+      "System.IAsyncResult BeginInvoke(Single, System.AsyncCallback, System.Object)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.ColorScale3D",
+    "constructors": [
+      "Void .ctor(Leap71.ShapeKernel.ISpectrum, Single, Single)"
+    ],
+    "methods": [
+      "PicoGK.ColorFloat clrGetColor(Single)",
+      "Single fGetMaxValue()",
+      "Single fGetMinValue()"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.ControlPointSpline",
+    "constructors": [
+      "Void .ctor(System.Collections.Generic.List`1[System.Numerics.Vector3], UInt32, EEnds)"
+    ],
+    "methods": [
+      "Single fBaseFunc(Single, Int32, Int32)",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aGetPoints(UInt32)",
+      "System.Collections.Generic.List`1[System.Single] aGetKnotVector()",
+      "System.Numerics.Vector3 vecGetPointAt(Single)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.ControlPointSpline+EEnds",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "Leap71.ShapeKernel.ControlPointSurface",
+    "constructors": [
+      "Void .ctor(System.Collections.Generic.List`1[System.Collections.Generic.List`1[System.Numerics.Vector3]], UInt32, UInt32, EEnds, EEnds)"
+    ],
+    "methods": [
+      "Single fBaseFunc(System.Collections.Generic.List`1[System.Single], Single, Int32, Int32)",
+      "System.Collections.Generic.List`1[System.Collections.Generic.List`1[System.Numerics.Vector3]] aGetControlGrid()",
+      "System.Collections.Generic.List`1[System.Collections.Generic.List`1[System.Numerics.Vector3]] aGetGrid(UInt32, UInt32)",
+      "System.Collections.Generic.List`1[System.Single] aGetUKnotVector(UInt32, UInt32, EEnds)",
+      "System.Collections.Generic.List`1[System.Single] aGetVKnotVector(UInt32, UInt32, EEnds)",
+      "System.Numerics.Vector3 vecGetControlPoint(UInt32, UInt32)",
+      "System.Numerics.Vector3 vecGetPointAt(Single, Single)",
+      "Void UpdateControlPoint(System.Numerics.Vector3, UInt32, UInt32)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.ControlPointSurface+EEnds",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "Leap71.ShapeKernel.Cp",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "PicoGK.ColorFloat clrRandom()",
+      "PicoGK.ColorFloat clrRandom(Int32)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.CSVWriter",
+    "constructors": [
+      "Void .ctor(System.String)"
+    ],
+    "methods": [
+      "Void AddLine(System.String)",
+      "Void ExportCSVFile()"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.CustomColorScale2D",
+    "constructors": [
+      "Void .ctor(PicoGK.ColorFloat, PicoGK.ColorFloat, Single, Single, Single, Single)"
+    ],
+    "methods": []
+  },
+  {
+    "name": "Leap71.ShapeKernel.CylindricalControlSpline",
+    "constructors": [
+      "Void .ctor(System.Numerics.Vector3)"
+    ],
+    "methods": [
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aGetPoints(UInt32)",
+      "Void AddAbsoluteStep(EDirection, Single)",
+      "Void AddRelativeStep(EDirection, Single)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.CylindricalControlSpline+EDirection",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "Leap71.ShapeKernel.CylUtility",
+    "constructors": [],
+    "methods": [
+      "PicoGK.Voxels voxGetCone(Leap71.ShapeKernel.LocalFrame, Single, Single, Single, Single)",
+      "PicoGK.Voxels voxGetCone(Single, Single, Single, Single)",
+      "PicoGK.Voxels voxGetCyl(Leap71.ShapeKernel.LocalFrame, Single, Single, Single)",
+      "PicoGK.Voxels voxGetCyl(Single, Single, Single)",
+      "PicoGK.Voxels voxGetPipe(Leap71.ShapeKernel.LocalFrame, Single, Single, Single, Single)",
+      "PicoGK.Voxels voxGetPipe(Single, Single, Single, Single)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.Distribution",
+    "constructors": [
+      "Void .ctor(Single, Leap71.ShapeKernel.LineModulation)"
+    ],
+    "methods": []
+  },
+  {
+    "name": "Leap71.ShapeKernel.Frames",
+    "constructors": [
+      "Void .ctor(Single, Leap71.ShapeKernel.LocalFrame, Single)",
+      "Void .ctor(System.Collections.Generic.List`1[System.Numerics.Vector3], Leap71.ShapeKernel.LocalFrame, Single)",
+      "Void .ctor(System.Collections.Generic.List`1[System.Numerics.Vector3], System.Numerics.Vector3, Single)",
+      "Void .ctor(System.Collections.Generic.List`1[System.Numerics.Vector3], System.Numerics.Vector3, Boolean, Single)",
+      "Void .ctor(System.Collections.Generic.List`1[System.Numerics.Vector3], EFrameType, Single)",
+      "Void .ctor(System.Collections.Generic.List`1[System.Numerics.Vector3], EFrameType, Boolean, Single)"
+    ],
+    "methods": [
+      "Leap71.ShapeKernel.LocalFrame oGetLocalFrame(Single)",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aGetPoints()",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aGetPoints(UInt32)",
+      "System.Numerics.Vector3 vecAlignWithTargetX(System.Numerics.Vector3, System.Numerics.Vector3)",
+      "System.Numerics.Vector3 vecGetLocalXAlongLength(Single)",
+      "System.Numerics.Vector3 vecGetLocalYAlongLength(Single)",
+      "System.Numerics.Vector3 vecGetLocalZAlongLength(Single)",
+      "System.Numerics.Vector3 vecGetSpineAlongLength(Single)",
+      "System.Numerics.Vector3 vecGetTargetX(System.Numerics.Vector3, EFrameType)",
+      "Void ApplyToFrame(Leap71.ShapeKernel.LocalFrame)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.Frames+EFrameType",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "Leap71.ShapeKernel.GenericContour",
+    "constructors": [
+      "Void .ctor(Single, Leap71.ShapeKernel.LineModulation)"
+    ],
+    "methods": []
+  },
+  {
+    "name": "Leap71.ShapeKernel.GridOperations",
+    "constructors": [],
+    "methods": [
+      "System.Collections.Generic.List`1[System.Collections.Generic.List`1[System.Numerics.Vector3]] aAddListInX(System.Collections.Generic.List`1[System.Collections.Generic.List`1[System.Numerics.Vector3]], System.Collections.Generic.List`1[System.Numerics.Vector3])",
+      "System.Collections.Generic.List`1[System.Collections.Generic.List`1[System.Numerics.Vector3]] aAddListInY(System.Collections.Generic.List`1[System.Collections.Generic.List`1[System.Numerics.Vector3]], System.Collections.Generic.List`1[System.Numerics.Vector3])",
+      "System.Collections.Generic.List`1[System.Collections.Generic.List`1[System.Numerics.Vector3]] aGetInverseGrid(System.Collections.Generic.List`1[System.Collections.Generic.List`1[System.Numerics.Vector3]])",
+      "System.Collections.Generic.List`1[System.Collections.Generic.List`1[System.Numerics.Vector3]] aRemoveListInX(System.Collections.Generic.List`1[System.Collections.Generic.List`1[System.Numerics.Vector3]], UInt32)",
+      "System.Collections.Generic.List`1[System.Collections.Generic.List`1[System.Numerics.Vector3]] aRemoveListInY(System.Collections.Generic.List`1[System.Collections.Generic.List`1[System.Numerics.Vector3]], UInt32)",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aGetListInX(System.Collections.Generic.List`1[System.Collections.Generic.List`1[System.Numerics.Vector3]], UInt32)",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aGetListInY(System.Collections.Generic.List`1[System.Collections.Generic.List`1[System.Numerics.Vector3]], UInt32)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.IColorScale",
+    "constructors": [],
+    "methods": [
+      "PicoGK.ColorFloat clrGetColor(Single)",
+      "Single fGetMaxValue()",
+      "Single fGetMinValue()"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.ILatticeBaseShape",
+    "constructors": [],
+    "methods": [
+      "PicoGK.Lattice latConstruct()"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.IMeshBaseShape",
+    "constructors": [],
+    "methods": [
+      "PicoGK.Mesh mshConstruct()"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.ImplicitGenus",
+    "constructors": [
+      "Void .ctor(Single)"
+    ],
+    "methods": [
+      "Single fSignedDistance(System.Numerics.Vector3 ByRef)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.ImplicitGyroid",
+    "constructors": [
+      "Void .ctor(Single, Single)"
+    ],
+    "methods": [
+      "Single fGetThicknessRatio(Single, Single)",
+      "Single fSignedDistance(System.Numerics.Vector3 ByRef)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.ImplicitSphere",
+    "constructors": [
+      "Void .ctor(System.Numerics.Vector3, Single)"
+    ],
+    "methods": [
+      "Single fSignedDistance(System.Numerics.Vector3 ByRef)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.ImplicitSuperEllipsoid",
+    "constructors": [
+      "Void .ctor(System.Numerics.Vector3, Single, Single, Single, Single, Single)"
+    ],
+    "methods": [
+      "Single fSignedDistance(System.Numerics.Vector3 ByRef)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.ISpectrum",
+    "constructors": [],
+    "methods": [
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aGetRawRGBList()"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.ISpineBaseShape",
+    "constructors": [],
+    "methods": [
+      "System.Numerics.Vector3 vecGetSpinePoint(Single)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.ISpline",
+    "constructors": [],
+    "methods": [
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aGetPoints(UInt32)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.ISurfaceBaseShape",
+    "constructors": [],
+    "methods": [
+      "System.Numerics.Vector3 vecGetSurfacePoint(Single, Single, Single)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.LatticeManifold",
+    "constructors": [
+      "Void .ctor(Leap71.ShapeKernel.LocalFrame, Single, Single, Single, Boolean, Single)",
+      "Void .ctor(Leap71.ShapeKernel.Frames, Single, Single, Boolean, Single)"
+    ],
+    "methods": [
+      "PicoGK.Lattice latConstruct()"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.LatticePipe",
+    "constructors": [
+      "Void .ctor(Leap71.ShapeKernel.LocalFrame, Single, Single)",
+      "Void .ctor(Leap71.ShapeKernel.Frames, Single)"
+    ],
+    "methods": [
+      "PicoGK.Lattice latConstruct()",
+      "PicoGK.Voxels voxConstruct()",
+      "System.Numerics.Vector3 vecGetSpinePoint(Single)",
+      "Void SetLengthSteps(UInt32)",
+      "Void SetRadius(Leap71.ShapeKernel.LineModulation)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.LinearColorScale2D",
+    "constructors": [
+      "Void .ctor(PicoGK.ColorFloat, PicoGK.ColorFloat, Single, Single)"
+    ],
+    "methods": [
+      "PicoGK.ColorFloat clrGetColor(Single)",
+      "Single fGetMaxValue()",
+      "Single fGetMinValue()"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.LineDecimation",
+    "constructors": [
+      "Void .ctor(System.Collections.Generic.List`1[System.Numerics.Vector3], Single)"
+    ],
+    "methods": [
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aGetDecimatedPoints()"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.LineModulation",
+    "constructors": [
+      "Void .ctor(Single)",
+      "Void .ctor(RatioFunc)",
+      "Void .ctor(System.Collections.Generic.List`1[System.Numerics.Vector3], ECoord, ECoord)"
+    ],
+    "methods": [
+      "Leap71.ShapeKernel.LineModulation op_Addition(Leap71.ShapeKernel.LineModulation, Leap71.ShapeKernel.LineModulation)",
+      "Leap71.ShapeKernel.LineModulation op_Multiply(Single, Leap71.ShapeKernel.LineModulation)",
+      "Leap71.ShapeKernel.LineModulation op_Subtraction(Leap71.ShapeKernel.LineModulation, Leap71.ShapeKernel.LineModulation)",
+      "Single fGetModulation(Single)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.LineModulation+ECoord",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "Leap71.ShapeKernel.LineModulation+RatioFunc",
+    "constructors": [
+      "Void .ctor(System.Object, IntPtr)"
+    ],
+    "methods": [
+      "Single EndInvoke(System.IAsyncResult)",
+      "Single Invoke(Single)",
+      "System.IAsyncResult BeginInvoke(Single, System.AsyncCallback, System.Object)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.ListOperations",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Int32 iGetIndexOfMaxValue(System.Collections.Generic.List`1[System.Single])",
+      "Int32 iGetIndexOfMinValue(System.Collections.Generic.List`1[System.Single])",
+      "System.Collections.Generic.List`1[System.Single] aOverSampleList(System.Collections.Generic.List`1[System.Single], Int32)",
+      "System.Collections.Generic.List`1[System.Single] aSubsampleList(System.Collections.Generic.List`1[System.Single], Int32)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.LocalFrame",
+    "constructors": [
+      "Void .ctor()",
+      "Void .ctor(Leap71.ShapeKernel.LocalFrame, System.Numerics.Vector3)",
+      "Void .ctor(System.Numerics.Vector3)",
+      "Void .ctor(System.Numerics.Vector3, System.Numerics.Vector3)",
+      "Void .ctor(System.Numerics.Vector3, System.Numerics.Vector3, System.Numerics.Vector3)"
+    ],
+    "methods": [
+      "Leap71.ShapeKernel.LocalFrame oGetInvertFrame(Leap71.ShapeKernel.LocalFrame, Boolean, Boolean)",
+      "Leap71.ShapeKernel.LocalFrame oGetRotatedFrame(Leap71.ShapeKernel.LocalFrame, Single, System.Numerics.Vector3)",
+      "Leap71.ShapeKernel.LocalFrame oGetTranslatedFrame(Leap71.ShapeKernel.LocalFrame, System.Numerics.Vector3)",
+      "Leap71.ShapeKernel.LocalFrame oInvert(Boolean, Boolean)",
+      "Leap71.ShapeKernel.LocalFrame op_Implicit(PicoGK.Shapes.Frame3d)",
+      "Leap71.ShapeKernel.LocalFrame oRotate(Single, System.Numerics.Vector3)",
+      "Leap71.ShapeKernel.LocalFrame oTranslate(System.Numerics.Vector3)",
+      "PicoGK.Shapes.Frame3d op_Implicit(Leap71.ShapeKernel.LocalFrame)",
+      "System.Numerics.Vector3 vecGetLocalX()",
+      "System.Numerics.Vector3 vecGetLocalY()",
+      "System.Numerics.Vector3 vecGetLocalY(System.Numerics.Vector3, System.Numerics.Vector3)",
+      "System.Numerics.Vector3 vecGetLocalZ()",
+      "System.Numerics.Vector3 vecGetPosition()"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.Measure",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Double[,] matGetMomentOfInertia(PicoGK.Voxels, Leap71.ShapeKernel.LocalFrame, Single)",
+      "Single fGetSurfaceArea(PicoGK.Mesh)",
+      "Single fGetSurfaceArea(PicoGK.Voxels)",
+      "Single fGetTriangleArea(System.Numerics.Vector3, System.Numerics.Vector3, System.Numerics.Vector3)",
+      "Single fGetVolume(PicoGK.Voxels)",
+      "System.Numerics.Vector3 vecGetCentreOfGravity(PicoGK.Voxels)",
+      "Void TestCentreOfGravityMesurement()",
+      "Void TestInertiaTensorMesurement()",
+      "Void TestSurfaceMesurement()",
+      "Void TestVolumeMesurement()"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.MeshPainter",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Void PreviewCustomDeformation(PicoGK.Mesh, Leap71.ShapeKernel.IColorScale, ColorScaleFunc, fnVertexTransformation, UInt32)",
+      "Void PreviewCustomProperty(PicoGK.Mesh, Leap71.ShapeKernel.IColorScale, ColorScaleFunc, UInt32)",
+      "Void PreviewOverhangAngle(PicoGK.Mesh, Leap71.ShapeKernel.IColorScale, Boolean, UInt32)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.MeshPainter+ColorScaleFunc",
+    "constructors": [
+      "Void .ctor(System.Object, IntPtr)"
+    ],
+    "methods": [
+      "Single EndInvoke(System.IAsyncResult)",
+      "Single Invoke(System.Numerics.Vector3, System.Numerics.Vector3, System.Numerics.Vector3)",
+      "System.IAsyncResult BeginInvoke(System.Numerics.Vector3, System.Numerics.Vector3, System.Numerics.Vector3, System.AsyncCallback, System.Object)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.MeshUtility",
+    "constructors": [],
+    "methods": [
+      "PicoGK.Mesh Append(PicoGK.Mesh, PicoGK.Mesh)",
+      "PicoGK.Mesh mshApplyTransformation(PicoGK.Mesh, fnVertexTransformation)",
+      "PicoGK.Mesh mshFromGrid(System.Collections.Generic.List`1[System.Collections.Generic.List`1[System.Numerics.Vector3]])",
+      "PicoGK.Mesh mshFromQuad(System.Numerics.Vector3, System.Numerics.Vector3, System.Numerics.Vector3, System.Numerics.Vector3)",
+      "PicoGK.Mesh mshTranslateMeshOntoFrame(PicoGK.Mesh, Leap71.ShapeKernel.LocalFrame, Leap71.ShapeKernel.LocalFrame)",
+      "PicoGK.Voxels voxApplyTransformation(PicoGK.Voxels, fnVertexTransformation)",
+      "Void AddQuad(PicoGK.Mesh ByRef, System.Numerics.Vector3, System.Numerics.Vector3, System.Numerics.Vector3, System.Numerics.Vector3)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.RainboxSpectrum",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aGetRawRGBList()"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.RectUtility",
+    "constructors": [],
+    "methods": [
+      "PicoGK.Voxels voxGetBox(Leap71.ShapeKernel.LocalFrame, Single, Single, Single, Single)",
+      "PicoGK.Voxels voxGetBox(Single, Single, Single, Single)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.RotationAnimator",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Void Do()"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.Sh",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Int32 Preview(PicoGK.Lattice, PicoGK.ColorFloat, Single, Single, Single)",
+      "Int32 Preview(PicoGK.Mesh, PicoGK.ColorFloat, Single, Single, Single)",
+      "Int32 Preview(PicoGK.Voxels, PicoGK.ColorFloat, Single, Single, Single)",
+      "Int32 PreviewLattice(PicoGK.Lattice, PicoGK.ColorFloat, Single, Single, Single)",
+      "Int32 PreviewMesh(PicoGK.Mesh, PicoGK.ColorFloat, Single, Single, Single)",
+      "Int32 PreviewVoxels(PicoGK.Voxels, PicoGK.ColorFloat, Single, Single, Single)",
+      "PicoGK.BBox3 oGetBoundingBox(PicoGK.Voxels)",
+      "PicoGK.Lattice latFromBeam(System.Numerics.Vector3, System.Numerics.Vector3, Single, Boolean)",
+      "PicoGK.Lattice latFromBeam(System.Numerics.Vector3, System.Numerics.Vector3, Single, Single, Boolean)",
+      "PicoGK.Lattice latFromEdges(System.Collections.Generic.List`1[System.Collections.Generic.List`1[System.Numerics.Vector3]], Single)",
+      "PicoGK.Lattice latFromGrid(System.Collections.Generic.List`1[System.Collections.Generic.List`1[System.Numerics.Vector3]], Single)",
+      "PicoGK.Lattice latFromLine(System.Collections.Generic.List`1[System.Numerics.Vector3], Single)",
+      "PicoGK.Lattice latFromPoint(System.Numerics.Vector3, Single)",
+      "PicoGK.Lattice latFromPoints(System.Collections.Generic.List`1[System.Numerics.Vector3], Single)",
+      "PicoGK.Voxels voxExtrudeZSlice(PicoGK.Voxels, Single, Single)",
+      "PicoGK.Voxels voxIntersect(PicoGK.Voxels, PicoGK.Voxels)",
+      "PicoGK.Voxels voxIntersectImplicit(PicoGK.Voxels, PicoGK.IImplicit)",
+      "PicoGK.Voxels voxOffset(PicoGK.Voxels, Single)",
+      "PicoGK.Voxels voxOverOffset(PicoGK.Voxels, Single, Single)",
+      "PicoGK.Voxels voxShell(PicoGK.Voxels, Single, Single, Single)",
+      "PicoGK.Voxels voxSmoothen(PicoGK.Voxels, Single)",
+      "PicoGK.Voxels voxSubtract(PicoGK.Voxels ByRef, PicoGK.Voxels)",
+      "PicoGK.Voxels voxUnion(PicoGK.Voxels, PicoGK.Voxels)",
+      "PicoGK.Voxels voxUnion(System.Collections.Generic.List`1[PicoGK.Voxels])",
+      "System.Numerics.Vector3 vecGetClosestSurfacePoint(PicoGK.Voxels, System.Numerics.Vector3)",
+      "System.Numerics.Vector3 vecGetProjectedSurfacePoint(PicoGK.Voxels, System.Numerics.Vector3, System.Numerics.Vector3)",
+      "System.String strGetExportPath(EExport, System.String)",
+      "Void AddLine(PicoGK.Lattice ByRef, System.Collections.Generic.List`1[System.Numerics.Vector3], Single)",
+      "Void ExportMeshToSTLFile(PicoGK.Mesh, System.String)",
+      "Void ExportVoxelsToCLIFile(PicoGK.Voxels, System.String)",
+      "Void ExportVoxelsToSTLFile(PicoGK.Voxels, System.String)",
+      "Void ExportVoxelsToVDBFile(PicoGK.Voxels, System.String)",
+      "Void Preview(Leap71.ShapeKernel.BaseBox, PicoGK.ColorFloat)",
+      "Void Preview(Leap71.ShapeKernel.BaseCylinder, PicoGK.ColorFloat, UInt32, UInt32)",
+      "Void Preview(Leap71.ShapeKernel.BasePipe, PicoGK.ColorFloat, UInt32, UInt32)",
+      "Void Preview(Leap71.ShapeKernel.BaseRing, PicoGK.ColorFloat, UInt32, UInt32)",
+      "Void Preview(Leap71.ShapeKernel.Frames, Single)",
+      "Void Preview(Leap71.ShapeKernel.LocalFrame, Single)",
+      "Void Preview(PicoGK.BBox3, PicoGK.ColorFloat)",
+      "Void Preview(System.Collections.Generic.List`1[System.Numerics.Vector3], PicoGK.ColorFloat)",
+      "Void Preview(System.Numerics.Vector3, Single, PicoGK.ColorFloat, Single, Single, Single)",
+      "Void PreviewBeam(System.Numerics.Vector3, Single, System.Numerics.Vector3, Single, PicoGK.ColorFloat, Single, Single, Single)",
+      "Void PreviewBoxWireframe(Leap71.ShapeKernel.BaseBox, PicoGK.ColorFloat)",
+      "Void PreviewBoxWireframe(PicoGK.BBox3, PicoGK.ColorFloat)",
+      "Void PreviewCircle(Leap71.ShapeKernel.LocalFrame, Single, PicoGK.ColorFloat)",
+      "Void PreviewCircle(System.Numerics.Vector3, Single, PicoGK.ColorFloat)",
+      "Void PreviewCircleSection(Leap71.ShapeKernel.LocalFrame, Single, PicoGK.ColorFloat, Single, Single, Single)",
+      "Void PreviewCylinderWireframe(Leap71.ShapeKernel.BaseCylinder, PicoGK.ColorFloat, UInt32, UInt32)",
+      "Void PreviewEdges(System.Collections.Generic.List`1[System.Collections.Generic.List`1[System.Numerics.Vector3]], PicoGK.ColorFloat)",
+      "Void PreviewFrame(Leap71.ShapeKernel.LocalFrame, Single)",
+      "Void PreviewFrames(Leap71.ShapeKernel.Frames, Single)",
+      "Void PreviewGrid(System.Collections.Generic.List`1[System.Collections.Generic.List`1[System.Numerics.Vector3]], PicoGK.ColorFloat)",
+      "Void PreviewLine(System.Collections.Generic.List`1[System.Numerics.Vector3], PicoGK.ColorFloat)",
+      "Void PreviewLine(System.Numerics.Vector3, System.Numerics.Vector3, PicoGK.ColorFloat)",
+      "Void PreviewMeshWireframe(PicoGK.Mesh, PicoGK.ColorFloat)",
+      "Void PreviewPipeWireframe(Leap71.ShapeKernel.BasePipe, PicoGK.ColorFloat, UInt32, UInt32)",
+      "Void PreviewPoint(System.Numerics.Vector3, Single, PicoGK.ColorFloat, Single, Single, Single)",
+      "Void PreviewPointCloud(System.Collections.Generic.List`1[System.Numerics.Vector3], Single, PicoGK.ColorFloat, Single, Single, Single)",
+      "Void PreviewRingWireframe(Leap71.ShapeKernel.BaseRing, PicoGK.ColorFloat, UInt32, UInt32)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.Sh+EExport",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "Leap71.ShapeKernel.SmoothColorScale2D",
+    "constructors": [
+      "Void .ctor(PicoGK.ColorFloat, PicoGK.ColorFloat, Single, Single)"
+    ],
+    "methods": []
+  },
+  {
+    "name": "Leap71.ShapeKernel.SplineOperations",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Single fGetAveragePointSpacing(System.Collections.Generic.List`1[System.Numerics.Vector3])",
+      "Single fGetDistanceToClosestPoint(System.Collections.Generic.List`1[System.Numerics.Vector2], System.Numerics.Vector2)",
+      "Single fGetDistanceToClosestPoint(System.Collections.Generic.List`1[System.Numerics.Vector3], System.Numerics.Vector3)",
+      "Single fGetTotalLength(System.Collections.Generic.List`1[System.Numerics.Vector3])",
+      "System.Collections.Generic.List`1[System.Numerics.Vector2] aRotateListAroundZ(System.Collections.Generic.List`1[System.Numerics.Vector2], Single)",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aCombineLists(System.Collections.Generic.List`1[System.Collections.Generic.List`1[System.Numerics.Vector3]])",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aExpressListInFrame(Leap71.ShapeKernel.LocalFrame, System.Collections.Generic.List`1[System.Numerics.Vector3])",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aGetClusteredPoints(System.Collections.Generic.List`1[System.Numerics.Vector3], Single)",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aGetLinearInterpolation(System.Numerics.Vector3, System.Numerics.Vector3, UInt32)",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aGetNURBSpline(System.Collections.Generic.List`1[System.Numerics.Vector3], UInt32)",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aGetReparametrizedSpline(System.Collections.Generic.List`1[System.Numerics.Vector3], Single)",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aGetReparametrizedSpline(System.Collections.Generic.List`1[System.Numerics.Vector3], UInt32)",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aGetSnappedSpline(System.Collections.Generic.List`1[System.Numerics.Vector3], PicoGK.Voxels)",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aOverSampleList(System.Collections.Generic.List`1[System.Numerics.Vector3], Int32)",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aRotateListAroundAxis(System.Collections.Generic.List`1[System.Numerics.Vector3], Single, System.Numerics.Vector3, System.Numerics.Vector3)",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aRotateListAroundZ(System.Collections.Generic.List`1[System.Numerics.Vector3], Single)",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aScaleList(System.Collections.Generic.List`1[System.Numerics.Vector3], Single)",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aSubSampleList(System.Collections.Generic.List`1[System.Numerics.Vector3], Int32)",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aTranslateList(System.Collections.Generic.List`1[System.Numerics.Vector3], System.Numerics.Vector3)",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aTranslateListOntoFrame(Leap71.ShapeKernel.LocalFrame, System.Collections.Generic.List`1[System.Numerics.Vector2])",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aTranslateListOntoFrame(Leap71.ShapeKernel.LocalFrame, System.Collections.Generic.List`1[System.Numerics.Vector3])",
+      "System.Collections.Generic.List`1[System.Single] aGetLengthsAtIndices(System.Collections.Generic.List`1[System.Numerics.Vector3])",
+      "System.Numerics.Vector2 vecGetClosestPoint(System.Collections.Generic.List`1[System.Numerics.Vector2], System.Numerics.Vector2)",
+      "System.Numerics.Vector3 vecGetAverage(System.Collections.Generic.List`1[System.Numerics.Vector3])",
+      "System.Numerics.Vector3 vecGetClosestPoint(System.Collections.Generic.List`1[System.Numerics.Vector3], System.Numerics.Vector3)",
+      "System.ValueTuple`2[System.Collections.Generic.List`1[System.Numerics.Vector3],System.Collections.Generic.List`1[System.Numerics.Vector3]] aSplitLists(System.Collections.Generic.List`1[System.Numerics.Vector3], Int32)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.SurfaceModulation",
+    "constructors": [
+      "Void .ctor(Single)",
+      "Void .ctor(RatioFunc)",
+      "Void .ctor(Leap71.ShapeKernel.LineModulation, ELine)",
+      "Void .ctor(PicoGK.Image, MappingFunc)"
+    ],
+    "methods": [
+      "EInput oGetInputType()",
+      "Leap71.ShapeKernel.SurfaceModulation op_Addition(Leap71.ShapeKernel.SurfaceModulation, Leap71.ShapeKernel.SurfaceModulation)",
+      "Leap71.ShapeKernel.SurfaceModulation op_Multiply(Single, Leap71.ShapeKernel.SurfaceModulation)",
+      "Leap71.ShapeKernel.SurfaceModulation op_Subtraction(Leap71.ShapeKernel.SurfaceModulation, Leap71.ShapeKernel.SurfaceModulation)",
+      "Single fGetModulation(Single, Single)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.SurfaceModulation+EInput",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "Leap71.ShapeKernel.SurfaceModulation+ELine",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "Leap71.ShapeKernel.SurfaceModulation+MappingFunc",
+    "constructors": [
+      "Void .ctor(System.Object, IntPtr)"
+    ],
+    "methods": [
+      "Single EndInvoke(System.IAsyncResult)",
+      "Single Invoke(Single)",
+      "System.IAsyncResult BeginInvoke(Single, System.AsyncCallback, System.Object)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.SurfaceModulation+RatioFunc",
+    "constructors": [
+      "Void .ctor(System.Object, IntPtr)"
+    ],
+    "methods": [
+      "Single EndInvoke(System.IAsyncResult)",
+      "Single Invoke(Single, Single)",
+      "System.IAsyncResult BeginInvoke(Single, Single, System.AsyncCallback, System.Object)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.TangentialControlSpline",
+    "constructors": [
+      "Void .ctor(System.Numerics.Vector3, System.Numerics.Vector3, System.Numerics.Vector3, System.Numerics.Vector3, Single, Single, Boolean, Boolean)",
+      "Void .ctor(Leap71.ShapeKernel.LocalFrame, Leap71.ShapeKernel.LocalFrame, Single, Single, Boolean, Boolean)"
+    ],
+    "methods": [
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aGetPoints(UInt32)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.Uf",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Boolean bGetRandomBool()",
+      "Boolean bGetRandomBool(System.Random)",
+      "Single fGetPolygonRadius(Single, EPolygon)",
+      "Single fGetPolygonRadius(Single, UInt32)",
+      "Single fGetRandomGaussian(Single, Single, System.Random)",
+      "Single fGetRandomGaussian(Single, Single)",
+      "Single fGetRandomLinear(Single, Single, System.Random)",
+      "Single fGetRandomLinear(Single, Single)",
+      "Single fGetSuperShapeRadius(Single, ESuperShape)",
+      "Single fGetSuperShapeRadius(Single, Single, Single, Single, Single)",
+      "Single fLimitValue(Single, Single, Single)",
+      "Single fTransFixed(Single, Single, Single)",
+      "Single fTransSmooth(Single, Single, Single, Single, Single)",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aGetFibonacciCirlePoints(Single, UInt32)",
+      "System.Collections.Generic.List`1[System.Numerics.Vector3] aGetFibonacciSpherePoints(Single, UInt32)",
+      "System.Numerics.Vector3 vecTransFixed(System.Numerics.Vector3, System.Numerics.Vector3, Single)",
+      "System.Numerics.Vector3 vecTransSmooth(System.Numerics.Vector3, System.Numerics.Vector3, Single, Single, Single)",
+      "Void Wait(Single)"
+    ]
+  },
+  {
+    "name": "Leap71.ShapeKernel.Uf+EPolygon",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "Leap71.ShapeKernel.Uf+ESuperShape",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "Leap71.ShapeKernel.VecOperations",
+    "constructors": [],
+    "methods": [
+      "Boolean bCheckAlignment(System.Numerics.Vector3, System.Numerics.Vector3)",
+      "Single fGetAngleBetween(System.Numerics.Vector2, System.Numerics.Vector2)",
+      "Single fGetAngleBetween(System.Numerics.Vector3, System.Numerics.Vector3)",
+      "Single fGetPhi(System.Numerics.Vector2)",
+      "Single fGetPhi(System.Numerics.Vector3)",
+      "Single fGetPhiToAxis(Leap71.ShapeKernel.LocalFrame, System.Numerics.Vector3)",
+      "Single fGetRadius(System.Numerics.Vector2)",
+      "Single fGetRadius(System.Numerics.Vector3)",
+      "Single fGetRadiusToAxis(Leap71.ShapeKernel.LocalFrame, System.Numerics.Vector3)",
+      "Single fGetSignedAngleBetween(System.Numerics.Vector3, System.Numerics.Vector3, System.Numerics.Vector3)",
+      "Single fGetTheta(System.Numerics.Vector3)",
+      "Single R(System.Numerics.Vector3)",
+      "System.Numerics.Vector2 ConvertTo2D(System.Numerics.Vector3)",
+      "System.Numerics.Vector2 vecRotateAroundZ(System.Numerics.Vector2, Single, System.Numerics.Vector2)",
+      "System.Numerics.Vector2 vecSetPhi(System.Numerics.Vector2, Single)",
+      "System.Numerics.Vector3 ConvertTo3D(System.Numerics.Vector2, Single)",
+      "System.Numerics.Vector3 Normalize(System.Numerics.Vector3)",
+      "System.Numerics.Vector3 vecCylindricalInterpolation(System.Numerics.Vector3, System.Numerics.Vector3, Single, System.Numerics.Vector3)",
+      "System.Numerics.Vector3 vecExpressPointInFrame(Leap71.ShapeKernel.LocalFrame, System.Numerics.Vector3)",
+      "System.Numerics.Vector3 vecFlipForAlignment(System.Numerics.Vector3, System.Numerics.Vector3)",
+      "System.Numerics.Vector3 vecGetCylPoint(Single, Single, Single)",
+      "System.Numerics.Vector3 vecGetDirectionToAxis(Leap71.ShapeKernel.LocalFrame, System.Numerics.Vector3)",
+      "System.Numerics.Vector3 vecGetOrthogonalDir(System.Numerics.Vector3)",
+      "System.Numerics.Vector3 vecGetPlanarDir(System.Numerics.Vector3)",
+      "System.Numerics.Vector3 vecGetSphPoint(Single, Single, Single)",
+      "System.Numerics.Vector3 vecLinearInterpolation(System.Numerics.Vector3, System.Numerics.Vector3, Single)",
+      "System.Numerics.Vector3 vecRotateAroundAxis(System.Numerics.Vector3, Single, System.Numerics.Vector3, System.Nullable`1[System.Numerics.Vector3])",
+      "System.Numerics.Vector3 vecRotateAroundZ(System.Numerics.Vector3, Single, System.Numerics.Vector3)",
+      "System.Numerics.Vector3 vecSetPhi(System.Numerics.Vector3, Single)",
+      "System.Numerics.Vector3 vecSetRadius(System.Numerics.Vector3, Single)",
+      "System.Numerics.Vector3 vecSetZ(System.Numerics.Vector3, Single)",
+      "System.Numerics.Vector3 vecSphericalInterpolation(System.Numerics.Vector3, System.Numerics.Vector3, Single, System.Numerics.Vector3)",
+      "System.Numerics.Vector3 vecTranslateDirectionOntoFrame(Leap71.ShapeKernel.LocalFrame, System.Numerics.Vector3)",
+      "System.Numerics.Vector3 vecTranslatePointOntoFrame(Leap71.ShapeKernel.LocalFrame, System.Numerics.Vector3)",
+      "System.Numerics.Vector3 vecUpdatePhi(System.Numerics.Vector3, Single)",
+      "System.Numerics.Vector3 vecUpdateRadius(System.Numerics.Vector3, Single)",
+      "System.Numerics.Vector3 vecUpdateZ(System.Numerics.Vector3, Single)"
+    ]
+  },
+  {
+    "name": "PicoGK_Fasteners.Fastener",
+    "constructors": [
+      "Void .ctor(EHeadType, EDriver, Single, Single, Single, System.String)",
+      "Void .ctor(System.String, EHeadType, EDriver, Single, Single, Single, Single, Single, Single, Single, Single, Single, Single, Single, Single, Single, Single, Single, Single, Single, Single)"
+    ],
+    "methods": [
+      "Leap71.ShapeKernel.LocalFrame FrameOffset(Leap71.ShapeKernel.LocalFrame, System.Numerics.Vector3)",
+      "PicoGK.Voxels HoleClearence(Leap71.ShapeKernel.LocalFrame, Int32, Single)",
+      "PicoGK.Voxels HoleCounterbored(Leap71.ShapeKernel.LocalFrame, Single, Int32, Single)",
+      "PicoGK.Voxels HoleCountersunk(Leap71.ShapeKernel.LocalFrame, Int32, Single)",
+      "PicoGK.Voxels HoleThreaded(Leap71.ShapeKernel.LocalFrame)",
+      "PicoGK.Voxels Nut(Leap71.ShapeKernel.LocalFrame, Single)",
+      "PicoGK.Voxels ScrewBasic(Leap71.ShapeKernel.LocalFrame, Boolean)",
+      "PicoGK.Voxels ScrewThreaded(Leap71.ShapeKernel.LocalFrame, Boolean)",
+      "PicoGK.Voxels Stack(Leap71.ShapeKernel.LocalFrame, Single)",
+      "PicoGK.Voxels TapDrill(Leap71.ShapeKernel.LocalFrame)",
+      "PicoGK.Voxels Washer(Leap71.ShapeKernel.LocalFrame)",
+      "Void WritetoBOM(System.String)"
+    ]
+  },
+  {
+    "name": "PicoGK_Fasteners.Fastener+EDriver",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "PicoGK_Fasteners.Fastener+EHeadType",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "PicoGK.ActiveVoxelCounterScalar",
+    "constructors": [],
+    "methods": [
+      "Int32 nCount(PicoGK.ScalarField)",
+      "Void InformActiveValue(System.Numerics.Vector3 ByRef, Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.AddVectorFieldToViewer",
+    "constructors": [],
+    "methods": [
+      "Void AddToViewer(PicoGK.Viewer, PicoGK.VectorField, PicoGK.ColorFloat, Int32, Single, Int32)",
+      "Void InformActiveValue(System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef)"
+    ]
+  },
+  {
+    "name": "PicoGK.Animation",
+    "constructors": [
+      "Void .ctor(IAction, Single, EType, EEasing)"
+    ],
+    "methods": [
+      "Boolean bAnimate(Single)",
+      "Void End()"
+    ]
+  },
+  {
+    "name": "PicoGK.Animation+EType",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "PicoGK.Animation+IAction",
+    "constructors": [],
+    "methods": [
+      "Void Do(Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.AnimationQueue",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Boolean bIsIdle()",
+      "Boolean bPulse()",
+      "Void Add(PicoGK.Animation)",
+      "Void Clear()"
+    ]
+  },
+  {
+    "name": "PicoGK.BBox2",
+    "constructors": [
+      "Void .ctor()",
+      "Void .ctor(Single, Single, Single, Single)",
+      "Void .ctor(System.Numerics.Vector2 ByRef, System.Numerics.Vector2 ByRef)"
+    ],
+    "methods": [
+      "Boolean bContains(System.Numerics.Vector2)",
+      "Boolean bIsEmpty()",
+      "System.Numerics.Vector2 vecCenter()",
+      "System.Numerics.Vector2 vecSize()",
+      "System.String ToString()",
+      "Void Grow(Single)",
+      "Void Include(PicoGK.BBox2)",
+      "Void Include(System.Numerics.Vector2)"
+    ]
+  },
+  {
+    "name": "PicoGK.BBox3",
+    "constructors": [
+      "Void .ctor()",
+      "Void .ctor(Single, Single, Single, Single, Single, Single)",
+      "Void .ctor(System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef)"
+    ],
+    "methods": [
+      "Boolean bContains(System.Numerics.Vector3)",
+      "Boolean bIsEmpty()",
+      "PicoGK.BBox2 oAsBoundingBox2()",
+      "PicoGK.BBox3 oFitInto(PicoGK.BBox3 ByRef, Single ByRef, System.Numerics.Vector3 ByRef)",
+      "System.Numerics.Vector3 vecCenter()",
+      "System.Numerics.Vector3 vecRandomVectorInside(System.Random ByRef)",
+      "System.Numerics.Vector3 vecSize()",
+      "System.String ToString()",
+      "Void Grow(Single)",
+      "Void Include(PicoGK.BBox2, Single)",
+      "Void Include(PicoGK.BBox3)",
+      "Void Include(System.Numerics.Vector3)"
+    ]
+  },
+  {
+    "name": "PicoGK.CliIo",
+    "constructors": [],
+    "methods": [
+      "Result oSlicesFromCliFile(System.String)",
+      "Void WriteSlicesToCliFile(PicoGK.PolySliceStack, System.String, EFormat, System.String, Single, PicoGK.IProgress)"
+    ]
+  },
+  {
+    "name": "PicoGK.CliIo+EFormat",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "PicoGK.CliIo+Result",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": []
+  },
+  {
+    "name": "PicoGK.ColorBgr24",
+    "constructors": [
+      "Void .ctor(Byte, Byte, Byte)",
+      "Void .ctor(PicoGK.ColorFloat)"
+    ],
+    "methods": [
+      "PicoGK.ColorBgr24 op_Implicit(PicoGK.ColorFloat)"
+    ]
+  },
+  {
+    "name": "PicoGK.ColorBgra32",
+    "constructors": [
+      "Void .ctor(Byte, Byte, Byte, Byte)",
+      "Void .ctor(PicoGK.ColorFloat)"
+    ],
+    "methods": [
+      "PicoGK.ColorBgra32 op_Implicit(PicoGK.ColorFloat)"
+    ]
+  },
+  {
+    "name": "PicoGK.ColorFloat",
+    "constructors": [
+      "Void .ctor(System.String)",
+      "Void .ctor(Single, Single)",
+      "Void .ctor(Single, Single, Single, Single)",
+      "Void .ctor(PicoGK.ColorRgb24)",
+      "Void .ctor(PicoGK.ColorRgba32)",
+      "Void .ctor(PicoGK.ColorBgr24)",
+      "Void .ctor(PicoGK.ColorBgra32)",
+      "Void .ctor(PicoGK.ColorFloat, Single)",
+      "Void .ctor(PicoGK.ColorHSV)",
+      "Void .ctor(PicoGK.ColorHLS)"
+    ],
+    "methods": [
+      "PicoGK.ColorFloat clrRandom(System.Random)",
+      "PicoGK.ColorFloat clrWeighted(PicoGK.ColorFloat, PicoGK.ColorFloat, Single)",
+      "PicoGK.ColorFloat op_Implicit(System.String)",
+      "System.String strAsABGRHexCode()",
+      "System.String strAsHexCode()",
+      "System.String ToString()"
+    ]
+  },
+  {
+    "name": "PicoGK.ColorHLS",
+    "constructors": [
+      "Void .ctor(Single, Single, Single)",
+      "Void .ctor(PicoGK.ColorFloat)"
+    ],
+    "methods": [
+      "PicoGK.ColorFloat op_Implicit(PicoGK.ColorHLS)",
+      "PicoGK.ColorHLS op_Implicit(PicoGK.ColorFloat)"
+    ]
+  },
+  {
+    "name": "PicoGK.ColorHSV",
+    "constructors": [
+      "Void .ctor(Single, Single, Single)",
+      "Void .ctor(PicoGK.ColorFloat)"
+    ],
+    "methods": [
+      "PicoGK.ColorFloat op_Implicit(PicoGK.ColorHSV)",
+      "PicoGK.ColorHSV op_Implicit(PicoGK.ColorFloat)"
+    ]
+  },
+  {
+    "name": "PicoGK.ColorRgb24",
+    "constructors": [
+      "Void .ctor(Byte, Byte, Byte)",
+      "Void .ctor(PicoGK.ColorFloat)"
+    ],
+    "methods": [
+      "PicoGK.ColorRgb24 op_Implicit(PicoGK.ColorFloat)"
+    ]
+  },
+  {
+    "name": "PicoGK.ColorRgba32",
+    "constructors": [
+      "Void .ctor(Byte, Byte, Byte, Byte)",
+      "Void .ctor(PicoGK.ColorFloat)"
+    ],
+    "methods": [
+      "PicoGK.ColorRgba32 op_Implicit(PicoGK.ColorFloat)"
+    ]
+  },
+  {
+    "name": "PicoGK.Config",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": []
+  },
+  {
+    "name": "PicoGK.Coord",
+    "constructors": [
+      "Void .ctor(Int32, Int32, Int32)"
+    ],
+    "methods": []
+  },
+  {
+    "name": "PicoGK.CsvTable",
+    "constructors": [
+      "Void .ctor(System.Collections.Generic.IEnumerable`1[System.String])",
+      "Void .ctor(System.String, System.String)"
+    ],
+    "methods": [
+      "Boolean bFindColumn(System.String, Int32 ByRef)",
+      "Boolean bGetAt(System.String ByRef, Single ByRef)",
+      "Boolean bGetAt(System.String ByRef, System.String ByRef)",
+      "Int32 nMaxColumnCount()",
+      "Int32 nRowCount()",
+      "System.String strColumnId(Int32)",
+      "System.String strGetAt(Int32, Int32)",
+      "Void AddRow(System.Collections.Generic.IEnumerable`1[System.String])",
+      "Void Save(System.String, System.String)",
+      "Void SetColumnIds(System.Collections.Generic.IEnumerable`1[System.String])",
+      "Void SetKeyColumn(Int32)"
+    ]
+  },
+  {
+    "name": "PicoGK.Diagnostics.TestCliOutput",
+    "constructors": [],
+    "methods": [
+      "Void Run()"
+    ]
+  },
+  {
+    "name": "PicoGK.Diagnostics.TestProgress",
+    "constructors": [],
+    "methods": [
+      "Void Test()"
+    ]
+  },
+  {
+    "name": "PicoGK.Diagnostics.TestVectorAndComparison",
+    "constructors": [],
+    "methods": [
+      "Void Test()"
+    ]
+  },
+  {
+    "name": "PicoGK.Easing",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Single fEaseCubicIn(Single)",
+      "Single fEaseCubicInOut(Single)",
+      "Single fEaseCubicOut(Single)",
+      "Single fEaseQuadIn(Single)",
+      "Single fEaseQuadInOut(Single)",
+      "Single fEaseQuadOut(Single)",
+      "Single fEaseSineIn(Single)",
+      "Single fEaseSineInOut(Single)",
+      "Single fEaseSineOut(Single)",
+      "Single fEasingFunction(Single, EEasing)"
+    ]
+  },
+  {
+    "name": "PicoGK.Easing+EEasing",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "PicoGK.FieldMetadata",
+    "constructors": [
+      "Void .ctor(PicoGK.Library, PicoGK.VdbMetaHandle)"
+    ],
+    "methods": [
+      "Boolean bGetNameAt(Int32, System.String ByRef)",
+      "Boolean bGetValueAt(System.String, Single ByRef)",
+      "Boolean bGetValueAt(System.String, System.Numerics.Vector3 ByRef)",
+      "Boolean bGetValueAt(System.String, System.String ByRef)",
+      "EType eTypeAt(System.String)",
+      "Int32 nCount()",
+      "System.String strTypeAt(System.String)",
+      "System.String strTypeName(EType)",
+      "System.String ToString()",
+      "Void Dispose()",
+      "Void RemoveValue(System.String)",
+      "Void SetValue(System.String, Single)",
+      "Void SetValue(System.String, System.Numerics.Vector3)",
+      "Void SetValue(System.String, System.String)"
+    ]
+  },
+  {
+    "name": "PicoGK.FieldMetadata+EType",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "PicoGK.GpuTexHandle",
+    "constructors": [
+      "Void .ctor(IntPtr)"
+    ],
+    "methods": [
+      "Boolean Equals(PicoGK.GpuTexHandle)",
+      "Boolean Equals(System.Object)",
+      "Boolean op_Equality(PicoGK.GpuTexHandle, PicoGK.GpuTexHandle)",
+      "Boolean op_Inequality(PicoGK.GpuTexHandle, PicoGK.GpuTexHandle)",
+      "Int32 GetHashCode()",
+      "IntPtr get_Value()",
+      "System.String ToString()",
+      "Void Deconstruct(IntPtr ByRef)",
+      "Void set_Value(IntPtr)"
+    ]
+  },
+  {
+    "name": "PicoGK.GuiSideBarHandle",
+    "constructors": [
+      "Void .ctor(IntPtr)"
+    ],
+    "methods": [
+      "Boolean Equals(PicoGK.GuiSideBarHandle)",
+      "Boolean Equals(System.Object)",
+      "Boolean op_Equality(PicoGK.GuiSideBarHandle, PicoGK.GuiSideBarHandle)",
+      "Boolean op_Inequality(PicoGK.GuiSideBarHandle, PicoGK.GuiSideBarHandle)",
+      "Int32 GetHashCode()",
+      "IntPtr get_Value()",
+      "System.String ToString()",
+      "Void Deconstruct(IntPtr ByRef)",
+      "Void set_Value(IntPtr)"
+    ]
+  },
+  {
+    "name": "PicoGK.IBoundedImplicit",
+    "constructors": [],
+    "methods": [
+      "PicoGK.BBox3 get_oBounds()"
+    ]
+  },
+  {
+    "name": "PicoGK.IDataTable",
+    "constructors": [],
+    "methods": [
+      "Boolean bFindColumn(System.String, Int32 ByRef)",
+      "Int32 nMaxColumnCount()",
+      "Int32 nRowCount()",
+      "System.String strColumnId(Int32)",
+      "System.String strGetAt(Int32, Int32)",
+      "Void AddRow(System.Collections.Generic.IEnumerable`1[System.String])",
+      "Void SetColumnIds(System.Collections.Generic.IEnumerable`1[System.String])"
+    ]
+  },
+  {
+    "name": "PicoGK.IFieldWithMetadata",
+    "constructors": [],
+    "methods": [
+      "PicoGK.FieldMetadata oMetaData()"
+    ]
+  },
+  {
+    "name": "PicoGK.IImplicit",
+    "constructors": [],
+    "methods": [
+      "Single fSignedDistance(System.Numerics.Vector3 ByRef)"
+    ]
+  },
+  {
+    "name": "PicoGK.ILog",
+    "constructors": [],
+    "methods": [
+      "Void Log(System.String ByRef, System.Object[])"
+    ]
+  },
+  {
+    "name": "PicoGK.Image",
+    "constructors": [],
+    "methods": [
+      "Boolean bValue(Int32, Int32)",
+      "Byte byGetValue(Int32, Int32)",
+      "PicoGK.ColorBgr24 sGetBgr24(Int32, Int32)",
+      "PicoGK.ColorBgra32 sGetBgra32(Int32, Int32)",
+      "PicoGK.ColorFloat clrGetAtNormalized(Single, Single)",
+      "PicoGK.ColorFloat clrValue(Int32, Int32)",
+      "PicoGK.ColorRgb24 sGetRgb24(Int32, Int32)",
+      "PicoGK.ColorRgba32 sGetRgba32(Int32, Int32)",
+      "PicoGK.Image imgLoadFromFile(System.String)",
+      "PicoGK.ImageRgba32 imgFromSKBitmap(SkiaSharp.SKBitmap)",
+      "Single fValue(Int32, Int32)",
+      "SkiaSharp.SKBitmap op_Implicit(PicoGK.Image)",
+      "Void DrawLine(Int32, Int32, Int32, Int32, Boolean)",
+      "Void DrawLine(Int32, Int32, Int32, Int32, PicoGK.ColorFloat)",
+      "Void DrawLine(Int32, Int32, Int32, Int32, Single)",
+      "Void SaveJpg(System.String, Int32)",
+      "Void SavePng(System.String, Int32)",
+      "Void SaveTga(System.String)",
+      "Void SetBgr24(Int32, Int32, PicoGK.ColorBgr24)",
+      "Void SetBgra32(Int32, Int32, PicoGK.ColorBgra32)",
+      "Void SetRgb24(Int32, Int32, PicoGK.ColorRgb24)",
+      "Void SetRgba32(Int32, Int32, PicoGK.ColorRgba32)",
+      "Void SetValue(Int32, Int32, Boolean)",
+      "Void SetValue(Int32, Int32, Byte)",
+      "Void SetValue(Int32, Int32, PicoGK.ColorFloat ByRef)",
+      "Void SetValue(Int32, Int32, Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.Image+EType",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "PicoGK.ImageBWAbstract",
+    "constructors": [
+      "Void .ctor(Int32, Int32)"
+    ],
+    "methods": [
+      "PicoGK.ColorFloat clrValue(Int32, Int32)",
+      "Single fValue(Int32, Int32)",
+      "Void SetValue(Int32, Int32, PicoGK.ColorFloat ByRef)",
+      "Void SetValue(Int32, Int32, Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.ImageColor",
+    "constructors": [
+      "Void .ctor(Int32, Int32)",
+      "Void .ctor(PicoGK.Image)"
+    ],
+    "methods": [
+      "PicoGK.ColorFloat clrValue(Int32, Int32)",
+      "Void SetValue(Int32, Int32, PicoGK.ColorFloat ByRef)"
+    ]
+  },
+  {
+    "name": "PicoGK.ImageColorAbstract",
+    "constructors": [
+      "Void .ctor(Int32, Int32)"
+    ],
+    "methods": [
+      "Boolean bValue(Int32, Int32)",
+      "Single fValue(Int32, Int32)",
+      "Void SetValue(Int32, Int32, Boolean)",
+      "Void SetValue(Int32, Int32, Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.ImageGrayScale",
+    "constructors": [
+      "Void .ctor(Int32, Int32)"
+    ],
+    "methods": [
+      "PicoGK.ImageColor imgGetColorCodedSDF(Single)",
+      "PicoGK.ImageGrayScale imgGetInterpolated(PicoGK.ImageGrayScale, PicoGK.ImageGrayScale, Single)",
+      "Single fValue(Int32, Int32)",
+      "Void SetValue(Int32, Int32, Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.ImageGrayscaleAbstract",
+    "constructors": [
+      "Void .ctor(Int32, Int32)"
+    ],
+    "methods": [
+      "Boolean bContainsActivePixels(Single)",
+      "Boolean bValue(Int32, Int32)",
+      "PicoGK.ColorFloat clrValue(Int32, Int32)",
+      "Void SetValue(Int32, Int32, Boolean)",
+      "Void SetValue(Int32, Int32, PicoGK.ColorFloat ByRef)"
+    ]
+  },
+  {
+    "name": "PicoGK.ImageRgb24",
+    "constructors": [
+      "Void .ctor(Int32, Int32)",
+      "Void .ctor(PicoGK.Image)"
+    ],
+    "methods": [
+      "PicoGK.ColorFloat clrValue(Int32, Int32)",
+      "PicoGK.ColorRgb24 sGetRgb24(Int32, Int32)",
+      "Void SetRgb24(Int32, Int32, PicoGK.ColorRgb24)",
+      "Void SetValue(Int32, Int32, PicoGK.ColorFloat ByRef)"
+    ]
+  },
+  {
+    "name": "PicoGK.ImageRgba32",
+    "constructors": [
+      "Void .ctor(Int32, Int32)",
+      "Void .ctor(PicoGK.Image)"
+    ],
+    "methods": [
+      "PicoGK.ColorFloat clrValue(Int32, Int32)",
+      "PicoGK.ColorRgba32 sGetRgba32(Int32, Int32)",
+      "Void SetRgba32(Int32, Int32, PicoGK.ColorRgba32)",
+      "Void SetValue(Int32, Int32, PicoGK.ColorFloat ByRef)"
+    ]
+  },
+  {
+    "name": "PicoGK.IProgress",
+    "constructors": [],
+    "methods": [
+      "Void Progress(Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.ITraverseScalarField",
+    "constructors": [],
+    "methods": [
+      "Void InformActiveValue(System.Numerics.Vector3 ByRef, Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.ITraverseVectorField",
+    "constructors": [],
+    "methods": [
+      "Void InformActiveValue(System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef)"
+    ]
+  },
+  {
+    "name": "PicoGK.LatHandle",
+    "constructors": [
+      "Void .ctor(Int64)"
+    ],
+    "methods": [
+      "Boolean Equals(PicoGK.LatHandle)",
+      "Boolean Equals(System.Object)",
+      "Boolean op_Equality(PicoGK.LatHandle, PicoGK.LatHandle)",
+      "Boolean op_Inequality(PicoGK.LatHandle, PicoGK.LatHandle)",
+      "Int32 GetHashCode()",
+      "Int64 get_Value()",
+      "System.String ToString()",
+      "Void Deconstruct(Int64 ByRef)",
+      "Void set_Value(Int64)"
+    ]
+  },
+  {
+    "name": "PicoGK.Lattice",
+    "constructors": [
+      "Void .ctor()",
+      "Void .ctor(PicoGK.Library)"
+    ],
+    "methods": [
+      "Void AddBeam(System.Numerics.Vector3 ByRef, Single, System.Numerics.Vector3 ByRef, Single, Boolean)",
+      "Void AddBeam(System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef, Single, Single, Boolean)",
+      "Void AddSphere(System.Numerics.Vector3 ByRef, Single)",
+      "Void Dispose()"
+    ]
+  },
+  {
+    "name": "PicoGK.LibHandle",
+    "constructors": [
+      "Void .ctor(Int64)"
+    ],
+    "methods": [
+      "Boolean Equals(PicoGK.LibHandle)",
+      "Boolean Equals(System.Object)",
+      "Boolean op_Equality(PicoGK.LibHandle, PicoGK.LibHandle)",
+      "Boolean op_Inequality(PicoGK.LibHandle, PicoGK.LibHandle)",
+      "Int32 GetHashCode()",
+      "Int64 get_Value()",
+      "System.String ToString()",
+      "Void Deconstruct(Int64 ByRef)",
+      "Void set_Value(Int64)"
+    ]
+  },
+  {
+    "name": "PicoGK.Library",
+    "constructors": [
+      "Void .ctor(Single)"
+    ],
+    "methods": [
+      "Boolean bContinueTask(Boolean)",
+      "Int64 nLatticesAllocated()",
+      "Int64 nLatticesMemUsage()",
+      "Int64 nMeshesAllocated()",
+      "Int64 nMeshesMemUsage()",
+      "Int64 nPolyLinesAllocated()",
+      "Int64 nPolyLinesMemUsage()",
+      "Int64 nScalarFieldsAllocated()",
+      "Int64 nScalarFieldsMemUsage()",
+      "Int64 nTotalMemUsage()",
+      "Int64 nVdbFilesAllocated()",
+      "Int64 nVdbFilesMemUsage()",
+      "Int64 nVdbMetasAllocated()",
+      "Int64 nVdbMetasMemUsage()",
+      "Int64 nVectorFieldsAllocated()",
+      "Int64 nVectorFieldsMemUsage()",
+      "Int64 nVoxelsAllocated()",
+      "Int64 nVoxelsMemUsage()",
+      "PicoGK.ILog xLog()",
+      "PicoGK.Library oLibrary()",
+      "PicoGK.Viewer oViewer()",
+      "Single get_fVoxelSizeMM()",
+      "System.Numerics.Vector3 vecVoxelsToMm(Int32, Int32, Int32)",
+      "System.String get_strLogFolder()",
+      "System.String strBuildInfo()",
+      "System.String strFindLightSetupFile(System.String ByRef)",
+      "System.String strName()",
+      "System.String strVersion()",
+      "Void CancelEndTaskRequest()",
+      "Void Dispose()",
+      "Void EndTask()",
+      "Void Go(Single, System.Threading.ThreadStart, System.String, Boolean, System.String, System.String)",
+      "Void Log(System.String, System.Object[])",
+      "Void MmToVoxels(System.Numerics.Vector3, Int32 ByRef, Int32 ByRef, Int32 ByRef)",
+      "Void RegisterGlobalLibrary(PicoGK.Library)",
+      "Void RegisterGlobalLog(PicoGK.ILog)",
+      "Void RegisterGlobalViewer(PicoGK.Viewer)",
+      "Void UnregisterGlobalLibrary()",
+      "Void UnregisterGlobalLog()",
+      "Void UnregisterGlobalViewer()"
+    ]
+  },
+  {
+    "name": "PicoGK.Library+GlobalInstance",
+    "constructors": [
+      "Void .ctor(Single, System.String, System.String, System.String)"
+    ],
+    "methods": [
+      "PicoGK.Library get_oLibrary()",
+      "PicoGK.LogFile get_xLog()",
+      "PicoGK.Viewer get_oViewer()",
+      "Void Dispose()"
+    ]
+  },
+  {
+    "name": "PicoGK.LogConsole",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Void Log(System.String ByRef, System.Object[])"
+    ]
+  },
+  {
+    "name": "PicoGK.LogFile",
+    "constructors": [
+      "Void .ctor(System.String ByRef, Boolean ByRef)"
+    ],
+    "methods": [
+      "Void Dispose()",
+      "Void Log(System.String ByRef, System.Object[])",
+      "Void LogTime()"
+    ]
+  },
+  {
+    "name": "PicoGK.LogProgress",
+    "constructors": [
+      "Void .ctor(PicoGK.ILog, System.String, Single)"
+    ],
+    "methods": [
+      "Void Dispose()",
+      "Void Progress(Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.Mesh",
+    "constructors": [
+      "Void .ctor()",
+      "Void .ctor(PicoGK.Library)",
+      "Void .ctor(PicoGK.Voxels ByRef)"
+    ],
+    "methods": [
+      "Boolean bFindTriangleFromSurfacePoint(System.Numerics.Vector3, Int32 ByRef)",
+      "Boolean bPointLiesOnTriangle(System.Numerics.Vector3, System.Numerics.Vector3, System.Numerics.Vector3, System.Numerics.Vector3)",
+      "Int32 nAddTriangle(Int32, Int32, Int32)",
+      "Int32 nAddTriangle(PicoGK.Triangle ByRef)",
+      "Int32 nAddTriangle(System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef)",
+      "Int32 nAddVertex(System.Numerics.Vector3 ByRef)",
+      "Int32 nTriangleCount()",
+      "Int32 nVertexCount()",
+      "PicoGK.BBox3 oBoundingBox()",
+      "PicoGK.Mesh mshCreateMirrored(System.Numerics.Vector3, System.Numerics.Vector3)",
+      "PicoGK.Mesh mshCreateTransformed(System.Numerics.Matrix4x4)",
+      "PicoGK.Mesh mshCreateTransformed(System.Numerics.Vector3, System.Numerics.Vector3)",
+      "PicoGK.Mesh mshFromStlFile(System.IO.FileStream, EStlUnit, Single, System.Nullable`1[System.Numerics.Vector3], PicoGK.Library)",
+      "PicoGK.Mesh mshFromStlFile(System.String, EStlUnit, Single, System.Nullable`1[System.Numerics.Vector3], PicoGK.Library)",
+      "PicoGK.Triangle oTriangleAt(Int32)",
+      "System.Numerics.Vector3 vecVertexAt(Int32)",
+      "Void AddQuad(Int32, Int32, Int32, Int32, Boolean)",
+      "Void AddQuad(System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef, Boolean)",
+      "Void AddVertices(System.Collections.Generic.IEnumerable`1[System.Numerics.Vector3] ByRef, Int32[] ByRef)",
+      "Void Append(PicoGK.Mesh)",
+      "Void Dispose()",
+      "Void GetTriangle(Int32, System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef)",
+      "Void SaveToStlFile(System.IO.FileStream, EStlUnit, System.Nullable`1[System.Numerics.Vector3], Single)",
+      "Void SaveToStlFile(System.String, EStlUnit, System.Nullable`1[System.Numerics.Vector3], Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.Mesh+EStlUnit",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "PicoGK.MshHandle",
+    "constructors": [
+      "Void .ctor(Int64)"
+    ],
+    "methods": [
+      "Boolean Equals(PicoGK.MshHandle)",
+      "Boolean Equals(System.Object)",
+      "Boolean op_Equality(PicoGK.MshHandle, PicoGK.MshHandle)",
+      "Boolean op_Inequality(PicoGK.MshHandle, PicoGK.MshHandle)",
+      "Int32 GetHashCode()",
+      "Int64 get_Value()",
+      "System.String ToString()",
+      "Void Deconstruct(Int64 ByRef)",
+      "Void set_Value(Int64)"
+    ]
+  },
+  {
+    "name": "PicoGK.Numerics.ComparisonExtensions",
+    "constructors": [],
+    "methods": [
+      "Boolean bAlmostEqual(Single, Single, Single, Single)",
+      "Boolean bAlmostEqual(System.Numerics.Vector2, System.Numerics.Vector2, Single)",
+      "Boolean bAlmostEqual(System.Numerics.Vector3, System.Numerics.Vector3, Single)",
+      "Boolean bAlmostLessOrEqual(Single, Single, Single)",
+      "Boolean bAlmostMoreOrEqual(Single, Single, Single)",
+      "Boolean bAlmostZero(Single, Single)",
+      "Boolean bAlmostZero(System.Numerics.Vector2, Single)",
+      "Boolean bAlmostZero(System.Numerics.Vector3, Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.Numerics.Cylindrical",
+    "constructors": [
+      "Void .ctor(Single, PicoGK.Numerics.Rad, Single)",
+      "Void .ctor(PicoGK.Numerics.Polar, Single)",
+      "Void .ctor(System.Numerics.Vector3)",
+      "Void .ctor(PicoGK.Numerics.Spherical)"
+    ],
+    "methods": [
+      "PicoGK.Numerics.Cylindrical oLerp(PicoGK.Numerics.Cylindrical, PicoGK.Numerics.Cylindrical, Single)",
+      "PicoGK.Numerics.Cylindrical oLerp(PicoGK.Numerics.Cylindrical, Single)",
+      "System.Numerics.Vector3 vecAsCartesian()",
+      "System.String ToString()"
+    ]
+  },
+  {
+    "name": "PicoGK.Numerics.FloatExt",
+    "constructors": [],
+    "methods": [
+      "Boolean bIsFinite(Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.Numerics.Overhang",
+    "constructors": [],
+    "methods": [
+      "Boolean bExceeds(PicoGK.Numerics.Overhang)",
+      "Boolean Equals(PicoGK.Numerics.Overhang)",
+      "Boolean Equals(System.Object)",
+      "Boolean op_Equality(PicoGK.Numerics.Overhang, PicoGK.Numerics.Overhang)",
+      "Boolean op_GreaterThan(PicoGK.Numerics.Overhang, PicoGK.Numerics.Overhang)",
+      "Boolean op_GreaterThanOrEqual(PicoGK.Numerics.Overhang, PicoGK.Numerics.Overhang)",
+      "Boolean op_Inequality(PicoGK.Numerics.Overhang, PicoGK.Numerics.Overhang)",
+      "Boolean op_LessThan(PicoGK.Numerics.Overhang, PicoGK.Numerics.Overhang)",
+      "Boolean op_LessThanOrEqual(PicoGK.Numerics.Overhang, PicoGK.Numerics.Overhang)",
+      "Int32 CompareTo(PicoGK.Numerics.Overhang)",
+      "Int32 GetHashCode()",
+      "PicoGK.Numerics.Overhang get_uFull()",
+      "PicoGK.Numerics.Overhang get_uNone()",
+      "PicoGK.Numerics.Overhang uFromDeg(Single)",
+      "PicoGK.Numerics.Overhang uFromDegFromHorizontal(Single)",
+      "PicoGK.Numerics.Overhang uFromNormalized(Single)",
+      "PicoGK.Numerics.Overhang uFromPercent(Single)",
+      "PicoGK.Numerics.Overhang uFromRad(Single)",
+      "Single get_fDeg()",
+      "Single get_fDegFromHorizontal()",
+      "Single get_fNormalized()",
+      "Single get_fPercent()",
+      "Single get_fRad()",
+      "System.String ToString()"
+    ]
+  },
+  {
+    "name": "PicoGK.Numerics.Polar",
+    "constructors": [
+      "Void .ctor(Single, PicoGK.Numerics.Rad)",
+      "Void .ctor(System.Numerics.Vector2)"
+    ],
+    "methods": [
+      "PicoGK.Numerics.Polar oLerp(PicoGK.Numerics.Polar, PicoGK.Numerics.Polar, Single)",
+      "PicoGK.Numerics.Polar oLerp(PicoGK.Numerics.Polar, Single)",
+      "System.Numerics.Vector2 vecAsCartesian()",
+      "System.String ToString()"
+    ]
+  },
+  {
+    "name": "PicoGK.Numerics.Rad",
+    "constructors": [
+      "Void .ctor(Single)"
+    ],
+    "methods": [
+      "Boolean bAlmostEqual(PicoGK.Numerics.Rad, Single)",
+      "Boolean bAlmostEqualPeriodic(PicoGK.Numerics.Rad, Single)",
+      "Boolean bIsFinite()",
+      "Boolean Equals(PicoGK.Numerics.Rad)",
+      "Boolean Equals(System.Object)",
+      "Boolean op_Equality(PicoGK.Numerics.Rad, PicoGK.Numerics.Rad)",
+      "Boolean op_GreaterThan(PicoGK.Numerics.Rad, PicoGK.Numerics.Rad)",
+      "Boolean op_GreaterThanOrEqual(PicoGK.Numerics.Rad, PicoGK.Numerics.Rad)",
+      "Boolean op_Inequality(PicoGK.Numerics.Rad, PicoGK.Numerics.Rad)",
+      "Boolean op_LessThan(PicoGK.Numerics.Rad, PicoGK.Numerics.Rad)",
+      "Boolean op_LessThanOrEqual(PicoGK.Numerics.Rad, PicoGK.Numerics.Rad)",
+      "Int32 CompareTo(PicoGK.Numerics.Rad)",
+      "Int32 GetHashCode()",
+      "PicoGK.Numerics.Rad op_Addition(PicoGK.Numerics.Rad, PicoGK.Numerics.Rad)",
+      "PicoGK.Numerics.Rad op_Division(PicoGK.Numerics.Rad, Single)",
+      "PicoGK.Numerics.Rad op_Explicit(Single)",
+      "PicoGK.Numerics.Rad op_Multiply(PicoGK.Numerics.Rad, Single)",
+      "PicoGK.Numerics.Rad op_Multiply(Single, PicoGK.Numerics.Rad)",
+      "PicoGK.Numerics.Rad op_Subtraction(PicoGK.Numerics.Rad, PicoGK.Numerics.Rad)",
+      "PicoGK.Numerics.Rad op_UnaryNegation(PicoGK.Numerics.Rad)",
+      "PicoGK.Numerics.Rad op_UnaryPlus(PicoGK.Numerics.Rad)",
+      "PicoGK.Numerics.Rad rAcos(Single)",
+      "PicoGK.Numerics.Rad rAcosClamped(Single)",
+      "PicoGK.Numerics.Rad rAsin(Single)",
+      "PicoGK.Numerics.Rad rAsinClamped(Single)",
+      "PicoGK.Numerics.Rad rAtan(Single)",
+      "PicoGK.Numerics.Rad rAtan2(Single, Single)",
+      "PicoGK.Numerics.Rad rAtan2(System.Numerics.Vector2)",
+      "PicoGK.Numerics.Rad rFromDeg(Single)",
+      "PicoGK.Numerics.Rad rFromNormalized(Single)",
+      "PicoGK.Numerics.Rad rFromRad(Single)",
+      "PicoGK.Numerics.Rad rNormalizedPositive()",
+      "PicoGK.Numerics.Rad rNormalizedSigned()",
+      "Single fCos()",
+      "Single fSin()",
+      "Single fTan()",
+      "Single get_fDeg()",
+      "Single get_fRad()",
+      "Single op_Division(PicoGK.Numerics.Rad, PicoGK.Numerics.Rad)",
+      "Single op_Implicit(PicoGK.Numerics.Rad)",
+      "System.String ToString()"
+    ]
+  },
+  {
+    "name": "PicoGK.Numerics.Spherical",
+    "constructors": [
+      "Void .ctor(Single, PicoGK.Numerics.Rad, PicoGK.Numerics.Rad)",
+      "Void .ctor(System.Numerics.Vector3)",
+      "Void .ctor(PicoGK.Numerics.Cylindrical)"
+    ],
+    "methods": [
+      "PicoGK.Numerics.Spherical oLerp(PicoGK.Numerics.Spherical, PicoGK.Numerics.Spherical, Single)",
+      "PicoGK.Numerics.Spherical oLerp(PicoGK.Numerics.Spherical, Single)",
+      "System.Numerics.Vector3 vecAsCartesian()",
+      "System.String ToString()"
+    ]
+  },
+  {
+    "name": "PicoGK.Numerics.Tolerances",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "PicoGK.Numerics.VectorExt",
+    "constructors": [],
+    "methods": [
+      "Boolean bIsFinite(System.Numerics.Vector2)",
+      "Boolean bIsFinite(System.Numerics.Vector3)",
+      "System.Numerics.Vector2 vecNormalized(System.Numerics.Vector2)",
+      "System.Numerics.Vector2 vecSafeNormalized(System.Numerics.Vector2)",
+      "System.Numerics.Vector2 vecStripZ(System.Numerics.Vector3)",
+      "System.Numerics.Vector3 vecAsVector3(System.Numerics.Vector2, Single)",
+      "System.Numerics.Vector3 vecDirLocal(System.Numerics.Vector3, PicoGK.Shapes.Frame3d)",
+      "System.Numerics.Vector3 vecDirWorld(System.Numerics.Vector2, PicoGK.Shapes.Frame3d)",
+      "System.Numerics.Vector3 vecDirWorld(System.Numerics.Vector3, PicoGK.Shapes.Frame3d)",
+      "System.Numerics.Vector3 vecMirrored(System.Numerics.Vector3, System.Numerics.Vector3, System.Numerics.Vector3)",
+      "System.Numerics.Vector3 vecNormalized(System.Numerics.Vector3)",
+      "System.Numerics.Vector3 vecPtLocal(System.Numerics.Vector3, PicoGK.Shapes.Frame3d)",
+      "System.Numerics.Vector3 vecPtWorld(System.Numerics.Vector2, PicoGK.Shapes.Frame3d)",
+      "System.Numerics.Vector3 vecPtWorld(System.Numerics.Vector3, PicoGK.Shapes.Frame3d)",
+      "System.Numerics.Vector3 vecSafeNormalized(System.Numerics.Vector3)",
+      "System.Numerics.Vector3 vecTransformed(System.Numerics.Vector3, System.Numerics.Matrix4x4)"
+    ]
+  },
+  {
+    "name": "PicoGK.OpenVdbFile",
+    "constructors": [
+      "Void .ctor()",
+      "Void .ctor(System.String)",
+      "Void .ctor(PicoGK.Library)",
+      "Void .ctor(PicoGK.Library, System.String)"
+    ],
+    "methods": [
+      "Boolean bIsPicoGKCompatible()",
+      "EFieldType eFieldType(Int32)",
+      "Int32 nAdd(PicoGK.ScalarField, System.String)",
+      "Int32 nAdd(PicoGK.VectorField, System.String)",
+      "Int32 nAdd(PicoGK.Voxels, System.String)",
+      "Int32 nFieldCount()",
+      "PicoGK.IFieldWithMetadata xField(Int32)",
+      "PicoGK.Library libCreateCompatibleLibraryFor(System.String)",
+      "PicoGK.ScalarField oGetScalarField(Int32)",
+      "PicoGK.ScalarField oGetScalarField(System.String)",
+      "PicoGK.VdbHandle _hCreate(PicoGK.LibHandle)",
+      "PicoGK.VectorField oGetVectorField(Int32)",
+      "PicoGK.VectorField oGetVectorField(System.String)",
+      "PicoGK.Voxels voxGet(Int32)",
+      "PicoGK.Voxels voxGet(System.String)",
+      "Single fPicoGKVoxelSizeMM()",
+      "System.String strFieldName(Int32)",
+      "System.String strFieldType(Int32)",
+      "Void Dispose()",
+      "Void SaveToFile(System.String)"
+    ]
+  },
+  {
+    "name": "PicoGK.OpenVdbFile+EFieldType",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "PicoGK.PicoGKAllocException",
+    "constructors": [
+      "Void .ctor()",
+      "Void .ctor(System.String)"
+    ],
+    "methods": []
+  },
+  {
+    "name": "PicoGK.PicoGKLibraryMismatchException",
+    "constructors": [
+      "Void .ctor()",
+      "Void .ctor(System.String)"
+    ],
+    "methods": []
+  },
+  {
+    "name": "PicoGK.PolyContour",
+    "constructors": [
+      "Void .ctor(System.Collections.Generic.IEnumerable`1[System.Numerics.Vector2], EWinding)"
+    ],
+    "methods": [
+      "EWinding eDetectWinding(System.Collections.Generic.List`1[System.Numerics.Vector2])",
+      "EWinding eWinding()",
+      "Int32 nCount()",
+      "PicoGK.BBox2 oBBox()",
+      "System.Collections.Generic.List`1[System.Numerics.Vector2] oVertices()",
+      "System.Numerics.Vector2 vecVertex(Int32)",
+      "System.String strWindingAsString(EWinding)",
+      "Void AddVertex(System.Numerics.Vector2)",
+      "Void AsSvgPath(System.String ByRef)",
+      "Void AsSvgPolyline(System.String ByRef)",
+      "Void Close()",
+      "Void DetectWinding()"
+    ]
+  },
+  {
+    "name": "PicoGK.PolyContour+EWinding",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "PicoGK.PolyHandle",
+    "constructors": [
+      "Void .ctor(Int64)"
+    ],
+    "methods": [
+      "Boolean Equals(PicoGK.PolyHandle)",
+      "Boolean Equals(System.Object)",
+      "Boolean op_Equality(PicoGK.PolyHandle, PicoGK.PolyHandle)",
+      "Boolean op_Inequality(PicoGK.PolyHandle, PicoGK.PolyHandle)",
+      "Int32 GetHashCode()",
+      "Int64 get_Value()",
+      "System.String ToString()",
+      "Void Deconstruct(Int64 ByRef)",
+      "Void set_Value(Int64)"
+    ]
+  },
+  {
+    "name": "PicoGK.PolyLine",
+    "constructors": [
+      "Void .ctor(PicoGK.ColorFloat)",
+      "Void .ctor(PicoGK.Library, PicoGK.ColorFloat)"
+    ],
+    "methods": [
+      "Int32 nAddVertex(System.Numerics.Vector3 ByRef)",
+      "Int32 nVertexCount()",
+      "PicoGK.BBox3 oBoundingBox()",
+      "PicoGK.PolyHandle _hCreate(PicoGK.LibHandle, PicoGK.ColorFloat ByRef)",
+      "System.Numerics.Vector3 vecVertexAt(Int32)",
+      "Void Add(System.Collections.Generic.IEnumerable`1[System.Numerics.Vector3])",
+      "Void AddArrow(Single, System.Nullable`1[System.Numerics.Vector3])",
+      "Void AddCross(Single)",
+      "Void Dispose()",
+      "Void GetColor(PicoGK.ColorFloat ByRef)"
+    ]
+  },
+  {
+    "name": "PicoGK.PolySlice",
+    "constructors": [
+      "Void .ctor(Single)"
+    ],
+    "methods": [
+      "Boolean bIsEmpty()",
+      "Int32 nContours()",
+      "PicoGK.BBox2 oBBox()",
+      "PicoGK.PolyContour oContourAt(Int32)",
+      "PicoGK.PolySlice oFromSdf(PicoGK.Image, Single, System.Numerics.Vector2, Single)",
+      "Single fZPos()",
+      "Void AddContour(PicoGK.PolyContour)",
+      "Void Close()",
+      "Void SaveToSvgFile(System.String, Boolean, System.Nullable`1[PicoGK.BBox2])"
+    ]
+  },
+  {
+    "name": "PicoGK.PolySliceStack",
+    "constructors": [
+      "Void .ctor()",
+      "Void .ctor(System.Collections.Generic.List`1[PicoGK.PolySlice])"
+    ],
+    "methods": [
+      "Int32 nCount()",
+      "PicoGK.BBox3 oBBox()",
+      "PicoGK.PolySlice oSliceAt(Int32)",
+      "Void AddSlices(System.Collections.Generic.List`1[PicoGK.PolySlice])",
+      "Void AddToViewer(PicoGK.Library, PicoGK.Viewer, System.Nullable`1[PicoGK.ColorFloat], System.Nullable`1[PicoGK.ColorFloat], System.Nullable`1[PicoGK.ColorFloat], Int32)"
+    ]
+  },
+  {
+    "name": "PicoGK.ProgressCounter",
+    "constructors": [
+      "Void .ctor(PicoGK.IProgress, Int32)"
+    ],
+    "methods": [
+      "PicoGK.ProgressCounter op_Increment(PicoGK.ProgressCounter)",
+      "Void SetItem(Int32)"
+    ]
+  },
+  {
+    "name": "PicoGK.ProgressNoop",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Void Progress(Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.QuadHandle",
+    "constructors": [
+      "Void .ctor(IntPtr)"
+    ],
+    "methods": [
+      "Boolean Equals(PicoGK.QuadHandle)",
+      "Boolean Equals(System.Object)",
+      "Boolean op_Equality(PicoGK.QuadHandle, PicoGK.QuadHandle)",
+      "Boolean op_Inequality(PicoGK.QuadHandle, PicoGK.QuadHandle)",
+      "Int32 GetHashCode()",
+      "IntPtr get_Value()",
+      "System.String ToString()",
+      "Void Deconstruct(IntPtr ByRef)",
+      "Void set_Value(IntPtr)"
+    ]
+  },
+  {
+    "name": "PicoGK.ScalarField",
+    "constructors": [
+      "Void .ctor()",
+      "Void .ctor(PicoGK.Library)",
+      "Void .ctor(PicoGK.ScalarField ByRef)",
+      "Void .ctor(PicoGK.Voxels)",
+      "Void .ctor(PicoGK.Voxels, Single, Single)"
+    ],
+    "methods": [
+      "Boolean bGetValue(System.Numerics.Vector3, Single ByRef)",
+      "PicoGK.BBox3 oBoundingBox()",
+      "PicoGK.FieldMetadata oMetaData()",
+      "PicoGK.ScalarFieldHandle _hBuildFromVoxels(PicoGK.LibHandle, PicoGK.VoxHandle, Single, Single)",
+      "PicoGK.ScalarFieldHandle _hCreate(PicoGK.LibHandle)",
+      "PicoGK.ScalarFieldHandle _hCreateCopy(PicoGK.LibHandle, PicoGK.ScalarFieldHandle)",
+      "PicoGK.ScalarFieldHandle _hCreateFromVoxels(PicoGK.LibHandle, PicoGK.VoxHandle)",
+      "Single fSignedDistance(System.Numerics.Vector3 ByRef)",
+      "Void Dispose()",
+      "Void GetVoxelDimensions(Int32 ByRef, Int32 ByRef, Int32 ByRef, Int32 ByRef, Int32 ByRef, Int32 ByRef)",
+      "Void GetVoxelDimensions(Int32 ByRef, Int32 ByRef, Int32 ByRef)",
+      "Void GetVoxelSlice(Int32 ByRef, PicoGK.ImageGrayScale ByRef)",
+      "Void RemoveValue(System.Numerics.Vector3)",
+      "Void SetValue(System.Numerics.Vector3, Single)",
+      "Void TraverseActive(PicoGK.ITraverseScalarField)"
+    ]
+  },
+  {
+    "name": "PicoGK.ScalarFieldHandle",
+    "constructors": [
+      "Void .ctor(IntPtr)"
+    ],
+    "methods": [
+      "Boolean Equals(PicoGK.ScalarFieldHandle)",
+      "Boolean Equals(System.Object)",
+      "Boolean op_Equality(PicoGK.ScalarFieldHandle, PicoGK.ScalarFieldHandle)",
+      "Boolean op_Inequality(PicoGK.ScalarFieldHandle, PicoGK.ScalarFieldHandle)",
+      "Int32 GetHashCode()",
+      "IntPtr get_Value()",
+      "System.String ToString()",
+      "Void Deconstruct(IntPtr ByRef)",
+      "Void set_Value(IntPtr)"
+    ]
+  },
+  {
+    "name": "PicoGK.SdfVisualizer",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Boolean bDoesSliceContainDefect(PicoGK.ScalarField, Int32)",
+      "Boolean bVisualizeSdfSlicesAsTgaStack(PicoGK.ScalarField, Single, System.String, System.String, Boolean, System.Nullable`1[PicoGK.ColorFloat], System.Nullable`1[PicoGK.ColorFloat], System.Nullable`1[PicoGK.ColorFloat], System.Nullable`1[PicoGK.ColorFloat], System.Nullable`1[PicoGK.ColorFloat])",
+      "PicoGK.ImageColor imgEncodeFromSdf(PicoGK.ScalarField, Single, Int32, System.Nullable`1[PicoGK.ColorFloat], System.Nullable`1[PicoGK.ColorFloat], System.Nullable`1[PicoGK.ColorFloat], System.Nullable`1[PicoGK.ColorFloat], System.Nullable`1[PicoGK.ColorFloat])"
+    ]
+  },
+  {
+    "name": "PicoGK.Shapes.Arc2d",
+    "constructors": [
+      "Void .ctor(System.Numerics.Vector2, System.Numerics.Vector2, PicoGK.Numerics.Rad)"
+    ],
+    "methods": [
+      "PicoGK.Numerics.Rad get_rAngle()",
+      "Single get_fLength()",
+      "Single get_fRadius()",
+      "System.Numerics.Vector2 get_vecCenter()",
+      "System.Numerics.Vector2 get_vecEnd()",
+      "System.Numerics.Vector2 get_vecStart()",
+      "System.Numerics.Vector2 vecPtAtT(Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.Shapes.Circle",
+    "constructors": [
+      "Void .ctor(Single)"
+    ],
+    "methods": [
+      "Single get_fLength()",
+      "Single get_fR()",
+      "System.Numerics.Vector2 vecPtAtT(Single)",
+      "Void PtAtT(Single ByRef, System.Numerics.Vector2 ByRef, System.Numerics.Vector2 ByRef)"
+    ]
+  },
+  {
+    "name": "PicoGK.Shapes.ContourFromPath",
+    "constructors": [
+      "Void .ctor(PicoGK.Shapes.IPath2d)"
+    ],
+    "methods": [
+      "Single get_fLength()",
+      "System.Numerics.Vector2 vecPtAtT(Single)",
+      "System.Numerics.Vector2 vecPtAtTLinear(Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.Shapes.ContourSampler2d",
+    "constructors": [
+      "Void .ctor(ISampleable, Single, Int32)"
+    ],
+    "methods": [
+      "Single fArcTFromLinearT(Single)",
+      "Single get_fTotalLength()"
+    ]
+  },
+  {
+    "name": "PicoGK.Shapes.ContourSampler2d+ISampleable",
+    "constructors": [],
+    "methods": [
+      "System.Numerics.Vector2 vecPtAtTLinear(Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.Shapes.Ellipse",
+    "constructors": [
+      "Void .ctor(System.Numerics.Vector2, Single)",
+      "Void .ctor(Single, Single, Single)"
+    ],
+    "methods": [
+      "PicoGK.Numerics.Rad get_rPhi()",
+      "Single get_fA()",
+      "Single get_fB()",
+      "Single get_fLength()",
+      "Single get_fPhi()",
+      "System.Numerics.Vector2 vecPtAtT(Single)",
+      "System.Numerics.Vector2 vecPtAtTLinear(Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.Shapes.Frame3d",
+    "constructors": [
+      "Void .ctor(System.Numerics.Vector3)",
+      "Void .ctor(System.Numerics.Vector3, System.Numerics.Vector3, System.Numerics.Vector3)"
+    ],
+    "methods": [
+      "Boolean Equals(PicoGK.Shapes.Frame3d)",
+      "Boolean Equals(System.Object)",
+      "Int32 GetHashCode()",
+      "PicoGK.Shapes.Frame3d frmCompose(PicoGK.Shapes.Frame3d ByRef)",
+      "PicoGK.Shapes.Frame3d frmFromMatrix4x4(System.Numerics.Matrix4x4 ByRef)",
+      "PicoGK.Shapes.Frame3d frmFromPos(System.Numerics.Vector3)",
+      "PicoGK.Shapes.Frame3d frmFromZX(System.Numerics.Vector3, System.Numerics.Vector3, System.Numerics.Vector3)",
+      "PicoGK.Shapes.Frame3d frmInterpolate(PicoGK.Shapes.Frame3d ByRef, PicoGK.Shapes.Frame3d ByRef, Single)",
+      "PicoGK.Shapes.Frame3d frmInverse()",
+      "PicoGK.Shapes.Frame3d frmMovedLocal(System.Numerics.Vector3)",
+      "PicoGK.Shapes.Frame3d frmMovedLocalX(Single)",
+      "PicoGK.Shapes.Frame3d frmMovedLocalY(Single)",
+      "PicoGK.Shapes.Frame3d frmMovedLocalZ(Single)",
+      "PicoGK.Shapes.Frame3d frmMovedWorld(System.Numerics.Vector3)",
+      "PicoGK.Shapes.Frame3d frmMovedWorldX(Single)",
+      "PicoGK.Shapes.Frame3d frmMovedWorldY(Single)",
+      "PicoGK.Shapes.Frame3d frmMovedWorldZ(Single)",
+      "PicoGK.Shapes.Frame3d frmRepositioned(System.Numerics.Vector3)",
+      "PicoGK.Shapes.Frame3d frmRotatedWorld(System.Numerics.Vector3, PicoGK.Numerics.Rad)",
+      "PicoGK.Shapes.Frame3d op_Multiply(PicoGK.Shapes.Frame3d ByRef, PicoGK.Shapes.Frame3d ByRef)",
+      "System.Numerics.Matrix4x4 matAsMatrix4x4()",
+      "System.Numerics.Matrix4x4 matComposeWithScale(System.Numerics.Vector3 ByRef)",
+      "System.Numerics.Vector3 get_vecLx()",
+      "System.Numerics.Vector3 get_vecLy()",
+      "System.Numerics.Vector3 get_vecLz()",
+      "System.Numerics.Vector3 get_vecPos()",
+      "System.Numerics.Vector3 op_Multiply(PicoGK.Shapes.Frame3d ByRef, System.Numerics.Vector3)",
+      "System.Numerics.Vector3 vecDirFromWorld(System.Numerics.Vector3)",
+      "System.Numerics.Vector3 vecDirToWorld(System.Numerics.Vector2)",
+      "System.Numerics.Vector3 vecDirToWorld(System.Numerics.Vector3)",
+      "System.Numerics.Vector3 vecPtFromWorld(System.Numerics.Vector3)",
+      "System.Numerics.Vector3 vecPtToWorld(System.Numerics.Vector2)",
+      "System.Numerics.Vector3 vecPtToWorld(System.Numerics.Vector3)",
+      "Void AsRigid(System.Numerics.Quaternion ByRef, System.Numerics.Vector3 ByRef)"
+    ]
+  },
+  {
+    "name": "PicoGK.Shapes.IContour2d",
+    "constructors": [],
+    "methods": [
+      "System.Numerics.Vector2 vecSampleNormalAt(Single, Single)",
+      "Void PtAtT(Single ByRef, System.Numerics.Vector2 ByRef, System.Numerics.Vector2 ByRef)"
+    ]
+  },
+  {
+    "name": "PicoGK.Shapes.IContour3d",
+    "constructors": [],
+    "methods": [
+      "Void PtAtT(Single, System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef)"
+    ]
+  },
+  {
+    "name": "PicoGK.Shapes.IPath2d",
+    "constructors": [],
+    "methods": [
+      "Single get_fLength()",
+      "System.Numerics.Vector2 vecPtAtT(Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.Shapes.IPath3d",
+    "constructors": [],
+    "methods": [
+      "Single get_fLength()",
+      "System.Numerics.Vector3 vecPtAtT(Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.Shapes.Line2d",
+    "constructors": [
+      "Void .ctor(System.Numerics.Vector2, System.Numerics.Vector2)"
+    ],
+    "methods": [
+      "Single get_fLength()",
+      "System.Numerics.Vector2 get_vecA()",
+      "System.Numerics.Vector2 get_vecB()",
+      "System.Numerics.Vector2 vecPtAtT(Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.Shapes.OrientedContour",
+    "constructors": [
+      "Void .ctor(PicoGK.Shapes.IContour2d, PicoGK.Shapes.Frame3d)"
+    ],
+    "methods": [
+      "Single get_fLength()",
+      "System.Numerics.Vector3 vecPtAtT(Single)",
+      "Void PtAtT(Single, System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef)"
+    ]
+  },
+  {
+    "name": "PicoGK.Shapes.OrientedPath",
+    "constructors": [
+      "Void .ctor(PicoGK.Shapes.IPath2d, PicoGK.Shapes.Frame3d)"
+    ],
+    "methods": [
+      "Single get_fLength()",
+      "System.Numerics.Vector3 vecPtAtT(Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.Shapes.Path2d",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Single get_fLength()",
+      "System.Numerics.Vector2 vecPtAtT(Single)",
+      "Void Add(PicoGK.Shapes.IPath2d)",
+      "Void AddArc(System.Numerics.Vector2, PicoGK.Numerics.Rad)",
+      "Void AddArcRel(System.Numerics.Vector2, PicoGK.Numerics.Rad)",
+      "Void AddLine(System.Numerics.Vector2)",
+      "Void AddLineRel(System.Numerics.Vector2)"
+    ]
+  },
+  {
+    "name": "PicoGK.Shapes.Supershape",
+    "constructors": [
+      "Void .ctor(Single, Single, Single, Single, Single, Single, Single)"
+    ],
+    "methods": [
+      "PicoGK.Shapes.Supershape oRoundedPolygon(Single, Single, Single, Single)",
+      "Single get_fLength()",
+      "System.Numerics.Vector2 vecPtAtT(Single)",
+      "System.Numerics.Vector2 vecPtAtTLinear(Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.SKHelpers",
+    "constructors": [],
+    "methods": [
+      "PicoGK.ColorRgba32 clrAsColorRgba32(SkiaSharp.SKColor)",
+      "SkiaSharp.SKColor oAsSkColor(PicoGK.ColorFloat)",
+      "SkiaSharp.SKColor oAsSkColor(PicoGK.ColorRgba32)"
+    ]
+  },
+  {
+    "name": "PicoGK.SliceViz",
+    "constructors": [
+      "Void .ctor(PicoGK.Viewer, PicoGK.Voxels, ESliceAxis)"
+    ],
+    "methods": [
+      "Int32 get_nSliceCount()",
+      "Void Dispose()",
+      "Void Visualize(Int32)",
+      "Void Visualize(Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.SplitProgress",
+    "constructors": [
+      "Void .ctor(PicoGK.IProgress, Int32)"
+    ],
+    "methods": [
+      "PicoGK.SplitProgress op_Increment(PicoGK.SplitProgress)",
+      "Void Progress(Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.SurfaceNormalFieldExtractor",
+    "constructors": [],
+    "methods": [
+      "PicoGK.VectorField oExtract(PicoGK.Voxels, Single, System.Nullable`1[System.Numerics.Vector3], Single, System.Nullable`1[System.Numerics.Vector3])",
+      "Void InformActiveValue(System.Numerics.Vector3 ByRef, Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.Text",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "PicoGK.ImageRgba32 imgRenderText(System.String, Int32, Int32, System.Nullable`1[PicoGK.ColorFloat], System.Nullable`1[PicoGK.ColorFloat], SkiaSharp.SKTypeface)",
+      "SkiaSharp.SKTypeface get_oDefaultTypeface()"
+    ]
+  },
+  {
+    "name": "PicoGK.TgaIo",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Void GetFileInfo(System.IO.BinaryReader ByRef, EType ByRef, Int32 ByRef, Int32 ByRef)",
+      "Void GetFileInfo(System.String, EType ByRef, Int32 ByRef, Int32 ByRef)",
+      "Void LoadTga(System.IO.BinaryReader ByRef, PicoGK.Image ByRef)",
+      "Void LoadTga(System.String, PicoGK.Image ByRef)",
+      "Void SaveTga(System.IO.BinaryWriter ByRef, PicoGK.Image ByRef)",
+      "Void SaveTga(System.String, PicoGK.Image ByRef)"
+    ]
+  },
+  {
+    "name": "PicoGK.Triangle",
+    "constructors": [
+      "Void .ctor(Int32, Int32, Int32)"
+    ],
+    "methods": []
+  },
+  {
+    "name": "PicoGK.Utils",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Boolean bWaitForFileExistence(System.String, Single)",
+      "PicoGK.Mesh mshCreateCube(PicoGK.BBox3)",
+      "PicoGK.Mesh mshCreateCube(PicoGK.Library, PicoGK.BBox3)",
+      "PicoGK.Mesh mshCreateCube(PicoGK.Library, System.Nullable`1[System.Numerics.Vector3], System.Nullable`1[System.Numerics.Vector3])",
+      "PicoGK.Mesh mshCreateCube(System.Nullable`1[System.Numerics.Vector3], System.Nullable`1[System.Numerics.Vector3])",
+      "System.String strDateTimeFilename(System.String ByRef, System.String ByRef)",
+      "System.String strDocumentsFolder()",
+      "System.String strExecutableFolder()",
+      "System.String strHomeFolder()",
+      "System.String strPicoGKSourceCodeFolder()",
+      "System.String strProjectRootFolder()",
+      "System.String strShorten(System.String, Int32)",
+      "System.String strStripExtension(System.String)",
+      "System.String strStripQuotesFromPath(System.String)"
+    ]
+  },
+  {
+    "name": "PicoGK.Utils+TempFolder",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Void Dispose()"
+    ]
+  },
+  {
+    "name": "PicoGK.Vdb2Cli",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Void Convert(System.String, Single, System.String, System.String, PicoGK.IProgress)"
+    ]
+  },
+  {
+    "name": "PicoGK.VdbHandle",
+    "constructors": [
+      "Void .ctor(Int64)"
+    ],
+    "methods": [
+      "Boolean Equals(PicoGK.VdbHandle)",
+      "Boolean Equals(System.Object)",
+      "Boolean op_Equality(PicoGK.VdbHandle, PicoGK.VdbHandle)",
+      "Boolean op_Inequality(PicoGK.VdbHandle, PicoGK.VdbHandle)",
+      "Int32 GetHashCode()",
+      "Int64 get_Value()",
+      "System.String ToString()",
+      "Void Deconstruct(Int64 ByRef)",
+      "Void set_Value(Int64)"
+    ]
+  },
+  {
+    "name": "PicoGK.VdbMetaHandle",
+    "constructors": [
+      "Void .ctor(IntPtr)"
+    ],
+    "methods": [
+      "Boolean Equals(PicoGK.VdbMetaHandle)",
+      "Boolean Equals(System.Object)",
+      "Boolean op_Equality(PicoGK.VdbMetaHandle, PicoGK.VdbMetaHandle)",
+      "Boolean op_Inequality(PicoGK.VdbMetaHandle, PicoGK.VdbMetaHandle)",
+      "Int32 GetHashCode()",
+      "IntPtr get_Value()",
+      "System.String ToString()",
+      "Void Deconstruct(IntPtr ByRef)",
+      "Void set_Value(IntPtr)"
+    ]
+  },
+  {
+    "name": "PicoGK.VectorField",
+    "constructors": [
+      "Void .ctor()",
+      "Void .ctor(PicoGK.Library)",
+      "Void .ctor(PicoGK.VectorField ByRef)",
+      "Void .ctor(PicoGK.Voxels)",
+      "Void .ctor(PicoGK.Voxels, System.Numerics.Vector3, Single)"
+    ],
+    "methods": [
+      "Boolean bGetValue(System.Numerics.Vector3, System.Numerics.Vector3 ByRef)",
+      "PicoGK.FieldMetadata oMetaData()",
+      "PicoGK.VectorFieldHandle _hBuildFromVoxels(PicoGK.LibHandle, PicoGK.VoxHandle, System.Numerics.Vector3 ByRef, Single)",
+      "PicoGK.VectorFieldHandle _hCreate(PicoGK.LibHandle)",
+      "PicoGK.VectorFieldHandle _hCreateCopy(PicoGK.LibHandle, PicoGK.VectorFieldHandle)",
+      "PicoGK.VectorFieldHandle _hCreateFromVoxels(PicoGK.LibHandle, PicoGK.VoxHandle)",
+      "Void Dispose()",
+      "Void RemoveValue(System.Numerics.Vector3)",
+      "Void SetValue(System.Numerics.Vector3, System.Numerics.Vector3)",
+      "Void TraverseActive(PicoGK.ITraverseVectorField)"
+    ]
+  },
+  {
+    "name": "PicoGK.VectorFieldHandle",
+    "constructors": [
+      "Void .ctor(IntPtr)"
+    ],
+    "methods": [
+      "Boolean Equals(PicoGK.VectorFieldHandle)",
+      "Boolean Equals(System.Object)",
+      "Boolean op_Equality(PicoGK.VectorFieldHandle, PicoGK.VectorFieldHandle)",
+      "Boolean op_Inequality(PicoGK.VectorFieldHandle, PicoGK.VectorFieldHandle)",
+      "Int32 GetHashCode()",
+      "IntPtr get_Value()",
+      "System.String ToString()",
+      "Void Deconstruct(IntPtr ByRef)",
+      "Void set_Value(IntPtr)"
+    ]
+  },
+  {
+    "name": "PicoGK.VectorFieldMerge",
+    "constructors": [],
+    "methods": [
+      "Void InformActiveValue(System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef)",
+      "Void Merge(PicoGK.VectorField, PicoGK.VectorField)"
+    ]
+  },
+  {
+    "name": "PicoGK.Viewer",
+    "constructors": [
+      "Void .ctor(System.String, System.Numerics.Vector2, PicoGK.ILog)"
+    ],
+    "methods": [
+      "Boolean bIsIdle()",
+      "Boolean bPoll()",
+      "IntPtr _hCreate(System.String, System.Numerics.Vector2 ByRef, InfoCallback, UpdateCallback, KeyPressedCallback, MouseMovedCallback, MouseButtonCallback, ScrollWheelCallback, WindowSizelCallback)",
+      "PicoGK.BBox3 oBBox()",
+      "SideBar oCreateSideBarLeft(Int32, Int32, Int32, PicoGK.ColorFloat, PicoGK.ColorFloat)",
+      "SideBar oCreateSideBarRight(Int32, Int32, Int32, PicoGK.ColorFloat, PicoGK.ColorFloat)",
+      "System.Numerics.Quaternion get_qOrientation()",
+      "Void Add(PicoGK.Mesh, Int32)",
+      "Void Add(PicoGK.PolyLine, Int32)",
+      "Void Add(PicoGK.Voxels ByRef, Int32)",
+      "Void AddAnimation(PicoGK.Animation)",
+      "Void AddArrow(System.Numerics.Vector3, System.Numerics.Vector3, PicoGK.ColorFloat, Single, Int32)",
+      "Void AddArrow(System.Numerics.Vector3, System.Numerics.Vector3)",
+      "Void AddCross(System.Numerics.Vector3, PicoGK.ColorFloat, Single, Int32)",
+      "Void AddCross(System.Numerics.Vector3)",
+      "Void AddKeyHandler(IKeyHandler)",
+      "Void DisableOverhangWarning(Int32)",
+      "Void Dispose()",
+      "Void EnableExperimental(Boolean)",
+      "Void EnableOverhangWarning(Int32, Int32, Int32)",
+      "Void EnableOverhangWarning(Int32, PicoGK.Numerics.Overhang, PicoGK.Numerics.Overhang)",
+      "Void LoadLightSetup(System.IO.Stream)",
+      "Void LoadLightSetup(System.String)",
+      "Void PauseTimeLapse()",
+      "Void Remove(PicoGK.Mesh)",
+      "Void Remove(PicoGK.PolyLine)",
+      "Void Remove(PicoGK.Voxels)",
+      "Void RemoveAllAnimations()",
+      "Void RemoveAllObjects()",
+      "Void RequestScreenShot(System.String)",
+      "Void RequestUpdate()",
+      "Void ResumeTimeLapse()",
+      "Void set_qOrientation(System.Numerics.Quaternion)",
+      "Void SetBackgroundColor(PicoGK.ColorFloat)",
+      "Void SetFov(Single)",
+      "Void SetGroupMaterial(Int32, PicoGK.ColorFloat, Single, Single)",
+      "Void SetGroupMatrix(Int32, System.Numerics.Matrix4x4)",
+      "Void SetGroupVisible(Int32, Boolean)",
+      "Void SetObjectMatrix(PicoGK.Mesh, System.Numerics.Matrix4x4 ByRef)",
+      "Void SetObjectMatrix(PicoGK.PolyLine, System.Numerics.Matrix4x4 ByRef)",
+      "Void SetObjectMatrix(PicoGK.Voxels, System.Numerics.Matrix4x4 ByRef)",
+      "Void StartTimeLapse(Single, System.String, System.String, UInt32, Boolean)",
+      "Void StopTimeLapse()",
+      "Void ZoomToFit()"
+    ]
+  },
+  {
+    "name": "PicoGK.Viewer+AnimGroupMatrixRotate",
+    "constructors": [
+      "Void .ctor(PicoGK.Viewer, Int32, System.Numerics.Matrix4x4, System.Numerics.Vector3, Single)"
+    ],
+    "methods": [
+      "Void Do(Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.Viewer+AnimViewRotate",
+    "constructors": [
+      "Void .ctor(PicoGK.Viewer, System.Numerics.Quaternion, System.Numerics.Quaternion)"
+    ],
+    "methods": [
+      "Void Do(Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.Viewer+Camera",
+    "constructors": [],
+    "methods": [
+      "System.Numerics.Matrix4x4 get_matVP()",
+      "System.Numerics.Quaternion get_qOrientation()",
+      "System.Numerics.Vector3 get_vecEye()",
+      "Void LookAt(System.Numerics.Vector3)",
+      "Void MouseDrag(System.Numerics.Vector2, EDragType)",
+      "Void Scroll(System.Numerics.Vector2)",
+      "Void set_qOrientation(System.Numerics.Quaternion)",
+      "Void SetViewPort(System.Numerics.Vector2, Single)",
+      "Void ZoomToFit(PicoGK.BBox3)"
+    ]
+  },
+  {
+    "name": "PicoGK.Viewer+Camera+EDragType",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "PicoGK.Viewer+CamPerspectiveArcball",
+    "constructors": [
+      "Void .ctor(Single)"
+    ],
+    "methods": [
+      "System.Numerics.Matrix4x4 get_matVP()",
+      "System.Numerics.Quaternion get_qOrientation()",
+      "System.Numerics.Vector3 get_vecEye()",
+      "Void LookAt(System.Numerics.Vector3)",
+      "Void MouseDrag(System.Numerics.Vector2, EDragType)",
+      "Void Scroll(System.Numerics.Vector2)",
+      "Void set_qOrientation(System.Numerics.Quaternion)",
+      "Void SetVerticalFov(Single)",
+      "Void SetViewPort(System.Numerics.Vector2, Single)",
+      "Void ZoomToFit(PicoGK.BBox3)"
+    ]
+  },
+  {
+    "name": "PicoGK.Viewer+EKeys",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "PicoGK.Viewer+GpuTex",
+    "constructors": [
+      "Void .ctor(PicoGK.Viewer, PicoGK.ImageRgba32)"
+    ],
+    "methods": [
+      "Void Dispose()",
+      "Void ReplaceWith(PicoGK.ImageRgba32)"
+    ]
+  },
+  {
+    "name": "PicoGK.Viewer+IKeyHandler",
+    "constructors": [],
+    "methods": [
+      "Boolean bHandleEvent(PicoGK.Viewer, EKeys, Boolean, Boolean, Boolean, Boolean, Boolean)"
+    ]
+  },
+  {
+    "name": "PicoGK.Viewer+ImageQuad",
+    "constructors": [
+      "Void .ctor(PicoGK.Viewer, PicoGK.ImageRgba32, PicoGK.ColorFloat, Single, System.Numerics.Matrix4x4, Boolean, Boolean, Boolean)"
+    ],
+    "methods": [
+      "Void Dispose()",
+      "Void UpdateImage(PicoGK.ImageRgba32)",
+      "Void UpdateMatrix(System.Numerics.Matrix4x4 ByRef)"
+    ]
+  },
+  {
+    "name": "PicoGK.Viewer+InfoCallback",
+    "constructors": [
+      "Void .ctor(System.Object, IntPtr)"
+    ],
+    "methods": [
+      "System.IAsyncResult BeginInvoke(System.String, Boolean, System.AsyncCallback, System.Object)",
+      "Void EndInvoke(System.IAsyncResult)",
+      "Void Invoke(System.String, Boolean)"
+    ]
+  },
+  {
+    "name": "PicoGK.Viewer+IViewerAction",
+    "constructors": [],
+    "methods": [
+      "Void Do(PicoGK.Viewer)"
+    ]
+  },
+  {
+    "name": "PicoGK.Viewer+KeyAction",
+    "constructors": [
+      "Void .ctor(IViewerAction, EKeys, Boolean, Boolean, Boolean, Boolean, Boolean)"
+    ],
+    "methods": [
+      "Boolean bKeyEquals(EKeys, Boolean, Boolean, Boolean, Boolean, Boolean)",
+      "Void Do(PicoGK.Viewer)"
+    ]
+  },
+  {
+    "name": "PicoGK.Viewer+KeyHandler",
+    "constructors": [
+      "Void .ctor()"
+    ],
+    "methods": [
+      "Boolean bHandleEvent(PicoGK.Viewer, EKeys, Boolean, Boolean, Boolean, Boolean, Boolean)",
+      "Void AddAction(KeyAction)"
+    ]
+  },
+  {
+    "name": "PicoGK.Viewer+KeyPressedCallback",
+    "constructors": [
+      "Void .ctor(System.Object, IntPtr)"
+    ],
+    "methods": [
+      "System.IAsyncResult BeginInvoke(IntPtr, Int32, Int32, Int32, Int32, System.AsyncCallback, System.Object)",
+      "Void EndInvoke(System.IAsyncResult)",
+      "Void Invoke(IntPtr, Int32, Int32, Int32, Int32)"
+    ]
+  },
+  {
+    "name": "PicoGK.Viewer+MouseButtonCallback",
+    "constructors": [
+      "Void .ctor(System.Object, IntPtr)"
+    ],
+    "methods": [
+      "System.IAsyncResult BeginInvoke(IntPtr, Int32, Int32, Int32, System.Numerics.Vector2 ByRef, System.AsyncCallback, System.Object)",
+      "Void EndInvoke(System.Numerics.Vector2 ByRef, System.IAsyncResult)",
+      "Void Invoke(IntPtr, Int32, Int32, Int32, System.Numerics.Vector2 ByRef)"
+    ]
+  },
+  {
+    "name": "PicoGK.Viewer+MouseMovedCallback",
+    "constructors": [
+      "Void .ctor(System.Object, IntPtr)"
+    ],
+    "methods": [
+      "System.IAsyncResult BeginInvoke(IntPtr, System.Numerics.Vector2 ByRef, Boolean, Boolean, Boolean, Boolean, System.AsyncCallback, System.Object)",
+      "Void EndInvoke(System.Numerics.Vector2 ByRef, System.IAsyncResult)",
+      "Void Invoke(IntPtr, System.Numerics.Vector2 ByRef, Boolean, Boolean, Boolean, Boolean)"
+    ]
+  },
+  {
+    "name": "PicoGK.Viewer+ScrollWheelCallback",
+    "constructors": [
+      "Void .ctor(System.Object, IntPtr)"
+    ],
+    "methods": [
+      "System.IAsyncResult BeginInvoke(IntPtr, System.Numerics.Vector2 ByRef, System.Numerics.Vector2 ByRef, Boolean, Boolean, Boolean, Boolean, System.AsyncCallback, System.Object)",
+      "Void EndInvoke(System.Numerics.Vector2 ByRef, System.Numerics.Vector2 ByRef, System.IAsyncResult)",
+      "Void Invoke(IntPtr, System.Numerics.Vector2 ByRef, System.Numerics.Vector2 ByRef, Boolean, Boolean, Boolean, Boolean)"
+    ]
+  },
+  {
+    "name": "PicoGK.Viewer+SideBar",
+    "constructors": [
+      "Void .ctor(PicoGK.Viewer, Boolean, Int32, Int32, Int32, PicoGK.ColorFloat, PicoGK.ColorFloat)"
+    ],
+    "methods": [
+      "Void Dispose()"
+    ]
+  },
+  {
+    "name": "PicoGK.Viewer+UpdateCallback",
+    "constructors": [
+      "Void .ctor(System.Object, IntPtr)"
+    ],
+    "methods": [
+      "System.IAsyncResult BeginInvoke(IntPtr, System.Numerics.Vector2 ByRef, PicoGK.ColorFloat ByRef, System.Numerics.Matrix4x4 ByRef, System.Numerics.Vector3 ByRef, System.AsyncCallback, System.Object)",
+      "Void EndInvoke(System.Numerics.Vector2 ByRef, PicoGK.ColorFloat ByRef, System.Numerics.Matrix4x4 ByRef, System.Numerics.Vector3 ByRef, System.IAsyncResult)",
+      "Void Invoke(IntPtr, System.Numerics.Vector2 ByRef, PicoGK.ColorFloat ByRef, System.Numerics.Matrix4x4 ByRef, System.Numerics.Vector3 ByRef)"
+    ]
+  },
+  {
+    "name": "PicoGK.Viewer+WindowSizelCallback",
+    "constructors": [
+      "Void .ctor(System.Object, IntPtr)"
+    ],
+    "methods": [
+      "System.IAsyncResult BeginInvoke(IntPtr, System.Numerics.Vector2 ByRef, System.AsyncCallback, System.Object)",
+      "Void EndInvoke(System.Numerics.Vector2 ByRef, System.IAsyncResult)",
+      "Void Invoke(IntPtr, System.Numerics.Vector2 ByRef)"
+    ]
+  },
+  {
+    "name": "PicoGK.VoxCutViz",
+    "constructors": [
+      "Void .ctor(PicoGK.Viewer, PicoGK.Voxels, Int32, ESliceAxis)"
+    ],
+    "methods": [
+      "Int32 get_nSliceCount()",
+      "Void Cut(Int32, Int32)",
+      "Void Cut(Single, Single)",
+      "Void Dispose()"
+    ]
+  },
+  {
+    "name": "PicoGK.Voxels",
+    "constructors": [
+      "Void .ctor()",
+      "Void .ctor(PicoGK.IImplicit ByRef, PicoGK.BBox3 ByRef)",
+      "Void .ctor(PicoGK.IBoundedImplicit ByRef)",
+      "Void .ctor(PicoGK.Library)",
+      "Void .ctor(PicoGK.Voxels ByRef)",
+      "Void .ctor(PicoGK.ScalarField ByRef)",
+      "Void .ctor(PicoGK.Library, PicoGK.IImplicit ByRef, PicoGK.BBox3 ByRef)",
+      "Void .ctor(PicoGK.Library, PicoGK.IBoundedImplicit ByRef)",
+      "Void .ctor(PicoGK.Mesh ByRef)",
+      "Void .ctor(PicoGK.Lattice ByRef)"
+    ],
+    "methods": [
+      "Boolean bClosestPointOnSurface(System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef)",
+      "Boolean bIsEmpty()",
+      "Boolean bIsEqual(PicoGK.Voxels ByRef)",
+      "Boolean bIsInside(System.Numerics.Vector3)",
+      "Boolean bRayCastToSurface(System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef)",
+      "Int32 nSliceCount()",
+      "Int64 nMemUsage()",
+      "PicoGK.BBox3 oCalculateBoundingBox()",
+      "PicoGK.FieldMetadata oMetaData()",
+      "PicoGK.ImageGrayScale imgAllocateSlice(Int32 ByRef, ESliceAxis)",
+      "PicoGK.Mesh mshAsMesh()",
+      "PicoGK.PolySliceStack oVectorize(Single, Boolean, PicoGK.IProgress)",
+      "PicoGK.Voxels op_Addition(PicoGK.Voxels, PicoGK.Voxels)",
+      "PicoGK.Voxels op_BitwiseAnd(PicoGK.Voxels, PicoGK.Voxels)",
+      "PicoGK.Voxels op_Subtraction(PicoGK.Voxels, PicoGK.Voxels)",
+      "PicoGK.Voxels voxBoolAdd(PicoGK.Voxels ByRef)",
+      "PicoGK.Voxels voxBoolAddAll(System.Collections.Generic.IEnumerable`1[PicoGK.Voxels] ByRef)",
+      "PicoGK.Voxels voxBoolIntersect(PicoGK.Voxels ByRef)",
+      "PicoGK.Voxels voxBoolSubtract(PicoGK.Voxels ByRef)",
+      "PicoGK.Voxels voxBoolSubtractAll(System.Collections.Generic.IEnumerable`1[PicoGK.Voxels] ByRef)",
+      "PicoGK.Voxels voxCombine(PicoGK.Voxels ByRef, PicoGK.Voxels ByRef)",
+      "PicoGK.Voxels voxCombineAll(PicoGK.Library, System.Collections.Generic.IEnumerable`1[PicoGK.Voxels] ByRef)",
+      "PicoGK.Voxels voxCombineAll(System.Collections.Generic.IEnumerable`1[PicoGK.Voxels] ByRef)",
+      "PicoGK.Voxels voxDoubleOffset(Single, Single)",
+      "PicoGK.Voxels voxDuplicate()",
+      "PicoGK.Voxels voxFillet(Single)",
+      "PicoGK.Voxels voxFromVdbFile(PicoGK.Library, System.String)",
+      "PicoGK.Voxels voxFromVdbFile(System.String)",
+      "PicoGK.Voxels voxIntersectImplicit(PicoGK.IImplicit ByRef)",
+      "PicoGK.Voxels voxLatticeBeam(PicoGK.Library, System.Numerics.Vector3, Single, System.Numerics.Vector3, Single)",
+      "PicoGK.Voxels voxLatticeBeam(System.Numerics.Vector3, Single, System.Numerics.Vector3, Single)",
+      "PicoGK.Voxels voxMeshShell(PicoGK.Library, PicoGK.Mesh, Single)",
+      "PicoGK.Voxels voxMeshShell(PicoGK.Mesh, Single)",
+      "PicoGK.Voxels voxOffset(Single)",
+      "PicoGK.Voxels voxOverOffset(Single, Single)",
+      "PicoGK.Voxels voxProjectZSlice(Single, Single)",
+      "PicoGK.Voxels voxShell(Single, Single, Single)",
+      "PicoGK.Voxels voxShell(Single)",
+      "PicoGK.Voxels voxSmoothen(Single)",
+      "PicoGK.Voxels voxSphere(PicoGK.Library, System.Numerics.Vector3, Single)",
+      "PicoGK.Voxels voxSphere(System.Numerics.Vector3, Single)",
+      "PicoGK.Voxels voxTrim(PicoGK.BBox3)",
+      "PicoGK.Voxels voxTripleOffset(Single)",
+      "Single get_fVoxelSize()",
+      "System.Numerics.Vector3 vecClosestPointOnSurface(System.Numerics.Vector3 ByRef)",
+      "System.Numerics.Vector3 vecRayCastToSurface(System.Numerics.Vector3 ByRef, System.Numerics.Vector3 ByRef)",
+      "System.Numerics.Vector3 vecSurfaceNormal(System.Numerics.Vector3 ByRef)",
+      "System.Numerics.Vector3 vecZSliceOrigin(Int32)",
+      "Void BoolAdd(PicoGK.Voxels ByRef)",
+      "Void BoolAddAll(System.Collections.Generic.IEnumerable`1[PicoGK.Voxels] ByRef)",
+      "Void BoolIntersect(PicoGK.Voxels ByRef)",
+      "Void BoolSubtract(PicoGK.Voxels ByRef)",
+      "Void BoolSubtractAll(System.Collections.Generic.IEnumerable`1[PicoGK.Voxels] ByRef)",
+      "Void CalculateProperties(Single ByRef, PicoGK.BBox3 ByRef)",
+      "Void Dispose()",
+      "Void DoubleOffset(Single, Single)",
+      "Void Fillet(Single)",
+      "Void GetInterpolatedVoxelSlice(Single ByRef, PicoGK.ImageGrayScale ByRef, ESliceMode)",
+      "Void GetVoxelDimensions(Int32 ByRef, Int32 ByRef, Int32 ByRef, Int32 ByRef, Int32 ByRef, Int32 ByRef)",
+      "Void GetVoxelDimensions(Int32 ByRef, Int32 ByRef, Int32 ByRef)",
+      "Void GetVoxelSlice(Int32 ByRef, PicoGK.ImageGrayScale ByRef, ESliceMode, ESliceAxis)",
+      "Void IntersectImplicit(PicoGK.IImplicit ByRef)",
+      "Void Offset(Single)",
+      "Void OverOffset(Single, Single)",
+      "Void ProjectZSlice(Single, Single)",
+      "Void RenderImplicit(PicoGK.IImplicit ByRef, PicoGK.BBox3 ByRef)",
+      "Void RenderLattice(PicoGK.Lattice ByRef)",
+      "Void RenderMesh(PicoGK.Mesh ByRef)",
+      "Void SaveToCliFile(System.String, Single, EFormat, Boolean, PicoGK.IProgress)",
+      "Void SaveToVdbFile(System.String)",
+      "Void Smoothen(Single)",
+      "Void Trim(PicoGK.BBox3)",
+      "Void TripleOffset(Single)"
+    ]
+  },
+  {
+    "name": "PicoGK.Voxels+ESliceAxis",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "PicoGK.Voxels+ESliceMode",
+    "constructors": [],
+    "methods": []
+  },
+  {
+    "name": "PicoGK.VoxHandle",
+    "constructors": [
+      "Void .ctor(Int64)"
+    ],
+    "methods": [
+      "Boolean Equals(PicoGK.VoxHandle)",
+      "Boolean Equals(System.Object)",
+      "Boolean op_Equality(PicoGK.VoxHandle, PicoGK.VoxHandle)",
+      "Boolean op_Inequality(PicoGK.VoxHandle, PicoGK.VoxHandle)",
+      "Int32 GetHashCode()",
+      "Int64 get_Value()",
+      "System.String ToString()",
+      "Void Deconstruct(Int64 ByRef)",
+      "Void set_Value(Int64)"
+    ]
+  }
+]

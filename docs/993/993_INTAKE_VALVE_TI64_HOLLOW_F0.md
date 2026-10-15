@@ -107,21 +107,23 @@ fitting, nor for an engine.
 
 <!-- print-screen:begin -->
 
-## LPBF print simulation
+## LPBF geometric screening — process physics not calculated
 
-The STEP was tessellated, then sliced over its full height at `30 µm`, on the EOS M 290 route of the candidate material. Orientation chosen by the automatic rule: `roll_y_45`.
+The STEP was tessellated, then sliced over its full height at `30 µm`, within the candidate EOS M 290 envelope. Candidate material/process reference: `EOS Titanium Ti64 / M290 30 um`. Orientation chosen by a geometric rule, not thermal optimisation: `roll_y_45`.
+
+The 45° overhang rule only flags geometric regions. The vertical columns are a **hypothetical support envelope**, not supplier-designed metal supports. Their volume is not a metal consumption estimate. Metal LPBF support design must address heat transfer, residual stress, recoater interaction and removal; none is validated here.
 
 | quantity | value |
 |---|---:|
 | layers | 3,241 |
 | build height | 97.23 mm |
-| layers with an unsupported region | 254 |
-| support proxy | 1,002.61 mm³ |
+| layers flagged by the geometric overhang rule | 254 |
+| hypothetical support-envelope volume | 1,002.61 mm³ |
 | local thickness p01 | 1.200 mm |
 | trapped powder at 1.00 mm | 0.00 mm³ |
 
-![LPBF print simulation](../../parts/993-eng-intake-valve-ti64-hollow-f0-0001/evidence/lpbf-f0/993-eng-intake-valve-ti64-hollow-f0-0001-lpbf-geometry-screen.png)
+![LPBF geometric screening with hypothetical supports; no process physics](../../parts/993-eng-intake-valve-ti64-hollow-f0-0001/evidence/lpbf-f0/993-eng-intake-valve-ti64-hollow-f0-0001-lpbf-geometry-screen.png)
 
-This screening is neither an EOSPRINT project, nor a distortion calculation, nor a recoater check. **Printing remains prohibited.**
+**Process physics has not been calculated:** no melt-pool, thermal, residual-stress, distortion or recoater simulation. No qualified support design or machine build file is provided. **Printing remains prohibited.**
 
 <!-- print-screen:end -->

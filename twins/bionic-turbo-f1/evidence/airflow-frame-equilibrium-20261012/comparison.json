@@ -1,0 +1,72 @@
+{
+  "status": "stationary_equilibrium_failure_isolated_to_staircase_frame_interface",
+  "qualification": "Witness only. Not proof of the unique cause of all turbo failures or of a qualified replacement mesh.",
+  "criteria": {
+    "max_abs_p_error_Pa": 0.001,
+    "max_abs_T_error_K": 1e-06,
+    "max_speed_m_s": 1e-08
+  },
+  "cases": {
+    "inertial-control": {
+      "case": "work/bionic-airflow-20261012/static-mrf-witness-017/inertial-control",
+      "native_exit_code": 0,
+      "observed": {
+        "max_abs_p_error_Pa": 0.0,
+        "max_abs_T_error_K": 0.0,
+        "max_speed_m_s": 1.2431911007435663e-11
+      },
+      "stationary_equilibrium_reproduced": true,
+      "GAMG_1000_iteration_hits": 0,
+      "report_sha256": "4724775c9908a9523e8400ca77b4642405f69bfc588d4c03fb90cbd6e8831437",
+      "input_differences_from_inertial": []
+    },
+    "staircase-mrf": {
+      "case": "work/bionic-airflow-20261012/static-mrf-witness-017/staircase-mrf",
+      "native_exit_code": 0,
+      "observed": {
+        "max_abs_p_error_Pa": 42769.454723,
+        "max_abs_T_error_K": 40.02916291510002,
+        "max_speed_m_s": 66.85706886514694
+      },
+      "stationary_equilibrium_reproduced": false,
+      "GAMG_1000_iteration_hits": 0,
+      "report_sha256": "3ba0fd2c7832e67a7d480d9e459533da766f6e38d41565d2659f580f05d6d3ce",
+      "input_differences_from_inertial": [
+        "constant/MRFProperties"
+      ]
+    },
+    "full-domain-frame": {
+      "case": "work/bionic-airflow-20261012/static-mrf-witness-018/full-domain-frame",
+      "native_exit_code": 0,
+      "observed": {
+        "max_abs_p_error_Pa": 0.0,
+        "max_abs_T_error_K": 0.0,
+        "max_speed_m_s": 4.380407516969169e-12
+      },
+      "stationary_equilibrium_reproduced": true,
+      "GAMG_1000_iteration_hits": 391,
+      "report_sha256": "432b4a590d97fd046dbd34ab03577b2adff892bf9318e2cc9560172df1223e25",
+      "input_differences_from_inertial": [
+        "system/topoSetDict",
+        "constant/MRFProperties"
+      ]
+    },
+    "axial-interface": {
+      "case": "work/bionic-airflow-20261012/static-mrf-witness-019/axial-interface",
+      "native_exit_code": 0,
+      "observed": {
+        "max_abs_p_error_Pa": 0.0,
+        "max_abs_T_error_K": 0.0,
+        "max_speed_m_s": 1.1369792762161499e-11
+      },
+      "stationary_equilibrium_reproduced": true,
+      "GAMG_1000_iteration_hits": 398,
+      "report_sha256": "50fbd05a3fbd6b72aefb2491c9ddfe00f39e9df8d2d7babeab46563409d31a7c",
+      "input_differences_from_inertial": [
+        "system/topoSetDict",
+        "constant/MRFProperties"
+      ]
+    }
+  },
+  "performance_ranking_authorized": false
+}

@@ -53,6 +53,7 @@ HERE = pathlib.Path(__file__).parent
 sys.path.insert(0, str(HERE))
 sys.path.append(str(HERE.parents[1] / "fea"))          # after source/: fea has its own build_shell
 import build_shell as bs  # noqa: E402
+import shell_s6 as s6  # noqa: E402
 import torsion as tr  # noqa: E402
 import torsion_monocoque as tm  # noqa: E402
 
@@ -294,4 +295,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    with s6.installed():                      # S6 shells (shell_s6.py)
+        main()

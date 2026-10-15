@@ -1,0 +1,82 @@
+{
+  "status": "diagnostic_only",
+  "mesh_gate_changed": false,
+  "performance_validated": false,
+  "input_sha256": {
+    "constant/polyMesh/points": "9dc953ceadf8a4a06287153ee4106966633b7a3a9ec2d4383498ebf398802666",
+    "constant/polyMesh/faces": "2ce6b93a62bcc730e10f5193e5c085d19c72bc678401c5bed6e31d656c022e9f",
+    "constant/polyMesh/owner": "cbe0425ca3bb23243e49b315cfe38b3354c52ad3a0f82a72c6f4bb50ccf6293b",
+    "constant/polyMesh/neighbour": "0f656edfe1a7ee82559c8bc4eb3cecc04acb3cc980dd7d10d4669f6b3e9841a6",
+    "constant/polyMesh/sets/concaveCells": "304af99ce1f429d1396870073710fefcdfb94426f9350fc21b0287b54b6d4244",
+    "constant/polyMesh/cellLevel": "64cc4321611a9b748d4bd8b28704d2bce1a013cfc6fe66d6461738e1ab8171b5",
+    "log.checkMesh": "3401e26efcc0216afeb69227102efb1c2e08aac70a4d2cec3179973c0087fc39"
+  },
+  "script_sha256": "bbd1a30adb2d01c34cd17c66cce69d80c5b1919feb318f109ada7d61c7ff0c97",
+  "source_urls": [
+    "https://gitlab.com/openfoam/core/openfoam/-/raw/OpenFOAM-v2406/src/OpenFOAM/meshes/primitiveMesh/primitiveMeshCheck/primitiveMeshTools.C",
+    "https://gitlab.com/openfoam/core/openfoam/-/raw/OpenFOAM-v2406/src/OpenFOAM/meshes/primitiveMesh/primitiveMeshCheck/primitiveMeshCheck.C"
+  ],
+  "source_version": "OpenCFD v2406",
+  "method": "Face centers/areas reproduce primitiveMeshTools central triangulation. Outward area normals follow owner/neighbour. All ordered distinct face pairs tested. q=(Cf_j-Cf_i).n_i/|Cf_j-Cf_i|; d=(Cf_j-Cf_i).n_i. q>-1e-6 reproduces checkConcaveCells.",
+  "diagnostic_bands_not_acceptance_criteria": "q in (-1e-6,+1e-6] is near coplanar, q>+1e-6 is positive penetration outside that band. Neither band establishes solver accuracy or authorizes a mesh.",
+  "counts": {
+    "cells": 2114975,
+    "flagged": 18307,
+    "native_flagged": 18307,
+    "near_coplanar": 18307,
+    "positive_penetration": 0,
+    "positive_boundary_adjacent": 0,
+    "positive_refinement_transition_adjacent": 0
+  },
+  "native_cell_set_exactly_reproduced": true,
+  "native_ids_not_reproduced": [],
+  "new_ids_not_native": [],
+  "flagged_q_percentiles": {
+    "0": -3.346396878907778e-10,
+    "50": 1.1642273494620597e-14,
+    "90": 3.551302407251571e-11,
+    "95": 1.7733207685392916e-10,
+    "99": 3.347093609460856e-10,
+    "100": 7.109441449355113e-10
+  },
+  "flagged_penetration_mm_percentiles": {
+    "0": -5.000166946960455e-11,
+    "50": 3.469446951953614e-15,
+    "90": 7.500944310123549e-12,
+    "95": 6.166334803379118e-11,
+    "99": 1.000033389439452e-10,
+    "100": 1.5000500841466639e-10
+  },
+  "near_coplanar_penetration_max_mm": 1.5000500841466639e-10,
+  "positive_penetration_mm_counts_over": {
+    "0": 16998,
+    "1e-06": 0,
+    "0.001": 0,
+    "0.01": 0,
+    "0.05": 0,
+    "0.1": 0,
+    "0.25": 0
+  },
+  "reconstructed_total_volume_m3": 0.0002322193851837065,
+  "reconstructed_min_volume_m3": 3.331489570581058e-12,
+  "worst_penetration_cell_ids": [
+    962231,
+    312123,
+    1648557,
+    1683148,
+    1981364,
+    312040,
+    883867,
+    1569109,
+    954527,
+    59530,
+    308351,
+    208322
+  ],
+  "limitations": [
+    "Checks centers against face planes; this is not exhaustive polyhedron convexity or self-intersection validation.",
+    "ASCII points use the saved precision; exact agreement with the native cell set is checked independently.",
+    "No mesh geometry, quality gate, solver input or physical result is modified."
+  ],
+  "full_diagnostic_sha256": "40990e4528a0db11350493ad788ea19bb989edb9d3c3dfecc70dd514c5bf55c4"
+}

@@ -1,0 +1,144 @@
+{
+  "status": "independent_coupon_measurement_not_qualification",
+  "voxel_mm": 0.0375,
+  "parts": {
+    "gyroid-metal": {
+      "file_sha256": "e0426f1d841d68eea79ea2fd499e72b747d4cb0566b66c763b8fb8a7de845ae9",
+      "triangles": 1862376,
+      "zero_area_removed": 0,
+      "watertight": true,
+      "volume_mm3": 116.56912775278118,
+      "components": 1,
+      "largest_component_volume_fraction": 1.0
+    },
+    "gyroid-charge-network": {
+      "file_sha256": "86570bb88bb8da126ca1f3651b5e58a1ab2481c2b9c6e558cf399edc465f9633",
+      "triangles": 1047852,
+      "zero_area_removed": 0,
+      "watertight": true,
+      "volume_mm3": 197.4116198406915,
+      "components": 3,
+      "largest_component_volume_fraction": 0.9968143991494544
+    },
+    "gyroid-cooling-network": {
+      "file_sha256": "0b0432b36cc40a9da47b141ecc3846b4a56b56723848153d6ac0dabc93f90999",
+      "triangles": 1048008,
+      "zero_area_removed": 0,
+      "watertight": true,
+      "volume_mm3": 197.43224520733054,
+      "components": 7,
+      "largest_component_volume_fraction": 0.9999863187272472
+    },
+    "helical-metal": {
+      "file_sha256": "b732e42c5baa763a5c0aea395f9418f3da3033e8090cc2603160f079f37ce1aa",
+      "triangles": 4627348,
+      "zero_area_removed": 0,
+      "watertight": true,
+      "volume_mm3": 437.5756596108387,
+      "components": 1,
+      "largest_component_volume_fraction": 1.0
+    },
+    "helical-charge-passage": {
+      "file_sha256": "63f5d877186b01eb9d6d90f80be662dfba052c3a74c89c1d73b53dc663519547",
+      "triangles": 2928712,
+      "zero_area_removed": 0,
+      "watertight": true,
+      "volume_mm3": 1751.791318638633,
+      "components": 2,
+      "largest_component_volume_fraction": 0.5
+    }
+  },
+  "gyroid": {
+    "cube_mm": 8,
+    "metal_fraction_measured": 0.22767407764215075,
+    "metal_fraction_screen": 0.2318775,
+    "networks": [
+      {
+        "name": "gyroid-charge-network",
+        "porosity": 0.38556957000135056,
+        "wetted_area_mm2": 382.0309091569917,
+        "hydraulic_diameter_mm": 2.0669701336607527,
+        "area_density_times_cell": 2.9846164777889976,
+        "edge_fragments": 2,
+        "edge_fragment_volume_mm3": 0.6288746240720957,
+        "all_fragments_open_on_cut_window": true
+      },
+      {
+        "name": "gyroid-cooling-network",
+        "porosity": 0.38560985392056746,
+        "wetted_area_mm2": 382.04112116792163,
+        "hydraulic_diameter_mm": 2.0671308324482855,
+        "area_density_times_cell": 2.9846962591243877,
+        "edge_fragments": 6,
+        "edge_fragment_volume_mm3": 0.0027011243968707846,
+        "all_fragments_open_on_cut_window": true
+      }
+    ],
+    "network_porosity_screen": 0.38406125,
+    "hydraulic_diameter_screen_mm": 1.9875731798039915,
+    "area_density_times_cell_screen": 3.0917,
+    "volume_closure": 0.9988535015640688
+  },
+  "helical": {
+    "metal_volume_measured_mm3": 437.5756596108387,
+    "metal_volume_screen_mm3": 437.6070473782217,
+    "passage_volume_measured_mm3": 1751.791318638633,
+    "passage_volume_screen_mm3": 1751.9573684677207,
+    "passage_components_expected": 2
+  },
+  "source_sha256": {
+    "measure.py": "167b140fb0248112f4e693a96b27e897c67c98a2889ae558ae189fe5da20b43d",
+    "Program.cs": "c5bd74c6ca909f1bc7d22474c832b8dd0064fc0554add150469e2cc7b48004f2",
+    "Cells.csproj": "e301ee6d851c8053ceff923a95047b6aa1600c8bbd73e3bfd252fbb41d960909"
+  },
+  "generation": {
+    "status": "native_picogk_family_coupons_not_qualified",
+    "kernel": "26.2.0",
+    "voxel_mm": 0.0375,
+    "gyroid": {
+      "cell_mm": 4,
+      "sheet_mm": 0.3,
+      "cube_mm": 8,
+      "window_origin_mm": 0.5,
+      "source": "gyroid_break_even_lighter_than_witness"
+    },
+    "helical": {
+      "tube_inner_mm": 8,
+      "tube_wall_mm": 0.4,
+      "web_mm": 0.2,
+      "twist_pitch_180_mm": 36,
+      "source": "helical_closest_in_domain[0]"
+    },
+    "parts": [
+      {
+        "name": "gyroid-metal",
+        "triangles": 1862376,
+        "voxel_volume_mm3": 115.705986
+      },
+      {
+        "name": "gyroid-charge-network",
+        "triangles": 1047852,
+        "voxel_volume_mm3": 197.0767
+      },
+      {
+        "name": "gyroid-cooling-network",
+        "triangles": 1048008,
+        "voxel_volume_mm3": 197.07216
+      },
+      {
+        "name": "helical-metal",
+        "triangles": 4627348,
+        "voxel_volume_mm3": 437.0889
+      },
+      {
+        "name": "helical-charge-passage",
+        "triangles": 2928712,
+        "voxel_volume_mm3": 1752.0139
+      }
+    ],
+    "manufacturing_authorized": false,
+    "full_core_generated": false,
+    "headers_generated": false,
+    "limitation": "Unit coupons only: no headers, no network separation at the faces, no bench adapters, no interfaces."
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "reader_sha256": "992fc4f2ba244f2c2373b3e769d319ca344a7fd2c8448428b65016fb5c2bc171",
+  "all_payloads_verified": true,
+  "all_prepared_core_mesh_inputs_exact_to_parents_except_explicit_rotor_boundary_metadata": true,
+  "rotor_geometry_and_zone_inputs_byte_identical": true,
+  "rotor_boundary_only_mappedWall_to_wall_and_three_sample_keys_removed": true,
+  "no_inherited_region_addressing": true,
+  "intermediate_patches": {
+    "merged": {
+      "walls": {
+        "type": "wall",
+        "nFaces": "15104",
+        "startFace": "94208"
+      },
+      "rotorZone_to_domain1": {
+        "type": "wall",
+        "nFaces": "6784",
+        "startFace": "109312"
+      },
+      "outerWall": {
+        "type": "wall",
+        "nFaces": "6784",
+        "startFace": "116096"
+      },
+      "domain1_to_rotorZone": {
+        "type": "wall",
+        "nFaces": "6784",
+        "startFace": "122880"
+      }
+    },
+    "stitched": {
+      "walls": {
+        "type": "wall",
+        "nFaces": "15104",
+        "startFace": "100992"
+      },
+      "rotorZone_to_domain1": {
+        "type": "wall",
+        "nFaces": "0",
+        "startFace": "116096"
+      },
+      "outerWall": {
+        "type": "wall",
+        "nFaces": "6784",
+        "startFace": "116096"
+      },
+      "domain1_to_rotorZone": {
+        "type": "wall",
+        "nFaces": "0",
+        "startFace": "122880"
+      }
+    },
+    "final": {
+      "walls": {
+        "type": "wall",
+        "nFaces": "15104",
+        "startFace": "100992"
+      },
+      "outerWall": {
+        "type": "wall",
+        "nFaces": "6784",
+        "startFace": "116096"
+      }
+    }
+  },
+  "cleanup_removes_only_empty_join_patches": true,
+  "source_reference": {
+    "url": "https://dl.openfoam.com/source/v2406/OpenFOAM-v2406.tgz",
+    "archive_sha256": "8d1450fb89eec1e7cecc55c3bb7bc486ccbf63d069379d1d5d7518fa16a4686a",
+    "member": "OpenFOAM-v2406/applications/utilities/mesh/manipulation/createPatch/createPatch.C",
+    "member_sha256": "f3ae9d44d24f2eab4f7f628a2e1b6674f190b3d01aee6a45d5bfa44aec29b946",
+    "scope": "createPatch constructFrom set reads native faceSet and sorts labels; not a complete application proof"
+  }
+}

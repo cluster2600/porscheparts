@@ -46,6 +46,7 @@ HERE = pathlib.Path(__file__).parent
 sys.path.insert(0, str(HERE))
 sys.path.append(str(HERE.parents[1] / "fea"))          # after source/: fea has its own build_shell
 import build_shell as bs  # noqa: E402
+import shell_s6 as s6  # noqa: E402
 import torsion as tr  # noqa: E402
 import torsion_monocoque as tm  # noqa: E402
 import torsion_rings as trg  # noqa: E402
@@ -236,7 +237,7 @@ def main():
     doc = {
         "model": "closed-ring PicoGK study (../picogk-rings/) with its tubes meshed as shells; torsion load case of torsion.py",
         "classification": "values of this model under this load, not of a vehicle; prohibited_pending_engineering",
-        "tubes": f"{tr.ELEMENT} shells of each tube's wall, stations at the skin's section spacing, nodes around in proportion; "
+        "tubes": f"{s6.ELEMENT} shells of each tube's wall, stations at the skin's section spacing, nodes around in proportion; "
                  "bonded along the line of tangency to the skin triangle under it (*EQUATION, translations); "
                  f"end rings tied to another tube's nearest node within {JOINT_MM:.0f} mm",
         "check": "cantilever plate with a tube tied along its line of tangency: converges to 9% softer than composite beam theory",
@@ -254,4 +255,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    with s6.installed():                      # S6 shells (shell_s6.py)
+        main()

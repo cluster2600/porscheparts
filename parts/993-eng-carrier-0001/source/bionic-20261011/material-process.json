@@ -1,0 +1,79 @@
+{
+  "selected_for_provisional_study": true,
+  "released_for_manufacture": false,
+  "metal": "Ti-6Al-4V, Grade 5 chemistry; EOS Titanium Ti64 powder",
+  "powder_article": "9011-0039",
+  "process": "Laser powder bed fusion, argon, EOS M 400-4",
+  "parameter_set": "Ti64_060_FlexM404",
+  "layer_thickness_um": 60,
+  "heat_treatment": "800 C for 2 hours in argon, following the published EOS coupon condition; supplier must define ramp, cool-down and on-plate sequence",
+  "HIP": "Not assumed; any HIP route requires separate coupons and revised properties",
+  "screening_elasticity": {
+    "E_MPa": 107000,
+    "nu": 0.31,
+    "density_kg_mm3": 0.00000442,
+    "thermal_expansion_per_K": 0.000009,
+    "source": "Dense TIMET reference retained for comparisons; not a qualified LPBF elastic or thermal card"
+  },
+  "EOS_room_temperature_heat_treated_coupons": {
+    "horizontal_yield_MPa": 955,
+    "vertical_yield_MPa": 990,
+    "horizontal_ultimate_MPa": 1070,
+    "vertical_ultimate_MPa": 1080,
+    "horizontal_elongation_percent": 13,
+    "vertical_elongation_percent": 15,
+    "density_g_cm3_lower_reference": 4.4,
+    "is_design_allowable": false
+  },
+  "study_strength_screen": {
+    "reference_yield_MPa": 955,
+    "assumed_yield_factor": 1.5,
+    "screening_stress_MPa": 636.6666666666666,
+    "authority": "Explicit study criterion, not a Porsche specification or statistically qualified AM allowable",
+    "ideal_plasticity": "955 MPa elastic-perfectly-plastic approximation; no calibrated hardening, failure strain or damage model",
+    "qualified_fatigue_curve": null,
+    "fatigue_life_cycles": null
+  },
+  "manufacturing_definition": {
+    "orientation": "Computed from the actual STL; machine Z approximately 35.54 degrees above the carrier span, 45 degrees in XY",
+    "support_strategy": "Removable downskin supports; equivalent springs in the numerical sensitivity. Detailed supports and removal access require the printer's process engineering.",
+    "machining": "Finish-machine all four central bolt seats and bores, both end-eye bores/seats and the central mating face to measured OEM geometry. Preserve finished joint stack; machining stock is not included in finished mass.",
+    "inspection": "Powder and build traceability, witness coupons in relevant orientations, density/defect inspection including suitable CT, penetrant inspection after finishing, dimensional/CMM inspection and surface roughness on fatigue-critical regions",
+    "fatigue": "Qualify the actual build direction, heat treatment, surface finish, internal defects, environment and service spectrum with coupons and a representative carrier rig",
+    "galvanic_isolation": "Engineer a compatible barrier at dissimilar-metal interfaces and corrosion protection without altering the measured clamp stack or reducing required friction/preload; insulation durability remains unverified",
+    "bolt_preload": "Unknown bolt grade, grip, torque/friction and contact state; do not transfer the historical M12 85 Nm value to M10 joints",
+    "print_permission": false
+  },
+  "sources": [
+    {
+      "url": "https://www.eos.info/metal-solutions/data-sheets/titanium/pds-eos-titanium-ti64-eos-m-400-4-60um",
+      "accessed_on": "2026-10-12",
+      "role": "Specific machine/process, layer and heat-treated coupon properties"
+    },
+    {
+      "url": "https://store.eos.info/products/eos-titanium-ti64",
+      "accessed_on": "2026-10-12",
+      "role": "Powder article and Ti6Al4V chemistry corresponding to ASTM F2924; not certification of this part"
+    },
+    {
+      "url": "https://www.eos.info/metal-solutions/metal-printers/eos-m-400-4",
+      "accessed_on": "2026-10-12",
+      "role": "400 x 400 x 400 mm nominal build envelope including platform"
+    },
+    {
+      "url": "https://www.timet.com/documents/datasheets/alpha-and-beta-alloys/timetal-6-4.pdf",
+      "accessed_on": "2026-10-12",
+      "role": "Dense elastic reference, not AM allowable"
+    },
+    {
+      "url": "https://www.dhondt.de/ccx_2.21.pdf",
+      "accessed_on": "2026-10-12",
+      "role": "CalculiX element birth/removal, orthotropic expansion and plasticity syntax"
+    },
+    {
+      "url": "https://www.nist.gov/publications/coupled-experimental-and-computational-study-residual-stresses-additively-manufactured",
+      "accessed_on": "2026-10-12",
+      "role": "Primary Ti64 LPBF residual-stress validation study; its calibration is not transferred to this carrier"
+    }
+  ]
+}

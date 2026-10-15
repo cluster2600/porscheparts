@@ -1,0 +1,200 @@
+{
+  "status": "native_header_topology_checked_packaging_only",
+  "generation": {
+    "status": "picogk_header_and_core_envelope_study",
+    "kernel": "26.2.0",
+    "voxel_mm": 0.75,
+    "geometry": {
+      "width_mm": 800,
+      "span_mm": 542.8,
+      "depth_mm": 180,
+      "hot_gap_mm": 3,
+      "cold_gap_mm": 6,
+      "hot_pitch_mm": 1.5,
+      "cold_pitch_mm": 3,
+      "fin_mm": 0.15,
+      "wall_mm": 0.4,
+      "tubes": 56,
+      "hot_channels_per_tube": 119,
+      "cold_channels_per_gap": 266,
+      "hot_clear_m": 0.00135,
+      "cold_clear_m": 0.00285,
+      "metal_volume_m3": 0.01154069999999998,
+      "core_volume_l": 78.16319999999999,
+      "search_span_limit_mm": 550,
+      "fin_family": "offset",
+      "strip_length_mm": 10,
+      "charge_parallel_banks": 2
+    },
+    "input_sha256": "9bb1f54d6cdb8041adc7d8b1195a0ea3b347ca3508b093696e0138a59f681d0b",
+    "parts": [
+      {
+        "name": "core-envelope-left",
+        "triangles": 2742172
+      },
+      {
+        "name": "charge-inlet-left",
+        "triangles": 1308668
+      },
+      {
+        "name": "core-envelope-right",
+        "triangles": 2742172
+      },
+      {
+        "name": "charge-inlet-right",
+        "triangles": 1308668
+      },
+      {
+        "name": "common-charge-outlet",
+        "triangles": 1385468
+      }
+    ],
+    "core_fins_resolved": false,
+    "pressure_qualified": false,
+    "manufacturing_authorized": false,
+    "ports": {
+      "inlet_count": 2,
+      "inlet_id_mm": 80,
+      "outlet_id_mm": 113.137085
+    },
+    "flow": "Charge enters both outer X faces, crosses two half-cores and leaves central collector through -Y; ambient crosses along Z.",
+    "limitations": "Core blocks are envelopes only. Collector mouths lack individual tube interfaces. External hoses, brackets, fan ducts and seals are not designed."
+  },
+  "parts": [
+    {
+      "name": "charge-inlet-left",
+      "native_sha256": "07347a6b4de7ecfbca6ebd84218374e4f64e5e7daf9518489660fd54f8c45890",
+      "native_triangles": 1308668,
+      "native_closed": true,
+      "native_bodies": 1,
+      "volume_mm3": 543908.9085499208,
+      "mass_kg": 1.4576758749137877,
+      "review_triangles": 100000,
+      "review_relative_volume_error": 2.783652630622413e-08,
+      "bounds_mm": [
+        [
+          -535.0,
+          0.0,
+          0.0
+        ],
+        [
+          -470.0,
+          542.7999877929688,
+          180.0
+        ]
+      ]
+    },
+    {
+      "name": "charge-inlet-right",
+      "native_sha256": "dbb006d20a1205ac2f106847abc69481f7a7173233ccac44816dbf4b0e7d3a80",
+      "native_triangles": 1308668,
+      "native_closed": true,
+      "native_bodies": 1,
+      "volume_mm3": 543908.9085524002,
+      "mass_kg": 1.4576758749204326,
+      "review_triangles": 20000,
+      "review_relative_volume_error": 0.003783197309756292,
+      "bounds_mm": [
+        [
+          470.0,
+          0.0,
+          0.0
+        ],
+        [
+          535.0,
+          542.7999877929688,
+          180.0
+        ]
+      ]
+    },
+    {
+      "name": "common-charge-outlet",
+      "native_sha256": "cd3d61fa98a43bc1d27055c89d09156ac2dd642697dd3d55a3e01d9a13a3d1f5",
+      "native_triangles": 1385468,
+      "native_closed": true,
+      "native_bodies": 1,
+      "volume_mm3": 570590.8233228984,
+      "mass_kg": 1.5291834065053678,
+      "review_triangles": 100000,
+      "review_relative_volume_error": 4.440892098500626e-16,
+      "bounds_mm": [
+        [
+          -70.0,
+          0.0,
+          0.0
+        ],
+        [
+          70.0,
+          542.7999877929688,
+          180.0
+        ]
+      ]
+    },
+    {
+      "name": "core-envelope-left",
+      "native_sha256": "c6dee427b588d6c7d160e68822c88bf09efcc2d9b7211d2d0c0ec7df001d4e47",
+      "native_triangles": 2742172,
+      "native_closed": true,
+      "native_bodies": 1,
+      "volume_mm3": 39080142.71492905,
+      "mass_kg": null,
+      "review_triangles": 100000,
+      "review_relative_volume_error": 0.0,
+      "bounds_mm": [
+        [
+          -470.0,
+          0.0,
+          0.0
+        ],
+        [
+          -70.0,
+          542.7999877929688,
+          180.0
+        ]
+      ]
+    },
+    {
+      "name": "core-envelope-right",
+      "native_sha256": "edb87c7a1d44f772ad8d7d11aaff523eb0c81310b21714487677b52c4e102d75",
+      "native_triangles": 2742172,
+      "native_closed": true,
+      "native_bodies": 1,
+      "volume_mm3": 39080142.71492905,
+      "mass_kg": null,
+      "review_triangles": 100000,
+      "review_relative_volume_error": 0.0,
+      "bounds_mm": [
+        [
+          70.0,
+          0.0,
+          0.0
+        ],
+        [
+          470.0,
+          542.7999877929688,
+          180.0
+        ]
+      ]
+    }
+  ],
+  "header_mass_kg": 4.4445351563395885,
+  "manufacturing_authorized": false,
+  "full_core_resolved": false,
+  "source_hashes": {
+    "assumptions.json": "5952d2a883fa0e5a95436b49fc782480cb842fff6840a58ef1d07024c93a7dda",
+    "results/comparison.json": "9bb1f54d6cdb8041adc7d8b1195a0ea3b347ca3508b093696e0138a59f681d0b",
+    "source/review.py": "9a0dbf09e77a13e1b8b59afe57e70f44ff5e5f7e9803e1455a6ea2bc5b22aae7",
+    "source/picogk/Program.cs": "751ed49a02d982867302c3fe9e9a2babd1ef957ceb2e93e53d0a42deb75f844f",
+    "source/picogk/Layout.csproj": "2c2fd672bb00b7987a3114cb52f2fa8e1de44b84137fa56d07947f29ad6a02ff"
+  },
+  "output_hashes": {
+    "layout.glb": "59d10ac497071e51042f733f48901739e9d06adab4e097693803980d5036dc45",
+    "comparison.png": "addb1b0ade3fdca536d565a9c0bfefb9dc55d2976650d485b1ac054c8ccf2076",
+    "common-charge-outlet.stl.gz": "bf526f312930ab83f1eed85b0d0bf79732d2fa22660fc9da318b4e962e0275ca",
+    "layout.png": "6ee2592cf2b1b5689718e86d46018223085b2151978cd4f60f7b1ee0e6b82b8e",
+    "core-envelope-right.stl.gz": "3eb4e0748593a46b2c66bf6a50687d516c47bff3b8b5b0537d5f080a578dce33",
+    "charge-inlet-right.stl.gz": "3d162c19486161cb085a87daef04eb04d72c13b7ed743ab322bc12457ecf2801",
+    "core-envelope-left.stl.gz": "a4bad7a9569b768dc9ce6405f96c7dba84e520e3940672adc8ba143ef114734d",
+    "charge-inlet-left.stl.gz": "ba2715b20c399932e0b471588279cff9dbf41838624c061c3d55bffd72bf1ff5"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "timeout_seconds": 1200,
+  "cpus": 1,
+  "memory_gib": 2,
+  "container": "bionic-conformal-equilibrium-059",
+  "command": "source /usr/lib/openfoam/openfoam2406/etc/bashrc >/dev/null 2>&1; cd /case; checkMesh -allTopology -allGeometry > log.checkMesh 2>&1 && grep -q \"Mesh OK.\" log.checkMesh && ! grep -q \"Failed \" log.checkMesh && rhoPimpleFoam > log.rhoPimpleFoam 2>&1"
+}

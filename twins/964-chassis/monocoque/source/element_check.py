@@ -7,8 +7,8 @@ The vertical deflection at the middle of a free edge is 0.3024. Membrane and
 bending both matter, as on a car body.
 
 The roof is triangulated like the car shell (each grid cell split in two)
-and solved with this folder's run(), as S3 and as S6, at 8x8, 16x16 and
-32x32. CalculiX expands S3 into linear wedges, which lock in bending; S6
+and solved as S3 and as S6 (mid-side nodes from shell_s6.to_s6, moved
+onto the cylinder), at 8x8, 16x16 and 32x32, on one SPOOLES thread. CalculiX expands S3 into linear wedges, which lock in bending; S6
 does not. Result: ../derived/element-check.json.
 
     python3 element_check.py
@@ -16,14 +16,15 @@ does not. Result: ../derived/element-check.json.
 import json
 import pathlib
 import sys
-import tempfile
+import os
 import subprocess
+import tempfile
 
 import numpy as np
 
 HERE = pathlib.Path(__file__).parent
 sys.path.insert(0, str(HERE))
-import torsion as tr  # noqa: E402
+import shell_s6 as s6  # noqa: E402
 
 OUT = HERE.parent / "derived" / "element-check.json"
 R, L, T, E, WEIGHT, HALF_DEG, REFERENCE = 25.0, 50.0, 0.25, 4.32e8, 90.0, 40.0, 0.3024
@@ -45,7 +46,7 @@ def deflection(n, shell):
     a GRAV load, which run() does not take, so the deck is written here."""
     p, tri, target = roof(n)
     if shell == "S6":
-        p, tri = tr.to_s6(p, tri)
+        p, tri = s6.to_s6(p, tri)
         r = np.hypot(p[:, 1], p[:, 2])
         p[:, 1:] *= (R / r)[:, None]                          # mid-side nodes on the cylinder
     ends = np.where(np.isclose(np.abs(p[:, 0]), L / 2))[0]
@@ -58,8 +59,9 @@ def deflection(n, shell):
             f.write("*NSET, NSET=ENDS\n" + "".join(f"{k + 1},\n" for k in ends))
             f.write(f"*BOUNDARY\nENDS,2,3\n{crown + 1},1,1\n*STEP\n*STATIC\n*DLOAD\nE,GRAV,1.,0.,0.,-1.\n"
                     "*NODE FILE, OUTPUT=2D\nU\n*END STEP\n")
-        run = subprocess.run(["ccx", "-i", "roof"], cwd=work, capture_output=True, text=True)
-        if "Job finished" not in run.stdout:
+        run = subprocess.run(["ccx", "-i", "roof"], cwd=work, capture_output=True, text=True,
+                             env=dict(os.environ, OMP_NUM_THREADS=os.environ.get("OMP_NUM_THREADS", "1")))
+        if run.returncode != 0 or "Job finished" not in run.stdout:
             sys.exit(run.stdout[-800:])
         block = None
         for line in pathlib.Path(work, "roof.frd").read_text().splitlines():

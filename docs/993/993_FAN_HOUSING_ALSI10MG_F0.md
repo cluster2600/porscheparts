@@ -101,8 +101,8 @@ The F0 is prohibited from manufacture, rotation, installation and start-up.
 
 <!-- print-screen:begin -->
 
-## LPBF print simulation
+## LPBF geometric screening — process physics not calculated
 
-The simulation was run and **failed closed**: none of the candidate orientations fits the EOS M 290 envelope (250 x 250 x 325 mm). No result is therefore published for this part, and no image is made up in its place.
+The geometric screening was run and **failed closed**: none of the candidate orientations fits the EOS M 290 envelope (250 x 250 x 325 mm). No result is therefore published for this part, and no image is made up in its place.
 
 <!-- print-screen:end -->

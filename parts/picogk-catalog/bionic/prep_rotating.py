@@ -406,7 +406,7 @@ def housing(part_id, P):
     assert '"radial_load_n": 2000.0' in json.dumps(sc, indent=2) or "2000.0" in json.dumps(sc)
     zS = Rb + sT / 2 + 2
     hz0 = zS - hD / 2
-    z0, z1 = hz0 - 2.0, lT - 2.0                    # generator frame: z from the inlet face
+    z0, z1 = zS - 7.5, zS + 7.5                    # generator frame: z from the inlet face; 15 mm disc on the spoke plane (mass at or below the functional model)
 
     def c_rem(ctx):
         r = np.sqrt(ctx.X ** 2 + ctx.Y ** 2)
@@ -447,7 +447,7 @@ def housing(part_id, P):
          "note": f"axial hub load 0.25 x {radial:.0f} N (fan thrust and fore-aft inertia; not published)",
          "loads": [{"region": hub, "force_N": [0.0, 0.0, 0.25 * radial]}]},
     ]
-    cfg["defaults"] = dict(element=3.0, volfrac=0.15, blend=1.0)
+    cfg["defaults"] = dict(element=2.5, volfrac=0.08, blend=0.8, smooth=1.5)
     return cfg
 
 
@@ -687,7 +687,7 @@ def main(part_id, element=None, volfrac=None, iters=45, smooth=None, blend=None)
         "filter_radius_mm": round(2.5 * e, 2),
         "iterations": int(iters),
     }
-    smooth = smooth or round(1.2 * e, 2)
+    smooth = smooth or cfg["defaults"].get("smooth") or round(1.2 * e, 2)
     flipped = bool(np.allclose(np.diag(fr.R), [1, -1, -1]))
     frame_note = (" Model frame: the rotor is turned 180 deg about X (back face up) so the optimized structure faces the catalogue view; "
                   "blade handedness is kept.") if flipped else ""

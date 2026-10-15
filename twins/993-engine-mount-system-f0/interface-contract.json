@@ -1,0 +1,133 @@
+{
+  "schema_version": "1.0.0",
+  "variant": "993_Turbo",
+  "status": "blocked_missing_measured_interfaces",
+  "functional_geometry_produced": false,
+  "manufacturing_authorized": false,
+  "sources": {
+    "carrier_requirements": "parts/993-eng-carrier-0001/source/pet-redo/requirements.json",
+    "pet_url": "https://assets-v2.porsche.com/us/-/media/Project/PCOM/SharedSite/PorscheClassic/Original-Parts-Catalogue/PDF-EN-US/KAT517_USA_911_98_KATALOG",
+    "locator": "109-00; PDF reader pages 117 drawing and 118 table (zero-based 116/117)"
+  },
+  "parts": [
+    {
+      "oem_reference": "99311502153",
+      "role": "carrier",
+      "quantity": 1,
+      "catalogue_record": "catalog/parts/993-eng-carrier-0001.json"
+    },
+    {
+      "oem_reference": "99311510352",
+      "role": "engine_bracket",
+      "quantity": 1,
+      "catalogue_record": "catalog/parts/993-eng-bracket-0001.json"
+    },
+    {
+      "oem_reference": "99337504905",
+      "role": "engine_mounting",
+      "quantity": 2,
+      "catalogue_record": "catalog/parts/993-eng-mounting-0001.json"
+    }
+  ],
+  "load_path": {
+    "authority": "qualitative assembly interpretation of PET, not a measured load distribution",
+    "sequence": [
+      "engine",
+      "bracket 993 115 103 52",
+      "four M10 carrier joint bolts",
+      "carrier blade and boss junctions",
+      "two end mount interfaces",
+      "two engine mountings",
+      "four M8 body attachment bolts",
+      "body shell"
+    ],
+    "forces_and_boundary_conditions": null
+  },
+  "interfaces": {
+    "bracket_to_carrier": {
+      "attachment_sites": 4,
+      "reference": "pet_only",
+      "centres_mm": null,
+      "axes": null,
+      "bore_diameters_mm": null,
+      "mating_faces": null,
+      "datums": null,
+      "tolerances": null,
+      "measurement_evidence": null
+    },
+    "carrier_to_left_mount": {
+      "attachment_sites": 1,
+      "reference": "pet_only",
+      "centres_mm": null,
+      "axes": null,
+      "bore_diameters_mm": null,
+      "mating_faces": null,
+      "datums": null,
+      "tolerances": null,
+      "measurement_evidence": null
+    },
+    "carrier_to_right_mount": {
+      "attachment_sites": 1,
+      "reference": "pet_only",
+      "centres_mm": null,
+      "axes": null,
+      "bore_diameters_mm": null,
+      "mating_faces": null,
+      "datums": null,
+      "tolerances": null,
+      "measurement_evidence": null
+    },
+    "left_mount_to_body": {
+      "attachment_sites": 2,
+      "reference": "pet_only",
+      "centres_mm": null,
+      "axes": null,
+      "bore_diameters_mm": null,
+      "mating_faces": null,
+      "datums": null,
+      "tolerances": null,
+      "measurement_evidence": null
+    },
+    "right_mount_to_body": {
+      "attachment_sites": 2,
+      "reference": "pet_only",
+      "centres_mm": null,
+      "axes": null,
+      "bore_diameters_mm": null,
+      "mating_faces": null,
+      "datums": null,
+      "tolerances": null,
+      "measurement_evidence": null
+    },
+    "bracket_to_engine": {
+      "attachment_sites": null,
+      "reference": "unknown",
+      "centres_mm": null,
+      "axes": null,
+      "bore_diameters_mm": null,
+      "mating_faces": null,
+      "datums": null,
+      "tolerances": null,
+      "measurement_evidence": null
+    }
+  },
+  "other_carriers": [
+    {
+      "oem_reference": "99311502190",
+      "variant": "Carrera/Carrera 4/S/4S",
+      "geometry": null
+    },
+    {
+      "oem_reference": "99311502141",
+      "variant": "RS",
+      "geometry": null
+    }
+  ],
+  "unknowns": [
+    "Bracket-to-engine attachment count and geometry",
+    "Carrier-to-body relative pose",
+    "Mount internal hydraulic/elastomer architecture and stiffness/damping",
+    "Actual forces, engine CG, torque reactions, preload and contact",
+    "Qualified materials, process, corrosion and fatigue allowables"
+  ]
+}

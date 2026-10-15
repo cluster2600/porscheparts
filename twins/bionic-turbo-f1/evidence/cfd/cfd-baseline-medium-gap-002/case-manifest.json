@@ -1,0 +1,201 @@
+{
+  "schema": "bionic-turbo-compressible-mrf/v1",
+  "status": "prepared_not_meshed_or_solved",
+  "image": "docker.io/opencfd/openfoam-run@sha256:1db0df068a490178efda0e30831a34f8ebdfa9ba06c7413f4063a46dc0887532",
+  "solver": "rhoSimpleFoam",
+  "openfoam": "OpenCFD 2406",
+  "surface": {
+    "sha256": "74bb941bcd3315b89ec65823c2fd22365b3f87a7db501f5b445dace6c877118b",
+    "bounds_m": [
+      [
+        -0.0589968452454,
+        -0.0609981079102,
+        -0.0146566352844
+      ],
+      [
+        0.0637409896851,
+        0.08,
+        0.044
+      ]
+    ],
+    "region_bounds_m": {
+      "inlet": [
+        [
+          -0.0217980003357,
+          -0.0217439994812,
+          0.044
+        ],
+        [
+          0.0217019996643,
+          0.0217560005188,
+          0.044
+        ]
+      ],
+      "outlet": [
+        [
+          0.0354519996643,
+          0.08,
+          -0.0136960000992
+        ],
+        [
+          0.0627019996643,
+          0.08,
+          0.0135539999008
+        ]
+      ],
+      "rotor": [
+        [
+          -0.0302425956726,
+          -0.0302425937653,
+          -0.00371429657936
+        ],
+        [
+          0.0302425937653,
+          0.0302425899506,
+          0.0320002822876
+        ]
+      ],
+      "stator": [
+        [
+          -0.0589968452454,
+          -0.0609981079102,
+          -0.0146566352844
+        ],
+        [
+          0.0637409896851,
+          0.08,
+          0.044
+        ]
+      ]
+    },
+    "region_triangles": {
+      "inlet": 47045,
+      "outlet": 18544,
+      "rotor": 516216,
+      "stator": 1540619
+    },
+    "closed_edges": true,
+    "boundary_topology": {
+      "surface_components": 3,
+      "component_patch_sets": [
+        [
+          "inlet",
+          "outlet",
+          "rotor",
+          "stator"
+        ],
+        [
+          "rotor"
+        ],
+        [
+          "rotor"
+        ]
+      ],
+      "component_invariants": [
+        {
+          "patches": [
+            "inlet",
+            "outlet",
+            "rotor",
+            "stator"
+          ],
+          "euler_characteristic": 2
+        },
+        {
+          "patches": [
+            "rotor"
+          ],
+          "euler_characteristic": 0
+        },
+        {
+          "patches": [
+            "rotor"
+          ],
+          "euler_characteristic": 0
+        }
+      ],
+      "face_count": 2122424,
+      "unique_edges": 3183636,
+      "unique_vertices": 1061214,
+      "euler_characteristic": 2
+    },
+    "self_intersections_checked": false,
+    "seed_occupancy_checked": false
+  },
+  "solver_energy_source_url": "https://gitlab.com/openfoam/core/openfoam/-/raw/OpenFOAM-v2406/applications/solvers/compressible/rhoSimpleFoam/EEqn.H",
+  "solver_energy_source_sha256": "59f0cab95246ea9d88efff8e8455c03668b2acb576d5af24466ece21471101cf",
+  "source_sha256": "f97461307b2d6a5a80f5a2cb3044b6d9bc6db09e930b2b39c7c5b340fbe371a8",
+  "mesh_level": "medium",
+  "background_cell_m": 0.0012,
+  "gap_refinement": {
+    "gap_level": [
+      4,
+      1,
+      3
+    ],
+    "mode": "mixed",
+    "same_surface_detection": true,
+    "smallest_nominal_cell_m": 0.00015,
+    "actual_gap_cell_count_verified": false,
+    "source_url": "https://gitlab.com/openfoam/core/openfoam/-/raw/OpenFOAM-v2406/tutorials/mesh/snappyHexMesh/gap_detection/system/snappyHexMeshDict"
+  },
+  "rpm": 100000.0,
+  "rotation_sign": 1,
+  "inlet_total_pressure_pa": 101325.0,
+  "inlet_total_temperature_k": 298.15,
+  "outlet_static_pressure_pa": 121590.0,
+  "outlet_static_to_inlet_total_pressure_ratio": 1.2,
+  "steady_iterations": 800,
+  "seed_m": [
+    0.015,
+    0,
+    0.04
+  ],
+  "rotor_zone": {
+    "radius_m": 0.032,
+    "z_min_m": -0.004,
+    "z_max_m": 0.033
+  },
+  "criteria": {
+    "window_iterations": 100,
+    "relative_mass_imbalance_max": 0.001,
+    "relative_wall_flux_max": 1e-06,
+    "port_reverse_flow_fraction_max": 0.01,
+    "relative_mean_change_max": 0.01,
+    "relative_stddev_max": 0.02,
+    "relative_peak_to_peak_max": 0.05,
+    "relative_energy_imbalance_max": 0.05,
+    "initial_residual_max": 0.0001
+  },
+  "file_sha256": {
+    "system/blockMeshDict": "32e908f8a74ae982158941b32a0dd6282aa67346a327a49c92e8c6dbea5599d7",
+    "system/snappyHexMeshDict": "69dac9dbbe711d1c1b70e7f0108001f10b195663c364c7219929380152483bc4",
+    "system/topoSetDict": "506fc77a39fc7faa554b0da4d077a278f6a0e4c6b1a022347b35c04790fd5291",
+    "constant/MRFProperties": "0d8c3f4d252823360e8071202a979b5995e5c3efb90fa252885a0414cb5975d6",
+    "0/U": "34fb4b7d3bd94a2148d00075ab137b9a0472fc0b9e8a203d72a5abb944ef053e",
+    "0/p": "cb1d59716024c47f99841af002057d3d7655573c5ac0e1dbd82698452398ce77",
+    "0/T": "200e6e184c76fea5be773b145bbfc4dae10f5d05c0e323b6df18ce6bbda1e479",
+    "0/k": "5b29e0713a207f5daa73d75637c91208fed298433ef21b70e7e6b0612c92d1bf",
+    "0/omega": "518af307aafe305b7fd2f94e3bbbfb36365c78b4da52dd48d768be5b101c2e76",
+    "0/nut": "a135cb61de9a23d2ce657f14dfe51cd5984c9d432ce066bde34f201c80b6df58",
+    "0/alphat": "49dc89b147589c29784069fc046d59561d4ac3e6d36de91ffb9bc251fae486cc",
+    "constant/thermophysicalProperties": "0752020a819b4bb8e0fef379f869eb87f6545b18112209a481a572aef25013b8",
+    "constant/turbulenceProperties": "799f1a8d64f7f7ed3062acb01885e506ff37dadb83361882967d47de46c6880a",
+    "system/fvSchemes": "6bad0801cda7671aa558cd6890c0465fcb257dd75f4bed381ce58cf21697b632",
+    "system/fvSolution": "af5ff4fc22db1dab7b0d63c40bc73d96f2df4f3fb2ccbc387123daaa769bbc70",
+    "system/controlDict": "f597cc7e6c62b272beed499e71b61054698926cc56a5ad50d6cd2e9a23b76e27",
+    "constant/triSurface/domain.stl": "74bb941bcd3315b89ec65823c2fd22365b3f87a7db501f5b445dace6c877118b"
+  },
+  "operating_conditions_measured": false,
+  "wall_layers_present": false,
+  "mesh_independence_established": false,
+  "performance_ranking_authorized": false,
+  "engineering_validated": false,
+  "manufacturing_authorized": false,
+  "limitations": [
+    "Idealized seals and geometrical assumptions belong to the supplied domain contract.",
+    "Steady iterations are not physical transient time.",
+    "A pressure-controlled point does not establish maximum flow or choking.",
+    "No efficiency or installed-turbo performance claim; wall treatment and grid sensitivity remain to qualify."
+  ]
+}

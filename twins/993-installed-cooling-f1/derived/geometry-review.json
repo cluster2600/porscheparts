@@ -1,0 +1,502 @@
+{
+  "status": "geometry_audited_packaging_hypothesis_only",
+  "kernel_generation": {
+    "status": "picogk_geometry_generated_not_fit_validated",
+    "kernel": "26.2.0",
+    "parts": [
+      {
+        "name": "intake-shroud",
+        "triangles": 1295739
+      },
+      {
+        "name": "engine-shroud",
+        "triangles": 1546380
+      },
+      {
+        "name": "alternator-envelope",
+        "triangles": 134500
+      },
+      {
+        "name": "fan-housing",
+        "triangles": 106768
+      },
+      {
+        "name": "delivery-fluid-domain",
+        "triangles": 918136
+      },
+      {
+        "name": "intercooler-core-envelope",
+        "triangles": 609680
+      },
+      {
+        "name": "charge-inlet-header",
+        "triangles": 175507
+      },
+      {
+        "name": "charge-outlet-header",
+        "triangles": 158182
+      },
+      {
+        "name": "engine-envelope--1-0",
+        "triangles": 50420
+      },
+      {
+        "name": "engine-envelope-1-0",
+        "triangles": 50420
+      },
+      {
+        "name": "engine-envelope--1-120",
+        "triangles": 50420
+      },
+      {
+        "name": "engine-envelope-1-120",
+        "triangles": 50420
+      },
+      {
+        "name": "engine-envelope--1-240",
+        "triangles": 50420
+      },
+      {
+        "name": "engine-envelope-1-240",
+        "triangles": 50420
+      },
+      {
+        "name": "rotor-twist-0",
+        "triangles": 520020,
+        "tip_stagger_delta_deg": 0
+      },
+      {
+        "name": "rotor-twist--4",
+        "triangles": 520028,
+        "tip_stagger_delta_deg": -4
+      },
+      {
+        "name": "rotor-twist-4",
+        "triangles": 519452,
+        "tip_stagger_delta_deg": 4
+      }
+    ],
+    "manufacturing_authorized": false
+  },
+  "manufacturing_authorized": false,
+  "measured_fit": false,
+  "cfd_ready": false,
+  "visual_meshes": "Decimated for review only; GLB units metres; native STL units mm.",
+  "source_hashes": {
+    "twins/993-installed-cooling-f1/study.json": "cc79c29e97717e57f20593082f1ff2154fd263681fe214d43abcd123a2aa4fa3",
+    "twins/993-installed-cooling-f1/interface-contract.json": "3e0c299c7d1ae6bc893d2f0535b0302f61153617e6dddd9ad32194b5c063e2cc",
+    "twins/993-installed-cooling-f1/source/build_review.py": "b64cf3f35a43362a8a9bd34ea01e9634ee260bb75432186b2a2269fd457f638e",
+    "twins/993-installed-cooling-f1/source/Program.cs": "d36e2094f21143523bda8154dde390e48d8da42ce9cb5888de95ee8094d6a050",
+    "twins/993-installed-cooling-f1/source/Cooling.csproj": "082176fda135383147180097a5150a47f4b4c8720db7edc8eab91551d31a7b50",
+    "parts/993-eng-cooling-impeller-we43-f1-0001/source/picogk.json": "cae9f61bf0ed92a032f454da8be4199ed1c4e06dcb35c9525081d744419ef2cf",
+    "parts/picogk-catalog/rotating/AxialFans.cs": "d1659316cfdfec37467c08eb9a97094cbfcca46bf643f0ec35330ee73bcf14c0",
+    "parts/picogk-catalog/rotating/RotKit.cs": "cada3708f47e79d234a8e13e695804a6aeeab51448267195c7d46f37477983b3",
+    "parts/picogk-catalog/common/Sdf.cs": "8096c0bc8aa980cd463622d2838969987aa8a570ca7cb52a64eb08ea74ac7a40"
+  },
+  "parts": [
+    {
+      "name": "alternator-envelope",
+      "input_sha256": "3a4e29e6e99bab4eec6fc6c9f2c9dceff353390940447bc3e34497d3baf6884c",
+      "cleaned_stl_sha256": "e3819d3dd372f0bd105469b382b9ab8f7a6a94a34b5d575304c3412297b0d149",
+      "removed_degenerate_or_duplicate_faces": 0,
+      "watertight": true,
+      "bodies": 1,
+      "volume_mm3": 3339041.848495646,
+      "bounds_mm": [
+        [
+          -69.9919662475586,
+          -222.0,
+          110.0080337524414
+        ],
+        [
+          69.9919662475586,
+          -5.0,
+          249.99195861816406
+        ]
+      ]
+    },
+    {
+      "name": "charge-inlet-header",
+      "input_sha256": "c61426231c04c78ef755027a4ba73142be7d7d87f89d5242ef532093b731ffe0",
+      "cleaned_stl_sha256": "76c8a8359e31d458fbb4bdb47c123d4a7705e01c1d008ff1e03108501fc11685",
+      "removed_degenerate_or_duplicate_faces": 3,
+      "watertight": true,
+      "bodies": 1,
+      "volume_mm3": 332581.4676653381,
+      "bounds_mm": [
+        [
+          -415.0,
+          -250.0,
+          430.0
+        ],
+        [
+          -314.0,
+          200.0,
+          490.0
+        ]
+      ]
+    },
+    {
+      "name": "charge-outlet-header",
+      "input_sha256": "3d49be8b70bd6e9f5943927cffe34661d2d74682d53582a91a39f65595bb531c",
+      "cleaned_stl_sha256": "407836081e6b47641d8800e8e25f51d813812d51ba81f49ee6dea843b6c39348",
+      "removed_degenerate_or_duplicate_faces": 2,
+      "watertight": true,
+      "bodies": 1,
+      "volume_mm3": 303811.1049277486,
+      "bounds_mm": [
+        [
+          314.0,
+          -250.0,
+          430.0
+        ],
+        [
+          415.0,
+          200.0,
+          490.0
+        ]
+      ]
+    },
+    {
+      "name": "delivery-fluid-domain",
+      "input_sha256": "5914107a9d17544a9013e52fb39589d1bcf09765289445af96439f9a95789c87",
+      "cleaned_stl_sha256": "4d91f2518aa7a92f2628783852ec77a13fcb772d5d31a35614b7fc8cff32d025",
+      "removed_degenerate_or_duplicate_faces": 0,
+      "watertight": true,
+      "bodies": 1,
+      "volume_mm3": 31980383.828581523,
+      "bounds_mm": [
+        [
+          -255.0,
+          -192.0,
+          20.0
+        ],
+        [
+          255.0,
+          300.08184814453125,
+          305.99554443359375
+        ]
+      ]
+    },
+    {
+      "name": "engine-envelope--1-0",
+      "input_sha256": "b86479cd422e8891d48588dfb61585911a46fd7505b2d8ecb980ef492accf8a1",
+      "cleaned_stl_sha256": "1ed9be9c2f0c44dcb3abfc30c3b7ee4288e2c9040e1ab6c096efe67259b76800",
+      "removed_degenerate_or_duplicate_faces": 0,
+      "watertight": true,
+      "bodies": 1,
+      "volume_mm3": 823114.9224306722,
+      "bounds_mm": [
+        [
+          -256.9891662597656,
+          -51.993988037109375,
+          -85.0
+        ],
+        [
+          -153.0108184814453,
+          51.993988037109375,
+          12.0
+        ]
+      ]
+    },
+    {
+      "name": "engine-envelope--1-120",
+      "input_sha256": "5fce4de038b9f0fa4fd3d83254327b8d6e485ed655f4e98e250493d3c52239cf",
+      "cleaned_stl_sha256": "35f71f4b9c6eb6a1ac5ae35c11c8c7b0cba6b8cd1a517e5ff34cbb2cacea4174",
+      "removed_degenerate_or_duplicate_faces": 0,
+      "watertight": true,
+      "bodies": 1,
+      "volume_mm3": 823114.9223816901,
+      "bounds_mm": [
+        [
+          -256.9891662597656,
+          68.00601196289062,
+          -85.0
+        ],
+        [
+          -153.0108184814453,
+          171.99398803710938,
+          12.0
+        ]
+      ]
+    },
+    {
+      "name": "engine-envelope--1-240",
+      "input_sha256": "d5dfff32e62b3ca3e5798a60a8438ab037473082dc24de73b35b77d83fc375af",
+      "cleaned_stl_sha256": "ab0d3a00c2ecd65ea929b828def8b41a948cdc57ee454c4bfd2bab2996fd4497",
+      "removed_degenerate_or_duplicate_faces": 0,
+      "watertight": true,
+      "bodies": 1,
+      "volume_mm3": 823114.9358823838,
+      "bounds_mm": [
+        [
+          -256.9891662597656,
+          188.00601196289062,
+          -85.0
+        ],
+        [
+          -153.0108184814453,
+          291.9939880371094,
+          12.0
+        ]
+      ]
+    },
+    {
+      "name": "engine-envelope-1-0",
+      "input_sha256": "9c405f59a5c0f78c41d696ceaf85d1bb0f6d7e03ff1d3764c4d85484914bfee1",
+      "cleaned_stl_sha256": "aab84eae71e5a516161e5af40cf8705a44f2d9cc3893793dc938f6ad094178c3",
+      "removed_degenerate_or_duplicate_faces": 0,
+      "watertight": true,
+      "bodies": 1,
+      "volume_mm3": 823114.9224306721,
+      "bounds_mm": [
+        [
+          153.0108184814453,
+          -51.993988037109375,
+          -85.0
+        ],
+        [
+          256.9891662597656,
+          51.993988037109375,
+          12.0
+        ]
+      ]
+    },
+    {
+      "name": "engine-envelope-1-120",
+      "input_sha256": "125888500f6da2dc280af00eab16759cc8172263cc09cb76969df08f565b1993",
+      "cleaned_stl_sha256": "041cd8c6611ade4384c6c54b5d3d6028d2376399f46ff8974f8617997fbea0f0",
+      "removed_degenerate_or_duplicate_faces": 0,
+      "watertight": true,
+      "bodies": 1,
+      "volume_mm3": 823114.922382197,
+      "bounds_mm": [
+        [
+          153.0108184814453,
+          68.00601196289062,
+          -85.0
+        ],
+        [
+          256.9891662597656,
+          171.99398803710938,
+          12.0
+        ]
+      ]
+    },
+    {
+      "name": "engine-envelope-1-240",
+      "input_sha256": "b2744dd587f33c3fce10f4cc6f0b0debd2223e79e35a04899e846a6b121ae9ae",
+      "cleaned_stl_sha256": "6849125d923b1a42891cbeb91f49a66a6d91362ae0b8471f9c5053a9fe2990ca",
+      "removed_degenerate_or_duplicate_faces": 0,
+      "watertight": true,
+      "bodies": 1,
+      "volume_mm3": 823114.9358709082,
+      "bounds_mm": [
+        [
+          153.0108184814453,
+          188.00601196289062,
+          -85.0
+        ],
+        [
+          256.9891662597656,
+          291.9939880371094,
+          12.0
+        ]
+      ]
+    },
+    {
+      "name": "engine-shroud",
+      "input_sha256": "9619fbb508a875b1b1612db5f23ce1d975ab8aa72d19d94a1d8a704ae6cad4ee",
+      "cleaned_stl_sha256": "8f3f6512b919a8b28fe97e2cff095121a9b6fb84e46274d731c6c89d7bc13c7e",
+      "removed_degenerate_or_duplicate_faces": 16,
+      "watertight": true,
+      "bodies": 1,
+      "volume_mm3": 2937604.946805635,
+      "bounds_mm": [
+        [
+          -259.0,
+          -192.0,
+          20.0
+        ],
+        [
+          259.0,
+          304.0819396972656,
+          309.99566650390625
+        ]
+      ]
+    },
+    {
+      "name": "fan-housing",
+      "input_sha256": "0bc2ebec20e969765181fc34c916a7eaa6e3d426a77f743d477efc3c325aba59",
+      "cleaned_stl_sha256": "fbe78f2a1b29da70c538db74d431212737ccc92d6ef7b38801a7837a3b84cfce",
+      "removed_degenerate_or_duplicate_faces": 0,
+      "watertight": true,
+      "bodies": 1,
+      "volume_mm3": 177671.46713898308,
+      "bounds_mm": [
+        [
+          -129.99566650390625,
+          -248.0,
+          50.004329681396484
+        ],
+        [
+          129.99566650390625,
+          -192.0,
+          309.99566650390625
+        ]
+      ]
+    },
+    {
+      "name": "intake-shroud",
+      "input_sha256": "132b7342edb56080fe659d14646418afd6f042c9b7c0e8c090fd6392fe6fadae",
+      "cleaned_stl_sha256": "5328ef4452ca89b75346b1672bcd1ac216951c91db372d44c8aa7a5d52cae2cf",
+      "removed_degenerate_or_duplicate_faces": 1,
+      "watertight": true,
+      "bodies": 1,
+      "volume_mm3": 2683719.701273195,
+      "bounds_mm": [
+        [
+          -314.0,
+          -384.0,
+          50.004329681396484
+        ],
+        [
+          314.0,
+          204.0,
+          430.0
+        ]
+      ]
+    },
+    {
+      "name": "intercooler-core-envelope",
+      "input_sha256": "7bfded00b3f00bc16b454f5ce354fa1b460a4ec9e490a7d754f564fb637d579c",
+      "cleaned_stl_sha256": "a64cf750559496f28510da29f7db471bf0faad126c58a8ec6fa2980266598a16",
+      "removed_degenerate_or_duplicate_faces": 0,
+      "watertight": true,
+      "bodies": 1,
+      "volume_mm3": 16736651.176222444,
+      "bounds_mm": [
+        [
+          -310.0,
+          -250.0,
+          430.0
+        ],
+        [
+          310.0,
+          200.0,
+          490.0
+        ]
+      ]
+    },
+    {
+      "name": "rotor-twist--4",
+      "input_sha256": "6df418b11dec8e595ef42308134d9d433fd9b6320f491fc3c63f0faab7862e58",
+      "cleaned_stl_sha256": "00f7e9a3e377ed8405c62fb6876326c86176cc825de898ca099a44382161e40e",
+      "removed_degenerate_or_duplicate_faces": 10,
+      "watertight": true,
+      "bodies": 1,
+      "volume_mm3": 233782.5939155255,
+      "bounds_mm": [
+        [
+          -120.2044906616211,
+          -122.3237533569336,
+          -0.8411464095115662
+        ],
+        [
+          122.49869537353516,
+          122.30786895751953,
+          56.0
+        ]
+      ]
+    },
+    {
+      "name": "rotor-twist-0",
+      "input_sha256": "953f2a1a1622c0c9512938a704c1eed3002bbe9f98d5df920eafd488829eceb7",
+      "cleaned_stl_sha256": "e0504fffb024c24996bbba4acc02b865657de254a5664418c0ff702e471f0097",
+      "removed_degenerate_or_duplicate_faces": 10,
+      "watertight": true,
+      "bodies": 1,
+      "volume_mm3": 233783.2320008058,
+      "bounds_mm": [
+        [
+          -120.34894561767578,
+          -122.40296173095703,
+          -0.8411464095115662
+        ],
+        [
+          122.49869537353516,
+          122.40296173095703,
+          56.0
+        ]
+      ],
+      "assembly_transform": [
+        [
+          1.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          1.0,
+          -248.0
+        ],
+        [
+          0.0,
+          -1.0,
+          0.0,
+          180.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "name": "rotor-twist-4",
+      "input_sha256": "fa168460b9fcac46c82fd2e14d86695cedd13be9e7a5d40f61f8c7dedc7d11ac",
+      "cleaned_stl_sha256": "be562e0a2e0197716f9c97c9ea2e593b77216f1e9c79e3257adb8c0f07edc84f",
+      "removed_degenerate_or_duplicate_faces": 10,
+      "watertight": true,
+      "bodies": 1,
+      "volume_mm3": 233771.908937203,
+      "bounds_mm": [
+        [
+          -120.46941375732422,
+          -122.42029571533203,
+          -0.8411464095115662
+        ],
+        [
+          122.49869537353516,
+          122.42029571533203,
+          56.0
+        ]
+      ]
+    }
+  ],
+  "output_hashes": {
+    "assembly.glb": "9e65efa668aba79f316ed3c96858473bcfe6d9ea73e84bd63d4df0ec354b73be",
+    "assembly.png": "a70ba88569dd39715a0086df96c73f79c76ad790e1deaa946ece20816e834a5a",
+    "native/alternator-envelope.stl.gz": "c38ba307313bc57f5e12defcb57402a6c904b4007169d3cf2d111a1eb5c0d5b8",
+    "native/charge-inlet-header.stl.gz": "80760633be5337a6183ee3c7aebca2ec467a43cbf62559b64a1c8911e4d54346",
+    "native/charge-outlet-header.stl.gz": "44e2136f630d99f4be5ed98d768defd1eb902574970920bffbee2787c2858266",
+    "native/delivery-fluid-domain.stl.gz": "68096ffaa1bc5e4134ec7045e603643273ae12ef703390d24ac0bc608e56419b",
+    "native/engine-envelope--1-0.stl.gz": "988db12a9374380bd728045e763c36fe9b6a50e82dbd6eda1bc50d35dd616add",
+    "native/engine-envelope--1-120.stl.gz": "4847c40e65e8382567c2f2a1f9fa9d45f6105bdf83ad0c45bfa7d37a62e6db31",
+    "native/engine-envelope--1-240.stl.gz": "b79c621bafec954495d84fc90379172dafdebb99a497db0e997348d8d342953a",
+    "native/engine-envelope-1-0.stl.gz": "7dfc50eca6d6f5af6e6809ed45c97d646948e22ea7832ffb13291c864bb1743c",
+    "native/engine-envelope-1-120.stl.gz": "c7fde5995e4aea7a147916b1d03d32279a6b963d9e6d5cfa469eaaa9dee70339",
+    "native/engine-envelope-1-240.stl.gz": "06af5172bfd2272e10d221bcf6efaef829374b3d4e8a0496c7eb69a411824c6f",
+    "native/engine-shroud.stl.gz": "872cf6aa9600d2f7f1ecd71916702d87993e01ef04f67115d67506a33b117259",
+    "native/fan-housing.stl.gz": "e234ab808475f70de0263f14863e14621722eb78df94799fa810f9dc22bbbf6e",
+    "native/intake-shroud.stl.gz": "e64de82c96b4ab90405e82bacd6c4377497890e9db42218b0e9a063311c4ad5b",
+    "native/intercooler-core-envelope.stl.gz": "3a4ce9f873312b4c2f8bfcf2b11b455d1f713011e398cf27dcaecee6a6f23941",
+    "native/rotor-twist--4.stl.gz": "62039977dd73d62b7150ca16802898fa20b0c71ae0f5723f83bf00a3f238402d",
+    "native/rotor-twist-0.stl.gz": "6957114d97e6f751d62ebdbea45eab3ba0063091e4d18998b059bc9d58649431",
+    "native/rotor-twist-4.stl.gz": "971be6bd597b41369161424b86f50309716ee6c0e6b1006516b79ba2d81ad0bd"
+  }
+}

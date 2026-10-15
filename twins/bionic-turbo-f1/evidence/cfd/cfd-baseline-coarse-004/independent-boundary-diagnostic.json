@@ -1,0 +1,144 @@
+{
+  "schema": "bionic-turbo-independent-mesh-topology-diagnostic/v1",
+  "status": "rejected_topology_not_preserved",
+  "case": "work/bionic-f1-20261011/cfd-baseline-coarse-004",
+  "method": {
+    "connectivity": "Faces connected through shared exact edges. STL coordinates merged by numpy.unique with no tolerance; native OpenFOAM point indices retained.",
+    "scope": "Read-only parsing of actual ASCII STL and polyMesh. No mesh generation, solve, coordinate edits or geometric repair.",
+    "generated_by": "independent read-only Python/NumPy/SciPy diagnostic in agent session; no reusable script committed"
+  },
+  "input_sha256": {
+    "constant/triSurface/domain.stl": "60a5debf5793a8283135d3d057ebc83d3da2e872dbcd802818640e119368f354",
+    "constant/polyMesh/points": "bcb174d6f631953a9bf114010c9e522ce2142ecac26ca9a5d83fea364602c7f1",
+    "constant/polyMesh/faces": "d6a6293bbefc944345871493f947b168921b99fead625eaddde3f17ffa5bec62",
+    "constant/polyMesh/boundary": "1c8f6fc3cd794ab704dde91cb66d9ce814491aff04db0492c6095f82f2315985",
+    "log.checkMesh": "503fdabf7461091735229c616e1713630e9c8b707b16b55410151de6d69278d2"
+  },
+  "input_surface": {
+    "closed_shells": 2,
+    "edge_incidence": {
+      "2": 796422
+    },
+    "components": [
+      {
+        "triangles": 410768,
+        "patch_triangles": {
+          "inlet": 11506,
+          "outlet": 4496,
+          "rotor": 10222,
+          "stator": 384544
+        },
+        "signed_volume_mm3": 261739.87145
+      },
+      {
+        "triangles": 120180,
+        "patch_triangles": {
+          "rotor": 120180
+        },
+        "signed_volume_mm3": -29788.63595,
+        "bounds_mm": [
+          [
+            -30.231539,
+            -30.231539,
+            -3.104759
+          ],
+          [
+            30.231539,
+            30.231539,
+            31.500603
+          ]
+        ]
+      }
+    ],
+    "outer_rotor_patch_bounds_mm": [
+      [
+        -4.75,
+        -4.75,
+        -3.751342
+      ],
+      [
+        4.75,
+        4.75,
+        32.000084
+      ]
+    ],
+    "rotor_stator_interface": {
+      "closed_loops": 1,
+      "edges": 68,
+      "vertices": 68,
+      "radius_bounds_mm": [
+        4.2769922773,
+        4.9623583103
+      ],
+      "z_bounds_mm": [
+        -3.751342,
+        -3.608643
+      ],
+      "centroid_mm": [
+        -7e-06,
+        -7e-06,
+        -3.720279
+      ]
+    }
+  },
+  "native_boundary": {
+    "closed_shells": 1,
+    "edge_incidence": {
+      "2": 125690
+    },
+    "faces": 58189,
+    "vertices": 67503,
+    "patch_faces": {
+      "inlet": 2269,
+      "outlet": 901,
+      "rotor": 9951,
+      "stator": 45068
+    },
+    "rotor_stator_interface": {
+      "closed_loops": 1,
+      "edges": 314,
+      "vertices": 314,
+      "all_vertex_degrees": 2,
+      "isolated_shared_vertices": 0,
+      "radius_bounds_mm": [
+        29.82593,
+        30.94288
+      ],
+      "z_bounds_mm": [
+        -3.75552,
+        -2.28173
+      ],
+      "centroid_mm": [
+        0.37485,
+        -0.58689,
+        -3.07152
+      ],
+      "bounds_mm": [
+        [
+          -30.62798,
+          -30.82454,
+          -3.75552
+        ],
+        [
+          30.45571,
+          30.65567,
+          -2.28173
+        ]
+      ],
+      "edge_length_sum_mm": 369.03809
+    }
+  },
+  "findings_fr": [
+    "Le STL comporte deux coquilles fermées, le maillage natif une seule : la séparation topologique n’a pas été préservée.",
+    "Les 10222 triangles rotor sur la coque externe du STL appartiennent au shaft central. Ce fait ne démontre pas une erreur de classification.",
+    "La boucle rotor-stator du STL se situe autour du shaft à environ 4.3–5.0 mm de rayon. Dans le maillage, elle est remplacée par une boucle autour du bord arrière de roue à environ 29.8–30.9 mm de rayon.",
+    "La localisation est compatible avec la disparition par sous-résolution de passages fluides entre rotor et fermeture arrière, et la fusion topologique correspondante. Ce diagnostic ne mesure pas séparément le jeu axial arrière et le jeu radial du bore."
+  ],
+  "limitations_fr": [
+    "La cause de chaque cellule ou face supprimée n’a pas été retracée à travers les étapes internes de snappyHexMesh.",
+    "Les jeux thermiques, fabriqués et mécaniques ne sont pas qualifiés.",
+    "Le maillage reste rejeté indépendamment des 35 cellules concaves signalées par checkMesh."
+  ],
+  "performance_ranking_authorized": false,
+  "solver_readiness_established": false
+}

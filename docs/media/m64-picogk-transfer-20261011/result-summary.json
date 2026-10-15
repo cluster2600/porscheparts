@@ -1,0 +1,147 @@
+{
+  "schema": "m64-picogk-transfer-public-summary/v1",
+  "date": "2026-10-11",
+  "source_base_commit": "0e7958a5a8afef354d9eeb5750f1f0b0d74a9d1b",
+  "runtime": {
+    "name": "PicoGK Core Library",
+    "version": "26.2.0",
+    "architecture": "Arm64",
+    "sdk": "9.0.317",
+    "picogk_assembly_sha256": "710c4e0428efbe9c1cd1db1663247b45604f96d167a6726782ab8ddca350565a",
+    "native_library_sha256": "5c1cd3fc12766a85bc5c1441a95f065fb274338d1333c3ae2d3396b59d0e18e7",
+    "application_assembly_sha256": "7d7cdffded764250db5549bbfd9d33268cee9692e5d0ca8430c7e1b8257ecbe1",
+    "peak_RSS": "unavailable_in_native_mac_receipt"
+  },
+  "native_runs": 4,
+  "voxel_world_units": [
+    0.2,
+    0.1
+  ],
+  "synthetic_witness_only": true,
+  "protected_SDF_changes_all_runs": 0,
+  "protected_occupancy_changes_all_runs": [
+    0,
+    0
+  ],
+  "outside_ROI_SDF_changes_all_runs": 0,
+  "tested_lattice_nodes_per_resolution": [
+    1157625,
+    8615125
+  ],
+  "named_VDB_fields_per_run": 6,
+  "all_VDB_native_bbox_values_bitwise_identical": true,
+  "comparison_receipts_sha256": {
+    "closing": "0193358a32bdadb4523aa6925e26bb7a303c1251844f8a819484e8bfc7e1a628",
+    "smooth-union": "f776022f8e9b5db4fdf89723a1e5779ef7c6ac40533d45277d20dc4adbc2e517"
+  },
+  "methods": [
+    {
+      "method": "closing",
+      "comparison_screen_pass": false,
+      "actual_added_volume_screen": {
+        "relative_difference": 0.16093369058492807,
+        "pass": false
+      },
+      "sampled_bidirectional_maxima": {
+        "before": 0.09240310576774828,
+        "after": 0.08192660775772309,
+        "added": 0.3651602836610129
+      },
+      "input_hashes_unchanged": true,
+      "raw_rejections_retained": true,
+      "normalization_is_exact_zero_deletion_only": true,
+      "continuous_distance_bound": false,
+      "asymptotic_convergence_proved": false,
+      "physical_clearance_proved": false,
+      "private_head_processed": false,
+      "manufacturing_authorized": false,
+      "resolutions": [
+        {
+          "voxel_world_units": 0.2,
+          "raw_topology_pass": false,
+          "normalized_guards_pass": true,
+          "actual_added_volume": 9.48264584162007,
+          "diagnostic_volume_residual": 3.6160929792876555,
+          "native_receipt_sha256": "ee4bbb221161cb608f454d34886ba0a8906ea0a8ee04f1d4eb425e09c2f1d6ed",
+          "exact_zero_area_faces": {
+            "before": 0,
+            "after": 16,
+            "added": 8
+          }
+        },
+        {
+          "voxel_world_units": 0.1,
+          "raw_topology_pass": false,
+          "normalized_guards_pass": true,
+          "actual_added_volume": 8.168120124795678,
+          "diagnostic_volume_residual": 1.112437938353085,
+          "native_receipt_sha256": "b31ae9be3b399a5153fbeaabe9ae400f0ff238a8dbc1629a445ac21d32ed2595",
+          "exact_zero_area_faces": {
+            "before": 0,
+            "after": 0,
+            "added": 40
+          }
+        }
+      ]
+    },
+    {
+      "method": "smooth-union",
+      "comparison_screen_pass": false,
+      "actual_added_volume_screen": {
+        "relative_difference": 0.032256487127675364,
+        "pass": true
+      },
+      "sampled_bidirectional_maxima": {
+        "before": 0.09240310576774828,
+        "after": 0.08230848785001793,
+        "added": 0.4734320745404069
+      },
+      "input_hashes_unchanged": true,
+      "raw_rejections_retained": true,
+      "normalization_is_exact_zero_deletion_only": true,
+      "continuous_distance_bound": false,
+      "asymptotic_convergence_proved": false,
+      "physical_clearance_proved": false,
+      "private_head_processed": false,
+      "manufacturing_authorized": false,
+      "resolutions": [
+        {
+          "voxel_world_units": 0.2,
+          "raw_topology_pass": true,
+          "normalized_guards_pass": true,
+          "actual_added_volume": 5.666643491082596,
+          "diagnostic_volume_residual": 3.64458454404595,
+          "native_receipt_sha256": "ce7c357af6f18fdad0a84cc87f1e320fa11ad9773a133fff2f9b6336864df2d8",
+          "exact_zero_area_faces": {
+            "before": 0,
+            "after": 0,
+            "added": 0
+          }
+        },
+        {
+          "voxel_world_units": 0.1,
+          "raw_topology_pass": false,
+          "normalized_guards_pass": true,
+          "actual_added_volume": 5.489569270569973,
+          "diagnostic_volume_residual": 1.2056822094166,
+          "native_receipt_sha256": "36549608389f776688fdb31ebed2d394ec8ae518081d42740f6726f2b89b60b2",
+          "exact_zero_area_faces": {
+            "before": 0,
+            "after": 0,
+            "added": 24
+          }
+        }
+      ]
+    }
+  ],
+  "shared_tube_and_curve_analytic_self_checks_passed": true,
+  "derived_image": "protected-junction.png",
+  "derived_image_sha256": "f79c12a3522bfb061e58a3bf14504ad7a6268becb0b4a79f34dd53bf9dea34a6",
+  "local_junction_regression_tests": {"run": 23, "failures": 0, "skipped": 1},
+  "native_cli_rejection_checks": ["existing_output", "nonfinite_resolution", "unknown_method"],
+  "head_master_modified": false,
+  "head_tetrahedral_rejects_recomputed": false,
+  "production_solver_or_print_simulation_performed": false,
+  "paid_compute_started": false,
+  "manufacturing_authorized": false
+}

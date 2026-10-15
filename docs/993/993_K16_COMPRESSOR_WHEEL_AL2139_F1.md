@@ -117,21 +117,23 @@ manufacturing, nor for rotation, nor for turbo or engine use.
 
 <!-- print-screen:begin -->
 
-## LPBF print simulation
+## LPBF geometric screening — process physics not calculated
 
-The STEP was tessellated, then sliced over its full height at `60 µm`, on the EOS M 290 route of the candidate material. Orientation chosen by the automatic rule: `roll_y_45`.
+The STEP was tessellated, then sliced over its full height at `60 µm`, within the candidate EOS M 290 envelope. Candidate material/process reference: `EOS Aluminium Al2139 AM / M290 60 um`. Orientation chosen by a geometric rule, not thermal optimisation: `roll_y_45`.
+
+The 45° overhang rule only flags geometric regions. The vertical columns are a **hypothetical support envelope**, not supplier-designed metal supports. Their volume is not a metal consumption estimate. Metal LPBF support design must address heat transfer, residual stress, recoater interaction and removal; none is validated here.
 
 | quantity | value |
 |---|---:|
 | layers | 873 |
 | build height | 52.33 mm |
-| layers with an unsupported region | 21 |
-| support proxy | 22.17 mm³ |
+| layers flagged by the geometric overhang rule | 21 |
+| hypothetical support-envelope volume | 22.17 mm³ |
 | local thickness p01 | 0.183 mm |
 | trapped powder at 1.00 mm | 0.00 mm³ |
 
-![LPBF print simulation](../../parts/993-eng-k16-compressor-wheel-al2139-f1-0001/evidence/lpbf-f0/993-eng-k16-compressor-wheel-al2139-f1-0001-lpbf-geometry-screen.png)
+![LPBF geometric screening with hypothetical supports; no process physics](../../parts/993-eng-k16-compressor-wheel-al2139-f1-0001/evidence/lpbf-f0/993-eng-k16-compressor-wheel-al2139-f1-0001-lpbf-geometry-screen.png)
 
-This screening is neither an EOSPRINT project, nor a distortion calculation, nor a recoater check. **Printing remains prohibited.**
+**Process physics has not been calculated:** no melt-pool, thermal, residual-stress, distortion or recoater simulation. No qualified support design or machine build file is provided. **Printing remains prohibited.**
 
 <!-- print-screen:end -->

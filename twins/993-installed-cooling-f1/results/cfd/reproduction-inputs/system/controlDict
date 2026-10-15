@@ -1,0 +1,18 @@
+FoamFile {version 2.0; format ascii; class dictionary; object controlDict;}
+application simpleFoam; startFrom startTime; startTime 0; stopAt endTime;
+endTime 600; deltaT 1; writeControl timeStep; writeInterval 200; purgeWrite 1;
+writeFormat ascii; writePrecision 10; runTimeModifiable false;
+functions {inlet {type surfaceFieldValue; libs ("libfieldFunctionObjects.so");
+writeControl timeStep; writeInterval 1; regionType patch; name inlet; operation sum; fields (phi); writeFields false;}
+left1 {type surfaceFieldValue; libs ("libfieldFunctionObjects.so");
+writeControl timeStep; writeInterval 1; regionType patch; name left1; operation sum; fields (phi); writeFields false;}
+left2 {type surfaceFieldValue; libs ("libfieldFunctionObjects.so");
+writeControl timeStep; writeInterval 1; regionType patch; name left2; operation sum; fields (phi); writeFields false;}
+left3 {type surfaceFieldValue; libs ("libfieldFunctionObjects.so");
+writeControl timeStep; writeInterval 1; regionType patch; name left3; operation sum; fields (phi); writeFields false;}
+right1 {type surfaceFieldValue; libs ("libfieldFunctionObjects.so");
+writeControl timeStep; writeInterval 1; regionType patch; name right1; operation sum; fields (phi); writeFields false;}
+right2 {type surfaceFieldValue; libs ("libfieldFunctionObjects.so");
+writeControl timeStep; writeInterval 1; regionType patch; name right2; operation sum; fields (phi); writeFields false;}
+right3 {type surfaceFieldValue; libs ("libfieldFunctionObjects.so");
+writeControl timeStep; writeInterval 1; regionType patch; name right3; operation sum; fields (phi); writeFields false;}}

@@ -206,7 +206,12 @@ check: validate test 917-clean-sheet-2026-f32-check \
 	tip-routes-check pet-zone-triage-check pet-verdict-check \
 	route-lever-hook-check print-screen-sections-check parts-table-check \
 	part-pages-check reports-index-check docs-links-check part-previews-check \
-	help-check fan-program-check
+	help-check fan-program-check engine-mount-study-check
+
+.PHONY: engine-mount-study-check
+#> check | Check engine-mount study geometry, hashes and blocked acceptance
+engine-mount-study-check:
+	python3 twins/993-engine-mount-system-f0/source/build_study.py --check
 
 .PHONY: fan-program-check
 #> check | Check fan programme links, evidence hashes and validation boundaries
@@ -1329,14 +1334,14 @@ route-lever-hook:
 route-lever-hook-check:
 	$(MAKE) route-lever-hook ROUTE_CHECK=--check
 
-#> 993 | LPBF print simulation of each part, one at a time, memory-capped
+#> 993 | LPBF geometric screening of each part, one at a time, memory-capped
 print-screens:
 	@test -n "$(PYLIB)" || { echo "PYLIB=<dossier shapely+rtree+networkx> requis"; exit 2; }
 	nice -n 10 python3 scripts/run_993_print_screens.py --pylib $(PYLIB) \
 	  --status docs/993/print-screen-status.json
 	python3 scripts/render_print_screen_sections.py --status docs/993/print-screen-status.json
 
-#> 993 | Pictures and build-up video of one part's print simulation: PART=<folder> PYLIB=<shapely+imageio dir>
+#> 993 | LPBF geometry preview and layer-stack animation: PART=<folder> PYLIB=<shapely+imageio dir>
 print-visuals:
 	@test -n "$(PART)" || { echo "PART=<parts/ folder name> required"; exit 2; }
 	@test -n "$(PYLIB)" || { echo "PYLIB=<folder with shapely, rtree, networkx, imageio, imageio-ffmpeg> required"; exit 2; }
@@ -1345,7 +1350,7 @@ print-visuals:
 	  -v $(CURDIR):/repo -w /repo --entrypoint python3 3dprinting993-cadsim:dev \
 	  scripts/render_print_simulation_visuals.py --part $(PART)
 
-#> 993 | Check that records follow the published simulations
+#> 993 | Check that records follow the published geometric screens
 print-screen-sections-check:
 	python3 scripts/render_print_screen_sections.py --status docs/993/print-screen-status.json --check
 

@@ -1,0 +1,485 @@
+{
+  "status": "advanced_process_research_only",
+  "search": {
+    "faces_mm": [
+      [
+        500,
+        400
+      ],
+      [
+        620,
+        450
+      ],
+      [
+        700,
+        500
+      ],
+      [
+        800,
+        550
+      ]
+    ],
+    "depths_mm": [
+      60,
+      90,
+      120
+    ],
+    "hot_gaps_mm": [
+      2,
+      3
+    ],
+    "cold_gaps_mm": [
+      4,
+      6
+    ],
+    "hot_pitches_mm": [
+      1.5,
+      2,
+      3
+    ],
+    "cold_pitches_mm": [
+      2,
+      3
+    ],
+    "fins_mm": [
+      0.15,
+      0.2
+    ],
+    "strips_mm": [
+      5,
+      10,
+      12
+    ],
+    "walls_mm": [
+      0.4,
+      0.6
+    ],
+    "charge_parallel_banks": [
+      1,
+      2
+    ]
+  },
+  "candidate_count": 6912,
+  "screen_pass_count": 48,
+  "best_screen_candidate": {
+    "geometry": {
+      "width_mm": 800,
+      "span_mm": 542.8,
+      "depth_mm": 90,
+      "hot_gap_mm": 3,
+      "cold_gap_mm": 6,
+      "hot_pitch_mm": 1.5,
+      "cold_pitch_mm": 2,
+      "fin_mm": 0.15,
+      "wall_mm": 0.4,
+      "tubes": 56,
+      "hot_channels_per_tube": 59,
+      "cold_channels_per_gap": 399,
+      "hot_clear_m": 0.00135,
+      "cold_clear_m": 0.00185,
+      "metal_volume_m3": 0.006453584999999991,
+      "core_volume_l": 39.081599999999995,
+      "search_span_limit_mm": 550,
+      "fin_family": "offset",
+      "strip_length_mm": 10,
+      "charge_parallel_banks": 2
+    },
+    "mass_kg": 17.295607799999974,
+    "stress_cases": [
+      {
+        "scenario": "low",
+        "charge_inlet_c": 145.49619026990172,
+        "charge_outlet_c": 44.75793298273646,
+        "cooling_inlet_c": 35.0,
+        "engine_inlet_c": 56.42013470737618,
+        "heat_rejection_w": 53925.189125819576,
+        "required_heat_rejection_w": 45766.1106514784,
+        "required_ua_w_k": 933.0917432831816,
+        "ua_w_k": 1661.848295752715,
+        "effectiveness": 0.9116898694977502,
+        "hot_fin_efficiency": 0.9863100425743596,
+        "cold_fin_efficiency": 0.9678834791653596,
+        "hot": {
+          "re": 1691.1647609644644,
+          "regime": "offset",
+          "h_w_m2_k": 167.02278634280364,
+          "pressure_drop_pa": 3968.406678962804,
+          "velocity_m_s": 9.391689794022165,
+          "mach": 0.024412576168101413,
+          "dh_m": 0.0018387673448540056,
+          "open_area_m2": 0.026762400000000002,
+          "length_over_dh": 217.537037037037,
+          "laminar_thermal_entry_length_over_length": null
+        },
+        "cold": {
+          "re": 1481.0381515340473,
+          "regime": "offset",
+          "h_w_m2_k": 100.20979572498909,
+          "pressure_drop_pa": 430.79590777142647,
+          "velocity_m_s": 9.270913242155343,
+          "mach": 0.02589880088926794,
+          "dh_m": 0.0027910923920730457,
+          "open_area_m2": 0.24358950000000001,
+          "length_over_dh": 32.24543918918919,
+          "laminar_thermal_entry_length_over_length": null
+        },
+        "cooling_mass_flow_kg_s": 2.5,
+        "cold_fluid_power_w": 972.8651584686772,
+        "energy_residual_w": 3.637978807091713e-11,
+        "correlation_screen_admissible": true,
+        "assumed_constraints_pass": true,
+        "physical_performance_accepted": false
+      },
+      {
+        "scenario": "nominal",
+        "charge_inlet_c": 180.42743872399973,
+        "charge_outlet_c": 49.096487680599466,
+        "cooling_inlet_c": 35.0,
+        "engine_inlet_c": 64.50577394643386,
+        "heat_rejection_w": 74280.78591014718,
+        "required_heat_rejection_w": 68113.75934229424,
+        "required_ua_w_k": 1212.4112122518518,
+        "ua_w_k": 1700.7029390013151,
+        "effectiveness": 0.9030685831760225,
+        "hot_fin_efficiency": 0.9856633763690194,
+        "cold_fin_efficiency": 0.9677444572480596,
+        "hot": {
+          "re": 1720.6700354601755,
+          "regime": "offset",
+          "h_w_m2_k": 175.05041550946635,
+          "pressure_drop_pa": 3911.422954305723,
+          "velocity_m_s": 8.844305463231,
+          "mach": 0.02240032676152713,
+          "dh_m": 0.0018387673448540056,
+          "open_area_m2": 0.026762400000000002,
+          "length_over_dh": 217.537037037037,
+          "laminar_thermal_entry_length_over_length": null
+        },
+        "cold": {
+          "re": 1466.9793203819513,
+          "regime": "offset",
+          "h_w_m2_k": 100.66101994797565,
+          "pressure_drop_pa": 438.5764007352905,
+          "velocity_m_s": 9.388458942919508,
+          "mach": 0.02606246889498339,
+          "dh_m": 0.0027910923920730457,
+          "open_area_m2": 0.24358950000000001,
+          "length_over_dh": 32.24543918918919,
+          "laminar_thermal_entry_length_over_length": null
+        },
+        "cooling_mass_flow_kg_s": 2.5,
+        "cold_fluid_power_w": 1002.9935368516509,
+        "energy_residual_w": -5.820766091346741e-11,
+        "correlation_screen_admissible": true,
+        "assumed_constraints_pass": true,
+        "physical_performance_accepted": false
+      },
+      {
+        "scenario": "high",
+        "charge_inlet_c": 217.64667399231598,
+        "charge_outlet_c": 56.16588797178713,
+        "cooling_inlet_c": 35.0,
+        "engine_inlet_c": 75.16654149197825,
+        "heat_rejection_w": 101119.26820605519,
+        "required_heat_rejection_w": 98718.34725398828,
+        "required_ua_w_k": 1593.7079577685665,
+        "ua_w_k": 1760.0992523406737,
+        "effectiveness": 0.8841156671011837,
+        "hot_fin_efficiency": 0.9846002968588665,
+        "cold_fin_efficiency": 0.967563406855814,
+        "hot": {
+          "re": 1830.612962221965,
+          "regime": "offset",
+          "h_w_m2_k": 188.27491281204397,
+          "pressure_drop_pa": 4250.771967114313,
+          "velocity_m_s": 8.970771292419085,
+          "mach": 0.02209862523473594,
+          "dh_m": 0.0018387673448540056,
+          "open_area_m2": 0.026762400000000002,
+          "length_over_dh": 217.537037037037,
+          "laminar_thermal_entry_length_over_length": null
+        },
+        "cold": {
+          "re": 1448.9742669322522,
+          "regime": "offset",
+          "h_w_m2_k": 101.24889072569309,
+          "pressure_drop_pa": 448.90402337896535,
+          "velocity_m_s": 9.543440800052721,
+          "mach": 0.026276704081199465,
+          "dh_m": 0.0027910923920730457,
+          "open_area_m2": 0.24358950000000001,
+          "length_over_dh": 32.24543918918919,
+          "laminar_thermal_entry_length_over_length": null
+        },
+        "cooling_mass_flow_kg_s": 2.5,
+        "cold_fluid_power_w": 1043.5590907778071,
+        "energy_residual_w": -7.275957614183426e-11,
+        "correlation_screen_admissible": true,
+        "assumed_constraints_pass": true,
+        "physical_performance_accepted": false
+      }
+    ]
+  },
+  "manufacturer_recipe_selected": false,
+  "thin_fin_printability_verified": false,
+  "pressure_qualified": false,
+  "manufacturing_authorized": false,
+  "full_core_native_geometry_generated": false,
+  "source_hashes": {
+    "source/explore_thin_fins.py": "f7f6e7c66faae974f5b51b9cff2fe12790126217013ddc7113e7e2637a7dabc7",
+    "source/size_core.py": "ea29086d320afe9c831b0a28530ff1426f381f13af5548b3e8b95db1728eb8fb",
+    "requirements.json": "a5b50f3a8a2115192513a6b12c737e56fc16ca5bc84e5129cf22d4183eadbf7f"
+  },
+  "sweep_sha256": "31ffcca0aec9bb243292e7f4f032e9785297cd81dcdaff4c5739e5e360ed9fae",
+  "crossflow_grid_check": [
+    {
+      "cells_per_direction": 40,
+      "charge_outlet_c": 57.58839111067439,
+      "cold_outlet_c": 74.8127097280969,
+      "heat_hot_w": 100228.49674048397,
+      "energy_residual_w": 1.4551915228366852e-11
+    },
+    {
+      "cells_per_direction": 80,
+      "charge_outlet_c": 57.59647472067002,
+      "cold_outlet_c": 74.81069902041892,
+      "heat_hot_w": 100223.43478390471,
+      "energy_residual_w": 7.275957614183426e-11
+    },
+    {
+      "cells_per_direction": 160,
+      "charge_outlet_c": 57.59849529168364,
+      "cold_outlet_c": 74.81019642595274,
+      "heat_hot_w": 100222.16950233598,
+      "energy_residual_w": -4.3655745685100555e-11
+    }
+  ],
+  "fully_mixed_bound_charge_outlet_c": 65.78970885891673,
+  "cooling_flow_sensitivity": [
+    {
+      "scenario": "high",
+      "charge_inlet_c": 217.64667399231598,
+      "charge_outlet_c": 85.38514467611299,
+      "cooling_inlet_c": 35.0,
+      "engine_inlet_c": 117.24644454598445,
+      "heat_rejection_w": 82822.16965780633,
+      "required_heat_rejection_w": 98718.34725398828,
+      "required_ua_w_k": 2979.2811836087317,
+      "ua_w_k": 1345.8344437246028,
+      "effectiveness": 0.7241387232803773,
+      "hot_fin_efficiency": 0.9844239670922452,
+      "cold_fin_efficiency": 0.9788663335609107,
+      "hot": {
+        "re": 1785.6650993870428,
+        "regime": "offset",
+        "h_w_m2_k": 190.47174227639738,
+        "pressure_drop_pa": 4459.560156056352,
+        "velocity_m_s": 9.29038506399179,
+        "mach": 0.0224888486674623,
+        "dh_m": 0.0018387673448540056,
+        "open_area_m2": 0.026762400000000002,
+        "length_over_dh": 217.537037037037,
+        "laminar_thermal_entry_length_over_length": null
+      },
+      "cold": {
+        "re": 553.3082022379133,
+        "regime": "offset",
+        "h_w_m2_k": 65.05018855891679,
+        "pressure_drop_pa": 140.8555439622227,
+        "velocity_m_s": 4.062072455230964,
+        "mach": 0.01084232014742276,
+        "dh_m": 0.0027910923920730457,
+        "open_area_m2": 0.24358950000000001,
+        "length_over_dh": 32.24543918918919,
+        "laminar_thermal_entry_length_over_length": null
+      },
+      "cooling_mass_flow_kg_s": 1.0,
+      "cold_fluid_power_w": 139.37348987520176,
+      "energy_residual_w": -1.4551915228366852e-11,
+      "correlation_screen_admissible": true,
+      "assumed_constraints_pass": false,
+      "physical_performance_accepted": false
+    },
+    {
+      "scenario": "high",
+      "charge_inlet_c": 217.64667399231598,
+      "charge_outlet_c": 70.08690435943038,
+      "cooling_inlet_c": 35.0,
+      "engine_inlet_c": 96.17307364721148,
+      "heat_rejection_w": 92401.92774411297,
+      "required_heat_rejection_w": 98718.34725398828,
+      "required_ua_w_k": 1986.7780411054498,
+      "ua_w_k": 1518.6914157010551,
+      "effectiveness": 0.8078973813620799,
+      "hot_fin_efficiency": 0.984515635117471,
+      "cold_fin_efficiency": 0.9745775419451884,
+      "hot": {
+        "re": 1808.816547204713,
+        "regime": "offset",
+        "h_w_m2_k": 189.32956501060067,
+        "pressure_drop_pa": 4349.807010834364,
+        "velocity_m_s": 9.123045821364357,
+        "mach": 0.022285392766049468,
+        "dh_m": 0.0018387673448540056,
+        "open_area_m2": 0.026762400000000002,
+        "length_over_dh": 217.537037037037,
+        "laminar_thermal_entry_length_over_length": null
+      },
+      "cold": {
+        "re": 849.0938611727652,
+        "regime": "offset",
+        "h_w_m2_k": 78.66634863863705,
+        "pressure_drop_pa": 231.41500983940958,
+        "velocity_m_s": 5.909295079166981,
+        "mach": 0.016016287719550118,
+        "dh_m": 0.0027910923920730457,
+        "open_area_m2": 0.24358950000000001,
+        "length_over_dh": 32.24543918918919,
+        "laminar_thermal_entry_length_over_length": null
+      },
+      "cooling_mass_flow_kg_s": 1.5,
+      "cold_fluid_power_w": 333.10853870502956,
+      "energy_residual_w": 2.9103830456733704e-11,
+      "correlation_screen_admissible": true,
+      "assumed_constraints_pass": false,
+      "physical_performance_accepted": false
+    },
+    {
+      "scenario": "high",
+      "charge_inlet_c": 217.64667399231598,
+      "charge_outlet_c": 61.55078826560725,
+      "cooling_inlet_c": 35.0,
+      "engine_inlet_c": 83.53388462863211,
+      "heat_rejection_w": 97747.24364206502,
+      "required_heat_rejection_w": 98718.34725398828,
+      "required_ua_w_k": 1718.9940004093849,
+      "ua_w_k": 1651.4633823200998,
+      "effectiveness": 0.8546330590902288,
+      "hot_fin_efficiency": 0.9845674048399905,
+      "cold_fin_efficiency": 0.9708847747242462,
+      "hot": {
+        "re": 1822.0968787624975,
+        "regime": "offset",
+        "h_w_m2_k": 188.68463088826584,
+        "pressure_drop_pa": 4288.985390447327,
+        "velocity_m_s": 9.029673827372484,
+        "mach": 0.022171056873533407,
+        "dh_m": 0.0018387673448540056,
+        "open_area_m2": 0.026762400000000002,
+        "length_over_dh": 217.537037037037,
+        "laminar_thermal_entry_length_over_length": null
+      },
+      "cold": {
+        "re": 1148.1982700083965,
+        "regime": "offset",
+        "h_w_m2_k": 90.50645753703598,
+        "pressure_drop_pa": 333.66019798441727,
+        "velocity_m_s": 7.732065437115896,
+        "mach": 0.021154908547677886,
+        "dh_m": 0.0027910923920730457,
+        "open_area_m2": 0.24358950000000001,
+        "length_over_dh": 32.24543918918919,
+        "laminar_thermal_entry_length_over_length": null
+      },
+      "cooling_mass_flow_kg_s": 2.0,
+      "cold_fluid_power_w": 628.4322845243028,
+      "energy_residual_w": -4.3655745685100555e-11,
+      "correlation_screen_admissible": true,
+      "assumed_constraints_pass": false,
+      "physical_performance_accepted": false
+    },
+    {
+      "scenario": "high",
+      "charge_inlet_c": 217.64667399231598,
+      "charge_outlet_c": 56.16588797178713,
+      "cooling_inlet_c": 35.0,
+      "engine_inlet_c": 75.16654149197825,
+      "heat_rejection_w": 101119.26820605519,
+      "required_heat_rejection_w": 98718.34725398828,
+      "required_ua_w_k": 1593.7079577685665,
+      "ua_w_k": 1760.0992523406737,
+      "effectiveness": 0.8841156671011837,
+      "hot_fin_efficiency": 0.9846002968588665,
+      "cold_fin_efficiency": 0.967563406855814,
+      "hot": {
+        "re": 1830.612962221965,
+        "regime": "offset",
+        "h_w_m2_k": 188.27491281204397,
+        "pressure_drop_pa": 4250.771967114313,
+        "velocity_m_s": 8.970771292419085,
+        "mach": 0.02209862523473594,
+        "dh_m": 0.0018387673448540056,
+        "open_area_m2": 0.026762400000000002,
+        "length_over_dh": 217.537037037037,
+        "laminar_thermal_entry_length_over_length": null
+      },
+      "cold": {
+        "re": 1448.9742669322522,
+        "regime": "offset",
+        "h_w_m2_k": 101.24889072569309,
+        "pressure_drop_pa": 448.90402337896535,
+        "velocity_m_s": 9.543440800052721,
+        "mach": 0.026276704081199465,
+        "dh_m": 0.0027910923920730457,
+        "open_area_m2": 0.24358950000000001,
+        "length_over_dh": 32.24543918918919,
+        "laminar_thermal_entry_length_over_length": null
+      },
+      "cooling_mass_flow_kg_s": 2.5,
+      "cold_fluid_power_w": 1043.5590907778071,
+      "energy_residual_w": -7.275957614183426e-11,
+      "correlation_screen_admissible": true,
+      "assumed_constraints_pass": true,
+      "physical_performance_accepted": false
+    },
+    {
+      "scenario": "high",
+      "charge_inlet_c": 217.64667399231598,
+      "charge_outlet_c": 52.490302096741516,
+      "cooling_inlet_c": 35.0,
+      "engine_inlet_c": 69.23400201291253,
+      "heat_rejection_w": 103420.92008100875,
+      "required_heat_rejection_w": 98718.34725398828,
+      "required_ua_w_k": 1520.9426742653213,
+      "ua_w_k": 1852.196554850332,
+      "effectiveness": 0.9042396901381444,
+      "hot_fin_efficiency": 0.9846228532766766,
+      "cold_fin_efficiency": 0.9645068215951967,
+      "hot": {
+        "re": 1836.4886305079785,
+        "regime": "offset",
+        "h_w_m2_k": 187.99395875800982,
+        "pressure_drop_pa": 4224.757687754487,
+        "velocity_m_s": 8.930566030631669,
+        "mach": 0.022049048742324644,
+        "dh_m": 0.0018387673448540056,
+        "open_area_m2": 0.026762400000000002,
+        "length_over_dh": 217.537037037037,
+        "laminar_thermal_entry_length_over_length": null
+      },
+      "cold": {
+        "re": 1750.7048956915924,
+        "regime": "offset",
+        "h_w_m2_k": 111.21383810415927,
+        "pressure_drop_pa": 579.467346060681,
+        "velocity_m_s": 11.34863517517649,
+        "mach": 0.03138924275904013,
+        "dh_m": 0.0027910923920730457,
+        "open_area_m2": 0.24358950000000001,
+        "length_over_dh": 32.24543918918919,
+        "laminar_thermal_entry_length_over_length": null
+      },
+      "cooling_mass_flow_kg_s": 3.0,
+      "cold_fluid_power_w": 1601.8843805993743,
+      "energy_residual_w": -1.4551915228366852e-11,
+      "correlation_screen_admissible": true,
+      "assumed_constraints_pass": false,
+      "physical_performance_accepted": false
+    }
+  ],
+  "per_bank_core_45deg_extents_mm": [
+    346.48232278140824,
+    542.8,
+    346.48232278140824
+  ]
+}

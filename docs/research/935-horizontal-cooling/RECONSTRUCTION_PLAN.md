@@ -5,8 +5,28 @@
 
 ## Ordre d'implémentation retenu et état actuel
 
+La [chaîne native 935 et l'essai local Qwen](NATIVE_935_PIPELINE.md) constituent
+la continuation active : neuf pales reconstruites individuellement, rotor et
+carénage créés dans PicoGK, enveloppes moteur à six cylindres et contrôle des
+interférences. Les sources éditables sont C# avec paramètres privés JSON.
+L'assemblage historique et la fabrication restent à qualifier.
+
+La [correction de pointe du 13 octobre](TIP_CORRECTION_20261013.md) conserve
+les arcs acquis de la pale 03, remplace son extrapolation terminale et
+compare les écarts ainsi que trois calculs centrifuges. Les hypothèses de
+réparation restent distinctes des surfaces mesurées.
+
+La [continuation du 12 octobre](CONTINUATION_20261012.md) ajoute un candidat
+de rotor fermé sous hypothèses, les interfaces de pilotes CFD/structure et
+un USD géométrique. Elle reste séparée de la référence historique calibrée
+et ne clôt pas la fabrication ou la validation de l'ensemble au banc.
+
+Le [raffinement et la comparaison au scan](CONVERGENCE_20261012.md) précisent
+les écarts géométriques entre pales et la sensibilité des contraintes au
+maillage ; ces résultats orientent les corrections avant la fabrication.
+
 Environnement Linux/Python/.NET qualifié → surfaces depuis les scans avec
-SciPy/PicoGK → assemblage et interfaces BRep/FreeCAD → OpenFOAM →
+SciPy/PicoGK → assemblage natif PicoGK et qualification des interfaces → OpenFOAM →
 Gmsh/CalculiX → optimisation SciPy puis coordination OpenMDAO → modèle
 PhysicsNeMo sur calculs acceptés → assemblage et résultats USD/Omniverse.
 La référence historique précède la variante améliorée. Le premier lot porte
@@ -52,6 +72,11 @@ ont des statuts distincts. Les lots ci-dessous caractérisent la référence et
 les variantes améliorées avec les mêmes exigences de preuve.
 
 ## Lot 1 — Repères, segmentation et interfaces
+
+La [continuation d'assemblage du 12 octobre](INSPECTION_ASSEMBLY.md) réutilise
+PicoGK et les géométries disponibles sans location Vast. Elle livre une scène
+d'inspection réversible avec contexte moteur 917 identifié comme comparatif ;
+les interfaces du montage historique 935 restent à établir.
 
 Reprendre les deux OBJ présents en copies privées réversibles. Segmenter les
 pièces mécaniques et les acquisitions sans éliminer les fragments inconnus.

@@ -1,0 +1,59 @@
+{
+  "reader_sha256": "43dab1ab10a1dbecec9d48329a91dec1fba8c0db48d2c513706dc57fcc49db2c",
+  "all_payloads_verified": true,
+  "all_prepared_core_mesh_inputs_exact_to_parents_except_explicit_rotor_boundary_metadata": true,
+  "rotor_geometry_and_zone_inputs_byte_identical": true,
+  "rotor_boundary_only_mappedWall_to_wall_and_three_sample_keys_removed": true,
+  "no_inherited_region_addressing": true,
+  "intermediate_patches": {
+    "merged": {
+      "walls": {
+        "type": "wall",
+        "nFaces": "21632",
+        "startFace": "73984"
+      },
+      "rotorZone_to_domain1": {
+        "type": "wall",
+        "nFaces": "6784",
+        "startFace": "95616"
+      },
+      "domain1_to_rotorZone": {
+        "type": "wall",
+        "nFaces": "6784",
+        "startFace": "102400"
+      }
+    },
+    "stitched": {
+      "walls": {
+        "type": "wall",
+        "nFaces": "21632",
+        "startFace": "80768"
+      },
+      "rotorZone_to_domain1": {
+        "type": "wall",
+        "nFaces": "0",
+        "startFace": "102400"
+      },
+      "domain1_to_rotorZone": {
+        "type": "wall",
+        "nFaces": "0",
+        "startFace": "102400"
+      }
+    },
+    "final": {
+      "walls": {
+        "type": "wall",
+        "nFaces": "21632",
+        "startFace": "80768"
+      }
+    }
+  },
+  "cleanup_removes_only_empty_join_patches": true,
+  "source_reference": {
+    "url": "https://dl.openfoam.com/source/v2406/OpenFOAM-v2406.tgz",
+    "archive_sha256": "8d1450fb89eec1e7cecc55c3bb7bc486ccbf63d069379d1d5d7518fa16a4686a",
+    "member": "OpenFOAM-v2406/applications/utilities/mesh/manipulation/createPatch/createPatch.C",
+    "member_sha256": "f3ae9d44d24f2eab4f7f628a2e1b6674f190b3d01aee6a45d5bfa44aec29b946",
+    "scope": "createPatch constructFrom set reads native faceSet and sorts labels; not a complete application proof"
+  }
+}
