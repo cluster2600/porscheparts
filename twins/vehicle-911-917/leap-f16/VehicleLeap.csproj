@@ -11,6 +11,7 @@
     <Reference Include="PicoGK"><HintPath>$(LeapRoot)/runtime/PicoGK.dll</HintPath></Reference>
     <Reference Include="SkiaSharp"><HintPath>$(LeapRoot)/runtime/SkiaSharp.dll</HintPath></Reference>
     <None Include="$(LeapRoot)/runtime/**/*.dylib" CopyToOutputDirectory="PreserveNewest" Link="%(RecursiveDir)%(Filename)%(Extension)" />
+    <None Include="$(LeapRoot)/runtime/**/*.so*" CopyToOutputDirectory="PreserveNewest" Link="%(RecursiveDir)%(Filename)%(Extension)" />
     <None Include="$(LeapRoot)/libraries/PicoGK/assets/ViewerEnvironment.zip" CopyToOutputDirectory="PreserveNewest" Link="ViewerEnvironment.zip" />
   </ItemGroup>
   <Target Name="RequireInstalledLibraries" BeforeTargets="PrepareForBuild">

@@ -153,6 +153,25 @@ internal static class Program
         public void InformActiveValue(in Vector3 p, in Vector3 value) { Vectors++; Bad |= !float.IsFinite(value.Length()) || !vector.bGetValue(p, out Vector3 actual) || actual != value; }
     }
 
+    // The viewer writes the capture asynchronously: hashing as soon as the file exists
+    // can digest a partial image. Wait for the size the uncompressed TGA header announces.
+    static void WaitForCompleteTga(string path)
+    {
+        for (int attempt = 0; attempt < 600; attempt++, Thread.Sleep(50))
+        {
+            long length = new FileInfo(path).Length;
+            if (length < 18) continue;
+            var header = new byte[18];
+            using (var f = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite)) f.ReadExactly(header);
+            if (header[2] != 2) throw new InvalidDataException("Unexpected TGA encoding");
+            long expected = 18 + (long)BitConverter.ToUInt16(header, 12) * BitConverter.ToUInt16(header, 14) * header[16] / 8;
+            if (length < expected) continue;
+            Thread.Sleep(200);
+            if (new FileInfo(path).Length == length) return;
+        }
+        throw new IOException("Native capture never completed: " + path);
+    }
+
     static List<object> Views(Dictionary<string, Voxels> layers, Dictionary<string, string> systems, Dictionary<string, Voxels> fluid)
     {
         Viewer v = Library.oViewer(); v.SetBackgroundColor("F3F4F6"); v.SetFov(MathF.PI / 6);
@@ -169,6 +188,7 @@ internal static class Program
             v.qOrientation = orientation; v.ZoomToFit(); v.RequestScreenShot(path);
             for (int attempt = 0; attempt < 300 && !File.Exists(path); attempt++) Thread.Sleep(50);
             if (!File.Exists(path)) throw new IOException("Missing native capture");
+            WaitForCompleteTga(path);
             result.Add(new { id = name, file, sha256 = Hash(path) });
         }
         Capture("mechanical", v.qOrientationHome, layers.Where(p => !new[] { "keepout", "body", "tail" }.Contains(systems[p.Key])));

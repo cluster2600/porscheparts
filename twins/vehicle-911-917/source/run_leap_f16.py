@@ -58,7 +58,7 @@ def installed_files(leap):
     libraries = {p["repository"]: p for p in install["libraries"]}
     files = [leap / "runtime/PicoGK.dll", leap / "runtime/SkiaSharp.dll",
              leap / "libraries/PicoGK/assets/ViewerEnvironment.zip"]
-    files += sorted((leap / "runtime").rglob("*.dylib"))
+    files += sorted((leap / "runtime").rglob("*.dylib")) + sorted((leap / "runtime").rglob("*.so*"))
     for repo, revision in REVISIONS.items():
         if libraries[repo]["revision"] != revision or libraries[repo]["license"] != "Apache-2.0":
             raise ValueError("Unreviewed installed library revision or licence")
@@ -128,18 +128,18 @@ def board(output, r):
             im.convert("RGB").save(output / (view["id"] + ".png"))
 
 
-def run(leap, baseline, output):
-    config = json.loads((STUDY / "study.json").read_text()); validate_config(config)
+def run(leap, baseline, output, config_path=STUDY / "study.json"):
+    config = json.loads(config_path.read_text()); validate_config(config)
     old, _ = verify_report(baseline)
     if old["private_scan"] is not None:
         raise ValueError("F16 public workflow does not admit private scan data")
     if output.exists() or output.with_name(output.name + "-build").exists():
         raise ValueError("Use a new output directory; previous runs are retained")
-    files = installed_files(leap) + list(STUDY.glob("*")) + [Path(__file__),
+    files = installed_files(leap) + list(STUDY.glob("*")) + [config_path, Path(__file__),
         ROOT / "twins/vehicle-911-917/full-vehicle-study-f15.json", baseline / "vehicle-report-f15.json"]
     files += [baseline / p["vdb"] for p in old["components"]]
     build_dir = output.with_name(output.name + "-build"); build_dir.mkdir(parents=True)
-    receipt = {"baseline": str(baseline), "output": str(output), "config": str(STUDY / "study.json"),
+    receipt = {"baseline": str(baseline), "output": str(output), "config": str(config_path),
                "vehicle_config": str(ROOT / "twins/vehicle-911-917/full-vehicle-study-f15.json"),
                "libraries": REVISIONS, "revision_basis": "installed receipt and matching source hashes",
                "files": [{"path": str(p), "sha256": sha256(p)} for p in files if p.is_file()]}
@@ -152,10 +152,19 @@ def run(leap, baseline, output):
     lock = importlib.util.module_from_spec(spec); spec.loader.exec_module(lock)
     lock.acquire(timeout_s=60)
     try:
-        subprocess.run([str(dotnet), str(build_dir / "bin/VehicleLeap.dll"), str(receipt_path)], check=True,
-                       env={**os.environ, "DOTNET_ROOT": str(leap / "sdk")})
+        native = subprocess.run([str(dotnet), str(build_dir / "bin/VehicleLeap.dll"), str(receipt_path)],
+                                env={**os.environ, "DOTNET_ROOT": str(leap / "sdk")})
     finally:
         lock.LOCK.unlink(missing_ok=True)
+    if native.returncode != 0:
+        # Under WSLg the process can segfault at exit, after PicoGK has closed its log.
+        # Only that case is tolerated; verify_output still checks every export below.
+        log = output / "native.log"
+        closed = log.is_file() and log.read_text(errors="replace").rstrip().endswith("Done.")
+        if native.returncode != -11 or not closed or not (output / "report.json").is_file():
+            raise subprocess.CalledProcessError(native.returncode, native.args)
+        (build_dir / "native-exit.json").write_text(json.dumps(
+            {"returncode": native.returncode, "after_log_closed": True}) + "\n")
     result = verify_output(output); board(output, result)
     print(json.dumps({"board": str(output / "leap-f16-board.png"), "components": len(result["components"]),
                       "clashes": [k for k, v in result["checks"].items() if v["collision"]]}, indent=2))
@@ -166,5 +175,7 @@ if __name__ == "__main__":
     parser.add_argument("--leap-root", type=Path, required=True)
     parser.add_argument("--baseline", type=Path, default=ROOT / "work/911-917-picogk-f15")
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--config", type=Path, default=STUDY / "study.json",
+                        help="routing trial; trials after r3 live in leap-f16/trials/")
     args = parser.parse_args()
-    run(args.leap_root.resolve(), args.baseline.resolve(), args.output.resolve())
+    run(args.leap_root.resolve(), args.baseline.resolve(), args.output.resolve(), args.config.resolve())
