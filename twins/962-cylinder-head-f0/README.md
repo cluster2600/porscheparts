@@ -1,5 +1,9 @@
 # Culasse 962 C : recherche et candidat PicoGK F0
 
+Le [dimensionnement Mezger 4 L biturbo au SP95](MEZGER_4L_SP95.md) précise
+désormais la cible de 1 000 ch moteur, les besoins d'air, de carburant et
+d'eau, et les sections exploratoires pour la prochaine variante de culasse.
+
 **Nouvelle cible : un kit moteur inspiré du 962 pour bases 911, 964 et 993,
 avec un objectif de développement de 1 000 ch.** Le
 [programme produit](KIT_962_PROGRAMME.md) définit le périmètre, les variantes,
