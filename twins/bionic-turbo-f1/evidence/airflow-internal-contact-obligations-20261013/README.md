@@ -1,0 +1,11 @@
+# Contacts internes — représentation partagée PR241
+
+La nouvelle preuve `proof.md` complète PR243 sur les contacts d'arêtes et de sommets. Elle utilise un lemme local de multiplicité des chaînes positives, puis l'injectivité des fermetures et le recollement de leur bord. Les hypothèses combinatoires supplémentaires sont contrôlées par deux programmes distincts, prescrits et figés avant application. Les lecteurs ne constituent pas un prouveur automatique de la démonstration rédigée.
+
+Pour chaque v de l'enveloppe fermée des 153 boîtes, u=q_m, l'intersection de deux cellules réalisées selon PR241 est exactement la réalisation de leur sous-complexe abstrait commun. Les deux boîtes aux déterminants indécis restent présentes. Les 119808 tétraèdres ont 230656 triangles à deux incidences opposées et 17920 triangles à incidence unique, exactement la frontière héritée. Chaque fermeture a 4352 triangles, 6272 arêtes intérieures à deux incidences et 512 arêtes de bord identiques aux boucles communes latérales.
+
+Sur les 18871296 paires de cellules distinctes, 82560 ont un sous-complexe commun : 13696 de dimension maximale deux, 34048 de dimension maximale un, 34816 de dimension zéro. Les 18788736 autres paires n'ont aucun sous-complexe commun. `contacts.jsonl.gz` conserve pour chaque paire non vide ses simplexes communs maximaux. La preuve transforme cette classification combinatoire en une égalité d'ensembles géométriques sur tout le domaine ; aucune géométrie n'est évaluée à un ratio choisi et aucune grille ou subdivision n'est introduite.
+
+Le primaire relit les modèles PR241 sans recalculer leurs polynômes. Le lecteur reconstruit les éventails depuis les six gabarits hex réduits, compare tous les tétraèdres orientés et leurs cellules, puis toutes les paires par une jointure sur les propriétaires des simplexes. Il n'importe pas le primaire. Les deux terminent avec le code 0. Les 19 manifestes parents et leurs 520 entrées sont ancrés au commit 050b28b932aee9eaafe4b07e43fad17a6f6ee157.
+
+Les labels de centres auxiliaires sont ceux de PR241, pas les centres natifs. L'égalité de volume signé native reste héritée dans son périmètre ; aucune égalité des moments, des centres ou d'une autre décomposition native n'est déduite. Aucune admission native, CFD, débit, puissance ou calibration. Lire `validation.md` et `next-scope.md`.
