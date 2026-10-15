@@ -123,7 +123,7 @@ Catalogue record: [`catalog/parts/993-eng-intercooler-bracket-ti-f0-0001.json`](
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Only the 255 x 80 x 23 mm envelope comes from the commercial record; the rails, holes and central boss are F0 assumptions.<br>The published 0.2 kg mass concerns the FVD product whose exact material and topology are unknown; it does not validate the concept.<br>The 400 N central case, the 220 mm span and +120 K are synthetic; no 993 load has been measured.<br>The beam calculation ignores curvature, stress concentrations, contact, preload, vibration, fatigue, LPBF defects and thermal stresses.<br>The 828 MPa comparison limit comes from a wrought TIMET reference and is not an LPBF allowable.<br>The CalculiX C3D10 screen converges to within 10% on p95 and deflection, but keeps synthetic supports, load and elastic card; the local maximum still rises with refinement.<br>The derived USD passes the minimum structural check only; it carries no qualified SimReady physical attribution.<br>The STEP proves only a computable BREP within the envelope; it must be neither manufactured for fitting nor installed. |
 
 **Evidence**
 

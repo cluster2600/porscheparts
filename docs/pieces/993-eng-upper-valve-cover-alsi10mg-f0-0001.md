@@ -111,7 +111,7 @@ Catalogue record: [`catalog/parts/993-eng-upper-valve-cover-alsi10mg-f0-0001.jso
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | The 400 x 150 x 200 mm envelope and 3.32 kg concern a kit of four covers with gaskets/hardware, not the F0 part.<br>The 220 x 95 x 45 mm shell, the ten fasteners, six fins and three COP towers are entirely synthetic.<br>The 9.7 Nm torque comes from an unverified OCR transcription and constitutes no fitting instruction.<br>The AlSi10Mg values are generic comparisons, not a hot allowables map for a sealing face.<br>The pressures, temperatures, gradient, convection, heat and gasket are regression inputs.<br>The thermal stress, warpage and convection screens fail; no sealing is demonstrated.<br>No gasket contact, CHT, modal, fatigue, clamp-load relaxation or coil/harness integration is validated.<br>The STEP proves only a readable open BREP and is authorized neither for manufacturing, nor for sealing, nor for an engine. |
 
 **Evidence**
 

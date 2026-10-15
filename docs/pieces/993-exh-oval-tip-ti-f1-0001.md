@@ -120,7 +120,7 @@ Catalogue record: [`catalog/parts/993-exh-oval-tip-ti-f1-0001.json`](../../catal
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | The 427 °C temperature that decides the alloy is a synthetic input of the F0 screening, never measured on a vehicle.<br>Only the 120 x 85 mm outlet envelope is published; length, inlet interface and slip-fit depth are assumptions.<br>Depowdering of the 2.7 mm annular channel is checked only by the 1 mm voxel screening, a resolution too coarse to conclude.<br>No reviewed orientation, no supplier supports, no machine file.<br>No strength, thermal cycling, acoustic or vehicle fitting test. |
 
 **Evidence**
 

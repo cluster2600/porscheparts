@@ -117,7 +117,7 @@ Catalogue record: [`catalog/parts/993-eng-exhaust-valve-f1-0001.json`](../../cat
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | The public dimensions do not define keeper grooves, seat angles and widths, margins, neck radii, coatings or tolerances.<br>Titanium is not selected for exhaust duty; it remains a comparison requiring measured temperatures and full thermal-fatigue validation.<br>The generated STLs are fit-check-only and must never be installed in an engine. |
 
 **Evidence**
 

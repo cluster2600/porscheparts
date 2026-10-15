@@ -33,6 +33,7 @@ flowchart LR
 | [SOURCE_POLICY.md](SOURCE_POLICY.md) | which sources are admissible, and how rights are recorded |
 | [PHASE1_SOURCE_INVENTORY.md](PHASE1_SOURCE_INVENTORY.md) | the phase 1 source inventory |
 | [MEASUREMENT_CAMPAIGN.md](MEASUREMENT_CAMPAIGN.md) | the phase 2 measurement campaign |
+| [CAPTURE_PROTOCOL.md](CAPTURE_PROTOCOL.md) | how a measurement, a scan or a declared value becomes checkable evidence |
 | [research/935-horizontal-cooling/README.md](research/935-horizontal-cooling/README.en.md) | research and reconstruction for a lighter, improved horizontal 935 cooling system |
 | [PORSCHEFANATICS_993_TURBO_AUDIT.md](PORSCHEFANATICS_993_TURBO_AUDIT.md) | local audit of a 993 Turbo source |
 | [research/](research/) | source research by topic (German-language sources, carbon panels, M64 reviews, scans) |

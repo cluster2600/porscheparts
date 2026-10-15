@@ -49,6 +49,14 @@ def load_dimensions(path: Path) -> tuple[dict[str, float], float]:
         )
 
     record = json.loads(path.read_text(encoding="utf-8"))
+    # A documented specification carries declared values (manual, PET, data sheet,
+    # forum post), not readings taken on a part. It never defines this geometry.
+    kind = record.get("record_kind", "physical_measurement")
+    if kind != "physical_measurement":
+        raise SystemExit(
+            f"{path} is a {kind} record: declared values do not define this geometry.\n"
+            "Only a physical measurement session, with instruments and readings, can."
+        )
     readings = {item["dimension_id"]: item for item in record.get("readings", [])}
     missing = [key for key in NEEDED if key not in readings]
     if missing:
