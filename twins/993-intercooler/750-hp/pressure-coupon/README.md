@@ -128,10 +128,76 @@ in m/s. The uniform 1 m/s velocity fields are not a fluid
 solution. The rights and digests of the installed libraries are rechecked
 against the receipt of the previous step; no binary dependency is published.
 
+## Rib-root fillets and stress convergence
+
+*Added 2026-10-14.* The twelve runs above leave the rib-root peak unconverged
+because the roots are sharp. This step draws **assumed** root fillets on the
+four-rib quarter section and refines the mesh at the roots until the peak
+settles. The radii 0.2 and 0.4 mm are design proposals for the next geometry:
+nothing was measured or printed, and no LPBF process has been shown to hold
+them.
+
+![Rib-root peak and displacement against element size](derived/fillet-convergence.png)
+
+[fillet_convergence.py](source/fillet_convergence.py) reuses the section,
+pressure, symmetry planes, assumed E and ν and CPE8 element of
+[study.py](source/study.py), which is unchanged. gmsh 4.15.2 meshes the
+section from an OpenCASCADE drawing in which each channel is cut with rounded
+corners, so only the five wall-side root corners of the quarter receive a
+fillet. All elements are 8-node quadrangles. CalculiX 2.21 runs single-threaded
+in the `3dprinting993-cadsim` image (`sha256:7fd9720b…`); the 2.21 image of the
+first twelve runs was not on this machine. Four levels halve the element size at
+the roots, 0.05 → 0.00625 mm, and away from them, 0.2 → 0.025 mm.
+
+| Root | Peak, finest mesh (nodal / integration point) | Richardson extrapolation | GCI, finest mesh |
+|---|---:|---:|---:|
+| Sharp | 42.2 / 47.6 MPa | none: the peak keeps growing | — |
+| Assumed fillet r = 0.2 mm | 12.81 / 12.66 MPa | 12.81 / 12.72 MPa | 0.007 % / 0.6 % |
+| Assumed fillet r = 0.4 mm | 9.31 / 9.27 MPa | 9.31 / 9.40 MPa | 0.03 % / 1.9 % |
+
+- The sharp root grows by 1.35–1.42 per halving (16.0 → 22.7 → 30.6 → 42.2 MPa
+  nodal). A 270° re-entrant corner has a Williams exponent near 0.545, which
+  predicts about 2^0.455 ≈ 1.37 per halving: the growth is the expected
+  singularity, so no sharp-root stress can be quoted.
+- With either assumed fillet, the nodal and integration-point peaks converge to
+  within 1 % of each other. The integration-point sequence at r = 0.4 mm has a
+  low observed order (0.48), so its extrapolation is the least certain value in
+  the table.
+- The converged peaks sit below the assumed 40 MPa screen. That screen is not an
+  allowable: hot AlSi10Mg properties at 233 °C, LPBF surface notches, fatigue,
+  thermal stress and the 3D ends are not covered, and no catalogue source gives a
+  hot allowable yet. **No pressure strength is qualified.**
+- In this plane model the stress field does not depend on the assumed E; the
+  displacements do.
+
+Independent checks recorded per case: the pressure resultant of the loaded faces
+equals 0.5625 and 3.6 N/mm (pressure × 1.5 mm and × 9.6 mm), the solver's
+symmetry-plane reactions balance it, the drawn area equals the analytical area
+including (1 − π/4) r² per fillet, and the sharp case reproduces the
+displacement of the first study's 0.1 mm mesh to within 1 %. A first attempt that
+loaded every edge reproduced a uniform hydrostatic state exactly before the
+filter was corrected.
+
+The fillets fill 0.17 mm² (r = 0.2) or 0.69 mm² (r = 0.4) of the 57.6 mm² full
+hot section. The hydraulic model above uses rectangular channels and was not
+re-run for them.
+
+The [summary](derived/fillet-convergence/fillet-convergence.json), per-case
+receipts and solver logs are committed. The decks, FRD and DAT files, about
+240 MB, are identified by SHA-256 in the receipts and not committed; every deck
+regenerates byte for byte. The 0.4 mm finest case was killed by a 3 GB memory cap,
+then solved alone at 8 GB with `--resume`, which reuses the eleven finished cases
+only after checking their digests and regenerating their decks; the summary
+records this.
+
 ## Reproduction and next steps
 
 ```sh
 python3 twins/993-intercooler/750-hp/pressure-coupon/source/study.py --output work/new-pressure
+docker run --rm --network none --cpus 1 --memory 8g --memory-swap 8g -e OMP_NUM_THREADS=1 -v "$PWD":/repo:ro -v "$PWD/work":/out -w /tmp 3dprinting993-cadsim:dev \
+  python3 -B /repo/twins/993-intercooler/750-hp/pressure-coupon/source/fillet_convergence.py --output /out/new-fillets \
+  --image-id "$(docker image inspect 3dprinting993-cadsim:dev --format '{{.Id}}')"
+python3 twins/993-intercooler/750-hp/pressure-coupon/source/fillet_review.py --output work/new-fillet-convergence.png
 python3 -m unittest discover -s tests -p test_993_intercooler_pressure_coupon.py -v
 ```
 
@@ -140,8 +206,11 @@ off, two CPUs and 2 GB maximum; it launches no paid remote computation.
 The PicoGK generation uses the SDK `~/Developer/PicoGK/sdk/dotnet` and must
 take the shared lock of `parts/picogk-catalog/tools/run_part.py`.
 
-The next mechanical step is to draw fillets at the rib roots,
-mesh them conformally and run a 3D study with fittings and support conditions.
+The fillet study runs on one CPU; its finest meshes need up to 8 GB.
+
+The next mechanical step is to carry a chosen root fillet into the PicoGK
+geometry, confirm the process can hold it, and run a 3D study with fittings and
+support conditions.
 The passages will also have to be compared by CFD/CHT or on a bench, then
 orientation, overhangs, depowdering, hot material and sealing qualified.
 **No authorization to print or to pressure-test is given.**

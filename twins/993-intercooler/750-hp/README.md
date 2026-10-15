@@ -266,4 +266,6 @@ tanks to the budgets.
 
 [Comparison with 0, 2 and 4 hot ribs](pressure-coupon/README.md): twelve
 local CalculiX runs, two PicoGK generations, an exploratory hydraulic cost,
-and explicitly recorded non-converged root stresses.
+and explicitly recorded non-converged root stresses. A follow-up study draws assumed 0.2 and 0.4 mm
+root fillets: their peaks converge (12.8 and 9.3 MPa at 3.75 bar, plane strain),
+while the sharp root keeps growing; no pressure strength is qualified.

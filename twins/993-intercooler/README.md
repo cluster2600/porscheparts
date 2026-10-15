@@ -20,7 +20,7 @@ not measured in this repository, and no study invents them.
 | [750-hp/hot-weather/](750-hp/hot-weather/README.md) | 45 °C continuation, fan demand and stiffened headers, lattice coupons (French) | layout and coupons only |
 | [750-hp/core-comparison/](750-hp/core-comparison/README.md) | offset strip against a HelixHeatX helical tube bank and a two-network gyroid | helical rejected; gyroid needs bench data |
 | [750-hp/counterflow-passes/](750-hp/counterflow-passes/README.md) | charge in 1 to 4 passes against the cooling air, return-tank losses charged | counterflow passes are 2 kg heavier; not adopted |
-| [750-hp/pressure-coupon/](750-hp/pressure-coupon/README.md) | hot-passage pressure coupon with 0, 2 and 4 longitudinal ribs: twelve local CalculiX plane-strain runs, PicoGK geometry and VDB fields, exploratory hydraulic cost | four ribs is the candidate to pursue, not pressure-qualified; root stresses not converged |
+| [750-hp/pressure-coupon/](750-hp/pressure-coupon/README.md) | hot-passage pressure coupon with 0, 2 and 4 longitudinal ribs: twelve local CalculiX plane-strain runs, an assumed-fillet convergence study, PicoGK geometry and VDB fields, exploratory hydraulic cost | four ribs is the candidate to pursue, not pressure-qualified; sharp-root stresses do not converge, assumed 0.2/0.4 mm fillets do (plane strain) |
 | [bracket-ti-f0/](bracket-ti-f0/) | CalculiX screen of the titanium intercooler bracket (`TWIN-993-INTERCOOLER-BRACKET-TI-F0`) | `F1_envelope` |
 
 The [overview figure](derived/overview.png) is drawn by

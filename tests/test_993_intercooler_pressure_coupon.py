@@ -73,4 +73,46 @@ class PressureCouponTests(unittest.TestCase):
         self.assertEqual(sha(STUDY/runtime['inherited_upstream_receipt']),runtime['inherited_receipt_sha256'])
         for path,digest in runtime['source_hashes'].items():self.assertEqual(sha(STUDY/path),digest)
 
+FILLET=STUDY/'derived/fillet-convergence'
+spec=importlib.util.spec_from_file_location('fillet_convergence',STUDY/'source/fillet_convergence.py');F=importlib.util.module_from_spec(spec);spec.loader.exec_module(F)
+
+
+class FilletConvergenceTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.r=json.loads((FILLET/'fillet-convergence.json').read_text())
+
+    def test_richardson_and_area_helpers(self):
+        r=F.richardson([10+4.**-l for l in range(4)])
+        self.assertAlmostEqual(r['observed_order'],2,places=9);self.assertAlmostEqual(r['extrapolated'],10,places=9);self.assertTrue(r['converged_within_gci'])
+        self.assertFalse(F.richardson([16.,22.7,30.6,42.2])['monotone_convergence'])
+        self.assertAlmostEqual(F.solid_area(0),12*2.3-1.5*(11.2-4*.4),places=12)
+        self.assertEqual(F.ROOT_CORNERS,[(2.6,1.5),(3.4,1.5),(8.6,1.5),(9.4,1.5),(11.2,1.5)])
+
+    def test_every_case_balances_pressure_and_keeps_provenance(self):
+        r=self.r;self.assertEqual(len(r['cases']),len(F.RADII)*len(F.GLOBAL_MM))
+        for c in r['cases']:
+            fx,fy=c['pressure_resultant_n_per_mm']
+            self.assertAlmostEqual(fx,M.PRESSURE*1.5,places=9);self.assertAlmostEqual(fy,M.PRESSURE*(11.2-4*.4),places=9)
+            self.assertAlmostEqual(c['reaction_xsym_n_per_mm'][0],-fx,places=6);self.assertAlmostEqual(c['reaction_ysym_n_per_mm'][1],-fy,places=6)
+            self.assertAlmostEqual(c['cad_area_mm2'],F.solid_area(c['fillet_radius_mm']),places=9)
+            self.assertEqual(c['solver_version'],'2.21');self.assertTrue(c['fillet_radius_is_assumption']);self.assertFalse(c['pressure_qualified'])
+            receipt=json.loads((FILLET/f"fillet-{c['fillet_radius_mm']}-level-{c['level']}/receipt.json").read_text());self.assertEqual(receipt,c)
+            log=FILLET/f"fillet-{c['fillet_radius_mm']}-level-{c['level']}/solver.log";self.assertEqual(sha(log),c['source_hashes']['solver.log'])
+        self.assertEqual(sha(STUDY/'source/fillet_convergence.py'),r['source_sha256'])
+        for path,digest in r['dependency_hashes'].items():self.assertEqual(sha(ROOT/path),digest)
+        self.assertTrue(r['fillet_radii_are_assumptions']);self.assertFalse(r['pressure_qualified']);self.assertFalse(r['manufacturing_authorized'])
+
+    def test_sharp_roots_diverge_and_assumed_fillets_converge(self):
+        s=self.r['summary'];sharp=s['0.0']['root_nodal_von_mises_mpa']
+        # A 270-degree re-entrant corner has a Williams exponent near 0.545: each halving multiplies the peak by about 2**0.455.
+        for a,b in zip(sharp,sharp[1:]):self.assertGreater(b/a,1.25);self.assertLess(b/a,1.5)
+        self.assertFalse(s['0.0']['root_nodal_richardson']['monotone_convergence'])
+        for radius in ['0.2','0.4']:
+            for key in ['root_nodal_richardson','integration_point_richardson','displacement_richardson']:self.assertTrue(s[radius][key]['converged_within_gci'],(radius,key))
+            self.assertLess(s[radius]['root_nodal_richardson']['extrapolated'],self.r['assumed_threshold_mpa'])
+        self.assertLess(s['0.4']['root_nodal_richardson']['extrapolated'],s['0.2']['root_nodal_richardson']['extrapolated'])
+        original=next(c for c in json.loads((STUDY/'derived/study.json').read_text())['cases'] if (c['rib_count'],c['mesh_mm'])==(4,.1))
+        self.assertAlmostEqual(s['0.0']['maximum_displacement_mm'][-1]/original['maximum_displacement_mm'],1,delta=.01)
+
 if __name__=='__main__':unittest.main()
