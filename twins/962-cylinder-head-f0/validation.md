@@ -220,6 +220,16 @@ The full log stays local in `work/962-head/make-check-final-main.log`.
 The 32 cylinder head tests pass with VTK; the separate link check passes
 on 916 Markdown files. This global Mac result is not announced as green.
 
+## Linux CI result on the translated revision
+
+The GitHub Actions workflow "Validate catalogue",
+[run 38578122965](https://github.com/cluster2600/porscheparts/actions/runs/38578122965)
+(`pull_request` event, 2026-10-14), passed on
+`d4a8ce4dec818ac56da09abe712b9f4b21f7323c`, including the
+"Validate repository" step that runs `make check`. This is a Linux CI
+software check of the repository; it does not validate the geometry,
+the coolant interface or any physical property of the study.
+
 ## Vérifications physiques absentes
 
 Pas de scan/CT d'un donneur 962, de métrologie, de CFD/CHT, de calcul mécanique,
