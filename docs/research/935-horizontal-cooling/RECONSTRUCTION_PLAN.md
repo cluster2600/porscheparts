@@ -11,6 +11,11 @@ carénage créés dans PicoGK, enveloppes moteur à six cylindres et contrôle d
 interférences. Les sources éditables sont C# avec paramètres privés JSON.
 L'assemblage historique et la fabrication restent à qualifier.
 
+La [correction de pointe du 13 octobre](TIP_CORRECTION_20261013.md) conserve
+les arcs acquis de la pale 03, remplace son extrapolation terminale et
+compare les écarts ainsi que trois calculs centrifuges. Les hypothèses de
+réparation restent distinctes des surfaces mesurées.
+
 La [continuation du 12 octobre](CONTINUATION_20261012.md) ajoute un candidat
 de rotor fermé sous hypothèses, les interfaces de pilotes CFD/structure et
 un USD géométrique. Elle reste séparée de la référence historique calibrée

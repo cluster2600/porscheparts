@@ -1,0 +1,68 @@
+{
+  "status": "repeatable_experiment_program_not_physical_results",
+  "baseline": "F1 cup and airfoil parameter set, uncalibrated installed layout",
+  "implemented_factors": {
+    "tip_stagger_delta_deg": [
+      -4,
+      0,
+      4
+    ],
+    "core_face_mm": [
+      [
+        500,
+        360
+      ],
+      [
+        620,
+        450
+      ],
+      [
+        700,
+        500
+      ]
+    ],
+    "branch_resistances": [
+      "unequal_hypothesis",
+      "equalized_hypothesis"
+    ]
+  },
+  "next_separate_factors": [
+    "tip clearance after hot-clearance and centrifugal review",
+    "inlet lip and elbow guide vanes",
+    "plenum taper and branch area balance",
+    "forward/backward sweep at unchanged section geometry",
+    "matched stator versus power/pressure benefit"
+  ],
+  "comparison_rules": [
+    "Same inlet density and complete system pressure boundary conditions.",
+    "Report both same RPM and matched shaft power; do not rank by flow alone.",
+    "Track minimum of six branch mass flows, distribution coefficient of variation, core pressure drop, shaft torque, and charge/engine temperatures.",
+    "Keep reference geometry, solver revision, native fields, residuals and port histories for every case.",
+    "Reject mesh topology/geometry failures; do not relax acceptance thresholds to declare a winner."
+  ],
+  "cfd_acceptance": {
+    "standard_and_extended_mesh_checks": "all pass",
+    "two_windows_iterations": 100,
+    "relative_mass_imbalance_max": 0.001,
+    "mean_flow_drift_max": 0.001,
+    "relative_flow_amplitude_max": 0.002,
+    "initial_residual_U_max": 0.0001,
+    "initial_residual_p_k_omega_max": 0.001,
+    "mesh_independence": "at least three resolutions with relevant port-flow/pressure sensitivity",
+    "experimental_correlation_required": true
+  },
+  "physical_bench": [
+    "Guarded fixed-speed rig with independent shaft speed and torque measurement.",
+    "Calibrated inlet flow device and static/total pressure taps before and after the core and fan.",
+    "Six independently measured engine outlets or calibrated branch resistances.",
+    "Charge-air mass flow, inlet/outlet temperatures and pressures; ambient temperature and density.",
+    "Repeated baseline/variant/baseline runs; record instrument uncertainty and thermal equilibrium."
+  ],
+  "missing_targets": {
+    "engine_power_kw": null,
+    "max_charge_temperature_k": null,
+    "min_cylinder_mass_flows_kg_s": null,
+    "max_shaft_power_w": null,
+    "wing_clearance_envelope": null
+  }
+}

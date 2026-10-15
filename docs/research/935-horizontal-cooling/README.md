@@ -18,6 +18,8 @@ constitue un projet distinct.
 
 [Comparaison au scan et raffinement numérique](CONVERGENCE_20261012.md).
 
+[PicoGK sur le Mac : bibliothèques, raccords, champs VDB et nouveaux calculs](MAC_PICOGK_20261012.md).
+
 ## Reconstruction depuis les scans — 5 octobre 2026
 
 La [campagne exécutée](IMPLEMENTATION.md) ajuste des surfaces cylindriques

@@ -1,0 +1,27 @@
+# Bornes nécessaires sur une restriction du système de transition
+
+**Faisabilité non résolue.** Aucun nouveau ratio retenu, candidat, dictionnaire, maillage natif, conteneur ou solveur. Les refus PR229 et 091 ainsi que le repos incomplet 084 restent en vigueur.
+
+La restriction proposée après PR232 est maintenant vérifiée : u reste exactement au q_m source. Seul v varie symboliquement dans (q_m,q_ext). Les 4 352 points fixes et les 2 304 cellules rotor/angulaires ne dépendent plus de v ; leurs 4 224 angles internes, dont les 384 angles MRF, sont constants. Restent potentiellement variables 1 792 points, 3 840 cellules/déterminants, 9 472 angles et 92 160 paires de plans. Ce constat de dépendance ne certifie pas la géométrie pour tout v.
+
+## Certificat d'exclusion partiel
+
+Le protocole `preflight.md` est écrit avant calcul. Six contraintes nécessaires sont sélectionnées dans les diagnostics archivés, sans évaluation de nouveau ratio : une face axiale/axiale de marge minimale dans chacun des deux intervalles ayant des rejets ; une cellule de déterminant minimal pour chaque combinaison famille axiale/hex extérieure et fermeture basse/haute. Labels : angles 837/839 et 3455/3457 ; déterminants 955, 5019, 2036 et 6027. La sélection minimise la marge dimensionnée dans chaque intervalle, et non le seul angle global du témoin 3182/3184 publié précédemment ; la règle CSV est reproduite indépendamment.
+
+`bounds.py` encadre les expressions géométriques natives sur des boîtes entières : centres de faces par éventail à moyenne des sommets, aires, moments des pyramides signées, centres cellulaires, angle et tenseur du déterminant avec seules faces internes. Les centres ne sont pas des variables libres. Les coordonnées rationnelles proviennent du système PR232, construit sur les binary64 sources exacts. Les opérations dyadiques à 160 bits fractionnaires utilisent des entiers et arrondissent vers l'extérieur ; les racines sont encadrées par `isqrt`. κ est isolé par 80 bissections rationnelles de son polynôme, sans trigonométrie flottante.
+
+La bisection adaptative s'arrête à profondeur 12 prescrite, ou dès qu'un prédicat est impossible partout dans la boîte. Il n'y a aucune grille d'essais ponctuels. 4 701 boîtes visitées produisent 2 351 feuilles : **1 524 exclues**, **827 indécises**. En mesure de largeur du domaine unidimensionnel, la part exclue vaut exactement **3 269/4 096 = 79,8095703125 %** ; la part indécise **827/4 096 = 20,1904296875 %**. Ce ne sont ni des probabilités ni une mesure de faisabilité du système à deux inconnues.
+
+Les 1 524 premières raisons d'exclusion se répartissent entre angle 837/839 (795), angle 3455/3457 (159), déterminant axial bas 955 (431) et déterminant hex haut 6027 (139). Plusieurs contraintes peuvent exclure la même boîte ; ce décompte n'en choisit que la première. **Aucune** boîte n'a même été certifiée pour l'ensemble des six contraintes sélectionnées. Les feuilles indécises ne sont pas réputées admissibles.
+
+Le certificat intégral conserve bornes rationnelles, profondeur, encadrements et statut de chaque feuille. `range-readback-v2.json` fusionne seulement les statuts contigus ; 21 plages alternent. Ce résultat ne prouve aucune monotonie des contraintes : la fragmentation peut dépendre de la largeur des encadrements. À titre d'affichage seulement, la principale plage exclue est environ [1,0072467223167418 ; 1,012449851665497] ; les bornes rationnelles du certificat font foi. Les petites plages au voisinage des deux extrémités ne sont pas retirées : elles restent indécises si les encadrements contiennent une singularité. Les boîtes sont fermées pour l'encadrement ; le domaine de ratios reste ouvert.
+
+## Vérification et limites
+
+`verify_bounds.py` n'importe pas le premier calculateur. Il reconstruit les faces à partir des six gabarits hex réduits et réimplémente les intervalles avec `Fraction`, quantification à 192 bits et une autre expression de division/déterminant. Il revalide les manifestes PR229/231/232, la sélection des témoins, la restriction MRF et la couverture exacte sans trou. Les **1 524 exclusions** sont toutes confirmées sur les boîtes complètes. Six références analytiques sont vérifiées, dont les moments d'un cube à trois échelles. `test_arithmetic.py` vérifie 106 inclusions exactes d'opérations élémentaires du premier noyau ; il ne teste aucun ratio géométrique nouveau.
+
+Le certificat porte sur les expressions mathématiques prescrites, avec erreurs d'arrondi de l'évaluateur bornées. Il ne simule pas les arrondis d'une exécution OpenFOAM, et ne vaut pas admission native. Les témoins de déterminant utilisent les vraies fermetures non couplées, sans inclure leurs parois dans le tenseur. Aucun critère n'est assoupli.
+
+Les autres contraintes et les obligations de couverture orientée, non-intersection, planéité, bilan, partage des faces et qualité native restent à prouver pour toute solution éventuelle. Une exclusion sur cette restriction ne démontre pas l'impossibilité du système complet à deux inconnues. Les surfaces gauchies 086/091, les parois physiques, les couches, le repos global et la comparaison CFD restent distincts. Aucun débit maximal, gain de puissance ou jumeau calibré validé.
+
+`range-readback.json` est le premier résumé ad hoc conservé ; la v2 ajoute le script reproductible, les empreintes et l'absence de revendication de monotonie, sans changer les plages. Aucun lecteur refusé ni calcul natif dans cette phase.

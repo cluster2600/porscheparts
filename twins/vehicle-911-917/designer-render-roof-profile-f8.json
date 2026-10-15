@@ -1,0 +1,38 @@
+{
+  "$comment": "Provenance de la variante F8, derniere iteration artistique avant le passage au dossier d'ingenierie mecanique.",
+  "schema_version": "1.0.0",
+  "asset_id": "911-917-MID-ENGINE-ROOF-PROFILE-F8",
+  "base_asset": "twins/vehicle-911-917/designer-render-straight-firewall-f7.json",
+  "tool": "OpenAI imagegen",
+  "tool_mode": "precise_object_edit",
+  "model": "not_exposed_by_tool",
+  "edit_target": {
+    "path": "work/911-917-packaging-f1/911-917-mid-engine-straight-firewall-f7.png",
+    "sha256": "47390edf72558cad10eae7e806604587ff319730324656f60dfca71c6757b9a2"
+  },
+  "output_asset": {
+    "path": "work/911-917-packaging-f1/911-917-mid-engine-roof-profile-f8.png",
+    "sha256": "6349c3b9340557df2c877be336d648bed241d397b6cb6f25c2dd2763495b237e",
+    "width_px": 1536,
+    "height_px": 1024,
+    "tracked_in_git": false
+  },
+  "design_requirement": {
+    "view": "lower_true_side_cutaway",
+    "roof_visual_profile": "shallow_convex_993_coupe_arc_with_crown_over_front_occupant_zone",
+    "roof_rearward_trend": "gentle_continuous_descent_to_vertical_firewall",
+    "firewall_visual_plane": "preserved_straight_vertical_plane",
+    "roof_profile_dimensions": null,
+    "windshield_angle_deg": null,
+    "status": "visual_design_freeze_not_dimensional_geometry"
+  },
+  "prompt": "Use case: precise-object-edit\nAsset type: two-panel automotive designer packaging board\nInput image: Image 1 is the edit target.\nPrimary request: correct ONLY the exterior roof and upper cabin profile in the LOWER true-side cutaway. The car faces left in this cutaway. Replace the current roof line that rises toward the rear like a wedge with a coherent Porsche 993 coupe side-profile: keep the windshield rearward-raked as it rises; blend the windshield header tangentially into a shallow smooth convex roof arch; place the roof crown above the front-seat occupant zone; then let the roof descend very gently and continuously toward the B-pillar and the perfectly vertical firewall immediately behind the two seats. The roof must not rise continuously toward the rear, must not be a straight diagonal, must not have a flat plateau, and must have no kink where it meets the firewall. Maintain believable head clearance above both front seats. Use the UPPER three-quarter car only as a style and silhouette reference; do not alter that upper rendering.\nCritical invariants: preserve the F7 firewall exactly as a straight vertical continuous uniform-thickness double-skin plane; preserve its longitudinal position; preserve the two front seats and their positions; preserve the full lower floor, wheel positions, +450 mm stretch, flat-12 ahead of rear axle, drivetrain behind, ducts, heat exchanger, raised rearward 930-inspired spoiler, body width, quarter-window intakes, all labels, arrows, datum lines, colors, paper texture, and the entire UPPER three-quarter image. Do not change or add any text, logos, seats, mechanical parts, annotations, or camera framing. This is a single targeted correction of the lower cutaway roof/windshield silhouette.",
+  "release_gates": {
+    "roof_profile_measured": false,
+    "windshield_angle_measured": false,
+    "occupant_head_clearance_verified": false,
+    "firewall_geometry_dimensioned": false,
+    "manufacturing_authorized": false,
+    "road_or_track_use_authorized": false
+  }
+}

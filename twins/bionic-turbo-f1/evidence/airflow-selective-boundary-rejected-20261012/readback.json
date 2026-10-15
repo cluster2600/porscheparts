@@ -1,0 +1,59 @@
+{
+  "source_archive_sha256": "8d1450fb89eec1e7cecc55c3bb7bc486ccbf63d069379d1d5d7518fa16a4686a",
+  "official_url": "https://dl.openfoam.com/source/v2406/OpenFOAM-v2406.tgz",
+  "members": [
+    {
+      "member": "OpenFOAM-v2406/src/OpenFOAM/meshes/primitiveMesh/primitiveMeshCheck/primitiveMeshTools.C",
+      "sha256": "db2868dc5ccb66f8e3e8c4b919afb8abf8bb3b0fc290c704f9ad4c65b645a712"
+    },
+    {
+      "member": "OpenFOAM-v2406/src/OpenFOAM/meshes/polyMesh/polyMeshCheck/polyMeshCheck.C",
+      "sha256": "898bbdddf4f44aeb0b51eabcf5ded4f4f4ba009297d79a360c54adc5cceb1797"
+    }
+  ],
+  "source_sha256": "60a03a41f841ec2e49d70fd58e604716d79827de0794196c4f402ed9b6526abd",
+  "results": {
+    "selective-initial-071": {
+      "points": 13824,
+      "faces": 27264,
+      "cells": 6784,
+      "bad_cells": 6784,
+      "native_min_mean": [
+        2.642422371668333e-05,
+        0.0002582883517288601
+      ],
+      "reconstructed_min_mean": [
+        2.6424223716688193e-05,
+        0.00025828835172886014
+      ],
+      "protected_point_max_displacement_m": 0.0,
+      "moving_point_max_displacement_m": 5.660562500000474e-05,
+      "topology_identical_to_source": true,
+      "report_sha256": "bdddf2e9c2601c5aaca1feacf13a76be5ddb56297f16b61047a29221237214d6"
+    },
+    "selective-unshifted-072": {
+      "points": 13824,
+      "faces": 27264,
+      "cells": 6784,
+      "bad_cells": 6784,
+      "native_min_mean": [
+        2.636489851470717e-05,
+        0.0002579032142142156
+      ],
+      "reconstructed_min_mean": [
+        2.6364898514708244e-05,
+        0.00025790321421421595
+      ],
+      "protected_point_max_displacement_m": 0.0,
+      "moving_point_max_displacement_m": 0.0,
+      "topology_identical_to_source": true,
+      "report_sha256": "d49dc8735f2d6d1c317bc31d528fe26b3214cfb532e48ae2f594bc343f97d3c1"
+    },
+    "parent_outer_cells": {
+      "minimum": 0.1830702993152539,
+      "maximum": 0.5061045594426572,
+      "all_above_criterion": true
+    }
+  },
+  "scope": "Native determinant depends on internal/coupled face connectivity. Standalone noncoupled wall closure loses radial internal-face contribution; no threshold changed. No snap and no flow solver executed."
+}

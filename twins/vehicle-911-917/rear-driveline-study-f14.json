@@ -1,0 +1,33 @@
+{
+  "phase": "F14",
+  "status": "design_space_study_not_selected_vehicle_architecture",
+  "units": "mm",
+  "wheel_vertical_travel_cases_mm": [40, 60, 80],
+  "sample_step_mm": 4,
+  "required_clearance_mm": 20,
+  "voxel_guard_cells": 2,
+  "candidate_rear_track_mm": 1840,
+  "candidate_rail_y_mm": 690,
+  "candidate_rail_z_mm": 590,
+  "candidate_floor_width_mm": 1100,
+  "candidate_floor_z_mm": 160,
+  "candidate_crossmember_x_mm": [3440],
+  "inspection_bounds_mm": [[2500, -1200, 80], [3600, 1200, 1050]],
+  "assumptions": [
+    "Vertical hub translation only; camber, toe, steer, lateral and longitudinal migration are not modelled.",
+    "40/60/80 mm are sensitivity cases in each direction, not measured or approved suspension travel.",
+    "Candidate rails and rear crossmember are spatial corridors, not sized structural sections or attachment designs.",
+    "The engine output shaft datum is unknown; the F13 fitted cylinder-row direction is not its measured axis.",
+    "1840 mm track is a packaging trial, not a tyre or handling recommendation."
+  ],
+  "unknowns": {
+    "engine_output_shaft_datum": null,
+    "suspension_hardpoints": null,
+    "joint_angle_rating_deg": null,
+    "joint_plunge_capacity_mm": null,
+    "transaxle_GA": null,
+    "transaxle_accepted_torque_spectrum": null,
+    "frame_attachment_coordinates": null,
+    "frame_material_section_loads": null
+  }
+}

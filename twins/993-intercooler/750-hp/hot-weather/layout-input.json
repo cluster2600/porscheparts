@@ -1,0 +1,164 @@
+{
+  "selected": {
+    "geometry": {
+      "width_mm": 800,
+      "span_mm": 699.6,
+      "depth_mm": 150,
+      "hot_gap_mm": 3,
+      "cold_gap_mm": 6,
+      "hot_pitch_mm": 1.5,
+      "cold_pitch_mm": 3,
+      "fin_mm": 0.15,
+      "wall_mm": 0.4,
+      "tubes": 72,
+      "hot_channels_per_tube": 99,
+      "cold_channels_per_gap": 266,
+      "hot_clear_m": 0.00135,
+      "cold_clear_m": 0.00285,
+      "metal_volume_m3": 0.012414689999999999,
+      "core_volume_l": 83.95200000000001,
+      "search_span_limit_mm": 700,
+      "fin_family": "offset",
+      "strip_length_mm": 10,
+      "charge_parallel_banks": 2
+    },
+    "core_mass_kg": 33.271369199999995,
+    "design_point": {
+      "ambient_c": 45,
+      "compressor_inlet_c": 50,
+      "compressor_outlet_c": 233.31956794065758,
+      "fan_position": "downstream",
+      "duct_area_m2": 0.35,
+      "cooling_flow_kg_s": 4.880156293511391,
+      "cooler_speed_ratio": 1.360793471647525,
+      "charge_outlet_c": 58.99999998820243,
+      "cooler_inlet_c": 45,
+      "cooler_exhaust_c": 69.05460317698888,
+      "recirculation_fraction": 0,
+      "cooler_shaft_power_w": 9053.041191848606,
+      "engine_shaft_power_w": 5735.7845619644995,
+      "total_shaft_power_w": 14788.825753813106,
+      "engine_flow_kg_s": 2.5215736242395876,
+      "engine_inlet_c": 47.25887244180457,
+      "fan_total_pressure_pa": 1154.3286262385702,
+      "fan_volume_flow_m3_s": 4.705613801512486,
+      "fan_density_kg_m3": 1.037092396308172,
+      "core_pressure_loss_pa": 891.4861809494124,
+      "charge_pressure_loss_pa": 4532.19953459843,
+      "charge_port_loss_pa": 3012.0928336960405,
+      "heat_rejection_w": 109158.91345182742,
+      "energy_residual_w": -1.4551915228366852e-11,
+      "correlation_admissible": true,
+      "physical_performance_accepted": false
+    }
+  },
+  "assumptions": {
+    "status": "user_authorized_hypotheses_not_measured",
+    "available_envelope_mm": [
+      1100,
+      700,
+      300
+    ],
+    "ambient_design_c": 35,
+    "ambient_sensitivity_c": [
+      25,
+      35,
+      45
+    ],
+    "fan_density_reference_kg_m3": 1.145,
+    "cooler_fan": {
+      "shutoff_pa": 1800,
+      "free_flow_m3_s": 4.4,
+      "efficiency": 0.6
+    },
+    "engine_fan": {
+      "shutoff_pa": 2500,
+      "free_flow_m3_s": 4.0,
+      "efficiency": 0.65
+    },
+    "fan_speed_ratios": [
+      0.8,
+      1.0,
+      1.2
+    ],
+    "engine_reference_flow_kg_s": 2.0,
+    "engine_reference_loss_pa": 1000,
+    "engine_minimum_flow_kg_s": 2.0,
+    "engine_inlet_limit_c": 50,
+    "charge_target_c": 60,
+    "total_shaft_power_budget_w": 15000,
+    "duct_loss_k": 3.0,
+    "cooler_duct_area_m2": 0.15,
+    "header_depth_mm": 65,
+    "header_wall_mm": 3,
+    "charge_pipe_id_mm": 80,
+    "bank_gap_mm": 140,
+    "voxel_mm": 0.75,
+    "search": {
+      "faces_mm": [
+        [
+          700,
+          500
+        ],
+        [
+          800,
+          550
+        ],
+        [
+          850,
+          600
+        ]
+      ],
+      "depths_mm": [
+        90,
+        120,
+        150,
+        180,
+        210
+      ],
+      "hot_pitches_mm": [
+        1.5,
+        2
+      ],
+      "cold_pitches_mm": [
+        2,
+        2.5,
+        3
+      ],
+      "fins_mm": [
+        0.15,
+        0.2
+      ],
+      "walls_mm": [
+        0.4,
+        0.6
+      ]
+    },
+    "acceptance": {
+      "installed_fit_verified": false,
+      "fan_map_measured": false,
+      "thermal_calibrated": false,
+      "manufacturing_authorized": false
+    },
+    "design_margin_k": 1,
+    "compressor_inlet_rise_k": 5,
+    "charge_port_loss_k_each": 2
+  },
+  "pressure": {
+    "service_gauge_pa": 250000,
+    "exploratory_proof_gauge_pa": 375000,
+    "hot_elastic_modulus_pa": 50000000000,
+    "assumed_allowable_pa": 40000000,
+    "wall_mm": 3,
+    "rib_pitch_mm": 30,
+    "rib_thickness_mm": 3,
+    "rib_edge_mm": 12,
+    "comparison_flat_span_mm": 180
+  },
+  "acceptance": {
+    "measured_fit": false,
+    "thermal_calibrated": false,
+    "pressure_qualified": false,
+    "manufacturing_authorized": false
+  }
+}

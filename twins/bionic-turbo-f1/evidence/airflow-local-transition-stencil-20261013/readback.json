@@ -1,0 +1,59 @@
+{
+  "reader_sha256": "90b95a0c69f7621e82e2bf59e098b35c55ccf454c230d14abe10ae56ee3ad5cb",
+  "audit_sha256": "67c6d492959c59b562d4825b6dee838f1716cb13023dfc7e575c93ddb1125f43",
+  "source_receipts": {
+    "work/bionic-airflow-20261012/outer-wall-bisect-086": "2de99bcdfcb7540261f6e4f11db2d6c9469dfca8b365940136599ebec97dce78",
+    "work/bionic-airflow-20261012/regional-castellation-fixed-091": "53d4bb6b97d69332ccb1211d87c955e24ecad30463d192737e951e7136c80484"
+  },
+  "all_source_payloads_verified": true,
+  "native_rerun": false,
+  "source_members": [
+    {
+      "member": "OpenFOAM-v2406/applications/utilities/mesh/advanced/splitCells/splitCells.C",
+      "sha256": "57be6751a5a086a9cb27ac1f52993e51b279330358a3934342671277acc04c1b"
+    },
+    {
+      "member": "OpenFOAM-v2406/applications/utilities/mesh/manipulation/subsetMesh/subsetMesh.C",
+      "sha256": "6c95711e8a3b5c7c8b7cd967149272a68a3b15fafbeca993af2f4c63d815758f"
+    }
+  ],
+  "source_url": "https://dl.openfoam.com/source/v2406/OpenFOAM-v2406.tgz",
+  "archive_sha256": "8d1450fb89eec1e7cecc55c3bb7bc486ccbf63d069379d1d5d7518fa16a4686a",
+  "complexes": [
+    {
+      "name": "face_planes",
+      "seeds": [
+        825
+      ],
+      "parents": 6,
+      "cells": 27,
+      "points": 91,
+      "internal_faces": 50,
+      "boundary_faces": 77,
+      "synthetic_cuts": 63,
+      "original_boundary_faces": 14,
+      "levels": {
+        "1": 24,
+        "0": 3
+      }
+    },
+    {
+      "name": "nonorthogonality",
+      "seeds": [
+        20005,
+        43099
+      ],
+      "parents": 9,
+      "cells": 23,
+      "points": 88,
+      "internal_faces": 46,
+      "boundary_faces": 70,
+      "synthetic_cuts": 60,
+      "original_boundary_faces": 10,
+      "levels": {
+        "0": 7,
+        "1": 16
+      }
+    }
+  ]
+}

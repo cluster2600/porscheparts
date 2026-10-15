@@ -84,6 +84,10 @@ Catalogue record: [`catalog/parts/993-eng-cooling-impeller-we43-f1-0001.json`](.
 
 *`parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fan-curves.png` — a screening output, not a validation.*
 
+![campbell](../../parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/campbell.png)
+
+*`parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/campbell.png` — a screening output, not a validation.*
+
 ![flat-fan-sizing-f2](../../parts/993-eng-cooling-impeller-we43-f1-0001/evidence/flat-fan-sizing-f2.png)
 
 *`parts/993-eng-cooling-impeller-we43-f1-0001/evidence/flat-fan-sizing-f2.png` — a screening output, not a validation.*
@@ -107,10 +111,6 @@ Catalogue record: [`catalog/parts/993-eng-cooling-impeller-we43-f1-0001.json`](.
 ![build-plate](../../parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build-plate.png)
 
 *`parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build-plate.png` — metal LPBF geometry preview with hypothetical supports; no process physics or qualified support design; not a build file or print release.*
-
-![layers](../../parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/layers.png)
-
-*`parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/layers.png` — metal LPBF geometry preview with hypothetical supports; no process physics or qualified support design; not a build file or print release.*
 
 ## Provenance and sources
 
@@ -156,6 +156,10 @@ Catalogue record: [`catalog/parts/993-eng-cooling-impeller-we43-f1-0001.json`](.
 - [`parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fan-curves.png`](../../parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fan-curves.png)
 - [`parts/993-eng-cooling-impeller-we43-f1-0001/evidence/flat-fan-sizing-f2.json`](../../parts/993-eng-cooling-impeller-we43-f1-0001/evidence/flat-fan-sizing-f2.json)
 - [`parts/993-eng-cooling-impeller-we43-f1-0001/evidence/flat-fan-sizing-f2.png`](../../parts/993-eng-cooling-impeller-we43-f1-0001/evidence/flat-fan-sizing-f2.png)
+- [`parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/fe-screen.json`](../../parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/fe-screen.json)
+- [`parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/solver-benchmarks.json`](../../parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/solver-benchmarks.json)
+- [`parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/campbell.png`](../../parts/993-eng-cooling-impeller-we43-f1-0001/evidence/fe-screen/campbell.png)
+- [`parts/993-eng-cooling-impeller-we43-f1-0001/source/fe_screen_f1.py`](../../parts/993-eng-cooling-impeller-we43-f1-0001/source/fe_screen_f1.py)
 - [`catalog/sources/src-ferdinand-eb-motorsport-flat-fan-kit.json`](../../catalog/sources/src-ferdinand-eb-motorsport-flat-fan-kit.json)
 - [`catalog/sources/src-jim-torres-racing-935-reproduction-flat-fan.json`](../../catalog/sources/src-jim-torres-racing-935-reproduction-flat-fan.json)
 

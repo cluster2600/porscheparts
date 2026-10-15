@@ -1,0 +1,9 @@
+# Protocole préalable
+
+Nouvelle version de l'encadrement des quatre déterminants choisis dans PR233, sur exactement ses 827 feuilles indécises. Garder u=q_m, stations, topologie, contributions internes et seuils inchangés. Aucun nouveau ratio ponctuel, candidat, subdivision de boîte, dictionnaire ou natif. Les 1 524 exclusions antérieures restent conservées.
+
+Paramétrer symboliquement v=q_m+(q_ext-q_m)t. Construire les vecteurs aires comme polynômes rationnels, vérifier coefficient par coefficient leur égalité à l'éventail natif, puis l'identité Cauchy–Binet du Gram. Encadrer sur les mêmes boîtes par coefficients de Bernstein exacts : enveloppe convexe des coefficients, sans évaluation ponctuelle. Pour det(G), intersecter l'encadrement polynomial direct et la somme des carrés des produits triples, avec positivité du Gram. Normes via encadrement polynomial de |S|², racines par isqrt à 160 bits fractionnaires ; E est la somme des seules normes internes. Conserver les quatre déterminants et les deux angles hérités comme sous-ensemble nécessaire, pas comme preuve de faisabilité globale.
+
+Vérifier les identités et publier leur dérivation avant d'interpréter les résultats. Un lecteur distinct construit les aires par l'éventail, le déterminant par développement de matrice, et restreint les polynômes par de Casteljau rationnel. Il vérifie les bornes sur chaque boîte. Les éventuels signes d'angles positifs repris de PR233 doivent être relus via son moteur indépendant sur la boîte entière avant toute qualification du seul sous-ensemble. Aucun point nouveau n'est évalué.
+
+Une borne supérieure strictement négative exclut une boîte ; des bornes positives sur les six seuls critères ne l'admettent pas. Toutes les autres contraintes, volumes, couverture orientée, non-intersection, plans, MRF, qualité native et repos restent à traiter. Aucune impossibilité générale déduite de cette restriction.

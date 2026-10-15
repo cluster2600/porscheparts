@@ -559,6 +559,12 @@ In the `cadsim` image, with shapely from the print-simulation library folder:
 
 ## Limits
 
+The [native Mac field-to-lattice study](field-lattice/README.md) now exchanges
+the retained serial torsion/bending demand through OpenVDB and uses ShapeKernel
+and LatticeLibrary for two local geometric probes. Field exchange passed; the
+graded raw STL was rejected by the independent surface screen. Neither probe
+is a fitted core or a newly validated monocoque.
+
 - The outline is Porsche's to the plate's drawing accuracy (about ±4 mm on
   the calibration markers); everything between outlines is modelled.
 - The plate shows a 964 from model year 1991; the 993 shares the floor and
