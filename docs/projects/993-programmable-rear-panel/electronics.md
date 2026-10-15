@@ -96,7 +96,7 @@ screws locked by a compatible process and PCB support against bending/vibration.
    photos. No vehicle connection.
 2. Small protection/control PCB + mono coupon: independent schematic/BOM review,
    DRC/ERC, test points, programming, current limits, dummy load then LEDs.
-   RFQ for 3–5 boards; all marked "prototype non validé" (prototype not validated).
+   RFQ for 3–5 boards; all marked "prototype not validated".
 3. Full-width board/segments after G2: frozen interfaces, connectors between
    segments, heat/current distribution, repair access, PCBA then 100%
    inspection. AOI for small packages, additional inspection if joints are hidden,
