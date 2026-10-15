@@ -179,8 +179,7 @@ loaded every edge reproduced a uniform hydrostatic state exactly before the
 filter was corrected.
 
 The fillets fill 0.17 mm² (r = 0.2) or 0.69 mm² (r = 0.4) of the 57.6 mm² full
-hot section. The hydraulic model above uses rectangular channels and was not
-re-run for them.
+hot section. The hydraulic proxy is re-run for them in the next section.
 
 The [summary](derived/fillet-convergence/fillet-convergence.json), per-case
 receipts and solver logs are committed. The decks, FRD and DAT files, about
@@ -190,6 +189,39 @@ then solved alone at 8 GB with `--resume`, which reuses the eleven finished case
 only after checking their digests and regenerating their decks; the summary
 records this.
 
+## Hydraulic proxy with the assumed fillets
+
+*Added 2026-10-15.* [fillet_hydraulics.py](source/fillet_hydraulics.py) repeats the
+equal-pressure split of the exploratory hydraulic cost above for the four-rib
+section with the same assumed 0.2 and 0.4 mm root fillets, at the same total mass
+flow, gas state and assumed K = 2. [study.py](source/study.py) is unchanged. Instead
+of the rectangular-duct formula, each channel cross-section is meshed with gmsh
+(6-node triangles, four sizes from 0.2 to 0.025 mm) and the fully developed laminar
+problem is solved by finite elements; the flow resistance follows from the integral
+of the solution. The sharp section reproduces the exact rectangular series to
+better than 1e-6, so the study's 4.866 Pa is recovered as 4.865 Pa.
+
+| Root | Open full section | fRe, 1.8 / 5.2 mm channel | Pressure loss | Change |
+|---|---:|---:|---:|---:|
+| Sharp | 57.60 mm² | 59.92 / 60.37 | 4.865 Pa | — |
+| Assumed fillet r = 0.2 mm | 57.43 mm² | 63.31 / 62.58 | 4.881 Pa | +0.33 % |
+| Assumed fillet r = 0.4 mm | 56.91 mm² | 65.18 / 64.18 | 4.937 Pa | +1.47 % |
+
+- The fillets raise fRe, but they also raise the hydraulic diameter, so the
+  friction loss per channel barely moves. Most of the increase comes from the
+  assumed K = 2 acting on a slightly higher mean velocity.
+- In this model the fillets cost far less than the ribs themselves (+60 % against
+  the smooth passage).
+- The model still assumes fully developed flow. The estimated laminar entrance
+  length (0.05 Re Dh) is 0.7 to 0.8 channel lengths for the 1.8 mm channels and
+  2.9 to 3.1 channel lengths for the 5.2 mm channels, so the wide channels never
+  become fully developed in 24 mm. Roughness, headers and heat transfer are not
+  modelled either. **This remains a proxy; no hydraulic performance is accepted.**
+
+The [receipt](derived/fillet-hydraulics/fillet-hydraulics.json) keeps every
+section, its mesh convergence (GCI below 1e-7), the split per channel and the
+hashes of the inputs.
+
 ## Reproduction and next steps
 
 ```sh
@@ -198,6 +230,9 @@ docker run --rm --network none --cpus 1 --memory 8g --memory-swap 8g -e OMP_NUM_
   python3 -B /repo/twins/993-intercooler/750-hp/pressure-coupon/source/fillet_convergence.py --output /out/new-fillets \
   --image-id "$(docker image inspect 3dprinting993-cadsim:dev --format '{{.Id}}')"
 python3 twins/993-intercooler/750-hp/pressure-coupon/source/fillet_review.py --output work/new-fillet-convergence.png
+docker run --rm --network none --cpus 2 --memory 3g --memory-swap 3g -v "$PWD":/repo:ro -v "$PWD/work":/out -w /tmp 3dprinting993-cadsim:dev \
+  python3 -B /repo/twins/993-intercooler/750-hp/pressure-coupon/source/fillet_hydraulics.py --output /out/new-fillet-hydraulics \
+  --image-id "$(docker image inspect 3dprinting993-cadsim:dev --format '{{.Id}}')"
 python3 -m unittest discover -s tests -p test_993_intercooler_pressure_coupon.py -v
 ```
 

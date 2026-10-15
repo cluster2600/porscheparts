@@ -115,4 +115,45 @@ class FilletConvergenceTests(unittest.TestCase):
         original=next(c for c in json.loads((STUDY/'derived/study.json').read_text())['cases'] if (c['rib_count'],c['mesh_mm'])==(4,.1))
         self.assertAlmostEqual(s['0.0']['maximum_displacement_mm'][-1]/original['maximum_displacement_mm'],1,delta=.01)
 
+HYDRAULICS=STUDY/'derived/fillet-hydraulics/fillet-hydraulics.json'
+spec=importlib.util.spec_from_file_location('fillet_hydraulics',STUDY/'source/fillet_hydraulics.py');H=importlib.util.module_from_spec(spec);spec.loader.exec_module(H)
+
+
+class FilletHydraulicsTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.r=json.loads(HYDRAULICS.read_text())
+
+    def test_receipt_provenance_and_flags(self):
+        r=self.r;self.assertEqual(sha(STUDY/'source/fillet_hydraulics.py'),r['source_sha256'])
+        for path,digest in r['dependency_hashes'].items():self.assertEqual(sha(ROOT/path),digest)
+        self.assertTrue(r['fillet_radii_are_assumptions'])
+        for key in ['hydraulic_performance_accepted','thermal_gain_claimed','manufacturing_authorized','resolved_thermal_or_flow_simulation']:self.assertFalse(r[key])
+        self.assertEqual(r['clear_widths_mm'],[1.8,5.2,5.2,5.2,1.8]);self.assertEqual(H.widths(),r['clear_widths_mm'])
+
+    def test_sections_match_exact_rectangle_and_drawn_fillet_area(self):
+        # Square duct: the exact series gives the textbook Darcy fRe of 56.91.
+        self.assertAlmostEqual(H.friction_re(9,12,H.rectangle_w_integral(3,3)),56.908,places=2)
+        for s in self.r['sections']:
+            self.assertAlmostEqual(s['fe_area_mm2'],s['analytic_area_mm2'],delta=1e-6 if s['element_size_mm']<=.05 else 2e-4)
+            self.assertAlmostEqual(s['cad_perimeter_mm'],s['analytic_perimeter_mm'],delta=1e-9)
+            if s['fillet_radius_mm']==0:self.assertAlmostEqual(s['w_integral_mm4']/H.rectangle_w_integral(s['width_mm'],s['height_mm']),1,delta=1e-4 if s['element_size_mm']>.05 else 1e-6)
+        for v in self.r['variants'].values():
+            for c in v['w_integral_convergence'].values():self.assertTrue(c['converged_within_gci']);self.assertLess(c['gci_fine'],1e-6)
+            self.assertAlmostEqual(v['open_area_mm2'],57.6-20*(1-3.141592653589793/4)*v['fillet_radius_mm']**2,places=5)
+
+    def test_equal_pressure_split_reproduces_study_and_orders_radii(self):
+        r=self.r;drops=[]
+        self.assertAlmostEqual(r['study_rectangular_proxy']['pressure_drop_pa'],M.hydraulic(4)['pressure_drop_pa'],places=9)
+        self.assertAlmostEqual(r['sharp_exact_series_split']['pressure_drop_pa']/r['study_rectangular_proxy']['pressure_drop_pa'],1,delta=1e-3)
+        for radius in ['0.0','0.2','0.4']:
+            v=r['variants'][radius];split=H.split(v['channel_sections']);self.assertEqual(split,v['split'])
+            self.assertAlmostEqual(split['mass_flow_closure'],0,places=12);self.assertEqual(split['total_mass_flow_kg_s'],M.hydraulic(4)['total_mass_flow_kg_s'])
+            for c in split['channels']:self.assertAlmostEqual(c['pressure_drop_pa'],split['pressure_drop_pa'],places=7);self.assertLess(c['re'],2300)
+            drops.append(split['pressure_drop_pa'])
+        self.assertAlmostEqual(drops[0]/r['sharp_exact_series_split']['pressure_drop_pa'],1,delta=1e-6)
+        self.assertLess(drops[0],drops[1]);self.assertLess(drops[1],drops[2])
+        # Developing flow is not resolved: the wide channels never become fully developed in 24 mm.
+        self.assertGreater(max(c['hydrodynamic_entry_length_over_length'] for c in r['variants']['0.2']['split']['channels']),1)
+
 if __name__=='__main__':unittest.main()
