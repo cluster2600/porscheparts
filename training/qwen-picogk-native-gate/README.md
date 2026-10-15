@@ -122,6 +122,13 @@ recheck completes 3,798 tests in 253 seconds, with two floating-result failures,
 Strict documentation links pass across 884 Markdown files. GitHub CI is a
 separate publication check; this experiment snapshot does not claim its result.
 
+The paragraph above is a dated record of the original Mac run and is kept as
+such. Later runs are green: GitHub CI
+([Validate catalogue run 38592196135](https://github.com/cluster2600/porscheparts/actions/runs/38592196135))
+passed on head `61d4eb4c`, and `make check` on Linux in a venv mirroring the CI
+pins (Python 3.12) passes; the PR description records the counts for each run.
+These are software checks only and do not change the open items below.
+
 ## Remaining work
 
 This screen does not detect every self-intersection, establish clearances,
