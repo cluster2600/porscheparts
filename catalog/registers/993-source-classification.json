@@ -1,0 +1,704 @@
+{
+  "$comment": "Classification register for official and manufacturer sources of the 993. 'families' records, for each system of the assembly skeleton, at least one qualified source (official or manufacturer, evidence level A or B) and where in it the family is covered. 'sources' records model years and dated availability observations only where a record states them or where this register states its own dated observation; a source absent from 'sources' is not classified, which says nothing about its years or availability. Validated by scripts/validate_registers.py.",
+  "schema_version": "1.0.0",
+  "register_id": "REG-993-SOURCE-CLASSIFICATION",
+  "generation": "993",
+  "updated_on": "2026-10-15",
+  "rules": [
+    "Model years are recorded only from text already present in the source record (title, coverage.variants or notes), quoted verbatim; nothing is inferred from the generation alone.",
+    "Every availability observation is dated and names the channel it was observed on. It describes that channel on that day, not the market.",
+    "Absence of a part number from the Porsche Classic Parts Finder, or from any vendor search, is recorded as not_listed_on_channel. It is not proof that the part or the publication is discontinued; discontinued_per_publisher requires an explicit statement by the publisher.",
+    "A listing is not a purchase and not an offer to buy: purchases and subscriptions are owner decisions."
+  ],
+  "families": [
+    {
+      "family_id": "0xx",
+      "name": "Consumables, adhesives and documentation",
+      "qualified_sources": [
+        {
+          "source_id": "SRC-PORSCHE-PET-993",
+          "role": "assembly_breakdown",
+          "location": "Kat 017 illustrations 001-00 to 005-00 (4 illustrations, 171 references in catalog/reference/993-assembly-skeleton.json); part identity and assembly order, no dimensions",
+          "pet_illustrations": {
+            "first": "001-00",
+            "last": "005-00"
+          }
+        },
+        {
+          "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+          "role": "service_specification",
+          "location": "maintenance chapter, PDF pages 22 to 57 (service intervals and checks); transmission oil capacity on PDF page 256. PDF pages are those of the consulted copy indexed in catalog/measurements/MEAS-MANUAL-993-ALL.json.",
+          "value_ids": [
+            "MNL-OCR-0024",
+            "MNL-TECH-0063"
+          ]
+        },
+        {
+          "source_id": "SRC-PORSCHE-LITERATURE-CATALOGUE-DE",
+          "role": "documentation_index",
+          "location": "Kat 090 literature catalogue: 993 repair-manual and OBD-II publication references WKD483110, WKD483210, WKD483310 and WKD483410"
+        }
+      ],
+      "gaps": "No dimensional content is expected for this family."
+    },
+    {
+      "family_id": "1xx",
+      "name": "Engine",
+      "qualified_sources": [
+        {
+          "source_id": "SRC-PORSCHE-PET-993",
+          "role": "assembly_breakdown",
+          "location": "Kat 017 illustrations 101-00 to 198-00R (34 illustrations, 2398 references in catalog/reference/993-assembly-skeleton.json); part identity and assembly order, no dimensions",
+          "pet_illustrations": {
+            "first": "101-00",
+            "last": "198-00R"
+          }
+        },
+        {
+          "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+          "role": "service_specification",
+          "location": "technical data PDF page 15; engine groups 10 to 15, PDF pages 59 to 195 (crankshaft and case bores p. 98, piston groups p. 108, valves and guides p. 152 to 157, timing p. 175 to 177); engine torques p. 59 to 62 and 74 to 195. PDF pages are those of the consulted copy indexed in catalog/measurements/MEAS-MANUAL-993-ALL.json.",
+          "value_ids": [
+            "MNL-TECH-0005",
+            "MNL-TECH-0006",
+            "MNL-TORQUE-0001",
+            "MNL-TORQUE-0045"
+          ]
+        }
+      ],
+      "gaps": "Service limits and fits, not manufacturing drawings; no M64/60 Turbo volume in the consulted manual."
+    },
+    {
+      "family_id": "2xx",
+      "name": "Fuel, exhaust and forced induction",
+      "qualified_sources": [
+        {
+          "source_id": "SRC-PORSCHE-PET-993",
+          "role": "assembly_breakdown",
+          "location": "Kat 017 illustrations 201-00 to 298-00 (11 illustrations, 611 references in catalog/reference/993-assembly-skeleton.json); part identity and assembly order, no dimensions",
+          "pet_illustrations": {
+            "first": "201-00",
+            "last": "298-00"
+          }
+        },
+        {
+          "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+          "role": "service_specification",
+          "location": "fuel supply PDF pages 197 to 199, fuel injection p. 200 to 226, exhaust system p. 228 to 230 (Carrera). PDF pages are those of the consulted copy indexed in catalog/measurements/MEAS-MANUAL-993-ALL.json.",
+          "value_ids": [
+            "MNL-OCR-0378",
+            "MNL-OCR-0384",
+            "MNL-OCR-0422"
+          ]
+        },
+        {
+          "source_id": "SRC-PORSCHE-PET-993-TURBO-HEAT-EXCHANGER-202-10",
+          "role": "assembly_breakdown",
+          "location": "Turbo illustration 202-10"
+        },
+        {
+          "source_id": "SRC-PET-993-202-16-TURBO-OIL-CIRCUIT",
+          "role": "assembly_breakdown",
+          "location": "Turbo illustration 202-16"
+        }
+      ],
+      "gaps": "No dimensioned fuel tank, fuel pump or line geometry in any registered source; fuel-system parts are excluded from release without professional engineering review."
+    },
+    {
+      "family_id": "3xx",
+      "name": "Transmission",
+      "qualified_sources": [
+        {
+          "source_id": "SRC-PORSCHE-PET-993",
+          "role": "assembly_breakdown",
+          "location": "Kat 017 illustrations 301-00 to 398-00R (34 illustrations, 1368 references in catalog/reference/993-assembly-skeleton.json); part identity and assembly order, no dimensions",
+          "pet_illustrations": {
+            "first": "301-00",
+            "last": "398-00R"
+          }
+        },
+        {
+          "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+          "role": "service_specification",
+          "location": "G50/20 and G50/21 (Carrera) and G50/31 to G50/33 (Carrera RS) identification, ratios and capacities, PDF pages 253 to 258; G64/20 and G64/21 (Carrera 4) p. 354; manual-transmission torques p. 357; Tiptronic torques p. 444 to 446; manual transmission, final drive and differential procedures p. 277 to 430; Tiptronic p. 448 to 501; transaxle p. 516 to 535. PDF pages are those of the consulted copy indexed in catalog/measurements/MEAS-MANUAL-993-ALL.json.",
+          "value_ids": [
+            "MNL-TECH-0043",
+            "MNL-TECH-0044",
+            "MNL-TECH-0046",
+            "MNL-TECH-0051",
+            "MNL-TECH-0062",
+            "MNL-TECH-0065",
+            "MNL-TECH-0074",
+            "MNL-TECH-0084",
+            "MNL-TORQUE-0077",
+            "MNL-TORQUE-0081",
+            "MNL-TORQUE-0088"
+          ]
+        }
+      ],
+      "gaps": "Ratios, capacities, thread sizes and torques only; no gear, shaft or case geometry. The workshop-manual source record cannot list the transmission in coverage.parts because it is digest-pinned; this entry records the coverage instead."
+    },
+    {
+      "family_id": "4xx",
+      "name": "Steering, cross member and front axle",
+      "qualified_sources": [
+        {
+          "source_id": "SRC-PORSCHE-PET-993",
+          "role": "assembly_breakdown",
+          "location": "Kat 017 illustrations 401-00 to 403-07 (14 illustrations, 624 references in catalog/reference/993-assembly-skeleton.json); part identity and assembly order, no dimensions",
+          "pet_illustrations": {
+            "first": "401-00",
+            "last": "403-07"
+          }
+        },
+        {
+          "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+          "role": "service_specification",
+          "location": "chassis PDF pages 548 to 556; front suspension torques p. 557 to 559; wheels, tyres and alignment p. 612 to 639; steering torques p. 705. PDF pages are those of the consulted copy indexed in catalog/measurements/MEAS-MANUAL-993-ALL.json.",
+          "value_ids": [
+            "MNL-TORQUE-0104",
+            "MNL-TORQUE-0186",
+            "MNL-OCR-1230"
+          ]
+        }
+      ],
+      "gaps": "Torques and alignment values; no arm, upright or cross-member geometry. Steering and suspension parts are excluded from release without professional engineering review."
+    },
+    {
+      "family_id": "5xx",
+      "name": "Rear axle, shock absorbers and drive shafts",
+      "qualified_sources": [
+        {
+          "source_id": "SRC-PORSCHE-PET-993",
+          "role": "assembly_breakdown",
+          "location": "Kat 017 illustrations 501-00 to 502-02 (7 illustrations, 326 references in catalog/reference/993-assembly-skeleton.json); part identity and assembly order, no dimensions",
+          "pet_illustrations": {
+            "first": "501-00",
+            "last": "502-02"
+          }
+        },
+        {
+          "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+          "role": "service_specification",
+          "location": "rear suspension and drive shafts, PDF pages 578 to 611, torques p. 578 to 580. PDF pages are those of the consulted copy indexed in catalog/measurements/MEAS-MANUAL-993-ALL.json.",
+          "value_ids": [
+            "MNL-TORQUE-0135",
+            "MNL-TORQUE-0161"
+          ]
+        }
+      ],
+      "gaps": "The thinnest family: torques and procedures only, no dimensional data for the multi-link rear axle, its carrier or the drive shafts."
+    },
+    {
+      "family_id": "6xx",
+      "name": "Brakes, wheels and hydraulics",
+      "qualified_sources": [
+        {
+          "source_id": "SRC-PORSCHE-PET-993",
+          "role": "assembly_breakdown",
+          "location": "Kat 017 illustrations 601-00 to 698-00 (13 illustrations, 820 references in catalog/reference/993-assembly-skeleton.json); part identity and assembly order, no dimensions",
+          "pet_illustrations": {
+            "first": "601-00",
+            "last": "698-00"
+          }
+        },
+        {
+          "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+          "role": "service_specification",
+          "location": "brakes PDF pages 653 to 728, brake data for Carrera 4 p. 725 to 726 and Carrera 4S p. 727 to 728; brake torques p. 653 and 680 to 681. PDF pages are those of the consulted copy indexed in catalog/measurements/MEAS-MANUAL-993-ALL.json.",
+          "value_ids": [
+            "MNL-TECH-0097",
+            "MNL-TECH-0101",
+            "MNL-TORQUE-0162",
+            "MNL-TORQUE-0169"
+          ]
+        },
+        {
+          "source_id": "SRC-KBA-ECE-R124-000084-FUCHS-37024",
+          "role": "type_approval",
+          "location": "ECE R124 approval and application annex, wheel type 37024"
+        },
+        {
+          "source_id": "SRC-KBA-ECE-R124-000088-FUCHS-37028",
+          "role": "type_approval",
+          "location": "ECE R124 approval and application annex, wheel type 37028"
+        },
+        {
+          "source_id": "SRC-FUCHS-993-APPLICATION-LEAFLET-2020",
+          "role": "declared_dimensions",
+          "location": "application area Porsche 993, page 2"
+        },
+        {
+          "source_id": "SRC-ATE-CLASSIC-PORSCHE-BRAKE-DISCS",
+          "role": "declared_dimensions",
+          "location": "disc table for OE 993 351 043 01 and 993 351 044 01"
+        }
+      ],
+      "gaps": "Service data and approved fitments only. Braking and wheel parts are excluded from manufacture and release in this project."
+    },
+    {
+      "family_id": "7xx",
+      "name": "Controls, pedals and clutch actuation",
+      "qualified_sources": [
+        {
+          "source_id": "SRC-PORSCHE-PET-993",
+          "role": "assembly_breakdown",
+          "location": "Kat 017 illustrations 701-00 to 702-10 (8 illustrations, 494 references in catalog/reference/993-assembly-skeleton.json); part identity and assembly order, no dimensions",
+          "pet_illustrations": {
+            "first": "701-00",
+            "last": "702-10"
+          }
+        },
+        {
+          "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+          "role": "service_specification",
+          "location": "repair group 30 'Clutch, Controls' PDF pages 261 to 263 and 'Clutch, Operation' p. 268 to 276 (servo spring setting dimension, clutch pedal travel, brake light switch travel, fastener sizes); Tiptronic selector lever fasteners p. 444 and 447 and selector controls p. 456 and 466; pedal travel in the maintenance chapter p. 35; brake pedal plate p. 726 and 728. All values from p. 261 to 276 are ocr_unreviewed. PDF pages are those of the consulted copy indexed in catalog/measurements/MEAS-MANUAL-993-ALL.json.",
+          "value_ids": [
+            "MNL-OCR-0047",
+            "MNL-OCR-0477",
+            "MNL-OCR-0479",
+            "MNL-OCR-0483",
+            "MNL-OCR-0485",
+            "MNL-OCR-0488",
+            "MNL-OCR-0491",
+            "MNL-OCR-0497",
+            "MNL-TECH-0088",
+            "MNL-TECH-0089",
+            "MNL-TECH-0092",
+            "MNL-OCR-0885",
+            "MNL-OCR-0895",
+            "MNL-OCR-1550"
+          ]
+        }
+      ],
+      "gaps": "Official coverage exists but is limited to assembly breakdown and service settings. No official source gives the geometry of the pedals, the shift lever, the handbrake lever or the clutch actuation parts; the only dimensional records for this family are community or aftermarket (SRC-PFF-993-BRAKE-LIGHT-SWITCH-TRAVEL, SRC-PARTWORKS-993-THROTTLE-LINKAGE-BUSHING-DIMENSIONS). The pedal box and the handbrake belong to the braking system and are excluded from release."
+    },
+    {
+      "family_id": "8xx",
+      "name": "Body and trim",
+      "qualified_sources": [
+        {
+          "source_id": "SRC-PORSCHE-PET-993",
+          "role": "assembly_breakdown",
+          "location": "Kat 017 illustrations 801-00 to 807-02 (85 illustrations, 4553 references in catalog/reference/993-assembly-skeleton.json); part identity and assembly order, no dimensions",
+          "pet_illustrations": {
+            "first": "801-00",
+            "last": "807-02"
+          }
+        },
+        {
+          "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+          "role": "service_specification",
+          "location": "body groups 50 to 53, PDF pages 746 to 874 (panel repair procedures; p. 755 carries point thread designations without dimension values); body equipment p. 883 to 1023. PDF pages are those of the consulted copy indexed in catalog/measurements/MEAS-MANUAL-993-ALL.json.",
+          "value_ids": [
+            "MNL-OCR-1601",
+            "MNL-OCR-1613"
+          ]
+        },
+        {
+          "source_id": "SRC-ASTRA-993-TYPE-APPROVAL-DIMENSIONS",
+          "role": "type_approval",
+          "location": "Swiss type-approval document: length, wheelbase, width and height of the Carrera coupe"
+        },
+        {
+          "source_id": "SRC-PORSCHE-993-SPOILER-TEILEGUTACHTEN",
+          "role": "type_approval",
+          "location": "TUV report and Porsche manufacturer certificate for the 993 spoilers and aerokits"
+        }
+      ],
+      "gaps": "No authorized 993 body repair or floor-assembly dimension table is in the catalogue: see issue #10, catalog/registers/contradictions.json CTR-0001 to CTR-0003 and docs/research/993-body-dimensions-rights-note.md."
+    },
+    {
+      "family_id": "9xx",
+      "name": "Electrics, lighting and equipment",
+      "qualified_sources": [
+        {
+          "source_id": "SRC-PORSCHE-PET-993",
+          "role": "assembly_breakdown",
+          "location": "Kat 017 illustrations 901-00 to 911-10 (29 illustrations, 1499 references in catalog/reference/993-assembly-skeleton.json); part identity and assembly order, no dimensions",
+          "pet_illustrations": {
+            "first": "901-00",
+            "last": "911-10"
+          }
+        },
+        {
+          "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+          "role": "service_specification",
+          "location": "starter and power supply PDF pages 233 to 242; instruments, radio, wipers and lamps p. 1073 to 1117; wiring p. 1130 to 1193; diagnosis p. 1212 to 1477. PDF pages are those of the consulted copy indexed in catalog/measurements/MEAS-MANUAL-993-ALL.json.",
+          "value_ids": [
+            "MNL-OCR-0430",
+            "MNL-OCR-1788"
+          ]
+        },
+        {
+          "source_id": "SRC-PORSCHE-CLASSIC-PCCM-993-DIMENSIONS",
+          "role": "declared_dimensions",
+          "location": "PCCM 1-DIN unit envelope 187.5 x 58 x 170 mm, reference 91164559000"
+        }
+      ],
+      "gaps": "Connector and harness geometry is not documented; airbag and restraint parts are excluded from release."
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "SRC-PORSCHE-PET-993",
+      "model_years": {
+        "from": 1994,
+        "to": 1998,
+        "stated_in": "title",
+        "quote": "1994-1998"
+      }
+    },
+    {
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+      "model_years": {
+        "from": 1995,
+        "to": 1998,
+        "stated_in": "coverage.variants",
+        "quote": "Carrera_1995_1998",
+        "note": "variant label of the record; the manual edition is not dated in the record"
+      },
+      "availability": [
+        {
+          "observed_on": "2026-10-15",
+          "status": "listed_for_sale",
+          "item": "WKD 483 121 (English, 8 volumes)",
+          "channel_url": "https://www.stoddard.com/wkd483121.html",
+          "basis": "register_observation",
+          "quote": "Factory Workshop Manual For 993 1995-1998. 8 Volumes; Reference : WKD 483 121; Manufacturer : Genuine; $1,038.64; Ship Today (before 5:00pm)",
+          "note": "Currency not named on the page; the shipping line may be generic site text rather than stock. Nothing on the page about selling a single volume. Recorded as SRC-STODDARD-993-WORKSHOP-MANUAL-WKD483121."
+        },
+        {
+          "observed_on": "2026-10-15",
+          "status": "robots_excluded",
+          "item": "WKD 483 121",
+          "channel_url": "https://www.pelicanparts.com/More_Info/WKD483121.htm?pn=WKD-483-121-OEM",
+          "basis": "register_observation",
+          "quote": "User-agent: ClaudeBot / Disallow: /",
+          "note": "The URL of the workshop-manual record itself; its robots.txt excludes Claude agents, so the page was not fetched and its listing state is unknown."
+        }
+      ]
+    },
+    {
+      "source_id": "SRC-PET-993-KAT17-PDF",
+      "model_years": {
+        "from": 1994,
+        "to": 1998,
+        "stated_in": "title",
+        "quote": "1994-1998"
+      }
+    },
+    {
+      "source_id": "SRC-PORSCHE-993-AIR-FILTER-TEILEGUTACHTEN",
+      "model_years": {
+        "from": 1994,
+        "to": 1996,
+        "stated_in": "coverage.variants",
+        "quote": "model_year_1994_1996"
+      }
+    },
+    {
+      "source_id": "SRC-PORSCHE-993-SPOILER-TEILEGUTACHTEN",
+      "model_years": {
+        "from": 1994,
+        "to": 1998,
+        "stated_in": "coverage.variants",
+        "quote": "model_year_1994_1998"
+      }
+    },
+    {
+      "source_id": "SRC-PORSCHE-993-TURBO-CAM-TIMING-9504",
+      "model_years": {
+        "from": 1996,
+        "to": 1996,
+        "stated_in": "coverage.variants",
+        "quote": "993_Turbo_MY1996"
+      }
+    },
+    {
+      "source_id": "SRC-PORSCHE-993-TURBO-DUAL-EXHAUST-1-98",
+      "model_years": {
+        "from": 1996,
+        "to": 1997,
+        "stated_in": "coverage.variants",
+        "quote": "993_Turbo_MY1996_1997_XLB"
+      }
+    },
+    {
+      "source_id": "SRC-PORSCHE-993-TURBO-DYNO-9502",
+      "model_years": {
+        "from": 1996,
+        "to": null,
+        "stated_in": "coverage.variants",
+        "quote": "993_Turbo_MY1996_onward"
+      }
+    },
+    {
+      "source_id": "SRC-PORSCHE-993-TURBO-FAN-BELT-9505",
+      "model_years": {
+        "from": 1996,
+        "to": 1996,
+        "stated_in": "coverage.variants",
+        "quote": "993_Turbo_MY1996"
+      }
+    },
+    {
+      "source_id": "SRC-PORSCHE-993-TURBO-OIL-FILL-9603",
+      "model_years": {
+        "from": 1996,
+        "to": 1996,
+        "stated_in": "coverage.variants",
+        "quote": "993_Turbo_MY1996"
+      }
+    },
+    {
+      "source_id": "SRC-PORSCHE-993-TURBO-OIL-FILTER-9503",
+      "model_years": {
+        "from": 1996,
+        "to": 1996,
+        "stated_in": "coverage.variants",
+        "quote": "993_Turbo_MY1996"
+      }
+    },
+    {
+      "source_id": "SRC-PORSCHE-993-TURBO-REAR-MOUNTS-1-99",
+      "model_years": {
+        "from": 1997,
+        "to": 1998,
+        "stated_in": "coverage.variants",
+        "quote": "993_Turbo_S_MY1997_1998"
+      }
+    },
+    {
+      "source_id": "SRC-PORSCHE-993-PISTON-SPRAY-JETS-1-97",
+      "model_years": {
+        "from": 1996,
+        "to": null,
+        "stated_in": "coverage.variants",
+        "quote": "993_Turbo_M64_60_MY1996_onward"
+      }
+    },
+    {
+      "source_id": "SRC-PORSCHE-993-SPEC-BOOKLET-PUBSTACK",
+      "model_years": {
+        "from": 1994,
+        "to": 1995,
+        "stated_in": "title",
+        "quote": "1994-1995",
+        "note": "third-party copy; see CTR-0003"
+      }
+    },
+    {
+      "source_id": "SRC-PORSCHE-CLASSIC-PCCM-993-DIMENSIONS",
+      "model_years": {
+        "from": 1995,
+        "to": 1998,
+        "stated_in": "coverage.variants",
+        "quote": "1995-1998"
+      }
+    },
+    {
+      "source_id": "SRC-PORSCHE-ORIGINALE-993-PRODUCT-DIMENSIONS",
+      "model_years": {
+        "from": 1994,
+        "to": 1998,
+        "stated_in": "coverage.variants",
+        "quote": "1994-1998"
+      }
+    },
+    {
+      "source_id": "SRC-CELETTE-MZX-964-993-JIGS",
+      "model_years": {
+        "from": 1989,
+        "to": 1998,
+        "stated_in": "coverage.variants",
+        "quote": "964_and_993_1989_1998",
+        "note": "range spans the 964 and the 993"
+      },
+      "availability": [
+        {
+          "observed_on": "2026-08-29",
+          "status": "listed_out_of_stock",
+          "item": "MZx composite jig set 964/993",
+          "channel_url": "https://celettejig.com/en/home/11-porsche-911-964-993-from-1989-to-1998-composite-jigs-mzx-generation.html",
+          "basis": "record_text",
+          "stated_in": "notes",
+          "quote": "Listed at USD 5,600 and out of stock on access date"
+        },
+        {
+          "observed_on": "2026-10-15",
+          "status": "listed_out_of_stock",
+          "item": "MZx composite jig set 964/993",
+          "channel_url": "https://celettejig.com/en/home/11-porsche-911-964-993-from-1989-to-1998-composite-jigs-mzx-generation.html",
+          "basis": "register_observation",
+          "quote": "$5,600.00; Online only; Out-of-Stock; Notify me when available"
+        }
+      ]
+    },
+    {
+      "source_id": "SRC-BORGWARNER-993-K16-PERFORMANCE-CATALOG",
+      "model_years": {
+        "from": 1994,
+        "to": 1997,
+        "stated_in": "notes",
+        "quote": "1994-1997"
+      }
+    },
+    {
+      "source_id": "SRC-BREMBO-993-CARRERA-BRAKES",
+      "model_years": {
+        "from": 1995,
+        "to": 1997,
+        "stated_in": "coverage.variants",
+        "quote": "Carrera_3.8_210_kW_1995_1997"
+      }
+    },
+    {
+      "source_id": "SRC-FEBOE-964-993-ALTERNATOR-BELT-DIMENSIONS",
+      "model_years": {
+        "from": 1989,
+        "to": 1998,
+        "stated_in": "coverage.variants",
+        "quote": "1989-1998",
+        "note": "range spans the 964 and the 993"
+      }
+    },
+    {
+      "source_id": "SRC-KLASSIKERAUTORADIO-993-REAR-SPEAKER-DIMENSIONS",
+      "model_years": {
+        "from": 1994,
+        "to": 1998,
+        "stated_in": "coverage.variants",
+        "quote": "1994-1998"
+      }
+    },
+    {
+      "source_id": "SRC-TUERPAPPEN-993-DOOR-PANEL-3MM",
+      "model_years": {
+        "from": 1993,
+        "to": 1998,
+        "stated_in": "coverage.variants",
+        "quote": "1993-1998"
+      }
+    },
+    {
+      "source_id": "SRC-PATRICKMOTORSPORTS-993-TURBO-OIL-RETURN-PIPES",
+      "model_years": {
+        "from": 1996,
+        "to": 1997,
+        "stated_in": "coverage.variants",
+        "quote": "993_Turbo_1996_1997"
+      }
+    },
+    {
+      "source_id": "SRC-FSH-993-INSTRUMENT-RINGS",
+      "model_years": {
+        "from": 1974,
+        "to": 1998,
+        "stated_in": "coverage.variants",
+        "quote": "1974-1998",
+        "note": "range spans the 911, 964 and 993"
+      }
+    },
+    {
+      "source_id": "SRC-AIRAX-993-WIND-DEFLECTOR-DIMENSIONS",
+      "model_years": {
+        "from": 1982,
+        "to": 1998,
+        "stated_in": "notes",
+        "quote": "1982–1998",
+        "note": "range spans the G-model, 964 and 993"
+      }
+    },
+    {
+      "source_id": "SRC-SHINING3D-993-SCAN-CASE",
+      "model_years": {
+        "from": 1995,
+        "to": 1995,
+        "stated_in": "coverage.variants",
+        "quote": "1995_Coupe",
+        "note": "year of the single scanned car, not a coverage range"
+      }
+    },
+    {
+      "source_id": "SRC-SHINING3D-JULIA-993-REVERSE-ENGINEERING",
+      "model_years": {
+        "from": 1995,
+        "to": 1995,
+        "stated_in": "coverage.variants",
+        "quote": "993_Coupe_1995",
+        "note": "year of the single scanned car, not a coverage range"
+      }
+    },
+    {
+      "source_id": "SRC-SPORTWAGENDOKTOR-993-CLIMATE-FAN-MOUNT",
+      "model_years": {
+        "from": 1998,
+        "to": 1998,
+        "stated_in": "coverage.variants",
+        "quote": "1998_RdW",
+        "note": "year of the single repaired car, not a coverage range"
+      }
+    },
+    {
+      "source_id": "SRC-PORSCHE-SHOP-TECHLIT",
+      "availability": [
+        {
+          "observed_on": "2026-08-28",
+          "status": "not_listed_on_channel",
+          "item": "993 technical literature",
+          "channel_url": "https://shop.porsche.com/us/en-US/c/technical-literature",
+          "basis": "record_text",
+          "stated_in": "notes",
+          "quote": "The category listed zero products on 2026-08-28"
+        },
+        {
+          "observed_on": "2026-10-15",
+          "status": "channel_unreadable",
+          "item": "993 workshop manual",
+          "channel_url": "https://shop.porsche.com/us/en-US/c/technical-literature",
+          "basis": "register_observation",
+          "quote": "page text without any product; the product grid appears to load by script",
+          "note": "The German category page behaved the same. Absence from a page whose grid could not be read says nothing about availability."
+        }
+      ]
+    },
+    {
+      "source_id": "SRC-PORSCHE-CLASSICSHOP-USA",
+      "availability": [
+        {
+          "observed_on": "2026-08-28",
+          "status": "channel_unavailable",
+          "item": "993 manuals section",
+          "channel_url": "https://www.classicshop.porsche.com/pcos-usa/technical-literature/manuals/993/",
+          "basis": "record_text",
+          "stated_in": "notes",
+          "quote": "Host does not resolve (DNS failure on 2026-08-28)"
+        },
+        {
+          "observed_on": "2026-10-15",
+          "status": "channel_unavailable",
+          "item": "993 manuals section",
+          "channel_url": "https://www.classicshop.porsche.com/pcos-usa/technical-literature/manuals/993/",
+          "basis": "register_observation",
+          "quote": "ENOTFOUND (host does not resolve)"
+        }
+      ]
+    },
+    {
+      "source_id": "SRC-RICHTSATZ-MIETEN-993-CELETTE",
+      "availability": [
+        {
+          "observed_on": "2026-08-29",
+          "status": "listed_on_request",
+          "item": "Celette set 564.330",
+          "channel_url": "https://richtsatz-mieten.de/richtsaetze/porsche/",
+          "basis": "record_text",
+          "stated_in": "notes",
+          "quote": "propose une demande de location ou de conseil",
+          "note": "rental or advice on request; no price shown in the record"
+        }
+      ]
+    }
+  ]
+}

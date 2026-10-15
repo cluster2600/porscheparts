@@ -5,7 +5,7 @@ The phases at a glance, with the state each section below records:
 ```mermaid
 flowchart LR
     P0["Phase 0 — Foundation<br/>completed on August 28, 2026<br/>(v0.1.0)"]:::ok
-    P1["Phase 1 — Source inventory<br/>5 of 5 items checked;<br/>294 valid source records;<br/>direct measurements remain"]:::open
+    P1["Phase 1 — Source inventory<br/>4 of 5 items checked;<br/>539 valid source records on 2026-10-15;<br/>direct measurements remain"]:::open
     P2["Phase 2 — Physical inventory<br/>and twin assembly<br/>no printing; 10 items done, 4 open;<br/>physical prototypes suspended"]:::open
     P3["Phase 3 — Titanium<br/>engineering twin<br/>no manufacturing; all items open"]:::open
     P4["Phase 4 — Public catalog<br/>all items open"]:::open
@@ -40,13 +40,16 @@ Additional research: [German-language batch of twenty candidates](docs/research/
 
 - [x] Survey official catalogs, legally accessible manuals and measurements
 - [x] Survey 3D models with a verifiable license
-- [x] Classify references by variant, year and availability
+- [ ] Classify references by variant, year and availability — partial: every
+  assembly-skeleton family has a qualified official source, and model years and
+  dated availability are recorded only where stated, in
+  [catalog/registers/](catalog/registers/README.md)
 - [x] Identify missing or hard-to-obtain parts
 - [x] Assess each source: provenance, license, accuracy, reuse
 
 Exit criterion: twenty documented candidates, without importing unauthorized
-content. Progress: 294 valid source records in `catalog/sources/`; acquiring
-direct measurements remains to be done.
+content. Progress: 539 valid source records in `catalog/sources/` on 2026-10-15;
+acquiring direct measurements remains to be done.
 
 ## Phase 2 — Physical inventory and twin assembly
 

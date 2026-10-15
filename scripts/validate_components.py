@@ -16,6 +16,35 @@ COMPONENTS = ROOT / "catalog" / "components"
 ASSEMBLIES = ROOT / "catalog" / "assemblies"
 COMPONENT_ID = re.compile(r"^COMP-[A-Z0-9][A-Z0-9._-]{2,79}$")
 ASSEMBLY_ID = re.compile(r"^ASM-[A-Z0-9][A-Z0-9._-]{2,79}$")
+SOURCE_REGISTRY = ROOT / "catalog" / "sources"
+
+
+def load_registry() -> dict[str, str | None]:
+    """Map each registered source id to its URL, for optional inline links."""
+    registry: dict[str, str | None] = {}
+    for path in SOURCE_REGISTRY.glob("*.json"):
+        try:
+            record = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if isinstance(record, dict) and isinstance(record.get("source_id"), str):
+            registry[record["source_id"]] = record.get("url")
+    return registry
+
+
+def _registry_link(source: dict, label: str, registry: dict[str, str | None], errors: list[str]) -> None:
+    """An inline citation may name the registered record of the same document.
+
+    The link is optional; when present it must resolve, and both must point at
+    the same URL, so the inline copy cannot drift from the register.
+    """
+    if "registry_source_id" not in source:
+        return
+    linked = source.get("registry_source_id")
+    if linked not in registry:
+        errors.append(f"{label}.registry_source_id: {linked} is not a registered source")
+    elif registry[linked] != source.get("url"):
+        errors.append(f"{label}.registry_source_id: {linked} points to a different URL")
 
 
 def _text(value: Any) -> bool:
@@ -52,9 +81,10 @@ def _file(value: str, field: str, errors: list[str]) -> None:
         errors.append(f"{field}: referenced file does not exist: {value}")
 
 
-def validate_component(record: Any) -> list[str]:
+def validate_component(record: Any, registry: dict[str, str | None] | None = None) -> list[str]:
     if not isinstance(record, dict):
         return ["root: expected an object"]
+    registry = load_registry() if registry is None else registry
     errors: list[str] = []
     expected = {"schema_version", "component_id", "name", "kind", "vehicle", "identifiers", "physical", "geometry", "sources", "eligibility"}
     if expected - record.keys():
@@ -96,6 +126,7 @@ def validate_component(record: Any) -> list[str]:
             errors.append(f"{label}.license: expected text")
         if not isinstance(source.get("supports"), list) or not source.get("supports"):
             errors.append(f"{label}.supports: expected claims")
+        _registry_link(source, label, registry, errors)
 
     physical = record.get("physical")
     if not isinstance(physical, dict):
@@ -146,9 +177,14 @@ def validate_component(record: Any) -> list[str]:
     return errors
 
 
-def validate_assembly(record: Any, known_components: dict[str, dict]) -> list[str]:
+def validate_assembly(
+    record: Any,
+    known_components: dict[str, dict],
+    registry: dict[str, str | None] | None = None,
+) -> list[str]:
     if not isinstance(record, dict):
         return ["root: expected an object"]
+    registry = load_registry() if registry is None else registry
     errors: list[str] = []
     if record.get("schema_version") != "1.0.0":
         errors.append("schema_version: expected 1.0.0")
@@ -162,6 +198,9 @@ def validate_assembly(record: Any, known_components: dict[str, dict]) -> list[st
     source_ids = {source.get("source_id") for source in sources if isinstance(source, dict)} if isinstance(sources, list) else set()
     if not sources:
         errors.append("relationship_sources: expected at least one source")
+    for index, source in enumerate(sources if isinstance(sources, list) else []):
+        if isinstance(source, dict):
+            _registry_link(source, f"relationship_sources[{index}]", registry, errors)
     instances = record.get("instances")
     calculated_mass = 0.0
     if not isinstance(instances, list) or len(instances) < 2:
@@ -203,6 +242,7 @@ def validate_assembly(record: Any, known_components: dict[str, dict]) -> list[st
 def main() -> int:
     failed = False
     known: dict[str, dict] = {}
+    registry = load_registry()
     component_files = sorted(COMPONENTS.glob("*.json"))
     if not component_files:
         print("components: no records found", file=sys.stderr)
@@ -210,7 +250,7 @@ def main() -> int:
     for path in component_files:
         try:
             record = json.loads(path.read_text(encoding="utf-8"))
-            errors = validate_component(record)
+            errors = validate_component(record, registry)
         except (OSError, json.JSONDecodeError) as exc:
             errors = [f"cannot load JSON: {exc}"]
             record = {}
@@ -225,7 +265,7 @@ def main() -> int:
     for path in assembly_files:
         try:
             record = json.loads(path.read_text(encoding="utf-8"))
-            errors = validate_assembly(record, known)
+            errors = validate_assembly(record, known, registry)
         except (OSError, json.JSONDecodeError) as exc:
             errors = [f"cannot load JSON: {exc}"]
         if errors:

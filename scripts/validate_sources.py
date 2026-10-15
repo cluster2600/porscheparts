@@ -104,6 +104,8 @@ def validate_source(record: Any) -> list[str]:
         for field in ("variants", "parts"):
             if not _strings(coverage.get(field)):
                 errors.append(f"coverage.{field}: expected a string array")
+        if "part_numbers" in coverage and not _strings(coverage["part_numbers"]):
+            errors.append("coverage.part_numbers: expected a string array when present")
 
     access = record.get("access")
     if not isinstance(access, dict):

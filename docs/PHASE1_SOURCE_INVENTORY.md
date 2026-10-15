@@ -49,7 +49,7 @@ not re-examined.
 | Source | Reason |
 |---|---|
 | Scribd, SlideShare, eManualOnline, eManuals, workshopcarmanuals | Redistribution of the Porsche workshop manual with no demonstrable right |
-| GitHub mirror of the booklet `Technical Specifications 911 Carrera (993)` | The public copy makes the factory table "Dimensions for Floor System" (page 110) readable, but the hosting and reproduction rights are not established; no PDF is kept |
+| GitHub mirror of the booklet `Technical Specifications 911 Carrera (993)` | The public copy makes the factory table "Dimensions for Floor System" (page 110) readable, but the hosting and reproduction rights are not established; no PDF is kept. The same copy was later registered as `SRC-PORSCHE-993-SPEC-BOOKLET-PUBSTACK`: see `CTR-0003` in [the contradictions register](../catalog/registers/contradictions.json) |
 | Forum attachments containing dimensioned factory plates | Same protected document, republished by a third party |
 | PDF aggregators with no identifiable publisher | Unverifiable provenance |
 
@@ -76,6 +76,8 @@ becomes a catalog reference.
   are taken from the center of holes or screw points and that dimensions in
   parentheses are horizontal. These values are a lead for buying or consulting
   an authorized copy, not project measurements nor redistributable geometry.
+  Dimension B and the point labels differ from the 964 volume V table
+  (`MEAS-MANUAL-964-BODY-CONTROL`): open contradiction `CTR-0002`.
 
 ## Batch 2 — 3D models and digital twins
 
@@ -511,9 +513,11 @@ agents keeps refusing them from any infrastructure.
 - [x] 3D models under a verifiable license — part files listed per record; the
       GT2 scan still has an imperfect rights chain, and no freely reusable 993
       body scan was found. See batches 2 and 5.
-- [x] Classification by variant, year and availability — every record carries
-      its coverage, variants and access status; ambiguous cases stay flagged in
-      the notes rather than merged.
+- [ ] Classification by variant, year and availability — partial. Every record
+      carries its coverage, variants and access status, but year and
+      availability are not fields: since 2026-10-15 they are recorded, only
+      where stated, in `catalog/registers/993-source-classification.json`.
+      Absence from the Parts Finder is not proof of discontinuation.
 - [x] Missing or hard-to-obtain parts — first case documented by a source: the
       Turbo engine carrier `993 115 021 53` has no replacement alternative, the
       tubular carrier on the specialist market being explicitly non-Turbo. The
@@ -524,7 +528,8 @@ agents keeps refusing them from any infrastructure.
       no unverified data is promoted to catalog geometry.
 
 Status: twenty documented candidates, the phase exit threshold is reached in
-number; the registry now holds 294 valid source records. The Renn 3D Parts
+number; the registry held 294 valid source records when this section was
+written (539 on 2026-10-15). The Renn 3D Parts
 archive adds nine leads to public STL files, but their licenses stay attached to
 each record and their bboxes do not replace a measurement. The Porsche Fanatics
 project data and the manual data increase technical coverage, while the new

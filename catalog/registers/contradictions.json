@@ -1,0 +1,428 @@
+{
+  "$comment": "Consolidated register of documentary contradictions. Each entry names the values in conflict, the registered source of each value and where it sits, and what would resolve it. A contradiction stays here, with status open, until it is resolved; a resolved entry keeps its values and states the resolution. Validated by scripts/validate_registers.py.",
+  "schema_version": "1.0.0",
+  "register_id": "REG-CONTRADICTIONS",
+  "updated_on": "2026-10-15",
+  "entries": [
+    {
+      "contradiction_id": "CTR-0001",
+      "generation": "964_993",
+      "subject": "Longitudinal spacing of the front and rear jacking points, and the claim that the 964 and the 993 share it",
+      "values": [
+        {
+          "value": "1245 mm",
+          "source_id": "SRC-RENNLIST-993-JACKING-POINT-DISCREPANCY",
+          "location": "thread on a 1995 993 Carrera 4: value read from the attached diagram"
+        },
+        {
+          "value": "1195 mm",
+          "source_id": "SRC-RENNLIST-993-JACKING-POINT-DISCREPANCY",
+          "location": "same thread: computed by the thread author from other dimensions"
+        },
+        {
+          "value": "52 in (front point to inner rear point)",
+          "source_id": "SRC-RENNLIST-993-JACKING-POINT-DISCREPANCY",
+          "location": "same thread: later reply"
+        },
+        {
+          "value": "R = 1245 +/- 2 mm between P17 and P18 (964)",
+          "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL5-BODY",
+          "location": "plate 50-03, value MNL-964BC-0034 in catalog/measurements/MEAS-MANUAL-964-BODY-CONTROL.json"
+        }
+      ],
+      "status": "open",
+      "next_step": "The thread gives three incompatible values without a common datum, so it cannot confirm the 964 dimension R nor show that the 993 shares it. Decide only from an authorized 993 body-dimension document (see docs/research/993-body-dimensions-rights-note.md). On 2026-10-15 the claim was moved from validation.checks_passed to validation.known_limits in the 964 floor twin, and a correction note was added to the 964 data-gap research note.",
+      "flagged_in": [
+        "catalog/sources/src-rennlist-993-jacking-point-discrepancy.json",
+        "catalog/twins/twin-964-chassis-floor-0001.json",
+        "docs/research/964-combler-le-gap-de-donnees.md"
+      ]
+    },
+    {
+      "contradiction_id": "CTR-0002",
+      "generation": "964_993",
+      "subject": "Floor-assembly check dimensions: the 993 table transcribed in the Phase 1 inventory against the 964 volume V table",
+      "values": [
+        {
+          "value": "B/P3 = 670 +/- 0.5 mm; point labels A/P21, E/P18, F/P19, H/P20, L/P22 = 640 +/- 1 mm",
+          "source_id": "SRC-PORSCHE-993-SPEC-BOOKLET-PUBSTACK",
+          "location": "floor-system table transcribed in docs/PHASE1_SOURCE_INVENTORY.md, section 'Batch 1 findings', from a third-party copy of the booklet (printed page 110 onward)"
+        },
+        {
+          "value": "B = 610 +/- 1 mm between points 3 and 3; A on P20, E on P17, F on P18, H on P19, I on P21 = 640 +/- 1 mm",
+          "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-964-VOL5-BODY",
+          "location": "plate 50-03, values MNL-964BC-0019 to MNL-964BC-0027"
+        }
+      ],
+      "status": "open",
+      "next_step": "A, C, D, E, F, G and H carry the same numbers in both tables, B differs by 60 mm with a different tolerance, and the point numbering is shifted by one for A, E, F, H and the 640 mm dimension. This can be a real 964/993 difference (the 993 rear axle is new) or a transcription error; neither is established. Until an authorized copy of the 993 booklet or of 993 volume V is checked, no 964 value is used as a 993 value and the Phase 1 transcription is not 993 geometry.",
+      "flagged_in": [
+        "docs/PHASE1_SOURCE_INVENTORY.md",
+        "catalog/measurements/MEAS-MANUAL-964-BODY-CONTROL.json"
+      ]
+    },
+    {
+      "contradiction_id": "CTR-0003",
+      "generation": "993",
+      "subject": "The same third-party copy of the Porsche 'Technical Specifications 911 Carrera / Carrera 4 / Carrera RS, 94 and 95 Model' booklet is both rejected and registered as an available official source",
+      "values": [
+        {
+          "value": "rejected: hosting and reproduction rights not established, no PDF kept",
+          "source_id": "SRC-PORSCHE-993-SPEC-BOOKLET-PUBSTACK",
+          "location": "docs/PHASE1_SOURCE_INVENTORY.md, table 'Rejected sources', row 'GitHub mirror of the booklet'"
+        },
+        {
+          "value": "registered: source_type official, access available by direct_download, evidence level B",
+          "source_id": "SRC-PORSCHE-993-SPEC-BOOKLET-PUBSTACK",
+          "location": "catalog/sources/src-porsche-993-spec-booklet-pubstack.json (digest-pinned by catalog/reference/993-turbo-research-20261002/manifest.json)"
+        }
+      ],
+      "status": "open",
+      "next_step": "Identity checked on 2026-10-15 from the copy's metadata and three page images only: 68 PDF pages, cover '94 Model 95 Model Technical Specifications', printed page 110 titled 'Dimensions for Floor System', last printed page 113. It is the document the Phase 1 inventory rejected. The record also omits the Carrera 4 and the body content from its coverage. The record is digest-pinned and cannot be edited in place. Owner decision: keep the record as a reference for factual values with the same undocumented-copy caveat as the workshop manuals, or supersede it with a record that marks the copy as rejected. The same archive also hosts four files named as 993 workshop repair manual volumes I to IV, which are not used.",
+      "flagged_in": [
+        "docs/PHASE1_SOURCE_INVENTORY.md"
+      ]
+    },
+    {
+      "contradiction_id": "CTR-0004",
+      "generation": "964_993",
+      "subject": "Air-conditioning compressor belt size for the 993",
+      "values": [
+        {
+          "value": "13 x 1085 (reported not to fit)",
+          "source_id": "SRC-PFF-993-AC-BELT-DIMENSIONS",
+          "location": "PFF thread, first reports"
+        },
+        {
+          "value": "13 x 1100 (reported to fit)",
+          "source_id": "SRC-PFF-993-AC-BELT-DIMENSIONS",
+          "location": "same thread"
+        },
+        {
+          "value": "999 192 363 50 given as 12.5 x 1085 for the 993 and 13 x 1085 for the 964",
+          "source_id": "SRC-PFF-993-AC-BELT-DIMENSIONS",
+          "location": "same thread, catalogue reference quoted by a participant"
+        }
+      ],
+      "status": "open",
+      "next_step": "Variant or reference mix-up; resolve with the PET line for the exact model year and an official belt specification, never by choosing the forum value that fits.",
+      "flagged_in": [
+        "catalog/sources/src-pff-993-ac-belt-dimensions.json",
+        "docs/PHASE1_SOURCE_INVENTORY.md"
+      ]
+    },
+    {
+      "contradiction_id": "CTR-0005",
+      "generation": "993",
+      "subject": "Turbocharger identity of the RUF CTR2",
+      "values": [
+        {
+          "value": "K26/27",
+          "source_id": "SRC-993-RESEARCH-RENNLIST-RUF-CTR2-CONFLICT",
+          "location": "Rennlist thread, one claim"
+        },
+        {
+          "value": "K24/26",
+          "source_id": "SRC-993-RESEARCH-RENNLIST-RUF-CTR2-CONFLICT",
+          "location": "same thread, competing claim"
+        }
+      ],
+      "status": "open",
+      "next_step": "Exact CTR2 turbo part number unverified; neither designation is listed as fact.",
+      "flagged_in": [
+        "catalog/sources/src-993-research-rennlist-ruf-ctr2-conflict.json"
+      ]
+    },
+    {
+      "contradiction_id": "CTR-0006",
+      "generation": "993",
+      "subject": "Dry mass of the 993 Turbo engine (M64/60)",
+      "values": [
+        {
+          "value": "232 kg",
+          "source_id": "SRC-PORSCHE-UK-993-TURBO-BROCHURE-1995",
+          "location": "attribution withdrawn on 2026-10-02: the brochure does not give it; the Carrera workshop manual technical data list 232 kg on the manual-transmission line (PDF page 15, MNL-TECH-0020)"
+        },
+        {
+          "value": "268 kg",
+          "source_id": "SRC-ELFERCLASSIC-993-TURBO-TECHNICAL-DATA",
+          "location": "German technical-data compilation for the M64/60"
+        },
+        {
+          "value": "about 195 kg weighed for a complete GT2 Race twin-turbo unit without gearbox",
+          "source_id": null,
+          "location": "validation.known_limits of the engine-carrier part record; no registered source record",
+          "repository_path": "catalog/parts/993-eng-carrier-0001.json"
+        }
+      ],
+      "status": "open",
+      "next_step": "232 kg is a Carrera figure and is no longer attributed to the Turbo. 268 kg has no stated scope and a single community-compiled source; 195 kg is unsourced in the register. Assembly-level mass stays null until an official M64/60 figure with a stated scope is found.",
+      "flagged_in": [
+        "twins/m64-engine-system/bom/m64-bom-v1.json",
+        "twins/m64-engine-system/bom/coverage.md",
+        "catalog/parts/993-eng-carrier-0001.json",
+        "docs/research/web-gap-closure-2026-09-29.md"
+      ]
+    },
+    {
+      "contradiction_id": "CTR-0007",
+      "generation": "993",
+      "subject": "Engine cooling-fan airflow",
+      "values": [
+        {
+          "value": "1010 l/s at about 6100 rpm (Carrera)",
+          "source_id": "SRC-PORSCHE-993-ENGINE-SPECIFICATIONS-PUBSTACK",
+          "location": "Carrera Engine Specifications document; the earlier attribution to SRC-PORSCHE-993-OBD-SUPPLEMENT-ENGINE-SPECIFICATIONS-1996 was withdrawn on 2026-10-02"
+        },
+        {
+          "value": "1210 l/s at 5750 rpm (M64/60)",
+          "source_id": "SRC-ELFERCLASSIC-993-TURBO-TECHNICAL-DATA",
+          "location": "German technical-data compilation"
+        }
+      ],
+      "status": "open",
+      "next_step": "The two values may describe different engines (Carrera and Turbo); the Turbo brochure states a higher fan output without an absolute figure. No Turbo airflow is accepted from Carrera data.",
+      "flagged_in": [
+        "twins/m64-engine-system/bom/m64-bom-v1.json",
+        "docs/research/993-turbo-20261002/exports/fr/audit_contradictions.csv"
+      ]
+    },
+    {
+      "contradiction_id": "CTR-0008",
+      "generation": "993",
+      "subject": "Compression ratio of the 993 Turbo",
+      "values": [
+        {
+          "value": "9.5:1",
+          "source_id": "SRC-PORSCHE-UK-993-TURBO-BROCHURE-1995",
+          "location": "earlier attribution through the research document, withdrawn on 2026-10-02"
+        },
+        {
+          "value": "8.0:1",
+          "source_id": "SRC-PORSCHE-UK-993-TURBO-BROCHURE-1995",
+          "location": "brochure PDF page 22, checked visually on 2026-10-02"
+        },
+        {
+          "value": "8.0:1",
+          "source_id": "SRC-ELFERCLASSIC-993-TURBO-TECHNICAL-DATA",
+          "location": "German technical-data compilation"
+        }
+      ],
+      "status": "resolved",
+      "resolution": "The brochure itself prints 8.0:1, in agreement with the compilation; 9.5:1 was a misattribution and is withdrawn from the brochure record. The M64 BOM known_conflicts text and coverage.md still call it unresolved: that wording predates the 2026-10-02 correction and is stale.",
+      "flagged_in": [
+        "twins/m64-engine-system/bom/m64-bom-v1.json",
+        "twins/m64-engine-system/bom/coverage.md",
+        "docs/research/993-turbo-20261002/exports/fr/audit_contradictions.csv"
+      ]
+    },
+    {
+      "contradiction_id": "CTR-0009",
+      "generation": "993",
+      "subject": "Fifteen corrections and conflicts from the 993 Turbo research audit of 2026-10-02 (compression ratio, boost, engine mass, oil capacity, fan data, ignition, studs, piston alloy, K16 temperature, A/R, piston spray jets, engine-mount bolt pitch, engine specifications document)",
+      "values": [],
+      "register_pointer": [
+        "docs/research/993-turbo-20261002/exports/fr/audit_contradictions.csv",
+        "catalog/reference/993-turbo-research-20261002/audit.json"
+      ],
+      "status": "open",
+      "next_step": "Row-level findings and actions stay in the audit files, which are digest-pinned; they are not duplicated here. Rows still unresolved there include the short piston spray-jet length (bulletin 21.5 mm against PET 22.5 mm, see SRC-PORSCHE-993-PISTON-SPRAY-JETS-1-97) and the engine-mount bolt thread pitch (see SRC-PORSCHE-993-TURBO-REAR-MOUNTS-1-99).",
+      "flagged_in": [
+        "docs/research/993-turbo-20261002/exports/fr/audit_contradictions.csv",
+        "catalog/reference/993-turbo-research-20261002/audit.json"
+      ]
+    },
+    {
+      "contradiction_id": "CTR-0010",
+      "generation": "993",
+      "subject": "Exhaust valve closing angle, Carrera M64/05 and M64/06",
+      "values": [
+        {
+          "value": "6 deg after TDC",
+          "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+          "location": "PDF page 16 of the consulted copy, record timing_general_ec"
+        },
+        {
+          "value": "2 deg after TDC",
+          "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+          "location": "PDF page 175, table 15 05, record timing_g15_m64_05_06"
+        }
+      ],
+      "status": "open",
+      "next_step": "Kept as conflict timing_ec_6_vs_2 in the page-checked group 15 file, with no value chosen as true; the related notation question on page 175 (240/225 deg printed ABDC/BBDC) is conflict timing_notation_p175 in the same file.",
+      "flagged_in": [
+        "catalog/manual/page-checked/993-workshop-manual-group15-cylinder-head.json"
+      ]
+    },
+    {
+      "contradiction_id": "CTR-0011",
+      "generation": "993",
+      "subject": "Carrera 4 parking-brake drum diameter wear limit as read by OCR",
+      "values": [
+        {
+          "value": "180 mm new, 161 mm second figure",
+          "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+          "location": "PDF page 726 (Carrera 4), values MNL-OCR-1551 and MNL-OCR-1552, ocr_unreviewed"
+        },
+        {
+          "value": "180 mm new, 181 mm second figure",
+          "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+          "location": "PDF page 728 (Carrera 4S), values MNL-OCR-1585 and MNL-OCR-1586, ocr_unreviewed"
+        }
+      ],
+      "status": "open",
+      "next_step": "First flagged on 2026-10-15 while mapping family 7xx. A wear limit below the new diameter of a drum is implausible, so 161 is probably an OCR misreading, but nothing is corrected until both pages are checked in an authorized copy. Braking part: no design use in any case.",
+      "flagged_in": [
+        "catalog/measurements/MEAS-MANUAL-993-ALL.json"
+      ]
+    },
+    {
+      "contradiction_id": "CTR-0012",
+      "generation": "993",
+      "subject": "Centre bore of the Fuchs wheels 37024, 37026, 37027 and 37028",
+      "values": [
+        {
+          "value": "71.58 mm wheel centre bore (Mittenlochdurchmesser)",
+          "source_id": "SRC-KBA-ECE-R124-000084-FUCHS-37024",
+          "location": "technical data summary of the approval; the approvals 000086, 000087 and 000088 state the same 71.58 mm"
+        },
+        {
+          "value": "71.5 mm in the vehicle column '5/130/71,5'",
+          "source_id": "SRC-KBA-ECE-R124-000088-FUCHS-37028",
+          "location": "application annex, Porsche 993 and 993 Turbo rows"
+        },
+        {
+          "value": "CENTER_BORE = 71.5 mm labelled as the wheel bore",
+          "source_id": null,
+          "location": "size parameter CENTER_BORE, attributed to the type approval; same value in comp-fuchs-37027.011.json and comp-fuchs-37028.011.json, while comp-fuchs-37024.013.json stores 71.58",
+          "repository_path": "catalog/components/comp-fuchs-37026.013.json"
+        }
+      ],
+      "status": "open",
+      "next_step": "The approvals distinguish the wheel bore (71.58 mm) from the vehicle centring diameter (71.5 mm); three component records store the vehicle figure under the wheel-bore parameter. Decide which quantity CENTER_BORE carries, then align the four records, the interface proxies and tests/test_wheel_proxy.py in one dedicated change. Not changed here.",
+      "flagged_in": [
+        "catalog/components/comp-fuchs-37026.013.json",
+        "catalog/components/comp-fuchs-37027.011.json",
+        "catalog/components/comp-fuchs-37028.011.json"
+      ]
+    },
+    {
+      "contradiction_id": "CTR-0013",
+      "generation": "993",
+      "subject": "Approved application of the 18-inch Fuchs pair 37027/37028",
+      "values": [
+        {
+          "value": "application cell names 993 Turbo, not 993",
+          "source_id": "SRC-FUCHS-PORSCHE-FORGED-WHEEL-PRODUCT-PAGE",
+          "location": "product page rows 37027 and 37028, read on 2026-10-15"
+        },
+        {
+          "value": "Porsche 911 Carrera type 993 (body widths 1735 and 1795 mm) and 993 Turbo except GT2",
+          "source_id": "SRC-KBA-ECE-R124-000087-FUCHS-37027",
+          "location": "application annex; same in approval 000088"
+        },
+        {
+          "value": "18-inch rows for 'Porsche 993' and for '993, Turbo/Turbo Look'",
+          "source_id": "SRC-FUCHS-993-APPLICATION-LEAFLET-2020",
+          "location": "page 2 of the leaflet"
+        }
+      ],
+      "status": "resolved",
+      "resolution": "The KBA type approvals define the approved application and the July 2020 leaflet agrees with them; the product-page cell is narrower. The component records already follow the approvals. No project value depends on the product-page cell.",
+      "flagged_in": [
+        "catalog/sources/src-fuchs-porsche-forged-wheel-product-page.json"
+      ]
+    },
+    {
+      "contradiction_id": "CTR-0014",
+      "generation": "generic",
+      "subject": "Default LPBF layer height announced for AlSi10Mg by one supplier",
+      "values": [
+        {
+          "value": "0.15 mm",
+          "source_id": "SRC-UNIONFAB-ALSI10MG-SLM-MATERIAL",
+          "location": "material page"
+        },
+        {
+          "value": "0.035 mm",
+          "source_id": "SRC-UNIONFAB-ALSI10MG-SLM-MATERIAL",
+          "location": "service page of the same site, as recorded in the source notes"
+        }
+      ],
+      "status": "open",
+      "next_step": "0.15 mm is not a plausible LPBF layer for AlSi10Mg; confirm with the supplier before any quotation or simulation uses either value.",
+      "flagged_in": [
+        "catalog/sources/src-unionfab-alsi10mg-slm-material.json"
+      ]
+    },
+    {
+      "contradiction_id": "CTR-0015",
+      "generation": "993",
+      "subject": "Fitment scope of the FVD lower console cover 99363207110",
+      "values": [
+        {
+          "value": "title restricts it to the Coupe without M425/M650",
+          "source_id": "SRC-FVD-993-LOWER-CONSOLE-COVER-DIMENSIONS",
+          "location": "listing title"
+        },
+        {
+          "value": "compatibility table lists several bodies and variants",
+          "source_id": "SRC-FVD-993-LOWER-CONSOLE-COVER-DIMENSIONS",
+          "location": "listing compatibility table"
+        }
+      ],
+      "status": "open",
+      "next_step": "Resolve with the PET line for the exact body and option codes; commercial data only.",
+      "flagged_in": [
+        "catalog/sources/src-fvd-993-lower-console-cover-dimensions.json",
+        "docs/PHASE1_SOURCE_INVENTORY.md"
+      ]
+    },
+    {
+      "contradiction_id": "CTR-0016",
+      "generation": "993",
+      "subject": "Front door speaker size",
+      "values": [
+        {
+          "value": "13 cm without the sound package; 16 cm needs a substantial door modification",
+          "source_id": "SRC-PFF-993-FRONT-SPEAKER-MEASUREMENT",
+          "location": "PFF thread"
+        },
+        {
+          "value": "165 mm front, 130 mm rear on a June 1997 Cabriolet",
+          "source_id": "SRC-PFF-993-SPEAKER-DIAMETERS",
+          "location": "PFF thread"
+        }
+      ],
+      "status": "open",
+      "next_step": "Probably an audio-option or body variant difference, and nominal diameter is not the opening; resolve by option code and an authorized document, not by averaging.",
+      "flagged_in": [
+        "catalog/sources/src-pff-993-front-speaker-measurement.json",
+        "docs/PHASE1_SOURCE_INVENTORY.md"
+      ]
+    },
+    {
+      "contradiction_id": "CTR-0017",
+      "generation": "964_993",
+      "subject": "Reference of the Celette bracket set that adds the 993 to the 964 set 564.320",
+      "values": [
+        {
+          "value": "564.330, '911 Carrera Typ 964 / Zusatz 993'",
+          "source_id": "SRC-RICHTSATZ-MIETEN-993-CELETTE",
+          "location": "German rental listing, read on 2026-08-29"
+        },
+        {
+          "value": "564.307, 'Complementary set for Porsche 993'",
+          "source_id": "SRC-CELETTE-564-307-993-COMPLEMENTARY-SET",
+          "location": "Celette page title and reference as shown in a web-search result on 2026-10-15; the page itself refused the connection and is unread"
+        }
+      ],
+      "status": "open",
+      "next_step": "Settle from a page Celette publishes and that can be read, or from a written answer by Celette; asking is an owner decision. Until then neither number is recorded as the 993 set reference for issue #10.",
+      "flagged_in": [
+        "catalog/sources/src-richtsatz-mieten-993-celette.json",
+        "catalog/sources/src-celette-564-307-993-complementary-set.json"
+      ]
+    }
+  ]
+}
