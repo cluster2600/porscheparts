@@ -88,6 +88,10 @@ Catalogue record: [`catalog/parts/993-exh-oval-tip-ti-f1-0001.json`](../../catal
 
 ## Images
 
+![photo-concept](../../parts/993-exh-oval-tip-ti-f1-0001/media/photo-concept.png)
+
+*`parts/993-exh-oval-tip-ti-f1-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing..*
+
 ![picogk-batch-01](../../parts/993-exh-oval-tip-ti-f1-0001/media/picogk-batch-01.png)
 
 *`parts/993-exh-oval-tip-ti-f1-0001/media/picogk-batch-01.png` — concept CAD block, **not** the original part, not a print file.*

@@ -93,7 +93,7 @@ flowchart LR
 
 | folder | what it holds | files |
 |---|---|---|
-| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original | [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
+| `media/` | concept-model views rendered from the CAD by `scripts/render_part_previews.py` — not pictures of the original; labelled AI studio illustration and provenance, not a photograph | [`media/photo-concept.png`](media/photo-concept.png), [`media/photo.json`](media/photo.json), [`media/preview.json`](media/preview.json), [`media/preview.png`](media/preview.png), [`media/views.png`](media/views.png) |
 
 ## Read more
 

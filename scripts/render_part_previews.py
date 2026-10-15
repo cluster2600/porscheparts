@@ -294,6 +294,22 @@ def check() -> int:
             if info.get("images") != names or not info.get("note") or not info.get("license"):
                 raise ValueError("incomplete publication metadata")
             hashes = info.get("image_sha256", {})
+            photo_path = info_path.parent / "photo.json"
+            if photo_path.exists():
+                photo = json.loads(photo_path.read_text(encoding="utf-8"))
+                if (card or photo.get("kind") != "ai_illustration"
+                        or photo.get("part_id") != part_id
+                        or photo.get("record_sha256") != info["record_sha256"]
+                        or photo.get("reference_sha256") != sha256(info_path.parent / "preview.png")
+                        or photo.get("images") != ["photo-concept.png"]
+                        or not photo.get("prompt") or not photo.get("generator")
+                        or "not a photograph" not in photo.get("note", "").lower()
+                        or not photo.get("license")):
+                    raise ValueError("incomplete or stale AI illustration metadata")
+                names += photo["images"]
+                hashes = {**hashes, **photo.get("image_sha256", {})}
+            elif (info_path.parent / "photo-concept.png").exists():
+                raise ValueError("AI illustration is missing its publication metadata")
             for name in names:
                 path = info_path.parent / name
                 with path.open("rb") as stream:

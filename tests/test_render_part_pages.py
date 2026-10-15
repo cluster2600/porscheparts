@@ -14,6 +14,13 @@ FICHES = sorted((ROOT / "catalog" / "parts").glob("*.json"))
 
 
 class PartPageTests(unittest.TestCase):
+    def test_studio_illustrations_are_labelled_separately_from_cad_views(self):
+        result = "\n".join(pages.images("993-ENG-K16-COMPRESSOR-WHEEL-ALSI10MG-F0-0001",
+                                        ROOT / "docs/pieces/fixture.md"))
+        self.assertIn("photo-concept.png", result)
+        self.assertIn("AI-generated studio illustration", result)
+        self.assertIn("Not a photograph", result)
+
     def test_picogk_summary_counts_shared_generator_and_archived_voxel_model(self):
         paths = [ROOT / "catalog/parts" / (name + ".json") for name in
                  ("993-eng-bracket-0001", "993-eng-carrier-0001")]

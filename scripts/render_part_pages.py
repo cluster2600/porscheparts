@@ -80,7 +80,10 @@ def images(part_id: str, page: Path) -> list[str]:
     for img in trouvees[:8]:
         rel = img.relative_to(ROOT).as_posix()
         parts = img.relative_to(ROOT).parts
-        if img == dossier / "media" / "preview.png" and info.get("kind") == "status_card":
+        if img == dossier / "media" / "photo-concept.png":
+            photo = json.loads((dossier / "media" / "photo.json").read_text(encoding="utf-8"))
+            legende = " — " + photo["note"]
+        elif img == dossier / "media" / "preview.png" and info.get("kind") == "status_card":
             legende = " — " + info["note"] + " Not a print file or evidence of fit."
         elif "print-simulation" in parts:
             legende = " — metal LPBF geometry preview with hypothetical supports; no process physics or qualified support design; not a build file or print release"
@@ -640,6 +643,8 @@ def presentation(fiche: dict, chemin_fiche: Path) -> str:
             groupes.setdefault(rel.parts[0] if len(rel.parts) > 1 else ".", []).append(f)
         for sous in sorted(groupes, key=lambda n: (n == ".", n)):
             role = DOSSIERS_ROLE.get(sous, "files of this part")
+            if sous == "media" and (dossier / "media" / "photo.json").exists():
+                role += "; labelled AI studio illustration and provenance, not a photograph"
             liens = ", ".join(f"[`{f.relative_to(dossier).as_posix()}`]({f.relative_to(dossier).as_posix()})"
                               for f in groupes[sous][:8])
             if len(groupes[sous]) > 8:

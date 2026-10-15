@@ -22,6 +22,21 @@ Repository-owned images are prepared for owner-authorized PorscheFanatics use;
 third-party photographs and PET illustrations are not copied. A render provides
 no evidence of dimensional accuracy, fit, material qualification or print release.
 
+The 36 CAD-backed records also have `photo-concept.png`: studio-style AI
+illustrations generated from their own previews on 15 October 2026. These are
+presentation images, not photographs or exact geometry renders. Material and
+finish are illustrative and generated details may differ; the original CAD
+preview and orthographic views remain available. Each image carries a visible
+`DIGITAL CONCEPT — NOT A PHOTOGRAPH` label.
+
+`photo.json` keeps the exact prompt, generator, input preview and record hashes,
+output hash, date, caption and publication terms. The check validates these
+assets when present, rejects orphan images, stale references, corrupt PNGs and
+photograph labels, and prevents a status card from acquiring invented geometry.
+After changing a referenced CAD preview, regenerate and review its studio
+illustration or remove both presentation files. `make part-previews` only
+regenerates the deterministic technical views; it never calls a paid image API.
+
 ## Create or update images
 
 ```sh

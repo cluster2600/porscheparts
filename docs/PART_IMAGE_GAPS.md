@@ -1,8 +1,12 @@
-# Part image gaps — 13 October 2026
+# Part image gaps — 15 October 2026
 
 The 43 catalogue records currently include 36 CAD image sets and seven status
 cards. A status card is not an image of a part and does not close an image gap.
 The source-image and website coverage checks distinguish these kinds.
+All 36 CAD-backed records now also have separately labelled AI studio
+illustrations. These improve presentation without closing any of the seven gaps.
+The references in the seven records were checked for publication terms: they
+are reference-only or commercial copyright sources, not reusable photographs.
 
 | Catalogue record | Missing part image | Actual source gap |
 | --- | --- | --- |
