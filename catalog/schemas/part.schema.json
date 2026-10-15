@@ -127,7 +127,12 @@
         "hip_required": { "enum": ["yes", "no", "to_be_determined", "not_applicable"] },
         "machined_surfaces": { "type": "array", "items": { "type": "string" } },
         "inspection": { "type": "array", "items": { "type": "string" } },
-        "galvanic_isolation": { "type": "string" }
+        "galvanic_isolation": { "type": "string" },
+        "fatigue_assumptions": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Optional. What is assumed and what is unknown about cyclic loading, surface condition and fatigue data; never fabricated S-N values. Required in substance by AGENTS.md for titanium parts."
+        }
       }
     },
     "validation": {
