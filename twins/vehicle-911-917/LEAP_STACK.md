@@ -70,6 +70,18 @@ with two failures, 23 errors and 207 skips in the previously observed
 SciPy/Python/exact-float paths. It is not reported as green.
 Strict documentation checking passed: 841 Markdown files, zero broken links.
 
+**Source revision.** This Mac result was built from the F16 sources of commit
+`102ea2d7`. The Linux port on 15 October changed three of the inputs its
+receipt hashes: `leap-f16/Program.cs` (the TGA completion wait),
+`leap-f16/VehicleLeap.csproj` (the `.so` runtime glob) and
+`source/run_leap_f16.py` (`check_native_exit` and `--config`). At the current
+revision, `verify_output` on that existing Mac output therefore raises
+`Stale input receipt`, and so does the F16 native receipt test pointed at it.
+The Mac result can be re-verified only by checking out `102ea2d7`, or by
+re-running F16 on the Mac with the current runner into a new output folder.
+That re-run, which would also be the first macOS run of the TGA wait and the
+`.so` glob, needs the owner's Mac and has not been done.
+
 ## Interfaces and load paths still required
 
 Before functional duct or insert design, obtain the actual quarter inlet,
@@ -87,6 +99,10 @@ loss, heat rejection, aerodynamic balance, strength and fatigue require
 separate engineering checks. No 1,600 hp capability is established.
 
 ## Reproduction on the installed Mac stack
+
+These commands produce a new run with the current sources; they do not
+re-verify the 12 October output, which needs the `102ea2d7` sources (see
+*Source revision* above). They have not yet been run on macOS at this revision.
 
 ```sh
 python3 twins/vehicle-911-917/source/run_leap_f16.py \
