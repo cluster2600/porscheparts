@@ -27,6 +27,14 @@ Cette preuve porte sur le matériau inchangé dans **l’union intentionnelle** 
 elle ne déclare pas que l’ancien Polygon GEOS le contient. Elle ne constitue
 ni une admission des sept régions ni un audit des trajectoires exposées.
 
+Le helper distinct `exact_convex_union.py` accélère la même décision par
+soustractions convexes rationnelles successives. Chaque soustraction conserve
+exactement l’aire ; elle partitionne les sorties des demi-plans sans double
+comptage. Les restes positifs portent des témoins vérifiés hors de toutes les
+primitives. Cinq tests, dont le même matériau réel inchangé et une lacune d’aire
+positive de l’ordre de 10⁻³⁰, verrouillent cette variante relue indépendamment.
+L’ancien helper et ses reçus restent inchangés.
+
 ```sh
 AM_PYTHON -B -m unittest discover -s tests -p test_carrier_exact_band_union.py -v
 ```
