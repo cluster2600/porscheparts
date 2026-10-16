@@ -1,8 +1,12 @@
 """Replay the same cached-builder contract with the incremental constructor."""
 import importlib.util
+from pathlib import Path
 from unittest.mock import patch
 
-from tests import test_carrier_cached_build_v3 as baseline
+baseline_spec = importlib.util.spec_from_file_location('carrier_cached_v4_baseline_tests',
+    Path(__file__).with_name('test_carrier_cached_build_v3.py'))
+baseline = importlib.util.module_from_spec(baseline_spec)
+baseline_spec.loader.exec_module(baseline)
 
 spec = importlib.util.spec_from_file_location('carrier_cached_v4', baseline.SOURCE/'build_cached_v4.py')
 driver = importlib.util.module_from_spec(spec)
