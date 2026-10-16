@@ -40,7 +40,7 @@ class WorkshopGuideV6(unittest.TestCase):
             workshop_adapter=dict(source='scripts/build_carrier_workshop_guide_v5.py',sha256=guide.BASE_SHA256))
         self.data['stages'][2]['checks']=[dict(label='Grade 23 ELI'),dict(label='900 MPa'),dict(label='ENER REFUSÉ')]
         self.data['stages'][5]['commands']=['python3 scripts/run_part_workflow.py run '+guide.OLD_RECIPE+' --runtime work/runtime.json',
-            'python3 scripts/assemble_carrier_workflow.py verify work/run']
+            'python3 scripts/run_part_workflow.py verify work/run']
         self.make_evidence(); self.save_description()
 
     def write(self, name, value):
@@ -96,6 +96,9 @@ class WorkshopGuideV6(unittest.TestCase):
         self.assertEqual(out['constitutive_reference'],constitutive);self.assertEqual(result,{'software_fixture':True})
         self.assertEqual(out['stages'][5]['commands'][1],self.data['stages'][5]['commands'][1])
         self.assertIn(guide.NEW_RECIPE,out['stages'][5]['commands'][0]);self.assertNotIn(guide.OLD_RECIPE,out['stages'][5]['commands'][0])
+        self.assertEqual(out['stages'][5]['commands'][0].split().count(guide.NEW_RUNNER),1)
+        self.assertNotIn(guide.OLD_RUNNER,out['stages'][5]['commands'][0])
+        self.assertIn(guide.OLD_RUNNER,out['stages'][5]['commands'][1])
         self.assertEqual([Path(i['source']).name for i in out['stages'][3]['files']],['support-stage.json',guide.REPLAY])
         self.assertEqual(out['workshop_adapter']['retained_adapter'],self.data['workshop_adapter']);build.assert_called_once()
 
@@ -137,11 +140,13 @@ class WorkshopGuideV6(unittest.TestCase):
             with self.subTest(mode=mode),self.assertRaises(ValueError):guide.exact_replay_reference(self.run)
 
     def test_unknown_duplicate_commands_and_layout_refuse_before_writing(self):
-        for mode in ('missing','duplicate','layout'):
+        for mode in ('missing','duplicate','layout','runner-missing','runner-duplicate'):
             data=copy.deepcopy(self.data)
             if mode=='missing':data['stages'][5]['commands'][0]='unexpected'
             elif mode=='duplicate':data['stages'][5]['commands'][0]+=' '+guide.OLD_RECIPE
-            else:data['stages'][3]['id']='unexpected'
+            elif mode=='layout':data['stages'][3]['id']='unexpected'
+            elif mode=='runner-missing':data['stages'][5]['commands'][0]=data['stages'][5]['commands'][0].replace(guide.OLD_RUNNER,'scripts/unknown.py')
+            else:data['stages'][5]['commands'][0]+=' '+guide.OLD_RUNNER
             self.description.write_text(json.dumps(data));before=self.description.read_bytes()
             with patch.object(guide,'build') as build,self.assertRaises(ValueError):guide.render(self.description,self.run/'guide')
             build.assert_not_called();self.assertEqual(self.description.read_bytes(),before)

@@ -15,6 +15,8 @@ CONSUMER_SHA256 = '6a6d3720e4a9c98c05393ea6446b33f6596ba3addcd73184ccaec5c8b64b9
 SOURCE_SHA256 = digest(Path(__file__))
 OLD_RECIPE = 'manufacturing/workflows/993-carrier-lpbf-v5.json'
 NEW_RECIPE = 'manufacturing/workflows/993-carrier-lpbf-v6.json'
+OLD_RUNNER = 'scripts/run_part_workflow.py'
+NEW_RUNNER = 'scripts/run_part_workflow_v2.py'
 KEYS = ('envelopes', 'regions', 'skins', 'grids', 'contacts', 'collisions')
 REPLAY = 'exact-admission-replays.json'
 PROOFS = ('exact-unit-proof-assessment.json', 'exact-unit-proof-plan.json', 'exact-unit-proof-runtime.json')
@@ -109,9 +111,11 @@ def render(description, output):
     command = data['stages'][5]['commands'][0]
     if command.split().count(OLD_RECIPE) != 1:
         raise ValueError('The v5 carrier reproduction command changed')
+    if command.split().count(OLD_RUNNER) != 1:
+        raise ValueError('The v5 carrier workflow runner token changed')
     run = description.resolve().parent
     reference = exact_replay_reference(run)
-    data['stages'][5]['commands'][0] = command.replace(OLD_RECIPE, NEW_RECIPE)
+    data['stages'][5]['commands'][0] = command.replace(OLD_RECIPE, NEW_RECIPE).replace(OLD_RUNNER, NEW_RUNNER)
     data['stages'][3]['files'] += [dict(source=str((run/'process'/name).relative_to(ROOT)), label=label)
         for name, label in [('support-stage.json', 'Scellement des supports et liaisons SHA des six admissions'),
                             (REPLAY, 'Rejeux exacts des intervalles : exécution et résultats liés')]]
