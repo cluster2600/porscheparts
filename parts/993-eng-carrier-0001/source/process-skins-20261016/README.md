@@ -6,12 +6,12 @@ Le magasin mixte à sept enveloppes est maintenant lisible et transportable. Les
 
 ## Parcours courant
 
-La [recette v4](../../../../manufacturing/workflows/993-carrier-lpbf-v4.json)
-enchaîne 37 étapes avec 278 entrées épinglées. Sa
-[revue](cold-v4-recipe-evidence/assessment.json) porte sur les identités et les
+La [recette v5](../../../../manufacturing/workflows/993-carrier-lpbf-v5.json)
+enchaîne 37 étapes avec 285 entrées épinglées. Sa
+[revue](cold-v5-recipe-evidence/assessment.json) porte sur les identités et les
 commandes ; les résultats de la campagne réelle restent séparés.
-Les CLI courantes sont `generate_prism_region_v5.py` et
-`generate_legacy_region_v5.py`, puis `build_cached_v4.py` avec les six contrôles
+Les CLI courantes sont `generate_prism_region_v6.py` et
+`generate_legacy_region_v6.py`, puis `build_cached_v5.py` avec les six contrôles
 de `admissions_v3.py`. Les arguments restent ceux des variantes détaillées
 ci-dessous.
 
@@ -22,6 +22,16 @@ contours, décisions et reçus, en évitant les reconstructions complètes
 répétées. Le générateur et l’admission chargent cette version depuis des
 modules privés épinglés. Les tests et le benchmark de grande surface ne
 remplacent pas les admissions et audits des sept régions effectivement livrées.
+
+La [variante à bandes redondantes](redundant_strip_interfaces.py) traite le
+cas d’une interface attestée qui borde une rentrée : elle omet son extension
+uniquement si le quadrilatère entier est déjà contenu dans le domaine, avec
+preuve exacte. Elle conserve les coordonnées, les rôles et le domaine source.
+Les [tests dédiés](../../../../tests/test_carrier_redundant_strip_interfaces.py)
+gardent aussi les refus de bandes partiellement extérieures. Le
+[journal par surface](chart_progress.py) conserve les géométries d’entrée et de
+sortie avec leurs reçus complets. Le préparateur choisit l’autorité enregistrée
+dans chaque reçu ; les résultats antérieurs ne sont pas réétiquetés.
 
 Les détails suivants conservent aussi les versions v1/v2 et leurs témoins
 historiques ; la recette ci-dessus désigne les variantes à utiliser.

@@ -50,7 +50,7 @@ dessiner une nouvelle pièce sans lien avec ses paramètres.
 La préparation des supports est admise séparément de leur génération. Les six
 contrôles portent sur les enveloppes, les régions couvertes, les peaux, les
 grilles, les contacts et les collisions. Le
-[générateur de remise v4](../../scripts/build_carrier_workshop_guide_v4.py)
+[générateur de remise v5](../../scripts/build_carrier_workshop_guide_v5.py)
 refuse le dossier si un contrôle manque, reste non exécuté ou désigne un reçu
 dont l'empreinte a changé. L'audit des trajectoires examine les segments entiers
 dans les sections, en conservant trous et îlots ; vérifier seulement leurs
@@ -67,18 +67,24 @@ dans `manufacturing/workflows/`. Une recette énumère les fichiers d'entrée
 avec leurs empreintes, les commandes, les délais et les sorties attendues.
 Le fichier de runtime local indique où se trouvent les interpréteurs installés.
 
-La [recette intégrée v4](../../manufacturing/workflows/993-carrier-lpbf-v4.json)
-contient 37 étapes et 278 fichiers d’entrée épinglés. Elle conserve exactement
+La [recette intégrée v5](../../manufacturing/workflows/993-carrier-lpbf-v5.json)
+contient 37 étapes et 285 fichiers d’entrée épinglés. Elle conserve exactement
 les douze premières étapes de CAO, surface, mécanique et dessins de la recette
 initiale, puis sépare les sept calculs natifs et les sept générations de
 supports. Leur construction conserve le domaine utile entier et ajoute des
 bandes de contact attestées ; l’assemblage incrémental garde les mêmes contours
 et reçus exacts. Le confinement rationnel, les six admissions géométriques et
 les deux audits complets de trajectoires précèdent le guide.
-La [revue des commandes et des identités](../../parts/993-eng-carrier-0001/source/process-skins-20261016/cold-v4-recipe-evidence/assessment.json)
-a passé : 36 contrats v3 sont réutilisés après vérification de leurs identités,
-le nouvel argumentaire du guide v4 est parsé et les 278 empreintes sont
-revérifiées. Elle reste distincte d’un rejeu complet du carrier.
+La [revue des commandes et des identités](../../parts/993-eng-carrier-0001/source/process-skins-20261016/cold-v5-recipe-evidence/assessment.json)
+a passé : les dix commandes modifiées sont parsées, 27 contrats sont repris
+après vérification de leurs identités et les 285 empreintes sont revérifiées.
+Elle reste distincte d’un rejeu complet du carrier.
+
+Une bande de contact dirigée vers l’intérieur n’est omise que si son
+quadrilatère entier est déjà contenu dans le domaine source, avec preuve
+exacte. Le domaine conserve alors la même matière. Les autres cas restent
+refusés. Chaque surface intermédiaire et son reçu sont conservés ; l’admission
+recalcule les contrôles avec l’autorité réellement enregistrée dans le reçu.
 
 La page mécanique du guide conserve les dépassements du diagnostic idéal
 900 MPa sous K1000, la portée de la sensibilité publiée Grade 23 ELI et les
@@ -88,7 +94,7 @@ attribution exige exactement le même maillage discret et le même jeu linéaire
 de charges et d’appuis ; elle n’assimile pas deux exports STEP distincts.
 
 ```sh
-python3 scripts/run_part_workflow.py run manufacturing/workflows/993-carrier-lpbf-v4.json \
+python3 scripts/run_part_workflow.py run manufacturing/workflows/993-carrier-lpbf-v5.json \
   --runtime work/part-workflow/runtime-v2.json \
   --output work/part-workflow/NOUVEAU_PASSAGE
 ```

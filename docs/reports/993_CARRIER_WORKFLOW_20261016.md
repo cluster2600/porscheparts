@@ -33,12 +33,12 @@ flowchart LR
 ```
 
 La recette initiale contient quinze étapes et **45 entrées épinglées**.
-La [recette intégrée v4](../../manufacturing/workflows/993-carrier-lpbf-v4.json)
+La [recette intégrée v5](../../manufacturing/workflows/993-carrier-lpbf-v5.json)
 conserve ses douze premières étapes et ses 45 entrées, puis porte la chaîne à
-**37 étapes et 278 entrées versionnées épinglées**. La
-[revue des contrats et de leurs dépendances](../../parts/993-eng-carrier-0001/source/process-skins-20261016/cold-v4-recipe-evidence/assessment.json)
-a passé : 36 contrats v3 identiques sont vérifiés et réutilisés, le nouvel
-argumentaire du guide est parsé et les 278 empreintes sont revérifiées. Elle
+**37 étapes et 285 entrées versionnées épinglées**. La
+[revue des contrats et de leurs dépendances](../../parts/993-eng-carrier-0001/source/process-skins-20261016/cold-v5-recipe-evidence/assessment.json)
+a passé : dix commandes modifiées sont parsées, 27 contrats identiques sont
+vérifiés et réutilisés, et les 285 empreintes sont revérifiées. Elle
 ne représente pas une exécution complète de la recette. Les versions
 précédentes et leurs reçus restent conservés.
 Le dossier garde les commandes, journaux, identités des
