@@ -23,8 +23,13 @@ an explicit research assumption can support a conditional calculation.
 The [source-envelope meshing follow-up](ANALYSIS_ENVELOPE_ENGINEERING.md)
 preserves both memory-limit failures and a recovered complete checkpoint.
 An [exact fixed-face certificate](FIXED_FACE_QUALITY.md) proves that checkpoint
-cannot meet the unchanged tetrahedral SICN gate. The larger declared resource
-case remains pending; its numerical or geometric acceptance is not credited.
+cannot meet the unchanged tetrahedral SICN gate. The separately declared
+[12 GiB trial](derived/engineering/analysis-envelope-trial-003.json) stopped at
+its soft deadline without an out-of-memory kill and preserved a complete
+1,408,636-face candidate. Full fixed-face screening and a separate exact
+rational proof reject that final boundary for linear tetrahedra requiring
+SICN ≥ 0.1. No further distance, intersection or tetrahedral run was attempted;
+no solver mesh or numerical/engineering acceptance is credited.
 
 ## Execution and acceptance
 

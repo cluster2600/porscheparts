@@ -4,9 +4,13 @@ The first two CGAL head attempts passed exact source import and were then
 killed by their declared **4 GiB and 8 GiB memory limits**. Neither established
 an admitted solver mesh. The recovered 8 GiB checkpoint also fails an
 [exact necessary fixed-face quality condition](FIXED_FACE_QUALITY.md).
-The separate 12 GiB trial was **running, with its outcome pending**, when the
-[preflight capsule](derived/engineering/analysis-envelope-12g-preflight.json)
-was captured. That capsule credits no head result.
+The separate **12 GiB trial reached its soft deadline without an out-of-memory
+kill**. Its final complete candidate also fails that necessary quality
+condition, so no solver mesh is admitted. The
+[final trial capsule](derived/engineering/analysis-envelope-trial-003.json)
+is separate from the immutable
+[preflight capture](derived/engineering/analysis-envelope-12g-preflight.json),
+which recorded the trial as running at that earlier time.
 The [trial receipt](derived/engineering/analysis-envelope-trial-001.json) and
 [runtime record](derived/engineering/cgal-envelope-runtime.json) preserve the
 observed failure, exact source/binary/image hashes and package provenance.
@@ -91,6 +95,37 @@ and [repeated small fixtures](derived/engineering/cgal-envelope-long-fixtures.js
 bind its compiled source, binary and image before the head trial. Their
 fixture-only 0.01 mm interval gap does not change the head's 0.0001 mm gap.
 There is no automatic further resource or algorithm trial.
+
+The 12 GiB native process returned exit 3 after a controller-observed 1809.03 s;
+its native record identifies an **1800 s soft-deadline partial
+candidate**, not filter exhaustion. Docker confirmed `OOMKilled=false`.
+Maximum observed charged memory was 11,194,490,880 bytes (10.426 GiB), below
+the 11.5 GiB orderly-stop threshold. All 58 checkpoints and the final complete
+surface remain private and hash-bound. The selected `native/surface.bin`
+has SHA-256 `80a51ff9e432575229547573be36a884e02dbe6043a6e2e78210909d393ff30c`.
+It contains **704,110 vertices and 1,408,636 faces**, has no boundary,
+nonmanifold or orientation-imbalanced edges, and retains Euler characteristic
+−208. Exact source import and all frozen input hashes passed their final checks.
+
+The separate [read-only companion](source/audit_envelope_checkpoint12.py)
+completed in 5.51 s using the frozen recovery implementation with an explicit,
+hash-bound case-003 path override. Its own source and the recovery/proof
+sources are bound separately; the native trial was not rerun. Every final
+coordinate and oriented face survived independent Gmsh import exactly, and
+native `minSICN` was evaluated on **all 1,408,636 fixed faces**. Minimum triangle
+SICN was 2.272414867957504×10⁻⁶. The 12,404 incompatible-face count is a floating
+diagnostic. The independent rational check of selected face 347834 uses its
+binary64 coordinates exactly and proves `2700 C < S²`, with the
+[same metric derivation](FIXED_FACE_QUALITY.md). Consequently no positive
+linear tetrahedral mesh retaining those final faces can satisfy SICN ≥ 0.1.
+Exit zero from the companion means the audit completed; its rejection status
+and false qualification flags determine admission.
+
+No new continuous-distance, intersection or tetrahedral run was attempted
+after this decisive necessary-quality rejection. Those case-003 subgates,
+feature/channel/clearance/interface checks and convergence are not credited.
+Earlier distance-allocation and floating-fixture failures remain unchanged.
+The next method requires separate assessment; no new trial follows automatically.
 
 The dedicated local toolchain installed public `libcgal-dev=5.6-1build3` and
 its apt dependencies into an owned container based on the already cached
