@@ -10,19 +10,11 @@ dans `delivery-assets/source-workflow.json`. Le lanceur peut ensuite terminer
 et mettre à jour son propre `workflow.json` ; l'état employé pour les images
 reste consultable et vérifiable dans le dossier remis.
 
-```mermaid
-flowchart LR
-    I["Image / vues / repère de taille"] --> C["1. Géométrie éditable"]
-    S["Scan 3D / unité / orientation"] --> C
-    M["Plan de mesures / dimensions"] --> C
-    C --> R["2. Surface fidèle au maître"]
-    R --> F["3. Masse et calculs mécaniques"]
-    F --> B["4. Orientation et supports"]
-    B --> L["5. Couches et trajectoires"]
-    L --> D["6. Dossier imprimeur / atelier"]
-    D --> T["Impression puis retour du mécanicien"]
-    T -->|"cotes, contacts, observations"| C
-```
+![De la référence au dossier d’impression : six étapes, logiciels, fichiers et contrôles](../media/carrier-workflow-20261016/process.svg)
+
+Le [schéma vectoriel](../media/carrier-workflow-20261016/process.svg) reste
+lisible à l’impression. Il décrit le processus ; les reçus de chaque passage
+portent les résultats effectivement obtenus.
 
 ## Trois entrées, une même sortie CAO
 
