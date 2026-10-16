@@ -73,13 +73,16 @@ emprunter l'ancien environnement du projet. Les 45 roues de la base exécutée
 sont épinglées par version et SHA-256 :
 
 ```sh
-python3.10 -m venv work/part-workflow/runtimes/cad-base
-work/part-workflow/runtimes/cad-base/bin/python -m pip install --require-hashes \
-  -r parts/993-eng-carrier-0001/source/design-20261016/cad-base-macos-arm64-python310.lock.txt
+python3 parts/993-eng-carrier-0001/source/design-20261016/setup_cad_base.py \
+  --python CHEMIN_DU_PYTHON_310 \
+  --output work/part-workflow/runtimes/cad-base
 ```
 
-Cette installation a exécuté un solide percé dont le volume est comparé à
-sa formule analytique, puis vérifié l'export et le réimport STEP. Le Python de
+Cet installateur refuse les plateformes différentes de macOS ARM64/Python
+3.10, les versions non épinglées et les dossiers déjà présents. Il exécute un
+solide percé dont le volume est comparé à sa formule analytique, puis vérifie
+l'export et le réimport STEP ainsi que l'empreinte du noyau natif. Son reçu et
+les journaux d'installation restent dans le dossier du runtime. Le Python de
 cette base devient `CHEMIN_DU_PYTHON_CAD` ci-dessous.
 
 Pour installer les quatre environnements de calcul, indiquer explicitement

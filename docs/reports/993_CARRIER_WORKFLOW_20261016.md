@@ -120,6 +120,12 @@ total de `1 000 N/mm` par œil et par direction entre les nœuds de l'alésage.
 Les surfaces, matériaux et appuis du candidat et de V6f sont comparés sous les
 mêmes conventions.
 
+La [recherche des appuis publiés](../../parts/993-eng-carrier-0001/source/design-20261016/boundary-condition-research.md)
+confirme la référence Turbo proposée par JP Group, mais ne fournit pas sa loi
+de raideur. Le M154 de Rennline publie une dureté 75 Shore A et exclut les
+Turbo ; aucune conversion de cette valeur en ressort `K1000` n'a été faite.
+`K1000` conserve donc son statut d'hypothèse numérique déclarée.
+
 | Maillage / appuis | Déplacement candidat / V6f (mm) | Pic IP candidat / V6f (MPa) |
 | --- | ---: | ---: |
 | 9 mm / rigides | 2,7623 / 2,9902 | 700,76 / 740,86 |

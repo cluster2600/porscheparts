@@ -62,6 +62,11 @@ La [base CAD macOS ARM64 / Python 3.10](cad-base-macos-arm64-python310.lock.txt)
 épingle les 45 roues de l'installation autonome vérifiée, y compris build123d
 0.11.1, OCCT sans VTK et NumPy. La procédure décrit son installation ; elle
 évite de dépendre de l'environnement historique du checkout principal.
+L'[installateur](setup_cad_base.py) a été exécuté sur un second dossier neuf :
+installation avec empreintes, contrôle des dépendances et six contrôles natifs
+du solide percé et du réimport STEP réussissent. Le
+[reçu compact](cad-base-standalone-validation.json) conserve versions,
+empreintes et résultats du témoin.
 
 ```sh
 work/part-workflow/runtimes/design/bin/python -B \
