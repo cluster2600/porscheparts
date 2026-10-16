@@ -28,3 +28,7 @@ PySLM est conservé à la révision
 `8fa03f1eb98b1fbc8e617eb3119d669f356a2f0b`, sous LGPL-2.1, avec sa
 [licence](LICENSE.pyslm), son patch et la liste verrouillée des dépendances.
 Le runtime historique de `process-20261016` reste séparé.
+
+Le patch est conservé octet pour octet : `git diff --check` signale notamment
+les espaces des lignes de contexte vides de ce fichier diff. Les supprimer
+modifierait l'entrée épinglée de l'installation reproduite.
