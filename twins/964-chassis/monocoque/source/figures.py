@@ -134,11 +134,11 @@ def buckling(pv, cmap):
         ax.set_xticks(range(len(row["meshes"])), [f"{m['sections']} sections" for m in row["meshes"]], color="white")
         last = row["meshes"][-1]
         cr, wr = last["sandwich_crimping_margin"], last["sandwich_wrinkling_margin"]
-        ax.set_title(f"{case}: service {service:,.0f} {row['unit']} (ASSUMED); sandwich by hand, mid-surface / integration "
+        ax.set_title(f"{case}: service {service:,.0f} {row['unit']} (ASSUMED)\nsandwich by hand, mid-surface / integration "
                      f"points: crimping x{cr['mid_surface']} / x{cr['integration_points']}, wrinkling "
                      f"x{wr['mid_surface']} / x{wr['integration_points']}",
                      color="white", fontsize=9)
-        ax.set_ylabel("critical load / service load (line: 1; dotted: 2, the usual knock-down)", color="#9aa3ad", fontsize=9)
+        ax.set_ylabel("critical / service load\n(line: 1; dotted: 2, a typical knock-down)", color="#9aa3ad", fontsize=9)
         ax.set_facecolor("#0e1218")
         ax.tick_params(colors="#9aa3ad")
         for sp in ax.spines.values():
