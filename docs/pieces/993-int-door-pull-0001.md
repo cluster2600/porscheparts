@@ -101,7 +101,7 @@ Catalogue record: [`catalog/parts/993-int-door-pull-0001.json`](../../catalog/pa
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Classed functional and not non_critical: the part takes a repeated manual load and its failure in the hand can cause injury.<br>No acquisition done; the photogrammetry will need to carry a scale reference.<br>Mounting interfaces and tightening torque unknown.<br>Fatigue behavior of a printed polymer not evaluated.<br>Porsche part number unsourced: no repository source gives one with a PET plate and position. The interior door opener numbers 993 555 851 00 and 993 555 852 00 (SRC-PORSCHEFANATICS-993-DOOR-OPENER-PET, PET illustration 807-10, position 18) identify a different part, 993-INT-DOOR-OPENER-LEVER-F0-0001, and are not copied here.<br>Phase 2 organic pilot although classed functional, not non_critical: kept for method development only; keeping it or swapping it for a non_critical organic part is an open choice in decision 0013.<br>Evidence owner (decision 0013): documentary evidence, the maintainer (desk review of existing sources); physical capture, unassigned, awaits an external contributor. |
 
 **Evidence**
 

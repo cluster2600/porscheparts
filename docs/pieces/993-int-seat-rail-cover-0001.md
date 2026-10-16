@@ -100,7 +100,7 @@ Catalogue record: [`catalog/parts/993-int-seat-rail-cover-0001.json`](../../cata
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Left-right symmetry is assumed and must be verified by measurement before any mirroring.<br>The seat and the rail differ by equipment: variant to be confirmed.<br>No measurement taken.<br>A part obtained by mirroring does not replace verification of the real interfaces.<br>Porsche part numbers unsourced: 9xxteile shows distinct left and right numbers, but no repository source transcribes them with a PET plate and position.<br>Evidence owner (decision 0013): documentary evidence, the maintainer (desk review of existing sources); physical capture, unassigned, awaits an external contributor. |
 
 **Evidence**
 
