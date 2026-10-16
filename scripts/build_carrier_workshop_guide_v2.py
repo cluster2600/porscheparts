@@ -1,5 +1,6 @@
 """Package one carrier revision only after support admission and complete scanpath audits."""
 import argparse
+import csv
 import hashlib
 import json
 import math
@@ -11,6 +12,7 @@ from build_part_workflow_guide import build
 ROOT = Path(__file__).resolve().parents[1]
 TEMPLATE = ROOT / 'manufacturing/workflows/993-carrier-guide.json'
 ADMISSION_KEYS = ('envelopes', 'regions', 'skins', 'grids', 'contacts', 'collisions')
+PROCESS_RENDERER = ROOT / 'parts/993-eng-carrier-0001/source/process-coverage-20261016/render_pyslm.py'
 
 
 def sha(path):
@@ -79,6 +81,73 @@ def admitted_support_receipt(directory, process, report_hash):
     return audit
 
 
+def admitted_visuals(run, process, mesh_hash):
+    """Require actual render receipts; filenames alone cannot identify a figure."""
+    prefix = run / ('provenance/source-workflow.json' if (run / 'assembly.json').is_file() else 'workflow.json')
+    if not prefix.is_file():
+        raise ValueError('Recorded CAD, dimension and field rendering provenance is required')
+    if (run / 'assembly.json').is_file():
+        assembly = json.loads((run / 'assembly.json').read_text())
+        if assembly['source_workflow']['sha256'] != sha(prefix):
+            raise ValueError('Image rendering provenance differs from the verified assembly')
+    workflow = json.loads(prefix.read_text())
+    images = {}
+    for identity, names in (
+            ('dimensions', ('dimensions/carrier-dimensions.png', 'dimensions/drawing.json')),
+            ('surface-figure', ('surface-figure/carrier-remesh-comparison.png',)),
+            ('fields', ('fields/combined.png', 'fields/combined.json'))):
+        stages = [stage for stage in workflow['stages'] if stage['id'] == identity]
+        if len(stages) != 1 or stages[0].get('status') != 'executed' or stages[0].get('returncode') != 0:
+            raise ValueError('Successful recorded rendering stage required: ' + identity)
+        for name in names:
+            path = run / name
+            if not path.is_file() or stages[0]['outputs_sha256'].get(name) != sha(path):
+                raise ValueError('Guide visual differs from its recorded rendering stage: ' + name)
+            if path.suffix == '.png':
+                images[name] = sha(path)
+    drawing = json.loads((run / 'dimensions/drawing.json').read_text())
+    if drawing.get('STL_sha256') != mesh_hash or drawing.get('study_sha256') != sha(run / 'cad/study.json'):
+        raise ValueError('Dimension figure uses another surface or study revision')
+    fields = json.loads((run / 'fields/combined.json').read_text())
+    case = 'combined-rigid-static'
+    folder = run / 'cad/mesh-7'
+    if fields.get('case') != case:
+        raise ValueError('Mechanical figure uses another comparison case')
+    for key, name in (('mesh_sha256', 'mesh.inp'), ('mesh_npz_sha256', 'mesh.npz'),
+                      ('solver_deck_sha256', case + '.inp'), ('result_npz_sha256', case + '.npz'),
+                      ('result_record_sha256', case + '.json')):
+        if fields.get(key) != sha(folder / name):
+            raise ValueError('Mechanical figure uses another retained result: ' + key)
+    directory = run / 'process'
+    figures_path = directory / 'figures.json'
+    figures = json.loads(figures_path.read_text())
+    if (figures.get('partial_witness') is not False or
+            figures.get('input_receipt_sha256') != sha(directory / 'report.json') or
+            figures.get('render_source_sha256') != sha(PROCESS_RENDERER)):
+        raise ValueError('Complete same-process support and layer figure receipts are required')
+    expected_supports = {f"support-{support['index']:03d}.npz" for support in process['supports']}
+    if {path.name for path in directory.glob('support-*.npz')} != expected_supports:
+        raise ValueError('Support scene contains missing or unreported support surfaces')
+    for name in ('build-supports.png', 'support-teeth.png', 'layer-contours-hatches.png'):
+        path = directory / name
+        if not path.is_file() or figures.get('images_sha256', {}).get(name) != sha(path):
+            raise ValueError('Support or layer image differs from its same-process render receipt: ' + name)
+        images['process/' + name] = sha(path)
+    index = figures.get('layer_index')
+    if type(index) is not int or not 0 <= index < process['n_layers']:
+        raise ValueError('Figure must select an actual audited layer of this process')
+    layer_name = f'layers/layer-{index:05d}.npz'
+    if process['outputs_sha256'].get(layer_name) != sha(directory / layer_name):
+        raise ValueError('Selected layer figure uses another retained layer')
+    with (directory / 'layers.csv').open() as stream:
+        rows = list(csv.DictReader(stream))
+    if len(rows) != process['n_layers'] or int(rows[index]['layer']) != index or float(rows[index]['part_area_mm2']) <= 0:
+        raise ValueError('Figure must show a nonempty recorded part layer')
+    return dict(prefix_workflow_sha256=sha(prefix), process_figures_sha256=sha(figures_path),
+                process_report_sha256=sha(directory / 'report.json'), layer_index=index,
+                layer_sha256=sha(directory / layer_name), images_sha256=images)
+
+
 def package(run):
     run = run.resolve()
     if not run.is_relative_to(ROOT / 'work'):
@@ -109,6 +178,7 @@ def package(run):
         path = (run / 'process' / name).resolve()
         if not path.is_relative_to(run / 'process') or sha(path) != expected:
             raise ValueError('Slicing artifact identity mismatch: ' + name)
+    visuals = admitted_visuals(run, process, mesh_hash)
     assets = run / 'delivery-assets'
     assets.mkdir(exist_ok=False)
     for name, selection in [('supports.zip', lambda n: n.startswith('support-')),
@@ -119,6 +189,7 @@ def package(run):
                     archive.write(run / 'process' / source, source)
             archive.write(run / 'process/report.json', 'report.json')
     data = json.loads(TEMPLATE.read_text())
+    data['visual_provenance'] = visuals
     fr = lambda value, digits=3: f'{value:.{digits}f}'.replace('.', ',')
     case = next(row for row in comparison['cases'] if row['mesh'] == 'mesh-7' and row['case'] == 'combined-rigid-static')
     metrics = case['metrics']
@@ -141,7 +212,8 @@ def package(run):
              ('Plafond demandé', fr(comparison['selection']['declared_mass_ceiling_kg'], 2) + ' kg'),
              ('Écart de volume des interfaces conservées', str(protected['central_pad_symmetric_difference_mm3']) + ' mm³')],
          [('cad/carrier.step', 'Maître STEP'), ('cad/study.json', 'Paramètres éditables'),
-          ('cad/geometry.json', 'Géométrie et masse'), ('cad/protected-interfaces.json', 'Contrôle des fixations')],
+          ('cad/geometry.json', 'Géométrie et masse'), ('cad/protected-interfaces.json', 'Contrôle des fixations'),
+          ('dimensions/drawing.json', 'Origine des cotes et de la vue')],
          ('dimensions/carrier-dimensions.png', 'Vues de la surface contrôlée et cotes des paramètres de cette révision.'))
     fill(1, [('Triangles', surface['topology']['triangles']), ('Défauts topologiques / intersections', '0 / 0'),
              ('Écart maximal échantillonné au STEP', fr(distance, 5) + ' mm'), ('Seuil conservé', '0,06 mm')],
@@ -154,12 +226,15 @@ def package(run):
              ('Évolution du pic par rapport à V6f', fr(metrics['integration_point_VM_max_MPa']['change_percent'], 1) + ' %'),
              ('Comparaisons rigide / ressorts, deux maillages', '4 cas admis'), ('Énergie et superposition', 'Conformes aux critères déclarés')],
          [('comparison/comparison.json', 'Comparaison mécanique complète'), ('comparison/selection.json', 'Critères et décision numérique'),
-          ('cad/simulation-runtime.json', 'Solveur, ressources et nettoyage')],
+          ('cad/simulation-runtime.json', 'Solveur, ressources et nettoyage'),
+          ('fields/combined.json', 'Origine du champ et de la déformée')],
          ('fields/combined.png', 'Champ de contraintes et déformée du vrai calcul. Les unités et le facteur d’amplification figurent sur la vue.'))
     fill(3, [('Rotation dans le plateau', '45° ; pièce à plat'), ('Plateau du dossier', '500 × 500 mm'),
              ('Régions de support', len(process['supports'])), ('Encombrement du plateau', 'Compatible' if process['fits_500mm_square_plate'] else 'Hors plateau')],
          [('delivery-assets/supports.zip', 'Surfaces et données des supports'), ('process/build.glb', 'Scène 3D du plateau'),
-          ('process/report.json', 'Réglages et résultats de préparation')],
+          ('process/report.json', 'Réglages et résultats de préparation'),
+          ('process/support-teeth.png', 'Détail réel des dents de contact'),
+          ('process/figures.json', 'Origine des vues de préparation')],
          ('process/build-supports.png', 'Pièce en bleu, supports calculés en orange et plateau gris.'))
     data['stages'][3]['checks'] += [
         {'label': 'Enveloppes, régions et peaux', 'value': 'Trois contrôles admis'},

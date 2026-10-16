@@ -113,6 +113,103 @@ class CarrierWorkshopGuideV2Tests(unittest.TestCase):
             with self.subTest(name=name), self.assertRaisesRegex(ValueError, 'receipt identity'):
                 guide.admitted_support_scanpaths(self.run, self.process)
 
+    def visual_fixture(self):
+        def write(name, contents):
+            path = self.run / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(contents)
+            return path
+        write('cad/study.json', '{"geometry":"known study"}')
+        for name in ('mesh.inp', 'mesh.npz', 'combined-rigid-static.inp',
+                     'combined-rigid-static.npz', 'combined-rigid-static.json'):
+            write('cad/mesh-7/' + name, 'known retained ' + name)
+        drawing = {'STL_sha256': 'a' * 64, 'study_sha256': guide.sha(self.run / 'cad/study.json')}
+        write('dimensions/drawing.json', json.dumps(drawing))
+        fields = {'case': 'combined-rigid-static'}
+        for key, name in (('mesh_sha256', 'mesh.inp'), ('mesh_npz_sha256', 'mesh.npz'),
+                          ('solver_deck_sha256', 'combined-rigid-static.inp'),
+                          ('result_npz_sha256', 'combined-rigid-static.npz'),
+                          ('result_record_sha256', 'combined-rigid-static.json')):
+            fields[key] = guide.sha(self.run / 'cad/mesh-7' / name)
+        write('fields/combined.json', json.dumps(fields))
+        stages = []
+        for identity, names in (
+                ('dimensions', ('dimensions/carrier-dimensions.png', 'dimensions/drawing.json')),
+                ('surface-figure', ('surface-figure/carrier-remesh-comparison.png',)),
+                ('fields', ('fields/combined.png', 'fields/combined.json'))):
+            for name in names:
+                if name.endswith('.png'):
+                    write(name, 'known rendered pixels ' + name)
+            stages.append({'id': identity, 'status': 'executed', 'returncode': 0,
+                           'outputs_sha256': {name: guide.sha(self.run / name) for name in names}})
+        write('workflow.json', json.dumps({'stages': stages}))
+        write('process/support-000.npz', 'known complete support')
+        write('process/layers/layer-00001.npz', 'known audited layer')
+        write('process/layers.csv', 'layer,part_area_mm2\n0,0\n1,4\n')
+        self.process.update(supports=[{'index': 0}], outputs_sha256={
+            'layers/layer-00001.npz': guide.sha(self.run / 'process/layers/layer-00001.npz')})
+        self.write_process()
+        images = {}
+        for name in ('build-supports.png', 'support-teeth.png', 'layer-contours-hatches.png'):
+            images[name] = guide.sha(write('process/' + name, 'known final image ' + name))
+        self.figures = {'partial_witness': False, 'input_receipt_sha256': guide.sha(self.process_dir / 'report.json'),
+                        'render_source_sha256': guide.sha(guide.PROCESS_RENDERER), 'images_sha256': images,
+                        'layer_index': 1}
+        self.write_figures()
+
+    def write_figures(self):
+        (self.process_dir / 'figures.json').write_text(json.dumps(self.figures))
+
+    def test_all_visuals_bind_to_recorded_prefix_and_complete_audited_process(self):
+        self.visual_fixture()
+        result = guide.admitted_visuals(self.run, self.process, 'a' * 64)
+        self.assertEqual(result['layer_index'], 1)
+        self.assertEqual(len(result['images_sha256']), 6)
+
+    def test_old_or_partial_support_figures_are_refused(self):
+        self.visual_fixture()
+        for key, value in [('input_receipt_sha256', '0' * 64), ('partial_witness', True)]:
+            original = self.figures[key]
+            self.figures[key] = value
+            self.write_figures()
+            with self.subTest(key=key), self.assertRaisesRegex(ValueError, 'same-process'):
+                guide.admitted_visuals(self.run, self.process, 'a' * 64)
+            self.figures[key] = original
+
+    def test_replaced_support_image_is_refused_even_with_matching_report(self):
+        self.visual_fixture()
+        (self.process_dir / 'build-supports.png').write_text('old rejected support image')
+        with self.assertRaisesRegex(ValueError, 'differs from its same-process'):
+            guide.admitted_visuals(self.run, self.process, 'a' * 64)
+
+    def test_mechanical_figure_cannot_borrow_another_result(self):
+        self.visual_fixture()
+        (self.run / 'cad/mesh-7/combined-rigid-static.npz').write_text('another mechanical result')
+        with self.assertRaisesRegex(ValueError, 'another retained result'):
+            guide.admitted_visuals(self.run, self.process, 'a' * 64)
+
+    def test_unreported_surface_cannot_appear_in_the_support_scene(self):
+        self.visual_fixture()
+        (self.process_dir / 'support-999.npz').write_text('unreported stale support')
+        with self.assertRaisesRegex(ValueError, 'unreported support surfaces'):
+            guide.admitted_visuals(self.run, self.process, 'a' * 64)
+
+    def test_layer_image_must_use_a_retained_nonempty_audited_layer(self):
+        self.visual_fixture()
+        self.figures['layer_index'] = self.process['n_layers']
+        self.write_figures()
+        with self.assertRaisesRegex(ValueError, 'actual audited layer'):
+            guide.admitted_visuals(self.run, self.process, 'a' * 64)
+
+    def test_assembled_visuals_require_the_recorded_source_workflow_identity(self):
+        self.visual_fixture()
+        provenance = self.run / 'provenance'
+        provenance.mkdir()
+        (provenance / 'source-workflow.json').write_bytes((self.run / 'workflow.json').read_bytes())
+        (self.run / 'assembly.json').write_text(json.dumps({'source_workflow': {'sha256': '0' * 64}}))
+        with self.assertRaisesRegex(ValueError, 'verified assembly'):
+            guide.admitted_visuals(self.run, self.process, 'a' * 64)
+
 
 if __name__ == '__main__':
     unittest.main()
