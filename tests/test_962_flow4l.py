@@ -13,6 +13,10 @@ flow = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(flow)
 spec = importlib.util.spec_from_file_location("flow4l_mesh_gate", SOURCE / "accept_mesh.py")
 gate = importlib.util.module_from_spec(spec); spec.loader.exec_module(gate)
+spec = importlib.util.spec_from_file_location("flow4l_solution_fields", SOURCE / "analyze_flow.py")
+fields = importlib.util.module_from_spec(spec); spec.loader.exec_module(fields)
+spec = importlib.util.spec_from_file_location("flow4l_native_case", SOURCE / "prepare_native_tet_case.py")
+native_case = importlib.util.module_from_spec(spec); spec.loader.exec_module(native_case)
 
 
 class Flow4LTests(unittest.TestCase):
@@ -65,6 +69,44 @@ class Flow4LTests(unittest.TestCase):
         design = json.loads((SOURCE / "design.json").read_text())
         self.assertTrue(all(v is None for v in design["required_measured_interfaces"].values()))
         self.assertFalse(any(design["qualification"].values()))
+
+    def test_flux_comes_from_the_same_saved_solution_and_checks_dimensions(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "phi"
+            path.write_text("dimensions [0 3 -1 0 0 0 0]; inlet { value nonuniform List<scalar> 2 (-0.3 -0.7); }")
+            self.assertAlmostEqual(fields.patch_flux(path, "inlet", 2), -1)
+            with self.assertRaises(ValueError): fields.patch_flux(path, "inlet", 3)
+            path.write_text("dimensions [0 3 -1 0 0 0 0]; inlet { value uniform -0.5; }")
+            self.assertEqual(fields.patch_flux(path, "inlet", 2), -1)
+            path.write_text("dimensions [0 3 -1 0 0 0 0]; inlet { value uniform 1e999; }")
+            with self.assertRaises(ValueError): fields.patch_flux(path, "inlet", 2)
+            path.write_text(path.read_text().replace("0 3 -1", "1 0 -1"))
+            with self.assertRaises(ValueError): fields.patch_flux(path, "inlet", 2)
+
+    def test_native_case_preserves_inputs_and_rejects_bad_decomposition(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp); template = root / "template"; parent = root / "parent"
+            for name in ("0", "constant", "system"): (template / name).mkdir(parents=True)
+            (template / "0/U").write_text("initial velocity")
+            (template / "case-report.json").write_text(json.dumps({"case_hashes": {"0/U": native_case.sha(template / "0/U")}}))
+            (parent / "constant/geometry").mkdir(parents=True)
+            (parent / "constant/polyMesh").mkdir()
+            (parent / "constant/geometry/coolant.obj").write_text("surface")
+            (parent / "case-report.json").write_text('{}')
+            mesh = root / "mesh.msh"; mesh.write_text("mesh")
+            grid = root / "grid.json"; grid.write_text("grid")
+            log = root / "export.log"
+            log.write_text("Native tetrahedra: 1; minimum volume: -1; sum: 1; parent: 1; relative volume difference: 0\nEnd\n")
+            with self.assertRaises(ValueError): native_case.prepare(parent, mesh, log, template, grid, root / "rejected")
+            self.assertFalse((root / "rejected").exists())
+            log.write_text(log.read_text().replace("volume: -1", "volume: 1"))
+            output = root / "accepted"
+            native_case.prepare(parent, mesh, log, template, grid, output)
+            report = json.loads((output / "case-report.json").read_text())
+            self.assertEqual(report["cells"], 1)
+            self.assertEqual(report["case_hashes"]["0/U"], native_case.sha(template / "0/U"))
+            self.assertIn("not_yet_accepted", report["status"])
+            with self.assertRaises(ValueError): native_case.prepare(parent, mesh, log, template, grid, output)
 
 
 if __name__ == "__main__":

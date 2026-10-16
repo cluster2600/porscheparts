@@ -86,10 +86,19 @@ de cellule. La tentative de tétraédrisation directe Gmsh de la surface est
 La surface dérivée pour maillage reste fermée : 61 504 triangles, écart
 maximal mesuré aux sommets de 0,238 mm et écart de volume de −0,150 %.
 Ce contrôle échantillonné n'est pas une borne de Hausdorff globale.
-La voie en cours utilise l'accrochage à la surface par `snappyHexMesh` dans
-OpenFOAM **Foundation 13**, puis un contrôle bloquant avant calcul RANS.
-Les scripts conservent les entrées, les logs et les rejets. Aucune perte de
-charge, efficacité thermique ou puissance moteur n'est validée à ce stade.
+L'accrochage à la surface par `snappyHexMesh` dans OpenFOAM **Foundation 13**
+produit 138 400 cellules et une seule région, mais le contrôle complet rejette
+720 cellules concaves et une face trop déformée. Une nouvelle représentation
+conforme aux faces utilise ensuite les centres et bases de faces natifs
+d'OpenFOAM : 1 612 960 tétraèdres de volume positif, avec un écart de volume
+de 0,0207 % par rapport au parent. Elle est également rejetée : cinq contrôles
+échouent, notamment sur 9 055 déterminants et sept faces trop déformées.
+
+Le [rapport de maillage](derived/flow4l/meshing-report.json) conserve les
+empreintes des cas et les journaux principaux. Le contrôle bloquant a empêché
+le lancement du solveur sur ces maillages. Aucun seuil n'a été abaissé et
+aucune itération d'écoulement n'est créditée. La perte de charge, la répartition
+du débit, l'efficacité thermique et la puissance moteur restent à établir.
 
 ## Reproduction
 
@@ -109,6 +118,16 @@ python3 -m unittest discover -s tests -p 'test_962_flow4l.py' -v
 Les grandes sorties STL/VDB restent des fichiers dérivés locaux ; leurs
 empreintes et les rendus sont versionnés. Aucun scan ou manuel tiers, poids
 de modèle ou binaire fournisseur n'est ajouté au dépôt.
+
+Une archive locale de consultation rassemble les trois STL inspectés, le
+VDB géométrique, les sources de cette variante, les rapports et les rendus :
+`work/962-flow4l/delivery-001/mezger-4l-sp95-head-study.zip`.
+Le [reçu de livraison](derived/flow4l/delivery-report.json) enregistre ses
+95 532 176 octets et les empreintes des 37 fichiers, tous relus après
+compression. Cette archive accompagne le dépôt complet pour la reproduction :
+les helpers partagés et les dépendances PicoGK restent ceux du dépôt et de
+l'installation vérifiée. Elle ne contient aucun résultat de pression,
+vitesse ou température de solveur, ni dossier de fabrication.
 
 ## Suite de la chaîne d'outils
 
