@@ -1,0 +1,749 @@
+{
+  "schema": "962-analysis-surface-trials/v1",
+  "status": "all_candidates_rejected_no_solver_admission",
+  "length_unit": "mm",
+  "source_stl_sha256": "ba7a0e28dade659550705e9737177c64c7f6fecd8d86d01e31732d7e739cd906",
+  "representation_deviation_budget_mm": 0.25,
+  "source_voxel_size_mm": 0.5,
+  "VTK_error_correction": {
+    "recorded_numeric_AbsoluteError": 0.25,
+    "metric": "VTK9.7.1 computes squared geometric errors; the frozen original field name absolute_error_mm is misleading and is preserved as historical evidence.",
+    "independent_mm_gate_unchanged": true,
+    "primary_source": "https://raw.githubusercontent.com/Kitware/VTK/v9.7.1/Filters/Core/vtkDecimatePro.cxx",
+    "locators": [
+      "ComputeSimpleError returns dist*dist",
+      "RequestData sets Error=AbsoluteError",
+      "Pop compares queued error to Error"
+    ],
+    "no_corrected_parameter_retry_run": true
+  },
+  "preparation_trials": [
+    {
+      "id": "analysis-surface-025-001",
+      "status": "failed_outputs_preserved",
+      "returncode": 2,
+      "controller_wall_s": 21.38852308411151,
+      "source_executed_sha256": "589464023d1b229ad6e6333a090d696af6d5ad9c94096a49d9639b659bc4895e",
+      "contract_sha256": "254a4fce59676e88a02931dc330cfe4d3396dab741c62534363425ca7e3cb7a2",
+      "receipt_sha256": "e2a0a36807a2b2da1d6b0823947d56a9aa7794e7ac5f63f4a92616b296bbfcb2",
+      "worker_report_sha256": "76ad392955674de9f816de82832c43dbda6436bbace999b39806ca849ae98c31",
+      "source_surface": {
+        "unique_edges": 2707059,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "orientation_imbalanced_edges": 0,
+        "vertices": 902145,
+        "triangles": 1804706,
+        "euler_characteristic": -208,
+        "signed_volume_mm3": 915458.1053358029,
+        "points_sha256": "f6aee40320646d34212929551866b111093ab25d81d78d68e48b95e1f8f78ad7",
+        "faces_sha256": "9318ffffd6b46c1daa3f35169071eb3ad815171848fc3d48778b8373a2ea5341"
+      },
+      "candidate_vertices": null,
+      "candidate_triangles": null,
+      "candidate_edge_diagnostics": null,
+      "error": "ValueError: Surface must be closed, edge-manifold and consistently oriented",
+      "source_inputs_unchanged": true,
+      "output_hashes": {
+        "source-surface.npz": "f405a28ffd9c1fad48eadfba9842272750d3de14d2fd2d6c68b90e4eedbd1abc"
+      },
+      "candidate_preserved": false
+    },
+    {
+      "id": "analysis-surface-025-002",
+      "status": "failed_outputs_preserved",
+      "returncode": 2,
+      "controller_wall_s": 20.38576995814219,
+      "source_executed_sha256": "cda8f7155a8c22ab66898f07d1ad452ba5384ad7f75a1f012606685cd8a12dc3",
+      "contract_sha256": "254a4fce59676e88a02931dc330cfe4d3396dab741c62534363425ca7e3cb7a2",
+      "receipt_sha256": "8c5517e4e2c16b834ea7455a78bd4fe35c1ab78ff2ef52e04ef81dda1371ba73",
+      "worker_report_sha256": "22bcb9bf6b7b65e18d4db692cb0e8ac364c03bf0f46e38627c8f35514c5a4662",
+      "source_surface": {
+        "unique_edges": 2707059,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 0,
+        "orientation_imbalanced_edges": 0,
+        "vertices": 902145,
+        "triangles": 1804706,
+        "euler_characteristic": -208,
+        "signed_volume_mm3": 915458.1053358029,
+        "points_sha256": "f6aee40320646d34212929551866b111093ab25d81d78d68e48b95e1f8f78ad7",
+        "faces_sha256": "9318ffffd6b46c1daa3f35169071eb3ad815171848fc3d48778b8373a2ea5341"
+      },
+      "candidate_vertices": 56844,
+      "candidate_triangles": 114104,
+      "candidate_edge_diagnostics": {
+        "unique_edges": 171148,
+        "boundary_edges": 0,
+        "nonmanifold_edges": 8,
+        "orientation_imbalanced_edges": 0,
+        "maximum_faces_per_edge": 4
+      },
+      "error": "ValueError: Surface must be closed, edge-manifold and consistently oriented",
+      "source_inputs_unchanged": true,
+      "output_hashes": {
+        "source-surface.npz": "f405a28ffd9c1fad48eadfba9842272750d3de14d2fd2d6c68b90e4eedbd1abc",
+        "analysis-surface.npz": "4b1a0312769dd17137ff6e6b54a38348f66de65d9738969cd4415de1c12cae33"
+      },
+      "candidate_preserved": true
+    }
+  ],
+  "exact_fin_cancellation": {
+    "status": "exact_fin_cancellation_completed_independent_gates_pending",
+    "source_sha256": "a467540ed67231fff57028a35bc74d62c06b3cd21ece40fccd7c859039582771",
+    "contract_sha256": "ab456affb552b269eeef1794dfb36437df0c1c17bbce13881ce39ee6b50e96bd",
+    "wall_s": 0.6348528331145644,
+    "vertices_before": 56844,
+    "triangles_before": 114104,
+    "vertices_after": 56836,
+    "triangles_after": 114088,
+    "removed_faces": 16,
+    "removed_unused_vertices": 8,
+    "surface": {
+      "unique_edges": 171132,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "orientation_imbalanced_edges": 0,
+      "vertices": 56836,
+      "triangles": 114088,
+      "euler_characteristic": -208,
+      "signed_volume_mm3": 922499.7337734705,
+      "points_sha256": "5f2895d286c9e8bf4aa6cedbb5c09108708343bc9bb7f1a23412f38ce3d86951",
+      "faces_sha256": "a4efdf7216c352be0d4aa16a8636b6bceb771cc3de81649db71ac20b6d709869"
+    },
+    "original_volume_mm3": 915458.1053358027,
+    "relative_volume_change_vs_original": 0.007691917736732279,
+    "kept_oriented_triangles_exact": true,
+    "pairs": [
+      {
+        "removed_face_indices": [
+          9100,
+          9797
+        ],
+        "oriented_faces": [
+          [
+            5280,
+            5277,
+            5279
+          ],
+          [
+            5279,
+            5277,
+            5280
+          ]
+        ],
+        "tip_vertex": 5279,
+        "attachment_edge": [
+          5277,
+          5280
+        ],
+        "attachment_coordinates_mm": [
+          [
+            -59.75,
+            -24.546306610107422,
+            42.966041564941406
+          ],
+          [
+            -59.75,
+            -23.806421279907227,
+            42.22377395629883
+          ]
+        ],
+        "attachment_incident_faces_before": [
+          9099,
+          9100,
+          9797,
+          9798
+        ],
+        "exact_opposite_pair": true
+      },
+      {
+        "removed_face_indices": [
+          24710,
+          24715
+        ],
+        "oriented_faces": [
+          [
+            10767,
+            11238,
+            10203
+          ],
+          [
+            11238,
+            10767,
+            10203
+          ]
+        ],
+        "tip_vertex": 10767,
+        "attachment_edge": [
+          10203,
+          11238
+        ],
+        "attachment_coordinates_mm": [
+          [
+            -57.78770065307617,
+            -11.707612037658691,
+            68.25
+          ],
+          [
+            -57.335166931152344,
+            -11.208759307861328,
+            68.25
+          ]
+        ],
+        "attachment_incident_faces_before": [
+          24710,
+          24711,
+          24714,
+          24715
+        ],
+        "exact_opposite_pair": true
+      },
+      {
+        "removed_face_indices": [
+          26668,
+          26669
+        ],
+        "oriented_faces": [
+          [
+            26953,
+            26754,
+            27048
+          ],
+          [
+            27048,
+            26754,
+            26953
+          ]
+        ],
+        "tip_vertex": 26953,
+        "attachment_edge": [
+          26754,
+          27048
+        ],
+        "attachment_coordinates_mm": [
+          [
+            -2.445406436920166,
+            -5.477136135101318,
+            68.25
+          ],
+          [
+            -1.25,
+            -5.862565040588379,
+            68.25
+          ]
+        ],
+        "attachment_incident_faces_before": [
+          26665,
+          26667,
+          26668,
+          26669
+        ],
+        "exact_opposite_pair": true
+      },
+      {
+        "removed_face_indices": [
+          59761,
+          59817
+        ],
+        "oriented_faces": [
+          [
+            29606,
+            29609,
+            29608
+          ],
+          [
+            29606,
+            29608,
+            29609
+          ]
+        ],
+        "tip_vertex": 29608,
+        "attachment_edge": [
+          29606,
+          29609
+        ],
+        "attachment_coordinates_mm": [
+          [
+            5.25,
+            -55.34137725830078,
+            27.57448387145996
+          ],
+          [
+            5.25,
+            -51.61465072631836,
+            25.953466415405273
+          ]
+        ],
+        "attachment_incident_faces_before": [
+          59761,
+          59764,
+          59816,
+          59817
+        ],
+        "exact_opposite_pair": true
+      },
+      {
+        "removed_face_indices": [
+          56970,
+          56971
+        ],
+        "oriented_faces": [
+          [
+            35938,
+            35927,
+            35926
+          ],
+          [
+            35927,
+            35938,
+            35926
+          ]
+        ],
+        "tip_vertex": 35938,
+        "attachment_edge": [
+          35926,
+          35927
+        ],
+        "attachment_coordinates_mm": [
+          [
+            24.124719619750977,
+            -73.25,
+            43.75
+          ],
+          [
+            24.124744415283203,
+            -73.25,
+            42.25
+          ]
+        ],
+        "attachment_incident_faces_before": [
+          56969,
+          56970,
+          56971,
+          56972
+        ],
+        "exact_opposite_pair": true
+      },
+      {
+        "removed_face_indices": [
+          80932,
+          80933
+        ],
+        "oriented_faces": [
+          [
+            40125,
+            39862,
+            40022
+          ],
+          [
+            40125,
+            40022,
+            39862
+          ]
+        ],
+        "tip_vertex": 40022,
+        "attachment_edge": [
+          39862,
+          40125
+        ],
+        "attachment_coordinates_mm": [
+          [
+            35.66533279418945,
+            -4.4142866134643555,
+            67.25
+          ],
+          [
+            36.75,
+            -4.834018230438232,
+            67.25
+          ]
+        ],
+        "attachment_incident_faces_before": [
+          80931,
+          80932,
+          80933,
+          80938
+        ],
+        "exact_opposite_pair": true
+      },
+      {
+        "removed_face_indices": [
+          106380,
+          106382
+        ],
+        "oriented_faces": [
+          [
+            52401,
+            52407,
+            52411
+          ],
+          [
+            52401,
+            52411,
+            52407
+          ]
+        ],
+        "tip_vertex": 52407,
+        "attachment_edge": [
+          52401,
+          52411
+        ],
+        "attachment_coordinates_mm": [
+          [
+            60.25,
+            40.14194107055664,
+            62.1007194519043
+          ],
+          [
+            60.25,
+            41.22098159790039,
+            61.224578857421875
+          ]
+        ],
+        "attachment_incident_faces_before": [
+          106379,
+          106380,
+          106381,
+          106382
+        ],
+        "exact_opposite_pair": true
+      },
+      {
+        "removed_face_indices": [
+          106224,
+          106228
+        ],
+        "oriented_faces": [
+          [
+            56073,
+            56023,
+            55832
+          ],
+          [
+            56023,
+            56073,
+            55832
+          ]
+        ],
+        "tip_vertex": 56023,
+        "attachment_edge": [
+          55832,
+          56073
+        ],
+        "attachment_coordinates_mm": [
+          [
+            63.44011688232422,
+            42.25,
+            44.89694595336914
+          ],
+          [
+            63.67487716674805,
+            42.25,
+            44.25
+          ]
+        ],
+        "attachment_incident_faces_before": [
+          106223,
+          106224,
+          106225,
+          106228
+        ],
+        "exact_opposite_pair": true
+      }
+    ],
+    "bound_inputs_unchanged": true,
+    "output_hashes": {
+      "before-after-index-maps.npz": "289bb2b82d3db9d88b7acb75e82e3456ce8ed491ffb50ae61f9fdb5a44c6ad05",
+      "analysis-surface.npz": "557f720f22344e309c32366cc1426de8562aaecef645a219c29acebb6dddd38e"
+    },
+    "receipt_sha256": "615b77986056b807724c9fa3515051f1c655b6cc7b5207080398bd1857ea9530"
+  },
+  "independent_audits": {
+    "distance": {
+      "status": "rejected_outputs_preserved",
+      "source_sha256": "6557daf9181328465a9dbe883e38ba7e07bc60798e9db80aacb6f2da9f5f8176",
+      "input_hashes": {
+        "twins/962-cylinder-head-f0/source/audit_head_analysis.py": "6557daf9181328465a9dbe883e38ba7e07bc60798e9db80aacb6f2da9f5f8176",
+        "work/962-engineering/analysis-flaps-025-001/analysis-surface.npz": "557f720f22344e309c32366cc1426de8562aaecef645a219c29acebb6dddd38e",
+        "work/962-engineering/analysis-surface-025-002/source-surface.npz": "f405a28ffd9c1fad48eadfba9842272750d3de14d2fd2d6c68b90e4eedbd1abc",
+        "work/962-engineering/analysis-flaps-025-001/receipt.json": "615b77986056b807724c9fa3515051f1c655b6cc7b5207080398bd1857ea9530",
+        "twins/962-cylinder-head-f0/engineering/analysis-flap-contract.json": "ab456affb552b269eeef1794dfb36437df0c1c17bbce13881ce39ee6b50e96bd",
+        "twins/962-cylinder-head-f0/source/mesh_head.py": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+        "twins/m64-cylinder-head/source/wholebody/run_bounded_chamfer.py": "b376cbf0825f2b3ba669d46ca2b9a82f52e9c746df2e9c81269fe0a19114a7f9",
+        "twins/m64-cylinder-head/source/wholebody/trial_meshers_2026.py": "694ffd9c690f9145f59d53b56d28b1a5852749589172f7bc07a9fa58da4cedb0",
+        "twins/m64-cylinder-head/source/wholebody/run_local_surface_trial.py": "1ef987d833125281899776542ef99f4701d3f958552dde59883456db0aabe488"
+      },
+      "native_deadline_s": 300,
+      "docker_image": null,
+      "returncode": 2,
+      "wall_s": 5.939977375091985,
+      "worker_report": {
+        "status": "rejected_outputs_preserved",
+        "kind": "distance",
+        "gate_passed": false,
+        "runtime": {
+          "python": "3.13.16 (main, Sep 30 2026, 18:57:20) [Clang 21.0.0 (clang-2100.3.34.2)]",
+          "numpy": "2.2.6",
+          "machine": "arm64",
+          "cascading_upper_bounds_version": "1.0.0",
+          "cub_python_module_sha256": "cdd3a3a352d9b78c34feaada188181b5495879a38003b3c220dc9b47f4e6ca79",
+          "cub_binary_modules": {
+            "cascading_upper_bounds_ext.abi3.so": "2709633fce495e5f14bd8c384b1412338e94da4b475380bb997010e1023594de"
+          }
+        },
+        "engineering_accepted": false,
+        "solver_admission_established": false,
+        "thermal_performance_validated": false,
+        "manufacturing_authorized": false,
+        "distance": {
+          "directions": [
+            {
+              "lower": 2.2468408037053686,
+              "upper": 2.2468786007464416,
+              "diagonal": 1.0,
+              "interval_closed": true,
+              "allocation_factor": 1.1082137478348273,
+              "bvh_ms": 103.78217697143555,
+              "bounds_ms": 3146.9638347625732
+            },
+            {
+              "lower": 2.5335486641135008,
+              "upper": 2.5335757163647026,
+              "diagonal": 1.0,
+              "interval_closed": true,
+              "allocation_factor": 17.530327466517075,
+              "bvh_ms": 1150.4390239715576,
+              "bounds_ms": 362.3530864715576
+            }
+          ],
+          "absolute_gap_tolerance": 0.0001,
+          "upper": 2.5335757163647026,
+          "completed": true,
+          "native_CAD_deviation_certified": false,
+          "rounding_error_certificate": false
+        },
+        "wall_s": 5.668602708028629,
+        "bound_inputs_unchanged": true,
+        "candidate_arrays_unchanged": true
+      },
+      "worker_report_sha256": "22c97fda659f835cb41480a0e5c1a0f52acfaea1dcd54bfa524077a77a9297ba",
+      "receipt_sha256": "123af5ff64f547ac56f566f97c3711d2081d7cbd21fee2c749bfcd02990199f8"
+    },
+    "intersections": {
+      "status": "rejected_outputs_preserved",
+      "source_sha256": "6557daf9181328465a9dbe883e38ba7e07bc60798e9db80aacb6f2da9f5f8176",
+      "input_hashes": {
+        "twins/962-cylinder-head-f0/source/audit_head_analysis.py": "6557daf9181328465a9dbe883e38ba7e07bc60798e9db80aacb6f2da9f5f8176",
+        "work/962-engineering/analysis-flaps-025-001/analysis-surface.npz": "557f720f22344e309c32366cc1426de8562aaecef645a219c29acebb6dddd38e",
+        "work/962-engineering/analysis-surface-025-002/source-surface.npz": "f405a28ffd9c1fad48eadfba9842272750d3de14d2fd2d6c68b90e4eedbd1abc",
+        "work/962-engineering/analysis-flaps-025-001/receipt.json": "615b77986056b807724c9fa3515051f1c655b6cc7b5207080398bd1857ea9530",
+        "twins/962-cylinder-head-f0/engineering/analysis-flap-contract.json": "ab456affb552b269eeef1794dfb36437df0c1c17bbce13881ce39ee6b50e96bd",
+        "twins/962-cylinder-head-f0/source/mesh_head.py": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+        "twins/m64-cylinder-head/source/wholebody/run_bounded_chamfer.py": "b376cbf0825f2b3ba669d46ca2b9a82f52e9c746df2e9c81269fe0a19114a7f9",
+        "twins/m64-cylinder-head/source/wholebody/trial_meshers_2026.py": "694ffd9c690f9145f59d53b56d28b1a5852749589172f7bc07a9fa58da4cedb0",
+        "twins/m64-cylinder-head/source/wholebody/run_local_surface_trial.py": "1ef987d833125281899776542ef99f4701d3f958552dde59883456db0aabe488"
+      },
+      "native_deadline_s": 300,
+      "docker_image": "sha256:3ccaf5701c7c9add59eda6e8db918106fc8d51f4c2ef5b148d8079262861c7e1",
+      "returncode": 2,
+      "wall_s": 2.700236832955852,
+      "worker_report": {
+        "status": "rejected_outputs_preserved",
+        "kind": "intersections",
+        "gate_passed": false,
+        "runtime": {
+          "python": "3.11.15 (main, Aug  5 2026, 01:17:38) [GCC 12.2.0]",
+          "numpy": "2.2.6",
+          "machine": "aarch64",
+          "libigl_version": "2.6.3",
+          "cgal_wrapper_sha256": "677e9b1ec585722d78685ad5e00e091ceb5ecef2ba2eecb877c5c8eb153fa1b5",
+          "igl_binary_modules": {
+            "pyigl_core.cpython-311-aarch64-linux-gnu.so": "a5d6530964954bee7cf162e8f2ff3f8e9e63fed5697e1ed937bca055216330de",
+            "embree/pyigl_embree.cpython-311-aarch64-linux-gnu.so": "646ab93f02fa8b531f4ed09af43cd72e64053d4c3a674750a27994a8da79d4b6",
+            "predicates/pyigl_predicates.cpython-311-aarch64-linux-gnu.so": "5164d261d6c91d43116c4037062aa2b9af49af54ef44f8ef774d07dbce45658d",
+            "cycodebase/pyigl_cycodebase.cpython-311-aarch64-linux-gnu.so": "ae8027b6b9461937a0f4a06775710091093d870336c1d48bff75f54c2661e009",
+            "copyleft/pyigl_copyleft_core.cpython-311-aarch64-linux-gnu.so": "a1d855c3c782254997fc6c20177111848541c1ff67b2828701ead40d6a8463e3",
+            "copyleft/cgal/pyigl_copyleft_cgal.cpython-311-aarch64-linux-gnu.so": "8bcb60e12cec4e072a14b7d8c3e74f3b90db87db419091419804673918aa5c68",
+            "copyleft/tetgen/pyigl_copyleft_tetgen.cpython-311-aarch64-linux-gnu.so": "e687d45575d4deeb6ab1dc507905534b5ff01a4fcbc649ec961229401866352d",
+            "triangle/pyigl_restricted_triangle.cpython-311-aarch64-linux-gnu.so": "c1fd30bd0fe56a60a26424637a0a89bf75b132b3d825c9fbd4c6215cd25cc0ad",
+            "spectra/pyigl_spectra.cpython-311-aarch64-linux-gnu.so": "5aca1cd0a437cfbf8a747e9f5f11323d358f1568a4a01111ffc873d6dd92e55a"
+          }
+        },
+        "engineering_accepted": false,
+        "solver_admission_established": false,
+        "thermal_performance_validated": false,
+        "manufacturing_authorized": false,
+        "known_result_fixtures": [
+          {
+            "name": "separate",
+            "expected_pairs": 0,
+            "observed_pairs": 0,
+            "input_arrays_unchanged": true
+          },
+          {
+            "name": "crossing",
+            "expected_pairs": 1,
+            "observed_pairs": 1,
+            "input_arrays_unchanged": true
+          },
+          {
+            "name": "coplanar_contained",
+            "expected_pairs": 1,
+            "observed_pairs": 1,
+            "input_arrays_unchanged": true
+          },
+          {
+            "name": "coplanar_shared_vertex_overlap",
+            "expected_pairs": 1,
+            "observed_pairs": 1,
+            "input_arrays_unchanged": true
+          },
+          {
+            "name": "manifold_tetrahedron",
+            "expected_pairs": 0,
+            "observed_pairs": 0,
+            "input_arrays_unchanged": true
+          }
+        ],
+        "nonmanifold_vertex_count": 0,
+        "intersections": {
+          "pair_count": 24,
+          "pair_cap": 100001,
+          "complete": true,
+          "detect_only": true,
+          "first_only": false,
+          "stitch_all": false,
+          "pairs": [
+            [
+              1014,
+              1017
+            ],
+            [
+              1016,
+              1015
+            ],
+            [
+              1017,
+              1015
+            ],
+            [
+              62784,
+              63826
+            ],
+            [
+              49341,
+              49337
+            ],
+            [
+              49342,
+              49337
+            ],
+            [
+              112862,
+              112865
+            ],
+            [
+              112867,
+              112862
+            ],
+            [
+              112868,
+              112865
+            ],
+            [
+              78945,
+              78931
+            ],
+            [
+              78931,
+              78958
+            ],
+            [
+              78945,
+              78942
+            ],
+            [
+              78958,
+              78942
+            ],
+            [
+              107106,
+              80710
+            ],
+            [
+              107107,
+              80710
+            ],
+            [
+              80711,
+              107106
+            ],
+            [
+              80711,
+              107107
+            ],
+            [
+              82429,
+              82438
+            ],
+            [
+              82438,
+              82430
+            ],
+            [
+              82456,
+              82430
+            ],
+            [
+              49339,
+              49341
+            ],
+            [
+              49342,
+              49339
+            ],
+            [
+              63825,
+              62782
+            ],
+            [
+              62782,
+              63826
+            ]
+          ]
+        },
+        "wall_s": 1.640394334000007,
+        "bound_inputs_unchanged": true,
+        "candidate_arrays_unchanged": true
+      },
+      "worker_report_sha256": "82280f685c51b5d3bb81c8b4eeafe3b928545e60c32e8e25a22f2adad7cdf6d6",
+      "receipt_sha256": "7f16c7703dad6dfac0533069e73eedf9790e15c4a2b0f700101eda51c8ffb283"
+    }
+  },
+  "analytic_distance_witness": {
+    "path": "work/962-engineering/analysis-flaps-025-001/distance-001/analytic-distance-witness.json",
+    "sha256": "8e9cb71937052b35bb4f178037fd0c24b3b54f3752a0e30576e18831fcf656d5",
+    "status": "identical_and_exact_3mm_translated_tetrahedron_bounds_passed"
+  },
+  "executed_source_snapshots": {
+    "twins/962-cylinder-head-f0/derived/engineering/analysis-sources/vtk-first-executed.py": "589464023d1b229ad6e6333a090d696af6d5ad9c94096a49d9639b659bc4895e",
+    "twins/962-cylinder-head-f0/derived/engineering/analysis-sources/vtk-diagnostic-executed.py": "cda8f7155a8c22ab66898f07d1ad452ba5384ad7f75a1f012606685cd8a12dc3",
+    "twins/962-cylinder-head-f0/derived/engineering/analysis-sources/duplicate-pair-diagnostic.py": "b21c1d838c3125812ab5c51cf6035ac8019467f96c50452020ef6df61c8b794f",
+    "twins/962-cylinder-head-f0/derived/engineering/analysis-sources/exact-fin-cancellation-executed.py": "a467540ed67231fff57028a35bc74d62c06b3cd21ece40fccd7c859039582771",
+    "twins/962-cylinder-head-f0/derived/engineering/analysis-sources/independent-audits-executed.py": "6557daf9181328465a9dbe883e38ba7e07bc60798e9db80aacb6f2da9f5f8176"
+  },
+  "contracts": {
+    "twins/962-cylinder-head-f0/engineering/analysis-mesh-contract.json": "254a4fce59676e88a02931dc330cfe4d3396dab741c62534363425ca7e3cb7a2",
+    "twins/962-cylinder-head-f0/engineering/analysis-flap-contract.json": "ab456affb552b269eeef1794dfb36437df0c1c17bbce13881ce39ee6b50e96bd"
+  },
+  "qualification": {
+    "analysis_surface_geometric_gate_passed": false,
+    "solver_admission_established": false,
+    "mesh_convergence_established": false,
+    "engineering_accepted": false,
+    "thermal_performance_validated": false,
+    "strength_validated": false,
+    "manufacturing_authorized": false
+  }
+}

@@ -15,9 +15,9 @@ an explicit research assumption can support a conditional calculation.
 | Stage | Required outcome | Current evidence and remaining work |
 | --- | --- | --- |
 | 1. English baseline | English review documents, captions, GitHub description and download guidance; traceable sources | Delivered at `9c35e27c`: English documents, sixteen actual-mesh views and four English review ZIPs. All twelve draft-release assets match local sizes and GitHub SHA-256 digests. Exact-head GitHub check run 38931794627 passes. Historical hash-bound evidence remains unchanged. |
-| 2. Material, cooling and strength | Process-specific material comparison; accepted thermal/structural models for the family; converged results and an explicit operating envelope | Seven manufacturer recipes and the [actual point/mass comparison](ENGINEERING_MATERIALS.md) are recorded. [HXT meshing and independent audit](MESHING_ENGINEERING.md) produced an exact-boundary tetrahedral volume, but its near-degenerate elements prevent engineering acceptance. [Native constitutive witnesses](derived/engineering/constitutive-witnesses/README.md) verify temperature-dependent software laws. No head stress, thermal field, fatigue life or material selection is accepted yet. |
-| 3. LPBF simulation | Verified process solver configuration; representative calibration and independent checks; full declared deposition/cooling/release sequence; distortion and residual-stress assessment | Corrected Adamantine/CalculiX coupon evidence exists separately. New MOOSE witnesses check variable elasticity, mean thermal expansion and temperature-dependent perfect-J2 yield through heating/cooling. They use a hypothetical card and prescribed uniform temperature; no head deposition, heat solve or process calibration is established. |
-| 4. Omniverse twin | OpenUSD family assembly with correctly mapped computed fields, units, frames, time, provenance and physical correlation where available | Existing engine-composition tools are reusable. A read-only local preflight found missing converter/OpenUSD/validator runtimes; the pinned converter supports Linux, not macOS. No 962 simulation twin has been generated or physically calibrated. |
+| 2. Material, cooling and strength | Process-specific material comparison; accepted thermal/structural models for the family; converged results and an explicit operating envelope | Seven manufacturer recipes and the [actual point/mass comparison](ENGINEERING_MATERIALS.md) are recorded. [HXT meshing and independent audit](MESHING_ENGINEERING.md) produced an exact-boundary tetrahedral volume, but its near-degenerate elements prevent engineering acceptance. [Separate analysis-surface trials](ANALYSIS_SURFACE_ENGINEERING.md) retain topology, distance and intersection rejections. [Native constitutive witnesses](derived/engineering/constitutive-witnesses/README.md) verify temperature-dependent software laws. No head stress, thermal field, fatigue life or material selection is accepted yet. |
+| 3. LPBF simulation | Verified process solver configuration; representative calibration and independent checks; full declared deposition/cooling/release sequence; distortion and residual-stress assessment | MOOSE constitutive witnesses verify variable elasticity, expansion and perfect-J2 yield. A [separate thermal birth witness](derived/engineering/thermal-birth-witness/README.md) verifies moving heat, k(T), cp(T), activation/history and nonlinear enthalpy. Three native time levels give continuous energy errors of 1.3048%, 0.6794% and 0.3481%, meeting their frozen criteria. Both families use hypothetical software cards. Whole-head deposition/cooling/release and process calibration remain open; corrected Adamantine/CalculiX coupon evidence stays separate. |
+| 4. Omniverse twin | OpenUSD family assembly with correctly mapped computed fields, units, frames, time, provenance and physical correlation where available | Existing engine-composition tools are reusable. A dedicated Linux converter/OpenUSD import works under local emulation; complete preflight and a compatible native Kali runtime are being prepared. No 962 simulation twin has been generated or physically calibrated. |
 | 5. PhysicsNeMo | Accepted dataset, model comparison, training, independent evaluation, operating-domain limits and inference integrated into the twin | Current geometric STL/VDB files are not solved-field training labels. No accepted 962 reference dataset, trained surrogate or inference result exists. |
 
 ## Execution and acceptance
@@ -60,6 +60,13 @@ render, import test or surrogate score closes those gates by itself.
 The engineering input validator checks completeness, units and source binding;
 even its `--require-qualification` option does not authenticate supplied
 physical evidence or replace engineering acceptance.
+
+The [thermal verification inputs and whole-head execution path](source/physics_witness/thermal_birth/README.md)
+distinguish numerical activation tests from deposition of the actual head.
+Its [later checker-hardening record](derived/engineering/thermal-birth-witness/POSTRUN_HARDENING_002.md)
+preserves the original results and separately records rejection of invalid
+refinement-error inputs. The portable runner's runtime/output guards are
+tested; its complete three-level reproduction has not been repeated.
 
 ## Reproduction of English views
 

@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0.0",
+  "classification": "HYPOTHETICAL_SOFTWARE_VERIFICATION_ONLY",
+  "units": "m, kg, s, K, J, W; no physical material",
+  "bounds_m": [
+    [
+      0,
+      0,
+      0
+    ],
+    [
+      2,
+      1,
+      1
+    ]
+  ],
+  "mesh_intervals": [
+    16,
+    4,
+    4
+  ],
+  "old_region_xmax_m": 1.0,
+  "birth_time_s": 0.2,
+  "end_time_s": 0.4,
+  "time_steps_s": [
+    0.01,
+    0.005,
+    0.0025
+  ],
+  "initial_temperature_K": 400.0,
+  "birth_temperature_K": 350.0,
+  "enthalpy_reference_K": 300.0,
+  "density_kg_m3": 1.0,
+  "cp_at_300K_J_kgK": 2.0,
+  "cp_slope_J_kgK2": 0.01,
+  "k_at_300K_W_mK": 0.2,
+  "k_slope_W_mK2": 0.001,
+  "laser_power_W": 80.0,
+  "efficiency": 0.5,
+  "factor": 0.5,
+  "radii_m": [
+    0.5,
+    0.8,
+    0.8
+  ],
+  "source_start_m": [
+    0.4,
+    0.5,
+    0.5
+  ],
+  "velocity_m_s": [
+    3.0,
+    0,
+    0
+  ],
+  "quadrature": "2x2x2 Gauss, exact for quadratic enthalpy of trilinear HEX8 temperature",
+  "birth_rule": "Preserve all existing nodal values, including shared interface nodes. Initialise genuinely new nodes to 350K. Integrate birth enthalpy from this predeclared interpolated field; do not assume shared nodes are 350K.",
+  "source_normalization": "Full-space integral = 2*factor*efficiency*power; finite box integral uses product of error-function fractions.",
+  "time_method": "Backward Euler: Delta H = dt*integral(Q_h) - rho*cp_slope/2*integral((T_end-T_begin)^2), with adiabatic exterior. Birth is applied at the beginning of the ending-time-labelled step. Continuous-time error must decrease under frozen time refinement.",
+  "predeclared_tolerances": {
+    "node_history_K": 1e-10,
+    "material_property_absolute": 1e-09,
+    "source_cell_average_relative": 1e-09,
+    "finite_box_power_relative": 0.0005,
+    "corrected_step_energy_absolute_J": 1e-07,
+    "finest_continuous_energy_relative": 0.01,
+    "minimum_refinement_error_ratio": 1.4,
+    "temperature_lower_K": 300.0,
+    "temperature_upper_K": 500.0,
+    "minimum_final_temperature_range_K": 1.0
+  },
+  "native_binary_sha256": "c49e2c368799d80edf9ff858dd8960bd22f5430f48229ab49dcc0afd27afcc5b",
+  "native_source_revision": "167ee97da204df5e8643695e18b9b28910f0014b",
+  "max_native_runtime_seconds": 100,
+  "whole_head_lpbf_complete": false
+}
