@@ -183,6 +183,12 @@ Les réinstallations et témoins natifs sont conservés avec leurs reçus :
 
 Ces témoins vérifient les logiciels. Les sept régions réelles de support
 gardent leurs propres reçus et leurs propres verdicts.
+Le [bootstrap Linux consolidé](../../parts/993-eng-carrier-0001/source/native-toolchain-20261016/README.md)
+compose ces installateurs avec son propre environnement d'audit. Son entrée
+PyMesh est l'archive logicielle exacte conservée hors Git ; l'option de copie
+permet de l'inclure dans un paquet autonome. Les installateurs individuels et
+le nouvel environnement d'audit ont été exécutés ; le lancement consolidé
+des cinq installateurs n'a pas été rejoué après leur gel.
 
 ```sh
 python3 scripts/run_part_workflow.py run manufacturing/workflows/993-carrier.json \
