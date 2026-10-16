@@ -18,7 +18,8 @@ The three pilots were chosen on 2026-08-28 (commit `774242da`, PR #8). They are
 named in [ROADMAP.md](../../ROADMAP.md) ("Physical prototypes — suspended"), in
 [MEASUREMENT_CAMPAIGN.md](../MEASUREMENT_CAMPAIGN.md) and in the records'
 descriptions, but no decision recorded why they were chosen. Their measurement
-plans, `parts/<id>/evidence/measurement-plan.md`, are pinned evidence and name
+plans, `parts/<id>/evidence/measurement-plan.md`, are frozen by the
+`evidence/**` rule of [AGENTS.md](../../AGENTS.md) and name
 "Responsable : contributeur", a role nobody holds.
 [PROJECT_CHARTER.md](../PROJECT_CHARTER.md) already says the maintainer has no
 part and no instrument.
@@ -101,7 +102,10 @@ the three pilots, so `porsche_part_numbers` stays empty and each record says so.
 
 - Switch blank: `993 613 523 00` is a candidate, from a retailer listing of an
   OEM Schalterblende (`SRC-PARTWORKS-993-SWITCH-BLANK-OEM`, level B) in a switch
-  panel and center console context. It is not entered.
+  panel and center console context. It is not entered. The PicoGK batch
+  variant `PGK993-10` (`parts/picogk-993-batch-01/params/pgk993-10-console-switch-blank.json`
+  and that batch's README) already lists it without that qualifier; this
+  decision does not confirm it.
 - Door pull: `993 555 851 00` and `993 555 852 00`
   (`SRC-PORSCHEFANATICS-993-DOOR-OPENER-PET`, PET illustration 807-10,
   position 18) identify the interior door opener, a different part with its own
@@ -132,8 +136,8 @@ What the comparison shows, by arithmetic on declared values only:
 
 - **The kit brackets the wrong figure, if the faceplate is the opening.** The
   source of the 19 × 31 mm figure gives it for the passage under the covering;
-  the faceplate figures of both sources, about 17 × 28 and 17.0 × 27.9 mm, agree
-  within rounding. The kit inserts, 18.6 × 30.6, 19.0 × 31.0 and
+  the faceplate opening of thread 1202129, about 17 × 28 mm, and the console
+  switch opening of thread 750484, 17.0 × 27.9 mm, agree within rounding. The kit inserts, 18.6 × 30.6, 19.0 × 31.0 and
   19.4 × 31.4 mm, exceed a 17.0 × 27.9 mm opening by 1.6 to 2.4 mm in width and
   2.7 to 3.5 mm in height: none would enter it. The kit's ±0.4 mm bracket cannot
   separate two hypotheses 2 to 3 mm apart.
@@ -155,8 +159,8 @@ figures would be a separate decision.
 
 The measured-input gate stays closed. A documented specification has no
 readings, so `switch_blank.py` and the twin's `check_fit.py`, which build only
-from readings, refuse these records; `switch_blank.py` now also refuses any
-record whose `record_kind` is not `physical_measurement`.
+from readings, refuse these records; `switch_blank.py` and `check_fit.py` now also
+refuse any record whose `record_kind` is not `physical_measurement`.
 `tests/test_switch_blank_measurement_gate.py` proves both, including on a
 declared record with injected readings.
 

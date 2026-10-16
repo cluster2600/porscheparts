@@ -37,6 +37,11 @@ def load_readings(path: Path) -> dict[str, dict]:
     if not path.is_file():
         raise SystemExit(f"measurement record not found: {path}")
     record = json.loads(path.read_text(encoding="utf-8"))
+    # A documented specification carries declared values, not readings taken on
+    # the car: it never feeds a fit check (decision 0013).
+    kind = record.get("record_kind", "physical_measurement")
+    if kind != "physical_measurement":
+        raise SystemExit(f"{path} is a {kind} record: declared values do not feed a fit check")
     readings = {item.get("dimension_id"): item for item in record.get("readings", [])}
     missing = [identifier for identifier in REQUIRED if identifier not in readings]
     if missing:

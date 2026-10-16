@@ -226,7 +226,8 @@ Applied to `993-INT-SWITCH-BLANK-0001` on 2026-10-15, documentary intake only.
 Result, detailed in [decision 0013](decisions/0013-pilots-advance-on-documentary-evidence.md):
 two declared records, three contradictions, and one finding: the fit-test kit
 brackets 19 × 31 mm, a figure its source gives for the passage under the
-covering, while both sources give about 17 × 28 mm for the faceplate opening.
+covering, while the faceplate opening (thread 1202129) and the console switch
+opening (thread 750484) both give about 17 × 28 mm.
 The measured-input gate stayed closed, and
 `tests/test_switch_blank_measurement_gate.py` keeps it closed.
 

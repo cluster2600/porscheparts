@@ -57,7 +57,7 @@ class SwitchBlankMeasurementGateTests(unittest.TestCase):
         for path in declared_records():
             with self.assertRaises(SystemExit) as raised:
                 check_fit.load_readings(path)
-            self.assertIn("missing measurements", str(raised.exception.code))
+            self.assertIn("documented_specification", str(raised.exception.code))
 
     def test_declared_record_with_injected_readings_is_still_refused(self) -> None:
         # Synthetic test fixture, not part data: a declared record that someone
@@ -72,7 +72,15 @@ class SwitchBlankMeasurementGateTests(unittest.TestCase):
             path.write_text(json.dumps(record), encoding="utf-8")
             with self.assertRaises(SystemExit) as raised:
                 switch_blank.load_dimensions(path)
-        self.assertIn("declared values do not define this geometry", str(raised.exception.code))
+            self.assertIn("declared values do not define this geometry", str(raised.exception.code))
+            record["readings"] = [
+                {"dimension_id": key, "unit": "mm", "value": float(i), "uncertainty": 0.1}
+                for i, key in enumerate(check_fit.REQUIRED, start=1)
+            ]
+            path.write_text(json.dumps(record), encoding="utf-8")
+            with self.assertRaises(SystemExit) as raised:
+                check_fit.load_readings(path)
+            self.assertIn("declared values do not feed a fit check", str(raised.exception.code))
 
     def test_default_input_is_not_shadowed_by_a_declared_record(self) -> None:
         default = switch_blank.DEFAULT_MEASUREMENTS

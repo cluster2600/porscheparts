@@ -95,7 +95,7 @@ Catalogue record: [`catalog/parts/993-eng-mounting-0001.json`](../../catalog/par
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | Étude F0 ; géométrie OEM, montage, matériau, charges et fatigue non validés.<br>Cotes, coordonnées des trous et poses de la vue éclatée : hypothèses d’étude, pas des mesures Porsche.<br>Le rapport natif affiche une masse nulle car le calcul de masse est désactivé ; la masse réelle est inconnue.<br>Aucune pièce issue de cette étude ne peut porter le moteur.<br>Morphologie bionique uniquement ; aucune optimisation topologique ou mécanique sous charges mesurées. |
+| limitations | F0 study; OEM geometry, mounting, material, loads and fatigue not validated.<br>Dimensions, hole coordinates and exploded-view poses: study assumptions, not Porsche measurements.<br>The native report shows a zero mass because the mass calculation is disabled; the real mass is unknown.<br>No part from this study may carry the engine.<br>Bionic morphology only; no topology or mechanical optimisation under measured loads. |
 
 **Evidence**
 
