@@ -145,8 +145,22 @@ régressions ajoutées après l'exécution globale sont incluses dans les
 58 tests ciblés finaux. Le bordereau lie aussi les sources C# communes
 compilées, le nettoyage délégué et les références des bibliothèques.
 
-Cette livraison est locale : aucune CI distante, fusion ou publication
-fonctionnelle n'est revendiquée.
+## Consultation sur GitHub
+
+La [PR brouillon 261](https://github.com/cluster2600/porscheparts/pull/261)
+regroupe les sources éditables, les recherches, les rendus et les rapports.
+La [livraison d'étude en brouillon](https://github.com/cluster2600/porscheparts/releases/tag/untagged-ee23b4a96ef9faf36012)
+contient quatre archives, soit douze STL inspectés, quatre VDB et seize rendus,
+avec configurations, rapports et empreintes. L'accès à cette livraison demande
+une connexion GitHub avec les droits sur les brouillons du dépôt.
+
+Les archives correspondent au calcul et aux inspections du commit
+`79180221fa79f2f669cbf3c0b9104cbb662c39d6` ; les modifications ultérieures
+de cette page décrivent leur publication. `SHA256SUMS.txt` et `archives.json`
+permettent de vérifier les téléchargements. Les licences du dépôt et des
+dépendances restent applicables. La CI distante se consulte sur la PR ;
+aucune fusion, qualification physique ou publication fonctionnelle n'est
+revendiquée.
 
 ## Limites fonctionnelles
 
