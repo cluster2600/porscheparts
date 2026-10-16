@@ -1,0 +1,36 @@
+{
+  "schema": "962-saved-default-cube-cache-inference/v1",
+  "classification": "source_supported_inference_not_proven_runtime_root_cause",
+  "observation": "Before queries succeeded; the optimizer changed volume topology, wrote the saved mesh, then in-memory quality lookup reported Unknown element216. A fresh independently frozen reader resolved every saved element and returned valid finite qualities. No optimizer or repaired in-memory query was repeated.",
+  "primary_release": {
+    "archive_sha256": "be3f66f225d27ba9fa014f07e83169285da8a051b0e8ab7103d88066b39bdd3e",
+    "backend_loop_and_gamma_threshold": "src/mesh/meshGRegionDelaunayInsertion.cpp:883-1035",
+    "closed_edge_cavity": "src/mesh/meshGRegionLocalMeshMod.cpp:61-105,237-345",
+    "discrete_force_guard": "src/mesh/meshGRegion.cpp:278-291",
+    "dispatch": "src/mesh/Generator.cpp:896-903",
+    "interior_only_smoothing": "src/mesh/meshGRegionLocalMeshMod.cpp:624-630",
+    "periodic_queries": "src/common/gmsh.cpp:5454-5504",
+    "release_source_matches_installed_binary_build_attested": false,
+    "renumber_and_periodic_fix": "src/geo/GModel.cpp:1531-1540",
+    "url": "https://gmsh.info/src/gmsh-4.15.2-source.tgz"
+  },
+  "additional_locators": {
+    "quality_lookup_error": "src/common/gmsh.cpp:2390-2424",
+    "element_lookup_and_lazy_cache_rebuild": "src/geo/GModel.cpp:2137-2157",
+    "public_explicit_cache_rebuild_API": "src/common/gmsh.cpp:1829-1833",
+    "optimizer_API_dispatch": "src/common/gmsh.cpp:1414-1426"
+  },
+  "interpretation": "The release source routes quality queries through cached element lookup and rebuilds lookup lazily when caches are empty; it supplies an explicit rebuild API. The observed topology change plus a successful fresh-file read is consistent with stale in-memory element-cache state. This does not isolate the cause experimentally, attest the installed binary build, prove a cache repair or authorize another optimizer call.",
+  "source_files_sha256": {
+    "GModel.cpp": "96df731cf16e58be3f1fbc502ecffc2037a160935c48a16a731c590d328fd691",
+    "Generator.cpp": "e134b862c66275fc24b900636ad0d24435644d9f1782d00ac8fcccf3489faafa",
+    "LICENSE.txt": "32085d8c954e2e22dc667c089f360049e8f1af955f946fb0a18f29d70390276a",
+    "gmsh.cpp": "375f8ba655c0c2c5c7e0f52a5460e17e0bcf49a363449f2df1b287f6b38a2cb8",
+    "meshGRegion.cpp": "2dcb43d57a7a92dc576add8af37974e019a4eafb06f535f9faaa509ce77eebc6",
+    "meshGRegionDelaunayInsertion.cpp": "cc13350607411931d712d5a792e5e6b6ec01c9d76458bb154ca737b49826478c",
+    "meshGRegionLocalMeshMod.cpp": "abfb4c8cbda1356aeaf8cf017eea2ebf103acbbd2a22664a49664c0157bec658"
+  },
+  "upstream_source_redistributed_in_capsule": false,
+  "installed_binary_source_build_attested": false,
+  "cache_fix_or_optimizer_rerun_performed": false
+}
