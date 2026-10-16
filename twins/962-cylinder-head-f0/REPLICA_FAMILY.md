@@ -1,98 +1,106 @@
-# Culasse 962 C : référence fidèle et famille de 3,0 à 4,0 L
+<a id="culasse-962-c--référence-fidèle-et-famille-de-30-à-40-l"></a>
 
-**Suite de la recherche :** des [dimensions de famille publiées](DIMENSIONAL_BASIS.md)
-ont été retrouvées. L'utilisateur demande de continuer avec des hypothèses
-explicites pour les cotes manquantes ; la [famille bionique](BIONIC_FAMILY.md)
-porte cette continuation géométrique. Les champs `null` du registre ci-dessous
-concernent la référence physique exacte non mesurée ; ils ne bloquent pas
-ces candidats de conception.
+# 962 C cylinder head: faithful reference and 3.0–4.0 L family
 
-**Décision du 16 octobre 2026 : prendre la 962 C 3,0 L à eau comme référence,
-reconstruire sa culasse le plus fidèlement possible, puis étudier plusieurs
-cylindrées jusqu'à 4,0 L.** Le [registre](replica-family.json) porte cette
-nouvelle priorité. Les modèles bioniques et le [scénario Mezger 4 L SP95](MEZGER_4L_SP95.md)
-restent des études de dérivés ; ils ne définissent pas la géométrie originale.
+**Research continuation:** [published family dimensions](DIMENSIONAL_BASIS.md)
+have been found. The owner requests continued work with explicit assumptions
+for missing dimensions; the [bionic family](BIONIC_FAMILY.md) carries this
+geometry continuation. The `null` fields in the register below concern the
+exact unmeasured physical reference; they do not block these design candidates.
 
-La livraison présente une définition de référence, une gamme de cibles et un
-calculateur de cylindrée. **Aucune CAO de réplique mesurée n'est encore
-disponible.** Le changement ne transforme pas les anciens STL en répliques.
+**Decision of October 16, 2026: use the water-cooled 3.0 L 962 C as the
+reference, reconstruct its head as faithfully as possible, then study several
+displacements up to 4.0 L.** The [register](replica-family.json) carries this
+new priority. The bionic models and the [Mezger 4 L SP95 scenario](MEZGER_4L_SP95_EN.md)
+remain derivative studies; they do not define the original geometry.
 
-## Référence historique et niveau de preuve
+This delivery provides a reference definition, a target range and a displacement
+calculator. **No measured replica CAD is available yet.** This change does
+not turn the previous STL files into replicas.
 
-Le [dossier Porsche « 40 Years Group C »](https://newsroom.porsche.com/dam/jcr:a6f33b52-c47d-47b4-98c1-7e963661f587/40%2520Years%2520Group%2520C.pdf)
-documente le 3,0 L quatre soupapes entièrement refroidi par eau aux essais du
-Mans 1985 (page 8), les 2 994 cm³ des types 935/79, /82 et /83 et les
-3 164 cm³ des types /79 et /86 (page 18). Cela fixe une famille ; le type,
-l'année et la référence physique à copier restent à identifier.
+<a id="référence-historique-et-niveau-de-preuve"></a>
 
-Les pages 19–20 décrivent les ensembles aluminium cylindre–culasse soudés
-par faisceau d'électrons, les alésages Nikasil, les deux arbres à cames par
-banc entraînés par engrenages, les poussoirs avec pastilles et les deux
-circuits d'eau indépendants avec une pompe par banc. La construction précise
-doit être confirmée sur l'exemplaire choisi, avant de dessiner sa liaison.
+## Historical reference and evidence level
 
-**L'alésage/course du donneur 3,0 L reste inconnu.** Le couple 92,3 × 66 mm du
-dossier concerne le 956 935/76 ; il ne sera pas transféré à la 962 C. Le
-couple souvent repris de 95 × 70,4 mm n'est pas confirmé ici par une source
-primaire du donneur. Le nombre de bougies reste lui aussi à établir. Les
-[photos déjà examinées](ORIGINAL_ARCHITECTURE.md) montrent une ouverture
-centrale et un ensemble modifié par le restaurateur ; elles ne prouvent ni
-une cote ni toute la spécification d'usine.
+The [Porsche “40 Years Group C” dossier](https://newsroom.porsche.com/dam/jcr:a6f33b52-c47d-47b4-98c1-7e963661f587/40%2520Years%2520Group%2520C.pdf)
+documents the fully water-cooled four-valve 3.0 L at the 1985 Le Mans practice
+sessions (page 8), the 2,994 cm³ types 935/79, /82 and /83, and the
+3,164 cm³ types /79 and /86 (page 18). This identifies a family; the type,
+year and physical reference to copy remain to be identified.
 
-## Gamme de travail
+Pages 19–20 describe aluminum cylinder/head assemblies welded by electron
+beam, Nikasil bores, two gear-driven camshafts per bank, shimmed tappets
+and two independent coolant circuits with one pump per bank.
+Confirm the precise construction on the selected specimen before designing
+its connection.
 
-| Désignation | Cylindrée utilisée | Statut |
+**The 3.0 L donor's bore/stroke remains unknown.** The dossier's
+92.3 × 66 mm pair concerns the 956 935/76; it will not be transferred to the
+962 C. The frequently cited 95 × 70.4 mm pair is not confirmed here by a
+primary source for the donor. The spark-plug count also remains to be
+established. The [photographs already examined](ORIGINAL_ARCHITECTURE.md)
+show a central opening and an assembly modified by the restorer; they prove
+neither a dimension nor the complete factory specification.
+
+<a id="gamme-de-travail"></a>
+
+## Working range
+
+| Designation | Displacement used | Status |
 | --- | ---: | --- |
-| 3,0 L référence | 2 994 cm³ | Famille historique Porsche choisie |
-| 3,2 L contexte de période | 3 164 cm³ | Variante historique documentée ; culasse commune non prouvée |
-| 3,4 L | 3 400 cm³ | Cible de dérivé proposée |
-| 3,6 L | 3 600 cm³ | Cible de dérivé proposée |
-| 3,8 L | 3 800 cm³ | Cible de dérivé proposée |
-| 4,0 L | 4 000 cm³ | Plafond de la famille demandée |
+| 3.0 L reference | 2,994 cm³ | Selected historical Porsche family |
+| 3.2 L period context | 3,164 cm³ | Documented historical variant; shared head not proven |
+| 3.4 L | 3,400 cm³ | Proposed derivative target |
+| 3.6 L | 3,600 cm³ | Proposed derivative target |
+| 3.8 L | 3,800 cm³ | Proposed derivative target |
+| 4.0 L | 4,000 cm³ | Requested family ceiling |
 
-Les paliers intermédiaires sont une proposition de gamme, pas des recettes
-moteur approuvées. Alésage, course, rapport volumétrique, pistons, soupapes et
-composants disponibles restent à sélectionner. Le calculateur accepte aussi
-une cible intermédiaire dans l'intervalle 2 994–4 000 cm³.
+The intermediate steps are a proposed range, not approved engine recipes.
+Bore, stroke, compression ratio, pistons, valves and available components
+remain to be selected. The calculator also accepts intermediate targets in
+the 2,994–4,000 cm³ interval.
 
-L'ancien scénario **102 × 81,6 mm donne 4 000,660 cm³**. Ses sources et
-preuves sont conservées ; il ne respecte pas strictement le nouveau plafond
-de 4 000 cm³. À alésage hypothétique de 102 mm, le calcul donne une course
-d'environ 81,58654 mm pour 4 000 cm³ exactement. Ce résultat algébrique ne
-sélectionne pas un vilebrequin et ne constitue pas une cote de fabrication.
+The previous **102 × 81.6 mm scenario gives 4,000.660 cm³**. Its sources and
+evidence are preserved; it does not strictly meet the new 4,000 cm³ ceiling.
+At a hypothetical 102 mm bore, the calculation gives a stroke of approximately
+81.58654 mm for exactly 4,000 cm³. This algebraic result does not select a
+crankshaft and is not a manufacturing dimension.
 
-## Ce qui reste commun et ce qui doit être revu
+<a id="ce-qui-reste-commun-et-ce-qui-doit-être-revu"></a>
 
-Le maître historique doit conserver les surfaces, axes, distribution,
-interfaces, circuit d'huile et topologie d'eau réellement mesurés. Le
-[dossier de métrologie 962 C](REPLICA_METROLOGY.md) prépare cette acquisition ;
-le dossier M64 existant concerne une autre base. Aucun facteur d'échelle
-global n'est appliqué à la culasse, aux goujons, aux filetages ou au porte-arbres.
+## What remains common and what requires review
 
-Une variation de **course à alésage constant** ne change pas directement le
-diamètre de chambre. Elle oblige à vérifier hauteur de bloc/cylindre,
-compression, forme de piston, jeux piston–culasse et piston–soupape,
-cinématique de distribution, charges et refroidissement. Elle ne garantit
-donc pas la réutilisation de la culasse.
+The historical master must preserve the surfaces, axes, valvetrain,
+interfaces, oil circuit and water topology actually measured. The
+[962 C metrology dossier](REPLICA_METROLOGY.md) prepares this acquisition;
+the existing M64 dossier concerns another base. No global scale factor is
+applied to the head, studs, threads or camshaft carrier.
 
-Une variation d'**alésage** impose de reprendre chambre, portée/liaison
-cylindre–culasse, sièges et dégagement des soupapes, épaisseurs, entraxes et
-chemins d'effort. Eau, huile et distribution doivent ensuite être contrôlées
-sur chaque montage. On ne peut pas encore promettre un corps de culasse
-unique pour toute la gamme ni affirmer que 102 mm tient dans le carter.
+A **stroke change at constant bore** does not directly change chamber
+diameter. It requires checks of block/cylinder height, compression, piston
+shape, piston/head and piston/valve clearances, valvetrain kinematics, loads
+and cooling. It therefore does not guarantee head reuse.
 
-Le double allumage, les nervures BCC, les galeries conformes et les matériaux
-LPBF restent des choix de dérivés à justifier séparément. Ils ne seront pas
-ajoutés au maître historique sans preuve d'origine. Les objectifs antérieurs
-de 1 000 PS et de SP95 ne deviennent pas les spécifications de la réplique,
-ni une promesse pour chaque cylindrée.
+A **bore change** requires revisiting the chamber, cylinder/head seat or
+connection, seats and valve clearance, thicknesses, center distances and load
+paths. Water, oil and valvetrain must then be checked on every assembly.
+We cannot yet promise one head body for the entire range or claim that a
+102 mm bore fits in the crankcase.
 
-## Reproduction du calcul
+Twin ignition, BCC ribs, conformal galleries and LPBF materials remain
+derivative choices to justify separately. They will not be added to the
+historical master without original-specification evidence. The previous
+1,000 PS and SP95 targets do not become replica specifications or a promise
+for every displacement.
 
-`V = π × alésage² × course × 6 / (4 × 1000)` avec les longueurs en mm et
-la cylindrée en cm³. Une cylindrée seule ne détermine pas les deux longueurs.
-Le rapport par défaut les laisse donc à `null`. Une longueur explicitement
-fournie devient une hypothèse ; l'autre est seulement calculée.
+<a id="reproduction-du-calcul"></a>
+
+## Reproducing the calculation
+
+`V = π × bore² × stroke × 6 / (4 × 1000)`, with lengths in mm and
+displacement in cm³. Displacement alone does not determine both lengths.
+The default report therefore leaves them at `null`. An explicitly supplied
+length becomes an assumption; the other is only calculated.
 
 ```sh
 python3 twins/962-cylinder-head-f0/source/displacement_family.py
@@ -101,36 +109,36 @@ python3 twins/962-cylinder-head-f0/source/displacement_family.py --target-cm3 40
 python3 -m unittest discover -s tests -p 'test_962*.py' -v
 ```
 
-Le [rapport conservé](derived/replica-family-report.json) est lié au registre
-et au calculateur par leurs empreintes. Aucun appel au générateur PicoGK,
-export STEP/STL, solveur ou achat n'est effectué par cet outil. Les sorties
-ne qualifient ni compatibilité, ni puissance, ni fabrication, ni vente.
+The [retained report](derived/replica-family-report.json) is linked to the
+register and calculator by their digests. This tool performs no PicoGK
+invocation, STEP/STL export, solver run or purchase. Its outputs qualify
+neither compatibility, power, manufacturing nor sale.
 
-La prochaine entrée nécessaire pour reconstruire la forme est un ensemble
-962 C identifié, avec droits de mesure, culasse/cylindre et porte-arbres
-appariés, puis métrologie extérieure, CT des galeries et relevé des interfaces.
-Les inconnues du registre restent `null` jusqu'à réception des preuves.
+The next input needed to reconstruct the shape is an identified 962 C
+assembly, with measurement rights, matched head/cylinder and camshaft carrier,
+then exterior metrology, gallery CT and interface measurements.
+The register's unknowns remain `null` until evidence is received.
 
-## Vérification du 16 octobre 2026
+<a id="vérification-du-16-octobre-2026"></a>
 
-Les 53 tests ciblés 962 se terminent sans échec : 48 réussis et 5 ignorés
-car VTK n'est pas disponible dans l'environnement Python 3.12 utilisé.
-Les huit nouveaux tests vérifient les unités, les deux sens du calcul,
-les bornes et entrées invalides, la conservation des inconnues, le rapport,
-les liens du programme et la feuille de métrologie vide. Les empreintes des
-anciens modèles passent leurs contrôles ; leurs géométries sont inchangées.
-La reproduction du rapport et le contrôle strict des liens réussissent.
+## Verification on October 16, 2026
 
-Le `make check` global exécute 4 040 tests en 267,189 s : trois échecs et
-230 tests ignorés. Deux échecs d'égalité exacte de flottants concernent les
-modules de ventilateur 993 non modifiés ; les mêmes écarts figurent dans le
-journal de la précédente étude. Le troisième concerne deux caches Python
-locaux dans le benchmark OpenFOAM. Ces caches créés durant les vérifications
-sont supprimés ; les 17 tests du benchmark repassent avec
-`PYTHONDONTWRITEBYTECODE=1`. Les autres cibles de `make check` passent
-séparément avec `make -o test check`. Cela ne transforme pas le résultat du
-`make check` initial en succès global.
+The 53 targeted 962 tests finish without failure: 48 pass and 5 are skipped
+because VTK is unavailable in the Python 3.12 environment used.
+The eight new tests check units, both calculation directions, bounds and
+invalid inputs, preservation of unknowns, the report, program links and the
+blank metrology sheet. The old models' digests pass their checks; their
+geometry is unchanged. Report reproduction and the strict link check pass.
 
-Les journaux locaux sont conservés sous `work/962-replica/`. Aucun nouveau
-calcul CFD/CHT, export natif de réplique, essai physique, CI distante ou
-fusion n'est revendiqué pour cette livraison locale.
+The global `make check` runs 4,040 tests in 267.189 s: three failures and
+230 skipped tests. Two exact floating-point equality failures concern
+unmodified 993 fan modules; the same differences appear in the previous
+study's log. The third concerns two local Python caches in the OpenFOAM
+benchmark. These caches created during verification are removed; the
+17 benchmark tests pass again with `PYTHONDONTWRITEBYTECODE=1`.
+The other `make check` targets pass separately with `make -o test check`.
+This does not turn the initial `make check` result into an overall success.
+
+Local logs are retained under `work/962-replica/`. No new CFD/CHT calculation,
+native replica export, physical test, remote CI or merge is claimed for this
+local delivery.

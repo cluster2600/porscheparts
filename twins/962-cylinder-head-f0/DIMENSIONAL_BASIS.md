@@ -1,68 +1,74 @@
-# Base dimensionnelle publiée et hypothèses de la famille bionique
+<a id="base-dimensionnelle-publiée-et-hypothèses-de-la-famille-bionique"></a>
 
-Recherche vérifiée le **16 octobre 2026**. La référence historique retenue est
-la 962 C 3,0 L à culasses et cylindres refroidis par eau. Le type moteur,
-le millésime et les références de la pièce à reproduire restent non sélectionnés.
-Le [registre structuré](dimensional-research.json) distingue valeur publiée,
-témoignage de restauration, transfert proposé et inconnue.
+# Published dimensional basis and bionic-family assumptions
 
-L'utilisateur autorise désormais la poursuite de la géométrie avec des
-hypothèses explicites après recherche des cotes disponibles. Cette autorisation
-permet les études et leurs exports ; elle ne valide ni montage ni fabrication.
+Research checked on **October 16, 2026**. The selected historical reference is
+the 3.0 L 962 C with water-cooled heads and cylinders. The engine type,
+model year and part numbers to reproduce remain unselected.
+The [structured register](dimensional-research.json) distinguishes published
+values, restoration accounts, proposed transfers and unknowns.
 
-| Donnée | Valeur | Source et niveau de preuve | Limite d'emploi |
+The owner now authorizes continued geometry work using explicit assumptions
+after researching available dimensions. This authorizes studies and their
+exports; it validates neither installation nor manufacturing.
+
+| Data | Value | Source and evidence level | Usage limit |
 |---|---:|---|---|
-| Cylindrée historique 3,0 L | 2 994 cm³ | [Porsche Museum, fiche 1987, pages 1–2](https://newsroom.porsche.com/dam/jcr:71417137-bfb7-40cb-9612-88d77a3bdb47/Porsche%20962%20C%20Coup%C3%A9_2114.pdf), constructeur | Fiche descriptive ; aucun plan de culasse |
-| Alésage/course de 3,0 L publiés | 95 × 70,4 mm | [Euroracing, Kremer 1990](https://euroracing.se/car/porsche-962c-ck6-07/) ; [registre technique Brunn, Groupe C 1989](https://962group.com/registry/956_962/962-144/index.htm), type moteur 935/83 | Fiches d'exemplaires, aucun plan de culasse |
-| Rapport volumétrique 935/83 publié | 9,5:1 | Même registre technique Brunn, Groupe C 1989 | Propre à cette configuration, pas au donneur non sélectionné |
-| Alésage de culasses eau/eau | 95 mm | [Retro Sport, MP1.7 eau/eau](https://retro-sport.com/products/porsche-race-cars/porsche-962/porsche-962-c-mp1-7-water-water-heads), fournisseur | Ensemble quatre soupapes avec cylindres soudés ; course non donnée |
-| Soupape d'admission | Ø35 mm, `93510540102` | [Retro Sport](https://retro-sport.com/products/porsche-race-cars/porsche-962/engine-1/porsche-962-intake-and-exhaust-valve-set-1), fournisseur ; [Freisinger](https://www.freisinger-motorsport.de/en/part/678) confirme la référence 956/962 | Pas de référence exacte 3,0 L ni de tolérance publiée |
-| Soupape d'échappement | Ø30,5 mm, `93510541103` | Mêmes catalogues fournisseurs | Même limite ; pas de diamètre de queue ni d'emmanchement |
-| Course d'une restauration 3,2 L | 74,4 mm avec alésage 95 mm | [Ralph, visite chez Neil Harvey, page 12, post 224](https://forums.pelicanparts.com/911-engine-rebuilding-forum/248909-rebuilding-962-motor-12.html), témoignage de première main | Variante 3,2 L ; ne définit pas le 3,0 L |
-| Levée des cames de cette restauration | 9,3 mm admission et échappement | Même reportage, post 230 | Profils complets et calage non publiés |
-| Durées de cette restauration | 276° admission ; 288° échappement à 0,5 mm | Même reportage, post 230 | Données de ce moteur, pas un choix de distribution universel |
-| Rapport volumétrique de cette restauration | 9,2:1 mesuré | Même reportage, post 230 | Dépend des pistons et de l'assemblage ; aucun volume de chambre isolé fourni |
-| Allumage observé | Bougie centrale dans la chambre | Même reportage, post 221 | Observation sur la restauration 3,2 L ; nombre et implantation du 3,0 L exact inconnus |
-| Bielle 3,0 L tardive proposée | 127,8 mm, `93510301203` | [Retro Sport](https://retro-sport.com/porsche-962-titanium-30-liter-rods-late-shot-peened), fournisseur | Convention de longueur non explicitée ; donnée à contrôler avant toute chaîne de cotes |
+| Historical 3.0 L displacement | 2,994 cm³ | [Porsche Museum, 1987 data sheet, pages 1–2](https://newsroom.porsche.com/dam/jcr:71417137-bfb7-40cb-9612-88d77a3bdb47/Porsche%20962%20C%20Coup%C3%A9_2114.pdf), manufacturer | Descriptive sheet; no cylinder-head drawing |
+| Published 3.0 L bore/stroke | 95 × 70.4 mm | [Euroracing, 1990 Kremer](https://euroracing.se/car/porsche-962c-ck6-07/); [Brunn technical register, 1989 Group C](https://962group.com/registry/956_962/962-144/index.htm), engine type 935/83 | Individual-car records, no cylinder-head drawing |
+| Published 935/83 compression ratio | 9.5:1 | Same Brunn technical register, 1989 Group C | Specific to that configuration, not the unselected donor |
+| Water/water head bore | 95 mm | [Retro Sport, MP1.7 water/water](https://retro-sport.com/products/porsche-race-cars/porsche-962/porsche-962-c-mp1-7-water-water-heads), supplier | Four-valve assembly with welded cylinders; stroke not given |
+| Intake valve | Ø35 mm, `93510540102` | [Retro Sport](https://retro-sport.com/products/porsche-race-cars/porsche-962/engine-1/porsche-962-intake-and-exhaust-valve-set-1), supplier; [Freisinger](https://www.freisinger-motorsport.de/en/part/678) confirms the 956/962 part number | No exact 3.0 L application or published tolerance |
+| Exhaust valve | Ø30.5 mm, `93510541103` | Same supplier catalogs | Same limit; no stem diameter or interference fit |
+| Stroke of a restored 3.2 L engine | 74.4 mm with 95 mm bore | [Ralph, visit to Neil Harvey, page 12, post 224](https://forums.pelicanparts.com/911-engine-rebuilding-forum/248909-rebuilding-962-motor-12.html), firsthand account | 3.2 L variant; does not define the 3.0 L |
+| Cam lift in that restoration | 9.3 mm intake and exhaust | Same account, post 230 | Complete profiles and timing not published |
+| Durations in that restoration | 276° intake; 288° exhaust at 0.5 mm | Same account, post 230 | Data for that engine, not a universal valvetrain selection |
+| Compression ratio in that restoration | 9.2:1 measured | Same account, post 230 | Depends on pistons and assembly; no isolated chamber volume provided |
+| Observed ignition | Central spark plug in the chamber | Same account, post 221 | Observation on the 3.2 L restoration; exact 3.0 L count and layout unknown |
+| Offered late 3.0 L connecting rod | 127.8 mm, `93510301203` | [Retro Sport](https://retro-sport.com/porsche-962-titanium-30-liter-rods-late-shot-peened), supplier | Length convention not stated; check before using in a dimensional stack |
 
-Le reportage distingue explicitement son moteur 3,2 L des 956 et décrit les
-ensembles eau/eau soudés. Les catalogues corroborent les soupapes publiées ;
-ils ne constituent pas un relevé des axes ou des interfaces de notre future
-référence. Aucune cote n'est extraite de l'échelle apparente d'une photographie.
+The account explicitly distinguishes its 3.2 L engine from the 956 and
+describes welded water/water assemblies. The catalogs corroborate the published
+valves; they do not measure the axes or interfaces of our future reference.
+No dimension is extracted from the apparent scale of a photograph.
 
-## Hypothèses effectivement retenues pour continuer
+<a id="hypothèses-effectivement-retenues-pour-continuer"></a>
 
-La [famille bionique](BIONIC_FAMILY.md) utilise les alésages d'étude 95, 98,
-100 et 102 mm. Le premier s'appuie sur les références publiées de la famille ;
-98 et 100 mm sont des choix intermédiaires proposés, et 102 mm conserve la
-proposition moderne de l'[étude 4 L](FLOW4L_STUDY.md).
-Le passage des soupapes Ø35/30,5 mm aux candidats 3,0 et 4,0 L est un
-**transfert d'hypothèse**, sans preuve de montage ni de capacité de débit.
-Les courses et cylindrées calculées doivent rester attachées à chaque variante.
+## Assumptions actually retained to continue
 
-Les deux puits de bougie des candidats modernes sont conservés comme choix
-de conception. Ils ne transforment pas une observation de bougie centrale en
-double allumage OEM. Les positions de soupapes, angles, profondeurs, conduits,
-épaisseurs et raccords sans mesure restent des paramètres d'étude déclarés.
+The [bionic family](BIONIC_FAMILY.md) uses study bores of 95, 98,
+100 and 102 mm. The first follows published family references;
+98 and 100 mm are proposed intermediate choices, and 102 mm retains the
+modern proposal from the [4 L study](FLOW4L_STUDY.md).
+Using Ø35/30.5 mm valves for the 3.0 and 4.0 L candidates is an
+**assumed transfer**, with no evidence of fit or flow capacity.
+Calculated strokes and displacements must remain attached to each variant.
 
-Le corps, le refroidissement et les renforts bioniques s'écartent volontairement
-de la réplique historique. Ils doivent être comparés au maître fidèle et
-documentés comme dérivés ; une cylindrée proposée n'établit aucune compatibilité
-universelle avec carters, cylindres, pistons ou porte-arbres.
+The two spark-plug wells in the modern candidates remain a design choice.
+They do not turn an observed central spark plug into OEM twin ignition.
+Unmeasured valve positions, angles, depths, ports, thicknesses and connections
+remain declared study parameters.
 
-## Inconnues à remplacer progressivement
+The body, cooling and bionic ribs intentionally depart from the historical
+replica. They must be compared with the faithful master and documented as
+derivatives; a proposed displacement establishes no universal compatibility
+with cases, cylinders, pistons or camshaft carriers.
 
-Restent inconnus pour la pièce historique exacte : angles et positions des
-soupapes, queues/guides et sièges, volume et surface de chambre, allumage,
-entraxe cylindres, axes de fixation, extérieur coté, porte-arbres et galeries.
-Leur absence n'empêche pas l'étude autorisée ; elle limite la fidélité revendiquée
-et laisse la qualification fonctionnelle ouverte. La [campagne métrologique](REPLICA_METROLOGY.md)
-et sa feuille vide restent le chemin prévu pour remplacer ces hypothèses.
+<a id="inconnues-à-remplacer-progressivement"></a>
 
-L'[article PMNA du 23 septembre 2026](https://racing.porsche.com/en-US/articles/pmna-2026-962-rothmans)
-confirme l'accès de ce service aux dessins et archives usine pour ses restaurations.
-Il ne publie aucune cote de culasse ; aucun document privé n'a été obtenu et
-aucune prise de contact n'a été effectuée.
+## Unknowns to replace progressively
 
-Seuls les faits résumés, liens et choix de conception sont conservés ici.
-Photographies, pages complètes, plans et géométries tiers ne sont pas redistribués.
+For the exact historical part, valve angles and positions, stems/guides and
+seats, chamber volume and surface, ignition, cylinder pitch, mounting axes,
+dimensioned exterior, camshaft carrier and galleries remain unknown.
+Their absence does not prevent the authorized study; it limits claimed
+fidelity and leaves functional qualification open. The [metrology campaign](REPLICA_METROLOGY.md)
+and its blank sheet remain the planned route for replacing these assumptions.
+
+The [PMNA article of September 23, 2026](https://racing.porsche.com/en-US/articles/pmna-2026-962-rothmans)
+confirms that service's access to factory drawings and archives for its restorations.
+It publishes no cylinder-head dimensions; no private document was obtained and
+no contact was made.
+
+Only summarized facts, links and design choices are retained here.
+Third-party photographs, complete pages, drawings and geometry are not redistributed.

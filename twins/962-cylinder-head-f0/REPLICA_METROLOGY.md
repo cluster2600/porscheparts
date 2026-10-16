@@ -1,99 +1,108 @@
-# Réplique 962 C 3,0 L : référence et métrologie
+<a id="réplique-962-c-30-l--référence-et-métrologie"></a>
 
-La référence retenue est la **962 C 3,0 L à culasses et cylindres refroidis
-par eau**. Le type moteur exact, le millésime, les références de pièces et
-l'exemplaire de contrôle restent à sélectionner. La fidélité ne peut donc
-pas encore être chiffrée. Le présent dossier prépare leur acquisition ; il
-ne fournit aucune cote Porsche et n'autorise aucune fabrication.
+# 3.0 L 962 C replica: reference and metrology
 
-Le [dossier Porsche, pages 18–20](https://newsroom.porsche.com/dam/jcr:a6f33b52-c47d-47b4-98c1-7e963661f587/40%2520Years%2520Group%2520C.pdf)
-décrit les ensembles cylindre–culasse en aluminium soudés par faisceau
-d'électrons (« blind cylinders »), la distribution par engrenages, deux
-arbres à cames par banc, les poussoirs et pastilles, et un circuit d'eau
-indépendant par banc. Il décrit aussi le contrôle du volume des chambres.
-Ce texte établit une architecture historique, pas les cotes de notre référence.
+The selected reference is the **3.0 L 962 C with water-cooled heads and
+cylinders**. The exact engine type, model year, part numbers and inspection
+specimen remain to be selected. Fidelity therefore cannot yet be quantified.
+This dossier prepares their acquisition; it provides no Porsche dimensions
+and authorizes no manufacturing.
 
-Les ensembles séparés montrés par le restaurateur dans
-[l'analyse existante](ORIGINAL_ARCHITECTURE.md) comprennent des modifications
-déclarées. Ne pas en déduire une interface démontable d'usine : établir pour
-l'exemplaire choisi soudure, réparations et transformations. Ne pas sectionner
-une pièce historique pour compléter le modèle. Les deux bougies des candidats
-F0/4 L constituent une proposition moderne ; leur nombre et leurs axes ne sont
-pas une définition OEM. Les [interfaces M64](DONOR_METROLOGY.md) concernent une
-conversion distincte et ne remplacent pas cette campagne 962.
+The [Porsche dossier, pages 18–20](https://newsroom.porsche.com/dam/jcr:a6f33b52-c47d-47b4-98c1-7e963661f587/40%2520Years%2520Group%2520C.pdf)
+describes aluminum cylinder/head assemblies welded by electron beam
+(“blind cylinders”), gear-driven valvetrain, two camshafts per bank,
+tappets and shims, and an independent coolant circuit per bank.
+It also describes chamber-volume inspection. This establishes a historical
+architecture, not the dimensions of our reference.
 
-## Ensemble de référence et repère
+The separated assemblies shown by the restorer in the
+[existing analysis](ORIGINAL_ARCHITECTURE.md) include declared modifications.
+Do not infer a factory detachable interface: establish the welds, repairs and
+alterations on the selected specimen. Do not section a historical part to
+complete the model. The two spark plugs in the F0/4 L candidates are a modern
+proposal; their count and axes are not an OEM definition.
+The [M64 interfaces](DONOR_METROLOGY.md) concern a separate conversion and do
+not replace this 962 campaign.
 
-Réunir culasse–cylindre appariés, porte-arbres, distribution, soupapes,
-sièges/guides, raccords d'eau et d'huile, joints, fixations et interfaces de
-carter correspondants. Identifier chaque pièce, banc et position cylindre,
-sa référence et son état ; conserver les numéros identifiants privés hors Git.
-La comparaison des pièces doit établir toute symétrie ou interchangeabilité.
+<a id="ensemble-de-référence-et-repère"></a>
 
-Le métrologue établit un repère reproductible à partir de surfaces, axes et
-orientation identifiés sur l'ensemble réel, puis la transformation vers le
-repère moteur. Aucun datum OEM n'est supposé. Consigner température de mesure,
-état libre ou assemblé, bridage et conditions de serrage connues. Séparer
-déformation, usure, réparation et forme d'origine ; ne pas recalibrer un scan
-sur le générateur hypothétique pour rendre les écarts artificiellement faibles.
+## Reference assembly and coordinate frame
 
-## Contrôles à acquérir
+Acquire matched head/cylinder assemblies, camshaft carrier, valvetrain,
+valves, seats/guides, water and oil connections, seals, fasteners and the
+corresponding crankcase interfaces. Identify each part, bank and cylinder
+position, its part number and condition; keep private identifying numbers
+out of Git. Part comparisons must establish any symmetry or interchangeability.
 
-| Zone | Acquisition proposée et résultat attendu |
+The metrologist establishes a repeatable frame from surfaces, axes and
+orientation identified on the actual assembly, then the transformation to the
+engine frame. No OEM datum is assumed. Record measurement temperature,
+free or assembled condition, fixturing and known tightening conditions.
+Separate distortion, wear, repair and original shape; do not rescale a scan
+to the hypothetical generator to make deviations artificially small.
+
+<a id="contrôles-à-acquérir"></a>
+
+## Inspections to acquire
+
+| Area | Proposed acquisition and expected result |
 |---|---|
-| Extérieur et assemblage | Scan référencé et MMT : enveloppe, poches, congés, plans, registres, chaque axe de fixation et portée ; référence des fixations et chemin d'effort |
-| Cylindre et chambre | Alésage, profil, hauteur d'empilage, plan de feu et surface de chambre ; volume mesuré avec soupapes et obturation définies, état et méthode traçables |
-| Soupapes et allumage | Chaque axe de siège/guide, angle et position, géométrie et emmanchement ; nombre, axe, filet et portée des bougies constatés |
-| Admission et échappement | Faces, fixations, axes, sections et profils internes des ports ; raccordement aux collecteurs identifiés |
-| Porte-arbres et distribution | Plans et paliers, axes d'arbres et d'engrenages, entraxes, interfaces de poussoirs/pastilles et enveloppes ; calage et jeux à documenter séparément |
-| Huile et eau | CT si nécessaire : connexions, sections, continuité des galeries, épaisseurs et zones non résolues ; rattachement aux réseaux du banc |
-| Étanchéité et état thermique | Soudure cylindre–culasse, portées/joints réellement présents, états de surface ; matériaux et conditions thermiques nécessaires à la dilatation à établir |
+| Exterior and assembly | Referenced scan and CMM: envelope, pockets, fillets, planes, registers, every mounting axis and bearing surface; fastener reference and load path |
+| Cylinder and chamber | Bore, profile, stack height, combustion deck and chamber surface; volume measured with defined valves and blanking, traceable condition and method |
+| Valves and ignition | Every seat/guide axis, angle and position, geometry and interference fit; observed spark-plug count, axis, thread and seat |
+| Intake and exhaust | Faces, fasteners, axes, sections and internal port profiles; connections to identified manifolds |
+| Camshaft carrier and valvetrain | Planes and bearings, shaft and gear axes, center distances, tappet/shim interfaces and envelopes; timing and clearances documented separately |
+| Oil and water | CT if necessary: connections, sections, gallery continuity, thicknesses and unresolved areas; connection to the bank circuits |
+| Sealing and thermal condition | Cylinder/head weld, actual seats/seals, surface finishes; establish materials and thermal conditions needed to assess expansion |
 
-MMT : machine à mesurer tridimensionnelle. Définir couverture, résolution,
-étalonnage et incertitude selon le contrôle recherché. Pour un CT, conserver
-reconstruction, segmentation, artefacts, zones non résolues et contrôles
-indépendants accessibles ; la taille du voxel ne constitue pas une précision.
-Le plan de répétabilité et les critères d'acceptation appartiennent au dossier
-du métrologue. Aucune tolérance de fabrication ne se déduit d'une seule pièce
-ou de la seule incertitude de mesure.
+CMM: coordinate measuring machine. Define coverage, resolution, calibration
+and uncertainty for the intended inspection. For CT, retain reconstruction,
+segmentation, artifacts, unresolved areas and accessible independent checks;
+voxel size is not accuracy. The metrologist's dossier defines the repeatability
+plan and acceptance criteria. No manufacturing tolerance follows from a
+single part or measurement uncertainty alone.
 
-La [feuille CSV](replica-measurements.template.csv) est un index à copier sous
-`work/` pour chaque session. Les résultats sont vides ; vide signifie inconnu.
-Renseigner identité exacte, composant, banc, position, contrôle, caractéristique,
-méthode réalisée, unité, incertitude, datums, instrument, étalonnage et preuves.
-Dupliquer les lignes pour chaque axe, siège, port ou fixation. Les profils,
-vecteurs, coordonnées, répétitions et transformations restent dans des rapports
-référencés : une valeur scalaire ou une ligne CSV ne suffit pas à les définir.
+The [CSV sheet](replica-measurements.template.csv) is an index to copy under
+`work/` for each session. Results are blank; blank means unknown.
+Enter exact identity, component, bank, position, inspection, characteristic,
+method performed, unit, uncertainty, datums, instrument, calibration and evidence.
+Duplicate rows for each axis, seat, port or fastener. Profiles, vectors,
+coordinates, repetitions and transformations remain in referenced reports:
+a scalar value or a CSV row is insufficient to define them.
 
-## Maître éditable et dérivés de cylindrée
+<a id="maître-éditable-et-dérivés-de-cylindrée"></a>
 
-Reconstruire un maître CAO éditable de la référence mesurée : références
-fonctionnelles contraintes, surfaces de chambre et de ports, réseaux internes,
-interfaces de cylindre, porte-arbres et carter. Chaque contrainte doit pointer
-vers une mesure acceptée ou rester explicitement inconnue. Préserver les
-[études existantes](FLOW4L_STUDY.md) et leurs preuves comme études séparées.
+## Editable master and displacement derivatives
 
-Avant de revendiquer la fidélité, produire une carte d'écarts du maître vers
-les mesures indépendantes, avec repère, couverture, incertitude de recalage,
-zones masquées et critères de revue. Inspecter séparément les interfaces,
-chambres et galeries ; une belle surface externe ne valide pas l'intérieur.
+Reconstruct an editable CAD master of the measured reference: constrained
+functional datums, chamber and port surfaces, internal circuits, and cylinder,
+camshaft-carrier and crankcase interfaces. Every constraint must point to an
+accepted measurement or remain explicitly unknown. Preserve the
+[existing studies](FLOW4L_STUDY.md) and their evidence as separate studies.
 
-La course peut changer la cylindrée sans changer l'alésage de la culasse,
-mais impose de vérifier piston au PMH, hauteur d'empilage, jeux, compression et
-distribution. Un changement d'alésage impose une étude distincte de chambre,
-plan de feu, cylindre, épaisseurs et refroidissement. Ne pas agrandir tout le
-modèle : entraxes, fixations, paliers et raccords historiques restent contraints
-par la référence, sauf modification explicitement identifiée et revue.
-Chaque dérivé jusqu'à 4,0 L reçoit sa définition alésage/course, sa liste
-d'écarts au maître et ses propres preuves mécaniques, thermiques et d'assemblage.
+Before claiming fidelity, produce a deviation map between the master and
+independent measurements, with frame, coverage, registration uncertainty,
+masked areas and review criteria. Inspect interfaces, chambers and galleries
+separately; an attractive exterior does not validate the interior.
 
-## Provenance et sortie de campagne
+Stroke can change displacement without changing the head bore, but requires
+checks of piston position at TDC, stack height, clearances, compression and
+valvetrain. A bore change requires a separate study of the chamber,
+combustion deck, cylinder, thicknesses and cooling. Do not scale the entire
+model: historical center distances, fasteners, bearings and connections remain
+constrained by the reference unless a change is explicitly identified and reviewed.
+Each derivative up to 4.0 L receives its bore/stroke definition, its list of
+deviations from the master and its own mechanical, thermal and assembly evidence.
 
-Conserver accès autorisé, propriétaire de la source, droits de mesure et de
-réemploi, locateur privé, empreinte, date et décision de revue. Scans, CT,
-plans propriétaires et données personnelles restent hors Git ; publier seulement
-les éléments partageables. Le [registre](research.json) conserve les références
-documentaires ; une photographie publique n'accorde aucun droit de reproduction.
-La sortie attendue est une référence exacte identifiée, des mesures revues et
-un maître inspecté. La [qualification matière](MATERIAL_QUALIFICATION.md), la
-revue professionnelle et les validations physiques restent ensuite nécessaires.
+<a id="provenance-et-sortie-de-campagne"></a>
+
+## Provenance and campaign output
+
+Retain authorized access, source owner, measurement and reuse rights,
+private locator, digest, date and review decision. Scans, CT, proprietary
+drawings and personal data stay out of Git; publish only shareable elements.
+The [register](research.json) retains documentary references; a public
+photograph grants no reproduction rights.
+The expected output is an identified exact reference, reviewed measurements
+and an inspected master. [Material qualification](MATERIAL_QUALIFICATION.md),
+professional review and physical validations remain necessary afterward.

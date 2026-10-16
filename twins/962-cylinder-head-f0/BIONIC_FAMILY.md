@@ -1,173 +1,183 @@
-# Culasse bionique 962 C : dimensions retrouvées et hypothèses de travail
+<a id="culasse-bionique-962-c--dimensions-retrouvées-et-hypothèses-de-travail"></a>
 
-**Instruction du 16 octobre 2026 : rechercher les dimensions originales,
-puis poursuivre le modèle avec des hypothèses explicites.** La forme bionique
-peut modifier largement la référence. Le manque de certaines cotes ne bloque
-donc plus l'étude géométrique ; il interdit de revendiquer le montage ou la
-qualification de la pièce. Le [dossier dimensionnel](DIMENSIONAL_BASIS.md)
-conserve les valeurs retrouvées et leur portée exacte.
+# Bionic 962 C head: recovered dimensions and working assumptions
 
-## Entrées effectivement utilisées
+**Instruction of October 16, 2026: research original dimensions, then continue
+the model with explicit assumptions.** The bionic shape may substantially
+change the reference. Missing dimensions therefore no longer block the
+geometry study; they prevent claims of installation or part qualification.
+The [dimensional dossier](DIMENSIONAL_BASIS.md) preserves the recovered values
+and their exact scope.
 
-| Entrée | Valeur | Base du modèle |
+<a id="entrées-effectivement-utilisées"></a>
+
+## Inputs actually used
+
+| Input | Value | Model basis |
 | --- | ---: | --- |
-| Alésage de référence | 95 mm | Pièces 962 C eau/eau et fiches d'exemplaires publiées |
-| Course 3,0 L | 70,4 mm | Fiche d'exemplaire Groupe C ; pas mesure du donneur |
-| Course 3,2 L | 74,4 mm | Reconstruction documentée d'un 3,2 L |
-| Disque d'admission | 35 mm | Référence de pièce 956/962 et reconstruction 3,2 L ; transfert d'application supposé |
-| Disque d'échappement | 30,5 mm | Même niveau de preuve et même réserve |
-| Centres projetés des quatre réservations | X = ±19, Y = ±19 mm | Implantation de conception supposée |
-| Profondeur de chambre | 13 mm | Hypothèse indépendante de la cylindrée |
-| Diamètres de gorge admission/échappement | 30 / 26 mm | Hypothèses, pas des cotes de siège ou de port Porsche |
-| Guides | Ø7 mm, axe de Y = ±22 à ±36 mm sur 75 mm | Réservations supposées, sans guide fonctionnel |
-| Deux puits d'allumage | Ø12 et Ø10 mm, X = 0 et 38 mm | Choix moderne conservé ; aucun filetage ou montage de bougie qualifié |
-| Corps de base | 120 × 140 × 90 mm | Enveloppe d'étude antérieure, pas dimensions OEM |
-| Eau | terminaux Ø22 mm ; séparation sèche nominale 4,5 mm ; peau nominale 5 mm | Hypothèses héritées, à vérifier géométriquement puis hydrauliquement |
+| Reference bore | 95 mm | Water/water 962 C parts and published individual-car records |
+| 3.0 L stroke | 70.4 mm | Group C individual-car record; not a donor measurement |
+| 3.2 L stroke | 74.4 mm | Documented 3.2 L rebuild |
+| Intake disc | 35 mm | 956/962 part reference and 3.2 L rebuild; assumed application transfer |
+| Exhaust disc | 30.5 mm | Same evidence level and limitation |
+| Projected centers of the four reservations | X = ±19, Y = ±19 mm | Assumed design layout |
+| Chamber depth | 13 mm | Assumption independent of displacement |
+| Intake/exhaust throat diameters | 30 / 26 mm | Assumptions, not Porsche seat or port dimensions |
+| Guides | Ø7 mm, axis from Y = ±22 to ±36 mm over 75 mm | Assumed reservations, without functional guides |
+| Two ignition wells | Ø12 and Ø10 mm, X = 0 and 38 mm | Retained modern choice; no qualified spark-plug thread or installation |
+| Base body | 120 × 140 × 90 mm | Previous study envelope, not OEM dimensions |
+| Water | Ø22 mm terminals; nominal dry separation 4.5 mm; nominal skin 5 mm | Inherited assumptions, to check geometrically then hydraulically |
 
-Le [registre de recherche](dimensional-research.json) distingue constructeur,
-fournisseur de pièces, fiche d'exemplaire et compte rendu de restauration.
-Les angles, goujons, entraxes, registres, sièges, surfaces d'étanchéité et
-huile inconnus ne sont pas présentés comme des mesures originales.
-Les Ø35/30,5 servent à dimensionner les réservations ; le modèle ne livre
-pas une soupape, un siège, un ressort ou une distribution fonctionnels.
+The [research register](dimensional-research.json) distinguishes manufacturer,
+parts supplier, individual-car record and restoration account.
+Unknown angles, studs, center distances, registers, seats, sealing surfaces
+and oil are not presented as original measurements.
+The Ø35/30.5 values size the reservations; the model does not deliver a
+functional valve, seat, spring or valvetrain.
 
-## Paramétrage local, sans agrandissement global
+<a id="paramétrage-local-sans-agrandissement-global"></a>
 
-Le [générateur](source/family/HeadFamilyStudy.cs) reprend l'étude précédente
-en conservant ses sources et preuves. Il construit une seule fois les trois
-domaines : métal, eau et réservations sèches. L'alésage règle localement le
-rayon de chambre (`alésage/2 − 2 mm`) et le rayon externe du plateau
-(`alésage/2 + 8 mm`). Les marges de 2 et 8 mm sont des choix d'étude,
-sans preuve d'étanchéité ou de résistance.
+## Local parameterization without global scaling
 
-Les réservations de soupapes utilisent les diamètres retrouvés. Leur
-implantation et leurs transitions vers les ports restent supposées. Les
-galeries suivent les volumes chauds et respectent une réservation autour
-des zones sèches. Les 36 cellules BCC externes sont conservées ; elles ne
-proviennent pas d'une optimisation de contraintes ou de transfert thermique.
+The [generator](source/family/HeadFamilyStudy.cs) continues the previous study
+while preserving its sources and evidence. It constructs the three domains
+once: metal, water and dry reservations. Bore sets the local chamber radius
+(`bore/2 − 2 mm`) and outer deck radius (`bore/2 + 8 mm`).
+The 2 and 8 mm margins are study choices, without sealing or strength evidence.
 
-La course reste dans le [registre moteur](bionic-family.json), hors des
-entrées géométriques de culasse. Deux cylindrées au même alésage peuvent
-ainsi référencer le même candidat géométrique ; cela ne valide ni leur
-piston, ni leur compression, ni l'interchangeabilité des ensembles.
+The valve reservations use the recovered diameters. Their layout and
+transitions into the ports remain assumed. Galleries follow the hot volumes
+and maintain a reservation around dry areas. The 36 external BCC cells are
+retained; they do not result from stress or heat-transfer optimization.
 
-| Scénario | Alésage | Course | Géométrie de culasse |
+Stroke remains in the [engine register](bionic-family.json), outside the
+head-geometry inputs. Two displacements at the same bore can therefore
+reference the same geometric candidate; this validates neither their pistons,
+compression nor assembly interchangeability.
+
+| Scenario | Bore | Stroke | Head geometry |
 | --- | ---: | ---: | --- |
-| 3,0 L | 95 mm | 70,4 mm publiée | candidat Ø95 |
-| 3,2 L | 95 mm | 74,4 mm rapportée | même candidat Ø95, montage non vérifié |
-| 3,4 L | 98 mm supposés | calculée pour 3 400 cm³ | candidat Ø98 |
-| 3,6 L | 100 mm supposés | calculée pour 3 600 cm³ | candidat Ø100 |
-| 3,8 L | 102 mm supposés | calculée pour 3 800 cm³ | candidat Ø102 |
-| 4,0 L | 102 mm supposés | calculée pour 4 000 cm³ | même candidat Ø102, montage non vérifié |
+| 3.0 L | 95 mm | 70.4 mm published | Ø95 candidate |
+| 3.2 L | 95 mm | 74.4 mm reported | Same Ø95 candidate, installation unverified |
+| 3.4 L | 98 mm assumed | Calculated for 3,400 cm³ | Ø98 candidate |
+| 3.6 L | 100 mm assumed | Calculated for 3,600 cm³ | Ø100 candidate |
+| 3.8 L | 102 mm assumed | Calculated for 3,800 cm³ | Ø102 candidate |
+| 4.0 L | 102 mm assumed | Calculated for 4,000 cm³ | Same Ø102 candidate, installation unverified |
 
-Les courses calculées ne sélectionnent pas des vilebrequins disponibles.
-Les cylindrées réelles des deux couples historiques arrondis sont conservées
-dans le JSON. Les alésages proposés ne prouvent pas leur passage dans un
-carter ou un entraxe d'origine. Aucun rapport volumétrique n'est imposé aux
-nouveaux modèles à partir d'un piston de catalogue ou d'une autre restauration.
+Calculated strokes do not select available crankshafts. Actual displacements
+of the two rounded historical pairs are retained in the JSON.
+Proposed bores do not prove clearance within an original case or cylinder pitch.
+No compression ratio is imposed on the new models from a catalog piston or
+another restoration.
 
-## Exécution et contrôle
+<a id="exécution-et-contrôle"></a>
+
+## Execution and inspection
 
 ```sh
 python3 twins/962-cylinder-head-f0/source/family/run_study.py \
-  /chemin/vers/PicoGK \
+  /path/to/PicoGK \
   twins/962-cylinder-head-f0/source/family/configs/bore-95.json \
-  work/962-family/nouvel-essai-95
+  work/962-family/new-run-95
 ```
 
-Le pilote vérifie les empreintes des bibliothèques retenues, compile le C#,
-prend le verrou PicoGK partagé, puis exporte les STL et cinq champs VDB.
-L'inspecteur utilise NumPy, trimesh et VTK. Il contrôle fermeture, orientation,
-connexité, ouvertures sèches, sections des terminaux et séparation eau/sec.
-Le seuil échantillonné de 4 mm reste celui de l'étude précédente ; il ne
-constitue pas une épaisseur minimale certifiée. Les sondes de partition
-eau/métal restent un diagnostic, sans maillage conforme ni calcul CHT.
+The driver verifies the retained library digests, compiles the C#, acquires
+the shared PicoGK lock, then exports the STL files and five VDB fields.
+The inspector uses NumPy, trimesh and VTK. It checks closure, orientation,
+connectivity, dry openings, terminal sections and water/dry separation.
+The 4 mm sampled threshold remains that of the previous study; it is not a
+certified minimum thickness. Water/metal partition probes remain a diagnostic,
+without a conformal mesh or CHT calculation.
 
-Chaque répertoire de sortie doit être neuf. Les essais rejetés et leurs
-mesures sont conservés. Les champs VDB sont des domaines géométriques,
-une distance et un gradient ; ils ne contiennent aucun résultat thermique,
-de pression ou de vitesse. Le budget SP95 antérieur n'est pas transféré à
-toutes les cylindrées.
+Every output directory must be new. Rejected attempts and their measurements
+are preserved. VDB fields contain geometric domains, a distance and a gradient;
+they contain no thermal, pressure or velocity results.
+The previous SP95 budget is not transferred to every displacement.
 
-## Résultats natifs effectivement obtenus
+<a id="résultats-natifs-effectivement-obtenus"></a>
 
-Les quatre géométries ont été exécutées sous le verrou partagé, avec le même
-binaire et le runtime natif retenu. Le [bordereau](derived/family/delivery-report.json)
-lie configurations, sources, rapports, binaires et sorties par empreintes.
-Chaque modèle fournit trois STL inspectés en mm, un VDB de cinq champs et
-quatre rendus. Les fichiers complets restent sous `work/962-family/`.
+## Native results actually obtained
 
-| Alésage | Volume de métal géométrique | Séparation eau/sec minimale échantillonnée | Valeurs scalaires et vectorielles vérifiées par sens |
+The four geometries were executed under the shared lock, using the same
+binary and retained native runtime. The [delivery record](derived/family/delivery-report.json)
+links configurations, sources, reports, binaries and outputs by digest.
+Each model provides three inspected STL files in mm, a five-field VDB and
+four renders. Complete files remain under `work/962-family/`.
+
+| Bore | Geometric metal volume | Minimum sampled water/dry separation | Scalar and vector values checked in each direction |
 | --- | ---: | ---: | ---: |
-| 95 mm | 915,458 cm³ | 4,439 mm | 1 223 560 par champ |
-| 98 mm | 911,704 cm³ | 4,439 mm | 1 235 784 par champ |
-| 100 mm | 908,921 cm³ | 4,439 mm | 1 244 713 par champ |
-| 102 mm | 905,982 cm³ | 4,439 mm | 1 253 379 par champ |
+| 95 mm | 915.458 cm³ | 4.439 mm | 1,223,560 per field |
+| 98 mm | 911.704 cm³ | 4.439 mm | 1,235,784 per field |
+| 100 mm | 908.921 cm³ | 4.439 mm | 1,244,713 per field |
+| 102 mm | 905.982 cm³ | 4.439 mm | 1,253,379 per field |
 
-Les douze surfaces inspectées sont fermées, orientées de façon cohérente,
-finies et chacune d'un seul tenant. Les triangles de surface d'aire nulle
-sont retirés par l'outil existant ; les nombres et les empreintes des exports
-bruts et nettoyés sont conservés. Le contrôle ne certifie pas l'épaisseur
-minimale globale ni le maintien des sièges et des guides.
+The twelve inspected surfaces are closed, consistently oriented, finite and
+each connected. Zero-area surface triangles are removed by the existing tool;
+counts and digests of raw and cleaned exports are retained.
+This check certifies neither global minimum thickness nor seat/guide retention.
 
-Les sondes de partition restent imparfaites : à 0,25 mm, les cas Ø98 et
-Ø100 présentent respectivement 2 et 1 points non assignés ; les Ø95 et
-Ø102 présentent 5 et 4 points classés encore dans l'eau. À 1,5 mm, des
-recouvrements et des points non assignés subsistent. Ces résultats sont
-conservés dans chaque rapport ; aucune conformité CHT n'est acquise.
+Partition probes remain imperfect: at 0.25 mm, Ø98 and Ø100 have respectively
+2 and 1 unassigned points; Ø95 and Ø102 have 5 and 4 points still classified
+in the water. At 1.5 mm, overlaps and unassigned points remain.
+These results are retained in every report; no CHT conformity is established.
 
-**Candidat Ø95, utilisé pour les scénarios 3,0 et 3,2 L :**
+**Ø95 candidate, used for the 3.0 and 3.2 L scenarios:**
 
-![Coupe du candidat bionique Ø95 : eau bleue et réservations orange](derived/family/views-95/cutaway.png)
+![Ø95 bionic candidate cutaway: blue water and orange reservations](derived/family/english-views/bore-95/cutaway.png)
 
-**Candidat Ø102, utilisé pour les scénarios 3,8 et 4,0 L :**
+**Ø102 candidate, used for the 3.8 and 4.0 L scenarios:**
 
-![Chambre du candidat bionique Ø102](derived/family/views-102/chamber.png)
+![Chamber of the Ø102 bionic candidate](derived/family/english-views/bore-102/chamber.png)
 
-Les 58 tests ciblés 962 passent avec VTK. Sept configurations invalides
-sont rejetées par le programme C# avant toute génération native ; le
-[reçu](derived/family/invalid-inputs.json) en conserve les empreintes et
-l'absence de répertoire de sortie. Aucun résultat de performance moteur
-ne découle de ces contrôles logiciels et géométriques.
+The 58 targeted 962 tests pass with VTK. Seven invalid configurations are
+rejected by the C# program before native generation; the
+[receipt](derived/family/invalid-inputs.json) retains their digests and the
+absence of an output directory. These software and geometry checks establish
+no engine-performance result.
 
-Le `make check` global exécuté sur cette famille compte 4 043 tests en
-239,018 s, avec deux échecs d'égalité exacte de flottants déjà présents dans
-les modules de ventilateur 993 non modifiés et 230 tests ignorés. Le résultat
-global reste non vert ; aucun de ces échecs ne concerne la famille 962.
-Les autres cibles de `make check` passent séparément avec `make -o test check`.
+The global `make check` run on this family counts 4,043 tests in 239.018 s,
+with two exact floating-point equality failures already present in the
+unmodified 993 fan modules and 230 skipped tests. The global result remains
+non-green; neither failure concerns the 962 family. The other `make check`
+targets pass separately with `make -o test check`.
 
-La revue a ajouté un refus explicite si l'identifiant ou la géométrie du
-JSON fourni ne correspond pas au reçu natif. Les quatre inspections ont
-ensuite été répétées vers des répertoires neufs `inspected-bound-002`, sans
-régénérer les géométries. Leurs métriques de maillage et de partition sont
-identiques aux premières inspections, conservées localement. Les deux
-régressions ajoutées après l'exécution globale sont incluses dans les
-58 tests ciblés finaux. Le bordereau lie aussi les sources C# communes
-compilées, le nettoyage délégué et les références des bibliothèques.
+Review added explicit rejection if the supplied JSON identity or geometry
+does not match the native receipt. The four inspections were then repeated
+into new `inspected-bound-002` directories without regenerating geometry.
+Their mesh and partition metrics match the first inspections, retained locally.
+The two regressions added after the global run are included in the final
+58 targeted tests. The delivery record also links compiled shared C# sources,
+delegated cleanup and library references.
 
-## Consultation sur GitHub
+<a id="consultation-sur-github"></a>
 
-La [PR brouillon 261](https://github.com/cluster2600/porscheparts/pull/261)
-regroupe les sources éditables, les recherches, les rendus et les rapports.
-La [livraison d'étude en brouillon](https://github.com/cluster2600/porscheparts/releases/tag/untagged-3dc4679a17c16edf0fb4)
-contient quatre archives, soit douze STL inspectés, quatre VDB et seize rendus,
-avec configurations, rapports et empreintes. L'accès à cette livraison demande
-une connexion GitHub avec les droits sur les brouillons du dépôt.
+## Viewing on GitHub
 
-Les archives correspondent au calcul et aux inspections du commit
-`79180221fa79f2f669cbf3c0b9104cbb662c39d6` ; les modifications ultérieures
-de cette page décrivent leur publication. `SHA256SUMS.txt` et `archives.json`
-permettent de vérifier les téléchargements. Les licences du dépôt et des
-dépendances restent applicables. La CI distante se consulte sur la PR ;
-aucune fusion, qualification physique ou publication fonctionnelle n'est
-revendiquée.
+[Draft PR 261](https://github.com/cluster2600/porscheparts/pull/261) collects
+editable sources, research, renders and reports.
+The [repository releases page](https://github.com/cluster2600/porscheparts/releases)
+lists the draft 962 C study delivery. Its four original archives contain twelve
+inspected STL files, four VDB files and sixteen renders, with configurations,
+reports and digests. The `review-en.zip` companions add English documentation
+and views while retaining the original exports and evidence. Access requires
+a GitHub login with permission to view the repository's drafts.
 
-## Limites fonctionnelles
+The archives correspond to the calculation and inspections at commit
+`79180221fa79f2f669cbf3c0b9104cbb662c39d6`; later changes to this page describe
+their publication. `SHA256SUMS.txt` and `archives.json` check the original
+archives; `ENGLISH_SHA256SUMS.txt` and `ENGLISH_ARCHIVES.json` check the English
+review packages. Draft release permalinks can change when GitHub edits the
+draft, so this page uses the stable repository releases entry point.
+Repository and dependency licenses remain applicable. Remote CI is available
+on the PR; no merge, physical qualification or functional release is claimed.
 
-Les surfaces de fixation, registres et étanchéités restent à définir ; le
-cylindre, le porte-arbres, les goujons et le réseau d'huile ne sont pas
-livrés par cette étude de culasse. La fabrication, la tenue en pression,
-la fatigue, la combustion, les performances et le montage restent non validés.
-L'étape suivante est de contraindre progressivement ces zones avec des cotes
-supplémentaires et de comparer les variantes par calcul, sans redessiner
-automatiquement les interfaces pour rendre le modèle visuellement cohérent.
+<a id="limites-fonctionnelles"></a>
+
+## Functional limits
+
+Mounting surfaces, registers and seals remain to be defined; the cylinder,
+camshaft carrier, studs and oil network are not delivered by this head study.
+Manufacturing, pressure strength, fatigue, combustion, performance and
+installation remain unvalidated. The next step is to constrain these areas
+progressively with additional dimensions and compare variants by calculation,
+without automatically redesigning interfaces to make the model look coherent.
