@@ -1,0 +1,158 @@
+{
+  "schema": "962-analysis-envelope-contract/v4",
+  "status": "predeclared_original_source_envelope_constrained_collapse",
+  "length_unit": "mm",
+  "bore_mm": 95,
+  "input_hashes": {
+    "twins/962-cylinder-head-f0/derived/family/delivery-report.json": "90e5b91d4682b0a2a99a6c2966e2916c0302952d8ef42712dfa95d6cd771c904",
+    "twins/962-cylinder-head-f0/derived/family/bore-95-report.json": "5dc2c44ec6978cee9ea9bbd80c392227b68c3e13c0915e7f20e562cb489c7efb",
+    "twins/962-cylinder-head-f0/source/family/configs/bore-95.json": "2d1b4eafb6e331436cd6b29ce47092090a449c7f3991ec7e6208a980ca589efa",
+    "twins/962-cylinder-head-f0/source/family/HeadFamilyRunner.cs": "9abc2a2ae0ad3e6c476c033d5c68d11c712db81590af8d9ed40cca73a5964c50",
+    "twins/962-cylinder-head-f0/source/mesh_head.py": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+    "work/962-family/bore-95-run-001/inspected-bound-002/solid.stl": "ba7a0e28dade659550705e9737177c64c7f6fecd8d86d01e31732d7e739cd906",
+    "work/962-family/bore-95-run-001/inspected-bound-002/coolant.stl": "457f4f64b8ea89ff6bee67857fa2381d4ba5c7fee8a17d255bb18c4a68b33bb2",
+    "work/962-family/bore-95-run-001/inspected-bound-002/dry-passages.stl": "60e35b06c3af912ff44d55f707064d5c54bea386b47313208ac16e9199a60873",
+    "twins/962-cylinder-head-f0/engineering/analysis-mesh-contract.json": "254a4fce59676e88a02931dc330cfe4d3396dab741c62534363425ca7e3cb7a2",
+    "twins/962-cylinder-head-f0/source/analysis-cgal/envelope.cpp": "103860c69018e44969cde6d43c6b1c22c92fb812d9a8a9549f9274470ed27cd6",
+    "twins/962-cylinder-head-f0/source/analysis-cgal/Dockerfile": "ec275d5b942e398775e02ab50a72fdaac4f1c5539de1b8daffb10d8769f4a6cc",
+    "twins/962-cylinder-head-f0/source/analysis-cgal/toolchain.Dockerfile": "0671cd6613e50debf88c131565d084ce02b755d46d3a57978d5e2930303b8e9f",
+    "twins/962-cylinder-head-f0/source/family/HeadFamilyStudy.cs": "21212bbe60d78c495d705441fe5ed1599aa9a5b244dfadad4d2e4727f71d23fe",
+    "work/962-engineering/cgal-envelope-runtime-002/runtime.json": "da0f6fdd4ff9f2928ed80710c8e1ed10f2f800f088d1b7dfcdfbb722efccae48",
+    "work/962-engineering/cgal-envelope-runtime-001/compile-receipt.json": "95c27ab7441769e98d932b8443762b2ee033ae2e3961b05749594ef36025e3cf",
+    "work/962-engineering/cgal-envelope-runtime-001/compile-source.cpp": "103860c69018e44969cde6d43c6b1c22c92fb812d9a8a9549f9274470ed27cd6",
+    "work/962-engineering/cgal-envelope-runtime-002/cgal-envelope": "083e4f59b8d5f7aa808c0a52d0dd80d86ba47acdf2adf2d2983e84ab86457e6b",
+    "work/962-engineering/cgal-envelope-fixtures-001/independent-fixtures-tol001.json": "5844f8e69b0e55373abf86113ea4a1db9c6abf5fd711104bf340607a3c182219",
+    "work/962-engineering/cgal-envelope-fixtures-001/native-fixtures.json": "e3b16ce45eaba9f6a56e87f0344cb53c202c2056a0da065b679d3f494e0603e6"
+  },
+  "immutable_master": "work/962-family/bore-95-run-001/inspected-bound-002/solid.stl",
+  "source_voxel_size_mm": 0.5,
+  "representation_deviation_budget_mm": 0.25,
+  "representation_refinement_budgets_mm": [
+    0.25,
+    0.125,
+    0.0625
+  ],
+  "deviation_meaning": "Numerical analysis discretization budget relative to the retained polygon surface; not a Porsche dimensional accuracy or manufacturing tolerance.",
+  "preparation": {
+    "method": "CGAL5.6 Surface_mesh_simplification::edge_collapse with Polyhedral_envelope_filter<Kernel,Bounded_normal_change_filter<>>",
+    "kernel": "Exact_predicates_inexact_constructions_kernel",
+    "source": "Exact indexed original solid surface; no previous VTK derivative",
+    "physical_envelope_mm": 0.25,
+    "envelope_initialisation": "Original mesh copied before the first accepted collapse",
+    "cost": "LindstromTurk_cost",
+    "placement": "LindstromTurk_placement",
+    "normal_filter": "Reject replacements with nonpositive old/new triangle-normal dot product",
+    "face_or_edge_count_quota": null,
+    "stop_predicate": "Only native soft-deadline signal; otherwise exhaust permitted collapses",
+    "time_checkpoint_interval_s": 30,
+    "source_coordinate_rounding_welding_or_hole_filling": false,
+    "source_import_identity_required": "Exact source node coordinates and canonical oriented triangle set",
+    "filter_alone_establishes_two_sided_Hausdorff": false,
+    "all_independent_gates_remain_required": true
+  },
+  "surface_gates": {
+    "finite_nondegenerate_triangles": true,
+    "positive_signed_volume": true,
+    "closed_oriented_edge_manifold": true,
+    "vertex_link_manifold": true,
+    "connected_components": 1,
+    "euler_characteristic": -208,
+    "global_self_intersection_pairs": 0,
+    "two_sided_continuous_distance_upper_bound_mm": 0.25,
+    "each_distance_interval_absolute_gap_mm": 0.0001,
+    "both_distance_intervals_completed": true,
+    "rounding_error_certificate": false,
+    "sampled_vertex_distances_sufficient": false,
+    "unchanged_fluid_domain_hashes_required": true,
+    "dry_opening_probe_count": 8,
+    "dry_opening_probes_unblocked": true,
+    "feature_channel_BCC_connectivity_review_required": true,
+    "sampled_water_dry_clearance_minimum_mm": 4.0,
+    "conformal_metal_fluid_interface_validated": false,
+    "arbitrary_volume_change_percentage_gate": null,
+    "global_self_intersection_audit_completed": true
+  },
+  "volume_mesh_gates": {
+    "finite_positive_jacobian_and_signed_volume": true,
+    "minimum_SICN": 0.1,
+    "actual_oriented_tetra_boundary_equals_analysis_surface": true,
+    "volume_relative_bookkeeping_bound": 1e-06,
+    "bookkeeping_bound_is_manufacturing_tolerance": false,
+    "volume_bookkeeping_reference": "The accepted derivative analysis surface, never the different original source surface."
+  },
+  "convergence": {
+    "established": false,
+    "required_representation_budgets_mm": [
+      0.25,
+      0.125,
+      0.0625
+    ],
+    "required_volume_size_progression": [
+      "h",
+      "h/2",
+      "h/4"
+    ],
+    "field_observable_tolerances": "Must be declared with the actual thermal/structural case before solving.",
+    "required_observables": [
+      "thermal energy balance",
+      "maximum temperature",
+      "displacement",
+      "stress away from declared singular regions"
+    ]
+  },
+  "resource_limits": {
+    "soft_native_deadline_s": 285,
+    "hard_native_deadline_s": 300,
+    "audit_deadline_s": 300,
+    "cpus": 2,
+    "maximum_threads": 2,
+    "memory_bytes": 4294967296,
+    "swap_bytes": 0,
+    "network_during_geometry_run": "none",
+    "owned_local_dependency_install_authorised": true,
+    "cloud_or_paid_service_authorised": false
+  },
+  "qualification": {
+    "solver_admission_established": false,
+    "engineering_accepted": false,
+    "thermal_performance_validated": false,
+    "strength_validated": false,
+    "manufacturing_authorized": false
+  },
+  "parent_contract": {
+    "path": "twins/962-cylinder-head-f0/engineering/analysis-mesh-contract.json",
+    "sha256": "254a4fce59676e88a02931dc330cfe4d3396dab741c62534363425ca7e3cb7a2"
+  },
+  "runtime": {
+    "base_image_id": "sha256:586639782387349737869b383c9f98ec03614221255a9609009c395279835e07",
+    "toolchain_image_id": "sha256:57c6b17ed0bd093a61a3d3cecb7563e912caeb3832fd59e8cec2d4d9d4d1e2f8",
+    "helper_image_id": "sha256:7bc37bea12439e8b6fe91394af0c721e0ad680d05de8c479e754085cd17bc10d",
+    "architecture": "arm64",
+    "CGAL_package": "libcgal-dev=5.6-1build3",
+    "helper_binary_sha256": "083e4f59b8d5f7aa808c0a52d0dd80d86ba47acdf2adf2d2983e84ab86457e6b",
+    "helper_source_sha256": "103860c69018e44969cde6d43c6b1c22c92fb812d9a8a9549f9274470ed27cd6",
+    "metadata_path": "work/962-engineering/cgal-envelope-runtime-002/runtime.json",
+    "metadata_sha256": "da0f6fdd4ff9f2928ed80710c8e1ed10f2f800f088d1b7dfcdfbb722efccae48"
+  },
+  "licence": {
+    "CGAL_SMS_and_envelope": "GPL-3.0-or-later OR LicenseRef-Commercial, as declared by installed policy headers.",
+    "commercial_licence_claimed": false,
+    "own_helper_source": "Original project code follows repository proprietary LICENSE; no upstream example code copied. CGAL headers keep their own licences.",
+    "binary_or_runtime_in_public_source_delivery": false,
+    "upstream_primary_sources": [
+      "https://github.com/CGAL/cgal/tree/v5.6",
+      "https://doc.cgal.org/5.6/Surface_mesh_simplification/index.html",
+      "https://doc.cgal.org/5.6/Surface_mesh_simplification/classCGAL_1_1Surface__mesh__simplification_1_1Polyhedral__envelope__filter.html",
+      "https://www.cgal.org/license.html"
+    ]
+  },
+  "known_result_fixtures": {
+    "physical_envelope_query_count": 5,
+    "subdivided_cube": "48 to12 faces; volume64mm3 and coordinates within32eps*4 roundoff bound; both CUB intervals closed at fixture-only0.01mm gap",
+    "coarse_octahedron": "8 faces unchanged; original exact coordinates/oriented triangles retained",
+    "fixture_only_distance_interval_gap_mm": 0.01,
+    "head_distance_interval_gap_mm": 0.0001,
+    "previous_fixture_1e-4_gap_allocation_exhaustion_preserved": true,
+    "fixture_report_sha256": "5844f8e69b0e55373abf86113ea4a1db9c6abf5fd711104bf340607a3c182219"
+  }
+}

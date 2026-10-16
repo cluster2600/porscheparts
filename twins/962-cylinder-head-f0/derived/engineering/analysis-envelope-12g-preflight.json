@@ -1,0 +1,56 @@
+{
+  "schema": "962-envelope12GiB-preflight-publication/v1",
+  "status": "RUNNING_at_capture_outcome_pending",
+  "captured_at_UTC": "2026-10-16T17:46:45.957439+00:00",
+  "head_result_credited": false,
+  "contract": {
+    "path": "twins/962-cylinder-head-f0/engineering/analysis-envelope-12g-contract.json",
+    "sha256": "a045d3b509f7c33382c667b415245a4c1233bb5ceb74e89526798681cf8c7719"
+  },
+  "executed_controller_sha256": "a20c21e41b19cbe6898a1aa74ab99a862c74ce401190a2ab0961f5c1a9a781f3",
+  "executed_source_snapshot": "analysis-envelope-sources/head-run-003.py",
+  "compiled_helper_source_sha256": "093b76688b3440d190d555741602ac525c898ab3a702298d7df83e3e9b828de0",
+  "compiled_source_snapshot": "analysis-envelope-sources/envelope-long-compiled.cpp",
+  "runtime_metadata_sha256": "a1df021346bfced7e70aac9a77b4baf1b6ff2da87b576ebb6344e7aadd6e121e",
+  "runtime_public_copy": "cgal-envelope-long-runtime.json",
+  "helper_binary_sha256": "d22b21ae754fec8a68344fd8da4d7cc119e95450210f784543bcacabec0cbde3",
+  "helper_image_id": "sha256:7ed241be10194d98e4ae750cb7f983b0d501742f1ac651580b86c165cba39537",
+  "known_result_fixture_source_receipts": {
+    "native": "b81c900a59885d0a7fc027c773212596db2a2da534f50ecfb583a7ca3f04cc52",
+    "independent": "b9d75f41f010c01755a8cc31cb6f84e090cb43539262db32f507b63179c9fa7c"
+  },
+  "fixture_public_capsule": "cgal-envelope-long-fixtures.json",
+  "resource_limits": {
+    "soft_native_deadline_s": 1800,
+    "hard_native_deadline_s": 1860,
+    "audit_deadline_s": 300,
+    "cpus": 2,
+    "maximum_threads": 2,
+    "memory_bytes": 12884901888,
+    "memory_swap_limit_bytes": 12884901888,
+    "swap_bytes": 0,
+    "high_water_stop_bytes": 12348030976,
+    "high_water_measurement": "Observed cgroupv2 memory.current including monitoring process overhead",
+    "orderly_stop_signal": "SIGTERM sets existing native stop flag",
+    "orderly_stop_grace_s": 30,
+    "resource_high_water_is_not_geometric_acceptance": true,
+    "native_time_checkpoints_s": 30,
+    "host_memory_monitoring_required": true,
+    "maximum_trials_authorised": 1,
+    "automatic_retry_authorised": false,
+    "cloud_or_paid_service_authorised": false,
+    "network_during_geometry_run": "none",
+    "dependency_install_is_dedicated_local_only": true,
+    "resource_change_basis": "4GiB and8GiB OOM receipts retained. Observed collapse rate informs only a larger time budget; filter exhaustion and memory survival are not guaranteed."
+  },
+  "geometry_and_admission_gates_unchanged": true,
+  "only_helper_source_change": "The previous 285 s argument ceiling and corresponding error text become 1800 s. Geometry, filters and physical envelope remain unchanged.",
+  "qualification": {
+    "solver_admission_established": false,
+    "engineering_accepted": false,
+    "thermal_performance_validated": false,
+    "strength_validated": false,
+    "manufacturing_authorized": false
+  },
+  "no_automatic_retry_authorised": true
+}

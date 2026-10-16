@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "Separately authorized exact OpenUSD source authoring of original bore95 inspected solid only; not vendor conversion, repair or head simulation.",
+  "source_sha256": "ba7a0e28dade659550705e9737177c64c7f6fecd8d86d01e31732d7e739cd906",
+  "source_triangles": 1804706,
+  "preceding_vendor_contract_sha256": "ca02240c2b21551d087b093daf9f7c2cf2052e232b0e5beec7e289919ea75520",
+  "source_sha256s": {
+    "author_exact_usd.py": "c9331869aa5017b6e070c6dcd95344fccf807aa87c18138637631410f6a8902d",
+    "mesh_head.py": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+    "audit_exact_geometry.py": "abaa96481b8894f51b533fab4de6a5d0f5656dfa4b00d4f3179f8696d09332ac"
+  },
+  "test_source_sha256": "0be0734d0d708943b157c844ce1d724f63ae76fd92702cc0ddcd3670ecbad008",
+  "focused_tests_passed": 4,
+  "focused_test_log_sha256": "1577469c5ffd912761311f0d29c62a31ea516c6378db865fd7e0d98ff3c31bfe",
+  "requirements": [
+    "Existing STL reader must reconstruct every original oriented triangle exactly.",
+    "Source IEEEfloat32 coordinate values serialized with9significantdigits; no tolerance welding, culling, recentering or source repair.",
+    "Native OpenUSD reads separately authored USDA and serializes a fresh USD.",
+    "Stage Z-up, metersPerUnit0.001, identity coordinate/pivot transforms and subdivisionScheme none.",
+    "No authored materials, physics schema/properties or solver fields.",
+    "Same complete oriented float32 triangle multiset comparison as original vendor gate; only source/output hash parameters generalized.",
+    "Original and intermediate inputs unchanged; all output bytes/hashbound to actual runtime.",
+    "Unchanged official minimum reference under genuine ready openusd_python component must pass."
+  ],
+  "numeric_policy": "No geometry tolerance. Exact complete triangle multiset equality and zero world-bound discrepancy are required. No fitted transform or threshold relaxation.",
+  "native_limits": {
+    "CPU_affinity_count": 2,
+    "address_space_bytes": 6442450944,
+    "wall_seconds_each": 90,
+    "CPU_seconds_per_process": 150
+  },
+  "local_author_wall_seconds": 90,
+  "qualification": {
+    "historical_fidelity_validated": false,
+    "head_simulation_executed": false,
+    "material_calibrated": false,
+    "solver_fields_imported": false,
+    "manufacturing_authorized": false
+  }
+}

@@ -1,0 +1,297 @@
+{
+  "schema": "962-analysis-envelope8GiB-trial/v1",
+  "status": "resource_failure_complete_checkpoint_separately_recovered_no_admission",
+  "private_native_receipt_sha256": "073f98329e9fde67126d19ddf29a0c850a6b9e79622c3deeb2649760ceb978c9",
+  "source_executed_sha256": "517d1b17a47e87e4cad49fb2f061d1684bf12e4c984ec2017e1e92c526340ea9",
+  "contract_sha256": "573ac964cecd77ef304088596a257df114fad0535a50a683fa71a78bc44cfedf",
+  "native_returncode": 137,
+  "native_wall_s": 100.12873029196635,
+  "controller_wall_s": 115.21006137505174,
+  "container_state": {
+    "Status": "exited",
+    "Running": false,
+    "Paused": false,
+    "Restarting": false,
+    "OOMKilled": true,
+    "Dead": false,
+    "Pid": 0,
+    "ExitCode": 137,
+    "Error": "",
+    "StartedAt": "2026-10-16T17:21:56.390796459Z",
+    "FinishedAt": "2026-10-16T17:23:32.070248337Z"
+  },
+  "source_import_exact": true,
+  "bound_inputs_unchanged": true,
+  "original_selection_error": "ValueError: Complete indexed binary surface required",
+  "native_surface_hashes": {
+    "native/before-collapse.bin": "42b2f4026d5f3b09cd74b0b08cdee0bd9bb118aeff006d7f48c9eabf990186b7",
+    "native/checkpoint-1.bin": "40553f43d215d34676fab1b6bd8204e646d25e0c40ca1f11b15cbdb9a802c31b",
+    "native/checkpoint-3.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native/checkpoint-2.bin": "aca4170df4afd5114087f3911b3d686b073e6a4b2551a5719f96c492b90b63c5"
+  },
+  "memory_observations_sha256": "4b47065cf323037754fed24efb0c4a9bc90663104996cd7b8b36c48883bf3d68",
+  "recovery": {
+    "status": "complete_checkpoint_recovered_fixed_face_quality_rejected",
+    "input_hashes": {
+      "work/962-engineering/analysis-envelope-025-002/receipt.json": "073f98329e9fde67126d19ddf29a0c850a6b9e79622c3deeb2649760ceb978c9",
+      "twins/962-cylinder-head-f0/source/run_head_envelope.py": "1ba35c7d95dea5e53a8cd16fb2884747ea4cfd5f5ac060aa690fe1f89a579e20",
+      "twins/962-cylinder-head-f0/source/prepare_head_analysis.py": "cda8f7155a8c22ab66898f07d1ad452ba5384ad7f75a1f012606685cd8a12dc3",
+      "twins/962-cylinder-head-f0/source/mesh_head.py": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+      "twins/962-cylinder-head-f0/source/recover_head_checkpoint.py": "09ccf60e3037224d5c10d315b6aa009913ac63cd93b935127729a01748d614e5",
+      "twins/m64-cylinder-head/source/wholebody/audit_fixed_face_quality.py": "d130c584f5a80539f185e3ed04d5ec0e7a43ca3f25aa49feed2088ad213fd9e7"
+    },
+    "original_native_file_hashes": {
+      "native/before-collapse.bin": "42b2f4026d5f3b09cd74b0b08cdee0bd9bb118aeff006d7f48c9eabf990186b7",
+      "native/checkpoint-1.bin": "40553f43d215d34676fab1b6bd8204e646d25e0c40ca1f11b15cbdb9a802c31b",
+      "native/checkpoint-3.bin": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "native/checkpoint-2.bin": "aca4170df4afd5114087f3911b3d686b073e6a4b2551a5719f96c492b90b63c5"
+    },
+    "qualification": {
+      "analysis_surface_geometric_gate_passed": false,
+      "solver_admission_established": false,
+      "mesh_convergence_established": false,
+      "engineering_accepted": false,
+      "strength_validated": false,
+      "manufacturing_authorized": false
+    },
+    "selected_native_candidate": "native/checkpoint-2.bin",
+    "selected_native_sha256": "aca4170df4afd5114087f3911b3d686b073e6a4b2551a5719f96c492b90b63c5",
+    "rejected_incomplete_payloads": [
+      {
+        "file": "checkpoint-3.bin",
+        "bytes": 0,
+        "reason": "Incomplete or malformed indexed binary payload; artifact preserved"
+      }
+    ],
+    "surface": {
+      "unique_edges": 2630355,
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "orientation_imbalanced_edges": 0,
+      "vertices": 876577,
+      "triangles": 1753570,
+      "euler_characteristic": -208,
+      "signed_volume_mm3": 915458.1053358025,
+      "points_sha256": "ce7ec256af4726ebce1fea9ce7dc85203f5309148c2cc3e2f68c84beff91d8f9",
+      "faces_sha256": "663f89136c503098585a0b741e4a71cea91c5f221b61b33acc70180b870952e0"
+    },
+    "analysis_surface_npz_sha256": "44056a870fef9415dd096f5a91390f4cd9c3cba00685df3b73643409c3e961d9",
+    "independent_quality_import": {
+      "exact_source_coordinates": true,
+      "exact_source_oriented_connectivity": true,
+      "original_surface_nodes": 876577,
+      "original_surface_triangles": 1753570,
+      "source_element_tags_preserved": true,
+      "source_tagged_vertex_order_preserved": true,
+      "comparison": "exact_tagged_index_order"
+    },
+    "fixed_face_quality": {
+      "triangle_SICN": {
+        "minimum": 2.272414867957504e-06,
+        "p01": 0.3988167456193072,
+        "p05": 0.55534868114632,
+        "p50": 0.8449508944787842,
+        "p95": 0.9633025307414562,
+        "p99": 0.9956711296076213,
+        "maximum": 0.9999999985878878,
+        "count": 1753570,
+        "nonpositive_count": 0
+      },
+      "tetra_SICN_ceiling": {
+        "minimum": 3.408618429038658e-06,
+        "p01": 0.4987668353753432,
+        "p05": 0.6519838391257464,
+        "p50": 0.8910005049140719,
+        "p95": 0.9752320467600978,
+        "p99": 0.9971099161389283,
+        "maximum": 0.9999999990585918,
+        "count": 1753570,
+        "nonpositive_count": 0
+      },
+      "required_tetra_SICN": 0.1,
+      "necessary_triangle_SICN": 0.06896551724137931,
+      "incompatible_fixed_triangles": 938,
+      "scope": "Necessary condition for fixed linear triangles; no tetrahedra were generated.",
+      "floating_point_algebra_not_interval_certified": true
+    },
+    "runtime": {
+      "gmsh": "4.15.2",
+      "numpy": "2.0.2",
+      "gmsh_module_sha256": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+      "libgmsh_sha256": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a"
+    },
+    "wall_s": 8.562423540977761,
+    "all_source_inputs_unchanged": true,
+    "all_native_artifacts_unchanged": true
+  },
+  "recovery_receipt_sha256": "91163fe909d196eac4b74e9ff41d9b26963becfa712b56db60d2008dfbd9870c",
+  "independent_audits": {
+    "distance": {
+      "status": "rejected_outputs_preserved",
+      "source_sha256": "5a4a6559702e48fc4d97bb3b71a050aa600645485443a4c1caf389456d77c0c0",
+      "input_hashes": {
+        "twins/962-cylinder-head-f0/source/audit_envelope_surface.py": "5a4a6559702e48fc4d97bb3b71a050aa600645485443a4c1caf389456d77c0c0",
+        "work/962-engineering/analysis-envelope-025-002/checkpoint-audit-001/analysis-surface.npz": "44056a870fef9415dd096f5a91390f4cd9c3cba00685df3b73643409c3e961d9",
+        "work/962-engineering/analysis-surface-025-002/source-surface.npz": "f405a28ffd9c1fad48eadfba9842272750d3de14d2fd2d6c68b90e4eedbd1abc",
+        "work/962-engineering/analysis-envelope-025-002/checkpoint-audit-001/receipt.json": "91163fe909d196eac4b74e9ff41d9b26963becfa712b56db60d2008dfbd9870c",
+        "twins/962-cylinder-head-f0/engineering/analysis-envelope-8g-contract.json": "573ac964cecd77ef304088596a257df114fad0535a50a683fa71a78bc44cfedf",
+        "twins/962-cylinder-head-f0/source/mesh_head.py": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+        "twins/962-cylinder-head-f0/source/prepare_head_analysis.py": "cda8f7155a8c22ab66898f07d1ad452ba5384ad7f75a1f012606685cd8a12dc3",
+        "twins/962-cylinder-head-f0/source/run_head_envelope.py": "1ba35c7d95dea5e53a8cd16fb2884747ea4cfd5f5ac060aa690fe1f89a579e20",
+        "twins/m64-cylinder-head/source/wholebody/run_bounded_chamfer.py": "b376cbf0825f2b3ba669d46ca2b9a82f52e9c746df2e9c81269fe0a19114a7f9",
+        "twins/m64-cylinder-head/source/wholebody/trial_meshers_2026.py": "694ffd9c690f9145f59d53b56d28b1a5852749589172f7bc07a9fa58da4cedb0",
+        "twins/m64-cylinder-head/source/wholebody/run_local_surface_trial.py": "1ef987d833125281899776542ef99f4701d3f958552dde59883456db0aabe488"
+      },
+      "native_deadline_s": 300,
+      "docker_image": null,
+      "returncode": 2,
+      "wall_s": 9.726213874993846,
+      "worker_report": {
+        "status": "failed_outputs_preserved",
+        "kind": "distance",
+        "gate_passed": false,
+        "runtime": {
+          "python": "3.13.16 (main, Sep 30 2026, 18:57:20) [Clang 21.0.0 (clang-2100.3.34.2)]",
+          "numpy": "2.2.6",
+          "machine": "arm64",
+          "cascading_upper_bounds_version": "1.0.0",
+          "cub_python_module_sha256": "cdd3a3a352d9b78c34feaada188181b5495879a38003b3c220dc9b47f4e6ca79",
+          "cub_binary_modules": {
+            "cascading_upper_bounds_ext.abi3.so": "2709633fce495e5f14bd8c384b1412338e94da4b475380bb997010e1023594de"
+          }
+        },
+        "engineering_accepted": false,
+        "solver_admission_established": false,
+        "thermal_performance_validated": false,
+        "manufacturing_authorized": false,
+        "error": "RuntimeError: Exceeded maximum number of faces or vertices",
+        "wall_s": 9.42717891605571,
+        "bound_inputs_unchanged": true,
+        "candidate_arrays_unchanged": true
+      },
+      "worker_report_sha256": "a5f1a2c8da1f82b1f42263b18b8a63da98d10c1d20996c0f423049f6a020d3ce",
+      "private_receipt_sha256": "b62987c113dac3a789e68f0aaac26b3ebf84b130f6208bf82c2befb409162d51"
+    },
+    "intersections": {
+      "status": "independent_subgate_passed",
+      "source_sha256": "5a4a6559702e48fc4d97bb3b71a050aa600645485443a4c1caf389456d77c0c0",
+      "input_hashes": {
+        "twins/962-cylinder-head-f0/source/audit_envelope_surface.py": "5a4a6559702e48fc4d97bb3b71a050aa600645485443a4c1caf389456d77c0c0",
+        "work/962-engineering/analysis-envelope-025-002/checkpoint-audit-001/analysis-surface.npz": "44056a870fef9415dd096f5a91390f4cd9c3cba00685df3b73643409c3e961d9",
+        "work/962-engineering/analysis-surface-025-002/source-surface.npz": "f405a28ffd9c1fad48eadfba9842272750d3de14d2fd2d6c68b90e4eedbd1abc",
+        "work/962-engineering/analysis-envelope-025-002/checkpoint-audit-001/receipt.json": "91163fe909d196eac4b74e9ff41d9b26963becfa712b56db60d2008dfbd9870c",
+        "twins/962-cylinder-head-f0/engineering/analysis-envelope-8g-contract.json": "573ac964cecd77ef304088596a257df114fad0535a50a683fa71a78bc44cfedf",
+        "twins/962-cylinder-head-f0/source/mesh_head.py": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+        "twins/962-cylinder-head-f0/source/prepare_head_analysis.py": "cda8f7155a8c22ab66898f07d1ad452ba5384ad7f75a1f012606685cd8a12dc3",
+        "twins/962-cylinder-head-f0/source/run_head_envelope.py": "1ba35c7d95dea5e53a8cd16fb2884747ea4cfd5f5ac060aa690fe1f89a579e20",
+        "twins/m64-cylinder-head/source/wholebody/run_bounded_chamfer.py": "b376cbf0825f2b3ba669d46ca2b9a82f52e9c746df2e9c81269fe0a19114a7f9",
+        "twins/m64-cylinder-head/source/wholebody/trial_meshers_2026.py": "694ffd9c690f9145f59d53b56d28b1a5852749589172f7bc07a9fa58da4cedb0",
+        "twins/m64-cylinder-head/source/wholebody/run_local_surface_trial.py": "1ef987d833125281899776542ef99f4701d3f958552dde59883456db0aabe488"
+      },
+      "native_deadline_s": 300,
+      "docker_image": "sha256:3ccaf5701c7c9add59eda6e8db918106fc8d51f4c2ef5b148d8079262861c7e1",
+      "returncode": 0,
+      "wall_s": 20.51021479209885,
+      "worker_report": {
+        "status": "independent_geometric_subgate_passed",
+        "kind": "intersections",
+        "gate_passed": true,
+        "runtime": {
+          "python": "3.11.15 (main, Aug  5 2026, 01:17:38) [GCC 12.2.0]",
+          "numpy": "2.2.6",
+          "machine": "aarch64",
+          "libigl_version": "2.6.3",
+          "cgal_wrapper_sha256": "677e9b1ec585722d78685ad5e00e091ceb5ecef2ba2eecb877c5c8eb153fa1b5",
+          "igl_binary_modules": {
+            "pyigl_core.cpython-311-aarch64-linux-gnu.so": "a5d6530964954bee7cf162e8f2ff3f8e9e63fed5697e1ed937bca055216330de",
+            "embree/pyigl_embree.cpython-311-aarch64-linux-gnu.so": "646ab93f02fa8b531f4ed09af43cd72e64053d4c3a674750a27994a8da79d4b6",
+            "predicates/pyigl_predicates.cpython-311-aarch64-linux-gnu.so": "5164d261d6c91d43116c4037062aa2b9af49af54ef44f8ef774d07dbce45658d",
+            "cycodebase/pyigl_cycodebase.cpython-311-aarch64-linux-gnu.so": "ae8027b6b9461937a0f4a06775710091093d870336c1d48bff75f54c2661e009",
+            "copyleft/pyigl_copyleft_core.cpython-311-aarch64-linux-gnu.so": "a1d855c3c782254997fc6c20177111848541c1ff67b2828701ead40d6a8463e3",
+            "copyleft/cgal/pyigl_copyleft_cgal.cpython-311-aarch64-linux-gnu.so": "8bcb60e12cec4e072a14b7d8c3e74f3b90db87db419091419804673918aa5c68",
+            "copyleft/tetgen/pyigl_copyleft_tetgen.cpython-311-aarch64-linux-gnu.so": "e687d45575d4deeb6ab1dc507905534b5ff01a4fcbc649ec961229401866352d",
+            "triangle/pyigl_restricted_triangle.cpython-311-aarch64-linux-gnu.so": "c1fd30bd0fe56a60a26424637a0a89bf75b132b3d825c9fbd4c6215cd25cc0ad",
+            "spectra/pyigl_spectra.cpython-311-aarch64-linux-gnu.so": "5aca1cd0a437cfbf8a747e9f5f11323d358f1568a4a01111ffc873d6dd92e55a"
+          }
+        },
+        "engineering_accepted": false,
+        "solver_admission_established": false,
+        "thermal_performance_validated": false,
+        "manufacturing_authorized": false,
+        "known_result_fixtures": [
+          {
+            "name": "separate",
+            "expected_pairs": 0,
+            "observed_pairs": 0,
+            "input_arrays_unchanged": true
+          },
+          {
+            "name": "crossing",
+            "expected_pairs": 1,
+            "observed_pairs": 1,
+            "input_arrays_unchanged": true
+          },
+          {
+            "name": "coplanar_contained",
+            "expected_pairs": 1,
+            "observed_pairs": 1,
+            "input_arrays_unchanged": true
+          },
+          {
+            "name": "coplanar_shared_vertex_overlap",
+            "expected_pairs": 1,
+            "observed_pairs": 1,
+            "input_arrays_unchanged": true
+          },
+          {
+            "name": "manifold_tetrahedron",
+            "expected_pairs": 0,
+            "observed_pairs": 0,
+            "input_arrays_unchanged": true
+          }
+        ],
+        "nonmanifold_vertex_count": 0,
+        "intersections": {
+          "pair_count": 0,
+          "pair_cap": 100001,
+          "complete": true,
+          "detect_only": true,
+          "first_only": false,
+          "stitch_all": false,
+          "pairs": []
+        },
+        "wall_s": 13.689020506999999,
+        "bound_inputs_unchanged": true,
+        "candidate_arrays_unchanged": true
+      },
+      "worker_report_sha256": "eb5da40d26ee0897839a16bb25b14db3db183a31eb0b8296b946364bb538118e",
+      "private_receipt_sha256": "57b069a34fefe82baf35c39ccfc0bdee87703ab551e3d17e9b285a50e478bbe9"
+    }
+  },
+  "exact_fixed_face_certificate": {
+    "path": "twins/962-cylinder-head-f0/derived/engineering/fixed-face-exact-certificate.json",
+    "sha256": "13e47689a80595e7a3b110295f51989675b7b9027838c0bc690f7939e90fea4e"
+  },
+  "executed_source_snapshots": {
+    "twins/962-cylinder-head-f0/derived/engineering/analysis-envelope-sources/checkpoint-recovery.py": "09ccf60e3037224d5c10d315b6aa009913ac63cd93b935127729a01748d614e5",
+    "twins/962-cylinder-head-f0/derived/engineering/analysis-envelope-sources/fixed-face-exact.py": "9b13f4dc7f2eca7da04e1587eb1f59a379a0d0c2101026f9b1d999ae09aaebb8",
+    "twins/962-cylinder-head-f0/derived/engineering/analysis-envelope-sources/failed-sicn-float-fixture.py": "eac2c0a8eb5295a8833aab9b35e2997bcfe78c36d5dc575e2d15fd6c8592b7b6",
+    "twins/962-cylinder-head-f0/derived/engineering/analysis-envelope-sources/head-run-002.py": "517d1b17a47e87e4cad49fb2f061d1684bf12e4c984ec2017e1e92c526340ea9",
+    "twins/962-cylinder-head-f0/derived/engineering/analysis-envelope-sources/validator-observed-after-4g.py": "cda8f7155a8c22ab66898f07d1ad452ba5384ad7f75a1f012606685cd8a12dc3",
+    "twins/962-cylinder-head-f0/derived/engineering/analysis-envelope-sources/head-run-002-validator.py": "cda8f7155a8c22ab66898f07d1ad452ba5384ad7f75a1f012606685cd8a12dc3",
+    "twins/962-cylinder-head-f0/derived/engineering/analysis-envelope-sources/sicn-regular-sliver.py": "5f1f58636c901c4b22750c63621bdfb431bd127001e3f819ab7730d6ca9203aa",
+    "twins/962-cylinder-head-f0/derived/engineering/analysis-envelope-sources/checkpoint-selector.py": "1ba35c7d95dea5e53a8cd16fb2884747ea4cfd5f5ac060aa690fe1f89a579e20",
+    "twins/962-cylinder-head-f0/derived/engineering/analysis-envelope-sources/envelope-compiled.cpp": "103860c69018e44969cde6d43c6b1c22c92fb812d9a8a9549f9274470ed27cd6",
+    "twins/962-cylinder-head-f0/derived/engineering/analysis-envelope-sources/checkpoint-independent-audits.py": "5a4a6559702e48fc4d97bb3b71a050aa600645485443a4c1caf389456d77c0c0",
+    "twins/962-cylinder-head-f0/derived/engineering/analysis-envelope-sources/head-run-001.py": "eb9f41954df5c724c27fae008c22e942fbf585af3bd71090dc655fac4fbae84f"
+  },
+  "qualification": {
+    "analysis_surface_geometric_gate_passed": false,
+    "solver_admission_established": false,
+    "mesh_convergence_established": false,
+    "engineering_accepted": false,
+    "thermal_performance_validated": false,
+    "strength_validated": false,
+    "manufacturing_authorized": false
+  }
+}
