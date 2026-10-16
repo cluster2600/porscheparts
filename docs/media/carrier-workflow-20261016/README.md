@@ -1,6 +1,6 @@
 # Vue d’ensemble de la chaîne
 
-[Ouvrir le schéma vectoriel](process.svg).
+[Schéma vectoriel](process.svg), [image PNG](process.png), [PDF](process.pdf).
 
 Le dessin décrit les six étapes et les trois entrées du
 [processus](../../manufacturing/PART_WORKFLOW.md). Les numéros se suivent de
@@ -18,3 +18,13 @@ Le fichier SVG est autonome, sans script, police téléchargée ni image externe
 Son texte reste sélectionnable et sa mise à l’échelle conserve les traits et
 les caractères. Il a été inspecté en entier dans le navigateur, à la largeur
 de la fenêtre, après vérification de ses six cartes et de leurs flèches.
+
+Les exports emploient le logiciel déjà installé `rsvg-convert 2.63.2` :
+
+```sh
+rsvg-convert --width 1500 --keep-aspect-ratio --output process.png process.svg
+rsvg-convert --format pdf --width 1500 --keep-aspect-ratio --output process.pdf process.svg
+```
+
+Le [reçu des exports](exports.json) lie les trois fichiers et la source de
+masse. L’unique page du PDF a aussi été rendue puis inspectée en entier.

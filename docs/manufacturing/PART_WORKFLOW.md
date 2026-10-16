@@ -10,10 +10,11 @@ dans `delivery-assets/source-workflow.json`. Le lanceur peut ensuite terminer
 et mettre à jour son propre `workflow.json` ; l'état employé pour les images
 reste consultable et vérifiable dans le dossier remis.
 
-![De la référence au dossier d’impression : six étapes, logiciels, fichiers et contrôles](../media/carrier-workflow-20261016/process.svg)
+![De la référence au dossier d’impression : six étapes, logiciels, fichiers et contrôles](../media/carrier-workflow-20261016/process.png)
 
-Le [schéma vectoriel](../media/carrier-workflow-20261016/process.svg) reste
-lisible à l’impression. Il décrit le processus ; les reçus de chaque passage
+Le [schéma vectoriel](../media/carrier-workflow-20261016/process.svg) et son
+[PDF](../media/carrier-workflow-20261016/process.pdf) restent lisibles à
+l’impression. Ils décrivent le processus ; les reçus de chaque passage
 portent les résultats effectivement obtenus.
 
 ## Trois entrées, une même sortie CAO
