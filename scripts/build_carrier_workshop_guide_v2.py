@@ -208,6 +208,7 @@ def package(run):
     fr = lambda value, digits=3: f'{value:.{digits}f}'.replace('.', ',')
     case = next(row for row in comparison['cases'] if row['mesh'] == 'mesh-7' and row['case'] == 'combined-rigid-static')
     metrics = case['metrics']
+    spring = next(row for row in comparison['cases'] if row['mesh'] == 'mesh-7' and row['case'] == 'combined-spring-1000-static')['metrics']
     distance = max(surface['mesh_to_exact_CAD']['maximum_distance_to_STEP_shell_mm'],
                    surface['exact_CAD_to_mesh']['maximum_mm'])
     data['revision'] = geometry['design_id'] + ' / STEP ' + step_hash[:12]
@@ -238,12 +239,19 @@ def package(run):
     fill(2, [('Cas combiné de comparaison', '4 000 N + 850 N·m'),
              ('Déplacement maximal, maillage 7', fr(metrics['displacement_max_mm']['candidate']) + ' mm'),
              ('Pic de von Mises, maillage 7', fr(metrics['integration_point_VM_max_MPa']['candidate'], 1) + ' MPa'),
+             ('Appuis ressorts K1000, déplacement maximal, maillage 7', fr(spring['displacement_max_mm']['candidate']) + ' mm'),
+             ('Appuis ressorts K1000, pic élastique de von Mises, maillage 7', fr(spring['integration_point_VM_max_MPa']['candidate'], 1) + ' MPa'),
              ('Évolution du pic par rapport à V6f', fr(metrics['integration_point_VM_max_MPa']['change_percent'], 1) + ' %'),
-             ('Comparaisons rigide / ressorts, deux maillages', '4 cas admis'), ('Énergie et superposition', 'Conformes aux critères déclarés')],
+             ('Comparaisons rigide / ressorts, deux maillages', '4 comparaisons relatives admises'),
+             ('Énergie et superposition, cas élastiques', 'Conformes aux critères déclarés')],
          [('comparison/comparison.json', 'Comparaison mécanique complète'), ('comparison/selection.json', 'Critères et décision numérique'),
           ('cad/simulation-runtime.json', 'Solveur, ressources et nettoyage'),
           ('fields/combined.json', 'Origine du champ et de la déformée')],
          ('fields/combined.png', 'Champ de contraintes et déformée du vrai calcul. Les unités et le facteur d’amplification figurent sur la vue.'))
+    data['stages'][2]['title'] = 'Masse et calculs mécaniques'
+    data['stages'][2]['state_label'] = 'Comparaison relative exécutée'
+    data['stages'][2]['purpose'] += (' Les quatre décisions comparent les résultats à V6f. '
+        'Les pics élastiques dépendent de l’hypothèse d’appui ; cette comparaison ne définit pas une contrainte admissible du matériau.')
     fill(3, [('Rotation dans le plateau', '45° ; pièce à plat'), ('Plateau du dossier', '500 × 500 mm'),
              ('Régions de support', len(process['supports'])), ('Encombrement du plateau', 'Compatible' if process['fits_500mm_square_plate'] else 'Hors plateau')],
          [('delivery-assets/supports.zip', 'Surfaces et données des supports'), ('process/build.glb', 'Scène 3D du plateau'),
