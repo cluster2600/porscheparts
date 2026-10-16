@@ -76,6 +76,29 @@ class CarrierWorkshopGuideV2Tests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Complete scanpath audit'):
             guide.admitted_scanpaths(self.run, self.process)
 
+    def support_audit(self, **changes):
+        data = {'status': 'passed', 'complete_build_audited': True, 'layers_audited': 2,
+                'input_receipt_sha256': guide.sha(self.process_dir / 'report.json'),
+                'support_scanpaths_audited': True, 'geometric_confinement_passed': True,
+                'exposure_connectivity_passed': True, **changes}
+        folder = self.run / 'support-scanpath-audit'
+        folder.mkdir(exist_ok=True)
+        (folder / 'assessment.json').write_text(json.dumps(data))
+        return data
+
+    def test_all_support_paths_and_exposure_contacts_are_required(self):
+        data = self.support_audit()
+        self.assertEqual(guide.admitted_support_scanpaths(self.run, self.process), data)
+        for key in ('complete_build_audited', 'geometric_confinement_passed', 'exposure_connectivity_passed'):
+            self.support_audit(**{key: False})
+            with self.subTest(key=key), self.assertRaisesRegex(ValueError, 'Complete support path'):
+                guide.admitted_support_scanpaths(self.run, self.process)
+
+    def test_support_audit_of_another_receipt_is_refused(self):
+        self.support_audit(input_receipt_sha256='0' * 64)
+        with self.assertRaisesRegex(ValueError, 'Complete support path'):
+            guide.admitted_support_scanpaths(self.run, self.process)
+
 
 if __name__ == '__main__':
     unittest.main()

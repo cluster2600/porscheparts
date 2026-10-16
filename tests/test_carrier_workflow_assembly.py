@@ -63,10 +63,14 @@ class CarrierWorkflowAssemblyTests(unittest.TestCase):
         self.assessment = {'status': 'passed', 'complete_build_audited': True, 'layers_audited': 2,
                            'input_receipt_sha256': assembly.workflow.sha(self.process / 'report.json')}
         write(self.audit / 'assessment.json', self.assessment)
+        self.support_audit = self.root / 'work/support-audit'
+        self.support_assessment = {**self.assessment, 'support_scanpaths_audited': True,
+                                   'geometric_confinement_passed': True, 'exposure_connectivity_passed': True}
+        write(self.support_audit / 'assessment.json', self.support_assessment)
         self.output = self.root / 'work/assembled'
 
     def assemble(self):
-        return assembly.assemble(self.source, self.process, self.audit, self.output)
+        return assembly.assemble(self.source, self.process, self.audit, self.support_audit, self.output)
 
     def test_failed_later_stage_stays_failed_and_only_verified_prefix_is_imported(self):
         receipt = self.assemble()
@@ -118,6 +122,13 @@ class CarrierWorkflowAssemblyTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'symbolic links'):
             self.assemble()
         self.assertFalse(self.output.exists())
+
+    def test_support_geometry_generation_does_not_replace_exposure_contact_admission(self):
+        for key in ('complete_build_audited', 'geometric_confinement_passed', 'exposure_connectivity_passed'):
+            write(self.support_audit / 'assessment.json', {**self.support_assessment, key: False})
+            with self.subTest(key=key), self.assertRaisesRegex(ValueError, 'contact audit of support paths'):
+                self.assemble()
+            self.assertFalse(self.output.exists())
 
     def test_altered_copy_is_detected_without_recalculating(self):
         self.assemble()

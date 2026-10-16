@@ -32,7 +32,9 @@ restent visibles dans le dossier. Le logiciel ne transforme pas silencieusement
 un pixel en millimètre ou une face cachée en mesure.
 
 Le chemin scan réutilise la chaîne PyMesh / reconstruction / PicoGK du projet
-`qwen-picogk` et le [contrat CAD-Recode](../../scripts/cad_recode/pipeline.py).
+`qwen-picogk`. Le [contrat CAD-Recode](../../scripts/cad_recode/pipeline.py)
+existant décrit un cas 935 : son identité et ses unités OBJ doivent être
+adaptées explicitement avant de le lancer sur une autre référence.
 Le chemin par cotes réutilise les sources paramétriques du catalogue, au lieu de
 dessiner une nouvelle pièce sans lien avec ses paramètres.
 
@@ -108,8 +110,8 @@ python3 parts/993-eng-carrier-0001/source/remesh-20261016/setup_runtime.py \
 
 python3 parts/993-eng-carrier-0001/source/remesh-20261016/setup_mesh_audit.py
 
-CHEMIN_DU_PYTHON_311 parts/993-eng-carrier-0001/source/process-20261016/setup_pyslm.py \
-  work/part-workflow/runtimes/pyslm
+CHEMIN_DU_PYTHON_311 parts/993-eng-carrier-0001/source/process-coverage-20261016/setup_pyslm.py \
+  work/part-workflow/runtimes/pyslm-corrected
 ```
 
 Chaque installateur conserve ses versions et sa provenance. Le backend libigl
@@ -117,6 +119,55 @@ utilise la roue Linux officielle : la roue macOS a été essayée, son défaut
 d'import est conservé dans le dossier de travail. CalculiX utilise son image
 locale épinglée, une seule CPU, 6 Gio sans swap et sans réseau. Le lanceur
 supprime uniquement son propre conteneur après les calculs.
+
+La réinstallation corrigée de PySLM a été exécutée dans un dossier neuf :
+37 versions épinglées, quatre fichiers corrigés conformes et 775 sources et
+binaires de tranchage identiques au cache de pièce. Le
+[reçu](../../parts/993-eng-carrier-0001/source/process-slicing-20261016/pyslm-reinstall-validation.json)
+porte uniquement sur cette installation et le tranchage de pièce ; les
+supports conservent leurs propres admissions.
+
+La construction exacte des volumes de support utilise le worker Linux
+local Kali1. PyMesh conserve les rationnels entre les booléens ; CGAL traite
+l'export en coordonnées flottantes avec une précision déclarée. Ce travail
+revient au Mac avant le calcul des grilles, des peaux et des couches.
+
+```mermaid
+flowchart LR
+    subgraph Mac["Mac — géométrie et dossier"]
+        CAD["Maître STEP / STL contrôlé"]
+        PART["1 034 couches de pièce / cache audité"]
+        BUILD["Grilles et peaux / trajectoires"]
+        GUIDE["Guide HTML / PDF / fichiers"]
+    end
+    subgraph Linux["Kali1 — noyaux exacts"]
+        CSG["PyMesh / CGAL : prismes, masque, soustraction"]
+        SNAP["CGAL : arrondi contrôlé et audits"]
+    end
+    CAD --> CSG --> SNAP --> BUILD --> GUIDE
+    CAD --> PART --> BUILD
+```
+
+Sur Linux Debian AMD64, le bootstrap CGAL compile dans un préfixe neuf avec
+les archives épinglées et extrait l'en-tête MPFR localement. Il utilise les
+outils de développement déjà présents et un Python d'audit avec libigl 2.6.3 :
+
+```sh
+python3 parts/993-eng-carrier-0001/source/native-cgal-20261016/setup.py \
+  PREFIXE_CGAL_NEUF --audit-python PYTHON_LINUX_AUDIT
+
+python3 parts/993-eng-carrier-0001/source/native-cgal-distance-20261016-v2/setup.py \
+  PREFIXE_DISTANCE_NEUF --cgal-runtime PREFIXE_CGAL_NEUF
+```
+
+Il ne modifie pas les paquets système. Les exécutables, sources, bibliothèques
+et licences sont enregistrés. Les jobs ont leurs propres limites de CPU,
+mémoire et durée ; leurs espaces de travail sont isolés sans réseau. La
+réussite du noyau n'admet pas à elle seule le volume : topologie, intersections,
+fidélité géométrique et identité des données doivent aussi passer. Le second
+exécutable mesure les distances en arithmétique exacte, en conservant les
+triangles d'aire positive et en traitant explicitement les triangles
+collinéaires comme segments ou points.
 
 ```sh
 python3 scripts/run_part_workflow.py run manufacturing/workflows/993-carrier.json \
@@ -154,13 +205,14 @@ et son STL restent exactement identiques. L'
 [assembleur du pilote](../../scripts/assemble_carrier_workflow.py) vérifie les
 douze premières étapes du passage source et copie leurs fichiers sans les
 modifier. Il les réunit avec une préparation LPBF complète, ses six contrôles
-admis et l'audit de toutes ses couches.
+admis et les audits de toutes les trajectoires de pièce et de supports.
 
 ```sh
 python3 scripts/assemble_carrier_workflow.py assemble \
   --source work/part-workflow/run-001 \
   --process work/PREPARATION_LPBF_ADMISE \
   --audit work/AUDIT_COMPLET_DE_CETTE_PREPARATION \
+  --support-audit work/AUDIT_COMPLET_DES_TRAJECTOIRES_DE_SUPPORTS \
   --output work/part-workflow/ASSEMBLAGE_NEUF
 
 python3 scripts/assemble_carrier_workflow.py verify \
@@ -170,7 +222,7 @@ python3 scripts/assemble_carrier_workflow.py verify \
 Ces chemins désignent les sorties admises à fournir lorsque le tranchage est
 terminé ; ils ne désignent pas des résultats déjà présents. Le reçu
 `assembly.json` conserve le statut du passage initial, les étapes importées,
-les trois provenances et toutes les empreintes copiées. Il déclare explicitement
+les provenances et toutes les empreintes copiées. Il déclare explicitement
 la réutilisation des calculs. Le passage initial reste refusé et n'est jamais
 réécrit en exécution réussie. Les fichiers de l'assemblage restent vérifiables
 après déplacement ou archivage du dossier source.

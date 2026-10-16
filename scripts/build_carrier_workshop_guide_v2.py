@@ -50,6 +50,18 @@ def admitted_scanpaths(run, process):
     return audit
 
 
+def admitted_support_scanpaths(run, process):
+    path = run / 'support-scanpath-audit/assessment.json'
+    audit = json.loads(path.read_text())
+    if (audit.get('status') != 'passed' or audit.get('complete_build_audited') is not True
+            or audit.get('input_receipt_sha256') != sha(run / 'process/report.json')
+            or audit.get('layers_audited') != process['n_layers']
+            or any(audit.get(key) is not True for key in
+                   ('support_scanpaths_audited', 'geometric_confinement_passed', 'exposure_connectivity_passed'))):
+        raise ValueError('Complete support path, geometric encoding and exposure contact audit required')
+    return audit
+
+
 def package(run):
     run = run.resolve()
     if not run.is_relative_to(ROOT / 'work'):
@@ -75,6 +87,7 @@ def package(run):
         raise ValueError('The declared build plate must contain the prepared geometry')
     admission = admitted_process(run / 'process', process)
     scanpaths = admitted_scanpaths(run, process)
+    admitted_support_scanpaths(run, process)
     for name, expected in process['outputs_sha256'].items():
         path = (run / 'process' / name).resolve()
         if not path.is_relative_to(run / 'process') or sha(path) != expected:
@@ -148,6 +161,10 @@ def package(run):
         {'label': 'Hachures et contours de pièce', 'value': 'Segments entiers dans les sections ; trous conservés'}]
     data['stages'][4]['files'].append({'source': str((run / 'scanpath-audit/assessment.json').relative_to(ROOT)),
                                       'label': 'Audit complet des trajectoires de pièce'})
+    data['stages'][4]['checks'].append({'label': 'Trajectoires des supports',
+                                      'value': 'Encodage géométrique et contacts exposés contrôlés'})
+    data['stages'][4]['files'].append({'source': str((run / 'support-scanpath-audit/assessment.json').relative_to(ROOT)),
+                                      'label': 'Audit complet des trajectoires et contacts des supports'})
     relative = run.relative_to(ROOT).as_posix()
     verify_command = ('python3 scripts/assemble_carrier_workflow.py verify '
                       if (run / 'assembly.json').is_file() else 'python3 scripts/run_part_workflow.py verify ')

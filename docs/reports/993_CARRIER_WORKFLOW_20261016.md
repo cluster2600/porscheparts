@@ -352,6 +352,12 @@ problème discret, sans annoncer une nouvelle exécution. Il garde le diagnostic
 ENER refusé sur l'ensemble du cycle. Quatre tests refusent notamment un autre
 maillage, un autre jeu de charges, des sorties modifiées ou un audit partiel.
 
+Une [revérification indépendante](../../parts/993-eng-carrier-0001/source/design-20261016/constitutive-evidence/constitutive-binding-independent-002.json)
+reparse ensuite les seize états du DAT brut, compare les tableaux et types du
+maillage, puis recalcule les incréments de travail externe et des ressorts.
+Les écarts de comparaison restent sous 10⁻⁷ N·mm / 10⁻¹² relatif. Elle conserve
+les deux identités STEP distinctes et le diagnostic ENER refusé.
+
 La réinstallation PySLM a été exécutée dans un environnement neuf : les
 **37 versions**, les **quatre fichiers corrigés** et les **775 sources et
 binaires du tranchage** correspondent au cache de pièce contrôlé.
@@ -364,9 +370,20 @@ aires et ordre sans refaire les hachures. Les deux contrôles prennent 32,15 et
 34,12 s. Le [reçu compact](../../parts/993-eng-carrier-0001/source/process-cache-20261016/results.json)
 les distingue de la préparation des supports, qui reste en cours.
 
+![Couche réelle du cache : sections, trous, contours et hachures de pièce](../../parts/993-eng-carrier-0001/source/process-cache-20261016/evidence/layer-00518/part-layer.png)
+
+La figure montre la pièce seule à Z = 31,110 mm ; les supports n'y sont pas
+ajoutés. Sa version SVG, les données et l'empreinte du plan sont conservées
+avec le [reçu](../../parts/993-eng-carrier-0001/source/process-cache-20261016/evidence/layer-00518/figure.json).
+
 L'[assembleur](../../scripts/assemble_carrier_workflow.py) pourra réunir les
 douze étapes déjà vérifiées et la nouvelle préparation admise en conservant
-leurs provenances. Ses sept tests passent : le passage source reste refusé,
+leurs provenances. Ses huit tests passent : le passage source reste refusé,
 aucun recalcul de solveur n'est inventé et les changements de fichiers, de
 surface ou d'audit sont détectés. Les résultats déjà calculés sont réutilisés
 par leur identité explicite.
+
+Le guide et l'assembleur exigent désormais aussi le contrôle indépendant des
+trajectoires de supports sur toutes les couches, avec leur encodage géométrique
+et leurs contacts exposés. Les seize tests des deux modules passent ensemble ;
+une admission de géométrie seule ne remplace pas cet audit d'exposition.
