@@ -1,0 +1,36 @@
+{
+  "repository": "https://github.com/adamantine-sim/adamantine",
+  "source_revision": "3990489a10902912889617856f6e2e097d52a412",
+  "archive_url": "https://codeload.github.com/adamantine-sim/adamantine/tar.gz/3990489a10902912889617856f6e2e097d52a412",
+  "archive_sha256": "c3be270cda7c1be74b966b45d1aa7a271fc5d5c5a60f61da29690c68ddc02575",
+  "archive_bytes": 10740334,
+  "license": "Apache-2.0 WITH LLVM-exception",
+  "upstream_license_sha256": "ca170949bce8ac030f274ac84cae9710d908df620ebf0448a5d3bae26ff2b971",
+  "original_postprocessor_sha256": "c91a5426f6816ad5361890c3da068e590389ae08bca0d9ff6f6836a4507d1fea",
+  "patched_postprocessor_sha256": "09be78633f5a04934bbcd420c884f3c3202d99715a6119b22daf094683ca3506",
+  "patch_sha256": "20cfe30124627d8cc85a65c786bec09e0e7049659d2053fd525ec97c44662161",
+  "dependency_image": "rombur/adamantine@sha256:a7c394fb9075ea8343f0ed1734574a5d158563e6f2b71894cdcc9f5f75d6e4d9",
+  "image_embedded_source_revision": "5aca53eeb1048884be54fb48864e9ff6cb9f9b71",
+  "image_role": "Build dependencies only. The regression compiles the explicitly supplied source tree; it does not call the image bundled solver.",
+  "production_changed_files": [
+    "source/PostProcessor.cc"
+  ],
+  "changes": [
+    "Use xz for the third shear component of the 3D von Mises invariant.",
+    "Read output_dir in the coupled thermal/mechanical PostProcessor constructor."
+  ],
+  "physical_validation": false,
+  "manufacturing_authorized": false,
+  "research_profile_patch_sha256": "3c992c3138eff0d962733285a8de48df06567975b7d5d41e1585dd035b0f50e5",
+  "research_profile": {
+    "name": "3d-single-constant-polynomial-cpu",
+    "geometry_dim": 3,
+    "n_materials": 1,
+    "polynomial_order": 0,
+    "property_format": "polynomial",
+    "memory_space": "host",
+    "ensemble": false,
+    "phase_family_compilation_is_not_validation": true,
+    "actual_coupon": "Solid, FE1, Gauss, constant properties only"
+  }
+}
