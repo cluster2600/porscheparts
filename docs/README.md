@@ -35,6 +35,7 @@ flowchart LR
 | [MEASUREMENT_CAMPAIGN.md](MEASUREMENT_CAMPAIGN.md) | the phase 2 measurement campaign |
 | [research/935-horizontal-cooling/README.md](research/935-horizontal-cooling/README.en.md) | research and reconstruction for a lighter, improved horizontal 935 cooling system |
 | [PORSCHEFANATICS_993_TURBO_AUDIT.md](PORSCHEFANATICS_993_TURBO_AUDIT.md) | local audit of a 993 Turbo source |
+| [research/public-3d-asset-licence-audit-2026-10-15.md](research/public-3d-asset-licence-audit-2026-10-15.md) | which public 3D models and scans of the 993 exist, their licence as read on the original page, and their scale anomalies |
 | [research/](research/) | source research by topic (German-language sources, carbon panels, M64 reviews, scans) |
 
 ## Parts and design
