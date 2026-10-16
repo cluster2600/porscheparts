@@ -45,7 +45,7 @@
         "limitations": { "type": "array", "minItems": 1, "items": { "type": "string" } }
       }
     },
-    "sources": { "type": "array", "minItems": 1, "items": { "type": "object", "required": ["source_id", "title", "url", "accessed_on", "license", "supports"], "properties": { "source_id": { "type": "string" }, "title": { "type": "string" }, "url": { "type": "string" }, "accessed_on": { "type": "string" }, "license": { "type": "string" }, "supports": { "type": "array", "items": { "type": "string" } } } } },
+    "sources": { "type": "array", "minItems": 1, "items": { "type": "object", "required": ["source_id", "title", "url", "accessed_on", "license", "supports"], "properties": { "source_id": { "type": "string" }, "title": { "type": "string" }, "url": { "type": "string" }, "accessed_on": { "type": "string" }, "license": { "type": "string" }, "supports": { "type": "array", "items": { "type": "string" } }, "registry_source_id": { "type": "string", "description": "Optional: the catalog/sources record of the same document; it must exist and carry the same URL." } } } },
     "eligibility": {
       "type": "object",
       "additionalProperties": false,

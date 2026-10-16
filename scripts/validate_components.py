@@ -144,6 +144,22 @@ def _registry_errors(label: str, source_id: Any, url: Any, registry: dict[str, A
     return []
 
 
+def _registry_link_errors(label: str, source: dict, registry: dict[str, Any]) -> list[str]:
+    """An inline citation may name the registered record of the same document.
+
+    The link is optional; when present it must resolve, and both must point at
+    the same URL, so the inline copy cannot drift from the register.
+    """
+    if "registry_source_id" not in source:
+        return []
+    linked = source.get("registry_source_id")
+    if not isinstance(linked, str) or linked not in registry:
+        return [f"{label}.registry_source_id: {linked} is not a registered source"]
+    if registry[linked] != source.get("url"):
+        return [f"{label}.registry_source_id: {linked} points to a different URL"]
+    return []
+
+
 def _thread_key(value: Any) -> str:
     """Normalize a thread designation: 'M 14x 1,5' and 'M14x1.5' compare equal."""
     return re.sub(r"\s+", "", str(value)).replace(",", ".").lower()
@@ -202,6 +218,7 @@ def validate_component(record: Any, *, sources: dict[str, Any] | None = None) ->
         if not _url(source.get("url")):
             errors.append(f"{label}.url: expected http(s) URL")
         errors.extend(_registry_errors(f"{label}.source_id", source_id, source.get("url"), registry))
+        errors.extend(_registry_link_errors(label, source, registry))
         if not _date(source.get("accessed_on")):
             errors.append(f"{label}.accessed_on: expected YYYY-MM-DD")
         if not _text(source.get("license")):
@@ -516,6 +533,7 @@ def validate_assembly(
             errors.extend(
                 _registry_errors(f"relationship_sources[{index}].source_id", source.get("source_id"), source.get("url"), registry)
             )
+            errors.extend(_registry_link_errors(f"relationship_sources[{index}]", source, registry))
     instances = record.get("instances")
     calculated_mass = 0.0
     if not isinstance(instances, list) or len(instances) < 2:

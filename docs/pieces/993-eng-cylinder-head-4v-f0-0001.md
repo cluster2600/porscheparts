@@ -95,7 +95,7 @@ Catalogue record: [`catalog/parts/993-eng-cylinder-head-4v-f0-0001.json`](../../
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Exact physical access to a 993 Turbo M64/60 head is unconfirmed.<br>The existing 935 scan is a proxy, not metrology of the exact target part.<br>Existing native CAD and rejected mesh experiments are retained unchanged; this record does not claim a new complete head.<br>Stud pattern, sealing register, hidden galleries and thermal loads are not established by catalogue images.<br>Four-valve packaging, twin ignition, actuation, lubrication and cooling require their own checks.<br>LLM benchmark scores do not qualify CAD, CFD, alloy, printing, fitment or engine operation. |
 
 **Evidence**
 

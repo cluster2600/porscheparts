@@ -109,7 +109,7 @@ Catalogue record: [`catalog/parts/993-elec-headlamp-spring-hook-f0-0001.json`](.
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | All F0 dimensions are independent design variables, not measurements of the product or of the headlamp.<br>The 30 N and 100 K case is synthetic and does not represent a measured 993 load or temperature.<br>The elastic check uses a room-temperature AlSi10Mg card and ignores LPBF defects, notches, fatigue and temperature.<br>The fine CalculiX thermal p95 of 141.90 MPa is a result on a synthetic gradient and fixed support; the local maximum of 303.47 MPa and the lack of hot strength data block any conclusion.<br>The ovphysx witness proves the loading and rigid contact of the USD mesh, not the spring function or the headlamp assembly.<br>The bonded joint has no allowable strength until adhesive, preparation, clearance and thermal cycle are qualified.<br>The STEP proves only a computable geometry; it must be neither printed for fitting nor installed in a headlamp. |
 
 **Evidence**
 

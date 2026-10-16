@@ -10,6 +10,13 @@ The real opening of the 993 dashboard has never been measured; the only
 published figure is **about 19 × 31 mm** (a level-C forum value). So the kit
 brackets it with three sizes, and whichever one fits tells the real size.
 
+> [!WARNING]
+> **The 19 × 31 mm basis is contested** ([decision 0013](../../../docs/decisions/0013-pilots-advance-on-documentary-evidence.md)).
+> Its own source gives it for the passage under the covering, while two other
+> level-C figures put the opening at about 17 × 28 mm. Every insert below is
+> 1.6 to 3.5 mm larger than that, so none would enter such an opening. Do not
+> force a blank into the trim: an over-tight blank can crack it.
+
 | blank | marks on the back | insert (fits in the opening) | vs. the declared opening | face |
 |---|---|---|---|---|
 | 1 | 1 dimple | 18.6 × 30.6 mm | −0.4 mm | 22 × 34 × 2 mm |

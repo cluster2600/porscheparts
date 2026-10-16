@@ -319,6 +319,7 @@ validate:
 	python3 scripts/validate_scans.py
 	python3 scripts/validate_measurements.py
 	python3 scripts/validate_reference.py
+	python3 scripts/validate_registers.py
 	python3 scripts/validate_manual_measurements.py
 	python3 scripts/validate_twin.py
 	python3 scripts/validate_specifications.py

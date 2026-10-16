@@ -32,13 +32,13 @@ The repository has withdrawn several, listed
 [further down this page](#what-the-repository-withdrew-from-its-own-results).
 
 > [!IMPORTANT]
-> **No part is validated.** All 41 part records are at status `concept`, and 23
+> **No part is validated.** All 43 part records are at status `concept`, and 25
 > of them are `prohibited_pending_engineering`. Read [SAFETY.md](SAFETY.md).
 
 <table>
 <tr>
-<td align="center"><h3>527</h3>qualified source records</td>
-<td align="center"><h3>41</h3>part records<br><sub>23 prohibited as they stand</sub></td>
+<td align="center"><h3>545</h3>qualified source records</td>
+<td align="center"><h3>43</h3>part records<br><sub>25 prohibited as they stand</sub></td>
 <td align="center"><h3>34</h3>993 design dossiers<br><sub>for additive manufacturing</sub></td>
 </tr>
 <tr>
@@ -216,7 +216,7 @@ tolerance, not data: the points carry ±2 to 9 mm where a tool needs ±1 mm.
 
 ## 2. 993 parts for additive manufacturing
 
-**34 design dossiers** in [`docs/993/`](docs/993/) and **41 part records**,
+**34 design dossiers** in [`docs/993/`](docs/993/) and **43 part records**,
 from the headlamp spring hook to the K16 turbine wheel in Inconel 718, by way
 of the Ti-6Al-4V connecting rod, the AlSi10Mg compressor wheel, the IN625
 exhaust manifold and the WE43 cooling impeller. Each dossier starts from
@@ -470,9 +470,9 @@ opens with an entry gate that can stop the project.
 
 ## 6. The catalogue and its data contract
 
-**527 source records** qualified by provenance, rights and level of evidence;
-41 part records, 10 twin records, 5 components, 3 assemblies and 3 workshop-manual
-transcriptions. Everything is validated by a JSON schema and by the test suite.
+**545 source records** qualified by provenance, rights and level of evidence;
+43 part records, 10 twin records, 5 components, 3 assemblies, 3 workshop-manual
+transcriptions and 2 records of declared community values. Everything is validated by a JSON schema and by the test suite.
 
 A record keeps technical access, reading method and reuse rights separate. An
 accessible page is not redistributable; a page read in a browser is neither an
@@ -482,10 +482,10 @@ authorized download nor a validation of accuracy.
 flowchart TB
     subgraph catalog["catalog/ — source of truth, JSON-schema validated"]
       direction LR
-      src["sources/<br/>527 records"] --- prt["parts/<br/>41 records"]
+      src["sources/<br/>545 records"] --- prt["parts/<br/>43 records"]
       prt --- tw["twins/<br/>10 records"]
       prt --- cmp["components/ · assemblies/"]
-      prt --- mea["measurements/<br/>3 manual transcriptions"]
+      prt --- mea["measurements/<br/>5 documentary records"]
     end
     prt -- "render_part_pages.py" --> pages["docs/pieces/<br/>one page per part"]
     prt -- "render_parts_table.py" --> table["README parts table"]
@@ -534,11 +534,12 @@ calculation's data.
 - **No absolute stiffness value is a 964 stiffness.** The model's sections are
   `ASSUMED` and the mesh is not converged; only ratios and rankings are usable.
 - **No part is validated.** The printable files above have not been checked on
-  a car. All 41 records are at status `concept`, 23 of them
+  a car. All 43 records are at status `concept`, 25 of them
   `prohibited_pending_engineering`. No twin reaches the `F2_interface` level.
-- **No physical measurement is recorded yet.** The three records in
-  `catalog/measurements/` are transcriptions from the workshop manual, not
-  instrumented measurements.
+- **No physical measurement is recorded yet.** The five records in
+  `catalog/measurements/` are documentary: three transcriptions from the
+  workshop manuals and two of values declared in forum posts, not instrumented
+  measurements.
 - **No fan gain over the Porsche part.** Its performance is not published.
 - **A rendering or a simulation is not evidence of physical behavior**:
   neither Omniverse, nor an image, nor a print simulation.

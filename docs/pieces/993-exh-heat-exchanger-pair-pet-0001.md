@@ -95,7 +95,7 @@ Catalogue record: [`catalog/parts/993-exh-heat-exchanger-pair-pet-0001.json`](..
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Identity only: the PET transcriptions carry part number, group, position and description, no dimensions, tolerances, materials or geometry.<br>KAT 17 lists the -55 suffix (revision A), KAT 517 lists -56; the local data do not document the supersession relation, both suffixes are recorded without claiming replacement.<br>Quantity per car is not carried by the local transcription; 2 per car reflects the two-bank engine, not a transcribed field.<br>Wastegate actuator part numbers do not appear in any local PET transcription line and remain unsourced. |
 
 **Evidence**
 

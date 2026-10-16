@@ -33,6 +33,13 @@ class ComponentValidationTests(unittest.TestCase):
         record["physical"]["mass"]["source_id"] = "UNKNOWN"
         self.assertTrue(any("mass.source_id" in error for error in validate_component(record)))
 
+    def test_registry_link_must_resolve_to_the_same_document(self) -> None:
+        record = deepcopy(self.front)
+        record["sources"][0]["registry_source_id"] = "SRC-DOES-NOT-EXIST"
+        self.assertTrue(any("is not a registered source" in error for error in validate_component(record)))
+        record["sources"][0]["registry_source_id"] = "SRC-FUCHS-993-APPLICATION-LEAFLET-2020"
+        self.assertTrue(any("different URL" in error for error in validate_component(record)))
+
     def test_spatial_check_requires_accuracy(self) -> None:
         record = deepcopy(self.front)
         record["eligibility"]["spatial_check"] = True
