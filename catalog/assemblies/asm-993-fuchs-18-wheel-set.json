@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0.0",
   "assembly_id": "ASM-993-FUCHS-18-WHEEL-SET",
-  "name": "Ensemble logique de quatre roues Fuchs 18 pouces pour Porsche 993 Carrera",
+  "name": "Logical set of four 18-inch Fuchs wheels for the Porsche 993 Carrera",
   "vehicle": {
     "generation": "993",
-    "variants": ["993 Carrera et Carrera Turbo-Look selon homologation, hors configuration Turbo à entretoise"]
+    "variants": ["993 Carrera with the 1735 mm body; the Carrera Turbo-Look and the Turbo need the 25 mm rear spacer (condition E64) and a separate assembly"]
   },
   "status": "logical",
   "instances": [
@@ -35,13 +35,107 @@
       "registry_source_id": "SRC-KBA-ECE-R124-000088-FUCHS-37028",
       "url": "https://www.fuchsfelge.com/fileadmin/user_upload/Service/Download/Gutachten_Typgen_Verwendungsb/Typengenehmigung37028.pdf",
       "accessed_on": "2026-08-29",
-      "claim": "L'homologation associe la roue 8J x 18 ET52 à l'avant et la roue 10J x 18 ET65 à l'arrière du type 993, avec variantes de pneumatiques selon Carrera ou Turbo."
+      "claim": "The approval assigns the 8J x 18 ET52 wheel to the front and the 10J x 18 ET65 wheel to the rear of type 993, with tire variants for the Carrera or the Turbo."
+    },
+    {
+      "source_id": "FUCHS-37027-APPROVAL",
+      "url": "https://www.fuchsfelge.com/fileadmin/user_upload/Service/Download/Gutachten_Typgen_Verwendungsb/Typengenehmigung37027.pdf",
+      "accessed_on": "2026-10-15",
+      "claim": "KBA ECE R124 approval 000087 for wheel type 37027 (5/130, 15 mm bolt holes, 71.58 mm center bore, center-bore centering without a ring) lists for vehicle types 993 and 993 Turbo the series wheel nut with a 28 mm spherical collar, thread M14x1,5, tightening torque 130 Nm, requires the series fastening parts (condition A06), and allows the wheel on axle 1 only, combined with type 37028 on axle 2."
+    },
+    {
+      "source_id": "FUCHS-37028-APPROVAL",
+      "url": "https://www.fuchsfelge.com/fileadmin/user_upload/Service/Download/Gutachten_Typgen_Verwendungsb/Typengenehmigung37028.pdf",
+      "accessed_on": "2026-10-15",
+      "claim": "KBA ECE R124 approval 000088 for wheel type 37028 (5/130, 15 mm bolt holes, 71.58 mm center bore, center-bore centering without a ring) lists for vehicle types 993 and 993 Turbo the series wheel nut with a 28 mm spherical collar, thread M14x1,5, tightening torque 130 Nm, requires the series fastening parts (condition A06), and allows the wheel on axle 2 only, combined with type 37027 on axle 1. The vehicle hub is listed as 5/130/71,5."
+    },
+    {
+      "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+      "url": "https://www.pelicanparts.com/More_Info/WKD483121.htm?pn=WKD-483-121-OEM",
+      "accessed_on": "2026-08-28",
+      "claim": "The 911 Carrera (993) workshop manual gives 'Wheel to wheel hub, M 14x 1.5, 130 Nm' in the front wheel mount table (PDF p. 559), the rear wheel mounting table (p. 579) and the brakes table (p. 653). The manual covers the Carrera and Carrera 4; it has no Turbo volume."
     }
   ],
   "known_limits": [
-    "Assemblage logique uniquement : les transformations vers les quatre moyeux sont absentes.",
-    "Les sièges de fixation, boulons, couples et tolérances ne sont pas modélisés.",
-    "La variante Turbo nécessitant une entretoise arrière de 25 mm doit être un assemblage distinct quand cette entretoise aura une fiche complète."
+    "Logical assembly only: the transforms to the four hubs and to the vehicle frame are absent.",
+    "KBA ECE R124 approvals 000087 (37027) and 000088 (37028) give 5 holes on a 130 mm pitch circle, 15 mm bolt holes, a 71.58 mm wheel center bore, center-bore centering without a ring, and a vehicle hub listed as 5/130/71.5. These are nominal documentary values without tolerances.",
+    "COMP-FUCHS-37027.011 and COMP-FUCHS-37028.011 record a 71.5 mm wheel center bore, which is the vehicle hub value, and the 37027 record cites the 37028 approval for its own interfaces. Both records must be corrected against their own approvals in a separate change before any spatial check.",
+    "The fastening to the hubs is recorded in mounting_relations. Seat geometry, hub contact face, stud length, tolerances and the brake clearance envelope are not modeled.",
+    "Scope narrowed against the approvals: for the 1735 mm Carrera body the pair is allowed without spacer (condition E46 excludes the Turbo-Look body from that row); for the Carrera Turbo-Look (1795 mm) and the Turbo, not GT2, condition E64 allows it only with the Porsche 25 mm spacer fitted as standard on axle 2, with pressed-in wheel studs L = 33 mm. Those configurations need a separate assembly once the spacer has a complete record."
+  ],
+  "mounting_relations": [
+    {
+      "relation_id": "FRONT_WHEELS_TO_FRONT_HUBS",
+      "instance_ids": ["FRONT_WHEELS"],
+      "counterpart": {
+        "kind": "named_interface",
+        "ref": "front_wheel_hubs_unpositioned",
+        "twin_interfaces": [
+          { "twin_id": "TWIN-993-WHEEL-HUB-INTERFACES-0001", "interface_id": "IF_FRONT_18_HUB" }
+        ]
+      },
+      "fastener": {
+        "description": "series wheel nut, as required by approval condition A06",
+        "thread": "M14x1.5",
+        "seat": "spherical collar, 28 mm",
+        "count_per_unit": 5,
+        "count_parameter_id": "BOLT_COUNT",
+        "source_id": "FUCHS-37027-APPROVAL"
+      },
+      "tightening_torque": {
+        "value": 130,
+        "unit": "Nm",
+        "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+        "measurement_refs": [
+          { "measurement_id": "MEAS-MANUAL-993-ALL", "value_id": "MNL-TORQUE-0134" },
+          { "measurement_id": "MEAS-MANUAL-993-ALL", "value_id": "MNL-TORQUE-0168" }
+        ],
+        "corroborated_by": ["FUCHS-37027-APPROVAL"]
+      },
+      "source_ids": ["FUCHS-37027-APPROVAL", "SRC-PORSCHE-WORKSHOP-MANUAL-993"],
+      "limits": [
+        "Documentary relation: the wheel approval and the Porsche manual agree on M14x1.5 at 130 Nm; no tightening was performed or measured by this project.",
+        "The manual values are structured_derived transcriptions, not manually_checked; the independent approval value corroborates them.",
+        "Five nuts per wheel are inferred from the sourced five-hole pattern (BOLT_COUNT), one nut per hole; no source states the nut count. Nut part number, stud length and seat tolerances are not sourced.",
+        "Wheels and their fastening are a presumed safety-critical domain (SAFETY.md): this relation is inventory information, not a fitting instruction or a release."
+      ]
+    },
+    {
+      "relation_id": "REAR_WHEELS_TO_REAR_HUBS",
+      "instance_ids": ["REAR_WHEELS"],
+      "counterpart": {
+        "kind": "named_interface",
+        "ref": "rear_wheel_hubs_unpositioned",
+        "twin_interfaces": [
+          { "twin_id": "TWIN-993-WHEEL-HUB-INTERFACES-0001", "interface_id": "IF_REAR_18_HUB" }
+        ]
+      },
+      "fastener": {
+        "description": "series wheel nut, as required by approval condition A06",
+        "thread": "M14x1.5",
+        "seat": "spherical collar, 28 mm",
+        "count_per_unit": 5,
+        "count_parameter_id": "BOLT_COUNT",
+        "source_id": "FUCHS-37028-APPROVAL"
+      },
+      "tightening_torque": {
+        "value": 130,
+        "unit": "Nm",
+        "source_id": "SRC-PORSCHE-WORKSHOP-MANUAL-993",
+        "measurement_refs": [
+          { "measurement_id": "MEAS-MANUAL-993-ALL", "value_id": "MNL-TORQUE-0155" },
+          { "measurement_id": "MEAS-MANUAL-993-ALL", "value_id": "MNL-TORQUE-0168" }
+        ],
+        "corroborated_by": ["FUCHS-37028-APPROVAL"]
+      },
+      "source_ids": ["FUCHS-37028-APPROVAL", "SRC-PORSCHE-WORKSHOP-MANUAL-993"],
+      "limits": [
+        "Documentary relation: the wheel approval and the Porsche manual agree on M14x1.5 at 130 Nm; no tightening was performed or measured by this project.",
+        "The manual values are structured_derived transcriptions, not manually_checked; the independent approval value corroborates them.",
+        "Five nuts per wheel are inferred from the sourced five-hole pattern (BOLT_COUNT), one nut per hole; no source states the nut count. Nut part number, stud length and seat tolerances are not sourced.",
+        "Direct wheel-to-hub fastening applies to the 1735 mm Carrera body only; with the 25 mm spacer of condition E64 the stack and the stud length differ, and that configuration is not this relation.",
+        "Wheels and their fastening are a presumed safety-critical domain (SAFETY.md): this relation is inventory information, not a fitting instruction or a release."
+      ]
+    }
   ]
 }
-

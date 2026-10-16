@@ -529,7 +529,7 @@ agents keeps refusing them from any infrastructure.
 
 Status: twenty documented candidates, the phase exit threshold is reached in
 number; the registry held 294 valid source records when this section was
-written (539 on 2026-10-15). The Renn 3D Parts
+written (545 on 2026-10-15). The Renn 3D Parts
 archive adds nine leads to public STL files, but their licenses stay attached to
 each record and their bboxes do not replace a measurement. The Porsche Fanatics
 project data and the manual data increase technical coverage, while the new

@@ -37,7 +37,7 @@ The repository has withdrawn several, listed
 
 <table>
 <tr>
-<td align="center"><h3>529</h3>qualified source records</td>
+<td align="center"><h3>545</h3>qualified source records</td>
 <td align="center"><h3>43</h3>part records<br><sub>25 prohibited as they stand</sub></td>
 <td align="center"><h3>34</h3>993 design dossiers<br><sub>for additive manufacturing</sub></td>
 </tr>
@@ -470,8 +470,8 @@ opens with an entry gate that can stop the project.
 
 ## 6. The catalogue and its data contract
 
-**529 source records** qualified by provenance, rights and level of evidence;
-43 part records, 10 twin records, 4 components, 2 assemblies, 3 workshop-manual
+**545 source records** qualified by provenance, rights and level of evidence;
+43 part records, 10 twin records, 5 components, 3 assemblies, 3 workshop-manual
 transcriptions and 2 records of declared community values. Everything is validated by a JSON schema and by the test suite.
 
 A record keeps technical access, reading method and reuse rights separate. An
@@ -482,7 +482,7 @@ authorized download nor a validation of accuracy.
 flowchart TB
     subgraph catalog["catalog/ — source of truth, JSON-schema validated"]
       direction LR
-      src["sources/<br/>529 records"] --- prt["parts/<br/>43 records"]
+      src["sources/<br/>545 records"] --- prt["parts/<br/>43 records"]
       prt --- tw["twins/<br/>10 records"]
       prt --- cmp["components/ · assemblies/"]
       prt --- mea["measurements/<br/>5 documentary records"]
