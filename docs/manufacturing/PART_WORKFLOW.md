@@ -50,7 +50,7 @@ dessiner une nouvelle pièce sans lien avec ses paramètres.
 La préparation des supports est admise séparément de leur génération. Les six
 contrôles portent sur les enveloppes, les régions couvertes, les peaux, les
 grilles, les contacts et les collisions. Le
-[générateur de remise v3](../../scripts/build_carrier_workshop_guide_v3.py)
+[générateur de remise v4](../../scripts/build_carrier_workshop_guide_v4.py)
 refuse le dossier si un contrôle manque, reste non exécuté ou désigne un reçu
 dont l'empreinte a changé. L'audit des trajectoires examine les segments entiers
 dans les sections, en conservant trous et îlots ; vérifier seulement leurs
@@ -67,20 +67,28 @@ dans `manufacturing/workflows/`. Une recette énumère les fichiers d'entrée
 avec leurs empreintes, les commandes, les délais et les sorties attendues.
 Le fichier de runtime local indique où se trouvent les interpréteurs installés.
 
-La [recette intégrée v3](../../manufacturing/workflows/993-carrier-lpbf-v3.json)
-contient 37 étapes et 271 fichiers d’entrée épinglés. Elle conserve exactement
+La [recette intégrée v4](../../manufacturing/workflows/993-carrier-lpbf-v4.json)
+contient 37 étapes et 278 fichiers d’entrée épinglés. Elle conserve exactement
 les douze premières étapes de CAO, surface, mécanique et dessins de la recette
 initiale, puis sépare les sept calculs natifs et les sept générations de
 supports. Leur construction conserve le domaine utile entier et ajoute des
 bandes de contact attestées ; l’assemblage incrémental garde les mêmes contours
 et reçus exacts. Le confinement rationnel, les six admissions géométriques et
 les deux audits complets de trajectoires précèdent le guide.
-La [revue des commandes et des identités](../../parts/993-eng-carrier-0001/source/process-skins-20261016/cold-v3-recipe-evidence/assessment.json)
-a passé sur les 37 commandes et leurs dépendances, y compris les entrées des
-installateurs ; elle reste distincte d’un rejeu complet du carrier.
+La [revue des commandes et des identités](../../parts/993-eng-carrier-0001/source/process-skins-20261016/cold-v4-recipe-evidence/assessment.json)
+a passé : 36 contrats v3 sont réutilisés après vérification de leurs identités,
+le nouvel argumentaire du guide v4 est parsé et les 278 empreintes sont
+revérifiées. Elle reste distincte d’un rejeu complet du carrier.
+
+La page mécanique du guide conserve les dépassements du diagnostic idéal
+900 MPa sous K1000, la portée de la sensibilité publiée Grade 23 ELI et les
+verdicts distincts du cycle : bilan Piola admis, diagnostic ENER refusé sur
+l’ensemble des états. Les six références sont copiées dans le dossier. Leur
+attribution exige exactement le même maillage discret et le même jeu linéaire
+de charges et d’appuis ; elle n’assimile pas deux exports STEP distincts.
 
 ```sh
-python3 scripts/run_part_workflow.py run manufacturing/workflows/993-carrier-lpbf-v3.json \
+python3 scripts/run_part_workflow.py run manufacturing/workflows/993-carrier-lpbf-v4.json \
   --runtime work/part-workflow/runtime-v2.json \
   --output work/part-workflow/NOUVEAU_PASSAGE
 ```

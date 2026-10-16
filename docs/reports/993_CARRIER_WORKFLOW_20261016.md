@@ -33,12 +33,14 @@ flowchart LR
 ```
 
 La recette initiale contient quinze étapes et **45 entrées épinglées**.
-La [recette intégrée v3](../../manufacturing/workflows/993-carrier-lpbf-v3.json)
+La [recette intégrée v4](../../manufacturing/workflows/993-carrier-lpbf-v4.json)
 conserve ses douze premières étapes et ses 45 entrées, puis porte la chaîne à
-**37 étapes et 271 entrées versionnées épinglées**. La
-[revue des 37 commandes et de leurs dépendances](../../parts/993-eng-carrier-0001/source/process-skins-20261016/cold-v3-recipe-evidence/assessment.json)
-a passé, y compris les entrées des installateurs ; elle ne représente pas
-une exécution complète de la recette. La v2 et ses reçus restent conservés.
+**37 étapes et 278 entrées versionnées épinglées**. La
+[revue des contrats et de leurs dépendances](../../parts/993-eng-carrier-0001/source/process-skins-20261016/cold-v4-recipe-evidence/assessment.json)
+a passé : 36 contrats v3 identiques sont vérifiés et réutilisés, le nouvel
+argumentaire du guide est parsé et les 278 empreintes sont revérifiées. Elle
+ne représente pas une exécution complète de la recette. Les versions
+précédentes et leurs reçus restent conservés.
 Le dossier garde les commandes, journaux, identités des
 sources et sorties. Le support, la figure de contrainte et les trajectoires
 doivent désigner la même géométrie ; le générateur refuse de les mélanger.
@@ -195,6 +197,14 @@ rééchantillonnage interne à 200 points. Sa reproduction donne une erreur de
 publiées. Le diagnostic `ENER` Flat1 reste refusé sur les premiers incréments ;
 le bilan Piola ci-dessus a son calcul et son verdict propres.
 
+![Sensibilité Flat1 : points plastifiés, déplacement après décharge amplifié vingt fois et cycle au même nœud](../../parts/993-eng-carrier-0001/source/design-20261016/constitutive-evidence/luo-flat1-cycle.png)
+
+Cette figure provient des sorties retenues du modèle Grade 23 ELI. Le résidu
+maximal réel est de 0,09926 mm ; la déformée est amplifiée vingt fois. Le
+[reçu de la figure](../../parts/993-eng-carrier-0001/source/design-20261016/constitutive-evidence/luo-flat1-cycle.json)
+conserve les empreintes du maillage et du DAT, le nœud suivi et les seize
+sorties. Le refus distinct du diagnostic `ENER` reste celui indiqué ci-dessus.
+
 ## Préparation d'impression et calcul de construction
 
 Le moteur natif [PySLM](https://github.com/drlukeparry/pyslm), sa révision,
@@ -289,6 +299,13 @@ préparateur historique rejetés par l’empreinte du runtime corrigé. Aucun
 nouvel échec n’est identifié ; `make check` reste refusé et n’exécute pas les
 cibles dépendant de la réussite de ces tests. Le reçu conserve aussi le
 premier lancement avec le mauvais interpréteur et sa correction.
+
+Les **34 tests ciblés des guides v4/v3/v2 et du générateur générique** passent.
+Les dix tests propres au guide v4 passent aussi par découverte dans la base
+PDF réinstallée et dans le runtime PySLM corrigé. Le rattachement réel à
+`run-001` est revérifié en lecture de JSON et d’empreintes : même maillage 9,
+même jeu linéaire K1000 et seize états conservés. Aucun DAT ni solveur n’est
+rejoué par ces contrôles ; ils ne produisent pas le guide final.
 
 ## Renforcement local : gain de raideur, refus du pic
 

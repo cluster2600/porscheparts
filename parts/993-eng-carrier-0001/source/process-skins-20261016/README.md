@@ -6,9 +6,9 @@ Le magasin mixte à sept enveloppes est maintenant lisible et transportable. Les
 
 ## Parcours courant
 
-La [recette v3](../../../../manufacturing/workflows/993-carrier-lpbf-v3.json)
-enchaîne 37 étapes avec 271 entrées épinglées. Sa
-[revue](cold-v3-recipe-evidence/assessment.json) porte sur les identités et les
+La [recette v4](../../../../manufacturing/workflows/993-carrier-lpbf-v4.json)
+enchaîne 37 étapes avec 278 entrées épinglées. Sa
+[revue](cold-v4-recipe-evidence/assessment.json) porte sur les identités et les
 commandes ; les résultats de la campagne réelle restent séparés.
 Les CLI courantes sont `generate_prism_region_v5.py` et
 `generate_legacy_region_v5.py`, puis `build_cached_v4.py` avec les six contrôles
