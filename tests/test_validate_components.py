@@ -161,6 +161,108 @@ class MountingRelationTests(unittest.TestCase):
         assembly["mounting_relations"][0]["counterpart"] = {"kind": "component", "ref": "COMP-UNKNOWN"}
         self.assertTrue(any("counterpart.ref: unknown component" in error for error in self._errors(assembly)))
 
+    def test_torque_without_a_measurement_value_is_rejected(self) -> None:
+        # A typed torque with no cited measurement value must not pass, whatever its value or source.
+        for value, source_id in ((999, "SRC-PORSCHE-WORKSHOP-MANUAL-993"), (50, "FUCHS-37024-APPROVAL")):
+            assembly = deepcopy(self.wheels_17)
+            torque = assembly["mounting_relations"][0]["tightening_torque"]
+            torque.update({"value": value, "source_id": source_id, "measurement_refs": [], "corroborated_by": []})
+            with self.subTest(value=value, source_id=source_id):
+                self.assertTrue(
+                    any("must cite at least one measurement value" in error for error in self._errors(assembly))
+                )
+
+    def test_torque_schema_requires_a_measurement_value(self) -> None:
+        schema = _load("catalog", "schemas", "assembly.schema.json")
+        relation = schema["properties"]["mounting_relations"]["items"]["properties"]
+        self.assertEqual(relation["tightening_torque"]["properties"]["measurement_refs"]["minItems"], 1)
+        self.assertTrue(relation["instance_ids"]["uniqueItems"])
+
+    def test_twin_interface_link_must_match_the_axle_and_size(self) -> None:
+        for interface_id in ("IF_REAR_18_HUB", "IF_REAR_17_HUB", "IF_FRONT_18_HUB"):
+            assembly = deepcopy(self.wheels_17)
+            assembly["mounting_relations"][0]["counterpart"]["twin_interfaces"][0]["interface_id"] = interface_id
+            with self.subTest(interface_id=interface_id):
+                self.assertTrue(
+                    any(
+                        f"{interface_id} does not involve the geometry of COMP-FUCHS-37024.013" in error
+                        for error in self._errors(assembly)
+                    )
+                )
+
+    def test_twin_interface_link_must_be_a_fastener_interface(self) -> None:
+        twins = {
+            "TWIN-993-WHEEL-HUB-INTERFACES-0001": {
+                "IF_FRONT_17_HUB": {
+                    "kind": "contact",
+                    "geometry_files": {"components/wheels/fuchs/derived/37024.013-interface-proxy.step"},
+                },
+                "IF_REAR_17_HUB": {
+                    "kind": "fastener",
+                    "geometry_files": {"components/wheels/fuchs/derived/37026.013-interface-proxy.step"},
+                },
+            }
+        }
+        errors = self._errors(deepcopy(self.wheels_17), twins=twins)
+        self.assertEqual(
+            errors,
+            ["mounting_relations[0].counterpart.twin_interfaces: IF_FRONT_17_HUB is a contact interface, not a fastener interface"],
+        )
+
+    def test_duplicate_instance_in_a_relation_is_rejected(self) -> None:
+        assembly = deepcopy(self.wheels_17)
+        assembly["mounting_relations"][0]["instance_ids"] = ["FRONT_WHEELS", "FRONT_WHEELS"]
+        self.assertIn("mounting_relations[0].instance_ids: duplicate instance FRONT_WHEELS", self._errors(assembly))
+
+    def test_unhashable_ids_are_reported_not_raised(self) -> None:
+        mutations = {
+            "instance_ids": lambda record: record["mounting_relations"][0].update(instance_ids=[["FRONT_WHEELS"]]),
+            "source_ids": lambda record: record["mounting_relations"][0]["source_ids"].append({"id": "X"}),
+            "counterpart": lambda record: record["mounting_relations"][0].update(
+                counterpart={"kind": "component", "ref": ["COMP-FUCHS-37024.013"]}
+            ),
+            "twin_id": lambda record: record["mounting_relations"][0]["counterpart"]["twin_interfaces"][0].update(
+                twin_id=["TWIN-993-WHEEL-HUB-INTERFACES-0001"]
+            ),
+            "interface_id": lambda record: record["mounting_relations"][0]["counterpart"]["twin_interfaces"][0].update(
+                interface_id={"id": "IF_FRONT_17_HUB"}
+            ),
+            "measurement_id": lambda record: record["mounting_relations"][0]["tightening_torque"]["measurement_refs"][0].update(
+                measurement_id=["MEAS-MANUAL-993-ALL"]
+            ),
+            "value_id": lambda record: record["mounting_relations"][0]["tightening_torque"]["measurement_refs"][0].update(
+                value_id=["MNL-TORQUE-0134"]
+            ),
+            "component_id": lambda record: record["instances"][0].update(component_id=["COMP-FUCHS-37024.013"]),
+            "relationship_source_id": lambda record: record["instances"][0].update(relationship_source_id=["X"]),
+            "relationship_sources": lambda record: record["relationship_sources"][0].update(source_id=["X"]),
+            "status": lambda record: record.update(status=["logical"]),
+        }
+        for name, mutate in mutations.items():
+            assembly = deepcopy(self.wheels_17)
+            mutate(assembly)
+            with self.subTest(field=name):
+                self.assertTrue(self._errors(assembly))
+        component = deepcopy(self.known["COMP-FUCHS-37024.013"])
+        component["physical"]["mass"]["source_id"] = ["FUCHS-PRODUCT"]
+        component["kind"] = ["aftermarket"]
+        errors = validate_component(component)
+        self.assertIn("physical.mass.source_id: unknown source", errors)
+        self.assertIn("kind: unknown", errors)
+
+    def test_record_local_source_url_must_match_the_component_source(self) -> None:
+        assembly = deepcopy(self.wheels_17)
+        index = next(
+            position
+            for position, source in enumerate(assembly["relationship_sources"])
+            if source["source_id"] == "FUCHS-37024-APPROVAL"
+        )
+        assembly["relationship_sources"][index]["url"] = "https://www.fuchsfelge.com/other.pdf"
+        self.assertIn(
+            f"relationship_sources[{index}].source_id: URL differs from the FUCHS-37024-APPROVAL source of COMP-FUCHS-37024.013",
+            self._errors(assembly),
+        )
+
     def test_unknown_assembly_field_is_rejected(self) -> None:
         assembly = deepcopy(self.wheels_17)
         assembly["mounting_relation"] = []
@@ -177,6 +279,8 @@ class ConnectingRodInventoryTests(unittest.TestCase):
         self.assertIsNone(rod["physical"]["mass"]["tolerance_g"])
         self.assertIn("not declared", rod["physical"]["material"]["process"])
         self.assertTrue(any("MEZGER-P010" in item for item in rod["geometry"]["limitations"]))
+        # Position numbers are a record convention, not the Porsche cylinder numbering.
+        self.assertEqual(rod["vehicle"]["positions"], [f"position_{index}" for index in range(1, 7)])
 
     def test_rod_set_has_six_instances_and_no_unsourced_relation(self) -> None:
         rod = _load("catalog", "components", "comp-pauter-993-230-580-1270f.json")

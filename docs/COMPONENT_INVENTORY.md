@@ -27,12 +27,16 @@ accuracy are known.
 | `COMP-FUCHS-37028.011` | 10J x 18 ET65, 5x130, bore 71.5 mm | 8.80 kg | forged aluminum | interface proxy | rear axle, quantity 2 |
 | `COMP-PAUTER-993-230-580-1270F` | 127.0 mm center to center, bores 58.01 / 23.01 mm | 0.535 kg | 4340 steel, shot-peened; forming route not declared | none, inventory only | engine, quantity 6 |
 
-Primary source: public documentation from the manufacturer Otto Fuchs. These are
-compatible wheels, not Porsche CAD files, nor a claim that they were fitted at
-the factory on every variant.
+Primary sources: for the wheels, public documentation from the manufacturer
+Otto Fuchs; for the connecting rod, the Pauter Machine Company product page,
+cross-checked with the TZR Motorsport listing of the same part number. The
+wheels are compatible wheels, not Porsche CAD files, nor a claim that they were
+fitted at the factory on every variant. The rod is an aftermarket part, not the
+original Porsche rod.
 
-Admitted assemblies: a 30.90 kg 17-inch set and a 34.00 kg 18-inch Carrera set.
-The Turbo fitments with spacers remain separate and incomplete.
+Admitted assemblies: a 30.90 kg 17-inch set, a 34.00 kg 18-inch Carrera set and
+a 3.21 kg logical set of six Pauter rods, recorded for inventory only. The Turbo
+wheel fitments with spacers remain separate and incomplete.
 
 The KBA ECE R124 approvals of the four wheels give a 71.58 mm wheel center bore
 and list the vehicle hub as 5/130/71.5. Three records above still carry 71.5 mm
@@ -57,14 +61,20 @@ a named interface such as `front_wheel_hubs_unpositioned`), the fastener and the
 tightening torque. A count or a torque that no source gives stays `null`.
 `scripts/validate_components.py` checks that every cited source is listed by the
 assembly, that a `SRC-` id resolves to `catalog/sources/` with the same URL, that
-a fastener count equals a sourced count parameter of the component, that a torque
-matches the cited value of a measurement record (unit, value, thread, source, and
-no raw OCR), and that a twin interface link resolves.
+a record-local source id also defined by a member component names the same URL,
+that a fastener count, inferred one fastener per hole, equals a sourced count
+parameter of the component, that a torque cites at least one measurement value
+and equals it (unit, value, thread, source, and no raw OCR), and that a twin
+interface link resolves to a fastener interface whose components include the
+derived geometry file of every member (for the wheels, this ties the link to the
+axle and the size). An instance is listed once per relation.
 
-First relations: each Fuchs wheel is fastened to its hub with five series wheel
-nuts, M14x1.5 with a 28 mm spherical collar, at 130 Nm. The wheel approvals give
-the nuts and the torque; the workshop manual gives the same torque
-(`MNL-TORQUE-0134` front, `MNL-TORQUE-0155` rear, `MNL-TORQUE-0168`). No relation
+First relations: each Fuchs wheel is fastened to its hub with series wheel nuts,
+M14x1.5 with a 28 mm spherical collar, at 130 Nm. The wheel approvals give the
+nuts and the torque; the workshop manual gives the same torque
+(`MNL-TORQUE-0134` front, `MNL-TORQUE-0155` rear, `MNL-TORQUE-0168`). The count
+of five nuts per wheel is inferred from the sourced five-hole pattern, one nut
+per hole; no source states it directly. No relation
 is recorded for the connecting rods: their bolt size and torque are not sourced.
 These relations are documentary. They allow no spatial check and are not a
 fitting instruction.

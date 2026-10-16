@@ -43,6 +43,11 @@ def _text(value: Any) -> bool:
     return isinstance(value, str) and bool(value.strip())
 
 
+def _key(value: Any) -> str | None:
+    """Return value if it can be an id, else None, so that a lookup never raises on a list or an object."""
+    return value if isinstance(value, str) else None
+
+
 def _url(value: Any) -> bool:
     if not isinstance(value, str):
         return False
@@ -101,16 +106,28 @@ def measurement_values() -> dict[str, dict[str, dict]]:
 
 
 @lru_cache(maxsize=1)
-def twin_interfaces() -> dict[str, set[str]]:
-    """Map each twin record id to the ids of its interfaces."""
-    registry: dict[str, set[str]] = {}
+def twin_interfaces() -> dict[str, dict[str, dict]]:
+    """Map each twin record id to its interfaces, by id, with their kind and the geometry files of their components."""
+    registry: dict[str, dict[str, dict]] = {}
     for record in _load_json_records(TWINS):
         identifier = record.get("twin_id")
         if not _text(identifier):
             continue
+        files = {
+            component["component_id"]: component.get("geometry_file")
+            for component in record.get("components") or []
+            if isinstance(component, dict) and _text(component.get("component_id"))
+        }
         interfaces = record.get("interfaces") or []
         registry[identifier] = {
-            interface["interface_id"]
+            interface["interface_id"]: {
+                "kind": interface.get("kind"),
+                "geometry_files": {
+                    files[member]
+                    for member in interface.get("components") or []
+                    if _key(member) in files and _text(files[member])
+                },
+            }
             for interface in interfaces
             if isinstance(interface, dict) and _text(interface.get("interface_id"))
         }
@@ -162,7 +179,7 @@ def validate_component(record: Any, *, sources: dict[str, Any] | None = None) ->
         errors.append("component_id: invalid")
     if not _text(record.get("name")):
         errors.append("name: expected a non-empty string")
-    if record.get("kind") not in {"oem", "aftermarket", "standard", "measured_original"}:
+    if _key(record.get("kind")) not in {"oem", "aftermarket", "standard", "measured_original"}:
         errors.append("kind: unknown")
 
     sources = record.get("sources")
@@ -203,17 +220,17 @@ def validate_component(record: Any, *, sources: dict[str, Any] | None = None) ->
     for index, parameter in enumerate(sizes):
         if not isinstance(parameter, dict) or not isinstance(parameter.get("value"), (int, float)):
             errors.append(f"physical.size_parameters[{index}]: invalid")
-        elif parameter.get("source_id") not in source_ids:
+        elif _key(parameter.get("source_id")) not in source_ids:
             errors.append(f"physical.size_parameters[{index}].source_id: unknown source")
     mass = physical.get("mass")
     if not isinstance(mass, dict) or not isinstance(mass.get("value_g"), (int, float)) or mass.get("value_g", 0) <= 0:
         errors.append("physical.mass.value_g: expected a positive number")
-    elif mass.get("source_id") not in source_ids:
+    elif _key(mass.get("source_id")) not in source_ids:
         errors.append("physical.mass.source_id: unknown source")
     material = physical.get("material")
     if not isinstance(material, dict) or not _text(material.get("family")) or not _text(material.get("process")):
         errors.append("physical.material: family and process are required")
-    elif material.get("source_id") not in source_ids:
+    elif _key(material.get("source_id")) not in source_ids:
         errors.append("physical.material.source_id: unknown source")
 
     geometry = record.get("geometry")
@@ -225,7 +242,7 @@ def validate_component(record: Any, *, sources: dict[str, Any] | None = None) ->
         errors.append("geometry.master_file: expected a string")
     else:
         _file(master_file, "geometry.master_file", errors)
-    if geometry.get("representation") not in {"interface_proxy", "envelope", "detailed_solid", "scan"}:
+    if _key(geometry.get("representation")) not in {"interface_proxy", "envelope", "detailed_solid", "scan"}:
         errors.append("geometry.representation: unknown")
     if not isinstance(geometry.get("limitations"), list) or not geometry.get("limitations"):
         errors.append("geometry.limitations: expected at least one limitation")
@@ -247,7 +264,7 @@ def _validate_relations(
     known_components: dict[str, dict],
     source_ids: set[str],
     measurements: dict[str, dict[str, dict]],
-    twins: dict[str, set[str]],
+    twins: dict[str, dict[str, dict]],
 ) -> list[str]:
     """Check sourced fastening relations against the records they cite."""
     if not isinstance(relations, list):
@@ -276,7 +293,7 @@ def _validate_relations(
             errors.append(f"{label}.source_ids: expected at least one source")
             cited = []
         for source_id in cited:
-            if source_id not in source_ids:
+            if _key(source_id) not in source_ids:
                 errors.append(f"{label}.source_ids: {source_id} is not a relationship source")
 
         def _cited(field: str, source_id: Any) -> None:
@@ -292,12 +309,19 @@ def _validate_relations(
         if not isinstance(members, list) or not members:
             errors.append(f"{label}.instance_ids: expected at least one instance")
             members = []
+        listed: set[str] = set()
         for member in members:
-            instance = instances.get(member)
+            instance = instances.get(_key(member))
             if instance is None:
                 errors.append(f"{label}.instance_ids: unknown instance {member}")
-            elif instance.get("component_id") in known_components:
-                components.append(known_components[instance["component_id"]])
+                continue
+            if member in listed:
+                errors.append(f"{label}.instance_ids: duplicate instance {member}")
+                continue
+            listed.add(member)
+            component = known_components.get(_key(instance.get("component_id")))
+            if component is not None:
+                components.append(component)
 
         counterpart = relation.get("counterpart")
         if not isinstance(counterpart, dict):
@@ -305,7 +329,7 @@ def _validate_relations(
         else:
             kind, ref = counterpart.get("kind"), counterpart.get("ref")
             if kind == "component":
-                if ref not in known_components:
+                if _key(ref) not in known_components:
                     errors.append(f"{label}.counterpart.ref: unknown component")
             elif kind == "named_interface":
                 if not isinstance(ref, str) or not NAMED_INTERFACE.fullmatch(ref):
@@ -317,12 +341,27 @@ def _validate_relations(
                 errors.append(f"{label}.counterpart.twin_interfaces: expected an array")
                 links = []
             for link in links:
-                if not isinstance(link, dict) or link.get("twin_id") not in twins:
+                twin_id = _key(link.get("twin_id")) if isinstance(link, dict) else None
+                if twin_id not in twins:
                     errors.append(f"{label}.counterpart.twin_interfaces: unknown twin record")
-                elif link.get("interface_id") not in twins[link["twin_id"]]:
+                    continue
+                interface_id = link.get("interface_id")
+                interface = twins[twin_id].get(_key(interface_id))
+                if interface is None:
+                    errors.append(f"{label}.counterpart.twin_interfaces: {interface_id} is not an interface of {twin_id}")
+                    continue
+                # A mounting relation is a fastening: the linked interface must be one, and it must
+                # involve the geometry of every member, which carries its axle and size.
+                if interface.get("kind") != "fastener":
                     errors.append(
-                        f"{label}.counterpart.twin_interfaces: {link.get('interface_id')} is not an interface of {link['twin_id']}"
+                        f"{label}.counterpart.twin_interfaces: {interface_id} is a {interface.get('kind')} interface, not a fastener interface"
                     )
+                for component in components:
+                    derived = (component.get("geometry") or {}).get("derived_files") or []
+                    if not {item for item in derived if isinstance(item, str)} & interface["geometry_files"]:
+                        errors.append(
+                            f"{label}.counterpart.twin_interfaces: {interface_id} does not involve the geometry of {component.get('component_id')}"
+                        )
 
         fastener = relation.get("fastener")
         thread = None
@@ -347,9 +386,10 @@ def _validate_relations(
             elif not isinstance(count, int) or isinstance(count, bool) or count < 1:
                 errors.append(f"{label}.fastener.count_per_unit: expected null or a positive integer")
             elif not _text(parameter_id):
-                errors.append(f"{label}.fastener.count_parameter_id: a count must name the component parameter that sources it")
+                errors.append(f"{label}.fastener.count_parameter_id: a count must name the component parameter it is inferred from")
             else:
-                # The count is not typed here: it must equal a sourced count parameter of every member.
+                # The count is not typed here: it is inferred one fastener per hole, so it must equal a
+                # sourced count parameter of every member.
                 for component in components:
                     parameters = component.get("physical", {}).get("size_parameters", [])
                     match = [item for item in parameters if isinstance(item, dict) and item.get("parameter_id") == parameter_id]
@@ -378,19 +418,22 @@ def _validate_relations(
                 for source_id in corroborated:
                     _cited("tightening_torque.corroborated_by", source_id)
                 references = torque.get("measurement_refs")
-                if not isinstance(references, list):
-                    errors.append(f"{label}.tightening_torque.measurement_refs: expected an array")
+                if not isinstance(references, list) or not references:
+                    # A typed torque is admitted only as a copy of a cited measurement value.
+                    errors.append(
+                        f"{label}.tightening_torque.measurement_refs: a torque must cite at least one measurement value"
+                    )
                     references = []
                 for position, reference in enumerate(references):
                     ref_label = f"{label}.tightening_torque.measurement_refs[{position}]"
                     if not isinstance(reference, dict):
                         errors.append(f"{ref_label}: expected an object")
                         continue
-                    values = measurements.get(reference.get("measurement_id"))
+                    values = measurements.get(_key(reference.get("measurement_id")))
                     if values is None:
                         errors.append(f"{ref_label}.measurement_id: unknown measurement record")
                         continue
-                    entry = values.get(reference.get("value_id"))
+                    entry = values.get(_key(reference.get("value_id")))
                     if entry is None:
                         errors.append(f"{ref_label}.value_id: not in {reference.get('measurement_id')}")
                         continue
@@ -399,7 +442,7 @@ def _validate_relations(
                         errors.append(f"{ref_label}: the cited value is not a torque specification")
                     if entry.get("unit") != torque.get("unit") or not numbers or numbers[0] != value:
                         errors.append(f"{ref_label}: the cited value does not state {value} {torque.get('unit')}")
-                    if entry.get("extraction_status") not in ADMISSIBLE_EXTRACTION:
+                    if _key(entry.get("extraction_status")) not in ADMISSIBLE_EXTRACTION:
                         errors.append(f"{ref_label}: extraction status {entry.get('extraction_status')} is not admissible")
                     if entry.get("source_id") != torque.get("source_id"):
                         errors.append(f"{ref_label}: the cited value belongs to another source")
@@ -409,13 +452,36 @@ def _validate_relations(
     return errors
 
 
+def _component_source_errors(
+    relationship_sources: list, instances: dict[str, dict], known_components: dict[str, dict]
+) -> list[str]:
+    """A record-local source id (not SRC-) that a member component also defines must name the same URL."""
+    component_urls: dict[str, dict[str, Any]] = {}
+    for instance in instances.values():
+        component = known_components.get(_key(instance.get("component_id")))
+        if component is None:
+            continue
+        for source in component.get("sources") or []:
+            if isinstance(source, dict) and isinstance(source.get("source_id"), str):
+                component_urls.setdefault(source["source_id"], {})[component.get("component_id")] = source.get("url")
+    errors: list[str] = []
+    for index, source in enumerate(relationship_sources):
+        source_id = source.get("source_id") if isinstance(source, dict) else None
+        if not isinstance(source_id, str) or source_id.startswith(REGISTRY_PREFIX):
+            continue
+        for component_id, url in sorted(component_urls.get(source_id, {}).items()):
+            if url != source.get("url"):
+                errors.append(f"relationship_sources[{index}].source_id: URL differs from the {source_id} source of {component_id}")
+    return errors
+
+
 def validate_assembly(
     record: Any,
     known_components: dict[str, dict],
     *,
     sources: dict[str, Any] | None = None,
     measurements: dict[str, dict[str, dict]] | None = None,
-    twins: dict[str, set[str]] | None = None,
+    twins: dict[str, dict[str, dict]] | None = None,
 ) -> list[str]:
     if not isinstance(record, dict):
         return ["root: expected an object"]
@@ -433,12 +499,16 @@ def validate_assembly(
     if not isinstance(identifier, str) or not ASSEMBLY_ID.fullmatch(identifier):
         errors.append("assembly_id: invalid")
     status = record.get("status")
-    if status not in {"logical", "positioned", "interface_checked"}:
+    if _key(status) not in {"logical", "positioned", "interface_checked"}:
         errors.append("status: unknown")
     relationship_sources = record.get("relationship_sources")
     if not isinstance(relationship_sources, list):
         relationship_sources = []
-    source_ids = {source.get("source_id") for source in relationship_sources if isinstance(source, dict)}
+    source_ids = {
+        source["source_id"]
+        for source in relationship_sources
+        if isinstance(source, dict) and isinstance(source.get("source_id"), str)
+    }
     if not relationship_sources:
         errors.append("relationship_sources: expected at least one source")
     for index, source in enumerate(relationship_sources):
@@ -464,7 +534,7 @@ def validate_assembly(
             errors.append(f"{label}.instance_id: duplicate")
         else:
             by_id[instance_id] = instance
-        component = known_components.get(instance.get("component_id"))
+        component = known_components.get(_key(instance.get("component_id")))
         if component is None:
             errors.append(f"{label}.component_id: unknown component")
         else:
@@ -473,12 +543,12 @@ def validate_assembly(
                 errors.append(f"{label}.quantity: expected a positive integer")
             else:
                 calculated_mass += component["physical"]["mass"]["value_g"] * quantity
-        if instance.get("relationship_source_id") not in source_ids:
+        if _key(instance.get("relationship_source_id")) not in source_ids:
             errors.append(f"{label}.relationship_source_id: unknown source")
         transform = instance.get("transform")
         if transform is not None and (not isinstance(transform, list) or len(transform) != 16):
             errors.append(f"{label}.transform: expected null or 16 values")
-        if status in {"positioned", "interface_checked"} and transform is None:
+        if _key(status) in {"positioned", "interface_checked"} and transform is None:
             errors.append(f"{label}.transform: required for {status}")
     summary = record.get("physical_summary")
     if not isinstance(summary, dict) or not isinstance(summary.get("mass_g"), (int, float)):
@@ -489,6 +559,7 @@ def validate_assembly(
         )
     if isinstance(summary, dict) and summary.get("basis") != "sum_of_component_records":
         errors.append("physical_summary.basis: expected sum_of_component_records")
+    errors.extend(_component_source_errors(relationship_sources, by_id, known_components))
     if "mounting_relations" in record:
         errors.extend(
             _validate_relations(
@@ -512,6 +583,9 @@ def main() -> int:
         except (OSError, json.JSONDecodeError) as exc:
             errors = [f"cannot load JSON: {exc}"]
             record = {}
+        except (TypeError, AttributeError, KeyError) as exc:
+            # A malformed value must be reported, never crash the run.
+            errors = [f"cannot validate: {type(exc).__name__}: {exc}"]
         if errors:
             failed = True
             for error in errors:
@@ -526,6 +600,8 @@ def main() -> int:
             errors = validate_assembly(record, known)
         except (OSError, json.JSONDecodeError) as exc:
             errors = [f"cannot load JSON: {exc}"]
+        except (TypeError, AttributeError, KeyError) as exc:
+            errors = [f"cannot validate: {type(exc).__name__}: {exc}"]
         if errors:
             failed = True
             for error in errors:
