@@ -28,6 +28,11 @@ module's command line, which runs their main() inside installed():
     python3 shell_s6.py torsion_monocoque [--quick]
     python3 shell_s6.py bending [--members | --pruned]
 
+--up-to N, anywhere after the study's name, keeps only the meshes of up
+to N sections (of bending.DENSITIES and member_study.DENSITIES, both
+coarsest first, so what is left is always their first meshes): the
+420-section S6 monocoque does not fit a 6 GB container.
+
 Running torsion.py, torsion_monocoque.py or bending.py directly gives
 the superseded S3 values.
 """
@@ -259,6 +264,24 @@ def installed():
         tr.run, tr.load_shell, tm.solve_repeated.__defaults__, bd.solve_repeated.__defaults__ = saved
 
 
+@contextlib.contextmanager
+def meshes_up_to(n):
+    """bending.DENSITIES and member_study.DENSITIES cut to the meshes of up
+    to n sections (None: all), restored on exit."""
+    import bending as bd
+    import member_study as ms
+    saved = (bd.DENSITIES, ms.DENSITIES)
+    try:
+        if n is not None:
+            bd.DENSITIES = [d for d in bd.DENSITIES if d[0] <= n]
+            ms.DENSITIES = [d for d in ms.DENSITIES if d[0] <= n]
+            if not bd.DENSITIES or not ms.DENSITIES:
+                sys.exit(f"no mesh of up to {n} sections")
+        yield
+    finally:
+        bd.DENSITIES, ms.DENSITIES = saved
+
+
 def torsion_main():
     """torsion.main() in S6: the open 0.8 mm steel shell, torsion-snapshot.npz."""
     t = float(sys.argv[1]) if len(sys.argv) > 1 else 0.8
@@ -278,7 +301,12 @@ def main():
         sys.exit(f"usage: shell_s6.py {{{','.join(studies)}}} [arguments of that script]")
     name = sys.argv.pop(1)
     sys.argv[0] = f"{name}.py"
-    with installed():
+    up_to = None
+    if "--up-to" in sys.argv:
+        i = sys.argv.index("--up-to")
+        up_to = int(sys.argv[i + 1])
+        del sys.argv[i:i + 2]
+    with installed(), meshes_up_to(up_to):
         if name == "torsion":
             torsion_main()
         elif name == "torsion_monocoque":

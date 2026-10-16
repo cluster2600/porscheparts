@@ -27,10 +27,11 @@ crimping, N = G_c h^2 / c, and face wrinkling, 0.5 (E_f E_c G_c)^(1/3).
 Core: ASSUMED PVC foam of the 48 kg/m3 class (E 50 MPa, nu 0.32). The
 face stress is taken two ways, both the 99th percentile over the
 sandwich: the nodal von Mises of OUTPUT=2D (mid-surface, no bending
-stress: the faces' membrane load, which the formulas assume, but low
-where the faces-only plate bends), and the largest principal stress
-magnitude at the integration points (with that plate bending: high).
-Neither is a CFRP failure criterion.
+stress, but averaged at each node with the walls that share it, which
+may be more loaded), and the largest principal stress magnitude at the
+integration points of the sandwich elements themselves (with the
+faces-only plate's bending). The smaller margin of the two is the one to
+read. Neither is a CFRP failure criterion.
 
 Every buckling solve is repeated and the factors must agree within
 0.01%; the static base state CalculiX writes before the modes is left
@@ -42,7 +43,8 @@ three times), bending 40 kN (three times 1,350 kg). Linear buckling of a
 perfect shell over-estimates real buckling of thin composite shells, often
 by a factor of two or more, so a factor near one is a failure, not a pass.
 
-    python3 buckling.py      # cadsim image, two meshes, one SPOOLES thread
+    python3 buckling.py          # cadsim image, both meshes, one SPOOLES thread
+    python3 buckling.py 300      # only the meshes with these section counts
 """
 import json
 import pathlib
@@ -165,7 +167,10 @@ def main():
                                "CFRP failure criterion"),
            "repeat_check": "every *BUCKLE solved twice, factors agree within 0.01%; static base state excluded",
            "meshes": [], "cases": {}}
-    for n, res in ms.DENSITIES:
+    wanted = [int(a) for a in sys.argv[1:]] or [n for n, _ in ms.DENSITIES]
+    if not set(wanted) <= {n for n, _ in ms.DENSITIES}:
+        sys.exit(f"sections must be among {[n for n, _ in ms.DENSITIES]}")
+    for n, res in [(n, r) for n, r in ms.DENSITIES if n in wanted]:
         keep = {}
         s, p, tri, pts, all_tri, kind, bands = mesh(n, res, rep, profiles)
         fam = ls.families(p, tri, kind, bands)

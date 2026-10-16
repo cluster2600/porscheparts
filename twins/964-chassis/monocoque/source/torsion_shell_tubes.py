@@ -31,7 +31,10 @@ sections and full shear transfer.
 
 Same load case, two meshes (the 420-section one does not fit SPOOLES in
 12 GB in S6), every K the value two solves agree on. Values
-of this model, not of a vehicle.
+of this model, not of a vehicle. In a 6 GB container even the 210-section
+S6 solve is killed by the memory limit (2026-10-16): the committed
+../derived/torsion-shell-tubes.json is still the S3 run of 2026-10-11,
+superseded and not yet redone.
 
     python3 torsion_shell_tubes.py      # cadsim image, shapely from the PYLIB
 """
@@ -230,17 +233,22 @@ def main():
     P, geo = trg.geometry()
     stations = np.arange(-600, 2451, 50.0)
     rows, meshes = [], []
-    for n, res in DENSITIES:
-        row, mesh, extra, model = solve_density(n, res, P, geo, stations, (n, res) == DENSITIES[-1])
+    for n, res in DENSITIES:            # written after each mesh: a run killed on the next keeps what it has
+        row, mesh, extra, model = solve_density(n, res, P, geo, stations, True)
         rows.append(row)
         meshes.append(mesh)
+        write(rows, meshes, extra, model, stations)
+
+
+def write(rows, meshes, extra, model, stations):
+    """JSON of the meshes solved so far, the last one's twist and model."""
     doc = {
         "model": "closed-ring PicoGK study (../picogk-rings/) with its tubes meshed as shells; torsion load case of torsion.py",
         "classification": "values of this model under this load, not of a vehicle; prohibited_pending_engineering",
         "tubes": f"{s6.ELEMENT} shells of each tube's wall, stations at the skin's section spacing, nodes around in proportion; "
                  "bonded along the line of tangency to the skin triangle under it (*EQUATION, translations); "
                  f"end rings tied to another tube's nearest node within {JOINT_MM:.0f} mm",
-        "check": "cantilever plate with a tube tied along its line of tangency: converges to 9% softer than composite beam theory",
+        "check": "in S3, before 2026-10-12, not redone in S6: cantilever plate with a tube tied along its line of tangency converges to 9% softer than composite beam theory",
         "meshes": meshes,
         "twist_stations_d_mm": stations.tolist(),
         "cases": {name: {"mass_kg": rows[-1][name][1], "K": [r[name][0] for r in rows], "K_repeats": [r[name][2] for r in rows],

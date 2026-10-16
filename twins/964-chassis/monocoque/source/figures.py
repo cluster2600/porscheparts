@@ -331,6 +331,8 @@ def architectures(pv):
     tg = np.load(DERIVED / "torsion-rings-model.npz")
     shells_json = DERIVED / "torsion-shell-tubes.json"
     shell = json.loads(shells_json.read_text()) if shells_json.exists() else None
+    if shell and not shell["tubes"].startswith("S6"):   # a superseded S3 run is not ranked against S6 values
+        shell = None
     shell_tubes = np.load(DERIVED / "torsion-shell-tubes-model.npz") if shell else None
     p = pv.Plotter(off_screen=True, shape=(1, 2), window_size=(2600, 900))
     for i, (t, title) in enumerate(((tb, "picogk/: closed sections formed by the skin"),

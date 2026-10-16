@@ -8,16 +8,22 @@ bending both matter, as on a car body.
 
 The roof is triangulated like the car shell (each grid cell split in two)
 and solved as S3 and as S6 (mid-side nodes from shell_s6.to_s6, moved
-onto the cylinder), at 8x8, 16x16 and 32x32, on one SPOOLES thread. CalculiX expands S3 into linear wedges, which lock in bending; S6
-does not. Result: ../derived/element-check.json.
+onto the cylinder), at 8x8, 16x16 and 32x32, on one SPOOLES thread.
+CalculiX expands S3 into linear wedges, which lock in bending; S6 does not.
+
+The buckling path of shell_s6.run (*BUCKLE, base state left out) is
+checked on a simply supported square plate in uniaxial compression,
+a 100 mm, t 1 mm, E 70,000 MPa, Poisson 0.3, 16x16 S6: the first two
+factors against N_cr = k pi^2 D / a^2 with k = 4 and 6.25 (one and two
+half-waves). Result: ../derived/element-check.json.
 
     python3 element_check.py
 """
 import json
-import pathlib
-import sys
 import os
+import pathlib
 import subprocess
+import sys
 import tempfile
 
 import numpy as np
@@ -29,6 +35,7 @@ import shell_s6 as s6  # noqa: E402
 OUT = HERE.parent / "derived" / "element-check.json"
 R, L, T, E, WEIGHT, HALF_DEG, REFERENCE = 25.0, 50.0, 0.25, 4.32e8, 90.0, 40.0, 0.3024
 GRIDS = (8, 16, 32)
+PLATE_A, PLATE_T, PLATE_E, PLATE_NU, PLATE_N, PLATE_FORCE = 100.0, 1.0, 70000.0, 0.3, 16, 1000.0
 
 
 def roof(n):
@@ -72,12 +79,46 @@ def deflection(n, shell):
     sys.exit("target node not in the results")
 
 
+def plate_buckling():
+    """First two buckling loads (N/mm) of the simply supported plate, S6,
+    against plate theory, and whether a second solve repeats them."""
+    a, n = PLATE_A, PLATE_N
+    xs = np.linspace(0, a, n + 1)
+    X, Y = np.meshgrid(xs, xs, indexing="ij")
+    p = np.c_[X.ravel(), Y.ravel(), np.zeros(X.size)]
+    idx = lambda i, j: i * (n + 1) + j                      # noqa: E731
+    tri = np.array([t for i in range(n) for j in range(n)
+                    for t in ((idx(i, j), idx(i + 1, j), idx(i + 1, j + 1)), (idx(i, j), idx(i + 1, j + 1), idx(i, j + 1)))])
+    edge = np.where(np.isclose(p[:, 0], 0) | np.isclose(p[:, 0], a) | np.isclose(p[:, 1], 0) | np.isclose(p[:, 1], a))[0]
+    q6, _ = s6.to_s6(p, tri)                                 # the loaded edge's corner and mid-side nodes
+    right = np.where(np.isclose(q6[:, 0], a))[0]
+    right = right[np.argsort(q6[right, 1])]
+    w, h = np.zeros(len(right)), a / n
+    for k in range(n):                                       # consistent loads of a quadratic edge: 1/6, 4/6, 1/6
+        w[2 * k:2 * k + 3] += np.array([1, 4, 1]) * h / 6
+    fixed = [(edge, 3, 3), (np.where(np.isclose(p[:, 0], 0))[0], 1, 1), (np.array([idx(0, 0)]), 2, 2)]
+    args = (p, tri, [(np.ones(len(tri), bool), PLATE_T, PLATE_E, PLATE_NU)], fixed,
+            [(right, 1, -PLATE_FORCE * w / a)])
+    f1, _ = s6.run(*args, buckle=4)
+    f2, _ = s6.run(*args, buckle=4)
+    d = PLATE_E * PLATE_T ** 3 / (12 * (1 - PLATE_NU ** 2))
+    theory = [k * np.pi ** 2 * d / a ** 2 for k in (4.0, 6.25)]
+    return {"benchmark": "simply supported square plate, uniaxial compression, S6 16x16",
+            "a_mm": a, "t_mm": PLATE_T, "E_MPa": PLATE_E, "nu": PLATE_NU,
+            "theory_N_per_mm": [round(x, 3) for x in theory],
+            "S6_N_per_mm": [round(float(x) * PLATE_FORCE / a, 3) for x in f1[:2]],
+            "ratio_to_theory": [round(float(x) * PLATE_FORCE / a / y, 4) for x, y in zip(f1[:2], theory)],
+            "repeats": bool(np.allclose(f1, f2, rtol=1e-4))}
+
+
 def main():
     out = {"benchmark": "Scordelis-Lo roof (MacNeal and Harder 1985)", "reference_deflection": REFERENCE,
            "grids": list(GRIDS), "ratio_to_reference": {}}
     for shell in ("S3", "S6"):
         out["ratio_to_reference"][shell] = [round(deflection(n, shell) / REFERENCE, 3) for n in GRIDS]
         print(shell, out["ratio_to_reference"][shell])
+    out["plate_buckling"] = plate_buckling()
+    print("plate buckling, S6 / theory:", out["plate_buckling"]["ratio_to_theory"])
     OUT.write_text(json.dumps(out, indent=1) + "\n")
     print(f"wrote {OUT.name}")
 
