@@ -463,3 +463,11 @@ sa frontière. Le témoin de non-régression refusait les quatre cas attendus
 seulement après cette correction ; les 17 tests du guide et les 8 tests
 d'assemblage passent. Cette exigence ne remplace pas l'exécution du futur
 audit complet des supports.
+
+La [nouvelle vue de la région droite corrigée](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/right-supports.html)
+provient du passage `real-support-source-008-full-004` : 112 898 faces,
+897 groupes, 20 composantes 3D et zéro composante sans les contacts requis.
+La durée est de 444,36 s ; les entrées, sources et runtime restent inchangés.
+Le rendu utilise son checkpoint vérifié et montre aussi les triangles d'une
+grille dans leur plan réel. Cette réussite du graphe d'une région reste
+distincte des six admissions et du contrôle de toutes les couches.
