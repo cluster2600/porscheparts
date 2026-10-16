@@ -19,6 +19,9 @@ its necessary quality, topology, intersection and bounded-distance checks;
 volume-mesh quality and solved head fields remain separate gates.
 The [new candidate review download](derived/engineering/analysis-quality-review-delivery/README.md)
 contains exact BIN and standard PLY files, with English unit/import guidance.
+The [later raw volume-mesh review](derived/engineering/rejected-volume-seed-review-delivery/README.md)
+includes its exact MSH and explicit quality rejection; it supplies no head
+thermal, strength or LPBF result.
 
 The [replica family](REPLICA_FAMILY.md) defines the reference, six displacement
 targets, calculator and missing measurements. [962 C metrology](REPLICA_METROLOGY.md)
