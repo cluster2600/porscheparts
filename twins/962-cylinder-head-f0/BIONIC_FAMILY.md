@@ -149,7 +149,7 @@ compilées, le nettoyage délégué et les références des bibliothèques.
 
 La [PR brouillon 261](https://github.com/cluster2600/porscheparts/pull/261)
 regroupe les sources éditables, les recherches, les rendus et les rapports.
-La [livraison d'étude en brouillon](https://github.com/cluster2600/porscheparts/releases/tag/untagged-ee23b4a96ef9faf36012)
+La [livraison d'étude en brouillon](https://github.com/cluster2600/porscheparts/releases/tag/untagged-3dc4679a17c16edf0fb4)
 contient quatre archives, soit douze STL inspectés, quatre VDB et seize rendus,
 avec configurations, rapports et empreintes. L'accès à cette livraison demande
 une connexion GitHub avec les droits sur les brouillons du dépôt.
