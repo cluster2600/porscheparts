@@ -446,3 +446,12 @@ ancrages requis. Le détail rouge provient du graphe exact et des triangles rée
 sans ajout de matière au rendu. Les cinq images ont été relues visuellement ;
 le [reçu de sources](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/figures.json)
 conserve leurs empreintes. Le test ciblé de liaison du graphe aux faces passe.
+
+La [planche mécanique complémentaire](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/mechanics.html)
+montre les champs réels du cas combiné à appuis rigides, maillage 7 mm :
+617,716 MPa au point d'intégration maximal et 2,796598 mm de déplacement.
+La déformée est amplifiée dix fois ; les couleurs indiquent le déplacement
+réel. Les fichiers PNG et SVG sont des copies identiques des sorties de
+`run-001`, liées par le reçu de figure aux cinq entrées du calcul et par
+le reçu de workflow à l'étape de rendu exécutée. Leur provenance et leur
+commande de reproduction accompagnent la planche.
