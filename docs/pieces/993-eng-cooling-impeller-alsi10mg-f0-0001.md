@@ -97,7 +97,7 @@ Catalogue record: [`catalog/parts/993-eng-cooling-impeller-alsi10mg-f0-0001.json
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | F0 concept archived as a design reference. The separate Turbo reconstruction is documented in twins/993-engine-cooling-fan-system-f0/REFERENCE_REBUILD.md; F0 results must not be transferred to the new rotor.<br>The 300 x 300 x 150 mm is a commercial envelope, not an impeller drawing.<br>The 0.94/0.948 kg masses are commercial claims with no protocol and no weighing boundary.<br>The aluminum material has no grade, no process and no certificate; AlSi10Mg remains a candidate.<br>The 280 mm diameter, the 80/30 mm hub, the twelve blades and the ring are synthetic.<br>The previous F0 housing has a synthetic 252 mm throat: the computed radial clearance is -14 mm and the integration fails.<br>The 10,000/12,000 rpm cases, flow, pressure and temperatures are regressions with no 993 authority.<br>The centrifugal and modal screens pass, but the thermal screen fails; HCF, balance, flow and containment remain non-computable.<br>The STEP proves only a re-readable BREP; no manufacture, rotation, installation or start-up is authorized. |
 
 **Evidence**
 

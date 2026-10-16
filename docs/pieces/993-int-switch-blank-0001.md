@@ -101,6 +101,9 @@ Catalogue record: [`catalog/parts/993-int-switch-blank-0001.json`](../../catalog
 
 - [Porsche Classic Genuine Parts Catalogue - 911 (993)](https://www.porsche.com/australia/accessoriesandservice/classic/originalpartscatalogue/)
 - [9xxteile - Porsche parts diagrams (PET exploded views)](https://www.9xxteile.com/en/pet/)
+- [Rennlist - declared size of a 993 dashboard panel opening (window switch measured)](https://rennlist.com/forums/993-forum/1202129-dashboard-lighting-question.html)
+- [Rennlist - declared console switch opening and switch blank sizes, 993](https://rennlist.com/forums/993-forum/750484-console-switch-hole-size.html)
+- [partworks - OEM 993 Schalterblende listing, reference 993.613.523.00](https://partworks.de/Abdeckblende-Schalter-fuer-PORSCHE-993-9936135230001C)
 
 ## Validation
 
@@ -109,7 +112,7 @@ Catalogue record: [`catalog/parts/993-int-switch-blank-0001.json`](../../catalog
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | No measurement made: all dimensions are absent, not estimated.<br>Porsche part number unsourced: no repository source gives it with a PET plate and position. Candidate 993 613 523 00 (SRC-PARTWORKS-993-SWITCH-BLANK-OEM, retailer listing, level B, switch panel and center console context) stays out of porsche_part_numbers until a PET plate confirms it for this location.<br>Declared opening contradiction, unresolved (two level-C forum posts, no instrument): the concept F0 and the fit-test kit use 19 x 31 mm, which SRC-RENNLIST-993-DASHBOARD-LIGHTING-DIMENSIONS gives for the passage under the covering; the same source gives about 17 x 28 mm for the faceplate opening of a switch housing, and SRC-RENNLIST-993-CONSOLE-SWITCH-HOLE-DIMENSIONS gives 17.0 x 27.9 mm for the console opening and 16.2 x 27.4 mm for the blank. All three kit inserts (18.6 x 30.6 to 19.4 x 31.4 mm) are larger than a 17.0 x 27.9 mm opening. Transcribed in the two MEAS-DECLARED-993-INT-SWITCH-BLANK-0001 records; see decision 0013.<br>Location not established: this record says dashboard, the console source concerns the center console, and the lighting source a window switch measured to estimate a lamp opening above the ignition lock.<br>Variant and model year to be confirmed on the measured vehicle.<br>Resistance to interior temperature and UV not evaluated.<br>Evidence owner (decision 0013): documentary evidence, the maintainer (desk review of existing sources); physical capture, unassigned, awaits an external contributor. |
 
 **Evidence**
 

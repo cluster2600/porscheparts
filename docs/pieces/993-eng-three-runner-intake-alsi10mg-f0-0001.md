@@ -106,7 +106,7 @@ Catalogue record: [`catalog/parts/993-eng-three-runner-intake-alsi10mg-f0-0001.j
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | The 46 x 42 x 100 mm string is not defined by a drawing; its interpretation as diameters and height remains hypothetical.<br>The F0 spacings, offsets, flanges, thicknesses and absence of holes do not reproduce PMO or Porsche.<br>The 461.03 g per bank and 922.07 g per pair cannot be compared with any published commercial mass.<br>The flow at 6,800 rpm, the volumetric efficiency of 0.95 and the loss coefficient of 0.05 are synthetic.<br>The 1D calculation ignores pulsations, interactions, roughness, plenum, injection, cylinder head conduction, fatigue and backfire.<br>The STEP proves only a computable BREP and must not be manufactured for an engine. |
 
 **Evidence**
 

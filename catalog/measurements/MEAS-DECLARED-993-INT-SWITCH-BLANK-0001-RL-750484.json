@@ -1,0 +1,93 @@
+{
+  "$comment": "Declared values transcribed from a community source record, not a physical measurement. As a documented_specification this record has no instruments and no readings, so it cannot feed parts/993-int-switch-blank-0001/source/switch_blank.py or twins/993-cabin-dashboard-switch-0001/source/check_fit.py, which build only from readings. pdf_page is null and plate carries the locator in the source (the thread number), because the validator requires one of the two. The MNL- prefix of value_id is the validator's pattern for every declared value, whatever the source type. Desk test of docs/CAPTURE_PROTOCOL.md on pilot 1, decision 0013.",
+  "schema_version": "1.0.0",
+  "measurement_id": "MEAS-DECLARED-993-INT-SWITCH-BLANK-0001-RL-750484",
+  "record_kind": "documented_specification",
+  "source_id": "SRC-RENNLIST-993-CONSOLE-SWITCH-HOLE-DIMENSIONS",
+  "subject": {
+    "part_id": "993-INT-SWITCH-BLANK-0001",
+    "part_reference": "not established; candidate 993 613 523 00 unconfirmed, see the part record",
+    "variant": "993_coupe_1997_example_as_declared",
+    "description": "Console switch opening and switch blank sizes declared by an owner in a forum thread; no instrument, method, tolerance or repeat stated."
+  },
+  "session": {
+    "performed_on": "2026-10-15",
+    "operator_role": "maintainer, desk review of existing sources",
+    "ambient_temperature_c": null
+  },
+  "datum": {
+    "origin": "None declared: the source states no origin, reference face or measuring point",
+    "axes": "Not applicable: width x height of a rectangular opening as declared; orientation on the car not recorded in the source record",
+    "reference_image": null
+  },
+  "instruments": [],
+  "readings": [],
+  "declared_values": [
+    {
+      "value_id": "MNL-SWB-RL750484-01",
+      "record_type": "technical_data",
+      "source_collection": "community_forum_post",
+      "description": "Console switch opening, width x height, as declared",
+      "pdf_page": null,
+      "plate": "Rennlist thread 750484; post not re-read, the page is blocked to automated reading",
+      "line": null,
+      "value_text": "about 0.67 x 1.10 in (about 17.0 x 27.9 mm)",
+      "unit": "in",
+      "numeric_values": [0.67, 1.1],
+      "source_id": "SRC-RENNLIST-993-CONSOLE-SWITCH-HOLE-DIMENSIONS",
+      "extraction_status": "structured_derived",
+      "details": {
+        "feature": "rectangular opening of a center console switch",
+        "converted_mm": [17.0, 27.9],
+        "conversion": "1 in = 25.4 mm, rounded to 0.1 mm, as given in the source record",
+        "instrument": "not stated",
+        "tolerance": "not stated",
+        "repeats": "not stated",
+        "twin_dimension_candidates": ["H01", "H02"],
+        "interpretation": "Read as the host opening of TWIN-993-CABIN-DASH-SWITCH-0001 (H01 width, H02 height). This mapping is the repository's reading, not a statement of the source.",
+        "transcribed_from": "catalog/sources/src-rennlist-993-console-switch-hole-dimensions.json, notes",
+        "source_record_wording": "pour l'ouverture rectangulaire d'un commutateur de console environ 0,67 x 1,10 pouce, soit environ 17,0 x 27,9 mm (for the rectangular opening of a console switch about 0.67 x 1.10 in, i.e. about 17.0 x 27.9 mm)",
+        "checked_against_original_post": false
+      }
+    },
+    {
+      "value_id": "MNL-SWB-RL750484-02",
+      "record_type": "technical_data",
+      "source_collection": "community_forum_post",
+      "description": "Switch blank, width x height, as declared",
+      "pdf_page": null,
+      "plate": "Rennlist thread 750484; post not re-read, the page is blocked to automated reading",
+      "line": null,
+      "value_text": "about 0.637 x 1.077 in (about 16.2 x 27.4 mm)",
+      "unit": "in",
+      "numeric_values": [0.637, 1.077],
+      "source_id": "SRC-RENNLIST-993-CONSOLE-SWITCH-HOLE-DIMENSIONS",
+      "extraction_status": "structured_derived",
+      "details": {
+        "feature": "switch blank; which section of the blank was measured (visible face or body through the opening) is not stated",
+        "converted_mm": [16.2, 27.4],
+        "conversion": "1 in = 25.4 mm, rounded to 0.1 mm, as given in the source record",
+        "instrument": "not stated",
+        "tolerance": "not stated",
+        "repeats": "not stated",
+        "twin_dimension_candidates": ["D08", "D09"],
+        "interpretation": "Smaller than the declared opening, so read as the body that passes through the opening (D08 width, D09 height), not as the visible face. This mapping is the repository's reading, not a statement of the source.",
+        "transcribed_from": "catalog/sources/src-rennlist-993-console-switch-hole-dimensions.json, notes",
+        "source_record_wording": "pour le commutateur vierge environ 0,637 x 1,077 pouce, soit environ 16,2 x 27,4 mm (for the blank switch about 0.637 x 1.077 in, i.e. about 16.2 x 27.4 mm)",
+        "checked_against_original_post": false
+      }
+    }
+  ],
+  "evidence": {
+    "level": "C",
+    "files": [
+      "catalog/sources/src-rennlist-993-console-switch-hole-dimensions.json"
+    ],
+    "contradictions": [
+      "The concept F0 (parts/993-int-switch-blank-0001/evidence/concept-f0.json) and the fit-test kit (parts/993-int-switch-blank-0001/print/kit.json) take 19 x 31 mm as the opening, from SRC-RENNLIST-993-DASHBOARD-LIGHTING-DIMENSIONS; this source gives 17.0 x 27.9 mm for the console opening. The smallest kit insert, 18.6 x 30.6 mm, is 1.6 mm wider and 2.7 mm taller than that opening.",
+      "Location: this source concerns a center console switch opening; the part record names a dashboard location. Whether both are the same opening is not established.",
+      "Agreement, not confirmation: SRC-RENNLIST-993-DASHBOARD-LIGHTING-DIMENSIONS gives about 17 x 28 mm for the faceplate opening of a switch housing, which agrees with 17.0 x 27.9 mm within rounding; both are level C with no instrument, and agreement does not raise the evidence level."
+    ]
+  },
+  "notes": "Desk transcription under the owner's no-buy, no-measure constraint (2026-09-14). These are declared values: they stay out of readings, do not change geometry.source_type, and cannot open the measured-input gate of the switch blank master. Values are kept as declared, in the source's unit, with the conversion given by the source record; nothing is averaged or adjusted. Re-read the thread when it becomes accessible and set checked_against_original_post accordingly."
+}
