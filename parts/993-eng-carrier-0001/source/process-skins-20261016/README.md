@@ -4,6 +4,28 @@ Cette branche conserve le moteur de couches de pièce `process-coverage-20261016
 
 Le magasin mixte à sept enveloppes est maintenant lisible et transportable. Les checkpoints de surfaces et leurs graphes restent distincts de l’admission globale : un graphe accepté peut encore conserver une matière native que le contrôle exact de bande refuse. Les nouvelles générations v2 vérifient aussi ce prédicat avant réemploi. Le tranchage complet et l’audit des expositions doivent porter sur leurs résultats effectivement admis.
 
+## Parcours courant
+
+La [recette v3](../../../../manufacturing/workflows/993-carrier-lpbf-v3.json)
+enchaîne 37 étapes avec 271 entrées épinglées. Sa
+[revue](cold-v3-recipe-evidence/assessment.json) porte sur les identités et les
+commandes ; les résultats de la campagne réelle restent séparés.
+Les CLI courantes sont `generate_prism_region_v5.py` et
+`generate_legacy_region_v5.py`, puis `build_cached_v4.py` avec les six contrôles
+de `admissions_v3.py`. Les arguments restent ceux des variantes détaillées
+ci-dessous.
+
+La [construction combinatoire](README-combinatorial.md) garde le domaine libre
+entier et ajoute uniquement des bandes de bord attestées. L’
+[assemblage incrémental exact](README-incremental.md) conserve les mêmes
+contours, décisions et reçus, en évitant les reconstructions complètes
+répétées. Le générateur et l’admission chargent cette version depuis des
+modules privés épinglés. Les tests et le benchmark de grande surface ne
+remplacent pas les admissions et audits des sept régions effectivement livrées.
+
+Les détails suivants conservent aussi les versions v1/v2 et leurs témoins
+historiques ; la recette ci-dessus désigne les variantes à utiliser.
+
 ## Environnement
 
 L’installateur versionné `../process-coverage-20261016/setup_pyslm.py` reconstruit un environnement isolé à partir des versions et du correctif épinglés. Les modules de ce dossier utilisent cet environnement sans modifier le code PySLM installé. Une réinstallation indépendante du même état a été exécutée dans `work/part-workflow/runtimes/pyslm-coverage-reproduced-012` ; le reçu `work/part-workflow/pyslm-reinstall-012-validation.json` compare les 37 versions et les 775 fichiers pertinents pour les couches de pièce.
