@@ -185,7 +185,10 @@ NumPy 2.2.6) passed: 4,011 tests, 226 skips, zero broken links in 1,097
 Markdown files. An earlier attempt the same day had one error: an F15 native
 preflight subprocess hit its 15 s timeout while other jobs loaded the host.
 That test only runs where a local F15 build exists; it passed alone (23 s)
-and is skipped on a clean `origin/main` checkout.
+and is skipped on a clean `origin/main` checkout. After `origin/main` was
+merged again on 16 October 2026 (merge `bb81d623`, which adds #260), the
+same Linux `make check` passed again: 4,011 tests, 226 skips, zero broken
+links in 1,099 Markdown files.
 
 ## Dependency provenance
 
