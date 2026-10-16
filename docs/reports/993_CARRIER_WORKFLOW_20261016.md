@@ -358,6 +358,16 @@ maillage, puis recalcule les incréments de travail externe et des ressorts.
 Les écarts de comparaison restent sous 10⁻⁷ N·mm / 10⁻¹² relatif. Elle conserve
 les deux identités STEP distinctes et le diagnostic ENER refusé.
 
+Le [préparateur d'un nouveau plan constitutif](../../scripts/rebind_carrier_constitutive_plan.py)
+permet aussi de repartir d'un export neuf du même problème discret : seuls
+l'identité STEP, l'en-tête de chemin du maillage et la date du plan changent.
+Le contenu du maillage après suppression du seul bloc `*HEADING`, le NPZ et le
+jeu de charges doivent rester identiques. La préparation native du jeu
+non linéaire a été exécutée et restitue le même fichier d'entrée bit à bit ;
+le [reçu](../../parts/993-eng-carrier-0001/source/design-20261016/constitutive-evidence/cold-start-input-equivalence-001.json)
+précise que le solveur n'a pas été relancé. Quatre tests contrôlent notamment
+la modification d'un élément du maillage malgré un NPZ inchangé.
+
 La réinstallation PySLM a été exécutée dans un environnement neuf : les
 **37 versions**, les **quatre fichiers corrigés** et les **775 sources et
 binaires du tranchage** correspondent au cache de pièce contrôlé.

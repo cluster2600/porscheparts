@@ -156,7 +156,7 @@ outils de développement déjà présents et un Python d'audit avec libigl 2.6.3
 python3 parts/993-eng-carrier-0001/source/native-cgal-20261016/setup.py \
   PREFIXE_CGAL_NEUF --audit-python PYTHON_LINUX_AUDIT
 
-python3 parts/993-eng-carrier-0001/source/native-cgal-distance-20261016-v2/setup.py \
+python3 parts/993-eng-carrier-0001/source/native-cgal-distance-20261016-v3/setup.py \
   PREFIXE_DISTANCE_NEUF --cgal-runtime PREFIXE_CGAL_NEUF
 ```
 
@@ -168,6 +168,9 @@ fidélité géométrique et identité des données doivent aussi passer. Le seco
 exécutable mesure les distances en arithmétique exacte, en conservant les
 triangles d'aire positive et en traitant explicitement les triangles
 collinéaires comme segments ou points.
+La version V3 cherche d'abord un témoin exact dans les triangles de filiation ;
+si ce témoin ne suffit pas, elle utilise l'arbre AABB exact. Elle ne remplace
+pas le contrôle par une distance flottante à une feuille très mince.
 
 ```sh
 python3 scripts/run_part_workflow.py run manufacturing/workflows/993-carrier.json \
