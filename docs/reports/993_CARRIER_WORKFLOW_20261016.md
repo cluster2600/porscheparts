@@ -455,3 +455,11 @@ réel. Les fichiers PNG et SVG sont des copies identiques des sorties de
 `run-001`, liées par le reçu de figure aux cinq entrées du calcul et par
 le reçu de workflow à l'étape de rendu exécutée. Leur provenance et leur
 commande de reproduction accompagnent la planche.
+
+Le contrôle de remise exige aussi `rational_part_contact_intersections=true`
+dans le reçu d'audit des supports et son sous-reçu de trajectoires. Un contact
+exact situé dans un trou ne doit pas devenir un ancrage après arrondi sur
+sa frontière. Le témoin de non-régression refusait les quatre cas attendus
+seulement après cette correction ; les 17 tests du guide et les 8 tests
+d'assemblage passent. Cette exigence ne remplace pas l'exécution du futur
+audit complet des supports.

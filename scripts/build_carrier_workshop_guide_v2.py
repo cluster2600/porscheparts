@@ -63,11 +63,13 @@ def admitted_support_receipt(directory, process, report_hash):
             or audit.get('layers_audited') != process['n_layers']
             or any(audit.get(key) is not True for key in
                    ('support_scanpaths_audited', 'geometric_confinement_passed',
-                    'exposure_connectivity_passed', 'every_material_group_exposed'))):
+                    'exposure_connectivity_passed', 'every_material_group_exposed',
+                    'rational_part_contact_intersections'))):
         raise ValueError('Complete support path, geometric encoding and exposure contact audit of support paths required')
     for name, field, checks in (
             ('scanpaths/assessment.json', 'scanpath_audit_receipt_sha256',
-             ('support_scanpaths_audited', 'geometric_confinement_passed', 'exposure_connectivity_passed')),
+             ('support_scanpaths_audited', 'geometric_confinement_passed', 'exposure_connectivity_passed',
+              'rational_part_contact_intersections')),
             ('group-exposure-coverage.json', 'group_coverage_receipt_sha256', ('every_material_group_exposed',))):
         path = directory / name
         if not path.is_file() or sha(path) != audit.get(field):

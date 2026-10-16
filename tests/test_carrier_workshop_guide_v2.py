@@ -80,7 +80,8 @@ class CarrierWorkshopGuideV2Tests(unittest.TestCase):
         data = {'status': 'passed', 'complete_build_audited': True, 'layers_audited': 2,
                 'input_receipt_sha256': guide.sha(self.process_dir / 'report.json'),
                 'support_scanpaths_audited': True, 'geometric_confinement_passed': True,
-                'exposure_connectivity_passed': True, 'every_material_group_exposed': True}
+                'exposure_connectivity_passed': True, 'every_material_group_exposed': True,
+                'rational_part_contact_intersections': True}
         folder = self.run / 'support-scanpath-audit'
         folder.mkdir(exist_ok=True)
         (folder / 'scanpaths').mkdir(exist_ok=True)
@@ -105,6 +106,24 @@ class CarrierWorkshopGuideV2Tests(unittest.TestCase):
         self.support_audit(input_receipt_sha256='0' * 64)
         with self.assertRaisesRegex(ValueError, 'Complete support path'):
             guide.admitted_support_scanpaths(self.run, self.process)
+
+    def test_float_only_part_contact_pass_is_refused_at_both_receipt_levels(self):
+        for target in ('assessment.json', 'scanpaths/assessment.json'):
+            for value in (None, False):
+                self.support_audit()
+                folder = self.run / 'support-scanpath-audit'
+                path = folder / target
+                data = json.loads(path.read_text())
+                data.pop('rational_part_contact_intersections')
+                if value is not None:
+                    data['rational_part_contact_intersections'] = value
+                path.write_text(json.dumps(data))
+                if target.startswith('scanpaths/'):
+                    summary = json.loads((folder / 'assessment.json').read_text())
+                    summary['scanpath_audit_receipt_sha256'] = guide.sha(path)
+                    (folder / 'assessment.json').write_text(json.dumps(summary))
+                with self.subTest(target=target, value=value), self.assertRaisesRegex(ValueError, 'Complete support path'):
+                    guide.admitted_support_scanpaths(self.run, self.process)
 
     def test_changed_group_or_scanpath_subreceipt_is_refused(self):
         for name in ('scanpaths/assessment.json', 'group-exposure-coverage.json'):
