@@ -456,6 +456,14 @@ réel. Les fichiers PNG et SVG sont des copies identiques des sorties de
 le reçu de workflow à l'étape de rendu exécutée. Leur provenance et leur
 commande de reproduction accompagnent la planche.
 
+La [planche du cas à appuis souples](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/mechanics-springs.html)
+complète cette comparaison : 1 676,546 MPa et 18,248649 mm sur le même maillage
+de 7 mm, avec 1 000 N/mm au total par œillet et par axe. Elle relit les vrais
+champs enregistrés, sans relancer le solveur, et conserve les dix identités
+de ses entrées et sorties. La déformée est amplifiée ×10, les couleurs restent
+réelles. Les deux planches décrivent leurs hypothèses d'appui ; leurs pics
+élastiques ne constituent pas une contrainte admissible du matériau.
+
 Le contrôle de remise exige aussi `rational_part_contact_intersections=true`
 dans le reçu d'audit des supports et son sous-reçu de trajectoires. Un contact
 exact situé dans un trou ne doit pas devenir un ancrage après arrondi sur
