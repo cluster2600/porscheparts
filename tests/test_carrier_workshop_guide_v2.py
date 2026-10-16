@@ -208,7 +208,9 @@ class CarrierWorkshopGuideV2Tests(unittest.TestCase):
 
     def test_old_or_partial_support_figures_are_refused(self):
         self.visual_fixture()
-        for key, value in [('input_receipt_sha256', '0' * 64), ('partial_witness', True)]:
+        old_renderer = guide.ROOT / 'parts/993-eng-carrier-0001/source/process-coverage-20261016/render_pyslm.py'
+        for key, value in [('input_receipt_sha256', '0' * 64), ('partial_witness', True),
+                           ('render_source_sha256', guide.sha(old_renderer))]:
             original = self.figures[key]
             self.figures[key] = value
             self.write_figures()

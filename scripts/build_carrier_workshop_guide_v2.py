@@ -12,7 +12,7 @@ from build_part_workflow_guide import build
 ROOT = Path(__file__).resolve().parents[1]
 TEMPLATE = ROOT / 'manufacturing/workflows/993-carrier-guide.json'
 ADMISSION_KEYS = ('envelopes', 'regions', 'skins', 'grids', 'contacts', 'collisions')
-PROCESS_RENDERER = ROOT / 'parts/993-eng-carrier-0001/source/process-coverage-20261016/render_pyslm.py'
+PROCESS_RENDERER = ROOT / 'parts/993-eng-carrier-0001/source/process-skins-20261016/render_pyslm_v2.py'
 
 
 def sha(path):
@@ -257,7 +257,7 @@ def package(run):
              ('Régions de support', len(process['supports'])), ('Encombrement du plateau', 'Compatible' if process['fits_500mm_square_plate'] else 'Hors plateau')],
          [('delivery-assets/supports.zip', 'Surfaces et données des supports'), ('process/build.glb', 'Scène 3D du plateau'),
           ('process/report.json', 'Réglages et résultats de préparation'),
-          ('process/support-teeth.png', 'Détail réel des dents de contact'),
+          ('process/support-teeth.png', 'Détail réel des interfaces des supports'),
           ('process/figures.json', 'Origine des vues de préparation')],
          ('process/build-supports.png', 'Pièce en bleu, supports calculés en orange et plateau gris.'))
     data['stages'][3]['checks'] += [
