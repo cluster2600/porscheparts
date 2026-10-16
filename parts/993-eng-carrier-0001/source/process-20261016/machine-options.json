@@ -1,0 +1,47 @@
+{
+  "retrieved_on": "2026-10-16",
+  "scope": "Manufacturer-published envelope and material candidates; no supplier booking or assigned process parameters",
+  "study_plate_mm": [500, 500, 20],
+  "study_layer_height_um": 60,
+  "candidates": [
+    {
+      "manufacturer": "Eplus3D",
+      "model": "EP-M650",
+      "source": "https://www.eplus3d.com/products/ep-m650-metal-3d-printer/",
+      "build_volume_mm": [650, 650, 800],
+      "height_convention": "including build plate",
+      "supports_titanium_alloys_per_manufacturer": true,
+      "layer_height_range_um": [20, 120],
+      "input_format": "STL or other convertible file",
+      "machine_software": ["EPControl", "EPHatch"],
+      "grade_5_material_source": "https://www.eplus3d.com/products/titanium-additive-manufacturing/",
+      "grade_5_typical_room_temperature_properties": {
+        "yield_strength_MPa": 980,
+        "ultimate_tensile_strength_MPa": 1080,
+        "elongation_percent": 14
+      },
+      "property_scope": "Published typical values; build direction, heat treatment and EP-M650-specific parameter set not specified on this page",
+      "assigned_laser_power_W": null,
+      "assigned_scan_speed_mm_s": null,
+      "assigned_heat_treatment": null,
+      "machine_build_job_created": false
+    },
+    {
+      "manufacturer": "Bright Laser Technologies",
+      "model": "BLT-S600, upgraded version",
+      "source": "https://www.xa-blt.com/en/product/blt-s600/?category=8",
+      "build_volume_mm": [650, 650, 850],
+      "height_convention": "excluding substrate thickness",
+      "supports_titanium_alloys_per_manufacturer": true,
+      "layer_height_range_um": null,
+      "upgrade_source": "https://www.xa-blt.com/en/news/enhance-quality-and-efficiency-standing-out-with-strength-join-us-at-airshow-china-2024-to-witness-the-upgraded-blt-s600/",
+      "upgrade_publication_date": "2024-11-12",
+      "assigned_laser_power_W": null,
+      "assigned_scan_speed_mm_s": null,
+      "assigned_heat_treatment": null,
+      "machine_build_job_created": false
+    }
+  ],
+  "geometric_inference": "The 500 mm square study plate fits the published XY envelopes of both candidates. Usable plate areas, clamping and machine exclusions have not been assigned.",
+  "manufacturer_contacted": false
+}

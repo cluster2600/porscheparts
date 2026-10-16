@@ -7,7 +7,20 @@
 > [!CAUTION]
 > **Not ready to print. Safety-critical concept; no manufacturing release.** Catalogue status: `concept`; not a print file. The organic geometry is a design study, not an OEM reconstruction or evidence of fit, strength or fatigue life. See [SAFETY.md](../../SAFETY.md).
 
-## Reprise numérique du 16 octobre 2026
+## Reprise avec le plafond de 1,30 kg — 16 octobre 2026
+
+Le nouveau candidat paramétrique pèse **1,262 kg** et conserve les interfaces
+de V6f. Le remaillage depuis le STEP donne zéro aiguille et zéro intersection ;
+les distances échantillonnées dans les deux sens restent sous 0,06 mm. Les
+quatre comparaisons mécaniques à V6f passent sous les mêmes charges et appuis.
+
+Le [dossier de reprise et ses résultats](../../docs/reports/993_CARRIER_WORKFLOW_20261016.md)
+conserve les décisions de géométrie, de mécanique et de préparation LPBF.
+La [chaîne à suivre](../../docs/manufacturing/PART_WORKFLOW.md) relie une image,
+un scan ou un plan de mesures à la CAO, puis aux calculs, aux supports, aux
+couches et au guide d'atelier HTML/PDF. Le statut du catalogue reste `concept`.
+
+## Contrôle initial de V6f — même journée
 
 Le [nouveau dossier de contrôle V6f](../../docs/reports/993_CARRIER_REVALIDATION_20261016.md) conserve la géométrie : bilan énergétique indépendant réussi sur 12 cas linéaires archivés, mais criblage DfAM strict rejeté pour 74 triangles effilés et 54,994 % de surface sous le seuil exploratoire de 1,5 mm. Ce seuil n'est pas un admissible fournisseur. Interfaces réelles, convergence mécanique et procédé complet restent à établir ; aucune autorisation de fabrication.
 
