@@ -33,14 +33,21 @@ flowchart LR
 ```
 
 La recette initiale contient quinze étapes et **45 entrées épinglées**.
-La [recette intégrée v5](../../manufacturing/workflows/993-carrier-lpbf-v5.json)
+La [recette intégrée v6](../../manufacturing/workflows/993-carrier-lpbf-v6.json)
 conserve ses douze premières étapes et ses 45 entrées, puis porte la chaîne à
-**37 étapes et 285 entrées versionnées épinglées**. La
-[revue des contrats et de leurs dépendances](../../parts/993-eng-carrier-0001/source/process-skins-20261016/cold-v5-recipe-evidence/assessment.json)
+**37 étapes et 293 entrées versionnées épinglées**. La
+[revue des contrats et de leurs dépendances](../../parts/993-eng-carrier-0001/source/process-skins-20261016/cold-v6-recipe-evidence/assessment.json)
 a passé : dix commandes modifiées sont parsées, 27 contrats identiques sont
-vérifiés et réutilisés, et les 285 empreintes sont revérifiées. Elle
+vérifiés et réutilisés, et les 293 empreintes sont revérifiées. Elle
 ne représente pas une exécution complète de la recette. Les versions
 précédentes et leurs reçus restent conservés.
+Le [lanceur v2](../../scripts/run_part_workflow_v2.py) autorise jusqu’à
+14 400 s par étape ; les sept générations et les deux assemblages de supports
+utilisent cette borne. Les producteurs v7 réemploient les aires rationnelles
+déjà calculées. Le [préparateur v6](../../parts/993-eng-carrier-0001/source/process-skins-20261016/README_parallel_exact_admissions.md)
+relit les unités dans quatre processus et lie leurs résultats aux six admissions.
+Le guide v6 vérifie les liaisons de ces reçus, sans importer le moteur AM dans
+le runtime PDF ni annoncer un nouveau calcul géométrique depuis le PDF.
 Le dossier garde les commandes, journaux, identités des
 sources et sorties. Le support, la figure de contrainte et les trajectoires
 doivent désigner la même géométrie ; le générateur refuse de les mélanger.

@@ -6,14 +6,17 @@ Le magasin mixte à sept enveloppes est maintenant lisible et transportable. Les
 
 ## Parcours courant
 
-La [recette v5](../../../../manufacturing/workflows/993-carrier-lpbf-v5.json)
-enchaîne 37 étapes avec 285 entrées épinglées. Sa
-[revue](cold-v5-recipe-evidence/assessment.json) porte sur les identités et les
+La [recette v6](../../../../manufacturing/workflows/993-carrier-lpbf-v6.json)
+enchaîne 37 étapes avec 293 entrées épinglées. Sa
+[revue](cold-v6-recipe-evidence/assessment.json) porte sur les identités et les
 commandes ; les résultats de la campagne réelle restent séparés.
-Les CLI courantes sont `generate_prism_region_v6.py` et
-`generate_legacy_region_v6.py`, puis `build_cached_v5.py` avec les six contrôles
+Les CLI courantes sont `generate_prism_region_v7.py` et
+`generate_legacy_region_v7.py`, puis `build_cached_v6.py` avec les six contrôles
 de `admissions_v3.py`. Les arguments restent ceux des variantes détaillées
 ci-dessous.
+La commande de recette utilise `scripts/run_part_workflow_v2.py` : les sept
+générations et les deux étapes d’assemblage/tranchage ont chacune un délai de
+14 400 s, sans modification des seuils géométriques.
 
 La [construction combinatoire](README-combinatorial.md) garde le domaine libre
 entier et ajoute uniquement des bandes de bord attestées. L’
@@ -32,6 +35,12 @@ gardent aussi les refus de bandes partiellement extérieures. Le
 [journal par surface](chart_progress.py) conserve les géométries d’entrée et de
 sortie avec leurs reçus complets. Le préparateur choisit l’autorité enregistrée
 dans chaque reçu ; les résultats antérieurs ne sont pas réétiquetés.
+
+Les producteurs v7 réutilisent les aires exactes déjà calculées. Le
+[préparateur v6](README_parallel_exact_admissions.md) répartit les relectures
+entre quatre processus ; le reçu `exact-admission-replays.json` lie leur
+exécution et leurs résultats aux six admissions. Les autorités et les anciens
+reçus restent identifiés séparément.
 
 Les détails suivants conservent aussi les versions v1/v2 et leurs témoins
 historiques ; la recette ci-dessus désigne les variantes à utiliser.
