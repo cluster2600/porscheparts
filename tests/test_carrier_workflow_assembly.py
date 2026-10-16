@@ -67,7 +67,8 @@ class CarrierWorkflowAssemblyTests(unittest.TestCase):
         self.support_assessment = {**self.assessment, 'support_scanpaths_audited': True,
                                    'geometric_confinement_passed': True, 'exposure_connectivity_passed': True,
                                    'every_material_group_exposed': True,
-                                   'rational_part_contact_intersections': True}
+                                   'rational_part_contact_intersections': True,
+                                   'hybrid_envelope_store_verified': True}
         for name, field in (('scanpaths/assessment.json', 'scanpath_audit_receipt_sha256'),
                             ('group-exposure-coverage.json', 'group_coverage_receipt_sha256')):
             path = self.support_audit / name
@@ -132,7 +133,8 @@ class CarrierWorkflowAssemblyTests(unittest.TestCase):
 
     def test_support_geometry_generation_does_not_replace_exposure_contact_admission(self):
         for key in ('complete_build_audited', 'geometric_confinement_passed', 'exposure_connectivity_passed',
-                    'every_material_group_exposed', 'rational_part_contact_intersections'):
+                    'every_material_group_exposed', 'rational_part_contact_intersections',
+                    'hybrid_envelope_store_verified'):
             write(self.support_audit / 'assessment.json', {**self.support_assessment, key: False})
             with self.subTest(key=key), self.assertRaisesRegex(ValueError, 'contact audit of support paths'):
                 self.assemble()
