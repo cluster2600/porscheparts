@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0.0",
+  "scope": "whitelisted_projection_not_original_execution_receipt",
+  "original_receipt_sha256": "272360614e9d071517765a7afb5911ce0e78a3cf8b928f0da0102c5d61b28a1c",
+  "original_command_receipt_sha256": "b10ae3db7bee96e0b54e5cba5fff137ba06bbc931ed602a68ff3c3dd34362244",
+  "original_ssh_receipt_sha256": "32d615dbeec19b1e5d5c3b310cb855ecdcf79d05bad9c7b182d3af3f200625b2",
+  "included_native_receipt_fields": {
+    "returncode": 0,
+    "wall_seconds": 3.2263566278852522,
+    "deadline_seconds": 100,
+    "network": "none",
+    "rootfs": "read_only",
+    "binary_sha256": "c49e2c368799d80edf9ff858dd8960bd22f5430f48229ab49dcc0afd27afcc5b",
+    "binary_unchanged": true,
+    "input_sha256": {
+      "variable-thermoelastic.i": "6508868f634c8b602495327bafef5633d55c7c65e8af343a137339660317f17e",
+      "hypothetical-material.json": "59c331446812a0b45f03dc7f7e3aeec0f80807fc3a03f54c5100c2b1a63aa584"
+    },
+    "inputs_unchanged": true,
+    "log_sha256": "3d48d54e238b7c7496bbd5a4a0df53a0643915950acc39d38ac44867ce94db7e"
+  },
+  "solver_argv": [
+    "moose-opt",
+    "-i",
+    "variable-thermoelastic.i"
+  ],
+  "observed_command_resource_limits": {
+    "memory_max_bytes": 2147483648,
+    "memory_swap_max_bytes": 0,
+    "cpu_quota_percent": 200,
+    "tasks_max": 128,
+    "cgroup_runtime_max_s": 115,
+    "timeout_s": 100,
+    "term_kill_after_s": 5
+  },
+  "omitted_fields": [
+    "remote_directory",
+    "raw_native_argv",
+    "ssh_host_and_user",
+    "raw_command_payload"
+  ],
+  "projection_limits": "The projection omits private host paths. Its original-receipt hashes do not reveal or reconstruct omitted bytes."
+}
