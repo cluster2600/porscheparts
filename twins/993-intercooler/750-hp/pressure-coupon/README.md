@@ -268,6 +268,56 @@ The [summary](derived/channel-cfd/channel-cfd.json) and the 24
 and solver logs, and per-case receipts. The gmsh meshes and the field results are
 identified by SHA-256 and not committed; the generator rewrites them.
 
+## Assumed fillets in the PicoGK geometry
+
+*Added 2026-10-16.* [picogk-fillet/Program.cs](source/picogk-fillet/Program.cs)
+regenerates the four-rib coupon with the **assumed** 0.2 and 0.4 mm root fillets on
+every corner of the five hot channels. Each channel is an exact signed-distance
+implicit (a rounded rectangle extruded over the 24 mm length) instead of the box
+cutters of the Mac source. The envelope, cold box, BCC lattice and the seven VDB
+fields follow [the Mac source](source/picogk/Program.cs). The radii are design
+proposals from the stress study, not measured or printed values.
+
+- **Runtime.** This runs on the Linux host stack in `~/picogk`, not on the Mac SDK:
+  PicoGK `0e6cf6b` with the native runtime `0f26321` (PicoGK 26.2.0), ShapeKernel
+  `554bce4` (newer than the `7b90978` pinned in `containers/m64-leap71/sources.lock`)
+  and LatticeLibrary `81c3c7b`, which no lock pins. Each run records these commits.
+  The Mac sources, [runtime.json](runtime.json) and [review.json](derived/review.json)
+  are unchanged and remain the record of the Mac runs.
+- **Runs.** Five runs, each under a 6 GB cap: sharp and r = 0.4 mm at 0.1 mm voxels,
+  and sharp, r = 0.2 and r = 0.4 mm at 0.05 mm voxels. The program refuses a fillet
+  narrower than four voxels.
+- **Independent check.** [fillet_geometry_review.py](source/fillet_geometry_review.py)
+  measures the exported STLs with trimesh in the cadsim image. All five runs keep one
+  solid, five hot channels and one cold body, closed after removing degenerate and
+  duplicate faces. Every channel measures 1.8 or 5.2 mm wide, 3 mm high and 24 mm long
+  within ±0.02 mm. The three volumes sum to the envelope within 0.04 %. The sharp
+  0.1 mm Linux run differs from the Mac 0.1 mm run by +0.04 % (solid), −0.14 % (hot)
+  and below 1e-7 (cold).
+- **Fillet area.** The area a fillet removes per corner is measured as the section
+  lost against the sharp run at the same voxel size, and compared with the analytic
+  (1 − π/4) r² (0.0086 mm² for r = 0.2, 0.0343 mm² for r = 0.4). The ±15 % tolerance
+  was fixed before the runs.
+
+| Run | r / voxel | Error per channel | Within ±15 % |
+|---|---:|---|---|
+| r = 0.4 mm, 0.05 mm voxels | 8 | −1.3 to −4.3 % | yes |
+| r = 0.2 mm, 0.05 mm voxels | 4 | −3.6 % (outer four), −12.5 % (middle) | yes |
+| r = 0.4 mm, 0.1 mm voxels | 4 | −4.9 to −16.5 % (middle) | **no** |
+
+- The measured fillet is always slightly smaller than the analytic one, and the gap
+  shrinks as the fillet spans more voxels. At four voxels the middle channel is the
+  worst case. The failed 0.1 mm check is kept in the report as failed; the tolerance
+  was not changed. Only the 0.05 mm runs represent the assumed fillets.
+- **This is geometry only.** No solver ran on it. It says nothing about whether LPBF
+  can hold a 0.2 to 0.4 mm root fillet, and it qualifies no pressure strength.
+
+The [report](derived/fillet-geometry/fillet-geometry.json) keeps every native receipt
+and runtime record, the per-part measurements and the hashes of the sources.
+The [sections](derived/fillet-geometry/fillet-geometry-sections.png) show the hot
+channels at mid-length. The STL and VDB outputs (up to 276 MB per file) are
+identified by SHA-256 and not committed.
+
 ## Reproduction and next steps
 
 ```sh
@@ -283,6 +333,13 @@ flock /tmp/porscheparts-heavy.lock docker run --rm --network none --cpus 4 --mem
   python3 -B /repo/twins/993-intercooler/750-hp/pressure-coupon/source/channel_cfd.py --output /out/new-channel-cfd \
   --proxy /repo/twins/993-intercooler/750-hp/pressure-coupon/derived/fillet-hydraulics/fillet-hydraulics.json \
   --image-id "$(docker image inspect 3dprinting993-cadsim:dev --format '{{.Id}}')" --workers 4
+for case in "0.1 0" "0.1 0.4" "0.05 0" "0.05 0.2" "0.05 0.4"; do set -- $case
+  flock /tmp/porscheparts-heavy.lock twins/993-intercooler/750-hp/pressure-coupon/source/picogk-fillet/run.sh \
+    "$PWD/work/picogk-fillet-build" "$PWD/work/picogk-fillet/r$2-v$1" "$1" "$2" 6G
+done
+flock /tmp/porscheparts-heavy.lock docker run --rm --network none --cpus 4 --memory 6g --memory-swap 6g --user "$(id -u):$(id -g)" \
+  -v "$PWD":/repo:ro -v "$PWD/work/picogk-fillet":/native:ro -v "$PWD/work":/out -w /tmp 3dprinting993-cadsim:dev \
+  python3 -B /repo/twins/993-intercooler/750-hp/pressure-coupon/source/fillet_geometry_review.py --native /native --output /out/new-fillet-geometry
 python3 -m unittest discover -s tests -p test_993_intercooler_pressure_coupon.py -v
 ```
 
@@ -293,9 +350,14 @@ take the shared lock of `parts/picogk-catalog/tools/run_part.py`.
 
 The fillet study runs on one CPU; its finest meshes need up to 8 GB.
 
-The next mechanical step is to carry a chosen root fillet into the PicoGK
-geometry, confirm the process can hold it, and run a 3D study with fittings and
-support conditions.
-The passages will also have to be compared by CFD/CHT or on a bench, then
-orientation, overhangs, depowdering, hot material and sealing qualified.
+The Mac PicoGK generation above uses the SDK `~/Developer/PicoGK/sdk/dotnet`. The
+filleted Linux generation uses `~/picogk/env.sh` and the host stack; it needs the
+native runtime in `~/picogk/native` and is not reproducible on the Mac SDK as is.
+
+The assumed fillets are now drawn in the geometry. The next mechanical steps are to
+choose a radius, confirm the process can hold it, and run a 3D study with fittings
+and support conditions.
+The passages will also have to be compared by CHT (the CFD above is hydraulic
+only) or on a bench, then orientation, overhangs, depowdering, hot material and
+sealing qualified.
 **No authorization to print or to pressure-test is given.**

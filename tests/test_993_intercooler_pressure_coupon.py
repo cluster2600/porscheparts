@@ -200,4 +200,44 @@ class ChannelCfdTests(unittest.TestCase):
             # Developing flow with a quiescent-plenum inlet costs a few percent more than the fully developed proxy with K = 2.
             self.assertGreater(v['finest_over_proxy'],1);self.assertLess(v['finest_over_proxy'],1.05)
 
+GEOMETRY=STUDY/'derived/fillet-geometry/fillet-geometry.json'
+
+
+class FilletGeometryTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.r=json.loads(GEOMETRY.read_text())
+
+    def test_sources_runtime_and_flags(self):
+        r=self.r
+        for path,digest in r['source_hashes'].items():self.assertEqual(sha(STUDY/path),digest)
+        for path,digest in r['output_hashes'].items():self.assertEqual(sha(GEOMETRY.parent/path),digest)
+        for run in r['runs']:
+            rt,receipt=run['runtime'],run['native_receipt']
+            self.assertEqual(rt['program_sha256'],sha(STUDY/'source/picogk-fillet/Program.cs'));self.assertEqual(rt['project_sha256'],sha(STUDY/'source/picogk-fillet/CouponFillet.csproj'))
+            self.assertEqual(rt['picogk_runtime_commit'],'0f26321c18ed878a7820ef769c38fd5d49d39242');self.assertFalse(rt['latticelibrary_locked'])
+            self.assertTrue(receipt['fillet_radius_is_assumption']);self.assertFalse(receipt['manufacturing_authorized']);self.assertFalse(receipt['pressure_qualified'])
+            self.assertTrue(receipt['geometry_roundtrip_exact']);self.assertEqual(receipt['field_count'],7);self.assertEqual(receipt['vdb_sha256'],run['vdb_sha256'])
+            if receipt['fillet_radius_mm']:self.assertGreaterEqual(receipt['fillet_radius_mm']/receipt['voxel_mm'],4-1e-6)
+        for key in ['pressure_qualified','manufacturing_authorized','stl_and_vdb_committed','thermal_or_hydraulic_solver_executed']:self.assertFalse(r[key])
+        # The Mac receipts stay the record of the Mac runs.
+        self.assertEqual(json.loads((STUDY/'runtime.json').read_text())['source_hashes']['source/picogk/Program.cs'],sha(STUDY/'source/picogk/Program.cs'))
+
+    def test_channels_topology_and_fillet_area(self):
+        r=self.r
+        for run in r['runs']:
+            self.assertLess(run['volume_partition_error'],.01)
+            hot=run['parts']['hot_fluid_mm'];self.assertEqual(hot['components'],5)
+            for c,width in zip(hot['channels'],[1.8,5.2,5.2,5.2,1.8]):self.assertAlmostEqual(c['width_y_mm'],width,delta=.02);self.assertAlmostEqual(c['height_z_mm'],3,delta=.02)
+            for part in run['parts'].values():self.assertLess(part['cleanup_volume_error'],1e-7);self.assertTrue(part['closed_after_cleanup'])
+        self.assertEqual({(x['fillet_radius_mm'],x['voxel_mm']) for x in r['fillet_area_checks']},{(.4,.1),(.2,.05),(.4,.05)})
+        for check in r['fillet_area_checks']:
+            self.assertAlmostEqual(check['analytic_corner_area_mm2'],(1-3.141592653589793/4)*check['fillet_radius_mm']**2,places=12)
+            self.assertEqual(check['within_tolerance'],all(abs(e)<=r['fillet_area_tolerance'] for e in check['relative_errors']))
+            # At 0.05 mm voxels both assumed fillets match (1 - pi/4) r^2 within the tolerance fixed before the runs.
+            if check['voxel_mm']==.05:self.assertTrue(check['within_tolerance'])
+        # At 0.1 mm voxels the 0.4 mm fillet spans only four voxels; the middle channel misses the tolerance and stays recorded as failed.
+        self.assertEqual(r['fillet_area_checks_failed'],['r0.4-v0.1'])
+        self.assertEqual(r['fillet_area_tolerance'],.15)
+
 if __name__=='__main__':unittest.main()
