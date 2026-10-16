@@ -1,0 +1,102 @@
+{
+  "original_record_sha256": "8152e86929500c2d7c1aacd896a57f48d0d1b1aba344b3f6efdfca8681b90592",
+  "representation": "whitelist_projection",
+  "projection_scope": "Selected original field values; private runtime path keys, output locators, local snapshot maps and redundant full fixture maps omitted. Same runtime digests are labelled by role; sizing assumptions and required gates retained.",
+  "preflight": {
+    "schema": "962-sized-raw-HXT-preflight/v1",
+    "frozen_UTC": "2026-10-16T19:37:58.962826+00:00",
+    "status": "source_prepared_native_held_for_root_and_independent_review",
+    "purpose": "One raw HXT head sizing feasibility study; cube demonstrates insertion control only",
+    "candidate_sha256": "7f0d96988684f7d36dab8f65c5b63b1919c2c2121768cf9caec466867a5c2b43",
+    "admission_sha256": "f4c41e44afc15da373905e0d43e8b5607b5df1f80fae182eb51c331d4beefee2",
+    "candidate_volume_mm3": 915458.4757034747,
+    "native_head_calls_executed_during_preparation": 0,
+    "native_launch_authorized_by_preflight": false,
+    "options": {
+      "General.NumThreads": 2,
+      "Mesh.Algorithm3D": 10,
+      "Mesh.Binary": 1,
+      "Mesh.ElementOrder": 1,
+      "Mesh.MaxNumThreads3D": 2,
+      "Mesh.MeshOnlyEmpty": 1,
+      "Mesh.MeshSizeExtendFromBoundary": 0,
+      "Mesh.MeshSizeFactor": 1,
+      "Mesh.MeshSizeMax": 1.75,
+      "Mesh.MeshSizeMin": 0,
+      "Mesh.MshFileVersion": 4.1,
+      "Mesh.Optimize": 0,
+      "Mesh.OptimizeNetgen": 0,
+      "Mesh.RandomSeed": 1,
+      "Mesh.Renumber": 0,
+      "Mesh.SaveAll": 1
+    },
+    "qualification": {
+      "engineering_accepted": false,
+      "geometric_volume_gate_passed": false,
+      "head_thermal_or_strength_solve": false,
+      "manufacturing_authorized": false,
+      "mesh_convergence_established": false,
+      "thermal_resolution_established": false
+    },
+    "required_gates": {
+      "actual_minimum_SICN_at_least": 0.1,
+      "all_jacobians_and_volumes_positive_finite": true,
+      "candidate_relative_volume_error_at_most": 1e-06,
+      "exact_opposite_internal_faces": true,
+      "exact_oriented_candidate_boundary": true,
+      "saved_mesh_readback_identity": true
+    },
+    "source_sha256s": {
+      "twins/962-cylinder-head-f0/source/audit_quality_head.py": "a298270aa00b1536314a07629b935500c68883ca0d3bd1a179d71b49a8e73991",
+      "twins/962-cylinder-head-f0/source/audit_quality_patch.py": "3532a172b2bce3a8ead7c8b11b712a2b55891377726fa1b6d847e84f0eed3912",
+      "twins/962-cylinder-head-f0/source/mesh_head.py": "69c8012e99057e384d44d6971d41f0e2cc7197a978120a7c566b0ad5a6477da5",
+      "twins/962-cylinder-head-f0/source/mesh_quality_head.py": "6ba68df17ae41a55e98470c103c804c830b890256b936d3785ea8cc40cb55302",
+      "twins/962-cylinder-head-f0/source/mesh_quality_head_seed.py": "e3576d5847922e950e21cf0d003a6869262fae21df6d6715d3b6bac3e2d01ad2",
+      "twins/962-cylinder-head-f0/source/mesh_quality_head_sized.py": "e12dbe214b81eb5d33bb4c315ced280f8c13b61ed0f45e734cdd3b8fe79e413a",
+      "twins/962-cylinder-head-f0/source/prepare_head_analysis.py": "cda8f7155a8c22ab66898f07d1ad452ba5384ad7f75a1f012606685cd8a12dc3"
+    },
+    "test_sha256": "81fbf3c4e1e4b729109a95e6156800c513e692728140163122109c39da213034",
+    "sizing_basis": {
+      "feature_resolution_established": false,
+      "global_minimum_wall_thickness_known": false,
+      "nominal_assumed_BCC_beam_diameter_mm": 3.5,
+      "nominal_spans": 2,
+      "size_cap_mm": 1.75,
+      "source_sha256s": {
+        "twins/962-cylinder-head-f0/source/family/HeadFamilyRunner.cs": "9abc2a2ae0ad3e6c476c033d5c68d11c712db81590af8d9ed40cca73a5964c50",
+        "twins/962-cylinder-head-f0/source/family/HeadFamilyStudy.cs": "21212bbe60d78c495d705441fe5ed1599aa9a5b244dfadad4d2e4727f71d23fe",
+        "twins/962-cylinder-head-f0/source/family/configs/bore-95.json": "2d1b4eafb6e331436cd6b29ce47092090a449c7f3991ec7e6208a980ca589efa"
+      }
+    },
+    "fixture_scope": {
+      "capped_cube_minimum_SICN": 0.027175498119979526,
+      "capped_cube_passes_head_SICN_gate": false,
+      "head_resolution_or_quality_established": false,
+      "input_sha256s": {
+        "work/962-engineering/hxt-size-cap-fixture-001/capped-1p75/cube.msh": "e773cc4a2f68187c623e984eb9f58441f3fa5eed2733295e7eb26bd7b3910ac1",
+        "work/962-engineering/hxt-size-cap-fixture-001/capped-1p75/worker-report.json": "9bf0ad68350f10682965bc43e83860afadf0a435fae5d795cd97322e568dbaf3",
+        "work/962-engineering/hxt-size-cap-fixture-001/contract.json": "af201485b13f8f548854a5bd42777b1d3d3a7903988c31b254fc1cf3dad1ec27",
+        "work/962-engineering/hxt-size-cap-fixture-001/receipt.json": "b6a86b49044636685365708cce66c7d8d4b43c4d296e26918b285866310675d7",
+        "work/962-engineering/hxt-size-cap-fixture-001/uncapped/cube.msh": "1d7e2a5139c2ed0b2c85233f4a1d45fe9daebb4ed0f2782c561cb582a3e185e6",
+        "work/962-engineering/hxt-size-cap-fixture-001/uncapped/worker-report.json": "fd884b116d6e8d492d2724431996e68c65a925d78b1b3972a68f1118abfd9e97"
+      },
+      "insertion_control_demonstrated": true
+    },
+    "runtime_snapshot_sha256": "236204cbe492c11a3ca90d1a6d9e7eaeaa4e4dc986162445e238bdb23363e52a",
+    "resources": {
+      "native_deadline_s": 300,
+      "sampled_RSS_stop_bytes": 8589934592,
+      "sampled_output_stop_bytes": 1073741824,
+      "threads": 2,
+      "automatic_retry": false,
+      "hard_OS_CPU_quota_applied": false,
+      "hard_address_space_limit_applied": false,
+      "cap_may_exceed_existing_stop": true
+    },
+    "runtime_file_sha256s_by_role": {
+      "executable_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+      "gmsh_module_sha256": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+      "libgmsh_sha256": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a"
+    }
+  }
+}

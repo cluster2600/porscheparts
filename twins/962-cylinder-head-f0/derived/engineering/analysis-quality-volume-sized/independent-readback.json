@@ -1,0 +1,151 @@
+{
+  "status": "direct_saved_file_readback_completed_quality_rejection_confirmed",
+  "meshing_optimization_or_solve_calls": 0,
+  "engineering_accepted": false,
+  "manufacturing_authorized": false,
+  "runtime": {
+    "gmsh": "4.15.2",
+    "numpy": "2.0.2",
+    "machine": "arm64",
+    "executable_sha256": "72956ad35cff7691dfed9e04c9593de825ffd5b2fa7e8bc9ae96ce9a1af65621",
+    "gmsh_module_sha256": "f4b0935cebde899750293d87a643090e5ea33c9b18d249267f507db68a0e01c3",
+    "libgmsh_sha256": "def0f5c10988a986e5e879b3db9669d8fe016a81e2d994bbaf2b8497c6b8a58a"
+  },
+  "actual_mesh_nodes": 979452,
+  "actual_tetrahedra": 3059463,
+  "sorted_node_tags_sha256": "5aaab9110b26bf1812dd289364cc74211ea592e63e31f9724be37d7cece2493b",
+  "sorted_coordinates_sha256": "a9a599bcf272303da08d30c7b2df8178502e1036f9048f2c9468d07bf77fc715",
+  "sorted_tetra_tags_sha256": "051021f0b48ec4ec8852073ecc828277474811d687dc607fc68aa3ee7f52225a",
+  "tagged_tetra_connectivity_sha256": "54313e0613f0fa8d9f2ebb471ff2540c08716d181ad3be74ff321799a7726b37",
+  "actual_explicit_surface_triangles": 1804706,
+  "exact_source_boundary_coordinates": true,
+  "exact_sorted_explicit_surface_connectivity": true,
+  "explicit_surface_elements_are_not_an_independent_tetra_boundary_incidence_audit": true,
+  "direct_native_quality_extrema": {
+    "SICN": {
+      "count": 3059463,
+      "minimum": -1.2793193015693403e-14,
+      "maximum": 0.9992577464996597,
+      "nonpositive_count": 2,
+      "below_point1_count": 284806
+    },
+    "Jacobian": {
+      "count": 3059463,
+      "minimum": 1.7835125737386548e-17,
+      "maximum": 60.58824234349713,
+      "nonpositive_count": 0,
+      "below_point1_count": null
+    },
+    "native_volume_mm3": {
+      "count": 3059463,
+      "minimum": 2.972520956231091e-18,
+      "maximum": 10.098040390582854,
+      "nonpositive_count": 0,
+      "below_point1_count": null
+    }
+  },
+  "independent_signed_volume_mm3": {
+    "count": 3059463,
+    "minimum": 2.9725209562310915e-18,
+    "maximum": 10.098040390582856,
+    "nonpositive_count": 0,
+    "sum": 915458.4757034747,
+    "relative_error_to_candidate": 0.0
+  },
+  "actual_tetra_referenced_nodes": 979452,
+  "actual_unreferenced_mesh_nodes": 0,
+  "actual_referenced_interior_nodes": 77307,
+  "nonpositive_SICN_tetrahedra": [
+    {
+      "native_array_index": 756487,
+      "tetrahedron_tag": 4365900,
+      "node_tags": [
+        149373,
+        147195,
+        147191,
+        149375
+      ],
+      "coordinates_mm": [
+        [
+          -39.75,
+          -0.25000065565109253,
+          34.99431610107422
+        ],
+        [
+          -40.25,
+          -0.08332278732389745,
+          34.99810562170619
+        ],
+        [
+          -40.25,
+          -0.25000065565109253,
+          34.99431610107422
+        ],
+        [
+          -39.7997932434082,
+          -0.07499043472512741,
+          34.99829506270638
+        ]
+      ],
+      "SICN": -1.2793193015693403e-14,
+      "all_nodes_original_boundary_tags": true,
+      "Jacobian": 2.181414771040835e-16,
+      "native_volume_mm3": 3.635691285068058e-17,
+      "independent_signed_volume_mm3": 3.635691285068058e-17
+    },
+    {
+      "native_array_index": 2318507,
+      "tetrahedron_tag": 5927920,
+      "node_tags": [
+        101283,
+        101279,
+        99903,
+        99907
+      ],
+      "coordinates_mm": [
+        [
+          -52.75,
+          0.25000065565109253,
+          13.005684852600098
+        ],
+        [
+          -52.75,
+          0.08332278371274533,
+          13.0018946960604
+        ],
+        [
+          -53.25,
+          0.08332278371273588,
+          13.0018946960604
+        ],
+        [
+          -53.25,
+          0.25000065565109253,
+          13.005684852600098
+        ]
+      ],
+      "SICN": -1.4273322440474123e-16,
+      "all_nodes_original_boundary_tags": true,
+      "Jacobian": 1.7835125737386548e-17,
+      "native_volume_mm3": 2.972520956231091e-18,
+      "independent_signed_volume_mm3": 2.9725209562310915e-18
+    }
+  ],
+  "fixed_boundary_only_nonpositive_cells": true,
+  "retained_only_not_repeated": {
+    "tetra_exterior_incidence": {
+      "boundary_triangles": 1804706,
+      "exact_oriented_tetra_boundary": true,
+      "nonmanifold_volume_faces": 0
+    },
+    "internal_face_orientation": {
+      "internal_faces": 5216573,
+      "same_oriented_internal_faces": 0,
+      "exact_internal_orientation_balance": true
+    }
+  },
+  "SICN_point1_gate_passed": false,
+  "thermal_resolution_established": false,
+  "bound_inputs_unchanged": true,
+  "readback_wall_seconds": 10.832686749985442
+}

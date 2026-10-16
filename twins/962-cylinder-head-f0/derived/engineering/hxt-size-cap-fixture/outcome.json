@@ -1,0 +1,49 @@
+{
+  "schema": "962-size-cap-public-outcome/v1",
+  "status": "independently_confirmed_software_insertion_control_only",
+  "length_unit": "mm",
+  "cube_side_mm": 7,
+  "analytic_cube_volume_mm3": 343,
+  "cases": {
+    "uncapped": {
+      "total_nodes": 9,
+      "referenced_interior_nodes": 1,
+      "tetrahedra": 12,
+      "minimum_SICN": 0.5485850609397153,
+      "volume_sum_mm3": 343.0,
+      "mesh_sha256": "1d7e2a5139c2ed0b2c85233f4a1d45fe9daebb4ed0f2782c561cb582a3e185e6",
+      "mesh_bytes": 1574,
+      "exact_tetra_boundary": true,
+      "exact_internal_orientation_balance": true,
+      "saved_mesh_identity_exact": true,
+      "actual_SICN_point1_gate_met": true
+    },
+    "capped-1p75": {
+      "total_nodes": 42,
+      "referenced_interior_nodes": 34,
+      "tetrahedra": 191,
+      "minimum_SICN": 0.027175498119979526,
+      "volume_sum_mm3": 343.0,
+      "mesh_sha256": "e773cc4a2f68187c623e984eb9f58441f3fa5eed2733295e7eb26bd7b3910ac1",
+      "mesh_bytes": 9790,
+      "exact_tetra_boundary": true,
+      "exact_internal_orientation_balance": true,
+      "saved_mesh_identity_exact": true,
+      "actual_SICN_point1_gate_met": false
+    }
+  },
+  "capped_referenced_interior_nodes_strictly_greater": true,
+  "scope": {
+    "software_insertion_mechanism_only": true,
+    "head_geometry_read": false,
+    "head_execution_authorized": false,
+    "head_accepted": false,
+    "capped_SICN_point1_gate_passed": false,
+    "mesh_convergence_established": false,
+    "thermal_resolution_established": false,
+    "head_thermal_or_stress_result_credited": false,
+    "LPBF_result_credited": false,
+    "manufacturing_authorized": false
+  },
+  "interpretation": "A 1.75 mm size cap increases actual referenced interior cube nodes from 1 to 34. The capped mesh minimum SICN 0.027175498119979526 is below the unchanged head threshold 0.1. Requested size is not an actual edge bound, head resolution, convergence or acceptance result."
+}

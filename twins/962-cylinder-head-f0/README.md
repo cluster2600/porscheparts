@@ -21,7 +21,8 @@ The [new candidate review download](derived/engineering/analysis-quality-review-
 contains exact BIN and standard PLY files, with English unit/import guidance.
 The [later raw volume-mesh review](derived/engineering/rejected-volume-seed-review-delivery/README.md)
 includes its exact MSH and explicit quality rejection; it supplies no head
-thermal, strength or LPBF result.
+thermal, strength or LPBF result. The [separate sized-volume review](derived/engineering/rejected-sized-volume-review-delivery/README.md)
+retains the next bulk-filled mesh and its independent quality rejection.
 
 The [replica family](REPLICA_FAMILY.md) defines the reference, six displacement
 targets, calculator and missing measurements. [962 C metrology](REPLICA_METROLOGY.md)
