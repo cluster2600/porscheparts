@@ -100,6 +100,14 @@ Les environnements déjà prêts se trouvent sous `work/part-workflow/runtimes/`
 | `am_python` | Supports, sections, contours, hachures et figures |
 | `pdf_python` | Assemblage du guide HTML/PDF avec ReportLab |
 
+La [base PDF réinstallable](../../manufacturing/runtimes/pdf/README.md)
+possède son propre lock pour Python 3.12 sur macOS arm64 : ReportLab, Pillow et
+charset-normalizer sont épinglés par version et par empreinte de roue. Elle a
+été installée dans `work/part-workflow/runtimes/pdf-base-001`, puis vérifiée par
+`pip check`, les tests du guide et un PDF synthétique avec image. Après cette
+installation, `pdf_python` peut désigner son `bin/python`. Le guide réel garde
+ses propres contrôles de fichiers, de résultats et de présentation.
+
 Dans un checkout neuf sur macOS ARM64, la base CAO peut être installée sans
 emprunter l'ancien environnement du projet. Les 45 roues de la base exécutée
 sont épinglées par version et SHA-256 :
