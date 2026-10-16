@@ -393,6 +393,23 @@ aucun recalcul de solveur n'est inventé et les changements de fichiers, de
 surface ou d'audit sont détectés. Les résultats déjà calculés sont réutilisés
 par leur identité explicite.
 
+Le [contrôle des expositions de supports](../../parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/README.md)
+est prêt : dix-neuf tests ciblés et un témoin natif complet de 170 couches
+passent. Il reconstruit les coupes des vrais triangles avec une formule
+rationnelle indépendante, distingue les contacts idéaux de leur encodage et
+contrôle les graphes des trajectoires rationnelles et float64. Chaque couche
+doit être ancrée dès sa construction ; une connexion apparue plus tard ne
+répare pas un départ flottant. Le carrier complet attend encore ses supports
+corrigés ; le témoin de boîte ne l'admet pas.
+
+Le [répartiteur de coupes de supports](../../parts/993-eng-carrier-0001/source/process-support-slicing-20261016/README.md)
+passe quatre tests et conserve l'ordre et les tableaux du hook exact. Sur dix
+plans historiques fixés avant calcul, sept sont encodables à l'identique et
+trois conservent leur refus : un segment rationnel non nul s'effondre en
+float64. Le petit lot mesure 2,262 s en série et 2,556 s à quatre processus,
+démarrage compris ; aucun gain de vitesse n'est annoncé pour ce lot. Ces
+anciennes feuilles restent rejetées et ne constituent pas un tranchage final.
+
 Le guide et l'assembleur exigent désormais aussi le contrôle indépendant des
 trajectoires de supports sur toutes les couches, avec leur encodage géométrique
 et leurs contacts exposés. Les seize tests des deux modules passent ensemble ;
