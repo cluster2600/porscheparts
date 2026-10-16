@@ -11,6 +11,10 @@ with explicit assumptions for unavailable dimensions.
 
 The [engineering execution programme](ENGINEERING_PROGRAM.md) continues through
 material/strength assessment, LPBF simulation, an Omniverse twin and PhysicsNeMo.
+The [latest bore95 USD checkpoint](USD_NORMALS_ENGINEERING.md) verifies face
+normals and passes the minimum and CPU asset checks; its formal robotics profile
+retains six failed feature rows. No head physics or manufacturing qualification
+follows from these results.
 The [sourced material comparison](ENGINEERING_MATERIALS.md) now separates seven
 published recipes, discrete hot-strength points and conditional body masses.
 These results do not select or qualify a material for the head.

@@ -73,7 +73,14 @@ separate known-array readback. All five analytic face normals match their
 predeclared binary32 values. The genuine tiny-source preflight and all three
 native steps finish with unchanged inputs and reaped workers. This establishes
 the small software path; no head derivative or head-validator pass is credited.
-The unchanged bore95 missing-normal and formal-profile findings remain separate.
+The later [full bore95 normal-only checkpoint](USD_NORMALS_ENGINEERING.md)
+adds and independently verifies all 1,804,706 face normals without changing
+ordered geometry or other authored content. Its eight minimum checks and
+generic, Geometry and Physics CPU reports pass. The substantive formal profile
+still fails six feature rows; its findings and single-component exception remain
+visible. The original 744 deficient triangles remain in this USD, distinct from
+the separate rejected 266-triangle endpoint003 proposal. These asset checks
+provide no accepted mesh, material assignment or solved head field.
 
 **Material and service calculations.** Bind each material point or curve to its
 alloy, powder, machine, orientation, treatment and test condition. Compare the
