@@ -149,11 +149,13 @@ def package(run):
     data['stages'][4]['files'].append({'source': str((run / 'scanpath-audit/assessment.json').relative_to(ROOT)),
                                       'label': 'Audit complet des trajectoires de pièce'})
     relative = run.relative_to(ROOT).as_posix()
+    verify_command = ('python3 scripts/assemble_carrier_workflow.py verify '
+                      if (run / 'assembly.json').is_file() else 'python3 scripts/run_part_workflow.py verify ')
     fill(5, [('Révision', geometry['design_id']), ('Identité du STEP', step_hash[:16] + '…'),
              ('Règle de comparaison', 'V6f, mêmes charges et appuis'), ('Consultation', 'HTML hors ligne et PDF')],
          [('guide-description.json', 'Description du dossier'), ('comparison/selection.json', 'Décision numérique')],
          commands=['python3 scripts/run_part_workflow.py run manufacturing/workflows/993-carrier-lpbf-v2.json --runtime work/part-workflow/runtime-v2.json --output work/part-workflow/NOUVEAU_PASSAGE',
-                   'python3 scripts/run_part_workflow.py verify ' + relative])
+                   verify_command + relative])
     descriptor = run / 'guide-description.json'
     descriptor.write_text(json.dumps(data, indent=2, ensure_ascii=False, allow_nan=False) + '\n')
     return build(descriptor, run / 'guide')

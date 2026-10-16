@@ -341,3 +341,32 @@ dont le refus d'un support simplement généré et d'un audit partiel. La revue
 illustrée de travail est disponible en HTML hors ligne et PDF de huit pages ;
 ses huit pages ont été rendues et examinées, avec les étapes encore ouvertes
 visibles.
+
+Le [rattachement constitutif](../../scripts/bind_carrier_constitutive_evidence.py)
+vérifie une liaison plus forte que la seule ressemblance des géométries : le
+maillage discret `mesh.npz` du nouveau passage est identique bit à bit à celui
+de la sensibilité Flat1, et le jeu linéaire de référence, avec ses charges et
+ses ressorts, porte exactement la même empreinte. Les exports STEP restent
+distincts. Le reçu relie les seize états et leur audit indépendant au même
+problème discret, sans annoncer une nouvelle exécution. Il garde le diagnostic
+ENER refusé sur l'ensemble du cycle. Quatre tests refusent notamment un autre
+maillage, un autre jeu de charges, des sorties modifiées ou un audit partiel.
+
+La réinstallation PySLM a été exécutée dans un environnement neuf : les
+**37 versions**, les **quatre fichiers corrigés** et les **775 sources et
+binaires du tranchage** correspondent au cache de pièce contrôlé.
+Celui-ci termine ses **1 034 couches**, dont 866 non vides et **9 339 852
+segments de hachures**, en 1 097,67 s avec fermeture du groupe de processus.
+L'audit indépendant réussit sur toutes les couches : **zéro segment hors
+domaine, nul ou exactement dupliqué**, pour les hachures et les **11 507 777
+segments de contours**. La relecture complète restitue les mêmes tableaux,
+aires et ordre sans refaire les hachures. Les deux contrôles prennent 32,15 et
+34,12 s. Le [reçu compact](../../parts/993-eng-carrier-0001/source/process-cache-20261016/results.json)
+les distingue de la préparation des supports, qui reste en cours.
+
+L'[assembleur](../../scripts/assemble_carrier_workflow.py) pourra réunir les
+douze étapes déjà vérifiées et la nouvelle préparation admise en conservant
+leurs provenances. Ses sept tests passent : le passage source reste refusé,
+aucun recalcul de solveur n'est inventé et les changements de fichiers, de
+surface ou d'audit sont détectés. Les résultats déjà calculés sont réutilisés
+par leur identité explicite.

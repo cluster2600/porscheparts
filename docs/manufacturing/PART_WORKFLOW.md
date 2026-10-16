@@ -47,6 +47,15 @@ dessiner une nouvelle pièce sans lien avec ses paramètres.
 | 5. Couches | PySLM et intersection de maillage ; contours, hachures et trajectoires des supports | Couches, vecteurs, réglages et vues des sections | Contours, trous préservés, segments finis, doublons, nombres de couches et identités de géométrie |
 | 6. Remise | Générateur de guide ; dossier autonome HTML/PDF | STEP/STL, supports, trajectoires, paramètres, rapports et manifeste | Empreintes de tous les fichiers remis et cohérence de révision |
 
+La préparation des supports est admise séparément de leur génération. Les six
+contrôles portent sur les enveloppes, les régions couvertes, les peaux, les
+grilles, les contacts et les collisions. Le
+[générateur de remise v2](../../scripts/build_carrier_workshop_guide_v2.py)
+refuse le dossier si un contrôle manque, reste non exécuté ou désigne un reçu
+dont l'empreinte a changé. L'audit des trajectoires examine les segments entiers
+dans les sections, en conservant trous et îlots ; vérifier seulement leurs
+extrémités ne suffit pas.
+
 Le tranchage ouvert prépare les géométries et les vecteurs. Le format machine et
 le réglage laser final restent ceux du procédé choisi chez l'imprimeur ; aucun
 export générique ne se fait passer pour un travail déjà chargé sur une machine.
@@ -137,6 +146,41 @@ autorisé par Maxime le 16 octobre est **1,30 kg**. Les essais antérieurs sous
 
 Les recettes exécutables appartiennent au dépôt. Une image ou un fichier de
 mesures reçu en entrée ne peut pas ajouter une commande à exécuter.
+
+## Réutiliser les étapes déjà calculées
+
+La correction des supports ne demande pas de refaire la mécanique si le STEP
+et son STL restent exactement identiques. L'
+[assembleur du pilote](../../scripts/assemble_carrier_workflow.py) vérifie les
+douze premières étapes du passage source et copie leurs fichiers sans les
+modifier. Il les réunit avec une préparation LPBF complète, ses six contrôles
+admis et l'audit de toutes ses couches.
+
+```sh
+python3 scripts/assemble_carrier_workflow.py assemble \
+  --source work/part-workflow/run-001 \
+  --process work/PREPARATION_LPBF_ADMISE \
+  --audit work/AUDIT_COMPLET_DE_CETTE_PREPARATION \
+  --output work/part-workflow/ASSEMBLAGE_NEUF
+
+python3 scripts/assemble_carrier_workflow.py verify \
+  work/part-workflow/ASSEMBLAGE_NEUF
+```
+
+Ces chemins désignent les sorties admises à fournir lorsque le tranchage est
+terminé ; ils ne désignent pas des résultats déjà présents. Le reçu
+`assembly.json` conserve le statut du passage initial, les étapes importées,
+les trois provenances et toutes les empreintes copiées. Il déclare explicitement
+la réutilisation des calculs. Le passage initial reste refusé et n'est jamais
+réécrit en exécution réussie. Les fichiers de l'assemblage restent vérifiables
+après déplacement ou archivage du dossier source.
+
+Le [cache des couches de pièce](../../parts/993-eng-carrier-0001/source/process-cache-20261016/part_cache.py)
+applique la même règle pendant le travail : identité du STL, pose et tableaux
+du maillage, paramètres de tranchage, versions et empreintes des dépendances,
+ordre de tous les plans de coupe et empreintes des fichiers doivent correspondre.
+Le cache contient exclusivement les sections et trajectoires de la pièce ; les
+supports sont calculés et contrôlés à part. Un cache partiel est refusé.
 
 ## Le dossier du mécanicien
 
