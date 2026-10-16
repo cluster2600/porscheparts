@@ -251,7 +251,7 @@ gmsh quadrangles extruded into hexahedra, with fine cells at the inlet.
 | Assumed fillet r = 0.2 mm | 5.00 Pa | 4.88 Pa | 1.024 |
 | Assumed fillet r = 0.4 mm | 5.02 Pa | 4.94 Pa | 1.016 |
 
-- With developing flow, the loss is 2 to 3 % above the proxy, so the short-channel
+- With developing flow, the loss is 1.6 to 2.6 % above the proxy, so the short-channel
   proxy with the assumed K = 2 holds within a few percent for this inlet
   condition. The flow split between the narrow and wide channels moves by less
   than 2 %.
@@ -305,10 +305,22 @@ proposals from the stress study, not measured or printed values.
 | r = 0.2 mm, 0.05 mm voxels | 4 | −3.6 % (outer four), −12.5 % (middle) | yes |
 | r = 0.4 mm, 0.1 mm voxels | 4 | −4.9 to −16.5 % (middle) | **no** |
 
-- The measured fillet is always slightly smaller than the analytic one, and the gap
-  shrinks as the fillet spans more voxels. At four voxels the middle channel is the
-  worst case. The failed 0.1 mm check is kept in the report as failed; the tolerance
-  was not changed. Only the 0.05 mm runs represent the assumed fillets.
+- The check fixed before the runs measures the **hot-fluid** STL. On that body the
+  fillet always comes out smaller than the analytic one, most of all in the middle
+  channel and at four voxels. The failed 0.1 mm check is kept in the report as
+  failed; the tolerance was not changed.
+- **That trend depends on which body is measured.** The solid and hot meshes do not
+  partition the envelope exactly. Against the sharp run, the solid gains 0.27 mm³
+  (both 0.05 mm runs) to 1.06 mm³ (r = 0.4 mm, 0.1 mm voxels) more than the hot
+  channels lose, while the cold body is unchanged. That mismatch is the same size
+  as the fillet errors being judged. Measured as the solid's volume gain against
+  the analytic 20 · (1 − π/4) r² · 24 mm, the fillets come out +1.2 % (r = 0.2 mm,
+  0.05 mm), −0.5 % (r = 0.4 mm, 0.05 mm) and −1.8 % (r = 0.4 mm, 0.1 mm); on the
+  hot side the same totals are −5.3 %, −2.2 % and −8.3 %. So the table shows a
+  hot-side meshing bias at least as much as a fillet shape error, and it does not
+  show that four voxels under-resolve the fillet itself. Both figures are computed
+  from the volumes in the [report](derived/fillet-geometry/fillet-geometry.json).
+  The verdict stays the one fixed in advance: only the 0.05 mm runs pass.
 - **This is geometry only.** No solver ran on it. It says nothing about whether LPBF
   can hold a 0.2 to 0.4 mm root fillet, and it qualifies no pressure strength.
 

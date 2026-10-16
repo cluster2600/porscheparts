@@ -240,4 +240,18 @@ class FilletGeometryTests(unittest.TestCase):
         self.assertEqual(r['fillet_area_checks_failed'],['r0.4-v0.1'])
         self.assertEqual(r['fillet_area_tolerance'],.15)
 
+    def test_fillet_error_depends_on_measured_body(self):
+        # The README quotes the fillet error on both the solid and the hot-fluid side, because the meshes do not partition exactly.
+        r=self.r;runs={x['name']:x for x in r['runs']};vol=lambda run,part:run['parts'][part]['volume_mm3']
+        expected={'r0.2-v0.05':(.012,-.053,.27),'r0.4-v0.05':(-.005,-.0215,.27),'r0.4-v0.1':(-.018,-.083,1.06)}
+        for check in r['fillet_area_checks']:
+            run=runs['r0-'+check['name'].split('-')[1]];filleted=runs[check['name']]
+            analytic=check['analytic_solid_volume_gain_mm3']
+            solid=vol(filleted,'solid_mm')-vol(run,'solid_mm');hot=vol(run,'hot_fluid_mm')-vol(filleted,'hot_fluid_mm')
+            self.assertAlmostEqual(solid,check['solid_volume_gain_mm3'],places=9);self.assertAlmostEqual(analytic,20*check['analytic_corner_area_mm2']*24,places=9)
+            self.assertAlmostEqual(hot,4*24*sum(check['measured_corner_area_mm2']),delta=1e-3)
+            self.assertEqual(vol(filleted,'cold_fluid_mm'),vol(run,'cold_fluid_mm'))
+            solid_error,hot_error,mismatch=expected[check['name']]
+            self.assertAlmostEqual(solid/analytic-1,solid_error,delta=.0005);self.assertAlmostEqual(hot/analytic-1,hot_error,delta=.0005);self.assertAlmostEqual(solid-hot,mismatch,delta=.005)
+
 if __name__=='__main__':unittest.main()
