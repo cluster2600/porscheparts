@@ -156,4 +156,48 @@ class FilletHydraulicsTests(unittest.TestCase):
         # Developing flow is not resolved: the wide channels never become fully developed in 24 mm.
         self.assertGreater(max(c['hydrodynamic_entry_length_over_length'] for c in r['variants']['0.2']['split']['channels']),1)
 
+CFD=STUDY/'derived/channel-cfd'
+spec=importlib.util.spec_from_file_location('channel_cfd',STUDY/'source/channel_cfd.py');C=importlib.util.module_from_spec(spec);spec.loader.exec_module(C)
+
+
+class ChannelCfdTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.r=json.loads((CFD/'channel-cfd.json').read_text())
+
+    def test_receipts_logs_and_provenance(self):
+        r=self.r;self.assertEqual(sha(STUDY/'source/channel_cfd.py'),r['source_sha256'])
+        for path,digest in r['dependency_hashes'].items():self.assertEqual(sha(ROOT/path),digest)
+        self.assertEqual(len(r['cases']),len(C.RADII)*2*(len(C.SIZES_MM)+1))
+        for c in r['cases']:
+            folder=CFD/f"r{c['fillet_radius_mm']}-w{c['width_mm']}-level-{c['level']}-dp{c['pressure_factor']}"
+            self.assertEqual(json.loads((folder/'receipt.json').read_text()),c)
+            for name in ['mesh.log','solver.log']:self.assertEqual(hashlib.sha256(gzip.decompress((folder/(name+'.gz')).read_bytes())).hexdigest(),c['source_hashes'][name])
+            for name in ['system/controlDict','system/fvSchemes','system/fvSolution','constant/physicalProperties','constant/momentumTransport','0/U','0/p']:self.assertEqual(sha(folder/name),c['source_hashes'][name])
+            self.assertTrue(c['simple_converged']);self.assertLess(c['flow_rate_drift_last_50'],1e-5);self.assertAlmostEqual(c['outlet_to_inlet_flow_ratio'],1,delta=1e-6)
+            self.assertEqual(c['cells'],c['hexahedra']);self.assertEqual(c['cells'],c['section_cells']*c['axial_cells']);self.assertTrue(c['fillet_radius_is_assumption'])
+            self.assertAlmostEqual(c['cad_quarter_area_mm2'],H.channel_area(c['width_mm'],3,c['fillet_radius_mm'])/4,places=9)
+        for key in ['hydraulic_performance_accepted','thermal_gain_claimed','manufacturing_authorized','resolved_thermal_or_flow_simulation']:self.assertFalse(r[key])
+
+    def test_dictionaries_regenerate_and_axial_spacing(self):
+        rho,mu,_=H.gas();c=self.r['cases'][0]
+        folder=CFD/f"r{c['fillet_radius_mm']}-w{c['width_mm']}-level-{c['level']}-dp{c['pressure_factor']}"
+        for name,text in C.dictionaries(mu/rho,c['pressure_difference_pa']/rho).items():self.assertEqual((folder/name).read_text(),text)
+        for size in C.SIZES_MM:
+            h=C.axial_layers(size);self.assertEqual(h[-1],1.);self.assertTrue(all(b>a for a,b in zip(h,h[1:])))
+
+    def test_split_and_comparison_with_proxy(self):
+        r=self.r;proxy=json.loads(HYDRAULICS.read_text())
+        for radius,v in r['variants'].items():
+            curves=[tuple(v['finest_fit_a_b'][str(w)]) for w in r['clear_widths_mm']];split=C.split(curves)
+            self.assertEqual(split,v['finest_split']);self.assertAlmostEqual(sum(split['channel_mass_flow_kg_s'])/split['total_mass_flow_kg_s'],1,delta=1e-12)
+            for (a,b),m in zip(curves,split['channel_mass_flow_kg_s']):self.assertAlmostEqual(a*m+b*m*m,split['pressure_drop_pa'],places=6);self.assertGreater(a,0)
+            self.assertEqual(v['fully_developed_proxy_pressure_drop_pa'],proxy['variants'][radius]['split']['pressure_drop_pa'])
+            # The unstructured section meshes do not converge monotonically everywhere; the level-to-level spread stays below 1.5 %.
+            for w in v['mass_flow_convergence_at_0_95_proxy_dp']:
+                flows=[c['mass_flow_kg_s'] for c in r['cases'] if (str(c['fillet_radius_mm']),str(c['width_mm']),c['pressure_factor'])==(radius,w,C.CONVERGENCE_FACTOR)]
+                self.assertEqual(len(flows),len(C.SIZES_MM));self.assertLess(max(flows)/min(flows)-1,.015)
+            # Developing flow with a quiescent-plenum inlet costs a few percent more than the fully developed proxy with K = 2.
+            self.assertGreater(v['finest_over_proxy'],1);self.assertLess(v['finest_over_proxy'],1.05)
+
 if __name__=='__main__':unittest.main()

@@ -222,6 +222,52 @@ The [receipt](derived/fillet-hydraulics/fillet-hydraulics.json) keeps every
 section, its mesh convergence (GCI below 1e-7), the split per channel and the
 hashes of the inputs.
 
+## Exploratory channel CFD
+
+*Added 2026-10-15.* [channel_cfd.py](source/channel_cfd.py) is the first CFD case
+of the ribbed hot passage. It is isothermal, incompressible and laminar, and runs
+OpenFOAM 13 (`incompressibleFluid`, steady SIMPLE) in the `3dprinting993-cadsim`
+image at the gas state of [study.py](source/study.py). Each distinct channel,
+1.8 and 5.2 mm wide, 3 mm high and 24 mm long, is a quarter duct with two symmetry
+planes. The sharp section and the assumed 0.2 and 0.4 mm fillets are meshed with
+gmsh quadrangles extruded into hexahedra, with fine cells at the inlet.
+
+- **Boundary conditions.** The inlet is a uniform total pressure, which stands
+  for a quiescent upstream plenum. The outlet is a uniform static pressure and the
+  walls are no-slip. The developing flow that the proxy leaves out is therefore
+  resolved. Sharp-edge inlet separation, headers, roughness, compressibility and
+  heat transfer are not.
+- **Runs.** Every case runs at 0.95 times the proxy pressure drop on three meshes
+  (0.141, 0.1 and 0.071 mm, up to 112,000 cells). The finest mesh also runs at
+  1.05 times, and a two-term fit dp = a·m + b·m² per channel gives the
+  equal-pressure split at the study's total mass flow.
+- **Convergence.** All 24 cases reach the SIMPLE residual targets (p 1e-8,
+  U 1e-9), with flow-rate drift below 1e-6 over the last 50 iterations and inlet
+  and outlet flows balanced to 1e-9.
+
+| Root | CFD pressure loss, finest mesh | Fully developed proxy | CFD / proxy |
+|---|---:|---:|---:|
+| Sharp | 4.99 Pa | 4.87 Pa | 1.026 |
+| Assumed fillet r = 0.2 mm | 5.00 Pa | 4.88 Pa | 1.024 |
+| Assumed fillet r = 0.4 mm | 5.02 Pa | 4.94 Pa | 1.016 |
+
+- With developing flow, the loss is 2 to 3 % above the proxy, so the short-channel
+  proxy with the assumed K = 2 holds within a few percent for this inlet
+  condition. The flow split between the narrow and wide channels moves by less
+  than 2 %.
+- The fillet effect cannot be separated from mesh error here. Between the three
+  meshes, the channel flow rate at fixed pressure varies by 0.3 to 1.2 %, and not
+  monotonically in every channel. The CFD's +0.1 % (r = 0.2) and +0.5 % (r = 0.4)
+  sit inside that band. Only the proxy's +0.33 % and +1.47 % above are resolved.
+- **This is an exploratory calculation, not a measurement.** A sharp-edged or
+  manifold-fed inlet would add losses that this case does not contain.
+  No hydraulic performance and no thermal gain are claimed.
+
+The [summary](derived/channel-cfd/channel-cfd.json) and the 24
+[case folders](derived/channel-cfd/) keep the dictionaries, the compressed mesh
+and solver logs, and per-case receipts. The gmsh meshes and the field results are
+identified by SHA-256 and not committed; the generator rewrites them.
+
 ## Reproduction and next steps
 
 ```sh
@@ -233,6 +279,10 @@ python3 twins/993-intercooler/750-hp/pressure-coupon/source/fillet_review.py --o
 docker run --rm --network none --cpus 2 --memory 3g --memory-swap 3g -v "$PWD":/repo:ro -v "$PWD/work":/out -w /tmp 3dprinting993-cadsim:dev \
   python3 -B /repo/twins/993-intercooler/750-hp/pressure-coupon/source/fillet_hydraulics.py --output /out/new-fillet-hydraulics \
   --image-id "$(docker image inspect 3dprinting993-cadsim:dev --format '{{.Id}}')"
+flock /tmp/porscheparts-heavy.lock docker run --rm --network none --cpus 4 --memory 6g --memory-swap 6g -e OMP_NUM_THREADS=1 -v "$PWD":/repo:ro -v "$PWD/work":/out -w /tmp 3dprinting993-cadsim:dev \
+  python3 -B /repo/twins/993-intercooler/750-hp/pressure-coupon/source/channel_cfd.py --output /out/new-channel-cfd \
+  --proxy /repo/twins/993-intercooler/750-hp/pressure-coupon/derived/fillet-hydraulics/fillet-hydraulics.json \
+  --image-id "$(docker image inspect 3dprinting993-cadsim:dev --format '{{.Id}}')" --workers 4
 python3 -m unittest discover -s tests -p test_993_intercooler_pressure_coupon.py -v
 ```
 
