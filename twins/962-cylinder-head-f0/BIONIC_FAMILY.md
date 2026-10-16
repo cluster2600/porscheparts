@@ -2,6 +2,12 @@
 
 # Bionic 962 C head: recovered dimensions and working assumptions
 
+The [four exact USD review exports](derived/engineering/usd-exact-family/README.md)
+and [verified download packages](derived/engineering/usd-review-delivery/README.md)
+now preserve the four inspected solid meshes for OpenUSD/Omniverse review.
+Computed physics fields and a calibrated twin remain future stages of the
+[engineering programme](ENGINEERING_PROGRAM.md).
+
 **Instruction of October 16, 2026: research original dimensions, then continue
 the model with explicit assumptions.** The bionic shape may substantially
 change the reference. Missing dimensions therefore no longer block the
