@@ -106,6 +106,7 @@ flowchart LR
 
 - **Full description page**, with sources and evidence: [docs/pieces/993-exh-oval-tip-ti-f1-0001.md](../../docs/pieces/993-exh-oval-tip-ti-f1-0001.md)
 - **Catalogue record** (source of truth): [`catalog/parts/993-exh-oval-tip-ti-f1-0001.json`](../../catalog/parts/993-exh-oval-tip-ti-f1-0001.json)
+- **Design dossier**: [993-exh-oval-tip-ti-f1-0001-manufacturing-request](../../docs/993/993-exh-oval-tip-ti-f1-0001-manufacturing-request.md)
 - **Design dossier**: [993_EMBOUT_TITANE_F1](../../docs/993/993_EMBOUT_TITANE_F1.md)
 - **Safety rules**: [SAFETY.md](../../SAFETY.md)
 

@@ -66,7 +66,7 @@ Catalogue record: [`catalog/parts/993-exh-oval-tip-ti-f1-0001.json`](../../catal
 | machined surfaces | not recorded |
 | inspection | dimensional inspection of the outlet envelope, borescope inspection of the annular channel |
 | galvanic isolation | Titanium/stainless steel couple at the outlet mounting: to be addressed; titanium is noble and stainless follows it closely, but moisture and road salt remain present. |
-| fatigue assumptions | not recorded |
+| fatigue assumptions | No fatigue load case, cycle count, S-N curve or fatigue allowable exists for this part, and none is claimed. Assumed and not quantified: the cyclic loads would be thermal cycling between ambient and hot running, engine and road vibration transmitted through the slip-fit clamp, and exhaust pressure pulsation; no vibration spectrum, pulse spectrum or duty cycle is recorded. The 44.8 Hz first mode is an equivalent-strip screen, not a correlated mode, and the 385 MPa fully constrained thermal stress is a warning that demands a sliding interface, not a predicted stress. EOS publishes no fatigue data for the Ti64 M 290 30 um route; as-built roughness, porosity, build orientation and the undecided HIP would govern life. See docs/decisions/0014-exhaust-tip-route-matrix-conditional-titanium.md. |
 
 ## Geometry
 
@@ -131,6 +131,7 @@ Catalogue record: [`catalog/parts/993-exh-oval-tip-ti-f1-0001.json`](../../catal
 
 ## Design dossiers
 
+- [993-exh-oval-tip-ti-f1-0001-manufacturing-request](../../docs/993/993-exh-oval-tip-ti-f1-0001-manufacturing-request.md)
 - [993_EMBOUT_TITANE_F1](../../docs/993/993_EMBOUT_TITANE_F1.md)
 
 ---

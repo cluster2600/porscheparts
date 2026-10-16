@@ -1,0 +1,1138 @@
+{
+  "schema_version": "1.0.0",
+  "matrix_id": "993-EXH-OVAL-TIP-ROUTE-MATRIX-F1",
+  "part_id": "993-EXH-OVAL-TIP-TI-F1-0001",
+  "decision_record": "docs/decisions/0014-exhaust-tip-route-matrix-conditional-titanium.md",
+  "date": "2026-10-15",
+  "status": "proposed_not_reviewed",
+  "authority": "repository_arithmetic_and_judgement_not_measurement",
+  "reviewed_by": "",
+  "reviewed_on": null,
+  "manufacturing_authorized": false,
+  "scope": "Five manufacturing routes (eight rows) compared for one part, on the repository's own volumes and on sourced densities and temperature limits. Every cell names its basis. Assumptions and judgements are falsifiable cell by cell; none of them is evidence, and the matrix authorizes nothing.",
+  "basis_vocabulary": {
+    "sourced": "value or statement read from a catalog/sources record listed in source_ids",
+    "repo_evidence": "value read from a repository file listed in refs",
+    "arithmetic": "computed in this file from cited inputs; the formula is given",
+    "assumption": "declared assumption, not evidence",
+    "judgement": "repository judgement, falsifiable, not a measurement or a supplier statement",
+    "open": "unknown; to be supplied or blocking"
+  },
+  "ceiling_type_vocabulary": {
+    "creep_limited_service": "prolonged-service ceiling set by creep, as given by the titanium grade-selection source",
+    "oxidation_in_air_guidance": "generally accepted maximum service temperature in air, for guidance only, reduced here for water vapour; an oxidation-environment value, not a creep limit",
+    "stability_statement": "supplier statement that the alloy is stable up to about that temperature; not a service rating",
+    "continuous_use_rating": "UL 746B continuous-use temperature for a stated duty; not a short-term or melting limit",
+    "not_quantified": "no ceiling is recorded in the repository's sources"
+  },
+  "inputs": {
+    "cad_volume_mm3": {
+      "value": 48149.342443044705,
+      "basis": [
+        "repo_evidence"
+      ],
+      "refs": [
+        "parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti64.json"
+      ],
+      "note": "results.cad_volume_mm3; the IN625 F0 screen carries the same value"
+    },
+    "unribbed_shell_volume_mm3": {
+      "value": 47923.1109749201,
+      "basis": [
+        "repo_evidence"
+      ],
+      "refs": [
+        "parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti64.json"
+      ],
+      "note": "analytic loft without the eight ties"
+    },
+    "envelope_mm": {
+      "value": [
+        120.0,
+        85.0,
+        120.0
+      ],
+      "basis": [
+        "repo_evidence"
+      ],
+      "refs": [
+        "parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti64.json"
+      ],
+      "note": "step_roundtrip.envelope_mm; only the 120 x 85 mm outlet is published, the 120 mm length is an F0 assumption"
+    },
+    "nominal_wall_mm": {
+      "value": 0.8,
+      "basis": [
+        "repo_evidence",
+        "assumption"
+      ],
+      "refs": [
+        "parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti64.json"
+      ],
+      "note": "F0 hypothesis, not a measured wall"
+    },
+    "annular_gap_mm": {
+      "value": 2.7,
+      "basis": [
+        "repo_evidence",
+        "assumption"
+      ],
+      "refs": [
+        "parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti64.json"
+      ],
+      "note": "dfam_screen.minimum_open_gap_mm"
+    },
+    "declared_tip_surface_c": {
+      "value": 426.85,
+      "basis": [
+        "repo_evidence"
+      ],
+      "status": "synthetic_never_measured",
+      "refs": [
+        "parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti64.json"
+      ],
+      "note": "700 K declared by the F0 screen"
+    },
+    "declared_exhaust_gas_c": {
+      "value": 576.85,
+      "basis": [
+        "repo_evidence"
+      ],
+      "status": "synthetic_never_measured",
+      "refs": [
+        "parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti64.json"
+      ],
+      "note": "850 K synthetic gas; it wets the inner duct"
+    },
+    "stainless_baseline_density_g_cm3": {
+      "value": [
+        7.7,
+        8.0
+      ],
+      "basis": [
+        "sourced",
+        "assumption"
+      ],
+      "source_ids": [
+        "SRC-EURO-INOX-STAINLESS-HIGH-TEMPERATURES-2012"
+      ],
+      "note": "Table 14 of the source: 7.7 for the ferritic heat-resistant grades, 7.8 to 8.0 for the austenitic heat-resistant grades. The range spans both families because the grade of the original tip is unknown."
+    }
+  },
+  "criteria": [
+    {
+      "id": "mass",
+      "description": "mass of the drawn geometry, and its difference to the equal-geometry stainless baseline"
+    },
+    {
+      "id": "temperature_margin",
+      "description": "service ceiling minus the declared 427 C surface and the 850 K (576.85 C) gas, both synthetic; the ceilings are not of one kind, see ceiling_type"
+    },
+    {
+      "id": "oxidation_corrosion",
+      "description": "oxidation, road salt, moisture and galvanic couple at the mounting"
+    },
+    {
+      "id": "consolidation",
+      "description": "whether duct, shroud and ties come out as one body"
+    },
+    {
+      "id": "thin_wall_and_annular_channel",
+      "description": "feasibility of the 0.8 mm walls and of the open 2.7 mm annular channel"
+    },
+    {
+      "id": "availability",
+      "description": "whether a supply route exists today"
+    },
+    {
+      "id": "inspection_burden",
+      "description": "inspection the route needs before a part could be accepted"
+    },
+    {
+      "id": "cost_class",
+      "description": "qualitative class only; no quote is used or committed"
+    }
+  ],
+  "routes": [
+    {
+      "route_id": "lpbf_ti64",
+      "category": "LPBF",
+      "label": "LPBF Ti-6Al-4V Grade 5, double wall as drawn (EOS M 290, 30 um screening route)",
+      "cells": {
+        "mass": {
+          "basis": [
+            "repo_evidence",
+            "arithmetic"
+          ],
+          "summary": "212.34 g, the screening mass of the evidence file; 47.7 % lighter than LPBF IN625 on the same geometry and 42.7 to 44.9 % lighter than the equal-geometry stainless baseline (the baseline itself is an assumption, see that row).",
+          "value_g": 212.34,
+          "density_g_cm3": 4.41,
+          "formula": "m = rho * V_cad",
+          "inputs": {
+            "V_cad_mm3": "inputs.cad_volume_mm3",
+            "rho_g_cm3": 4.41
+          },
+          "delta_vs_stainless_baseline_percent": [
+            -44.9,
+            -42.7
+          ],
+          "source_ids": [
+            "SRC-EOS-TI64-M290-MATERIAL-DATA"
+          ],
+          "refs": [
+            "parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti64.json",
+            "catalog/manufacturing/processes/eos-m290-ti64-30um.json"
+          ]
+        },
+        "temperature_margin": {
+          "basis": [
+            "sourced",
+            "repo_evidence"
+          ],
+          "summary": "Creep-limited ceiling 400 C, the top of the 350-400 C band given by the source. Margin -27 C against the 427 C synthetic surface and -177 C against the 850 K synthetic gas that wets the inner duct. Fails on both.",
+          "ceiling_c": 400.0,
+          "ceiling_type": "creep_limited_service",
+          "formula": "margin = ceiling - T (T = 426.85 C surface, 576.85 C gas)",
+          "margin_vs_declared_surface_c": -26.85,
+          "margin_vs_declared_gas_c": -176.85,
+          "source_ids": [
+            "SRC-TI64-CREEP-SERVICE-CEILING"
+          ],
+          "refs": [
+            "catalog/manufacturing/processes/eos-m290-ti64-30um.json",
+            "parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti64.json"
+          ]
+        },
+        "oxidation_corrosion": {
+          "basis": [
+            "open",
+            "repo_evidence"
+          ],
+          "summary": "No oxidation limit or thermal-cycling behaviour of the delivered condition is published for this route (the process card lists it as a missing input). Titanium/stainless couple at the outlet mounting is recorded as 'to be addressed'. Road salt and moisture are present.",
+          "source_ids": [],
+          "refs": [
+            "catalog/manufacturing/processes/eos-m290-ti64-30um.json",
+            "catalog/parts/993-exh-oval-tip-ti-f1-0001.json"
+          ]
+        },
+        "consolidation": {
+          "basis": [
+            "repo_evidence"
+          ],
+          "summary": "One body: inner duct, outer shroud and eight radial ties in a single BREP.",
+          "source_ids": [],
+          "refs": [
+            "parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti64.json"
+          ]
+        },
+        "thin_wall_and_annular_channel": {
+          "basis": [
+            "repo_evidence",
+            "open"
+          ],
+          "summary": "Local thickness p01 0.600 mm and minimum 0.460 mm against the EOS process minimum of 0.3 to 0.4 mm: the stage-04 wall gate passes, without comfort. The 2.7 mm annular channel is open at the inlet, but depowdering is screened only at a 1 mm voxel, which cannot conclude; borescope or CT is required.",
+          "source_ids": [
+            "SRC-EOS-TI64-M290-MATERIAL-DATA"
+          ],
+          "refs": [
+            "twins/993-exhaust-tip-ti-f0/evidence/lpbf-f1/993-exh-oval-tip-ti-f1-0001-lpbf-geometry-report.json",
+            "twins/993-exhaust-tip-ti-f0/evidence/route-ti64/993-exh-oval-tip-ti-f1-0001-process-route-card.json"
+          ]
+        },
+        "availability": {
+          "basis": [
+            "repo_evidence",
+            "judgement"
+          ],
+          "summary": "Commodity: Ti-6Al-4V is the titanium grade offered by service bureaus generally, per the repository process card. No supplier has been asked.",
+          "source_ids": [],
+          "refs": [
+            "catalog/manufacturing/processes/eos-m290-ti64-30um.json"
+          ]
+        },
+        "inspection_burden": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "High: powder lot and chemistry certificate, coupon plan, heat-treatment record, CT or borescope of a 2.7 mm by 120 mm channel, wall-thickness map of 0.8 mm walls. Governing specifications ASTM F2924 / F3302 still to be contracted.",
+          "source_ids": [
+            "SRC-ASTM-F2924-14R21",
+            "SRC-ASTM-F3302-18",
+            "SRC-ISO-15708-CT-2025"
+          ],
+          "refs": [
+            "twins/993-exhaust-tip-ti-f0/evidence/route-ti64/993-exh-oval-tip-ti-f1-0001-process-route-card.json"
+          ]
+        },
+        "cost_class": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "High per part. The only repository number is 3.08 h of exposure at the published build rate, which excludes recoating, heating, inerting, heat treatment, depowdering, finishing and CT. No quote exists and none is committed.",
+          "value": "high",
+          "source_ids": [],
+          "refs": [
+            "twins/993-exhaust-tip-ti-f0/evidence/route-ti64/993-exh-oval-tip-ti-f1-0001-process-route-card.json"
+          ]
+        }
+      },
+      "verdict": "Best mass of the metal routes and the only one that combines titanium with the one-piece double wall. Blocked by temperature: the declared values exceed the alloy ceiling, and the declared values are synthetic."
+    },
+    {
+      "route_id": "lpbf_ti6242",
+      "category": "LPBF",
+      "label": "LPBF Ti-6242, the high-temperature fallback named in decision 0007",
+      "cells": {
+        "mass": {
+          "basis": [
+            "arithmetic",
+            "repo_evidence"
+          ],
+          "summary": "218.60 g on the CAD volume. The evidence file prints 217.57 g because it was run without the CAD round trip and used the analytic unribbed volume; the 1.03 g difference is recorded, the frozen file is not edited.",
+          "value_g": 218.6,
+          "density_g_cm3": 4.54,
+          "formula": "m = rho * V_cad",
+          "inputs": {
+            "V_cad_mm3": "inputs.cad_volume_mm3",
+            "rho_g_cm3": 4.54
+          },
+          "delta_vs_stainless_baseline_percent": [
+            -43.2,
+            -41.0
+          ],
+          "source_ids": [
+            "SRC-TI6242-LPBF-STATE-OF-THE-ART"
+          ],
+          "refs": [
+            "parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti6242.json",
+            "catalog/manufacturing/processes/lpbf-ti6242-research-route.json"
+          ]
+        },
+        "temperature_margin": {
+          "basis": [
+            "sourced"
+          ],
+          "summary": "Ceiling about 550 C. Margin +123 C against the 427 C synthetic surface, -27 C against the 850 K synthetic gas.",
+          "ceiling_c": 550.0,
+          "ceiling_type": "creep_limited_service",
+          "formula": "margin = ceiling - T (T = 426.85 C surface, 576.85 C gas)",
+          "margin_vs_declared_surface_c": 123.15,
+          "margin_vs_declared_gas_c": -26.85,
+          "source_ids": [
+            "SRC-TI64-CREEP-SERVICE-CEILING",
+            "SRC-TI6242-LPBF-STATE-OF-THE-ART"
+          ],
+          "refs": [
+            "catalog/manufacturing/processes/lpbf-ti6242-research-route.json"
+          ]
+        },
+        "oxidation_corrosion": {
+          "basis": [
+            "open"
+          ],
+          "summary": "No LPBF oxidation or thermal-cycling data in the repository's sources.",
+          "source_ids": [],
+          "refs": [
+            "catalog/manufacturing/processes/lpbf-ti6242-research-route.json"
+          ]
+        },
+        "consolidation": {
+          "basis": [
+            "repo_evidence"
+          ],
+          "summary": "Same one-body geometry as the Ti-6Al-4V route.",
+          "source_ids": [],
+          "refs": [
+            "parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti6242.json"
+          ]
+        },
+        "thin_wall_and_annular_channel": {
+          "basis": [
+            "repo_evidence",
+            "open"
+          ],
+          "summary": "The research route publishes no minimum wall and no layer thickness: nothing to compare the 0.8 mm walls against.",
+          "source_ids": [],
+          "refs": [
+            "twins/993-exhaust-tip-ti-f0/evidence/route-ti6242/993-exh-oval-tip-ti-f1-0001-process-route-card.json",
+            "catalog/manufacturing/processes/lpbf-ti6242-research-route.json"
+          ]
+        },
+        "availability": {
+          "basis": [
+            "repo_evidence"
+          ],
+          "summary": "None: a research topic with a first published LPBF implementation in 2020 and no service-bureau offer.",
+          "source_ids": [
+            "SRC-TI6242-LPBF-STATE-OF-THE-ART"
+          ],
+          "refs": [
+            "catalog/manufacturing/processes/lpbf-ti6242-research-route.json"
+          ]
+        },
+        "inspection_burden": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "Very high: powder and parameter qualification would come first.",
+          "source_ids": [],
+          "refs": [
+            "twins/993-exhaust-tip-ti-f0/evidence/route-ti6242/993-exh-oval-tip-ti-f1-0001-process-route-card.json"
+          ]
+        },
+        "cost_class": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "Very high: a supplier would have to qualify a powder and a parameter set.",
+          "value": "very_high",
+          "source_ids": [],
+          "refs": [
+            "catalog/manufacturing/processes/lpbf-ti6242-research-route.json"
+          ]
+        }
+      },
+      "verdict": "Not a supply route for a first titanium part. Kept in the matrix because decision 0007 names it."
+    },
+    {
+      "route_id": "lpbf_in625",
+      "category": "LPBF",
+      "label": "LPBF IN625, the existing double-wall F0 concept (EOS M 290, 40 um)",
+      "cells": {
+        "mass": {
+          "basis": [
+            "repo_evidence",
+            "arithmetic"
+          ],
+          "summary": "406.38 g, the F0 screening mass. Heavier than the equal-geometry stainless baseline by 5.5 to 9.6 %: on this geometry IN625 is not a lightweight route.",
+          "value_g": 406.38,
+          "density_g_cm3": 8.44,
+          "formula": "m = rho * V_cad",
+          "inputs": {
+            "V_cad_mm3": "inputs.cad_volume_mm3",
+            "rho_g_cm3": 8.44
+          },
+          "delta_vs_stainless_baseline_percent": [
+            5.5,
+            9.6
+          ],
+          "source_ids": [
+            "SRC-SPECIAL-METALS-INCONEL-625"
+          ],
+          "refs": [
+            "parts/993-exh-oval-tip-in625-f0-0001/evidence/engineering-screen.json"
+          ]
+        },
+        "temperature_margin": {
+          "basis": [
+            "open",
+            "judgement"
+          ],
+          "summary": "No IN625 service ceiling is recorded in the repository's sources; the bulletin is cited for properties at 427 C. Decision 0007 treats exhaust temperature as nickel territory. The margin is judged large but is not quantified.",
+          "ceiling_c": null,
+          "ceiling_type": "not_quantified",
+          "formula": "margin = ceiling - T (T = 426.85 C surface, 576.85 C gas)",
+          "margin_vs_declared_surface_c": null,
+          "margin_vs_declared_gas_c": null,
+          "source_ids": [
+            "SRC-SPECIAL-METALS-INCONEL-625"
+          ],
+          "refs": [
+            "docs/decisions/0007-premier-titane-embout-echappement.md"
+          ]
+        },
+        "oxidation_corrosion": {
+          "basis": [
+            "open",
+            "judgement"
+          ],
+          "summary": "Oxidation, creep and thermal-fatigue allowables are listed as missing in the process card. Nickel/stainless couple at the mounting: judged benign, not assessed.",
+          "source_ids": [],
+          "refs": [
+            "catalog/manufacturing/processes/eos-m290-in625-40um.json"
+          ]
+        },
+        "consolidation": {
+          "basis": [
+            "repo_evidence"
+          ],
+          "summary": "One body, same BREP as the titanium variant.",
+          "source_ids": [],
+          "refs": [
+            "parts/993-exh-oval-tip-in625-f0-0001/evidence/engineering-screen.json"
+          ]
+        },
+        "thin_wall_and_annular_channel": {
+          "basis": [
+            "repo_evidence",
+            "open"
+          ],
+          "summary": "Local thickness p01 0.636 mm and minimum 0.245 mm in the F0 screen; the EOS IN625 card in the repository publishes no minimum wall. Depowdering screened at a 0.5 mm voxel, still not conclusive.",
+          "source_ids": [
+            "SRC-EOS-IN625-MATERIAL-DATA"
+          ],
+          "refs": [
+            "twins/993-oval-exhaust-tip-in625-f0/evidence/lpbf-f0/993-exh-oval-tip-in625-f0-0001-lpbf-geometry-report.json",
+            "catalog/manufacturing/processes/eos-m290-in625-40um.json",
+            "docs/AM_VALIDATION_PIPELINE.md"
+          ]
+        },
+        "availability": {
+          "basis": [
+            "repo_evidence",
+            "judgement"
+          ],
+          "summary": "Published EOS route with a named parameter set; decision 0007 calls it purchasable. No supplier asked.",
+          "source_ids": [
+            "SRC-EOS-IN625-MATERIAL-DATA"
+          ],
+          "refs": [
+            "catalog/manufacturing/processes/eos-m290-in625-40um.json",
+            "docs/decisions/0007-premier-titane-embout-echappement.md"
+          ]
+        },
+        "inspection_burden": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "High, same as the titanium LPBF route.",
+          "source_ids": [],
+          "refs": []
+        },
+        "cost_class": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "High per part; no quote.",
+          "value": "high",
+          "source_ids": [],
+          "refs": []
+        }
+      },
+      "verdict": "The LPBF route with the most likely, but unquantified, temperature headroom; heavier than stainless on this geometry. Its only advantage over a fabricated stainless tip is the one-piece double wall."
+    },
+    {
+      "route_id": "cnc_billet",
+      "category": "CNC",
+      "label": "CNC machining from billet, Ti-6Al-4V or stainless",
+      "cells": {
+        "mass": {
+          "basis": [
+            "arithmetic",
+            "assumption"
+          ],
+          "summary": "If the drawn geometry could be machined it would weigh 213.30 g in wrought Ti-6Al-4V (4.43 g/cm3) or 370.75 to 385.19 g in stainless. The bounding billet, a 120 x 85 x 120 mm block, is 25.4 times the part volume: 5.42 kg of titanium for a 213 g part.",
+          "value_g": 213.3,
+          "density_g_cm3": 4.43,
+          "formula": "m = rho * V_cad; billet = 120 * 85 * 120 mm3",
+          "inputs": {
+            "V_cad_mm3": "inputs.cad_volume_mm3",
+            "envelope_mm": [
+              120.0,
+              85.0,
+              120.0
+            ]
+          },
+          "billet_volume_mm3": 1224000.0,
+          "billet_to_part_volume_ratio": 25.4,
+          "delta_vs_stainless_baseline_percent": [
+            -44.6,
+            -42.5
+          ],
+          "source_ids": [
+            "SRC-TIMET-TI64-PHYSICAL-PROPERTIES",
+            "SRC-EURO-INOX-STAINLESS-HIGH-TEMPERATURES-2012"
+          ],
+          "refs": [
+            "twins/engine-simulation-contracts/materials-f1.json",
+            "parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti64.json"
+          ]
+        },
+        "temperature_margin": {
+          "basis": [
+            "sourced",
+            "assumption"
+          ],
+          "summary": "In titanium, the same alloy ceiling as the LPBF route (assumed independent of product form): -27 C and -177 C. In stainless, see the stainless row.",
+          "ceiling_c": 400.0,
+          "ceiling_type": "creep_limited_service",
+          "formula": "margin = ceiling - T (T = 426.85 C surface, 576.85 C gas)",
+          "margin_vs_declared_surface_c": -26.85,
+          "margin_vs_declared_gas_c": -176.85,
+          "source_ids": [
+            "SRC-TI64-CREEP-SERVICE-CEILING"
+          ],
+          "refs": [
+            "catalog/manufacturing/processes/eos-m290-ti64-30um.json"
+          ]
+        },
+        "oxidation_corrosion": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "As the chosen alloy; machining changes nothing here.",
+          "source_ids": [],
+          "refs": []
+        },
+        "consolidation": {
+          "basis": [
+            "repo_evidence",
+            "judgement"
+          ],
+          "summary": "None: the closed annular cavity with internal ties cannot be machined in one piece (decision 0007). A machined tip is a different, single-wall or multi-piece part.",
+          "source_ids": [],
+          "refs": [
+            "docs/decisions/0007-premier-titane-embout-echappement.md"
+          ]
+        },
+        "thin_wall_and_annular_channel": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "0.8 mm walls 120 mm deep from a solid block, and a 2.7 mm annular gap between them: judged not producible. Not a supplier statement.",
+          "source_ids": [],
+          "refs": [
+            "parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti64.json"
+          ]
+        },
+        "availability": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "Machine shops are commodity; the geometry is not.",
+          "source_ids": [],
+          "refs": []
+        },
+        "inspection_burden": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "Low: dimensional inspection of a wrought part.",
+          "source_ids": [],
+          "refs": []
+        },
+        "cost_class": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "High in titanium (buy-to-part ratio about 25:1), medium in stainless; no quote.",
+          "value": "high",
+          "source_ids": [],
+          "refs": []
+        }
+      },
+      "verdict": "Excluded for the drawn geometry. Machining remains the finishing step of any route at the slip-fit interface."
+    },
+    {
+      "route_id": "stainless_fabricated",
+      "category": "sheet_metal",
+      "label": "Stainless sheet, formed, hydroformed or fabricated and welded: the original material done properly (decision 0008)",
+      "cells": {
+        "mass": {
+          "basis": [
+            "arithmetic",
+            "assumption"
+          ],
+          "summary": "370.75 to 385.19 g if the same 0.8 mm double wall and ties were made in stainless at 7.7 to 8.0 g/cm3 (source Table 14: 7.7 for the ferritic heat-resistant grades, 7.8 to 8.0 for the austenitic heat-resistant grades). Equal geometry is an assumption: a fabricated tip would probably not use 0.8 mm sheet or eight ties, and no sourced mass exists for the oval original. A reseller declares 0.506 kg for a straight 993 tip, a different part, level C: order of magnitude only.",
+          "value_g": [
+            370.75,
+            385.19
+          ],
+          "density_g_cm3": [
+            7.7,
+            8.0
+          ],
+          "formula": "m = rho * V_cad",
+          "inputs": {
+            "V_cad_mm3": "inputs.cad_volume_mm3",
+            "rho_g_cm3": [
+              7.7,
+              8.0
+            ]
+          },
+          "cross_check": {
+            "declared_mass_g": 506.0,
+            "part": "993-EXHAUST-TAILPIPE, straight tip, not the oval tip",
+            "source_id": "SRC-ROSEPASSION-993-PARTS"
+          },
+          "source_ids": [
+            "SRC-EURO-INOX-STAINLESS-HIGH-TEMPERATURES-2012",
+            "SRC-ROSEPASSION-993-PARTS"
+          ],
+          "refs": [
+            "parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti64.json",
+            "catalog/reference/993-declared-part-data.json"
+          ]
+        },
+        "temperature_margin": {
+          "basis": [
+            "sourced",
+            "arithmetic",
+            "assumption"
+          ],
+          "summary": "Assumed grade 1.4301 or 1.4541: the grade of the original tip is not identified. Guidance maximum service temperature in air for those grades: 870 C intermittent, 925 C continuous. Taking the intermittent value and the full 150 C water-vapour reduction gives 720 C: +293 C against the 427 C surface, +143 C against the 850 K gas. This is an oxidation-in-air guidance value, not a creep-limited ceiling like the titanium rows. The common exhaust grade 1.4512 has no value in that table: open.",
+          "ceiling_c": 720.0,
+          "ceiling_type": "oxidation_in_air_guidance",
+          "formula": "margin = ceiling - T (T = 426.85 C surface, 576.85 C gas)",
+          "margin_vs_declared_surface_c": 293.15,
+          "margin_vs_declared_gas_c": 143.15,
+          "source_ids": [
+            "SRC-EURO-INOX-STAINLESS-HIGH-TEMPERATURES-2012"
+          ],
+          "refs": []
+        },
+        "oxidation_corrosion": {
+          "basis": [
+            "sourced",
+            "repo_evidence",
+            "judgement"
+          ],
+          "summary": "Stainless is the incumbent class, and the screen judges incumbent corrosion not problematic. Water vapour accelerates oxidation of iron-rich alloys (source). No new galvanic couple with a stainless muffler outlet (judgement).",
+          "source_ids": [
+            "SRC-EURO-INOX-STAINLESS-HIGH-TEMPERATURES-2012"
+          ],
+          "refs": [
+            "catalog/manufacturing/titanium-am-screen-inputs.json"
+          ]
+        },
+        "consolidation": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "None: several formed shells and spacers joined by welding.",
+          "source_ids": [],
+          "refs": []
+        },
+        "thin_wall_and_annular_channel": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "0.8 mm sheet is formable and a 2.7 mm gap between two welded shells can be set by spacers; the exact round-to-oval loft and the eight ties would be simplified. No fabricator has been asked.",
+          "source_ids": [],
+          "refs": []
+        },
+        "availability": {
+          "basis": [
+            "sourced"
+          ],
+          "summary": "Commodity: FVD sells stainless oval tips for the narrow-body 993, and Porsche's 1/98 bulletin describes the optional Turbo XLB tips as chromed stainless steel, alloy unspecified.",
+          "source_ids": [
+            "SRC-FVD-993-EXHAUST-TIPS-DIMENSIONS",
+            "SRC-PORSCHE-993-TURBO-DUAL-EXHAUST-1-98"
+          ],
+          "refs": []
+        },
+        "inspection_burden": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "Low to medium: dimensional and weld inspection, liquid penetrant on welds if required.",
+          "source_ids": [
+            "SRC-ASTM-E1417-E1417M-21E1"
+          ],
+          "refs": []
+        },
+        "cost_class": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "Low to medium; no quote.",
+          "value": "low_to_medium",
+          "source_ids": [],
+          "refs": []
+        }
+      },
+      "original_material": {
+        "status": "not_sourced",
+        "summary": "The original material of the 993 C2/C4 oval tip is not established by any repository source. The declared-data record of the 993 tailpipe has material 'a_determiner' (to be determined). The aftermarket oval tip is declared stainless (level C), Porsche describes optional Turbo tips as chromed stainless steel (level B, alloy unspecified), and the PET judgement presumes stainless steel (repository judgement). Stainless is therefore the baseline by presumption, not by identification.",
+        "source_ids": [
+          "SRC-FVD-993-EXHAUST-TIPS-DIMENSIONS",
+          "SRC-PORSCHE-993-TURBO-DUAL-EXHAUST-1-98"
+        ],
+        "refs": [
+          "catalog/reference/993-declared-part-data.json",
+          "catalog/manufacturing/pet-candidate-judgements.json"
+        ]
+      },
+      "verdict": "The reference against which titanium must win. It passes temperature with a wide margin and is commodity; it loses on mass (75 to 81 % heavier than LPBF Ti-6Al-4V on equal geometry) and on consolidation."
+    },
+    {
+      "route_id": "ti64_investment_casting",
+      "category": "casting",
+      "label": "Ti-6Al-4V investment casting with a ceramic core",
+      "cells": {
+        "mass": {
+          "basis": [
+            "arithmetic",
+            "assumption"
+          ],
+          "summary": "213.30 g, assuming cast density equal to the wrought reference and the drawn geometry.",
+          "value_g": 213.3,
+          "density_g_cm3": 4.43,
+          "formula": "m = rho * V_cad",
+          "inputs": {
+            "V_cad_mm3": "inputs.cad_volume_mm3",
+            "rho_g_cm3": 4.43
+          },
+          "delta_vs_stainless_baseline_percent": [
+            -44.6,
+            -42.5
+          ],
+          "source_ids": [
+            "SRC-TIMET-TI64-PHYSICAL-PROPERTIES"
+          ],
+          "refs": [
+            "twins/engine-simulation-contracts/materials-f1.json",
+            "parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti64.json"
+          ]
+        },
+        "temperature_margin": {
+          "basis": [
+            "sourced",
+            "assumption"
+          ],
+          "summary": "Same alloy, same ceiling (assumed independent of product form): -27 C and -177 C.",
+          "ceiling_c": 400.0,
+          "ceiling_type": "creep_limited_service",
+          "formula": "margin = ceiling - T (T = 426.85 C surface, 576.85 C gas)",
+          "margin_vs_declared_surface_c": -26.85,
+          "margin_vs_declared_gas_c": -176.85,
+          "source_ids": [
+            "SRC-TI64-CREEP-SERVICE-CEILING"
+          ],
+          "refs": [
+            "catalog/manufacturing/processes/eos-m290-ti64-30um.json"
+          ]
+        },
+        "oxidation_corrosion": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "As the LPBF titanium route, plus removal of the cast surface layer on 0.8 mm walls. No source in the repository.",
+          "source_ids": [],
+          "refs": []
+        },
+        "consolidation": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "One body in principle, with a ceramic core for the annular channel.",
+          "source_ids": [],
+          "refs": []
+        },
+        "thin_wall_and_annular_channel": {
+          "basis": [
+            "judgement",
+            "open"
+          ],
+          "summary": "Filling 0.8 mm walls around a 2.7 mm by 120 mm core is judged beyond what the repository can support; no foundry source or statement exists.",
+          "source_ids": [],
+          "refs": []
+        },
+        "availability": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "Specialised titanium foundries only; needs a pattern tool.",
+          "source_ids": [],
+          "refs": [
+            "docs/TITANIUM.md"
+          ]
+        },
+        "inspection_burden": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "High: radiography or CT of thin walls and of core removal.",
+          "source_ids": [],
+          "refs": []
+        },
+        "cost_class": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "Very high for a small series: tooling dominates, which is the case where TITANIUM.md favours additive manufacturing.",
+          "value": "very_high",
+          "source_ids": [],
+          "refs": [
+            "docs/TITANIUM.md"
+          ]
+        }
+      },
+      "verdict": "Excluded: same temperature block as LPBF Ti-6Al-4V, tooling for a small series, and unsupported thin-wall feasibility."
+    },
+    {
+      "route_id": "aluminium_am",
+      "category": "aluminium_or_polymer",
+      "label": "Aluminium, LPBF AlSi10Mg or a high-temperature AM aluminium",
+      "cells": {
+        "mass": {
+          "basis": [
+            "arithmetic"
+          ],
+          "summary": "128.56 g in AlSi10Mg at the EOS minimum density; irrelevant because the route fails on temperature.",
+          "value_g": 128.56,
+          "density_g_cm3": 2.67,
+          "formula": "m = rho * V_cad",
+          "inputs": {
+            "V_cad_mm3": "inputs.cad_volume_mm3",
+            "rho_g_cm3": 2.67
+          },
+          "delta_vs_stainless_baseline_percent": [
+            -66.6,
+            -65.3
+          ],
+          "source_ids": [
+            "SRC-EOS-ALSI10MG-M290-30UM"
+          ],
+          "refs": [
+            "catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json",
+            "parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti64.json"
+          ]
+        },
+        "temperature_margin": {
+          "basis": [
+            "sourced"
+          ],
+          "summary": "The hottest AM aluminium in the repository's sources, Aheadd HT1, announces stability up to about 260 C: -167 C against the 427 C surface, -317 C against the gas. AlSi10Mg publishes no hot data.",
+          "ceiling_c": 260.0,
+          "ceiling_type": "stability_statement",
+          "formula": "margin = ceiling - T (T = 426.85 C surface, 576.85 C gas)",
+          "margin_vs_declared_surface_c": -166.85,
+          "margin_vs_declared_gas_c": -316.85,
+          "source_ids": [
+            "SRC-CONSTELLIUM-AHEADD-HT1-FACT-SHEET"
+          ],
+          "refs": []
+        },
+        "oxidation_corrosion": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "Aluminium against a stainless outlet is a dissimilar-metal couple exposed to road salt and moisture. Its severity is judged, not assessed: no source in the repository covers it. TITANIUM.md's galvanic refusal concerns titanium coupled with aluminium or magnesium, so it does not apply to this route. Not assessed further: route excluded on temperature.",
+          "source_ids": [],
+          "refs": [
+            "docs/TITANIUM.md"
+          ]
+        },
+        "consolidation": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "One body by LPBF.",
+          "source_ids": [],
+          "refs": []
+        },
+        "thin_wall_and_annular_channel": {
+          "basis": [
+            "repo_evidence"
+          ],
+          "summary": "EOS publishes a 0.4 mm minimum wall for the 30 um AlSi10Mg route.",
+          "source_ids": [
+            "SRC-EOS-ALSI10MG-M290-30UM"
+          ],
+          "refs": [
+            "catalog/manufacturing/processes/eos-m290-alsi10mg-30um.json"
+          ]
+        },
+        "availability": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "Commodity.",
+          "source_ids": [],
+          "refs": []
+        },
+        "inspection_burden": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "Not assessed: route excluded.",
+          "source_ids": [],
+          "refs": []
+        },
+        "cost_class": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "Low to medium; not assessed further.",
+          "value": "low_to_medium",
+          "source_ids": [],
+          "refs": []
+        }
+      },
+      "verdict": "Excluded on temperature by a margin no measurement is likely to close."
+    },
+    {
+      "route_id": "polymer_am",
+      "category": "aluminium_or_polymer",
+      "label": "Polymer, laser-sintered PEEK HP3 as the hottest AM polymer in the repository's sources",
+      "cells": {
+        "mass": {
+          "basis": [
+            "arithmetic"
+          ],
+          "summary": "63.32 g; irrelevant because the route fails on temperature.",
+          "value_g": 63.32,
+          "density_g_cm3": 1.315,
+          "formula": "m = rho * V_cad",
+          "inputs": {
+            "V_cad_mm3": "inputs.cad_volume_mm3",
+            "rho_g_cm3": 1.315
+          },
+          "delta_vs_stainless_baseline_percent": [
+            -83.6,
+            -82.9
+          ],
+          "source_ids": [
+            "SRC-EOS-PEEK-HP3-MATERIAL-DATA"
+          ],
+          "refs": [
+            "parts/993-exh-oval-tip-ti-f1-0001/evidence/engineering-screen-ti64.json"
+          ]
+        },
+        "temperature_margin": {
+          "basis": [
+            "sourced",
+            "judgement"
+          ],
+          "summary": "Ceiling 180 C, the UL 746B continuous-use rating for mechanical duty with impact. The data sheet also gives 240 C for mechanical duty without impact and 260 C for electrical duty. The with-impact rating is used because the tip is a mechanical part under vibration (judgement). Margin -247 C against the 427 C synthetic surface and -397 C against the 850 K synthetic gas; the 240 C rating would give -187 C and -337 C, so the exclusion holds on any of the three. The melting point, 372 C, is itself 55 C below the 427 C synthetic surface.",
+          "ceiling_c": 180.0,
+          "ceiling_type": "continuous_use_rating",
+          "ceiling_rating": "UL 746B continuous use, mechanical with impact",
+          "formula": "margin = ceiling - T (T = 426.85 C surface, 576.85 C gas)",
+          "margin_vs_declared_surface_c": -246.85,
+          "margin_vs_declared_gas_c": -396.85,
+          "source_ids": [
+            "SRC-EOS-PEEK-HP3-MATERIAL-DATA"
+          ],
+          "refs": [],
+          "melting_point_c": 372.0
+        },
+        "oxidation_corrosion": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "Not assessed: route excluded.",
+          "source_ids": [],
+          "refs": []
+        },
+        "consolidation": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "One body by laser sintering.",
+          "source_ids": [],
+          "refs": []
+        },
+        "thin_wall_and_annular_channel": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "Not assessed: route excluded.",
+          "source_ids": [],
+          "refs": []
+        },
+        "availability": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "Specialised high-temperature sintering systems.",
+          "source_ids": [],
+          "refs": []
+        },
+        "inspection_burden": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "Not assessed: route excluded.",
+          "source_ids": [],
+          "refs": []
+        },
+        "cost_class": {
+          "basis": [
+            "judgement"
+          ],
+          "summary": "Not assessed: route excluded.",
+          "value": "not_assessed",
+          "source_ids": [],
+          "refs": []
+        }
+      },
+      "verdict": "Excluded: the part would melt at the declared surface temperature. Polymer stays limited to display and fit-check prints (decisions 0010 and 0011)."
+    }
+  ],
+  "findings": [
+    "Titanium's measurable benefit is mass: 212.34 g against 370.75 to 385.19 g for an equal-geometry stainless tip (-42.7 to -44.9 %) and 406.38 g for LPBF IN625 (-47.7 %). The stainless figure rests on an equal-geometry assumption.",
+    "Corrosion is not established as a titanium benefit: the screen inputs judge incumbent corrosion not problematic (corrosion_problematic false) while their free-text reason claims better exhaust-corrosion resistance without a source, and titanium adds a titanium/stainless couple at the mounting.",
+    "Consolidation and the unmachinable annular channel are benefits of LPBF, not of titanium: IN625 has them too.",
+    "On this geometry LPBF IN625 is heavier than stainless. If titanium is ruled out, the 'original material done properly' (decision 0008) is the lighter fallback; IN625 only adds the one-piece double wall.",
+    "The 850 K gas wets the inner duct. Against it Ti-6Al-4V has -177 C of margin and Ti-6242 -27 C: the outer-surface figure alone understates the problem.",
+    "The Ti-6242 evidence mass (217.57 g) uses the analytic unribbed volume, the others the CAD volume; on the CAD volume it is 218.60 g.",
+    "The temperature margins compare ceilings of different kinds: creep-limited service for titanium, an oxidation-in-air guidance value for stainless, a stability statement for Aheadd HT1 and a UL 746B continuous-use rating for PEEK. A margin is read against its own ceiling type."
+  ],
+  "go_no_go_rule": {
+    "status": "project_decision_rule_pending_professional_review",
+    "alloy": "Ti-6Al-4V Grade 5",
+    "input": "T_max: highest metal temperature anywhere on the part in service, inner wetted duct included, from a published source or third-party data with recorded provenance. A synthetic or screening value is not an input.",
+    "input_status": "blocked",
+    "input_blocker": "The project owner does not take physical measurements. The only values in the repository (700 K surface, 850 K gas) are synthetic. A sourced published value or third-party data is required.",
+    "inner_wall_rule": "If only an outer-surface value is sourced, the inner duct is taken at the gas temperature unless an inner-wall value is sourced too.",
+    "ceiling_reference": {
+      "band_c": [
+        350.0,
+        400.0
+      ],
+      "upper_value_used_by_0007_c": 400.0,
+      "source_ids": [
+        "SRC-TI64-CREEP-SERVICE-CEILING"
+      ],
+      "source_caveat": "SRC-TI64-CREEP-SERVICE-CEILING is a grade-selection guide published on the blog of an alloy supplier, Huaxiao Alloy (evidence level B). Its record lists doi:10.1002/adem.202301122 under verified_against without stating which statement that article confirms. The whole rule's threshold rests on it; the professional reviewer is to check the band against that article or a primary creep source before the rule is relied on."
+    },
+    "bands": [
+      {
+        "id": "unknown",
+        "condition": "T_max not sourced, or synthetic",
+        "decision": "no_go",
+        "consequence": "Current state. Nothing is sent to a supplier; the request stays a draft."
+      },
+      {
+        "id": "le_350",
+        "upper_c": 350.0,
+        "condition": "T_max <= 350 C",
+        "decision": "conditional_go",
+        "consequence": "Ti-6Al-4V may proceed to a reviewed supplier feasibility request, if every other condition holds. Not a manufacturing authorization."
+      },
+      {
+        "id": "350_to_400",
+        "lower_c": 350.0,
+        "upper_c": 400.0,
+        "condition": "350 C < T_max <= 400 C",
+        "decision": "no_go",
+        "consequence": "Inside the source's own uncertainty band. Reopened only with creep and oxidation data for the delivered condition of the actual route, and professional review."
+      },
+      {
+        "id": "400_to_550",
+        "lower_c": 400.0,
+        "upper_c": 550.0,
+        "condition": "400 C < T_max <= 550 C",
+        "decision": "no_go",
+        "consequence": "Ti-6Al-4V above its ceiling. Ti-6242 is within its ceiling but has no LPBF supply route. Fall back to the stainless baseline, or to LPBF IN625 if the one-piece double wall is kept."
+      },
+      {
+        "id": "gt_550",
+        "lower_c": 550.0,
+        "condition": "T_max > 550 C",
+        "decision": "no_go",
+        "consequence": "No titanium route. Stainless or nickel."
+      }
+    ],
+    "other_conditions_for_conditional_go": [
+      "the owner accepts in writing that the first titanium part is functional, not non_critical",
+      "the manufacturing request and its acceptance criteria are reviewed by a human, with names and dates in the review table",
+      "a galvanic isolation scheme for the titanium/stainless mounting is defined",
+      "the inlet interface, insertion depth and clamp are defined from sourced data, not F0 assumptions",
+      "a drawing with tolerances exists, so that the dimensional acceptance criteria of the request can be quoted"
+    ]
+  }
+}

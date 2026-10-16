@@ -2,6 +2,8 @@
 
 Date: 2026-09-11
 
+See also: [0014](0014-exhaust-tip-route-matrix-conditional-titanium.md) — five-route matrix, load requirements and a conditional go/no-go that closes the 350–427 °C band.
+
 ## Decision
 
 Retain `993-EXH-OVAL-TIP-TI-F1-0001` as the repository's first titanium part.
