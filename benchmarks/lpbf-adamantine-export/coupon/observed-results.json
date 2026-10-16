@@ -1,0 +1,160 @@
+{
+  "status": "passed_shared_discrete_thermal_elastic_control",
+  "recorded_date": "2026-10-15",
+  "scope": "One Q1 hexahedron with hypothetical constant solid properties; native thermal-elastic software verification",
+  "physical_validation": false,
+  "manufacturing_authorized": false,
+  "represents_rotor": false,
+  "source_revision": "3990489a10902912889617856f6e2e097d52a412",
+  "upstream_archive_sha256": "c3be270cda7c1be74b966b45d1aa7a271fc5d5c5a60f61da29690c68ddc02575",
+  "source_patch_sha256": "20cfe30124627d8cc85a65c786bec09e0e7049659d2053fd525ec97c44662161",
+  "research_profile_patch_sha256": "3c992c3138eff0d962733285a8de48df06567975b7d5d41e1585dd035b0f50e5",
+  "contract_sha256": "544067c4823a0c727410e30d161430bada00cda9763aeb681f82654656339676",
+  "adamantine_input_sha256": "4a5e82dea8327ff7fcb885f3d3a5275aa54fe94d9661890e4ead15d8c34dfbab",
+  "calculix_input_sha256": "9a7b15a80cecae10dadd891e35f932b76b448c5685439c9823e259f9d54041a0",
+  "predeclared_protocol_sha256": "5a9b6f26298c111843507065728e8e52004cd5223b1d9f5d6ae80016cc1f0dfd",
+  "predeclared_absolute_limits": {
+    "time_s": 1e-12,
+    "point_coordinate_m": 1e-09,
+    "temperature_K": 0.0001,
+    "displacement_component_m": 1e-12,
+    "cell_mean_von_mises_Pa": 2.0,
+    "intersolver_cell_mean_von_mises_Pa": 4.0
+  },
+  "geometry_checks": {
+    "point_count": 8,
+    "cell_count": 1,
+    "cell_type": "hexahedron",
+    "nodes_per_cell": 8,
+    "unique_reference_node_mapping": true
+  },
+  "all_fields_finite": true,
+  "adamantine": {
+    "native_returncode": 0,
+    "simulation_done_marker": true,
+    "native_log_sha256": "8c8a6db0da0b2d27f1f2142117a9efce50d559c658c54ccbcae181ae1bdccd79",
+    "wall_s": 0.40675830841064453,
+    "deadline_s": 120,
+    "timed_out": false,
+    "build_wall_s": 335.44760751724243,
+    "binary_sha256": "e7637a1a3729f82c0b11a9a1864fd96b7fbdee9408ede0aad5b59e573699b959",
+    "profile_manifest_sha256": "642a7f8c7928a2bf8171162f4928a02c093fc0677956c3c7023d37a12a1b128f",
+    "profile": "3D, one constant polynomial material, host memory, no ensemble",
+    "tested_physics": "Solid, FE1, Gauss quadrature; quasistatic linear mechanics after transient uniform heating",
+    "frames": [
+      {
+        "time_s": 0.0,
+        "temperature_error_K": 0.0,
+        "maximum_displacement_component_error_m": 4.662052132453519e-21,
+        "maximum_coordinate_error_m": 1.899898051382909e-10,
+        "maximum_displacement_m": 6.0608658007966506e-21,
+        "cell_mean_von_mises_Pa": 2.38141932840108e-08,
+        "reference_cell_mean_von_mises_Pa": 0.0,
+        "maximum_stored_stress_scalar_error_Pa": 2.38141932840108e-08,
+        "native_field_dtypes": {
+          "temperature": "float32",
+          "displacement": "float32",
+          "stress": "float32"
+        },
+        "temperature_min_K": 300.0,
+        "temperature_max_K": 300.0
+      },
+      {
+        "time_s": 0.005,
+        "temperature_error_K": 0.0,
+        "maximum_displacement_component_error_m": 1.7023652027351371e-15,
+        "maximum_coordinate_error_m": 1.899898051382909e-10,
+        "maximum_displacement_m": 1.2024438660873158e-07,
+        "cell_mean_von_mises_Pa": 599983.1875,
+        "reference_cell_mean_von_mises_Pa": 599983.1702876367,
+        "maximum_stored_stress_scalar_error_Pa": 0.01721236330922693,
+        "native_field_dtypes": {
+          "temperature": "float32",
+          "displacement": "float32",
+          "stress": "float32"
+        },
+        "ccx_cell_mean_von_mises_Pa": 599983.2325589353,
+        "intersolver_cell_mean_von_mises_difference_Pa": 0.0450589352985844,
+        "temperature_min_K": 300.5,
+        "temperature_max_K": 300.5
+      },
+      {
+        "time_s": 0.01,
+        "temperature_error_K": 0.0,
+        "maximum_displacement_component_error_m": 3.4047304054702742e-15,
+        "maximum_coordinate_error_m": 1.899898051382909e-10,
+        "maximum_displacement_m": 2.4048877321746316e-07,
+        "cell_mean_von_mises_Pa": 1199966.375,
+        "reference_cell_mean_von_mises_Pa": 1199966.3405752734,
+        "maximum_stored_stress_scalar_error_Pa": 0.03442472661845386,
+        "native_field_dtypes": {
+          "temperature": "float32",
+          "displacement": "float32",
+          "stress": "float32"
+        },
+        "ccx_cell_mean_von_mises_Pa": 1199966.3248104907,
+        "intersolver_cell_mean_von_mises_difference_Pa": 0.050189509289339185,
+        "temperature_min_K": 301.0,
+        "temperature_max_K": 301.0
+      }
+    ],
+    "native_full_stress_tensor_exported": false
+  },
+  "calculix": {
+    "version": "2.21",
+    "platform": "linux/arm64",
+    "native_returncode": 0,
+    "job_finished_marker": true,
+    "container_absent": true,
+    "wall_s": 0.9957214999012649,
+    "deadline_s": 60,
+    "binary_sha256": "271f8411371b978d7a8d31a7a13d0765e6e1f872e8a8b1d6aac6d0856c71ec6c",
+    "initial_frame": "No time-zero result requested; 300 K is an input condition, not a native output frame",
+    "frames": [
+      {
+        "time_s": 0.005,
+        "temperature_min_K": 300.5,
+        "temperature_max_K": 300.5,
+        "maximum_displacement_m": 1.2024438668034197e-07,
+        "cell_mean_von_mises_Pa": 599983.2325589353
+      },
+      {
+        "time_s": 0.01,
+        "temperature_min_K": 301.0,
+        "temperature_max_K": 301.0,
+        "maximum_displacement_m": 2.404887670479486e-07,
+        "cell_mean_von_mises_Pa": 1199966.3248104907
+      }
+    ],
+    "assessed_native_field_components": [
+      "xx",
+      "yy",
+      "zz",
+      "xy",
+      "xz",
+      "yz"
+    ],
+    "maximum_stress_component_error_Pa": 0.4310969749931246
+  },
+  "model_difference": "CCX uses uncoupled transient displacement; agreement with exact static FE reference is checked at every output; Adamantine mechanical solve is quasistatic",
+  "error_arithmetic": "Stored Float32 arrays promoted to Float64 before error and norm calculations; raw native fields unchanged.",
+  "maximum_intersolver_mean_von_mises_difference_Pa": 0.050189509289339185,
+  "native_field_sha256_paths_relative_to": "coupon/",
+  "native_field_sha256": {
+    "observed/adamantine/common.0.0.vtu": "41f77358ff5cfee971594d99016d12af7ecf29f2ecee454d0651fd0bdf31633a",
+    "observed/adamantine/common.0.pvtu": "1427c9d1b44729f38f8d3a0ec17cc67eb10ceb85419232d18e08df43cefec725",
+    "observed/adamantine/common.1.0.vtu": "aeec11facab3c8ceb8176e1c7d56c211105b2d415e74f5e07612553a497fe3e7",
+    "observed/adamantine/common.1.pvtu": "b1fb023dec44355446a884c521c5a97a64d88587e3b801885c358773ec0ae24d",
+    "observed/adamantine/common.2.0.vtu": "f7d08a6b0cdbd6fa56deede13bdfa8bb66d067cd8d6417a70a847c56296d9314",
+    "observed/adamantine/common.2.pvtu": "428e76645cbb922a271f9d21e496a4a87f4cc3eca9e9a4354c0cc80b776de4db",
+    "observed/adamantine/common.pvd": "b44bee1888037fd4c3f36f820aef082aa4c928f3f92981e898f86ec39e9b90cb",
+    "observed/calculix-common.dat": "26f2e116f36b9d09414fe29825f2cd539d9ddef49a8f373fe54c63775f99edf4"
+  },
+  "qualification_limits": [
+    "No continuum mesh convergence",
+    "No melting, powder or deposition validation",
+    "No plasticity or residual LPBF stress claim",
+    "No physical-part qualification"
+  ],
+  "new_vast_spend_USD": 0
+}

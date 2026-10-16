@@ -1,0 +1,74 @@
+--- a/source/instantiation.hh
++++ b/source/instantiation.hh
+@@ -7,10 +7,10 @@
+ #include <deal.II/base/quadrature_lib.h>
+ 
+ // clang-format off
+-#define ADAMANTINE_DIM (2)(3)
++#define ADAMANTINE_DIM (3)
+ #define ADAMANTINE_USE_TABLE (true)(false)
+-#define ADAMANTINE_N_MATERIALS (-1)(1)
+-#define ADAMANTINE_P_ORDER (0)(1)(2)(3)(4)
++#define ADAMANTINE_N_MATERIALS (1)
++#define ADAMANTINE_P_ORDER (0)
+ #define ADAMANTINE_FE_DEGREE (1)(2)(3)(4)(5)
+ #define ADAMANTINE_MATERIAL_STATE (adamantine::Solid)(adamantine::SolidLiquid)(adamantine::SolidLiquidPowder)
+ #define ADAMANTINE_QUADRATURE_TYPE (dealii::QGauss<1>)(dealii::QGaussLobatto<1>)
+@@ -21,8 +21,9 @@
+ #define ADAMANTINE_D(z, SEQ)                                                   \
+   template class adamantine::BOOST_PP_SEQ_ELEM(                                \
+       0, SEQ)<BOOST_PP_SEQ_ELEM(1, SEQ)>;
++// Explicit upstream helper instantiations still require lightweight 2D classes.
+ #define INSTANTIATE_DIM(NAME)                                                  \
+-  BOOST_PP_SEQ_FOR_EACH_PRODUCT(ADAMANTINE_D, ((NAME))(ADAMANTINE_DIM))
++  BOOST_PP_SEQ_FOR_EACH_PRODUCT(ADAMANTINE_D, ((NAME))((2)(3)))
+ 
+ // Instantiation of the class for:
+ //   - dim = 2 and 3
+--- a/application/adamantine.cc
++++ b/application/adamantine.cc
+@@ -3,6 +3,7 @@
+  */
+ 
+ #include "adamantine.hh"
++#include "research_build_profile.hh"
+ 
+ #include <MaterialStates.hh>
+ #include <instantiation.hh>
+@@ -403,6 +404,11 @@
+     std::string memory_space =
+         database.get<std::string>("memory_space", "host");
+ 
++    adamantine::require_research_build_profile(
++        dim, n_materials, p_order,
++        database.get<std::string>("materials.property_format"), memory_space,
++        ensemble_calc);
++
+ #ifdef ADAMANTINE_WITH_ADIAK
+     if (memory_space == "device")
+       adiak::value("MemorySpace", "Device");
+--- /dev/null
++++ b/application/research_build_profile.hh
+@@ -0,0 +1,22 @@
++/* SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception */
++#ifndef RESEARCH_BUILD_PROFILE_HH
++#define RESEARCH_BUILD_PROFILE_HH
++
++#include <stdexcept>
++#include <string>
++
++namespace adamantine
++{
++inline void require_research_build_profile(
++    int dim, int n_materials, int polynomial_order,
++    std::string const &property_format, std::string const &memory_space,
++    bool ensemble)
++{
++  if (dim != 3 || n_materials != 1 || polynomial_order != 0 ||
++      property_format != "polynomial" || memory_space != "host" || ensemble)
++    throw std::invalid_argument(
++        "Unsupported research build profile: require 3D, one constant "
++        "polynomial material, host memory, and no ensemble simulation.");
++}
++} // namespace adamantine
++#endif
