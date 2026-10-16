@@ -77,12 +77,16 @@ def images(part_id: str, page: Path) -> list[str]:
     if not trouvees:
         return []
     out = ["## Images", ""]
-    for img in trouvees[:8]:
+    # The labelled AI illustration is shown in addition to, never instead of,
+    # the first eight technical images.
+    concept = dossier / "media" / "photo-concept.png"
+    montrees = sorted([i for i in trouvees if i != concept][:8] + [i for i in trouvees if i == concept])
+    for img in montrees:
         rel = img.relative_to(ROOT).as_posix()
         parts = img.relative_to(ROOT).parts
         if img == dossier / "media" / "photo-concept.png":
             photo = json.loads((dossier / "media" / "photo.json").read_text(encoding="utf-8"))
-            legende = " — " + photo["note"]
+            legende = " — " + photo["note"].rstrip(".")
         elif img == dossier / "media" / "preview.png" and info.get("kind") == "status_card":
             legende = " — " + info["note"] + " Not a print file or evidence of fit."
         elif "print-simulation" in parts:

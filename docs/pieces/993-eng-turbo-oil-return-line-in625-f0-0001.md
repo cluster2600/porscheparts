@@ -84,7 +84,7 @@ Catalogue record: [`catalog/parts/993-eng-turbo-oil-return-line-in625-f0-0001.js
 
 ![photo-concept](../../parts/993-eng-turbo-oil-return-line-in625-f0-0001/media/photo-concept.png)
 
-*`parts/993-eng-turbo-oil-return-line-in625-f0-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing..*
+*`parts/993-eng-turbo-oil-return-line-in625-f0-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
 
 ![preview](../../parts/993-eng-turbo-oil-return-line-in625-f0-0001/media/preview.png)
 

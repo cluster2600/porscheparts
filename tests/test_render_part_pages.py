@@ -20,6 +20,14 @@ class PartPageTests(unittest.TestCase):
         self.assertIn("photo-concept.png", result)
         self.assertIn("AI-generated studio illustration", result)
         self.assertIn("Not a photograph", result)
+        self.assertNotIn("..*", result)
+
+    def test_studio_illustration_does_not_displace_technical_views(self):
+        result = "\n".join(pages.images("993-ENG-COOLING-IMPELLER-WE43-F1-0001",
+                                        ROOT / "docs/pieces/fixture.md"))
+        self.assertIn("photo-concept.png", result)
+        self.assertIn("media/print-simulation/build-plate.png", result)
+        self.assertEqual(result.count("!["), 9)
 
     def test_picogk_summary_counts_shared_generator_and_archived_voxel_model(self):
         paths = [ROOT / "catalog/parts" / (name + ".json") for name in

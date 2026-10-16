@@ -106,11 +106,15 @@ Catalogue record: [`catalog/parts/993-eng-cooling-impeller-we43-f1-0001.json`](.
 
 ![photo-concept](../../parts/993-eng-cooling-impeller-we43-f1-0001/media/photo-concept.png)
 
-*`parts/993-eng-cooling-impeller-we43-f1-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing..*
+*`parts/993-eng-cooling-impeller-we43-f1-0001/media/photo-concept.png` — AI-generated studio illustration based on the concept CAD preview. Material and finish are illustrative; generated details may differ. Not a photograph or evidence of fit, function or manufacturing.*
 
 ![preview](../../parts/993-eng-cooling-impeller-we43-f1-0001/media/preview.png)
 
 *`parts/993-eng-cooling-impeller-we43-f1-0001/media/preview.png` — concept CAD block, **not** the original part, not a print file.*
+
+![build-plate](../../parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build-plate.png)
+
+*`parts/993-eng-cooling-impeller-we43-f1-0001/media/print-simulation/build-plate.png` — metal LPBF geometry preview with hypothetical supports; no process physics or qualified support design; not a build file or print release.*
 
 ## Provenance and sources
 
