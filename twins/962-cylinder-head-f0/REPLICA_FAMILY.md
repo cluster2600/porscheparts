@@ -1,5 +1,12 @@
 # Culasse 962 C : référence fidèle et famille de 3,0 à 4,0 L
 
+**Suite de la recherche :** des [dimensions de famille publiées](DIMENSIONAL_BASIS.md)
+ont été retrouvées. L'utilisateur demande de continuer avec des hypothèses
+explicites pour les cotes manquantes ; la [famille bionique](BIONIC_FAMILY.md)
+porte cette continuation géométrique. Les champs `null` du registre ci-dessous
+concernent la référence physique exacte non mesurée ; ils ne bloquent pas
+ces candidats de conception.
+
 **Décision du 16 octobre 2026 : prendre la 962 C 3,0 L à eau comme référence,
 reconstruire sa culasse le plus fidèlement possible, puis étudier plusieurs
 cylindrées jusqu'à 4,0 L.** Le [registre](replica-family.json) porte cette

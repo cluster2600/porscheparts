@@ -1,11 +1,17 @@
 # Culasse 962 C : recherche et candidat PicoGK F0
 
-**Priorité confirmée le 16 octobre 2026 : une réplique fidèle de la culasse
-962 C 3,0 L à eau, puis des dérivés jusqu'à 4,0 L.** La
-[famille de réplique](REPLICA_FAMILY.md) définit la référence, les six cibles
+**Référence confirmée le 16 octobre 2026 : la culasse 962 C 3,0 L à eau,
+pour développer la famille bionique jusqu'à 4,0 L.** Les
+[dimensions retrouvées](DIMENSIONAL_BASIS.md) ancrent désormais l'étude :
+95 × 70,4 mm publiés pour un 3,0 L, soupapes de famille Ø35/30,5 mm.
+Le [nouveau modèle bionique paramétrable](BIONIC_FAMILY.md) poursuit la
+géométrie avec des hypothèses explicites pour les dimensions introuvables.
+
+La [famille de réplique](REPLICA_FAMILY.md) définit la référence, les six cibles
 de cylindrée, le calculateur et les mesures manquantes. La
 [métrologie 962 C](REPLICA_METROLOGY.md) concerne l'original ; aucun maître
-CAO dimensionnellement fidèle n'est encore disponible.
+CAO dimensionnellement fidèle n'est encore disponible. Ce manque ne bloque
+pas les études bioniques autorisées.
 
 Les études modernes ci-dessous et le [programme de conversion](KIT_962_PROGRAMME.md)
 pour 911, 964 et 993 sont conservés. Le double allumage, les formes bioniques

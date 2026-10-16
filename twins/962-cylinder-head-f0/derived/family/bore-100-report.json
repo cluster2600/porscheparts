@@ -1,0 +1,303 @@
+{
+  "status": "published_dimensions_and_assumed_bionic_geometry",
+  "config": {
+    "id": "962-bionic-bore-100",
+    "status": "unmeasured_bionic_family_study",
+    "geometry": {
+      "bore_mm": 100,
+      "chamber_depth_mm": 13,
+      "intake_valve_diameter_mm": 35,
+      "exhaust_valve_diameter_mm": 30.5,
+      "valve_x_mm": 19,
+      "valve_y_mm": 19,
+      "guide_top_y_mm": 36,
+      "throat_intake_mm": 30,
+      "throat_exhaust_mm": 26
+    },
+    "dimensional_basis": {
+      "bore": "proposed_bore_not_verified_on_crankcase",
+      "valve_diameters": "published_956_962_parts_and_3l2_restoration_transferred_by_assumption",
+      "all_other_dimensions": "explicit_design_assumptions_not_porsche_measurements"
+    },
+    "research_reference": "twins/962-cylinder-head-f0/dimensional-research.json",
+    "modern_design": {
+      "ignition_reservations": 2,
+      "external_bcc_cells": 36,
+      "conformal_water_jacket": true,
+      "structural_optimisation_executed": false
+    },
+    "qualification": {
+      "historical_fidelity_validated": false,
+      "fitment_validated": false,
+      "strength_validated": false,
+      "hydraulic_performance_validated": false,
+      "thermal_performance_validated": false,
+      "manufacturing_authorized": false
+    }
+  },
+  "config_sha256": "833c1313eb5e55c248ef0e7e0172fae5c6b41c13fbabe66ab6817deee2a8bd82",
+  "mesh_metrics": {
+    "solid": {
+      "raw_sha256": "e30f82e032d98c0277d54546a593681f786a5da96d303d81ad7948b99e836fc0",
+      "sha256": "67c8bc5ca0e9d3905017a18362163f3080bf753bba84f7cb4220f4d7bcfb4ab2",
+      "triangles": 1815416,
+      "volume_mm3": 908921.3663797529,
+      "bounds_mm": [
+        [
+          -76.0,
+          -75.0,
+          -0.0005928563768975437
+        ],
+        [
+          76.0,
+          75.0,
+          90.00059509277344
+        ]
+      ],
+      "watertight": true,
+      "consistent_winding": true,
+      "surface_components": 1,
+      "finite_vertices": true,
+      "removed_zero_area_faces": 628
+    },
+    "coolant": {
+      "raw_sha256": "d9b691e0cf8ba606c9700b2a864b98bc12607a4adbfad5336f93d5bc2652e040",
+      "sha256": "4995a6ba5e1b47c28ce4e3fed9b0129edac185c482eff6570ccf2c86b6a89b61",
+      "triangles": 591282,
+      "volume_mm3": 136934.40961708594,
+      "bounds_mm": [
+        [
+          -76.0,
+          -65.07997131347656,
+          8.129993438720703
+        ],
+        [
+          76.0,
+          65.0799560546875,
+          54.13025665283203
+        ]
+      ],
+      "watertight": true,
+      "consistent_winding": true,
+      "surface_components": 1,
+      "finite_vertices": true,
+      "removed_zero_area_faces": 262
+    },
+    "dry-passages": {
+      "raw_sha256": "d99ca831814ebd7cfa60d874ac5c38e7aa9deb5812100c3852b0af704ef48969",
+      "sha256": "d99ca831814ebd7cfa60d874ac5c38e7aa9deb5812100c3852b0af704ef48969",
+      "triangles": 784920,
+      "volume_mm3": 539222.1724931246,
+      "bounds_mm": [
+        [
+          -48.69094467163086,
+          -86.00020599365234,
+          -13.999306678771973
+        ],
+        [
+          48.69094467163086,
+          86.00020599365234,
+          105.97911071777344
+        ]
+      ],
+      "watertight": true,
+      "consistent_winding": true,
+      "surface_components": 1,
+      "finite_vertices": true,
+      "removed_zero_area_faces": 0
+    }
+  },
+  "sampled_water_dry_clearance_mm": 4.439295271064934,
+  "clearance_samples": 886905,
+  "dry_opening_probes_mm": [
+    [
+      -19,
+      -28.16,
+      58
+    ],
+    [
+      -19,
+      28.16,
+      58
+    ],
+    [
+      19,
+      -28.16,
+      58
+    ],
+    [
+      19,
+      28.16,
+      58
+    ],
+    [
+      0,
+      0,
+      58
+    ],
+    [
+      38,
+      0,
+      58
+    ],
+    [
+      0,
+      -74,
+      43
+    ],
+    [
+      0,
+      74,
+      43
+    ]
+  ],
+  "coolant_terminal_sections": [
+    {
+      "plane_x_mm": -75.5,
+      "closed_loops": 1,
+      "area_mm2": 375.4415013666274,
+      "perimeter_mm": 69.8994310615011,
+      "hydraulic_diameter_mm": 21.484667080411267
+    },
+    {
+      "plane_x_mm": 75.5,
+      "closed_loops": 1,
+      "area_mm2": 375.2281578315733,
+      "perimeter_mm": 69.6015245222743,
+      "hydraulic_diameter_mm": 21.56436430995074
+    }
+  ],
+  "boundary_probes": [
+    {
+      "offset_mm": 0.25,
+      "samples": 583458,
+      "metal_only": 583457,
+      "water_only": 0,
+      "overlap": 0,
+      "unassigned": 1
+    },
+    {
+      "offset_mm": 0.5,
+      "samples": 583458,
+      "metal_only": 583425,
+      "water_only": 31,
+      "overlap": 2,
+      "unassigned": 0
+    },
+    {
+      "offset_mm": 0.75,
+      "samples": 583458,
+      "metal_only": 583320,
+      "water_only": 134,
+      "overlap": 1,
+      "unassigned": 3
+    },
+    {
+      "offset_mm": 1.5,
+      "samples": 583458,
+      "metal_only": 581579,
+      "water_only": 1874,
+      "overlap": 4,
+      "unassigned": 1
+    }
+  ],
+  "excluded_terminal_samples": 7824,
+  "native_fields_report": {
+    "variant_id": "962-bionic-bore-100",
+    "status": "unmeasured_bionic_family_study",
+    "geometry_assumptions_mm": {
+      "bore_mm": 100,
+      "chamber_depth_mm": 13,
+      "intake_valve_diameter_mm": 35,
+      "exhaust_valve_diameter_mm": 30.5,
+      "valve_x_mm": 19,
+      "valve_y_mm": 19,
+      "guide_top_y_mm": 36,
+      "throat_intake_mm": 30,
+      "throat_exhaust_mm": 26
+    },
+    "fixed_body_envelope_mm": [
+      120,
+      140,
+      90
+    ],
+    "chamber_radius_mm": 48,
+    "deck_outer_radius_mm": 58,
+    "nominal_dry_water_separation_mm": 4.5,
+    "nominal_outer_water_skin_mm": 5,
+    "nominal_coolant_port_id_mm": 22,
+    "valve_passage_count": 4,
+    "spark_passage_count": 2,
+    "lattice_library_executed": true,
+    "cell_count": 36,
+    "cell_mm": [
+      12,
+      14,
+      14
+    ],
+    "beam_diameter_mm": 3.5,
+    "voxel_mm": 0.5,
+    "dotnet_runtime_version": "9.0.21",
+    "vdb_domains_equal": true,
+    "scalar_values_checked_each_direction": 1244713,
+    "vector_values_checked_each_direction": 1244713,
+    "all_active_values_checked_bidirectionally": true,
+    "fields": [
+      {
+        "name": "coolant_domain",
+        "type": "Voxels"
+      },
+      {
+        "name": "coolant_native_gradient",
+        "type": "VectorField"
+      },
+      {
+        "name": "coolant_native_signed_distance",
+        "type": "ScalarField"
+      },
+      {
+        "name": "dry_domain",
+        "type": "Voxels"
+      },
+      {
+        "name": "metal_domain",
+        "type": "Voxels"
+      }
+    ],
+    "field_interpretation": "Native geometric signed-distance and gradient; no temperature, pressure or flow solution",
+    "whole_head_scaling_executed": false,
+    "structural_optimisation_executed": false,
+    "fluid_solver_executed": false,
+    "historical_replica_validated": false,
+    "fitment_validated": false,
+    "manufacturing_authorized": false
+  },
+  "vdb_sha256": "5f8d6efe7aad650381866996eba2cbdaaaddb74244cb1db59cefa26a6dd48362",
+  "source_hashes": {
+    "twins/962-cylinder-head-f0/source/family/run_study.py": "970754f6ad0ba4eee264298a3cc97ec95b8bf2b482d9f6ebadd9b3e4017f65dd",
+    "twins/962-cylinder-head-f0/source/family/inspect_family.py": "b89bf5c70fcf298dd572872be813e9165a90e08badfcd68f0296b199b6f8695e",
+    "twins/962-cylinder-head-f0/source/family/HeadFamilyStudy.cs": "21212bbe60d78c495d705441fe5ed1599aa9a5b244dfadad4d2e4727f71d23fe",
+    "twins/962-cylinder-head-f0/source/family/Engine.csproj": "643bc18b9c095569c18bd1b84147c2756194b389f6cf52ecb523261a46d12510",
+    "twins/962-cylinder-head-f0/source/family/HeadFamilyRunner.cs": "9abc2a2ae0ad3e6c476c033d5c68d11c712db81590af8d9ed40cca73a5964c50",
+    "twins/962-cylinder-head-f0/source/inspect_study.py": "78046397ae000bc5516c1237478053ce1453150a473db145d342bfe6996b235f",
+    "twins/962-cylinder-head-f0/source/audit_coolant_boundaries.py": "eb0efd293e783386ff6b9f94b3d2b334853edfe251216c2201825c035634da84",
+    "twins/962-cylinder-head-f0/source/enclosed/render_enclosed.py": "87210b10907727e21ed8369679347da4f20cb16082b4d851a39b74dd03542f05"
+  },
+  "qualification": {
+    "fitment_validated": false,
+    "wall_thickness_qualified": false,
+    "historical_fidelity_validated": false,
+    "interface_conformity_validated": false,
+    "hydraulic_performance_validated": false,
+    "thermal_performance_validated": false,
+    "strength_validated": false,
+    "material_process_qualified": false,
+    "manufacturing_authorized": false
+  },
+  "images": {
+    "chamber.png": "59980ef497aabd3c4eedd369e3ba6d8d815eacf43c074de4d18aa03121fa5264",
+    "cutaway.png": "7f683457fb97d6ebfd4bd7d29ea8b612cc8c234f14aaa9c54e8f55609d3d4814",
+    "exterior.png": "054503e0f22ef36f2b633fe974e8cb234addb2c353ab014d59e061ed3a51e196",
+    "coolant.png": "f27571d7556faccf29e3ffeaa5324acc38555b7edef497bdee3e54b8f2b8bd83"
+  }
+}

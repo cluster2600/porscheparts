@@ -1,0 +1,335 @@
+{
+  "schema_version": "1.0.0",
+  "status": "published_reference_and_explicit_assumptions",
+  "researched_on": "2026-10-16",
+  "reference_family": "962_C_3_litre_water_cooled_heads_and_cylinders",
+  "assumption_authorization": {
+    "authorized_on": "2026-10-16",
+    "scope": "Continue the bionic geometry after researching published dimensions, with explicit assumptions for missing inputs.",
+    "functional_fitment_authorized": false,
+    "manufacturing_authorized": false
+  },
+  "sources": [
+    {
+      "id": "porsche-museum-1987",
+      "url": "https://newsroom.porsche.com/dam/jcr:71417137-bfb7-40cb-9612-88d77a3bdb47/Porsche%20962%20C%20Coup%C3%A9_2114.pdf",
+      "title": "Porsche 962 C, Museum description and specifications, model year 1987",
+      "publisher": "Porsche AG",
+      "accessed_on": "2026-10-16",
+      "locator": "PDF pages 1-2: fully water-cooled three-litre engine and 2994 cc specification",
+      "rights": "copyright_reference_only_no_third_party_geometry"
+    },
+    {
+      "id": "euroracing-ck6-3l",
+      "url": "https://euroracing.se/car/porsche-962c-ck6-07/",
+      "title": "Porsche-Kremer 962C, 1990 car listing",
+      "publisher": "Euroracing i Skandinavien AB",
+      "accessed_on": "2026-10-16",
+      "locator": "General information and Powertrain: model year 1990, 2994 cc, bore/stroke 95/70.4 mm, four valves per cylinder",
+      "rights": "copyright_reference_only_no_third_party_geometry"
+    },
+    {
+      "id": "retrosport-water-water-95",
+      "url": "https://retro-sport.com/products/porsche-race-cars/porsche-962/porsche-962-c-mp1-7-water-water-heads",
+      "title": "Porsche 962 C MP1.7 Water-Water Heads",
+      "publisher": "Retro Sport",
+      "accessed_on": "2026-10-16",
+      "locator": "Product description: 95 mm four-valve heads with electron-beam welded cylinders and Nikasil plating",
+      "rights": "copyright_reference_only_no_third_party_geometry"
+    },
+    {
+      "id": "retrosport-valves",
+      "url": "https://retro-sport.com/products/porsche-race-cars/porsche-962/engine-1/porsche-962-intake-and-exhaust-valve-set-1",
+      "title": "Porsche 962 intake and exhaust valve set",
+      "publisher": "Retro Sport",
+      "accessed_on": "2026-10-16",
+      "locator": "Description: 93510540102 intake diameter 35 mm; 93510541103 exhaust diameter 30.5 mm",
+      "rights": "copyright_reference_only_no_third_party_geometry"
+    },
+    {
+      "id": "freisinger-valve-references",
+      "url": "https://www.freisinger-motorsport.de/en/part/678",
+      "title": "Valves original ATE / TRW",
+      "publisher": "Freisinger Motorsport",
+      "accessed_on": "2026-10-16",
+      "locator": "Parts listing: references 93510540102 and 93510541103 for 956 and 962; no dimensions",
+      "rights": "copyright_reference_only_no_third_party_geometry"
+    },
+    {
+      "id": "pelican-harvey-3l2",
+      "url": "https://forums.pelicanparts.com/911-engine-rebuilding-forum/248909-rebuilding-962-motor-12.html",
+      "title": "Rebuilding a 962 motor, first-hand workshop report, page 12",
+      "publisher": "Ralph / Carrera3.5L, published on Pelican Parts Forums",
+      "accessed_on": "2026-10-16",
+      "locator": "Posts 221, 224 and 230, 4-5 October 2006: water-cooled 3.2-litre restoration, dimensions and measured compression",
+      "rights": "copyright_reference_only_no_third_party_geometry"
+    },
+    {
+      "id": "brunn-935-83-3l",
+      "url": "https://962group.com/registry/956_962/962-144/index.htm",
+      "title": "Group C 1989 technical record, engine type 935/83",
+      "publisher": "962group.com, operational record associated with Brunn Racing",
+      "accessed_on": "2026-10-16",
+      "locator": "Technical record: production year 1989, engine 935/83, 95.0 x 70.4 mm, 2994 cm3, compression ratio 9.5:1",
+      "rights": "copyright_reference_only_no_third_party_geometry"
+    },
+    {
+      "id": "retrosport-3l-rods",
+      "url": "https://retro-sport.com/porsche-962-titanium-30-liter-rods-late-shot-peened",
+      "title": "Porsche 962 Titanium 3.0 Liter Rods, late shot peened",
+      "publisher": "Retro Sport",
+      "accessed_on": "2026-10-16",
+      "locator": "Product description: conrod 93510301203, 127.8 mm, ball peening",
+      "rights": "copyright_reference_only_no_third_party_geometry"
+    },
+    {
+      "id": "porsche-pmna-2026",
+      "url": "https://racing.porsche.com/en-US/articles/pmna-2026-962-rothmans",
+      "title": "PMNA helps return factory Porsche 962 to the track",
+      "publisher": "Porsche Motorsport North America",
+      "accessed_on": "2026-10-16",
+      "locator": "Published 23 September 2026, Factory knowledge makes the difference: access to factory drawings and records; no head dimensions published",
+      "rights": "copyright_reference_only_no_third_party_geometry"
+    }
+  ],
+  "dimensions": [
+    {
+      "id": "museum_1987_displacement",
+      "value": 2994,
+      "unit": "cm3",
+      "basis": "manufacturer_published_reference",
+      "source_ids": [
+        "porsche-museum-1987"
+      ],
+      "scope": "1987 962 C museum description",
+      "limitations": "Descriptive specification, not a cylinder-head engineering drawing."
+    },
+    {
+      "id": "listed_three_litre_bore",
+      "value": 95,
+      "unit": "mm",
+      "basis": "published_car_listing_and_operational_registry",
+      "source_ids": [
+        "euroracing-ck6-3l",
+        "brunn-935-83-3l"
+      ],
+      "scope": "1990 Porsche-Kremer listing and 1989 Group C technical record with engine type 935/83, both 2994 cm3",
+      "limitations": "Independent published records corroborate bore and stroke; neither supplies the selected head engineering drawing or its measurement uncertainty."
+    },
+    {
+      "id": "listed_three_litre_stroke",
+      "value": 70.4,
+      "unit": "mm",
+      "basis": "published_car_listing_and_operational_registry",
+      "source_ids": [
+        "euroracing-ck6-3l",
+        "brunn-935-83-3l"
+      ],
+      "scope": "1990 Porsche-Kremer listing and 1989 Group C technical record with engine type 935/83, both 2994 cm3",
+      "limitations": "Independent published records corroborate bore and stroke; neither supplies the selected head engineering drawing or its measurement uncertainty."
+    },
+    {
+      "id": "listed_water_water_head_bore",
+      "value": 95,
+      "unit": "mm",
+      "basis": "supplier_published_reference",
+      "source_ids": [
+        "retrosport-water-water-95"
+      ],
+      "scope": "962 C MP1.7 water-water four-valve welded head/cylinder set",
+      "limitations": "Stroke, engine year and exact part references are not provided."
+    },
+    {
+      "id": "listed_intake_valve_diameter",
+      "value": 35,
+      "unit": "mm",
+      "basis": "supplier_published_reference",
+      "source_ids": [
+        "retrosport-valves",
+        "freisinger-valve-references"
+      ],
+      "scope": "Intake valve reference 93510540102, listed for the 956/962 family",
+      "limitations": "Freisinger corroborates the part reference only. Exact 3.0-litre application, stem dimensions and tolerances are not established."
+    },
+    {
+      "id": "listed_exhaust_valve_diameter",
+      "value": 30.5,
+      "unit": "mm",
+      "basis": "supplier_published_reference",
+      "source_ids": [
+        "retrosport-valves",
+        "freisinger-valve-references"
+      ],
+      "scope": "Exhaust valve reference 93510541103, listed for the 956/962 family",
+      "limitations": "Freisinger corroborates the part reference only. Exact 3.0-litre application, stem dimensions and tolerances are not established."
+    },
+    {
+      "id": "restoration_three_point_two_bore",
+      "value": 95,
+      "unit": "mm",
+      "basis": "first_hand_restoration_report",
+      "source_ids": [
+        "pelican-harvey-3l2"
+      ],
+      "scope": "Water-cooled 3.2-litre 962 C restoration reported in October 2006",
+      "limitations": "Restoration evidence, not an OEM drawing of the selected 3.0-litre reference."
+    },
+    {
+      "id": "restoration_three_point_two_stroke",
+      "value": 74.4,
+      "unit": "mm",
+      "basis": "first_hand_restoration_report",
+      "source_ids": [
+        "pelican-harvey-3l2"
+      ],
+      "scope": "Water-cooled 3.2-litre 962 C restoration, post 224",
+      "limitations": "Explicitly a 3.2-litre engine; do not assign this stroke to the 3.0-litre reference."
+    },
+    {
+      "id": "restoration_intake_cam_lift",
+      "value": 9.3,
+      "unit": "mm",
+      "basis": "first_hand_restoration_report",
+      "source_ids": [
+        "pelican-harvey-3l2"
+      ],
+      "scope": "Same 3.2-litre restoration, post 230",
+      "limitations": "Full cam profile and timing are not published."
+    },
+    {
+      "id": "restoration_exhaust_cam_lift",
+      "value": 9.3,
+      "unit": "mm",
+      "basis": "first_hand_restoration_report",
+      "source_ids": [
+        "pelican-harvey-3l2"
+      ],
+      "scope": "Same 3.2-litre restoration, post 230",
+      "limitations": "Full cam profile and timing are not published."
+    },
+    {
+      "id": "restoration_intake_duration_at_0_5_mm",
+      "value": 276,
+      "unit": "deg",
+      "basis": "first_hand_restoration_report",
+      "source_ids": [
+        "pelican-harvey-3l2"
+      ],
+      "scope": "Same 3.2-litre restoration, intake duration at 0.5 mm, post 230",
+      "limitations": "Duration threshold must accompany the value; not a complete camshaft definition."
+    },
+    {
+      "id": "restoration_exhaust_duration_at_0_5_mm",
+      "value": 288,
+      "unit": "deg",
+      "basis": "first_hand_restoration_report",
+      "source_ids": [
+        "pelican-harvey-3l2"
+      ],
+      "scope": "Same 3.2-litre restoration, exhaust duration at 0.5 mm, post 230",
+      "limitations": "Duration threshold must accompany the value; not a complete camshaft definition."
+    },
+    {
+      "id": "restoration_compression_ratio",
+      "value": 9.2,
+      "unit": "ratio_to_one",
+      "basis": "reported_assembly_measurement",
+      "source_ids": [
+        "pelican-harvey-3l2"
+      ],
+      "scope": "Same 3.2-litre restoration, post 230",
+      "limitations": "Assembly and piston dependent; no isolated cylinder-head chamber volume is supplied."
+    },
+    {
+      "id": "bionic_intake_valve_diameter",
+      "value": 35,
+      "unit": "mm",
+      "basis": "user_authorized_transfer_assumption",
+      "source_ids": [
+        "retrosport-valves",
+        "pelican-harvey-3l2"
+      ],
+      "scope": "All bionic family candidates with bore 95, 98, 100 or 102 mm; not a verified fitment for any displacement.",
+      "limitations": "Transferred family dimension; valve positions, fits, flow capacity and compatibility remain unvalidated."
+    },
+    {
+      "id": "bionic_exhaust_valve_diameter",
+      "value": 30.5,
+      "unit": "mm",
+      "basis": "user_authorized_transfer_assumption",
+      "source_ids": [
+        "retrosport-valves",
+        "pelican-harvey-3l2"
+      ],
+      "scope": "All bionic family candidates with bore 95, 98, 100 or 102 mm; not a verified fitment for any displacement.",
+      "limitations": "Transferred family dimension; valve positions, fits, flow capacity and compatibility remain unvalidated."
+    },
+    {
+      "id": "bionic_four_litre_bore",
+      "value": 102,
+      "unit": "mm",
+      "basis": "user_authorized_existing_study_assumption",
+      "source_ids": [],
+      "scope": "Modern 4.0-litre study candidate described in FLOW4L_STUDY.md",
+      "limitations": "A design proposal, not a historical 962 C bore or evidence of fitment."
+    },
+    {
+      "id": "bionic_spark_plugs_per_cylinder",
+      "value": 2,
+      "unit": "count",
+      "basis": "user_authorized_existing_study_assumption",
+      "source_ids": [],
+      "scope": "Modern bionic candidates retaining the existing two-well study layout",
+      "limitations": "Modern design choice; does not establish original 962 C twin ignition or manufactured spark-plug interfaces."
+    },
+    {
+      "id": "brunn_type_935_83_compression_ratio",
+      "value": 9.5,
+      "unit": "ratio_to_one",
+      "basis": "published_operational_registry",
+      "source_ids": [
+        "brunn-935-83-3l"
+      ],
+      "scope": "1989 Group C technical record, engine type 935/83, 2994 cm3",
+      "limitations": "Specific recorded configuration; not a universal 962 C ratio, chamber volume, or measurement of the selected donor."
+    },
+    {
+      "id": "listed_three_litre_rod_length",
+      "value": 127.8,
+      "unit": "mm",
+      "basis": "supplier_published_reference",
+      "source_ids": [
+        "retrosport-3l-rods"
+      ],
+      "scope": "Late shot-peened titanium 3.0-litre conrod reference 93510301203",
+      "limitations": "Listing does not state the length datum convention. Verify the actual part and piston/crank geometry before using this in a stack calculation."
+    }
+  ],
+  "unknown_original": {
+    "selected_engine_type": null,
+    "selected_year": null,
+    "head_part_reference": null,
+    "valve_axis_positions_mm": null,
+    "valve_included_angle_deg": null,
+    "valve_stem_diameters_mm": null,
+    "guide_bores_and_fits": null,
+    "seat_bores_and_fits": null,
+    "combustion_chamber_volume_cm3": null,
+    "combustion_chamber_surface": null,
+    "spark_plugs_per_cylinder": null,
+    "spark_axis_positions_and_threads": null,
+    "cylinder_pitch_mm": null,
+    "head_fastening_axes_mm": null,
+    "head_exterior_dimensions_mm": null,
+    "cam_carrier_interfaces": null,
+    "oil_gallery_geometry": null,
+    "water_gallery_geometry": null
+  },
+  "scope_limits": [
+    "Unknowns remain null while explicitly authorized geometry studies proceed with separate assumptions.",
+    "No dimensions are inferred from uncalibrated photographs.",
+    "The bionic body, twin ignition, cooling and reinforcement are declared departures from a faithful historical master.",
+    "No universal case, cylinder, piston, cam-carrier or valvetrain compatibility is established.",
+    "No complete third-party pages, photographs, drawings or geometry are redistributed."
+  ]
+}
