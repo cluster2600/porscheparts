@@ -65,7 +65,13 @@ class CarrierWorkflowAssemblyTests(unittest.TestCase):
         write(self.audit / 'assessment.json', self.assessment)
         self.support_audit = self.root / 'work/support-audit'
         self.support_assessment = {**self.assessment, 'support_scanpaths_audited': True,
-                                   'geometric_confinement_passed': True, 'exposure_connectivity_passed': True}
+                                   'geometric_confinement_passed': True, 'exposure_connectivity_passed': True,
+                                   'every_material_group_exposed': True}
+        for name, field in (('scanpaths/assessment.json', 'scanpath_audit_receipt_sha256'),
+                            ('group-exposure-coverage.json', 'group_coverage_receipt_sha256')):
+            path = self.support_audit / name
+            write(path, self.support_assessment)
+            self.support_assessment[field] = assembly.workflow.sha(path)
         write(self.support_audit / 'assessment.json', self.support_assessment)
         self.output = self.root / 'work/assembled'
 
@@ -124,7 +130,8 @@ class CarrierWorkflowAssemblyTests(unittest.TestCase):
         self.assertFalse(self.output.exists())
 
     def test_support_geometry_generation_does_not_replace_exposure_contact_admission(self):
-        for key in ('complete_build_audited', 'geometric_confinement_passed', 'exposure_connectivity_passed'):
+        for key in ('complete_build_audited', 'geometric_confinement_passed', 'exposure_connectivity_passed',
+                    'every_material_group_exposed'):
             write(self.support_audit / 'assessment.json', {**self.support_assessment, key: False})
             with self.subTest(key=key), self.assertRaisesRegex(ValueError, 'contact audit of support paths'):
                 self.assemble()

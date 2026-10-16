@@ -80,16 +80,23 @@ class CarrierWorkshopGuideV2Tests(unittest.TestCase):
         data = {'status': 'passed', 'complete_build_audited': True, 'layers_audited': 2,
                 'input_receipt_sha256': guide.sha(self.process_dir / 'report.json'),
                 'support_scanpaths_audited': True, 'geometric_confinement_passed': True,
-                'exposure_connectivity_passed': True, **changes}
+                'exposure_connectivity_passed': True, 'every_material_group_exposed': True}
         folder = self.run / 'support-scanpath-audit'
         folder.mkdir(exist_ok=True)
+        (folder / 'scanpaths').mkdir(exist_ok=True)
+        for name, field in (('scanpaths/assessment.json', 'scanpath_audit_receipt_sha256'),
+                            ('group-exposure-coverage.json', 'group_coverage_receipt_sha256')):
+            (folder / name).write_text(json.dumps(data))
+            data[field] = guide.sha(folder / name)
+        data.update(changes)
         (folder / 'assessment.json').write_text(json.dumps(data))
         return data
 
     def test_all_support_paths_and_exposure_contacts_are_required(self):
         data = self.support_audit()
         self.assertEqual(guide.admitted_support_scanpaths(self.run, self.process), data)
-        for key in ('complete_build_audited', 'geometric_confinement_passed', 'exposure_connectivity_passed'):
+        for key in ('complete_build_audited', 'geometric_confinement_passed', 'exposure_connectivity_passed',
+                    'every_material_group_exposed'):
             self.support_audit(**{key: False})
             with self.subTest(key=key), self.assertRaisesRegex(ValueError, 'Complete support path'):
                 guide.admitted_support_scanpaths(self.run, self.process)
@@ -98,6 +105,13 @@ class CarrierWorkshopGuideV2Tests(unittest.TestCase):
         self.support_audit(input_receipt_sha256='0' * 64)
         with self.assertRaisesRegex(ValueError, 'Complete support path'):
             guide.admitted_support_scanpaths(self.run, self.process)
+
+    def test_changed_group_or_scanpath_subreceipt_is_refused(self):
+        for name in ('scanpaths/assessment.json', 'group-exposure-coverage.json'):
+            self.support_audit()
+            (self.run / 'support-scanpath-audit' / name).write_text('{"status":"passed"}')
+            with self.subTest(name=name), self.assertRaisesRegex(ValueError, 'receipt identity'):
+                guide.admitted_support_scanpaths(self.run, self.process)
 
 
 if __name__ == '__main__':

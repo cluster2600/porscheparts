@@ -410,6 +410,12 @@ float64. Le petit lot mesure 2,262 s en série et 2,556 s à quatre processus,
 démarrage compris ; aucun gain de vitesse n'est annoncé pour ce lot. Ces
 anciennes feuilles restent rejetées et ne constituent pas un tranchage final.
 
+Le conditionnement exige aussi une preuve distincte que chaque groupe de
+matière de support apparaît effectivement dans les trajectoires. Le reçu
+complet lie par SHA les deux sous-reçus : audit des expositions et couverture
+de tous les groupes. Une feuille située entièrement entre deux plans de
+couche ne peut donc pas disparaître silencieusement du dossier accepté.
+
 Le guide et l'assembleur exigent désormais aussi le contrôle indépendant des
 trajectoires de supports sur toutes les couches, avec leur encodage géométrique
 et leurs contacts exposés. Les seize tests des deux modules passent ensemble ;

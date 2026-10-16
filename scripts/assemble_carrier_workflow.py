@@ -79,13 +79,7 @@ def process_check(process, audit, support_audit, mesh_hash):
             or assessment.get('layers_audited') != report['n_layers']
             or assessment.get('input_receipt_sha256') != report_hash):
         raise ValueError('An admitted audit of every layer of this exact process is required')
-    assessment = json.loads((support_audit / 'assessment.json').read_text())
-    if (assessment.get('status') != 'passed' or assessment.get('complete_build_audited') is not True
-            or assessment.get('layers_audited') != report['n_layers']
-            or assessment.get('input_receipt_sha256') != report_hash
-            or any(assessment.get(key) is not True for key in
-                   ('support_scanpaths_audited', 'geometric_confinement_passed', 'exposure_connectivity_passed'))):
-        raise ValueError('A complete geometric encoding and exposure contact audit of support paths is required')
+    guide.admitted_support_receipt(support_audit, report, report_hash)
     return report, report_hash
 
 

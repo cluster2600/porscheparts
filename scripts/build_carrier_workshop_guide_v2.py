@@ -51,14 +51,31 @@ def admitted_scanpaths(run, process):
 
 
 def admitted_support_scanpaths(run, process):
-    path = run / 'support-scanpath-audit/assessment.json'
-    audit = json.loads(path.read_text())
+    return admitted_support_receipt(run / 'support-scanpath-audit', process, sha(run / 'process/report.json'))
+
+
+def admitted_support_receipt(directory, process, report_hash):
+    audit = json.loads((directory / 'assessment.json').read_text())
     if (audit.get('status') != 'passed' or audit.get('complete_build_audited') is not True
-            or audit.get('input_receipt_sha256') != sha(run / 'process/report.json')
+            or audit.get('input_receipt_sha256') != report_hash
             or audit.get('layers_audited') != process['n_layers']
             or any(audit.get(key) is not True for key in
-                   ('support_scanpaths_audited', 'geometric_confinement_passed', 'exposure_connectivity_passed'))):
-        raise ValueError('Complete support path, geometric encoding and exposure contact audit required')
+                   ('support_scanpaths_audited', 'geometric_confinement_passed',
+                    'exposure_connectivity_passed', 'every_material_group_exposed'))):
+        raise ValueError('Complete support path, geometric encoding and exposure contact audit of support paths required')
+    for name, field, checks in (
+            ('scanpaths/assessment.json', 'scanpath_audit_receipt_sha256',
+             ('support_scanpaths_audited', 'geometric_confinement_passed', 'exposure_connectivity_passed')),
+            ('group-exposure-coverage.json', 'group_coverage_receipt_sha256', ('every_material_group_exposed',))):
+        path = directory / name
+        if not path.is_file() or sha(path) != audit.get(field):
+            raise ValueError('Support path and group coverage receipt identity mismatch')
+        item = json.loads(path.read_text())
+        if (item.get('status') != 'passed' or item.get('complete_build_audited') is not True
+                or item.get('input_receipt_sha256') != report_hash
+                or item.get('layers_audited') != process['n_layers']
+                or any(item.get(key) is not True for key in checks)):
+            raise ValueError('Complete support path and every material group exposure are required')
     return audit
 
 
