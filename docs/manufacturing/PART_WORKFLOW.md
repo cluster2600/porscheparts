@@ -74,6 +74,29 @@ dans `manufacturing/workflows/`. Une recette énumère les fichiers d'entrée
 avec leurs empreintes, les commandes, les délais et les sorties attendues.
 Le fichier de runtime local indique où se trouvent les interpréteurs installés.
 
+La [recette intégrée v2](../../manufacturing/workflows/993-carrier-lpbf-v2.json)
+contient 37 étapes et 211 fichiers d’entrée épinglés. Elle conserve exactement
+les douze premières étapes de CAO, surface, mécanique et dessins de la recette
+initiale, puis sépare les sept calculs natifs et les sept générations de
+supports. Elle exige le confinement rationnel des surfaces, six admissions
+géométriques et les deux audits complets de trajectoires avant le guide.
+La [revue des commandes et des identités](../../parts/993-eng-carrier-0001/source/process-skins-20261016/cold-recipe-evidence/assessment.json)
+a passé ; elle reste distincte d’un rejeu complet des 37 étapes.
+
+```sh
+python3 scripts/run_part_workflow.py run manufacturing/workflows/993-carrier-lpbf-v2.json \
+  --runtime work/part-workflow/runtime-v2.json \
+  --output work/part-workflow/NOUVEAU_PASSAGE
+```
+
+Le runtime v2 utilise l’environnement PySLM corrigé `pyslm-coverage-011`.
+Le manifeste natif séparé décrit les préfixes Linux disponibles ; sa structure,
+les installateurs et les témoins sont décrits dans la
+[procédure native par région](../../parts/993-eng-carrier-0001/source/process-skins-20261016/README-native-case.md).
+Le dossier de sortie doit être neuf. Une modification des entrées impose sa
+nouvelle révision ; la réparation native gauche est liée aux tableaux sources
+gelés et refuse toute autre géométrie.
+
 Les environnements déjà prêts se trouvent sous `work/part-workflow/runtimes/` :
 
 | Clé du runtime | Fonction |

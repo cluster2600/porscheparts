@@ -32,8 +32,13 @@ flowchart LR
     G --> H
 ```
 
-Les quinze étapes de la recette vérifient les **45 entrées épinglées** avant
-et après exécution. Le dossier garde les commandes, journaux, identités des
+La recette initiale contient quinze étapes et **45 entrées épinglées**.
+La [recette intégrée v2](../../manufacturing/workflows/993-carrier-lpbf-v2.json)
+conserve ses douze premières étapes et ses 45 entrées, puis porte la chaîne à
+**37 étapes et 211 entrées versionnées épinglées**. La
+[revue statique et des 25 commandes supplémentaires](../../parts/993-eng-carrier-0001/source/process-skins-20261016/cold-recipe-evidence/assessment.json)
+a passé ; elle ne représente pas une exécution complète de la recette.
+Le dossier garde les commandes, journaux, identités des
 sources et sorties. Le support, la figure de contrainte et les trajectoires
 doivent désigner la même géométrie ; le générateur refuse de les mélanger.
 
