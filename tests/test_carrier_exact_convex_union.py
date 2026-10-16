@@ -55,6 +55,8 @@ class ExactConvexUnion(unittest.TestCase):
             with self.assertRaises(ValueError):
                 audit.union_certificate(self.triangle, [bad])
 
+    @unittest.skipUnless(shapely is not None and hasattr(shapely, 'constrained_delaunay_triangles'),
+                         'Optional Shapely constrained-triangulation runtime required')
     def test_same_actual_left_material_is_covered_with_successive_subtraction(self):
         spec = importlib.util.spec_from_file_location('isolated_actual_band_subtraction',
                                                       path.with_name('exact_band_union.py'))
