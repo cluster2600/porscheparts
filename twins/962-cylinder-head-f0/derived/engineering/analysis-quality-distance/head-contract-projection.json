@@ -1,0 +1,44 @@
+{
+  "projection": "Public whitelisted metadata, not the byte-identical original execution contract.",
+  "original_frozen_child_sha256": "6b412f10756d4735d0e36cfb2e1505280641c2ff10ba7aaf0f796e711576d804",
+  "reviewed_parent_fixture_contract_sha256": "8932578770c8ba02a61f55be1bfeacc5a5def31990ae51abe7ebb3b88c27bb36",
+  "directed": true,
+  "normalize": false,
+  "absolute_gap_tolerance_mm": 0.0001,
+  "envelope_limit_mm": 0.25,
+  "resources": {
+    "rss_stop_bytes": 4294967296,
+    "rss_poll_seconds": 0.1,
+    "process_group_deadline_seconds": 300,
+    "native_library_serial": true,
+    "thread_environment_limit": 2,
+    "hard_address_space_quota": false,
+    "OS_CPU_quota": false
+  },
+  "unchanged_allocation_rule": "max(1,min(1e6,2000000/max(compacted_source_vertices,source_faces))) unchanged from retained run_bounded_chamfer.py",
+  "queries": [
+    {
+      "id": "original-changed-to-complete-candidate",
+      "original_configuration_sha256": "4b82291a165a00763cfdf765e0a4ab9ace2f27d4e45ef5c0e082465498277813",
+      "source_indexed_sha256": "894ece6e63d99684fd7c8710caf73132cd73731ac8bc667548c21c85962d4c95",
+      "complete_target_indexed_sha256": "7f0d96988684f7d36dab8f65c5b63b1919c2c2121768cf9caec466867a5c2b43",
+      "partition_sha256": "f4593758df1ca22665779f9a150b753dd065ee5d45b2bc2cc15a2520136d413a",
+      "query_source_faces": 4692,
+      "complete_target_faces": 1804706
+    },
+    {
+      "id": "candidate-changed-to-complete-original",
+      "original_configuration_sha256": "54e3098225b2e821856354392b4f76542a8ef2452e75b4bf585bb8340ecdd8fa",
+      "source_indexed_sha256": "7f0d96988684f7d36dab8f65c5b63b1919c2c2121768cf9caec466867a5c2b43",
+      "complete_target_indexed_sha256": "894ece6e63d99684fd7c8710caf73132cd73731ac8bc667548c21c85962d4c95",
+      "partition_sha256": "f4593758df1ca22665779f9a150b753dd065ee5d45b2bc2cc15a2520136d413a",
+      "query_source_faces": 4692,
+      "complete_target_faces": 1804706
+    }
+  ],
+  "original_private_input_bindings_count": 92,
+  "automatic_retry_or_second_geometry_pass_authorised": false,
+  "solver_admission_established": false,
+  "engineering_accepted": false,
+  "manufacturing_authorized": false
+}

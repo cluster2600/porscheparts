@@ -14,6 +14,11 @@ material/strength assessment, LPBF simulation, an Omniverse twin and PhysicsNeMo
 The [sourced material comparison](ENGINEERING_MATERIALS.md) now separates seven
 published recipes, discrete hot-strength points and conditional body masses.
 These results do not select or qualify a material for the head.
+The [current analysis-surface evidence](ANALYSIS_QUALITY_ENGINEERING.md) passes
+its necessary quality, topology, intersection and bounded-distance checks;
+volume-mesh quality and solved head fields remain separate gates.
+The [new candidate review download](derived/engineering/analysis-quality-review-delivery/README.md)
+contains exact BIN and standard PLY files, with English unit/import guidance.
 
 The [replica family](REPLICA_FAMILY.md) defines the reference, six displacement
 targets, calculator and missing measurements. [962 C metrology](REPLICA_METROLOGY.md)
