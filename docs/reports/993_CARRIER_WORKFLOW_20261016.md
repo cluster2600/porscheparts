@@ -33,11 +33,12 @@ flowchart LR
 ```
 
 La recette initiale contient quinze étapes et **45 entrées épinglées**.
-La [recette intégrée v2](../../manufacturing/workflows/993-carrier-lpbf-v2.json)
+La [recette intégrée v3](../../manufacturing/workflows/993-carrier-lpbf-v3.json)
 conserve ses douze premières étapes et ses 45 entrées, puis porte la chaîne à
-**37 étapes et 211 entrées versionnées épinglées**. La
-[revue statique et des 25 commandes supplémentaires](../../parts/993-eng-carrier-0001/source/process-skins-20261016/cold-recipe-evidence/assessment.json)
-a passé ; elle ne représente pas une exécution complète de la recette.
+**37 étapes et 271 entrées versionnées épinglées**. La
+[revue des 37 commandes et de leurs dépendances](../../parts/993-eng-carrier-0001/source/process-skins-20261016/cold-v3-recipe-evidence/assessment.json)
+a passé, y compris les entrées des installateurs ; elle ne représente pas
+une exécution complète de la recette. La v2 et ses reçus restent conservés.
 Le dossier garde les commandes, journaux, identités des
 sources et sorties. Le support, la figure de contrainte et les trajectoires
 doivent désigner la même géométrie ; le générateur refuse de les mélanger.
@@ -278,6 +279,16 @@ modèle. Les **10 tests constitutifs actuels** passent ensuite sous Python
 3.11/NumPy 1.26 et sous la base CAD autonome/NumPy 2.2. Les journaux des deux
 passages et de la correction sont conservés. Les environnements restent
 séparés pour ces contraintes réelles de dépendances.
+
+Le [passage général après gel des sources v3/v5](../../parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/repository-checks-003.json)
+exécute **4 337 tests en 395,167 s** dans l’environnement PySLM corrigé :
+quatre échecs, une erreur et 177 tests ignorés. Les cinq identités d’échec
+sont exactement celles du passage classé précédent : deux comparaisons
+flottantes, un ancien test 917 exigeant `np.trapezoid` et deux tests du
+préparateur historique rejetés par l’empreinte du runtime corrigé. Aucun
+nouvel échec n’est identifié ; `make check` reste refusé et n’exécute pas les
+cibles dépendant de la réussite de ces tests. Le reçu conserve aussi le
+premier lancement avec le mauvais interpréteur et sa correction.
 
 ## Renforcement local : gain de raideur, refus du pic
 
