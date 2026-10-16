@@ -19,7 +19,8 @@ if shapely is not None:
     spec.loader.exec_module(audit)
 
 
-@unittest.skipIf(shapely is None, 'Optional Shapely runtime required')
+@unittest.skipUnless(shapely is not None and hasattr(shapely, 'constrained_delaunay_triangles'),
+                     'Optional Shapely constrained-triangulation runtime required')
 class ExactBandUnion(unittest.TestCase):
     def test_collective_sweep_coverage_preserves_holes_and_refuses_outside_material(self):
         free = Polygon(box(0, 1, 4, 5).exterior.coords, [box(1, 2, 3, 4).exterior.coords])
