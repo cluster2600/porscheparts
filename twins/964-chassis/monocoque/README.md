@@ -646,9 +646,17 @@ The service loads are ASSUMED orders of magnitude, not a specification:
 times) and 40 kN in bending (three times 1,350 kg). The sandwich floor and
 bulkheads count by their faces only, as everywhere in this folder, so
 their modes are a lower bound and are reported apart. The sandwich itself
-is checked by hand from the stress the static run puts in its faces
-(ASSUMED PVC foam core, E 50 MPa), taking the smaller margin of the
-mid-surface stress and the integration-point stress.
+is checked by hand from the stress the static run puts in its faces,
+taking the smaller margin of the mid-surface stress and the
+integration-point stress. That hand check uses foam formulas with an
+ASSUMED isotropic foam core (E 50 MPa, ν 0.32, no source), which is
+**not the core this folder models**: the mass estimate and
+`torsion_monocoque.py` carry a 22.6 mm aramid honeycomb at 48 kg/m³. A
+honeycomb has two transverse shear moduli and also fails by intracell
+dimpling, which is not checked. The crimping and wrinkling margins below
+are therefore those of a foam core, not of the modelled sandwich;
+aligning them needs sourced honeycomb properties, which the repository
+does not hold.
 
 ![Buckling screen](evidence/buckling.png)
 
@@ -657,8 +665,8 @@ mid-surface stress and the integration-point stress.
 | first thin-wall mode | ×3.96: free skin at the nose (d −700, a free edge) | ×3.11: box inner wall at the rear bulkhead (d 1980, a free edge) |
 | first mode on a cabin member | ×8.5: door and windscreen ring | ×5.1: sills |
 | first faces-only sandwich mode (a lower bound) | ×2.44: floor | none in 16 modes |
-| sandwich face crimping, by hand | ×9.8 | ×4.3 |
-| sandwich face wrinkling, by hand | ×9.1 | ×4.0 |
+| sandwich face crimping, by hand, foam core (not the modelled honeycomb) | ×9.8 | ×4.3 |
+| sandwich face wrinkling, by hand, foam core (not the modelled honeycomb) | ×9.1 | ×4.0 |
 
 ([result](derived/buckling.json), mode shapes in
 `derived/buckling-modes.npz`.)
@@ -679,7 +687,8 @@ What it says, and what it does not:
   container this host allows (the static monocoque solve was killed by
   the memory limit on 2026-10-15), so whether the factors move with the
   mesh is not known.
-- The loads, the core and the equivalent-isotropic ply are ASSUMED. No
+- The loads, the core and the equivalent-isotropic ply are ASSUMED, and
+  the hand-checked core is a foam, not the modelled honeycomb. No
   imperfection, no nonlinear (post-)buckling, no ply-level failure, no
   joint. Von Mises is not a CFRP criterion. The status stays
   `prohibited_pending_engineering`.
@@ -740,14 +749,35 @@ switch to S6 themselves:
     python3 ../../fea/hero.py          # the home-page banner
 
 Run directly, `torsion.py`, `torsion_monocoque.py` and `bending.py`
-reproduce the superseded S3 values and overwrite the S6 outputs. On this
-host every solve ran single-threaded in a container capped at 6 GB, which
-the 420-section S6 monocoque does not fit: its values are the 2026-10-12
-runs, made with more memory, and the bending pruning and the buckling
-screen of 2026-10-16 stop at 300 sections (`--up-to 300`, `buckling.py
-300`). The shell-tube study does not fit at any mesh: its JSON is still
-the superseded S3 run. The 420-section shell-tube mesh in S6 did not fit
-SPOOLES in 12 GB either (2026-10-12).
+reproduce the superseded S3 values and overwrite the S6 outputs.
+
+Not every committed output was produced by the committed code. Most S6
+outputs were written on 2026-10-12 by code that was never committed (S6
+inside an earlier `torsion.py`) and rescued with its outputs after a WSL
+crash; the S6 machinery was then moved into `shell_s6.py` so that the
+audited S3 sources stay byte-identical. The runs since 2026-10-15 were
+single-threaded, in a container capped at 6 GB, which the 420-section S6
+monocoque does not fit:
+
+| output | produced by | re-run from the committed code |
+|---|---|---|
+| `element-check.json` | committed code, 2026-10-16 | yes, all of it |
+| `torsion-snapshot.npz` | 2026-10-12 code | yes: `shell_s6.py torsion` gives it byte for byte |
+| `torsion-monocoque.json` | 2026-10-12 code | 210- and 300-section values and the 420-section open shell reproduced (2026-10-15); the 420-section monocoque was killed by the 6 GB cap and not re-run |
+| `torsion-monocoque-snapshot.npz` | 2026-10-12 code, finest mesh | no: written at the end of the run the 6 GB cap killed |
+| `buckling.json`, `buckling-modes.npz` | committed code, 2026-10-16 | yes, 300 sections only (the torsion case also repeats the 2026-10-15 run) |
+| `bending.json`, `pruned` block | committed code, 2026-10-16, 300 sections | yes; its fractions are taken against the full-model K of the 2026-10-12 `members` block |
+| `bending.json`, `cases` and `members` blocks; `bending-snapshot.npz` | 2026-10-12 code | no |
+| `torsion-rings.json`, `torsion-rings-model.npz` | 2026-10-12 code | no |
+| `torsion-members.json` | 2026-10-12 code | no |
+| `torsion-layup.json` | 2026-10-12 code | no |
+| `torsion-shell-tubes.json`, `-model.npz` | the superseded S3 run | no: its S6 solve was killed by the 6 GB cap already at 210 sections; the 420-section mesh did not fit SPOOLES in 12 GB either (2026-10-12) |
+
+The rows marked "no" are what the 2026-10-12 code wrote; that the
+committed code reproduces them is supported by the rows above, which
+share the same shell model and solver path, but it was not checked.
+Re-running them, and the 420-section S6 cases, needs more memory than
+this host allows.
 
 ## Limits
 

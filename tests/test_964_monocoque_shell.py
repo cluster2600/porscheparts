@@ -1,3 +1,4 @@
+import ast
 import hashlib
 import json
 import sys
@@ -208,6 +209,15 @@ class MonocoqueShellTests(unittest.TestCase):
         for case in ("torsion", "bending"):                                   # loads and core are assumptions
             self.assertTrue(r["service_loads"][case]["basis"].startswith("ASSUMED"), case)
         self.assertTrue(r["core"]["basis"].startswith("ASSUMED"))
+        # The hand check uses a foam core; the model carries a honeycomb: the record must say so,
+        # and the label must be the one buckling.py writes (no hand-edited drift).
+        self.assertIn("NOT the 22.6 mm aramid honeycomb", r["core"]["basis"])
+        self.assertIn("dimpling is not checked", r["core"]["basis"])
+        self.assertEqual(r["layup_mm"]["core"], 22.6)
+        tree = ast.parse((SHELL / "source/buckling.py").read_text(encoding="utf-8"))
+        written = {t.id: n.value for n in tree.body if isinstance(n, ast.Assign) for t in n.targets
+                   if isinstance(t, ast.Name)}
+        self.assertEqual(r["core"]["basis"], ast.literal_eval(written["CORE_BASIS"]))
         self.assertIn("base state excluded", r["repeat_check"])
         sections = [m["sections"] for m in r["meshes"]]
         self.assertTrue(sections)

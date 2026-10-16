@@ -24,7 +24,13 @@ composite shell ignores core shear anyway (on a 500 mm sandwich plate it
 finds 2,800 N/mm against 411 by sandwich theory). It is checked by hand
 instead, from the stress the static run puts in its faces: shear
 crimping, N = G_c h^2 / c, and face wrinkling, 0.5 (E_f E_c G_c)^(1/3).
-Core: ASSUMED PVC foam of the 48 kg/m3 class (E 50 MPa, nu 0.32). The
+Core: ASSUMED isotropic foam, E 50 MPa, nu 0.32, with no source. This
+is NOT the core the model and its mass carry: torsion_monocoque.py and
+picogk/ assume a 22.6 mm aramid honeycomb at 48 kg/m3. A honeycomb has
+two transverse shear moduli and fails also by intracell dimpling, which
+is not checked here, so these crimping and wrinkling margins belong to a
+foam core, not to the modelled sandwich. Aligning them needs sourced
+honeycomb properties, which the repository does not hold. The
 face stress is taken two ways, both the 99th percentile over the
 sandwich: the nodal von Mises of OUTPUT=2D (mid-surface, no bending
 stress, but averaged at each node with the walls that share it, which
@@ -71,6 +77,9 @@ N_MODES = 16
 THIN = ("free skin", "box outer walls", "box inner walls")
 SANDWICH_SECTIONS = (2, 3)                             # floor and bulkheads in sections()
 CORE_E, CORE_NU = 50.0, 0.32
+CORE_BASIS = ("ASSUMED isotropic foam, no source; NOT the 22.6 mm aramid honeycomb (48 kg/m3) of the model "
+              "and mass estimate: the crimping and wrinkling margins are those of a foam core, and honeycomb "
+              "intracell dimpling is not checked")
 SERVICE = {"torsion": {"value": 12000.0, "unit": "N.m", "basis": "ASSUMED: 2.85 kN front wheel load x 1.4 m track x 3"},
            "bending": {"value": 40000.0, "unit": "N", "basis": "ASSUMED: 3 x 1,350 kg"}}
 
@@ -159,7 +168,7 @@ def main():
     out = {"model": "linear buckling (*BUCKLE) of the CFRP monocoque shell model of torsion_monocoque.py, S6; sandwich by its faces only",
            "classification": "values of this model under these loads, not of a vehicle; prohibited_pending_engineering",
            "layup_mm": {"skin": tm.T_SKIN, "section_walls": tm.T_SECTION, "sandwich_faces": tm.FACE, "core": tm.CORE},
-           "core": {"E_MPa": CORE_E, "nu": CORE_NU, "basis": "ASSUMED PVC foam, 48 kg/m3 class"},
+           "core": {"E_MPa": CORE_E, "nu": CORE_NU, "basis": CORE_BASIS},
            "service_loads": SERVICE, "sandwich_limits": {k: round(v, 1) for k, v in sandwich_limits().items()},
            "sandwich_stress": ("99th percentile over the faces-only sandwich shells: 'mid_surface' is the nodal von Mises of "
                                "OUTPUT=2D (membrane, no bending stress), 'integration_points' the largest principal stress "
