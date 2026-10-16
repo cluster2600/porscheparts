@@ -1,0 +1,60 @@
+{
+  "status": "software_witnesses_passed_no_full_admission",
+  "source_sha256": {
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/build_cached_v6.py": "6a6d3720e4a9c98c05393ea6446b33f6596ba3addcd73184ccaec5c8b64b9343",
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/parallel_exact_admissions.py": "c21938ed27aa973596dc603f758ab3c6bc6796ee8c92dfd48ffe83c8ba2fe5bf",
+    "parts/993-eng-carrier-0001/source/process-skins-20261016/incremental_combinatorial_interfaces_area.py": "2230847e5862b3d6668a900c2774ebb82cb3f12555486747fb06dfe8d5a90341",
+    "tests/test_carrier_cached_build_v6.py": "3fcee0bc23c0b9516f7f3e72358b0765a7062dea6b786cb5541cc2579a02a4ae",
+    "tests/test_carrier_parallel_exact_admissions.py": "e323c8d3c1cfa2f94da5ac4f521cc58a5227e132c2214d7519e5b2a0e4d580c1"
+  },
+  "logs_sha256": {
+    "helper-tests-003.log": "30e0e63043a83bbd3d5d27927c2bb48505354a697a541cf427f15e876e41c139",
+    "driver-tests-005.log": "16cbe176bb463c8fa58be62a1e63b8f129bb52b4c124b0cff67f94d83a7dafe3",
+    "cached-build-regression-001.log": "69e087bb79199e67c272334f6e328010d53a47a1784acff6c5d20dc09ddddb21"
+  },
+  "checks": [
+    {
+      "log": "helper-tests-003.log",
+      "tests": 7,
+      "passed": true,
+      "seconds": 16.201
+    },
+    {
+      "log": "driver-tests-005.log",
+      "tests": 8,
+      "passed": true,
+      "seconds": 24.801
+    },
+    {
+      "log": "cached-build-regression-001.log",
+      "tests": 34,
+      "passed": true,
+      "seconds": 1.383,
+      "scope": "Prior helper/driver revision; unchanged v3-v5 and initial v6 contract regression"
+    }
+  ],
+  "workers": 4,
+  "maximum_pending_futures": 8,
+  "recorded_authorities_unchanged": [
+    "94393c465fb15c1c3129ad8e482ea19cd597d3e716714e069b4eaee38b80e2fa",
+    "5047b9393408104fe704697a1fc35a9fe18cadc0a8d98fac5f176a409ef5c646"
+  ],
+  "reviewed_real_results_reused_without_submission": 4,
+  "reviewed_unit_receipt_sha256": "62082815b2e78ee66c11f91818f2f63c46b180f75664ede6f7ef602f9a57a432",
+  "area_copy_only_change": "ring_area=sum(_OLD.exact_area(ring) for ring in generated) -> ring_area=sum(areas)",
+  "implementation_scope": "Parallel exact unit replays; historical six-gate parent seal unchanged; reuse restores and verifies copied execution evidence.",
+  "full_support_admission_executed": false,
+  "generator_executed": false,
+  "expensive_benchmark_executed": false,
+  "limits": [
+    "Synthetic seven-region serialization fixtures isolate checkpoint binding; these are not real support admissions.",
+    "Shutdown waits for running tasks; cancellation of queued work is bounded, immediate termination of running arithmetic is not claimed.",
+    "The four real reuse results retain the original 814 assembly; new replay workers use the separately pinned exact-area-reuse class."
+  ],
+  "parent_runtime_before_and_after_required": true,
+  "each_executed_worker_runtime_compared_at_initialisation": true,
+  "runtime_hashing_per_unit": false,
+  "synthetic_integrated_exact_units": 21,
+  "synthetic_integrated_gate_receipts": 6,
+  "parent_review_runtime_gap": "Resolved in this revision; initial implementation-assessment-001 retained honestly"
+}
