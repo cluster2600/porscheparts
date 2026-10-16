@@ -187,8 +187,11 @@ Le [bootstrap Linux consolidé](../../parts/993-eng-carrier-0001/source/native-t
 compose ces installateurs avec son propre environnement d'audit. Son entrée
 PyMesh est l'archive logicielle exacte conservée hors Git ; l'option de copie
 permet de l'inclure dans un paquet autonome. Les installateurs individuels et
-le nouvel environnement d'audit ont été exécutés ; le lancement consolidé
-des cinq installateurs n'a pas été rejoué après leur gel.
+le nouvel environnement d'audit ont été exécutés. Le lancement consolidé
+des cinq installateurs a ensuite été réalisé dans un préfixe neuf :
+[installation complète vérifiée](../../parts/993-eng-carrier-0001/source/native-toolchain-20261016/complete-installation-results.json),
+archive interne de 439 278 729 octets, cinq reçus et 47 fichiers sources
+revérifiés. Il ne relance aucune pièce lors de cette installation.
 
 ```sh
 python3 scripts/run_part_workflow.py run manufacturing/workflows/993-carrier.json \

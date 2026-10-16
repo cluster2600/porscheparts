@@ -37,17 +37,20 @@ et après exécution. Le dossier garde les commandes, journaux, identités des
 sources et sorties. Le support, la figure de contrainte et les trajectoires
 doivent désigner la même géométrie ; le générateur refuse de les mélanger.
 
-| Outil repris ou trouvé sur GitHub | Utilisation réelle dans cette reprise |
-| --- | --- |
-| build123d / OCCT | Construction du solide, protections BRep, réimport STEP et volume |
-| PyMesh | Nettoyage exact exécuté ; insuffisant pour corriger la tessellation, essais refusés conservés |
-| Gmsh 4.15.2 | Retriangulation depuis la CAO et maillages C3D10 |
-| libigl 2.6.3 | Intersections exactes entre triangles et distance inverse ; runtime Linux ARM64 local |
-| PicoGK 2.3.0 / OpenVDB | Contrôle natif des parois et des volumes enfermés sur Kali1 |
-| CalculiX 2.21 | Calculs élastiques et non linéaires ; solveur local à image et binaire épinglés |
-| PySLM 0.6.1 | Supports dentés, couches, contours et hachures ; correction de projection tracée |
-| MOOSE | Activation, histoire thermoplastique et relâchement vérifiés sur témoin ; import du maillage du support |
-| Adamantine | Audit exécuté ; limitations STL/ArborX et équilibre plastique identifiées avant de lui confier une prédiction |
+| Étape | Logiciel épinglé et licence connue | Utilisation réelle et preuve |
+| --- | --- | --- |
+| CAO paramétrique | build123d 0.11.1 — Apache-2.0 ; OCCT/OCP 7.9.3.1 — licence du noyau non consignée | [Solide éditable et protections](../../parts/993-eng-carrier-0001/source/design-20261016/README.md), [installation figée](../../parts/993-eng-carrier-0001/source/design-20261016/cad-base-standalone-validation.json). Reçu local de volume et réimport STEP : `work/part-workflow/run-001/cad/geometry.json`. |
+| Réparation et booléens | PyMesh 0.3 — MPL, version de licence inconnue ; CGAL embarqué — version et commit C++ non exposés, licences distinctes | Nettoyage natif exécuté et CSGTree des enveloppes : [essais refusés conservés](../../parts/993-eng-carrier-0001/source/remesh-20261016/results.json), [voie CSGTree et reproduction native](../../parts/993-eng-carrier-0001/source/native-pymesh-20261016/README.md). |
+| Maillage | Gmsh 4.15.2 — GPL-2.0-or-later | Retriangulation de la CAO et tétraèdres quadratiques C3D10 : [surface retenue et essais antérieurs](../../parts/993-eng-carrier-0001/source/remesh-20261016/README.md), [reçus historiques](../../parts/993-eng-carrier-0001/source/remesh-20261016/results.json). Reçu local actuel : `work/part-workflow/run-001/surface/meshing.json`. |
+| Contrôle des triangles | libigl 2.6.3 — MPL-2.0 ; classifieur rationnel du dépôt | Détection d'intersections et distances, puis distinction indépendante des contacts adjacents : [runtime](../../parts/993-eng-carrier-0001/source/remesh-20261016/results.json), [adjudication](../../parts/993-eng-carrier-0001/source/design-20261016/exact-contact-diagnostic.json). |
+| Contrôle des parois | PicoGK 2.3.0 — Apache-2.0 ; OpenVDB embarqué, version/licence non consignées ici | Mesures natives d'épaisseur et de cavités exécutées : [reçus](../../parts/993-eng-carrier-0001/source/remesh-20261016/results.json). La reconstruction SDF du carrier retenu reste une piste étudiée. |
+| Mécanique | CalculiX 2.21, paquet 2.21-1 — GPL-2.0 | Six cas élastiques, puis loi publiée, grands déplacements et décharge : [résultats constitutifs](../../parts/993-eng-carrier-0001/source/design-20261016/constitutive-results.json), [liaison au problème discret actuel](../../parts/993-eng-carrier-0001/source/design-20261016/constitutive-binding-result.json). Exécution locale : `work/part-workflow/run-001/cad/simulation-runtime.json`. |
+| Préparation LPBF | PySLM 0.6.1, commit `8fa03f1` — LGPL-2.1 | Contours et hachures de pièce : [1 034 couches et audit complet de ces seuls vecteurs](../../parts/993-eng-carrier-0001/source/process-cache-20261016/results.json). Supports en correction ; [sources et correctifs épinglés](../../parts/993-eng-carrier-0001/source/process-20261016/upstream.json). |
+| Topologie des supports | CGAL 6.1.3 séparé, commit `109ed62` — GPL-3.0-or-later ou commercial ; noyau LGPL-3.0-or-later ou commercial | Autoraffinement, snap, contrôles et dominance polygonale ; distinct du CGAL embarqué de CSGTree. [Reproduction native](../../parts/993-eng-carrier-0001/source/native-cgal-20261016/reproduction-results.json), [composants et licences](../../parts/993-eng-carrier-0001/source/native-toolchain-20261016/README.md). Correction des enveloppes en cours. |
+| Étude du procédé | MOOSE, commit `167ee97` — LGPL-2.1 | Témoins thermoplastiques et import du maillage exécutés ; aucune prédiction thermique du carrier : [sources et reçus](../../parts/993-eng-carrier-0001/source/process-20261016/moose/upstream.json). |
+| Étude du procédé | Adamantine, commit `3990489` — Apache-2.0 WITH LLVM-exception | [Témoins logiciels exécutés](LPBF_NATIVE_VERIFICATION_20261015.md), [source épinglée](../../benchmarks/lpbf-adamantine-export/upstream.json). Sur ce carrier, zéro pas thermique et zéro résolution mécanique : `work/carrier-process-20261016/adamantine-occupation-001/runtime-capabilities.json`. |
+| Figures et dossier | Matplotlib 3.10.8 / ReportLab — version de ReportLab et licences non consignées dans ces reçus | [Cycle mécanique contrôlé](../../parts/993-eng-carrier-0001/source/design-20261016/constitutive-evidence/luo-flat1-cycle.json) et figure locale `work/part-workflow/run-001/fields/combined.json`. Guide témoin actuel : `work/part-workflow/review-004/guide-atelier.pdf`, produit par le [générateur versionné](../../scripts/build_carrier_workshop_guide_v2.py). Le dossier final attend l'admission des supports. |
+| Inventaires généraux | [Chaîne d'outils](../TOOLCHAIN.md) · [Sélection logicielle](../SOFTWARE_STACK.md) | Navigation et choix plus larges du projet ; les reçus ci-dessus établissent l'exécution propre à ce carrier. |
 
 Les essais de treillis LEAP71 antérieurs restent disponibles dans leur
 dossier historique ; ils dépassaient l'ancien plafond et ne fournissent pas
@@ -415,6 +418,20 @@ matière de support apparaît effectivement dans les trajectoires. Le reçu
 complet lie par SHA les deux sous-reçus : audit des expositions et couverture
 de tous les groupes. Une feuille située entièrement entre deux plans de
 couche ne peut donc pas disparaître silencieusement du dossier accepté.
+
+L'[installation Linux consolidée](../../parts/993-eng-carrier-0001/source/native-toolchain-20261016/complete-installation-results.json)
+a été exécutée dans un préfixe neuf : environnement d'audit, cinq outils
+natifs et copie vérifiée de l'archive PyMesh. Les 47 sources correspondent
+encore au checkout et les cinq reçus sont liés au manifeste de runtime.
+Cette exécution installe les logiciels ; elle ne recalcule pas le carrier.
+
+Le dernier [contrôle général du dépôt](../../parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/repository-checks-001.json)
+exécute 4 146 tests : quatre échecs, une erreur et 177 tests ignorés. Trois
+refus existaient déjà ; deux viennent de l'utilisation du nouveau runtime
+pour des tests du générateur historique. Ces deux tests ont ensuite été
+[rejoués seuls dans leur runtime historique](../../parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/historical-runtime-checks-001.json)
+et passent. La suite globale n'est donc pas annoncée verte ; les contrôles
+ciblés des nouveaux modules sont conservés séparément.
 
 Le guide et l'assembleur exigent désormais aussi le contrôle indépendant des
 trajectoires de supports sur toutes les couches, avec leur encodage géométrique
