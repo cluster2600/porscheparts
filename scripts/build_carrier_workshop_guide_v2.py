@@ -23,6 +23,16 @@ def sha(path):
     return digest.hexdigest()
 
 
+def snapshot_workflow(source, destination, expected):
+    content = source.read_bytes()
+    if hashlib.sha256(content).hexdigest() != expected:
+        raise ValueError('Visual workflow changed before its provenance snapshot')
+    with destination.open('xb') as stream:
+        stream.write(content)
+    if sha(destination) != expected:
+        raise ValueError('Visual workflow changed while saving its provenance snapshot')
+
+
 def admitted_process(process_directory, process):
     if process.get('manufacturing_preparation_admitted') is not True:
         raise ValueError('Support preparation has not passed its admission criteria')
@@ -183,6 +193,9 @@ def package(run):
     visuals = admitted_visuals(run, process, mesh_hash)
     assets = run / 'delivery-assets'
     assets.mkdir(exist_ok=False)
+    prefix = run / ('provenance/source-workflow.json' if (run / 'assembly.json').is_file() else 'workflow.json')
+    snapshot_workflow(prefix, assets/'source-workflow.json', visuals['prefix_workflow_sha256'])
+    visuals['prefix_workflow_snapshot'] = 'delivery-assets/source-workflow.json'
     for name, selection in [('supports.zip', lambda n: n.startswith('support-')),
                             ('scanpaths.zip', lambda n: n.startswith('layers/'))]:
         with zipfile.ZipFile(assets / name, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=1) as archive:
@@ -264,7 +277,8 @@ def package(run):
                       if (run / 'assembly.json').is_file() else 'python3 scripts/run_part_workflow.py verify ')
     fill(5, [('Révision', geometry['design_id']), ('Identité du STEP', step_hash[:16] + '…'),
              ('Règle de comparaison', 'V6f, mêmes charges et appuis'), ('Consultation', 'HTML hors ligne et PDF')],
-         [('guide-description.json', 'Description du dossier'), ('comparison/selection.json', 'Décision numérique')],
+         [('guide-description.json', 'Description du dossier'), ('comparison/selection.json', 'Décision numérique'),
+          ('delivery-assets/source-workflow.json', 'Provenance des figures conservée avant la fin du workflow')],
          commands=['python3 scripts/run_part_workflow.py run manufacturing/workflows/993-carrier-lpbf-v2.json --runtime work/part-workflow/runtime-v2.json --output work/part-workflow/NOUVEAU_PASSAGE',
                    verify_command + relative])
     descriptor = run / 'guide-description.json'

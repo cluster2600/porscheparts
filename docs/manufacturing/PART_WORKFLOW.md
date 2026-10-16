@@ -5,6 +5,11 @@ l'imprimeur et le mécanicien peuvent suivre. Le support moteur 993 Turbo est
 le pilote. Chaque étape conserve son entrée, ses réglages, ses logiciels, ses
 sorties et ses résultats ; un changement de géométrie crée une nouvelle révision.
 
+Le guide conserve une copie exacte du reçu utilisé pour relier ses figures,
+dans `delivery-assets/source-workflow.json`. Le lanceur peut ensuite terminer
+et mettre à jour son propre `workflow.json` ; l'état employé pour les images
+reste consultable et vérifiable dans le dossier remis.
+
 ```mermaid
 flowchart LR
     I["Image / vues / repère de taille"] --> C["1. Géométrie éditable"]

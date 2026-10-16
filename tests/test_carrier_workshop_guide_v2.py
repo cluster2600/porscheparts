@@ -40,6 +40,26 @@ class CarrierWorkshopGuideV2Tests(unittest.TestCase):
                       'input_receipt_sha256': guide.sha(self.process_dir / 'report.json')}
         (path / 'assessment.json').write_text(json.dumps(self.audit))
 
+    def test_visual_workflow_snapshot_survives_the_runner_final_update(self):
+        source, destination = self.run / 'workflow.json', self.run / 'snapshot.json'
+        source.write_text('{"status":"running","stages":["verified prefix"]}')
+        expected = guide.sha(source)
+        guide.snapshot_workflow(source, destination, expected)
+        source.write_text('{"status":"completed","stages":["verified prefix","guide"]}')
+        self.assertEqual(guide.sha(destination), expected)
+        self.assertNotEqual(guide.sha(source), expected)
+        with self.assertRaises(FileExistsError):
+            guide.snapshot_workflow(destination, destination, expected)
+
+    def test_changed_visual_workflow_cannot_be_copied_under_the_old_identity(self):
+        source, destination = self.run / 'workflow.json', self.run / 'snapshot.json'
+        source.write_text('{"stages":["verified prefix"]}')
+        expected = guide.sha(source)
+        source.write_text('{"stages":["different prefix"]}')
+        with self.assertRaisesRegex(ValueError, 'Visual workflow changed'):
+            guide.snapshot_workflow(source, destination, expected)
+        self.assertFalse(destination.exists())
+
     def test_six_matching_hashed_admissions_are_required(self):
         self.assertEqual(guide.admitted_process(self.process_dir, self.process), self.admission)
         self.process['admission']['collisions']['status'] = 'not_run'
