@@ -292,3 +292,52 @@ C1 des courbes en XY n'a pas supprimé cette jonction 3D vive. Un essai de
 congé OCCT tardif R1 mm, sur cette arête et son homologue en X, échoue avant
 export STEP et reste refusé. La suite reprend la construction du raccord
 avant les booléens et conserve les mêmes protections, plafond et comparaisons.
+
+## Contrôle des supports et des trajectoires
+
+La révision `bounded-webs`, à **1,262213 kg**, reste retenue pour terminer la
+chaîne d'impression. Les essais de renfort ne la remplacent pas tant que leurs
+jonctions sont refusées. Le premier pied tensoriel, à 1,292893 kg, enfouit le
+pli initial mais prolonge un coin à la fenêtre : son remaillage passe, son
+raccord reste refusé et aucun calcul mécanique n'est lancé dessus.
+
+La correction des supports traite maintenant les **intervalles libres réels**
+entre les surfaces, plutôt qu'une seule hauteur par position XY. L'union de
+prismes des triangles de surplomb, le masque XY puis la soustraction de la
+pièce produisent sept volumes. Des recouvrements ont été localisés dès l'union
+Manifold ; une nouvelle construction PyMesh/IGL/CGAL est en cours. Son témoin
+natif de deux prismes superposés puis évidement intermédiaire conserve
+4 000 puis 3 200 mm³ et les deux intervalles libres.
+
+Le compteur brut libigl est conservé. Ses tests des faces adjacentes utilisent
+aussi des calculs approchés : certains contacts signalés ne sont que le sommet
+ou l'arête déjà partagés. Une classification indépendante en rationnels des
+coordonnées IEEE distingue ces contacts des croisements et recouvrements
+réels, sans epsilon ajouté ni déplacement de sommets. Elle ne prétend pas
+détecter des paires absentes du rapport d'entrée. Les défauts réels de l'union
+ne sont pas effacés par cette distinction. Le
+[diagnostic exact](../../parts/993-eng-carrier-0001/source/design-20261016/exact-contact-diagnostic.json)
+conserve les huit intermédiaires, les compteurs et les témoins.
+
+Le [trancheur à quatre processus](../../parts/993-eng-carrier-0001/source/process-slicing-20261016/README.md)
+conserve exactement les contours, leur ordre, les hachures et les aires de
+huit plans fixés du carrier. Le benchmark mesure **32,282 → 11,808 s**, avec
+démarrage des workers, soit 2,73 fois plus rapide sur ce témoin. La
+présélection Z seule n'avait pas accéléré le cas ; ce résultat reste conservé.
+Le groupe de processus est fermé après calcul.
+
+L'audit des trajectoires vérifie les segments entiers dans les sections avec
+leurs trous. Un segment traversant un trou est refusé même si ses deux
+extrémités restent dans la matière. Dix tests natifs de tranchage et de
+trajectoires passent ensemble. Cinq couches conservées du passage partiel
+passent cet audit ; cela ne remplace pas l'audit de toutes les couches du futur
+passage.
+
+Le [conditionnement renforcé](../../scripts/build_carrier_workshop_guide_v2.py)
+exige six admissions liées à leurs reçus : enveloppes, régions, peaux, grilles,
+contacts et collisions. Il exige aussi l'audit complet des trajectoires de la
+même préparation. Neuf tests des anciens et nouveaux conditionnements passent,
+dont le refus d'un support simplement généré et d'un audit partiel. La revue
+illustrée de travail est disponible en HTML hors ligne et PDF de huit pages ;
+ses huit pages ont été rendues et examinées, avec les étapes encore ouvertes
+visibles.
