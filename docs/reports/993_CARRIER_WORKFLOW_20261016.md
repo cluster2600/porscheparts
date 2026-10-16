@@ -297,18 +297,18 @@ modèle. Les **10 tests constitutifs actuels** passent ensuite sous Python
 passages et de la correction sont conservés. Les environnements restent
 séparés pour ces contraintes réelles de dépendances.
 
-Le [passage général après gel de la recette v5](../../parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/repository-checks-004.json)
-exécute **4 375 tests en 390,405 s** dans l’environnement PySLM corrigé :
+Le [passage général après gel de la recette v6](../../parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/repository-checks-005.json)
+exécute **4 414 tests en 439,744 s** dans l’environnement PySLM corrigé :
 quatre échecs, une erreur et 177 tests ignorés. Les cinq identités d’échec
 sont exactement celles du passage classé précédent : deux comparaisons
 flottantes, un ancien test 917 exigeant `np.trapezoid` et deux tests du
 préparateur historique rejetés par l’empreinte du runtime corrigé. Aucun
 nouvel échec n’est identifié ; `make check` reste refusé et n’exécute pas les
-cibles dépendant de la réussite de ces tests. Le reçu conserve aussi
-la comparaison au [passage antérieur à 4 337 tests](../../parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/repository-checks-003.json),
-avec 38 tests supplémentaires et les mêmes cinq identités d’échec. Le reçu
-antérieur conserve le premier lancement avec le mauvais interpréteur et sa
-correction.
+cibles dépendant de la réussite de ces tests. Le reçu conserve la comparaison
+au [passage antérieur à 4 375 tests](../../parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/repository-checks-004.json),
+avec 39 tests supplémentaires et les mêmes cinq identités d’échec. Les bilans
+antérieurs restent conservés, y compris le premier lancement avec le mauvais
+interpréteur et sa correction.
 
 Les **34 tests ciblés des guides v4/v3/v2 et du générateur générique** passent.
 Les dix tests propres au guide v4 passent aussi par découverte dans la base
