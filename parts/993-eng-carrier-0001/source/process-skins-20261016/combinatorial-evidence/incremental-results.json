@@ -1,0 +1,53 @@
+{
+  "schema": "carrier-incremental-constructor-evidence-1",
+  "status": "constructor_verified_no_global_support_admission",
+  "source_sha256": {
+    "incremental_combinatorial_interfaces.py": "69b32aee03445071f9d6d1705d1e153baf16d82f85a9ea7f25cb6532dfb99ad8",
+    "incremental_combinatorial_interfaces_ids.py": "81422bc8ce95beab8039e33f70a9d1274083be1ce1426c778c700a06a8b21df8",
+    "continuous_incremental_interfaces.py": "7b2248a73f5aa597f0021ab6d1f4a525aa04f52f706ceaa14eaac9178f2ab427",
+    "generate_prism_region_v5.py": "719a3e61bcdfa8d1b354f21212d610f23086441b2ffc320ffb148dbe02fb308d",
+    "generate_legacy_region_v5.py": "1f8cf1c2fe3fe8689ed95d1b6d257126278c9467d867754822ed878e032e3cce"
+  },
+  "tests": {
+    "command": "work/part-workflow/runtimes/pyslm-coverage-011/env/bin/python -B -m unittest discover -s tests -p test_carrier_incremental*.py",
+    "tests_run": 16,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "seconds": 4.19,
+    "source_sha256": {
+      "tests/test_carrier_incremental_interfaces.py": "cb151fd49a1c103158789d89fbde911347c5adf6785e5eed3a7156fcb14ce731",
+      "tests/test_carrier_incremental_point_ids.py": "86a2799fdb74636912ef29e23f8ef3ec15b3fad85235771de2a639219bb24cfa",
+      "tests/test_carrier_incremental_region_entries.py": "b11b311f07fab3c81dbcafff3a0268699cdef3f7620d07f75394c4045254e919"
+    }
+  },
+  "complete_large_chart": {
+    "receipt": "work/carrier-process-20261016/incremental-large-chart-ids-001/assessment.json",
+    "sha256": "cc48c4830655acd63c288055e822ee105f35213366eec34ea0d63d2b91463866",
+    "status": "constructed_not_globally_admitted",
+    "seconds": 324.72908308380283,
+    "cpu_seconds": 313.498215,
+    "statistics": {
+      "calls": 5875,
+      "full_recompute_fallbacks": 0,
+      "changed_line_updates": 29370,
+      "accepted_trials": 5874,
+      "rejected_trials": 0
+    },
+    "source_file_unchanged": true,
+    "scope": "Complete 5876-vertex captured chart construction, including every greedy decision and final exact simplicity; no 3D generation or global admission"
+  },
+  "independent_final_chain": {
+    "receipt": "work/carrier-process-20261016/incremental-large-chart-final-chain-001/assessment.json",
+    "sha256": "ad097ca9b02327870d2e8f1ce15ade9b1d3aec6adc911b9d81d4c1f7c02a51a2",
+    "status": "passed",
+    "generated_triangles": 17622,
+    "result_wkb_identical": true,
+    "exact_triangle_area_equal": true,
+    "source_files_unchanged": true,
+    "seconds": 4.15580258378759,
+    "method": "One complete frozen943 reassembly of exactly the accepted source triangles; no greedy trial replay"
+  },
+  "global_support_admission": false,
+  "old_sources_modified": false
+}
