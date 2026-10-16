@@ -45,7 +45,8 @@ def install(module,directory):
             raise
         _write(directory/(prefix+'-completed.json'),dict(status='call_completed_no_global_admission',chart_call_index=index,
             input_sha256=input_sha256,captured_input_unchanged=sha(start_path)==input_sha256,seconds=time.monotonic()-started,
-            generated_material_geometry_sha256=hashlib.sha256(result.wkb).hexdigest()))
+            generated_material_geometry_wkb_hex=result.wkb_hex,
+            generated_material_geometry_sha256=hashlib.sha256(result.wkb).hexdigest(),native_infill=receipt))
         return result,receipt
     captured._carrier_chart_progress=True
     module.native_infill=captured
