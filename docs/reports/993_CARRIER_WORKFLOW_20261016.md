@@ -499,6 +499,16 @@ statut local ne remplace pas l’admission de la région complète.
 
 ![Peau gauche : domaine conservé et cinq extensions redondantes](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/chart002-local-20261016/reference/chart002-local-review.png)
 
+Les [vues des sept enveloppes natives](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/sealed-envelopes-20261016/README.md)
+montrent les volumes de construction dans la vraie pose de la pièce. Une
+seconde planche agrandit les petites régions 003/009 sans déplacer leurs
+sommets. Les barres de 100 mm et 10 mm sont vérifiées par la transformation
+VisPy installée ; le rejeu depuis une copie séparée conserve les deux PNG à
+l’octet. Les grilles, les dents et les couches finales de support ne sont pas
+représentées par ces volumes.
+
+![Sept enveloppes natives et pièce posée : surfaces de support encore en cours](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/sealed-envelopes-20261016/reference/sealed-envelopes-overview.png)
+
 La [planche mécanique complémentaire](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/mechanics.html)
 montre les champs réels du cas combiné à appuis rigides, maillage 7 mm :
 617,716 MPa au point d'intégration maximal et 2,796598 mm de déplacement.

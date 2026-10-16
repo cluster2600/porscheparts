@@ -1,12 +1,19 @@
 # Images du travail en cours — 16 octobre 2026
 
-Ouvrir `index.html` pour parcourir les cinq planches hors ligne. Les fichiers
+Ouvrir `index.html` pour parcourir les planches de ce dossier hors ligne. Les fichiers
 PNG restent disponibles individuellement à leur définition complète.
 
 La [planche locale de la peau gauche](chart002-local-20261016/README.md)
 complète ces cinq vues. Elle conserve ses trois JSON réels, son script de
 rendu et son reçu propres ; elle ne modifie pas les preuves historiques des
 cinq planches initiales.
+
+Les [deux planches des sept enveloppes natives](sealed-envelopes-20261016/README.md)
+ajoutent les volumes de construction dans la pose réelle et les agrandissements
+des petites régions 003/009. Leurs propres reçus conservent les sept maillages,
+les sources du rendu et les contrôles des barres d’échelle. Le rejeu depuis
+une copie séparée reproduit les deux PNG à l’octet. Ces volumes précèdent les
+grilles et les couches des supports, encore en cours de calcul.
 
 Les deux nouvelles vues utilisent le STL retenu et les triangles des supports
 de l'essai `real-support-source-008-015`. Les cotes, le comparatif du maillage
