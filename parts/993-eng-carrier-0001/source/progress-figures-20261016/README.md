@@ -3,6 +3,11 @@
 Ouvrir `index.html` pour parcourir les cinq planches hors ligne. Les fichiers
 PNG restent disponibles individuellement à leur définition complète.
 
+La [planche locale de la peau gauche](chart002-local-20261016/README.md)
+complète ces cinq vues. Elle conserve ses trois JSON réels, son script de
+rendu et son reçu propres ; elle ne modifie pas les preuves historiques des
+cinq planches initiales.
+
 Les deux nouvelles vues utilisent le STL retenu et les triangles des supports
 de l'essai `real-support-source-008-015`. Les cotes, le comparatif du maillage
 et la couche 518 sont des copies identiques des figures calculées auparavant.

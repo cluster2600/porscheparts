@@ -57,7 +57,7 @@ doivent désigner la même géométrie ; le générateur refuse de les mélanger
 | Topologie des supports | CGAL 6.1.3 séparé, commit `109ed62` — GPL-3.0-or-later ou commercial ; noyau LGPL-3.0-or-later ou commercial | Autoraffinement, snap, contrôles et dominance polygonale ; distinct du CGAL embarqué de CSGTree. [Reproduction native](../../parts/993-eng-carrier-0001/source/native-cgal-20261016/reproduction-results.json), [composants et licences](../../parts/993-eng-carrier-0001/source/native-toolchain-20261016/README.md). Correction des enveloppes en cours. |
 | Étude du procédé | MOOSE, commit `167ee97` — LGPL-2.1 | Témoins thermoplastiques et import du maillage exécutés ; aucune prédiction thermique du carrier : [sources et reçus](../../parts/993-eng-carrier-0001/source/process-20261016/moose/upstream.json). |
 | Étude du procédé | Adamantine, commit `3990489` — Apache-2.0 WITH LLVM-exception | [Témoins logiciels exécutés](LPBF_NATIVE_VERIFICATION_20261015.md), [source épinglée](../../benchmarks/lpbf-adamantine-export/upstream.json). Sur ce carrier, zéro pas thermique et zéro résolution mécanique : `work/carrier-process-20261016/adamantine-occupation-001/runtime-capabilities.json`. |
-| Figures et dossier | Matplotlib 3.10.8 / ReportLab — version de ReportLab et licences non consignées dans ces reçus | [Cycle mécanique contrôlé](../../parts/993-eng-carrier-0001/source/design-20261016/constitutive-evidence/luo-flat1-cycle.json) et figure locale `work/part-workflow/run-001/fields/combined.json`. Guide témoin actuel : `work/part-workflow/review-004/guide-atelier.pdf`, produit par le [générateur versionné](../../scripts/build_carrier_workshop_guide_v2.py). Le dossier final attend l'admission des supports. |
+| Figures et dossier | Matplotlib 3.11.2 dans le [runtime PySLM corrigé](../../parts/993-eng-carrier-0001/source/process-coverage-20261016/requirements-macos-arm64-python311.lock.txt) ; ReportLab 4.4.9 dans la [base PDF autonome](../../manufacturing/runtimes/pdf/requirements-macos-arm64-python312.lock.txt) | [Cycle mécanique contrôlé](../../parts/993-eng-carrier-0001/source/design-20261016/constitutive-evidence/luo-flat1-cycle.json) et figure locale `work/part-workflow/run-001/fields/combined.json`. Guide témoin actuel : `work/part-workflow/review-004/guide-atelier.pdf`, produit par le [générateur versionné](../../scripts/build_carrier_workshop_guide_v2.py). Le dossier final attend l'admission des supports. |
 | Inventaires généraux | [Chaîne d'outils](../TOOLCHAIN.md) · [Sélection logicielle](../SOFTWARE_STACK.md) | Navigation et choix plus larges du projet ; les reçus ci-dessus établissent l'exécution propre à ce carrier. |
 
 Les essais de treillis LEAP71 antérieurs restent disponibles dans leur
@@ -290,15 +290,18 @@ modèle. Les **10 tests constitutifs actuels** passent ensuite sous Python
 passages et de la correction sont conservés. Les environnements restent
 séparés pour ces contraintes réelles de dépendances.
 
-Le [passage général après gel des sources v3/v5](../../parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/repository-checks-003.json)
-exécute **4 337 tests en 395,167 s** dans l’environnement PySLM corrigé :
+Le [passage général après gel de la recette v5](../../parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/repository-checks-004.json)
+exécute **4 375 tests en 390,405 s** dans l’environnement PySLM corrigé :
 quatre échecs, une erreur et 177 tests ignorés. Les cinq identités d’échec
 sont exactement celles du passage classé précédent : deux comparaisons
 flottantes, un ancien test 917 exigeant `np.trapezoid` et deux tests du
 préparateur historique rejetés par l’empreinte du runtime corrigé. Aucun
 nouvel échec n’est identifié ; `make check` reste refusé et n’exécute pas les
-cibles dépendant de la réussite de ces tests. Le reçu conserve aussi le
-premier lancement avec le mauvais interpréteur et sa correction.
+cibles dépendant de la réussite de ces tests. Le reçu conserve aussi
+la comparaison au [passage antérieur à 4 337 tests](../../parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/repository-checks-003.json),
+avec 38 tests supplémentaires et les mêmes cinq identités d’échec. Le reçu
+antérieur conserve le premier lancement avec le mauvais interpréteur et sa
+correction.
 
 Les **34 tests ciblés des guides v4/v3/v2 et du générateur générique** passent.
 Les dix tests propres au guide v4 passent aussi par découverte dans la base
@@ -458,7 +461,7 @@ natifs et copie vérifiée de l'archive PyMesh. Les 47 sources correspondent
 encore au checkout et les cinq reçus sont liés au manifeste de runtime.
 Cette exécution installe les logiciels ; elle ne recalcule pas le carrier.
 
-Le dernier [contrôle général du dépôt](../../parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/repository-checks-001.json)
+Un [contrôle général antérieur du dépôt](../../parts/993-eng-carrier-0001/source/process-scanpath-audit-20261016/repository-checks-001.json)
 exécute 4 146 tests : quatre échecs, une erreur et 177 tests ignorés. Trois
 refus existaient déjà ; deux viennent de l'utilisation du nouveau runtime
 pour des tests du générateur historique. Ces deux tests ont ensuite été
@@ -479,6 +482,15 @@ ancrages requis. Le détail rouge provient du graphe exact et des triangles rée
 sans ajout de matière au rendu. Les cinq images ont été relues visuellement ;
 le [reçu de sources](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/figures.json)
 conserve leurs empreintes. Le test ciblé de liaison du graphe aux faces passe.
+
+La [planche locale de la peau gauche](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/chart002-local-20261016/README.md)
+montre le domaine source, la surface calculée et les cinq extensions déjà
+entièrement contenues dans le domaine. Les trois JSON réels, le script et les
+exports sont conservés ensemble. Le rendu après extraction fonctionne depuis
+un autre répertoire courant et reproduit exactement le PNG accepté. Son
+statut local ne remplace pas l’admission de la région complète.
+
+![Peau gauche : domaine conservé et cinq extensions redondantes](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/chart002-local-20261016/reference/chart002-local-review.png)
 
 La [planche mécanique complémentaire](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/mechanics.html)
 montre les champs réels du cas combiné à appuis rigides, maillage 7 mm :
