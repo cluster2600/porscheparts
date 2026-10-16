@@ -67,6 +67,14 @@ existing draft release; all 27 preceding assets remain intact. The
 [inventory correction](derived/engineering/ENDPOINT003_INVENTORY_CORRECTION.md)
 distinguishes the executable input binding from the twelve head phase artifacts.
 
+The [actual final-profile diagnosis](derived/engineering/remaining266-native-profiles/README.md)
+queries all 135 remaining short edges without changing the saved head. Each
+passes native topology and yields a custom placement, then fails the ordinary
+squared-area ratio guard. Three native literal references precede this query;
+independent arithmetic agrees with all 182 reported fixture/head pair classes.
+The retained final-state obstruction is not a historical queue trace. No mesh,
+solver or physical admission follows from this diagnostic.
+
 The [native USD normal-only software fixture](derived/engineering/usd-face-normals-fixture/README.md)
 passes authoring, complete ordered-geometry/canonical-property checks and a
 separate known-array readback. All five analytic face normals match their

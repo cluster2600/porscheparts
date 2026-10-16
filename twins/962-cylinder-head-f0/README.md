@@ -15,6 +15,11 @@ The [latest bore95 USD checkpoint](USD_NORMALS_ENGINEERING.md) verifies face
 normals and passes the minimum and CPU asset checks; its formal robotics profile
 retains six failed feature rows. No head physics or manufacturing qualification
 follows from these results.
+The [native mesh-guard diagnosis](derived/engineering/remaining266-native-profiles/README.md)
+now identifies the obstruction in the rejected endpoint003 snapshot: all 135
+queried edges pass topology and custom placement, then fail the unchanged
+adjacent-area ratio guard. Three native literal references and independent
+arithmetic checks support this diagnosis; no geometry was changed.
 The [sourced material comparison](ENGINEERING_MATERIALS.md) now separates seven
 published recipes, discrete hot-strength points and conditional body masses.
 These results do not select or qualify a material for the head.

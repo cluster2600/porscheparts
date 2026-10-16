@@ -1,0 +1,158 @@
+--- installed-Edge_collapse.h
++++ installed-Edge_collapse-probe.h
+@@ -95,6 +95,7 @@
+ class EdgeCollapse
+ {
+   typedef EdgeCollapse                                                    Self;
++  friend struct Endpoint_final_probe_access; // Diagnostic access only; never run().
+ 
+ public:
+   typedef TM_                                                             Triangle_mesh;
+@@ -732,12 +733,12 @@
+   {
+     if(CGAL::is_border(opposite(profile.v1_vL(), m_tm), m_tm) &&
+        CGAL::is_border(opposite(profile.vL_v0(), m_tm), m_tm))
+-      return false;
++      return (CGAL962_PROBE_EVENT("topology.pinch_left"), false);
+ 
+     if(profile.right_face_exists() &&
+        CGAL::is_border(opposite(profile.vR_v1(), m_tm), m_tm) &&
+        CGAL::is_border(opposite(profile.v0_vR(), m_tm), m_tm))
+-      return false;
++      return (CGAL962_PROBE_EVENT("topology.pinch_right"), false);
+   }
+   else
+   {
+@@ -745,10 +746,10 @@
+     {
+       if(CGAL::is_border(opposite(profile.vR_v1(), m_tm), m_tm) &&
+          CGAL::is_border(opposite(profile.v0_vR(), m_tm), m_tm))
+-        return false;
++        return (CGAL962_PROBE_EVENT("topology.pinch_only_right"), false);
+     }
+     else
+-      return false;
++      return (CGAL962_PROBE_EVENT("topology.no_incident_faces"), false);
+   }
+ 
+   // The following loop checks the link condition for v0_v1.
+@@ -807,7 +808,7 @@
+           if(!is_face)
+           {
+             CGAL_SMS_TRACE(3,"  k=V" << get(m_vim,k) << " IS NOT in a face with p-q. NON-COLLAPSABLE edge.");
+-            res = false;
++            res = (CGAL962_PROBE_EVENT("topology.common_neighbour_not_face"), false);
+             break;
+           }
+           else
+@@ -823,13 +824,13 @@
+   {
+     /// ensure two constrained edges cannot get merged
+     if(is_edge_adjacent_to_a_constrained_edge(profile, m_ecm))
+-      return false;
++      return (CGAL962_PROBE_EVENT("topology.constrained_merge"), false);
+ 
+     if(profile.is_v0_v1_a_border())
+     {
+       if(is_open_triangle(profile.v0_v1()))
+       {
+-        res = false;
++        res = (CGAL962_PROBE_EVENT("topology.open_left"), false);
+         CGAL_SMS_TRACE(3,"  p-q belongs to an open triangle. NON-COLLAPSABLE edge.");
+       }
+     }
+@@ -837,7 +838,7 @@
+     {
+       if(is_open_triangle(profile.v1_v0()))
+       {
+-        res = false;
++        res = (CGAL962_PROBE_EVENT("topology.open_right"), false);
+         CGAL_SMS_TRACE(3,"  p-q belongs to an open triangle. NON-COLLAPSABLE edge.");
+       }
+     }
+@@ -845,7 +846,7 @@
+     {
+       if(is_border(profile.v0(), m_tm) && is_border(profile.v1(), m_tm))
+       {
+-        res = false;
++        res = (CGAL962_PROBE_EVENT("topology.both_boundary_vertices"), false);
+         CGAL_SMS_TRACE(3,"  both p and q are boundary vertices but p-q is not. NON-COLLAPSABLE edge.");
+       }
+       else
+@@ -856,7 +857,7 @@
+ 
+         if(tetra)
+         {
+-          res = false;
++          res = (CGAL962_PROBE_EVENT("topology.tetrahedron"), false);
+           CGAL_SMS_TRACE(3,"  p-q belongs to a tetrahedron. NON-COLLAPSABLE edge.");
+         }
+ 
+@@ -864,12 +865,13 @@
+            prev(profile.v0_v1(), m_tm) == opposite(next(profile.v1_v0(), m_tm), m_tm))
+         {
+           CGAL_SMS_TRACE(3,"  degenerate volume.");
+-          return false;
++          return (CGAL962_PROBE_EVENT("topology.degenerate_halfedges"), false);
+         }
+       }
+     }
+   }
+ 
++  CGAL962_PROBE_EVENT(res ? "topology.pass" : "topology.rejected");
+   return res;
+ }
+ 
+@@ -940,8 +942,10 @@
+                  << "\n      n012=" << xyz_to_string(n012) << "\n      n023=" << xyz_to_string(n023)
+                  << "\n      l012=" << n_to_string(l012) << "\n      l023=" << n_to_string(l023));
+ 
++  const char* probe_pair_reason = "ordinary.area_ratio";
+   if(larger < max_area_ratio * smaller)
+   {
++    probe_pair_reason = "ordinary.dihedral";
+     FT l0123 = m_traits.compute_scalar_product_3_object()(n012, n023);
+     CGAL_SMS_TRACE(4,"\n      l0123=" << n_to_string(l0123));
+ 
+@@ -960,6 +964,7 @@
+     }
+   }
+ 
++  CGAL962_PROBE_PAIR(probe_pair_reason, res, larger, smaller, p0, p1, p2, p3);
+   return res;
+ }
+ 
+@@ -1065,7 +1070,7 @@
+                               << "-V" << get(m_vim, k2)
+                               << " and VX-V" << get(m_vim, k3)
+                               << " are not geometrically valid. Collapse rejected");
+-          res = false;
++          res = (CGAL962_PROBE_EVENT("ordinary.new_fan_pair"), false);
+         }
+       }
+ 
+@@ -1085,7 +1090,7 @@
+             CGAL_SMS_TRACE(3, "    Triangles V" << get(m_vim, k1)
+                                 << "-V" << get(m_vim, k4) << " and V"
+                                 << get(m_vim, k2) << "-VX are not geometrically valid. Collapse rejected");
+-            res = false;
++            res = (CGAL962_PROBE_EVENT("ordinary.exterior_e12_pair"), false);
+           }
+         }
+       }
+@@ -1106,13 +1111,14 @@
+             CGAL_SMS_TRACE(3, "    Triangles V" << get(m_vim, k2)
+                                 << "-V" << get(m_vim, k5)
+                                 << " and V" << get(m_vim, k3) << "-VX are not geometrically valid. Collapse rejected");
+-            res = false;
++            res = (CGAL962_PROBE_EVENT("ordinary.exterior_e23_pair"), false);
+           }
+         }
+       }
+     }
+   }
+ 
++  CGAL962_PROBE_EVENT(res ? "ordinary.pass" : "ordinary.rejected");
+   return res;
+ }
+ 
