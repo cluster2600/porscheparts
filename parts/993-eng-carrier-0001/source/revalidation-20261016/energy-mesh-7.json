@@ -1,0 +1,62 @@
+{
+  "scope": "Independent elastic energy closure of a hypothetical linear FE model",
+  "quadrature": "Affine C3D10, four equal reference tetrahedron weights of 1/24",
+  "tolerance_basis": "Predeclared 1e-4 relative closure; seven significant digits in printed stresses/displacements",
+  "source_sha256": "eca4f9adc81e3511553a713d3f52d7ad604fac7fe36fc4e40eddfe9d9fbea4e8",
+  "coordinate_roundoff_tolerance_mm": 1e-10,
+  "mesh_convergence_established": false,
+  "physical_validation": false,
+  "manufacturing_authorized": false,
+  "cases": [
+    {
+      "case": "combined-rigid-static",
+      "E_MPa": 107000.0,
+      "nu": 0.31,
+      "C3D10_elements": 77119,
+      "volume_mm3": 268761.671364702,
+      "solid_strain_energy_Nmm": 12329.611926185846,
+      "spring_strain_energy_Nmm": 0.0,
+      "half_load_dot_displacement_Nmm": 12329.611949841625,
+      "relative_energy_closure_error": 1.91861504461599e-09,
+      "tolerance": 0.0001,
+      "energy_closure_pass": true,
+      "inputs_sha256": {
+        "mesh-7/mesh.inp": "4849e1ce56832cb939c1c1d7c0e733e2aac43b994fecb3a841c53c63dab17365",
+        "mesh-7/mesh.npz": "dcb380ee0e394f82128d342c764c1ea4639507b1425f73ccc0af1e284ef9c718",
+        "mesh-7/mesh.json": "3916e627d41d36f5a80a8ebfd8136c6481a74b3590f677b7b004813ad254094a",
+        "mesh-7/combined-rigid-static.json": "5c61a525676a744d8a82765884749b1e2110fdbaaabf57137868f113ae97f626",
+        "mesh-7/combined-rigid-static.inp": "25bd6772d1248ae822fdf1951e60bf45d1fc93d8d573d7a509e3dfd0a175b254",
+        "mesh-7/combined-rigid-static.dat": "eea0e97865f3490f00636b214835a3a8c5e9e1da83e5eefd40883f76eeec4d3a",
+        "mesh-7/combined-rigid-static.npz": "8d6a5d5581dd30ef3c37677f89ce9f012c769ddcfb084ca9e91438acdb1f5b39",
+        "carrier.step": "834cc01a69c8205d854c611f7a8b7c2b6192687d547191deabbd25fe5c74049f",
+        "study.json": "67abbe33068380a48b016f9ed1dad68aa200815306fefc789cae3e00e25592f7",
+        "geometry.json": "a9968a477fe9bc2c5e854124d4781078ca07179f4d26249f6729d61b8689d8af"
+      }
+    },
+    {
+      "case": "combined-spring-1000-static",
+      "E_MPa": 107000.0,
+      "nu": 0.31,
+      "C3D10_elements": 77119,
+      "volume_mm3": 268761.671364702,
+      "solid_strain_energy_Nmm": 41792.563922185196,
+      "spring_strain_energy_Nmm": 6536.984749630087,
+      "half_load_dot_displacement_Nmm": 48329.548251270935,
+      "relative_energy_closure_error": 8.701598996907478e-09,
+      "tolerance": 0.0001,
+      "energy_closure_pass": true,
+      "inputs_sha256": {
+        "mesh-7/mesh.inp": "4849e1ce56832cb939c1c1d7c0e733e2aac43b994fecb3a841c53c63dab17365",
+        "mesh-7/mesh.npz": "dcb380ee0e394f82128d342c764c1ea4639507b1425f73ccc0af1e284ef9c718",
+        "mesh-7/mesh.json": "3916e627d41d36f5a80a8ebfd8136c6481a74b3590f677b7b004813ad254094a",
+        "mesh-7/combined-spring-1000-static.json": "e8040fad4321ca209e88fa2495f0a9db20f509bc076b72046cda43838bb6ce07",
+        "mesh-7/combined-spring-1000-static.inp": "3f66b7dd497390e01d5f2cfbeeeb11a3126f29f792f4480cd30e40b3ac9d72ac",
+        "mesh-7/combined-spring-1000-static.dat": "e24daefefedcdc5521cfe37f492d9b9995972db60069345ff789b9c3daa34928",
+        "mesh-7/combined-spring-1000-static.npz": "d401a7d2cb44b5a0028dceeee87cc247432b14a0996e8f4cd488b77df7eeeb09",
+        "carrier.step": "834cc01a69c8205d854c611f7a8b7c2b6192687d547191deabbd25fe5c74049f",
+        "study.json": "67abbe33068380a48b016f9ed1dad68aa200815306fefc789cae3e00e25592f7",
+        "geometry.json": "a9968a477fe9bc2c5e854124d4781078ca07179f4d26249f6729d61b8689d8af"
+      }
+    }
+  ]
+}

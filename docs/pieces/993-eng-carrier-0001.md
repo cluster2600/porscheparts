@@ -7,6 +7,10 @@
 > [!CAUTION]
 > **Not ready to print. Safety-critical concept; no manufacturing release.** Catalogue status: `concept`; not a print file. The organic geometry is a design study, not an OEM reconstruction or evidence of fit, strength or fatigue life. See [SAFETY.md](../../SAFETY.md).
 
+## Reprise numérique du 16 octobre 2026
+
+Le [nouveau dossier de contrôle V6f](../../docs/reports/993_CARRIER_REVALIDATION_20261016.md) conserve la géométrie : bilan énergétique indépendant réussi sur 12 cas linéaires archivés, mais criblage DfAM strict rejeté pour 74 triangles effilés et 54,994 % de surface sous le seuil exploratoire de 1,5 mm. Ce seuil n'est pas un admissible fournisseur. Interfaces réelles, convergence mécanique et procédé complet restent à établir ; aucune autorisation de fabrication.
+
 ## Current design study — R9
 
 R9 explores an organic engine carrier using **Ti-6Al-4V as an unqualified material candidate**, with density **4,420 kg/m³**, nominal **1.5 mm ribs** and a **4.0 mm center section**. These are modeling assumptions, not measured Porsche dimensions or a qualified manufacturing specification.
