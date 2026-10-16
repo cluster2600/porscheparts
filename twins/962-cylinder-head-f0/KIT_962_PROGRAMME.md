@@ -1,5 +1,14 @@
 # Programme produit : kit moteur inspiré du 962, objectif 1 000 ch
 
+**Priorité du 16 octobre 2026 : reconstruire la culasse 962 C 3,0 L à eau
+le plus fidèlement possible, puis développer une gamme jusqu'à 4,0 L.** Le
+[dossier de famille](REPLICA_FAMILY.md) et son [registre](replica-family.json)
+portent cette décision. Le texte suivant conserve le programme antérieur de
+conversion moderne : ses deux bougies, le SP95 et les 1 000 PS ne sont pas
+automatiquement les caractéristiques de la réplique ou de toute la gamme.
+
+## Programme antérieur de conversion moderne
+
 **Objectif exprimé par le propriétaire : développer puis vendre un kit
 permettant de transformer un moteur classique de 911, 964 ou 993 en moteur
 moderne inspiré du 962.** Il conserve la cible quatre soupapes, double

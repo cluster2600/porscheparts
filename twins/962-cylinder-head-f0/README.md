@@ -1,6 +1,21 @@
 # Culasse 962 C : recherche et candidat PicoGK F0
 
-La [nouvelle culasse d'étude 4 L SP95](FLOW4L_STUDY.md) est générée :
+**Priorité confirmée le 16 octobre 2026 : une réplique fidèle de la culasse
+962 C 3,0 L à eau, puis des dérivés jusqu'à 4,0 L.** La
+[famille de réplique](REPLICA_FAMILY.md) définit la référence, les six cibles
+de cylindrée, le calculateur et les mesures manquantes. La
+[métrologie 962 C](REPLICA_METROLOGY.md) concerne l'original ; aucun maître
+CAO dimensionnellement fidèle n'est encore disponible.
+
+Les études modernes ci-dessous et le [programme de conversion](KIT_962_PROGRAMME.md)
+pour 911, 964 et 993 sont conservés. Le double allumage, les formes bioniques
+et l'objectif de 1 000 ch appartiennent à ces dérivés ; ils ne définissent
+pas l'original. F0 reste un témoin de géométrie ; ses interfaces et son
+rapport ne deviennent pas ceux d'un M64 ou de la référence historique.
+
+## Études modernes déjà livrées
+
+La [culasse d'étude 4 L SP95](FLOW4L_STUDY.md) est générée :
 ports d'eau de 22 mm, alimentation bifurquée autour du second allumage,
 trois domaines contrôlés et quatre vues des maillages réels.
 
@@ -8,7 +23,7 @@ Le [dimensionnement Mezger 4 L biturbo au SP95](MEZGER_4L_SP95.md) précise
 désormais la cible de 1 000 ch moteur, les besoins d'air, de carburant et
 d'eau, et les sections exploratoires pour la prochaine variante de culasse.
 
-**Nouvelle cible : un kit moteur inspiré du 962 pour bases 911, 964 et 993,
+**Cible antérieure : un kit moteur inspiré du 962 pour bases 911, 964 et 993,
 avec un objectif de développement de 1 000 ch.** Le
 [programme produit](KIT_962_PROGRAMME.md) définit le périmètre, les variantes,
 la fabrication et les critères de qualification. F0 reste un témoin de
