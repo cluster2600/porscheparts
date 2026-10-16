@@ -1,0 +1,105 @@
+; Synthetic software witness; not an LPBF recipe or a material card.
+geometry
+{
+  import_mesh false
+  dim 3
+  length 0.012
+  height 0.006
+  width 0.004
+  length_divisions 1
+  height_divisions 1
+  width_divisions 1
+  material_height 0.006
+  material_deposition false
+  use_powder false
+}
+physics
+{
+  thermal true
+  mechanical true
+}
+discretization
+{
+  mechanical
+  {
+    fe_degree 1
+  }
+  thermal
+  {
+    fe_degree 1
+    quadrature gauss
+  }
+}
+boundary
+{
+  type adiabatic,traction_free
+  boundary_4
+  {
+    type adiabatic,clamped
+  }
+}
+refinement
+{
+  n_refinements 0
+  time_steps_between_refinement 100
+}
+materials
+{
+  initial_temperature 300.0
+  property_format polynomial
+  n_materials 1
+  material_0
+  {
+    ; Solidus is never reached; no phase change in this control.
+    solidus 1000
+    solid
+    {
+      lame_first_parameter 40384615384.61539
+      lame_second_parameter 26923076923.076923
+      thermal_expansion_coef 2.3e-05
+      density 2700.0
+      specific_heat 900.0
+      thermal_conductivity_x 150.0
+      thermal_conductivity_y 150.0
+      thermal_conductivity_z 150.0
+    }
+  }
+}
+sources
+{
+  n_beams 1
+  print_heat_input true
+  beam_0
+  {
+    type cube
+    start_time -1
+    end_time 5
+    value 243000000.0
+    min_x 0
+    max_x 0.012
+    min_y 0
+    max_y 0.004
+    min_z 0
+    max_z 0.006
+    ; Validator compatibility only; CubeHeatSource does not read a scan path.
+    scan_path_file scan_path-unused.txt
+    scan_path_file_format segment
+    depth 0
+    absorption_efficiency 1
+  }
+}
+time_stepping
+{
+  method rk_fourth_order
+  scan_path_for_duration false
+  duration 0.01
+  time_step 0.005
+}
+post_processor
+{
+  filename_prefix common
+  time_steps_between_output 1
+  additional_output_refinement 0
+}
+memory_space host
+verbose_output true
