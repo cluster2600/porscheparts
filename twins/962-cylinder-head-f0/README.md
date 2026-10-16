@@ -1,5 +1,9 @@
 # Culasse 962 C : recherche et candidat PicoGK F0
 
+La [nouvelle culasse d'étude 4 L SP95](FLOW4L_STUDY.md) est générée :
+ports d'eau de 22 mm, alimentation bifurquée autour du second allumage,
+trois domaines contrôlés et quatre vues des maillages réels.
+
 Le [dimensionnement Mezger 4 L biturbo au SP95](MEZGER_4L_SP95.md) précise
 désormais la cible de 1 000 ch moteur, les besoins d'air, de carburant et
 d'eau, et les sections exploratoires pour la prochaine variante de culasse.
