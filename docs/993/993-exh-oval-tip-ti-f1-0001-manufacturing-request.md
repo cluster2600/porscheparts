@@ -1,5 +1,7 @@
 # Titanium manufacturing request — 993-EXH-OVAL-TIP-TI-F1-0001 / draft A
 
+Status: draft, not reviewed
+
 > [!CAUTION]
 > **Draft. PROPOSED, NOT REVIEWED.** This request must not be sent to a
 > supplier, quoted against or used to order anything before a human review is
@@ -230,6 +232,10 @@ Acceptance criteria — **PROPOSED, NOT REVIEWED**:
 | AC-10 | surface | penetrant indications within the agreed limit; finish as specified | ASTM E1417/E1417M report | open — limits and finish undefined |
 | AC-11 | traceability | every traceability field filled; monitoring data delivered | build package | proposed |
 | AC-12 | nonconformances | none open | nonconformance log | proposed |
+
+The review table is filled only by named human reviewers, and only in the same
+change that replaces the "Status: draft, not reviewed" line at the top of this
+request.
 
 | Reviewer | Role | Date | Decision |
 |---|---|---|---|

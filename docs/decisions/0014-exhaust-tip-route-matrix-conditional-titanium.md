@@ -81,35 +81,51 @@ says so instead of relabelling it.
 
 Masses are the CAD volume, 48,149.34 mm³, times a sourced density. The
 stainless baseline assumes the **same** 0.8 mm double wall and ties, at
-7.7 to 7.9 g/cm³; a real fabricated tip would differ. Temperature margins are
-the alloy ceiling minus the two synthetic figures of the F0 screen: 427 °C on
-the outer surface, and 850 K (577 °C) for the gas that wets the inner duct.
+7.7 to 8.0 g/cm³ (ferritic to austenitic heat-resistant grades); a real
+fabricated tip would differ. Temperature margins are the service ceiling minus
+the two synthetic figures of the F0 screen: 427 °C on the outer surface, and
+850 K (577 °C) for the gas that wets the inner duct.
 Basis: **S** sourced, **E** repository evidence, **A** arithmetic, **As**
 assumption, **J** judgement, **O** open. Every cell, with its source or file,
 is in the JSON.
 
 | route | mass (g) | vs stainless | margin at 427 °C / 577 °C | one body | 0.8 mm walls, 2.7 mm channel | supply | inspection | cost class |
 |---|---:|---:|---|---|---|---|---|---|
-| LPBF Ti-6Al-4V | 212.34 E | −42.7 to −44.2 % A/As | **−27 / −177** S | yes E | p01 0.600, min 0.460 mm vs 0.3–0.4 min; channel not proven E/O | commodity E | high J | high J |
-| LPBF Ti-6242 | 218.60 A | −41.0 to −42.5 % A/As | +123 / −27 S | yes E | no published minimum O | none E | very high J | very high J |
-| LPBF IN625 (F0) | 406.38 E | **+6.8 to +9.6 %** A/As | not quantified O/J | yes E | p01 0.636, min 0.245 mm; no published minimum E/O | published route E | high J | high J |
+| LPBF Ti-6Al-4V | 212.34 E | −42.7 to −44.9 % A/As | **−27 / −177** S | yes E | p01 0.600, min 0.460 mm vs 0.3–0.4 min; channel not proven E/O | commodity E | high J | high J |
+| LPBF Ti-6242 | 218.60 A | −41.0 to −43.2 % A/As | +123 / −27 S | yes E | no published minimum O | none E | very high J | very high J |
+| LPBF IN625 (F0) | 406.38 E | **+5.5 to +9.6 %** A/As | not quantified O/J | yes E | p01 0.636, min 0.245 mm; no published minimum E/O | published route E | high J | high J |
 | CNC from billet, Ti or stainless | 213.30 Ti A/As | as the alloy | Ti: −27 / −177 S/As | no E/J | not producible J | commodity shops J | low J | high in Ti J |
-| stainless sheet, formed or welded | 370.75–380.38 A/As | baseline | **+293 / +143** S/A | no J | feasible, simplified J | commodity S | low to medium J | low to medium J |
-| Ti-6Al-4V investment casting | 213.30 A/As | −42.5 to −43.9 % A/As | −27 / −177 S/As | yes, with a core J | unsupported J/O | specialised foundry J | high J | very high J |
+| stainless sheet, formed or welded | 370.75–385.19 A/As | baseline | **+293 / +143** S/A/As | no J | feasible, simplified J | commodity S | low to medium J | low to medium J |
+| Ti-6Al-4V investment casting | 213.30 A/As | −42.5 to −44.6 % A/As | −27 / −177 S/As | yes, with a core J | unsupported J/O | specialised foundry J | high J | very high J |
 | aluminium (AlSi10Mg; Aheadd HT1 ceiling) | 128.56 A | — | −167 / −317 S | yes J | 0.4 mm published minimum E | commodity J | — | — |
-| polymer (PEEK HP3) | 63.32 A | — | −167 / −317; melts at 372 °C S | yes J | — | specialised J | — | — |
+| polymer (PEEK HP3) | 63.32 A | — | −247 / −397; melts at 372 °C S/J | yes J | — | specialised J | — | — |
+
+**The ceilings are not of one kind**, so the margin column compares unlike
+limits. The titanium rows use a creep-limited ceiling for prolonged service.
+The stainless 720 °C comes from a guidance maximum service temperature in air,
+an oxidation-environment value rather than a creep limit, and assumes grade
+1.4301 or 1.4541. The Aheadd HT1 260 °C is a supplier stability statement, not
+a service rating. The PEEK 180 °C is the UL 746B continuous-use rating for
+mechanical duty with impact, chosen over the 240 °C without-impact and 260 °C
+electrical ratings because the tip vibrates (judgement); the exclusion holds
+on any of the three. Each temperature cell of the JSON carries its
+`ceiling_type`. A margin ranks a route only within the meaning of its own
+ceiling.
 
 Sources of the limits:
 [`SRC-TI64-CREEP-SERVICE-CEILING`](../../catalog/sources/src-ti64-creep-service-ceiling.json)
 (Ti-6Al-4V 350–400 °C, Ti-6242 about 550 °C),
 [`SRC-EURO-INOX-STAINLESS-HIGH-TEMPERATURES-2012`](../../catalog/sources/src-euro-inox-stainless-high-temperatures-2012.json)
 (stainless 870 °C intermittent in air for 1.4301 and 1.4541, less up to
-150 °C in water vapour, so 720 °C is used; densities 7.7 to 7.9),
+150 °C in water vapour, so 720 °C is used; densities 7.7 for the ferritic and
+7.8 to 8.0 for the austenitic heat-resistant grades),
 [`SRC-CONSTELLIUM-AHEADD-HT1-FACT-SHEET`](../../catalog/sources/src-constellium-aheadd-ht1-fact-sheet.json)
 (stability to about 260 °C) and
 [`SRC-EOS-PEEK-HP3-MATERIAL-DATA`](../../catalog/sources/src-eos-peek-hp3-material-data.json)
-(continuous use 180–260 °C, melting point 372 °C). Aluminium and polymer are
-ruled out by temperature by a margin no measurement is likely to close.
+(UL 746B continuous use 180 °C mechanical with impact, 240 °C mechanical
+without impact, 260 °C electrical; melting point 372 °C). Aluminium and
+polymer are ruled out by temperature by a margin no measurement is likely to
+close.
 
 **The original material is not identified.** The repository's declared data
 for the 993 tailpipe records the material as "to be determined"
@@ -122,7 +138,7 @@ by presumption.
 
 ### What the matrix says
 
-- **Titanium's measurable benefit is mass**, and only mass: 158 to 168 g
+- **Titanium's measurable benefit is mass**, and only mass: 158 to 173 g
   per tip against equal-geometry stainless, 194 g against IN625.
 - **Corrosion is not established as a benefit.** The screen inputs judge the
   incumbent's corrosion not problematic, and titanium adds a titanium/stainless
@@ -188,13 +204,24 @@ temperature unless an inner-wall value is sourced too.
 
 The 350 °C threshold is the lower end of the source's band, not the 400 °C
 0007 used to compute its −27 °C margin. Choosing the lower end is the
-conservative reading of a literature value that is not a supplier guarantee.
+conservative reading of a published guidance value that is not a guarantee.
 This closes 0007's undefined 350–427 °C band in the no-go direction.
+
+**For the professional reviewer: the whole threshold rests on one supplier
+page.** [`SRC-TI64-CREEP-SERVICE-CEILING`](../../catalog/sources/src-ti64-creep-service-ceiling.json)
+is a grade-selection guide published on the blog of an alloy supplier, Huaxiao
+Alloy, recorded at evidence level B. Its record lists one cross-check under
+`verified_against`, the article
+[doi:10.1002/adem.202301122](https://advanced.onlinelibrary.wiley.com/doi/10.1002/adem.202301122),
+without saying which statement that article confirms. The 350–400 °C band and
+the 550 °C Ti-6242 figure are to be checked against that article or a primary
+creep source before the rule is relied on.
 
 Other conditions for a conditional go: the owner's written acceptance of the
 `functional` class; the manufacturing request and its acceptance criteria
 reviewed by a named human; a galvanic isolation scheme; an inlet interface and
-clamp defined from sourced data.
+clamp defined from sourced data; a drawing with tolerances, without which the
+request's dimensional acceptance criteria cannot be quoted.
 
 **The input is blocked.** The owner does not measure parts, so 0007's infrared
 measurement is not a next step this project takes. The only path is a sourced
@@ -217,6 +244,19 @@ Until then the decision is no-go.
 - The stainless baseline mass rests on an equal-geometry assumption; no
   sourced mass of the oval original exists.
 - The IN625 temperature margin is not quantified.
+- The temperature margins compare ceilings of different kinds (creep,
+  oxidation guidance, stability statement, continuous-use rating); see the
+  note under the route matrix.
+- The go/no-go threshold rests on a supplier-published source; see the note
+  for the professional reviewer in the go/no-go rule.
+- `titanium.fatigue_assumptions` is optional in the schema and the validator
+  for now, because six other titanium records do not carry it yet
+  (`993-ENG-CHAIN-CASE-LID-TI-F0-0001`, `993-ENG-CONNECTING-ROD-TI64-F0-0001`,
+  `993-ENG-EXHAUST-VALVE-F1-0001`, `993-ENG-INTAKE-VALVE-F1-0001`,
+  `993-ENG-INTAKE-VALVE-TI64-HOLLOW-F0-0001`,
+  `993-ENG-INTERCOOLER-BRACKET-TI-F0-0001`). AGENTS.md asks for fatigue
+  assumptions on every titanium part; the field should become required once
+  those six records are filled.
 - The thin-wall feasibility of fabrication, casting and machining is judgement,
   not a supplier statement.
 - The generated quote requests in `twins/993-exhaust-tip-ti-f0/evidence/` keep

@@ -1,5 +1,13 @@
 # Titanium manufacturing request — PART_ID / REVISION
 
+Status: draft, not reviewed
+
+> [!CAUTION]
+> **Draft. PROPOSED, NOT REVIEWED.** This request must not be sent to a
+> supplier, quoted against or used to order anything before a human review is
+> recorded in the review table at the end. The status line above changes only
+> in the same change that fills that table with named human reviewers.
+
 Every field is answered by a value, by "to be supplied by the supplier", or by
 "open" with the reason. A blank field is a defect of the request, not an
 answer. Standards are cited by designation and source record only: their

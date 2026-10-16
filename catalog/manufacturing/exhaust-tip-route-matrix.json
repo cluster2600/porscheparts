@@ -18,6 +18,13 @@
     "judgement": "repository judgement, falsifiable, not a measurement or a supplier statement",
     "open": "unknown; to be supplied or blocking"
   },
+  "ceiling_type_vocabulary": {
+    "creep_limited_service": "prolonged-service ceiling set by creep, as given by the titanium grade-selection source",
+    "oxidation_in_air_guidance": "generally accepted maximum service temperature in air, for guidance only, reduced here for water vapour; an oxidation-environment value, not a creep limit",
+    "stability_statement": "supplier statement that the alloy is stable up to about that temperature; not a service rating",
+    "continuous_use_rating": "UL 746B continuous-use temperature for a stated duty; not a short-term or melting limit",
+    "not_quantified": "no ceiling is recorded in the repository's sources"
+  },
   "inputs": {
     "cad_volume_mm3": {
       "value": 48149.342443044705,
@@ -100,7 +107,7 @@
     "stainless_baseline_density_g_cm3": {
       "value": [
         7.7,
-        7.9
+        8.0
       ],
       "basis": [
         "sourced",
@@ -109,7 +116,7 @@
       "source_ids": [
         "SRC-EURO-INOX-STAINLESS-HIGH-TEMPERATURES-2012"
       ],
-      "note": "ferritic and austenitic heat-resistant families; the grade of the original tip is unknown"
+      "note": "Table 14 of the source: 7.7 for the ferritic heat-resistant grades, 7.8 to 8.0 for the austenitic heat-resistant grades. The range spans both families because the grade of the original tip is unknown."
     }
   },
   "criteria": [
@@ -119,7 +126,7 @@
     },
     {
       "id": "temperature_margin",
-      "description": "alloy service ceiling minus the declared 427 C surface and the 850 K (576.85 C) gas, both synthetic"
+      "description": "service ceiling minus the declared 427 C surface and the 850 K (576.85 C) gas, both synthetic; the ceilings are not of one kind, see ceiling_type"
     },
     {
       "id": "oxidation_corrosion",
@@ -157,7 +164,7 @@
             "repo_evidence",
             "arithmetic"
           ],
-          "summary": "212.34 g, the screening mass of the evidence file; 47.7 % lighter than LPBF IN625 on the same geometry and 42.7 to 44.2 % lighter than the equal-geometry stainless baseline (the baseline itself is an assumption, see that row).",
+          "summary": "212.34 g, the screening mass of the evidence file; 47.7 % lighter than LPBF IN625 on the same geometry and 42.7 to 44.9 % lighter than the equal-geometry stainless baseline (the baseline itself is an assumption, see that row).",
           "value_g": 212.34,
           "density_g_cm3": 4.41,
           "formula": "m = rho * V_cad",
@@ -166,7 +173,7 @@
             "rho_g_cm3": 4.41
           },
           "delta_vs_stainless_baseline_percent": [
-            -44.2,
+            -44.9,
             -42.7
           ],
           "source_ids": [
@@ -184,6 +191,7 @@
           ],
           "summary": "Creep-limited ceiling 400 C, the top of the 350-400 C band given by the source. Margin -27 C against the 427 C synthetic surface and -177 C against the 850 K synthetic gas that wets the inner duct. Fails on both.",
           "ceiling_c": 400.0,
+          "ceiling_type": "creep_limited_service",
           "formula": "margin = ceiling - T (T = 426.85 C surface, 576.85 C gas)",
           "margin_vs_declared_surface_c": -26.85,
           "margin_vs_declared_gas_c": -176.85,
@@ -289,7 +297,7 @@
             "rho_g_cm3": 4.54
           },
           "delta_vs_stainless_baseline_percent": [
-            -42.5,
+            -43.2,
             -41.0
           ],
           "source_ids": [
@@ -306,6 +314,7 @@
           ],
           "summary": "Ceiling about 550 C. Margin +123 C against the 427 C synthetic surface, -27 C against the 850 K synthetic gas.",
           "ceiling_c": 550.0,
+          "ceiling_type": "creep_limited_service",
           "formula": "margin = ceiling - T (T = 426.85 C surface, 576.85 C gas)",
           "margin_vs_declared_surface_c": 123.15,
           "margin_vs_declared_gas_c": -26.85,
@@ -395,7 +404,7 @@
             "repo_evidence",
             "arithmetic"
           ],
-          "summary": "406.38 g, the F0 screening mass. Heavier than the equal-geometry stainless baseline by 6.8 to 9.6 %: on this geometry IN625 is not a lightweight route.",
+          "summary": "406.38 g, the F0 screening mass. Heavier than the equal-geometry stainless baseline by 5.5 to 9.6 %: on this geometry IN625 is not a lightweight route.",
           "value_g": 406.38,
           "density_g_cm3": 8.44,
           "formula": "m = rho * V_cad",
@@ -404,7 +413,7 @@
             "rho_g_cm3": 8.44
           },
           "delta_vs_stainless_baseline_percent": [
-            6.8,
+            5.5,
             9.6
           ],
           "source_ids": [
@@ -421,6 +430,7 @@
           ],
           "summary": "No IN625 service ceiling is recorded in the repository's sources; the bulletin is cited for properties at 427 C. Decision 0007 treats exhaust temperature as nickel territory. The margin is judged large but is not quantified.",
           "ceiling_c": null,
+          "ceiling_type": "not_quantified",
           "formula": "margin = ceiling - T (T = 426.85 C surface, 576.85 C gas)",
           "margin_vs_declared_surface_c": null,
           "margin_vs_declared_gas_c": null,
@@ -499,7 +509,7 @@
           "refs": []
         }
       },
-      "verdict": "Technically the safest LPBF answer on temperature, but heavier than stainless on this geometry. Its only advantage over a fabricated stainless tip is the one-piece double wall."
+      "verdict": "The LPBF route with the most likely, but unquantified, temperature headroom; heavier than stainless on this geometry. Its only advantage over a fabricated stainless tip is the one-piece double wall."
     },
     {
       "route_id": "cnc_billet",
@@ -511,7 +521,7 @@
             "arithmetic",
             "assumption"
           ],
-          "summary": "If the drawn geometry could be machined it would weigh 213.30 g in wrought Ti-6Al-4V (4.43 g/cm3) or 370.75 to 380.38 g in stainless. The bounding billet, a 120 x 85 x 120 mm block, is 25.4 times the part volume: 5.42 kg of titanium for a 213 g part.",
+          "summary": "If the drawn geometry could be machined it would weigh 213.30 g in wrought Ti-6Al-4V (4.43 g/cm3) or 370.75 to 385.19 g in stainless. The bounding billet, a 120 x 85 x 120 mm block, is 25.4 times the part volume: 5.42 kg of titanium for a 213 g part.",
           "value_g": 213.3,
           "density_g_cm3": 4.43,
           "formula": "m = rho * V_cad; billet = 120 * 85 * 120 mm3",
@@ -526,7 +536,7 @@
           "billet_volume_mm3": 1224000.0,
           "billet_to_part_volume_ratio": 25.4,
           "delta_vs_stainless_baseline_percent": [
-            -43.9,
+            -44.6,
             -42.5
           ],
           "source_ids": [
@@ -545,6 +555,7 @@
           ],
           "summary": "In titanium, the same alloy ceiling as the LPBF route (assumed independent of product form): -27 C and -177 C. In stainless, see the stainless row.",
           "ceiling_c": 400.0,
+          "ceiling_type": "creep_limited_service",
           "formula": "margin = ceiling - T (T = 426.85 C surface, 576.85 C gas)",
           "margin_vs_declared_surface_c": -26.85,
           "margin_vs_declared_gas_c": -176.85,
@@ -622,21 +633,21 @@
             "arithmetic",
             "assumption"
           ],
-          "summary": "370.75 to 380.38 g if the same 0.8 mm double wall and ties were made in stainless at 7.7 to 7.9 g/cm3 (ferritic to austenitic heat-resistant families). Equal geometry is an assumption: a fabricated tip would probably not use 0.8 mm sheet or eight ties, and no sourced mass exists for the oval original. A reseller declares 0.506 kg for a straight 993 tip, a different part, level C: order of magnitude only.",
+          "summary": "370.75 to 385.19 g if the same 0.8 mm double wall and ties were made in stainless at 7.7 to 8.0 g/cm3 (source Table 14: 7.7 for the ferritic heat-resistant grades, 7.8 to 8.0 for the austenitic heat-resistant grades). Equal geometry is an assumption: a fabricated tip would probably not use 0.8 mm sheet or eight ties, and no sourced mass exists for the oval original. A reseller declares 0.506 kg for a straight 993 tip, a different part, level C: order of magnitude only.",
           "value_g": [
             370.75,
-            380.38
+            385.19
           ],
           "density_g_cm3": [
             7.7,
-            7.9
+            8.0
           ],
           "formula": "m = rho * V_cad",
           "inputs": {
             "V_cad_mm3": "inputs.cad_volume_mm3",
             "rho_g_cm3": [
               7.7,
-              7.9
+              8.0
             ]
           },
           "cross_check": {
@@ -656,10 +667,12 @@
         "temperature_margin": {
           "basis": [
             "sourced",
-            "arithmetic"
+            "arithmetic",
+            "assumption"
           ],
-          "summary": "Guidance maximum in air for 1.4301 and 1.4541: 870 C intermittent, 925 C continuous. Taking the intermittent value and the full 150 C water-vapour reduction gives 720 C: +293 C against the 427 C surface, +143 C against the 850 K gas. The common exhaust grade 1.4512 has no value in that table: open.",
+          "summary": "Assumed grade 1.4301 or 1.4541: the grade of the original tip is not identified. Guidance maximum service temperature in air for those grades: 870 C intermittent, 925 C continuous. Taking the intermittent value and the full 150 C water-vapour reduction gives 720 C: +293 C against the 427 C surface, +143 C against the 850 K gas. This is an oxidation-in-air guidance value, not a creep-limited ceiling like the titanium rows. The common exhaust grade 1.4512 has no value in that table: open.",
           "ceiling_c": 720.0,
+          "ceiling_type": "oxidation_in_air_guidance",
           "formula": "margin = ceiling - T (T = 426.85 C surface, 576.85 C gas)",
           "margin_vs_declared_surface_c": 293.15,
           "margin_vs_declared_gas_c": 143.15,
@@ -741,7 +754,7 @@
           "catalog/manufacturing/pet-candidate-judgements.json"
         ]
       },
-      "verdict": "The reference against which titanium must win. It passes temperature with a wide margin and is commodity; it loses on mass (75 to 79 % heavier than LPBF Ti-6Al-4V on equal geometry) and on consolidation."
+      "verdict": "The reference against which titanium must win. It passes temperature with a wide margin and is commodity; it loses on mass (75 to 81 % heavier than LPBF Ti-6Al-4V on equal geometry) and on consolidation."
     },
     {
       "route_id": "ti64_investment_casting",
@@ -762,7 +775,7 @@
             "rho_g_cm3": 4.43
           },
           "delta_vs_stainless_baseline_percent": [
-            -43.9,
+            -44.6,
             -42.5
           ],
           "source_ids": [
@@ -780,6 +793,7 @@
           ],
           "summary": "Same alloy, same ceiling (assumed independent of product form): -27 C and -177 C.",
           "ceiling_c": 400.0,
+          "ceiling_type": "creep_limited_service",
           "formula": "margin = ceiling - T (T = 426.85 C surface, 576.85 C gas)",
           "margin_vs_declared_surface_c": -26.85,
           "margin_vs_declared_gas_c": -176.85,
@@ -865,7 +879,7 @@
             "rho_g_cm3": 2.67
           },
           "delta_vs_stainless_baseline_percent": [
-            -66.2,
+            -66.6,
             -65.3
           ],
           "source_ids": [
@@ -882,6 +896,7 @@
           ],
           "summary": "The hottest AM aluminium in the repository's sources, Aheadd HT1, announces stability up to about 260 C: -167 C against the 427 C surface, -317 C against the gas. AlSi10Mg publishes no hot data.",
           "ceiling_c": 260.0,
+          "ceiling_type": "stability_statement",
           "formula": "margin = ceiling - T (T = 426.85 C surface, 576.85 C gas)",
           "margin_vs_declared_surface_c": -166.85,
           "margin_vs_declared_gas_c": -316.85,
@@ -894,7 +909,7 @@
           "basis": [
             "judgement"
           ],
-          "summary": "Aluminium against a stainless outlet is a galvanic couple of the kind TITANIUM.md lists as a refusal when uncontrolled.",
+          "summary": "Aluminium against a stainless outlet is a dissimilar-metal couple exposed to road salt and moisture. Its severity is judged, not assessed: no source in the repository covers it. TITANIUM.md's galvanic refusal concerns titanium coupled with aluminium or magnesium, so it does not apply to this route. Not assessed further: route excluded on temperature.",
           "source_ids": [],
           "refs": [
             "docs/TITANIUM.md"
@@ -966,7 +981,7 @@
             "rho_g_cm3": 1.315
           },
           "delta_vs_stainless_baseline_percent": [
-            -83.4,
+            -83.6,
             -82.9
           ],
           "source_ids": [
@@ -978,13 +993,16 @@
         },
         "temperature_margin": {
           "basis": [
-            "sourced"
+            "sourced",
+            "judgement"
           ],
-          "summary": "Continuous use 180 to 260 C depending on duty; the melting point, 372 C, is itself 55 C below the 427 C synthetic surface.",
-          "ceiling_c": 260.0,
+          "summary": "Ceiling 180 C, the UL 746B continuous-use rating for mechanical duty with impact. The data sheet also gives 240 C for mechanical duty without impact and 260 C for electrical duty. The with-impact rating is used because the tip is a mechanical part under vibration (judgement). Margin -247 C against the 427 C synthetic surface and -397 C against the 850 K synthetic gas; the 240 C rating would give -187 C and -337 C, so the exclusion holds on any of the three. The melting point, 372 C, is itself 55 C below the 427 C synthetic surface.",
+          "ceiling_c": 180.0,
+          "ceiling_type": "continuous_use_rating",
+          "ceiling_rating": "UL 746B continuous use, mechanical with impact",
           "formula": "margin = ceiling - T (T = 426.85 C surface, 576.85 C gas)",
-          "margin_vs_declared_surface_c": -166.85,
-          "margin_vs_declared_gas_c": -316.85,
+          "margin_vs_declared_surface_c": -246.85,
+          "margin_vs_declared_gas_c": -396.85,
           "source_ids": [
             "SRC-EOS-PEEK-HP3-MATERIAL-DATA"
           ],
@@ -1045,12 +1063,13 @@
     }
   ],
   "findings": [
-    "Titanium's measurable benefit is mass: 212.34 g against 370.75 to 380.38 g for an equal-geometry stainless tip (-42.7 to -44.2 %) and 406.38 g for LPBF IN625 (-47.7 %). The stainless figure rests on an equal-geometry assumption.",
+    "Titanium's measurable benefit is mass: 212.34 g against 370.75 to 385.19 g for an equal-geometry stainless tip (-42.7 to -44.9 %) and 406.38 g for LPBF IN625 (-47.7 %). The stainless figure rests on an equal-geometry assumption.",
     "Corrosion is not established as a titanium benefit: the screen inputs judge incumbent corrosion not problematic (corrosion_problematic false) while their free-text reason claims better exhaust-corrosion resistance without a source, and titanium adds a titanium/stainless couple at the mounting.",
     "Consolidation and the unmachinable annular channel are benefits of LPBF, not of titanium: IN625 has them too.",
     "On this geometry LPBF IN625 is heavier than stainless. If titanium is ruled out, the 'original material done properly' (decision 0008) is the lighter fallback; IN625 only adds the one-piece double wall.",
     "The 850 K gas wets the inner duct. Against it Ti-6Al-4V has -177 C of margin and Ti-6242 -27 C: the outer-surface figure alone understates the problem.",
-    "The Ti-6242 evidence mass (217.57 g) uses the analytic unribbed volume, the others the CAD volume; on the CAD volume it is 218.60 g."
+    "The Ti-6242 evidence mass (217.57 g) uses the analytic unribbed volume, the others the CAD volume; on the CAD volume it is 218.60 g.",
+    "The temperature margins compare ceilings of different kinds: creep-limited service for titanium, an oxidation-in-air guidance value for stainless, a stability statement for Aheadd HT1 and a UL 746B continuous-use rating for PEEK. A margin is read against its own ceiling type."
   ],
   "go_no_go_rule": {
     "status": "project_decision_rule_pending_professional_review",
@@ -1067,7 +1086,8 @@
       "upper_value_used_by_0007_c": 400.0,
       "source_ids": [
         "SRC-TI64-CREEP-SERVICE-CEILING"
-      ]
+      ],
+      "source_caveat": "SRC-TI64-CREEP-SERVICE-CEILING is a grade-selection guide published on the blog of an alloy supplier, Huaxiao Alloy (evidence level B). Its record lists doi:10.1002/adem.202301122 under verified_against without stating which statement that article confirms. The whole rule's threshold rests on it; the professional reviewer is to check the band against that article or a primary creep source before the rule is relied on."
     },
     "bands": [
       {
@@ -1111,7 +1131,8 @@
       "the owner accepts in writing that the first titanium part is functional, not non_critical",
       "the manufacturing request and its acceptance criteria are reviewed by a human, with names and dates in the review table",
       "a galvanic isolation scheme for the titanium/stainless mounting is defined",
-      "the inlet interface, insertion depth and clamp are defined from sourced data, not F0 assumptions"
+      "the inlet interface, insertion depth and clamp are defined from sourced data, not F0 assumptions",
+      "a drawing with tolerances exists, so that the dimensional acceptance criteria of the request can be quoted"
     ]
   }
 }
