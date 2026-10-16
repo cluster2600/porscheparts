@@ -172,6 +172,18 @@ La version V3 cherche d'abord un témoin exact dans les triangles de filiation ;
 si ce témoin ne suffit pas, elle utilise l'arbre AABB exact. Elle ne remplace
 pas le contrôle par une distance flottante à une feuille très mince.
 
+Les réinstallations et témoins natifs sont conservés avec leurs reçus :
+
+| Outil | Rôle dans la chaîne | Reçu de reproduction |
+| --- | --- | --- |
+| PyMesh 0.3 / CSGTree | Booléens avec constructions exactes intermédiaires | [Installation et prismes](../../parts/993-eng-carrier-0001/source/native-pymesh-20261016/reproduction-results.json) |
+| CGAL 6.1.3 | Conversion contrôlée du résultat en coordonnées IEEE | [Installation et témoins de topologie](../../parts/993-eng-carrier-0001/source/native-cgal-20261016/reproduction-results.json) |
+| Distance exacte V3 | Contrôle de la borne de déplacement, dans les deux sens | [Installation et témoins de distance](../../parts/993-eng-carrier-0001/source/native-cgal-distance-20261016-v3/reproduction-results.json) |
+| Cutter local PyMesh | Réduction du coût par une expression booléenne équivalente | [Témoin complet avec audits](../../parts/993-eng-carrier-0001/source/native-pymesh-clip-20261016/reproduction-results.json) |
+
+Ces témoins vérifient les logiciels. Les sept régions réelles de support
+gardent leurs propres reçus et leurs propres verdicts.
+
 ```sh
 python3 scripts/run_part_workflow.py run manufacturing/workflows/993-carrier.json \
   --runtime work/part-workflow/runtime.json \
