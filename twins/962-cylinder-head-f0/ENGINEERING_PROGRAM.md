@@ -49,6 +49,32 @@ hits its 4 GiB memory limit before exporting a proposal. All inputs remain
 unchanged and the owned process is stopped and reaped. No closer head surface,
 distance certificate or volume-quality admission follows from that attempt.
 
+The [version003 patch-envelope references](derived/engineering/finest-endpoint-003-fixtures/README.md)
+now pass both the direct subset witness and complete saved-array checks. The
+unchanged 0.0625 mm rule uses only exact immutable original patch triangles;
+this is a stricter candidate-to-original screen, with reverse coverage still
+requiring its own complete-surface check. The
+[separate version003 head run](derived/engineering/finest-endpoint-003-head/README.md)
+finishes under the same 4 GiB limit in a 15.360 s controller window. Independent
+readback confirms 284 collapses, every retained coordinate's original identity,
+all 900,845 fixed vertices and all exterior oriented faces. Deficient facets
+decrease from 744 to 266, so this proposal remains rejected. No distance,
+intersection, volume or head-physics run follows that rejection.
+The [separate English review download](derived/engineering/finest-endpoint-003-review-delivery/README.md)
+now publishes the exact rejected BIN, coordinate-origin map and independently
+verified PLY. Its 26-member ZIP and two metadata files are verified in the
+existing draft release; all 27 preceding assets remain intact. The
+[inventory correction](derived/engineering/ENDPOINT003_INVENTORY_CORRECTION.md)
+distinguishes the executable input binding from the twelve head phase artifacts.
+
+The [native USD normal-only software fixture](derived/engineering/usd-face-normals-fixture/README.md)
+passes authoring, complete ordered-geometry/canonical-property checks and a
+separate known-array readback. All five analytic face normals match their
+predeclared binary32 values. The genuine tiny-source preflight and all three
+native steps finish with unchanged inputs and reaped workers. This establishes
+the small software path; no head derivative or head-validator pass is credited.
+The unchanged bore95 missing-normal and formal-profile findings remain separate.
+
 **Material and service calculations.** Bind each material point or curve to its
 alloy, powder, machine, orientation, treatment and test condition. Compare the
 same geometry and boundary conditions before attributing differences to the
