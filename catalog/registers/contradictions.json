@@ -171,8 +171,9 @@
       "values": [
         {
           "value": "1010 l/s at about 6100 rpm (Carrera)",
-          "source_id": "SRC-PORSCHE-993-ENGINE-SPECIFICATIONS-PUBSTACK",
-          "location": "Carrera Engine Specifications document; the earlier attribution to SRC-PORSCHE-993-OBD-SUPPLEMENT-ENGINE-SPECIFICATIONS-1996 was withdrawn on 2026-10-02"
+          "source_id": null,
+          "location": "known_conflicts of the M64 BOM: 'Cooling airflow: 1010 l/s @ ~6100 rpm (primary, OBD supplement)'. That attribution was withdrawn on 2026-10-02 in docs/research/993-turbo-20261002/exports/fr/audit_contradictions.csv: row 'Source Engine Specifications' (the PDF linked by SRC-PORSCHE-993-OBD-SUPPLEMENT-ENGINE-SPECIFICATIONS-1996 is a hydraulic-lifter bulletin containing neither the 1010 l/s airflow nor the fan ratio) and row 'Données Carrera étendues à Turbo' (the 1010 l/s airflow is Carrera data, not to be applied to the Turbo). The record SRC-PORSCHE-993-ENGINE-SPECIFICATIONS-PUBSTACK states no airflow figure. The registered-source occurrence found in the catalogue is the workshop-manual OCR value MNL-OCR-0011 (PDF page 17, ocr_unreviewed), whose OCR text reads '1010 | / sec at 6,000 rpm of crankshaft'.",
+          "repository_path": "twins/m64-engine-system/bom/m64-bom-v1.json"
         },
         {
           "value": "1210 l/s at 5750 rpm (M64/60)",

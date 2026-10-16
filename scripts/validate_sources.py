@@ -31,6 +31,7 @@ GENERATIONS = {"993", "964", "911", "911_pre_964", "generic_automotive", "other_
 DIMENSIONAL_ACCURACY = {"measured", "declared", "declared_with_tolerance", "visual_only",
                         "unknown", "not_applicable"}
 REDISTRIBUTION = {"allowed", "attribution_required", "noncommercial_only", "prohibited", "unknown"}
+EVIDENCE_LEVELS = {"A", "B", "C", "D", "E", "unrated"}
 
 REQUIRED_KEYS = {"schema_version", "source_id", "title", "url", "publisher", "source_type", "content_types", "coverage", "access", "rights", "quality", "notes"}
 
@@ -142,7 +143,7 @@ def validate_source(record: Any) -> list[str]:
     if not isinstance(quality, dict):
         errors.append("quality: expected an object")
     else:
-        if quality.get("evidence_level") not in {"A", "B", "C", "D", "E", "unrated"}:
+        if quality.get("evidence_level") not in EVIDENCE_LEVELS:
             errors.append("quality.evidence_level: expected A-E or unrated")
         if quality.get("dimensional_accuracy") not in DIMENSIONAL_ACCURACY:
             errors.append(f"quality.dimensional_accuracy: expected one of {sorted(DIMENSIONAL_ACCURACY)}")

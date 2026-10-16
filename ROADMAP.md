@@ -41,9 +41,10 @@ Additional research: [German-language batch of twenty candidates](docs/research/
 - [x] Survey official catalogs, legally accessible manuals and measurements
 - [x] Survey 3D models with a verifiable license
 - [ ] Classify references by variant, year and availability — partial: every
-  assembly-skeleton family has a qualified official source, and model years and
-  dated availability are recorded only where stated, in
-  [catalog/registers/](catalog/registers/README.md)
+  assembly-skeleton family has at least one official or manufacturer source
+  rated A or B (a classification by type and level, not a check of the copy or
+  the pages), and model years and dated availability are recorded only where
+  stated, in [catalog/registers/](catalog/registers/README.md)
 - [x] Identify missing or hard-to-obtain parts
 - [x] Assess each source: provenance, license, accuracy, reuse
 

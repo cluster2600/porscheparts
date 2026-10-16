@@ -10,9 +10,15 @@ Two registers live there:
   per source, model years and dated availability observations.
 
 The checks are about attachment, not about truth: a cited source must exist, a
-cited manual value must exist and belong to that source, a quoted year must be
-present verbatim in the record it is quoted from, and absence from a vendor or
-from the Parts Finder can never be recorded as a discontinuation.
+cited manual value must exist and belong to that source, a parts-catalogue range
+must span exactly the skeleton family it is given for, a quoted year must be
+present verbatim in the record it is quoted from, an observation taken from a
+record must carry a date that record states, and absence from a vendor or from
+the Parts Finder can never be recorded as a discontinuation.
+
+"Qualified" is a classification by source type and evidence level only
+(official or manufacturer, rated A or B). It does not check the copy that was
+consulted or the pages that are cited.
 """
 
 from __future__ import annotations
@@ -58,6 +64,10 @@ AVAILABILITY = {
     "discontinued_per_publisher",
 }
 BASES = {"record_text", "register_observation"}
+# Counts and ranges a parts-catalogue location states in prose, e.g.
+# "illustrations 801-00 to 898-00R (85 illustrations, 4553 references ...)".
+STATED_RANGE = re.compile(r"\billustrations (\S+) to (\S+)")
+STATED_COUNTS = re.compile(r"\((\d+) illustrations, (\d+) references\b")
 
 
 def _text(value: Any) -> bool:
@@ -104,10 +114,14 @@ def load_manual_values() -> dict[str, str]:
     return {item["value_id"]: item["source_id"] for item in payload["declared_values"]}
 
 
-def load_skeleton() -> dict[str, set[str]]:
+def load_skeleton() -> dict[str, dict]:
+    """Map each skeleton system to its illustrations, in skeleton order, and its reference count."""
     payload = json.loads(SKELETON.read_text(encoding="utf-8"))
     return {
-        system["system_id"]: {item["illustration"] for item in system["illustrations"]}
+        system["system_id"]: {
+            "illustrations": [item["illustration"] for item in system["illustrations"]],
+            "reference_count": system["reference_count"],
+        }
         for system in payload["systems"]
     }
 
@@ -204,12 +218,46 @@ def _quoted(record: dict, field: Any, quote: Any) -> bool:
     return any(quote in text for text in _field_text(record, field))
 
 
+def _pet_range(illustrations: Any, location: Any, family_id: Any, system: dict | None, where: str) -> list[str]:
+    """A parts-catalogue range must start and end where the skeleton family does.
+
+    Membership alone is not enough: a range ending on an inner illustration
+    passes a membership check while silently dropping the rest of the family.
+    Counts and ranges stated in the location prose must agree as well.
+    """
+    if system is None:
+        return []
+    if not isinstance(illustrations, dict):
+        return [f"{where}.pet_illustrations: expected an object with first and last"]
+    errors: list[str] = []
+    ordered = system["illustrations"]
+    ends = {"first": ordered[0], "last": ordered[-1]} if ordered else {}
+    for end in ("first", "last"):
+        value = illustrations.get(end)
+        if value not in ordered:
+            errors.append(f"{where}.pet_illustrations.{end}: {value} is not an illustration of {family_id}")
+        elif value != ends[end]:
+            errors.append(
+                f"{where}.pet_illustrations.{end}: {value} is not the {end} illustration of {family_id}; "
+                f"the skeleton family runs from {ends['first']} to {ends['last']}"
+            )
+    text = location if isinstance(location, str) else ""
+    for first, last in STATED_RANGE.findall(text):
+        if (first, last) != (illustrations.get("first"), illustrations.get("last")):
+            errors.append(f"{where}.location: states illustrations {first} to {last}, not the pet_illustrations range")
+    for counts in STATED_COUNTS.findall(text):
+        for stated, noun, actual in zip(counts, ("illustrations", "references"), (len(ordered), system["reference_count"])):
+            if int(stated) != actual:
+                errors.append(f"{where}.location: states {stated} {noun}; the skeleton has {actual} for {family_id}")
+    return errors
+
+
 def validate_family(
     family: Any,
     label: str,
     sources: dict[str, dict],
     manual_values: dict[str, str],
-    skeleton: dict[str, set[str]],
+    skeleton: dict[str, dict],
 ) -> list[str]:
     if not isinstance(family, dict):
         return [f"{label}: expected an object"]
@@ -250,12 +298,19 @@ def validate_family(
                 errors.append(f"{where}.value_ids: {value_id} belongs to {owner}, not {source_id}")
         illustrations = item.get("pet_illustrations")
         if illustrations is not None:
-            known = skeleton.get(family_id, set())
-            for end in ("first", "last"):
-                value = illustrations.get(end) if isinstance(illustrations, dict) else None
-                if value not in known:
-                    errors.append(f"{where}.pet_illustrations.{end}: {value} is not an illustration of {family_id}")
+            errors.extend(_pet_range(illustrations, item.get("location"), family_id, skeleton.get(family_id), where))
     return errors
+
+
+def _record_dates(record: dict, quote: str, observed: date) -> bool:
+    """An observation taken from a record needs a date that record states.
+
+    The date is either written in the quoted text or is the record's own
+    access date; a later re-read that overwrites the access date must not leave
+    an older observation without any dated support.
+    """
+    stated = observed.isoformat()
+    return stated in quote or record.get("access", {}).get("accessed_on") == stated
 
 
 def validate_source_entry(entry: Any, label: str, sources: dict[str, dict], today: date) -> list[str]:
@@ -318,6 +373,11 @@ def validate_source_entry(entry: Any, label: str, sources: dict[str, dict], toda
             elif basis == "record_text":
                 if not _quoted(record, item.get("stated_in"), item.get("quote")):
                     errors.append(f"{where}.quote: not found verbatim in {source_id} {item.get('stated_in')}")
+                elif observed is not None and not _record_dates(record, item.get("quote"), observed):
+                    errors.append(
+                        f"{where}.observed_on: {observed.isoformat()} is neither in the quote nor "
+                        f"the access date of {source_id}"
+                    )
             elif not _text(item.get("quote")):
                 errors.append(f"{where}.quote: an observation keeps the page wording it rests on")
             if status == "discontinued_per_publisher":
@@ -330,7 +390,7 @@ def validate_classification(
     payload: Any,
     sources: dict[str, dict],
     manual_values: dict[str, str],
-    skeleton: dict[str, set[str]],
+    skeleton: dict[str, dict],
     today: date | None = None,
 ) -> list[str]:
     if not isinstance(payload, dict):

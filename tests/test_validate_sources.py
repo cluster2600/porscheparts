@@ -2,6 +2,11 @@ import json
 import unittest
 from copy import deepcopy
 
+try:
+    import jsonschema
+except ImportError:  # the CI venv does not install it; the test below is skipped there
+    jsonschema = None
+
 from scripts import validate_sources
 from scripts.validate_sources import ROOT, load_and_validate, validate_source
 
@@ -69,12 +74,29 @@ class SourceValidationTests(unittest.TestCase):
                 properties["quality"]["properties"]["dimensional_accuracy"]["enum"],
                 validate_sources.DIMENSIONAL_ACCURACY,
             ),
+            "quality.evidence_level": (
+                properties["quality"]["properties"]["evidence_level"]["enum"],
+                validate_sources.EVIDENCE_LEVELS,
+            ),
         }
         for field, (schema_values, validator_values) in pairs.items():
             self.assertEqual(set(schema_values), set(validator_values), field)
         self.assertEqual(set(schema["required"]), validate_sources.REQUIRED_KEYS)
         offline = schema["allOf"][0]["then"]["properties"]["access"]["properties"]["method"]["enum"]
         self.assertEqual(set(offline), validate_sources.OFFLINE_METHODS)
+
+    @unittest.skipIf(jsonschema is None, "jsonschema is not installed")
+    def test_every_source_record_validates_against_the_schema(self) -> None:
+        schema = json.loads((ROOT / "catalog" / "schemas" / "source.schema.json").read_text(encoding="utf-8"))
+        validator_class = jsonschema.validators.validator_for(schema)
+        validator_class.check_schema(schema)
+        validator = validator_class(schema)
+        paths = sorted((ROOT / "catalog" / "sources").glob("*.json"))
+        self.assertTrue(paths)
+        for path in [*paths, self.path]:
+            record = json.loads(path.read_text(encoding="utf-8"))
+            errors = [f"{list(error.absolute_path)}: {error.message}" for error in validator.iter_errors(record)]
+            self.assertEqual(errors, [], path.name)
 
     def test_every_coverage_key_in_use_is_declared_in_the_schema(self) -> None:
         schema = json.loads((ROOT / "catalog" / "schemas" / "source.schema.json").read_text(encoding="utf-8"))

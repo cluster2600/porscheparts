@@ -79,6 +79,41 @@ class RegisterValidationTests(unittest.TestCase):
         errors = self.classify(payload)
         self.assertTrue(any("MNL-964BC-0020 is not in MEAS-MANUAL-993-ALL" in error for error in errors))
 
+    def test_pet_range_must_span_the_skeleton_family(self) -> None:
+        payload = deepcopy(self.classification)
+        family = next(item for item in payload["families"] if item["family_id"] == "8xx")
+        entry = next(item for item in family["qualified_sources"] if "pet_illustrations" in item)
+        self.assertEqual(entry["pet_illustrations"]["last"], self.skeleton["8xx"]["illustrations"][-1])
+        # An inner illustration is a member of the family but not its end.
+        entry["pet_illustrations"]["last"] = "807-02"
+        entry["location"] = entry["location"].replace("to 898-00R", "to 807-02")
+        errors = self.classify(payload)
+        self.assertTrue(any("807-02 is not the last illustration of 8xx" in error for error in errors))
+
+    def test_stated_range_and_counts_must_match_the_skeleton(self) -> None:
+        payload = deepcopy(self.classification)
+        family = next(item for item in payload["families"] if item["family_id"] == "8xx")
+        entry = next(item for item in family["qualified_sources"] if "pet_illustrations" in item)
+        location = entry["location"]
+        entry["location"] = location.replace("(85 illustrations", "(40 illustrations")
+        errors = self.classify(payload)
+        self.assertTrue(any("states 40 illustrations; the skeleton has 85" in error for error in errors))
+        entry["location"] = location.replace("4553 references", "4552 references")
+        errors = self.classify(payload)
+        self.assertTrue(any("states 4552 references; the skeleton has 4553" in error for error in errors))
+        entry["location"] = location.replace("to 898-00R", "to 807-02")
+        errors = self.classify(payload)
+        self.assertTrue(any("states illustrations 801-00 to 807-02" in error for error in errors))
+
+    def test_record_observation_needs_a_date_the_record_states(self) -> None:
+        payload = deepcopy(self.classification)
+        entry = next(item for item in payload["sources"] if item["source_id"] == "SRC-CELETTE-MZX-964-993-JIGS")
+        observation = next(item for item in entry["availability"] if item["basis"] == "record_text")
+        self.assertEqual(self.classify(payload), [])
+        observation["observed_on"] = "2026-08-30"
+        errors = self.classify(payload)
+        self.assertTrue(any("2026-08-30 is neither in the quote nor the access date" in error for error in errors))
+
     def test_model_year_quote_must_be_verbatim(self) -> None:
         payload = deepcopy(self.classification)
         entry = next(item for item in payload["sources"] if "model_years" in item)
