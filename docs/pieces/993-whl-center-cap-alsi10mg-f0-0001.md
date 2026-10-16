@@ -114,7 +114,7 @@ Catalogue record: [`catalog/parts/993-whl-center-cap-alsi10mg-f0-0001.json`](../
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Only Ø76, Ø60, 46 mm height and plastic come from the commercial record; all interfaces are hypothetical.<br>Replacing plastic with AlSi10Mg changes mass, compliance, fatigue and corrosion; no equivalence is claimed.<br>The 0.4 mm, 0.30 coefficient, 250 km/h, 20 g and +120 K cases are synthetic.<br>The model includes no Porsche emblem, crest or design.<br>The STEP proves only a computable BREP and must not be installed on a wheel. |
 
 **Evidence**
 

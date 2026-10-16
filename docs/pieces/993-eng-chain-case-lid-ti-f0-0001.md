@@ -109,7 +109,7 @@ Catalogue record: [`catalog/parts/993-eng-chain-case-lid-ti-f0-0001.json`](../..
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | The original part is cast magnesium, not aluminum: any mass comparison made against aluminum was comparing with the replacement product, not the original.<br>Against magnesium, titanium loses both plate-bending indices, strength included: it will not be lighter, whatever thickness is chosen.<br>No dimension is measured: outline, thickness, hole spacings, holes, gasket face and centering are unknown.<br>Neither commercial reproducer publishes a dimension: the dimensions cannot be found online; they are obtained by buying the part or its gasket.<br>The computed expansion margin, +0.056 mm, rests on an extreme hole spacing of 100 mm and an 8.4 mm hole for M8 screws, both hypothetical.<br>The internal clearance to the chain and tensioner is not measured.<br>Titanium makes the part 64% heavier at equal geometry; it is a deliberate material choice, not a gain.<br>The part retains oil: a leak on an air-cooled engine has hot neighbors, hence the `functional` class and not `non_critical`.<br>No leak test, thermal cycling or repeated removal-refitting.<br>The manual's tightening torque, 9.7 Nm, places the fasteners at M6: the expansion margin computed on an M8 assumption must be redone once the hole is known.<br>The titanium/magnesium galvanic couple is not resolved and could shift corrosion from the lid to the case. |
 
 **Evidence**
 

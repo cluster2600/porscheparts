@@ -123,7 +123,7 @@ Catalogue record: [`catalog/parts/993-eng-k16-compressor-wheel-al2139-f1-0001.js
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | The 40.6/60.5 mm diameters, the 6+6 count and the part numbers remain the only published geometric facts.<br>The 3.0->0.8 and 2.4->0.8 mm thicknesses are synthetic; the CAD approximates them with four radial segments.<br>The 38.49 g CAD mass depends entirely on the F1 and the EOS density, with no comparison to a real K16 wheel.<br>The ambient root ratio of 1.986 is an algebraic improvement over the F0's 0.627, not a certified rotor margin.<br>The 1.5 criterion, Mach 0.9, 1.2x overspeed and all aerothermal conditions remain regression inputs.<br>The 460 MPa value concerns ambient T4 specimens from a TRL 3 process, not HCF or hot burst.<br>The radial-segment blades are not aerodynamic; no map, rotating CFD or housing interface is available.<br>The STEP proves only a readable BREP; it is authorized neither for manufacturing, nor for rotation, nor for a turbo or an engine. |
 
 **Evidence**
 

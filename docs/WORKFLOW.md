@@ -58,6 +58,8 @@ Output: no data of unknown origin in the publishable model.
 Choose the minimal means that gives the required accuracy: caliper, micrometer,
 gauge, jig, photogrammetry or structured-light scan. Use the template in
 `catalog/templates/measurement-plan.md` to prepare the session.
+Accuracy targets, scan thresholds and the intake of declared values are in
+[CAPTURE_PROTOCOL.md](CAPTURE_PROTOCOL.md).
 
 Then record the result in verifiable form, in `catalog/measurements/`. When the
 instrument has a data output, capture directly rather than copying by hand:

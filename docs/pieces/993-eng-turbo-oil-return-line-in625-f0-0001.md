@@ -115,7 +115,7 @@ Catalogue record: [`catalog/parts/993-eng-turbo-oil-return-line-in625-f0-0001.js
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | The name of this record says "return"; plate 202-16 does not establish it. It carries four `oil pipe` references in two positions, without distinguishing feed from return. The attribution remains to be done.<br>The sources confirm only the function, the left/right set, 1996-1997 and the final fitting; no dimension is published.<br>The F0 left line, its spline, diameters, wall and flanges are entirely synthetic; the right side is absent.<br>The theoretical mass depends on the F0 volume and the IN625 density, with no comparison with the commercial part.<br>The flows, pressure, temperature, viscosity, minor losses, load and supports are regression inputs.<br>Single-phase hydraulics does not represent aerated oil, two-phase drainage, pulsations or the scavenge pump.<br>The fully constrained thermal screen fails; the actual compliance and engine-turbo movements are unknown.<br>The final-fitting need stated by the supplier is incompatible with a rigid LPBF tube without vehicle metrology.<br>The STEP proves only a readable hollow BREP and is authorized neither for manufacturing, nor oil, nor turbo or engine use.<br>The circuit counts eleven fluid or retention parts on the same plate: that is where the additive gain lies, and it is not investigated.<br>The fittings of an oil line are removed in service. The TITANIUM.md grid explicitly excludes titanium on repeated threading exposed to galling: even without the fire question, this is not a titanium part. |
 
 **Evidence**
 

@@ -111,7 +111,7 @@ Catalogue record: [`catalog/parts/993-int-door-opener-lever-f0-0001.json`](../..
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Only the 108 x 45 x 27 mm envelope comes from the commercial product page; the plate, pockets, clevis and bores are F0 hypotheses.<br>The published mass of 0.18 kg concerns the complete commercial pair and does not validate the mass of the concept.<br>The 150 N and +60 K case is synthetic; no 993 load, direction, stop or temperature has been measured.<br>The nominal calculation ignores real contact, LPBF defects, pin clearance, preload, coating, corrosion and aging.<br>The CalculiX screen uses six synthetic cases and a Goodman comparison of coupons; it computes no part life.<br>The geometric slicing is neither an EOSPRINT job nor a melt-pool, distortion or recoater calculation.<br>The asset and the scene pass minimal USD validation and an ovphysx smoke test; the Content Agents, the full SimReady profile, OVRTX and the door assembly have not been run.<br>The STEP proves only a computable BREP within the envelope; it must be neither printed for fitment nor installed in a door. |
 
 **Evidence**
 

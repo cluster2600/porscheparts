@@ -115,7 +115,7 @@ Catalogue record: [`catalog/parts/993-eng-turbo-heat-shield-in625-f0-0001.json`]
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Only the 160 x 110 x 105 mm envelope comes from FVD; profile, wall, bosses and holes are hypothetical.<br>The F0 mass of 325.58 g exceeds the published 230 g by 41.6%; the commercial material is unknown and no validation by mass is possible.<br>The temperatures, emissivity, view factor, force and support conditions are synthetic.<br>The calculation ignores convection, real turbo geometry, shell curvature, contact, vibration, thermal fatigue, oxidation and creep.<br>The STEP proves only a computable BREP within the envelope and must not be manufactured for fitment. |
 
 **Evidence**
 

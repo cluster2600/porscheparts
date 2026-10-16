@@ -9,6 +9,10 @@ insert is 0.4 mm under, 0.0 mm and 0.4 mm over the declared opening, each marked
 on its back with 1, 2 or 3 dimples. Whichever clicks in and sits flush tells the
 real size — that fit result is the evidence the record is missing.
 
+Decision 0013 contests that basis: the 19 x 31 mm figure is given for the
+passage under the covering, while two other level-C figures put the opening at
+about 17 x 28 mm, smaller than every insert of this kit.
+
 This is a fit-test print of a non-critical trim part (decision 0009), not a
 released part. Every value below except the declared opening is a hypothesis.
 

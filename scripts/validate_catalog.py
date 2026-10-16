@@ -235,6 +235,8 @@ def validate_record(record: Any) -> list[str]:
         errors.append("titanium.machined_surfaces: expected a string array")
     if not _is_string_list(titanium.get("inspection")):
         errors.append("titanium.inspection: expected a string array")
+    if "fatigue_assumptions" in titanium and not _is_non_empty_string(titanium["fatigue_assumptions"]):
+        errors.append("titanium.fatigue_assumptions: expected a non-empty string when present")
     if applicable is True:
         for field in ("alloy", "heat_treatment", "galvanic_isolation"):
             if not _is_non_empty_string(titanium.get(field)):

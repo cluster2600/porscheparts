@@ -120,7 +120,7 @@ Catalogue record: [`catalog/parts/993-eng-intake-valve-f1-0001.json`](../../cata
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Overall length is a 109 mm hypothesis derived from a 110 mm product envelope.<br>Keeper groove, seat, margin, neck radius, coating, tolerances and cam/spring dynamics are not defined.<br>The generated STL is fit-check-only and must never be installed in an engine. |
 
 **Evidence**
 

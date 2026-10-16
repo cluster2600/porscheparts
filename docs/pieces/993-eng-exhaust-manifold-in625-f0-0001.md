@@ -115,7 +115,7 @@ Catalogue record: [`catalog/parts/993-eng-exhaust-manifold-in625-f0-0001.json`](
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Only the 993 Turbo identity, the IN625 material and the 2.9 kg mass with heat exchanger are published.<br>The diameters, thickness, spacings, paths, length and three-into-one junction are entirely synthetic.<br>The STEP omits flanges, turbine, heating heat exchanger, brackets, gaskets and installed environment.<br>The computed core mass of 509.97 g cannot be compared as an equivalent to the 2.9 kg commercial assembly.<br>The 1D flow assumes 3.6 L, 5,750 rpm, volumetric efficiency 0.95, gas at 900 K and equal sharing between cylinders.<br>Loss, stresses, expansion, radiation and acoustics are analytical screens, not CFD/FEA/CHT results.<br>The STEP proves only a single BREP with a connected internal volume and is not authorized for manufacturing or engine use. |
 
 **Evidence**
 

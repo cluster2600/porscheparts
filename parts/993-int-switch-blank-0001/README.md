@@ -27,6 +27,8 @@
 The original part is documented — pictures, catalogue entries or published data — on these pages. They are copyrighted, so they are linked here, not copied:<br><br>
 ↗ <a href="https://www.porsche.com/australia/accessoriesandservice/classic/originalpartscatalogue/">Porsche Classic Genuine Parts Catalogue - 911 (993)</a><br>
 ↗ <a href="https://www.9xxteile.com/en/pet/">9xxteile - Porsche parts diagrams (PET exploded views)</a><br>
+↗ <a href="https://rennlist.com/forums/993-forum/1202129-dashboard-lighting-question.html">Rennlist - declared size of a 993 dashboard panel opening (window switch measured)</a><br>
+↗ <a href="https://rennlist.com/forums/993-forum/750484-console-switch-hole-size.html">Rennlist - declared console switch opening and switch blank sizes, 993</a><br>
 </td>
 <td width="50%" valign="top" align="center">
 <b>What you can print today</b><br><br>

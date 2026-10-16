@@ -97,7 +97,7 @@ Catalogue record: [`catalog/parts/993-ca-charge-pipe-set-pet-0001.json`](../../c
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Identity only: the PET carries part number, position, description and (in the Austria read) quantities, no dimensions, pressure ratings or flow data.<br>Suffix variants -53/-54 (air guide) and -50/-52 (bracket) are transcribed as listed without asserting which fits which build date or supersession.<br>The intercooler core cross-referenced by an aftermarket supplier (260x270x60 mm declared) is a replacement-product envelope, not OEM geometry; see catalog/sources/src-aks-dasis-993-intercooler-dimensions.json.<br>Left/right assignment of the two pressure hoses at pos 19 is by the FVD product pages (633 = left, 632 = right); the PET line itself lists both at position 19 without a side annotation. |
 
 **Evidence**
 

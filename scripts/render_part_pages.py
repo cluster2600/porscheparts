@@ -218,11 +218,16 @@ def page_markdown(fiche: dict, chemin_fiche: Path) -> str:
         out.append("")
 
     out += ["## Validation", ""]
+    # part.schema.json names the field known_limits; the other two names never
+    # existed in the schema, so reading only them left this row empty.
+    limites = validation.get("known_limits") or validation.get("limitations") or validation.get("notes")
+    if isinstance(limites, list):
+        limites = "<br>".join(str(l) for l in limites) or None   # one limit per line in the cell
     out += tableau(page, [
         ("status", validation.get("status")),
         ("vehicle tested", validation.get("vehicle_tested")),
         ("reviewed by", validation.get("reviewed_by")),
-        ("limitations", validation.get("limitations") or validation.get("notes")),
+        ("limitations", limites),
     ])
     out += fichiers(page, validation.get("evidence") or [], "Evidence")
 

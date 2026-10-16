@@ -5,12 +5,12 @@ The phases at a glance, with the state each section below records:
 ```mermaid
 flowchart LR
     P0["Phase 0 — Foundation<br/>completed on August 28, 2026<br/>(v0.1.0)"]:::ok
-    P1["Phase 1 — Source inventory<br/>5 of 5 items checked;<br/>294 valid source records;<br/>direct measurements remain"]:::open
+    P1["Phase 1 — Source inventory<br/>4 of 5 items checked;<br/>545 valid source records on 2026-10-15;<br/>direct measurements remain"]:::open
     P2["Phase 2 — Physical inventory<br/>and twin assembly<br/>no printing; 10 items done, 4 open;<br/>physical prototypes suspended"]:::open
     P3["Phase 3 — Titanium<br/>engineering twin<br/>no manufacturing; all items open"]:::open
     P4["Phase 4 — Public catalog<br/>all items open"]:::open
     P0 --> P1 --> P2 --> P3 --> P4
-    COV["Cross-cutting: twin coverage<br/>share of curb weight, via make twin<br/>30.5% reached; target 100%"]:::open
+    COV["Cross-cutting: twin coverage<br/>share of curb weight, via make twin<br/>34.7% counted, engine scope open;<br/>target 100%"]:::open
     OUT["Initially out of scope<br/>selling parts, road homologation,<br/>replacing the load-bearing structure"]:::stop
     classDef stop fill:#fde2e1,stroke:#c0392b,color:#1a1a1a;
     classDef ok fill:#e3f1e6,stroke:#2e7d32,color:#1a1a1a;
@@ -40,13 +40,17 @@ Additional research: [German-language batch of twenty candidates](docs/research/
 
 - [x] Survey official catalogs, legally accessible manuals and measurements
 - [x] Survey 3D models with a verifiable license
-- [x] Classify references by variant, year and availability
+- [ ] Classify references by variant, year and availability — partial: every
+  assembly-skeleton family has at least one official or manufacturer source
+  rated A or B (a classification by type and level, not a check of the copy or
+  the pages), and model years and dated availability are recorded only where
+  stated, in [catalog/registers/](catalog/registers/README.md)
 - [x] Identify missing or hard-to-obtain parts
 - [x] Assess each source: provenance, license, accuracy, reuse
 
 Exit criterion: twenty documented candidates, without importing unauthorized
-content. Progress: 294 valid source records in `catalog/sources/`; acquiring
-direct measurements remains to be done.
+content. Progress: 545 valid source records in `catalog/sources/` on 2026-10-15;
+acquiring direct measurements remains to be done.
 
 ## Phase 2 — Physical inventory and twin assembly
 
@@ -181,11 +185,39 @@ sourced parts, via `make twin`.
 
 | Milestone | Coverage | State |
 |---|---:|---|
-| First survey | 30.5% | reached on August 28, 2026, 417.5 kg of 1,370 kg |
+| First survey | 30.5% | reached on August 28, 2026, 417.5 kg of 1,370 kg, with a 186.9 kg engine from an unregistered community weighing |
+| Engine mass from the workshop manual | 34.7% | October 15, 2026, 476.0 kg of 1,370 kg; engine scope open and Turbo-only parts included, see below |
 | Complete body and trim | ~45% | in progress |
 | Detailed powertrain | ~60% | overall engine known, parts to be detailed |
 | Running gear and brakes | ~75% | not started |
 | Remainder | 100% | not started |
+
+How to read the 34.7%:
+
+- **The engine figure is the manual's, its scope is not settled.** The workshop
+  manual's p. 15 technical-data sheet gives 232 kg under the label "Manual
+  transmission" and 224 kg under "Tiptronic"; the transcription is
+  `structured_derived`, not manually checked, and the upstream record marks it
+  `ocr_transcription_unverified`. Reading it as the dry engine ready to install
+  rests on the sheet heading as recorded in
+  [the manual data map](docs/993/993_MANUAL_DATA_MAP.md). Tiptronic lighter than
+  manual fits an engine-only figure, but only by inference. A community weighing
+  with a named weigher and a declared method, not registered as a source, gives
+  186.9 kg for a complete 1995 Carrera engine without gearbox: 45.1 kg less.
+  [The engine-carrier load cases](parts/993-eng-carrier-0001/evidence/load-cases.md)
+  record this contradiction as open (232 kg might be engine plus gearbox). With
+  the weighing, the coverage would read 31.5%.
+- **The rise from 30.5% has two causes.** The engine change adds 45.1 kg
+  (3.3 points); the documented parts weigh 13.4 kg more than at the first
+  survey (243.97 kg against the 230.6 kg it implies, 1.0 point).
+- **Turbo-only parts are counted for the Carrera.** The part entries carry no
+  variant, so 15.3 kg of Turbo parts are included: the K16 turbochargers
+  (11.36 kg), the Turbo engine carrier (1.96 kg), and the charge-air duct,
+  hoses and sensor with a turbo heat shield (1.99 kg). Without them the figure
+  is 33.6%.
+- No Turbo engine mass is sourced, and no Tiptronic or Turbo curb weight:
+  `scripts/twin_coverage.py` stops for those runs unless `--kerb-weight` is
+  given.
 
 ### Assembly skeleton — done
 
@@ -206,8 +238,9 @@ The factory parts catalog provided the framework: ten systems, 239 illustrations
 | 0xx Consumables | 171 | 4 |
 
 Two coverages coexist, and they do not say the same thing: **0.18% of
-references** carry a documented mass, but those few parts account for **30.5%
-of curb weight**. The twin fills up by mass before it fills up by count.
+references** carry a documented mass, but those few parts, with the manual's
+engine figure, account for **34.7% of curb weight**, with the caveats above.
+The twin fills up by mass before it fills up by count.
 
 ### Position — started with a reference envelope
 

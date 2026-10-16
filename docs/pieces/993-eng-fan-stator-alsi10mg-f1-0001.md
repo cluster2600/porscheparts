@@ -120,7 +120,7 @@ Catalogue record: [`catalog/parts/993-eng-fan-stator-alsi10mg-f1-0001.json`](../
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | The rotor follows a visual rebuild, and the speed and engine resistance it is designed against are inferred, not measured.<br>The gain is a one-dimensional model estimate in a bellmouth housing: +5.3 % flow over the F1 rotor alone, on a duty inferred from the visual rebuild of the original rotor.<br>The first vane mode lies between 2,876 Hz (pinned) and 6,520 Hz (clamped); it clears blade-pass and twice blade-pass at nominal and overspeed by 22 %.<br>The tone screen is a thin-annulus estimate; one second-harmonic interaction mode stays cut on.<br>Vane and ring blockage, wakes and the upstream housing spokes are not modelled.<br>The F0 housing has no seat for the ring; mounting, alternator clearance and tinware interface are undefined.<br>No manufacture, installation or start-up is authorized. |
 
 **Evidence**
 

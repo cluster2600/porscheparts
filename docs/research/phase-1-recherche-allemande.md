@@ -77,7 +77,7 @@ be measured or legally reconstructed.
 | 2 | Console switch cover tab | [Asset](../../catalog/sources/src-renn3d-console-switch-tab-repair.json) | 1 STL, photo, CC-BY declared, level D | Exact license and 993 fit | High |
 | 3 | Console cup holder | [Asset](../../catalog/sources/src-renn3d-center-console-cup-holder.json) | 1 STL, fitted photo, public domain declared, level D | Confirm rights, variant and interferences | High |
 | 4 | Phone mount on 82 mm gauge | [Asset](../../catalog/sources/src-renn3d-gauge-ring-phone-mount.json) | 1 STL, CC-BY declared, level D | Trademark risk on the bezel, and stability | Medium |
-| 5 | 4x6 speaker adapter frames | [Asset](../../catalog/sources/src-renn3d-hifi-speaker-adapter-frames.json) | 2 STL, public domain declared, level D | Published scale obviously inconsistent | Blocked |
+| 5 | 4x6 speaker adapter frames | [Asset](../../catalog/sources/src-renn3d-hifi-speaker-adapter-frames.json) | 2 STL, public domain declared by the archive only, level D | Published scale obviously inconsistent; 2026-10-15: original Thingiverse page unreadable, licence and scale unresolved, excluded from use until checked | Blocked |
 | 6 | Custom rear grille bar | [Asset](../../catalog/sources/src-renn3d-custom-split-grille-bar.json) | 3 STL, CC-BY-NC-SA declared, level D | Not OEM, non-commercial, fit to be confirmed | Low |
 | 7 | Rear main seal installation tool | [Asset](../../catalog/sources/src-renn3d-rear-main-seal-tool.json) | 4 STL, CC-BY-SA declared, level D | Functional dimensions and workshop procedure | Medium |
 | 8 | Seat back release button | [Asset](../../catalog/sources/src-renn3d-seat-back-release-button.json) | 1 STL, OEM part numbers declared, level D | Seat safety review and compatibility | Blocked |
@@ -93,6 +93,12 @@ be measured or legally reconstructed.
 | 18 | Rear fog light cap, `993 613 252 00` | PET, plate 903-06 | Official part number | Geometry, pictogram and translucency | Medium |
 | 19 | Steering column cover, `993 552 277 00` | PET, plate 903-10 | Official part number | Variant, fasteners and clearance with the controls | Medium |
 | 20 | M490 speaker grille, `993 555 777 00` | PET, plate 911-05 | Official part number, quantity 2 | Original, acoustics, texture and fitting | Medium |
+
+Update 2026-10-15: none of the original Thingiverse or Printables pages behind
+rows 1 to 9 could be read, so every licence above is still a declaration by the
+Renn 3D Parts archive, and the asset records now carry redistribution
+`unknown`. See the
+[public 3D asset licence audit](public-3d-asset-licence-audit-2026-10-15.md).
 
 ## Gaps and decisions
 
