@@ -14,6 +14,11 @@ de V6f. Le remaillage depuis le STEP donne zéro aiguille et zéro intersection 
 les distances échantillonnées dans les deux sens restent sous 0,06 mm. Les
 quatre comparaisons mécaniques à V6f passent sous les mêmes charges et appuis.
 
+Le [STEP du candidat retenu](../../parts/993-eng-carrier-0001/derived/workflow-20261016/carrier.step)
+est conservé avec son [reçu d'identité](../../parts/993-eng-carrier-0001/derived/workflow-20261016/export.json).
+Ses [paramètres éditables](../../parts/993-eng-carrier-0001/source/design-20261016/bounded-webs.json)
+permettent de le reconstruire ; le maître F0 et ses anciennes images restent archivés.
+
 Le [dossier de reprise et ses résultats](../../docs/reports/993_CARRIER_WORKFLOW_20261016.md)
 conserve les décisions de géométrie, de mécanique et de préparation LPBF.
 La [chaîne à suivre](../../docs/manufacturing/PART_WORKFLOW.md) relie une image,
