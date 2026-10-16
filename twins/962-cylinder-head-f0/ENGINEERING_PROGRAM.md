@@ -34,6 +34,21 @@ original inspected source and preserves this earlier rejection unchanged.
 
 ## Execution and acceptance
 
+The [actual GMRES/HYPRE affine witness](derived/engineering/gmres-boomeramg-affine/README.md)
+now verifies one installed-runtime solve, its exported operator and Newton
+correction, all 64 spatial nodes and six individual face fluxes. Independent
+NumPy and Decimal calculations agree within the frozen criteria. This supplies
+an iterative-solver verification anchor; head import, resolution and convergence
+remain separate requirements.
+
+The [endpoint-collapse reference cases](derived/engineering/finest-endpoint-fixtures/README.md)
+now pass complete saved-array checks: the corrected helper removes the known
+cube sliver while both declared stagnation controls remain unchanged. A
+[separate original-head pass](derived/engineering/finest-endpoint-head-001/README.md)
+hits its 4 GiB memory limit before exporting a proposal. All inputs remain
+unchanged and the owned process is stopped and reaped. No closer head surface,
+distance certificate or volume-quality admission follows from that attempt.
+
 **Material and service calculations.** Bind each material point or curve to its
 alloy, powder, machine, orientation, treatment and test condition. Compare the
 same geometry and boundary conditions before attributing differences to the

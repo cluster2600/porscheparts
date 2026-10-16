@@ -1,0 +1,11 @@
+--- finest_endpoint.cpp (preserved001)
++++ finest_endpoint_002.cpp (prepared002)
+@@ -124,7 +124,7 @@
+     auto constrained=candidate.add_property_map<Mesh::Edge_index,bool>("e:finest-fixed",false).first;
+     for(auto e:candidate.edges()) {
+       auto h=candidate.halfedge(e);
+-      constrained[e]=fixed[candidate.source(h)]||fixed[candidate.target(h)];
++      constrained[e]=fixed[candidate.source(h)]&&fixed[candidate.target(h)];
+       if(candidate.point(candidate.source(h))==candidate.point(candidate.target(h)))
+         throw std::runtime_error("Zero-length edge would bypass the ordinary SMS filters");
+     }
