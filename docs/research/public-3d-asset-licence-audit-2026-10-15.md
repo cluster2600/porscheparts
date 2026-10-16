@@ -16,7 +16,9 @@ The 62 source records whose `content_types` include `scan`, `cad` or `mesh` and
 whose `source_type` is not `manufacturer`: 41 community, 18 marketplace,
 2 dataset and 1 official record. The 41 `manufacturer` records that also carry
 those content types describe scanning or reverse-engineering services and
-finished products; none publishes a reusable 3D file, so they are out of scope.
+finished products; none publishes a reusable 3D file (for example
+`SRC-SHAPEWAYS-993-SUN-VISOR-GOPRO-CLIP` is an article about a printed part,
+with no CAD or STL file), so they are out of scope.
 
 | kind | records | with a file (free, paid or behind a login) |
 |---|---:|---:|
@@ -44,12 +46,16 @@ asset is a repair print mesh.
    CC-BY gives `attribution_required`, CC-BY-NC gives `noncommercial_only`,
    CC0 or public domain gives `allowed`, a standard, private-use or
    all-rights-reserved licence gives `prohibited`, and anything else gives
-   `unknown`.
+   `unknown`. One exception: where a twin record read the original page and
+   recorded a more restrictive value, that value is kept (`prohibited` rather
+   than `unknown`).
 4. `rights.license` wording shows the verification state. A licence verified on
    the original page uses the bare identifier, as in the existing
    `SRC-SKETCHFAB-993-GT2-RAW-SCAN` record (`CC-BY-4.0`). A licence known only
    from the Renn 3D Parts archive is written
-   `archive-reported-<licence>-primary-page-not-verified`.
+   `archive-reported-<licence>-primary-page-not-verified`. A licence copied
+   from a twin record that read the original page is written
+   `twin-recorded-<licence>-not-reread`.
 
 ### Access observed on 2026-10-15
 
@@ -76,8 +82,8 @@ Only one licence was verified in this pass:
   respected" but gives no unit, scale or dimension, so `dimensional_accuracy`
   moved from `declared` to `visual_only`.
 
-Four other records already carry a licence with no "not verified" marker,
-recorded in an earlier pass and not re-read now: `SRC-SKETCHFAB-993-GT2-RAW-SCAN`
+Four other records carry a licence recorded in an earlier pass as read on the
+original page, not re-read now: `SRC-SKETCHFAB-993-GT2-RAW-SCAN`
 (`CC-BY-4.0`, 2026-08-28), `SRC-DRIVAERNET-PLUSPLUS` (CC-BY-NC-4.0 data and MIT
 code, 2026-08-28), `SRC-CULTS-993-WHEEL-CENTER-CAP` (`Cults-Private-Use`,
 2026-08-29) and `SRC-CGTRADER-993-DASHBOARD-SCALE-MODEL` (CGTrader editorial
@@ -117,12 +123,12 @@ deleted.
 
 | records | same | rights after this pass |
 |---|---|---|
-| `SRC-RENN3D-CENTER-CONSOLE-CUP-HOLDER`, `SRC-3DGO-993-964-CUP-HOLDER` | Printables 1507503 | both `unknown` (the Renn 3D record said `allowed`) |
+| `SRC-RENN3D-CENTER-CONSOLE-CUP-HOLDER`, `SRC-3DGO-993-964-CUP-HOLDER` | Printables 1507503 | both `unknown` (the Renn 3D record said `allowed`); the two secondary declarations also differ, CC0 (3D GO) against a public-domain mark (Renn 3D), which are not the same instrument |
 | `SRC-RENN3D-GAUGE-RING-PHONE-MOUNT`, `SRC-THINGIVERSE-993-PHONE-MOUNT` | thing 3143518 | both `unknown`; same licence string |
 | `SRC-RENN3D-POLLEN-FILTER-COVER-TABS`, `SRC-THINGIVERSE-993-POLLEN-TABS` | thing 2152823 | both `unknown`; same licence string; evidence level C vs D still disagrees |
 | `SRC-RENN3D-CONSOLE-SWITCH-TAB-REPAIR`, `SRC-PRINTABLES-964-993-CONSOLE-SWITCH-TAB` | Printables 1369571 | both `unknown`; same licence string |
-| `SRC-CULTS-993-WHEEL-CENTER-CAP`, `SRC-CULTS-993-WHEEL-CENTER-CAP-CAD` | same Cults URL | both `Cults-Private-Use`, `prohibited`: the only licence ever recorded for the page, and the more restrictive value |
-| `SRC-WOLFE-993-TURBO-EXTERIOR-SCAN`, `SRC-WOLFE-CLASSICS-993-TURBO-SCAN` | same Wolfe URL | both `unknown`; same licence string; evidence level D vs C still disagrees |
+| `SRC-CULTS-993-WHEEL-CENTER-CAP`, `SRC-CULTS-993-WHEEL-CENTER-CAP-CAD` | same Cults URL | `Cults-Private-Use` (read 2026-08-29) and `twin-recorded-Cults-Private-Use-not-reread`, both `prohibited`: the only licence ever recorded for the page, and the more restrictive value; the CAD record's own 2026-08-30 read said the licence was not verified |
+| `SRC-WOLFE-993-TURBO-EXTERIOR-SCAN`, `SRC-WOLFE-CLASSICS-993-TURBO-SCAN` | same Wolfe URL | both `unknown`; licence wording differs (terms not displayed, 2026-08-29, against terms not published); evidence level D vs C still disagrees |
 | `SRC-RENNLIST-993-DIY-3D-BITS`, `SRC-RENNLIST-993-3D-PRINTED-DIY-BITS` | same thread | both `unknown` |
 | `SRC-RENNLIST-993-SEAT-RAIL-BUSHING-CAD`, `SRC-RENNLIST-993-SEAT-RAIL-BUSHING-STL` | same thread and ZIP | both `unknown` |
 | `SRC-RENNLIST-993-WINDSHIELD-CAD-TEMPLATES`, `SRC-RENNLIST-993-WINDSHIELD-TEMPLATES` | same thread | both `unknown`; `declared` vs `measured` still disagrees |
@@ -205,7 +211,7 @@ were not re-checked today.
 | [`SRC-CULTS-993-DOOR-POCKET-REINFORCEMENT`](../../catalog/sources/src-cults-993-door-pocket-reinforcement.json) | CAD (print mesh) | blocked: HTTP 403 on 2026-08-30; not re-attempted | `platform-license-field-unverified` | `prohibited` | declared 75.184 x 12.7 x 73.660 mm, unverified | licence field not read; record says prohibited on an unverified field |
 | [`SRC-CULTS-993-DOOR-SCAN`](../../catalog/sources/src-cults-993-door-scan.json) | scan (commercial) | blocked: paid asset; page not re-read, nothing bought; Cults unreadable | `commercial-marketplace-license-not-verified` | `unknown` | declared 2266.18 x 573.24 x 1033.44 mm, implausible against the 4,245 mm car (SRC-ASTRA-993-TYPE-APPROVAL-DIMENSIONS); unknown | paid; scale anomaly; modified G-body door |
 | [`SRC-CULTS-993-SEAT-HINGE-COVER-CAD`](../../catalog/sources/src-cults-993-seat-hinge-cover-cad.json) | CAD (print mesh) | blocked: HTTP 403 on 2026-08-30; not re-attempted | `commercial-marketplace-license-not-verified` | `unknown` | unknown | paid; licence |
-| [`SRC-CULTS-993-WHEEL-CENTER-CAP-CAD`](../../catalog/sources/src-cults-993-wheel-center-cap-cad.json) | CAD (STEP and STL), duplicate | blocked: paid asset; page not re-read, nothing bought | `Cults-Private-Use` | `prohibited` | no dimensions published | same as twin |
+| [`SRC-CULTS-993-WHEEL-CENTER-CAP-CAD`](../../catalog/sources/src-cults-993-wheel-center-cap-cad.json) | CAD (STEP and STL), duplicate | blocked: paid asset; page not re-read, nothing bought | `twin-recorded-Cults-Private-Use-not-reread` | `prohibited` | no dimensions published | same as twin |
 | [`SRC-CULTS-993-WHEEL-CENTER-CAP`](../../catalog/sources/src-cults-993-wheel-center-cap.json) | CAD (STEP and STL) | blocked: paid asset; page not re-read, nothing bought (Cults-Private-Use recorded 2026-08-29) | `Cults-Private-Use` | `prohibited` | no dimensions published | private-use licence; wheel part needs engineering review |
 | [`SRC-DRIVAERNET-PLUSPLUS`](../../catalog/sources/src-drivaernet-plusplus.json) | CAD and CFD dataset (generic cars, no 993) | earlier pass only (2026-08-28); not re-read | `CC-BY-NC-4.0-data-and-MIT-code` | `noncommercial_only` | dataset geometry, not 993 | not 993; non-commercial data |
 | [`SRC-GRABCAD-964-993-TWEETER-GRILL-BRACKET`](../../catalog/sources/src-grabcad-964-993-tweeter-grill-bracket.json) | CAD | blocked: login required | `grabcad-user-content-rights-not-verified` | `unknown` | unknown | login; licence |
@@ -255,7 +261,7 @@ were not re-checked today.
 | [`SRC-THINGIVERSE-993-POLLEN-TABS`](../../catalog/sources/src-thingiverse-993-pollen-tabs.json) | CAD (print mesh) | no: thing 2152823; Thingiverse robots.txt behind a Cloudflare challenge on 2026-10-15, page not requested | `archive-reported-CC-BY-primary-page-not-verified` | `unknown` | unknown (archive bbox in twin) | licence on thing 2152823 |
 | [`SRC-THINGIVERSE-993-REAR-SPEAKER-SHIM`](../../catalog/sources/src-thingiverse-993-rear-speaker-shim.json) | CAD (print mesh) | no: thing 3752304; Thingiverse robots.txt behind a Cloudflare challenge on 2026-10-15, page not requested | `thingiverse-original-page-not-verified` | `unknown` | unknown | licence on thing 3752304 |
 | [`SRC-THINGIVERSE-993-RS-MOMO-HORN-RING`](../../catalog/sources/src-thingiverse-993-rs-momo-horn-ring.json) | CAD (print mesh) | no: thing 4427893; Thingiverse robots.txt behind a Cloudflare challenge on 2026-10-15, page not requested | `thingiverse-original-page-not-verified` | `unknown` | index figures (52 mm bore, 59 mm OD), unverified | licence on thing 4427893; steering-wheel part needs engineering review |
-| [`SRC-WOLFE-993-TURBO-EXTERIOR-SCAN`](../../catalog/sources/src-wolfe-993-turbo-exterior-scan.json) | scan (commercial), duplicate | blocked: paid asset; page not re-read, nothing bought | `commercial-download-terms-not-published` | `unknown` | 1.76 mm vendor claim | paid; terms not published |
+| [`SRC-WOLFE-993-TURBO-EXTERIOR-SCAN`](../../catalog/sources/src-wolfe-993-turbo-exterior-scan.json) | scan (commercial), duplicate | blocked: paid asset; page not re-read, nothing bought | `commercial-purchase-terms-not-displayed` | `unknown` | 1.76 mm vendor claim | paid; terms not published |
 | [`SRC-WOLFE-CLASSICS-935-BILLET-CYLINDER-HEAD-SCAN`](../../catalog/sources/src-wolfe-classics-935-billet-cylinder-head-scan.json) | scan (935, bought by the owner) | direct download 2026-08-31 | `open-reuse-user-confirmed; exact-license-identifier-not-captured` | `allowed` | OBJ units undeclared | not 993; exact licence identifier not captured; record is digest-pinned and was not edited |
 | [`SRC-WOLFE-CLASSICS-993-TURBO-SCAN`](../../catalog/sources/src-wolfe-classics-993-turbo-scan.json) | scan (commercial), duplicate | blocked: paid asset; page not re-read, nothing bought | `commercial-download-terms-not-published` | `unknown` | 1.76 mm vendor claim | paid; terms not published |
 
