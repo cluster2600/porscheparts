@@ -1,0 +1,13 @@
+{
+  "common_floor_z_mm": 0,
+  "roof_vertex_rule": "p=input triangle[0], q=input triangle[1], r=input triangle[2]; swap q/r if exact XY cross is negative, so p/q/r are counterclockwise in XY",
+  "local_vertices": ["floor(p)", "floor(q)", "floor(r)", "p", "q", "r"],
+  "local_faces": [[0,2,1],[3,4,5],[0,1,4],[0,4,3],[1,2,5],[1,5,4],[2,0,3],[2,3,5]],
+  "local_face_roles": ["bottom", "top", "side_pq", "side_pq", "side_qr", "side_qr", "side_rp", "side_rp"],
+  "parent_face_rule": "For source==0: input roof row=source_face//8; local face=source_face%8; original source face ID=input NPZ source_face_ids[input roof row]. For all ambiguous parents apply this rule separately to each CSR parent in this leaf.",
+  "leaf_role_order": ["positive_roof_prisms", "mask", "part", "clip_bbox"],
+  "leaf_face_counts": ["8 * number of input roofs", "input mask faces", "input part faces", 12],
+  "ambiguity": "all_parent_offsets/all_parent_faces retain every exact original triangle containing the child. The primary source_face is only the minimum parent index. The final snap autorefine_input_face links its child to the original pre-snap face row and therefore to its complete parent CSR.",
+  "orientation_rule": "For EVERY parent match, reconstruct its oriented triangle by this schema or the exact mask/part/bbox input triangles. Compute sign(dot(cross(child1-child0,child2-child0),cross(parent1-parent0,parent2-parent0))) in exact rational coordinates; use result.mesh64.exact for native child coordinates. Nonzero child and parent guarantee sign is +/-1 when coplanar. Preserve conflicting roles/signs. No interface/contact decision may use only the minimum primary parent.",
+  "parentage_scope": "Geometric convex-triangle containment, not a causal algorithm visitor trace. A parent witness proves surface containment; physical contact classification requires all relevant parent roles, orientations and independent material-side checks."
+}
