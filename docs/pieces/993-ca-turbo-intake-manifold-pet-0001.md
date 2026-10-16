@@ -91,7 +91,7 @@ Catalogue record: [`catalog/parts/993-ca-turbo-intake-manifold-pet-0001.json`](.
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | Identity only: no dimensions, flow areas or geometry are carried by the transcription.<br>The 'intake manifold' lines of 107-20 are the Turbo intake tract parts; the BOM throttle/air-duct line M64B-IN-002 is NOT identified by this group and remains unresolved.<br>Suffix variants (-50/-51 at pos 1, 10, 14; -52/-53 at pos 21) are transcribed without asserting supersession or applicability split.<br>No wastegate actuator line exists anywhere in the local 107-xx or 202-xx transcriptions. |
 
 **Evidence**
 

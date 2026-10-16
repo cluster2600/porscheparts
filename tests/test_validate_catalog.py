@@ -32,6 +32,16 @@ class CatalogueValidationTests(unittest.TestCase):
         self.assertTrue(any("titanium.inspection" in error for error in errors))
         self.assertTrue(any("supplier_requirements" in error for error in errors))
 
+    def test_fatigue_assumptions_are_optional_but_never_blank(self) -> None:
+        record = deepcopy(self.template)
+        self.assertNotIn("fatigue_assumptions", record["titanium"])
+        self.assertEqual(validate_record(record), [])
+        record["titanium"]["fatigue_assumptions"] = "  "
+        self.assertIn(
+            "titanium.fatigue_assumptions: expected a non-empty string when present",
+            validate_record(record),
+        )
+
     def test_prohibited_part_cannot_be_released(self) -> None:
         record = deepcopy(self.template)
         record["validation"]["status"] = "released"

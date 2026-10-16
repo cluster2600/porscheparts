@@ -7,7 +7,9 @@ recorded in `catalog/measurements/` yet. The register now contains a separate
 record of documentary specifications from the Porsche manual, which does not
 replace an instrumented campaign. The repository has no access to a 993, to a
 removed part or to an instrument: this document is therefore a handover dossier
-for an outside contributor. It contains no invented dimension.
+for an outside contributor. It contains no invented dimension. The method —
+instruments, accuracy, datums, lighting, scan thresholds and declared values —
+is consolidated in [CAPTURE_PROTOCOL.md](CAPTURE_PROTOCOL.md).
 
 ## Work order
 

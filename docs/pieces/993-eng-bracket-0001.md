@@ -94,7 +94,7 @@ Catalogue record: [`catalog/parts/993-eng-bracket-0001.json`](../../catalog/part
 | status | concept |
 | vehicle tested | not recorded |
 | reviewed by |  |
-| limitations | not recorded |
+| limitations | F0 study; OEM geometry, mounting, material, loads and fatigue not validated.<br>Dimensions, hole coordinates and exploded-view poses: study assumptions, not Porsche measurements.<br>The native report shows a zero mass because the mass calculation is disabled; the real mass is unknown.<br>No part from this study may carry the engine.<br>Bionic morphology only; no topology or mechanical optimisation under measured loads. |
 
 **Evidence**
 
