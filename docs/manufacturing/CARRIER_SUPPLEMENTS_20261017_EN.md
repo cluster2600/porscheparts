@@ -242,3 +242,59 @@ reference certificates, libraries and runtime identities. Both owned scopes
 were checked inactive/absent after execution. This establishes the first
 bounded native comparison; a complete band, the historical step/cell
 certificates and the final regional support gates remain separate checks.
+
+## Terminal-taper surface, mounting and volume-mesh results
+
+The independent libigl audit of this revision's surface is complete: one
+closed, positively oriented component, **637,836 triangles**, and zero boundary,
+nonmanifold, orientation, degenerate, needle or self-intersection defects.
+Its **8,638 CAD-to-STL samples** have a maximum distance of **0.047388 mm**, below
+the unchanged 0.06 mm criterion. The [joint surface closeout](../../work/carrier-process-20261017/bounded-webs-C1-terminal-taper-libigl-preparation-001/root-terminal-review-001.json)
+retains the actual input identities and complete audit. These finite samples
+remain distinct from a continuous distance bound.
+
+The complete mounting comparator also passes on the new BREP and new STL.
+Central-pad and end-interface symmetric differences, tool-column and secondary
+gauge intersections, and the whole-pair Manifold intersection are zero. All
+**eight complete 3,264-point containment rosters** return zero hits. Ordered
+16-point execution chunks bound temporary work; all 1,632 chunk hashes and
+eight whole Boolean rosters are retained. The random ambiguity fallback was
+never requested and its binding was restored. The [mounting closeout](../../work/carrier-process-20261017/bounded-webs-C1-terminal-taper-protected-chunks-preparation-001/root-terminal-review-001.json)
+records an actual **2,566,619,136-byte peak RSS**, not a hard memory ceiling.
+It preserves the historical 1.20 kg flag as false and separately passes the
+current 1.30 kg ceiling. The comparator uses the retained F0 study interfaces.
+
+The new volume mesh contains **166,403 nodes and 89,536 quadratic T10 elements**.
+All sampled Jacobians are positive; the minimum is **0.007956871**. Its volume
+differs from the adaptive native reference by **−0.023078%**. Six mounting
+rosters were measured afresh, with **528 / 528 / 528 / 528 / 2,274 / 2,278 nodes**;
+old roster identities are not assumed. The [T10 closeout](../../work/carrier-process-20261017/bounded-webs-C1-terminal-taper-BREP-mesh-preparation-001/root-terminal-review-001.json)
+also joins the unchanged 10⁻⁸ import-volume criterion to the same nonadaptive
+native operator. Rigid and elastic mounting cases must now use these new
+identities. No old C1/H2 stress result is transferred.
+
+[Figure 26 and its complete evidence capsule](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/C1-terminal-taper-profile-20261017/README.md)
+provide English PNG, SVG and PDF comparisons of the actual profiles. This
+drawing reuses the closed original profiles and newly extracts only the taper;
+the orange ray belongs to original C1. The original radius-law refusal remains
+recorded independently of the successful surface, mounting and mesh checks.
+
+## Exact native coverage: complete captured band
+
+The same tested CGAL 6.1.3/GMP binary has completed the entire captured band:
+**4,613 triangles and 4,611 ordered primitives**. All triangles are covered;
+the sum of exact rational residual areas is **0/1**. The retained transport
+derives from the original geometry without changing its triangulation or
+coordinates. All **4,615 ordered output rows** are preserved and checked.
+The actual native run took **126.359 s**, with **47,374,336 bytes peak RSS**.
+The [whole-band closeout](../../work/carrier-process-20261017/native-band-union-full-band-preparation-001/root-terminal-review-001.json)
+binds the unchanged binary, complete inputs, outputs, libraries and scoped
+cleanup evidence.
+
+This is a new exact polygon-set certificate authority. It does not fabricate
+the historical Fraction step/cell certificate or silently replace its verifier.
+The separate original Fraction-based one-SKIN trial reached its internal
+14,300 s deadline without returning a band certificate or regional commit;
+that incomplete result remains recorded. No speed ratio or regional support
+admission is inferred from these different completed scopes. Integration must
+retain reconstruction, contacts, components and all original regional gates.

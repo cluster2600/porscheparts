@@ -135,3 +135,6 @@ sont liés aux données, sources et reçus complets de la capsule.
 
 
 La [planche22 du congé R1 natif](native-fillet-20261017/README.md) montre la forme réellement construite, avant/après dans une coupe CAO commune. Le R1 appartient au congé3D du BREP candidat ; il ne s’agit pas d’un arc redessiné. Le statut reste prototype CAO, échange STEP en contrôle. Les [trois formats rejoués depuis la copie finale](native-fillet-root-publication-20261017.json) sont identiques à l’octet ; ce rejeu dessine seulement les points déjà extraits. Les CAO parentes, non incluses, restent liées par leurs empreintes.
+
+
+[Figure 26 — original C1 and the preserved terminal taper](C1-terminal-taper-profile-20261017/README.md) compares complete actual native profiles on common oblique U/Z axes. Only the taper profile was newly extracted; figure 25 supplies the closed original profiles. The original-C1 ray is not transferred to the taper. Its saved Build result retains the original law refusal and remains unqualified. The [actual English draw and ROOT PNG review](C1-terminal-taper-profile-20261017/rendering/root-terminal-review-001.json) are closed; this picture does not grant meshing, protected-interface, FEA or global thickness qualification.

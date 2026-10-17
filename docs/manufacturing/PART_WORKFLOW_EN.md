@@ -310,7 +310,10 @@ exchange, and three byte-identical exports without another CAD or FEA run.
 
 The separate [terminal-taper progress note](CARRIER_SUPPLEMENTS_20261017_EN.md#terminal-taper-diagnostic-revision)
 records the new 1.262364740 kg diagnostic solid and its own 637,836-triangle
-surface. Its original radius-law refusal remains recorded. The
-[first exact CGAL coverage comparison](CARRIER_SUPPLEMENTS_20261017_EN.md#exact-native-coverage-first-comparison-completed)
-also has a closed six-case result; whole-band and regional support admission
-remain subsequent stages.
+surface. [Figure 26](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html#C1-terminal-taper-profile)
+compares its actual native section with original C1. Its original radius-law
+refusal remains recorded. The [new surface, mounting and volume-mesh checks](CARRIER_SUPPLEMENTS_20261017_EN.md#terminal-taper-surface-mounting-and-volume-mesh-results)
+are closed separately; its two mechanical cases are the next calculation.
+The [complete captured-band CGAL result](CARRIER_SUPPLEMENTS_20261017_EN.md#exact-native-coverage-complete-captured-band)
+now retains all 4,613 covered triangles. Regional support admission still
+requires its complete versioned proof chain.
