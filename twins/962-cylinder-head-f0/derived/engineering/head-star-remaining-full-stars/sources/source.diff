@@ -1,0 +1,161 @@
+--- preserved-full-stars001/reader.py
++++ remaining-partial-head/reader.py
+@@ -31,23 +31,39 @@
+   representatives[key]=dict(native_array_index=offset+chosen,tetrahedron_tag=tag,SICN=minimum,
+    original_boundary_node_count=boundary_nodes,interior_node_count=4-boundary_nodes)
+ 
+-def optimizer_after_proof(worker,receipt,contract):
+- """Select the one actual optimized worker's after proof, never a reader alias."""
+- if (receipt.get('returncode')!=2 or receipt.get('stop_reason') is not None
+-     or receipt.get('bound_inputs_unchanged') is not True or receipt.get('worker_report')!=worker
+-     or worker.get('optimizer_returned') is not True or worker.get('element_cache_refresh_completed') is not True
+-     or worker.get('saved_mesh_identity_exact') is not True
+-     or receipt.get('mesh_sha256')!=contract['MSH_sha256'] or worker.get('mesh_sha256')!=contract['MSH_sha256']
+-     or receipt.get('mesh_bytes')!=contract['MSH_bytes'] or worker.get('mesh_bytes')!=contract['MSH_bytes']
+-     or worker.get('candidate_sha256')!=contract['candidate_sha256']):
+-  raise ValueError('Exact completed optimized-worker after proof required')
++def partial_after_proof(worker,receipt,closed,contract):
++ """Bind the actual partial-replacement after/saved proof without optimizer aliases."""
++ if (worker.get('schema')!='962-one-head-star-partial-replacement/v1'
++     or worker.get('status')!='completed_partial_head_replacement_whole_head_quality_gate_applied'
++     or worker.get('stage')!='completed_partial_repair_audits'
++     or any(worker.get(k) is not True for k in ['procedural_checks_passed','partial_replacement_completed','saved_mesh_identity_exact','bound_inputs_unchanged'])
++     or worker.get('after')!=worker.get('saved_reopen')
++     or worker.get('mesh_sha256')!=contract['MSH_sha256'] or worker.get('mesh_bytes')!=contract['MSH_bytes']
++     or worker.get('candidate_sha256')!=contract['partial_coordinate_candidate_sha256']
++     or worker.get('original_parent_MSH_sha256')!=contract['original_parent_MSH_sha256']
++     or receipt.get('returncode')!=2 or receipt.get('stop_reason') is not None
++     or receipt.get('readback_report_sha256')!=contract['partial_report_sha256']
++     or receipt.get('contract_sha256')!=contract['partial_contract_sha256']
++     or receipt.get('reader_sha256')!=contract['partial_reader_sha256']
++     or receipt.get('runner_sha256')!=contract['partial_runner_sha256']
++     or receipt.get('native_log_sha256')!=contract['partial_native_log_sha256']
++     or closed.get('returncode')!=2 or closed.get('stop_reason') is not None or closed.get('wait_reaped') is not True
++     or any(closed.get(k) is not True for k in ['all72_inputs_unchanged','all3_selected_native_runtime_unchanged','selected_NumPy_unchanged','actual_unchanged'])
++     or closed.get('actual_sha256')!=contract['partial_contract_sha256']
++     or closed.get('outputs')!=contract['partial_output_inventory']):
++  raise ValueError('Exact stopped partial-replacement after/saved proof required')
+  proof=worker['after'];n=proof['tetrahedra'];quality=proof['quality'];keys={'sorted_node_tags_sha256','sorted_coordinates_sha256','sorted_tetra_tags_sha256','tagged_tetra_connectivity_sha256'}
+- if (type(n) is not int or n<=0 or set(proof['array_sha256s'])!=keys
++ counts={k:proof[k] for k in contract['expected_saved_counts']}
++ if (counts!=contract['expected_saved_counts'] or any(type(v) is not int for v in counts.values())
++     or set(proof['array_sha256s'])!=keys
+      or set(quality)!={'minimum_jacobian','native_volume_mm3','minimum_SICN','independent_signed_volume_mm3'}
+      or any(type(row.get('count')) is not int or row['count']!=n or type(row.get('nonpositive_count')) is not int for row in quality.values())
+      or quality['minimum_SICN']['below_point1_count']-quality['minimum_SICN']['nonpositive_count']!=contract['expected_positive_poor_total']
+-     or quality['minimum_SICN']['nonpositive_count']!=contract['diagnostic_maximum_nonpositive_cells']):
+-  raise ValueError('Complete actual worker-after arrays, metric counts and poor-cell baseline required')
++     or quality['minimum_SICN']['nonpositive_count']!=contract['diagnostic_maximum_nonpositive_cells']
++     or worker.get('actual_whole_head_positive_poor_count')!=contract['expected_positive_poor_total']
++     or worker.get('actual_whole_head_SICN_gate_passed') is not (quality['minimum_SICN']['minimum']>=.1 and quality['minimum_SICN']['nonpositive_count']==0)
++     or proof['source_boundary_identity']!=contract['expected_source_boundary_identity']):
++  raise ValueError('Complete current partial-head arrays/counts/quality/boundary proof required')
+  return proof
+ 
+ 
+@@ -126,12 +142,12 @@
+ contract=json.loads((OUT/'frozen-contract.json').read_text())
+ for name,h in contract['input_hashes'].items():
+  if sha(ROOT/name)!=h:raise ValueError('Bound saved-readback input drift: '+name)
+-w=ROOT/'work/962-engineering/atomic-cavity-plane-clip-cap-assembly-volume-delaunay-netgen-postexport-001';worker=json.loads((w/'worker-report.json').read_text());receipt=json.loads((w/'receipt.json').read_text());admission=json.loads((w/'surface-admission.json').read_text())
+-proof=optimizer_after_proof(worker,receipt,contract)
++w=ROOT/'work/962-engineering/head-star-replacement-001';worker=json.loads((w/'readback-report.json').read_text());receipt=json.loads((w/'execution-receipt.json').read_text());closed=json.loads((ROOT/contract['partial_root_closed_result']).read_text());admission=json.loads((ROOT/contract['surface_admission']).read_text())
++proof=partial_after_proof(worker,receipt,closed,contract)
+ for name,h in admission['input_hashes'].items():
+  if sha(ROOT/name)!=h:raise ValueError('Surface-admission evidence changed: '+name)
+-for name,h in receipt['source_sha256s'].items():
+- if sha(ROOT/name)!=h or sha(w/'source-snapshots'/Path(name).name)!=h:raise ValueError('Executed source/snapshot changed')
++for filename,key in [('reader.py','partial_reader_sha256'),('run_readback.py','partial_runner_sha256'),('frozen-contract.json','partial_contract_sha256')]:
++ if sha(w/filename)!=contract[key]:raise ValueError('Executed partial source/caller/contract copy changed')
+ import gmsh
+ if np.__version__!=worker['runtime']['numpy'] or gmsh.__version__!='4.15.2' or platform.machine()!='arm64' or sha(Path(gmsh.__file__))!=contract['runtime']['gmsh_module_sha256'] or sha(Path(gmsh.lib._name))!=contract['runtime']['libgmsh_sha256'] or sha(Path(sys.executable).resolve())!=contract['runtime']['python_executable_sha256']:raise ValueError('Pinned native Gmsh reader required')
+ report=dict(status='reading_saved_mesh',meshing_optimization_or_solve_calls=0,engineering_accepted=False,manufacturing_authorized=False,runtime=dict(gmsh=gmsh.__version__,numpy=np.__version__,machine=platform.machine(),executable_sha256=sha(Path(sys.executable).resolve()),gmsh_module_sha256=sha(Path(gmsh.__file__)),libgmsh_sha256=sha(Path(gmsh.lib._name))))
+@@ -161,7 +177,7 @@
+  report.update(actual_explicit_surface_triangles=len(actual_faces),exact_source_boundary_coordinates=True,exact_sorted_explicit_surface_connectivity=True,explicit_surface_elements_are_not_an_independent_tetra_boundary_incidence_audit=True)
+  del actual_faces,face_nodes,face_tags,face_order
+  native={};bad_tetrahedra=[]
+- positive_poor_counts={str(k):0 for k in range(5)};positive_poor_representatives={};poor_indices=[]
++ positive_poor_counts={str(k):0 for k in range(5)};positive_poor_representatives={};poor_indices=[];positive_poor_records=[]
+  for name,measure in [('SICN','minSICN'),('Jacobian','minDetJac'),('native_volume_mm3','volume')]:
+   row=dict(count=0,minimum=None,maximum=None,nonpositive_count=0,below_point1_count=0 if name=='SICN' else None)
+   metric_values=np.empty(len(tet_tags),dtype=np.float64)
+@@ -174,13 +190,18 @@
+     row['below_point1_count']+=int(np.count_nonzero(q<.1))
+     classify_positive_poor_chunk(q,tet_tags[offset:offset+len(q)],tet_nodes[offset:offset+len(q)],offset,nv,positive_poor_counts,positive_poor_representatives)
+     poor_indices.extend((offset+np.flatnonzero((q>0)&(q<.1))).tolist())
++    for local in np.flatnonzero((q>0)&(q<.1)):
++     index=offset+int(local);conn=tet_nodes[index];ids=np.searchsorted(tags,conn)
++     if np.any(ids>=len(tags)) or not np.array_equal(tags[ids],conn):raise ValueError('Positive poor cell references missing saved node')
++     coordinates=xyz[ids].tolist();boundary_nodes=int(np.count_nonzero((conn>=1)&(conn<=nv)))
++     positive_poor_records.append(dict(native_array_index=index,tetrahedron_tag=int(tet_tags[index]),node_tags=conn.tolist(),coordinates_mm=coordinates,binary64_hex=[[float(v).hex() for v in point] for point in coordinates],SICN=float(q[local]),original_boundary_node_count=boundary_nodes,interior_node_count=4-boundary_nodes))
+     for local in np.flatnonzero(q<=0):
+      index=offset+int(local);conn=tet_nodes[index];ids=np.searchsorted(tags,conn)
+      if np.any(ids>=len(tags)) or not np.array_equal(tags[ids],conn):raise ValueError('Nonpositive-SICN cell references missing node')
+      bad_tetrahedra.append(dict(native_array_index=index,tetrahedron_tag=int(tet_tags[index]),node_tags=conn.tolist(),coordinates_mm=xyz[ids].tolist(),SICN=float(q[local]),all_nodes_original_boundary_tags=bool(np.all((conn>=1)&(conn<=nv)))))
+      if len(bad_tetrahedra)>contract['diagnostic_maximum_nonpositive_cells']:raise ValueError('Unexpected diagnostic cell count; preserve refusal without truncating evidence')
+    else:
+-    for bad in [*bad_tetrahedra,*positive_poor_representatives.values()]:
++    for bad in [*bad_tetrahedra,*positive_poor_representatives.values(),*positive_poor_records]:
+      index=bad['native_array_index']
+      if offset<=index<offset+len(q):bad[name]=float(q[index-offset])
+   row.update(dict(zip(('p01','p05','p50','p95','p99'),map(float,np.percentile(metric_values,[1,5,50,95,99])))))
+@@ -198,9 +219,9 @@
+   if np.any(ids>=len(tags)) or not np.array_equal(tags[ids],conn):raise ValueError('Tet references missing saved node')
+   referenced[ids.ravel()]=True;v=xyz[ids];volumes[offset:offset+len(conn)]=np.einsum('ij,ij->i',v[:,1]-v[:,0],np.cross(v[:,2]-v[:,0],v[:,3]-v[:,0]))/6
+  if not np.isfinite(volumes).all():raise ValueError('Nonfinite independent saved-file volume')
+- total=math.fsum(volumes);report.update(independent_signed_volume_mm3=dict(count=len(volumes),minimum=float(volumes.min()),maximum=float(volumes.max()),nonpositive_count=int(np.count_nonzero(volumes<=0)),sum=total,relative_error_to_candidate=abs(total/worker['candidate_volume_reference_mm3']-1)),actual_tetra_referenced_nodes=int(np.count_nonzero(referenced)),actual_unreferenced_mesh_nodes=int(np.count_nonzero(~referenced)),actual_referenced_interior_nodes=int(np.count_nonzero(referenced & ((tags<1)|(tags>nv)))))
++ total=math.fsum(volumes);report.update(independent_signed_volume_mm3=dict(count=len(volumes),minimum=float(volumes.min()),maximum=float(volumes.max()),nonpositive_count=int(np.count_nonzero(volumes<=0)),sum=total,relative_error_to_candidate=abs(total/contract['candidate_volume_mm3']-1)),actual_tetra_referenced_nodes=int(np.count_nonzero(referenced)),actual_unreferenced_mesh_nodes=int(np.count_nonzero(~referenced)),actual_referenced_interior_nodes=int(np.count_nonzero(referenced & ((tags<1)|(tags>nv)))))
+  report['independent_signed_volume_mm3'].update(dict(zip(('p01','p05','p50','p95','p99'),map(float,np.percentile(volumes,[1,5,50,95,99])))))
+- for bad in [*bad_tetrahedra,*positive_poor_representatives.values()]:bad['independent_signed_volume_mm3']=float(volumes[bad['native_array_index']])
++ for bad in [*bad_tetrahedra,*positive_poor_representatives.values(),*positive_poor_records]:bad['independent_signed_volume_mm3']=float(volumes[bad['native_array_index']])
+  report.update(nonpositive_SICN_tetrahedra=bad_tetrahedra,fixed_boundary_only_nonpositive_cells=all(bad['all_nodes_original_boundary_tags'] for bad in bad_tetrahedra))
+  positive_poor_total=sum(positive_poor_counts.values())
+  if positive_poor_total!=native['SICN']['below_point1_count']-native['SICN']['nonpositive_count']:raise ValueError('Complete positive-poor cell partition required')
+@@ -213,16 +234,14 @@
+   original_boundary_definition='Exact admitted source surface tags1..nv; distinct from the surface-repair fixed-vertex mask.',
+   positive_poor_feature_or_OEM_classification_computed=False)
+  require_after_match(report,proof,contract['expected_positive_poor_total'])
+- prior=json.loads((ROOT/contract['completed_saved_diagnosis']).read_text())
+- if (prior.get('status')!='direct_saved_file_readback_completed' or prior.get('bound_inputs_unchanged') is not True
+-     or prior['positive_poor_SICN_cells']['total']!=positive_poor_total
+-     or prior['positive_poor_SICN_cells']['by_original_boundary_node_count']!=positive_poor_counts
+-     or positive_poor_counts!=contract['expected_positive_poor_bins']):
+-  raise ValueError('Complete current210 partition and prior stopped diagnosis required')
++ # Fresh bins are measured here; no old210 partition is a prerequisite.
+  fresh_classifications=classifications(sys.modules[__name__],gmsh,tags,nv)
+  if fresh_classifications!=proof['classifications']:
+   raise ValueError('Fresh complete classifications differ from single worker.after')
+  poor_indices.sort(key=lambda i:int(tet_tags[i]))
++ positive_poor_records.sort(key=lambda row:row['tetrahedron_tag'])
++ if [row['tetrahedron_tag'] for row in positive_poor_records]!=[int(tet_tags[i]) for i in poor_indices]:raise ValueError('Complete ordered current positive-poor records required')
++ report['positive_poor_SICN_cells']['complete_tagged_cells']=positive_poor_records
+  if len(poor_indices)!=positive_poor_total:raise ValueError('All positive-poor rows required')
+  interior_tags=tags[tags>nv].tolist()
+  movable_tags=movable_from_poor_rows(tet_nodes[poor_indices].tolist(),interior_tags,nv)
+@@ -230,8 +249,7 @@
+  for offset in range(0,len(tet_tags),100000):
+   incident_indices.extend(offset+i for i in incident_positions(tet_nodes[offset:offset+100000].tolist(),movable_tags))
+  incident_indices.sort(key=lambda i:int(tet_tags[i]))
+- if not set(poor_indices)<=set(incident_indices):
+-  raise ValueError('A baseline poor cell has no selected interior member; retain refusal, never omit it')
++ unseedable_poor_indices=sorted(set(poor_indices)-set(incident_indices),key=lambda i:int(tet_tags[i]))
+  selected_nodes=tet_nodes[incident_indices]
+  union_tags=np.unique(selected_nodes).tolist();union_positions=np.searchsorted(tags,union_tags)
+  if np.any(union_positions>=len(tags)) or not np.array_equal(tags[union_positions],union_tags):
+@@ -270,13 +288,15 @@
+    union_coordinates_f64=array_sha(np.asarray(xyz[union_positions],dtype='<f8')),
+    selected_initial_SICN_f64=array_sha(np.asarray(sicn_values[incident_indices],dtype='<f8'))),
+   all_seed_stars_complete_including_initially_good_and_shared_cells=True,
++  all_positive_poor_rows_covered_by_movable_stars=not unseedable_poor_indices,
++  unseedable_positive_poor_tetrahedron_tags=[int(tet_tags[i]) for i in unseedable_poor_indices],
+   complete_list_policy='Complete or resource refusal; no sampling or record truncation.',
+   cell_order='Increasing tetrahedron tag; original corner order retained.',node_order='Increasing node tag; coordinate hex preserves binary64 bits.',
+   source_boundary_or_other_context_repair_policy_approved=False,
+   shared_star_feasibility_computed=False,SLSQP_or_other_optimization_calls=0,candidate_or_geometry_export_written=False)
+  report['direct_fresh_classifications']=fresh_classifications
+  report['direct_counts_metrics_and_positive_poor_total_match_single_worker_after']=True
+- report['single_optimized_worker_proof']=dict(worker_report_sha256=sha(w/'worker-report.json'),field='after',independent_prior_reader_alias_used=False)
++ report['single_partial_replacement_saved_proof']=dict(report_sha256=sha(w/'readback-report.json'),field='after',after_equals_saved_reopen=True,independent_prior_reader_alias_used=False,old210_bins_reused=False)
+  report.update(retained_only_not_repeated=dict(tetra_exterior_incidence=proof['actual_tetra_boundary'],internal_face_orientation=proof['internal_tetra_face_orientation']),SICN_point1_gate_passed=native['SICN']['minimum']>=.1 and native['SICN']['nonpositive_count']==0,thermal_resolution_established=False,status='direct_saved_file_readback_completed')
+ finally:
+  if initialized:gmsh.finalize()

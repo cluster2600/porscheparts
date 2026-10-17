@@ -13,16 +13,22 @@ reference and its documented architecture while studying the displacement
 family through 4.0 L. Original interface measurements remain distinct from
 assumed bionic geometry; a missing original dimension stays unknown.
 
-1. **Material and strength:** finish mesh admission, verify the local mechanics
-   solver against the prepared elastic reference cube, then calculate thermal
+1. **Material and strength:** finish head mesh admission, then calculate thermal
    and structural responses with explicit loads and process-specific material
-   data. A hypothetical card supports a conditional study only. Check mesh
+   data. The [grouped-scaling elastic cube](derived/engineering/moose-local-grouped-scaling-cube/README.md)
+   now passes the unchanged software benchmark; it does not qualify a head or
+   material. A hypothetical card supports a conditional study only. Check mesh
    convergence, equilibrium and the declared operating envelope before accepting
    head results. The [completed partial head replacement](derived/engineering/head-star-replacement/README.md)
    passes its local 39-cell and full save/reopen procedure, reducing the retained
    Netgen baseline's **210 cells below SICN 0.1 to 208**. The full head remains
-   rejected, with minimum SICN 0.039074265058645995. The new 208-cell
-   classifications are unknown; the original bins are not transferred.
+   rejected, with minimum SICN 0.039074265058645995. The
+   [fresh complete census](derived/engineering/head-star-remaining-full-stars/README.md)
+   measures boundary-node bins [0, 0, 15, 193, 0], 155 interior seed nodes and
+   5,327 incident cells: 208 poor and 5,119 initially good. All poor cells are
+   covered; 223 cells share multiple seeds. Next, study those 465 coordinate
+   variables while preserving the other 1,096,895 node positions. Feasibility
+   remains unproved; the original 210-cell bins are not transferred.
    The completed [replacement prerequisites](derived/engineering/local-replacement-prerequisites/README.md)
    now establish sparse-tag editing capability, exact relative local-domain
    equality and the original head's nine exterior/nineteen connected interfaces.
@@ -279,6 +285,12 @@ Its separate unchanged assessor rejects the saved relative residual:
 4.4458188673751004e-10 exceeds the 1e-10 limit, while A=P passes. The failed
 assessment and original outputs remain preserved; this is no accepted benchmark,
 head strength result or qualified material.
+The [later grouped-scaling cube](derived/engineering/moose-local-grouped-scaling-cube/README.md)
+passes the unchanged assessor: all 45 displacement and 45 reaction values,
+40 tensor records, energy/work and saved algebra checks. Its relative residual
+is 6.9088221239268e-13 against the same 1e-10 limit. Card, source mesh, reference
+and acceptance criteria remain unchanged. This verifies one fictitious software
+cube; head strength, material and LPBF qualification remain open.
 The [separate material follow-up](MATERIAL_CONDUCTIVITY_FOLLOWUP.md) supplies
 measured AlSi10Mg conductivity points. The [two native bar witnesses](MATERIAL_CONDUCTIVITY_WITNESS.md)
 now verify the separate assumed piecewise-linear Z/XY laws with 109 final-field

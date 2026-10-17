@@ -11,13 +11,17 @@ with explicit assumptions for unavailable dimensions.
 
 The [engineering execution programme](ENGINEERING_PROGRAM.md) continues through
 material/strength assessment, LPBF simulation, an Omniverse twin and PhysicsNeMo.
-The [local mechanics runtime checkpoint](derived/engineering/moose-local-runtime/README.md)
-records a completed native cube solve followed by a rejected independent residual
-assessment. Benchmark acceptance and head physics remain open.
+The [grouped-scaling mechanics cube](derived/engineering/moose-local-grouped-scaling-cube/README.md)
+passes the unchanged analytical field, energy and saved-algebra checks. The
+[earlier runtime checkpoint](derived/engineering/moose-local-runtime/README.md)
+retains the first strict rejection. Head physics and material qualification remain open.
 The [completed partial head replacement](derived/engineering/head-star-replacement/README.md)
 passes its local 39-cell and full save/reopen procedure. It reduces poor cells
 from 210 to **208**, while the whole head still fails SICN 0.1. No head strength
-result follows; the remaining cells need fresh classification and repair.
+result follows. The [fresh complete census](derived/engineering/head-star-remaining-full-stars/README.md)
+finds 155 interior seed nodes and 5,327 incident cells, including 5,119 currently
+good cells that the next repair must preserve. All 208 poor cells are covered;
+the fresh boundary-node bins are [0, 0, 15, 193, 0]. Repair feasibility remains open.
 The [latest bore95 USD checkpoint](USD_NORMALS_ENGINEERING.md) verifies face
 normals and passes the minimum and CPU asset checks; its formal robotics profile
 retains six failed feature rows. No head physics or manufacturing qualification
@@ -250,6 +254,12 @@ Its separate unchanged assessor rejects the saved relative residual:
 4.4458188673751004e-10 exceeds the 1e-10 limit, while A=P passes. The failed
 assessment and original outputs remain preserved; this is no accepted benchmark,
 head strength result or qualified material.
+The [later grouped-scaling cube](derived/engineering/moose-local-grouped-scaling-cube/README.md)
+passes the unchanged assessor: all 45 displacement and 45 reaction values,
+40 tensor records, energy/work and saved algebra checks. Its relative residual
+is 6.9088221239268e-13 against the same 1e-10 limit. Card, source mesh, reference
+and acceptance criteria remain unchanged. This verifies one fictitious software
+cube; head strength, material and LPBF qualification remain open.
 The [separate AlSi10Mg conductivity follow-up](MATERIAL_CONDUCTIVITY_FOLLOWUP.md)
 adds measured directional points over 23–250 °C, with the treatment, missing
 conditions and proposed interpolation kept explicit.
