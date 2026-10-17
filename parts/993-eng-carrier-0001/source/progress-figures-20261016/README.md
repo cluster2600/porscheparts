@@ -112,3 +112,14 @@ ancre supplémentaire. Les 129 023 certificats ont été revérifiés séparéme
 avec des fractions exactes ; la portée reste une couche et une région.
 Les [trois formats rejoués depuis la copie publiée](region000-contacts-20261017/publication-validation.json)
 accompagnent les données compactes et le script de rendu autonome.
+
+La [planche 20 des quatre pics aux points d’intégration](peak-IP-location-20261017/README.md)
+localise les maxima réels des deux maillages et des deux conditions d’appui,
+sur le vrai maillage EF7 non déformé. Les deux pics mesh9 sont exactement
+superposés et restent visibles par des symboles concentriques, sans jitter.
+Les valeurs MPa, les h mesurés et les distances aux seuls nœuds sont conservés ;
+aucune carte continue de contrainte ou convergence de maillage n’est déduite.
+Les trois exports du rendu réel ont été copiés à l’octet. Un
+[rejeu réel depuis une copie séparée et le cwd `/`](peak-IP-location-root-publication-20261017.json)
+reproduit PNG, SVG et PDF à l’octet ; root a inspecté le PNG et la première
+page du PDF. Le reçu historique de la capsule reste conservé à sa date.
