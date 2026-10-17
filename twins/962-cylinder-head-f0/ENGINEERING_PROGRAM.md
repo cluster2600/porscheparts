@@ -63,8 +63,15 @@ assumed bionic geometry; a missing original dimension stays unknown.
    preserve all 115 generation quality rejections and separate Netgen attempts:
    47 local quality/storage passes and 68 quality rejections. The first held
    attempt remains unretried. Complete saved arrays, tiny meshes, contracts,
-   root/peer records and the 116-region parent context are retained. No exact
-   domain or new head application is admitted; the head remains at 204 poor cells.
+   root/peer records and the 116-region parent context are retained. The
+   [subsequent exact local-domain checks](derived/engineering/current204-case-domains/README.md)
+   complete all 47 fixed cases: 147,917 old/candidate cell pairs and 8,283,352
+   plane-triple attempts, with no timeout or retry. Independent saved-association
+   review and root acceptance join every complete report; pair geometry remains
+   reviewed-source/root-execution evidence. The 2,078 original cells include
+   75 poor cells; all 2,972 local replacement cells pass the frozen quality gate.
+   Combined head application and its subset-specific preservation checks remain
+   pending. The unchanged whole head remains rejected with 204 poor cells.
    The first conditional isothermal screen has an
    [explicit assumed card](engineering/cp1-isothermal-assumed-card.json):
    E = 71 GPa, ν = 0.33, uniform 25 °C and constant isotropic elasticity.

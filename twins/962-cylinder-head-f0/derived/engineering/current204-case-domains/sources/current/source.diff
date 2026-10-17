@@ -1,0 +1,76 @@
+--- prep-001/certify_domain.py
++++ prep-002/certify_domain.py
+@@ -9,7 +9,7 @@
+ QUALIFICATION=dict(native_application_authorized=False,head_execution_authorized=False,stitching_authorized=False,
+  engineering_accepted=False,physics_qualified=False,manufacturing_authorized=False,material_qualified=False,process_calibrated=False)
+ HELPER='work/962-engineering/fixed-shell-coupled-embedding-prep-001/check_embedding.py'
+-MANIFEST='work/962-engineering/head-star-current204-case-domains-prep-001/case-manifest.json'
++MANIFEST='work/962-engineering/head-star-current204-case-domains-prep-002/case-manifest.json'
+ MANIFEST_SHA='0628df655f81a509a43d4b31e64e42f9285226e1653969f939dfa681d8c34cbd'
+ BATCH='work/962-engineering/head-star-current204-batch-shells-001/report.json'
+ CONTEXT='work/962-engineering/head-star-current204-union-context-001/readback-report.json'
+@@ -104,7 +104,15 @@
+  actual={r['tetrahedron_tag']:r['node_tags'] for r in context['complete_old_selected_apex_incident_rows'] if apex in r['node_tags']}
+  if actual!=old or sorted(old)!=CASE['old_tetrahedron_tags']:raise ValueError('Complete original apex incidence must join116 source context')
+  native={r['node_tag']:r for r in context['selected_original_native_node_rows']};boundary=set(shell['original_source_classifications']['boundary_global_node_tags'])
+- if len(boundary)!=CASE['NB'] or shell['original_source_classifications']!=observation['original_source_classifications']:raise ValueError('True source classification labels required')
++ classes=shell['original_source_classifications'];observed=observation['original_source_classifications']
++ global_keys=('boundary_global_node_tags','other_interior_global_node_tags')
++ local_keys=('boundary_local_node_tags','other_interior_local_node_tags')
++ if (len(boundary)!=CASE['NB'] or set(observed)!=set(global_keys) or set(classes)!=set(global_keys+local_keys)
++     or any(classes[key]!=observed[key] for key in global_keys)):raise ValueError('True source global classification labels required')
++ inverse={str(t):i+1 for i,t in enumerate(shell['local_to_global_node_tags'])}
++ if (shell['global_to_local_node_tags']!=inverse
++     or any(classes[local]!=[inverse[str(t)] for t in classes[global_]] for global_,local in zip(global_keys,local_keys))):
++  raise ValueError('Shell local class labels must match the exact global inverse')
+  for row in observation['selected_node_rows']:
+   other=native.get(row['node_tag']);xyz=row['coordinates_mm']
+   if (other is None or struct.pack('<3d',*xyz)!=struct.pack('<3d',*other['coordinates_mm'])
+
+--- prep-001/selfcheck.py
++++ prep-002/selfcheck.py
+@@ -3,7 +3,7 @@
+ from pathlib import Path
+ from unittest import TestCase,main,mock
+ SOURCE=Path(__file__).with_name('certify_domain.py')
+-SOURCE_SHA='c906452bacef2ac6e95444903b9c3d6e62dc8a3589d05cc63a776e353874b822'
++SOURCE_SHA='7060580b7aa2743dec511bb9fc5e8cfb40ef86ea3332b068c5de9c845422efc8'
+ assert hashlib.sha256(SOURCE.read_bytes()).hexdigest()==SOURCE_SHA
+ spec=importlib.util.spec_from_file_location('held_finite_domain_adapters',SOURCE)
+ module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module) # definitions only; never main/pair query
+@@ -41,7 +41,7 @@
+   obs=dict(apex=apex,native_ordered_cell_rows=[dict(tetrahedron_tag=t,node_tags=c) for t,c in zip(tags,cells)],selected_node_rows=observed,original_source_classifications=classes)
+   shell=dict(local_to_global_node_tags=globals_,global_to_local_node_tags={str(t):i+1 for i,t in enumerate(globals_)},
+    vertex_rows=[dict(local_node_tag=i+1,source_global_node_tag=t,binary64_little_endian_bytes_hex=struct.pack('<3d',*p).hex()) for i,(t,p) in enumerate(zip(globals_,vertices))],
+-   oriented_triangle_rows=[dict(local_node_tags=f) for f in faces],original_source_classifications=classes)
++   oriented_triangle_rows=[dict(local_node_tags=f) for f in faces],original_source_classifications=dict(classes,boundary_local_node_tags=[1,2],other_interior_local_node_tags=[3,4]))
+   case=dict(apex=apex,NV=4,NF=4,K=4,NB=2,old_tetrahedron_tags=tags,old_vertex_tags=globals_+[apex],source_record_sha256='a'*64)
+   context=dict(selected_case_contexts=[dict(apex=apex,case_record_sha256='a'*64,old_cell_tags=tags,shell_node_tags=globals_,shell_nodes=4,shell_faces=4,old_tetrahedra=4,original_boundary_shell_nodes=2)],
+    complete_old_selected_apex_incident_rows=copy.deepcopy(obs['native_ordered_cell_rows']),
+@@ -51,10 +51,14 @@
+   return case,obs,shell,context
+  def test_original_current_context_raw_class_owner_and_incidence_refusals(self):
+   case,obs,shell,context=self.old_fixture()
++  # Real saved schema: observation has two global lists; shell also has two local lists.
++  self.assertEqual(set(obs['original_source_classifications']),{'boundary_global_node_tags','other_interior_global_node_tags'})
++  self.assertEqual(set(shell['original_source_classifications']),set(obs['original_source_classifications'])|{'boundary_local_node_tags','other_interior_local_node_tags'})
++  self.assertNotEqual(obs['original_source_classifications'],shell['original_source_classifications'])
+   with mock.patch.object(module,'CASE',case),mock.patch.object(module,'CONTEXT_DATA',context):
+    module.context_join(obs,shell);points,cells,mapping=module.original(obs,shell)
+    self.assertEqual(len(points),5);self.assertEqual(len(cells),4);self.assertEqual(mapping[200],5)
+-  for mode in ['missing_owner','missing_incident','changed_class','signed_zero','wrong_oldtag']:
++  for mode in ['missing_owner','missing_incident','changed_class','signed_zero','wrong_oldtag','changed_global_class','changed_local_class','changed_inverse','extra_class_field']:
+    with self.subTest(mode=mode):
+     c,o,s,ctx=self.old_fixture()
+     if mode=='missing_owner':ctx['all_selected_shell_face_records'][0]['owners']=[]
+@@ -62,6 +66,10 @@
+     if mode=='changed_class':ctx['selected_original_native_node_rows'][0]['dimension']=3
+     if mode=='signed_zero':ctx['selected_original_native_node_rows'][0]['coordinates_mm']=[-0.,0.,0.]
+     if mode=='wrong_oldtag':c['old_tetrahedron_tags']=[9,10,11,12]
++    if mode=='changed_global_class':s['original_source_classifications']['boundary_global_node_tags']=[101,103]
++    if mode=='changed_local_class':s['original_source_classifications']['boundary_local_node_tags']=[1,3]
++    if mode=='changed_inverse':s['global_to_local_node_tags']['101']=2
++    if mode=='extra_class_field':s['original_source_classifications']['unexpected']=[1]
+     with mock.patch.object(module,'CASE',c),mock.patch.object(module,'CONTEXT_DATA',ctx):
+      with self.assertRaises(ValueError):module.context_join(o,s)
+  def candidate_fixture(self):

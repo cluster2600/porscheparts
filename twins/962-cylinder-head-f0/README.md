@@ -54,8 +54,13 @@ The [completed local stages](derived/engineering/current204-local-stages/README.
 retain 115 rejected generation cases and their separate Netgen attempts:
 47 pass local quality/storage checks and 68 fail quality. The held first attempt
 remains unretried. Complete arrays, tiny meshes, contracts, execution records and
-the 116-region parent context are included. Exact local-domain checks and head
-application remain pending; the head still has 204 poor cells.
+the 116-region parent context are included. The subsequent
+[47 exact local-domain checks](derived/engineering/current204-case-domains/README.md)
+complete all 147,917 old/candidate cell pairs and 8,283,352 plane-triple
+attempts. All local-domain queries pass; independent saved-association review
+and root acceptance are retained with complete lossless reports. The regions
+cover 75 original poor cells. Their combined head application remains pending;
+the unchanged head still has 204 poor cells.
 The [assumed-material thermal coupon](derived/engineering/cp1-assumed-thermal-birth-failed/README.md)
 failed its first time step: 33 internal cutbacks, zero converged steps and no
 energy assessment. The full failure and initial fields are retained. Its
