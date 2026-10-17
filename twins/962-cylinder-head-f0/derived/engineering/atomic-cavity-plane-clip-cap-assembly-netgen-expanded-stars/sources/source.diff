@@ -1,0 +1,105 @@
+--- full-stars-prep001/reader.py
++++ expanded-stars-prep001/reader.py
+@@ -121,6 +121,46 @@
+    raise ValueError('Complete positive distinct integer TET4 rows required')
+   if any(t in movable for t in row):positions.append(index)
+  return positions
++
++
++def expanded_from_prior(prior,first_seeds,first_cells,first_nodes,interior_tags,boundary_count):
++ """One explicit expansion of the reconstructed first star; never recursive."""
++ s=prior['complete_seed_star_census']
++ if (prior.get('status')!='direct_saved_file_readback_completed' or prior.get('bound_inputs_unchanged') is not True
++     or s.get('schema')!='962-complete-current-poor-seed-stars/v1'
++     or s.get('all_seed_stars_complete_including_initially_good_and_shared_cells') is not True
++     or first_seeds!=sorted(set(first_seeds)) or first_seeds!=s['movable_node_tags']
++     or interior_tags!=sorted(set(interior_tags))
++     or any(type(t) is not int or t<=boundary_count for t in interior_tags)):
++  raise ValueError('Exact prior complete-star proof and freshly classified interior tags required')
++ expected=s['complete_incident_tetrahedra'];nodes=s['unique_incident_nodes']
++ if (len(first_cells)!=len(expected) or len(first_nodes)!=len(nodes)
++     or [row[0] for row in first_cells]!=sorted(set(row[0] for row in first_cells))
++     or [row[0] for row in first_nodes]!=sorted(set(row[0] for row in first_nodes))):
++  raise ValueError('Complete ordered first-star cell/node rows required')
++ members=set();seeds=set(first_seeds)
++ for (tag,row,q),saved in zip(first_cells,expected):
++  if (type(tag) is not int or tag<=0 or len(row)!=4 or len(set(row))!=4
++      or any(type(t) is not int or t<=0 for t in row) or not seeds.intersection(row)
++      or type(q) not in (int,float) or not math.isfinite(q) or q<=0
++      or tag!=saved['tetrahedron_tag'] or row!=saved['node_tags'] or q!=saved['initial_native_SICN']):
++   raise ValueError('Reconstructed first-star oriented cells/native values differ from prior')
++  members.update(row)
++ if members!={row[0] for row in first_nodes}:raise ValueError('First-star coordinate union must be complete')
++ interior=set(interior_tags)
++ for (tag,xyz),saved in zip(first_nodes,nodes):
++  boundary=tag<=boundary_count
++  if (type(tag) is not int or tag<=0 or len(xyz)!=3
++      or any(type(x) not in (int,float) or not math.isfinite(x) for x in xyz)
++      or tag!=saved['node_tag'] or [float(x).hex() for x in xyz]!=saved['binary64_hex']
++      or saved['in_movable_seed_set'] is not (tag in seeds) or saved['source_boundary_tag'] is not boundary
++      or saved['freshly_proved_classification_scope']!=('below_dim3' if boundary else 'dim3')
++      or (not boundary and tag not in interior)):
++   raise ValueError('Reconstructed first-star coordinate bits/fresh classification differ')
++ expanded=sorted(members & interior)
++ saved_expanded=[row['node_tag'] for row in nodes if not row['source_boundary_tag']]
++ if expanded!=saved_expanded or not seeds<=set(expanded):raise ValueError('Exact prior interior union required')
++ return expanded
+ 
+ 
+ contract=json.loads((OUT/'frozen-contract.json').read_text())
+@@ -225,13 +265,30 @@
+  poor_indices.sort(key=lambda i:int(tet_tags[i]))
+  if len(poor_indices)!=positive_poor_total:raise ValueError('All positive-poor rows required')
+  interior_tags=tags[tags>nv].tolist()
+- movable_tags=movable_from_poor_rows(tet_nodes[poor_indices].tolist(),interior_tags,nv)
++ first_seeds=movable_from_poor_rows(tet_nodes[poor_indices].tolist(),interior_tags,nv)
++ first_indices=[]
++ for offset in range(0,len(tet_tags),100000):
++  first_indices.extend(offset+i for i in incident_positions(tet_nodes[offset:offset+100000].tolist(),first_seeds))
++ first_indices.sort(key=lambda i:int(tet_tags[i]))
++ prior_star=json.loads((ROOT/contract['completed_first_star_census']).read_text())
++ if (prior_star['single_optimized_worker_proof']!=dict(worker_report_sha256=sha(w/'worker-report.json'),field='after',independent_prior_reader_alias_used=False)
++     or {k:prior_star[k] for k in proof['array_sha256s']}!=proof['array_sha256s']):
++  raise ValueError('Prior first-star census must bind this exact current worker/arrays')
++ first_union=np.unique(tet_nodes[first_indices]).tolist();first_positions=np.searchsorted(tags,first_union)
++ if np.any(first_positions>=len(tags)) or not np.array_equal(tags[first_positions],first_union):
++  raise ValueError('First-star coordinate association required')
++ first_cells=[(int(tet_tags[i]),tet_nodes[i].tolist(),float(sicn_values[i])) for i in first_indices]
++ first_nodes=[(int(tag),xyz[index].tolist()) for tag,index in zip(first_union,first_positions)]
++ movable_tags=expanded_from_prior(prior_star,first_seeds,first_cells,first_nodes,interior_tags,nv)
++ if (len(first_seeds)!=156 or len(first_indices)!=5355 or len(first_union)!=2955 or len(movable_tags)!=1098
++     or prior_star['complete_seed_star_census']['positive_poor_tetrahedron_tags']!=[int(tet_tags[i]) for i in poor_indices]):
++  raise ValueError('Frozen156/5355/2955 to1098 expansion and all210 poor tags required')
+  incident_indices=[]
+  for offset in range(0,len(tet_tags),100000):
+   incident_indices.extend(offset+i for i in incident_positions(tet_nodes[offset:offset+100000].tolist(),movable_tags))
+  incident_indices.sort(key=lambda i:int(tet_tags[i]))
+- if not set(poor_indices)<=set(incident_indices):
+-  raise ValueError('A baseline poor cell has no selected interior member; retain refusal, never omit it')
++ if not set(poor_indices)<=set(incident_indices) or not set(first_indices)<=set(incident_indices):
++  raise ValueError('All210 poor and all5355 prior incident cells must remain selected')
+  selected_nodes=tet_nodes[incident_indices]
+  union_tags=np.unique(selected_nodes).tolist();union_positions=np.searchsorted(tags,union_tags)
+  if np.any(union_positions>=len(tags)) or not np.array_equal(tags[union_positions],union_tags):
+@@ -250,8 +307,8 @@
+    in_movable_seed_set=tag in movable,source_boundary_tag=tag<=nv,
+    freshly_proved_classification_scope='below_dim3' if tag<=nv else 'dim3'))
+  report['complete_seed_star_census']=dict(
+-  schema='962-complete-current-poor-seed-stars/v1',
+-  seed_policy='Union of nodes of ALL current positive SICN<0.1 cells, intersect freshly verified complete dim3 classifications; no optimizer proposal.',
++  schema='962-complete-expanded-interior-stars/v1',
++  seed_policy='One expansion: all1098 freshly classified dim3 nodes in the reconstructed prior156-seed complete-star union. Boundary and every other interior node remain context only; no recursive expansion or optimizer.',
+   positive_poor_tetrahedron_tags=[int(tet_tags[i]) for i in poor_indices],
+   movable_node_tags=movable_tags,movable_count=len(movable_tags),prospective_coordinate_variables=3*len(movable_tags),
+   complete_incident_tetrahedra=cells,complete_incident_tetrahedron_count=len(cells),
+@@ -274,6 +331,10 @@
+   cell_order='Increasing tetrahedron tag; original corner order retained.',node_order='Increasing node tag; coordinate hex preserves binary64 bits.',
+   source_boundary_or_other_context_repair_policy_approved=False,
+   shared_star_feasibility_computed=False,SLSQP_or_other_optimization_calls=0,candidate_or_geometry_export_written=False)
++ report['prior_first_star_reconstruction']=dict(census_sha256=sha(ROOT/contract['completed_first_star_census']),
++  movable_nodes=len(first_seeds),complete_incident_cells=len(first_indices),union_nodes=len(first_union),
++  expanded_interior_nodes=len(movable_tags),all_prior_cells_included=True,all210_original_poor_cells_included=True,
++  exact_ordered_cell_corner_native_quality_and_coordinate_hex_join=True,recursive_expansion_performed=False)
+  report['direct_fresh_classifications']=fresh_classifications
+  report['direct_counts_metrics_and_positive_poor_total_match_single_worker_after']=True
+  report['single_optimized_worker_proof']=dict(worker_report_sha256=sha(w/'worker-report.json'),field='after',independent_prior_reader_alias_used=False)

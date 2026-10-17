@@ -153,6 +153,11 @@ records solver-reported success but fails the unchanged all-cell 0.1 gate:
 reported analytic minimum 0.0720022, with 215 of 5,355 cells below 0.1.
 No final coordinate proposal or head mesh was exported; final-coordinate replay
 is unavailable. This establishes no global infeasibility or head acceptance.
+The [expanded interior-node census](derived/engineering/atomic-cavity-plane-clip-cap-assembly-netgen-expanded-stars/README.md)
+contains 1,098 movable nodes and 29,473 coupled cells, including all 210 poor
+cells and 29,263 initially good cells. Its complete geometric JSON is retained
+losslessly through gzip; all 10,969 other context nodes remain fixed.
+This read-only expansion establishes no optimization or accepted head mesh.
 The [exact assembled-model download](derived/engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-delivery/README.md)
 includes BIN, lossless PLY, all seven maps and the complete sealed evidence.
 All 151 members pass independent full-byte checks. GitHub verifies the three
