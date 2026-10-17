@@ -92,3 +92,26 @@ montre le raccord construit dans le BREP natif, aux mêmes coordonnées avant et
 après. Ses points CAO extraits et les trois exports sont conservés ; le rejeu
 autonome reproduit leur dessin. Le prototype conserve son contrôle d'échange
 STEP refusé et n'hérite pas des calculs mécaniques de la géométrie précédente.
+
+La [planche du nouveau remaillage](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/surface-remesh-20261017/README.md)
+compare les deux STL complets du même BREP C1. Gmsh 4.15.2 produit **638 174
+triangles**, avec **zéro aiguille** au critère inchangé de 0,001. Le
+[contrôle libigl réellement clos](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/surface-remesh-audit-20261017.json)
+confirme zéro bord ouvert, non-manifold, incohérence d'orientation, dégénéré
+ou intersection, une composante positive et les alésages et appuis conservés
+dans leurs tolérances. Les 3 072 sondes STL→BREP et les 8 621 points BREP→STL
+donnent des maxima de **0,018234 et 0,047388 mm**, sous le seuil de 0,06 mm.
+Ces distances restent échantillonnées. Le
+[rejeu autonome du dessin](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/surface-remesh-root-publication-20261017.json)
+reproduit les PNG, SVG et PDF à l'octet ; les vrais reçus sont conservés.
+
+Le maître BREP C1 passe aussi le Cut natif strict de conservation de matière.
+Son nouveau maillage global de calcul comprend **166 794 nœuds et 89 788
+éléments T10**, avec un minimum de Jacobien de **0,00828553** et aucun élément
+non positif. Les six groupes nodaux sont mesurés sur ce maillage ; leurs
+listes diffèrent de l'ancien EF7. Le contrôle d'import compare désormais les
+volumes calculés par la même intégration, au seuil inchangé de 10⁻⁸ ; le
+volume adaptatif reste la référence pour la masse et le volume EF.
+La masse CAO reste proche de **1,26237 kg**, sous le plafond de **1,30 kg**.
+Les nouveaux cas rigide et K1000 du congé sont préparés séparément ; les
+contraintes et le raffinement local de l'ancienne CAO ne sont pas transférés.

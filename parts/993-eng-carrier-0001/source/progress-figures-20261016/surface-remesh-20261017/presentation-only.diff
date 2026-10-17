@@ -1,0 +1,46 @@
+--- 001/figure.py
++++ 002/figure.py
+@@ -79,7 +79,11 @@
+     common_bounds = np.array([np.minimum(meshes[0][0].min(0), meshes[1][0].min(0)), np.maximum(meshes[0][0].max(0), meshes[1][0].max(0))])
+     pictures = []
+     for (vertices, faces), q in zip(meshes, ratios):
++        normals = np.cross(vertices[faces[:, 1]] - vertices[faces[:, 0]], vertices[faces[:, 2]] - vertices[faces[:, 0]])
++        light = np.array([.25, -.5, .8]); light /= np.linalg.norm(light)
++        intensity = .35 + .65 * np.maximum(0., normals @ light / np.linalg.norm(normals, axis=1))
+         colors = np.tile(matplotlib.colors.to_rgba('#5e91af'), (len(faces), 1))
++        colors[:, :3] *= intensity[:, None]
+         colors[q < .001] = matplotlib.colors.to_rgba('#d65325')
+         pictures.append(raster.raster(vertices, faces, colors, 30., 0., bounds=common_bounds))
+     worst = int(np.argmin(ratios[0]))
+@@ -104,17 +108,19 @@
+         triangles = vertices[faces]
+         projected = triangles[:, :, axes]
+         low, high = centre[axes] - span / 2, centre[axes] + span / 2
+-        selected = ((projected.max(1) >= low) & (projected.min(1) <= high)).all(1)
++        selected = ((triangles.max(1) >= centre - span / 2) & (triangles.min(1) <= centre + span / 2)).all(1)
+         order = np.argsort(sign * triangles[selected, :, hidden_axis].mean(1), kind='stable')
+         colors = np.tile(matplotlib.colors.to_rgba('#dce8ef'), (int(selected.sum()), 1))
+         colors[q[selected] < .001] = matplotlib.colors.to_rgba('#eb835b')
+         ax.add_collection(PolyCollection(projected[selected][order], facecolors=colors[order], edgecolors='#425f72', linewidths=.25, rasterized=True))
++        flagged = selected & (q < .001)
++        ax.add_collection(PolyCollection(projected[flagged], facecolors='none', edgecolors='#d65325', linewidths=.9, rasterized=True))
+         ax.set_xlim(low[0], high[0]); ax.set_ylim(low[1], high[1]); ax.set_aspect('equal')
+         ax.set_xlabel('XYZ'[axes[0]] + ' [mm]'); ax.set_ylabel('XYZ'[axes[1]] + ' [mm]')
+-        ax.set_title('Même fenêtre · projection des triangles réels', fontsize=10.5, pad=9)
++        ax.set_title('Même zone locale · projection des triangles réels', fontsize=10.5, pad=9)
+         ax.set_facecolor('white')
+     fig.text(.05, .12, 'Orange : aire double / plus grande arête² < 0,001 · critère historique inchangé', fontsize=11.5, color='#9d4829')
+-    fig.text(.05, .087, 'Zoom centré sur le triangle natif de plus faible qualité ; aucune interpolation ou retouche de la géométrie.', fontsize=10, color='#435e6f')
++    fig.text(.05, .087, ('Zoom : cube visuel de %.3f mm centré sur la pire aiguille ; contours orange = triangles signalés.' % span).replace('.', ','), fontsize=10, color='#435e6f')
+     fig.text(.05, .056, 'Ces images et le compte d’aiguilles ne remplacent pas les contrôles distincts de fermeture, intersections et distance au BREP.', fontsize=10, color='#435e6f')
+     output.mkdir(); exports = {}
+     for suffix in ('png', 'svg', 'pdf'):
+@@ -130,7 +136,7 @@
+     receipt = dict(status='actual_complete_STL_comparison_rendered_no_admission', input_sha256=before, exports_sha256=exports,
+         needle_counts=counts, complete_triangle_counts=[len(f) for v, f in meshes], old_mask_checked_against_actual_libigl_audit=True,
+         worst_old_triangle_index=worst, worst_old_quality=float(ratios[0][worst]), zoom_centre_mm=centre.tolist(), zoom_span_mm=span,
+-        zoom_projected_axes=axes, zoom_depth_axis=hidden_axis, zoom_is_display_only=True, all_faces_retained=True, geometry_modified=False,
++        zoom_projected_axes=axes, zoom_depth_axis=hidden_axis, zoom_is_display_only=True, zoom_local_3D_bbox_intersection_only=True, flagged_edges_overlaid=True, flat_lighting_for_visual_readability=True, all_faces_retained_in_global_views=True, geometry_modified=False,
+         new_topology_or_fidelity_admission=False, runtime=dict(numpy=np.__version__,matplotlib=matplotlib.__version__,vispy=vispy.__version__), seconds=time.monotonic()-started)
+     with (output / 'receipt.json').open('x') as stream:
+         json.dump(receipt, stream, indent=2, allow_nan=False); stream.write('\n')
