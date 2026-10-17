@@ -1,0 +1,76 @@
+{
+  "schema": "962-CUB-stopped-incomplete-root-review/v1",
+  "decision": "INCOMPLETE_two_way_distance_not_accepted",
+  "contract_sha256": "7bd2dcc60f81d8e9d8b1f19923a887acf53609a9c151e29282df758692b2f2ac",
+  "all73pins_current": true,
+  "queries": [
+    {
+      "query": "original-changed-to-complete-assembled",
+      "returncode": 0,
+      "wall_seconds": 6.573564458172768,
+      "maximum_sampled_RSS_bytes": 1052180480,
+      "status": "completed",
+      "distance": {
+        "lower": 0.03193591661872411,
+        "upper": 0.031970337358431314,
+        "interval_closed": true,
+        "native_called": true,
+        "source_vertices": 39441,
+        "source_faces": 75230,
+        "target_vertices": 871731,
+        "target_faces": 1743878,
+        "target_is_complete": true,
+        "allocation_factor": 26.585138907350792,
+        "normalize": false,
+        "diagonal": 1.0,
+        "bvh_ms": 2672.405958175659,
+        "bounds_ms": 1537.6050472259521,
+        "query_arrays_unchanged": true
+      },
+      "error": null,
+      "worker_reaped": true,
+      "receipt_sha256": "a2660eff23b8da44da5764f1316ad7f358b3801a259aacd99ad6f7564b096b0a",
+      "worker_sha256": "d89d132bc66889456aee27b399314ad3ac25bf862669272b8fd27c2b0b56cf77"
+    },
+    {
+      "query": "assembled-changed-to-complete-original",
+      "returncode": 2,
+      "wall_seconds": 7.412996916100383,
+      "maximum_sampled_RSS_bytes": 1097957376,
+      "status": "failed",
+      "distance": null,
+      "error": "RuntimeError: Exceeded maximum number of faces or vertices",
+      "worker_reaped": true,
+      "receipt_sha256": "6158fe121a35ecc541643a8492222f9d998dbf6fd8bc2a0fbee3cc7bce7a5c00",
+      "worker_sha256": "8a6eeb5390549e00761fcb9612aad43d71ac5941562a2ac1529c0a46106d418f"
+    }
+  ],
+  "unchanged_assessor_sha256": "015eec745e964c1d13c096a39afe706bbda4c29ac804efdf69deafdd841d8be5",
+  "assessor_returncode": 1,
+  "assessor_log_sha256": "44f516c7f8e2acb51bef839cd18c17bfb5245fe2cfa1235867b98853d62fa798",
+  "assessor_refused_incomplete_set": true,
+  "no_assessment_report_created": true,
+  "output_sha256": {
+    "controller-executed.py": "637678b134c30af34ad56118945b820985e046c4682d8ea00c10b48477030ac5",
+    "worker-executed.py": "58a23c788cd0d9053b64c0bab3acff68a5ea33427e79a19f56516d05cb090f0d",
+    "frozen-execution-contract.json": "7bd2dcc60f81d8e9d8b1f19923a887acf53609a9c151e29282df758692b2f2ac",
+    "execution-summary.json": "4112b5715e50859a2e1e79079afae58efb52ec57d022268e2573915693a34a8b",
+    "original-changed-to-complete-assembled/running-receipt.json": "fd1ab05af92df1123613e41ab55b4f8f6b98e549db3425f5477365e59dcc7816",
+    "original-changed-to-complete-assembled/execution-receipt.json": "a2660eff23b8da44da5764f1316ad7f358b3801a259aacd99ad6f7564b096b0a",
+    "original-changed-to-complete-assembled/worker-report.json": "d89d132bc66889456aee27b399314ad3ac25bf862669272b8fd27c2b0b56cf77",
+    "original-changed-to-complete-assembled/native.log": "4b8b794fb8ffba5bdd7cec445675d47ad9be7d1f01f23fc129b41d7c7c36b96e",
+    "assembled-changed-to-complete-original/running-receipt.json": "5aef27e200eb1b38aa0f488ceb6489a4dd42b971c262346b3cd9a3a8d53836b4",
+    "assembled-changed-to-complete-original/execution-receipt.json": "6158fe121a35ecc541643a8492222f9d998dbf6fd8bc2a0fbee3cc7bce7a5c00",
+    "assembled-changed-to-complete-original/worker-report.json": "8a6eeb5390549e00761fcb9612aad43d71ac5941562a2ac1529c0a46106d418f",
+    "assembled-changed-to-complete-original/native.log": "0718f5ca3185cd862d59485f8df97bedb82785b6e667d18efa0b72ca0a3df720"
+  },
+  "native_queries_repeated": false,
+  "head_surface_admitted": false,
+  "engineering_accepted": false,
+  "manufacturing_authorized": false,
+  "limits": [
+    "Reverse query produced no distance interval; native allocation exception is not a geometric-budget rejection.",
+    "Completed_queries=2 counts attempted records; native_queries_completed=false is the completion authority.",
+    "Sampled RSS and wall controls are not hard CPU/address-space quotas."
+  ]
+}

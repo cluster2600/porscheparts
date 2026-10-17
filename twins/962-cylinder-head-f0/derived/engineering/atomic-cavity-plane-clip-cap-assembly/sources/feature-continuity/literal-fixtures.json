@@ -1,0 +1,400 @@
+{
+  "annulus_refinement": {
+    "coordinate_origins": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      18446744073709551615
+    ],
+    "expected_after": {
+      "boundary_edges": 8,
+      "boundary_loops": 2,
+      "boundary_vertices": 8,
+      "components": 1,
+      "edges": 19,
+      "euler_characteristic": 0,
+      "faces": 10,
+      "vertex_link_manifold": true,
+      "vertices": 9
+    },
+    "expected_before": {
+      "boundary_edges": 8,
+      "boundary_loops": 2,
+      "boundary_vertices": 8,
+      "components": 1,
+      "edges": 16,
+      "euler_characteristic": 0,
+      "faces": 8,
+      "vertex_link_manifold": true,
+      "vertices": 8
+    },
+    "face_sources": [
+      18446744073709551615,
+      18446744073709551615,
+      18446744073709551615,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "faces_after": [
+      [
+        0,
+        1,
+        8
+      ],
+      [
+        1,
+        5,
+        8
+      ],
+      [
+        5,
+        0,
+        8
+      ],
+      [
+        0,
+        5,
+        4
+      ],
+      [
+        1,
+        2,
+        6
+      ],
+      [
+        1,
+        6,
+        5
+      ],
+      [
+        2,
+        3,
+        7
+      ],
+      [
+        2,
+        7,
+        6
+      ],
+      [
+        3,
+        0,
+        4
+      ],
+      [
+        3,
+        4,
+        7
+      ]
+    ],
+    "faces_before": [
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        0,
+        5,
+        4
+      ],
+      [
+        1,
+        2,
+        6
+      ],
+      [
+        1,
+        6,
+        5
+      ],
+      [
+        2,
+        3,
+        7
+      ],
+      [
+        2,
+        7,
+        6
+      ],
+      [
+        3,
+        0,
+        4
+      ],
+      [
+        3,
+        4,
+        7
+      ]
+    ],
+    "fixed_faces": [],
+    "points_after": [
+      [
+        -2,
+        -2,
+        0
+      ],
+      [
+        2,
+        -2,
+        0
+      ],
+      [
+        2,
+        2,
+        0
+      ],
+      [
+        -2,
+        2,
+        0
+      ],
+      [
+        -1,
+        -1,
+        0
+      ],
+      [
+        1,
+        -1,
+        0
+      ],
+      [
+        1,
+        1,
+        0
+      ],
+      [
+        -1,
+        1,
+        0
+      ],
+      [
+        0,
+        -1.5,
+        0
+      ]
+    ],
+    "points_before": [
+      [
+        -2,
+        -2,
+        0
+      ],
+      [
+        2,
+        -2,
+        0
+      ],
+      [
+        2,
+        2,
+        0
+      ],
+      [
+        -2,
+        2,
+        0
+      ],
+      [
+        -1,
+        -1,
+        0
+      ],
+      [
+        1,
+        -1,
+        0
+      ],
+      [
+        1,
+        1,
+        0
+      ],
+      [
+        -1,
+        1,
+        0
+      ]
+    ],
+    "region_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ]
+  },
+  "negative_cases": [
+    "Move a retained boundary coordinate; require byte-association refusal.",
+    "Mark a boundary origin MAX; require explicit boundary refusal without indexing MAX.",
+    "Reverse the fixed exterior triangle; require oriented exterior refusal.",
+    "Duplicate a known face-source ID; require unique source refusal."
+  ],
+  "prepared_unrun": true,
+  "schema": "962-stage-local-continuity-literal-fixtures/v1",
+  "square_refinement_with_fixed_exterior": {
+    "coordinate_origins": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      18446744073709551615
+    ],
+    "expected_after": {
+      "boundary_edges": 4,
+      "boundary_loops": 1,
+      "boundary_vertices": 4,
+      "components": 1,
+      "edges": 8,
+      "euler_characteristic": 1,
+      "faces": 4,
+      "vertex_link_manifold": true,
+      "vertices": 5
+    },
+    "expected_before": {
+      "boundary_edges": 4,
+      "boundary_loops": 1,
+      "boundary_vertices": 4,
+      "components": 1,
+      "edges": 5,
+      "euler_characteristic": 1,
+      "faces": 2,
+      "vertex_link_manifold": true,
+      "vertices": 4
+    },
+    "face_sources": [
+      18446744073709551615,
+      18446744073709551615,
+      18446744073709551615,
+      18446744073709551615,
+      2
+    ],
+    "faces_after": [
+      [
+        0,
+        1,
+        5
+      ],
+      [
+        1,
+        2,
+        5
+      ],
+      [
+        2,
+        3,
+        5
+      ],
+      [
+        3,
+        0,
+        5
+      ],
+      [
+        1,
+        4,
+        2
+      ]
+    ],
+    "faces_before": [
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        0,
+        2,
+        3
+      ],
+      [
+        1,
+        4,
+        2
+      ]
+    ],
+    "fixed_faces": [
+      2
+    ],
+    "points_after": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        2,
+        0,
+        0
+      ],
+      [
+        0.5,
+        0.5,
+        0
+      ]
+    ],
+    "points_before": [
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        2,
+        0,
+        0
+      ]
+    ],
+    "region_ids": [
+      0,
+      1
+    ]
+  }
+}

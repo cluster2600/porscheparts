@@ -69,8 +69,20 @@ The [later mixed-side and cap refinement](derived/engineering/atomic-cavity-plan
 records a separate mixed-side census with zero poor survivors and a cap-only
 necessary q≥2/29 pass on all 8,976 saved triangles. It preserves 38 fixed cells
 and adds 3,092 interior points. The stronger Mesh_2 shape criterion retains
-414 active failures. Assembly, complete surface checks and volume admission
-remain pending; the cap result does not admit the full head.
+414 active failures. That cap result does not admit the full head.
+The [subsequent assembled-surface checkpoint](derived/engineering/atomic-cavity-plane-clip-cap-assembly/README.md)
+passes complete necessary triangle quality, global topology/self-intersection,
+16,218 affected-neighbor checks, eight opening-point screens and scoped
+exterior/boundary continuity on 871,731 vertices and 1,743,878 faces. Its forward
+distance upper bound is 0.03197034 mm. The reverse CUB query reaches a native
+face/vertex allocation cap without an interval; the independent assessor
+refuses the incomplete two-way set. This is not a geometric-budget rejection
+or two-sided acceptance. The 0.0625 mm budget, stronger Mesh_2 failure and volume
+quality requirements remain unchanged; no head field follows yet.
+The [exact assembled-model download](derived/engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-delivery/README.md)
+includes BIN, lossless PLY, all seven maps and the complete sealed evidence.
+All 151 members pass independent full-byte checks. GitHub verifies the three
+new assets while preserving all 42 earlier records in the same draft release.
 The [separate material follow-up](MATERIAL_CONDUCTIVITY_FOLLOWUP.md) supplies
 measured AlSi10Mg conductivity points. The [two native bar witnesses](MATERIAL_CONDUCTIVITY_WITNESS.md)
 now verify the separate assumed piecewise-linear Z/XY laws with 109 final-field

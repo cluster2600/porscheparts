@@ -68,8 +68,20 @@ neighbor and envelope checks were not reached; head physics remains open.
 The [later mixed-side and cap refinement](derived/engineering/atomic-cavity-plane-clip-cap-refinement/README.md)
 passes the necessary q≥2/29 gate on all 8,976 saved cap triangles, with
 3,092 new interior points and all 38 fixed cells retained. The stronger Mesh_2
-shape criterion still fails on 414 active faces. Full-head assembly and fresh
-combined geometry checks remain pending.
+shape criterion still fails on 414 active faces. That cap-only checkpoint
+does not admit the full head.
+The [later assembled-surface checkpoint](derived/engineering/atomic-cavity-plane-clip-cap-assembly/README.md)
+has 871,731 vertices and 1,743,878 faces, all meeting q≥2/29,
+zero global self-intersection pairs and preserved local exterior/boundary
+continuity. The eight retained opening-point screens and 16,218 affected
+neighbor checks pass within their stated scopes. The original-to-assembled
+distance upper bound is 0.03197034 mm; the reverse query hits its native
+allocation cap and returns no interval. Two-sided distance acceptance, volume
+meshing and head physics remain open; the 414 stronger shape failures stay
+separate and unchanged.
+The [current BIN/PLY and seven-map download](derived/engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-delivery/README.md)
+is uploaded to the existing draft release. All 151 archive members pass complete
+independent byte checks; all 42 preceding assets remain unchanged (45 total).
 The [sourced material comparison](ENGINEERING_MATERIALS.md) now separates seven
 published recipes, discrete hot-strength points and conditional body masses.
 These results do not select or qualify a material for the head.
