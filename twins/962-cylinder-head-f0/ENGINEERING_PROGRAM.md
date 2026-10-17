@@ -116,6 +116,12 @@ passes its separate SICN 0.1 gate: 191 to 40 tetrahedra, 42 to 15 nodes and
 minimum SICN 0.4780600202533193 after exact saved-file readback. Both generated
 cube meshes and complete arrays are included. This toy software result supplies
 no head mesh acceptance or physical qualification.
+The [completed head Netgen trial](derived/engineering/atomic-cavity-plane-clip-cap-assembly-delaunay-netgen-postexport/README.md)
+reduces SICN < 0.1 cells from 3,438 to 210, with minimum 0.039074265058645995.
+Exact boundary, full incidence and saved-file identity checks pass; all Jacobians
+and volumes are positive. The unchanged SICN 0.1 gate rejects this 3,620,809-cell
+volume. The new poor-cell boundary classification remains unknown; no head
+field is accepted.
 The [exact assembled-model download](derived/engineering/atomic-cavity-plane-clip-cap-assembly-raw-review-delivery/README.md)
 includes BIN, lossless PLY, all seven maps and the complete sealed evidence.
 All 151 members pass independent full-byte checks. GitHub verifies the three
