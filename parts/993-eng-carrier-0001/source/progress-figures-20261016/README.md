@@ -63,3 +63,10 @@ montre ses 171 694 triangles originaux : 322 grilles et 15 peaux, avec un graphe
 matériel connecté. Elle conserve le refus du découpeur strict et indique la
 correction de triangulation en cours. Les sources, tableaux, index des groupes
 et exports PNG/SVG/PDF sont inclus ; le rendu a été exécuté depuis une copie séparée.
+
+La [planche locale du chart 152 de la région 008](chart008-local-20261017/README.md)
+montre deux bandes déjà contenues dans le domaine source, avec leurs dimensions
+et les reçus exacts conservés. Les contacts du composant restent non validés ;
+aucune admission régionale ou globale n’est déduite de cette image. La
+[revue de publication](chart008-local-20261017/publication-validation.json)
+lie les copies exactes à l’inspection du PNG et du PDF par root.

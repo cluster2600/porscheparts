@@ -35,3 +35,10 @@ des budgets et les refus du supplément mécanique : données modifiées,
 calendrier incomplet, seuils altérés, erreurs du solveur ou des audits et
 copies modifiées après rendu. La [galerie](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/index.html)
 conserve les images du modèle et des calculs.
+
+La [recette locale de la région 008](../../manufacturing/workflows/993-carrier-source008-v7-001.json)
+relance uniquement sa génération V7 depuis les entrées conservées, avec un
+budget de 57 600 secondes et les captures de chaque section terminée. Ses
+47 empreintes et son identité de runtime ont été vérifiées avant lancement.
+Elle reste distincte de la recette complète : son exécution est en cours,
+et aucun résultat des sept régions n’est déduit du seul rejeu local illustré.

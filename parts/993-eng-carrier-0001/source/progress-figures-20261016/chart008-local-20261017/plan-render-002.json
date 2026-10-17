@@ -1,0 +1,29 @@
+{
+  "schema": "source008-chart152-figure-plan-1",
+  "status": "prepared_after_missing_user_site_diagnostic",
+  "command": [
+    "/usr/bin/nice",
+    "-n",
+    "10",
+    "/usr/local/bin/python3",
+    "-B",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-source008-chart152-figure-001/render.py",
+    "/Users/maxime/.codex/worktrees/993-carrier-revalidation/3dprinting993/work/carrier-source008-chart152-figure-001/render-002"
+  ],
+  "source_sha256": "ca230a9b5f89dc425f2f5d02405d983eeeb325de625414d9513e5dac3cea9813",
+  "inputs_sha256": "93a685cfde3645b213be4ce6b6063ad2a118a0872c51b55b9b9a6cceae1ab6da",
+  "maximum_render_seconds": 60,
+  "outer_timeout_seconds": 65,
+  "threads": 1,
+  "worker_processes": 0,
+  "AM_imports": false,
+  "geometry_modified": false,
+  "global_admission": false,
+  "output_directory": "render-002",
+  "publication_status": "awaiting_real_visual_review_by_root",
+  "previous_refusal": {
+    "receipt": "execution-receipt.json",
+    "sha256": "814c6506014ad5ad27f3b97706ecadcf0f0c0401f2f1edd08890bc30d1eddceb",
+    "reason": "-I excludes the existing Matplotlib user-site used by prior figures; no source geometry or renderer change"
+  }
+}
