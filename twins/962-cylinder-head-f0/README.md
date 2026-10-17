@@ -22,6 +22,11 @@ result follows. The [fresh complete census](derived/engineering/head-star-remain
 finds 155 interior seed nodes and 5,327 incident cells, including 5,119 currently
 good cells that the next repair must preserve. All 208 poor cells are covered;
 the fresh boundary-node bins are [0, 0, 15, 193, 0]. Repair feasibility remains open.
+The [current coordinate trial](derived/engineering/head-star-remaining-sicn-proposer-rejected/README.md)
+returned solver success but failed the unchanged quality gate: 213 analytic poor
+cells, minimum SICN 0.07200216465522885. Its full 155-coordinate/5,327-quality
+diagnostic is retained; no proposal or new head mesh was produced. The saved
+head remains at 208 poor cells. A local replacement study is the next step.
 The [latest bore95 USD checkpoint](USD_NORMALS_ENGINEERING.md) verifies face
 normals and passes the minimum and CPU asset checks; its formal robotics profile
 retains six failed feature rows. No head physics or manufacturing qualification
@@ -374,7 +379,7 @@ event rules with the ASN; F0 establishes no eligibility.
 
 | Candidate | Data actually consulted | Study position |
 |---|---|---|
-| Aheadd CP1, Al–Zr–Fe LPBF | **187 W/m·K** at room temperature; Rp0.2 323 MPa, Rm 342 MPa after 400 °C/4 h, vertical specimens | First lightweight candidate to compare |
+| Aheadd CP1, Al–Zr–Fe LPBF | **187 W/m·K**, conductivity-column temperature unspecified; Rp0.2 323 MPa, Rm 342 MPa tested at 25 °C after 400 °C/4 h, vertical specimens | First lightweight candidate to compare |
 | CuCrZr LPBF | A [2025 experimental study](https://www.sciencedirect.com/science/article/pii/S1044580325001007) reports **340 W/m·K**; indexed abstract consulted, full text inaccessible | Priority conductivity candidate; value unusable as a calculation property |
 | EOS M400-1 CuCrZr, 80 µm layers | May 2025 data sheet: 88% IACS after 550 °C/3 h; vertical Rp0.2 230 MPa; density ≥ 8.84 g/cm³ | Supplier recipe to qualify; IACS is **electrical**, not thermal conductivity |
 | CuCP, commercially pure copper | [EOS](https://www.eos.info/metal-solutions/metal-materials/copper) offers it for conductivity | Thermal witness to measure; no automatic structural selection |
@@ -384,8 +389,9 @@ and [EOS CuCrZr data sheet, May 2025](https://www.eos.info/05-datasheet-images/A
 These measurements use different processes and specimens. Neither 187 nor
 340 W/m·K is a k(T) curve or a cylinder-head allowable.
 
-**Working choice: CP1 for the lightweight reference, CuCrZr for the priority
-high-conductivity variant.** Final selection depends on k(T), local temperature,
+**Screening priorities: CP1 for the lightweight reference, CuCrZr for the
+high-conductivity variant.** Neither is selected as a head-solver material card
+in the [input contract](engineering/input-contract.json). Final selection depends on k(T), local temperature,
 thermomechanical fatigue, creep, seat/guide retention and permitted mass.
 Measure these properties on the exact selected process. The best cold
 conductor may be a poor hot cylinder-head body.

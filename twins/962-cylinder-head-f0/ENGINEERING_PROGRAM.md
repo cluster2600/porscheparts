@@ -26,9 +26,15 @@ assumed bionic geometry; a missing original dimension stays unknown.
    [fresh complete census](derived/engineering/head-star-remaining-full-stars/README.md)
    measures boundary-node bins [0, 0, 15, 193, 0], 155 interior seed nodes and
    5,327 incident cells: 208 poor and 5,119 initially good. All poor cells are
-   covered; 223 cells share multiple seeds. Next, study those 465 coordinate
-   variables while preserving the other 1,096,895 node positions. Feasibility
-   remains unproved; the original 210-cell bins are not transferred.
+   covered; 223 cells share multiple seeds. The
+   [completed coordinate trial](derived/engineering/head-star-remaining-sicn-proposer-rejected/README.md)
+   returns SLSQP success after 11 iterations, but its minimum analytic SICN is
+   0.07200216465522885 with 213 poor cells. The strict gate refuses the point;
+   all 155 coordinates and 5,327 qualities remain diagnostic only. No proposal,
+   application or new MSH exists, and the current head stays at 208 poor cells.
+   Next, investigate a local replacement around the limiting star, preserving
+   interfaces, outside coordinates and the unchanged quality/domain checks.
+   Feasibility remains unproved; the original 210-cell bins are not transferred.
    The completed [replacement prerequisites](derived/engineering/local-replacement-prerequisites/README.md)
    now establish sparse-tag editing capability, exact relative local-domain
    equality and the original head's nine exterior/nineteen connected interfaces.
