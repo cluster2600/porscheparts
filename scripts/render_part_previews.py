@@ -297,10 +297,14 @@ def check() -> int:
             photo_path = info_path.parent / "photo.json"
             if photo_path.exists():
                 photo = json.loads(photo_path.read_text(encoding="utf-8"))
+                # The illustration depicts the CAD geometry, so it goes stale
+                # only when a CAD source changes. The record and reference
+                # preview hashes are provenance: what it was generated from.
                 if (card or photo.get("kind") != "ai_illustration"
                         or photo.get("part_id") != part_id
-                        or photo.get("record_sha256") != info["record_sha256"]
-                        or photo.get("reference_sha256") != sha256(info_path.parent / "preview.png")
+                        or photo.get("sources") != expected
+                        or not photo.get("record_sha256")
+                        or not photo.get("reference_sha256")
                         or photo.get("images") != ["photo-concept.png"]
                         or not photo.get("prompt") or not photo.get("generator")
                         or "not a photograph" not in photo.get("note", "").lower()

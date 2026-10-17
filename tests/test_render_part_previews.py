@@ -110,18 +110,15 @@ class PublicPreviewTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             previews.sources(self.record["part_id"])
 
-    def test_ai_illustration_requires_current_reference_and_honest_kind(self):
-        cad = self.parts / "993-test-0001/derived/part.stl"
-        cad.parent.mkdir()
-        cad.write_bytes(b"CAD fixture")
-        self.publish([cad])
+    def illustrate(self, cad):
         image = self.media / "photo-concept.png"
         image.write_bytes((self.media / "preview.png").read_bytes())
-        self.assertEqual(self.check(), 1)
         photo = {
             "part_id": self.record["part_id"], "kind": "ai_illustration",
             "record_sha256": previews.sha256(self.record_path),
             "reference_sha256": previews.sha256(self.media / "preview.png"),
+            "sources": [{"path": cad.relative_to(self.root).as_posix(),
+                         "sha256": previews.sha256(cad)}],
             "images": [image.name], "image_sha256": {image.name: previews.sha256(image)},
             "prompt": "Studio illustration of the supplied CAD concept.",
             "generator": "Imagegen", "note": "AI concept; not a photograph.",
@@ -129,13 +126,39 @@ class PublicPreviewTests(unittest.TestCase):
         }
         manifest = self.media / "photo.json"
         manifest.write_text(json.dumps(photo))
+        return image, manifest, photo
+
+    def test_ai_illustration_requires_its_cad_sources_and_honest_kind(self):
+        cad = self.parts / "993-test-0001/derived/part.stl"
+        cad.parent.mkdir()
+        cad.write_bytes(b"CAD fixture")
+        self.publish([cad])
+        image, manifest, photo = self.illustrate(cad)
+        manifest.unlink()
+        self.assertEqual(self.check(), 1)
+        manifest.write_text(json.dumps(photo))
         self.assertEqual(self.check(), 0)
-        for key, value in (("kind", "photograph"), ("reference_sha256", "0" * 64)):
+        for key, value in (("kind", "photograph"), ("sources", []),
+                           ("reference_sha256", ""), ("record_sha256", "")):
             with self.subTest(key=key):
                 manifest.write_text(json.dumps({**photo, key: value}))
                 self.assertEqual(self.check(), 1)
         manifest.write_text(json.dumps(photo))
         image.write_bytes(b"corrupt")
+        self.assertEqual(self.check(), 1)
+
+    def test_ai_illustration_survives_prose_edits_but_not_cad_changes(self):
+        cad = self.parts / "993-test-0001/derived/part.stl"
+        cad.parent.mkdir()
+        cad.write_bytes(b"CAD fixture")
+        self.publish([cad])
+        self.illustrate(cad)
+        self.record["validation"] = {"limitations": ["Revised wording only."]}
+        self.write_record()
+        self.publish([cad])
+        self.assertEqual(self.check(), 0)
+        cad.write_bytes(b"revised CAD")
+        self.publish([cad])
         self.assertEqual(self.check(), 1)
 
     def test_back_face_up_rotor_rejects_generic_camera_manifest(self):
