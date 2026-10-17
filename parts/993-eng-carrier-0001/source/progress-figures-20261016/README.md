@@ -100,3 +100,6 @@ Les 103 534 nœuds et les quatre champs sont conservés dans les données locale
 Le [rejeu par root depuis une copie séparée](wholepart-release-20261017/publication-validation.json)
 reproduit les trois formats à l'octet. Cette sensibilité mécanique reste
 distincte du calcul thermique du procédé d'impression.
+La [capsule du cas natif complet](../design-20261016/wholepart-native64-20261017/README.md)
+fournit également les entrées comprimées, les quatre états et les commandes
+de restauration et de réanalyse, sans nouvelle exécution du solveur.

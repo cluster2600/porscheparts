@@ -65,3 +65,7 @@ reste inchangé. Le cas uniforme donne une erreur de 1,24×10⁻¹⁴ ; le champ
 quadratique et le bridage provisoire donnent 58,090 µm après libération.
 Cette étude de sensibilité mécanique ne remplace pas la simulation du procédé.
 Le PNG a été relu ; les trois formats ont été reproduits depuis une copie séparée.
+La [capsule du cas natif complet](../../parts/993-eng-carrier-0001/source/design-20261016/wholepart-native64-20261017/README.md)
+conserve les entrées, les quatre états, les sources exactes et les vrais reçus.
+Ses commandes restaurent les fichiers comprimés et rejouent leur analyse avec
+Python et NumPy, sans relancer le solveur.
