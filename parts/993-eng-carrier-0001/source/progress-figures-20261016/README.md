@@ -150,3 +150,6 @@ La [planche22 du congé R1 natif](native-fillet-20261017/README.md) montre la fo
 
 
 [Figure 30 — actual complete functional-law candidate](C1-functional-law-candidate-20261017/README.md) shows the retained 637,850-triangle STL and a conservative source-datum junction crop in the original coordinates. The separate native mass is 1.262364410 kg. Actual PNG and rasterized PDF page were reviewed; image and source markers are display evidence only, with no mechanical or manufacturing qualification. Original runtime refusals remain separate from the later accepted render.
+
+
+[Figure 31 — current complete-law coarse stress and displacement](C1-functional-law-fields-20261018/README.md) compares the actual rigid and K1000 cases using common scales and true displacement x1. Global VM is 690.250571 / 1898.691353 MPa and all-node displacement is 2.794908 / 18.181958 mm. All global peak ties and independent energy checks remain linked. These are current 07b354 coarse results, with no stress-convergence claim. The actual PNG and rasterized PDF page were reviewed; external full-field dependencies are listed explicitly.

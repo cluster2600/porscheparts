@@ -25,6 +25,8 @@ A separate [complete seven-edge law observation](../../parts/993-eng-carrier-000
 
 [Figure 30](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/C1-functional-law-candidate-20261017/README.md) now shows the actual complete 07b354 functional-law candidate STL and a source-datum junction crop, with a separate native mass of 1.262364410 kg. Its actual PNG and rasterized PDF page were reviewed. The original coordinates and source markers are display evidence, with no old C1 stress result or engineering qualification transferred. The [latest English checkpoint](CARRIER_SUPPLEMENTS_20261017_EN.md) separates the newest revision from retained histories.
 
+[Figure 31](../../parts/993-eng-carrier-0001/source/progress-figures-20261016/C1-functional-law-fields-20261018/README.md) compares the actual current 07b354 rigid and K1000 coarse stress/displacement fields. The same mesh, common scales and true displacement x1 retain all global peaks; K1000 is 1,000 N/mm total per eye and axis. Global VM is 690.250571 / 1898.691353 MPa and all-node displacement is 2.794908 / 18.181958 mm. Both independent energy checks passed; stress convergence is not established. Original field dependencies and the actual PNG/PDF review are linked in the compact image capsule.
+
 The latest **preserved terminal-taper diagnostic variant** has separate,
 closed coarse-mesh linear-static results: about **697.3 MPa with rigid mounts
 and 1,977.8 MPa with distributed K1000 springs**. Its original post-Build law
